@@ -7,10 +7,7 @@ type BlockProps = {
 export function SkeletonBlock({ className }: BlockProps) {
   return (
     <div
-      className={cn(
-        'animate-pulse rounded-2xl bg-[var(--ec-surface-raised)]',
-        className
-      )}
+      className={cn('ec-skeleton-shimmer rounded-2xl', className)}
       aria-hidden
     />
   )
@@ -19,10 +16,7 @@ export function SkeletonBlock({ className }: BlockProps) {
 export function SkeletonLine({ className }: BlockProps) {
   return (
     <div
-      className={cn(
-        'animate-pulse rounded-lg bg-[var(--ec-surface-raised)]',
-        className
-      )}
+      className={cn('ec-skeleton-shimmer rounded-lg', className)}
       aria-hidden
     />
   )

@@ -28,12 +28,16 @@ function notifIcon(type: string): string {
   return '💬'
 }
 
-export function NotificationBell() {
+export function NotificationBell({ dismiss = false }: { dismiss?: boolean }) {
   const { user, loading } = useAuthCheck()
   const [items, setItems] = useState<Notif[]>([])
   const [unread, setUnread] = useState(0)
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (dismiss) setOpen(false)
+  }, [dismiss])
 
   const fetchNotifs = useCallback(async () => {
     try {

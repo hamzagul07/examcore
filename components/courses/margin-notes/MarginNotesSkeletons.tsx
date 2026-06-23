@@ -1,6 +1,11 @@
+import { ExamLoader } from '@/components/ui/ExamLoader'
+
 export function CatalogPageSkeleton() {
   return (
     <main className="catalog-page" aria-busy="true" aria-label="Loading courses">
+      <div className="ec-page-loading ec-page-loading--compact catalog-loading-intro">
+        <ExamLoader size="md" rotateHints />
+      </div>
       <header className="catalog-hero pg">
         <div className="mn-skeleton-block mn-skeleton-catalog-hero" />
       </header>

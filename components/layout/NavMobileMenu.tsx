@@ -33,7 +33,7 @@ export function NavMobileMenu({
   const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <nav className={className} aria-label="Mobile">
+    <div className={className} role="group" aria-label="Site sections">
       {items.map((item) => {
         if (item.children?.length) {
           const expanded = openId === item.id
@@ -96,6 +96,6 @@ export function NavMobileMenu({
           {link.label}
         </Link>
       ))}
-    </nav>
+    </div>
   )
 }

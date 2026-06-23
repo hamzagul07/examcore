@@ -41,6 +41,7 @@
     position: sticky;
     top: 0;
     z-index: var(--ec-z-sticky, 50);
+    --ec-nav-height: calc(72px + env(safe-area-inset-top, 0px));
     background: color-mix(in srgb, var(--ec-canvas) 78%, transparent);
     backdrop-filter: blur(20px) saturate(1.65);
     -webkit-backdrop-filter: blur(20px) saturate(1.65);
@@ -495,6 +496,10 @@
       display: none !important;
     }
 
+    .ec-nav-wrap--layout-discuss .ec-theme-flip {
+      display: none;
+    }
+
     .ec-nav-wrap--layout-discuss .ec-nav-right {
       gap: 4px;
     }
@@ -533,10 +538,6 @@
       display: none;
     }
 
-    .ec-nav-wrap--layout-discuss .ec-theme-flip {
-      display: none;
-    }
-
     .ec-nav-wrap--layout-discuss .ec-cmdk-btn {
       width: 36px;
       height: 36px;
@@ -558,9 +559,11 @@
       padding-inline: 12px;
       font-size: 13px;
     }
+  }
 
-    /* Exam Room: keep header visible while scrolling — transform-hide breaks feed paint on iOS */
-    .ec-nav-wrap--layout-discuss.ec-nav-wrap--hidden {
+  @media (max-width: 900px) {
+    /* Phones: keep header tappable — auto-hide uses pointer-events: none */
+    .ec-nav-wrap--auto-hide.ec-nav-wrap--hidden {
       transform: none;
       opacity: 1;
       pointer-events: auto;
@@ -767,6 +770,9 @@
     font-size: 17px;
     cursor: pointer;
     flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    touch-action: manipulation;
   }
 
   .ec-nav-cta-compact {
@@ -781,7 +787,21 @@
   }
 
   .ec-nav-wrap--menu-open {
-    z-index: 220;
+    z-index: 221;
+  }
+
+  .ec-nav-wrap--menu-open .ec-nav {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ec-nav-wrap--menu-open .ec-nav-burger {
+    position: relative;
+    z-index: 2;
+  }
+
+  body.ec-mobile-menu-open .notif-dropdown {
+    display: none;
   }
 
   .ec-nav-mobile-backdrop {
@@ -813,7 +833,7 @@
     right: 0;
     bottom: 0;
     z-index: 219;
-    top: calc(52px + env(safe-area-inset-top, 0px));
+    top: var(--ec-nav-height, calc(72px + env(safe-area-inset-top, 0px)));
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
@@ -862,6 +882,21 @@
     margin-top: 8px;
     padding-top: 12px;
     border-top: 1px solid var(--ec-border);
+  }
+
+  .ec-nav-mobile-auth a {
+    display: flex;
+    align-items: center;
+    min-height: var(--ec-touch-min, 44px);
+    padding: 11px 4px;
+    font-family: var(--font-display, 'Newsreader', Georgia, serif);
+    font-size: 19px;
+    color: var(--ec-text-primary);
+    text-decoration: none;
+  }
+
+  .ec-nav-mobile-auth a:hover {
+    color: var(--ec-brand);
   }
 
   .ec-nav-mobile-link {

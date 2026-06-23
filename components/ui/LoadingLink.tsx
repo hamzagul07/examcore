@@ -19,6 +19,8 @@ function normalizePath(path: string): string {
 }
 
 type LoadingLinkProps = Omit<ComponentProps<typeof Link>, 'onClick'> & {
+  /** Fired when navigation starts (after click, before route transition). */
+  onNavigate?: () => void
   /** Replace label while navigation is pending (button variant only). */
   loadingText?: string
   /**
@@ -36,6 +38,7 @@ export function LoadingLink({
   children,
   loadingText,
   variant = 'button',
+  onNavigate,
   ...rest
 }: LoadingLinkProps) {
   const router = useRouter()
@@ -76,6 +79,7 @@ export function LoadingLink({
 
     if (!hasHash && targetPath === currentPath) {
       e.preventDefault()
+      onNavigate?.()
       if (variant === 'button' || variant === 'inline') {
         triggerPrimaryHaptic()
       }
@@ -86,6 +90,7 @@ export function LoadingLink({
     }
 
     e.preventDefault()
+    onNavigate?.()
     startedAtRef.current = Date.now()
     setShowLoading(true)
     if (variant === 'button' || variant === 'inline') {
@@ -129,7 +134,7 @@ export function LoadingLink({
         {...rest}
       >
         {busy ? (
-          <ButtonLoadingState mode="shimmer" loadingText={loadingText}>
+          <ButtonLoadingState mode="exam" loadingText={loadingText}>
             {children}
           </ButtonLoadingState>
         ) : (
@@ -152,7 +157,7 @@ export function LoadingLink({
       {...rest}
     >
       {busy ? (
-        <ButtonLoadingState mode="shimmer" loadingText={loadingText}>
+        <ButtonLoadingState mode="exam" loadingText={loadingText}>
           {children}
         </ButtonLoadingState>
       ) : (

@@ -7,6 +7,8 @@ import { AppChrome } from "@/components/layout/AppChrome";
 import { RootHeader } from "@/components/layout/RootHeader";
 import { RootFooter } from "@/components/layout/RootFooter";
 import { MobileTabBarGate } from "@/components/layout/MobileTabBarGate";
+import { NavigationLoader } from "@/components/ui/NavigationLoader";
+import { InternalNavigationCapture } from "@/components/ui/InternalNavigationCapture";
 import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
 import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
 import { OmniAILazy } from "@/components/omni-ai/OmniAILazy";
@@ -119,6 +121,8 @@ export default function RootLayout({
               Skip to content
             </a>
             <AppChrome>
+              <NavigationLoader />
+              <InternalNavigationCapture />
               <RootHeader />
               <div
                 id="main-content"

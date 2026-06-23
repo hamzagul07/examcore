@@ -1,8 +1,12 @@
+import { ExamLoader } from '@/components/ui/ExamLoader'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
 export default function DashboardLoading() {
   return (
     <main className="app-shell app-shell-tabbed md:py-10 lg:py-14">
+      <div className="ec-page-loading ec-page-loading--compact">
+        <ExamLoader size="md" rotateHints />
+      </div>
       <div className="mx-auto min-w-0 w-full max-w-5xl">
         <SkeletonLine className="mb-3 h-3 w-16" />
         <SkeletonBlock className="mb-8 h-48 w-full" />

@@ -1,0 +1,383 @@
+/* ExamCore — navigation progress, exam loader, skeleton shimmer */
+
+/* ── Route progress (client navigations) ─────────────────────────────── */
+.ec-nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9998;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--ec-border) 35%, transparent);
+  overflow: hidden;
+}
+
+.ec-nav-progress-bar {
+  height: 100%;
+  width: 0;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(
+    90deg,
+    var(--ec-c-math),
+    var(--ec-brand),
+    var(--ec-c-phys),
+    var(--ec-c-chem),
+    var(--ec-accent-warm)
+  );
+  background-size: 200% 100%;
+  animation: ec-nav-progress-shift 1.1s linear infinite;
+  transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 45%, transparent);
+}
+
+.ec-nav-progress--complete .ec-nav-progress-bar {
+  animation: none;
+  transition: width 220ms ease-out;
+}
+
+@keyframes ec-nav-progress-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.ec-nav-progress-pill {
+  position: fixed;
+  left: 50%;
+  top: calc(var(--ec-nav-height, 72px) + 10px);
+  transform: translateX(-50%);
+  z-index: 9997;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ec-border) 55%, transparent);
+  background: color-mix(in srgb, var(--ec-canvas) 88%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 8px 28px color-mix(in srgb, var(--ec-ink, #000) 14%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 35%, transparent);
+  animation: ec-nav-pill-in 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+@keyframes ec-nav-pill-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* ── Exam loader (orbit + pen) ───────────────────────────────────────── */
+.ec-exam-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ec-exam-loader--sm {
+  flex-direction: row;
+  gap: 10px;
+  --orbit-r: 12px;
+}
+
+.ec-exam-loader--sm .ec-exam-loader-label {
+  font-size: 13px;
+  margin: 0;
+  min-width: 9.5em;
+  animation: ec-exam-label-in 320ms ease;
+}
+
+.ec-exam-loader--md .ec-exam-loader-orbit {
+  width: 48px;
+  height: 48px;
+}
+
+.ec-exam-loader--lg .ec-exam-loader-orbit {
+  width: 64px;
+  height: 64px;
+}
+
+.ec-exam-loader-orbit {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.ec-exam-loader-orbit::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1.5px dashed color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+  animation: ec-exam-orbit-spin 2.4s linear infinite;
+}
+
+.ec-exam-loader-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.ec-exam-loader--md .ec-exam-loader-dot,
+.ec-exam-loader--lg .ec-exam-loader-dot {
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+}
+
+.ec-exam-loader-dot--math {
+  color: var(--ec-c-math);
+  animation: ec-exam-dot-orbit 1.15s ease-in-out infinite;
+}
+
+.ec-exam-loader-dot--brand {
+  color: var(--ec-brand);
+  animation: ec-exam-dot-orbit 1.15s ease-in-out infinite;
+  animation-delay: -0.28s;
+}
+
+.ec-exam-loader-dot--phys {
+  color: var(--ec-c-phys);
+  animation: ec-exam-dot-orbit 1.15s ease-in-out infinite;
+  animation-delay: -0.56s;
+}
+
+.ec-exam-loader-dot--chem {
+  color: var(--ec-c-chem);
+  animation: ec-exam-dot-orbit 1.15s ease-in-out infinite;
+  animation-delay: -0.84s;
+}
+
+.ec-exam-loader-core {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 14px;
+  color: var(--ec-brand);
+  animation: ec-exam-core-pulse 1.2s ease-in-out infinite;
+}
+
+.ec-exam-loader--md .ec-exam-loader-core {
+  font-size: 17px;
+}
+
+.ec-exam-loader--lg .ec-exam-loader-core {
+  font-size: 22px;
+}
+
+.ec-exam-loader-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+  animation: ec-exam-label-in 320ms ease;
+}
+
+.ec-exam-loader--lg .ec-exam-loader-label {
+  font-size: 12.5px;
+}
+
+@keyframes ec-exam-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ec-exam-dot-orbit {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(calc(-1 * var(--orbit-r, 14px))) scale(0.85);
+    opacity: 0.55;
+  }
+  50% {
+    transform: rotate(180deg) translateY(calc(-1 * var(--orbit-r, 14px))) scale(1.08);
+    opacity: 1;
+  }
+}
+
+.ec-exam-loader--md {
+  --orbit-r: 18px;
+}
+
+.ec-exam-loader--lg {
+  --orbit-r: 24px;
+}
+
+@keyframes ec-exam-core-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes ec-exam-label-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Inline exam loader inside buttons */
+.ec-exam-loader-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  --orbit-r: 9px;
+}
+
+.ec-exam-loader-inline .ec-exam-loader-orbit {
+  width: 22px;
+  height: 22px;
+}
+
+.ec-exam-loader-inline .ec-exam-loader-dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+}
+
+.ec-exam-loader-inline .ec-exam-loader-core {
+  font-size: 10px;
+}
+
+.ec-exam-loader-inline .ec-exam-loader-orbit::before {
+  inset: 1px;
+}
+
+/* ── Skeleton shimmer ─────────────────────────────────────────────────── */
+.ec-skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ec-surface-raised) 92%, var(--ec-border));
+}
+
+.ec-skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 38%,
+    color-mix(in srgb, var(--ec-brand) 10%, #ffffff) 50%,
+    transparent 62%,
+    transparent 100%
+  );
+  animation: ec-skeleton-wave 1.35s ease-in-out infinite;
+}
+
+@keyframes ec-skeleton-wave {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Page loading shell */
+.ec-page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: min(52vh, 420px);
+  padding: 32px 20px;
+}
+
+.ec-page-loading--compact {
+  min-height: 240px;
+  gap: 14px;
+}
+
+.rc-community-loading-intro {
+  min-height: auto;
+  padding: 8px 20px 4px;
+}
+
+.catalog-loading-intro {
+  min-height: auto;
+  padding: 12px 20px 0;
+}
+
+@media (max-width: 900px) {
+  .rc-community-loading-intro {
+    padding-top: 4px;
+  }
+}
+.ec-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--ec-canvas) 78%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: ec-loading-overlay-in 200ms ease;
+}
+
+@keyframes ec-loading-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ec-loading-overlay--light {
+  background: color-mix(in srgb, var(--ec-canvas) 62%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-nav-progress-bar,
+  .ec-exam-loader-orbit::before,
+  .ec-exam-loader-dot,
+  .ec-exam-loader-core,
+  .ec-skeleton-shimmer::after,
+  .ec-nav-progress-pill {
+    animation: none !important;
+  }
+
+  .ec-nav-progress-bar {
+    transition: none;
+  }
+
+  .ec-exam-loader-label {
+    animation: none;
+  }
+}

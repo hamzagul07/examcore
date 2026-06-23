@@ -6,6 +6,8 @@ import type { CSSProperties } from 'react'
 import type { Board } from '@/lib/community/posts'
 import { COMMUNITY_BOARDS } from '@/lib/community/boards'
 import type { CommunityAttachment } from '@/lib/community/uploads'
+import { ExamLoader } from '@/components/ui/ExamLoader'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 
 type SubjectOpt = { id: string; name: string; board: Board; accent: string; glyph: string }
 type Kind = 'discussion' | 'question' | 'resource'
@@ -208,6 +210,16 @@ export function PostComposer({
       </div>
 
       <div className="rc-composer-card">
+        {submitting ? (
+          <div className="ec-loading-overlay" aria-live="polite">
+            <ExamLoader size="md" rotateHints label="Publishing to Exam Room…" />
+          </div>
+        ) : null}
+        {uploading ? (
+          <div className="ec-loading-overlay ec-loading-overlay--light" aria-live="polite">
+            <ExamLoader size="sm" label="Uploading files…" />
+          </div>
+        ) : null}
         <div className="rc-field">
           <span className="rc-label">Exam board</span>
           {selectedBoard && board ? (
@@ -279,7 +291,8 @@ export function PostComposer({
                         key={s.id}
                         type="button"
                         role="option"
-                        className="rc-subject-chip"
+                        aria-selected={subjectId === s.id}
+                        className={`rc-subject-chip${subjectId === s.id ? ' on' : ''}`}
                         style={{ '--sc': s.accent } as CSSProperties}
                         onClick={() => pickSubject(s.id)}
                       >
@@ -410,7 +423,11 @@ export function PostComposer({
         <div className="rc-composer-actions">
           <button type="button" className="rc-btn rc-btn-ghost" onClick={() => router.back()}>Cancel</button>
           <button type="button" className="rc-btn rc-btn-primary" onClick={submit} disabled={submitting || uploading || !board || !selectedSubject}>
-            {submitting ? 'Posting…' : 'Post'}
+            {submitting ? (
+              <ButtonLoadingState mode="exam" loadingText="Posting…" />
+            ) : (
+              'Post'
+            )}
           </button>
         </div>
       </div>

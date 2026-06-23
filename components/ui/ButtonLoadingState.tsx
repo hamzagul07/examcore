@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-export type ButtonLoadingMode = 'shimmer' | 'morph' | 'progress' | 'success'
+export type ButtonLoadingMode = 'shimmer' | 'morph' | 'progress' | 'success' | 'exam'
 
 function LoadingDots({ className }: { className?: string }) {
   return (
@@ -32,6 +32,21 @@ export function ButtonLoadingState({
   onSuccessComplete,
 }: Props) {
   const prefersReduced = useReducedMotion()
+
+  if (mode === 'exam') {
+    return (
+      <span className={cn('ec-exam-loader-inline', className)}>
+        <span className="ec-exam-loader-orbit" aria-hidden>
+          <span className="ec-exam-loader-dot ec-exam-loader-dot--math" />
+          <span className="ec-exam-loader-dot ec-exam-loader-dot--brand" />
+          <span className="ec-exam-loader-dot ec-exam-loader-dot--phys" />
+          <span className="ec-exam-loader-dot ec-exam-loader-dot--chem" />
+          <span className="ec-exam-loader-core">✎</span>
+        </span>
+        <span>{loadingText ?? children}</span>
+      </span>
+    )
+  }
 
   if (mode === 'success') {
     return (

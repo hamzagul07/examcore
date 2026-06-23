@@ -614,6 +614,7 @@
 .rc-kind-tab-hint { font-size: 12px; font-weight: 500; color: var(--ec-text-secondary); }
 
 .rc-composer-card {
+  position: relative;
   background: var(--ec-surface-raised); border: 1px solid var(--ec-border);
   border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 16px;
 }
@@ -664,6 +665,11 @@
 .rc-subject-chip:hover {
   border-color: color-mix(in srgb, var(--sc, var(--ec-brand)) 45%, var(--ec-border));
   background: var(--ec-surface-raised);
+}
+.rc-subject-chip.on {
+  border-color: var(--sc, var(--ec-brand));
+  background: color-mix(in srgb, var(--sc, var(--ec-brand)) 12%, var(--ec-surface));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sc, var(--ec-brand)) 28%, transparent);
 }
 .rc-subject-chip-top {
   display: flex;
@@ -847,7 +853,7 @@
   .rc-page {
     padding: 12px 14px calc(72px + env(safe-area-inset-bottom, 0px));
     overflow-x: hidden;
-    scroll-padding-top: calc(64px + env(safe-area-inset-top, 0px));
+    scroll-padding-top: var(--ec-nav-height, calc(64px + env(safe-area-inset-top, 0px)));
   }
 
   .rc-page--hub {
@@ -968,8 +974,8 @@
   }
 
   .rc-vote-btn {
-    min-width: 36px;
-    min-height: 36px;
+    min-width: var(--ec-touch-min, 44px);
+    min-height: var(--ec-touch-min, 44px);
   }
 
   .rc-composer-card {

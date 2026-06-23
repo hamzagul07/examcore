@@ -6,7 +6,7 @@ export function sendCommunityReplyEmail(payload: {
   to: string
   recipientName?: string | null
   actorUsername: string
-  kind: 'comment' | 'reply'
+  kind: 'comment' | 'reply' | 'mention'
   postTitle: string
   postHref: string
   preview?: string
@@ -16,7 +16,9 @@ export function sendCommunityReplyEmail(payload: {
   const action =
     payload.kind === 'reply'
       ? `${payload.actorUsername} replied to your comment`
-      : `${payload.actorUsername} commented on your post`
+      : payload.kind === 'mention'
+        ? `${payload.actorUsername} mentioned you in Exam Room`
+        : `${payload.actorUsername} commented on your post`
 
   const text = [
     `Hi ${greeting},`,
@@ -41,7 +43,9 @@ export function sendCommunityReplyEmail(payload: {
     subject:
       payload.kind === 'reply'
         ? `${payload.actorUsername} replied in Exam Room`
-        : `New comment on "${payload.postTitle.slice(0, 48)}${payload.postTitle.length > 48 ? '…' : ''}"`,
+        : payload.kind === 'mention'
+          ? `${payload.actorUsername} mentioned you in Exam Room`
+          : `New comment on "${payload.postTitle.slice(0, 48)}${payload.postTitle.length > 48 ? '…' : ''}"`,
     preheader: action,
     text,
     cta: { label: 'View discussion', href: payload.postHref },
@@ -49,6 +53,44 @@ export function sendCommunityReplyEmail(payload: {
       preheader: action,
       bodyHtml: textToHtmlParagraphs(text),
       cta: { label: 'View discussion', href: payload.postHref },
+    }),
+  })
+}
+
+export function sendCommunityMilestoneEmail(payload: {
+  to: string
+  recipientName?: string | null
+  postTitle: string
+  score: number
+  postHref: string
+  unsubscribeHref?: string
+}): void {
+  const greeting = payload.recipientName?.trim() || 'there'
+  const text = [
+    `Hi ${greeting},`,
+    '',
+    `Your post in Exam Room hit ${payload.score} upvotes:`,
+    `"${payload.postTitle}"`,
+    '',
+    `View the post: ${payload.postHref}`,
+    '',
+    payload.unsubscribeHref
+      ? `Unsubscribe from activity emails: ${payload.unsubscribeHref}`
+      : 'You can turn off activity emails in Account → Preferences.',
+    '',
+    '— MarkScheme Exam Room',
+  ].join('\n')
+
+  sendEmailAsync({
+    to: payload.to,
+    subject: `Your post reached ${payload.score} upvotes`,
+    preheader: `"${payload.postTitle.slice(0, 60)}" is trending`,
+    text,
+    cta: { label: 'View post', href: payload.postHref },
+    html: renderBrandedEmailHtml({
+      preheader: `"${payload.postTitle.slice(0, 60)}" is trending`,
+      bodyHtml: textToHtmlParagraphs(text),
+      cta: { label: 'View post', href: payload.postHref },
     }),
   })
 }

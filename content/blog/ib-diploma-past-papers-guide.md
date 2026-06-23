@@ -43,9 +43,11 @@ Every IB subject has different papers, command terms, and markband language. Use
 
 **Group 5 — Mathematics:** [Maths AA HL](/blog/ib-maths-aa-hl-past-papers-guide) · [Maths AA SL](/blog/ib-maths-aa-sl-past-papers-guide) · [Maths AI HL](/blog/ib-maths-ai-hl-past-papers-guide) · [Maths AI SL](/blog/ib-maths-ai-sl-past-papers-guide) · [AA vs AI — which to choose?](/blog/ib-maths-aa-vs-ai-which-to-choose)
 
-**Group 6 — The Arts:** [Visual Arts HL](/blog/ib-visual-arts-hl-past-papers-guide) · [Visual Arts SL](/blog/ib-visual-arts-sl-past-papers-guide) · [Theatre HL](/blog/ib-theatre-hl-past-papers-guide) · [Music HL](/blog/ib-music-hl-past-papers-guide) · [Film HL](/blog/ib-film-hl-past-papers-guide) · [Dance HL](/blog/ib-dance-hl-past-papers-guide)
+**Group 6 — The Arts:** [Visual Arts HL](/blog/ib-visual-arts-hl-past-papers-guide) · [Visual Arts SL](/blog/ib-visual-arts-sl-past-papers-guide) · [Theatre HL](/blog/ib-theatre-hl-past-papers-guide) · [Theatre SL](/blog/ib-theatre-sl-past-papers-guide) · [Music HL](/blog/ib-music-hl-past-papers-guide) · [Music SL](/blog/ib-music-sl-past-papers-guide) · [Film HL](/blog/ib-film-hl-past-papers-guide) · [Film SL](/blog/ib-film-sl-past-papers-guide) · [Dance HL](/blog/ib-dance-hl-past-papers-guide) · [Dance SL](/blog/ib-dance-sl-past-papers-guide)
 
 **Cross-subject:** [Markbands explained](/blog/ib-markbands-explained) · [Grade boundaries](/blog/ib-grade-boundaries-explained) · [Command terms](/blog/ib-command-terms-explained) · [Internal Assessment](/blog/ib-internal-assessment-complete-guide) · [Predicted grades](/blog/ib-predicted-grades-explained) · [Revision strategy](/blog/ib-exam-revision-strategy) · [Free courses](/blog/ib-free-courses-guide)
+
+**Internal Assessment (IA) guides:** [Biology](/blog/ib-biology-ia-guide) · [Chemistry](/blog/ib-chemistry-ia-guide) · [Physics](/blog/ib-physics-ia-guide) · [Economics](/blog/ib-economics-ia-guide) · [History](/blog/ib-history-ia-guide) · [Geography](/blog/ib-geography-ia-guide) · [Psychology](/blog/ib-psychology-ia-guide) · [Business](/blog/ib-business-management-ia-guide) · [Maths](/blog/ib-maths-ia-guide) · [Computer Science](/blog/ib-computer-science-ia-guide) · [English](/blog/ib-english-ia-guide) · [ESS](/blog/ib-ess-ia-guide)
 
 ## Frequently asked questions
 

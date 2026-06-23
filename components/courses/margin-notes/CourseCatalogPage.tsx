@@ -7,17 +7,22 @@ import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
 import { InkScribble, MarginNote } from '@/components/courses/margin-notes/HandAnnotations'
 import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
 
+import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
+import { ibCatalogCardsByTrack } from '@/lib/courses/ib-catalog-display'
+
 type Props = {
   subjects: MarginNotesSubject[]
   continueCatalog: ContinueCatalogEntry[]
+  ibSubjects?: IbCatalogCard[]
 }
 
-export function CourseCatalogPage({ subjects, continueCatalog }: Props) {
+export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }: Props) {
   const { fam, selectFam } = useFamilyFilterFromUrl()
 
   const list = fam === 'All' ? subjects : subjects.filter((s) => s.fam === fam)
-  const totalLessons = subjects.reduce((a, s) => a + s.lessons, 0)
+  const totalLessons = subjects.reduce((a, s) => a + s.lessons, 0) + ibSubjects.reduce((a, s) => a + s.lessons, 0)
   const totalQ = subjects.reduce((a, s) => a + s.q, 0)
+  const ibTracks = ibCatalogCardsByTrack(ibSubjects)
 
   return (
     <main className="catalog-page ec-page-mesh" data-screen-label="Courses — catalog">
@@ -30,13 +35,13 @@ export function CourseCatalogPage({ subjects, continueCatalog }: Props) {
             <em>without the premium.</em>
           </h1>
           <p className="lead catalog-lead">
-            Syllabus-aligned, topic by topic — with a real Cambridge past-paper question for every
-            syllabus point. Learn it, practise it, <InkScribble>mark it</InkScribble>.
+            Syllabus-aligned, topic by topic — Cambridge past-paper questions and IB criterion
+            practice on every lesson. Learn it, practise it, <InkScribble>mark it</InkScribble>.
           </p>
         </div>
         <div className="catalog-hero-meta">
           <div className="hero-stat">
-            <b>{subjects.length}</b>
+            <b>{subjects.length + ibSubjects.length}</b>
             <span>subjects</span>
           </div>
           <div className="hero-stat">
@@ -61,25 +66,64 @@ export function CourseCatalogPage({ subjects, continueCatalog }: Props) {
             className="fam-tabs"
             tabClassName="fam-tab"
           />
-          <span className="micro catalog-count">{list.length} courses · A-Level</span>
+          <span className="micro catalog-count">
+            {list.length} Cambridge · {ibSubjects.length} IB
+          </span>
         </div>
 
         <div className="catalog-grid">
           {list.length ? (
             list.map((s) => <SubjectCard key={s.code} s={s} />)
-          ) : (
+          ) : fam !== 'All' ? (
             <div className="catalog-empty card card-pad">
               <p className="overline mono">No matches</p>
-              <h3 className="h3 empty-title">No courses in this family yet</h3>
+              <h3 className="h3 empty-title">No Cambridge courses in this family</h3>
               <p className="body-2 empty-copy">
-                Try another filter — or browse all subjects to see what&apos;s live today.
+                Try another filter — IB courses are listed below.
               </p>
               <button type="button" className="btn-ghost sm catalog-empty-reset" onClick={() => selectFam('All')}>
                 Show all courses →
               </button>
             </div>
-          )}
+          ) : null}
         </div>
+
+        {ibSubjects.length ? (
+          <section className="catalog-ib-section" aria-labelledby="catalog-ib-heading">
+            <h2 id="catalog-ib-heading" className="h3 catalog-ib-title">
+              IB Diploma courses
+            </h2>
+            <p className="body-2 catalog-ib-lead">
+              TOK, Extended Essay, CAS, sciences, maths, and Group 6 arts — criterion-based marking on
+              every topic.
+            </p>
+            {(
+              [
+                { key: 'core', label: 'Core', items: ibTracks.core },
+                { key: 'arts', label: 'Group 6 — The Arts', items: ibTracks.arts },
+                { key: 'stem', label: 'Sciences & humanities', items: ibTracks.stem },
+              ] as const
+            )
+              .filter((t) => t.items.length > 0)
+              .map((track) => (
+                <div key={track.key} className="catalog-ib-track">
+                  <p className="overline catalog-ib-track-label">{track.label}</p>
+                  <div className="catalog-grid">
+                    {track.items.map((s) => (
+                      <SubjectCard
+                        key={s.code}
+                        s={s}
+                        href={s.href}
+                        boardLabel={s.boardLabel}
+                        accentHex={s.accentHex}
+                        statSuffix="criterion practice tasks"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </section>
+        ) : null}
 
         <div className="catalog-footnote">
           <span className="micro">

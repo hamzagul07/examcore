@@ -2,6 +2,8 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { getCourseCatalog } from '@/lib/courses'
 import { adaptAllCatalogSubjects } from '@/lib/courses/margin-notes/adapt-subject'
 import { buildContinueCatalog } from '@/lib/courses/margin-notes/continue-catalog'
+import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display'
+import { getIbCourse } from '@/lib/courses/ib'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
@@ -16,13 +18,32 @@ export default function CoursesIndexPage() {
   const catalog = getCourseCatalog()
   const subjects = adaptAllCatalogSubjects(catalog)
   const continueCatalog = buildContinueCatalog()
+  const ibSubjects = getIbCatalogCards()
+
+  const jsonLdItems = [
+    ...catalog.map((course) => {
+      const profile = getSubjectSeoProfile(course.code)
+      return {
+        name: `${course.name} (${course.code})`,
+        url: `${SITE_URL}${course.path}`,
+        description:
+          profile?.courseDescription.replace('{count}', String(course.lessonCount)) ??
+          `Free ${course.name} ${course.code} course`,
+      }
+    }),
+    ...ibSubjects.map((course) => ({
+      name: `${course.name} (IB)`,
+      url: `${SITE_URL}${course.href}`,
+      description: `Free IB Diploma ${course.name} course with criterion-based practice marking`,
+    })),
+  ]
 
   return (
     <>
       <PageJsonLd
         path="/courses"
-        title="Free Cambridge courses"
-        description="Syllabus-aligned free courses for Cambridge International A-Level and O-Level subjects."
+        title="Free Cambridge & IB courses"
+        description="Syllabus-aligned free courses for Cambridge International A-Level, O-Level, and IB Diploma subjects."
         breadcrumbs={[
           { name: 'Home', path: '/' },
           { name: 'Free courses', path: '/courses' },
@@ -30,33 +51,29 @@ export default function CoursesIndexPage() {
       />
       <JsonLd
         data={itemListNode({
-          name: 'Free Cambridge International courses by subject',
+          name: 'Free Cambridge & IB courses by subject',
           description:
-            'Topic-by-topic free courses for Cambridge A-Level and O-Level syllabuses with past-paper marking.',
-          items: catalog.map((course) => {
-            const profile = getSubjectSeoProfile(course.code)
-            return {
-              name: `${course.name} (${course.code})`,
-              url: `${SITE_URL}${course.path}`,
-              description:
-                profile?.courseDescription.replace('{count}', String(course.lessonCount)) ??
-                `Free ${course.name} ${course.code} course`,
-            }
-          }),
+            'Topic-by-topic free courses for Cambridge A-Level, O-Level, and IB Diploma syllabuses with past-paper and criterion marking.',
+          items: jsonLdItems,
         })}
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
         <HubSeoIntro
-          heading="Free Cambridge courses — every syllabus topic"
-          paragraph="Browse free A-Level and O-Level courses aligned to Cambridge International syllabuses. Each subject is broken into official topic codes with visual lessons, exam tips, and links to past-paper marking — 100% free."
+          heading="Free courses — Cambridge & IB, every syllabus topic"
+          paragraph="Browse free A-Level, O-Level, and IB Diploma courses aligned to official syllabuses. Each subject is broken into topic codes with visual lessons, exam tips, and marking — Cambridge past papers or IB criterion practice — 100% free."
           links={[
             { href: '/subjects', label: 'Browse subjects', variant: 'muted' },
+            { href: '/ib', label: 'IB hub', variant: 'muted' },
             { href: '/community', label: 'Exam Room community', variant: 'muted' },
             { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },
           ]}
         />
       </div>
-      <CourseCatalogClient subjects={subjects} continueCatalog={continueCatalog} />
+      <CourseCatalogClient
+        subjects={subjects}
+        continueCatalog={continueCatalog}
+        ibSubjects={ibSubjects}
+      />
     </>
   )
 }

@@ -1,9 +1,10 @@
 import { getCourseCatalog, getCourseLessons } from '@/lib/courses'
+import { ibContinueCatalogEntries } from '@/lib/courses/ib-catalog-display'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 
 /** Server-only: lesson metadata for client continue-learning strip. */
 export function buildContinueCatalog(): ContinueCatalogEntry[] {
-  return getCourseCatalog().map((course) => {
+  const cambridge = getCourseCatalog().map((course) => {
     const lessons = getCourseLessons(course.code)
     return {
       code: course.code,
@@ -16,4 +17,5 @@ export function buildContinueCatalog(): ContinueCatalogEntry[] {
       })),
     }
   })
+  return [...cambridge, ...ibContinueCatalogEntries()]
 }

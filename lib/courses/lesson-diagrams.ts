@@ -43,6 +43,8 @@ import { ProcessorParallelDiagram } from '@/components/diagrams/ProcessorParalle
 import { EncryptionDiagram } from '@/components/diagrams/EncryptionDiagram'
 import { ExpertSystemDiagram } from '@/components/diagrams/ExpertSystemDiagram'
 import { ParadigmDiagram } from '@/components/diagrams/ParadigmDiagram'
+import { TokFrameworkDiagram } from '@/components/diagrams/TokFrameworkDiagram'
+import { FormalElementsDiagram } from '@/components/diagrams/FormalElementsDiagram'
 import { DataRepresentationDiagram } from '@/components/diagrams/DataRepresentationDiagram'
 import { MultimediaSoundDiagram } from '@/components/diagrams/MultimediaSoundDiagram'
 import { CompressionDiagram } from '@/components/diagrams/CompressionDiagram'
@@ -392,6 +394,66 @@ const PILOT_DIAGRAMS: Record<
   '17-1-encryption-encryption-protocols-and-digital-certificates': { Component: EncryptionDiagram, meta: { caption: 'Symmetric/asymmetric encryption, hashing, and digital certificates.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
   '18-1-artificial-intelligence-ai': { Component: ExpertSystemDiagram, meta: { caption: 'Expert systems, machine learning overview, and AI ethics.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
   '20-1-programming-paradigms': { Component: ParadigmDiagram, meta: { caption: 'Procedural, object-oriented, and declarative programming styles.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+
+  // IB TOK — AOK / WOK framework
+  '1-1-knowledge-and-the-knower-core-theme': {
+    Component: TokFrameworkDiagram,
+    meta: {
+      caption: 'Areas of knowledge and ways of knowing shape how the knower constructs knowledge.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+  '2-1-history-as-an-area-of-knowledge': {
+    Component: TokFrameworkDiagram,
+    meta: {
+      caption: 'History as an AOK — evidence, perspective, and methodological limitations.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+  '2-2-human-sciences-as-an-area-of-knowledge': {
+    Component: TokFrameworkDiagram,
+    meta: {
+      caption: 'Human sciences use models and evidence — compare natural sciences for TOK analysis.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+  '2-3-natural-sciences-as-an-area-of-knowledge': {
+    Component: TokFrameworkDiagram,
+    meta: {
+      caption: 'Natural sciences: observation, experimentation, and paradigm shifts.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+  '2-4-mathematics-as-an-area-of-knowledge': {
+    Component: TokFrameworkDiagram,
+    meta: {
+      caption: 'Mathematics — abstract systems, proof, and applicability to the real world.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+  '2-5-the-arts-as-an-area-of-knowledge': {
+    Component: TokFrameworkDiagram,
+    meta: {
+      caption: 'The arts communicate meaning — knowledge questions about interpretation and emotion.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+
+  // IB Visual Arts — formal elements
+  '2-2-formal-analysis-and-visual-language': {
+    Component: FormalElementsDiagram,
+    meta: {
+      caption: 'Line, shape, form, colour, value, texture, and space — the toolkit for formal analysis.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
+  '2-1-comparative-study-selecting-artworks': {
+    Component: FormalElementsDiagram,
+    meta: {
+      caption: 'Select artworks with clear formal contrasts for the comparative study.',
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
+    },
+  },
 }
 
 export function getLessonDiagram(slug: string) {

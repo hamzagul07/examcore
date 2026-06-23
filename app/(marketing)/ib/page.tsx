@@ -133,6 +133,7 @@ export default function IbHubPage() {
             { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
             { href: '/courses', label: 'Cambridge courses', variant: 'ghost' },
             { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
+            { href: '/blog/ib-free-courses-guide', label: 'Free IB courses guide', variant: 'muted' },
             { href: '/ib/subjects', label: 'All IB subjects', variant: 'muted' },
             { href: '/community?board=ib', label: 'IB Exam Room', variant: 'muted' },
             { href: '/mark', label: 'Get feedback on your answer', variant: 'muted' },

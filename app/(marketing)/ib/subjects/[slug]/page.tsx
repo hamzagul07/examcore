@@ -10,6 +10,7 @@ import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { getIbSubject, getIbSubjects, getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { buildIbSubjectCopy, ibShortName } from '@/lib/seo/ib-seo'
+import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
@@ -77,6 +78,7 @@ export default async function IbSubjectPage({ params }: Props) {
     .filter((s) => s.group === subject.group && s.slug !== subject.slug)
     .slice(0, 8)
   const communityOn = isCommunityEnabled()
+  const blogLinks = getIbSubjectBlogLinks(subject.slug, short)
 
   return (
     <>
@@ -159,6 +161,11 @@ export default async function IbSubjectPage({ params }: Props) {
                 ]
               : []),
             { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
+            ...blogLinks.map((link) => ({
+              href: link.href,
+              label: link.label,
+              variant: 'muted' as const,
+            })),
             ...(communityOn
               ? [{ href: `/community/s/${subject.slug}`, label: 'Exam Room community', variant: 'muted' as const }]
               : []),

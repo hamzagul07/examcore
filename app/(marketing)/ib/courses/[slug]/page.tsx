@@ -3,6 +3,8 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { getIbCourse, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
 import { getIbSubject } from '@/lib/ib/catalog'
 import { buildIbCourseHubIntro, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
+import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
+import { ibShortName } from '@/lib/seo/ib-seo'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
@@ -44,6 +46,7 @@ export default async function IbCoursePage({ params }: Props) {
   const communityOn = isCommunityEnabled()
   const syllabusLeaves = getTotalSyllabusLeaves(`ib-${slug}`)
   const publishingMore = syllabusLeaves > lessons.length
+  const blogLinks = getIbSubjectBlogLinks(slug, ibShortName(subject))
 
   return (
     <>
@@ -61,6 +64,11 @@ export default async function IbCoursePage({ params }: Props) {
             { href: `/ib/subjects/${slug}`, label: `${subject.name} past papers`, variant: 'muted' },
             { href: '/ib/courses', label: 'All IB courses', variant: 'muted' },
             { href: '/mark', label: 'Criterion practice →', variant: 'primary' },
+            ...blogLinks.map((link) => ({
+              href: link.href,
+              label: link.label,
+              variant: 'muted' as const,
+            })),
             ...(communityOn
               ? [{ href: `/community/s/${slug}`, label: 'Exam Room community', variant: 'muted' as const }]
               : []),

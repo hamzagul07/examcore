@@ -2,7 +2,7 @@ import { NextRequest, after } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies, createServiceClient } from '@/lib/supabase-server'
 import { votePost } from '@/lib/community/posts'
 import { bumpAuthorRepOnUpvote } from '@/lib/community/vote-rep'
-import { notifyPostUpvote } from '@/lib/community/notify'
+import { notifyPostUpvote, notifyPostScoreMilestone } from '@/lib/community/notify'
 
 /** POST /api/community/posts/[id]/vote { value: 1 | -1 } — toggle/set vote. */
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -33,7 +33,14 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       authorId: data.author_id as string,
       subjectCode: data.subject_code as string,
     })
-    after(() => notifyPostUpvote({ postId: id, voterId: user.id }))
+    after(async () => {
+      await notifyPostUpvote({ postId: id, voterId: user.id })
+      await notifyPostScoreMilestone({
+        postId: id,
+        score: (data.score as number) ?? 0,
+        authorId: data.author_id as string,
+      })
+    })
   }
 
   return jsonWithAuthCookies({ value: newValue, score: data?.score ?? 0 }, pendingCookies)

@@ -2,6 +2,7 @@ import { NextRequest, after } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createPost, listPosts, type Board, type PostKind, type PostSort } from '@/lib/community/posts'
 import { moderatePostAfterInsert } from '@/lib/community/moderate-async'
+import { notifyMentions } from '@/lib/community/notify'
 import { getUserUsername, postsInLast24h } from '@/lib/community/require-username'
 import type { CommunityAttachment } from '@/lib/community/uploads'
 import { attachmentKindForMime } from '@/lib/community/uploads'
@@ -109,6 +110,12 @@ export async function POST(request: NextRequest) {
       title: (body.title || '').trim(),
       body: body.bodyMd || '',
       subject: body.subjectName ?? body.subjectCode!,
+    })
+    await notifyMentions({
+      authorId: user.id,
+      postId: result.id,
+      text: `${body.title || ''}\n${body.bodyMd || ''}`,
+      postTitle: (body.title || '').trim() || 'your post',
     })
   })
 

@@ -4,7 +4,7 @@ import { createComment, getCommentTree } from '@/lib/community/comments'
 import {
   moderateCommentAfterInsert,
 } from '@/lib/community/moderate-async'
-import { notifyCommentActivity } from '@/lib/community/notify'
+import { notifyCommentActivity, notifyMentions } from '@/lib/community/notify'
 import { getUserUsername } from '@/lib/community/require-username'
 
 /** GET /api/community/posts/[id]/comments — full comment tree. */
@@ -54,6 +54,12 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       commentAuthorId: user.id,
       parentId: body.parentId ?? null,
       bodyPreview: result.body.slice(0, 200),
+    })
+    await notifyMentions({
+      authorId: user.id,
+      postId: id,
+      commentId: result.id,
+      text: body.bodyMd || '',
     })
   })
 

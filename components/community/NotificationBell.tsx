@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
+import { useCommunityNotifications } from '@/lib/hooks/useCommunityNotifications'
 import { timeAgo } from '@/lib/community/format'
 
 type Notif = {
@@ -16,12 +17,13 @@ type Notif = {
 }
 
 const COMMUNITY_ON = process.env.NEXT_PUBLIC_COMMUNITY_ENABLED === 'true'
-const POLL_MS = 45_000
 
 function notifIcon(type: string): string {
   if (type === 'reply') return '↩'
   if (type === 'digest') return '🔥'
-  if (type === 'upvote') return '↑'
+  if (type === 'upvote' || type === 'comment_upvote') return '↑'
+  if (type === 'mention') return '@'
+  if (type === 'milestone') return '⭐'
   return '💬'
 }
 
@@ -42,12 +44,7 @@ export function NotificationBell() {
     }
   }, [])
 
-  useEffect(() => {
-    if (!COMMUNITY_ON || !user) return
-    fetchNotifs()
-    const id = window.setInterval(fetchNotifs, POLL_MS)
-    return () => window.clearInterval(id)
-  }, [user, fetchNotifs])
+  useCommunityNotifications(COMMUNITY_ON && user ? user.id : undefined, fetchNotifs)
 
   if (!COMMUNITY_ON || loading || !user) return null
 

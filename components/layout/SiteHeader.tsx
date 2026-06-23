@@ -103,6 +103,21 @@ export function SiteHeader({ variant }: Props) {
 
   const showPageCtas = config.tone !== 'mark' || variant !== 'app'
   const isDiscuss = config.tone === 'discuss'
+  const [discussMobile, setDiscussMobile] = useState(false)
+
+  useEffect(() => {
+    if (!isDiscuss) {
+      setDiscussMobile(false)
+      return
+    }
+    const mq = window.matchMedia('(max-width: 900px)')
+    const sync = () => setDiscussMobile(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [isDiscuss])
+
+  const hideHeader = headerHidden && !mobileOpen && !(isDiscuss && discussMobile)
 
   const renderPrimaryCta = (className: string) =>
     isDiscuss ? (
@@ -184,7 +199,7 @@ export function SiteHeader({ variant }: Props) {
         'ec-nav-wrap ec-nav-wrap--auto-hide',
         config.transparentShell && 'ec-nav-wrap--transparent',
         scrolled && 'ec-nav-wrap--scrolled',
-        headerHidden && !mobileOpen && 'ec-nav-wrap--hidden',
+        hideHeader && 'ec-nav-wrap--hidden',
         mobileOpen && 'ec-nav-wrap--menu-open',
         `ec-nav-wrap--tone-${config.tone}`,
         `ec-nav-wrap--layout-${config.tone}`

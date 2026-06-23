@@ -558,6 +558,13 @@
       padding-inline: 12px;
       font-size: 13px;
     }
+
+    /* Exam Room: keep header visible while scrolling — transform-hide breaks feed paint on iOS */
+    .ec-nav-wrap--layout-discuss.ec-nav-wrap--hidden {
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   .ec-nav {

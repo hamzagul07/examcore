@@ -3,6 +3,8 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
 import { getCommunitySubjects } from '@/lib/community/subjects'
+import { getPostCountsBySubject } from '@/lib/community/counts'
+import { popularSubjectIdsByBoard } from '@/lib/community/popular-subjects'
 import { PostComposer } from '@/components/community/reddit/PostComposer'
 
 export const metadata = createPageMetadata({
@@ -32,6 +34,8 @@ export default async function SubmitPage({ searchParams }: PageProps) {
     accent: s.accent,
     glyph: s.glyph,
   }))
+  const counts = await getPostCountsBySubject()
+  const popularByBoard = popularSubjectIdsByBoard(subjects, counts)
 
   const subjectMeta = sp.subject ? subjects.find((s) => s.id === sp.subject) : null
   const initialBoard =
@@ -45,6 +49,7 @@ export default async function SubmitPage({ searchParams }: PageProps) {
     <div className="rc-page rc-page-narrow rc-page--composer">
       <PostComposer
         subjects={subjects}
+        popularByBoard={popularByBoard}
         initialSubject={sp.subject}
         initialBoard={initialBoard}
         initialKind={initialKind}

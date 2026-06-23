@@ -23,12 +23,15 @@ function boardFromSubject(subjects: SubjectOpt[], subjectId?: string): Board | '
 
 export function PostComposer({
   subjects,
+  popularByBoard,
   initialSubject,
   initialBoard,
   initialKind,
   signedIn,
 }: {
   subjects: SubjectOpt[]
+  /** Top subject room ids per board (by post activity). */
+  popularByBoard?: Partial<Record<Board, string[]>>
   initialSubject?: string
   initialBoard?: Board
   initialKind?: Kind
@@ -66,6 +69,22 @@ export function PostComposer({
       (s) => s.name.toLowerCase().includes(q) || s.id.toLowerCase().includes(q)
     )
   }, [boardSubjects, subjectQuery])
+
+  const chipSubjects = useMemo(() => {
+    const q = subjectQuery.trim()
+    if (q) return subjectOptions.slice(0, 12)
+    const popularIds = board && popularByBoard?.[board] ? popularByBoard[board]! : []
+    const popular = popularIds
+      .map((id) => boardSubjects.find((s) => s.id === id))
+      .filter((s): s is SubjectOpt => s != null)
+    if (popular.length >= 4) return popular
+    return boardSubjects.slice(0, 8)
+  }, [subjectQuery, subjectOptions, popularByBoard, board, boardSubjects])
+
+  function pickSubject(id: string) {
+    setSubjectId(id)
+    setSubjectQuery('')
+  }
 
   function selectBoard(next: Board) {
     setBoard(next)
@@ -245,31 +264,56 @@ export function PostComposer({
                   enterKeyHint="search"
                 />
                 <p className="rc-hint">
-                  {boardSubjects.length
-                    ? `${subjectOptions.length} of ${boardSubjects.length} subject rooms`
-                    : 'No subject rooms found for this board.'}
+                  {subjectQuery.trim()
+                    ? chipSubjects.length
+                      ? `${chipSubjects.length} match${chipSubjects.length === 1 ? '' : 'es'}`
+                      : 'No subjects match your search'
+                    : chipSubjects.length
+                      ? 'Popular subject rooms — or browse the full list below'
+                      : 'No subject rooms found for this board.'}
                 </p>
-                <select
-                  className="rc-input rc-subject-select"
-                  value={subjectId}
-                  onChange={(e) => {
-                    setSubjectId(e.target.value)
-                    setSubjectQuery('')
-                  }}
-                  aria-label={`Select ${selectedBoard?.short} subject`}
-                >
-                  <option value="" disabled>
-                    Choose a subject room…
-                  </option>
-                  {subjectOptions.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {s.name} · s/{s.id}
-                    </option>
-                  ))}
-                </select>
-                {subjectOptions.length === 0 && boardSubjects.length > 0 ? (
+                {chipSubjects.length > 0 ? (
+                  <div className="rc-subject-chips" role="listbox" aria-label={`${selectedBoard?.short} subject rooms`}>
+                    {chipSubjects.map((s) => (
+                      <button
+                        key={s.id}
+                        type="button"
+                        role="option"
+                        className="rc-subject-chip"
+                        style={{ '--sc': s.accent } as CSSProperties}
+                        onClick={() => pickSubject(s.id)}
+                      >
+                        <span className="rc-subject-chip-top">
+                          <span className="rc-subject-option-glyph" aria-hidden>
+                            {s.glyph}
+                          </span>
+                          <span className="rc-subject-chip-name">{s.name}</span>
+                        </span>
+                        <span className="rc-subject-chip-code">s/{s.id}</span>
+                      </button>
+                    ))}
+                  </div>
+                ) : subjectQuery.trim() && boardSubjects.length > 0 ? (
                   <p className="rc-hint">No subjects match your search — clear the filter above.</p>
                 ) : null}
+                <div className="rc-subject-browse">
+                  <span className="rc-subject-browse-label">Or choose from full list</span>
+                  <select
+                    className="rc-input rc-subject-select"
+                    value={subjectId}
+                    onChange={(e) => pickSubject(e.target.value)}
+                    aria-label={`Browse all ${selectedBoard?.short} subjects`}
+                  >
+                    <option value="" disabled>
+                      Choose a subject room…
+                    </option>
+                    {boardSubjects.map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.name} · s/{s.id}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </>
             )}
           </div>

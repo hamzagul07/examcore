@@ -16,6 +16,10 @@ export type ContinueCatalogEntry = {
   name: string
   lessonCount: number
   lessons: { slug: string; topicCode: string; title: string }[]
+  /** Lesson URL prefix — default `/courses`. IB uses `/ib/courses`. */
+  basePath?: string
+  /** Syllabus registry code when different from `code` (IB: `ib-tok`). */
+  syllabusCode?: string
 }
 
 function readProgress(): ProgressMap {
@@ -49,8 +53,8 @@ export function saveLastLesson(code: string, slug: string) {
   }
 }
 
-function unitLabelForTopic(code: string, topicCode: string): string {
-  const tree = getSyllabusTree(code)
+function unitLabelForTopic(code: string, topicCode: string, syllabusCode?: string): string {
+  const tree = getSyllabusTree(syllabusCode ?? code)
   if (!tree) return ''
   for (const group of tree) {
     const leaf = group.leaves.find((l) => l.code === topicCode)
@@ -78,14 +82,15 @@ export function getContinueLearning(catalog: ContinueCatalogEntry[]): ContinueLe
     }
     if (!target) return null
 
+    const base = entry.basePath ?? '/courses'
     return {
       code: entry.code,
       name: entry.name,
-      acc: subjectAccent(entry.code),
+      acc: subjectAccent(entry.syllabusCode ?? entry.code),
       topicCode: target.topicCode,
       topicTitle: target.title,
-      unitLabel: unitLabelForTopic(entry.code, target.topicCode),
-      href: `/courses/${entry.code}/${target.slug}`,
+      unitLabel: unitLabelForTopic(entry.code, target.topicCode, entry.syllabusCode),
+      href: `${base}/${entry.code}/${target.slug}`,
       prog,
     }
   }

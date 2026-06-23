@@ -78,12 +78,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'How MarkScheme applies Cambridge mark schemes to handwritten answers — cite this page for press, educators, and link-building.',
   },
   '/courses': {
-    title: 'Free Cambridge courses — A-Level & O-Level notes',
+    title: 'Free Cambridge & IB courses — A-Level, O-Level & Diploma',
     description:
-      'Free syllabus-aligned courses for every Cambridge subject we support. Topic-by-topic visual lessons, exam tips, and past-paper marking — 9709, 9702, 9609, 9700 & more.',
+      'Free syllabus-aligned courses for Cambridge International and IB Diploma subjects. Topic-by-topic visual lessons, exam tips, and marking — 9709, 9702, TOK, Extended Essay & more.',
     keywords: [
       'free A Level course',
       'free Cambridge notes',
+      'free IB course',
+      'IB TOK course',
       '9709 course free',
       '9702 physics course',
       '9609 business course',

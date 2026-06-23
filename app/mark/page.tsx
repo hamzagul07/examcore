@@ -38,6 +38,7 @@ import {
   SUBJECTS,
 } from '@/lib/profile-options'
 import { getIbMarkableSubjectCodes, resolveSubjectLabel, isIbSubjectCode } from '@/lib/ib/marking-config'
+import { ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
@@ -627,6 +628,11 @@ export default function MarkPage() {
   const isPracticeMode =
     uploadMode === 'single_question' && markIntent === 'practice_question'
 
+  const ibManualCriteriaSummary =
+    isPracticeMode && selectedSubject && isIbSubjectCode(selectedSubject)
+      ? ibPracticeCriteriaSummary(selectedSubject)
+      : null
+
   const hasPracticeQuestion =
     questionTextInput.trim().length >= 10 || !!questionPhoto
 
@@ -1092,6 +1098,24 @@ export default function MarkPage() {
                   <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               ) : null}
+            </div>
+          </div>
+        )}
+
+        {!result && !practiceContext && !courseTopicContext && ibManualCriteriaSummary && (
+          <div className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+                IB criterion practice — {resolveSubjectLabel(selectedSubject)}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                Upload your answer below. We mark band-by-band against the official assessment
+                criteria.
+              </p>
+              <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
+                {ibManualCriteriaSummary}
+              </p>
             </div>
           </div>
         )}

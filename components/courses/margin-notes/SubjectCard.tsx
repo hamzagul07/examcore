@@ -14,16 +14,21 @@ export function SubjectCard({
   s,
   href = `/courses/${s.code}`,
   boardLabel = 'CAIE',
+  accentHex,
+  statSuffix = 'past-paper questions',
 }: {
   s: MarginNotesSubject
   href?: string
   boardLabel?: string
+  /** Override card accent (IB catalog hex from subject guide). */
+  accentHex?: string
+  statSuffix?: string
 }) {
   const started = s.prog > 0
   return (
     <Link
       className="scard"
-      style={{ '--acc': accentCssVar(s.acc) } as React.CSSProperties}
+      style={{ '--acc': accentHex ?? accentCssVar(s.acc) } as React.CSSProperties}
       href={href}
       data-screen-label={`Subject — ${s.name} card`}
     >
@@ -49,7 +54,7 @@ export function SubjectCard({
           {s.level} · {boardLabel} · {s.units} units
         </p>
         <p className="scard-stat">
-          {s.lessons} lessons · {s.q} past-paper questions
+          {s.lessons} lessons · {s.q} {statSuffix}
         </p>
       </div>
       <div className="scard-foot">

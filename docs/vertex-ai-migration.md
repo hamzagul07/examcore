@@ -27,6 +27,15 @@ GOOGLE_CLOUD_LOCATION=us-central1
 GOOGLE_APPLICATION_CREDENTIALS=C:/path/to/vertex-sa-key.json
 ```
 
+**Vercel / serverless:** file paths do not work. Set `GOOGLE_APPLICATION_CREDENTIALS_JSON` to the full service-account JSON string (single line). The app writes it to `/tmp` at runtime for ADC.
+
+```env
+USE_VERTEX_AI=true
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=us-central1
+GOOGLE_APPLICATION_CREDENTIALS_JSON={"type":"service_account",...}
+```
+
 4. **Region:** `us-central1` is the default (`GOOGLE_CLOUD_LOCATION`) for best DSQ availability.
 
 ## Model IDs

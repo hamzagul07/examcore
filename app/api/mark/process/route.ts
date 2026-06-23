@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { GEMINI_FLASH_MODEL, generateGeminiText, getGeminiClient } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, generateGeminiText, generateGeminiWithContents } from '@/lib/ai/gemini-text'
+import { geminiBackendLabel } from '@/lib/ai/gemini-config'
 import { createClient as createServerClient } from '@/lib/supabase-server'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
@@ -18,9 +19,9 @@ import type {
   QuestionMarkResult,
 } from '@/lib/marking/types'
 import {
-  withGeminiRetry,
+  getGeminiRetryStats,
 } from '@/lib/marking/gemini-retry'
-import { classifyMarkingError } from '@/lib/marking/classify-marking-error'
+import { classifyMarkingError, type ClassifiedMarkingError } from '@/lib/marking/classify-marking-error'
 import {
   ocrAnswerBufferWithBoxes,
   uploadAnswerPhoto as uploadAnswerPhotoBuffer,
@@ -47,24 +48,30 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+function logMarkFailure(err: unknown, classified: ClassifiedMarkingError) {
+  console.error('[mark/process] failed', {
+    backend: geminiBackendLabel(),
+    code: classified.code,
+    status: classified.status,
+    retries: getGeminiRetryStats(),
+    detail: err instanceof Error ? err.message.slice(0, 600) : String(err),
+  })
+}
+
 async function ocrImage(file: File, prompt: string): Promise<string> {
   const bytes = await file.arrayBuffer()
   const base64 = Buffer.from(bytes).toString('base64')
-  const response = await withGeminiRetry(
-    () =>
-      getGeminiClient().models.generateContent({
-        model: GEMINI_FLASH_MODEL,
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              { inlineData: { mimeType: file.type, data: base64 } },
-              { text: prompt },
-            ],
-          },
+  const response = await generateGeminiWithContents(
+    [
+      {
+        role: 'user',
+        parts: [
+          { inlineData: { mimeType: file.type, data: base64 } },
+          { text: prompt },
         ],
-      }),
-    { label: 'ocr' }
+      },
+    ],
+    { task: 'ocr', model: GEMINI_FLASH_MODEL }
   )
   return response.text || ''
 }
@@ -192,6 +199,7 @@ export async function POST(request: NextRequest) {
               controller.close()
             } catch (err: unknown) {
               const classified = classifyMarkingError(err)
+              logMarkFailure(err, classified)
               send({
                 type: 'error',
                 error: classified.message,
@@ -225,6 +233,7 @@ export async function POST(request: NextRequest) {
         )
       } catch (err: unknown) {
         const classified = classifyMarkingError(err)
+        logMarkFailure(err, classified)
         if (classified.code === 'client' || classified.code === 'ocr_empty') {
           return clientError(classified.message)
         }
@@ -420,8 +429,8 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     )
   } catch (err: unknown) {
-    console.error('Marking error:', err)
     const classified = classifyMarkingError(err)
+    logMarkFailure(err, classified)
     return NextResponse.json(
       {
         error: classified.message,

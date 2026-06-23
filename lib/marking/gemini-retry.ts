@@ -101,12 +101,40 @@ function isTransientNetworkError(err: unknown): boolean {
   return TRANSIENT_NETWORK_PATTERN.test(message)
 }
 
+/** Honor Gemini retryDelay / "Please retry in Ns" hints on transient 429s. */
+function parseApiRetryDelayMs(err: unknown): number | null {
+  const message = errorMessage(err)
+  const retryDelay = message.match(/"retryDelay"\s*:\s*"(\d+)s"/)
+  if (retryDelay) return Number(retryDelay[1]) * 1000 + 250
+  const pleaseRetrySec = message.match(/Please retry in ([\d.]+)s/i)
+  if (pleaseRetrySec) return Math.ceil(Number(pleaseRetrySec[1]) * 1000) + 250
+  const pleaseRetryMin = message.match(/Please retry in (\d+)m(\d+)s/i)
+  if (pleaseRetryMin) {
+    return (
+      Number(pleaseRetryMin[1]) * 60_000 +
+      Number(pleaseRetryMin[2]) * 1000 +
+      250
+    )
+  }
+  return null
+}
+
+function retryDelayMs(
+  err: unknown,
+  attempt: number,
+  baseDelayMs: number
+): number {
+  const apiDelay = parseApiRetryDelayMs(err)
+  if (apiDelay != null) return Math.min(apiDelay, 30_000)
+  return Math.min(baseDelayMs * 2 ** attempt, 12_000) + Math.random() * 500
+}
+
 async function withApiRetry<T>(
   fn: () => Promise<T>,
   retryableStatus: number[],
   opts: RetryOpts = {}
 ): Promise<T> {
-  const { maxRetries = 6, baseDelayMs = 1000, label = 'api' } = opts
+  const { maxRetries = 8, baseDelayMs = 1000, label = 'api' } = opts
   let lastErr: unknown
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -124,13 +152,13 @@ async function withApiRetry<T>(
 
       if (!isRetryable || attempt === maxRetries) break
 
+      if (isGeminiQuotaExhausted(err)) break
+
       _totalRetries++
       if (status === 429) _rateLimitRetries++
       _lastRetryLabel = label
 
-      // Exponential backoff: 1s → 2s → 4s → 8s (capped) + jitter
-      const delay =
-        Math.min(baseDelayMs * 2 ** attempt, 8000) + Math.random() * 500
+      const delay = retryDelayMs(err, attempt, baseDelayMs)
       console.warn(
         `[${label}] retryable error (status ${status ?? errorCode(err) ?? 'unknown'}), attempt ${attempt + 1}/${maxRetries}, waiting ${Math.round(delay)}ms`
       )

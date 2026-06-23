@@ -1499,7 +1499,7 @@ export default function MarkPage() {
             </div>
             )}
 
-            {errorMsg && (
+            {errorMsg && !loading && !markStreamError && (
               <div
                 className={`rounded-2xl border p-3.5 text-sm backdrop-blur ${
                   errorRetryable

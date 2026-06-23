@@ -526,6 +526,323 @@ const POSTS = [
   },
 ]
 
+/** @typedef {{ slug: string; title: string; description: string; keywords: string[]; subject: string; catalogSlug: string; courseSlug: string; weight: string; criteria: string; structure: string; strategy: string; pitfalls: string; faqs: { q: string; a: string }[] }} IaBrief */
+
+/** @type {IaBrief[]} */
+const IA_POSTS = [
+  {
+    slug: 'ib-biology-ia-guide',
+    title: 'IB Biology IA guide — individual investigation criteria & grade 7 tips',
+    description: 'How to write a top-band IB Biology Internal Assessment: research question, methodology, analysis, evaluation, and the five IA criteria explained.',
+    keywords: ['IB Biology IA', 'IB Biology Internal Assessment', 'Biology IA criteria', 'IB Biology IA example', 'Biology IA grade 7'],
+    subject: 'Biology', catalogSlug: 'biology-hl', courseSlug: 'biology-hl', weight: '20% of your final Biology grade',
+    criteria: 'Five criteria: **Personal engagement**, **Exploration**, **Analysis**, **Evaluation**, and **Communication**. Moderators check that your investigation is yours — authentic question, appropriate method, processed data, and honest limitations.',
+    structure: 'Typical layout: title, research question, introduction, hypothesis, variables, methodology, safety/ethics, raw data, processed tables/graphs, statistical test, conclusion, evaluation (strengths + limitations + extensions). Keep within the **6–12 page** guide limit excluding appendices.',
+    strategy: 'Pick a **narrow, measurable** question you can answer with school lab equipment. Pilot the method once. Photograph setup for engagement. Use a statistical test only when justified (e.g. t-test for two means).',
+    pitfalls: 'Cookie-cutter topics without personal angle; no uncertainty; correlation presented as causation; copying online IA structures; weak evaluation that only says "more time".',
+    faqs: [
+      { q: 'HL vs SL Biology IA?', a: 'Same criteria and weighting — depth and complexity should match your level, not a different rubric.' },
+      { q: 'Can I use AI to write it?', a: 'No — academic honesty applies. AI-drafted text risks malpractice findings.' },
+      { q: 'Past papers help?', a: 'IA skills differ from exams — but [Biology past papers](/ib/past-papers/biology-hl) plus [lessons](/ib/courses/biology-hl) reinforce data-handling for Paper 2.' },
+    ],
+  },
+  {
+    slug: 'ib-chemistry-ia-guide',
+    title: 'IB Chemistry IA guide — investigation criteria, structure & examples',
+    description: 'IB Chemistry Internal Assessment guide: research question, titration/calorimetry/kinetics IA structure, criteria A–D, and moderator expectations.',
+    keywords: ['IB Chemistry IA', 'IB Chemistry Internal Assessment', 'Chemistry IA criteria', 'IB Chemistry IA topics', 'Chemistry IA grade 7'],
+    subject: 'Chemistry', catalogSlug: 'chemistry-hl', courseSlug: 'chemistry-hl', weight: '20% of your final Chemistry grade',
+    criteria: 'Marked on **Personal engagement**, **Exploration**, **Analysis**, **Evaluation**, and **Communication** — same science IA framework as Biology and Physics.',
+    structure: 'Clear research question → background (linked to syllabus) → method with controlled variables → qualitative/quantitative data → calculations with units and sig figs → graph with trend line → conclusion tied to question → evaluation referencing uncertainty.',
+    strategy: 'Choose a reaction or property you can repeat 5+ times. Record **uncertainty** in apparatus. Show one full sample calculation then a table for the rest.',
+    pitfalls: 'Uncontrolled temperature; wrong SF rules; missing safety; procedure copied from a website without adaptation; evaluation that ignores systematic error.',
+    faqs: [
+      { q: 'Good IA topics?', a: 'Enthalpy, rates, equilibrium shifts, acid-base titrations — if variables are measurable and syllabus-linked.' },
+      { q: 'Database IA?', a: 'Some schools allow database investigations — confirm with your teacher; methodology criteria still apply.' },
+      { q: 'More help?', a: '[Chemistry HL course](/ib/courses/chemistry-hl) and [past papers](/ib/past-papers/chemistry-hl).' },
+    ],
+  },
+  {
+    slug: 'ib-physics-ia-guide',
+    title: 'IB Physics IA guide — investigation, uncertainty & criteria explained',
+    description: 'Write a strong IB Physics Internal Assessment: research design, uncertainty propagation, linearisation, and hitting top criteria bands.',
+    keywords: ['IB Physics IA', 'IB Physics Internal Assessment', 'Physics IA criteria', 'Physics IA uncertainty', 'IB Physics IA grade 7'],
+    subject: 'Physics', catalogSlug: 'physics-hl', courseSlug: 'physics-hl', weight: '20% of your final Physics grade',
+    criteria: 'Science IA criteria reward a **focused physics question**, controlled experiment, correct processing (including graphs and uncertainties), and critical evaluation of method and data quality.',
+    structure: 'Research question with measurable independent/dependent variables → theory from syllabus → method diagram → raw data table → processed graph (with error bars where appropriate) → conclusion → evaluation.',
+    strategy: 'Linearise relationships (e.g. log graphs) when the syllabus expects it. Propagate uncertainty for derived quantities. Video or photo evidence boosts engagement marks.',
+    pitfalls: 'Tiny range of data; no repeat readings; plotting without units; ignoring systematic errors; conclusion that does not reference uncertainty.',
+    faqs: [
+      { q: 'Simulation IA?', a: 'Policy varies — physical data collection is standard; check your coordinator.' },
+      { q: 'HL depth?', a: 'HL students often use more sophisticated analysis — but criteria are the same.' },
+      { q: 'Exam overlap?', a: 'IA data skills directly help Paper 2 DBQs — see [Physics past papers](/ib/past-papers/physics-hl).' },
+    ],
+  },
+  {
+    slug: 'ib-economics-ia-guide',
+    title: 'IB Economics IA guide — commentary structure, rubric & 7s',
+    description: 'IB Economics Internal Assessment: three commentaries, article choice, diagrams, evaluation, and the 14-criterion rubric explained.',
+    keywords: ['IB Economics IA', 'IB Economics commentary', 'Economics IA rubric', 'IB Economics IA structure', 'Economics IA grade 7'],
+    subject: 'Economics', catalogSlug: 'economics-hl', courseSlug: 'economics-hl', weight: '20% of your final Economics grade',
+    criteria: 'Each commentary is marked on **micro/macro/global** syllabus link, **terminology**, **diagram(s)**, **analysis**, and **evaluation/judgement** — 14 criteria per commentary, three commentaries total across the course.',
+    structure: 'Highlight article → define key term → draw and explain **labelled diagram** → analyse cause/effect using the article → evaluate with stakeholders and time horizons → word limit (~800 words each).',
+    strategy: 'Bank articles weekly from reputable sources. One diagram minimum, fully explained. End with "overall, …" judgement, not a summary.',
+    pitfalls: 'Article not syllabus-linked; diagram not explained; description without analysis; no evaluation; exceeding word count.',
+    faqs: [
+      { q: 'HL vs SL commentaries?', a: 'Same structure — HL may expect slightly deeper policy discussion; check current guide.' },
+      { q: 'Can articles repeat topics?', a: 'You need variety across micro, macro, and the global economy where required.' },
+      { q: 'Practice?', a: 'Draft one commentary per month; pair with [Economics past papers](/ib/past-papers/economics-hl).' },
+    ],
+  },
+  {
+    slug: 'ib-history-ia-guide',
+    title: 'IB History IA guide — historical investigation (2,200 words) & criteria',
+    description: 'IB History Internal Assessment: research question, sources, 2,200-word investigation structure, criteria A–D, and grade 7 advice.',
+    keywords: ['IB History IA', 'IB Historical Investigation', 'History IA 2200 words', 'IB History IA criteria', 'History IA grade 7'],
+    subject: 'History', catalogSlug: 'history-hl', courseSlug: 'history-hl', weight: '25% of your final History grade',
+    criteria: 'Four criteria: **Identification and evaluation of sources**, **Investigation**, **Reflection**, and **Structure** (word limit 2,200). External moderation applies.',
+    structure: 'Section A: plan + summary of evidence + evaluation of sources. Section B: investigation (argument with footnoted evidence). Section C: reflection on methods and challenges.',
+    strategy: 'Choose a **narrow, debatable** question answerable with available primary/secondary sources. Footnote as you draft. Reflection must discuss historians\' methods, not just "I worked hard".',
+    pitfalls: 'Narrative not argument; too broad a question; weak source evaluation; reflection generic; over word limit.',
+    faqs: [
+      { q: 'Overlap with EE?', a: 'Cannot duplicate — different scope and supervision rules.' },
+      { q: 'Paper 1 skills?', a: 'OPVL practice in Paper 1 feeds IA source evaluation — see [History past papers](/ib/past-papers/history-hl).' },
+      { q: 'SL vs HL?', a: 'Same IA requirements for History SL and HL.' },
+    ],
+  },
+  {
+    slug: 'ib-geography-ia-guide',
+    title: 'IB Geography IA guide — fieldwork, written report & criteria',
+    description: 'IB Geography Internal Assessment: fieldwork question, methodology, data presentation, analysis, evaluation, and criterion bands.',
+    keywords: ['IB Geography IA', 'IB Geography fieldwork', 'Geography IA criteria', 'IB Geography IA structure', 'Geography IA grade 7'],
+    subject: 'Geography', catalogSlug: 'geography-hl', courseSlug: 'geography-hl', weight: '20% of your final Geography grade',
+    criteria: 'Criteria cover **fieldwork question and geographic context**, **planning**, **data collection**, **presentation/analysis**, and **evaluation** — linking to syllabus themes and geographic theory.',
+    structure: 'Introduction and geographic context → methodology (sampling, ethics, risks) → data presentation (maps, graphs, photos) → analysis linked to theory → conclusion → evaluation of reliability and next steps.',
+    strategy: 'Align fieldwork with a taught theme. Use **maps and GIS** where possible. Every graph needs interpretation, not just description.',
+    pitfalls: 'No clear geographic theory; convenience sampling without acknowledgement; figures without titles/units; evaluation that ignores weather or sample size.',
+    faqs: [
+      { q: 'Can fieldwork be local?', a: 'Yes — urban or river studies near school are common if methodology is rigorous.' },
+      { q: 'HL extra?', a: 'HL IA uses the same criteria — depth and geographic sophistication should reflect HL.' },
+      { q: 'Revision link?', a: '[Geography past papers](/ib/past-papers/geography-hl) reinforce essay and skills questions.' },
+    ],
+  },
+  {
+    slug: 'ib-psychology-ia-guide',
+    title: 'IB Psychology IA guide — simple experiment, report & rubric',
+    description: 'IB Psychology Internal Assessment: simple experimental study, ethics, statistics, APA-style report, and criteria for top bands.',
+    keywords: ['IB Psychology IA', 'IB Psychology experiment', 'Psychology IA criteria', 'IB Psychology IA structure', 'Psychology IA grade 7'],
+    subject: 'Psychology', catalogSlug: 'psychology-hl', courseSlug: 'psychology-hl', weight: '20% of your final Psychology grade',
+    criteria: 'Introduction (aim, theory), **exploration** (design, variables, controls), **analysis** (descriptive + inferential stats), **evaluation** (method limits, ethics, extensions).',
+    structure: 'Standard experiment report: abstract, intro with study citation, method (design, participants, materials, procedure), results (graph + test), discussion (findings vs theory, limitations, ethics).',
+    strategy: 'Replicate a classic study with a twist. Get **ethical approval** early. Report means, SD, and p-values correctly. Link back to the named theory in the introduction.',
+    pitfalls: 'No informed consent; wrong statistical test; discussing results without linking to aim; copying procedure without citing original study.',
+    faqs: [
+      { q: 'HL qualitative IA?', a: 'HL has additional qualitative component in the syllabus — confirm current guide for your cohort.' },
+      { q: 'Participants?', a: 'School convenience samples are fine if limitations are discussed.' },
+      { q: 'Exam link?', a: 'Research methods in Paper 1/2 — practise with [Psychology past papers](/ib/past-papers/psychology-hl).' },
+    ],
+  },
+  {
+    slug: 'ib-business-management-ia-guide',
+    title: 'IB Business Management IA guide — research project & criteria',
+    description: 'IB Business Management Internal Assessment: research proposal, tools, primary research, and the HL/SL IA rubric explained.',
+    keywords: ['IB Business Management IA', 'IB BM IA', 'Business IA criteria', 'IB Business IA research project', 'Business Management IA grade 7'],
+    subject: 'Business Management', catalogSlug: 'business-management-hl', courseSlug: 'business-management-hl', weight: '25% of your final Business Management grade',
+    criteria: 'Marked on **research proposal**, **application of tools**, **analysis and evaluation**, and **structure** — SL and HL differ in length and depth (HL expects more strategic analysis).',
+    structure: 'Research question on a real business → methodology (primary/secondary sources) → apply toolkit (SWOT, Ansoff, etc.) → findings → conclusions and recommendations → bibliography.',
+    strategy: 'Choose a business you can interview or survey. Every tool must be **applied**, not defined. Recommendations need feasibility and stakeholders.',
+    pitfalls: 'Generic tools without data; no primary research; recommendations unsupported; ignoring ethical consent for surveys.',
+    faqs: [
+      { q: 'HL vs SL length?', a: 'HL IA is longer with deeper strategic analysis — check current word/page limits.' },
+      { q: 'Real company names?', a: 'Often allowed with anonymity if needed — follow school ethics guidance.' },
+      { q: 'Exam prep?', a: 'Toolkit fluency helps Paper 1/2 — see [Business past papers](/ib/past-papers/business-management-hl).' },
+    ],
+  },
+  {
+    slug: 'ib-maths-ia-guide',
+    title: 'IB Maths IA guide — exploration (AA & AI), criteria & topic ideas',
+    description: 'IB Mathematics Internal Assessment: exploration structure, criteria A–E, topic choice for AA and AI, and how to score top bands.',
+    keywords: ['IB Maths IA', 'IB Math exploration', 'Maths IA criteria', 'IB Maths IA topics', 'Maths IA grade 7'],
+    subject: 'Mathematics', catalogSlug: 'maths-aa-hl', courseSlug: 'maths-aa-hl', weight: '20% of your final Maths grade',
+    criteria: 'Five criteria: **Communication**, **Mathematical presentation**, **Personal engagement**, **Reflection**, and **Use of mathematics**. Applies to both **AA and AI** explorations.',
+    structure: 'Introduction (aim and curiosity) → mathematical development (definitions, algebra, graphs) → exploration (models, proofs, or data) → reflection (limitations, extensions) → bibliography. Typical length ~12–20 pages depending on guide.',
+    strategy: 'Pick a topic with **enough maths at your level** — not too trivial, not postgraduate. AA: proofs, series, calculus models. AI: regression, optimisation, modelling real datasets.',
+    pitfalls: 'Topic too shallow; maths copied from internet; no reflection; graphs without interpretation; exploration that is just a homework sheet.',
+    faqs: [
+      { q: 'AA vs AI exploration?', a: 'AA leans analytical; AI leans modelling — choose matching your course.' },
+      { q: 'Topic ideas?', a: 'Gold ratios, projectile models, statistical surveys, graph theory — if syllabus maths is central.' },
+      { q: 'Courses?', a: '[Maths AA](/ib/courses/maths-aa-hl) and [Maths AI](/ib/courses/maths-ai-hl) lessons support exploration skills.' },
+    ],
+  },
+  {
+    slug: 'ib-computer-science-ia-guide',
+    title: 'IB Computer Science IA guide — solution, criteria & documentation',
+    description: 'IB Computer Science Internal Assessment: client problem, design, development, testing, evaluation, and criterion-by-criterion advice.',
+    keywords: ['IB Computer Science IA', 'IB CS IA', 'Computer Science IA criteria', 'IB CS solution', 'Computer Science IA grade 7'],
+    subject: 'Computer Science', catalogSlug: 'computer-science-hl', courseSlug: 'computer-science-hl', weight: '25% of your final Computer Science grade',
+    criteria: 'Criteria cover **planning**, **solution design**, **development**, **functionality** (video evidence), **testing**, and **evaluation** — product and documentation both matter.',
+    structure: 'Record of tasks → design (UML, wireframes) → development log → testing plan with normal/boundary/abnormal data → video demo → evaluation against success criteria.',
+    strategy: 'Scope a product finishable in time — calendar app, inventory, quiz. Use **OOP** at HL. Test every feature on video. Client feedback strengthens evaluation.',
+    pitfalls: 'No test evidence; feature creep; code without comments; evaluation vague; academic honesty on borrowed code.',
+    faqs: [
+      { q: 'Language choice?', a: 'Java, Python, JS etc. — pick what your school supports and you can test thoroughly.' },
+      { q: 'SL vs HL?', a: 'HL expects more complex techniques (e.g. OOP, advanced data structures).' },
+      { q: 'Theory exams?', a: '[CS past papers](/ib/past-papers/computer-science-hl) for Papers 1–3 alongside IA build.' },
+    ],
+  },
+  {
+    slug: 'ib-english-ia-guide',
+    title: 'IB English IA guide — Individual Oral, HL Essay & written tasks',
+    description: 'IB English A Internal Assessment: Individual Oral structure, HL Essay, written tasks, criteria, and how Lang & Lit differs from Literature.',
+    keywords: ['IB English IA', 'IB Individual Oral', 'IB HL Essay English', 'English IA criteria', 'IB English oral guide'],
+    subject: 'English A', catalogSlug: 'english-a-lang-lit-hl', courseSlug: 'english-a-lang-lit-hl', weight: 'varies by component (Oral + written coursework)',
+    criteria: '**Individual Oral** (SL & HL): global issue, two works (one literary), 10-minute extract analysis + discussion. **HL Essay** (HL only): 1,200–1,500 words on a literary work. Lang & Lit adds **written tasks** on non-literary topics.',
+    structure: 'Oral: outline global issue → analyse extract (techniques + meaning) → connect to second work → questions. HL Essay: thesis on literary line/theme → sustained analysis with quotations.',
+    strategy: 'Choose a **global issue** you care about — passion shows in delivery. Rehearse with timer. HL Essay: one work, one sharp thesis, no plot summary.',
+    pitfalls: 'Global issue too vague; feature spotting in oral; HL Essay plot retell; written task wrong text type format (Lang & Lit).',
+    faqs: [
+      { q: 'Lang & Lit vs Literature?', a: 'Lang & Lit oral uses one non-literary + one literary work; Literature uses two literary works.' },
+      { q: 'Recording?', a: 'Oral is recorded for moderation — practise with the same note policy you will use.' },
+      { q: 'Courses?', a: '[Lang & Lit](/ib/courses/english-a-lang-lit-hl) and [Literature](/ib/courses/english-a-literature-hl) lessons cover Paper skills too.' },
+    ],
+  },
+  {
+    slug: 'ib-ess-ia-guide',
+    title: 'IB ESS IA guide — fieldwork investigation & criteria',
+    description: 'IB Environmental Systems and Societies Internal Assessment: research question, fieldwork, report structure, and criterion bands.',
+    keywords: ['IB ESS IA', 'ESS Internal Assessment', 'IB ESS fieldwork', 'ESS IA criteria', 'ESS IA grade 7'],
+    subject: 'Environmental Systems and Societies', catalogSlug: 'environmental-systems-and-societies', courseSlug: 'environmental-systems-and-societies', weight: '25% of your final ESS grade',
+    criteria: 'Similar to Geography IA: **context**, **planning**, **results**, **analysis/evaluation** with explicit **systems** and **sustainability** framing.',
+    structure: 'Research question linking environment and society → methodology → data → analysis with syllibus concepts (stakeholders, feedback loops) → conclusion → evaluation.',
+    strategy: 'Pick a local issue (water quality, waste, energy use). Show both **environmental and social** dimensions in every section.',
+    pitfalls: 'Pure science report without society angle; no ethical consideration; weak link to syllabus terms; no secondary sources.',
+    faqs: [
+      { q: 'ESS vs Geography IA?', a: 'ESS must emphasise systems and sustainability trade-offs — not just spatial patterns.' },
+      { q: 'Group 3 or 4?', a: 'ESS sits in both — IA still follows ESS guide criteria.' },
+      { q: 'Papers?', a: '[ESS past papers](/ib/past-papers/environmental-systems-and-societies) for exam technique.' },
+    ],
+  },
+]
+
+/** Group 6 SL portfolio guides */
+const GROUP6_SL = [
+  {
+    slug: 'ib-theatre-sl-past-papers-guide',
+    title: 'IB Theatre SL assessment & portfolio guide',
+    description: 'IB Theatre SL: solo piece, director\'s notebook, research presentation — criteria, rehearsal workflow, and top-band tips.',
+    keywords: ['IB Theatre SL', 'IB Theatre SL portfolio', 'Theatre director notebook', 'IB Theatre SL criteria', 'IB Theatre assessment'],
+    name: 'Theatre', level: 'SL', catalogSlug: 'theatre-sl', courseSlug: 'theatre-sl',
+    assessment: '**Solo theatre piece**, **Director\'s notebook**, and **Research presentation** — criterion-assessed performance and written work (HL adds collaborative project weight).',
+    markbands: 'Examiners reward clear **artistic intention**, applied theatre theory, and reflective documentation — not just performance polish.',
+    strategy: 'Notebook entries during rehearsal, not after. Research presentation: link practitioner to your own staging choices with video stills.',
+    paperTips: 'Use vocabulary: proxemics, subtext, staging concept. Solo piece: justify every blocking decision in the notebook.',
+    pitfalls: 'Notebook as diary; research as biography; solo piece without through-line; ignoring criteria until submission.',
+    faqs: [
+      { q: 'HL vs SL?', a: 'HL includes collaborative project with higher weight — SL focuses on the three core components.' },
+      { q: 'Past papers?', a: 'No written exam — mock performances against criteria.' },
+      { q: 'Course?', a: '[Theatre SL lessons](/ib/courses/theatre-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-music-sl-past-papers-guide',
+    title: 'IB Music SL assessment & portfolio guide',
+    description: 'IB Music SL: exploring, experimenting, presenting — inquiry, analysis, and performance criteria explained.',
+    keywords: ['IB Music SL', 'IB Music SL portfolio', 'IB Music presenting', 'IB Music SL criteria', 'IB Music assessment'],
+    name: 'Music', level: 'SL', catalogSlug: 'music-sl', courseSlug: 'music-sl',
+    assessment: '**Exploring music** (listening/analysis), **Experimenting** (creating), and **Presenting** (performance) — portfolio-based, no traditional exam paper.',
+    markbands: 'Top bands link **musical features** to context and your creative choices with score evidence.',
+    strategy: 'Listening log with annotated scores. Experimentation: show drafts. Performance: programme notes connecting pieces to your inquiry.',
+    paperTips: 'Name harmonic devices, form, texture. Avoid vague praise — be specific.',
+    pitfalls: 'Generic adjectives; no score citations; thin experimentation log; performance without rationale.',
+    faqs: [
+      { q: 'DAW allowed?', a: 'Yes for creating — document decisions in experimenting.' },
+      { q: 'HL difference?', a: 'HL expects wider stylistic range and deeper inquiry.' },
+      { q: 'Lessons?', a: '[Music SL course](/ib/courses/music-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-film-sl-past-papers-guide',
+    title: 'IB Film SL assessment & portfolio guide',
+    description: 'IB Film SL: textual analysis, comparative study, portfolio — film language, criteria, and workflow.',
+    keywords: ['IB Film SL', 'IB Film SL portfolio', 'IB Film textual analysis', 'IB Film comparative study', 'IB Film criteria'],
+    name: 'Film', level: 'SL', catalogSlug: 'film-sl', courseSlug: 'film-sl',
+    assessment: '**Textual analysis**, **Comparative study**, and **Film portfolio** — HL adds collaborative film (SL has adjusted scope).',
+    markbands: 'Analysis uses **film language** (mise-en-scène, cinematography, editing, sound) tied to meaning.',
+    strategy: 'Shot logs with timestamps. Comparative study: one theme, two films, formal comparison.',
+    paperTips: 'Never plot-summary only. Portfolio: pre-production evidence (storyboard, shot list) counts heavily.',
+    pitfalls: 'Ignoring sound; two separate reviews instead of comparison; weak reflection on edits.',
+    faqs: [
+      { q: 'Equipment?', a: 'School gear is fine — planning docs prove skill.' },
+      { q: 'HL collaborative?', a: 'HL-only component — SL portfolio scope is smaller.' },
+      { q: 'Course?', a: '[Film SL](/ib/courses/film-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-dance-sl-past-papers-guide',
+    title: 'IB Dance SL assessment & portfolio guide',
+    description: 'IB Dance SL: composition, investigation, performance — choreography and embodied analysis for top criteria.',
+    keywords: ['IB Dance SL', 'IB Dance SL portfolio', 'IB Dance composition', 'IB Dance investigation', 'IB Dance criteria'],
+    name: 'Dance', level: 'SL', catalogSlug: 'dance-sl', courseSlug: 'dance-sl',
+    assessment: '**Composition**, **Dance investigation**, and **Performance** — same three components as HL with adjusted depth expectations.',
+    markbands: 'Choreography needs structure and intent; investigation needs **movement analysis** from another culture.',
+    strategy: 'Film rehearsals. Investigation: analyse video clips with dance terminology. Performance: connect to choreographic intent.',
+    paperTips: 'Motif development, spatial patterns, energy qualities. Investigation: not Wikipedia — embodied description.',
+    pitfalls: 'Investigation without movement examples; unstructured composition; performance disconnected from concept.',
+    faqs: [
+      { q: 'HL vs SL?', a: 'HL expects greater complexity in group composition and investigation depth.' },
+      { q: 'Written exam?', a: 'None — criteria-based portfolio and performance.' },
+      { q: 'Lessons?', a: '[Dance SL course](/ib/courses/dance-sl).' },
+    ],
+  },
+]
+
+POSTS.push(...GROUP6_SL)
+
+function renderIaPost(b) {
+  const sub = subjectPath(b.catalogSlug)
+  const course = coursePath(b.courseSlug)
+  const pp = pastPapersPath(b.catalogSlug)
+  const faqBlock = b.faqs.map((f) => `### ${f.q}\n${f.a}`).join('\n\n')
+
+  return `---
+title: ${b.title}
+description: ${b.description}
+date: ${DATE}
+keywords: ${b.keywords.join(', ')}
+category: revision
+author: hassan
+updated: ${DATE}
+informationGain: synthesis
+---
+
+The IB ${b.subject} **Internal Assessment** is worth ${b.weight} — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
+
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [${b.subject} past papers](${pp}) · [Free ${b.subject} course](${course})
+
+## What examiners mark
+${b.criteria}
+
+## Recommended structure
+${b.structure}
+
+## Workflow for a top-band IA
+${b.strategy}
+
+## Common pitfalls
+${b.pitfalls}
+
+## Criterion practice on MarkScheme
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](${markPath(b.courseSlug)}) where supported, and use syllabus [lessons](${course}) to strengthen methodology and subject vocabulary.
+
+## Frequently asked questions
+
+${faqBlock}
+
+## Bottom line
+Start early, narrow your question, and mark your own draft against the **official criteria** before the supervisor deadline. A strong ${b.subject} IA is free insurance on your final grade — pair it with timed [past paper practice](${pp}) closer to exams.
+`
+}
+
 function pastPapersPath(slug) {
   return slug ? `/ib/past-papers/${slug}` : '/ib/past-papers'
 }
@@ -611,6 +928,17 @@ for (const brief of POSTS) {
   fs.writeFileSync(file, renderPost(brief), 'utf8')
   written++
   console.log(`✓ ${brief.slug}.md`)
+}
+
+for (const brief of IA_POSTS) {
+  const file = path.join(BLOG_DIR, `${brief.slug}.md`)
+  if (fs.existsSync(file) && !FORCE) {
+    skipped++
+    continue
+  }
+  fs.writeFileSync(file, renderIaPost(brief), 'utf8')
+  written++
+  console.log(`✓ ${brief.slug}.md (IA)`)
 }
 
 console.log(`\nDone: ${written} written, ${skipped} skipped (existing).`)

@@ -5,11 +5,13 @@ date: 2026-06-19
 keywords: IB past papers, IB Diploma past papers, IBDP past papers, IB mark scheme, how to use IB past papers, IB HL SL papers
 category: revision
 author: hassan
-updated: 2026-06-19
+updated: 2026-06-23
 informationGain: synthesis
 ---
 
 Mastering IB Diploma past papers is less about rote learning and more about strategic practice. This guide provides a complete workflow for using past papers to understand the exam's demands, diagnose your weaknesses, and systematically improve your grade. By moving beyond passive revision, you can turn these resources into a powerful tool for achieving your target score.
+
+New here? Read [IB command terms explained](/blog/ib-command-terms-explained), the [Internal Assessment guide](/blog/ib-internal-assessment-complete-guide), and [how to get a 7](/blog/ib-how-to-get-a-7-diploma) before diving into subject papers.
 
 ## Understanding the IB Exam Structure
 The IB Diploma Programme (IBDP) runs exams in two main sessions each year: May, which is used by the majority of schools, and November, which primarily serves the Southern Hemisphere. To account for global time differences, each session has multiple time-zone variants (e.g., Exam Zone A, B, C). Most subjects are offered at **Higher Level (HL)** and **Standard Level (SL)**. The structure typically involves a Paper 1 and Paper 2 for both levels, with HL students often sitting an additional Paper 3 that covers extension topics. This is all complemented by your Internal Assessment (IA), which is completed during the course.
@@ -25,6 +27,25 @@ A well-organised collection of past papers is your most valuable revision tool. 
 
 ## Beyond the Mark Scheme: Getting Expert Feedback
 Self-assessment is a powerful skill, but it has its limits. It can be difficult to judge your own work objectively, especially when trying to distinguish between a 'good' and an 'excellent' response. This is where expert feedback becomes invaluable. An experienced IB teacher or examiner can provide the nuanced insights needed to push your work from a Level 5 to a Level 6 or 7. They can pinpoint subtle weaknesses in your argumentation or structure that you might miss. If you've hit a plateau in your self-marking, consider getting [expert feedback on your answer](/mark) to unlock that next level of performance.
+
+## Subject-by-subject revision guides
+Every IB subject has different papers, command terms, and markband language. Use these in-depth guides alongside [free IB courses](/ib/courses):
+
+**Core:** [TOK](/blog/ib-tok-past-papers-guide) · [Extended Essay](/blog/ib-extended-essay-complete-guide) · [CAS](/blog/ib-cas-complete-guide)
+
+**Group 1 — English:** [Lang & Lit HL](/blog/ib-english-a-lang-lit-hl-past-papers-guide) · [Lang & Lit SL](/blog/ib-english-a-lang-lit-sl-past-papers-guide) · [Literature HL](/blog/ib-english-a-literature-hl-past-papers-guide) · [Literature SL](/blog/ib-english-a-literature-sl-past-papers-guide)
+
+**Group 2 — Languages:** [Spanish B HL](/blog/ib-spanish-b-hl-past-papers-guide) · [Spanish B SL](/blog/ib-spanish-b-sl-past-papers-guide) · [French B HL](/blog/ib-french-b-hl-past-papers-guide) · [French B SL](/blog/ib-french-b-sl-past-papers-guide)
+
+**Group 3 — Humanities:** [History HL](/blog/ib-history-hl-past-papers-guide) · [History SL](/blog/ib-history-sl-past-papers-guide) · [Geography HL](/blog/ib-geography-hl-past-papers-guide) · [Geography SL](/blog/ib-geography-sl-past-papers-guide) · [Economics HL](/blog/ib-economics-hl-past-papers-guide) · [Economics SL](/blog/ib-economics-sl-past-papers-guide) · [Business HL](/blog/ib-business-management-hl-past-papers-guide) · [Business SL](/blog/ib-business-management-sl-past-papers-guide) · [Psychology HL](/blog/ib-psychology-hl-past-papers-guide) · [Psychology SL](/blog/ib-psychology-sl-past-papers-guide)
+
+**Group 4 — Sciences:** [Biology HL](/blog/ib-biology-hl-past-papers-guide) · [Biology SL](/blog/ib-biology-sl-past-papers-guide) · [Chemistry HL](/blog/ib-chemistry-hl-past-papers-guide) · [Chemistry SL](/blog/ib-chemistry-sl-past-papers-guide) · [Physics HL](/blog/ib-physics-hl-past-papers-guide) · [Physics SL](/blog/ib-physics-sl-past-papers-guide) · [Computer Science HL](/blog/ib-computer-science-hl-past-papers-guide) · [Computer Science SL](/blog/ib-computer-science-sl-past-papers-guide) · [ESS](/blog/ib-environmental-systems-and-societies-past-papers-guide)
+
+**Group 5 — Mathematics:** [Maths AA HL](/blog/ib-maths-aa-hl-past-papers-guide) · [Maths AA SL](/blog/ib-maths-aa-sl-past-papers-guide) · [Maths AI HL](/blog/ib-maths-ai-hl-past-papers-guide) · [Maths AI SL](/blog/ib-maths-ai-sl-past-papers-guide) · [AA vs AI — which to choose?](/blog/ib-maths-aa-vs-ai-which-to-choose)
+
+**Group 6 — The Arts:** [Visual Arts HL](/blog/ib-visual-arts-hl-past-papers-guide) · [Visual Arts SL](/blog/ib-visual-arts-sl-past-papers-guide) · [Theatre HL](/blog/ib-theatre-hl-past-papers-guide) · [Music HL](/blog/ib-music-hl-past-papers-guide) · [Film HL](/blog/ib-film-hl-past-papers-guide) · [Dance HL](/blog/ib-dance-hl-past-papers-guide)
+
+**Cross-subject:** [Markbands explained](/blog/ib-markbands-explained) · [Grade boundaries](/blog/ib-grade-boundaries-explained) · [Command terms](/blog/ib-command-terms-explained) · [Internal Assessment](/blog/ib-internal-assessment-complete-guide) · [Predicted grades](/blog/ib-predicted-grades-explained) · [Revision strategy](/blog/ib-exam-revision-strategy) · [Free courses](/blog/ib-free-courses-guide)
 
 ## Frequently asked questions
 

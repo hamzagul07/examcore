@@ -57,19 +57,19 @@ const PRICING = {
   student: {
     A: { monthly: 3300, yearly: 25900 },
     B: { monthly: 2200, yearly: 17300 },
-    C: { monthly: 1320, yearly: 10400 },
+    C: { monthly: 3700, yearly: 29030 },
   },
-  // Pro (marketing) — PKR anchor: Rs 3,700 / month (tier C).
+  // Pro (marketing) — PKR anchor: Rs 3,700 / month (tier C) → $37 at 100 PKR/USD peg.
   scholar: {
     A: { monthly: 3300, yearly: 25900 },
     B: { monthly: 2200, yearly: 17300 },
-    C: { monthly: 1321, yearly: 10370 },
+    C: { monthly: 3700, yearly: 29030 },
   },
-  // Max (marketing) — PKR anchor: Rs 6,999 / month (tier C).
+  // Max (marketing) — PKR anchor: Rs 6,999 / month (tier C) → $69.99 peg.
   mastery: {
     A: { monthly: 6250, yearly: 49100 },
     B: { monthly: 4170, yearly: 32700 },
-    C: { monthly: 2500, yearly: 19620 },
+    C: { monthly: 6999, yearly: 54910 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },
@@ -94,6 +94,8 @@ const CURRENCIES_PER_TIER = {
 // offline / if the FX API is down.
 const FX = { usd: 1, gbp: 0.79, eur: 0.92, aud: 1.52, inr: 83, pkr: 280 }
 const FX_SUPPORTED = ['gbp', 'eur', 'aud', 'inr', 'pkr']
+/** Tier C subs: 100 PKR = $1 — keep in sync with lib/billing/pricing-usd.ts */
+const TIER_C_PKR_PER_USD = 100
 
 /**
  * Fetch live USD-based exchange rates and merge them into FX so every non-USD
@@ -144,14 +146,27 @@ function convert(usdCents, currency) {
   return Math.max(unit, Math.round(raw / unit) * unit)
 }
 
+function tierCFromPkrAnchor(pkrCents, currency) {
+  const cur = currency.toLowerCase()
+  if (cur === 'pkr') return pkrCents
+  const usdCents = Math.max(1, Math.round(pkrCents / TIER_C_PKR_PER_USD))
+  if (cur === 'usd') return usdCents
+  if (cur === 'inr') {
+    const raw = usdCents * (FX.inr ?? 83)
+    const unit = ROUND_TO_CENTS.inr
+    return Math.max(unit, Math.round(raw / unit) * unit)
+  }
+  return convert(usdCents, currency)
+}
+
 function resolveAmountCents({ usdCents, currency, tier, productKey, period }) {
   if (
-    currency === 'pkr' &&
     tier === 'C' &&
     SUBSCRIPTION_KEYS.includes(productKey) &&
-    period
+    period &&
+    ['usd', 'inr', 'pkr'].includes(currency)
   ) {
-    return PRICING_PKR_C[productKey][period]
+    return tierCFromPkrAnchor(PRICING_PKR_C[productKey][period], currency)
   }
   return convert(usdCents, currency)
 }

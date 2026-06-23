@@ -45,6 +45,16 @@ export function tierForCurrency(
   currency: SupportedCurrency,
   preserveTier?: RegionTier | null
 ): RegionTier {
+  if (currency === 'pkr' || currency === 'inr') {
+    return 'C'
+  }
+  if (
+    currency === 'usd' &&
+    preserveTier === 'C' &&
+    (CURRENCIES_BY_TIER.C as readonly string[]).includes('usd')
+  ) {
+    return 'C'
+  }
   if (preserveTier && isCurrencyInTier(currency, preserveTier)) {
     return preserveTier
   }

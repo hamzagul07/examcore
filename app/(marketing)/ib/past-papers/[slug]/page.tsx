@@ -19,6 +19,8 @@ import {
 import { buildIbPastPaperCopy, ibShortName } from '@/lib/seo/ib-seo'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
+import { getIbCourse } from '@/lib/courses/ib'
+import { getIbTopicPracticePages } from '@/lib/seo/ib-topic-practice'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -68,6 +70,8 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
   const related = getIbSubjects()
     .filter((s) => s.slug !== subject.slug)
     .slice(0, 10)
+  const topicPages = getIbTopicPracticePages(slug)
+  const course = getIbCourse(slug)
 
   return (
     <MarketingPageShell>
@@ -98,6 +102,17 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
               name: `IB ${subject.name} ${subject.level} — ${s}`,
             })),
           }),
+          ...(topicPages.length
+            ? [
+                itemListNode({
+                  name: `IB ${subject.name} ${subject.level} topic practice`,
+                  items: topicPages.map((t) => ({
+                    name: `${t.topicCode} ${t.title}`,
+                    url: `${SITE_URL}/ib/past-papers/${slug}/${t.topicSlug}`,
+                  })),
+                }),
+              ]
+            : []),
           howToNode({
             name: `How to revise with IB ${short} past papers`,
             description: `Get the most out of IB ${subject.name} ${subject.level} past papers.`,
@@ -146,11 +161,42 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
           paragraph={`Every recent ${subject.name} exam series we cover (${ibYearRange()}), each with ${subject.papers.join(', ')}. Practise a paper, then mark it against the IB band descriptors — that's where the grade is won.`}
           links={[
             { href: '/mark', label: 'Get feedback on your answer →', variant: 'primary' },
+            ...(course
+              ? [{ href: `/ib/courses/${slug}`, label: `Free ${short} course`, variant: 'ghost' as const }]
+              : []),
             { href: `/ib/subjects/${subject.slug}`, label: `About ${short} ${subject.level}`, variant: 'ghost' },
           ]}
         />
 
-        <section aria-labelledby="ib-archive" style={{ marginTop: 12 }}>
+        {topicPages.length ? (
+          <section aria-labelledby="ib-topic-practice" style={{ marginTop: 32 }}>
+            <h2 id="ib-topic-practice" className="ms-h3" style={{ marginBottom: 6 }}>
+              Practice by topic
+            </h2>
+            <p className="ms-body-2" style={{ marginBottom: 16, color: 'var(--ec-text-secondary)', maxWidth: '52ch' }}>
+              Criterion-based practice for every syllabus point — revise the lesson, then mark your response
+              band-by-band.
+            </p>
+            <ul className="subj-chapter-grid">
+              {topicPages.map((t) => (
+                <li key={t.topicSlug}>
+                  <Link
+                    href={`/ib/past-papers/${slug}/${t.topicSlug}`}
+                    className="subj-chapter"
+                  >
+                    <span className="subj-chapter-n mono">{t.topicCode}</span>
+                    <span className="subj-chapter-title">{t.title}</span>
+                    <span className="subj-chapter-go" aria-hidden>
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        <section aria-labelledby="ib-archive" style={{ marginTop: topicPages.length ? 40 : 12 }}>
           <h2 id="ib-archive" className="ms-overline" style={{ marginBottom: 12 }}>
             Papers by exam series
           </h2>

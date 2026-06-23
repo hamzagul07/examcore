@@ -8,6 +8,7 @@ import { getPastPaperSubjectCodes } from '@/lib/seo/past-papers'
 import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
 import { getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { getIbCourseSlugs, getAllIbCourseLessonParams } from '@/lib/courses/ib'
+import { getAllIbTopicPracticeParams } from '@/lib/seo/ib-topic-practice'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { lessonLastModified } from '@/lib/courses/seo'
 import { getCommunitySubjects } from '@/lib/community/subjects'
@@ -138,6 +139,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]
 
+  const ibTopicPracticeEntries: MetadataRoute.Sitemap = getAllIbTopicPracticeParams().map(
+    ({ slug, topic }) => ({
+      url: `${base}/ib/past-papers/${slug}/${topic}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.76,
+    })
+  )
+
   const courseSubjectEntries: MetadataRoute.Sitemap = getCourseSubjectCodes().map(
     (code) => ({
       url: `${base}/courses/${code}`,
@@ -185,6 +195,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pastPaperEntries,
     ...topicQuestionEntries,
     ...ibEntries,
+    ...ibTopicPracticeEntries,
     ...ibCourseEntries,
     ...calculatorEntries,
     ...courseSubjectEntries,

@@ -149,7 +149,14 @@ export default async function IbSubjectPage({ params }: Props) {
           links={[
             { href: `/ib/past-papers/${subject.slug}`, label: 'Past papers →', variant: 'primary' },
             ...(getIbCourse(subject.slug)
-              ? [{ href: `/ib/courses/${subject.slug}`, label: `Free ${short} course`, variant: 'ghost' as const }]
+              ? [
+                  { href: `/ib/courses/${subject.slug}`, label: `Free ${short} course`, variant: 'ghost' as const },
+                  {
+                    href: `/ib/past-papers/${subject.slug}#ib-topic-practice`,
+                    label: 'Practice by topic',
+                    variant: 'ghost' as const,
+                  },
+                ]
               : []),
             { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
             { href: `/community/s/${subject.slug}`, label: 'Exam Room community', variant: 'muted' },

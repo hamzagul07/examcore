@@ -134,8 +134,9 @@ export async function runSingleQuestionMark(
   pageOcrResults.push(first)
 
   if (pageFiles.length > 1) {
-    const rest = await Promise.all(pageFiles.slice(1).map((f) => ocrOnePage(f)))
-    pageOcrResults.push(...rest)
+    for (const file of pageFiles.slice(1)) {
+      pageOcrResults.push(await ocrOnePage(file))
+    }
   }
 
   emit(onProgress, 'reading_work', 20)

@@ -12,6 +12,7 @@ import {
   withGeminiRetry,
   getGeminiRetryStats,
 } from '@/lib/marking/gemini-retry'
+import { ensureVertexApplicationCredentials } from '@/lib/ai/vertex-credentials'
 import {
   assertGeminiConfigured,
   geminiBackendLabel,
@@ -86,6 +87,7 @@ export function getGeminiClient(): GoogleGenAI {
   if (_client && _clientBackend === backend) return _client
 
   if (isVertexAIEnabled()) {
+    ensureVertexApplicationCredentials()
     const project = getGoogleCloudProject()
     if (!project) {
       throw new Error('GOOGLE_CLOUD_PROJECT is required when USE_VERTEX_AI=true')
@@ -301,8 +303,15 @@ async function withMetrics<T extends GenerateContentResponse>(
 ): Promise<T> {
   const startedAt = Date.now()
   const retriesBefore = getGeminiRetryStats().totalRetries
+  const markingPath =
+    opts.task === 'marking' ||
+    opts.task === 'ocr' ||
+    /:marking$|:ocr$/.test(label)
   try {
-    const response = await withGeminiRetry(fn, { label })
+    const response = await withGeminiRetry(fn, {
+      label,
+      maxRetries: markingPath ? 10 : 8,
+    })
     recordGeminiApiOutcome({
       label,
       model,

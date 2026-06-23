@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { GEMINI_FLASH_MODEL, generateGeminiTextWithMeta, getGeminiClient } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, generateGeminiTextWithMeta, generateGeminiWithContents, getGeminiClient } from '@/lib/ai/gemini-text'
 import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllabi'
 import {
   buildLineReferences,
@@ -84,21 +84,17 @@ export function getMarkingGenAI() {
 export async function ocrImage(file: File, prompt: string): Promise<string> {
   const bytes = await file.arrayBuffer()
   const base64 = Buffer.from(bytes).toString('base64')
-  const response = await withGeminiRetry(
-    () =>
-      getMarkingGenAI().models.generateContent({
-        model: GEMINI_FLASH_MODEL,
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              { inlineData: { mimeType: file.type, data: base64 } },
-              { text: prompt },
-            ],
-          },
+  const response = await generateGeminiWithContents(
+    [
+      {
+        role: 'user',
+        parts: [
+          { inlineData: { mimeType: file.type, data: base64 } },
+          { text: prompt },
         ],
-      }),
-    { label: 'ocr' }
+      },
+    ],
+    { task: 'ocr', model: GEMINI_FLASH_MODEL }
   )
   return response.text || ''
 }
@@ -137,21 +133,17 @@ export async function ocrTextFromBuffer(
   prompt: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
   const base64 = buffer.toString('base64')
-  const response = await withGeminiRetry(
-    () =>
-      getMarkingGenAI().models.generateContent({
-        model: GEMINI_FLASH_MODEL,
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              { inlineData: { mimeType, data: base64 } },
-              { text: prompt },
-            ],
-          },
+  const response = await generateGeminiWithContents(
+    [
+      {
+        role: 'user',
+        parts: [
+          { inlineData: { mimeType, data: base64 } },
+          { text: prompt },
         ],
-      }),
-    { label: 'ocr-buffer' }
+      },
+    ],
+    { task: 'ocr', model: GEMINI_FLASH_MODEL }
   )
   return parseOcrAnswer(response.text || '')
 }

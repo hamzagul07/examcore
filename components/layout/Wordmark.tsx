@@ -1,5 +1,8 @@
-import Link from 'next/link'
+'use client'
+
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import { SITE_NAME } from '@/lib/site-config'
+import { cn } from '@/lib/utils'
 
 type WordmarkProps = {
   className?: string
@@ -31,11 +34,16 @@ export function WordmarkLink({
   className?: string
 }) {
   return (
-    <Link
+    <LoadingLink
       href={href}
-      className={`inline-flex shrink-0 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] ${className ?? ''}`}
+      variant="inline"
+      loadingText="Home"
+      className={cn(
+        'ec-wordmark-link inline-flex shrink-0 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)]',
+        className
+      )}
     >
       <Wordmark size={size} />
-    </Link>
+    </LoadingLink>
   )
 }

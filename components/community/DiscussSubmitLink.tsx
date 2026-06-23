@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { HeaderCta } from '@/lib/site-header-config'
@@ -37,8 +38,7 @@ type Props = {
   loadingText?: string
 }
 
-/** Exam Room header CTA — preserves active board tab in submit URL on /community. */
-export function DiscussSubmitLink({ cta, className, loadingText = 'Opening…' }: Props) {
+function DiscussSubmitLinkInner({ cta, className, loadingText = 'Opening…' }: Props) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const board = searchParams.get('board')
@@ -48,5 +48,22 @@ export function DiscussSubmitLink({ cta, className, loadingText = 'Opening…' }
     <LoadingLink href={href} className={cn(CTA_CLASS[cta.style], className)} loadingText={loadingText}>
       <CtaLabel cta={cta} />
     </LoadingLink>
+  )
+}
+
+function DiscussSubmitLinkFallback({ cta, className, loadingText = 'Opening…' }: Props) {
+  return (
+    <LoadingLink href={cta.href} className={cn(CTA_CLASS[cta.style], className)} loadingText={loadingText}>
+      <CtaLabel cta={cta} />
+    </LoadingLink>
+  )
+}
+
+/** Exam Room header CTA — preserves active board tab in submit URL on /community. */
+export function DiscussSubmitLink(props: Props) {
+  return (
+    <Suspense fallback={<DiscussSubmitLinkFallback {...props} />}>
+      <DiscussSubmitLinkInner {...props} />
+    </Suspense>
   )
 }

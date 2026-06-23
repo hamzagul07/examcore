@@ -203,15 +203,23 @@
 @media (max-width: 900px) {
   .ms-omni-fab {
     right: 12px;
-    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(26px + env(safe-area-inset-bottom, 0px));
     padding: 11px 18px;
     font-size: 19px;
+  }
+
+  body:has(.ec-tabbar) .ms-omni-fab {
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
   }
 
   .ms-omni-panel {
     right: 12px;
     left: 12px;
     width: auto;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body:has(.ec-tabbar) .ms-omni-panel {
     bottom: calc(152px + env(safe-area-inset-bottom, 0px));
   }
 

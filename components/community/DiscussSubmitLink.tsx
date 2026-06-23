@@ -36,24 +36,35 @@ type Props = {
   cta: HeaderCta
   className?: string
   loadingText?: string
+  onNavigate?: () => void
 }
 
-function DiscussSubmitLinkInner({ cta, className, loadingText = 'Opening…' }: Props) {
+function DiscussSubmitLinkInner({ cta, className, loadingText = 'Opening…', onNavigate }: Props) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const board = searchParams.get('board')
   const href = resolveDiscussHref(pathname, board, cta)
 
   return (
-    <LoadingLink href={href} className={cn(CTA_CLASS[cta.style], className)} loadingText={loadingText}>
+    <LoadingLink
+      href={href}
+      className={cn(CTA_CLASS[cta.style], className)}
+      loadingText={loadingText}
+      onNavigate={onNavigate}
+    >
       <CtaLabel cta={cta} />
     </LoadingLink>
   )
 }
 
-function DiscussSubmitLinkFallback({ cta, className, loadingText = 'Opening…' }: Props) {
+function DiscussSubmitLinkFallback({ cta, className, loadingText = 'Opening…', onNavigate }: Props) {
   return (
-    <LoadingLink href={cta.href} className={cn(CTA_CLASS[cta.style], className)} loadingText={loadingText}>
+    <LoadingLink
+      href={cta.href}
+      className={cn(CTA_CLASS[cta.style], className)}
+      loadingText={loadingText}
+      onNavigate={onNavigate}
+    >
       <CtaLabel cta={cta} />
     </LoadingLink>
   )

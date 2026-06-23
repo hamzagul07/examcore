@@ -1,16 +1,16 @@
+import { ExamLoader } from '@/components/ui/ExamLoader'
 import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
 export default function MarkLoading() {
   return (
-    <main className="app-shell app-shell-tabbed md:py-10 lg:py-14">
-      <div className="mx-auto min-w-0 w-full max-w-3xl">
-        <SkeletonLine className="mb-3 h-3 w-12" />
-        <SkeletonBlock className="mb-6 h-12 w-64" />
-        <SkeletonLine className="mb-4 h-4 w-32" />
-        <SkeletonBlock className="mb-8 h-48 w-full rounded-3xl" />
-        <SkeletonLine className="mb-4 h-4 w-40" />
-        <SkeletonBlock className="h-32 w-full rounded-3xl" />
-        <SkeletonBlock className="mt-8 h-14 w-full rounded-2xl" />
+    <main className="ms-mark-shell" aria-busy="true" aria-label="Loading mark mode">
+      <div className="ec-page-loading ec-page-loading--compact">
+        <ExamLoader size="md" rotateHints label="Preparing mark mode…" />
+      </div>
+      <div className="mx-auto min-w-0 w-full max-w-3xl px-4">
+        <SkeletonLine className="mb-6 h-4 w-32" />
+        <SkeletonBlock className="mb-6 h-56 w-full" />
+        <SkeletonBlock className="h-40 w-full" />
       </div>
     </main>
   )

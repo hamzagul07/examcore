@@ -31,7 +31,12 @@ export async function CommunitySidebar({ board = 'all' }: { board?: Board | 'all
           Free communities for <strong>Cambridge A-Level</strong> and <strong>IB Diploma</strong>.
           Ask doubts, share cheat sheets, discuss grade boundaries, and help each other revise.
         </p>
-        <Link href="/community/submit" className="rc-btn rc-btn-primary rc-side-cta">Create a post</Link>
+        <Link
+          href={board === 'all' ? '/community/submit' : `/community/submit?board=${board}`}
+          className="rc-btn rc-btn-primary rc-side-cta"
+        >
+          Create a post
+        </Link>
         <Link href="/community/guidelines" className="rc-side-link">Community guidelines →</Link>
       </section>
 

@@ -85,13 +85,13 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
 
   return (
     <div className="rc-page rc-page--hub">
-      <CommunityHubIntro />
+      <CommunityHubIntro board={board === 'all' ? undefined : board} />
       <div className="rc-layout rc-layout--hub">
         <CommunityLeftRail board={board} />
         <main className="rc-main">
           <div className="rc-feed-toolbar">
             <CommunitySearchBar />
-            <CreatePostBar signedIn={!!user} />
+            <CreatePostBar signedIn={!!user} board={board === 'all' ? undefined : board} />
             <BoardTabs active={board} basePath="/community" sort={sort} />
             <SortTabs active={sort} basePath={board === 'all' ? '/community' : `/community?board=${board}`} />
           </div>

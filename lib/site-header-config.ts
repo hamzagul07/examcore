@@ -189,24 +189,34 @@ export function getSiteHeaderConfig(
   }
 
   if (tone === 'discuss') {
+    const onSubmit = pathname.startsWith('/community/submit')
     return {
       tone,
       transparentShell,
       wordmarkHref: '/',
       navItemIds: ['community', 'mark', 'courses', 'subjects'],
       context: communityContext(pathname),
-      primaryCta: {
-        label: 'Create a post',
-        shortLabel: 'New post',
-        href: '/community/submit',
-        style: 'primary',
-      },
-      secondaryCta: {
-        label: 'Subject rooms',
-        shortLabel: 'Rooms',
-        href: '/community/subjects',
-        style: 'ghost',
-      },
+      primaryCta: onSubmit
+        ? {
+            label: 'Back to Exam Room',
+            shortLabel: 'Feed',
+            href: '/community',
+            style: 'ghost',
+          }
+        : {
+            label: 'Create a post',
+            shortLabel: 'New post',
+            href: '/community/submit',
+            style: 'primary',
+          },
+      secondaryCta: onSubmit
+        ? undefined
+        : {
+            label: 'Subject rooms',
+            shortLabel: 'Rooms',
+            href: '/community/subjects',
+            style: 'ghost',
+          },
     }
   }
 

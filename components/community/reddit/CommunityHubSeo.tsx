@@ -1,3 +1,4 @@
+import type { Board } from '@/lib/community/posts'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode } from '@/lib/seo/structured-data'
@@ -26,8 +27,13 @@ export const COMMUNITY_FAQ = [
   },
 ] as const
 
+function submitHref(board?: Board) {
+  return board ? `/community/submit?board=${board}` : '/community/submit'
+}
+
 /** SEO + intro block — keep at top of /community. */
-export function CommunityHubIntro() {
+export function CommunityHubIntro({ board }: { board?: Board }) {
+  const createHref = submitHref(board)
   return (
     <>
       <JsonLd
@@ -59,7 +65,7 @@ export function CommunityHubIntro() {
           heading="Exam Room"
           paragraph="Free student communities for every subject we support. Ask past-paper doubts, share cheat sheets and PDFs, debate grade boundaries, and help each other revise — Cambridge CAIE and IB Diploma in one place."
           links={[
-            { href: '/community/submit', label: 'Create a post →', variant: 'primary' },
+            { href: createHref, label: 'Create a post →', variant: 'primary' },
             { href: '/community/subjects', label: 'Browse subjects', variant: 'ghost' },
             { href: '/community/guidelines', label: 'Guidelines', variant: 'muted' },
           ]}

@@ -7,6 +7,11 @@ import type { TapFeedbackConfig } from '@/lib/hooks/useTapFeedback'
 const MARKETING_TAP_SELECTOR = [
   'button:not(:disabled):not([aria-busy="true"])',
   '[role="button"]:not([aria-disabled="true"]):not([aria-busy="true"])',
+  'a.ec-wordmark-link',
+  'a.ec-nav-link',
+  'a.ec-nav-context',
+  'button.ec-cmdk-btn',
+  '.ec-theme-flip',
   'a.ec-btn-primary',
   'a.ec-btn-secondary',
   'a.ec-btn-ghost',
@@ -22,7 +27,8 @@ const MARKETING_TAP_SELECTOR = [
 export const MARKETING_TAP_CONFIG: TapFeedbackConfig = {
   selector: MARKETING_TAP_SELECTOR,
   tappedClass: 'ec-tapped',
-  hapticSelector: 'a.ec-btn-primary, a.ec-btn-warm, .ec-btn-primary',
+  hapticSelector:
+    'a.ec-wordmark-link, a.ec-nav-link, a.ec-nav-context, a.ec-btn-primary, a.ec-btn-warm, .ec-btn-primary',
 }
 
 export function MarketingTapFeedbackRoot({ children }: { children: ReactNode }) {

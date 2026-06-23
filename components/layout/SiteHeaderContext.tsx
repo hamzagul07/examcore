@@ -1,4 +1,6 @@
-import Link from 'next/link'
+'use client'
+
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { HeaderContext } from '@/lib/site-header-config'
 import { cn } from '@/lib/utils'
 
@@ -10,13 +12,18 @@ export function SiteHeaderContext({
   className?: string
 }) {
   return (
-    <Link href={context.href} className={cn('ec-nav-context', className)}>
+    <LoadingLink
+      href={context.href}
+      variant="inline"
+      loadingText="Opening…"
+      className={cn('ec-nav-context', className)}
+    >
       {context.glyph ? (
         <span className="ec-nav-context-glyph" aria-hidden>
           {context.glyph}
         </span>
       ) : null}
       <span className="ec-nav-context-label">{context.label}</span>
-    </Link>
+    </LoadingLink>
   )
 }

@@ -8,6 +8,8 @@ import {
 
 export type HeaderCta = {
   label: string
+  /** Shorter label when header actions are tight (e.g. community). */
+  shortLabel?: string
   href: string
   style: 'primary' | 'warm' | 'ghost'
 }
@@ -124,7 +126,7 @@ export function getSiteHeaderConfig(
     return {
       tone,
       transparentShell,
-      wordmarkHref: '/courses',
+      wordmarkHref: '/',
       navItemIds: ['courses', 'subjects', 'mark', 'community', 'pricing'],
       context: coursesContext(pathname),
       primaryCta: { label: 'Mark a question', href: '/mark', style: 'primary' },
@@ -136,15 +138,21 @@ export function getSiteHeaderConfig(
     return {
       tone,
       transparentShell,
-      wordmarkHref: '/community',
+      wordmarkHref: '/',
       navItemIds: ['community', 'mark', 'courses', 'subjects'],
       context: communityContext(pathname),
       primaryCta: {
         label: 'Create a post',
+        shortLabel: 'New post',
         href: '/community/submit',
         style: 'primary',
       },
-      secondaryCta: { label: 'Subject rooms', href: '/community/subjects', style: 'ghost' },
+      secondaryCta: {
+        label: 'Subject rooms',
+        shortLabel: 'Rooms',
+        href: '/community/subjects',
+        style: 'ghost',
+      },
     }
   }
 

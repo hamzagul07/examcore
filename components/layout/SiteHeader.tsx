@@ -17,6 +17,7 @@ import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import {
   getNavItemsForConfig,
   getSiteHeaderConfig,
+  type HeaderCta,
 } from '@/lib/site-header-config'
 import { MARKETING_NAV_SECONDARY, type SiteHeaderVariant } from '@/lib/site-nav'
 import {
@@ -37,6 +38,18 @@ const CTA_CLASS: Record<'primary' | 'warm' | 'ghost', string> = {
   primary: 'ec-btn-primary ec-btn-primary--sm',
   warm: 'ec-btn-warm ec-btn-primary--sm',
   ghost: 'ec-btn-ghost ec-btn-ghost--sm',
+}
+
+function CtaLabel({ cta }: { cta: HeaderCta }) {
+  if (!cta.shortLabel) return <>{cta.label}</>
+  return (
+    <>
+      <span className="ec-cta-label ec-cta-label--full">{cta.label}</span>
+      <span className="ec-cta-label ec-cta-label--short" aria-hidden>
+        {cta.shortLabel}
+      </span>
+    </>
+  )
 }
 
 export function SiteHeader({ variant }: Props) {
@@ -108,14 +121,16 @@ export function SiteHeader({ variant }: Props) {
       }
       const active = item.isActive(pathname)
       return (
-        <Link
+        <LoadingLink
           key={item.id}
           href={item.href}
+          variant="inline"
+          loadingText="Opening…"
           className={cn('ec-nav-link', active && 'ec-nav-link--active')}
           aria-current={active ? 'page' : undefined}
         >
           {item.label.toLowerCase()}
-        </Link>
+        </LoadingLink>
       )
     })
 
@@ -172,17 +187,24 @@ export function SiteHeader({ variant }: Props) {
                 {initial}
               </Link>
             ) : (
-              <Link href={buildSignInHref(signInNext)} className="ec-nav-link ec-nav-signin">
+              <LoadingLink
+                href={buildSignInHref(signInNext)}
+                variant="inline"
+                loadingText="Signing in…"
+                className="ec-nav-link ec-nav-signin"
+              >
                 sign in
-              </Link>
+              </LoadingLink>
             )
           ) : (
-            <Link
+            <LoadingLink
               href={variant === 'marketing' ? '/auth/signin' : buildSignInHref(signInNext)}
+              variant="inline"
+              loadingText="Signing in…"
               className="ec-nav-link ec-nav-signin"
             >
               sign in
-            </Link>
+            </LoadingLink>
           )}
           {showPageCtas ? (
             <>
@@ -193,8 +215,9 @@ export function SiteHeader({ variant }: Props) {
                     CTA_CLASS[config.secondaryCta.style],
                     'hidden min-[901px]:inline-flex'
                   )}
+                  loadingText="Opening…"
                 >
-                  {config.secondaryCta.label}
+                  <CtaLabel cta={config.secondaryCta} />
                 </LoadingLink>
               ) : null}
               <LoadingLink
@@ -206,7 +229,7 @@ export function SiteHeader({ variant }: Props) {
                 )}
                 loadingText="Opening…"
               >
-                {config.primaryCta.label}
+                <CtaLabel cta={config.primaryCta} />
               </LoadingLink>
             </>
           ) : null}
@@ -240,8 +263,9 @@ export function SiteHeader({ variant }: Props) {
           <LoadingLink
             href={config.primaryCta.href}
             className={cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style])}
+            loadingText="Opening…"
           >
-            {config.primaryCta.label}
+            <CtaLabel cta={config.primaryCta} />
           </LoadingLink>
           <MobileSearchMenuButton />
           <NavMobileMenu

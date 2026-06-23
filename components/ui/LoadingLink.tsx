@@ -65,7 +65,7 @@ export function LoadingLink({
     e.preventDefault()
     startedAtRef.current = Date.now()
     setShowLoading(true)
-    if (variant === 'button') {
+    if (variant === 'button' || variant === 'inline') {
       triggerPrimaryHaptic()
     }
     startTransition(() => {

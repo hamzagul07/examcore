@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
-import { ibCatalogCardsByTrack } from '@/lib/courses/ib-catalog-display'
+import { IB_COURSES_CATALOG_BLURB, ibCatalogTrackSections } from '@/lib/courses/ib-catalog-display'
 import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display.server'
 import { buildIbCoursesIndexSeo } from '@/lib/seo/ib-course-seo'
 import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
@@ -28,7 +28,7 @@ export function generateMetadata() {
 
 export default function IbCoursesIndexPage() {
   const cards = getIbCatalogCards()
-  const tracks = ibCatalogCardsByTrack(cards)
+  const trackSections = ibCatalogTrackSections(cards)
   const lessonCount = cards.reduce((a, c) => a + c.lessons, 0)
   const seo = buildIbCoursesIndexSeo(cards.length, lessonCount)
 
@@ -76,8 +76,8 @@ export default function IbCoursesIndexPage() {
               <em>topic by topic.</em>
             </h1>
             <p className="lead catalog-lead">
-              TOK, Extended Essay, CAS, sciences, maths, and Group 6 arts — every syllabus topic
-              with worked examples, markband tips, and criterion practice marking.
+              {IB_COURSES_CATALOG_BLURB} Every syllabus topic includes worked examples, markband tips,
+              and criterion practice marking.
             </p>
           </div>
           <div className="catalog-hero-meta">
@@ -108,15 +108,7 @@ export default function IbCoursesIndexPage() {
             ]}
           />
 
-          {(
-            [
-              { key: 'core', label: 'Core — TOK, EE & CAS', items: tracks.core },
-              { key: 'arts', label: 'Group 6 — The Arts', items: tracks.arts },
-              { key: 'stem', label: 'Sciences, maths & humanities', items: tracks.stem },
-            ] as const
-          )
-            .filter((t) => t.items.length > 0)
-            .map((track) => (
+          {trackSections.map((track) => (
               <section key={track.key} className="catalog-ib-section" aria-labelledby={`ib-track-${track.key}`}>
                 <h2 id={`ib-track-${track.key}`} className="h3 catalog-ib-title">
                   {track.label}

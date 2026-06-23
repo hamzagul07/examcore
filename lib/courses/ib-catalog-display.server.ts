@@ -13,10 +13,15 @@ function ibSyllabusCode(slug: string): string {
 }
 
 function ibFamily(slug: string): SubjectFamily {
-  const g = getIbSubject(slug)?.groupNumber
+  const subject = getIbSubject(slug)
+  const g = subject?.groupNumber
   if (g === 4) return 'Sciences'
   if (g === 5) return 'Maths'
-  if (g === 3) return 'Commerce'
+  if (g === 3) {
+    const base = slug.replace(/-(hl|sl)$/, '')
+    if (base === 'economics' || base === 'business-management') return 'Commerce'
+    return 'Humanities'
+  }
   if (g === 1 || g === 2) return 'Humanities'
   return 'Humanities'
 }

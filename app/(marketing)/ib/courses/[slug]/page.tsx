@@ -9,6 +9,7 @@ import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { IbCourseSubjectJsonLd } from '@/components/seo/IbCourseSubjectJsonLd'
 import { IbLegitResourcesPanel } from '@/components/ib/IbLegitResourcesPanel'
+import { getTotalSyllabusLeaves } from '@/lib/syllabi'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -41,6 +42,8 @@ export default async function IbCoursePage({ params }: Props) {
   const seo = buildIbCourseSubjectSeo(subject, course.lessonCount)
   const intro = buildIbCourseHubIntro(subject, course.lessonCount)
   const communityOn = isCommunityEnabled()
+  const syllabusLeaves = getTotalSyllabusLeaves(`ib-${slug}`)
+  const publishingMore = syllabusLeaves > lessons.length
 
   return (
     <>
@@ -63,6 +66,16 @@ export default async function IbCoursePage({ params }: Props) {
               : []),
           ]}
         />
+        {publishingMore ? (
+          <p
+            className="mt-4 rounded-lg border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] px-4 py-3 text-sm text-[var(--ec-text-secondary)]"
+            role="status"
+          >
+            <strong className="text-[var(--ec-text-primary)]">Course in progress</strong> —{' '}
+            {lessons.length} of {syllabusLeaves} syllabus topics are live. New lessons are added as
+            they are published; check back soon for the rest.
+          </p>
+        ) : null}
       </div>
       <CourseHubClient
         code={slug}

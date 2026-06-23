@@ -3,7 +3,7 @@ import 'server-only'
 import crypto from 'crypto'
 import { SITE_URL } from '@/lib/site-config'
 
-export type UnsubscribeKind = 'replies' | 'digest'
+export type UnsubscribeKind = 'replies' | 'digest' | 'threads'
 
 function secret(): string {
   return (
@@ -29,7 +29,7 @@ export function verifyUnsubscribeToken(
     const parts = decoded.split('.')
     if (parts.length !== 4) return null
     const [userId, kind, exp, sig] = parts
-    if (!userId || (kind !== 'replies' && kind !== 'digest') || !exp || !sig) return null
+    if (!userId || (kind !== 'replies' && kind !== 'digest' && kind !== 'threads') || !exp || !sig) return null
     if (Date.now() > Number(exp)) return null
     const payload = `${userId}.${kind}.${exp}`
     const expected = crypto.createHmac('sha256', secret()).update(payload).digest('base64url')

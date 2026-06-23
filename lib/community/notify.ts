@@ -7,12 +7,21 @@ import { unsubscribeUrl } from '@/lib/community/email-unsubscribe'
 import { extractMentionUsernames, resolveMentionUserIds } from '@/lib/community/mentions'
 import { getUserUsername } from '@/lib/community/require-username'
 
-type NotificationType = 'comment' | 'reply' | 'digest' | 'upvote' | 'mention' | 'milestone' | 'comment_upvote'
+type NotificationType =
+  | 'comment'
+  | 'reply'
+  | 'digest'
+  | 'upvote'
+  | 'mention'
+  | 'milestone'
+  | 'comment_upvote'
+  | 'thread'
 
 type RecipientPrefs = {
   email: string | null
   fullName: string | null
   emailCommunityReplies: boolean
+  emailCommunityThreads: boolean
 }
 
 const EMAIL_COOLDOWN_MS = 15 * 60 * 1000
@@ -22,7 +31,7 @@ async function loadRecipientPrefs(userId: string): Promise<RecipientPrefs | null
   const [{ data: profile }, { data: authData }] = await Promise.all([
     admin
       .from('user_profiles')
-      .select('full_name, email_community_replies')
+      .select('full_name, email_community_replies, email_community_threads')
       .eq('id', userId)
       .maybeSingle(),
     admin.auth.admin.getUserById(userId),
@@ -34,6 +43,7 @@ async function loadRecipientPrefs(userId: string): Promise<RecipientPrefs | null
     email: authData?.user?.email ?? null,
     fullName: (profile?.full_name as string | null) ?? null,
     emailCommunityReplies: profile?.email_community_replies !== false,
+    emailCommunityThreads: Boolean(profile?.email_community_threads),
   }
 }
 
@@ -56,7 +66,7 @@ async function pushNotification(input: {
   body?: string
   href: string
   sendEmail?: boolean
-  emailKind?: 'comment' | 'reply' | 'mention'
+  emailKind?: 'comment' | 'reply' | 'mention' | 'thread'
   emailUserId?: string
   actorUsername?: string
   postTitle?: string
@@ -73,7 +83,11 @@ async function pushNotification(input: {
   if (!input.sendEmail || !input.emailKind || !input.actorUsername || !input.postTitle) return
 
   const prefs = await loadRecipientPrefs(input.userId)
-  if (!prefs?.email || !prefs.emailCommunityReplies) return
+  const emailOn =
+    input.emailKind === 'thread'
+      ? prefs?.emailCommunityThreads
+      : prefs?.emailCommunityReplies
+  if (!prefs?.email || !emailOn) return
   if (!(await shouldSendEmail(input.userId, input.href))) return
 
   sendCommunityReplyEmail({
@@ -85,10 +99,15 @@ async function pushNotification(input: {
     postHref: `${SITE_URL}${input.href}`,
     preview: input.body,
     unsubscribeHref: input.emailUserId
-      ? unsubscribeUrl(input.emailUserId, 'replies')
+      ? unsubscribeUrl(
+          input.emailUserId,
+          input.emailKind === 'thread' ? 'threads' : 'replies'
+        )
       : undefined,
   })
 }
+
+const THREAD_COOLDOWN_MS = 60 * 60 * 1000
 
 /** Notify post author (top-level comment) or parent comment author (reply). */
 export async function notifyCommentActivity(input: {
@@ -151,6 +170,38 @@ export async function notifyCommentActivity(input: {
         })
       )
     )
+
+    const postAuthorId = post.author_id as string
+    const alreadyNotified = new Set(recipients.map((r) => r.userId))
+    if (
+      input.parentId &&
+      postAuthorId !== input.commentAuthorId &&
+      !alreadyNotified.has(postAuthorId)
+    ) {
+      const postHref = `/community/posts/${input.postId}`
+      const since = new Date(Date.now() - THREAD_COOLDOWN_MS).toISOString()
+      const { count } = await admin
+        .from('notifications')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', postAuthorId)
+        .eq('type', 'thread')
+        .like('href', `${postHref}%`)
+        .gte('created_at', since)
+      if ((count ?? 0) === 0) {
+        await pushNotification({
+          userId: postAuthorId,
+          type: 'thread',
+          title: `New activity on "${postTitle.slice(0, 48)}"`,
+          body: input.bodyPreview,
+          href,
+          sendEmail: true,
+          emailKind: 'thread',
+          emailUserId: postAuthorId,
+          actorUsername,
+          postTitle,
+        })
+      }
+    }
   } catch (err) {
     console.error('[community/notify] comment activity failed:', err)
   }

@@ -12,6 +12,7 @@ export default async function PreferencesSettingsPage() {
       initialProductUpdates={notifications.emailProductUpdates}
       initialCommunityReplies={notifications.emailCommunityReplies}
       initialCommunityDigest={notifications.emailCommunityDigest}
+      initialCommunityThreads={notifications.emailCommunityThreads}
     />
   )
 }

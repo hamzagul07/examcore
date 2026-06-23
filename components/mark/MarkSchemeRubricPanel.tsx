@@ -39,7 +39,7 @@ export function MarkSchemeRubricPanel({
             >
               <span className="ms-scheme-rubric-code">{point.type}</span>
               <span className="ms-scheme-rubric-desc">
-                <RichTextRenderer text={point.description} />
+                <RichTextRenderer text={point.description} contentKind="mark_scheme" />
               </span>
             </li>
           ))}
@@ -54,7 +54,7 @@ export function MarkSchemeRubricPanel({
                 Level {band.level} · {band.marks_min}–{band.marks_max} marks
               </p>
               <div className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                <RichTextRenderer text={band.descriptor} />
+                <RichTextRenderer text={band.descriptor} contentKind="mark_scheme" />
               </div>
             </div>
           ))}
@@ -69,7 +69,7 @@ export function MarkSchemeRubricPanel({
           <ul className="ms-scheme-rubric-list">
             {rubric.indicative_content.map((item, i) => (
               <li key={i}>
-                <RichTextRenderer text={item} />
+                <RichTextRenderer text={item} contentKind="mark_scheme" />
               </li>
             ))}
           </ul>
@@ -84,7 +84,7 @@ export function MarkSchemeRubricPanel({
           <ul className="ms-scheme-rubric-list">
             {rubric.common_errors.map((item, i) => (
               <li key={i}>
-                <RichTextRenderer text={item} />
+                <RichTextRenderer text={item} contentKind="mark_scheme" />
               </li>
             ))}
           </ul>
@@ -94,13 +94,16 @@ export function MarkSchemeRubricPanel({
       {rubric.acceptable_final_answers.length > 0 ? (
         <p className="ms-scheme-rubric-answers">
           <span className="ms-micro">ACCEPTABLE ANSWERS · </span>
-          {rubric.acceptable_final_answers.join(', ')}
+          <RichTextRenderer
+            text={rubric.acceptable_final_answers.join(', ')}
+            contentKind="mark_scheme"
+          />
         </p>
       ) : null}
 
       {rubric.notes ? (
         <p className="ms-scheme-rubric-notes">
-          <RichTextRenderer text={rubric.notes} />
+          <RichTextRenderer text={rubric.notes} contentKind="mark_scheme" />
         </p>
       ) : null}
     </section>

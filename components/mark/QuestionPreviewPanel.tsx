@@ -144,7 +144,9 @@ export function QuestionPreviewPanel({
                 {detail.rubric.points.slice(0, 4).map((point) => (
                   <li key={`${point.type}-${point.id}`}>
                     <span className="ms-scheme-rubric-code">{point.type}</span>
-                    <span className="ms-scheme-rubric-desc">{point.description}</span>
+                    <span className="ms-scheme-rubric-desc">
+                      <RichTextRenderer text={point.description} contentKind="mark_scheme" />
+                    </span>
                   </li>
                 ))}
               </ol>

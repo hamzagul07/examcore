@@ -144,7 +144,7 @@ export function MarkAuditPanel({
                 SCHEME CRITERION — {schemePoint.type}
               </p>
               <div className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                <RichTextRenderer text={schemePoint.description} />
+                <RichTextRenderer text={schemePoint.description} contentKind="mark_scheme" />
               </div>
             </div>
           ) : null}

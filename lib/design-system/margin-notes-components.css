@@ -323,7 +323,7 @@
   @media (min-width: 901px) {
     .ec-nav {
       display: grid;
-      grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       flex-wrap: nowrap;
       gap: 10px;
@@ -332,18 +332,22 @@
 
     .ec-nav-brand {
       grid-column: 1;
+      grid-row: 1;
       justify-self: start;
     }
 
     .ec-nav-links {
-      grid-column: 2;
+      grid-column: 1 / -1;
+      grid-row: 1;
       justify-self: center;
       width: max-content;
-      max-width: 100%;
+      max-width: min(100%, calc(100% - 420px));
+      pointer-events: auto;
     }
 
     .ec-nav-right {
       grid-column: 3;
+      grid-row: 1;
       justify-self: end;
       margin-left: 0;
       flex-wrap: nowrap;

@@ -138,7 +138,18 @@
   }
 
   .ec-nav {
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .ec-nav-utils {
+    gap: 4px;
+  }
+
+  .ec-notif-bell,
+  .notif-bell {
+    min-width: var(--ec-touch-min, 44px);
+    min-height: var(--ec-touch-min, 44px);
   }
 
   .ec-nav-mobile-menu {

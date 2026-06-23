@@ -15,7 +15,8 @@ export type SiteNavItem = {
 /** Subjects dropdown — both boards under one menu. */
 export const SUBJECTS_DROPDOWN: NavDropdownItem[] = [
   { href: '/subjects', label: 'A-Level', sublabel: 'Cambridge International' },
-  { href: '/ib', label: 'IB Diploma', sublabel: 'HL & SL' },
+  { href: '/ib', label: 'IB Diploma', sublabel: 'HL & SL past papers' },
+  { href: '/ib/courses', label: 'IB free courses', sublabel: 'TOK · EE · sciences' },
 ]
 
 function subjectsActive(pathname: string) {
@@ -41,7 +42,10 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     href: '/courses',
     label: 'Courses',
     variants: ['marketing', 'app', 'reading'],
-    isActive: (p) => p === '/courses' || p.startsWith('/courses/'),
+    isActive: (p) =>
+      p === '/courses' ||
+      p.startsWith('/courses/') ||
+      p.startsWith('/ib/courses'),
   },
   {
     id: 'subjects',

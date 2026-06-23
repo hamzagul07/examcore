@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { HubSeoLink } from '@/components/seo/HubSeoLink'
 
 type LinkItem = {
   href: string
@@ -35,21 +35,6 @@ export function HubSeoIntro({
         </div>
       ) : null}
     </section>
-  )
-}
-
-function HubSeoLink({ href, label, variant = 'ghost' }: LinkItem) {
-  const className =
-    variant === 'primary'
-      ? 'ec-btn-primary px-4 py-2 text-sm'
-      : variant === 'muted'
-        ? 'inline-flex rounded-full border border-[var(--ec-border)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] no-underline hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]'
-        : 'ec-btn-ghost px-4 py-2 text-sm no-underline'
-
-  return (
-    <Link href={href} className={className}>
-      {label}
-    </Link>
   )
 }
 

@@ -10,7 +10,7 @@ import { BoardTabs } from '@/components/community/reddit/BoardTabs'
 import { PostFeed } from '@/components/community/reddit/PostFeed'
 import { CommunitySidebar } from '@/components/community/reddit/Sidebar'
 import { CommunityLeftRail } from '@/components/community/reddit/CommunityLeftRail'
-import { CommunityHubSeo } from '@/components/community/reddit/CommunityHubSeo'
+import { CommunityHubIntro, CommunityHubFaq } from '@/components/community/reddit/CommunityHubSeo'
 import { ensureCommunitySeed } from '@/lib/community/ensure-seed'
 
 export const metadata = createPageMetadata({
@@ -85,7 +85,7 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
 
   return (
     <div className="rc-page rc-page--hub">
-      <CommunityHubSeo />
+      <CommunityHubIntro />
       <div className="rc-layout rc-layout--hub">
         <CommunityLeftRail board={board} />
         <main className="rc-main">
@@ -97,6 +97,7 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
         </main>
         <CommunitySidebar board={board} />
       </div>
+      <CommunityHubFaq />
     </div>
   )
 }

@@ -3,10 +3,10 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
 
-const FAQ = [
+export const COMMUNITY_FAQ = [
   {
     q: 'What is Exam Room?',
-    a: 'Exam Room is MarkScheme\'s free student community for Cambridge A-Level and IB Diploma — ask doubts, share cheat sheets and PDFs, and discuss grade boundaries and past papers in subject-specific rooms.',
+    a: "Exam Room is MarkScheme's free student community for Cambridge A-Level and IB Diploma — ask doubts, share cheat sheets and PDFs, and discuss grade boundaries and past papers in subject-specific rooms.",
   },
   {
     q: 'Is the community for Cambridge A-Level or IB?',
@@ -24,9 +24,10 @@ const FAQ = [
     q: 'How is content moderated?',
     a: 'AI screening plus community reporting keeps posts on-topic and respectful. Spam, harassment, and off-topic ads are removed. See our community guidelines for details.',
   },
-]
+] as const
 
-export function CommunityHubSeo() {
+/** SEO + intro block — keep at top of /community. */
+export function CommunityHubIntro() {
   return (
     <>
       <JsonLd
@@ -51,7 +52,7 @@ export function CommunityHubSeo() {
           },
         }}
       />
-      <JsonLd data={faqPageNode(FAQ, { speakableSelectors: ['.rc-faq dt', '.rc-faq dd'] })} />
+      <JsonLd data={faqPageNode([...COMMUNITY_FAQ], { speakableSelectors: ['.rc-faq dt', '.rc-faq dd'] })} />
       <div className="rc-hub-intro">
         <HubSeoIntro
           heading="Exam Room — Cambridge A-Level & IB community"
@@ -63,19 +64,35 @@ export function CommunityHubSeo() {
           ]}
         />
       </div>
-      <section className="rc-faq" aria-labelledby="community-faq">
-        <h2 id="community-faq" className="rc-faq-title">
-          Frequently asked questions
-        </h2>
-        <dl className="rc-faq-list">
-          {FAQ.map((item) => (
-            <div key={item.q}>
-              <dt>{item.q}</dt>
-              <dd>{item.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+    </>
+  )
+}
+
+/** FAQ block — render at the bottom of /community. */
+export function CommunityHubFaq() {
+  return (
+    <section className="rc-faq rc-faq--footer" aria-labelledby="community-faq">
+      <h2 id="community-faq" className="rc-faq-title">
+        Frequently asked questions
+      </h2>
+      <dl className="rc-faq-list">
+        {COMMUNITY_FAQ.map((item) => (
+          <div key={item.q}>
+            <dt>{item.q}</dt>
+            <dd>{item.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+/** @deprecated Use CommunityHubIntro + CommunityHubFaq separately. */
+export function CommunityHubSeo() {
+  return (
+    <>
+      <CommunityHubIntro />
+      <CommunityHubFaq />
     </>
   )
 }

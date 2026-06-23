@@ -39,16 +39,13 @@ function readStoredTheme(): EcTheme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<EcTheme>(() =>
-    typeof window === 'undefined' ? 'zen' : readStoredTheme()
-  )
-  const [mounted, setMounted] = useState(false)
+  // Always match SSR first paint (zen); boot script + useEffect apply stored theme after hydrate.
+  const [theme, setThemeState] = useState<EcTheme>('zen')
 
   useEffect(() => {
     const stored = readStoredTheme()
     setThemeState(stored)
     applyThemeAttributes(stored)
-    setMounted(true)
   }, [])
 
   const setTheme = useCallback((next: EcTheme) => {
@@ -58,18 +55,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme === 'late-night' ? 'zen' : 'late-night')
-  }, [theme, setTheme])
-
-  if (!mounted) {
-    return (
-      <ThemeContext.Provider
-        value={{ theme: readStoredTheme(), setTheme, toggleTheme }}
-      >
-        {children}
-      </ThemeContext.Provider>
-    )
-  }
+    setThemeState((current) => {
+      const next = current === 'late-night' ? 'zen' : 'late-night'
+      applyThemeAttributes(next)
+      localStorage.setItem(EC_THEME_STORAGE_KEY, next)
+      return next
+    })
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>

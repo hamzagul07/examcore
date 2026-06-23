@@ -1187,9 +1187,24 @@ h1 em {
   .ec-btn-primary:disabled,
   .ec-btn-primary[data-loading='true'],
   .ec-btn-primary[aria-busy='true'] {
-    cursor: not-allowed;
-    opacity: 0.6;
+    cursor: wait;
+    opacity: 0.92;
     pointer-events: none;
+  }
+
+  .ec-btn-primary.ec-btn-is-loading,
+  .ec-btn-primary[data-loading='true'] {
+    animation: ec-btn-loading-breathe 1.2s ease-in-out infinite;
+  }
+
+  @keyframes ec-btn-loading-breathe {
+    0%,
+    100% {
+      box-shadow: var(--ec-btn-glow);
+    }
+    50% {
+      box-shadow: var(--ec-btn-glow-hover);
+    }
   }
 
   .ec-btn-secondary {

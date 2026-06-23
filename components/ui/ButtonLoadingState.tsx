@@ -5,6 +5,16 @@ import { cn } from '@/lib/utils'
 
 export type ButtonLoadingMode = 'shimmer' | 'morph' | 'progress' | 'success'
 
+function LoadingDots({ className }: { className?: string }) {
+  return (
+    <span className={cn('ec-loading-dots', className)} aria-hidden>
+      <span />
+      <span />
+      <span />
+    </span>
+  )
+}
+
 type Props = {
   mode?: ButtonLoadingMode
   loadingText?: string
@@ -72,9 +82,8 @@ export function ButtonLoadingState({
           exit={prefersReduced ? undefined : { opacity: 0, y: -4 }}
           transition={{ duration: 0.18 }}
         >
-          <span className="ec-btn-loading-wrap ec-btn-shimmer inline-flex min-w-0 items-center gap-2 rounded-[inherit] px-0">
-            <span>{loadingText ?? children}</span>
-          </span>
+          <LoadingDots />
+          <span>{loadingText ?? children}</span>
         </motion.span>
       </AnimatePresence>
     )
@@ -82,7 +91,13 @@ export function ButtonLoadingState({
 
   if (mode === 'progress') {
     return (
-      <span className={cn('relative inline-flex w-full min-w-0 items-center justify-center gap-2', className)}>
+      <span
+        className={cn(
+          'relative inline-flex w-full min-w-0 items-center justify-center gap-2',
+          className
+        )}
+      >
+        <LoadingDots />
         <span>{loadingText ?? children}</span>
         <span className="ec-btn-progress-track" aria-hidden>
           <span className="ec-btn-progress-fill block" />
@@ -93,8 +108,11 @@ export function ButtonLoadingState({
 
   /* shimmer (default) */
   return (
-    <span className={cn('ec-btn-loading-wrap ec-btn-shimmer inline-flex items-center gap-2', className)}>
-      <span>{loadingText ?? children}</span>
+    <span className={cn('inline-flex items-center gap-2.5', className)}>
+      <LoadingDots />
+      <span className="ec-btn-loading-wrap ec-btn-shimmer inline-flex min-w-0 items-center rounded-[inherit]">
+        <span>{loadingText ?? children}</span>
+      </span>
     </span>
   )
 }

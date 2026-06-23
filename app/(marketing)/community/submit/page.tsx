@@ -42,7 +42,7 @@ export default async function SubmitPage({ searchParams }: PageProps) {
     sp.kind === 'question' || sp.kind === 'resource' || sp.kind === 'discussion' ? sp.kind : undefined
 
   return (
-    <div className="rc-page rc-page-narrow">
+    <div className="rc-page rc-page-narrow rc-page--composer">
       <PostComposer
         subjects={subjects}
         initialSubject={sp.subject}

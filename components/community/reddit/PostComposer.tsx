@@ -59,11 +59,12 @@ export function PostComposer({
     [subjects, board]
   )
   const selectedSubject = boardSubjects.find((s) => s.id === subjectId) ?? null
-  const filtered = useMemo(() => {
+  const subjectOptions = useMemo(() => {
     const q = subjectQuery.trim().toLowerCase()
-    const pool = boardSubjects
-    if (!q) return pool.slice(0, 10)
-    return pool.filter((s) => s.name.toLowerCase().includes(q) || s.id.includes(q)).slice(0, 10)
+    if (!q) return boardSubjects
+    return boardSubjects.filter(
+      (s) => s.name.toLowerCase().includes(q) || s.id.toLowerCase().includes(q)
+    )
   }, [boardSubjects, subjectQuery])
 
   function selectBoard(next: Board) {
@@ -220,7 +221,7 @@ export function PostComposer({
         </div>
 
         {board ? (
-          <label className="rc-field">
+          <div className="rc-field">
             <span className="rc-label">Subject · {selectedBoard?.short}</span>
             {selectedSubject ? (
               <div className="rc-subject-selected">
@@ -228,38 +229,50 @@ export function PostComposer({
                   {selectedSubject.glyph}
                 </span>
                 <span>s/{selectedSubject.id} · {selectedSubject.name}</span>
-                <button type="button" className="rc-subject-change" onClick={() => setSubjectId('')}>Change</button>
+                <button type="button" className="rc-subject-change" onClick={() => setSubjectId('')}>
+                  Change
+                </button>
               </div>
             ) : (
               <>
                 <input
                   className="rc-input"
+                  type="search"
                   placeholder={`Search ${selectedBoard?.short} subjects…`}
                   value={subjectQuery}
                   onChange={(e) => setSubjectQuery(e.target.value)}
+                  autoComplete="off"
+                  enterKeyHint="search"
                 />
-                <div className="rc-subject-options">
-                  {filtered.length ? (
-                    filtered.map((s) => (
-                      <button
-                        key={s.id}
-                        type="button"
-                        className="rc-subject-option"
-                        style={{ '--sc': s.accent } as CSSProperties}
-                        onClick={() => { setSubjectId(s.id); setSubjectQuery('') }}
-                      >
-                        <span className="rc-subject-option-glyph">{s.glyph}</span>
-                        <span>{s.name}</span>
-                        <span className="rc-subject-option-code">s/{s.id}</span>
-                      </button>
-                    ))
-                  ) : (
-                    <p className="rc-hint">No subjects match — try another search.</p>
-                  )}
-                </div>
+                <p className="rc-hint">
+                  {boardSubjects.length
+                    ? `${subjectOptions.length} of ${boardSubjects.length} subject rooms`
+                    : 'No subject rooms found for this board.'}
+                </p>
+                <select
+                  className="rc-input rc-subject-select"
+                  value={subjectId}
+                  onChange={(e) => {
+                    setSubjectId(e.target.value)
+                    setSubjectQuery('')
+                  }}
+                  aria-label={`Select ${selectedBoard?.short} subject`}
+                >
+                  <option value="" disabled>
+                    Choose a subject room…
+                  </option>
+                  {subjectOptions.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.name} · s/{s.id}
+                    </option>
+                  ))}
+                </select>
+                {subjectOptions.length === 0 && boardSubjects.length > 0 ? (
+                  <p className="rc-hint">No subjects match your search — clear the filter above.</p>
+                ) : null}
               </>
             )}
-          </label>
+          </div>
         ) : (
           <p className="rc-hint rc-hint-block">Select an exam board above to see its subject rooms.</p>
         )}
@@ -352,7 +365,7 @@ export function PostComposer({
 
         <div className="rc-composer-actions">
           <button type="button" className="rc-btn rc-btn-ghost" onClick={() => router.back()}>Cancel</button>
-          <button type="button" className="rc-btn rc-btn-primary" onClick={submit} disabled={submitting || uploading || !board}>
+          <button type="button" className="rc-btn rc-btn-primary" onClick={submit} disabled={submitting || uploading || !board || !selectedSubject}>
             {submitting ? 'Posting…' : 'Post'}
           </button>
         </div>

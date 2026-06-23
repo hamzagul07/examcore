@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useTransition, type ComponentProps, type ReactNode } from 'react'
+import { useEffect, useRef, useState, useTransition, type ComponentProps, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
@@ -9,6 +9,8 @@ import {
   ButtonLoadingState,
   CardLoadingPulse,
 } from '@/components/ui/ButtonLoadingState'
+
+const MIN_LOADING_MS = 520
 
 type LoadingLinkProps = Omit<ComponentProps<typeof Link>, 'onClick'> & {
   /** Replace label while navigation is pending (button variant only). */
@@ -32,7 +34,22 @@ export function LoadingLink({
 }: LoadingLinkProps) {
   const router = useRouter()
   const [pending, startTransition] = useTransition()
+  const [showLoading, setShowLoading] = useState(false)
+  const startedAtRef = useRef(0)
+
   const hrefStr = typeof href === 'string' ? href : href.pathname ?? ''
+
+  useEffect(() => {
+    if (pending) {
+      setShowLoading(true)
+      return
+    }
+    if (!showLoading) return
+    const elapsed = Date.now() - startedAtRef.current
+    const remaining = Math.max(0, MIN_LOADING_MS - elapsed)
+    const t = window.setTimeout(() => setShowLoading(false), remaining)
+    return () => window.clearTimeout(t)
+  }, [pending, showLoading])
 
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
     if (
@@ -46,6 +63,8 @@ export function LoadingLink({
       return
     }
     e.preventDefault()
+    startedAtRef.current = Date.now()
+    setShowLoading(true)
     if (variant === 'button') {
       triggerPrimaryHaptic()
     }
@@ -54,22 +73,24 @@ export function LoadingLink({
     })
   }
 
+  const busy = showLoading
+
   if (variant === 'card') {
     return (
       <Link
         href={href}
         onClick={handleClick}
-        aria-busy={pending || undefined}
-        data-loading={pending ? 'true' : undefined}
+        aria-busy={busy || undefined}
+        data-loading={busy ? 'true' : undefined}
         className={cn(
           'relative',
           className,
-          pending && 'pointer-events-none opacity-75'
+          busy && 'pointer-events-none opacity-75'
         )}
         {...rest}
       >
         {children}
-        {pending ? <CardLoadingPulse /> : null}
+        {busy ? <CardLoadingPulse /> : null}
       </Link>
     )
   }
@@ -79,12 +100,12 @@ export function LoadingLink({
       <Link
         href={href}
         onClick={handleClick}
-        aria-busy={pending || undefined}
-        data-loading={pending ? 'true' : undefined}
-        className={cn(className, pending && 'pointer-events-none opacity-85')}
+        aria-busy={busy || undefined}
+        data-loading={busy ? 'true' : undefined}
+        className={cn(className, busy && 'pointer-events-none opacity-90')}
         {...rest}
       >
-        {pending ? (
+        {busy ? (
           <ButtonLoadingState mode="shimmer" loadingText={loadingText}>
             {children}
           </ButtonLoadingState>
@@ -99,16 +120,15 @@ export function LoadingLink({
     <Link
       href={href}
       onClick={handleClick}
-      aria-busy={pending || undefined}
-      data-loading={pending ? 'true' : undefined}
+      aria-busy={busy || undefined}
+      data-loading={busy ? 'true' : undefined}
       className={cn(
         className,
-        pending && 'pointer-events-none ec-btn-loading-wrap',
-        pending && 'ec-btn-shimmer'
+        busy && 'pointer-events-none ec-btn-is-loading ec-btn-loading-wrap ec-btn-shimmer'
       )}
       {...rest}
     >
-      {pending ? (
+      {busy ? (
         <ButtonLoadingState mode="shimmer" loadingText={loadingText}>
           {children}
         </ButtonLoadingState>

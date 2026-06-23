@@ -43,6 +43,20 @@
   padding: 20px 0;
   border-bottom: 1px solid var(--ec-border);
 }
+
+.rc-faq--footer {
+  margin-top: 48px;
+  margin-bottom: 0;
+  padding-top: 32px;
+  border-bottom: none;
+  border-top: 1px solid var(--ec-border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--ec-brand) 6%, transparent) 0%,
+    transparent 48%
+  );
+  border-radius: 16px 16px 0 0;
+}
 .rc-faq-title { font-size: 18px; font-weight: 800; color: var(--ec-text-primary); margin-bottom: 14px; }
 .rc-faq-list { display: grid; gap: 16px; }
 .rc-faq-list dt { font-size: 14px; font-weight: 700; color: var(--ec-text-primary); }

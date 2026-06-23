@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { isSafeNextPath } from '@/lib/auth-redirect'
+import { cn } from '@/lib/utils'
 
 type Props = {
   /** Shown on the button — sign-in vs sign-up is the same OAuth flow. */
@@ -70,7 +71,10 @@ export function GoogleAuthButton({
       aria-busy={loading || undefined}
       aria-label={loading ? 'Connecting to Google' : label}
       onClick={handleGoogle}
-      className="group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-[#747775] bg-white px-4 py-3.5 text-[15px] font-medium text-[#1f1f1f] shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-[box-shadow,transform,background-color] duration-200 hover:bg-[#f8f9fa] hover:shadow-[0_2px_6px_rgba(0,0,0,0.18)] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100"
+      className={cn(
+        'group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-[#747775] bg-white px-4 py-3.5 text-[15px] font-medium text-[#1f1f1f] shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-[box-shadow,transform,background-color] duration-200 hover:bg-[#f8f9fa] hover:shadow-[0_2px_6px_rgba(0,0,0,0.18)] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100',
+        loading && 'ec-btn-is-loading ec-btn-loading-wrap ec-btn-shimmer'
+      )}
     >
       {loading ? (
         <ButtonLoadingState mode="shimmer" loadingText="Connecting to Google…">

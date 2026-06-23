@@ -145,6 +145,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           variant === 'ghost' && size === 'sm' && 'ec-btn-ghost--sm',
           fullWidth && 'w-full',
           pulse && !isDisabled && variant === 'primary' && 'brand-pulse',
+          isLoading && 'ec-btn-is-loading ec-btn-loading-wrap ec-btn-shimmer',
           className
         )}
       >

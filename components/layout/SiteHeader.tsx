@@ -4,21 +4,21 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { WordmarkLink } from '@/components/layout/Wordmark'
+import { SiteHeaderContext } from '@/components/layout/SiteHeaderContext'
 import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
 import { NotificationBell } from '@/components/community/NotificationBell'
 import { NavDropdown } from '@/components/layout/NavDropdown'
 import { NavMobileMenu } from '@/components/layout/NavMobileMenu'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
 import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
-import { useEcTheme } from '@/lib/design-system/ThemeProvider'
-import { useOmniAI } from '@/lib/omni-ai/context'
 import {
-  getNavItemsForVariant,
-  MARKETING_NAV_SECONDARY,
-  type SiteHeaderVariant,
-} from '@/lib/site-nav'
+  getNavItemsForConfig,
+  getSiteHeaderConfig,
+} from '@/lib/site-header-config'
+import { MARKETING_NAV_SECONDARY, type SiteHeaderVariant } from '@/lib/site-nav'
 import {
   buildMarketingSignUpHref,
   buildSignInHref,
@@ -33,30 +33,44 @@ function hrefActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(href + '/')
 }
 
+const CTA_CLASS: Record<'primary' | 'warm' | 'ghost', string> = {
+  primary: 'ec-btn-primary ec-btn-primary--sm',
+  warm: 'ec-btn-warm ec-btn-primary--sm',
+  ghost: 'ec-btn-ghost ec-btn-ghost--sm',
+}
+
 export function SiteHeader({ variant }: Props) {
   const pathname = usePathname()
-  const navItems = getNavItemsForVariant(variant)
+  const config = getSiteHeaderConfig(pathname, variant)
+  const navItems = getNavItemsForConfig(variant, config)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { user, loading } = useAuthCheck()
   const initial = avatarInitial(user)
   const isGuest = !loading && !user
   const authenticatedChrome = useAuthenticatedAppChrome()
   const showTabBar = variant === 'app' && authenticatedChrome
-  const { theme, toggleTheme } = useEcTheme()
-  const { setIsOpen } = useOmniAI()
 
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
 
   useEffect(() => {
-    if (!mobileOpen || variant !== 'reading') return
+    if (!config.transparentShell) return
+    const onScroll = () => setScrolled(window.scrollY > 28)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [config.transparentShell, pathname])
+
+  useEffect(() => {
+    if (!mobileOpen) return
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = prev
     }
-  }, [mobileOpen, variant])
+  }, [mobileOpen])
 
   const signInNext = isSafeNextPath(pathname)
     ? pathname
@@ -64,8 +78,18 @@ export function SiteHeader({ variant }: Props) {
       ? '/courses'
       : '/dashboard'
   const showMobileMenu = variant === 'app' ? !showTabBar : true
-  const lowercase = variant !== 'reading'
-  const isEcNav = variant === 'marketing' || variant === 'app'
+
+  const mobileExtra =
+    variant === 'marketing' || variant === 'reading'
+      ? MARKETING_NAV_SECONDARY
+      : variant === 'app'
+        ? [{ href: '/pricing', label: 'Pricing' }]
+        : []
+
+  const showNotifications =
+    variant === 'marketing' || variant === 'reading' || variant === 'app'
+
+  const showPageCtas = config.tone !== 'mark' || variant !== 'app'
 
   const renderNavLinks = () =>
     navItems.map((item) => {
@@ -76,121 +100,51 @@ export function SiteHeader({ variant }: Props) {
             label={item.label}
             items={item.children}
             isActive={(href) => hrefActive(pathname, href)}
-            triggerClass={isEcNav ? 'ec-nav-link' : 'nav-link'}
-            activeClass={isEcNav ? 'ec-nav-link--active' : 'active'}
-            lowercase={lowercase}
+            triggerClass="ec-nav-link"
+            activeClass="ec-nav-link--active"
+            lowercase
           />
         )
       }
       const active = item.isActive(pathname)
-      if (isEcNav) {
-        return (
-          <Link
-            key={item.id}
-            href={item.href}
-            className={`ec-nav-link ${active ? 'ec-nav-link--active' : ''}`}
-            aria-current={active ? 'page' : undefined}
-          >
-            {lowercase ? item.label.toLowerCase() : item.label}
-          </Link>
-        )
-      }
       return (
         <Link
           key={item.id}
-          className={`nav-link${active ? ' active' : ''}`}
           href={item.href}
+          className={cn('ec-nav-link', active && 'ec-nav-link--active')}
+          aria-current={active ? 'page' : undefined}
         >
           {item.label.toLowerCase()}
         </Link>
       )
     })
 
-  const mobileExtra =
-    variant === 'marketing'
-      ? MARKETING_NAV_SECONDARY
-      : variant === 'app'
-        ? [{ href: '/pricing', label: 'Pricing' }]
-        : []
-
-  if (variant === 'reading') {
-    return (
-      <div className="nav-wrap">
-        <nav className="nav">
-          <Link className="wordmark" href="/courses">
-            MarkScheme<i>.</i>
-          </Link>
-          <div className="nav-links">{renderNavLinks()}</div>
-          <div className="nav-right">
-            <button className="cmdk-btn" type="button" onClick={() => setIsOpen(true)} title="Search">
-              ⌕ <span>search</span> <kbd>⌘K</kbd>
-            </button>
-            <button
-              className="theme-flip"
-              type="button"
-              onClick={toggleTheme}
-              title="Toggle theme"
-              aria-label="Toggle theme"
-            >
-              {theme === 'zen' ? '☾' : '☀'}
-            </button>
-            {loading ? null : user ? (
-              <Link className="nav-avatar" href="/dashboard" title="Dashboard">
-                {initial}
-              </Link>
-            ) : (
-              <Link className="nav-link signin" href={buildSignInHref(signInNext)}>
-                sign in
-              </Link>
-            )}
-            {loading ? null : user ? (
-              <Link className="btn-primary sm" href="/mark">
-                Mark a paper
-              </Link>
-            ) : (
-              <Link className="btn-primary sm" href={buildSignUpHref(signInNext)}>
-                Start free
-              </Link>
-            )}
-            <button className="burger" type="button" onClick={() => setMobileOpen((m) => !m)}>
-              {mobileOpen ? '✕' : '☰'}
-            </button>
-          </div>
-        </nav>
-        {mobileOpen ? (
-          <NavMobileMenu
-            items={navItems}
-            pathname={pathname}
-            className="mobile-menu"
-            linkClassName=""
-            activeClassName="active"
-            onNavigate={() => setMobileOpen(false)}
-            extraLinks={
-              loading
-                ? []
-                : user
-                  ? [{ href: '/dashboard', label: 'Dashboard' }]
-                  : [
-                      { href: buildSignInHref(signInNext), label: 'sign in' },
-                      { href: buildSignUpHref(signInNext), label: 'Start free' },
-                    ]
-            }
-          />
-        ) : null}
-      </div>
-    )
-  }
-
   return (
-    <div className="ec-nav-wrap">
+    <div
+      className={cn(
+        'ec-nav-wrap',
+        config.transparentShell && 'ec-nav-wrap--transparent',
+        scrolled && 'ec-nav-wrap--scrolled',
+        `ec-nav-wrap--tone-${config.tone}`,
+        `ec-nav-wrap--layout-${config.tone}`
+      )}
+    >
       <header className="ec-nav">
-        <WordmarkLink href="/" size="sm" />
+        <div className="ec-nav-brand">
+          <WordmarkLink href={config.wordmarkHref} size="sm" />
+          {config.context ? <SiteHeaderContext context={config.context} /> : null}
+        </div>
 
         <nav className="ec-nav-links" aria-label="Main">
           {renderNavLinks()}
         </nav>
 
-        <div className="ec-nav-right">
+        <div
+          className={cn(
+            'ec-nav-right',
+            config.transparentShell && !scrolled && 'ec-nav-right--frost'
+          )}
+        >
           {variant === 'app' ? (
             <>
               <GuestSignInChip />
@@ -198,7 +152,7 @@ export function SiteHeader({ variant }: Props) {
             </>
           ) : null}
           <CommandKTrigger />
-          {variant === 'app' || variant === 'marketing' ? <NotificationBell /> : null}
+          {showNotifications ? <NotificationBell /> : null}
           <ThemeFlip />
           {variant === 'app' ? (
             loading ? (
@@ -223,16 +177,39 @@ export function SiteHeader({ variant }: Props) {
               </Link>
             )
           ) : (
-            <Link href="/auth/signin" className="ec-nav-link ec-nav-signin">
+            <Link
+              href={variant === 'marketing' ? '/auth/signin' : buildSignInHref(signInNext)}
+              className="ec-nav-link ec-nav-signin"
+            >
               sign in
             </Link>
           )}
-          <Link
-            href="/mark"
-            className="ec-btn-primary ec-btn-primary--sm ec-nav-mark-mobile hidden min-[901px]:inline-flex"
-          >
-            Mark a question
-          </Link>
+          {showPageCtas ? (
+            <>
+              {config.secondaryCta ? (
+                <LoadingLink
+                  href={config.secondaryCta.href}
+                  className={cn(
+                    CTA_CLASS[config.secondaryCta.style],
+                    'hidden min-[901px]:inline-flex'
+                  )}
+                >
+                  {config.secondaryCta.label}
+                </LoadingLink>
+              ) : null}
+              <LoadingLink
+                href={config.primaryCta.href}
+                className={cn(
+                  CTA_CLASS[config.primaryCta.style],
+                  'ec-nav-mark-mobile hidden min-[901px]:inline-flex',
+                  config.primaryCta.style === 'primary' && 'brand-pulse'
+                )}
+                loadingText="Opening…"
+              >
+                {config.primaryCta.label}
+              </LoadingLink>
+            </>
+          ) : null}
           {variant === 'app' &&
           pathname !== '/mark' &&
           !pathname.startsWith('/mark/') ? (
@@ -260,9 +237,12 @@ export function SiteHeader({ variant }: Props) {
 
       {showMobileMenu && mobileOpen ? (
         <nav className="ec-nav-mobile-menu ec-nav-mobile-menu--open" aria-label="Mobile">
-          <Link href="/mark" className="ec-nav-mobile-mark" onClick={() => setMobileOpen(false)}>
-            Mark a question
-          </Link>
+          <LoadingLink
+            href={config.primaryCta.href}
+            className={cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style])}
+          >
+            {config.primaryCta.label}
+          </LoadingLink>
           <MobileSearchMenuButton />
           <NavMobileMenu
             items={navItems}
@@ -273,7 +253,7 @@ export function SiteHeader({ variant }: Props) {
             onNavigate={() => setMobileOpen(false)}
             extraLinks={mobileExtra}
           />
-          {variant === 'marketing' ? (
+          {variant === 'marketing' || variant === 'reading' ? (
             <>
               <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
                 Sign in

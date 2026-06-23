@@ -350,40 +350,79 @@
 
   @media (min-width: 901px) {
     .ec-nav {
-      position: relative;
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-areas: 'brand nav actions';
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-      gap: 10px;
+      column-gap: 12px;
       padding-block: 8px;
     }
 
     .ec-nav-brand {
-      position: relative;
+      grid-area: brand;
+      justify-self: start;
       z-index: 2;
-      flex-shrink: 0;
+      min-width: 0;
     }
 
     .ec-nav-links {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
+      grid-area: nav;
+      position: static;
+      left: auto;
+      top: auto;
+      transform: none;
+      justify-self: center;
       z-index: 1;
-      width: max-content;
-      max-width: min(68vw, 640px);
-      pointer-events: auto;
+      max-width: 100%;
+      min-width: 0;
     }
 
     .ec-nav-right {
-      position: relative;
+      grid-area: actions;
+      justify-self: end;
       z-index: 2;
-      margin-left: auto;
-      flex-shrink: 0;
+      min-width: 0;
+      margin-left: 0;
       flex-wrap: nowrap;
       gap: 5px;
+    }
+
+    /* Hero / landing — compact chrome so nav stays centered without overlapping search */
+    @media (max-width: 1279px) {
+      .ec-nav-wrap--layout-hero .ec-nav-context {
+        display: none;
+      }
+
+      .ec-nav-wrap--layout-hero .ec-cmdk-btn span:not(.sr-only),
+      .ec-nav-wrap--layout-hero .ec-cmdk-btn kbd {
+        display: none;
+      }
+
+      .ec-nav-wrap--layout-hero .ec-cmdk-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+      }
+
+      .ec-nav-wrap--layout-hero .ec-nav-link {
+        padding: 6px 10px;
+        font-size: 13.5px;
+      }
+
+      .ec-nav-wrap--layout-hero .ec-cta-label--full {
+        display: none;
+      }
+
+      .ec-nav-wrap--layout-hero .ec-cta-label--short {
+        display: inline;
+      }
+    }
+
+    @media (min-width: 901px) and (max-width: 1099px) {
+      .ec-nav-wrap--layout-hero .ec-nav-right a.ec-btn-warm {
+        display: none !important;
+      }
     }
 
     .ec-nav-wrap--layout-hero .ec-nav-links {

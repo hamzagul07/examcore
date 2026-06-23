@@ -10,6 +10,7 @@ import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
 import { NotificationBell } from '@/components/community/NotificationBell'
+import { DiscussSubmitLink } from '@/components/community/DiscussSubmitLink'
 import { NavDropdown } from '@/components/layout/NavDropdown'
 import { NavMobileMenu } from '@/components/layout/NavMobileMenu'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
@@ -101,6 +102,16 @@ export function SiteHeader({ variant }: Props) {
     variant === 'marketing' || variant === 'reading' || variant === 'app'
 
   const showPageCtas = config.tone !== 'mark' || variant !== 'app'
+  const isDiscuss = config.tone === 'discuss'
+
+  const renderPrimaryCta = (className: string) =>
+    isDiscuss ? (
+      <DiscussSubmitLink cta={config.primaryCta} className={className} />
+    ) : (
+      <LoadingLink href={config.primaryCta.href} className={className} loadingText="Opening…">
+        <CtaLabel cta={config.primaryCta} />
+      </LoadingLink>
+    )
 
   const signInHref =
     variant === 'marketing' ? '/auth/signin' : buildSignInHref(signInNext)
@@ -226,28 +237,20 @@ export function SiteHeader({ variant }: Props) {
                   <CtaLabel cta={config.secondaryCta} />
                 </LoadingLink>
               ) : null}
-              <LoadingLink
-                href={config.primaryCta.href}
-                className={cn(
+              {renderPrimaryCta(
+                cn(
                   CTA_CLASS[config.primaryCta.style],
                   'ec-nav-cta-compact inline-flex min-[901px]:hidden',
                   config.primaryCta.style === 'primary' && 'brand-pulse'
-                )}
-                loadingText="Opening…"
-              >
-                <CtaLabel cta={config.primaryCta} />
-              </LoadingLink>
-              <LoadingLink
-                href={config.primaryCta.href}
-                className={cn(
+                )
+              )}
+              {renderPrimaryCta(
+                cn(
                   CTA_CLASS[config.primaryCta.style],
                   'ec-nav-mark-mobile hidden min-[901px]:inline-flex',
                   config.primaryCta.style === 'primary' && 'brand-pulse'
-                )}
-                loadingText="Opening…"
-              >
-                <CtaLabel cta={config.primaryCta} />
-              </LoadingLink>
+                )
+              )}
             </>
           ) : null}
           {variant === 'app' &&
@@ -295,13 +298,9 @@ export function SiteHeader({ variant }: Props) {
               </div>
             ) : null}
             <nav className="ec-nav-mobile-menu ec-nav-mobile-menu--open" aria-label="Mobile">
-              <LoadingLink
-                href={config.primaryCta.href}
-                className={cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style])}
-                loadingText="Opening…"
-              >
-                <CtaLabel cta={config.primaryCta} />
-              </LoadingLink>
+              {renderPrimaryCta(
+                cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style])
+              )}
               {config.secondaryCta ? (
                 <LoadingLink
                   href={config.secondaryCta.href}

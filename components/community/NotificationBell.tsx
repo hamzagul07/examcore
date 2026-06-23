@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { useCommunityNotifications } from '@/lib/hooks/useCommunityNotifications'
@@ -24,6 +24,7 @@ function notifIcon(type: string): string {
   if (type === 'upvote' || type === 'comment_upvote') return '↑'
   if (type === 'mention') return '@'
   if (type === 'milestone') return '⭐'
+  if (type === 'thread') return '🧵'
   return '💬'
 }
 
@@ -32,10 +33,11 @@ export function NotificationBell() {
   const [items, setItems] = useState<Notif[]>([])
   const [unread, setUnread] = useState(0)
   const [open, setOpen] = useState(false)
+  const wrapRef = useRef<HTMLDivElement>(null)
 
   const fetchNotifs = useCallback(async () => {
     try {
-      const res = await fetch('/api/community/notifications')
+      const res = await fetch('/api/community/notifications?limit=12')
       const data = await res.json()
       setItems(data.notifications ?? [])
       setUnread(data.unread ?? 0)
@@ -44,7 +46,18 @@ export function NotificationBell() {
     }
   }, [])
 
-  useCommunityNotifications(COMMUNITY_ON && user ? user.id : undefined, fetchNotifs)
+  useCommunityNotifications(COMMUNITY_ON && user ? user.id : undefined, fetchNotifs, {
+    onInsert: () => setUnread((c) => c + 1),
+  })
+
+  useEffect(() => {
+    if (!open) return
+    function onPointerDown(e: MouseEvent) {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    return () => document.removeEventListener('mousedown', onPointerDown)
+  }, [open])
 
   if (!COMMUNITY_ON || loading || !user) return null
 
@@ -80,7 +93,7 @@ export function NotificationBell() {
   }
 
   return (
-    <div className="notif-bell-wrap">
+    <div className="notif-bell-wrap" ref={wrapRef}>
       <button type="button" className="notif-bell" onClick={toggle} aria-label="Notifications" aria-expanded={open}>
         🔔
         {unread > 0 ? <span className="notif-badge">{unread > 9 ? '9+' : unread}</span> : null}
@@ -114,6 +127,9 @@ export function NotificationBell() {
           ) : (
             <p className="notif-empty">No notifications yet — comment in Exam Room to get started.</p>
           )}
+          <Link href="/community/notifications" className="notif-dropdown-all" onClick={() => setOpen(false)}>
+            See all notifications
+          </Link>
         </div>
       ) : null}
     </div>

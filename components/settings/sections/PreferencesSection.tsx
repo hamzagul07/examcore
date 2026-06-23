@@ -11,6 +11,7 @@ type Props = {
   initialProductUpdates: boolean
   initialCommunityReplies: boolean
   initialCommunityDigest: boolean
+  initialCommunityThreads: boolean
 }
 
 export function PreferencesSection({
@@ -18,12 +19,16 @@ export function PreferencesSection({
   initialProductUpdates,
   initialCommunityReplies,
   initialCommunityDigest,
+  initialCommunityThreads,
 }: Props) {
   const [examReminders, setExamReminders] = useState(initialExamReminders)
   const [productUpdates, setProductUpdates] = useState(initialProductUpdates)
   const [communityReplies, setCommunityReplies] = useState(initialCommunityReplies)
   const [communityDigest, setCommunityDigest] = useState(initialCommunityDigest)
-  const [saving, setSaving] = useState<'exam' | 'product' | 'communityReplies' | 'communityDigest' | null>(null)
+  const [communityThreads, setCommunityThreads] = useState(initialCommunityThreads)
+  const [saving, setSaving] = useState<
+    'exam' | 'product' | 'communityReplies' | 'communityDigest' | 'communityThreads' | null
+  >(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
 
@@ -32,9 +37,10 @@ export function PreferencesSection({
       | 'email_exam_reminders'
       | 'email_product_updates'
       | 'email_community_replies'
-      | 'email_community_digest',
+      | 'email_community_digest'
+      | 'email_community_threads',
     value: boolean,
-    savingKey: 'exam' | 'product' | 'communityReplies' | 'communityDigest'
+    savingKey: 'exam' | 'product' | 'communityReplies' | 'communityDigest' | 'communityThreads'
   ) {
     setSaving(savingKey)
     setErrorMsg('')
@@ -53,7 +59,8 @@ export function PreferencesSection({
       if (field === 'email_exam_reminders') setExamReminders(!value)
       else if (field === 'email_product_updates') setProductUpdates(!value)
       else if (field === 'email_community_replies') setCommunityReplies(!value)
-      else setCommunityDigest(!value)
+      else if (field === 'email_community_digest') setCommunityDigest(!value)
+      else setCommunityThreads(!value)
       return
     }
 
@@ -190,7 +197,7 @@ export function PreferencesSection({
                 Exam Room replies
               </span>
               <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
-                Email when someone comments on your post or replies to your comment.
+                Email when someone comments on your post, replies to you, or @mentions you.
               </span>
             </span>
             <span className="relative inline-flex shrink-0 items-center">
@@ -225,6 +232,55 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'communityReplies' && (
+                <Loader2
+                  className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
+                  aria-hidden
+                />
+              )}
+            </span>
+          </label>
+
+          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
+            <span>
+              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
+                Exam Room thread activity
+              </span>
+              <span className="mt-0.5 block text-sm text-[var(--ec-text-secondary)]">
+                Email when someone replies anywhere in a thread on your post (not just direct replies).
+              </span>
+            </span>
+            <span className="relative inline-flex shrink-0 items-center">
+              <input
+                type="checkbox"
+                checked={communityThreads}
+                onChange={(e) => {
+                  setCommunityThreads(e.target.checked)
+                  void savePreference(
+                    'email_community_threads',
+                    e.target.checked,
+                    'communityThreads'
+                  )
+                }}
+                disabled={saving === 'communityThreads'}
+                className="sr-only"
+                aria-label="Exam Room thread activity emails"
+              />
+              <span
+                className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
+                  communityThreads
+                    ? 'ec-select-active'
+                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
+                }`}
+              >
+                <span
+                  className={`h-5 w-5 rounded-full transition-transform ${
+                    communityThreads
+                      ? 'translate-x-5 bg-[var(--ec-brand)]'
+                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
+                  }`}
+                />
+              </span>
+              {saving === 'communityThreads' && (
                 <Loader2
                   className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
                   aria-hidden

@@ -52,5 +52,6 @@ export type SettingsContext = {
     emailProductUpdates: boolean
     emailCommunityReplies: boolean
     emailCommunityDigest: boolean
+    emailCommunityThreads: boolean
   }
 }

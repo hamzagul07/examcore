@@ -67,6 +67,19 @@
 .notif-item-body { font-size: 12px; color: var(--ec-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .notif-item-time { font-size: 11px; color: var(--ec-text-faint); margin-top: 2px; }
 .notif-empty { padding: 14px; font-size: 13px; color: var(--ec-text-faint); margin: 0; text-align: center; }
+.notif-dropdown-all { display: block; text-align: center; padding: 10px 12px 8px; font-size: 12px; font-weight: 700; color: var(--ec-brand); text-decoration: none; border-top: 1px solid var(--ec-border); margin-top: 4px; }
+.notif-dropdown-all:hover { background: color-mix(in srgb, var(--ec-brand) 6%, transparent); border-radius: 0 0 8px 8px; }
+
+.notif-inbox { display: flex; flex-direction: column; gap: 20px; padding: 8px 0 32px; }
+.notif-inbox-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.notif-inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.notif-inbox-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.notif-inbox-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--ec-border); background: var(--ec-surface); font-size: 14px; color: var(--ec-text-primary); text-decoration: none; }
+.notif-inbox-item.unread { border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border)); background: color-mix(in srgb, var(--ec-brand) 4%, var(--ec-surface)); }
+.notif-inbox-item:hover { border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border)); }
+.notif-inbox-empty, .notif-inbox-empty-text, .notif-inbox-loading { color: var(--ec-text-secondary); font-size: 14px; }
+.notif-inbox-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 0; }
+.notif-inbox-more { align-self: center; margin-top: 8px; }
 
 .community-browser { margin-top: 8px; }
 .community-board-tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--ec-surface); border: 1px solid var(--ec-border); border-radius: 999px; margin-bottom: 20px; }

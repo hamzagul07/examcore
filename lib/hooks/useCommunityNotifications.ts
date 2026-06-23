@@ -5,13 +5,21 @@ import { createClient } from '@/lib/supabase'
 
 const POLL_FALLBACK_MS = 5 * 60_000
 
+export type NotificationRefreshOptions = {
+  /** Fired on realtime INSERT before the list refetch. */
+  onInsert?: () => void
+}
+
 /** Realtime + slow poll fallback for Exam Room notifications. */
 export function useCommunityNotifications(
   userId: string | undefined,
-  onUpdate: () => void
+  onUpdate: () => void,
+  options?: NotificationRefreshOptions
 ) {
   const onUpdateRef = useRef(onUpdate)
   onUpdateRef.current = onUpdate
+  const onInsertRef = useRef(options?.onInsert)
+  onInsertRef.current = options?.onInsert
 
   const refresh = useCallback(() => {
     onUpdateRef.current()
@@ -34,7 +42,10 @@ export function useCommunityNotifications(
           table: 'notifications',
           filter: `user_id=eq.${userId}`,
         },
-        () => refresh()
+        () => {
+          onInsertRef.current?.()
+          refresh()
+        }
       )
       .subscribe()
 

@@ -6,7 +6,7 @@ export function sendCommunityReplyEmail(payload: {
   to: string
   recipientName?: string | null
   actorUsername: string
-  kind: 'comment' | 'reply' | 'mention'
+  kind: 'comment' | 'reply' | 'mention' | 'thread'
   postTitle: string
   postHref: string
   preview?: string
@@ -18,7 +18,9 @@ export function sendCommunityReplyEmail(payload: {
       ? `${payload.actorUsername} replied to your comment`
       : payload.kind === 'mention'
         ? `${payload.actorUsername} mentioned you in Exam Room`
-        : `${payload.actorUsername} commented on your post`
+        : payload.kind === 'thread'
+          ? `${payload.actorUsername} commented in your thread`
+          : `${payload.actorUsername} commented on your post`
 
   const text = [
     `Hi ${greeting},`,
@@ -45,7 +47,9 @@ export function sendCommunityReplyEmail(payload: {
         ? `${payload.actorUsername} replied in Exam Room`
         : payload.kind === 'mention'
           ? `${payload.actorUsername} mentioned you in Exam Room`
-          : `New comment on "${payload.postTitle.slice(0, 48)}${payload.postTitle.length > 48 ? '…' : ''}"`,
+          : payload.kind === 'thread'
+            ? `New activity on your post in Exam Room`
+            : `New comment on "${payload.postTitle.slice(0, 48)}${payload.postTitle.length > 48 ? '…' : ''}"`,
     preheader: action,
     text,
     cta: { label: 'View discussion', href: payload.postHref },

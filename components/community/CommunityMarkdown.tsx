@@ -1,9 +1,11 @@
+import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import type { Components } from 'react-markdown'
 import { createMarkdownComponents } from '@/lib/rich-text/markdown-components'
+import { linkifyMentions } from '@/lib/community/markdown-mentions'
 import { safeUrl, stripRawHtml } from '@/lib/community/sanitize'
 
 /**
@@ -18,6 +20,16 @@ const components: Components = {
   a: ({ href, children }) => {
     const url = safeUrl(href)
     if (!url) return <span>{children}</span>
+    if (url.startsWith('/u/')) {
+      return (
+        <Link
+          href={url}
+          className="font-semibold text-[var(--ec-brand)] underline underline-offset-2 hover:opacity-80"
+        >
+          {children}
+        </Link>
+      )
+    }
     return (
       <a
         href={url}
@@ -45,6 +57,7 @@ const components: Components = {
 }
 
 export function CommunityMarkdown({ content }: { content: string }) {
+  const prepared = linkifyMentions(stripRawHtml(content))
   return (
     <div className="community-md course-rich-text ec-break-anywhere min-w-0 max-w-full">
       <ReactMarkdown
@@ -52,7 +65,7 @@ export function CommunityMarkdown({ content }: { content: string }) {
         rehypePlugins={[[rehypeKatex, { strict: 'ignore', throwOnError: false }]]}
         components={components}
       >
-        {stripRawHtml(content)}
+        {prepared}
       </ReactMarkdown>
     </div>
   )

@@ -295,6 +295,15 @@ a.btn-primary {
   color: var(--ec-on-brand-text);
 }
 
+.course-root .ec-nav-right a.ec-btn-primary,
+.course-root .ec-nav-right a.ec-btn-warm {
+  color: var(--ec-on-brand-text);
+}
+
+.course-root .ec-nav-right a.ec-btn-warm {
+  color: var(--ec-accent-warm-deep);
+}
+
 /* Pricing page — same token bridge as course-root; avoids shadcn --muted (surface) as text */
 .pricing-page {
   color: var(--text);

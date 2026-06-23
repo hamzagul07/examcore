@@ -12,6 +12,7 @@ const MARKETING_TAP_SELECTOR = [
   'a.ec-nav-context',
   'button.ec-cmdk-btn',
   '.ec-theme-flip',
+  'button.notif-bell',
   'a.ec-btn-primary',
   'a.ec-btn-secondary',
   'a.ec-btn-ghost',

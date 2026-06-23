@@ -97,6 +97,41 @@ export function SiteHeader({ variant }: Props) {
 
   const showPageCtas = config.tone !== 'mark' || variant !== 'app'
 
+  const signInHref =
+    variant === 'marketing' ? '/auth/signin' : buildSignInHref(signInNext)
+
+  const renderDesktopAuth = () => {
+    if (loading) {
+      return (
+        <span
+          className="ec-avatar-btn ec-avatar-btn--loading hidden min-[901px]:grid"
+          aria-hidden
+        />
+      )
+    }
+    if (user) {
+      return (
+        <Link
+          href="/account"
+          title="Account"
+          className="ec-avatar-btn hidden min-[901px]:grid"
+        >
+          {initial}
+        </Link>
+      )
+    }
+    return (
+      <LoadingLink
+        href={signInHref}
+        variant="inline"
+        loadingText="Signing in…"
+        className="ec-nav-link ec-nav-signin"
+      >
+        sign in
+      </LoadingLink>
+    )
+  }
+
   const renderNavLinks = () =>
     navItems.map((item) => {
       if (item.children?.length) {
@@ -170,43 +205,7 @@ export function SiteHeader({ variant }: Props) {
             {showNotifications ? <NotificationBell /> : null}
             <ThemeFlip />
           </div>
-          {variant === 'app' ? (
-            loading ? (
-              <span
-                className="ec-avatar-btn ec-avatar-btn--loading hidden min-[901px]:grid"
-                aria-hidden
-              />
-            ) : user ? (
-              <Link
-                href="/account"
-                title="Account"
-                className={cn(
-                  'ec-avatar-btn',
-                  showTabBar ? 'hidden min-[901px]:grid' : 'grid'
-                )}
-              >
-                {initial}
-              </Link>
-            ) : (
-              <LoadingLink
-                href={buildSignInHref(signInNext)}
-                variant="inline"
-                loadingText="Signing in…"
-                className="ec-nav-link ec-nav-signin"
-              >
-                sign in
-              </LoadingLink>
-            )
-          ) : (
-            <LoadingLink
-              href={variant === 'marketing' ? '/auth/signin' : buildSignInHref(signInNext)}
-              variant="inline"
-              loadingText="Signing in…"
-              className="ec-nav-link ec-nav-signin"
-            >
-              sign in
-            </LoadingLink>
-          )}
+          {renderDesktopAuth()}
           {showPageCtas ? (
             <>
               {config.secondaryCta ? (
@@ -279,14 +278,20 @@ export function SiteHeader({ variant }: Props) {
             extraLinks={mobileExtra}
           />
           {variant === 'marketing' || variant === 'reading' ? (
-            <>
-              <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
-                Sign in
+            isGuest ? (
+              <>
+                <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
+                  Sign in
+                </Link>
+                <Link href={buildMarketingSignUpHref()} onClick={() => setMobileOpen(false)}>
+                  Create free account
+                </Link>
+              </>
+            ) : (
+              <Link href="/account" onClick={() => setMobileOpen(false)}>
+                Account
               </Link>
-              <Link href={buildMarketingSignUpHref()} onClick={() => setMobileOpen(false)}>
-                Create free account
-              </Link>
-            </>
+            )
           ) : isGuest ? (
             <>
               <Link href={buildSignInHref(signInNext)} onClick={() => setMobileOpen(false)}>

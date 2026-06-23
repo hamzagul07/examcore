@@ -110,7 +110,9 @@ export function getListAmountCents(opts: {
   tier: RegionTier
   currency: string
   billingPeriod?: BillingPeriod | null
+  fx?: Record<string, number>
 }): number {
+  const fx = opts.fx ?? PRICING_FX
   const cur = opts.currency.toLowerCase()
   const period = opts.billingPeriod === 'yearly' ? 'yearly' : 'monthly'
 
@@ -121,7 +123,7 @@ export function getListAmountCents(opts: {
   ) {
     const pkrCents =
       PRICING_PKR_C[opts.product as (typeof SUBSCRIPTION_KEYS)[number]][period]
-    return tierCAmountFromPkrAnchor(pkrCents, cur)
+    return tierCAmountFromPkrAnchor(pkrCents, cur, fx)
   }
 
   return convertUsdCents(
@@ -130,6 +132,7 @@ export function getListAmountCents(opts: {
       tier: opts.tier,
       billingPeriod: opts.billingPeriod,
     }),
-    opts.currency
+    opts.currency,
+    fx
   )
 }

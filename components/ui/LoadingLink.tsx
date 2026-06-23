@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState, useTransition, type ComponentProps, type ReactNode } from 'react'
-import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 import {
@@ -11,6 +11,12 @@ import {
 } from '@/components/ui/ButtonLoadingState'
 
 const MIN_LOADING_MS = 520
+
+function normalizePath(path: string): string {
+  const base = path.split('?')[0]?.split('#')[0] ?? path
+  if (base.length > 1 && base.endsWith('/')) return base.slice(0, -1)
+  return base
+}
 
 type LoadingLinkProps = Omit<ComponentProps<typeof Link>, 'onClick'> & {
   /** Replace label while navigation is pending (button variant only). */
@@ -33,6 +39,7 @@ export function LoadingLink({
   ...rest
 }: LoadingLinkProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const [pending, startTransition] = useTransition()
   const [showLoading, setShowLoading] = useState(false)
   const startedAtRef = useRef(0)
@@ -62,6 +69,22 @@ export function LoadingLink({
     ) {
       return
     }
+
+    const targetPath = normalizePath(hrefStr)
+    const currentPath = normalizePath(pathname)
+    const hasHash = hrefStr.includes('#')
+
+    if (!hasHash && targetPath === currentPath) {
+      e.preventDefault()
+      if (variant === 'button' || variant === 'inline') {
+        triggerPrimaryHaptic()
+      }
+      if (window.scrollY > 0) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
+
     e.preventDefault()
     startedAtRef.current = Date.now()
     setShowLoading(true)

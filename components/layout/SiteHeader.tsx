@@ -14,6 +14,7 @@ import { NavDropdown } from '@/components/layout/NavDropdown'
 import { NavMobileMenu } from '@/components/layout/NavMobileMenu'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
 import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
+import { useHeaderScroll } from '@/lib/hooks/useHeaderScroll'
 import {
   getNavItemsForConfig,
   getSiteHeaderConfig,
@@ -57,7 +58,7 @@ export function SiteHeader({ variant }: Props) {
   const config = getSiteHeaderConfig(pathname, variant)
   const navItems = getNavItemsForConfig(variant, config)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const { scrolled, hidden: headerHidden } = useHeaderScroll(mobileOpen)
   const { user, loading } = useAuthCheck()
   const initial = avatarInitial(user)
   const isGuest = !loading && !user
@@ -67,14 +68,6 @@ export function SiteHeader({ variant }: Props) {
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
-
-  useEffect(() => {
-    if (!config.transparentShell) return
-    const onScroll = () => setScrolled(window.scrollY > 28)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [config.transparentShell, pathname])
 
   useEffect(() => {
     if (!mobileOpen) return
@@ -137,9 +130,10 @@ export function SiteHeader({ variant }: Props) {
   return (
     <div
       className={cn(
-        'ec-nav-wrap',
+        'ec-nav-wrap ec-nav-wrap--auto-hide',
         config.transparentShell && 'ec-nav-wrap--transparent',
         scrolled && 'ec-nav-wrap--scrolled',
+        headerHidden && !mobileOpen && 'ec-nav-wrap--hidden',
         `ec-nav-wrap--tone-${config.tone}`,
         `ec-nav-wrap--layout-${config.tone}`
       )}
@@ -157,7 +151,7 @@ export function SiteHeader({ variant }: Props) {
         <div
           className={cn(
             'ec-nav-right',
-            config.transparentShell && !scrolled && 'ec-nav-right--frost'
+            config.transparentShell && 'ec-nav-right--frost'
           )}
         >
           {variant === 'app' ? (
@@ -166,9 +160,16 @@ export function SiteHeader({ variant }: Props) {
               <CreditChip />
             </>
           ) : null}
-          <CommandKTrigger />
-          {showNotifications ? <NotificationBell /> : null}
-          <ThemeFlip />
+          <div
+            className={cn(
+              'ec-nav-utils',
+              config.transparentShell && 'ec-nav-utils--frost'
+            )}
+          >
+            <CommandKTrigger />
+            {showNotifications ? <NotificationBell /> : null}
+            <ThemeFlip />
+          </div>
           {variant === 'app' ? (
             loading ? (
               <span

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import { HONEYPOT_FIELD } from '@/lib/honeypot'
 import { MarketingHero, MarketingPageShell } from '@/components/marketing/MarketingPageShell'
@@ -126,10 +126,9 @@ export function ContactForm() {
               className="ec-btn-primary flex w-full min-h-[48px] items-center justify-center gap-2"
             >
               {loading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                  Sending…
-                </>
+                <ButtonLoadingState mode="morph" loadingText="Sending…">
+                  Send message
+                </ButtonLoadingState>
               ) : (
                 'Send message'
               )}

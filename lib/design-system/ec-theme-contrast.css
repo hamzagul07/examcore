@@ -328,6 +328,27 @@ a.btn-primary {
   color: var(--on-ink-text, var(--ec-on-brand-text)) !important;
 }
 
-.pricing-page :is(a.plan-cta.btn-ghost, button.plan-cta.btn-ghost):not(.is-muted) {
-  color: var(--text) !important;
+/* Vivid surfaces — text on tinted sections must stay readable */
+.ec-page-mesh,
+.ec-section-tint,
+.ms-pillar-band,
+.pricing-card-mesh {
+  color: var(--ec-text-primary);
+}
+
+.ec-page-mesh :is(.ms-lead, .ms-body-2, .lead, .body-2),
+.ec-section-tint :is(.ms-lead, .ms-body-2) {
+  color: var(--ec-text-secondary);
+}
+
+.pricing-page.ec-page-mesh .pricing-hero :is(.lead, .overline) {
+  color: var(--text-2);
+}
+
+.pricing-page .plan-feats li.no {
+  color: var(--text-2);
+}
+
+.faq.on .faq-plus {
+  color: var(--ec-c-phys);
 }

@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
@@ -604,10 +605,9 @@ function StepFirstMark({
           className="ec-btn-primary w-full justify-center"
         >
           {loading ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-              Saving profile...
-            </>
+            <ButtonLoadingState mode="morph" loadingText="Saving profile…">
+              {rerun ? 'Save and return to settings' : 'Mark a question now'}
+            </ButtonLoadingState>
           ) : rerun ? (
             <>Save and return to settings</>
           ) : (

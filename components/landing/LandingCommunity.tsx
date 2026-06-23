@@ -20,7 +20,7 @@ export function LandingCommunity() {
   const live = isCommunityEnabled()
 
   return (
-    <section id="community" className="ms-pg ms-sec scroll-mt-20">
+    <section id="community" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--discuss">
       <div className="ms-courses-promo">
         <div>
           <p className="ms-overline" style={{ color: 'var(--ec-brand)' }}>

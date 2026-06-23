@@ -6,7 +6,9 @@
 .ec-btn-danger.ec-tapped:not(:disabled):not([data-loading='true']),
 a.ec-btn-primary.ec-tapped,
 a.ec-btn-secondary.ec-tapped,
-a.ec-btn-ghost.ec-tapped {
+a.ec-btn-ghost.ec-tapped,
+a.ec-btn-warm.ec-tapped,
+.ec-btn-warm.ec-tapped:not(:disabled):not([data-loading='true']) {
   transform: scale(0.98) translateY(0) !important;
   filter: brightness(0.95);
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.14);

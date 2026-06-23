@@ -36,7 +36,7 @@ const FEATURES = [
 
 export function LandingFeatures() {
   return (
-    <section id="features" className="ms-pg ms-sec scroll-mt-20">
+    <section id="features" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--learn">
       <p className="ms-overline">What you get</p>
       <h2 className="ms-h2">
         Real schemes. <em>Real standards.</em>

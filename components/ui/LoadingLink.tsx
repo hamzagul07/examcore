@@ -3,17 +3,20 @@
 import Link from 'next/link'
 import { useTransition, type ComponentProps, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
+import {
+  ButtonLoadingState,
+  CardLoadingPulse,
+} from '@/components/ui/ButtonLoadingState'
 
 type LoadingLinkProps = Omit<ComponentProps<typeof Link>, 'onClick'> & {
   /** Replace label while navigation is pending (button variant only). */
   loadingText?: string
   /**
-   * button — swaps children for spinner + loadingText
-   * card — keeps children, dims card and shows corner spinner
-   * inline — keeps children, shows small inline spinner
+   * button — shimmer sweep + loadingText
+   * card — keeps children, dims card and shows corner pulse
+   * inline — keeps children, shimmer inline label
    */
   variant?: 'button' | 'card' | 'inline'
   children: ReactNode
@@ -59,17 +62,14 @@ export function LoadingLink({
         aria-busy={pending || undefined}
         data-loading={pending ? 'true' : undefined}
         className={cn(
+          'relative',
           className,
-          pending && 'pointer-events-none opacity-70'
+          pending && 'pointer-events-none opacity-75'
         )}
         {...rest}
       >
         {children}
-        {pending && (
-          <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center">
-            <Loader2 className="h-4 w-4 animate-spin text-[var(--ec-brand)]" aria-hidden />
-          </span>
-        )}
+        {pending ? <CardLoadingPulse /> : null}
       </Link>
     )
   }
@@ -81,14 +81,13 @@ export function LoadingLink({
         onClick={handleClick}
         aria-busy={pending || undefined}
         data-loading={pending ? 'true' : undefined}
-        className={cn(className, pending && 'pointer-events-none opacity-80')}
+        className={cn(className, pending && 'pointer-events-none opacity-85')}
         {...rest}
       >
         {pending ? (
-          <span className="inline-flex items-center gap-1.5">
-            <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden />
-            {loadingText ?? children}
-          </span>
+          <ButtonLoadingState mode="shimmer" loadingText={loadingText}>
+            {children}
+          </ButtonLoadingState>
         ) : (
           children
         )}
@@ -102,14 +101,17 @@ export function LoadingLink({
       onClick={handleClick}
       aria-busy={pending || undefined}
       data-loading={pending ? 'true' : undefined}
-      className={cn(className, pending && 'pointer-events-none')}
+      className={cn(
+        className,
+        pending && 'pointer-events-none ec-btn-loading-wrap',
+        pending && 'ec-btn-shimmer'
+      )}
       {...rest}
     >
       {pending ? (
-        <>
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-          {loadingText ?? children}
-        </>
+        <ButtonLoadingState mode="shimmer" loadingText={loadingText}>
+          {children}
+        </ButtonLoadingState>
       ) : (
         children
       )}

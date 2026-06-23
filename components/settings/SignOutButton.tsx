@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 
 type Props = {
   className?: string
@@ -25,14 +25,14 @@ export function SignOutButton({ className }: Props) {
         data-loading={pending ? 'true' : undefined}
         className={cn(
           'ec-btn-ghost w-full justify-center text-[var(--ec-text-secondary)]',
+          pending && 'ec-btn-loading-wrap ec-btn-shimmer',
           className
         )}
       >
         {pending ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-            Signing out...
-          </>
+          <ButtonLoadingState mode="shimmer" loadingText="Signing out…">
+            Sign out
+          </ButtonLoadingState>
         ) : (
           'Sign out'
         )}

@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { InkScribble } from '@/components/courses/margin-notes/HandAnnotations'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { PricingDisplay, SubscriptionDisplayPrices } from '@/lib/billing/display-prices'
 import type { EffectiveAccess } from '@/lib/billing/access'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
@@ -132,6 +133,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
     href?: string
     variant: 'primary' | 'ghost' | 'muted'
     disabled?: boolean
+    loading?: boolean
   } {
     if (plan === 'free') {
       if (!signedIn)
@@ -159,6 +161,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
         onClick: () => void checkout('scholar'),
         variant: 'primary',
         disabled: loading,
+        loading,
       }
     }
     // plan === 'max'
@@ -168,6 +171,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
       onClick: () => void checkout('mastery'),
       variant: 'ghost',
       disabled: loading,
+      loading,
     }
   }
 
@@ -255,7 +259,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
   ]
 
   return (
-    <main className="pricing-page" data-screen-label="Pricing">
+    <main className="pricing-page ec-page-mesh" data-screen-label="Pricing">
       <div className="pg">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Pricing' }]} />
         <header className="pricing-hero">
@@ -320,7 +324,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
             return (
               <div
                 key={p.id}
-                className={`plan card${p.featured ? ' featured' : ''}`}
+                className={`plan card${p.featured ? ' featured pricing-card--featured pricing-card-mesh' : ''}`}
                 data-screen-label={`Pricing — ${p.name}`}
               >
                 {p.featured ? <span className="plan-ribbon mono">MOST POPULAR</span> : null}
@@ -333,20 +337,29 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
                 <p className="plan-eq">{p.sub ?? ' '}</p>
                 <p className="body-2 plan-blurb">{p.blurb}</p>
                 {cta.href ? (
-                  <Link
+                  <LoadingLink
                     className={`plan-cta btn-${cta.variant === 'primary' ? 'primary' : 'ghost'}${cta.variant === 'muted' ? ' is-muted' : ''}`}
                     href={cta.href}
+                    loadingText={cta.label}
                   >
                     {cta.label}
-                  </Link>
+                  </LoadingLink>
                 ) : (
                   <button
                     type="button"
-                    className={`plan-cta btn-${cta.variant === 'primary' ? 'primary' : 'ghost'}${cta.variant === 'muted' ? ' is-muted' : ''}`}
+                    className={`plan-cta btn-${cta.variant === 'primary' ? 'primary' : 'ghost'}${cta.variant === 'muted' ? ' is-muted' : ''}${cta.loading ? ' ec-btn-loading-wrap ec-btn-shimmer' : ''}`}
                     onClick={cta.onClick}
                     disabled={cta.disabled}
+                    aria-busy={cta.loading || undefined}
+                    data-loading={cta.loading ? 'true' : undefined}
                   >
-                    {cta.label}
+                    {cta.loading ? (
+                      <ButtonLoadingState mode="shimmer" loadingText={cta.label}>
+                        {cta.label}
+                      </ButtonLoadingState>
+                    ) : (
+                      cta.label
+                    )}
                   </button>
                 )}
                 <ul className="plan-feats">

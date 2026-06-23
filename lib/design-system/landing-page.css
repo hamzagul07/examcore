@@ -182,7 +182,55 @@
 
 .ms-pillar--featured {
   border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
-  background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface-raised));
+}
+
+.ms-pillar-band .ms-pillar-kicker {
+  color: var(--ec-on-brand-text, #f8f9fa);
+}
+
+.ms-pillar-band .ms-pillar-glyph {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ec-paper) 22%, transparent);
+  font-size: 16px;
+}
+
+[data-ec-theme='late-night'] .ms-pillar-band .ms-pillar-kicker {
+  color: #14120d;
+}
+
+.ms-step--1 {
+  border-left: 4px solid var(--ec-brand);
+}
+
+.ms-step--2 {
+  border-left: 4px solid var(--ec-c-phys);
+}
+
+.ms-step--3 {
+  border-left: 4px solid var(--ec-accent-warm);
+}
+
+.ms-feat .ms-glyph {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-c-phys) 18%, var(--ec-surface)) 0%,
+    color-mix(in srgb, var(--ec-c-chem) 14%, var(--ec-surface)) 100%
+  );
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: inline-block;
+}
+
+.ms-final-cta {
+  padding: 48px 32px;
+  border-radius: var(--ec-radius-card-lg, 20px);
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+  box-shadow: var(--ec-card-shadow);
 }
 
 .ms-pillar-top {

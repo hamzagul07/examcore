@@ -1,7 +1,7 @@
 'use client'
 
 import type React from 'react'
-import { Loader2 } from 'lucide-react'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 export type AuthMethod = 'magic' | 'password'
@@ -107,10 +107,9 @@ export function SubmitButton({
       className="ec-btn-primary w-full justify-center px-6 py-3.5"
     >
       {loading ? (
-        <>
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-          {loadingLabel}
-        </>
+        <ButtonLoadingState mode="morph" loadingText={loadingLabel}>
+          {idleLabel}
+        </ButtonLoadingState>
       ) : (
         idleLabel
       )}

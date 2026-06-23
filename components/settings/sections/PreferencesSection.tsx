@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
+import { InlineSavingPulse } from '@/components/ui/ButtonLoadingState'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
 import { SettingsSectionCard } from '@/components/settings/SettingsSectionCard'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
@@ -134,10 +134,7 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'exam' && (
-                <Loader2
-                  className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
-                  aria-hidden
-                />
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>
           </label>
@@ -183,10 +180,7 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'product' && (
-                <Loader2
-                  className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
-                  aria-hidden
-                />
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>
           </label>
@@ -232,10 +226,7 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'communityReplies' && (
-                <Loader2
-                  className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
-                  aria-hidden
-                />
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>
           </label>
@@ -281,10 +272,7 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'communityThreads' && (
-                <Loader2
-                  className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
-                  aria-hidden
-                />
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>
           </label>
@@ -330,10 +318,7 @@ export function PreferencesSection({
                 />
               </span>
               {saving === 'communityDigest' && (
-                <Loader2
-                  className="absolute -right-7 h-4 w-4 animate-spin text-[var(--ec-text-secondary)]"
-                  aria-hidden
-                />
+                <InlineSavingPulse className="absolute -right-7 top-1/2 -translate-y-1/2" />
               )}
             </span>
           </label>

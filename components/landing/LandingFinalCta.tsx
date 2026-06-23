@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import { InkScribble } from '@/components/margin-notes'
 
 interface LandingFinalCtaProps {
@@ -8,7 +9,7 @@ interface LandingFinalCtaProps {
 export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
   return (
     <section className="ms-pg ms-sec">
-      <div className="ms-final-cta">
+      <div className="ms-final-cta ec-page-mesh ec-page-mesh--dual">
         <h2
           className="ms-h2"
           style={{ fontSize: 'clamp(34px, 4.5vw, 52px)', textAlign: 'center' }}
@@ -23,15 +24,19 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
           discussion in Exam Room.
         </p>
         <div className="ms-cta-row ms-cta-row--center">
-          <Link href={markHref} className="ec-btn-primary">
+          <LoadingLink
+            href={markHref}
+            className="ec-btn-primary brand-pulse"
+            loadingText="Opening mark…"
+          >
             Mark your first question
-          </Link>
-          <Link href="/courses" className="ec-btn-ghost ec-btn-ghost--sm">
+          </LoadingLink>
+          <LoadingLink href="/courses" className="ec-btn-ghost ec-btn-ghost--sm">
             Free courses
-          </Link>
-          <Link href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
+          </LoadingLink>
+          <LoadingLink href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
             Exam Room
-          </Link>
+          </LoadingLink>
         </div>
         <p className="ms-micro" style={{ marginTop: 26 }}>
           7-DAY FREE TRIAL · NO CARD · FREE PLAN FOREVER

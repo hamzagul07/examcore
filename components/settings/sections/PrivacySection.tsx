@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { SettingsSectionCard } from '@/components/settings/SettingsSectionCard'
@@ -82,16 +81,11 @@ export function PrivacySection() {
           variant="secondary"
           size="md"
           onClick={() => void handleExport()}
-          disabled={exportLoading}
+          loading={exportLoading}
+          loadingMode="shimmer"
+          loadingText="Preparing export…"
         >
-          {exportLoading ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-              Preparing export…
-            </>
-          ) : (
-            'Download my data'
-          )}
+          Download my data
         </Button>
       </SettingsSectionCard>
 
@@ -117,9 +111,12 @@ export function PrivacySection() {
           size="md"
           onClick={() => void handleDelete()}
           disabled={deleteLoading || deleteConfirm !== 'DELETE'}
+          loading={deleteLoading}
+          loadingMode="morph"
+          loadingText="Deleting…"
           className="ec-btn-secondary border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] ec-score-low hover:border-[color-mix(in_srgb,var(--ec-chip-critical-text)_60%,transparent)]"
         >
-          {deleteLoading ? 'Deleting…' : 'Delete my account'}
+          Delete my account
         </Button>
       </SettingsSectionCard>
 

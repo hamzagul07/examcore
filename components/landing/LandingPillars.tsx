@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 
 type Pillar = {
@@ -72,7 +73,11 @@ export function LandingPillars() {
   const communityLive = isCommunityEnabled()
 
   return (
-    <section id="platform" className="ms-pg ms-pillars-wrap" aria-label="What MarkScheme offers">
+    <section
+      id="platform"
+      className="ms-pg ms-pillars-wrap ec-section-tint ec-section-tint--mark"
+      aria-label="What MarkScheme offers"
+    >
       <p className="ms-overline">Three ways to revise</p>
       <h2 className="ms-h2 ms-pillars-heading">
         Mark. Learn. <em>Discuss.</em>
@@ -87,15 +92,20 @@ export function LandingPillars() {
           return (
             <article
               key={pillar.id}
-              className={`ms-pillar ec-card${pillar.featured ? ' ms-pillar--featured' : ''}`}
+              className={`ms-pillar ec-card ms-pillar--${pillar.id}${pillar.featured ? ' ms-pillar--featured' : ''}`}
               id={pillar.id === 'mark' ? 'marking' : pillar.id === 'learn' ? 'learn' : 'discuss'}
             >
-              <div className="ms-pillar-top">
-                <span className="ms-pillar-glyph" aria-hidden>
+              <div className="ms-pillar-band">
+                <span className="ms-pillar-watermark" aria-hidden>
                   {pillar.glyph}
                 </span>
-                <span className="ms-pillar-kicker">{pillar.kicker}</span>
-                {discussOff ? <span className="ms-pillar-badge">Launching soon</span> : null}
+                <div className="ms-pillar-top">
+                  <span className="ms-pillar-glyph" aria-hidden>
+                    {pillar.glyph}
+                  </span>
+                  <span className="ms-pillar-kicker">{pillar.kicker}</span>
+                  {discussOff ? <span className="ms-pillar-badge">Launching soon</span> : null}
+                </div>
               </div>
               <h3 className="ms-h3">{pillar.title}</h3>
               <p className="ms-body-2">{pillar.body}</p>
@@ -105,12 +115,17 @@ export function LandingPillars() {
                 ))}
               </ul>
               <div className="ms-pillar-actions">
-                <Link
+                <LoadingLink
                   href={discussOff ? '/community' : pillar.href}
-                  className={pillar.featured ? 'ec-btn-primary ec-btn-primary--sm' : 'ec-btn-ghost ec-btn-ghost--sm'}
+                  className={
+                    pillar.featured
+                      ? 'ec-btn-primary ec-btn-primary--sm'
+                      : 'ec-btn-ghost ec-btn-ghost--sm'
+                  }
+                  loadingText="Opening…"
                 >
                   {discussOff ? 'Preview Exam Room' : pillar.cta}
-                </Link>
+                </LoadingLink>
                 {pillar.secondaryHref && communityLive ? (
                   <Link href={pillar.secondaryHref} className="ec-btn-underline" style={{ fontSize: 14 }}>
                     {pillar.secondaryCta} →

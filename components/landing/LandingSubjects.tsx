@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { SubjectCard } from '@/components/margin-notes'
 import { LANDING_SUBJECT_PREVIEW } from '@/lib/landing-subjects-preview'
+import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 
 export function LandingSubjects() {
   return (
-    <section id="subjects" className="ms-pg ms-sec scroll-mt-20">
+    <LandingSectionReveal>
+      <section id="subjects" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--learn">
       <div className="ms-subjects-head">
         <div>
           <p className="ms-overline">Subjects</p>
@@ -25,5 +27,6 @@ export function LandingSubjects() {
         + O-LEVEL SYLLABUSES · IB &amp; OTHER BOARDS COMING LATER
       </p>
     </section>
+    </LandingSectionReveal>
   )
 }

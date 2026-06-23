@@ -75,7 +75,12 @@ export default async function IbLessonPage({ params }: Props) {
             url,
             syllabusCode: slug,
             topics: [`IB ${subject.name}`, l.title],
-            level: subject.level === 'HL' ? 'Higher Level' : 'Standard Level',
+            level:
+              subject.groupNumber === 7
+                ? 'Core'
+                : subject.level === 'HL'
+                  ? 'Higher Level'
+                  : 'Standard Level',
           }),
           ...(l.faq && l.faq.length >= 2 ? [faqPageNode(l.faq.map((f) => ({ q: f.q, a: f.a })))] : []),
         ]}

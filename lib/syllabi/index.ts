@@ -27,6 +27,7 @@ import s9702 from './9702.json'
 import s9706 from './9706.json'
 import s9708 from './9708.json'
 import s9990 from './9990.json'
+import { IB_SYLLABI } from './ib-syllabi'
 
 export type { SyllabusCode, SyllabusTopic }
 
@@ -71,6 +72,7 @@ const EXTRACTED: Record<string, SyllabusFile> = {
   '9706': s9706 as SyllabusFile,
   '9708': s9708 as SyllabusFile,
   '9990': s9990 as SyllabusFile,
+  ...(IB_SYLLABI as Record<string, SyllabusFile>),
 }
 
 const MATH_CODE = '9709'
@@ -319,9 +321,10 @@ export function buildSyllabusTaggingBlock(subjectCode: string): string {
 
   const subjectName = getSyllabusSubjectName(subjectCode) || subjectCode
   const leafCount = tree.reduce((n, g) => n + g.leaves.length, 0)
+  const boardLabel = subjectCode.startsWith('ib-') ? 'IB Diploma' : `Cambridge ${subjectCode}`
 
   return `SYLLABUS TAGGING (LEAF LEVEL):
-Identify which Cambridge ${subjectCode} ${subjectName} specification points this question covers.
+Identify which ${boardLabel} ${subjectName} specification points this question covers.
 Return 1-3 LEAF codes from the list below (${leafCount} leaves). Tag the most specific leaf — NOT parent section codes alone.
 
 ${sections}

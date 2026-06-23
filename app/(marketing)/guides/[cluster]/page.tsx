@@ -50,8 +50,10 @@ export default async function ClusterGuidePage({ params }: Props) {
     .map((slug) => getBlogPosts().find((p) => p.slug === slug))
     .filter(Boolean)
     .map((p) => enrichPostMeta(p!, getBlogPost(p!.slug)?.content ?? ''))
+    .sort((a, b) => a.title.localeCompare(b.title))
 
   const isComparison = cluster.format === 'comparison'
+  const isIb = cluster.id === 'ib'
 
   return (
     <MarketingPageShell>
@@ -111,7 +113,9 @@ export default async function ClusterGuidePage({ params }: Props) {
           <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
             {isComparison
               ? `For "${cluster.headTerm}", use our comparison-style pillar below, then supporting guides — start with official Cambridge PDFs before any paid tool.`
-              : `For "${cluster.headTerm}", read the pillar guide first, then the supporting articles in this hub. Mark handwritten work on MarkScheme when you need a second pass.`}
+              : isIb
+                ? `For "${cluster.headTerm}", read the pillar guide first, then subject revision guides and IA articles below. Practise with criterion marking on MarkScheme when you want band-by-band feedback.`
+                : `For "${cluster.headTerm}", read the pillar guide first, then the supporting articles in this hub. Mark handwritten work on MarkScheme when you need a second pass.`}
           </p>
         </aside>
 
@@ -140,11 +144,16 @@ export default async function ClusterGuidePage({ params }: Props) {
         <div className="ms-hub-card mt-12 text-center">
           <h2 className="ms-h3">Ready to mark a paper?</h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            Put what you learned into practice — upload handwriting and get mark-by-mark
-            feedback from real Cambridge mark schemes.
+            {isIb
+              ? 'Put what you learned into practice — upload your answer for criterion-based, band-by-band IB feedback.'
+              : 'Put what you learned into practice — upload handwriting and get mark-by-mark feedback from real Cambridge mark schemes.'}
           </p>
           <Link href={cluster.moneyPath} className="ec-btn-primary inline-flex min-h-[48px]">
-            {cluster.moneyPath === '/mark' ? 'Mark a paper free' : 'Browse subjects'}
+            {cluster.moneyPath === '/mark'
+              ? isIb
+                ? 'Practise criterion marking'
+                : 'Mark a paper free'
+              : 'Browse subjects'}
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

@@ -10,6 +10,7 @@ import { getIbSubjects, getIbSubjectsByGroup } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
 import { getIbCourse } from '@/lib/courses/ib'
 import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display.server'
+import { IB_COURSES_CATALOG_BLURB } from '@/lib/courses/ib-catalog-display'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 
 const PATH = '/ib/subjects'
@@ -89,8 +90,7 @@ export default function IbSubjectsPage() {
             <Link href="/ib/courses" className="ec-link">
               {getIbCatalogCards().length} free IB courses
             </Link>{' '}
-            with {getIbCatalogCards().reduce((a, c) => a + c.lessons, 0)} lessons — TOK, Extended Essay,
-            sciences, maths, and Group 6 arts.
+            with {getIbCatalogCards().reduce((a, c) => a + c.lessons, 0)} lessons — {IB_COURSES_CATALOG_BLURB}
           </p>
         ) : null}
 

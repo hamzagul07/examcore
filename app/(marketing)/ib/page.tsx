@@ -13,6 +13,7 @@ import { ibShortName } from '@/lib/seo/ib-seo'
 import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
+import { IB_COURSES_CATALOG_BLURB, ibCourseEntriesByTrack } from '@/lib/courses/ib-catalog-display'
 
 const PATH = '/ib'
 
@@ -58,16 +59,7 @@ export default function IbHubPage() {
     .filter((c): c is NonNullable<typeof c> => Boolean(c))
     .sort((a, b) => a.name.localeCompare(b.name))
 
-  const courseTracks = {
-    core: courses.filter((c) => getIbSubject(c.code)?.groupNumber === 7),
-    arts: courses.filter((c) => getIbSubject(c.code)?.groupNumber === 6),
-    stem: courses.filter(
-      (c) => {
-        const g = getIbSubject(c.code)?.groupNumber
-        return g !== 6 && g !== 7
-      }
-    ),
-  }
+  const courseTracks = ibCourseEntriesByTrack(courses)
 
   return (
     <MarketingPageShell>
@@ -152,15 +144,7 @@ export default function IbHubPage() {
               Full topic-by-topic courses built for the current IB syllabus — worked examples, markband
               tips and flashcards on every page. Free, no sign-up.
             </p>
-            {(
-              [
-                { key: 'core', label: 'Core — TOK, EE & CAS', items: courseTracks.core },
-                { key: 'arts', label: 'Group 6 — The Arts', items: courseTracks.arts },
-                { key: 'stem', label: 'Sciences, maths & humanities', items: courseTracks.stem },
-              ] as const
-            )
-              .filter((track) => track.items.length > 0)
-              .map((track) => (
+            {courseTracks.map((track) => (
                 <div key={track.key} style={{ marginBottom: 24 }}>
                   <h3 className="ms-overline" style={{ marginBottom: 12 }}>
                     {track.label}

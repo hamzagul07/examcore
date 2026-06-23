@@ -159,7 +159,9 @@ export default async function IbSubjectPage({ params }: Props) {
                 ]
               : []),
             { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
-            { href: `/community/s/${subject.slug}`, label: 'Exam Room community', variant: 'muted' },
+            ...(communityOn
+              ? [{ href: `/community/s/${subject.slug}`, label: 'Exam Room community', variant: 'muted' as const }]
+              : []),
             { href: '/ib', label: 'All IB subjects', variant: 'muted' },
           ]}
         />

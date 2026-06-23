@@ -9,7 +9,7 @@ import { InkScribble, MarginNote } from '@/components/courses/margin-notes/HandA
 import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
 
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
-import { ibCatalogCardsByTrack } from '@/lib/courses/ib-catalog-display'
+import { IB_COURSES_CATALOG_BLURB, ibCatalogTrackSections } from '@/lib/courses/ib-catalog-display'
 
 type Props = {
   subjects: MarginNotesSubject[]
@@ -23,7 +23,7 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
   const list = fam === 'All' ? subjects : subjects.filter((s) => s.fam === fam)
   const totalLessons = subjects.reduce((a, s) => a + s.lessons, 0) + ibSubjects.reduce((a, s) => a + s.lessons, 0)
   const totalQ = subjects.reduce((a, s) => a + s.q, 0)
-  const ibTracks = ibCatalogCardsByTrack(ibSubjects)
+  const ibTrackSections = ibCatalogTrackSections(ibSubjects)
 
   return (
     <main className="catalog-page ec-page-mesh" data-screen-label="Courses — catalog">
@@ -95,21 +95,12 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
               IB Diploma courses
             </h2>
             <p className="body-2 catalog-ib-lead">
-              TOK, Extended Essay, CAS, sciences, maths, and Group 6 arts — criterion-based marking on
-              every topic.{' '}
+              {IB_COURSES_CATALOG_BLURB}{' '}
               <Link href="/ib/courses" className="ec-link">
                 Browse all IB courses →
               </Link>
             </p>
-            {(
-              [
-                { key: 'core', label: 'Core', items: ibTracks.core },
-                { key: 'arts', label: 'Group 6 — The Arts', items: ibTracks.arts },
-                { key: 'stem', label: 'Sciences & humanities', items: ibTracks.stem },
-              ] as const
-            )
-              .filter((t) => t.items.length > 0)
-              .map((track) => (
+            {ibTrackSections.map((track) => (
                 <div key={track.key} className="catalog-ib-track">
                   <p className="overline catalog-ib-track-label">{track.label}</p>
                   <div className="catalog-grid">

@@ -487,6 +487,10 @@
       min-width: 0;
     }
 
+    .ec-nav-wrap--layout-discuss .ec-nav-context {
+      max-width: min(28vw, 108px);
+    }
+
     .ec-nav-context-label {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -503,6 +507,42 @@
       flex: 1 1 auto;
       min-width: 0;
       overflow: hidden;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ec-nav-wrap--layout-discuss .ec-nav-context {
+      display: none;
+    }
+
+    .ec-nav-wrap--layout-discuss .ec-nav-right > a.ec-btn-ghost--sm:not(.ec-nav-signin) {
+      display: none;
+    }
+
+    .ec-nav-wrap--layout-discuss .ec-theme-flip {
+      display: none;
+    }
+
+    .ec-nav-wrap--layout-discuss .ec-cmdk-btn {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .ec-nav-wrap--layout-discuss .ec-cmdk-btn span:not(.sr-only),
+    .ec-nav-wrap--layout-discuss .ec-cmdk-btn kbd {
+      display: none;
+    }
+
+    .ec-nav-wrap--layout-discuss .ec-nav {
+      padding-inline: 12px;
+      gap: 6px;
+    }
+
+    .ec-nav-wrap--layout-discuss .ec-btn-primary--sm {
+      padding-inline: 12px;
+      font-size: 13px;
     }
   }
 

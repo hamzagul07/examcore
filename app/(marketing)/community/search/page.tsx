@@ -54,8 +54,10 @@ export default async function CommunitySearchPage({ searchParams }: PageProps) {
                       <span className="rc-meta-muted">{compactCount(h.score)} points · {h.commentCount} comments</span>
                     </div>
                     <h3 className="rc-card-title">
-                      <span className={`rc-kind rc-kind-${h.kind}`}>{KIND_LABEL[h.kind]}</span>
-                      {h.title}
+                      <span className="rc-card-title-chips">
+                        <span className={`rc-kind rc-kind-${h.kind}`}>{KIND_LABEL[h.kind]}</span>
+                      </span>
+                      <span className="rc-card-title-text">{h.title}</span>
                     </h3>
                     {h.snippet ? <p className="rc-card-snippet">{h.snippet}</p> : null}
                   </div>

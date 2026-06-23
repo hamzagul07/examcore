@@ -62,6 +62,30 @@ const BY_SUBJECT: Record<string, IbResource[]> = {
   'computer-science': [
     { label: 'Paul Baumgarten', href: 'https://pbaumgarten.com/', note: 'Free IB Computer Science notes for HL & SL.' },
   ],
+  tok: [
+    { label: 'IB Academy TOK guide', href: 'https://www.ib.academy/', note: 'Free TOK study guide and assessment tips.' },
+  ],
+  'extended-essay': [
+    { label: 'IB Academy EE guide', href: 'https://www.ib.academy/', note: 'Free Extended Essay structure and criteria guide.' },
+  ],
+  cas: [
+    { label: 'IB Academy CAS guide', href: 'https://www.ib.academy/', note: 'Free CAS learning outcomes and portfolio guidance.' },
+  ],
+  'visual-arts': [
+    { label: 'IBO Visual Arts specimens', href: 'https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/sample-exam-papers/', note: 'Official specimen comparative study and exhibition materials where published.' },
+  ],
+  theatre: [
+    { label: 'IB Academy Theatre guide', href: 'https://www.ib.academy/', note: 'Free Theatre assessment component overview.' },
+  ],
+  music: [
+    { label: 'IB Academy Music guide', href: 'https://www.ib.academy/', note: 'Free Music inquiry, experimentation and presentation guides.' },
+  ],
+  film: [
+    { label: 'IBO Film specimens', href: 'https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/sample-exam-papers/', note: 'Official specimen textual analysis and comparative study where published.' },
+  ],
+  dance: [
+    { label: 'IB Academy Dance guide', href: 'https://www.ib.academy/', note: 'Free Dance composition and investigation guidance.' },
+  ],
 }
 
 function subjectBase(slug: string): string {

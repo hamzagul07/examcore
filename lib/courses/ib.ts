@@ -84,7 +84,12 @@ export function getIbCourse(slug: string): (CourseSubject & { ibSlug: string }) 
   return {
     code: slug,
     name: subject.name,
-    level: subject.level === 'HL' ? 'Higher Level' : 'Standard Level',
+    level:
+      subject.groupNumber === 7
+        ? 'Core'
+        : subject.level === 'HL'
+          ? 'Higher Level'
+          : 'Standard Level',
     lessonCount: lessons.length,
     publishedCount: lessons.length,
     path: `/ib/courses/${slug}`,

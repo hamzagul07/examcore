@@ -73,6 +73,30 @@ const VA_COMPARATIVE: IbCriterion[] = [
   { id: 'D', name: 'Presentation and subject-specific language', maxMarks: 6, bands: LOR_BANDS_5 },
 ]
 
+const FILM_COMPARATIVE: IbCriterion[] = [
+  { id: 'A', name: 'Identification and analysis of film elements', maxMarks: 6, bands: LOR_BANDS_5 },
+  { id: 'B', name: 'Understanding of cultural contexts', maxMarks: 6, bands: LOR_BANDS_5 },
+  { id: 'C', name: 'Comparison and synthesis', maxMarks: 6, bands: LOR_BANDS_5 },
+  { id: 'D', name: 'Presentation and use of film terminology', maxMarks: 6, bands: LOR_BANDS_5 },
+]
+
+const THEATRE_CRITERIA: IbCriterion[] = [
+  { id: 'A', name: 'Artistic intention and theatrical vision', maxMarks: 8, bands: LOR_BANDS_5 },
+  { id: 'B', name: 'Theatrical choices and techniques', maxMarks: 8, bands: LOR_BANDS_5 },
+  { id: 'C', name: 'Performance and production skills', maxMarks: 4, bands: LOR_BANDS_5 },
+]
+
+const MUSIC_CRITERIA: IbCriterion[] = [
+  { id: 'A', name: 'Contextual understanding and inquiry', maxMarks: 6, bands: LOR_BANDS_5 },
+  { id: 'B', name: 'Musical analysis and experimentation', maxMarks: 8, bands: LOR_BANDS_5 },
+  { id: 'C', name: 'Presentation and reflection', maxMarks: 6, bands: LOR_BANDS_5 },
+]
+
+const DANCE_CRITERIA: IbCriterion[] = [
+  { id: 'A', name: 'Composition and choreographic choices', maxMarks: 10, bands: LOR_BANDS_5 },
+  { id: 'B', name: 'Analysis and justification', maxMarks: 10, bands: LOR_BANDS_5 },
+]
+
 function profile(
   slug: string,
   name: string,
@@ -241,7 +265,8 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Research presentation': 'level_of_response',
       'Collaborative project': 'level_of_response',
     },
-    'Theatre HL — solo piece, director\'s notebook, research presentation, collaborative project.'
+    'Theatre HL — solo piece, director\'s notebook, research presentation, collaborative project.',
+    THEATRE_CRITERIA
   ),
   profile(
     'theatre-sl',
@@ -255,7 +280,8 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Director\'s notebook': 'level_of_response',
       'Research presentation': 'level_of_response',
     },
-    'Theatre SL — performance and research components with IB assessment criteria.'
+    'Theatre SL — performance and research components with IB assessment criteria.',
+    THEATRE_CRITERIA
   ),
   profile(
     'music-hl',
@@ -269,7 +295,8 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Experimenting with music': 'level_of_response',
       'Presenting music': 'level_of_response',
     },
-    'Music HL — inquiry, experimentation, and presentation criteria.'
+    'Music HL — inquiry, experimentation, and presentation criteria.',
+    MUSIC_CRITERIA
   ),
   profile(
     'music-sl',
@@ -283,7 +310,8 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Experimenting with music': 'level_of_response',
       'Presenting music': 'level_of_response',
     },
-    'Music SL — musical analysis and creating criteria.'
+    'Music SL — musical analysis and creating criteria.',
+    MUSIC_CRITERIA
   ),
   profile(
     'film-hl',
@@ -291,14 +319,15 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'HL',
     'The Arts',
     'level_of_response',
-    22,
+    24,
     {
       'Textual analysis': 'level_of_response',
       'Comparative study': 'level_of_response',
       'Film portfolio': 'level_of_response',
       'Collaborative project': 'level_of_response',
     },
-    'Film HL — analysis, comparison, portfolio, and collaborative filmmaking.'
+    'Film HL — analysis, comparison, portfolio, and collaborative filmmaking.',
+    FILM_COMPARATIVE
   ),
   profile(
     'film-sl',
@@ -306,13 +335,14 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'SL',
     'The Arts',
     'level_of_response',
-    18,
+    24,
     {
       'Textual analysis': 'level_of_response',
       'Comparative study': 'level_of_response',
       'Film portfolio': 'level_of_response',
     },
-    'Film SL — textual analysis and portfolio criteria.'
+    'Film SL — textual analysis and portfolio criteria.',
+    FILM_COMPARATIVE
   ),
   profile(
     'dance-hl',
@@ -326,7 +356,8 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
       'Dance investigation': 'level_of_response',
       'Performance': 'level_of_response',
     },
-    'Dance HL — composition, investigation, and performance criteria.'
+    'Dance HL — composition, investigation, and performance criteria.',
+    DANCE_CRITERIA
   ),
   profile(
     'dance-sl',
@@ -334,13 +365,14 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'SL',
     'The Arts',
     'level_of_response',
-    18,
+    20,
     {
       'Composition and analysis': 'level_of_response',
       'Dance investigation': 'level_of_response',
       'Performance': 'level_of_response',
     },
-    'Dance SL — choreography and analysis markbands.'
+    'Dance SL — choreography and analysis markbands.',
+    DANCE_CRITERIA
   ),
 ]
 

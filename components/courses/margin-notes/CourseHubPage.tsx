@@ -50,6 +50,10 @@ type Props = {
   coursesCrumb?: { label: string; href: string }
   /** Exam Room entry card — rendered from a server component parent. */
   community?: React.ReactNode
+  /** Extra aside content (e.g. IB legitimate resources panel). */
+  asideExtra?: React.ReactNode
+  /** Board label for hub copy — defaults to Cambridge. */
+  board?: 'cambridge' | 'ib'
 }
 
 export function CourseHubPage({
@@ -65,6 +69,8 @@ export function CourseHubPage({
   basePath = '/courses',
   coursesCrumb = { label: 'Courses', href: '/courses' },
   community,
+  asideExtra,
+  board = 'cambridge',
 }: Props) {
   const papers = course.papers
   const defaultPaper = initialPaperId ?? papers[0]?.id ?? 1
@@ -281,12 +287,23 @@ export function CourseHubPage({
             <div className="card card-pad hub-tip">
               <p className="micro tip-kicker">WHY IT&apos;S DIFFERENT</p>
               <p className="body-2 tip-copy">
-                Every lesson ends in a real Cambridge question — marked{' '}
-                <b className="text-main">mark-by-mark</b> against the official scheme, not a generic
-                AI guess.
+                {board === 'ib' ? (
+                  <>
+                    Every lesson ends with criterion-style practice — marked{' '}
+                    <b className="text-main">band-by-band</b> against IB assessment criteria, not a
+                    generic AI guess.
+                  </>
+                ) : (
+                  <>
+                    Every lesson ends in a real Cambridge question — marked{' '}
+                    <b className="text-main">mark-by-mark</b> against the official scheme, not a
+                    generic AI guess.
+                  </>
+                )}
               </p>
               <MarginNote className="hub-tip-note">that&apos;s the whole point ↑</MarginNote>
             </div>
+            {asideExtra}
           </aside>
         </div>
 

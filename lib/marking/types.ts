@@ -52,6 +52,18 @@ export type LorBandResult = {
   improvements?: string[]
 }
 
+export type IbCriterionResult = {
+  criterion: string
+  criterion_name: string
+  level: number
+  marks_awarded: number
+  marks_available: number
+  band_descriptor: string
+  justification: string
+  strengths?: string[]
+  improvements?: string[]
+}
+
 export type MarkingAIResult = {
   marks_awarded?: MarkAwarded[]
   marks_earned: number
@@ -64,6 +76,8 @@ export type MarkingAIResult = {
   marking_style?: MarkingStyle
   /** Level-of-response specific */
   band_result?: LorBandResult
+  /** IB multi-criterion (EE, TOK, arts) */
+  criteria_results?: IbCriterionResult[]
   /** MCQ specific */
   mcq_breakdown?: Array<{
     question_number: string

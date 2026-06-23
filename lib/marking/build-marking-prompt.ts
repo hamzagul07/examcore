@@ -7,7 +7,9 @@ import {
   buildMcqMarkingPrompt,
   buildIbPointBasedMarkingPrompt,
   buildIbLorMarkingPrompt,
+  buildIbCriterionMarkingPrompt,
 } from './prompts'
+import { isIbSubjectCode, ibUsesCriterionRubrics } from '@/lib/ib/marking-config'
 
 const IB_BOARD = 'IB Diploma'
 import type { MarkSchemeRow } from './types'
@@ -33,7 +35,8 @@ export function buildMarkingPrompt(params: {
     isOfficial,
   } = params
 
-  const isIb = markScheme?.board === IB_BOARD
+  const isIb =
+    markScheme?.board === IB_BOARD || isIbSubjectCode(subjectCode)
   const parsed = markScheme?.paper_code
     ? parsePaperCode(markScheme.paper_code)
     : null
@@ -78,6 +81,18 @@ export function buildMarkingPrompt(params: {
   if (isIb) {
     if (effectiveStyle === 'mcq') {
       return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total)
+    }
+    if (
+      ibUsesCriterionRubrics(subjectCode) ||
+      (markScheme.mark_scheme?.assessment === 'criterion')
+    ) {
+      return buildIbCriterionMarkingPrompt(
+        subjectName,
+        qText,
+        total,
+        msJson,
+        ocrText
+      )
     }
     if (effectiveStyle === 'level_of_response') {
       return buildIbLorMarkingPrompt(subjectName, qText, total, msJson, ocrText)

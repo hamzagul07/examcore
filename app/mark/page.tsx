@@ -37,6 +37,7 @@ import {
   getSubjectById,
   SUBJECTS,
 } from '@/lib/profile-options'
+import { getIbMarkableSubjectCodes, resolveSubjectLabel } from '@/lib/ib/marking-config'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
@@ -550,11 +551,17 @@ export default function MarkPage() {
     // full markable list — NOT just Mathematics. The filter keeps only subjects
     // that actually have a paper structure / available papers.
     const allMarkable = Array.from(
-      new Set(SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code))
+      new Set([
+        ...SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code),
+        ...getIbMarkableSubjectCodes(),
+      ])
     )
     const codes = profileSubjectCodes.length ? profileSubjectCodes : allMarkable
     return codes.filter(
-      (code) => availablePapers?.[code] || getSubjectPaperStructure(code)
+      (code) =>
+        availablePapers?.[code] ||
+        getSubjectPaperStructure(code) ||
+        getIbMarkableSubjectCodes().includes(code)
     )
   }, [profileSubjectCodes, availablePapers])
 
@@ -1256,7 +1263,10 @@ export default function MarkPage() {
                       </option>
                       {profileSelectableSubjects.map((code) => {
                         const meta = getSubjectByCode(code)
-                        const label = availablePapers?.[code]?.subject ?? meta?.label ?? code
+                        const label =
+                          availablePapers?.[code]?.subject ??
+                          meta?.label ??
+                          resolveSubjectLabel(code)
                         return (
                           <option key={code} value={code}>
                             {label} ({code})

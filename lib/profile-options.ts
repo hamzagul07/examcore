@@ -6,6 +6,8 @@
  * `markingEnabled: true` — live marking on /mark.
  */
 
+import { IB_MARKING_PROFILES } from '@/lib/ib/marking-config'
+
 export type ProfileOption = {
   id: string
   label: string
@@ -341,9 +343,10 @@ export const MARKING_ENABLED_SUBJECT_CODES = new Set(
   SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code)
 )
 
-export const SUBJECT_CODE_MAP: Record<string, string> = Object.fromEntries(
-  SUBJECTS.map((s) => [s.code, s.label])
-)
+export const SUBJECT_CODE_MAP: Record<string, string> = {
+  ...Object.fromEntries(SUBJECTS.map((s) => [s.code, s.label])),
+  ...Object.fromEntries(IB_MARKING_PROFILES.map((p) => [p.code, p.name])),
+}
 
 export const ENABLED_BOARD_IDS = new Set(
   BOARDS.filter((b) => b.enabled).map((b) => b.id)

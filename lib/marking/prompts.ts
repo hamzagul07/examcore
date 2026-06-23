@@ -487,6 +487,75 @@ Return ONLY this JSON:
 }`
 }
 
+/** IB multi-criterion marking (EE, TOK, Visual Arts comparative study, etc.). */
+export function buildIbCriterionMarkingPrompt(
+  subjectName: string,
+  questionText: string,
+  totalMarks: number,
+  markSchemeJson: string,
+  ocrText: string
+): string {
+  return `You are an IB Diploma Programme ${subjectName} senior examiner. Mark this student work against the official IB assessment criteria and level descriptors in the markscheme.
+
+Work like a real IB marking conference:
+1. Read the response holistically for each criterion
+2. Match descriptor wording — quote the band language the work meets or misses
+3. Place within the band (top/middle/bottom) before assigning marks
+4. IB uses assessment criteria and markbands — NOT Cambridge B1/M1/A1 codes
+
+QUESTION / TASK:
+${questionText}
+
+TOTAL MARKS AVAILABLE: ${totalMarks}
+
+OFFICIAL IB CRITERION MARKSCHEME:
+${markSchemeJson}
+
+STUDENT'S TRANSCRIBED WORK:
+${ocrText}
+
+${TONE_BLOCK}
+
+${MATH_NOTATION_BLOCK}
+
+${JSON_RULES_BLOCK}
+
+Return ONLY this JSON:
+{
+  "criteria_results": [
+    {
+      "criterion": "A",
+      "criterion_name": "Focus and method",
+      "level": 3,
+      "marks_awarded": 4,
+      "marks_available": 6,
+      "band_descriptor": "The descriptor for the band you placed them in",
+      "justification": "Detailed examiner justification referencing descriptor wording",
+      "strengths": ["..."],
+      "improvements": ["what would reach the next band"]
+    }
+  ],
+  "band_result": {
+    "level": 3,
+    "marks_awarded": 0,
+    "marks_available": ${totalMarks},
+    "band_descriptor": "Overall summary band for the whole response",
+    "justification": "Holistic summary across criteria",
+    "strengths": ["..."],
+    "improvements": ["..."]
+  },
+  "marks_earned": 0,
+  "total_marks": ${totalMarks},
+  "marks_awarded": [],
+  "summary": "Encouraging examiner feedback to the student",
+  "weak_topics": ["..."],
+  "what_to_study_next": "...",
+  "marking_style": "level_of_response"
+}
+
+Set band_result.marks_awarded and marks_earned to the SUM of criteria_results marks. Include one criteria_results entry per criterion in the markscheme.`
+}
+
 const DETECTION_SUBJECT_CODES = `9084 Law, 9231 Further Math, 9488 Islamic Studies, 9489 History, 9607 Media Studies, 9609 Business, 9618 Computer Science, 9699 Sociology, 9700 Biology, 9701 Chemistry, 9702 Physics, 9706 Accounting, 9708 Economics, 9709 Math, 9990 Psychology`
 
 export function buildDetectionPrompt(

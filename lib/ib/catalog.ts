@@ -39,6 +39,8 @@ export const IB_GROUPS = [
   'Individuals and Societies',
   'Sciences',
   'Mathematics',
+  'The Arts',
+  'Core',
 ] as const
 
 type BaseSubject = {
@@ -64,6 +66,8 @@ const ACC = {
   society: '#c17f3a',
   science: '#3b6fd9',
   maths: '#b84a62',
+  arts: '#9b4dca',
+  core: '#5c6bc0',
 }
 
 const BASE: BaseSubject[] = [
@@ -152,14 +156,66 @@ const BASE: BaseSubject[] = [
     levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.maths, glyph: 'π',
     blurb: 'Calculator-based modelling throughout: short questions (Paper 1), long questions (Paper 2) and HL Paper 3.',
   },
+  // Group 6 — The Arts
+  {
+    slugBase: 'visual-arts', name: 'Visual Arts', group: IB_GROUPS[5], groupNumber: 6,
+    levels: ['HL', 'SL'], papers: { HL: ['Comparative study', 'Process portfolio', 'Exhibition'], SL: ['Comparative study', 'Process portfolio', 'Exhibition'] },
+    accent: ACC.arts, glyph: '◆',
+    blurb: 'Comparative study, process portfolio, and exhibition — criterion-assessed with visual analysis and curatorial rationale.',
+  },
+  {
+    slugBase: 'theatre', name: 'Theatre', group: IB_GROUPS[5], groupNumber: 6,
+    levels: ['HL', 'SL'], papers: { HL: ['Solo piece', 'Director\'s notebook', 'Research presentation', 'Collaborative project'], SL: ['Solo piece', 'Director\'s notebook', 'Research presentation'] },
+    accent: ACC.arts, glyph: '▸',
+    blurb: 'Performance, directing, and research — assessed through solo work, notebooks, and collaborative production.',
+  },
+  {
+    slugBase: 'music', name: 'Music', group: IB_GROUPS[5], groupNumber: 6,
+    levels: ['HL', 'SL'], papers: { HL: ['Exploring', 'Experimenting', 'Presenting'], SL: ['Exploring', 'Experimenting', 'Presenting'] },
+    accent: ACC.arts, glyph: '♪',
+    blurb: 'Inquiry, experimentation, and presentation — analysis, creating, and performing with IB criteria.',
+  },
+  {
+    slugBase: 'film', name: 'Film', group: IB_GROUPS[5], groupNumber: 6,
+    levels: ['HL', 'SL'], papers: { HL: ['Textual analysis', 'Comparative study', 'Portfolio', 'Collaborative'], SL: ['Textual analysis', 'Comparative study', 'Portfolio'] },
+    accent: ACC.arts, glyph: '▶',
+    blurb: 'Textual analysis, comparative study, and filmmaking portfolio — film language and auteur study.',
+  },
+  {
+    slugBase: 'dance', name: 'Dance', group: IB_GROUPS[5], groupNumber: 6,
+    levels: ['HL', 'SL'], papers: { HL: ['Composition', 'Investigation', 'Performance'], SL: ['Composition', 'Investigation', 'Performance'] },
+    accent: ACC.arts, glyph: '◇',
+    blurb: 'Composition, dance investigation, and performance — choreography and embodied analysis.',
+  },
+  // Core — TOK, EE, CAS
+  {
+    slugBase: 'tok', name: 'Theory of Knowledge', group: IB_GROUPS[6], groupNumber: 7,
+    levels: ['SL'], papers: { SL: ['Essay', 'Exhibition'] },
+    accent: ACC.core, glyph: '?',
+    blurb: 'The TOK essay (950 words) and exhibition commentary — knowledge questions, AOKs, and WOKs.',
+  },
+  {
+    slugBase: 'extended-essay', name: 'Extended Essay', group: IB_GROUPS[6], groupNumber: 7,
+    levels: ['SL'], papers: { SL: ['Essay'] },
+    accent: ACC.core, glyph: 'E',
+    blurb: '4,000-word research essay — five criteria (A–E) from focus and method through to engagement.',
+  },
+  {
+    slugBase: 'cas', name: 'Creativity, Activity, Service', group: IB_GROUPS[6], groupNumber: 7,
+    levels: ['SL'], papers: { SL: ['Portfolio'] },
+    accent: ACC.core, glyph: 'C',
+    blurb: 'Learning outcomes, reflections, and CAS project — portfolio evidence and supervisor interviews.',
+  },
 ]
 
 function buildSubjects(): IbSubject[] {
   const out: IbSubject[] = []
   for (const b of BASE) {
     for (const level of b.levels) {
+      const slug =
+        b.groupNumber === 7 ? b.slugBase : `${b.slugBase}-${level.toLowerCase()}`
       out.push({
-        slug: `${b.slugBase}-${level.toLowerCase()}`,
+        slug,
         name: b.name,
         level,
         group: b.group,

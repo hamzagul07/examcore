@@ -115,6 +115,7 @@ export function getSiteHeaderConfig(
       context: { label: 'Cambridge & IB', href: '/subjects', glyph: '◇' },
       primaryCta: {
         label: 'Mark free — no card',
+        shortLabel: 'Mark free',
         href: '/mark',
         style: 'primary',
       },

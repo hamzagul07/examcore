@@ -33,12 +33,20 @@ import { uploadAnswerPhoto as uploadAnswerPhotoToStorage } from '@/lib/storage/a
 import type {
   MarkSchemeRow,
   MarkingMode,
+  MarkingStyle,
   UploadMode,
   QuestionMarkResult,
 } from '@/lib/marking/types'
 import { withGeminiRetry } from '@/lib/marking/gemini-retry'
 import { buildExtractionPrompt } from '@/lib/marking/extraction-prompts'
 import type { ExtractionMode } from '@/lib/marking/storage-extract'
+import {
+  getIbMarkingProfile,
+  isIbSubjectCode,
+  resolveSubjectLabel,
+  ibPracticeMarkingStyle,
+} from '@/lib/ib/marking-config'
+import { buildIbPracticeMarkScheme } from '@/lib/marking/ib-practice-scheme'
 
 export const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -380,21 +388,41 @@ export async function markSingleQuestion(params: {
 
   const parsed = paperCode ? parsePaperCode(paperCode) : null
   const inferredSubject = inferSubjectFromQuestionText(questionText)
-  const subjectCode =
+  const rawSubjectCode =
     initialMode === 'general_criteria_practice' && parsed?.subjectCode
       ? parsed.subjectCode
       : parsed?.subjectCode ?? inferredSubject ?? null
+  const ibProfile = rawSubjectCode ? getIbMarkingProfile(rawSubjectCode) : null
+  const subjectCode = rawSubjectCode
   const subjectName = subjectCode
-    ? SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
+    ? resolveSubjectLabel(subjectCode) !== subjectCode
+      ? resolveSubjectLabel(subjectCode)
+      : SUBJECT_CODE_MAP[subjectCode] || subjectCode
     : 'A-Level'
-  const markingStyle = markScheme
-    ? resolveQuestionMarkingStyle(
-        markScheme,
-        paperCode || (subjectCode ? `${subjectCode}/01` : '9709/12')
-      )
-    : 'point_based'
 
-  const isOfficial = markingMode === 'official_mark_scheme' && !!markScheme
+  let effectiveMarkScheme = markScheme
+  let markingStyle: MarkingStyle =
+    markScheme
+      ? resolveQuestionMarkingStyle(
+          markScheme,
+          paperCode || (subjectCode ? `${subjectCode}/01` : '9709/12')
+        )
+      : ibProfile
+        ? ibProfile.practiceStyle
+        : isIbSubjectCode(subjectCode ?? '')
+          ? ibPracticeMarkingStyle(subjectCode!)
+          : 'point_based'
+
+  if (
+    markingMode === 'general_criteria_practice' &&
+    !effectiveMarkScheme &&
+    ibProfile
+  ) {
+    effectiveMarkScheme = buildIbPracticeMarkScheme(ibProfile, questionText)
+    markingStyle = ibProfile.practiceStyle
+  }
+
+  const isOfficial = markingMode === 'official_mark_scheme' && !!effectiveMarkScheme
 
   if (markingMode === 'general_criteria' && subjectCode === '9709') {
     // preserve legacy math general path
@@ -410,7 +438,7 @@ export async function markSingleQuestion(params: {
 
   const promptSubjectCode = subjectCode ?? inferredSubject
   const markingPrompt = buildMarkingPrompt({
-    markScheme,
+    markScheme: effectiveMarkScheme,
     markingStyle,
     ocrText,
     questionText,

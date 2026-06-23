@@ -7,7 +7,7 @@ import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import type { SyllabusCode } from '@/lib/syllabus'
-import type { LorBandResult, MarkingStyle } from '@/lib/marking/types'
+import type { LorBandResult, MarkingStyle, IbCriterionResult } from '@/lib/marking/types'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import {
   ERROR_LABELS,
@@ -45,6 +45,7 @@ export type MarkingResultData = {
     what_to_study_next: string
     estimated_marks_explanation?: string
     band_result?: LorBandResult
+    criteria_results?: IbCriterionResult[]
     marking_style?: MarkingStyle
   }
   ocr_text?: string | null
@@ -219,6 +220,7 @@ export function MarkingResultView({
             gradeLabel={grade.grade}
             schemeLabel={schemeLabel(result)}
             bandResult={result.ai_marking.band_result}
+            criteriaResults={result.ai_marking.criteria_results}
             rubric={result.mark_scheme_rubric}
           />
           {result.mark_scheme_rubric &&

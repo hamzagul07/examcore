@@ -46,11 +46,23 @@ async function main() {
 
   const syllabus = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib', 'syllabi', `${subject}.json`), 'utf8'))
   const subjectName = syllabus.subjectName
-  const boardLabel = `IB Diploma ${syllabus.level ?? 'Higher Level'}`
+  const boardLabel =
+    syllabus.level === 'Core'
+      ? 'IB Diploma Core'
+      : `IB Diploma ${syllabus.level ?? 'Higher Level'}`
   const markingConvention = 'IB markbands and assessment criteria'
 
-  const { generateStemDeepLesson } = await import('../lib/courses/generate-stem-deep-lesson.ts')
+  const isHumanities =
+    /^(ib-)?(tok|extended-essay|cas|visual-arts|theatre|music|film|dance)(-|$)/.test(
+      subject
+    )
+
   const { topicToLessonSlug } = await import('../lib/courses/slug.ts')
+  const generate = isHumanities
+    ? (await import('../lib/courses/generate-ib-humanities-deep-lesson.ts'))
+        .generateIbHumanitiesDeepLesson
+    : (await import('../lib/courses/generate-stem-deep-lesson.ts'))
+        .generateStemDeepLesson
 
   let targets = only ? syllabus.topics.filter((t) => t.code === only) : syllabus.topics
   const outDir = path.join(ROOT, 'content', 'courses', subject)
@@ -69,7 +81,7 @@ async function main() {
     done++
     console.log(`\nDeep-generating IB ${subject} ${topic.code} ${topic.name}...`)
     try {
-      const { lesson } = await generateStemDeepLesson(
+      const { lesson } = await generate(
         { subjectCode: subject, subjectName, topic, boardLabel, markingConvention },
         { status: 'premium' }
       )

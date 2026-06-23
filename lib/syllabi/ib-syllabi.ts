@@ -2,13 +2,19 @@
  * IB Diploma syllabus files — merged into the unified registry in index.ts.
  */
 import ibBiologyHl from './ib-biology-hl.json'
+import ibBiologySl from './ib-biology-sl.json'
 import ibBusinessManagementHl from './ib-business-management-hl.json'
+import ibBusinessManagementSl from './ib-business-management-sl.json'
 import ibCas from './ib-cas.json'
 import ibChemistryHl from './ib-chemistry-hl.json'
+import ibChemistrySl from './ib-chemistry-sl.json'
 import ibComputerScienceHl from './ib-computer-science-hl.json'
+import ibComputerScienceSl from './ib-computer-science-sl.json'
 import ibDanceHl from './ib-dance-hl.json'
 import ibDanceSl from './ib-dance-sl.json'
 import ibEconomicsHl from './ib-economics-hl.json'
+import ibEconomicsSl from './ib-economics-sl.json'
+import ibEnvironmentalSystemsAndSocietiesSl from './ib-environmental-systems-and-societies-sl.json'
 import ibEnglishALangLitHl from './ib-english-a-lang-lit-hl.json'
 import ibEnglishALangLitSl from './ib-english-a-lang-lit-sl.json'
 import ibEnglishALiteratureHl from './ib-english-a-literature-hl.json'
@@ -23,12 +29,15 @@ import ibGeographySl from './ib-geography-sl.json'
 import ibHistoryHl from './ib-history-hl.json'
 import ibHistorySl from './ib-history-sl.json'
 import ibMathsAaHl from './ib-maths-aa-hl.json'
+import ibMathsAaSl from './ib-maths-aa-sl.json'
 import ibMathsAiHl from './ib-maths-ai-hl.json'
+import ibMathsAiSl from './ib-maths-ai-sl.json'
 import ibMusicHl from './ib-music-hl.json'
 import ibMusicSl from './ib-music-sl.json'
 import ibPhysicsHl from './ib-physics-hl.json'
 import ibPhysicsSl from './ib-physics-sl.json'
 import ibPsychologyHl from './ib-psychology-hl.json'
+import ibPsychologySl from './ib-psychology-sl.json'
 import ibSpanishBHl from './ib-spanish-b-hl.json'
 import ibSpanishBSl from './ib-spanish-b-sl.json'
 import ibTheatreHl from './ib-theatre-hl.json'
@@ -45,13 +54,19 @@ type IbSyllabusFile = {
 
 export const IB_SYLLABI: Record<string, IbSyllabusFile> = {
   'ib-biology-hl': ibBiologyHl as IbSyllabusFile,
+  'ib-biology-sl': ibBiologySl as IbSyllabusFile,
   'ib-business-management-hl': ibBusinessManagementHl as IbSyllabusFile,
+  'ib-business-management-sl': ibBusinessManagementSl as IbSyllabusFile,
   'ib-cas': ibCas as IbSyllabusFile,
   'ib-chemistry-hl': ibChemistryHl as IbSyllabusFile,
+  'ib-chemistry-sl': ibChemistrySl as IbSyllabusFile,
   'ib-computer-science-hl': ibComputerScienceHl as IbSyllabusFile,
+  'ib-computer-science-sl': ibComputerScienceSl as IbSyllabusFile,
   'ib-dance-hl': ibDanceHl as IbSyllabusFile,
   'ib-dance-sl': ibDanceSl as IbSyllabusFile,
   'ib-economics-hl': ibEconomicsHl as IbSyllabusFile,
+  'ib-economics-sl': ibEconomicsSl as IbSyllabusFile,
+  'ib-environmental-systems-and-societies-sl': ibEnvironmentalSystemsAndSocietiesSl as IbSyllabusFile,
   'ib-english-a-lang-lit-hl': ibEnglishALangLitHl as IbSyllabusFile,
   'ib-english-a-lang-lit-sl': ibEnglishALangLitSl as IbSyllabusFile,
   'ib-english-a-literature-hl': ibEnglishALiteratureHl as IbSyllabusFile,
@@ -66,12 +81,15 @@ export const IB_SYLLABI: Record<string, IbSyllabusFile> = {
   'ib-history-hl': ibHistoryHl as IbSyllabusFile,
   'ib-history-sl': ibHistorySl as IbSyllabusFile,
   'ib-maths-aa-hl': ibMathsAaHl as IbSyllabusFile,
+  'ib-maths-aa-sl': ibMathsAaSl as IbSyllabusFile,
   'ib-maths-ai-hl': ibMathsAiHl as IbSyllabusFile,
+  'ib-maths-ai-sl': ibMathsAiSl as IbSyllabusFile,
   'ib-music-hl': ibMusicHl as IbSyllabusFile,
   'ib-music-sl': ibMusicSl as IbSyllabusFile,
   'ib-physics-hl': ibPhysicsHl as IbSyllabusFile,
   'ib-physics-sl': ibPhysicsSl as IbSyllabusFile,
   'ib-psychology-hl': ibPsychologyHl as IbSyllabusFile,
+  'ib-psychology-sl': ibPsychologySl as IbSyllabusFile,
   'ib-spanish-b-hl': ibSpanishBHl as IbSyllabusFile,
   'ib-spanish-b-sl': ibSpanishBSl as IbSyllabusFile,
   'ib-theatre-hl': ibTheatreHl as IbSyllabusFile,

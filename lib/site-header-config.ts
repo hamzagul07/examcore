@@ -1,5 +1,6 @@
 import type { SiteHeaderVariant, SiteNavItem } from '@/lib/site-nav'
 import { SITE_NAV_ITEMS } from '@/lib/site-nav'
+import { getIbSubject } from '@/lib/ib/catalog'
 import {
   getSiteHeaderTone,
   useTransparentHeaderShell,
@@ -50,7 +51,46 @@ function communityContext(pathname: string): HeaderContext | undefined {
   return undefined
 }
 
+function ibSubjectLabel(slug: string): string {
+  const subject = getIbSubject(slug)
+  if (!subject) return slug.replace(/-/g, ' ')
+  if (subject.groupNumber === 7) return subject.name
+  return `${subject.name} ${subject.level}`
+}
+
 function coursesContext(pathname: string): HeaderContext | undefined {
+  const ibCourseMatch = pathname.match(/^\/ib\/courses\/([^/]+)(?:\/(.+))?/)
+  if (ibCourseMatch) {
+    const slug = ibCourseMatch[1]
+    const subject = getIbSubject(slug)
+    if (ibCourseMatch[2]) {
+      return {
+        label: ibSubjectLabel(slug),
+        href: `/ib/courses/${slug}`,
+        glyph: subject?.glyph ?? '📖',
+      }
+    }
+    return {
+      label: subject ? `IB ${subject.name}` : 'IB course',
+      href: `/ib/courses/${slug}`,
+      glyph: subject?.glyph ?? '📚',
+    }
+  }
+
+  const ibSubjectMatch = pathname.match(/^\/ib\/subjects\/([^/]+)/)
+  if (ibSubjectMatch?.[1]) {
+    const slug = ibSubjectMatch[1]
+    return {
+      label: ibSubjectLabel(slug),
+      href: `/ib/subjects/${slug}`,
+      glyph: getIbSubject(slug)?.glyph ?? '📚',
+    }
+  }
+
+  if (pathname === '/ib' || pathname.startsWith('/ib/past-papers')) {
+    return { label: 'IB Diploma', href: '/ib', glyph: '◇' }
+  }
+
   const lessonMatch = pathname.match(/^\/courses\/([^/]+)(?:\/(.+))?/)
   if (lessonMatch?.[2]) {
     return {
@@ -67,7 +107,7 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     pathname === '/courses' ||
     pathname.startsWith('/courses/') ||
     pathname.startsWith('/subjects') ||
-    pathname.startsWith('/ib')
+    pathname.startsWith('/ib/courses')
   ) {
     return { label: 'Free courses', href: '/courses', glyph: '📚' }
   }

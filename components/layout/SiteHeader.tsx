@@ -73,8 +73,13 @@ export function SiteHeader({ variant }: Props) {
     if (!mobileOpen) return
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
     }
   }, [mobileOpen])
 
@@ -169,6 +174,7 @@ export function SiteHeader({ variant }: Props) {
         config.transparentShell && 'ec-nav-wrap--transparent',
         scrolled && 'ec-nav-wrap--scrolled',
         headerHidden && !mobileOpen && 'ec-nav-wrap--hidden',
+        mobileOpen && 'ec-nav-wrap--menu-open',
         `ec-nav-wrap--tone-${config.tone}`,
         `ec-nav-wrap--layout-${config.tone}`
       )}
@@ -224,6 +230,17 @@ export function SiteHeader({ variant }: Props) {
                 href={config.primaryCta.href}
                 className={cn(
                   CTA_CLASS[config.primaryCta.style],
+                  'ec-nav-cta-compact inline-flex min-[901px]:hidden',
+                  config.primaryCta.style === 'primary' && 'brand-pulse'
+                )}
+                loadingText="Opening…"
+              >
+                <CtaLabel cta={config.primaryCta} />
+              </LoadingLink>
+              <LoadingLink
+                href={config.primaryCta.href}
+                className={cn(
+                  CTA_CLASS[config.primaryCta.style],
                   'ec-nav-mark-mobile hidden min-[901px]:inline-flex',
                   config.primaryCta.style === 'primary' && 'brand-pulse'
                 )}
@@ -259,54 +276,91 @@ export function SiteHeader({ variant }: Props) {
       </header>
 
       {showMobileMenu && mobileOpen ? (
-        <nav className="ec-nav-mobile-menu ec-nav-mobile-menu--open" aria-label="Mobile">
-          <LoadingLink
-            href={config.primaryCta.href}
-            className={cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style])}
-            loadingText="Opening…"
-          >
-            <CtaLabel cta={config.primaryCta} />
-          </LoadingLink>
-          <MobileSearchMenuButton />
-          <NavMobileMenu
-            items={navItems}
-            pathname={pathname}
-            className="ec-nav-mobile-menu-items"
-            linkClassName=""
-            activeClassName=""
-            onNavigate={() => setMobileOpen(false)}
-            extraLinks={mobileExtra}
+        <>
+          <button
+            type="button"
+            className="ec-nav-mobile-backdrop"
+            aria-label="Close menu"
+            onClick={() => setMobileOpen(false)}
           />
-          {variant === 'marketing' || variant === 'reading' ? (
-            isGuest ? (
-              <>
-                <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
-                  Sign in
+          <div
+            className="ec-nav-mobile-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
+            {config.context ? (
+              <div className="ec-nav-mobile-context">
+                <SiteHeaderContext context={config.context} />
+              </div>
+            ) : null}
+            <nav className="ec-nav-mobile-menu ec-nav-mobile-menu--open" aria-label="Mobile">
+              <LoadingLink
+                href={config.primaryCta.href}
+                className={cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style])}
+                loadingText="Opening…"
+              >
+                <CtaLabel cta={config.primaryCta} />
+              </LoadingLink>
+              {config.secondaryCta ? (
+                <LoadingLink
+                  href={config.secondaryCta.href}
+                  className={cn('ec-nav-mobile-secondary', CTA_CLASS[config.secondaryCta.style])}
+                  loadingText="Opening…"
+                >
+                  <CtaLabel cta={config.secondaryCta} />
+                </LoadingLink>
+              ) : null}
+              <MobileSearchMenuButton />
+              <NavMobileMenu
+                items={navItems}
+                pathname={pathname}
+                className="ec-nav-mobile-menu-items"
+                linkClassName="ec-nav-mobile-link"
+                activeClassName="ec-nav-mobile-link--active"
+                onNavigate={() => setMobileOpen(false)}
+                extraLinks={mobileExtra}
+              />
+              {variant === 'marketing' || variant === 'reading' ? (
+                isGuest ? (
+                  <div className="ec-nav-mobile-auth">
+                    <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
+                      Sign in
+                    </Link>
+                    <Link href={buildMarketingSignUpHref()} onClick={() => setMobileOpen(false)}>
+                      Create free account
+                    </Link>
+                  </div>
+                ) : (
+                  <Link
+                    href="/account"
+                    className="ec-nav-mobile-link"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Account
+                  </Link>
+                )
+              ) : isGuest ? (
+                <div className="ec-nav-mobile-auth">
+                  <Link href={buildSignInHref(signInNext)} onClick={() => setMobileOpen(false)}>
+                    Sign in
+                  </Link>
+                  <Link href={buildSignUpHref('/dashboard')} onClick={() => setMobileOpen(false)}>
+                    Create free account
+                  </Link>
+                </div>
+              ) : (
+                <Link
+                  href="/account"
+                  className="ec-nav-mobile-link"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Account
                 </Link>
-                <Link href={buildMarketingSignUpHref()} onClick={() => setMobileOpen(false)}>
-                  Create free account
-                </Link>
-              </>
-            ) : (
-              <Link href="/account" onClick={() => setMobileOpen(false)}>
-                Account
-              </Link>
-            )
-          ) : isGuest ? (
-            <>
-              <Link href={buildSignInHref(signInNext)} onClick={() => setMobileOpen(false)}>
-                Sign in
-              </Link>
-              <Link href={buildSignUpHref('/dashboard')} onClick={() => setMobileOpen(false)}>
-                Create free account
-              </Link>
-            </>
-          ) : (
-            <Link href="/account" onClick={() => setMobileOpen(false)}>
-              Account
-            </Link>
-          )}
-        </nav>
+              )}
+            </nav>
+          </div>
+        </>
       ) : null}
     </div>
   )

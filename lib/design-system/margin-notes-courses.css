@@ -1826,6 +1826,48 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-o
   .catalog-hero-meta { grid-template-columns: 1fr 1fr 1fr; }
   .pg { padding: 0 18px; }
   .lesson-modebar { padding: 12px 18px; }
+  .hub-hero { padding: 28px 0; }
+  .hub-hero-title { font-size: clamp(28px, 8vw, 40px); }
+  .hub-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hub-cta-row .btn-primary,
+  .hub-cta-row .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+  }
+  .paper-tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    scrollbar-width: none;
+    grid-template-columns: unset;
+  }
+  .paper-tabs::-webkit-scrollbar { display: none; }
+  .paper-tab {
+    flex: 0 0 auto;
+    min-width: 140px;
+  }
+  .hub-aside {
+    flex-direction: column;
+  }
+  .hub-aside > * {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+  .hub-prog {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .ms-pp-grid {
+    grid-template-columns: 1fr;
+  }
   .course-root .course-interactive-embed--diagram .course-interactive-embed-stage {
     height: clamp(260px, 44dvh, 440px);
     min-height: 260px;

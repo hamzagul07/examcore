@@ -2,11 +2,12 @@ import { notFound } from 'next/navigation'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getIbCourse, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
 import { getIbSubject } from '@/lib/ib/catalog'
+import { buildIbCourseHubIntro, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
-import { PageJsonLd } from '@/components/seo/PageJsonLd'
+import { IbCourseSubjectJsonLd } from '@/components/seo/IbCourseSubjectJsonLd'
 import { IbLegitResourcesPanel } from '@/components/ib/IbLegitResourcesPanel'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -20,17 +21,13 @@ export async function generateMetadata({ params }: Props) {
   const course = getIbCourse(slug)
   const subject = getIbSubject(slug)
   if (!course || !subject) return {}
+  const seo = buildIbCourseSubjectSeo(subject, course.lessonCount)
   return createPageMetadata({
-    title: `IB ${subject.name} ${subject.level} — Free Course`,
-    description: `A free IB Diploma ${subject.name} ${subject.level} course: ${course.lessonCount} topic-by-topic lessons with worked examples, markband tips and flashcards. From MarkScheme.`,
+    title: seo.title,
+    description: seo.description,
     path: course.path,
-    keywords: [
-      `IB ${subject.name} ${subject.level}`,
-      `IB ${subject.name} notes`,
-      `IB ${subject.name} course`,
-      `IB ${subject.name} revision`,
-      `free IB ${subject.name} ${subject.level}`,
-    ],
+    keywords: seo.keywords,
+    ogImagePath: seo.ogImagePath,
   })
 }
 
@@ -41,28 +38,26 @@ export default async function IbCoursePage({ params }: Props) {
   if (!course || !subject) notFound()
 
   const lessons = getIbCourseLessons(slug)
+  const seo = buildIbCourseSubjectSeo(subject, course.lessonCount)
+  const intro = buildIbCourseHubIntro(subject, course.lessonCount)
   const communityOn = isCommunityEnabled()
 
   return (
     <>
-      <PageJsonLd
-        path={course.path}
-        title={`IB ${subject.name} ${subject.level} free course`}
-        description={`Topic-by-topic IB ${subject.name} ${subject.level} lessons.`}
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'IB', path: '/ib' },
-          { name: `${subject.name} ${subject.level}`, path: `/ib/subjects/${slug}` },
-          { name: 'Course', path: course.path },
-        ]}
+      <IbCourseSubjectJsonLd
+        subject={subject}
+        description={seo.description}
+        lessons={lessons}
+        topics={seo.topics}
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
         <HubSeoIntro
-          heading={`Free IB ${subject.name} ${subject.level} course`}
-          paragraph={`Every ${subject.name} topic, taught from the ground up with worked examples, markband tips and flashcards — built for the current IB syllabus. Work through it topic by topic, then practise past papers.`}
+          heading={intro.heading}
+          paragraph={intro.paragraph}
           links={[
             { href: `/ib/subjects/${slug}`, label: `${subject.name} past papers`, variant: 'muted' },
-            { href: '/mark', label: 'Get feedback on your answer →', variant: 'primary' },
+            { href: '/ib/courses', label: 'All IB courses', variant: 'muted' },
+            { href: '/mark', label: 'Criterion practice →', variant: 'primary' },
             ...(communityOn
               ? [{ href: `/community/s/${slug}`, label: 'Exam Room community', variant: 'muted' as const }]
               : []),
@@ -76,7 +71,7 @@ export default async function IbCoursePage({ params }: Props) {
         lessons={lessons}
         initialPaperNumber={null}
         basePath="/ib/courses"
-        coursesCrumb={{ label: 'IB', href: '/ib' }}
+        coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
         board="ib"
         asideExtra={<IbLegitResourcesPanel slug={slug} />}
         community={

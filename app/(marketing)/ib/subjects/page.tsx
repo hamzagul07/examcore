@@ -8,6 +8,9 @@ import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
 import { getIbSubjects, getIbSubjectsByGroup } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
+import { getIbCourse } from '@/lib/courses/ib'
+import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display'
+import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 
 const PATH = '/ib/subjects'
 
@@ -67,8 +70,29 @@ export default function IbSubjectsPage() {
         </h1>
         <p className="ms-lead" style={{ maxWidth: '46ch' }}>
           Every IBDP subject by group, at Higher Level and Standard Level. Pick one for past papers,
-          mark-scheme guidance and revision help.
+          mark-scheme guidance, free courses, and revision help.
         </p>
+
+        <HubSeoIntro
+          heading="Past papers, courses, and criterion marking"
+          paragraph="Each subject page lists exam papers and markband guidance. Where we have a full course, you can revise topic-by-topic with worked examples and practise with IB criterion marking — all free."
+          links={[
+            { href: '/ib/courses', label: 'Free IB courses →', variant: 'primary' },
+            { href: '/ib/past-papers', label: 'IB past papers', variant: 'muted' },
+            { href: '/courses', label: 'Cambridge courses', variant: 'muted' },
+            { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
+          ]}
+        />
+
+        {getIbCatalogCards().length ? (
+          <p className="ms-body-2" style={{ marginTop: 24, color: 'var(--ec-text-secondary)' }}>
+            <Link href="/ib/courses" className="ec-link">
+              {getIbCatalogCards().length} free IB courses
+            </Link>{' '}
+            with {getIbCatalogCards().reduce((a, c) => a + c.lessons, 0)} lessons — TOK, Extended Essay,
+            sciences, maths, and Group 6 arts.
+          </p>
+        ) : null}
 
         {grouped.map((g) => (
           <section key={g.group} style={{ marginTop: 36 }} aria-labelledby={`g-${g.groupNumber}`}>

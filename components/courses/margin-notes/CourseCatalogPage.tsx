@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { ContinueLearningStrip } from '@/components/courses/margin-notes/ContinueLearningStrip'
@@ -95,7 +96,10 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
             </h2>
             <p className="body-2 catalog-ib-lead">
               TOK, Extended Essay, CAS, sciences, maths, and Group 6 arts — criterion-based marking on
-              every topic.
+              every topic.{' '}
+              <Link href="/ib/courses" className="ec-link">
+                Browse all IB courses →
+              </Link>
             </p>
             {(
               [

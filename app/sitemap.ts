@@ -30,6 +30,7 @@ const STATIC_ROUTES = [
   { path: '/courses', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/past-papers', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/ib', priority: 0.88, changeFrequency: 'weekly' as const },
+  { path: '/ib/courses', priority: 0.87, changeFrequency: 'weekly' as const },
   { path: '/ib/subjects', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/ib/past-papers', priority: 0.85, changeFrequency: 'weekly' as const },
   { path: '/tools/grade-boundary-calculator', priority: 0.82, changeFrequency: 'monthly' as const },

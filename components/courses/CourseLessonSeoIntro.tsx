@@ -8,13 +8,27 @@ export function CourseLessonSeoIntro({
   subjectCode,
   subjectName,
   markPath,
+  courseHref,
+  subjectHubHref,
+  markCtaLabel = 'Mark a past paper',
+  courseCtaLabel,
+  subjectHubCtaLabel,
 }: {
   heading: string
   paragraph: string
   subjectCode: string
   subjectName: string
   markPath: string
+  courseHref?: string
+  subjectHubHref?: string
+  markCtaLabel?: string
+  courseCtaLabel?: string
+  subjectHubCtaLabel?: string
 }) {
+  const courseLink = courseHref ?? `/courses/${subjectCode}`
+  const hubLink = subjectHubHref ?? `/subjects/${subjectCode}`
+  const courseLabel = courseCtaLabel ?? `Full ${subjectName} ${subjectCode} course`
+  const hubLabel = subjectHubCtaLabel ?? `${subjectCode} subject hub`
   return (
     <section
       className="course-seo-intro mb-8 rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_22%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] p-5 sm:p-6"
@@ -40,25 +54,25 @@ export function CourseLessonSeoIntro({
       </div>
       <div className="flex flex-wrap gap-3 text-sm">
         <Link
-          href={`/courses/${subjectCode}`}
+          href={courseLink}
           className="inline-flex items-center gap-1.5 rounded-xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] px-3 py-2 font-semibold text-[var(--ec-text-primary)] no-underline hover:border-[var(--ec-brand)]/40"
         >
           <BookOpen className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
-          Full {subjectName} {subjectCode} course
+          {courseLabel}
         </Link>
         <Link
           href={markPath}
           className="inline-flex items-center gap-1.5 rounded-xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border-subtle))] bg-[color-mix(in_srgb,var(--ec-brand)_10%,var(--ec-surface-raised))] px-3 py-2 font-semibold text-[var(--ec-brand)] no-underline hover:border-[var(--ec-brand)]"
         >
           <Target className="h-4 w-4" aria-hidden />
-          Mark a past paper
+          {markCtaLabel}
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </Link>
         <Link
-          href={`/subjects/${subjectCode}`}
+          href={hubLink}
           className="inline-flex items-center gap-1.5 rounded-xl border-2 border-[var(--ec-border-subtle)] px-3 py-2 font-medium text-[var(--ec-text-secondary)] no-underline hover:text-[var(--ec-accent)]"
         >
-          {subjectCode} subject hub
+          {hubLabel}
         </Link>
       </div>
     </section>

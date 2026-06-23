@@ -8,13 +8,13 @@ import {
 } from '@/lib/courses/ib'
 import { getIbSubject } from '@/lib/ib/catalog'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
+import { buildIbCourseLessonSeo, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
-import { PageJsonLd } from '@/components/seo/PageJsonLd'
-import { JsonLd } from '@/components/seo/JsonLd'
-import { learningResourceNode, faqPageNode } from '@/lib/seo/structured-data'
-import { SITE_URL } from '@/lib/site-config'
+import { IbCourseLessonJsonLd } from '@/components/seo/IbCourseLessonJsonLd'
+import { ibShortName } from '@/lib/seo/ib-seo'
 
 type Props = { params: Promise<{ slug: string; lesson: string[] }> }
 
@@ -27,16 +27,19 @@ export async function generateMetadata({ params }: Props) {
   const subject = getIbSubject(slug)
   const l = getIbCourseLesson(slug, lesson[lesson.length - 1] ?? '')
   if (!subject || !l) return {}
+  const seo = buildIbCourseLessonSeo(subject, l)
+  const subjectSeo = buildIbCourseSubjectSeo(subject, getIbCourseLessons(slug).length)
+  const modified = l.updated ? `${l.updated}T12:00:00.000Z` : undefined
+
   return createPageMetadata({
-    title: `${l.title} — IB ${subject.name} ${subject.level}`,
-    description: l.summary || `Learn ${l.title} for IB ${subject.name} ${subject.level} — worked examples, markband tips and flashcards.`,
+    title: seo.title,
+    description: seo.description,
     path: `/ib/courses/${slug}/${l.slug}`,
-    keywords: [
-      `IB ${subject.name} ${l.title}`,
-      `${l.title} IB ${subject.name}`,
-      `IB ${subject.name} ${subject.level} notes`,
-    ],
+    keywords: seo.keywords,
+    ogImagePath: subjectSeo.ogImagePath,
     ogType: 'article',
+    publishedTime: modified,
+    modifiedTime: modified,
   })
 }
 
@@ -50,41 +53,36 @@ export default async function IbLessonPage({ params }: Props) {
 
   const lessons = getIbCourseLessons(slug)
   const enriched = enrichLessonVisual(slug, l)
-  const url = `${SITE_URL}/ib/courses/${slug}/${l.slug}`
+  const seo = buildIbCourseLessonSeo(subject, l)
+  const subjectSeo = buildIbCourseSubjectSeo(subject, lessons.length)
+  const short = ibShortName(subject)
   const communityOn = isCommunityEnabled()
 
   return (
     <>
-      <PageJsonLd
-        path={`/ib/courses/${slug}/${l.slug}`}
-        title={`${l.title} — IB ${subject.name} ${subject.level}`}
-        description={l.summary}
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'IB', path: '/ib' },
-          { name: `${subject.name} ${subject.level}`, path: `/ib/subjects/${slug}` },
-          { name: 'Course', path: `/ib/courses/${slug}` },
-          { name: l.title, path: `/ib/courses/${slug}/${l.slug}` },
-        ]}
+      <IbCourseLessonJsonLd
+        subject={subject}
+        lesson={l}
+        seoTitle={seo.title}
+        seoDescription={seo.description}
+        topics={subjectSeo.topics}
       />
-      <JsonLd
-        data={[
-          learningResourceNode({
-            name: `IB ${subject.name} ${subject.level}: ${l.title}`,
-            description: l.summary,
-            url,
-            syllabusCode: slug,
-            topics: [`IB ${subject.name}`, l.title],
-            level:
-              subject.groupNumber === 7
-                ? 'Core'
-                : subject.level === 'HL'
-                  ? 'Higher Level'
-                  : 'Standard Level',
-          }),
-          ...(l.faq && l.faq.length >= 2 ? [faqPageNode(l.faq.map((f) => ({ q: f.q, a: f.a })))] : []),
-        ]}
-      />
+
+      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-4 sm:px-6">
+        <CourseLessonSeoIntro
+          heading={seo.introHeading}
+          paragraph={seo.introParagraph}
+          subjectCode={slug}
+          subjectName={subject.name}
+          markPath={seo.markPath}
+          courseHref={`/ib/courses/${slug}`}
+          subjectHubHref={`/ib/subjects/${slug}`}
+          markCtaLabel="IB criterion practice"
+          courseCtaLabel={`Full IB ${short} course`}
+          subjectHubCtaLabel={`${short} subject hub`}
+        />
+      </div>
+
       <CourseLessonClient
         subjectCode={slug}
         subjectName={subject.name}
@@ -94,7 +92,7 @@ export default async function IbLessonPage({ params }: Props) {
         lessons={lessons}
         paperQuery={null}
         basePath="/ib/courses"
-        coursesCrumb={{ label: 'IB', href: '/ib' }}
+        coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
         community={
           communityOn ? (
             <div className="lesson-community">

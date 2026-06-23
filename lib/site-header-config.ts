@@ -91,6 +91,10 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     return { label: 'IB Diploma', href: '/ib', glyph: '◇' }
   }
 
+  if (pathname === '/ib/courses') {
+    return { label: 'IB courses', href: '/ib/courses', glyph: '📚' }
+  }
+
   const lessonMatch = pathname.match(/^\/courses\/([^/]+)(?:\/(.+))?/)
   if (lessonMatch?.[2]) {
     return {

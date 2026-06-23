@@ -179,6 +179,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/ib/past-papers',
     },
     {
+      question: 'Are there free IB courses on MarkScheme?',
+      answer:
+        'Yes — free topic-by-topic IB Diploma courses for TOK, Extended Essay, CAS, sciences, maths, and Group 6 arts, with criterion practice marking on every lesson.',
+      href: '/ib/courses',
+    },
+    {
       question: 'How is IB marking different from A-Level?',
       answer:
         'IB uses markbands and assessment criteria rather than B1/M1/A1 codes — examiners place your answer in a level band against descriptors.',

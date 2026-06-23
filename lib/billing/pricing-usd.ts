@@ -2,35 +2,33 @@ import type { BillingPeriod, RegionTier } from '@/lib/database.types'
 import type { ProductKey } from './pricing'
 
 /**
- * Tier C subscription prices are anchored to exact PKR amounts (Pakistan list price).
- * USD and INR are derived at 100 PKR = $1 so Rs 3,700/month displays as $37/month —
- * students see consistent numbers when switching currency on /pricing.
+ * Tier C subscriptions: exact PKR list prices (Pakistan), with USD/INR derived via
+ * real exchange rates so Rs 3,700/month ≈ $13.30 at ~278 PKR/USD.
  */
-export const TIER_C_PKR_PER_USD = 100
 
 /** USD list prices in cents (tiers A/B + credits — keep in sync with setup-stripe-products.mjs). */
 export const PRICING_USD = {
   student: {
     A: { monthly: 3300, yearly: 25900 },
     B: { monthly: 2200, yearly: 17300 },
-    C: { monthly: 3700, yearly: 29030 },
+    C: { monthly: 1331, yearly: 10446 },
   },
   scholar: {
     A: { monthly: 3300, yearly: 25900 },
     B: { monthly: 2200, yearly: 17300 },
-    C: { monthly: 3700, yearly: 29030 },
+    C: { monthly: 1331, yearly: 10446 },
   },
   mastery: {
     A: { monthly: 6250, yearly: 49100 },
     B: { monthly: 4170, yearly: 32700 },
-    C: { monthly: 6999, yearly: 54910 },
+    C: { monthly: 2518, yearly: 19752 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },
   credits_500: { A: 10000, B: 6000, C: 4000 },
 } as const
 
-/** Exact PKR amounts for region tier C (Pakistan). Source of truth for tier C subs. */
+/** Exact PKR amounts for region tier C (Pakistan), in paisa. Source of truth for tier C subs. */
 export const PRICING_PKR_C: Record<
   (typeof SUBSCRIPTION_KEYS)[number],
   { monthly: number; yearly: number }
@@ -40,13 +38,14 @@ export const PRICING_PKR_C: Record<
   mastery: { monthly: 699_900, yearly: 5_491_000 },
 }
 
+/** Units of each currency per 1 USD (fallback — setup-stripe-products.mjs fetches live FX). */
 export const PRICING_FX: Record<string, number> = {
   usd: 1,
   gbp: 0.79,
   eur: 0.92,
   aud: 1.52,
-  inr: 83,
-  pkr: 280,
+  inr: 95,
+  pkr: 278,
 }
 
 export const PRICING_ROUND_TO_CENTS: Record<string, number> = {
@@ -62,29 +61,33 @@ const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery'] as const
 
 const TIER_C_CURRENCIES = new Set(['usd', 'inr', 'pkr'])
 
-/** Derive tier C subscription amount from PKR anchor (paisa) for USD / INR / PKR. */
+/** PKR paisa → USD cents using PKR/USD rate. */
+export function usdCentsFromPkrAnchor(pkrCents: number, pkrPerUsd = PRICING_FX.pkr): number {
+  return Math.max(1, Math.round(pkrCents / pkrPerUsd))
+}
+
+/** Derive tier C subscription amount from PKR anchor for USD / INR / PKR. */
 export function tierCAmountFromPkrAnchor(
   pkrCents: number,
-  currency: string
+  currency: string,
+  fx: Record<string, number> = PRICING_FX
 ): number {
   const cur = currency.toLowerCase()
   if (cur === 'pkr') return pkrCents
 
-  const usdCents = Math.max(1, Math.round(pkrCents / TIER_C_PKR_PER_USD))
+  const usdCents = usdCentsFromPkrAnchor(pkrCents, fx.pkr ?? PRICING_FX.pkr)
   if (cur === 'usd') return usdCents
 
-  if (cur === 'inr') {
-    const raw = usdCents * (PRICING_FX.inr ?? 83)
-    const unit = PRICING_ROUND_TO_CENTS.inr
-    return Math.max(unit, Math.round(raw / unit) * unit)
-  }
-
-  return convertUsdCents(usdCents, cur)
+  return convertUsdCents(usdCents, cur, fx)
 }
 
-export function convertUsdCents(usdCents: number, currency: string): number {
+export function convertUsdCents(
+  usdCents: number,
+  currency: string,
+  fx: Record<string, number> = PRICING_FX
+): number {
   const cur = currency.toLowerCase()
-  const raw = usdCents * (PRICING_FX[cur] ?? 1)
+  const raw = usdCents * (fx[cur] ?? 1)
   const unit = PRICING_ROUND_TO_CENTS[cur] ?? 1
   return Math.max(unit, Math.round(raw / unit) * unit)
 }

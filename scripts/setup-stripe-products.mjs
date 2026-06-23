@@ -57,19 +57,19 @@ const PRICING = {
   student: {
     A: { monthly: 3300, yearly: 25900 },
     B: { monthly: 2200, yearly: 17300 },
-    C: { monthly: 3700, yearly: 29030 },
+    C: { monthly: 1331, yearly: 10446 },
   },
-  // Pro (marketing) — PKR anchor: Rs 3,700 / month (tier C) → $37 at 100 PKR/USD peg.
+  // Pro — PKR anchor Rs 3,700/mo; USD/INR from live FX (≈ $13.30 at 278 PKR/USD).
   scholar: {
     A: { monthly: 3300, yearly: 25900 },
     B: { monthly: 2200, yearly: 17300 },
-    C: { monthly: 3700, yearly: 29030 },
+    C: { monthly: 1331, yearly: 10446 },
   },
-  // Max (marketing) — PKR anchor: Rs 6,999 / month (tier C) → $69.99 peg.
+  // Max — PKR anchor Rs 6,999/mo.
   mastery: {
     A: { monthly: 6250, yearly: 49100 },
     B: { monthly: 4170, yearly: 32700 },
-    C: { monthly: 6999, yearly: 54910 },
+    C: { monthly: 2518, yearly: 19752 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },
@@ -92,10 +92,8 @@ const CURRENCIES_PER_TIER = {
 // USD-based FX. These are FALLBACK values only — applyLiveFxRates() overwrites
 // them with real current rates at run time. Kept so the script still works
 // offline / if the FX API is down.
-const FX = { usd: 1, gbp: 0.79, eur: 0.92, aud: 1.52, inr: 83, pkr: 280 }
+const FX = { usd: 1, gbp: 0.79, eur: 0.92, aud: 1.52, inr: 95, pkr: 278 }
 const FX_SUPPORTED = ['gbp', 'eur', 'aud', 'inr', 'pkr']
-/** Tier C subs: 100 PKR = $1 — keep in sync with lib/billing/pricing-usd.ts */
-const TIER_C_PKR_PER_USD = 100
 
 /**
  * Fetch live USD-based exchange rates and merge them into FX so every non-USD
@@ -149,13 +147,8 @@ function convert(usdCents, currency) {
 function tierCFromPkrAnchor(pkrCents, currency) {
   const cur = currency.toLowerCase()
   if (cur === 'pkr') return pkrCents
-  const usdCents = Math.max(1, Math.round(pkrCents / TIER_C_PKR_PER_USD))
+  const usdCents = Math.max(1, Math.round(pkrCents / FX.pkr))
   if (cur === 'usd') return usdCents
-  if (cur === 'inr') {
-    const raw = usdCents * (FX.inr ?? 83)
-    const unit = ROUND_TO_CENTS.inr
-    return Math.max(unit, Math.round(raw / unit) * unit)
-  }
   return convert(usdCents, currency)
 }
 

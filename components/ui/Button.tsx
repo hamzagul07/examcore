@@ -3,7 +3,10 @@
 import * as React from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { ButtonSpinner } from '@/components/ui/ButtonSpinner'
+import {
+  ButtonLoadingState,
+  type ButtonLoadingMode,
+} from '@/components/ui/ButtonLoadingState'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'underline'
@@ -22,6 +25,7 @@ export interface ButtonProps {
   loading?: boolean
   isLoading?: boolean
   loadingText?: string
+  loadingMode?: ButtonLoadingMode
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   /** Light haptic on tap. Defaults true for primary, false otherwise. */
@@ -76,6 +80,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
       isLoading: isLoadingProp = false,
       loadingText,
+      loadingMode = 'shimmer',
       leftIcon,
       rightIcon,
       haptic,
@@ -144,10 +149,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       >
         {isLoading ? (
-          <>
-            <ButtonSpinner size={16} />
-            <span>{loadingText ?? children}</span>
-          </>
+          <ButtonLoadingState mode={loadingMode} loadingText={loadingText}>
+            {children}
+          </ButtonLoadingState>
         ) : (
           <>
             {leftIcon && (

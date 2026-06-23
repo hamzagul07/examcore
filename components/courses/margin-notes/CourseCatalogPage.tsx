@@ -20,7 +20,7 @@ export function CourseCatalogPage({ subjects, continueCatalog }: Props) {
   const totalQ = subjects.reduce((a, s) => a + s.q, 0)
 
   return (
-    <main className="catalog-page" data-screen-label="Courses — catalog">
+    <main className="catalog-page ec-page-mesh" data-screen-label="Courses — catalog">
       <header className="catalog-hero pg">
         <div className="catalog-hero-text">
           <p className="overline">Courses · 100% free, forever</p>

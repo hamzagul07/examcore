@@ -34,7 +34,7 @@ const STEPS = [
 
 export function LandingSteps() {
   return (
-    <section id="how-it-works" className="ms-pg ms-sec scroll-mt-20">
+    <section id="how-it-works" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--mark">
       <p className="ms-overline">How it works</p>
       <h2 className="ms-h2">
         Upload. Mark. <em>Fix.</em>
@@ -45,8 +45,8 @@ export function LandingSteps() {
         </Link>
       </p>
       <div className="ms-steps">
-        {STEPS.map((step) => (
-          <div key={step.num} className="ec-card ms-step">
+        {STEPS.map((step, i) => (
+          <div key={step.num} className={`ec-card ms-step ms-step--${i + 1}`}>
             <div className="ms-num">{step.num}</div>
             <h3 className="ms-h3">{step.title}</h3>
             <p className="ms-body-2">{step.body}</p>

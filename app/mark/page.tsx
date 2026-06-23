@@ -1221,7 +1221,7 @@ export default function MarkPage() {
               </section>
             ) : (
             <div className="ms-upload-grid">
-              <div>
+              <div className="ms-mark-upload-zone ec-section-tint ec-section-tint--learn">
                 <PageUploader
                   pages={answerPages}
                   onPagesChange={setAnswerPages}
@@ -1468,7 +1468,8 @@ export default function MarkPage() {
                     size="lg"
                     fullWidth
                     loading={loading}
-                    loadingText="Marking..."
+                    loadingMode="progress"
+                    loadingText="Marking your answer…"
                     disabled={
                       !answerPages.length ||
                       hasCompressingPages(answerPages) ||

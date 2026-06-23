@@ -22,6 +22,7 @@
 @import "../lib/design-system/margin-notes-interactions.css";
 @import "../lib/design-system/app-interactions.css";
 @import "../lib/design-system/margin-notes-contrast.css";
+@import "../lib/design-system/vivid-surfaces.css";
 @import "../lib/design-system/ec-theme-contrast.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -225,7 +226,16 @@
 
 @layer components {
   .gradient-text {
-    color: var(--ec-text-primary);
+    background: linear-gradient(
+      120deg,
+      var(--ec-brand-deep) 0%,
+      var(--ec-c-phys) 42%,
+      var(--ec-c-chem) 78%,
+      var(--ec-accent-warm-deep) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .bento-grid {

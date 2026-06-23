@@ -1,0 +1,403 @@
+/* ============================================================
+   Vivid editorial surfaces — mesh backgrounds, section tints,
+   gradient text. Token-driven; works on zen + late-night.
+   ============================================================ */
+
+[data-ec-theme='late-night'] {
+  --ec-mesh-math: color-mix(in srgb, var(--ec-c-math) 28%, transparent);
+  --ec-mesh-phys: color-mix(in srgb, var(--ec-c-phys) 26%, transparent);
+  --ec-mesh-chem: color-mix(in srgb, var(--ec-c-chem) 26%, transparent);
+  --ec-mesh-bio: color-mix(in srgb, var(--ec-c-bio) 24%, transparent);
+  --ec-mesh-hum: color-mix(in srgb, var(--ec-c-hum) 24%, transparent);
+  --ec-section-tint-mark: color-mix(in srgb, var(--ec-brand) 14%, transparent);
+  --ec-section-tint-learn: color-mix(in srgb, var(--ec-accent-warm) 16%, transparent);
+  --ec-section-tint-discuss: color-mix(in srgb, var(--ec-acc-violet) 14%, transparent);
+  --ec-gradient-hero:
+    radial-gradient(520px circle at 88% 6%, var(--ec-mesh-math) 0%, transparent 58%),
+    radial-gradient(480px circle at 8% 18%, var(--ec-mesh-phys) 0%, transparent 55%),
+    radial-gradient(400px circle at 72% 88%, var(--ec-section-tint-mark) 0%, transparent 62%);
+  --ec-gradient-card-hover: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 12%, var(--ec-surface)) 0%,
+    var(--ec-surface) 100%
+  );
+  --ec-ink-splash: var(--ec-brand);
+  --ec-shimmer-highlight: rgba(255, 255, 255, 0.35);
+  --ec-btn-loading-track: rgba(255, 255, 255, 0.12);
+}
+
+[data-ec-theme='zen'] {
+  --ec-mesh-math: color-mix(in srgb, var(--ec-c-math) 22%, transparent);
+  --ec-mesh-phys: color-mix(in srgb, var(--ec-c-phys) 20%, transparent);
+  --ec-mesh-chem: color-mix(in srgb, var(--ec-c-chem) 20%, transparent);
+  --ec-mesh-bio: color-mix(in srgb, var(--ec-c-bio) 18%, transparent);
+  --ec-mesh-hum: color-mix(in srgb, var(--ec-c-hum) 18%, transparent);
+  --ec-section-tint-mark: color-mix(in srgb, var(--ec-brand) 10%, transparent);
+  --ec-section-tint-learn: color-mix(in srgb, var(--ec-accent-warm) 12%, transparent);
+  --ec-section-tint-discuss: color-mix(in srgb, var(--ec-acc-violet) 10%, transparent);
+  --ec-gradient-hero:
+    radial-gradient(520px circle at 88% 6%, var(--ec-mesh-math) 0%, transparent 58%),
+    radial-gradient(480px circle at 8% 18%, var(--ec-mesh-phys) 0%, transparent 55%),
+    radial-gradient(400px circle at 72% 88%, var(--ec-section-tint-mark) 0%, transparent 62%);
+  --ec-gradient-card-hover: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface)) 0%,
+    var(--ec-surface) 100%
+  );
+  --ec-ink-splash: var(--ec-brand-deep);
+  --ec-shimmer-highlight: rgba(255, 255, 255, 0.55);
+  --ec-btn-loading-track: rgba(0, 0, 0, 0.08);
+}
+
+/* Page-level mesh backdrop */
+.ec-page-mesh {
+  position: relative;
+  isolation: isolate;
+}
+
+.ec-page-mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--ec-gradient-hero);
+  opacity: 1;
+}
+
+.ec-page-mesh--dual::before {
+  background:
+    radial-gradient(440px circle at 12% 92%, var(--ec-mesh-hum) 0%, transparent 58%),
+    radial-gradient(380px circle at 92% 12%, var(--ec-mesh-chem) 0%, transparent 55%),
+    var(--ec-gradient-hero);
+}
+
+/* Section color washes */
+.ec-section-tint {
+  position: relative;
+  isolation: isolate;
+}
+
+.ec-section-tint::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.ec-section-tint--mark::before {
+  background: linear-gradient(
+    180deg,
+    var(--ec-section-tint-mark) 0%,
+    transparent 72%
+  );
+}
+
+.ec-section-tint--learn::before {
+  background: linear-gradient(
+    180deg,
+    var(--ec-section-tint-learn) 0%,
+    transparent 72%
+  );
+}
+
+.ec-section-tint--discuss::before {
+  background: linear-gradient(
+    180deg,
+    var(--ec-section-tint-discuss) 0%,
+    transparent 72%
+  );
+}
+
+/* Gradient headline accent */
+.ec-gradient-text {
+  background: linear-gradient(
+    120deg,
+    var(--ec-brand-deep) 0%,
+    var(--ec-c-phys) 42%,
+    var(--ec-c-chem) 78%,
+    var(--ec-accent-warm-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-ec-theme='late-night'] .ec-gradient-text {
+  background: linear-gradient(
+    120deg,
+    var(--ec-brand) 0%,
+    var(--ec-c-phys) 40%,
+    var(--ec-c-chem) 75%,
+    var(--ec-accent-warm) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Kicker underline accent */
+.ec-kicker-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.ec-kicker-accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-c-math),
+    var(--ec-c-phys),
+    var(--ec-c-bio)
+  );
+  opacity: 0.85;
+}
+
+/* Button loading animations */
+.ec-btn-loading-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.ec-btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    var(--ec-shimmer-highlight) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  animation: ec-btn-shimmer-sweep 1.1s ease-in-out infinite;
+}
+
+.ec-btn-progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--ec-btn-loading-track);
+  overflow: hidden;
+  border-radius: 0 0 var(--ec-radius-button) var(--ec-radius-button);
+}
+
+.ec-btn-progress-fill {
+  height: 100%;
+  background: var(--ec-shimmer-highlight);
+  animation: ec-btn-progress-fill 2s ease-out forwards;
+}
+
+@keyframes ec-inline-saving-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ec-inline-saving {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ec-brand);
+  animation: ec-inline-saving-pulse 1s ease-in-out infinite;
+}
+
+.ec-btn-pulse-ring {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  border: 2px solid var(--ec-brand);
+  animation: ec-btn-pulse-ring 1s ease-out infinite;
+}
+
+@keyframes ec-btn-shimmer-sweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes ec-btn-progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 92%;
+  }
+}
+
+@keyframes ec-btn-pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-btn-shimmer::after,
+  .ec-btn-progress-fill,
+  .ec-btn-pulse-ring,
+  .ec-inline-saving {
+    animation: none;
+  }
+
+  .ec-btn-shimmer::after {
+    opacity: 0.2;
+    transform: none;
+  }
+
+  .ec-btn-progress-fill {
+    width: 60%;
+  }
+}
+
+/* Pillar card vivid headers */
+.ms-pillar--mark .ms-pillar-band {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 72%, var(--ec-canvas)) 0%,
+    var(--ec-brand) 100%
+  );
+}
+
+.ms-pillar--learn .ms-pillar-band {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-accent-warm) 72%, var(--ec-canvas)) 0%,
+    var(--ec-accent-warm) 100%
+  );
+}
+
+.ms-pillar--discuss .ms-pillar-band {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-acc-violet) 72%, var(--ec-canvas)) 0%,
+    var(--ec-acc-violet) 100%
+  );
+}
+
+.ms-pillar-band {
+  position: relative;
+  margin: -28px -26px 16px;
+  padding: 22px 26px 18px;
+  border-radius: 13px 13px 0 0;
+  overflow: hidden;
+}
+
+.ms-pillar-band .ms-pillar-watermark {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1;
+  opacity: 0.22;
+  color: var(--ec-paper);
+  pointer-events: none;
+  user-select: none;
+}
+
+[data-ec-theme='late-night'] .ms-pillar-band .ms-pillar-watermark {
+  color: #14120d;
+  opacity: 0.18;
+}
+
+.ms-pillar--featured {
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+  box-shadow:
+    var(--ec-card-shadow),
+    0 0 0 1px color-mix(in srgb, var(--ec-brand) 18%, transparent);
+}
+
+/* Pricing vivid cards */
+.pricing-card--featured {
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand),
+    var(--ec-c-phys),
+    var(--ec-c-chem)
+  );
+}
+
+.pricing-card-mesh {
+  position: relative;
+}
+
+.pricing-card-mesh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    280px circle at 100% 0%,
+    var(--ec-section-tint-mark) 0%,
+    transparent 70%
+  );
+  border-radius: inherit;
+}
+
+/* Catalog page mesh */
+/* Catalog stat accents */
+.catalog-hero-meta .hero-stat:nth-child(1) b {
+  color: var(--ec-brand);
+}
+
+.catalog-hero-meta .hero-stat:nth-child(2) b {
+  color: var(--ec-c-phys);
+}
+
+.catalog-hero-meta .hero-stat:nth-child(3) b {
+  color: var(--ec-accent-warm-deep, var(--ec-accent-warm));
+}
+
+.catalog-grid .scard:hover {
+  box-shadow: var(--ec-card-hover-shadow);
+}
+
+.ms-course-card {
+  border-left: 3px solid var(--ec-c-phys);
+}
+
+/* Mark upload warm mesh */
+.ms-mark-upload-zone.ec-section-tint--learn::before {
+  border-radius: var(--ec-radius-card);
+}

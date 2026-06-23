@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import Link from 'next/link'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import {
   ExamSheet,
   ExamSheetLine,
@@ -40,9 +41,11 @@ interface LandingHeroProps {
 
 export function LandingHero({ markHref }: LandingHeroProps) {
   return (
-    <section className="ms-pg ms-hero ms-hero--energized ec-no-annot-mobile">
+    <section className="ms-pg ms-hero ms-hero--energized ec-page-mesh ec-no-annot-mobile">
       <div className="ms-fade-in">
-        <p className="ms-hero-kicker">Cambridge A-Level, O-Level &amp; IB Diploma</p>
+        <p className="ms-hero-kicker ec-kicker-accent">
+          Cambridge A-Level, O-Level &amp; IB Diploma
+        </p>
         <h1 className="ms-h-display">
           Your past papers, <InkCircle>marked</InkCircle> like the{' '}
           <em>
@@ -56,15 +59,19 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           courses, and discuss with other students in subject communities — all in one place.
         </p>
         <div className="ms-hero-ctas">
-          <Link href={markHref} className="ec-btn-primary">
+          <LoadingLink
+            href={markHref}
+            className="ec-btn-primary brand-pulse"
+            loadingText="Opening mark…"
+          >
             Mark your first question — free
-          </Link>
-          <Link href="/courses" className="ec-btn-warm">
+          </LoadingLink>
+          <LoadingLink href="/courses" className="ec-btn-warm" loadingText="Loading courses…">
             Free courses
-          </Link>
-          <Link href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
+          </LoadingLink>
+          <LoadingLink href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
             Exam Room
-          </Link>
+          </LoadingLink>
         </div>
         <p className="ms-micro ms-hero-micro">
           MARK · COURSES · EXAM ROOM · FREE TIER · NO CARD

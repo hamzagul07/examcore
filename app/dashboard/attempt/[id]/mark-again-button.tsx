@@ -2,7 +2,8 @@
 
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { RotateCcw, Loader2 } from 'lucide-react'
+import { RotateCcw } from 'lucide-react'
+import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { motion } from 'framer-motion'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 import { STORAGE_KEYS, writeClientStorage } from '@/lib/client-storage'
@@ -65,10 +66,9 @@ export function MarkAgainButton({
       className="ec-btn-primary w-full justify-center px-7 py-4 text-base sm:w-auto"
     >
       {pending ? (
-        <>
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-          Opening...
-        </>
+        <ButtonLoadingState mode="shimmer" loadingText="Opening…">
+          Mark this question again
+        </ButtonLoadingState>
       ) : (
         <>
           <RotateCcw className="h-4 w-4" />

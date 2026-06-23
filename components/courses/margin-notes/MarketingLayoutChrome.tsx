@@ -6,6 +6,7 @@ import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { MarginNotesPageShell } from '@/components/courses/margin-notes/MarginNotesPageShell'
 import { getSiteChromeVariant } from '@/lib/site-chrome'
+import { MarketingTapFeedbackRoot } from '@/components/layout/MarketingTapFeedbackRoot'
 
 function isLessonPath(pathname: string): boolean {
   return /^\/courses\/[^/]+\/.+/.test(pathname)
@@ -25,12 +26,12 @@ export function MarketingLayoutChrome({ children }: { children: React.ReactNode 
 
   if (variant === 'marketing') {
     return (
-      <>
+      <MarketingTapFeedbackRoot>
         <ScrollProgressBar />
         <SiteHeader variant="marketing" />
         {children}
         <SiteFooter variant="marketing" />
-      </>
+      </MarketingTapFeedbackRoot>
     )
   }
 

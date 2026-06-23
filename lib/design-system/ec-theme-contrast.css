@@ -294,3 +294,40 @@ a.ec-btn-primary,
 a.btn-primary {
   color: var(--ec-on-brand-text);
 }
+
+/* Pricing page — same token bridge as course-root; avoids shadcn --muted (surface) as text */
+.pricing-page {
+  color: var(--text);
+  --ec-text-primary: var(--text);
+  --ec-text-secondary: var(--text-2);
+  --ec-text-tertiary: var(--text-2);
+  --ec-text-faint: color-mix(in oklch, var(--text) 62%, var(--bg));
+  --ec-brand: var(--ink);
+  --ec-border: var(--border);
+  --ec-surface: var(--surface);
+  --ec-canvas: var(--bg);
+  --ec-on-brand-text: var(--on-ink-text);
+}
+
+.pricing-page :is(
+  .pricing-toggle-btn:not(.on),
+  .plan-per,
+  .plan-was,
+  .plan-eq,
+  .plan-cta.is-muted,
+  .pricing-trust-item
+) {
+  color: var(--text-2);
+}
+
+.pricing-page .plan-feats li.yes {
+  color: var(--text);
+}
+
+.pricing-page :is(a.plan-cta.btn-primary, button.plan-cta.btn-primary) {
+  color: var(--on-ink-text, var(--ec-on-brand-text)) !important;
+}
+
+.pricing-page :is(a.plan-cta.btn-ghost, button.plan-cta.btn-ghost):not(.is-muted) {
+  color: var(--text) !important;
+}

@@ -9,8 +9,9 @@ import {
   type RichTextVariant,
 } from '@/lib/rich-text/markdown-components'
 import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
+import { normalizeMarkSchemeText } from '@/lib/rich-text/normalize-mark-scheme-text'
 
-export type RichTextContentKind = 'marking' | 'question'
+export type RichTextContentKind = 'marking' | 'question' | 'mark_scheme'
 
 export type RichTextRendererProps = {
   /** Markdown + LaTeX source ($...$ inline, $$...$$ block). */
@@ -38,7 +39,11 @@ export function RichTextRenderer({
   if (!text?.trim()) return null
 
   const normalized =
-    contentKind === 'question' ? text : normalizeMarkingText(text)
+    contentKind === 'question'
+      ? text
+      : contentKind === 'mark_scheme'
+        ? normalizeMarkSchemeText(text)
+        : normalizeMarkingText(text)
   const components = createMarkdownComponents(variant)
   const proseClass =
     variant === 'dark'

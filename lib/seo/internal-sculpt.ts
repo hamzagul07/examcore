@@ -10,6 +10,9 @@ export const HIGH_AUTHORITY_PATHS = [
   '/guides',
   '/blog',
   '/subjects',
+  '/ib',
+  '/ib/courses',
+  '/courses',
   '/how-it-works',
   '/faq',
 ] as const

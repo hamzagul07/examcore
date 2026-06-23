@@ -135,6 +135,7 @@ export const FOOTER_PRODUCT_LINKS = [
   { href: '/mark', label: 'Mark a question' },
   { href: '/past-papers', label: 'Past papers' },
   { href: '/ib', label: 'IB past papers' },
+  { href: '/ib/courses', label: 'IB free courses' },
   { href: '/courses', label: 'Free courses' },
   { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
   { href: '/tools/command-words', label: 'Command words' },
@@ -144,8 +145,10 @@ export const FOOTER_PRODUCT_LINKS = [
 export const FOOTER_SUBJECT_LINKS = [
   { href: '/subjects/9709', label: '9709 Mathematics' },
   { href: '/subjects/9702', label: '9702 Physics' },
-  { href: '/subjects/9701', label: '9701 Chemistry' },
-  { href: '/subjects', label: 'All subjects' },
+  { href: '/ib/subjects/tok', label: 'IB TOK' },
+  { href: '/ib/subjects/biology-hl', label: 'IB Biology HL' },
+  { href: '/subjects', label: 'All Cambridge subjects' },
+  { href: '/ib/subjects', label: 'All IB subjects' },
 ]
 
 export const FOOTER_COMPANY_LINKS = [

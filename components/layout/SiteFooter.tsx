@@ -39,8 +39,10 @@ export function SiteFooter({ variant }: Props) {
             <h4>Subjects</h4>
             <Link href="/subjects/9702">9702 Physics</Link>
             <Link href="/subjects/9709">9709 Mathematics</Link>
-            <Link href="/subjects/9701">9701 Chemistry</Link>
-            <Link href="/subjects">All subjects</Link>
+            <Link href="/ib/subjects/tok">IB TOK</Link>
+            <Link href="/ib/subjects/biology-hl">IB Biology HL</Link>
+            <Link href="/subjects">Cambridge subjects</Link>
+            <Link href="/ib/subjects">IB subjects</Link>
           </div>
           <div className="footer-col">
             <h4>Company</h4>
@@ -115,7 +117,7 @@ export function SiteFooter({ variant }: Props) {
           ))}
         </nav>
         <span>© 2026 MarkScheme — built by a student, for students.</span>
-        <span>Not endorsed by Cambridge International.</span>
+        <span>Not endorsed by Cambridge International or the IB.</span>
       </div>
     </footer>
   )

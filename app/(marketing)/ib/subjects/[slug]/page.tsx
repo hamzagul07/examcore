@@ -28,9 +28,13 @@ export async function generateMetadata({ params }: Props) {
   const subject = getIbSubject(slug)
   if (!subject) return {}
   const copy = buildIbSubjectCopy(subject)
+  const course = getIbCourse(subject.slug)
+  const description = course
+    ? `${copy.description} Free ${course.lessonCount}-lesson course with criterion practice marking.`
+    : copy.description
   return createPageMetadata({
     title: copy.title,
-    description: copy.description,
+    description,
     path: copy.path,
     keywords: copy.keywords,
     ogImagePath: '/ib/opengraph-image',
@@ -59,6 +63,14 @@ export default async function IbSubjectPage({ params }: Props) {
       q: `Where can I find IB ${short} ${subject.level} past papers?`,
       a: `Browse every recent ${subject.name} ${subject.level} exam series on our IB ${short} past-papers page, organised by session and paper, with mark-scheme guidance for each.`,
     },
+    ...(getIbCourse(subject.slug)
+      ? [
+          {
+            q: `Is there a free IB ${subject.name} course?`,
+            a: `Yes — MarkScheme has a free topic-by-topic IB ${subject.name} course with worked examples, flashcards, and criterion practice marking on every syllabus point.`,
+          },
+        ]
+      : []),
   ]
 
   const related = getIbSubjects()

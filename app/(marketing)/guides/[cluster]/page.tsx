@@ -28,10 +28,14 @@ export async function generateMetadata({ params }: Props) {
   const { cluster: clusterId } = await params
   const cluster = getClusterById(clusterId as ContentClusterId)
   if (!cluster) return {}
+  const keywords =
+    cluster.id === 'ib'
+      ? [cluster.headTerm, 'IB Diploma', 'IB HL SL', 'IB free courses', 'IB markbands']
+      : [cluster.headTerm, 'Cambridge A-Level', 'Cambridge O-Level']
   return getPageMetadata(cluster.path, {
     title: `${cluster.title} — ${cluster.headTerm}`,
     description: cluster.description,
-    keywords: [cluster.headTerm, 'Cambridge A-Level', 'Cambridge O-Level'],
+    keywords,
   })
 }
 

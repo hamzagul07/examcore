@@ -18,9 +18,9 @@ const PATH = '/ib'
 
 export function generateMetadata() {
   return createPageMetadata({
-    title: 'IB Diploma Past Papers & Mark Schemes',
+    title: 'IB Diploma Past Papers, Courses & Mark Schemes',
     description:
-      'Browse IB Diploma (IBDP) past papers and mark schemes for every HL and SL subject — by session and paper — with markband guides, exam tips and revision help. Free on MarkScheme.',
+      'Browse IB Diploma (IBDP) past papers and mark schemes for every HL and SL subject — plus free topic-by-topic courses with criterion practice marking. Markband guides, exam tips and revision help. Free on MarkScheme.',
     path: PATH,
     keywords: [
       'IB past papers',
@@ -29,6 +29,8 @@ export function generateMetadata() {
       'IB mark scheme',
       'IB HL SL past papers',
       'IB markbands',
+      'free IB course',
+      'IB TOK course',
     ],
   })
 }
@@ -128,7 +130,10 @@ export default function IbHubPage() {
           paragraph="Official IB past papers are scattered and hard to navigate. We lay out every Higher and Standard Level subject by exam series and paper, and explain the markbands and assessment criteria that decide your grade — so practice actually moves your score. Pick a subject below to start."
           links={[
             { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
-            { href: '/ib/subjects', label: 'All IB subjects', variant: 'ghost' },
+            { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
+            { href: '/courses', label: 'Cambridge courses', variant: 'ghost' },
+            { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
+            { href: '/ib/subjects', label: 'All IB subjects', variant: 'muted' },
             { href: '/community?board=ib', label: 'IB Exam Room', variant: 'muted' },
             { href: '/mark', label: 'Get feedback on your answer', variant: 'muted' },
           ]}

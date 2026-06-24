@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Economics **Internal Assessment** is worth 20% of your final Economics grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Economics past papers](/ib/past-papers/economics-hl) · [Free Economics course](/ib/courses/economics-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Economics past papers](/ib/past-papers/economics-hl) · [Free Economics HL course](/ib/courses/economics-hl) · [Free Economics SL course](/ib/courses/economics-sl)
 
 ## What examiners mark
 Each commentary is marked on **micro/macro/global** syllabus link, **terminology**, **diagram(s)**, **analysis**, and **evaluation/judgement** — 14 criteria per commentary, three commentaries total across the course.
@@ -26,7 +26,7 @@ Bank articles weekly from reputable sources. One diagram minimum, fully explaine
 Article not syllabus-linked; diagram not explained; description without analysis; no evaluation; exceeding word count.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-economics-hl) where supported, and use syllabus [lessons](/ib/courses/economics-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-economics-sl) where supported, and use syllabus [lessons](/ib/courses/economics-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

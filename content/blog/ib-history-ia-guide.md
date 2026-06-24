@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB History **Internal Assessment** is worth 25% of your final History grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [History past papers](/ib/past-papers/history-hl) · [Free History course](/ib/courses/history-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [History past papers](/ib/past-papers/history-hl) · [Free History HL course](/ib/courses/history-hl) · [Free History SL course](/ib/courses/history-sl)
 
 ## What examiners mark
 Four criteria: **Identification and evaluation of sources**, **Investigation**, **Reflection**, and **Structure** (word limit 2,200). External moderation applies.
@@ -26,7 +26,7 @@ Choose a **narrow, debatable** question answerable with available primary/second
 Narrative not argument; too broad a question; weak source evaluation; reflection generic; over word limit.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-history-hl) where supported, and use syllabus [lessons](/ib/courses/history-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-history-sl) where supported, and use syllabus [lessons](/ib/courses/history-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

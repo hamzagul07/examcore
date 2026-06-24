@@ -27,9 +27,9 @@ Define terms first when asked. For 9-mark questions, structure: intro → proces
 Case studies without stats; confusing Paper 1 themes; no diagram when one is expected; generic "government should educate" evaluation.
 
 ## Using MarkScheme for targeted feedback
-Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-geography-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-geography-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Geography SL course](/ib/courses/geography-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Geography SL course](/ib/courses/geography-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
 
 ## Frequently asked questions
 

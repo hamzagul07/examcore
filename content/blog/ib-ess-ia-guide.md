@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Environmental Systems and Societies **Internal Assessment** is worth 25% of your final ESS grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Environmental Systems and Societies past papers](/ib/past-papers/environmental-systems-and-societies) · [Free Environmental Systems and Societies course](/ib/courses/environmental-systems-and-societies)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Environmental Systems and Societies past papers](/ib/past-papers/environmental-systems-and-societies-sl) · [Free Environmental Systems and Societies course](/ib/courses/environmental-systems-and-societies-sl)
 
 ## What examiners mark
 Similar to Geography IA: **context**, **planning**, **results**, **analysis/evaluation** with explicit **systems** and **sustainability** framing.
@@ -26,7 +26,7 @@ Pick a local issue (water quality, waste, energy use). Show both **environmental
 Pure science report without society angle; no ethical consideration; weak link to syllabus terms; no secondary sources.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-environmental-systems-and-societies) where supported, and use syllabus [lessons](/ib/courses/environmental-systems-and-societies) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-environmental-systems-and-societies-sl) where supported, and use syllabus [lessons](/ib/courses/environmental-systems-and-societies-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 
@@ -37,7 +37,7 @@ ESS must emphasise systems and sustainability trade-offs — not just spatial pa
 ESS sits in both — IA still follows ESS guide criteria.
 
 ### Papers?
-[ESS past papers](/ib/past-papers/environmental-systems-and-societies) for exam technique.
+[ESS past papers](/ib/past-papers/environmental-systems-and-societies-sl) for exam technique.
 
 ## Bottom line
-Start early, narrow your question, and mark your own draft against the **official criteria** before the supervisor deadline. A strong Environmental Systems and Societies IA is free insurance on your final grade — pair it with timed [past paper practice](/ib/past-papers/environmental-systems-and-societies) closer to exams.
+Start early, narrow your question, and mark your own draft against the **official criteria** before the supervisor deadline. A strong Environmental Systems and Societies IA is free insurance on your final grade — pair it with timed [past paper practice](/ib/past-papers/environmental-systems-and-societies-sl) closer to exams.

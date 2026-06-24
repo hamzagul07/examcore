@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Psychology **Internal Assessment** is worth 20% of your final Psychology grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Psychology past papers](/ib/past-papers/psychology-hl) · [Free Psychology course](/ib/courses/psychology-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Psychology past papers](/ib/past-papers/psychology-hl) · [Free Psychology HL course](/ib/courses/psychology-hl) · [Free Psychology SL course](/ib/courses/psychology-sl)
 
 ## What examiners mark
 Introduction (aim, theory), **exploration** (design, variables, controls), **analysis** (descriptive + inferential stats), **evaluation** (method limits, ethics, extensions).
@@ -26,7 +26,7 @@ Replicate a classic study with a twist. Get **ethical approval** early. Report m
 No informed consent; wrong statistical test; discussing results without linking to aim; copying procedure without citing original study.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-psychology-hl) where supported, and use syllabus [lessons](/ib/courses/psychology-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-psychology-sl) where supported, and use syllabus [lessons](/ib/courses/psychology-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

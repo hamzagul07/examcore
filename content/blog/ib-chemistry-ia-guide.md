@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Chemistry **Internal Assessment** is worth 20% of your final Chemistry grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Chemistry past papers](/ib/past-papers/chemistry-hl) · [Free Chemistry course](/ib/courses/chemistry-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Chemistry past papers](/ib/past-papers/chemistry-hl) · [Free Chemistry HL course](/ib/courses/chemistry-hl) · [Free Chemistry SL course](/ib/courses/chemistry-sl)
 
 ## What examiners mark
 Marked on **Personal engagement**, **Exploration**, **Analysis**, **Evaluation**, and **Communication** — same science IA framework as Biology and Physics.
@@ -26,7 +26,7 @@ Choose a reaction or property you can repeat 5+ times. Record **uncertainty** in
 Uncontrolled temperature; wrong SF rules; missing safety; procedure copied from a website without adaptation; evaluation that ignores systematic error.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-chemistry-hl) where supported, and use syllabus [lessons](/ib/courses/chemistry-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-chemistry-sl) where supported, and use syllabus [lessons](/ib/courses/chemistry-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

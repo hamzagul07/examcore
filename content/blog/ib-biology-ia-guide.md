@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Biology **Internal Assessment** is worth 20% of your final Biology grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Biology past papers](/ib/past-papers/biology-hl) · [Free Biology course](/ib/courses/biology-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Biology past papers](/ib/past-papers/biology-hl) · [Free Biology HL course](/ib/courses/biology-hl) · [Free Biology SL course](/ib/courses/biology-sl)
 
 ## What examiners mark
 Five criteria: **Personal engagement**, **Exploration**, **Analysis**, **Evaluation**, and **Communication**. Moderators check that your investigation is yours — authentic question, appropriate method, processed data, and honest limitations.
@@ -26,7 +26,7 @@ Pick a **narrow, measurable** question you can answer with school lab equipment.
 Cookie-cutter topics without personal angle; no uncertainty; correlation presented as causation; copying online IA structures; weak evaluation that only says "more time".
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-biology-hl) where supported, and use syllabus [lessons](/ib/courses/biology-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-biology-sl) where supported, and use syllabus [lessons](/ib/courses/biology-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

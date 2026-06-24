@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Computer Science **Internal Assessment** is worth 25% of your final Computer Science grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Computer Science past papers](/ib/past-papers/computer-science-hl) · [Free Computer Science course](/ib/courses/computer-science-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Computer Science past papers](/ib/past-papers/computer-science-hl) · [Free Computer Science HL course](/ib/courses/computer-science-hl) · [Free Computer Science SL course](/ib/courses/computer-science-sl)
 
 ## What examiners mark
 Criteria cover **planning**, **solution design**, **development**, **functionality** (video evidence), **testing**, and **evaluation** — product and documentation both matter.
@@ -26,7 +26,7 @@ Scope a product finishable in time — calendar app, inventory, quiz. Use **OOP*
 No test evidence; feature creep; code without comments; evaluation vague; academic honesty on borrowed code.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-computer-science-hl) where supported, and use syllabus [lessons](/ib/courses/computer-science-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-computer-science-sl) where supported, and use syllabus [lessons](/ib/courses/computer-science-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

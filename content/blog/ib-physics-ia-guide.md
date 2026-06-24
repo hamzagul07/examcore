@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Physics **Internal Assessment** is worth 20% of your final Physics grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Physics past papers](/ib/past-papers/physics-hl) · [Free Physics course](/ib/courses/physics-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Physics past papers](/ib/past-papers/physics-hl) · [Free Physics HL course](/ib/courses/physics-hl) · [Free Physics SL course](/ib/courses/physics-sl)
 
 ## What examiners mark
 Science IA criteria reward a **focused physics question**, controlled experiment, correct processing (including graphs and uncertainties), and critical evaluation of method and data quality.
@@ -26,7 +26,7 @@ Linearise relationships (e.g. log graphs) when the syllabus expects it. Propagat
 Tiny range of data; no repeat readings; plotting without units; ignoring systematic errors; conclusion that does not reference uncertainty.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-physics-hl) where supported, and use syllabus [lessons](/ib/courses/physics-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-physics-sl) where supported, and use syllabus [lessons](/ib/courses/physics-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

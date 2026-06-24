@@ -11,6 +11,7 @@ import path from 'path'
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog')
 const DATE = '2026-06-23'
 const FORCE = process.argv.includes('--force')
+const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length)
 
 /** @typedef {{ slug: string; title: string; description: string; keywords: string[]; name: string; level: string; catalogSlug: string; courseSlug?: string; assessment: string; markbands: string; strategy: string; paperTips: string; pitfalls: string; faqs: { q: string; a: string }[]; intro?: string }} PostBrief */
 
@@ -126,7 +127,7 @@ const POSTS = [
     title: 'IB Economics SL past papers & revision guide',
     description: 'IB Economics SL: Paper 1 essays and Paper 2 data response — markbands, diagrams, evaluation, and past paper workflow.',
     keywords: ['IB Economics SL', 'IB Economics SL past papers', 'IB Economics mark scheme', 'IB Economics SL revision', 'IB Economics markbands'],
-    name: 'Economics', level: 'SL', catalogSlug: 'economics-sl', courseSlug: 'economics-hl',
+    name: 'Economics', level: 'SL', catalogSlug: 'economics-sl', courseSlug: 'economics-sl',
     assessment: '**Paper 1** is extended response — choose one of three essay questions per section. **Paper 2** is data response based on an extract. There is no Paper 3 at SL (HL adds a policy/quantitative paper).',
     markbands: 'Essays are marked with **level descriptors** rewarding definitions, diagrams, analysis chains, and **evaluation** with a justified judgement. Data response marks link explicitly to the stimulus.',
     strategy: 'Essay plan before writing — thesis, two chains with diagrams, evaluation paragraph. For Paper 2, practise quoting from the extract for every application mark.',
@@ -143,7 +144,7 @@ const POSTS = [
     title: 'IB Business Management SL past papers & revision guide',
     description: 'IB Business Management SL past papers: case-study Paper 1, structured Paper 2, toolkit application, and markband essay technique.',
     keywords: ['IB Business Management SL', 'IB Business SL past papers', 'IB Business Management mark scheme', 'IB BM SL revision', 'IB Business markbands'],
-    name: 'Business Management', level: 'SL', catalogSlug: 'business-management-sl', courseSlug: 'business-management-hl',
+    name: 'Business Management', level: 'SL', catalogSlug: 'business-management-sl', courseSlug: 'business-management-sl',
     assessment: '**Paper 1** is based on a pre-seen case study (SL) with structured questions testing application of the business management toolkit. **Paper 2** uses an unseen stimulus with quantitative and qualitative prompts.',
     markbands: 'Top bands require **application to the case**, not generic textbook lists. Name the tool, apply it to the business in the stimulus, then evaluate limitations.',
     strategy: 'Learn the toolkit by unit, then practise every past question by writing "tool → case evidence → so what → limitation" chains.',
@@ -160,7 +161,7 @@ const POSTS = [
     title: 'IB Psychology SL past papers & revision guide',
     description: 'IB Psychology SL: Paper 1 approaches, Paper 2 options, markbands, studies, and past paper revision for a 6 or 7.',
     keywords: ['IB Psychology SL', 'IB Psychology SL past papers', 'IB Psychology mark scheme', 'IB Psychology SL revision', 'IB Psychology markbands'],
-    name: 'Psychology', level: 'SL', catalogSlug: 'psychology-sl', courseSlug: 'psychology-hl',
+    name: 'Psychology', level: 'SL', catalogSlug: 'psychology-sl', courseSlug: 'psychology-sl',
     assessment: '**Paper 1** covers the three approaches (biological, cognitive, sociocultural) with SAQs and one essay. **Paper 2** tests your two options (from abnormal, developmental, health, or human relationships). No Paper 3 at SL.',
     markbands: 'Essays need **named studies** with method, findings, and link to the question. SAQs reward precision — define, study, apply in tight word limits.',
     strategy: 'Build study sheets: researcher, method, N, IV/DV, finding, ethics, one limitation. Practise SAQs to the minute; essays to a fixed plan (intro → study 1 → study 2 → counter → conclusion).',
@@ -194,7 +195,7 @@ const POSTS = [
     title: 'IB Geography SL past papers & revision guide',
     description: 'IB Geography SL: Paper 1 themes, Paper 2 core units, markbands, case studies, and past paper revision.',
     keywords: ['IB Geography SL', 'IB Geography SL past papers', 'IB Geography mark scheme', 'IB Geography SL revision', 'IB Geography markbands'],
-    name: 'Geography', level: 'SL', catalogSlug: 'geography-sl', courseSlug: 'geography-hl',
+    name: 'Geography', level: 'SL', catalogSlug: 'geography-sl', courseSlug: 'geography-sl',
     assessment: '**Paper 1** tests optional themes (e.g. freshwater, food, health). **Paper 2** covers the core units (populations, urban, resources). SL has no HL Paper 3 on global interactions.',
     markbands: 'Top answers weave **named case studies** with processes and evaluation — sustainability, stakeholder conflict, and scale (local → global).',
     strategy: 'Case study bank per theme: location, stats, causes, impacts, management, evaluation. Practise sketch maps and annotated diagrams under time.',
@@ -281,7 +282,7 @@ const POSTS = [
     title: 'IB Computer Science SL past papers & revision guide',
     description: 'IB Computer Science SL: Paper 1 theory, Paper 2 case study, markbands, pseudocode, and past paper workflow.',
     keywords: ['IB Computer Science SL', 'IB CS SL past papers', 'IB Computer Science mark scheme', 'IB CS SL revision', 'IB Computer Science markbands'],
-    name: 'Computer Science', level: 'SL', catalogSlug: 'computer-science-sl', courseSlug: 'computer-science-hl',
+    name: 'Computer Science', level: 'SL', catalogSlug: 'computer-science-sl', courseSlug: 'computer-science-sl',
     assessment: '**Paper 1** covers systems fundamentals, networks, databases, and computational thinking with short and extended responses. **Paper 2** is the **case study** paper — apply syllabus concepts to a pre-released scenario. No Paper 3 at SL.',
     markbands: 'Extended answers need precise **technical vocabulary** and structured reasoning. Pseudocode must be unambiguous — examiners mark logic, not language syntax trivia.',
     strategy: 'Master Paper 1 topic checklists; for Paper 2, annotate the case study on release day and map every paragraph to syllabus dot points.',
@@ -298,7 +299,7 @@ const POSTS = [
     title: 'IB Environmental Systems & Societies (ESS) past papers guide',
     description: 'IB ESS SL: Paper 1 case study, Paper 2 essays, systems thinking, markbands, and revision — the transdisciplinary Group 3/4 course.',
     keywords: ['IB ESS', 'IB Environmental Systems and Societies', 'IB ESS past papers', 'IB ESS mark scheme', 'IB ESS revision'],
-    name: 'Environmental Systems and Societies', level: 'SL', catalogSlug: 'environmental-systems-and-societies', courseSlug: 'environmental-systems-and-societies',
+    name: 'Environmental Systems and Societies', level: 'SL', catalogSlug: 'environmental-systems-and-societies-sl', courseSlug: 'environmental-systems-and-societies-sl',
     assessment: 'ESS is **SL only**. **Paper 1** uses a resource booklet (case study) with structured questions. **Paper 2** has longer essays on syllabus themes linking environment and society. Fieldwork feeds the **IA**.',
     markbands: 'Answers should show **systems thinking** — stakeholders, flows, feedback, scale, and sustainability trade-offs — with named examples.',
     strategy: 'Build case study banks (pollution, conservation, energy). Practise essay plans that always include human + environmental lens and an evaluated solution.',
@@ -307,7 +308,7 @@ const POSTS = [
     faqs: [
       { q: 'ESS vs Biology SL?', a: 'ESS is interdisciplinary — less depth in pure bio, more on systems, policy, and ethics. Check university acceptance for your path.' },
       { q: 'Group 3 or 4?', a: 'Counts as one subject in either group depending on your diploma structure — confirm with your coordinator.' },
-      { q: 'Where are ESS papers?', a: 'See [IB ESS past papers](/ib/past-papers/environmental-systems-and-societies) on MarkScheme.' },
+      { q: 'Where are ESS papers?', a: 'See [IB ESS past papers](/ib/past-papers/environmental-systems-and-societies-sl) on MarkScheme.' },
     ],
   },
   // ── Group 6 ───────────────────────────────────────────────────────────────
@@ -711,7 +712,7 @@ const IA_POSTS = [
     title: 'IB ESS IA guide — fieldwork investigation & criteria',
     description: 'IB Environmental Systems and Societies Internal Assessment: research question, fieldwork, report structure, and criterion bands.',
     keywords: ['IB ESS IA', 'ESS Internal Assessment', 'IB ESS fieldwork', 'ESS IA criteria', 'ESS IA grade 7'],
-    subject: 'Environmental Systems and Societies', catalogSlug: 'environmental-systems-and-societies', courseSlug: 'environmental-systems-and-societies', weight: '25% of your final ESS grade',
+    subject: 'Environmental Systems and Societies', catalogSlug: 'environmental-systems-and-societies-sl', courseSlug: 'environmental-systems-and-societies-sl', weight: '25% of your final ESS grade',
     criteria: 'Similar to Geography IA: **context**, **planning**, **results**, **analysis/evaluation** with explicit **systems** and **sustainability** framing.',
     structure: 'Research question linking environment and society → methodology → data → analysis with syllibus concepts (stakeholders, feedback loops) → conclusion → evaluation.',
     strategy: 'Pick a local issue (water quality, waste, energy use). Show both **environmental and social** dimensions in every section.',
@@ -719,7 +720,7 @@ const IA_POSTS = [
     faqs: [
       { q: 'ESS vs Geography IA?', a: 'ESS must emphasise systems and sustainability trade-offs — not just spatial patterns.' },
       { q: 'Group 3 or 4?', a: 'ESS sits in both — IA still follows ESS guide criteria.' },
-      { q: 'Papers?', a: '[ESS past papers](/ib/past-papers/environmental-systems-and-societies) for exam technique.' },
+      { q: 'Papers?', a: '[ESS past papers](/ib/past-papers/environmental-systems-and-societies-sl) for exam technique.' },
     ],
   },
 ]
@@ -798,9 +799,21 @@ const GROUP6_SL = [
 
 POSTS.push(...GROUP6_SL)
 
+function courseLinksForIa(b) {
+  const links = []
+  if (b.courseSlug?.endsWith('-hl')) {
+    links.push(`[Free ${b.subject} HL course](${coursePath(b.courseSlug)})`)
+    const sl = b.courseSlug.replace(/-hl$/, '-sl')
+    links.push(`[Free ${b.subject} SL course](${coursePath(sl)})`)
+  } else if (b.courseSlug) {
+    links.push(`[Free ${b.subject} course](${coursePath(b.courseSlug)})`)
+  }
+  return links.join(' · ')
+}
+
 function renderIaPost(b) {
   const sub = subjectPath(b.catalogSlug)
-  const course = coursePath(b.courseSlug)
+  const courseLinks = courseLinksForIa(b)
   const pp = pastPapersPath(b.catalogSlug)
   const faqBlock = b.faqs.map((f) => `### ${f.q}\n${f.a}`).join('\n\n')
 
@@ -817,7 +830,7 @@ informationGain: synthesis
 
 The IB ${b.subject} **Internal Assessment** is worth ${b.weight} — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [${b.subject} past papers](${pp}) · [Free ${b.subject} course](${course})
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [${b.subject} past papers](${pp})${courseLinks ? ` · ${courseLinks}` : ''}
 
 ## What examiners mark
 ${b.criteria}
@@ -832,7 +845,7 @@ ${b.strategy}
 ${b.pitfalls}
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](${markPath(b.courseSlug)}) where supported, and use syllabus [lessons](${course}) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](${markPath(b.courseSlug?.replace(/-hl$/, '-sl') ?? b.courseSlug)}) where supported, and use syllabus [lessons](${coursePath(b.courseSlug?.replace(/-hl$/, '-sl') ?? b.courseSlug)}) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 
@@ -919,7 +932,13 @@ Treat ${b.catalogSlug ? `[IB ${b.name}${levelLabel} past papers](${pp})` : 'past
 let written = 0
 let skipped = 0
 
+function shouldWrite(slug) {
+  if (ONLY && slug !== ONLY) return false
+  return true
+}
+
 for (const brief of POSTS) {
+  if (!shouldWrite(brief.slug)) continue
   const file = path.join(BLOG_DIR, `${brief.slug}.md`)
   if (fs.existsSync(file) && !FORCE) {
     skipped++
@@ -931,6 +950,7 @@ for (const brief of POSTS) {
 }
 
 for (const brief of IA_POSTS) {
+  if (!shouldWrite(brief.slug)) continue
   const file = path.join(BLOG_DIR, `${brief.slug}.md`)
   if (fs.existsSync(file) && !FORCE) {
     skipped++

@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Geography **Internal Assessment** is worth 20% of your final Geography grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Geography past papers](/ib/past-papers/geography-hl) · [Free Geography course](/ib/courses/geography-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Geography past papers](/ib/past-papers/geography-hl) · [Free Geography HL course](/ib/courses/geography-hl) · [Free Geography SL course](/ib/courses/geography-sl)
 
 ## What examiners mark
 Criteria cover **fieldwork question and geographic context**, **planning**, **data collection**, **presentation/analysis**, and **evaluation** — linking to syllabus themes and geographic theory.
@@ -26,7 +26,7 @@ Align fieldwork with a taught theme. Use **maps and GIS** where possible. Every 
 No clear geographic theory; convenience sampling without acknowledgement; figures without titles/units; evaluation that ignores weather or sample size.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-geography-hl) where supported, and use syllabus [lessons](/ib/courses/geography-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-geography-sl) where supported, and use syllabus [lessons](/ib/courses/geography-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

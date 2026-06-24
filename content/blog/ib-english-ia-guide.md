@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB English A **Internal Assessment** is worth varies by component (Oral + written coursework) — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [English A past papers](/ib/past-papers/english-a-lang-lit-hl) · [Free English A course](/ib/courses/english-a-lang-lit-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [English A past papers](/ib/past-papers/english-a-lang-lit-hl) · [Free English A HL course](/ib/courses/english-a-lang-lit-hl) · [Free English A SL course](/ib/courses/english-a-lang-lit-sl)
 
 ## What examiners mark
 **Individual Oral** (SL & HL): global issue, two works (one literary), 10-minute extract analysis + discussion. **HL Essay** (HL only): 1,200–1,500 words on a literary work. Lang & Lit adds **written tasks** on non-literary topics.
@@ -26,7 +26,7 @@ Choose a **global issue** you care about — passion shows in delivery. Rehearse
 Global issue too vague; feature spotting in oral; HL Essay plot retell; written task wrong text type format (Lang & Lit).
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-english-a-lang-lit-hl) where supported, and use syllabus [lessons](/ib/courses/english-a-lang-lit-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-english-a-lang-lit-sl) where supported, and use syllabus [lessons](/ib/courses/english-a-lang-lit-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

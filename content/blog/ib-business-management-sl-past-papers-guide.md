@@ -27,9 +27,9 @@ For Paper 1, annotate the case study when it is released — stakeholders, finan
 Generic SWOT lists; no stakeholder named; forgetting to recommend a justified course of action; weak integration of HR/finance/marketing tools.
 
 ## Using MarkScheme for targeted feedback
-Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-business-management-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-business-management-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Business Management SL course](/ib/courses/business-management-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Business Management SL course](/ib/courses/business-management-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
 
 ## Frequently asked questions
 

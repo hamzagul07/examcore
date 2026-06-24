@@ -27,9 +27,9 @@ Draw neat, labelled diagrams and explain them in words. Use real-world examples 
 Descriptive essays without evaluation; diagrams not linked to the question; ignoring the extract in Paper 2; running out of time on part (d) evaluation.
 
 ## Using MarkScheme for targeted feedback
-Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-economics-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-economics-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Economics SL course](/ib/courses/economics-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Economics SL course](/ib/courses/economics-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
 
 ## Frequently asked questions
 

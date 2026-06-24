@@ -11,7 +11,7 @@ informationGain: synthesis
 
 The IB Business Management **Internal Assessment** is worth 25% of your final Business Management grade — often the difference between a 5 and a 7 when exams go wrong. Unlike past papers, the IA is coursework you control months before exams. This guide explains criteria, structure, and the mistakes moderators see every year.
 
-See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Business Management past papers](/ib/past-papers/business-management-hl) · [Free Business Management course](/ib/courses/business-management-hl)
+See also: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) · [Business Management past papers](/ib/past-papers/business-management-hl) · [Free Business Management HL course](/ib/courses/business-management-hl) · [Free Business Management SL course](/ib/courses/business-management-sl)
 
 ## What examiners mark
 Marked on **research proposal**, **application of tools**, **analysis and evaluation**, and **structure** — SL and HL differ in length and depth (HL expects more strategic analysis).
@@ -26,7 +26,7 @@ Choose a business you can interview or survey. Every tool must be **applied**, n
 Generic tools without data; no primary research; recommendations unsupported; ignoring ethical consent for surveys.
 
 ## Criterion practice on MarkScheme
-Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-business-management-hl) where supported, and use syllabus [lessons](/ib/courses/business-management-hl) to strengthen methodology and subject vocabulary.
+Draft sections can be checked against IB assessment language — [get feedback on your IA writing](/mark?subject=ib-business-management-sl) where supported, and use syllabus [lessons](/ib/courses/business-management-sl) to strengthen methodology and subject vocabulary.
 
 ## Frequently asked questions
 

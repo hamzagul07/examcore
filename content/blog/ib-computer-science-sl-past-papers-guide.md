@@ -27,9 +27,9 @@ Trace tables for algorithm questions. For networks, draw topology diagrams. Case
 Vague answers ("faster computer"); skipping justification; ignoring the case study details; no Paper 2 practice until exam month.
 
 ## Using MarkScheme for targeted feedback
-Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-computer-science-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-computer-science-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Computer Science SL course](/ib/courses/computer-science-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Computer Science SL course](/ib/courses/computer-science-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
 
 ## Frequently asked questions
 

@@ -1,0 +1,200 @@
+{
+  "slug": "1-2-arithmetic-and-geometric-sequences-and-series",
+  "topicCode": "1.2",
+  "title": "Arithmetic and geometric sequences and series",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores the predictable patterns of arithmetic and geometric sequences. You will learn how to find any term in a sequence, calculate the sum of a series, and apply these concepts to real-world financial scenarios like compound interest and depreciation.",
+  "durationMin": 90,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Distinguish between arithmetic and geometric sequences and calculate their key parameters ($u_1$, $d$, $r$).",
+    "Use the formulae for the nth term ($u_n$) and the sum of n terms ($S_n$) for both arithmetic and geometric series.",
+    "Apply sequence and series models to solve real-world problems, including financial applications like compound interest and depreciation.",
+    "Utilise a GDC effectively to solve problems involving sequences, including using the finance solver."
+  ],
+  "simpleExplanation": {
+    "title": "Building Blocks of Patterns",
+    "summary": "Sequences are just ordered lists of numbers following a rule. We'll focus on two types: arithmetic, where you add a constant amount, and geometric, where you multiply by a constant amount.",
+    "analogy": "Think of building a Lego tower. If you add 2 blocks to the height each time, that's an arithmetic sequence. If you build a new tower next to it that's always double the height of the last one, that's a geometric sequence.",
+    "steps": [
+      "Identify the pattern: Is a fixed number being added/subtracted (arithmetic) or multiplied/divided (geometric)?",
+      "Determine the key values: Find the first term ($u_1$), and the common difference ($d$) or common ratio ($r$).",
+      "Select the right tool: Choose the correct formula from your booklet for the nth term ($u_n$) or the sum ($S_n$).",
+      "Calculate and interpret: Substitute your values into the formula, solve, and make sure your answer makes sense in the context of the question (e.g., money, time)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Sequence",
+      "back": "An ordered list of numbers, where each number is called a term. For example: 3, 7, 11, 15, ..."
+    },
+    {
+      "front": "Series",
+      "back": "The sum of the terms in a sequence. For example: 3 + 7 + 11 + 15."
+    },
+    {
+      "front": "Arithmetic Sequence",
+      "back": "A sequence where the difference between consecutive terms is constant. This constant is called the common difference, $d$."
+    },
+    {
+      "front": "Geometric Sequence",
+      "back": "A sequence where the ratio between consecutive terms is constant. This constant is called the common ratio, $r$."
+    },
+    {
+      "front": "Formula: nth term of an Arithmetic Sequence",
+      "back": "$u_n = u_1 + (n-1)d$"
+    },
+    {
+      "front": "Formula: Sum of an Arithmetic Series",
+      "back": "$S_n = \\frac{n}{2}(2u_1 + (n-1)d)$ or $S_n = \\frac{n}{2}(u_1 + u_n)$"
+    },
+    {
+      "front": "Formula: nth term of a Geometric Sequence",
+      "back": "$u_n = u_1 \\cdot r^{n-1}$"
+    },
+    {
+      "front": "Formula: Sum of a Geometric Series",
+      "back": "$S_n = \\frac{u_1(r^n - 1)}{r-1}$"
+    },
+    {
+      "front": "How do you calculate the common ratio, $r$, for a 12% increase?",
+      "back": "An increase of 12% means you have 112% of the original. So, $r = 1 + 0.12 = 1.12$. You multiply by this to get the new value."
+    },
+    {
+      "front": "How do you calculate the common ratio, $r$, for a 20% decrease?",
+      "back": "A decrease of 20% means you have 80% of the original left. So, $r = 1 - 0.20 = 0.80$. You multiply by this to get the new value."
+    },
+    {
+      "front": "Common Trap: 'After 5 years' or 'in the 5th year'",
+      "back": "'In the 5th year' means $n=5$. 'After 5 years' usually means at the end of the 5th year, which is the start of the 6th year, so you need to find the 6th term ($u_6$). Always read carefully!"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a sequence and a series?",
+      "a": "A sequence is an ordered list of numbers (e.g., 2, 4, 6, 8), while a series is the sum of those numbers (e.g., 2 + 4 + 6 + 8). In short: a sequence is a list, a series is a total."
+    },
+    {
+      "q": "How do I find the common ratio 'r' for a percentage increase or decrease?",
+      "a": "It's a two-step process. First, convert the percentage to a decimal (e.g., 25% becomes 0.25). Then, for an increase, add it to 1 ($r = 1 + 0.25 = 1.25$). For a decrease, subtract it from 1 ($r = 1 - 0.25 = 0.75$)."
+    },
+    {
+      "q": "Can 'n' (the number of terms) be a decimal or negative?",
+      "a": "No. In this context, 'n' represents a position in the sequence (1st term, 2nd term, etc.), so it must be a positive integer (1, 2, 3, ...)."
+    },
+    {
+      "q": "A question asks for the first term to exceed a certain value. How do I solve this?",
+      "a": "Set up an inequality using the $u_n$ formula. For example, to find when a geometric sequence with $u_1=10$ and $r=1.1$ first exceeds 100, you would solve $10 \\times (1.1)^{n-1} > 100$. The most straightforward method for AI SL is to use your GDC's table function: enter the rule for $u_n$ and scroll down the table to find the first integer $n$ where the value is greater than 100."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of sequences and series! From the way you save money to how things grow or decay, many patterns in the world can be described using mathematics. This lesson will give you the tools to understand, predict, and sum these patterns, focusing on the two most important types: arithmetic and geometric."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic Sequences: The Constant Step"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic sequence is a list of numbers where you add or subtract the same amount to get from one term to the next. This constant amount is called the common difference, denoted by $d$. To find $d$, simply subtract any term from the term that follows it: $d = u_{n+1} - u_n$."
+    },
+    {
+      "type": "formula",
+      "content": "The formula for the $n$th term of an arithmetic sequence is: \n$u_n = u_1 + (n-1)d$ \nwhere $u_1$ is the first term, $n$ is the term number, and $d$ is the common difference."
+    },
+    {
+      "type": "workedExample",
+      "question": "A person starts a job with an annual salary of £28,000. Each year, they receive a pay rise of £750. What is their salary in their 10th year of employment?",
+      "solution": "This is an arithmetic sequence as the salary increases by a constant amount each year.\n1.  **Identify the variables:**\n    The first term (initial salary) is $u_1 = 28000$.\n    The common difference (annual pay rise) is $d = 750$.\n    We want to find the salary in the 10th year, so $n = 10$.\n2.  **Select the formula:**\n    We need the formula for the $n$th term of an arithmetic sequence: $u_n = u_1 + (n-1)d$. (M1)\n3.  **Substitute and solve:**\n    $u_{10} = 28000 + (10-1) \\times 750$ (A1)\n    $u_{10} = 28000 + 9 \\times 750$\n    $u_{10} = 28000 + 6750$\n    $u_{10} = 34750$\n4.  **Final Answer:**\n    The salary in the 10th year will be £34,750. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Sum of an Arithmetic Series"
+    },
+    {
+      "type": "text",
+      "content": "When we add the terms of an arithmetic sequence together, we get an arithmetic series. For example, if you save £10, then £15, then £20, the total amount saved is a series. We have a formula to calculate this sum without having to add up all the terms individually."
+    },
+    {
+      "type": "formula",
+      "content": "The formula for the sum of the first $n$ terms of an arithmetic series is:\n$S_n = \\frac{n}{2}(2u_1 + (n-1)d)$\nOr, if you know the last term, $u_n$:\n$S_n = \\frac{n}{2}(u_1 + u_n)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use the first formula when you know the first term, common difference, and number of terms.",
+        "Use the second formula when you know the first term, the last term, and the number of terms. It's often quicker!"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An athlete is training for a marathon. On the first day, she runs 5 km. Each day she increases her distance by 1.5 km. What is the total distance she has run after 14 days of training?",
+      "solution": "This is the sum of an arithmetic sequence (a series).\n1.  **Identify the variables:**\n    First term (first day's run) is $u_1 = 5$.\n    Common difference (daily increase) is $d = 1.5$.\n    Number of terms (days) is $n = 14$.\n2.  **Select the formula:**\n    We need the formula for the sum of an arithmetic series: $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$. (M1)\n3.  **Substitute and solve:**\n    $S_{14} = \\frac{14}{2}(2 \\times 5 + (14-1) \\times 1.5)$ (A1)\n    $S_{14} = 7(10 + 13 \\times 1.5)$\n    $S_{14} = 7(10 + 19.5)$\n    $S_{14} = 7(29.5) = 206.5$\n4.  **Final Answer:**\n    The total distance run after 14 days is 206.5 km. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "All the sequence and series formulas are in your formula booklet. Your job isn't to memorise them, but to understand what each variable ($u_1, u_n, n, d, r, S_n$) represents and when to use each formula. Practice identifying the type of sequence first!"
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Sequences: The Multiplier Effect"
+    },
+    {
+      "type": "text",
+      "content": "A geometric sequence is a list of numbers where you multiply by the same amount to get from one term to the next. This constant multiplier is called the common ratio, denoted by $r$. To find $r$, simply divide any term by the term that precedes it: $r = \\frac{u_{n+1}}{u_n}$. If $|r| > 1$, the sequence grows. If $|r| < 1$, the sequence decays or shrinks towards zero."
+    },
+    {
+      "type": "formula",
+      "content": "The formula for the $n$th term of a geometric sequence is:\n$u_n = u_1 \\cdot r^{n-1}$\nwhere $u_1$ is the first term, $n$ is the term number, and $r$ is the common ratio."
+    },
+    {
+      "type": "workedExample",
+      "question": "A new car is bought for £25,000. Its value depreciates by 18% each year. What is its value, to the nearest pound, after 5 years?",
+      "solution": "This is a geometric sequence as the value is multiplied by a constant factor each year.\n1.  **Identify the variables:**\n    The first term (initial value) is $u_1 = 25000$.\n    A depreciation of 18% means the car retains $100\\% - 18\\% = 82\\%$ of its value. So, the common ratio is $r = 0.82$.\n    'After 5 years' means we are looking for the value at the start of the 6th year. So, $n = 6$.\n2.  **Select the formula:**\n    We need the formula for the $n$th term of a geometric sequence: $u_n = u_1 \\cdot r^{n-1}$. (M1)\n3.  **Substitute and solve:**\n    $u_6 = 25000 \\times (0.82)^{6-1}$ (A1)\n    $u_6 = 25000 \\times (0.82)^5$\n    $u_6 \\approx 9265.580...$\n4.  **Final Answer:**\n    The value of the car after 5 years is £9,266 (to the nearest pound). (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Sum of a Geometric Series"
+    },
+    {
+      "type": "text",
+      "content": "Adding the terms of a geometric sequence gives a geometric series. This is incredibly useful for calculating things like the total amount paid into a savings plan over time or the total distance a bouncing ball travels."
+    },
+    {
+      "type": "formula",
+      "content": "The formula for the sum of the first $n$ terms of a geometric series is:\n$S_n = \\frac{u_1(r^n - 1)}{r-1}$ or $S_n = \\frac{u_1(1 - r^n)}{1-r}$\nBoth formulas are equivalent; use the one that keeps the denominator positive for easier calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A person starts a new savings plan. In the first month, they save £20. They decide to increase their savings by 5% each month. How much will they have saved in total at the end of 2 years, to the nearest penny?",
+      "solution": "This is the sum of a geometric sequence.\n1.  **Identify the variables:**\n    First term (first month's saving) is $u_1 = 20$.\n    An increase of 5% means the common ratio is $r = 1.05$.\n    The time period is 2 years, which is $2 \\times 12 = 24$ months. So, $n = 24$.\n2.  **Select the formula:**\n    We need the sum formula: $S_n = \\frac{u_1(r^n - 1)}{r-1}$. (M1)\n3.  **Substitute and solve:**\n    $S_{24} = \\frac{20(1.05^{24} - 1)}{1.05 - 1}$ (A1)\n    $S_{24} = \\frac{20(3.225099... - 1)}{0.05}$\n    $S_{24} = \\frac{20(2.225099...)}{0.05}$\n    $S_{24} \\approx 890.039...$\n4.  **Final Answer:**\n    The total amount saved after 2 years is £890.04. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "For financial questions involving compound interest or depreciation, the 'Finance Solver' or 'TVM' app on your GDC is extremely powerful and can solve these problems quickly. It's essentially a pre-programmed geometric sequence solver. Make sure you know how to use it!"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions on Sequences & Series",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Formula Booklet",
+          "href": "https://www.ibdocuments.com/IB%20Formula%20Booklets/Mathematics%20AI%20(Applications%20and%20Interpretation)%20Formula%20Booklet.pdf"
+        },
+        {
+          "label": "Revision Village - Sequences & Series",
+          "href": "https://www.revisionvillage.com/ib-math-ai-sl/number-and-algebra/sequences-series/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

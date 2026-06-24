@@ -1,0 +1,181 @@
+{
+  "slug": "5-3-introduction-to-integration-and-area-under-a-curve",
+  "topicCode": "5.3",
+  "title": "Introduction to integration and area under a curve",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces the concept of integration as the reverse process of differentiation. You will learn how to find the area under a curve using definite integrals and your GDC, and how to apply this to solve real-world problems involving rates of change and accumulation.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the concept of a definite integral as representing the area under a curve.",
+    "Use a GDC to calculate the value of a definite integral.",
+    "Interpret the meaning of the area under a curve in various real-world contexts.",
+    "Recognise integration as the reverse process of differentiation."
+  ],
+  "simpleExplanation": {
+    "title": "Summing Up Slices",
+    "summary": "Integration is a way to calculate a total accumulation, like distance travelled or volume filled. We do this by finding the area under a graph between two points, which represents this total.",
+    "analogy": "Imagine you're collecting rainwater in a bucket. The rate at which rain falls changes over time – sometimes it's a drizzle, sometimes a downpour. If you graph this rate of rainfall, the total amount of water you've collected over a certain period is the 'area' under that graph. Integration is the mathematical tool for calculating this total area, even when the rate is constantly changing.",
+    "steps": [
+      "Identify the function, $f(x)$, that represents the curve or rate of change.",
+      "Determine the start and end points, the lower limit $a$ and upper limit $b$, for your calculation.",
+      "Set up the definite integral expression: $\\int_{a}^{b} f(x) \\,dx$.",
+      "Use your GDC's numerical integration function to find the value, which represents the area or total accumulation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is integration?",
+      "back": "Integration is a mathematical process that finds the total accumulation of a quantity. Geometrically, it calculates the area under a curve."
+    },
+    {
+      "front": "What is a definite integral?",
+      "back": "A definite integral, written as $\\int_{a}^{b} f(x) \\,dx$, calculates the area under the curve of $f(x)$ from a starting point $x=a$ to an ending point $x=b$."
+    },
+    {
+      "front": "In $\\int_{a}^{b} f(x) \\,dx$, what are $a$ and $b$ called?",
+      "back": "$a$ is the lower limit (or bound) of integration, and $b$ is the upper limit (or bound) of integration."
+    },
+    {
+      "front": "What is the geometric interpretation of $\\int_{a}^{b} f(x) \\,dx$?",
+      "back": "It represents the signed area between the curve $y=f(x)$, the x-axis, and the vertical lines $x=a$ and $x=b$. Area below the x-axis is counted as negative."
+    },
+    {
+      "front": "How are differentiation and integration related?",
+      "back": "They are inverse operations. Differentiating an integrated function returns the original function. Integrating a derivative returns the original function (plus a constant)."
+    },
+    {
+      "front": "If $v(t)$ is a velocity function, what does $\\int_{t_1}^{t_2} v(t) \\,dt$ represent?",
+      "back": "It represents the displacement (change in position) of the object from time $t_1$ to $t_2$. It's the total distance travelled only if $v(t)$ is always non-negative."
+    },
+    {
+      "front": "If $R'(t)$ is the rate of population growth, what does $\\int_{a}^{b} R'(t) \\,dt$ represent?",
+      "back": "It represents the total change in population between time $a$ and time $b$."
+    },
+    {
+      "front": "What part of the integral notation $\\int_{a}^{b} f(x) \\,dx$ is often forgotten but crucial for correct notation?",
+      "back": "The $dx$. It indicates that the integration is being performed with respect to the variable $x$."
+    },
+    {
+      "front": "How do you calculate a definite integral in an IB AI SL exam?",
+      "back": "Always use your Graphic Display Calculator (GDC). The exam does not require you to integrate by hand (analytically)."
+    },
+    {
+      "front": "What happens if the function $f(x)$ is below the x-axis?",
+      "back": "The definite integral $\\int f(x) \\,dx$ will yield a negative value. If a question asks for 'area', which must be positive, you may need to integrate the absolute value of the function, $|f(x)|$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to know how to integrate by hand for the AI SL exam?",
+      "a": "No. For Mathematics: Applications and Interpretation SL, all definite integrals should be calculated using your Graphic Display Calculator (GDC). The focus is on setting up the correct integral and interpreting the result."
+    },
+    {
+      "q": "What is the difference between a definite integral and an indefinite integral?",
+      "a": "A definite integral, $\\int_{a}^{b} f(x) \\,dx$, has upper and lower limits and evaluates to a single numerical value (the area). An indefinite integral, $\\int f(x) \\,dx$, has no limits and represents a family of functions (the antiderivative). The AI SL course focuses almost exclusively on definite integrals and their applications."
+    },
+    {
+      "q": "Can the area under a curve be negative?",
+      "a": "The value of a definite integral can be negative. This happens when the area of the region is below the x-axis. However, if a question asks for a physical quantity like 'area' or 'volume', the answer should be positive. You might need to use the absolute value of the function or consider the context of the problem."
+    },
+    {
+      "q": "What if the question asks for the area between two curves?",
+      "a": "To find the area between two curves, $f(x)$ and $g(x)$, you integrate the 'top curve minus the bottom curve'. So, if $f(x)$ is above $g(x)$ from $x=a$ to $x=b$, the area is $\\int_{a}^{b} (f(x) - g(x)) \\,dx$. You would use your GDC to find the intersection points to determine the limits $a$ and $b$ if they are not given."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of calculus so far, we've focused on differentiation, which helps us find the rate of change at a specific moment. Now, we'll explore the reverse process: integration. If we know the rate of change, can we find the total amount that has accumulated over a period? Integration allows us to answer this question by calculating the area under a curve."
+    },
+    {
+      "type": "heading",
+      "content": "The Idea Behind Integration"
+    },
+    {
+      "type": "text",
+      "content": "Imagine you want to find the area of a shape with a curved top. You can't use simple formulas like length times width. Integration provides a solution by imagining the area is filled with an infinite number of incredibly thin rectangles. Each rectangle has a height given by the function's value and a tiny width. Integration is the process of summing the areas of all these infinitesimally thin rectangles to find the exact total area."
+    },
+    {
+      "type": "heading",
+      "content": "Definite Integrals and Area Notation"
+    },
+    {
+      "type": "text",
+      "content": "We use a special notation for this process, called a definite integral. It precisely defines the function we're using and the interval over which we want to find the area."
+    },
+    {
+      "type": "formula",
+      "content": "Area = $\\int_{a}^{b} f(x) \\,dx$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The $\\int$ symbol is the integral sign, meaning 'sum up'.",
+        "$f(x)$ is the function that defines the curve (the 'integrand').",
+        "$a$ and $b$ are the limits of integration. We find the area from the vertical line $x=a$ to $x=b$.",
+        "$dx$ indicates that we are integrating with respect to the variable $x$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For Mathematics: Applications and Interpretation SL, you are not expected to calculate integrals by hand. Your GDC is your primary tool. Ensure you are proficient in using the numerical integration function on your specific calculator model. It's often found in the 'Math' or 'Calculus' menu."
+    },
+    {
+      "type": "workedExample",
+      "question": "A section of a garden path is modelled by the region enclosed by the curve $y = -0.5x^2 + 2x + 3$, the x-axis, and the lines $x=1$ and $x=4$. Find the area of this section of the path.",
+      "solution": "1. **Identify the function and limits.**\nThe function is $f(x) = -0.5x^2 + 2x + 3$. \nThe limits of integration are from $x=1$ to $x=4$. (A1)\n\n2. **Set up the definite integral.**\nThe area is given by the integral: \nArea = $\\int_{1}^{4} (-0.5x^2 + 2x + 3) \\,dx$ (M1 for setting up the correct integral)\n\n3. **Calculate using the GDC.**\nEnter the function and limits into your calculator's integration tool.\nFor example, on a TI-84, you would use `fnInt(-0.5X²+2X+3, X, 1, 4)`.\n\n4. **State the answer.**\nThe calculator gives a value of 15.\nArea = 15 square units. (A1)\n\n*Note: Since the question doesn't specify units for length, 'square units' is appropriate. If x was in metres, the area would be in m².*"
+    },
+    {
+      "type": "heading",
+      "content": "Real-World Applications"
+    },
+    {
+      "type": "text",
+      "content": "Integration is incredibly useful in many fields. If you have a function representing a rate of change, integrating it over an interval gives you the total net change. For example, integrating velocity (rate of change of position) gives total displacement. Integrating the rate of oil leakage from a tanker gives the total volume of oil spilled."
+    },
+    {
+      "type": "workedExample",
+      "question": "The rate at which a company's profit changes is modelled by the function $P'(t) = 250e^{0.1t}$, where $P$ is the profit in thousands of pounds (£) and $t$ is the time in years since the start of 2020. Calculate the total profit generated by the company from the start of 2022 to the start of 2025.",
+      "solution": "1. **Identify the function and limits.**\nThe rate function is $P'(t) = 250e^{0.1t}$.\nThe time interval is from the start of 2022 to the start of 2025. Since $t=0$ is the start of 2020, the start of 2022 is $t=2$ and the start of 2025 is $t=5$. So, our limits are $a=2$ and $b=5$. (A1 for correct limits)\n\n2. **Set up the definite integral.**\nThe total profit is the integral of the rate of profit:\nTotal Profit = $\\int_{2}^{5} 250e^{0.1t} \\,dt$ (M1 for correct integral setup)\n\n3. **Calculate using the GDC.**\nUsing the numerical integration function on the GDC for $\\int_{2}^{5} 250e^{0.1t} \\,dt$.\n\n4. **State the answer.**\nThe calculator gives a value of approximately 988.556...\nTotal Profit = 989 (to 3 s.f.) (A1)\n\n5. **Interpret the answer with units.**\nThe value represents thousands of pounds. So, the total profit is £989,000. (A1 for correct units and context)\nFinal Answer: £989,000"
+    },
+    {
+      "type": "examTip",
+      "content": "Always check for units in application questions! Forgetting units or using the wrong ones can cost you a mark. Also, pay close attention to the definition of the time variable, $t$, to determine the correct limits of integration."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=5.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Introduction to integrals",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-1/v/introduction-to-integrals"
+        },
+        {
+          "label": "GeoGebra: Area under a curve",
+          "href": "https://www.geogebra.org/m/w9gSgU9r"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Area under a curve",
+    "embedUrl": "https://www.geogebra.org/classic?material=w9gSgU9r",
+    "launchUrl": "https://www.geogebra.org/classic?material=w9gSgU9r",
+    "hint": "Use “Area under a curve” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "slug": "2-1-computer-architecture-the-cpu-and-primary-memory",
+  "topicCode": "2.1",
+  "title": "Computer architecture: the CPU and primary memory",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson explores the core components of a computer's architecture, focusing on the Central Processing Unit (CPU) and primary memory. It details the function of the CPU's main parts (ALU, CU, registers), explains the machine instruction cycle, and differentiates between types of primary memory like RAM and ROM.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the principal components of the CPU, including the ALU, CU, and registers.",
+    "Explain the machine instruction cycle (fetch, decode, execute, store).",
+    "Describe the role of primary memory and distinguish between RAM and ROM.",
+    "Explain the function of the Memory Address Register (MAR) and Memory Data Register (MDR)."
+  ],
+  "simpleExplanation": {
+    "title": "The Computer's Brain and Workspace",
+    "summary": "The CPU is the computer's brain, processing all instructions, while primary memory (RAM) is its short-term workspace, holding the information it needs right now. They work together constantly to run your programs.",
+    "analogy": "Imagine a chef (the CPU) in a kitchen. The recipe book is the hard drive. To cook a dish, the chef first brings the specific recipe page and ingredients to the countertop (the RAM). The countertop is a limited but fast-access workspace. The chef reads the recipe (fetches/decodes), prepares the ingredients (executes), and places the finished part of the dish back on the counter (stores). The CPU, RAM, and storage work together in a similar way.",
+    "steps": [
+      "Fetch: The CPU's Control Unit retrieves the next instruction from a specific memory address.",
+      "Decode: The Control Unit interprets the instruction to understand what operation needs to be performed.",
+      "Execute: The Arithmetic Logic Unit (ALU) performs the required calculation or logical operation.",
+      "Store: The result of the execution is written back to a register or a location in primary memory."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the CPU?",
+      "back": "The Central Processing Unit is the primary component of a computer that processes instructions. It is often called the 'brain' of the computer."
+    },
+    {
+      "front": "What are the two main components of the CPU?",
+      "back": "The Arithmetic Logic Unit (ALU) and the Control Unit (CU)."
+    },
+    {
+      "front": "What is the function of the ALU?",
+      "back": "The Arithmetic Logic Unit performs all arithmetic operations (e.g., addition, subtraction) and logical operations (e.g., AND, OR, NOT)."
+    },
+    {
+      "front": "What is the function of the CU?",
+      "back": "The Control Unit directs and coordinates most of the operations in the computer. It fetches instructions from memory, decodes them, and directs the other components to execute them."
+    },
+    {
+      "front": "What is Primary Memory?",
+      "back": "Memory that the CPU can access directly and very quickly. It includes RAM and ROM. It is typically volatile."
+    },
+    {
+      "front": "What is RAM?",
+      "back": "Random Access Memory. A volatile type of memory that stores data and machine code currently being used. Its contents are lost when power is removed."
+    },
+    {
+      "front": "What is ROM?",
+      "back": "Read-Only Memory. A non-volatile type of memory used to store firmware or software that is rarely changed, such as the computer's bootstrap loader."
+    },
+    {
+      "front": "What does the Memory Address Register (MAR) do?",
+      "back": "The MAR is a CPU register that stores the memory address from which data will be fetched to the CPU, or the address to which data will be sent and stored."
+    },
+    {
+      "front": "What does the Memory Data Register (MDR) do?",
+      "back": "The MDR is a CPU register that stores the data being transferred to and from the immediate access store. It acts as a buffer."
+    },
+    {
+      "front": "What is the key difference between the MAR and MDR?",
+      "back": "The MAR holds the *address* of the memory location, while the MDR holds the actual *data* or *instruction* that is being transferred."
+    },
+    {
+      "front": "What is the machine instruction cycle?",
+      "back": "The fundamental process of a CPU: fetching an instruction from memory, decoding it, executing it, and storing the result."
+    },
+    {
+      "front": "What is cache memory?",
+      "back": "A small amount of very fast, expensive memory that stores frequently accessed data and instructions. It is faster than RAM and allows the CPU to work more efficiently."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the MAR and the MDR again?",
+      "a": "Think of it like posting a letter. The MAR (Memory Address Register) holds the *address* you write on the envelope – it says *where* the data should go or come from. The MDR (Memory Data Register) holds the actual *letter* inside the envelope – the data itself that is being sent or received."
+    },
+    {
+      "q": "Is cache memory part of the CPU or part of RAM?",
+      "a": "It's a bit of both in concept, but physically it's distinct. Cache is a type of very fast RAM that is usually integrated directly onto the CPU chip (L1/L2 cache) or placed on a separate chip very close to it (L3 cache). Its purpose is to act as a high-speed buffer between the CPU and the main RAM, so it's best to think of it as a separate component in the memory hierarchy, sitting between the CPU registers and RAM."
+    },
+    {
+      "q": "Why is RAM volatile?",
+      "a": "Most common types of RAM, like DRAM (Dynamic RAM), store each bit of data in a tiny capacitor. These capacitors leak charge over time and need to be constantly refreshed with electricity to maintain their state (0 or 1). When you turn the power off, the refreshing stops, the capacitors lose their charge, and all the data is lost. This design is used because it's cheap and allows for high memory density."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the heart of the machine. Understanding computer architecture is like learning the anatomy of a living organism. In this lesson, we'll dissect the 'brain' – the CPU – and its 'short-term memory' – primary memory. These two components are fundamental to everything a computer does, from opening a file to playing a complex game."
+    },
+    {
+      "type": "heading",
+      "content": "The Central Processing Unit (CPU)"
+    },
+    {
+      "type": "text",
+      "content": "The CPU is the electronic circuitry that executes instructions comprising a computer program. It performs basic arithmetic, logic, controlling, and input/output (I/O) operations specified by the instructions in the program. Modern CPUs are microprocessors, meaning they are contained on a single integrated circuit (IC) chip."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Control Unit (CU):** This component acts as the manager. It fetches instructions from memory, decodes them into commands, and controls the flow of data between the CPU and other devices.",
+        "**Arithmetic Logic Unit (ALU):** This is the calculator of the CPU. It performs all arithmetic calculations (addition, subtraction, etc.) and logical comparisons (AND, OR, NOT, greater than, etc.).",
+        "**Registers:** These are small, extremely fast storage locations within the CPU used to hold data temporarily. Key registers include the Program Counter (PC), which holds the address of the next instruction, and the accumulator, which stores the results of ALU operations."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Role of MAR and MDR"
+    },
+    {
+      "type": "text",
+      "content": "To communicate with primary memory, the CPU uses two special-purpose registers: the Memory Address Register (MAR) and the Memory Data Register (MDR). These are crucial for the fetch-execute cycle. The MAR holds the address of the memory location to be accessed, while the MDR holds the data that is being read from or written to that location. Think of the MAR as the envelope with the address, and the MDR as the letter inside."
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to fetch an instruction from memory address `1101` (binary). Describe the roles of the MAR and MDR in this process.",
+      "solution": "1. The address of the instruction, `1101`, is copied from the Program Counter (PC) into the Memory Address Register (MAR). [1 mark]\n2. The MAR places this address onto the address bus. The memory controller finds the specified location in RAM. [1 mark]\n3. The instruction stored at address `1101` is copied from RAM and placed onto the data bus. It travels to the Memory Data Register (MDR). [1 mark]\n4. The instruction is now held in the MDR, ready to be copied to the Current Instruction Register (CIR) for decoding by the Control Unit. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "The Machine Instruction Cycle"
+    },
+    {
+      "type": "text",
+      "content": "The CPU executes a program by repeatedly performing the machine instruction cycle for each instruction. This cycle is the fundamental operation of the CPU and consists of four main stages."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**1. Fetch:** The CU fetches the next instruction from the memory address stored in the Program Counter (PC). The instruction is loaded into the Instruction Register (IR). The PC is then incremented to point to the next instruction.",
+        "**2. Decode:** The CU decodes the instruction in the IR. It interprets the opcode (operation code) to determine what action to perform and identifies any operands (data) required.",
+        "**3. Execute:** The CU sends signals to the appropriate components, usually the ALU, to carry out the instruction. For example, adding two numbers.",
+        "**4. Store:** The result of the execution is stored in a register or written back to a location in primary memory."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions about the machine instruction cycle, be precise about which register is used at each stage. For example, state that the address is copied to the MAR, and the instruction is copied to the MDR. Simply saying 'the CPU fetches from memory' is often not detailed enough for full marks."
+    },
+    {
+      "type": "heading",
+      "content": "Primary Memory"
+    },
+    {
+      "type": "text",
+      "content": "Primary memory is the only storage that the CPU can access directly. It holds the operating system, applications, and data currently in use. It is much faster to access than secondary storage (like a hard drive or SSD) but is generally smaller in capacity and volatile."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Random Access Memory (RAM):** This is the main workspace of the computer. It is volatile, meaning its contents are erased when the power is switched off. You can both read from and write to RAM.",
+        "**Read-Only Memory (ROM):** This memory is non-volatile, meaning it retains its data without power. It contains the essential instructions to start up the computer, known as the bootstrap program or BIOS. As the name suggests, its contents cannot normally be changed.",
+        "**Cache Memory:** A small, very high-speed block of RAM located on or very close to the CPU. It stores frequently used instructions and data, reducing the need for the CPU to access the slower main RAM, thereby improving performance."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Memory Addressing"
+    },
+    {
+      "type": "text",
+      "content": "The amount of memory a CPU can access is determined by the width of its address bus. The address bus is a set of wires that carries the address of the memory location to be accessed. Each wire can carry one bit (a 0 or a 1)."
+    },
+    {
+      "type": "formula",
+      "content": "Maximum Addressable Memory = $2^N$ locations, where $N$ is the number of lines in the address bus."
+    },
+    {
+      "type": "workedExample",
+      "question": "A CPU has a 32-bit address bus. Calculate the maximum amount of primary memory it can address. Give your answer in Gibibytes (GiB). (Note: 1 KiB = $2^{10}$ bytes, 1 MiB = $2^{20}$ bytes, 1 GiB = $2^{30}$ bytes).",
+      "solution": "1. The number of unique addresses is determined by the number of lines on the address bus, N. Here, N = 32. Total addresses = $2^{32}$. [1 mark]\n2. Assuming each address corresponds to one byte of memory, the maximum addressable memory is $2^{32}$ bytes. [1 mark]\n3. To convert bytes to Gibibytes (GiB), we divide by $2^{30}$.\nCalculation: $\\frac{2^{32} \\text{ bytes}}{2^{30} \\text{ bytes/GiB}} = 2^{32-30} \\text{ GiB} = 2^2 \\text{ GiB}$. [1 mark]\n4. Final Answer: 4 GiB."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to units in memory calculation questions. The IB uses the binary prefixes KiB (kibibyte), MiB (mebibyte), GiB (gibibyte), where K = $2^{10}$, M = $2^{20}$, G = $2^{30}$. This is different from the decimal prefixes KB, MB, GB used in marketing, where K = $10^3$, M = $10^6$, G = $10^9$. Always use the binary definitions in your calculations unless specified otherwise."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Computer Architecture",
+      "href": "/mark?subject=ib-computer-science-sl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Crash Course Computer Science: The CPU",
+          "href": "https://www.youtube.com/watch?v=cNN_tTXABUA"
+        },
+        {
+          "label": "GeeksforGeeks: Computer Organization and Architecture Tutorials",
+          "href": "https://www.geeksforgeeks.org/computer-organization-and-architecture-tutorials/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

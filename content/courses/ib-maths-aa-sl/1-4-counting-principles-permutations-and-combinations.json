@@ -1,0 +1,175 @@
+{
+  "slug": "1-4-counting-principles-permutations-and-combinations",
+  "topicCode": "1.4",
+  "title": "Counting principles, permutations and combinations",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental principles of counting, including the multiplication principle, permutations (where order matters), and combinations (where order does not matter). You will learn to differentiate between these concepts and apply the correct formulas to solve problems involving arrangements and selections, a key skill for probability and other areas of mathematics.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and apply the multiplication principle for counting.",
+    "Distinguish between a permutation and a combination in a given context.",
+    "Calculate the number of permutations and combinations using the appropriate formulae, $^nP_r$ and $^nC_r$.",
+    "Solve counting problems that may involve multiple steps or constraints."
+  ],
+  "simpleExplanation": {
+    "title": "Arrangements vs. Selections",
+    "summary": "This topic provides the tools to count the number of ways things can be arranged or chosen. The key is to figure out whether the order of the items makes a difference.",
+    "analogy": "Imagine you're making a pizza. If you're choosing 3 toppings from a list of 10, the order you pick them in doesn't matter – you get the same pizza. This is a 'combination'. But if you're setting a 3-digit passcode for your phone, the order of the digits is crucial. '1-2-3' is different from '3-2-1'. This is a 'permutation'.",
+    "steps": [
+      "Read the problem carefully to identify what you are counting: arrangements or groups.",
+      "Ask the key question: 'Does the order matter?'. If yes, it's a permutation. If no, it's a combination.",
+      "Identify the total number of items to choose from ($n$) and the number of items you are choosing/arranging ($r$).",
+      "Apply the correct formula ($^nP_r$ or $^nC_r$) and calculate the answer, simplifying factorials where necessary for non-calculator questions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the multiplication principle of counting?",
+      "back": "If there are $m$ ways to do one task and $n$ ways to do another, there are $m \\times n$ ways to perform both tasks in sequence."
+    },
+    {
+      "front": "What is a permutation?",
+      "back": "An arrangement of a set of objects in a specific order. The order of the objects is important."
+    },
+    {
+      "front": "What is a combination?",
+      "back": "A selection of items from a larger set where the order of selection does not matter."
+    },
+    {
+      "front": "What is the formula for permutations of $r$ objects from a set of $n$?",
+      "back": "$^nP_r = \\frac{n!}{(n-r)!}$"
+    },
+    {
+      "front": "What is the formula for combinations of $r$ objects from a set of $n$?",
+      "back": "$^nC_r = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$"
+    },
+    {
+      "front": "What does $n!$ (n factorial) mean?",
+      "back": "The product of all positive integers up to $n$. For example, $5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$. It represents the number of ways to arrange $n$ distinct objects."
+    },
+    {
+      "front": "What is the value of $0!$?",
+      "back": "$0! = 1$. This is a definition, which is necessary for the permutation and combination formulas to work when $r=n$ or $r=0$."
+    },
+    {
+      "front": "Which keywords suggest a permutation problem?",
+      "back": "'Arrange', 'order', 'line up', 'position', 'schedule', 'rank'."
+    },
+    {
+      "front": "Which keywords suggest a combination problem?",
+      "back": "'Choose', 'select', 'group', 'committee', 'team', 'sample'."
+    },
+    {
+      "front": "How are $^nP_r$ and $^nC_r$ related?",
+      "back": "$^nP_r = ^nC_r \\times r!$. The number of permutations is the number of combinations multiplied by the number of ways to arrange the chosen items."
+    },
+    {
+      "front": "How do you handle a problem with a constraint, like 'person A must be included'?",
+      "back": "Treat the constrained item as already chosen. Then, reduce the number of items to choose from ($n$) and the number of items to choose ($r$) accordingly for the rest of the selection."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between $^nP_r$ and $^nC_r$ again?",
+      "a": "The key difference is order. $^nP_r$ (Permutation) counts arrangements where order matters. For example, 'ABC' is different from 'BCA'. $^nC_r$ (Combination) counts selections where order does not matter. The group {A, B, C} is the same as {B, C, A}. Always ask yourself: if I change the order of the items I've picked, do I get a new outcome? If yes, use Permutation. If no, use Combination."
+    },
+    {
+      "q": "How do I solve problems that mix permutations and combinations?",
+      "a": "Break the problem down into stages. Often, you might use a combination to select a group, and then a permutation to arrange the members of that group, or arrange the group with other items. Use the multiplication principle to combine the results from each stage. For example, 'Choose a committee of 3 from 10 people, and then assign the roles of Chair and Secretary from the committee'. This would be $\\binom{10}{3}$ to choose the committee, multiplied by $^3P_2$ to assign the roles."
+    },
+    {
+      "q": "Can I just use my calculator for all these questions?",
+      "a": "For Paper 2, yes, your GDC is a powerful tool and you should use the built-in `nPr` and `nCr` functions. However, for Paper 1 (the non-calculator paper), you will be expected to calculate these values by hand. This usually involves simplifying factorials. The numbers in Paper 1 questions are chosen to be manageable without a calculator, so practicing factorial simplification is essential."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of counting! This might sound simple, but it's a fundamental part of mathematics with huge applications, especially in probability, computer science, and statistics. In this lesson, we'll learn systematic ways to count outcomes, arrangements, and selections, moving beyond just listing them one by one. Mastering these principles is crucial for success in Paper 1."
+    },
+    {
+      "type": "heading",
+      "content": "The Foundation: The Multiplication Principle"
+    },
+    {
+      "type": "text",
+      "content": "The most basic tool in our counting toolkit is the multiplication principle. It states that if you have a sequence of choices to make, the total number of possibilities is the product of the number of options for each choice. For example, if you have 3 shirts and 4 pairs of trousers, you have $3 \\times 4 = 12$ possible outfits. This principle underpins everything else we will learn in this topic."
+    },
+    {
+      "type": "workedExample",
+      "question": "A restaurant menu offers a fixed-price dinner consisting of a starter, a main course, and a dessert. There are 4 starters, 8 main courses, and 3 desserts to choose from. How many different dinner combinations are possible?",
+      "solution": "This is a direct application of the multiplication principle. We have three independent choices to make.\n\nNumber of choices for starter = 4\nNumber of choices for main course = 8\nNumber of choices for dessert = 3\n\nTotal number of different dinners = (Number of starters) $\\times$ (Number of mains) $\\times$ (Number of desserts) [M1]\n\nTotal = $4 \\times 8 \\times 3 = 96$ [A1]\n\nThere are 96 different dinner combinations possible."
+    },
+    {
+      "type": "heading",
+      "content": "Permutations: When Order Matters"
+    },
+    {
+      "type": "text",
+      "content": "A permutation is an arrangement of objects in a specific order. Think about arranging books on a shelf, assigning roles in a play, or creating a password. In all these cases, changing the order creates a new, distinct outcome. The factorial notation, $n!$, is used to count the number of ways to arrange $n$ distinct objects."
+    },
+    {
+      "type": "formula",
+      "content": "Number of ways to arrange all $n$ objects: $n! = n \\times (n-1) \\times (n-2) \\times \\dots \\times 1$\n\nNumber of ways to arrange $r$ objects from $n$: $^nP_r = \\frac{n!}{(n-r)!}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use permutations when the problem involves arranging, ordering, or assigning to specific positions.",
+        "The formula $^nP_r$ counts the number of ordered lists of size $r$ from $n$ items.",
+        "On Paper 1, you'll need to be able to simplify factorial expressions by hand, e.g., $\\frac{8!}{6!} = \\frac{8 \\times 7 \\times 6!}{6!} = 8 \\times 7 = 56$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "There are 8 runners in a 100-metre race. In how many different ways can the gold, silver, and bronze medals be awarded?",
+      "solution": "Here, the order is crucial. The runner who comes first gets gold, second gets silver, and third gets bronze. This is different from the runner who gets silver coming first. So, this is a permutation problem.\n\nWe are arranging 3 medal positions from 8 runners.\nSo, $n=8$ and $r=3$. [M1]\n\nWe need to calculate $^8P_3$.\n\nMethod 1: Using the formula\n$^8P_3 = \\frac{8!}{(8-3)!} = \\frac{8!}{5!}$ [M1]\n$= \\frac{8 \\times 7 \\times 6 \\times 5!}{5!} = 8 \\times 7 \\times 6 = 336$ [A1]\n\nMethod 2: Using the multiplication principle (box method)\nThere are 8 choices for the gold medal winner.\nOnce the gold is awarded, there are 7 remaining choices for the silver medal.\nThen, there are 6 remaining choices for the bronze medal.\nTotal ways = $8 \\times 7 \\times 6 = 336$ [M1][A1]\n\nThere are 336 different ways to award the medals."
+    },
+    {
+      "type": "heading",
+      "content": "Combinations: When Order Doesn't Matter"
+    },
+    {
+      "type": "text",
+      "content": "A combination is a selection of objects where the order does not matter. Think about picking a handful of sweets from a jar, forming a committee from a group of people, or choosing lottery numbers. In these scenarios, the group of items selected is what matters, not the order in which you picked them."
+    },
+    {
+      "type": "formula",
+      "content": "Number of ways to choose $r$ objects from $n$: $^nC_r = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use combinations when the problem involves selecting, choosing, or forming a group where the internal order is irrelevant.",
+        "The number of combinations is always less than or equal to the number of permutations for the same $n$ and $r$ (when $r > 1$).",
+        "A useful identity is $\\binom{n}{r} = \\binom{n}{n-r}$. Choosing $r$ items to take is the same as choosing $n-r$ items to leave behind."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The single most important skill in this topic is correctly identifying whether a problem requires a permutation or a combination. Underline keywords in the question. If you see 'arrange', 'order', 'positions', think Permutation. If you see 'select', 'choose', 'group', think Combination. If you're unsure, create a small, simple example. If you choose A then B, is that different from choosing B then A? If yes, it's a permutation. If no, it's a combination."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Counting Problems",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA SL Questionbank - Topic 1.4",
+          "href": "/questions?subject=ib-maths-aa-sl&topic=1.4"
+        },
+        {
+          "label": "GDC Guide: Permutations and Combinations",
+          "href": "/guides/gdc-permutations-combinations"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

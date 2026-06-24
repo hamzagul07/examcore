@@ -1,0 +1,193 @@
+{
+  "slug": "3-4-trigonometric-functions-and-their-graphs",
+  "topicCode": "3.4",
+  "title": "Trigonometric functions and their graphs",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental trigonometric functions: sine, cosine, and tangent. We will analyse their graphs, understand their key properties like period and amplitude, and learn how to apply transformations to sketch more complex functions. The focus is on graphical interpretation and solving equations without a calculator, aligning with Paper 1 skills.",
+  "durationMin": 120,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and use the definitions of sine, cosine, and tangent in relation to the unit circle.",
+    "Sketch the graphs of $y = a \\sin(b(x-c)) + d$ and $y = a \\cos(b(x-c)) + d$.",
+    "Identify the amplitude, period, phase shift, and vertical shift from a function's equation or graph.",
+    "Solve trigonometric equations graphically within a given domain."
+  ],
+  "simpleExplanation": {
+    "title": "Riding the Trigonometric Waves",
+    "summary": "Trigonometric functions describe repeating patterns, like waves, that appear everywhere from sound to circular motion. We'll explore the basic shapes of these graphs and learn how to stretch, squash, and shift them.",
+    "analogy": "Imagine you're on a Ferris wheel. As it rotates, your height above the ground goes up and down in a smooth, repeating pattern. If you plot your height over time, you get a sine or cosine wave. This analogy shows how circular motion creates the wave-like graphs we study, with the transformations representing changes to the Ferris wheel's size, speed, or starting position.",
+    "steps": [
+      "Begin with the unit circle, a circle with radius 1. As a point moves around it, its y-coordinate traces the sine function and its x-coordinate traces the cosine function.",
+      "Plot these coordinates against the angle of rotation. This reveals the characteristic wave shapes of $y=\\sin x$ and $y=\\cos x$, and the repeating pattern of $y=\\tan x$.",
+      "Learn to transform these basic graphs. We use the parameters $a, b, c, d$ in $y = a\\sin(b(x-c)) + d$ to change the amplitude (height), period (width), and position of the wave.",
+      "Use your knowledge of the transformed graphs to identify key features like maximum and minimum values, and to solve equations by finding where the graph intersects a certain line."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the definition of $\\sin \\theta$ and $\\cos \\theta$ on the unit circle?",
+      "back": "For a point P(x, y) on the unit circle corresponding to an angle $\\theta$ from the positive x-axis, $\\cos \\theta = x$ and $\\sin \\theta = y$."
+    },
+    {
+      "front": "What is the definition of $\\tan \\theta$?",
+      "back": "$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$. This is the gradient of the line from the origin to the point on the unit circle."
+    },
+    {
+      "front": "What is the period of the functions $y = \\sin x$ and $y = \\cos x$?",
+      "back": "The period is $2\\pi$ radians (or $360^\\circ$). The graph repeats every $2\\pi$ units."
+    },
+    {
+      "front": "What is the period of the function $y = \\tan x$?",
+      "back": "The period is $\\pi$ radians (or $180^\\circ$). The graph repeats every $\\pi$ units."
+    },
+    {
+      "front": "What is the amplitude of the function $y = a \\sin(x) + d$?",
+      "back": "The amplitude is $|a|$. It is half the distance between the maximum and minimum values of the function."
+    },
+    {
+      "front": "How do you find the period of $y = \\cos(bx)$?",
+      "back": "The period is calculated by $\\frac{2\\pi}{|b|}$. This represents a horizontal stretch or compression."
+    },
+    {
+      "front": "What is a phase shift?",
+      "back": "A phase shift is a horizontal translation of the graph. For $y = \\sin(x-c)$, the phase shift is $c$ units to the right."
+    },
+    {
+      "front": "What is the principal axis?",
+      "back": "The principal axis is the horizontal line halfway between the maximum and minimum values. For $y = \\sin(x) + d$, the equation of the principal axis is $y=d$."
+    },
+    {
+      "front": "What are the vertical asymptotes of $y = \\tan x$?",
+      "back": "Vertical asymptotes occur where $\\cos x = 0$. This happens at $x = \\frac{\\pi}{2} + n\\pi$, where $n$ is an integer."
+    },
+    {
+      "front": "What is the relationship between the graphs of $y = \\sin x$ and $y = \\cos x$?",
+      "back": "The graph of $y = \\sin x$ is a horizontal translation of the graph of $y = \\cos x$. Specifically, $\\sin x = \\cos(x - \\frac{\\pi}{2})$."
+    },
+    {
+      "front": "Common Trap: What does a negative value for 'a' in $y=a\\sin(x)$ do?",
+      "back": "A negative 'a' (e.g., $y=-2\\sin x$) reflects the graph in the x-axis (or the principal axis). The amplitude is still $|a|$ (e.g., 2)."
+    },
+    {
+      "front": "Common Trap: In $y = \\sin(2x + \\pi)$, what is the phase shift?",
+      "back": "First, factor out the 'b' value: $y = \\sin(2(x + \\frac{\\pi}{2}))$. The phase shift is $-\\frac{\\pi}{2}$, meaning a shift of $\\frac{\\pi}{2}$ to the left."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a phase shift and a horizontal shift?",
+      "a": "They mean the same thing in the context of trigonometric functions. 'Phase shift' is the specific term used for the horizontal translation of periodic functions like sine and cosine."
+    },
+    {
+      "q": "How do I decide whether to use a sine or cosine function to model a situation?",
+      "a": "It depends on the starting condition at $t=0$ or $x=0$. If the situation starts at a maximum or minimum value, a cosine function ($y=a\\cos(bx)+d$) is often easier to use. If it starts at the equilibrium or middle value, a sine function ($y=a\\sin(bx)+d$) is usually more straightforward."
+    },
+    {
+      "q": "Why are radians preferred over degrees in IB Maths?",
+      "a": "Radians are the natural unit for measuring angles in mathematics, especially in calculus. Key formulae, such as the derivatives of trig functions (e.g., the derivative of $\\sin x$ is $\\cos x$), are only this simple when $x$ is in radians. Using degrees would introduce messy conversion factors into these formulae."
+    },
+    {
+      "q": "How do I find all solutions to a trigonometric equation in a given domain?",
+      "a": "First, find the principal value (the first solution your calculator or knowledge gives you). Then, use the symmetry and periodicity of the graph to find other solutions. For $\\sin x = k$, if $\\alpha$ is a solution, so is $\\pi - \\alpha$. For $\\cos x = k$, if $\\alpha$ is a solution, so is $-\\alpha$ (or $2\\pi - \\alpha$). For $\\tan x = k$, if $\\alpha$ is a solution, so is $\\alpha + \\pi$. Then, add or subtract multiples of the period ($2\\pi$ for sin/cos, $\\pi$ for tan) to find all solutions within the required domain."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our lesson on trigonometric functions. These functions are fundamental in mathematics and science for modelling periodic phenomena, from the swinging of a pendulum to alternating current in electronics. In this lesson, we will build a solid understanding of their graphs and transformations, which is a crucial skill for Paper 1."
+    },
+    {
+      "type": "heading",
+      "content": "The Unit Circle: The Birthplace of Trig Functions"
+    },
+    {
+      "type": "text",
+      "content": "The simplest way to define sine, cosine, and tangent is by using the 'unit circle'. This is a circle centred at the origin $(0,0)$ with a radius of 1. Imagine a point $P(x,y)$ that moves along the circumference of this circle. The angle $\\theta$, measured in radians, is formed by the positive x-axis and the line segment from the origin to point P. The coordinates of P are directly related to the angle: the x-coordinate is $\\cos \\theta$ and the y-coordinate is $\\sin \\theta$. As the point P travels around the circle, the values of $\\sin \\theta$ and $\\cos \\theta$ oscillate between -1 and 1."
+    },
+    {
+      "type": "heading",
+      "content": "Graphing the Basic Functions: $y=\\sin x$, $y=\\cos x$, $y=\\tan x$"
+    },
+    {
+      "type": "text",
+      "content": "By plotting the values of $\\sin x$ and $\\cos x$ against the angle $x$ (in radians), we generate their characteristic wave-like graphs. Both functions have a domain of all real numbers and a range of $[-1, 1]$. They are periodic, meaning they repeat their values in regular intervals."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$y=\\sin x$**: Starts at $(0,0)$, reaches a maximum of 1 at $x=\\frac{\\pi}{2}$, crosses the x-axis at $x=\\pi$, reaches a minimum of -1 at $x=\\frac{3\\pi}{2}$, and completes its cycle at $x=2\\pi$. The period is $2\\pi$.",
+        "**$y=\\cos x$**: Starts at a maximum $(0,1)$, crosses the x-axis at $x=\\frac{\\pi}{2}$, reaches a minimum of -1 at $x=\\pi$, crosses the x-axis again at $x=\\frac{3\\pi}{2}$, and completes its cycle at $x=2\\pi$. The period is $2\\pi$.",
+        "**$y=\\tan x$**: Since $\\tan x = \\frac{\\sin x}{\\cos x}$, the graph has vertical asymptotes wherever $\\cos x = 0$. This occurs at $x = \\dots, -\\frac{\\pi}{2}, \\frac{\\pi}{2}, \\frac{3\\pi}{2}, \\dots$. The period of the tangent function is $\\pi$. Its range is all real numbers."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Sketch the graph of the function $f(x) = 3\\cos x$ for the domain $0 \\le x \\le 2\\pi$. Label the coordinates of any maximum points, minimum points and x-intercepts.",
+      "solution": "The function is a vertical stretch of the standard $y=\\cos x$ graph by a factor of 3.\n\n1.  **Identify transformations**: The amplitude is $a=3$. The period is unchanged, $2\\pi$. There are no horizontal or vertical shifts.\n2.  **Find key points**:\n    *   The standard $\\cos x$ has a maximum value of 1. So, $f(x)$ has a maximum value of $3 \\times 1 = 3$. This occurs at $x=0$ and $x=2\\pi$. Maximum points: $(0, 3)$ and $(2\\pi, 3)$.\n    *   The standard $\\cos x$ has a minimum value of -1. So, $f(x)$ has a minimum value of $3 \\times (-1) = -3$. This occurs at $x=\\pi$. Minimum point: $(\\pi, -3)$.\n    *   The x-intercepts occur when $f(x)=0$. $3\\cos x = 0 \\implies \\cos x = 0$. This occurs at $x=\\frac{\\pi}{2}$ and $x=\\frac{3\\pi}{2}$. Intercepts: $(\\frac{\\pi}{2}, 0)$ and $(\\frac{3\\pi}{2}, 0)$.\n\n3.  **Sketch the graph**:\n    *   Draw the axes, labelling x from 0 to $2\\pi$ and y from -3 to 3.\n    *   Plot the maximum, minimum, and intercept points.\n    *   Draw a smooth cosine curve through these points.\n\n*(M1) for correct shape of a cosine curve.*\n*(A1) for correct amplitude, showing max at 3 and min at -3.*\n*(A1) for correctly labelled intercepts at $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$ and endpoints.*\n\n(A sketch would show a cosine wave starting at (0,3), going down through ($\\pi/2$,0) to a minimum at ($\\pi$,-3), up through ($3\\pi/2$,0) and ending at ($2\\pi$,3).)"
+    },
+    {
+      "type": "heading",
+      "content": "Transformations of Trigonometric Graphs"
+    },
+    {
+      "type": "text",
+      "content": "We can apply transformations to the basic trigonometric graphs to model a wider variety of periodic phenomena. The general form for these transformations is:"
+    },
+    {
+      "type": "formula",
+      "content": "y = a \\sin(b(x-c)) + d \\quad \\text{or} \\quad y = a \\cos(b(x-c)) + d"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$a$ (Amplitude)**: $|a|$ is the amplitude. It's a vertical stretch. If $a<0$, the graph is also reflected in the principal axis.",
+        "**$b$ (Period)**: Affects the period (horizontal stretch/compression). The new period is $\\frac{2\\pi}{|b|}$ for sine/cosine and $\\frac{\\pi}{|b|}$ for tangent.",
+        "**$c$ (Phase Shift)**: The horizontal shift. The graph moves $c$ units to the right. For $(x+c)$, the shift is $c$ units to the left.",
+        "**$d$ (Vertical Shift)**: The vertical shift. The graph moves $d$ units up. The line $y=d$ is the new principal axis."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always check if the question specifies the domain in degrees or radians. This is a common source of error. Also, when dealing with a phase shift in the form $\\sin(bx+k)$, always factor out the $b$ first to get $\\sin(b(x+k/b))$ to correctly identify the shift as $-k/b$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The following graph shows a function of the form $y = a \\cos(bx) + d$. It has a maximum point at A$(0, 5)$ and a subsequent minimum point at B$(\\frac{\\pi}{2}, -1)$. Find the values of $a$, $b$, and $d$.",
+      "solution": "1.  **Find the vertical shift, $d$**:\nThe principal axis is the horizontal line halfway between the maximum and minimum y-values.\n$d = \\frac{\\text{max} + \\text{min}}{2} = \\frac{5 + (-1)}{2} = \\frac{4}{2} = 2$. (M1)(A1)\nSo, the principal axis is $y=2$.\n\n2.  **Find the amplitude, $a$**:\nThe amplitude is the distance from the principal axis to the maximum (or minimum).\n$a = \\text{max} - d = 5 - 2 = 3$. (M1)(A1)\nSince the graph starts at a maximum at $x=0$ (like a standard $\\cos x$ graph), $a$ is positive.\n\n3.  **Find the period and $b$**:\nThe horizontal distance from a maximum to the next minimum is half a period.\nHalf period = $\\frac{\\pi}{2} - 0 = \\frac{\\pi}{2}$.\nFull period = $2 \\times \\frac{\\pi}{2} = \\pi$. (M1)\nThe formula for the period is $\\frac{2\\pi}{|b|}$.\nSo, $\\pi = \\frac{2\\pi}{b} \\implies b\\pi = 2\\pi \\implies b=2$. (A1)\n\n4.  **Final Equation**:\nThe values are $a=3$, $b=2$, and $d=2$. The equation is $y = 3\\cos(2x) + 2$."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Graphing and Transformations",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Trigonometric Function Transformations",
+          "href": "https://www.geogebra.org/m/c89p7vce"
+        },
+        {
+          "label": "Unit Circle and Trig Functions",
+          "href": "https://www.youtube.com/watch?v=1-4_p0a25aY"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Trigonometric Function Transformations",
+    "embedUrl": "https://www.geogebra.org/classic?material=c89p7vce",
+    "launchUrl": "https://www.geogebra.org/classic?material=c89p7vce",
+    "hint": "Use “Trigonometric Function Transformations” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

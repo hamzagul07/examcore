@@ -1,0 +1,192 @@
+{
+  "slug": "4-3-probability-venn-diagrams-and-tree-diagrams",
+  "topicCode": "4.3",
+  "title": "Probability, Venn diagrams and tree diagrams",
+  "paper": "P2",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental tools for analysing chance: Venn diagrams and tree diagrams. We will cover how to represent events, calculate probabilities of combined events, and understand the crucial concepts of conditional probability, independence, and mutual exclusivity, all key skills for Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Represent events as sets using Venn diagrams and use them to calculate probabilities, including unions and intersections.",
+    "Model multi-stage probability experiments using tree diagrams and calculate probabilities of combined outcomes.",
+    "Define, calculate, and interpret conditional probability, and distinguish between independent and mutually exclusive events.",
+    "Apply probability formulae from the formula booklet to solve problems in various contexts."
+  ],
+  "simpleExplanation": {
+    "title": "Mapping the Maze of Chance",
+    "summary": "Probability problems can seem complex, but diagrams help us map out all the possibilities. Venn diagrams are great for sorting overlapping groups, while tree diagrams are perfect for tracking events that happen one after another.",
+    "analogy": "Imagine you're at a cafe. Choosing between a tea or coffee is one event. Choosing between a croissant or a muffin is another. A Venn diagram could show how many people like both tea AND croissants. A tree diagram would show the sequence of choices: first the drink, then the pastry, and the probability of ending up with a 'tea and muffin' combination.",
+    "steps": [
+      "First, read the problem carefully to identify the distinct events (e.g., 'passes Maths', 'passes Physics') and any given probabilities.",
+      "Choose your diagram: a Venn diagram for problems about overlapping groups, or a tree diagram for a sequence of events.",
+      "Fill in your diagram. For Venns, start with the intersection (the 'both' category). For trees, write probabilities on each branch, ensuring they sum to 1 from each point.",
+      "Use the diagram and probability rules to find the answer. For Venns, add up the relevant regions. For trees, multiply along the branches for a specific path and add the results of different paths."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a sample space, $U$ or $S$?",
+      "back": "The set of all possible outcomes of an experiment. In a Venn diagram, it's represented by the rectangle."
+    },
+    {
+      "front": "What does $A \\cap B$ represent?",
+      "back": "The intersection of events A and B. It means 'A AND B' both occur. It's the overlapping region in a Venn diagram."
+    },
+    {
+      "front": "What does $A \\cup B$ represent?",
+      "back": "The union of events A and B. It means 'A OR B or both' occur. It's all regions within both circles in a Venn diagram."
+    },
+    {
+      "front": "What is the complement of an event, $A'$?",
+      "back": "The event that A does not occur. The probability is $P(A') = 1 - P(A)$. On a Venn diagram, it's everything outside of circle A."
+    },
+    {
+      "front": "What are mutually exclusive events?",
+      "back": "Events that cannot happen at the same time. For these events, $P(A \\cap B) = 0$. The circles in their Venn diagram do not overlap."
+    },
+    {
+      "front": "What are independent events?",
+      "back": "The occurrence of one event does not affect the probability of the other. The test for independence is: $P(A \\cap B) = P(A) \\times P(B)$."
+    },
+    {
+      "front": "What is conditional probability, $P(A|B)$?",
+      "back": "The probability of event A occurring, given that event B has already occurred. The formula is $P(A|B) = \\frac{P(A \\cap B)}{P(B)}$."
+    },
+    {
+      "front": "State the addition rule for probability.",
+      "back": "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. You subtract the intersection to avoid double-counting."
+    },
+    {
+      "front": "Common Trap: Confusing 'mutually exclusive' and 'independent'.",
+      "back": "Mutually exclusive events (with non-zero probability) cannot be independent. If A and B are mutually exclusive, knowing B happened means A cannot happen, so its probability is affected and they are dependent."
+    },
+    {
+      "front": "Tree Diagram Rule: How do you find the probability of a final outcome?",
+      "back": "Multiply the probabilities along the branches that lead to that outcome."
+    },
+    {
+      "front": "Tree Diagram Rule: How do you find the probability of an event that can happen via multiple outcomes?",
+      "back": "Add the probabilities of each of the individual outcomes. For example, P(getting exactly one head in two flips) = P(HT) + P(TH)."
+    },
+    {
+      "front": "What does 'without replacement' mean for probabilities in a tree diagram?",
+      "back": "The probabilities on the second set of branches will change because the total number of items and the number of specific items have decreased by one."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I use a Venn diagram versus a tree diagram?",
+      "a": "Use a Venn diagram when you are sorting a single population into categories that might overlap (e.g., students taking different subjects). Use a tree diagram when you have a sequence of events happening one after another, and you want to track the outcomes and probabilities at each stage (e.g., drawing two balls from a bag)."
+    },
+    {
+      "q": "What is the real difference between 'mutually exclusive' and 'independent' events?",
+      "a": "Think of it this way. **Mutually exclusive**: 'If one happens, the other CANNOT.' They are linked by exclusion. Example: Turning left and turning right at a junction. **Independent**: 'If one happens, we don't care; it doesn't change the chances of the other.' They are completely unlinked. Example: Rolling a 6 on a die and a queen being drawn from a deck of cards."
+    },
+    {
+      "q": "How do I know if an experiment is 'with replacement' or 'without replacement'?",
+      "a": "The question will usually state it explicitly. 'Without replacement' means the item is not put back, so the total number of items decreases for the next stage. 'With replacement' means the item is put back, so the probabilities remain the same for each stage. If the problem describes a scenario like eating sweets from a bag or selecting people for a committee, it's implicitly 'without replacement'."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Probability is the language we use to describe uncertainty. In this lesson, we'll master two powerful visual tools—Venn diagrams and tree diagrams—to structure our thinking and solve complex probability problems. These methods are essential for Paper 2, where you'll need to interpret scenarios, choose the right model, and perform accurate calculations."
+    },
+    {
+      "type": "heading",
+      "content": "Venn Diagrams: Visualising Overlapping Events"
+    },
+    {
+      "type": "text",
+      "content": "A Venn diagram is a visual representation of sets, which in probability, we call events. The entire box represents the sample space ($U$), containing all possible outcomes. Circles within the box represent specific events. The power of Venn diagrams lies in their ability to clearly show the relationships between events, such as overlaps (intersections) and combined outcomes (unions)."
+    },
+    {
+      "type": "formula",
+      "content": "The General Addition Rule: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. This formula calculates the probability of event A OR event B occurring. We subtract the intersection $P(A \\cap B)$ to avoid double-counting the outcomes that are in both events."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a group of 80 students, 50 study Biology, 35 study Chemistry, and 18 study both. A student is chosen at random.\na) Draw a Venn diagram to represent this information.\nb) Find the probability that the student studies Biology but not Chemistry.\nc) Find the probability that the student studies neither subject.\nd) Given that the student studies Chemistry, find the probability that they also study Biology.",
+      "solution": "a) Let B be the event a student studies Biology, and C be the event a student studies Chemistry. The universal set $U$ contains 80 students.\nWe start by filling in the intersection: $n(B \\cap C) = 18$.\nThe number of students who study only Biology is $n(B) - n(B \\cap C) = 50 - 18 = 32$.\nThe number of students who study only Chemistry is $n(C) - n(B \\cap C) = 35 - 18 = 17$.\nThe total number of students studying at least one subject is $32 + 18 + 17 = 67$.\nThe number of students studying neither is $n(U) - 67 = 80 - 67 = 13$.\nThe Venn diagram shows two overlapping circles, B and C, inside a rectangle U. The values are: 32 in the B-only region, 18 in the intersection, 17 in the C-only region, and 13 outside the circles. [M1] for attempting to draw and populate a Venn diagram. [A1] for all values correct.\n\nb) The number of students who study Biology but not Chemistry is 32.\nThe probability is $P(B \\cap C') = \\frac{32}{80} = \\frac{2}{5} = 0.4$. [A1]\n\nc) The number of students who study neither is 13.\nThe probability is $P(B' \\cap C') = \\frac{13}{80}$. [A1] (approx 0.163)\n\nd) This is a conditional probability question. We are 'given that' the student studies Chemistry. Our sample space is now reduced to the 35 students who study Chemistry.\nOf these 35 students, 18 also study Biology.\n$P(B|C) = \\frac{\\text{Number who study both}}{\\text{Number who study Chemistry}} = \\frac{n(B \\cap C)}{n(C)}$. [M1]\n$P(B|C) = \\frac{18}{35}$. [A1] (approx 0.514)"
+    },
+    {
+      "type": "heading",
+      "content": "Conditional Probability and Independence"
+    },
+    {
+      "type": "text",
+      "content": "Conditional probability deals with how the probability of an event changes based on the occurrence of another event. We write $P(A|B)$ to mean 'the probability of A happening, given that B has already happened'. This concept is crucial for understanding real-world scenarios where outcomes are often linked. Two events are called independent if the outcome of one has absolutely no effect on the outcome of the other. For example, flipping a coin twice; the result of the first flip doesn't change the probability of getting heads on the second."
+    },
+    {
+      "type": "formula",
+      "content": "Conditional Probability: $P(A|B) = \\frac{P(A \\cap B)}{P(B)}$.\nTest for Independence: Events A and B are independent if and only if $P(A \\cap B) = P(A) \\times P(B)$. You can also use $P(A|B) = P(A)$ as a test for independence."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mutually Exclusive**: Events cannot happen together. $P(A \\cap B) = 0$. On a Venn diagram, the circles do not overlap.",
+        "**Independent**: The occurrence of one event does not influence the probability of the other. $P(A \\cap B) = P(A) \\times P(B)$. There is no simple visual rule on a standard Venn diagram; it must be tested with this formula.",
+        "Do not confuse these two concepts. If two events with non-zero probabilities are mutually exclusive, they must be dependent."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Look for keywords! 'Given that', 'if', or 'of those who...' are strong indicators of a conditional probability question. This means you should restrict your sample space to the event that is given."
+    },
+    {
+      "type": "heading",
+      "content": "Tree Diagrams: Mapping Sequential Events"
+    },
+    {
+      "type": "text",
+      "content": "When an experiment involves multiple stages or a sequence of events, a tree diagram is the best tool to use. Each set of branches represents a stage of the experiment, and the probabilities for that stage are written on the branches. The diagram provides a clear map of all possible combined outcomes and their associated probabilities."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Multiply along branches**: To find the probability of a single sequence of events (an outcome at the end of a path), multiply the probabilities on the branches along that path.",
+        "**Add down the outcomes**: To find the probability of an overall event that can be achieved through multiple different paths, calculate the probability of each path and then add them together.",
+        "**Check your branches**: The probabilities branching out from any single point must always sum to 1."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A bag contains 7 red balls and 5 blue balls. A ball is drawn at random and its colour is noted. The ball is not replaced. A second ball is then drawn.\na) Draw a tree diagram to represent this situation.\nb) Find the probability that both balls are red.\nc) Find the probability that the second ball is blue.\nd) Find the probability that the first ball was red, given that the second ball was blue.",
+      "solution": "a) Let R be the event of drawing a red ball and B be the event of drawing a blue ball. Total balls = 12.\nFirst draw: $P(R_1) = \\frac{7}{12}$, $P(B_1) = \\frac{5}{12}$.\nSecond draw (without replacement): Total balls = 11.\nIf the first was Red: $P(R_2|R_1) = \\frac{6}{11}$, $P(B_2|R_1) = \\frac{5}{11}$.\nIf the first was Blue: $P(R_2|B_1) = \\frac{7}{11}$, $P(B_2|B_1) = \\frac{4}{11}$.\nThe tree diagram will have two branches for the first draw (R and B) and then two branches from each of those for the second draw. [M1] for structure, [A1] for all probabilities correct.\n\nb) The probability that both balls are red is the path $R_1$ then $R_2$.\n$P(R_1 \\cap R_2) = P(R_1) \\times P(R_2|R_1) = \\frac{7}{12} \\times \\frac{6}{11}$ [M1]\n$= \\frac{42}{132} = \\frac{7}{22}$. [A1] (approx 0.318)\n\nc) The second ball can be blue via two paths: Red then Blue (RB) or Blue then Blue (BB).\n$P(R_1 \\cap B_2) = \\frac{7}{12} \\times \\frac{5}{11} = \\frac{35}{132}$.\n$P(B_1 \\cap B_2) = \\frac{5}{12} \\times \\frac{4}{11} = \\frac{20}{132}$.\n$P(B_2) = P(R_1 \\cap B_2) + P(B_1 \\cap B_2) = \\frac{35}{132} + \\frac{20}{132}$ [M1]\n$= \\frac{55}{132} = \\frac{5}{12}$. [A1]\n\nd) This is a conditional probability question that uses the results from the tree diagram. We use the formula $P(A|B) = \\frac{P(A \\cap B)}{P(B)}$.\nWe want $P(R_1 | B_2) = \\frac{P(R_1 \\cap B_2)}{P(B_2)}$. [M1]\nWe already calculated both probabilities in part c).\n$P(R_1 \\cap B_2) = \\frac{35}{132}$.\n$P(B_2) = \\frac{55}{132}$.\n$P(R_1 | B_2) = \\frac{35/132}{55/132} = \\frac{35}{55} = \\frac{7}{11}$. [A1] (approx 0.636)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Venn Diagram Tool",
+          "href": "https://www.geogebra.org/m/C3tSUW3X"
+        },
+        {
+          "label": "Khan Academy: Conditional Probability and Independence",
+          "href": "https://www.khanacademy.org/math/statistics-probability/probability-library/conditional-probability-independence"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Interactive Venn Diagram Tool",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3tSUW3X",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3tSUW3X",
+    "hint": "Use “Interactive Venn Diagram Tool” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

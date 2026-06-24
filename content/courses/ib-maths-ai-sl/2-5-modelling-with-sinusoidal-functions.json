@@ -1,0 +1,177 @@
+{
+  "slug": "2-5-modelling-with-sinusoidal-functions",
+  "topicCode": "2.5",
+  "title": "Modelling with sinusoidal functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores how to use sine and cosine functions to model real-world periodic phenomena. You will learn to identify the key parameters of a sinusoidal model—amplitude, period, principal axis, and phase shift—from a given scenario or data set, construct the corresponding function, and use it to make predictions.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the key features of a sinusoidal model from a real-world scenario (amplitude, period, principal axis, phase shift).",
+    "Construct a sinusoidal function of the form f(x) = a sin(b(x-c)) + d or f(x) = a cos(b(x-c)) + d to model given data.",
+    "Use a sinusoidal model to make predictions and solve problems in context.",
+    "Determine the parameters of a sinusoidal model from a graph or table of values."
+  ],
+  "simpleExplanation": {
+    "title": "Riding the Waves of Data",
+    "summary": "Many natural patterns repeat over time, like the height of tides or the position of a Ferris wheel car. We can use sine and cosine functions, known as sinusoidal functions, to create mathematical models of these repeating patterns and predict future behaviour.",
+    "analogy": "Imagine you're on a Ferris wheel. Your height above the ground isn't constant; it goes up and down in a smooth, repeating cycle. This cycle can be perfectly described by a sinusoidal function. The wheel's centre is the 'principal axis', the radius is the 'amplitude', the time for one full turn is the 'period', and where you get on determines the 'phase shift'. By finding these four values, we can create an equation that tells us your exact height at any given moment.",
+    "steps": [
+      "Find the Centreline (d): Calculate the vertical shift, or principal axis, by averaging the maximum and minimum values. This is your 'd' value, the middle of the wave.",
+      "Find the Amplitude (a): Calculate the amplitude by finding half the distance between the maximum and minimum values. This is your 'a' value, the height of the wave from the centreline.",
+      "Find the Period and 'b': Determine the time it takes for one full cycle (the period). Use the formula Period = 2π / b to find the value of 'b', which controls the wave's frequency.",
+      "Find the Shift (c) and Choose Sine or Cosine: Decide if a sine or cosine function is a better fit. A cosine graph starts at a maximum or minimum, while a sine graph starts on the centreline. Find the horizontal shift 'c' needed to align the graph with the start of the cycle."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a sinusoidal function?",
+      "back": "A function that describes a smooth, repetitive oscillation. It can be represented by a sine or cosine wave, typically in the form $y = a \\sin(b(x-c)) + d$."
+    },
+    {
+      "front": "What is the 'amplitude' in a sinusoidal model?",
+      "back": "The amplitude is $|a|$. It represents half the distance between the maximum and minimum values of the function. It is always a positive value and indicates the maximum displacement from the principal axis."
+    },
+    {
+      "front": "What is the 'principal axis'?",
+      "back": "The horizontal line that runs exactly halfway between the function's maximum and minimum values. Its equation is $y = d$, where $d = (\\text{max} + \\text{min}) / 2$."
+    },
+    {
+      "front": "How do you calculate the period from the function $y = a \\cos(b(x-c)) + d$?",
+      "back": "The period is the length of one full cycle. It is calculated as $2\\pi / |b|$ (if using radians) or $360^\\circ / |b|$ (if using degrees)."
+    },
+    {
+      "front": "What does the parameter 'c' represent in $y = a \\sin(b(x-c)) + d$?",
+      "back": "'c' represents the horizontal shift, also known as the phase shift. A positive 'c' shifts the graph to the right, and a negative 'c' shifts it to the left."
+    },
+    {
+      "front": "When is it often simpler to model with a cosine function?",
+      "back": "When the starting point of the cycle (e.g., at time $t=0$) is at a maximum or a minimum value. This often makes the horizontal shift $c=0$."
+    },
+    {
+      "front": "When is it often simpler to model with a sine function?",
+      "back": "When the starting point of the cycle is on the principal axis and the function is increasing. This often makes the horizontal shift $c=0$."
+    },
+    {
+      "front": "How do you find the parameter 'b' if you know the period of the phenomenon?",
+      "back": "You rearrange the period formula: $b = 2\\pi / \\text{Period}$ (for radians) or $b = 360^\\circ / \\text{Period}$ (for degrees)."
+    },
+    {
+      "front": "What does a negative value for 'a' (e.g., $y = -3\\cos(x)$) signify?",
+      "back": "A negative 'a' value reflects the graph across the principal axis. For example, a standard cosine graph starts at a maximum; a reflected one ($a<0$) starts at a minimum. The amplitude is still $|-3| = 3$."
+    },
+    {
+      "front": "What are the first two parameters to calculate when building a model from max/min values?",
+      "back": "First, find the principal axis $d = (\\text{max} + \\text{min}) / 2$. Then, find the amplitude $a = (\\text{max} - \\text{min}) / 2$."
+    },
+    {
+      "front": "How can you find the period from a graph or table of data?",
+      "back": "Measure the horizontal distance between two consecutive maximum points or two consecutive minimum points."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does it matter if I use a sine or cosine function for my model?",
+      "a": "Fundamentally, no. Any sinusoidal pattern can be modelled with either function, as a sine graph is just a horizontally shifted cosine graph ($sin(x) = \\cos(x - \\pi/2)$). However, one choice is usually 'simpler' than the other. If your data starts at a maximum or minimum, using a cosine function often results in a horizontal shift of $c=0$, which is easier to work with."
+    },
+    {
+      "q": "My calculation for 'b' is different from the answer key. What did I do wrong?",
+      "a": "The most common error is being in the wrong calculator mode. The formula $b = 2\\pi / \\text{Period}$ is for RADIAN mode. If you are working in degrees, the formula is $b = 360 / \\text{Period}$. The IB Maths AI course predominantly uses radians for calculus and modelling, so always check your GDC is set to radians unless the question specifies degrees."
+    },
+    {
+      "q": "What if the value I find for 'a' should be negative?",
+      "a": "The amplitude, 'a', is a distance and is defined as being positive: $a = (\\text{Max} - \\text{Min})/2$. However, in the final equation $y = a \\cos(...) + d$, the coefficient of the cosine term can be negative. A negative coefficient, e.g., $y = -3.8\\cos(...)$, indicates a reflection in the principal axis. This is useful if your data starts at a minimum value, as a reflected cosine graph starts at a minimum."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the rhythm of the tides to the oscillating sound waves from a musical instrument, our world is filled with periodic patterns. Sinusoidal functions, based on sine and cosine, are the mathematical tools we use to describe and analyse these repeating cycles. In this lesson, we'll learn how to take a real-world situation, deconstruct it into its key components, and build a powerful mathematical model to make accurate predictions."
+    },
+    {
+      "type": "heading",
+      "content": "The Anatomy of a Sinusoidal Model"
+    },
+    {
+      "type": "text",
+      "content": "Any sinusoidal model can be described by a function in one of two general forms. Understanding what each parameter does is the key to building and interpreting these models."
+    },
+    {
+      "type": "formula",
+      "content": "$$ f(x) = a \\cos(b(x - c)) + d \\quad \\text{or} \\quad f(x) = a \\sin(b(x - c)) + d $$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**d (Principal Axis / Vertical Shift):** The midline of the graph. Calculated as $d = \\frac{\\text{Max Value} + \\text{Min Value}}{2}$.",
+        "**a (Amplitude):** The distance from the principal axis to a maximum or minimum point. Calculated as $a = \\frac{\\text{Max Value} - \\text{Min Value}}{2}$. The value of $a$ is always positive.",
+        "**Period and b:** The period is the length of one full cycle. The parameter $b$ is related to the period by the formula $\\text{Period} = \\frac{2\\pi}{b}$. Therefore, $b = \\frac{2\\pi}{\\text{Period}}$.",
+        "**c (Phase Shift / Horizontal Shift):** This shifts the graph horizontally. It's the value of $x$ where a cycle 'begins'. For a cosine model, this is often the x-coordinate of a maximum. For a sine model, it's the x-coordinate of a point on the principal axis where the graph is increasing."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Building the Model: A Step-by-Step Guide"
+    },
+    {
+      "type": "text",
+      "content": "When faced with a problem, systematically determining each parameter is the most reliable method. The process is the same whether you are given a description, a graph, or a table of data."
+    },
+    {
+      "type": "workedExample",
+      "question": "A Ferris wheel has a diameter of 40 metres. The lowest point of a carriage is 2 metres above the ground. It takes 3 minutes for the wheel to complete one full revolution. A passenger gets on a carriage at its lowest point at time $t=0$.\n\na) Find a cosine function that models the passenger's height, $H$, above the ground in metres, as a function of time, $t$, in minutes.\n\nb) Find the passenger's height after 1 minute.",
+      "solution": "a) **Step 1: Find max and min heights.**\nMinimum height = 2 m (given).\nMaximum height = Lowest point + diameter = 2 + 40 = 42 m.\n\n**Step 2: Calculate d (principal axis).**\n$d = \\frac{\\text{Max} + \\text{Min}}{2} = \\frac{42 + 2}{2} = \\frac{44}{2} = 22$. (M1)\n\n**Step 3: Calculate a (amplitude).**\n$a = \\frac{\\text{Max} - \\text{Min}}{2} = \\frac{42 - 2}{2} = \\frac{40}{2} = 20$. (M1)\n\n**Step 4: Calculate b.**\nThe period is given as 3 minutes.\n$b = \\frac{2\\pi}{\\text{Period}} = \\frac{2\\pi}{3}$. (M1)\n\n**Step 5: Choose function and find c.**\nThe passenger starts at the lowest point at $t=0$. A standard cosine function, $y = \\cos(t)$, starts at a maximum. A reflected cosine function, $y = -\\cos(t)$, starts at a minimum. Since the starting point is a minimum, we should use a reflected cosine model. This means our 'a' value in the formula will be negative, i.e., -20. Because the minimum occurs at $t=0$, there is no horizontal shift, so $c=0$. (M1)\n\n**Step 6: Assemble the model.**\n$H(t) = a \\cos(b(t-c)) + d$\n$H(t) = -20 \\cos(\\frac{2\\pi}{3}(t-0)) + 22$\n$H(t) = -20 \\cos(\\frac{2\\pi}{3}t) + 22$. (A1)\n\nb) **Substitute t=1 into the model.**\n$H(1) = -20 \\cos(\\frac{2\\pi}{3}(1)) + 22$. (M1)\nMake sure your calculator is in RADIAN mode.\n$H(1) = -20 \\cos(\\frac{2\\pi}{3}) + 22$\n$H(1) = -20(-0.5) + 22$\n$H(1) = 10 + 22 = 32$.\nThe passenger's height after 1 minute is 32 metres. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always check your calculator is in the correct mode (degrees or radians) before starting a calculation. Most sinusoidal modelling questions use radians. When the question asks for the model, write out the full equation with the values of $a, b, c,$ and $d$ you found. Don't just list the parameters."
+    },
+    {
+      "type": "heading",
+      "content": "Modelling from Data"
+    },
+    {
+      "type": "text",
+      "content": "Often, you will be given a table of data, such as tide heights or average monthly temperatures, and asked to create a model. The process remains the same: identify the maximum and minimum values from the data to find the amplitude and principal axis. Then, find the period by looking at the time difference between consecutive peaks or troughs to find 'b'. Finally, determine the horizontal shift 'c' based on the position of the first peak."
+    },
+    {
+      "type": "workedExample",
+      "question": "The depth of water, $D$ metres, in a harbour on a particular day is monitored. The first high tide occurs at 04:00 with a depth of 12.8 m. The next low tide occurs at 10:00 with a depth of 5.2 m. Assume the depth of water can be modelled by a sinusoidal function $D(t) = a \\cos(b(t-c)) + d$, where $t$ is the number of hours after midnight.\n\na) Find the period of the tides.\nb) Write down a model for the depth of water, $D(t)$.\nc) A ship requires a depth of at least 8 metres to enter the harbour. Using your GDC, find the time intervals, to the nearest minute, during which the ship can enter the harbour on this day (between $t=0$ and $t=24$).",
+      "solution": "a) The time from high tide to low tide is $10:00 - 04:00 = 6$ hours. This represents half a period.\nPeriod = $2 \\times 6 = 12$ hours. (A1)\n\nb) **Find parameters d, a, b, c.**\nMax depth = 12.8 m, Min depth = 5.2 m.\n$d = \\frac{12.8 + 5.2}{2} = 9$. (M1)\n$a = \\frac{12.8 - 5.2}{2} = 3.8$. (M1)\nPeriod = 12, so $b = \\frac{2\\pi}{12} = \\frac{\\pi}{6}$. (M1)\nThe first high tide (maximum) is at 04:00, which is $t=4$. A standard cosine function has its maximum at the start of the cycle. We can model this by shifting the cosine graph 4 units to the right. So, $c=4$. (M1)\n**Assemble the model:**\n$D(t) = 3.8 \\cos(\\frac{\\pi}{6}(t-4)) + 9$. (A1)\n\nc) We need to find when $D(t) \\ge 8$. We solve $D(t) = 8$.\nUsing a GDC, graph $Y_1 = 3.8 \\cos(\\frac{pi}{6}(x-4)) + 9$ and $Y_2 = 8$. (M1)\nFind the points of intersection in the interval $[0, 24]$.\nThe GDC gives intersections at:\n$t_1 \\approx 0.4913...$\n$t_2 \\approx 7.5086...$\n$t_3 \\approx 12.4913...$\n$t_4 \\approx 19.5086...$ (A1 for two correct intersections)\n\nLooking at the graph, the water depth is $\\ge 8$ m between the first and second intersections, and between the third and fourth intersections.\nInterval 1: $0.4913 < t < 7.5086$\nInterval 2: $12.4913 < t < 19.5086$\n\nConvert the decimal hours to hours and minutes:\n$0.4913 \\times 60 \\approx 29$ minutes $\\implies$ 00:29\n$7.5086 \\implies 7$ hours and $0.5086 \\times 60 \\approx 31$ minutes $\\implies$ 07:31\n$12.4913 \\implies 12$ hours and $0.4913 \\times 60 \\approx 29$ minutes $\\implies$ 12:29\n$19.5086 \\implies 19$ hours and $0.5086 \\times 60 \\approx 31$ minutes $\\implies$ 19:31\n\nThe ship can enter between 00:29 and 07:31, and between 12:29 and 19:31. (A1)(A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Practise Modelling with Sinusoidal Functions",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Sinusoidal Model Explorer",
+          "href": "https://www.geogebra.org/m/dGAKa2yC"
+        },
+        {
+          "label": "Desmos Graphing Calculator",
+          "href": "https://www.desmos.com/calculator"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Sinusoidal Model Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=dGAKa2yC",
+    "launchUrl": "https://www.geogebra.org/classic?material=dGAKa2yC",
+    "hint": "Use “GeoGebra Sinusoidal Model Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

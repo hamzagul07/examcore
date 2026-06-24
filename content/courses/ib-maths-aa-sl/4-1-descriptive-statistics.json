@@ -1,0 +1,171 @@
+{
+  "slug": "4-1-descriptive-statistics",
+  "topicCode": "4.1",
+  "title": "Descriptive statistics",
+  "paper": "P2",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces descriptive statistics, focusing on measures of central tendency (mean, median, mode) and dispersion (range, interquartile range, standard deviation). It covers calculations for both ungrouped and grouped data, emphasising the use of a GDC for Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Calculate and interpret measures of central tendency (mean, median, mode) for raw and grouped data.",
+    "Calculate and interpret measures of dispersion (range, interquartile range, variance, standard deviation) for raw and grouped data.",
+    "Understand the concepts of population, sample, and frequency.",
+    "Effectively use a Graphical Display Calculator (GDC) to perform statistical calculations."
+  ],
+  "simpleExplanation": {
+    "title": "Making Sense of Messy Data",
+    "summary": "Descriptive statistics are tools that help us summarise a large set of numbers into a few meaningful values. They allow us to understand the 'average' case and how 'spread out' the data is, turning chaos into clarity.",
+    "analogy": "Imagine you're a food critic reviewing a new chain of cafés. Instead of listing the price of every single item on the menu, you'd summarise by giving the average price of a coffee (the mean) and mentioning the price range from the cheapest to the most expensive item (the range). This gives your readers a quick and useful summary without overwhelming them with every single data point.",
+    "steps": [
+      "Organise your data. For Paper 2, this means entering the values into your GDC. For individual data points, use one list. For grouped data, use one list for mid-interval values and a second list for frequencies.",
+      "Calculate measures of central tendency. Use your GDC's '1-Variable Statistics' function to instantly find the mean ($\\bar{x}$) and the median (Med). The mode must be found by observing the most frequent value in the data set.",
+      "Calculate measures of dispersion. The same GDC function will give you the standard deviation ($\\sigma_x$), the quartiles ($Q_1$, $Q_3$), the minimum, and the maximum values. Use these to calculate the Interquartile Range (IQR = $Q_3 - Q_1$) and the range.",
+      "Interpret and communicate your results. Use the calculated statistics to describe the data in the context of the problem. A low standard deviation indicates data points are clustered around the mean, suggesting consistency."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Mean ($\\bar{x}$)",
+      "back": "The sum of all data values divided by the number of data values. It is often called the 'average'. It is sensitive to outliers."
+    },
+    {
+      "front": "Median",
+      "back": "The middle value of a data set when the values are arranged in order of size. If there are two middle values, it is the mean of those two. It is not sensitive to outliers."
+    },
+    {
+      "front": "Mode",
+      "back": "The value that appears most frequently in a data set. A data set can have one mode (unimodal), two modes (bimodal), or more."
+    },
+    {
+      "front": "Range",
+      "back": "The difference between the maximum and minimum values in a data set. Range = Maximum value - Minimum value."
+    },
+    {
+      "front": "Interquartile Range (IQR)",
+      "back": "The difference between the upper quartile ($Q_3$) and the lower quartile ($Q_1$). It represents the range of the middle 50% of the data. IQR = $Q_3 - Q_1$."
+    },
+    {
+      "front": "Standard Deviation ($\\sigma_x$)",
+      "back": "A measure of how spread out the data values are from the mean. A low standard deviation indicates that the values tend to be close to the mean; a high standard deviation indicates that the values are spread out over a wider range."
+    },
+    {
+      "front": "Variance ($\\sigma_x^2$)",
+      "back": "The square of the standard deviation. It is another measure of spread, but its units are squared (e.g., cm$^2$), making standard deviation often more intuitive to interpret."
+    },
+    {
+      "front": "Lower Quartile ($Q_1$)",
+      "back": "The value that separates the lowest 25% of the data from the rest. It is the median of the lower half of the data set."
+    },
+    {
+      "front": "Upper Quartile ($Q_3$)",
+      "back": "The value that separates the highest 25% of the data from the rest. It is the median of the upper half of the data set."
+    },
+    {
+      "front": "How do you estimate the mean from a grouped frequency table?",
+      "back": "Use the midpoint (mid-interval value) of each class interval as the representative value ($x_i$) for that class. Then calculate the mean using the formula $\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i}$ on your GDC."
+    },
+    {
+      "front": "GDC Trap: Population vs Sample Standard Deviation",
+      "back": "Your GDC shows two standard deviations: $\\sigma_x$ (population) and $s_x$ (sample). For IB Maths AA SL, unless told otherwise, you should use the population standard deviation, $\\sigma_x$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between population standard deviation ($\\sigma_x$) and sample standard deviation ($s_x$)?",
+      "a": "Population standard deviation ($\\sigma_x$) is used when your data set includes every member of the entire population you are studying. Sample standard deviation ($s_x$) is used when your data is just a sample of a larger population. Your GDC calculates both. For IB Maths AA SL, we almost always deal with data as a complete 'population' for the context of the problem, so you should use $\\sigma_x$ unless explicitly told to use a sample."
+    },
+    {
+      "q": "When should I use the median instead of the mean?",
+      "a": "You should use the median as the measure of central tendency when your data set has significant outliers (extremely high or low values). The mean is pulled by these outliers, whereas the median, being the middle value, is not affected. For example, when reporting average house prices in an area, the median is often used to avoid a few mansions skewing the 'average'."
+    },
+    {
+      "q": "Do I need to memorise the formula for standard deviation for the exam?",
+      "a": "No. For Paper 2, you are expected to use your GDC to find the standard deviation directly. The formula is provided in the formula booklet, but you will not be asked to calculate it by hand. The key is to understand what standard deviation represents (a measure of spread from the mean) and how to find it on your calculator."
+    },
+    {
+      "q": "What does 'modal class' mean?",
+      "a": "In a grouped frequency table, the 'modal class' is the class interval that has the highest frequency. It's the group where data points are most concentrated. It is the grouped data equivalent of the mode."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of data! In almost every field, from sports science to economics and biology, we are flooded with information. Descriptive statistics provides the essential tools to make sense of this information, allowing us to summarise key features and communicate them clearly. This topic forms the foundation of statistical analysis and is a vital skill for your IB journey and beyond."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Central Tendency"
+    },
+    {
+      "type": "text",
+      "content": "A measure of central tendency is a single value that attempts to describe a set of data by identifying the central position within that set of data. The main measures are the mean, median, and mode. The mean is the most common 'average', but the median is often more appropriate when the data contains extreme values (outliers), as it is less affected by them."
+    },
+    {
+      "type": "formula",
+      "content": "Mean of a data set: $\\bar{x} = \\frac{\\sum_{i=1}^{k} f_i x_i}{n}$, where $n = \\sum_{i=1}^{k} f_i$. \\n For ungrouped data, each $f_i$ is 1. For grouped data, $x_i$ is the mid-interval value."
+    },
+    {
+      "type": "workedExample",
+      "question": "The times, in seconds, for 12 athletes to run 100 metres are recorded below: \\n 10.2, 10.4, 10.5, 10.8, 10.8, 11.1, 11.3, 11.4, 11.6, 12.0, 12.1, 13.5 \\n For this data, find: \\n (a) the mean time. \\n (b) the median time. \\n (c) the interquartile range. \\n (d) the standard deviation.",
+      "solution": "This is a Paper 2 question, so we will use the GDC's statistical functions. \\n 1. Enter the data into a list (e.g., L1) on your GDC. \\n 2. Navigate to the 1-Variable Statistics calculation. \\n 3. The calculator will display all the required values. \\n \\n (a) The mean time is given by $\\bar{x}$. \\n $\\bar{x} = 11.30833...$ \\n Mean time = 11.3 s (3 s.f.) [A1] \\n \\n (b) The median time is given by 'Med'. The data is already ordered. With 12 values, the median is the average of the 6th and 7th values. \\n Median = $\\frac{11.1 + 11.3}{2} = 11.2$ s. The GDC confirms this. [M1][A1] \\n \\n (c) The GDC provides the quartiles: $Q_1 = 10.65$ and $Q_3 = 11.8$. \\n IQR = $Q_3 - Q_1$ [M1] \\n IQR = $11.8 - 10.65 = 1.15$ s [A1] \\n \\n (d) The population standard deviation is given by $\\sigma_x$. \\n $\\sigma_x = 0.8913...$ \\n Standard deviation = 0.891 s (3 s.f.) [A1] \\n Note: The value 13.5 is an outlier. This affects the mean more than the median."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Dispersion"
+    },
+    {
+      "type": "text",
+      "content": "Knowing the 'average' isn't the whole story. Consider two basketball players who both average 20 points per game. One scores around 20 points every game, while the other scores 40 one game and 0 the next. They have the same mean, but very different consistency. Measures of dispersion, or spread, tell us how consistent or varied the data is. The key measures are the range, interquartile range (IQR), and standard deviation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Range:** The simplest measure of spread. It is highly affected by outliers.",
+        "**Interquartile Range (IQR):** Describes the spread of the middle 50% of the data. It is resistant to outliers, making it a robust measure of spread.",
+        "**Standard Deviation ($\\sigma_x$):** The most common measure of spread, it quantifies the typical distance of a data point from the mean. A small $\\sigma_x$ means data is clustered tightly around the mean. A large $\\sigma_x$ means data is spread out."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 2, 'calculate', 'find', or 'determine' for statistical quantities means 'use your GDC'. You do not need to show formulae or manual calculations. However, for IQR, you must show the subtraction ($Q_3 - Q_1$) to get the method mark."
+    },
+    {
+      "type": "heading",
+      "content": "Analysing Grouped Frequency Data"
+    },
+    {
+      "type": "text",
+      "content": "Often, data is presented in a grouped frequency table, where we know how many data points fall within certain intervals, but not the exact values themselves. To analyse this data, we must make an assumption. We assume that all the data points in an interval are located at the midpoint of that interval (the mid-interval value). This allows us to estimate the mean and standard deviation."
+    },
+    {
+      "type": "workedExample",
+      "question": "The weights (in kg) of 100 newborn babies are recorded in the table below. \\n \\n | Weight, w (kg) | Frequency | \\n |---|---| \\n | $2.0 \\le w < 2.5$ | 8 | \\n | $2.5 \\le w < 3.0$ | 25 | \\n | $3.0 \\le w < 3.5$ | 35 | \\n | $3.5 \\le w < 4.0$ | 22 | \\n | $4.0 \\le w < 4.5$ | 10 | \\n \\n (a) State the modal class. \\n (b) Write down the mid-interval value for the $2.5 \\le w < 3.0$ class. \\n (c) Using your GDC, estimate the mean weight and the standard deviation.",
+      "solution": "(a) The modal class is the class with the highest frequency. \\n The highest frequency is 35, which corresponds to the $3.0 \\le w < 3.5$ class. [A1] \\n \\n (b) The mid-interval value is the average of the interval's endpoints. \\n Mid-interval value = $\\frac{2.5 + 3.0}{2} = 2.75$ kg. [A1] \\n \\n (c) First, we list all mid-interval values: 2.25, 2.75, 3.25, 3.75, 4.25. \\n Enter the mid-interval values into L1 and the frequencies (8, 25, 35, 22, 10) into L2 on the GDC. [M1] \\n Use the 1-Variable Statistics function, setting L1 as the Data List and L2 as the Frequency List. \\n The GDC gives: \\n Estimated mean, $\\bar{x} = 3.285$ kg. [A1] \\n Standard deviation, $\\sigma_x = 0.53958...$ kg. \\n $\\sigma_x = 0.540$ kg (3 s.f.). [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks you to 'estimate' a value from a grouped table, it's a clear instruction to use mid-interval values. Even though the GDC does the calculation, writing down the list of mid-interval values you are using can be a good way to show your method and avoid errors."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Guide: TI-84 for Statistics",
+          "href": "https://www.youtube.com/watch?v=h-i2A2-DD3k"
+        },
+        {
+          "label": "Khan Academy: Standard Deviation",
+          "href": "https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/a/population-and-sample-standard-deviation-review"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

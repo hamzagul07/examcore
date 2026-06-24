@@ -1,0 +1,201 @@
+{
+  "slug": "2-7-linearizing-data-log-log-and-semi-log-graphs",
+  "topicCode": "2.7",
+  "title": "Linearizing data: log-log and semi-log graphs",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores the technique of linearizing data. We'll learn how to transform non-linear relationships, specifically exponential and power models, into straight lines using semi-log and log-log graphs. This allows us to use linear regression to find the equation of the original curve.",
+  "durationMin": 45,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify whether an exponential or power model is appropriate for a given dataset.",
+    "Use logarithms to transform non-linear data into a linear form.",
+    "Determine the parameters of exponential and power models from a linearized graph.",
+    "Apply these techniques to solve problems in a real-world context."
+  ],
+  "simpleExplanation": {
+    "title": "Straightening Out Curves",
+    "summary": "Some data looks curved but secretly follows a simple rule. We use logarithms as a special tool to 'straighten out' the curve, making the underlying relationship a straight line that's much easier to analyse.",
+    "analogy": "Imagine you have a coiled spring. It's a complex, loopy shape. But if you stretch it out, it becomes a simple, straight wire. Linearizing data is like stretching that spring: we apply a logarithmic transformation to turn a complicated curve on a graph into a straight line, revealing the simple relationship hidden inside.",
+    "steps": [
+      "Examine the scatter plot of the original data to guess the relationship type: exponential ($y=ab^x$) or power ($y=ax^b$).",
+      "Choose the correct transformation. For exponential, plot $\\log(y)$ against $x$ (semi-log). For power, plot $\\log(y)$ against $\\log(x)$ (log-log).",
+      "Use your GDC to find the equation of the linear regression line for the transformed data, in the form $Y = mX + c$.",
+      "Use the gradient ($m$) and y-intercept ($c$) of the straight line to work backwards and find the parameters ($a$ and $b$) of the original non-linear equation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is data linearization?",
+      "back": "The process of applying a mathematical transformation to non-linear data to make it appear linear (a straight line) on a graph."
+    },
+    {
+      "front": "Which model is associated with a semi-log graph?",
+      "back": "The exponential model, $y = ab^x$. Data is transformed by plotting $\\log(y)$ against $x$."
+    },
+    {
+      "front": "Which model is associated with a log-log graph?",
+      "back": "The power model, $y = ax^b$. Data is transformed by plotting $\\log(y)$ against $\\log(x)$."
+    },
+    {
+      "front": "In a semi-log plot of $Y = mX+c$ for $y=ab^x$, what do $m$ and $c$ represent?",
+      "back": "The gradient $m = \\log(b)$ and the Y-intercept $c = \\log(a)$. Here, $Y=\\log(y)$ and $X=x$."
+    },
+    {
+      "front": "In a log-log plot of $Y = mX+c$ for $y=ax^b$, what do $m$ and $c$ represent?",
+      "back": "The gradient $m = b$ and the Y-intercept $c = \\log(a)$. Here, $Y=\\log(y)$ and $X=\\log(x)$."
+    },
+    {
+      "front": "How do you find 'a' from the linear equation's y-intercept, $c$?",
+      "back": "Since $c = \\log(a)$, you find $a$ by calculating $a = 10^c$ (if using $\\log_{10}$) or $a = e^c$ (if using $\\ln$)."
+    },
+    {
+      "front": "How do you find 'b' in the exponential model $y=ab^x$ from the gradient $m$?",
+      "back": "Since $m = \\log(b)$, you find $b$ by calculating $b = 10^m$ (if using $\\log_{10}$) or $b = e^m$ (if using $\\ln$)."
+    },
+    {
+      "front": "How do you find 'b' in the power model $y=ax^b$ from the gradient $m$?",
+      "back": "It's simple! The gradient is equal to the exponent: $m = b$."
+    },
+    {
+      "front": "Trap: What's a common mistake when finding the y-intercept from a GDC regression line?",
+      "back": "The y-intercept 'c' from the regression line $Y=mX+c$ is NOT the parameter 'a'. You must calculate $a=10^c$ or $a=e^c$."
+    },
+    {
+      "front": "Does it matter if I use natural log (ln) or base-10 log (log)?",
+      "back": "No, as long as you are consistent throughout your calculations. The final parameters 'a' and 'b' will be the same. IB questions often specify which to use."
+    },
+    {
+      "front": "How can you quickly check your work after finding $a$ and $b$?",
+      "back": "Use your GDC's built-in exponential or power regression function on the original data. The values should be very close to what you calculated manually."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which model to use, exponential ($y=ab^x$) or power ($y=ax^b$)?",
+      "a": "Sometimes the question will tell you. If not, you can try linearizing both ways. Calculate the correlation coefficient, $r$, for both the semi-log and log-log linear regressions. The transformation that results in an $r$-value closer to 1 or -1 provides the better model."
+    },
+    {
+      "q": "Does it matter if I use natural log (ln) or base-10 log (log)?",
+      "a": "No, it does not matter mathematically, as long as you are consistent. If you use $\\ln$, then your inverse operations will involve $e^x$. If you use $\\log_{10}$, your inverse operations will use $10^x$. The final values for $a$ and $b$ in the original model will be the same. Pay close attention to the question, as it may specify which logarithm to use."
+    },
+    {
+      "q": "My GDC has exponential and power regression functions. Why can't I just use those?",
+      "a": "You can, and it's a great way to check your answer! However, exam questions are specifically designed to test your understanding of the linearization process. They will ask for the equation of the *linearized* data (e.g., 'find the regression line of $\\log y$ on $\\log x$'), which requires you to perform the transformation yourself. Understanding the process is key to securing all the marks."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome! In previous topics, we've focused on linear regression, which is brilliant for data that follows a straight line. But what happens when our data points clearly follow a curve? It would be incorrect to fit a straight line to a curved pattern. This is where linearization comes in. It's a powerful technique to transform curved data into a straight line, allowing us to analyse it with the linear regression tools we already know and then transform it back to model the original curve."
+    },
+    {
+      "type": "heading",
+      "content": "Recognising the Need for Linearization"
+    },
+    {
+      "type": "text",
+      "content": "When you plot your data on a scatter diagram, you might notice a distinct curve. This suggests that the relationship between your variables is not linear. Two common non-linear relationships in science and economics are the exponential model and the power model. Our goal is to determine which model fits best and find its specific equation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Exponential Model: $y = ab^x$. This model often describes growth or decay processes, like population growth or radioactive decay. The graph has a characteristic shape that either grows increasingly steeply or flattens towards an asymptote.",
+        "Power Model: $y = ax^b$. This model is common in physics and biology, describing relationships like Kepler's laws of planetary motion or allometric scaling in animals. The shape of the curve can vary greatly depending on the value of the exponent $b$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Exponential Model: Semi-Log Transformation"
+    },
+    {
+      "type": "text",
+      "content": "If we suspect our data follows an exponential relationship, $y = ab^x$, we can linearize it by taking the logarithm of both sides. This is usually done with either base 10 ($\"log\"$) or base e ($\"ln\"$). Let's use base 10 for this example."
+    },
+    {
+      "type": "formula",
+      "content": "Start with the model: $y = ab^x$ \\\\ Take logs of both sides: $\\log(y) = \\log(ab^x)$ \\\\ Use log rule $\\log(pq) = \\log(p) + \\log(q)$: $\\log(y) = \\log(a) + \\log(b^x)$ \\\\ Use log rule $\\log(p^k) = k\\log(p)$: $\\log(y) = \\log(a) + x\\log(b)$ \\\\ Rearrange into $Y=mX+c$ form: $\\log(y) = (\\log b)x + \\log a$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This equation is in the form of a straight line, $Y = mX + c$.",
+        "The new Y-variable is $Y = \\log(y)$.",
+        "The new X-variable is just $X = x$.",
+        "The gradient is $m = \\log(b)$.",
+        "The y-intercept is $c = \\log(a)$.",
+        "Because we only take the log of one variable (y), this is called a **semi-log** transformation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of algae cells in a petri dish is recorded over several days. The data is shown in the table below.\n\n| Day (t) | Cells (N) |\n|---|---|\n| 1 | 58 |\n| 2 | 85 |\n| 3 | 125 |\n| 4 | 184 |\n| 5 | 270 |\n\nThis relationship can be modelled by an equation of the form $N = at^b$. \n(a) By creating a new table with values for $\\ln t$ and $\\ln N$, show that this model is appropriate.\n(b) Find the equation of the regression line of $\\ln N$ on $\\ln t$.\n(c) Hence, find the values of $a$ and $b$, correct to 2 significant figures.",
+      "solution": "(a) First, we linearize the model $N = at^b$ by taking natural logs:\n$\\ln(N) = \\ln(at^b) = \\ln(a) + \\ln(t^b) = \\ln(a) + b\\ln(t)$.\nThis is a linear relationship between $\\ln N$ and $\\ln t$. Let's create the transformed data table:\n\n| $X = \\ln(t)$ | $Y = \\ln(N)$ |\n|---|---|\n| $\\ln(1)=0$ | $\\ln(58) \\approx 4.06$ |\n| $\\ln(2) \\approx 0.693$ | $\\ln(85) \\approx 4.44$ |\n| $\\ln(3) \\approx 1.10$ | $\\ln(125) \\approx 4.83$ |\n| $\\ln(4) \\approx 1.39$ | $\\ln(184) \\approx 5.21$ |\n| $\\ln(5) \\approx 1.61$ | $\\ln(270) \\approx 5.60$ |\n\n(M1) for attempting to take logs of both variables.\n(A1) for all correct values.\n\n(b) Using a GDC, we perform a linear regression on the points $(X, Y) = (\\ln t, \\ln N)$.\nEnter the $X$ and $Y$ values into two lists.\nThe calculator gives the regression line $Y = mX + c$.\n$m \\approx 0.9598...$\n$c \\approx 4.062...$\nSo, the equation is $\\ln N = 0.960 \\ln t + 4.06$. (A2)\n\n(c) We compare $\\ln N = 0.960 \\ln t + 4.06$ with our theoretical model $\\ln N = b \\ln t + \\ln a$.\nComparing the gradients: $b = 0.9598... \\approx 0.96$. (A1)\nComparing the y-intercepts: $\\ln a = 4.062...$\nTo find $a$, we calculate $a = e^{4.062...}$. (M1)\n$a = 58.11... \\approx 58$.\nSo, $a=58$ and $b=0.96$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "The Power Model: Log-Log Transformation"
+    },
+    {
+      "type": "text",
+      "content": "Now, let's consider the power model, $y = ax^b$. To linearize this, we follow a similar process, but this time we'll see that we need to take logs of both variables."
+    },
+    {
+      "type": "formula",
+      "content": "Start with the model: $y = ax^b$ \\\\ Take logs of both sides: $\\log(y) = \\log(ax^b)$ \\\\ Use log rule $\\log(pq) = \\log(p) + \\log(q)$: $\\log(y) = \\log(a) + \\log(x^b)$ \\\\ Use log rule $\\log(p^k) = k\\log(p)$: $\\log(y) = \\log(a) + b\\log(x)$ \\\\ Rearrange into $Y=mX+c$ form: $\\log(y) = b(\\log x) + \\log a$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This equation is in the form of a straight line, $Y = mX + c$.",
+        "The new Y-variable is $Y = \\log(y)$.",
+        "The new X-variable is $X = \\log(x)$.",
+        "The gradient is $m = b$.",
+        "The y-intercept is $c = \\log(a)$.",
+        "Because we take the log of **both** variables, this is called a **log-log** transformation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The temperature, $T$ (in °C), of a cup of tea cooling over time, $t$ (in minutes), is recorded. The data is believed to follow an exponential model $T = ab^t$.\n\n| Time, t (min) | Temp, T (°C) |\n|---|---|\n| 0 | 95.0 |\n| 5 | 77.8 |\n| 10 | 63.8 |\n| 15 | 52.3 |\n| 20 | 42.8 |\n\n(a) Find the equation of the regression line of $\\log T$ on $t$.\n(b) Hence, determine the values for $a$ and $b$ for the model $T = ab^t$. Give your answers to 3 significant figures.",
+      "solution": "(a) The model is $T=ab^t$. We linearize by taking logs (let's use base 10):\n$\\log(T) = \\log(ab^t) = \\log(a) + t\\log(b)$.\nThis is a linear relationship between $\\log T$ and $t$. Let $Y = \\log T$ and $X=t$.\nWe need a table of $(t, \\log T)$ values:\n\n| $X=t$ | $Y=\\log T$ |\n|---|---|\n| 0 | $\\log(95.0) \\approx 1.978$ |\n| 5 | $\\log(77.8) \\approx 1.891$ |\n| 10 | $\\log(63.8) \\approx 1.805$ |\n| 15 | $\\log(52.3) \\approx 1.718$ |\n| 20 | $\\log(42.8) \\approx 1.631$ |\n\n(M1) for creating a list of $\\log T$ values.\nUsing a GDC for linear regression on lists $X$ and $Y$:\n$Y = -0.0173X + 1.976$\nSo, $\\log T = -0.0173t + 1.976$. (A2)\n\n(b) We compare our regression line with the theoretical model $\\log T = (\\log b)t + \\log a$.\nFrom the y-intercept: $\\log a = 1.976$. (M1)\n$a = 10^{1.976} = 94.62... \\approx 94.6$.\nFrom the gradient: $\\log b = -0.0173$. (M1)\n$b = 10^{-0.0173} = 0.9609... \\approx 0.961$.\nSo, $a=94.6$ and $b=0.961$. The final model is $T = 94.6 \\times (0.961)^t$. (A1)(A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, you will always have your GDC. Get very fast at these steps: 1. Enter original data into L1 and L2. 2. Create L3 as `log(L1)` and L4 as `log(L2)`. 3. Choose the correct lists (e.g., L1 and L4 for semi-log, L3 and L4 for log-log) for your linear regression calculation. 4. Always write down the linear equation from your calculator screen before you start finding $a$ and $b$ to ensure you get method marks."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Data Linearization",
+          "href": "https://www.geogebra.org/m/cbrv7kpr"
+        },
+        {
+          "label": "Video explanation of log-log and semi-log plots",
+          "href": "https://www.youtube.com/watch?v=cQ85I6pW-Lw"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Data Linearization",
+    "embedUrl": "https://www.geogebra.org/classic?material=cbrv7kpr",
+    "launchUrl": "https://www.geogebra.org/classic?material=cbrv7kpr",
+    "hint": "Use “Data Linearization” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

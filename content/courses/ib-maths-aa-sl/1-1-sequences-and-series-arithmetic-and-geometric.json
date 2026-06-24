@@ -1,0 +1,179 @@
+{
+  "slug": "1-1-sequences-and-series-arithmetic-and-geometric",
+  "topicCode": "1.1",
+  "title": "Sequences and series: arithmetic and geometric",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces arithmetic and geometric sequences and series. You will learn to identify them, use formulas to find specific terms and sums, and understand the concept of convergence for infinite geometric series. These foundational skills are crucial for many areas of mathematics.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify arithmetic and geometric sequences and find the common difference or common ratio.",
+    "Use formulas for the nth term and the sum of the first n terms of arithmetic and geometric sequences.",
+    "Determine whether an infinite geometric series converges and, if so, calculate its sum to infinity.",
+    "Apply sequence and series concepts to solve practical problems involving patterns and growth."
+  ],
+  "simpleExplanation": {
+    "title": "Building with Patterns",
+    "summary": "Sequences are just ordered lists of numbers following a rule, like building blocks. Series are what you get when you add those blocks together.",
+    "analogy": "Imagine you're saving money. If you add a fixed £5 to your piggy bank every week, that's an arithmetic sequence. If your savings instead grow by 10% each month, that's a geometric sequence. A series is the total amount of money you've saved after a certain number of weeks or months.",
+    "steps": [
+      "Identify the sequence type: Is a fixed amount being added (arithmetic) or multiplied (geometric)?",
+      "Determine the key values: Find the first term ($u_1$), the common difference ($d$) or common ratio ($r$), and the term number ($n$).",
+      "Select the correct formula: Choose the appropriate formula from the formula booklet for the nth term ($u_n$) or the sum ($S_n$).",
+      "Substitute and solve: Carefully substitute the values into the formula and calculate the answer, paying attention to the order of operations."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a sequence?",
+      "back": "An ordered list of numbers, often following a specific rule or pattern. For example, 2, 4, 6, 8, ..."
+    },
+    {
+      "front": "What is a series?",
+      "back": "The sum of the terms in a sequence. For example, 2 + 4 + 6 + 8 + ..."
+    },
+    {
+      "front": "What defines an arithmetic sequence?",
+      "back": "A sequence where the difference between consecutive terms is constant. This constant is called the common difference, $d$."
+    },
+    {
+      "front": "Formula for the nth term of an arithmetic sequence?",
+      "back": "$u_n = u_1 + (n-1)d$, where $u_1$ is the first term, $n$ is the term number, and $d$ is the common difference."
+    },
+    {
+      "front": "Formula for the sum of the first n terms of an arithmetic series?",
+      "back": "$S_n = \\frac{n}{2}(2u_1 + (n-1)d)$ or $S_n = \\frac{n}{2}(u_1 + u_n)$."
+    },
+    {
+      "front": "What defines a geometric sequence?",
+      "back": "A sequence where each term after the first is found by multiplying the previous one by a fixed, non-zero number called the common ratio, $r$."
+    },
+    {
+      "front": "Formula for the nth term of a geometric sequence?",
+      "back": "$u_n = u_1 r^{n-1}$, where $u_1$ is the first term, $n$ is the term number, and $r$ is the common ratio."
+    },
+    {
+      "front": "Formula for the sum of the first n terms of a geometric series?",
+      "back": "$S_n = \\frac{u_1(r^n - 1)}{r - 1}$ or $S_n = \\frac{u_1(1 - r^n)}{1 - r}$, where $r \\neq 1$."
+    },
+    {
+      "front": "What is the condition for an infinite geometric series to have a finite sum?",
+      "back": "The absolute value of the common ratio must be less than 1. That is, $|r| < 1$ or $-1 < r < 1$."
+    },
+    {
+      "front": "Formula for the sum to infinity of a geometric series?",
+      "back": "$S_\\infty = \\frac{u_1}{1 - r}$, valid only when $|r| < 1$."
+    },
+    {
+      "front": "Common Trap: How to find $d$ or $r$?",
+      "back": "For an arithmetic sequence, $d = u_2 - u_1$. For a geometric sequence, $r = u_2 / u_1$. Don't mix them up!"
+    },
+    {
+      "front": "Common Trap: What does $n$ represent?",
+      "back": "$n$ is the number of terms. If a question asks for the 10th term, $n=10$. If it asks for the sum of the first 10 terms, $n=10$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a sequence and a series?",
+      "a": "A sequence is a list of numbers (e.g., 3, 6, 9, 12), while a series is the sum of those numbers (e.g., 3 + 6 + 9 + 12). A sequence has terms, a series has a sum."
+    },
+    {
+      "q": "How do I know whether to use an arithmetic or geometric formula?",
+      "a": "Check the pattern between consecutive terms. If you are adding/subtracting a constant value, it's arithmetic (use $d$). If you are multiplying/dividing by a constant value, it's geometric (use $r$)."
+    },
+    {
+      "q": "In the formula $u_n = u_1 + (n-1)d$, why is it $n-1$ and not $n$?",
+      "a": "Because it takes $n-1$ 'steps' (of size $d$) to get from the first term ($u_1$) to the nth term ($u_n$). For example, to get to the 3rd term, you start at the 1st term and add the common difference twice ($3-1=2$ times)."
+    },
+    {
+      "q": "Can an arithmetic series have a sum to infinity?",
+      "a": "No. Unless the common difference $d=0$ and the first term $u_1=0$, the terms of an arithmetic series do not get smaller and approach zero. Therefore, the sum will always grow infinitely large (or infinitely negative)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of sequences and series! These are fundamental concepts that describe patterns all around us, from financial growth to natural phenomena. In this lesson, we will focus on two key types: arithmetic and geometric. Mastering these will provide you with powerful tools for solving a wide range of problems on your Paper 1 exam."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic Sequences and Series"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic sequence is a list of numbers where you add a constant value to get from one term to the next. This constant is called the common difference, denoted by $d$. Think of it as taking steps of the same size. A positive $d$ means the sequence is increasing, while a negative $d$ means it is decreasing."
+    },
+    {
+      "type": "formula",
+      "content": "The nth term: $u_n = u_1 + (n-1)d$ \\\\ The sum of the first n terms: $S_n = \\frac{n}{2}(2u_1 + (n-1)d) = \\frac{n}{2}(u_1 + u_n)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A new theatre is built with 30 rows of seats. The first row has 20 seats, the second row has 22 seats, the third row has 24 seats, and so on. \\\\ (a) Find the number of seats in the 30th row. \\\\ (b) Find the total number of seats in the theatre.",
+      "solution": "(a) This is an arithmetic sequence as a constant number of seats (2) is added to each row. \\\\ We have $u_1 = 20$, $d = 22 - 20 = 2$, and we want to find $u_{30}$ (so $n=30$). \\\\ Using the formula $u_n = u_1 + (n-1)d$: \\\\ $u_{30} = 20 + (30-1) \\times 2$  (M1 for correct substitution) \\\\ $u_{30} = 20 + 29 \\times 2 = 20 + 58 = 78$. \\\\ There are 78 seats in the 30th row. (A1) \\\\ \\\\ (b) We need to find the total number of seats, which is the sum of the first 30 terms, $S_{30}$. \\\\ Using the formula $S_n = \\frac{n}{2}(u_1 + u_n)$: \\\\ $S_{30} = \\frac{30}{2}(20 + 78)$ (M1 for correct substitution into a valid sum formula) \\\\ $S_{30} = 15 \\times 98 = 1470$. \\\\ The total number of seats in the theatre is 1470. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Sequences and Series"
+    },
+    {
+      "type": "text",
+      "content": "A geometric sequence is a list of numbers where you multiply by a constant value to get from one term to the next. This constant is called the common ratio, denoted by $r$. This type of sequence describes phenomena like compound interest or radioactive decay, where change is proportional to the current value."
+    },
+    {
+      "type": "formula",
+      "content": "The nth term: $u_n = u_1 r^{n-1}$ \\\\ The sum of the first n terms: $S_n = \\frac{u_1(r^n - 1)}{r - 1} = \\frac{u_1(1 - r^n)}{1 - r}$, $r \\neq 1$"
+    },
+    {
+      "type": "examTip",
+      "content": "Both versions of the $S_n$ formula for geometric series are in the formula booklet. Use the one that keeps the denominator positive to make calculations easier. If $|r| > 1$, use $r-1$ in the denominator. If $|r| < 1$, use $1-r$ in the denominator."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ball is dropped from a height of 10 metres. After each bounce, it reaches 80% of its previous height. \\\\ (a) Find the height the ball reaches after its 4th bounce. \\\\ (b) Find the total distance the ball has travelled downwards when it hits the ground for the 5th time.",
+      "solution": "(a) This is a geometric sequence. The initial height is not the first term of the sequence of *bounced* heights. The height after the 1st bounce is $u_1$. \\\\ $u_1 = 10 \\times 0.8 = 8$ metres. The common ratio is $r=0.8$. \\\\ We want the height after the 4th bounce, which is $u_4$. \\\\ Using the formula $u_n = u_1 r^{n-1}$: \\\\ $u_4 = 8 \\times (0.8)^{4-1} = 8 \\times (0.8)^3$ (M1 for correct substitution) \\\\ $u_4 = 8 \\times 0.512 = 4.096$ metres. (A1) \\\\ \\\\ (b) The total distance travelled downwards is the sum of the initial drop and the heights of the first 4 bounces before it hits the ground for the 5th time. This is not a standard series sum. \\\\ The downward distances are: 10m (initial drop), $u_1=8$m, $u_2=6.4$m, $u_3=5.12$m, $u_4=4.096$m. \\\\ Total distance = $10 + 8 + 6.4 + 5.12 + 4.096$. \\\\ This is $10 + S_4$ of the bounce sequence. \\\\ Let's calculate $S_4$: $S_4 = \\frac{u_1(1-r^4)}{1-r} = \\frac{8(1 - 0.8^4)}{1 - 0.8}$ (M1 for correct sum formula and substitution) \\\\ $S_4 = \\frac{8(1 - 0.4096)}{0.2} = \\frac{8(0.5904)}{0.2} = 40 \\times 0.5904 = 23.616$ m. \\\\ Total downward distance = Initial drop + $S_4 = 10 + 23.616 = 33.616$ metres. (A1) \\\\ *Note: Be careful what the question asks for. Here it's not just a simple sum.*"
+    },
+    {
+      "type": "heading",
+      "content": "Sum of an Infinite Geometric Series"
+    },
+    {
+      "type": "text",
+      "content": "What happens if we keep adding the terms of a geometric series forever? If the common ratio $r$ is between -1 and 1 (i.e., $|r|<1$), each term gets smaller and smaller, and the sum approaches a finite value. This is called a convergent series. If $|r| \\ge 1$, the terms do not shrink, and the sum will grow infinitely large (it diverges)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An infinite geometric series has a finite sum only if $|r| < 1$.",
+        "This sum is called the 'sum to infinity', denoted $S_\\infty$.",
+        "This concept is crucial for problems involving processes that repeat and diminish over time, like the total distance a bouncing ball travels."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Sum to infinity: $S_\\infty = \\frac{u_1}{1 - r}$, provided $|r| < 1$."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Sequences & Series",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Formula Booklet",
+          "href": "https://www.ibdocuments.com/IB-Formula-Booklets.html"
+        },
+        {
+          "label": "In-depth guide to Sequences and Series",
+          "href": "https://www.mathsisfun.com/algebra/sequences-series.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,176 @@
+{
+  "slug": "2-6-modelling-with-logistic-piecewise-and-other-functions",
+  "topicCode": "2.6",
+  "title": "Modelling with logistic, piecewise and other functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores mathematical modelling beyond simple linear and polynomial functions. It introduces piecewise functions, which use different rules for different intervals, and logistic functions, which model growth with a limiting factor. The focus is on applying these models to real-world scenarios and using a graphing display calculator (GDC) to analyse their behaviour and solve problems.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the properties and graphical representation of piecewise and logistic functions.",
+    "Model real-world scenarios using piecewise, logistic, and other functions like sinusoidal models.",
+    "Utilise a graphing display calculator (GDC) to graph functions, find key features, and solve equations involving these models.",
+    "Interpret the parameters and solutions of mathematical models in their real-world context."
+  ],
+  "simpleExplanation": {
+    "title": "Beyond Straight Lines: Modelling Life's Twists",
+    "summary": "Some real-world situations don't follow a simple straight line or a smooth curve. This lesson introduces special functions that help us model more complex scenarios, such as population growth that levels off or pricing that changes in steps.",
+    "analogy": "Imagine building with LEGOs. A linear model is like using only one type of straight brick to build a simple ramp. Piecewise functions are like using different types of bricks—ramps, flat pieces, and steps—to build a more complex structure, like a multi-level car park with different rules for each floor. A logistic function is like blowing up a balloon: it expands quickly at first, then the expansion slows as the balloon skin tightens and it reaches its maximum size.",
+    "steps": [
+      "Identify the Model Type: Read the problem to determine if the situation is best described by a logistic (S-shaped growth), piecewise (different rules for different intervals), or another function.",
+      "Define the Function: For a piecewise model, write down the separate function for each domain interval. For a logistic model, identify the key parameters from the given equation, such as the carrying capacity 'L'.",
+      "Use Your GDC: Graph the function on your calculator. Adjust the viewing window to see all important features, like intercepts, turning points, or where the pieces of a piecewise function meet.",
+      "Solve and Interpret: Use GDC tools (like 'intersect', 'max/min', 'value') to find the numerical answer. Crucially, always state your final answer in the context of the problem, including units."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a piecewise function?",
+      "back": "A function defined by multiple sub-functions, where each sub-function applies to a different, non-overlapping interval of the domain."
+    },
+    {
+      "front": "What is the general form of a logistic function?",
+      "back": "$f(x) = \\frac{L}{1 + Ce^{-kx}}$, where $L$ is the carrying capacity, $C$ and $k$ are positive constants."
+    },
+    {
+      "front": "What does the parameter 'L' represent in a logistic function?",
+      "back": "The carrying capacity or the upper limit of the model. It is the value the function approaches as $x \\to \\infty$, represented by a horizontal asymptote at $y=L$."
+    },
+    {
+      "front": "How do you find the value of a piecewise function at a specific point, $x=a$?",
+      "back": "First, determine which domain interval 'a' belongs to. Then, substitute 'a' into the specific sub-function that corresponds to that interval."
+    },
+    {
+      "front": "Give a real-world example of a logistic function model.",
+      "back": "Modelling population growth in an environment with limited resources, the spread of a virus in a population, or the adoption of a new technology."
+    },
+    {
+      "front": "Give a real-world example of a piecewise function model.",
+      "back": "Modelling mobile phone data plans, income tax brackets, or electricity tariffs, where the price or rate changes at specific thresholds."
+    },
+    {
+      "front": "On a GDC, how can you check if a piecewise function is continuous at a boundary point?",
+      "back": "Graph the function and observe if the pieces meet. Numerically, substitute the boundary value into both relevant sub-functions. If the results are equal, the function is continuous at that point."
+    },
+    {
+      "front": "What is the significance of the point of inflection in a logistic growth model?",
+      "back": "It represents the point where the rate of growth is at its maximum. This occurs when the population reaches half the carrying capacity, i.e., at $y = L/2$."
+    },
+    {
+      "front": "What is a common mistake when evaluating a piecewise function at a boundary point?",
+      "back": "Not paying close attention to the inequality signs. You must use the sub-function where the interval includes the boundary point (e.g., $\\le$ or $\\ge$), not the one with a strict inequality ($<$ or $>$)."
+    },
+    {
+      "front": "What is a sinusoidal function and when is it used for modelling?",
+      "back": "A function of the form $f(x) = a \\sin(b(x-c)) + d$. It is used to model periodic or cyclic phenomena, such as daily temperatures, tidal heights, or the position of a Ferris wheel."
+    },
+    {
+      "front": "What is the initial value of the logistic function $f(t) = \\frac{L}{1 + Ce^{-kt}}$?",
+      "back": "The value at $t=0$. $f(0) = \\frac{L}{1 + Ce^0} = \\frac{L}{1+C}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which type of model to use for a given problem?",
+      "a": "Look for keywords and analyse the context. 'Different rates', 'thresholds', or 'steps' suggest a piecewise function. 'Growth that slows down', 'carrying capacity', or 'limited population' points to a logistic function. 'Cycles', 'repeating patterns', or 'periodic' indicates a sinusoidal function."
+    },
+    {
+      "q": "Do I need to memorise the logistic function formula for the exam?",
+      "a": "The general form $f(x) = L/(1+Ce^{-kx})$ is not in the formula booklet. However, in an exam question, the specific logistic function you need to work with will always be given to you. Your job is to interpret it and use it, not derive it."
+    },
+    {
+      "q": "What is the difference between using '<' and '≤' in a piecewise function's domain?",
+      "a": "The symbol determines whether the boundary point is included in that piece's domain. For a domain like $0 < x \\le 5$, the rule applies for all numbers greater than 0 and up to and including 5. If you need to find the function's value at $x=5$, you must use the rule for the interval that includes 5 (the one with $\\le$ or $\\ge$)."
+    },
+    {
+      "q": "How do I enter a piecewise function into my GDC?",
+      "a": "Most GDCs have a piecewise function template in the maths or symbols menu. It allows you to enter the different functions and their corresponding domain inequalities. Alternatively, you can use division and logical operators, for example: $Y_1 = (10) * (X>0 \text{ and } X\\le2) + (10+4(X-2)) * (X>2)$. Check your calculator's manual for the specific syntax."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far in your mathematical journey, you've likely used linear, quadratic, and exponential functions to model various situations. However, the real world is often more complex. In this lesson, we'll expand our modelling toolkit to include functions that can handle abrupt changes and growth that is limited, providing us with more accurate ways to describe and predict complex phenomena."
+    },
+    {
+      "type": "heading",
+      "content": "Piecewise Functions: Different Rules for Different Ranges"
+    },
+    {
+      "type": "text",
+      "content": "A piecewise function is exactly what it sounds like: a function built from different pieces. Each 'piece' is a different function that applies to a specific part of the domain. Think of a car park's pricing: it might be £2 for the first hour, then £1.50 for each additional hour. The pricing rule changes after the first hour, creating a piecewise model."
+    },
+    {
+      "type": "formula",
+      "content": "A piecewise function is written using a brace. For example, a function with two pieces, $g(x)$ and $h(x)$, defined on domains $D_1$ and $D_2$ respectively, is written as:\n\n$f(x) = \\begin{cases} g(x) & \\text{if } x \\in D_1 \\\\ h(x) & \\text{if } x \\in D_2 \\end{cases}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A courier service charges for delivering a package based on its weight, $w$, in kg. The cost, $C$, in dollars ($) is given by the piecewise function:$\n$C(w) = \\begin{cases} 10 & \\text{for } 0 < w \\le 2 \\\\ 10 + 4(w-2) & \\text{for } w > 2 \\end{cases}$\n\na) Find the cost of delivering a package weighing 1.5 kg.\nb) Find the cost of delivering a package weighing 5 kg.\nc) A customer was charged $24. What was the weight of their package?$",
+      "solution": "a) The weight is $w=1.5$. Since $0 < 1.5 \\le 2$, we use the first rule. [M1]\n$C(1.5) = 10$. \nThe cost is $10. [A1]$\n\nb) The weight is $w=5$. Since $5 > 2$, we use the second rule. [M1]\n$C(5) = 10 + 4(5-2) = 10 + 4(3) = 10 + 12 = 22$. \nThe cost is $22. [A1]$\n\nc) The cost is $C=24$. This is greater than 10, so we must use the second rule. [M1]\n$24 = 10 + 4(w-2)$\n$14 = 4(w-2)$\n$3.5 = w-2$\n$w = 5.5$. \nThe weight of the package was 5.5 kg. [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "When sketching piecewise functions on your GDC or by hand, pay close attention to the endpoints of each interval. Use an open circle (o) for strict inequalities like $<$ or $>$ and a filled circle (●) for inclusive inequalities like $\\le$ or $\\ge$ to show whether the endpoint is included in that piece of the graph."
+    },
+    {
+      "type": "heading",
+      "content": "Logistic Functions: Modelling Growth with Limits"
+    },
+    {
+      "type": "text",
+      "content": "Unlike exponential growth which continues indefinitely, many real-world processes are constrained. A population of bacteria in a petri dish cannot grow forever due to limited space and nutrients. The spread of a rumour slows down as more people have already heard it. Logistic functions model this S-shaped (or sigmoid) growth, which starts fast, then slows, and finally levels off at a maximum value known as the carrying capacity."
+    },
+    {
+      "type": "formula",
+      "content": "The logistic function is given by:\n$N(t) = \\frac{L}{1 + Ce^{-kt}}$\n- $L$ is the **carrying capacity**, the maximum value the function can reach.\n- $C$ is a constant determined by the initial conditions.\n- $k$ is a positive constant that determines the steepness of the growth."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The graph of a logistic function is an 'S'-shaped curve.",
+        "It has two horizontal asymptotes: one at $y=0$ and another at $y=L$ (the carrying capacity).",
+        "The initial value (at $t=0$) is found by substituting $t=0$ into the equation.",
+        "The rate of growth is fastest at the point of inflection, which occurs at half the carrying capacity ($y = L/2$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of students in a school who have heard a rumour, $N$, after $t$ days is modelled by the logistic function $N(t) = \\frac{800}{1 + 79e^{-0.9t}}$.\n\na) How many students started the rumour (i.e., how many had heard it at $t=0$)?\nb) What is the maximum number of students who will eventually hear the rumour according to this model?\nc) Find the number of students who have heard the rumour after 2 days.\nd) Using your GDC, find the number of days it takes for 400 students to have heard the rumour.",
+      "solution": "a) At $t=0$: $N(0) = \\frac{800}{1 + 79e^{-0.9(0)}} = \\frac{800}{1 + 79(1)} = \\frac{800}{80} = 10$. [M1]\n10 students started the rumour. [A1]\n\nb) The maximum number is the carrying capacity, $L$. From the numerator of the function, $L=800$. [A1]\nMaximum number of students is 800.\n\nc) At $t=2$: $N(2) = \\frac{800}{1 + 79e^{-0.9(2)}} = \\frac{800}{1 + 79e^{-1.8}}$. [M1]\nUsing a GDC, $N(2) \\approx 61.1$. So, approximately 61 students. [A1]\n\nd) We need to solve $N(t) = 400$. This is half the carrying capacity, which corresponds to the point of maximum growth.\n$400 = \\frac{800}{1 + 79e^{-0.9t}}$. [M1]\nUsing a GDC, graph $y_1 = \\frac{800}{1 + 79e^{-0.9t}}$ and $y_2 = 400$ and find the point of intersection.\nThe intersection occurs at $t \\approx 4.85$. [A2]\nIt takes approximately 4.85 days for 400 students to have heard the rumour."
+    },
+    {
+      "type": "heading",
+      "content": "Other Useful Models"
+    },
+    {
+      "type": "text",
+      "content": "While piecewise and logistic functions are powerful, don't forget other models. Sinusoidal functions, like $f(x) = a \\sin(b(x-c)) + d$, are perfect for modelling periodic phenomena such as tidal heights, average monthly temperatures, or the motion of a Ferris wheel. Quadratic and other polynomial functions remain useful for scenarios like projectile motion or modelling profit curves. The key skill is to read the problem, identify the characteristics of the situation, and select the most appropriate model from your toolkit."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will almost always be given the equation of the model. Your task is not to create the model from scratch, but to use it. This means your GDC skills are paramount. Practice finding values, solving for the independent variable (e.g., time), and finding maximum or minimum points efficiently on your calculator."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Explore Piecewise and Logistic Functions on Desmos",
+          "href": "https://www.desmos.com/calculator"
+        },
+        {
+          "label": "GDC Guide: Graphing and Analysing Functions",
+          "href": "https://www.youtube.com/watch?v=FhfzTRz6b-k"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

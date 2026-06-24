@@ -1,0 +1,186 @@
+{
+  "slug": "4-1-computational-thinking-abstraction-decomposition-and-algorithms",
+  "topicCode": "4.1",
+  "title": "Computational thinking: abstraction, decomposition and algorithms",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson introduces the core concepts of computational thinking as a problem-solving methodology. It focuses on the three pillars essential for the IB CS SL course: decomposition, abstraction, and algorithms, providing a foundational framework for tackling complex problems.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define and differentiate between abstraction, decomposition, and algorithms.",
+    "Apply decomposition to break down a complex problem into smaller, manageable sub-problems.",
+    "Use abstraction to identify essential details and ignore irrelevant information in a problem.",
+    "Represent a solution to a problem as a structured, step-by-step algorithm."
+  ],
+  "simpleExplanation": {
+    "title": "Thinking Like a Problem Solver",
+    "summary": "Computational thinking is a set of problem-solving methods that involve breaking down complex problems, focusing on what's important, and creating step-by-step solutions. It's the blueprint you create before you even think about writing code.",
+    "analogy": "Imagine you have to build a large, complex LEGO model. You wouldn't just tip all the bricks onto the floor and start sticking them together randomly. First, you'd follow the instruction booklet, which breaks the build into smaller stages (decomposition). The diagrams in the booklet show you which pieces you need and how they connect, ignoring the tiny 'LEGO' logo on each stud (abstraction). The sequence of diagrams and steps is your plan to follow from start to finish (algorithm).",
+    "steps": [
+      "Decomposition: Break the main problem into smaller, more manageable sub-problems.",
+      "Abstraction: For each sub-problem, identify the crucial information needed and filter out irrelevant details.",
+      "Algorithm Design: Create a precise, step-by-step sequence of instructions to solve each sub-problem.",
+      "Integration & Evaluation: Combine the algorithmic solutions for the sub-problems to solve the original problem and test that it works correctly."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Computational Thinking?",
+      "back": "A problem-solving approach that involves decomposition, abstraction, and algorithm design to formulate a solution that can be executed by a computer (or a human)."
+    },
+    {
+      "front": "Define Decomposition.",
+      "back": "The process of breaking down a large, complex problem into smaller, more manageable, and understandable sub-problems."
+    },
+    {
+      "front": "Define Abstraction.",
+      "back": "The process of filtering out and ignoring irrelevant or unnecessary details to focus on the essential characteristics of a problem."
+    },
+    {
+      "front": "What is an algorithm?",
+      "back": "A finite, ordered, and unambiguous sequence of steps that describes how to solve a problem or perform a task."
+    },
+    {
+      "front": "Give a non-computing example of decomposition.",
+      "back": "Planning a school event. Sub-problems include: budgeting, booking a venue, arranging catering, sending invitations, and organising entertainment."
+    },
+    {
+      "front": "Give a non-computing example of abstraction.",
+      "back": "A London Underground map. It shows stations and lines (essential information) but ignores the actual geographical distance, street layouts, and track curvature (irrelevant details for a passenger)."
+    },
+    {
+      "front": "What are the three key properties of an algorithm?",
+      "back": "1. Finite: It must terminate after a finite number of steps. 2. Unambiguous: Each step must be precisely defined. 3. Effective: The steps must be executable."
+    },
+    {
+      "front": "What is a sub-problem?",
+      "back": "A smaller, self-contained part of a larger problem, created through decomposition. Solving all sub-problems leads to the solution of the main problem."
+    },
+    {
+      "front": "Common Trap: Confusing decomposition with an algorithm.",
+      "back": "Decomposition identifies *what* needs to be solved (the sub-problems). An algorithm specifies *how* to solve a sub-problem (the steps)."
+    },
+    {
+      "front": "Common Trap: Over-abstraction.",
+      "back": "Removing too much detail, to the point where crucial information needed to solve the problem is lost. For example, abstracting a car to just 'a vehicle' when you need to know its fuel type."
+    },
+    {
+      "front": "Common Trap: Under-abstraction.",
+      "back": "Including too much unnecessary detail, which makes the problem more complex than it needs to be. For example, modelling the thread pattern on a car's tyres when you only need to calculate its speed."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is computational thinking the same as programming?",
+      "a": "No. Computational thinking is the problem-solving process that happens *before* you start writing code. It's about designing a solution. Programming is the act of implementing that solution in a specific language that a computer can execute."
+    },
+    {
+      "q": "Why is decomposition so important in software development?",
+      "a": "Without it, complex software projects would be nearly impossible to manage. Decomposition allows large problems to be broken into smaller modules. This makes the code easier to write, debug, test, and maintain. It also allows large teams of developers to work on different parts of the project at the same time."
+    },
+    {
+      "q": "Can you give a non-computer example of an algorithm?",
+      "a": "A recipe for baking a cake is a perfect example. It has a finite number of ordered, unambiguous steps (e.g., '1. Preheat oven to 180°C', '2. Mix flour and sugar', '3. Add eggs...') that lead to a specific, repeatable outcome (a cake)."
+    },
+    {
+      "q": "Do I need to know about 'pattern recognition' for the SL exam?",
+      "a": "While pattern recognition is a key pillar of computational thinking (identifying trends or similarities), the IB Computer Science SL guide for Topic 4.1 explicitly focuses on decomposition, abstraction, and algorithms. You will not be directly assessed on pattern recognition, but understanding it can help with problem-solving."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to computational thinking. This isn't about programming, but rather *how* we think about problems to make them solvable, especially with computers. It's a structured way of thinking that allows us to take a vague, complex challenge and turn it into a clear, step-by-step plan. In this lesson, we'll explore the three core pillars you need to know for the IB exam: decomposition, abstraction, and algorithms."
+    },
+    {
+      "type": "heading",
+      "content": "1. Decomposition: Breaking It Down"
+    },
+    {
+      "type": "text",
+      "content": "Imagine being asked to build a car from scratch. The task seems impossible. However, if you break it down into smaller jobs—build the engine, assemble the chassis, fit the wheels, install the electronics—it becomes manageable. This is decomposition. In computer science, we use decomposition to break down a large software project into smaller modules or functions. Each module has a specific purpose and can be developed, tested, and maintained independently, making the entire process more efficient and less error-prone."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Breaks a complex problem into smaller, simpler sub-problems.",
+        "Each sub-problem can be examined and solved independently.",
+        "Makes large projects more manageable and easier to test and maintain.",
+        "Facilitates teamwork, as different people or teams can work on different sub-problems simultaneously."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A team is developing a new smartphone application for online shopping. Decompose the problem of creating this application into four distinct sub-problems. For each sub-problem, identify one essential feature.",
+      "solution": "A valid decomposition could be:\n\n1.  **User Account Management:** [1 mark] This module handles user registration, login, and profile settings.\n    *   Essential Feature: A function to securely verify a user's password. [1 mark]\n\n2.  **Product Catalogue:** [1 mark] This module displays products to the user.\n    *   Essential Feature: A search bar to allow users to find products by name or category. [1 mark]\n\n3.  **Shopping Basket:** [1 mark] This module allows users to add and remove items they wish to purchase.\n    *   Essential Feature: A function to calculate the total cost of all items in the basket. [1 mark]\n\n4.  **Checkout & Payment:** [1 mark] This module processes the final purchase and payment.\n    *   Essential Feature: Integration with a payment gateway (like PayPal or Stripe) to handle transactions securely. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "2. Abstraction: Focusing on the Essentials"
+    },
+    {
+      "type": "text",
+      "content": "Abstraction is the art of hiding complexity to make things simpler. When you drive a car, you use a steering wheel, pedals, and a gear stick. You don't need to know about the intricate workings of the combustion engine, the transmission system, or the precise angle of the drive shaft. These details are abstracted away, leaving you with a simple interface. In programming, variables are a form of abstraction; `int score = 0;` abstracts away the physical memory address where the value is stored, letting us think about it simply as 'score'."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The process of removing or hiding unnecessary complexity and detail.",
+        "Focuses on the general idea or model rather than the specific implementation.",
+        "Helps in managing complexity by creating simplified representations of systems.",
+        "The level of abstraction depends on the purpose; a mechanic needs a less abstract view of a car than a driver."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "You are creating a simulation of a school's daily timetable. Identify two examples of abstraction you would use to represent a 'Lesson'. Justify your choices.",
+      "solution": "1.  **Lesson Time Representation:** [1 mark] A lesson could be represented by a start time and a duration (e.g., starts at 09:00, duration 60 minutes). [1 mark]\n    *   **Justification:** This is an abstraction because it ignores the continuous flow of time and simplifies it into discrete, manageable units. We don't need to model every second or millisecond, only the key time blocks relevant to the timetable. [1 mark]\n\n2.  **Subject Representation:** [1 mark] The subject of the lesson could be represented by a string, such as \"Computer Science\" or \"Mathematics\". [1 mark]\n    *   **Justification:** This abstracts the entire body of knowledge, curriculum, teaching materials, and activities of a subject into a single, simple label. For the purpose of a timetable, we only need to know *what* the lesson is, not the specific content being taught in that particular lesson. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "3. Algorithms: The Step-by-Step Plan"
+    },
+    {
+      "type": "text",
+      "content": "Once you have decomposed a problem and used abstraction to identify the key components, you need a plan to solve it. An algorithm is that plan. It is a precise, step-by-step set of instructions for solving a problem or achieving a specific outcome. Think of a recipe: it lists ingredients (your data) and provides a sequence of unambiguous instructions (mix, bake, cool) that, if followed correctly, will result in a cake (your solution). In computing, algorithms are the logic that underpins all software."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A finite, ordered, and unambiguous set of instructions.",
+        "Forms the core logic of a computer program, turning input into desired output.",
+        "Can be represented in various forms, including natural language, flowcharts, and pseudocode.",
+        "A good algorithm is not only correct but also efficient in terms of time and memory."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you may be asked to write an algorithm in pseudocode. There is no single 'correct' pseudocode syntax, but clarity and logic are crucial. Use clear variable names, indentation for loops and conditionals, and simple, unambiguous commands like `INPUT`, `OUTPUT`, `SET`, `IF...THEN...ELSE`, and `WHILE...DO`. Always trace your algorithm with sample data to check it works before finalising your answer."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-computer-science-sl&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BBC Bitesize on Computational Thinking",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zqqfyrd/revision/1"
+        },
+        {
+          "label": "Video: Introduction to Computational Thinking",
+          "href": "https://www.youtube.com/watch?v=q-d0-2G224E"
+        },
+        {
+          "label": "CS Unplugged: Algorithms",
+          "href": "https://www.csunplugged.org/en/topics/algorithms/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

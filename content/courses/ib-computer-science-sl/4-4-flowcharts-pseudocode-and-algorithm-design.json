@@ -1,0 +1,175 @@
+{
+  "slug": "4-4-flowcharts-pseudocode-and-algorithm-design",
+  "topicCode": "4.4",
+  "title": "Flowcharts, pseudocode and algorithm design",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental tools for algorithm design: flowcharts and pseudocode. It covers the standard symbols and keywords used to represent sequence, selection, and iteration, enabling you to plan, communicate, and test logical solutions before writing code.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Describe the purpose of flowcharts and pseudocode in algorithm design.",
+    "Recognise and use standard flowchart symbols for input/output, process, decision, and terminators.",
+    "Construct and interpret algorithms using IB-approved pseudocode for sequence, selection (IF), and iteration (FOR, WHILE).",
+    "Trace algorithms to identify their purpose or correct errors in logic."
+  ],
+  "simpleExplanation": {
+    "title": "Algorithm Blueprints",
+    "summary": "Flowcharts and pseudocode are like blueprints for a computer program. They allow you to design and test the logic of a solution step-by-step, without worrying about the strict rules of a programming language.",
+    "analogy": "Think of baking a cake. The final, coded program is the cake itself. The pseudocode is the written recipe with a list of ingredients and step-by-step instructions, while the flowchart is a series of diagrams illustrating each step, like you might see in a children's cookbook. Both are plans that describe how to get to the finished product.",
+    "steps": [
+      "First, clearly define the problem: What are the required inputs, the necessary processing, and the expected outputs?",
+      "Next, choose your planning tool. Use a flowchart for a visual, high-level overview, or pseudocode for a more detailed, text-based plan.",
+      "Then, construct the algorithm using standard symbols or keywords. Build the logical flow using sequence, selection (IF statements), and iteration (loops).",
+      "Finally, test your design. Trace the algorithm with sample data (a 'dry run') to check for logical errors and ensure it produces the correct output."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an algorithm?",
+      "back": "A finite, ordered set of unambiguous, executable steps that defines a terminating process to solve a specific problem."
+    },
+    {
+      "front": "What is the purpose of a flowchart?",
+      "back": "To provide a graphical representation of an algorithm's logic and flow, making it easier to visualise and understand."
+    },
+    {
+      "front": "What is the purpose of pseudocode?",
+      "back": "To provide a text-based, language-independent description of an algorithm's logic, bridging the gap between human language and programming code."
+    },
+    {
+      "front": "Flowchart Symbol: Oval",
+      "back": "Terminator. Represents the start and end points of the algorithm (e.g., 'Start', 'End')."
+    },
+    {
+      "front": "Flowchart Symbol: Parallelogram",
+      "back": "Input/Output. Represents data being entered by a user or displayed by the program (e.g., 'INPUT score', 'OUTPUT grade')."
+    },
+    {
+      "front": "Flowchart Symbol: Rectangle",
+      "back": "Process. Represents an operation or calculation (e.g., 'total = price * quantity')."
+    },
+    {
+      "front": "Flowchart Symbol: Diamond",
+      "back": "Decision. Represents a point where the flow branches based on a true/false condition (e.g., 'Is score > 50?'). It must have at least two exit paths (e.g., 'Yes', 'No')."
+    },
+    {
+      "front": "Flowchart Symbol: Arrow",
+      "back": "Flow Line. Indicates the direction of logical flow from one symbol to another."
+    },
+    {
+      "front": "What is 'selection' in an algorithm?",
+      "back": "A control structure that allows the algorithm to choose between different paths of execution based on a condition. Represented by IF...THEN...ELSE in pseudocode and a diamond in flowcharts."
+    },
+    {
+      "front": "What is 'iteration' in an algorithm?",
+      "back": "A control structure that allows a block of instructions to be repeated. The main types are definite (FOR loop) and indefinite (WHILE loop)."
+    },
+    {
+      "front": "What is the key difference between a WHILE loop and a FOR loop?",
+      "back": "A FOR loop is used for definite iteration (when the number of repetitions is known beforehand). A WHILE loop is used for indefinite iteration (the loop continues as long as a condition is true)."
+    },
+    {
+      "front": "Common mistake in flowchart decision symbols?",
+      "back": "Forgetting to label the exit paths from a diamond symbol. Each path must be clearly labelled, typically with 'Yes'/'True' and 'No'/'False'."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I have to use the exact IB-approved pseudocode in the exam?",
+      "a": "It is highly recommended. Using the standard notation ensures the examiner can clearly understand your logic without ambiguity. While marks may be awarded for other clear forms of pseudocode, sticking to the approved guide is the safest and most effective strategy."
+    },
+    {
+      "q": "What is the difference between an algorithm and a program?",
+      "a": "An algorithm is the abstract, logical plan to solve a problem—like a recipe. A program is the concrete implementation of that algorithm in a specific programming language (like Java or Python) that a computer can execute—like the actual cake made from the recipe."
+    },
+    {
+      "q": "Can I use a `DO...WHILE` loop in IB pseudocode?",
+      "a": "The approved IB pseudocode notation specifies `WHILE...ENDWHILE` (a pre-conditional loop) and `FOR...ENDFOR` loops. While a `DO...WHILE` (post-conditional) loop is a valid construct in many programming languages, you should stick to the approved `WHILE` loop for exams to ensure clarity and adherence to the syllabus."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Before a single line of code is written for any significant software, a plan must be made. In computer science, this plan is called an algorithm. This lesson explores two essential tools for creating, documenting, and refining these plans: flowcharts, which provide a visual map of the logic, and pseudocode, which provides a structured, text-based outline. Mastering these tools is crucial for developing robust and efficient solutions."
+    },
+    {
+      "type": "heading",
+      "content": "Flowcharts: Visualising Logic"
+    },
+    {
+      "type": "text",
+      "content": "A flowchart is a diagram that represents the sequence of operations in an algorithm. By using standardised symbols, we can create a clear, language-independent representation of how a program should function. This visual approach is excellent for understanding the overall flow of control, especially in complex algorithms with multiple decision points and loops."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Terminator (Oval):** Marks the 'Start' and 'End' of the algorithm.",
+        "**Input/Output (Parallelogram):** Used for getting data from a user (`INPUT`) or displaying results (`OUTPUT`).",
+        "**Process (Rectangle):** Represents any calculation, assignment, or data manipulation (e.g., `count = count + 1`).",
+        "**Decision (Diamond):** Asks a true/false question to determine the next step. Must have at least two outgoing flow lines (e.g., 'Yes' and 'No').",
+        "**Flow Line (Arrow):** Connects symbols and shows the direction of execution."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to read an integer, `age`. If the age is 18 or greater, it should output \"Adult\". Otherwise, it should output \"Minor\". Construct a flowchart for this algorithm.",
+      "solution": "Here is a description of the flowchart structure and the marks awarded:\n\n1.  **Start:** The flowchart begins with a 'Start' terminator (oval).\n2.  **Input:** An arrow leads to an 'INPUT age' parallelogram.\n3.  **Decision:** An arrow leads to a diamond containing the condition 'age >= 18?'.\n4.  **Two Paths:**\n    *   An arrow labelled 'Yes' exits the diamond and points to a process rectangle with 'OUTPUT \"Adult\"'.\n    *   An arrow labelled 'No' exits the diamond and points to a process rectangle with 'OUTPUT \"Minor\"'.\n5.  **End:** Both output rectangles have arrows that converge and point to a single 'End' terminator (oval).\n\n**Mark Scheme:**\n*   [1 mark] for correct Start and End terminators.\n*   [1 mark] for correct Input symbol and content (`INPUT age`).\n*   [1 mark] for correct Decision symbol with a valid condition.\n*   [1 mark] for two correctly labelled paths ('Yes'/'No') leading to the correct, distinct outputs.\n*   [1 mark] for correct Output symbols and overall logical flow."
+    },
+    {
+      "type": "heading",
+      "content": "Pseudocode: Structuring Logic with Words"
+    },
+    {
+      "type": "text",
+      "content": "Pseudocode is a structured, text-based way of describing an algorithm. It uses keywords similar to those in programming languages but without the strict syntax rules. This allows you to focus purely on the logic. The IB has an approved notation, which you should aim to use in exams for clarity. It includes keywords for input/output, selection, and iteration."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Assignment:** `variable = expression` (e.g., `total = 0`)",
+        "**Input/Output:** `INPUT variable`, `OUTPUT variable` or `OUTPUT \"message\"`",
+        "**Selection:** `IF condition THEN ... ELSE ... ENDIF`",
+        "**Indefinite Iteration:** `WHILE condition DO ... ENDWHILE`",
+        "**Definite Iteration:** `FOR count = start TO end DO ... ENDFOR`"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, clarity is king. Whether you use a flowchart or pseudocode, ensure your logic is easy to follow. For flowcharts, use a ruler and standard symbols. For pseudocode, use indentation to show the structure of loops and conditional statements. You won't lose marks for minor syntax errors in pseudocode, but you will if the logic is flawed."
+    },
+    {
+      "type": "workedExample",
+      "question": "Write a pseudocode algorithm that finds the largest number in a list of 5 pre-defined positive integers: `[12, 45, 8, 23, 30]`.",
+      "solution": "```\nnumbers = [12, 45, 8, 23, 30]\nlargest = numbers[0]\n\nFOR i = 1 TO 4\n  IF numbers[i] > largest THEN\n    largest = numbers[i]\n  ENDIF\nENDFOR\n\nOUTPUT largest\n```\n\n**Mark Scheme:**\n*   [1 mark] for initialising `largest` to the first element of the list. (Initialising to 0 is also acceptable for a list of positive integers).\n*   [1 mark] for a loop that correctly iterates through the remaining elements of the list (e.g., from the second to the last element).\n*   [1 mark] for a correct comparison inside the loop (`numbers[i] > largest`).\n*   [1 mark] for correctly updating `largest` inside the `IF` statement.\n*   [1 mark] for outputting the final value of `largest` after the loop has finished."
+    },
+    {
+      "type": "heading",
+      "content": "Choosing Between Flowcharts and Pseudocode"
+    },
+    {
+      "type": "text",
+      "content": "The choice between a flowchart and pseudocode often depends on the problem and the audience. Flowcharts are excellent for explaining logic to non-programmers or for visualising complex branching. Pseudocode is often faster to write and easier to convert into actual code, making it a favourite among developers for detailed planning."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Algorithm Design Skills",
+      "href": "/mark?subject=ib-computer-science-sl&topic=4.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Approved Pseudocode Notation",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/computer-science/computer-science-teacher-support-material/"
+        },
+        {
+          "label": "Visual Algorithm Simulator",
+          "href": "https://visualgo.net/en"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

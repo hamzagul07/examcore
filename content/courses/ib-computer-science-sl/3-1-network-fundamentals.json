@@ -1,0 +1,180 @@
+{
+  "slug": "3-1-network-fundamentals",
+  "topicCode": "3.1",
+  "title": "Network fundamentals",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of computer networks. It covers the definition and purpose of networks, different types like LANs and WANs, the role of protocols such as TCP/IP, the process of data transmission via packet switching, and key performance metrics like bandwidth and data transfer rate.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify different types of networks (LAN, WAN).",
+    "Explain the purpose of protocols in network communication.",
+    "Describe the process of data transmission using packet switching.",
+    "Outline the key factors affecting network performance, such as bandwidth."
+  ],
+  "simpleExplanation": {
+    "title": "How Computers Talk",
+    "summary": "A computer network is simply a group of computers connected together to share resources and communicate. This process is governed by a set of rules, much like grammar in a language, ensuring messages are sent and received correctly.",
+    "analogy": "Imagine sending a large encyclopedia through the post. You wouldn't send it as one giant, unwieldy book. Instead, you'd split it into individual pages (packets), put each page in a separate envelope with the destination address, and mail them. The postal service (network routers) would deliver them, possibly out of order, and the recipient would reassemble them into the original encyclopedia. Protocols are the postal rules everyone agrees on, like how to write an address and what size an envelope can be.",
+    "steps": [
+      "A large piece of data, like an email or a photo, is prepared for sending.",
+      "The data is broken down into smaller, manageable chunks called packets. Each packet is labelled with the sender's and receiver's address (IP address) and a sequence number.",
+      "Network devices like routers examine the address on each packet and forward it along the best path towards its destination.",
+      "At the destination computer, the packets are received, checked for errors, and reassembled in the correct order to recreate the original data."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a computer network?",
+      "back": "A collection of interconnected computing devices that can exchange data and share resources."
+    },
+    {
+      "front": "What is a protocol?",
+      "back": "A set of rules or procedures for transmitting data between electronic devices. For example, HTTP for web pages."
+    },
+    {
+      "front": "What is a LAN (Local Area Network)?",
+      "back": "A network that connects computers within a limited geographical area such as a school, office building, or home."
+    },
+    {
+      "front": "What is a WAN (Wide Area Network)?",
+      "back": "A network that spans a large geographical area, such as a country or continent. The Internet is the largest WAN."
+    },
+    {
+      "front": "What is packet switching?",
+      "back": "A method of grouping data into packets that are transmitted over a digital network. These packets can take different routes and are reassembled at the destination."
+    },
+    {
+      "front": "What is bandwidth?",
+      "back": "The maximum rate of data transfer across a given path. It is measured in bits per second (bps)."
+    },
+    {
+      "front": "What is the function of a router?",
+      "back": "A network device that forwards data packets between computer networks. Routers perform the traffic directing functions on the Internet."
+    },
+    {
+      "front": "What is the TCP/IP model?",
+      "back": "A suite of communication protocols used to interconnect network devices on the internet. TCP handles reliable data delivery, and IP handles addressing and routing."
+    },
+    {
+      "front": "What is the difference between an IP address and a MAC address?",
+      "back": "An IP address is a logical address used to identify a device on a network (like a house address), which can change. A MAC address is a physical, unique hardware address burned into the network card, which does not change."
+    },
+    {
+      "front": "What is latency?",
+      "back": "The delay before a transfer of data begins following an instruction for its transfer. High latency causes lag, even with high bandwidth."
+    },
+    {
+      "front": "Common trap: Confusing bits and bytes.",
+      "back": "Network speeds are measured in bits per second (e.g., Mbps - megabits). File sizes are measured in Bytes (e.g., MB - megabytes). Remember: 1 Byte = 8 bits."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the Internet and the World Wide Web (WWW)?",
+      "a": "The Internet is the global network of computers (the hardware and infrastructure), while the World Wide Web is a service that runs on the Internet. The Web is the collection of websites, pages, and documents that are linked together and accessed via protocols like HTTP."
+    },
+    {
+      "q": "Why do we need both an IP address and a MAC address?",
+      "a": "They operate at different layers of the network. A MAC address is a permanent, physical address for a device on a local network (like a person's unique fingerprint). An IP address is a logical, temporary address for a device on a larger network like the Internet (like a person's home address, which can change if they move). Routers use IP addresses to send packets between networks, and switches use MAC addresses to send packets to the correct device within a local network."
+    },
+    {
+      "q": "Is a network with higher bandwidth always faster?",
+      "a": "Not necessarily. Bandwidth is the capacity of the network (like the number of lanes on a motorway), while latency is the delay (like the time it takes to get onto the motorway). A network can have very high bandwidth, but if it also has high latency, there will be a noticeable lag, especially for real-time applications like online gaming or video calls. For bulk downloads, high bandwidth is key, but for interactive tasks, low latency is more important."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of computer networks! From sending a quick message to streaming a film, networks are the invisible infrastructure that powers our digital lives. In this lesson, we will dissect the core components and principles that allow computers across the globe to communicate seamlessly."
+    },
+    {
+      "type": "heading",
+      "content": "Fundamentals of a Network"
+    },
+    {
+      "type": "text",
+      "content": "At its simplest, a computer network consists of two or more computers connected together. The primary purpose of a network is to facilitate the sharing of resources and information. These resources can be hardware (like a printer), software (like a shared application), or data (like files in a shared drive)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantages:** Resource sharing (printers, files), enhanced communication (email, messaging), cost reduction (sharing expensive peripherals), centralised administration.",
+        "**Disadvantages:** Security risks (unauthorised access, malware), management complexity, initial setup cost, potential for widespread failure if a central component fails."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Network Types: LAN vs. WAN"
+    },
+    {
+      "type": "text",
+      "content": "Networks are often classified by their geographical scope. The two most common types you need to know are Local Area Networks (LANs) and Wide Area Networks (WANs). A LAN is confined to a small area, like a single building, and is typically owned and managed by a single organisation. A WAN connects networks over a large geographical area, often using infrastructure from telecommunication companies. The Internet is the ultimate example of a WAN."
+    },
+    {
+      "type": "workedExample",
+      "question": "A new graphic design studio with 15 employees is setting up in a single office floor. They need to share large design files and a high-quality colour printer. Justify, with two distinct reasons, whether a LAN or a WAN would be more appropriate for this setup.",
+      "solution": "A **LAN (Local Area Network)** would be the appropriate choice. [1]\n\n**Justification 1 (Geographical Scope):** The studio is located on a single office floor, which is a small, limited geographical area. LANs are specifically designed for this type of environment, whereas a WAN is designed for connecting over large distances, which would be unnecessary and overly complex here. [1]\n\n**Justification 2 (Resource Sharing & Performance):** The primary need is to share large files and a printer among 15 employees. A LAN provides high-speed data transfer rates (e.g., Gigabit Ethernet) which is essential for working with large design files efficiently. It also allows for easy and direct sharing of peripherals like the printer without needing to route traffic over the public internet, which would be slower and less secure. [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Protocols: The Rules of Communication"
+    },
+    {
+      "type": "text",
+      "content": "For devices on a network to communicate, they must agree on a set of rules, or **protocols**. These protocols define the format, order, and meaning of messages sent and received. Without protocols, data sent from one machine might be unintelligible to another. The most dominant protocol suite is TCP/IP (Transmission Control Protocol/Internet Protocol), which forms the basis of the Internet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**HTTP (HyperText Transfer Protocol):** The foundation of data communication for the World Wide Web.",
+        "**HTTPS (HTTP Secure):** A secure version of HTTP where communications are encrypted.",
+        "**FTP (File Transfer Protocol):** Used to transfer computer files between a client and server on a network.",
+        "**TCP (Transmission Control Protocol):** Provides reliable, ordered, and error-checked delivery of a stream of packets. It's connection-oriented.",
+        "**IP (Internet Protocol):** Responsible for addressing hosts and routing packets from a source to a destination across one or more networks."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For your exam, don't just memorise the acronyms. You must be able to explain the *function* of key protocols. For example, state that TCP ensures data arrives correctly and in order, while IP is responsible for getting the data to the right address."
+    },
+    {
+      "type": "heading",
+      "content": "Data Transmission and Performance"
+    },
+    {
+      "type": "text",
+      "content": "Data is sent across most modern networks using a technique called **packet switching**. Large files are broken into small blocks called packets. Each packet contains a portion of the data, plus a header with control information like the source and destination IP addresses and a sequence number. These packets are sent independently across the network and reassembled at the destination. This is efficient as it allows many users to share the same network infrastructure."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 10 MB photograph is transmitted over a network. The data is divided into packets, where each packet has a maximum payload size of 1500 Bytes and a header of 40 Bytes is added to each packet. Calculate the total amount of data transmitted in Bytes. (Assume 1 MB = $1024^2$ Bytes).",
+      "solution": "1. **Convert file size to Bytes:**\n   The photograph size is 10 MB.\n   10 MB = $10 \\times 1024 \\times 1024$ Bytes = 10,485,760 Bytes. [1]\n\n2. **Calculate the number of packets needed:**\n   Each packet can carry 1500 Bytes of the actual data (payload).\n   Number of packets = Total data size / Payload size per packet\n   Number of packets = $10,485,760 / 1500 = 6990.506...$\n   Since we cannot send a fraction of a packet, we must round up to the next whole number. So, 6991 packets are required. [1]\n\n3. **Calculate the total size of all headers:**\n   Each of the 6991 packets has a 40 Byte header.\n   Total header data = $6991 \\times 40$ Bytes = 279,640 Bytes. [1]\n\n4. **Calculate the total transmitted data:**\n   Total data = Original file size + Total header data\n   Total data = $10,485,760 + 279,640$ = 10,765,400 Bytes. [1]\n\n   Therefore, the total amount of data transmitted is **10,765,400 Bytes**."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common exam question involves calculating data transfer time. The formula is **Time = File Size / Bandwidth**. Be extremely careful with units! Bandwidth is almost always given in bits per second (e.g., Mbps), while file sizes are in Bytes (e.g., MB). You must convert one to match the other. Remember 1 Byte = 8 bits."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Network Fundamentals",
+      "href": "/mark?subject=ib-computer-science-sl&topic=3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "How does the Internet work?",
+          "href": "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work"
+        },
+        {
+          "label": "Packet Switching Explained (Video)",
+          "href": "https://www.youtube.com/watch?v=ewrBalT_eBM"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

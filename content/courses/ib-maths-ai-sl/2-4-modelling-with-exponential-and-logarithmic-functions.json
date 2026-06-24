@@ -1,0 +1,171 @@
+{
+  "slug": "2-4-modelling-with-exponential-and-logarithmic-functions",
+  "topicCode": "2.4",
+  "title": "Modelling with exponential and logarithmic functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores how to create and use exponential and logarithmic functions to model real-world scenarios. It focuses on identifying the correct model, determining its parameters using a GDC, and applying the model to make predictions and solve problems, aligning with the skills required for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the structure of exponential ($y = ka^x + c$) and logarithmic ($y = a \\ln(x) + b$) models.",
+    "Determine the parameters of a model from given data using a GDC.",
+    "Use exponential and logarithmic models to solve for unknown variables and make predictions.",
+    "Interpret the meaning of the parameters within the context of a real-world problem."
+  ],
+  "simpleExplanation": {
+    "title": "Modelling Rapid and Slowing Change",
+    "summary": "Exponential and logarithmic functions describe patterns of change that aren't constant. They help us model things that grow very quickly, like a viral video's views, or things that start fast and then level off, like your skill at a new video game.",
+    "analogy": "Imagine you have a savings account with a fixed interest rate. The money grows exponentially – the more you have, the more interest you earn, so it grows faster and faster, like a snowball rolling downhill. Now, think about learning a new language. You learn basic words very quickly at the start, but it takes longer and longer to learn more advanced vocabulary and grammar. This 'diminishing returns' pattern is often modelled by a logarithmic function.",
+    "steps": [
+      "Identify the function type (exponential or logarithmic) from the problem's context or the shape of the data.",
+      "Use the given information (e.g., two data points) to find the unknown parameters of the model, often using your GDC's equation solver or regression tools.",
+      "Write down the complete, specific model equation with the parameters you've found.",
+      "Apply the model by substituting known values to predict an outcome, or use your GDC's graphing or solver functions to find an input for a given output."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the general form of an exponential model?",
+      "back": "$y = ka^x + c$. Here, $k$ is the initial value (if $c=0$), $a$ is the growth/decay factor, and $y=c$ is the horizontal asymptote."
+    },
+    {
+      "front": "In $y = ka^x$, what does the value of 'a' tell you?",
+      "back": "'a' is the growth/decay factor. If $a > 1$, it's exponential growth. If $0 < a < 1$, it's exponential decay."
+    },
+    {
+      "front": "What is the horizontal asymptote in the model $f(t) = 500(0.8)^t + 20$?",
+      "back": "The horizontal asymptote is $y = 20$. As $t \\to \\infty$, the term $(0.8)^t \\to 0$, so $f(t)$ approaches 20."
+    },
+    {
+      "front": "What is a key difference between an exponential function ($y=a^x$) and a power function ($y=x^a$)?",
+      "back": "In an exponential function, the variable is in the exponent. In a power function, the variable is the base."
+    },
+    {
+      "front": "When might a logarithmic model be more appropriate than an exponential one?",
+      "back": "When the rate of change decreases as the variable increases. For example, learning curves, the Richter scale for earthquakes, or the pH scale, where initial changes are large but subsequent changes have less effect."
+    },
+    {
+      "front": "What does $\\ln(x)$ mean?",
+      "back": "$\\ln(x)$ is the 'natural logarithm', which is the logarithm to the base $e$ (Euler's number, approx 2.718). It's written as $\\log_e(x)$."
+    },
+    {
+      "front": "How do you solve an equation like $50 = 10e^{0.2t}$ for $t$ using a GDC?",
+      "back": "Use the numerical solver (e.g., 'nSolve' on TI-Nspire) or graph $y_1 = 50$ and $y_2 = 10e^{0.2t}$ and find their intersection point. The x-coordinate of the intersection is the solution for $t$."
+    },
+    {
+      "front": "A population of bacteria doubles every hour. What is the growth factor 'a' in an exponential model?",
+      "back": "The growth factor is $a=2$."
+    },
+    {
+      "front": "A substance has a half-life of 10 years. What is the decay factor 'a' for a model where time is in years?",
+      "back": "The decay factor is $a = 0.5$. The model would be of the form $P(t) = P_0 (0.5)^{t/10}$."
+    },
+    {
+      "front": "What does the parameter 'k' represent in $y = k a^x$?",
+      "back": "It represents the initial value of y, i.e., the value of y when $x=0$, because $a^0=1$."
+    },
+    {
+      "front": "Common Trap: Forgetting the constant 'c' in an exponential model.",
+      "back": "If data seems to level off at a value other than zero, your model likely needs a vertical shift, $y = ka^x + c$. Forgetting 'c' will lead to an incorrect model."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know whether to use an exponential or a logarithmic model?",
+      "a": "Look at the context. If something is described as growing or decaying by a certain percentage or factor per time period (e.g., 'increases by 5% per year', 'doubles every hour'), it's exponential. If it describes a phenomenon that grows or shrinks very fast initially and then slows down (like learning a skill or the perceived loudness of a sound), a logarithmic model is more likely. If you're given a scatter plot, an exponential graph has a characteristic J-shape or reverse J-shape, while a logarithmic graph is a curve that flattens out."
+    },
+    {
+      "q": "What's the difference between using 'e' and using another base 'a' in an exponential model?",
+      "a": "Both $y=ka^t$ and $y=ke^{rt}$ can model the same exponential growth. The base 'e' (Euler's number) is the 'natural' base for exponential growth and is used when dealing with continuous growth rates. Any base 'a' can be converted to base 'e' using the relationship $a = e^r$, where $r = \\ln(a)$. For this course, you will typically be given the form of the model to use."
+    },
+    {
+      "q": "My GDC gives an error when I try to solve a logarithmic equation. What's wrong?",
+      "a": "The most common issue is trying to take the logarithm of a negative number or zero, which is undefined. Check the domain of your function. For a model like $y = a \\ln(x-c) + b$, you must have $x > c$. Also, ensure your GDC solver's initial guess or bounds are reasonable for the problem."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Many real-world phenomena, from population dynamics to financial investments and radioactive decay, do not change at a constant rate. This is where linear models fall short. Exponential and logarithmic functions provide powerful tools to model these situations of rapid growth, slow decay, or processes with diminishing returns. In this lesson, we'll focus on the practical application of these models, using our GDC as a key tool to build and analyse them."
+    },
+    {
+      "type": "heading",
+      "content": "Exponential Models: Growth and Decay"
+    },
+    {
+      "type": "text",
+      "content": "Exponential models describe situations where the rate of change of a quantity is proportional to the quantity itself. This leads to rapid increases (growth) or decreases (decay). The general form we use is a transformation of the basic exponential function."
+    },
+    {
+      "type": "formula",
+      "content": "General Exponential Model: $y = k a^x + c$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**k**: The initial value offset. If $c=0$, $k$ is the value of $y$ at $x=0$.",
+        "**a**: The growth/decay factor. If $a > 1$, the model shows growth. If $0 < a < 1$, it shows decay.",
+        "**c**: The value of the horizontal asymptote ($y=c$). This is the long-term limiting value that $y$ approaches as $x$ becomes very large (for decay) or very small (for growth)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The population of a town, $P$, can be modelled by the function $P(t) = ka^t + 1000$, where $t$ is the number of years since the start of 2010. At the start of 2010 ($t=0$), the population was 15,000. At the start of 2015 ($t=5$), the population was 19,000.\n\na) Find the values of $k$ and $a$.\nb) Use the model to predict the population at the start of 2025.",
+      "solution": "a) We are given two data points: when $t=0$, $P=15000$ and when $t=5$, $P=19000$. We use these to find $k$ and $a$.\n\nSubstitute the first point into the model $P(t) = ka^t + 1000$:\n$15000 = ka^0 + 1000$ \n$15000 = k(1) + 1000$ \n$k = 15000 - 1000 = 14000$  **(M1)(A1)**\n\nNow the model is $P(t) = 14000a^t + 1000$. Substitute the second point:\n$19000 = 14000a^5 + 1000$  **(M1)**\n$18000 = 14000a^5$\n$a^5 = \\frac{18000}{14000} = \\frac{9}{7}$\n$a = \\sqrt[5]{\\frac{9}{7}}$\n$a \\approx 1.05155...$\n$a \\approx 1.05$ (to 3 s.f.)  **(A1)**\nSo, $k=14000$ and $a \\approx 1.05$.\n\nb) We need to predict the population at the start of 2025. This corresponds to $t = 2025 - 2010 = 15$.\nUsing the full model $P(t) = 14000(\\sqrt[5]{\\frac{9}{7}})^t + 1000$:\n$P(15) = 14000(\\sqrt[5]{\\frac{9}{7}})^{15} + 1000$  **(M1)**\n$P(15) = 14000((\\frac{9}{7})^{1/5})^{15} + 1000$\n$P(15) = 14000(\\frac{9}{7})^3 + 1000$\n$P(15) \\approx 14000(2.1224) + 1000$\n$P(15) \\approx 29714.2... + 1000$\n$P(15) \\approx 30714.2...$\nThe predicted population is 30700 (to 3 s.f.).  **(A1)**"
+    },
+    {
+      "type": "examTip",
+      "content": "Always write down the full model with the parameters you have found before using it for predictions. When calculating, use the unrounded values of your parameters stored in your GDC to maintain accuracy. Only round your final answer to the required number of significant figures."
+    },
+    {
+      "type": "heading",
+      "content": "Logarithmic Models"
+    },
+    {
+      "type": "text",
+      "content": "Logarithmic models are suitable for phenomena that increase or decrease rapidly at first and then slow down over time. They are the inverse of exponential functions. A common form uses the natural logarithm, $\\ln(x)$."
+    },
+    {
+      "type": "formula",
+      "content": "General Logarithmic Model: $y = a \\ln(x) + b$"
+    },
+    {
+      "type": "text",
+      "content": "Here, 'a' controls the steepness of the curve, and 'b' is a vertical shift. Note that these models are typically defined for $x > 0$ since the logarithm of a non-positive number is undefined."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Equations with Technology"
+    },
+    {
+      "type": "text",
+      "content": "A common task is to find the input value that gives a certain output. For example, 'When will the population reach 50,000?'. This requires solving an exponential or logarithmic equation. For Paper 1, the most efficient method is to use your GDC's numerical solver or to graph both sides of the equation and find the point of intersection."
+    },
+    {
+      "type": "workedExample",
+      "question": "The value of a car, $V$ in euros (€), is modelled by the function $V(t) = 25000e^{-0.18t}$, where $t$ is the age of the car in years.\n\na) Find the value of the car after 4 years.\nb) Find the age of the car when its value is €5000.",
+      "solution": "a) We need to find $V(4)$.\nSubstitute $t=4$ into the model:\n$V(4) = 25000e^{-0.18 \\times 4}$  **(M1)**\n$V(4) = 25000e^{-0.72}$\n$V(4) \\approx 25000 \\times 0.48675...$\n$V(4) \\approx 12168.79...$\nThe value of the car after 4 years is €12200 (to 3 s.f.).  **(A1)**\n\nb) We need to find $t$ when $V(t) = 5000$.\nSet up the equation:\n$5000 = 25000e^{-0.18t}$  **(M1)**\nThis can be solved using a GDC. \n\n**Method 1: GDC Solver**\nUsing a numerical solver (e.g., nSolve on TI-Nspire or Solver on Casio):\n`solve(5000 = 25000*e^(-0.18*t), t)`\nThis gives $t \\approx 8.9415...$  **(A1)**\n\n**Method 2: Graphical Intersection**\nGraph $y_1 = 5000$ and $y_2 = 25000e^{-0.18x}$.\nFind the x-coordinate of the intersection point. Ensure the viewing window is appropriate (e.g., X from 0 to 15, Y from 0 to 26000).\nThe intersection occurs at $x \\approx 8.9415...$  **(A1)**\n\nThe car will be approximately 8.94 years old.  **(A1)**\n*(Note: While algebraic solution is possible by taking natural logs of both sides, the GDC method is expected and often faster in an exam.)*"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Skills",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Guide: Solving Equations",
+          "href": "https://www.youtube.com/watch?v=SY13411y3eI"
+        },
+        {
+          "label": "Exponential vs. Logarithmic Functions",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:exp-and-log-graphs/a/graphs-of-exponential-and-logarithmic-functions"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

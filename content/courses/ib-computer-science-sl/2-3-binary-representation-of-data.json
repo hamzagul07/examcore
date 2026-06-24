@@ -1,0 +1,170 @@
+{
+  "slug": "2-3-binary-representation-of-data",
+  "topicCode": "2.3",
+  "title": "Binary representation of data",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental concept of binary representation. It covers how computers use the base-2 number system to store integers, characters, and other forms of data, and provides methods for converting between binary and our familiar denary (base-10) system.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define the terms bit, byte, binary, and denary.",
+    "Outline the way in which data is represented in the computer.",
+    "Convert denary integers to binary and vice versa.",
+    "Describe how characters and other data types are represented by binary codes."
+  ],
+  "simpleExplanation": {
+    "title": "Flipping the Switches",
+    "summary": "Computers represent all information using binary, a system of only 0s and 1s. This is like a huge bank of light switches, where each switch is either off (0) or on (1), and patterns of these switches represent numbers, letters, and colours.",
+    "analogy": "Imagine you need to count items but you can only use your hands. You could raise a finger for each item, but you'd run out at ten. A more efficient system is to assign a value to each finger: your thumb is 1, index finger is 2, middle finger is 4, ring finger is 8, and little finger is 16. By raising combinations of fingers (e.g., index and thumb for '3'), you can represent any number up to 31 on one hand. Binary works exactly like this, but with 'on' (1) and 'off' (0) states instead of raised or lowered fingers.",
+    "steps": [
+      "First, understand that our normal numbers are 'denary' or 'base-10', with place values like 1, 10, 100 (powers of 10).",
+      "Binary is 'base-2'. Its place values are powers of 2: 1, 2, 4, 8, 16, 32, 64, 128, and so on, from right to left.",
+      "To convert a denary number to binary, find the largest power of 2 that fits inside it, place a '1' in that position, subtract it, and repeat with the remainder.",
+      "To convert a binary number to denary, simply add up the place values for every position that contains a '1'."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a 'bit'?",
+      "back": "The smallest unit of data in a computer, representing a single binary value of either 0 or 1. Short for 'binary digit'."
+    },
+    {
+      "front": "What is a 'byte'?",
+      "back": "A group of 8 bits. A byte is the standard unit of measurement for digital information and can represent 256 different values (from 0 to 255)."
+    },
+    {
+      "front": "What is the 'denary' number system?",
+      "back": "The base-10 number system we use every day. It uses ten digits (0-9) and place values that are powers of 10 (1, 10, 100, etc.)."
+    },
+    {
+      "front": "What is the 'binary' number system?",
+      "back": "The base-2 number system used by computers. It uses two digits (0 and 1) and place values that are powers of 2 (1, 2, 4, 8, etc.)."
+    },
+    {
+      "front": "What is the largest denary number that can be represented by an 8-bit binary number?",
+      "back": "255. This is when all bits are '1' (11111111), which equals $128+64+32+16+8+4+2+1 = 255$. A common mistake is to think it's 256."
+    },
+    {
+      "front": "How do you convert the denary number 10 to binary?",
+      "back": "Using place values 8, 4, 2, 1: We need an 8 and a 2. So, $10_{10} = 1010_2$. In 8-bits, this would be $00001010_2$."
+    },
+    {
+      "front": "How do you convert the binary number $1101_2$ to denary?",
+      "back": "Add the place values for each '1'. The places are 8, 4, 2, 1. So, $8 + 4 + 1 = 13$. Thus, $1101_2 = 13_{10}$."
+    },
+    {
+      "front": "What is a character set?",
+      "back": "A collection of characters and their corresponding binary codes that a computer can represent. Examples include ASCII and Unicode."
+    },
+    {
+      "front": "What is ASCII?",
+      "back": "American Standard Code for Information Interchange. An early 7-bit (later 8-bit) character set that represents 128 (or 256) characters, mostly for English text and control characters."
+    },
+    {
+      "front": "What is Unicode?",
+      "back": "A modern, universal character set designed to represent every character from every language. It uses variable-length encoding, often 16 or 32 bits per character, allowing for over a million unique characters."
+    },
+    {
+      "front": "What is a common mistake when converting denary to 8-bit binary?",
+      "back": "Forgetting to include the leading zeros. For example, $42_{10}$ is $101010_2$, but as an 8-bit number it must be written as $00101010_2$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do computers use binary instead of the denary system we use?",
+      "a": "Because it's much simpler and more reliable to build hardware with two states (on/off, high/low voltage) than with ten distinct states. This binary approach reduces errors caused by electrical noise and makes the underlying circuitry far less complex."
+    },
+    {
+      "q": "What happens if a number is too large to be represented by the available number of bits?",
+      "a": "This is called an 'overflow error'. For example, if you try to store the number 256 in a single 8-bit byte (which has a maximum value of 255), the computer cannot represent it correctly. This can lead to unexpected behaviour or program crashes."
+    },
+    {
+      "q": "What is the difference between ASCII and Unicode?",
+      "a": "ASCII is an older, smaller character set that uses 7 or 8 bits and can only represent 128 or 256 characters, primarily for English. Unicode is a modern, universal standard that aims to represent every character from every language in the world, using up to 32 bits per character, which allows for over a million possibilities."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "At the most fundamental level, a computer is a collection of billions of tiny electronic switches called transistors. Each switch can be in one of two states: on or off. To make sense of this, we assign a number to each state: '1' for on and '0' for off. This two-state system is called binary, and it is the language that all modern computers use to represent every piece of information, from the numbers in a spreadsheet to the text in this lesson and the colours on your screen."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Number Systems"
+    },
+    {
+      "type": "text",
+      "content": "We are accustomed to the denary (or base-10) number system, which uses ten digits (0-9). The position of a digit determines its value based on powers of 10. For example, the number 345 is really $(3 \\times 10^2) + (4 \\times 10^1) + (5 \\times 10^0)$. Computers use the binary (or base-2) system, which works on the same principle but with only two digits (0 and 1) and place values based on powers of 2."
+    },
+    {
+      "type": "formula",
+      "content": "Binary Place Values (right to left): $... 2^7, 2^6, 2^5, 2^4, 2^3, 2^2, 2^1, 2^0$\nWhich are: $... 128, 64, 32, 16, 8, 4, 2, 1$"
+    },
+    {
+      "type": "heading",
+      "content": "Converting Between Denary and Binary"
+    },
+    {
+      "type": "text",
+      "content": "Being able to convert numbers between denary and binary is a crucial skill. To convert from denary to binary, you can use the subtraction method. To convert from binary to denary, you sum the place values of all positions that hold a '1'."
+    },
+    {
+      "type": "workedExample",
+      "question": "Convert the denary number $173_{10}$ into an 8-bit binary integer. Show your working.",
+      "solution": "We need to find which powers of 2 add up to 173. We start with the largest 8-bit place value, 128.\n\n1. Is $173 \\ge 128$? Yes. Place a '1'. Remainder: $173 - 128 = 45$.\n2. Is $45 \\ge 64$? No. Place a '0'.\n3. Is $45 \\ge 32$? Yes. Place a '1'. Remainder: $45 - 32 = 13$.\n4. Is $13 \\ge 16$? No. Place a '0'.\n5. Is $13 \\ge 8$? Yes. Place a '1'. Remainder: $13 - 8 = 5$.\n6. Is $5 \\ge 4$? Yes. Place a '1'. Remainder: $5 - 4 = 1$.\n7. Is $1 \\ge 2$? No. Place a '0'.\n8. Is $1 \\ge 1$? Yes. Place a '1'. Remainder: $1 - 1 = 0$.\n\nReading the bits from left to right gives: **$10101101_2$**\n\n*[1 mark for a valid method shown (e.g., repeated subtraction or division by 2).]*\n*[1 mark for the correct 8-bit binary answer.]*"
+    },
+    {
+      "type": "workedExample",
+      "question": "Convert the 8-bit binary number $01101100_2$ into its denary equivalent. Show your working.",
+      "solution": "We write down the binary number and the corresponding place values for each bit. Then, we sum the place values where the bit is '1'.\n\nPlace Values: 128, 64, 32, 16, 8, 4, 2, 1\nBinary Number: 0,  1,  1,  0, 1, 1, 0, 0\n\nThe bits with a '1' are in the 64, 32, 8, and 4 positions.\n\nSum = $64 + 32 + 8 + 4$\n$64 + 32 = 96$\n$96 + 8 = 104$\n$104 + 4 = 108$\n\nThe denary equivalent is **$108_{10}$**.\n\n*[1 mark for showing the sum of the correct place values (e.g., $64+32+8+4$).]*\n*[1 mark for the correct final answer.]*"
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, always show your working when converting between number systems. Even if you make a small calculation error, you can still earn partial marks for demonstrating the correct method. Also, pay close attention to whether the question asks for an 8-bit number; if it does, you must include leading zeros (e.g., $1101_2$ must be written as $00001101_2$)."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Other Data"
+    },
+    {
+      "type": "text",
+      "content": "Binary isn't just for numbers. Every piece of data is stored as a binary pattern. For text, computers use character sets like ASCII or Unicode, which are essentially dictionaries that map each character (like 'A', 'b', or '£') to a unique binary number. For example, in ASCII, the capital letter 'A' is represented by the denary number 65, which is $01000001_2$ in binary."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "All data in a computer is stored in binary (base-2).",
+        "A bit is a single 0 or 1; a byte is a group of 8 bits.",
+        "An 8-bit byte can represent any integer from 0 to 255.",
+        "Conversion from denary to binary often uses repeated subtraction from the largest place value.",
+        "Conversion from binary to denary involves summing the place values where a '1' is present.",
+        "Character sets like ASCII and Unicode map characters to specific binary codes."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Binary Representation",
+      "href": "/mark?subject=ib-computer-science-sl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Binary to Decimal Converter",
+          "href": "https://www.rapidtables.com/convert/number/binary-to-decimal.html"
+        },
+        {
+          "label": "ASCII Code Table",
+          "href": "https://www.asciitable.com/"
+        },
+        {
+          "label": "CS Unplugged - Binary Numbers",
+          "href": "https://www.csunplugged.org/en/topics/binary-numbers/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

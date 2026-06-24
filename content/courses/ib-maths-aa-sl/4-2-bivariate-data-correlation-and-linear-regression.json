@@ -1,0 +1,188 @@
+{
+  "slug": "4-2-bivariate-data-correlation-and-linear-regression",
+  "topicCode": "4.2",
+  "title": "Bivariate data: correlation and linear regression",
+  "paper": "P2",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson explores bivariate data, focusing on how to visualise relationships using scatter diagrams, quantify them with Pearson's correlation coefficient ($r$), and model them using linear regression. You will learn to use your GDC to find the line of best fit and make predictions, while also understanding the important distinction between interpolation and extrapolation.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Create and interpret scatter diagrams to identify the nature of the relationship between two variables.",
+    "Calculate and interpret Pearson's product-moment correlation coefficient ($r$) to measure the strength and direction of a linear correlation.",
+    "Determine the equation of the least squares regression line of $y$ on $x$ using a GDC.",
+    "Use the regression line to make predictions (interpolation) and understand the limitations of predicting outside the data range (extrapolation)."
+  ],
+  "simpleExplanation": {
+    "title": "Finding Patterns in Paired Data",
+    "summary": "This topic is about examining pairs of data to see if they're connected. We use graphs and a special number, 'r', to describe this connection, and then create a line to predict future outcomes.",
+    "analogy": "Imagine you're tracking how many hours you study for your maths tests and the scores you get. You'd expect that more study hours lead to higher scores. Bivariate analysis is like plotting these pairs of points (hours, score) on a graph, seeing they form a rough line going upwards, and then drawing that 'line of best fit' to predict what score you might get if you study for, say, 7 hours.",
+    "steps": [
+      "First, plot your two variables (e.g., hours studied vs. exam score) on a scatter diagram to see what the relationship looks like.",
+      "Next, calculate Pearson's correlation coefficient, $r$, using your GDC. This number tells you exactly how strong and in what direction the linear relationship is.",
+      "Then, find the equation of the line of best fit, called the regression line ($y = ax + b$), which models the trend in your data.",
+      "Finally, use this equation to make sensible predictions for new data points, and understand why predicting too far from your known data is risky."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is bivariate data?",
+      "back": "Data that has two variables for each observation. For example, the height and weight of a group of people."
+    },
+    {
+      "front": "What is a scatter diagram used for?",
+      "back": "To visually represent the relationship between two variables in a bivariate data set. It helps to identify patterns, trends, and potential outliers."
+    },
+    {
+      "front": "What does Pearson's correlation coefficient, $r$, measure?",
+      "back": "It measures the strength and direction of the *linear* relationship between two variables. It is a value between -1 and 1."
+    },
+    {
+      "front": "What does an $r$ value of -0.9 indicate?",
+      "back": "A strong, negative, linear correlation. As one variable increases, the other tends to decrease in a strong linear fashion."
+    },
+    {
+      "front": "What does an $r$ value close to 0 indicate?",
+      "back": "Very weak or no *linear* correlation between the variables. The points on the scatter diagram do not follow a linear pattern."
+    },
+    {
+      "front": "What is the key difference between correlation and causation?",
+      "back": "Correlation indicates a relationship or association between two variables, but it does not mean that one variable *causes* the change in the other. For example, ice cream sales and shark attacks are correlated, but one does not cause the other (the lurking variable is hot weather)."
+    },
+    {
+      "front": "What is a regression line (line of best fit)?",
+      "back": "A straight line that best represents the linear relationship between the two variables on a scatter diagram. The most common type is the 'least squares regression line'."
+    },
+    {
+      "front": "What is interpolation?",
+      "back": "Using the regression line to predict a $y$-value for an $x$-value that is *within* the range of the original data. It is generally considered a reliable prediction."
+    },
+    {
+      "front": "What is extrapolation?",
+      "back": "Using the regression line to predict a $y$-value for an $x$-value that is *outside* the range of the original data. It is generally considered an unreliable prediction as the trend may not continue."
+    },
+    {
+      "front": "In the regression equation $y = ax + b$, what does the gradient, $a$, represent?",
+      "back": "The gradient, $a$, represents the predicted change in the dependent variable ($y$) for every one-unit increase in the independent variable ($x$)."
+    },
+    {
+      "front": "In the regression equation $y = ax + b$, what does the y-intercept, $b$, represent?",
+      "back": "The y-intercept, $b$, is the predicted value of $y$ when $x=0$. In some contexts this value may not be meaningful (e.g., the weight of a person with height 0 cm)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between correlation and causation?",
+      "a": "Correlation is a statistical measure that describes the size and direction of a relationship between two or more variables. Causation indicates that one event is the result of the occurrence of the other event. A strong correlation does not imply causation. For example, the number of people who drown at the beach is correlated with ice cream sales, but eating ice cream does not cause drowning. The lurking variable is the hot weather, which causes both to increase."
+    },
+    {
+      "q": "Do I need to memorise the formula for Pearson's correlation coefficient ($r$)?",
+      "a": "No. For the IB Maths AA SL course, you are not required to memorise or use the formula for $r$. You are expected to find its value using your GDC and interpret its meaning in the context of the problem."
+    },
+    {
+      "q": "My calculator gives both $y=ax+b$ and $y=a+bx$. Which one should I use?",
+      "a": "The IB syllabus and formula booklet use the form $y=ax+b$, where $a$ is the gradient and $b$ is the y-intercept. Most calculators allow you to choose or will default to this. Always be careful to correctly identify which value your calculator outputs for the gradient ('a') and which for the intercept ('b'). Check your GDC's settings to ensure it matches the IB convention."
+    },
+    {
+      "q": "When should I use the unrounded vs. rounded values from my calculator?",
+      "a": "For any subsequent calculations (like making a prediction with your regression equation), you must use the full, unrounded values for $a$ and $b$ stored in your calculator to maintain accuracy. Only round your final answer to 3 significant figures, unless the question specifies otherwise."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of bivariate data. In many real-world situations, we collect information on two different variables to see if there is a connection between them. For instance, do higher advertising budgets lead to higher sales? Does the age of a car affect its resale value? This topic gives you the statistical tools to analyse these relationships, quantify their strength, and make educated predictions. As this is a Paper 2 topic, your Graphical Display Calculator (GDC) will be your most important tool."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Relationships: Scatter Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "The first step in analysing bivariate data is to create a scatter diagram. This is a graph where each pair of data values is plotted as a point $(x, y)$ on a Cartesian plane. The independent variable (the one you control or that changes naturally, like time) is plotted on the horizontal axis ($x$-axis), and the dependent variable (the one you measure) is on the vertical axis ($y$-axis). By looking at the cloud of points, we can get an initial idea of the relationship: positive (points trend upwards), negative (points trend downwards), or no correlation (points are scattered randomly)."
+    },
+    {
+      "type": "heading",
+      "content": "Quantifying Correlation: Pearson's Coefficient ($r$)"
+    },
+    {
+      "type": "text",
+      "content": "While a scatter diagram gives a visual impression, we need a precise numerical measure of the linear relationship. This is given by Pearson's product-moment correlation coefficient, denoted by $r$. Your GDC will calculate this for you. The value of $r$ is always between -1 and 1, inclusive."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$r = 1$**: Perfect positive linear correlation.",
+        "**$0.75 \\le |r| < 1$**: Strong linear correlation.",
+        "**$0.5 \\le |r| < 0.75$**: Moderate linear correlation.",
+        "**$0.25 \\le |r| < 0.5$**: Weak linear correlation.",
+        "**$0 \\le |r| < 0.25$**: Very weak or no linear correlation.",
+        "**$r = -1$**: Perfect negative linear correlation.",
+        "A positive $r$ value means the correlation is positive, and a negative $r$ value means the correlation is negative."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A café owner records the number of hot chocolates sold and the average daily temperature (°C) for 8 days. The data is shown in the table below.\n\n| Temp (°C), $T$ | 18 | 15 | 12 | 10 | 8 | 5 | 6 | 11 |\n|---|---|---|---|---|---|---|---|---|\n| Hot Chocolates, $H$ | 12 | 16 | 25 | 28 | 36 | 45 | 42 | 27 |\n\n(a) Calculate Pearson's product-moment correlation coefficient, $r$. [2]\n(b) Describe the correlation between the average daily temperature and the number of hot chocolates sold. [1]",
+      "solution": "(a) Enter the temperature data ($T$) into List 1 and the hot chocolate data ($H$) into List 2 on your GDC.\nUse the two-variable statistics or linear regression function.\n\n$r = -0.9863...$ (M1 for using GDC)\n$r \\approx -0.986$ (A1)\n\n(b) Since $r$ is very close to -1, there is a strong, negative, linear correlation between the average daily temperature and the number of hot chocolates sold. (A1)\nThis means that as the temperature decreases, the number of hot chocolates sold tends to increase."
+    },
+    {
+      "type": "heading",
+      "content": "Making Predictions: The Regression Line of $y$ on $x$"
+    },
+    {
+      "type": "text",
+      "content": "If the correlation is strong enough, we can model the relationship with a straight line called the 'line of best fit' or, more formally, the 'least squares regression line'. This line is calculated to minimise the total squared vertical distance from each data point to the line. Its purpose is to allow us to make predictions. The equation is given in the form:"
+    },
+    {
+      "type": "formula",
+      "content": "y = ax + b"
+    },
+    {
+      "type": "text",
+      "content": "Here, $a$ is the gradient and $b$ is the y-intercept. Your GDC will calculate the values of $a$ and $b$ for you from the data lists. Once you have the equation, you can substitute a value for the independent variable ($x$) to predict the corresponding value of the dependent variable ($y$)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always write down the unrounded values for $a$ and $b$ from your calculator display before giving the final answer rounded to 3 significant figures. When asked to comment on the reliability of a prediction, first check if it is interpolation (reliable) or extrapolation (unreliable) and state this clearly in your answer for the (R1) mark."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the data from the previous example about hot chocolate sales ($H$) and temperature ($T$):\n\n(a) Find the equation of the regression line of $H$ on $T$. [3]\n(b) Use your equation to estimate the number of hot chocolates sold on a day when the average temperature is 9°C. [2]\n(c) The owner wants to predict sales for a day with a temperature of 25°C. Comment on the reliability of this prediction. [1]",
+      "solution": "(a) Using the same GDC function as before, find the values for $a$ and $b$.\nFrom the GDC:\n$a = -2.5786...$\n$b = 58.392...$\n\n(M1) for finding $a$ and $b$.\nSo, the equation is $H = -2.58T + 58.4$ (A2 for correct equation rounded to 3 s.f.)\n\n(b) Substitute $T=9$ into the full, unrounded equation.\n$H = -2.5786... \\times 9 + 58.392...$ (M1 for substitution)\n$H = 35.184...$\nWe would expect to sell approximately 35 hot chocolates. (A1)\n(Note: Since 'number of hot chocolates' is discrete, rounding to the nearest whole number is appropriate).\n\n(c) The temperature 25°C is outside the range of the given data [5°C, 18°C]. Therefore, this is an extrapolation. (R1)\nThe prediction is unreliable because we cannot assume the linear trend continues beyond the observed data range."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Correlation and Regression",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "TI-Nspire Tutorial: Linear Regression",
+          "href": "https://www.youtube.com/watch?v=FwI-3g0-J4k"
+        },
+        {
+          "label": "GeoGebra: Line of Best Fit Visualiser",
+          "href": "https://www.geogebra.org/m/sancvbyj"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Line of Best Fit Visualiser",
+    "embedUrl": "https://www.geogebra.org/classic?material=sancvbyj",
+    "launchUrl": "https://www.geogebra.org/classic?material=sancvbyj",
+    "hint": "Use “Line of Best Fit Visualiser” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

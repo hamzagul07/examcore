@@ -1,0 +1,199 @@
+{
+  "slug": "4-3-introduction-to-programming-variables-control-and-methods",
+  "topicCode": "4.3",
+  "title": "Introduction to programming: variables, control and methods",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental building blocks of programming. We will explore how to store data using variables and constants, make decisions with control structures (selection and iteration), and organise code into reusable blocks called methods or sub-routines. Mastering these concepts is the first step towards writing any computer program.",
+  "durationMin": 90,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define and use variables, constants, and operators to manipulate data.",
+    "Explain and implement the three basic control structures: sequence, selection, and iteration.",
+    "Describe the role of methods (sub-routines) in breaking down problems and promoting code reuse.",
+    "Distinguish between parameters and arguments, and understand the concept of a return value."
+  ],
+  "simpleExplanation": {
+    "title": "The Programmer's Recipe Book",
+    "summary": "Programming is like writing a recipe for a computer to follow. To do this, you need ingredients (variables), a set of instructions (control structures), and some pre-prepared techniques (methods).",
+    "analogy": "Imagine you're baking a cake. Your variables are the ingredients listed with specific amounts, like `flour = 500g` or `eggs = 3`. The control structures are the steps in the recipe: 'IF the mixture is too dry, THEN add milk' (selection), or 'WHILE stirring, slowly add the sugar' (iteration). A method is like a pre-existing skill you use, such as 'cream the butter and sugar', which is a mini-recipe you can use in many different cakes without writing out the steps every time.",
+    "steps": [
+      "Declare a variable to act as a named container for a piece of data, like `age = 17`.",
+      "Use selection statements like `if-else` to make the program choose a path, e.g., check if `age >= 18`.",
+      "Employ iteration (loops) like `for` or `while` to repeat a block of code, such as printing numbers from 1 to 10.",
+      "Encapsulate a specific task into a method, like `calculateAverage(num1, num2)`, to make code modular and reusable."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a variable?",
+      "back": "A named memory location that stores a value which can change during the program's execution. For example, `score = 0`."
+    },
+    {
+      "front": "What is the difference between a variable and a constant?",
+      "back": "A variable's value can be changed after it is declared. A constant's value is assigned once and cannot be changed during program execution. Constants are often used for values like Pi or a tax rate."
+    },
+    {
+      "front": "What are the three fundamental control structures?",
+      "back": "1. Sequence: Instructions are executed one after another in order. 2. Selection: A choice is made between different paths of execution (e.g., `IF...THEN...ELSE`). 3. Iteration: A block of code is executed repeatedly (e.g., `FOR` or `WHILE` loops)."
+    },
+    {
+      "front": "What is the difference between `=` and `==` in pseudocode?",
+      "back": "`=` is the assignment operator, used to give a variable a value (e.g., `x = 5`). `==` is the equality comparison operator, used to check if two values are equal (e.g., `if x == 5 then...`). Mixing them up is a common error."
+    },
+    {
+      "front": "When should you use a `FOR` loop versus a `WHILE` loop?",
+      "back": "Use a `FOR` loop when you know the exact number of iterations (a counted loop), e.g., looping 10 times. Use a `WHILE` loop when the loop continues as long as a condition is true, and the number of iterations is unknown beforehand."
+    },
+    {
+      "front": "What is a method (or sub-routine)?",
+      "back": "A named block of code designed to perform a specific task. It helps to break down a large program into smaller, manageable, and reusable parts."
+    },
+    {
+      "front": "What is the difference between a parameter and an argument?",
+      "back": "A parameter is the variable listed inside the parentheses in the method's definition (e.g., `function calculateArea(length, width)`). An argument is the actual value that is sent to the method when it is called (e.g., `calculateArea(10, 5)`)."
+    },
+    {
+      "front": "What is the 'scope' of a variable?",
+      "back": "The scope of a variable defines where in the program it can be accessed. A 'local variable' only exists within the method or block it was declared in, while a 'global variable' can be accessed from anywhere in the program."
+    },
+    {
+      "front": "What is an 'off-by-one' error?",
+      "back": "A common logic error in programming, especially with loops, where the loop runs one time too many or one time too few. For example, using `<` instead of `<=` in a loop condition."
+    },
+    {
+      "front": "What is a boolean data type?",
+      "back": "A data type that can only have one of two values: `true` or `false`. It is fundamental for making decisions in selection and iteration structures."
+    },
+    {
+      "front": "What do the `MOD` and `DIV` operators do?",
+      "back": "`MOD` (modulo) gives the remainder of an integer division (e.g., `10 MOD 3` is 1). `DIV` gives the integer quotient of a division (e.g., `10 DIV 3` is 3)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between `DIV` and `/`?",
+      "a": "In many programming contexts, and in the IB pseudocode, `/` performs floating-point division, meaning it can result in a decimal (e.g., `10 / 4 = 2.5`). `DIV` performs integer division, which discards any remainder and only returns the whole number part (e.g., `10 DIV 4 = 2`)."
+    },
+    {
+      "q": "Why is it important to use meaningful variable names?",
+      "a": "Using descriptive names like `customerAge` instead of `x` makes your code self-documenting. It's much easier for you and others to understand what the code is doing, which helps in debugging and maintenance. In an exam, it also helps the examiner understand your logic."
+    },
+    {
+      "q": "Can a method call another method?",
+      "a": "Yes, absolutely. This is a very common and powerful technique. It allows you to build complex behaviours from simpler, modular building blocks. For example, a `calculateFinalPrice` method might call another method named `calculateTax`."
+    },
+    {
+      "q": "What's the difference between a procedure and a function?",
+      "a": "In some language definitions, a **function** is a sub-routine that returns a value, while a **procedure** is a sub-routine that does not. The IB syllabus uses the terms 'method' and 'sub-routine' more generally to cover both concepts. The key is to understand that some methods return values and others don't."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the core of programming. In this lesson, we'll unpack the essential tools that every programmer uses, regardless of the programming language. These are the fundamental concepts of variables for storing information, control structures for directing the flow of the program, and methods for creating organised, reusable code. Understanding these principles is crucial for success in Paper 1 and for building any software."
+    },
+    {
+      "type": "heading",
+      "content": "Variables, Constants, and Data Types"
+    },
+    {
+      "type": "text",
+      "content": "At its heart, a computer program manipulates data. To do this, we need a way to store the data in the computer's memory. A **variable** is a named location in memory that holds a value. Think of it as a labelled box where you can put something. The contents of the box (the value) can be changed later on. For example, a variable called `playerScore` might start at 0 and increase as the game progresses."
+    },
+    {
+      "type": "text",
+      "content": "A **constant** is similar, but its value cannot be changed once it has been set. This is useful for values that should never change, like the value of Pi or the number of days in a week. Using constants makes code easier to read and maintain. All variables and constants have a **data type**, which tells the computer what kind of data it is storing, such as an integer (`integer`), a number with a decimal point (`float` or `real`), a sequence of characters (`string`), or a true/false value (`boolean`)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Variable**: A named storage location whose value can change.",
+        "**Constant**: A named storage location whose value cannot change after initialization.",
+        "**Declaration**: Creating a variable (e.g., `variable score`).",
+        "**Initialization**: Assigning an initial value to a variable (e.g., `score = 0`).",
+        "**Common Data Types**: `integer`, `real`/`float`, `string`, `boolean`."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Operators"
+    },
+    {
+      "type": "text",
+      "content": "Operators are special symbols that perform operations on variables and values. We can group them into three main categories:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Arithmetic Operators**: Used for mathematical calculations. Examples: `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division), `MOD` (modulo, remainder), `DIV` (integer division).",
+        "**Relational Operators**: Used for comparison. They evaluate to a boolean (`true` or `false`). Examples: `==` (equal to), `!=` (not equal to), `<` (less than), `>` (greater than), `<=` (less than or equal to), `>=` (greater than or equal to).",
+        "**Logical Operators**: Used to combine or modify boolean expressions. Examples: `AND` (both conditions must be true), `OR` (at least one condition must be true), `NOT` (inverts the boolean value)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to calculate the total cost of items in a shopping basket. An item costs £4.50. There is a shipping fee of £3.00. The program should calculate the total cost for 5 items. Write the pseudocode for this calculation.",
+      "solution": "```\n// Declare constants and variables\nconstant ITEM_PRICE = 4.50\nconstant SHIPPING_FEE = 3.00\nvariable quantity = 5\nvariable subTotal\nvariable totalCost\n\n// Calculations\nsubTotal = quantity * ITEM_PRICE\ntotalCost = subTotal + SHIPPING_FEE\n\n// Output the result\noutput \"Total cost is: £\", totalCost\n```\n\n**Mark Scheme:**\n*   [1] For correctly declaring and initialising variables/constants (`ITEM_PRICE`, `quantity`, etc.).\n*   [1] For correctly calculating the subtotal (`quantity * ITEM_PRICE`).\n*   [1] For correctly calculating the final total cost by adding the shipping fee.\n*   [1] For a clear output statement."
+    },
+    {
+      "type": "heading",
+      "content": "Control Structures"
+    },
+    {
+      "type": "text",
+      "content": "Control structures dictate the order in which the statements in a program are executed. Without them, a program would just be a simple, linear sequence of instructions. The three fundamental structures are sequence, selection, and iteration."
+    },
+    {
+      "type": "text",
+      "content": "**Sequence** is the default. Code is executed line by line, from top to bottom.\n\n**Selection** allows the program to make a choice. The `IF...THEN...ELSE` construct is the most common form. The program evaluates a condition; if it's true, one block of code is executed. If it's false, another block (the `ELSE` part) is executed. You can also have nested `IF` statements for more complex decisions.\n\n**Iteration** (or looping) allows a block of code to be executed multiple times. A `FOR` loop is used when you know how many times you want to loop (a counted loop). A `WHILE` loop is used when you want to keep looping as long as a certain condition remains true (a condition-controlled loop)."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, you must use the IB-approved pseudocode standard. Pay close attention to keywords like `loop...endloop`, `if...then...else...endif`, and how variables are declared. Clear indentation is not just for readability; it helps you structure your logic correctly and can make it easier for examiners to award marks for correct structure, even if there's a small error elsewhere."
+    },
+    {
+      "type": "workedExample",
+      "question": "Write a pseudocode algorithm that asks a user for their age. If the age is 18 or over, it should output \"Access granted\". Otherwise, it should output \"Access denied\".",
+      "solution": "```\nvariable age\n\noutput \"Please enter your age:\"\ninput age\n\nif age >= 18 then\n  output \"Access granted\"\nelse\n  output \"Access denied\"\nendif\n```\n\n**Mark Scheme:**\n*   [1] For correctly inputting the age into a variable.\n*   [1] For a correct `if` statement structure with a condition (`age >= 18`).\n*   [1] For the correct output in the `then` block.\n*   [1] For the correct output in the `else` block and correct use of `endif`."
+    },
+    {
+      "type": "heading",
+      "content": "Methods (Sub-routines)"
+    },
+    {
+      "type": "text",
+      "content": "As programs grow larger, it becomes essential to organise the code. A **method** (also called a sub-routine, function, or procedure) is a self-contained block of code that performs a single, well-defined task. For example, you could have a method to calculate a user's BMI, another to validate their password, and a third to display a menu. Methods can accept data through **parameters** and can optionally return a value back to the part of the code that called them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Modularity**: Breaking a complex problem into smaller, simpler pieces.",
+        "**Reusability**: A method can be called multiple times from different places in the program, avoiding code duplication.",
+        "**Abstraction**: Hiding the complex details of a task behind a simple method call. You don't need to know *how* a method works, only *what* it does.",
+        "**Parameters**: Variables used in a method to receive input values.",
+        "**Return Value**: A value that a method can send back to the caller."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-computer-science-sl&topic=4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Pseudocode Guide",
+          "href": "https://www.ibo.org/contentassets/5895a05412144fe890312bad52b1704a/computer-science-pseudocode-in-examinations.pdf"
+        },
+        {
+          "label": "Topic 4.3 Overview",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/computer-science/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

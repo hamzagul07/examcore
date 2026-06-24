@@ -1,0 +1,198 @@
+{
+  "slug": "4-7-the-normal-distribution",
+  "topicCode": "4.7",
+  "title": "The normal distribution",
+  "paper": "P2",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces the normal distribution, a fundamental continuous probability distribution often called the 'bell curve'. You will learn its key properties, how to calculate probabilities, and how to find unknown values using your Graphical Display Calculator (GDC).",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the properties of the normal distribution and the roles of the mean and standard deviation.",
+    "Calculate probabilities for a normally distributed variable using a GDC.",
+    "Use the inverse normal function on a GDC to find a value given a probability.",
+    "Apply the normal distribution to solve problems in real-world contexts."
+  ],
+  "simpleExplanation": {
+    "title": "The Bell Curve: Nature's Favourite Shape",
+    "summary": "The normal distribution describes how data for many natural things, like height or weight, tends to cluster around an average value. The graph of this distribution is a symmetrical, bell-shaped curve.",
+    "analogy": "Imagine lining up all the students in your year group by height. Most students would be around the average height, forming a large group in the middle. Far fewer students would be extremely short or extremely tall. If you were to draw a line over the tops of their heads, you would get a shape that looks like a bell – that's the normal distribution in action!",
+    "steps": [
+      "Identify the mean ($\\mu$) and standard deviation ($\\sigma$) from the problem.",
+      "Sketch a quick bell curve. Label the mean and shade the area that represents the probability you need to find.",
+      "Use your GDC's 'Normal CDF' function. Input the lower bound, upper bound, mean ($\\mu$), and standard deviation ($\\sigma$).",
+      "Write down the full calculator display answer before rounding to three significant figures as your final answer."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the normal distribution?",
+      "back": "A continuous probability distribution that is symmetrical and bell-shaped. It is defined by its mean ($\\mu$) and standard deviation ($\\sigma$)."
+    },
+    {
+      "front": "What does the mean ($\\mu$) represent in a normal distribution?",
+      "back": "The mean is the centre of the distribution. It is the peak of the bell curve and is equal to the median and the mode."
+    },
+    {
+      "front": "What does the standard deviation ($\\sigma$) represent in a normal distribution?",
+      "back": "The standard deviation controls the spread or width of the curve. A smaller $\\sigma$ means a taller, narrower curve, while a larger $\\sigma$ means a shorter, wider curve."
+    },
+    {
+      "front": "What is the total area under any normal distribution curve?",
+      "back": "The total area under the curve is always equal to 1, representing a total probability of 100%."
+    },
+    {
+      "front": "What is the 68-95-99.7 rule (the empirical rule)?",
+      "back": "Approximately 68% of data falls within 1 standard deviation of the mean, 95% within 2, and 99.7% within 3."
+    },
+    {
+      "front": "What is the GDC function for finding a probability between two values?",
+      "back": "Normal Cumulative Distribution Function, often shown as `normalCdf` or `NormCD`. It calculates the area (probability) between a lower and an upper bound."
+    },
+    {
+      "front": "What is the GDC function for finding a data value given a probability?",
+      "back": "Inverse Normal, often shown as `invNorm`. It finds the x-value (e.g., height, weight) corresponding to a given cumulative probability (area to the left)."
+    },
+    {
+      "front": "How do you calculate $P(X > a)$ using `normalCdf`?",
+      "back": "Set the lower bound to 'a' and the upper bound to a very large number, like $10^{99}$ or $1E99$."
+    },
+    {
+      "front": "How do you calculate $P(X < b)$ using `normalCdf`?",
+      "back": "Set the upper bound to 'b' and the lower bound to a very small number, like $-10^{99}$ or $-1E99$."
+    },
+    {
+      "front": "My calculator's `invNorm` function needs an 'area'. What does this mean?",
+      "back": "This is the cumulative probability from negative infinity up to the value you are trying to find. It is the area to the LEFT of the point. If given $P(X > k) = p$, you must use an area of $1-p$."
+    },
+    {
+      "front": "What is the notation $X \\sim N(\\mu, \\sigma^2)$?",
+      "back": "This means the random variable X is normally distributed with mean $\\mu$ and variance $\\sigma^2$. Remember to use the standard deviation, $\\sigma$, in your calculator, not the variance."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between Normal CDF and Inverse Normal?",
+      "a": "Use Normal CDF when you know the data values (e.g., height, weight) and want to find the probability (the area). Use Inverse Normal when you know the probability (the area) and want to find the corresponding data value."
+    },
+    {
+      "q": "What values should I use for infinity on my calculator?",
+      "a": "For a lower bound of negative infinity, use a very small number like $-10^{99}$ or $-1E99$. For an upper bound of positive infinity, use a very large number like $10^{99}$ or $1E99$. Any number more than about 5 standard deviations away from the mean will usually give the same result."
+    },
+    {
+      "q": "Do I need to memorise the formula for the normal distribution probability density function?",
+      "a": "No. For the Applications and Interpretation course, you are not required to use the formula itself. All calculations will be done using your GDC."
+    },
+    {
+      "q": "What is the 'standard normal distribution'?",
+      "a": "This is a special case of the normal distribution where the mean is 0 and the standard deviation is 1, written as $Z \\sim N(0, 1^2)$. While it's central to the theory, in AI SL you will typically work directly with the given mean and standard deviation on your GDC, rather than converting to Z-scores first."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the normal distribution, arguably the most important distribution in statistics. From exam scores to the length of a butterfly's wings, many real-world continuous data sets follow this 'bell curve' pattern. In this topic, we will move beyond discrete distributions like the binomial and learn how to work with continuous data. Your Graphical Display Calculator (GDC) will be your most essential tool."
+    },
+    {
+      "type": "heading",
+      "content": "Properties of the Normal Distribution"
+    },
+    {
+      "type": "text",
+      "content": "A random variable $X$ that is normally distributed is described by its mean, $\\mu$, and its standard deviation, $\\sigma$. We write this as $X \\sim N(\\mu, \\sigma^2)$. Note that the notation uses the variance, $\\sigma^2$, but we almost always use the standard deviation, $\\sigma$, in our calculations. The graph of the distribution is a symmetrical bell shape, centred on the mean."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The curve is bell-shaped and symmetrical about the vertical line $x = \\mu$.",
+        "The mean, median, and mode are all equal and located at the centre of the distribution.",
+        "The total area under the curve is exactly 1.",
+        "The curve approaches, but never touches, the horizontal axis as it extends to positive and negative infinity.",
+        "The standard deviation $\\sigma$ determines the width of the curve. A larger $\\sigma$ results in a flatter, more spread-out curve."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Probabilities with Your GDC"
+    },
+    {
+      "type": "text",
+      "content": "Since the normal distribution is continuous, the probability of $X$ being exactly one value is zero. We can only find the probability that $X$ lies within a certain interval. We use our GDC's built-in functions to find these probabilities, as calculating them by hand requires complex integration. The key function is the Normal Cumulative Distribution Function (CDF)."
+    },
+    {
+      "type": "formula",
+      "content": "To find $P(a < X < b)$, use: \\\\ `normalCdf(lower: a, upper: b, μ: mean, σ: std dev)`"
+    },
+    {
+      "type": "workedExample",
+      "question": "The journey times, in minutes, for a student to travel to school are normally distributed with a mean of 32 minutes and a standard deviation of 5 minutes. Let the journey time be the random variable $T$. \\\\ a) State the distribution of $T$. \\\\ b) Find the probability that a randomly chosen journey takes between 30 and 40 minutes.",
+      "solution": "a) The distribution is normal with $\\mu = 32$ and $\\sigma = 5$. \\\\ So, $T \\sim N(32, 5^2)$. **(A1)** \\\\ \\\\ b) We need to find $P(30 < T < 40)$. \\\\ A sketch helps visualise the area: \\\\ [A simple sketch of a bell curve centred at 32, with the area between 30 and 40 shaded would be drawn here]. \\\\ Using the GDC: \\\\ `normalCdf(lower: 30, upper: 40, μ: 32, σ: 5)` **(M1)** \\\\ This gives a value of $0.60060...$ \\\\ The probability is 0.601 (to 3 s.f.). **(A1)**"
+    },
+    {
+      "type": "examTip",
+      "content": "Always write down the GDC function and the parameters you used, for example, `normalCdf(30, 40, 32, 5)`. This will often earn you a method mark (M1) even if your final answer is incorrect. Also, for probabilities like $P(X > a)$, use a very large number for the upper bound (e.g., $10^{99}$). For $P(X < b)$, use a very small number for the lower bound (e.g., $-10^{99}$)."
+    },
+    {
+      "type": "heading",
+      "content": "Finding Unknown Values: The Inverse Normal Function"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes a question will give you the probability (the area under the curve) and ask you to find the corresponding boundary value. For this, we use the inverse normal function on the GDC, often labelled `invNorm` or similar. This function works 'backwards' from a probability to a value of the variable."
+    },
+    {
+      "type": "formula",
+      "content": "To find the value $k$ such that $P(X < k) = p$, use: \\\\ `invNorm(area: p, μ: mean, σ: std dev)`"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The standard `invNorm` function on most calculators requires the 'area to the left' of the value you are looking for.",
+        "If you are given a 'top percentage', for example, the top 10% ($P(X > k) = 0.10$), you must calculate the area to the left first: $1 - 0.10 = 0.90$.",
+        "Always draw a diagram to confirm which area you need. This is the most common source of error with inverse normal problems."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The weights of newborn babies in a hospital are normally distributed with a mean of 3.4 kg and a standard deviation of 0.5 kg. Babies in the lightest 8% are monitored in a special care unit. Find the maximum weight for a baby to be placed in this unit.",
+      "solution": "Let $W$ be the weight of a newborn baby. We have $W \\sim N(3.4, 0.5^2)$. **(M1)** for stating or using the correct parameters. \\\\ We need to find the value $k$ such that $P(W < k) = 0.08$. \\\\ A sketch shows we are looking for the value $k$ on the left tail of the distribution, with an area of 0.08 to its left. \\\\ We can use the inverse normal function directly as we have the area to the left. \\\\ Using the GDC: \\\\ `invNorm(area: 0.08, μ: 3.4, σ: 0.5)` **(M1)** \\\\ This gives a value of $k = 2.6980...$ \\\\ The maximum weight is 2.70 kg (to 3 s.f.). **(A1)**"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the wording. 'Top 5%' means $P(X > k) = 0.05$, so use an area of $0.95$ in `invNorm`. 'Bottom 10%' means $P(X < k) = 0.10$, so use an area of $0.10$. 'Middle 50%' is more complex and requires finding two values symmetrical about the mean."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Normal Distribution Problems",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=4.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Normal Distribution Calculator",
+          "href": "https://www.geogebra.org/m/qg5m4e5a"
+        },
+        {
+          "label": "TI-84 Normal Distribution Guide",
+          "href": "https://www.youtube.com/watch?v=NY2z_im_LgY"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Normal Distribution Calculator",
+    "embedUrl": "https://www.geogebra.org/classic?material=qg5m4e5a",
+    "launchUrl": "https://www.geogebra.org/classic?material=qg5m4e5a",
+    "hint": "Use “GeoGebra Normal Distribution Calculator” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

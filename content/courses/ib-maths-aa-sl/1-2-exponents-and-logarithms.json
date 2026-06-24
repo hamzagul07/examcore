@@ -1,0 +1,206 @@
+{
+  "slug": "1-2-exponents-and-logarithms",
+  "topicCode": "1.2",
+  "title": "Exponents and logarithms",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson covers the fundamental laws of exponents and logarithms, including changing the base of a logarithm. We will focus on algebraic manipulation and solving equations, which are key skills for the non-calculator Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and apply the laws of exponents for rational exponents.",
+    "Understand the definition and properties of logarithms as the inverse of exponents.",
+    "Apply the laws of logarithms to simplify expressions and solve equations.",
+    "Use the change of base formula to manipulate and solve logarithmic equations."
+  ],
+  "simpleExplanation": {
+    "title": "Exponents & Logs: Unlocking Secret Numbers",
+    "summary": "Exponents are about repeated multiplication, while logarithms are their inverse, asking 'what power do I need?'. They are two sides of the same coin, used to solve for unknown powers in equations.",
+    "analogy": "Think of exponents as putting money in a savings account with compound interest. You start with a principal amount (the base) and after a certain number of years (the exponent), your money grows. A logarithm is like asking: 'How many years will it take for my money to grow to a specific amount?' It helps you find the time (the power) needed to reach your financial goal.",
+    "steps": [
+      "Identify the unknown: Is it in the exponent, the base, or the result? This determines your strategy.",
+      "Simplify using laws: Apply the laws of exponents or logarithms to combine terms and isolate the part with the unknown.",
+      "Convert the form: If you have an exponential equation, convert it to a logarithmic one, or vice versa, to make the unknown the subject.",
+      "Solve and check: Solve the resulting simpler equation and always check your answer, especially for logarithms, as the argument must be positive."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the relationship between $y = a^x$ and $x = \\log_a y$?",
+      "back": "They are inverse functions. $x = \\log_a y$ is the logarithmic form of the exponential equation $y = a^x$."
+    },
+    {
+      "front": "What is the value of $\\log_a 1$ for any valid base $a$?",
+      "back": "0, because $a^0 = 1$ for any base $a > 0, a \\neq 1$."
+    },
+    {
+      "front": "What is the value of $\\log_a a$?",
+      "back": "1, because $a^1 = a$."
+    },
+    {
+      "front": "Law of Logarithms: $\\log_c x + \\log_c y = \\;?$",
+      "back": "$\\log_c (xy)$. Adding logs with the same base is equivalent to logging their product."
+    },
+    {
+      "front": "Law of Logarithms: $\\log_c x - \\log_c y = \\;?$",
+      "back": "$\\log_c (x/y)$. Subtracting logs with the same base is equivalent to logging their quotient."
+    },
+    {
+      "front": "Law of Logarithms: $n \\log_c x = \\;?$",
+      "back": "$\\log_c (x^n)$. A coefficient in front of a log can be moved to become the power of the argument."
+    },
+    {
+      "front": "What is the change of base formula for $\\log_a b$?",
+      "back": "$\\log_a b = \\frac{\\log_c b}{\\log_c a}$. You can use any new base $c$, commonly base 10 ($\\log$) or base $e$ ($\\ln$)."
+    },
+    {
+      "front": "Common trap: How do you simplify $\\log(x+y)$?",
+      "back": "It cannot be simplified. It is NOT $\\log x + \\log y$. Remember that $\\log x + \\log y = \\log(xy)$."
+    },
+    {
+      "front": "Common trap: What is $(\\log x)^2$?",
+      "back": "It is $(\\log x) \\times (\\log x)$. It is NOT $2 \\log x$. Remember that $2 \\log x = \\log(x^2)$."
+    },
+    {
+      "front": "What is the domain of the function $f(x) = \\log_a (x)$?",
+      "back": "The argument of a logarithm must be positive. So, the domain is $x > 0$."
+    },
+    {
+      "front": "Express $a^{-m/n}$ in radical form.",
+      "back": "$\\frac{1}{\\sqrt[n]{a^m}}$. The negative sign indicates a reciprocal, and the fractional exponent $\\frac{m}{n}$ means the $n$-th root of $a$ to the power of $m$."
+    },
+    {
+      "front": "How would you start solving $5^{x-1} = 12$ without a calculator?",
+      "back": "Take logarithms of both sides. For example, using base 10: $\\log(5^{x-1}) = \\log(12)$. Then use the power law: $(x-1)\\log 5 = \\log 12$. You can then solve for $x$ as $x = 1 + \\frac{\\log 12}{\\log 5}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between ln(x) and log(x)?",
+      "a": "$\\ln x$ is the 'natural logarithm', which is $\\log_e x$, where $e \\approx 2.718$. $\\log x$ usually means the 'common logarithm', which is $\\log_{10} x$. In IB exams, if the base is not specified as $\\ln$ or $\\log_{10}$, it will be given in the context of the question (e.g., $\\log_a x$)."
+    },
+    {
+      "q": "Why can't you take the logarithm of a negative number?",
+      "a": "Consider $\\log_a y = x$. This means $a^x = y$. If the base $a$ is positive, there is no real number power $x$ you can raise it to that will result in a negative number $y$. For example, $2^x$ is always positive, no matter what real value $x$ takes."
+    },
+    {
+      "q": "Do I need to memorise all the log laws?",
+      "a": "The laws of logarithms and exponents are provided in the IB formula booklet. However, you must be completely fluent in applying them forwards and backwards without hesitation. For Paper 1, where speed and accuracy are crucial, you shouldn't be spending time looking them up; their application should be second nature."
+    },
+    {
+      "q": "What is the most common mistake with logarithms?",
+      "a": "A very common mistake is incorrectly simplifying sums or differences. For example, students often write $\\log(x+y) = \\log x + \\log y$, which is incorrect. The correct rule is $\\log(xy) = \\log x + \\log y$. Always be careful to apply the laws to products and quotients inside the logarithm, not sums and differences."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of exponents and logarithms! You've likely worked with exponents before, but we'll now delve deeper into their relationship with their inverse function: the logarithm. These concepts are crucial for modelling phenomena involving rapid growth or decay, like population dynamics or radioactive decay. In IB Mathematics AA SL, fluency with their rules is non-negotiable, especially for Paper 1 where you'll solve complex equations without a calculator."
+    },
+    {
+      "type": "heading",
+      "content": "Laws of Exponents (A Quick Recap)"
+    },
+    {
+      "type": "text",
+      "content": "Before we can master logarithms, we must be completely confident with the laws of exponents. These rules govern how we manipulate terms involving powers and form the foundation for everything that follows. Remember that these apply to rational exponents (fractions) as well as integers."
+    },
+    {
+      "type": "formula",
+      "content": "For a base $a$ and exponents $m, n \\in \\mathbb{Q}$:\n\n- Product Rule: $a^m \\times a^n = a^{m+n}$\n- Quotient Rule: $a^m \\div a^n = a^{m-n}$\n- Power Rule: $(a^m)^n = a^{mn}$\n- Zero Exponent: $a^0 = 1$ (for $a \\neq 0$)\n- Negative Exponent: $a^{-n} = \\frac{1}{a^n}$\n- Rational Exponent: $a^{m/n} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $9^{2x-1} = \\frac{1}{27^{x}}$.",
+      "solution": "Our goal is to express both sides of the equation with the same base. We can see that both 9 and 27 are powers of 3.\n\n$9 = 3^2$ and $27 = 3^3$.  (M1) for identifying a common base.\n\nSubstitute these into the equation:\n$(3^2)^{2x-1} = \\frac{1}{(3^3)^x}$\n\nApply the power rule for exponents $(a^m)^n = a^{mn}$ and the negative exponent rule $1/a^n = a^{-n}$:\n$3^{2(2x-1)} = 3^{-3x}$\n$3^{4x-2} = 3^{-3x}$  (A1) for correct application of exponent laws to both sides.\n\nNow that the bases are the same, we can equate the exponents:  (M1)\n$4x-2 = -3x$\n\nSolve the linear equation for $x$:\n$7x = 2$\n$x = \\frac{2}{7}$  (A1)\n\nFinal Answer: $x = \\frac{2}{7}$"
+    },
+    {
+      "type": "heading",
+      "content": "Introducing Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "A logarithm is the inverse of an exponential function. The expression $\\log_a y = x$ asks the question, 'To what power $x$ must we raise the base $a$ to get the value $y$?' This is equivalent to the exponential form $a^x = y$. For a logarithm to be well-defined, we have three important conditions: the base $a$ must be positive and not equal to 1 ($a>0, a \\neq 1$), and the argument $y$ must be positive ($y>0$)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Logarithmic form $\\log_a y = x$ is equivalent to exponential form $a^x = y$.",
+        "The base of the log is the same as the base of the exponent.",
+        "The argument of the log (the number you are taking the log of) must always be positive.",
+        "$\\ln x$ is the natural logarithm, $\\log_e x$. $\\log x$ is often used for the common logarithm, $\\log_{10} x$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "Just like exponents, logarithms have a set of laws that allow us to simplify expressions and solve equations. These rules are provided in the formula booklet, but you must be able to apply them quickly and accurately. Notice how they are directly related to the laws of exponents."
+    },
+    {
+      "type": "formula",
+      "content": "For a base $a$ and positive arguments $x, y$:\n\n- Product Rule: $\\log_a(xy) = \\log_a x + \\log_a y$\n- Quotient Rule: $\\log_a(x/y) = \\log_a x - \\log_a y$\n- Power Rule: $\\log_a(x^k) = k \\log_a x$"
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, you will often need to combine multiple logs into a single logarithm using these laws before you can solve an equation. Always check that your final answer doesn't result in taking the log of a negative number or zero, as such solutions are invalid."
+    },
+    {
+      "type": "workedExample",
+      "question": "Given that $\\log_3 p = 2$ and $\\log_3 q = 5$, find the value of:\na) $\\log_3 (pq^2)$\nb) $\\log_3 (\\frac{9}{p})$",
+      "solution": "a) We use the log laws to expand the expression.\n$\\log_3 (pq^2) = \\log_3 p + \\log_3 (q^2)$ (M1) for using the product rule.\n$= \\log_3 p + 2 \\log_3 q$ (M1) for using the power rule.\nNow substitute the given values:\n$= 2 + 2(5)$ (A1)\n$= 2 + 10 = 12$\n\nb) We use the quotient rule.\n$\\log_3 (\\frac{9}{p}) = \\log_3 9 - \\log_3 p$ (M1) for using the quotient rule.\nWe need to evaluate $\\log_3 9$. This means $3^? = 9$, so $\\log_3 9 = 2$. (A1)\nNow substitute the known values:\n$= 2 - 2 = 0$ (A1)\n\nFinal Answers: a) 12, b) 0"
+    },
+    {
+      "type": "heading",
+      "content": "Change of Base"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes you encounter logarithms with different bases within the same problem. The change of base formula is an essential tool for handling this. It allows you to convert any logarithm into a ratio of logarithms with a new, more convenient base (like 10 or $e$, or a base already in the question)."
+    },
+    {
+      "type": "formula",
+      "content": "$\\log_b a = \\frac{\\log_c a}{\\log_c b}$\n\nA useful consequence of this is: $\\log_b a = \\frac{1}{\\log_a b}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $\\log_2 x + \\log_4 x = 3$.",
+      "solution": "The bases are different (2 and 4), so we must change one to match the other. Let's change $\\log_4 x$ to base 2.\n\nUsing the change of base formula: $\\log_4 x = \\frac{\\log_2 x}{\\log_2 4}$ (M1)\n\nWe know that $\\log_2 4 = 2$ (since $2^2=4$).\nSo, $\\log_4 x = \\frac{\\log_2 x}{2}$. (A1)\n\nSubstitute this back into the original equation:\n$\\log_2 x + \\frac{1}{2}\\log_2 x = 3$\n\nCombine the terms on the left hand side. Let $u = \\log_2 x$. Then $u + \\frac{1}{2}u = \\frac{3}{2}u$.\n$\\frac{3}{2}\\log_2 x = 3$ (M1) for combining terms.\n\nIsolate $\\log_2 x$:\n$\\log_2 x = 3 \\times \\frac{2}{3}$\n$\\log_2 x = 2$\n\nConvert from logarithmic to exponential form to find $x$: (M1)\n$x = 2^2$\n$x = 4$ (A1)\n\nFinally, check the answer in the original equation. The argument $x=4$ is positive, so it is a valid domain. $\\log_2 4 + \\log_4 4 = 2 + 1 = 3$. The solution is correct."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Graphing Exponential and Logarithmic Functions",
+          "href": "https://www.geogebra.org/m/VqC2S5sS"
+        },
+        {
+          "label": "Desmos: Exploring Logarithm Properties",
+          "href": "https://www.desmos.com/calculator/eouoroa23t"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Graphing Exponential and Logarithmic Functions",
+    "embedUrl": "https://www.geogebra.org/classic?material=VqC2S5sS",
+    "launchUrl": "https://www.geogebra.org/classic?material=VqC2S5sS",
+    "hint": "Use “Graphing Exponential and Logarithmic Functions” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

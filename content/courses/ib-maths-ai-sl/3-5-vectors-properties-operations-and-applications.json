@@ -1,0 +1,188 @@
+{
+  "slug": "3-5-vectors-properties-operations-and-applications",
+  "topicCode": "3.5",
+  "title": "Vectors: properties, operations and applications",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces vectors, quantities possessing both magnitude and direction. It covers vector representation in column form, fundamental operations including addition, subtraction, and scalar multiplication. You will learn to calculate the magnitude of a vector and apply these concepts to solve problems involving displacement, velocity, and geometric figures.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the distinction between vectors and scalars, and represent vectors in various forms.",
+    "Perform vector operations including addition, subtraction, and scalar multiplication.",
+    "Calculate the magnitude (or modulus) of a vector in 2D and 3D.",
+    "Apply vector concepts to solve problems in geometry and real-world contexts like displacement and velocity."
+  ],
+  "simpleExplanation": {
+    "title": "Vectors: Your GPS for Maths",
+    "summary": "Vectors are mathematical objects that have both a size and a direction, unlike regular numbers which only have size. We can combine and scale vectors to describe journeys, forces, or any situation where direction matters.",
+    "analogy": "Imagine you're giving a friend directions to your house. Just saying 'walk 500 metres' isn't enough – that's a scalar. You need to say 'walk 500 metres North-East'. That instruction, with both distance and direction, is a vector. A full journey with multiple turns is just a series of vectors added together.",
+    "steps": [
+      "Identify the quantities in the problem and write them as column vectors, paying attention to direction (e.g., positive/negative components).",
+      "Determine the required vector operation. Use addition for combined effects (like two legs of a journey), subtraction for finding the path between two points, or scalar multiplication for scaling.",
+      "Perform the calculation component-wise. For example, to add two vectors, add their x-components together and their y-components together separately.",
+      "Calculate the magnitude of the final vector using Pythagoras' theorem if a distance or speed is required, and state your answer clearly with units."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a vector?",
+      "back": "A quantity that has both magnitude (size) and direction. Examples: velocity, displacement, force."
+    },
+    {
+      "front": "What is a scalar?",
+      "back": "A quantity that has only magnitude (size). Examples: speed, distance, mass, temperature."
+    },
+    {
+      "front": "How is a 2D vector $\\mathbf{v}$ written in column form?",
+      "back": "$\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, where $x$ is the horizontal component (movement in x-direction) and $y$ is the vertical component (movement in y-direction)."
+    },
+    {
+      "front": "What is the formula for the magnitude of a 2D vector $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$?",
+      "back": "The magnitude, or modulus, is written as $|\\mathbf{v}|$ and calculated using Pythagoras: $|\\mathbf{v}| = \\sqrt{x^2 + y^2}$."
+    },
+    {
+      "front": "How do you add two vectors, $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}$?",
+      "back": "Add the corresponding components: $\\mathbf{a} + \\mathbf{b} = \\begin{pmatrix} a_1 + b_1 \\\\ a_2 + b_2 \\end{pmatrix}$."
+    },
+    {
+      "front": "What does scalar multiplication, $k\\mathbf{v}$, mean?",
+      "back": "The vector $\\mathbf{v}$ is scaled by a factor of $k$. Its magnitude is multiplied by $|k|$. If $k<0$, its direction is reversed."
+    },
+    {
+      "front": "What is a position vector?",
+      "back": "A vector from the origin $(0,0)$ to a point P. It is often written as $\\vec{OP}$ or simply $\\mathbf{p}$."
+    },
+    {
+      "front": "How do you find the vector $\\vec{AB}$ from point A to point B?",
+      "back": "Using their position vectors $\\mathbf{a}$ and $\\mathbf{b}$: $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$. Think 'destination minus start'."
+    },
+    {
+      "front": "What is the condition for two vectors, $\\mathbf{a}$ and $\\mathbf{b}$, to be parallel?",
+      "back": "One vector must be a scalar multiple of the other. That is, $\\mathbf{a} = k\\mathbf{b}$ for some non-zero scalar $k$."
+    },
+    {
+      "front": "What is a common mistake when finding the magnitude of a sum of vectors, $|\\mathbf{a} + \\mathbf{b}|$?",
+      "back": "A common error is to calculate $|\\mathbf{a}| + |\\mathbf{b}|$. This is incorrect. You must first find the resultant vector $\\mathbf{c} = \\mathbf{a} + \\mathbf{b}$, and then find its magnitude, $|\\mathbf{c}|$. "
+    },
+    {
+      "front": "How are vectors represented in 3D?",
+      "back": "As a column vector with three components, $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, or using base vectors $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$ as $x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a position vector and a displacement vector?",
+      "a": "A position vector always starts at the origin $(0,0)$ and points to a specific location. A displacement vector describes the movement from one point to another; it's the 'path' between them and doesn't have to start at the origin. You can find a displacement vector $\\vec{AB}$ by subtracting the position vector of the start point A from the position vector of the end point B ($\"b - a\"$)."
+    },
+    {
+      "q": "How do I know whether to add or subtract vectors in a problem?",
+      "a": "Think about the context. Addition is typically used for combining movements or forces that happen one after the other or at the same time (e.g., a plane's velocity plus the wind's velocity). Subtraction is most often used to find the vector *between* two points (e.g., the vector from point A to point B is $\\mathbf{b} - \\mathbf{a}$)."
+    },
+    {
+      "q": "Can vectors be negative?",
+      "a": "Yes. The vector $-\\mathbf{v}$ is a vector with the same magnitude as $\\mathbf{v}$ but in the exact opposite direction. If $\\mathbf{v} = \\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}$, then $-\\mathbf{v} = \\begin{pmatrix} -2 \\\\ -3 \\end{pmatrix}$. This is the same as scalar multiplication by -1."
+    },
+    {
+      "q": "Is it possible to multiply two vectors?",
+      "a": "Yes, but it's more complex than scalar multiplication and is not part of the AI SL syllabus. There are two types of vector multiplication, the 'dot product' and the 'cross product', which you might encounter in higher-level mathematics or physics courses. For this course, you only need to add, subtract, and multiply vectors by scalars."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of vectors! While you're familiar with numbers that represent 'how much' (scalars), vectors answer 'how much' and 'in which direction'. This powerful tool is essential in physics, engineering, computer graphics, and more. In this lesson, we'll learn how to represent vectors, perform calculations with them, and apply them to solve practical problems."
+    },
+    {
+      "type": "heading",
+      "content": "Vector Representation"
+    },
+    {
+      "type": "text",
+      "content": "A vector is often visualised as an arrow. The length of the arrow represents the vector's magnitude, and the way the arrow points shows its direction. We can describe a vector numerically using its components. In a 2D plane, a vector is defined by its change in the x-direction and its change in the y-direction."
+    },
+    {
+      "type": "formula",
+      "content": "A vector $\\mathbf{v}$ can be written in column form as: \\\\ \\\\ $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ \\\\ \\\\ Or using base vectors $\\mathbf{i}$ and $\\mathbf{j}$ (unit vectors in the x and y directions): \\\\ \\\\ $\\mathbf{v} = x\\mathbf{i} + y\\mathbf{j}$"
+    },
+    {
+      "type": "text",
+      "content": "For example, the vector $\\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$ represents a displacement of 3 units to the right and 2 units down. The same principles apply in three dimensions, where we add a z-component."
+    },
+    {
+      "type": "heading",
+      "content": "Vector Operations"
+    },
+    {
+      "type": "text",
+      "content": "We can perform arithmetic operations with vectors. Adding two vectors, $\\mathbf{a} + \\mathbf{b}$, can be thought of as following one vector, then the other. The resultant vector is the direct path from the start of the first vector to the end of the second. Multiplying a vector by a scalar changes its magnitude (length) and/or reverses its direction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Addition**: Add corresponding components: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} + \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1+b_1 \\\\ a_2+b_2 \\end{pmatrix}$",
+        "**Subtraction**: Subtract corresponding components: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} - \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1-b_1 \\\\ a_2-b_2 \\end{pmatrix}$",
+        "**Scalar Multiplication**: Multiply each component by the scalar: $k \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} = \\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Let vectors $\\mathbf{a} = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} -2 \\\\ 5 \\end{pmatrix}$. Find the vector $\\mathbf{c} = 2\\mathbf{a} - \\mathbf{b}$.",
+      "solution": "First, we calculate the scalar multiplication $2\\mathbf{a}$. \\\\ [M1] for correct scalar multiplication \\\\ $2\\mathbf{a} = 2 \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 2 \\times 4 \\\\ 2 \\times -1 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix}$ \\\\ Now, we subtract vector $\\mathbf{b}$ from this result. \\\\ [M1] for correct vector subtraction \\\\ $\\mathbf{c} = 2\\mathbf{a} - \\mathbf{b} = \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix} - \\begin{pmatrix} -2 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 8 - (-2) \\\\ -2 - 5 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ -7 \\end{pmatrix}$ \\\\ [A1] for correct final vector \\\\ So, $\\mathbf{c} = \\begin{pmatrix} 10 \\\\ -7 \\end{pmatrix}$."
+    },
+    {
+      "type": "heading",
+      "content": "Magnitude of a Vector"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude (or modulus) of a vector is its length. It's a scalar quantity and is always non-negative. We use the Pythagorean theorem on the vector's components to find its magnitude. The notation for the magnitude of a vector $\\mathbf{v}$ is $|\\mathbf{v}|$. This is a crucial calculation for finding quantities like speed (magnitude of velocity) or distance."
+    },
+    {
+      "type": "formula",
+      "content": "For a 2D vector $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, the magnitude is $|\\mathbf{v}| = \\sqrt{x^2 + y^2}$. \\\\ \\\\ For a 3D vector $\\mathbf{w} = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, the magnitude is $|\\mathbf{w}| = \\sqrt{x^2 + y^2 + z^2}$."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, distinguish carefully between a request for a vector (e.g., 'find the displacement vector') and a scalar (e.g., 'find the distance'). The first requires a vector answer, while the second requires you to calculate the magnitude of that vector."
+    },
+    {
+      "type": "workedExample",
+      "question": "A boat's engine propels it with velocity vector $\\mathbf{v}_b = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}$ km/h. A river current has velocity vector $\\mathbf{v}_c = \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ km/h. \\\\ a) Find the resultant velocity vector of the boat. \\\\ b) Find the actual speed of the boat, correct to 3 significant figures.",
+      "solution": "a) The resultant velocity $\\mathbf{v}_r$ is the sum of the boat's velocity and the current's velocity. \\\\ $\\mathbf{v}_r = \\mathbf{v}_b + \\mathbf{v}_c = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix} + \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ \\\\ [M1] for adding vectors \\\\ $\\mathbf{v}_r = \\begin{pmatrix} 6+3 \\\\ 8-1 \\end{pmatrix} = \\begin{pmatrix} 9 \\\\ 7 \\end{pmatrix}$ km/h. \\\\ [A1] for correct resultant vector. \\\\ \\\\ b) The speed is the magnitude of the resultant velocity vector. \\\\ Speed $= |\\mathbf{v}_r| = |\\begin{pmatrix} 9 \\\\ 7 \\end{pmatrix}|$ \\\\ [M1] for applying magnitude formula to their resultant vector. \\\\ Speed $= \\sqrt{9^2 + 7^2} = \\sqrt{81 + 49} = \\sqrt{130}$ \\\\ Speed $\\approx 11.40175...$ km/h \\\\ [A1] for correct final answer. \\\\ The speed of the boat is $11.4$ km/h (3 s.f.)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Vector Problems",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=3.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Vector Explorer",
+          "href": "https://www.geogebra.org/m/a9y28G7G"
+        },
+        {
+          "label": "Khan Academy: Introduction to Vectors",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:vectors"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Vector Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=a9y28G7G",
+    "launchUrl": "https://www.geogebra.org/classic?material=a9y28G7G",
+    "hint": "Use “GeoGebra Vector Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

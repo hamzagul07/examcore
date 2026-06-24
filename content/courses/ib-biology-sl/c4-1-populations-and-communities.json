@@ -1,0 +1,201 @@
+{
+  "slug": "c4-1-populations-and-communities",
+  "topicCode": "C4.1",
+  "title": "Populations and communities",
+  "paper": "P2",
+  "paperName": "Biology SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of population ecology, exploring how organisms interact with each other and their environment. We will define key terms, analyse the sigmoid population growth curve, and learn practical methods for estimating population size, such as quadrat sampling and the capture-mark-recapture technique.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define species, population, community, and ecosystem.",
+    "Explain the factors that limit population growth, leading to a sigmoid (S-shaped) growth curve and a carrying capacity.",
+    "Describe the use of quadrats for estimating the population size of non-motile organisms.",
+    "Outline the capture-mark-recapture method for estimating the population size of motile organisms using the Lincoln Index."
+  ],
+  "simpleExplanation": {
+    "title": "Nature's Neighbourhoods",
+    "summary": "Ecology is like studying a city, but for plants and animals. We look at who lives where, what resources they need, and what stops their numbers from growing forever.",
+    "analogy": "Imagine a new coffee shop opens in a small town. At first, with no competition and plenty of supplies, its customer numbers grow very quickly. Soon, however, the shop runs into limits: only so many people can fit inside, the coffee machine can only work so fast, and other coffee shops might open nearby. Eventually, the shop reaches a stable, maximum number of daily customers it can serve. This maximum number is its 'carrying capacity', and the limits are its 'limiting factors'.",
+    "steps": [
+      "First, define the specific group of organisms (the population) and the area they live in (the habitat).",
+      "Next, identify the limiting factors, such as food availability, predators, and space, that will restrict the population's growth.",
+      "Then, plot the population size over time to observe the characteristic S-shaped curve as it approaches the environment's carrying capacity.",
+      "Finally, use sampling techniques like quadrats or capture-mark-recapture to estimate the actual population size without counting every individual."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Population",
+      "back": "A group of organisms of the same species who live in the same area at the same time."
+    },
+    {
+      "front": "Community",
+      "back": "A group of populations of different species living and interacting with each other in an area. Trap: A community only includes living (biotic) components."
+    },
+    {
+      "front": "Habitat",
+      "back": "The environment in which a species normally lives, or the location of a living organism."
+    },
+    {
+      "front": "Ecosystem",
+      "back": "A community and its interactions with the abiotic (non-living) environment. This includes factors like soil, water, and sunlight."
+    },
+    {
+      "front": "Limiting Factor",
+      "back": "A factor in the environment that restricts the rate of growth of a population. Examples include food, water, predators, and space."
+    },
+    {
+      "front": "Carrying Capacity (K)",
+      "back": "The maximum population size of a species that can be sustainably supported by the environment. It is reached during the plateau phase of the sigmoid curve."
+    },
+    {
+      "front": "Sigmoid Growth Curve",
+      "back": "An S-shaped curve describing population growth. It has three main phases: exponential growth, transitional phase (growth slows), and plateau phase (at carrying capacity)."
+    },
+    {
+      "front": "Interspecific Competition",
+      "back": "Competition for resources between individuals of DIFFERENT species. Example: lions and hyenas competing for zebra."
+    },
+    {
+      "front": "Intraspecific Competition",
+      "back": "Competition for resources between individuals of the SAME species. This is often more intense as their needs are identical."
+    },
+    {
+      "front": "Quadrat Sampling",
+      "back": "A method used to estimate population size of plants or slow-moving animals by counting individuals in a series of randomly placed square frames (quadrats)."
+    },
+    {
+      "front": "Capture-Mark-Recapture",
+      "back": "A method to estimate the population size of motile animals. A sample is captured, marked, and released. A second sample is captured later, and the number of marked individuals is used to estimate the total population."
+    },
+    {
+      "front": "What are the key assumptions of the Lincoln Index?",
+      "back": "1. The marked individuals mix randomly with the unmarked population. 2. The mark does not affect survival or behaviour. 3. There is no significant immigration, emigration, birth, or death between samples."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a population and a community?",
+      "a": "A population consists of individuals of a single species, like all the squirrels in a park. A community includes all the different populations of all species in that park, such as the squirrels, oak trees, pigeons, and grass."
+    },
+    {
+      "q": "Why does the population stop growing when it reaches the carrying capacity?",
+      "a": "At carrying capacity (K), limiting factors such as competition for food, increased predation, and the spread of disease become so significant that the death rate equals the birth rate. There is no net population growth, and the population size remains relatively stable."
+    },
+    {
+      "q": "When should I use quadrat sampling versus capture-mark-recapture?",
+      "a": "Use quadrat sampling for organisms that do not move, or move very slowly, such as plants, fungi, or barnacles. Use the capture-mark-recapture method for motile organisms that move around, such as insects, fish, or small mammals."
+    },
+    {
+      "q": "Can the carrying capacity of an environment change?",
+      "a": "Yes, absolutely. Carrying capacity is not a fixed number. It can change seasonally or over longer periods. For example, a harsh winter might reduce food availability, lowering the carrying capacity, while a series of good years might increase it."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of populations and communities, the first building block of ecology. In this topic, we will move from the scale of individual organisms to understanding how groups of organisms interact, grow, and are regulated by their environment. This knowledge is crucial for conservation efforts and for understanding the delicate balance of ecosystems."
+    },
+    {
+      "type": "heading",
+      "content": "Fundamental Ecological Concepts"
+    },
+    {
+      "type": "text",
+      "content": "To study ecology, we need a precise vocabulary. A **population** is a group of organisms of the same species in a given area. For example, all the red deer in a Scottish glen. Multiple populations interacting, like the deer, the heather they eat, and the ticks that live on them, form a **community**. The physical place where these organisms live is their **habitat**. When we consider the community (biotic factors) together with the non-living components like soil, water, and sunlight (abiotic factors), we are studying an **ecosystem**."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Population:** Same species, same area, same time.",
+        "**Community:** All living things (multiple populations) in an area.",
+        "**Ecosystem:** The community plus the non-living environment."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Population Growth and Carrying Capacity"
+    },
+    {
+      "type": "text",
+      "content": "In ideal conditions with unlimited resources, a population would grow exponentially. However, in reality, resources are finite. Factors that slow down population growth are called **limiting factors**. These can include a shortage of food, increased predation, disease, or lack of space. As a population grows, these factors become more pronounced, causing the growth rate to slow and eventually stop. This pattern produces a sigmoid, or S-shaped, growth curve."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Lag Phase:** The population is small and adapting to the environment; growth is slow.",
+        "**Exponential Growth Phase:** Resources are plentiful, and the birth rate far exceeds the death rate. The population grows rapidly.",
+        "**Transitional Phase:** Limiting factors begin to take effect. The growth rate slows down as the death rate increases and/or the birth rate decreases.",
+        "**Plateau Phase:** The population size has reached the **carrying capacity (K)** of the environment. The birth rate equals the death rate, and the population fluctuates around this maximum sustainable level."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to draw or analyse a sigmoid growth curve, always label your axes correctly: 'Time' on the x-axis and 'Population Size' or 'Number of Individuals' on the y-axis. Be prepared to annotate the curve to show the different phases and the carrying capacity (K)."
+    },
+    {
+      "type": "heading",
+      "content": "Estimating Population Size"
+    },
+    {
+      "type": "text",
+      "content": "Counting every single organism in a population is usually impossible. Instead, ecologists use sampling techniques to estimate population size. For non-motile organisms like plants, or very slow-moving animals like limpets, **quadrat sampling** is used. A square frame (quadrat) is placed randomly in the habitat, and the number of individuals inside is counted. This is repeated many times to calculate an average density, which can then be scaled up to the total area."
+    },
+    {
+      "type": "workedExample",
+      "question": "An ecologist wants to estimate the population of marsh marigolds in a 500 m² field. They randomly place 25 quadrats, each with an area of 0.25 m², and count a total of 75 marsh marigolds. Estimate the total population size.",
+      "solution": "1. **Calculate the total area sampled:**\n   Total area = number of quadrats × area of one quadrat\n   Total area = 25 × 0.25 m² = 6.25 m²\n\n2. **Calculate the mean density of marigolds:**\n   Mean density = total number counted / total area sampled\n   Mean density = 75 marigolds / 6.25 m² = 12 marigolds per m²\n\n3. **Estimate the total population:**\n   Estimated population = mean density × total area of field\n   Estimated population = 12 marigolds/m² × 500 m² = 6000 marigolds\n\n**[3 marks]**"
+    },
+    {
+      "type": "text",
+      "content": "For motile organisms that move around, the **capture-mark-recapture** method is more appropriate. A sample of the population is captured, marked in a harmless way, and then released. After a period of time to allow for mixing, a second sample is captured. The proportion of marked individuals in the second sample allows for an estimation of the total population size using the Lincoln Index."
+    },
+    {
+      "type": "formula",
+      "content": "Lincoln Index: $N = \\frac{n_1 \\times n_2}{n_3}$ \nWhere:\n$N$ = Estimated population size\n$n_1$ = Number of individuals in the first capture (all marked)\n$n_2$ = Total number of individuals in the second capture\n$n_3$ = Number of marked individuals in the second capture"
+    },
+    {
+      "type": "workedExample",
+      "question": "A researcher is estimating the population of woodlice in a garden. They capture and mark 40 woodlice ($n_1$). After releasing them, they later capture 35 woodlice ($n_2$), of which 8 are marked ($n_3$). Calculate the estimated population size.",
+      "solution": "1. **State the formula:**\n   $N = \\frac{n_1 \\times n_2}{n_3}$\n\n2. **Substitute the values:**\n   $n_1 = 40$\n   $n_2 = 35$\n   $n_3 = 8$\n   $N = \\frac{40 \\times 35}{8}$\n\n3. **Calculate the result:**\n   $N = \\frac{1400}{8} = 175$\n\n   The estimated population size is 175 woodlice. **[2 marks]**"
+    },
+    {
+      "type": "examTip",
+      "content": "For Lincoln Index questions, always show your working by writing down the formula and substituting the numbers. Even if your final calculation is incorrect, you can still earn marks for the correct procedure. Also, be aware of the method's assumptions, as you may be asked to evaluate its reliability."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-biology-sl&topic=C4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Population Ecology: Interactive Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/natural-selection"
+        },
+        {
+          "label": "Khan Academy: Population Ecology",
+          "href": "https://www.khanacademy.org/science/biology/ecology/population-ecology"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Population Ecology: Interactive Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/natural-selection/latest/natural-selection_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/natural-selection",
+    "hint": "Explore “Population Ecology: Interactive Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

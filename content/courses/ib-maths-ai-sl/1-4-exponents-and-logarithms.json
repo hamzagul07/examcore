@@ -1,0 +1,204 @@
+{
+  "slug": "1-4-exponents-and-logarithms",
+  "topicCode": "1.4",
+  "title": "Exponents and logarithms",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of exponents and logarithms, exploring their inverse relationship. It covers the laws of both, demonstrating how to simplify expressions and, crucially, how to solve exponential equations using logarithms, a key skill for modelling growth and decay.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and convert between exponential form ($y = a^x$) and logarithmic form ($x = \\log_a y$).",
+    "Apply the laws of logarithms to simplify expressions and solve equations.",
+    "Solve exponential equations from real-world contexts using logarithms.",
+    "Use a calculator to evaluate logarithms with any base, including the natural logarithm (ln) and common logarithm (log)."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Unknown Powers",
+    "summary": "Exponents are for building up numbers with repeated multiplication, like $2^5=32$. Logarithms are the tool for going backwards; they find the original power you needed, so $\\log_2 32 = 5$.",
+    "analogy": "Imagine you have a machine that takes a number and a 'power instruction', and gives you a result. If you put in 'base 10' and 'power 3', it gives you $10^3 = 1000$. A logarithm is like an 'inspector' for the machine's output. If you show the inspector the result '1000' and tell them the base was '10', they can tell you the original instruction was 'power 3' (i.e., $\\log_{10} 1000 = 3$).",
+    "steps": [
+      "Identify the equation type. Recognise you have an exponential equation, often in the form $A \\times b^x = C$.",
+      "Isolate the exponential part. Rearrange the equation to get the $b^x$ term by itself, for example, by dividing by A to get $b^x = C/A$.",
+      "Apply logarithms. Take the natural logarithm (ln) or common logarithm (log) of both sides of the equation.",
+      "Solve for the variable. Use the power rule of logarithms to bring the exponent down, then solve for the variable using basic algebra."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Convert $b = a^x$ to logarithmic form.",
+      "back": "$x = \\log_a b$. The base 'a' stays the base, and the logarithm is the exponent 'x'."
+    },
+    {
+      "front": "Convert $\\log_c d = f$ to exponential form.",
+      "back": "$c^f = d$. The base of the log is the base of the power."
+    },
+    {
+      "front": "What is the Power Rule for logarithms?",
+      "back": "$\\log_a(x^p) = p \\log_a x$. It allows you to bring the exponent down as a multiplier. This is key for solving equations."
+    },
+    {
+      "front": "What is the Product Rule for logarithms?",
+      "back": "$\\log_a(xy) = \\log_a x + \\log_a y$. The logarithm of a product is the sum of the logarithms."
+    },
+    {
+      "front": "What is the Quotient Rule for logarithms?",
+      "back": "$\\log_a(x/y) = \\log_a x - \\log_a y$. The logarithm of a quotient is the difference of the logarithms."
+    },
+    {
+      "front": "What is a common mistake when simplifying $\\log(x+y)$?",
+      "back": "Thinking $\\log(x+y) = \\log x + \\log y$. This is incorrect. The sum rule applies to the log of a product: $\\log(xy) = \\log x + \\log y$."
+    },
+    {
+      "front": "How do you solve an equation like $a^x = b$ where $b$ is not an obvious power of $a$?",
+      "back": "Take logarithms of both sides. For example, $\\ln(a^x) = \\ln(b)$, which becomes $x \\ln(a) = \\ln(b)$, so $x = \\frac{\\ln(b)}{\\ln(a)}$."
+    },
+    {
+      "front": "What is the 'change of base' formula used for?",
+      "back": "To calculate a logarithm with a base that isn't on your calculator (like 10 or e). The formula is $\\log_a b = \\frac{\\log_c b}{\\log_c a}$."
+    },
+    {
+      "front": "What is the difference between $\\log x$ and $\\ln x$?",
+      "back": "$\\log x$ is the common logarithm with base 10 (i.e., $\\log_{10} x$). $\\ln x$ is the natural logarithm with base $e$ (i.e., $\\log_e x$)."
+    },
+    {
+      "front": "What is the value of $\\log_a 1$ for any valid base $a$?",
+      "back": "$0$, because any number to the power of 0 is 1 (i.e., $a^0 = 1$)."
+    },
+    {
+      "front": "What is the value of $\\log_a a$ for any valid base $a$?",
+      "back": "$1$, because any number to the power of 1 is itself (i.e., $a^1 = a$)."
+    },
+    {
+      "front": "Simplify: $\\ln(e^7)$",
+      "back": "The answer is 7. The natural log ($\\log_e$) and the exponential function $e^x$ are inverses, so they 'undo' each other."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between ln and log?",
+      "a": "Both are logarithms, they just have different bases. 'log' on its own (the common logarithm) implies base 10, so $\\log x = \\log_{10} x$. 'ln' (the natural logarithm) means base $e$ (Euler's number, approx 2.718), so $\\ln x = \\log_e x$. For solving equations, you can use either, as long as you are consistent."
+    },
+    {
+      "q": "Why can't I take the logarithm of a negative number?",
+      "a": "Consider $\\log_2(-4) = x$. In exponential form, this is $2^x = -4$. There is no real number $x$ that you can raise 2 to, to get a negative result. A positive base raised to any real power will always be positive."
+    },
+    {
+      "q": "When do I use logarithms instead of just finding roots?",
+      "a": "You use roots when the unknown is the base, for example, in $x^3 = 8$, you would find the cube root: $x = \\sqrt[3]{8} = 2$. You use logarithms when the unknown is the exponent (or power), for example, in $2^x = 8$, you would use a logarithm: $x = \\log_2 8 = 3$."
+    },
+    {
+      "q": "Do I need to memorise the logarithm laws?",
+      "a": "The main logarithm laws (product, quotient, power) and the change of base formula are all in the IB Maths AI SL formula booklet. However, you absolutely must memorise what they mean and, more importantly, when and how to apply them. Exam success comes from application, not just knowing the formulae exist."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Have you ever wondered how scientists measure earthquake intensity or how banks calculate interest over long periods? The answer lies in exponents and their powerful inverse, logarithms. This topic is not just abstract mathematics; it's the language used to describe and solve problems involving rapid growth and decay all around us."
+    },
+    {
+      "type": "heading",
+      "content": "The Relationship Between Exponents and Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "You are already familiar with exponents (or indices) as a way of representing repeated multiplication. For example, $2^5 = 2 \\times 2 \\times 2 \\times 2 \\times 2 = 32$. A logarithm does the opposite job: it finds the exponent. The question 'What power do we raise 2 to, to get 32?' is written as a logarithm: $\\log_2 32 = 5$."
+    },
+    {
+      "type": "formula",
+      "content": "The fundamental relationship is: $y = a^x \\iff x = \\log_a y$ \\\\ Where $a$ is the base, $x$ is the exponent, and $y$ is the result."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The base of the power ($a$) becomes the base of the logarithm.",
+        "The logarithm is equal to the exponent ($x$).",
+        "You can only take the logarithm of a positive number, so $y$ must be greater than 0."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A biologist is modelling bacterial growth. The number of bacteria, $N$, after $t$ hours is given by the formula $N = 100 \\times 2^t$. How many hours will it take for the number of bacteria to reach 1600?",
+      "solution": "1. Set up the equation with the given information: \\\\ $1600 = 100 \\times 2^t$ \\\\ 2. Isolate the exponential term by dividing both sides by 100: \\\\ $\\frac{1600}{100} = 2^t$ \\\\ $16 = 2^t$ (M1 for isolating the exponential) \\\\ 3. Solve for $t$. This can be done by inspection or by converting to a logarithm. \\\\ In logarithmic form, this is $t = \\log_2 16$. \\\\ We know that $2^4 = 16$, so $t=4$. \\\\ It will take 4 hours for the number of bacteria to reach 1600. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "The Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "Just as there are laws for exponents, there are corresponding laws for logarithms. These are essential for manipulating and solving logarithmic and exponential equations. They are provided in your formula booklet, but you must know how to use them fluently."
+    },
+    {
+      "type": "formula",
+      "content": "Product Rule: $\\log_c(xy) = \\log_c x + \\log_c y$ \\\\ Quotient Rule: $\\log_c(x/y) = \\log_c x - \\log_c y$ \\\\ Power Rule: $\\log_c(x^k) = k \\log_c x$"
+    },
+    {
+      "type": "examTip",
+      "content": "The Power Rule is your most important tool for solving exponential equations. When you have an equation with the variable in the exponent, taking logs of both sides allows you to use the power rule to 'bring the variable down' and solve for it."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Exponential Equations"
+    },
+    {
+      "type": "text",
+      "content": "Many real-world models use exponential functions. When we need to find the input (like time or an interest rate) that produces a certain output, we need to solve an exponential equation. The standard method is to take logarithms of both sides."
+    },
+    {
+      "type": "workedExample",
+      "question": "The value of a car, $V$ in pounds (£), depreciates according to the formula $V(t) = 25000 \\times (0.85)^t$, where $t$ is the number of years since it was purchased. Find the time it takes, in years, for the car's value to fall to £10000.",
+      "solution": "1. Set up the equation: \\\\ $10000 = 25000 \\times (0.85)^t$ \\\\ 2. Isolate the exponential part by dividing by 25000: \\\\ $\\frac{10000}{25000} = (0.85)^t$ \\\\ $0.4 = (0.85)^t$ (M1 for correct substitution and isolation) \\\\ 3. Take the natural logarithm (ln) of both sides: \\\\ $\\ln(0.4) = \\ln((0.85)^t)$ \\\\ 4. Apply the power rule for logarithms: \\\\ $\\ln(0.4) = t \\times \\ln(0.85)$ (M1 for taking logs and using power rule) \\\\ 5. Solve for $t$: \\\\ $t = \\frac{\\ln(0.4)}{\\ln(0.85)}$ \\\\ $t \\approx 5.6369...$ \\\\ So, it takes approximately 5.64 years (to 3 s.f.) for the car's value to fall to £10000. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Change of Base"
+    },
+    {
+      "type": "text",
+      "content": "Your calculator has buttons for the common logarithm ($\\log$, base 10) and the natural logarithm ($\\ln$, base $e$). But what if you need to calculate a logarithm with a different base, like $\\log_7 50$? You use the change of base formula."
+    },
+    {
+      "type": "formula",
+      "content": "$\\log_b a = \\frac{\\log_c a}{\\log_c b}$ \\\\ In practice, you can use either $\\ln$ or $\\log$ on your calculator: \\\\ $\\log_b a = \\frac{\\ln a}{\\ln b} = \\frac{\\log a}{\\log b}$"
+    },
+    {
+      "type": "examTip",
+      "content": "When solving an exponential equation like in the worked example, you can use either $\\ln$ or $\\log$. The final answer will be the same. Many people prefer $\\ln$ as it is common in financial and scientific modelling."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Exponents and Logarithms Graph",
+          "href": "https://www.geogebra.org/m/sUfB2YpX"
+        },
+        {
+          "label": "Khan Academy: Intro to Logarithms",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:log-intro/v/logarithms"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Exponents and Logarithms Graph",
+    "embedUrl": "https://www.geogebra.org/classic?material=sUfB2YpX",
+    "launchUrl": "https://www.geogebra.org/classic?material=sUfB2YpX",
+    "hint": "Use “Exponents and Logarithms Graph” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

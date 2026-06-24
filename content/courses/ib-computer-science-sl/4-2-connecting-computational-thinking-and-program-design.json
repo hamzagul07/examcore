@@ -1,0 +1,168 @@
+{
+  "slug": "4-2-connecting-computational-thinking-and-program-design",
+  "topicCode": "4.2",
+  "title": "Connecting computational thinking and program design",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson bridges the gap between abstract problem-solving and concrete program creation. It explores how the core principles of computational thinking—decomposition, abstraction, pattern recognition, and algorithms—are the essential blueprint for designing effective and efficient software.",
+  "durationMin": 50,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the four components of computational thinking within a given problem scenario.",
+    "Describe how computational thinking principles guide the process of program design.",
+    "Represent a program's design using standard tools like pseudocode and flowcharts.",
+    "Explain the relationship between a problem, its computational-thinking-based design, and the final program."
+  ],
+  "simpleExplanation": {
+    "title": "From Blueprint to Building",
+    "summary": "Computational thinking is the architect's plan for building software. It provides a structured way to think about a problem, breaking it down into manageable parts before a single line of code is written.",
+    "analogy": "Imagine you're planning a large, surprise birthday party. You don't just start buying random decorations. First, you use computational thinking: you 'decompose' the event into smaller tasks (invites, cake, venue, music). You 'abstract' away minor details like the colour of the napkins for now, focusing on the guest list and budget. You spot 'patterns', like needing to get contact details for every guest. Finally, you create an 'algorithm'—a step-by-step plan for the day of the party. This plan is your program design, ensuring the party (your program) runs smoothly.",
+    "steps": [
+      "Decompose the Problem: Break a large, complex problem into smaller, more manageable sub-problems.",
+      "Abstract and Recognise Patterns: Identify the essential details, ignore the irrelevant ones, and find repeating elements or structures.",
+      "Design the Algorithm: Create a step-by-step plan, using pseudocode or a flowchart, to solve each sub-problem.",
+      "Combine and Refine: Integrate the solutions for the sub-problems into a complete, documented program design ready for implementation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Computational Thinking",
+      "back": "A problem-solving process that involves formulating a problem and expressing its solution in a way that a computer (human or machine) can effectively carry out. It comprises four key components."
+    },
+    {
+      "front": "Decomposition",
+      "back": "Breaking down a complex problem or system into smaller, more manageable parts. For example, designing a game involves decomposing it into graphics, user input, scoring, and physics."
+    },
+    {
+      "front": "Abstraction",
+      "back": "Focusing on the essential features of a problem or system, ignoring irrelevant details. For example, a map is an abstraction of a real city, showing roads and landmarks but omitting individual trees or cars."
+    },
+    {
+      "front": "Pattern Recognition",
+      "back": "Observing patterns, trends, and regularities in data or within a problem. For example, recognising that multiple parts of a program need to validate user input allows you to create a single, reusable validation function."
+    },
+    {
+      "front": "Algorithm",
+      "back": "A finite sequence of well-defined, computer-implementable instructions to solve a class of problems or to perform a computation."
+    },
+    {
+      "front": "Pseudocode",
+      "back": "A plain language description of the steps in an algorithm. It is not a programming language and has no strict syntax, but it should be clear, concise, and unambiguous. It's a tool for design, not execution."
+    },
+    {
+      "front": "Flowchart",
+      "back": "A graphical representation of an algorithm or process. It uses standard symbols to depict different types of instructions and the flow of control from one to another."
+    },
+    {
+      "front": "Structure Chart",
+      "back": "A top-down diagram showing the overall architecture of a program. It illustrates the modules of the system and the relationships between them, including data passed between modules. It shows 'what' happens, not 'how'."
+    },
+    {
+      "front": "Common Trap: Confusing Decomposition and Abstraction",
+      "back": "Decomposition is about breaking a problem *down* into smaller pieces. Abstraction is about filtering *out* unnecessary detail. You decompose a car into engine, wheels, and chassis. You abstract a car to its properties of speed and direction, ignoring its engine type."
+    },
+    {
+      "front": "Common Trap: Writing Code in Pseudocode",
+      "back": "Avoid using syntax from a specific language like Java or Python (e.g., `print()` or `System.out.println`). Use generic, clear terms like `OUTPUT` or `DISPLAY`. The goal is to communicate the logic, not write a specific program."
+    },
+    {
+      "front": "What is the purpose of a program design?",
+      "back": "To create a clear, logical, and efficient plan for a software solution before implementation. A good design reduces errors, improves maintainability, and ensures the final program meets the user's requirements."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is pseudocode a real programming language?",
+      "a": "No, pseudocode is not a programming language. It is a tool for designing and documenting algorithms using a structured, natural language format. It has no compiler or interpreter and cannot be executed by a computer."
+    },
+    {
+      "q": "What is the difference between an algorithm and a program?",
+      "a": "An algorithm is the logical, step-by-step plan to solve a problem. A program is the implementation of that algorithm in a specific programming language (like Python, Java, or C++). The algorithm is the 'idea', and the program is the 'concrete expression' of that idea."
+    },
+    {
+      "q": "Why is abstraction important in program design?",
+      "a": "Abstraction allows us to manage complexity. By hiding irrelevant details and focusing on the essential features of a problem, we can design systems at a higher level. This makes it easier to reason about the program's structure and behaviour without getting lost in implementation details too early in the process."
+    },
+    {
+      "q": "Do I have to use all four parts of computational thinking for every problem?",
+      "a": "Yes, you implicitly use all four, even on simple problems. For a very small problem, decomposition might just be 'one step', and the patterns might be trivial. However, consciously applying the framework helps build good habits and becomes essential for tackling the large, complex problems you will face in computer science."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Before a chef cooks a masterpiece, they create a recipe. Before an architect builds a skyscraper, they draw a blueprint. In computer science, our blueprint is the program design, and the method we use to create it is computational thinking. This topic connects the 'thinking' part of problem-solving to the 'doing' part of programming, showing how a structured approach leads to better software."
+    },
+    {
+      "type": "heading",
+      "content": "The Four Pillars of Computational Thinking"
+    },
+    {
+      "type": "text",
+      "content": "Computational thinking is not about thinking like a computer; it's a formal problem-solving method that computer scientists use. It is composed of four fundamental techniques that can be applied to any complex problem, whether in computing or everyday life. Mastering these will allow you to approach any programming challenge with a clear strategy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Decomposition:** Breaking a large problem into smaller, self-contained, and more manageable sub-problems.",
+        "**Pattern Recognition:** Identifying similarities, trends, or repeated processes within the problem or between the sub-problems.",
+        "**Abstraction:** Ignoring the details that are not essential for solving the problem, allowing you to focus on the core structure and logic.",
+        "**Algorithms:** Developing a step-by-step solution to the problem, or to each of the sub-problems identified during decomposition."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "From Thinking to Designing: A Practical Workflow"
+    },
+    {
+      "type": "text",
+      "content": "The four pillars are not isolated concepts; they form a workflow. You start by decomposing the problem. As you analyse the smaller pieces, you use abstraction to simplify them and pattern recognition to find commonalities. This leads to the creation of algorithms for each piece. These algorithms, when combined, form the overall design of your program. This design is then documented using tools like pseudocode or flowcharts."
+    },
+    {
+      "type": "workedExample",
+      "question": "A program is required to manage a simple 'To-Do' list. A user should be able to add a task, view all tasks, and mark a task as complete. The tasks are stored in a list. Outline the program design by applying the principles of computational thinking and providing a high-level pseudocode algorithm.",
+      "solution": "Here is a breakdown of the design process:\n\n**1. Computational Thinking Application:**\n*   **Decomposition:** The problem can be broken into three main functions:\n    *   Function 1: Add a new task to the list.\n    *   Function 2: Display all tasks in the list.\n    *   Function 3: Mark a task as complete (e.g., by removing it or changing its status).\n*   **Abstraction:** We will represent tasks as simple strings. We don't need to worry about due dates, priorities, or sub-tasks at this stage. The list itself can be an abstract data type (an array or list).\n*   **Pattern Recognition:** The program will repeatedly present a menu to the user and wait for their choice. This suggests a main loop with a selection structure (e.g., IF-ELSE or CASE) inside.\n\n**2. Algorithm Design (Pseudocode):**\n```\n// Data Structure\nDECLARE tasks AS LIST OF STRING\nDECLARE choice AS STRING\n\nLOOP forever\n    OUTPUT \"Menu:\"\n    OUTPUT \"1. Add Task\"\n    OUTPUT \"2. View Tasks\"\n    OUTPUT \"3. Complete Task\"\n    OUTPUT \"4. Exit\"\n    INPUT choice\n\n    IF choice == \"1\" THEN\n        OUTPUT \"Enter new task:\"\n        DECLARE newTask AS STRING\n        INPUT newTask\n        ADD newTask TO tasks\n    ELSE IF choice == \"2\" THEN\n        LOOP task FROM tasks\n            OUTPUT task\n        END LOOP\n    ELSE IF choice == \"3\" THEN\n        OUTPUT \"Enter task to complete:\"\n        DECLARE taskToComplete AS STRING\n        INPUT taskToComplete\n        REMOVE taskToComplete FROM tasks\n    ELSE IF choice == \"4\" THEN\n        EXIT LOOP\n    ELSE\n        OUTPUT \"Invalid choice.\"\n    END IF\nEND LOOP\n```"
+    },
+    {
+      "type": "heading",
+      "content": "Representing the Design: Pseudocode and Flowcharts"
+    },
+    {
+      "type": "text",
+      "content": "Once you have a logical algorithm, you must communicate it clearly. Pseudocode and flowcharts are two standard ways to do this. Pseudocode is text-based and uses structured English to describe the steps. It's quick to write and easy to convert to code. Flowcharts are diagrammatic, using specific shapes to represent actions, decisions, and data flow. They are excellent for visualising complex logic and control flow, especially for learners."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will frequently be asked to write an algorithm in pseudocode or draw a flowchart. The IB has a specific approved notation sheet for pseudocode. While you are not penalised for minor deviations, using standard keywords like `LOOP...ENDLOOP`, `IF...THEN...ELSE...ENDIF`, `INPUT`, and `OUTPUT` will ensure the examiner understands your logic. Clarity and correctness of the logic are more important than perfect syntax."
+    },
+    {
+      "type": "workedExample",
+      "question": "A simple game asks a user to guess a secret number between 1 and 100. The program tells the user if their guess is 'too high' or 'too low'. The game ends when they guess correctly. Design a flowchart to represent the algorithm for this game. Assume the secret number is pre-set to 42.",
+      "solution": "Here is a step-by-step description of the flowchart, which represents the algorithm:\n\n**1. Computational Thinking Application:**\n*   **Decomposition:** 1. Set the secret number. 2. Start a loop. 3. Get user's guess. 4. Compare guess to secret number. 5. Provide feedback ('too high', 'too low', or 'correct'). 6. Repeat until correct.\n*   **Abstraction:** The user input is abstracted to an integer variable `guess`. The secret number is an integer constant `secretNumber`.\n*   **Algorithm (Flowchart Description):**\n\n*   **(Start)** - Oval shape labeled 'Start'.\n*   **Flowline** to...\n*   **(Process)** - Rectangle shape: `secretNumber = 42`, `guess = 0`.\n*   **Flowline** to...\n*   **(Start of Loop)** - The flowline enters the top of the decision diamond.\n*   **(Decision)** - Diamond shape: `guess != secretNumber?`\n    *   **Flowline (Yes branch)** from the side of the diamond, leading to the loop body:\n        *   **(Input)** - Parallelogram: `INPUT guess`.\n        *   **Flowline** to...\n        *   **(Decision)** - Diamond: `guess > secretNumber?`\n            *   **Flowline (Yes branch)** to **(Output)** Parallelogram: `OUTPUT \"Too high\"`.\n            *   **Flowline (No branch)** to **(Decision)** Diamond: `guess < secretNumber?`\n                *   **Flowline (Yes branch)** to **(Output)** Parallelogram: `OUTPUT \"Too low\"`.\n                *   **Flowline (No branch)** is empty as the only other possibility is equality, which is handled by the main loop condition.\n        *   All feedback paths join and loop back to the start of the main `guess != secretNumber?` decision diamond.\n    *   **Flowline (No branch)** from the bottom of the main `guess != secretNumber?` diamond, for when the guess is correct:\n        *   **(Output)** - Parallelogram: `OUTPUT \"Correct!\"`.\n        *   **Flowline** to...\n*   **(End)** - Oval shape labeled 'End'."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-computer-science-sl&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IBO Approved Pseudocode Notation",
+          "href": "https://www.ibo.org/contentassets/5895a05412144fe89c42842d5652b49c/approved-notation-for-pseudo-code.pdf"
+        },
+        {
+          "label": "BBC Bitesize - Computational Thinking",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zp92mp3/revision/1"
+        },
+        {
+          "label": "Flowchart Symbols Guide",
+          "href": "https://www.smartdraw.com/flowchart/flowchart-symbols.htm"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

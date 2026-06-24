@@ -1,0 +1,205 @@
+{
+  "slug": "4-6-binomial-and-poisson-distributions",
+  "topicCode": "4.6",
+  "title": "Binomial and Poisson distributions",
+  "paper": "P2",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces two fundamental discrete probability distributions: the Binomial and the Poisson. You will learn to identify the conditions for each, calculate probabilities using your GDC, and apply these concepts to solve real-world problems involving counting successes or events.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the conditions that define a binomial distribution and a Poisson distribution.",
+    "Calculate probabilities for binomial and Poisson distributions using a GDC.",
+    "Calculate the expected value (mean) for both distributions.",
+    "Solve practical problems by choosing the appropriate distribution and interpreting the results."
+  ],
+  "simpleExplanation": {
+    "title": "Counting Successes vs. Counting Events",
+    "summary": "The Binomial distribution counts the number of successes in a fixed number of trials, like flipping a coin 10 times. The Poisson distribution counts the number of events occurring in a fixed interval of time or space, like a shop receiving customers in an hour.",
+    "analogy": "Imagine you're playing a carnival game. If you have exactly 5 darts to throw at a balloon (and you either hit or miss), counting your hits is a Binomial problem. Now, imagine you're watching the game for 10 minutes and counting how many people hit the balloon in total. That's a Poisson problem, because you're counting events in a time interval, not successes in a fixed number of personal attempts.",
+    "steps": [
+      "Identify the distribution: Is it a fixed number of trials (Binomial) or a fixed interval of time/space (Poisson)?",
+      "Define the parameters: For Binomial, find the number of trials 'n' and probability of success 'p'. For Poisson, find the mean rate 'm' (or 'λ').",
+      "Select the correct GDC function: Use 'Pdf' for exactly a certain number of events (P(X=k)) and 'Cdf' for a range of events (P(X ≤ k)).",
+      "Calculate and interpret: Execute the calculation on your GDC and write down the final probability, ensuring it answers the specific question (e.g., 'at least', 'more than')."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What are the four conditions for a Binomial distribution? (Acronym: BINS)",
+      "back": "Binary outcomes (success/failure), Independent trials, Number of trials is fixed (n), Same probability of success for each trial (p)."
+    },
+    {
+      "front": "What are the key conditions for a Poisson distribution?",
+      "back": "Events occur independently, at a constant average rate, and cannot occur simultaneously. They are counted over a fixed interval of time or space."
+    },
+    {
+      "front": "What does $X \\sim B(n, p)$ mean?",
+      "back": "The random variable X follows a Binomial distribution with 'n' trials and a probability of success 'p'."
+    },
+    {
+      "front": "What does $X \\sim Po(m)$ mean?",
+      "back": "The random variable X follows a Poisson distribution with a mean (or average rate) of 'm' events per interval."
+    },
+    {
+      "front": "When do you use `binomPdf` on your GDC?",
+      "back": "To find the probability of *exactly* a certain number of successes, i.e., $P(X=k)$."
+    },
+    {
+      "front": "When do you use `binomCdf` on your GDC?",
+      "back": "To find the cumulative probability of a range of successes, typically 'at most' a certain number, i.e., $P(X \\le k)$."
+    },
+    {
+      "front": "How do you calculate $P(X \\ge k)$ using a GDC that only has $P(X \\le k)$?",
+      "back": "Use the complement rule: $P(X \\ge k) = 1 - P(X \\le k-1)$."
+    },
+    {
+      "front": "How do you calculate $P(X > k)$?",
+      "back": "Use the complement rule: $P(X > k) = 1 - P(X \\le k)$."
+    },
+    {
+      "front": "A call centre receives 6 calls per hour on average. What is the mean number of calls in 20 minutes?",
+      "back": "The interval is 1/3 of an hour, so the mean 'm' for the new interval is $6 \\times (1/3) = 2$ calls."
+    },
+    {
+      "front": "What is the expected value (mean) of a Binomial distribution $B(n, p)$?",
+      "back": "$E(X) = np$. For example, if you flip a fair coin 20 times, you expect $20 \\times 0.5 = 10$ heads."
+    },
+    {
+      "front": "What is the expected value (mean) of a Poisson distribution $Po(m)$?",
+      "back": "$E(X) = m$. The parameter 'm' is the expected value by definition."
+    },
+    {
+      "front": "Is the number of rainy days in a week in London a Binomial or Poisson variable?",
+      "back": "Binomial. There is a fixed number of trials (n=7 days) and each day is either rainy (success) or not (failure)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between `binomPdf` and `binomCdf`?",
+      "a": "`Pdf` (Probability Density Function) is for a single, exact value, like $P(X=5)$. `Cdf` (Cumulative Distribution Function) is for a range of values, typically from zero up to a certain point, like $P(X \\le 5)$."
+    },
+    {
+      "q": "My GDC only has `binomCdf(n, p, k)` which calculates $P(X \\le k)$. How do I find $P(X \\ge 5)$ for $n=10$?",
+      "a": "You need to use the complement rule. $P(X \\ge 5)$ means $X$ can be 5, 6, 7, 8, 9, or 10. The opposite of this is $X$ being 0, 1, 2, 3, or 4, which is $P(X \\le 4)$. So, you calculate $P(X \\ge 5) = 1 - P(X \\le 4)$. On your GDC, this would be `1 - binomCdf(10, p, 4)`."
+    },
+    {
+      "q": "For a Poisson question, what if the rate is given per hour, but the question asks about 15 minutes?",
+      "a": "You must scale the mean, $m$. Since 15 minutes is a quarter of an hour (15/60 = 0.25), you multiply the hourly rate by 0.25 to get the new mean for the 15-minute interval. For example, if the rate is 12 per hour, the new mean for 15 minutes is $m = 12 \\times 0.25 = 3$."
+    },
+    {
+      "q": "Can I just use the formulas for Binomial and Poisson instead of my GDC?",
+      "a": "Yes, the formulas are in the formula booklet and using them is valid. However, on Paper 2, using the GDC is significantly faster and reduces the risk of arithmetic errors, especially for cumulative probabilities which would require multiple formula calculations. The IB markscheme awards marks for correct GDC input."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of discrete probability distributions! In many real-life situations, we want to model the probability of a certain number of things happening. This lesson focuses on two powerful tools for doing just that: the Binomial and Poisson distributions. As this is a Paper 2 topic, your Graphical Display Calculator (GDC) will be your best friend. Let's learn how to tell these distributions apart and use our calculators to solve problems efficiently."
+    },
+    {
+      "type": "heading",
+      "content": "The Binomial Distribution: Counting Successes"
+    },
+    {
+      "type": "text",
+      "content": "The Binomial distribution is used when we are interested in the number of 'successes' in a fixed number of trials. Think of it as repeating the same experiment over and over and counting how many times you get the outcome you want. For a situation to be modelled by a binomial distribution, it must satisfy four key conditions, which can be remembered with the acronym BINS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**B**inary: There are only two possible outcomes for each trial, often called 'success' and 'failure'.",
+        "**I**ndependent: The outcome of one trial does not affect the outcome of any other trial.",
+        "**N**umber: There is a fixed number of trials, denoted by $n$.",
+        "**S**ame probability: The probability of success, denoted by $p$, is the same for every trial."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "If a random variable $X$ follows a binomial distribution, we write $X \\sim B(n, p)$. While there is a formula, on Paper 2 you will almost always use your GDC. The key functions are `binomPdf(n, p, k)` which calculates $P(X=k)$, and `binomCdf(n, p, lower, upper)` which calculates the probability for a range of outcomes, like $P(a \\le X \\le b)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A factory produces light bulbs, and the probability that a randomly selected bulb is defective is 0.08. A sample of 15 bulbs is taken. \n(a) What is the probability that exactly two bulbs are defective? \n(b) What is the probability that at most three bulbs are defective?",
+      "solution": "First, we identify the distribution. This is a binomial setting because we have a fixed number of trials (n=15), two outcomes (defective or not), the trials are independent, and the probability of a defect is constant (p=0.08). Let $X$ be the number of defective bulbs. Then $X \\sim B(15, 0.08)$.\n\n(a) We need to find $P(X=2)$. We use the binomial probability distribution function on the GDC.\n\n`binomPdf(n=15, p=0.08, x=2)` (M1)\n$P(X=2) = 0.21955...$\n$P(X=2) \\approx 0.220$ (A1)\n\n(b) We need to find the probability of 'at most three' defective bulbs, which means $P(X \\le 3)$. This includes 0, 1, 2, or 3 defective bulbs. We use the binomial cumulative distribution function on the GDC.\n\n`binomCdf(n=15, p=0.08, lower=0, upper=3)` (M1)\n$P(X \\le 3) = 0.9836...$\n$P(X \\le 3) \\approx 0.984$ (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always state the distribution and its parameters at the start of your working, for example, 'Let $X$ be the number of successes, $X \\sim B(n, p)$'. This often earns you a mark (M1) for showing understanding, even if your final calculation is incorrect."
+    },
+    {
+      "type": "heading",
+      "content": "The Poisson Distribution: Counting Events in an Interval"
+    },
+    {
+      "type": "text",
+      "content": "The Poisson distribution models the number of times an event occurs within a specified continuous interval, which could be time, distance, area, or volume. For example, we could model the number of emails you receive in an hour, or the number of flaws in a 10-metre length of fabric. The key parameter is the mean number of occurrences in that interval, denoted by $m$ (or sometimes $\\lambda$)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Events occur at a constant average rate.",
+        "Events occur independently of each other.",
+        "It is impossible for two events to occur at exactly the same instant."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "If a random variable $X$ follows a Poisson distribution, we write $X \\sim Po(m)$. Your GDC will have `poissonPdf(m, k)` for $P(X=k)$ and `poissonCdf(m, lower, upper)` for ranges like $P(a \\le X \\le b)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A customer service desk receives enquiries at an average rate of 4.5 per hour. \n(a) Find the probability that the desk receives exactly 3 enquiries in a particular hour. \n(b) Find the probability that the desk receives fewer than 10 enquiries in a two-hour period.",
+      "solution": "Let $H$ be the number of enquiries in one hour. The rate is given, so $H \\sim Po(4.5)$.\n\n(a) We need to find $P(H=3)$. We use the Poisson probability distribution function.\n\n`poissonPdf(m=4.5, x=3)` (M1)\n$P(H=3) = 0.1687...$\n$P(H=3) \\approx 0.169$ (A1)\n\n(b) The question asks about a two-hour period. We must adjust the mean rate. \nNew mean, $m' = 4.5 \\text{ enquiries/hour} \\times 2 \\text{ hours} = 9$. (M1) for scaling the mean.\nLet $T$ be the number of enquiries in two hours. So, $T \\sim Po(9)$.\nWe need to find the probability of 'fewer than 10' enquiries, which is $P(T < 10)$, or $P(T \\le 9)$.\n\n`poissonCdf(m=9, lower=0, upper=9)` (M1)\n$P(T \\le 9) = 0.5874...$\n$P(T \\le 9) \\approx 0.587$ (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Choosing the Right Tool for the Job"
+    },
+    {
+      "type": "text",
+      "content": "The most common mistake is using the wrong distribution. Always ask yourself: am I counting successes out of a fixed number of attempts, or am I counting random event occurrences in a fixed interval? The answer will point you to either Binomial or Poisson."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common question involves calculating the probability of 'at least one' event. It is almost always quicker to calculate this as $1 - P(\\text{zero events})$. For a Binomial distribution, this is $1 - P(X=0)$. For a Poisson, it's $1 - P(X=0)$ too. This saves you from summing up many probabilities."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding with exam-style questions on Binomial and Poisson distributions.",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=4.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Binomial Distribution Simulator",
+          "href": "https://www.geogebra.org/m/gwwxmyz7"
+        },
+        {
+          "label": "GeoGebra: Poisson Distribution Simulator",
+          "href": "https://www.geogebra.org/m/cnehtqzs"
+        },
+        {
+          "label": "Khan Academy: Binomial & Poisson",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/binomial-random-variables/v/binomial-distribution"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Binomial Distribution Simulator",
+    "embedUrl": "https://www.geogebra.org/classic?material=gwwxmyz7",
+    "launchUrl": "https://www.geogebra.org/classic?material=gwwxmyz7",
+    "hint": "Use “Binomial Distribution Simulator” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

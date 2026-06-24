@@ -1,0 +1,184 @@
+{
+  "slug": "1-1-systems-in-organizations-planning-and-change-management",
+  "topicCode": "1.1",
+  "title": "Systems in organizations: planning and change management",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson explores the critical processes of planning for new computer systems within organisations and managing the transition. It covers feasibility, system analysis, and various changeover strategies, equipping students to analyse real-world scenarios.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the contexts and reasons for implementing new IT systems in an organisation.",
+    "Compare and contrast different strategies for managing change when a new system is introduced.",
+    "Analyse the impact of a new system on different stakeholders.",
+    "Evaluate the suitability of different changeover methods for a given scenario."
+  ],
+  "simpleExplanation": {
+    "title": "Upgrading Your Digital Toolkit",
+    "summary": "Introducing a new computer system in a company is like swapping your old, trusty but limited phone for a brand new smartphone. It requires careful planning to ensure everything transfers smoothly and everyone knows how to use the new features without causing chaos.",
+    "analogy": "Imagine you're rearranging your entire bedroom. You wouldn't just throw all your furniture out onto the landing and hope for the best. First, you'd measure the space and plan where the new bed and desk will go (Analysis & Design). You might try putting the new desk in a corner to see how it feels before moving everything else (Pilot). Then, you'd move the furniture, perhaps section by section (Phased). Finally, you'd live in it for a bit and see if the new layout works (Evaluation). Implementing a new IT system in a business follows a very similar, structured process to avoid disruption.",
+    "steps": [
+      "First, an organisation analyses its current system to identify problems and defines the requirements for a new one.",
+      "Next, a feasibility study is conducted to see if the new system is technically, economically, and operationally possible.",
+      "Then, a changeover strategy is chosen to switch from the old system to the new one, such as running both side-by-side for a while.",
+      "Finally, after implementation, the new system is evaluated and maintained, and users are trained to ensure it's used effectively."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a legacy system?",
+      "back": "An old technology, hardware, computer system, or application program that may still be in use. These systems are often outdated and difficult to maintain or update."
+    },
+    {
+      "front": "Define 'stakeholder' in the context of a new IT system.",
+      "back": "Any person or group who has an interest or concern in the new system. This includes users, managers, clients, and the IT development team."
+    },
+    {
+      "front": "What is a feasibility study?",
+      "back": "An investigation that gauges the probability of success of a proposed project and provides a rough assessment of its feasibility. Often uses frameworks like TELOS (Technical, Economic, Legal, Operational, Schedule)."
+    },
+    {
+      "front": "Describe 'Direct Changeover'.",
+      "back": "The old system is stopped and the new system is started immediately. It's the riskiest method but also the cheapest and quickest if successful."
+    },
+    {
+      "front": "Describe 'Parallel Running'.",
+      "back": "The new system is started, but the old system is kept running alongside it for a period. Data is input into both systems. It's safe but expensive in terms of time and resources."
+    },
+    {
+      "front": "Describe 'Phased Implementation'.",
+      "back": "The new system is introduced in parts or modules, one at a time. For example, a school might introduce the new finance module first, then the student registration module."
+    },
+    {
+      "front": "Describe 'Pilot Running'.",
+      "back": "The new system is implemented in its entirety, but only for a small, selected group of users or a single department. If successful, it's rolled out to the rest of the organisation."
+    },
+    {
+      "front": "What is the main risk of Direct Changeover?",
+      "back": "If the new system fails, there is no backup system to fall back on, which could halt all business operations."
+    },
+    {
+      "front": "What is a major drawback of Parallel Running?",
+      "back": "It is very expensive and resource-intensive, as it requires double the staff time (to enter data into two systems) and double the hardware resources."
+    },
+    {
+      "front": "Distinguish between Phased Implementation and Pilot Running.",
+      "back": "Phased introduces parts of the system to everyone, one part at a time. Pilot introduces the whole system, but only to a small part of the organisation."
+    },
+    {
+      "front": "What does SaaS stand for?",
+      "back": "Software as a Service. A method of software delivery where applications are hosted by a third-party provider and made available to customers over the Internet."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is there a 'best' changeover method?",
+      "a": "No, the 'best' method is entirely dependent on the context. A mission-critical system (like air traffic control) would favour a low-risk method like parallel running, despite the cost. A small, non-critical internal system might favour a quick, cheap direct changeover. Always analyse the scenario provided in the exam question."
+    },
+    {
+      "q": "Why can't companies just keep their legacy systems if they still work?",
+      "a": "While some do, it becomes increasingly risky and expensive. Spare parts for old hardware may not be available, security vulnerabilities may be unpatched, and the software might be incompatible with modern operating systems or other business software. Eventually, the cost and risk of maintaining the legacy system outweigh the cost of replacing it."
+    },
+    {
+      "q": "What's the difference between a feasibility study and system analysis?",
+      "a": "A feasibility study is a high-level investigation done at the very beginning to answer the question: 'Should we even do this project?'. It's about viability. System analysis happens *after* the project is approved and involves a deep dive into the current system's workings and the detailed requirements for the new one. It answers the question: 'What exactly does the new system need to do?'"
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In today's world, organisations rely heavily on computer systems for everything from sales and marketing to inventory and finance. But what happens when these systems become outdated, or the business needs change? This lesson delves into the crucial process of planning and implementing new systems, a field known as change management. We will explore why new systems are needed, how organisations plan for them, and the strategies they use to ensure a smooth transition from old to new."
+    },
+    {
+      "type": "heading",
+      "content": "The Rationale for New Systems"
+    },
+    {
+      "type": "text",
+      "content": "Organisations don't decide to implement new systems on a whim; it's a major undertaking with significant costs and risks. The primary drivers for change often stem from the limitations of existing systems, known as legacy systems. These older systems can be inefficient, incompatible with new technologies, difficult to maintain, and may no longer meet the evolving needs of the business."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Legacy Systems:** Often slow, lack modern security features, and finding programmers who can maintain them is difficult and expensive.",
+        "**Business Mergers & Acquisitions:** When two companies merge, they need to integrate their disparate IT systems into a single, cohesive one.",
+        "**New Business Opportunities:** A company might want to launch an e-commerce platform or a mobile app, which their current system cannot support.",
+        "**Changes in Law or Regulations:** New data protection laws (like GDPR) might require system changes to ensure compliance."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Planning and System Analysis"
+    },
+    {
+      "type": "text",
+      "content": "Before any new system is built or bought, extensive planning is required. This begins with a feasibility study to determine if the project is a viable idea. The study assesses the project from multiple angles to ensure it makes sense for the organisation to proceed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Feasibility Study (TELOS):**",
+        "**T**echnical: Is the technology available? Do we have the expertise?",
+        "**E**conomic: Can we afford it? Will it provide a good return on investment?",
+        "**L**egal: Does it comply with all laws and regulations?",
+        "**O**perational: Will the system be used effectively? Will it be accepted by users?",
+        "**S**chedule: Can the system be developed and implemented in the required timeframe?"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "If the project is deemed feasible, the next step is a detailed analysis of the existing system and the requirements for the new one. This involves collecting information from various stakeholders through methods like interviews, questionnaires, and direct observation of the current workflow."
+    },
+    {
+      "type": "heading",
+      "content": "Changeover Methods"
+    },
+    {
+      "type": "text",
+      "content": "The changeover (or 'go-live') is the critical moment when the organisation switches from the old system to the new one. There are four main methods, each with its own advantages and disadvantages. The choice of method depends on the nature of the system, the level of risk the organisation is willing to take, and the resources available."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Direct Changeover:** The old system is switched off and the new one is switched on, often overnight or over a weekend. High risk, low cost.",
+        "**Parallel Running:** Both old and new systems run simultaneously for a set period. Low risk, high cost.",
+        "**Phased Implementation:** The new system is rolled out in modules or stages. Medium risk, medium cost.",
+        "**Pilot Running:** The entire new system is implemented in a single department or location as a trial before a full-scale rollout. Medium risk, allows for testing in a live environment."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A small independent bookshop with 5 employees is replacing its paper-based sales ledger with a new off-the-shelf accounting software package. The owner is concerned about disruption to the business. Evaluate the suitability of **Direct Changeover** and **Parallel Running** for this scenario.",
+      "solution": "Here is a possible mark scheme breakdown:\n\n**Direct Changeover:**\n*   **Advantage [1 mark]:** This method is the cheapest and quickest to implement. For a small shop with limited funds, this is a significant benefit.\n*   **Disadvantage [1 mark]:** It is very risky. If the new software fails or data is lost, the shop has no backup system and could lose track of sales and customer debts, causing major disruption.\n*   **Evaluation [1 mark]:** Given the owner's concern about disruption, this high-risk strategy is likely unsuitable. The potential for catastrophic failure outweighs the benefit of speed and low cost for a small business.\n\n**Parallel Running:**\n*   **Advantage [1 mark]:** This is the safest method. The old paper ledger can be maintained alongside the new software, providing a reliable backup. Any issues with the new system can be identified and fixed without halting business operations.\n*   **Disadvantage [1 mark]:** It is resource-intensive. The 5 employees would need to record each sale twice: once on paper and once in the software. This doubles the workload and could lead to errors.\n*   **Evaluation [1 mark]:** While safe, the extra workload on a small team of 5 could be unmanageable. However, it directly addresses the owner's primary concern. A short parallel run (e.g., one month) might be the most appropriate compromise."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will often be given a scenario and asked to recommend and justify a changeover method. There is rarely a single 'correct' answer. The key is to justify your choice by weighing the advantages and disadvantages *in the context of the specific scenario*. Always refer to details from the prompt, such as the size of the company, the criticality of the system, and the budget or staff constraints mentioned."
+    },
+    {
+      "type": "workedExample",
+      "question": "A national hospital network is implementing a new, unified Patient Record System (PRS) to replace different legacy systems in its 20 hospitals. The new system will handle patient appointments, medical history, and prescriptions. Identify **two** key stakeholder groups and explain why user training is critical for a successful implementation.",
+      "solution": "Here is a possible mark scheme breakdown:\n\n**Stakeholder Identification [2 marks]:**\n*   **Stakeholder 1 [1 mark]:** Doctors and Nurses (Clinical Staff). They are the primary users who will input and retrieve patient data daily. The system's success depends on their ability and willingness to use it correctly.\n*   **Stakeholder 2 [1 mark]:** Administrative/Reception Staff. They will use the system for patient registration, scheduling appointments, and managing hospital admissions. They are a critical link between the patient and the clinical process.\n\n**Importance of User Training [4 marks]:**\n*   **Reason 1 - Patient Safety [1 mark]:** The PRS handles critical medical information. Improper use, such as entering the wrong drug dosage or misreading a patient's allergy information, could have life-threatening consequences.\n*   **Explanation [1 mark]:** Training ensures all staff understand how to enter and verify data accurately, minimising the risk of medical errors.\n*   **Reason 2 - System Adoption/Efficiency [1 mark]:** Untrained users may be resistant to change, finding the new system confusing and slower than their old methods. This could lead to them developing inefficient workarounds or refusing to use the system altogether.\n*   **Explanation [1 mark]:** Comprehensive training builds confidence and demonstrates the benefits of the new system, encouraging staff to adopt it and use it efficiently, which is essential for a network of 20 hospitals."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Systems in Organisations",
+      "href": "/mark?subject=ib-computer-science-sl&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB CS - Systems in Organisations Overview",
+          "href": "https://www.ib-cs.com/1-1-systems-in-organisations"
+        },
+        {
+          "label": "Video: Change Management Strategies",
+          "href": "https://www.youtube.com/watch?v=h_p8vj32-bA"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

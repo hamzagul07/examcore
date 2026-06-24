@@ -1,0 +1,204 @@
+{
+  "slug": "d1-2-protein-synthesis",
+  "topicCode": "D1.2",
+  "title": "Protein synthesis",
+  "paper": "P2",
+  "paperName": "Biology SL",
+  "status": "premium",
+  "summary": "This lesson explores the central dogma of molecular biology, detailing how the genetic information stored in DNA is converted into functional proteins. We will dissect the two main stages: transcription, where a gene is copied into messenger RNA (mRNA), and translation, where the mRNA message is read by a ribosome to assemble a polypeptide chain. The lesson also covers the universal nature of the genetic code and its profound implications for biotechnology, exemplified by the production of human insulin in bacteria.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Explain the process of transcription, where a DNA gene sequence is copied into an mRNA molecule.",
+    "Describe the process of translation, including the roles of mRNA, tRNA, ribosomes, and the genetic code.",
+    "Explain the universality of the genetic code as evidence for common ancestry and its importance in gene transfer.",
+    "Outline the production of human insulin in bacteria as an example of the application of gene transfer."
+  ],
+  "simpleExplanation": {
+    "title": "From DNA Blueprint to Protein Machine",
+    "summary": "Your DNA contains the instructions for building everything in your cells, but it can't leave the nucleus. Protein synthesis is the process of copying a specific instruction (a gene) into a portable message (mRNA) and using that message to build a protein.",
+    "analogy": "Imagine your DNA is a massive, priceless reference book of recipes, locked away in a library (the nucleus). To make a specific dish (a protein), you can't take the book out. Instead, a librarian (RNA polymerase) makes a photocopy of just one recipe (transcription). This photocopy (mRNA) is then taken to the kitchen (a ribosome in the cytoplasm). In the kitchen, the head chef (the ribosome) reads the recipe. Kitchen assistants (tRNA) bring the exact ingredients (amino acids) listed, one by one, and the chef assembles them in the correct order to create the final dish (the polypeptide chain).",
+    "steps": [
+      "In the nucleus, an enzyme called RNA polymerase unwinds a section of DNA and synthesises a complementary messenger RNA (mRNA) strand from one of the DNA strands.",
+      "The newly formed mRNA molecule detaches from the DNA and travels out of the nucleus into the cytoplasm.",
+      "In the cytoplasm, a ribosome binds to the mRNA. The ribosome reads the mRNA sequence in groups of three bases, called codons.",
+      "For each codon, a specific transfer RNA (tRNA) molecule with a matching anticodon brings the correct amino acid, which is added to the growing polypeptide chain until a 'stop' signal is reached."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is transcription?",
+      "back": "The process of synthesising a messenger RNA (mRNA) molecule from a DNA template. It occurs in the nucleus of eukaryotic cells."
+    },
+    {
+      "front": "What is translation?",
+      "back": "The process of synthesising a polypeptide chain at a ribosome, using the genetic information encoded in an mRNA molecule. It occurs in the cytoplasm."
+    },
+    {
+      "front": "Define 'codon'.",
+      "back": "A sequence of three consecutive nucleotides on an mRNA molecule that specifies a particular amino acid or a stop signal."
+    },
+    {
+      "front": "Define 'anticodon'.",
+      "back": "A sequence of three nucleotides on a transfer RNA (tRNA) molecule that is complementary to a specific mRNA codon."
+    },
+    {
+      "front": "What is the role of mRNA (messenger RNA)?",
+      "back": "To carry the genetic code from the DNA in the nucleus to the ribosomes in the cytoplasm for protein synthesis."
+    },
+    {
+      "front": "What is the role of tRNA (transfer RNA)?",
+      "back": "To transport specific amino acids to the ribosome during translation, matching its anticodon to the mRNA codon."
+    },
+    {
+      "front": "What is the role of a ribosome in protein synthesis?",
+      "back": "It is the site of translation. It moves along the mRNA molecule, catalysing the assembly of amino acids into a polypeptide chain."
+    },
+    {
+      "front": "What does it mean that the genetic code is 'universal'?",
+      "back": "The same codons code for the same amino acids in almost all living organisms. A key piece of evidence for common ancestry."
+    },
+    {
+      "front": "What is a plasmid?",
+      "back": "A small, circular, double-stranded DNA molecule that is distinct from a cell's chromosomal DNA. Plasmids are often found in bacteria and are used as vectors in genetic engineering."
+    },
+    {
+      "front": "What is gene transfer?",
+      "back": "The process of taking a gene from one species and placing it into the genome of another species. This is possible due to the universality of the genetic code."
+    },
+    {
+      "front": "What is the 'template strand' in transcription?",
+      "back": "The DNA strand that is read by RNA polymerase to synthesise the complementary mRNA molecule. It is also known as the antisense strand."
+    },
+    {
+      "front": "What is a common mistake when transcribing DNA to mRNA?",
+      "back": "Remembering that RNA contains Uracil (U) instead of Thymine (T). When the DNA template has Adenine (A), the corresponding base in mRNA is Uracil (U)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a codon and an anticodon?",
+      "a": "A codon is a three-base sequence found on the messenger RNA (mRNA) molecule. An anticodon is a complementary three-base sequence found on the transfer RNA (tRNA) molecule. During translation, the anticodon of a tRNA molecule pairs with a codon on the mRNA to ensure the correct amino acid is added to the polypeptide chain."
+    },
+    {
+      "q": "Why is the genetic code described as 'degenerate' or 'redundant'?",
+      "a": "The code is 'degenerate' because there are 64 possible codons but only 20 common amino acids. This means that multiple codons can code for the same amino acid. For example, both UCU and UCC code for the amino acid Serine. This redundancy can provide some protection against mutation, as a change in the third base of a codon may not change the resulting amino acid."
+    },
+    {
+      "q": "If the genetic code is universal, why can't we just put a human gene directly into bacteria and expect it to work?",
+      "a": "This is an excellent question that relates to the differences between prokaryotic and eukaryotic gene structure. Human (eukaryotic) genes contain non-coding regions called introns, which are removed from the mRNA before translation. Bacteria (prokaryotes) do not have introns or the machinery to remove them. Therefore, to express a human gene in bacteria, we must use a version of the gene that has already had the introns removed. This is typically done by using an enzyme called reverse transcriptase to make a DNA copy of the mature mRNA, which is called complementary DNA (cDNA)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every function in a living organism, from digesting food to fighting off infection, relies on proteins. But how does a cell know which proteins to make and how to make them? The instructions are locked away in the DNA. This lesson unpacks the remarkable process of gene expression, where the genetic blueprint is read and used to construct the protein machinery of life."
+    },
+    {
+      "type": "heading",
+      "content": "The Central Dogma of Molecular Biology"
+    },
+    {
+      "type": "text",
+      "content": "The flow of genetic information in a cell is typically one-way, a concept known as the central dogma. It states that information flows from DNA to RNA to Protein. The synthesis of a protein from a gene involves two major steps: transcription and translation. Think of it as accessing a master blueprint (DNA), making a working copy (RNA), and then using that copy to build the final product (protein)."
+    },
+    {
+      "type": "heading",
+      "content": "Step 1: Transcription – Writing the Message"
+    },
+    {
+      "type": "text",
+      "content": "Transcription occurs in the nucleus. The enzyme RNA polymerase binds to a specific region of a gene called the promoter. It then unwinds the DNA double helix and uses one of the strands, the template strand, as a guide to build a complementary molecule of messenger RNA (mRNA). The base pairing rules are similar to DNA replication, except that Adenine (A) in the DNA pairs with Uracil (U) in the RNA, not Thymine (T). This process continues until the RNA polymerase reaches a terminator sequence, at which point the newly synthesised mRNA molecule is released."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Location: Nucleus",
+        "Enzyme: RNA polymerase",
+        "Template: One strand of DNA (the template or antisense strand)",
+        "Product: Messenger RNA (mRNA)",
+        "Key base pair rule: DNA Adenine (A) pairs with RNA Uracil (U)"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Step 2: Translation – Building the Protein"
+    },
+    {
+      "type": "text",
+      "content": "After leaving the nucleus, the mRNA molecule travels to the cytoplasm and attaches to a ribosome. The ribosome 'reads' the sequence of bases on the mRNA in sets of three, known as codons. This is the start of translation. Molecules of transfer RNA (tRNA), each carrying a specific amino acid, are recruited. Each tRNA has an anticodon, a three-base sequence that is complementary to an mRNA codon. When the correct tRNA binds to the codon on the ribosome, its amino acid is added to the growing polypeptide chain. The ribosome then moves along the mRNA to the next codon, and the process repeats until a 'stop' codon is reached, signalling the end of the protein."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Location: Cytoplasm (at a ribosome)",
+        "Participants: mRNA, ribosome, tRNA, amino acids",
+        "Codon: A three-base sequence on mRNA specifying an amino acid.",
+        "Anticodon: A three-base sequence on tRNA complementary to a codon.",
+        "Product: A polypeptide chain, which folds into a functional protein."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A short segment of a gene's DNA template strand has the sequence: 3'-TAC GCA TGG AAT-5'.\n\na) Determine the sequence of the mRNA molecule transcribed from this DNA.\nb) Using a codon table, determine the amino acid sequence of the polypeptide produced. (mRNA codons: AUG=Met, CGU=Arg, ACC=Thr, UUA=Leu)",
+      "solution": "**Part a) mRNA sequence:**\nTranscription follows complementary base pairing rules (A→U, T→A, C→G, G→C).\n*   DNA template: 3'-TAC GCA TGG AAT-5'\n*   We build the mRNA in the 5' to 3' direction, complementary to the template.\n*   T pairs with A.\n*   A pairs with U.\n*   C pairs with G.\n*   G pairs with C.\n*   mRNA sequence: 5'-AUG CGU ACC UUA-3' \n\n**Part b) Amino acid sequence:**\nThe ribosome reads the mRNA codons from the 5' end.\n*   Codon 1: AUG → Methionine (Met)\n*   Codon 2: CGU → Arginine (Arg)\n*   Codon 3: ACC → Threonine (Thr)\n*   Codon 4: UUA → Leucine (Leu)\n*   Polypeptide sequence: Met-Arg-Thr-Leu"
+    },
+    {
+      "type": "heading",
+      "content": "The Universal Genetic Code"
+    },
+    {
+      "type": "text",
+      "content": "One of the most remarkable features of life is that the genetic code is universal. This means that the codon AUG codes for methionine in humans, in bacteria, in mushrooms, and in oak trees. While there are a few minor exceptions, this near-universality is powerful evidence for a common origin of all life on Earth. It also has immense practical importance: it means we can take a gene from one organism and place it in another, and the recipient organism will be able to read the gene and produce the correct protein. This principle underpins the entire field of genetic engineering."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked for evidence for the common ancestry of life, the universality of the genetic code is a perfect example to use. For gene transfer questions, always state that it is possible *because* the genetic code is universal."
+    },
+    {
+      "type": "heading",
+      "content": "Application: Gene Transfer and Insulin Production"
+    },
+    {
+      "type": "text",
+      "content": "A classic example of gene transfer is the production of human insulin for treating diabetes. Before genetic engineering, insulin was extracted from pigs and cows, which could cause allergic reactions. Now, we use bacteria to produce pure human insulin. The gene for human insulin is isolated and inserted into a bacterial plasmid (a small ring of DNA) using restriction enzymes and DNA ligase. This creates a 'recombinant plasmid'. The plasmid is then introduced into *E. coli* bacteria. Because the genetic code is universal, the bacteria's cellular machinery transcribes and translates the human gene, producing vast quantities of human insulin which can then be harvested and purified."
+    },
+    {
+      "type": "workedExample",
+      "question": "Outline the main steps for producing human insulin using genetically modified bacteria. [4 marks]",
+      "solution": "1.  **Isolate gene and plasmid:** The gene for human insulin is isolated from human cells, and a plasmid is isolated from *E. coli* bacteria. [1]\n2.  **Create recombinant plasmid:** The same restriction enzyme is used to cut both the insulin gene and the plasmid DNA. DNA ligase is then used to join the human insulin gene into the bacterial plasmid, creating a recombinant plasmid. [1]\n3.  **Transformation:** The recombinant plasmids are introduced into host *E. coli* bacteria. This process is called transformation. [1]\n4.  **Expression and harvesting:** The bacteria are cultured in a fermenter. They transcribe and translate the human gene to produce human insulin because the genetic code is universal. The insulin is then extracted and purified. [1]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Protein Synthesis",
+      "href": "/mark?subject=ib-biology-sl&topic=D1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gene Expression",
+          "href": "https://phet.colorado.edu/en/simulations/gene-expression-essentials"
+        },
+        {
+          "label": "Animation of Transcription and Translation",
+          "href": "https://www.youtube.com/watch?v=gG7uCskUOrA"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gene Expression",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gene-expression-essentials/latest/gene-expression-essentials_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gene-expression-essentials",
+    "hint": "Explore “Gene Expression” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

@@ -14,6 +14,7 @@ type Props = {
   accordionClassName?: string
   onNavigate?: () => void
   extraLinks?: { href: string; label: string }[]
+  extraLinksLabel?: string
 }
 
 function hrefActive(pathname: string, href: string) {
@@ -29,6 +30,7 @@ export function NavMobileMenu({
   accordionClassName = 'nav-mobile-accordion',
   onNavigate,
   extraLinks = [],
+  extraLinksLabel = 'More',
 }: Props) {
   const [openId, setOpenId] = useState<string | null>(null)
 
@@ -86,16 +88,21 @@ export function NavMobileMenu({
           </Link>
         )
       })}
-      {extraLinks.map((link) => (
-        <Link
-          key={link.href + link.label}
-          href={link.href}
-          className={linkClassName}
-          onClick={onNavigate}
-        >
-          {link.label}
-        </Link>
-      ))}
+      {extraLinks.length ? (
+        <>
+          <p className="ec-nav-mobile-section-label">{extraLinksLabel}</p>
+          {extraLinks.map((link) => (
+            <Link
+              key={link.href + link.label}
+              href={link.href}
+              className={linkClassName}
+              onClick={onNavigate}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </>
+      ) : null}
     </div>
   )
 }

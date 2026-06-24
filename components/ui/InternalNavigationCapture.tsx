@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { navigationLoading } from '@/lib/navigation/loading-store'
+import { scrollPageToTop } from '@/lib/navigation/scroll-page-to-top'
 
 function normalizePath(path: string): string {
   const base = path.split('?')[0]?.split('#')[0] ?? path
@@ -32,6 +33,7 @@ export function InternalNavigationCapture() {
       const current = normalizePath(pathname)
       if (next === current) return
 
+      scrollPageToTop()
       navigationLoading.start()
     }
 

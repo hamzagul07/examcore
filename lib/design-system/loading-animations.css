@@ -363,6 +363,13 @@
   background: color-mix(in srgb, var(--ec-canvas) 62%, transparent);
 }
 
+@media (max-width: 900px) {
+  /* Top progress bar only — pill reads like a stray button below the header */
+  .ec-nav-progress-pill {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ec-nav-progress-bar,
   .ec-exam-loader-orbit::before,

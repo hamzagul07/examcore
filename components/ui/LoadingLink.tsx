@@ -9,6 +9,7 @@ import {
   ButtonLoadingState,
   CardLoadingPulse,
 } from '@/components/ui/ButtonLoadingState'
+import { scrollPageToTop } from '@/lib/navigation/scroll-page-to-top'
 
 const MIN_LOADING_MS = 520
 
@@ -91,6 +92,7 @@ export function LoadingLink({
 
     e.preventDefault()
     onNavigate?.()
+    scrollPageToTop()
     startedAtRef.current = Date.now()
     setShowLoading(true)
     if (variant === 'button' || variant === 'inline') {

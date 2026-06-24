@@ -1,0 +1,192 @@
+{
+  "slug": "2-6-exponential-and-logarithmic-functions",
+  "topicCode": "2.6",
+  "title": "Exponential and logarithmic functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson explores exponential functions, which model rapid growth and decay, and their inverses, logarithmic functions. You will learn the properties of both, master the laws of logarithms, and apply these concepts to solve exponential and logarithmic equations, a key skill for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define and sketch exponential functions of the form $f(x) = a^x$, identifying key features such as asymptotes and intercepts.",
+    "Understand the definition of a logarithm, $\\log_a x$, as the inverse of the exponential function $a^x$.",
+    "Apply the laws of logarithms (product, quotient, and power rules) to simplify expressions and manipulate equations.",
+    "Solve exponential equations where the unknown is the exponent by using logarithms."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Exponents with Logs",
+    "summary": "Exponential functions describe things that multiply over time, like bacteria in a dish. Logarithms are the special tool we use to work backwards and figure out how much time has passed.",
+    "analogy": "Think of an investment that doubles your money every year. An exponential function tells you how much money you'll have after 5 years. A logarithm does the opposite: it tells you how many years you need to wait to reach £1,000,000. It's the 'time-finder' for exponential growth.",
+    "steps": [
+      "Explore Exponential Functions: See how $y=a^x$ creates graphs of rapid growth (when $a>1$) or decay (when $0<a<1$). Notice they always pass through $(0,1)$.",
+      "Discover the Inverse: Logarithms: Understand that if $2^3=8$, then the logarithm is $\\log_2 8 = 3$. It's a way of rewriting the same relationship to find the power.",
+      "Learn the Logarithm Toolkit: Master the three essential log laws. These rules let you combine or break apart logarithms, just like you can with indices.",
+      "Solve for the Exponent: Use logarithms to solve equations like $5^x = 50$. By taking logs of both sides, you can bring the 'x' down and solve for it."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an exponential function?",
+      "back": "A function of the form $f(x) = a^x$, where the base 'a' is a positive constant other than 1, and the variable 'x' is the exponent."
+    },
+    {
+      "front": "What is a logarithm?",
+      "back": "A logarithm is the power to which a base must be raised to produce a given number. If $y = a^x$, then $x = \\log_a y$."
+    },
+    {
+      "front": "What is the relationship between $y=a^x$ and $y=\\log_a x$?",
+      "back": "They are inverse functions. Their graphs are reflections of each other in the line $y=x$."
+    },
+    {
+      "front": "State the product rule for logarithms.",
+      "back": "$\\log_c A + \\log_c B = \\log_c (AB)$. Adding logs with the same base is equivalent to logging their product."
+    },
+    {
+      "front": "State the quotient rule for logarithms.",
+      "back": "$\\log_c A - \\log_c B = \\log_c (A/B)$. Subtracting logs with the same base is equivalent to logging their quotient."
+    },
+    {
+      "front": "State the power rule for logarithms.",
+      "back": "$n \\log_c A = \\log_c (A^n)$. A coefficient in front of a log can be moved to become the power of the argument."
+    },
+    {
+      "front": "What is the natural logarithm, $\\ln x$?",
+      "back": "It is the logarithm to the base 'e' (Euler's number, approx 2.718). So, $\\ln x$ is shorthand for $\\log_e x$."
+    },
+    {
+      "front": "Common Trap: Is $\\log(A+B)$ equal to $\\log A + \\log B$?",
+      "back": "No, this is a very common mistake. The product rule is $\\log A + \\log B = \\log(AB)$."
+    },
+    {
+      "front": "What are the restrictions on the base 'a' in $\\log_a x$?",
+      "back": "The base 'a' must be positive and not equal to 1 ($a>0, a \\neq 1$)."
+    },
+    {
+      "front": "What is the restriction on the argument 'x' in $\\log_a x$?",
+      "back": "The argument 'x' must be strictly positive ($x>0$). You cannot take the logarithm of zero or a negative number."
+    },
+    {
+      "front": "What is the value of $\\log_a a$?",
+      "back": "1, because $a^1 = a$."
+    },
+    {
+      "front": "What is the value of $\\log_a 1$?",
+      "back": "0, because $a^0 = 1$ for any valid base 'a'."
+    },
+    {
+      "front": "State the change of base formula.",
+      "back": "$\\log_b a = \\frac{\\log_c a}{\\log_c b}$. This is useful for calculating logs with bases not on your calculator, typically by changing to base 10 or base e."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't the base of a logarithm be 1?",
+      "a": "If the base 'a' were 1, we would have $\\log_1 x = y$, which means $1^y = x$. Since 1 raised to any power is always 1, this would only work if $x=1$. For any other value of x, there is no solution. To be a useful function, it needs to be defined for all positive x, so we exclude base 1."
+    },
+    {
+      "q": "When should I use the natural log (ln) versus the common log (log)?",
+      "a": "Functionally, for solving equations, it doesn't matter which you use, as long as you are consistent on both sides. The natural log, $\\ln$, with base 'e', is often preferred in calculus and science because its derivative is simpler (the derivative of $\\ln x$ is $1/x$). The common log, $\\log_{10}$, is useful when dealing with powers of 10. For Paper 1, you will often work with logs of a specific base given in the question, like $\\log_2$ or $\\log_5$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Exponential and logarithmic functions are fundamental concepts in mathematics that describe a vast range of phenomena, from population growth and radioactive decay to financial investments and the pH scale in chemistry. In this lesson, we will explore the properties of these powerful functions and learn how they are intrinsically linked as inverses of one another. Mastering their manipulation is crucial for success in Paper 1."
+    },
+    {
+      "type": "heading",
+      "content": "Exponential Functions: The Shape of Rapid Change"
+    },
+    {
+      "type": "text",
+      "content": "An exponential function is defined by having the variable in the exponent. The general form is $f(x) = a^x$. The behaviour of the function is determined by the base, 'a'. If $a > 1$, the function shows exponential growth, increasing rapidly as x increases. If $0 < a < 1$, the function shows exponential decay, approaching zero as x increases. A key feature of all such functions is that they pass through the point $(0, 1)$, since any valid base raised to the power of 0 is 1. They also have a horizontal asymptote at $y=0$ (the x-axis), which the graph approaches but never touches."
+    },
+    {
+      "type": "formula",
+      "content": "$f(x) = a^x, \\quad a > 0, a \\neq 1$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The domain is all real numbers, $x \\in \\mathbb{R}$.",
+        "The range is all positive real numbers, $y > 0$.",
+        "The y-intercept is always at $(0, 1)$.",
+        "The x-axis ($y=0$) is a horizontal asymptote."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Logarithmic Functions: The Inverse Story"
+    },
+    {
+      "type": "text",
+      "content": "For every exponential function, there is an inverse function called a logarithmic function. A logarithm answers the question: 'What exponent do I need to put on base 'a' to get the number 'y'?'. This inverse relationship is the key to understanding and working with logs. The statement $y = a^x$ is entirely equivalent to the statement $x = \\log_a y$."
+    },
+    {
+      "type": "formula",
+      "content": "$y = a^x \\iff x = \\log_a y$"
+    },
+    {
+      "type": "text",
+      "content": "The graph of $y = \\log_a x$ is a reflection of $y = a^x$ in the line $y=x$. Consequently, its features are 'swapped' from the exponential function. The domain is restricted to positive numbers ($x>0$), and it has a vertical asymptote at $x=0$ (the y-axis). The graph always passes through the point $(1, 0)$."
+    },
+    {
+      "type": "heading",
+      "content": "The Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "To solve equations and simplify complex expressions involving logarithms, we use three fundamental laws. These laws are derived directly from the laws of indices and only work when the logarithms have the same base. It is essential to memorise and be able to apply these rules fluently."
+    },
+    {
+      "type": "formula",
+      "content": "1. **Product Rule:** $\\log_c(A) + \\log_c(B) = \\log_c(AB)$ \\\\ 2. **Quotient Rule:** $\\log_c(A) - \\log_c(B) = \\log_c\\left(\\frac{A}{B}\\right)$ \\\\ 3. **Power Rule:** $n\\log_c(A) = \\log_c(A^n)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $\\log_2(x) + \\log_2(x-2) = 3$.",
+      "solution": "First, apply the product rule for logarithms to combine the terms on the left side. \\\\ $\\log_2(x(x-2)) = 3$ **(M1)** \\\\ Now, convert the logarithmic equation into its equivalent exponential form. The base is 2, the exponent is 3. \\\\ $x(x-2) = 2^3$ **(M1)** \\\\ Simplify and solve the resulting quadratic equation. \\\\ $x^2 - 2x = 8$ \\\\ $x^2 - 2x - 8 = 0$ **(A1)** \\\\ Factorise the quadratic. \\\\ $(x-4)(x+2) = 0$ \\\\ This gives two potential solutions: $x=4$ or $x=-2$. **(A1)** \\\\ Finally, we must check these solutions in the original equation. The argument of a logarithm must be positive. \\\\ For $x=4$: $\\log_2(4)$ and $\\log_2(4-2) = \\log_2(2)$ are both valid. \\\\ For $x=-2$: $\\log_2(-2)$ is undefined. Therefore, we must reject this solution. **(R1)** \\\\ The only solution is $x=4$. **(A1)**"
+    },
+    {
+      "type": "examTip",
+      "content": "Always check your solutions to logarithmic equations. Substituting your answer back into the original equation can reveal invalid solutions, such as those that would result in taking the logarithm of a negative number or zero. This is a common place to lose a mark."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Exponential Equations"
+    },
+    {
+      "type": "text",
+      "content": "When you need to solve an exponential equation where the variable is in the power, and you cannot make the bases the same, logarithms are your essential tool. The strategy is to take the logarithm of both sides of the equation. This allows you to use the power rule to bring the exponent down, turning it into a linear equation that is much simpler to solve."
+    },
+    {
+      "type": "workedExample",
+      "question": "A biologist is modelling a bacterial culture. The number of bacteria, $N$, after $t$ hours is given by $N = 150 \\times 3^{0.5t}$. Find the time it takes for the number of bacteria to reach 3000.",
+      "solution": "Set up the equation with $N=3000$. \\\\ $3000 = 150 \\times 3^{0.5t}$ **(M1)** \\\\ First, isolate the exponential term by dividing both sides by 150. \\\\ $\\frac{3000}{150} = 3^{0.5t}$ \\\\ $20 = 3^{0.5t}$ **(A1)** \\\\ Now, take the logarithm of both sides. You can use any base, but natural log (ln) or log base 10 are common. Let's use ln. \\\\ $\\ln(20) = \\ln(3^{0.5t})$ **(M1)** \\\\ Apply the power rule for logarithms to bring the exponent down. \\\\ $\\ln(20) = 0.5t \\times \\ln(3)$ **(M1)** \\\\ Now, solve for $t$. \\\\ $t = \\frac{\\ln(20)}{0.5 \\ln(3)}$ **(A1)** \\\\ This is an exact answer. For a Paper 1, this is the final form. We can write it as $t = \\frac{2\\ln(20)}{\\ln(3)}$ hours. **(A1)**"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1 (non-calculator), your final answer will often be left in terms of logarithms, like $\\frac{\\ln 5}{\\ln 2}$. Do not try to approximate this. Make sure your answer is fully simplified if possible, for example, by writing $\\log_3 9$ as 2."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA SL Questionbank",
+          "href": "/questions?subject=ib-maths-aa-sl"
+        },
+        {
+          "label": "Interactive Desmos Graph: Exponentials and Logs",
+          "href": "https://www.desmos.com/calculator/epg0b1s5u3"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

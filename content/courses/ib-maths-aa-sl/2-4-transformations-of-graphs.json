@@ -1,0 +1,204 @@
+{
+  "slug": "2-4-transformations-of-graphs",
+  "topicCode": "2.4",
+  "title": "Transformations of graphs",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson covers the transformation of function graphs, including translations (shifts), reflections (flips), and stretches (scaling). You will learn to identify these transformations from an equation, apply them to a graph, and understand the crucial role of the order in which they are applied.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify and describe translations, reflections, and stretches of a function y=f(x).",
+    "Apply a sequence of transformations to a given function's graph or a point on the graph.",
+    "Determine the equation of a transformed function from its graph or a description.",
+    "Understand the effect of the order of transformations on the final graph."
+  ],
+  "simpleExplanation": {
+    "title": "Shape-Shifting Functions",
+    "summary": "Learn how to move, flip, and stretch graphs of functions using simple algebraic rules. These transformations change a graph's position and shape in predictable ways, allowing you to create a whole family of functions from a single parent function.",
+    "analogy": "Imagine you have a photo on your computer screen. The original photo is your base function, $f(x)$. You can drag the photo left or right, up or down (a translation). You can flip it horizontally or vertically (a reflection). Or you can stretch it to make it taller or wider (a stretch). Each of these actions corresponds to a specific mathematical transformation.",
+    "steps": [
+      "Start with the parent function, $y=f(x)$, and identify its key features like intercepts, turning points, and asymptotes.",
+      "Analyse changes inside the function brackets, like $f(x-h)$ or $f(bx)$. These are horizontal transformations and affect the x-coordinates.",
+      "Analyse changes outside the function brackets, like $af(x)$ or $f(x)+k$. These are vertical transformations and affect the y-coordinates.",
+      "Combine the transformations in the correct order: typically stretches and reflections first, followed by translations. This is often remembered by the acronym 'SRT'."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the transformation represented by $y = f(x) + k$?",
+      "back": "A vertical translation. The graph is shifted up by $k$ units if $k>0$, and down by $|k|$ units if $k<0$. This is a translation by the vector $\\begin{pmatrix} 0 \\\\ k \\end{pmatrix}$."
+    },
+    {
+      "front": "What is the transformation represented by $y = f(x - h)$?",
+      "back": "A horizontal translation. The graph is shifted right by $h$ units if $h>0$, and left by $|h|$ units if $h<0$. This is a translation by the vector $\\begin{pmatrix} h \\\\ 0 \\end{pmatrix}$."
+    },
+    {
+      "front": "Common Trap: Which way does the graph of $y = f(x+4)$ move?",
+      "back": "It moves 4 units to the LEFT. Horizontal transformations are often counter-intuitive. Think of it as needing to use $x=-4$ to get the same output you previously got at $x=0$."
+    },
+    {
+      "front": "What is the transformation represented by $y = af(x)$?",
+      "back": "A vertical stretch with a scale factor of $a$, parallel to the y-axis. If $0 < |a| < 1$, it is a compression. The x-axis is invariant."
+    },
+    {
+      "front": "What is the transformation represented by $y = f(bx)$?",
+      "back": "A horizontal stretch with a scale factor of $\\frac{1}{b}$, parallel to the x-axis. If $|b| > 1$, it is a compression. The y-axis is invariant."
+    },
+    {
+      "front": "Common Trap: What is the stretch factor for $y = f(2x)$?",
+      "back": "The horizontal stretch factor is $\\frac{1}{2}$, not 2. This means the graph is compressed horizontally."
+    },
+    {
+      "front": "What is the transformation represented by $y = -f(x)$?",
+      "back": "A reflection in the x-axis. All y-coordinates are multiplied by -1."
+    },
+    {
+      "front": "What is the transformation represented by $y = f(-x)$?",
+      "back": "A reflection in the y-axis. All x-coordinates are multiplied by -1."
+    },
+    {
+      "front": "What is an invariant point?",
+      "back": "A point on a graph that does not move after a transformation is applied. For example, x-intercepts are invariant under a vertical stretch $y=af(x)$."
+    },
+    {
+      "front": "Does the order of transformations matter?",
+      "back": "Yes, almost always. Applying a stretch then a translation is generally different from applying a translation then a stretch. For $y=af(x)+k$, the stretch is applied first."
+    },
+    {
+      "front": "How do you transform a point $(x, y)$ to find its image under $y = af(b(x-h)) + k$?",
+      "back": "The new point $(x', y')$ is given by the mapping $(x, y) \\to (\\frac{x}{b} + h, ay + k)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does the order of transformations always matter?",
+      "a": "Yes, in most cases. For example, translating vertically by 2 and then stretching vertically by 3 gives $3(f(x)+2) = 3f(x)+6$. The reverse order, stretching then translating, gives $3f(x)+2$. These are different. The only time order doesn't matter is when the transformations affect different axes, like a horizontal translation and a vertical stretch."
+    },
+    {
+      "q": "How do I remember if $f(x+2)$ is a shift left or right?",
+      "a": "Think about what input value makes the argument of the function zero. For the original function $f(x)$, the 'base' point is often at $x=0$. For the transformed function $f(x+2)$, the argument becomes zero when $x+2=0$, which is at $x=-2$. This means the feature that was at $x=0$ has moved to $x=-2$, so the graph has shifted 2 units to the left."
+    },
+    {
+      "q": "What's the difference between $y=2f(x)$ and $y=f(2x)$?",
+      "a": "$y=2f(x)$ is a vertical stretch by a factor of 2. All y-coordinates are doubled. $y=f(2x)$ is a horizontal stretch by a factor of $\\frac{1}{2}$ (i.e., a compression). All x-coordinates are halved."
+    },
+    {
+      "q": "If a question asks to describe a transformation, how much detail is needed?",
+      "a": "You must be precise. State the type of transformation (translation, reflection, stretch), the direction/axis, and the magnitude (e.g., vector for translation, scale factor for stretch, line of reflection). For example: 'A vertical stretch by a scale factor of 3 parallel to the y-axis' is a complete description."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Understanding how to transform the graph of a function is a fundamental skill in mathematics. It allows us to take a simple, known 'parent' function, like $y=x^2$ or $y=\\sin(x)$, and manipulate it to model more complex situations. In this lesson, we will explore the three main types of transformations: translations, reflections, and stretches. You will learn how changes to a function's equation correspond to specific geometric changes in its graph."
+    },
+    {
+      "type": "heading",
+      "content": "Translations: Shifting the Graph"
+    },
+    {
+      "type": "text",
+      "content": "A translation simply slides the entire graph to a new position without changing its shape, size, or orientation. We can shift graphs vertically (up or down) or horizontally (left or right)."
+    },
+    {
+      "type": "formula",
+      "content": "Vertical Translation: $y = f(x) + k$\nThis shifts the graph by the vector $\\begin{pmatrix} 0 \\\\ k \\end{pmatrix}$.\n\nHorizontal Translation: $y = f(x-h)$\nThis shifts the graph by the vector $\\begin{pmatrix} h \\\\ 0 \\end{pmatrix}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For vertical shifts, $k>0$ moves the graph UP, and $k<0$ moves it DOWN.",
+        "For horizontal shifts, the effect is counter-intuitive: $y=f(x-h)$ with $h>0$ (e.g., $f(x-3)$) moves the graph to the RIGHT.",
+        "Similarly, $y=f(x+h)$ with $h>0$ (e.g., $f(x+3)$) moves the graph to the LEFT."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Reflections: Flipping the Graph"
+    },
+    {
+      "type": "text",
+      "content": "A reflection flips the graph across a line of reflection, creating a mirror image. In this course, we focus on reflections in the x-axis and y-axis."
+    },
+    {
+      "type": "formula",
+      "content": "Reflection in the x-axis: $y = -f(x)$\nEvery point $(x, y)$ on the original graph is mapped to $(x, -y)$.\n\nReflection in the y-axis: $y = f(-x)$\nEvery point $(x, y)$ on the original graph is mapped to $(-x, y)$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reflecting in the x-axis negates the entire function's output.",
+        "Reflecting in the y-axis negates the function's input.",
+        "The origin $(0,0)$ is an invariant point under both these reflections if it lies on the graph."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph of $y = f(x)$ passes through the point $A(-2, 6)$. The graph is transformed by a reflection in the x-axis followed by a translation of $\\begin{pmatrix} 3 \\\\ -4 \\end{pmatrix}$. Find the coordinates of the image of point A.",
+      "solution": "Let the original point be $A(-2, 6)$.\n\nStep 1: Reflection in the x-axis.\nThis transformation maps $(x, y)$ to $(x, -y)$.\nSo, $A(-2, 6)$ is mapped to $A'(-2, -6)$. (M1)\n\nStep 2: Translation by vector $\\begin{pmatrix} 3 \\\\ -4 \\end{pmatrix}$.\nThis transformation maps $(x, y)$ to $(x+3, y-4)$.\nWe apply this to the point from Step 1, $A'(-2, -6)$.\nThe new x-coordinate is $-2 + 3 = 1$. (A1)\nThe new y-coordinate is $-6 - 4 = -10$. (A1)\n\nThe final coordinates of the image of point A are $(1, -10)$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Stretches and Compressions: Scaling the Graph"
+    },
+    {
+      "type": "text",
+      "content": "Stretches and compressions change the shape of the graph by scaling it either vertically or horizontally. A stretch pulls the graph away from an axis, while a compression pushes it towards an axis."
+    },
+    {
+      "type": "formula",
+      "content": "Vertical Stretch: $y = af(x)$\nThis is a stretch parallel to the y-axis by a scale factor of $a$. The x-axis is invariant.\n\nHorizontal Stretch: $y = f(bx)$\nThis is a stretch parallel to the x-axis by a scale factor of $\\frac{1}{b}$. The y-axis is invariant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For a vertical stretch $y=af(x)$, if $|a|>1$ it's a stretch, if $0<|a|<1$ it's a compression.",
+        "For a horizontal stretch $y=f(bx)$, if $|b|>1$ it's a compression (factor $\\frac{1}{b} < 1$), if $0<|b|<1$ it's a stretch (factor $\\frac{1}{b} > 1$). This is also counter-intuitive!",
+        "Any points on the invariant line do not move. For a vertical stretch, x-intercepts are invariant points. For a horizontal stretch, the y-intercept is an invariant point."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The order of transformations is crucial and a common source of errors. Unless specified otherwise, apply transformations in the order: **Stretches/Reflections, then Translations (SRT)**. For a composite function like $y = af(b(x-h)) + k$, this means dealing with $a$ and $b$ first, then $h$ and $k$. Always write down the effect on a general point $(x,y)$ to keep your working clear."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $f(x) = x^2$. The graph of $f(x)$ is transformed to the graph of $g(x)$ by a vertical stretch with a scale factor of 2, followed by a horizontal translation of 3 units to the right. \na) Find the equation of $g(x)$.\nb) The point $P(1,1)$ is on the graph of $f(x)$. Find the coordinates of the image of $P$ on the graph of $g(x)$.",
+      "solution": "a) Let's build the equation for $g(x)$ step-by-step.\nStarting with $f(x) = x^2$.\n\nStep 1: Vertical stretch with a scale factor of 2.\nThis transforms $f(x)$ to $2f(x)$.\nSo, the intermediate function is $y = 2x^2$. (M1)\n\nStep 2: Horizontal translation of 3 units to the right.\nThis replaces $x$ with $(x-3)$.\nWe apply this to the result of Step 1.\n$g(x) = 2(x-3)^2$. (A1)\n\nb) Now let's find the image of point $P(1,1)$.\nWe apply the transformations in the same order.\nOriginal point: $(1, 1)$.\n\nStep 1: Vertical stretch, scale factor 2.\nThis maps $(x, y)$ to $(x, 2y)$.\n$P(1,1)$ is mapped to $P'(1, 2 \\times 1) = (1, 2)$. (M1)\n\nStep 2: Horizontal translation of 3 units to the right.\nThis maps $(x, y)$ to $(x+3, y)$.\nWe apply this to $P'(1, 2)$.\n$P'(1, 2)$ is mapped to $P''(1+3, 2) = (4, 2)$. (A1)\n\nThe coordinates of the image of P are $(4, 2)$.\n\n*Check*: Let's see if $(4,2)$ is on the graph of $g(x) = 2(x-3)^2$.\n$g(4) = 2(4-3)^2 = 2(1)^2 = 2$. The point $(4,2)$ is indeed on the graph. (R1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Transformations of Graphs",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Graph Transformations",
+          "href": "https://www.geogebra.org/m/cvef8qg7"
+        },
+        {
+          "label": "IB Maths AA SL Questionbank - Topic 2.4",
+          "href": "https://www.revisionvillage.com/ib-maths-analysis-and-approaches-sl/questionbank/functions/transformations/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Graph Transformations",
+    "embedUrl": "https://www.geogebra.org/classic?material=cvef8qg7",
+    "launchUrl": "https://www.geogebra.org/classic?material=cvef8qg7",
+    "hint": "Use “GeoGebra Graph Transformations” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

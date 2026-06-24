@@ -1,0 +1,177 @@
+{
+  "slug": "2-8-solving-equations-and-inequalities-modulus-functions",
+  "topicCode": "2.8",
+  "title": "Solving equations and inequalities; modulus functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces the modulus (or absolute value) function. You will learn how to sketch graphs involving the modulus, such as $y=|f(x)|$ and $y=f(|x|)$, and develop algebraic and graphical techniques for solving equations and inequalities containing modulus functions.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and apply the formal definition of the modulus function, $|x|$",
+    "Sketch graphs of functions involving the modulus, including transformations like $y=|f(x)|$ and $y=f(|x|)$",
+    "Solve equations involving modulus functions, such as $|ax+b|=c$ and $|ax+b|=|cx+d|$",
+    "Solve inequalities involving modulus functions, such as $|ax+b| < c$ or $|ax+b| > c$"
+  ],
+  "simpleExplanation": {
+    "title": "The Modulus Function: It's All Positive!",
+    "summary": "The modulus function, or absolute value, gives a number's distance from zero, which is always positive. This simple rule has interesting effects on graphs and the way we solve equations.",
+    "analogy": "Imagine a 'distance-from-home' tracker. Whether you walk 3 km east or 3 km west, the tracker simply reads '3 km'. It ignores the direction (the sign) and only reports the magnitude (the distance). The modulus function does the same for numbers on a number line.",
+    "steps": [
+      "Isolate the modulus expression on one side of the equation or inequality.",
+      "Set up two distinct cases. For an equation $|A|=B$, the cases are $A=B$ and $A=-B$.",
+      "Solve each of these new equations or inequalities separately to find all potential solutions.",
+      "Check your solutions by substituting them back into the original equation, especially if you squared both sides, to discard any extraneous (false) solutions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the formal definition of the modulus function, $|x|$?",
+      "back": "$|x| = x$ if $x \\ge 0$, and $|x| = -x$ if $x < 0$. It represents the non-negative distance of $x$ from the origin on the number line."
+    },
+    {
+      "front": "What does the graph of $y = |x|$ look like?",
+      "back": "A 'V' shape with its vertex at the origin (0,0). The right side is the line $y=x$ and the left side is the line $y=-x$."
+    },
+    {
+      "front": "How do you sketch the graph of $y = |f(x)|$ from the graph of $y = f(x)$?",
+      "back": "Keep the part of the graph that is on or above the x-axis ($f(x) \\ge 0$). Reflect any part of the graph that is below the x-axis ($f(x) < 0$) in the x-axis."
+    },
+    {
+      "front": "How do you sketch the graph of $y = f(|x|)$ from the graph of $y = f(x)$?",
+      "back": "Discard the part of the graph where $x < 0$. Keep the part where $x \\ge 0$. Then, reflect this remaining part in the y-axis to create a graph with y-axis symmetry."
+    },
+    {
+      "front": "What are the two cases to consider when solving $|ax+b| = c$, where $c > 0$?",
+      "back": "Case 1: $ax+b = c$. Case 2: $ax+b = -c$. This gives two separate linear equations to solve."
+    },
+    {
+      "front": "What is the solution to the inequality $|x| < 4$?",
+      "back": "$-4 < x < 4$. This represents all numbers whose distance from zero is less than 4."
+    },
+    {
+      "front": "What is the solution to the inequality $|x| > 2$?",
+      "back": "$x > 2$ or $x < -2$. This represents all numbers whose distance from zero is greater than 2."
+    },
+    {
+      "front": "What is a common trap when solving $|A| = |B|$?",
+      "back": "Only solving the case $A=B$. You must also solve the second case, $A=-B$, to find all solutions."
+    },
+    {
+      "front": "Why is it crucial to check solutions when solving modulus equations by squaring?",
+      "back": "Squaring both sides can introduce extraneous solutions. For example, $x=2$ is a solution to $x^2=4$, but not to $x=-2$. Checking by substitution into the original equation is essential."
+    },
+    {
+      "front": "What is the solution set for $|3x-1| = -5$?",
+      "back": "There is no solution. The modulus of an expression must be non-negative, so it can never equal -5."
+    },
+    {
+      "front": "How can you solve $|x-3| > |x+1|$ graphically?",
+      "back": "Sketch the graphs of $y=|x-3|$ and $y=|x+1|$. Find the x-values for which the graph of $y=|x-3|$ is strictly above the graph of $y=|x+1|$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can the modulus of a number ever be negative?",
+      "a": "No. The modulus function represents a distance from zero, which by definition is always non-negative (i.e., positive or zero). An equation like $|x-1| = -3$ has no real solutions."
+    },
+    {
+      "q": "When solving $|A| = |B|$, why don't I need to check the cases $-A = B$ and $-A = -B$?",
+      "a": "You are already covering these! The case $-A = B$ is algebraically identical to $A = -B$. The case $-A = -B$ is identical to $A = B$. Therefore, the two distinct cases $A=B$ and $A=-B$ are sufficient to find all solutions."
+    },
+    {
+      "q": "Is squaring both sides always the best method for solving modulus inequalities?",
+      "a": "Not always. While squaring both sides of $|A| < |B|$ to get $A^2 < B^2$ is a valid method, it can lead to complicated quadratic inequalities. For simpler forms like $|ax+b| < c$, using the compound inequality $-c < ax+b < c$ is usually much quicker and less prone to error."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of the modulus function, also known as the absolute value. This function is a fundamental concept in mathematics that deals with magnitude, ignoring sign. We'll explore its properties, its effect on graphs, and, most importantly, how to confidently solve equations and inequalities that involve it – a common task in your Paper 1 exam."
+    },
+    {
+      "type": "heading",
+      "content": "The Modulus Function and its Graph"
+    },
+    {
+      "type": "text",
+      "content": "The modulus of a real number $x$, denoted by $|x|$, is its numerical value without regard to its sign. For example, $|5| = 5$ and $|-5| = 5$. Formally, we define it piecewise."
+    },
+    {
+      "type": "formula",
+      "content": "|x| = \\begin{cases} x, & \\text{if } x \\ge 0 \\\\ -x, & \\text{if } x < 0 \\end{cases}"
+    },
+    {
+      "type": "text",
+      "content": "Graphically, this has interesting consequences. To sketch $y=|f(x)|$, you take the graph of $y=f(x)$ and reflect any part that is below the x-axis to be above the x-axis. To sketch $y=f(|x|)$, you take the part of the graph of $y=f(x)$ for $x \\ge 0$ and reflect it in the y-axis, creating a symmetrical graph."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sketch the graph of the function $f(x) = |2x - 4|$. Label the coordinates of the vertex and any intercepts with the axes.",
+      "solution": "1.  First, consider the graph of the inner function, $y = 2x - 4$. This is a straight line with gradient 2 and y-intercept at $(0, -4)$.\n2.  Find the x-intercept by setting $y=0$: $2x - 4 = 0 \\implies 2x = 4 \\implies x = 2$. The x-intercept is at $(2, 0)$. [M1]\n3.  To sketch $y = |2x - 4|$, we keep the part of the line where $y \\ge 0$ (i.e., for $x \\ge 2$) and reflect the part where $y < 0$ (i.e., for $x < 2$) in the x-axis. [M1]\n4.  The vertex of the resulting 'V' shape is the point where the graph touches the x-axis, which is at $(2, 0)$. [A1]\n5.  The new y-intercept is the reflection of the original y-intercept $(0, -4)$ in the x-axis. This gives the point $(0, 4)$. [A1]\n6.  The final sketch should show a V-shaped graph with its vertex at $(2, 0)$, passing through $(0, 4)$."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Modulus Equations"
+    },
+    {
+      "type": "text",
+      "content": "There are two primary methods for solving modulus equations. The first is to consider the two possible cases arising from the definition of the modulus. The second is to square both sides of the equation, since $|A|^2 = A^2$. While squaring is effective, it can sometimes lead to more complex algebra and requires checking for extraneous solutions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To solve $|A| = c$ (where $c \\ge 0$), you must solve both $A = c$ and $A = -c$.",
+        "To solve $|A| = |B|$, you must solve both $A = B$ and $A = -B$.",
+        "Alternatively, for $|A| = |B|$, you can solve $A^2 = B^2$, which rearranges to $(A-B)(A+B)=0$, giving the same two cases.",
+        "Always be alert for equations like $|A| = -5$, which have no solution as the modulus cannot be negative."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $|x - 5| = |2x + 1|$.",
+      "solution": "We will solve by considering the two cases.\n\n**Case 1:** The expressions inside the modulus are equal. [M1]\n$x - 5 = 2x + 1$\n$-x = 6$\n$x = -6$ [A1]\n\n**Case 2:** One expression is the negative of the other. [M1]\n$x - 5 = -(2x + 1)$\n$x - 5 = -2x - 1$\n$3x = 4$\n$x = \\frac{4}{3}$ [A1]\n\nWe should check both solutions in the original equation.\nFor $x=-6$: $|-6 - 5| = |-11| = 11$. $|2(-6) + 1| = |-12 + 1| = |-11| = 11$. This is a valid solution. [R1]\nFor $x=4/3$: $|\\frac{4}{3} - 5| = |\\frac{4}{3} - \\frac{15}{3}| = |-\\frac{11}{3}| = \\frac{11}{3}$. $|2(\\frac{4}{3}) + 1| = |\\frac{8}{3} + \\frac{3}{3}| = |\\frac{11}{3}| = \\frac{11}{3}$. This is also a valid solution. [R1]\n\nThe solutions are $x = -6$ and $x = \\frac{4}{3}$."
+    },
+    {
+      "type": "examTip",
+      "content": "When an exam question asks you to sketch a graph and then 'hence' solve an equation or inequality, you are expected to use your graph. For example, to solve $|f(x)| > g(x)$, find the intersection points on your sketch and then identify the x-values where the graph of $y=|f(x)|$ is *above* the graph of $y=g(x)$. This is often much faster than starting a new algebraic calculation."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Modulus Inequalities"
+    },
+    {
+      "type": "text",
+      "content": "Solving inequalities follows a similar logic to solving equations, but requires careful handling of the inequality signs. Understanding the graphical interpretation is key. The inequality $|X| < c$ means the distance from the origin is *less than* c, so $X$ must be *between* $-c$ and $c$. The inequality $|X| > c$ means the distance is *greater than* c, so $X$ must be *beyond* $c$ or $-c$."
+    },
+    {
+      "type": "formula",
+      "content": "For a positive constant $c$:\n$|X| < c \\iff -c < X < c$\n$|X| > c \\iff X < -c \\text{ or } X > c$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the inequality $|3x + 2| < 7$.",
+      "solution": "We use the property that $|X| < c$ is equivalent to $-c < X < c$. [M1]\n\nThis gives us the compound inequality:\n$-7 < 3x + 2 < 7$ [A1]\n\nTo solve for $x$, we first subtract 2 from all three parts of the inequality:\n$-7 - 2 < 3x < 7 - 2$\n$-9 < 3x < 5$ [M1]\n\nFinally, we divide all three parts by 3:\n$\\frac{-9}{3} < x < \\frac{5}{3}$\n$-3 < x < \\frac{5}{3}$ [A1]\n\nThe solution is the interval $(-3, 5/3)$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Solving Modulus Equations & Inequalities",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Graphing Calculator",
+          "href": "https://www.geogebra.org/graphing"
+        },
+        {
+          "label": "Khan Academy: Absolute Value Equations",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:absolute-value-piecewise-functions/x2f8bb11595b61c86:absolute-value-equations/v/absolute-value-equations"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

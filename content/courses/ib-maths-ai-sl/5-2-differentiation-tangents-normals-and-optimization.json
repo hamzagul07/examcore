@@ -1,0 +1,199 @@
+{
+  "slug": "5-2-differentiation-tangents-normals-and-optimization",
+  "topicCode": "5.2",
+  "title": "Differentiation: tangents, normals and optimization",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores key applications of differentiation. You will learn how to find the equations of tangents and normals to a curve, identify stationary points (maxima, minima, and points of inflexion), and apply these skills to solve practical optimization problems, such as maximising profit or minimising material costs.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Find the equation of a tangent to a curve at a given point.",
+    "Find the equation of a normal to a curve at a given point.",
+    "Use differentiation to locate and classify stationary points (local maxima and minima).",
+    "Solve practical optimization problems by creating a model and finding its maximum or minimum value."
+  ],
+  "simpleExplanation": {
+    "title": "Calculus on a Rollercoaster",
+    "summary": "Differentiation tells us the steepness (gradient) of a curve at any point. We can use this to find the line that just touches the curve (a tangent) and to find the highest or lowest points, which is essential for optimizing real-world scenarios.",
+    "analogy": "Imagine you're on a rollercoaster. The derivative, $f'(x)$, is how steep the track is at any exact moment. A tangent is like a straight ramp that matches the track's steepness at that point – it's the direction you'd fly off in. A normal is like a support beam sticking out from the track at a right angle. The highest peaks and lowest dips of the ride are the 'stationary points' where the track is momentarily flat.",
+    "steps": [
+      "Differentiate the function $f(x)$ to find the gradient function, $f'(x)$.",
+      "To find a tangent or normal, substitute the given x-coordinate into $f'(x)$ to find the gradient of the tangent, $m_T$. The normal's gradient is the negative reciprocal, $m_N = -1/m_T$.",
+      "Use the point-gradient formula, $y - y_1 = m(x - x_1)$, with the point $(x_1, y_1)$ and the correct gradient to find the line's equation.",
+      "For optimization, set the derivative $f'(x) = 0$ and solve for $x$ to find the location of stationary points. Use your GDC graph to classify them as a maximum or minimum."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a tangent to a curve?",
+      "back": "A straight line that touches a curve at a single point and has the same gradient as the curve at that point."
+    },
+    {
+      "front": "What is a normal to a curve?",
+      "back": "A straight line that is perpendicular to the tangent at the point of tangency."
+    },
+    {
+      "front": "How are the gradients of a tangent ($m_T$) and a normal ($m_N$) related?",
+      "back": "They are negative reciprocals of each other. $m_N = -\\frac{1}{m_T}$, or $m_T \\times m_N = -1$."
+    },
+    {
+      "front": "How do you find the gradient of the tangent to a curve $y=f(x)$ at the point $x=a$?",
+      "back": "First, find the derivative, $f'(x)$. Then, substitute $x=a$ into the derivative: $m_T = f'(a)$."
+    },
+    {
+      "front": "What is a stationary point?",
+      "back": "A point on a curve where the gradient is zero. At this point, the tangent is horizontal. This occurs when $f'(x) = 0$."
+    },
+    {
+      "front": "What is a local maximum?",
+      "back": "A stationary point where the function's value is greater than at nearby points. The gradient changes from positive, to zero, to negative."
+    },
+    {
+      "front": "What is a local minimum?",
+      "back": "A stationary point where the function's value is less than at nearby points. The gradient changes from negative, to zero, to positive."
+    },
+    {
+      "front": "What is a stationary point of inflexion?",
+      "back": "A stationary point that is neither a maximum nor a minimum. The gradient is zero but does not change sign (e.g., positive, zero, positive)."
+    },
+    {
+      "front": "What is the first step in any optimization problem?",
+      "back": "To create a function for the quantity you want to optimize (e.g., Cost, Area, Volume) in terms of a single variable."
+    },
+    {
+      "front": "What is the condition for a function $C(r)$ representing cost to be minimised?",
+      "back": "Find the derivative $C'(r)$ and set it to zero: $C'(r) = 0$. Then solve for $r$."
+    },
+    {
+      "front": "Common Trap: After finding the gradient of the tangent, $m_T$, what is a common mistake when finding the normal's equation?",
+      "back": "Forgetting to use the negative reciprocal gradient, $m_N = -1/m_T$. Some students incorrectly use $m_T$ or just $-m_T$."
+    },
+    {
+      "front": "Common Trap: In an optimization problem, what must you double-check before writing your final answer?",
+      "back": "Read the question carefully. Are you asked for the x-value that gives the maximum, or the maximum value itself? You might lose the final mark if you provide the wrong one."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a local maximum and a global maximum?",
+      "a": "A local maximum is a point that is higher than all the points immediately around it, like the top of a small hill. A global maximum is the single highest point across the function's entire domain. For IB AI SL, we typically focus on finding local maxima and minima unless a specific interval is given for the function."
+    },
+    {
+      "q": "Do I need to use the second derivative test to classify stationary points?",
+      "a": "No, the second derivative test ($f''(x)$) is not required in the AI SL syllabus. The most reliable methods for you are to analyse the sign of the first derivative ($f'(x)$) on either side of the stationary point, or to inspect the shape of the function's graph on your GDC. Both are acceptable in an exam."
+    },
+    {
+      "q": "What if I find a point where $f'(x)=0$ but it's not a maximum or a minimum?",
+      "a": "This is called a stationary point of inflexion. At this point, the curve flattens out to a horizontal tangent but then continues in the same direction (e.g., continues increasing). A classic example is the function $y=x^3$ at the point $(0,0)$."
+    },
+    {
+      "q": "In an optimization problem, how do I know if the stationary point I found is a maximum or a minimum?",
+      "a": "The easiest way is to graph the function on your GDC and look at the shape. If it's a 'peak', it's a maximum; if it's a 'trough', it's a minimum. The context of the problem often makes it obvious too - if you're minimising cost, the stationary point is highly likely to be the minimum."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In the previous topic, we learned how to find the derivative, which represents the instantaneous rate of change of a function. Now, we will apply this powerful tool to understand the geometry of curves and solve real-world problems. We'll explore tangents and normals, which describe the direction of a curve at a point, and optimization, the process of finding the 'best' outcome, such as the maximum profit or minimum cost."
+    },
+    {
+      "type": "heading",
+      "content": "Tangents and Normals"
+    },
+    {
+      "type": "text",
+      "content": "A tangent is a straight line that 'just touches' a curve at a specific point. The key property is that the gradient of the tangent line is equal to the gradient of the curve at that exact point. The derivative, $f'(x)$, gives us a formula for the gradient of the curve at any value of $x$. A normal is a line that is perpendicular to the tangent at the same point."
+    },
+    {
+      "type": "formula",
+      "content": "At a point $(a, f(a))$ on the curve $y=f(x)$:\n\nGradient of the tangent: $m_T = f'(a)$\n\nGradient of the normal: $m_N = -\\frac{1}{m_T} = -\\frac{1}{f'(a)}$\n\nEquation of a line: $y - y_1 = m(x - x_1)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To find the equation of a tangent or normal, you need a point $(x_1, y_1)$ and a gradient $m$.",
+        "First, differentiate the function to find the gradient formula, $f'(x)$.",
+        "Substitute the x-coordinate of the given point into $f'(x)$ to find the gradient of the tangent, $m_T$.",
+        "Calculate the gradient of the normal, $m_N = -1/m_T$.",
+        "Substitute the point and the appropriate gradient into the point-gradient formula for a line."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equation of the tangent and the normal to the curve $f(x) = x^3 - 5x + 2$ at the point where $x=-2$. Give your answers in the form $ax+by+d=0$ where $a, b, d \\in \\mathbb{Z}$.",
+      "solution": "1. Find the y-coordinate of the point. \n$y_1 = f(-2) = (-2)^3 - 5(-2) + 2 = -8 + 10 + 2 = 4$. \nThe point is $(-2, 4)$. (M1 for substitution)\n\n2. Differentiate the function to find the gradient function.\n$f'(x) = 3x^2 - 5$. (A1)\n\n3. Find the gradient of the tangent at $x=-2$.\n$m_T = f'(-2) = 3(-2)^2 - 5 = 3(4) - 5 = 12 - 5 = 7$. (M1)\n\n4. Find the equation of the tangent.\nUsing $y - y_1 = m(x - x_1)$:\n$y - 4 = 7(x - (-2))$\n$y - 4 = 7(x + 2)$\n$y - 4 = 7x + 14$\n$7x - y + 18 = 0$. (A1)\n\n5. Find the gradient of the normal.\n$m_N = -\\frac{1}{m_T} = -\\frac{1}{7}$. (M1)\n\n6. Find the equation of the normal.\nUsing $y - y_1 = m(x - x_1)$:\n$y - 4 = -\\frac{1}{7}(x - (-2))$\n$7(y - 4) = -1(x + 2)$\n$7y - 28 = -x - 2$\n$x + 7y - 26 = 0$. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 1, you must show your analytical working as above. However, you can use your GDC to verify your answer. Graph the original function and your calculated tangent and normal lines. Zoom in on the point of tangency. The lines should touch the curve at the correct point and appear perpendicular to each other."
+    },
+    {
+      "type": "heading",
+      "content": "Stationary Points and Optimization"
+    },
+    {
+      "type": "text",
+      "content": "Stationary points are points on a graph where the gradient is zero, meaning the tangent line is horizontal. These are crucial because they often correspond to the maximum or minimum values of a function. We can find them by setting the first derivative equal to zero, $f'(x)=0$, and solving for $x$. In practical 'optimization' problems, we model a situation with a function and then find its stationary points to determine, for example, the maximum possible profit or the minimum amount of material needed for a construction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Stationary points occur when $f'(x) = 0$.",
+        "A local maximum is a 'peak' where the gradient changes from positive to negative.",
+        "A local minimum is a 'trough' where the gradient changes from negative to positive.",
+        "To solve an optimization problem: create a function for the quantity to be optimised, differentiate it, set the derivative to zero, and solve."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A rectangular garden is to be enclosed by a fence. One side of the garden is against a stone wall, so it does not need fencing. The total length of fencing available is 40 metres. Find the dimensions of the garden that will maximise its area.",
+      "solution": "1. Define variables and draw a diagram. Let the side parallel to the wall have length $y$ and the other two sides have length $x$. The wall forms the fourth side.\n\n2. Write equations for the constraint (fencing) and the quantity to be maximised (Area).\nFencing: $2x + y = 40$. (M1)\nArea: $A = xy$. (M1)\n\n3. Express the area as a function of a single variable. \nFrom the fencing equation, $y = 40 - 2x$. \nSubstitute this into the area equation: \n$A(x) = x(40 - 2x) = 40x - 2x^2$. (A1)\n\n4. Differentiate the area function with respect to $x$.\n$A'(x) = 40 - 4x$. (A1)\n\n5. Set the derivative to zero to find stationary points.\n$40 - 4x = 0$. (M1)\n$4x = 40 Rightarrow x = 10$ metres.\n\n6. Find the other dimension and the maximum area.\nWhen $x=10$, $y = 40 - 2(10) = 40 - 20 = 20$ metres. \nThe dimensions for maximum area are 10 m by 20 m. (A1)\n(The maximum area would be $10 \\times 20 = 200 \\text{ m}^2$, though the question asks for the dimensions)."
+    },
+    {
+      "type": "heading",
+      "content": "Using Your GDC Effectively"
+    },
+    {
+      "type": "text",
+      "content": "While Paper 1 requires you to show analytical steps, your GDC is an indispensable tool for checking your work and for tackling more complex problems in Paper 2. You can use your GDC's graphing functionality to visually identify maxima and minima. Most calculators have a built-in function to find the coordinates of a maximum or minimum within a given interval. You can also use the numerical derivative feature (often called nDeriv or d/dx) to find the gradient at a specific point without finding the algebraic derivative first, which is great for verification."
+    },
+    {
+      "type": "examTip",
+      "content": "In optimization questions, always check for any constraints on the variables. For example, lengths and volumes must be positive. This can help you determine a sensible domain for your function, which is useful when finding maxima or minima on your GDC."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Differentiation Applications",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=5.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Tangent Line Simulation",
+          "href": "https://www.geogebra.org/m/c3vj7vsp"
+        },
+        {
+          "label": "Optimization Problem Examples",
+          "href": "https://www.mathsisfun.com/calculus/optimization.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Tangent Line Simulation",
+    "embedUrl": "https://www.geogebra.org/classic?material=c3vj7vsp",
+    "launchUrl": "https://www.geogebra.org/classic?material=c3vj7vsp",
+    "hint": "Use “GeoGebra Tangent Line Simulation” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "slug": "2-3-modelling-with-quadratic-cubic-and-power-functions",
+  "topicCode": "2.3",
+  "title": "Modelling with quadratic, cubic and power functions",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson explores how to model real-world data using quadratic, cubic, and power functions. You will learn to use your GDC to find the equation of a best-fit curve, interpret the parameters of the model, and use it to make predictions through interpolation and extrapolation.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify when a quadratic, cubic, or power model is appropriate for a given dataset by examining a scatter plot.",
+    "Use a GDC to find the equation of the regression curve for quadratic, cubic, and power models.",
+    "Interpret the meaning of the parameters and variables within the context of a real-world problem.",
+    "Use a regression model to make predictions and evaluate the reliability of these predictions (interpolation vs. extrapolation)."
+  ],
+  "simpleExplanation": {
+    "title": "From Dots to Curves: Real-World Modelling",
+    "summary": "This topic is about finding the best mathematical curve (like a parabola or an S-shape) to describe a set of real-world data points. We use our calculator to find the equation, which we can then use to understand trends and make predictions.",
+    "analogy": "Imagine you're a tailor and the data points are a customer's measurements. Your job is to choose the right pattern (a quadratic, cubic, or power function) and adjust it to create a piece of clothing (the model) that fits them perfectly. A good fit means you can predict their size for other items, but predicting too far beyond the original measurements might lead to an outfit that doesn't fit at all.",
+    "steps": [
+      "Plot and Choose: Enter your data into the GDC and create a scatter plot. Visually inspect the shape of the points to decide if a quadratic (U-shape), cubic (S-shape), or power curve seems most appropriate.",
+      "Calculate the Model: Use the regression function on your GDC (e.g., QuadReg, CubicReg, PwrReg) to calculate the equation of the best-fit curve. Write down the full equation with parameters to at least 3 significant figures.",
+      "Interpret and Validate: Explain what the variables and coefficients in your model represent in the context of the problem. If your GDC provides an R² value, note that the closer it is to 1, the better the model fits the data.",
+      "Predict and Evaluate: Use your model's equation to estimate values. Be clear if you are interpolating (predicting within the data range) or extrapolating (predicting outside it) and comment on the reliability of your prediction."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a quadratic model?",
+      "back": "A function of the form $y = ax^2 + bx + c$. Its graph is a parabola (a 'U' shape or an inverted 'U' shape) which has one turning point (a maximum or a minimum)."
+    },
+    {
+      "front": "What is a cubic model?",
+      "back": "A function of the form $y = ax^3 + bx^2 + cx + d$. Its graph is typically an 'S' shape and can have up to two turning points."
+    },
+    {
+      "front": "What is a power model?",
+      "back": "A function of the form $y = ax^b$. The shape of its graph depends on the exponent $b$. Unlike polynomials, it may not be defined for negative x-values and often passes through or near the origin (0,0)."
+    },
+    {
+      "front": "What is regression analysis?",
+      "back": "A statistical process for finding a function (a model) that best fits a set of data points. For this course, you will use your GDC to perform the calculations."
+    },
+    {
+      "front": "What does the vertex of a quadratic model represent in a real-world context?",
+      "back": "The maximum or minimum value. For example, the maximum height reached by a thrown object, or the minimum cost of production for a certain number of items."
+    },
+    {
+      "front": "Define interpolation.",
+      "back": "Using a model to predict a y-value for an x-value that is *within* the range of the original dataset. Interpolation is generally considered to be a reliable prediction."
+    },
+    {
+      "front": "Define extrapolation.",
+      "back": "Using a model to predict a y-value for an x-value that is *outside* the range of the original dataset. Extrapolation is less reliable and its validity should be questioned."
+    },
+    {
+      "front": "How do you choose the best model if it's not specified?",
+      "back": "1. Create a scatter plot and visually inspect the shape. 2. If multiple models seem plausible, you can compare their coefficients of determination ($R^2$). The model with the $R^2$ value closest to 1 provides the best fit for the given data."
+    },
+    {
+      "front": "What is a common mistake when interpreting a model?",
+      "back": "Forgetting the context. Always relate your mathematical results back to the problem. State what the variables represent and always include units (e.g., metres, seconds, £) in your final answers where appropriate."
+    },
+    {
+      "front": "What does the 'c' value in a quadratic model, $y = ax^2 + bx + c$, represent?",
+      "back": "It is the y-intercept, which is the value of y when x=0. In context, this is the initial value, for example, the initial height of an object or the starting population."
+    },
+    {
+      "front": "What is a key difference between a power model $y=ax^b$ and a quadratic model $y=ax^2+bx+c$?",
+      "back": "A power model with $b>0$ must pass through the origin (0,0) if there's no vertical shift, while a quadratic model has a y-intercept at $c$, which can be non-zero."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to memorise the formulas for regression?",
+      "a": "No. You are never expected to calculate regression by hand. You must know how to use your GDC to find the model. Your job is to input the data correctly, select the right regression type (QuadReg, CubicReg, PwrReg), and interpret the output."
+    },
+    {
+      "q": "What if the question doesn't tell me which model to use?",
+      "a": "Your first step should always be to create a scatter plot of the data. The visual shape is the biggest clue: a 'U' shape suggests a quadratic model, an 'S' shape suggests a cubic model, and a curve from the origin suggests a power model. If two models seem to fit well, the IB may guide you, but if you have to choose, you can calculate both and compare their $R^2$ values (coefficient of determination). The model with $R^2$ closer to 1 is a better fit for the data provided."
+    },
+    {
+      "q": "How many significant figures should I use for the parameters a, b, c?",
+      "a": "The standard IB rule is to give final answers to 3 significant figures. However, when you write down the model itself, it's good practice to write the parameters to more accuracy (e.g., 4 or 5 s.f.) or store the full equation in your GDC. This prevents rounding errors in subsequent calculations. If you just write the parameters to 3 s.f. and then use those rounded values, your final answer might be slightly off. When in doubt, write the model parameters to at least 3 s.f. and use the full calculator value for any further steps."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In the real world, relationships between variables are rarely perfectly linear. Often, data follows a curve. This lesson teaches you how to take a set of data points and find a mathematical function—a model—that describes the underlying trend. We will focus on three important types of functions: quadratic, cubic, and power functions. Your graphical display calculator (GDC) will be your most important tool."
+    },
+    {
+      "type": "heading",
+      "content": "Choosing the Right Model"
+    },
+    {
+      "type": "text",
+      "content": "Before you can create a model, you must decide which type of function is most appropriate. The best way to do this is to enter your data into your GDC and create a scatter plot. The visual pattern of the points will guide your choice."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Quadratic Model ($y = ax^2 + bx + c$):** Look for data that seems to rise and then fall, or fall and then rise, forming a 'U' shape (a parabola). This is common for projectile motion or for optimisation problems like minimising costs.",
+        "**Cubic Model ($y = ax^3 + bx^2 + cx + d$):** Look for data that has an 'S' shape. The data might increase, level off slightly, and then increase again (or the reverse). This can model things like population growth that initially accelerates and then slows.",
+        "**Power Model ($y = ax^b$):** Look for data that forms a curve that is steadily increasing or decreasing, often starting from or near the origin (0,0). The rate of change is not constant. This is often seen in relationships in physics or biology."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Model with Your GDC"
+    },
+    {
+      "type": "text",
+      "content": "Once you have chosen a potential model, your GDC does the hard work of calculating the specific equation. The general process is the same for most calculators."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1: Enter Data.** Go to the statistics menu on your GDC and enter the independent variable (e.g., time) into one list (e.g., L1) and the dependent variable (e.g., height) into another (e.g., L2).",
+        "**Step 2: Select Regression.** Navigate to the calculation sub-menu. Select the regression that matches your chosen model: 'QuadReg' for quadratic, 'CubicReg' for cubic, or 'PwrReg' for power.",
+        "**Step 3: Calculate and Record.** Execute the command, ensuring you have specified the correct lists (L1, L2). The calculator will display the values for the parameters (a, b, c, etc.). Write down the full equation, giving the parameter values to at least 3 significant figures.",
+        "**Step 4 (Optional but recommended):** Store the regression equation into a function variable (e.g., Y1). This makes it very easy to calculate values or draw the graph without re-typing the long decimals."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A small rocket is launched from a platform. Its height, $h$ metres, above the ground is recorded at different times, $t$ seconds, after launch. The data is shown in the table.\n\n| Time, $t$ (s) | 1  | 2  | 3  | 4  | 5  |\n|---|---|---|---|---|---|\n| Height, $h$ (m) | 35 | 50 | 55 | 50 | 35 |\n\na) A quadratic model of the form $h(t) = at^2 + bt + c$ is used to model the rocket's flight. Find the values of $a$, $b$, and $c$.\nb) Use the model to find the height of the rocket after 2.5 seconds.\nc) Determine the maximum height reached by the rocket according to the model.",
+      "solution": "a) Enter the time data into L1 and the height data into L2 on the GDC. Use the quadratic regression function (QuadReg L1, L2).\n(M1)\nThe calculator gives:\n$a = -5$\n$b = 30$\n$c = 10$\nSo the model is $h(t) = -5t^2 + 30t + 10$.\n(A2)\n\nb) To find the height at $t=2.5$, substitute this value into the model:\n$h(2.5) = -5(2.5)^2 + 30(2.5) + 10$\n(M1)\n$h(2.5) = -5(6.25) + 75 + 10$\n$h(2.5) = -31.25 + 85 = 53.75$\nThe height is 53.8 m (to 3 s.f.).\n(A1)\n\nc) The maximum height occurs at the vertex of the parabola. The time at which this occurs is $t = -\\frac{b}{2a}$.\n$t = -\\frac{30}{2(-5)} = -\\frac{30}{-10} = 3$ seconds.\n(M1)\nNow substitute $t=3$ into the height equation:\n$h(3) = -5(3)^2 + 30(3) + 10$\n$h(3) = -45 + 90 + 10 = 55$\nThe maximum height is 55 metres.\n(A1)\n*Note: This could also be found using the GDC's graph 'maximum' function.*"
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks you to 'find' or 'determine' a model, it is a strong indicator that you should use the regression functions on your GDC. Always write down the full equation with the parameter values you find. Don't just write the values of a, b, and c."
+    },
+    {
+      "type": "heading",
+      "content": "Interpretation and Prediction"
+    },
+    {
+      "type": "text",
+      "content": "A model is only useful if we can use it to make sensible predictions and understand the relationship it describes. It's crucial to distinguish between two types of prediction."
+    },
+    {
+      "type": "formula",
+      "content": "Interpolation: Predicting a value *within* the range of your original data. For the rocket example, predicting the height at $t=2.5$s is interpolation, as 2.5 is between 1 and 5. This is generally reliable.\n\nExtrapolation: Predicting a value *outside* the range of your original data. Predicting the height at $t=7$s would be extrapolation. This is less reliable as the model may not hold true beyond the observed data."
+    },
+    {
+      "type": "workedExample",
+      "question": "The value of a vintage car, $V$ in thousands of British pounds (£), is recorded over several years, $t$, since the year 2000.\n\n| Years, $t$ | 2 | 5 | 10 | 15 | 20 |\n|---|---|---|---|---|---|\n| Value, $V$ (£1000s) | 12.5 | 14.2 | 20.1 | 35.8 | 68.3 |\n\na) A power model of the form $V(t) = at^b$ is proposed. Find the values of $a$ and $b$.\nb) Use this model to estimate the value of the car in the year 2018 ($t=18$).\nc) Comment on the validity of using this model to predict the car's value in the year 2050 ($t=50$).",
+      "solution": "a) Enter the years ($t$) into L1 and the value ($V$) into L2 on the GDC. Use the power regression function (PwrReg L1, L2).\n(M1)\nThe calculator gives:\n$a \\approx 9.758...$\n$b \\approx 0.8219...$\nSo, $a = 9.76$ and $b = 0.822$ (to 3 s.f.).\nThe model is $V(t) = 9.76t^{0.822}$.\n(A2)\n\nb) The year 2018 corresponds to $t=18$. Substitute this into the model:\n$V(18) = 9.76(18)^{0.822}$\n(M1)\n$V(18) \\approx 9.76 \\times 11.23... \\approx 109.59...$\nThe estimated value is £109,600.\n(A1)\n\nc) Predicting for the year 2050 ($t=50$) is an example of extrapolation, as it is far beyond the range of the original data (which only goes up to $t=20$).\n(R1)\nThe model predicts continuous growth, but in reality, the value of a vintage car might plateau or even decrease after a certain point. Therefore, this prediction is likely to be unreliable.\n(R1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Guide: TI-Nspire Regression",
+          "href": "https://www.youtube.com/watch?v=jw6vXGcoi4Y"
+        },
+        {
+          "label": "GDC Guide: Casio fx-CG50 Regression",
+          "href": "https://www.youtube.com/watch?v=S2-4aW_c_fA"
+        },
+        {
+          "label": "Interactive Grapher - Desmos",
+          "href": "https://www.desmos.com/calculator"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

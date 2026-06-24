@@ -1,0 +1,177 @@
+{
+  "slug": "3-8-investment-appraisal",
+  "topicCode": "3.8",
+  "title": "Investment appraisal",
+  "paper": "P2",
+  "paperName": "Business Management SL",
+  "status": "premium",
+  "summary": "This lesson introduces investment appraisal, a crucial financial decision-making tool. You will learn to calculate and interpret the Payback Period (PBP) and Average Rate of Return (ARR), and evaluate their roles alongside qualitative factors in assessing the viability of capital projects.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Calculate the payback period (PBP) for an investment project.",
+    "Calculate the average rate of return (ARR) for an investment project.",
+    "Analyse the results of PBP and ARR to support an investment decision.",
+    "Evaluate the use of these quantitative methods alongside qualitative factors."
+  ],
+  "simpleExplanation": {
+    "title": "Is This a Good Investment?",
+    "summary": "Investment appraisal helps a business decide if a major purchase, like new machinery, is financially worthwhile. It's like checking if a big-ticket item will pay for itself and offer good value over time.",
+    "analogy": "Imagine you're buying a new, expensive bicycle for a delivery job. You'd first calculate how many weeks of delivery earnings it takes to cover the bike's cost (the Payback Period). Then, you'd estimate the total extra profit you'll make over the few years you use the bike, and see what that profit is as a percentage of the bike's price (the Average Rate of Return). These numbers help you decide if it's a better choice than a cheaper, less efficient bike.",
+    "steps": [
+      "Identify the initial cost of the project (the 'initial outlay').",
+      "Forecast the expected net cash flows (cash inflows minus cash outflows) for each year of the project's life.",
+      "Calculate the Payback Period to determine how quickly the initial investment will be repaid by the net cash flows.",
+      "Calculate the Average Rate of Return to measure the annual profitability of the investment as a percentage of its initial cost."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Investment Appraisal",
+      "back": "The process of analysing the financial merits of a potential investment project to determine whether it will be profitable and should be undertaken."
+    },
+    {
+      "front": "Payback Period (PBP)",
+      "back": "The time it takes for an investment's net cash inflows to cover its initial cost. It measures how quickly the initial outlay is recovered."
+    },
+    {
+      "front": "Average Rate of Return (ARR)",
+      "back": "A measure of the average annual profit from an investment as a percentage of the initial investment cost. It assesses the project's profitability."
+    },
+    {
+      "front": "Initial Outlay / Capital Cost",
+      "back": "The total cost required to start an investment project. This is the cash outflow at Year 0."
+    },
+    {
+      "front": "Net Cash Flow (NCF)",
+      "back": "The difference between cash inflows and cash outflows for a specific period (usually a year). It is not the same as profit."
+    },
+    {
+      "front": "Cumulative Net Cash Flow",
+      "back": "The sum of net cash flows from the beginning of a project up to a specific point in time. It is used to find the payback period."
+    },
+    {
+      "front": "Qualitative Factors",
+      "back": "Non-numerical factors that can influence an investment decision, such as impact on brand image, employee morale, or environmental considerations."
+    },
+    {
+      "front": "Common Trap: PBP",
+      "back": "The Payback Period only measures the speed of return, not the overall profitability. A project with a quick payback might earn very little after it has paid back."
+    },
+    {
+      "front": "Common Trap: ARR",
+      "back": "The Average Rate of Return ignores the timing of cash flows (the time value of money). It treats £100 earned in Year 5 the same as £100 earned in Year 1."
+    },
+    {
+      "front": "Residual/Scrap Value",
+      "back": "The estimated value of an asset at the end of its useful life. This value is added to the final year's cash inflow when calculating total returns for ARR."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Which method is better, Payback Period or Average Rate of Return?",
+      "a": "Neither is definitively 'better'; they measure different things and should be used together. PBP assesses risk and liquidity (how fast you get your money back), while ARR assesses profitability (how much return you get). A good investment decision considers both."
+    },
+    {
+      "q": "Do I need to know Net Present Value (NPV) for the SL exam?",
+      "a": "No. Net Present Value (NPV) and the Internal Rate of Return (IRR) are Higher Level (HL) topics only. SL students are only required to know Payback Period and Average Rate of Return."
+    },
+    {
+      "q": "What if the payback period falls exactly on a year-end?",
+      "a": "If the cumulative cash flow reaches zero at the exact end of a year (e.g., Year 3), then the payback period is simply that number of years (e.g., '3 years'). You do not need to do the monthly calculation in this case."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Businesses constantly face decisions about where to allocate their capital. Should they buy a new fleet of delivery vans? Invest in a new IT system? Open a new branch? These are significant, long-term decisions with major financial implications. Investment appraisal provides a structured, quantitative framework to evaluate these options, helping managers make informed choices that align with the company's financial objectives."
+    },
+    {
+      "type": "heading",
+      "content": "The Payback Period (PBP)"
+    },
+    {
+      "type": "text",
+      "content": "The Payback Period is one of the simplest methods of investment appraisal. It focuses on liquidity and risk by calculating the exact time it takes for a project to generate enough net cash flow to recover the initial investment. A shorter payback period is generally preferred, as it means the business gets its money back sooner, reducing the risk associated with long-term forecasts."
+    },
+    {
+      "type": "formula",
+      "content": "Payback Period = Year before full recovery + \\frac{\\text{Amount remaining to recover}}{\\text{Net cash flow in the recovery year}} \\times 12 \\text{ months}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A coffee shop is considering buying a new espresso machine for £25,000. It is expected to generate the following net cash flows:\nYear 1: £8,000\nYear 2: £10,000\nYear 3: £12,000\nYear 4: £12,000\nCalculate the payback period.",
+      "solution": "To find the payback period, we first calculate the cumulative net cash flow:\n\n1.  **Initial Cost (Year 0):** -£25,000\n2.  **End of Year 1:** -£25,000 + £8,000 = -£17,000 remaining\n3.  **End of Year 2:** -£17,000 + £10,000 = -£7,000 remaining\n4.  **End of Year 3:** At the start of Year 3, £7,000 is still needed. The cash flow in Year 3 is £12,000. Since this is more than enough, payback occurs during Year 3.\n\n**Calculation:**\n- Years before recovery = 2 years\n- Amount remaining = £7,000\n- Cash flow in recovery year (Year 3) = £12,000\n\nPayback Period = 2 years + (\\frac{£7,000}{£12,000} \\times 12 \\text{ months})\nPayback Period = 2 years + (0.5833 \\times 12 \\text{ months})\nPayback Period = 2 years + 7 months\n\n**Answer:** The payback period is 2 years and 7 months."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** Simple to calculate and understand.",
+        "**Advantage:** Focuses on cash flow and liquidity, which is vital for many businesses.",
+        "**Disadvantage:** Ignores all cash flows that occur after the payback period has been reached, thus ignoring overall profitability.",
+        "**Disadvantage:** Does not account for the time value of money (i.e., that money today is worth more than money tomorrow)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Average Rate of Return (ARR)"
+    },
+    {
+      "type": "text",
+      "content": "Unlike the PBP, the Average Rate of Return focuses on profitability. It calculates the average annual profit generated by an investment as a percentage of the initial cost. This allows for a direct comparison with a target rate of return set by the business or the interest rates offered by banks. A higher ARR is generally better."
+    },
+    {
+      "type": "formula",
+      "content": "ARR (\\%) = \\frac{\\text{Average Annual Profit}}{\\text{Initial Cost}} \\times 100 \\quad \\text{where, Average Annual Profit} = \\frac{\\text{Total Profit}}{\\text{Number of Years}}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A logistics company is considering a project to install new warehouse automation. The initial cost is £800,000. The project is expected to last 4 years and generate total net cash flows of £1,200,000 over its life. Calculate the Average Rate of Return (ARR).",
+      "solution": "1.  **Calculate Total Profit:**\n    Total Profit = Total Net Cash Flow - Initial Cost\n    Total Profit = £1,200,000 - £800,000 = £400,000\n\n2.  **Calculate Average Annual Profit:**\n    Average Annual Profit = Total Profit / Number of Years\n    Average Annual Profit = £400,000 / 4 years = £100,000 per year\n\n3.  **Calculate ARR:**\n    ARR = (Average Annual Profit / Initial Cost) x 100\n    ARR = (£100,000 / £800,000) x 100\n    ARR = 0.125 x 100 = 12.5%\n\n**Answer:** The Average Rate of Return is 12.5%."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** It measures the profitability of an investment over its entire life.",
+        "**Advantage:** The result (a percentage) is easily compared with other projects or a pre-set target rate.",
+        "**Disadvantage:** It ignores the timing of cash flows, treating profits in later years as equally valuable as profits in earlier years.",
+        "**Disadvantage:** It uses profit, which can be subject to accounting conventions and manipulation, rather than cash flow."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Qualitative Factors in Investment Decisions"
+    },
+    {
+      "type": "text",
+      "content": "While PBP and ARR provide useful quantitative data, they do not tell the whole story. A manager must also consider qualitative, or non-financial, factors. For example, a project with a lower ARR might be chosen if it significantly improves worker safety, enhances the company's brand image as an innovator, or is essential for meeting new environmental regulations. Relying solely on the numbers can lead to strategically poor decisions."
+    },
+    {
+      "type": "examTip",
+      "content": "For higher marks in an exam question, don't just stop at the calculation. Always conclude by stating which project should be chosen (if there's a choice) and justify your decision using the results of your calculations (e.g., 'Project A should be chosen as its PBP of 2.5 years is faster than Project B's 3.2 years'). Then, to achieve evaluation marks, discuss the limitations of the method you used and briefly mention the qualitative factors that should also be considered before making a final decision."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-business-management-sl&topic=3.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Payback Period Explained",
+          "href": "https://www.investopedia.com/terms/p/paybackperiod.asp"
+        },
+        {
+          "label": "Average Rate of Return (ARR) Guide",
+          "href": "https://www.investopedia.com/terms/a/averagerateofreturn.asp"
+        },
+        {
+          "label": "Video tutorial on PBP and ARR",
+          "href": "https://www.youtube.com/watch?v=K6T8p-TPl_s"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

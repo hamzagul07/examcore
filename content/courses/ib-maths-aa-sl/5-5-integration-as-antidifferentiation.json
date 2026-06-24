@@ -1,0 +1,188 @@
+{
+  "slug": "5-5-integration-as-antidifferentiation",
+  "topicCode": "5.5",
+  "title": "Integration as antidifferentiation",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces integration as the reverse process of differentiation, known as antidifferentiation. You will learn how to find the indefinite integral of polynomial functions using the power rule and understand the crucial role of the constant of integration, 'C'.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand integration as the reverse process of differentiation (antidifferentiation).",
+    "Find the indefinite integral of functions of the form f(x) = ax^n for n ∈ ℚ, n ≠ -1.",
+    "Recognise and include the constant of integration, '+ C', to represent a family of functions.",
+    "Use a given point on a curve to find the specific value of the constant of integration."
+  ],
+  "simpleExplanation": {
+    "title": "Rewinding the Function Clock",
+    "summary": "If differentiation is finding a function's rate of change, integration is working backwards to find the original function from that rate of change. It's the mathematical equivalent of un-baking a cake to find the recipe.",
+    "analogy": "Imagine you're a food critic. Differentiation is like tasting a finished brownie and describing its flavour profile: 'intensely chocolatey with a hint of salt'. Integration is like being given that flavour profile and having to write the original recipe. You can figure out the main ingredients (flour, sugar, chocolate), but you might not know the exact amount of salt, or if there was a drop of vanilla extract. These small unknown quantities, which don't change the main flavour profile, are like the 'constant of integration'. There are a whole family of similar recipes that could produce that same taste.",
+    "steps": [
+      "Identify the function to integrate, which is often given as a derivative like f'(x) or dy/dx.",
+      "Apply the power rule for integration to each term: increase the power by 1, then divide by the new power.",
+      "Add the constant of integration, '+ C', at the end. This represents all possible antiderivatives.",
+      "If a point on the curve is given, substitute the x and y values into your integrated function to solve for C."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is antidifferentiation?",
+      "back": "The process of finding the original function, F(x), from its derivative, f(x). It is the reverse process of differentiation."
+    },
+    {
+      "front": "What is an indefinite integral?",
+      "back": "The result of antidifferentiation. It represents a 'family' of functions, not just one, which is why it includes the constant of integration, '+ C'."
+    },
+    {
+      "front": "What is the notation for an indefinite integral?",
+      "back": "$\\int f(x) \\, dx$. The $\\int$ is the integral sign, $f(x)$ is the integrand, and $dx$ indicates integration with respect to $x$."
+    },
+    {
+      "front": "What is the 'integrand'?",
+      "back": "The function that is being integrated. In $\\int f(x) \\, dx$, the integrand is $f(x)$."
+    },
+    {
+      "front": "What is the purpose of the '+ C' in an indefinite integral?",
+      "back": "It is the constant of integration. Since the derivative of any constant is zero, there are infinitely many possible constant terms for an antiderivative. '+ C' represents all of them."
+    },
+    {
+      "front": "State the power rule for integration.",
+      "back": "$\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$, for any rational number $n \\neq -1$."
+    },
+    {
+      "front": "Why does the power rule for integration have the condition $n \\neq -1$?",
+      "back": "If $n = -1$, the denominator in the rule becomes $n+1 = -1+1 = 0$. Division by zero is undefined."
+    },
+    {
+      "front": "What does the 'family of curves' represent in integration?",
+      "back": "The set of all functions that have the same derivative. They are vertical translations of each other, with the vertical shift determined by the constant of integration, C."
+    },
+    {
+      "front": "How do you find a specific value for the constant of integration, C?",
+      "back": "You need a 'boundary condition' or 'initial condition', which is usually a point $(x, y)$ that the function passes through. Substitute these values into the integrated function and solve for C."
+    },
+    {
+      "front": "What is the integral of a constant, $k$?",
+      "back": "$\\int k \\, dx = kx + C$. This is because the derivative of $kx$ is $k$."
+    },
+    {
+      "front": "How do you integrate a function that is a sum of terms, like $f(x) + g(x)$?",
+      "back": "Integrate each term separately and then add them together. $\\int (f(x) + g(x)) \\, dx = \\int f(x) \\, dx + \\int g(x) \\, dx$."
+    },
+    {
+      "front": "Common mistake: What is often forgotten when finding an indefinite integral?",
+      "back": "Forgetting to add the constant of integration, '+ C'. This will always lose at least one mark in an exam."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't we use the power rule for integrating $x^{-1}$ (or $1/x$)?",
+      "a": "If we tried to apply the power rule, we would get $\\frac{x^{-1+1}}{-1+1} = \\frac{x^0}{0}$. Since division by zero is undefined, the rule doesn't work. The integral of $1/x$ is a special function, the natural logarithm, $\\ln|x| + C$, which you will study in more detail later."
+    },
+    {
+      "q": "What does the 'dx' at the end of an integral actually mean?",
+      "a": "The '$dx$' specifies the variable of integration. It tells you to integrate 'with respect to x'. If you had, for example, $\\int (2t^2) \\, dt$, the '$dt$' would tell you to integrate with respect to the variable $t$. It's a crucial part of the integral notation."
+    },
+    {
+      "q": "Is there a product or quotient rule for integration?",
+      "a": "Unlike differentiation, there is no simple product or quotient rule for integration. There are more advanced techniques called 'integration by parts' and 'integration by substitution' to handle such cases, but these are not part of the AA SL syllabus. For this course, you will typically need to expand brackets or simplify expressions into a sum of terms before you can integrate."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far in calculus, we've focused on differentiation: taking a function, $f(x)$, and finding its gradient function, $f'(x)$. Now, we'll explore the reverse process. What if you know the gradient of a curve at every point, and you want to find the equation of the curve itself? This reverse process is called integration, or more formally, antidifferentiation."
+    },
+    {
+      "type": "heading",
+      "content": "Antidifferentiation and the Indefinite Integral"
+    },
+    {
+      "type": "text",
+      "content": "If we know that differentiating $F(x)$ gives us $f(x)$, then we say that $F(x)$ is an antiderivative of $f(x)$. The process of finding this antiderivative is integration. The notation we use is the indefinite integral."
+    },
+    {
+      "type": "formula",
+      "content": "$\\int f(x) \\, dx = F(x) + C$"
+    },
+    {
+      "type": "text",
+      "content": "Here, the symbol $\\int$ is the integral sign. The function $f(x)$ is called the integrand. The $dx$ tells us that we are integrating with respect to the variable $x$. The result, $F(x) + C$, is the most general antiderivative, where $F'(x) = f(x)$ and $C$ is the constant of integration."
+    },
+    {
+      "type": "heading",
+      "content": "The Power Rule for Integration"
+    },
+    {
+      "type": "text",
+      "content": "Just as we have a power rule for differentiation, we have a corresponding rule for integration. It's the reverse of the differentiation rule. To differentiate $x^n$, we multiply by the power and then subtract one from the power. To integrate, we do the opposite steps in reverse order: we add one to the power, and then divide by the new power."
+    },
+    {
+      "type": "formula",
+      "content": "For any rational number $n \\neq -1$: \n$\\int ax^n \\, dx = \\frac{ax^{n+1}}{n+1} + C$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1:** Increase the power (exponent) of $x$ by 1.",
+        "**Step 2:** Divide the term by this new power.",
+        "**Step 3:** Don't forget to add the constant of integration, $C$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the indefinite integral of $f(x) = 4x^3 - 6x^2 + 2x - 7$.",
+      "solution": "We need to find $\\int (4x^3 - 6x^2 + 2x - 7) \\, dx$. We integrate term by term.\n\n\\[ \\int (4x^3 - 6x^2 + 2x^1 - 7x^0) \\, dx \\]\n\nApplying the power rule $\\int ax^n \\, dx = \\frac{ax^{n+1}}{n+1} + C$ to each term:\n\nFor $4x^3$: $\\frac{4x^{3+1}}{3+1} = \\frac{4x^4}{4} = x^4$\n\nFor $-6x^2$: $\\frac{-6x^{2+1}}{2+1} = \\frac{-6x^3}{3} = -2x^3$\n\nFor $2x$: $\\frac{2x^{1+1}}{1+1} = \\frac{2x^2}{2} = x^2$\n\nFor $-7$: $\\frac{-7x^{0+1}}{0+1} = -7x$\n\nCombining these and adding the constant of integration:\n\\[ \\int (4x^3 - 6x^2 + 2x - 7) \\, dx = x^4 - 2x^3 + x^2 - 7x + C \\] \n\n**Marking:**\n*   **(M1)** for attempting to apply the power rule to at least one term (increasing power by 1).\n*   **(A1)** for $x^4 - 2x^3 + x^2 - 7x$.\n*   **(A1)** for including '+ C'."
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Constant of Integration, C"
+    },
+    {
+      "type": "text",
+      "content": "The result of an indefinite integral is a 'family of functions', not a single function. For example, $x^2+1$, $x^2-10$, and $x^2+50$ all have the same derivative, $2x$. The constant $C$ represents this ambiguity. To find the specific function, we need more information – typically a point that the curve passes through. This is known as a boundary condition or initial condition."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, questions asking for 'the equation of the curve' require you to find a specific value for $C$. Forgetting to add '+ C' in your initial integration step is a very common error that prevents you from solving the problem correctly. Always write '+ C' immediately after integrating."
+    },
+    {
+      "type": "workedExample",
+      "question": "The gradient of a curve is given by $\\frac{dy}{dx} = 9x^2 - 4$. The curve passes through the point $(2, 10)$. Find the equation of the curve.",
+      "solution": "The equation of the curve, $y$, is the integral of its gradient function.\n\\[ y = \\int (9x^2 - 4) \\, dx \\]\n\nFirst, perform the integration:\n\\[ y = \\frac{9x^{2+1}}{2+1} - \\frac{4x^{0+1}}{0+1} + C \\]\n\\[ y = \\frac{9x^3}{3} - 4x + C \\]\n\\[ y = 3x^3 - 4x + C \\] \nThis is the general equation for the family of curves. **(M1)(A1)**\n\nNow, use the given point $(2, 10)$ to find the specific value of $C$. Substitute $x=2$ and $y=10$ into the equation:\n\\[ 10 = 3(2)^3 - 4(2) + C \\] **(M1)** for substitution.\n\\[ 10 = 3(8) - 8 + C \\]\n\\[ 10 = 24 - 8 + C \\]\n\\[ 10 = 16 + C \\]\n\\[ C = 10 - 16 = -6 \\]\n\nFinally, write the specific equation of the curve with the value of $C$:\n\\[ y = 3x^3 - 4x - 6 \\] **(A1)**"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=5.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: The Constant of Integration",
+          "href": "https://www.geogebra.org/m/CKEtSgWz"
+        },
+        {
+          "label": "Video: Introduction to Indefinite Integrals",
+          "href": "https://www.youtube.com/watch?v=2k32Oses4jE"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "The Constant of Integration",
+    "embedUrl": "https://www.geogebra.org/classic?material=CKEtSgWz",
+    "launchUrl": "https://www.geogebra.org/classic?material=CKEtSgWz",
+    "hint": "Use “The Constant of Integration” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

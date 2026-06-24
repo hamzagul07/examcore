@@ -1,0 +1,175 @@
+{
+  "slug": "4-3-correlation-and-regression-pearson-and-spearman",
+  "topicCode": "4.3",
+  "title": "Correlation and regression: Pearson and Spearman",
+  "paper": "P2",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces two key measures of correlation: Pearson's product-moment correlation coefficient ($r$) for linear relationships, and Spearman's rank correlation coefficient ($r_s$) for monotonic relationships. You will learn how to distinguish between them, calculate them using your GDC, and interpret their values to describe the strength and direction of the association between two variables.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Distinguish between the conditions for using Pearson's ($r$) and Spearman's ($r_s$) correlation coefficients.",
+    "Use a GDC to calculate the values of $r$ and $r_s$ for a given set of bivariate data.",
+    "Interpret the calculated correlation coefficient in context, describing the strength and direction of the relationship.",
+    "Understand that correlation does not imply causation."
+  ],
+  "simpleExplanation": {
+    "title": "Are They Related?",
+    "summary": "Correlation is a statistical measure that expresses the extent to which two variables are related. We use a number called a correlation coefficient to describe how strong this relationship is and whether it's positive or negative.",
+    "analogy": "Imagine you're selling ice cream. As the temperature outside gets hotter, you notice you sell more ice cream. This relationship between temperature and sales is a positive correlation. A correlation coefficient would give us a single number to describe exactly how strong this link is.",
+    "steps": [
+      "Plot the data on a scatter diagram to visually assess the relationship (is it linear, monotonic, or neither?).",
+      "Enter the two sets of data into your GDC's lists (e.g., L1 and L2).",
+      "Choose the correct statistical calculation on your GDC: 'LinReg(ax+b)' for Pearson's ($r$) or calculate $r$ on ranked data for Spearman's ($r_s$).",
+      "State the calculated coefficient and interpret it using the standard scale (e.g., \"There is a strong, positive correlation between...\")."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is bivariate data?",
+      "back": "Data that has two variables for each observation. For example, the height and weight of a group of people."
+    },
+    {
+      "front": "What does a correlation coefficient measure?",
+      "back": "The strength and direction of a relationship between two variables."
+    },
+    {
+      "front": "What is Pearson's product-moment correlation coefficient ($r$)?",
+      "back": "A measure of the strength and direction of a *linear* relationship between two variables."
+    },
+    {
+      "front": "What is Spearman's rank correlation coefficient ($r_s$)?",
+      "back": "A measure of the strength and direction of a *monotonic* relationship between two variables. It works by ranking the data first."
+    },
+    {
+      "front": "What is a monotonic relationship?",
+      "back": "A relationship where as one variable increases, the other variable consistently either increases or decreases, but not necessarily at a constant rate (i.e., not necessarily a straight line)."
+    },
+    {
+      "front": "When should you use Spearman's ($r_s$) instead of Pearson's ($r$)?",
+      "back": "When the relationship is monotonic but not linear, or when the data is ordinal (can be ranked but not measured on a standard scale)."
+    },
+    {
+      "front": "What is the range of values for both $r$ and $r_s$?",
+      "back": "From -1 to +1, inclusive. ($-1 \\le r \\le 1$ and $-1 \\le r_s \\le 1$)"
+    },
+    {
+      "front": "Describe a correlation value of $r \\approx 0.85$.",
+      "back": "A strong, positive correlation."
+    },
+    {
+      "front": "Describe a correlation value of $r \\approx -0.25$.",
+      "back": "A weak, negative correlation."
+    },
+    {
+      "front": "What does \"correlation does not imply causation\" mean?",
+      "back": "Just because two variables are strongly correlated, it doesn't mean that one causes the other. There could be a third, unobserved variable (a confounding variable) causing both."
+    },
+    {
+      "front": "What does a scatter diagram for data with $r_s \\approx 1$ but $r \\approx 0.8$ look like?",
+      "back": "The points would form a perfect or near-perfect curve that is always increasing, but not a straight line. This shows a perfect monotonic relationship but not a perfect linear one."
+    },
+    {
+      "front": "On a Paper 2, how do you calculate $r$ and $r_s$?",
+      "back": "Always use your GDC. For $r$, use the linear regression function. For $r_s$, you may need to rank the data first and then calculate Pearson's $r$ on the ranks, or use a specific Spearman's function if available."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between Pearson's and Spearman's correlation?",
+      "a": "Pearson's ($r$) is for straight-line (linear) relationships with quantitative data. Spearman's ($r_s$) is for relationships that are consistently increasing or decreasing but may be curved (monotonic), or for data that is already ranked (ordinal)."
+    },
+    {
+      "q": "Do I need to memorise the formulas for $r$ and $r_s$?",
+      "a": "No. For Paper 2, you are expected to use your GDC to find the values of $r$ and $r_s$. You just need to know which buttons to press and how to interpret the output correctly."
+    },
+    {
+      "q": "What does 'correlation does not imply causation' really mean?",
+      "a": "It means two things can be linked without one causing the other. For example, ice cream sales and the number of shark attacks are positively correlated. This isn't because eating ice cream makes sharks attack you! The hidden factor (a confounding variable) is hot weather, which causes more people to buy ice cream and more people to go swimming, increasing the chance of shark encounters."
+    },
+    {
+      "q": "My GDC doesn't have a Spearman's button. What do I do?",
+      "a": "You need to perform the ranking yourself first. For each variable, assign rank 1 to the smallest value, 2 to the next smallest, and so on. Create two new lists with these ranks. Then, calculate Pearson's correlation coefficient ($r$) on these two new lists of ranks. The result is your Spearman's coefficient ($r_s$)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In many real-world scenarios, we collect data on two different variables and want to know if there's a connection between them. For instance, does more time spent revising lead to a higher exam score? Does a country's GDP affect life expectancy? This lesson explores how we can mathematically measure and describe these relationships."
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Relationships: Correlation"
+    },
+    {
+      "type": "text",
+      "content": "Correlation is a statistical measure that describes the association between two variables. We describe it in terms of its direction (positive or negative) and its strength (strong, moderate, weak, or none). A positive correlation means that as one variable increases, the other tends to increase. A negative correlation means that as one variable increases, the other tends to decrease. The strength tells us how closely the data points follow this trend."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Positive Correlation:** Variables move in the same direction.",
+        "**Negative Correlation:** Variables move in opposite directions.",
+        "**Strength of Correlation ($|r|$ or $|r_s|$):**",
+        "0 < |r| ≤ 0.25: Very weak",
+        "0.25 < |r| ≤ 0.5: Weak",
+        "0.5 < |r| ≤ 0.75: Moderate",
+        "0.75 < |r| ≤ 1.0: Strong"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Pearson's Product-Moment Correlation Coefficient ($r$)"
+    },
+    {
+      "type": "text",
+      "content": "Pearson's coefficient, denoted by $r$, is used when we suspect a **linear** relationship between two quantitative variables. This means the points on a scatter diagram tend to form a pattern that can be approximated by a straight line. The value of $r$ is always between -1 and 1, where 1 is a perfect positive linear correlation, -1 is a perfect negative linear correlation, and 0 indicates no linear correlation."
+    },
+    {
+      "type": "workedExample",
+      "question": "The table below shows the age in years and the value in thousands of pounds (£) for eight second-hand cars of the same model.\n\n| Age (years) | 2 | 3 | 5 | 1 | 6 | 8 | 4 | 7 |\n|---|---|---|---|---|---|---|---|---|\n| Value (£1000s) | 15 | 12 | 9 | 18 | 7 | 4 | 11 | 5 |\n\n(a) Calculate Pearson's product-moment correlation coefficient, $r$.\n(b) Interpret the value of $r$ in the context of the question.",
+      "solution": "(a) We use a GDC to find the correlation coefficient.\n1. Enter the ages into one list (e.g., L1) and the values into a second list (e.g., L2).\n2. Use the GDC's function for linear regression (e.g., LinReg(ax+b) L1, L2).\n\n(M1) for an attempt to use the GDC's regression feature.\n\nThe calculated value is:\n$r = -0.98635...$\n$r \\approx -0.986$ (3 s.f.) (A1)\n\n(b) To interpret, we need to state the strength and direction.\nAn $r$ value of -0.986 is very close to -1.\nThere is a **strong, negative** correlation between the age of a car and its value. (A1 for strong, A1 for negative). This means that as the cars get older, their value tends to decrease significantly."
+    },
+    {
+      "type": "heading",
+      "content": "Spearman's Rank Correlation Coefficient ($r_s$)"
+    },
+    {
+      "type": "text",
+      "content": "What if the relationship isn't a straight line? For example, a person's performance in a sport might improve quickly with practice at first, but then the improvements might level off. This relationship is always increasing (monotonic) but not linear. For these **monotonic** relationships, or for data that is given in ranks (e.g., 1st, 2nd, 3rd), we use Spearman's rank correlation coefficient, $r_s$. It works by converting the data values into ranks and then applying the same calculation as Pearson's on those ranks."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two judges in a diving competition awarded scores to seven competitors. The ranks they gave are shown in the table.\n\n| Competitor | A | B | C | D | E | F | G |\n|---|---|---|---|---|---|---|---|\n| Judge 1 Rank | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n| Judge 2 Rank | 2 | 1 | 4 | 3 | 6 | 5 | 7 |\n\n(a) Calculate Spearman's rank correlation coefficient, $r_s$, for this data.\n(b) Interpret your result.",
+      "solution": "(a) The data are already ranked, so we can calculate Pearson's coefficient on these ranks to find Spearman's.\n1. Enter Judge 1's ranks into L1 and Judge 2's ranks into L2.\n2. Calculate the linear regression correlation coefficient for these two lists.\n\n(M1) for calculating Pearson's $r$ on the ranked data.\n\nThe calculated value is:\n$r_s = 0.89285...$\n$r_s \\approx 0.893$ (3 s.f.) (A1)\n\n(b) The value 0.893 is close to 1.\nThere is a **strong, positive** correlation between the rankings of the two judges. (A1 for strong, A1 for positive). This suggests that the judges are in strong agreement with each other about the performance of the competitors."
+    },
+    {
+      "type": "examTip",
+      "content": "Remember the golden rule: **Correlation does not imply causation!** Just because two variables are strongly correlated, you cannot conclude that one causes the other. In an exam, if asked to comment on a correlation, stick to describing the strength and direction. Do not claim a causal link unless further information is given. Also, always use the wording from the IB's strength table for your interpretation."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Correlation Questions",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Guide: TI-84 Correlation",
+          "href": "#"
+        },
+        {
+          "label": "GDC Guide: Casio fx-CG50 Correlation",
+          "href": "#"
+        },
+        {
+          "label": "Interactive Scatter Plot Tool",
+          "href": "#"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

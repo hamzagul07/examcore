@@ -1,0 +1,176 @@
+{
+  "slug": "4-2-descriptive-statistics",
+  "topicCode": "4.2",
+  "title": "Descriptive statistics",
+  "paper": "P2",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces descriptive statistics, focusing on measures of central tendency (mean, median, mode) and dispersion (range, IQR, standard deviation). It emphasises the practical application of a Graphic Display Calculator (GDC) to analyse data sets, construct box plots, and identify outliers, aligning with Paper 2 skills.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Calculate measures of central tendency (mean, median, mode) for discrete and grouped data.",
+    "Calculate measures of dispersion (range, IQR, standard deviation, variance) and quartiles.",
+    "Construct and interpret box and whisker plots, including the formal test for outliers.",
+    "Utilise a Graphic Display Calculator (GDC) to efficiently compute descriptive statistics."
+  ],
+  "simpleExplanation": {
+    "title": "Data's Story in Numbers",
+    "summary": "Descriptive statistics are tools to summarise the key features of a dataset, like its centre and spread. They turn a long list of numbers into a few meaningful values that tell a clear story.",
+    "analogy": "Imagine you're describing a football team's season. Instead of listing the score of every single match, you'd use summaries: the average goals scored per game (like the mean), the most common final score (the mode), and how consistent their performance was (like the standard deviation). These summaries give a quick, clear picture of the whole season.",
+    "steps": [
+      "Enter your data into the GDC's list/spreadsheet feature. For grouped data, enter mid-interval values in one list and frequencies in another.",
+      "Access the one-variable statistics calculation menu (e.g., 1-Var Stats). Ensure you specify the correct list for data and, if applicable, the list for frequencies.",
+      "Read the key values from the GDC output. This will include the mean ($\\bar{x}$), standard deviation ($\\sigma_x$), median (Med), quartiles (Q1, Q3), and sample size (n).",
+      "Use these values to answer the question. Calculate the range ($max - min$) or IQR ($Q_3 - Q_1$) if needed, and apply the outlier test formula."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the 'mean' ($\\bar{x}$)?",
+      "back": "The 'mean' is the sum of all data values divided by the number of data values. It's often called the 'average'. It is sensitive to outliers."
+    },
+    {
+      "front": "What is the 'median'?",
+      "back": "The 'median' is the middle value of an ordered dataset. If there are two middle values, it's their average. It represents the 50th percentile and is resistant to outliers."
+    },
+    {
+      "front": "What is the 'mode'?",
+      "back": "The 'mode' is the value that appears most frequently in a dataset. A dataset can have one mode (unimodal), two modes (bimodal), or no mode."
+    },
+    {
+      "front": "What is the 'range'?",
+      "back": "The 'range' is a measure of spread, calculated as the maximum value minus the minimum value. It is highly affected by outliers."
+    },
+    {
+      "front": "What is the 'interquartile range' (IQR)?",
+      "back": "The IQR is the range of the middle 50% of the data. It's calculated as $Q_3 - Q_1$, where $Q_3$ is the upper quartile (75th percentile) and $Q_1$ is the lower quartile (25th percentile)."
+    },
+    {
+      "front": "What does 'standard deviation' ($\\sigma_x$) measure?",
+      "back": "Standard deviation measures the average spread of data points from the mean. A low $\\sigma_x$ means data is clustered close to the mean; a high $\\sigma_x$ means data is spread out."
+    },
+    {
+      "front": "What is 'variance'?",
+      "back": "Variance is the square of the standard deviation ($\\sigma_x^2$). It also measures data spread. In IB AI SL, you will work more directly with standard deviation."
+    },
+    {
+      "front": "What is the formula to test for an 'outlier'?",
+      "back": "A data point $x$ is an outlier if $x < Q_1 - 1.5 \\times IQR$ or $x > Q_3 + 1.5 \\times IQR$. You must show this calculation to justify your answer."
+    },
+    {
+      "front": "For grouped data (e.g., $10 \\le h < 20$), what value do I enter into my GDC?",
+      "back": "You must use the mid-interval value (midpoint). For $10 \\le h < 20$, the midpoint is $(10+20)/2 = 15$. This is an estimate, so answers for mean and standard deviation are also estimates."
+    },
+    {
+      "front": "What are the five numbers in a 'five-number summary'?",
+      "back": "Minimum value, Lower Quartile ($Q_1$), Median, Upper Quartile ($Q_3$), and Maximum value. These are used to draw a box and whisker plot."
+    },
+    {
+      "front": "GDC Tip: My calculator shows $\\sigma_x$ and $s_x$. Which one do I use?",
+      "back": "For IB Maths AI SL, you should almost always use the population standard deviation, $\\sigma_x$. This is the default for problems in this course unless you are explicitly told the data is a sample."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between population standard deviation ($\\sigma_x$) and sample standard deviation ($s_x$)?",
+      "a": "In AI SL, you will almost always use the population standard deviation, denoted $\\sigma_x$ on your GDC. This is used when your dataset is considered the entire 'population' of interest for the problem. $s_x$ is used when your data is just a sample of a larger population. For this course, always use $\\sigma_x$ unless a question explicitly instructs you otherwise."
+    },
+    {
+      "q": "My GDC gives different values for Q1 and Q3 than my friend's calculator. Why?",
+      "a": "Different calculator models (and even software) use slightly different algorithms to calculate quartiles, especially for discrete datasets. The IB is aware of this and will accept any correct value that is consistent with the method used by common GDCs (like TI or Casio). Always use the value from your calculator in the exam and be consistent."
+    },
+    {
+      "q": "Can the mode be used for continuous data?",
+      "a": "For grouped continuous data, we don't find a single modal value but a 'modal class'. This is simply the class interval with the highest frequency. For example, if the class $10-20$ cm has a higher frequency than any other class, it is the modal class."
+    },
+    {
+      "q": "What should I do if my data has no mode?",
+      "a": "It's possible for a dataset to have no mode (if all values appear only once) or to be multimodal (if multiple values share the same highest frequency). If there is no mode, you simply state that. If it's bimodal or multimodal, you should list all the modes."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to descriptive statistics. In this topic, we learn how to take a raw set of data—which can be long and confusing—and summarise it into a few meaningful numbers and pictures. These summaries allow us to understand the data's main characteristics, such as its typical value (central tendency) and how spread out it is (dispersion). This is a fundamental skill for making sense of information in any field, from sports science to finance."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Central Tendency"
+    },
+    {
+      "type": "text",
+      "content": "Measures of central tendency give us a single value that represents the 'centre' or 'typical' value of a dataset. The three main measures are the mean, median, and mode. The mean is the arithmetic average, the median is the middle value, and the mode is the most frequent value. The choice of which measure to use depends on the data's distribution; for example, the median is often preferred over the mean when the data contains significant outliers, as it is less affected by extreme values."
+    },
+    {
+      "type": "formula",
+      "content": "Mean of a dataset: $\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}$ \\\\ Mean from a frequency table: $\\bar{x} = \\frac{\\sum_{i=1}^{k} f_i x_i}{n}$, where $n = \\sum f_i$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of hours a student spent studying for their IB exams over a period of 10 days was recorded as: 4, 5, 3, 6, 4, 7, 8, 5, 4, 9. Using your GDC, find:\n(a) the mean number of hours studied.\n(b) the median.\n(c) the mode.",
+      "solution": "First, enter the data into a list on your GDC (e.g., L1).\nThen, use the 1-Variable Statistics function.\n\n(a) The GDC output for the mean is $\\bar{x} = 5.5$. (A1)\nMean = 5.5 hours.\n\n(b) The data ordered is: 3, 4, 4, 4, 5, 5, 6, 7, 8, 9. The middle values are the 5th and 6th terms, which are 5 and 5. The median is their average.\nFrom the GDC, Med = 5. (A1)\nMedian = 5 hours.\n\n(c) By observing the data, the number 4 appears most often (3 times).\nMode = 4 hours. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Dispersion"
+    },
+    {
+      "type": "text",
+      "content": "While central tendency tells us about the centre of the data, measures of dispersion (or spread) tell us how varied the data points are. A small dispersion indicates data points are clustered together, suggesting consistency. A large dispersion indicates they are spread far apart."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Range**: The difference between the maximum and minimum values. Simple to calculate but very sensitive to outliers.",
+        "**Interquartile Range (IQR)**: The difference between the upper quartile ($Q_3$) and the lower quartile ($Q_1$). It describes the spread of the middle 50% of the data and is robust against outliers.",
+        "**Standard Deviation ($\\sigma_x$)**: The most common measure of dispersion. It represents the typical distance of a data point from the mean. A larger value means greater spread.",
+        "**Variance ($\\sigma_x^2$)**: The square of the standard deviation. It is also a measure of spread, but its units are squared (e.g., hours$^2$), which can be less intuitive to interpret."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 2, you are expected to use your GDC for all statistical calculations. It saves time and reduces calculation errors. However, you must know which symbol on the GDC screen corresponds to which measure. Always write down the unrounded value from your calculator display before giving your final answer rounded to 3 significant figures, as this can earn you method marks."
+    },
+    {
+      "type": "heading",
+      "content": "Box and Whisker Plots and Outliers"
+    },
+    {
+      "type": "text",
+      "content": "A box and whisker plot is a powerful graphical representation of the five-number summary: minimum, $Q_1$, median, $Q_3$, and maximum. The 'box' spans the IQR, containing the middle 50% of the data. The 'whiskers' extend to the minimum and maximum values. Sometimes, a whisker does not extend to the true minimum or maximum if an outlier is present. In these cases, the outlier is marked with a separate point, and the whisker extends to the next most extreme value within the acceptable range."
+    },
+    {
+      "type": "formula",
+      "content": "Outlier Test: A data point $x$ is an outlier if it is outside the interval: \\\\ $[Q_1 - 1.5 \\times IQR, \\; Q_3 + 1.5 \\times IQR]$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The weights, $w$ in kg, of 120 dogs in a rescue centre are summarised in the frequency table below.\n\n| Weight (kg)   | Frequency |\n|---------------|-----------|\n| $0 \\le w < 10$ | 15        |\n| $10 \\le w < 20$| 45        |\n| $20 \\le w < 30$| 36        |\n| $30 \\le w < 40$| 18        |\n| $40 \\le w < 50$| 6         |\n\n(a) Write down the mid-interval value for the $10 \\le w < 20$ class. [1]\n(b) Using your GDC, find an estimate for (i) the mean weight, (ii) the standard deviation. [4]\n(c) The GDC gives $Q_1 = 14.4$ kg and $Q_3 = 27.5$ kg. A dog weighing 48 kg is considered a potential outlier. Determine if this dog is an outlier, justifying your answer. [3]",
+      "solution": "(a) Mid-interval value = $\\frac{10+20}{2} = 15$. (A1)\n\n(b) Enter mid-interval values (5, 15, 25, 35, 45) into L1 and frequencies (15, 45, 36, 18, 6) into L2. Use 1-Var Stats with L1 as the List and L2 as the FreqList. (M1)\n(i) From GDC, $\\bar{x} = 21.5$. Estimated mean weight is 21.5 kg. (A1)\n(ii) From GDC, $\\sigma_x = 10.379...$. Estimated standard deviation is 10.4 kg (3 s.f.). (A2)\n\n(c) First, calculate the IQR. \n$IQR = Q_3 - Q_1 = 27.5 - 14.4 = 13.1$. (M1)\nNext, calculate the upper boundary for outliers.\nUpper boundary = $Q_3 + 1.5 \\times IQR = 27.5 + 1.5 \\times 13.1 = 27.5 + 19.65 = 47.15$. (M1)\nSince $48 > 47.15$, the dog weighing 48 kg is an outlier. (R1)(A1)\nNote: A correct conclusion (A1) must be supported by a correct reason/justification (R1)."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Descriptive Statistics",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video: Statistics with a TI-Nspire CX II",
+          "href": "https://www.youtube.com/watch?v=f_8a05c5x-M"
+        },
+        {
+          "label": "Khan Academy: Measures of spread",
+          "href": "https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/interquartile-range-iqr/a/measures-of-spread-range-and-interquartile-range-iqr"
+        },
+        {
+          "label": "Revision Village: Descriptive Statistics",
+          "href": "https://www.revisionvillage.com/ib-maths/applications-and-interpretation-sl/topic-4-statistics-and-probability/4-2-descriptive-statistics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

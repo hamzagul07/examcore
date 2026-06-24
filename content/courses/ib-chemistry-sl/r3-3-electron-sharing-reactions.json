@@ -1,0 +1,188 @@
+{
+  "slug": "r3-3-electron-sharing-reactions",
+  "topicCode": "R3.3",
+  "title": "Electron sharing reactions",
+  "paper": "P2",
+  "paperName": "Chemistry SL",
+  "status": "premium",
+  "summary": "This lesson introduces the core concepts of redox reactions. It covers the rules for assigning oxidation states, identifying species that are oxidized and reduced, defining oxidizing and reducing agents, and provides a systematic method for balancing complex redox equations in acidic solutions.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Deduce the oxidation number of an atom in a species.",
+    "Identify the species oxidized and reduced, and the oxidizing and reducing agents, in a redox reaction.",
+    "Deduce redox equations using the relevant half-equations.",
+    "Balance redox equations in acidic or neutral solution."
+  ],
+  "simpleExplanation": {
+    "title": "The Great Electron Exchange",
+    "summary": "Redox reactions are all about the transfer of electrons between chemical species. One substance loses electrons (oxidation) while another simultaneously gains them (reduction).",
+    "analogy": "Imagine two people trading items at a market. One person gives away an item, becoming 'lighter' and more 'positive' (oxidation). The other person accepts the item, becoming 'heavier' and more 'negative' (reduction). The trade can't happen unless both a giver and a receiver are present; similarly, oxidation and reduction always occur together.",
+    "steps": [
+      "First, assign an oxidation state to every atom in the reaction using a set of hierarchical rules. This tells you the hypothetical charge of each atom.",
+      "Next, compare the oxidation states of atoms from the reactant side to the product side. An increase in oxidation state signifies oxidation, while a decrease signifies reduction.",
+      "Separate the overall reaction into two half-equations: one for oxidation and one for reduction. Balance the atoms and then balance the charge by adding electrons.",
+      "Finally, multiply the half-equations so the number of electrons lost in oxidation equals the number gained in reduction. Add them together and cancel out the electrons to get the final balanced equation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is oxidation?",
+      "back": "Oxidation is the loss of electrons, resulting in an increase in oxidation number. Remember OIL: Oxidation Is Loss."
+    },
+    {
+      "front": "What is reduction?",
+      "back": "Reduction is the gain of electrons, resulting in a decrease in oxidation number. Remember RIG: Reduction Is Gain."
+    },
+    {
+      "front": "What is an oxidizing agent (or oxidant)?",
+      "back": "A substance that causes another substance to be oxidized. In the process, the oxidizing agent is itself reduced."
+    },
+    {
+      "front": "What is a reducing agent (or reductant)?",
+      "back": "A substance that causes another substance to be reduced. In the process, the reducing agent is itself oxidized."
+    },
+    {
+      "front": "What is the oxidation state of an element in its standard state (e.g., O₂, Na, S₈)?",
+      "back": "Zero (0). By definition, an uncombined element has an oxidation state of zero."
+    },
+    {
+      "front": "What is the oxidation state of a monatomic ion?",
+      "back": "The oxidation state is equal to the charge of the ion. For example, in $\\text{Fe}^{3+}$, the oxidation state of iron is +3."
+    },
+    {
+      "front": "What is the oxidation state of oxygen in a compound?",
+      "back": "Usually -2. The main exceptions are in peroxides (e.g., $\\text{H}_2\\text{O}_2$), where it is -1, and in compounds with fluorine (e.g., $\\text{OF}_2$), where it is +2."
+    },
+    {
+      "front": "What is the oxidation state of hydrogen in a compound?",
+      "back": "Usually +1 when bonded to non-metals. The exception is in metal hydrides (e.g., $\\text{NaH}$), where it is -1."
+    },
+    {
+      "front": "What is the sum of oxidation states in a neutral compound?",
+      "back": "The sum of all oxidation states must equal zero."
+    },
+    {
+      "front": "What is the sum of oxidation states in a polyatomic ion?",
+      "back": "The sum of all oxidation states must equal the overall charge of the ion."
+    },
+    {
+      "front": "In the reaction $\\text{Zn} + \\text{Cu}^{2+} \\rightarrow \\text{Zn}^{2+} + \\text{Cu}$, which species is the oxidizing agent?",
+      "back": "The copper(II) ion, $\\text{Cu}^{2+}$. It is reduced from +2 to 0, and it causes the oxidation of Zn to $\\text{Zn}^{2+}$."
+    },
+    {
+      "front": "How do you balance charge in a reduction half-equation?",
+      "back": "By adding electrons ($e^-$) to the reactant side (the more positive side) to make the total charge on both sides equal."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can an element be both oxidized and reduced in the same reaction?",
+      "a": "Yes, this is a special type of redox reaction called disproportionation. In these reactions, a single species is simultaneously oxidized and reduced to form two different products. For example, in the reaction of chlorine with cold, dilute sodium hydroxide, chlorine (oxidation state 0) is reduced to chloride, $\\text{Cl}^-$ (oxidation state -1) and oxidized to chlorate(I), $\\text{ClO}^-$ (oxidation state +1)."
+    },
+    {
+      "q": "Why do we need to balance redox equations using this complex method?",
+      "a": "Balancing redox equations ensures that the reaction adheres to two fundamental laws: the Law of Conservation of Mass (atoms are not created or destroyed) and the Law of Conservation of Charge (the net charge on the reactant side must equal the net charge on the product side). The half-equation method is a systematic approach that guarantees both are conserved, which is crucial for accurate stoichiometric calculations."
+    },
+    {
+      "q": "What is the difference between oxidation state and formal charge?",
+      "a": "Both are 'bookkeeping' tools for electrons, but they are based on different assumptions. Formal charge assumes all bonding electrons are shared equally (pure covalent bonding). Oxidation state assumes the more electronegative atom in a bond takes all the bonding electrons (pure ionic bonding). For redox reactions, oxidation state is the more useful concept as it is designed to track the transfer of electrons."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Electron sharing, or more accurately, electron transfer, is at the heart of many chemical reactions. These reactions, known as redox reactions, are fundamental to life and technology, powering everything from cellular respiration in our bodies to the batteries in our phones. In this lesson, we will learn how to track these electron movements using the concept of oxidation states and use this knowledge to balance complex chemical equations."
+    },
+    {
+      "type": "heading",
+      "content": "Assigning Oxidation States"
+    },
+    {
+      "type": "text",
+      "content": "Oxidation states, also called oxidation numbers, are a formal system for tracking electrons. They represent the hypothetical charge an atom would have if all its bonds were 100% ionic. While this is rarely the case, it provides a powerful tool for understanding redox reactions. We assign them using a clear hierarchy of rules."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Rule 1:** The oxidation state of an atom in an element is 0 (e.g., $\\text{Na}$, $\\text{O}_2$, $\\text{P}_4$).",
+        "**Rule 2:** The oxidation state of a monatomic ion is equal to its charge (e.g., $\\text{Na}^+$ is +1, $\\text{S}^{2-}$ is -2).",
+        "**Rule 3:** The sum of oxidation states in a neutral compound is 0. In a polyatomic ion, the sum equals the ion's charge.",
+        "**Rule 4:** In compounds, Group 1 metals are +1, Group 2 metals are +2.",
+        "**Rule 5:** In compounds, fluorine is always -1.",
+        "**Rule 6:** In compounds, hydrogen is usually +1 (except in metal hydrides like $\\text{NaH}$, where it is -1).",
+        "**Rule 7:** In compounds, oxygen is usually -2 (except in peroxides like $\\text{H}_2\\text{O}_2$, where it is -1, and with fluorine like $\\text{OF}_2$, where it is +2)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Determine the oxidation state of sulfur in the sulfate ion, $\\text{SO}_4^{2-}$.",
+      "solution": "1.  Identify the overall charge of the species. The sulfate ion has a charge of 2-. Therefore, the sum of oxidation states must be -2. [1]\n2.  Assign the oxidation state of the more electronegative element, which is oxygen. According to the rules, oxygen is -2 (it is not a peroxide or bonded to fluorine). [1]\n3.  Set up an algebraic equation. Let the oxidation state of sulfur be $x$. There is one sulfur atom and four oxygen atoms.\n    $x + 4(-2) = -2$ [1]\n4.  Solve the equation for $x$.\n    $x - 8 = -2$\n    $x = +6$\n    The oxidation state of sulfur in $\\text{SO}_4^{2-}$ is +6. [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Identifying Redox Processes and Agents"
+    },
+    {
+      "type": "text",
+      "content": "Once we can assign oxidation states, we can identify which species are gaining and losing electrons. An increase in oxidation state means the species has lost electrons and has been oxidized. A decrease in oxidation state means the species has gained electrons and has been reduced. The helpful mnemonic OIL RIG (Oxidation Is Loss, Reduction Is Gain) is essential here."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Oxidation:** Loss of electrons; increase in oxidation state.",
+        "**Reduction:** Gain of electrons; decrease in oxidation state.",
+        "**Reducing Agent:** The species that is oxidized. It provides the electrons for the reduction.",
+        "**Oxidizing Agent:** The species that is reduced. It accepts the electrons from the oxidation."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common error is mixing up the agent with the process. Remember: the **reducing agent** is the substance that *gets oxidized*, and the **oxidizing agent** is the substance that *gets reduced*. Always state the full chemical formula of the species when asked to identify an agent, not just the element."
+    },
+    {
+      "type": "heading",
+      "content": "Balancing Redox Equations in Acidic Solution"
+    },
+    {
+      "type": "text",
+      "content": "Many redox reactions are too complex to balance by simple inspection. The half-equation method provides a robust, step-by-step procedure to balance these equations correctly, ensuring both mass and charge are conserved. In acidic or neutral solutions, we use water molecules ($\\text{H}_2\\text{O}$) to balance oxygen atoms and hydrogen ions ($\\text{H}^+$) to balance hydrogen atoms."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1:** Split the reaction into two half-equations (oxidation and reduction).",
+        "**Step 2:** For each half-equation, balance all atoms other than O and H.",
+        "**Step 3:** Balance oxygen atoms by adding $\\text{H}_2\\text{O}$ molecules.",
+        "**Step 4:** Balance hydrogen atoms by adding $\\text{H}^+$ ions.",
+        "**Step 5:** Balance the charge by adding electrons ($e^-$) to the more positive side.",
+        "**Step 6:** Equalize the number of electrons in both half-equations by multiplying them by appropriate integers.",
+        "**Step 7:** Add the two balanced half-equations together and cancel any species that appear on both sides."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Balance the following redox reaction which occurs in an acidic solution: $\\text{Cr}_2\\text{O}_7^{2-}(\\text{aq}) + \\text{Fe}^{2+}(\\text{aq}) \\rightarrow \\text{Cr}^{3+}(\\text{aq}) + \\text{Fe}^{3+}(\\text{aq})$",
+      "solution": "1.  **Split into half-equations:**\n    Oxidation: $\\text{Fe}^{2+} \\rightarrow \\text{Fe}^{3+}$\n    Reduction: $\\text{Cr}_2\\text{O}_7^{2-} \\rightarrow \\text{Cr}^{3+}$ [1]\n\n2.  **Balance the oxidation half-equation:**\n    Atoms are balanced. Balance charge:\n    $\\text{Fe}^{2+} \\rightarrow \\text{Fe}^{3+} + e^-$ [1]\n\n3.  **Balance the reduction half-equation:**\n    Balance Cr atoms: $\\text{Cr}_2\\text{O}_7^{2-} \\rightarrow 2\\text{Cr}^{3+}$\n    Balance O atoms with $\\text{H}_2\\text{O}$: $\\text{Cr}_2\\text{O}_7^{2-} \\rightarrow 2\\text{Cr}^{3+} + 7\\text{H}_2\\text{O}$\n    Balance H atoms with $\\text{H}^+$: $14\\text{H}^+ + \\text{Cr}_2\\text{O}_7^{2-} \\rightarrow 2\\text{Cr}^{3+} + 7\\text{H}_2\\text{O}$\n    Balance charge with $e^-$. Left side charge = $14(+1) + (-2) = +12$. Right side charge = $2(+3) = +6$. Add $6e^-$ to the left side.\n    $6e^- + 14\\text{H}^+ + \\text{Cr}_2\\text{O}_7^{2-} \\rightarrow 2\\text{Cr}^{3+} + 7\\text{H}_2\\text{O}$ [1]\n\n4.  **Combine the half-equations:**\n    The number of electrons must be equal. Multiply the oxidation half-equation by 6.\n    $6\\text{Fe}^{2+} \\rightarrow 6\\text{Fe}^{3+} + 6e^-$\n    Now add this to the reduction half-equation:\n    $6\\text{Fe}^{2+} + 6e^- + 14\\text{H}^+ + \\text{Cr}_2\\text{O}_7^{2-} \\rightarrow 6\\text{Fe}^{3+} + 6e^- + 2\\text{Cr}^{3+} + 7\\text{H}_2\\text{O}$\n\n5.  **Final Equation:** Cancel the electrons from both sides.\n    $14\\text{H}^+(\\text{aq}) + \\text{Cr}_2\\text{O}_7^{2-}(\\text{aq}) + 6\\text{Fe}^{2+}(\\text{aq}) \\rightarrow 2\\text{Cr}^{3+}(\\text{aq}) + 6\\text{Fe}^{3+}(\\text{aq}) + 7\\text{H}_2\\text{O}(\\text{l})$ [1]\n    (Final check: Atoms and charges are balanced)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-chemistry-sl&topic=R3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Oxidation States and Redox Reactions",
+          "href": "https://www.khanacademy.org/science/chemistry/oxidation-reduction"
+        },
+        {
+          "label": "Chem LibreTexts: Balancing Redox Reactions",
+          "href": "https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Supplemental_Modules_(Analytical_Chemistry)/Electrochemistry/Redox_Chemistry/Balancing_Redox_Reactions"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,167 @@
+{
+  "slug": "1-2-system-design-basics-components-usability-and-documentation",
+  "topicCode": "1.2",
+  "title": "System design basics: components, usability and documentation",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamentals of system design, covering the essential components of a computer system (hardware, software, peripherals), the principles of usability (effectiveness, efficiency, satisfaction), and the critical role of both user and technical documentation.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the key components of a computer system, including hardware, software, and peripherals.",
+    "Define and evaluate the usability of a system using the metrics of effectiveness, efficiency, and satisfaction.",
+    "Distinguish between user documentation and technical documentation, explaining the purpose and audience of each.",
+    "Analyse a given scenario to assess its design in terms of components and usability."
+  ],
+  "simpleExplanation": {
+    "title": "Designing Systems That Work for People",
+    "summary": "System design is the process of defining the parts and structure of a system to meet specific needs. Good design considers not just what the system does, but how easily and pleasantly people can use it.",
+    "analogy": "Think about building a flat-pack wardrobe. The wooden panels, screws, and handles are the system's 'components' (hardware/software). The instruction booklet is the 'documentation'. How easy it is to follow the instructions, build the wardrobe, and then use it to store clothes is its 'usability'. A clear manual and well-made parts make for a highly usable wardrobe.",
+    "steps": [
+      "First, identify the system's purpose and its core components, such as the hardware (e.g., CPU, RAM), software (e.g., OS, applications), and peripherals (e.g., printer, scanner).",
+      "Next, evaluate the system's usability. Assess its effectiveness (does it achieve the goal?), efficiency (how quickly/easily?), and user satisfaction (is it a good experience?).",
+      "Then, consider the documentation. Differentiate between user documentation (for the end-user) and technical documentation (for developers and maintainers).",
+      "Finally, connect these elements. Explain how the choice of components and the quality of documentation directly impact the overall usability and success of the system."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a computer system?",
+      "back": "A combination of hardware and software components that work together to process data and perform specific tasks."
+    },
+    {
+      "front": "Define 'peripheral'.",
+      "back": "An external device that provides input to or receives output from a computer, but is not part of the core computer architecture (CPU, memory, motherboard). Examples include keyboards, monitors, and printers."
+    },
+    {
+      "front": "What is 'usability'?",
+      "back": "The extent to which a system can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use."
+    },
+    {
+      "front": "What is 'effectiveness' in the context of usability?",
+      "back": "The accuracy and completeness with which users can achieve their goals. Essentially, does the system do what it is supposed to do?"
+    },
+    {
+      "front": "What is 'efficiency' in the context of usability?",
+      "back": "The resources (e.g., time, effort, clicks) expended by the user in relation to the accuracy and completeness of goals achieved. How quickly and easily can the user perform the task?"
+    },
+    {
+      "front": "What is 'satisfaction' in the context of usability?",
+      "back": "The user's subjective feelings and perceptions about using the system, including their level of comfort and positive attitudes. Is the experience pleasant or frustrating?"
+    },
+    {
+      "front": "What is the purpose of user documentation?",
+      "back": "To guide the end-user on how to use the system's features. It is typically non-technical and focuses on tasks and outcomes. Examples: manuals, tutorials, FAQs."
+    },
+    {
+      "front": "What is the purpose of technical documentation?",
+      "back": "To provide developers, system administrators, and maintainers with information about the system's architecture, code, APIs, and algorithms. It explains how the system works internally."
+    },
+    {
+      "front": "What is the role of the 'human component' in a system?",
+      "back": "The human user is a critical component. The system is designed for them, and their interaction, skills, and potential for error must be considered in the design process."
+    },
+    {
+      "front": "What is accessibility?",
+      "back": "The design of systems to be usable by people with the widest possible range of abilities, including those with disabilities (e.g., visual, auditory, motor impairments). It is a key aspect of inclusive usability."
+    },
+    {
+      "front": "Why might a system with high functionality have low usability?",
+      "back": "A system can have many powerful features (high functionality) but if the interface is confusing, inconsistent, or inefficient, users will struggle to find and use those features, resulting in low usability."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between usability and accessibility?",
+      "a": "Usability is about designing a system to be effective, efficient, and satisfying for a 'typical' user. Accessibility is a specific aspect of usability that focuses on making the system usable by people with disabilities (e.g., visual, motor, or cognitive impairments). An accessible design often improves usability for everyone. For example, high-contrast text, designed for visually impaired users, also helps users in bright sunlight. All accessible systems are usable, but not all usable systems are accessible."
+    },
+    {
+      "q": "Can a command-line interface (CLI) ever have better usability than a graphical user interface (GUI)?",
+      "a": "Yes, depending on the context and user. For expert users performing repetitive, complex tasks (like system administrators or programmers), a CLI can be far more efficient. They can chain commands and write scripts to automate tasks in a way that would be slow and cumbersome with a mouse and menus. However, for novice users or for tasks that are visual in nature, a GUI almost always offers better usability due to its lower learning curve and intuitive visual feedback."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every time you use an app, a website, or even a self-service checkout, you are interacting with a computer system. The success of these systems depends not only on their technical power but also on how well they are designed for human use. This topic explores the fundamental building blocks of system design: the components that make up a system, the principles that make it usable, and the documentation that supports it."
+    },
+    {
+      "type": "heading",
+      "content": "Components of a Computer System"
+    },
+    {
+      "type": "text",
+      "content": "A computer system is more than just the box on your desk. It is an integrated set of components working together. For the IB syllabus, we must be able to identify and describe these parts."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Hardware:** The physical parts of the computer you can touch. This includes internal components like the Central Processing Unit (CPU), Random Access Memory (RAM), and storage drives (SSD/HDD), as well as external ones.",
+        "**Software:** The set of instructions and programs that tell the hardware what to do. This is divided into system software (e.g., operating systems like Windows, macOS) and application software (e.g., word processors, web browsers).",
+        "**Peripherals:** External devices connected to the computer to add functionality. They are broadly categorised into input devices (keyboard, mouse, scanner), output devices (monitor, printer, speakers), and storage devices (external hard drive).",
+        "**Human Component:** The user who interacts with the system. Their needs, skills, and goals are the primary drivers for the system's design."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A new automated ticketing system is installed at a train station. It consists of a touchscreen monitor, a credit card reader, a ticket-and-receipt printer, and a central server in a back office that runs the booking software and connects to the national rail network. A passenger uses the system to buy a ticket. Identify two hardware components, one software component, and one peripheral, explaining the role of each in this system. [4 marks]",
+      "solution": "Here is a possible solution:\n\n*   **Hardware Component 1:** Central server. [1] This is the main computer that processes the booking requests, manages the database of fares and routes, and communicates with other components. [1]\n*   **Hardware Component 2:** Touchscreen monitor. [1] This acts as both an input device (for the passenger to make selections) and an output device (to display information). [1]\n*   **Software Component:** Booking software. [1] This application runs on the server to manage the entire transaction, from displaying options to processing payment and issuing a ticket. [1]\n*   **Peripheral:** Credit card reader. [1] This is an external device used to input payment information from the passenger's card into the system. [1]\n\n*Marking Note: 1 mark for correctly identifying a component and 1 mark for a suitable explanation of its role. The touchscreen could also be classed as a peripheral. The printer is another valid peripheral. The OS on the server is another valid software component. Award marks for any valid identification and justification.*"
+    },
+    {
+      "type": "heading",
+      "content": "Usability"
+    },
+    {
+      "type": "text",
+      "content": "Usability is a measure of how easy a system is to use. It is not a single property but a combination of factors that contribute to the quality of a user's experience. A system with high usability is intuitive, efficient, and enjoyable to use, while one with low usability can cause frustration, errors, and abandonment. We evaluate usability using three key metrics."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Effectiveness:** Can the user achieve their goal? For example, can a user successfully book a flight on a travel website? It's a binary measure of success or failure.",
+        "**Efficiency:** How much effort (time, clicks, mental energy) does it take to achieve the goal? A system where a task takes 3 clicks is more efficient than one where it takes 10 clicks.",
+        "**Satisfaction:** How does the user feel about their experience? This is a subjective measure, often gathered through surveys or feedback, concerning whether the interaction was pleasant, frustrating, or confusing."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions about usability, avoid vague statements like 'it's user-friendly'. You must explicitly use and apply the terms 'effectiveness', 'efficiency', and 'satisfaction'. Always justify your evaluation by referencing specific details from the scenario provided."
+    },
+    {
+      "type": "workedExample",
+      "question": "A company is deciding between two inventory management systems for its warehouse staff. \n\n*   **System A** is a modern tablet-based app with a graphical user interface (GUI). On average, staff take 30 seconds to locate and update an item's stock level. Most staff describe it as 'intuitive'.\n*   **System B** is an older system running on a terminal with a command-line interface (CLI). Experienced staff can update an item in 15 seconds using keyboard shortcuts, but new staff take over 2 minutes and make frequent errors. New staff report feeling 'stressed' when using it.\n\nEvaluate the usability of System A compared to System B. [6 marks]",
+      "solution": "Here is a model answer:\n\n**Effectiveness:**\n*   System A appears to be more effective, especially for new users, as they can complete the task successfully and intuitively. [1]\n*   System B has lower effectiveness for new users, as they make frequent errors, suggesting they cannot always achieve their goal. For experienced users, it is effective. [1]\n\n**Efficiency:**\n*   For experienced users, System B is more efficient, taking only 15 seconds compared to System A's 30 seconds. [1]\n*   However, for new users, System A is far more efficient (30 seconds) than System B (over 2 minutes), making it better overall for a workplace with staff turnover. [1]\n\n**Satisfaction:**\n*   System A has higher satisfaction, as it is described as 'intuitive'. [1]\n*   System B has very low satisfaction for new users, who feel 'stressed'. This negative emotional response indicates poor usability from a satisfaction standpoint. [1]\n\n**Conclusion:** Overall, System A demonstrates superior usability. While System B is more efficient for experts, its steep learning curve, low effectiveness for novices, and poor satisfaction make System A the better choice for this environment."
+    },
+    {
+      "type": "heading",
+      "content": "System Documentation"
+    },
+    {
+      "type": "text",
+      "content": "Documentation is any form of written or illustrated information that describes, explains, or instructs on a system. It is vital for both using and maintaining the system. There are two main categories of documentation, aimed at completely different audiences."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**User Documentation:** Aimed at the end-user. Its purpose is to teach someone how to use the software without needing to know the technical details. It includes user manuals, tutorials, help files, and FAQs. Good user documentation is clear, concise, and task-oriented.",
+        "**Technical Documentation:** Aimed at developers, programmers, and system administrators. Its purpose is to explain how the system was built and how it works internally. It includes information on the system architecture, data structures, algorithms, APIs, and code comments. This is essential for debugging, maintenance, and future development."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge on System Design Basics",
+      "href": "/mark?subject=ib-computer-science-sl&topic=1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Nielsen Norman Group - Usability 101",
+          "href": "https://www.nngroup.com/articles/usability-101-introduction-to-usability/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

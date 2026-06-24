@@ -1,0 +1,178 @@
+{
+  "slug": "r1-2-energy-cycles-in-reactions",
+  "topicCode": "R1.2",
+  "title": "Energy cycles in reactions",
+  "paper": "P2",
+  "paperName": "Chemistry SL",
+  "status": "premium",
+  "summary": "This lesson introduces Hess's Law as a fundamental principle for calculating enthalpy changes of reactions. It covers the construction and application of energy cycles using standard enthalpies of formation and combustion, enabling the determination of enthalpy changes for reactions that cannot be measured directly.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "State Hess's Law and explain that enthalpy is a state function.",
+    "Construct enthalpy cycles to calculate unknown enthalpy changes.",
+    "Calculate enthalpy changes for reactions using standard enthalpy of formation ($\\Delta H_f^\\ominus$) data.",
+    "Calculate enthalpy changes for reactions using standard enthalpy of combustion ($\\Delta H_c^\\ominus$) data."
+  ],
+  "simpleExplanation": {
+    "title": "The Chemical Detour",
+    "summary": "Hess's Law states that the total energy change of a reaction is the same, no matter which route you take. This allows us to calculate the energy change of a difficult-to-measure reaction by using a different, easier pathway.",
+    "analogy": "Imagine you want to find the change in altitude between the base and the summit of a mountain. You could try to measure the vertical height directly, which is difficult. Alternatively, you could take a winding path to the top, measuring the smaller altitude changes along the way. The total change in altitude from base to summit will be the same regardless of the path you took. Hess's Law applies this same logic to chemical energy.",
+    "steps": [
+      "Identify the target reaction with the unknown enthalpy change, $\\Delta H_{reaction}$. This is your 'direct route'.",
+      "Choose an 'indirect route' by linking reactants and products to a common intermediate state using known enthalpy changes, such as formation or combustion.",
+      "Construct the energy cycle, drawing arrows to show the direction of enthalpy change. Arrows pointing down are usually exothermic (negative $\\Delta H$).",
+      "Apply Hess's Law: the sum of enthalpy changes for the indirect route equals the enthalpy change for the direct route. Solve for the unknown $\\Delta H_{reaction}$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Hess's Law?",
+      "back": "Hess's Law states that the total enthalpy change for a chemical reaction is independent of the route taken, provided the initial and final conditions are the same."
+    },
+    {
+      "front": "What is a 'state function'?",
+      "back": "A property of a system that depends only on its current state, not on the path taken to reach that state. Enthalpy (H) is a state function."
+    },
+    {
+      "front": "Define standard enthalpy of formation, $\\Delta H_f^\\ominus$.",
+      "back": "The enthalpy change when one mole of a compound is formed from its constituent elements in their standard states under standard conditions (298 K and 100 kPa)."
+    },
+    {
+      "front": "Define standard enthalpy of combustion, $\\Delta H_c^\\ominus$.",
+      "back": "The enthalpy change when one mole of a substance is completely combusted in excess oxygen under standard conditions (298 K and 100 kPa)."
+    },
+    {
+      "front": "Why is the $\\Delta H_f^\\ominus$ of an element like $O_2(g)$ or $Na(s)$ equal to zero?",
+      "back": "By definition, the enthalpy of formation is the formation from elements in their standard states. The 'reaction' of forming an element from itself involves no change, so the enthalpy change is zero."
+    },
+    {
+      "front": "When drawing an energy cycle using enthalpies of formation, where do the arrows point from?",
+      "back": "The arrows point UP from the constituent elements (at the bottom) to the reactants and products."
+    },
+    {
+      "front": "When drawing an energy cycle using enthalpies of combustion, where do the arrows point to?",
+      "back": "The arrows point DOWN from the reactants and products to the common combustion products (e.g., $CO_2(g)$ and $H_2O(l)$) at the bottom."
+    },
+    {
+      "front": "What is a common mistake when using Hess's Law with stoichiometric coefficients?",
+      "back": "Forgetting to multiply the standard enthalpy value (which is per mole) by the number of moles (the stoichiometric coefficient) of that substance in the balanced equation."
+    },
+    {
+      "front": "What must you do to an enthalpy value if you reverse the direction of a reaction in an energy cycle?",
+      "back": "You must invert the sign. If the forward reaction is exothermic ($\\Delta H < 0$), the reverse reaction is endothermic ($\\Delta H > 0$) by the same magnitude."
+    },
+    {
+      "front": "Why is Hess's Law useful in practice?",
+      "back": "It allows calculation of enthalpy changes for reactions that are impossible to measure directly, for example, because they are too slow (e.g., graphite to diamond), too dangerous, or produce unwanted side products."
+    },
+    {
+      "front": "What is the formula for calculating $\\Delta H_{reaction}^\\ominus$ from formation data?",
+      "back": "$\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_f^\\ominus (\\text{products}) - \\sum \\Delta H_f^\\ominus (\\text{reactants})$"
+    },
+    {
+      "front": "What is the formula for calculating $\\Delta H_{reaction}^\\ominus$ from combustion data?",
+      "back": "$\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_c^\\ominus (\\text{reactants}) - \\sum \\Delta H_c^\\ominus (\\text{products})$ (Note: reactants minus products!)"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I have to draw the energy cycle in an exam, or can I just use the formula?",
+      "a": "For many questions, you can get full marks by correctly using the formula. However, drawing a quick sketch of the cycle is highly recommended. It helps you visualise the problem, correctly identify which formula to use (formation vs. combustion), and avoid simple sign errors. In more complex problems, the cycle might be essential to see the correct path."
+    },
+    {
+      "q": "What's the difference between an energy cycle and the formulas?",
+      "a": "The formulas, $\\Delta H = \\sum \\Delta H_f(\\text{products}) - \\sum \\Delta H_f(\\text{reactants})$ and $\\Delta H = \\sum \\Delta H_c(\\text{reactants}) - \\sum \\Delta H_c(\\text{products})$, are simply algebraic shortcuts derived from their respective energy cycles. The cycle is the graphical representation of Hess's Law, while the formula is the mathematical implementation."
+    },
+    {
+      "q": "What if a question gives me a mix of formation and combustion data?",
+      "a": "This is a more advanced problem-solving question. You cannot use either of the standard formulas directly. You must construct a bespoke energy cycle that incorporates all the given reactions to find a pathway from your initial reactants to your final products. Always fall back on drawing the cycle if the data doesn't fit a simple pattern."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In thermochemistry, we often want to know the enthalpy change for a specific reaction. While calorimetry can measure this directly for many reactions, some are simply not practical to perform in a lab. They might be too slow, like the conversion of graphite to diamond, or have multiple side reactions. This is where energy cycles and Hess's Law become an essential tool, allowing us to calculate these unknown enthalpy changes indirectly."
+    },
+    {
+      "type": "heading",
+      "content": "Hess's Law: The Fundamental Principle"
+    },
+    {
+      "type": "text",
+      "content": "Hess's Law is a direct consequence of the law of conservation of energy. It states that the total enthalpy change during a chemical reaction is the same regardless of the route by which the reaction is carried out. This is because enthalpy is a state function – its value depends only on the current state of the system (e.g., its temperature, pressure, and composition), not on how it got there. Therefore, the difference in enthalpy between reactants and products is constant."
+    },
+    {
+      "type": "heading",
+      "content": "Constructing Energy Cycles"
+    },
+    {
+      "type": "text",
+      "content": "An energy cycle is a visual representation of Hess's Law. It shows the alternative routes from reactants to products. The reaction with the unknown enthalpy change ($\\Delta H_{reaction}$) is the 'direct route'. The 'indirect route' involves converting both reactants and products to or from a common set of species. The two most common types of cycles use standard enthalpies of formation ($\\Delta H_f^\\ominus$) or standard enthalpies of combustion ($\\Delta H_c^\\ominus$)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Formation Cycles:** The common intermediate is the constituent elements of the reactants/products in their standard states. Arrows point from the elements *up* to the reactants and products.",
+        "**Combustion Cycles:** The common intermediate is the products of complete combustion (usually $CO_2(g)$ and $H_2O(l)$). Arrows point from the reactants and products *down* to the combustion products."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculations using Enthalpies of Formation ($\\Delta H_f^\\ominus$)"
+    },
+    {
+      "type": "text",
+      "content": "When using enthalpies of formation, the indirect route involves 'decomposing' the reactants into their elements (the reverse of formation) and then 'forming' the products from those same elements. This leads to a convenient formula."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta H_{reaction}^\\ominus = \\sum n \\Delta H_f^\\ominus (\\text{products}) - \\sum m \\Delta H_f^\\ominus (\\text{reactants})"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard enthalpy change for the hydrogenation of propene to propane. $C_3H_6(g) + H_2(g) \\rightarrow C_3H_8(g)$.\n\nUse the following standard enthalpy of formation data:\n$\\Delta H_f^\\ominus (C_3H_6, g) = +20.4 \\text{ kJ mol}^{-1}$\n$\\Delta H_f^\\ominus (C_3H_8, g) = -104.7 \\text{ kJ mol}^{-1}$",
+      "solution": "1.  **Identify reactants and products:**\n    Reactants: $C_3H_6(g)$, $H_2(g)$\n    Product: $C_3H_8(g)$\n\n2.  **Apply the formula:**\n    $\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_f^\\ominus (\\text{products}) - \\sum \\Delta H_f^\\ominus (\\text{reactants})$\n\n3.  **Substitute values:**\n    Remember that the enthalpy of formation of an element in its standard state, like $H_2(g)$, is zero.\n    $\\Delta H_{reaction}^\\ominus = [\\Delta H_f^\\ominus (C_3H_8, g)] - [\\Delta H_f^\\ominus (C_3H_6, g) + \\Delta H_f^\\ominus (H_2, g)]$\n    $\\Delta H_{reaction}^\\ominus = [1 \\times (-104.7)] - [1 \\times (+20.4) + 1 \\times (0)]$\n\n4.  **Calculate the final answer:**\n    $\\Delta H_{reaction}^\\ominus = -104.7 - 20.4$\n    $\\Delta H_{reaction}^\\ominus = -125.1 \\text{ kJ mol}^{-1}$\n\n    **Marking points:**\n    [1] Correct application of formula (products - reactants).\n    [1] Correct substitution of values, including zero for $H_2$.\n    [1] Correct final answer with sign and units."
+    },
+    {
+      "type": "heading",
+      "content": "Calculations using Enthalpies of Combustion ($\\Delta H_c^\\ominus$)"
+    },
+    {
+      "type": "text",
+      "content": "When using enthalpies of combustion, the indirect route involves combusting the reactants and then 'un-combusting' the combustion products to form the final products. This reversal of the second step leads to a different formula where we subtract the products' combustion enthalpies from the reactants'."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta H_{reaction}^\\ominus = \\sum m \\Delta H_c^\\ominus (\\text{reactants}) - \\sum n \\Delta H_c^\\ominus (\\text{products})"
+    },
+    {
+      "type": "examTip",
+      "content": "The most common mistake is mixing up the two formulas. Notice that for formation it's 'products - reactants', but for combustion it's 'reactants - products'. If you are ever unsure, quickly sketch the energy cycle. Following the arrows (going with an arrow is positive, against an arrow is negative) will always give you the correct relationship and prevent this error."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard enthalpy of formation of ethanol, $C_2H_5OH(l)$, using the following standard enthalpy of combustion data.\nTarget reaction: $2C(s, graphite) + 3H_2(g) + \\frac{1}{2}O_2(g) \\rightarrow C_2H_5OH(l)$\n\nData:\n$\\Delta H_c^\\ominus (C, s) = -393.5 \\text{ kJ mol}^{-1}$\n$\\Delta H_c^\\ominus (H_2, g) = -285.8 \\text{ kJ mol}^{-1}$\n$\\Delta H_c^\\ominus (C_2H_5OH, l) = -1367.3 \\text{ kJ mol}^{-1}$",
+      "solution": "1.  **Identify reactants and products for the target reaction:**\n    Reactants: $2C(s)$, $3H_2(g)$, $\\frac{1}{2}O_2(g)$\n    Product: $C_2H_5OH(l)$\n\n2.  **Apply the formula for combustion data:**\n    $\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_c^\\ominus (\\text{reactants}) - \\sum \\Delta H_c^\\ominus (\\text{products})$\n    Note: Oxygen ($O_2$) is the oxidising agent and does not contribute to the enthalpy of combustion values in this context.\n\n3.  **Substitute values, including stoichiometry:**\n    $\\Delta H_f^\\ominus (C_2H_5OH, l) = [2 \\times \\Delta H_c^\\ominus (C, s) + 3 \\times \\Delta H_c^\\ominus (H_2, g)] - [1 \\times \\Delta H_c^\\ominus (C_2H_5OH, l)]$\n    $\\Delta H_f^\\ominus (C_2H_5OH, l) = [2 \\times (-393.5) + 3 \\times (-285.8)] - [1 \\times (-1367.3)]$\n\n4.  **Calculate the final answer:**\n    $\\Delta H_f^\\ominus (C_2H_5OH, l) = [-787.0 - 857.4] - [-1367.3]$\n    $\\Delta H_f^\\ominus (C_2H_5OH, l) = -1644.4 + 1367.3$\n    $\\Delta H_f^\\ominus (C_2H_5OH, l) = -277.1 \\text{ kJ mol}^{-1}$\n\n    **Marking points:**\n    [1] Correct application of formula (reactants - products) and multiplication by stoichiometric coefficients.\n    [1] Correct substitution of values.\n    [1] Correct final answer with sign and units."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-chemistry-sl&topic=R1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Hess's Law",
+          "href": "https://www.khanacademy.org/science/chemistry/thermochemistry-chemistry/hess-law/v/hess-s-law-and-reaction-enthalpy-change"
+        },
+        {
+          "label": "Chemistry LibreTexts: Enthalpy Cycles",
+          "href": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)/05._Thermochemistry/5.6%3A_Hess's_Law"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

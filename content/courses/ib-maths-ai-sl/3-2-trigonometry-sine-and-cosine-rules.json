@@ -1,0 +1,196 @@
+{
+  "slug": "3-2-trigonometry-sine-and-cosine-rules",
+  "topicCode": "3.2",
+  "title": "Trigonometry: sine and cosine rules",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces the sine and cosine rules, essential tools for solving problems involving non-right-angled triangles. You will learn how to identify which rule to apply based on the given information and use them to find unknown sides and angles.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify when to use the sine rule and when to use the cosine rule.",
+    "Apply the sine rule to find unknown sides and angles in non-right-angled triangles.",
+    "Apply the cosine rule to find unknown sides and angles in non-right-angled triangles.",
+    "Solve multi-step problems by selecting the appropriate trigonometric rule."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Any Triangle",
+    "summary": "While SOH CAH TOA works only for right-angled triangles, the sine and cosine rules are your universal keys to solve for missing sides and angles in any triangle. These rules connect sides to their opposite angles, allowing you to find missing information from what you already have.",
+    "analogy": "Imagine you're a surveyor mapping a triangular plot of land. You can't always form a perfect right angle. The sine and cosine rules are like your advanced GPS tools. If you know the length of two boundaries and the angle between them (SAS), the cosine rule can calculate the third boundary's length. If you know one boundary's length and the angles at each end of it (ASA), the sine rule can help you map out the other two boundaries. They are the practical methods for measuring any triangular shape.",
+    "steps": [
+      "Label the triangle's angles with capital letters (A, B, C) and the sides opposite them with corresponding lowercase letters (a, b, c).",
+      "Analyse the given information. Do you have a matching side-angle pair (e.g., side 'a' and angle 'A')? If yes, use the sine rule.",
+      "If you have two sides and the angle between them (SAS), or all three sides (SSS), you must use the cosine rule.",
+      "Substitute the known values into the correct formula and solve for the unknown. Always check if your answer is reasonable (e.g., largest angle opposite largest side)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the standard convention for labelling a triangle for trigonometry?",
+      "back": "Angles are labelled with uppercase letters (A, B, C) and the side opposite each angle is labelled with the corresponding lowercase letter (a, b, c)."
+    },
+    {
+      "front": "What is the sine rule for finding a side?",
+      "back": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$. Use this version when the unknown is a side length (in the numerator)."
+    },
+    {
+      "front": "What is the sine rule for finding an angle?",
+      "back": "$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$. Use this version when the unknown is an angle (in the numerator)."
+    },
+    {
+      "front": "When should you use the sine rule?",
+      "back": "When you know a side and its opposite angle (a 'pair'), plus one other piece of information (another side or angle). This covers Angle-Side-Angle (ASA) and Angle-Angle-Side (AAS) cases."
+    },
+    {
+      "front": "What is the cosine rule for finding a side?",
+      "back": "$c^2 = a^2 + b^2 - 2ab \\cos C$. Use this to find a side when you know two other sides and the angle between them (SAS)."
+    },
+    {
+      "front": "What is the cosine rule for finding an angle?",
+      "back": "$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$. Use this to find an angle when you know all three sides (SSS)."
+    },
+    {
+      "front": "What does 'the included angle' mean?",
+      "back": "It is the angle formed between two specified sides. For example, in triangle ABC, angle C is the included angle between sides a and b."
+    },
+    {
+      "front": "What is the 'ambiguous case' of the sine rule?",
+      "back": "When using the sine rule to find an angle (e.g., $\\sin B = x$), there can be two possible angles: an acute angle $B_1 = \\sin^{-1}(x)$ and an obtuse angle $B_2 = 180^{\\circ} - B_1$. You must check if the obtuse angle is valid within the triangle."
+    },
+    {
+      "front": "How do you decide whether to use the sine or cosine rule?",
+      "back": "Check for a known side-angle pair. If you have one, use the sine rule. If you have Side-Angle-Side (SAS) or Side-Side-Side (SSS), use the cosine rule."
+    },
+    {
+      "front": "What is a quick way to check if your calculated answer is reasonable?",
+      "back": "The largest side of a triangle must be opposite the largest angle, and the smallest side must be opposite the smallest angle. Check if your results follow this rule."
+    },
+    {
+      "front": "What calculator setting is crucial for trigonometry problems in the IB exam?",
+      "back": "Ensure your calculator is in Degrees mode, unless a question specifically uses radians. Most geometry problems will use degrees."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know for sure which rule to use?",
+      "a": "It's a process of elimination. First, check if you have a matching side and opposite angle pair (e.g., you know side 'a' and angle 'A'). If you do, use the sine rule. If you don't, you'll almost certainly have either two sides and the included angle (SAS) or all three sides (SSS), which both require the cosine rule."
+    },
+    {
+      "q": "Can I use SOH CAH TOA on these triangles?",
+      "a": "No. SOH CAH TOA is based on the ratios of sides in a right-angled triangle and is only valid for them. The sine and cosine rules are the generalisations that work for any triangle."
+    },
+    {
+      "q": "What happens if I use the cosine rule to find an angle and get a negative value for cos C?",
+      "a": "That's perfectly fine! If $\\cos C$ is negative, it simply means that angle C is obtuse (between $90^{\\circ}$ and $180^{\\circ}$). Your calculator will handle this correctly when you use the inverse cosine function ($\\cos^{-1}$)."
+    },
+    {
+      "q": "Does it matter which letters I assign to which sides/angles?",
+      "a": "As long as you are consistent, it doesn't matter which vertex you call 'A', 'B', or 'C'. What is absolutely critical is that the side with the corresponding lowercase letter is always opposite the angle. Side 'a' must be opposite angle 'A'."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far in your mathematical journey, your main tool for triangle problems has likely been SOH CAH TOA. This is incredibly powerful, but it has a major limitation: it only works for right-angled triangles. In the real world, triangles come in all shapes and sizes. This lesson equips you with two new, more versatile tools: the sine rule and the cosine rule. These will allow you to solve for missing sides and angles in *any* triangle, a fundamental skill in fields like engineering, surveying, and physics."
+    },
+    {
+      "type": "heading",
+      "content": "Standard Triangle Labelling"
+    },
+    {
+      "type": "text",
+      "content": "Before we can use the rules, we must agree on a standard way to label our triangles. This convention is used in the formula booklet and is essential for substituting values correctly. The vertices (corners) of the triangle are labelled with uppercase letters, for example, A, B, and C. The sides are labelled with lowercase letters, and crucially, the side opposite a vertex takes the same letter. So, side 'a' is opposite angle 'A', side 'b' is opposite angle 'B', and so on. Getting this right is the first step to a correct solution."
+    },
+    {
+      "type": "heading",
+      "content": "The Sine Rule"
+    },
+    {
+      "type": "text",
+      "content": "The sine rule establishes a ratio between the sine of an angle and the length of its opposite side. This ratio is constant for all three angle-side pairs in a given triangle. It's your go-to tool when you know a side and the angle opposite it, plus one other piece of information."
+    },
+    {
+      "type": "formula",
+      "content": "To find a side: $$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$$ To find an angle: $$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use the sine rule when you have a known side-angle pair (e.g., you know both 'a' and 'A').",
+        "To solve a problem, you only need to use two parts of the formula, e.g., $\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$.",
+        "It's easier to solve if you place the unknown quantity in the numerator."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle ABC, angle $A = 35^{\\circ}$, angle $B = 62^{\\circ}$ and side $a = 8$ cm. Find the length of side $b$.",
+      "solution": "1.  **Identify the rule:** We are given a side 'a' and its opposite angle 'A', so we can use the sine rule.\n2.  **Choose the formula:** We want to find a side, so we use the version with sides in the numerator.\n    $\\frac{b}{\\sin B} = \\frac{a}{\\sin A}$ (M1 for selecting sine rule)\n3.  **Substitute values:**\n    $\\frac{b}{\\sin 62^{\\circ}} = \\frac{8}{\\sin 35^{\\circ}}$ (A1 for correct substitution)\n4.  **Solve for b:**\n    $b = \\frac{8 \\times \\sin 62^{\\circ}}{\\sin 35^{\\circ}}$ (M1 for rearranging)\n    $b = 12.315...$\n    $b = 12.3$ cm (3 s.f.) (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "When using the sine rule to find an angle, say $\\sin B = 0.8$, your calculator will give you an acute angle ($B \\approx 53.1^{\\circ}$). However, $\\sin(180^{\\circ} - B)$ is also $0.8$, so an obtuse angle ($180^{\\circ} - 53.1^{\\circ} = 126.9^{\\circ}$) is also a potential solution. This is the 'ambiguous case'. Always check if the obtuse angle could fit in the triangle by adding it to the other known angle. If the sum is less than $180^{\\circ}$, it's a valid second solution."
+    },
+    {
+      "type": "heading",
+      "content": "The Cosine Rule"
+    },
+    {
+      "type": "text",
+      "content": "The cosine rule is your tool when the sine rule can't be used. It connects the three sides of a triangle to the cosine of one of its angles. This is perfect for two specific scenarios: when you know two sides and the angle *between* them (SAS), or when you know all three sides (SSS)."
+    },
+    {
+      "type": "formula",
+      "content": "To find a side: $$c^2 = a^2 + b^2 - 2ab \\cos C$$ To find an angle: $$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use the cosine rule when you have Side-Angle-Side (SAS) or Side-Side-Side (SSS).",
+        "The angle in the formula ($C$) must be the one opposite the side you are finding ($c$).",
+        "When finding an angle, be careful with the order of operations (BIDMAS/BODMAS). Calculate the numerator first, then the denominator, before dividing."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A triangular field has sides of length 50 m, 70 m and 95 m. Find the size of the smallest angle.",
+      "solution": "1.  **Identify the goal:** The smallest angle is opposite the smallest side. The smallest side is 50 m. Let's label the sides $a=70, b=95, c=50$. We need to find angle C.\n2.  **Identify the rule:** We are given all three sides (SSS), so we must use the cosine rule to find an angle.\n3.  **Choose the formula:**\n    $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$ (M1 for selecting cosine rule)\n4.  **Substitute values:**\n    $\\cos C = \\frac{70^2 + 95^2 - 50^2}{2 \\times 70 \\times 95}$ (A1 for correct substitution)\n5.  **Calculate:**\n    $\\cos C = \\frac{4900 + 9025 - 2500}{13300}$\n    $\\cos C = \\frac{11425}{13300} = 0.8580...$ (M1 for evaluating fraction)\n6.  **Find the angle:**\n    $C = \\cos^{-1}(0.8580...)$\n    $C = 30.809...^{\\circ}$\n    $C = 30.8^{\\circ}$ (3 s.f.) (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, you must show your working. For a cosine rule question, this means writing down the formula, showing the substitution, and then the final answer. For a sine rule question, show the setup of the proportion. These steps will earn you method (M) and accuracy (A) marks, even if you make a small calculation error later."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Sine and Cosine Rule Explorer",
+          "href": "https://www.geogebra.org/m/cNEtsbvC"
+        },
+        {
+          "label": "Khan Academy: Law of Sines and Cosines review",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:trig/x9e81a4f98389efdf:law-of-sines-and-cosines/a/laws-of-sines-and-cosines-review"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Sine and Cosine Rule Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=cNEtsbvC",
+    "launchUrl": "https://www.geogebra.org/classic?material=cNEtsbvC",
+    "hint": "Use “Sine and Cosine Rule Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

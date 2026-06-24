@@ -1,0 +1,192 @@
+{
+  "slug": "3-3-the-unit-circle-and-radian-measure",
+  "topicCode": "3.3",
+  "title": "The unit circle and radian measure",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces radian measure as an alternative to degrees and explores the fundamental properties of the unit circle. You will learn how to convert between the two angle measures, calculate arc length and sector area, and define trigonometric functions in terms of coordinates on the unit circle.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the definition of a radian and convert between degrees and radians.",
+    "Define the unit circle and its equation.",
+    "Relate the coordinates of a point on the unit circle to the cosine and sine of the angle.",
+    "Calculate arc length and sector area for a circle using radians."
+  ],
+  "simpleExplanation": {
+    "title": "The Circle's Natural Angle",
+    "summary": "Radians are the natural way to measure angles in mathematics, based on the radius of a circle itself. The unit circle is our standard reference, a circle with a radius of one, which makes defining trigonometric functions incredibly elegant.",
+    "analogy": "Imagine you're eating a pizza. A 'degree' is like cutting the pizza into 360 arbitrary, tiny slices. A 'radian' is more natural: you cut a slice where the length of the crust is exactly the same as the length of the cut from the centre to the crust (the radius). The angle of that slice is one radian. It directly connects the angle to the circle's own dimensions.",
+    "steps": [
+      "First, picture a circle with a radius of 1 unit, centred at the origin (0,0). This is the 'unit circle'.",
+      "Now, measure an angle from the positive x-axis. Instead of degrees, we use radians. One radian is the angle created when the arc length along the circle's edge is equal to its radius.",
+      "Since the unit circle's radius is 1, an angle of $\\theta$ radians corresponds to an arc length of $\\theta$ units.",
+      "The key connection: the coordinates (x, y) of the point on the unit circle at angle $\\theta$ are given by $x = \\cos(\\theta)$ and $y = \\sin(\\theta)$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the definition of one radian?",
+      "back": "One radian is the angle subtended at the centre of a circle by an arc that is equal in length to the radius of the circle."
+    },
+    {
+      "front": "How do you convert from degrees to radians?",
+      "back": "Multiply the angle in degrees by $\\frac{\\pi}{180}$."
+    },
+    {
+      "front": "How do you convert from radians to degrees?",
+      "back": "Multiply the angle in radians by $\\frac{180}{\\pi}$."
+    },
+    {
+      "front": "What is the unit circle?",
+      "back": "A circle with a radius of 1 unit, centred at the origin (0,0) of the Cartesian plane."
+    },
+    {
+      "front": "What is the equation of the unit circle?",
+      "back": "$x^2 + y^2 = 1$"
+    },
+    {
+      "front": "For a point P(x, y) on the unit circle at an angle $\\theta$ from the positive x-axis, what are x and y in terms of $\\theta$?",
+      "back": "$x = \\cos(\\theta)$ and $y = \\sin(\\theta)$."
+    },
+    {
+      "front": "What is the formula for arc length, $l$, when the angle $\\theta$ is in radians?",
+      "back": "$l = r\\theta$, where $r$ is the radius."
+    },
+    {
+      "front": "What is the formula for the area of a sector, $A$, when the angle $\\theta$ is in radians?",
+      "back": "$A = \\frac{1}{2}r^2\\theta$, where $r$ is the radius."
+    },
+    {
+      "front": "What is $360^{\\circ}$ in radians?",
+      "back": "$2\\pi$ radians."
+    },
+    {
+      "front": "What is $180^{\\circ}$ in radians?",
+      "back": "$\\pi$ radians."
+    },
+    {
+      "front": "What is a common mistake when using your calculator for trigonometry problems?",
+      "back": "Forgetting to check if the calculator is in the correct mode (Degrees or Radians) for the given question. Always check!"
+    },
+    {
+      "front": "What are the coordinates of the point on the unit circle corresponding to an angle of $\\frac{\\pi}{2}$ radians?",
+      "back": "(0, 1), since $\\cos(\\frac{\\pi}{2}) = 0$ and $\\sin(\\frac{\\pi}{2}) = 1$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need to learn radians when degrees work perfectly fine?",
+      "a": "While degrees are useful for everyday applications like construction and navigation, radians are the 'natural' language of circles and are essential in higher mathematics. The formulae for arc length ($l=r\\theta$) and sector area ($A=\\frac{1}{2}r^2\\theta$) are much simpler in radians. Most importantly, the derivatives of trigonometric functions (e.g., the derivative of $\\sin(x)$ is $\\cos(x)$) are only this simple when $x$ is in radians. Using degrees would introduce a messy conversion factor into all of calculus."
+    },
+    {
+      "q": "How can I remember the signs of sin, cos, and tan in the different quadrants?",
+      "a": "A popular mnemonic is 'All Students Take Calculus' or 'CAST'. Starting in Quadrant 1 and moving anti-clockwise: \nQ1 (All): All three (sin, cos, tan) are positive. \nQ2 (Students/Sine): Only sine is positive. \nQ3 (Take/Tangent): Only tangent is positive. \nQ4 (Calculus/Cosine): Only cosine is positive. Remember that $\\cos$ is the x-coordinate and $\\sin$ is the y-coordinate, so you can also just think about the signs of x and y in each quadrant."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "You're familiar with measuring angles in degrees, where a full circle is $360^{\\circ}$. But in higher-level mathematics, especially calculus, degrees are cumbersome. We need a more 'natural' unit of angular measure, one that is intrinsically linked to the properties of a circle. This is where radians and the unit circle come in, providing a powerful foundation for the study of trigonometric functions."
+    },
+    {
+      "type": "heading",
+      "content": "Radian Measure"
+    },
+    {
+      "type": "text",
+      "content": "A radian is defined by the arc length it 'cuts out' from a circle. One radian is the angle formed at the centre of a circle when the arc length on the circumference is equal to the radius of the circle. Since the circumference of a full circle is $2\\pi r$, a full circle contains $2\\pi$ radians. This gives us the fundamental relationship between degrees and radians."
+    },
+    {
+      "type": "formula",
+      "content": "$360^{\\circ} = 2\\pi \\text{ radians} \\quad \\implies \\quad 180^{\\circ} = \\pi \\text{ radians}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To convert degrees to radians, multiply by $\\frac{\\pi}{180}$.",
+        "To convert radians to degrees, multiply by $\\frac{180}{\\pi}$.",
+        "Angles in radians are often expressed as multiples of $\\pi$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Unit Circle"
+    },
+    {
+      "type": "text",
+      "content": "The unit circle is a circle with a radius of 1, centred at the origin (0,0). Its simplicity makes it an incredibly useful tool. The equation of the unit circle is derived directly from Pythagoras' theorem."
+    },
+    {
+      "type": "formula",
+      "content": "Equation of the unit circle: $x^2 + y^2 = 1$"
+    },
+    {
+      "type": "text",
+      "content": "Any point P(x, y) on the circumference of the unit circle can be described by the angle, $\\theta$, made with the positive x-axis, measured anti-clockwise. The coordinates of this point are directly related to the trigonometric functions cosine and sine."
+    },
+    {
+      "type": "formula",
+      "content": "For a point P(x, y) on the unit circle at angle $\\theta$: \n$x = \\cos(\\theta)$ \n$y = \\sin(\\theta)$"
+    },
+    {
+      "type": "text",
+      "content": "This definition is powerful. It extends our understanding of sine and cosine beyond right-angled triangles to any angle, including those greater than $90^{\\circ}$ or negative angles. The signs of $\\cos(\\theta)$ and $\\sin(\\theta)$ are determined by the quadrant in which the angle $\\theta$ terminates."
+    },
+    {
+      "type": "workedExample",
+      "question": "A circular pizza with a diameter of 40 cm is cut into 8 equal slices. \n(a) Find the angle of one slice in radians. \n(b) Find the length of the crust for one slice. \n(c) Find the area of one slice.",
+      "solution": "(a) A full circle is $2\\pi$ radians. There are 8 equal slices.\nAngle of one slice = $\\frac{2\\pi}{8}$ (M1)\n$= \\frac{\\pi}{4}$ radians (A1)\n\n(b) The diameter is 40 cm, so the radius $r = 20$ cm. The angle $\\theta = \\frac{\\pi}{4}$.\nThe formula for arc length is $l = r\\theta$. (M1)\n$l = 20 \\times \\frac{\\pi}{4}$ \n$l = 5\\pi$ cm (A1)\n\n(c) The formula for sector area is $A = \\frac{1}{2}r^2\\theta$. (M1)\n$A = \\frac{1}{2}(20)^2 \\times \\frac{\\pi}{4}$ \n$A = \\frac{1}{2}(400) \\times \\frac{\\pi}{4}$ \n$A = 200 \\times \\frac{\\pi}{4}$ \n$A = 50\\pi$ cm$^2$ (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Coordinates on the Unit Circle"
+    },
+    {
+      "type": "text",
+      "content": "Knowing the exact trigonometric values for common angles in the first quadrant ($0$ to $\\frac{\\pi}{2}$) allows you to find values in all four quadrants by considering the symmetry of the unit circle. Remember that $\\cos(\\theta)$ corresponds to the x-coordinate and $\\sin(\\theta)$ to the y-coordinate."
+    },
+    {
+      "type": "examTip",
+      "content": "You must know the exact values of $\\sin$, $\\cos$, and $\\tan$ for angles $\\theta = 0, \\frac{\\pi}{6}, \\frac{\\pi}{4}, \\frac{\\pi}{3}, \\frac{\\pi}{2}$ and their multiples in other quadrants. These are frequently tested on Paper 1, where calculators are not permitted."
+    },
+    {
+      "type": "workedExample",
+      "question": "The point P lies on the unit circle and has coordinates $(x, y)$. The angle formed by the line segment OP and the positive x-axis is $\\theta = \\frac{7\\pi}{6}$.\n(a) Determine the quadrant in which P lies.\n(b) Find the coordinates of P, giving your answer in exact form.",
+      "solution": "(a) We can convert the angle to degrees to help visualise, or compare it to key radian values. $\\pi = \\frac{6\\pi}{6}$ and $\\frac{3\\pi}{2} = \\frac{9\\pi}{6}$. Since $\\pi < \\frac{7\\pi}{6} < \\frac{3\\pi}{2}$, the angle terminates in the third quadrant. (R1)\n\n(b) The coordinates are given by $(\\cos(\\theta), \\sin(\\theta))$. So we need to find $\\cos(\\frac{7\\pi}{6})$ and $\\sin(\\frac{7\\pi}{6})$.\nThe reference angle (the acute angle with the x-axis) is $\\frac{7\\pi}{6} - \\pi = \\frac{\\pi}{6}$. (M1)\nWe know the exact values for the reference angle: $\\cos(\\frac{\\pi}{6}) = \\frac{\\sqrt{3}}{2}$ and $\\sin(\\frac{\\pi}{6}) = \\frac{1}{2}$.\nIn the third quadrant, both x (cosine) and y (sine) are negative. (M1)\nTherefore, $x = \\cos(\\frac{7\\pi}{6}) = -\\cos(\\frac{\\pi}{6}) = -\\frac{\\sqrt{3}}{2}$. (A1)\nAnd $y = \\sin(\\frac{7\\pi}{6}) = -\\sin(\\frac{\\pi}{6}) = -\\frac{1}{2}$. (A1)\nThe coordinates of P are $(-\\frac{\\sqrt{3}}{2}, -\\frac{1}{2})$."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Unit Circle and Radians",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Unit Circle",
+          "href": "https://www.geogebra.org/m/X255T9E8"
+        },
+        {
+          "label": "Degrees to Radians Conversion",
+          "href": "https://www.mathsisfun.com/geometry/radians.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Interactive Unit Circle",
+    "embedUrl": "https://www.geogebra.org/classic?material=X255T9E8",
+    "launchUrl": "https://www.geogebra.org/classic?material=X255T9E8",
+    "hint": "Use “Interactive Unit Circle” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

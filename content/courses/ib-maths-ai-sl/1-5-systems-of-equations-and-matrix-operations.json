@@ -1,0 +1,176 @@
+{
+  "slug": "1-5-systems-of-equations-and-matrix-operations",
+  "topicCode": "1.5",
+  "title": "Systems of equations and matrix operations",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces the use of matrices to represent and solve systems of linear equations. It focuses on using a GDC (Graphics Display Calculator) to find solutions efficiently, a key skill for Paper 1. You will learn to set up augmented matrices from word problems and interpret the calculator's output to determine if there is a unique solution, no solution, or infinitely many solutions.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Represent a system of up to three linear equations using an augmented matrix.",
+    "Solve systems of linear equations using technology (GDC).",
+    "Interpret the solution of a system of equations in the context of a problem.",
+    "Recognise whether a system of equations has a unique solution, no solution, or infinite solutions from the GDC output."
+  ],
+  "simpleExplanation": {
+    "title": "Solving Puzzles with Matrix Grids",
+    "summary": "Turn sets of related equations into a special grid called an augmented matrix. Your calculator can then solve this matrix grid to find all the unknown values in one go.",
+    "analogy": "Imagine you're a shopkeeper who sold three types of items: apples, bananas, and cherries. You know the total number of items sold, the total revenue, and the total weight. Each of these facts is a clue (an equation) mixing the number of apples, bananas, and cherries. A matrix is a tidy table that organises all these clues. Your calculator acts as a super-detective that reads this table and instantly tells you exactly how many of each fruit you sold.",
+    "steps": [
+      "Translate the word problem into a system of linear equations. Make sure all equations are in the form $ax + by + cz = d$.",
+      "Construct the augmented matrix. Write the coefficients of the variables and the constant terms in a grid, using zero for any missing variables.",
+      "Enter the augmented matrix into your GDC and use the 'rref' (Reduced Row Echelon Form) function to solve it.",
+      "Interpret the resulting matrix to find the values of each variable or to describe the nature of the solution (unique, none, or infinite)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a system of linear equations?",
+      "back": "A set of two or more linear equations involving the same set of variables. For example, $x+y=5$ and $2x-y=1$."
+    },
+    {
+      "front": "What is an augmented matrix?",
+      "back": "A matrix that represents a system of linear equations. It's formed by the coefficient matrix with an extra column on the right for the constant terms."
+    },
+    {
+      "front": "How do you represent a missing variable in an equation when forming a matrix?",
+      "back": "Use a coefficient of 0. For the system $x+z=4$ and $x+y=2$, the first row of the matrix would be `[1 0 1 | 4]`."
+    },
+    {
+      "front": "What does 'rref' stand for?",
+      "back": "Reduced Row Echelon Form. It is the simplified version of a matrix that your GDC calculates to show the system's solution."
+    },
+    {
+      "front": "How do you identify a unique solution from an rref matrix?",
+      "back": "The matrix will have a diagonal of 1s on the left and 0s everywhere else (an identity matrix). The solution values are in the final column. E.g., $\\begin{pmatrix} 1 & 0 & | & 7 \\\\ 0 & 1 & | & -2 \\end{pmatrix}$ means $x=7, y=-2$."
+    },
+    {
+      "front": "How do you identify 'no solution' from an rref matrix?",
+      "back": "There will be a row that represents a contradiction, such as `[0 0 0 | 1]`. This translates to the impossible equation $0 = 1$."
+    },
+    {
+      "front": "How do you identify 'infinite solutions' from an rref matrix?",
+      "back": "There will be a row of all zeros, such as `[0 0 0 | 0]`. This translates to the equation $0 = 0$, which is always true and indicates a dependent system."
+    },
+    {
+      "front": "What are the dimensions of the augmented matrix for a system of 3 linear equations with 3 variables?",
+      "back": "3 rows by 4 columns ($3 \\times 4$)."
+    },
+    {
+      "front": "Common Trap: Variable Order",
+      "back": "Ensure the variables ($x, y, z$) are in the same order for every equation before writing the coefficients into the matrix. If one equation is $y+2x=5$, rewrite it as $2x+y=5$ to match the others."
+    },
+    {
+      "front": "What is a coefficient matrix?",
+      "back": "A matrix containing only the coefficients of the variables in a system of linear equations, without the constant terms. For AI SL, you will primarily use the augmented matrix for solving."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to know how to calculate the Reduced Row Echelon Form (rref) by hand?",
+      "a": "No. For the Mathematics: Applications and Interpretation SL course, this is a technology-based skill. You are expected to use your GDC to find the rref, not to perform the row operations manually."
+    },
+    {
+      "q": "What if an equation has variables on both sides, like $2x = 5y - 1$?",
+      "a": "You must rearrange the equation into the standard form $ax + by = c$ before you can build the matrix. In this case, it would become $2x - 5y = -1$."
+    },
+    {
+      "q": "My calculator gives me an error when I try to calculate rref. What's wrong?",
+      "a": "The most common reasons are either entering the matrix dimensions incorrectly or typing a number in wrong. Double-check that the number of rows and columns is correct and that every coefficient and constant has been entered accurately, including negative signs and zeros."
+    },
+    {
+      "q": "What's the difference between a coefficient matrix and an augmented matrix?",
+      "a": "The coefficient matrix contains only the coefficients of the variables (e.g., a $3 \\times 3$ matrix for a 3-variable system). The augmented matrix is the coefficient matrix with an extra column added on the right for the constant terms (making it a $3 \\times 4$ matrix). You must use the augmented matrix to solve the system on your GDC."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In many real-world scenarios, from economics to nutrition, problems involve several unknown quantities that are linked by multiple relationships. These can be modelled using systems of linear equations. While you can solve simple systems by hand, this becomes tedious for three or more variables. This is where matrices and technology come in, providing a powerful and systematic method for finding solutions, which is exactly what you'll be tested on in your exam."
+    },
+    {
+      "type": "heading",
+      "content": "Setting Up the Augmented Matrix"
+    },
+    {
+      "type": "text",
+      "content": "The first step is to translate a system of linear equations into a single 'augmented matrix'. This matrix is simply a grid of numbers containing all the essential information from the equations: the coefficients of the variables and the constant terms. It's crucial that all your equations are first arranged in the standard form, for example $ax + by + cz = d$. The variables must be in the same order in each equation."
+    },
+    {
+      "type": "text",
+      "content": "For the system:\n$3x + 2y = 12$\n$x - y = 1$\n\nThe augmented matrix is formed by taking the coefficients and the constants:\n$\\begin{pmatrix} 3 & 2 & | & 12 \\\\ 1 & -1 & | & 1 \\end{pmatrix}$\n\nThe vertical line is just a separator to distinguish the coefficients from the constants; you won't type this line into your calculator."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Align all variables before creating the matrix.",
+        "Use a zero as a placeholder for any variable that is missing from an equation.",
+        "The number of rows equals the number of equations.",
+        "The number of columns is the number of variables plus one."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Solving Systems Using Your GDC"
+    },
+    {
+      "type": "text",
+      "content": "Once you have the augmented matrix, the rest of the work is done by your calculator. You need to be proficient with your specific GDC model (e.g., TI-Nspire, Casio fx-CG50). The key function is 'rref', which stands for 'Reduced Row Echelon Form'. This command performs all the necessary algebraic steps to simplify the matrix and reveal the solution."
+    },
+    {
+      "type": "workedExample",
+      "question": "A café sells three types of coffee: lattes (L), cappuccinos (C), and Americanos (A). On a particular morning, they sold a total of 95 coffees. The number of lattes sold was 5 more than the number of cappuccinos. The total revenue from these sales was £265. A latte costs £3, a cappuccino costs £2.50, and an Americano costs £2. Let $l, c,$ and $a$ be the number of lattes, cappuccinos, and Americanos sold, respectively. Find the number of each type of coffee sold.",
+      "solution": "First, set up the system of three linear equations from the information given.\nTotal coffees: $l + c + a = 95$\nRelationship between lattes and cappuccinos: $l = c + 5 \\implies l - c = 5$\nTotal revenue: $3l + 2.5c + 2a = 265$\n\nRearrange into standard form:\n$l + c + a = 95$\n$l - c + 0a = 5$\n$3l + 2.5c + 2a = 265$ (M1) for all three correct equations.\n\nNow, form the augmented matrix. Note the 0 for the missing 'a' term in the second equation.\n$\\begin{pmatrix} 1 & 1 & 1 & | & 95 \\\\ 1 & -1 & 0 & | & 5 \\\\ 3 & 2.5 & 2 & | & 265 \\end{pmatrix}$ (A1) for correct matrix.\n\nEnter this $3 \\times 4$ matrix into the GDC and apply the 'rref' function. (M1) for showing the attempt to solve using technology.\n`rref([[1, 1, 1, 95], [1, -1, 0, 5], [3, 2.5, 2, 265]])`\n\nThe GDC output is:\n$\\begin{pmatrix} 1 & 0 & 0 & | & 30 \\\\ 0 & 1 & 0 & | & 25 \\\\ 0 & 0 & 1 & | & 40 \\end{pmatrix}$\n\nInterpret the result:\n$l = 30$, $c = 25$, $a = 40$. (A1)(A1)(A1)\nSo, 30 lattes, 25 cappuccinos, and 40 Americanos were sold."
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting Special Cases: No Solution and Infinite Solutions"
+    },
+    {
+      "type": "text",
+      "content": "While unique solutions are common, you must be prepared to interpret the GDC output for other scenarios. The form of the 'rref' matrix tells you the nature of the solution. An inconsistent system has no solution, while a dependent system has infinitely many solutions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Unique Solution:** The rref matrix has a leading 1 in each row, progressing diagonally. E.g., $\\begin{pmatrix} 1 & 0 & | & p \\\\ 0 & 1 & | & q \\end{pmatrix}$.",
+        "**No Solution:** The rref matrix contains a row that is a contradiction, like `[0 0 | 1]`. This represents the equation $0x + 0y = 1$, which is impossible. The system is inconsistent.",
+        "**Infinite Solutions:** The rref matrix contains a row of all zeros, like `[0 0 | 0]`. This represents the equation $0x + 0y = 0$, which is always true. This indicates the equations are dependent on each other."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, always write down the augmented matrix you are inputting into your calculator. This is often worth a method mark (M1) or an accuracy mark (A1). Also, clearly define your variables (e.g., 'let x be...') if they are not explicitly stated in the question. This shows the examiner your clear thought process."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sports club buys footballs, basketballs and volleyballs. They buy 31 balls in total. The number of footballs is twice the number of basketballs. The cost of a football is $15, a basketball is $20, and a volleyball is $12. The total cost is $487. Let $f, b, v$ be the number of footballs, basketballs and volleyballs respectively. Find the number of each type of ball purchased.",
+      "solution": "Set up the system of equations:\nTotal balls: $f + b + v = 31$\nRelationship: $f = 2b \\implies f - 2b = 0$\nTotal cost: $15f + 20b + 12v = 487$\n\nStandard form:\n$f + b + v = 31$\n$f - 2b + 0v = 0$\n$15f + 20b + 12v = 487$ (M1)\n\nForm the augmented matrix:\n$\\begin{pmatrix} 1 & 1 & 1 & | & 31 \\\\ 1 & -2 & 0 & | & 0 \\\\ 15 & 20 & 12 & | & 487 \\end{pmatrix}$ (A1)\n\nUse GDC to find rref: (M1)\n`rref([[1, 1, 1, 31], [1, -2, 0, 0], [15, 20, 12, 487]])`\n\nThe GDC output is:\n$\\begin{pmatrix} 1 & 0 & 0 & | & 14 \\\\ 0 & 1 & 0 & | & 7 \\\\ 0 & 0 & 1 & | & 10 \\end{pmatrix}$\n\nInterpret the solution:\n$f = 14$, $b = 7$, $v = 10$. (A1)(A1)(A1)\nThey purchased 14 footballs, 7 basketballs, and 10 volleyballs."
+    },
+    {
+      "type": "practice",
+      "label": "Test your skills with exam-style questions",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=1.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "TI-Nspire CX II Guide: Solving Systems with rref",
+          "href": "https://www.youtube.com/watch?v=E3_f1v4_tF4"
+        },
+        {
+          "label": "Casio fx-CG50 Guide: Solving Systems with Matrices",
+          "href": "https://www.youtube.com/watch?v=8c7e_4kH6Yc"
+        },
+        {
+          "label": "Online Matrix rref Calculator",
+          "href": "https://www.emathhelp.net/calculators/linear-algebra/reduced-row-echelon-form-rref-calculator/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

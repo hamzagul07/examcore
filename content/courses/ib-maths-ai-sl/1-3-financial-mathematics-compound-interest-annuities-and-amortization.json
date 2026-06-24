@@ -1,0 +1,182 @@
+{
+  "slug": "1-3-financial-mathematics-compound-interest-annuities-and-amortization",
+  "topicCode": "1.3",
+  "title": "Financial mathematics: compound interest, annuities and amortization",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "Master the core concepts of financial mathematics, including compound interest, annuities for savings, and amortization for loans. Learn to use your GDC's financial solver to tackle complex real-world problems involving investments and debt.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Calculate future and present values in compound interest scenarios.",
+    "Solve problems involving annuities, including savings plans and investments with regular payments.",
+    "Analyse loan amortization, calculating repayments, total cost, and interest paid.",
+    "Effectively use a Graphic Display Calculator (GDC) financial solver for all calculations."
+  ],
+  "simpleExplanation": {
+    "title": "Your Money's Journey",
+    "summary": "Financial maths is all about how the value of money changes over time due to interest. We'll explore how investments grow and how loans are paid back.",
+    "analogy": "Imagine you're building a tower with LEGO bricks. A one-off investment (Present Value) is like starting with a big base. Compound interest is like adding new bricks not just on your original base, but on the new bricks you added yesterday, making the tower grow faster and faster. An annuity is like adding a specific number of bricks every single day, creating a steady, predictable growth.",
+    "steps": [
+      "Identify the goal: Are you saving, investing a lump sum, or paying off a loan?",
+      "List your knowns: Write down all the values given in the problem (PV, I%, N, PMT, etc.).",
+      "Choose your tool: Decide whether to use the compound interest formula or your GDC's financial solver.",
+      "Solve and interpret: Calculate the missing value and write your final answer with units, explaining what it means in the context of the question."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Compound Interest?",
+      "back": "Interest calculated on the initial principal, which also includes all of the accumulated interest from previous periods. It's 'interest on interest'."
+    },
+    {
+      "front": "What does PV stand for?",
+      "back": "Present Value. The current worth of a future sum of money or stream of cash flows given a specified rate of return."
+    },
+    {
+      "front": "What does FV stand for?",
+      "back": "Future Value. The value of an asset at a specified date in the future, based on an assumed rate of growth."
+    },
+    {
+      "front": "What is an annuity?",
+      "back": "A series of fixed payments made at equal intervals over a period of time. Often used for savings plans or retirement funds."
+    },
+    {
+      "front": "What is amortization?",
+      "back": "The process of paying off a debt over time in regular instalments. A common example is a mortgage or car loan."
+    },
+    {
+      "front": "In the GDC solver, what is 'N'?",
+      "back": "The total number of payment periods (e.g., for a 5-year loan with monthly payments, N = 5 × 12 = 60)."
+    },
+    {
+      "front": "In the GDC solver, what is 'I%'?",
+      "back": "The annual interest rate, entered as a percentage (e.g., 5.5 for 5.5%)."
+    },
+    {
+      "front": "In the GDC solver, what is 'PMT'?",
+      "back": "The regular payment amount for each period."
+    },
+    {
+      "front": "What is the GDC sign convention for PV, FV, and PMT?",
+      "back": "Money you receive is positive (+). Money you pay out is negative (-). For a loan, PV is positive (you receive money), and PMT is negative (you make payments)."
+    },
+    {
+      "front": "What do P/Y and C/Y represent?",
+      "back": "P/Y is Payments per Year. C/Y is Compounding periods per Year. For most AI SL questions, P/Y = C/Y."
+    },
+    {
+      "front": "What's a common trap with the interest rate 'r' in the formula?",
+      "back": "The formula uses 'r' as a percentage, but requires division by 100 in the calculation. The GDC uses 'I%' as a percentage directly. Be careful which one you're using."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between simple and compound interest?",
+      "a": "Simple interest is always calculated on the original principal amount. Compound interest is calculated on the principal *plus* any accumulated interest. This means compound interest grows much faster over time."
+    },
+    {
+      "q": "Why is PV negative when I'm saving, but positive when I take out a loan?",
+      "a": "It's all about the direction of cash flow from your perspective. When you start a savings account, you give money to the bank (an outflow), so PV is negative. When you take out a loan, the bank gives you money (an inflow), so PV is positive. Your loan repayments (PMT) will then be negative as they are outflows."
+    },
+    {
+      "q": "Do I need to memorise the compound interest formula for the exam?",
+      "a": "The formula is provided in the IB formula booklet. However, for most questions on Paper 1, using the GDC Finance Solver is much quicker and less error-prone. You should be comfortable with both methods, but prioritise mastering the GDC solver."
+    },
+    {
+      "q": "What's the difference between P/Y and C/Y in the GDC solver?",
+      "a": "P/Y stands for Payments per Year, and C/Y stands for Compounding periods per Year. For IB AI SL, in almost all cases, these two values will be the same. For example, for a loan with monthly payments and interest compounded monthly, both P/Y and C/Y would be 12."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered how banks make money, how a small saving can grow into a large sum, or what it really costs to take out a loan for a car? This lesson unlocks the mathematics behind these real-world financial situations. Mastering these skills is not just crucial for your exam, but for making informed financial decisions throughout your life."
+    },
+    {
+      "type": "heading",
+      "content": "Compound Interest: The Snowball Effect"
+    },
+    {
+      "type": "text",
+      "content": "Unlike simple interest, which is only calculated on the initial amount (the principal), compound interest is calculated on the principal *and* any interest that has already been earned. This 'interest on interest' effect can make investments grow exponentially over time, much like a snowball rolling down a hill gathers more snow and gets bigger at an ever-increasing rate."
+    },
+    {
+      "type": "formula",
+      "content": "$$FV = PV \\left(1 + \\frac{r}{100k}\\right)^{kn}$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$PV$: The initial amount of money invested or borrowed (Present Value).",
+        "$FV$: The final amount after interest has been applied (Future Value).",
+        "$r$: The nominal annual interest rate (as a percentage).",
+        "$k$: The number of compounding periods per year (e.g., annually k=1, quarterly k=4, monthly k=12).",
+        "$n$: The total number of years the money is invested or borrowed for."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Sophie invests £5000 in an account that pays a nominal annual interest rate of 3.6%, compounded quarterly. \n(a) Calculate the value of her investment after 7 years. \n(b) Calculate the amount of interest she has earned.",
+      "solution": "(a) We are finding the Future Value (FV). This is a compound interest problem without regular payments.\n\n**Method 1: Using the formula**\nIdentify the variables:\n$PV = 5000$, $r = 3.6$, $k = 4$ (quarterly), $n = 7$\nSubstitute into the formula: $FV = 5000 \\left(1 + \\frac{3.6}{100 \\times 4}\\right)^{4 \\times 7}$ (M1)\n$FV = 5000 (1.009)^{28}$\n$FV = 6425.843...$ (A1)\nThe value is £6425.84. (A1) (to 2 d.p. for currency)\n\n**Method 2: Using a GDC Finance Solver**\nList the inputs:\nN = $7 \\times 4 = 28$\nI% = 3.6\nPV = -5000 (money invested, so it's an outflow)\nPMT = 0 (no regular payments)\nP/Y = 4\nC/Y = 4\nSolving for FV gives $6425.843...$ (M1)(A1)\nThe value of the investment is £6425.84. (A1)\n\n(b) Interest earned = $FV - PV$\nInterest = $6425.84 - 5000$ (M1)\nInterest = £1425.84 (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 1, you will have your GDC. The financial solver (often called TVM Solver) is almost always more efficient and less prone to calculation errors than using the formula. Always write down the values you input into your GDC to be eligible for method marks (M1)."
+    },
+    {
+      "type": "heading",
+      "content": "Annuities and Amortization: Managing Regular Cash Flows"
+    },
+    {
+      "type": "text",
+      "content": "While compound interest deals with a single lump sum, many financial products involve regular payments. An **annuity** is a sequence of equal payments made at regular intervals, typically used for saving for a future goal like university fees or retirement. **Amortization** is the process of paying off a loan with a series of regular payments, where each payment covers both interest and a portion of the principal. Your GDC solver is the perfect tool for these scenarios."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Annuities involve making regular payments (PMT) to build up a Future Value (FV).",
+        "Amortization involves receiving a lump sum (PV) and making regular payments (PMT) to reduce the loan balance to zero.",
+        "The PMT variable in your GDC solver is key for these problems. It will be non-zero.",
+        "Remember the sign convention: money you pay (like a loan repayment or a savings deposit) is negative. Money you receive (like the initial loan amount) is positive."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "David takes out a car loan of $20,000. The loan is to be repaid in equal monthly instalments over 4 years. The nominal annual interest rate is 6.5%, compounded monthly.$\n(a) Calculate the value of David's monthly repayment.\n(b) Calculate the total amount David pays back over the 4 years.\n(c) Hence, find the total interest paid on the loan.",
+      "solution": "This is a loan amortization problem. We must use the GDC Finance Solver.\n\n(a) Identify the variables for the solver:\nN = $4 \\times 12 = 48$ (total number of payments)\nI% = 6.5\nPV = 20000 (David receives this amount from the bank)\nFV = 0 (the loan is fully paid off at the end)\nP/Y = 12\nC/Y = 12\nWe are solving for PMT. (M1) for listing correct inputs for the solver.\n\nInputting these values into the GDC solver gives PMT = -474.296... (A1)\nThe monthly repayment is $474.30. (A1) (The value is negative as it is a payment David makes).$\n\n(b) Total amount paid = monthly repayment $\\times$ number of payments\nTotal paid = $474.296... \\times 48$ (M1) (Using the unrounded value for accuracy)\nTotal paid = $22766.24...$\nThe total amount David pays back is $22,766.24. (A1)$\n\n(c) Total interest paid = Total amount paid - Loan principal\nTotal interest = $22766.24 - 20000$ (M1)\nTotal interest = $2766.24$\nThe total interest paid is $2,766.24. (A1)$"
+    },
+    {
+      "type": "heading",
+      "content": "Mastering the GDC Finance Solver"
+    },
+    {
+      "type": "text",
+      "content": "Your Graphic Display Calculator's Time Value of Money (TVM) or Finance solver is your most powerful ally in this topic. It can solve for any of the main variables (N, I%, PV, PMT, FV) as long as you provide the others. The most common source of error is the sign convention. Always ask yourself: 'Is this money coming to me/my account, or am I paying it out?' Money in is positive, money out is negative. This is always from the perspective of the person in the question."
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks for an amount of interest paid or earned, it's often a multi-step process. First, find the FV or PMT. Then, use that result to calculate the total amount paid/received and compare it to the principal. Don't forget this second part of the question, and use unrounded values in your intermediate steps!"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Financial Maths",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "TI-84 Plus CE TVM Solver Tutorial",
+          "href": "https://www.youtube.com/watch?v=g2a9b5K-z5U"
+        },
+        {
+          "label": "Casio fx-CG50 Financial Functions Guide",
+          "href": "https://www.youtube.com/watch?v=sSgY21-1aCM"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,181 @@
+{
+  "slug": "5-1-limits-and-differentiation-from-first-principles",
+  "topicCode": "5.1",
+  "title": "Limits and differentiation from first principles",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concept of a limit and its application in defining the derivative of a function from first principles. Students will learn how to evaluate simple limits and use the formal definition to find the gradient function, which is a cornerstone of differential calculus.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the concept of a limit and use correct notation.",
+    "Evaluate limits of functions at a point, including by direct substitution and algebraic manipulation.",
+    "Understand the derivative as the gradient of the tangent to a curve at a point.",
+    "Use the formula for differentiation from first principles to find the derivative of simple polynomial functions."
+  ],
+  "simpleExplanation": {
+    "title": "Zooming in on Gradients",
+    "summary": "Differentiation finds the exact gradient at a single point on a curve. We do this by calculating the gradient between two points that are incredibly close together and seeing what value it approaches as the distance between them becomes zero.",
+    "analogy": "Imagine you're driving a car and want to know your exact speed at one precise moment. You can't measure speed over zero time, but you can measure your average speed over a very short interval, like 0.1 seconds. To get even more accurate, you could measure it over 0.01 seconds, then 0.001 seconds. The value your average speed is 'homing in on' as the time interval shrinks towards zero is your instantaneous speed. Finding a derivative is the mathematical equivalent of this process for the gradient of a curve.",
+    "steps": [
+      "Start with a function $f(x)$ and a point $x$. We want to find the gradient of the tangent line at this point.",
+      "Choose a second point on the curve, a small distance $h$ away, at $x+h$. The gradient of the line (the secant) connecting $(x, f(x))$ and $(x+h, f(x+h))$ is $\\frac{f(x+h) - f(x)}{h}$.",
+      "To turn this secant line into a tangent line, we need to make the distance $h$ between the points infinitesimally small. We achieve this by finding the limit as $h$ approaches 0.",
+      "The result, $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$, is the derivative. This formula is known as differentiation from first principles."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a limit?",
+      "back": "A limit is the value that a function 'approaches' as the input 'approaches' some value. It describes the behaviour of the function near a point, not necessarily at the point itself."
+    },
+    {
+      "front": "What is the notation for the limit of a function $f(x)$ as $x$ approaches $c$?",
+      "back": "$\\lim_{x \\to c} f(x) = L$, where L is the limit."
+    },
+    {
+      "front": "What is the first step you should always try when evaluating a limit?",
+      "back": "Direct substitution. Plug the value that $x$ is approaching into the function. If you get a real number, that's your answer."
+    },
+    {
+      "front": "What does it mean to differentiate 'from first principles'?",
+      "back": "It means to use the formal definition of the derivative: $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$."
+    },
+    {
+      "front": "In the first principles formula, what does $h$ represent?",
+      "back": "$h$ represents a very small change in the $x$-value. The limit finds what happens to the gradient as this change becomes infinitesimally small."
+    },
+    {
+      "front": "What is the difference between a secant and a tangent?",
+      "back": "A secant line intersects a curve at two distinct points. A tangent line touches a curve at exactly one point, representing the instantaneous rate of change at that point."
+    },
+    {
+      "front": "Why can't you just substitute $h=0$ into the first principles formula straight away?",
+      "back": "Because it would result in division by zero, $\\frac{f(x) - f(x)}{0} = \\frac{0}{0}$, which is an indeterminate form. You must simplify the expression algebraically first."
+    },
+    {
+      "front": "What is the derivative, $f'(x)$, geometrically?",
+      "back": "The derivative, $f'(x)$, is a function that gives the gradient of the tangent to the curve $y=f(x)$ at any point $x$."
+    },
+    {
+      "front": "If a question asks you to find the derivative 'from first principles', can you use the power rule?",
+      "back": "No. You must use the limit definition. Using differentiation rules will score 0 marks for that question, even if the final answer is correct."
+    },
+    {
+      "front": "What is the derivative of a constant function, e.g. $f(x)=5$, and why?",
+      "back": "The derivative is 0. The graph of $y=5$ is a horizontal line, which has a gradient of 0 everywhere."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't I just substitute h=0 into the first principles formula at the very beginning?",
+      "a": "If you substitute $h=0$ at the start, the denominator of the fraction becomes zero. Division by zero is undefined in mathematics. The numerator also becomes $f(x) - f(x) = 0$, leading to the indeterminate form $\\frac{0}{0}$. The whole point of the limit process is to algebraically manipulate the expression so that you can cancel the $h$ in the denominator, removing the division-by-zero problem and allowing you to then safely let $h$ become zero to find the gradient."
+    },
+    {
+      "q": "What does it mean if a limit does not exist?",
+      "a": "A limit might not exist for a few reasons. The function might approach different values from the left and the right of the point. It could also increase or decrease without bound (approaching $\\infty$ or $-\\infty$), or it might oscillate wildly. For the functions you'll differentiate from first principles in this course, the limits will always exist."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the start of calculus! So far in mathematics, you've mainly dealt with constant rates of change, like the gradient of a straight line. But the world is full of changing rates - the acceleration of a car, the cooling of a cup of tea, the growth of a population. Calculus gives us the tools to analyse these. We begin by tackling a fundamental problem: how do we find the gradient of a curve at a single point? The answer lies in the concept of a 'limit', which we will use to build the definition of the derivative from the ground up."
+    },
+    {
+      "type": "heading",
+      "content": "An Intuitive Introduction to Limits"
+    },
+    {
+      "type": "text",
+      "content": "A limit describes how a function behaves as its input gets closer and closer to a particular value. Imagine walking along the graph of a function towards a specific x-coordinate. The limit is the y-value you are getting closer and closer to. It's important to note that the limit doesn't care what the function's value is *at* the point, only what it *approaches*."
+    },
+    {
+      "type": "text",
+      "content": "We write the limit of a function $f(x)$ as $x$ approaches a value $c$ is $L$ as: $\\lim_{x \\to c} f(x) = L$. For most functions you'll encounter in this course, the simplest way to find a limit is by direct substitution. If you can substitute $x=c$ into $f(x)$ and get a finite number, that is your limit."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the limit $\\lim_{x \\to 3} (2x^2 - 4x + 1)$.",
+      "solution": "This is a polynomial function, so we can use direct substitution.\n\nSubstitute $x=3$ into the expression:\n$2(3)^2 - 4(3) + 1$ (M1 for substitution)\n\n$= 2(9) - 12 + 1$\n$= 18 - 12 + 1$\n$= 7$ (A1)\n\nSo, $\\lim_{x \\to 3} (2x^2 - 4x + 1) = 7$."
+    },
+    {
+      "type": "heading",
+      "content": "From Secant Gradient to Tangent Gradient"
+    },
+    {
+      "type": "text",
+      "content": "We know how to find the gradient of a straight line: 'rise over run'. We can use this to approximate the gradient of a curve by drawing a **secant line** through two points on the curve, say at $x$ and $x+h$. The 'run' is $(x+h)-x = h$ and the 'rise' is $f(x+h) - f(x)$. This gives the average rate of change between these two points."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient of secant line: $m_{secant} = \\frac{f(x+h) - f(x)}{h}$"
+    },
+    {
+      "type": "text",
+      "content": "Our goal is the gradient at a single point, which is the gradient of the **tangent line** at that point. Imagine sliding the point at $x+h$ along the curve towards the point at $x$. As the two points get closer, the distance $h$ gets smaller, and the secant line becomes a better and better approximation of the tangent line. The tangent is the limiting position of the secant as $h$ approaches zero."
+    },
+    {
+      "type": "heading",
+      "content": "The Formal Definition: Differentiation from First Principles"
+    },
+    {
+      "type": "text",
+      "content": "By combining the idea of the secant gradient with the concept of a limit, we arrive at the formal definition of the derivative. The derivative of a function $f(x)$, denoted $f'(x)$ or $\\frac{dy}{dx}$, gives us the gradient of the tangent at any point $x$. Finding the derivative using this definition is called 'differentiating from first principles'."
+    },
+    {
+      "type": "formula",
+      "content": "The Derivative from First Principles: $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This formula calculates the instantaneous rate of change of the function $f(x)$ with respect to $x$.",
+        "The process involves substituting $f(x+h)$ and $f(x)$ into the formula.",
+        "You must then expand and simplify the numerator algebraically until you can cancel out the $h$ in the denominator.",
+        "Only after cancelling the $h$ can you evaluate the limit by substituting $h=0$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the derivative of $f(x) = 3x^2 - 2x$ from first principles.",
+      "solution": "We use the formula $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$.\n\nFirst, find an expression for $f(x+h)$:\n$f(x+h) = 3(x+h)^2 - 2(x+h)$\n$= 3(x^2 + 2xh + h^2) - 2x - 2h$\n$= 3x^2 + 6xh + 3h^2 - 2x - 2h$\n\nNow substitute $f(x+h)$ and $f(x)$ into the formula: (M1 for correct substitution)\n$f'(x) = \\lim_{h \\to 0} \\frac{(3x^2 + 6xh + 3h^2 - 2x - 2h) - (3x^2 - 2x)}{h}$\n\nSimplify the numerator:\n$f'(x) = \\lim_{h \\to 0} \\frac{3x^2 + 6xh + 3h^2 - 2x - 2h - 3x^2 + 2x}{h}$\n$f'(x) = \\lim_{h \\to 0} \\frac{6xh + 3h^2 - 2h}{h}$ (A1 for correct expansion and simplification)\n\nFactor out $h$ from the numerator and cancel:\n$f'(x) = \\lim_{h \\to 0} \\frac{h(6x + 3h - 2)}{h}$ (M1 for factoring h)\n$f'(x) = \\lim_{h \\to 0} (6x + 3h - 2)$\n\nNow, evaluate the limit by substituting $h=0$:\n$f'(x) = 6x + 3(0) - 2$\n$f'(x) = 6x - 2$ (A1)\n\nThe derivative of $f(x) = 3x^2 - 2x$ is $f'(x) = 6x - 2$."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, if a question explicitly states 'from first principles', you MUST show the full limit process. Simply writing down the answer using the differentiation rules you will learn later will earn zero marks. A good strategy is to find the derivative using the rules in your head first, so you know the target answer you are working towards."
+    },
+    {
+      "type": "practice",
+      "label": "Practise finding derivatives from first principles",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Secant Line to Tangent Line",
+          "href": "https://www.geogebra.org/m/c3b5AwhV"
+        },
+        {
+          "label": "Khan Academy: Derivative as a limit",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-limit"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Secant Line to Tangent Line",
+    "embedUrl": "https://www.geogebra.org/classic?material=c3b5AwhV",
+    "launchUrl": "https://www.geogebra.org/classic?material=c3b5AwhV",
+    "hint": "Use “Secant Line to Tangent Line” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

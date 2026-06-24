@@ -1,0 +1,169 @@
+{
+  "slug": "c1-2-cell-respiration",
+  "topicCode": "C1.2",
+  "title": "Cell respiration",
+  "paper": "P2",
+  "paperName": "Biology SL",
+  "status": "premium",
+  "summary": "This lesson details the principles and practical application of respirometry to measure the rate of cell respiration. It covers experimental setup, data calculation, and the analysis of factors influencing respiration rates, such as temperature, with a focus on IB exam-style questions.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Explain the principle of using a respirometer to measure the rate of respiration.",
+    "Analyse data from respirometer experiments, including calculating the rate of oxygen consumption.",
+    "Outline the effects of variables like temperature on the rate of respiration in organisms.",
+    "Describe the ethical considerations and the importance of controls in respirometry experiments."
+  ],
+  "simpleExplanation": {
+    "title": "Measuring Life's Engine",
+    "summary": "A respirometer is a device that measures an organism's rate of breathing on a micro-scale by tracking how much oxygen it consumes. This gives us a direct measurement of its metabolic rate, or how fast its 'engine' is running.",
+    "analogy": "Imagine you are in a sealed room with a single, very small window. As you breathe in, you use up oxygen, causing the air pressure in the room to drop slightly. This pressure drop sucks air in through the small window. A respirometer works on this same principle: an organism in a sealed tube uses oxygen, causing a drop of coloured liquid in a thin capillary tube to be sucked inwards. The distance it moves tells us how much oxygen has been used.",
+    "steps": [
+      "Place the organism (e.g., germinating seeds, woodlice) into a sealed tube with a substance like potassium hydroxide (KOH) to absorb the CO₂ they produce.",
+      "Connect the sealed tube to a thin glass capillary tube which has a small drop of coloured fluid inside.",
+      "As the organism respires, it consumes O₂, causing the gas pressure inside the tube to decrease. This drop in pressure pulls the coloured fluid along the capillary tube.",
+      "Measure the distance the fluid moves over a set period. Use this distance and the tube's radius to calculate the volume of O₂ consumed, and thus the respiration rate."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a respirometer?",
+      "back": "A device used to measure the rate of respiration of a living organism by measuring its rate of oxygen uptake."
+    },
+    {
+      "front": "Why is potassium hydroxide (KOH) or soda lime used in a respirometer?",
+      "back": "To absorb the carbon dioxide ($CO_2$) produced during respiration. This ensures that any measured change in gas volume is solely due to the consumption of oxygen ($O_2$)."
+    },
+    {
+      "front": "What is the purpose of a control tube in a respirometry experiment?",
+      "back": "To account for any changes in gas volume caused by fluctuations in atmospheric pressure or ambient temperature, ensuring that measured changes are due to respiration alone."
+    },
+    {
+      "front": "How is the volume of oxygen consumed calculated from a respirometer reading?",
+      "back": "Using the formula for the volume of a cylinder: $V = \\pi r^2 l$, where 'r' is the radius of the capillary tube and 'l' is the distance the fluid marker has moved."
+    },
+    {
+      "front": "How is the rate of respiration determined from the volume of oxygen consumed?",
+      "back": "Rate of respiration = Volume of $O_2$ consumed / time taken. It is often expressed per unit of mass, e.g., in $mm^3 g^{-1} min^{-1}$."
+    },
+    {
+      "front": "Why must a respirometry experiment be conducted in the dark when using photosynthetic organisms like plants or algae?",
+      "back": "To prevent photosynthesis from occurring. Photosynthesis produces oxygen, which would counteract the oxygen consumption by respiration, leading to inaccurate results."
+    },
+    {
+      "front": "How does temperature affect the rate of respiration in an ectotherm (e.g., an insect)?",
+      "back": "Respiration rate increases with temperature up to an optimal point, as the enzymes involved have more kinetic energy. Beyond the optimum, the enzymes begin to denature, and the rate rapidly decreases."
+    },
+    {
+      "front": "Common Trap: A student's respirometer shows no movement of the fluid. They forgot to add the KOH. Why?",
+      "back": "In aerobic respiration, the volume of $CO_2$ produced is roughly equal to the volume of $O_2$ consumed ($C_6H_{12}O_6 + 6O_2 \\rightarrow 6CO_2 + 6H_2O$). Without an absorbent, there is no net change in gas volume, so no pressure change occurs."
+    },
+    {
+      "front": "Why is it important to allow the respirometer to equilibrate in the water bath for 5-10 minutes before taking readings?",
+      "back": "To allow the temperature of the air and the organism inside the apparatus to stabilise and match the temperature of the water bath. This prevents initial volume changes due to air expanding or contracting."
+    },
+    {
+      "front": "What are two ethical considerations when using small invertebrates like woodlice in a respirometer?",
+      "back": "1. Minimise stress and harm to the animals. 2. Ensure they are returned to their natural habitat after the experiment is complete."
+    },
+    {
+      "front": "Why are germinating seeds often a good choice for respirometry experiments?",
+      "back": "They have a high metabolic rate, are immobile, easy to handle, and raise fewer ethical concerns than using animals. Dormant seeds can be used as a control."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is it better to use a water bath in respirometry experiments?",
+      "a": "A water bath maintains a constant and uniform temperature for the respirometer tubes. Air temperature can fluctuate, but water has a high specific heat capacity, meaning its temperature is much more stable. This is crucial for ensuring that any observed volume change is due to respiration, not temperature-induced expansion or contraction of gases."
+    },
+    {
+      "q": "What would happen in a respirometer if the organism was respiring anaerobically?",
+      "a": "Standard anaerobic respiration (lactic acid fermentation) in animals consumes no oxygen and produces no carbon dioxide. Therefore, a respirometer measuring oxygen consumption would show a rate of zero. In yeast, anaerobic respiration produces ethanol and carbon dioxide. The CO₂ would be absorbed by the KOH, but since no O₂ is consumed, there would be no net pressure change."
+    },
+    {
+      "q": "Why is the rate of respiration often expressed per unit of mass (e.g., per gram)?",
+      "a": "Expressing the rate per unit of mass, known as the mass-specific rate, allows for fair comparison between different organisms or samples that may not have the same size. A larger organism will naturally consume more oxygen in total, but its metabolic rate per gram of tissue might be lower than that of a smaller organism."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Cell respiration is the controlled release of energy from organic compounds to produce ATP. The rate at which an organism respires is a key indicator of its metabolic activity. In ecology, we are often interested in how environmental factors influence this rate. This lesson focuses on the practical method used to measure respiration rates: the respirometer."
+    },
+    {
+      "type": "heading",
+      "content": "Principles of Respirometry"
+    },
+    {
+      "type": "text",
+      "content": "A respirometer measures oxygen consumption. The basic setup involves placing a living organism in a sealed container along with an alkali, such as potassium hydroxide (KOH) solution or soda lime. The alkali is crucial as it absorbs all the carbon dioxide produced by the organism during respiration. This means that the only net gas change in the container is the removal of oxygen. This reduction in gas volume causes a decrease in pressure, which can be measured using a manometer—typically a capillary tube with a drop of coloured fluid that gets drawn inwards."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sealed Chamber:** Isolates the experimental system from the atmosphere.",
+        "**Organism:** The biological sample whose respiration is being measured (e.g., woodlice, maggots, germinating seeds).",
+        "**CO₂ Absorbent:** A chemical like KOH that removes all carbon dioxide, ensuring pressure changes are due only to oxygen consumption.",
+        "**Capillary Tube & Fluid:** A manometer to measure the change in gas volume. The movement of the fluid is directly proportional to the oxygen consumed.",
+        "**Control:** An identical setup but with non-respiring objects (e.g., glass beads) of the same volume as the organism. This accounts for any volume changes due to fluctuations in atmospheric pressure or temperature."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Respiration Rate"
+    },
+    {
+      "type": "text",
+      "content": "To calculate the rate, you first need to determine the volume of oxygen consumed. This is done by measuring the distance the fluid marker moves in the capillary tube over a specific time. Since the capillary tube is a cylinder, its volume can be calculated if you know its radius. The rate is then found by dividing this volume by the time elapsed. For comparability between experiments, the rate is often standardised by the mass of the organism."
+    },
+    {
+      "type": "formula",
+      "content": "Volume of $O_2$ consumed ($V$) = $\\pi r^2 l$ \\\\ (where $r$ = radius of capillary tube, $l$ = distance fluid moved) \\\\ \\\\ Rate of Respiration = $\\frac{\\text{Volume of } O_2 \\text{ consumed}}{\\text{time taken} \\times \\text{mass of organism}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A respirometer containing 5.0 g of maggots is placed in a 25°C water bath. The internal radius of the capillary tube is 1.0 mm. After 15 minutes, the coloured fluid has moved 45 mm. Calculate the rate of respiration in $mm^3 g^{-1} min^{-1}$.",
+      "solution": "1.  **Calculate the volume of oxygen consumed:**\n    Use the formula $V = \\pi r^2 l$.\n    $r = 1.0$ mm, $l = 45$ mm.\n    $V = \\pi \\times (1.0 \\text{ mm})^2 \\times 45 \\text{ mm} = 45\\pi \\approx 141.37 \\text{ mm}^3$.\n\n2.  **Calculate the rate of respiration:**\n    Use the formula Rate = Volume / (time × mass).\n    Volume = $141.37 \\text{ mm}^3$, time = 15 min, mass = 5.0 g.\n    Rate = $\\frac{141.37 \\text{ mm}^3}{15 \\text{ min} \\times 5.0 \\text{ g}} = \\frac{141.37}{75} \\approx 1.8849 \\text{ mm}^3 g^{-1} min^{-1}$.\n\n3.  **Final Answer:**\n    Rounding to 2 significant figures (as per the mass measurement):\n    **Rate = 1.9 $mm^3 g^{-1} min^{-1}$**\n\n**Mark Scheme:**\n- [1] Correct calculation of volume of oxygen consumed (~141 mm³).\n- [1] Correct formula for rate including division by both time and mass.\n- [1] Correct final answer (1.9) with correct units ($mm^3 g^{-1} min^{-1}$)."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always state *both* factors that the control respirometer accounts for: changes in atmospheric pressure and changes in temperature. Simply saying 'it makes it a fair test' or 'for comparison' will not earn you the mark. Be specific."
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting Respiration Rate"
+    },
+    {
+      "type": "text",
+      "content": "Several factors can influence the rate of respiration. Temperature is a key variable, especially for ectothermic ('cold-blooded') organisms whose internal body temperature varies with the environment. As temperature rises, the kinetic energy of respiratory enzymes and their substrates increases, leading to a higher rate of reaction. This holds true up to an optimal temperature, beyond which the enzymes begin to denature and the rate plummets. The type and metabolic state of an organism also matter; for example, germinating seeds respire at a much higher rate than dormant seeds, and smaller animals with a higher surface area to volume ratio often have a higher mass-specific metabolic rate."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student compares the respiration rate of 20 germinating broad beans (total mass 25 g) and 20 dormant broad beans (total mass 22 g) at 20°C. The respirometer capillary has a diameter of 1.0 mm. For the germinating beans, the fluid moves 60 mm in 20 minutes. For the dormant beans, it moves 4 mm in 20 minutes. Calculate the mass-specific respiration rate for both sets of beans in $mm^3 g^{-1} h^{-1}$.",
+      "solution": "First, note the diameter is 1.0 mm, so the radius (r) is 0.5 mm. Time is 20 min = 20/60 = 1/3 h.\n\n**For Germinating Beans:**\n1.  **Volume:** $V = \\pi r^2 l = \\pi \\times (0.5)^2 \\times 60 = 15\\pi \\approx 47.12 \\text{ mm}^3$.\n2.  **Rate:** Rate = Volume / (time × mass) = $47.12 \\text{ mm}^3 / (1/3 \\text{ h} \\times 25 \\text{ g}) = 47.12 / 8.333 \\approx 5.66 \\text{ mm}^3 g^{-1} h^{-1}$.\n\n**For Dormant Beans:**\n1.  **Volume:** $V = \\pi r^2 l = \\pi \\times (0.5)^2 \\times 4 = \\pi \\approx 3.14 \\text{ mm}^3$.\n2.  **Rate:** Rate = Volume / (time × mass) = $3.14 \\text{ mm}^3 / (1/3 \\text{ h} \\times 22 \\text{ g}) = 3.14 / 7.333 \\approx 0.43 \\text{ mm}^3 g^{-1} h^{-1}$.\n\n**Final Answer:**\n- Germinating beans: **5.7 $mm^3 g^{-1} h^{-1}$**\n- Dormant beans: **0.43 $mm^3 g^{-1} h^{-1}$**\n\n**Mark Scheme:**\n- [1] Correctly calculates radius from diameter and converts time to hours.\n- [1] Correctly calculates rate for germinating beans.\n- [1] Correctly calculates rate for dormant beans.\n- [1] Both answers have correct units."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge of respirometry with past paper questions.",
+      "href": "/mark?subject=ib-biology-sl&topic=C1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video: Respirometer Experiment Explained",
+          "href": "https://www.youtube.com/watch?v=Q0-aR2S_V-I"
+        },
+        {
+          "label": "Interactive Simulation of Respirometry",
+          "href": "https://www.biologysimulations.com/respirometer"
+        },
+        {
+          "label": "Reading: Factors Affecting Respiration",
+          "href": "https://www.saps.org.uk/saps-associates/browse-a-z-of-resources/1207-investigating-factors-affecting-the-rate-of-respiration"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

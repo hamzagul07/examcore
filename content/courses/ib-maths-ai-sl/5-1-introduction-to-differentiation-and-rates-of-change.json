@@ -1,0 +1,176 @@
+{
+  "slug": "5-1-introduction-to-differentiation-and-rates-of-change",
+  "topicCode": "5.1",
+  "title": "Introduction to differentiation and rates of change",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concept of differentiation. You will learn to interpret the derivative as an instantaneous rate of change and as the gradient of a tangent to a curve. The focus is on conceptual understanding and using a GDC to find numerical derivatives in various real-world applications.",
+  "durationMin": 45,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand the concept of a derivative as an instantaneous rate of change.",
+    "Relate the derivative to the gradient of the tangent line to a curve at a point.",
+    "Use a GDC to find the numerical derivative of a function at a given point.",
+    "Interpret the meaning of the derivative in real-world contexts, such as speed, profit, or temperature change."
+  ],
+  "simpleExplanation": {
+    "title": "The Speed at an Instant",
+    "summary": "Differentiation is a tool in calculus that lets us find the rate of change at a single, precise moment. It's like looking at your car's speedometer to see your exact speed right now, rather than calculating your average speed over the whole journey.",
+    "analogy": "Imagine you're driving from London to Manchester. Your average speed for the whole trip might be 60 mph, calculated by dividing the total distance by the total time. However, at any specific moment on the M1 motorway, your speedometer might read 70 mph, 50 mph, or even 0 mph in a traffic jam. That speedometer reading is your instantaneous speed. Differentiation is the mathematical 'speedometer' for any changing quantity, telling us how fast it's changing at one specific point.",
+    "steps": [
+      "Consider a curve representing a quantity changing over time, like the distance a car has travelled.",
+      "To find the average rate of change between two points in time, calculate the gradient of the straight line (the secant) connecting them.",
+      "Now, imagine sliding one point along the curve until it's extremely close to the other point.",
+      "The gradient of the line at this single point (the tangent) is the instantaneous rate of change, or the derivative."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a derivative?",
+      "back": "The derivative of a function at a point gives the instantaneous rate of change of the function at that point. It is also the gradient of the tangent to the function's graph at that point."
+    },
+    {
+      "front": "What is the difference between a tangent and a secant?",
+      "back": "A secant line intersects a curve at two distinct points. A tangent line touches a curve at exactly one point (in the local vicinity)."
+    },
+    {
+      "front": "How do you calculate the average rate of change of a function $f(x)$ between $x=a$ and $x=b$?",
+      "back": "It's the gradient of the secant line connecting the two points: $\\frac{\\text{change in y}}{\\text{change in x}} = \\frac{f(b) - f(a)}{b - a}$."
+    },
+    {
+      "front": "What are the two main notations for the derivative of $y = f(x)$?",
+      "back": "Leibniz's notation: $\\frac{dy}{dx}$ (read as 'dee-why by dee-ex'). Lagrange's notation: $f'(x)$ (read as 'f-prime of x')."
+    },
+    {
+      "front": "What does a positive derivative, $f'(x) > 0$, tell you about the function?",
+      "back": "The function $f(x)$ is increasing at that point. The tangent line has a positive gradient."
+    },
+    {
+      "front": "What does a negative derivative, $f'(x) < 0$, tell you about the function?",
+      "back": "The function $f(x)$ is decreasing at that point. The tangent line has a negative gradient."
+    },
+    {
+      "front": "What does a derivative of zero, $f'(x) = 0$, tell you about the function?",
+      "back": "The function has a stationary point (like a local maximum, minimum, or point of inflexion). The tangent line is horizontal."
+    },
+    {
+      "front": "If $s(t)$ is the distance (in metres) of an object after $t$ seconds, what are the units of its derivative, $s'(t)$?",
+      "back": "The units of the derivative are the units of the y-axis divided by the units of the x-axis. In this case, metres per second (m/s)."
+    },
+    {
+      "front": "How do you find the numerical derivative on a GDC?",
+      "back": "Use the calculator's built-in function, often called 'nDeriv' or found under a 'd/dx' template in the calculus menu. You will need to input the function, the variable, and the point at which to evaluate."
+    },
+    {
+      "front": "Common Trap: Confusing $f(a)$ and $f'(a)$.",
+      "back": "$f(a)$ is the value of the function at $x=a$. $f'(a)$ is the rate of change (or gradient) of the function at $x=a$. Don't mix them up!"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between $f(x)$ and $f'(x)$?",
+      "a": "$f(x)$ represents the value of a function (e.g., distance, temperature, profit) at a certain point $x$. $f'(x)$ represents the rate of change of that function (e.g., speed, rate of cooling, marginal profit) at the same point $x$. One is a value, the other is a rate."
+    },
+    {
+      "q": "Do I need to memorise the 'differentiation from first principles' limit formula for the AI SL exam?",
+      "a": "No. For Mathematics: Applications and Interpretation SL, you are not required to use the limit definition to find derivatives. Your focus should be on understanding the concept of the derivative as a rate of change and being able to calculate it using your GDC."
+    },
+    {
+      "q": "What do the units of a derivative mean?",
+      "a": "The units of a derivative $\\frac{dy}{dx}$ are always the (units of y) per (unit of x). For example, if $y$ is cost in dollars ($) and $x$ is weight in kilograms (kg), the units of the derivative $\\frac{dy}{dx}$ are dollars per kilogram ($/kg). This represents the additional cost for each additional kilogram."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "You're already familiar with the concept of gradient for a straight line – it's a constant measure of its steepness. But what about curves? Their steepness changes at every single point. In this lesson, we'll explore the powerful idea of finding the gradient at a specific point on a curve. This is the foundation of differential calculus and has wide-ranging applications, from calculating the instantaneous speed of a vehicle to modelling the rate of change of a company's profit."
+    },
+    {
+      "type": "heading",
+      "content": "Average vs. Instantaneous Rate of Change"
+    },
+    {
+      "type": "text",
+      "content": "Let's consider a quantity that changes over time, like the height of a growing sunflower. If we measure its height at the start and end of a week, we can calculate its average rate of growth for that week. This is the average rate of change. However, the sunflower might have grown faster on sunny days and slower on cloudy days. If we wanted to know its exact rate of growth at a particular moment, say midday on Wednesday, we would need its instantaneous rate of change."
+    },
+    {
+      "type": "formula",
+      "content": "Average Rate of Change = $\\frac{f(x_2) - f(x_1)}{x_2 - x_1}$"
+    },
+    {
+      "type": "text",
+      "content": "This formula gives the gradient of the secant line connecting the points $(x_1, f(x_1))$ and $(x_2, f(x_2))$. It tells us the average change across an interval."
+    },
+    {
+      "type": "heading",
+      "content": "The Derivative as the Gradient of a Tangent"
+    },
+    {
+      "type": "text",
+      "content": "To find the instantaneous rate of change, we imagine the interval between our two points getting smaller and smaller. As the two points on the curve move closer together, the secant line connecting them pivots until it just touches the curve at a single point. This new line is called the tangent. The gradient of this tangent line is the instantaneous rate of change at that point, and we call this the derivative."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The derivative of a function at a point is the instantaneous rate of change at that point.",
+        "The derivative is equal to the gradient of the tangent line to the curve at that point.",
+        "For the AI SL course, we use our GDC to find the numerical value of the derivative at a specific point."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The temperature, $T$, in degrees Celsius, of a cup of coffee left to cool is modelled by the function $T(t) = 20 + 70e^{-0.05t}$, where $t$ is the time in minutes after it was made.\n\na) Find the temperature of the coffee after 10 minutes.\nb) Find the average rate of change of the temperature during the first 10 minutes.\nc) Using your GDC, find the instantaneous rate of change of the temperature at $t=10$ minutes. Interpret your answer.",
+      "solution": "a) We need to find $T(10)$.\n$T(10) = 20 + 70e^{-0.05 \\times 10}$ (M1 for substitution)\n$T(10) = 20 + 70e^{-0.5}$\n$T(10) = 62.459... \\approx 62.5^\\circ C$ (3 s.f.) (A1)\n\nb) We need the temperature at $t=0$ first.\n$T(0) = 20 + 70e^0 = 20 + 70 = 90^\\circ C$.\nAverage rate of change = $\\frac{T(10) - T(0)}{10 - 0}$ (M1)\n$= \\frac{62.459... - 90}{10}$\n$= -2.754... \\approx -2.75^\\circ C/\\text{min}$ (3 s.f.) (A1)\n\nc) We need to find $T'(10)$.\nUsing GDC: $\\frac{d}{dt}(20 + 70e^{-0.05t})$ at $t=10$. (M1 for setup)\n$T'(10) = -2.122... \\approx -2.12^\\circ C/\\text{min}$ (3 s.f.) (A1)\nInterpretation: At exactly 10 minutes, the temperature of the coffee is decreasing at a rate of $2.12^\\circ C$ per minute. (R1 for correct interpretation including 'decreasing' and units)"
+    },
+    {
+      "type": "heading",
+      "content": "Using Your GDC for Derivatives"
+    },
+    {
+      "type": "text",
+      "content": "For Paper 1, your GDC is your most important tool for differentiation. You are not expected to calculate derivatives by hand using algebraic rules. You need to be proficient at finding the numerical derivative function on your calculator (often labelled 'nDeriv' or with the notation $\\frac{d}{dx}(\\cdot)$) and inputting the function and the specific point correctly."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, even when using a GDC, you must show your working. For finding a derivative, write down the derivative notation and the value you are finding. For example, write '$f'(3) = ...$' before writing the numerical answer from your calculator. This can earn you method marks even if your final answer is incorrect."
+    },
+    {
+      "type": "workedExample",
+      "question": "A company's profit, $P$, in thousands of pounds, from selling $x$ hundred items is given by the model $P(x) = -0.1x^3 + 1.5x^2 + 5x - 10$, for $0 \\le x \\le 20$.\n\na) Find the profit when 800 items are sold.\nb) Find the rate at which the profit is changing when 800 items are sold. Give your answer to the nearest pound.\nc) Explain the meaning of your answer to part (b).",
+      "solution": "a) Selling 800 items corresponds to $x=8$ (since $x$ is in hundreds).\n$P(8) = -0.1(8)^3 + 1.5(8)^2 + 5(8) - 10$ (M1)\n$P(8) = -51.2 + 96 + 40 - 10$\n$P(8) = 74.8$\nSince profit is in thousands of pounds, the profit is £74,800. (A1)\n\nb) We need to find the derivative $P'(x)$ at $x=8$.\nUsing GDC: Find $\\frac{d}{dx}(-0.1x^3 + 1.5x^2 + 5x - 10)$ at $x=8$. (M1 for setup)\n$P'(8) = 9.8$ (A1)\nThe units are thousands of pounds per hundred items. So the rate is £9.8 thousand per hundred items.\nTo find the rate in pounds per item, we calculate $\\frac{9.8 \\times 1000}{100} = 98$. So the rate is £98 per item. (M1 for unit conversion)\nTo the nearest pound, the rate is £98 per item. (A1)\n\nc) When the company is selling 800 items, their profit is increasing at a rate of £98 for each additional item sold. (R1 for 'increasing' and R1 for context and units)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Finding Rates of Change",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Secant Line to Tangent Line",
+          "href": "https://www.geogebra.org/m/msv2a76p"
+        },
+        {
+          "label": "Khan Academy: Derivative as a concept",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Secant Line to Tangent Line",
+    "embedUrl": "https://www.geogebra.org/classic?material=msv2a76p",
+    "launchUrl": "https://www.geogebra.org/classic?material=msv2a76p",
+    "hint": "Use “Secant Line to Tangent Line” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

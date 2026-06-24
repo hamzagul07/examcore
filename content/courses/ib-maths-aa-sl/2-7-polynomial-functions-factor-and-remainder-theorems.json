@@ -1,0 +1,181 @@
+{
+  "slug": "2-7-polynomial-functions-factor-and-remainder-theorems",
+  "topicCode": "2.7",
+  "title": "Polynomial functions, factor and remainder theorems",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces polynomial functions, focusing on the Remainder and Factor Theorems. You will learn how to use these powerful shortcuts to find remainders from polynomial division and to factorise higher-degree polynomials, which is essential for solving equations and analysing their graphs without a calculator.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define a polynomial and identify its degree.",
+    "Apply the Remainder Theorem to find the remainder of a polynomial division by a linear factor.",
+    "Use the Factor Theorem to identify linear factors and find the roots of polynomials.",
+    "Solve problems involving unknown coefficients in polynomials using the theorems."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Polynomial Secrets",
+    "summary": "The Factor and Remainder Theorems are clever shortcuts for working with polynomials. They allow us to find remainders and check for factors without performing tedious long division.",
+    "analogy": "Imagine you have a long string of pearls, representing a polynomial. You want to know if you can divide it into smaller, equal-length bracelets (the factors) without any leftover pearls (the remainder). Instead of cutting and measuring the whole string (long division), you can use a special trick. The Remainder Theorem tells you exactly how many pearls will be left over for a given bracelet length, and the Factor Theorem tells you if a certain length works perfectly with no leftovers.",
+    "steps": [
+      "Identify the polynomial P(x) and the linear divisor in the form (x-k).",
+      "To find the remainder, substitute the root of the divisor, k, into the polynomial and calculate P(k).",
+      "To test if (x-k) is a factor, check if P(k) = 0. If it is, you've found a factor.",
+      "Use these results to find unknown coefficients or to break down the polynomial into simpler factors."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a polynomial function, $P(x)$?",
+      "back": "An expression of the form $a_n x^n + a_{n-1} x^{n-1} + \\dots + a_1 x + a_0$, where the coefficients $a_i$ are real numbers and the powers $n$ are non-negative integers."
+    },
+    {
+      "front": "What is the 'degree' of a polynomial?",
+      "back": "The highest power of the variable $x$ in the polynomial. The degree of $3x^4 - 2x + 1$ is 4."
+    },
+    {
+      "front": "State the Remainder Theorem.",
+      "back": "When a polynomial $P(x)$ is divided by $(x-k)$, the remainder is equal to $P(k)$."
+    },
+    {
+      "front": "How do you find the remainder when $P(x)$ is divided by $(ax-b)$?",
+      "back": "The remainder is $P(b/a)$. You find the value of $x$ that makes the divisor zero, which is $x = b/a$, and substitute it into the polynomial."
+    },
+    {
+      "front": "State the Factor Theorem.",
+      "back": "$(x-k)$ is a factor of a polynomial $P(x)$ if and only if $P(k) = 0$."
+    },
+    {
+      "front": "What is a 'root' of a polynomial?",
+      "back": "A value $x=k$ is a root of $P(x)$ if $P(k)=0$. The roots are the solutions to the equation $P(x)=0$ and correspond to the x-intercepts of the graph."
+    },
+    {
+      "front": "If you know $(x-k)$ is a factor of a cubic, how do you find the other factors without long division?",
+      "back": "You can use inspection. If $P(x) = x^3 + \\dots = (x-k)(ax^2+bx+c)$, you know $a=1$. You can find $c$ by comparing constant terms: constant of $P(x) = -k \\times c$. Then find $b$ by comparing $x^2$ or $x$ coefficients."
+    },
+    {
+      "front": "Common Trap: When dividing $P(x)$ by $(x+5)$, what value do you substitute into the polynomial?",
+      "back": "You substitute $x=-5$. Always use the value of $x$ that makes the divisor zero: $x+5=0 \\implies x=-5$."
+    },
+    {
+      "front": "If a cubic polynomial $P(x)$ has roots $x=1, x=-2, x=5$, what is a possible expression for $P(x)$?",
+      "back": "$P(x) = a(x-1)(x+2)(x-5)$, where $a$ is any non-zero real constant."
+    },
+    {
+      "front": "What does 'if and only if' (often written as $\\iff$) mean in the Factor Theorem?",
+      "back": "It's a two-way logical equivalence. It means: (1) If $(x-k)$ is a factor, then $P(k)=0$. AND (2) If $P(k)=0$, then $(x-k)$ is a factor."
+    },
+    {
+      "front": "How do you find a first factor for a cubic like $P(x) = x^3 - 2x^2 - 5x + 6$ in a non-calculator paper?",
+      "back": "Use the Rational Root Theorem. Test integer factors of the constant term (6). Test $P(1), P(-1), P(2), P(-2)$, etc., until you find one that equals zero. Here, $P(1) = 1-2-5+6=0$, so $(x-1)$ is a factor."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between the Remainder Theorem and the Factor Theorem?",
+      "a": "The Factor Theorem is a special case of the Remainder Theorem. The Remainder Theorem gives you the remainder for any linear division. The Factor Theorem simply states that if that remainder happens to be zero, the divisor was a perfect factor."
+    },
+    {
+      "q": "Do I have to use polynomial long division to find other factors?",
+      "a": "It's a reliable method, but often not the fastest for Paper 1. Once you find one linear factor, $(x-k)$, of a cubic, you can find the remaining quadratic factor by inspection (also called equating coefficients). This is usually quicker and less prone to calculation errors."
+    },
+    {
+      "q": "What if the divisor is something like $(2x-1)$?",
+      "a": "The theorems work perfectly. Find the value of $x$ that makes the divisor zero: $2x-1=0 \\implies x=1/2$. Then substitute $x=1/2$ into the polynomial $P(x)$. The result, $P(1/2)$, is your remainder. If $P(1/2)=0$, then $(2x-1)$ is a factor."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of polynomial functions. You're already familiar with linear functions (degree 1) and quadratic functions (degree 2). Polynomials are the natural extension of these, covering functions of any non-negative integer degree. While factorising quadratics is straightforward, tackling cubics and higher-degree polynomials can be tricky. This lesson introduces two essential theorems that act as powerful shortcuts, especially crucial in Paper 1 where calculators are not permitted."
+    },
+    {
+      "type": "heading",
+      "content": "The Remainder Theorem"
+    },
+    {
+      "type": "text",
+      "content": "Imagine you need to divide a complicated polynomial like $f(x) = 2x^3 - 5x^2 + x - 7$ by a simple linear expression like $(x-3)$. You could use polynomial long division, but it's time-consuming and prone to errors. The Remainder Theorem provides a much faster way to find just the remainder."
+    },
+    {
+      "type": "formula",
+      "content": "When a polynomial $P(x)$ is divided by a linear expression $(x-k)$, the remainder is $R = P(k)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the remainder when the polynomial $P(x) = 2x^3 - 5x^2 + x - 7$ is divided by $(x-3)$.",
+      "solution": "By the Remainder Theorem, the divisor is $(x-3)$, so we set $x-3=0$ to find $k=3$. The remainder is $P(3)$.\n\n$P(3) = 2(3)^3 - 5(3)^2 + (3) - 7$  [M1] for attempting to substitute 3\n\n$= 2(27) - 5(9) + 3 - 7$\n\n$= 54 - 45 + 3 - 7$\n\n$= 9 - 4 = 5$  [A1]\n\nThe remainder is 5."
+    },
+    {
+      "type": "heading",
+      "content": "The Factor Theorem"
+    },
+    {
+      "type": "text",
+      "content": "The Factor Theorem is a direct and very useful consequence of the Remainder Theorem. What happens if the remainder is zero? It means the division is perfect, and the divisor is a factor of the polynomial. This theorem links the factors of a polynomial to its roots."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$(x-k)$ is a factor of $P(x) \\iff P(k)=0$.",
+        "$x=k$ is a root of the equation $P(x)=0 \\iff P(k)=0$.",
+        "The graph of $y=P(x)$ has an x-intercept at $(k,0) \\iff P(k)=0$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $P(x) = x^3 + 2x^2 - 5x - 6$.\n(a) Show that $(x+1)$ is a factor of $P(x)$.\n(b) Hence, find the other linear factors of $P(x)$.",
+      "solution": "(a) To show that $(x+1)$ is a factor, we use the Factor Theorem and check if $P(-1)=0$. [M1]\n\n$P(-1) = (-1)^3 + 2(-1)^2 - 5(-1) - 6$\n\n$= -1 + 2(1) + 5 - 6$\n\n$= -1 + 2 + 5 - 6 = 0$ [A1]\n\nSince $P(-1)=0$, $(x+1)$ is a factor of $P(x)$. [R1]\n\n(b) Since $(x+1)$ is a factor, we can write $P(x) = (x+1)(ax^2+bx+c)$.\nBy comparing coefficients:\n- The $x^3$ term: $x \\cdot ax^2 = x^3 \\implies a=1$. [M1] for starting the process\n- The constant term: $1 \\cdot c = -6 \\implies c=-6$.\nSo, $P(x) = (x+1)(x^2+bx-6)$.\n- To find $b$, compare the $x^2$ coefficients: $2x^2 = 1 \\cdot bx^2 + x \\cdot x^2 = (b+1)x^2$. So, $2=b+1 \\implies b=1$. [A1] for finding the quadratic factor\n\nSo, $P(x) = (x+1)(x^2+x-6)$.\nWe now factorise the quadratic: $x^2+x-6 = (x+3)(x-2)$. [A1]\n\nThe other linear factors are $(x+3)$ and $(x-2)$."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, when asked to factorise a cubic polynomial, you're expected to find the first root by testing integer factors of the constant term. For $P(x) = x^3 + ... + 8$, you should test $x = \\pm 1, \\pm 2, \\pm 4, \\pm 8$ by substituting into $P(x)$ until you find a value that gives 0."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Problems with Unknown Coefficients"
+    },
+    {
+      "type": "text",
+      "content": "A common exam question type involves polynomials with unknown coefficients (like $p$ or $q$). You will be given information about factors or remainders, which you can use to create a system of linear equations to solve for the unknowns. This combines your knowledge of the theorems with your algebra skills."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $f(x) = x^3 + px^2 + qx + 6$. When $f(x)$ is divided by $(x-1)$, the remainder is 4. Given that $(x-2)$ is a factor of $f(x)$, find the values of $p$ and $q$.",
+      "solution": "Use the information given to form two equations.\n\nInformation 1: Remainder when divided by $(x-1)$ is 4. By the Remainder Theorem, $f(1) = 4$. [M1]\n$f(1) = (1)^3 + p(1)^2 + q(1) + 6 = 4$\n$1 + p + q + 6 = 4$\n$p + q = -3$  (Equation 1) [A1]\n\nInformation 2: $(x-2)$ is a factor. By the Factor Theorem, $f(2) = 0$. [M1]\n$f(2) = (2)^3 + p(2)^2 + q(2) + 6 = 0$\n$8 + 4p + 2q + 6 = 0$\n$4p + 2q = -14$\nDividing by 2 gives: $2p + q = -7$ (Equation 2) [A1]\n\nNow we solve the simultaneous equations:\n(1) $p + q = -3$\n(2) $2p + q = -7$\n\nSubtract (1) from (2): \n$(2p + q) - (p + q) = -7 - (-3)$ [M1] for a valid attempt to solve the system\n$p = -4$\n\nSubstitute $p=-4$ into (1):\n$-4 + q = -3$\n$q = 1$ [A1]\n\nThus, $p=-4$ and $q=1$."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Polynomial Theorems",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Polynomial Factorisation",
+          "href": "https://www.geogebra.org/m/y9btrwky"
+        },
+        {
+          "label": "Khan Academy: Polynomial Remainder Theorem",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:poly-div/x2ec2f6f830c9fb89:remainder-theorem/v/polynomial-remainder-theorem"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Polynomial Factorisation",
+    "embedUrl": "https://www.geogebra.org/classic?material=y9btrwky",
+    "launchUrl": "https://www.geogebra.org/classic?material=y9btrwky",
+    "hint": "Use “Polynomial Factorisation” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

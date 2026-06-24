@@ -1,0 +1,178 @@
+{
+  "slug": "2-1-linear-models-and-equations-of-straight-lines",
+  "topicCode": "2.1",
+  "title": "Linear models and equations of straight lines",
+  "paper": "P1",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces linear models, focusing on the equation of a straight line, $y = mx + c$. You will learn how to calculate the gradient and y-intercept, and crucially, how to interpret these values in real-world contexts, a key skill for the Applications and Interpretation course.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and use the equation of a straight line, $y = mx + c$.",
+    "Calculate the gradient of a line from two points and interpret its meaning.",
+    "Determine the equation of a linear model from given data.",
+    "Interpret the parameters of a linear model in the context of the problem."
+  ],
+  "simpleExplanation": {
+    "title": "Straight Lines Made Simple",
+    "summary": "A linear model uses a straight line to describe the relationship between two variables. This allows us to make predictions and understand the rate of change.",
+    "analogy": "Imagine ordering a pizza. There's a fixed delivery fee (the y-intercept, 'c'), and then a cost for each topping you add (the gradient, 'm'). Your total bill ('y') is the delivery fee plus the cost per topping multiplied by the number of toppings ('x'). The total cost changes at a constant rate for each topping added – that's a linear relationship!",
+    "steps": [
+      "Identify two points $(x_1, y_1)$ and $(x_2, y_2)$ from the problem's description or a graph.",
+      "Calculate the gradient (the rate of change) using the formula $m = \\frac{\\text{change in y}}{\\text{change in x}}$.",
+      "Substitute the gradient 'm' and one of the points into $y = mx + c$ to solve for 'c', the initial value.",
+      "Write the final equation and use it to answer the question, making sure to interpret the values in context."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the general form of the equation of a straight line?",
+      "back": "$y = mx + c$"
+    },
+    {
+      "front": "What does 'm' represent in $y = mx + c$?",
+      "back": "'m' is the gradient of the line. It represents the rate of change of y with respect to x."
+    },
+    {
+      "front": "What does 'c' represent in $y = mx + c$?",
+      "back": "'c' is the y-intercept. It is the value of y when x = 0, representing the initial or fixed value in a model."
+    },
+    {
+      "front": "How do you calculate the gradient 'm' between two points $(x_1, y_1)$ and $(x_2, y_2)$?",
+      "back": "Using the formula: $m = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "front": "What is the relationship between the gradients of two parallel lines?",
+      "back": "Their gradients are equal. $m_1 = m_2$."
+    },
+    {
+      "front": "What is the relationship between the gradients of two perpendicular lines?",
+      "back": "The product of their gradients is -1. $m_1 \\times m_2 = -1$. This means one gradient is the negative reciprocal of the other, e.g., $m_2 = -\\frac{1}{m_1}$."
+    },
+    {
+      "front": "What does a positive gradient ($m > 0$) indicate?",
+      "back": "A positive correlation. As x increases, y increases. The line slopes upwards from left to right."
+    },
+    {
+      "front": "What does a negative gradient ($m < 0$) indicate?",
+      "back": "A negative correlation. As x increases, y decreases. The line slopes downwards from left to right."
+    },
+    {
+      "front": "What is interpolation in the context of a linear model?",
+      "back": "Estimating a value that lies *within* the range of the original data points. It is generally considered reliable."
+    },
+    {
+      "front": "What is extrapolation in the context of a linear model?",
+      "back": "Estimating a value that lies *outside* the range of the original data points. It is less reliable as the linear trend may not continue."
+    },
+    {
+      "front": "How do you find the x-intercept of a line from its equation?",
+      "back": "Set $y=0$ in the equation $y=mx+c$ and solve for $x$. The x-intercept is the point where the line crosses the x-axis."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if the equation is not in the form y = mx + c?",
+      "a": "Sometimes you might see an equation like $3x + 2y - 6 = 0$. This is called the general form. To work with it easily, you should rearrange it to make 'y' the subject. For this example: $2y = -3x + 6$, so $y = -\\frac{3}{2}x + 3$. Now you can clearly see the gradient is $-3/2$ and the y-intercept is 3."
+    },
+    {
+      "q": "What's the difference between interpolation and extrapolation?",
+      "a": "Interpolation is making a prediction *within* the range of your data. For example, if you have data for 5 km and 12 km journeys, predicting the cost for an 8 km journey is interpolation. Extrapolation is predicting *outside* the range, like for a 20 km journey. Extrapolation is less reliable because you assume the linear trend continues, which might not be true in reality (e.g., a taxi might offer a discount for very long distances)."
+    },
+    {
+      "q": "Can the y-intercept 'c' be negative?",
+      "a": "Yes, absolutely. In a real-world model, a negative y-intercept could represent a starting debt or a loss at time zero. For example, if a company's profit model is $P = 50x - 1000$, the y-intercept of -1000 means they have a fixed cost of £1000 before selling any items (when $x=0$)."
+    },
+    {
+      "q": "What do horizontal and vertical lines look like as equations?",
+      "a": "A horizontal line has a gradient of 0. Its equation is simply $y = c$, where 'c' is the y-value of all points on the line. A vertical line has an undefined gradient. Its equation is $x = k$, where 'k' is the x-value of all points on the line."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of linear modelling! Many real-life situations, from predicting profits to tracking plant growth, can be approximated using a straight line. This topic forms the foundation of understanding how variables relate to each other in a predictable way. Mastering this will give you a powerful tool for analysis and prediction, which is central to the Applications and Interpretation course."
+    },
+    {
+      "type": "heading",
+      "content": "The Anatomy of a Straight Line: y = mx + c"
+    },
+    {
+      "type": "text",
+      "content": "The equation of a straight line is a fundamental concept in mathematics. It provides a complete description of the line's properties on a Cartesian plane. In this course, we almost always use the 'gradient-intercept' form."
+    },
+    {
+      "type": "formula",
+      "content": "$$y = mx + c$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**y and x** are the variables. For example, x could be time in hours, and y could be distance in kilometres.",
+        "**m** is the **gradient**. It tells us how steep the line is. It's the 'rate of change' – for every one unit increase in x, y increases by 'm' units.",
+        "**c** is the **y-intercept**. It's the value of y when x is zero. In a model, this is often the 'starting value' or 'fixed cost'."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Equation of a Line from Two Points"
+    },
+    {
+      "type": "text",
+      "content": "If you are given any two points that lie on a straight line, you can determine its unique equation. This is a two-step process: first, calculate the gradient 'm', and second, use one of the points to find the y-intercept 'c'."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient, $m = \\frac{\\text{change in y}}{\\text{change in x}} = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A taxi fare, $F$ in euros (€), is linearly related to the distance travelled, $d$ in kilometres. A 5 km journey costs €12, and a 12 km journey costs €22.50. \n\na) Find the equation for the taxi fare in the form $F = md + c$. \n\nb) Interpret the meaning of the gradient, $m$. \n\nc) Find the cost of a 20 km journey.",
+      "solution": "a) First, identify the two points $(d_1, F_1)$ and $(d_2, F_2)$. These are $(5, 12)$ and $(12, 22.50)$.\n\nNext, calculate the gradient, $m$: \n$m = \\frac{F_2 - F_1}{d_2 - d_1} = \\frac{22.50 - 12}{12 - 5}$ (M1 for substitution into gradient formula)\n$m = \\frac{10.5}{7} = 1.5$ (A1)\n\nNow we have $F = 1.5d + c$. Substitute one of the points, for example $(5, 12)$, to find $c$: \n$12 = 1.5(5) + c$ (M1 for substitution)\n$12 = 7.5 + c$\n$c = 12 - 7.5 = 4.5$ (A1)\n\nSo, the equation is $F = 1.5d + 4.5$. (A1)\n\nb) The gradient $m=1.5$ represents the cost per kilometre. For every additional kilometre travelled, the fare increases by €1.50. (R1 for correct interpretation)\n\nc) Substitute $d=20$ into the equation: \n$F = 1.5(20) + 4.5$ (M1 for substitution)\n$F = 30 + 4.5 = 34.5$\nThe cost of a 20 km journey is €34.50. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always read the question carefully to see what variables to use. If it asks for $F$ and $d$, use those instead of $y$ and $x$. Also, interpreting the gradient and y-intercept is a very common exam question. The gradient 'm' is the 'rate' or 'cost per item', while the y-intercept 'c' is the 'initial', 'fixed', or 'starting' value."
+    },
+    {
+      "type": "heading",
+      "content": "Parallel and Perpendicular Lines"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between two lines can be determined by comparing their gradients. This is a common feature in geometry-based questions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Parallel Lines:** Two lines are parallel if and only if they have the same gradient. They never intersect. For lines $L_1$ with gradient $m_1$ and $L_2$ with gradient $m_2$, they are parallel if $m_1 = m_2$.",
+        "**Perpendicular Lines:** Two lines are perpendicular if and only if they meet at a right angle (90°). The product of their gradients is -1. For lines $L_1$ and $L_2$, they are perpendicular if $m_1 \\times m_2 = -1$. This means $m_2 = -\\frac{1}{m_1}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Line $L_1$ has the equation $y = 2x + 5$. Line $L_2$ is perpendicular to $L_1$ and passes through the point $P(4, -1)$. Find the equation of line $L_2$.",
+      "solution": "First, identify the gradient of line $L_1$. From $y = 2x + 5$, the gradient is $m_1 = 2$. (A1)\n\nLine $L_2$ is perpendicular to $L_1$. Let the gradient of $L_2$ be $m_2$. The condition for perpendicular lines is $m_1 \\times m_2 = -1$. \n$2 \\times m_2 = -1$ (M1 for using the perpendicular condition)\n$m_2 = -\\frac{1}{2}$ (A1)\n\nThe equation of $L_2$ is therefore $y = -\\frac{1}{2}x + c$. \n\nWe know that $L_2$ passes through the point $(4, -1)$. Substitute these values into the equation to find $c$: \n$-1 = -\\frac{1}{2}(4) + c$ (M1 for substitution)\n$-1 = -2 + c$\n$c = -1 + 2 = 1$ (A1)\n\nThe equation of line $L_2$ is $y = -\\frac{1}{2}x + 1$. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB AI SL Questionbank",
+          "href": "/questionbank?subject=ib-maths-ai-sl"
+        },
+        {
+          "label": "Revision Village Topic Page",
+          "href": "https://www.revisionvillage.com/ib-maths-ai-sl/topic-2-functions/2-1-linear-functions/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

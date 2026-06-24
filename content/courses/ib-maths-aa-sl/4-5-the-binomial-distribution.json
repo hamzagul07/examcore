@@ -1,0 +1,189 @@
+{
+  "slug": "4-5-the-binomial-distribution",
+  "topicCode": "4.5",
+  "title": "The binomial distribution",
+  "paper": "P2",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces the binomial distribution, a fundamental concept in probability for modelling experiments with a fixed number of independent trials, each having only two possible outcomes. You will learn to identify binomial scenarios, calculate probabilities using both the formula and your GDC, and find the mean and variance of a binomial distribution.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify a random variable as following a binomial distribution by checking its four characteristic properties.",
+    "Calculate probabilities for a binomial distribution using the formula and a graphic display calculator (GDC).",
+    "Calculate the expected value (mean) and variance of a binomial distribution.",
+    "Solve contextual problems involving binomial probabilities, including cumulative probabilities."
+  ],
+  "simpleExplanation": {
+    "title": "Success or Failure: The Binomial Count",
+    "summary": "The binomial distribution helps us calculate probabilities for situations where we repeat an experiment a set number of times and count the 'successes'. Think of it as the maths behind any 'yes/no' or 'pass/fail' scenario that you repeat.",
+    "analogy": "Imagine you're taking 10 penalty kicks in football. Each kick is either a goal ('success') or a miss ('failure'). Your chance of scoring any single penalty is, say, 70%, and each kick is independent of the others. The binomial distribution lets you calculate the exact probability of scoring, for example, exactly 7 goals, or at least 8 goals out of the 10 kicks.",
+    "steps": [
+      "Identify the scenario: Check for a fixed number of trials (n), two outcomes (success/failure), constant probability of success (p), and independent trials.",
+      "Define the distribution: Write down the random variable and its parameters in the form X ~ B(n, p).",
+      "Choose the right tool: For P(X = k), use binomPdf. For P(X ≤ k), use binomCdf. For other inequalities, you may need to rephrase the problem (e.g., P(X ≥ k) = 1 - P(X ≤ k-1)).",
+      "Calculate and interpret: Use your GDC to find the probability and write your final answer in the context of the original problem, usually to 3 significant figures."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What are the four conditions for a binomial distribution?",
+      "back": "1. **B**inary: Only two possible outcomes (success/failure). 2. **I**ndependent: Trials must be independent. 3. **N**umber: A fixed number of trials (n). 4. **S**uccess: The probability of success (p) is constant for each trial. (Acronym: BINS)"
+    },
+    {
+      "front": "What does the notation $X \\sim B(n, p)$ mean?",
+      "back": "The random variable $X$ follows a binomial distribution with $n$ trials and a probability of success $p$."
+    },
+    {
+      "front": "What is the formula for calculating $P(X=k)$ in a binomial distribution?",
+      "back": "$P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$, where $\\binom{n}{k}$ is the number of ways to choose $k$ successes from $n$ trials."
+    },
+    {
+      "front": "When do you use `binomPdf` on your GDC?",
+      "back": "Use `binomPdf(n, p, k)` to find the probability of a single outcome, $P(X=k)$. The 'p' stands for 'point'."
+    },
+    {
+      "front": "When do you use `binomCdf` on your GDC?",
+      "back": "Use `binomCdf(n, p, k)` to find the cumulative probability from 0 up to and including $k$, i.e., $P(X \\le k)$. The 'c' stands for 'cumulative'."
+    },
+    {
+      "front": "How would you calculate $P(X > 5)$ using your GDC?",
+      "back": "$P(X > 5)$ is the same as $P(X \\ge 6)$. This is calculated as $1 - P(X \\le 5)$. On the GDC: `1 - binomCdf(n, p, 5)`."
+    },
+    {
+      "front": "How would you calculate $P(X \\ge 5)$ using your GDC?",
+      "back": "$P(X \\ge 5) = 1 - P(X \\le 4)$. On the GDC: `1 - binomCdf(n, p, 4)`. Be careful with the strict inequality!"
+    },
+    {
+      "front": "How do you calculate the probability $P(3 \\le X \\le 7)$?",
+      "back": "Calculate $P(X \\le 7) - P(X \\le 2)$. On the GDC: `binomCdf(n, p, 7) - binomCdf(n, p, 2)`."
+    },
+    {
+      "front": "What is the formula for the mean or expected value of a binomial distribution?",
+      "back": "$E(X) = np$. This gives the average number of successes you would expect over many repetitions of the experiment."
+    },
+    {
+      "front": "What is the formula for the variance of a binomial distribution?",
+      "back": "$Var(X) = np(1-p)$ or $Var(X) = npq$, where $q = 1-p$. This measures the spread of the distribution."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between the binomial and normal distributions?",
+      "a": "The binomial distribution is a discrete probability distribution, meaning it's used for variables that can only take on integer values (e.g., 0, 1, 2, ... successes). The normal distribution is a continuous distribution, for variables that can take any value within a range (e.g., height, weight). For large $n$, the binomial distribution can be approximated by a normal distribution."
+    },
+    {
+      "q": "What if there are more than two outcomes?",
+      "a": "If an experiment has a fixed number of independent trials but more than two outcomes (e.g., rolling a die and caring about getting a 1, 2, 3, 4, 5, or 6), it is not a binomial experiment. It might be a multinomial experiment, which is not part of the AA SL syllabus."
+    },
+    {
+      "q": "My calculator doesn't have `binomPdf` or `binomCdf`. What should I do?",
+      "a": "All approved GDCs for the IB Maths exam (like the TI-84 family, TI-Nspire, or Casio fx-CG50) have these functions. They are usually found in a 'distributions' menu (often accessed by pressing '2nd' then 'VARS' on TI calculators). Make sure you are familiar with your specific calculator model."
+    },
+    {
+      "q": "How do I calculate $P(X < 5)$?",
+      "a": "$P(X < 5)$ is the same as $P(X \\le 4)$, since the binomial distribution is discrete. You would use `binomCdf(n, p, 4)` on your calculator."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the binomial distribution! This is a powerful tool in probability that applies to a huge range of real-world situations, from quality control in a factory to predicting the results of a survey. It's all about counting successes in a fixed number of trials. As this is a Paper 2 topic, your graphic display calculator (GDC) will be your best friend, and we'll focus on how to use it effectively to solve problems."
+    },
+    {
+      "type": "heading",
+      "content": "Identifying a Binomial Experiment"
+    },
+    {
+      "type": "text",
+      "content": "Before we can use the binomial distribution, we must be certain that the situation fits. A binomial experiment must satisfy four conditions, which you can remember with the acronym BINS or BITS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Binary:** Each trial has only two possible outcomes. We label these 'success' and 'failure'. For example, a coin flip is heads (success) or tails (failure).",
+        "**Independent:** The outcome of one trial does not affect the outcome of another. For example, rolling a die multiple times.",
+        "**Number:** There is a fixed number of trials, which we denote by $n$. For example, you flip a coin 20 times, so $n=20$.",
+        "**Success:** The probability of success, denoted by $p$, is the same for every trial. The probability of failure is then $q = 1-p$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Notation and the Binomial Formula"
+    },
+    {
+      "type": "text",
+      "content": "If a random variable $X$ follows a binomial distribution, we write it in a shorthand notation: $X \\sim B(n, p)$. This tells us everything we need to know: it's a binomial distribution with $n$ trials and a success probability of $p$. While your GDC will do most of the work, it's important to understand the formula it's based on."
+    },
+    {
+      "type": "formula",
+      "content": "The probability of getting exactly $k$ successes in $n$ trials is given by: \n$$ P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k} $$ \nWhere $\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$ is the number of combinations."
+    },
+    {
+      "type": "workedExample",
+      "question": "A factory produces light bulbs, and the probability that a randomly selected bulb is defective is 0.08. A quality control inspector selects 15 bulbs at random. What is the probability that exactly 2 of the selected bulbs are defective?",
+      "solution": "First, identify the parameters. This is a binomial scenario.\n- A trial is checking a bulb. It's either 'defective' (success) or 'not defective' (failure).\n- Number of trials, $n = 15$.\n- Probability of success (a bulb being defective), $p = 0.08$.\nLet $X$ be the number of defective bulbs. Then $X \\sim B(15, 0.08)$. (M1)\n\nWe want to find the probability that exactly 2 bulbs are defective, which is $P(X=2)$.\nWe use the binomial probability distribution function on the GDC: `binomPdf(n, p, k)`.\n\n$P(X=2) = \\text{binomPdf}(15, 0.08, 2)$ (M1)\n\n$P(X=2) = 0.21858...$\n\nSo, the probability is approximately 0.219 (to 3 s.f.). (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Cumulative Probabilities with Your GDC"
+    },
+    {
+      "type": "text",
+      "content": "Often, we are interested in a range of outcomes, such as 'at most 3 successes' or 'at least 10 successes'. These are called cumulative probabilities. Your GDC has a function specifically for this, which makes these calculations much faster than using the formula repeatedly."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**`binomPdf(n, p, k)`** calculates $P(X=k)$. Use for 'exactly k'.",
+        "**`binomCdf(n, p, k)`** calculates $P(X \\le k) = P(X=0) + P(X=1) + ... + P(X=k)$. Use for 'at most k', 'no more than k', 'k or fewer'.",
+        "To find **$P(X \\ge k)$** ('at least k'), calculate $1 - P(X \\le k-1)$.",
+        "To find **$P(X > k)$** ('more than k'), calculate $1 - P(X \\le k)$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The most common error is mixing up inequalities. For 'at least 5' ($X \\ge 5$), you need to subtract the probability of '4 or less' ($X \\le 4$). Always write down the probability statement, like $P(X \\ge 5) = 1 - P(X \\le 4)$, before going to your calculator. This shows your method and helps avoid mistakes."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a large school, 65% of students have a GDC. A teacher randomly selects a class of 25 students. \n(a) Find the probability that exactly 18 students have a GDC. \n(b) Find the probability that at least 20 students have a GDC.",
+      "solution": "Let $X$ be the number of students with a GDC. The situation is binomial.\n- $n = 25$ (fixed number of students)\n- $p = 0.65$ (constant probability of having a GDC)\nSo, $X \\sim B(25, 0.65)$. (M1)\n\n**(a) Probability of exactly 18 students**\nWe need to find $P(X=18)$. We use `binomPdf`.\n$P(X=18) = \\text{binomPdf}(25, 0.65, 18)$ (M1)\n$P(X=18) = 0.1377...$\n$P(X=18) \\approx 0.138$ (to 3 s.f.) (A1)\n\n**(b) Probability of at least 20 students**\n'At least 20' means $X \\ge 20$. We cannot calculate this directly. We must use the complement rule with the cumulative function.\n$P(X \\ge 20) = 1 - P(X \\le 19)$ (M1)\nWe use `binomCdf` to find $P(X \\le 19)$.\n$P(X \\ge 20) = 1 - \\text{binomCdf}(25, 0.65, 19)$ (M1)\n$P(X \\ge 20) = 1 - 0.9316...$\n$P(X \\ge 20) = 0.0683...$\n$P(X \\ge 20) \\approx 0.0683$ (to 3 s.f.) (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Mean and Variance"
+    },
+    {
+      "type": "text",
+      "content": "For any probability distribution, it's useful to know its central tendency (mean) and its spread (variance). For the binomial distribution, these have simple formulas."
+    },
+    {
+      "type": "formula",
+      "content": "The **Expected Value** or **Mean** of a binomial random variable $X \\sim B(n, p)$ is: \n$$ E(X) = \\mu = np $$ \nThe **Variance** is: \n$$ Var(X) = \\sigma^2 = np(1-p) = npq $$"
+    },
+    {
+      "type": "text",
+      "content": "The expected value, $E(X)$, is the average number of successes we would expect if we ran the experiment many times. For example, if you toss a fair coin 100 times ($n=100, p=0.5$), you would expect to get $E(X) = 100 \\times 0.5 = 50$ heads on average."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Binomial Distribution Problems",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=4.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Revision Village - Binomial Distribution",
+          "href": "https://www.revisionvillage.com/ib-maths/analysis-and-approaches-sl/probability-and-statistics/binomial-distribution/"
+        },
+        {
+          "label": "Khan Academy - Binomial Distribution",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/binomial-random-variables/v/binomial-distribution"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

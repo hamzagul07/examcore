@@ -1,0 +1,160 @@
+{
+  "slug": "r2-1-how-much-the-amount-of-chemical-change",
+  "topicCode": "R2.1",
+  "title": "How much? The amount of chemical change",
+  "paper": "P2",
+  "paperName": "Chemistry SL",
+  "status": "premium",
+  "summary": "This lesson introduces stoichiometry, the cornerstone of quantitative chemistry. It covers the mole concept, molar mass, and how to use balanced chemical equations to calculate the amounts of reactants and products. You will learn to identify limiting reactants and calculate theoretical and percentage yields.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define the mole and Avogadro's constant, and perform calculations converting between mass, moles, and number of particles.",
+    "Determine the molar mass of a substance from its chemical formula and the periodic table.",
+    "Use mole ratios from balanced chemical equations to calculate reacting masses and volumes.",
+    "Identify the limiting reactant in a chemical reaction and use it to calculate theoretical and percentage yields."
+  ],
+  "simpleExplanation": {
+    "title": "The Chemist's Recipe Book",
+    "summary": "Stoichiometry is like following a recipe to bake a cake. Moles are the standard 'cups' or 'grams' that chemists use to measure out their ingredients (reactants) to predict exactly how much cake (product) they can make.",
+    "analogy": "Imagine you're baking. Your recipe says '2 cups of flour + 1 cup of sugar → 1 cake'. You can't just throw in random amounts and expect a perfect cake. You measure precisely. In chemistry, we can't count individual atoms, so we group them into huge packets called 'moles'. A balanced chemical equation is our recipe, telling us the exact ratio of moles of reactants needed to produce a certain amount of moles of product.",
+    "steps": [
+      "First, write and balance the chemical equation. This is your non-negotiable recipe that gives the correct ratios.",
+      "Next, convert the known mass of any given substance into moles using the formula $n = m/M$. This is like converting your ingredients to the standard unit in the recipe.",
+      "Then, use the mole ratio from the balanced equation to find the amount in moles of the substance you want to find.",
+      "Finally, convert the moles of your target substance back into mass or any other quantity the question asks for."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the mole?",
+      "back": "The unit for the amount of substance. One mole contains Avogadro's number of particles ($6.02 \\times 10^{23}$). Symbol: $n$. Unit: mol."
+    },
+    {
+      "front": "What is Avogadro's constant ($L$)?",
+      "back": "The number of particles (atoms, molecules, ions) in one mole of a substance. Its value is $6.02 \\times 10^{23} \\text{ mol}^{-1}$."
+    },
+    {
+      "front": "What is molar mass ($M$)?",
+      "back": "The mass of one mole of a substance. It is calculated from the relative atomic masses in the periodic table. Unit: g mol⁻¹."
+    },
+    {
+      "front": "What is the relationship between moles ($n$), mass ($m$), and molar mass ($M$)?",
+      "back": "Amount (mol) = Mass (g) / Molar Mass (g mol⁻¹), or $n = m/M$."
+    },
+    {
+      "front": "What is a limiting reactant (or reagent)?",
+      "back": "The reactant that is completely consumed in a chemical reaction. It determines the maximum amount of product that can be formed."
+    },
+    {
+      "front": "What is an excess reactant?",
+      "back": "A reactant present in a quantity greater than what is needed to react completely with the limiting reactant. Some of it will be left over after the reaction."
+    },
+    {
+      "front": "What is theoretical yield?",
+      "back": "The maximum amount of product that can be produced from the given amounts of reactants, as calculated from the stoichiometry of the reaction. It assumes 100% reaction efficiency."
+    },
+    {
+      "front": "What is percentage yield?",
+      "back": "The ratio of the actual yield (what was experimentally obtained) to the theoretical yield (what was calculated), expressed as a percentage. Formula: $(\\text{Actual Yield} / \\text{Theoretical Yield}) \\times 100\\%$."
+    },
+    {
+      "front": "Common Trap: How do you identify the limiting reactant?",
+      "back": "Do NOT assume it's the reactant with the smallest mass. You must calculate the moles of each reactant and compare their mole ratio to the stoichiometric ratio in the balanced equation to see which one runs out first."
+    },
+    {
+      "front": "Common Trap: Why might percentage yield be less than 100%?",
+      "back": "Reasons include incomplete reaction, side reactions forming unwanted products, and loss of product during separation and purification (e.g., during filtration or transfer between containers)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we use moles instead of just grams in calculations?",
+      "a": "Chemical reactions happen based on the number of particles, not their mass. A balanced equation tells us the ratio of particles (in moles) that react. Using mass directly would be incorrect because different substances have different molar masses; 10g of hydrogen has many more particles than 10g of lead."
+    },
+    {
+      "q": "How do I know for sure which reactant is limiting?",
+      "a": "Calculate the moles of each reactant you are given. Then, for each reactant, calculate how many moles of a specific product it could form (using the mole ratio from the balanced equation). The reactant that produces the smallest amount of product is the limiting reactant."
+    },
+    {
+      "q": "Can the percentage yield be over 100%?",
+      "a": "Theoretically, no. A percentage yield over 100% indicates an error in the experiment. The most common reason is that the product collected is not pure; it might still be wet (containing solvent, e.g., water) or contaminated with other substances, which artificially increases its measured mass."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the quantitative world of chemistry! So far, you've learned about chemical reactions in a descriptive way. Stoichiometry (from the Greek 'stoicheion' meaning element and 'metron' meaning measure) adds the numbers. It allows us to answer the crucial question: 'How much?'. This topic is fundamental to all chemical calculations, from industrial manufacturing to pharmaceutical research."
+    },
+    {
+      "type": "heading",
+      "content": "The Mole and Molar Mass"
+    },
+    {
+      "type": "text",
+      "content": "Atoms and molecules are incredibly small, so we can't count them individually. Instead, chemists use a unit called the mole (mol) to count them in groups. One mole of any substance contains $6.02 \\times 10^{23}$ particles, a value known as Avogadro's constant ($L$). The mass of one mole of a substance is its molar mass ($M$), which you can calculate using the relative atomic masses from the periodic table. For example, the molar mass of water ($H_2O$) is $(2 \\times 1.01) + 16.00 = 18.02 \\text{ g mol}^{-1}$."
+    },
+    {
+      "type": "formula",
+      "content": "Amount in moles, $n = \\frac{\\text{mass (g)}, m}{\\text{Molar Mass (g mol}^{-1}), M}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the amount, in moles, of sodium chloride ($NaCl$) present in a 14.6 g sample. (Relative atomic masses: Na = 22.99, Cl = 35.45)",
+      "solution": "1.  **Calculate the molar mass ($M$) of NaCl.**\n    $M(\\text{NaCl}) = A_r(\\text{Na}) + A_r(\\text{Cl})$\n    $M(\\text{NaCl}) = 22.99 + 35.45 = 58.44 \\text{ g mol}^{-1}$ [1]\n\n2.  **Use the formula $n = m/M$ to find the amount in moles.**\n    $n = \\frac{14.6 \\text{ g}}{58.44 \\text{ g mol}^{-1}}$\n    $n = 0.2498... \\text{ mol}$ [1]\n\n3.  **State the answer to the correct number of significant figures (3 s.f. from the mass given).**\n    $n = 0.250 \\text{ mol}$ [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Stoichiometric Relationships and Limiting Reactants"
+    },
+    {
+      "type": "text",
+      "content": "A balanced chemical equation provides the mole ratio between reactants and products. For example, in the reaction $2H_2 + O_2 \\rightarrow 2H_2O$, the ratio is 2 moles of hydrogen react with 1 mole of oxygen to produce 2 moles of water. In reality, reactants are rarely mixed in the exact stoichiometric ratio. The reactant that gets used up first is the limiting reactant, and it dictates the maximum amount of product that can be formed (the theoretical yield)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always start with a balanced chemical equation.",
+        "To find the limiting reactant, calculate the moles of each reactant and see which one produces the least amount of product based on the mole ratios.",
+        "All calculations for theoretical yield must be based on the initial amount of the limiting reactant.",
+        "The excess reactant is the one that is left over after the reaction is complete."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Theoretical and Percentage Yield"
+    },
+    {
+      "type": "text",
+      "content": "The theoretical yield is a calculated value representing the maximum possible product. However, in a real lab setting, the actual yield (the amount you physically collect) is often lower. The percentage yield is a measure of the reaction's efficiency."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Percentage Yield} = \\frac{\\text{Actual Yield}}{\\text{Theoretical Yield}} \\times 100\\%"
+    },
+    {
+      "type": "workedExample",
+      "question": "Iron(III) oxide reacts with carbon monoxide to produce iron and carbon dioxide: $Fe_2O_3(s) + 3CO(g) \\rightarrow 2Fe(s) + 3CO_2(g)$. In an experiment, 31.9 g of $Fe_2O_3$ is reacted with excess carbon monoxide. 19.5 g of iron was produced. Calculate the theoretical yield and the percentage yield of iron.",
+      "solution": "1.  **Calculate moles of the limiting reactant ($Fe_2O_3$).**\n    $M(Fe_2O_3) = (2 \\times 55.85) + (3 \\times 16.00) = 159.70 \\text{ g mol}^{-1}$\n    $n(Fe_2O_3) = \\frac{31.9 \\text{ g}}{159.70 \\text{ g mol}^{-1}} = 0.1997... \\text{ mol}$ [1]\n\n2.  **Use mole ratio to find theoretical moles of product (Fe).**\n    From the balanced equation, the ratio $Fe_2O_3 : Fe$ is $1:2$.\n    Theoretical $n(Fe) = 0.1997... \\text{ mol} \\times 2 = 0.3995... \\text{ mol}$ [1]\n\n3.  **Calculate theoretical mass (yield) of Fe.**\n    $M(Fe) = 55.85 \\text{ g mol}^{-1}$\n    Theoretical mass of Fe = $0.3995... \\text{ mol} \\times 55.85 \\text{ g mol}^{-1} = 22.31... \\text{ g}$\n    **Theoretical Yield = 22.3 g** (to 3 s.f.) [1]\n\n4.  **Calculate the percentage yield.**\n    Actual yield = 19.5 g (given).\n    Percentage Yield = $(\\frac{\\text{Actual Yield}}{\\text{Theoretical Yield}}) \\times 100\\%$\n    Percentage Yield = $(\\frac{19.5 \\text{ g}}{22.31... \\text{ g}}) \\times 100\\% = 87.39...\\%$\n    **Percentage Yield = 87.4%** (to 3 s.f.) [1]"
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always show your full working for stoichiometric calculations. State the molar masses you use, show the mole calculations, state the mole ratio, and then calculate the final answer. Pay close attention to significant figures – your final answer should usually match the lowest number of significant figures given in the data. Remember to check that your equation is balanced before you begin!"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Stoichiometry Problems",
+      "href": "/mark?subject=ib-chemistry-sl&topic=R2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Chemistry Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-subject-data-booklets/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

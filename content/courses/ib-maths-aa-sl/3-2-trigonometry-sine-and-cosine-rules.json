@@ -1,0 +1,192 @@
+{
+  "slug": "3-2-trigonometry-sine-and-cosine-rules",
+  "topicCode": "3.2",
+  "title": "Trigonometry: sine and cosine rules",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson introduces the sine and cosine rules, essential tools for solving problems involving non-right-angled triangles. You will learn to identify when to apply each rule, calculate unknown sides and angles, and navigate the ambiguous case of the sine rule.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the correct conditions (SAS, SSS, AAS, ASA) to apply the sine or cosine rule.",
+    "Apply the sine rule to find unknown side lengths and angles in non-right-angled triangles.",
+    "Apply the cosine rule to find unknown side lengths and angles in non-right-angled triangles.",
+    "Recognise and solve problems involving the ambiguous case of the sine rule."
+  ],
+  "simpleExplanation": {
+    "title": "Triangle Toolkit: Beyond 90 Degrees",
+    "summary": "The sine and cosine rules are your essential tools for solving any triangle, not just right-angled ones. They allow you to find missing sides and angles when you have enough starting information.",
+    "analogy": "Imagine you're a surveyor mapping a piece of land shaped like a triangle. You can't always measure every side and every angle directly. The sine and cosine rules are like your advanced measuring instruments; if you know a few key measurements (like two sides and the angle between them), you can calculate all the rest without having to physically measure them.",
+    "steps": [
+      "Sketch the triangle, labelling vertices with capital letters (A, B, C) and opposite sides with lowercase letters (a, b, c).",
+      "Analyse the given information. Do you have a side and its opposite angle (use Sine Rule)? Or two sides and the included angle / three sides (use Cosine Rule)?",
+      "Substitute the known values into the appropriate formula from your formula booklet.",
+      "Solve for the unknown value. If you used the sine rule to find an angle, always check for the ambiguous case (a second possible solution)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the sine rule for finding a side?",
+      "back": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$. Use this form when the unknown is a side length (on the numerator)."
+    },
+    {
+      "front": "What is the sine rule for finding an angle?",
+      "back": "$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$. Use this form when the unknown is an angle (on the numerator)."
+    },
+    {
+      "front": "When should you use the sine rule?",
+      "back": "When you know a 'matching pair' of a side and its opposite angle, plus one other piece of information. This corresponds to Angle-Angle-Side (AAS) or Angle-Side-Angle (ASA) cases."
+    },
+    {
+      "front": "What is the cosine rule for finding a side?",
+      "back": "$c^2 = a^2 + b^2 - 2ab \\cos C$. Use this to find a side when you know two other sides and the angle between them (SAS)."
+    },
+    {
+      "front": "What is the cosine rule for finding an angle?",
+      "back": "$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$. Use this to find an angle when you know all three sides (SSS)."
+    },
+    {
+      "front": "When should you use the cosine rule?",
+      "back": "When you are given Side-Angle-Side (SAS) to find the third side, or Side-Side-Side (SSS) to find any angle."
+    },
+    {
+      "front": "What is the 'ambiguous case' of the sine rule?",
+      "back": "When given two sides and a non-included angle (SSA), there might be two possible triangles. This happens when using the sine rule to find an angle, e.g., $\\sin B = k$. The two possible angles are $B_1 = \\arcsin(k)$ and $B_2 = 180^\\circ - B_1$."
+    },
+    {
+      "front": "What is the formula for the area of a non-right-angled triangle?",
+      "back": "Area $= \\frac{1}{2}ab \\sin C$. You need two sides and the included angle."
+    },
+    {
+      "front": "What does it mean for an angle and a side to be 'opposite'?",
+      "back": "In triangle ABC, side 'a' is opposite angle A, side 'b' is opposite angle B, and side 'c' is opposite angle C. They are across the triangle from each other."
+    },
+    {
+      "front": "What calculator mode should I use for sine and cosine rules?",
+      "back": "Always use Degrees mode unless the question explicitly states or implies that angles are in radians."
+    },
+    {
+      "front": "Common Trap: Finding the largest angle.",
+      "back": "If you need to find the largest angle in a triangle, use the cosine rule. The sine rule can be ambiguous for obtuse angles, as $\\sin(x) = \\sin(180^\\circ-x)$, but the cosine rule gives a unique angle between $0^\\circ$ and $180^\\circ$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I use SOH CAH TOA or Pythagoras on any triangle?",
+      "a": "No. Those rules are special cases that only work for right-angled triangles. For all other triangles (oblique triangles), you must use the sine or cosine rules."
+    },
+    {
+      "q": "How do I decide whether to use the sine rule or the cosine rule?",
+      "a": "It depends on the information you are given. **Use Sine Rule if you have a 'pair':** a side and its opposite angle (plus one other piece of info). This is for AAS and ASA cases. **Use Cosine Rule if you don't have a pair:** two sides and the included angle (SAS), or all three sides (SSS)."
+    },
+    {
+      "q": "Are the sine and cosine rules in the formula booklet?",
+      "a": "Yes, they are. You don't need to memorise the exact formulae, but you absolutely must know which one to use in a given situation and how to apply it correctly. The formula booklet is a tool, not a substitute for understanding."
+    },
+    {
+      "q": "Why is the cosine rule better for finding the largest angle of a triangle when all three sides are known?",
+      "a": "The inverse sine function on your calculator, $\\arcsin(x)$, only returns angles between $-90^\\circ$ and $90^\\circ$. It can't directly give you an obtuse angle (between $90^\\circ$ and $180^\\circ$). The inverse cosine function, $\\arccos(x)$, returns angles between $0^\\circ$ and $180^\\circ$. This covers all possible angles in a triangle, so it will correctly identify an obtuse angle if it's the largest one."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far in your mathematical journey, you've likely spent a lot of time with right-angled triangles using Pythagoras' Theorem and SOH CAH TOA. But what happens when the triangle isn't so 'right'? In the real world, triangles are rarely perfect. This is where the sine and cosine rules come in. They are powerful tools that unlock the secrets of any triangle, allowing you to find missing sides and angles, no matter their shape."
+    },
+    {
+      "type": "heading",
+      "content": "The Sine Rule"
+    },
+    {
+      "type": "text",
+      "content": "The sine rule establishes a relationship between the sides of a triangle and the sines of their opposite angles. For any triangle, the ratio of a side's length to the sine of its opposite angle is constant. This means if you know one side and its opposite angle, you have the 'key' to unlock the rest of the triangle, provided you have one other piece of information."
+    },
+    {
+      "type": "formula",
+      "content": "For any triangle with angles A, B, C and opposite sides a, b, c: \n$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$ \nOr, for finding an angle: \n$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use the sine rule when you are given: Two angles and any side (AAS or ASA).",
+        "You can also use it when given two sides and a non-included angle (SSA), but be cautious of the ambiguous case.",
+        "To use the rule, you must know at least one side and its opposite angle."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle PQR, angle P = $42^\\circ$, angle Q = $75^\\circ$, and the side QR (which is side p) is 15 cm. Find the length of the side PR (which is side q), giving your answer correct to 3 significant figures.",
+      "solution": "First, sketch the triangle and label the information. We want to find side q, and we know its opposite angle Q. We also know side p and its opposite angle P. This is a perfect setup for the sine rule. \n\n1. **Identify the rule and the pairs:** We have angle P and side p, and angle Q and we want side q. We use the sine rule. \n$\\frac{q}{\\sin Q} = \\frac{p}{\\sin P}$ (M1 for selecting sine rule) \n\n2. **Substitute values:** \n$\\frac{q}{\\sin 75^\\circ} = \\frac{15}{\\sin 42^\\circ}$ (A1 for correct substitution) \n\n3. **Solve for q:** \n$q = \\frac{15 \\times \\sin 75^\\circ}{\\sin 42^\\circ}$ \n$q \\approx \\frac{15 \\times 0.9659}{0.6691}$ \n$q \\approx 21.648...$ cm \n\n4. **Final Answer:** The question asks for 3 significant figures. \n$q = 21.6$ cm (A1 for correct answer) \n\n**Total: 3 marks**"
+    },
+    {
+      "type": "heading",
+      "content": "The Ambiguous Case (SSA)"
+    },
+    {
+      "type": "text",
+      "content": "The sine rule has a notorious trap called the ambiguous case. This arises when you are given two sides and a non-included angle (SSA). Depending on the lengths, you might be able to draw two different valid triangles that fit the description. This is because $\\sin \\theta = \\sin(180^\\circ - \\theta)$. When you use your calculator's $\\arcsin$ function, it will only give you the acute angle, but an obtuse angle might also be a valid solution."
+    },
+    {
+      "type": "examTip",
+      "content": "If you use the sine rule to find an angle, ALWAYS check for a second possibility. If you find an angle B, calculate $B' = 180^\\circ - B$. Then check if this second angle is valid by adding it to the other known angle in the triangle. If $A + B' < 180^\\circ$, then a second triangle is possible. The IB loves to award marks for spotting this."
+    },
+    {
+      "type": "heading",
+      "content": "The Cosine Rule"
+    },
+    {
+      "type": "text",
+      "content": "The cosine rule is like Pythagoras' theorem with an adjustment for triangles that are not right-angled. It relates the three sides of a triangle to the cosine of one of its angles. It's your go-to tool when the sine rule doesn't apply, particularly when you're dealing with a side 'sandwiched' between two known sides, or when you know all three sides."
+    },
+    {
+      "type": "formula",
+      "content": "For any triangle with angles A, B, C and opposite sides a, b, c: \nTo find a side: \n$c^2 = a^2 + b^2 - 2ab \\cos C$ \nTo find an angle (rearranged form): \n$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use the cosine rule when you are given: Two sides and the included angle (SAS).",
+        "Use the cosine rule when you are given: All three sides (SSS).",
+        "The angle in the formula ($C$) must be the one opposite the side you are trying to find ($c$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A triangular garden has two sides of length 8 metres and 11 metres, with an angle of $65^\\circ$ between them. A fence is to be built along the third side. \n(a) Calculate the length of the fence required. \n(b) Calculate the smallest angle in the garden.",
+      "solution": "(a) **Finding the length of the fence** \nLet the two known sides be $a=8$ m and $b=11$ m, and the included angle be $C=65^\\circ$. We need to find side $c$. This is a Side-Angle-Side (SAS) case, so we use the cosine rule. \n\n1. **Select the rule:** \n$c^2 = a^2 + b^2 - 2ab \\cos C$ (M1 for selecting cosine rule) \n\n2. **Substitute values:** \n$c^2 = 8^2 + 11^2 - 2(8)(11) \\cos 65^\\circ$ (A1 for correct substitution) \n$c^2 = 64 + 121 - 176 \\cos 65^\\circ$ \n$c^2 = 185 - 176(0.4226...)$ \n$c^2 = 185 - 74.38...$ \n$c^2 = 110.61...$ \n\n3. **Solve for c:** \n$c = \\sqrt{110.61...} = 10.517...$ m \n\n4. **Final Answer:** Length of fence = $10.5$ m (to 3 s.f.) (A1) \n\n(b) **Finding the smallest angle** \nThe smallest angle is opposite the smallest side. The sides are 8 m, 11 m, and 10.5 m. The smallest side is 8 m. Let's call its opposite angle A. We can use the sine rule or the cosine rule. Let's use the sine rule as it's often quicker. \n\n1. **Select the rule:** \n$\\frac{\\sin A}{a} = \\frac{\\sin C}{c}$ (M1) \n\n2. **Substitute values:** \n$\\frac{\\sin A}{8} = \\frac{\\sin 65^\\circ}{10.517...}$ (using the unrounded value for c) (A1) \n\n3. **Solve for A:** \n$\\sin A = \\frac{8 \\sin 65^\\circ}{10.517...} = 0.689...$ \n$A = \\arcsin(0.689...) = 43.58...^\\circ$ \n\n4. **Final Answer:** The smallest angle is $43.6^\\circ$ (to 3 s.f.). (A1) \n*Note: Using the cosine rule to find angle A would also be correct and would avoid any ambiguity.* \n\n**Total: 6 marks**"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a diagram! Even a rough sketch helps you label the sides and angles correctly and decide which rule to use. It's an easy way to avoid mixing up sides and their opposite angles."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Now",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Sine and Cosine Rule Explorer",
+          "href": "https://www.geogebra.org/m/C3tF4gKS"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Sine and Cosine Rule Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3tF4gKS",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3tF4gKS",
+    "hint": "Use “Sine and Cosine Rule Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

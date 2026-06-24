@@ -1,0 +1,212 @@
+{
+  "slug": "2-3-quadratic-functions-and-equations",
+  "topicCode": "2.3",
+  "title": "Quadratic functions and equations",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson explores quadratic functions, their U-shaped graphs called parabolas, and the methods for solving quadratic equations. Key concepts include factorising, the quadratic formula, the discriminant, and finding the vertex and axis of symmetry.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify and analyse quadratic functions in general form, vertex form, and factored form.",
+    "Solve quadratic equations by factorising, completing the square, and using the quadratic formula.",
+    "Use the discriminant to determine the number and nature of the roots of a quadratic equation.",
+    "Sketch the graph of a quadratic function, identifying key features such as the vertex, axis of symmetry, and intercepts."
+  ],
+  "simpleExplanation": {
+    "title": "Decoding the Parabola",
+    "summary": "Quadratic functions are equations containing an $x^2$ term, which create symmetrical U-shaped curves called parabolas. We'll learn how to find where these curves cross the axes and how to locate their minimum or maximum point.",
+    "analogy": "Imagine throwing a basketball towards a hoop. The path the ball travels through the air is a perfect parabola. Using quadratic equations, we can calculate the ball's maximum height (the vertex) and figure out exactly where it will land (the roots or x-intercepts).",
+    "steps": [
+      "Identify the coefficients a, b, and c in the quadratic function $f(x) = ax^2 + bx + c$. The sign of 'a' tells you if the parabola opens upwards or downwards.",
+      "Find the y-intercept by calculating $f(0)$, which is simply the value of 'c'.",
+      "Find the x-intercepts (roots) by solving the equation $ax^2 + bx + c = 0$. You can do this by factorising or using the quadratic formula.",
+      "Calculate the coordinates of the vertex. The x-coordinate is given by $x = -b/(2a)$, and the y-coordinate is found by substituting this x-value back into the function."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the general form of a quadratic function?",
+      "back": "$f(x) = ax^2 + bx + c$, where $a, b,$ and $c$ are constants and $a \\neq 0$."
+    },
+    {
+      "front": "What is a parabola?",
+      "back": "The characteristic U-shaped (or inverted U-shaped) graph of a quadratic function."
+    },
+    {
+      "front": "What are the 'roots' of a quadratic equation?",
+      "back": "The solutions to the equation $ax^2 + bx + c = 0$. They correspond to the x-intercepts of the function's graph."
+    },
+    {
+      "front": "What is the discriminant of a quadratic equation?",
+      "back": "The expression $\\Delta = b^2 - 4ac$. Its value determines the nature of the roots."
+    },
+    {
+      "front": "What does it mean if the discriminant $\\Delta > 0$?",
+      "back": "The quadratic equation has two distinct real roots. The parabola intersects the x-axis at two different points."
+    },
+    {
+      "front": "What does it mean if the discriminant $\\Delta = 0$?",
+      "back": "The quadratic equation has one repeated real root. The vertex of the parabola lies on the x-axis."
+    },
+    {
+      "front": "What does it mean if the discriminant $\\Delta < 0$?",
+      "back": "The quadratic equation has no real roots. The parabola does not intersect the x-axis."
+    },
+    {
+      "front": "What is the formula for the axis of symmetry of the parabola $y = ax^2 + bx + c$?",
+      "back": "The vertical line $x = -\\frac{b}{2a}$. This line passes through the vertex."
+    },
+    {
+      "front": "What is the vertex form of a quadratic function?",
+      "back": "$f(x) = a(x-h)^2 + k$, where the vertex is at the point $(h, k)$."
+    },
+    {
+      "front": "Common Trap: What is the vertex for $f(x) = 2(x+3)^2 - 5$?",
+      "back": "The vertex is $(-3, -5)$. Remember the form is $(x-h)$, so $x - (-3) = x+3$, meaning $h=-3$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a quadratic function and a quadratic equation?",
+      "a": "A quadratic function is an expression like $f(x) = ax^2 + bx + c$, which describes a relationship between $x$ and $y$ and can be graphed as a parabola. A quadratic equation is what you get when you set the function equal to a value, most commonly zero, like $ax^2 + bx + c = 0$. Solving the equation gives you specific x-values (the roots)."
+    },
+    {
+      "q": "When should I use factorising versus the quadratic formula?",
+      "a": "Always try to factorise first, especially in Paper 1. It's much faster if the numbers are simple integers. If you can't quickly spot the factors, or if the question involves messy coefficients or asks for an exact answer with a square root, switch to the quadratic formula. The formula always works."
+    },
+    {
+      "q": "How do I find the vertex from the general form $f(x) = ax^2 + bx + c$?",
+      "a": "The quickest way is to use the formula for the x-coordinate of the vertex: $x = -b/(2a)$. Once you have this x-value, substitute it back into the original function $f(x)$ to find the corresponding y-coordinate. The resulting $(x, y)$ pair is your vertex."
+    },
+    {
+      "q": "What is 'completing the square' and why is it useful?",
+      "a": "Completing the square is an algebraic process that converts a quadratic from general form, $ax^2+bx+c$, to vertex form, $a(x-h)^2+k$. It's useful because the vertex form immediately tells you the coordinates of the vertex, $(h, k)$, which is often a key requirement in exam questions."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of quadratic functions. These are fundamental in mathematics and appear everywhere, from modelling the flight of a projectile to optimising business profits. In this lesson, we'll master the algebraic techniques needed to analyse and solve them, a crucial skill for Paper 1 where calculators are not permitted."
+    },
+    {
+      "type": "heading",
+      "content": "The Anatomy of a Quadratic Function"
+    },
+    {
+      "type": "text",
+      "content": "A quadratic function is any function that can be written in the general form below. The highest power of the variable $x$ is 2, which is what gives the function its unique properties and its parabolic graph."
+    },
+    {
+      "type": "formula",
+      "content": "f(x) = ax^2 + bx + c, \\quad a \\neq 0"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The coefficient 'a' determines the parabola's concavity. If $a > 0$, the parabola opens upwards (concave up, like a smile). If $a < 0$, it opens downwards (concave down, like a frown).",
+        "The constant 'c' is the y-intercept, as $f(0) = a(0)^2 + b(0) + c = c$. The graph crosses the y-axis at $(0, c)$.",
+        "The coefficient 'b' influences the position of the vertex and the axis of symmetry."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Solving Quadratic Equations: Finding the Roots"
+    },
+    {
+      "type": "text",
+      "content": "Solving a quadratic equation means finding the values of $x$ for which $f(x) = 0$. These solutions are called the roots of the equation and represent the x-intercepts of the graph. For Paper 1, you must be proficient in factorising and using the quadratic formula."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $2x^2 + 5x - 3 = 0$ by factorising.",
+      "solution": "We need to find two numbers that multiply to give $a \\times c = 2 \\times (-3) = -6$ and add to give $b=5$. These numbers are 6 and -1.\n\nRewrite the middle term using these numbers:\n$2x^2 + 6x - x - 3 = 0$  (M1 for correctly splitting the middle term)\n\nFactor by grouping:\n$2x(x+3) - 1(x+3) = 0$ \n\nExtract the common factor $(x+3)$:\n$(2x-1)(x+3) = 0$  (A1 for correct factorisation)\n\nSet each factor to zero to find the roots:\n$2x-1 = 0 \\implies 2x = 1 \\implies x = \\frac{1}{2}$\n$x+3 = 0 \\implies x = -3$\n\nThe solutions are $x = \\frac{1}{2}$ and $x = -3$. (A1 for both correct solutions)"
+    },
+    {
+      "type": "text",
+      "content": "When factorising is not straightforward, the quadratic formula is your reliable tool. It works for any quadratic equation."
+    },
+    {
+      "type": "formula",
+      "content": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}"
+    },
+    {
+      "type": "examTip",
+      "content": "This formula is in your formula booklet. Be extremely careful with signs, especially when 'b' or 'c' are negative. Always write down the values of a, b, and c before substituting them into the formula to avoid errors."
+    },
+    {
+      "type": "heading",
+      "content": "The Discriminant: A Window into the Roots"
+    },
+    {
+      "type": "text",
+      "content": "The part of the quadratic formula inside the square root, $\\Delta = b^2 - 4ac$, is called the discriminant. Its sign tells us about the number and type of roots the equation has, without needing to solve the equation completely."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $\\Delta > 0$, there are two distinct real roots. The graph crosses the x-axis twice.",
+        "If $\\Delta = 0$, there is one repeated real root. The graph touches the x-axis at a single point (the vertex).",
+        "If $\\Delta < 0$, there are no real roots. The graph is entirely above or entirely below the x-axis."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the values of the constant $p$ such that the equation $x^2 + px + (p+3) = 0$ has one repeated real root.",
+      "solution": "For one repeated real root, the discriminant must be zero: $\\Delta = 0$. (M1 for using the discriminant and setting it to 0)\n\nIdentify the coefficients in terms of $p$: $a=1$, $b=p$, $c=(p+3)$.\n\nSet up the discriminant equation:\n$b^2 - 4ac = 0$\n$p^2 - 4(1)(p+3) = 0$ (A1 for correct substitution)\n\nNow, solve the resulting quadratic equation for $p$:\n$p^2 - 4p - 12 = 0$\n\nFactorise the quadratic in $p$:\n$(p-6)(p+2) = 0$ (M1 for factorising/attempting to solve for p)\n\nThe possible values for $p$ are $p=6$ and $p=-2$. (A1 for both correct values)"
+    },
+    {
+      "type": "heading",
+      "content": "Graphing Quadratics: The Vertex and Axis of Symmetry"
+    },
+    {
+      "type": "text",
+      "content": "The vertex is the turning point of the parabola - either the minimum point (if $a>0$) or the maximum point (if $a<0$). The axis of symmetry is the vertical line that passes through the vertex, dividing the parabola into two mirror images."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Axis of symmetry: } x = -\\frac{b}{2a} \\quad \\quad \\text{Vertex: } \\left(-\\frac{b}{2a}, f\\left(-\\frac{b}{2a}\\right)\\right)"
+    },
+    {
+      "type": "text",
+      "content": "Another powerful way to represent a quadratic is the vertex form, $f(x) = a(x-h)^2 + k$. This form tells you the vertex coordinates directly: $(h, k)$. You can convert from the general form to the vertex form using a method called 'completing the square'."
+    },
+    {
+      "type": "examTip",
+      "content": "Questions often ask for the minimum or maximum value of a quadratic function. This is simply the y-coordinate of the vertex. Make sure you answer what is asked: the 'maximum value' is a number (the y-coordinate), while the 'coordinates of the maximum' is a point $(x, y)$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Quadratic Function Grapher",
+          "href": "https://www.geogebra.org/m/V69G9TfC"
+        },
+        {
+          "label": "IB Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-in-practice/formula-booklet/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Quadratic Function Grapher",
+    "embedUrl": "https://www.geogebra.org/classic?material=V69G9TfC",
+    "launchUrl": "https://www.geogebra.org/classic?material=V69G9TfC",
+    "hint": "Use “Quadratic Function Grapher” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

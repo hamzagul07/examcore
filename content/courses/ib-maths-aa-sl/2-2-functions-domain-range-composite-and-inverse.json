@@ -1,0 +1,194 @@
+{
+  "slug": "2-2-functions-domain-range-composite-and-inverse",
+  "topicCode": "2.2",
+  "title": "Functions: domain, range, composite and inverse",
+  "paper": "P1",
+  "paperName": "Mathematics: Analysis and Approaches SL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental properties of functions. We will define and determine the domain and range, learn how to combine functions to create composite functions, and discover how to find and interpret inverse functions, including their graphical relationship.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Understand and determine the domain and range of a given function, including those with restricted domains.",
+    "Form composite functions, $(f \\circ g)(x)$, and determine their domain and range.",
+    "Find the inverse of a one-to-one function, $f^{-1}(x)$, and state its domain and range.",
+    "Recognise the graphical relationship between a function and its inverse as a reflection in the line $y=x$."
+  ],
+  "simpleExplanation": {
+    "title": "Function Machines: Inputs, Outputs, and Reversing the Process",
+    "summary": "Functions are like machines that take an input (domain) and produce a specific output (range). We can chain these machines together (composite functions) or build a machine that works in reverse (inverse functions).",
+    "analogy": "Imagine a recipe. The ingredients you're allowed to use are the 'domain', and the finished dishes you can make are the 'range'. A composite function is like using your finished cake as an ingredient for a trifle. An inverse function is like looking at the finished trifle and working backwards to figure out the exact list of original ingredients.",
+    "steps": [
+      "Identify the 'allowed inputs' (domain). Check for mathematical no-go zones, like dividing by zero or taking the square root of a negative number.",
+      "Determine the 'possible outputs' (range). Consider the effect of the function on the inputs; for example, squaring a number always results in a non-negative output.",
+      "Create a composite function $f(g(x))$. Substitute the entire expression for the 'inner' function, $g(x)$, into every $x$ of the 'outer' function, $f(x)$.",
+      "Find the inverse function, $f^{-1}(x)$. Write the function as $y = f(x)$, swap the variables $x$ and $y$, and then rearrange the new equation to make $y$ the subject."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the domain of a function?",
+      "back": "The set of all possible input values (often $x$-values) for which the function is defined."
+    },
+    {
+      "front": "What is the range of a function?",
+      "back": "The set of all possible output values (often $y$-values or $f(x)$-values) that the function can produce."
+    },
+    {
+      "front": "How do you find the domain of a function like $f(x) = \\frac{1}{g(x)}$?",
+      "back": "Find the values of $x$ for which the denominator is zero, i.e., solve $g(x)=0$. The domain is all real numbers except these values."
+    },
+    {
+      "front": "How do you find the domain of a function like $f(x) = \\sqrt{g(x)}$?",
+      "back": "The expression inside the square root must be non-negative. Solve the inequality $g(x) \\ge 0$."
+    },
+    {
+      "front": "What is a composite function $(f \\circ g)(x)$?",
+      "back": "It is the function formed by applying function $f$ to the result of function $g$. It is calculated as $f(g(x))$."
+    },
+    {
+      "front": "Is $(f \\circ g)(x)$ the same as $(g \\circ f)(x)$?",
+      "back": "No, function composition is not commutative. The order in which the functions are applied matters."
+    },
+    {
+      "front": "What condition must a function $f$ satisfy to have an inverse function $f^{-1}$?",
+      "back": "The function $f$ must be one-to-one. This means that every output value corresponds to exactly one input value. Graphically, it must pass the horizontal line test."
+    },
+    {
+      "front": "How are the domain and range of $f(x)$ and $f^{-1}(x)$ related?",
+      "back": "The domain of $f^{-1}(x)$ is the range of $f(x)$, and the range of $f^{-1}(x)$ is the domain of $f(x)$."
+    },
+    {
+      "front": "What is the graphical relationship between $y=f(x)$ and $y=f^{-1}(x)$?",
+      "back": "The graph of $y=f^{-1}(x)$ is a reflection of the graph of $y=f(x)$ in the line $y=x$."
+    },
+    {
+      "front": "What is a common mistake when seeing the notation $f^{-1}(x)$?",
+      "back": "Confusing the inverse function $f^{-1}(x)$ with the reciprocal $\\frac{1}{f(x)}$. These are completely different concepts."
+    },
+    {
+      "front": "What is the result of the composition $f^{-1}(f(x))$?",
+      "back": "It simplifies to $x$, for all $x$ in the domain of $f$. The inverse function 'undoes' the original function."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How can I tell if a function has an inverse just by looking at its graph?",
+      "a": "You can use the 'horizontal line test'. If you can draw any horizontal line that crosses the graph more than once, the function is not one-to-one and does not have an inverse over that domain. For example, $y=x^2$ fails this test, but if we restrict its domain to $x \\ge 0$, it passes and has an inverse ($y=\\sqrt{x}$)."
+    },
+    {
+      "q": "What is the difference between $(f \\circ g)(x)$ and $f(x)g(x)$?",
+      "a": "$(f \\circ g)(x)$ is the composition of functions, where you substitute $g(x)$ into $f(x)$. On the other hand, $f(x)g(x)$ is the product of the two functions, where you multiply their expressions together. They are very different operations."
+    },
+    {
+      "q": "Why is the domain of a composite function $f(g(x))$ sometimes restricted?",
+      "a": "There are two layers of restrictions. First, the input $x$ must be in the domain of the inner function, $g(x)$. Second, the output of the inner function, $g(x)$, must be in the domain of the outer function, $f(x)$. For example, if $f(x)=\\sqrt{x}$ and $g(x)=x-5$, the domain of $f(g(x))=\\sqrt{x-5}$ requires $x-5 \\ge 0$, so $x \\ge 5$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "A function is a fundamental mathematical concept that describes a relationship between an input set and an output set. For every input, there is exactly one output. In this lesson, we'll dissect the key properties of functions: their allowed inputs (domain) and possible outputs (range), how they can be combined (composite functions), and how they can be reversed (inverse functions). Mastering these concepts is crucial for success in calculus and further mathematical analysis."
+    },
+    {
+      "type": "heading",
+      "content": "Domain and Range: The Function's Boundaries"
+    },
+    {
+      "type": "text",
+      "content": "The **domain** of a function is the complete set of possible values of the independent variable (the inputs). The **range** of a function is the complete set of all resulting values of the dependent variable (the outputs). When finding the domain, we must be vigilant for two main restrictions in SL Maths: we cannot divide by zero, and we cannot take the square root (or any even root) of a negative number."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For a function $f(x) = \\frac{p(x)}{q(x)}$, the domain excludes any values of $x$ for which $q(x) = 0$.",
+        "For a function $f(x) = \\sqrt{p(x)}$, the domain is restricted to values of $x$ for which $p(x) \\ge 0$.",
+        "The range is found by considering the outputs produced by the function across its entire domain. Think about minimum or maximum values, and any asymptotes."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the function $f(x) = \\frac{5}{x-2}$. Find the domain and range of $f$.",
+      "solution": "For the domain, we must avoid division by zero. \\\\ The denominator is $x-2$. \\\\ Set the denominator to zero: $x-2 = 0 \\implies x=2$. (M1) \\\\ The function is defined for all real numbers except $x=2$. \\\\ Domain of $f$ is ${x \\in \\mathbb{R} \\mid x \\neq 2}$. (A1) \\\\ For the range, consider the behaviour of $y = \\frac{5}{x-2}$. A fraction can only be zero if the numerator is zero. Here, the numerator is 5, so $y$ can never be 0. (M1) \\\\ The function can produce any other non-zero real number. \\\\ Range of $f$ is ${y \\in \\mathbb{R} \\mid y \\neq 0}$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Composite Functions: A Chain Reaction"
+    },
+    {
+      "type": "text",
+      "content": "A composite function is created when the output of one function becomes the input of another. The notation $(f \\circ g)(x)$ means 'f composed with g of x'. To evaluate it, we first compute the inner function, $g(x)$, and then substitute that result into the outer function, $f(x)$."
+    },
+    {
+      "type": "formula",
+      "content": "$(f \\circ g)(x) = f(g(x))$"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the order. $(f \\circ g)(x)$ means apply $g$ first, then $f$. $(g \\circ f)(x)$ means apply $f$ first, then $g$. These will almost always give different results."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $f(x) = 3x-4$ and $g(x) = x^2+1$. \\\\ a) Find an expression for $(f \\circ g)(x)$. \\\\ b) Find the value of $(g \\circ f)(2)$.",
+      "solution": "a) To find $(f \\circ g)(x)$, we substitute the expression for $g(x)$ into $f(x)$. \\\\ $(f \\circ g)(x) = f(g(x))$ \\\\ $= f(x^2+1)$ (M1) \\\\ $= 3(x^2+1) - 4$ \\\\ $= 3x^2 + 3 - 4$ \\\\ $= 3x^2 - 1$. (A1) \\\\ b) To find $(g \\circ f)(2)$, we first find the value of the inner function, $f(2)$. \\\\ $f(2) = 3(2) - 4 = 6 - 4 = 2$. (M1) \\\\ Now we use this output as the input for $g$. \\\\ $g(f(2)) = g(2) = (2)^2 + 1 = 4+1 = 5$. (A1) \\\\ So, $(g \\circ f)(2) = 5$."
+    },
+    {
+      "type": "heading",
+      "content": "Inverse Functions: Reversing the Process"
+    },
+    {
+      "type": "text",
+      "content": "An inverse function, denoted $f^{-1}(x)$, 'undoes' the action of the original function $f(x)$. If $f$ maps $a$ to $b$, then $f^{-1}$ maps $b$ back to $a$. For an inverse to exist, the original function must be **one-to-one**, meaning each output is linked to a unique input. We can check this graphically using the horizontal line test: if any horizontal line intersects the graph more than once, the function is not one-to-one and does not have a well-defined inverse over its entire domain."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To find the inverse function algebraically, write $y=f(x)$, swap $x$ and $y$, and then solve the resulting equation for $y$.",
+        "The domain of $f^{-1}$ is the range of $f$. The range of $f^{-1}$ is the domain of $f$.",
+        "The graph of $y=f^{-1}(x)$ is the reflection of the graph of $y=f(x)$ in the line $y=x$.",
+        "Composing a function with its inverse gives the identity function: $f(f^{-1}(x)) = x$ and $f^{-1}(f(x)) = x$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $g(x) = 2x^3 + 5$. Find the inverse function, $g^{-1}(x)$.",
+      "solution": "Let $y = g(x)$. \\\\ $y = 2x^3 + 5$. \\\\ To find the inverse, swap $x$ and $y$. (M1) \\\\ $x = 2y^3 + 5$. \\\\ Now, rearrange to make $y$ the subject. \\\\ $x - 5 = 2y^3$ (A1 for isolating term with y) \\\\ $\\frac{x-5}{2} = y^3$ \\\\ $y = \\sqrt[3]{\\frac{x-5}{2}}$. (A1) \\\\ Therefore, $g^{-1}(x) = \\sqrt[3]{\\frac{x-5}{2}}$. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "The notation $f^{-1}(x)$ for an inverse function is standard IB notation. Do not confuse it with the reciprocal, $[f(x)]^{-1} = \\frac{1}{f(x)}$. For example, if $f(x)=x+2$, then $f^{-1}(x)=x-2$, but $[f(x)]^{-1} = \\frac{1}{x+2}$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-sl&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Inverse Function Graph Explorer",
+          "href": "https://www.geogebra.org/m/s7a3k2kt"
+        },
+        {
+          "label": "Khan Academy: Composite Functions",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:composite-functions"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Inverse Function Graph Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=s7a3k2kt",
+    "launchUrl": "https://www.geogebra.org/classic?material=s7a3k2kt",
+    "hint": "Use “Inverse Function Graph Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

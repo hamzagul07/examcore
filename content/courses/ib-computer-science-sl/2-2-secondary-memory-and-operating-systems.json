@@ -1,0 +1,188 @@
+{
+  "slug": "2-2-secondary-memory-and-operating-systems",
+  "topicCode": "2.2",
+  "title": "Secondary memory and operating systems",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson explores the essential components that allow a computer to store data long-term and function effectively. We will differentiate between primary and secondary memory, compare various storage technologies like HDDs and SSDs, and delve into the core functions of an operating system, which acts as the computer's master controller.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Identify the need for secondary memory and distinguish it from primary memory.",
+    "Compare and contrast the characteristics of magnetic, optical, and solid-state storage.",
+    "Describe the main functions of an operating system, including memory, processor, and file management.",
+    "Explain the concept of virtual memory and its role in memory management."
+  ],
+  "simpleExplanation": {
+    "title": "The Computer's Library and Librarian",
+    "summary": "Secondary memory is like a vast library where all your files and programs are stored permanently. The operating system is the expert librarian who manages the library, fetches what you need, and keeps everything organised.",
+    "analogy": "Imagine your desk is your computer's RAM (primary memory) – it's small, fast to access, but everything on it is cleared away when you leave. The library in your town is the secondary storage (like a hard drive). It's much bigger, a bit slower to get to, but it holds all the books (your files) safely, even when the lights are off. The librarian is your Operating System, managing the entire process: finding the book you want, bringing it to your desk for you to work on, and putting it back on the correct shelf when you're done.",
+    "steps": [
+      "A user requests a file or application, sending an instruction to the Operating System (OS).",
+      "The OS locates the required data on the non-volatile secondary storage device (e.g., an SSD or HDD).",
+      "The data is copied from the secondary storage into a free location in the volatile primary memory (RAM).",
+      "The CPU can now directly access and process the data from RAM. The OS manages this memory space and writes any changes back to secondary storage when the file is saved."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the key difference between primary and secondary memory regarding volatility?",
+      "back": "Primary memory (RAM) is volatile, meaning its contents are lost when power is turned off. Secondary memory (HDD, SSD) is non-volatile, retaining its contents without power."
+    },
+    {
+      "front": "Define 'latency' in the context of storage devices.",
+      "back": "Latency is the time delay between a request for data and the start of the data transfer. HDDs have higher latency than SSDs due to their mechanical nature (seek time + rotational delay)."
+    },
+    {
+      "front": "What is an Operating System (OS)?",
+      "back": "An OS is system software that acts as an interface between computer hardware and the user/application software. It manages all hardware resources and provides essential services."
+    },
+    {
+      "front": "What are the three main types of secondary storage?",
+      "back": "1. Magnetic (e.g., Hard Disk Drive - HDD)\n2. Optical (e.g., CD, DVD, Blu-ray)\n3. Solid-State (e.g., Solid State Drive - SSD, USB flash drive)"
+    },
+    {
+      "front": "What is the primary function of OS memory management?",
+      "back": "To allocate and deallocate blocks of memory to running programs, keep track of memory usage, and manage virtual memory to prevent conflicts and ensure efficient operation."
+    },
+    {
+      "front": "Explain 'processor management' by an OS.",
+      "back": "Also known as scheduling, it's the process of allocating CPU time to different tasks (processes/threads) to ensure the system remains responsive and all tasks make progress."
+    },
+    {
+      "front": "What is a Solid State Drive (SSD)?",
+      "back": "A non-volatile storage device that uses flash memory chips to store data. It has no moving parts, resulting in faster access times, lower power consumption, and greater durability than an HDD."
+    },
+    {
+      "front": "What is a Hard Disk Drive (HDD)?",
+      "back": "A non-volatile storage device that uses magnetism to store data on rotating platters. A read/write head on a mechanical arm accesses the data, making it slower than an SSD."
+    },
+    {
+      "front": "Explain virtual memory.",
+      "back": "A memory management technique where a portion of secondary storage (e.g., HDD or SSD) is used as an extension of RAM when physical RAM is full. The OS swaps data 'pages' between RAM and the disk."
+    },
+    {
+      "front": "What is the main drawback of using virtual memory?",
+      "back": "It is significantly slower than using physical RAM because accessing data from secondary storage involves much higher latency. Excessive use of virtual memory, called 'thrashing', can severely degrade system performance."
+    },
+    {
+      "front": "Distinguish between a GUI and a CLI.",
+      "back": "A GUI (Graphical User Interface) uses windows, icons, menus, and a pointer (WIMP). A CLI (Command-Line Interface) requires the user to type text-based commands. GUIs are more user-friendly; CLIs are often more powerful and efficient for expert users."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is an SSD so much faster than an HDD?",
+      "a": "An SSD (Solid-State Drive) uses flash memory chips and has no moving parts. This allows for near-instant, electronic access to any piece of data. An HDD (Hard Disk Drive) is mechanical; it has a spinning platter and a read/write head on an arm that must physically move to the correct location. This movement, known as 'seek time' and 'rotational latency', introduces significant delays that SSDs do not have."
+    },
+    {
+      "q": "If virtual memory is so slow, why do we use it?",
+      "a": "Virtual memory is a compromise. While it's much slower than physical RAM, it's better than the alternative, which is the computer crashing or being unable to open a new program because it has run out of memory. It allows the system to remain functional and run more applications simultaneously than its physical RAM would otherwise allow, providing a more flexible and robust user experience."
+    },
+    {
+      "q": "Can a computer run without an operating system?",
+      "a": "A modern, general-purpose computer (like a laptop or desktop) cannot function in a useful way without an operating system. The OS is essential for managing hardware, running applications, and providing a user interface. While very simple embedded systems might run a single program directly on the hardware (using firmware), any complex device requires an OS to coordinate its functions."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "When you switch off your computer, the contents of its main memory (RAM) disappear. So, where do all your files, applications, and the operating system itself reside permanently? This is the role of secondary memory. In this topic, we'll investigate the different types of long-term storage and explore the master software that manages it all: the operating system."
+    },
+    {
+      "type": "heading",
+      "content": "Primary vs. Secondary Memory"
+    },
+    {
+      "type": "text",
+      "content": "A computer system uses a hierarchy of memory. **Primary memory (RAM)** is the main workspace for the CPU. It's incredibly fast but has two major limitations: it's **volatile** (loses data without power) and relatively expensive, meaning computers have a limited amount of it. To overcome this, computers use **secondary memory**. This is non-volatile storage that retains data permanently, is much cheaper per gigabyte, and comes in much larger capacities. The trade-off is that it's significantly slower than RAM."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Primary Memory (RAM):** Volatile, fast, smaller capacity, higher cost per GB. Directly accessed by the CPU.",
+        "**Secondary Memory (Storage):** Non-volatile, slower, larger capacity, lower cost per GB. Data must be loaded into RAM for the CPU to process it."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Types of Secondary Storage"
+    },
+    {
+      "type": "text",
+      "content": "Secondary storage devices are categorised by the technology they use. The main three are magnetic, optical, and solid-state. Each has a distinct profile of characteristics that makes it suitable for different applications."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Magnetic Storage (HDD):** Uses magnetic patterns on spinning platters. High capacity and cheap, but slower and more fragile due to moving parts.",
+        "**Optical Storage (CD/DVD/Blu-ray):** Uses lasers to read pits and lands on a spinning disc. Low cost for distribution, but slow speeds and limited capacity compared to other types.",
+        "**Solid-State Storage (SSD, USB Drive):** Uses flash memory with no moving parts. Extremely fast, durable, and efficient, but has a higher cost per gigabyte and a finite number of write cycles."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A student needs a portable device to transfer their coursework files (documents, presentations, small programs) between their home computer and the school library. The total file size is around 25 GB. They need a solution that is durable and reliable. Evaluate a 64 GB USB flash drive (£8) and a 1 TB portable HDD (£45) for this purpose and recommend the most suitable option.",
+      "solution": "1. **Comparison of Characteristics:**\n   - **Portability:** The USB flash drive is significantly smaller and lighter, making it more portable. [1 mark]\n   - **Durability:** The USB flash drive is solid-state with no moving parts, making it much more resistant to drops and shocks than the portable HDD, which has a fragile mechanical platter and arm system. [1 mark]\n   - **Capacity & Cost:** The HDD offers vastly more capacity (1 TB vs 64 GB) but at a higher cost. The 25 GB requirement is easily met by the 64 GB USB drive, making the HDD's extra capacity unnecessary for this specific task. [1 mark]\n   - **Speed:** The USB flash drive (especially USB 3.0+) will likely have faster access times for small files than the portable HDD. [1 mark]\n\n2. **Recommendation:**\n   The **64 GB USB flash drive** is the most suitable option. [1 mark] It provides sufficient capacity for the student's needs, is more durable and portable for transport, and is more cost-effective for the stated purpose. The HDD's extra capacity does not justify its higher cost and lower durability in this scenario. [1 mark for justification]"
+    },
+    {
+      "type": "heading",
+      "content": "The Role of the Operating System (OS)"
+    },
+    {
+      "type": "text",
+      "content": "The operating system is the fundamental software that breathes life into computer hardware. It acts as an intermediary, managing the hardware resources on behalf of application programs and providing a platform for the user to interact with the computer. Without an OS, a computer is just a collection of inert electronic components."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Memory Management:** Allocates RAM to processes and manages virtual memory.",
+        "**Processor Management:** Schedules which process gets to use the CPU and for how long.",
+        "**File Management:** Organises files and folders on secondary storage, handling creation, deletion, and access.",
+        "**Peripheral Management:** Controls all input/output (I/O) devices like keyboards, printers, and network cards.",
+        "**User Interface:** Provides a way for the user to interact with the computer (e.g., GUI or CLI)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "OS Function: Memory Management and Virtual Memory"
+    },
+    {
+      "type": "text",
+      "content": "One of the OS's most critical jobs is managing primary memory. It ensures that multiple running programs don't interfere with each other's memory space. When the physical RAM becomes full, the OS can use a clever technique called **virtual memory**. It designates a portion of the much slower secondary storage (like an SSD or HDD) to act as a temporary extension of RAM. The OS swaps chunks of data, called 'pages', between RAM and the disk. This allows more applications to run than could fit into physical RAM alone, but it comes at a performance cost due to the slowness of secondary storage."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to compare storage devices, always use the specific characteristics: capacity, speed (access time/transfer rate), portability, durability, reliability, and cost. A vague answer like 'SSDs are better' will not score marks. You must justify *why* it is better for a given scenario using this terminology."
+    },
+    {
+      "type": "workedExample",
+      "question": "A server has a 2 TB hard drive for data storage. The operating system uses 10% of the total space. The rest of the drive is used to store video files, each averaging 400 MB in size. Calculate the maximum number of complete video files that can be stored on the drive. (Assume 1 TB = 1024 GB and 1 GB = 1024 MB).",
+      "solution": "1. **Calculate space used by OS:**\n   Total space = 2 TB = 2 * 1024 = 2048 GB.\n   OS space = 10% of 2048 GB = 0.10 * 2048 = 204.8 GB. [1 mark]\n\n2. **Calculate available space for videos:**\n   Available space = Total space - OS space\n   Available space = 2048 GB - 204.8 GB = 1843.2 GB. [1 mark]\n\n3. **Convert available space to MB:**\n   Available space in MB = 1843.2 GB * 1024 MB/GB = 1,887,436.8 MB. [1 mark]\n\n4. **Calculate number of video files:**\n   Number of files = Total available MB / Size per file MB\n   Number of files = 1,887,436.8 MB / 400 MB = 4718.592.\n\n5. **Final Answer:**\n   Since only complete files can be stored, the number must be an integer. We round down.\n   Maximum number of files = 4718. [1 mark]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Secondary Memory & OS",
+      "href": "/mark?subject=ib-computer-science-sl&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeekforGeeks: Difference between RAM and ROM",
+          "href": "https://www.geeksforgeeks.org/difference-between-ram-and-rom/"
+        },
+        {
+          "label": "Crucial: SSD vs. HDD",
+          "href": "https://www.crucial.com/articles/about-ssd/ssd-vs-hdd"
+        },
+        {
+          "label": "How-To Geek: What Does an Operating System Do?",
+          "href": "https://www.howtogeek.com/664976/what-does-an-operating-system-do/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

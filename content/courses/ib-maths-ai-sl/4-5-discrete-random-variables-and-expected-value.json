@@ -1,0 +1,166 @@
+{
+  "slug": "4-5-discrete-random-variables-and-expected-value",
+  "topicCode": "4.5",
+  "title": "Discrete random variables and expected value",
+  "paper": "P2",
+  "paperName": "Mathematics: Applications and Interpretation SL",
+  "status": "premium",
+  "summary": "This lesson introduces discrete random variables, which are variables that can only take specific numerical values based on a random event. You will learn how to create probability distributions for these variables and calculate their expected value, which represents the long-run average outcome.",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Define and identify a discrete random variable.",
+    "Construct a probability distribution table for a discrete random variable.",
+    "Calculate the expected value (mean) of a discrete random variable.",
+    "Apply these concepts to solve problems involving games of chance and other real-world scenarios."
+  ],
+  "simpleExplanation": {
+    "title": "Predicting the Average Outcome",
+    "summary": "A discrete random variable is a way to put numbers to chance outcomes you can count, like the score from a die roll. The expected value is the average result you'd anticipate over many, many trials.",
+    "analogy": "Imagine a funfair game where you spin a wheel to win a prize. The prizes are specific items: a small toy, a medium teddy, or a giant unicorn. You can't win half a toy; you can only win one of these distinct items. The prize you win is the 'discrete random variable'. If you played all day, you could work out your average winnings. This long-run average is the 'expected value'. It might not be an actual prize you can win on a single spin, but it tells you what the game is worth on average.",
+    "steps": [
+      "Identify the discrete random variable, $X$, and list all its possible numerical values, $x$.",
+      "Determine the probability, $P(X=x)$, for each possible value. Organise this information in a probability distribution table, ensuring all probabilities sum to 1.",
+      "Calculate the expected value, $E(X)$, by multiplying each value $x$ by its corresponding probability $P(X=x)$ and then summing these products.",
+      "Interpret the expected value in the context of the problem, for example, to determine the fairness of a game or a long-run average."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a random variable?",
+      "back": "A variable whose value is a numerical outcome of a random phenomenon. It is usually denoted by a capital letter, like $X$."
+    },
+    {
+      "front": "What makes a random variable 'discrete'?",
+      "back": "It can only take a finite or countably infinite number of distinct, separate values. For example, the number of heads in four coin flips can be 0, 1, 2, 3, or 4, but not 2.5."
+    },
+    {
+      "front": "What is a probability distribution?",
+      "back": "A table, formula or graph that links each possible value of a discrete random variable with its probability of occurring."
+    },
+    {
+      "front": "What is the fundamental property of the probabilities in any probability distribution?",
+      "back": "The sum of all the probabilities must be equal to 1. That is, $\\sum P(X=x) = 1$."
+    },
+    {
+      "front": "What is another name for the expected value, $E(X)$?",
+      "back": "The mean of the random variable, often denoted by the Greek letter $\\mu$ (mu)."
+    },
+    {
+      "front": "What is the formula for the expected value, $E(X)$?",
+      "back": "$E(X) = \\sum x \\cdot P(X=x)$. You multiply each outcome by its probability, then add them all up."
+    },
+    {
+      "front": "What does the expected value represent in a practical sense?",
+      "back": "It represents the long-run average value of the random variable if the experiment were repeated many times."
+    },
+    {
+      "front": "Can the expected value be a number that the random variable cannot actually take?",
+      "back": "Yes. For a single roll of a fair six-sided die, the expected value is 3.5, even though you cannot roll a 3.5."
+    },
+    {
+      "front": "In the context of a game, what does it mean for the game to be 'fair'?",
+      "back": "A game is considered fair if the expected profit (winnings minus cost to play) is zero. This means, on average, a player is expected to break even."
+    },
+    {
+      "front": "What is a common mistake when calculating expected value?",
+      "back": "Simply averaging the possible outcomes without considering their probabilities. This only works if all outcomes are equally likely. You must calculate a *weighted* average."
+    },
+    {
+      "front": "How can you check your probability distribution is valid?",
+      "back": "Ensure two conditions are met: 1) Every probability $P(X=x)$ is between 0 and 1 inclusive. 2) The sum of all probabilities $\\sum P(X=x)$ is exactly 1."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an expected value and a simple average?",
+      "a": "A simple average gives equal importance to all values. An expected value is a weighted average, where each value is weighted by its probability of occurring. They are only the same if all outcomes are equally likely."
+    },
+    {
+      "q": "How do I know if a variable is discrete or continuous?",
+      "a": "Ask yourself if you can count the possible values, even if there are infinitely many of them (like 1, 2, 3, ...). If you can count them, it's discrete (e.g., number of students in a class, shoe size). If the variable can take any value within a given range, it's continuous (e.g., height, weight, time)."
+    },
+    {
+      "q": "My probabilities don't add up to 1. What did I do wrong?",
+      "a": "This is a very common error and a great way to check your work. If your probabilities don't sum to 1, you have either miscalculated one or more probabilities, or you have missed one of the possible outcomes of the random variable."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mathematics, we often want to model and quantify uncertainty. While we can't predict the exact outcome of a single random event, like a roll of a die, we can analyse the patterns that emerge over many repetitions. This lesson introduces discrete random variables and the concept of expected value, powerful tools for understanding and predicting the long-term behaviour of random processes."
+    },
+    {
+      "type": "heading",
+      "content": "Discrete Random Variables and Probability Distributions"
+    },
+    {
+      "type": "text",
+      "content": "A **discrete random variable** is a variable that takes on a set of distinct numerical values as a result of a random experiment. The 'discrete' part means the values are separate and countable (e.g., 0, 1, 2, 3), not continuous (e.g., any value between 0 and 3). We use a capital letter, like $X$, to denote the variable and a lowercase letter, $x$, for its specific values."
+    },
+    {
+      "type": "text",
+      "content": "A **probability distribution** systematically lists all possible values of a discrete random variable alongside their corresponding probabilities, $P(X=x)$. This is most commonly shown in a table."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For any probability distribution, each probability must be between 0 and 1: $0 \\le P(X=x) \\le 1$.",
+        "The sum of all probabilities for all possible outcomes must be exactly 1: $\\sum P(X=x) = 1$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A bag contains 5 red balls and 3 blue balls. A ball is drawn at random, its colour is noted, and it is not replaced. A second ball is then drawn. Let $X$ be the number of red balls drawn. Find the probability distribution of $X$.",
+      "solution": "The possible values for $X$ (the number of red balls) are 0, 1, or 2.\nWe can use a tree diagram to find the probabilities.\nTotal balls = 8.\n\n$P(X=2) = P(\\text{Red and Red}) = \\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56}$ [M1]\n\n$P(X=1) = P(\\text{Red and Blue}) + P(\\text{Blue and Red})$\n$= (\\frac{5}{8} \\times \\frac{3}{7}) + (\\frac{3}{8} \\times \\frac{5}{7})$ [M1]\n$= \\frac{15}{56} + \\frac{15}{56} = \\frac{30}{56}$\n\n$P(X=0) = P(\\text{Blue and Blue}) = \\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56}$ [M1]\n\nCheck: $\\frac{20}{56} + \\frac{30}{56} + \\frac{6}{56} = \\frac{56}{56} = 1$. The probabilities sum to 1.\n\nThe probability distribution for $X$ is:\n\n| $x$ | 0 | 1 | 2 |\n|---|---|---|---|\n| $P(X=x)$ | $\\frac{6}{56}$ | $\\frac{30}{56}$ | $\\frac{20}{56}$ |\n\n[A1] for the completed table with correct values."
+    },
+    {
+      "type": "heading",
+      "content": "The Expected Value, E(X)"
+    },
+    {
+      "type": "text",
+      "content": "The expected value of a discrete random variable is its theoretical long-run average value. It's a weighted average of the possible values, where the weights are the probabilities. It is also called the mean and is denoted by $E(X)$ or $\\mu$."
+    },
+    {
+      "type": "formula",
+      "content": "Expected Value: $E(X) = \\mu = \\sum x \\cdot P(X=x)$"
+    },
+    {
+      "type": "text",
+      "content": "To calculate it, you multiply each possible value of the variable by its probability, and then add all of these products together. The expected value does not have to be one of the possible outcomes of the variable."
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 2, your GDC is your best friend for calculating expected value. Enter the outcomes ($x$ values) into one list (e.g., L1) and their probabilities ($P(X=x)$ values) into a second list (e.g., L2). Use the '1-Variable Statistics' function, setting L1 as your list and L2 as your frequency list. The mean shown, $\\bar{x}$, is the expected value $E(X)$."
+    },
+    {
+      "type": "heading",
+      "content": "Applications: Fair Games"
+    },
+    {
+      "type": "text",
+      "content": "Expected value is crucial for analysing games of chance. A game is considered **fair** if the expected profit for the player is zero. If the expected profit is positive, the game favours the player. If it's negative, the game favours the organiser (e.g., a casino)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A player pays $5 to play a game where they roll a fair eight-sided die. The prize money, $W$, is determined by the number rolled. If the number is even, the player wins $4. If the number is a 1 or 3, the player wins $10. If the number is a 5 or 7, the player wins nothing.$\n\n(a) Find the expected prize money, $E(W)$.\n(b) Calculate the player's expected profit from one game.\n(c) Is the game fair? Justify your answer.",
+      "solution": "(a) First, let's find the probability for each prize amount.\nThe die is fair, so each of the 8 outcomes has a probability of $\\frac{1}{8}$.\nPossible prize money $W$: $4, $10, $0.$\n\n$P(W=4) = P(\\text{roll 2, 4, 6, or 8}) = \\frac{4}{8} = 0.5$\n$P(W=10) = P(\\text{roll 1 or 3}) = \\frac{2}{8} = 0.25$\n$P(W=0) = P(\\text{roll 5 or 7}) = \\frac{2}{8} = 0.25$ [A1] for all probabilities.\n\nNow, calculate the expected prize money $E(W)$.\n$E(W) = \\sum w \\cdot P(W=w)$\n$E(W) = (4)(0.5) + (10)(0.25) + (0)(0.25)$ [M1] for correct substitution.\n$E(W) = 2 + 2.5 + 0 = \\$4.50$ [A1]\n\n(b) The cost to play is $5. Profit = Prize Money - Cost.$\nExpected Profit = Expected Prize Money - Cost.\n$E(\\text{Profit}) = E(W) - 5$\n$E(\\text{Profit}) = 4.50 - 5 = -\\$0.50$ [A1]\n\n(c) The game is not fair. [A1]\nA fair game has an expected profit of zero. Since the expected profit is -\\$0.50, the game is biased in favour of the organiser. On average, a player can expect to lose 50 cents each time they play. [R1] for justification."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Expected Value Problems",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=4.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB AI SL Questionbank",
+          "href": "/questionbank?subject=ib-maths-ai-sl"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,190 @@
+{
+  "slug": "3-2-data-transmission-and-wireless-networks",
+  "topicCode": "3.2",
+  "title": "Data transmission and wireless networks",
+  "paper": "P1",
+  "paperName": "Computer Science SL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental principles of data transmission, including different modes like serial and parallel, and simplex and duplex. It delves into the mechanics of packet switching and the essential components and security protocols of wireless networks (Wi-Fi).",
+  "durationMin": 22,
+  "updated": "2026-06-23",
+  "learningObjectives": [
+    "Distinguish between serial and parallel, and simplex, half-duplex, and full-duplex data transmission.",
+    "Explain the process of packet switching, including the structure of a data packet.",
+    "Describe the characteristics of a wireless network, including SSID, MAC addresses, and encryption protocols.",
+    "Calculate data transfer speeds and sizes, paying close attention to units."
+  ],
+  "simpleExplanation": {
+    "title": "Sending Data Like a Jigsaw Puzzle",
+    "summary": "Packet switching is the method computers use to send large files over a network by breaking them into smaller, manageable pieces called packets. These packets are sent independently and reassembled at the destination, making the transfer efficient and robust.",
+    "analogy": "Imagine you need to send a very large, rare book to a friend. Instead of risking sending the whole book in one box (which could get lost), you photocopy each page, put each page in a separate, numbered envelope with your friend's address, and post them all. Even if some envelopes take a different route or arrive out of order, your friend can use the page numbers to reassemble the entire book. Packet switching works in a very similar way for digital data.",
+    "steps": [
+      "A large file is broken down into smaller chunks of data.",
+      "Each chunk is placed into a 'packet' with a header containing the destination address, source address, and its sequence number.",
+      "The packets are sent across the network, potentially taking different routes to the destination.",
+      "At the destination, the packets are reassembled in the correct order using their sequence numbers to recreate the original file."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Simplex data transmission?",
+      "back": "Data transmission in one direction only. For example, from a computer to a printer, or a radio broadcast."
+    },
+    {
+      "front": "What is Half-duplex data transmission?",
+      "back": "Data transmission in both directions, but not at the same time. For example, a walkie-talkie."
+    },
+    {
+      "front": "What is Full-duplex data transmission?",
+      "back": "Data transmission in both directions simultaneously. For example, a telephone conversation or a video call."
+    },
+    {
+      "front": "What is Serial data transmission?",
+      "back": "Data is sent one bit at a time over a single wire or channel. It's slower but reliable over long distances. Example: USB."
+    },
+    {
+      "front": "What is Parallel data transmission?",
+      "back": "Data is sent multiple bits at a time over multiple wires or channels. It's faster over short distances but prone to skew and interference over long distances. Example: older printer ports."
+    },
+    {
+      "front": "What is a data packet?",
+      "back": "A small unit of data transmitted over a network. It consists of a header (with addressing/sequencing info), a payload (the actual data), and sometimes a trailer (for error checking)."
+    },
+    {
+      "front": "What is Packet Switching?",
+      "back": "A method of grouping data into packets that are transmitted over a digital network. Packets can take different routes and are reassembled at the destination."
+    },
+    {
+      "front": "What is an SSID (Service Set Identifier)?",
+      "back": "The public name of a wireless network (WLAN). It's the name you see when you search for Wi-Fi connections on your device."
+    },
+    {
+      "front": "What is a MAC (Media Access Control) address?",
+      "back": "A unique, hardware-level address assigned to a network interface controller (NIC) by the manufacturer. It is used for communication on a local network segment."
+    },
+    {
+      "front": "What is the purpose of WPA2/WPA3 encryption in a wireless network?",
+      "back": "To secure wireless communication by encrypting the data transmitted between a device and the wireless access point, preventing unauthorised access and eavesdropping."
+    },
+    {
+      "front": "Common Trap: Confusing MAC address and IP address.",
+      "back": "A MAC address is a permanent, physical address for a device's hardware. An IP address is a logical, temporary address assigned to a device on a network. Analogy: MAC is your house's permanent plot number, IP is the temporary mailing address you use."
+    },
+    {
+      "front": "What is a protocol in the context of networking?",
+      "back": "A set of rules that governs how data is formatted, transmitted, and received between devices. For example, TCP/IP is a suite of protocols for the internet."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is serial transmission (like USB) used more commonly today than parallel, if parallel is faster?",
+      "a": "While parallel transmission is theoretically faster over very short distances, it suffers from 'crosstalk' (interference between wires) and 'skew' (bits arriving at different times) over longer distances. Serial transmission, sending one bit at a time, avoids these issues, making it more reliable and cheaper to implement for modern high-speed connections. Advances in technology have allowed serial connections to achieve incredibly high speeds, negating the historical speed advantage of parallel."
+    },
+    {
+      "q": "If packets can take different routes, how does the network ensure they all arrive?",
+      "a": "This is a key function of the Transmission Control Protocol (TCP). TCP establishes a connection and keeps track of the packets sent. If the receiving computer doesn't acknowledge the receipt of a packet within a certain time, TCP assumes it was lost and re-sends it. This ensures reliability, although it adds some overhead."
+    },
+    {
+      "q": "Is hiding my Wi-Fi's SSID a good security measure?",
+      "a": "Hiding your SSID (disabling the broadcast) provides a very basic level of obscurity, but it is not a robust security measure. Attackers can use network analysis tools to easily discover hidden networks. It's considered 'security through obscurity' and should not be relied upon. Strong encryption (WPA2/WPA3) and a strong password are far more important."
+    },
+    {
+      "q": "What's the difference between a bit and a byte again?",
+      "a": "A bit is the smallest unit of data in a computer, representing a 0 or a 1. A byte is a group of 8 bits. Network speeds are typically measured in bits per second (e.g., Mbps), while file sizes are usually measured in bytes (e.g., MB, GB). Remember: 1 Byte = 8 bits."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every time you browse a website, send an email, or stream a video, vast amounts of data are being sent and received across complex networks. This lesson uncovers the fundamental methods of how this data travels, from the physical transmission of bits to the protocols that ensure your data arrives intact and secure, especially in wireless environments."
+    },
+    {
+      "type": "heading",
+      "content": "Modes of Data Transmission"
+    },
+    {
+      "type": "text",
+      "content": "Before data can be sent, the communicating devices must agree on the rules of transmission. These rules can be categorised by directionality (how data flows) and by the number of bits sent simultaneously."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Simplex**: One-way communication. Think of a radio broadcast. Data flows from the transmitter to the receiver, but not back.",
+        "**Half-Duplex**: Two-way communication, but only one direction at a time. Walkie-talkies are a classic example; you must say 'over' to signal the other person can speak.",
+        "**Full-Duplex**: Two-way communication, happening simultaneously. A modern phone call allows both parties to speak and be heard at the same time."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Furthermore, data can be sent bit-by-bit or in groups:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Serial Transmission**: Bits are sent one after another down a single channel. This is slower but more reliable over long distances as there's no risk of bits arriving out of sync ('skew'). USB (Universal Serial Bus) is a prime example.",
+        "**Parallel Transmission**: Multiple bits are sent simultaneously over multiple channels. This is much faster for short distances but is expensive and susceptible to interference and skew over longer distances, as the bits may not arrive at the exact same time."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Packet Switching: The Internet's Postal Service"
+    },
+    {
+      "type": "text",
+      "content": "Large files are not sent as a single, continuous stream. Instead, they are broken down using a method called packet switching. This process is managed by protocols, most famously the TCP/IP suite. Each packet is like a small parcel containing a piece of the overall message. It has a header with crucial information like the destination IP address, source IP address, and a sequence number. The main data is called the payload. A trailer may be added for error checking."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 2 MiB image file is transmitted using packet switching. Each packet has a payload size of 1024 bytes and a header size of 40 bytes. Calculate the total amount of data transmitted, including all headers, in KiB. (Note: 1 MiB = 1024 KiB, 1 KiB = 1024 bytes).",
+      "solution": "1. **Convert file size to bytes:**\n   2 MiB = 2 * 1024 KiB = 2 * 1024 * 1024 bytes = 2,097,152 bytes.\n\n2. **Calculate the number of packets needed:**\n   Number of packets = Total file size / Payload size per packet\n   Number of packets = 2,097,152 bytes / 1024 bytes/packet = 2048 packets.\n\n3. **Calculate the total size of all headers:**\n   Total header size = Number of packets * Header size per packet\n   Total header size = 2048 packets * 40 bytes/packet = 81,920 bytes.\n\n4. **Calculate the total data transmitted:**\n   Total data = Original file size + Total header size\n   Total data = 2,097,152 bytes + 81,920 bytes = 2,179,072 bytes.\n\n5. **Convert total data to KiB:**\n   Total data in KiB = 2,179,072 bytes / 1024 bytes/KiB = 2128 KiB.\n\n**Answer:** 2128 KiB of data is transmitted in total. [4 marks]"
+    },
+    {
+      "type": "heading",
+      "content": "Wireless Networking Essentials"
+    },
+    {
+      "type": "text",
+      "content": "Wireless Local Area Networks (WLANs), commonly known as Wi-Fi, allow devices to connect to a network without physical cables. This convenience comes with security challenges. Several components work together to manage a wireless network."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**SSID (Service Set Identifier)**: This is the network's name that is broadcast to users. It can be hidden for a minor security improvement, but it is not a robust security measure on its own.",
+        "**MAC Address Filtering**: Every network-capable device has a unique MAC address. A router can be configured to only allow devices with specific MAC addresses to connect. This provides a layer of security, but MAC addresses can be 'spoofed' (imitated) by determined attackers.",
+        "**Encryption**: This is the most critical part of wireless security. Data is scrambled before transmission and unscrambled by the receiver. **WPA2 (Wi-Fi Protected Access 2)** is a strong and widely used encryption standard. Its successor, **WPA3**, offers even more robust security. Older standards like WEP are insecure and should not be used."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions involving calculations, always show your working clearly, step-by-step. Pay very close attention to units (e.g., bits vs bytes, Mb vs MB, KiB vs KB). 1 byte = 8 bits. 'b' usually means bits (e.g., Mbps = megabits per second), while 'B' usually means bytes (e.g., MB = megabytes). Be precise!"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the theoretical minimum time, in seconds, to download a 450 MiB file over a network connection with a speed of 80 Mbps. (Note: 1 MiB = $2^{20}$ bytes, 1 Mbps = $10^6$ bits per second).",
+      "solution": "1. **Convert file size from MiB to bits:**\n   File size in bytes = 450 * $2^{20}$ bytes = 471,859,200 bytes.\n   File size in bits = 471,859,200 bytes * 8 bits/byte = 3,774,873,600 bits.\n   *(Mark for converting file size to bits)*\n\n2. **Convert network speed to bits per second (bps):**\n   Network speed = 80 Mbps = 80 * $10^6$ bps = 80,000,000 bps.\n   *(Mark for correctly stating network speed in bps)*\n\n3. **Calculate the download time:**\n   Time = Total file size in bits / Network speed in bps\n   Time = 3,774,873,600 / 80,000,000\n   Time = 47.18592 seconds.\n\n4. **State the answer to a reasonable number of significant figures:**\n   Time ≈ 47.2 seconds.\n   *(Mark for correct calculation and final answer)*\n\n**Answer:** 47.2 seconds. [3 marks]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Data Transmission",
+      "href": "/mark?subject=ib-computer-science-sl&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeeksForGeeks - Transmission Modes",
+          "href": "https://www.geeksforgeeks.org/transmission-modes-in-computer-networks-simplex-half-duplex-and-full-duplex/"
+        },
+        {
+          "label": "Cloudflare - What is Packet Switching?",
+          "href": "https://www.cloudflare.com/en-gb/learning/network-layer/what-is-packet-switching/"
+        },
+        {
+          "label": "Wi-Fi Alliance - Wi-Fi Security",
+          "href": "https://www.wi-fi.org/discover-wi-fi/security"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

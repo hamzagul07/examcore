@@ -22,13 +22,29 @@ function collectFocusables(
   ]
 }
 
+function focusWithoutScroll(el: HTMLElement | null | undefined) {
+  try {
+    el?.focus({ preventScroll: true })
+  } catch {
+    el?.focus()
+  }
+}
+
+type Options = {
+  /** When false, skip returning focus on deactivate (e.g. after navigation). */
+  restoreFocus?: boolean
+}
+
 /** Keep keyboard focus within container (+ optional extra roots) while active. */
 export function useFocusTrap(
   active: boolean,
   containerRef: RefObject<HTMLElement | null>,
   returnFocusRef?: RefObject<HTMLElement | null>,
-  extraRoots: RefObject<HTMLElement | null>[] = []
+  extraRoots: RefObject<HTMLElement | null>[] = [],
+  options: Options = {}
 ) {
+  const { restoreFocus = true } = options
+
   useEffect(() => {
     if (!active) return
     const container = containerRef.current
@@ -36,9 +52,12 @@ export function useFocusTrap(
     const items = collectFocusables(container, extras)
     if (!items.length) return
 
-    requestAnimationFrame(() => {
-      items[0]?.focus()
-    })
+    const finePointer = window.matchMedia('(pointer: fine)').matches
+    if (finePointer) {
+      requestAnimationFrame(() => {
+        focusWithoutScroll(items[0])
+      })
+    }
 
     function onKeyDown(e: KeyboardEvent) {
       if (e.key !== 'Tab') return
@@ -50,18 +69,20 @@ export function useFocusTrap(
       if (e.shiftKey) {
         if (document.activeElement === head) {
           e.preventDefault()
-          tail.focus()
+          focusWithoutScroll(tail)
         }
       } else if (document.activeElement === tail) {
         e.preventDefault()
-        head.focus()
+        focusWithoutScroll(head)
       }
     }
 
     document.addEventListener('keydown', onKeyDown)
     return () => {
       document.removeEventListener('keydown', onKeyDown)
-      returnFocusRef?.current?.focus()
+      if (restoreFocus) {
+        focusWithoutScroll(returnFocusRef?.current ?? null)
+      }
     }
-  }, [active, containerRef, returnFocusRef, extraRoots])
+  }, [active, containerRef, returnFocusRef, extraRoots, restoreFocus])
 }

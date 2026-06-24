@@ -19,6 +19,7 @@ import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { useHeaderScroll } from '@/lib/hooks/useHeaderScroll'
 import { useFocusTrap } from '@/lib/hooks/useFocusTrap'
 import { useNavHeightVar } from '@/lib/hooks/useNavHeightVar'
+import { scrollPageToTop } from '@/lib/navigation/scroll-page-to-top'
 import {
   getNavItemsForConfig,
   getSiteHeaderConfig,
@@ -67,6 +68,7 @@ export function SiteHeader({ variant }: Props) {
   const config = getSiteHeaderConfig(pathname, variant)
   const navItems = getNavItemsForConfig(variant, config)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [restoreMenuFocus, setRestoreMenuFocus] = useState(true)
   const [mounted, setMounted] = useState(false)
   const [mobileViewport, setMobileViewport] = useState(mobileViewportMatches)
   const navWrapRef = useRef<HTMLDivElement>(null)
@@ -80,6 +82,7 @@ export function SiteHeader({ variant }: Props) {
   const showTabBar = variant === 'app' && authenticatedChrome
 
   useEffect(() => {
+    setRestoreMenuFocus(false)
     setMobileOpen(false)
   }, [pathname])
 
@@ -105,19 +108,28 @@ export function SiteHeader({ variant }: Props) {
       ? '/courses'
       : '/dashboard'
   const showMobileMenu = variant === 'app' ? !showTabBar : true
+  const isDiscuss = config.tone === 'discuss'
 
   const mobileExtra =
     variant === 'marketing' || variant === 'reading'
       ? MARKETING_NAV_SECONDARY
       : variant === 'app'
-        ? [{ href: '/pricing', label: 'Pricing' }]
-        : []
+        ? [
+            { href: '/pricing', label: 'Pricing' },
+            { href: '/how-it-works', label: 'How it works' },
+            { href: '/faq', label: 'FAQ' },
+          ]
+        : isDiscuss
+          ? [
+              { href: '/community/submit', label: 'Create post' },
+              { href: '/community/guidelines', label: 'Community guidelines' },
+            ]
+          : []
 
   const showNotifications =
     variant === 'marketing' || variant === 'reading' || variant === 'app'
 
   const showPageCtas = config.tone !== 'mark' || variant !== 'app'
-  const isDiscuss = config.tone === 'discuss'
 
   useEffect(() => {
     setMounted(true)
@@ -133,11 +145,23 @@ export function SiteHeader({ variant }: Props) {
 
   /** Auto-hide breaks tap targets on phones; keep header reachable on mobile. */
   const hideHeader = headerHidden && !mobileOpen && !mobileViewport
-  const closeMobileMenu = () => setMobileOpen(false)
+
+  const closeMobileMenu = (restoreFocus = true) => {
+    setRestoreMenuFocus(restoreFocus)
+    setMobileOpen(false)
+  }
+
+  const navigateFromMenu = () => {
+    setRestoreMenuFocus(false)
+    setMobileOpen(false)
+    scrollPageToTop()
+  }
 
   useNavHeightVar(navWrapRef)
   const menuFocusExtras = useMemo(() => [burgerRef], [])
-  useFocusTrap(mobileOpen && mounted, mobileSheetRef, burgerRef, menuFocusExtras)
+  useFocusTrap(mobileOpen && mounted, mobileSheetRef, burgerRef, menuFocusExtras, {
+    restoreFocus: restoreMenuFocus,
+  })
 
   const renderPrimaryCta = (className: string, onNavigate?: () => void) =>
     isDiscuss ? (
@@ -312,7 +336,10 @@ export function SiteHeader({ variant }: Props) {
               className="ec-nav-burger"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
-              onClick={() => setMobileOpen((v) => !v)}
+              onClick={() => {
+                setRestoreMenuFocus(true)
+                setMobileOpen((v) => !v)
+              }}
             >
               {mobileOpen ? '✕' : '☰'}
             </button>
@@ -327,7 +354,7 @@ export function SiteHeader({ variant }: Props) {
                 type="button"
                 className="ec-nav-mobile-backdrop"
                 aria-label="Close menu"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => closeMobileMenu(true)}
               />
               <div
                 ref={mobileSheetRef}
@@ -336,6 +363,17 @@ export function SiteHeader({ variant }: Props) {
                 aria-modal="true"
                 aria-label="Navigation menu"
               >
+                <div className="ec-nav-mobile-sheet-head">
+                  <p className="ec-nav-mobile-sheet-title">Menu</p>
+                  <button
+                    type="button"
+                    className="ec-nav-mobile-sheet-close"
+                    aria-label="Close menu"
+                    onClick={() => closeMobileMenu(true)}
+                  >
+                    ✕
+                  </button>
+                </div>
                 {config.context ? (
                   <div className="ec-nav-mobile-context">
                     <SiteHeaderContext context={config.context} />
@@ -348,35 +386,38 @@ export function SiteHeader({ variant }: Props) {
                 >
                   {renderPrimaryCta(
                     cn('ec-nav-mobile-mark', CTA_CLASS[config.primaryCta.style]),
-                    closeMobileMenu
+                    navigateFromMenu
                   )}
                   {config.secondaryCta ? (
                     <LoadingLink
                       href={config.secondaryCta.href}
                       className={cn('ec-nav-mobile-secondary', CTA_CLASS[config.secondaryCta.style])}
                       loadingText="Opening…"
-                      onNavigate={closeMobileMenu}
+                      onNavigate={navigateFromMenu}
                     >
                       <CtaLabel cta={config.secondaryCta} />
                     </LoadingLink>
                   ) : null}
-                  <MobileSearchMenuButton onActivate={closeMobileMenu} />
+                  <MobileSearchMenuButton onActivate={navigateFromMenu} />
                   <NavMobileMenu
                     items={navItems}
                     pathname={pathname}
                     className="ec-nav-mobile-menu-items"
                     linkClassName="ec-nav-mobile-link"
                     activeClassName="ec-nav-mobile-link--active"
-                    onNavigate={closeMobileMenu}
+                    onNavigate={navigateFromMenu}
                     extraLinks={mobileExtra}
+                    extraLinksLabel={
+                      variant === 'marketing' || variant === 'reading' ? 'Explore' : 'More'
+                    }
                   />
                   {variant === 'marketing' || variant === 'reading' ? (
                     isGuest ? (
                       <div className="ec-nav-mobile-auth">
-                        <Link href="/auth/signin" onClick={closeMobileMenu}>
+                        <Link href="/auth/signin" onClick={navigateFromMenu}>
                           Sign in
                         </Link>
-                        <Link href={buildMarketingSignUpHref()} onClick={closeMobileMenu}>
+                        <Link href={buildMarketingSignUpHref()} onClick={navigateFromMenu}>
                           Create free account
                         </Link>
                       </div>
@@ -384,17 +425,17 @@ export function SiteHeader({ variant }: Props) {
                       <Link
                         href="/account"
                         className="ec-nav-mobile-link"
-                        onClick={closeMobileMenu}
+                        onClick={navigateFromMenu}
                       >
                         Account
                       </Link>
                     )
                   ) : isGuest ? (
                     <div className="ec-nav-mobile-auth">
-                      <Link href={buildSignInHref(signInNext)} onClick={closeMobileMenu}>
+                      <Link href={buildSignInHref(signInNext)} onClick={navigateFromMenu}>
                         Sign in
                       </Link>
-                      <Link href={buildSignUpHref('/dashboard')} onClick={closeMobileMenu}>
+                      <Link href={buildSignUpHref('/dashboard')} onClick={navigateFromMenu}>
                         Create free account
                       </Link>
                     </div>
@@ -402,11 +443,17 @@ export function SiteHeader({ variant }: Props) {
                     <Link
                       href="/account"
                       className="ec-nav-mobile-link"
-                      onClick={closeMobileMenu}
+                      onClick={navigateFromMenu}
                     >
                       Account
                     </Link>
                   )}
+                  <div className="ec-nav-mobile-footer">
+                    <div className="ec-nav-mobile-footer-row">
+                      <span className="ec-nav-mobile-footer-label">Appearance</span>
+                      <ThemeFlip className="ec-nav-mobile-theme" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </>,

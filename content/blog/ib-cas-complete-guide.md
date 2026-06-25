@@ -1,11 +1,11 @@
 ---
 title: IB CAS complete guide — learning outcomes, portfolio & reflections
 description: IB Creativity Activity Service explained: seven learning outcomes, CAS project, portfolio evidence, interviews, and passing CAS without stress.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB CAS, IB CAS guide, CAS learning outcomes, IB CAS project, CAS reflections, IB CAS portfolio
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Tick-box volunteering; identical reflections; CAS project without collaboration;
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-cas) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Creativity, Activity, Service course](/ib/courses/cas) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Creativity, Activity, Service course](/ib/courses/cas) links every syllabus topic to lessons, flashcards, and practice tasks. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/cas#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

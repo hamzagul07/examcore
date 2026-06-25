@@ -1,11 +1,11 @@
 ---
 title: IB Geography IA guide — fieldwork, written report & criteria
 description: IB Geography Internal Assessment: fieldwork question, methodology, data presentation, analysis, evaluation, and criterion bands.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Geography IA, IB Geography fieldwork, Geography IA criteria, IB Geography IA structure, Geography IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

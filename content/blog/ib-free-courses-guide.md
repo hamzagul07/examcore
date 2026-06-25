@@ -9,15 +9,17 @@ updated: 2026-06-25
 informationGain: synthesis
 ---
 
-MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PDF dumps, but topic-by-topic lessons with worked examples, flashcards, and built-in **criterion practice marking** on every syllabus point. The catalog now covers **44 subjects** and **750+ lessons** at HL, SL, and Core.
+MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PDF dumps, but topic-by-topic lessons with worked examples, flashcards, and built-in **criterion practice marking** on every syllabus point. The catalog now covers **44 subjects** and **760+ lessons** at HL, SL, and Core.
 
 ## What is included
 - **Core:** [TOK](/ib/courses/tok), [Extended Essay](/ib/courses/extended-essay), [CAS](/ib/courses/cas)
 - **Group 1–3:** English A, Spanish B, French B, History, Geography, Economics, Business, Psychology (HL and SL where offered)
 - **Group 4–5:** Biology, Chemistry, Physics, Computer Science, ESS, Maths AA & AI (HL and SL)
-- **Group 6:** Visual Arts, Theatre, Music, Film, Dance (HL and SL)
+- **Group 6:** Visual Arts, Theatre, Music, Film, Dance (HL and SL) — all topic-complete
 
-**New SL science & humanities courses** (topic-complete): [Biology SL](/ib/courses/biology-sl) · [Chemistry SL](/ib/courses/chemistry-sl) · [Economics SL](/ib/courses/economics-sl) · [Business SL](/ib/courses/business-management-sl) · [Psychology SL](/ib/courses/psychology-sl) · [Computer Science SL](/ib/courses/computer-science-sl) · [ESS](/ib/courses/environmental-systems-and-societies-sl) · [Maths AA SL](/ib/courses/maths-aa-sl) · [Maths AI SL](/ib/courses/maths-ai-sl)
+**New SL science & humanities courses:** [Biology SL](/ib/courses/biology-sl) · [Chemistry SL](/ib/courses/chemistry-sl) · [Economics SL](/ib/courses/economics-sl) · [Business SL](/ib/courses/business-management-sl) · [Psychology SL](/ib/courses/psychology-sl) · [Computer Science SL](/ib/courses/computer-science-sl) · [ESS](/ib/courses/environmental-systems-and-societies-sl) · [Maths AA SL](/ib/courses/maths-aa-sl) · [Maths AI SL](/ib/courses/maths-ai-sl)
+
+**Group 6 arts (expanded):** [Dance](/ib/courses/dance-hl) · [Theatre](/ib/courses/theatre-hl) · [Music](/ib/courses/music-hl) · [Film](/ib/courses/film-hl) · [Visual Arts](/ib/courses/visual-arts-hl) — each with HL and SL courses and full topic practice grids.
 
 Each course follows official topic codes. Lessons link straight to [/mark](/mark) practice with IB assessment criteria — band-by-band feedback, not a generic grade.
 
@@ -28,7 +30,7 @@ Each course follows official topic codes. Lessons link straight to [/mark](/mark
 4. Click **criterion practice** to upload your answer for marking against the real rubric.
 
 ## Past papers + courses together
-Courses teach the content and skills; [IB past papers](/ib/past-papers) train exam format under time pressure. Use [topic practice pages](/ib/past-papers/biology-hl) to connect each syllabus point to a practice task and marking.
+Courses teach the content and skills; [IB past papers](/ib/past-papers) train exam format under time pressure. Use [topic practice pages](/ib/past-papers/biology-hl#ib-topic-practice) to connect each syllabus point to a practice task and marking.
 
 ## Frequently asked questions
 

@@ -1,11 +1,11 @@
 ---
 title: IB English IA guide — Individual Oral, HL Essay & written tasks
 description: IB English A Internal Assessment: Individual Oral structure, HL Essay, written tasks, criteria, and how Lang & Lit differs from Literature.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB English IA, IB Individual Oral, IB HL Essay English, English IA criteria, IB English oral guide
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

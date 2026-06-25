@@ -1,11 +1,11 @@
 ---
 title: IB Chemistry IA guide — investigation criteria, structure & examples
 description: IB Chemistry Internal Assessment guide: research question, titration/calorimetry/kinetics IA structure, criteria A–D, and moderator expectations.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Chemistry IA, IB Chemistry Internal Assessment, Chemistry IA criteria, IB Chemistry IA topics, Chemistry IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

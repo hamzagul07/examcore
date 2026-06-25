@@ -1,11 +1,11 @@
 ---
 title: IB Biology IA guide — individual investigation criteria & grade 7 tips
 description: How to write a top-band IB Biology Internal Assessment: research question, methodology, analysis, evaluation, and the five IA criteria explained.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Biology IA, IB Biology Internal Assessment, Biology IA criteria, IB Biology IA example, Biology IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

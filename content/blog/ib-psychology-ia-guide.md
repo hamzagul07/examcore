@@ -1,11 +1,11 @@
 ---
 title: IB Psychology IA guide — simple experiment, report & rubric
 description: IB Psychology Internal Assessment: simple experimental study, ethics, statistics, APA-style report, and criteria for top bands.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Psychology IA, IB Psychology experiment, Psychology IA criteria, IB Psychology IA structure, Psychology IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

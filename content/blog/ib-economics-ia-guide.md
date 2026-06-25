@@ -1,11 +1,11 @@
 ---
 title: IB Economics IA guide — commentary structure, rubric & 7s
 description: IB Economics Internal Assessment: three commentaries, article choice, diagrams, evaluation, and the 14-criterion rubric explained.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Economics IA, IB Economics commentary, Economics IA rubric, IB Economics IA structure, Economics IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

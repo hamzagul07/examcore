@@ -3,7 +3,7 @@
  * Skips files that already exist unless --force.
  *
  *   node scripts/generate-ib-blog-spokes.mjs
- *   node scripts/generate-ib-blog-spokes.mjs --force
+ *   node scripts/generate-ib-blog-spokes.mjs --force --group6
  */
 import fs from 'fs'
 import path from 'path'
@@ -14,7 +14,10 @@ const FORCE = process.argv.includes('--force')
 const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length)
 const HL_ONLY = process.argv.includes('--hl-only')
 const SL_ONLY = process.argv.includes('--sl-only')
+const GROUP6_ONLY = process.argv.includes('--group6')
 const COURSES_DIR = path.join(process.cwd(), 'content', 'courses')
+
+const GROUP6_CATALOG = /^(dance|theatre|music|film|visual-arts)(-hl|-sl)?$/
 
 /** @typedef {{ slug: string; title: string; description: string; keywords: string[]; name: string; level: string; catalogSlug: string; courseSlug?: string; assessment: string; markbands: string; strategy: string; paperTips: string; pitfalls: string; faqs: { q: string; a: string }[]; intro?: string }} PostBrief */
 
@@ -1170,6 +1173,12 @@ function renderCourseLinkParagraph(b) {
     )
   }
 
+  if (b.catalogSlug) {
+    lines.push(
+      `Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/${b.catalogSlug}#ib-topic-practice) — each point links to a lesson and criterion marking task.`
+    )
+  }
+
   return lines.join(' ')
 }
 
@@ -1233,8 +1242,11 @@ Treat ${b.catalogSlug ? `[IB ${b.name}${levelLabel} past papers](${pp})` : 'past
 let written = 0
 let skipped = 0
 
-function shouldWrite(slug) {
+function shouldWrite(slug, catalogSlug) {
   if (ONLY && slug !== ONLY) return false
+  if (GROUP6_ONLY) {
+    if (!catalogSlug || !GROUP6_CATALOG.test(catalogSlug)) return false
+  }
   if (HL_ONLY && !slug.endsWith('-hl-past-papers-guide')) return false
   if (SL_ONLY) {
     const isSlPast =
@@ -1246,7 +1258,7 @@ function shouldWrite(slug) {
 }
 
 for (const brief of POSTS) {
-  if (!shouldWrite(brief.slug)) continue
+  if (!shouldWrite(brief.slug, brief.catalogSlug)) continue
   const file = path.join(BLOG_DIR, `${brief.slug}.md`)
   if (fs.existsSync(file) && !FORCE) {
     skipped++
@@ -1258,7 +1270,7 @@ for (const brief of POSTS) {
 }
 
 for (const brief of IA_POSTS) {
-  if (!shouldWrite(brief.slug)) continue
+  if (!shouldWrite(brief.slug, brief.catalogSlug)) continue
   const file = path.join(BLOG_DIR, `${brief.slug}.md`)
   if (fs.existsSync(file) && !FORCE) {
     skipped++

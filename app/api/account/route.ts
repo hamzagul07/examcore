@@ -3,7 +3,9 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 import {
   ENABLED_BOARD_IDS,
   ENABLED_LEVEL_IDS,
-  isSubjectValidForLevel,
+  IB_DIPLOMA_LEVEL,
+  isIbBoard,
+  isSubjectValidForProfile,
 } from '@/lib/profile-options'
 
 type Body = {
@@ -30,8 +32,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
   }
 
-  const board = (body.board || '').trim()
-  const level = (body.level || '').trim()
+  let board = (body.board || '').trim()
+  let level = (body.level || '').trim()
+  if (isIbBoard(board)) {
+    level = IB_DIPLOMA_LEVEL
+  }
   const subjects = Array.isArray(body.subjects)
     ? Array.from(new Set(body.subjects.map((s) => String(s).trim()).filter(Boolean)))
     : []
@@ -55,9 +60,9 @@ export async function POST(request: NextRequest) {
     )
   }
   for (const s of subjects) {
-    if (!isSubjectValidForLevel(s, level)) {
+    if (!isSubjectValidForProfile(board, level, s)) {
       return NextResponse.json(
-        { error: `Subject "${s}" is not supported for ${level} yet.` },
+        { error: `Subject "${s}" is not supported for ${board} ${level} yet.` },
         { status: 400 }
       )
     }

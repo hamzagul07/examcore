@@ -18,6 +18,7 @@ import { Ring } from '@/components/courses/margin-notes/Ring'
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { buildSignInHref } from '@/lib/auth-redirect'
+import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
 
 type Props = {
   firstName: string
@@ -217,6 +218,8 @@ export function ProgressDashboardPage({
               {detailedSection}
             </section>
           ) : null}
+
+          <AppSupportStrip />
         </div>
       </main>
     </MarginNotesPageShell>

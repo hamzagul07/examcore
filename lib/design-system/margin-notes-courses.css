@@ -535,8 +535,22 @@
 .lesson-sheet-rules .sheet-line { padding: 6px 0; }
 .lesson-sheet-meta { margin: 0 0 14px; color: var(--text-2); line-height: 1.45; }
 
-/* mode bar */
-.lesson-modebar-wrap { position: sticky; top: 69px; z-index: 30; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); margin-top: 26px; }
+/* mode bar — sticky Learn / Past papers while scrolling lesson content */
+.lesson-modebar-wrap {
+  position: sticky;
+  top: var(--ec-nav-height, calc(72px + env(safe-area-inset-top, 0px)));
+  z-index: 35;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  margin-top: 26px;
+}
+
+.lesson-page {
+  scroll-padding-top: calc(var(--ec-nav-height, 72px) + 72px);
+  --lesson-modebar-height: 56px;
+}
 .lesson-modebar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 32px; flex-wrap: wrap; }
 .mode-tabs { display: flex; gap: 8px; }
 .mode-tab { background: none; border: 1px solid transparent; border-radius: 10px; padding: 9px 18px; font-family: 'Newsreader', serif; font-size: 18px; color: var(--text-2); cursor: pointer; display: flex; align-items: center; gap: 9px; transition: background 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease; }
@@ -559,7 +573,7 @@
 
 /* layout */
 .lesson-layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; padding-top: 36px; min-width: 0; }
-.lesson-toc { position: sticky; top: 130px; align-self: start; }
+.lesson-toc { position: sticky; top: calc(var(--ec-nav-height, calc(72px + env(safe-area-inset-top, 0px))) + var(--lesson-modebar-height, 56px)); align-self: start; }
 .lesson-toc nav { display: flex; flex-direction: column; gap: 1px; }
 .toc-link { display: flex; align-items: baseline; gap: 9px; background: none; border: none; text-align: left; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-family: 'Instrument Sans', sans-serif; font-size: 13.5px; color: var(--text-2); border-left: 2px solid transparent; transition: color 140ms ease, background 140ms ease, border-color 140ms ease; }
 .toc-link:hover { color: var(--ink); }
@@ -572,7 +586,7 @@
 .lesson-article { min-width: 0; max-width: min(760px, 100%); }
 .simpler-banner { background: var(--ink-soft); border: 1px dashed var(--ink-border); border-radius: 12px; padding: 12px 18px; margin-bottom: 30px; }
 .simpler-banner .hand { font-size: 22px; color: var(--ink); }
-.lsec { padding-top: 18px; margin-bottom: 56px; scroll-margin-top: 130px; }
+.lsec { padding-top: 18px; margin-bottom: 56px; scroll-margin-top: calc(var(--ec-nav-height, 72px) + var(--lesson-modebar-height, 56px) + 24px); }
 .lsec-head { margin-bottom: 22px; }
 .lsec-k { font-size: 12px; color: var(--ink); letter-spacing: 0.12em; display: block; margin-bottom: 6px; }
 .lsec-title { font-size: clamp(28px, 3.4vw, 38px); font-weight: 500; margin: 0; letter-spacing: -0.02em; line-height: 1.08; }
@@ -965,15 +979,22 @@
 .lesson-papers-end { margin-top: 36px; }
 .lesson-papers-back { margin-top: 8px; }
 
-/* mobile section jump — visible when sidebar TOC hides */
+/* mobile section jump — visible when sidebar TOC hides; sticks below mode bar */
 .lesson-mobile-jump {
   display: none;
+  position: sticky;
+  top: calc(var(--ec-nav-height, calc(72px + env(safe-area-inset-top, 0px))) + var(--lesson-modebar-height, 56px));
+  z-index: 34;
   gap: 8px;
   overflow-x: auto;
   padding: 10px 0 14px;
   margin-bottom: 4px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
 }
 .lesson-mobile-jump::-webkit-scrollbar { display: none; }
 .lesson-mobile-jump-link {

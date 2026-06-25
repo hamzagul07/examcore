@@ -2,6 +2,7 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { itemListNode } from '@/lib/seo/structured-data'
 import { getAllSubjectSeoProfiles } from '@/lib/seo/subject-seo'
 import { SITE_URL } from '@/lib/site-config'
@@ -49,6 +50,13 @@ export default function SubjectsPage() {
         })}
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
+        <MarketingBreadcrumbs
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Subjects', path: '/subjects' },
+          ]}
+          className="mb-4"
+        />
         <HubSeoIntro
           heading="Cambridge past paper marking — every syllabus we support"
           paragraph="MarkScheme marks handwritten answers against real Cambridge mark schemes for 24 A-Level and O-Level syllabuses. Choose your subject code, browse past papers, or upload a photo of your working for B1/M1/A1, essay band, or MCQ feedback."

@@ -5,6 +5,7 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
 import { getMarkingSubjectPages, buildSubjectPageCopy } from '@/lib/seo/programmatic-subjects'
 import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
@@ -64,22 +65,15 @@ export default function GradeCalculatorPage() {
 
       <MarketingHero
         label="Free tool"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Grade calculator', path: PATH },
+        ]}
         title="Cambridge grade boundary calculator"
         lead="Turn raw marks into a Cambridge grade. Enter your mark, the total, and the official thresholds for your session — get your A*–E grade, your percentage, and exactly how many marks you need for the next grade."
       />
 
       <MarketingSection className="!pt-0">
-        <aside className="ms-quick-answer">
-          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
-            Quick answer
-          </p>
-          <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
-            Cambridge grade boundaries are <strong>raw marks</strong>, set per session, not fixed
-            percentages. Enter your mark and the official thresholds below for an accurate grade — then
-            see how far you are from the next one.
-          </p>
-        </aside>
-
         <GradeBoundaryCalculator />
 
         <div className="mt-12">
@@ -135,6 +129,7 @@ export default function GradeCalculatorPage() {
             Mark a paper free <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
+        <PageHelpStrip />
       </MarketingSection>
     </MarketingPageShell>
   )

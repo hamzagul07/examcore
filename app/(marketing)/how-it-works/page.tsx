@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase-server'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { Hero } from '@/components/marketing/Hero'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
@@ -31,6 +32,10 @@ export default async function HowItWorksPage() {
       />
       <MarketingHero
         label="How it works"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'How it works', path: '/how-it-works' },
+        ]}
         title={
           <>
             From photo to marked script, <em>in four honest steps.</em>
@@ -118,6 +123,7 @@ export default async function HowItWorksPage() {
             FREE TIER · ABOUT A MINUTE · NOT ENDORSED BY CAMBRIDGE INTERNATIONAL
           </p>
         </div>
+        <PageHelpStrip className="mt-10" />
       </MarketingSection>
     </MarketingPageShell>
   )

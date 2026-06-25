@@ -19,11 +19,15 @@ export function GuestMarkNotice({ className = '' }: Props) {
     <p
       className={`ms-guest-notice rounded-2xl border ec-border-color ec-bg-surface-raised px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)] ${className}`}
     >
-      Marking as a guest — up to {ANON_DAILY_MARK_LIMIT} marks per day from this network.{' '}
+      Marking as a guest — up to {ANON_DAILY_MARK_LIMIT} marks per day from this network.
+      Cambridge and IB Diploma supported.{' '}
       <Link href={buildMarketingSignUpHref()} className="ec-link inline-flex min-h-[44px] items-center">
         Create a free account
       </Link>{' '}
-      for your own monthly allowance, plus a 7-day free trial of everything — no card.
+      for your own monthly allowance, plus a 7-day free trial of everything — no card.{' '}
+      <Link href="/faq" className="ec-link inline-flex min-h-[44px] items-center">
+        FAQ
+      </Link>
     </p>
   )
 }

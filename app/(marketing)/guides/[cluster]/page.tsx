@@ -14,13 +14,11 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
 import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
-import { getGradeBoundaryHubEntries } from '@/lib/seo/grade-boundary-hub'
-import { getCommandWordsHubEntries } from '@/lib/seo/command-words-hub'
-import { ProgrammaticHubGrid } from '@/components/seo/ProgrammaticHubGrid'
 
 type Props = { params: Promise<{ cluster: string }> }
 
@@ -119,6 +117,11 @@ export default async function ClusterGuidePage({ params }: Props) {
 
       <MarketingHero
         label="Guides & blog"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: cluster.title, path: cluster.path },
+        ]}
         title={cluster.title}
         lead={cluster.description}
       >
@@ -126,107 +129,42 @@ export default async function ClusterGuidePage({ params }: Props) {
       </MarketingHero>
 
       <MarketingSection className="!pt-0">
-        <aside className="ms-quick-answer">
-          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
-            Quick answer
-          </p>
-          <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
-            {isComparison
-              ? `For "${cluster.headTerm}", use our comparison-style pillar below, then supporting guides — start with official Cambridge PDFs before any paid tool.`
-              : isIb
-                ? `For "${cluster.headTerm}", read the pillar guide first, then subject revision guides and IA articles below. Practise with criterion marking on MarkScheme when you want band-by-band feedback.`
-                : `For "${cluster.headTerm}", read the pillar guide first, then the supporting articles in this hub. Mark handwritten work on MarkScheme when you need a second pass.`}
-          </p>
-        </aside>
-
         {isGradeBoundaries && (
-          <aside className="ms-hub-card mb-12" aria-label="Grade boundary tools">
-            <p className="ms-overline">Programmatic tools</p>
-            <h2 className="ms-h3" style={{ marginTop: 8 }}>
-              Grade calculators by syllabus
-            </h2>
-            <p className="ms-body-2" style={{ marginTop: 8, maxWidth: 560 }}>
-              Enter official thresholds for your session — calculators for every marking syllabus,
-              plus verified data where published.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
-                Main calculator <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/past-papers/topics" className="ec-btn-ghost ec-btn-ghost--sm">
-                Topic practice
-              </Link>
-            </div>
-            <div className="mt-8">
-              <ProgrammaticHubGrid
-                items={getGradeBoundaryHubEntries().map((e) => ({
-                  code: e.code,
-                  title: `${e.level} calculator`,
-                  subtitle: e.guideTitle ?? `${e.label} grade boundaries`,
-                  href: e.calculatorPath,
-                  meta: e.hasOfficialData
-                    ? `Verified data · ${e.latestSession ?? 'recent session'}`
-                    : 'Enter your session thresholds',
-                }))}
-              />
-            </div>
-          </aside>
+          <div className="mb-10 flex flex-wrap gap-3">
+            <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
+              Grade calculator <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/blog/how-to-read-cambridge-grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
+              How boundaries work
+            </Link>
+          </div>
         )}
 
         {isCommandWords && (
-          <aside className="ms-hub-card mb-12" aria-label="Command word tools">
-            <p className="ms-overline">Programmatic tools</p>
-            <h2 className="ms-h3" style={{ marginTop: 8 }}>
-              Command words by syllabus
-            </h2>
-            <p className="ms-body-2" style={{ marginTop: 8, maxWidth: 560 }}>
-              Every Cambridge command word — plus per-subject pages showing which verbs matter most
-              on your papers.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/tools/command-words" className="ec-btn-primary ec-btn-primary--sm">
-                Full explainer <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
-                Pillar guide
-              </Link>
-            </div>
-            <div className="mt-8">
-              <ProgrammaticHubGrid
-                items={getCommandWordsHubEntries().map((e) => ({
-                  code: e.code,
-                  title: `${e.label} command words`,
-                  subtitle: e.emphasis.slice(0, 100) + (e.emphasis.length > 100 ? '…' : ''),
-                  href: e.toolPath,
-                  meta: `${e.topVerbs.slice(0, 3).join(' · ')}`,
-                }))}
-              />
-            </div>
-          </aside>
+          <div className="mb-10 flex flex-wrap gap-3">
+            <Link href="/tools/command-words" className="ec-btn-primary ec-btn-primary--sm">
+              Command word tool <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
+              Full guide
+            </Link>
+          </div>
         )}
 
         {isIb && (
-          <aside className="ms-hub-card mb-12" aria-label="IB product pages">
-            <p className="ms-overline">Practise on MarkScheme</p>
-            <h2 className="ms-h3" style={{ marginTop: 8 }}>
-              Past papers, courses &amp; topic practice
-            </h2>
-            <p className="ms-body-2" style={{ marginTop: 8, maxWidth: 560 }}>
-              Move from reading to doing — browse IB papers by subject, revise with{' '}
-              <strong>760+ free lessons</strong>, or drill one syllabus point at a time.
+          <aside className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[var(--ec-border)] px-5 py-4">
+            <p className="ms-body-2" style={{ margin: 0, maxWidth: 480 }}>
+              Practise on MarkScheme — past papers, free courses, and topic-by-topic marking.
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               <Link href="/ib/past-papers" className="ec-btn-primary ec-btn-primary--sm">
-                IB past papers <ArrowRight className="h-4 w-4" />
+                IB past papers
               </Link>
               <Link href="/ib/courses" className="ec-btn-secondary ec-btn-secondary--sm">
-                Free IB courses
+                Free courses
               </Link>
               <Link href="/ib/topic-practice" className="ec-btn-ghost ec-btn-ghost--sm">
-                All topic pages
-              </Link>
-              <Link href="/blog/ib-free-courses-guide" className="ec-btn-underline">
-                Free courses guide
+                Topics
               </Link>
             </div>
           </aside>
@@ -293,6 +231,7 @@ export default async function ClusterGuidePage({ params }: Props) {
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
+        <PageHelpStrip />
       </MarketingSection>
     </MarketingPageShell>
   )

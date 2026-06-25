@@ -20,7 +20,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Which subjects are covered?',
-        a: 'Fifteen Cambridge A-Levels: Mathematics, Further Mathematics, Physics, Chemistry, Biology, Economics, Business, Accounting, Computer Science, Psychology, Sociology, History, Law, Islamic Studies, and Media Studies.',
+        a: 'Cambridge A-Level, AS, IGCSE, and O-Level subjects — plus IB Diploma HL, SL, and Core (Theory of Knowledge, Extended Essay, CAS). Pick your board and up to four subjects during onboarding.',
       },
       {
         q: 'Do I need a teacher account?',

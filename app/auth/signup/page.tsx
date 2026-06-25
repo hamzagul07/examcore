@@ -11,9 +11,9 @@ import { PasswordInput } from '@/components/PasswordInput'
 import {
   type AuthMethod,
   MethodTabs,
-  ErrorBox,
   SubmitButton,
 } from '@/components/AuthFormBits'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
 import { buildSignInHref, isSafeNextPath, readPostAuthNextParam } from '@/lib/auth-redirect'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
@@ -72,7 +72,7 @@ function SignUpFormSkeleton() {
         Create your <span className="ec-text-gradient">account</span>
       </h1>
       <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-        Free tier included — start marking in under a minute.
+        Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.
       </p>
       <GoogleAuthSectionSkeleton label="Sign up with Google" />
     </AuthShell>
@@ -240,7 +240,7 @@ function SignUpForm() {
             Create your <span className="ec-text-gradient">account</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Free tier included — start marking in under a minute.
+            Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.
           </p>
 
           <GoogleAuthSection
@@ -279,7 +279,7 @@ function SignUpForm() {
                 <UsernameField id="username-magic" value={username.value} onChange={setUsername} />
               </div>
 
-              {errorMsg && <ErrorBox message={errorMsg} />}
+              {errorMsg && <FormErrorAlert message={errorMsg} />}
 
               <SubmitButton
                 loading={loading}
@@ -355,7 +355,7 @@ function SignUpForm() {
                 )}
               </div>
 
-              {errorMsg && <ErrorBox message={errorMsg} />}
+              {errorMsg && <FormErrorAlert message={errorMsg} />}
 
               <SubmitButton
                 loading={loading}

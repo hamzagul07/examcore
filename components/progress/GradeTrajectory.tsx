@@ -123,6 +123,8 @@ function TrajectoryChart({ series }: { series: Point[] }) {
             illustration="no-data"
             title="Your scores will appear here"
             body="Each marked answer becomes a point on this line. Grade boundaries (A* through E) are pre-drawn so you can see where you're tracking."
+            ctaLabel="Mark your first question"
+            ctaHref="/mark"
             inline
           />
         </div>

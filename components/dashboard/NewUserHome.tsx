@@ -148,6 +148,16 @@ export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) 
             </div>
           </li>
         </ol>
+        <p className="text-caption mt-6 text-center sm:text-left">
+          Questions?{' '}
+          <Link href="/how-it-works" className="ec-link">
+            How it works
+          </Link>
+          {' · '}
+          <Link href="/faq" className="ec-link">
+            FAQ
+          </Link>
+        </p>
       </section>
     </div>
   )

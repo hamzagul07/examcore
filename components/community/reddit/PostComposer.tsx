@@ -6,6 +6,7 @@ import type { CSSProperties } from 'react'
 import type { Board } from '@/lib/community/posts'
 import { COMMUNITY_BOARDS } from '@/lib/community/boards'
 import type { CommunityAttachment } from '@/lib/community/uploads'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { ExamLoader } from '@/components/ui/ExamLoader'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 
@@ -418,7 +419,7 @@ export function PostComposer({
           </label>
         ) : null}
 
-        {error ? <p className="rc-error">{error}</p> : null}
+        {error ? <FormErrorAlert message={error} className="rc-error-alert" /> : null}
 
         <div className="rc-composer-actions">
           <button type="button" className="rc-btn rc-btn-ghost" onClick={() => router.back()}>Cancel</button>

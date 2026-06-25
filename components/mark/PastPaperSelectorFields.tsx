@@ -2,8 +2,12 @@
 
 import { Label } from '@/components/ui/label'
 import { QuestionPreviewPanel } from '@/components/mark/QuestionPreviewPanel'
+import { getSubjectByCode } from '@/lib/profile-options'
+import { resolveSubjectLabel } from '@/lib/ib/marking-config'
+import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
 
 type Props = {
+  markBoard: MarkExamBoard
   selectedSubject: string
   selectedYear: number | ''
   selectedSession: string
@@ -28,7 +32,14 @@ type Props = {
   onSchemeFound?: (found: boolean) => void
 }
 
+function subjectLabel(code: string, availablePapers: Props['availablePapers']) {
+  const info = availablePapers?.[code]
+  const meta = getSubjectByCode(code)
+  return info?.subject ?? meta?.label ?? resolveSubjectLabel(code)
+}
+
 export function PastPaperSelectorFields({
+  markBoard,
   selectedSubject,
   selectedYear,
   selectedSession,
@@ -65,10 +76,21 @@ export function PastPaperSelectorFields({
     questionNumber.trim()
   )
 
+  if (markBoard === 'ib') {
+    return (
+      <div className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+        Cambridge past-paper lookup is not used for IB. Use{' '}
+        <strong className="text-[var(--ec-text-primary)]">My question</strong> above,
+        pick your IB subject, and paste or photograph the prompt — we mark against IB
+        assessment criteria.
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-4">
       <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-        Select the exact past paper and question — we load the official Cambridge mark
+        Select the exact Cambridge past paper and question — we load the official mark
         scheme when it&apos;s in our database.
       </p>
 
@@ -78,7 +100,8 @@ export function PastPaperSelectorFields({
 
       {!papersLoading && profileSelectableSubjects.length === 0 && (
         <p className="text-sm text-[var(--ec-text-secondary)]">
-          No past papers available yet for your subjects.
+          No Cambridge past papers available for your subjects yet. Try{' '}
+          <strong className="text-[var(--ec-text-primary)]">My question</strong> instead.
         </p>
       )}
 
@@ -95,15 +118,11 @@ export function PastPaperSelectorFields({
               className="ec-input select-chevron appearance-none"
             >
               <option value="">Select…</option>
-              {profileSelectableSubjects.map((code) => {
-                const info = availablePapers?.[code]
-                const label = info?.subject ?? code
-                return (
-                  <option key={code} value={code}>
-                    {label} ({code})
-                  </option>
-                )
-              })}
+              {profileSelectableSubjects.map((code) => (
+                <option key={code} value={code}>
+                  {subjectLabel(code, availablePapers)} ({code})
+                </option>
+              ))}
             </select>
           </div>
 

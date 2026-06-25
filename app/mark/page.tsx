@@ -36,18 +36,28 @@ import {
   getSubjectByCode,
   getSubjectById,
   SUBJECTS,
+  defaultMarkSubjectCode,
+  defaultSubjectsForProfile,
 } from '@/lib/profile-options'
 import { getIbMarkableSubjectCodes, resolveSubjectLabel, isIbSubjectCode } from '@/lib/ib/marking-config'
 import { ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
+import {
+  MarkBoardPicker,
+  markBoardFromProfileBoard,
+  subjectMatchesMarkBoard,
+  type MarkExamBoard,
+} from '@/components/mark/MarkBoardPicker'
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
 import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
@@ -178,6 +188,7 @@ export default function MarkPage() {
   const [wholePaperKey, setWholePaperKey] = useState(0)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
   const [, setProfileLevel] = useState('A-Level')
+  const [selectedMarkBoard, setSelectedMarkBoard] = useState<MarkExamBoard>('cambridge')
   const [profileLoading, setProfileLoading] = useState(true)
 
   useEffect(() => {
@@ -231,24 +242,31 @@ export default function MarkPage() {
         if (!user || cancelled) return
         const { data: profile } = await supabase
           .from('user_profiles')
-          .select('subjects, level')
+          .select('subjects, level, board')
           .eq('id', user.id)
           .maybeSingle()
         const profileLevel = profile?.level ?? 'A-Level'
+        const profileBoard = profile?.board ?? 'Cambridge International'
         const subjectNames: string[] = profile?.subjects?.length
           ? profile.subjects
-          : ['Mathematics']
+          : defaultSubjectsForProfile(profileBoard, profileLevel)
         const codes = subjectNames
           .map((name) => getSubjectById(name, profileLevel)?.code)
           .filter((c): c is string => !!c)
+        const markBoard = markBoardFromProfileBoard(profileBoard)
+        const fallbackCode = defaultMarkSubjectCode(profileLevel)
         if (!cancelled) {
           setProfileLevel(profileLevel)
-          setProfileSubjectCodes(
-            codes.length ? codes : [profileLevel === 'O-Level' ? '4024' : '9709']
-          )
+          setProfileSubjectCodes(codes.length ? codes : [fallbackCode])
+          setSelectedMarkBoard(markBoard)
+          if (markBoard === 'ib') {
+            setUploadMode('single_question')
+            setMarkIntent('practice_question')
+            setShowManualPaper(false)
+          }
         }
       } catch {
-        if (!cancelled) setProfileSubjectCodes(['9709'])
+        if (!cancelled) setProfileSubjectCodes([defaultMarkSubjectCode('A-Level')])
       } finally {
         if (!cancelled) setProfileLoading(false)
       }
@@ -278,35 +296,49 @@ export default function MarkPage() {
     }
   }, [])
 
-  // Restore last manual selection from localStorage on mount
+  // Restore last manual selection from localStorage after profile load.
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    if (profileLoading || typeof window === 'undefined') return
     try {
       const saved = readClientStorage(STORAGE_KEYS.lastSelection)
       if (!saved) return
       const data = JSON.parse(saved)
       let hasAny = false
       if (typeof data.subject === 'string' && data.subject) {
-        setSelectedSubject(data.subject)
-        hasAny = true
+        if (subjectMatchesMarkBoard(data.subject, selectedMarkBoard)) {
+          setSelectedSubject(data.subject)
+          hasAny = true
+          if (typeof data.year === 'number') {
+            setSelectedYear(data.year)
+          }
+          if (typeof data.session === 'string' && data.session) {
+            setSelectedSession(data.session)
+          }
+          if (typeof data.component === 'string' && data.component) {
+            setSelectedComponent(data.component)
+          }
+        }
+      } else {
+        if (typeof data.year === 'number') {
+          setSelectedYear(data.year)
+          hasAny = true
+        }
+        if (typeof data.session === 'string' && data.session) {
+          setSelectedSession(data.session)
+          hasAny = true
+        }
+        if (typeof data.component === 'string' && data.component) {
+          setSelectedComponent(data.component)
+          hasAny = true
+        }
       }
-      if (typeof data.year === 'number') {
-        setSelectedYear(data.year)
-        hasAny = true
+      if (hasAny && selectedMarkBoard !== 'ib') {
+        setShowManualPaper(true)
       }
-      if (typeof data.session === 'string' && data.session) {
-        setSelectedSession(data.session)
-        hasAny = true
-      }
-      if (typeof data.component === 'string' && data.component) {
-        setSelectedComponent(data.component)
-        hasAny = true
-      }
-      if (hasAny) setShowManualPaper(true)
     } catch {
       // ignore corrupted localStorage entry
     }
-  }, [])
+  }, [profileLoading, selectedMarkBoard])
 
   // One-shot pickup of a pending question number written by the attempt
   // detail page's "Mark again" button. Cleared on read so it only applies once.
@@ -367,6 +399,13 @@ export default function MarkPage() {
     setMarkIntent('past_paper')
     setSelectedSubject(subject)
     setShowManualPaper(true)
+    if (isIbSubjectCode(subject)) {
+      setSelectedMarkBoard('ib')
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    } else {
+      setSelectedMarkBoard('cambridge')
+    }
 
     const returnTo = parseMarkReturnPath(sp.get('return'))
 
@@ -460,6 +499,7 @@ export default function MarkPage() {
         writeClientStorage(
           STORAGE_KEYS.lastSelection,
           JSON.stringify({
+            markBoard: selectedMarkBoard,
             subject: selectedSubject,
             year: selectedYear === '' ? '' : selectedYear,
             session: selectedSession,
@@ -470,7 +510,7 @@ export default function MarkPage() {
         // localStorage may be unavailable (private mode, quota); silently skip
       }
     }
-  }, [selectedSubject, selectedYear, selectedSession, selectedComponent])
+  }, [selectedSubject, selectedYear, selectedSession, selectedComponent, selectedMarkBoard])
 
   const paperStructure = useMemo(
     () => (selectedSubject ? getSubjectPaperStructure(selectedSubject) : null),
@@ -588,6 +628,14 @@ export default function MarkPage() {
     )
   }, [profileSubjectCodes, availablePapers])
 
+  const boardFilteredSubjects = useMemo(
+    () =>
+      profileSelectableSubjects.filter((code) =>
+        subjectMatchesMarkBoard(code, selectedMarkBoard)
+      ),
+    [profileSelectableSubjects, selectedMarkBoard]
+  )
+
   const componentLabel = useMemo(() => {
     const labels = new Map<string, string>()
     if (paperStructure) {
@@ -602,6 +650,17 @@ export default function MarkPage() {
   }, [paperStructure])
 
   useEffect(() => {
+    if (selectedMarkBoard !== 'ib') return
+    if (uploadMode === 'whole_paper') {
+      setUploadMode('single_question')
+    }
+    if (markIntent === 'past_paper') {
+      setMarkIntent('practice_question')
+      setShowManualPaper(false)
+    }
+  }, [selectedMarkBoard, uploadMode, markIntent])
+
+  useEffect(() => {
     if (
       profileLoading ||
       papersLoading ||
@@ -610,19 +669,27 @@ export default function MarkPage() {
     ) {
       return
     }
+    const pool = boardFilteredSubjects.length
+      ? boardFilteredSubjects
+      : profileSelectableSubjects
     const preferred =
-      profileSelectableSubjects.find((c) => c === '9709') ??
-      profileSelectableSubjects[0]
+      selectedMarkBoard === 'ib'
+        ? pool[0]
+        : pool.find((c) => c === '9709') ?? pool[0]
     if (preferred) {
       setSelectedSubject(preferred)
-      setShowManualPaper(true)
+      if (selectedMarkBoard !== 'ib') {
+        setShowManualPaper(true)
+      }
     }
   }, [
     profileLoading,
     papersLoading,
     selectedSubject,
+    boardFilteredSubjects,
     profileSelectableSubjects,
     markIntent,
+    selectedMarkBoard,
   ])
 
   const isPracticeMode =
@@ -716,7 +783,40 @@ export default function MarkPage() {
 
   useSetAIContext(omniContext, [result?.attempt_id, markingMode])
 
+  function handleMarkBoardChange(next: MarkExamBoard) {
+    setSelectedMarkBoard(next)
+    if (selectedSubject && !subjectMatchesMarkBoard(selectedSubject, next)) {
+      setSelectedSubject('')
+      setSelectedYear('')
+      setSelectedSession('')
+      setSelectedComponent('')
+    }
+    if (next === 'ib') {
+      if (uploadMode === 'single_question' && markIntent === 'past_paper') {
+        setMarkIntent('practice_question')
+        setShowManualPaper(false)
+      }
+      if (uploadMode === 'whole_paper') {
+        setUploadMode('single_question')
+        setMarkIntent('practice_question')
+        setShowManualPaper(false)
+      }
+    }
+    setErrorMsg('')
+  }
+
   function handleSubjectChange(value: string) {
+    if (value) {
+      const nextBoard = subjectMatchesMarkBoard(value, 'ib') ? 'ib' : 'cambridge'
+      if (nextBoard !== selectedMarkBoard) {
+        setSelectedMarkBoard(nextBoard)
+        if (nextBoard === 'ib') {
+          setUploadMode('single_question')
+          setMarkIntent('practice_question')
+          setShowManualPaper(false)
+        }
+      }
+    }
     setSelectedSubject(value)
     setSelectedYear('')
     setSelectedSession('')
@@ -1049,6 +1149,8 @@ export default function MarkPage() {
         )}
         <MarkStepsBar stage={markStage} />
 
+        {!result && <PageHelpStrip className="mb-6" />}
+
         {!result && practiceContext && (
           <div
             className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0"
@@ -1128,17 +1230,31 @@ export default function MarkPage() {
 
         {!result && !loading && (
           <form onSubmit={handleSubmit} className="space-y-8">
+            <MarkBoardPicker
+              value={selectedMarkBoard}
+              onChange={handleMarkBoardChange}
+              disabled={profileLoading}
+            />
+
             <div className="ms-lvl-tabs-scroll">
-            <div className="ms-lvl-tabs" role="tablist" aria-label="Mark mode">
+            <div
+              className="ms-lvl-tabs"
+              role="tablist"
+              aria-label="Mark mode"
+              aria-describedby={selectedMarkBoard === 'ib' ? 'mark-mode-ib-hint' : undefined}
+            >
               <button
                 type="button"
                 role="tab"
                 aria-selected={uploadMode === 'single_question' && markIntent === 'past_paper'}
+                aria-disabled={selectedMarkBoard === 'ib'}
+                tabIndex={selectedMarkBoard === 'ib' ? -1 : 0}
                 onClick={() => {
+                  if (selectedMarkBoard === 'ib') return
                   setUploadMode('single_question')
                   setMarkIntent('past_paper')
                 }}
-                className={`ms-lvl-tab ${uploadMode === 'single_question' && markIntent === 'past_paper' ? 'on' : ''}`}
+                className={`ms-lvl-tab ${uploadMode === 'single_question' && markIntent === 'past_paper' ? 'on' : ''}${selectedMarkBoard === 'ib' ? ' is-disabled' : ''}`}
               >
                 Single question
               </button>
@@ -1159,18 +1275,33 @@ export default function MarkPage() {
                 type="button"
                 role="tab"
                 aria-selected={uploadMode === 'whole_paper'}
-                onClick={() => setUploadMode('whole_paper')}
-                className={`ms-lvl-tab ${uploadMode === 'whole_paper' ? 'on' : ''}`}
+                aria-disabled={selectedMarkBoard === 'ib'}
+                tabIndex={selectedMarkBoard === 'ib' ? -1 : 0}
+                onClick={() => {
+                  if (selectedMarkBoard === 'ib') return
+                  setUploadMode('whole_paper')
+                }}
+                className={`ms-lvl-tab ${uploadMode === 'whole_paper' ? 'on' : ''}${selectedMarkBoard === 'ib' ? ' is-disabled' : ''}`}
               >
                 Whole paper
               </button>
             </div>
             </div>
+            {selectedMarkBoard === 'ib' ? (
+              <p
+                id="mark-mode-ib-hint"
+                className="-mt-4 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]"
+              >
+                IB uses <strong className="text-[var(--ec-text-primary)]">My question</strong> — paste
+                or photograph your prompt for criterion-band marking. Past-paper lookup is Cambridge
+                only.
+              </p>
+            ) : null}
             {isPracticeMode && (
               <p className="-mt-4 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                Homework or textbook questions — marked with the same Cambridge
-                conventions (B1, M1, A1, bands) without needing a past paper in our
-                database.
+                {selectedMarkBoard === 'ib'
+                  ? 'Homework, textbook, or course practice — marked band-by-band against IB assessment criteria.'
+                  : 'Homework or textbook questions — marked with Cambridge conventions (B1, M1, A1, bands) without needing a past paper in our database.'}
               </p>
             )}
 
@@ -1194,7 +1325,7 @@ export default function MarkPage() {
                     <option value="">
                       {profileLoading ? 'Loading your subjects…' : 'Select subject…'}
                     </option>
-                    {profileSelectableSubjects.map((code) => {
+                    {boardFilteredSubjects.map((code) => {
                       const meta = getSubjectByCode(code)
                       const label = availablePapers?.[code]?.subject ?? meta?.label ?? code
                       return (
@@ -1292,15 +1423,26 @@ export default function MarkPage() {
               </div>
               <div className="ms-mark-form-card">
                 <h3>
-                  {isPracticeMode ? 'Your question' : 'Which paper is this?'}
+                  {isPracticeMode
+                    ? 'Your question & subject'
+                    : 'Which paper is this?'}
                 </h3>
                 <div className="space-y-4">
                   {isPracticeMode && (
                 <>
                   <div>
                     <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
-                      Subject
+                      {selectedMarkBoard === 'ib' ? 'IB subject' : 'Subject'}
                     </Label>
+                    {boardFilteredSubjects.length === 0 ? (
+                      <p className="text-sm text-[var(--ec-text-secondary)]">
+                        No {selectedMarkBoard === 'ib' ? 'IB' : 'Cambridge'} subjects in your
+                        profile yet.{' '}
+                        <Link href="/onboarding?rerun=1" className="ec-link font-medium">
+                          Update subjects
+                        </Link>
+                      </p>
+                    ) : (
                     <select
                       id="mark-subject"
                       value={selectedSubject}
@@ -1314,7 +1456,7 @@ export default function MarkPage() {
                       <option value="">
                         {profileLoading ? 'Loading your subjects…' : 'Select subject…'}
                       </option>
-                      {profileSelectableSubjects.map((code) => {
+                      {boardFilteredSubjects.map((code) => {
                         const meta = getSubjectByCode(code)
                         const label =
                           availablePapers?.[code]?.subject ??
@@ -1322,11 +1464,12 @@ export default function MarkPage() {
                           resolveSubjectLabel(code)
                         return (
                           <option key={code} value={code}>
-                            {label} ({code})
+                            {selectedMarkBoard === 'ib' ? label : `${label} (${code})`}
                           </option>
                         )
                       })}
                     </select>
+                    )}
                   </div>
                 </>
               )}
@@ -1398,10 +1541,13 @@ export default function MarkPage() {
                 </div>
               )}
 
-              {isPracticeMode ? <MarkingModeHint mode="practice" /> : null}
+              {isPracticeMode ? (
+                <MarkingModeHint mode="practice" markBoard={selectedMarkBoard} />
+              ) : null}
 
               {!isPracticeMode && (
                 <PastPaperSelectorFields
+                  markBoard={selectedMarkBoard}
                   selectedSubject={selectedSubject}
                   selectedYear={selectedYear}
                   selectedSession={selectedSession}
@@ -1412,7 +1558,7 @@ export default function MarkPage() {
                   availableComponents={availableComponents}
                   paperQuestionOptions={paperQuestionOptions}
                   papersLoading={papersLoading || profileLoading}
-                  profileSelectableSubjects={profileSelectableSubjects}
+                  profileSelectableSubjects={boardFilteredSubjects}
                   availablePapers={availablePapers}
                   componentLabel={componentLabel}
                   onSubjectChange={(value) => {
@@ -1429,6 +1575,7 @@ export default function MarkPage() {
 
               {!isPracticeMode ? (
                 <MarkingModeHint
+                  markBoard={selectedMarkBoard}
                   mode={
                     isManualFilled && schemeInDb === true
                       ? 'official'
@@ -1563,15 +1710,11 @@ export default function MarkPage() {
             )}
 
             {errorMsg && !loading && !markStreamError && (
-              <div
-                className={`rounded-2xl border p-3.5 text-sm backdrop-blur ${
-                  errorRetryable
-                    ? 'border-[color-mix(in_srgb,var(--ec-chip-warning-text)_30%,transparent)] bg-[var(--ec-chip-warning-bg)] text-[var(--ec-banner-warning-title)]'
-                    : 'border-[color-mix(in_srgb,var(--ec-chip-critical-text)_30%,transparent)] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-chip-critical-text)]'
-                }`}
+              <FormErrorAlert
+                message={errorMsg}
+                variant={errorRetryable ? 'warning' : 'error'}
               >
-                <p>{errorMsg}</p>
-                {errorRetryable && (
+                {errorRetryable ? (
                   <button
                     type="button"
                     onClick={() => {
@@ -1591,8 +1734,8 @@ export default function MarkPage() {
                   >
                     Try again
                   </button>
-                )}
-              </div>
+                ) : null}
+              </FormErrorAlert>
             )}
           </form>
         )}

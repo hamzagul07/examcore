@@ -4,10 +4,14 @@ import { Check } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import {
   BOARDS,
-  LEVELS,
   SUBJECT_GROUPS,
-  isSubjectValidForLevel,
+  IB_DIPLOMA_LEVEL,
+  isIbBoard,
+  isSubjectValidForProfile,
   subjectsInGroup,
+  ibSubjectGroups,
+  ibSubjectsInGroup,
+  levelsForBoard,
   type ProfileOption,
   type SubjectOption,
 } from '@/lib/profile-options'
@@ -39,18 +43,30 @@ export function ProfileFormFields({
   setExamDate,
   showFullName = true,
 }: Props) {
+  const ib = isIbBoard(board)
+
+  function handleBoardChange(nextBoard: string) {
+    setBoard(nextBoard)
+    setSubjects([])
+    setLevel(isIbBoard(nextBoard) ? IB_DIPLOMA_LEVEL : 'A-Level')
+  }
+
   function handleLevelChange(nextLevel: string) {
     setLevel(nextLevel)
-    setSubjects(subjects.filter((id) => isSubjectValidForLevel(id, nextLevel)))
+    setSubjects(subjects.filter((id) => isSubjectValidForProfile(board, nextLevel, id)))
   }
 
   function toggleSubject(id: string) {
     if (subjects.includes(id)) {
       setSubjects(subjects.filter((s) => s !== id))
-    } else {
-      setSubjects([...subjects, id])
+      return
     }
+    if (subjects.length >= 4) return
+    setSubjects([...subjects, id])
   }
+
+  const subjectGroups = ib ? ibSubjectGroups() : [...SUBJECT_GROUPS]
+  const visibleLevels = levelsForBoard(board)
 
   return (
     <div className="space-y-7">
@@ -94,32 +110,42 @@ export function ProfileFormFields({
 
       <FieldGroup
         label="Exam board"
-        hint="Cambridge International is live. Edexcel, AQA, and IB are planned."
+        hint="Cambridge International and IB Diploma are both live."
       >
         <OptionGrid
-          options={BOARDS}
+          options={BOARDS.filter((b) => b.enabled)}
           selected={board}
-          onSelect={setBoard}
+          onSelect={handleBoardChange}
           mode="single"
         />
       </FieldGroup>
 
-      <FieldGroup label="Level">
-        <OptionGrid
-          options={LEVELS}
-          selected={level}
-          onSelect={handleLevelChange}
-          mode="single"
-        />
-      </FieldGroup>
+      {!ib ? (
+        <FieldGroup label="Cambridge level">
+          <OptionGrid
+            options={visibleLevels}
+            selected={level}
+            onSelect={handleLevelChange}
+            mode="single"
+          />
+        </FieldGroup>
+      ) : (
+        <FieldGroup label="Programme">
+          <p className="text-body text-[var(--ec-text-secondary)]">
+            IB Diploma — pick HL, SL, and Core subjects below (up to four).
+          </p>
+        </FieldGroup>
+      )}
 
       <FieldGroup
         label="Subjects you're studying"
-        hint="You can pick more than one."
+        hint={`${subjects.length}/4 selected — tap to add or remove.`}
       >
         <div className="space-y-5">
-          {SUBJECT_GROUPS.map((group) => {
-            const groupSubjects = subjectsInGroup(group, level)
+          {subjectGroups.map((group) => {
+            const groupSubjects = ib
+              ? ibSubjectsInGroup(group)
+              : subjectsInGroup(group, level)
             if (groupSubjects.length === 0) return null
             return (
               <div key={group}>
@@ -130,6 +156,8 @@ export function ProfileFormFields({
                   options={groupSubjects}
                   selectedMany={subjects}
                   onToggle={toggleSubject}
+                  showCode={!ib}
+                  maxSelected={4}
                 />
               </div>
             )
@@ -151,9 +179,9 @@ function FieldGroup({
 }) {
   return (
     <div>
-      <div className="mb-2.5 flex items-baseline justify-between">
+      <div className="mb-2.5 flex items-baseline justify-between gap-3">
         <span className="label-overline">{label}</span>
-        {hint && <span className="text-xs text-[var(--ec-text-secondary)]">{hint}</span>}
+        {hint ? <span className="text-xs text-[var(--ec-text-secondary)]">{hint}</span> : null}
       </div>
       {children}
     </div>
@@ -198,14 +226,14 @@ function OptionGrid(props: OptionGridProps) {
             aria-pressed={isActive}
           >
             <span>{opt.label}</span>
-            {isDisabled && (
+            {isDisabled ? (
               <span
                 className="rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]"
-                title="Not available yet — we're focused on Cambridge International first"
+                title="Not available yet"
               >
                 Planned
               </span>
-            )}
+            ) : null}
           </button>
         )
       })}
@@ -217,16 +245,20 @@ function SubjectGrid({
   options,
   selectedMany,
   onToggle,
+  showCode,
+  maxSelected,
 }: {
   options: SubjectOption[]
   selectedMany: string[]
   onToggle: (id: string) => void
+  showCode: boolean
+  maxSelected: number
 }) {
   return (
     <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
       {options.map((opt) => {
         const isActive = selectedMany.includes(opt.id)
-        const isDisabled = !opt.enabled
+        const isDisabled = !opt.enabled || (!isActive && selectedMany.length >= maxSelected)
 
         return (
           <button
@@ -254,9 +286,11 @@ function SubjectGrid({
               </span>
               <span>
                 {opt.label}
-                <span className="ml-1.5 font-mono text-[10px] text-[var(--ec-text-secondary)]">
-                  {opt.code}
-                </span>
+                {showCode ? (
+                  <span className="ml-1.5 font-mono text-[10px] text-[var(--ec-text-secondary)]">
+                    {opt.code}
+                  </span>
+                ) : null}
               </span>
             </span>
           </button>

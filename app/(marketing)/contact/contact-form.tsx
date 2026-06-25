@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import { HONEYPOT_FIELD } from '@/lib/honeypot'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { MarketingHero, MarketingPageShell } from '@/components/marketing/MarketingPageShell'
-import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
+import { SuccessBox } from '@/components/AuthFormBits'
 
 export function ContactForm() {
   const [name, setName] = useState('')
@@ -45,8 +47,12 @@ export function ContactForm() {
     <MarketingPageShell narrow className="ms-contact-page">
       <MarketingHero
         label="CONTACT"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' },
+        ]}
         title="Get in touch"
-        lead="Questions, feedback, or something broken? We'd like to hear from you."
+        lead="Questions, feedback, or something broken? We'd like to hear from you. Check the FAQ first — many answers are already there."
       />
 
       <div className="ms-pg space-y-8 pb-16">
@@ -117,8 +123,12 @@ export function ContactForm() {
               />
             </div>
 
-            {errorMsg && <ErrorBox message={errorMsg} />}
-            {successMsg && <SuccessBox message={successMsg} />}
+            {errorMsg && <FormErrorAlert message={errorMsg} />}
+            {successMsg ? (
+              <div role="status">
+                <SuccessBox message={successMsg} />
+              </div>
+            ) : null}
 
             <button
               type="submit"
@@ -135,6 +145,8 @@ export function ContactForm() {
             </button>
           </form>
         </div>
+
+        <PageHelpStrip />
       </div>
     </MarketingPageShell>
   )

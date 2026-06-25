@@ -7,13 +7,14 @@ import {
   flattenLeafMasteries,
   type AttemptLite,
 } from '@/lib/mastery'
-import { getSubjectById } from '@/lib/profile-options'
+import { getSubjectById, defaultSubjectsForProfile, defaultMarkSubjectCode } from '@/lib/profile-options'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { buildContinueCatalog } from '@/lib/courses/margin-notes/continue-catalog'
 import { DashboardCoursesPanel } from '@/components/courses/margin-notes/DashboardCoursesPanel'
 import { DashboardEntry } from './dashboard.client'
+import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
 import { StudyNotebook } from '@/components/dashboard/StudyNotebook'
@@ -63,7 +64,7 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, level, subjects, exam_date')
+    .select('full_name, level, subjects, exam_date, board')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -99,10 +100,11 @@ export default async function DashboardPage() {
     total_marks: attempt.total_marks,
   }))
 
+  const profileLevel = profile?.level ?? 'A-Level'
+  const profileBoard = profile?.board ?? 'Cambridge International'
   const profileSubjects: string[] = profile?.subjects?.length
     ? profile.subjects
-    : ['Mathematics']
-  const profileLevel = profile?.level ?? 'A-Level'
+    : defaultSubjectsForProfile(profileBoard, profileLevel)
   const subjectAttemptCounts = new Map<string, number>()
   for (const name of profileSubjects) {
     const subj = getSubjectById(name, profileLevel)
@@ -134,9 +136,7 @@ export default async function DashboardPage() {
   })
   const primaryCode = primarySubject
     ? getSubjectById(primarySubject, profileLevel)?.code
-    : profileLevel === 'O-Level'
-      ? '4024'
-      : '9709'
+    : defaultMarkSubjectCode(profileLevel)
 
   if (primaryCode && attemptsList.length > 0) {
     const syllabus = getSyllabusByCode(primaryCode)
@@ -228,6 +228,7 @@ export default async function DashboardPage() {
               </p>
             </>
           )}
+          <AppSupportStrip className="mt-10" />
         </DashboardEntry>
       </div>
       <OmniAIBridge

@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type TabItem = {
   href: string
@@ -21,13 +21,22 @@ const TABS: TabItem[] = [
     href: '/courses',
     label: 'Learn',
     glyph: '∫',
-    match: (p) => p === '/courses' || p.startsWith('/courses/'),
+    match: (p) =>
+      p === '/courses' ||
+      p.startsWith('/courses/') ||
+      p === '/ib/courses' ||
+      p.startsWith('/ib/courses/'),
   },
   {
     href: '/subjects',
     label: 'Subjects',
     glyph: '§',
-    match: (p) => p === '/subjects' || p.startsWith('/subjects/'),
+    match: (p) =>
+      p === '/subjects' ||
+      p.startsWith('/subjects/') ||
+      p === '/ib/subjects' ||
+      p.startsWith('/ib/subjects/') ||
+      p === '/ib',
   },
   {
     href: '/dashboard',
@@ -54,16 +63,19 @@ export function MobileTabBar() {
       {TABS.map(({ href, label, glyph, match }) => {
         const active = match(pathname)
         return (
-          <Link
+          <LoadingLink
             key={href}
             href={href}
+            variant="inline"
+            loadingText="Opening…"
             aria-current={active ? 'page' : undefined}
+            className="ec-tabbar-link"
           >
             <span className="ec-tabbar__glyph" aria-hidden>
               {glyph}
             </span>
             <span className="ec-tabbar__label">{label}</span>
-          </Link>
+          </LoadingLink>
         )
       })}
     </nav>

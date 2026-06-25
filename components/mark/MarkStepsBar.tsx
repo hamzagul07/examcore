@@ -9,9 +9,9 @@ const STEPS = ['Upload', 'Marking', "Examiner's Ink"] as const
 
 export function MarkStepsBar({ stage }: MarkStepsBarProps) {
   return (
-    <div className="ms-mark-steps-bar" aria-label="Marking progress">
+    <ol className="ms-mark-steps-bar" aria-label="Marking progress">
       {STEPS.map((label, i) => (
-        <span key={label} className="contents">
+        <li key={label} className="contents">
           {i > 0 ? <span className="ms-mstep-sep" aria-hidden="true" /> : null}
           <span
             className={[
@@ -21,14 +21,15 @@ export function MarkStepsBar({ stage }: MarkStepsBarProps) {
             ]
               .filter(Boolean)
               .join(' ')}
+            aria-current={stage === i ? 'step' : undefined}
           >
             <span className="dot" aria-hidden="true">
               {stage > i ? '✓' : i + 1}
             </span>
             {label}
           </span>
-        </span>
+        </li>
       ))}
-    </div>
+    </ol>
   )
 }

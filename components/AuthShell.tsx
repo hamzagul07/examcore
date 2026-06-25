@@ -76,6 +76,15 @@ export function AuthShell({
             <ArrowLeft className="h-3.5 w-3.5" />
             {backLabel}
           </Link>
+          <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
+            <Link href="/faq" className="ec-link inline-flex min-h-[44px] items-center px-1">
+              FAQ
+            </Link>
+            {' · '}
+            <Link href="/how-it-works" className="ec-link inline-flex min-h-[44px] items-center px-1">
+              How it works
+            </Link>
+          </p>
         </div>
       </div>
     </main>

@@ -10,7 +10,7 @@ import {
 } from '@/lib/mastery'
 import { predictGrade } from '@/lib/prediction'
 import { generateActionPlan } from '@/lib/action-plan'
-import { getSubjectById } from '@/lib/profile-options'
+import { getSubjectById, defaultSubjectsForProfile } from '@/lib/profile-options'
 import {
   getSyllabusByCode,
   getSyllabusSubjectName,
@@ -91,7 +91,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, subjects, level')
+    .select('full_name, subjects, level, board')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -105,11 +105,12 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const masteryUnlocked = isPaidTier(userTier)
 
   const firstName = (profile?.full_name || '').trim().split(/\s+/)[0]
+  const profileLevel = profile?.level ?? 'A-Level'
+  const profileBoard = profile?.board ?? 'Cambridge International'
+  const isIbProfile = profileBoard === 'IB'
   const userSubjects: string[] = profile?.subjects?.length
     ? profile.subjects
-    : ['Mathematics']
-
-  const profileLevel = profile?.level ?? 'A-Level'
+    : defaultSubjectsForProfile(profileBoard, profileLevel)
   const subjectOptions = userSubjects
     .map((name) => getSubjectById(name, profileLevel))
     .filter((s): s is NonNullable<typeof s> => !!s)
@@ -123,7 +124,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     subjectOptions.find((s) => s.hasTree && s.code === '9709')?.code ??
     subjectOptions.find((s) => s.hasTree)?.code ??
     subjectOptions[0]?.code ??
-    '9709'
+    (isIbProfile ? 'ib-biology-hl' : '9709')
 
   const selectedCode =
     params.subject && subjectOptions.some((s) => s.code === params.subject)
@@ -131,6 +132,8 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       : defaultCode
 
   const selectedSubject = subjectOptions.find((s) => s.code === selectedCode)
+  const isIbSubject = selectedCode.startsWith('ib-')
+  const boardPrefix = isIbSubject || isIbProfile ? 'IB' : 'Cambridge'
   const syllabus = getSyllabusByCode(selectedCode)
   const analyticsAvailable = !!syllabus?.length
 
@@ -156,7 +159,11 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const subjectLabel =
     getSyllabusSubjectName(selectedCode) ||
     selectedSubject?.label ||
-    'Cambridge A-Level'
+    (isIbSubject || isIbProfile ? 'IB Diploma' : 'Cambridge A-Level')
+
+  const displaySubjectLabel = isIbSubject
+    ? subjectLabel
+    : `${boardPrefix} ${selectedCode} ${subjectLabel}`
 
   const parentMasteries = analyticsAvailable
     ? calculateParentMastery(attempts, selectedCode)
@@ -167,7 +174,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const streakDays = computeStreak(allAttempts.map((a) => new Date(a.created_at)))
   const totalTopics = getTotalSyllabusLeaves(selectedCode)
   const actionItems = generateActionPlan(attempts, masteries, streakDays, {
-    subjectLabel: `Cambridge ${selectedCode} ${subjectLabel}`,
+    subjectLabel: displaySubjectLabel,
     totalTopics: totalTopics || 38,
   })
 
@@ -250,7 +257,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
         masteries={masteries}
         coverage={coverage}
         hasAnyData={attempts.length > 0}
-        subjectLabel={`Cambridge ${selectedCode} ${subjectLabel}`}
+        subjectLabel={`${boardPrefix} ${selectedCode} ${subjectLabel}`}
         totalTopics={totalTopics}
       />
       <GradeTrajectory attempts={attempts} prediction={prediction} />
@@ -266,9 +273,20 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   ) : (
     <div className="card card-pad">
       <p className="body-2">
-        Detailed topic analytics are coming soon for{' '}
-        <strong className="text-main">{subjectLabel}</strong>. Keep marking — your
-        insights, journey, and attempt history are tracked below.
+        {isIbSubject ? (
+          <>
+            Topic mastery matrix is syllabus-based for Cambridge subjects today. For{' '}
+            <strong className="text-main">{subjectLabel}</strong>, your criterion marks
+            are tracked in Insights, Journey, and Attempts below — topic-level mastery
+            for IB is coming soon.
+          </>
+        ) : (
+          <>
+            Detailed topic analytics are coming soon for{' '}
+            <strong className="text-main">{subjectLabel}</strong>. Keep marking — your
+            insights, journey, and attempt history are tracked below.
+          </>
+        )}
       </p>
     </div>
   )

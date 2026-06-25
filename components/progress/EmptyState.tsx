@@ -3,6 +3,7 @@ import {
   EmptyStateIllustration,
   type IllustrationVariant,
 } from '@/components/ui/EmptyStateIllustration'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type Props = {
   icon: LucideIcon
@@ -12,6 +13,8 @@ type Props = {
   inline?: boolean
   /** Replace the lucide icon with one of the brand illustrations. */
   illustration?: IllustrationVariant
+  ctaLabel?: string
+  ctaHref?: string
 }
 
 /**
@@ -25,6 +28,8 @@ export function EmptyState({
   body,
   inline,
   illustration,
+  ctaLabel,
+  ctaHref,
 }: Props) {
   const visual = illustration ? (
     <EmptyStateIllustration variant={illustration} size={inline ? 96 : 140} />
@@ -34,6 +39,17 @@ export function EmptyState({
     </div>
   )
 
+  const cta =
+    ctaLabel && ctaHref ? (
+      <LoadingLink
+        href={ctaHref}
+        loadingText="Opening…"
+        className="ec-btn-primary ec-btn-primary--sm mt-4 inline-flex min-h-[44px]"
+      >
+        {ctaLabel}
+      </LoadingLink>
+    ) : null
+
   if (inline) {
     return (
       <div className="flex flex-col items-center justify-center gap-3 py-6 text-center">
@@ -41,6 +57,7 @@ export function EmptyState({
         <div className="max-w-sm">
           <p className="text-sm font-semibold text-[var(--ec-text-primary)]">{title}</p>
           <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
+          {cta}
         </div>
       </div>
     )
@@ -53,6 +70,7 @@ export function EmptyState({
         <div className="max-w-md">
           <p className="text-base font-semibold text-[var(--ec-text-primary)]">{title}</p>
           <p className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
+          {cta}
         </div>
       </div>
     </div>

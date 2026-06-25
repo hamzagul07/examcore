@@ -9,7 +9,10 @@ import { getSiteChromeVariant } from '@/lib/site-chrome'
 import { MarketingTapFeedbackRoot } from '@/components/layout/MarketingTapFeedbackRoot'
 
 function isLessonPath(pathname: string): boolean {
-  return /^\/courses\/[^/]+\/.+/.test(pathname)
+  return (
+    /^\/courses\/[^/]+\/.+/.test(pathname) ||
+    /^\/ib\/courses\/[^/]+\/.+/.test(pathname)
+  )
 }
 
 export function MarketingLayoutChrome({ children }: { children: React.ReactNode }) {

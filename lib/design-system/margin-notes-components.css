@@ -1492,6 +1492,7 @@
     }
 
     .ec-tabbar a,
+    .ec-tabbar .ec-tabbar-link,
     .ec-tabbar button {
       display: flex;
       flex-direction: column;
@@ -1522,6 +1523,7 @@
     }
 
     .ec-tabbar a[aria-current='page'],
+    .ec-tabbar .ec-tabbar-link[aria-current='page'],
     .ec-tabbar button[aria-current='page'] {
       color: var(--ec-brand);
       background: var(--ec-brand-muted);

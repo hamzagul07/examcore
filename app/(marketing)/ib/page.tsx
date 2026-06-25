@@ -151,7 +151,7 @@ export default function IbHubPage() {
                   </h3>
                   <ul className="ms-pp-grid">
                     {track.items.map((c) => {
-                      const subject = getIbSubject(c.code)
+                      const subject = getIbSubject(c.ibSlug)
                       return (
                         <li key={c.code}>
                           <Link

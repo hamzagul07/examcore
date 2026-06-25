@@ -122,6 +122,7 @@ export default function IbCoursesIndexPage() {
                       boardLabel={s.boardLabel}
                       accentHex={s.accentHex}
                       statSuffix="criterion practice tasks"
+                      isNew={s.isNew}
                     />
                   ))}
                 </div>

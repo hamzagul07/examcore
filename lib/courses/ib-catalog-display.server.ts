@@ -1,19 +1,22 @@
 import 'server-only'
 
 import { getIbCourse, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
+import { ibCatalogSlug, ibCourseContentSlug } from '@/lib/ib/slug-resolve'
 import { getIbSubject } from '@/lib/ib/catalog'
 import { getSyllabusTree } from '@/lib/syllabi'
 import type { AccentToken } from '@/lib/courses/margin-notes/types'
 import { subjectAccent } from '@/lib/courses/margin-notes/subject-meta'
 import type { IbCatalogCard } from '@/lib/courses/ib-catalog-display'
+import { IB_NEW_COURSE_SLUGS } from '@/lib/courses/ib-catalog-display'
 import type { SubjectFamily } from '@/lib/courses/margin-notes/types'
 
 function ibSyllabusCode(slug: string): string {
-  return slug.startsWith('ib-') ? slug : `ib-${slug}`
+  const courseSlug = ibCourseContentSlug(slug)
+  return courseSlug.startsWith('ib-') ? courseSlug : `ib-${courseSlug}`
 }
 
 function ibFamily(slug: string): SubjectFamily {
-  const subject = getIbSubject(slug)
+  const subject = getIbSubject(ibCatalogSlug(slug))
   const g = subject?.groupNumber
   if (g === 4) return 'Sciences'
   if (g === 5) return 'Maths'
@@ -27,9 +30,10 @@ function ibFamily(slug: string): SubjectFamily {
 }
 
 function ibAccent(slug: string): { token: AccentToken; hex: string } {
-  const subject = getIbSubject(slug)
+  const catalogSlug = ibCatalogSlug(slug)
+  const subject = getIbSubject(catalogSlug)
   const hex = subject?.accent ?? '#5c6bc0'
-  const token = subjectAccent(slug)
+  const token = subjectAccent(catalogSlug)
   return { token, hex }
 }
 
@@ -41,12 +45,13 @@ function countIbUnits(slug: string): number {
 export function adaptIbCatalogCard(slug: string, prog = 0): IbCatalogCard | null {
   const course = getIbCourse(slug)
   if (!course) return null
-  const subject = getIbSubject(slug)
+  const catalogSlug = ibCatalogSlug(slug)
+  const subject = getIbSubject(catalogSlug)
   const { token, hex } = ibAccent(slug)
   const lessons = course.lessonCount
 
   return {
-    code: slug,
+    code: course.code,
     name: course.name,
     glyph: subject?.glyph ?? '◆',
     acc: token,
@@ -59,6 +64,7 @@ export function adaptIbCatalogCard(slug: string, prog = 0): IbCatalogCard | null
     href: course.path,
     boardLabel: 'IB Diploma',
     accentHex: hex,
+    isNew: IB_NEW_COURSE_SLUGS.has(course.code),
   }
 }
 
@@ -76,7 +82,7 @@ export function ibContinueCatalogEntries(): import('@/lib/courses/margin-notes/c
       if (!course) return null
       const lessons = getIbCourseLessons(slug)
       return {
-        code: slug,
+        code: course.code,
         name: course.name,
         lessonCount: lessons.length,
         basePath: '/ib/courses' as const,

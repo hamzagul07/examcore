@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import 'server-only'
 import type { CourseLesson, CourseSubject } from '@/lib/courses/types'
-import { getIbSubject } from '@/lib/ib/catalog'
+import { ibCatalogSlug, ibCourseContentSlug, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 
 /**
  * IB Diploma course catalogue — slug-keyed, parallel to the Cambridge
@@ -24,7 +24,7 @@ function ibCourseDir(slug: string): string {
  * Reactivity: "R" < "S" alphabetically). Returns null if no syllabus file.
  */
 function getSyllabusOrder(slug: string): Map<string, number> | null {
-  const file = path.join(process.cwd(), 'lib', 'syllabi', `ib-${slug}.json`)
+  const file = path.join(process.cwd(), 'lib', 'syllabi', `ib-${ibCourseContentSlug(slug)}.json`)
   if (!fs.existsSync(file)) return null
   try {
     const syllabus = JSON.parse(fs.readFileSync(file, 'utf8')) as { topics?: { code: string }[] }
@@ -48,7 +48,7 @@ export function getIbCourseSlugs(): string[] {
 }
 
 export function getIbCourseLessons(slug: string): CourseLesson[] {
-  const dir = ibCourseDir(slug)
+  const dir = ibCourseDir(ibCourseContentSlug(slug))
   if (!fs.existsSync(dir)) return []
   const lessons: CourseLesson[] = []
   for (const f of fs.readdirSync(dir)) {
@@ -76,14 +76,21 @@ export function getIbCourseLesson(slug: string, lessonSlug: string): CourseLesso
   return getIbCourseLessons(slug).find((l) => l.slug === lessonSlug) ?? null
 }
 
+/** Lessons for an IB catalog subject slug (e.g. past-papers / subjects pages). */
+export function getIbCourseLessonsForCatalog(catalogSlug: string): CourseLesson[] {
+  return getIbCourseLessons(catalogSlug)
+}
+
 /** CourseSubject-shaped record for the IB course hub (reuses the Cambridge components). */
 export function getIbCourse(slug: string): (CourseSubject & { ibSlug: string }) | null {
-  const subject = getIbSubject(slug)
+  const courseSlug = ibCourseContentSlug(slug)
+  const catalogSlug = ibCatalogSlug(slug)
+  const subject = ibSubjectForSlug(slug)
   if (!subject) return null
-  const lessons = getIbCourseLessons(slug)
+  const lessons = getIbCourseLessons(courseSlug)
   if (!lessons.length) return null
   return {
-    code: slug,
+    code: courseSlug,
     name: subject.name,
     level:
       subject.groupNumber === 7
@@ -93,8 +100,8 @@ export function getIbCourse(slug: string): (CourseSubject & { ibSlug: string }) 
           : 'Standard Level',
     lessonCount: lessons.length,
     publishedCount: lessons.length,
-    path: `/ib/courses/${slug}`,
-    ibSlug: slug,
+    path: `/ib/courses/${courseSlug}`,
+    ibSlug: catalogSlug,
   }
 }
 

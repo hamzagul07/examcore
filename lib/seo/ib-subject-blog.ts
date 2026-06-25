@@ -1,5 +1,6 @@
 import 'server-only'
 
+import { ibCatalogSlug } from '@/lib/ib/slug-resolve'
 import { getBlogPost } from '@/lib/blog'
 
 /** Non-standard blog slugs for IB catalog subjects. */
@@ -33,9 +34,11 @@ function slugExists(slug: string): boolean {
 
 /** Past-papers / revision guide blog for an IB catalog slug, if published. */
 export function getIbSubjectPastPapersBlogSlug(catalogSlug: string): string | null {
+  const catalog = ibCatalogSlug(catalogSlug)
   const candidates = [
     PAST_PAPERS_SLUG[catalogSlug],
-    `ib-${catalogSlug}-past-papers-guide`,
+    PAST_PAPERS_SLUG[catalog],
+    `ib-${catalog}-past-papers-guide`,
   ].filter((s): s is string => Boolean(s))
   for (const slug of candidates) {
     if (slugExists(slug)) return slug
@@ -45,7 +48,8 @@ export function getIbSubjectPastPapersBlogSlug(catalogSlug: string): string | nu
 
 /** IA guide blog for an IB catalog slug, if published. */
 export function getIbSubjectIaBlogSlug(catalogSlug: string): string | null {
-  const base = catalogSlug.replace(/-(hl|sl)$/, '')
+  const catalog = ibCatalogSlug(catalogSlug)
+  const base = catalog.replace(/-(hl|sl)$/, '')
   if (base === 'tok' || base === 'extended-essay' || base === 'cas') return null
   const candidates = [IA_GUIDE_SLUG[base]].filter((s): s is string => Boolean(s))
   for (const slug of candidates) {
@@ -58,12 +62,13 @@ export type IbSubjectBlogLink = { href: string; label: string }
 
 /** Hub intro links for IB subject / course pages. */
 export function getIbSubjectBlogLinks(catalogSlug: string, shortName: string): IbSubjectBlogLink[] {
+  const catalog = ibCatalogSlug(catalogSlug)
   const links: IbSubjectBlogLink[] = []
-  const past = getIbSubjectPastPapersBlogSlug(catalogSlug)
+  const past = getIbSubjectPastPapersBlogSlug(catalog)
   if (past) {
     links.push({ href: `/blog/${past}`, label: `${shortName} revision guide` })
   }
-  const ia = getIbSubjectIaBlogSlug(catalogSlug)
+  const ia = getIbSubjectIaBlogSlug(catalog)
   if (ia) {
     links.push({ href: `/blog/${ia}`, label: 'IA guide' })
   }

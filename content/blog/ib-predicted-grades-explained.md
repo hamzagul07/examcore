@@ -1,11 +1,11 @@
 ---
 title: IB predicted grades explained — how they work & how to improve yours
 description: What IB predicted grades are, who submits them, how universities use them, and how to earn predictions that match your potential.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB predicted grades, IB predicted score, IB university application, IB predicted 45, IB UCAS predicted
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -27,7 +27,7 @@ Document improvement: if mocks rise, share the trend. If one subject lags, show 
 Assuming predictions are negotiable without evidence; ignoring IA; surprise weak mocks in final term; universities seeing inflated predictions that finals do not match.
 
 ## Using MarkScheme across the diploma
-MarkScheme hosts [free IB courses](/ib/courses), [past paper archives](/ib/past-papers), and [criterion practice marking](/mark) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.
+MarkScheme hosts **[760+ free IB lessons](/ib/courses)** across sciences, humanities, languages, maths, arts, and Core — each syllabus point links to [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and [criterion marking](/mark). See the [free courses guide](/blog/ib-free-courses-guide) and [diploma past papers guide](/blog/ib-diploma-past-papers-guide).
 
 ## Frequently asked questions
 

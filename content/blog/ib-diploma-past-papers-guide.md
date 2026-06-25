@@ -5,7 +5,9 @@ date: 2026-06-19
 keywords: IB past papers, IB Diploma past papers, IBDP past papers, IB mark scheme, how to use IB past papers, IB HL SL papers
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
+featured: true
+spotlight: true
 informationGain: synthesis
 ---
 
@@ -20,7 +22,7 @@ The IB Diploma Programme (IBDP) runs exams in two main sessions each year: May, 
 Understanding how your answers are marked is critical. Unlike some exam boards that use a point-for-point system, the IB uses **markbands** and **assessment criteria**. For each question, especially longer essay-style ones, the mark scheme provides descriptors for different levels of performance. An examiner doesn't just tick off correct points; they read your entire response and make a holistic judgement, placing it in the band that it best fits. Your goal is therefore not to 'collect points', but to write an answer that clearly demonstrates the qualities described in the top markbands, such as critical thinking, clear structure, and sophisticated subject knowledge.
 
 ## The Most Effective Past Paper Workflow
-The most effective way to use past papers isn't just to complete them. It's to follow a deliberate, three-step cycle. First, complete a full paper under strict, timed exam conditions to simulate the real experience. Second, take the official mark scheme and mark your own work honestly, using the **markband descriptors** to judge which level your response fits into. Don't just look at the content points; read the descriptions for 'some analysis', 'clear analysis', and 'perceptive analysis' and decide where your work sits. Finally, and most importantly, identify exactly what kept you out of the next band up. Was it a lack of specific knowledge, an unclear argument, or poor time management? Drill that specific skill before you attempt your next paper.
+The most effective way to use past papers isn't just to complete them. It's to follow a deliberate, four-step cycle. First, drill weak syllabus points with **[topic practice](/ib/past-papers/biology-hl#ib-topic-practice)** before attempting full papers. Second, complete a full paper under strict, timed exam conditions to simulate the real experience. Third, take the official mark scheme and mark your own work honestly, using the **markband descriptors** to judge which level your response fits into. Don't just look at the content points; read the descriptions for 'some analysis', 'clear analysis', and 'perceptive analysis' and decide where your work sits. Finally, and most importantly, identify exactly what kept you out of the next band up. Was it a lack of specific knowledge, an unclear argument, or poor time management? Drill that specific skill before you attempt your next paper.
 
 ## Finding and Using IB Past Papers
 A well-organised collection of past papers is your most valuable revision tool. You can find a comprehensive library of [IB past papers by subject](/ib/past-papers) to get started. We recommend beginning your revision with the most recent exam sessions (the last 2-3 years), as they are the most accurate reflection of the current syllabus and the style of questions you're likely to face. Older papers are still incredibly useful for drilling specific topics or question formats, but your full mock exams should use the newest materials available. For more general guidance on the Diploma Programme, our [IB Diploma hub](/ib) is a great starting point.

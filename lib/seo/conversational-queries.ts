@@ -24,6 +24,13 @@ export const CONVERSATIONAL_QUERIES: ConversationalQuery[] = [
   { phrase: 'app to mark my handwritten maths answers', clusterId: 'past-paper-marking' },
   { phrase: '9709 past paper revision plan', clusterId: 'subject-guides' },
   { phrase: 'how to photograph exam answers for revision', clusterId: 'exam-technique' },
+  { phrase: 'where to find ib past papers free', clusterId: 'ib' },
+  { phrase: 'how do ib markbands work', clusterId: 'ib' },
+  { phrase: 'best free ib notes website', clusterId: 'ib' },
+  { phrase: 'ib biology hl revision plan', clusterId: 'ib' },
+  { phrase: 'how to revise for tok essay', clusterId: 'ib' },
+  { phrase: 'ib maths aa or ai which is harder', clusterId: 'ib' },
+  { phrase: 'how to get a 7 in ib diploma', clusterId: 'ib' },
 ]
 
 export function getQueriesForCluster(clusterId: ContentClusterId): string[] {

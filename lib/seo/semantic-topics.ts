@@ -94,6 +94,13 @@ export const CLUSTER_SEMANTIC_ENTITIES: Record<ContentClusterId, string[]> = {
     'Papers 1, 2 and 3',
     'May and November sessions',
     'internal assessment',
+    'topic practice',
+    'free IB courses',
+    'criterion marking',
+    'Theory of Knowledge',
+    'Extended Essay',
+    'Group 6 arts',
+    'command terms',
   ],
 }
 

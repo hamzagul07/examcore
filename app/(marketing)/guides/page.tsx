@@ -33,8 +33,8 @@ export default function GuidesIndexPage() {
     <MarketingPageShell>
       <PageJsonLd
         path="/guides"
-        title="Cambridge past paper guides"
-        description="Topic hubs for Cambridge past paper marking, mark schemes, revision, and subject choice."
+        title="Cambridge & IB past paper guides"
+        description="Topic hubs for Cambridge and IB past paper marking, mark schemes, revision, subject choice, and the IB Diploma."
         breadcrumbs={[
           { name: 'Home', path: '/' },
           { name: 'Guides', path: '/guides' },
@@ -45,7 +45,7 @@ export default function GuidesIndexPage() {
           path: '/guides',
           name: 'MarkScheme topic guides',
           description:
-            'Hub-and-spoke guides for Cambridge A-Level and O-Level past paper marking, mark schemes, revision, and subject choice.',
+            'Hub-and-spoke guides for Cambridge A-Level, O-Level, and IB Diploma past paper marking, mark schemes, revision, and subject choice.',
           hasPart: parts.map((p) => ({ name: p.name, url: p.url })),
         })}
       />
@@ -57,7 +57,7 @@ export default function GuidesIndexPage() {
             Read the examiner&apos;s <em>mind.</em>
           </>
         }
-        lead="Short, specific guides on how Cambridge actually marks — written from the schemes, not vibes. Browse topic hubs or read individual articles on the blog."
+        lead="Short, specific guides on how Cambridge and IB examiners actually mark — written from the schemes and markbands, not vibes. Browse topic hubs or read individual articles on the blog."
       >
         <ContentHubNav />
       </MarketingHero>
@@ -141,9 +141,14 @@ export default function GuidesIndexPage() {
           <p className="ms-greennote" style={{ margin: 0, flex: 1, minWidth: 240 }}>
             guides tell you how marks work — the courses make you earn them ↓
           </p>
-          <Link href="/courses" className="ec-btn-primary ec-btn-primary--sm">
-            Free courses
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/courses" className="ec-btn-primary ec-btn-primary--sm">
+              Cambridge courses
+            </Link>
+            <Link href="/ib/courses" className="ec-btn-secondary ec-btn-secondary--sm">
+              IB courses
+            </Link>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

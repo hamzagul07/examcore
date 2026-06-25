@@ -6,6 +6,8 @@ keywords: free IB course, IB TOK course, IB notes free, IB Diploma revision, IB 
 category: revision
 author: hassan
 updated: 2026-06-25
+featured: true
+spotlight: true
 informationGain: synthesis
 ---
 

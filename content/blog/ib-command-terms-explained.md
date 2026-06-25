@@ -1,11 +1,11 @@
 ---
 title: IB command terms explained — what examiners expect on every question
 description: Full guide to IB command terms: analyse, evaluate, discuss, explain, compare — and how to answer each for full markband credit.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB command terms, IB explain vs evaluate, IB discuss command term, IB exam technique, IB assessment objectives
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -27,7 +27,7 @@ Build a one-page command term cheat sheet. When practising past papers, **highli
 Writing everything you know; ignoring "with reference to"; treating discuss as evaluate; no conclusion on evaluate questions.
 
 ## Using MarkScheme across the diploma
-MarkScheme hosts [free IB courses](/ib/courses), [past paper archives](/ib/past-papers), and [criterion practice marking](/mark) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.
+MarkScheme hosts **[760+ free IB lessons](/ib/courses)** across sciences, humanities, languages, maths, arts, and Core — each syllabus point links to [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and [criterion marking](/mark). See the [free courses guide](/blog/ib-free-courses-guide) and [diploma past papers guide](/blog/ib-diploma-past-papers-guide).
 
 ## Frequently asked questions
 

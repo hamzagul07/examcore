@@ -10,27 +10,43 @@ type Props = { slug: string }
  */
 export function BlogInContentLinks({ slug }: Props) {
   const cluster = getClusterForSlug(slug)
+  const isIb = cluster.id === 'ib'
+  const primaryHref = isIb ? '/mark' : MONEY_PAGES[0]
+  const primaryLabel = isIb ? 'Criterion marking' : 'Mark a question'
+  const hubLabel = isIb ? 'IB Diploma hub' : `${cluster.title} hub`
 
   return (
     <nav className="ms-blog-cta-block my-8" aria-label="Primary actions">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="ms-h3" style={{ fontSize: '1.05rem' }}>
-            Mark your paper while this guide is fresh
+            {isIb
+              ? 'Practise criterion marking while this guide is fresh'
+              : 'Mark your paper while this guide is fresh'}
           </p>
           <p className="ms-body-2" style={{ marginTop: 6 }}>
-            In-content link — fastest path to scheme-aligned feedback
+            {isIb
+              ? 'Band-by-band IB feedback — or drill a syllabus point with topic practice'
+              : 'In-content link — fastest path to scheme-aligned feedback'}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link href={MONEY_PAGES[0]} className="ec-btn-primary inline-flex min-h-[44px] text-sm">
-            Mark a question <ArrowRight className="h-4 w-4" />
+          <Link href={primaryHref} className="ec-btn-primary inline-flex min-h-[44px] text-sm">
+            {primaryLabel} <ArrowRight className="h-4 w-4" />
           </Link>
+          {isIb ? (
+            <Link
+              href="/ib/past-papers/biology-hl#ib-topic-practice"
+              className="ec-btn-secondary inline-flex min-h-[44px] text-sm"
+            >
+              Topic practice
+            </Link>
+          ) : null}
           <Link
             href={cluster.path}
             className="ec-btn-secondary inline-flex min-h-[44px] text-sm"
           >
-            {cluster.title} hub
+            {hubLabel}
           </Link>
         </div>
       </div>

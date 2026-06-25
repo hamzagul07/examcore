@@ -19,12 +19,16 @@ const GUIDE_LABELS: Record<string, { eyebrow: string; title: string }> = {
     eyebrow: 'Cambridge exams 2026',
     title: 'Exam integrity & 2026 series',
   },
+  ib: {
+    eyebrow: 'IB past papers',
+    title: 'IB Diploma guides',
+  },
 }
 
 /** Homepage topical authority — guide cards from paper design. */
 export function LandingTopicHub() {
   const featured = CONTENT_CLUSTERS.filter((c) =>
-    ['past-paper-marking', 'mark-schemes', 'subject-guides', 'exam-integrity'].includes(c.id)
+    ['past-paper-marking', 'mark-schemes', 'subject-guides', 'exam-integrity', 'ib'].includes(c.id)
   )
 
   return (

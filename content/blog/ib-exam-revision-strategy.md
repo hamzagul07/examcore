@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: how to revise for IB, IB revision strategy, IB exam preparation, IB past paper revision, IB study plan
 category: revision
 author: hassan
-updated: 2026-06-19
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -15,7 +15,7 @@ Revising for your IB exams is less about cramming content and more about masteri
 Before you dive into [IB past papers](/ib/past-papers), take stock. For each of your six subjects, plus your Theory of Knowledge (TOK) and Extended Essay (EE) components, identify your strongest and weakest areas. Use a traffic light system (red, amber, green) against each syllabus point to create a visual map of where you need to focus your initial efforts.
 
 ## Build Confidence with Topic-by-Topic Practice
-Start with your 'red' topics. Use focused questions from past papers or question banks to test your understanding on a small scale. Have your textbook and class notes open to guide you. The goal here isn't to simulate an exam, but to fix conceptual gaps and build a solid foundation before you tackle a full paper.
+Start with your 'red' topics. Use [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) grids or focused questions from past papers to test each syllabus point. Pair each grid with the matching [free course](/ib/courses) chapter. Have your textbook and class notes open to guide you. The goal here isn't to simulate an exam, but to fix conceptual gaps and build a solid foundation before you tackle a full paper.
 
 ## Move to Untimed, Open-Book Papers
 Once you feel more secure with the core content, attempt a full Paper 1 or Paper 2, but without the clock. This helps you understand the structure, the style of questioning, and the level of detail required for different command words. Having your notes available allows you to look things up, reinforcing learning without the pressure of memory recall.

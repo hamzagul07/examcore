@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: IB vs A-Level, IB or A-Levels, is IB harder than A-Levels, IB vs A-Level grading, IB Diploma vs A-Level
 category: revision
 author: hassan
-updated: 2026-06-19
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -21,7 +21,7 @@ Beyond the six subjects, the IB Diploma has three mandatory core components that
 The two qualifications use entirely different grading scales. Each of the six IB subjects is graded on a scale of 1 (lowest) to 7 (highest). The three core components can contribute up to 3 bonus points, making the maximum possible Diploma score 45 points. A passing diploma generally requires a minimum of 24 points with certain conditions met. A-Levels, on the other hand, are graded individually per subject with grades ranging from A* to E. A top student might achieve three A*s, but there is no cumulative score. This means that in the IB, a weaker performance in one subject can potentially be balanced by a stronger performance in another, whereas each A-Level grade stands alone.
 
 ## How Marking Works: IB Markbands
-The IB uses a criteria-based assessment model. Instead of awarding a point for every correct piece of information, examiners use **markbands** to place a piece of work into a level of achievement. Each markband contains a set of descriptors explaining the characteristics of work at that level, from 'limited' to 'excellent'. For example, an essay will be judged against criteria like 'Knowledge and Understanding' or 'Critical Thinking'. The examiner's job is to find the 'best fit' descriptor for the student's work. This holistic approach focuses on the overall quality of the response rather than a checklist of points. When you use a service to [mark your answers](/mark), understanding these different philosophies is key to interpreting your feedback.
+The IB uses a criteria-based assessment model. Instead of awarding a point for every correct piece of information, examiners use **markbands** to place a piece of work into a level of achievement. Each markband contains a set of descriptors explaining the characteristics of work at that level, from 'limited' to 'excellent'. For example, an essay will be judged against criteria like 'Knowledge and Understanding' or 'Critical Thinking'. The examiner's job is to find the 'best fit' descriptor for the student's work. This holistic approach focuses on the overall quality of the response rather than a checklist of points. When you use a service to [mark your answers](/mark), understanding these different philosophies is key to interpreting your feedback. IB students can also use [free syllabus lessons](/ib/courses) and [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) to rehearse those descriptors subject by subject.
 
 ## How Marking Works: A-Level Points and Levels
 Cambridge A-Levels employ a more granular marking system, particularly for structured questions. Mark schemes often feature itemised points, where specific marks (e.g., M1 for method, A1 for accuracy, B1 for an independent point) are awarded for clearly defined parts of an answer. This makes the marking process highly transparent and objective. For longer, essay-style questions, A-Levels use levels-of-response mark schemes, which are similar in principle to IB markbands. However, the day-to-day experience of an A-Level student often involves chasing these specific points, especially in science and maths, a different mindset from the IB's holistic criteria.

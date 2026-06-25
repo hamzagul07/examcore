@@ -5,6 +5,7 @@
  *   node scripts/generate-ib-blog-spokes.mjs
  *   node scripts/generate-ib-blog-spokes.mjs --force --group6
  *   node scripts/generate-ib-blog-spokes.mjs --force --subjects-only
+ *   node scripts/generate-ib-blog-spokes.mjs --force --hub-only
  */
 import fs from 'fs'
 import path from 'path'
@@ -17,6 +18,7 @@ const HL_ONLY = process.argv.includes('--hl-only')
 const SL_ONLY = process.argv.includes('--sl-only')
 const GROUP6_ONLY = process.argv.includes('--group6')
 const SUBJECTS_ONLY = process.argv.includes('--subjects-only')
+const HUB_ONLY = process.argv.includes('--hub-only')
 const COURSES_DIR = path.join(process.cwd(), 'content', 'courses')
 
 const GROUP6_CATALOG = /^(dance|theatre|music|film|visual-arts)(-hl|-sl)?$/
@@ -412,6 +414,50 @@ const POSTS = [
     ],
   },
   // ── Core ──────────────────────────────────────────────────────────────────
+  {
+    slug: 'ib-tok-past-papers-guide',
+    title: 'IB TOK past papers & essay guide',
+    description:
+      'How to revise IB Theory of Knowledge with prescribed titles, exhibition tasks, and criterion-based essay practice — knowledge questions, AOKs, and markbands.',
+    keywords: [
+      'IB TOK',
+      'IB TOK essay',
+      'IB TOK exhibition',
+      'TOK past papers',
+      'TOK markbands',
+      'IB TOK revision',
+    ],
+    name: 'Theory of Knowledge',
+    level: 'Core',
+    catalogSlug: 'tok',
+    courseSlug: 'tok',
+    assessment:
+      '**TOK exhibition** (three objects + commentary) and **TOK essay** (1,600 words on a prescribed title) are criterion-assessed. HL and SL share the same components; the core theme links knowledge, knowers, and communities.',
+    markbands:
+      'Top bands reward sustained **analysis of knowledge** — perspectives within and across AOKs, implications, and precise TOK vocabulary — not eloquence without argument.',
+    strategy:
+      'Essay: frame a knowledge question in the introduction and return to it each paragraph. Exhibition: lock the object–prompt link before polishing commentary prose.',
+    paperTips:
+      'Use prescribed titles and exhibition prompts as your “past papers”. Plan three AOKs and contrasting claims before writing. Self-mark against the essay rubric, then submit for criterion marking.',
+    pitfalls:
+      'Example stacking without analysis; treating WOKs as a checklist; one-sided essays; confusing opinion with justified knowledge claims.',
+    faqs: [
+      {
+        q: 'Are there TOK past papers?',
+        a: 'IB publishes **prescribed titles** and **exhibition prompts** each session — treat these as your exam papers.',
+      },
+      {
+        q: 'TOK bonus points?',
+        a: 'Combined with EE performance on the matrix — strong TOK + EE can add up to 3 diploma points.',
+      },
+      {
+        q: 'Free TOK course?',
+        a: '[TOK lessons](/ib/courses/tok) on MarkScheme cover every syllabus point with criterion practice.',
+      },
+    ],
+    intro:
+      'IB Theory of Knowledge is not a content-heavy exam — but it is **highly criterion-driven**. Students who treat TOK like a general essay subject often plateau at a 4 or 5. The path to a 6 or 7 is mastering knowledge questions, Areas of Knowledge, and practising under official descriptors.',
+  },
   {
     slug: 'ib-extended-essay-complete-guide',
     title: 'IB Extended Essay complete guide — criteria, structure & grade 7 tips',
@@ -1209,7 +1255,7 @@ function renderPost(b) {
 
   const markSection = b.catalogSlug
     ? `## Using MarkScheme for targeted feedback\nSelf-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](${mark}) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.\n\n${courseLinks}`
-    : `## Using MarkScheme across the diploma\nMarkScheme hosts [free IB courses](${coursePath('')}), [past paper archives](${pp}), and [criterion practice marking](${markPath('')}) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.`
+    : `## Using MarkScheme across the diploma\nMarkScheme hosts **[760+ free IB lessons](/ib/courses)** across sciences, humanities, languages, maths, arts, and Core — each syllabus point links to [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and [criterion marking](/mark). See the [free courses guide](/blog/ib-free-courses-guide) and [diploma past papers guide](/blog/ib-diploma-past-papers-guide).`
 
   return `---
 title: ${b.title}
@@ -1261,6 +1307,9 @@ function shouldWrite(slug, catalogSlug) {
   if (SUBJECTS_ONLY) {
     if (!catalogSlug) return false
     if (GROUP6_CATALOG.test(catalogSlug)) return false
+  }
+  if (HUB_ONLY) {
+    if (catalogSlug) return false
   }
   if (HL_ONLY && !slug.endsWith('-hl-past-papers-guide')) return false
   if (SL_ONLY) {

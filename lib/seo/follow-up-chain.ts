@@ -197,6 +197,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/ib/past-papers/biology-hl',
     },
     {
+      question: 'Where is the full list of free IB courses?',
+      answer:
+        'The free courses guide maps every HL and SL subject — sciences, humanities, languages, maths, Core, and Group 6 arts — with links to lessons and topic practice.',
+      href: '/blog/ib-free-courses-guide',
+    },
+    {
       question: 'What is the difference between HL and SL?',
       answer:
         'Higher Level covers more content and usually an extra paper with greater depth; Standard Level is a lighter syllabus. Each subject page lists both.',

@@ -1,11 +1,11 @@
 ---
 title: IB Maths AA vs AI — which course should you choose?
 description: Analysis & Approaches vs Applications & Interpretation at HL and SL: difficulty, university requirements, GDC use, and student profiles.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Maths AA vs AI, IB Analysis and Approaches, IB Applications and Interpretation, which IB maths, IB maths HL choice
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -27,7 +27,7 @@ Check **university pages** early — engineering often prefers AA HL; some econo
 Picking AI to avoid calculus then hitting degree requirements for AA; switching courses too late; ignoring IA differences.
 
 ## Using MarkScheme across the diploma
-MarkScheme hosts [free IB courses](/ib/courses), [past paper archives](/ib/past-papers), and [criterion practice marking](/mark) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.
+MarkScheme hosts **[760+ free IB lessons](/ib/courses)** across sciences, humanities, languages, maths, arts, and Core — each syllabus point links to [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and [criterion marking](/mark). See the [free courses guide](/blog/ib-free-courses-guide) and [diploma past papers guide](/blog/ib-diploma-past-papers-guide).
 
 ## Frequently asked questions
 

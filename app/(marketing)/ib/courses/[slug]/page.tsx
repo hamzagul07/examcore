@@ -11,7 +11,9 @@ import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { IbCourseSubjectJsonLd } from '@/components/seo/IbCourseSubjectJsonLd'
 import { IbLegitResourcesPanel } from '@/components/ib/IbLegitResourcesPanel'
+import { getIbCourseSibling } from '@/lib/ib/course-sibling.server'
 import { getTotalSyllabusLeaves } from '@/lib/syllabi'
+import { getIbTopicPracticePages } from '@/lib/seo/ib-topic-practice'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -49,6 +51,9 @@ export default async function IbCoursePage({ params }: Props) {
   const syllabusLeaves = getTotalSyllabusLeaves(`ib-${slug}`)
   const publishingMore = syllabusLeaves > lessons.length
   const blogLinks = getIbSubjectBlogLinks(catalogSlug, ibShortName(subject))
+  const sibling = getIbCourseSibling(slug)
+  const topicPages = getIbTopicPracticePages(catalogSlug)
+  const short = ibShortName(subject)
 
   return (
     <>
@@ -63,7 +68,25 @@ export default async function IbCoursePage({ params }: Props) {
           heading={intro.heading}
           paragraph={intro.paragraph}
           links={[
-            { href: `/ib/subjects/${catalogSlug}`, label: `${subject.name} past papers`, variant: 'muted' },
+            { href: `/ib/past-papers/${catalogSlug}`, label: `${short} past papers`, variant: 'muted' },
+            ...(topicPages.length
+              ? [
+                  {
+                    href: `/ib/past-papers/${catalogSlug}#ib-topic-practice`,
+                    label: 'Practice by topic',
+                    variant: 'ghost' as const,
+                  },
+                ]
+              : []),
+            ...(sibling
+              ? [
+                  {
+                    href: sibling.path,
+                    label: `IB ${sibling.name} ${sibling.level} course`,
+                    variant: 'ghost' as const,
+                  },
+                ]
+              : []),
             { href: '/ib/courses', label: 'All IB courses', variant: 'muted' },
             { href: '/mark', label: 'Criterion practice →', variant: 'primary' },
             ...blogLinks.map((link) => ({

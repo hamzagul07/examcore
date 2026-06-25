@@ -102,6 +102,8 @@ export default function IbCoursesIndexPage() {
             paragraph="Each course follows the current IB Diploma syllabus topic by topic. Learn the content with visual lessons and flashcards, then practise with criterion-based marking that scores band-by-band against official assessment criteria — not a generic AI grade."
             links={[
               { href: '/ib', label: 'IB past papers hub', variant: 'muted' },
+              { href: '/ib/past-papers/biology-hl', label: 'Topic practice example', variant: 'muted' },
+              { href: '/blog/ib-free-courses-guide', label: 'Free courses guide', variant: 'muted' },
               { href: '/courses', label: 'Cambridge courses', variant: 'muted' },
               { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
               { href: '/mark', label: 'Criterion practice →', variant: 'primary' },

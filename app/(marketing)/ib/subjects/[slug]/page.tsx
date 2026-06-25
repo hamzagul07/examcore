@@ -14,6 +14,7 @@ import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessonsForCatalog } from '@/lib/courses/ib'
+import { getIbCourseSibling } from '@/lib/ib/course-sibling.server'
 import { ibCoursePath } from '@/lib/ib/slug-resolve'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
@@ -52,6 +53,7 @@ export default async function IbSubjectPage({ params }: Props) {
   const url = `${SITE_URL}${copy.path}`
   const short = ibShortName(subject)
   const course = getIbCourse(subject.slug)
+  const sibling = course ? getIbCourseSibling(course.code) : null
 
   const faq = [
     {
@@ -159,6 +161,15 @@ export default async function IbSubjectPage({ params }: Props) {
                     href: `/ib/past-papers/${subject.slug}#ib-topic-practice`,
                     label: 'Practice by topic',
                     variant: 'ghost' as const,
+                  },
+                ]
+              : []),
+            ...(sibling
+              ? [
+                  {
+                    href: sibling.path,
+                    label: `IB ${sibling.name} ${sibling.level} course`,
+                    variant: 'muted' as const,
                   },
                 ]
               : []),

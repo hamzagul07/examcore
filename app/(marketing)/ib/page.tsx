@@ -13,7 +13,8 @@ import { ibShortName } from '@/lib/seo/ib-seo'
 import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
-import { IB_COURSES_CATALOG_BLURB, ibCourseEntriesByTrack } from '@/lib/courses/ib-catalog-display'
+import { IB_COURSES_CATALOG_BLURB, IB_NEW_COURSE_SLUGS, ibCourseEntriesByTrack } from '@/lib/courses/ib-catalog-display'
+import { getIbTopicPracticeSubjectSlugs } from '@/lib/seo/ib-topic-practice'
 
 const PATH = '/ib'
 
@@ -60,6 +61,7 @@ export default function IbHubPage() {
     .sort((a, b) => a.name.localeCompare(b.name))
 
   const courseTracks = ibCourseEntriesByTrack(courses)
+  const topicPracticeSlugs = new Set(getIbTopicPracticeSubjectSlugs())
 
   return (
     <MarketingPageShell>
@@ -123,6 +125,7 @@ export default function IbHubPage() {
           links={[
             { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
             { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
+            { href: '/blog/ib-free-courses-guide', label: 'New SL courses guide', variant: 'muted' },
             { href: '/courses', label: 'Cambridge courses', variant: 'ghost' },
             { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
             { href: '/blog/ib-free-courses-guide', label: 'Free IB courses guide', variant: 'muted' },
@@ -152,6 +155,15 @@ export default function IbHubPage() {
                   <ul className="ms-pp-grid">
                     {track.items.map((c) => {
                       const subject = getIbSubject(c.ibSlug)
+                      const isNew = IB_NEW_COURSE_SLUGS.has(c.code)
+                      const hasTopics = topicPracticeSlugs.has(c.ibSlug)
+                      const meta = [
+                        `${c.lessonCount} lessons`,
+                        'free course',
+                        hasTopics ? 'topic practice' : null,
+                      ]
+                        .filter(Boolean)
+                        .join(' · ')
                       return (
                         <li key={c.code}>
                           <Link
@@ -169,8 +181,13 @@ export default function IbHubPage() {
                             <span className="min-w-0 flex-1">
                               <span className="ms-pp-title">
                                 {c.name} <em className="ms-pp-code">· {c.level}</em>
+                                {isNew ? (
+                                  <span className="ms-pp-new" aria-label="New course">
+                                    New
+                                  </span>
+                                ) : null}
                               </span>
-                              <span className="ms-pp-meta">{c.lessonCount} lessons · free course</span>
+                              <span className="ms-pp-meta">{meta}</span>
                             </span>
                             <span className="ms-pp-cta" aria-hidden>
                               →

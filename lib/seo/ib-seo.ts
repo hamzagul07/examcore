@@ -32,11 +32,47 @@ export function buildIbSubjectCopy(subject: IbSubject) {
       `IB ${short} past papers`,
       `IB ${subject.name} past papers`,
       `IB ${subject.name} mark scheme`,
-      `IB ${subject.name} ${subject.level} ${subject.papers[1] ?? 'paper 2'}`,
+      `IB ${subject.name} markbands`,
+      `IB ${subject.name} topic practice`,
+      `free IB ${short} course`,
       `${subject.name} IB revision`,
     ],
     papers,
   }
+}
+
+export function keywordsForIbPath(path: string): string[] | undefined {
+  if (path === '/ib' || path === '/ib/subjects' || path === '/ib/past-papers') {
+    return [
+      'IB past papers',
+      'IB Diploma past papers',
+      'IB markbands',
+      'IB HL SL',
+      'free IB course',
+    ]
+  }
+  if (path.startsWith('/ib/subjects/') || path.startsWith('/ib/past-papers/')) {
+    return [
+      'IB past papers',
+      'IB markbands',
+      'IB topic practice',
+      'IB mark scheme',
+      'free IB course',
+    ]
+  }
+  if (path === '/ib/courses' || path.startsWith('/ib/courses/')) {
+    return [
+      'free IB course',
+      'IB TOK course',
+      'IB revision free',
+      'IB criterion marking',
+      'ZNotes IB alternative',
+    ]
+  }
+  if (path.startsWith('/guides/ib')) {
+    return ['IB past papers', 'IB revision guide', 'IB markbands', 'IB free courses']
+  }
+  return undefined
 }
 
 export function buildIbPastPaperCopy(subject: IbSubject) {
@@ -53,6 +89,8 @@ export function buildIbPastPaperCopy(subject: IbSubject) {
       `IB ${subject.name} mark scheme`,
       `IB ${subject.name} ${subject.level} markscheme`,
       `IB ${short} ${subject.level} exam questions`,
+      `IB ${subject.name} topic practice`,
+      `IB ${short} markbands`,
     ],
   }
 }

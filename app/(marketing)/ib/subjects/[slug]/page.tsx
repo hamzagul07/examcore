@@ -82,7 +82,7 @@ export default async function IbSubjectPage({ params }: Props) {
     .filter((s) => s.group === subject.group && s.slug !== subject.slug)
     .slice(0, 8)
   const communityOn = isCommunityEnabled()
-  const blogLinks = getIbSubjectBlogLinks(subject.slug, short)
+  const blogLinks = getIbSubjectBlogLinks(subject.slug, short, { hasCourse: Boolean(course) })
 
   return (
     <>
@@ -106,6 +106,32 @@ export default async function IbSubjectPage({ params }: Props) {
             syllabusCode: subject.slug,
             topics: [`IB ${subject.name}`, ...subject.papers],
             level: subject.level === 'HL' ? 'Higher Level' : 'Standard Level',
+            curriculum: 'ib',
+          }),
+          itemListNode({
+            name: `IB ${subject.name} ${subject.level} revision resources`,
+            items: [
+              {
+                name: `${short} ${subject.level} past papers`,
+                url: `${SITE_URL}/ib/past-papers/${subject.slug}`,
+              },
+              ...(course
+                ? [
+                    {
+                      name: `Free ${short} course`,
+                      url: `${SITE_URL}${ibCoursePath(subject.slug)}`,
+                    },
+                    {
+                      name: `${short} topic practice`,
+                      url: `${SITE_URL}/ib/past-papers/${subject.slug}#ib-topic-practice`,
+                    },
+                  ]
+                : []),
+              ...blogLinks.map((l) => ({
+                name: l.label,
+                url: `${SITE_URL}${l.href}`,
+              })),
+            ],
           }),
           itemListNode({
             name: `IB ${subject.name} ${subject.level} papers`,

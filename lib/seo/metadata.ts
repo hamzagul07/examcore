@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { PAGE_KEYWORDS, SEO_KEYWORDS } from '@/lib/seo/keywords'
 import { keywordsForSubjectPath } from '@/lib/seo/subject-seo'
+import { keywordsForIbPath } from '@/lib/seo/ib-seo'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
@@ -20,7 +21,11 @@ type PageMetadataOptions = {
 }
 
 function mergeKeywords(path: string, extra?: string[]): string[] {
-  const page = PAGE_KEYWORDS[path] ?? keywordsForSubjectPath(path) ?? []
+  const page =
+    PAGE_KEYWORDS[path] ??
+    keywordsForSubjectPath(path) ??
+    keywordsForIbPath(path) ??
+    []
   const set = new Set<string>([...SEO_KEYWORDS, ...page, ...(extra ?? [])])
   return [...set]
 }

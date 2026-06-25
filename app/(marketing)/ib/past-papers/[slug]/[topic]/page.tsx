@@ -101,6 +101,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
             syllabusCode,
             topics: [page.title, `IB ${subject.name}`],
             level: copy.level,
+            curriculum: 'ib',
           }),
           faqPageNode(faq, {
             speakableSelectors: ['.ms-subject-faq dt', '.ms-subject-faq dd'],

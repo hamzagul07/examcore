@@ -123,6 +123,8 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
   )
   const codeMatch = slug.match(/^cambridge-(\d{4})-/)
   const syllabusCode = codeMatch?.[1]
+  const ibMatch = slug.match(/^ib-(.+?)-(hl|sl)-/)
+  const ibSubjectBase = ibMatch?.[1]
 
   return getBlogPosts()
     .filter((p) => p.slug !== slug)
@@ -136,8 +138,19 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
         syllabusCode && p.slug.startsWith(`cambridge-${syllabusCode}-`)
           ? 3
           : 0
+      const ibSibling =
+        ibSubjectBase &&
+        (p.slug === `ib-${ibSubjectBase}-hl-past-papers-guide` ||
+          p.slug === `ib-${ibSubjectBase}-sl-past-papers-guide`)
+          ? 4
+          : 0
+      const ibSameSubject =
+        ibSubjectBase && p.slug.startsWith(`ib-${ibSubjectBase}-`) ? 2 : 0
       const isPillar = p.slug === cluster.pillarBlogSlug ? 2 : 0
-      return { post: p, score: sameCluster + overlap + sameCode + isPillar }
+      return {
+        post: p,
+        score: sameCluster + overlap + sameCode + ibSibling + ibSameSubject + isPillar,
+      }
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
@@ -146,7 +159,8 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
 
 export function getBlogPostLastModified(slug: string): Date | undefined {
   const post = getBlogPost(slug)
-  if (!post?.date) return undefined
-  const d = new Date(post.date)
+  const raw = post?.updated || post?.date
+  if (!raw) return undefined
+  const d = new Date(raw)
   return Number.isNaN(d.getTime()) ? undefined : d
 }

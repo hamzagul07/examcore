@@ -109,7 +109,7 @@ export function BlogIndexJsonLd({
     '@id': `${SITE_URL}/blog`,
     name: `${SITE_NAME} Blog`,
     description:
-      'Cambridge A-Level and O-Level past paper tips, mark scheme guides, and revision strategies.',
+      'Cambridge A-Level, O-Level and IB Diploma past paper tips, mark scheme guides, markbands, and revision strategies.',
     url: `${SITE_URL}/blog`,
     publisher: {
       '@type': 'Organization',

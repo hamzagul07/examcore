@@ -2,6 +2,7 @@ import { SITE_URL } from '@/lib/site-config'
 import type { BlogPost } from '@/lib/blog'
 import { getAuthor } from '@/lib/seo/authors'
 import { getClusterForSlug } from '@/lib/seo/clusters'
+import { blogBreadcrumbs } from '@/lib/seo/blog-breadcrumbs'
 import {
   extractComparisonItems,
   extractFaqFromMarkdown,
@@ -22,6 +23,10 @@ const ORG_ID = `${SITE_URL}/#organization`
 const BRAND_ID = `${SITE_URL}/#brand`
 const WEBSITE_ID = `${SITE_URL}/#website`
 const APP_ID = `${SITE_URL}/#app`
+
+function wordCount(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length
+}
 
 /** Interconnected @graph for global layout (entity + retrieval). */
 export function buildSiteGraph(): JsonLd[] {
@@ -56,6 +61,8 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
   const seo = getPostSeoMeta(post.slug, post.category)
   const faq = extractFaqFromMarkdown(content)
   const cluster = getClusterForSlug(post.slug)
+  const crumbs = blogBreadcrumbs(post.slug, post.title)
+  const words = wordCount(content)
 
   const graph: JsonLd[] = [
     { ...organizationNode(), '@id': ORG_ID },
@@ -88,13 +95,11 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
       keywords: post.keywords.join(', '),
       inLanguage: 'en-GB',
       articleSection: post.category ?? cluster.title,
+      isAccessibleForFree: true,
+      ...(words > 200 ? { wordCount: words } : {}),
     },
     {
-      ...breadcrumbList([
-        { name: 'Home', path: '/' },
-        { name: 'Blog', path: '/blog' },
-        { name: post.title, path: `/blog/${post.slug}` },
-      ]),
+      ...breadcrumbList(crumbs),
       '@id': `${url}#breadcrumb`,
     },
   ]
@@ -104,6 +109,10 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
       '@type': 'FAQPage',
       '@id': `${url}#faq`,
       isPartOf: { '@id': articleId },
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.ec-chunk-lead', '.ms-quick-answer .ms-body-2'],
+      },
       mainEntity: faq.map((item) => ({
         '@type': 'Question',
         name: item.q,

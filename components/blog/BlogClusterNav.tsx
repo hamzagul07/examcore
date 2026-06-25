@@ -11,6 +11,7 @@ type Props = {
 export function BlogClusterNav({ slug }: Props) {
   const cluster = getClusterForSlug(slug)
   const pillar = getBlogPost(cluster.pillarBlogSlug)
+  const isIb = cluster.id === 'ib'
 
   return (
     <nav
@@ -32,6 +33,11 @@ export function BlogClusterNav({ slug }: Props) {
         <Link href={`/blog/${pillar.slug}`} className="ec-btn-underline text-sm">
           Pillar: {pillar.title.slice(0, 42)}
           {pillar.title.length > 42 ? '…' : ''}
+          <ArrowRight className="ml-1 inline h-4 w-4" />
+        </Link>
+      ) : isIb ? (
+        <Link href="/ib/courses" className="ec-btn-underline text-sm">
+          Free IB courses
           <ArrowRight className="ml-1 inline h-4 w-4" />
         </Link>
       ) : (

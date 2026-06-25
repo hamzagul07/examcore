@@ -1,40 +1,46 @@
 ---
 title: IB Geography HL past papers & revision guide
-description: How to revise IB Geography HL with past papers — geographic themes, core units, HL extension, and markband technique for Papers 1–3.
-date: 2026-06-23
-keywords: IB Geography HL, IB Geography past papers, IB Geography mark scheme, IB Geography HL revision, IB Geography markbands
+description: IB Geography HL: Paper 1 themes, Paper 2 core, Paper 3 global interactions, markbands, and case studies.
+date: 2026-06-25
+keywords: IB Geography HL, IB Geography HL past papers, IB Geography mark scheme, IB Geography HL revision, IB Geography markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
-IB Geography Higher Level rewards students who can apply geographic concepts to unfamiliar contexts, interpret data, and write evaluative extended responses. Past papers are the best way to practise those skills — but only if you mark against the **markbands**, not just check facts.
+Scoring highly in IB Geography HL is not about memorising more — it is about aligning your answers with what examiners reward in the **markbands**. Strategic use of [IB Geography past papers](/ib/past-papers/geography-hl) under timed conditions, honest self-marking, and targeted feedback closes the gap between a 5 and a 7.
 
-## The three papers at HL
-**Paper 1** tests geographic themes through data-response and structured questions. **Paper 2** covers the core units — global change, disparities, and resource security — with longer written responses. **Paper 3** is HL-only: global interactions and geographic skills, often with map and data interpretation. Each paper has its own command terms and markband descriptors; treat them as separate skills in revision.
+## Understanding the IB Geography HL assessment
+**Paper 1** optional themes. **Paper 2** core units. **Paper 3** (HL) global interactions. **IA** fieldwork report. Browse the full subject overview at [IB Geography HL](/ib/subjects/geography-hl).
 
-## Markbands: what separates a 5 from a 7
-IB Geography examiners place your answer in a level band using holistic descriptors. Top-band responses show **sustained analysis**, **accurate use of geographic terminology**, and **evaluation** — not a list of facts. When you self-mark, read the official descriptor aloud and ask whether your paragraph could have been written by someone in the band below.
+## Markbands and what examiners reward
+Top answers weave **named case studies** with processes, scale, and evaluated management responses.
 
-## A revision workflow that works
-1. Revise a topic on our [free IB Geography HL course](/ib/courses/geography-hl) — syllabus point by point.
-2. Attempt a past-paper-style question under timed conditions.
-3. Mark with the markbands, then upload for [criterion practice](/mark?subject=ib-geography-hl) on MarkScheme.
-4. Drill the skill you lost marks on (map skills, case-study detail, evaluation) before the next paper.
+## A past paper workflow that actually works
+Case study bank per theme; sketch maps under time; Paper 3 global interactions essays with stats.
 
-Browse [IB Geography HL past papers](/ib/past-papers/geography-hl) and [practice by topic](/ib/past-papers/geography-hl) for every syllabus point.
+## Paper-specific tips
+Define terms when asked. Nine-mark questions: process → case study → evaluate.
+
+## Common pitfalls
+Case studies without stats; ignoring Paper 3; generic evaluation.
+
+## Using MarkScheme for targeted feedback
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-geography-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+
+Our free [Geography HL course](/ib/courses/geography-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Geography SL course](/ib/courses/geography-sl) if you sit the other level.
 
 ## Frequently asked questions
 
-### How much case-study detail do I need?
-Enough named, located examples to support every major claim — statistics, dates, and place names push you into higher bands. Vague references ("a developing country") cap your mark.
+### HL Paper 3?
+Global interactions — separate revision from Paper 1 themes.
 
-### Is Paper 3 just more content?
-Paper 3 emphasises **global interactions** and **geographic skills** at HL depth. Practise interpreting unfamiliar maps and data sets, not only memorising case studies.
+### SL help?
+Paper 1/2 overlap — [Geography SL course](/ib/courses/geography-sl) reinforces cores.
 
-### Where are official IB Geography papers?
-The IBO publishes specimen papers on [ibo.org](https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/sample-exam-papers/). We organise revision by session and link to [markband guidance](/blog/ib-markbands-explained).
+### HL course?
+[Geography HL](/ib/courses/geography-hl) for full syllabus coverage.
 
 ## Bottom line
-Geography HL is won by combining accurate content with geographic thinking under exam conditions. Use past papers as timed practice, mark to the bands, and fix one skill at a time — that is how you move from knowing the syllabus to scoring at the top.
+Treat [IB Geography HL past papers](/ib/past-papers/geography-hl) as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

@@ -1,11 +1,11 @@
 ---
 title: IB Psychology SL past papers & revision guide
 description: IB Psychology SL: Paper 1 approaches, Paper 2 options, markbands, studies, and past paper revision for a 6 or 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Psychology SL, IB Psychology SL past papers, IB Psychology mark scheme, IB Psychology SL revision, IB Psychology markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Vague study descriptions; no link back to the question; confusing approaches; ne
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-psychology-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Psychology SL course](/ib/courses/psychology-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Psychology SL course](/ib/courses/psychology-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Psychology HL course](/ib/courses/psychology-hl) if you sit the other level.
 
 ## Frequently asked questions
 

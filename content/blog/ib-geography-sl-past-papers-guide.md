@@ -1,11 +1,11 @@
 ---
 title: IB Geography SL past papers & revision guide
 description: IB Geography SL: Paper 1 themes, Paper 2 core units, markbands, case studies, and past paper revision.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Geography SL, IB Geography SL past papers, IB Geography mark scheme, IB Geography SL revision, IB Geography markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Case studies without stats; confusing Paper 1 themes; no diagram when one is exp
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-geography-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Geography SL course](/ib/courses/geography-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Geography SL course](/ib/courses/geography-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Geography HL course](/ib/courses/geography-hl) if you sit the other level.
 
 ## Frequently asked questions
 

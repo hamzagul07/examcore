@@ -1,11 +1,11 @@
 ---
 title: IB Environmental Systems & Societies (ESS) past papers guide
 description: IB ESS SL: Paper 1 case study, Paper 2 essays, systems thinking, markbands, and revision — the transdisciplinary Group 3/4 course.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB ESS, IB Environmental Systems and Societies, IB ESS past papers, IB ESS mark scheme, IB ESS revision
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

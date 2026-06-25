@@ -9,9 +9,12 @@ import fs from 'fs'
 import path from 'path'
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog')
-const DATE = '2026-06-23'
+const DATE = '2026-06-25'
 const FORCE = process.argv.includes('--force')
 const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length)
+const HL_ONLY = process.argv.includes('--hl-only')
+const SL_ONLY = process.argv.includes('--sl-only')
+const COURSES_DIR = path.join(process.cwd(), 'content', 'courses')
 
 /** @typedef {{ slug: string; title: string; description: string; keywords: string[]; name: string; level: string; catalogSlug: string; courseSlug?: string; assessment: string; markbands: string; strategy: string; paperTips: string; pitfalls: string; faqs: { q: string; a: string }[]; intro?: string }} PostBrief */
 
@@ -799,6 +802,267 @@ const GROUP6_SL = [
 
 POSTS.push(...GROUP6_SL)
 
+/** HL revision guides — regenerated with free-course cross-links (SL sibling when available). */
+const HL_POSTS = [
+  {
+    slug: 'ib-biology-hl-past-papers-guide',
+    title: 'IB Biology HL past papers & revision guide',
+    description: 'How to revise IB Biology HL with past papers: Papers 1–3, AHL content, markbands, DBQs, and a workflow to reach a 6 or 7.',
+    keywords: ['IB Biology HL', 'IB Biology HL past papers', 'IB Biology mark scheme', 'IB Biology HL revision', 'IB Biology markbands'],
+    name: 'Biology', level: 'HL', catalogSlug: 'biology-hl', courseSlug: 'biology-hl',
+    assessment: '**Paper 1** is multiple choice across core and AHL. **Paper 2** mixes data-based questions with structured and extended responses. **Paper 3** covers practical skills and your option topic. The **IA** is an individual investigation.',
+    markbands: 'Extended Paper 2 responses use **markbands** — top bands need synthesis, precise terminology, and evaluation, not fact lists.',
+    strategy: 'Cycle timed papers → mark MCQs and band long answers → drill weak AHL topics before the next paper. Track command-term losses separately from content gaps.',
+    paperTips: 'For DBQs, describe trends with quoted data first, then explain biology. Paper 3 option: learn standard diagrams for your option.',
+    pitfalls: 'Ignoring AHL depth; rote recall without application; weak option revision; IA left until the final term.',
+    faqs: [
+      { q: 'HL vs SL papers?', a: 'HL adds AHL content and greater depth on Paper 2/3 — use HL papers for timing, not SL-only mocks.' },
+      { q: 'How many past papers?', a: '6–8 fully marked HL papers with error logs beats rushing through twenty.' },
+      { q: 'Free course?', a: 'Use our [Biology HL course](/ib/courses/biology-hl) for topic refresh between papers.' },
+    ],
+  },
+  {
+    slug: 'ib-chemistry-hl-past-papers-guide',
+    title: 'IB Chemistry HL past papers & revision guide',
+    description: 'IB Chemistry HL past paper strategy: Papers 1–3, AHL mechanisms, markbands, and how to push from a 5 to a 7.',
+    keywords: ['IB Chemistry HL', 'IB Chemistry HL past papers', 'IB Chemistry mark scheme', 'IB Chemistry HL revision', 'IB Chemistry markbands'],
+    name: 'Chemistry', level: 'HL', catalogSlug: 'chemistry-hl', courseSlug: 'chemistry-hl',
+    assessment: '**Paper 1** MCQ. **Paper 2** structured and extended questions including AHL organic and physical chemistry. **Paper 3** data/option. **IA** individual investigation.',
+    markbands: 'Long answers need balanced equations, state symbols, logical working, and **chemical reasoning** — not just a final number.',
+    strategy: 'Classify errors after each paper: calculation, mechanism, terminology, time. Drill one weak AHL topic before the next full paper.',
+    paperTips: 'Show working on every calculation. Organic mechanisms need unambiguous curly arrows.',
+    pitfalls: 'Unbalanced equations; missing units; skipping AHL organic practice; Data Booklet navigation under pressure.',
+    faqs: [
+      { q: 'Data Booklet?', a: 'Practise every paper with the booklet open — know where each section lives.' },
+      { q: 'SL papers for HL?', a: 'Use SL papers only for shared core topics at SL depth.' },
+      { q: 'Course support?', a: '[Chemistry HL lessons](/ib/courses/chemistry-hl) cover syllabus order including AHL.' },
+    ],
+  },
+  {
+    slug: 'ib-physics-hl-past-papers-guide',
+    title: 'IB Physics HL past papers & revision guide',
+    description: 'Revise IB Physics HL with past papers: MCQ Paper 1, structured Paper 2, option Paper 3, and markband technique for a 7.',
+    keywords: ['IB Physics HL', 'IB Physics HL past papers', 'IB Physics mark scheme', 'IB Physics HL revision', 'IB Physics markbands'],
+    name: 'Physics', level: 'HL', catalogSlug: 'physics-hl', courseSlug: 'physics-hl',
+    assessment: '**Paper 1** MCQ. **Paper 2** structured and extended across mechanics, fields, waves, and atomic physics including AHL. **Paper 3** practical-style and option questions.',
+    markbands: 'Extended answers need **physics reasoning**: diagrams, stated assumptions, SI units, and linking maths to physical meaning.',
+    strategy: 'Alternate full papers with AHL topic drills. Build your own formula sheet; practise explaining why an equation applies.',
+    paperTips: 'Draw force and circuit diagrams. Combine uncertainties correctly on Paper 3.',
+    pitfalls: 'Sign errors; scalar/vector confusion; skipping unit conversion; neglecting the option.',
+    faqs: [
+      { q: 'Paper 1 calculator?', a: 'Confirm with your teacher for your session — practise MCQs with your exam calculator.' },
+      { q: 'Show that questions?', a: 'Every algebraic step must be visible — examiners cannot infer missing logic.' },
+      { q: 'Free course?', a: '[Physics HL](/ib/courses/physics-hl) lessons align to syllabus topic codes.' },
+    ],
+  },
+  {
+    slug: 'ib-maths-aa-hl-past-papers-guide',
+    title: 'IB Maths AA HL past papers & revision guide',
+    description: 'IB Mathematics Analysis and Approaches HL: Paper 1 (no GDC), Paper 2 (GDC), Paper 3 problem-solving, and markband revision.',
+    keywords: ['IB Maths AA HL', 'IB Maths AA HL past papers', 'IB Analysis and Approaches HL', 'IB Maths AA mark scheme', 'IB Maths AA HL revision'],
+    name: 'Mathematics: Analysis and Approaches', level: 'HL', catalogSlug: 'maths-aa-hl', courseSlug: 'maths-aa-hl',
+    assessment: '**Paper 1** (no calculator) tests algebraic fluency and proof-style reasoning. **Paper 2** (GDC) emphasises modelling and longer problems. **Paper 3** (HL) has two extended synthesis questions. **IA** mathematical exploration.',
+    markbands: 'IB maths rewards communication and logical organisation — show reasoning even when the answer seems obvious.',
+    strategy: 'Alternate P1 and P2 practice. For Paper 3, work every available HL Paper 3 slowly with documented thinking.',
+    paperTips: 'Paper 1: exact forms and domain restrictions. Paper 2: note GDC inputs; round only at the end.',
+    pitfalls: 'Calculator on Paper 1; weak Paper 3 communication; IA dragging down strong exams.',
+    faqs: [
+      { q: 'AA HL vs AI HL?', a: 'AA is algebra/proof-heavy; AI is modelling-heavy — choose by strength and degree requirements.' },
+      { q: 'How many papers?', a: '6–8 fully marked papers with error logs is a solid target.' },
+      { q: 'Course?', a: '[Maths AA HL course](/ib/courses/maths-aa-hl) for topic-by-topic refresh.' },
+    ],
+  },
+  {
+    slug: 'ib-economics-hl-past-papers-guide',
+    title: 'IB Economics HL past papers & revision guide',
+    description: 'IB Economics HL: Paper 1 essays, Paper 2 data response, Paper 3 policy/quantitative — markbands and revision workflow.',
+    keywords: ['IB Economics HL', 'IB Economics HL past papers', 'IB Economics mark scheme', 'IB Economics HL revision', 'IB Economics markbands'],
+    name: 'Economics', level: 'HL', catalogSlug: 'economics-hl', courseSlug: 'economics-hl',
+    assessment: '**Paper 1** extended essays. **Paper 2** data response from an extract. **Paper 3** (HL) policy and quantitative questions. **IA** commentaries.',
+    markbands: 'Essays need definitions, diagrams, analysis chains, and **evaluation** with a justified judgement.',
+    strategy: 'Essay plan → two diagram chains → evaluation paragraph. Paper 3: practise quantitative drills separately from essays.',
+    paperTips: 'Draw labelled diagrams and explain them in words. Paper 2: quote the extract for application marks.',
+    pitfalls: 'Descriptive essays; ignoring Paper 3; weak IA commentaries; no evaluation on part (d).',
+    faqs: [
+      { q: 'Paper 3 content?', a: 'HL extensions — do not skip quantitative policy practice.' },
+      { q: 'SL vs HL?', a: 'SL has no Paper 3 — HL students need HL-specific papers for timing.' },
+      { q: 'Free course?', a: '[Economics HL](/ib/courses/economics-hl) plus [Economics SL](/ib/courses/economics-sl) for shared micro/macro refresh.' },
+    ],
+  },
+  {
+    slug: 'ib-business-management-hl-past-papers-guide',
+    title: 'IB Business Management HL past papers & revision guide',
+    description: 'IB Business Management HL: Paper 1 essays, Paper 2 case study, toolkit application, and markband technique.',
+    keywords: ['IB Business Management HL', 'IB Business HL past papers', 'IB Business Management mark scheme', 'IB BM HL revision', 'IB Business markbands'],
+    name: 'Business Management', level: 'HL', catalogSlug: 'business-management-hl', courseSlug: 'business-management-hl',
+    assessment: '**Paper 1** (HL) is essay-based on the toolkit. **Paper 2** uses an unseen stimulus with quantitative and qualitative prompts.',
+    markbands: 'Top bands require **application to the case** — tool → evidence → implication → limitation.',
+    strategy: 'Learn toolkit by unit; practise "tool → case evidence → so what → limitation" chains under time.',
+    paperTips: 'Paper 2: show ratio calculations with units. End with a justified recommendation.',
+    pitfalls: 'Generic SWOT lists; no named stakeholder; confusing HL Paper 1 with SL case Paper 1.',
+    faqs: [
+      { q: 'HL vs SL Paper 1?', a: 'HL Paper 1 is essays; SL Paper 1 is pre-seen case structured questions.' },
+      { q: 'Toolkit depth?', a: 'Finance, HR, marketing, and ops tools all appear — rotate practice.' },
+      { q: 'Courses?', a: '[Business Management HL](/ib/courses/business-management-hl) and [SL](/ib/courses/business-management-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-psychology-hl-past-papers-guide',
+    title: 'IB Psychology HL past papers & revision guide',
+    description: 'IB Psychology HL: Paper 1 approaches, Paper 2 options, Paper 3 qualitative research, markbands, and study technique.',
+    keywords: ['IB Psychology HL', 'IB Psychology HL past papers', 'IB Psychology mark scheme', 'IB Psychology HL revision', 'IB Psychology markbands'],
+    name: 'Psychology', level: 'HL', catalogSlug: 'psychology-hl', courseSlug: 'psychology-hl',
+    assessment: '**Paper 1** biological, cognitive, sociocultural approaches. **Paper 2** two options. **Paper 3** (HL) qualitative research methods and analysis.',
+    markbands: 'Essays need **named studies** with method, findings, and explicit link to the question.',
+    strategy: 'Study sheets per study; timed SAQs; essay plan with two studies + counter + conclusion. Paper 3: practise qualitative analysis prompts.',
+    paperTips: 'Match command terms — discuss needs balance; evaluate needs judgement.',
+    pitfalls: 'Vague studies; neglecting Paper 3; confusing HL qualitative content with SL-only prep.',
+    faqs: [
+      { q: 'How many studies per essay?', a: 'Two developed studies plus evaluation usually beats four shallow mentions.' },
+      { q: 'Paper 3 for SL?', a: 'Not examined at SL — HL must practise Paper 3 separately.' },
+      { q: 'Courses?', a: '[Psychology HL](/ib/courses/psychology-hl) and [SL](/ib/courses/psychology-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-history-hl-past-papers-guide',
+    title: 'IB History HL past papers & revision guide',
+    description: 'IB History HL: Paper 1 sources, Paper 2 essays, Paper 3 regional depth, markbands, and revision workflow.',
+    keywords: ['IB History HL', 'IB History HL past papers', 'IB History mark scheme', 'IB History HL revision', 'IB History markbands'],
+    name: 'History', level: 'HL', catalogSlug: 'history-hl', courseSlug: 'history-hl',
+    assessment: '**Paper 1** source-based prescribed subject. **Paper 2** world history essays. **Paper 3** (HL) regional depth study. **IA** historical investigation.',
+    markbands: 'Essays need argument and evidence, not narrative. Paper 1 rewards OPVL applied to the question.',
+    strategy: 'Paper 1 question-type drills. Paper 2/3: essay plans with evidence banks (dates, names, stats).',
+    paperTips: 'Paper 3: regional depth needs specific evidence, not generic world history.',
+    pitfalls: 'Storytelling essays; only one Paper 2 topic revised; weak Paper 1 synthesis.',
+    faqs: [
+      { q: 'Paper 3 region?', a: 'Revise the region your school entered — check with your teacher.' },
+      { q: 'SL papers?', a: 'Paper 1/2 overlap; ignore SL-only timing for Paper 3.' },
+      { q: 'Course?', a: '[History HL](/ib/courses/history-hl) and [SL](/ib/courses/history-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-geography-hl-past-papers-guide',
+    title: 'IB Geography HL past papers & revision guide',
+    description: 'IB Geography HL: Paper 1 themes, Paper 2 core, Paper 3 global interactions, markbands, and case studies.',
+    keywords: ['IB Geography HL', 'IB Geography HL past papers', 'IB Geography mark scheme', 'IB Geography HL revision', 'IB Geography markbands'],
+    name: 'Geography', level: 'HL', catalogSlug: 'geography-hl', courseSlug: 'geography-hl',
+    assessment: '**Paper 1** optional themes. **Paper 2** core units. **Paper 3** (HL) global interactions. **IA** fieldwork report.',
+    markbands: 'Top answers weave **named case studies** with processes, scale, and evaluated management responses.',
+    strategy: 'Case study bank per theme; sketch maps under time; Paper 3 global interactions essays with stats.',
+    paperTips: 'Define terms when asked. Nine-mark questions: process → case study → evaluate.',
+    pitfalls: 'Case studies without stats; ignoring Paper 3; generic evaluation.',
+    faqs: [
+      { q: 'HL Paper 3?', a: 'Global interactions — separate revision from Paper 1 themes.' },
+      { q: 'SL help?', a: 'Paper 1/2 overlap — [Geography SL course](/ib/courses/geography-sl) reinforces cores.' },
+      { q: 'HL course?', a: '[Geography HL](/ib/courses/geography-hl) for full syllabus coverage.' },
+    ],
+  },
+  {
+    slug: 'ib-english-a-lang-lit-hl-past-papers-guide',
+    title: 'IB English A Language & Literature HL revision guide',
+    description: 'IB English A Language and Literature HL: Paper 1 non-literary analysis, Paper 2 comparative essay, HL Essay, criteria, and technique.',
+    keywords: ['IB English A Language and Literature HL', 'IB English Lang Lit HL', 'IB English Paper 1', 'IB English HL revision', 'IB English markbands'],
+    name: 'English A: Language and Literature', level: 'HL', catalogSlug: 'english-a-lang-lit-hl', courseSlug: 'english-a-lang-lit-hl',
+    assessment: '**Paper 1** analyses unseen non-literary texts. **Paper 2** compares two literary works. **HL Essay** (1,200–1,500 words) on a literary work. **Individual Oral** links a global issue to works studied.',
+    markbands: 'Criteria reward interpretation, analysis of authorial choices, coherence, and language — HL expects greater depth and range than SL.',
+    strategy: 'Paper 1: technique → effect → purpose chains. Paper 2: balance both texts each paragraph. HL Essay: one sharp thesis, no plot summary.',
+    paperTips: 'Avoid feature spotting. IO: rehearse with the same note policy as the exam.',
+    pitfalls: 'Plot summary; HL Essay drafted late; IO global issue too vague.',
+    faqs: [
+      { q: 'HL vs SL?', a: 'HL adds HL Essay and longer IO — criteria align but expectations are higher.' },
+      { q: 'Lang & Lit vs Literature?', a: 'Lang & Lit Paper 1 is non-literary; Literature analyses unseen literary extracts.' },
+      { q: 'Course?', a: '[Lang & Lit HL](/ib/courses/english-a-lang-lit-hl) and [SL](/ib/courses/english-a-lang-lit-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-english-a-literature-hl-past-papers-guide',
+    title: 'IB English A Literature HL revision guide',
+    description: 'IB English A Literature HL: guided literary analysis Paper 1, comparative Paper 2, HL Essay, assessment criteria, and workflow.',
+    keywords: ['IB English Literature HL', 'IB English A Literature HL', 'IB Literature Paper 1', 'IB English HL revision', 'IB Literature markbands'],
+    name: 'English A: Literature', level: 'HL', catalogSlug: 'english-a-literature-hl', courseSlug: 'english-a-literature-hl',
+    assessment: '**Paper 1** guided analysis of unseen poetry or prose. **Paper 2** comparative essay on studied works. **HL Essay** on a literary line of inquiry.',
+    markbands: 'Sustained **literary analysis** — imagery, structure, voice — tied to an arguable thesis.',
+    strategy: 'Paper 1: tension + technique in the opening paragraph. Paper 2: alternate texts; answer the whole prompt.',
+    paperTips: 'Close read line by line; context only when it serves interpretation.',
+    pitfalls: 'Paraphrase; memorised essays; HL Essay plot retell.',
+    faqs: [
+      { q: 'Poetry or prose Paper 1?', a: 'Either may appear — practise both.' },
+      { q: 'HL Essay length?', a: '1,200–1,500 words — start after works are well understood.' },
+      { q: 'Course?', a: '[Literature HL](/ib/courses/english-a-literature-hl) and [SL](/ib/courses/english-a-literature-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-spanish-b-hl-past-papers-guide',
+    title: 'IB Spanish B HL past papers & revision guide',
+    description: 'IB Spanish B HL: Paper 1 writing, Paper 2 receptive skills, themes, rubrics, and revision for a 6 or 7.',
+    keywords: ['IB Spanish B HL', 'IB Spanish B HL past papers', 'IB Spanish B mark scheme', 'IB Spanish HL revision', 'IB Spanish B rubric'],
+    name: 'Spanish B', level: 'HL', catalogSlug: 'spanish-b-hl', courseSlug: 'spanish-b-hl',
+    assessment: '**Paper 1** productive writing across text types and themes (longer at HL). **Paper 2** reading and listening with Spanish responses.',
+    markbands: 'Rubrics reward range, accuracy, organisation, and task fulfilment — idiomatic HL range with control beats ambitious errors.',
+    strategy: 'Theme vocabulary + writing templates per text type. Listening daily without transcripts.',
+    paperTips: 'Address every bullet. Proofread accents and agreement. HL expects wider register range.',
+    pitfalls: 'Wrong register; listening only with transcripts; ignoring word limits.',
+    faqs: [
+      { q: 'HL vs SL writing?', a: 'HL tasks are longer with wider expected range — use HL rubrics when self-marking.' },
+      { q: 'Dictionary?', a: 'Not permitted in Papers 1–2 — vocabulary must be pre-learned.' },
+      { q: 'Course?', a: '[Spanish B HL](/ib/courses/spanish-b-hl) and [SL](/ib/courses/spanish-b-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-french-b-hl-past-papers-guide',
+    title: 'IB French B HL past papers & revision guide',
+    description: 'IB French B HL: Paper 1 writing, Paper 2 receptive skills, theme vocabulary, and criterion-based revision.',
+    keywords: ['IB French B HL', 'IB French B HL past papers', 'IB French B mark scheme', 'IB French HL revision', 'IB French B rubric'],
+    name: 'French B', level: 'HL', catalogSlug: 'french-b-hl', courseSlug: 'french-b-hl',
+    assessment: '**Paper 1** productive writing (HL length and range). **Paper 2** reading and listening comprehension.',
+    markbands: 'Communication first, then range and accuracy — clear organisation beats risky grammar at HL.',
+    strategy: 'Phrase banks per theme; weekly timed writes marked against official criteria.',
+    paperTips: 'Connectors (cependant, en revanche). HL: justify opinions with developed paragraphs.',
+    pitfalls: 'False friends; one tense only; neglecting listening under exam audio conditions.',
+    faqs: [
+      { q: 'HL length?', a: 'Longer productive tasks than SL — practise to time with HL prompts.' },
+      { q: 'IO prep?', a: 'Photo description reinforces theme vocabulary for Paper 1.' },
+      { q: 'Course?', a: '[French B HL](/ib/courses/french-b-hl) and [SL](/ib/courses/french-b-sl).' },
+    ],
+  },
+  {
+    slug: 'ib-computer-science-hl-past-papers-guide',
+    title: 'IB Computer Science HL past papers & revision guide',
+    description: 'IB Computer Science HL: Paper 1 theory, Paper 2 case study, Paper 3 options, pseudocode, and workflow.',
+    keywords: ['IB Computer Science HL', 'IB CS HL past papers', 'IB Computer Science mark scheme', 'IB CS HL revision', 'IB Computer Science markbands'],
+    name: 'Computer Science', level: 'HL', catalogSlug: 'computer-science-hl', courseSlug: 'computer-science-hl',
+    assessment: '**Paper 1** systems, networks, databases, computational thinking. **Paper 2** pre-released **case study**. **Paper 3** (HL) chosen option (e.g. OOP, databases). **IA** solution product.',
+    markbands: 'Extended answers need precise **technical vocabulary** and unambiguous pseudocode logic.',
+    strategy: 'Paper 1 topic checklists; annotate case study on release; Paper 3 option past questions slowly.',
+    paperTips: 'Trace tables for algorithms. Case study: justify recommendations with trade-offs.',
+    pitfalls: 'Vague answers; ignoring Paper 3 option; feature creep on IA.',
+    faqs: [
+      { q: 'Paper 3 options?', a: 'HL only — master your school\'s chosen option with past Paper 3s.' },
+      { q: 'SL overlap?', a: 'Papers 1–2 overlap — [CS SL course](/ib/courses/computer-science-sl) helps core revision.' },
+      { q: 'HL course?', a: '[Computer Science HL](/ib/courses/computer-science-hl) for theory topics.' },
+    ],
+  },
+  {
+    slug: 'ib-visual-arts-hl-past-papers-guide',
+    title: 'IB Visual Arts HL portfolio & assessment guide',
+    description: 'IB Visual Arts HL: comparative study, process portfolio, exhibition — criteria and top-band tips.',
+    keywords: ['IB Visual Arts HL', 'IB Visual Arts HL portfolio', 'IB Visual Arts comparative study', 'IB Visual Arts exhibition', 'IB Visual Arts markbands'],
+    name: 'Visual Arts', level: 'HL', catalogSlug: 'visual-arts-hl', courseSlug: 'visual-arts-hl',
+    assessment: '**Comparative study**, **process portfolio**, and **exhibition** — HL expects greater breadth and investigation depth than SL.',
+    markbands: 'Criteria reward formal analysis, cultural context, and coherent curatorial intent.',
+    strategy: 'Weekly process documentation; comparative study with genuine formal contrast; rationale before final selection.',
+    paperTips: 'Art vocabulary (composition, materiality). Compare technique and meaning, not biography timelines.',
+    pitfalls: 'Description without analysis; exhibition unrelated to stated theme.',
+    faqs: [
+      { q: 'HL vs SL?', a: 'HL expects more investigation breadth — check component weightings.' },
+      { q: 'Digital work?', a: 'Allowed if your programme supports submission requirements.' },
+      { q: 'Course?', a: '[Visual Arts HL](/ib/courses/visual-arts-hl) and [SL](/ib/courses/visual-arts-sl).' },
+    ],
+  },
+]
+
+POSTS.push(...HL_POSTS)
+
 function courseLinksForIa(b) {
   const links = []
   if (b.courseSlug?.endsWith('-hl')) {
@@ -872,12 +1136,49 @@ function markPath(slug) {
   return slug ? `/mark?subject=ib-${slug}` : '/mark'
 }
 
+function ibCourseExists(slug) {
+  if (!slug) return false
+  const dir = path.join(COURSES_DIR, `ib-${slug}`)
+  if (!fs.existsSync(dir)) return false
+  return fs.readdirSync(dir).some((f) => f.endsWith('.json'))
+}
+
+function siblingCourseSlug(slug) {
+  if (!slug) return null
+  if (slug.endsWith('-hl')) return slug.replace(/-hl$/, '-sl')
+  if (slug.endsWith('-sl')) return slug.replace(/-sl$/, '-hl')
+  return null
+}
+
+function renderCourseLinkParagraph(b) {
+  const levelLabel = b.level ? ` ${b.level}` : ''
+  const primarySlug = b.courseSlug ?? b.catalogSlug
+  if (!primarySlug) return ''
+
+  const lines = []
+  if (ibCourseExists(primarySlug)) {
+    lines.push(
+      `Our free [${b.name}${levelLabel} course](${coursePath(primarySlug)}) links every syllabus topic to lessons, flashcards, and practice tasks.`
+    )
+  }
+
+  const sibling = siblingCourseSlug(primarySlug)
+  if (sibling && ibCourseExists(sibling)) {
+    const siblingLevel = sibling.endsWith('-hl') ? ' HL' : ' SL'
+    lines.push(
+      `Also see the [${b.name}${siblingLevel} course](${coursePath(sibling)}) if you sit the other level.`
+    )
+  }
+
+  return lines.join(' ')
+}
+
 function renderPost(b) {
   const pp = pastPapersPath(b.catalogSlug)
   const sub = subjectPath(b.catalogSlug)
-  const course = coursePath(b.courseSlug ?? b.catalogSlug)
   const mark = markPath(b.courseSlug ?? b.catalogSlug)
   const levelLabel = b.level ? ` ${b.level}` : ''
+  const courseLinks = renderCourseLinkParagraph(b)
   const intro =
     b.intro ??
     `Scoring highly in IB ${b.name}${levelLabel} is not about memorising more — it is about aligning your answers with what examiners reward in the **markbands**. Strategic use of [IB ${b.name} past papers](${pp}) under timed conditions, honest self-marking, and targeted feedback closes the gap between a 5 and a 7.`
@@ -887,7 +1188,7 @@ function renderPost(b) {
     .join('\n\n')
 
   const markSection = b.catalogSlug
-    ? `## Using MarkScheme for targeted feedback\nSelf-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](${mark}) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.\n\nOur free [${b.name}${levelLabel} course](${course}) links every syllabus topic to lessons, flashcards, and practice tasks.`
+    ? `## Using MarkScheme for targeted feedback\nSelf-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](${mark}) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.\n\n${courseLinks}`
     : `## Using MarkScheme across the diploma\nMarkScheme hosts [free IB courses](${coursePath('')}), [past paper archives](${pp}), and [criterion practice marking](${markPath('')}) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.`
 
   return `---
@@ -934,6 +1235,13 @@ let skipped = 0
 
 function shouldWrite(slug) {
   if (ONLY && slug !== ONLY) return false
+  if (HL_ONLY && !slug.endsWith('-hl-past-papers-guide')) return false
+  if (SL_ONLY) {
+    const isSlPast =
+      slug.endsWith('-sl-past-papers-guide') ||
+      slug === 'ib-environmental-systems-and-societies-past-papers-guide'
+    if (!isSlPast) return false
+  }
   return true
 }
 

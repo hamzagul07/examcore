@@ -1,11 +1,11 @@
 ---
 title: IB Maths AI HL past papers & revision guide
 description: IB Mathematics Applications and Interpretation HL: modelling papers, GDC mastery, Paper 3 problem-solving, and markband revision for a 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Maths AI HL, IB Maths AI past papers, IB Applications and Interpretation HL, IB Maths AI mark scheme, IB Maths AI HL revision
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Treating AI HL like AA HL (symbolic manipulation without context); unlabeled gra
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-maths-ai-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Mathematics: Applications and Interpretation HL course](/ib/courses/maths-ai-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Mathematics: Applications and Interpretation HL course](/ib/courses/maths-ai-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Mathematics: Applications and Interpretation SL course](/ib/courses/maths-ai-sl) if you sit the other level.
 
 ## Frequently asked questions
 

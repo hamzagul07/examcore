@@ -1,11 +1,11 @@
 ---
 title: IB Maths AI SL past papers & revision guide
 description: IB Maths Applications and Interpretation SL past papers: GDC-based Papers 1–2, modelling markbands, and revision workflow.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Maths AI SL, IB Maths AI SL past papers, IB Applications and Interpretation SL, IB Maths AI revision, IB Maths AI markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Calculator syntax errors; copying numbers wrong from the stem; answering without
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-maths-ai-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Mathematics: Applications and Interpretation SL course](/ib/courses/maths-ai-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Mathematics: Applications and Interpretation SL course](/ib/courses/maths-ai-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Mathematics: Applications and Interpretation HL course](/ib/courses/maths-ai-hl) if you sit the other level.
 
 ## Frequently asked questions
 

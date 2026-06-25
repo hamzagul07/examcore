@@ -1,11 +1,11 @@
 ---
 title: IB Spanish B SL past papers & revision guide
 description: IB Spanish B SL: Paper 1 writing, Paper 2 reading and listening, themes, rubrics, and revision for a 6 or 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Spanish B SL, IB Spanish B SL past papers, IB Spanish B mark scheme, IB Spanish SL revision, IB Spanish B rubric
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Wrong register; answering in English where Spanish required; ignoring word limit
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-spanish-b-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Spanish B SL course](/ib/courses/spanish-b-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Spanish B SL course](/ib/courses/spanish-b-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Spanish B HL course](/ib/courses/spanish-b-hl) if you sit the other level.
 
 ## Frequently asked questions
 

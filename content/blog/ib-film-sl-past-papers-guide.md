@@ -1,11 +1,11 @@
 ---
 title: IB Film SL assessment & portfolio guide
 description: IB Film SL: textual analysis, comparative study, portfolio — film language, criteria, and workflow.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Film SL, IB Film SL portfolio, IB Film textual analysis, IB Film comparative study, IB Film criteria
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Ignoring sound; two separate reviews instead of comparison; weak reflection on e
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-film-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Film SL course](/ib/courses/film-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Film SL course](/ib/courses/film-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Film HL course](/ib/courses/film-hl) if you sit the other level.
 
 ## Frequently asked questions
 

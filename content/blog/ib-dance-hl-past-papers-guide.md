@@ -1,11 +1,11 @@
 ---
 title: IB Dance HL assessment & portfolio guide
 description: IB Dance HL: composition, dance investigation, performance — choreography, analysis, and criterion-based preparation.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Dance HL, IB Dance portfolio, IB Dance composition, IB Dance investigation, IB Dance markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Investigation without movement analysis; composition with no structure; performa
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-dance-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Dance HL course](/ib/courses/dance-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Dance HL course](/ib/courses/dance-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Dance SL course](/ib/courses/dance-sl) if you sit the other level.
 
 ## Frequently asked questions
 

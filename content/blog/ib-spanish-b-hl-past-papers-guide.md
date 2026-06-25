@@ -1,37 +1,46 @@
 ---
 title: IB Spanish B HL past papers & revision guide
-description: How to revise IB Spanish B HL — the five themes, Paper 1 writing, Paper 2 receptive skills, HL literature extension, and Individual Oral preparation.
-date: 2026-06-23
-keywords: IB Spanish B HL, IB Spanish past papers, IB Spanish B revision, IB Spanish HL oral, IB Language B
+description: IB Spanish B HL: Paper 1 writing, Paper 2 receptive skills, themes, rubrics, and revision for a 6 or 7.
+date: 2026-06-25
+keywords: IB Spanish B HL, IB Spanish B HL past papers, IB Spanish B mark scheme, IB Spanish HL revision, IB Spanish B rubric
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
-IB Spanish B Higher Level tests productive writing, receptive reading and listening, an HL literature extension, and an Individual Oral — all organised around **five prescribed themes**. Past papers show the formats; markbands show what examiners reward at the top level.
+Scoring highly in IB Spanish B HL is not about memorising more — it is about aligning your answers with what examiners reward in the **markbands**. Strategic use of [IB Spanish B past papers](/ib/past-papers/spanish-b-hl) under timed conditions, honest self-marking, and targeted feedback closes the gap between a 5 and a 7.
 
-## Assessment at a glance
-**Paper 1** is productive writing — emails, blogs, articles, or speeches tied to a theme. **Paper 2** is receptive: reading comprehension plus listening (in the exam hall). **HL** adds literature-based tasks. The **Individual Oral** is a presentation plus conversation on a visual stimulus and a literary extract. Each component has criterion descriptors — study them before you drill papers.
+## Understanding the IB Spanish B HL assessment
+**Paper 1** productive writing across text types and themes (longer at HL). **Paper 2** reading and listening with Spanish responses. Browse the full subject overview at [IB Spanish B HL](/ib/subjects/spanish-b-hl).
 
-## Themes to master
-Identities, experiences, human ingenuity, social organisation, and sharing the planet. Build theme banks: vocabulary, idioms, connectors, and cultural references you can deploy under pressure. Our [free Spanish B HL course](/ib/courses/spanish-b-hl) walks through each theme with writing frames and oral prompts.
+## Markbands and what examiners reward
+Rubrics reward range, accuracy, organisation, and task fulfilment — idiomatic HL range with control beats ambitious errors.
 
-## Practise with feedback
-Write a Paper 1 response under timed conditions, then check against the criteria for **language**, **message**, and **format**. Upload for [criterion marking](/mark?subject=ib-spanish-b-hl) to see band-by-band feedback. Repeat for receptive papers by explaining *why* each answer option is wrong — that builds exam technique.
+## A past paper workflow that actually works
+Theme vocabulary + writing templates per text type. Listening daily without transcripts.
 
-Find [IB Spanish B HL past papers](/ib/past-papers/spanish-b-hl) and topic practice on MarkScheme.
+## Paper-specific tips
+Address every bullet. Proofread accents and agreement. HL expects wider register range.
+
+## Common pitfalls
+Wrong register; listening only with transcripts; ignoring word limits.
+
+## Using MarkScheme for targeted feedback
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-spanish-b-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+
+Our free [Spanish B HL course](/ib/courses/spanish-b-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Spanish B SL course](/ib/courses/spanish-b-sl) if you sit the other level.
 
 ## Frequently asked questions
 
-### How much should I write in Paper 1?
-Hit the word range in the task instructions. Under-length answers cap your message mark; over-length risks repetition and errors. Plan for two minutes, then write.
+### HL vs SL writing?
+HL tasks are longer with wider expected range — use HL rubrics when self-marking.
 
-### Does HL literature need full literary analysis?
-Yes — HL tasks expect you to discuss authorial choices, context, and themes using Spanish literary terminology, not plot summary alone.
+### Dictionary?
+Not permitted in Papers 1–2 — vocabulary must be pre-learned.
 
-### How do I prepare for the Individual Oral?
-Practise a two-minute presentation with a clear structure (intro → three points → conclusion), then anticipate follow-up questions. Record yourself and mark against the oral criteria.
+### Course?
+[Spanish B HL](/ib/courses/spanish-b-hl) and [SL](/ib/courses/spanish-b-sl).
 
 ## Bottom line
-Spanish B HL is a skills exam dressed in thematic content. Theme vocabulary + timed writing + honest criterion marking beats passive reading of past papers every time.
+Treat [IB Spanish B HL past papers](/ib/past-papers/spanish-b-hl) as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

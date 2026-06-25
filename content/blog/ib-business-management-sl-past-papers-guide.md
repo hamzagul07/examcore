@@ -1,11 +1,11 @@
 ---
 title: IB Business Management SL past papers & revision guide
 description: IB Business Management SL past papers: case-study Paper 1, structured Paper 2, toolkit application, and markband essay technique.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Business Management SL, IB Business SL past papers, IB Business Management mark scheme, IB BM SL revision, IB Business markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Generic SWOT lists; no stakeholder named; forgetting to recommend a justified co
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-business-management-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Business Management SL course](/ib/courses/business-management-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Business Management SL course](/ib/courses/business-management-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Business Management HL course](/ib/courses/business-management-hl) if you sit the other level.
 
 ## Frequently asked questions
 

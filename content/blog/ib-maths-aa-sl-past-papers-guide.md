@@ -1,11 +1,11 @@
 ---
 title: IB Maths AA SL past papers & revision guide
 description: IB Mathematics Analysis and Approaches SL: Paper 1 (no GDC) and Paper 2 (GDC) past paper workflow, markbands, and grade 7 strategies.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Maths AA SL, IB Maths AA SL past papers, IB Analysis and Approaches SL, IB Maths AA mark scheme, IB Maths SL revision
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Calculator on Paper 1 (disqualifying); messy communication losing method marks; 
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-maths-aa-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Mathematics: Analysis and Approaches SL course](/ib/courses/maths-aa-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Mathematics: Analysis and Approaches SL course](/ib/courses/maths-aa-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Mathematics: Analysis and Approaches HL course](/ib/courses/maths-aa-hl) if you sit the other level.
 
 ## Frequently asked questions
 

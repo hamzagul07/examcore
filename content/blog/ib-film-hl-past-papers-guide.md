@@ -1,11 +1,11 @@
 ---
 title: IB Film HL assessment & portfolio guide
 description: IB Film HL: textual analysis, comparative study, portfolio, and collaborative project — film language, criteria, and workflow.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Film HL, IB Film portfolio, IB Film textual analysis, IB Film comparative study, IB Film markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Plot summary; ignoring sound design; comparative study as two separate reviews; 
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-film-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Film HL course](/ib/courses/film-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Film HL course](/ib/courses/film-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Film SL course](/ib/courses/film-sl) if you sit the other level.
 
 ## Frequently asked questions
 

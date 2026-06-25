@@ -1,11 +1,11 @@
 ---
 title: IB Visual Arts SL portfolio & assessment guide
 description: IB Visual Arts SL: comparative study, process portfolio, exhibition criteria, and how to hit top markbands.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Visual Arts SL, IB Visual Arts SL portfolio, IB Visual Arts comparative study, IB Visual Arts exhibition, IB Visual Arts markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Description without analysis; process portfolio as finals-only gallery; exhibiti
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-visual-arts-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Visual Arts SL course](/ib/courses/visual-arts-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Visual Arts SL course](/ib/courses/visual-arts-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Visual Arts HL course](/ib/courses/visual-arts-hl) if you sit the other level.
 
 ## Frequently asked questions
 

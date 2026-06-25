@@ -181,7 +181,7 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
     {
       question: 'Are there free IB courses on MarkScheme?',
       answer:
-        'Yes — free topic-by-topic IB Diploma courses for TOK, Extended Essay, CAS, sciences, maths, and Group 6 arts, with criterion practice marking on every lesson.',
+        'Yes — free topic-by-topic IB Diploma courses for all HL and SL subjects with lessons, including sciences, maths, humanities, languages, Core, and Group 6 arts — with criterion practice marking on every lesson.',
       href: '/ib/courses',
     },
     {

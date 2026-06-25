@@ -1,11 +1,11 @@
 ---
 title: IB Theatre HL assessment & portfolio guide
 description: IB Theatre HL: solo theatre piece, director's notebook, research presentation, collaborative project — criteria and revision workflow.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Theatre HL, IB Theatre portfolio, IB Theatre director notebook, IB Theatre solo piece, IB Theatre markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Notebook as diary without analysis; research presentation as biography; solo pie
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-theatre-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Theatre HL course](/ib/courses/theatre-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Theatre HL course](/ib/courses/theatre-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Theatre SL course](/ib/courses/theatre-sl) if you sit the other level.
 
 ## Frequently asked questions
 

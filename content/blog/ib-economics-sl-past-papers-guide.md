@@ -1,11 +1,11 @@
 ---
 title: IB Economics SL past papers & revision guide
 description: IB Economics SL: Paper 1 essays and Paper 2 data response — markbands, diagrams, evaluation, and past paper workflow.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Economics SL, IB Economics SL past papers, IB Economics mark scheme, IB Economics SL revision, IB Economics markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Descriptive essays without evaluation; diagrams not linked to the question; igno
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-economics-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Economics SL course](/ib/courses/economics-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Economics SL course](/ib/courses/economics-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Economics HL course](/ib/courses/economics-hl) if you sit the other level.
 
 ## Frequently asked questions
 

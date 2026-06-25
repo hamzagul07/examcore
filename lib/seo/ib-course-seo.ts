@@ -88,6 +88,7 @@ export function buildIbCoursesIndexSeo(courseCount: number, lessonCount: number)
       'free IB course',
       'IB TOK course',
       'IB Extended Essay guide',
+      'IB Biology SL notes',
       'IB Biology HL notes',
       'IB Diploma revision free',
       'IB criterion marking',

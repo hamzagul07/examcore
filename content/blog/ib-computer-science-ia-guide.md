@@ -1,11 +1,11 @@
 ---
 title: IB Computer Science IA guide — solution, criteria & documentation
 description: IB Computer Science Internal Assessment: client problem, design, development, testing, evaluation, and criterion-by-criterion advice.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Computer Science IA, IB CS IA, Computer Science IA criteria, IB CS solution, Computer Science IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

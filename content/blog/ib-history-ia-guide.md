@@ -1,11 +1,11 @@
 ---
 title: IB History IA guide — historical investigation (2,200 words) & criteria
 description: IB History Internal Assessment: research question, sources, 2,200-word investigation structure, criteria A–D, and grade 7 advice.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB History IA, IB Historical Investigation, History IA 2200 words, IB History IA criteria, History IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

@@ -29,7 +29,7 @@ Memorising without application; ignoring units on graphs; writing narrative inst
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-biology-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Biology SL course](/ib/courses/biology-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Biology HL course](/ib/courses/biology-hl) if you sit the other level.
+Our free [Biology SL course](/ib/courses/biology-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Biology HL course](/ib/courses/biology-hl) if you sit the other level. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/biology-sl#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

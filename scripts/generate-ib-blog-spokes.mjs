@@ -4,6 +4,7 @@
  *
  *   node scripts/generate-ib-blog-spokes.mjs
  *   node scripts/generate-ib-blog-spokes.mjs --force --group6
+ *   node scripts/generate-ib-blog-spokes.mjs --force --subjects-only
  */
 import fs from 'fs'
 import path from 'path'
@@ -15,9 +16,16 @@ const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.
 const HL_ONLY = process.argv.includes('--hl-only')
 const SL_ONLY = process.argv.includes('--sl-only')
 const GROUP6_ONLY = process.argv.includes('--group6')
+const SUBJECTS_ONLY = process.argv.includes('--subjects-only')
 const COURSES_DIR = path.join(process.cwd(), 'content', 'courses')
 
 const GROUP6_CATALOG = /^(dance|theatre|music|film|visual-arts)(-hl|-sl)?$/
+
+/** Past-papers / subjects URL slug (may differ from course folder slug). */
+function pastPapersCatalogSlug(slug) {
+  if (slug === 'environmental-systems-and-societies-sl') return 'environmental-systems-and-societies'
+  return slug
+}
 
 /** @typedef {{ slug: string; title: string; description: string; keywords: string[]; name: string; level: string; catalogSlug: string; courseSlug?: string; assessment: string; markbands: string; strategy: string; paperTips: string; pitfalls: string; faqs: { q: string; a: string }[]; intro?: string }} PostBrief */
 
@@ -305,7 +313,7 @@ const POSTS = [
     title: 'IB Environmental Systems & Societies (ESS) past papers guide',
     description: 'IB ESS SL: Paper 1 case study, Paper 2 essays, systems thinking, markbands, and revision — the transdisciplinary Group 3/4 course.',
     keywords: ['IB ESS', 'IB Environmental Systems and Societies', 'IB ESS past papers', 'IB ESS mark scheme', 'IB ESS revision'],
-    name: 'Environmental Systems and Societies', level: 'SL', catalogSlug: 'environmental-systems-and-societies-sl', courseSlug: 'environmental-systems-and-societies-sl',
+    name: 'Environmental Systems and Societies', level: 'SL', catalogSlug: 'environmental-systems-and-societies', courseSlug: 'environmental-systems-and-societies-sl',
     assessment: 'ESS is **SL only**. **Paper 1** uses a resource booklet (case study) with structured questions. **Paper 2** has longer essays on syllabus themes linking environment and society. Fieldwork feeds the **IA**.',
     markbands: 'Answers should show **systems thinking** — stakeholders, flows, feedback, scale, and sustainability trade-offs — with named examples.',
     strategy: 'Build case study banks (pollution, conservation, energy). Practise essay plans that always include human + environmental lens and an evaluated solution.',
@@ -314,7 +322,7 @@ const POSTS = [
     faqs: [
       { q: 'ESS vs Biology SL?', a: 'ESS is interdisciplinary — less depth in pure bio, more on systems, policy, and ethics. Check university acceptance for your path.' },
       { q: 'Group 3 or 4?', a: 'Counts as one subject in either group depending on your diploma structure — confirm with your coordinator.' },
-      { q: 'Where are ESS papers?', a: 'See [IB ESS past papers](/ib/past-papers/environmental-systems-and-societies-sl) on MarkScheme.' },
+      { q: 'Where are ESS papers?', a: 'See [IB ESS past papers](/ib/past-papers/environmental-systems-and-societies) on MarkScheme.' },
     ],
   },
   // ── Group 6 ───────────────────────────────────────────────────────────────
@@ -718,7 +726,7 @@ const IA_POSTS = [
     title: 'IB ESS IA guide — fieldwork investigation & criteria',
     description: 'IB Environmental Systems and Societies Internal Assessment: research question, fieldwork, report structure, and criterion bands.',
     keywords: ['IB ESS IA', 'ESS Internal Assessment', 'IB ESS fieldwork', 'ESS IA criteria', 'ESS IA grade 7'],
-    subject: 'Environmental Systems and Societies', catalogSlug: 'environmental-systems-and-societies-sl', courseSlug: 'environmental-systems-and-societies-sl', weight: '25% of your final ESS grade',
+    subject: 'Environmental Systems and Societies', catalogSlug: 'environmental-systems-and-societies', courseSlug: 'environmental-systems-and-societies-sl', weight: '25% of your final ESS grade',
     criteria: 'Similar to Geography IA: **context**, **planning**, **results**, **analysis/evaluation** with explicit **systems** and **sustainability** framing.',
     structure: 'Research question linking environment and society → methodology → data → analysis with syllibus concepts (stakeholders, feedback loops) → conclusion → evaluation.',
     strategy: 'Pick a local issue (water quality, waste, energy use). Show both **environmental and social** dimensions in every section.',
@@ -726,7 +734,7 @@ const IA_POSTS = [
     faqs: [
       { q: 'ESS vs Geography IA?', a: 'ESS must emphasise systems and sustainability trade-offs — not just spatial patterns.' },
       { q: 'Group 3 or 4?', a: 'ESS sits in both — IA still follows ESS guide criteria.' },
-      { q: 'Papers?', a: '[ESS past papers](/ib/past-papers/environmental-systems-and-societies-sl) for exam technique.' },
+      { q: 'Papers?', a: '[ESS past papers](/ib/past-papers/environmental-systems-and-societies) for exam technique.' },
     ],
   },
 ]
@@ -1124,11 +1132,13 @@ Start early, narrow your question, and mark your own draft against the **officia
 }
 
 function pastPapersPath(slug) {
-  return slug ? `/ib/past-papers/${slug}` : '/ib/past-papers'
+  const catalog = pastPapersCatalogSlug(slug)
+  return catalog ? `/ib/past-papers/${catalog}` : '/ib/past-papers'
 }
 
 function subjectPath(slug) {
-  return slug ? `/ib/subjects/${slug}` : '/ib'
+  const catalog = pastPapersCatalogSlug(slug)
+  return catalog ? `/ib/subjects/${catalog}` : '/ib'
 }
 
 function coursePath(slug) {
@@ -1174,8 +1184,9 @@ function renderCourseLinkParagraph(b) {
   }
 
   if (b.catalogSlug) {
+    const ppCatalog = pastPapersCatalogSlug(b.catalogSlug)
     lines.push(
-      `Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/${b.catalogSlug}#ib-topic-practice) — each point links to a lesson and criterion marking task.`
+      `Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/${ppCatalog}#ib-topic-practice) — each point links to a lesson and criterion marking task.`
     )
   }
 
@@ -1246,6 +1257,10 @@ function shouldWrite(slug, catalogSlug) {
   if (ONLY && slug !== ONLY) return false
   if (GROUP6_ONLY) {
     if (!catalogSlug || !GROUP6_CATALOG.test(catalogSlug)) return false
+  }
+  if (SUBJECTS_ONLY) {
+    if (!catalogSlug) return false
+    if (GROUP6_CATALOG.test(catalogSlug)) return false
   }
   if (HL_ONLY && !slug.endsWith('-hl-past-papers-guide')) return false
   if (SL_ONLY) {

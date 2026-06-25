@@ -1,11 +1,11 @@
 ---
 title: IB Maths IA guide — exploration (AA & AI), criteria & topic ideas
 description: IB Mathematics Internal Assessment: exploration structure, criteria A–E, topic choice for AA and AI, and how to score top bands.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Maths IA, IB Math exploration, Maths IA criteria, IB Maths IA topics, Maths IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

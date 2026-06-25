@@ -1,11 +1,11 @@
 ---
 title: IB Business Management IA guide — research project & criteria
 description: IB Business Management Internal Assessment: research proposal, tools, primary research, and the HL/SL IA rubric explained.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Business Management IA, IB BM IA, Business IA criteria, IB Business IA research project, Business Management IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 

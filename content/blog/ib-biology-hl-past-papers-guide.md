@@ -29,7 +29,7 @@ Ignoring AHL depth; rote recall without application; weak option revision; IA le
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-biology-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Biology HL course](/ib/courses/biology-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Biology SL course](/ib/courses/biology-sl) if you sit the other level.
+Our free [Biology HL course](/ib/courses/biology-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Biology SL course](/ib/courses/biology-sl) if you sit the other level. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

@@ -29,7 +29,7 @@ Calculator syntax errors; copying numbers wrong from the stem; answering without
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-maths-ai-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Mathematics: Applications and Interpretation SL course](/ib/courses/maths-ai-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Mathematics: Applications and Interpretation HL course](/ib/courses/maths-ai-hl) if you sit the other level.
+Our free [Mathematics: Applications and Interpretation SL course](/ib/courses/maths-ai-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Mathematics: Applications and Interpretation HL course](/ib/courses/maths-ai-hl) if you sit the other level. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/maths-ai-sl#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

@@ -29,7 +29,7 @@ Case studies without stats; confusing Paper 1 themes; no diagram when one is exp
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-geography-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Geography SL course](/ib/courses/geography-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Geography HL course](/ib/courses/geography-hl) if you sit the other level.
+Our free [Geography SL course](/ib/courses/geography-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Geography HL course](/ib/courses/geography-hl) if you sit the other level. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/geography-sl#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

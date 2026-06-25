@@ -1,11 +1,11 @@
 ---
 title: IB Extended Essay complete guide — criteria, structure & grade 7 tips
 description: Everything you need for the IB Extended Essay: research question, 4,000-word structure, criteria A–E, RPPF reflections, and common mistakes.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Extended Essay, IB EE guide, Extended Essay criteria, IB EE structure, how to write Extended Essay, IB EE grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Too broad a question; last-minute RPPF; poor citation (academic honesty); descri
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-extended-essay) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Extended Essay course](/ib/courses/extended-essay) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Extended Essay course](/ib/courses/extended-essay) links every syllabus topic to lessons, flashcards, and practice tasks. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/extended-essay#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

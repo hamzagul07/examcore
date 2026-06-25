@@ -18,6 +18,7 @@ import {
   getIbTopicPracticePage,
   getIbTopicPracticePages,
 } from '@/lib/seo/ib-topic-practice'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 
 type Props = { params: Promise<{ slug: string; topic: string }> }
 
@@ -77,6 +78,13 @@ export default async function IbTopicPracticePage({ params }: Props) {
   const related = getIbTopicPracticePages(slug)
     .filter((t) => t.topicSlug !== topic)
     .slice(0, 12)
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'IB', path: '/ib' },
+    { name: 'Past papers', path: '/ib/past-papers' },
+    { name: `${short} ${subject.level}`, path: `/ib/past-papers/${slug}` },
+    { name: page.title, path: copy.path },
+  ]
 
   return (
     <MarketingPageShell>
@@ -84,13 +92,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
         path={copy.path}
         title={copy.title}
         description={copy.description}
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'IB', path: '/ib' },
-          { name: 'Past papers', path: '/ib/past-papers' },
-          { name: `${short} ${subject.level}`, path: `/ib/past-papers/${slug}` },
-          { name: page.title, path: copy.path },
-        ]}
+        breadcrumbs={breadcrumbs}
       />
       <JsonLd
         data={[
@@ -113,9 +115,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
         className="ms-pg ms-subjects-page"
         style={{ '--sc': subject.accent, paddingTop: 48 } as CSSProperties}
       >
-        <Link href={`/ib/past-papers/${slug}`} className="ec-btn-underline text-[15px]">
-          ← IB {short} {subject.level} past papers
-        </Link>
+        <MarketingBreadcrumbs items={breadcrumbs} className="mb-6" />
 
         <div className="ms-sd-head">
           <div className="ms-sd-glyph" aria-hidden>

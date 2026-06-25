@@ -19,6 +19,7 @@ import { ibCoursePath } from '@/lib/ib/slug-resolve'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -83,6 +84,12 @@ export default async function IbSubjectPage({ params }: Props) {
     .slice(0, 8)
   const communityOn = isCommunityEnabled()
   const blogLinks = getIbSubjectBlogLinks(subject.slug, short, { hasCourse: Boolean(course) })
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'IB', path: '/ib' },
+    { name: 'Subjects', path: '/ib/subjects' },
+    { name: `${short} ${subject.level}`, path: copy.path },
+  ]
 
   return (
     <>
@@ -90,12 +97,7 @@ export default async function IbSubjectPage({ params }: Props) {
         path={copy.path}
         title={copy.title}
         description={copy.description}
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'IB', path: '/ib' },
-          { name: 'Subjects', path: '/ib/subjects' },
-          { name: `${short} ${subject.level}`, path: copy.path },
-        ]}
+        breadcrumbs={breadcrumbs}
       />
       <JsonLd
         data={[
@@ -148,9 +150,7 @@ export default async function IbSubjectPage({ params }: Props) {
         className="ms-pg ms-subjects-page"
         style={{ '--sc': subject.accent, paddingTop: 48 } as CSSProperties}
       >
-        <Link href="/ib/subjects" className="ec-btn-underline text-[15px]">
-          ← All IB subjects
-        </Link>
+        <MarketingBreadcrumbs items={breadcrumbs} className="mb-6" />
 
         <div className="ms-sd-head">
           <div className="ms-sd-glyph" aria-hidden>

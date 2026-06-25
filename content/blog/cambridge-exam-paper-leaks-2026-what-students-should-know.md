@@ -30,6 +30,7 @@ When a genuine breach is confirmed, Cambridge may:
 |--------|------------------------|
 | Replace or amend papers | The paper you sit may differ from anything circulating online |
 | Issue variant papers | Parallel papers test the same syllabus with different questions |
+| Award **assessed marks** | Voided components get a calculated mark from your other papers — see [assessed marks guide](/blog/cambridge-assessed-marks-2026-explained) |
 | Investigate candidates | Metadata, seating, and unusual answer patterns are reviewed |
 | Void results | Entire centre or individual grades can be withheld |
 

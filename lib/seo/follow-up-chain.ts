@@ -103,6 +103,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-exam-paper-leaks-2026-what-students-should-know',
     },
     {
+      question: 'What are Cambridge assessed marks?',
+      answer:
+        'Calculated component marks when a paper is voided — based on your performance on other syllabus papers.',
+      href: '/blog/cambridge-assessed-marks-2026-explained',
+    },
+    {
+      question: 'When is the 9709 maths resit in June 2026?',
+      answer:
+        'Replacement sittings were scheduled for 8–9 June 2026 in affected zones — confirm with your exams officer.',
+      href: '/blog/cambridge-9709-maths-resit-june-2026',
+    },
+    {
       question: 'Is AI allowed for Cambridge revision?',
       answer:
         'Check your school policy; use AI for explanations, not to generate answers you submit.',
@@ -207,6 +219,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       answer:
         'Higher Level covers more content and usually an extra paper with greater depth; Standard Level is a lighter syllabus. Each subject page lists both.',
       href: '/ib/subjects',
+    },
+    {
+      question: 'How do I write the TOK exhibition commentary?',
+      answer:
+        'Pick three specific objects, one official prompt, and analyse knowledge links — not description. Stay within 950 words total.',
+      href: '/blog/ib-tok-exhibition-guide-2026',
+    },
+    {
+      question: 'Are IB exams going digital in 2026?',
+      answer:
+        'Selected schools pilot digital IBDP exams from May 2026; most students still sit paper. Grade boundaries equate both modes.',
+      href: '/blog/ib-digital-exams-2026-student-guide',
     },
   ],
 }

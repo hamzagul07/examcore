@@ -12,7 +12,7 @@ informationGain: synthesis
 IB Theory of Knowledge is not a content-heavy exam — but it is **highly criterion-driven**. Students who treat TOK like a general essay subject often plateau at a 4 or 5. The path to a 6 or 7 is mastering knowledge questions, Areas of Knowledge, and practising under official descriptors.
 
 ## Understanding the IB Theory of Knowledge Core assessment
-**TOK exhibition** (three objects + commentary) and **TOK essay** (1,600 words on a prescribed title) are criterion-assessed. HL and SL share the same components; the core theme links knowledge, knowers, and communities. Browse the full subject overview at [IB Theory of Knowledge Core](/ib/subjects/tok).
+**TOK exhibition** (three objects + commentary) and **TOK essay** (1,600 words on a prescribed title) are criterion-assessed. For exhibition-specific help — prompts, objects, and the 950-word limit — see [TOK exhibition guide 2026](/blog/ib-tok-exhibition-guide-2026). HL and SL share the same components; the core theme links knowledge, knowers, and communities. Browse the full subject overview at [IB Theory of Knowledge Core](/ib/subjects/tok).
 
 ## Markbands and what examiners reward
 Top bands reward sustained **analysis of knowledge** — perspectives within and across AOKs, implications, and precise TOK vocabulary — not eloquence without argument.

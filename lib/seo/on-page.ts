@@ -28,7 +28,12 @@ export function formatSerpTitle(
 export function formatMetaDescription(description: string): string {
   let d = description.trim()
   if (d.length < META_DESC_MIN && d.length > 0) {
-    d = `${d} MarkScheme helps Cambridge students mark past papers with real mark schemes.`
+    const pad = /\bib\b/i.test(d)
+      ? ' Free IB past papers, courses and criterion marking on MarkScheme.'
+      : /cambridge/i.test(d)
+        ? ' MarkScheme helps Cambridge students mark past papers with real mark schemes.'
+        : ' MarkScheme — past papers, free courses and marking for Cambridge and IB students.'
+    d = `${d}${pad}`
   }
   if (d.length >= META_DESC_MIN && d.length <= META_DESC_MAX) return d
   if (d.length > META_DESC_MAX) {

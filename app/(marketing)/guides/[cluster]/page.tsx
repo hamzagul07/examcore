@@ -17,6 +17,10 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
+import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
+import { getGradeBoundaryHubEntries } from '@/lib/seo/grade-boundary-hub'
+import { getCommandWordsHubEntries } from '@/lib/seo/command-words-hub'
+import { ProgrammaticHubGrid } from '@/components/seo/ProgrammaticHubGrid'
 
 type Props = { params: Promise<{ cluster: string }> }
 
@@ -54,6 +58,16 @@ export default async function ClusterGuidePage({ params }: Props) {
 
   const isComparison = cluster.format === 'comparison'
   const isIb = cluster.id === 'ib'
+  const isGradeBoundaries = cluster.id === 'grade-boundaries'
+  const isCommandWords = cluster.id === 'command-words'
+  const ibGroups = isIb ? groupIbClusterSpokes(spokeSlugs) : []
+  const allParts = [
+    ...(pillar ? [{ name: pillar.title, url: `${SITE_URL}/blog/${pillar.slug}` }] : []),
+    ...spokes.map((p) => ({
+      name: p.title,
+      url: `${SITE_URL}/blog/${p.slug}`,
+    })),
+  ]
 
   return (
     <MarketingPageShell>
@@ -73,16 +87,22 @@ export default async function ClusterGuidePage({ params }: Props) {
             path: cluster.path,
             name: cluster.title,
             description: cluster.description,
-            hasPart: [
-              ...(pillar
-                ? [{ name: pillar.title, url: `${SITE_URL}/blog/${pillar.slug}` }]
-                : []),
-              ...spokes.slice(0, 12).map((p) => ({
-                name: p.title,
-                url: `${SITE_URL}/blog/${p.slug}`,
-              })),
-            ],
+            hasPart: allParts,
           }),
+          ...(isIb
+            ? ibGroups.map((group) =>
+                itemListNode({
+                  name: group.label,
+                  items: group.slugs.map((slug) => {
+                    const post = spokes.find((p) => p.slug === slug)
+                    return {
+                      name: post?.title ?? slug,
+                      url: `${SITE_URL}/blog/${slug}`,
+                    }
+                  }),
+                })
+              )
+            : []),
           ...(isComparison
             ? [
                 itemListNode({
@@ -119,6 +139,72 @@ export default async function ClusterGuidePage({ params }: Props) {
           </p>
         </aside>
 
+        {isGradeBoundaries && (
+          <aside className="ms-hub-card mb-12" aria-label="Grade boundary tools">
+            <p className="ms-overline">Programmatic tools</p>
+            <h2 className="ms-h3" style={{ marginTop: 8 }}>
+              Grade calculators by syllabus
+            </h2>
+            <p className="ms-body-2" style={{ marginTop: 8, maxWidth: 560 }}>
+              Enter official thresholds for your session — calculators for every marking syllabus,
+              plus verified data where published.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
+                Main calculator <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/past-papers/topics" className="ec-btn-ghost ec-btn-ghost--sm">
+                Topic practice
+              </Link>
+            </div>
+            <div className="mt-8">
+              <ProgrammaticHubGrid
+                items={getGradeBoundaryHubEntries().map((e) => ({
+                  code: e.code,
+                  title: `${e.level} calculator`,
+                  subtitle: e.guideTitle ?? `${e.label} grade boundaries`,
+                  href: e.calculatorPath,
+                  meta: e.hasOfficialData
+                    ? `Verified data · ${e.latestSession ?? 'recent session'}`
+                    : 'Enter your session thresholds',
+                }))}
+              />
+            </div>
+          </aside>
+        )}
+
+        {isCommandWords && (
+          <aside className="ms-hub-card mb-12" aria-label="Command word tools">
+            <p className="ms-overline">Programmatic tools</p>
+            <h2 className="ms-h3" style={{ marginTop: 8 }}>
+              Command words by syllabus
+            </h2>
+            <p className="ms-body-2" style={{ marginTop: 8, maxWidth: 560 }}>
+              Every Cambridge command word — plus per-subject pages showing which verbs matter most
+              on your papers.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/tools/command-words" className="ec-btn-primary ec-btn-primary--sm">
+                Full explainer <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
+                Pillar guide
+              </Link>
+            </div>
+            <div className="mt-8">
+              <ProgrammaticHubGrid
+                items={getCommandWordsHubEntries().map((e) => ({
+                  code: e.code,
+                  title: `${e.label} command words`,
+                  subtitle: e.emphasis.slice(0, 100) + (e.emphasis.length > 100 ? '…' : ''),
+                  href: e.toolPath,
+                  meta: `${e.topVerbs.slice(0, 3).join(' · ')}`,
+                }))}
+              />
+            </div>
+          </aside>
+        )}
+
         {isIb && (
           <aside className="ms-hub-card mb-12" aria-label="IB product pages">
             <p className="ms-overline">Practise on MarkScheme</p>
@@ -136,8 +222,8 @@ export default async function ClusterGuidePage({ params }: Props) {
               <Link href="/ib/courses" className="ec-btn-secondary ec-btn-secondary--sm">
                 Free IB courses
               </Link>
-              <Link href="/ib/past-papers/biology-hl#ib-topic-practice" className="ec-btn-ghost ec-btn-ghost--sm">
-                Topic practice example
+              <Link href="/ib/topic-practice" className="ec-btn-ghost ec-btn-ghost--sm">
+                All topic pages
               </Link>
               <Link href="/blog/ib-free-courses-guide" className="ec-btn-underline">
                 Free courses guide
@@ -155,16 +241,39 @@ export default async function ClusterGuidePage({ params }: Props) {
 
         {spokes.length > 0 && (
           <div>
-            <p className="ms-overline">
-              {isComparison ? 'Comparison & supporting guides' : 'Supporting articles'}
-            </p>
-            <ul className="ms-guide-grid sm:grid-cols-2">
-              {spokes.map((post) => (
-                <li key={post.slug}>
-                  <BlogPostCard post={post} />
-                </li>
-              ))}
-            </ul>
+            {isIb && ibGroups.length > 0 ? (
+              ibGroups.map((group) => {
+                const groupPosts = group.slugs
+                  .map((slug) => spokes.find((p) => p.slug === slug))
+                  .filter(Boolean)
+                if (!groupPosts.length) return null
+                return (
+                  <div key={group.id} className="mb-12">
+                    <p className="ms-overline">{group.label}</p>
+                    <ul className="ms-guide-grid sm:grid-cols-2">
+                      {groupPosts.map((post) => (
+                        <li key={post!.slug}>
+                          <BlogPostCard post={post!} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })
+            ) : (
+              <>
+                <p className="ms-overline">
+                  {isComparison ? 'Comparison & supporting guides' : 'Supporting articles'}
+                </p>
+                <ul className="ms-guide-grid sm:grid-cols-2">
+                  {spokes.map((post) => (
+                    <li key={post.slug}>
+                      <BlogPostCard post={post} />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
         )}
 

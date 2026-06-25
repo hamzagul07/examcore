@@ -63,6 +63,7 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
   const cluster = getClusterForSlug(post.slug)
   const crumbs = blogBreadcrumbs(post.slug, post.title)
   const words = wordCount(content)
+  const isIb = post.slug.startsWith('ib-') || cluster.id === 'ib'
 
   const graph: JsonLd[] = [
     { ...organizationNode(), '@id': ORG_ID },
@@ -77,7 +78,12 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
       description: post.description,
       inLanguage: 'en-GB',
       isPartOf: { '@id': WEBSITE_ID },
-      about: { '@id': `${SITE_URL}${cluster.path}#collection` },
+      about: isIb
+        ? [
+            { '@type': 'Thing', name: 'International Baccalaureate Diploma Programme' },
+            { '@id': `${SITE_URL}${cluster.path}#collection` },
+          ]
+        : { '@id': `${SITE_URL}${cluster.path}#collection` },
       primaryImageOfPage: `${SITE_URL}/blog/opengraph-image`,
     },
     {

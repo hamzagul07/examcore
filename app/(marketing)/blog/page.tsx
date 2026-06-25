@@ -3,7 +3,9 @@ import { BookOpen, Sparkles, TrendingUp } from 'lucide-react'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
 import {
-  getSubjectGuidePosts,
+  getCambridgeSubjectGuidePosts,
+  getIbSubjectGuidePosts,
+  getIbIaGuidePosts,
 } from '@/lib/seo/subject-guides'
 import { enrichPostMeta, isEditorialPost, sortPostsForIndex } from '@/lib/blog/meta'
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
@@ -41,7 +43,11 @@ export default function BlogIndexPage() {
   const sorted = sortPostsForIndex(enriched)
 
   const editorial = sorted.filter((p) => isEditorialPost(p.slug, p.category))
-  const subjectGuides = enrichAll(getSubjectGuidePosts())
+  const cambridgeSubjectGuides = enrichAll(getCambridgeSubjectGuidePosts())
+  const ibSubjectGuides = enrichAll(getIbSubjectGuidePosts())
+  const ibIaGuides = enrichAll(getIbIaGuidePosts())
+  const subjectGuideCount =
+    cambridgeSubjectGuides.length + ibSubjectGuides.length + ibIaGuides.length
   const generalPosts = sorted.filter(
     (p) =>
       !isSubjectGuideSlug(p.slug) && !isEditorialPost(p.slug, p.category)
@@ -73,7 +79,7 @@ export default function BlogIndexPage() {
             What Cambridge students <em>are talking about now</em>
           </>
         }
-        lead="Subject choice, exam-series prep, integrity after online leaks, AI rules, and mark-scheme-first revision — written for A-Level and O-Level, updated for 2026."
+        lead="Subject choice, exam-series prep, integrity after online leaks, AI rules, markbands, and mark-scheme-first revision — written for Cambridge A-Level, O-Level, and IB Diploma students, updated for 2026."
       >
         <ContentHubNav />
       </MarketingHero>
@@ -125,7 +131,7 @@ export default function BlogIndexPage() {
             <span className="ms-blog-stat__label">2026 topic features</span>
           </div>
           <div className="ms-blog-stat">
-            <span className="ms-blog-stat__value">{subjectGuides.length}</span>
+            <span className="ms-blog-stat__value">{subjectGuideCount}</span>
             <span className="ms-blog-stat__label">Syllabus deep-dives</span>
           </div>
         </div>
@@ -161,13 +167,13 @@ export default function BlogIndexPage() {
         )}
       </MarketingSection>
 
-      {subjectGuides.length > 0 && (
+      {cambridgeSubjectGuides.length > 0 && (
         <MarketingSection className="!pt-12">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="ms-overline">By syllabus code</p>
               <h2 className="ms-h3" style={{ fontSize: 'clamp(1.35rem, 3vw, 1.75rem)' }}>
-                Subject past-paper guides
+                Cambridge subject past-paper guides
               </h2>
               <p className="ms-body-2" style={{ marginTop: 10, maxWidth: 520 }}>
                 9709, 9702, 9708, 4024, and every code we mark — structure, schemes, mistakes,
@@ -179,14 +185,55 @@ export default function BlogIndexPage() {
               className="ec-btn-underline inline-flex items-center gap-1 text-sm"
             >
               <BookOpen className="h-4 w-4" />
-              All subjects
+              All Cambridge subjects
             </Link>
           </div>
           <div className="ms-guide-grid">
-            {subjectGuides.map((post) => (
+            {cambridgeSubjectGuides.map((post) => (
               <GuideArticleCard key={post.slug} post={post} />
             ))}
           </div>
+        </MarketingSection>
+      )}
+
+      {(ibSubjectGuides.length > 0 || ibIaGuides.length > 0) && (
+        <MarketingSection className="!pt-12">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="ms-overline">IB Diploma Programme</p>
+              <h2 className="ms-h3" style={{ fontSize: 'clamp(1.35rem, 3vw, 1.75rem)' }}>
+                IB HL &amp; SL revision guides
+              </h2>
+              <p className="ms-body-2" style={{ marginTop: 10, maxWidth: 520 }}>
+                Markbands, past-paper structure, and Internal Assessment tips for every IB subject
+                we cover — paired with free courses and topic practice.
+              </p>
+            </div>
+            <Link
+              href="/guides/ib"
+              className="ec-btn-underline inline-flex items-center gap-1 text-sm"
+            >
+              <BookOpen className="h-4 w-4" />
+              IB guide hub
+            </Link>
+          </div>
+          {ibSubjectGuides.length > 0 ? (
+            <div className="ms-guide-grid">
+              {ibSubjectGuides.map((post) => (
+                <GuideArticleCard key={post.slug} post={post} />
+              ))}
+            </div>
+          ) : null}
+          {ibIaGuides.length > 0 ? (
+            <div style={{ marginTop: ibSubjectGuides.length ? 32 : 0 }}>
+              <p className="ms-overline">Internal Assessment</p>
+              <div className="ms-guide-grid">
+                {ibIaGuides.map((post) => (
+                  <GuideArticleCard key={post.slug} post={post} />
+                ))}
+              </div>
+            </div>
+          ) : null}
         </MarketingSection>
       )}
 
@@ -228,4 +275,4 @@ export default function BlogIndexPage() {
     </MarketingPageShell>
   )
 }
-
+

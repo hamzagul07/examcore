@@ -69,6 +69,7 @@ export function getIbSubjectBlogLinks(
   const catalog = ibCatalogSlug(catalogSlug)
   const links: IbSubjectBlogLink[] = [
     { href: '/guides/ib', label: 'IB study guide hub' },
+    { href: '/blog/ib-markbands-explained', label: 'Markbands explained' },
   ]
   const past = getIbSubjectPastPapersBlogSlug(catalog)
   if (past) {

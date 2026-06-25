@@ -156,6 +156,7 @@ export const FOOTER_COMPANY_LINKS = [
   { href: '/about', label: 'The story' },
   { href: '/how-it-works', label: 'How it works' },
   { href: '/guides', label: 'Guides & blog' },
+  { href: '/guides/ib', label: 'IB study guides' },
   { href: '/how-it-works#honest', label: 'Honest about AI' },
   { href: '/contact', label: 'Contact' },
 ]

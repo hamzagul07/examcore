@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import { createBlogPostMetadata } from '@/lib/seo/metadata'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
 import { enrichPostMeta, extractHeadings } from '@/lib/blog/meta'
-import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import { getClusterForSlug } from '@/lib/seo/clusters'
+import { isSubjectGuideSlug, isIbGuideSlug } from '@/lib/seo/subject-guides'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { BlogPillarLinks } from '@/components/seo/BlogPillarLinks'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
@@ -22,6 +23,7 @@ import { BlogInContentLinks } from '@/components/blog/BlogInContentLinks'
 import { BlogInformationGain } from '@/components/blog/BlogInformationGain'
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
+import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -46,13 +48,20 @@ export default async function BlogPostPage({ params }: Props) {
 
   const enriched = enrichPostMeta(post, post.content)
   const headings = extractHeadings(post.content)
-  const related = getRelatedPosts(slug, 3)
+  const related = getRelatedPosts(slug, isIbGuideSlug(slug) ? 5 : 3)
+  const cluster = getClusterForSlug(slug)
+  const ctaVariant = isIbGuideSlug(slug)
+    ? 'ib'
+    : isSubjectGuideSlug(slug)
+      ? 'subject'
+      : 'default'
 
   return (
     <MarketingPageShell narrow>
       <BlogPostGraphJsonLd post={post} content={post.content} />
       <BlogReadingProgress />
       <article className="ms-pg py-12 sm:py-16">
+        <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />
         <BlogClusterNav slug={slug} />
         <BlogQuickAnswer
@@ -81,9 +90,9 @@ export default async function BlogPostPage({ params }: Props) {
         <BlogSerpSnippets content={post.content} />
         <BlogTaskCompleteCta />
         <BlogSourcesBlock />
-        <BlogPostCta variant={isSubjectGuideSlug(slug) ? 'subject' : 'default'} />
+        <BlogPostCta variant={ctaVariant} />
         <BlogPillarLinks slug={slug} showSubjects={!isSubjectGuideSlug(slug)} />
-        <BlogRelatedGrid posts={related} />
+        <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>
     </MarketingPageShell>
   )

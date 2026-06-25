@@ -34,6 +34,8 @@ const STATIC_ROUTES = [
   { path: '/ib/courses', priority: 0.87, changeFrequency: 'weekly' as const },
   { path: '/ib/subjects', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/ib/past-papers', priority: 0.85, changeFrequency: 'weekly' as const },
+  { path: '/ib/topic-practice', priority: 0.84, changeFrequency: 'weekly' as const },
+  { path: '/past-papers/topics', priority: 0.84, changeFrequency: 'weekly' as const },
   { path: '/tools/grade-boundary-calculator', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/tools/command-words', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
@@ -82,13 +84,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
-  const calculatorEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().map(
-    (code) => ({
-      url: `${base}/tools/grade-boundary-calculator/${code}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    })
+  const calculatorEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().flatMap(
+    (code) => [
+      {
+        url: `${base}/tools/grade-boundary-calculator/${code}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      },
+      {
+        url: `${base}/tools/command-words/${code}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.68,
+      },
+    ]
   )
 
   const pastPaperEntries: MetadataRoute.Sitemap = getPastPaperSubjectCodes().map(

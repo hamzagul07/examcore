@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: IB markbands, IB assessment criteria, how IB marking works, IB level descriptors, IB mark scheme explained
 category: exam-technique
 author: hassan
-updated: 2026-06-19
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -21,7 +21,7 @@ When an examiner marks your paper, they are not looking for a perfect answer tha
 For many IB components, particularly essays and Internal Assessments, the total marks are divided into several **assessment criteria** (often labelled A, B, C, D, etc.). Each criterion assesses a different skill—for example, Criterion A might be 'Knowledge and Understanding' while Criterion C is 'Critical Thinking'. Each of these criteria has its own unique set of markbands. Your final mark for the question is the sum of the marks you achieve in each separate criterion, allowing for a nuanced assessment of your different abilities. You can explore the specific criteria for your subjects on our [IB Diploma hub](/ib).
 
 ## How to climb the markbands
-The key to improving your IB grades is to master the language of the markbands. The difference between a Level 4 and a Level 6 answer often lies in specific command terms. For instance, a lower-band descriptor might ask for 'some analysis', while a top-band descriptor requires 'sustained and convincing analysis'. To climb up, you must actively demonstrate that higher-level skill. You can find these crucial descriptors in your IB subject guide or at the start of the mark scheme in official [IB past papers](/ib/past-papers), making them an essential revision tool.
+The key to improving your IB grades is to master the language of the markbands. The difference between a Level 4 and a Level 6 answer often lies in specific command terms. For instance, a lower-band descriptor might ask for 'some analysis', while a top-band descriptor requires 'sustained and convincing analysis'. To climb up, you must actively demonstrate that higher-level skill. You can find these crucial descriptors in your IB subject guide or at the start of the mark scheme in official [IB past papers](/ib/past-papers), making them an essential revision tool. Pair each topic with [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and the matching [free course lessons](/ib/courses) so you rehearse descriptors in context.
 
 ## A practical example: from 'descriptive' to 'analytical'
 Consider an IB History essay. A mid-band response might simply describe events: 'The Treaty of Versailles imposed harsh terms on Germany, such as the War Guilt Clause and heavy reparations.' This is accurate but descriptive. A top-band response, however, demonstrates analysis and links concepts: 'The punitive nature of the Treaty of Versailles, particularly the War Guilt Clause, fostered a deep-seated national resentment in Germany that was expertly exploited by extremist political movements. By linking the nation's economic hardship directly to the treaty's terms, figures like Hitler were able to construct a powerful narrative of victimhood and betrayal, which was a critical factor in the Weimar Republic's eventual collapse.' The second example doesn't just state facts; it explains their significance and connects cause with consequence, hitting the descriptors for higher-level analysis.

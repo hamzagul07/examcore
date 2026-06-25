@@ -247,7 +247,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
     path: '/guides/ib',
     title: 'IB Diploma',
     description:
-      'IB Diploma (IBDP) past papers, mark schemes, markbands and revision — HL and SL across every subject group.',
+      'IB Diploma (IBDP) past papers, free courses, topic practice and markbands — HL and SL across every subject group, Core components, and Group 6 arts.',
     headTerm: 'IB past papers',
     intent: 'informational',
     format: 'hub',

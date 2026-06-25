@@ -6,6 +6,7 @@ import { getPastPaperSubjects } from '@/lib/seo/past-papers'
 import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
 import { getIbSubjects } from '@/lib/ib/catalog'
 import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
+import { getAllIbTopicPracticeParams } from '@/lib/seo/ib-topic-practice'
 
 /** Expanded llms.txt — chunk-friendly URL index for RAG / AI crawlers. */
 export async function GET() {
@@ -14,6 +15,7 @@ export async function GET() {
   const blogs = getAllBlogSlugs()
   const pastPaperSubjects = getPastPaperSubjects()
   const topicParams = getAllTopicQuestionParams()
+  const ibTopicParams = getAllIbTopicPracticeParams()
   const ibSubjects = getIbSubjects()
   const ibCourses = getIbCourseSlugs()
     .map((slug) => getIbCourse(slug))
@@ -72,6 +74,28 @@ export async function GET() {
           ),
         ]
       : []),
+    ...(ibTopicParams.length
+      ? [
+          '',
+          '## IB topic practice — syllabus point grids (lesson + criterion marking)',
+          `- ${base}/ib/past-papers/biology-hl#ib-topic-practice — example topic grid`,
+          ...ibTopicParams.slice(0, 120).map(
+            ({ slug, topic }) => `- ${base}/ib/past-papers/${slug}/${topic}`
+          ),
+          ...(ibTopicParams.length > 120
+            ? [`- … and ${ibTopicParams.length - 120} more IB topic practice URLs in sitemap.xml`]
+            : []),
+        ]
+      : []),
+    '',
+    '## IB editorial guides (blog)',
+    `- ${base}/blog/ib-diploma-past-papers-guide`,
+    `- ${base}/blog/ib-free-courses-guide`,
+    `- ${base}/blog/ib-markbands-explained`,
+    `- ${base}/blog/ib-how-to-get-a-7-diploma`,
+    `- ${base}/blog/ib-internal-assessment-complete-guide`,
+    `- ${base}/blog/ib-tok-past-papers-guide`,
+    `- ${base}/guides/ib — IB cluster hub`,
     '',
     '## Blog articles',
     ...blogs.map((slug) => `- ${base}/blog/${slug}`),

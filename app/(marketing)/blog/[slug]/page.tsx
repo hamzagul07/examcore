@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
         <BlogTaskCompleteCta />
         <BlogSourcesBlock />
         <BlogPostCta variant={isSubjectGuideSlug(slug) ? 'subject' : 'default'} />
-        <BlogPillarLinks showSubjects={!isSubjectGuideSlug(slug)} />
+        <BlogPillarLinks slug={slug} showSubjects={!isSubjectGuideSlug(slug)} />
         <BlogRelatedGrid posts={related} />
       </article>
     </MarketingPageShell>

@@ -28,6 +28,8 @@ export const SCULPTED_FOOTER_PRODUCT = [
 export const SCULPTED_FOOTER_RESOURCES = [
   { href: '/guides/past-paper-marking', label: 'Past paper marking' },
   { href: '/guides/mark-schemes', label: 'Mark schemes hub' },
+  { href: '/guides/ib', label: 'IB Diploma guides' },
+  { href: '/ib/courses', label: 'Free IB courses' },
   { href: '/guides/grade-boundaries', label: 'Grade boundaries' },
   { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
   { href: '/tools/command-words', label: 'Command words' },

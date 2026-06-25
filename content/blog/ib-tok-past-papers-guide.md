@@ -1,57 +1,46 @@
 ---
 title: IB TOK past papers & essay guide
-description: How to revise IB Theory of Knowledge with specimen prompts, exhibition tasks, and criterion-based essay practice — markbands, knowledge questions, and AOK/WOK structure.
-date: 2026-06-23
+description: How to revise IB Theory of Knowledge with prescribed titles, exhibition tasks, and criterion-based essay practice — knowledge questions, AOKs, and markbands.
+date: 2026-06-25
 keywords: IB TOK, IB TOK essay, IB TOK exhibition, TOK past papers, TOK markbands, IB TOK revision
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
-IB Theory of Knowledge is not a content-heavy exam — but it is **highly criterion-driven**. Students who treat TOK like a general essay subject often plateau at a 4 or 5. The path to a 6 or 7 is mastering **knowledge questions**, **Areas of Knowledge (AOKs)**, and **Ways of Knowing (WOKs)**, then practising under the official assessment descriptors.
+IB Theory of Knowledge is not a content-heavy exam — but it is **highly criterion-driven**. Students who treat TOK like a general essay subject often plateau at a 4 or 5. The path to a 6 or 7 is mastering knowledge questions, Areas of Knowledge, and practising under official descriptors.
 
-## What TOK assesses
-- **Exhibition (SL & HL):** three objects linked to an IA prompt, with a 950-word commentary showing how they illustrate knowledge in the world.
-- **Essay (HL & SL):** 1,600 words responding to a prescribed title — sustained argument, multiple perspectives, and implications.
-- **Core theme:** the knower, knowledge communities, and how context shapes what counts as knowledge.
+## Understanding the IB Theory of Knowledge Core assessment
+**TOK exhibition** (three objects + commentary) and **TOK essay** (1,600 words on a prescribed title) are criterion-assessed. HL and SL share the same components; the core theme links knowledge, knowers, and communities. Browse the full subject overview at [IB Theory of Knowledge Core](/ib/subjects/tok).
 
-Our free [TOK course](/ib/courses/tok) walks through each syllabus point with flashcards and links to [criterion practice](/mark?subject=ib-tok).
+## Markbands and what examiners reward
+Top bands reward sustained **analysis of knowledge** — perspectives within and across AOKs, implications, and precise TOK vocabulary — not eloquence without argument.
 
-## Markbands vs “good writing”
-TOK examiners reward **analysis of knowledge**, not eloquence alone. Top-band essays:
-- Frame a clear **knowledge question** early and return to it in every paragraph.
-- Compare **perspectives** within and across AOKs — not just “two sides”.
-- Evaluate **implications** and **assumptions** rather than listing examples.
-- Use **precise TOK vocabulary** (justification, certainty, scope, methods) tied to real cases.
+## A past paper workflow that actually works
+Essay: frame a knowledge question in the introduction and return to it each paragraph. Exhibition: lock the object–prompt link before polishing commentary prose.
 
-See [IB markbands explained](/blog/ib-markbands-explained) for how band descriptors differ from Cambridge mark schemes.
-
-## How to use TOK “past papers”
-The IBO publishes **prescribed titles** and **exhibition prompts** each session — these are your past-paper equivalents. Workflow:
-1. Pick one title from the current or previous session.
-2. Plan three AOKs and two contrasting claims before writing.
-3. Write under time pressure (essay planning ~30 min, writing ~90 min for practice).
-4. Self-mark against the essay rubric, then [submit for criterion marking](/mark?subject=ib-tok&topic=3.2).
-
-For exhibition practice, draft object labels first — if the link to the prompt is weak, fix that before polishing commentary prose.
+## Paper-specific tips
+Use prescribed titles and exhibition prompts as your “past papers”. Plan three AOKs and contrasting claims before writing. Self-mark against the essay rubric, then submit for criterion marking.
 
 ## Common pitfalls
-- **Example stacking** without explaining how each example answers the title.
-- Treating WOKs as a checklist instead of tools that shape justification.
-- Ignoring **counterclaims** — a one-sided essay rarely reaches the top band.
-- Confusing **personal opinion** with **justified knowledge claims**.
+Example stacking without analysis; treating WOKs as a checklist; one-sided essays; confusing opinion with justified knowledge claims.
+
+## Using MarkScheme for targeted feedback
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-tok) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+
+Our free [Theory of Knowledge Core course](/ib/courses/tok) links every syllabus topic to lessons, flashcards, and practice tasks. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/tok#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 
-### Are there official IB TOK past papers to download?
-The IBO releases specimen materials and prescribed titles; third-party sites aggregate them. MarkScheme links legitimate sources on [IB past papers](/ib/past-papers/tok) and hosts **original** lesson content — we do not redistribute pirated papers.
+### Are there TOK past papers?
+IB publishes **prescribed titles** and **exhibition prompts** each session — treat these as your exam papers.
 
-### How much own knowledge do I need?
-Enough to illustrate claims — TOK is meta-level. Depth beats breadth: one well-developed case from history and one from natural sciences often outperforms six shallow references.
+### TOK bonus points?
+Combined with EE performance on the matrix — strong TOK + EE can add up to 3 diploma points.
 
-### How does TOK combine with the Extended Essay?
-Both reward research integrity and reflection on knowledge. Our [Extended Essay course](/ib/courses/extended-essay) complements TOK when you discuss methods and scope in your RPPF reflections.
+### Free TOK course?
+[TOK lessons](/ib/courses/tok) on MarkScheme cover every syllabus point with criterion practice.
 
 ## Bottom line
-TOK rewards structured thinking about knowledge itself. Use prescribed titles like past papers, mark against the real rubric, and drill knowledge questions until they are automatic — that is the most reliable route to a top grade.
+Treat [IB Theory of Knowledge Core past papers](/ib/past-papers/tok) as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

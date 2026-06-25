@@ -16,7 +16,8 @@ export type SiteNavItem = {
 export const SUBJECTS_DROPDOWN: NavDropdownItem[] = [
   { href: '/subjects', label: 'A-Level', sublabel: 'Cambridge International' },
   { href: '/ib', label: 'IB Diploma', sublabel: 'HL & SL past papers' },
-  { href: '/ib/courses', label: 'IB free courses', sublabel: 'TOK · EE · sciences' },
+  { href: '/ib/courses', label: 'IB free courses', sublabel: '760+ lessons · TOK · sciences' },
+  { href: '/guides/ib', label: 'IB study guides', sublabel: 'Markbands & revision' },
 ]
 
 function subjectsActive(pathname: string) {

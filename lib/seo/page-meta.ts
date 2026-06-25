@@ -53,14 +53,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Get help with Cambridge past-paper marking, billing, or partnerships. We reply to students and schools at hello@markscheme.app.',
   },
   '/blog': {
-    title: 'Blog — Cambridge revision & exam tips',
+    title: 'Blog — Cambridge & IB revision tips',
     description:
-      'Guides on self-marking, mark schemes, subject choice, 2026 exam prep, and syllabus past papers for Cambridge A-Level and O-Level students.',
+      'Guides on self-marking, mark schemes, IB markbands, subject choice, 2026 exam prep, and syllabus past papers for Cambridge and IB Diploma students.',
   },
   '/guides': {
-    title: 'Study guides — past papers & mark schemes',
+    title: 'Study guides — Cambridge & IB past papers',
     description:
-      'Eleven topic hubs: marking workflow, mark schemes, grade boundaries, command words, revision strategy, subject guides, and free resources — built for search intent.',
+      'Twelve topic hubs: Cambridge marking, mark schemes, grade boundaries, IB Diploma past papers & markbands, revision strategy, subject guides, and free resources.',
   },
   '/insights': {
     title: 'Marking insights — self-mark gap data',

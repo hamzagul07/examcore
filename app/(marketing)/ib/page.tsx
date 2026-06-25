@@ -50,6 +50,14 @@ const FAQ = [
     q: 'How does IB marking work?',
     a: 'IB does not use Cambridge-style B1/M1/A1 codes — it uses markbands and assessment criteria, where examiners place your answer in a level band against descriptors. Our guides explain how to hit the top band on each paper.',
   },
+  {
+    q: 'Are there free IB courses on MarkScheme?',
+    a: 'Yes — 44 free IB Diploma courses with 760+ topic-by-topic lessons across sciences, humanities, languages, maths, Core, and Group 6 arts. Each lesson links to criterion practice marking.',
+  },
+  {
+    q: 'How do I practise one syllabus topic at a time?',
+    a: 'Open any subject past-papers page and use Practice by topic — each syllabus point links to a free lesson and a criterion marking task. Example: Biology HL topic practice grid.',
+  },
 ]
 
 export default function IbHubPage() {
@@ -125,16 +133,16 @@ export default function IbHubPage() {
           links={[
             { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
             { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
-            { href: '/blog/ib-free-courses-guide', label: 'New SL courses guide', variant: 'muted' },
-            { href: '/courses', label: 'Cambridge courses', variant: 'ghost' },
-            { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
-            { href: '/blog/ib-free-courses-guide', label: 'Free IB courses guide', variant: 'muted' },
+            { href: '/guides/ib', label: 'IB study guide hub', variant: 'muted' },
+            { href: '/blog/ib-free-courses-guide', label: '760+ lessons guide', variant: 'muted' },
+            { href: '/blog/ib-diploma-past-papers-guide', label: 'Past papers workflow', variant: 'muted' },
             { href: '/blog/ib-command-terms-explained', label: 'IB command terms', variant: 'muted' },
             { href: '/blog/ib-internal-assessment-complete-guide', label: 'IA guide', variant: 'muted' },
             { href: '/blog/ib-how-to-get-a-7-diploma', label: 'How to get a 7', variant: 'muted' },
+            { href: '/ib/past-papers/biology-hl#ib-topic-practice', label: 'Topic practice', variant: 'muted' },
             { href: '/ib/subjects', label: 'All IB subjects', variant: 'muted' },
             { href: '/community?board=ib', label: 'IB Exam Room', variant: 'muted' },
-            { href: '/mark', label: 'Get feedback on your answer', variant: 'muted' },
+            { href: '/mark', label: 'Criterion marking', variant: 'muted' },
           ]}
         />
 

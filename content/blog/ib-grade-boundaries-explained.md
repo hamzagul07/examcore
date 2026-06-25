@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: IB grade boundaries, IB grading explained, IB 7 points, IB 45 points, IB passing score, how IB grades work
 category: revision
 author: hassan
-updated: 2026-06-19
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -24,7 +24,7 @@ The famous 'out of 45' score is a combination of your subject performance and yo
 To be awarded the IB Diploma, a student must achieve a minimum of **24 points**. However, simply hitting this number isn't enough; there are several other conditions you must meet. These include avoiding certain low grades (e.g., no grade 1s, and a limited number of 2s and 3s across your subjects) and satisfactorily completing all Core requirements. You must achieve at least a grade D in both Theory of Knowledge and the Extended Essay to be eligible for the Diploma at all. Failing to submit a CAS portfolio is also an automatic failure condition.
 
 ## Why you can't rely on old percentages
-A common mistake is to look at a past grade boundary report and assume the same percentages will apply to your exams. Because boundaries are set after marking to account for paper difficulty, they fluctuate. A 75% might earn a grade 7 in a difficult Maths paper one year, but only a 6 in a more straightforward one the next. This is why your focus should be on mastering the syllabus content and exam technique, not on hitting a magic number. Using [IB past papers](/ib/past-papers) helps you practise skills, and getting expert [feedback on your work](/mark) helps you understand the qualitative standards expected for the top grades, which is far more valuable than just calculating a percentage.
+A common mistake is to look at a past grade boundary report and assume the same percentages will apply to your exams. Because boundaries are set after marking to account for paper difficulty, they fluctuate. A 75% might earn a grade 7 in a difficult Maths paper one year, but only a 6 in a more straightforward one the next. This is why your focus should be on mastering the syllabus content and exam technique, not on hitting a magic number. Use [IB past papers](/ib/past-papers) and [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) to drill syllabus points, and get expert [feedback on your work](/mark) to understand the qualitative standards expected for the top grades — far more valuable than calculating a percentage.
 
 ## Frequently asked questions
 

@@ -1,11 +1,11 @@
 ---
 title: IB Internal Assessment (IA) complete guide — every subject, criteria & tips
 description: Master the IB IA across sciences, humanities, maths, and arts: word counts, criteria, supervisor role, and how to score top bands.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Internal Assessment, IB IA guide, IB IA criteria, IB IA word count, how to write IB IA, IB IA grade 7
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -27,7 +27,7 @@ Sciences: personal engagement and uncertainty analysis matter. Economics/BM: str
 AI-generated plagiarism; supervisor draft ignored; exceeding word limits; weak ethical consideration; copying online IA structures verbatim.
 
 ## Using MarkScheme across the diploma
-MarkScheme hosts [free IB courses](/ib/courses), [past paper archives](/ib/past-papers), and [criterion practice marking](/mark) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.
+MarkScheme hosts **[760+ free IB lessons](/ib/courses)** across sciences, humanities, languages, maths, arts, and Core — each syllabus point links to [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and [criterion marking](/mark). See the [free courses guide](/blog/ib-free-courses-guide) and [diploma past papers guide](/blog/ib-diploma-past-papers-guide).
 
 ## Frequently asked questions
 

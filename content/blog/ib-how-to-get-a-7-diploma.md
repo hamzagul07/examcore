@@ -1,11 +1,11 @@
 ---
 title: How to get a 7 in IB (every subject) — markbands, habits & revision science
 description: Practical system for IB grade 7s: markband thinking, spaced repetition, past paper cycles, IA strategy, and avoiding the mistakes that cap you at a 5.
-date: 2026-06-23
+date: 2026-06-25
 keywords: how to get a 7 in IB, IB grade 7 tips, IB revision strategy, IB top marks, IB study tips, IB markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -27,7 +27,7 @@ Build a "mistake log" across subjects. One hour drilling your top three recurrin
 Passive highlighting; ignoring teacher feedback on drafts; revising only favourite topics; no timed practice until April.
 
 ## Using MarkScheme across the diploma
-MarkScheme hosts [free IB courses](/ib/courses), [past paper archives](/ib/past-papers), and [criterion practice marking](/mark) for sciences, humanities, languages, maths, arts, and Core components — so you can revise content and exam technique in one place.
+MarkScheme hosts **[760+ free IB lessons](/ib/courses)** across sciences, humanities, languages, maths, arts, and Core — each syllabus point links to [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) and [criterion marking](/mark). See the [free courses guide](/blog/ib-free-courses-guide) and [diploma past papers guide](/blog/ib-diploma-past-papers-guide).
 
 ## Frequently asked questions
 

@@ -119,6 +119,33 @@ export default async function ClusterGuidePage({ params }: Props) {
           </p>
         </aside>
 
+        {isIb && (
+          <aside className="ms-hub-card mb-12" aria-label="IB product pages">
+            <p className="ms-overline">Practise on MarkScheme</p>
+            <h2 className="ms-h3" style={{ marginTop: 8 }}>
+              Past papers, courses &amp; topic practice
+            </h2>
+            <p className="ms-body-2" style={{ marginTop: 8, maxWidth: 560 }}>
+              Move from reading to doing — browse IB papers by subject, revise with{' '}
+              <strong>760+ free lessons</strong>, or drill one syllabus point at a time.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/ib/past-papers" className="ec-btn-primary ec-btn-primary--sm">
+                IB past papers <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/ib/courses" className="ec-btn-secondary ec-btn-secondary--sm">
+                Free IB courses
+              </Link>
+              <Link href="/ib/past-papers/biology-hl#ib-topic-practice" className="ec-btn-ghost ec-btn-ghost--sm">
+                Topic practice example
+              </Link>
+              <Link href="/blog/ib-free-courses-guide" className="ec-btn-underline">
+                Free courses guide
+              </Link>
+            </div>
+          </aside>
+        )}
+
         {pillar && (
           <div className="mb-12">
             <p className="ms-overline">Pillar guide</p>

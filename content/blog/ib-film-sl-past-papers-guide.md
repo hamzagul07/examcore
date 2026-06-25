@@ -29,7 +29,7 @@ Ignoring sound; two separate reviews instead of comparison; weak reflection on e
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-film-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Film SL course](/ib/courses/film-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Film HL course](/ib/courses/film-hl) if you sit the other level.
+Our free [Film SL course](/ib/courses/film-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Film HL course](/ib/courses/film-hl) if you sit the other level. Revise syllabus-by-syllabus with [topic practice](/ib/past-papers/film-sl#ib-topic-practice) — each point links to a lesson and criterion marking task.
 
 ## Frequently asked questions
 

@@ -17,6 +17,8 @@ const SUBJECTS = [
   'ib-music-sl',
   'ib-film-hl',
   'ib-film-sl',
+  'ib-visual-arts-hl',
+  'ib-visual-arts-sl',
 ]
 
 function runSubject(subject) {

@@ -160,6 +160,8 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
   ],
   '/blog': [
     'Cambridge exam tips',
+    'IB past papers guide',
+    'IB markbands',
     'past paper revision blog',
     'A-Level study guides',
     'mark scheme guide',
@@ -170,6 +172,25 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'which A-Level subjects to take',
     'Cambridge exam leaks 2026',
     'May June 2026 exams',
+  ],
+  '/ib': [
+    'IB past papers',
+    'IB Diploma past papers',
+    'IB markbands',
+    'IB HL SL',
+    'free IB course',
+  ],
+  '/ib/courses': [
+    'free IB course',
+    'IB TOK course',
+    'IB revision free',
+    'IB criterion marking',
+  ],
+  '/guides/ib': [
+    'IB past papers',
+    'IB revision guide',
+    'IB markbands explained',
+    'IB free courses',
   ],
   '/about': [
     'Cambridge marking startup',

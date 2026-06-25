@@ -1,4 +1,5 @@
 import { getBlogPosts } from '@/lib/blog'
+import { getClusterForSlug } from '@/lib/seo/clusters'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 export const dynamic = 'force-static'
@@ -16,16 +17,25 @@ export async function GET() {
   const base = SITE_URL.replace(/\/$/, '')
 
   const items = posts
-    .map(
-      (p) => `
+    .map((p) => {
+      const pub = p.updated || p.date
+      const cluster = getClusterForSlug(p.slug)
+      const category =
+        cluster.id === 'ib'
+          ? 'IB Diploma'
+          : cluster.id === 'subject-guides'
+            ? 'Subject guides'
+            : 'Cambridge'
+      return `
     <item>
       <title>${escapeXml(p.title)}</title>
       <link>${base}/blog/${p.slug}</link>
       <guid isPermaLink="true">${base}/blog/${p.slug}</guid>
       <description>${escapeXml(p.description)}</description>
-      ${p.date ? `<pubDate>${new Date(p.date).toUTCString()}</pubDate>` : ''}
+      <category>${escapeXml(category)}</category>
+      ${pub ? `<pubDate>${new Date(pub).toUTCString()}</pubDate>` : ''}
     </item>`
-    )
+    })
     .join('')
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -33,7 +43,7 @@ export async function GET() {
   <channel>
     <title>${escapeXml(SITE_NAME)} Blog</title>
     <link>${base}/blog</link>
-    <description>Cambridge A-Level and O-Level past paper tips, mark schemes, and revision guides.</description>
+    <description>Cambridge A-Level, O-Level and IB Diploma past paper tips, mark schemes, markbands, and revision guides.</description>
     <language>en-gb</language>
     <atom:link href="${base}/feed.xml" rel="self" type="application/rss+xml"/>
     ${items}

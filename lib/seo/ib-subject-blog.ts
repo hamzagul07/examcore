@@ -61,9 +61,15 @@ export function getIbSubjectIaBlogSlug(catalogSlug: string): string | null {
 export type IbSubjectBlogLink = { href: string; label: string }
 
 /** Hub intro links for IB subject / course pages. */
-export function getIbSubjectBlogLinks(catalogSlug: string, shortName: string): IbSubjectBlogLink[] {
+export function getIbSubjectBlogLinks(
+  catalogSlug: string,
+  shortName: string,
+  opts?: { hasCourse?: boolean }
+): IbSubjectBlogLink[] {
   const catalog = ibCatalogSlug(catalogSlug)
-  const links: IbSubjectBlogLink[] = []
+  const links: IbSubjectBlogLink[] = [
+    { href: '/guides/ib', label: 'IB study guide hub' },
+  ]
   const past = getIbSubjectPastPapersBlogSlug(catalog)
   if (past) {
     links.push({ href: `/blog/${past}`, label: `${shortName} revision guide` })
@@ -71,6 +77,12 @@ export function getIbSubjectBlogLinks(catalogSlug: string, shortName: string): I
   const ia = getIbSubjectIaBlogSlug(catalog)
   if (ia) {
     links.push({ href: `/blog/${ia}`, label: 'IA guide' })
+  }
+  if (opts?.hasCourse) {
+    links.push({
+      href: `/ib/past-papers/${catalog}#ib-topic-practice`,
+      label: 'Topic practice',
+    })
   }
   return links
 }

@@ -11,6 +11,7 @@ export type PostSeoMeta = {
 
 function inferFormat(slug: string, category?: string | null): ContentFormat {
   if (isSubjectGuideSlug(slug)) return 'subject-guide'
+  if (slug.startsWith('ib-') && slug.endsWith('-ia-guide')) return 'guide'
   if (/^best-/.test(slug) || slug.includes('combinations') || slug.includes('which-')) {
     return 'comparison'
   }

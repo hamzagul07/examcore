@@ -66,8 +66,10 @@ export function personNode(author: SiteAuthor): JsonLd {
     worksFor: { '@id': `${SITE_URL}/#organization` },
     knowsAbout: [
       'Cambridge International examinations',
+      'International Baccalaureate Diploma Programme',
       'Past paper marking',
       'Mark schemes',
+      'IB markbands',
     ],
     ...(author.credentials?.length
       ? {
@@ -91,9 +93,12 @@ export function websiteNode(): JsonLd {
     publisher: { '@id': `${SITE_URL}/#organization` },
     about: { '@id': `${SITE_URL}/#brand` },
     hasPart: [
-      { '@type': 'WebPage', url: `${SITE_URL}/mark`, name: 'Mark a Cambridge past paper' },
+      { '@type': 'WebPage', url: `${SITE_URL}/mark`, name: 'Mark a past paper' },
       { '@type': 'WebPage', url: `${SITE_URL}/subjects`, name: 'Cambridge subjects' },
       { '@type': 'WebPage', url: `${SITE_URL}/courses`, name: 'Free Cambridge courses' },
+      { '@type': 'WebPage', url: `${SITE_URL}/ib`, name: 'IB Diploma past papers' },
+      { '@type': 'WebPage', url: `${SITE_URL}/ib/courses`, name: 'Free IB courses' },
+      { '@type': 'WebPage', url: `${SITE_URL}/guides/ib`, name: 'IB study guides' },
       { '@type': 'WebPage', url: `${SITE_URL}/blog`, name: 'Revision guides & exam tips' },
     ],
   }
@@ -106,21 +111,36 @@ export function learningResourceNode(options: {
   syllabusCode: string
   topics?: string[]
   level?: string
+  /** Board — avoids Cambridge defaults on IB pages. */
+  curriculum?: 'cambridge' | 'ib'
 }): JsonLd {
+  const isIb = options.curriculum === 'ib'
+  const teaches = options.topics?.length
+    ? options.topics
+    : isIb
+      ? `IB Diploma ${options.syllabusCode}`
+      : `Cambridge syllabus ${options.syllabusCode}`
+  const about = options.topics?.length
+    ? options.topics.map((t) => ({ '@type': 'Thing', name: t }))
+    : {
+        '@type': 'Thing',
+        name: isIb
+          ? `IB Diploma ${options.syllabusCode}`
+          : `Cambridge ${options.syllabusCode}`,
+      }
+
   return {
     '@type': 'LearningResource',
     name: options.name,
     description: options.description,
     url: options.url,
     inLanguage: 'en-GB',
+    learningResourceType: 'study guide',
     educationalLevel: options.level ?? 'secondary education',
-    teaches: options.topics?.length
-      ? options.topics
-      : `Cambridge syllabus ${options.syllabusCode}`,
-    about: options.topics?.length
-      ? options.topics.map((t) => ({ '@type': 'Thing', name: t }))
-      : { '@type': 'Thing', name: `Cambridge ${options.syllabusCode}` },
+    teaches,
+    about,
     provider: { '@id': `${SITE_URL}/#organization` },
+    isAccessibleForFree: true,
   }
 }
 

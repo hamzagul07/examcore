@@ -95,6 +95,7 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
             syllabusCode: subject.slug,
             topics: [`IB ${subject.name}`, ...subject.papers],
             level: subject.level === 'HL' ? 'Higher Level' : 'Standard Level',
+            curriculum: 'ib',
           }),
           itemListNode({
             name: `IB ${subject.name} ${subject.level} exam series`,

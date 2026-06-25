@@ -50,7 +50,7 @@ export default async function IbCoursePage({ params }: Props) {
   const communityOn = isCommunityEnabled()
   const syllabusLeaves = getTotalSyllabusLeaves(`ib-${slug}`)
   const publishingMore = syllabusLeaves > lessons.length
-  const blogLinks = getIbSubjectBlogLinks(catalogSlug, ibShortName(subject))
+  const blogLinks = getIbSubjectBlogLinks(catalogSlug, ibShortName(subject), { hasCourse: true })
   const sibling = getIbCourseSibling(slug)
   const topicPages = getIbTopicPracticePages(catalogSlug)
   const short = ibShortName(subject)

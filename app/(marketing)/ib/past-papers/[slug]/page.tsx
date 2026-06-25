@@ -164,6 +164,15 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
             ...(course
               ? [{ href: course.path, label: `Free ${short} course`, variant: 'ghost' as const }]
               : []),
+            ...(topicPages.length
+              ? [
+                  {
+                    href: `#ib-topic-practice`,
+                    label: 'Practice by topic',
+                    variant: 'ghost' as const,
+                  },
+                ]
+              : []),
             { href: `/ib/subjects/${subject.slug}`, label: `About ${short} ${subject.level}`, variant: 'ghost' },
           ]}
         />

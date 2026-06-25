@@ -14,6 +14,7 @@ import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessonsForCatalog } from '@/lib/courses/ib'
+import { ibCoursePath } from '@/lib/ib/slug-resolve'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -50,6 +51,7 @@ export default async function IbSubjectPage({ params }: Props) {
   const copy = buildIbSubjectCopy(subject)
   const url = `${SITE_URL}${copy.path}`
   const short = ibShortName(subject)
+  const course = getIbCourse(subject.slug)
 
   const faq = [
     {
@@ -64,7 +66,7 @@ export default async function IbSubjectPage({ params }: Props) {
       q: `Where can I find IB ${short} ${subject.level} past papers?`,
       a: `Browse every recent ${subject.name} ${subject.level} exam series on our IB ${short} past-papers page, organised by session and paper, with mark-scheme guidance for each.`,
     },
-    ...(getIbCourse(subject.slug)
+    ...(course
       ? [
           {
             q: `Is there a free IB ${subject.name} course?`,
@@ -150,9 +152,9 @@ export default async function IbSubjectPage({ params }: Props) {
           paragraph={`${subject.blurb} Below are the papers you'll sit and how examiners award marks. Practise past papers, learn the markbands, then check your own answers for feedback.`}
           links={[
             { href: `/ib/past-papers/${subject.slug}`, label: 'Past papers →', variant: 'primary' },
-            ...(getIbCourse(subject.slug)
+            ...(course
               ? [
-                  { href: `/ib/courses/${subject.slug}`, label: `Free ${short} course`, variant: 'ghost' as const },
+                  { href: ibCoursePath(subject.slug), label: `Free ${short} course`, variant: 'ghost' as const },
                   {
                     href: `/ib/past-papers/${subject.slug}#ib-topic-practice`,
                     label: 'Practice by topic',
@@ -182,9 +184,9 @@ export default async function IbSubjectPage({ params }: Props) {
           </div>
         ) : null}
 
-        {getIbCourse(subject.slug) ? (
+        {course ? (
           <SubjectChapters
-            code={getIbCourse(subject.slug)!.code}
+            code={course.code}
             lessons={getIbCourseLessonsForCatalog(subject.slug)}
             basePath="/ib/courses"
             accent={subject.accent}

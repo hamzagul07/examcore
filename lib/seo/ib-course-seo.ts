@@ -1,5 +1,6 @@
 import type { CourseFaqItem, CourseLesson } from '@/lib/courses/types'
 import type { IbSubject } from '@/lib/ib/catalog'
+import { ibCourseLessonPath, ibCoursePath } from '@/lib/ib/slug-resolve'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
 import { ibShortName } from '@/lib/seo/ib-seo'
 
@@ -155,7 +156,7 @@ export function buildIbCourseLessonFaqs(
 ): CourseFaqItem[] {
   const lp = levelPhrase(subject)
   const short = ibShortName(subject)
-  const path = `/ib/courses/${subject.slug}/${lesson.slug}`
+  const path = ibCourseLessonPath(subject.slug, lesson.slug)
   const markCode = ibMarkCode(subject.slug)
 
   const generated: CourseFaqItem[] = [
@@ -224,8 +225,8 @@ export function buildIbCourseLessonSeo(
     breadcrumbs: [
       { name: 'Home', path: '/' },
       { name: 'IB courses', path: '/ib/courses' },
-      { name: `${subject.name} ${levelShort(subject)}`, path: `/ib/courses/${subject.slug}` },
-      { name: lesson.title, path: `/ib/courses/${subject.slug}/${lesson.slug}` },
+      { name: `${subject.name} ${levelShort(subject)}`, path: ibCoursePath(subject.slug) },
+      { name: lesson.title, path: ibCourseLessonPath(subject.slug, lesson.slug) },
     ],
     faqs: buildIbCourseLessonFaqs(subject, lesson),
     markPath: `/mark?subject=${markCode}&topic=${encodeURIComponent(lesson.topicCode)}`,

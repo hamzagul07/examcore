@@ -13,6 +13,7 @@ import { buildIbCourseLessonFaqs } from '@/lib/seo/ib-course-seo'
 import { SITE_URL } from '@/lib/site-config'
 import type { CourseLesson } from '@/lib/courses/types'
 import type { IbSubject } from '@/lib/ib/catalog'
+import { ibCourseContentSlug, ibCourseLessonPath, ibCoursePath } from '@/lib/ib/slug-resolve'
 
 type Props = {
   subject: IbSubject
@@ -29,7 +30,7 @@ export function IbCourseLessonJsonLd({
   seoDescription,
   topics,
 }: Props) {
-  const path = `/ib/courses/${subject.slug}/${lesson.slug}`
+  const path = ibCourseLessonPath(subject.slug, lesson.slug)
   const url = `${SITE_URL}${path}`
   const faqs = buildIbCourseLessonFaqs(subject, lesson)
   const level =
@@ -65,7 +66,7 @@ export function IbCourseLessonJsonLd({
     breadcrumbList([
       { name: 'Home', path: '/' },
       { name: 'IB courses', path: '/ib/courses' },
-      { name: `${subject.name} ${subject.level}`, path: `/ib/courses/${subject.slug}` },
+      { name: `${subject.name} ${subject.level}`, path: ibCoursePath(subject.slug) },
       { name: lesson.title, path },
     ]),
     courseNode,
@@ -73,7 +74,7 @@ export function IbCourseLessonJsonLd({
       name: `IB ${subject.name}: ${lesson.title} (${lesson.topicCode})`,
       description: seoDescription,
       url,
-      syllabusCode: `ib-${subject.slug}`,
+      syllabusCode: `ib-${ibCourseContentSlug(subject.slug)}`,
       topics: topics?.length ? topics : undefined,
       level,
     }),

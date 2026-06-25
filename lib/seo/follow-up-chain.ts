@@ -191,6 +191,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/ib',
     },
     {
+      question: 'How do I practise one syllabus topic at a time?',
+      answer:
+        'Open a subject past-papers page and use Practice by topic — each point links to a lesson and criterion marking task.',
+      href: '/ib/past-papers/biology-hl',
+    },
+    {
       question: 'What is the difference between HL and SL?',
       answer:
         'Higher Level covers more content and usually an extra paper with greater depth; Standard Level is a lighter syllabus. Each subject page lists both.',

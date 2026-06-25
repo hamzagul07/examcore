@@ -3,24 +3,15 @@ import { createBlogPostMetadata } from '@/lib/seo/metadata'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
 import { enrichPostMeta, extractHeadings } from '@/lib/blog/meta'
 import { getClusterForSlug } from '@/lib/seo/clusters'
-import { isSubjectGuideSlug, isIbGuideSlug } from '@/lib/seo/subject-guides'
+import { isIbGuideSlug, isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
-import { BlogPillarLinks } from '@/components/seo/BlogPillarLinks'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
 import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
 import { BlogArticleHero } from '@/components/blog/BlogArticleHero'
 import { BlogAuthorByline } from '@/components/blog/BlogAuthorByline'
-import { BlogClusterNav } from '@/components/blog/BlogClusterNav'
 import { BlogQuickAnswer } from '@/components/blog/BlogQuickAnswer'
-import { BlogSourcesBlock } from '@/components/blog/BlogSourcesBlock'
-import { BlogSerpSnippets } from '@/components/blog/BlogSerpSnippets'
-import { BlogTaskCompleteCta } from '@/components/blog/BlogTaskCompleteCta'
 import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
 import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
-import { BlogFollowUpChain } from '@/components/blog/BlogFollowUpChain'
-import { BlogConversationalQueries } from '@/components/blog/BlogConversationalQueries'
-import { BlogInContentLinks } from '@/components/blog/BlogInContentLinks'
-import { BlogInformationGain } from '@/components/blog/BlogInformationGain'
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
@@ -63,7 +54,6 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="ms-pg py-12 sm:py-16">
         <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />
-        <BlogClusterNav slug={slug} />
         <BlogQuickAnswer
           title={post.title}
           description={post.description}
@@ -71,13 +61,6 @@ export default async function BlogPostPage({ params }: Props) {
           date={post.updated ?? post.date}
         />
         <BlogAuthorByline authorId={post.author} />
-        <BlogInformationGain
-          slug={slug}
-          content={post.content}
-          informationGain={post.informationGain}
-        />
-        <BlogConversationalQueries slug={slug} />
-        <BlogInContentLinks slug={slug} />
 
         <div className="ms-blog-layout ec-blog-prose ec-fanout-prose mt-10 min-w-0">
           <BlogTableOfContents headings={headings} />
@@ -86,12 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
 
-        <BlogFollowUpChain slug={slug} />
-        <BlogSerpSnippets content={post.content} />
-        <BlogTaskCompleteCta />
-        <BlogSourcesBlock />
         <BlogPostCta variant={ctaVariant} />
-        <BlogPillarLinks slug={slug} showSubjects={!isSubjectGuideSlug(slug)} />
         <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>
     </MarketingPageShell>

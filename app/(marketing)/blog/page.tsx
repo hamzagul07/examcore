@@ -11,6 +11,7 @@ import { enrichPostMeta, isEditorialPost, sortPostsForIndex } from '@/lib/blog/m
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogIndexJsonLd } from '@/components/seo/BlogPostJsonLd'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
@@ -74,6 +75,10 @@ export default function BlogIndexPage() {
       />
       <MarketingHero
         label="Guides & blog"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog' },
+        ]}
         title={
           <>
             What Cambridge students <em>are talking about now</em>
@@ -271,6 +276,7 @@ export default function BlogIndexPage() {
             How it works
           </Link>
         </p>
+        <PageHelpStrip />
       </MarketingSection>
     </MarketingPageShell>
   )

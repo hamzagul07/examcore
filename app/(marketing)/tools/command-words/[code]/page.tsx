@@ -110,28 +110,25 @@ export default async function SubjectCommandWordsPage({ params }: Props) {
       </MarketingHero>
 
       <MarketingSection className="!pt-0">
-        <aside className="ms-quick-answer">
-          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
-            High-yield verbs for {code}
-          </p>
-          <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
-            {profile.topVerbs.join(' · ')} — {profile.paperNote}
-          </p>
-        </aside>
-
         <CommandWordExplorer words={words} />
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link href="/tools/command-words" className="ec-btn-underline text-sm">
+        <p className="ms-micro mt-8">
+          <Link href="/tools/command-words" className="ec-btn-underline">
             All command words
           </Link>
-          <Link href="/guides/command-words" className="ec-btn-underline text-sm">
-            Command words hub
-          </Link>
-          <Link href={`/past-papers/${code}`} className="ec-btn-underline text-sm">
+          {entry.guideSlug ? (
+            <>
+              {' · '}
+              <Link href={`/blog/${entry.guideSlug}`} className="ec-btn-underline">
+                {code} guide
+              </Link>
+            </>
+          ) : null}
+          {' · '}
+          <Link href={`/past-papers/${code}`} className="ec-btn-underline">
             {code} past papers
           </Link>
-        </div>
+        </p>
       </MarketingSection>
     </MarketingPageShell>
   )

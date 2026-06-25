@@ -25,6 +25,10 @@ export default function FaqPage() {
       />
       <MarketingHero
         label="FAQ"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'FAQ', path: '/faq' },
+        ]}
         title="Questions you'll actually ask"
         lead="Honest answers about marking, data, pricing, and getting started."
       />

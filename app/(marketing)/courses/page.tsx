@@ -6,6 +6,7 @@ import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display.server'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { itemListNode } from '@/lib/seo/structured-data'
 import { getSubjectSeoProfile } from '@/lib/seo/subject-seo'
 import { SITE_URL } from '@/lib/site-config'
@@ -57,6 +58,13 @@ export default function CoursesIndexPage() {
         })}
       />
       <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
+        <MarketingBreadcrumbs
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Free courses', path: '/courses' },
+          ]}
+          className="mb-4"
+        />
         <HubSeoIntro
           heading="Free courses — Cambridge & IB, every syllabus topic"
           paragraph="Browse free A-Level, O-Level, and IB Diploma courses aligned to official syllabuses. Each subject is broken into topic codes with visual lessons, exam tips, and marking — Cambridge past papers or IB criterion practice — 100% free."

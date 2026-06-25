@@ -8,6 +8,7 @@ import { collectionPageNode, itemListNode, faqPageNode } from '@/lib/seo/structu
 import { SITE_URL } from '@/lib/site-config'
 import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { getIbSubjects, getIbSubjectsByGroup, getIbSubject, ibYearRange } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
 import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
@@ -119,6 +120,13 @@ export default function IbHubPage() {
       />
 
       <div className="ms-pg ms-subjects-page" style={{ paddingTop: 48 } as CSSProperties}>
+        <MarketingBreadcrumbs
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'IB', path: PATH },
+          ]}
+          className="mb-4"
+        />
         <h1 className="ms-h2" style={{ marginBottom: 8 }}>
           IB Diploma past papers &amp; mark schemes
         </h1>
@@ -133,16 +141,8 @@ export default function IbHubPage() {
           links={[
             { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
             { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
-            { href: '/guides/ib', label: 'IB study guide hub', variant: 'muted' },
-            { href: '/blog/ib-free-courses-guide', label: '760+ lessons guide', variant: 'muted' },
-            { href: '/blog/ib-diploma-past-papers-guide', label: 'Past papers workflow', variant: 'muted' },
-            { href: '/blog/ib-command-terms-explained', label: 'IB command terms', variant: 'muted' },
-            { href: '/blog/ib-internal-assessment-complete-guide', label: 'IA guide', variant: 'muted' },
-            { href: '/blog/ib-how-to-get-a-7-diploma', label: 'How to get a 7', variant: 'muted' },
-            { href: '/ib/topic-practice', label: 'All topic pages', variant: 'muted' },
-            { href: '/ib/past-papers/biology-hl#ib-topic-practice', label: 'Topic practice example', variant: 'muted' },
-            { href: '/ib/subjects', label: 'All IB subjects', variant: 'muted' },
-            { href: '/community?board=ib', label: 'IB Exam Room', variant: 'muted' },
+            { href: '/guides/ib', label: 'Study guides', variant: 'muted' },
+            { href: '/ib/topic-practice', label: 'Topic practice', variant: 'muted' },
             { href: '/mark', label: 'Criterion marking', variant: 'muted' },
           ]}
         />

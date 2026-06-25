@@ -3,7 +3,9 @@ import { createServiceClient } from '@/lib/supabase/service'
 import {
   ENABLED_BOARD_IDS,
   ENABLED_LEVEL_IDS,
-  isSubjectValidForLevel,
+  IB_DIPLOMA_LEVEL,
+  isIbBoard,
+  isSubjectValidForProfile,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserRole, UserStage } from '@/lib/database.types'
 import { isOnboardingComplete } from '@/lib/onboarding'
@@ -39,8 +41,11 @@ export async function saveOnboardingProfile(
 ): Promise<SaveOnboardingResult> {
   try {
     const role: UserRole = body.role === 'teacher' ? 'teacher' : 'student'
-    const board = (body.board || '').trim() || 'Cambridge International'
-    const level = (body.level || '').trim() || 'A-Level'
+    let board = (body.board || '').trim() || 'Cambridge International'
+    let level = (body.level || '').trim() || 'A-Level'
+    if (isIbBoard(board)) {
+      level = IB_DIPLOMA_LEVEL
+    }
     const subjects =
       role === 'teacher'
         ? ['Mathematics']
@@ -64,10 +69,10 @@ export async function saveOnboardingProfile(
         return { ok: false, error: 'Pick up to four subjects.', status: 400 }
       }
       for (const s of subjects) {
-        if (!isSubjectValidForLevel(s, level)) {
+        if (!isSubjectValidForProfile(board, level, s)) {
           return {
             ok: false,
-            error: `Subject "${s}" is not supported for ${level} yet.`,
+            error: `Subject "${s}" is not supported for ${board} ${level} yet.`,
             status: 400,
           }
         }

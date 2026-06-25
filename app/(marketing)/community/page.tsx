@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
@@ -42,12 +43,21 @@ const SORTS: PostSort[] = ['hot', 'new', 'top', 'rising']
 export default async function CommunityHomePage({ searchParams }: PageProps) {
   if (!isCommunityEnabled()) {
     return (
-      <div className="ms-pg" style={{ paddingTop: 64, textAlign: 'center' }}>
+      <div className="ms-pg mx-auto max-w-lg" style={{ paddingTop: 64, textAlign: 'center' }}>
         <p className="ms-overline">Exam Room</p>
         <h1 className="ms-h2">Coming soon</h1>
         <p className="ms-body-2" style={{ color: 'var(--ec-text-secondary)' }}>
-          The student community is launching shortly.
+          The student community is launching shortly. In the meantime you can mark past papers,
+          browse free courses, or read the FAQ.
         </p>
+        <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+          <Link href="/mark" className="ec-btn-primary min-h-[48px] justify-center">
+            Mark a question
+          </Link>
+          <Link href="/faq" className="ec-btn-ghost min-h-[48px] justify-center">
+            FAQ
+          </Link>
+        </div>
       </div>
     )
   }

@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
-import { ErrorBox } from '@/components/AuthFormBits'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
 import {
@@ -16,8 +16,15 @@ import {
   DEFAULT_BOARD,
   DEFAULT_LEVEL,
   LEVELS,
-  isSubjectValidForLevel,
+  BOARDS,
+  IB_DIPLOMA_LEVEL,
+  IB_BOARD_ID,
+  isIbBoard,
+  isSubjectValidForProfile,
   subjectsInGroup,
+  ibSubjectGroups,
+  ibSubjectsInGroup,
+  levelsForBoard,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { postOnboardingHref, sanitizeNextPath } from '@/lib/auth-redirect'
@@ -29,6 +36,12 @@ const TOTAL_STEPS = 5
 const STAGE_OPTIONS: { id: UserStage; title: string; subtitle: string }[] = [
   { id: 'as_level', title: 'AS Level', subtitle: 'Year 12' },
   { id: 'a2_level', title: 'A2 Level', subtitle: 'Year 13' },
+  { id: 'other', title: 'Just exploring', subtitle: 'Other / not sure yet' },
+]
+
+const IB_STAGE_OPTIONS: { id: UserStage; title: string; subtitle: string }[] = [
+  { id: 'as_level', title: 'DP Year 1', subtitle: 'First year of the Diploma' },
+  { id: 'a2_level', title: 'DP Year 2', subtitle: 'Final exams year' },
   { id: 'other', title: 'Just exploring', subtitle: 'Other / not sure yet' },
 ]
 
@@ -61,6 +74,8 @@ export function OnboardingWizard({
 }: {
   rerun?: boolean
   initialProfile?: {
+    board?: string
+    level?: string
     subjects: string[]
     stage: UserStage | null
     primary_goal: PrimaryGoal | null
@@ -72,7 +87,12 @@ export function OnboardingWizard({
   const nextParam = searchParams.get('next')
 
   const [step, setStep] = useState(rerun ? 2 : 1)
-  const [level, setLevel] = useState(DEFAULT_LEVEL)
+  const [board, setBoard] = useState(initialProfile?.board ?? DEFAULT_BOARD)
+  const [level, setLevel] = useState(() => {
+    if (initialProfile?.level) return initialProfile.level
+    if (initialProfile?.board === IB_BOARD_ID) return IB_DIPLOMA_LEVEL
+    return DEFAULT_LEVEL
+  })
   const [subjects, setSubjects] = useState<string[]>(initialProfile?.subjects ?? [])
   const [stage, setStage] = useState<UserStage | null>(initialProfile?.stage ?? null)
   const [primaryGoal, setPrimaryGoal] = useState<PrimaryGoal | null>(
@@ -93,9 +113,21 @@ export function OnboardingWizard({
     setErrorMsg('')
   }
 
+  function handleBoardChange(nextBoard: string) {
+    setBoard(nextBoard)
+    setSubjects([])
+    setLevel(isIbBoard(nextBoard) ? IB_DIPLOMA_LEVEL : DEFAULT_LEVEL)
+    if (isIbBoard(nextBoard)) {
+      setStage((prev) => prev ?? 'other')
+    }
+    setErrorMsg('')
+  }
+
   function handleLevelChange(nextLevel: string) {
     setLevel(nextLevel)
-    setSubjects((prev) => prev.filter((id) => isSubjectValidForLevel(id, nextLevel)))
+    setSubjects((prev) =>
+      prev.filter((id) => isSubjectValidForProfile(board, nextLevel, id))
+    )
     if (nextLevel === 'O-Level') {
       setStage('other')
     }
@@ -109,7 +141,7 @@ export function OnboardingWizard({
     setErrorMsg('')
 
     const payload: OnboardingInput = {
-      board: DEFAULT_BOARD,
+      board,
       level,
       subjects,
       stage,
@@ -221,6 +253,8 @@ export function OnboardingWizard({
             )}
             {step === 2 && (
               <StepSubjects
+                board={board}
+                onBoardChange={handleBoardChange}
                 level={level}
                 onLevelChange={handleLevelChange}
                 selected={subjects}
@@ -280,11 +314,22 @@ export function OnboardingWizard({
 
 function ProgressSteps({ current, total }: { current: number; total: number }) {
   return (
-    <div className="ms-ob-dots" aria-label={`Step ${current} of ${total}`}>
-      {Array.from({ length: total }, (_, i) => (
-        <span key={i} className={i + 1 <= current ? 'on' : undefined} />
-      ))}
-    </div>
+    <ol className="ms-ob-dots" aria-label="Onboarding progress">
+      {Array.from({ length: total }, (_, i) => {
+        const stepNum = i + 1
+        const done = stepNum < current
+        const active = stepNum === current
+        return (
+          <li
+            key={i}
+            aria-current={active ? 'step' : undefined}
+            aria-label={`Step ${stepNum} of ${total}${done ? ', completed' : active ? ', current' : ''}`}
+          >
+            <span className={active || done ? 'on' : undefined} aria-hidden />
+          </li>
+        )
+      })}
+    </ol>
   )
 }
 
@@ -323,7 +368,8 @@ function StepWelcome({ onContinue }: { onContinue: () => void }) {
       </h1>
       <p className="ms-lead" style={{ marginTop: 16 }}>
         Let&apos;s set up your account so we can mark your work the way you need
-        — real Cambridge schemes, honest feedback, about a minute per question.
+        — Cambridge or IB Diploma, real mark schemes, honest feedback, about a
+        minute per question.
       </p>
       <div className="ms-ob-nav">
         <button type="button" onClick={onContinue} className="ec-btn-primary">
@@ -335,6 +381,8 @@ function StepWelcome({ onContinue }: { onContinue: () => void }) {
 }
 
 function StepSubjects({
+  board,
+  onBoardChange,
   level,
   onLevelChange,
   selected,
@@ -343,6 +391,8 @@ function StepSubjects({
   onContinue,
   onBack,
 }: {
+  board: string
+  onBoardChange: (board: string) => void
   level: string
   onLevelChange: (level: string) => void
   selected: string[]
@@ -351,6 +401,7 @@ function StepSubjects({
   onContinue: () => void
   onBack: () => void
 }) {
+  const ib = isIbBoard(board)
   const levelHeading =
     level === 'O-Level'
       ? 'O-Levels'
@@ -358,37 +409,68 @@ function StepSubjects({
         ? 'IGCSE subjects'
         : level === 'AS Level'
           ? 'AS Levels'
-          : 'A-Levels'
+          : level === IB_DIPLOMA_LEVEL
+            ? 'IB Diploma subjects'
+            : 'A-Levels'
+
+  const subjectGroups = ib ? ibSubjectGroups() : [...SUBJECT_GROUPS]
+  const visibleLevels = levelsForBoard(board)
 
   return (
     <div>
-      <h1 className="ms-h2">What level are you studying?</h1>
+      <h1 className="ms-h2">What are you studying?</h1>
       <p className="ms-lead" style={{ marginTop: 12 }}>
-        Pick your Cambridge level, then choose up to four subjects.
+        Pick your exam board, then choose up to four subjects. Cambridge and IB are
+        separate — we&apos;ll tailor marking and progress to your choices.
       </p>
 
-      <div className="ms-ob-choices">
-        {LEVELS.filter((l) => l.enabled).map((opt) => (
+      <p className="ms-overline" style={{ marginTop: 28 }}>
+        Exam board
+      </p>
+      <div className="ms-ob-choices" style={{ marginTop: 12 }}>
+        {BOARDS.filter((b) => b.enabled).map((opt) => (
           <button
             key={opt.id}
             type="button"
-            onClick={() => onLevelChange(opt.id)}
-            className={`ms-ob-choice${level === opt.id ? ' on' : ''}`}
+            onClick={() => onBoardChange(opt.id)}
+            className={`ms-ob-choice${board === opt.id ? ' on' : ''}`}
           >
             <b>{opt.label}</b>
+            <span>{opt.id === IB_BOARD_ID ? 'HL, SL & Core' : 'A-Level, AS & O-Level'}</span>
           </button>
         ))}
       </div>
 
+      {!ib ? (
+        <>
+          <p className="ms-overline" style={{ marginTop: 28 }}>
+            Cambridge level
+          </p>
+          <div className="ms-ob-choices" style={{ marginTop: 12 }}>
+            {visibleLevels.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => onLevelChange(opt.id)}
+                className={`ms-ob-choice${level === opt.id ? ' on' : ''}`}
+              >
+                <b>{opt.label}</b>
+              </button>
+            ))}
+          </div>
+        </>
+      ) : null}
+
       <h2 className="ms-h2" style={{ marginTop: 40, fontSize: 'clamp(1.35rem, 3vw, 1.75rem)' }}>
-        Which Cambridge {levelHeading} are you taking?
+        {ib ? 'Which IB subjects are you taking?' : `Which Cambridge ${levelHeading} are you taking?`}
       </h2>
       <p className="ms-lead" style={{ marginTop: 10, fontSize: 15 }}>
-        We&apos;ll tailor papers and progress to these subjects.
+        {selected.length}/4 selected — we&apos;ll surface past papers, courses, and marking for
+        these.
       </p>
       <div className="ms-ob-subjects-scroll space-y-6">
-        {SUBJECT_GROUPS.map((group) => {
-          const items = subjectsInGroup(group, level)
+        {subjectGroups.map((group) => {
+          const items = ib ? ibSubjectsInGroup(group) : subjectsInGroup(group, level)
           if (!items.length) return null
           return (
             <div key={group}>
@@ -396,14 +478,17 @@ function StepSubjects({
               <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start' }}>
                 {items.map((subject) => {
                   const active = selected.includes(subject.id)
+                  const atLimit = !active && selected.length >= 4
                   return (
                     <button
                       key={subject.code}
                       type="button"
+                      disabled={atLimit}
                       onClick={() => onToggle(subject.id)}
-                      className={`ms-ob-chip${active ? ' on' : ''}`}
+                      className={`ms-ob-chip${active ? ' on' : ''}${atLimit ? ' opacity-50' : ''}`}
+                      aria-pressed={active}
                     >
-                      {subject.label} · {subject.code}
+                      {ib ? subject.label : `${subject.label} · ${subject.code}`}
                     </button>
                   )
                 })}
@@ -412,7 +497,14 @@ function StepSubjects({
           )
         })}
       </div>
-      {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
+      {selected.length >= 4 ? (
+        <p className="ms-micro mt-3">Maximum four subjects — deselect one to change.</p>
+      ) : null}
+      {errorMsg && (
+        <div className="mt-4">
+          <FormErrorAlert message={errorMsg} />
+        </div>
+      )}
       <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
     </div>
   )
@@ -438,18 +530,23 @@ function StepStage({
   onBack: () => void
 }) {
   const suggestions = suggestedExamDates()
+  const ib = level === IB_DIPLOMA_LEVEL
   const stageOptions =
-    level === 'O-Level' || level === 'IGCSE'
-      ? STAGE_OPTIONS.filter((opt) => opt.id === 'other')
-      : STAGE_OPTIONS
+    ib
+      ? IB_STAGE_OPTIONS
+      : level === 'O-Level' || level === 'IGCSE'
+        ? STAGE_OPTIONS.filter((opt) => opt.id === 'other')
+        : STAGE_OPTIONS
 
   return (
     <div>
       <h1 className="ms-h2">Where are you in your studies?</h1>
       <p className="ms-lead" style={{ marginTop: 12 }}>
-        {level === 'O-Level'
-          ? 'This helps us tailor papers and feedback for your O-Level year.'
-          : 'This helps us pitch feedback at the right level.'}
+        {ib
+          ? 'This helps us tailor papers, countdowns, and feedback for your IB year.'
+          : level === 'O-Level'
+            ? 'This helps us tailor papers and feedback for your O-Level year.'
+            : 'This helps us pitch feedback at the right level.'}
       </p>
       <div className="ms-ob-choices" style={{ gridTemplateColumns: '1fr' }}>
         {stageOptions.map((opt) => (
@@ -502,7 +599,7 @@ function StepStage({
         </button>
       </div>
 
-      {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
+      {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
       <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
     </div>
   )
@@ -540,7 +637,7 @@ function StepGoal({
           </button>
         ))}
       </div>
-      {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
+      {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
       <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
     </div>
   )
@@ -579,7 +676,7 @@ function StepFirstMark({
           ? 'Review your choices, then save to update your dashboard and paper recommendations.'
           : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
-      {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
+      {errorMsg && <div className="mt-4"><FormErrorAlert message={errorMsg} /></div>}
       {errorMsg.toLowerCase().includes('expired') && (
         <p className="mt-3 text-center text-sm">
           <button

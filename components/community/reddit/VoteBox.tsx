@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { compactCount } from '@/lib/community/format'
 
 type Props = {
@@ -14,18 +14,18 @@ type Props = {
 }
 
 export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedIn, layout = 'vertical' }: Props) {
-  const router = useRouter()
   const [score, setScore] = useState(initialScore)
   const [vote, setVote] = useState(initialVote)
   const [busy, setBusy] = useState(false)
+  const [signInHint, setSignInHint] = useState(false)
 
   async function cast(value: 1 | -1) {
     if (busy) return
     if (!signedIn) {
-      router.push('/auth/signin?next=/community')
+      setSignInHint(true)
       return
     }
-    // Optimistic update.
+    setSignInHint(false)
     const prevVote = vote
     const prevScore = score
     const nextVote = prevVote === value ? 0 : value
@@ -58,6 +58,8 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
       <button
         type="button"
         aria-label="Upvote"
+        aria-pressed={vote === 1}
+        disabled={busy}
         className={`rc-vote-btn${vote === 1 ? ' rc-vote-up-on' : ''}`}
         onClick={() => cast(1)}
       >
@@ -65,12 +67,18 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
           <path d="M12 4l8 9h-5v7H9v-7H4z" fill="currentColor" />
         </svg>
       </button>
-      <span className={`rc-vote-score${vote === 1 ? ' up' : vote === -1 ? ' down' : ''}`}>
+      <span
+        className={`rc-vote-score${vote === 1 ? ' up' : vote === -1 ? ' down' : ''}`}
+        aria-live="polite"
+        aria-atomic="true"
+      >
         {compactCount(score)}
       </span>
       <button
         type="button"
         aria-label="Downvote"
+        aria-pressed={vote === -1}
+        disabled={busy}
         className={`rc-vote-btn${vote === -1 ? ' rc-vote-down-on' : ''}`}
         onClick={() => cast(-1)}
       >
@@ -78,6 +86,11 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
           <path d="M12 20l-8-9h5V4h6v7h5z" fill="currentColor" />
         </svg>
       </button>
+      {signInHint && !signedIn ? (
+        <p className="rc-vote-signin-hint">
+          <Link href="/auth/signin?next=/community">Sign in</Link> to vote
+        </p>
+      ) : null}
     </div>
   )
 }

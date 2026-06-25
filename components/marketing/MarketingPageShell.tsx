@@ -1,4 +1,8 @@
 import type { ReactNode } from 'react'
+import {
+  MarketingBreadcrumbs,
+  type MarketingBreadcrumbItem,
+} from '@/components/seo/MarketingBreadcrumbs'
 
 type MarketingPageShellProps = {
   children: ReactNode
@@ -38,14 +42,19 @@ export function MarketingHero({
   title,
   lead,
   children,
+  breadcrumbs,
 }: {
   label?: string
   title: ReactNode
   lead?: string
   children?: ReactNode
+  breadcrumbs?: MarketingBreadcrumbItem[]
 }) {
   return (
     <section className="ms-pg ms-content-hero scroll-mt-24">
+      {breadcrumbs?.length ? (
+        <MarketingBreadcrumbs items={breadcrumbs} className="mb-4" />
+      ) : null}
       {label ? <p className="ms-overline">{label}</p> : null}
       <h1 className="ms-h2" style={{ fontSize: 'clamp(36px, 5vw, 56px)' }}>
         {title}

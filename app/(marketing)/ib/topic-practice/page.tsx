@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
-import { ArrowRight, BookOpen } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { collectionPageNode, itemListNode, faqPageNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
-import { ContentHubNav } from '@/components/content/ContentHubNav'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import {
   getIbTopicHubSubjects,
   getIbTopicPageCount,
@@ -89,14 +89,18 @@ export default function IbTopicPracticeHubPage() {
 
       <MarketingHero
         label="IB Diploma"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'IB', path: '/ib' },
+          { name: 'Topic practice', path: PATH },
+        ]}
         title={
           <>
             Topic practice — <em>every syllabus point</em>
           </>
         }
-        lead={`${totalTopics}+ pages across ${subjects.length} subjects. Revise one IB topic, then submit your response for band-by-band feedback against official criteria.`}
+        lead={`${totalTopics}+ pages across ${subjects.length} subjects. Open a subject to browse its topic grid on the past-papers page.`}
       >
-        <ContentHubNav />
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/ib/courses" className="ec-btn-primary ec-btn-primary--sm">
             Free IB courses <ArrowRight className="h-4 w-4" />
@@ -108,48 +112,36 @@ export default function IbTopicPracticeHubPage() {
       </MarketingHero>
 
       <MarketingSection className="!pt-0">
-        {subjects.map((subject) => {
-          const meta = getIbSubject(subject.slug)
-          const accent = meta?.accent ?? 'var(--ec-brand)'
-          return (
-            <div key={subject.slug} className="mb-12">
-              <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
-                <div>
-                  <p className="ms-overline">{subject.level}</p>
-                  <h2 className="ms-h3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.6rem)' }}>
-                    {meta ? ibShortName(meta) : subject.slug}{' '}
-                    <span className="text-[var(--ec-text-faint)]">· {subject.topicCount} topics</span>
-                  </h2>
-                </div>
+        <ul className="ms-pp-grid">
+          {subjects.map((subject) => {
+            const meta = getIbSubject(subject.slug)
+            const accent = meta?.accent ?? 'var(--ec-brand)'
+            const label = meta ? `${ibShortName(meta)}` : subject.slug
+            return (
+              <li key={subject.slug}>
                 <Link
-                  href={subject.hubPath}
-                  className="ec-btn-underline inline-flex items-center gap-1 text-sm"
+                  href={`${subject.hubPath}#ib-topic-practice`}
+                  className="ms-pp-card subject-accented"
+                  style={{ '--acc': accent } as CSSProperties}
                 >
-                  <BookOpen className="h-4 w-4" />
-                  Past papers
+                  <span className="ms-pp-glyph" aria-hidden>
+                    {meta?.glyph ?? '◆'}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="ms-pp-title">
+                      {label} <em className="ms-pp-code">· {subject.level}</em>
+                    </span>
+                    <span className="ms-pp-meta">{subject.topicCount} topics</span>
+                  </span>
+                  <span className="ms-pp-cta" aria-hidden>
+                    →
+                  </span>
                 </Link>
-              </div>
-              <ul
-                className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
-                style={{ '--sc': accent } as CSSProperties}
-              >
-                {subject.topics.map((topic) => (
-                  <li key={topic.path}>
-                    <Link
-                      href={topic.path}
-                      className="ms-hub-card block px-4 py-3 text-sm hover:border-[var(--sc)]"
-                    >
-                      <span className="ms-micro text-[var(--ec-text-faint)]">{topic.topicCode}</span>
-                      <span className="mt-1 block font-medium text-[var(--ec-text-primary)]">
-                        {topic.title}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        })}
+              </li>
+            )
+          })}
+        </ul>
+        <PageHelpStrip />
       </MarketingSection>
     </MarketingPageShell>
   )

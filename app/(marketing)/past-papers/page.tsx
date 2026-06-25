@@ -8,6 +8,7 @@ import { collectionPageNode, itemListNode, faqPageNode } from '@/lib/seo/structu
 import { SITE_URL } from '@/lib/site-config'
 import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
 import { getPastPaperSubjects, type PastPaperSubject } from '@/lib/seo/past-papers'
 import { getCatalogSubject } from '@/lib/subjects-catalog'
 
@@ -105,6 +106,13 @@ export default function PastPapersHubPage() {
       />
 
       <div className="ms-pg ms-subjects-page" style={{ paddingTop: 48 } as CSSProperties}>
+        <MarketingBreadcrumbs
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Past papers', path: PATH },
+          ]}
+          className="mb-4"
+        />
         <h1 className="ms-h2" style={{ marginBottom: 8 }}>
           Cambridge past papers &amp; mark schemes
         </h1>

@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLayoutEffect } from 'react'
 import { SETTINGS_NAV, settingsNavItem } from '@/lib/settings/nav'
 import { SignOutButton } from '@/components/settings/SignOutButton'
+import { AppSupportStrip } from '@/components/marketing/AppSupportStrip'
 import { cn } from '@/lib/utils'
 
 export function SettingsShell({ children }: { children: React.ReactNode }) {
@@ -134,6 +135,8 @@ export function SettingsMobileIndex() {
       <div className="ms-acct-card lg:hidden">
         <SignOutButton />
       </div>
+
+      <AppSupportStrip className="ms-acct-support" />
     </div>
   )
 }

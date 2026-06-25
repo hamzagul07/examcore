@@ -52,6 +52,10 @@ export default function GuidesIndexPage() {
 
       <MarketingHero
         label="Guides & blog"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+        ]}
         title={
           <>
             Read the examiner&apos;s <em>mind.</em>

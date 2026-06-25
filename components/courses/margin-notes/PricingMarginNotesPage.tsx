@@ -14,6 +14,7 @@ import { SUPPORTED_CURRENCIES } from '@/lib/billing/region-cookie'
 import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { buildSignUpHref } from '@/lib/auth-redirect'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 
 type Period = 'monthly' | 'yearly'
 
@@ -396,6 +397,8 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
           7-DAY FREE TRIAL · NO CARD · FREE PLAN FOREVER · NOT ENDORSED BY CAMBRIDGE
           INTERNATIONAL
         </p>
+
+        <PageHelpStrip className="mt-10" />
       </div>
     </main>
   )

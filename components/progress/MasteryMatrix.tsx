@@ -92,6 +92,8 @@ export function MasteryMatrix({
           icon={Grid3X3}
           title="Mastery matrix"
           body="Mark questions to see your topic-by-topic strength."
+          ctaLabel="Mark a question"
+          ctaHref="/mark"
           inline
         />
       </section>

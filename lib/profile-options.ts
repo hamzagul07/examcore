@@ -6,7 +6,7 @@
  * `markingEnabled: true` — live marking on /mark.
  */
 
-import { IB_MARKING_PROFILES } from '@/lib/ib/marking-config'
+import { IB_MARKING_PROFILES, type IbMarkingProfile } from '@/lib/ib/marking-config'
 
 export type ProfileOption = {
   id: string
@@ -33,14 +33,18 @@ export const BOARDS: ProfileOption[] = [
   { id: 'Cambridge International', label: 'Cambridge International', enabled: true },
   { id: 'Edexcel', label: 'Edexcel', enabled: false },
   { id: 'AQA', label: 'AQA', enabled: false },
-  { id: 'IB', label: 'IB', enabled: false },
+  { id: 'IB', label: 'IB Diploma', enabled: true },
 ]
+
+export const IB_BOARD_ID = 'IB'
+export const IB_DIPLOMA_LEVEL = 'IB Diploma'
 
 export const LEVELS: ProfileOption[] = [
   { id: 'AS Level', label: 'AS Level', enabled: true },
   { id: 'A-Level', label: 'A-Level', enabled: true },
   { id: 'IGCSE', label: 'IGCSE', enabled: true },
   { id: 'O-Level', label: 'O-Level', enabled: true },
+  { id: IB_DIPLOMA_LEVEL, label: 'IB Diploma (HL & SL)', enabled: true },
 ]
 
 export const SUBJECTS: SubjectOption[] = [
@@ -295,15 +299,76 @@ export const SUBJECT_GROUPS = [
   'Media',
 ] as const
 
+export const IB_SUBJECT_GROUP_ORDER = [
+  'Core',
+  'Studies in Language and Literature',
+  'Language Acquisition',
+  'Individuals and Societies',
+  'Sciences',
+  'Mathematics',
+  'The Arts',
+] as const
+
+function ibMarkingType(p: IbMarkingProfile): MarkingType {
+  if (p.practiceStyle === 'level_of_response') return 'level_of_response'
+  if (p.practiceStyle === 'mixed') return 'mixed'
+  return 'point_based'
+}
+
+function ibSubjectLabel(p: IbMarkingProfile): string {
+  return p.level === 'Core' ? p.name : `${p.name} ${p.level}`
+}
+
+export const IB_SUBJECT_OPTIONS: SubjectOption[] = IB_MARKING_PROFILES.map((p) => ({
+  id: p.code,
+  label: ibSubjectLabel(p),
+  code: p.code,
+  group: p.group,
+  levels: [IB_DIPLOMA_LEVEL],
+  enabled: true,
+  markingEnabled: true,
+  markingType: ibMarkingType(p),
+}))
+
+const IB_SUBJECT_BY_ID = new Map(IB_SUBJECT_OPTIONS.map((s) => [s.id, s]))
+
+export function isIbBoard(board: string): boolean {
+  return board === IB_BOARD_ID
+}
+
+export function ibSubjectsInGroup(group: string): SubjectOption[] {
+  return IB_SUBJECT_OPTIONS.filter((s) => s.group === group && s.enabled)
+}
+
+export function ibSubjectGroups(): string[] {
+  const present = new Set(IB_SUBJECT_OPTIONS.map((s) => s.group))
+  return IB_SUBJECT_GROUP_ORDER.filter((g) => present.has(g))
+}
+
+export function getIbSubjectOption(code: string): SubjectOption | undefined {
+  return IB_SUBJECT_BY_ID.get(code)
+}
+
+export function isIbSubjectId(id: string): boolean {
+  return IB_SUBJECT_BY_ID.has(id)
+}
+
+export function isSubjectValidForIb(id: string): boolean {
+  return isIbSubjectId(id)
+}
+
 const SUBJECT_BY_CODE = new Map(SUBJECTS.map((s) => [s.code, s]))
 
 export function getSubjectById(
   id: string,
   level?: string
 ): SubjectOption | undefined {
+  const ib = getIbSubjectOption(id)
+  if (ib) return ib
+
   const candidates = SUBJECTS.filter((s) => s.id === id)
   if (candidates.length === 0) return undefined
-  if (level) {
+  if (level && level !== IB_DIPLOMA_LEVEL) {
     const match = candidates.find((s) => s.levels.includes(level))
     if (match) return match
   }
@@ -311,6 +376,8 @@ export function getSubjectById(
 }
 
 export function getSubjectByCode(code: string): SubjectOption | undefined {
+  const ib = getIbSubjectOption(code)
+  if (ib) return ib
   return SUBJECT_BY_CODE.get(code)
 }
 
@@ -328,20 +395,45 @@ export function subjectsForLevel(level: string): SubjectOption[] {
 }
 
 export function isSubjectValidForLevel(id: string, level: string): boolean {
+  if (level === IB_DIPLOMA_LEVEL) {
+    return isSubjectValidForIb(id)
+  }
   return SUBJECTS.some((s) => s.id === id && s.enabled && s.levels.includes(level))
 }
 
+/** Validates a stored subject id for the user's board + level. */
+export function isSubjectValidForProfile(
+  board: string,
+  level: string,
+  subjectId: string
+): boolean {
+  if (isIbBoard(board)) {
+    return level === IB_DIPLOMA_LEVEL && isSubjectValidForIb(subjectId)
+  }
+  if (isIbSubjectId(subjectId)) return false
+  return isSubjectValidForLevel(subjectId, level)
+}
+
+export function levelsForBoard(board: string): ProfileOption[] {
+  if (isIbBoard(board)) {
+    return LEVELS.filter((l) => l.id === IB_DIPLOMA_LEVEL && l.enabled)
+  }
+  return LEVELS.filter((l) => l.id !== IB_DIPLOMA_LEVEL && l.enabled)
+}
+
 /** Names accepted by onboarding/account API */
-export const SELECTABLE_SUBJECT_IDS = new Set(
-  SUBJECTS.filter((s) => s.enabled).map((s) => s.id)
-)
+export const SELECTABLE_SUBJECT_IDS = new Set([
+  ...SUBJECTS.filter((s) => s.enabled).map((s) => s.id),
+  ...IB_SUBJECT_OPTIONS.filter((s) => s.enabled).map((s) => s.id),
+])
 
 /** @deprecated use SELECTABLE_SUBJECT_IDS — kept for minimal diff at call sites */
 export const ENABLED_SUBJECT_IDS = SELECTABLE_SUBJECT_IDS
 
-export const MARKING_ENABLED_SUBJECT_CODES = new Set(
-  SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code)
-)
+export const MARKING_ENABLED_SUBJECT_CODES = new Set([
+  ...SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code),
+  ...IB_SUBJECT_OPTIONS.filter((s) => s.markingEnabled).map((s) => s.code),
+])
 
 export const SUBJECT_CODE_MAP: Record<string, string> = {
   ...Object.fromEntries(SUBJECTS.map((s) => [s.code, s.label])),
@@ -358,3 +450,21 @@ export const ENABLED_LEVEL_IDS = new Set(
 export const DEFAULT_BOARD = 'Cambridge International'
 export const DEFAULT_LEVEL = 'A-Level'
 export const DEFAULT_SUBJECTS = ['Mathematics']
+
+/** Fallback subject ids when profile.subjects is empty — board-aware. */
+export function defaultSubjectsForProfile(board: string, level: string): string[] {
+  if (isIbBoard(board) || level === IB_DIPLOMA_LEVEL) {
+    const first = IB_SUBJECT_OPTIONS.find((s) => s.enabled)
+    return first ? [first.id] : ['ib-biology-hl']
+  }
+  return DEFAULT_SUBJECTS
+}
+
+/** Fallback mark subject code when profile codes cannot be resolved. */
+export function defaultMarkSubjectCode(level: string): string {
+  if (level === IB_DIPLOMA_LEVEL) {
+    return IB_SUBJECT_OPTIONS.find((s) => s.enabled)?.code ?? 'ib-biology-hl'
+  }
+  if (level === 'O-Level') return '4024'
+  return '9709'
+}

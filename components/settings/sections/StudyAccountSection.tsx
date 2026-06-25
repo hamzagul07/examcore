@@ -1,15 +1,23 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/Button'
 import { PasswordInput } from '@/components/PasswordInput'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
-import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
+import { SuccessBox } from '@/components/AuthFormBits'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
-import { BOARDS, LEVELS, getSubjectById } from '@/lib/profile-options'
+import {
+  BOARDS,
+  LEVELS,
+  IB_DIPLOMA_LEVEL,
+  getSubjectById,
+  isIbBoard,
+} from '@/lib/profile-options'
 import {
   SettingsFieldGroup,
   SettingsSectionCard,
@@ -21,6 +29,16 @@ const STAGE_LABELS: Record<UserStage, string> = {
   as_level: 'AS Level (Year 12)',
   a2_level: 'A2 Level (Year 13)',
   other: 'Just exploring',
+}
+
+const IB_STAGE_LABELS: Record<UserStage, string> = {
+  as_level: 'DP Year 1',
+  a2_level: 'DP Year 2',
+  other: 'Just exploring',
+}
+
+function stageLabel(stage: UserStage, board: string): string {
+  return isIbBoard(board) ? IB_STAGE_LABELS[stage] : STAGE_LABELS[stage]
 }
 
 const GOAL_LABELS: Record<PrimaryGoal, string> = {
@@ -68,10 +86,12 @@ export function StudyAccountSection({ initialProfile }: Props) {
             </p>
           </SettingsFieldGroup>
 
-          <SettingsFieldGroup label="Cambridge level">
+          <SettingsFieldGroup label={isIbBoard(initialProfile.board) ? 'Programme' : 'Cambridge level'}>
             <p className="text-body-large text-[var(--ec-text-primary)]">
-              {LEVELS.find((l) => l.id === initialProfile.level)?.label ??
-                initialProfile.level}
+              {isIbBoard(initialProfile.board)
+                ? 'IB Diploma'
+                : LEVELS.find((l) => l.id === initialProfile.level)?.label ??
+                  initialProfile.level}
             </p>
           </SettingsFieldGroup>
 
@@ -104,7 +124,7 @@ export function StudyAccountSection({ initialProfile }: Props) {
                 <div>
                   <p className="label-overline mb-1">Study stage</p>
                   <p className="text-body text-[var(--ec-text-primary)]">
-                    {STAGE_LABELS[initialProfile.stage]}
+                    {stageLabel(initialProfile.stage, initialProfile.board)}
                   </p>
                 </div>
               )}
@@ -151,8 +171,11 @@ function StudySubjectsEditor({
 }: {
   initialProfile: StudyProfile
 }) {
+  const router = useRouter()
   const [board, setBoard] = useState(initialProfile.board)
-  const [level, setLevel] = useState(initialProfile.level)
+  const [level, setLevel] = useState(() =>
+    isIbBoard(initialProfile.board) ? IB_DIPLOMA_LEVEL : initialProfile.level
+  )
   const [subjects, setSubjects] = useState<string[]>(initialProfile.subjects)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -182,6 +205,7 @@ function StudySubjectsEditor({
       return
     }
     setSuccessMsg('Subjects and level updated.')
+    router.refresh()
   }
 
   return (
@@ -202,7 +226,7 @@ function StudySubjectsEditor({
           showFullName={false}
         />
 
-        {errorMsg && <ErrorBox message={errorMsg} />}
+        {errorMsg && <FormErrorAlert message={errorMsg} />}
         {successMsg && <SuccessBox message={successMsg} />}
 
         <Button
@@ -304,7 +328,7 @@ function AccountSecuritySection() {
               />
             </div>
 
-            {errorMsg && <ErrorBox message={errorMsg} />}
+            {errorMsg && <FormErrorAlert message={errorMsg} />}
 
             <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <Button

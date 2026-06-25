@@ -212,7 +212,7 @@ export function PageUploader({
   return (
     <div className="space-y-4">
       {isCompressing && (
-        <p className="rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-sm">
+        <p className="rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-sm" role="status">
           Preparing images…
         </p>
       )}
@@ -224,6 +224,9 @@ export function PageUploader({
           }`}
         />
         <div
+          role="region"
+          aria-label="Upload answer pages"
+          aria-describedby={!hasContent ? 'upload-hint' : undefined}
           className={`relative ec-card border-2 border-dashed text-center transition-all duration-300 hover:-translate-y-1 ${
             hasContent ? 'p-5 sm:p-6' : 'p-8 sm:p-10'
           }`}
@@ -246,7 +249,7 @@ export function PageUploader({
             {hasContent ? 'Add another page' : emptyLabel}
           </p>
           {!hasContent && (
-            <p className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">{emptyHint}</p>
+            <p id="upload-hint" className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">{emptyHint}</p>
           )}
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button

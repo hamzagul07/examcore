@@ -1,26 +1,60 @@
 import Link from 'next/link'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 export default function NotFound() {
   return (
-    <main className="app-shell flex min-h-[60vh] items-center justify-center">
-      <div className="mx-auto max-w-md text-center">
+    <main className="app-shell flex min-h-[60vh] items-center justify-center px-4">
+      <div className="mx-auto max-w-lg text-center">
         <p className="ec-eyebrow mb-4 text-center">404</p>
         <h1 className="text-headline mb-3">Page not found</h1>
         <p className="text-body mb-8">
-          That link may be broken, or the page may have moved. Head back to the
-          dashboard or try marking a question.
+          That link may be broken, or the page may have moved. Try one of these
+          instead — or search the site with{' '}
+          <kbd className="rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-1.5 py-0.5 font-mono text-xs font-semibold">
+            Ctrl
+          </kbd>{' '}
+          +{' '}
+          <kbd className="rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-1.5 py-0.5 font-mono text-xs font-semibold">
+            K
+          </kbd>
+          .
         </p>
-        <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
-          <Link href="/" className="ec-btn-primary justify-center px-7 py-3.5">
+        <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+          <LoadingLink
+            href="/"
+            loadingText="Opening…"
+            className="ec-btn-primary justify-center px-7 py-3.5"
+          >
             Go home
-          </Link>
-          <Link href="/mark" className="ec-btn-secondary justify-center px-7 py-3.5">
+          </LoadingLink>
+          <LoadingLink
+            href="/mark"
+            loadingText="Opening…"
+            className="ec-btn-secondary justify-center px-7 py-3.5"
+          >
             Mark a question
+          </LoadingLink>
+          <LoadingLink
+            href="/subjects"
+            loadingText="Opening…"
+            className="ec-btn-ghost justify-center px-7 py-3.5"
+          >
+            Browse subjects
+          </LoadingLink>
+        </div>
+        <p className="ec-not-found-hint">
+          <Link href="/faq" className="ec-link">
+            FAQ
           </Link>
-          <Link href="/dashboard" className="ec-btn-ghost justify-center px-7 py-3.5">
+          {' · '}
+          <Link href="/ib" className="ec-link">
+            IB past papers
+          </Link>
+          {' · '}
+          <Link href="/dashboard" className="ec-link">
             Dashboard
           </Link>
-        </div>
+        </p>
       </div>
     </main>
   )

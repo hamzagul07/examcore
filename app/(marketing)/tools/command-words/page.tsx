@@ -5,10 +5,9 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { CommandWordExplorer } from '@/components/tools/CommandWordExplorer'
-import { ProgrammaticHubGrid } from '@/components/seo/ProgrammaticHubGrid'
 import { getCommandWords } from '@/lib/seo/command-words'
-import { getCommandWordsHubEntries } from '@/lib/seo/command-words-hub'
 
 const PATH = '/tools/command-words'
 
@@ -62,6 +61,10 @@ export default function CommandWordsToolPage() {
 
       <MarketingHero
         label="Free tool"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Command words', path: PATH },
+        ]}
         title="Cambridge command words explainer"
         lead="Every command word Cambridge uses, what the examiner actually wants for each, and the mistake that costs marks. Search the verb in your question and answer to the right depth."
       >
@@ -76,46 +79,18 @@ export default function CommandWordsToolPage() {
       </MarketingHero>
 
       <MarketingSection className="!pt-0">
-        <aside className="ms-quick-answer">
-          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
-            Quick answer
-          </p>
-          <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
-            A command word sets the <strong>depth</strong> of answer, not the topic. “State” wants a
-            fact, “explain” wants reasons, “evaluate” wants a judged argument with a conclusion. Circle
-            it before you read the rest of the question.
-          </p>
-        </aside>
-
         <CommandWordExplorer words={words} />
 
-        <div className="mt-12">
-          <p className="ms-overline">By syllabus</p>
-          <h2 className="ms-h3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.6rem)' }}>
-            Command words for your subject
-          </h2>
-          <ProgrammaticHubGrid
-            className="mt-4"
-            items={getCommandWordsHubEntries().map((e) => ({
-              code: e.code,
-              title: e.label,
-              subtitle: `${e.level} · ${e.markingStyle} marking`,
-              href: e.toolPath,
-              meta: e.topVerbs.slice(0, 3).join(' · '),
-            }))}
-          />
-        </div>
-
-        <div className="ms-hub-card mt-12 text-center">
-          <h2 className="ms-h3">See if you answered the command word</h2>
-          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
-            Upload your answer and MarkScheme checks it against the real Cambridge mark scheme — so you
-            know whether you actually hit the depth the verb demanded.
-          </p>
-          <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-            Mark a paper free <ArrowRight className="h-5 w-5" />
+        <p className="ms-micro mt-8">
+          <Link href="/guides/command-words" className="ec-btn-underline">
+            Per-subject command word pages
           </Link>
-        </div>
+          {' · '}
+          <Link href="/blog/cambridge-command-words-explained" className="ec-btn-underline">
+            Full guide
+          </Link>
+        </p>
+        <PageHelpStrip />
       </MarketingSection>
     </MarketingPageShell>
   )

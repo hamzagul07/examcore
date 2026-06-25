@@ -30,7 +30,9 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
     redirect(`/auth/signin?next=${encodeURIComponent(next)}`)
   }
 
-  let initialProfile: {
+    let initialProfile: {
+    board: string
+    level: string
     subjects: string[]
     stage: UserStage | null
     primary_goal: PrimaryGoal | null
@@ -40,12 +42,14 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
   if (rerun) {
     const { data: profile } = await supabase
       .from('user_profiles')
-      .select('subjects, stage, primary_goal, exam_date')
+      .select('board, level, subjects, stage, primary_goal, exam_date')
       .eq('id', user.id)
       .maybeSingle()
 
     if (profile) {
       initialProfile = {
+        board: profile.board ?? 'Cambridge International',
+        level: profile.level ?? 'A-Level',
         subjects: profile.subjects ?? [],
         stage: (profile.stage as UserStage | null) ?? null,
         primary_goal: (profile.primary_goal as PrimaryGoal | null) ?? null,

@@ -1,11 +1,11 @@
 ---
 title: IB English A Language & Literature SL revision guide
 description: IB English A Language and Literature SL: Paper 1 non-literary analysis, Paper 2 comparative essay, criteria, and exam technique.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB English A Language and Literature SL, IB English Lang Lit SL, IB English Paper 1, IB English SL revision, IB English markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Summarising plot; ignoring guiding question on Paper 1; no thesis on Paper 2; we
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-english-a-lang-lit-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [English A: Language and Literature SL course](/ib/courses/english-a-lang-lit-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [English A: Language and Literature SL course](/ib/courses/english-a-lang-lit-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [English A: Language and Literature HL course](/ib/courses/english-a-lang-lit-hl) if you sit the other level.
 
 ## Frequently asked questions
 

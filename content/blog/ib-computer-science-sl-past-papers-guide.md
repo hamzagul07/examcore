@@ -1,11 +1,11 @@
 ---
 title: IB Computer Science SL past papers & revision guide
 description: IB Computer Science SL: Paper 1 theory, Paper 2 case study, markbands, pseudocode, and past paper workflow.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Computer Science SL, IB CS SL past papers, IB Computer Science mark scheme, IB CS SL revision, IB Computer Science markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Vague answers ("faster computer"); skipping justification; ignoring the case stu
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-computer-science-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Computer Science SL course](/ib/courses/computer-science-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Computer Science SL course](/ib/courses/computer-science-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Computer Science HL course](/ib/courses/computer-science-hl) if you sit the other level.
 
 ## Frequently asked questions
 

@@ -1,11 +1,11 @@
 ---
 title: IB Physics SL past papers & revision guide
 description: Revise IB Physics SL with past papers: MCQ Paper 1, structured Paper 2, option Paper 3, and markband technique for a 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Physics SL, IB Physics SL past papers, IB Physics mark scheme, IB Physics SL revision, IB Physics markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Sign errors in vector problems; confusing scalars and vectors; skipping unit con
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-physics-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Physics SL course](/ib/courses/physics-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Physics SL course](/ib/courses/physics-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Physics HL course](/ib/courses/physics-hl) if you sit the other level.
 
 ## Frequently asked questions
 

@@ -1,11 +1,11 @@
 ---
 title: IB Music HL assessment & portfolio guide
 description: IB Music HL: exploring music, experimenting, presenting — inquiry, analysis, and performance criteria for a 6 or 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Music HL, IB Music portfolio, IB Music IA, IB Music HL revision, IB Music markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Generic adjectives ("emotional"); no score references; experimentation without r
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-music-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Music HL course](/ib/courses/music-hl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Music HL course](/ib/courses/music-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Music SL course](/ib/courses/music-sl) if you sit the other level.
 
 ## Frequently asked questions
 

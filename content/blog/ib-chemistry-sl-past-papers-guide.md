@@ -1,11 +1,11 @@
 ---
 title: IB Chemistry SL past papers & revision guide
 description: IB Chemistry SL past paper strategy: Papers 1–3, stoichiometry under pressure, markbands, and how to push from a 5 to a 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Chemistry SL, IB Chemistry SL past papers, IB Chemistry mark scheme, IB Chemistry SL revision, IB Chemistry markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Unbalanced equations; missing units; vague definitions ("strong bond" without na
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-chemistry-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Chemistry SL course](/ib/courses/chemistry-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Chemistry SL course](/ib/courses/chemistry-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Chemistry HL course](/ib/courses/chemistry-hl) if you sit the other level.
 
 ## Frequently asked questions
 

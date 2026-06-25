@@ -1,11 +1,11 @@
 ---
 title: IB History SL past papers & revision guide
 description: IB History SL: Paper 1 sources, Paper 2 essays, markbands, and revision workflow — no Paper 3 at SL.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB History SL, IB History SL past papers, IB History mark scheme, IB History SL revision, IB History markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Storytelling essays; generic OPVL without linking to utility; only revising one 
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-history-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [History SL course](/ib/courses/history-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [History SL course](/ib/courses/history-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [History HL course](/ib/courses/history-hl) if you sit the other level.
 
 ## Frequently asked questions
 

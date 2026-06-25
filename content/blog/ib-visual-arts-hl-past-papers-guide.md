@@ -1,60 +1,46 @@
 ---
-title: IB Visual Arts HL portfolio & exam guide
-description: How to prepare for IB Visual Arts HL — comparative study, process portfolio, exhibition, and criterion-based assessment. Revision workflow and common markband pitfalls.
-date: 2026-06-23
-keywords: IB Visual Arts HL, IB Visual Arts portfolio, IB Visual Arts comparative study, IB Visual Arts exhibition, IB Visual Arts markbands
+title: IB Visual Arts HL portfolio & assessment guide
+description: IB Visual Arts HL: comparative study, process portfolio, exhibition — criteria and top-band tips.
+date: 2026-06-25
+keywords: IB Visual Arts HL, IB Visual Arts HL portfolio, IB Visual Arts comparative study, IB Visual Arts exhibition, IB Visual Arts markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
-IB Visual Arts HL is assessed through **three interconnected components** — not a traditional written exam. Success depends on sustained studio practice, documented process, and writing that connects **formal analysis** to **meaning in context**. Understanding the criteria early prevents last-minute portfolio panic.
+Scoring highly in IB Visual Arts HL is not about memorising more — it is about aligning your answers with what examiners reward in the **markbands**. Strategic use of [IB Visual Arts past papers](/ib/past-papers/visual-arts-hl) under timed conditions, honest self-marking, and targeted feedback closes the gap between a 5 and a 7.
 
-## The three HL components
-| Component | Weight (indicative) | What examiners want |
-|-----------|---------------------|---------------------|
-| Comparative study | ~20% | Visual and written analysis comparing artworks from differing contexts |
-| Process portfolio | ~40% | Evidence of experimentation, media exploration, and reflection |
-| Exhibition | ~40% | Coherent body of work with curatorial rationale |
+## Understanding the IB Visual Arts HL assessment
+**Comparative study**, **process portfolio**, and **exhibition** — HL expects greater breadth and investigation depth than SL. Browse the full subject overview at [IB Visual Arts HL](/ib/subjects/visual-arts-hl).
 
-Official weightings are set in the current guide; always confirm with your teacher and the [IB Visual Arts HL course](/ib/courses/visual-arts-hl).
+## Markbands and what examiners reward
+Criteria reward formal analysis, cultural context, and coherent curatorial intent.
 
-## Markbands: what separates a 5 from a 7
-Examiners assess **technical competence**, **conceptual depth**, and **critical investigation** — not just aesthetic appeal. Top-band work typically shows:
-- Consistent **formal vocabulary** (line, composition, materiality) tied to intent.
-- **Comparative study** that goes beyond description to explain cultural and artistic connections.
-- **Process documentation** that explains failures and revisions, not only successes.
-- An **exhibition** with a clear curatorial thread — each piece earns its place.
+## A past paper workflow that actually works
+Weekly process documentation; comparative study with genuine formal contrast; rationale before final selection.
 
-Use [criterion practice](/mark?subject=ib-visual-arts-hl) on written components to get band-by-band feedback.
-
-## Revision workflow (no “past paper” required)
-Visual Arts does not use conventional past papers. Replace them with this cycle:
-1. **Audit criteria** — highlight verbs in each criterion (analyse, evaluate, demonstrate).
-2. **Comparative study draft** — pair artworks with genuine formal contrast, not convenience.
-3. **Process pages weekly** — photograph stages, annotate decisions, link to artists investigated.
-4. **Mock exhibition** — install works, write rationale, get peer critique on coherence.
-5. **Self-assess** against markbands, then refine weakest criterion first.
-
-Our [Visual Arts HL lessons](/ib/courses/visual-arts-hl) cover comparative study selection, formal analysis, and exhibition planning.
+## Paper-specific tips
+Art vocabulary (composition, materiality). Compare technique and meaning, not biography timelines.
 
 ## Common pitfalls
-- **Description without analysis** — naming colours is not the same as explaining their effect.
-- Comparative study treated as two mini-essays instead of a **connected argument**.
-- Process portfolio as a **gallery of finals** with no experimentation evidence.
-- Exhibition pieces that **do not relate** to the stated curatorial concept.
+Description without analysis; exhibition unrelated to stated theme.
+
+## Using MarkScheme for targeted feedback
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-visual-arts-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+
+Our free [Visual Arts HL course](/ib/courses/visual-arts-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Visual Arts SL course](/ib/courses/visual-arts-sl) if you sit the other level.
 
 ## Frequently asked questions
 
-### Can I use digital art for all components?
-Yes, if your school programme allows it — but you must demonstrate breadth of investigation and technical control as required by the guide. Mixed media often strengthens the process portfolio.
+### HL vs SL?
+HL expects more investigation breadth — check component weightings.
 
-### How long should comparative study text be?
-Follow the current guide word limits (typically around 10–15 screens including images). Quality of visual analysis matters more than word count.
+### Digital work?
+Allowed if your programme supports submission requirements.
 
-### Where do I find exemplar portfolios?
-The IBO publishes selected exemplars; teachers may share anonymised work. MarkScheme provides [free syllabus lessons](/ib/courses/visual-arts-hl), not copied student portfolios.
+### Course?
+[Visual Arts HL](/ib/courses/visual-arts-hl) and [SL](/ib/courses/visual-arts-sl).
 
 ## Bottom line
-Treat the comparative study, process portfolio, and exhibition as one narrative about how you think as an artist. Mark against criteria continuously — that discipline, not cramming, is what lifts HL Visual Arts into the top bands.
+Treat [IB Visual Arts HL past papers](/ib/past-papers/visual-arts-hl) as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

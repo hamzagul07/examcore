@@ -5,23 +5,25 @@ date: 2026-06-23
 keywords: free IB course, IB TOK course, IB notes free, IB Diploma revision, IB criterion marking, ZNotes IB alternative
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
-MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PDF dumps, but topic-by-topic lessons with worked examples, flashcards, and built-in **criterion practice marking** on every syllabus point.
+MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PDF dumps, but topic-by-topic lessons with worked examples, flashcards, and built-in **criterion practice marking** on every syllabus point. The catalog now covers **44 subjects** and **750+ lessons** at HL, SL, and Core.
 
 ## What is included
 - **Core:** [TOK](/ib/courses/tok), [Extended Essay](/ib/courses/extended-essay), [CAS](/ib/courses/cas)
-- **Group 1–3:** English A, Spanish B, French B, History, Geography, Economics, Business, Psychology
-- **Group 4–5:** Biology, Chemistry, Physics, Computer Science, Maths AA & AI
-- **Group 6:** Visual Arts, Theatre, Music, Film, Dance
+- **Group 1–3:** English A, Spanish B, French B, History, Geography, Economics, Business, Psychology (HL and SL where offered)
+- **Group 4–5:** Biology, Chemistry, Physics, Computer Science, ESS, Maths AA & AI (HL and SL)
+- **Group 6:** Visual Arts, Theatre, Music, Film, Dance (HL and SL)
+
+**New SL science & humanities courses** (topic-complete): [Biology SL](/ib/courses/biology-sl) · [Chemistry SL](/ib/courses/chemistry-sl) · [Economics SL](/ib/courses/economics-sl) · [Business SL](/ib/courses/business-management-sl) · [Psychology SL](/ib/courses/psychology-sl) · [Computer Science SL](/ib/courses/computer-science-sl) · [ESS](/ib/courses/environmental-systems-and-societies-sl) · [Maths AA SL](/ib/courses/maths-aa-sl) · [Maths AI SL](/ib/courses/maths-ai-sl)
 
 Each course follows official topic codes. Lessons link straight to [/mark](/mark) practice with IB assessment criteria — band-by-band feedback, not a generic grade.
 
 ## How to use the courses
 1. Open the [IB courses catalog](/ib/courses) or browse from the [main courses page](/courses).
-2. Pick your subject — e.g. [Biology HL](/ib/courses/biology-hl) or [TOK](/ib/courses/tok).
+2. Pick your subject — e.g. [Biology HL](/ib/courses/biology-hl), [Biology SL](/ib/courses/biology-sl), or [TOK](/ib/courses/tok).
 3. Work through topics in syllabus order; use flashcards and quick checks on each page.
 4. Click **criterion practice** to upload your answer for marking against the real rubric.
 

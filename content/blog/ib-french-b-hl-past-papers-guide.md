@@ -1,40 +1,46 @@
 ---
 title: IB French B HL past papers & revision guide
-description: How to revise IB French B HL — prescribed themes, Paper 1 writing, Paper 2 comprehension, HL literature, and Individual Oral technique.
-date: 2026-06-23
-keywords: IB French B HL, IB French past papers, IB French B revision, IB French HL oral, IB Language B
+description: IB French B HL: Paper 1 writing, Paper 2 receptive skills, theme vocabulary, and criterion-based revision.
+date: 2026-06-25
+keywords: IB French B HL, IB French B HL past papers, IB French B mark scheme, IB French HL revision, IB French B rubric
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
-IB French B Higher Level combines **productive writing**, **receptive skills**, an **HL literature extension**, and an **Individual Oral** — all anchored to five global themes. Success means matching the assessment criteria, not only translating ideas from English.
+Scoring highly in IB French B HL is not about memorising more — it is about aligning your answers with what examiners reward in the **markbands**. Strategic use of [IB French B past papers](/ib/past-papers/french-b-hl) under timed conditions, honest self-marking, and targeted feedback closes the gap between a 5 and a 7.
 
-## Papers and components
-**Paper 1** tests writing in French for real-world purposes (articles, formal letters, blogs). **Paper 2** combines reading and listening comprehension. **HL** adds analysis of literary extracts. The **Individual Oral** assesses interactive speaking from a visual stimulus. Each has its own markbands — read them before you revise content.
+## Understanding the IB French B HL assessment
+**Paper 1** productive writing (HL length and range). **Paper 2** reading and listening comprehension. Browse the full subject overview at [IB French B HL](/ib/subjects/french-b-hl).
 
-## Build theme-based fluency
-For identities, experiences, human ingenuity, social organisation, and sharing the planet, collect:
-- High-frequency connectors (*cependant*, *en revanche*, *par conséquent*)
-- Thematic vocabulary and cultural examples
-- Writing templates for each text type
+## Markbands and what examiners reward
+Communication first, then range and accuracy — clear organisation beats risky grammar at HL.
 
-Work through our [free French B HL course](/ib/courses/french-b-hl) topic by topic, then practise with [past papers](/ib/past-papers/french-b-hl).
+## A past paper workflow that actually works
+Phrase banks per theme; weekly timed writes marked against official criteria.
 
-## Mark your own work strictly
-After a timed Paper 1, score yourself on **language accuracy**, **task fulfilment**, and **register**. Then use [criterion practice](/mark?subject=ib-french-b-hl) for a second opinion on band placement. For Paper 2, always justify why distractors fail — that trains the inference skills examiners test.
+## Paper-specific tips
+Connectors (cependant, en revanche). HL: justify opinions with developed paragraphs.
+
+## Common pitfalls
+False friends; one tense only; neglecting listening under exam audio conditions.
+
+## Using MarkScheme for targeted feedback
+Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-french-b-hl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
+
+Our free [French B HL course](/ib/courses/french-b-hl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [French B SL course](/ib/courses/french-b-sl) if you sit the other level.
 
 ## Frequently asked questions
 
-### How important is grammar for top marks?
-Very — repeated agreement errors or unstable tenses keep you out of the top language band even when your ideas are strong. Drill past participles, subjunctive triggers, and pronoun order.
+### HL length?
+Longer productive tasks than SL — practise to time with HL prompts.
 
-### What counts as HL-level literature work?
-Comment on style, structure, and context — cite short French quotations and explain their effect. Summary alone sits in the middle bands.
+### IO prep?
+Photo description reinforces theme vocabulary for Paper 1.
 
-### Can I use English while revising?
-Use French for all writing and oral practice. English is fine for planning markband checklists, but production must be in French to build speed.
+### Course?
+[French B HL](/ib/courses/french-b-hl) and [SL](/ib/courses/french-b-sl).
 
 ## Bottom line
-French B HL rewards fluent, accurate French applied to authentic tasks. Themes + timed practice + criterion marking is the fastest route to a 6 or 7.
+Treat [IB French B HL past papers](/ib/past-papers/french-b-hl) as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

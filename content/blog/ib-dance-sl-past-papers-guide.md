@@ -1,11 +1,11 @@
 ---
 title: IB Dance SL assessment & portfolio guide
 description: IB Dance SL: composition, investigation, performance — choreography and embodied analysis for top criteria.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Dance SL, IB Dance SL portfolio, IB Dance composition, IB Dance investigation, IB Dance criteria
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Investigation without movement examples; unstructured composition; performance d
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-dance-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Dance SL course](/ib/courses/dance-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Dance SL course](/ib/courses/dance-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Dance HL course](/ib/courses/dance-hl) if you sit the other level.
 
 ## Frequently asked questions
 

@@ -1,11 +1,11 @@
 ---
 title: IB French B SL past papers & revision guide
 description: IB French B SL: Paper 1 writing tasks, Paper 2 receptive skills, theme vocabulary, and criterion-based revision.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB French B SL, IB French B SL past papers, IB French B mark scheme, IB French SL revision, IB French B rubric
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ English false friends; neglecting listening; one tense only; not addressing all 
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-french-b-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [French B SL course](/ib/courses/french-b-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [French B SL course](/ib/courses/french-b-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [French B HL course](/ib/courses/french-b-hl) if you sit the other level.
 
 ## Frequently asked questions
 

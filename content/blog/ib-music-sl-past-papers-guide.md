@@ -1,11 +1,11 @@
 ---
 title: IB Music SL assessment & portfolio guide
 description: IB Music SL: exploring, experimenting, presenting — inquiry, analysis, and performance criteria explained.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Music SL, IB Music SL portfolio, IB Music presenting, IB Music SL criteria, IB Music assessment
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Generic adjectives; no score citations; thin experimentation log; performance wi
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-music-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Music SL course](/ib/courses/music-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Music SL course](/ib/courses/music-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Music HL course](/ib/courses/music-hl) if you sit the other level.
 
 ## Frequently asked questions
 

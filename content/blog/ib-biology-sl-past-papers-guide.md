@@ -1,11 +1,11 @@
 ---
 title: IB Biology SL past papers & revision guide
 description: How to revise IB Biology SL with past papers: Papers 1–3, markbands, data-based questions, and a workflow to reach a 6 or 7.
-date: 2026-06-23
+date: 2026-06-25
 keywords: IB Biology SL, IB Biology SL past papers, IB Biology mark scheme, IB Biology SL revision, IB Biology markbands
 category: revision
 author: hassan
-updated: 2026-06-23
+updated: 2026-06-25
 informationGain: synthesis
 ---
 
@@ -29,7 +29,7 @@ Memorising without application; ignoring units on graphs; writing narrative inst
 ## Using MarkScheme for targeted feedback
 Self-marking against band descriptors is essential, but extended responses benefit from a second opinion. After a past paper or IA section, [get criterion-based feedback](/mark?subject=ib-biology-sl) aligned with IB assessment objectives — the same habits that lift exam scripts also sharpen coursework drafts.
 
-Our free [Biology SL course](/ib/courses/biology-sl) links every syllabus topic to lessons, flashcards, and practice tasks.
+Our free [Biology SL course](/ib/courses/biology-sl) links every syllabus topic to lessons, flashcards, and practice tasks. Also see the [Biology HL course](/ib/courses/biology-hl) if you sit the other level.
 
 ## Frequently asked questions
 

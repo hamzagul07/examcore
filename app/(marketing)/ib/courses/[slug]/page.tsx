@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getIbCourse, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
-import { getIbSubject } from '@/lib/ib/catalog'
+import { ibCatalogSlug, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import { buildIbCourseHubIntro, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
 import { ibShortName } from '@/lib/seo/ib-seo'
@@ -22,7 +22,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const course = getIbCourse(slug)
-  const subject = getIbSubject(slug)
+  const subject = ibSubjectForSlug(slug)
   if (!course || !subject) return {}
   const seo = buildIbCourseSubjectSeo(subject, course.lessonCount)
   return createPageMetadata({
@@ -37,8 +37,10 @@ export async function generateMetadata({ params }: Props) {
 export default async function IbCoursePage({ params }: Props) {
   const { slug } = await params
   const course = getIbCourse(slug)
-  const subject = getIbSubject(slug)
+  const subject = ibSubjectForSlug(slug)
   if (!course || !subject) notFound()
+
+  const catalogSlug = ibCatalogSlug(slug)
 
   const lessons = getIbCourseLessons(slug)
   const seo = buildIbCourseSubjectSeo(subject, course.lessonCount)
@@ -46,7 +48,7 @@ export default async function IbCoursePage({ params }: Props) {
   const communityOn = isCommunityEnabled()
   const syllabusLeaves = getTotalSyllabusLeaves(`ib-${slug}`)
   const publishingMore = syllabusLeaves > lessons.length
-  const blogLinks = getIbSubjectBlogLinks(slug, ibShortName(subject))
+  const blogLinks = getIbSubjectBlogLinks(catalogSlug, ibShortName(subject))
 
   return (
     <>
@@ -61,7 +63,7 @@ export default async function IbCoursePage({ params }: Props) {
           heading={intro.heading}
           paragraph={intro.paragraph}
           links={[
-            { href: `/ib/subjects/${slug}`, label: `${subject.name} past papers`, variant: 'muted' },
+            { href: `/ib/subjects/${catalogSlug}`, label: `${subject.name} past papers`, variant: 'muted' },
             { href: '/ib/courses', label: 'All IB courses', variant: 'muted' },
             { href: '/mark', label: 'Criterion practice →', variant: 'primary' },
             ...blogLinks.map((link) => ({
@@ -70,7 +72,7 @@ export default async function IbCoursePage({ params }: Props) {
               variant: 'muted' as const,
             })),
             ...(communityOn
-              ? [{ href: `/community/s/${slug}`, label: 'Exam Room community', variant: 'muted' as const }]
+              ? [{ href: `/community/s/${catalogSlug}`, label: 'Exam Room community', variant: 'muted' as const }]
               : []),
           ]}
         />
@@ -94,12 +96,12 @@ export default async function IbCoursePage({ params }: Props) {
         basePath="/ib/courses"
         coursesCrumb={{ label: 'IB courses', href: '/ib/courses' }}
         board="ib"
-        asideExtra={<IbLegitResourcesPanel slug={slug} />}
+        asideExtra={<IbLegitResourcesPanel slug={catalogSlug} />}
         community={
           communityOn ? (
             <div className="hub-community">
               <CommunityEntry
-                subjectCode={slug}
+                subjectCode={catalogSlug}
                 title={`IB ${subject.name} ${subject.level} Exam Room`}
               />
             </div>

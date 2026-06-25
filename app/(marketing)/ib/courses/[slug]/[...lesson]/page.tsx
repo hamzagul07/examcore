@@ -7,6 +7,7 @@ import {
   getIbCourseLessons,
 } from '@/lib/courses/ib'
 import { getIbSubject } from '@/lib/ib/catalog'
+import { ibCatalogSlug, ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { buildIbCourseLessonSeo, buildIbCourseSubjectSeo } from '@/lib/seo/ib-course-seo'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
@@ -24,7 +25,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { slug, lesson } = await params
-  const subject = getIbSubject(slug)
+  const subject = ibSubjectForSlug(slug)
   const l = getIbCourseLesson(slug, lesson[lesson.length - 1] ?? '')
   if (!subject || !l) return {}
   const seo = buildIbCourseLessonSeo(subject, l)
@@ -45,11 +46,13 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function IbLessonPage({ params }: Props) {
   const { slug, lesson } = await params
-  const subject = getIbSubject(slug)
+  const subject = ibSubjectForSlug(slug)
   const course = getIbCourse(slug)
   const lessonSlug = lesson[lesson.length - 1] ?? ''
   const l = getIbCourseLesson(slug, lessonSlug)
   if (!subject || !course || !l) notFound()
+
+  const catalogSlug = ibCatalogSlug(slug)
 
   const lessons = getIbCourseLessons(slug)
   const enriched = enrichLessonVisual(slug, l)
@@ -76,7 +79,7 @@ export default async function IbLessonPage({ params }: Props) {
           subjectName={subject.name}
           markPath={seo.markPath}
           courseHref={`/ib/courses/${slug}`}
-          subjectHubHref={`/ib/subjects/${slug}`}
+          subjectHubHref={`/ib/subjects/${catalogSlug}`}
           markCtaLabel="IB criterion practice"
           courseCtaLabel={`Full IB ${short} course`}
           subjectHubCtaLabel={`${short} subject hub`}
@@ -97,7 +100,7 @@ export default async function IbLessonPage({ params }: Props) {
           communityOn ? (
             <div className="lesson-community">
               <CommunityEntry
-                subjectCode={slug}
+                subjectCode={catalogSlug}
                 title={`Discuss ${l.title}`}
               />
             </div>

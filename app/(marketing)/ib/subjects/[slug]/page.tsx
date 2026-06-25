@@ -13,7 +13,7 @@ import { buildIbSubjectCopy, ibShortName } from '@/lib/seo/ib-seo'
 import { getIbSubjectBlogLinks } from '@/lib/seo/ib-subject-blog'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
-import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
+import { getIbCourse, getIbCourseLessonsForCatalog } from '@/lib/courses/ib'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -184,8 +184,8 @@ export default async function IbSubjectPage({ params }: Props) {
 
         {getIbCourse(subject.slug) ? (
           <SubjectChapters
-            code={subject.slug}
-            lessons={getIbCourseLessons(subject.slug)}
+            code={getIbCourse(subject.slug)!.code}
+            lessons={getIbCourseLessonsForCatalog(subject.slug)}
             basePath="/ib/courses"
             accent={subject.accent}
             heading={`${subject.name} ${subject.level} chapters`}

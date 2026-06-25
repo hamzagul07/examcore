@@ -11,6 +11,7 @@ import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { getIbSubject } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
+import { ibCourseContentSlug } from '@/lib/ib/slug-resolve'
 import {
   buildIbTopicPracticeCopy,
   getAllIbTopicPracticeParams,
@@ -48,7 +49,10 @@ export default async function IbTopicPracticePage({ params }: Props) {
   const copy = buildIbTopicPracticeCopy(slug, page)
   const short = ibShortName(subject)
   const url = `${SITE_URL}${copy.path}`
-  const lessonHref = page.lessonSlug ? `/ib/courses/${slug}/${page.lessonSlug}` : null
+  const lessonHref = page.lessonSlug
+    ? `/ib/courses/${ibCourseContentSlug(slug)}/${page.lessonSlug}`
+    : null
+  const courseHref = `/ib/courses/${ibCourseContentSlug(slug)}`
   const syllabusCode = `ib-${slug}`
 
   const faq = [
@@ -139,7 +143,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
             ...(lessonHref
               ? [{ href: lessonHref, label: `Learn ${page.title}`, variant: 'ghost' as const }]
               : []),
-            { href: `/ib/courses/${slug}`, label: `Full ${short} course`, variant: 'muted' },
+            { href: courseHref, label: `Full ${short} course`, variant: 'muted' },
             { href: `/ib/subjects/${slug}`, label: `${short} subject hub`, variant: 'muted' },
           ]}
         />

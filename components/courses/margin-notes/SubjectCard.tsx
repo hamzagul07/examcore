@@ -16,6 +16,7 @@ export function SubjectCard({
   boardLabel = 'CAIE',
   accentHex,
   statSuffix = 'past-paper questions',
+  isNew,
 }: {
   s: MarginNotesSubject
   href?: string
@@ -23,6 +24,7 @@ export function SubjectCard({
   /** Override card accent (IB catalog hex from subject guide). */
   accentHex?: string
   statSuffix?: string
+  isNew?: boolean
 }) {
   const started = s.prog > 0
   return (
@@ -38,6 +40,7 @@ export function SubjectCard({
         </span>
         <span className="scard-glyph">{s.glyph}</span>
         <span className="scard-tab">{s.code}</span>
+        {isNew ? <span className="scard-new">New</span> : null}
         {started ? (
           <Ring pct={s.prog} size={40} stroke={3.5} color="#ffffff" />
         ) : (

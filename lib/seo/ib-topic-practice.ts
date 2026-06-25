@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { getIbCourseLesson, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
+import { ibCatalogSlug, ibCourseContentSlug } from '@/lib/ib/slug-resolve'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import { getIbSubject } from '@/lib/ib/catalog'
 import { buildIbTopicPracticePrompt, ibPracticeCriteriaSummary } from '@/lib/ib/practice-prompts'
@@ -21,16 +22,18 @@ export type IbTopicPracticePage = {
 }
 
 function ibSyllabusCode(catalogSlug: string): string {
-  return `ib-${catalogSlug}`
+  const courseSlug = ibCourseContentSlug(catalogSlug)
+  return courseSlug.startsWith('ib-') ? courseSlug : `ib-${courseSlug}`
 }
 
 function buildPage(
   catalogSlug: string,
   topic: { code: string; name: string; paper: string; paperName: string }
 ): IbTopicPracticePage {
+  const courseSlug = ibCourseContentSlug(catalogSlug)
   const syllabusCode = ibSyllabusCode(catalogSlug)
   const topicSlug = topicToLessonSlug(topic.code, topic.name)
-  const lesson = getIbCourseLesson(catalogSlug, topicSlug)
+  const lesson = getIbCourseLesson(courseSlug, topicSlug)
   const markHref = `/mark?subject=${encodeURIComponent(syllabusCode)}&topic=${encodeURIComponent(topic.code)}`
 
   return {
@@ -48,13 +51,21 @@ function buildPage(
 
 /** IB subjects with generated courses that have syllabus topic practice pages. */
 export function getIbTopicPracticeSubjectSlugs(): string[] {
-  return getIbCourseSlugs().filter((slug) => getIbTopicPracticePages(slug).length > 0)
+  return getIbSubjectSlugsWithCourses()
+}
+
+function getIbSubjectSlugsWithCourses(): string[] {
+  const fromCourses = new Set(
+    getIbCourseSlugs().map((courseSlug) => ibCatalogSlug(courseSlug))
+  )
+  return [...fromCourses].filter((slug) => getIbTopicPracticePages(slug).length > 0)
 }
 
 export function getIbTopicPracticePages(catalogSlug: string): IbTopicPracticePage[] {
+  const courseSlug = ibCourseContentSlug(catalogSlug)
   const topics = getSyllabusByCode(ibSyllabusCode(catalogSlug))
   if (!topics?.length) return []
-  const lessons = getIbCourseLessons(catalogSlug)
+  const lessons = getIbCourseLessons(courseSlug)
   if (!lessons.length) return []
 
   const lessonCodes = new Set(lessons.map((l) => l.topicCode))

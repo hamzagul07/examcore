@@ -1,11 +1,27 @@
 import { getIbSubject } from '@/lib/ib/catalog'
+import { ibCatalogSlug } from '@/lib/ib/slug-resolve'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 
 export type IbCatalogCard = MarginNotesSubject & {
   href: string
   boardLabel: string
   accentHex: string
+  /** Recently launched course — show a “New” ribbon on catalog cards. */
+  isNew?: boolean
 }
+
+/** Course folder slugs shipped in the June 2026 SL batch. */
+export const IB_NEW_COURSE_SLUGS = new Set([
+  'biology-sl',
+  'business-management-sl',
+  'chemistry-sl',
+  'computer-science-sl',
+  'economics-sl',
+  'environmental-systems-and-societies-sl',
+  'maths-aa-sl',
+  'maths-ai-sl',
+  'psychology-sl',
+])
 
 export type IbCatalogTrackKey =
   | 'core'
@@ -34,7 +50,7 @@ export const IB_CATALOG_TRACK_ORDER: IbCatalogTrackKey[] = [
 ]
 
 function trackKeyForSlug(slug: string): IbCatalogTrackKey {
-  const g = getIbSubject(slug)?.groupNumber
+  const g = getIbSubject(ibCatalogSlug(slug))?.groupNumber
   if (g === 7) return 'core'
   if (g === 6) return 'arts'
   if (g === 5) return 'maths'

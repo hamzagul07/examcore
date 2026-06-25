@@ -162,7 +162,7 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
           links={[
             { href: '/mark', label: 'Get feedback on your answer →', variant: 'primary' },
             ...(course
-              ? [{ href: `/ib/courses/${slug}`, label: `Free ${short} course`, variant: 'ghost' as const }]
+              ? [{ href: course.path, label: `Free ${short} course`, variant: 'ghost' as const }]
               : []),
             { href: `/ib/subjects/${subject.slug}`, label: `About ${short} ${subject.level}`, variant: 'ghost' },
           ]}

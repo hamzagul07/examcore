@@ -47,7 +47,6 @@ export const metadata = getPageMetadata(PATH, {
 export default function GradeCalculatorPage() {
   const subjects = getMarkingSubjectPages()
     .map((s) => buildSubjectPageCopy(s))
-    .slice(0, 18)
 
   return (
     <MarketingPageShell>

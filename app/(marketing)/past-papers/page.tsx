@@ -121,6 +121,7 @@ export default function PastPapersHubPage() {
             { href: '/mark', label: 'Mark a paper now →', variant: 'primary' },
             { href: '/subjects', label: 'Browse subjects', variant: 'ghost' },
             { href: '/tools/grade-boundary-calculator', label: 'Grade boundaries', variant: 'muted' },
+            { href: '/past-papers/topics', label: 'Questions by topic', variant: 'muted' },
           ]}
         />
 

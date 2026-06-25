@@ -123,7 +123,7 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
   )
   const codeMatch = slug.match(/^cambridge-(\d{4})-/)
   const syllabusCode = codeMatch?.[1]
-  const ibMatch = slug.match(/^ib-(.+?)-(hl|sl)-/)
+  const ibMatch = slug.match(/^ib-(.+?)-(hl|sl)-past-papers-guide$/)
   const ibSubjectBase = ibMatch?.[1]
 
   return getBlogPosts()
@@ -146,10 +146,22 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
           : 0
       const ibSameSubject =
         ibSubjectBase && p.slug.startsWith(`ib-${ibSubjectBase}-`) ? 2 : 0
+      const ibIaGuide =
+        ibSubjectBase && p.slug === `ib-${ibSubjectBase}-ia-guide` ? 3 : 0
+      const ibMarkbands =
+        slug.startsWith('ib-') && p.slug === 'ib-markbands-explained' ? 1 : 0
       const isPillar = p.slug === cluster.pillarBlogSlug ? 2 : 0
       return {
         post: p,
-        score: sameCluster + overlap + sameCode + ibSibling + ibSameSubject + isPillar,
+        score:
+          sameCluster +
+          overlap +
+          sameCode +
+          ibSibling +
+          ibSameSubject +
+          ibIaGuide +
+          ibMarkbands +
+          isPillar,
       }
     })
     .sort((a, b) => b.score - a.score)

@@ -6,7 +6,9 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { CommandWordExplorer } from '@/components/tools/CommandWordExplorer'
+import { ProgrammaticHubGrid } from '@/components/seo/ProgrammaticHubGrid'
 import { getCommandWords } from '@/lib/seo/command-words'
+import { getCommandWordsHubEntries } from '@/lib/seo/command-words-hub'
 
 const PATH = '/tools/command-words'
 
@@ -86,6 +88,23 @@ export default function CommandWordsToolPage() {
         </aside>
 
         <CommandWordExplorer words={words} />
+
+        <div className="mt-12">
+          <p className="ms-overline">By syllabus</p>
+          <h2 className="ms-h3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.6rem)' }}>
+            Command words for your subject
+          </h2>
+          <ProgrammaticHubGrid
+            className="mt-4"
+            items={getCommandWordsHubEntries().map((e) => ({
+              code: e.code,
+              title: e.label,
+              subtitle: `${e.level} · ${e.markingStyle} marking`,
+              href: e.toolPath,
+              meta: e.topVerbs.slice(0, 3).join(' · '),
+            }))}
+          />
+        </div>
 
         <div className="ms-hub-card mt-12 text-center">
           <h2 className="ms-h3">See if you answered the command word</h2>

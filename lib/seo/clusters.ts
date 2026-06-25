@@ -169,6 +169,8 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
     moneyPath: '/mark',
     slugPatterns: [
       /^cambridge-exam-paper-leaks/,
+      /^cambridge-assessed-marks/,
+      /^cambridge-9709-maths-resit/,
       /^chatgpt-and-ai-cambridge-exams/,
       /^cambridge-may-june-2026/,
       /^revision-tiktok-and-social-media/,

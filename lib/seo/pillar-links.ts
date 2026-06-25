@@ -25,6 +25,11 @@ export const SEO_PILLAR_LINKS: PillarLink[] = [
     description: 'Turn raw marks into a Cambridge A*–E grade',
   },
   {
+    href: '/past-papers/topics',
+    label: 'Past paper questions by topic',
+    description: 'Cambridge topic practice with mark-scheme marking',
+  },
+  {
     href: '/tools/command-words',
     label: 'Command words explainer',
     description: 'What every Cambridge command word requires',
@@ -53,6 +58,11 @@ export const SEO_PILLAR_LINKS: PillarLink[] = [
     href: '/blog/cambridge-exam-paper-leaks-2026-what-students-should-know',
     label: 'Exam leaks & integrity',
     description: 'What to do instead of chasing rumours',
+  },
+  {
+    href: '/blog/cambridge-assessed-marks-2026-explained',
+    label: 'Assessed marks 2026',
+    description: 'Voided papers and calculated grades explained',
   },
   {
     href: '/blog/ai-marking-cambridge-past-papers-guide',
@@ -117,9 +127,9 @@ export const SEO_IB_PILLAR_LINKS: PillarLink[] = [
     description: 'IA criteria, timelines and top-band habits',
   },
   {
-    href: '/ib/past-papers/biology-hl#ib-topic-practice',
-    label: 'IB topic practice',
-    description: 'Syllabus-by-syllabus grids linked to lessons & marking',
+    href: '/ib/topic-practice',
+    label: 'IB topic practice index',
+    description: '760+ syllabus topic pages with lessons and marking',
   },
   {
     href: '/mark',

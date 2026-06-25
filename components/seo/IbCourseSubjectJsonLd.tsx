@@ -9,6 +9,7 @@ import {
 import { SITE_URL } from '@/lib/site-config'
 import type { CourseLesson } from '@/lib/courses/types'
 import type { IbSubject } from '@/lib/ib/catalog'
+import { ibCourseLessonPath, ibCoursePath } from '@/lib/ib/slug-resolve'
 import { ibShortName } from '@/lib/seo/ib-seo'
 
 type Props = {
@@ -19,7 +20,7 @@ type Props = {
 }
 
 export function IbCourseSubjectJsonLd({ subject, description, lessons, topics }: Props) {
-  const path = `/ib/courses/${subject.slug}`
+  const path = ibCoursePath(subject.slug)
   const short = ibShortName(subject)
   const level =
     subject.groupNumber === 7
@@ -63,7 +64,7 @@ export function IbCourseSubjectJsonLd({ subject, description, lessons, topics }:
           name: `IB ${subject.name} syllabus topics`,
           items: lessons.map((l) => ({
             name: `${l.topicCode} ${l.title}`,
-            url: `${SITE_URL}/ib/courses/${subject.slug}/${l.slug}`,
+            url: `${SITE_URL}${ibCourseLessonPath(subject.slug, l.slug)}`,
           })),
         }),
       ]}

@@ -1,6 +1,7 @@
 import type { SiteHeaderVariant, SiteNavItem } from '@/lib/site-nav'
 import { SITE_NAV_ITEMS } from '@/lib/site-nav'
 import { getIbSubject } from '@/lib/ib/catalog'
+import { ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import {
   getSiteHeaderTone,
   useTransparentHeaderShell,
@@ -52,7 +53,7 @@ function communityContext(pathname: string): HeaderContext | undefined {
 }
 
 function ibSubjectLabel(slug: string): string {
-  const subject = getIbSubject(slug)
+  const subject = ibSubjectForSlug(slug) ?? getIbSubject(slug)
   if (!subject) return slug.replace(/-/g, ' ')
   if (subject.groupNumber === 7) return subject.name
   return `${subject.name} ${subject.level}`
@@ -62,7 +63,7 @@ function coursesContext(pathname: string): HeaderContext | undefined {
   const ibCourseMatch = pathname.match(/^\/ib\/courses\/([^/]+)(?:\/(.+))?/)
   if (ibCourseMatch) {
     const slug = ibCourseMatch[1]
-    const subject = getIbSubject(slug)
+    const subject = ibSubjectForSlug(slug)
     if (ibCourseMatch[2]) {
       return {
         label: ibSubjectLabel(slug),

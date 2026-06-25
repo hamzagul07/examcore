@@ -8,9 +8,9 @@ import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
 import { SITE_URL } from '@/lib/site-config'
 import { getIbSubjects, getIbSubjectsByGroup } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
-import { getIbCourse } from '@/lib/courses/ib'
 import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display.server'
 import { IB_COURSES_CATALOG_BLURB } from '@/lib/courses/ib-catalog-display'
+import { ibCatalogSlug } from '@/lib/ib/slug-resolve'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 
 const PATH = '/ib/subjects'
@@ -28,6 +28,9 @@ export function generateMetadata() {
 export default function IbSubjectsPage() {
   const subjects = getIbSubjects()
   const grouped = getIbSubjectsByGroup()
+  const catalogCards = getIbCatalogCards()
+  const courseByCatalogSlug = new Map(catalogCards.map((c) => [ibCatalogSlug(c.code), c]))
+  const totalLessons = catalogCards.reduce((a, c) => a + c.lessons, 0)
 
   return (
     <MarketingPageShell>
@@ -85,12 +88,12 @@ export default function IbSubjectsPage() {
           ]}
         />
 
-        {getIbCatalogCards().length ? (
+        {catalogCards.length ? (
           <p className="ms-body-2" style={{ marginTop: 24, color: 'var(--ec-text-secondary)' }}>
             <Link href="/ib/courses" className="ec-link">
-              {getIbCatalogCards().length} free IB courses
+              {catalogCards.length} free IB courses
             </Link>{' '}
-            with {getIbCatalogCards().reduce((a, c) => a + c.lessons, 0)} lessons — {IB_COURSES_CATALOG_BLURB}
+            with {totalLessons} lessons — {IB_COURSES_CATALOG_BLURB}
           </p>
         ) : null}
 
@@ -100,7 +103,9 @@ export default function IbSubjectsPage() {
               Group {g.groupNumber} · {g.group}
             </h2>
             <ul className="ms-pp-grid">
-              {g.subjects.map((s) => (
+              {g.subjects.map((s) => {
+                const course = courseByCatalogSlug.get(s.slug)
+                return (
                 <li key={s.slug}>
                   <Link
                     href={`/ib/subjects/${s.slug}`}
@@ -114,14 +119,18 @@ export default function IbSubjectsPage() {
                       <span className="ms-pp-title">
                         {s.name} <em className="ms-pp-code">· {s.level}</em>
                       </span>
-                      <span className="ms-pp-meta">{s.papers.join(' · ')}</span>
+                      <span className="ms-pp-meta">
+                        {s.papers.join(' · ')}
+                        {course ? ` · Free course · ${course.lessons} lessons` : ''}
+                      </span>
                     </span>
                     <span className="ms-pp-cta" aria-hidden>
                       →
                     </span>
                   </Link>
                 </li>
-              ))}
+                )
+              })}
             </ul>
           </section>
         ))}

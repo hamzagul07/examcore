@@ -10,6 +10,8 @@ import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { getIbSubjects, getIbSubjectsByGroup, ibYearRange } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
+import { getIbCourse } from '@/lib/courses/ib'
+import { getIbTopicPracticeSubjectSlugs } from '@/lib/seo/ib-topic-practice'
 
 const PATH = '/ib/past-papers'
 
@@ -48,6 +50,7 @@ const FAQ = [
 export default function IbPastPapersHubPage() {
   const subjects = getIbSubjects()
   const grouped = getIbSubjectsByGroup()
+  const topicPracticeSlugs = new Set(getIbTopicPracticeSubjectSlugs())
 
   return (
     <MarketingPageShell>
@@ -100,7 +103,9 @@ export default function IbPastPapersHubPage() {
           paragraph="Pick a subject to see its papers laid out by exam series. Work each under timed conditions, mark yourself against the band descriptors, and use the guidance to close the gap to a 7."
           links={[
             { href: '/ib/subjects', label: 'Browse IB subjects', variant: 'primary' },
+            { href: '/ib/courses', label: 'Free IB courses', variant: 'ghost' },
             { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
+            { href: '/blog/ib-free-courses-guide', label: 'Free courses guide', variant: 'muted' },
           ]}
         />
 
@@ -110,7 +115,14 @@ export default function IbPastPapersHubPage() {
               Group {g.groupNumber} · {g.group}
             </h2>
             <ul className="ms-pp-grid">
-              {g.subjects.map((s) => (
+              {g.subjects.map((s) => {
+                const course = getIbCourse(s.slug)
+                const hasTopics = topicPracticeSlugs.has(s.slug)
+                const extras = [
+                  course ? 'Free course' : null,
+                  hasTopics ? 'Topic practice' : null,
+                ].filter(Boolean)
+                return (
                 <li key={s.slug}>
                   <Link
                     href={`/ib/past-papers/${s.slug}`}
@@ -124,14 +136,18 @@ export default function IbPastPapersHubPage() {
                       <span className="ms-pp-title">
                         {s.name} <em className="ms-pp-code">· {s.level}</em>
                       </span>
-                      <span className="ms-pp-meta">{ibYearRange()} · {s.papers.length} papers</span>
+                      <span className="ms-pp-meta">
+                        {ibYearRange()} · {s.papers.length} papers
+                        {extras.length ? ` · ${extras.join(' · ')}` : ''}
+                      </span>
                     </span>
                     <span className="ms-pp-cta" aria-hidden>
                       →
                     </span>
                   </Link>
                 </li>
-              ))}
+                )
+              })}
             </ul>
           </section>
         ))}

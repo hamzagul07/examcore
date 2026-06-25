@@ -30,3 +30,13 @@ export function ibCatalogSlug(slug: string): string {
 export function ibSubjectForSlug(slug: string) {
   return getIbSubject(ibCatalogSlug(slug))
 }
+
+/** URL path for an IB course hub — pass catalog or course folder slug. */
+export function ibCoursePath(slug: string): string {
+  return `/ib/courses/${ibCourseContentSlug(slug)}`
+}
+
+/** Lesson URL under an IB course — pass catalog or course folder slug. */
+export function ibCourseLessonPath(slug: string, lessonSlug: string): string {
+  return `${ibCoursePath(slug)}/${lessonSlug}`
+}

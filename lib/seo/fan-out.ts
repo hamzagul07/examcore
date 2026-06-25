@@ -14,7 +14,7 @@ export type FanOutChunk = {
 }
 
 /** Cambridge entity tokens to strengthen passage retrieval. */
-const ENTITY_TOKENS = [
+const CAMBRIDGE_ENTITY_TOKENS = [
   'Cambridge International',
   'mark scheme',
   'past paper',
@@ -22,6 +22,68 @@ const ENTITY_TOKENS = [
   'O-Level',
   SITE_NAME,
 ]
+
+const IB_ENTITY_TOKENS = [
+  'IB Diploma',
+  'IB Diploma Programme',
+  'IB',
+  'markbands',
+  'internal assessment',
+  'past paper',
+  'Higher Level',
+  'Standard Level',
+  'Theory of Knowledge',
+  SITE_NAME,
+]
+
+function isIbSlug(slug: string): boolean {
+  return slug.startsWith('ib-') || getClusterForSlug(slug).id === 'ib'
+}
+
+function entityTokensForSlug(slug: string): string[] {
+  return isIbSlug(slug) ? IB_ENTITY_TOKENS : CAMBRIDGE_ENTITY_TOKENS
+}
+
+/** e.g. ib-biology-hl-past-papers-guide → Biology HL */
+function ibTopicFromSlug(slug: string): string | null {
+  const hlSl = slug.match(/^ib-(.+?)-(hl|sl)-past-papers-guide$/)
+  if (hlSl) {
+    const name = hlSl[1]
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase())
+      .replace(/\bAa\b/g, 'AA')
+      .replace(/\bAi\b/g, 'AI')
+    return `${name} ${hlSl[2].toUpperCase()}`
+  }
+  if (slug.endsWith('-past-papers-guide')) {
+    const rest = slug.slice(3, -'-past-papers-guide'.length)
+    if (rest === 'tok') return 'TOK'
+    return rest
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase())
+  }
+  return null
+}
+
+function leadPrefix(slug: string): string {
+  if (isIbSlug(slug)) {
+    const topic = ibTopicFromSlug(slug)
+    if (topic) return `For IB ${topic}, `
+    return 'For the IB Diploma Programme, '
+  }
+  const code = extractSyllabusCode(slug)
+  const cluster = getClusterForSlug(slug)
+  return code
+    ? `For Cambridge syllabus ${code}, `
+    : `For Cambridge ${cluster.headTerm}, `
+}
+
+function emptyLeadFallback(heading: string, slug: string): string {
+  if (isIbSlug(slug)) {
+    return `This section covers ${heading} — what IB examiners reward most often in past papers and coursework.`
+  }
+  return `This section covers ${heading} — ranked by what Cambridge examiners return to most often in past papers.`
+}
 
 function slugify(text: string): string {
   return headingSlug(text)
@@ -41,18 +103,15 @@ function inferSubIntent(heading: string, slug: string): string {
 function ensureEntityLead(heading: string, firstPara: string, slug: string): string {
   let trimmed = firstPara.replace(/\*\*/g, '').trim()
   if (!trimmed || isTableBlock(trimmed) || /\|.*\|/.test(trimmed)) {
-    trimmed = `This section covers ${heading} — ranked by what Cambridge examiners return to most often in past papers.`
+    trimmed = emptyLeadFallback(heading, slug)
   }
-  const hasEntity = ENTITY_TOKENS.some((t) =>
+  const tokens = entityTokensForSlug(slug)
+  const hasEntity = tokens.some((t) =>
     trimmed.toLowerCase().includes(t.toLowerCase())
   )
-  const code = extractSyllabusCode(slug)
   if (hasEntity && trimmed.length >= 40) return trimmed
 
-  const cluster = getClusterForSlug(slug)
-  const prefix = code
-    ? `For Cambridge syllabus ${code}, `
-    : `For Cambridge ${cluster.headTerm}, `
+  const prefix = leadPrefix(slug)
   const core = trimmed || heading
   return `${prefix}${core.charAt(0).toLowerCase()}${core.slice(1)}`
 }

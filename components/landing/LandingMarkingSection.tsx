@@ -32,18 +32,40 @@ const STEPS = [
   },
 ]
 
-export function LandingSteps() {
+const CAPABILITIES = [
+  { glyph: 'MS', title: 'Official schemes', desc: 'Real Cambridge criteria, cited line by line' },
+  { glyph: '✎', title: "Examiner's Ink", desc: 'Stamps on your handwriting' },
+  { glyph: 'Q·P', title: 'Single or full paper', desc: 'Quick check or projected grade' },
+  { glyph: 'IMG', title: 'Photo · camera · PDF', desc: 'Multi-page with reorder' },
+  { glyph: 'A*', title: 'Grade boundaries', desc: 'Honest A*–E estimates' },
+]
+
+export function LandingMarkingSection() {
   return (
     <section id="how-it-works" className="ms-pg ms-sec scroll-mt-20 ec-section-tint ec-section-tint--mark">
-      <p className="ms-overline">How it works</p>
+      <p className="ms-overline">How marking works</p>
       <h2 className="ms-h2">
         Upload. Mark. <em>Fix.</em>
       </h2>
-      <p className="ms-body-2" style={{ marginTop: 4 }}>
-        <Link href="/how-it-works" className="ec-btn-underline" style={{ fontSize: 15 }}>
-          Full walkthrough — honest about the AI →
-        </Link>
+      <p className="ms-lead ms-marking-lead">
+        Not a chatbot&apos;s opinion — every stamp comes from the actual mark scheme for that paper
+        and question.
       </p>
+
+      <div className="ms-marking-capabilities">
+        {CAPABILITIES.map((cap) => (
+          <div key={cap.title} className="ms-marking-cap">
+            <span className="ms-marking-cap-glyph" aria-hidden>
+              {cap.glyph}
+            </span>
+            <div>
+              <strong>{cap.title}</strong>
+              <span>{cap.desc}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="ms-steps">
         {STEPS.map((step, i) => (
           <div key={step.num} className={`ec-card ms-step ms-step--${i + 1}`}>
@@ -60,6 +82,12 @@ export function LandingSteps() {
           </div>
         ))}
       </div>
+
+      <p className="ms-marking-foot">
+        <Link href="/how-it-works" className="ec-btn-underline" style={{ fontSize: 15 }}>
+          Full walkthrough — honest about the AI →
+        </Link>
+      </p>
     </section>
   )
 }

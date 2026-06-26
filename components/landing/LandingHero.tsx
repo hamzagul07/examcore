@@ -55,8 +55,8 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
         <p className="ms-lead ms-hero-lead">
-          Mark past papers against real Cambridge schemes, learn every syllabus point in free
-          courses, and discuss with other students in subject communities — all in one place.
+          Photograph your handwritten answer. We mark it point by point against the official
+          Cambridge scheme — with Examiner&apos;s Ink in your margins.
         </p>
         <div className="ms-hero-ctas">
           <LoadingLink

@@ -70,8 +70,11 @@ async function main() {
 
   for (const { paper, path: pilotPath, slug } of pilots) {
     const pilot = JSON.parse(fs.readFileSync(pilotPath, 'utf8'))
-    if (!pilot.generatorVersion?.startsWith('senpai-pilot')) {
-      console.log(`  skip ${slug} (not a senpai pilot)`)
+    if (
+      !pilot.generatorVersion?.startsWith('senpai-pilot') &&
+      !pilot.generatorVersion?.startsWith('b-v3-pilot')
+    ) {
+      console.log(`  skip ${slug} (not a promotable pilot: ${pilot.generatorVersion ?? 'none'})`)
       continue
     }
 

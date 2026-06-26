@@ -5,204 +5,259 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson explores the mechanical properties of materials when subjected to forces. We will differentiate between elastic and plastic deformation, define the elastic limit, and apply Hooke's Law. You will learn to interpret force-extension graphs to determine a material's stiffness (spring constant) and calculate the elastic potential energy stored within a deformed object.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 2 — Elastic and plastic behaviour (6.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Understand and distinguish between elastic deformation and plastic deformation.",
-    "State and apply Hooke's Law ($F=kx$) to solve problems involving springs and wires.",
-    "Interpret force-extension graphs, determining the spring constant ($k$) from the gradient and the work done from the area underneath.",
-    "Calculate the elastic potential energy stored in a material using $E_p = \\frac{1}{2}Fx$ and $E_p = \\frac{1}{2}kx^2$."
+    "Differentiate between elastic and plastic deformation, applying Hooke's Law.",
+    "Calculate stress, strain, and Young Modulus from given data.",
+    "Interpret force-extension and stress-strain graphs for different materials."
   ],
   "simpleExplanation": {
-    "title": "Stretch, Squash, and Stay",
-    "summary": "Some materials, like a rubber band, spring back to their original shape after being stretched. Others, like a piece of plasticine, stay permanently deformed. This lesson explains the physics behind why.",
-    "analogy": "Imagine stretching a fresh metal spring. It pulls back and returns to its original size when you let go. Now, imagine bending a paperclip. If you bend it a little, it springs back (elastic). If you bend it too far, it stays bent (plastic). The point where it goes from springing back to staying bent is the 'elastic limit'.",
+    "title": "Stretching and Snapping",
+    "summary": "Imagine pulling on a rubber band or bending a paperclip. Materials react differently to forces: some bounce back (elastic), others stay bent (plastic). This lesson explores how physicists quantify these changes using key concepts like Hooke's Law and Young Modulus.",
+    "analogy": "Think of a bungee cord (elastic) versus a chewing gum (plastic). The bungee cord stretches and returns to its original length, ready for the next jump. The chewing gum stretches and stays stretched, permanently altered.",
     "steps": [
-      "When a force is applied to a spring or wire, it extends. Initially, the extension is directly proportional to the force. This is the elastic region, described by Hooke's Law ($F=kx$).",
-      "As the force increases, the material reaches its elastic limit. This is the maximum force that can be applied before the material is permanently stretched. Up to this point, it will return to its original length if the force is removed.",
-      "Beyond the elastic limit, the material undergoes plastic deformation. It will not return to its original length. The atomic layers have permanently slid over one another.",
-      "The work done in stretching the material is stored as elastic potential energy. This is calculated as the area under the force-extension graph. In the elastic region, this is given by $E_p = \\frac{1}{2}kx^2$."
+      "**Identify the Force**: Is it stretching (tensile) or squashing (compressive)?",
+      "**Observe the Change**: Does the object return to its original shape (elastic) or stay deformed (plastic)?",
+      "**Calculate the Response**: Quantify the change using Hooke's Law, stress, and strain.",
+      "**Characterise the Material**: Determine its stiffness with the Young Modulus and predict its behaviour."
     ]
   },
   "flashcards": [
     {
-      "front": "What is elastic deformation?",
-      "back": "A temporary change in shape of an object when a force is applied. The object returns to its original shape and size when the force is removed."
+      "front": "What is 'deformation' in physics?",
+      "back": "Any change in an object's shape or size due to an applied force."
     },
     {
-      "front": "What is plastic deformation?",
-      "back": "A permanent change in shape of an object when a force is applied. The object does not return to its original shape and size when the force is removed."
+      "front": "Distinguish between 'tensile' and 'compressive' deformation.",
+      "back": "Tensile deformation involves stretching by outward forces (tension), while compressive deformation is squeezing by inward forces (compression)."
     },
     {
-      "front": "Define the elastic limit.",
-      "back": "The maximum force or stress that can be applied to an object without causing permanent (plastic) deformation."
+      "front": "What defines 'elastic deformation'?",
+      "back": "A temporary change in shape; the object fully recovers its original form once the deforming forces are removed."
+    },
+    {
+      "front": "What is 'plastic deformation'?",
+      "back": "A permanent change in shape; the object does not return to its original form after forces are removed."
     },
     {
       "front": "State Hooke's Law.",
-      "back": "The force needed to extend or compress a spring by some distance is directly proportional to that distance, provided the elastic limit is not exceeded. Mathematically, $F \\propto x$."
+      "back": "The extension of an elastic object is directly proportional to the applied force, provided the limit of proportionality is not exceeded."
     },
     {
-      "front": "What is the spring constant, $k$?",
-      "back": "A measure of the stiffness of a spring or material. It is the force per unit extension. Its unit is newtons per metre (N m⁻¹)."
+      "front": "Formula for Hooke's Law & what 'k' represents?",
+      "back": "$$F = k\\Delta L$$ where $F$ is force, $\\Delta L$ is extension, and $k$ is the spring constant (a measure of stiffness)."
     },
     {
-      "front": "What does the gradient of a force-extension graph represent?",
-      "back": "The gradient represents the spring constant, $k$. A steeper gradient means a stiffer material (larger $k$)."
+      "front": "What is the 'limit of proportionality'?",
+      "back": "The point on a force-extension graph beyond which Hooke's Law is no longer valid (the graph ceases to be a straight line)."
     },
     {
-      "front": "What does the area under a force-extension graph represent?",
-      "back": "The area represents the work done on the material, which is stored as elastic potential energy (if deformation is elastic)."
+      "front": "Define 'elastic limit'.",
+      "back": "The maximum force a material can withstand and still return to its original shape after the force is removed. Beyond this, deformation becomes plastic."
     },
     {
-      "front": "How do you calculate elastic potential energy, $E_p$?",
-      "back": "Within the limit of proportionality, $E_p = \\frac{1}{2}Fx$ or $E_p = \\frac{1}{2}kx^2$. For any deformation, it is the area under the force-extension graph."
+      "front": "How is 'Elastic Potential Energy (EPE)' calculated?",
+      "back": "For deformation within the limit of proportionality: $$EPE = \\frac{1}{2}F\\Delta L$$ or $$EPE = \\frac{1}{2}k(\\Delta L)^2$$"
     },
     {
-      "front": "Exam Trap: What is the difference between 'extension' and 'length'?",
-      "back": "Extension ($x$) is the change in length from the original, unstretched length ($L_0$). The new length is $L = L_0 + x$. Always use extension in Hooke's Law and energy calculations."
+      "front": "Define 'stress' and give its formula & unit.",
+      "back": "Stress ($\\sigma$) is the applied force per unit cross-sectional area: $$\\sigma = \\frac{F}{A}$$. Unit: Pascals (Pa) or Newtons per square metre (Nm⁻²)."
     },
     {
-      "front": "Exam Trap: What if the graph given is extension vs. force?",
-      "back": "Be careful! If the axes are swapped (extension on y-axis, force on x-axis), the gradient is no longer $k$. The gradient would be $1/k$."
+      "front": "Define 'strain' and give its formula & unit.",
+      "back": "Strain ($\\epsilon$) is the ratio of extension to original length: $$\\epsilon = \\frac{\\Delta L}{L_0}$$. It is a dimensionless quantity (no unit)."
     },
     {
-      "front": "What is a brittle material?",
-      "back": "A material that shows little to no plastic deformation before fracturing. It breaks suddenly. Example: glass, ceramics."
-    },
-    {
-      "front": "What is a ductile material?",
-      "back": "A material that can undergo significant plastic deformation before fracturing. It can be drawn into a wire. Example: copper, steel."
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the difference between the 'limit of proportionality' and the 'elastic limit'?",
-      "a": "The 'limit of proportionality' is the point up to which force is directly proportional to extension ($F \\propto x$). The graph is a straight line. The 'elastic limit' is the point up to which the material will return to its original shape. For many materials, the graph may curve slightly between these two points. So, the limit of proportionality is reached before or at the same time as the elastic limit. In A-Level Physics, they are often treated as the same point unless a question makes a clear distinction."
-    },
-    {
-      "q": "Is the spring constant, k, always constant?",
-      "a": "No. The term 'spring constant' is a bit misleading. It is only constant for the region where the material obeys Hooke's Law – the linear portion of the force-extension graph. Once the material passes the limit of proportionality, the relationship is no longer linear, and 'k' is not constant."
-    },
-    {
-      "q": "What happens to the energy when a material is stretched plastically?",
-      "a": "When a material is stretched elastically, the work done is stored as elastic potential energy. When stretched plastically, most of the work done is converted into internal energy, primarily heat, as the atomic structure is permanently rearranged. Only a small fraction is stored as elastic potential energy, which is released if the load is removed (the material will spring back slightly)."
+      "front": "What is the 'Young Modulus' (E) and how is it calculated?",
+      "back": "The Young Modulus is a measure of a material's stiffness. It's the ratio of stress to strain: $$E = \\frac{\\sigma}{\\epsilon}$$ or $$E = \\frac{F L_0}{A \\Delta L}$$. Unit: Pascals (Pa)."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "When you apply a force to a solid object, you can cause it to change shape. This change is called deformation. Understanding how materials respond to forces is fundamental to engineering and materials science, from designing bridges that can withstand heavy loads to creating smartphones with durable screens. In this topic, we will classify these deformations and quantify the energy changes involved."
+      "content": "Welcome to **Elastic and Plastic Behaviour**! This topic explores how materials react when forces are applied to them. We'll delve into temporary (elastic) and permanent (plastic) changes, understand fundamental laws like **Hooke's Law**, and learn how to quantify a material's stiffness using **stress**, **strain**, and the **Young Modulus**. Get ready to stretch your understanding! This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **6.2**."
     },
     {
       "type": "heading",
-      "content": "Elastic and Plastic Deformation"
+      "content": "Deformation: Stretching and Squeezing"
     },
     {
       "type": "text",
-      "content": "The behaviour of a material under load can be categorised into two main types. **Elastic deformation** is a temporary change. Imagine stretching a rubber band; it returns to its original size once you let go. On a microscopic level, the bonds between atoms are stretched but not broken. When the force is removed, the atoms return to their equilibrium positions."
+      "content": "**Deformation** is simply any change in an object's shape or size when a force acts on it. When we pull on something, it experiences **tensile deformation** (tension). If we push or squeeze it, that's **compressive deformation** (compression). These basic forces lead to very different responses from materials."
+    },
+    {
+      "type": "heading",
+      "content": "Elastic vs. Plastic: The Reversibility Test"
     },
     {
       "type": "text",
-      "content": "**Plastic deformation**, on the other hand, is permanent. If you bend a metal spoon too far, it stays bent. This occurs when the applied force is large enough to cause layers of atoms to slide over one another to new, stable positions. The point at which a material transitions from elastic to plastic behaviour is known as the **elastic limit**."
+      "content": "Imagine pulling a rubber band. It stretches, but let it go, and it snaps back. This is **elastic deformation**: the change is temporary, and the object returns to its original form once the forces are removed. Now, consider bending a paperclip. It stays bent, right? That's **plastic deformation**: the change is permanent, and the material doesn't recover its original shape."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Elastic Deformation:** Reversible. Object returns to original shape when force is removed.",
-        "**Plastic Deformation:** Permanent. Object is permanently deformed.",
-        "**Elastic Limit:** The maximum force an object can experience and still return to its original shape."
+        "6.2 Elastic and plastic behaviour.",
+        "Elastic deformation is the deformation that occurs before the elastic limit.",
+        "If you removed the load before this point, the object will remove to its original shape.",
+        "Plastic deformation is the deformation that occurs after the elastic limit.",
+        "Load removal will not restore the object to its original shape.",
+        "Recall that the area under a force-extension graph represents the work done to deform the material."
       ]
     },
     {
       "type": "heading",
-      "content": "Hooke's Law and the Spring Constant"
+      "content": "Hooke's Law: The Spring's Secret"
     },
     {
       "type": "text",
-      "content": "For many materials, within the elastic limit, there is a simple relationship between the applied force and the resulting extension. This relationship was first described by Robert Hooke in 1678. Hooke's Law states that the force, $F$, required to stretch or compress a spring is directly proportional to the extension, $x$, from its equilibrium position."
+      "content": "For many elastic materials, especially springs, there's a simple relationship between the force applied and the resulting extension. **Hooke's Law** states that the extension ($\\Delta L$) is directly proportional to the applied force (F), as long as you don't stretch it too far!"
     },
     {
       "type": "formula",
-      "content": "F = kx"
+      "content": "$$F = k\\Delta L$$"
     },
     {
       "type": "text",
-      "content": "Here, $F$ is the applied force in newtons (N), $x$ is the extension or compression in metres (m), and $k$ is the constant of proportionality, known as the **spring constant** or force constant. The spring constant is a measure of the material's stiffness. A higher value of $k$ indicates a stiffer spring, meaning a larger force is required to produce the same extension. The units of $k$ are N m⁻¹."
-    },
-    {
-      "type": "workedExample",
-      "question": "A spring has a spring constant of 200 N m⁻¹. A mass of 5.0 kg is hung from its end. Assuming the spring obeys Hooke's Law, calculate the extension of the spring. (Take $g = 9.81$ m s⁻²).",
-      "solution": "1.  Identify the force acting on the spring. This is the weight of the mass.\n    Weight $F = mg = 5.0 \\text{ kg} \\times 9.81 \\text{ m s}^{-2} = 49.05 \\text{ N}$.\n\n2.  State Hooke's Law: $F = kx$.\n\n3.  Rearrange the formula to solve for extension, $x$: $x = F/k$.\n\n4.  Substitute the values:\n    $x = \\frac{49.05 \\text{ N}}{200 \\text{ N m}^{-1}} = 0.24525 \\text{ m}$.\n\n5.  State the answer to an appropriate number of significant figures (2 s.f. from the mass):\n    Extension $x = 0.25 \\text{ m}$ (or 25 cm)."
+      "content": "Here, $k$ is the **spring constant**, which tells you how stiff the object is. A higher $k$ means a stiffer spring, requiring more force to produce the same extension. The unit for $k$ is Newtons per metre (N m⁻¹)."
     },
     {
       "type": "heading",
-      "content": "Force-Extension Graphs"
+      "content": "Limits of Proportionality and Elasticity"
     },
     {
       "type": "text",
-      "content": "A graph of force against extension provides a powerful visual representation of a material's properties. For a material that obeys Hooke's Law, the initial part of the graph is a straight line passing through the origin. The point where the graph begins to curve is called the **limit of proportionality**. Beyond this point, force is no longer directly proportional to extension. The elastic limit is typically just beyond the limit of proportionality. For many exam questions, you can assume they are the same point unless stated otherwise."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Gradient:** The gradient of the linear section of a force-extension graph is equal to the spring constant, $k$. ($k = \\Delta F / \\Delta x$).",
-        "**Area:** The area under the force-extension graph represents the work done in stretching the material.",
-        "**Limit of Proportionality (P):** The point up to which $F \\propto x$. The graph is a straight line through the origin.",
-        "**Elastic Limit (E):** The point beyond which plastic deformation occurs. Often very close to P."
-      ]
+      "content": "Even elastic materials have their limits. The **limit of proportionality** is the point on a force-extension graph where the straight line relationship (Hooke's Law) ends. Beyond this, the material might still return to its original shape, but $F$ is no longer directly proportional to $\\Delta L$. The **elastic limit** is the absolute maximum force an object can withstand before it starts to deform permanently. If you exceed this, plastic deformation begins."
     },
     {
       "type": "examTip",
-      "content": "Always check the axes of any graph you are given! Sometimes examiners will plot extension on the y-axis and force on the x-axis. In this case, the gradient is $1/k$, not $k$. A common mistake is to calculate the gradient without checking the axes first."
+      "content": "Remember the distinction: 'limit of proportionality' is where Hooke's Law stops being true (graph curves), while 'elastic limit' is where plastic deformation starts (won't return to original shape)."
     },
     {
       "type": "heading",
-      "content": "Energy Stored in Deformed Materials"
+      "content": "Force-Extension Graphs and Elastic Potential Energy"
     },
     {
       "type": "text",
-      "content": "When you do work to stretch a material, that energy has to go somewhere. Within the elastic limit, the work done is stored as **elastic potential energy** ($E_p$). This is the energy that is released when the force is removed and the object springs back to its original shape. Since work done is the area under the force-extension graph, we can derive a formula for $E_p$ in the linear region."
+      "content": "Plotting force against extension gives us a powerful visual tool. For materials obeying Hooke's Law, the graph is a straight line through the origin, and its gradient gives you the spring constant, $k$. As you deform an elastic object, you do work on it, and this energy is stored as **elastic potential energy (EPE)**. Within the limit of proportionality, EPE is calculated as the area under the force-extension graph."
     },
     {
       "type": "formula",
-      "content": "$E_p = \\frac{1}{2} F x$"
-    },
-    {
-      "type": "text",
-      "content": "This formula comes from the area of the triangle under the linear part of the graph (Area = ½ × base × height). Since we know $F = kx$ in this region, we can substitute for $F$ to get another useful form of the equation:"
-    },
-    {
-      "type": "formula",
-      "content": "$E_p = \\frac{1}{2} (kx) x = \\frac{1}{2} k x^2$"
+      "content": "$$EPE = \\frac{1}{2}F\\Delta L$$ or $$EPE = \\frac{1}{2}k(\\Delta L)^2$$"
     },
     {
       "type": "workedExample",
-      "question": "The graph shows the force-extension characteristic for a metal wire. \n(a) Determine the spring constant of the wire. \n(b) Calculate the work done to extend the wire by 4.0 mm.",
-      "solution": "*(Assume a graph is provided showing a straight line from (0,0) to (4.0 mm, 80 N) and then curving upwards)*\n\n**(a) Determine the spring constant, k:**\nThe graph is linear up to an extension of 4.0 mm, so we can use this region to find $k$.\n1.  The gradient of the F-x graph is the spring constant, $k$.\n    $k = \\frac{\\text{change in force}}{\\text{change in extension}} = \\frac{\\Delta F}{\\Delta x}$.\n\n2.  Choose a point on the linear section, e.g., (4.0 mm, 80 N). Remember to convert mm to m.\n    $x = 4.0 \\text{ mm} = 4.0 \\times 10^{-3} \\text{ m}$.\n\n3.  Calculate $k$:\n    $k = \\frac{80 \\text{ N}}{4.0 \\times 10^{-3} \\text{ m}} = 20000 \\text{ N m}^{-1}$ or $20 \\text{ kN m}^{-1}$.\n\n**(b) Calculate the work done:**\n1.  The work done is the area under the force-extension graph.\n\n2.  For an extension of 4.0 mm, the graph is a triangle.\n    Area = $\\frac{1}{2} \\times \\text{base} \\times \\text{height}$.\n\n3.  Substitute the values, ensuring extension is in metres:\n    Work Done ($E_p$) = $\\frac{1}{2} \\times (4.0 \\times 10^{-3} \\text{ m}) \\times (80 \\text{ N})$.\n\n4.  Calculate the result:\n    Work Done = $0.16 \\text{ J}$."
+      "question": "A spring has a spring constant of 250 N m⁻¹. Calculate the elastic potential energy stored in the spring when it is extended by 5.0 cm.",
+      "solution": "1. Convert extension to metres: $\\Delta L = 5.0\\text{ cm} = 0.050\\text{ m}$.\n2. Use the formula for EPE involving $k$ and $\\Delta L$:\n   $$EPE = \\frac{1}{2}k(\\Delta L)^2$$\n3. Substitute the values:\n   $$EPE = \\frac{1}{2} \\times 250\\text{ N m}^{-1} \\times (0.050\\text{ m})^2$$\n4. Calculate the result:\n   $$EPE = \\frac{1}{2} \\times 250 \\times 0.0025 = 0.3125\\text{ J}$$\n   Therefore, the elastic potential energy stored is 0.31 J (to 2 s.f.)."
     },
     {
-      "type": "examTip",
-      "content": "The formula $E_p = \\frac{1}{2}kx^2$ is only valid for the region where Hooke's Law is obeyed (the straight-line part of the graph). If you need to find the work done for an extension into the plastic region, you must find the total area under the graph. This may involve splitting the area into a triangle and a trapezium, or by counting squares."
+      "type": "heading",
+      "content": "Stress and Strain: Beyond Just Force and Extension"
+    },
+    {
+      "type": "text",
+      "content": "While force and extension describe a specific object, **stress** and **strain** describe the *material* itself, regardless of its dimensions. This allows us to compare different materials directly."
+    },
+    {
+      "type": "heading",
+      "content": "Stress ($\\sigma$)"
+    },
+    {
+      "type": "text",
+      "content": "**Stress** is the force applied per unit cross-sectional area. It measures how concentrated the internal forces are within the material. The unit for stress is Pascals (Pa), which is equivalent to N m⁻²."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\sigma = \\frac{F}{A}$$"
+    },
+    {
+      "type": "heading",
+      "content": "Strain ($\\epsilon$)"
+    },
+    {
+      "type": "text",
+      "content": "**Strain** is the fractional change in length. It's the extension divided by the original length, making it a dimensionless quantity (no unit). It tells you how much the material has stretched relative to its initial size."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\epsilon = \\frac{\\Delta L}{L_0}$$"
+    },
+    {
+      "type": "heading",
+      "content": "Young Modulus: Material Stiffness"
+    },
+    {
+      "type": "text",
+      "content": "The **Young Modulus (E)** is a fundamental property of a material, representing its stiffness or resistance to elastic deformation. It's defined as the ratio of stress to strain within the elastic region. A high Young Modulus means the material is very stiff."
+    },
+    {
+      "type": "formula",
+      "content": "$$E = \\frac{\\sigma}{\\epsilon}$$ or, by substituting the formulas for stress and strain, $$E = \\frac{F L_0}{A \\Delta L}$$"
+    },
+    {
+      "type": "text",
+      "content": "Like stress, the Young Modulus is measured in Pascals (Pa). On a stress-strain graph, the gradient of the linear region gives you the Young Modulus for that specific material."
+    },
+    {
+      "type": "heading",
+      "content": "Ductile vs. Brittle Materials"
+    },
+    {
+      "type": "text",
+      "content": "Materials behave differently beyond their elastic limits. A **ductile material**, like copper, can undergo significant plastic deformation before it fractures. It stretches and gets thinner. A **brittle material**, like glass or cast iron, shows very little plastic deformation and fractures suddenly once its elastic limit is reached, often with minimal warning."
+    },
+    {
+      "type": "heading",
+      "content": "Unloading and Energy Dissipation"
+    },
+    {
+      "type": "text",
+      "content": "If you deform a material plastically and then remove the force, it won't return to its original length. On a force-extension graph, the unloading curve will be parallel to the initial elastic loading line but will end at a permanent extension. The area enclosed between the loading and unloading curves represents the energy dissipated as heat during the irreversible plastic deformation."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=6.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Hooke's Law",
-          "href": "https://phet.colorado.edu/en/simulations/hookes-law"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "label": "PhET Simulation: Masses & Springs",
-          "href": "https://phet.colorado.edu/en/simulations/masses-and-springs"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "What is the difference between stiffness and strength in materials?",
+      "a": "Stiffness (quantified by Young Modulus) is a material's resistance to elastic deformation; how much force is needed to produce a small extension. Strength refers to the material's ability to withstand a large force without fracturing. A material can be stiff but not strong (e.g., cast iron is stiff but brittle, so not strong against bending)."
+    },
+    {
+      "q": "Why is strain dimensionless?",
+      "a": "Strain is the ratio of two lengths (extension/original length). Since both numerator and denominator have the same unit (e.g., metres), they cancel out, leaving strain as a pure number without any units."
+    },
+    {
+      "q": "How does temperature affect elastic and plastic behaviour?",
+      "a": "Generally, increasing temperature tends to make materials less stiff (lower Young Modulus) and more ductile (more prone to plastic deformation before fracturing). This is because higher thermal energy allows atoms to move more easily within the material's structure."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/6-2-elastic-and-plastic-behaviour.png",
+    "alt": "Senpai Corner reference diagram for 6.2 Elastic and plastic behaviour"
+  }
 }

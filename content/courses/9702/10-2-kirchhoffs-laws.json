@@ -5,180 +5,195 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson introduces Kirchhoff's two laws for circuit analysis. The first law deals with the conservation of charge at a junction (the junction rule), and the second law deals with the conservation of energy in a closed loop (the loop rule). These laws are fundamental tools for analysing complex circuits that cannot be simplified using only series and parallel resistor rules.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 2 — Kirchhoff's laws (10.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "State and apply Kirchhoff's first law, based on the conservation of charge.",
-    "State and apply Kirchhoff's second law, based on the conservation of energy.",
-    "Solve problems involving complex DC circuits with multiple sources of e.m.f. and resistors.",
-    "Understand the sign conventions for e.m.f.s and potential differences in a circuit loop."
+    "State and apply Kirchhoff's First Law (conservation of charge) to junctions.",
+    "State and apply Kirchhoff's Second Law (conservation of energy) to closed loops.",
+    "Define and use e.m.f., internal resistance, terminal p.d., and lost volts in circuit calculations."
   ],
   "simpleExplanation": {
     "title": "Circuit Detective Rules",
-    "summary": "Kirchhoff's laws are two simple but powerful rules that help us find unknown currents and voltages in any electrical circuit. They are based on the fundamental principles of conservation of charge and conservation of energy.",
-    "analogy": "Imagine a complex water pipe system. The first law is like saying at any junction, the total amount of water flowing in must equal the total amount flowing out – water doesn't just vanish. The second law is like saying if you follow any closed path through the pipes, the total pressure boost from pumps must equal the total pressure drop from friction and narrow sections. You end up at the same pressure you started with.",
+    "summary": "Kirchhoff's laws are your ultimate tools for understanding how current flows and voltage changes in any electrical circuit, especially complex ones. They simplify circuit analysis by applying fundamental conservation principles.",
+    "analogy": "Imagine a water park. Kirchhoff's First Law says water flowing into a pipe junction must equal water flowing out. Kirchhoff's Second Law says if you go up and down slides and ramps in a full loop, you end up at the same height you started from, meaning no net change in potential energy.",
     "steps": [
-      "First Law (Junctions): At any point where wires meet (a junction), the total current flowing into that point must equal the total current flowing out. This is due to the conservation of charge.",
-      "Applying the First Law: Identify a junction. Write an equation: ΣI_in = ΣI_out. For example, if I₁ flows in and I₂ and I₃ flow out, then I₁ = I₂ + I₃.",
-      "Second Law (Loops): Around any closed loop in a circuit, the sum of the electromotive forces (e.m.f.s) equals the sum of the potential differences (p.d.s). This is due to the conservation of energy.",
-      "Applying the Second Law: Choose a loop and a direction (e.g., clockwise). Add e.m.f.s if you go from - to +, subtract if you go from + to -. Add p.d.s (IR) if you go against the current, subtract if you go with the current. Then set Σe.m.f. = Σp.d."
+      "Identify all junctions and label current directions.",
+      "Apply Kirchhoff's First Law at each junction: current in = current out.",
+      "Identify independent closed loops in the circuit.",
+      "Apply Kirchhoff's Second Law to each loop: algebraic sum of voltages = zero."
     ]
   },
   "flashcards": [
     {
-      "front": "What is Kirchhoff's first law?",
-      "back": "The sum of the currents entering any junction in a circuit is equal to the sum of the currents leaving that junction. It is a statement of the conservation of charge."
+      "front": "What fundamental principle underpins Kirchhoff's First Law?",
+      "back": "Conservation of electric charge."
     },
     {
-      "front": "What is Kirchhoff's second law?",
-      "back": "In any closed loop in a circuit, the algebraic sum of the electromotive forces (e.m.f.s) is equal to the algebraic sum of the potential differences (p.d.s). It is a statement of the conservation of energy."
+      "front": "What does Kirchhoff's Second Law state regarding the potential differences in a closed loop?",
+      "back": "The algebraic sum of all potential differences (voltages) around any closed loop must be zero."
     },
     {
-      "front": "What physical principle is Kirchhoff's first law based on?",
-      "back": "The conservation of charge. Charge cannot be created or destroyed, so the rate of flow of charge into a junction must equal the rate of flow out."
+      "front": "Write the formula relating e.m.f., terminal potential difference, and lost volts.",
+      "back": "\\\\epsilon = V + v"
     },
     {
-      "front": "What physical principle is Kirchhoff's second law based on?",
-      "back": "The conservation of energy. The energy per unit charge supplied by the sources (e.m.f.) must equal the energy per unit charge dissipated in the components (p.d.) around a closed loop."
+      "front": "If 2A enters a junction and 0.8A leaves through one path, what is the total current leaving through all other paths?",
+      "back": "1.2 A (since 2 A - 0.8 A = 1.2 A)"
     },
     {
-      "front": "Define a 'junction' in the context of Kirchhoff's laws.",
-      "back": "A junction (or node) is a point in a circuit where three or more conductors meet."
+      "front": "Which of Kirchhoff's laws is a direct consequence of the conservation of energy?",
+      "back": "Kirchhoff's Second Law."
     },
     {
-      "front": "Define a 'loop' in the context of Kirchhoff's laws.",
-      "back": "A loop is any closed conducting path in a circuit."
+      "front": "What is a 'junction' in the context of Kirchhoff's First Law?",
+      "back": "A point in an electrical circuit where three or more conductors meet, allowing current to split or combine."
     },
     {
-      "front": "What is the sign convention for e.m.f. in Kirchhoff's second law?",
-      "back": "When traversing a loop, an e.m.f. is positive if you move from the negative terminal to the positive terminal. It is negative if you move from positive to negative."
+      "front": "How are sources of e.m.f. treated when applying Kirchhoff's Second Law?",
+      "back": "As potential rises (positive voltage) when traversing from the negative to positive terminal."
     },
     {
-      "front": "What is the sign convention for potential difference (p.d.) across a resistor in Kirchhoff's second law?",
-      "back": "When traversing a loop, the p.d. ($IR$) is positive if you move against the direction of the conventional current. It is negative if you move in the same direction as the current."
+      "front": "What causes 'lost volts' within a power source?",
+      "back": "The potential drop across the internal resistance of the power source when current flows through it."
     },
     {
-      "front": "What happens if I assume the wrong direction for a current when setting up my equations?",
-      "back": "The calculation will still be correct. If your initial assumption for the current direction was wrong, the final calculated value for that current will be negative."
+      "front": "What is the mathematical representation of Kirchhoff's First Law?",
+      "back": "\\\\Sigma I_{in} = \\\\Sigma I_{out}"
     },
     {
-      "front": "Can Ohm's Law ($V=IR$) be used with Kirchhoff's laws?",
-      "back": "Yes. Kirchhoff's second law is often written as $\\sum \\mathcal{E} = \\sum (IR)$, where the potential difference across ohmic resistors is calculated using Ohm's Law."
-    },
-    {
-      "front": "What is the formula for Kirchhoff's first law?",
-      "back": "$\\sum I_{in} = \\sum I_{out}$"
-    },
-    {
-      "front": "What is the formula for Kirchhoff's second law?",
-      "back": "$\\sum \\mathcal{E} = \\sum V$ or $\\sum \\mathcal{E} = \\sum (IR)$"
-    }
-  ],
-  "faq": [
-    {
-      "q": "What happens if I choose the wrong direction for a current in my initial diagram?",
-      "a": "It's perfectly fine. When you solve the system of equations, that current will come out as a negative value. The magnitude will be correct, and the negative sign simply tells you that the actual current flows in the opposite direction to the one you initially assumed."
-    },
-    {
-      "q": "Why is the potential difference across a resistor negative when moving in the direction of current?",
-      "a": "Conventional current flows from a region of higher potential to a region of lower potential. Therefore, when you move *with* the current across a resistor, you are moving to a point of lower potential, which represents a potential drop, or a negative change in potential."
-    },
-    {
-      "q": "Can I choose any loops I want when applying the second law?",
-      "a": "Yes, you can choose any closed loop in the circuit. However, to solve for N unknown currents, you need to generate N independent equations. This means you must choose junctions and loops that give you new information and aren't just combinations of previous equations. A good strategy is to pick loops that are as simple as possible."
-    },
-    {
-      "q": "Do Kirchhoff's laws apply to AC circuits?",
-      "a": "Yes, but in a more complex form. For AC circuits, you must account for the phase of the voltages and currents, which means using complex numbers or phasors. For A-Level Physics, you only need to apply Kirchhoff's laws to DC circuits."
+      "front": "In a series circuit, what can be said about the current through each component?",
+      "back": "The current is the same through every component."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of Kirchhoff's laws. While you've learned to analyse simple series and parallel circuits, many real-world circuits are more complex. Kirchhoff's laws provide a universal method for analysing any DC circuit, no matter how complicated. They are the fundamental rules of circuit analysis, grounded in the core principles of conservation of charge and energy."
+      "content": "Welcome to the powerful world of **Kirchhoff's Laws**! These fundamental principles are essential for anyone wanting to accurately analyse how electricity behaves in circuits, especially those too complex for simple series and parallel rules. You'll discover how the **conservation of charge** and **conservation of energy** govern current flow and voltage drops in every electrical path. This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **10.2**."
     },
     {
       "type": "heading",
-      "content": "Kirchhoff's First Law: The Junction Rule"
+      "content": "What are Kirchhoff's Laws?"
     },
     {
       "type": "text",
-      "content": "Kirchhoff's first law relates to the flow of current at a junction in a circuit. A junction is any point where three or more wires connect. The law states that the total current flowing into a junction must equal the total current flowing out of it. This is a direct consequence of the principle of conservation of charge – since charge cannot be created or destroyed, the rate at which it arrives at a junction must be equal to the rate at which it leaves."
+      "content": "Kirchhoff's laws are two foundational rules that allow us to understand direct current (D.C.) circuits. They are direct applications of fundamental conservation principles from physics, making them incredibly powerful tools for engineers and physicists alike. Mastering them will unlock complex circuit analysis for you."
+    },
+    {
+      "type": "heading",
+      "content": "Kirchhoff's First Law: The Current Rule"
+    },
+    {
+      "type": "text",
+      "content": "Imagine a crossroads for electrical current. Kirchhoff's First Law, often called the Current Law (KCL), tells us that the total amount of electric charge flowing *into* any junction in a circuit must exactly equal the total amount of charge flowing *out* of it. This is a direct consequence of the principle that **charge is conserved** – it can't accumulate or disappear at a point."
     },
     {
       "type": "formula",
-      "content": "$\\sum I_{in} = \\sum I_{out}$"
+      "content": "$$\\Sigma I_{in} = \\Sigma I_{out}$$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Based on the conservation of charge.",
-        "Applies to any junction (node) in a circuit.",
-        "Essential for finding relationships between currents in different branches of a circuit."
+        "10.2 Kirchhoff’s laws.",
+        "Kirchhoff’s first law states that the sum of the currents entering a junction always equal the sum of the currents out of the junction.",
+        "Kirchhoff’s second law states that the sum of the e.m.f’s in a closed circuit equals the sum of the potential differences.",
+        "Recall the formulas used to calculate resistance in series and parallel. Series Parallel."
       ]
     },
     {
       "type": "heading",
-      "content": "Kirchhoff's Second Law: The Loop Rule"
+      "content": "Kirchhoff's Second Law: The Voltage Rule"
     },
     {
       "type": "text",
-      "content": "Kirchhoff's second law deals with the potential differences around any closed loop in a circuit. It states that the algebraic sum of the electromotive forces (e.m.f.s) in a closed loop is equal to the algebraic sum of the potential differences (p.d.s) around that same loop. This law is an application of the principle of conservation of energy. As a charge moves around a closed loop and returns to its starting point, its net change in potential energy must be zero. The energy supplied by the e.m.f. sources is completely dissipated by the components in the loop."
+      "content": "Now, consider a complete journey around any closed loop within a circuit. Kirchhoff's Second Law, the Voltage Law (KVL), states that if you add up all the potential differences (voltages) encountered along this loop, the algebraic sum must be zero. This law directly stems from the **conservation of energy**; no energy is gained or lost when you return to your starting point."
     },
     {
       "type": "formula",
-      "content": "$\\sum \\mathcal{E} = \\sum V = \\sum (IR)$"
+      "content": "$$\\Sigma V = 0$$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Based on the conservation of energy.",
-        "Applies to any closed loop in a circuit.",
-        "The sum of e.m.f.s (energy sources) equals the sum of p.d.s (energy sinks).",
+        "Algebraic sum of potential differences in any closed loop is zero.",
+        "Derived from the principle of conservation of energy.",
+        "e.m.f. sources are potential rises (positive).",
+        "Resistors cause potential drops (negative) in current direction.",
         "Sign conventions are crucial for correct application."
       ]
     },
     {
-      "type": "examTip",
-      "content": "The most common mistake is incorrect sign conventions for the second law. Always define a loop direction (e.g., clockwise). An e.m.f. is positive if you cross it from - to +. A p.d. ($IR$) is positive if you move against the assumed current direction. Be consistent!"
-    },
-    {
       "type": "heading",
-      "content": "Solving Circuit Problems Systematically"
+      "content": "Applying KVL: Essential Concepts"
     },
     {
       "type": "text",
-      "content": "To solve complex circuit problems, a systematic approach is essential. First, label the currents in each branch of the circuit, assigning a direction to each. Don't worry if the direction is wrong; the maths will correct it with a negative sign. Next, apply Kirchhoff's first law at one or more junctions to get equations relating the currents. Then, apply Kirchhoff's second law to different closed loops in the circuit until you have as many independent equations as you have unknown variables. Finally, solve the system of simultaneous equations to find the unknown currents or p.d.s."
+      "content": "To apply Kirchhoff's Second Law effectively, you need to be familiar with a few key concepts. The **electromotive force (e.m.f., \\\\epsilon)** is the total energy supplied by a source per unit charge. However, power sources aren't perfect; they have **internal resistance ($r$)** which dissipates some energy internally."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\epsilon = \\frac{W}{Q}$$"
+    },
+    {
+      "type": "text",
+      "content": "When current flows, a potential drop occurs across this internal resistance, known as **lost volts ($v = Ir$)**. The actual voltage delivered to the external circuit is the **terminal potential difference ($V$)**. The relationship is straightforward: the total e.m.f. is the sum of the terminal potential difference and the lost volts."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\epsilon = V + v$$ $$V = IR_{external}$$ $$v = Ir$$ $$ \\Rightarrow \\epsilon = I(R_{external} + r) $$"
+    },
+    {
+      "type": "examTip",
+      "content": "When applying KVL, always assume a direction for your loop traversal. If you move through a component in the assumed direction of current and it's a resistor, it's a potential drop (negative). If you move from negative to positive terminal of a cell, it's a potential rise (positive e.m.f.). If your calculated current turns out negative, it simply means your initial assumed direction was opposite to the actual flow!"
     },
     {
       "type": "workedExample",
-      "question": "In the circuit shown, the cell has an e.m.f. of 12 V and negligible internal resistance. Resistors have resistances $R_1 = 4.0\\,\\Omega$, $R_2 = 6.0\\,\\Omega$, and $R_3 = 3.0\\,\\Omega$. Calculate the current flowing through each resistor.",
-      "solution": "Let's label the currents. Let $I_1$ be the current from the cell, which splits at junction A into $I_2$ (through $R_2$) and $I_3$ (through $R_3$).\n\n**Step 1: Apply Kirchhoff's First Law at junction A.**\n$I_1 = I_2 + I_3$  (Equation 1)\n\n**Step 2: Apply Kirchhoff's Second Law to the left loop (Cell, $R_1$, $R_2$).**\nLet's go clockwise from the cell's negative terminal.\n$\\sum \\mathcal{E} = \\sum (IR)$\n$12 = I_1 R_1 + I_2 R_2$\n$12 = 4.0 I_1 + 6.0 I_2$ (Equation 2)\n\n**Step 3: Apply Kirchhoff's Second Law to the right loop ($R_2$, $R_3$).**\nLet's go clockwise from junction A.\n$\\sum \\mathcal{E} = \\sum (IR)$\nIn this loop, there are no e.m.f. sources, so $\\sum \\mathcal{E} = 0$.\nWe are going with current $I_2$ and against current $I_3$.\n$0 = -(I_2 R_2) + (I_3 R_3)$\n$0 = -6.0 I_2 + 3.0 I_3$\n$6.0 I_2 = 3.0 I_3 \\implies I_3 = 2.0 I_2$ (Equation 3)\n\n**Step 4: Solve the simultaneous equations.**\nSubstitute Eq. 3 into Eq. 1:\n$I_1 = I_2 + (2.0 I_2) = 3.0 I_2$\n\nNow substitute this into Eq. 2:\n$12 = 4.0 (3.0 I_2) + 6.0 I_2$\n$12 = 12.0 I_2 + 6.0 I_2$\n$12 = 18.0 I_2$\n$I_2 = 12 / 18.0 = 0.667\\,\\text{A}$\n\nNow find $I_3$ and $I_1$:\n$I_3 = 2.0 I_2 = 2.0 \\times 0.667 = 1.33\\,\\text{A}$\n$I_1 = I_2 + I_3 = 0.667 + 1.33 = 2.0\\,\\text{A}$\n\n**Answer:**\nCurrent through $R_1$ is $I_1 = 2.0\\,\\text{A}$.\nCurrent through $R_2$ is $I_2 = 0.67\\,\\text{A}$ (to 2 s.f.).\nCurrent through $R_3$ is $I_3 = 1.3\\,\\text{A}$ (to 2 s.f.)."
-    },
-    {
-      "type": "workedExample",
-      "question": "For the circuit below, cell A has e.m.f. $9.0\\,\\text{V}$ and internal resistance $1.0\\,\\Omega$. Cell B has e.m.f. $3.0\\,\\text{V}$ and internal resistance $0.5\\,\\Omega$. The external resistor is $5.0\\,\\Omega$. Find the current $I$ in the circuit.",
-      "solution": "This is a single-loop circuit, but the cells are connected in opposition (positive to positive). We only need Kirchhoff's second law.\n\n**Step 1: Define a current direction and a loop direction.**\nLet's assume the current $I$ flows clockwise, driven by the larger e.m.f. of cell A. We will also traverse the loop in a clockwise direction.\n\n**Step 2: Apply Kirchhoff's Second Law to the loop.**\n$\\sum \\mathcal{E} = \\sum (IR)$\n\nLet's sum the e.m.f.s, following our clockwise path:\n- We cross cell A from - to +, so its e.m.f. is positive: $+9.0\\,\\text{V}$.\n- We cross cell B from + to -, so its e.m.f. is negative: $-3.0\\,\\text{V}$.\n$\\sum \\mathcal{E} = 9.0 - 3.0 = 6.0\\,\\text{V}$\n\nNow let's sum the potential differences ($IR$) across the resistors, following our clockwise path (which is the same direction as our assumed current $I$):\n- p.d. across cell A's internal resistance: $I \\times 1.0\\,\\Omega$\n- p.d. across the external resistor: $I \\times 5.0\\,\\Omega$\n- p.d. across cell B's internal resistance: $I \\times 0.5\\,\\Omega$\nTotal resistance $R_{total} = 1.0 + 5.0 + 0.5 = 6.5\\,\\Omega$.\n$\\sum (IR) = I \\times R_{total} = I \\times 6.5$\n\n**Step 3: Equate and solve for I.**\n$\\sum \\mathcal{E} = \\sum (IR)$\n$6.0 = I \\times 6.5$\n$I = 6.0 / 6.5$\n$I = 0.923\\,\\text{A}$\n\nSince the value of $I$ is positive, our initial assumption for the current direction (clockwise) was correct.\n\n**Answer:** The current in the circuit is $0.92\\,\\text{A}$ (to 2 s.f.)."
+      "question": "A circuit consists of a 6V battery (negligible internal resistance) and two resistors, R1 = 3\\\\Omega and R2 = 6\\\\Omega. R1 and R2 are connected in parallel. This parallel combination is then connected in series with a third resistor R3 = 2\\\\Omega. Find the total current drawn from the battery using Kirchhoff's Laws.",
+      "solution": "1.  **Identify Junctions and Label Currents:** Let the current leaving the battery be I_total. This current splits into I1 through R1 and I2 through R2 at the first junction. They recombine to form I_total again before going through R3.\n2.  **Apply Kirchhoff's First Law (KCL):**\n    At the junction where I_total splits: I_total = I1 + I2.\n3.  **Identify Closed Loops and Apply Kirchhoff's Second Law (KVL):**\n    *   **Loop 1 (Battery -> R1 -> R3 -> Battery):** (Assume clockwise traversal)\n        +6V - (I1 * R1) - (I_total * R3) = 0\n        +6 - 3*I1 - 2*I_total = 0  (Equation 1)\n    *   **Loop 2 (Battery -> R2 -> R3 -> Battery):** (Assume clockwise traversal)\n        +6V - (I2 * R2) - (I_total * R3) = 0\n        +6 - 6*I2 - 2*I_total = 0  (Equation 2)\n    *   **Loop 3 (R1 -> R2 -> R1 -- internal loop):** (Starting from top of R1, going clockwise)\n        (I1 * R1) - (I2 * R2) = 0\n        3*I1 - 6*I2 = 0\n        3*I1 = 6*I2  \\\\Rightarrow I1 = 2*I2 (Equation 3)\n4.  **Solve the System of Equations:**\n    *   From KCL: I_total = I1 + I2\n    *   Substitute I1 = 2*I2 into KCL: I_total = 2*I2 + I2 = 3*I2.\n    *   Substitute I1 = 2*I2 and I_total = 3*I2 into Equation 1:\n        6 - 3*(2*I2) - 2*(3*I2) = 0\n        6 - 6*I2 - 6*I2 = 0\n        6 - 12*I2 = 0\n        12*I2 = 6\n        I2 = 0.5 A\n    *   Now find I1: I1 = 2*I2 = 2 * 0.5 = 1 A\n    *   Finally, find I_total: I_total = I1 + I2 = 1 + 0.5 = 1.5 A\n\n**Answer:** The total current drawn from the battery is 1.5 A."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Kirchhoff's Laws",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=10.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Circuit Construction Kit (DC)",
-          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "label": "A-Level Physics Online: Kirchhoff's Laws",
-          "href": "https://www.alevelphysicsonline.com/electricity/kirchhoffs-laws"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "Why are Kirchhoff's laws considered fundamental in circuit analysis?",
+      "a": "Kirchhoff's laws are fundamental because they are direct applications of the conservation of electric charge and energy, two bedrock principles of physics. They provide a systematic method to analyse any complex circuit, even those that cannot be easily simplified using series and parallel resistance rules alone."
+    },
+    {
+      "q": "How do Kirchhoff's laws relate to Ohm's Law?",
+      "a": "Kirchhoff's laws provide the framework for setting up equations for complex circuits, while Ohm's Law (V = IR) is often used *within* those equations to express the potential difference across individual resistors. You combine Ohm's Law with KCL and KVL to solve for unknown currents and voltages."
+    },
+    {
+      "q": "What are 'lost volts' and why are they important?",
+      "a": "'Lost volts' refer to the potential difference that drops across a power source's internal resistance when current flows. They are important because they reduce the actual voltage available to the external circuit (terminal potential difference), meaning the e.m.f. of the source is not entirely delivered to the load."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/10-2-kirchhoffs-laws.png",
+    "alt": "Senpai Corner reference diagram for 10.2 Kirchhoff's laws"
+  }
 }

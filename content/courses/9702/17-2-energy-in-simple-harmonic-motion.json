@@ -5,171 +5,215 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson explores the energy transformations within a Simple Harmonic Motion (SHM) system. It covers the continuous interchange between kinetic and potential energy, the derivation and application of the total energy formula, and the interpretation of energy-displacement and energy-time graphs.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 4 — Energy in simple harmonic motion (17.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Describe the interchange between kinetic energy and potential energy during simple harmonic motion.",
-    "Recall and use the formula for the total energy of an oscillator, $E_{TOT} = \\frac{1}{2} m \\omega^2 x_0^2$.",
-    "Sketch and interpret graphs of energy variation with displacement and with time for an undamped SHM system.",
-    "Solve problems involving energy calculations in SHM, including finding velocity at a given displacement."
+    "Describe the continuous interconversion between kinetic and potential energy in SHM.",
+    "Apply formulas to calculate kinetic, potential, and total energy in an SHM system.",
+    "Explain the effects of damping and resonance on energy transfer and amplitude in oscillations."
   ],
   "simpleExplanation": {
-    "title": "The SHM Energy Exchange",
-    "summary": "In an ideal oscillating system, energy constantly swaps between kinetic (movement) and potential (stored) forms. The total energy remains constant, providing a fixed 'energy budget' for the motion.",
-    "analogy": "Imagine a skateboarder in a frictionless half-pipe. At the highest points, they momentarily stop, having maximum potential energy and zero kinetic energy. As they pass through the bottom, they are at their fastest, with maximum kinetic energy and minimum potential energy. The total energy, determined by their starting height, never changes.",
+    "title": "SHM Energy Explained",
+    "summary": "In Simple Harmonic Motion, energy constantly switches between kinetic and potential forms. While the object moves, its total mechanical energy stays constant, unless external forces like damping or a driver are involved.",
+    "analogy": "Imagine a child on a swing. At the highest points, they momentarily stop, meaning maximum potential energy and zero kinetic energy. As they swing through the lowest point, their speed is greatest (max KE), and their height is lowest (min PE). The total 'swing energy' stays the same, continuously swapping between height energy and movement energy.",
     "steps": [
-      "At maximum displacement ($x = \\pm x_0$), the oscillator is momentarily stationary ($v=0$). All its energy is potential energy ($E_P$).",
-      "At the equilibrium position ($x=0$), the oscillator moves with maximum velocity ($v=v_{max}$). All its energy is kinetic energy ($E_K$).",
-      "The total energy ($E_{TOT}$) is constant and equals the maximum potential energy: $E_{TOT} = E_{P,max} = \\frac{1}{2} m \\omega^2 x_0^2$. This formula is key.",
-      "At any point, total energy is the sum of kinetic and potential energy: $E_{TOT} = E_K + E_P$. You can use this to find the speed at any displacement."
+      "Identify equilibrium (max KE, min PE) and extreme positions (min KE, max PE).",
+      "Calculate total energy using maximum amplitude: $E = \\frac{1}{2} m \\omega^2 x_0^2$.",
+      "Understand that damping removes energy, reducing amplitude over time.",
+      "Recognise resonance as efficient energy transfer at natural frequency, causing large amplitudes."
     ]
   },
   "flashcards": [
     {
-      "front": "What is the form of energy at the equilibrium position ($x=0$) in SHM?",
-      "back": "Purely kinetic energy. The potential energy is zero, and the velocity (and thus kinetic energy) is at its maximum."
+      "front": "At what point in SHM is potential energy maximized?",
+      "back": "Potential energy is maximized when the object is at its maximum displacement (amplitude) from the equilibrium position."
     },
     {
-      "front": "What is the form of energy at the extreme positions ($x = \\pm x_0$) in SHM?",
-      "back": "Purely potential energy. The velocity is momentarily zero, so kinetic energy is zero."
+      "front": "When is kinetic energy maximum in SHM?",
+      "back": "Kinetic energy is maximum when the object passes through the equilibrium position ($x=0$)."
     },
     {
-      "front": "What is the formula for the total energy ($E_{TOT}$) of a system in SHM?",
-      "back": "$E_{TOT} = \\frac{1}{2} m \\omega^2 x_0^2$, where $m$ is mass, $\\omega$ is angular frequency, and $x_0$ is the amplitude."
+      "front": "What is the formula for the total mechanical energy of an object in SHM?",
+      "back": "$E = \\frac{1}{2} m \\omega^2 x_0^2$"
     },
     {
-      "front": "How does the total energy of an SHM oscillator depend on its amplitude, $x_0$?",
-      "back": "The total energy is proportional to the square of the amplitude ($E_{TOT} \\propto x_0^2$). Doubling the amplitude quadruples the total energy."
+      "front": "How does damping affect the amplitude of an oscillating system?",
+      "back": "Damping dissipates energy from the system, causing the amplitude of oscillations to gradually decrease."
     },
     {
-      "front": "Describe the shape of the potential energy vs. displacement graph for SHM.",
-      "back": "A parabola, symmetric about the equilibrium position ($x=0$), opening upwards. This is because $E_P = \\frac{1}{2} m \\omega^2 x^2$, so $E_P \\propto x^2$."
+      "front": "What is the primary cause of the large amplitude observed during resonance?",
+      "back": "Resonance causes a large amplitude due to highly efficient energy transfer from the external driving force to the oscillating system."
     },
     {
-      "front": "Describe the shape of the kinetic energy vs. displacement graph for SHM.",
-      "back": "An inverted parabola, with its peak at the equilibrium position ($x=0$) and zero at the amplitudes ($x = \\pm x_0$)."
+      "front": "How do kinetic and potential energy change as an object in SHM moves from equilibrium to maximum displacement?",
+      "back": "As the object moves from equilibrium to maximum displacement, kinetic energy decreases while potential energy increases, with their sum (total energy) remaining constant."
     },
     {
-      "front": "How is the total energy represented on an energy-displacement graph?",
-      "back": "As a horizontal straight line, indicating that the total energy is constant at all displacements."
+      "front": "What happens to total mechanical energy in an ideal SHM system?",
+      "back": "In an ideal system without damping, the total mechanical energy remains constant."
     },
     {
-      "front": "What happens to the total mechanical energy in a damped SHM system?",
-      "back": "It decreases over time, as energy is dissipated, usually as thermal energy, due to resistive forces like friction or air resistance."
+      "front": "Give the formula for kinetic energy in SHM at displacement $x$.",
+      "back": "$KE = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$"
     },
     {
-      "front": "An oscillator has a period $T$. What is the period of oscillation for its kinetic energy?",
-      "back": "The period is $T/2$. The kinetic energy goes through two full cycles for every one cycle of displacement (e.g., it's maximum at $x=0$ on the way out and on the way back)."
+      "front": "Give the formula for potential energy in SHM at displacement $x$.",
+      "back": "$PE = \\frac{1}{2} m \\omega^2 x^2$"
     },
     {
-      "front": "Exam Trap: A question asks for the change in energy when amplitude is halved. What is the common mistake?",
-      "back": "To say the energy is halved. Since $E_{TOT} \\propto x_0^2$, halving the amplitude means the energy becomes $(\\frac{1}{2})^2 = \\frac{1}{4}$ of its original value. The change is a decrease to 25% of the initial energy."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why is potential energy in SHM proportional to the square of displacement ($x^2$)?",
-      "a": "This arises from the definition of SHM, which requires a restoring force proportional to displacement, $F = -kx$. The potential energy stored is the work done against this force to move the object from equilibrium to position $x$. Work done is the integral of force over distance, so $E_P = \\int_0^x kx' \\,dx' = \\frac{1}{2}kx^2$. Since $k = m\\omega^2$, we get $E_P = \\frac{1}{2}m\\omega^2x^2$."
+      "front": "What is critical damping?",
+      "back": "Critical damping is the most efficient form of damping, allowing a system to return to equilibrium in the shortest time without oscillating."
     },
     {
-      "q": "How can I find the velocity of an oscillator at a specific displacement, not just its maximum velocity?",
-      "a": "You use the principle of conservation of energy. The total energy is always $E_{TOT} = \\frac{1}{2} m \\omega^2 x_0^2$. At any displacement $x$, this total energy is shared between kinetic and potential energy: $E_{TOT} = \\frac{1}{2}mv^2 + \\frac{1}{2}m\\omega^2x^2$. By equating these, you can solve for $v$: $v = \\pm \\omega \\sqrt{x_0^2 - x^2}$."
+      "front": "What condition leads to resonance?",
+      "back": "Resonance occurs when the frequency of the external driving force matches the natural frequency of the oscillating system."
     },
     {
-      "q": "What is the effect of damping on the energy graphs?",
-      "a": "In a damped system, the total energy is no longer constant. The horizontal line for total energy on an energy-displacement or energy-time graph would instead be a curve that decreases over time. The amplitude of the energy oscillations for KE and PE would also decrease with each cycle, as mechanical energy is converted into thermal energy."
+      "front": "How does increased damping affect a resonance curve?",
+      "back": "Increased damping reduces the maximum amplitude at resonance and broadens the resonance curve."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our study of Simple Harmonic Motion, we've described displacement, velocity, and acceleration. Now, we turn our attention to energy. Just like a pendulum swings, converting its height (potential energy) into speed (kinetic energy), all SHM systems involve a continuous, predictable exchange of energy. Understanding this energy conservation is crucial for solving a wide range of problems in oscillations."
+      "content": "In **Simple Harmonic Motion (SHM)**, an object oscillates rhythmically, but what drives this motion? It's all about **energy interconversion**! We'll explore how **kinetic energy (KE)** and **potential energy (PE)** continuously swap roles, maintaining a constant **total mechanical energy** in ideal systems. Get ready to visualise the energy dynamics of SHM, from ideal cases to the real-world effects of **damping** and **resonance**. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **17.2**."
     },
     {
       "type": "heading",
-      "content": "Energy Interchange in SHM"
+      "content": "Energy Interconversion in SHM"
     },
     {
       "type": "text",
-      "content": "For any object oscillating without damping, its total mechanical energy remains constant. This energy is the sum of its kinetic energy ($E_K$) and its potential energy ($E_P$). As the object moves, energy is transferred between these two forms. Consider a mass on a horizontal spring. When the mass is at its maximum displacement (the amplitude, $x_0$), the spring is maximally stretched or compressed, and the mass is momentarily stationary. At this point, potential energy is at its maximum and kinetic energy is zero."
+      "content": "Imagine a mass-spring system: as the mass moves, its energy continuously transforms. When it's fastest at the equilibrium position, all energy is **kinetic**. As it slows down moving towards maximum displacement, kinetic energy converts into **potential energy**, stored in the stretched or compressed spring. At the very ends of its motion, it momentarily stops, meaning all its energy is now potential, ready to pull or push it back."
     },
     {
-      "type": "text",
-      "content": "As the mass moves towards the equilibrium position ($x=0$), the restoring force accelerates it. The potential energy stored in the spring is converted into kinetic energy. At the equilibrium position, the spring is at its natural length, so potential energy is zero. The mass is moving at its maximum speed, so kinetic energy is at its maximum. The process then reverses as the mass moves towards the other extreme."
+      "type": "formula",
+      "content": "$E = KE + PE$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "At extreme positions ($x = \\pm x_0$): $v=0$, $E_K = 0$, $E_P = E_{P,max}$.",
-        "At the equilibrium position ($x=0$): $v=v_{max}$, $E_P = 0$, $E_K = E_{K,max}$.",
-        "At any other position $x$: $E_{TOT} = E_K + E_P = \\text{constant}$."
+        "17.2 Energy in simple harmonic motion.",
+        "During SHM, energy is constant exchanged between KE and PE.",
+        "When one goes up, the other goes down and vice versa.",
+        "E.g., the PE of a pendulum swing is maximum when it is at the top of the swing whereby it momentarily stops (KE=0) and reverse direction.",
+        "The KE is maximum at the point of equilibrium (bottom PE=0).",
+        "Speed (v) is max when displacement x = 0. Hence KE is maximum."
       ]
     },
     {
       "type": "heading",
-      "content": "Total Energy in SHM"
+      "content": "Key Energy Formulas"
     },
     {
       "type": "text",
-      "content": "Since the total energy is constant, we can calculate its value by looking at any point in the oscillation. The most convenient point is at maximum displacement, $x=x_0$, where the velocity is zero and all the energy is potential. The potential energy stored in a system obeying Hooke's law (which is a condition for SHM) is given by $E_P = \\frac{1}{2} k x^2$, where $k$ is the spring constant. For a general oscillator in SHM, we can use the relationship $\\omega^2 = k/m$ to express this in terms of angular frequency."
+      "content": "The beauty of SHM lies in its predictable energy variations. We have specific formulas to quantify the kinetic and potential energy at any given displacement, $x$. These equations are derived from the velocity-displacement relationship in SHM and are crucial for understanding how energy distribution shifts throughout an oscillation."
     },
     {
       "type": "formula",
-      "content": "Potential Energy: $E_P = \\frac{1}{2} m \\omega^2 x^2$ \\\\ Kinetic Energy: $E_K = \\frac{1}{2} m v^2$"
-    },
-    {
-      "type": "text",
-      "content": "At the amplitude, $x = x_0$, the velocity is zero, so $E_K = 0$. The total energy is therefore equal to the maximum potential energy: \\\\ $E_{TOT} = E_{P,max} = \\frac{1}{2} m \\omega^2 x_0^2$. \\\\ This is a fundamental equation for this topic. It shows that the total energy depends on the mass, the square of the angular frequency, and the square of the amplitude."
+      "content": "Kinetic Energy (KE): $KE = \\frac{1}{2} m v^2 = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$"
     },
     {
       "type": "formula",
-      "content": "$E_{TOT} = \\frac{1}{2} m \\omega^2 x_0^2$"
+      "content": "Potential Energy (PE): $PE = \\frac{1}{2} m \\omega^2 x^2$"
     },
     {
-      "type": "workedExample",
-      "question": "A mass of 250 g is attached to a spring and oscillates with SHM. The amplitude of oscillation is 5.0 cm and the period is 1.2 s. Calculate: \\\\ (a) the angular frequency, \\\\ (b) the total energy of the system, \\\\ (c) the maximum speed of the mass.",
-      "solution": "First, list the known values and convert to SI units. \\\\ $m = 250 \\text{ g} = 0.250 \\text{ kg}$ \\\\ $x_0 = 5.0 \\text{ cm} = 0.050 \\text{ m}$ \\\\ $T = 1.2 \\text{ s}$ \\\\ \\\\ (a) **Angular frequency, $\\omega$** \\\\ Use the formula relating $\\omega$ and $T$: \\\\ $\\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{1.2} = 5.236 \\text{ rad s}^{-1}$ \\\\ $\\omega \\approx 5.2 \\text{ rad s}^{-1}$ (to 2 s.f.) [1 mark] \\\\ \\\\ (b) **Total energy, $E_{TOT}$** \\\\ Use the total energy formula: \\\\ $E_{TOT} = \\frac{1}{2} m \\omega^2 x_0^2$ \\\\ $E_{TOT} = \\frac{1}{2} \\times 0.250 \\times (5.236)^2 \\times (0.050)^2$ [1 mark for formula/substitution] \\\\ $E_{TOT} = 0.00856... \\text{ J}$ \\\\ $E_{TOT} \\approx 8.6 \\times 10^{-3} \\text{ J}$ (or 8.6 mJ) [1 mark for answer] \\\\ \\\\ (c) **Maximum speed, $v_{max}$** \\\\ At the equilibrium position, all energy is kinetic: $E_{TOT} = E_{K,max} = \\frac{1}{2} m v_{max}^2$. \\\\ Rearrange for $v_{max}$: \\\\ $v_{max} = \\sqrt{\\frac{2 E_{TOT}}{m}}$ \\\\ $v_{max} = \\sqrt{\\frac{2 \\times 0.00856}{0.250}}$ [1 mark for method] \\\\ $v_{max} = 0.2617... \\text{ m s}^{-1}$ \\\\ $v_{max} \\approx 0.26 \\text{ m s}^{-1}$ [1 mark for answer] \\\\ (Alternatively, use $v_{max} = \\omega x_0 = 5.236 \\times 0.050 = 0.2618 \\text{ m s}^{-1}$)"
-    },
-    {
-      "type": "heading",
-      "content": "Energy-Displacement and Energy-Time Graphs"
-    },
-    {
-      "type": "text",
-      "content": "Visualising the energy interchange through graphs is a common exam task. For an energy-displacement graph, potential energy ($E_P \\propto x^2$) is a parabola opening upwards from the origin. Kinetic energy is an inverted parabola, peaking at $x=0$. The total energy is a constant horizontal line, representing the sum $E_K + E_P$ at any displacement $x$."
-    },
-    {
-      "type": "text",
-      "content": "For an energy-time graph, both kinetic and potential energy vary sinusoidally. If the displacement follows a cosine curve ($x = x_0 \\cos(\\omega t)$), then the potential energy ($E_P \\propto x^2$) follows a $\\cos^2$ curve, and the kinetic energy follows a $\\sin^2$ curve. Crucially, both energy curves oscillate with twice the frequency (and half the period) of the displacement itself. The total energy remains a constant horizontal line."
+      "type": "formula",
+      "content": "Total Energy (E): $E = \\frac{1}{2} m \\omega^2 x_0^2$"
     },
     {
       "type": "examTip",
-      "content": "Pay close attention to the axes of any graph you are given. An energy-displacement graph is very different from an energy-time graph. A common mistake is to confuse them. Also, remember that for one complete oscillation of displacement (period $T$), the energy completes two full cycles of transformation (period $T/2$)."
+      "content": "Remember that total energy is constant in ideal SHM. If you know the amplitude, you can calculate the total energy, which simplifies finding KE or PE at any point!"
     },
     {
       "type": "workedExample",
-      "question": "The graph shows the variation of potential energy $E_P$ with displacement $x$ for a particle undergoing SHM. The particle has a mass of 400 g. \\\\ (The graph is a parabola opening upwards, passing through (0,0) and reaching a value of 0.050 J at $x = \\pm 0.080$ m. The total energy is a horizontal line at $E=0.050$ J). \\\\ Use the graph to determine: \\\\ (a) the amplitude of the oscillation. \\\\ (b) the total energy of the particle. \\\\ (c) the kinetic energy of the particle at $x = 0.040$ m. \\\\ (d) the angular frequency of the oscillation.",
-      "solution": "(a) **Amplitude, $x_0$** \\\\ The amplitude is the maximum displacement. The graph shows the potential energy is maximum at $x = \\pm 0.080$ m. At these points, all energy is potential, so this is the limit of the motion. \\\\ $x_0 = 0.080$ m [1 mark] \\\\ \\\\ (b) **Total energy, $E_{TOT}$** \\\\ The total energy is constant and equal to the maximum potential energy. From the graph, the maximum value of $E_P$ is 0.050 J. \\\\ $E_{TOT} = 0.050$ J [1 mark] \\\\ \\\\ (c) **Kinetic energy at $x = 0.040$ m** \\\\ First, find the potential energy at $x=0.040$ m. Since $E_P \\propto x^2$, when displacement is halved (from 0.080 m to 0.040 m), the PE is quartered. \\\\ $E_P(\\text{at } 0.040 \\text{ m}) = E_{P,max} \\times (\\frac{0.040}{0.080})^2 = 0.050 \\times (0.5)^2 = 0.0125$ J. [1 mark] \\\\ Now use the conservation of energy: $E_{TOT} = E_K + E_P$. \\\\ $E_K = E_{TOT} - E_P = 0.050 - 0.0125 = 0.0375$ J. \\\\ $E_K \\approx 0.038$ J [1 mark] \\\\ \\\\ (d) **Angular frequency, $\\omega$** \\\\ Use the total energy formula: $E_{TOT} = \\frac{1}{2} m \\omega^2 x_0^2$. \\\\ Rearrange for $\\omega$: \\\\ $\\omega^2 = \\frac{2 E_{TOT}}{m x_0^2}$ \\\\ $\\omega^2 = \\frac{2 \\times 0.050}{0.400 \\times (0.080)^2} = 39.0625$ [1 mark for substitution] \\\\ $\\omega = \\sqrt{39.0625} = 6.25 \\text{ rad s}^{-1}$ \\\\ $\\omega \\approx 6.3 \\text{ rad s}^{-1}$ [1 mark for answer]"
+      "question": "A 0.2 kg mass oscillates with SHM on a spring. Its angular frequency is 5 rad s\\text{-1} and its amplitude is 0.05 m. Calculate the kinetic energy when the displacement from equilibrium is 0.03 m.",
+      "solution": "1.  Identify given values: $m = 0.2 \\text{ kg}$, $\\omega = 5 \\text{ rad s\\text{-1}}$, $x_0 = 0.05 \\text{ m}$, $x = 0.03 \\text{ m}$.\n2.  First, calculate the total energy (E) of the system using the amplitude: $E = \\frac{1}{2} m \\omega^2 x_0^2$\n    $E = \\frac{1}{2} (0.2) (5^2) (0.05^2) = \\frac{1}{2} (0.2) (25) (0.0025) = 0.00625 \\text{ J}$.\n3.  Next, calculate the potential energy (PE) at the given displacement: $PE = \\frac{1}{2} m \\omega^2 x^2$\n    $PE = \\frac{1}{2} (0.2) (5^2) (0.03^2) = \\frac{1}{2} (0.2) (25) (0.0009) = 0.00225 \\text{ J}$.\n4.  Finally, use $E = KE + PE$ to find kinetic energy: $KE = E - PE$\n    $KE = 0.00625 \\text{ J} - 0.00225 \\text{ J} = 0.00400 \\text{ J}$.\n5.  Alternatively, use the KE formula directly: $KE = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$\n    $KE = \\frac{1}{2} (0.2) (5^2) (0.05^2 - 0.03^2) = \\frac{1}{2} (0.2) (25) (0.0025 - 0.0009)$\n    $KE = (2.5) (0.0016) = 0.00400 \\text{ J}$.\n    "
+    },
+    {
+      "type": "heading",
+      "content": "Damping: Energy Loss"
+    },
+    {
+      "type": "text",
+      "content": "In the real world, no oscillation lasts forever. **Damping** is the process where energy is gradually lost from an oscillating system, typically converted into heat or sound. This energy dissipation causes the amplitude of the oscillations to decrease over time. The rate at which energy is removed determines the type of damping, influencing how quickly the system returns to equilibrium."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Damping dissipates energy from the system, usually as heat or sound.",
+        "It causes the amplitude of oscillations to decrease over time.",
+        "Underdamping shows slow amplitude decay over many cycles.",
+        "Critical damping returns to equilibrium fastest without oscillation.",
+        "Overdamping returns to equilibrium slowly, also without oscillation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Resonance: Energy Gain"
+    },
+    {
+      "type": "text",
+      "content": "While damping removes energy, **forced oscillations** involve an external force continuously supplying it. When this external driving force's frequency exactly matches the system's **natural frequency**, a phenomenon called **resonance** occurs. This leads to highly efficient energy transfer, causing a dramatic increase in the amplitude of oscillations. Think of pushing a child on a swing at just the right time!"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Forced oscillations involve an external driving force.",
+        "Resonance occurs when driving frequency equals natural frequency.",
+        "Efficient energy transfer causes a large amplitude increase.",
+        "Damping limits the maximum amplitude at resonance.",
+        "Increased damping makes the resonance curve broader and lower."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Resonance is often misunderstood! Remember it's about *efficient energy transfer*, not just *any* large amplitude. Damping always works *against* resonance, reducing its peak effect."
     },
     {
       "type": "practice",
-      "label": "Practice Exam Questions: Energy in SHM",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=17.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Mass-Spring System",
-          "href": "https://phet.colorado.edu/en/simulations/masses-and-springs"
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
         },
         {
-          "label": "A-Level Physics Online: SHM Energy",
-          "href": "https://www.alevelphysicsonline.com/aqa/oscillations/shm-energy"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "Why is total energy constant in ideal SHM?",
+      "a": "In an ideal Simple Harmonic Motion system, there are no non-conservative forces like friction or air resistance to remove energy. Therefore, energy is only transformed between kinetic and potential forms, ensuring the total mechanical energy remains conserved."
+    },
+    {
+      "q": "How can I easily remember where KE and PE are maximum?",
+      "a": "Think of a spring: when it's most stretched or compressed (max displacement, $x_0$), it holds the most potential to do work (max PE). At these points, it momentarily stops, so kinetic energy is zero. Conversely, at the equilibrium position ($x=0$), the spring is relaxed, so PE is zero, and the object is moving fastest (max KE)."
+    },
+    {
+      "q": "What's the relationship between damping and resonance?",
+      "a": "Damping and resonance are opposing forces in an oscillating system. Resonance causes an amplitude increase by adding energy, while damping reduces amplitude by removing energy. Higher damping levels will significantly reduce the peak amplitude achieved at resonance and make the resonance curve broader."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/17-2-energy-in-simple-harmonic-motion.png",
+    "alt": "Senpai Corner reference diagram for 17.2 Energy in simple harmonic motion"
+  }
 }

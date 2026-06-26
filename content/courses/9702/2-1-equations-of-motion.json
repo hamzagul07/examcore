@@ -5,193 +5,218 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental equations of motion, often called the 'suvat' equations, used to describe objects moving with constant linear acceleration. You will learn how to derive and apply these four key equations to solve problems involving displacement, velocity, acceleration, and time.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 2 — Equations of motion (2.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Recall and use the four equations of motion for uniform acceleration in one dimension.",
-    "Solve problems involving motion in a straight line with constant acceleration, including vertical motion under gravity.",
-    "Understand the conditions required for the equations of motion to be valid.",
-    "Apply appropriate sign conventions to vector quantities like displacement, velocity, and acceleration."
+    "Apply SUVAT equations to solve problems involving uniform acceleration.",
+    "Interpret and draw displacement-time and velocity-time graphs, calculating gradient and area.",
+    "Analyse projectile motion by resolving it into independent horizontal and vertical components."
   ],
   "simpleExplanation": {
-    "title": "The Physics 'Cheat Codes' for Motion",
-    "summary": "The equations of motion are a set of four powerful formulas that link displacement, velocity, acceleration, and time for any object moving with constant acceleration. Mastering them allows you to predict the future or uncover the past of an object's journey.",
-    "analogy": "Imagine you're driving on a long, straight motorway. If you know your starting speed, your constant acceleration (how steadily you press the pedal), and how long you've been driving, you can calculate your final speed and the exact distance you've travelled without ever looking at the speedometer or mile markers. The equations of motion are the rules that connect these four things.",
+    "title": "Unlocking Motion with Math!",
+    "summary": "Equations of motion help us predict and describe how objects move when their speed is changing at a steady rate. Think of it like having a secret code to understand journeys, from cars accelerating to balls flying through the air.",
+    "analogy": "Imagine you're trying to describe a car race to a friend. You wouldn't just say 'it went fast'. You'd talk about how quickly it sped up (acceleration), its top speed (final velocity), how long it took (time), and how far it travelled (displacement). Equations of motion are the mathematical shorthand for all these details!",
     "steps": [
-      "First, identify the five key variables for motion: displacement (s), initial velocity (u), final velocity (v), constant acceleration (a), and time (t). These are known as the 'suvat' variables.",
-      "Understand that these equations only work if acceleration is constant. This is a crucial condition. For example, acceleration is defined as the rate of change of velocity, leading to a = (v-u)/t.",
-      "Learn the four standard equations that connect these variables. Each equation omits one of the five variables, which is the key to choosing the right one for a problem.",
-      "To solve a problem, list the known 'suvat' values, identify the unknown you need to find, and select the equation that contains only those variables. Pay close attention to signs (e.g., up is positive, down is negative)."
+      "**Identify the knowns:** List values for displacement (s), initial velocity (u), final velocity (v), acceleration (a), and time (t). Remember directions!",
+      "**Choose your weapon (SUVAT equation):** Select the equation that includes your known variables and the quantity you need to find.",
+      "**Substitute and calculate:** Carefully plug in your numbers and solve the equation.",
+      "**Check your answer:** Does it make sense? Is the unit correct? Does the direction match expectations?"
     ]
   },
   "flashcards": [
     {
-      "front": "What are the five 'suvat' variables?",
-      "back": "s (displacement), u (initial velocity), v (final velocity), a (acceleration), t (time)."
+      "front": "What does uniform acceleration mean?",
+      "back": "The velocity of an object changes at a constant rate."
     },
     {
-      "front": "What is the single most important condition for using the equations of motion?",
-      "back": "The acceleration ($a$) must be constant."
-    },
-    {
-      "front": "Write down the equation of motion that does not involve time ($t$).",
-      "back": "$v^2 = u^2 + 2as$"
-    },
-    {
-      "front": "Write down the equation of motion that does not involve final velocity ($v$).",
+      "front": "State one of the SUVAT equations that does not involve final velocity ($v$).",
       "back": "$s = ut + \\frac{1}{2}at^2$"
     },
     {
-      "front": "Write down the equation of motion that does not involve displacement ($s$).",
-      "back": "$v = u + at$"
+      "front": "What information does the area under a velocity-time graph provide?",
+      "back": "The total displacement of the object."
     },
     {
-      "front": "Write down the equation of motion that does not involve acceleration ($a$).",
-      "back": "$s = \\frac{1}{2}(u+v)t$"
+      "front": "What is the typical initial velocity ($u$) for an object dropped from rest?",
+      "back": "$0 \\, \\text{m/s}$"
     },
     {
-      "front": "What value is typically used for the acceleration of freefall, $g$, near the Earth's surface?",
-      "back": "$g = 9.81 \\, \\text{m s}^{-2}$. Remember it acts downwards."
+      "front": "How are horizontal and vertical components of motion treated in projectile problems?",
+      "back": "They are analyzed independently of each other."
     },
     {
-      "front": "A ball is thrown vertically upwards. What is its velocity at the highest point of its trajectory?",
-      "back": "Zero. $v = 0 \\, \\text{m s}^{-1}$ at the maximum height."
+      "front": "Define displacement ($s$).",
+      "back": "The overall change in position from a starting point, including direction (a vector quantity)."
     },
     {
-      "front": "A car starts from rest. What is its initial velocity ($u$)?",
-      "back": "$u = 0 \\, \\text{m s}^{-1}$. 'From rest' is a key phrase."
+      "front": "What does the gradient of a displacement-time graph represent?",
+      "back": "The object's velocity."
     },
     {
-      "front": "What is a common mistake regarding sign conventions in vertical motion problems?",
-      "back": "Forgetting to assign a consistent direction as positive. If upwards is positive, then displacement upwards is positive, velocity upwards is positive, but acceleration due to gravity ($g$) is negative."
+      "front": "What is the approximate value and direction of acceleration due to gravity ($g$)?",
+      "back": "$9.81 \\, \\text{m/s}^2$ in a downwards direction."
     },
     {
-      "front": "What is the difference between displacement and distance?",
-      "back": "Displacement ($s$) is a vector quantity representing the straight-line distance and direction from the start point to the end point. Distance is a scalar quantity representing the total path length covered."
-    }
-  ],
-  "faq": [
-    {
-      "q": "When can I not use the 'suvat' equations?",
-      "a": "You cannot use these equations if the acceleration is not constant. This occurs in situations with significant air resistance that changes with speed, or when an object is attached to a spring (simple harmonic motion), or in circular motion where the direction of acceleration is constantly changing."
+      "front": "Is velocity a scalar or vector quantity?",
+      "back": "Velocity is a vector quantity (it has both magnitude and direction)."
     },
     {
-      "q": "What's the difference between speed and velocity?",
-      "a": "Speed is a scalar quantity that describes how fast an object is moving (e.g., $20 \\, \\text{m s}^{-1}$). Velocity is a vector quantity that describes both how fast and in what direction an object is moving (e.g., $20 \\, \\text{m s}^{-1}$ due north). In the 'suvat' equations, $u$ and $v$ are velocities."
+      "front": "Which SUVAT equation would you use if time ($t$) is not known or required?",
+      "back": "$v^2 = u^2 + 2as$"
     },
     {
-      "q": "Does it matter which direction I choose as positive?",
-      "a": "No, it does not matter, as long as you are consistent throughout the entire problem. If you choose 'down' as positive for a freefall problem, then $a = +9.81 \\, \\text{m s}^{-2}$ and the displacement to the ground will also be positive. The final answer will be the same."
-    },
-    {
-      "q": "What if an object changes direction, like a ball thrown upwards that then falls back down?",
-      "a": "The 'suvat' equations handle this perfectly! As long as the acceleration is constant (e.g., only gravity is acting), the equations apply to the entire journey. You just need to be careful with the signs of the vector quantities ($s$, $u$, $v$). For a ball thrown up and caught at the same height, the total displacement $s$ is zero."
+      "front": "What happens to the horizontal velocity of a projectile (ignoring air resistance)?",
+      "back": "It remains constant throughout the motion."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In kinematics, our goal is to describe motion without necessarily considering the forces that cause it. For the special, yet very common, case of an object moving in a straight line with constant acceleration, we can use a set of four elegant equations. These are fundamental tools for solving a vast range of problems, from a sprinter accelerating out of the blocks to a satellite in a gravitational field."
+      "content": "Welcome to **kinematics**, the study of motion without worrying about the forces causing it! This lesson will equip you with the essential tools to describe and predict how objects move, especially under **uniform acceleration**. You'll master key terms, learn powerful equations, and understand how graphs visually represent motion. This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **2.1**."
     },
     {
       "type": "heading",
-      "content": "The 'suvat' Variables"
+      "content": "Understanding Key Terms: Scalars & Vectors"
     },
     {
       "type": "text",
-      "content": "To analyse motion with constant acceleration, we use five key physical quantities. It's crucial to understand what each one represents and its standard SI unit. The acronym 'suvat' is a useful mnemonic to remember them."
+      "content": "In physics, how we describe movement matters. **Displacement ($s$)** is a vector quantity, telling you the straight-line change in position from start to end, including direction. **Velocity ($v$)** is also a vector; it's the rate at which displacement changes. **Acceleration ($a$)**, another vector, is the rate at which velocity changes. Always consider the direction for these quantities!"
+    },
+    {
+      "type": "formula",
+      "content": "Velocity: $v = \\frac{\\Delta s}{\\Delta t}$\nAcceleration: $a = \\frac{\\Delta v}{\\Delta t}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**s (displacement):** The change in position of an object. It is a vector quantity, measured in metres (m).",
-        "**u (initial velocity):** The velocity of the object at time $t=0$. It is a vector, measured in metres per second (m s⁻¹).",
-        "**v (final velocity):** The velocity of the object at time $t$. It is a vector, measured in metres per second (m s⁻¹).",
-        "**a (acceleration):** The rate of change of velocity. For these equations to apply, it must be constant. It is a vector, measured in metres per second squared (m s⁻²).",
-        "**t (time):** The time interval over which the motion occurs. It is a scalar, measured in seconds (s)."
+        "2.1 Equations of motion.",
+        "Speed is the total distance travelled per unit time (ms -1 ).",
+        "Since distance is a scalar , speed is a scalar.",
+        "Velocity is the rate of change of displacement of an object (ms -1 ).",
+        "Since displacement is a vector , velocity is a vector 𝑣 = 𝑠 𝑡 v is the speed, s is the displacement and t is the time taken Note: In velocity the positive/ negative sign indicates direction.",
+        "Example Speed of top arrow: 5 ms -1 Velocity of top arrow: -5 ms -1 Speed of bottom arrow: 5 ms -1 Velocity of bottom arrow: 5 ms -1."
       ]
     },
     {
       "type": "heading",
-      "content": "The Four Equations of Motion"
+      "content": "The SUVAT Equations: Your Toolkit for Motion"
     },
     {
       "type": "text",
-      "content": "These four equations are derived from the definitions of velocity and constant acceleration, often by considering the properties of a velocity-time graph. The gradient of a v-t graph gives acceleration, and the area under it gives displacement. Each equation relates four of the five 'suvat' variables, meaning you can solve for an unknown if you know three other variables."
+      "content": "When an object moves with uniform (constant) acceleration, we can use a set of four powerful equations to link its motion variables. These are commonly known as the **SUVAT equations**, named after the quantities they relate: displacement ($s$), initial velocity ($u$), final velocity ($v$), acceleration ($a$), and time ($t$). Mastering these is crucial for exam success."
     },
     {
       "type": "formula",
-      "content": "v = u + at"
-    },
-    {
-      "type": "formula",
-      "content": "$s = ut + \\frac{1}{2}at^2$"
-    },
-    {
-      "type": "formula",
-      "content": "v^2 = u^2 + 2as"
-    },
-    {
-      "type": "formula",
-      "content": "$s = \\frac{1}{2}(u+v)t$"
-    },
-    {
-      "type": "examTip",
-      "content": "Notice that each of the four equations is missing one of the five 'suvat' variables. This is your primary clue for which equation to use. For example, if a problem doesn't mention or ask for the final velocity ($v$), the equation $s = ut + \\frac{1}{2}at^2$ is likely the correct choice."
-    },
-    {
-      "type": "heading",
-      "content": "Worked Example 1: Horizontal Motion"
-    },
-    {
-      "type": "workedExample",
-      "question": "A car accelerates uniformly from rest to a speed of $18.0 \\, \\text{m s}^{-1}$ in $12.0 \\, \\text{s}$. Calculate (a) the acceleration of the car, and (b) the displacement of the car in this time.",
-      "solution": "First, list the known 'suvat' variables and identify the unknowns.\n\n**Part (a): Find acceleration ($a$)**\n*   $s = ?$ \n*   $u = 0 \\, \\text{m s}^{-1}$ ('from rest')\n*   $v = 18.0 \\, \\text{m s}^{-1}$\n*   $a = ?$\n*   $t = 12.0 \\, \\text{s}$\n\nWe need to find $a$. The variable we don't have and don't need is $s$. The equation without $s$ is $v = u + at$.\n\n[1] Rearrange for $a$: $a = \\frac{v - u}{t}$\n[1] Substitute values: $a = \\frac{18.0 - 0}{12.0}$\n[1] Calculate result: $a = 1.50 \\, \\text{m s}^{-2}$\n\n**Part (b): Find displacement ($s$)**\nNow we know all variables except $s$. We can use multiple equations. Let's use $s = \\frac{1}{2}(u+v)t$ as it doesn't rely on our calculated value of $a$.\n\n[1] Select equation: $s = \\frac{1}{2}(u+v)t$\n[1] Substitute values: $s = \\frac{1}{2}(0 + 18.0) \\times 12.0$\n[1] Calculate result: $s = 108 \\, \\text{m}$\n\nAlternatively, using $s = ut + \\frac{1}{2}at^2$:\n$s = (0)(12.0) + \\frac{1}{2}(1.50)(12.0)^2 = 0 + 0.75 \\times 144 = 108 \\, \\text{m}$. The answers match."
-    },
-    {
-      "type": "heading",
-      "content": "Application to Vertical Motion (Freefall)"
-    },
-    {
-      "type": "text",
-      "content": "A common application of these equations is modelling objects moving under gravity, known as freefall. In this case, assuming air resistance is negligible, the acceleration is constant and directed downwards. We denote this as the acceleration of freefall, $g$, which has a value of approximately $9.81 \\, \\text{m s}^{-2}$ near the Earth's surface. The key to success in these problems is establishing a clear and consistent sign convention."
+      "content": "$v = u + at$\n$s = \\frac{1}{2}(u+v)t$\n$s = ut + \\frac{1}{2}at^2$\n$v^2 = u^2 + 2as$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Sign Convention:** A common choice is to define 'upwards' as the positive direction. If so, any vector pointing up (initial velocity of a thrown ball) is positive, and any vector pointing down (acceleration $g$, displacement below the starting point) is negative.",
-        "**Acceleration:** $a = -g = -9.81 \\, \\text{m s}^{-2}$ (if 'up' is positive).",
-        "**At Maximum Height:** For an object thrown vertically, its instantaneous velocity at the peak of its trajectory is zero ($v=0$)."
+        "Always list your knowns ($s, u, v, a, t$) and what you need to find.",
+        "Select the SUVAT equation that includes these variables and excludes the one you don't know or need.",
+        "Remember to assign a consistent positive direction; negative values will indicate the opposite direction.",
+        "If an object starts from **rest** or is **dropped**, its initial velocity ($u$) is $0 \\, \\text{m/s}$."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A stone is thrown vertically upwards from the top of a cliff with an initial velocity of $15.0 \\, \\text{m s}^{-1}$. The cliff is $40.0 \\, \\text{m}$ high. Air resistance is negligible. Calculate the time taken for the stone to reach the bottom of the cliff. (Use $g = 9.81 \\, \\text{m s}^{-2}$)",
-      "solution": "First, establish a sign convention. Let's choose 'upwards' as the positive direction. Then, list the variables.\n\n*   $s = -40.0 \\, \\text{m}$ (The final position is 40.0 m *below* the starting point)\n*   $u = +15.0 \\, \\text{m s}^{-1}$ (Initial velocity is upwards)\n*   $v = ?$ (We don't know the final velocity)\n*   $a = -9.81 \\, \\text{m s}^{-2}$ (Acceleration due to gravity is downwards)\n*   $t = ?$\n\nWe need to find $t$. The variable we don't know and don't need is $v$. The equation without $v$ is $s = ut + \\frac{1}{2}at^2$.\n\n[1] Substitute values: $-40.0 = (15.0)t + \\frac{1}{2}(-9.81)t^2$\nThis gives a quadratic equation: $4.905t^2 - 15.0t - 40.0 = 0$\n\n[1] Use the quadratic formula $t = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$ where $a=4.905$, $b=-15.0$, $c=-40.0$.\n$t = \\frac{15.0 \\pm \\sqrt{(-15.0)^2 - 4(4.905)(-40.0)}}{2(4.905)}$\n$t = \\frac{15.0 \\pm \\sqrt{225 + 784.8}}{9.81}$\n$t = \\frac{15.0 \\pm \\sqrt{1009.8}}{9.81}$\n$t = \\frac{15.0 \\pm 31.78}{9.81}$\n\n[1] We get two possible values for $t$: $t = \\frac{15.0 + 31.78}{9.81} = 4.77 \\, \\text{s}$ or $t = \\frac{15.0 - 31.78}{9.81} = -1.71 \\, \\text{s}$.\nSince time cannot be negative, the correct answer is $t = 4.77 \\, \\text{s}$ (to 3 s.f.)."
+      "question": "A car accelerates uniformly from rest to a speed of $20.0 \\, \\text{m/s}$ in $5.00 \\, \\text{s}$. Calculate the distance it travels during this time.",
+      "solution": "1.  **Identify knowns**: \n    Initial velocity ($u$) = $0 \\, \\text{m/s}$ (from rest)\n    Final velocity ($v$) = $20.0 \\, \\text{m/s}$\n    Time ($t$) = $5.00 \\, \\text{s}$\n2.  **Identify unknown**: Displacement ($s$).\n3.  **Choose appropriate SUVAT equation**: The equation $s = \\frac{1}{2}(u+v)t$ includes $u, v, t$ and allows us to find $s$.\n4.  **Substitute values**: $s = \\frac{1}{2}(0 + 20.0)(5.00)$\n5.  **Calculate**: $s = \\frac{1}{2}(20.0)(5.00) = 10.0 \\times 5.00 = 50.0 \\, \\text{m}$\n    The car travels $50.0 \\, \\text{m}$."
+    },
+    {
+      "type": "heading",
+      "content": "Motion Under Gravity: Special Cases"
+    },
+    {
+      "type": "text",
+      "content": "A common scenario for uniform acceleration is objects moving under gravity. Near Earth's surface, the acceleration due to gravity ($g$) is approximately $9.81 \\, \\text{m/s}^2$ downwards. This value is constant for objects in free fall (ignoring air resistance) and is crucial in many problems."
     },
     {
       "type": "examTip",
-      "content": "In questions involving vertical motion, drawing a simple diagram showing the path of the object and labelling the start and end points is extremely helpful. Mark your chosen positive direction clearly on the diagram. This will help you assign the correct signs to $s$, $u$, $v$, and $a$ and avoid common errors."
+      "content": "When dealing with vertical motion, always establish a positive direction (e.g., upwards or downwards) and stick to it! If upwards is positive, then 'g' will be $-9.81 \\, \\text{m/s}^2$ for an object falling down."
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Analysis of Motion"
+    },
+    {
+      "type": "text",
+      "content": "Graphs provide a powerful visual representation of motion. A **displacement-time graph** shows an object's position over time, where its gradient reveals the object's velocity. A **velocity-time graph** illustrates how velocity changes over time; here, the gradient gives the acceleration, and the area under the graph provides the total displacement. Curved lines on a velocity-time graph indicate non-uniform acceleration."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement-time graph**: Gradient = velocity.",
+        "**Velocity-time graph**: Gradient = acceleration.",
+        "**Velocity-time graph**: Area under curve = displacement.",
+        "A straight line on a velocity-time graph means uniform acceleration.",
+        "A horizontal line on a velocity-time graph means constant velocity (zero acceleration)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Motion in Two Dimensions: Projectile Power!"
+    },
+    {
+      "type": "text",
+      "content": "When an object, like a thrown ball, moves in two dimensions (e.g., horizontally and vertically), we call this **projectile motion**. The key insight here is that the horizontal and vertical components of motion are entirely independent of each other. This means you can apply the SUVAT equations separately to each direction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Horizontal motion**: Constant velocity (assuming no air resistance), so acceleration $a_x = 0 \\, \\text{m/s}^2$.",
+        "**Vertical motion**: Uniform acceleration due to gravity, $a_y = g = 9.81 \\, \\text{m/s}^2$ downwards.",
+        "The time ($t$) is the only variable common to both horizontal and vertical components."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For projectile motion, break the initial velocity into horizontal and vertical components using trigonometry. Treat each component as a separate 1D problem, but remember they share the same time of flight!"
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Equations of Motion",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=2.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: The Moving Man",
-          "href": "https://phet.colorado.edu/en/simulations/the-moving-man"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "label": "Isaac Physics: Kinematics",
-          "href": "https://isaacphysics.org/concepts/phys_book_kinematics"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "What is the difference between speed and velocity in physics?",
+      "a": "Speed is a scalar quantity that only describes how fast an object is moving (its magnitude). Velocity is a vector quantity that describes both how fast an object is moving and in what direction. For example, '30 m/s' is a speed, while '30 m/s East' is a velocity."
+    },
+    {
+      "q": "When can I use the SUVAT equations?",
+      "a": "You can use the SUVAT equations only when an object is moving with **uniform (constant) acceleration** in a straight line. They are not applicable if the acceleration is changing or if the motion is not linear (e.g., circular motion)."
+    },
+    {
+      "q": "How do I deal with negative values for displacement, velocity, or acceleration?",
+      "a": "Negative values indicate that the quantity is in the opposite direction to the one you defined as positive. For example, if 'upwards' is positive, a negative displacement means the object is below its starting point, and a negative velocity means it's moving downwards."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/2-1-equations-of-motion.png",
+    "alt": "Senpai Corner reference diagram for 2.1 Equations of motion"
+  }
 }

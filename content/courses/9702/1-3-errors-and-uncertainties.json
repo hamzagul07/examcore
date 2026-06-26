@@ -1,207 +1,329 @@
 {
   "slug": "1-3-errors-and-uncertainties",
   "topicCode": "1.3",
-  "title": "Errors and uncertainties",
+  "title": "Errors and Uncertainties in Paper 5",
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of errors and uncertainties in experimental physics. It covers the distinction between systematic and random errors, the concepts of accuracy and precision, and the methods for calculating and combining uncertainties in measurements and derived quantities, including from gradients of graphs.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
-  "learningObjectives": [
-    "Distinguish between systematic and random errors, and between precision and accuracy.",
-    "Calculate absolute, fractional, and percentage uncertainties for a measurement.",
-    "Combine uncertainties for quantities that are added, subtracted, multiplied, divided, or raised to a power.",
-    "Determine the uncertainty in the gradient and y-intercept of a line of best fit on a graph."
-  ],
-  "simpleExplanation": {
-    "title": "The Certainty of Uncertainty",
-    "summary": "Every measurement in physics has a degree of doubt, called uncertainty. We must learn how to quantify this doubt and track how it propagates through our calculations.",
-    "analogy": "Imagine trying to measure the length of a table with a slightly stretchy rubber ruler. Each time you measure, you might get a slightly different reading (random error). If the ruler was also wrongly marked, say every 'cm' was actually 1.1 cm, all your measurements would be consistently wrong in the same direction (systematic error). Uncertainty is our way of stating the range of values we are confident the 'true' length lies within, accounting for these issues.",
-    "steps": [
-      "Distinguish between random errors, which cause scatter around the true value, and systematic errors, which shift all measurements in one direction. Accuracy is closeness to the true value; precision is the closeness of repeated measurements to each other.",
-      "Quantify the doubt in a single measurement using absolute uncertainty (Δx), which is half the range of readings or the smallest division on the instrument. This is written as (measurement ± Δx) units.",
-      "Combine uncertainties in calculations. For addition or subtraction (y = a + b or y = a - b), add the absolute uncertainties: Δy = Δa + Δb. For multiplication or division (y = ab or y = a/b), add the percentage uncertainties.",
-      "Determine uncertainty from a graph by drawing a line of best fit and two 'worst acceptable' lines (steepest and shallowest) that pass through all error bars. The uncertainty in the gradient is half the difference between the steepest and shallowest gradients."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is a systematic error?",
-      "back": "An error that is consistent and repeatable, causing all measurements to be shifted in the same direction away from the true value. It affects the accuracy of the results. Example: a zero error on a voltmeter."
-    },
-    {
-      "front": "What is a random error?",
-      "back": "An unpredictable variation in measurements, causing readings to be scattered around a mean value. It affects the precision of the results. Example: parallax error when reading a scale."
-    },
-    {
-      "front": "What is the difference between accuracy and precision?",
-      "back": "Accuracy is how close a measurement is to the true value. Precision is how close repeated measurements are to each other (i.e., the spread of the data)."
-    },
-    {
-      "front": "How can you reduce random errors?",
-      "back": "By taking multiple readings and calculating a mean. This reduces the effect of random fluctuations on the final result."
-    },
-    {
-      "front": "How can you identify a systematic error?",
-      "back": "By checking the calibration of instruments (e.g., for zero error) or by plotting a graph. A systematic error may be revealed by a non-zero y-intercept when the intercept should theoretically be zero."
-    },
-    {
-      "front": "Define absolute uncertainty, Δx.",
-      "back": "The margin of error in a measurement, expressed in the same units as the measurement. For a single reading, it's often taken as the smallest scale division (or half of it). For repeated readings, it's half the range. Format: x ± Δx."
-    },
-    {
-      "front": "Define fractional uncertainty.",
-      "back": "The ratio of the absolute uncertainty to the measured value. It has no units. Formula: Δx / x."
-    },
-    {
-      "front": "Define percentage uncertainty.",
-      "back": "The fractional uncertainty expressed as a percentage. Formula: (Δx / x) × 100%."
-    },
-    {
-      "front": "How do you combine uncertainties for a quantity $Z = A + B$ or $Z = A - B$?",
-      "back": "You add the absolute uncertainties: $ΔZ = ΔA + ΔB$."
-    },
-    {
-      "front": "How do you combine uncertainties for a quantity $Z = A \\times B$ or $Z = A / B$?",
-      "back": "You add the percentage (or fractional) uncertainties: $%ΔZ = %ΔA + %ΔB$."
-    },
-    {
-      "front": "How do you find the uncertainty for a quantity $Z = A^n$?",
-      "back": "You multiply the percentage uncertainty by the power, n: $%ΔZ = n \\times %ΔA$."
-    },
-    {
-      "front": "Common Trap: When calculating percentage uncertainty, what must you do with the final answer?",
-      "back": "Often, the question requires the final answer to be given with its absolute uncertainty. You must convert the final percentage uncertainty back into an absolute value. $ΔZ = (\\%ΔZ / 100) \\times Z$."
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the difference between an error and an uncertainty?",
-      "a": "An 'error' is the difference between a measured value and the true value. Since we never know the true value, we can't know the exact error. An 'uncertainty' is our estimate of the range in which the true value is likely to lie. It's a quantification of our doubt about the measurement."
-    },
-    {
-      "q": "If I use a digital caliper that reads to 0.01 mm, what is the absolute uncertainty?",
-      "a": "For digital instruments, the absolute uncertainty is typically taken as the smallest increment of the display. So, for a reading from this caliper, the uncertainty would be ±0.01 mm."
-    },
-    {
-      "q": "Why do we add absolute uncertainties for addition/subtraction, but percentage uncertainties for multiplication/division?",
-      "a": "This is a result of how errors propagate mathematically. For addition/subtraction, the absolute errors add up. For multiplication/division, it's the relative (fractional or percentage) errors that combine. This can be proven using calculus, but for A-Level, you just need to know and apply the rules."
-    },
-    {
-      "q": "How many significant figures should I use for my final uncertainty?",
-      "a": "As a general rule in A-Level Physics, the absolute uncertainty should be quoted to one, or at most two, significant figures. The main value should then be rounded to the same number of decimal places as the uncertainty."
-    },
-    {
-      "q": "Do I have to draw error bars for every point on my graph?",
-      "a": "Yes, in an exam if you are asked to plot a graph and are given uncertainties, you are expected to draw error bars. If the uncertainty is too small to be plotted accurately, you should make a note of this on the graph."
-    }
-  ],
+  "summary": "Master errors and uncertainties for Cambridge A-Level Physics Paper 5. Learn to distinguish systematic and random errors, calculate uncertainties in derived quantities, and apply these skills to graphical analysis and experimental planning.",
+  "durationMin": 30,
   "sections": [
     {
       "type": "intro",
-      "content": "In the world of experimental science, no measurement is ever perfect. Understanding the limitations of our measurements is as important as the measurements themselves. This topic provides the mathematical framework for quantifying and handling these imperfections, a crucial skill for any physicist."
+      "content": "Welcome to the lesson on Errors and Uncertainties, tailored specifically for Paper 5. In experimental physics, no measurement is perfect. Understanding, quantifying, and analysing the uncertainties associated with your measurements is a fundamental skill. In Paper 5, this is not just a small part of a question; it's central to data analysis and the evaluation of experimental procedures. Mastering these concepts is crucial for success."
     },
     {
       "type": "heading",
-      "content": "Types of Errors: Systematic and Random"
+      "content": "Understanding Experimental Errors"
     },
     {
       "type": "text",
-      "content": "Every experiment is subject to errors, which are not mistakes, but inherent imperfections in the measurement process. We categorise them into two main types."
+      "content": "Every measurement you take is subject to errors. These are not 'mistakes' but inherent variations in the measurement process. They are broadly classified into two types: systematic errors and random errors."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Systematic Errors:** These cause all readings to be shifted in one direction from the true value. They are often due to faulty equipment (e.g., a zero error on a balance) or flawed experimental design. Taking more readings will not reduce a systematic error. They affect the accuracy of an experiment.",
-        "**Random Errors:** These cause readings to be scattered randomly around a central value. They are caused by unpredictable changes in conditions, such as fluctuations in temperature or human parallax error. Random errors can be reduced by taking multiple readings and calculating a mean. They affect the precision of an experiment."
+        "**Systematic Errors:** These are consistent, repeatable errors that cause your measurements to be consistently off from the true value in the same direction. For example, a voltmeter that has not been zeroed correctly (a zero error) will give every reading as slightly too high or too low. Systematic errors affect the *accuracy* of your results. They cannot be reduced by repeating measurements and averaging.",
+        "**Random Errors:** These are unpredictable variations in measurements. They can be caused by factors like fluctuations in environmental conditions, misreading a scale, or variations in reaction time. Random errors cause a scatter of readings around a mean value. They affect the *precision* of your results. The effect of random errors can be reduced by taking multiple readings and calculating an average."
       ]
     },
     {
       "type": "heading",
-      "content": "Quantifying Uncertainty"
+      "content": "Accuracy vs. Precision"
     },
     {
       "type": "text",
-      "content": "While we can't know the 'true' value, we can state a range within which we are confident it lies. This range is determined by the uncertainty of our measurement. We express a measurement as the best estimate ± uncertainty, for example, $L = (5.2 \\pm 0.1) \\text{ cm}$."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Absolute Uncertainty (Δx):** The uncertainty given in the units of the measurement. For an analogue scale, it's typically half the smallest division. For a digital scale, it's the smallest increment (e.g., ±0.01 V for a voltmeter reading 1.54 V).",
-        "**Fractional Uncertainty:** The ratio of the absolute uncertainty to the measured value, $\\frac{\\Delta x}{x}$. It is a dimensionless quantity.",
-        "**Percentage Uncertainty:** The fractional uncertainty multiplied by 100%. This is useful for comparing the quality of different measurements."
-      ]
-    },
-    {
-      "type": "formula",
-      "content": "Percentage Uncertainty = $\\frac{\\Delta x}{x} \\times 100\\%$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A student measures the length of a wire to be $84.8 \\text{ cm}$ using a ruler with millimetre markings. The student repeats the measurement and gets $85.0 \\text{ cm}$ and $84.9 \\text{ cm}$. Calculate the mean length and its absolute uncertainty.",
-      "solution": "1. **Calculate the mean length:**\nMean = $(84.8 + 85.0 + 84.9) / 3 = 254.7 / 3 = 84.9 \\text{ cm}$.\n\n2. **Determine the uncertainty:**\nFor repeated readings, the absolute uncertainty is half the range of the measurements.\nRange = Largest value - Smallest value = $85.0 - 84.8 = 0.2 \\text{ cm}$.\nAbsolute uncertainty, $ΔL = 0.2 / 2 = 0.1 \\text{ cm}$.\n\n3. **State the final result:**\nThe length should be quoted as $L = (84.9 \\pm 0.1) \\text{ cm}$. The measurement and its uncertainty should be given to the same number of decimal places."
-    },
-    {
-      "type": "heading",
-      "content": "Combining Uncertainties"
-    },
-    {
-      "type": "text",
-      "content": "When we use uncertain measurements in calculations, the uncertainty propagates into the final result. The rules for combining uncertainties depend on the mathematical operation being performed."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Addition and Subtraction:** If $y = a + b$ or $y = a - b$, you **add** the **absolute** uncertainties: $\\Delta y = \\Delta a + \\Delta b$.",
-        "**Multiplication and Division:** If $y = ab$ or $y = a/b$, you **add** the **percentage** (or fractional) uncertainties: $\\%\\Delta y = \\%\\Delta a + \\%\\Delta b$.",
-        "**Powers:** If $y = a^n$, you **multiply** the percentage uncertainty by the power $n$: $\\%\\Delta y = n \\times \\%\\Delta a$."
-      ]
+      "content": "These two terms are often used interchangeably in everyday language, but in physics, they have distinct meanings.\n\n*   **Accuracy** is how close a measured value is to the true or accepted value.\n*   **Precision** is how close repeated measurements are to each other.\n\nImagine an archer shooting at a target:\n\n*   **Accurate and Precise:** All arrows are in the bullseye.\n*   **Precise but not Accurate:** All arrows are clustered together, but far from the bullseye. This suggests a systematic error (e.g., the bow's sight is misaligned).\n*   **Accurate but not Precise:** The arrows are scattered all over the target, but their average position is the bullseye. This suggests significant random errors.\n*   **Neither Accurate nor Precise:** The arrows are scattered all over the target, and their average is not in the bullseye."
     },
     {
       "type": "examTip",
-      "content": "A very common mistake is to add absolute uncertainties when multiplying or dividing. Remember the rule: for multiplication, division, and powers, you must work with percentage or fractional uncertainties. Always convert them first, add them up, and then convert the final percentage uncertainty back to an absolute uncertainty if required."
-    },
-    {
-      "type": "workedExample",
-      "question": "The potential difference across a resistor is measured as $V = (6.0 \\pm 0.1) \\text{ V}$ and the current through it is $I = (0.25 \\pm 0.01) \\text{ A}$. Calculate the resistance $R$ and its absolute uncertainty. Use the formula $R = V/I$.",
-      "solution": "1. **Calculate the value of R:**\n$R = V / I = 6.0 / 0.25 = 24 \\text{ Ω}$.\n\n2. **Calculate percentage uncertainties for V and I:**\n$\\%ΔV = (ΔV / V) \\times 100 = (0.1 / 6.0) \\times 100 = 1.667\\%$.\n$\\%ΔI = (ΔI / I) \\times 100 = (0.01 / 0.25) \\times 100 = 4.0\\%$.\n\n3. **Combine percentage uncertainties for R:**\nSince $R = V/I$, we add the percentage uncertainties:\n$\\%ΔR = \\%ΔV + \\%ΔI = 1.667\\% + 4.0\\% = 5.667\\%$.\n\n4. **Convert back to absolute uncertainty for R:**\n$ΔR = (5.667 / 100) \\times 24 \\text{ Ω} = 1.36 \\text{ Ω}$.\n\n5. **State the final answer:**\nUncertainty is usually quoted to 1 or 2 significant figures. Let's use 1 s.f.: $ΔR = 1 \\text{ Ω}$.\nThe value of R must then be quoted to the same decimal place (the nearest integer). So, $R = 24 \\text{ Ω}$.\nFinal Answer: $R = (24 \\pm 1) \\text{ Ω}$."
+      "content": "In Paper 5 Question 1 (Planning), when asked to evaluate or suggest improvements to an experiment, consider sources of systematic and random errors. For example, suggesting the use of a more precise instrument (e.g., a micrometer instead of a ruler) addresses random error, while suggesting a method to check for a zero error addresses a systematic error."
     },
     {
       "type": "heading",
-      "content": "Uncertainties from Graphs"
+      "content": "Calculating and Propagating Uncertainties"
     },
     {
       "type": "text",
-      "content": "Graphs are a powerful tool for data analysis. We can determine the uncertainty in the gradient and y-intercept by considering the 'worst acceptable lines' that can be drawn through the data points, taking into account their error bars."
+      "content": "When you use measured quantities to calculate a new quantity, the uncertainties in your measurements 'propagate' to the final result. You need to know the rules for combining them."
+    },
+    {
+      "type": "text",
+      "content": "In Paper 5, you'll often need to calculate uncertainties for values in a table, especially for quantities that are reciprocals or logarithms of your measurements.\n\n**For a reciprocal, $y = 1/x$:**\nThe fractional uncertainty rule gives $\\frac{\\Delta y}{y} = \\frac{\\Delta x}{x}$. Rearranging for the absolute uncertainty $\\Delta y$ gives $\\Delta y = y \\frac{\\Delta x}{x} = \\frac{1}{x} \\frac{\\Delta x}{x} = \\frac{\\Delta x}{x^2}$.\n\n**For a logarithm, $y = \\lg(x)$:**\nThe simplest method is to find the range: $\\Delta y = \\lg(x_{max}) - \\lg(x) = \\lg(x + \\Delta x) - \\lg(x)$. Alternatively, you can use $\\Delta y = \\lg(x) - \\lg(x - \\Delta x)$. Both are acceptable."
+    },
+    {
+      "type": "heading",
+      "content": "Uncertainties in Graphical Analysis"
+    },
+    {
+      "type": "text",
+      "content": "A core task in Paper 5 is to determine the gradient and y-intercept of a graph and find the uncertainties in these values. This is done by drawing a **line of best fit (LOBF)** and a **worst acceptable line (WAL)**.\n\n1.  **Plot error bars:** For each point, draw a vertical bar representing its absolute uncertainty.\n2.  **Draw the LOBF:** Draw a single straight line that passes as close as possible to all data points, with a balance of points above and below the line.\n3.  **Draw the WAL:** This is the line with the steepest or shallowest gradient that still passes through *all* the error bars. You only need to draw one WAL (either steepest or shallowest). To draw the steepest WAL, pivot the line around the lowest error bar until it touches the highest error bar. For the shallowest, pivot around the highest error bar until it touches the lowest."
+    },
+    {
+      "type": "examTip",
+      "content": "Always use a 'large triangle' when calculating a gradient from a graph. This means the points you choose on the line should be separated by at least half the length of the drawn line. This minimises the uncertainty in your calculation."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Error Bars:** Each data point on a graph should have error bars (horizontal, vertical, or both) to represent the uncertainty in the measured quantities.",
-        "**Line of Best Fit:** Draw a line that passes as close as possible to all data points, with a roughly equal number of points above and below the line.",
-        "**Worst Acceptable Lines:** Draw the steepest possible line and the shallowest possible line that still pass through the error bars of all data points. These are your 'worst fit' lines.",
-        "**Uncertainty Calculation:** The uncertainty in the gradient is half the difference between the gradient of the steepest line and the gradient of the shallowest line. A similar method applies to the y-intercept.\n$\\Delta m = \\frac{m_{steepest} - m_{shallowest}}{2}$"
+        "Systematic errors affect accuracy; random errors affect precision.",
+        "Always add absolute uncertainties for addition/subtraction.",
+        "Always add percentage/fractional uncertainties for multiplication/division/powers.",
+        "Uncertainty in a gradient or intercept is found by taking the difference between the best fit and worst acceptable values.",
+        "A worst acceptable line is the steepest or shallowest line that passes through all error bars."
       ]
     },
     {
-      "type": "practice",
-      "label": "Practice Questions: Errors and Uncertainties",
-      "href": "/mark?subject=9702&topic=1.3"
+      "type": "workedExample",
+      "question": "Fig. 1.1 shows a thin cylindrical metal rod of length $L$.\n\n[Figure: Fig. 1.1 shows a thin cylindrical metal rod of length L.]\n\nOne end of the rod is hit with a hammer. A stationary sound wave is set up within the rod. The rod vibrates at its resonant frequency $f$.\n\nA microphone placed at the other end of the rod detects the sound wave emitted from the rod. The frequency of the detected sound is also $f$.\n\nA number of rods of different length are available.\n\nIt is suggested that $f$ is related to $L$ by the relationship\n$$2fL^n = \\sqrt{\\frac{E}{\\rho}}$$\nwhere $\\rho$ is the density of the metal, and $E$ and $n$ are constants.\n\nPlan a laboratory experiment to test the relationship between $f$ and $L$.\n\nDraw a diagram showing the arrangement of your equipment.\n\nExplain how the results could be used to determine values for $E$ and $n$.\n\nIn your plan you should include:\n\n*   the procedure to be followed\n*   the measurements to be taken\n*   the control of variables\n*   the analysis of the data\n*   any safety precautions to be taken.",
+      "solution": "1. $L$ is the independent variable and $f$ is the dependent variable, or vary $L$ and measure $f$.\n2. Keep $\\rho$ constant\n3. Labelled diagram of workable experiment including:\n• rod supported by string / elastic bands from a clamp\n• clamp attached to stand, with stand on bench\n• two labels from stand, clamp, hammer, microphone, rod, string.\n4. Diagram showing labelled microphone connected to labelled oscilloscope.\n5. Method to measure $L$, e.g. use a metre rule\n6. Method to measure mass ($m$) (of metal rod), e.g. use a (top-pan) balance\n7. Plots a graph of $\\log f$ against $\\log L$ or equivalent e.g. $\\log f$ against $\\log \\frac{1}{L}$\n8. $n = -\\text{gradient}$\n9. $E = 4\\rho \\times 10^{2 \\times y\\text{-intercept}}$\n10. Any six from the following points:",
+      "sourceQuestionId": "99bfe85f-337e-416e-bf55-684285132c92"
     },
     {
-      "type": "resources",
-      "items": [
+      "type": "workedExample",
+      "question": "Values of $R$ and $I$ are given in Table 2.1.\n\n| $R/\\text{k}\\Omega$ | $I/\\mu\\text{A}$ | $\\frac{1}{I}/\\text{A}^{-1}$ |\n|---|---|---|\n| 1.25 | $225 \\pm 5$ | |\n| 2.55 | $185 \\pm 5$ | |\n| 3.90 | $160 \\pm 5$ | |\n| 5.25 | $140 \\pm 5$ | |\n| 6.55 | $125 \\pm 5$ | |\n| 7.80 | $115 \\pm 5$ | |\n\nCalculate and record values of $\\frac{1}{I}/\\text{A}^{-1}$ in Table 2.1.\n\nInclude the absolute uncertainties in $\\frac{1}{I}$.\n\n| $R/\\text{k}\\Omega$ | $I/\\mu\\text{A}$ | $\\frac{1}{I}/\\text{A}^{-1}$ |\n| --- | --- | --- |\n| 1.25 | $225 \\pm 5$ |  |\n| 2.55 | $185 \\pm 5$ |  |\n| 3.90 | $160 \\pm 5$ |  |\n| 5.25 | $140 \\pm 5$ |  |\n| 6.55 | $125 \\pm 5$ |  |\n| 7.80 | $115 \\pm 5$ |  |",
+      "solution": "1. Correctly calculated values for $\\frac{1}{I} / \\text{A}^{-1}$ in the table.\n2. Correctly calculated uncertainties in $\\frac{1}{I}$.",
+      "sourceQuestionId": "f06d0822-0721-4f1d-9767-0d1455efa41c"
+    },
+    {
+      "type": "workedExample",
+      "question": "Values of $L$ and $T$ are given in Table 2.1.\n\n**Table 2.1**\n| $L/\\text{cm}$ | $T/10^{-5}\\text{s}$ | $\\lg (L/\\text{cm})$ | $\\lg (T/10^{-5}\\text{s})$ |\n|:---:|:---:|:---:|:---:|\n| 54  | $24 \\pm 1$ |     |     |\n| 70  | $32 \\pm 1$ |     |     |\n| 86  | $39 \\pm 1$ |     |     |\n| 108 | $49 \\pm 2$ |     |     |\n| 140 | $64 \\pm 2$ |     |     |\n| 167 | $74 \\pm 2$ |     |     |\n\nCalculate and record values of $\\lg (L/\\text{cm})$ and $\\lg(T/10^{-5}\\text{s})$ in Table 2.1.\nInclude the absolute uncertainties in $\\lg T$.\n\n| $L/\\text{cm}$ | $T/10^{-5}\\text{s}$ | $\\lg (L/\\text{cm})$ | $\\lg (T/10^{-5}\\text{s})$ |\n| --- | --- | --- | --- |\n| 54 | $24 \\pm 1$ |  |  |\n| 70 | $32 \\pm 1$ |  |  |\n| 86 | $39 \\pm 1$ |  |  |\n| 108 | $49 \\pm 2$ |  |  |\n| 140 | $64 \\pm 2$ |  |  |\n| 167 | $74 \\pm 2$ |  |  |",
+      "solution": "1. Values of lg ($L$ / cm) and lg ($T/10^{-5}$ s) correct as shown above.\n2. Uncertainties in lg ($T/10^{-5}$ s) correct as shown above.",
+      "sourceQuestionId": "7157ff51-d73b-4ef8-adf3-3e9c5718de12"
+    },
+    {
+      "type": "pastPaperPractice",
+      "questions": [
         {
-          "label": "PhET Simulation: Curve Fitting",
-          "href": "https://phet.colorado.edu/en/simulations/curve-fitting"
+          "questionId": "99bfe85f-337e-416e-bf55-684285132c92",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "1",
+          "marks": 15,
+          "questionTextPreview": "Fig. 1.1 shows a thin cylindrical metal rod of length $L$.\n[Figure: Fig. 1.1 shows a thin cylindrical metal rod of length L.]\nOne end of the rod is hit with a hammer. A stationary sound wave is set up within the rod. The rod vibrates at its resonant frequency $f$.\n…",
+          "markPoints": [
+            {
+              "text": "$L$ is the independent variable and $f$ is the dependent variable, or vary $L$ and measure $f$.",
+              "marks": 1
+            },
+            {
+              "text": "Keep $\\rho$ constant",
+              "marks": 1
+            },
+            {
+              "text": "Labelled diagram of workable experiment including:\n• rod supported by string / elastic bands from a clamp\n• clamp attached to stand, with stand on bench\n• two labels from stand, clamp, hammer, microphone, rod, string.",
+              "marks": 1
+            },
+            {
+              "text": "Diagram showing labelled microphone connected to labelled oscilloscope.",
+              "marks": 1
+            },
+            {
+              "text": "Method to measure $L$, e.g. use a metre rule",
+              "marks": 1
+            },
+            {
+              "text": "Method to measure mass ($m$) (of metal rod), e.g. use a (top-pan) balance",
+              "marks": 1
+            },
+            {
+              "text": "Plots a graph of $\\log f$ against $\\log L$ or equivalent e.g. $\\log f$ against $\\log \\frac{1}{L}$",
+              "marks": 1
+            },
+            {
+              "text": "$n = -\\text{gradient}$",
+              "marks": 1
+            },
+            {
+              "text": "$E = 4\\rho \\times 10^{2 \\times y\\text{-intercept}}$",
+              "marks": 1
+            },
+            {
+              "text": "Any six from the following points:",
+              "marks": 6
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m24&question=1"
         },
         {
-          "label": "Detailed Guide on Uncertainty Analysis",
-          "href": "https://www.savemyexams.com/a-level/physics/cie/22/revision-notes/1-physical-quantities--units/1-3-errors--uncertainties/1-3-1-errors--uncertainties/"
+          "questionId": "7157ff51-d73b-4ef8-adf3-3e9c5718de12",
+          "year": 2024,
+          "session": "May/June",
+          "paperVariant": "52",
+          "questionNumber": "2(b)",
+          "marks": 2,
+          "questionTextPreview": "Values of $L$ and $T$ are given in Table 2.1.\n**Table 2.1**\n| $L/\\text{cm}$ | $T/10^{-5}\\text{s}$ | $\\lg (L/\\text{cm})$ | $\\lg (T/10^{-5}\\text{s})$ |\n…",
+          "markPoints": [
+            {
+              "text": "Values of lg ($L$ / cm) and lg ($T/10^{-5}$ s) correct as shown above.",
+              "marks": 1
+            },
+            {
+              "text": "Uncertainties in lg ($T/10^{-5}$ s) correct as shown above.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=s24&question=2%28b%29"
+        },
+        {
+          "questionId": "14b99dfd-e5f2-4e65-8347-2a3d9596ab96",
+          "year": 2023,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "1",
+          "marks": 15,
+          "questionTextPreview": "An electric pump is placed in a container of liquid. A model wind turbine is connected to the pump by a cable, as shown in Fig. 1.1.\n[Figure: Fig. 1.1 shows a model wind turbine with blades connected by a cable to a pump submerged in a container of liquid. The pump pushes liquid up a vertical pipe to a height h. Moving air causes the turbine to rotate.]\nThe turbine is placed in moving air. As the turbine blades turn, electricity is generated and the pump pushes liquid through a vertical pipe.\n…",
+          "markPoints": [],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m23&question=1"
+        },
+        {
+          "questionId": "f06d0822-0721-4f1d-9767-0d1455efa41c",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "2(b)",
+          "marks": 2,
+          "questionTextPreview": "Values of $R$ and $I$ are given in Table 2.1.\n| $R/\\text{k}\\Omega$ | $I/\\mu\\text{A}$ | $\\frac{1}{I}/\\text{A}^{-1}$ |\n|---|---|---|\n…",
+          "markPoints": [
+            {
+              "text": "Correctly calculated values for $\\frac{1}{I} / \\text{A}^{-1}$ in the table.",
+              "marks": 1
+            },
+            {
+              "text": "Correctly calculated uncertainties in $\\frac{1}{I}$.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m24&question=2%28b%29"
+        },
+        {
+          "questionId": "ee8f9a2b-e9c6-4f81-aad2-ab7c5e384919",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "2(c)(i)",
+          "marks": 2,
+          "questionTextPreview": "Plot a graph of $\\frac{1}{I}/\\text{A}^{-1}$ against $R/\\text{k}\\Omega$. Include error bars for $\\frac{1}{I}$.",
+          "markPoints": [
+            {
+              "text": "Six points from (b) plotted correctly.",
+              "marks": 1
+            },
+            {
+              "text": "Error bars in $\\frac{1}{I}$ plotted correctly.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m24&question=2%28c%29%28i%29"
+        },
+        {
+          "questionId": "030659bb-97ac-4c14-b52a-5a5712d73be7",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "2(c)(ii)",
+          "marks": 2,
+          "questionTextPreview": "Draw the straight line of best fit and a worst acceptable straight line on your graph. Label both lines.",
+          "markPoints": [
+            {
+              "text": "Straight line of best fit drawn.",
+              "marks": 1
+            },
+            {
+              "text": "Worst acceptable line drawn.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m24&question=2%28c%29%28ii%29"
+        },
+        {
+          "questionId": "082a0965-efcc-4d28-b045-2e826e875fb3",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "2(c)(iii)",
+          "marks": 2,
+          "questionTextPreview": "Determine the gradient of the line of best fit. Include the absolute uncertainty in your answer.",
+          "markPoints": [
+            {
+              "text": "Gradient determined with clear substitution of data points into $\\Delta y / \\Delta x$; distance between data points must be greater than half the length of the drawn line.",
+              "marks": 1
+            },
+            {
+              "text": "Gradient determined of worst acceptable line with clear substitution of data points into $\\Delta y / \\Delta x$; uncertainty = (gradient of line of best fit – gradient of worst acceptable line)",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m24&question=2%28c%29%28iii%29"
+        },
+        {
+          "questionId": "3ff4f394-0131-43a9-8e21-924d20662af4",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "52",
+          "questionNumber": "2(c)(iv)",
+          "marks": 2,
+          "questionTextPreview": "Determine the y-intercept of the line of best fit. Include the absolute uncertainty in your answer.",
+          "markPoints": [
+            {
+              "text": "y-intercept determined by substitution of correct point with consistent power of ten in $m$ and $x$ into $y = mx + c$",
+              "marks": 1
+            },
+            {
+              "text": "y-intercept of worst acceptable line determined by substitution into $y = mx + c$ and uncertainty calculated.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F52&session=m24&question=2%28c%29%28iv%29"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "learningObjectives": [
+    "Distinguish between systematic and random errors and their effects on experimental data.",
+    "Explain the difference between accuracy and precision.",
+    "Calculate absolute and percentage uncertainties in derived quantities.",
+    "Determine the uncertainty in the gradient and y-intercept of a line of best fit.",
+    "Incorporate uncertainty analysis into an experimental plan."
+  ],
+  "paperNumber": "5",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.3.1",
+    "1.3.2",
+    "1.3.3"
+  ],
+  "pastPaperReferences": [
+    {
+      "paperCode": "9702/52",
+      "paperSession": "2024-February/March",
+      "sessionLabel": "February/March 2024",
+      "questionNumber": "1",
+      "questionText": "Fig. 1.1 shows a thin cylindrical metal rod of length $L$.\n\n<img src=\"9702_52_F_M_24_1.png\" alt=\"Fig. 1.1 shows a thin cylindrical metal rod of length L.\" />\n\nOne end of the rod is hit with a hammer. A stationary sound wave is set up within the rod. The rod vibrates at its resonant frequency $f$.\n\nA microphone placed at the other end of the rod detects the sound wave emitted from the rod. The frequency of the detected sound is also $f$.\n\nA number of rods of different length are available.\n\nIt is",
+      "totalMarks": 15,
+      "markHref": "/marking/9702/52/2024-February/March/1"
+    },
+    {
+      "paperCode": "9702/52",
+      "paperSession": "2024-February/March",
+      "sessionLabel": "February/March 2024",
+      "questionNumber": "2(b)",
+      "questionText": "Values of $R$ and $I$ are given in Table 2.1.\n\n| $R/\\text{k}\\Omega$ | $I/\\mu\\text{A}$ | $\\frac{1}{I}/\\text{A}^{-1}$ |\n|---|---|---|\n| 1.25 | $225 \\pm 5$ | |\n| 2.55 | $185 \\pm 5$ | |\n| 3.90 | $160 \\pm 5$ | |\n| 5.25 | $140 \\pm 5$ | |\n| 6.55 | $125 \\pm 5$ | |\n| 7.80 | $115 \\pm 5$ | |\n\nCalculate and record values of $\\frac{1}{I}/\\text{A}^{-1}$ in Table 2.1.\n\nInclude the absolute uncertainties in $\\frac{1}{I}$.\n\n| $R/\\text{k}\\Omega$ | $I/\\mu\\text{A}$ | $\\frac{1}{I}/\\text{A}^{-1}$ |\n| --- | --- | --- ",
+      "totalMarks": 2,
+      "markHref": "/marking/9702/52/2024-February/March/2(b)"
+    },
+    {
+      "paperCode": "9702/52",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "2(b)",
+      "questionText": "Values of $L$ and $T$ are given in Table 2.1.\n\n**Table 2.1**\n| $L/\\text{cm}$ | $T/10^{-5}\\text{s}$ | $\\lg (L/\\text{cm})$ | $\\lg (T/10^{-5}\\text{s})$ |\n|:---:|:---:|:---:|:---:|\n| 54  | $24 \\pm 1$ |     |     |\n| 70  | $32 \\pm 1$ |     |     |\n| 86  | $39 \\pm 1$ |     |     |\n| 108 | $49 \\pm 2$ |     |     |\n| 140 | $64 \\pm 2$ |     |     |\n| 167 | $74 \\pm 2$ |     |     |\n\nCalculate and record values of $\\lg (L/\\text{cm})$ and $\\lg(T/10^{-5}\\text{s})$ in Table 2.1.\nInclude the absolute uncertain",
+      "totalMarks": 2,
+      "markHref": "/marking/9702/52/2024-May/June/2(b)"
+    }
+  ],
+  "generatorVersion": "senpai-published-1",
+  "updated": "2026-06-26"
 }

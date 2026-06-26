@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
+import { getResultsDayPhase } from '@/lib/seo/results-day'
 
 type BlogPostCtaProps = {
   variant?: 'default' | 'subject' | 'ib' | 'ib-ia' | 'grade-boundaries'
@@ -12,6 +13,9 @@ export function BlogPostCta({ variant = 'default', subjectCode = null }: BlogPos
   const isIb = variant === 'ib' || variant === 'ib-ia'
   const isIa = variant === 'ib-ia'
   const isGradeBoundaries = variant === 'grade-boundaries'
+  const resultsPhase = isGradeBoundaries ? getResultsDayPhase() : null
+  const showResultsGuide =
+    isGradeBoundaries && resultsPhase && resultsPhase !== 'post-igcse'
   const calculatorHref = subjectCode
     ? `/tools/grade-boundary-calculator/${subjectCode}`
     : '/tools/grade-boundary-calculator'
@@ -89,6 +93,14 @@ export function BlogPostCta({ variant = 'default', subjectCode = null }: BlogPos
             >
               Mark a paper free
             </Link>
+            {showResultsGuide ? (
+              <Link
+                href="/blog/cambridge-results-day-august-2026-guide"
+                className="ec-btn-ghost inline-flex min-h-[48px] justify-center"
+              >
+                Results day guide
+              </Link>
+            ) : null}
           </>
         ) : (
           <>

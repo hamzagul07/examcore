@@ -232,6 +232,50 @@
   background: var(--ec-brand-muted);
 }
 
+.ms-results-day-banner {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 0;
+  padding: 20px 22px;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  border-radius: var(--ec-radius-lg, 16px);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 12%, var(--ec-bg)) 0%,
+    var(--ec-bg-soft) 100%
+  );
+}
+
+.ms-results-day-banner__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-boundary-hub-table {
+  margin-top: 0;
+  min-width: 560px;
+}
+
+.ms-boundary-hub-level {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ec-text-secondary);
+  margin-top: 2px;
+}
+
+.ms-boundary-hub-muted {
+  color: var(--ec-text-secondary);
+  font-size: 0.875rem;
+}
+
 .ms-hub-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

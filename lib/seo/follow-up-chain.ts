@@ -238,3 +238,44 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
 export function getFollowUpChain(clusterId: ContentClusterId): FollowUpItem[] {
   return FOLLOW_UP_CHAINS[clusterId] ?? []
 }
+
+const SLUG_FOLLOW_UPS: Record<string, FollowUpItem[]> = {
+  'cambridge-2281-o-level-economics-past-papers-guide': [
+    {
+      question: 'Is there a free 2281 Economics course?',
+      answer:
+        'Yes — topic-by-topic O-Level lessons with diagrams on demand, elasticity, and macro policy, plus past-paper marking on every syllabus point.',
+      href: '/courses/2281',
+    },
+    {
+      question: 'Where are 2281 grade boundaries for 2026?',
+      answer:
+        'Threshold tables publish around 13 August after the June series — use the calculator with recent sessions until then.',
+      href: '/blog/cambridge-2281-economics-grade-boundaries-2026',
+    },
+  ],
+  'cambridge-7115-o-level-business-studies-past-papers-guide': [
+    {
+      question: 'Is there a free 7115 Business course?',
+      answer:
+        'Yes — case-style topics including marketing mix, break-even, and accounts, each with a real past-paper practice link.',
+      href: '/courses/7115',
+    },
+    {
+      question: 'How do I improve application marks on Paper 2?',
+      answer:
+        'Name the business in the case, quote stimulus data, and balance advantages against disadvantages — practise on marketing mix and finance lessons first.',
+      href: '/courses/7115/3-3-marketing-mix',
+    },
+  ],
+}
+
+/** Cluster chain plus slug-specific follow-ups (O-Level traffic guides, etc.). */
+export function getFollowUpChainForSlug(
+  slug: string,
+  clusterId: ContentClusterId
+): FollowUpItem[] {
+  const extra = SLUG_FOLLOW_UPS[slug] ?? []
+  const base = getFollowUpChain(clusterId)
+  return extra.length ? [...extra, ...base] : base
+}

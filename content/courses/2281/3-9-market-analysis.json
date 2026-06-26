@@ -4,74 +4,359 @@
   "title": "Market analysis",
   "paper": "P2",
   "paperName": "Paper 2 (Structured Questions)",
-  "status": "outline",
-  "summary": "Free O-Level Economics course lesson: Market analysis (3.9). Premium-quality notes, simpler explanation mode, and real Cambridge past-paper questions.",
-  "durationMin": 12,
+  "status": "premium",
+  "summary": "2281 O-Level market structures — perfect competition, monopoly, oligopoly, and monopolistic competition with GeoGebra.",
+  "durationMin": 26,
+  "updated": "2026-06-26",
   "learningObjectives": [
-    "Understand Market analysis for syllabus 3.9",
-    "Recognise how Paper 2 (Structured Questions) tests this topic",
-    "Apply the concept in a real past-paper question"
+    "Compare features of major market structures.",
+    "Draw firm demand and MR curves under monopoly.",
+    "Explain short-run and long-run equilibrium in competitive markets.",
+    "Evaluate efficiency implications of different structures."
   ],
   "simpleExplanation": {
-    "title": "Market analysis — explained simply",
-    "summary": "Think of market analysis as one building block in your Paper 2 (Structured Questions) toolkit. Examiners rarely ask for memorised paragraphs — they want you to apply the idea in a structured answer.",
-    "analogy": "If the full lesson feels dense, focus on one past-paper question: read the mark scheme after attempting it — that shows what Cambridge actually rewards.",
+    "title": "How market structure affects price",
+    "summary": "Perfect competitors are price takers with horizontal demand. Monopolists face downward sloping demand and MR below AR.",
     "steps": [
-      "Read the definition and symbols for Market analysis",
-      "Sketch a quick diagram or equation if the topic is visual",
-      "Attempt one real past-paper question on this topic",
-      "Mark strictly, then re-read only the marks you lost"
+      "Perfect competition: P = MC in long run, productive efficiency.",
+      "Monopoly: P > MC — allocative inefficiency possible.",
+      "Oligopoly: kinked demand, collusion, game theory.",
+      "Monopolistic competition: differentiation, excess capacity long run."
     ]
   },
-  "faq": [
+  "flashcards": [
     {
-      "q": "Is this Economics Market analysis lesson free?",
-      "a": "Yes — every topic in our 2281 course is free. MarkScheme offers free past-paper marking so you can turn notes into marks."
+      "front": "Features of perfect competition?",
+      "back": "Many firms, homogeneous product, free entry/exit, perfect information, price taker (horizontal demand for individual firm)."
     },
     {
-      "q": "Which past papers cover 3.9?",
-      "a": "Scroll to the past-paper section on this page — we surface real Cambridge questions tagged to 3.9 from our mark-scheme library."
+      "front": "Long-run equilibrium in perfect competition?",
+      "back": "P = MC = min AC — normal profit only (AR tangent to AC). Productive and allocative efficiency achieved."
+    },
+    {
+      "front": "Why is MR below AR for a monopolist?",
+      "back": "To sell more, the monopolist must lower price on all units. MR = P + Q(ΔP/ΔQ); for linear demand, MR has twice the slope of AR."
+    },
+    {
+      "front": "Monopoly and allocative efficiency?",
+      "back": "Monopolist produces where MC = MR with P > MC — underproduces relative to social optimum → allocative inefficiency (DWL)."
+    },
+    {
+      "front": "Kinked demand curve (oligopoly)?",
+      "back": "Assumes rivals match price cuts but not price rises → demand more elastic above current price, less elastic below → price rigidity."
+    },
+    {
+      "front": "Monopolistic competition long run?",
+      "back": "Free entry erodes supernormal profit → tangency of D and AC with D downward sloping → excess capacity (output < min AC)."
+    },
+    {
+      "front": "What is product differentiation?",
+      "back": "The process of distinguishing a product or service from others to make it more attractive to a particular target market. This can be through branding, quality, design, or packaging. It is the key feature of monopolistic competition."
+    },
+    {
+      "front": "Define 'barriers to entry'.",
+      "back": "Obstacles that make it difficult or impossible for new firms to enter a market. Examples include patents, high start-up costs, economies of scale, and brand loyalty."
+    },
+    {
+      "front": "What does it mean for a firm to be a 'price taker'?",
+      "back": "A firm that has no power to influence the market price and must accept the prevailing price. This occurs in perfect competition where the firm's individual output is insignificant compared to the total market."
+    },
+    {
+      "front": "What is interdependence in the context of an oligopoly?",
+      "back": "A situation where the decisions of one firm (e.g., on price or output) directly affect the profits and choices of its rivals, prompting a reaction. This leads to strategic behaviour."
+    },
+    {
+      "front": "What is a natural monopoly?",
+      "back": "A market situation where a single firm can supply the entire market at a lower average cost than two or more firms could. This is typically due to extremely high fixed costs and massive economies of scale, e.g., water supply or national grids."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to your **free Economics** lesson on **Market analysis** (3.9). This is syllabus point 3.9 on **Paper 2 (Structured Questions)** — structured like a premium revision course, with past-paper practice built in."
+      "content": "**Market structures** (7.6) often compare **monopoly vs perfect competition** in one essay. Draw **MR below D** for monopoly every time. Builds on **7.5 costs and revenue**."
+    },
+    {
+      "type": "heading",
+      "content": "The Spectrum of Market Structures"
+    },
+    {
+      "type": "text",
+      "content": "Market structure refers to the organisational and other characteristics of a market, which influence the behaviour of firms within it. Economists classify markets along a spectrum of competition, from perfect competition at one extreme to pure monopoly at the other. The classification depends on several key characteristics: the number of firms in the market, the ease of entry and exit (barriers to entry), the degree of product differentiation, and the availability of information. Understanding these characteristics allows us to predict a firm's pricing and output decisions, its potential for long-run profitability, and the overall efficiency of the market. Monopolistic competition and oligopoly represent the more complex and common 'imperfectly competitive' structures that lie between the two extremes."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Master the vocabulary examiners use in mark schemes for Market analysis",
-        "Know which paper (P2) tests this topic most often",
-        "Practise at least one official past-paper question after reading",
-        "Use “Explain simpler” below if the main lesson feels too advanced"
+        "Market structure is determined by the number of firms, barriers to entry, and product type.",
+        "The spectrum of competition ranges from perfect competition (most competitive) to pure monopoly (least competitive).",
+        "A firm's behaviour and performance are heavily influenced by the structure of the market it operates in.",
+        "Most real-world markets are imperfectly competitive (monopolistic competition or oligopoly)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Perfect Competition: The Price Taker"
+    },
+    {
+      "type": "text",
+      "content": "Perfect competition is a theoretical benchmark with strict assumptions: a very large number of small firms, a homogenous (identical) product, no barriers to entry or exit, and perfect information for all buyers and sellers. The crucial outcome of these conditions is that each individual firm is a 'price taker'. It has no market power and must accept the market price determined by the industry's supply and demand. The firm's demand curve is therefore perfectly elastic (horizontal), where Average Revenue (AR) equals Marginal Revenue (MR). In the long run, freedom of entry and exit ensures that firms can only make normal profit. Any supernormal profit attracts new firms, increasing industry supply and driving the price down until only normal profit remains."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Firms are price takers, facing a perfectly elastic demand curve (AR = MR).",
+        "Products are homogenous, meaning they are perfect substitutes.",
+        "Freedom of entry and exit leads to normal profits in the long run.",
+        "Achieves both allocative (P=MC) and productive (output at minimum AC) efficiency in long-run equilibrium."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Monopoly: The Price Maker"
+    },
+    {
+      "type": "text",
+      "content": "A pure monopoly exists when a single firm is the sole supplier in a market with very high barriers to entry. These barriers, such as patents, control over resources, or significant economies of scale (creating a natural monopoly), prevent competition. As the sole supplier, the monopolist faces the entire downward-sloping market demand curve. This means it is a 'price maker' but is still constrained by demand; to sell more, it must lower its price. Consequently, its Marginal Revenue (MR) curve lies below its Average Revenue (AR) curve. A profit-maximising monopolist will produce where MC=MR, enabling it to earn sustained supernormal profits in the long run. This typically results in allocative inefficiency (P>MC) and productive inefficiency."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A single firm dominates the market with high barriers to entry.",
+        "The firm is a price maker, facing a downward-sloping demand curve (AR).",
+        "The MR curve is below the AR curve.",
+        "Supernormal profits can be sustained in the long run due to barriers to entry."
       ]
     },
     {
       "type": "examTip",
-      "content": "Cambridge 2281 rewards clear definitions, labelled diagrams, and applied examples from the data. On Paper 2 (Structured Questions), Market analysis often appears as MC items or structured questions — plan before writing longer answers."
+      "content": "When drawing monopoly diagrams, always remember to place the MR curve below the AR (demand) curve, with MR falling at twice the rate of AR. The profit-maximising output is found where MC intersects MR, but the price is read from the AR curve at that quantity."
+    },
+    {
+      "type": "heading",
+      "content": "Monopolistic Competition: Differentiation is Key"
+    },
+    {
+      "type": "text",
+      "content": "Monopolistic competition describes a market with many firms and low barriers to entry, much like perfect competition. However, its defining feature is product differentiation. Firms compete by making their products distinct through branding, quality, design, or location (e.g., restaurants, hairdressers). This differentiation gives each firm a small degree of monopoly power, resulting in a downward-sloping, but relatively elastic, demand curve. In the short run, a firm can make supernormal profits. However, because barriers to entry are low, these profits attract new competitors, which erodes the original firm's demand until, in the long run, only normal profit is made. The long-run equilibrium is not productively or allocatively efficient."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Many firms, low barriers to entry, and product differentiation.",
+        "Firms compete using non-price competition (e.g., advertising, branding).",
+        "Each firm faces a downward-sloping, elastic demand curve.",
+        "Supernormal profits are competed away in the long run, leading to normal profit."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Oligopoly: The Challenge of Interdependence"
+    },
+    {
+      "type": "text",
+      "content": "Oligopoly is a market structure dominated by a few large firms, where high barriers to entry exist. The defining characteristic is interdependence: each firm's actions (on price, output, or advertising) directly affect its rivals, who will then react. This creates strategic behaviour. Firms may choose to collude (formally as a cartel, or tacitly) to act like a monopoly, restricting output and raising prices to maximise joint profits. Alternatively, they may compete aggressively, leading to price wars. This strategic uncertainty is often explained by the kinked demand curve model, which suggests price stability (rigidity) in oligopolistic markets. Consequently, non-price competition, such as branding, loyalty schemes, and advertising, is a prevalent feature."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Market dominated by a few large firms.",
+        "High barriers to entry.",
+        "The key feature is interdependence, leading to strategic decision-making.",
+        "Firms may engage in collusion or non-price competition to avoid destructive price wars."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Perfect competition"
+    },
+    {
+      "type": "text",
+      "content": "The individual firm faces a **horizontal demand curve** at market price (P = MR = AR). It is a **price taker**.\n\n**Short run:** firm may earn supernormal profit (AR > AC), normal profit (AR = AC), or loss (AR < AC).\n\n**Long run:** free entry/exit drives profit to **normal** — AR = AC at minimum AC. Also P = MC → **allocative and productive efficiency**."
+    },
+    {
+      "type": "heading",
+      "content": "Monopoly"
+    },
+    {
+      "type": "text",
+      "content": "A **monopolist** faces the **market demand curve** (downward sloping). **MR lies below AR** because lowering price to sell more reduces revenue on inframarginal units.\n\nProfit max: **MC = MR**. Price is read from the demand curve at this output — **P > MC**.\n\n**Allocative inefficiency:** output is less than the competitive level. **DWL** exists. However, monopolist may achieve **productive efficiency** if it produces at min AC (natural monopoly argument)."
+    },
+    {
+      "type": "heading",
+      "content": "Oligopoly and monopolistic competition"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Oligopoly** — few dominant firms, barriers to entry, mutual interdependence. Models: kinked demand, game theory (prisoner's dilemma), collusion (cartel).",
+        "**Monopolistic competition** — many firms, differentiated products, free entry. Short-run supernormal profit; long-run tangency → normal profit with **excess capacity**.",
+        "**Contestable markets** — threat of entry disciplines incumbent even with one firm (no sunk costs)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A monopolist faces P = 50 − Q (linear demand) and TC = 100 + 10Q.\n\n(a) Derive the MR function.\n(b) Find profit-maximising Q and P.\n(c) Compare with the perfectly competitive outcome.",
+      "solution": "(a) **TR = P × Q = (50 − Q)Q = 50Q − Q²**\n**MR = dTR/dQ = 50 − 2Q**\n\n(For linear demand P = a − bQ, MR = a − 2bQ.)\n\n(b) **MC = dTC/dQ = 10**\nProfit max: MC = MR → 10 = 50 − 2Q → Q = **20**\n**P = 50 − 20 = £30**\n\n**Profit** = TR − TC = (30 × 20) − (100 + 200) = 600 − 300 = **£300**\n\n(c) **Perfect competition:** P = MC → 50 − Q = 10 → Q = **40**, P = **£10**\n\nMonopoly produces **half the competitive output** at **three times the price**.\n\n**DWL:** welfare loss from underproduction — consumers pay more and buy less. Monopolist gains producer surplus but total welfare falls."
+    },
+    {
+      "type": "examTip",
+      "content": "Comparison essays need **two diagrams side by side**: PC (horizontal D, P = min AC) vs monopoly (downward D, MR below AR, P > MC). State efficiency implications explicitly for each structure."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on Market analysis",
+      "label": "Mark a market structures question",
       "href": "/mark?subject=2281&topic=3.9"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "2281 marking & past papers",
-          "href": "/subjects/2281"
+          "label": "7.5 Types of cost, revenue and profit",
+          "href": "/courses/9708/7-5-types-of-cost-revenue-and-profit-short-run-and-long-run-production"
         },
         {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "7.8 Differing objectives and policies of firms",
+          "href": "/courses/9708/7-8-differing-objectives-and-policies-of-firms"
         },
         {
-          "label": "Official Cambridge syllabus",
-          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/"
+          "label": "7.3 Efficiency and market failure",
+          "href": "/courses/9708/7-3-efficiency-and-market-failure"
+        },
+        {
+          "label": "2281 course index",
+          "href": "/courses/9708"
         }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Perfect competition: many firms, homogeneous product, price taker.",
+        "embedHint": "Horizontal demand curve for individual firm."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Monopoly: single seller — downward sloping demand, barriers to entry.",
+        "embedHint": "MR below AR for linear demand."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Oligopoly: interdependence — kinked demand, game theory.",
+        "embedHint": "Few firms dominate market share."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Monopolistic competition: differentiated products, free entry long run.",
+        "embedHint": "Excess capacity at tangency of D and AC."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "If firms in monopolistic competition only make normal profit in the long run, isn't that the same as perfect competition?",
+      "a": "No. While the profit outcome is the same, the efficiency is not. In monopolistic competition, the firm produces at a point where price is greater than marginal cost (P>MC), indicating allocative inefficiency. Furthermore, it does not produce at the lowest point on its average cost curve, meaning it is also productively inefficient. This is due to product differentiation giving the firm a downward-sloping demand curve."
+    },
+    {
+      "q": "Are all monopolies bad for consumers?",
+      "a": "Not necessarily. A natural monopoly can be more productively efficient than multiple competing firms due to economies of scale, potentially leading to lower prices if regulated. Also, the supernormal profits earned by a monopoly can be used to fund research and development (R&D), leading to dynamic efficiency and innovative products that benefit consumers in the long run. However, an unregulated profit-maximising monopoly is likely to charge high prices and restrict output."
+    },
+    {
+      "q": "Why don't firms in an oligopoly always compete by cutting prices?",
+      "a": "Due to interdependence, firms are wary of starting a price war. If one firm cuts its price, rivals will likely follow suit immediately to avoid losing market share. The result is that all firms end up with the same market share as before, but at a lower price and with significantly lower profits. Therefore, it is often more rational for oligopolists to maintain price stability and compete on non-price factors like advertising, quality, and service."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Market Structures",
+    "columns": [
+      "Feature",
+      "Perfect Competition",
+      "Monopolistic Competition",
+      "Oligopoly",
+      "Monopoly"
+    ],
+    "rows": [
+      {
+        "property": "Number of Firms",
+        "cells": [
+          "Very many",
+          "Many",
+          "A few dominant firms",
+          "One"
+        ]
+      },
+      {
+        "property": "Barriers to Entry",
+        "cells": [
+          "None",
+          "Low",
+          "High",
+          "Very high / Blocked"
+        ]
+      },
+      {
+        "property": "Product Type",
+        "cells": [
+          "Homogenous (identical)",
+          "Differentiated",
+          "Differentiated or homogenous",
+          "Unique"
+        ]
+      },
+      {
+        "property": "Firm's Price Power",
+        "cells": [
+          "None (price taker)",
+          "Some (price maker)",
+          "Significant (price maker)",
+          "Considerable (price maker)"
+        ]
+      },
+      {
+        "property": "Long-Run Profit",
+        "cells": [
+          "Normal profit only",
+          "Normal profit only",
+          "Potential for supernormal profit",
+          "Potential for supernormal profit"
+        ]
+      },
+      {
+        "property": "Example",
+        "cells": [
+          "Agricultural markets (e.g., wheat)",
+          "Restaurants, hairdressers",
+          "Supermarkets, mobile phone networks",
+          "Local water company (natural)"
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true,
+  "portedFrom": {
+    "subjectCode": "9708",
+    "slug": "7-6-different-market-structures",
+    "level": "A-Level"
+  },
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Market structures",
+    "embedUrl": "https://www.geogebra.org/classic?material=VGWtkPU5",
+    "launchUrl": "https://www.geogebra.org/classic?material=VGWtkPU5",
+    "hint": "Compare demand curves facing firms — perfect competition vs monopoly (9708 7.6).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

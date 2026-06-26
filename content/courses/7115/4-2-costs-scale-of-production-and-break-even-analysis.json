@@ -4,74 +4,290 @@
   "title": "Costs, scale of production and break-even analysis",
   "paper": "P2",
   "paperName": "Paper 2 (Case Study)",
-  "status": "outline",
-  "summary": "Free O-Level Business Studies course lesson: Costs, scale of production and break-even analysis (4.2). Premium-quality notes, simpler explanation mode, and real Cambridge past-paper questions.",
-  "durationMin": 12,
+  "status": "premium",
+  "summary": "7115 O-Level — break-even formula, CVP chart, margin of safety, target output, and evaluation of assumptions.",
+  "durationMin": 28,
+  "updated": "2026-06-26",
   "learningObjectives": [
-    "Understand Costs, scale of production and break-even analysis for syllabus 4.2",
-    "Recognise how Paper 2 (Case Study) tests this topic",
-    "Apply the concept in a real past-paper question"
+    "Calculate break-even output using contribution per unit.",
+    "Draw and interpret break-even charts (TR, TC, FC).",
+    "Calculate margin of safety in units and as a percentage.",
+    "Calculate output required for a target profit.",
+    "Evaluate assumptions and limitations of break-even analysis."
   ],
   "simpleExplanation": {
-    "title": "Costs, scale of production and break-even analysis — explained simply",
-    "summary": "Think of costs, scale of production and break-even analysis as one building block in your Paper 2 (Case Study) toolkit. Examiners rarely ask for memorised paragraphs — they want you to apply the idea in a structured answer.",
-    "analogy": "If the full lesson feels dense, focus on one past-paper question: read the mark scheme after attempting it — that shows what Cambridge actually rewards.",
+    "title": "Where profit starts",
+    "summary": "Break-even is the output level where total revenue equals total cost — no profit, no loss. Each unit sold contributes toward fixed costs; once enough contribution is earned, the business covers all costs.",
+    "analogy": "Think of fixed costs as the entry fee for a theme park. Every ticket sold (contribution per unit) chips away at that fee. Break-even is the number of tickets you must sell before any money counts as profit — like filling the park to the point where the entry fees are fully paid off.",
     "steps": [
-      "Read the definition and symbols for Costs, scale of production and break-even analysis",
-      "Sketch a quick diagram or equation if the topic is visual",
-      "Attempt one real past-paper question on this topic",
-      "Mark strictly, then re-read only the marks you lost"
+      "Contribution per unit = selling price − variable cost per unit.",
+      "Break-even output (units) = fixed costs ÷ contribution per unit.",
+      "On a chart, the total revenue and total cost lines cross at break-even.",
+      "Margin of safety = actual (or budgeted) output − break-even output.",
+      "State assumptions (constant price, linear costs) when evaluating."
     ]
   },
-  "faq": [
+  "flashcards": [
     {
-      "q": "Is this Business Studies Costs, scale of production and break-even analysis lesson free?",
-      "a": "Yes — every topic in our 7115 course is free. MarkScheme offers free past-paper marking so you can turn notes into marks."
+      "front": "What is break-even output?",
+      "back": "The level of output at which total revenue equals total cost — zero profit and zero loss."
     },
     {
-      "q": "Which past papers cover 4.2?",
-      "a": "Scroll to the past-paper section on this page — we surface real Cambridge questions tagged to 4.2 from our mark-scheme library."
+      "front": "Break-even formula (units)?",
+      "back": "Break-even output = fixed costs ÷ contribution per unit."
+    },
+    {
+      "front": "What is contribution per unit?",
+      "back": "Selling price minus variable cost per unit — the amount each unit contributes toward fixed costs and profit."
+    },
+    {
+      "front": "What is margin of safety (units)?",
+      "back": "Actual or budgeted output minus break-even output — how far sales can fall before the business makes a loss."
+    },
+    {
+      "front": "Margin of safety as a percentage?",
+      "back": "(Actual output − break-even output) ÷ actual output × 100."
+    },
+    {
+      "front": "Output for a target profit?",
+      "back": "(Fixed costs + target profit) ÷ contribution per unit."
+    },
+    {
+      "front": "What does the break-even chart show?",
+      "back": "Fixed costs (horizontal), total cost (FC + variable costs), and total revenue — intersection of TR and TC is break-even."
+    },
+    {
+      "front": "Key assumption of break-even analysis?",
+      "back": "Selling price and variable cost per unit are constant; costs behave linearly with output."
+    },
+    {
+      "front": "Why is a higher margin of safety desirable?",
+      "back": "It means the business can absorb a fall in sales before hitting losses — lower risk."
+    },
+    {
+      "front": "Limitation of break-even for multi-product firms?",
+      "back": "Assumes a single product or constant sales mix — unrealistic when product mix changes."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why use contribution costing for break-even, not full costing?",
+      "a": "Break-even is a short-run decision tool. Only variable costs change with output; fixed costs are covered by total contribution. Full (absorption) costing spreads overheads into unit cost and is not appropriate for break-even calculations."
+    },
+    {
+      "q": "Can break-even be expressed in revenue (£) as well as units?",
+      "a": "Yes. Break-even revenue = fixed costs ÷ contribution-to-sales ratio (contribution per unit ÷ selling price). Examiners often ask for units; know both forms."
+    },
+    {
+      "q": "What if contribution per unit is zero or negative?",
+      "a": "If SP ≤ VC, each unit sold loses money on variable costs alone — break-even is impossible at that price. The business must raise price or cut variable costs before break-even analysis is meaningful."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to your **free Business Studies** lesson on **Costs, scale of production and break-even analysis** (4.2). This is syllabus point 4.2 on **Paper 2 (Case Study)** — structured like a premium revision course, with past-paper practice built in."
+      "content": "Break-even analysis (5.4.4) is one of the most examined calculations in **7115 AS** finance. Examiners expect you to **state the formula**, **show working**, **interpret a chart**, and **evaluate assumptions** — often in the same question. Link it back to **contribution costing** (5.4.2): break-even only works when you correctly separate fixed and variable costs."
+    },
+    {
+      "type": "heading",
+      "content": "Contribution and the break-even formula"
+    },
+    {
+      "type": "text",
+      "content": "Before calculating break-even, find **contribution per unit**:\n\n**Contribution per unit = selling price − variable cost per unit**\n\nTotal contribution from all units sold must cover **fixed costs** before any profit is made. At break-even, total contribution exactly equals fixed costs."
+    },
+    {
+      "type": "formula",
+      "content": "Break-even output (units) = $\\frac{\\text{Fixed costs}}{\\text{Contribution per unit}}$\n\nBreak-even revenue = $\\frac{\\text{Fixed costs}}{\\text{Contribution per unit} \\div \\text{Selling price}}$ (or FC ÷ C/S ratio)"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Master the vocabulary examiners use in mark schemes for Costs, scale of production and break-even analysis",
-        "Know which paper (P2) tests this topic most often",
-        "Practise at least one official past-paper question after reading",
-        "Use “Explain simpler” below if the main lesson feels too advanced"
+        "**Common error:** Using full (absorption) unit cost instead of variable cost — always deduct only variable costs from selling price.",
+        "**Units matter:** Examiners often give fixed costs in £000 and VC in £ per unit — convert consistently before dividing.",
+        "**Zero contribution:** If contribution per unit is zero, break-even is undefined — the price only covers variable costs."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The break-even chart"
+    },
+    {
+      "type": "text",
+      "content": "A break-even chart plots **cost and revenue against output** (units on the x-axis, £ on the y-axis):\n\n1. **Fixed costs** — a horizontal line (costs that do not change with output).\n2. **Total cost** — starts at fixed costs and slopes upward (FC + total variable costs).\n3. **Total revenue** — starts at the origin and slopes upward (price × quantity).\n\nThe **break-even point** is where TR and TC intersect. The **profit region** is to the right of break-even (TR > TC); the **loss region** is to the left."
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing or interpreting a chart in an exam, label all three lines (FC, TC, TR), mark the break-even point, and shade or annotate the profit and loss regions. Examiners award marks for clear, correctly labelled diagrams."
+    },
+    {
+      "type": "heading",
+      "content": "Margin of safety"
+    },
+    {
+      "type": "text",
+      "content": "The **margin of safety** measures how far actual (or budgeted) sales can fall before the business starts making a loss. A **larger** margin of safety means **lower risk** — the firm has a buffer against falling demand."
+    },
+    {
+      "type": "formula",
+      "content": "Margin of safety (units) = Actual output − Break-even output\n\nMargin of safety (%) = $\\frac{\\text{Actual output} − \\text{Break-even output}}{\\text{Actual output}} \\times 100$"
+    },
+    {
+      "type": "heading",
+      "content": "Target profit"
+    },
+    {
+      "type": "text",
+      "content": "Managers often need output for a **target profit**, not just break-even. Total contribution must cover fixed costs **and** the required profit."
+    },
+    {
+      "type": "formula",
+      "content": "Output for target profit = $\\frac{\\text{Fixed costs} + \\text{Target profit}}{\\text{Contribution per unit}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Nova Crafts sells handmade lamps for $48 each. Variable cost is $18 per lamp and fixed costs are $12 000 per month.\n\n(a) Calculate the break-even output in units.\n(b) The business currently sells 450 lamps per month. Calculate the margin of safety in units and as a percentage.",
+      "solution": "(a) **Contribution per unit**\nContribution = $48 − $18 = **$30** per lamp\n\n**Break-even output**\nBE = $12 000 ÷ $30 = **400 units** per month\n\n(b) **Margin of safety (units)**\nMoS = 450 − 400 = **50 units**\n\n**Margin of safety (%)**\nMoS% = (50 ÷ 450) × 100 = **11.1%** (to 1 d.p.)\n\nThe business can afford a fall of 50 units (11.1%) before reaching break-even."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the same data (SP $48, VC $18, FC $12 000, contribution $30 per unit):\n\nCalculate the output required to achieve a monthly profit of $3 000.",
+      "solution": "**Output for target profit**\nRequired contribution = Fixed costs + Target profit\n= $12 000 + $3 000 = $15 000\n\nOutput = $15 000 ÷ $30 = **500 units** per month\n\nCheck: at 500 units, contribution = 500 × $30 = $15 000. After fixed costs ($12 000), profit = $3 000 ✓"
+    },
+    {
+      "type": "heading",
+      "content": "Assumptions and limitations"
+    },
+    {
+      "type": "text",
+      "content": "Break-even analysis is useful for **short-run decisions** (pricing, launch, capacity) but relies on simplifying assumptions. In evaluation questions, name the assumption and explain why it may not hold in reality."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Constant selling price** — discounts, competition, or bulk pricing may change the price per unit.",
+        "**Constant variable cost per unit** — bulk buying or overtime may change VC as output rises.",
+        "**Fixed costs stay fixed** — step costs (e.g. new machinery) can jump at higher output.",
+        "**Single product or constant mix** — multi-product firms need weighted average contribution.",
+        "**Linear relationships** — real cost/revenue curves may not be straight lines."
       ]
     },
     {
       "type": "examTip",
-      "content": "Cambridge 7115 rewards answers tied to the case business — name the firm, quote stimulus data, and balance advantages against disadvantages. On Paper 2 (Case Study), Costs, scale of production and break-even analysis often appears as part of a longer structured or case question."
+      "content": "In **evaluate** or **discuss** questions, do not only list limitations — link each to the business context in the case study. For example: \"A single selling price is assumed, but the case mentions online discounts, so actual break-even may be higher than calculated.\""
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on Costs, scale of production and break-even analysis",
+      "label": "Mark a break-even question",
       "href": "/mark?subject=7115&topic=4.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "7115 marking & past papers",
-          "href": "/subjects/7115"
+          "label": "5.4.2 Contribution costing (prerequisite)",
+          "href": "/courses/9609/5-4-2-approaches-to-costing-full-contribution"
         },
         {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        },
-        {
-          "label": "Official Cambridge syllabus",
-          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/"
+          "label": "7115 course index",
+          "href": "/courses/9609"
         }
       ]
     }
-  ]
+  ],
+  "portedFrom": {
+    "subjectCode": "9609",
+    "slug": "5-4-4-break-even-analysis",
+    "level": "A-Level"
+  },
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Break-even analysis",
+    "embedUrl": "https://www.geogebra.org/classic?material=ew4cbg8j",
+    "launchUrl": "https://www.geogebra.org/classic?material=ew4cbg8j",
+    "hint": "Adjust fixed costs, variable cost per unit, and price — watch TR and TC cross at break-even (9609 5.4.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "fc",
+        "label": "Fixed costs",
+        "min": 4000,
+        "max": 20000,
+        "step": 1000,
+        "default": 12000,
+        "unit": "$"
+      },
+      {
+        "id": "sp",
+        "label": "Selling price",
+        "min": 24,
+        "max": 72,
+        "step": 2,
+        "default": 48,
+        "unit": "$"
+      },
+      {
+        "id": "vc",
+        "label": "Variable cost / unit",
+        "min": 8,
+        "max": 36,
+        "step": 1,
+        "default": 18,
+        "unit": "$"
+      },
+      {
+        "id": "actual",
+        "label": "Actual output",
+        "min": 100,
+        "max": 800,
+        "step": 25,
+        "default": 450,
+        "unit": "units"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Break-even output = fixed costs ÷ contribution per unit.",
+        "embedHint": "Set FC and unit variable cost in the sim — read contribution."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "On the chart, total revenue and total cost lines cross at break-even.",
+        "embedHint": "Watch the TR/TC intersection as you change price."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Margin of safety = actual output − break-even output.",
+        "embedHint": "Drag quantity past break-even — read the profit region."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Assumes constant price and linear variable costs.",
+        "embedHint": "Test limits — change price and see how BE shifts."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Assumes constant price and linear variable costs.",
+        "embedHint": "Test limits — change price and see how BE shifts."
+      }
+    ]
+  }
 }

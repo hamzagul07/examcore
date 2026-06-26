@@ -53,6 +53,24 @@ export const VISUAL_SLUG_ALIASES: Record<string, string> = {
 
   // ── 9702 ──────────────────────────────────────────────────────────────────
   '8-2-diffraction': '8-4-the-diffraction-grating',
+
+  // ── 2281 O-Level Economics → 9708 catalog visuals ───────────────────────
+  '2-3-demand': '2-1-demand-and-supply-curves',
+  '2-5-price-determination': '2-4-the-interaction-of-demand-and-supply',
+  '2-7-price-elasticity-of-demand': '2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand',
+  '2-8-price-elasticity-of-supply': '2-3-price-elasticity-of-supply',
+  '1-4-production-possibility-curve-diagrams': '1-5-production-possibility-curves',
+  '2-10-market-failure': '3-1-reasons-for-government-intervention-in-markets',
+  '4-3-fiscal-policy': '5-2-fiscal-policy',
+  '4-8-inflation-and-deflation': '4-6-price-stability',
+
+  // ── 7115 O-Level Business → 9609 catalog visuals ────────────────────────
+  '3-3-marketing-mix': '3-3-1-the-elements-of-the-marketing-mix-the-4ps',
+  '4-2-costs-scale-of-production-and-break-even-analysis': '5-4-4-break-even-analysis',
+  '2-1-motivating-workers': '2-2-1-motivation-as-a-tool-of-management-and-leadership',
+  '5-3-income-statements': '10-1-1-statement-of-profit-or-loss',
+  '1-5-business-objectives-and-stakeholder-objectives': '1-5-1-business-stakeholders',
+  '3-1-marketing-and-the-market': '3-1-1-the-role-of-marketing-and-its-relationship-with-other-business-activities',
 }
 
 export function resolveVisualCatalogSlug(slug: string): string {

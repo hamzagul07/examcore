@@ -4,74 +4,301 @@
   "title": "Market failure",
   "paper": "P2",
   "paperName": "Paper 2 (Structured Questions)",
-  "status": "outline",
-  "summary": "Free O-Level Economics course lesson: Market failure (2.10). Premium-quality notes, simpler explanation mode, and real Cambridge past-paper questions.",
-  "durationMin": 12,
+  "status": "premium",
+  "summary": "2281 O-Level — market failure: externalities, public goods, and information gaps.",
+  "durationMin": 22,
+  "updated": "2026-06-26",
   "learningObjectives": [
-    "Understand Market failure for syllabus 2.10",
-    "Recognise how Paper 2 (Structured Questions) tests this topic",
-    "Apply the concept in a real past-paper question"
+    "Explain types of market failure.",
+    "Draw externality diagrams.",
+    "Describe public goods problem.",
+    "Outline information failure examples."
   ],
   "simpleExplanation": {
-    "title": "Market failure — explained simply",
-    "summary": "Think of market failure as one building block in your Paper 2 (Structured Questions) toolkit. Examiners rarely ask for memorised paragraphs — they want you to apply the idea in a structured answer.",
-    "analogy": "If the full lesson feels dense, focus on one past-paper question: read the mark scheme after attempting it — that shows what Cambridge actually rewards.",
+    "title": "When markets alone fail",
+    "summary": "Government intervenes when free markets produce inefficient or unfair outcomes due to externalities, missing markets, or bad information.",
     "steps": [
-      "Read the definition and symbols for Market failure",
-      "Sketch a quick diagram or equation if the topic is visual",
-      "Attempt one real past-paper question on this topic",
-      "Mark strictly, then re-read only the marks you lost"
+      "Negative externality: overproduction.",
+      "Positive externality: underproduction.",
+      "Public goods: free-rider problem.",
+      "Asymmetric information: adverse selection."
     ]
   },
-  "faq": [
+  "flashcards": [
     {
-      "q": "Is this Economics Market failure lesson free?",
-      "a": "Yes — every topic in our 2281 course is free. MarkScheme offers free past-paper marking so you can turn notes into marks."
+      "front": "What is market failure?",
+      "back": "When free markets fail to allocate resources efficiently — output differs from the social optimum."
     },
     {
-      "q": "Which past papers cover 2.10?",
-      "a": "Scroll to the past-paper section on this page — we surface real Cambridge questions tagged to 2.10 from our mark-scheme library."
+      "front": "Negative externality effect on output?",
+      "back": "MSC > MPC → market overproduces — too much output compared to social optimum."
+    },
+    {
+      "front": "Positive externality effect on output?",
+      "back": "MSB > MPB → market underproduces — too little output compared to social optimum."
+    },
+    {
+      "front": "Why are public goods not supplied by markets?",
+      "back": "Non-excludability causes free-rider problem — no profit incentive for private firms."
+    },
+    {
+      "front": "What is information failure?",
+      "back": "Consumers or producers lack full information — e.g. asymmetric information in healthcare or insurance."
+    },
+    {
+      "front": "Where is the social optimum on an externality diagram?",
+      "back": "Where MSC = MSB (or MSB = MSC for negative production externality at Q where marginal social cost equals marginal social benefit)."
+    },
+    {
+      "front": "What is market failure?",
+      "back": "A situation where the free market mechanism fails to achieve an allocatively efficient allocation of resources, resulting in a net loss of social welfare."
+    },
+    {
+      "front": "What is the 'free-rider problem'?",
+      "back": "A market failure that occurs when individuals can consume a good or service without paying for it. This is common with non-excludable goods (public goods) and removes the profit incentive for private provision."
+    },
+    {
+      "front": "Define a merit good.",
+      "back": "A good that is considered socially desirable but is under-consumed by the free market. This is often due to information failure, where individuals do not fully appreciate the long-term private benefits."
+    },
+    {
+      "front": "What is meant by 'internalising an externality'?",
+      "back": "An economic policy that aims to make the producer or consumer pay for the external costs they generate. For a negative externality, this could be a tax that increases the private cost to the level of the social cost."
+    },
+    {
+      "front": "What is asymmetric information?",
+      "back": "A type of information failure where one party in an economic transaction has more or better information than the other party, leading to a potential misallocation of resources."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to your **free Economics** lesson on **Market failure** (2.10). This is syllabus point 2.10 on **Paper 2 (Structured Questions)** — structured like a premium revision course, with past-paper practice built in."
+      "content": "**Reasons for intervention** (3.1) builds on **7.3 efficiency**. Always show **MSC/MPC or MSB/MPB** on diagrams."
+    },
+    {
+      "type": "heading",
+      "content": "The Fundamental Reason: Market Failure"
+    },
+    {
+      "type": "text",
+      "content": "The primary justification for government intervention in a market economy is market failure. This occurs when the free market, operating through the price mechanism, fails to allocate resources efficiently, leading to a loss of economic welfare. Allocative efficiency is achieved where the resources used to produce a good or service (marginal social cost) are equal to the value consumers place on it (marginal social benefit). When markets fail, there is a divergence between private and social costs or benefits, resulting in either over-production or under-production of certain goods and services. The government intervenes to correct this misallocation and move the market outcome closer to the socially optimal level, thereby reducing the net welfare loss to society."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Master the vocabulary examiners use in mark schemes for Market failure",
-        "Know which paper (P2) tests this topic most often",
-        "Practise at least one official past-paper question after reading",
-        "Use “Explain simpler” below if the main lesson feels too advanced"
+        "Market failure is the inability of the free market to achieve an allocatively efficient outcome.",
+        "It results in a net welfare loss for society.",
+        "The core issue is a divergence between private and social costs/benefits.",
+        "Government intervention aims to correct the misallocation of resources."
       ]
     },
     {
       "type": "examTip",
-      "content": "Cambridge 2281 rewards clear definitions, labelled diagrams, and applied examples from the data. On Paper 2 (Structured Questions), Market failure often appears as MC items or structured questions — plan before writing longer answers."
+      "content": "In your essays, always define market failure as the starting point for justifying any form of government intervention. Use a diagram showing the welfare loss triangle to illustrate the problem before discussing the solution."
+    },
+    {
+      "type": "heading",
+      "content": "Correcting Negative Externalities"
+    },
+    {
+      "type": "text",
+      "content": "A major reason for intervention is the existence of negative externalities, or external costs. These are harmful third-party effects that occur from the production or consumption of a good, where the costs are not borne by the producer or consumer. For example, a factory polluting a river imposes clean-up costs on society. In this case, the marginal social cost (MSC) of production is higher than the marginal private cost (MPC). The free market produces where MPC = MPB (Marginal Private Benefit), leading to over-production compared to the socially optimal level where MSC = MSB (Marginal Social Benefit). This over-production results in a deadweight welfare loss. Governments intervene using methods like indirect taxes or regulations to 'internalise the externality' and reduce output."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Negative externalities are costs imposed on third parties.",
+        "They cause the marginal social cost to exceed the marginal private cost (MSC > MPC).",
+        "The free market leads to over-production and a welfare loss.",
+        "Government intervention aims to reduce production to the socially optimal level."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When analysing negative externalities, always draw a diagram showing MSC above MPC. Clearly label the market equilibrium, the socially optimal equilibrium, and shade the area of welfare loss. This is a fundamental diagram for this topic."
+    },
+    {
+      "type": "heading",
+      "content": "Addressing the Under-provision of Public Goods"
+    },
+    {
+      "type": "text",
+      "content": "Public goods represent a complete form of market failure. They are defined by two key characteristics: non-rivalry (one person's consumption does not diminish the amount available for others) and non-excludability (it is impossible to prevent non-payers from benefiting). Examples include national defence and street lighting. Due to non-excludability, firms cannot charge consumers, leading to the 'free-rider problem' where individuals can benefit without contributing. Consequently, there is no profit incentive for private firms to supply public goods, resulting in their non-provision by the market. This necessitates government intervention, where the state provides the good directly and finances it through compulsory taxation, ensuring everyone contributes."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Public goods are non-rivalrous and non-excludable.",
+        "Non-excludability leads to the free-rider problem.",
+        "The private sector lacks the profit motive to provide public goods, causing 'missing markets'.",
+        "The government must provide these goods and fund them via taxation."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be precise with your definitions. Do not confuse 'public goods' (like national defence) with 'goods provided by the public sector' (like healthcare). Healthcare is excludable and rivalrous, making it a private good, but it is often publicly provided because it is a merit good."
+    },
+    {
+      "type": "heading",
+      "content": "Overcoming Information Gaps"
+    },
+    {
+      "type": "text",
+      "content": "Efficient market outcomes rely on the assumption that consumers and producers have perfect information. When this is not the case, information gaps (or asymmetric information) can lead to market failure. This is particularly relevant for merit and demerit goods. Merit goods, like education or pensions, are under-consumed because individuals may not fully perceive the long-term private benefits. Conversely, demerit goods, such as tobacco or high-sugar foods, are over-consumed as individuals may be unaware of or ignore the long-term harms. The government intervenes to correct this misallocation by providing information (e.g., health campaigns), subsidising merit goods to encourage consumption, and taxing or regulating demerit goods to discourage consumption."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Information gaps occur when one party in a transaction has more or better information than the other.",
+        "Merit goods are under-consumed due to imperfect information about their benefits.",
+        "Demerit goods are over-consumed due to imperfect information about their costs.",
+        "Government intervention aims to improve information and adjust consumption levels."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Link information failure directly to the concepts of merit and demerit goods. Explain that the market fails because consumers make 'irrational' decisions based on imperfect information, leading their private demand to not reflect the true benefit or cost."
+    },
+    {
+      "type": "workedExample",
+      "question": "A chemical factory emits pollution. At the free market output of 100 units, MPC = £8 and MSC = £14. Marginal external cost = £6.\n\nExplain why this is market failure and state the socially optimal output.",
+      "solution": "**Market failure:** Firms produce where **MPC = MPB** (private optimum) at Q = 100. They ignore the **£6 external cost** borne by society.\n\n**Social cost:** MSC = MPC + MEC = £8 + £6 = **£14** at this output — exceeds private cost.\n\n**Result:** **Overproduction** — 100 units is above the social optimum where **MSC = MSB**.\n\n**Socially optimal output:** Where MSC = MSB, which occurs at a **lower Q** (e.g. 70 units on a standard diagram). The welfare loss triangle lies between Q* and Q_market.\n\n**Policy:** Indirect tax of **£6 per unit** (Pigouvian tax) internalises the externality — shifts supply left to the social optimum (→ 3.2)."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on Market failure",
+      "label": "Mark a market failure question",
       "href": "/mark?subject=2281&topic=2.10"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "2281 marking & past papers",
-          "href": "/subjects/2281"
+          "label": "1.6 Classification of goods and services",
+          "href": "/courses/9708/1-6-classification-of-goods-and-services"
         },
         {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "3.2 Methods of government intervention",
+          "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets"
         },
         {
-          "label": "Official Cambridge syllabus",
-          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/"
+          "label": "7.4 Externalities and social costs",
+          "href": "/courses/9708/7-4-private-costs-and-benefits-externalities-and-social-costs-and-benefits"
+        },
+        {
+          "label": "2281 course index",
+          "href": "/courses/9708"
         }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Negative externality: MSC > MPC.",
+        "embedHint": "Overproduction vs social optimum."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Positive externality: MSB > MPB.",
+        "embedHint": "Underprovision of merit goods."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Public goods not supplied by market.",
+        "embedHint": "State provision or funding."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Information failure: asymmetric information.",
+        "embedHint": "Healthcare, financial markets."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Does 'market failure' mean a company is failing and going bankrupt?",
+      "a": "No, this is a common misconception. Market failure is not about a firm's profitability. A highly profitable company can be a major cause of market failure if, for example, it creates significant pollution (a negative externality). Market failure refers to the inefficiency of the market outcome from society's perspective, not the commercial success or failure of individual businesses."
+    },
+    {
+      "q": "Are all goods provided by the government 'public goods'?",
+      "a": "No, and this is a crucial distinction. A 'public good' has specific economic characteristics: it is non-rivalrous and non-excludable (e.g., national defence). Many goods provided by the government, like state education or national healthcare, are not true public goods. They are rivalrous (a place in a class is limited) and excludable (a school could charge fees). These are better classified as merit goods that the government provides to correct under-consumption."
+    },
+    {
+      "q": "If a market is failing, does the government always have to intervene?",
+      "a": "Not necessarily. Government intervention is only justified if the benefits of the intervention outweigh the costs. Sometimes, government intervention can lead to 'government failure', where the intervention itself causes a more inefficient outcome. This could be due to high administrative costs, political self-interest, or imperfect information on the government's part. Therefore, economists often weigh the potential for government failure against the existing market failure before recommending intervention."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Private Goods and Public Goods",
+    "columns": [
+      "Feature",
+      "Private Good",
+      "Public Good"
+    ],
+    "rows": [
+      {
+        "property": "Rivalry in Consumption",
+        "cells": [
+          "Rivalrous: One person's consumption prevents another from consuming the same unit.",
+          "Non-rivalrous: One person's consumption does not diminish the amount available for others."
+        ]
+      },
+      {
+        "property": "Excludability",
+        "cells": [
+          "Excludable: It is possible to prevent non-payers from consuming the good.",
+          "Non-excludable: It is impossible or prohibitively expensive to prevent non-payers from consuming the good."
+        ]
+      },
+      {
+        "property": "Provision Mechanism",
+        "cells": [
+          "Provided by the private sector via the price mechanism.",
+          "Not provided by the private sector; must be provided by the government."
+        ]
+      },
+      {
+        "property": "Key Economic Problem",
+        "cells": [
+          "No major problem; the market is generally efficient in its provision.",
+          "The 'free-rider problem' leads to a missing market."
+        ]
+      },
+      {
+        "property": "Example",
+        "cells": [
+          "A chocolate bar, a car, a haircut.",
+          "National defence, street lighting, a lighthouse."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true,
+  "portedFrom": {
+    "subjectCode": "9708",
+    "slug": "3-1-reasons-for-government-intervention-in-markets",
+    "level": "A-Level"
+  },
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Market failure",
+    "embedUrl": "https://www.geogebra.org/classic?material=gvkgx8ga",
+    "launchUrl": "https://www.geogebra.org/classic?material=gvkgx8ga",
+    "hint": "Externalities, public goods, and information failure (9708 3.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

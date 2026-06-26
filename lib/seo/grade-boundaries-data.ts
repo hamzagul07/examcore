@@ -1,6 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import type { OfficialBoundaries } from '@/lib/seo/grade-boundaries'
+import { isJune2026Session, JUNE_2026_SERIES } from '@/lib/seo/results-day'
+
+export { JUNE_2026_SERIES }
 
 /**
  * Server-only loader for verified official grade-threshold data. Kept separate
@@ -26,4 +29,17 @@ export function getSubjectsWithOfficialData(): string[] {
     .readdirSync(DATA_DIR)
     .filter((f) => f.endsWith('.json'))
     .map((f) => f.replace(/\.json$/, ''))
+}
+
+export function hasJune2026Session(code: string): boolean {
+  const data = getOfficialBoundaries(code)
+  return data?.sessions.some((s) => isJune2026Session(s.session)) ?? false
+}
+
+export function getSubjectsWithJune2026Data(): string[] {
+  return getSubjectsWithOfficialData().filter((code) => hasJune2026Session(code))
+}
+
+export function anyJune2026DataAvailable(): boolean {
+  return getSubjectsWithJune2026Data().length > 0
 }

@@ -22,6 +22,7 @@ import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
+import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -49,7 +50,8 @@ export default async function BlogPostPage({ params }: Props) {
   const related = getRelatedPosts(slug, isIbGuideSlug(slug) ? 5 : 3)
   const cluster = getClusterForSlug(slug)
   const subjectCode = subjectCodeFromBlogSlug(slug)
-  const ctaVariant = isGradeBoundaryGuideSlug(slug)
+  const showResultsDayBanner = isGradeBoundaryGuideSlug(slug)
+  const ctaVariant = showResultsDayBanner
     ? 'grade-boundaries'
     : isIbIaGuideSlug(slug)
       ? 'ib-ia'
@@ -72,6 +74,9 @@ export default async function BlogPostPage({ params }: Props) {
           content={post.content}
           date={post.updated ?? post.date}
         />
+        {showResultsDayBanner ? (
+          <ResultsDayBanner subjectCode={subjectCode} className="mb-8" />
+        ) : null}
         <BlogAuthorByline authorId={post.author} />
 
         <div className="ms-blog-layout ec-blog-prose ec-fanout-prose mt-10 min-w-0">

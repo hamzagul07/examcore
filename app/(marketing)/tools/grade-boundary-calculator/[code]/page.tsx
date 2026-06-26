@@ -7,6 +7,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
+import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import {
   getMarkingSubjectCodes,
   getMarkingSubjectPages,
@@ -89,6 +90,8 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
       />
 
       <MarketingSection className="!pt-0">
+        <ResultsDayBanner subjectCode={code} className="mb-8" />
+
         <aside className="ms-quick-answer">
           <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
             Quick answer

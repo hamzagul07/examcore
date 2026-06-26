@@ -16,6 +16,7 @@ import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
+import { GradeBoundaryHubPanel } from '@/components/seo/GradeBoundaryHubPanel'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
 import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
@@ -129,6 +130,8 @@ export default async function ClusterGuidePage({ params }: Props) {
       </MarketingHero>
 
       <MarketingSection className="!pt-0">
+        {isGradeBoundaries && <GradeBoundaryHubPanel />}
+
         {isGradeBoundaries && (
           <div className="mb-10 flex flex-wrap gap-3">
             <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
@@ -136,6 +139,9 @@ export default async function ClusterGuidePage({ params }: Props) {
             </Link>
             <Link href="/blog/how-to-read-cambridge-grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
               How boundaries work
+            </Link>
+            <Link href="/blog/cambridge-results-day-august-2026-guide" className="ec-btn-ghost ec-btn-ghost--sm">
+              Results day 2026
             </Link>
           </div>
         )}

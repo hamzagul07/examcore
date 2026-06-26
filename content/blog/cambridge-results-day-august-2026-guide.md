@@ -2,6 +2,7 @@
 title: Cambridge results day August 2026 — dates, portal access & what to do next
 description: AS/A-Level results 11 August, IGCSE and O-Level 18 August 2026 — how to check grades, read your statement, and plan retakes or remarks without panic.
 date: 2026-06-10
+updated: 2026-06-22
 category: editorial
 featured: true
 keywords: Cambridge results day 2026, IGCSE results August 2026, A-Level results 2026, myresults.cie.org.uk, statement of results
@@ -24,6 +25,15 @@ Results day is a **timestamp**, not a verdict on your future. Cambridge releases
 Local display time varies — British Council centres often publish **1pm local time** in some regions. Your school may release statements slightly later even when Cambridge has uploaded grades.
 
 Source: [Cambridge key dates June 2026 series (international)](https://www.cambridgeinternational.org/).
+
+## Grade thresholds vs your grades
+
+| What | When (June 2026 series) | Where on MarkScheme |
+|------|-------------------------|---------------------|
+| **Statement of results** (grades) | AS & A Level **11 August**; IGCSE/O Level **18 August** | Your school portal / [myresults.cie.org.uk](https://myresults.cie.org.uk) |
+| **Grade threshold tables** (raw marks per component) | Typically **~13 August** for the June series | [Grade boundaries hub](/guides/grade-boundaries) · [calculator](/tools/grade-boundary-calculator) |
+
+Threshold tables explain how raw marks mapped to grades for the cohort — they are **not** a forecast for next year’s exams. Once Cambridge publishes June 2026 PDFs, we load verified component marks into each [syllabus calculator](/tools/grade-boundary-calculator) (starting with high-traffic subjects like [9702 Physics](/tools/grade-boundary-calculator/9702) and [9700 Biology](/tools/grade-boundary-calculator/9700)).
 
 ## How to access your results
 
@@ -126,7 +136,7 @@ Students apply through **schools or registered centres** via Cambridge Internati
 
 ### Do grade boundaries come out on results day?
 
-**Grade threshold tables** publish after results. They explain cohort-wide cut points — useful context, not a tool to predict next year’s exams.
+**Grades** and **grade threshold tables** are not always released at the same moment. For June 2026, AS & A Level **grades** publish **11 August**; **threshold tables** for the series typically follow around **13 August**. IGCSE and O Level **grades** publish **18 August**. Use our [grade boundaries hub](/guides/grade-boundaries) once thresholds are live.
 
 ### How do I practise for a resit now?
 

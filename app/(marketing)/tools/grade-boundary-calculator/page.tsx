@@ -7,6 +7,7 @@ import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
+import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import { getMarkingSubjectPages, buildSubjectPageCopy } from '@/lib/seo/programmatic-subjects'
 import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
 import type { CSSProperties } from 'react'
@@ -74,6 +75,7 @@ export default function GradeCalculatorPage() {
       />
 
       <MarketingSection className="!pt-0">
+        <ResultsDayBanner className="mb-10" />
         <GradeBoundaryCalculator />
 
         <div className="mt-12">

@@ -5,203 +5,225 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of practical electrical circuits, including electromotive force (e.m.f.), potential difference (p.d.), and internal resistance. It covers the analysis of simple series circuits and the practical determination of circuit quantities.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 2 — Practical circuits (10.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Define and differentiate between electromotive force (e.m.f.) and potential difference (p.d.).",
-    "Understand the concept of internal resistance and its effect on terminal p.d.",
-    "Apply Kirchhoff's laws to solve problems involving simple series circuits.",
-    "Describe how to use ammeters and voltmeters to measure current and voltage in a practical circuit."
+    "Explain and apply the concepts of electromotive force (e.m.f.) and internal resistance.",
+    "Apply Kirchhoff's First and Second Laws to analyse both simple and complex circuits.",
+    "Describe and calculate properties of series, parallel, and potential divider circuits, including sensor applications."
   ],
   "simpleExplanation": {
-    "title": "The Rules of the Electron Road",
-    "summary": "Think of a circuit as a racetrack for electrons. The battery is the starting boost, and components like resistors are obstacles that slow them down, using up their energy.",
-    "analogy": "Imagine a water park. A powerful pump (the battery) lifts water (charge) to the top of a slide, giving it potential energy. This is the e.m.f. As the water flows down various slides (resistors), it loses this potential energy, which is converted into splashes and fun (heat and light). The potential difference across a slide is the energy lost by the water going down that specific slide.",
+    "title": "Circuit Power & Control",
+    "summary": "Practical circuits are all about understanding how power sources deliver energy and how components share voltage and current. We'll explore internal losses, fundamental circuit rules, and clever ways to split voltage.",
+    "analogy": "Imagine a water pump (EMF) pushing water (charge) through pipes (wires). Some energy is lost inside the pump itself (internal resistance), so less pressure (voltage) reaches your external garden hose (load).",
     "steps": [
-      "A power supply provides the e.m.f. that drives charge around the circuit.",
-      "In series, the same current I flows through every component.",
-      "Potential difference (p.d.) is the energy per unit charge across a component.",
-      "Practical work: measure I and V, then calculate R = V/I for each resistor."
+      "Uncover how power sources have 'hidden' resistance that reduces available power.",
+      "Learn the universal rules (Kirchhoff's Laws) for current and voltage in any circuit.",
+      "See how components behave differently when connected in line (series) or side-by-side (parallel).",
+      "Discover how to 'share' a supply voltage precisely across parts of a circuit using potential dividers."
     ]
   },
   "flashcards": [
     {
-      "front": "What is electromotive force (e.m.f.)?",
-      "back": "The energy converted from a non-electrical form (e.g., chemical) to electrical energy per unit charge that passes through a source. It is the total energy supplied to the circuit per coulomb of charge. Symbol: ε, Unit: Volt (V) or JC⁻¹."
+      "front": "What is the fundamental difference between electromotive force (e.m.f.) and terminal potential difference (p.d.)?",
+      "back": "E.m.f. is the total energy supplied per unit charge by the source (including internal losses), while terminal p.d. is the voltage available across the external load after accounting for internal resistance."
     },
     {
-      "front": "What is potential difference (p.d.)?",
-      "back": "The energy converted from electrical energy to other forms (e.g., heat, light) per unit charge that passes between two points in a circuit. Symbol: V, Unit: Volt (V) or JC⁻¹."
+      "front": "Which conservation principles are embodied by Kirchhoff's First and Second Laws, respectively?",
+      "back": "Kirchhoff's First Law is based on the conservation of charge, and Kirchhoff's Second Law is based on the conservation of energy."
     },
     {
-      "front": "What is internal resistance?",
-      "back": "The resistance within a source of e.m.f. (like a battery or power supply) which causes a loss of energy or voltage as current flows through it. Symbol: r, Unit: Ohm (Ω)."
+      "front": "How does internal resistance affect the voltage delivered to an external load?",
+      "back": "Internal resistance causes a 'lost voltage' (v = Ir) internally, reducing the terminal potential difference (V = ε - v) available to the external load."
     },
     {
-      "front": "What are 'lost volts'?",
-      "back": "The potential difference across the internal resistance of a source of e.m.f. It is the energy 'lost' per unit charge inside the battery itself. Calculated as `Ir`, where `I` is the current and `r` is the internal resistance."
+      "front": "What is the main application of a potential divider circuit?",
+      "back": "To split a larger supply voltage into a smaller, desired output voltage, or to create a variable output voltage using a potentiometer or sensor."
     },
     {
-      "front": "What is terminal potential difference (p.d.)?",
-      "back": "The potential difference measured across the terminals of a source of e.m.f. when a current is being supplied. It is equal to the e.m.f. minus the lost volts (`V = ε - Ir`)."
+      "front": "When calculating total resistance, what is the key difference in approach for series versus parallel circuits?",
+      "back": "For series circuits, resistances add directly (R_total = ΣR_i); for parallel circuits, the reciprocals of resistances add (1/R_total = Σ1/R_i)."
     },
     {
-      "front": "How does an ideal ammeter differ from a real ammeter?",
-      "back": "An ideal ammeter has zero resistance so that it does not affect the current it is measuring. A real ammeter has a very small, but non-zero, resistance."
+      "front": "What are 'lost volts' in a practical circuit?",
+      "back": "'Lost volts' refer to the potential difference dropped across the internal resistance of a power source when current flows, causing energy dissipation within the source itself."
     },
     {
-      "front": "How does an ideal voltmeter differ from a real voltmeter?",
-      "back": "An ideal voltmeter has infinite resistance so that no current flows through it, ensuring it doesn't alter the potential difference it is measuring. A real voltmeter has a very high, but finite, resistance."
+      "front": "State Kirchhoff's First Law.",
+      "back": "The sum of currents entering any junction in a circuit must equal the sum of currents leaving that junction, reflecting conservation of charge."
     },
     {
-      "front": "State Kirchhoff's Second Law in the context of a simple series circuit.",
-      "back": "The sum of the e.m.f.s around a closed loop is equal to the sum of the potential differences around the loop. For a simple series circuit: `ε = ΣIR`."
-    },
-    {
-      "front": "Common Trap: Is current 'used up' in a resistor?",
-      "back": "No. Current (the rate of flow of charge) is conserved in a series circuit. It is the same at all points. It is electrical potential energy that is converted and 'used up' by the resistor."
-    },
-    {
-      "front": "When is the terminal p.d. equal to the e.m.f.?",
-      "back": "The terminal p.d. is equal to the e.m.f. only when no current is flowing from the source (i.e., in an open circuit, where `I = 0`). This is because there are no 'lost volts' (`Ir = 0`)."
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the real difference between e.m.f. and p.d.? They are both measured in volts.",
-      "a": "Think of it this way: e.m.f. is the 'energy input' per charge, and p.d. is the 'energy output' per charge. A battery provides an e.m.f. of, say, 9V, meaning it gives 9 Joules of energy to every Coulomb of charge. When that Coulomb of charge moves through a resistor, it might 'drop off' 5 Joules of energy as heat. The p.d. across that resistor is therefore 5V. E.m.f. is the cause of the current, while p.d. is the effect of the current flowing through a component."
-    },
-    {
-      "q": "Why does a voltmeter have high resistance and an ammeter have low resistance?",
-      "a": "A voltmeter is connected in parallel to measure the p.d. between two points. To get an accurate reading, you don't want to change the circuit you are measuring. By having a very high resistance, the voltmeter ensures that negligible current is diverted through it, leaving the original circuit's p.d. largely unchanged. Conversely, an ammeter is connected in series to measure the current flowing through a point. To avoid affecting the flow it's trying to measure, it must have a very low resistance so it doesn't add significant opposition to the current."
+      "front": "How does the total current from a source behave in a parallel circuit?",
+      "back": "The total current from the source divides among the parallel branches, with the sum of currents in each branch equalling the total current entering the parallel combination."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "At GCSE level, we often treated batteries and power supplies as 'ideal'. Now, at A-Level, we delve into the realities of practical circuits. We will explore why the voltage a battery provides can drop when it's working hard and how to account for this in our calculations. This topic bridges the gap between theoretical circuit diagrams and what you will actually measure in the laboratory."
+      "content": "Welcome to the world of **practical circuits**! This lesson dives into how real-world power sources behave, the fundamental **Kirchhoff's Laws** governing current and voltage, and how we combine components in **series** or **parallel**. You'll also learn the clever trick of **potential dividers** to get just the right voltage where you need it, even with **sensors**. Let's get started! This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **10.1**."
     },
     {
       "type": "heading",
-      "content": "E.M.F. and Potential Difference: The Driving Force and Energy Drop"
+      "content": "Electromotive Force and Internal Resistance"
     },
     {
       "type": "text",
-      "content": "The two most fundamental concepts for understanding energy in circuits are electromotive force (e.m.f.) and potential difference (p.d.). While both are measured in volts, they describe different processes. The e.m.f., symbol $ε$, is the energy source. It represents the work done by the power supply (e.g., a battery) to move a unit of charge around the entire circuit. Think of it as the total energy given to each coulomb of charge. Potential difference, symbol $V$, represents the energy converted by a unit of charge as it passes through a component. It's the energy 'dropped off' by the charge to do work, like lighting a bulb or heating a resistor."
+      "content": "Every power source, like a battery or power pack, has an **electromotive force (e.m.f., ε)**. This is the total electrical energy it supplies per unit charge to drive current around a complete circuit. It’s like the 'push' for the charges, representing the maximum potential difference the source can provide."
+    },
+    {
+      "type": "formula",
+      "content": "$\\varepsilon = \\frac{W}{Q}$ (where W is energy/work done, Q is charge)"
+    },
+    {
+      "type": "text",
+      "content": "No power source is perfect. Inside, it has a small but significant **internal resistance (r)**. This resistance causes some of the energy to be wasted as heat when current flows, creating a 'lost voltage' internally. This means the voltage available to your external circuit is always a little less than the full e.m.f."
+    },
+    {
+      "type": "formula",
+      "content": "$\\varepsilon = V + Ir$ OR $\\varepsilon = I(R + r)$ (where V is terminal p.d., I is current, R is external resistance)"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**E.M.F. (ε):** Energy converted from non-electrical to electrical form per unit charge. It's the 'cause'.",
-        "**P.D. (V):** Energy converted from electrical to other forms per unit charge. It's the 'effect'.",
-        "Both are measured in Volts (V), which is equivalent to Joules per Coulomb (JC⁻¹)."
+        "10.1 Practical circuits.",
+        "Candidates must be able to interpret circuit diagrams (refer to IGCSE Chapter 4 Notes ( https://www.senpaicorner.com/course-notes ).",
+        "Welcome to the big confusion which is e.m.f and potential difference aka Volts!.",
+        "There is a very small distinction between the both of them so people often get confused.",
+        "As you know (you should at this point…) the potential difference, V is defined as the work done to move a unit of charge across a component (i.e. resistors, capacitors, inductors, wires, etc.).",
+        "Potential difference is measured in volts."
       ]
     },
     {
       "type": "heading",
-      "content": "Internal Resistance: The Imperfect Battery"
+      "content": "Kirchhoff's Laws: The Circuit Rules"
     },
     {
       "type": "text",
-      "content": "In an ideal world, a battery would provide its full e.m.f. to the external circuit. However, real batteries are made of materials that have their own resistance. This is called **internal resistance**, denoted by $r$. As current flows from the battery, some energy is inevitably converted to heat inside the battery itself. This means the potential difference available to the external circuit (the **terminal p.d.**, $V$) is always less than the battery's e.m.f., $ε$, when a current is flowing."
+      "content": "To analyse any complex circuit, we rely on **Kirchhoff's Laws**. His First Law, also known as the junction rule, is all about the conservation of charge. It simply states that charge cannot accumulate at a junction; what current goes in, must come out."
     },
     {
-      "type": "formula",
-      "content": "The potential difference across the internal resistance is called the 'lost volts'. Lost volts = $Ir$. The relationship between e.m.f., terminal p.d., and internal resistance is given by: $V = ε - Ir$. By substituting $V=IR$ (for the external circuit), we get the full circuit equation: $ε = I(R + r)$."
+      "type": "text",
+      "content": "Kirchhoff's Second Law, the loop rule, reflects the conservation of energy. It tells us that for any closed loop in a circuit, the algebraic sum of the potential differences (voltages) around that loop must add up to zero. Energy supplied by sources equals energy used by components."
     },
     {
-      "type": "workedExample",
-      "question": "A cell of e.m.f. 1.5 V and negligible internal resistance is connected in series with two resistors of resistance 3.0 Ω and 6.0 Ω. Calculate:\n(a) The total resistance of the circuit.\n(b) The current flowing in the circuit.\n(c) The potential difference across the 6.0 Ω resistor.",
-      "solution": "*(a) For resistors in series, the total resistance is the sum of individual resistances.*\n$R_{total} = R_1 + R_2$\n$R_{total} = 3.0\\,Ω + 6.0\\,Ω = 9.0\\,Ω$\n\n*(b) Using Ohm's Law for the whole circuit. Since internal resistance is negligible, ε = V.*\n$I = \\frac{ε}{R_{total}}$\n$I = \\frac{1.5\\,V}{9.0\\,Ω} = 0.167\\,A$ (or 1/6 A)\n\n*(c) Using Ohm's Law for the 6.0 Ω resistor. The current is the same as calculated in (b).*\n$V = IR$\n$V_{6Ω} = (0.167\\,A) \\times (6.0\\,Ω) = 1.0\\,V$"
+      "type": "keyPoints",
+      "items": [
+        "Kirchhoff's First Law: Sum of currents into a junction equals sum of currents out.",
+        "First Law is based on the principle of conservation of charge.",
+        "Kirchhoff's Second Law: Algebraic sum of potential differences around any closed loop is zero.",
+        "Second Law is based on the principle of conservation of energy.",
+        "These laws are crucial for solving circuits with multiple sources or complex branches."
+      ]
     },
     {
       "type": "heading",
-      "content": "Analysing Circuits with Internal Resistance"
+      "content": "Series and Parallel Circuits"
     },
     {
       "type": "text",
-      "content": "When a battery has significant internal resistance, we must use the full circuit equation. The terminal p.d. is what a voltmeter connected across the battery's terminals would actually read, and it depends on the current being drawn. The larger the current, the greater the 'lost volts', and the lower the terminal p.d. This is why car headlights dim when you start the engine – the starter motor draws a huge current, causing a large voltage drop across the car battery's internal resistance."
+      "content": "When components are connected in **series**, they form a single path for the current. This means the current is the same through every component. The total voltage from the source is divided among them, and the total resistance is simply the sum of individual resistances."
+    },
+    {
+      "type": "formula",
+      "content": "$R_{total} = R_1 + R_2 + ...$"
+    },
+    {
+      "type": "text",
+      "content": "In a **parallel circuit**, components are connected across the same two points, creating multiple paths for the current. Here, the potential difference (voltage) across each parallel branch is identical. The total current from the source splits, and the total resistance is less than the smallest individual resistance."
+    },
+    {
+      "type": "formula",
+      "content": "$\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ...$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Series:** Current is constant; voltage divides; resistances add directly.",
+        "**Parallel:** Voltage is constant; current divides; reciprocal resistances add.",
+        "Adding resistors in series increases the total resistance.",
+        "Adding resistors in parallel decreases the total resistance.",
+        "These rules are fundamental for simplifying complex circuits."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Potential Dividers and Sensing Circuits"
+    },
+    {
+      "type": "text",
+      "content": "A **potential divider** is a clever circuit using series resistors to provide an output voltage that is a precise fraction of the input supply voltage. By choosing the right resistance values, you can 'tap off' exactly the voltage you need for a specific part of your circuit, for example, to supply a lower voltage component."
+    },
+    {
+      "type": "formula",
+      "content": "$V_{out} = V_{in} \\times \\frac{R_{out}}{R_{total}}$ (where $R_{out}$ is the resistance across which $V_{out}$ is measured)"
+    },
+    {
+      "type": "text",
+      "content": "You can make a potential divider variable using a **potentiometer** or even a sensor like a **thermistor** or **Light Dependent Resistor (LDR)**. As the sensor's resistance changes with temperature or light, the output voltage of the divider changes, allowing it to act as a responsive sensing circuit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Potential dividers split a supply voltage into a smaller, desired output.",
+        "The output voltage depends on the ratio of resistances.",
+        "Potentiometers allow for continuously variable output voltages.",
+        "Thermistors and LDRs change resistance with environmental conditions.",
+        "Sensor placement determines how output voltage responds to stimuli."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "A battery has an e.m.f. of 12.0 V and an internal resistance of 0.50 Ω. It is connected to a 5.5 Ω resistor.\n(a) Calculate the current in the circuit.\n(b) Calculate the terminal potential difference across the battery.\n(c) Calculate the 'lost volts'.",
-      "solution": "*(a) Use the full circuit equation ε = I(R + r).*\n$ε = I(R + r)$\n$12.0\\,V = I(5.5\\,Ω + 0.50\\,Ω)$\n$12.0\\,V = I(6.0\\,Ω)$\n$I = \\frac{12.0\\,V}{6.0\\,Ω} = 2.0\\,A$\n\n*(b) The terminal p.d. V is the p.d. across the external resistor R.*\n$V = IR$\n$V = (2.0\\,A) \\times (5.5\\,Ω) = 11.0\\,V$\n*Alternatively, use V = ε - Ir: V = 12.0 V - (2.0 A × 0.50 Ω) = 12.0 V - 1.0 V = 11.0 V.*\n\n*(c) The 'lost volts' is the p.d. across the internal resistance.*\nLost volts = $Ir$\nLost volts = $(2.0\\,A) \\times (0.50\\,Ω) = 1.0\\,V$\n*Note that ε = Terminal p.d. + Lost volts (12.0 V = 11.0 V + 1.0 V), which confirms Kirchhoff's Second Law.*"
+      "question": "A cell with an e.m.f. of 1.5 V is connected to an external resistor of 4.0 Ω. The current flowing through the circuit is measured as 0.3 A. Calculate the internal resistance of the cell.",
+      "solution": "1. Identify the known values: $\\varepsilon = 1.5 \\text{ V}$, $R = 4.0 \\text{ Ω}$, $I = 0.3 \\text{ A}$.\n2. First, calculate the terminal potential difference ($V$) across the external resistor using Ohm's Law: $V = IR = 0.3 \\text{ A} \\times 4.0 \\text{ Ω} = 1.2 \\text{ V}$.\n3. Now, use the e.m.f. equation that includes internal resistance: $\\varepsilon = V + Ir$.\n4. Substitute the known values: $1.5 \\text{ V} = 1.2 \\text{ V} + (0.3 \\text{ A} \\times r)$.\n5. Rearrange to solve for $r$: $1.5 \\text{ V} - 1.2 \\text{ V} = 0.3 \\text{ A} \\times r$.\n6. This simplifies to: $0.3 \\text{ V} = 0.3 \\text{ A} \\times r$.\n7. Therefore, the internal resistance $r = \\frac{0.3 \\text{ V}}{0.3 \\text{ A}} = 1.0 \\text{ Ω}$."
     },
     {
       "type": "examTip",
-      "content": "Examiners frequently test the difference between e.m.f. and terminal p.d. Remember that e.m.f. ($ε$) is a constant property of the source, while terminal p.d. ($V$) changes depending on the current drawn. A question asking for the p.d. 'across the battery' is asking for the terminal p.d., $V$. A question asking for the e.m.f. is asking for $ε$."
+      "content": "Pay close attention to keywords like 'open circuit' (no current, voltmeter reads e.m.f.) versus 'closed circuit' (current flows, voltmeter reads terminal p.d.). Also, remember to read carefully what voltage is being asked for: total, across a specific component, or lost volts!"
     },
     {
       "type": "practice",
-      "label": "Test your understanding",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=10.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Circuit Construction Kit (DC)",
-          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "label": "A-Level Physics Online: Internal Resistance",
-          "href": "https://www.a-levelphysicstutor.com/index-elect.php"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
-  "diagramSpec": {
-    "params": [
-      {
-        "id": "R1",
-        "label": "R₁",
-        "min": 2,
-        "max": 12,
-        "step": 1,
-        "default": 4,
-        "unit": "Ω"
-      },
-      {
-        "id": "R2",
-        "label": "R₂",
-        "min": 2,
-        "max": 12,
-        "step": 1,
-        "default": 6,
-        "unit": "Ω"
-      }
-    ],
-    "steps": [
-      {
-        "focus": [
-          "supply"
-        ],
-        "caption": "A power supply provides the e.m.f. that drives charge around the circuit.",
-        "embedHint": "Drag out a battery — this is your e.m.f. source (10.1)."
-      },
-      {
-        "focus": [
-          "series"
-        ],
-        "caption": "In series, the same current I flows through every component.",
-        "embedHint": "Build a series loop — ammeters in different positions read the same value."
-      },
-      {
-        "focus": [
-          "pd"
-        ],
-        "caption": "Potential difference (p.d.) is the energy per unit charge across a component.",
-        "embedHint": "Place voltmeters across each resistor — p.d.s add up to supply voltage."
-      },
-      {
-        "focus": [
-          "measure"
-        ],
-        "caption": "Practical work: measure I and V, then calculate R = V/I for each resistor.",
-        "embedHint": "Use the multimeter — record I and V, then verify R = V/I."
-      }
-    ]
+  "faq": [
+    {
+      "q": "Why do voltmeters often read less than the stated EMF of a battery when current is flowing?",
+      "a": "When current flows, some voltage is lost internally across the battery's own internal resistance. A voltmeter connected across the external terminals will measure this reduced 'terminal potential difference', not the full EMF, as some energy is dissipated within the source itself."
+    },
+    {
+      "q": "How do Kirchhoff's laws simplify the analysis of complex electrical circuits?",
+      "a": "Kirchhoff's laws provide a systematic way to set up equations for current and voltage in complex circuits. The First Law ensures charge conservation at junctions, while the Second Law ensures energy conservation around loops, allowing us to solve for unknown currents and voltages even in intricate networks."
+    },
+    {
+      "q": "What is the role of sensors like LDRs and thermistors in practical potential divider circuits?",
+      "a": "LDRs and thermistors are variable resistors whose resistance changes significantly with light intensity or temperature, respectively. By incorporating them into a potential divider, their resistance changes cause a corresponding change in the output voltage, enabling the circuit to detect and respond to environmental changes, forming the basis of many automatic control systems."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/10-1-practical-circuits.png",
+    "alt": "Senpai Corner reference diagram for 10.1 Practical circuits"
   }
 }

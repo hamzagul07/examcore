@@ -5,228 +5,226 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson explores the gravitational field created by a point mass, building on Newton's law of universal gravitation. It focuses on deriving and applying the formula for gravitational field strength, g = GM/r², and understanding its inverse square law nature.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 4 — Gravitational field of a point mass (13.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Define gravitational field strength as the force per unit mass at a point.",
-    "Recall and apply Newton's law of universal gravitation, F = GmM/r², to solve problems involving point masses.",
-    "Derive and use the expression for the gravitational field strength of a point mass, g = GM/r².",
-    "Analyse the inverse-square law relationship between gravitational field strength and distance from the mass."
+    "Define a gravitational field and model uniform spherical masses as point masses.",
+    "Apply Newton's Law of Gravitation and understand gravitational field strength.",
+    "Calculate and interpret gravitational potential and potential energy for point masses."
   ],
   "simpleExplanation": {
-    "title": "The Invisible Pull of Mass",
-    "summary": "Any object with mass creates an invisible 'gravitational field' around it, pulling other masses towards it. The strength of this pull weakens rapidly as you move further away, following a precise mathematical rule.",
-    "analogy": "Imagine placing a heavy bowling ball onto a large, stretched trampoline. The ball creates a dip in the fabric. This dip represents the gravitational field. If you roll a small marble nearby, it won't travel in a straight line; it will curve and accelerate 'downhill' into the dip, towards the bowling ball. The closer the marble gets, the steeper the dip, and the stronger the pull it experiences.",
+    "title": "The Invisible Grip of Mass",
+    "summary": "Imagine a massive object, like a planet, creates an invisible 'pull' around it – that's a **gravitational field**. This lesson explores how we calculate this pull and the energy involved when other objects are within its grasp. We treat large, uniform objects as if all their mass is concentrated at a single **point mass** for calculations.",
+    "analogy": "Think of a trampoline. When you place a bowling ball in the middle, it creates a dip. This dip is like a gravitational field. Smaller marbles placed nearby will roll towards the bowling ball, just as smaller masses are pulled towards a larger one. The steeper the dip, the stronger the 'pull'.",
     "steps": [
-      "A point mass M creates a gravitational field in the space around it.",
-      "Field lines point toward M; their density shows how strong the field (g) is at each point.",
-      "Field strength g = GM/r² decreases with the square of the distance from the centre of the mass.",
-      "A test mass m placed in the field feels a force F = GmM/r², which is Newton’s law of gravitation."
+      "**Define the Field:** Understand that mass warps space around it, creating a region where other masses feel a force.",
+      "**Force of Attraction:** Use Newton's Law to calculate the attractive force between any two masses, dependent on their sizes and separation.",
+      "**Field Strength:** Quantify how strong this pull is at any point using gravitational field strength, which also tells you the acceleration of a free-falling object.",
+      "**Energy & Potential:** Explore the concept of gravitational potential (energy per unit mass) and potential energy, understanding why these values are typically negative."
     ]
   },
   "flashcards": [
     {
-      "front": "What is Newton's law of universal gravitation?",
-      "back": "Any two point masses attract each other with a force that is directly proportional to the product of their masses ($M$ and $m$) and inversely proportional to the square of the separation of their centres ($r$). The formula is $F = \\frac{GmM}{r^2}$."
+      "front": "What is a gravitational field?",
+      "back": "A region surrounding a mass where other objects with mass experience an attractive force."
     },
     {
-      "front": "Define gravitational field strength, $g$.",
-      "back": "Gravitational field strength at a point is the gravitational force exerted per unit mass on a small test mass placed at that point. The formula is $g = \\frac{F}{m}$. Its unit is N kg⁻¹."
+      "front": "How do we model a uniform spherical mass for external gravitational calculations?",
+      "back": "As a point mass concentrated at its centre."
     },
     {
-      "front": "What is the formula for the gravitational field strength of a point mass $M$?",
-      "back": "$g = \\frac{GM}{r^2}$. This is derived by substituting $F = \\frac{GmM}{r^2}$ into $g = \\frac{F}{m}$."
+      "front": "State Newton's Law of Gravitation (mathematical form).",
+      "back": "$F = G \\frac{m_1 m_2}{r^2}$"
     },
     {
-      "front": "What is meant by an 'inverse square law' in the context of gravity?",
-      "back": "It means the gravitational force and field strength are inversely proportional to the square of the distance ($F \\propto \\frac{1}{r^2}$ and $g \\propto \\frac{1}{r^2}$). If you double the distance, the strength becomes one-quarter ($1/2^2$) of its original value."
+      "front": "What does the universal gravitational constant, $G$, represent?",
+      "back": "The fundamental constant that determines the strength of the gravitational force between masses, approximately $6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$."
     },
     {
-      "front": "Is gravitational field strength a scalar or a vector quantity?",
-      "back": "It is a vector quantity. It has a magnitude given by $g = GM/r^2$ and a direction that is always towards the centre of the mass $M$ that is creating the field."
+      "front": "How are gravitational field lines typically drawn for a point mass?",
+      "back": "They are radial lines, always pointing inwards towards the mass, with their density indicating field strength."
     },
     {
-      "front": "What is a 'point mass'?",
-      "back": "A theoretical concept of a mass whose physical size is considered negligible, so it is concentrated at a single point. For a uniform sphere, its gravitational field outside the sphere can be modelled as if its entire mass were a point mass at its centre."
+      "front": "Define gravitational field strength ($g$).",
+      "back": "The gravitational force per unit mass experienced by a small test mass, also equal to the acceleration of free fall."
     },
     {
-      "front": "A satellite orbits at an altitude $h$ above a planet of radius $R$. What is the correct distance $r$ to use in gravitational equations?",
-      "back": "The distance $r$ is always measured from the centre of the planet. Therefore, $r = R + h$. A common mistake is to use only the altitude $h$."
+      "front": "What is the formula for gravitational field strength at distance $r$ from a point mass $M$?",
+      "back": "$g = \\frac{GM}{r^2}$"
     },
     {
-      "front": "What are the units of the universal gravitational constant, $G$?",
-      "back": "The units are N m² kg⁻². This can be derived by rearranging the formula $F = GmM/r^2$ to make $G$ the subject."
+      "front": "Define gravitational potential ($\\phi$).",
+      "back": "The work done per unit mass to move a test mass from infinity to a specific point within the field."
     },
     {
-      "front": "Why are the units N kg⁻¹ and m s⁻² equivalent for gravitational field strength?",
-      "back": "From Newton's second law, $F=ma$, so 1 N = 1 kg m s⁻². Therefore, 1 N kg⁻¹ = 1 (kg m s⁻²) / kg = 1 m s⁻². This shows that gravitational field strength is dimensionally equivalent to acceleration."
+      "front": "Why is gravitational potential always negative?",
+      "back": "By convention, potential at infinity is zero. Work is done *by* the field as a mass moves from infinity towards the source, meaning energy is released, resulting in a negative potential."
     },
     {
-      "front": "How does the gravitational field strength change as you go from the surface of the Earth to its centre?",
-      "back": "Assuming uniform density, the field strength decreases linearly from its maximum value ($g \\approx 9.81$ N kg⁻¹) at the surface to zero at the centre of the Earth."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why can we treat large spherical bodies like planets as point masses?",
-      "a": "This is due to Newton's Shell Theorem. It proves that for any point outside a spherically symmetric object, the gravitational force is the same as if all the object's mass were concentrated at its centre. Since planets and stars are approximately spherical, this is a very useful simplification."
+      "front": "What is the formula for gravitational potential energy ($E_p$) of two masses $M$ and $m$ at separation $r$?",
+      "back": "$E_p = -\\frac{GMm}{r}$"
     },
     {
-      "q": "What is the difference between 'g' and 'G'?",
-      "a": "'G' is the Universal Gravitational Constant ($6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$). It is a fundamental constant of nature and has the same value everywhere. 'g' is the local gravitational field strength, which is the effect of gravity at a specific location. It depends on the mass of the nearby object and the distance from it, so its value changes (e.g., $g$ is different on Earth than on the Moon)."
-    },
-    {
-      "q": "Does the gravitational field strength inside a planet stay the same?",
-      "a": "No. As you travel from the surface of a planet towards its centre, the mass 'above' you no longer contributes to the net gravitational pull. Assuming a uniform density, the gravitational field strength decreases linearly from its maximum value at the surface to zero at the very centre of the planet."
+      "front": "How much energy is needed to completely remove an object from a gravitational field?",
+      "back": "An amount equal to the negative of its initial gravitational potential energy (to bring it to zero potential at infinity)."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "We are familiar with the concept of weight on Earth, calculated as $W=mg$. But what determines the value of 'g', and does it change as we move away from our planet? This lesson delves into the fundamental principles of gravitation, moving from a local to a universal perspective. We will explore how any mass, from a planet to a star, warps the fabric of spacetime to create a gravitational field, and learn how to calculate its strength at any point in space."
+      "content": "Welcome to the fascinating world of **gravitational fields**! In this lesson, we'll dive into how massive objects exert an invisible 'pull' on everything around them. We'll explore the fundamental laws governing this interaction, learn to calculate forces, understand field strength, and grasp the concept of gravitational potential energy. Get ready to explore the universe's most fundamental force! This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **13.3**."
     },
     {
       "type": "heading",
-      "content": "Newton's Law of Universal Gravitation"
+      "content": "Gravitational Fields: An Invisible Influence"
     },
     {
       "type": "text",
-      "content": "In the 17th century, Isaac Newton proposed a revolutionary idea: the same force that makes an apple fall from a tree is what keeps the Moon in orbit around the Earth. He formulated this into the Law of Universal Gravitation. It states that every point mass in the universe attracts every other point mass with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres."
-    },
-    {
-      "type": "formula",
-      "content": "$F = \\frac{GmM}{r^2}$"
+      "content": "A gravitational field is essentially a region of space surrounding a mass where another mass would experience an attractive force. For most external calculations, especially with large, uniform objects like planets or stars, we simplify things by treating them as if all their mass is concentrated at a single point – known as a **point mass** at their centre. This makes calculations much more manageable."
     },
     {
       "type": "keyPoints",
       "items": [
-        "$F$ is the magnitude of the gravitational force between the two masses.",
-        "$M$ and $m$ are the two masses.",
-        "$r$ is the distance between the centres of the two masses.",
-        "$G$ is the universal gravitational constant, approximately $6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$."
+        "13.3 Gravitational field of a point mass.",
+        "In A levels the candidate must be able to derive the gravitational field equation 𝒈 = 𝑮𝒎 𝟏 𝒓 𝟐.",
+        "To derive the equation above first take Newton’s law of gravitation force equation 𝐹 𝐺 = 𝐺𝑚 1 𝑚 2 𝑟 2 And substitute F G with F G = m 2 g."
       ]
     },
     {
       "type": "heading",
-      "content": "The Concept of a Gravitational Field"
+      "content": "Newton's Universal Law of Gravitation"
     },
     {
       "type": "text",
-      "content": "Instead of thinking about 'action at a distance', it is more useful to introduce the concept of a field. A mass $M$ modifies the properties of the space around it, creating a gravitational field. Any other mass $m$ that enters this region of space then experiences a force. The gravitational field strength, $g$, at a point is defined as the force experienced per unit mass placed at that point."
+      "content": "Sir Isaac Newton's groundbreaking law describes the fundamental attraction between any two masses. It states that the attractive force between them is directly proportional to the product of their masses and inversely proportional to the square of the distance separating their centres. This **inverse square law** is crucial for understanding how gravity weakens with distance."
     },
     {
       "type": "formula",
-      "content": "$g = \\frac{F}{m}$"
+      "content": "$F = G \\frac{m_1 m_2}{r^2}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Gravitational field strength $g$ is a vector quantity; its direction is the direction of the force on a test mass.",
-        "The unit of $g$ is newtons per kilogram (N kg⁻¹).",
-        "This unit is dimensionally equivalent to metres per second squared (m s⁻²), the unit for acceleration. Hence, $g$ is also the acceleration of free fall in that field (in a vacuum)."
+        "Force ($F$) is directly proportional to the product of masses ($m_1m_2$).",
+        "Force ($F$) is inversely proportional to the square of the distance ($r^2$).",
+        "$G$ is the universal gravitational constant ($6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$).",
+        "The force is always attractive."
       ]
     },
     {
       "type": "heading",
-      "content": "Gravitational Field Strength of a Point Mass"
+      "content": "Gravitational Field Strength ($g$)"
     },
     {
       "type": "text",
-      "content": "By combining the two fundamental equations, we can derive an expression for the gravitational field strength created by a single point mass $M$. This formula allows us to calculate the field strength at any distance $r$ from the centre of $M$, without needing to know about a second 'test' mass."
+      "content": "Gravitational field strength ($g$) quantifies how strong the gravitational pull is at a particular point. It's defined as the gravitational force per unit mass acting on a small test mass placed at that point. Importantly, $g$ also represents the acceleration experienced by a free-falling object in that field. Field lines are radial, point inwards, and their density indicates the field's strength."
     },
     {
       "type": "formula",
-      "content": "$g = \\frac{GM}{r^2}$"
+      "content": "$g = \\frac{F}{m} = \\frac{GM}{r^2}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravitational field strength is force per unit mass ($g = F/m$).",
+        "It also represents the acceleration of free fall.",
+        "Follows an inverse square law ($g \\propto 1/r^2$).",
+        "Field lines are radial, pointing inwards, and closer lines mean a stronger field."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Potential ($\\phi$)"
     },
     {
       "type": "text",
-      "content": "To derive this, we equate the force from Newton's Law with the force defined by the field: $F = \\frac{GmM}{r^2}$ and $F = mg$. Therefore, $mg = \\frac{GmM}{r^2}$. Cancelling the test mass $m$ from both sides gives the result. This is powerful because it shows the field strength depends only on the mass creating the field ($M$) and the distance from it ($r$), not on the mass placed in the field."
+      "content": "Gravitational potential ($\\phi$) is a scalar quantity representing the work done per unit mass to move a test mass from infinity to a specific point within the field. By convention, the gravitational potential at infinity is defined as zero. Since gravity is always attractive and work is done *by* the field as a mass approaches the source, gravitational potential is always a negative value."
+    },
+    {
+      "type": "formula",
+      "content": "$\\phi = -\\frac{GM}{r}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravitational potential is work done per unit mass from infinity.",
+        "Potential at infinity is conventionally zero.",
+        "It is always negative, as energy is released moving towards the mass."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Potential Energy ($E_p$)"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational potential energy ($E_p$) is the energy an object possesses due to its position within a gravitational field. For a system of two masses, it represents the work done to assemble them from infinite separation to their current distance. Like gravitational potential, $E_p$ is also a negative value. To completely remove an object from a field, you'd need to supply energy equal to the negative of its current potential energy."
+    },
+    {
+      "type": "formula",
+      "content": "$E_p = -\\frac{GMm}{r}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravitational potential energy is the energy of a mass in a gravitational field.",
+        "It is always negative for attractive fields, defined relative to zero at infinity.",
+        "Energy required to escape the field is the absolute value of $E_p$."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "The mass of Mars is $6.42 \\times 10^{23}$ kg and its mean radius is $3390$ km. Calculate the gravitational field strength on the surface of Mars.",
-      "solution": "1. **State the formula:** The gravitational field strength at the surface of a planet can be calculated using $g = \\frac{GM}{r^2}$.\n\n2. **Identify and convert variables:**\n   - $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$ (from data booklet)\n   - $M = 6.42 \\times 10^{23}$ kg\n   - The distance $r$ is the radius of Mars, which must be in metres. $r = 3390 \\text{ km} = 3390 \\times 10^3 \\text{ m} = 3.39 \\times 10^6$ m.\n\n3. **Substitute values into the formula:**\n   $g = \\frac{(6.67 \\times 10^{-11}) \\times (6.42 \\times 10^{23})}{(3.39 \\times 10^6)^2}$\n\n4. **Calculate the result:**\n   $g = \\frac{4.28214 \\times 10^{13}}{1.14921 \\times 10^{13}}$\n   $g \\approx 3.726$ N kg⁻¹\n\n5. **Final answer with appropriate significant figures:**\n   The input values are given to 3 significant figures, so the answer should be as well.\n   $g = 3.73$ N kg⁻¹"
+      "question": "Calculate the gravitational field strength on the surface of Mars, given its mass is $6.42 \\times 10^{23} \\text{ kg}$ and its radius is $3.39 \\times 10^6 \\text{ m}$. Use the universal gravitational constant $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$.",
+      "solution": "1.  **Identify known values:**\n    *   Mass of Mars ($M$) $= 6.42 \\times 10^{23} \\text{ kg}$\n    *   Radius of Mars ($r$) $= 3.39 \\times 10^6 \\text{ m}$\n    *   Universal Gravitational Constant ($G$) $= 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$\n\n2.  **Recall the formula for gravitational field strength:**\n    $g = \\frac{GM}{r^2}$\n\n3.  **Substitute the values into the formula:**\n    $g = \\frac{(6.67 \\times 10^{-11}) \\times (6.42 \\times 10^{23})}{(3.39 \\times 10^6)^2}$\n\n4.  **Calculate the denominator (radius squared):**\n    $(3.39 \\times 10^6)^2 = 1.14921 \\times 10^{13} \\text{ m}^2$\n\n5.  **Calculate the numerator ($GM$):**\n    $(6.67 \\times 10^{-11}) \\times (6.42 \\times 10^{23}) = 4.28114 \\times 10^{13} \\text{ N m}^2 \\text{kg}^{-1}$\n\n6.  **Divide the numerator by the denominator:**\n    $g = \\frac{4.28114 \\times 10^{13}}{1.14921 \\times 10^{13}} \\approx 3.725 \\text{ N kg}^{-1}$\n\n7.  **Round to an appropriate number of significant figures (e.g., 3 s.f.):**\n    $g \\approx 3.73 \\text{ N kg}^{-1}$"
     },
     {
       "type": "examTip",
-      "content": "A very common mistake is forgetting to convert distances from kilometres (km) to metres (m) before substituting into the formula. Another frequent error is forgetting to square the radius $r$. Always double-check your units and the powers in your equations."
-    },
-    {
-      "type": "workedExample",
-      "question": "A geostationary satellite orbits the Earth at a fixed point above the equator. The gravitational field strength at its location is $0.224$ N kg⁻¹. Given the Earth's mass is $5.97 \\times 10^{24}$ kg, calculate the altitude of the satellite above the Earth's surface. (Earth's radius $R_E = 6.37 \\times 10^6$ m).",
-      "solution": "1. **State the formula and rearrange:** We start with $g = \\frac{GM}{r^2}$. We need to find the total distance $r$ from the centre of the Earth first.\n   Rearranging for $r^2$: $r^2 = \\frac{GM}{g}$\n   So, $r = \\sqrt{\\frac{GM}{g}}$\n\n2. **Identify variables:**\n   - $g = 0.224$ N kg⁻¹\n   - $M = 5.97 \\times 10^{24}$ kg\n   - $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$\n\n3. **Calculate the total distance $r$:**\n   $r = \\sqrt{\\frac{(6.67 \\times 10^{-11}) \\times (5.97 \\times 10^{24})}{0.224}}$\n   $r = \\sqrt{\\frac{3.982 \\times 10^{14}}{0.224}}$\n   $r = \\sqrt{1.777 \\times 10^{15}}$\n   $r \\approx 4.216 \\times 10^7$ m\n\n4. **Calculate the altitude:** The question asks for the altitude ($h$), which is the height above the surface. The distance $r$ is from the centre of the Earth ($r = R_E + h$).\n   $h = r - R_E$\n   $h = (4.216 \\times 10^7) - (6.37 \\times 10^6)$\n   $h = 3.579 \\times 10^7$ m\n\n5. **Final answer with appropriate units and sig figs:**\n   $h \\approx 3.58 \\times 10^7$ m (or 35,800 km)."
+      "content": "Pay close attention to whether the question asks for gravitational *force*, *field strength*, or *potential/potential energy*. Each has a distinct formula and often different units. Remember the inverse square law applies to force and field strength ($1/r^2$), but potential depends simply on $1/r$."
     },
     {
       "type": "practice",
-      "label": "Test your understanding of gravitational fields",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=13.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Gravity and Orbits",
-          "href": "https://phet.colorado.edu/en/simulations/gravity-and-orbits"
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
         },
         {
-          "label": "NASA: What is Gravity?",
-          "href": "https://spaceplace.nasa.gov/what-is-gravity/en/"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
-  "diagramSpec": {
-    "params": [
-      {
-        "id": "M",
-        "label": "Mass M",
-        "min": 1,
-        "max": 10,
-        "step": 1,
-        "default": 5,
-        "unit": "×10²⁴ kg"
-      },
-      {
-        "id": "r",
-        "label": "Distance r",
-        "min": 55,
-        "max": 95,
-        "step": 5,
-        "default": 75,
-        "unit": "km scale"
-      }
-    ],
-    "steps": [
-      {
-        "focus": [
-          "mass"
-        ],
-        "caption": "A point mass M creates a gravitational field in the space around it.",
-        "embedHint": "Set one mass to zero — the other still feels a pull. Mass creates the field."
-      },
-      {
-        "focus": [
-          "field-lines"
-        ],
-        "caption": "Field lines point toward M; density shows how strong g is at each point.",
-        "embedHint": "Turn on “Field” vectors — notice they point inward and get weaker with distance."
-      },
-      {
-        "focus": [
-          "field-strength"
-        ],
-        "caption": "Field strength g = GM/r² decreases with the square of distance.",
-        "embedHint": "Halve the separation — force becomes four times larger (inverse-square law)."
-      },
-      {
-        "focus": [
-          "force"
-        ],
-        "caption": "A test mass m feels F = GmM/r² — Newton’s law of gravitation.",
-        "embedHint": "Read off the force magnitude and check F ∝ 1/r² for fixed masses."
-      }
-    ]
+  "faq": [
+    {
+      "q": "What is the main difference between gravitational field strength and gravitational potential?",
+      "a": "Gravitational field strength ($g$) is a vector quantity representing the force per unit mass, showing the direction and magnitude of the pull. Gravitational potential ($\\phi$) is a scalar quantity representing the work done per unit mass to bring an object from infinity to that point, indicating the energy state."
+    },
+    {
+      "q": "Why do we treat a spherical mass as a point mass?",
+      "a": "For external points outside the sphere, the net gravitational effect of all its constituent particles is mathematically equivalent to having all its mass concentrated at its geometric centre. This simplifies calculations greatly, especially at a distance."
+    },
+    {
+      "q": "Does the gravitational force ever become zero?",
+      "a": "Theoretically, the gravitational force only becomes exactly zero at an infinite distance from the mass. In practical terms, it becomes negligibly small at very large distances, but never truly reaches zero in a finite space."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/13-3-gravitational-field-of-a-point-mass.png",
+    "alt": "Senpai Corner reference diagram for 13.3 Gravitational field of a point mass"
   }
 }

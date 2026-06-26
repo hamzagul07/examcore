@@ -5,110 +5,105 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson explores the principles of medical ultrasound. It covers how high-frequency sound is produced and detected using the piezoelectric effect, the concept of specific acoustic impedance and its role in reflection at tissue boundaries, and how these principles are applied to create A-scans and B-scans for non-invasive diagnosis.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 4 — Production and use of ultrasound (24.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Describe the production and detection of ultrasound using piezoelectric transducers.",
-    "Define specific acoustic impedance and use it to calculate the intensity reflection coefficient at a boundary.",
-    "Explain the necessity of a coupling medium for impedance matching.",
-    "Outline the principles of A-scans and B-scans in medical imaging."
+    "Describe the production and detection of ultrasound waves using the piezoelectric effect.",
+    "Explain the concepts of acoustic impedance, reflection coefficient, and attenuation.",
+    "Apply ultrasound principles to solve problems involving intensity and half-value thickness."
   ],
   "simpleExplanation": {
-    "title": "Echoes Inside the Body",
-    "summary": "Ultrasound imaging uses high-frequency sound waves that bounce off tissues inside the body. A special crystal produces and detects these echoes, which are then processed by a computer to build up a picture of internal organs.",
-    "analogy": "Imagine you're in a dark, unfamiliar room and you clap your hands. By listening to the timing and loudness of the echoes from the walls and furniture, you can get a rough idea of the room's layout. Medical ultrasound is a highly advanced version of this, using high-frequency 'pings' to map out the 'furniture' (organs and tissues) inside the body with remarkable detail.",
+    "title": "Ultrasound Explained",
+    "summary": "Ultrasound uses super-high frequency sound waves, beyond human hearing, to 'see' inside objects, like a doctor looking inside your body. It relies on special crystals that vibrate to make sound and pick up echoes, mapping out different materials and structures.",
+    "analogy": "Imagine shouting into a dark cave and listening carefully to the echoes. The time it takes for the echo to return, and how loud it is, can tell you about the cave's size, shape, and what's inside. Ultrasound does this with sound waves too fast for us to hear, creating a detailed 'map' of internal body structures.",
     "steps": [
-      "A piezoelectric crystal in a transducer is subjected to an alternating voltage, causing it to vibrate rapidly and produce high-frequency ultrasound waves.",
-      "These waves travel into the body and reflect at boundaries between tissues with different acoustic impedances. The same crystal detects these returning echoes.",
-      "The pressure of the returning echo deforms the crystal, generating a voltage (the piezoelectric effect). The time delay of the echo determines the depth of the boundary.",
-      "The intensity of the reflected echo, which depends on the impedance mismatch, is processed to form an image, either as a 1D A-scan or a 2D B-scan."
+      "**Generate Pulse:** An electrical signal makes a special crystal vibrate rapidly, sending out a short burst of high-frequency sound (ultrasound).",
+      "**Travel & Reflect:** This sound travels through the body, and some of it bounces back when it hits a boundary between different tissues.",
+      "**Detect Echo:** The returning echo hits the same crystal, causing it to vibrate and generate an electrical signal.",
+      "**Image Formation:** A computer measures the time it takes for echoes to return and their strength, using this data to construct a detailed image of the internal structures."
     ]
   },
   "flashcards": [
     {
-      "front": "What is ultrasound?",
-      "back": "Sound with a frequency above the upper limit of human hearing, typically greater than 20 kHz. Medical applications use frequencies in the range of 1–15 MHz."
+      "front": "What defines ultrasound?",
+      "back": "Sound waves with frequencies above 20 kHz, beyond the range of human hearing, typically 1–20 MHz for medical uses."
     },
     {
-      "front": "What is the piezoelectric effect?",
-      "back": "The generation of a potential difference (voltage) across a crystal when it is subjected to mechanical stress (compressed or stretched). This is how ultrasound echoes are detected."
+      "front": "Explain the piezoelectric effect.",
+      "back": "Certain crystals (e.g., quartz) deform mechanically when an alternating p.d. is applied, and conversely, generate a p.d. when mechanically deformed."
     },
     {
-      "front": "What is the reverse piezoelectric effect?",
-      "back": "The change in shape (vibration) of a piezoelectric crystal when a potential difference is applied across it. This is how ultrasound waves are generated."
+      "front": "How does a transducer generate and detect ultrasound?",
+      "back": "It generates ultrasound by applying an alternating p.d. to a piezoelectric crystal, causing it to vibrate. It detects echoes by sensing the p.d. generated when returning waves deform the crystal."
     },
     {
-      "front": "Define specific acoustic impedance, Z.",
-      "back": "A property of a medium, defined as the product of its density ($\\rho$) and the speed of sound (c) within it. Formula: $Z = \\rho c$."
+      "front": "What is acoustic impedance (Z) and its formula?",
+      "back": "A measure of a medium's resistance to sound wave propagation, calculated as $Z = \\rho c$ (density × speed of sound)."
     },
     {
-      "front": "What are the units of specific acoustic impedance?",
-      "back": "kg m⁻² s⁻¹."
+      "front": "When does significant reflection occur at a boundary?",
+      "back": "When there is a large difference in the acoustic impedances ($Z_1$ and $Z_2$) of the two media."
     },
     {
-      "front": "What is the intensity reflection coefficient, $\\alpha$?",
-      "back": "The ratio of the reflected intensity ($I_r$) to the incident intensity ($I_i$) of an ultrasound wave at a boundary between two media. $\\alpha = I_r / I_i$."
+      "front": "What is the purpose of a coupling gel in ultrasound?",
+      "back": "To eliminate air between the transducer and skin. Air has a vastly different acoustic impedance from tissue, which would reflect almost all the ultrasound, preventing it from entering the body."
     },
     {
-      "front": "State the formula for the intensity reflection coefficient in terms of acoustic impedances.",
-      "back": "$\\alpha = \\frac{(Z_2 - Z_1)^2}{(Z_2 + Z_1)^2}$, where $Z_1$ and $Z_2$ are the specific acoustic impedances of the two media."
+      "front": "What is ultrasound attenuation?",
+      "back": "The decrease in ultrasound intensity and amplitude as it travels through a medium, caused by absorption (conversion to heat) and scattering."
     },
     {
-      "front": "What is impedance matching?",
-      "back": "The technique of using a substance (like coupling gel) to make the acoustic impedances of two adjacent media (e.g., transducer and skin) as similar as possible to maximise sound transmission."
+      "front": "How is ultrasound intensity affected by distance due to attenuation?",
+      "back": "It decreases exponentially with distance ($x$): $I = I_0 e^{-\\mu x}$, where $\\mu$ is the linear attenuation coefficient."
     },
     {
-      "front": "Why is coupling gel essential in ultrasound scans?",
-      "back": "To eliminate the air gap between the transducer and the skin. The large impedance mismatch between air and skin would otherwise cause almost total reflection of the ultrasound, preventing it from entering the body."
+      "front": "Define half-value thickness ($x_{1/2}$).",
+      "back": "The distance an ultrasound wave travels through a medium for its intensity to be reduced to half its initial value."
     },
     {
-      "front": "What is an A-scan (Amplitude scan)?",
-      "back": "A one-dimensional display showing the amplitude of reflected ultrasound pulses as a function of their return time. It is used to determine the depth of tissue boundaries along a single line."
-    },
-    {
-      "front": "How is a B-scan (Brightness scan) formed?",
-      "back": "By combining a series of A-scans taken from different angles. The amplitude of each echo is represented by the brightness of a pixel, forming a two-dimensional cross-sectional image."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why are very high frequencies (MHz) used for medical ultrasound?",
-      "a": "Higher frequencies correspond to shorter wavelengths (since $\\lambda = c/f$). A shorter wavelength allows for better resolution, meaning the imaging system can distinguish between two points that are very close together. This allows for more detailed images. The trade-off is that higher frequencies are attenuated (absorbed) more readily by tissue, limiting the penetration depth."
-    },
-    {
-      "q": "If the reflection coefficient $\\alpha$ is 0.01, what is the transmission coefficient?",
-      "a": "Assuming no energy is absorbed at the boundary itself, the total incident intensity must equal the sum of the reflected and transmitted intensities ($I_i = I_r + I_t$). Dividing by $I_i$ gives $1 = \\frac{I_r}{I_i} + \\frac{I_t}{I_i}$. So, $1 = \\alpha + \\tau$, where $\\tau$ is the transmission coefficient. If $\\alpha = 0.01$, then $\\tau = 1 - 0.01 = 0.99$. This means 99% of the intensity is transmitted."
+      "front": "What does 'damping' achieve in an ultrasound transducer?",
+      "back": "It rapidly stops the crystal's vibrations, producing short ultrasound pulses essential for high axial resolution (distinguishing closely spaced objects)."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Ultrasound imaging, or sonography, is a cornerstone of modern medical diagnostics. It provides real-time images of internal organs, blood flow, and developing foetuses without using ionising radiation. This topic delves into the physics behind this powerful technology, from the special crystals that produce the sound waves to the way echoes are interpreted to create an image."
+      "content": "Welcome to a deep dive into **ultrasound**, a fascinating application of high-frequency sound waves. In this lesson, we'll uncover how these waves are generated, how they interact with different materials, and why they are such a powerful tool in medical diagnostics, from baby scans to internal organ imaging. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **24.1**."
     },
     {
       "type": "heading",
-      "content": "Production and Detection: The Piezoelectric Transducer"
+      "content": "What is Ultrasound?"
     },
     {
       "type": "text",
-      "content": "The key component in any ultrasound system is the transducer, a handheld device placed on the patient's skin. Inside the transducer are piezoelectric crystals, most commonly a synthetic ceramic like lead zirconate titanate (PZT). These materials have a remarkable property: they can convert electrical energy into mechanical energy, and vice versa."
+      "content": "Ultrasound refers to sound waves with frequencies greater than 20 kilohertz (kHz), placing them beyond the upper limit of human hearing. For medical imaging, these frequencies are typically much higher, often ranging from 1 to 20 megahertz (MHz). Like all sound waves, ultrasound waves are **longitudinal waves**, meaning the particles of the medium oscillate parallel to the direction in which the wave energy is travelling."
+    },
+    {
+      "type": "heading",
+      "content": "The Piezoelectric Effect & Transducers"
+    },
+    {
+      "type": "text",
+      "content": "The heart of an ultrasound system is the **transducer**, a device capable of both sending out and receiving ultrasound waves. It relies on a special property of certain crystals, known as the **piezoelectric effect**. When an alternating potential difference is applied across a piezoelectric crystal, it undergoes mechanical deformation, causing it to vibrate at the frequency of the applied voltage. This vibration generates ultrasound pulses."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Generation (Reverse Piezoelectric Effect):** An alternating potential difference from a high-frequency generator is applied across the crystal. This causes the crystal to rapidly expand and contract, i.e., vibrate. These vibrations, at frequencies in the MHz range, produce the ultrasound waves.",
-        "**Detection (Piezoelectric Effect):** After a short pulse is emitted, the transducer switches to detection mode. When returning echoes (reflected ultrasound waves) strike the crystal, the pressure variations cause it to deform. This mechanical stress induces a small potential difference across the crystal, which is then amplified and processed by a computer.",
-        "**Damping:** The crystal is backed by a damping material to absorb vibrations. This ensures the pulses are short and do not overlap, which is crucial for good spatial resolution along the beam's direction (axial resolution)."
+        "24.1 Production and use of ultrasound.",
+        "Piezo-electric effect is the property exhibited by some nonconducting crystals of becoming electrically polarized when mechanically strained and of becoming mechanically strained when an electric field is applied.",
+        "Piezoelectric crystals are materials that produce p.d. when they are deformed.",
+        "When a p.d. is applied to the crystal it deforms and when revered it expands.",
+        "If an AC is applied to the crystal it will vibrate at the same frequency.",
+        "Quartz is the most common form of piezo crystals."
       ]
     },
     {
       "type": "heading",
-      "content": "Acoustic Impedance and Reflection"
+      "content": "Acoustic Impedance: The Sound Barrier"
     },
     {
       "type": "text",
-      "content": "When an ultrasound wave travels from one medium to another, some of it is reflected and some is transmitted. The amount of reflection depends on how different the two media are in terms of their 'acoustic impedance'. Specific acoustic impedance, $Z$, is a physical property of a medium that quantifies its resistance to the passage of sound."
+      "content": "When ultrasound travels through a medium, its passage can be resisted. This resistance is quantified by **acoustic impedance (Z)**. It's a crucial property that determines how much ultrasound reflects or transmits when it encounters a boundary between two different materials."
     },
     {
       "type": "formula",
@@ -116,59 +111,121 @@
     },
     {
       "type": "text",
-      "content": "Here, $\\rho$ is the density of the medium and $c$ is the speed of sound in that medium. The greater the difference, or 'mismatch', in acoustic impedance between two media, the greater the proportion of the wave's intensity that is reflected at the boundary. The fraction of intensity that is reflected is given by the intensity reflection coefficient, $\\alpha$."
-    },
-    {
-      "type": "formula",
-      "content": "$\\alpha = \\frac{I_r}{I_i} = \\frac{(Z_2 - Z_1)^2}{(Z_2 + Z_1)^2}$"
-    },
-    {
-      "type": "examTip",
-      "content": "A very common exam question asks for the purpose of the coupling gel used between the transducer and the skin. A full mark answer must mention that the gel displaces air and has an acoustic impedance similar to that of skin. This 'impedance matching' minimises reflection at the skin surface and maximises the transmission of ultrasound into the body."
-    },
-    {
-      "type": "workedExample",
-      "question": "An ultrasound beam is incident at a boundary between fat and muscle. The specific acoustic impedance of fat is $1.38 \\times 10^6 \\text{ kg m}^{-2} \\text{ s}^{-1}$ and for muscle is $1.70 \\times 10^6 \\text{ kg m}^{-2} \\text{ s}^{-1}$. Calculate the percentage of the incident ultrasound intensity that is reflected at this boundary.",
-      "solution": "1. **Identify the formula:** The intensity reflection coefficient $\\alpha$ is given by $\\alpha = \\frac{(Z_2 - Z_1)^2}{(Z_2 + Z_1)^2}$.\n2. **Assign values:** Let $Z_1 = Z_{\\text{fat}} = 1.38 \\times 10^6$ and $Z_2 = Z_{\\text{muscle}} = 1.70 \\times 10^6$. The units are kg m⁻² s⁻¹.\n3. **Substitute and calculate:**\n$\\alpha = \\frac{(1.70 \\times 10^6 - 1.38 \\times 10^6)^2}{(1.70 \\times 10^6 + 1.38 \\times 10^6)^2}$\n$\\alpha = \\frac{(0.32 \\times 10^6)^2}{(3.08 \\times 10^6)^2}$\n$\\alpha = \\left( \\frac{0.32}{3.08} \\right)^2$\n$\\alpha \\approx (0.1039)^2 \\approx 0.0108$\n4. **Convert to percentage:** The percentage of intensity reflected is $\\alpha \\times 100\\% = 0.0108 \\times 100\\% = 1.08\\%$. [2 marks: 1 for substitution, 1 for correct answer]"
+      "content": "Here, $\\rho$ is the density of the medium in kg m$^{-3}$, and $c$ is the speed of sound in the medium in m s$^{-1}$. The unit for acoustic impedance is rayls (kg m$^{-2}$ s$^{-1}$)."
     },
     {
       "type": "heading",
-      "content": "Image Formation: A-scans and B-scans"
+      "content": "Reflection at Boundaries"
     },
     {
       "type": "text",
-      "content": "The information from the reflected echoes is used to construct an image. The time it takes for an echo to return is directly related to the depth of the boundary that reflected it. Since the pulse travels to the boundary and back, the depth $d$ is given by $d = \\frac{c \\times t}{2}$, where $c$ is the average speed of sound in the tissue and $t$ is the round-trip time."
+      "content": "Whenever an ultrasound wave encounters a boundary between two media with different acoustic impedances, a portion of the wave is reflected, and the rest is transmitted. The greater the difference in acoustic impedances ($Z_1$ and $Z_2$), the more significant the reflection."
+    },
+    {
+      "type": "formula",
+      "content": "$I_r / I_i = \\left(\\frac{Z_2 - Z_1}{Z_2 + Z_1}\\right)^2$"
+    },
+    {
+      "type": "text",
+      "content": "This formula gives the **intensity reflection coefficient**, which is the ratio of the reflected intensity ($I_r$) to the incident intensity ($I_i$). If the acoustic impedances of the two media are identical ($Z_1 = Z_2$), there will be no reflection, and the entire wave will be transmitted."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**A-scan (Amplitude Scan):** This is the simplest form of display. It shows a graph of the amplitude of the reflected signal versus time (or depth). Each peak on the graph corresponds to a reflection from a tissue boundary. A-scans are useful for making precise distance measurements, such as measuring the diameter of an eye.",
-        "**B-scan (Brightness Scan):** This is the familiar 2D ultrasound image. The transducer is swept across the skin, or an array of transducers is used. For each position, an A-scan is performed, but instead of a peak, a dot is displayed on the screen. The brightness of the dot is proportional to the amplitude of the echo. A computer combines these thousands of dots to build up a cross-sectional image of the underlying structures."
+        "Reflection depends on the difference in acoustic impedances ($Z_1$ and $Z_2$).",
+        "A large difference means significant reflection (e.g., soft tissue to air).",
+        "No reflection occurs if $Z_1 = Z_2$, ensuring full transmission."
       ]
     },
     {
+      "type": "examTip",
+      "content": "Remember that a large impedance difference is key to forming an image (you need echoes!), but too large a difference (like between tissue and air) will block the ultrasound from entering the body at all."
+    },
+    {
+      "type": "heading",
+      "content": "The Role of Coupling Gel"
+    },
+    {
+      "type": "text",
+      "content": "This brings us to a crucial practical aspect of ultrasound imaging: the **coupling medium**. A layer of gel or oil is applied between the transducer and the patient's skin. Air has an extremely low acoustic impedance compared to soft tissue. Without the gel, the vast majority of ultrasound would be reflected at the skin-air interface, preventing effective imaging. The coupling gel's acoustic impedance is much closer to that of skin, allowing maximum transmission of ultrasound into the body."
+    },
+    {
+      "type": "heading",
+      "content": "Attenuation: Losing Energy"
+    },
+    {
+      "type": "text",
+      "content": "As ultrasound waves travel through any medium, their intensity and amplitude gradually decrease. This phenomenon is called **attenuation**. It's primarily caused by two processes: **absorption**, where the ultrasound energy is converted into heat within the tissue, and **scattering**, where the waves are deflected in various directions by small inhomogeneities in the medium."
+    },
+    {
+      "type": "formula",
+      "content": "$I = I_0 e^{-\\mu x}$"
+    },
+    {
+      "type": "text",
+      "content": "This formula describes how ultrasound intensity ($I$) decreases exponentially with the distance ($x$) travelled. $I_0$ is the initial intensity, and $\\mu$ is the **linear attenuation coefficient**, which quantifies the rate of intensity loss per unit thickness for a given medium."
+    },
+    {
+      "type": "heading",
+      "content": "Half-Value Thickness"
+    },
+    {
+      "type": "text",
+      "content": "A useful concept related to attenuation is the **half-value thickness ($x_{1/2}$)**. This is the specific distance an ultrasound wave must travel through a medium for its intensity to be reduced to exactly half of its initial value. It provides a straightforward way to compare the penetrating power of ultrasound in different tissues."
+    },
+    {
+      "type": "formula",
+      "content": "$x_{1/2} = \\ln(2)/\\mu$"
+    },
+    {
       "type": "workedExample",
-      "question": "An A-scan detects an echo from an organ boundary 65 µs after the initial pulse was transmitted. The average speed of sound in the soft tissue is 1540 m s⁻¹. Calculate the depth of the organ boundary.",
-      "solution": "1. **Identify the relationship:** The sound travels to the boundary and back, so the distance to the boundary is half the total distance travelled. The formula is $d = \\frac{c \\times t}{2}$.\n2. **Identify values and convert units:**\n$c = 1540 \\text{ m s}^{-1}$\n$t = 65 \\text{ µs} = 65 \\times 10^{-6} \\text{ s}$\n3. **Substitute and calculate:**\n$d = \\frac{1540 \\times (65 \\times 10^{-6})}{2}$\n$d = \\frac{0.1001}{2}$\n$d = 0.05005 \\text{ m}$\n4. **State answer with appropriate significant figures and units:** The depth of the organ boundary is 0.050 m or 5.0 cm. [2 marks: 1 for using t/2, 1 for correct calculation]"
+      "question": "An ultrasound wave passes from muscle tissue (Z = 1.70 × 10$^6$ kg m$^{-2}$ s$^{-1}$) into bone (Z = 6.00 × 10$^6$ kg m$^{-2}$ s$^{-1}$). Calculate the intensity reflection coefficient at this boundary.",
+      "solution": "1.  **Identify the given values:**\n    Acoustic impedance of muscle ($Z_1$) = 1.70 × 10$^6$ kg m$^{-2}$ s$^{-1}$\n    Acoustic impedance of bone ($Z_2$) = 6.00 × 10$^6$ kg m$^{-2}$ s$^{-1}$\n\n2.  **Recall the intensity reflection coefficient formula:**\n    $I_r / I_i = \\left(\\frac{Z_2 - Z_1}{Z_2 + Z_1}\\right)^2$\n\n3.  **Substitute the values into the formula:**\n    $I_r / I_i = \\left(\\frac{6.00 \\times 10^6 - 1.70 \\times 10^6}{6.00 \\times 10^6 + 1.70 \\times 10^6}\\right)^2$\n\n4.  **Calculate the numerator and denominator:**\n    Numerator: $(6.00 - 1.70) \\times 10^6 = 4.30 \\times 10^6$\n    Denominator: $(6.00 + 1.70) \\times 10^6 = 7.70 \\times 10^6$\n\n5.  **Perform the division and square the result:**\n    $I_r / I_i = \\left(\\frac{4.30 \\times 10^6}{7.70 \\times 10^6}\\right)^2 = \\left(\\frac{4.30}{7.70}\\right)^2$\n    $I_r / I_i = (0.55844...)^2 \\approx 0.31186$\n\n6.  **State the final answer:**\n    The intensity reflection coefficient is approximately **0.312** (to 3 significant figures)."
     },
     {
       "type": "practice",
-      "label": "Practice Questions: Production and Use of Ultrasound",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=24.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Ultrasound Principles - Institute of Physics",
-          "href": "https://spark.iop.org/ultrasound-principles"
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
         },
         {
-          "label": "Interactive Ultrasound Transducer Simulation (Java)",
-          "href": "https://www.falstad.com/ripple/"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "Why can't doctors use audible sound for medical imaging instead of ultrasound?",
+      "a": "Audible sound waves have much longer wavelengths than ultrasound. To resolve fine details in the body (like organs or foetuses), a shorter wavelength is needed to produce clear images. Ultrasound's high frequency and short wavelength allow for this high resolution, which audible sound cannot provide."
+    },
+    {
+      "q": "What does 'axial resolution' mean for ultrasound imaging?",
+      "a": "Axial resolution refers to the ability of the ultrasound system to distinguish between two objects located along the path of the ultrasound beam. Short pulses, achieved through damping in the transducer, are essential for high axial resolution, allowing closely spaced structures to be seen as separate."
+    },
+    {
+      "q": "Is ultrasound completely safe for patients?",
+      "a": "Medical ultrasound is generally considered very safe, as it uses non-ionizing radiation (unlike X-rays) and doesn't significantly heat tissues when used diagnostically. The energy levels are low, and the technique has been widely used for decades without known long-term harmful effects, making it a preferred imaging method for sensitive applications like pregnancy scans."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/24-1-production-and-use-of-ultrasound.png",
+    "alt": "Senpai Corner reference diagram for 24.1 Production and use of ultrasound"
+  }
 }

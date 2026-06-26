@@ -5,132 +5,147 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental characteristics of alternating currents (AC). It contrasts AC with direct current (DC) and defines key descriptive quantities such as period, frequency, peak value, and the crucial concept of the root-mean-square (rms) value. The relationship between peak and rms values for sinusoidal waveforms is established, along with the calculation of average power in AC circuits.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 4 — Characteristics of alternating currents (21.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Understand and use the terms period, frequency, peak value and root-mean-square (rms) value in relation to sinusoidal alternating currents and voltages.",
-    "Recall and use the relationship between peak and rms values for a sinusoidal alternating current or voltage.",
-    "Understand that the rms value of an AC is its equivalent DC value for power dissipation in a resistor.",
-    "Solve problems involving the calculation of power in AC circuits."
+    "Define alternating current (AC) and contrast its characteristics with direct current (DC).",
+    "Understand and apply instantaneous, peak, and Root Mean Square (RMS) values for AC voltage and current.",
+    "Calculate mean power dissipation in AC circuits using both peak and RMS values."
   ],
   "simpleExplanation": {
-    "title": "AC: The Power of the Wave",
-    "summary": "Unlike the steady flow of direct current (DC), alternating current (AC) constantly changes direction, following a sine wave pattern. We use a special average, the 'root-mean-square' (rms) value, to compare its power delivery to DC.",
-    "analogy": "Imagine pushing a swing. A DC push is a constant force in one direction. An AC push is like pushing it back and forth rhythmically. To talk about the 'average' effect of your AC push, you can't just average the forward and backward pushes (they'd cancel out!). Instead, you find an equivalent steady push (like DC) that would get the swing to the same average height – that's the idea behind the root-mean-square (rms) value.",
+    "title": "AC vs. DC: The Current Story",
+    "summary": "Alternating Current (AC) constantly changes direction and strength, like the power in your home. Direct Current (DC) flows steadily in one direction, found in batteries. Understanding AC helps us work with real-world electricity.",
+    "analogy": "Imagine an AC current as a child on a **swing**. They move back and forth, speeding up and slowing down at different points. A DC current is like a child **walking in a straight line** at a steady pace towards a destination.",
     "steps": [
-      "Define AC: An alternating current or voltage periodically reverses its direction, typically following a sinusoidal pattern described by its frequency ($f$) and period ($T = 1/f$).",
-      "Peak vs. RMS: The peak value ($I_0$ or $V_0$) is the maximum amplitude of the wave. The root-mean-square (rms) value is the effective value, which is always less than the peak for a sinusoidal waveform.",
-      "The RMS Connection: The rms value of an AC is the value of a direct current that would dissipate heat at the same average rate in a given resistor. This is why it's the 'effective' value for power calculations.",
-      "Key Equations: For sinusoidal AC, the rms and peak values are related by $I_{rms} = I_0 / \\sqrt{2}$ and $V_{rms} = V_0 / \\sqrt{2}$. Use these to calculate average power: $P_{avg} = I_{rms}V_{rms}$."
+      "**Spot the Difference**: Learn how AC repeatedly reverses direction, unlike steady DC.",
+      "**Snapshot in Time**: Understand how AC's instantaneous value changes moment by moment.",
+      "**Peak Performance**: Identify the maximum (peak) voltage or current AC reaches in a cycle.",
+      "**Effective Power**: Grasp why Root Mean Square (RMS) values represent AC's power equivalence to DC."
     ]
   },
   "flashcards": [
     {
-      "front": "What is an alternating current (AC)?",
-      "back": "A current that periodically reverses its direction of flow. In A-Level Physics, this is almost always assumed to be sinusoidal unless stated otherwise."
+      "front": "What is an Alternating Current (AC)?",
+      "back": "An electric current that periodically reverses its direction and continuously varies its magnitude over time."
     },
     {
-      "front": "Define the 'period' ($T$) of an AC supply.",
-      "back": "The time taken for one complete cycle of the alternating current or voltage. Its unit is the second (s)."
+      "front": "How does AC differ from Direct Current (DC)?",
+      "back": "AC reverses direction and varies in magnitude, while DC flows in a constant direction with a steady magnitude."
     },
     {
-      "front": "Define the 'frequency' ($f$) of an AC supply.",
-      "back": "The number of complete cycles of the alternating current or voltage that occur per second. Its unit is the Hertz (Hz). It is related to the period by $f = 1/T$."
+      "front": "What is the 'peak value' of an AC waveform?",
+      "back": "The maximum magnitude (amplitude) reached by the voltage or current during a cycle."
     },
     {
-      "front": "What is the 'peak value' ($I_0$ or $V_0$)?",
-      "back": "The maximum magnitude (amplitude) of the alternating current or voltage during one cycle."
+      "front": "Write the formula for instantaneous AC voltage.",
+      "back": "$V = V_0\\sin(\\omega t)$, where $V_0$ is peak voltage, $\\omega$ is angular frequency, and $t$ is time."
     },
     {
-      "front": "Why is the mean value of a sinusoidal AC over a full cycle zero?",
-      "back": "Because the waveform is symmetrical about the time axis. The positive half-cycle has an area equal in magnitude but opposite in sign to the negative half-cycle, so their sum, and thus the average, is zero."
+      "front": "How is angular frequency ($\\omega$) related to normal frequency ($f$)?",
+      "back": "$\\omega = 2\\pi f$."
     },
     {
-      "front": "What is the physical meaning of the root-mean-square (rms) value of an AC?",
-      "back": "The rms value of an AC is the value of the direct current that would produce the same average heating effect (i.e., dissipate the same average power) as the AC in the same resistor."
+      "front": "What is the Root Mean Square (RMS) value of an AC current/voltage?",
+      "back": "The DC equivalent value that would dissipate the same average power in a resistor."
     },
     {
-      "front": "State the relationship between peak current ($I_0$) and rms current ($I_{rms}$) for a sinusoidal AC.",
-      "back": "$I_{rms} = \\frac{I_0}{\\sqrt{2}}$"
+      "front": "How is RMS voltage related to peak voltage for sinusoidal AC?",
+      "back": "$V_{rms} = \\frac{V_{peak}}{\\sqrt{2}}$"
     },
     {
-      "front": "State the relationship between peak voltage ($V_0$) and rms voltage ($V_{rms}$) for a sinusoidal AC.",
-      "back": "$V_{rms} = \\frac{V_0}{\\sqrt{2}}$"
+      "front": "How is RMS current related to peak current for sinusoidal AC?",
+      "back": "$I_{rms} = \\frac{I_{peak}}{\\sqrt{2}}$"
     },
     {
-      "front": "How do you calculate the average power dissipated in a resistor in an AC circuit?",
-      "back": "Using rms values: $P_{avg} = I_{rms}V_{rms}$, or $P_{avg} = I_{rms}^2 R$, or $P_{avg} = \\frac{V_{rms}^2}{R}$. These formulae have the same form as the DC power equations."
+      "front": "What is the formula for mean power dissipated in an AC resistor using RMS values?",
+      "back": "$\\left< P \\right> = I_{rms}^2 R = \\frac{V_{rms}^2}{R} = V_{rms} I_{rms}$"
     },
     {
-      "front": "A common mistake is using peak values ($I_0, V_0$) to calculate average power. Why is this incorrect?",
-      "back": "Using peak values in the formula $P=IV$ calculates the maximum instantaneous power, not the average power over a cycle. Since power is proportional to $I^2$ or $V^2$, and these values are constantly changing, the average power is lower than the peak power."
-    },
-    {
-      "front": "What does a '230 V mains supply' signify?",
-      "back": "This refers to the rms voltage ($V_{rms} = 230$ V). The peak voltage ($V_0$) is significantly higher: $V_0 = 230 \\times \\sqrt{2} \\approx 325$ V."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why do we divide by the square root of 2? Where does this number come from?",
-      "a": "The factor of $1/\\sqrt{2}$ arises directly from the mathematics of averaging a squared sine wave over a full cycle. The process is: (1) **Square** the function, e.g., $(I_0 \\sin(\\omega t))^2 = I_0^2 \\sin^2(\\omega t)$. (2) Find the **Mean** (average) of this squared function over one period. The average of $\\sin^2(\\theta)$ over a full cycle is exactly $1/2$. So the mean is $I_0^2/2$. (3) Take the square **Root** of the mean: $\\sqrt{I_0^2/2} = \\frac{I_0}{\\sqrt{2}}$. This specific value is what allows the power equations ($P=I^2R$, etc.) to work for both DC and AC (using rms values)."
-    },
-    {
-      "q": "Can I use peak values for any calculations?",
-      "a": "Yes, but you must be careful. You can use peak values to find the maximum instantaneous power ($P_{max} = I_0V_0$) or to write the equation for the instantaneous voltage/current as a function of time ($V = V_0\\sin(\\omega t)$). However, for any question asking for 'power', 'average power', or 'power dissipation', you must use rms values."
+      "front": "How does the mean power relate to the maximum instantaneous power for sinusoidal AC?",
+      "back": "The mean power is half the maximum instantaneous power: $\\left< P \\right> = \\frac{1}{2} P_{max}$."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "We are familiar with direct current (DC), the steady flow of charge from sources like batteries. However, the electricity that powers our homes and industries is alternating current (AC). AC has the unique property of periodically reversing its direction. This characteristic is fundamental to how we generate and transmit electrical energy efficiently over long distances. In this topic, we will develop the language and mathematical tools needed to describe and analyse AC circuits, focusing on the key concepts of peak and rms values."
+      "content": "Imagine the electricity powering your home; it’s an **alternating current (AC)**. Unlike the steady flow from a battery (**direct current, DC**), AC constantly reverses direction and changes its strength. Understanding these \"characteristics\" is key to mastering how AC works in circuits. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **21.1**."
     },
     {
       "type": "heading",
-      "content": "Describing Alternating Current"
+      "content": "What is Alternating Current (AC)?"
     },
     {
       "type": "text",
-      "content": "The most common form of AC is sinusoidal, meaning the current and voltage vary as a sine function with time. This variation can be fully described by three parameters: its amplitude, its frequency, and its phase. For our purposes, we focus on amplitude and frequency."
+      "content": "Alternating current is an electrical current that continuously changes its magnitude and periodically reverses its direction of flow. This is fundamentally different from direct current (DC), which flows in a single, constant direction."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Peak Value ($I_0$, $V_0$):** The maximum value or amplitude of the current or voltage in a cycle.",
-        "**Period ($T$):** The time taken to complete one full cycle of the oscillation, measured in seconds (s).",
-        "**Frequency ($f$):** The number of complete cycles per second, measured in Hertz (Hz). The relationship with the period is $f = 1/T$.",
-        "**Angular Frequency ($omega$):** Measured in radians per second (rad s⁻¹), it is related to frequency by $\\omega = 2\\pi f$."
+        "21.1 Characteristics of alternating currents.",
+        "AC current is defined as a periodically varying current that changes from positive to negative and has a magnitude that changes with time .",
+        "To find the frequency of an AC current just use T = 1/f.",
+        "The peak current (I 0 ) or peak voltage (V 0 ) is the maximum value of the AC or alternating voltage.",
+        "The equations that can be used to represent AC or voltage are I = I 0 sin ( ⍵ t) V = V 0 sin ( ⍵ t).",
+        "The rms value of an AC or voltage is defined as the value of a constant current/ voltage that produces the same power in a resistor as the alternating current/ voltage ."
       ]
     },
     {
+      "type": "heading",
+      "content": "Understanding AC Values"
+    },
+    {
+      "type": "text",
+      "content": "Because AC varies, we need ways to describe its value at any moment, its maximum strength, and its overall \"effectiveness\". Let's start with a snapshot in time."
+    },
+    {
       "type": "formula",
-      "content": "The instantaneous current $I$ and voltage $V$ at time $t$ can be expressed as:\n $I = I_0 \\sin(\\omega t)$\n $V = V_0 \\sin(\\omega t)$"
+      "content": "$X = x_0\\sin(\\omega t)$"
+    },
+    {
+      "type": "text",
+      "content": "Here, $X$ is the **instantaneous value** (voltage or current) at time $t$. $x_0$ is the **peak value** (or amplitude) – the absolute maximum magnitude reached. $\\omega$ (omega) is the **angular frequency**, which tells us how quickly the AC oscillates."
+    },
+    {
+      "type": "formula",
+      "content": "$\\omega = 2\\pi f$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Instantaneous value ($X$) is AC's value at a specific time.",
+        "Peak value ($x_0$) is the maximum amplitude in a cycle.",
+        "Angular frequency ($\\omega$) determines oscillation speed.",
+        "Normal frequency ($f$) is the number of cycles per second."
+      ]
     },
     {
       "type": "heading",
-      "content": "The Problem with 'Average' and the RMS Solution"
+      "content": "Peak vs. Root Mean Square (RMS)"
     },
     {
       "type": "text",
-      "content": "If you were to calculate the simple arithmetic mean of a sinusoidal AC over one complete cycle, the result would be zero. This is because the current flows for half the cycle in the positive direction and half in the negative direction, with the two halves being perfectly symmetrical. A value of zero is clearly not a useful measure of the 'effectiveness' of the current. We need a more meaningful way to quantify an alternating current's magnitude."
+      "content": "While the peak value tells us the maximum, it doesn't represent the average power delivered, because the current is zero for half the cycle. For practical purposes, like calculating power, we use the **Root Mean Square (RMS) value**."
     },
     {
       "type": "text",
-      "content": "The solution is to consider the heating effect of the current. The power dissipated in a resistor is given by $P = I^2R$. Since the current $I$ is squared, the power dissipated is always positive, regardless of the current's direction. To find a useful average, we can find the DC equivalent current that would produce the same average power. This leads to the concept of the **root-mean-square (rms)** value. The rms value is the square root of the mean (average) of the square of the current."
+      "content": "The RMS value of an AC voltage or current is the equivalent DC value that would dissipate the same average power in a resistor. It's found by squaring instantaneous values, finding their mean, then taking the square root."
     },
     {
       "type": "formula",
-      "content": "For a sinusoidal waveform, the relationship between the peak and rms values is a simple conversion:\n $I_{rms} = \\frac{I_0}{\\sqrt{2}} \\approx 0.707 I_0$\n $V_{rms} = \\frac{V_0}{\\sqrt{2}} \\approx 0.707 V_0$"
+      "content": "$V_{rms} = \\frac{V_{peak}}{\\sqrt{2}}$"
     },
     {
-      "type": "examTip",
-      "content": "In exam questions, if an AC voltage or current value is given without specifying whether it is peak or rms (e.g., 'a 230 V AC supply'), you must assume it is the **rms value**. This is standard convention for quoting AC quantities."
+      "type": "formula",
+      "content": "$I_{rms} = \\frac{I_{peak}}{\\sqrt{2}}$"
     },
     {
-      "type": "workedExample",
-      "question": "The mains electricity supply in the UK is a sinusoidal AC supply with a frequency of 50 Hz and an rms voltage of 230 V. \n\n(a) Calculate the period of the supply. \n(b) Determine the peak voltage. \n(c) Write an expression for the instantaneous voltage $V$ as a function of time $t$.",
-      "solution": "*(a) Calculate the period*\n\nThe period $T$ is the reciprocal of the frequency $f$.\n$T = \\frac{1}{f}$\n$T = \\frac{1}{50 \\text{ Hz}} = 0.020$ s\n\n*(b) Determine the peak voltage*\n\nThe given voltage is the rms value, $V_{rms} = 230$ V.\nThe peak voltage $V_0$ is related to the rms voltage by $V_{rms} = \\frac{V_0}{\\sqrt{2}}$.\nRearranging for $V_0$:\n$V_0 = V_{rms} \\times \\sqrt{2}$\n$V_0 = 230 \\text{ V} \\times \\sqrt{2} = 325.269...$ V\n$V_0 \\approx 325$ V (to 3 s.f.)\n\n*(c) Write the expression for V(t)*\n\nFirst, calculate the angular frequency $\\omega$.\n$\\omega = 2\\pi f = 2\\pi \\times 50 \\text{ Hz} = 100\\pi$ rad s⁻¹\nThe general expression is $V = V_0 \\sin(\\omega t)$.\nSubstituting the values for $V_0$ and $\\omega$:\n$V = 325 \\sin(100\\pi t)$ (where V is in volts and t is in seconds)."
+      "type": "keyPoints",
+      "items": [
+        "RMS value is the 'effective' value of AC.",
+        "It represents the DC equivalent for power dissipation.",
+        "For sinusoidal AC, $V_{rms}$ is $V_{peak}$ divided by $\\sqrt{2}$.",
+        "Similarly, $I_{rms}$ is $I_{peak}$ divided by $\\sqrt{2}$."
+      ]
     },
     {
       "type": "heading",
@@ -138,43 +153,82 @@
     },
     {
       "type": "text",
-      "content": "While the instantaneous power $P(t) = I(t)V(t)$ fluctuates throughout the cycle, we are most often interested in the average power dissipated over time. This is what determines the heat output of a heater or the brightness of a lamp. The beauty of the rms concept is that it allows us to calculate average power using formulas that look identical to those for DC circuits."
+      "content": "The instantaneous power in an AC circuit continuously varies because voltage and current are changing. However, we are usually interested in the **mean power** dissipated over a full cycle."
+    },
+    {
+      "type": "formula",
+      "content": "$\\left< P \\right> = \\frac{1}{2} P_{max} = \\frac{1}{2} I_0^2 R = \\frac{1}{2} \\frac{V_0^2}{R}$"
+    },
+    {
+      "type": "text",
+      "content": "A key advantage of using RMS values is that they simplify mean power calculations, making them identical to DC power calculations. This is precisely why RMS values are so useful!"
+    },
+    {
+      "type": "formula",
+      "content": "$\\left< P \\right> = I_{rms}^2 R = \\frac{V_{rms}^2}{R} = V_{rms} I_{rms}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The instantaneous power varies as $\\sin^2(\\omega t)$. The average value of $\\sin^2(\\omega t)$ over one cycle is $1/2$.",
-        "Therefore, the average power can be expressed using peak values: $P_{avg} = \\frac{1}{2} I_0 V_0$.",
-        "It is much more convenient to use rms values, as they directly give the average power: $P_{avg} = I_{rms} V_{rms}$."
+        "Instantaneous power in AC varies continuously.",
+        "Mean power over a cycle is often half the peak power.",
+        "RMS values allow for straightforward power calculations.",
+        "Use $V_{rms}$ and $I_{rms}$ for average power formulas."
       ]
     },
     {
-      "type": "formula",
-      "content": "Average Power, $P_{avg}$:\n $P_{avg} = I_{rms}V_{rms}$\n $P_{avg} = I_{rms}^2 R$\n $P_{avg} = \\frac{V_{rms}^2}{R}$"
+      "type": "workedExample",
+      "question": "A mains electricity supply has a peak voltage ($V_{peak}$) of 325 V.\n1.  Calculate its Root Mean Square (RMS) voltage.\n2.  If this supply is connected to a heating element with a resistance of 60 \\u03a9, what is the mean power dissipated by the element?",
+      "solution": "1.  **Calculate RMS voltage:**\n    *   The relationship between RMS and peak voltage for sinusoidal AC is: $V_{rms} = \\frac{V_{peak}}{\\sqrt{2}}$\n    *   $V_{rms} = \\frac{325\\,V}{\\sqrt{2}}$\n    *   $V_{rms} \\approx 229.8\\,V$ (or 230 V to 3 s.f.)\n\n2.  **Calculate mean power dissipated:**\n    *   Using the RMS voltage and resistance, the mean power can be found with the formula: $\\left< P \\right> = \\frac{V_{rms}^2}{R}$\n    *   $\\left< P \\right> = \\frac{(229.8\\,V)^2}{60\\,\\Omega}$\n    *   $\\left< P \\right> = \\frac{52808.04}{60}$\n    *   $\\left< P \\right> \\approx 880\\,W$ (to 3 s.f.)"
     },
     {
-      "type": "workedExample",
-      "question": "An electric kettle has a resistance of 30 $\\Omega$ and is designed to be used with a 230 V rms AC supply. Calculate:\n\n(a) The rms current drawn by the kettle.\n(b) The peak current in the heating element.\n(c) The average power supplied to the kettle.",
-      "solution": "*(a) Calculate the rms current*\n\nUsing Ohm's law with rms values: $V_{rms} = I_{rms}R$.\n$I_{rms} = \\frac{V_{rms}}{R}$\n$I_{rms} = \\frac{230 \\text{ V}}{30 \\Omega} = 7.666...$ A\n$I_{rms} \\approx 7.7$ A (to 2 s.f.)\n\n*(b) Calculate the peak current*\n\nThe peak current $I_0$ is related to the rms current by $I_{rms} = \\frac{I_0}{\\sqrt{2}}$.\n$I_0 = I_{rms} \\times \\sqrt{2}$\n$I_0 = 7.666... \\text{ A} \\times \\sqrt{2} = 10.84...$ A\n$I_0 \\approx 11$ A (to 2 s.f.)\n\n*(c) Calculate the average power*\n\nWe can use any of the power formulas with rms values. Using $P_{avg} = V_{rms}I_{rms}$:\n$P_{avg} = 230 \\text{ V} \\times 7.666... \\text{ A} = 1763.3...$ W\n$P_{avg} \\approx 1800$ W or 1.8 kW (to 2 s.f.)\n\n*Alternative method using $P_{avg} = \\frac{V_{rms}^2}{R}$:*\n$P_{avg} = \\frac{(230 \\text{ V})^2}{30 \\Omega} = \\frac{52900}{30} = 1763.3...$ W\n$P_{avg} \\approx 1800$ W (to 2 s.f.)"
+      "type": "examTip",
+      "content": "Always check if a question refers to **peak** or **RMS** values, as using the wrong one is a common error in calculations. Remember that standard household voltage (e.g., 230 V in the UK) is almost always given as an RMS value!"
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=21.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Generator",
-          "href": "https://phet.colorado.edu/en/simulations/generator"
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
         },
         {
-          "label": "AC Waveforms and RMS Value",
-          "href": "https://www.geogebra.org/m/uuzg2zgs"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "Why do countries use AC for mains electricity instead of DC?",
+      "a": "AC is favoured for mains power primarily because its voltage can be easily stepped up or down using transformers, making long-distance transmission more efficient and reducing power loss."
+    },
+    {
+      "q": "What's the difference between frequency ($f$) and angular frequency ($\\omega$)?",
+      "a": "Frequency ($f$) is the number of complete cycles per second, measured in Hertz (Hz). Angular frequency ($\\omega$) describes the rate of change of the phase angle of the waveform, measured in radians per second (rad s⁻¹), and is related by $\\omega = 2\\pi f$."
+    },
+    {
+      "q": "Is the RMS value always $V_{peak}/\\sqrt{2}$ for any alternating current?",
+      "a": "No, this specific relationship ($V_{rms} = V_{peak}/\\sqrt{2}$) is only valid for **sinusoidal** alternating currents. For other waveform shapes (e.g., square waves, triangular waves), the relationship between RMS and peak values would be different."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/21-1-characteristics-of-alternating-currents.png",
+    "alt": "Senpai Corner reference diagram for 21.1 Characteristics of alternating currents"
+  }
 }

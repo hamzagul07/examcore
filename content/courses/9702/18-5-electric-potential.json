@@ -5,177 +5,253 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson introduces electric potential, defining it as the work done per unit charge. It covers the formula for potential due to a point charge, the principle of superposition for multiple charges, and the distinction between electric potential and electric potential energy.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 4 — Electric potential (18.5). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Define electric potential as the work done per unit positive charge in bringing a charge from infinity to a point.",
-    "Recall and use the formula V = Q / (4πε₀r) for the potential due to a point charge.",
-    "Apply the principle of superposition to calculate the potential at a point due to multiple charges.",
-    "Understand the distinction between electric potential (a scalar) and electric field strength (a vector)."
+    "Define absolute electric potential and electric potential energy.",
+    "Calculate electric potential and potential energy for point charges.",
+    "Understand equipotential lines and their relationship with electric field lines."
   ],
   "simpleExplanation": {
-    "title": "The Energy Landscape of Charge",
-    "summary": "Electric potential describes the 'electrical height' at a point in space, telling you how much energy a charge would have there. It's a scalar property of the field itself, making calculations with multiple charges much simpler than with vector fields.",
-    "analogy": "Imagine a large trampoline with a heavy bowling ball placed in the centre, causing a dip. The depth of the dip at any point is like the electric potential created by a negative charge. A smaller marble placed on the trampoline will naturally roll into the dip, releasing potential energy. To move the marble away from the centre requires you to do work, increasing its potential energy. Electric potential is the 'depth' per unit of the marble's 'mass' (charge).",
+    "title": "Electric Potential: Energy per Charge",
+    "summary": "Imagine pushing a ball uphill – you do work, and it gains potential energy. Electric potential is similar, but for charges in an electric field. It tells you the potential energy stored per unit of charge at a specific point.",
+    "analogy": "Think about lifting an object against gravity. You do work, and the object gains gravitational potential energy. Similarly, moving a positive charge into an electric field from a 'neutral' point (infinity) requires work, and that work gives it electric potential energy.",
     "steps": [
-      "Define Potential: Electric potential (V) at a point is the work done (W) per unit positive charge (q) to move it from infinity to that point.",
-      "Source of Potential: A point charge Q creates a potential field around it. For a positive Q, the potential is positive and decreases as you move away; for a negative Q, it's negative and becomes less negative as you move away.",
-      "The Potential Formula: The potential V at a distance r from a point charge Q is calculated using V = Q / (4πε₀r). Note the inverse relationship with r, not r².",
-      "Combining Potentials: Since potential is a scalar, the total potential at a point from multiple charges is the simple algebraic sum. Remember to include the sign (+ or –) of each charge in your calculation."
+      "**Identify the Source:** A charge creates an electric field around it.",
+      "**Test the Field:** Imagine a tiny positive 'test' charge.",
+      "**Measure the Work:** How much energy is needed to bring that test charge from 'nowhere' (infinity) to a specific point?",
+      "**Work per Charge:** Divide the work done by the test charge's magnitude – that's your electric potential at that point!"
     ]
   },
   "flashcards": [
     {
-      "front": "What is the definition of electric potential at a point?",
-      "back": "The work done per unit positive charge in bringing that charge from infinity to the point. It is a scalar quantity."
+      "front": "What is absolute electric potential (V)?",
+      "back": "The work done per unit positive test charge to move it from infinity to a specific point in an electric field without acceleration."
     },
     {
-      "front": "What is the formula for electric potential, V, in terms of work done, W, and charge, q?",
-      "back": "V = W / q. The unit of potential is the volt (V), which is equivalent to a joule per coulomb (J C⁻¹)."
+      "front": "Give the formula relating electric potential (V) to work done (W) and charge (Q).",
+      "back": "$V = W/Q$"
     },
     {
-      "front": "What is the formula for the electric potential V due to a point charge Q at a distance r?",
-      "back": "V = Q / (4πε₀r), where ε₀ is the permittivity of free space."
+      "front": "What is electric potential energy (U)?",
+      "back": "The work done to bring a positive charge from infinity to a specific point within an electric field."
     },
     {
-      "front": "Why is electric potential at infinity taken to be zero?",
-      "back": "Infinity is a point infinitely far from any charge, where the electric field is zero. It provides a universal and convenient reference point for defining potential."
+      "front": "How do you calculate the electric potential (V) at distance $r$ from a point charge $Q$?",
+      "back": "$V = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r}$"
     },
     {
-      "front": "How does the potential created by a positive point charge vary with distance?",
-      "back": "The potential is positive and decreases as distance r increases (V ∝ 1/r). It is highest near the charge and tends to zero at infinity."
+      "front": "What is the formula for the electric potential energy (U) between two point charges $Q_1$ and $Q_2$ separated by $r$?",
+      "back": "$U = \\frac{Q_1Q_2}{4\\pi\\epsilon_0 r}$"
     },
     {
-      "front": "How does the potential created by a negative point charge vary with distance?",
-      "back": "The potential is negative and increases (becomes less negative) as distance r increases (V ∝ 1/r). It is most negative near the charge and tends to zero at infinity."
+      "front": "How does the sign of a source charge affect the potential it creates?",
+      "back": "Positive source charges create positive potential; negative source charges create negative potential."
     },
     {
-      "front": "What is the key difference between calculating total electric potential and total electric field strength from multiple charges?",
-      "back": "Electric potential is a scalar, so total potential is the algebraic sum of individual potentials. Electric field strength is a vector, so total field strength requires vector addition (resolving components or using vector diagrams)."
+      "front": "What are equipotential lines?",
+      "back": "Imaginary lines (or surfaces) connecting points in an electric field that all have the same electric potential."
     },
     {
-      "front": "What is the relationship between electric potential (V) and electric potential energy (Eₚ)?",
-      "back": "Electric potential energy is the energy a specific charge q has at a point with electric potential V. The relationship is Eₚ = qV."
+      "front": "What is the relationship between electric field lines and equipotential lines?",
+      "back": "Electric field lines are always perpendicular to equipotential lines."
     },
     {
-      "front": "A common exam trap: A question asks for the change in potential energy when a charge moves between two points. What is the first step?",
-      "back": "First, calculate the potential at the start point (V₁) and the end point (V₂). Then find the potential difference, ΔV = V₂ - V₁. Finally, the change in potential energy is ΔEₚ = qΔV."
+      "front": "How much work is done when a charge moves along an equipotential line?",
+      "back": "No work is done by the electric field, as there is no potential difference."
     },
     {
-      "front": "If the potential at a point is zero, does the electric field strength also have to be zero at that point?",
-      "back": "Not necessarily. For example, at the midpoint between two equal and opposite charges, the potential is zero (V_net = V_+ + V_- = 0), but the electric field is non-zero as both fields point in the same direction."
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the difference between electric potential and electric potential energy?",
-      "a": "Electric potential is a property of a point in space, defined per unit charge (in J/C or Volts). Electric potential energy is the energy a specific charge possesses because of its location in that field (in Joules). The relationship is: Potential Energy = Charge × Potential ($E_p = qV$)."
+      "front": "How is electric field strength (E) related to potential difference (ΔV) in a uniform field?",
+      "back": "$E = \\frac{\\Delta V}{d}$, where $d$ is the plate separation."
     },
     {
-      "q": "Why is electric potential a scalar, but electric field strength is a vector?",
-      "a": "Electric potential is related to work and energy, which are scalar quantities. It describes 'how much' energy a charge would have at a point. Electric field strength is related to force, which is a vector. It describes 'how strongly' and 'in which direction' a charge would be pushed or pulled at a point."
-    },
-    {
-      "q": "Can the electric potential be zero at a point where the electric field is not zero?",
-      "a": "Yes. A classic example is the point midway between two equal and opposite charges (+Q and -Q). The potential from +Q is positive, and the potential from -Q is negative and equal in magnitude, so they sum to zero. However, the electric field vectors from both charges point in the same direction (from positive to negative), so the resultant field is non-zero."
+      "front": "What is the relationship between electric field strength (E) and the gradient of an electric potential-distance graph?",
+      "back": "$E = - \\frac{\\Delta V}{\\Delta r}$ (magnitude $E = |\\frac{\\Delta V}{\\Delta r}|$). The field strength is the negative potential gradient."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our study of gravitational fields, we used the concept of gravitational potential to describe the energy 'landscape'. We will now develop a parallel concept for electric fields: electric potential. This powerful idea simplifies many problems by allowing us to work with scalar quantities (energy) instead of vector quantities (force), making it a cornerstone of electromagnetism."
+      "content": "Welcome to the world of **electric potential**! This fundamental concept helps us understand the energy associated with charges within an **electric field**. Unlike electric field strength, which is a vector, electric potential is a **scalar quantity**, meaning it only has magnitude. This makes calculations simpler, but understanding its nature is crucial for mastering electromagnetism. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **18.5**."
     },
     {
       "type": "heading",
-      "content": "1. Defining Electric Potential"
+      "content": "What is Electric Potential?"
     },
     {
       "type": "text",
-      "content": "Electric potential, often denoted by the symbol $V$, is a property of a point in an electric field. It is formally defined as the work done per unit positive charge in bringing that charge from a point of zero potential (usually infinity) to the point in question. This definition focuses on the energy transferred to the charge as it moves through the field."
+      "content": "Electric potential ($V$) at any point in an electric field is fundamentally defined as the amount of **work done per unit positive test charge**. This work is performed by an external force to slowly move a tiny positive test charge from an infinitely distant point (where potential is considered zero) to the specific point you're interested in, without causing any acceleration. Think of it as the electric potential energy that each coulomb of charge would possess at that location."
     },
     {
       "type": "formula",
-      "content": "$V = \\frac{W}{q}$"
+      "content": "$V = \\frac{W}{Q}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The unit of electric potential is the volt (V).",
-        "From the definition, 1 volt = 1 joule per coulomb (1 V = 1 J C⁻¹).",
-        "Potential is a scalar quantity, meaning it has magnitude but no direction. This makes calculations involving multiple sources much simpler.",
-        "The choice of zero potential at infinity is a convention, similar to choosing sea level as zero height for gravitational potential energy."
+        "18.5 Electric potential.",
+        "Electric potential is defined as the work done per unit positive charge in bringing a small test charge from infinity to a defined point.",
+        "Electric potential is a scalar quantity.",
+        "Although electric potential (V) is a scalar quantity it can have a negative or positive sign.",
+        "The electric potential in the field due to a point charge is defined as: 𝑉 = 𝑄 4𝜋𝜀 0 𝑟.",
+        "Here Q is the point charge producing the charge (C)."
       ]
     },
     {
       "type": "heading",
-      "content": "2. Electric Potential due to a Point Charge"
+      "content": "Electric Potential from a Point Charge"
     },
     {
       "type": "text",
-      "content": "For a single point charge $Q$, the electric potential it creates in the space around it can be calculated. While the derivation involves calculus and is not required for the syllabus, the resulting formula is fundamental. It describes how the potential varies with distance $r$ from the centre of the charge."
+      "content": "For an isolated point charge, the electric field it creates is radial. The electric potential at a distance $r$ from this charge depends directly on the charge's magnitude and inversely on the distance. This formula describes the **absolute potential** created by a single point charge in a vacuum or air."
     },
     {
       "type": "formula",
-      "content": "$V = \\frac{Q}{4\\pi\\epsilon_0 r}$"
+      "content": "$V = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "$epsilon_0$ is the permittivity of free space, a constant with value $8.85 \\times 10^{-12}$ F m⁻¹.",
-        "The potential $V$ is directly proportional to the source charge $Q$.",
-        "The potential $V$ is inversely proportional to the distance $r$ from the charge. This is different from electric field strength, which is proportional to $1/r^2$.",
-        "The sign of the potential is determined by the sign of the charge $Q$. Positive charges create positive potential, and negative charges create negative potential."
+        "$Q$ is the source charge creating the potential.",
+        "$\\\\epsilon_0$ is the permittivity of free space.",
+        "The sign of $V$ is the same as the sign of $Q$.",
+        "Potential is highest (most positive or least negative) near the charge.",
+        "Potential decreases with distance, approaching zero at infinity."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electric Potential Energy"
+    },
+    {
+      "type": "text",
+      "content": "While electric potential is energy *per unit charge*, **electric potential energy** ($U$) is the total work done to bring a specific charge from infinity to a point in an electric field. If you have two point charges, $Q_1$ and $Q_2$, separated by a distance $r$, this formula gives the potential energy stored in their configuration. It's the work required to assemble them from infinite separation."
+    },
+    {
+      "type": "formula",
+      "content": "$U = \\frac{Q_1Q_2}{4\\pi\\epsilon_0 r}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Represents the work done to assemble a system of charges.",
+        "Positive $U$ means work was done *on* the system (charges repel).",
+        "Negative $U$ means the field did work (charges attract).",
+        "Units are Joules (J)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Work Done by a Charge Moving Through Potential Difference"
+    },
+    {
+      "type": "text",
+      "content": "When a charge moves from one point to another within an electric field, if there's a difference in electric potential between these points, work will be done either *by* the field or *on* the charge. The amount of work done depends on the charge's magnitude and the potential difference it traverses."
+    },
+    {
+      "type": "formula",
+      "content": "$W = Q\\Delta V$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$W$ is work done, $Q$ is the charge, $\\Delta V$ is potential difference.",
+        "If $W$ is positive, work is done *on* the charge (its energy increases).",
+        "If $W$ is negative, work is done *by* the field (its energy decreases).",
+        "Positive charges naturally move from higher to lower potential."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Equipotential Lines and Electric Fields"
+    },
+    {
+      "type": "text",
+      "content": "Equipotential lines (or surfaces in 3D) are incredibly useful visual tools. They represent all the points in an electric field that share the exact same electric potential. Imagine contour lines on a map, but for electrical 'height'. A crucial property is that if a charge moves along an equipotential line, no work is done by the electric field, because there's no change in potential energy ($\\\\Delta V = 0$)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Lines connecting points of equal electric potential.",
+        "Electric field lines are always perpendicular to equipotential lines.",
+        "No work is done by the electric field when a charge moves along them.",
+        "Closer spacing indicates a stronger electric field (steeper potential gradient).",
+        "The electric field strength ($E$) is the negative gradient of the potential: $E = -\\frac{\\Delta V}{\\Delta r}$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Uniform Electric Fields"
+    },
+    {
+      "type": "text",
+      "content": "A special case is a uniform electric field, typically found between two large, parallel conducting plates with opposite charges. In such a field, the electric field strength is constant in magnitude and direction. This simplifies the relationship between electric field strength and potential difference significantly."
+    },
+    {
+      "type": "formula",
+      "content": "$E = \\frac{\\Delta V}{d}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Applies to uniform fields, e.g., between parallel plates.",
+        "$d$ is the distance between the plates or points.",
+        "Units of E can be V/m, equivalent to N/C."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A proton has a charge of $+1.60 \\times 10^{-19}$ C. Calculate the electric potential at a distance of $5.0 \\times 10^{-11}$ m from the proton. This is a typical distance of an electron in a hydrogen atom.",
-      "solution": "Step 1: Identify the relevant formula.\nThe formula for the potential due to a point charge is $V = \\frac{Q}{4\\pi\\epsilon_0 r}$.\n\nStep 2: List the known values.\nCharge, $Q = +1.60 \\times 10^{-19}$ C\nDistance, $r = 5.0 \\times 10^{-11}$ m\nConstant, $4\\pi\\epsilon_0 = 1 / (9.0 \\times 10^9)$ N m² C⁻² (This is a useful form to remember)\n\nStep 3: Substitute the values into the formula.\n$V = \\frac{1.60 \\times 10^{-19}}{4\\pi (8.85 \\times 10^{-12}) \\times (5.0 \\times 10^{-11})}$\nAlternatively, using the constant $k = 1/(4\\pi\\epsilon_0) \\approx 9.0 \\times 10^9$:\n$V = (9.0 \\times 10^9) \\times \\frac{1.60 \\times 10^{-19}}{5.0 \\times 10^{-11}}$\n\nStep 4: Calculate the result.\n$V = \\frac{1.44 \\times 10^{-9}}{5.0 \\times 10^{-11}}$\n$V = 28.8$ V\n\nFinal Answer: The electric potential is +28.8 V (or +29 V to 2 s.f.)."
-    },
-    {
-      "type": "heading",
-      "content": "3. The Principle of Superposition for Potentials"
-    },
-    {
-      "type": "text",
-      "content": "One of the most useful properties of electric potential is that it is a scalar. When multiple charges are present, the total electric potential at any point is simply the algebraic sum of the potentials created by each individual charge. There is no need for vector addition, which greatly simplifies problem-solving."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Total Potential: $V_{total} = V_1 + V_2 + V_3 + ...$",
-        "This is an algebraic sum, so the signs of the individual potentials (and therefore the signs of the charges) are crucial.",
-        "It is possible for the total potential at a point to be zero, even if the individual potentials are not. This occurs when the sum of positive potentials cancels out the sum of negative potentials."
-      ]
+      "question": "A point charge of +5.0 nC is located at the origin. Calculate the absolute electric potential at a point 0.20 m away from the charge. (Constant $k = \\frac{1}{4\\pi\\epsilon_0} = 8.99 \\times 10^9 \\text{ N m}^2 \\text{ C}^{-2}$)",
+      "solution": "1.  **Identify knowns:** $Q = +5.0 \\times 10^{-9} \\text{ C}$ (remember nano = $10^{-9}$), $r = 0.20 \\text{ m}$, $k = 8.99 \\times 10^9 \\text{ N m}^2 \\text{ C}^{-2}$.\n2.  **Recall formula:** The formula for electric potential due to a point charge is $V = k \\frac{Q}{r}$.\n3.  **Substitute values:** $V = (8.99 \\times 10^9) \\times \\frac{+5.0 \\times 10^{-9}}{0.20}$.\n4.  **Calculate:** $V = 8.99 \\times 10^9 \\times 2.5 \\times 10^{-8} = +224.75 \\text{ V}$.\n5.  **Final Answer:** The absolute electric potential at 0.20 m is **+225 V** (to 3 significant figures)."
     },
     {
       "type": "examTip",
-      "content": "A very common mistake is to confuse the formulae for electric field strength $E$ and electric potential $V$. Remember: $E \\propto 1/r^2$ (a vector) and $V \\propto 1/r$ (a scalar). When calculating total potential, you add the numbers. When calculating total field strength, you must consider directions (vector addition)."
-    },
-    {
-      "type": "workedExample",
-      "question": "Two point charges, $Q_A = +2.0$ nC and $Q_B = -3.0$ nC, are separated by a distance of 10 cm. Point P is located 6.0 cm from $Q_A$ and 8.0 cm from $Q_B$. (Note: 6, 8, 10 cm forms a right-angled triangle).\n\n(a) Calculate the total electric potential at point P.\n(b) Calculate the work done in bringing an electron (charge $-1.60 \\times 10^{-19}$ C) from infinity to point P.",
-      "solution": "(a) Calculate the potential at P due to each charge separately.\n\nStep 1: Potential at P due to $Q_A$.\n$V_A = \\frac{Q_A}{4\\pi\\epsilon_0 r_A} = (9.0 \\times 10^9) \\times \\frac{+2.0 \\times 10^{-9}}{0.060}$\n$V_A = +300$ V\n\nStep 2: Potential at P due to $Q_B$.\n$V_B = \\frac{Q_B}{4\\pi\\epsilon_0 r_B} = (9.0 \\times 10^9) \\times \\frac{-3.0 \\times 10^{-9}}{0.080}$\n$V_B = -337.5$ V\n\nStep 3: Find the total potential by algebraic sum.\n$V_P = V_A + V_B = 300 + (-337.5)$\n$V_P = -37.5$ V\n\nFinal Answer (a): The total electric potential at P is -38 V (to 2 s.f.).\n\n(b) Calculate the work done.\n\nStep 1: Recall the definition of potential.\nPotential at a point is the work done per unit charge to bring it from infinity: $V = W/q$.\nTherefore, the work done is $W = qV$.\n\nStep 2: Substitute the values.\nCharge of electron, $q = -1.60 \\times 10^{-19}$ C\nPotential at P, $V_P = -37.5$ V\n\n$W = (-1.60 \\times 10^{-19}) \\times (-37.5)$\n$W = +6.0 \\times 10^{-18}$ J\n\nFinal Answer (b): The work done is $+6.0 \\times 10^{-18}$ J. The positive sign indicates that work must be done *on* the electron (by an external agent) to move it to point P, as it is being repelled by the net negative potential."
+      "content": "Always pay close attention to the **sign** of charges when calculating electric potential ($V$) and electric potential energy ($U$). A positive source charge creates positive potential, while a negative one creates negative potential. For potential energy, an attractive force (opposite charges) results in negative potential energy, while a repulsive force (like charges) results in positive potential energy. Incorrect signs are a common mistake!"
     },
     {
       "type": "practice",
-      "label": "Practice Exam Questions: Electric Potential",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=18.5"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Charges and Fields",
-          "href": "https://phet.colorado.edu/en/simulations/charges-and-fields"
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
         },
         {
-          "label": "A-Level Physics Online: Electric Potential",
-          "href": "https://www.alevelphysicsonline.com/electric-fields#potential"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "What is the difference between electric potential and electric potential energy?",
+      "a": "Electric potential (V) is the work done per unit positive charge to move it from infinity to a point in an electric field. Electric potential energy (U) is the total work done to bring a specific charge from infinity to that point. So, potential is energy *per unit charge*, while potential energy is the *total energy* of a charge at a point."
+    },
+    {
+      "q": "Why is electric potential at infinity considered zero?",
+      "a": "Infinity is chosen as the reference point for zero potential because the electric field and force due to any finite charge configuration effectively become zero at an infinite distance. This makes calculations simpler and provides a consistent baseline for defining absolute potential."
+    },
+    {
+      "q": "How can electric potential be negative?",
+      "a": "Electric potential can be negative if the source charge creating the field is negative. A positive test charge would be attracted to a negative source charge, meaning the field does work *on* the test charge as it approaches, resulting in a negative amount of external work needed (or a decrease in potential energy) compared to infinity."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/18-5-electric-potential.png",
+    "alt": "Senpai Corner reference diagram for 18.5 Electric potential"
+  }
 }

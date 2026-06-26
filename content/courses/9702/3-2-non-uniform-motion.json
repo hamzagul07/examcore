@@ -5,180 +5,242 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "This lesson explores non-uniform motion, where an object's velocity changes over time. It focuses on the concept of acceleration, its graphical representation on displacement-time and velocity-time graphs, and the application of the kinematic equations (SUVAT) for uniformly accelerated motion.",
-  "durationMin": 22,
-  "updated": "2026-06-15",
+  "summary": "Cambridge 9702 Paper 2 — Non-uniform motion (3.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Define and calculate acceleration as the rate of change of velocity.",
-    "Analyse and interpret displacement-time and velocity-time graphs for non-uniform motion.",
-    "Select and apply the equations of motion (SUVAT) for objects moving with constant acceleration.",
-    "Solve problems involving motion with constant acceleration, including the motion of bodies falling in a uniform gravitational field."
+    "Apply Newton's Laws to explain changes in motion and calculate resultant forces.",
+    "Define and calculate momentum, relating it to the concept of force.",
+    "Describe the factors affecting and the conditions for achieving terminal velocity."
   ],
   "simpleExplanation": {
-    "title": "Motion in the Fast Lane",
-    "summary": "Non-uniform motion is just a fancy way of saying something is speeding up or slowing down. We use graphs and a special set of equations called SUVAT to describe and predict this changing motion.",
-    "analogy": "Imagine you're driving in a city. You accelerate from traffic lights, cruise for a bit, then brake for a pedestrian. Your velocity is constantly changing. This is non-uniform motion. A long, straight motorway journey on cruise control, however, would be uniform motion.",
+    "title": "Understanding Changing Motion",
+    "summary": "Non-uniform motion simply means an object's velocity is changing over time – it's speeding up, slowing down, or changing direction. This change always happens because there's a net force acting on the object, pushing or pulling it.",
+    "analogy": "Imagine you're in a car. When the driver presses the accelerator or brake, or turns the steering wheel, you feel a push or pull. That's non-uniform motion in action! Your velocity isn't steady; it's constantly adjusting due to forces from the engine, brakes, or steering.",
     "steps": [
-      "Non-uniform motion means velocity is changing, which is called acceleration. On a graph, this is a curve on a displacement-time graph or a slope on a velocity-time graph.",
-      "The gradient of a velocity-time graph tells you the acceleration. The area under this graph tells you the displacement.",
-      "For the special case of constant acceleration, we use the 'SUVAT' equations. These five equations link displacement (s), initial velocity (u), final velocity (v), acceleration (a), and time (t).",
-      "In exam questions, list the known SUVAT values, identify the unknown you need to find, choose the appropriate equation, and solve. Always establish a positive direction first."
+      "A **resultant force** is the cause of any change in an object's velocity.",
+      "**Newton's Second Law** (F=ma) quantifies this: more force means more acceleration (for a given mass).",
+      "**Momentum** describes an object's 'quantity of motion' – how much oomph it has.",
+      "**Terminal velocity** occurs when forces are balanced, leading to constant speed despite changing prior acceleration."
     ]
   },
   "flashcards": [
     {
-      "front": "What is non-uniform motion?",
-      "back": "Motion in which the velocity of an object is not constant. This means the object is accelerating (either speeding up, slowing down, or changing direction)."
+      "front": "What is the primary characteristic that defines non-uniform motion?",
+      "back": "A changing velocity (i.e., acceleration or deceleration) of an object."
     },
     {
-      "front": "Define acceleration.",
-      "back": "Acceleration is the rate of change of velocity. It is a vector quantity. $a = \\frac{\\Delta v}{\\Delta t}$"
+      "front": "How does Newton's Second Law quantitatively relate resultant force, mass, and acceleration?",
+      "back": "It states that resultant force equals mass times acceleration ($F = ma$). The acceleration's direction matches the resultant force."
     },
     {
-      "front": "What does the gradient of a displacement-time graph represent?",
-      "back": "Instantaneous velocity. For non-uniform motion, the graph is a curve, and the gradient changes."
+      "front": "How can force be alternatively defined in terms of momentum?",
+      "back": "Force is the rate of change of an object's momentum over time ($F = \\frac{\\Delta p}{\\Delta t}$). "
     },
     {
-      "front": "What does the gradient of a velocity-time graph represent?",
-      "back": "Acceleration. A straight, non-horizontal line indicates constant acceleration."
+      "front": "Explain the conditions under which an object falling through a fluid reaches terminal velocity.",
+      "back": "Terminal velocity is reached when the downward driving force (weight) is balanced by the total upward resistive forces (air resistance, upthrust), resulting in zero net force and constant velocity."
     },
     {
-      "front": "What does the area under a velocity-time graph represent?",
-      "back": "Displacement. For areas below the time axis, the displacement is negative."
+      "front": "How does air resistance typically impact the trajectory of a projectile?",
+      "back": "Air resistance reduces both the maximum height attained and the horizontal range covered by the projectile."
     },
     {
-      "front": "What is the key condition for using the SUVAT equations?",
-      "back": "The acceleration must be constant (uniform). They cannot be used if acceleration is changing."
+      "front": "State Newton's First Law of Motion.",
+      "back": "An object will remain at rest or continue at a constant velocity unless acted upon by a resultant force."
     },
     {
-      "front": "What do the letters in SUVAT stand for?",
-      "back": "$s$: displacement, $u$: initial velocity, $v$: final velocity, $a$: acceleration, $t$: time."
+      "front": "What is momentum and how is it calculated?",
+      "back": "Momentum ($p$) is a vector quantity defined as an object's mass ($m$) multiplied by its velocity ($v$), so $p = mv$."
     },
     {
-      "front": "Which SUVAT equation links $v, u, a, t$?",
-      "back": "$v = u + at$. This is derived directly from the definition of acceleration."
+      "front": "What is the key difference between Newton's Second Law and Third Law?",
+      "back": "Newton's Second Law relates force, mass, and acceleration for a single object, while Newton's Third Law describes action-reaction force pairs acting on *different* objects."
     },
     {
-      "front": "Which SUVAT equation should you use if you are NOT given the time, $t$?",
-      "back": "$v^2 = u^2 + 2as$. This is the only standard kinematic equation that does not involve time."
+      "front": "Define weight and state its formula.",
+      "back": "Weight ($W$) is the gravitational force on an object, calculated as its mass ($m$) multiplied by the acceleration due to gravity ($g$), so $W = mg$."
     },
     {
-      "front": "What is a common mistake when dealing with vertical motion under gravity?",
-      "back": "Incorrectly assigning signs. You must define a positive direction (e.g., upwards) and stick to it. If up is positive, initial velocity $u$ is positive, but acceleration due to gravity $a$ is negative ($-9.81 \\text{ m s}^{-2}$)."
-    },
-    {
-      "front": "What is the velocity of an object at its maximum height when thrown vertically?",
-      "back": "Zero. The instantaneous vertical velocity is $0 \\text{ m s}^{-1}$ at the peak of its trajectory."
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the difference between uniform and non-uniform motion?",
-      "a": "In uniform motion, velocity is constant (so acceleration is zero). An object covers equal distances in equal time intervals. In non-uniform motion, velocity changes (so there is acceleration), and the distance covered in equal time intervals is not constant."
-    },
-    {
-      "q": "Can I use the SUVAT equations if acceleration is not constant?",
-      "a": "No, absolutely not. The SUVAT equations are derived under the assumption of constant acceleration. If acceleration is changing, you must use graphical methods (finding gradients and areas) or calculus (which is beyond the A-Level syllabus)."
-    },
-    {
-      "q": "How do I decide which direction is positive?",
-      "a": "You can choose any direction to be positive, but you must be consistent throughout the problem. For horizontal motion, 'to the right' is a common positive direction. For vertical motion, 'upwards' is a common positive direction. Clearly stating your choice at the start of your solution is good practice."
-    },
-    {
-      "q": "What's the difference between speed and velocity in these problems?",
-      "a": "Speed is a scalar (magnitude only), while velocity is a vector (magnitude and direction). The SUVAT variables $u$ and $v$ represent velocities, so their sign is important. For example, a velocity of $-10 \\text{ m s}^{-1}$ means the object is moving at a speed of $10 \\text{ m s}^{-1}$ in the negative direction."
+      "front": "What factors increase air resistance on a falling object?",
+      "back": "Increased speed, larger cross-sectional area, and specific shape of the object, as well as the fluid's density/viscosity."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our study of kinematics, we began with uniform motion—objects moving at a constant velocity. However, most real-world motion is not so simple. Cars accelerate, objects fall under gravity, and athletes sprint from the starting blocks. This topic delves into non-uniform motion, providing you with the tools to analyse situations where velocity changes."
+      "content": "In Cambridge Physics, **uniform motion** means steady speed in a straight line, but **non-uniform motion** is far more common and interesting! It describes any movement where an object's **velocity** changes over time. This change, whether speeding up, slowing down, or turning, is fundamentally caused by **forces** acting upon the object. Let's delve into the principles governing these dynamic motions. This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **3.2**."
     },
     {
       "type": "heading",
-      "content": "Acceleration: The Heart of Non-Uniform Motion"
+      "content": "What is Non-Uniform Motion?"
     },
     {
       "type": "text",
-      "content": "Whenever an object's velocity changes, it is accelerating. Because velocity is a vector (possessing both magnitude and direction), acceleration can occur in three ways: the object's speed changes, its direction of motion changes, or both change. Acceleration is formally defined as the rate of change of velocity."
+      "content": "Non-uniform motion occurs whenever an object experiences a change in its velocity. This means it is either accelerating (speeding up), decelerating (slowing down), or changing its direction of travel. Crucially, a **resultant (net) force** must be acting on the object to cause this change; without it, velocity remains constant."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Laws of Motion"
+    },
+    {
+      "type": "text",
+      "content": "Sir Isaac Newton's three laws form the bedrock of understanding how forces cause motion. His **First Law** states that an object will maintain its state of rest or constant velocity unless acted upon by a resultant force. This perfectly explains why non-uniform motion requires a net force."
+    },
+    {
+      "type": "text",
+      "content": "Newton's **Second Law** provides a quantitative link between force, mass, and acceleration. It tells us that the acceleration an object experiences is directly proportional to the resultant force applied to it, and inversely proportional to its mass. The direction of acceleration always matches the direction of the resultant force."
     },
     {
       "type": "formula",
-      "content": "Average Acceleration, $a = \\frac{\\text{change in velocity}}{\\text{time taken}} = \\frac{\\Delta v}{\\Delta t} = \\frac{v - u}{t}$ \n\nUnit: metres per second squared (m s⁻²)"
-    },
-    {
-      "type": "heading",
-      "content": "Analysing Motion with Graphs"
-    },
-    {
-      "type": "text",
-      "content": "Graphs are powerful tools for visualising and analysing motion. For non-uniform motion, the shapes of displacement-time and velocity-time graphs become particularly informative. On a displacement-time graph, a curve indicates changing velocity (and thus, acceleration). The gradient at any point on this curve gives the instantaneous velocity. On a velocity-time graph, a non-horizontal line indicates acceleration. The gradient of the line gives the acceleration, and the area under the line gives the displacement."
+      "content": "$F_{resultant} = ma$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Displacement-Time Graph:** Gradient = Velocity. A curve means velocity is changing.",
-        "**Velocity-Time Graph:** Gradient = Acceleration. Area under graph = Displacement.",
-        "A straight, sloped line on a v-t graph signifies constant acceleration.",
-        "A curved line on a v-t graph signifies non-uniform (changing) acceleration."
+        "3.2 Non-uniform motion.",
+        "Drag forces are forces acting on the opposite direction to an object moving through a fluid.",
+        "E.g. friction and air resistance.",
+        "Drag forces increases ad the speed of the object increases.",
+        "Terminal velocity is reached when the force moving the object equals to the drag force .",
+        "The resultant force in this case is zero and acceleration is zero (constant velocity)."
       ]
     },
     {
-      "type": "examTip",
-      "content": "When asked to find instantaneous velocity or acceleration from a curved graph, you must draw a tangent to the curve at the specified time. The gradient of this tangent is your answer. Make your tangent as long as possible to minimise calculation errors."
-    },
-    {
       "type": "heading",
-      "content": "The Kinematic Equations for Constant Acceleration (SUVAT)"
+      "content": "Momentum: The Quantity of Motion"
     },
     {
       "type": "text",
-      "content": "A special, but very common, case of non-uniform motion is when an object moves with constant acceleration. For this situation, we can use a set of five equations, often called the SUVAT equations, to relate the five key kinematic variables. It is crucial to remember that these equations are only valid when acceleration, $a$, is constant."
+      "content": "Beyond just `F=ma`, force can also be understood in terms of **momentum**. Momentum ($p$) is a fundamental vector quantity that measures an object's 'quantity of motion'. It depends on both an object's mass and its velocity. The more massive or faster an object is, the greater its momentum."
     },
     {
       "type": "formula",
-      "content": "1. $v = u + at$ \n2. $s = ut + \\frac{1}{2}at^2$ \n3. $v^2 = u^2 + 2as$ \n4. $s = \\frac{1}{2}(u+v)t$ \n5. $s = vt - \\frac{1}{2}at^2$"
+      "content": "$p = mv$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "These equations apply to motion in a straight line with constant acceleration.",
-        "Each equation omits one of the five variables, so you can choose the right equation based on the information given in the problem.",
-        "$s, u, v,$ and $a$ are vector quantities. You must establish a positive direction and use signs consistently."
+        "Momentum is a vector quantity, meaning it has both magnitude and direction.",
+        "Mass is a measure of an object's inertia – its resistance to changes in motion.",
+        "Newton's Second Law can be rephrased: resultant force equals the rate of change of momentum ($F = \\frac{\\Delta p}{\\Delta t}$).",
+        "This definition is particularly useful when mass isn't constant or in impulse calculations."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A sprinter starts from rest and accelerates uniformly for the first $20 \\text{ m}$ of a race, reaching a speed of $9.0 \\text{ m s}^{-1}$. Calculate:\n(a) her acceleration.\n(b) the time taken to cover the first $20 \\text{ m}$.",
-      "solution": "First, list the known SUVAT variables. We are considering the first part of the race.\n$s = 20 \\text{ m}$\n$u = 0 \\text{ m s}^{-1}$ ('starts from rest')\n$v = 9.0 \\text{ m s}^{-1}$\n$a = ?$\n$t = ?$\n\n**(a) To find acceleration, $a$:**\nWe have $s, u, v$ and need $a$. The equation that links these is $v^2 = u^2 + 2as$.\nRearrange for $a$: $a = \\frac{v^2 - u^2}{2s}$\nSubstitute values: $a = \\frac{(9.0)^2 - (0)^2}{2 \\times 20}$\n$a = \\frac{81}{40} = 2.025 \\text{ m s}^{-2}$\nTo 2 significant figures, $a = 2.0 \\text{ m s}^{-2}$. [1 mark for equation, 1 for answer]\n\n**(b) To find time, $t$:**\nWe can now use any equation involving $t$. The simplest is $v = u + at$.\nRearrange for $t$: $t = \\frac{v - u}{a}$\nSubstitute values: $t = \\frac{9.0 - 0}{2.025}$\n$t = 4.44... \\text{ s}$\nTo 2 significant figures, $t = 4.4 \\text{ s}$. [1 mark for equation or method, 1 for answer]\nAlternatively, using $s = \\frac{1}{2}(u+v)t$: $t = \\frac{2s}{u+v} = \\frac{2 \\times 20}{0+9.0} = 4.4 \\text{ s}$."
+      "type": "heading",
+      "content": "Action-Reaction Pairs: Newton's Third Law"
+    },
+    {
+      "type": "text",
+      "content": "Newton's **Third Law** describes how forces always occur in pairs: 'For every action, there is an equal and opposite reaction.' When object A exerts a force on object B, object B simultaneously exerts an equal in magnitude and opposite in direction force on object A. These forces are critical for understanding interactions, but remember, they *always* act on different objects."
+    },
+    {
+      "type": "heading",
+      "content": "Weight and Falling Objects"
+    },
+    {
+      "type": "text",
+      "content": "**Weight** ($W$) is the force of gravity acting on an object, pulling it towards the centre of the Earth. It's distinct from mass, which is a measure of matter. For objects near Earth's surface, we calculate weight using the object's mass and the acceleration due to gravity."
+    },
+    {
+      "type": "formula",
+      "content": "$W = mg$"
+    },
+    {
+      "type": "text",
+      "content": "When an object falls through a fluid like air, its motion is non-uniform. Initially, its weight is the dominant force, causing it to accelerate rapidly. However, as its velocity increases, resistive forces such as air resistance (drag) and upthrust begin to grow significantly."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Air resistance opposes motion through a fluid and increases with speed.",
+        "Upthrust is an upward force exerted by a fluid, acting against an object's weight.",
+        "The magnitude of air resistance depends on speed, shape, and fluid properties.",
+        "Both air resistance and upthrust work to reduce the net downward force on a falling object."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Terminal Velocity Explained"
+    },
+    {
+      "type": "text",
+      "content": "As resistive forces increase, the resultant downward force on the falling object decreases. This, in turn, reduces its acceleration. Eventually, the upward resistive forces perfectly balance the downward driving forces (like weight). At this point, the resultant force becomes zero."
+    },
+    {
+      "type": "text",
+      "content": "**Terminal velocity** is the constant, maximum velocity an object achieves when the resultant force acting on it is zero. With no net force, there is no further acceleration, and the object continues to fall at a steady speed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Resistive forces increase with speed, reducing the net force and acceleration.",
+        "Terminal velocity occurs when resistive forces exactly balance driving forces (e.g., weight).",
+        "At terminal velocity, the resultant force is zero, meaning acceleration is zero.",
+        "The object then moves at its maximum possible constant speed through the fluid."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Projectile Motion with Air Resistance"
+    },
+    {
+      "type": "text",
+      "content": "For objects undergoing **projectile motion**, like a ball thrown through the air, air resistance plays a crucial role. Without air resistance, a projectile follows a perfect parabolic path. However, in reality, air resistance acts against the motion, constantly draining energy. This significantly reduces both the maximum height the projectile can reach and its overall horizontal range compared to an ideal vacuum trajectory."
     },
     {
       "type": "workedExample",
-      "question": "A stone is thrown vertically upwards from the top of a cliff with an initial velocity of $12.0 \\text{ m s}^{-1}$. The cliff is $50.0 \\text{ m}$ high. Air resistance is negligible. Take $g = 9.81 \\text{ m s}^{-2}$.\nCalculate the time taken for the stone to reach the bottom of the cliff.",
-      "solution": "This is a problem involving constant acceleration due to gravity. The key is to define a direction as positive and stick to it. Let's choose the upward direction as positive.\n\nList the SUVAT variables:\n$s = -50.0 \\text{ m}$ (The final displacement is 50.0 m below the starting point)\n$u = +12.0 \\text{ m s}^{-1}$ (Initial velocity is upwards)\n$v = ?$\n$a = -9.81 \\text{ m s}^{-2}$ (Acceleration due to gravity is always downwards)\n$t = ?$\n\nWe need to find $t$, and we know $s, u, a$. The equation that connects these is $s = ut + \\frac{1}{2}at^2$.\n\nSubstitute the values:\n$-50.0 = (12.0)t + \\frac{1}{2}(-9.81)t^2$\nRearrange into a standard quadratic form ($ax^2 + bx + c = 0$):\n$4.905t^2 - 12.0t - 50.0 = 0$\n\nThis is a quadratic equation for $t$. We can solve it using the quadratic formula: $t = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$\nHere, $a=4.905$, $b=-12.0$, $c=-50.0$.\n$t = \\frac{12.0 \\pm \\sqrt{(-12.0)^2 - 4(4.905)(-50.0)}}{2(4.905)}$\n$t = \\frac{12.0 \\pm \\sqrt{144 + 981}}{9.81}$\n$t = \\frac{12.0 \\pm \\sqrt{1125}}{9.81}$\n$t = \\frac{12.0 \\pm 33.54}{9.81}$\n\nThis gives two possible values for $t$: \n$t = \\frac{12.0 + 33.54}{9.81} = 4.64 \\text{ s}$\n$t = \\frac{12.0 - 33.54}{9.81} = -2.19 \\text{ s}$\n\nSince time cannot be negative, the physical answer is $t = 4.64 \\text{ s}$. [1 mark for choice of equation, 1 for correct signs, 1 for solving quadratic, 1 for final answer]"
+      "question": "A 2.5 kg object accelerates uniformly from rest to 15 m/s in 3.0 seconds due to a constant resultant force. Calculate the magnitude of this resultant force.",
+      "solution": "1. **Identify knowns and unknowns:**\n   Mass ($m$) = 2.5 kg\n   Initial velocity ($u$) = 0 m/s (from rest)\n   Final velocity ($v$) = 15 m/s\n   Time ($t$) = 3.0 s\n   Resultant force ($F_{resultant}$) = ?\n\n2. **Calculate the acceleration ($a$):**\n   Using the kinematic equation: $a = \\frac{v - u}{t}$\n   $a = \\frac{15 \\text{ m/s} - 0 \\text{ m/s}}{3.0 \\text{ s}}$\n   $a = 5.0 \\text{ m/s}^2$\n\n3. **Apply Newton's Second Law ($F_{resultant} = ma$):**\n   $F_{resultant} = 2.5 \\text{ kg} \\times 5.0 \\text{ m/s}^2$\n   $F_{resultant} = 12.5 \\text{ N}$\n\n   The magnitude of the resultant force is 12.5 N."
     },
     {
       "type": "examTip",
-      "content": "In vertical motion problems, always explicitly state your chosen positive direction. A common and safe convention is 'upwards is positive'. This means initial upward velocities are positive, but the acceleration due to gravity, $g$, is always negative ($-9.81 \\text{ m s}^{-2}$). Displacement is positive if the object finishes above its start point, and negative if it finishes below."
+      "content": "Always draw a free-body diagram when analysing forces on an object. Clearly label all forces and their directions. Remember that Newton's Third Law forces act on *different* objects, so don't include them in the free-body diagram for a *single* object to calculate its resultant force."
     },
     {
       "type": "practice",
-      "label": "Practice Questions: Non-uniform motion",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=3.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: The Moving Man",
-          "href": "https://phet.colorado.edu/en/simulations/moving-man"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "label": "Video tutorial on SUVAT equations",
-          "href": "https://www.youtube.com/watch?v=C6-b5i4s2bA"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "faq": [
+    {
+      "q": "What causes an object to experience non-uniform motion?",
+      "a": "Non-uniform motion is always caused by a **resultant (net) force** acting on an object. This unbalanced force leads to a change in the object's velocity, either in magnitude (speed) or direction, or both."
+    },
+    {
+      "q": "How do Newton's Laws of Motion explain non-uniform motion?",
+      "a": "Newton's First Law states that a resultant force is necessary for any change in motion. His Second Law, $F_{resultant} = ma$, quantifies this, showing that the resultant force directly determines the object's acceleration (change in velocity) inversely with its mass. Newton's Third Law describes the interactive forces that create these resultant forces on objects."
+    },
+    {
+      "q": "Why is terminal velocity important in the study of non-uniform motion?",
+      "a": "Terminal velocity represents a crucial transition in non-uniform motion. While an object initially accelerates due to a resultant force, the increasing resistive forces eventually balance the driving forces. This results in zero net force, zero acceleration, and the object transitioning from non-uniform to uniform motion at its maximum constant speed."
+    }
+  ],
+  "updated": "2026-06-26",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/3-2-non-uniform-motion.png",
+    "alt": "Senpai Corner reference diagram for 3.2 Non-uniform motion"
+  }
 }

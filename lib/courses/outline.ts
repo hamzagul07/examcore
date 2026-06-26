@@ -2,6 +2,12 @@ import type { CourseLesson, LessonSection, SimpleExplanation } from '@/lib/cours
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import type { SyllabusTopic } from '@/lib/syllabi'
 
+function inferCourseLevel(subjectCode: string): string {
+  if (/^(4|5)\d{3}$/.test(subjectCode)) return 'IGCSE/O-Level'
+  if (/^(22|71|77)\d{2}$/.test(subjectCode)) return 'O-Level'
+  return 'A-Level'
+}
+
 function defaultSimpleExplanation(topic: SyllabusTopic): SimpleExplanation {
   return {
     title: `${topic.name} — explained simply`,
@@ -22,8 +28,7 @@ export function buildOutlineLesson(
   topic: SyllabusTopic
 ): CourseLesson {
   const slug = topicToLessonSlug(topic.code, topic.name)
-  const level =
-    subjectCode.startsWith('4') || subjectCode.startsWith('5') ? 'IGCSE/O-Level' : 'A-Level'
+  const level = inferCourseLevel(subjectCode)
 
   const sections: LessonSection[] = [
     {
@@ -41,7 +46,12 @@ export function buildOutlineLesson(
     },
     {
       type: 'examTip',
-      content: `Cambridge ${subjectCode} rewards clear diagrams, labelled quantities, and method before final answers. On ${topic.paperName}, ${topic.name} often appears as part of a longer structured question — plan 30 seconds before writing.`,
+      content:
+        subjectCode === '7115'
+          ? `Cambridge ${subjectCode} rewards answers tied to the case business — name the firm, quote stimulus data, and balance advantages against disadvantages. On ${topic.paperName}, ${topic.name} often appears as part of a longer structured or case question.`
+          : subjectCode === '2281'
+            ? `Cambridge ${subjectCode} rewards clear definitions, labelled diagrams, and applied examples from the data. On ${topic.paperName}, ${topic.name} often appears as MC items or structured questions — plan before writing longer answers.`
+            : `Cambridge ${subjectCode} rewards clear diagrams, labelled quantities, and method before final answers. On ${topic.paperName}, ${topic.name} often appears as part of a longer structured question — plan 30 seconds before writing.`,
     },
     {
       type: 'practice',

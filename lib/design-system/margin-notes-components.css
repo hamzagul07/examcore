@@ -1224,9 +1224,11 @@
   }
 
   .ec-exam-sheet__work {
-    font-family: var(--ec-font-handwriting);
+    font-family: var(--ec-font-handwriting, var(--font-caveat, 'Caveat', cursive));
     font-size: 23px;
+    font-weight: 600;
     line-height: 1.26;
+    letter-spacing: 0.01em;
     color: var(--ec-pen);
   }
 
@@ -1255,8 +1257,9 @@
   }
 
   .ec-exam-note--red {
-    font-family: var(--ec-font-handwriting);
+    font-family: var(--ec-font-handwriting, var(--font-caveat, 'Caveat', cursive));
     font-size: 19px;
+    font-weight: 600;
     color: var(--ec-ink-crimson);
     transform: rotate(-1.5deg);
     display: block;
@@ -1264,8 +1267,9 @@
   }
 
   .ec-exam-note--green {
-    font-family: var(--ec-font-handwriting);
+    font-family: var(--ec-font-handwriting, var(--font-caveat, 'Caveat', cursive));
     font-size: 19px;
+    font-weight: 600;
     color: var(--ec-brand);
     display: block;
     margin-top: 4px;

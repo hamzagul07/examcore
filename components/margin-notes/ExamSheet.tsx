@@ -98,7 +98,7 @@ export function ExamSheetLine({
         role={onClick ? 'button' : undefined}
         tabIndex={onClick ? 0 : undefined}
       >
-        <span className="ec-exam-sheet__work">{work}</span>
+        <span className="ec-exam-sheet__work font-handwritten">{work}</span>
         {mark ? (
           <MarkStamp ok={ok} style={stampDelayMs ? { animationDelay: `${stampDelayMs}ms` } : undefined}>
             {mark}

@@ -57,6 +57,10 @@ export function subjectDisplayName(subjectCode: string): string {
       return 'Psychology'
     case '9708':
       return 'Economics'
+    case '2281':
+      return 'Economics'
+    case '7115':
+      return 'Business Studies'
     case '9618':
       return 'Computer Science'
     default:

@@ -35,7 +35,7 @@ No, this is a common misconception. Grades in Cambridge exams are not based on f
 It is impossible to predict the exact boundaries. They are only determined after all marking is complete and senior examiners have analysed student performance. The best you can do is create an informed estimate by comparing your practice paper scores against the boundaries from the last two or three exam sessions.
 
 ### How do I use a grade boundary calculator?
-Tools like our [2281 grade calculator](/tools/grade-boundary-calculator) are designed to help you contextualise your performance. You enter your raw marks from a practice paper, and the calculator shows what grade you would have achieved in recent past exam series. This is an excellent way to gauge your progress and understand the level required.
+Tools like our [2281 grade calculator](/tools/grade-boundary-calculator/2281) are designed to help you contextualise your performance. You enter your raw marks from a practice paper, and the calculator shows what grade you would have achieved in recent past exam series. Revise topic-by-topic with the free [2281 Economics course](/courses/2281) — including premium lessons on [demand](/courses/2281/2-3-demand) and [price elasticity](/courses/2281/2-7-price-elasticity-of-demand).
 
 ## Bottom line
 Instead of worrying about the specific numbers for the 2026 grade boundaries, focus your energy on mastering the 2281 syllabus and consistently practising with past papers. Understanding the mark scheme and knowing how to structure your answers to meet the examiners' criteria is the most effective strategy for success. A strong performance will earn you a good grade, regardless of where the boundaries ultimately fall.

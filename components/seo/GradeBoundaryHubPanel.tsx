@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { getGradeBoundaryHubEntries } from '@/lib/seo/grade-boundary-hub'
 import { hasJune2026Session } from '@/lib/seo/grade-boundaries-data'
 import { JUNE_2026_SERIES } from '@/lib/seo/results-day'
+import { hasSyllabusTree } from '@/lib/syllabi'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 
 const FEATURED_CODES = ['9702', '9700', '9701', '9709', '2281', '7115'] as const
@@ -50,6 +51,7 @@ export function GradeBoundaryHubPanel() {
                 <th>Subject</th>
                 <th>Data</th>
                 <th>Guide</th>
+                <th>Course</th>
                 <th>Calculator</th>
               </tr>
             </thead>
@@ -76,6 +78,15 @@ export function GradeBoundaryHubPanel() {
                       {entry.guideSlug ? (
                         <Link href={`/blog/${entry.guideSlug}`} className="ec-btn-underline">
                           2026 guide
+                        </Link>
+                      ) : (
+                        <span className="ms-boundary-hub-muted">—</span>
+                      )}
+                    </td>
+                    <td>
+                      {hasSyllabusTree(entry.code) ? (
+                        <Link href={`/courses/${entry.code}`} className="ec-btn-underline">
+                          Free course
                         </Link>
                       ) : (
                         <span className="ms-boundary-hub-muted">—</span>

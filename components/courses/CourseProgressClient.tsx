@@ -2,33 +2,14 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { Check } from 'lucide-react'
+import { createClient } from '@/lib/supabase'
 import {
   COURSE_PROGRESS_CHANGED,
   COURSE_LAST_LESSON_CHANGED,
-} from '@/lib/courses/margin-notes/continue-learning'
-
-const STORAGE_KEY = 'markscheme-course-progress'
-
-type ProgressMap = Record<string, Record<string, boolean>>
-
-function readProgress(): ProgressMap {
-  if (typeof window === 'undefined') return {}
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? (JSON.parse(raw) as ProgressMap) : {}
-  } catch {
-    return {}
-  }
-}
-
-function writeProgress(map: ProgressMap) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(map))
-}
-
-function notifyProgressChanged() {
-  if (typeof window === 'undefined') return
-  window.dispatchEvent(new CustomEvent(COURSE_PROGRESS_CHANGED))
-}
+  readLocalProgress,
+  writeLocalProgress,
+} from '@/lib/courses/course-progress-storage'
+import { scheduleCloudProgressPush } from '@/lib/courses/course-progress-cloud'
 
 /** Bump when local course progress changes — keeps catalog/hub rings in sync. */
 export function useCourseProgressRevision(): number {
@@ -47,12 +28,25 @@ export function useCourseProgressRevision(): number {
   return revision
 }
 
+export function useCourseProgressSignedIn() {
+  const [signedIn, setSignedIn] = useState(false)
+
+  useEffect(() => {
+    const supabase = createClient()
+    void supabase.auth.getUser().then(({ data }) => {
+      setSignedIn(!!data.user)
+    })
+  }, [])
+
+  return signedIn
+}
+
 export function useCourseProgress(subjectCode: string) {
   const [done, setDone] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     const sync = () => {
-      const map = readProgress()
+      const map = readLocalProgress()
       const subject = map[subjectCode] ?? {}
       setDone(new Set(Object.keys(subject).filter((k) => subject[k])))
     }
@@ -63,17 +57,17 @@ export function useCourseProgress(subjectCode: string) {
 
   const toggle = useCallback(
     (lessonSlug: string, completed: boolean) => {
-      const map = readProgress()
+      const map = readLocalProgress()
       if (!map[subjectCode]) map[subjectCode] = {}
       map[subjectCode][lessonSlug] = completed
-      writeProgress(map)
+      writeLocalProgress(map)
       setDone((prev) => {
         const next = new Set(prev)
         if (completed) next.add(lessonSlug)
         else next.delete(lessonSlug)
         return next
       })
-      notifyProgressChanged()
+      scheduleCloudProgressPush()
     },
     [subjectCode]
   )
@@ -89,6 +83,7 @@ export function CourseProgressBar({
   total: number
 }) {
   const { count } = useCourseProgress(subjectCode)
+  const signedIn = useCourseProgressSignedIn()
   const pct = total > 0 ? Math.round((count / total) * 100) : 0
 
   return (
@@ -112,7 +107,9 @@ export function CourseProgressBar({
         />
       </div>
       <p className="mt-2 text-xs text-[var(--ec-text-tertiary)]">
-        Saved on this device — sign in later for cloud sync.
+        {signedIn
+          ? 'Synced to your account — pick up on any device.'
+          : 'Saved on this device — sign in for cloud sync.'}
       </p>
     </div>
   )

@@ -22,6 +22,13 @@ export interface UserProfile {
   updated_at?: string
 }
 
+export interface CourseProgressRow {
+  user_id: string
+  progress: Record<string, Record<string, boolean>>
+  last_lesson: { code: string; slug: string } | null
+  updated_at: string
+}
+
 export interface Classroom {
   id: string
   teacher_id: string

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { getContinueLearning } from '@/lib/courses/margin-notes/continue-learning'
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
+import { CourseProgressCloudSync } from '@/components/courses/CourseProgressCloudSync'
 import { ContinueLearningStrip } from '@/components/courses/margin-notes/ContinueLearningStrip'
 
 type Props = {
@@ -21,6 +22,7 @@ export function DashboardCoursesPanel({ catalog }: Props) {
 
   return (
     <section className="course-root mb-8" aria-label="Free courses">
+      <CourseProgressCloudSync />
       {cont ? (
         <ContinueLearningStrip catalog={catalog} screenLabel="Dashboard — continue learning" />
       ) : (

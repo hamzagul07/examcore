@@ -1,6 +1,6 @@
 ---
-title: IB Physics IA guide — investigation, uncertainty & criteria explained
-description: Write a strong IB Physics Internal Assessment: research design, uncertainty propagation, linearisation, and hitting top criteria bands.
+title: IB Physics IA guide — individual investigation, uncertainty & criteria (2026)
+description: IB Physics Internal Assessment explained: research question, uncertainty & linearisation, criteria bands, and how to score a 7 — with free criterion marking.
 date: 2026-06-25
 keywords: IB Physics IA, IB Physics Internal Assessment, Physics IA criteria, Physics IA uncertainty, IB Physics IA grade 7
 category: revision

@@ -3,7 +3,14 @@ import { createBlogPostMetadata } from '@/lib/seo/metadata'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
 import { enrichPostMeta, extractHeadings } from '@/lib/blog/meta'
 import { getClusterForSlug } from '@/lib/seo/clusters'
-import { isIbGuideSlug, isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import {
+  isGradeBoundaryGuideSlug,
+  isIbGuideSlug,
+  isIbIaGuideSlug,
+  isSubjectGuideSlug,
+  subjectCodeFromBlogSlug,
+} from '@/lib/seo/subject-guides'
+import { BlogFollowUpChain } from '@/components/blog/BlogFollowUpChain'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
 import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
@@ -41,11 +48,16 @@ export default async function BlogPostPage({ params }: Props) {
   const headings = extractHeadings(post.content)
   const related = getRelatedPosts(slug, isIbGuideSlug(slug) ? 5 : 3)
   const cluster = getClusterForSlug(slug)
-  const ctaVariant = isIbGuideSlug(slug)
-    ? 'ib'
-    : isSubjectGuideSlug(slug)
-      ? 'subject'
-      : 'default'
+  const subjectCode = subjectCodeFromBlogSlug(slug)
+  const ctaVariant = isGradeBoundaryGuideSlug(slug)
+    ? 'grade-boundaries'
+    : isIbIaGuideSlug(slug)
+      ? 'ib-ia'
+      : isIbGuideSlug(slug)
+        ? 'ib'
+        : isSubjectGuideSlug(slug)
+          ? 'subject'
+          : 'default'
 
   return (
     <MarketingPageShell narrow>
@@ -69,7 +81,8 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
 
-        <BlogPostCta variant={ctaVariant} />
+        <BlogFollowUpChain slug={slug} />
+        <BlogPostCta variant={ctaVariant} subjectCode={subjectCode} />
         <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>
     </MarketingPageShell>

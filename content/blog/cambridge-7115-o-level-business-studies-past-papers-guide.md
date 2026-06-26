@@ -36,6 +36,10 @@ Most students **finish** papers. Fewer students **mark** them properly. This gui
 
 Past papers are published as **7115/XX** — **XX** is the component number for that session (e.g. Paper 1 vs Paper 4). Download the paper **and** the mark scheme for the **same session** from Cambridge International or your school portal. Mixing sessions is how students practise the right topic with the wrong marking rules.
 
+## Free 7115 course
+
+Our free [7115 Business Studies course](/courses/7115) covers every syllabus point with case-style practice links — start with [marketing mix (3.3)](/courses/7115/3-3-marketing-mix) or browse the full [topic tree](/courses/7115). Pair with the [grade boundary calculator](/tools/grade-boundary-calculator/7115) after results day.
+
 ---
 
 ## How Cambridge examines Business Studies
@@ -140,6 +144,8 @@ Model answers show *an* solution. Mark schemes show **what earns each mark** —
 
 ## What to read next
 
+- [Free 7115 Business Studies course](/courses/7115)
+- [7115 grade boundaries 2026](/blog/cambridge-7115-business-studies-grade-boundaries-2026)
 - [How to read a Cambridge mark scheme](/blog/how-to-read-a-cambridge-mark-scheme)
 - [How to mark Cambridge past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself)
 - [Common mistakes when self-marking](/blog/common-mistakes-self-marking-past-papers)

@@ -43,6 +43,8 @@ const SUBJECT_NAMES = {
   '9706': 'Accounting',
   '9708': 'Economics',
   '9990': 'Psychology',
+  '2281': 'Economics',
+  '7115': 'Business Studies',
 }
 
 /** Expected leaf counts [min, max] — Sprint B bullet-level grain targets */
@@ -61,6 +63,8 @@ const EXPECTED_LEAF_RANGES = {
   '9706': [50, 100],
   '9708': [100, 180],
   '9990': [80, 150],
+  '2281': [30, 45],
+  '7115': [22, 30],
 }
 
 const FINE_GRAIN_BIOLOGY_EXAMPLE = `EXAMPLE — Cambridge Biology Topic 1 "Cell structure" granularity (EACH bullet = one leaf):

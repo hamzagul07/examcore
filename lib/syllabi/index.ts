@@ -14,6 +14,8 @@ import {
 } from '@/lib/syllabus'
 
 import s9084 from './9084.json'
+import s2281 from './2281.json'
+import s7115 from './7115.json'
 import s9231 from './9231.json'
 import s9488 from './9488.json'
 import s9489 from './9489.json'
@@ -58,6 +60,8 @@ type SyllabusFile = {
 }
 
 const EXTRACTED: Record<string, SyllabusFile> = {
+  '2281': s2281 as SyllabusFile,
+  '7115': s7115 as SyllabusFile,
   '9084': s9084 as SyllabusFile,
   '9231': s9231 as SyllabusFile,
   '9488': s9488 as SyllabusFile,

@@ -36,6 +36,10 @@ Most students **finish** papers. Fewer students **mark** them properly. This gui
 
 Past papers are published as **2281/XX** — **XX** is the component number for that session (e.g. Paper 1 vs Paper 4). Download the paper **and** the mark scheme for the **same session** from Cambridge International or your school portal. Mixing sessions is how students practise the right topic with the wrong marking rules.
 
+## Free 2281 course
+
+Our free [2281 Economics course](/courses/2281) maps every syllabus point to a lesson with past-paper practice — start with [demand (2.3)](/courses/2281/2-3-demand) or browse the full [topic tree](/courses/2281). Pair with the [grade boundary calculator](/tools/grade-boundary-calculator/2281) when you want to turn raw marks into a grade.
+
 ---
 
 ## How Cambridge examines Economics
@@ -140,6 +144,8 @@ Model answers show *an* solution. Mark schemes show **what earns each mark** —
 
 ## What to read next
 
+- [Free 2281 Economics course](/courses/2281)
+- [2281 grade boundaries 2026](/blog/cambridge-2281-economics-grade-boundaries-2026)
 - [How to read a Cambridge mark scheme](/blog/how-to-read-a-cambridge-mark-scheme)
 - [How to mark Cambridge past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself)
 - [Common mistakes when self-marking](/blog/common-mistakes-self-marking-past-papers)

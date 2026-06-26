@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { ContinueLearningStrip } from '@/components/courses/margin-notes/ContinueLearningStrip'
+import { CourseProgressCloudSync } from '@/components/courses/CourseProgressCloudSync'
 import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
 import { InkScribble, MarginNote } from '@/components/courses/margin-notes/HandAnnotations'
 import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
@@ -27,6 +28,7 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
 
   return (
     <main className="catalog-page ec-page-mesh" data-screen-label="Courses — catalog">
+      <CourseProgressCloudSync />
       <header className="catalog-hero pg">
         <div className="catalog-hero-text">
           <p className="overline">Courses · 100% free, forever</p>

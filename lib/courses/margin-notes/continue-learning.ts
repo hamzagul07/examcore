@@ -2,14 +2,19 @@ import { topicToLessonSlug } from '@/lib/courses/slug'
 import { getSyllabusTree } from '@/lib/syllabi'
 import type { ContinueLearning } from '@/lib/courses/margin-notes/types'
 import { subjectAccent } from '@/lib/courses/margin-notes/subject-meta'
+import {
+  readLocalLastLesson,
+  readLocalProgress,
+  writeLocalLastLesson,
+  COURSE_LAST_LESSON_CHANGED,
+  COURSE_PROGRESS_CHANGED,
+} from '@/lib/courses/course-progress-storage'
+import { scheduleCloudProgressPush } from '@/lib/courses/course-progress-cloud'
 
-const PROGRESS_KEY = 'markscheme-course-progress'
-const LAST_LESSON_KEY = 'markscheme-last-lesson'
-
-export const COURSE_PROGRESS_CHANGED = 'markscheme-course-progress-changed'
-export const COURSE_LAST_LESSON_CHANGED = 'markscheme-last-lesson-changed'
-
-type ProgressMap = Record<string, Record<string, boolean>>
+export {
+  COURSE_PROGRESS_CHANGED,
+  COURSE_LAST_LESSON_CHANGED,
+} from '@/lib/courses/course-progress-storage'
 
 export type ContinueCatalogEntry = {
   code: string
@@ -20,37 +25,6 @@ export type ContinueCatalogEntry = {
   basePath?: string
   /** Syllabus registry code when different from `code` (IB: `ib-tok`). */
   syllabusCode?: string
-}
-
-function readProgress(): ProgressMap {
-  if (typeof window === 'undefined') return {}
-  try {
-    const raw = localStorage.getItem(PROGRESS_KEY)
-    return raw ? (JSON.parse(raw) as ProgressMap) : {}
-  } catch {
-    return {}
-  }
-}
-
-function readLastLesson(): { code: string; slug: string } | null {
-  if (typeof window === 'undefined') return null
-  try {
-    const raw = localStorage.getItem(LAST_LESSON_KEY)
-    if (!raw) return null
-    return JSON.parse(raw) as { code: string; slug: string }
-  } catch {
-    return null
-  }
-}
-
-export function saveLastLesson(code: string, slug: string) {
-  if (typeof window === 'undefined') return
-  try {
-    localStorage.setItem(LAST_LESSON_KEY, JSON.stringify({ code, slug }))
-    window.dispatchEvent(new CustomEvent(COURSE_LAST_LESSON_CHANGED))
-  } catch {
-    /* ignore */
-  }
 }
 
 function unitLabelForTopic(code: string, topicCode: string, syllabusCode?: string): string {
@@ -65,9 +39,14 @@ function unitLabelForTopic(code: string, topicCode: string, syllabusCode?: strin
   return ''
 }
 
+export function saveLastLesson(code: string, slug: string) {
+  writeLocalLastLesson(code, slug)
+  scheduleCloudProgressPush()
+}
+
 export function getContinueLearning(catalog: ContinueCatalogEntry[]): ContinueLearning | null {
-  const last = readLastLesson()
-  const progress = readProgress()
+  const last = readLocalLastLesson()
+  const progress = readLocalProgress()
 
   const pickFromCode = (entry: ContinueCatalogEntry, slug?: string): ContinueLearning | null => {
     const done = progress[entry.code] ?? {}
@@ -115,21 +94,21 @@ export function getContinueLearning(catalog: ContinueCatalogEntry[]): ContinueLe
 }
 
 export function subjectProgressPercent(code: string, lessonCount: number): number {
-  const progress = readProgress()
+  const progress = readLocalProgress()
   const done = progress[code] ?? {}
   const doneCount = Object.values(done).filter(Boolean).length
   return lessonCount ? Math.round((doneCount / lessonCount) * 100) : 0
 }
 
 export function completedSlugsForSubject(code: string): Set<string> {
-  const progress = readProgress()
+  const progress = readLocalProgress()
   const subject = progress[code] ?? {}
   return new Set(Object.keys(subject).filter((k) => subject[k]))
 }
 
 /** Resolve active slug: last visited if incomplete, else first incomplete in list. */
 export function resolveActiveSlug(code: string, lessonSlugs: string[]): string | null {
-  const last = readLastLesson()
+  const last = readLocalLastLesson()
   const done = completedSlugsForSubject(code)
   if (last?.code === code && last.slug && lessonSlugs.includes(last.slug) && !done.has(last.slug)) {
     return last.slug

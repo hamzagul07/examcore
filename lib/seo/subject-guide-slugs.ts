@@ -20,3 +20,13 @@ export function isIbGuideSlug(slug: string): boolean {
 export function isIbIaGuideSlug(slug: string): boolean {
   return slug.startsWith('ib-') && slug.endsWith('-ia-guide')
 }
+
+export function isGradeBoundaryGuideSlug(slug: string): boolean {
+  return slug.includes('grade-boundaries')
+}
+
+/** e.g. cambridge-9702-physics-grade-boundaries-2026 → 9702 */
+export function subjectCodeFromBlogSlug(slug: string): string | null {
+  const m = slug.match(/cambridge-(\d{4})-/i)
+  return m?.[1] ?? null
+}

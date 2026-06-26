@@ -9,7 +9,14 @@ import {
 } from '@/lib/seo/subject-guide-slugs'
 
 export { isSubjectGuideSlug } from '@/lib/seo/subject-guide-slugs'
-export { isCambridgeSubjectGuideSlug, isIbSubjectGuideSlug, isIbGuideSlug, isIbIaGuideSlug } from '@/lib/seo/subject-guide-slugs'
+export {
+  isCambridgeSubjectGuideSlug,
+  isIbSubjectGuideSlug,
+  isIbGuideSlug,
+  isIbIaGuideSlug,
+  isGradeBoundaryGuideSlug,
+  subjectCodeFromBlogSlug,
+} from '@/lib/seo/subject-guide-slugs'
 
 export function getSubjectGuidePosts(): BlogPostMeta[] {
   return getBlogPosts().filter((p) => isSubjectGuideSlug(p.slug))

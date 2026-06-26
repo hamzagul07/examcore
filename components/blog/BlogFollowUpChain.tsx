@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { MessageCircle } from 'lucide-react'
 import { getClusterForSlug } from '@/lib/seo/clusters'
-import { getFollowUpChain } from '@/lib/seo/follow-up-chain'
+import { getFollowUpChainForSlug } from '@/lib/seo/follow-up-chain'
 
 type Props = { slug: string }
 
 /** Conversational follow-up chain — next questions in AI Mode fan-out. */
 export function BlogFollowUpChain({ slug }: Props) {
   const cluster = getClusterForSlug(slug)
-  const items = getFollowUpChain(cluster.id)
+  const items = getFollowUpChainForSlug(slug, cluster.id)
   if (items.length === 0) return null
 
   return (

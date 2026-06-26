@@ -28,6 +28,7 @@ import {
 import { getSubjectColor } from '@/lib/design-system/subject-colors'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
+import { hasSyllabusTree } from '@/lib/syllabi'
 
 const ICON_BY_CODE: Record<string, LucideIcon> = {
   '9709': Calculator,
@@ -190,6 +191,14 @@ function SubjectCard({
               className="text-sm font-medium text-[var(--ec-text-secondary)] hover:text-[var(--ec-brand)]"
             >
               Revision guide
+            </Link>
+          )}
+          {hasSyllabusTree(subject.code) && (
+            <Link
+              href={`/courses/${subject.code}`}
+              className="text-sm font-medium text-[var(--ec-text-secondary)] hover:text-[var(--ec-brand)]"
+            >
+              Free course
             </Link>
           )}
         </div>

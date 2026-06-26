@@ -79,9 +79,18 @@ export function getCourseSubject(code: string): CourseSubject | null {
 }
 
 export function getCourseCatalog(): CourseSubject[] {
+  const featuredFirst = ['2281', '7115']
   return getCourseSubjectCodes()
     .map((code) => getCourseSubject(code))
     .filter((s): s is CourseSubject => s !== null)
+    .sort((a, b) => {
+      const ai = featuredFirst.indexOf(a.code)
+      const bi = featuredFirst.indexOf(b.code)
+      if (ai !== -1 || bi !== -1) {
+        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi)
+      }
+      return a.code.localeCompare(b.code)
+    })
 }
 
 function buildOutlineForSlug(

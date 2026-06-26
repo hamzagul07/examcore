@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { getResultsDayPhase } from '@/lib/seo/results-day'
+import { hasSyllabusTree } from '@/lib/syllabi'
 
 type BlogPostCtaProps = {
   variant?: 'default' | 'subject' | 'ib' | 'ib-ia' | 'grade-boundaries'
@@ -20,6 +21,8 @@ export function BlogPostCta({ variant = 'default', subjectCode = null }: BlogPos
     ? `/tools/grade-boundary-calculator/${subjectCode}`
     : '/tools/grade-boundary-calculator'
   const markHref = subjectCode ? `/mark?subject=${subjectCode}` : '/mark'
+  const hasCourse = Boolean(subjectCode && hasSyllabusTree(subjectCode))
+  const courseHref = subjectCode ? `/courses/${subjectCode}` : '/courses'
 
   return (
     <aside className="ms-blog-cta-block mt-12">
@@ -68,8 +71,17 @@ export function BlogPostCta({ variant = 'default', subjectCode = null }: BlogPos
             Use <strong className="text-[var(--ec-text-primary)]">Past paper</strong> for official
             papers in our library, or{' '}
             <strong className="text-[var(--ec-text-primary)]">My question</strong> for homework —
-            add your question, upload your answer, get Cambridge-style feedback. Free tier
-            available.
+            add your question, upload your answer, get Cambridge-style feedback.
+            {hasCourse ? (
+              <>
+                {' '}
+                Pair with the free{' '}
+                <strong className="text-[var(--ec-text-primary)]">{subjectCode} course</strong> for
+                topic-by-topic revision.
+              </>
+            ) : (
+              <> Free tier available.</>
+            )}
           </>
         ) : (
           <>
@@ -107,6 +119,14 @@ export function BlogPostCta({ variant = 'default', subjectCode = null }: BlogPos
             <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px] justify-center">
               {isIa ? 'Criterion marking' : isIb ? 'Criterion marking' : 'Mark a paper free'}
             </Link>
+            {isSubject && hasCourse ? (
+              <Link
+                href={courseHref}
+                className="ec-btn-secondary inline-flex min-h-[48px] justify-center"
+              >
+                Free {subjectCode} course
+              </Link>
+            ) : null}
             {isIb && !isIa ? (
               <Link
                 href="/ib/past-papers/biology-hl#ib-topic-practice"

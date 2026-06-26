@@ -69,6 +69,8 @@ export default function CoursesIndexPage() {
           heading="Free courses — Cambridge & IB, every syllabus topic"
           paragraph="Browse free A-Level, O-Level, and IB Diploma courses aligned to official syllabuses. Each subject is broken into topic codes with visual lessons, exam tips, and marking — Cambridge past papers or IB criterion practice — 100% free."
           links={[
+            { href: '/courses/2281', label: '2281 Economics course', variant: 'ghost' },
+            { href: '/courses/7115', label: '7115 Business course', variant: 'ghost' },
             { href: '/subjects', label: 'Browse subjects', variant: 'muted' },
             { href: '/ib', label: 'IB hub', variant: 'muted' },
             { href: '/community', label: 'Exam Room community', variant: 'muted' },

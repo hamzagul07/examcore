@@ -24,6 +24,13 @@ const PORTS = [
   ['2281', '2.10', '9708', '3-1-reasons-for-government-intervention-in-markets'],
   ['2281', '4.3', '9708', '5-2-fiscal-policy'],
   ['2281', '4.8', '9708', '4-6-price-stability'],
+  ['2281', '1.1', '9708', '1-1-scarcity-choice-and-opportunity-cost'],
+  ['2281', '1.3', '9708', '1-1-scarcity-choice-and-opportunity-cost'],
+  ['2281', '2.4', '9708', '2-1-demand-and-supply-curves'],
+  ['2281', '2.11', '9708', '1-4-resource-allocation-in-different-economic-systems'],
+  ['2281', '4.6', '9708', '4-4-economic-growth'],
+  ['2281', '4.7', '9708', '4-5-unemployment'],
+  ['2281', '5.4', '9708', '11-4-characteristics-of-countries-at-different-levels-of-development'],
   // 7115 Business ← 9609
   ['7115', '3.3', '9609', '3-3-1-the-elements-of-the-marketing-mix-the-4ps'],
   ['7115', '4.2', '9609', '5-4-4-break-even-analysis'],
@@ -31,6 +38,12 @@ const PORTS = [
   ['7115', '5.3', '9609', '10-1-1-statement-of-profit-or-loss'],
   ['7115', '1.5', '9609', '1-5-1-business-stakeholders'],
   ['7115', '3.1', '9609', '3-1-1-the-role-of-marketing-and-its-relationship-with-other-business-activities'],
+  ['7115', '1.3', '9609', '1-3-3-business-growth'],
+  ['7115', '4.1', '9609', '4-1-1-the-transformational-process'],
+  ['7115', '5.2', '9609', '5-3-1-cash-flow-forecasts'],
+  ['7115', '5.4', '9609', '10-1-2-statement-of-financial-position'],
+  ['7115', '2.3', '9609', '2-1-3-recruitment-and-selection'],
+  ['7115', '6.3', '9609', '8-2-3-strategies-for-international-marketing'],
 ]
 
 function loadSyllabusTopic(code, topicCode) {

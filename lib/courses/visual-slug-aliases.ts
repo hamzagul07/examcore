@@ -63,6 +63,14 @@ export const VISUAL_SLUG_ALIASES: Record<string, string> = {
   '2-10-market-failure': '3-1-reasons-for-government-intervention-in-markets',
   '4-3-fiscal-policy': '5-2-fiscal-policy',
   '4-8-inflation-and-deflation': '4-6-price-stability',
+  '1-1-the-nature-of-the-economic-problem': '1-1-scarcity-choice-and-opportunity-cost',
+  '1-3-opportunity-cost': '1-1-scarcity-choice-and-opportunity-cost',
+  '2-4-supply': '2-1-demand-and-supply-curves',
+  '2-11-mixed-economic-system': '1-4-resource-allocation-in-different-economic-systems',
+  '4-6-economic-growth': '4-4-economic-growth',
+  '4-7-employment-and-unemployment': '4-5-unemployment',
+  '5-4-differences-in-economic-development-between-countries':
+    '11-4-characteristics-of-countries-at-different-levels-of-development',
 
   // ── 7115 O-Level Business → 9609 catalog visuals ────────────────────────
   '3-3-marketing-mix': '3-3-1-the-elements-of-the-marketing-mix-the-4ps',
@@ -71,6 +79,12 @@ export const VISUAL_SLUG_ALIASES: Record<string, string> = {
   '5-3-income-statements': '10-1-1-statement-of-profit-or-loss',
   '1-5-business-objectives-and-stakeholder-objectives': '1-5-1-business-stakeholders',
   '3-1-marketing-and-the-market': '3-1-1-the-role-of-marketing-and-its-relationship-with-other-business-activities',
+  '1-3-enterprise-business-growth-and-size': '1-3-3-business-growth',
+  '4-1-production-of-goods-and-services': '4-1-1-the-transformational-process',
+  '5-2-cash-flow-forecasting-and-working-capital': '5-3-1-cash-flow-forecasts',
+  '5-4-statement-of-financial-position': '10-1-2-statement-of-financial-position',
+  '2-3-recruitment-selection-and-training-of-workers': '2-1-3-recruitment-and-selection',
+  '6-3-business-and-the-international-economy': '8-2-3-strategies-for-international-marketing',
 }
 
 export function resolveVisualCatalogSlug(slug: string): string {

@@ -282,6 +282,19 @@ export default async function PastPaperSubjectPage({ params }: Props) {
               ))}
             </ul>
           </section>
+        ) : course ? (
+          <section aria-labelledby="pp-course-topics" style={{ marginTop: 40 }}>
+            <h2 id="pp-course-topics" className="ms-h3" style={{ marginBottom: 6 }}>
+              Revise {label} by syllabus topic
+            </h2>
+            <p className="ms-body-2" style={{ marginBottom: 16, color: 'var(--ec-text-secondary)' }}>
+              Every {code} syllabus point has a free lesson with exam tips and a past-paper practice link —
+              start with the topic you are revising today.
+            </p>
+            <Link href={course.path} className="ec-btn-primary inline-flex min-h-[44px]">
+              Open free {code} course →
+            </Link>
+          </section>
         ) : null}
 
         <section className="ms-subject-faq" aria-labelledby="pp-subject-faq">

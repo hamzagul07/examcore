@@ -31,6 +31,27 @@ const PORTS = [
   ['2281', '4.6', '9708', '4-4-economic-growth'],
   ['2281', '4.7', '9708', '4-5-unemployment'],
   ['2281', '5.4', '9708', '11-4-characteristics-of-countries-at-different-levels-of-development'],
+  ['2281', '1.2', '9708', '1-3-factors-of-production'],
+  ['2281', '2.1', '9708', '1-4-resource-allocation-in-different-economic-systems'],
+  ['2281', '2.2', '9708', '2-4-the-interaction-of-demand-and-supply'],
+  ['2281', '2.6', '9708', '2-4-the-interaction-of-demand-and-supply'],
+  ['2281', '2.9', '9708', '1-4-resource-allocation-in-different-economic-systems'],
+  ['2281', '3.1', '9708', '9-4-money-and-banking'],
+  ['2281', '3.2', '9708', '7-1-utility'],
+  ['2281', '3.3', '9708', '8-3-labour-market-forces-and-government-intervention'],
+  ['2281', '3.4', '9708', '8-3-labour-market-forces-and-government-intervention'],
+  ['2281', '3.5', '9708', '7-7-growth-and-survival-of-firms'],
+  ['2281', '3.6', '9708', '7-5-types-of-cost-revenue-and-profit-short-run-and-long-run-production'],
+  ['2281', '3.7', '9708', '7-8-differing-objectives-and-policies-of-firms'],
+  ['2281', '3.8', '9708', '7-6-different-market-structures'],
+  ['2281', '3.9', '9708', '7-6-different-market-structures'],
+  ['2281', '4.1', '9708', '5-1-government-macroeconomic-policy-objectives'],
+  ['2281', '4.2', '9708', '10-1-government-macroeconomic-policy-objectives'],
+  ['2281', '4.4', '9708', '5-3-monetary-policy'],
+  ['2281', '4.5', '9708', '5-4-supply-side-policy'],
+  ['2281', '5.1', '9708', '11-3-economic-development'],
+  ['2281', '5.2', '9708', '8-2-equity-and-redistribution-of-income-and-wealth'],
+  ['2281', '5.3', '9708', '11-3-economic-development'],
   // 7115 Business ← 9609
   ['7115', '3.3', '9609', '3-3-1-the-elements-of-the-marketing-mix-the-4ps'],
   ['7115', '4.2', '9609', '5-4-4-break-even-analysis'],
@@ -44,6 +65,19 @@ const PORTS = [
   ['7115', '5.4', '9609', '10-1-2-statement-of-financial-position'],
   ['7115', '2.3', '9609', '2-1-3-recruitment-and-selection'],
   ['7115', '6.3', '9609', '8-2-3-strategies-for-international-marketing'],
+  ['7115', '1.1', '9609', '1-1-1-the-nature-of-business-activity'],
+  ['7115', '1.2', '9609', '1-2-1-economic-sectors'],
+  ['7115', '1.4', '9609', '1-2-2-business-ownership'],
+  ['7115', '2.2', '9609', '7-1-2-types-of-structure-functional-hierarchical-flat-and-narrow-matrix'],
+  ['7115', '2.4', '9609', '7-2-1-purposes-of-communication'],
+  ['7115', '3.2', '9609', '3-2-1-the-purposes-of-market-research'],
+  ['7115', '3.4', '9609', '8-2-2-approaches-to-marketing-strategy'],
+  ['7115', '4.3', '9609', '9-2-1-quality-control-and-quality-assurance'],
+  ['7115', '4.4', '9609', '9-1-1-location'],
+  ['7115', '5.1', '9609', '5-1-1-the-need-for-business-finance'],
+  ['7115', '5.5', '9609', '10-2-1-liquidity-ratios'],
+  ['7115', '6.1', '9609', '6-1-2-economic'],
+  ['7115', '6.2', '9609', '6-1-7-environmental'],
 ]
 
 function loadSyllabusTopic(code, topicCode) {
@@ -132,6 +166,22 @@ function adaptLesson(lesson, topic, targetCode, sourceCode, sourceSlug) {
 }
 
 async function main() {
+  if (process.argv.includes('--status')) {
+    for (const code of ['2281', '7115']) {
+      const dir = path.join(ROOT, 'content', 'courses', code)
+      const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'))
+      let premium = 0
+      let outline = 0
+      for (const f of files) {
+        const lesson = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))
+        if (lesson.status === 'premium' || lesson.status === 'published') premium++
+        else outline++
+      }
+      console.log(`${code}: ${premium} premium, ${outline} outline (${files.length} total)`)
+    }
+    return
+  }
+
   const { topicToLessonSlug } = await import('../lib/courses/slug.ts')
   const { hydrateLessonCatalogVisuals } = await import('../lib/courses/attach-lesson-visuals.ts')
   const { clearCourseCatalogCache } = await import('../lib/courses/catalog-cache.ts')

@@ -405,6 +405,109 @@
   padding: 24px 26px;
 }
 
+/* blog — optional guest signup prompts */
+.ec-blog-guest-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-radius: var(--ec-radius-lg, 16px);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border));
+}
+
+.ec-blog-guest-banner__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.ec-blog-guest-banner__text strong {
+  color: var(--ec-text-primary);
+  font-weight: 700;
+}
+
+.ec-blog-guest-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.ec-blog-signup-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--ec-z-sticky, 50);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--ec-surface) 94%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--ec-border);
+  box-shadow: 0 -8px 28px color-mix(in srgb, var(--ec-text-primary) 8%, transparent);
+}
+
+.ec-blog-signup-sticky__text {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+  text-align: center;
+}
+
+.ec-blog-signup-sticky__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .ec-blog-guest-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+  }
+
+  .ec-blog-signup-sticky {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px calc(14px + env(safe-area-inset-bottom, 0px));
+    max-width: var(--ec-maxw, 1200px);
+    margin: 0 auto;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    border: 1px solid var(--ec-border);
+    border-radius: var(--ec-radius-lg, 16px);
+  }
+
+  .ec-blog-signup-sticky__text {
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ec-blog-signup-sticky__actions {
+    flex: none;
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-blog-signup-sticky {
+    transition: none;
+  }
+}
+
 /* richer index cards (2-col editorial / general grids) */
 .ms-blog-card {
   gap: 12px;

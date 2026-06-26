@@ -5,6 +5,7 @@ export const STORAGE_KEYS = {
   pendingQuestion: 'markscheme_pending_question',
   pendingUpload: 'markscheme_pending_upload',
   pendingUploadMeta: 'markscheme_pending_upload_meta',
+  blogSignupDismissed: 'markscheme_blog_signup_dismissed',
 } as const
 
 function legacyKey(key: string): string {

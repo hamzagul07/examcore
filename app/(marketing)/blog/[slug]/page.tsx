@@ -15,6 +15,7 @@ import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
 import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
 import { BlogArticleHero } from '@/components/blog/BlogArticleHero'
+import { BlogGuestSignupPrompt } from '@/components/blog/BlogGuestSignupPrompt'
 import { BlogAuthorByline } from '@/components/blog/BlogAuthorByline'
 import { BlogQuickAnswer } from '@/components/blog/BlogQuickAnswer'
 import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
@@ -68,6 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="ms-pg py-12 sm:py-16">
         <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />
+        <BlogGuestSignupPrompt slug={slug} />
         <BlogQuickAnswer
           title={post.title}
           description={post.description}
@@ -79,7 +81,10 @@ export default async function BlogPostPage({ params }: Props) {
         ) : null}
         <BlogAuthorByline authorId={post.author} />
 
-        <div className="ms-blog-layout ec-blog-prose ec-fanout-prose mt-10 min-w-0">
+        <div
+          id="blog-article-body"
+          className="ms-blog-layout ec-blog-prose ec-fanout-prose mt-10 min-w-0 scroll-mt-24"
+        >
           <BlogTableOfContents headings={headings} />
           <div className="min-w-0">
             <BlogChunkedArticle content={post.content} slug={slug} />

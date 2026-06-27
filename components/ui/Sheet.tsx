@@ -12,9 +12,13 @@ export type SheetProps = {
   children: ReactNode
   /** Accessible label for the dialog */
   title?: string
+  /** Id of a visible element to use as aria-labelledby (overrides sr-only title) */
+  labelledById?: string
   className?: string
   /** Show drag handle on mobile */
   showHandle?: boolean
+  /** Skip default bottom safe-area padding (custom inner layout) */
+  compactPadding?: boolean
 }
 
 /**
@@ -26,8 +30,10 @@ export function Sheet({
   onClose,
   children,
   title,
+  labelledById,
   className,
   showHandle = true,
+  compactPadding = false,
 }: SheetProps) {
   const titleId = useId()
   useBodyScrollLock(open)
@@ -63,14 +69,19 @@ export function Sheet({
             transition={{ duration: 0.2 }}
             role="dialog"
             aria-modal="true"
-            aria-labelledby={title ? titleId : undefined}
+            aria-labelledby={labelledById ?? (title ? titleId : undefined)}
             className={cn(
               'ec-card relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl p-6 pt-[calc(1.5rem+env(safe-area-inset-top,0px))] sm:max-w-md sm:rounded-2xl sm:p-8 sm:pt-8',
+              compactPadding && 'p-0 pt-0 sm:p-0 sm:pt-0',
               className
             )}
-            style={{
-              paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
-            }}
+            style={
+              compactPadding
+                ? undefined
+                : {
+                    paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
+                  }
+            }
           >
             {showHandle && (
               <div
@@ -78,11 +89,11 @@ export function Sheet({
                 aria-hidden
               />
             )}
-            {title && (
+            {title && !labelledById ? (
               <h2 id={titleId} className="sr-only">
                 {title}
               </h2>
-            )}
+            ) : null}
             <button
               type="button"
               onClick={onClose}

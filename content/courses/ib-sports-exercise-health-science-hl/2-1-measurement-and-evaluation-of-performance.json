@@ -1,0 +1,171 @@
+{
+  "slug": "2-1-measurement-and-evaluation-of-performance",
+  "topicCode": "2.1",
+  "title": "Measurement and evaluation of performance",
+  "paper": "P2",
+  "paperName": "Sports, Exercise and Health Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental principles of measuring and evaluating athletic performance. It covers the key concepts of validity, reliability, and objectivity, and introduces the statistical tools used to analyse performance data, including measures of central tendency, dispersion, the coefficient of variation, and t-tests.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Distinguish between the concepts of measurement and evaluation in a sporting context.",
+    "Discuss the importance of validity, reliability, and objectivity in performance testing.",
+    "Calculate and interpret descriptive statistics, including mean, standard deviation, and coefficient of variation.",
+    "Explain the purpose and application of t-tests for comparing performance data sets."
+  ],
+  "simpleExplanation": {
+    "title": "From Stopwatch to Strategy",
+    "summary": "First, we collect raw data about an athlete's performance, which is the 'measurement'. Then, we use that data to make an informed judgement about their ability or progress, which is the 'evaluation'.",
+    "analogy": "Imagine you're a chef baking a cake. Following the recipe and weighing the flour and sugar is 'measurement' – you're just collecting quantitative data. Tasting the finished cake and deciding if it's delicious, needs more sugar, or is good enough to sell is the 'evaluation' – you're making a qualitative judgement based on the data.",
+    "steps": [
+      "Select the right test: Choose a valid and reliable test to measure a specific fitness component, like the multistage fitness test for aerobic capacity.",
+      "Collect the data: Perform the test under controlled conditions to ensure objectivity and gather the raw scores, which are the measurements.",
+      "Analyse the numbers: Calculate statistics like the mean and standard deviation to summarise the performance of an individual or a group.",
+      "Evaluate and decide: Compare the results to norms or previous scores to make a judgement (evaluation) about performance and inform future training decisions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is 'measurement' in the context of performance?",
+      "back": "The process of collecting quantitative data. It involves recording a score or value, such as time in seconds, distance in metres, or number of repetitions. For example, recording a 100m sprint time of 11.2 seconds."
+    },
+    {
+      "front": "What is 'evaluation' in the context of performance?",
+      "back": "The process of making a judgement about the quality of a measurement. It involves interpreting the data by comparing it to norms, previous results, or goals. For example, deciding that a sprint time of 11.2 seconds is 'excellent' for a school athlete."
+    },
+    {
+      "front": "Define 'validity' in testing.",
+      "back": "The degree to which a test measures what it claims to measure. A valid test for aerobic capacity, like the VO₂ max test, actually measures aerobic capacity, not something else like leg power."
+    },
+    {
+      "front": "Define 'reliability' in testing.",
+      "back": "The degree of consistency of a measure. A reliable test will produce similar results when repeated under the same conditions with the same subjects. A common trap is confusing it with validity; a test can be reliable but not valid (e.g., consistently wrong)."
+    },
+    {
+      "front": "Define 'objectivity' in testing.",
+      "back": "The degree to which a test is free from bias. An objective test will produce the same result regardless of who is administering it. Electronic timing is more objective than manual stopwatch timing."
+    },
+    {
+      "front": "What is the key difference between a laboratory test and a field test?",
+      "back": "Laboratory tests use specialist, often expensive equipment in controlled environments (e.g., VO₂ max test), offering high accuracy. Field tests are conducted in a practical setting (e.g., Cooper 12-minute run), are more accessible but often less accurate."
+    },
+    {
+      "front": "What is Standard Deviation (SD)?",
+      "back": "A measure of the spread or dispersion of a set of data from its mean. A low SD indicates that the data points tend to be close to the mean, suggesting high consistency. A high SD indicates the data points are spread out over a wider range."
+    },
+    {
+      "front": "What is the Coefficient of Variation (CV)?",
+      "back": "A relative measure of dispersion, calculated as (SD / Mean) x 100%. It is useful for comparing the variability of two or more data sets with different units or different means."
+    },
+    {
+      "front": "When is a paired t-test used?",
+      "back": "To compare the means of two related groups to determine if there is a statistically significant difference. For example, testing the same group of athletes before and after a training intervention (a 'pre-post' design)."
+    },
+    {
+      "front": "When is an unpaired (or independent) t-test used?",
+      "back": "To compare the means of two independent, unrelated groups. For example, comparing the vertical jump height of a group of basketball players with a group of volleyball players."
+    },
+    {
+      "front": "What does a p-value of p < 0.05 signify in a t-test?",
+      "back": "It indicates that there is a statistically significant difference between the two means being compared. The probability that the observed difference occurred by chance is less than 5%."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between reliability and objectivity?",
+      "a": "Reliability refers to the consistency of the test itself. If an athlete performs the same test multiple times under identical conditions, will they get a similar score? Objectivity refers to the consistency of the tester. If two different testers measure the same performance, will they record the same score? For example, a beep test is reliable because its protocol is fixed. It becomes objective when timing is automated, removing human error in judging whether the athlete reached the line in time."
+    },
+    {
+      "q": "Why is standard deviation a better measure of spread than the range?",
+      "a": "The range is calculated using only the highest and lowest values in a data set, making it very sensitive to extreme outliers. A single unusually high or low score can dramatically change the range. Standard deviation, however, uses every single data point in its calculation, providing a more robust and representative measure of how the data is dispersed around the mean."
+    },
+    {
+      "q": "If a test is reliable, does that mean it is also valid?",
+      "a": "Not necessarily. A test can be very reliable but not valid. For example, imagine using a person's height to 'measure' their intelligence. You could measure their height very consistently (high reliability), but it is not a valid measure of intelligence. Reliability is a prerequisite for validity, but it does not guarantee it."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In sports science, we constantly seek to improve performance. But how do we know if an athlete is actually getting better? This requires a systematic approach involving both measurement and evaluation. This topic provides the foundational knowledge for quantifying performance, assessing the quality of our tests, and using statistics to make meaningful judgements that guide training and selection."
+    },
+    {
+      "type": "heading",
+      "content": "Core Principles of Performance Testing"
+    },
+    {
+      "type": "text",
+      "content": "To ensure that the data we collect is meaningful, any test we use must adhere to three critical principles: validity, reliability, and objectivity. Validity ensures the test is appropriate for its purpose. Reliability ensures the results are consistent and repeatable. Objectivity ensures the results are not influenced by the person conducting the test. Often, there is a trade-off; for example, a highly controlled laboratory test might have excellent validity and reliability but be impractical for a large team, whereas a simpler field test is more practical but may be less precise."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Validity:** Does the test measure what it's supposed to measure? (e.g., using a vertical jump to test anaerobic power).",
+        "**Reliability:** Can the test produce consistent results on re-testing? (e.g., an athlete scoring similarly on the Illinois Agility Test on two consecutive days).",
+        "**Objectivity:** Is the measurement free from the bias of the tester? (e.g., using timing gates instead of a handheld stopwatch)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Descriptive Statistics: Summarising Performance Data"
+    },
+    {
+      "type": "text",
+      "content": "Once we have our measurements, we need to make sense of them. Descriptive statistics allow us to summarise large amounts of data into a few key numbers. Measures of central tendency (mean, median, mode) tell us about the 'typical' score, while measures of dispersion (range, standard deviation) tell us how spread out the scores are. Standard deviation is particularly powerful as it quantifies the consistency of the performance."
+    },
+    {
+      "type": "formula",
+      "content": "Standard Deviation (s) = $s = \\sqrt{\\frac{\\sum (x_i - \\bar{x})^2}{n-1}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A group of 6 rugby players performed a 20m sprint test. Their times (in seconds) were: 2.8, 2.9, 3.0, 3.1, 3.2, 3.4. Calculate the mean and standard deviation for this data set.",
+      "solution": "1. **Calculate the Mean ($\\bar{x}$):**\nSum of times = 2.8 + 2.9 + 3.0 + 3.1 + 3.2 + 3.4 = 18.4 s\nNumber of players (n) = 6\nMean = 18.4 / 6 = 3.067 s\n\n2. **Calculate the sum of squared differences from the mean ($\\sum (x_i - \\bar{x})^2$):**\n(2.8 - 3.067)² = 0.071\n(2.9 - 3.067)² = 0.028\n(3.0 - 3.067)² = 0.004\n(3.1 - 3.067)² = 0.001\n(3.2 - 3.067)² = 0.018\n(3.4 - 3.067)² = 0.111\nSum = 0.071 + 0.028 + 0.004 + 0.001 + 0.018 + 0.111 = 0.233\n\n3. **Calculate the Standard Deviation (s):**\n$s = \\sqrt{\\frac{0.233}{6-1}} = \\sqrt{\\frac{0.233}{5}} = \\sqrt{0.0466} = 0.216$ s\n\n**Answer:** The mean sprint time is 3.07 s and the standard deviation is 0.22 s (rounded to 2 decimal places)."
+    },
+    {
+      "type": "heading",
+      "content": "Inferential Statistics: Comparing Performance Data"
+    },
+    {
+      "type": "text",
+      "content": "Descriptive statistics are great for summarising one group, but often we want to compare two different groups (e.g., sprinters vs. endurance runners) or the same group at two different times (e.g., before and after a training programme). This is where inferential statistics, such as the t-test, become essential. A t-test determines whether the difference between two mean scores is 'statistically significant' or if it could have just happened by random chance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Unpaired t-test:** Compares the means of two independent groups (e.g., comparing the grip strength of climbers and swimmers).",
+        "**Paired t-test:** Compares the means of the same group at two different times (e.g., comparing an athlete's body fat percentage before and after a diet).",
+        "**Significance (p-value):** A result is typically considered statistically significant if the p-value is less than 0.05 ($p < 0.05$). This means there is less than a 5% probability the difference is due to chance."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For t-test questions, don't just state the result. You must interpret it in the context of the question. For example, 'The paired t-test showed a significant difference in 1RM squat strength pre- and post-training (p < 0.05), indicating that the 8-week resistance training programme was effective in increasing lower body strength.' This shows you understand the application."
+    },
+    {
+      "type": "workedExample",
+      "question": "A coach wants to compare the consistency of two netball shooters. Shooter A has a mean score of 15 goals per game with a standard deviation of 3. Shooter B has a mean score of 25 goals per game with a standard deviation of 4. Which shooter is more consistent? Use the Coefficient of Variation (CV) to justify your answer.",
+      "solution": "1. **Recall the formula for Coefficient of Variation (CV):**\n$CV = (\\frac{\\text{Standard Deviation}}{\\text{Mean}}) \\times 100\\%$\n\n2. **Calculate CV for Shooter A:**\n$CV_A = (\\frac{3}{15}) \\times 100\\% = 0.2 \\times 100\\% = 20\\%$\n\n3. **Calculate CV for Shooter B:**\n$CV_B = (\\frac{4}{25}) \\times 100\\% = 0.16 \\times 100\\% = 16\\%$\n\n4. **Compare and Conclude:**\nShooter B has a lower Coefficient of Variation (16%) compared to Shooter A (20%). A lower CV indicates less relative variability, and therefore greater consistency.\n\n**Answer:** Shooter B is the more consistent shooter. [1 mark] This is because their CV of 16% is lower than Shooter A's CV of 20%, indicating their scores are less spread out relative to their mean performance. [1 mark]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Measurement and Evaluation",
+      "href": "/mark?subject=ib-sports-exercise-health-science-hl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Topend Sports Fitness Testing Guide",
+          "href": "https://www.topendsports.com/testing/default.htm"
+        },
+        {
+          "label": "Khan Academy: Standard Deviation",
+          "href": "https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/a/calculating-standard-deviation-step-by-step"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

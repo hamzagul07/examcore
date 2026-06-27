@@ -1,0 +1,160 @@
+{
+  "slug": "2-1-data-and-databases",
+  "topicCode": "2.1",
+  "title": "Data and databases",
+  "paper": "Content",
+  "paperName": "Digital Society SL",
+  "status": "premium",
+  "summary": "This lesson introduces the foundational concepts of data, information, and knowledge. It explores how data is organised, stored, and managed using databases, comparing relational (SQL) and non-relational (NoSQL) models and their significance in digital society.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Distinguish between data, information, and knowledge within the context of digital systems.",
+    "Explain the structure and purpose of databases for organising data, including key components like tables, records, and fields.",
+    "Compare and contrast relational (SQL) and non-relational (NoSQL) database models with relevant examples.",
+    "Analyse the role of databases in collecting, processing, and storing data across various digital society contexts."
+  ],
+  "simpleExplanation": {
+    "title": "The Digital Library",
+    "summary": "Data is like the raw words in a book, while a database is the entire library system that organises those books so you can find what you need. This system turns raw facts into useful, searchable information.",
+    "analogy": "Imagine a vast library. Each individual word on every page is 'data'. A single book, organised into chapters and with a title, is 'information'. When you read several books on a topic and form your own understanding, that's 'knowledge'. The database is the entire library itself: the building, the shelves (tables), the card catalogue (queries/indexes), and the librarian (Database Management System) who helps you find, check out, and return books efficiently.",
+    "steps": [
+      "First, understand the hierarchy: raw 'data' (like a list of temperatures) is processed into meaningful 'information' (the average temperature last week).",
+      "Next, see how this information is structured in a database using tables, which are made up of rows (records) and columns (fields).",
+      "Then, explore the two main types of databases: relational (like a neat set of linked spreadsheets) and non-relational (like a flexible folder of documents).",
+      "Finally, consider the real-world impact of these databases, from how your social media feed is generated to how a business manages its customer list."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Data",
+      "back": "Raw, unorganised facts, figures, and symbols that have no context or meaning on their own. For example, '19.4'."
+    },
+    {
+      "front": "Information",
+      "back": "Data that has been processed, organised, and structured in a given context to make it useful. For example, 'The temperature at 14:00 was 19.4°C'."
+    },
+    {
+      "front": "Knowledge",
+      "back": "The understanding and awareness gained from information, often through experience and interpretation, which can be used to make decisions. For example, 'It's warm enough to go outside without a jacket'."
+    },
+    {
+      "front": "Database",
+      "back": "An organised, structured collection of data, stored electronically in a computer system, designed for efficient access, management, and updating."
+    },
+    {
+      "front": "Database Management System (DBMS)",
+      "back": "Software that interacts with users, applications, and the database itself to capture and analyse data. Examples include MySQL, PostgreSQL, MongoDB, and Oracle."
+    },
+    {
+      "front": "Relational Database (SQL)",
+      "back": "A database that stores and provides access to data points that are related to one another. Data is organised in tables with rows and columns, and relationships are defined using keys. It uses Structured Query Language (SQL)."
+    },
+    {
+      "front": "Non-Relational Database (NoSQL)",
+      "back": "A database that does not use the tabular schema of rows and columns found in most traditional database systems. It is used for large sets of distributed and unstructured data. Examples include document, key-value, and graph databases."
+    },
+    {
+      "front": "Primary Key",
+      "back": "A field in a relational database table that uniquely identifies each record in that table. It must contain unique values and cannot contain NULL values."
+    },
+    {
+      "front": "Foreign Key",
+      "back": "A field in a relational database table that is a primary key in another table. It is used to establish a link between the data in the two tables."
+    },
+    {
+      "front": "Metadata",
+      "back": "Data that provides information about other data. For example, for a digital photograph, metadata could include the date taken, camera model, and GPS location."
+    },
+    {
+      "front": "Big Data",
+      "back": "Extremely large and complex datasets that cannot be easily managed, processed, or analysed with traditional data-processing tools. Often described by the '3 Vs': Volume, Velocity, and Variety."
+    },
+    {
+      "front": "Common Trap: Is a spreadsheet a database?",
+      "back": "Not really. While a spreadsheet can store data in a grid, it lacks the core features of a true database, such as robust data integrity rules, support for multiple simultaneous users (concurrency), and advanced, efficient querying capabilities for large datasets."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between a spreadsheet (like Microsoft Excel) and a database (like MySQL)?",
+      "a": "While both can store data in rows and columns, they are designed for different purposes. A spreadsheet is a tool for a single user to perform calculations and create simple visualisations on a limited amount of data. A database, managed by a DBMS, is designed to handle vast amounts of data securely. Key differences include:\n1. **Scale**: Databases can handle millions or billions of records, whereas spreadsheets become slow and unstable with large datasets.\n2. **Concurrency**: A DBMS allows multiple users to access and modify data at the same time without corrupting it. Spreadsheets are typically for single-user access.\n3. **Data Integrity**: Databases enforce strict rules to ensure data is consistent and reliable (e.g., preventing a user from entering text in a number field). Spreadsheets are much more flexible and prone to error.\n4. **Querying**: Databases use powerful query languages (like SQL) to perform complex searches and joins across multiple tables far more efficiently than a spreadsheet's filter and lookup functions."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our digital society, data is often called the 'new oil'. It is a valuable resource that, when refined, powers everything from social media platforms and e-commerce websites to scientific research and government services. This lesson unpacks the fundamental concepts of data and the powerful systems we use to manage it: databases."
+    },
+    {
+      "type": "heading",
+      "content": "The DIKW Pyramid: From Raw Facts to Actionable Insight"
+    },
+    {
+      "type": "text",
+      "content": "To understand the value of data, we often use the Data-Information-Knowledge-Wisdom (DIKW) pyramid. It shows how raw data is transformed into something much more valuable. 'Data' are the raw, isolated facts. When we add context and structure, it becomes 'Information'. When we understand and interpret that information, it becomes 'Knowledge'. Finally, 'Wisdom' is the ability to apply that knowledge effectively."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Data: Raw facts. Example: 3,000.",
+        "Information: Data in context. Example: 3,000 steps taken today.",
+        "Knowledge: Understanding patterns. Example: Taking 3,000 steps is below my daily goal of 10,000 steps.",
+        "Wisdom: Applying knowledge. Example: I should go for a walk this evening to meet my fitness goal."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Organising Data: Databases and DBMS"
+    },
+    {
+      "type": "text",
+      "content": "A database is simply a structured way of storing data. Think of it as a highly organised digital filing cabinet. To interact with this filing cabinet, we use a Database Management System (DBMS). The DBMS is the software that allows us to create, read, update, and delete data in the database. It ensures data is secure, consistent, and accessible."
+    },
+    {
+      "type": "workedExample",
+      "question": "A new school 'Coding Club' needs a simple database to track its members. Design a single table for this database, identifying a suitable primary key and listing four appropriate fields (columns). Then, provide two example records (rows) for this table.",
+      "solution": "A suitable structure would be a table named 'Members'.\n\n**1. Identify Fields and Primary Key:**\n- **MemberID**: This will be the Primary Key. A unique number for each member ensures no two members can be confused. (e.g., 1, 2, 3...)\n- **FirstName**: The member's first name (Text).\n- **LastName**: The member's last name (Text).\n- **JoinDate**: The date the member joined the club (Date format).\n- **ProgrammingLanguage**: The member's preferred programming language (Text).\n\n**2. Example Records:**\nHere is how the table would look with two records:\n\n| MemberID (PK) | FirstName | LastName | JoinDate   | ProgrammingLanguage |\n|---------------|-----------|----------|------------|---------------------|\n| 1             | Anya      | Sharma   | 2023-09-15 | Python              |\n| 2             | Ben       | Carter   | 2023-09-21 | JavaScript          |\n\nThis simple relational table structure allows the club to easily manage its member list, sort by join date, or find all members who prefer a specific language."
+    },
+    {
+      "type": "heading",
+      "content": "Types of Databases: Relational (SQL) vs. Non-Relational (NoSQL)"
+    },
+    {
+      "type": "text",
+      "content": "Databases are not one-size-fits-all. The two major categories are relational and non-relational. Relational databases (often called SQL databases) have been the standard for decades. They organise data into tables with strict schemas, like our Coding Club example. They are excellent for structured data where consistency and reliability are paramount, such as in banking or e-commerce inventory systems. Non-relational databases (NoSQL) are more modern and flexible. They can handle unstructured data like social media posts, images, and sensor data. They are designed for high speed and scalability, making them ideal for big data applications and dynamic websites."
+    },
+    {
+      "type": "workedExample",
+      "question": "A developer is building a new mobile app for sharing short video clips, similar to TikTok. Users can upload videos, add text captions, use hashtags, and 'like' other users' videos. Would a relational (SQL) or non-relational (NoSQL) database be more appropriate? Justify your answer with two reasons.",
+      "solution": "A **non-relational (NoSQL) database** would be more appropriate for this application.\n\n**Justification:**\n\n1.  **Handling Unstructured and Varied Data:** The app deals with highly varied data types: video files, user profiles, text captions, lists of hashtags, and a constantly changing number of 'likes'. A NoSQL database (like a document database) can store all this related but unstructured information together in a flexible format without a rigid, predefined schema. A relational database would struggle to efficiently store a variable number of hashtags or likes for each post.\n\n2.  **Scalability and Performance:** Social media apps need to handle massive volumes of data (uploads, views, likes) from millions of users simultaneously (high velocity and volume). NoSQL databases are designed to scale horizontally, meaning capacity can be increased by adding more servers. This makes them better suited to handle the rapid growth and intense read/write loads typical of a successful social media platform."
+    },
+    {
+      "type": "examTip",
+      "content": "In your exam answers, always connect the technical aspects of a database to their real-world implications. Don't just state that a company uses a NoSQL database. Explain *why* this choice is significant for its business model (e.g., 'A NoSQL database allows the social media company to scale rapidly and analyse user-generated content flexibly, which is crucial for targeted advertising')."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Data and Databases",
+      "href": "/mark?subject=ib-digital-society-sl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IBM: What is a Database?",
+          "href": "https://www.ibm.com/uk-en/topics/database"
+        },
+        {
+          "label": "MongoDB: SQL vs. NoSQL",
+          "href": "https://www.mongodb.com/compare/sql-vs-nosql"
+        },
+        {
+          "label": "Video: What is Big Data?",
+          "href": "https://www.youtube.com/watch?v=bAyrObl7TYE"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

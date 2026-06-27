@@ -1,0 +1,206 @@
+{
+  "slug": "1-5-movement-analysis-and-biomechanics",
+  "topicCode": "1.5",
+  "title": "Movement analysis and biomechanics",
+  "paper": "P2",
+  "paperName": "Sports, Exercise and Health Science HL",
+  "status": "premium",
+  "summary": "This lesson delves into the advanced biomechanical principles that govern human movement in sport. It explores projectile motion, the effects of fluid dynamics like drag and lift, the concept of impulse and its relationship to momentum, the elasticity of collisions through the coefficient of restitution, and the principles of angular motion, including the conservation of angular momentum.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Analyse the factors that determine the flight path of a projectile in sports.",
+    "Explain the concepts of impulse, coefficient of restitution, and fluid dynamics (drag and lift) in relation to athletic performance.",
+    "Define and apply the principles of angular motion, including moment of inertia and conservation of angular momentum.",
+    "Solve quantitative problems related to impulse, coefficient of restitution, and angular motion."
+  ],
+  "simpleExplanation": {
+    "title": "The Physics of Flight and Spin",
+    "summary": "Biomechanics applies the laws of physics to understand how athletes move. By analysing forces, motion, and energy, we can explain why certain techniques are more effective and how to improve performance.",
+    "analogy": "Think about throwing a frisbee versus a shot put. The frisbee is designed to fly, using air to generate lift, and its flight is very sensitive to spin and angle. The shot put is designed to be a pure projectile, where initial speed and angle are everything, and we try to minimise air resistance. Biomechanics gives us the tools to understand the 'why' behind both.",
+    "steps": [
+      "Identify the key biomechanical principle at play, such as projectile motion, impulse, or angular momentum.",
+      "Analyse the forces acting on the athlete or object, including gravity, muscle force, friction, and air resistance.",
+      "Apply relevant formulae and concepts to calculate variables like force, velocity, or momentum.",
+      "Evaluate how an athlete could modify their technique to optimise the outcome based on these biomechanical principles."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Projectile Motion",
+      "back": "The motion of an object thrown or projected into the air, subject only to the acceleration of gravity (and air resistance). Its path is a parabola in ideal conditions."
+    },
+    {
+      "front": "What are the three key factors affecting a projectile's trajectory?",
+      "back": "1. Speed of release. 2. Angle of release. 3. Height of release. Air resistance is an external factor that modifies the trajectory."
+    },
+    {
+      "front": "Coefficient of Restitution (COR)",
+      "back": "A measure of the elasticity of a collision between two objects; the ratio of the relative speed of separation to the relative speed of approach. It is a value between 0 (perfectly inelastic) and 1 (perfectly elastic)."
+    },
+    {
+      "front": "Formula for COR using rebound height",
+      "back": "$COR = \\sqrt{\\frac{\\text{rebound height}}{\\text{drop height}}}$. This is a common exam calculation."
+    },
+    {
+      "front": "Impulse",
+      "back": "The change in momentum of an object. It is calculated as the product of the force applied and the time over which the force acts (Impulse = F × t). Units are Ns (Newton-seconds)."
+    },
+    {
+      "front": "Impulse-Momentum Relationship",
+      "back": "The impulse applied to an object is equal to the change in its momentum (Δp). So, F × t = m(v - u), where m=mass, v=final velocity, u=initial velocity."
+    },
+    {
+      "front": "Bernoulli's Principle",
+      "back": "States that for a fluid (like air), an increase in speed occurs simultaneously with a decrease in pressure. This explains how lift is generated on an aerofoil or a spinning ball."
+    },
+    {
+      "front": "Magnus Effect",
+      "back": "The generation of a sideways force on a spinning object (e.g., a ball) moving through a fluid (air). The spin creates a pressure differential, causing the object to deviate from its normal flight path."
+    },
+    {
+      "front": "Moment of Inertia (I)",
+      "back": "The resistance of an object to angular acceleration. It depends on the mass of the object and the distribution of that mass relative to the axis of rotation. The further the mass is from the axis, the greater the moment of inertia."
+    },
+    {
+      "front": "Conservation of Angular Momentum",
+      "back": "In the absence of external torques, the total angular momentum of a system remains constant. Angular Momentum (L) = Moment of Inertia (I) × Angular Velocity (ω). If I decreases (e.g., a diver tucking), ω must increase to conserve L."
+    },
+    {
+      "front": "What is the difference between form drag and surface drag?",
+      "back": "Form drag (or pressure drag) is caused by the shape of the object and the pressure differential it creates. Surface drag is caused by friction between the fluid and the object's surface. Streamlining reduces form drag."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why isn't the optimal angle of release for a shot put 45 degrees?",
+      "a": "Because the shot is released from a height significantly above the ground where it will land. This initial height gives the shot extra flight time. Therefore, the athlete can sacrifice some of the vertical component of the launch (a lower angle) for a greater horizontal component, resulting in a longer throw. The optimal angle is typically around 37-42 degrees."
+    },
+    {
+      "q": "How does Bernoulli's principle relate to the Magnus effect?",
+      "a": "The Magnus effect is an application of Bernoulli's principle. A spinning ball drags a layer of air around with it. On one side of the ball, this layer moves in the same direction as the oncoming air, resulting in a higher velocity and lower pressure. On the other side, it moves against the oncoming air, resulting in lower velocity and higher pressure. This pressure difference creates a net force (the Magnus force) that pushes the ball towards the low-pressure side."
+    },
+    {
+      "q": "Can an athlete change their angular momentum in the air?",
+      "a": "No, not according to the principle of conservation of angular momentum. Once an athlete is airborne (e.g., a diver or gymnast), their total angular momentum is fixed. They cannot create more or less of it. However, they can transfer momentum between different axes of rotation (e.g., from twisting to somersaulting) and can change their rate of spin by altering their moment of inertia."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fascinating world of biomechanics, where we dissect movement to understand athletic performance. This higher-level topic moves beyond basic descriptions of motion to apply the principles of physics. We will explore how athletes can manipulate forces and motion to throw further, jump higher, and spin faster, providing the scientific foundation for coaching and technique analysis."
+    },
+    {
+      "type": "heading",
+      "content": "Projectile Motion: The Science of Flight"
+    },
+    {
+      "type": "text",
+      "content": "Any object that is thrown, kicked, or hit into the air becomes a projectile. In a vacuum, a projectile follows a perfect parabolic path determined by gravity. However, in sport, we must consider three key factors controlled by the athlete: the speed of release, the height of release relative to the landing surface, and the angle of release. Additionally, external factors like air resistance and spin (Magnus effect) can significantly alter this path."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Speed of Release:** The most critical factor. Greater speed results in greater horizontal distance.",
+        "**Height of Release:** A greater release height relative to landing height increases flight time and distance for a given speed and angle.",
+        "**Angle of Release:** The theoretical optimum angle is 45° when release and landing heights are equal. If release height is above landing height (e.g., shot put), the optimal angle is less than 45°. If release height is below landing height (e.g., long jump), the optimal angle is slightly above 45°.",
+        "**Air Resistance:** This force opposes the motion of the projectile, reducing its maximum height and horizontal range, and making the trajectory asymmetrical."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Impulse: The Key to Changing Momentum"
+    },
+    {
+      "type": "text",
+      "content": "To change an object's motion (its momentum), a force must be applied over a period of time. This combination of force and time is called impulse. Athletes manipulate this relationship constantly. To generate maximum velocity, like in a throw or a jump, they apply a large force for the longest possible time. Conversely, to absorb force safely, like when catching a ball, they increase the time over which the force is absorbed, thereby reducing the peak force experienced."
+    },
+    {
+      "type": "formula",
+      "content": "Impulse = Force (F) × time (t) = Change in momentum (Δp) \\\\ F × t = m(v - u)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A rugby player kicks a stationary ball of mass 0.45 kg. The ball leaves the player's foot with a velocity of 25 m·s⁻¹. If the foot was in contact with the ball for 0.07 seconds, calculate the average force exerted on the ball.",
+      "solution": "1. **Identify the relevant formula:** The impulse-momentum theorem, F × t = m(v - u). We need to find F.\n2. **List the known variables:**\n   - Mass (m) = 0.45 kg\n   - Initial velocity (u) = 0 m·s⁻¹ (since it was stationary)\n   - Final velocity (v) = 25 m·s⁻¹\n   - Time (t) = 0.07 s\n3. **Rearrange the formula to solve for Force (F):** F = [m(v - u)] / t\n4. **Substitute the values and calculate:**\n   F = [0.45 kg × (25 m·s⁻¹ - 0 m·s⁻¹)] / 0.07 s\n   F = [0.45 × 25] / 0.07\n   F = 11.25 / 0.07\n   F ≈ 160.71 N\n5. **State the final answer with units:** The average force exerted on the ball is 160.7 N. \n\n*[Working: 1 mark for formula, 1 mark for correct substitution, 1 mark for correct answer with units]*"
+    },
+    {
+      "type": "heading",
+      "content": "Coefficient of Restitution (COR): The 'Bounciness' Factor"
+    },
+    {
+      "type": "text",
+      "content": "The Coefficient of Restitution (COR) quantifies the elasticity of a collision. It's a crucial concept in sports involving a ball and a surface or implement, like tennis, golf, or cricket. A COR of 1 represents a perfectly elastic collision with no energy loss, while a COR of 0 represents a perfectly inelastic collision where the objects stick together. In reality, all sporting collisions fall somewhere in between. Factors like the materials of the colliding objects, their temperature, and impact velocity can all affect the COR."
+    },
+    {
+      "type": "formula",
+      "content": "COR = $\\sqrt{\\frac{\\text{rebound height}}{\\text{drop height}}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A squash ball is dropped from a height of 2.54 m onto a court surface. It rebounds to a height of 0.85 m. Calculate the coefficient of restitution for the ball-surface interaction.",
+      "solution": "1. **Identify the relevant formula:** COR = √(rebound height / drop height)\n2. **List the known variables:**\n   - Drop height = 2.54 m\n   - Rebound height = 0.85 m\n3. **Substitute the values into the formula:**\n   COR = √(0.85 m / 2.54 m)\n   COR = √0.3346...\n4. **Calculate the final value:**\n   COR ≈ 0.578\n5. **State the final answer:** The coefficient of restitution is 0.58 (to 2 decimal places). Note that COR is a dimensionless quantity. \n\n*[Working: 1 mark for formula, 1 mark for correct substitution, 1 mark for correct answer]*"
+    },
+    {
+      "type": "heading",
+      "content": "Angular Motion: The Principles of Spin"
+    },
+    {
+      "type": "text",
+      "content": "Many sports skills involve rotation, from a diver performing a somersault to a figure skater's spin. This is described by angular motion. The key principle is the conservation of angular momentum. Angular momentum is the product of an object's moment of inertia and its angular velocity. The moment of inertia is a measure of how difficult it is to rotate an object, and it depends on mass and how that mass is distributed. By changing their body shape, athletes can alter their moment of inertia and, consequently, their rate of spin (angular velocity)."
+    },
+    {
+      "type": "formula",
+      "content": "Angular Momentum (L) = Moment of Inertia (I) × Angular Velocity (ω)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Conservation:** If no external torque (turning force) acts on the system, angular momentum (L) is conserved.",
+        "**Manipulating Spin:** An ice skater pulls their arms in to spin faster. This decreases their moment of inertia (I), so their angular velocity (ω) must increase to keep L constant.",
+        "**Slowing Spin:** To slow down or stop a spin, the skater extends their arms and legs. This increases their moment of inertia (I), causing their angular velocity (ω) to decrease.",
+        "**Application in Diving:** A diver leaves the board with a fixed amount of angular momentum. By moving from a layout (high I) to a tuck (low I) position, they dramatically increase their angular velocity to complete multiple somersaults. They then open up again to slow the rotation for a clean entry into the water."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For calculation questions, always write down the formula you are using, show your substitutions, and state your final answer with the correct units. Even if your final calculation is wrong, you can still earn marks for showing the correct method and reasoning."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding of biomechanics with these practice questions.",
+      "href": "/mark?subject=ib-sports-exercise-health-science-hl&topic=1.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "In-depth video on the Magnus Effect",
+          "href": "https://www.youtube.com/watch?v=23f1jvGUWJs"
+        },
+        {
+          "label": "Article on the biomechanics of the long jump",
+          "href": "https://www.brianmac.co.uk/longjump/index.htm"
+        },
+        {
+          "label": "Interactive simulation of projectile motion",
+          "href": "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_en.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Interactive simulation of projectile motion",
+    "embedUrl": "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/projectile-motion",
+    "hint": "Explore “Interactive simulation of projectile motion” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

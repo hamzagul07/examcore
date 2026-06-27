@@ -1,0 +1,164 @@
+{
+  "slug": "2-3-computers-networks-and-the-internet",
+  "topicCode": "2.3",
+  "title": "Computers, networks and the internet",
+  "paper": "Content",
+  "paperName": "Digital Society HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental components and protocols that underpin computer networks and the internet. Students will learn about the hardware, network architectures (LAN, WAN), and the essential rules (TCP/IP, DNS) that enable global digital communication, preparing them for analytical exam questions.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Distinguish between key network hardware like routers, switches, and servers.",
+    "Compare and contrast different network architectures such as LAN, WAN, client-server, and P2P.",
+    "Explain the function of core internet protocols including TCP/IP, DNS, and HTTP.",
+    "Analyse the journey of data across the internet from source to destination."
+  ],
+  "simpleExplanation": {
+    "title": "From Your Click to the Cosmos",
+    "summary": "The internet is not a cloud; it's a physical system of connected computers and cables governed by a set of rules. These rules ensure that your request for a website finds its way to the right server and the data comes back to you, no matter where in the world it is.",
+    "analogy": "Think of the internet like a global postal service. Your computer is your house, and you want to send a letter (a data request) to a friend's house (a web server). You don't know their exact physical coordinates, just their home address (e.g., 'www.example.com'). The postal service uses a giant address book (DNS) to find the coordinates (IP address), breaks your long letter into small, numbered postcards (packets), and sends them via a network of roads and sorting offices (routers and switches). The postcards are reassembled in the correct order at the destination (TCP).",
+    "steps": [
+      "First, identify the core components. Your device (a client) connects via hardware like switches and routers to a local network.",
+      "Next, understand the network's scale. Your Local Area Network (LAN) connects to a vast Wide Area Network (WAN) – the internet itself.",
+      "Then, translate the address. The Domain Name System (DNS) acts like a phonebook, converting human-friendly web addresses into machine-readable IP addresses.",
+      "Finally, deliver the data. The TCP/IP protocol suite breaks your data into packets, routes them across the network, and ensures they are all received and reassembled correctly."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a LAN (Local Area Network)?",
+      "back": "A network that connects computers and devices in a limited geographical area such as a home, school, or office building. Typically owned and managed by a single person or organisation."
+    },
+    {
+      "front": "What is a WAN (Wide Area Network)?",
+      "back": "A network that spans a large geographical area, such as a country or continent. The internet is the largest WAN. WANs are often collections of interconnected LANs."
+    },
+    {
+      "front": "What is the function of a router?",
+      "back": "A router is a networking device that forwards data packets *between* different computer networks. It operates at the Network Layer (Layer 3) of the OSI model, using IP addresses to make decisions."
+    },
+    {
+      "front": "What is the function of a switch?",
+      "back": "A switch is a networking device that connects devices *within* the same network (a LAN). It operates at the Data Link Layer (Layer 2), using MAC addresses to forward data to the correct device."
+    },
+    {
+      "front": "What is an IP Address?",
+      "back": "An Internet Protocol address is a unique numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. It serves for host identification and location addressing."
+    },
+    {
+      "front": "Distinguish between IPv4 and IPv6.",
+      "back": "IPv4 uses a 32-bit address format (e.g., 192.168.1.1), allowing for ~4.3 billion unique addresses. IPv6 uses a 128-bit address format, providing a vastly larger address space to accommodate the growing number of internet-connected devices."
+    },
+    {
+      "front": "What is the Client-Server Model?",
+      "back": "A network architecture where clients (e.g., your web browser) request services or resources from a central, powerful server (e.g., a web server hosting a site). Most of the web operates on this model."
+    },
+    {
+      "front": "What is TCP/IP?",
+      "back": "Transmission Control Protocol/Internet Protocol is a suite of communication protocols. TCP manages breaking data into packets and reassembling them, ensuring reliable delivery. IP handles the addressing and routing of these packets to the correct destination."
+    },
+    {
+      "front": "What is DNS (Domain Name System)?",
+      "back": "The internet's phonebook. It translates human-readable domain names (e.g., www.google.com) into machine-readable IP addresses (e.g., 142.250.179.196) that computers use to locate each other."
+    },
+    {
+      "front": "What is Packet Switching?",
+      "back": "A method of grouping data into packets for transmission over a digital network. Each packet is routed independently and can take a different path to the destination, where they are reassembled. This is more efficient and robust than circuit switching."
+    },
+    {
+      "front": "What is the difference between bandwidth and latency?",
+      "back": "Bandwidth is the maximum rate of data transfer across a network path (the 'width of the pipe'). Latency is the delay in data communication (the 'time it takes for water to start flowing'). A network can have high bandwidth but also high latency."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the internet and the World Wide Web?",
+      "a": "This is a common point of confusion. The **internet** is the global network of interconnected computers—the physical infrastructure of routers, switches, and cables. The **World Wide Web (WWW or 'the web')** is a service that runs *on top of* the internet. The web is a system of interlinked hypertext documents (webpages) accessed via the internet using protocols like HTTP. Think of the internet as the roads and the web as the collection of shops and houses you can visit using those roads."
+    },
+    {
+      "q": "Why do we need protocols? Can't computers just connect to each other?",
+      "a": "Protocols are essential for the same reason we need traffic laws and a common language. Without a shared set of rules, communication would be chaotic and impossible on a global scale. A computer in Japan made by one company needs to be able to reliably exchange data with a server in Brazil made by another. Protocols like TCP/IP provide a universal standard, ensuring that data is formatted, addressed, transmitted, routed, and received in a way that all devices can understand, regardless of their manufacturer or location."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every time you load a webpage, send an email, or stream a video, you are engaging with a complex, global system of interconnected hardware and software. This lesson demystifies the internet, breaking it down into its fundamental components: the computers, the networks that link them, and the protocols that govern their communication. Understanding this technical foundation is crucial for analysing any digital society issue."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Components: Hardware and Architecture"
+    },
+    {
+      "type": "text",
+      "content": "At its heart, any network consists of nodes (devices like computers, printers) and connections (wired or wireless). Specialised hardware manages the flow of traffic. A **server** is a powerful computer that provides data or services to other computers, known as **clients**. A **switch** creates a network by connecting devices within a single LAN, while a **router** connects different networks together, forming the backbone of the internet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Client:** A device that requests information (e.g., your laptop's browser).",
+        "**Server:** A device that stores and provides information (e.g., the computer hosting a website).",
+        "**Switch:** Connects devices on one local network (LAN) using MAC addresses.",
+        "**Router:** Connects different networks (e.g., your home LAN to the internet) using IP addresses."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A new secondary school is designing its campus network. The IT department is debating between a fully wired Ethernet LAN and a comprehensive Wi-Fi (WLAN) solution for all classrooms and offices. Evaluate these two options, considering cost, performance, security, and mobility. Justify which solution, or combination of solutions, you would recommend.",
+      "solution": "A comprehensive evaluation requires balancing competing factors.\n\n**Wired Ethernet LAN:**\n*   **Performance:** Generally offers higher speeds and lower latency than Wi-Fi, making it ideal for tasks like transferring large files or high-quality video streaming. It is also more reliable as it is not susceptible to radio interference. [1 mark]\n*   **Security:** Inherently more secure as it requires a physical connection. Unauthorized access requires physical entry to plug into the network. [1 mark]\n*   **Cost:** Higher initial installation cost due to cabling, wall ports, and physical labour. However, Ethernet switches are often cheaper per port than enterprise-grade wireless access points. [1 mark]\n*   **Mobility:** Lacks mobility. Users are tethered to a physical port, which is unsuitable for modern learning environments that use laptops and tablets. [1 mark]\n\n**Wireless LAN (WLAN/Wi-Fi):**\n*   **Performance:** Slower than modern wired Ethernet and more susceptible to interference from other devices and physical obstructions. Performance is shared among all users connected to an access point. [1 mark]\n*   **Security:** Less secure by nature. Broadcasts data over the air, requiring strong encryption (e.g., WPA3) and authentication protocols to prevent eavesdropping and unauthorized access. [1 mark]\n*   **Cost:** Lower initial installation cost as it avoids extensive cabling. However, requires multiple enterprise-grade Wireless Access Points (WAPs) for full coverage, which can be expensive. [1 mark]\n*   **Mobility:** Excellent mobility. Allows students and staff to connect from anywhere on campus, facilitating collaborative and flexible learning. [1 mark]\n\n**Recommendation & Justification:**\nA hybrid approach is the optimal solution. [1 mark] Install a wired Ethernet backbone for stationary, high-demand devices like servers, administrative office desktops, and computer labs to ensure maximum performance and security. Deploy a comprehensive WLAN for all other areas (classrooms, library, common areas) to provide the essential mobility required in a modern school. This balances the need for high performance and security in critical areas with the flexibility and convenience of wireless for the general user population. [1 mark for justification]"
+    },
+    {
+      "type": "heading",
+      "content": "The Rules of Communication: Internet Protocols"
+    },
+    {
+      "type": "text",
+      "content": "For billions of devices to communicate seamlessly, they must all follow a standard set of rules, or protocols. The foundational suite for the internet is TCP/IP. Think of it as two partners: IP is responsible for addressing and routing packets of data to the correct destination, like a postman using an address. TCP is responsible for ensuring all the packets arrive reliably and are reassembled in the correct order, like someone checking the contents of the delivery against a list."
+    },
+    {
+      "type": "formula",
+      "content": "The TCP/IP Model (Conceptual Layers):\n\n1. **Application Layer** (e.g., HTTP, FTP, SMTP) - Where user applications interact with the network.\n   $\\downarrow$\n2. **Transport Layer** (e.g., TCP, UDP) - Manages session and connection, ensuring reliable data transfer.\n   $\\downarrow$\n3. **Internet Layer** (e.g., IP) - Handles addressing and routing of packets across networks.\n   $\\downarrow$\n4. **Link Layer** (e.g., Ethernet, Wi-Fi) - Manages the physical transmission of data."
+    },
+    {
+      "type": "text",
+      "content": "Another crucial protocol is the **Domain Name System (DNS)**. Humans remember names like `www.ibo.org`, but computers communicate with IP addresses (e.g., `104.18.33.121`). DNS acts as the internet's translator, converting the domain names you type into the IP addresses required for routing."
+    },
+    {
+      "type": "examTip",
+      "content": "For high marks, avoid simply defining terms. Instead, explain their function *in relation to each other*. For example, don't just say 'DNS translates names'. Explain that a browser first sends a DNS query to a DNS server to resolve a domain name into an IP address, and *then* uses that IP address to establish a TCP connection with the target web server. This shows a deeper understanding of the process."
+    },
+    {
+      "type": "heading",
+      "content": "Tracing the Journey of Data"
+    },
+    {
+      "type": "workedExample",
+      "question": "A student in London types `https://www.example.com` into their web browser and presses Enter. The web server for `example.com` is located in California. Outline the key steps involved in resolving the name and retrieving the webpage, mentioning at least four different technical components or protocols.",
+      "solution": "Here is a step-by-step trace of the data request and response:\n\n1.  **DNS Lookup:** The student's browser first needs to find the IP address for `www.example.com`. It sends a query to a local DNS resolver (likely provided by their Internet Service Provider, ISP). This resolver may query a root DNS server, then a TLD (.com) server, and finally the authoritative name server for `example.com` to get the corresponding IP address (e.g., `93.184.216.34`). [1 mark for explaining DNS role]\n\n2.  **TCP Handshake:** Using the obtained IP address, the student's browser initiates a TCP connection with the web server in California. This involves a three-way handshake (SYN, SYN-ACK, ACK) to establish a reliable connection for data transfer. [1 mark for mentioning TCP]\n\n3.  **HTTP Request:** Once the connection is established, the browser sends an HTTP GET request over the connection. This request asks the server for the content of the webpage. The request is broken into IP packets. [1 mark for mentioning HTTP]\n\n4.  **Packet Routing:** Each IP packet is routed from London to California. The packets travel through the student's home router, across the ISP's network, over transatlantic fibre-optic cables, and through multiple other routers on the internet backbone. Each router inspects the destination IP address to forward the packet to the next hop on the path to the server. [1 mark for mentioning routers/packet switching]\n\n5.  **Server Response:** The web server in California receives the HTTP request, processes it, and sends the webpage's content (HTML, CSS, images) back to the student's IP address in a series of TCP/IP packets.\n\n6.  **Rendering the Page:** The student's browser receives the packets, TCP ensures they are all present and reassembles them in the correct order. The browser then renders the HTML, CSS, and other resources to display the complete webpage. [1 mark for describing reassembly/rendering]"
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge on Computers, Networks and the Internet",
+      "href": "/mark?subject=ib-digital-society-hl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "How does the Internet work? - MDN Web Docs",
+          "href": "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work"
+        },
+        {
+          "label": "What is a router and how does it work? - Cloudflare",
+          "href": "https://www.cloudflare.com/en-gb/learning/network-layer/what-is-a-router/"
+        },
+        {
+          "label": "TCP/IP Model Explained - Computerphile (YouTube)",
+          "href": "https://www.youtube.com/watch?v=HRQ_0_3-w_E"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

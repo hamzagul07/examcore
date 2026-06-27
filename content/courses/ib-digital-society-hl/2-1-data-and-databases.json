@@ -1,0 +1,182 @@
+{
+  "slug": "2-1-data-and-databases",
+  "topicCode": "2.1",
+  "title": "Data and databases",
+  "paper": "Content",
+  "paperName": "Digital Society HL",
+  "status": "premium",
+  "summary": "This lesson introduces the foundational concepts of data and databases. It explores the distinction between data and information, the structure of relational databases including tables, keys, and relationships, and the role of Database Management Systems (DBMS) and SQL in managing and querying data. The focus is on applying these concepts to real-world scenarios relevant to digital society.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Distinguish between data, information, and a database.",
+    "Explain the components of a relational database, including tables, primary keys, and foreign keys.",
+    "Describe the main functions of a Database Management System (DBMS).",
+    "Interpret simple SQL commands for data retrieval."
+  ],
+  "simpleExplanation": {
+    "title": "The Digital Library Catalogue",
+    "summary": "Databases are organised systems for storing, managing, and retrieving digital information, much like a library's catalogue organises books. They turn raw data into a powerful, searchable resource.",
+    "analogy": "Imagine a library. The individual facts on each book's publication card (title, author, publication date) are 'data'. When you use the library's computer system to search for 'all books by George Orwell published after 1940', you are retrieving 'information'. The entire computer system, which holds all the book data and allows you to search, update, and manage it, is the 'database system'.",
+    "steps": [
+      "Start with raw facts, like a student's name and a book's title. This is 'data'.",
+      "Organise related data into tables with rows and columns, like a spreadsheet for students and another for books.",
+      "Link these tables using unique identifiers (keys), creating a 'relational database' to show who has borrowed which book.",
+      "Use a Database Management System (DBMS) as the software 'librarian' to control access, ensure data is consistent, and handle search requests."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Data",
+      "back": "Raw, unprocessed facts and figures without context. For example, '1984', 'George Orwell', '978-0451524935'."
+    },
+    {
+      "front": "Information",
+      "back": "Data that has been processed, organised, structured, or presented in a given context so as to make it useful. For example, 'The book \"1984\" by George Orwell has the ISBN 978-0451524935'."
+    },
+    {
+      "front": "Database",
+      "back": "An organised collection of structured data, typically stored electronically in a computer system."
+    },
+    {
+      "front": "DBMS (Database Management System)",
+      "back": "Software that interacts with end users, applications, and the database itself to capture and analyse the data. Examples include MySQL, PostgreSQL, and Microsoft SQL Server."
+    },
+    {
+      "front": "Relational Database",
+      "back": "A type of database that stores and provides access to data points that are related to one another. Data is organised into tables (relations) which are linked by common fields."
+    },
+    {
+      "front": "Flat-File Database",
+      "back": "A database that stores data in a single table. This can lead to data redundancy and integrity issues for complex datasets."
+    },
+    {
+      "front": "Primary Key",
+      "back": "A field in a table that uniquely identifies each record in that table. It must contain unique values and cannot be null. For example, `StudentID` in a `Students` table."
+    },
+    {
+      "front": "Foreign Key",
+      "back": "A field in a table that is a primary key in another table. It acts as a cross-reference between tables to create a link. For example, `StudentID` in a `Loans` table would link to the `Students` table."
+    },
+    {
+      "front": "SQL (Structured Query Language)",
+      "back": "The standard programming language used to communicate with and manage relational databases."
+    },
+    {
+      "front": "Data Redundancy",
+      "back": "The unnecessary repetition of data in a database. Relational databases aim to minimise this. A common trap is designing a flat-file system where a customer's address is repeated for every order they make."
+    },
+    {
+      "front": "Data Integrity",
+      "back": "The maintenance of, and the assurance of the accuracy and consistency of, data over its entire life-cycle. DBMSs have built-in mechanisms to enforce this."
+    },
+    {
+      "front": "Table (Relation)",
+      "back": "A collection of related data held in a structured format within a database, consisting of columns (fields/attributes) and rows (records/tuples)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a database and a spreadsheet (like Excel)?",
+      "a": "While both store data in tables, they are designed for different purposes. Spreadsheets are great for smaller datasets and performing calculations and visualisations by a single user. Databases are designed for storing, managing, and querying large amounts of structured data efficiently, supporting multiple users concurrently, and ensuring data integrity and security through a DBMS."
+    },
+    {
+      "q": "Why is a relational database better than just storing everything in one big table (a flat file)?",
+      "a": "A relational database minimises data redundancy (avoids repeating the same information) and improves data integrity. For example, if a customer changes their address, in a relational database you only need to update it in one place (the `Customers` table). In a flat-file with all their orders, you would have to find and update every single entry for that customer, which is inefficient and prone to errors."
+    },
+    {
+      "q": "Do I need to be a programmer to understand databases?",
+      "a": "No. While building and managing complex databases is a technical skill, understanding the core concepts—what a database is, why it's structured a certain way, and its role in digital systems—is crucial for any student of digital society. The principles of organisation, relationships, and querying are more important than writing complex code for this course."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our digital society, data is often called the 'new oil'. From your social media feed to online shopping and government services, vast amounts of data are being generated and stored every second. This lesson unpacks how we structure, manage, and query this data using databases, the organised backbone of the digital world."
+    },
+    {
+      "type": "heading",
+      "content": "From Raw Data to Structured Information"
+    },
+    {
+      "type": "text",
+      "content": "It's crucial to distinguish between 'data' and 'information'. Data consists of raw, unorganised facts. For instance, the number '16' is data. Without context, it's meaningless. Is it an age, a temperature, or a house number? When we process this data by giving it context—for example, 'Temperature: 16°C'—it becomes information. Databases are designed to store data in a structured way so that it can be easily processed into meaningful information."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Data: Raw facts without context.",
+        "Information: Data processed to have context, relevance, and purpose.",
+        "Database: A structured collection of data.",
+        "The goal of a database system is to transform data into useful information."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Organising Data: Relational Databases"
+    },
+    {
+      "type": "text",
+      "content": "While simple data can be stored in a single list or table (a flat-file database), this is inefficient for complex scenarios. Most modern systems use a relational database model. This model organises data into multiple tables, each focused on a single subject (like 'Students' or 'Courses'). These tables are then linked together using special fields called keys, which avoids duplicating data and ensures consistency."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Tables store data about a specific entity (e.g., customers, products).",
+        "Records (rows) represent individual instances of that entity.",
+        "Fields (columns) represent attributes of that entity (e.g., name, price).",
+        "Primary Keys uniquely identify each record in a table.",
+        "Foreign Keys link a record in one table to a record in another, forming a relationship."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A new streaming service wants to track its users and the films they watch. Design a simple relational database schema with two tables: `Users` and `Films`. Identify the fields for each table, a suitable Primary Key for each, and explain how you would track which user watches which film.",
+      "solution": "A good solution would involve three tables to correctly model the many-to-many relationship.\n\n**1. Table Design:**\n*   **`Users` Table:**\n    *   `UserID` (Primary Key, e.g., an integer like 1, 2, 3...)\n    *   `Username` (e.g., 'digital_dave')\n    *   `Email` (e.g., 'dave@example.com')\n    *   `JoinDate` (e.g., '2023-10-27')\n*   **`Films` Table:**\n    *   `FilmID` (Primary Key, e.g., an integer like 101, 102, 103...)\n    *   `Title` (e.g., 'The Matrix')\n    *   `Director` (e.g., 'Lana Wachowski')\n    *   `ReleaseYear` (e.g., 1999)\n\n**2. Tracking Watches (The Junction Table):**\nTo track which user watches which film, a third table, often called a 'junction' or 'linking' table, is needed. This is because a user can watch many films, and a film can be watched by many users (a many-to-many relationship).\n*   **`WatchLog` Table:**\n    *   `WatchID` (Primary Key for this table, e.g., an integer)\n    *   `UserID_FK` (Foreign Key, links to `UserID` in the `Users` table)\n    *   `FilmID_FK` (Foreign Key, links to `FilmID` in the `Films` table)\n    *   `WatchTimestamp` (e.g., '2023-10-27 20:00:00')\n\n**Marking Justification:**\n*   [2 marks] for correctly identifying appropriate fields and primary keys for the `Users` and `Films` tables.\n*   [2 marks] for identifying the need for a third 'junction' table (`WatchLog`) to resolve the many-to-many relationship and correctly identifying the two foreign keys required."
+    },
+    {
+      "type": "heading",
+      "content": "Managing the Database: DBMS and SQL"
+    },
+    {
+      "type": "text",
+      "content": "A database doesn't manage itself. We use a Database Management System (DBMS), which is the software layer that sits between the users/applications and the physical database. The DBMS handles all interactions, from creating tables to running queries and enforcing security rules. To communicate our requests to the DBMS, we use a standardised language called Structured Query Language (SQL)."
+    },
+    {
+      "type": "formula",
+      "content": "A typical SQL query to retrieve information looks like this:\n\n`SELECT Title, Director\nFROM Films\nWHERE ReleaseYear > 2000;`\n\nThis command asks the DBMS to select the `Title` and `Director` columns from the `Films` table for all records where the `ReleaseYear` is after 2000."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, especially in HL, you will be asked to apply these concepts to an unseen case study. Don't just define terms like 'Primary Key'. Instead, explain *why* a specific field in the case study's context would be a good primary key. For example, 'The `ProductID` would be a suitable primary key as it is guaranteed to be unique for each product, unlike the `ProductName` which could have duplicates.'"
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the streaming service database schema from the previous example (`Users`, `Films`, `WatchLog`), write an SQL query to find the titles of all films watched by the user with `UserID` = 15.",
+      "solution": "The solution requires joining the `Films` and `WatchLog` tables to link a user to a film title.\n\n**SQL Query:**\n```sql\nSELECT T2.Title\nFROM WatchLog AS T1\nJOIN Films AS T2 ON T1.FilmID_FK = T2.FilmID\nWHERE T1.UserID_FK = 15;\n```\n\n**Marking Justification:**\n*   **[1 mark] `SELECT T2.Title`**: Correctly selects the film title.\n*   **[1 mark] `FROM WatchLog AS T1 JOIN Films AS T2`**: Correctly identifies the need to join the two tables.\n*   **[1 mark] `ON T1.FilmID_FK = T2.FilmID`**: Correctly specifies the join condition, linking the tables on the film ID.\n*   **[1 mark] `WHERE T1.UserID_FK = 15`**: Correctly filters the results for the specific user.\n\n*Note: Using aliases like `T1` and `T2` is good practice for clarity but not strictly necessary for marks at this level. The core logic of joining and filtering is what is assessed.*"
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding of data, databases, and their societal impact with exam-style questions.",
+      "href": "/mark?subject=ib-digital-society-hl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "W3Schools SQL Tutorial",
+          "href": "https://www.w3schools.com/sql/"
+        },
+        {
+          "label": "Introduction to Databases - Stanford University",
+          "href": "https://www.youtube.com/playlist?list=PL_Ri__bV-_ANATBAnpI9yN-T8j2tjwO8g"
+        },
+        {
+          "label": "Database Design Tutorial - Lucidchart",
+          "href": "https://www.lucidchart.com/pages/database-design-tutorial"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

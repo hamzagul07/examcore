@@ -1,0 +1,176 @@
+{
+  "slug": "2-2-algorithms-and-artificial-intelligence",
+  "topicCode": "2.2",
+  "title": "Algorithms and artificial intelligence",
+  "paper": "Content",
+  "paperName": "Digital Society HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental concepts of algorithms and artificial intelligence (AI). It differentiates between AI, machine learning (ML), and deep learning, investigates the critical role of data, and examines the societal and ethical implications of algorithmic bias and the 'black box' problem, with a focus on explainability and accountability.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Define and differentiate between algorithms, artificial intelligence (AI), and machine learning (ML).",
+    "Analyse the role of data in training AI systems and the potential for bias.",
+    "Evaluate the societal impacts of algorithmic decision-making in various contexts like justice, finance, and healthcare.",
+    "Apply ethical frameworks to assess the deployment of AI technologies."
+  ],
+  "simpleExplanation": {
+    "title": "AI: The Digital Recipe Book",
+    "summary": "Algorithms are like recipes that computers follow to solve problems or make decisions. Artificial intelligence uses complex algorithms, often learning from data, to mimic human-like intelligence.",
+    "analogy": "Think of an algorithm as a recipe for baking a cake. The recipe lists specific ingredients (data) and a step-by-step method (the algorithm) to get a predictable result (the cake). AI is like a master chef who can invent new recipes (algorithms) by tasting thousands of cakes (learning from data) to create the perfect one for any occasion, sometimes even creating things no human chef has thought of.",
+    "steps": [
+      "Identify the Algorithm: First, pinpoint the specific set of rules or instructions being used to process information and make a decision. What is the 'recipe'?",
+      "Analyse the Data: Examine the data the algorithm is trained on or uses. Is it representative? Is it biased? What are the 'ingredients'?",
+      "Evaluate the Outcome: Assess the decision or output produced by the algorithm. Is it fair, accurate, and transparent? What is the 'cake' like?",
+      "Consider the Impact: Critically evaluate the broader societal, ethical, and economic consequences of using this algorithm in a real-world context. Who benefits and who is harmed?"
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Algorithm",
+      "back": "A finite sequence of well-defined, computer-implementable instructions designed to solve a class of problems or to perform a computation. Think of it as a step-by-step recipe."
+    },
+    {
+      "front": "Artificial Intelligence (AI)",
+      "back": "A broad field of computer science concerned with building smart machines capable of performing tasks that typically require human intelligence, such as visual perception, speech recognition, and decision-making."
+    },
+    {
+      "front": "Machine Learning (ML)",
+      "back": "A subset of AI where systems automatically learn and improve from experience (data) without being explicitly programmed. The system identifies patterns in data to make predictions."
+    },
+    {
+      "front": "Deep Learning",
+      "back": "A subset of Machine Learning based on artificial neural networks with many layers ('deep' networks). It is particularly effective for learning from large amounts of unstructured data like images and text."
+    },
+    {
+      "front": "Training Data",
+      "back": "The dataset used to 'teach' a machine learning model. The quality, quantity, and representativeness of this data are crucial for the model's performance and fairness."
+    },
+    {
+      "front": "Algorithmic Bias",
+      "back": "Systematic and repeatable errors in a computer system that create unfair outcomes, such as privileging one group of users over others. It often stems from biased training data or flawed algorithm design."
+    },
+    {
+      "front": "Black Box AI",
+      "back": "An AI system whose internal workings are difficult or impossible for humans to understand. The inputs and outputs are known, but the decision-making process is opaque. This poses challenges for accountability and trust."
+    },
+    {
+      "front": "Explainable AI (XAI)",
+      "back": "Methods and techniques in AI that enable human users to understand, trust, and manage the results of AI systems. It aims to make 'black box' models more transparent."
+    },
+    {
+      "front": "Supervised Learning",
+      "back": "A type of ML where the model is trained on a labelled dataset, meaning each data point is tagged with a correct output or answer. For example, images of cats labelled 'cat'."
+    },
+    {
+      "front": "Unsupervised Learning",
+      "back": "A type of ML where the model works on its own to discover patterns and information from an unlabelled dataset. For example, clustering customers into groups based on purchasing behaviour."
+    },
+    {
+      "front": "Reinforcement Learning",
+      "back": "A type of ML where an 'agent' learns to make decisions by performing actions in an environment to achieve a goal, receiving rewards or penalties for its actions. Often used in robotics and game playing."
+    },
+    {
+      "front": "FAT Principles",
+      "back": "A common ethical framework for AI, standing for Fairness, Accountability, and Transparency. These principles are used to guide the responsible design and deployment of AI systems."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is AI the same as The Terminator?",
+      "a": "No. That's a depiction of Artificial General Intelligence (AGI) or Superintelligence, which is a hypothetical future form of AI with human-like consciousness and a broad range of cognitive abilities. The AI we have today is 'Narrow AI', which is designed to perform a specific task (e.g., play chess, recognise faces) very well, but without any general understanding or consciousness."
+    },
+    {
+      "q": "Can an algorithm be biased if the programmer isn't?",
+      "a": "Yes, absolutely. This is a crucial point. Algorithmic bias is rarely the result of a programmer intentionally writing discriminatory code. It most often arises unintentionally from biased data used to train the AI, or from proxies in the data that correlate with protected characteristics (e.g., using postcode as a proxy for race in loan applications)."
+    },
+    {
+      "q": "What's the difference between machine learning and just programming?",
+      "a": "In traditional programming, a developer writes explicit, step-by-step rules for the computer to follow. In machine learning, the developer doesn't write the rules. Instead, they choose a model and provide it with a large amount of data, and the model 'learns' the rules or patterns from that data itself."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the films you are recommended on Netflix to the news articles in your social media feed, algorithms and artificial intelligence are silently shaping your digital experience. These powerful tools are also used for high-stakes decisions in finance, healthcare, and the justice system. In this lesson, we will dissect what algorithms and AI are, how they work, and critically examine their profound impact on society."
+    },
+    {
+      "type": "heading",
+      "content": "Deconstructing the Digital Brain: Algorithms, AI, and Machine Learning"
+    },
+    {
+      "type": "text",
+      "content": "It's easy to use these terms interchangeably, but they have distinct meanings. An **algorithm** is the most fundamental concept; it's simply a set of instructions for completing a task. **Artificial Intelligence (AI)** is a much broader concept, representing the goal of creating machines that can simulate human intelligence. **Machine Learning (ML)** is a popular and powerful *method* for achieving AI. Instead of programming explicit rules, ML involves providing a system with vast amounts of data and allowing it to learn the rules for itself."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "All Machine Learning is AI, but not all AI involves Machine Learning (some AI uses hand-coded rules, known as symbolic AI or 'Good Old-Fashioned AI').",
+        "All AI systems use algorithms, but not all algorithms are part of an AI system (e.g., a simple sorting algorithm is not AI).",
+        "Deep Learning is a specialised subset of Machine Learning that uses complex neural networks, driving recent breakthroughs in AI."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Fuel for Intelligence: Data and Bias"
+    },
+    {
+      "type": "text",
+      "content": "A machine learning model is only as good as the data it is trained on. This principle is often summarised as 'Garbage In, Garbage Out' (GIGO). If the data used to train an AI reflects existing societal biases, the AI will not only learn these biases but can also amplify them at scale. For example, if an AI is trained on historical loan data where a certain demographic was unfairly denied loans, the AI will learn to associate that demographic with high risk, perpetuating the injustice."
+    },
+    {
+      "type": "workedExample",
+      "question": "An AI-powered recruitment tool is trained on a company's hiring data from the last 20 years. The data shows that 80% of successful hires in technical roles were male. When deployed, the tool consistently ranks male candidates higher than female candidates with similar qualifications. Using the concept of algorithmic bias, explain this outcome and suggest two distinct mitigation strategies. [6 marks]",
+      "solution": "• **Explanation of Bias (2 marks):** The outcome is a clear example of algorithmic bias. The AI has learned a spurious correlation from the historical training data: that being male is a strong predictor of being a successful hire. It has codified the company's past, potentially biased, hiring practices, rather than identifying the best candidates based on skill alone. The algorithm is not 'sexist'; it is simply reflecting and amplifying the bias present in its training data.\n\n• **Mitigation Strategy 1 - Data-centric (2 marks):** The company should audit and re-balance the training dataset. This could involve techniques like oversampling (duplicating data from underrepresented groups like female hires), undersampling (removing data from overrepresented groups), or generating synthetic data for female candidates to ensure the model is trained on a more equitable distribution. This addresses the root cause of the bias in the data.\n\n• **Mitigation Strategy 2 - Algorithm-centric (2 marks):** The company could implement fairness constraints during the model's training process. This involves adding a mathematical objective to the algorithm that penalises it for making biased predictions against a specific group. For example, the model could be optimised not just for hiring prediction accuracy but also for demographic parity, ensuring that the proportion of men and women recommended is similar to the proportion in the qualified applicant pool."
+    },
+    {
+      "type": "examTip",
+      "content": "When discussing AI bias in an exam, always connect the biased outcome to the training data. Examiners look for a clear understanding that AI systems learn from data, and if that data is biased, the system will be too. Use specific, high-stakes examples like recruitment, loan applications, or criminal justice (e.g., COMPAS algorithm) to strengthen your analysis."
+    },
+    {
+      "type": "heading",
+      "content": "The 'Black Box' Problem and Explainable AI (XAI)"
+    },
+    {
+      "type": "text",
+      "content": "Many of the most powerful AI models, particularly in deep learning, are 'black boxes'. We can see the input (e.g., a medical scan) and the output (e.g., 'cancer detected'), but the internal decision-making process is so complex that it's opaque even to its creators. This poses a significant problem for trust and accountability. How can we trust a medical diagnosis if the doctor can't explain why the AI made it? Who is responsible if a self-driving car makes a fatal error? Explainable AI (XAI) is an emerging field of research and practice that aims to develop techniques to make AI decisions understandable to humans, turning the black box into a more transparent 'glass box'."
+    },
+    {
+      "type": "workedExample",
+      "question": "A hospital uses a 'black box' deep learning model to predict the likelihood of a patient developing a specific type of cancer from medical scans. The model predicts a high risk for Patient A, but the doctors are unsure why. Evaluate the ethical implications of using this technology for patient diagnosis, referencing the concepts of transparency and accountability. [8 marks]",
+      "solution": "• **Identification of Ethical Issues (2 marks):** The primary ethical issues are the lack of transparency and accountability. Using a 'black box' model in a critical healthcare context raises concerns about patient autonomy, informed consent, and the potential for harm if the model is wrong and its reasoning cannot be scrutinised.\n\n• **Analysis of Transparency (3 marks):** The lack of transparency (the 'black box' nature) means doctors cannot understand *why* the model made its prediction. They cannot verify its reasoning against their own medical knowledge or established medical science. This undermines their professional judgement and makes it impossible to have a truly informed conversation with Patient A about their diagnosis, eroding trust. If the model is basing its prediction on a spurious correlation in the data (e.g., the brand of the scanner), there is no way for the clinical team to detect this error.\n\n• **Analysis of Accountability (3 marks):** If the model's prediction is incorrect and leads to a harmful outcome (e.g., an unnecessary invasive procedure or a missed diagnosis), who is accountable? Is it the hospital that deployed the system, the developers who created the AI, the doctors who followed its recommendation, or is accountability diffused to the point of non-existence? The 'black box' nature of the AI creates a significant accountability gap, which is ethically unacceptable in medicine. A potential solution would be to use Explainable AI (XAI) techniques to provide insights into the model's decision, or to mandate that the AI is only used as a decision-support tool, with a human clinician always making the final, accountable decision."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The Black Box Problem: Opaque AI models hinder trust, debugging, and accountability.",
+        "High-Stakes Applications: The need for explainability increases with the risk of the application (e.g., healthcare, justice vs. movie recommendations).",
+        "Explainable AI (XAI): A field dedicated to making AI systems more transparent and understandable to humans.",
+        "FAT Principles: Fairness, Accountability, and Transparency are key ethical principles for responsible AI development and deployment."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Algorithms and AI",
+      "href": "/mark?subject=ib-digital-society-hl&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "What is artificial intelligence? - The Royal Society",
+          "href": "https://royalsociety.org/topics-policy/data-and-ai/what-is-ai/"
+        },
+        {
+          "label": "AI Fairness: A Reading List - a16z",
+          "href": "https://a16z.com/2016/10/18/ai-fairness-reading-list/"
+        },
+        {
+          "label": "The Black Box Problem - Video by Veritasium",
+          "href": "https://www.youtube.com/watch?v=R9OHn5TioLQ"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

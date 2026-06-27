@@ -105,6 +105,15 @@ function SignUpForm() {
     [intentDestination]
   )
 
+  const signupSubhead = useMemo(() => {
+    if (redirect?.startsWith('/blog/')) {
+      return 'Free tier included — we’ll match guides to your subjects in the next step.'
+    }
+    return 'Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.'
+  }, [redirect])
+
+  const blogReturnHint = redirect?.startsWith('/blog/')
+
   const [method, setMethod] = useState<AuthMethod>('magic')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -240,8 +249,18 @@ function SignUpForm() {
             Create your <span className="ec-text-gradient">account</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.
+            {signupSubhead}
           </p>
+
+          {blogReturnHint ? (
+            <p
+              className="mb-6 rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_24%,var(--ec-border))] bg-[color-mix(in_srgb,var(--ec-brand)_6%,var(--ec-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
+              role="note"
+            >
+              After a quick subject setup (~60 sec), you&apos;ll land back on the guide you were
+              reading.
+            </p>
+          ) : null}
 
           <GoogleAuthSection
             label="Sign up with Google"

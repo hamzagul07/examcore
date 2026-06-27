@@ -15,7 +15,6 @@ import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
 import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
 import { BlogArticleHero } from '@/components/blog/BlogArticleHero'
-import { BlogGuestSignupPrompt } from '@/components/blog/BlogGuestSignupPrompt'
 import { BlogAuthorByline } from '@/components/blog/BlogAuthorByline'
 import { BlogQuickAnswer } from '@/components/blog/BlogQuickAnswer'
 import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
@@ -24,6 +23,7 @@ import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
+import { getSyllabusSubjectName } from '@/lib/syllabi'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -62,6 +62,8 @@ export default async function BlogPostPage({ params }: Props) {
           ? 'subject'
           : 'default'
 
+  const subjectName = subjectCode ? getSyllabusSubjectName(subjectCode) : null
+
   return (
     <MarketingPageShell narrow>
       <BlogPostGraphJsonLd post={post} content={post.content} />
@@ -69,7 +71,6 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="ms-pg py-12 sm:py-16">
         <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />
-        <BlogGuestSignupPrompt slug={slug} />
         <BlogQuickAnswer
           title={post.title}
           description={post.description}
@@ -87,12 +88,22 @@ export default async function BlogPostPage({ params }: Props) {
         >
           <BlogTableOfContents headings={headings} />
           <div className="min-w-0">
-            <BlogChunkedArticle content={post.content} slug={slug} />
+            <BlogChunkedArticle
+              content={post.content}
+              slug={slug}
+              variant={ctaVariant}
+              subjectCode={subjectCode}
+            />
           </div>
         </div>
 
         <BlogFollowUpChain slug={slug} />
-        <BlogPostCta variant={ctaVariant} subjectCode={subjectCode} />
+        <BlogPostCta
+          variant={ctaVariant}
+          subjectCode={subjectCode}
+          subjectName={subjectName}
+          slug={slug}
+        />
         <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>
     </MarketingPageShell>

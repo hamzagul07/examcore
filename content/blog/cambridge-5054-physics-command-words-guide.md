@@ -1,6 +1,6 @@
 ---
 title: Cambridge 5054 Physics command words guide
-description: O-Level 5054 Physics command words — Calculate, Describe, Explain, Suggest — units, working, and practical paper verbs.
+description: O-Level 5054 Physics command words — Calculate, Describe, Explain, Suggest — units, working, and practical paper verbs. With worked examples for each verb.
 date: 2026-06-22
 keywords: 5054 command words, O Level Physics command words, 5054 exam technique, Cambridge Physics marking
 category: exam-technique

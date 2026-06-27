@@ -1,7 +1,8 @@
 ---
-title: Is a fourth A-Level worth it in 2026?
-description: When four A-Levels help university offers — and when three well-marked subjects beat burnout and timetable collisions.
+title: Is a fourth A-Level worth it?
+description: When four A-Levels help university offers — and when three well-marked subjects beat burnout and timetable collisions. An honest cost-benefit for your offers.
 date: 2026-06-07
+updated: 2026-06-28
 category: editorial
 keywords: fourth A-Level, 3 vs 4 A-Levels, A-Level workload, university offers, Cambridge A-Level 2026
 author: hamza-gul

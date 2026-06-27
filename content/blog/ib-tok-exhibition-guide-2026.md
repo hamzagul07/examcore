@@ -1,5 +1,5 @@
 ---
-title: IB TOK exhibition guide 2026 — prompts, objects & the 950-word commentary
+title: IB TOK exhibition guide — prompts, objects & the 950-word commentary
 description: How to choose one of the 35 TOK exhibition prompts, pick three objects, and write commentary examiners reward — criteria, word limit, and common mistakes.
 date: 2026-06-22
 category: revision
@@ -7,7 +7,7 @@ featured: true
 keywords: IB TOK exhibition 2026, TOK exhibition prompts, TOK IA commentary, TOK exhibition objects, how to write TOK exhibition, TOK exhibition word limit
 informationGain: synthesis
 author: hassan
-updated: 2026-06-22
+updated: 2026-06-28
 ---
 
 Search traffic for **"TOK exhibition 2026"** spikes every spring — and Reddit threads repeat the same questions: *Which prompt should I pick? Can I change objects? What counts as a real-world object?* The exhibition replaced the old TOK Presentation in 2022, but outdated advice still circulates.

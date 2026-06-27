@@ -1,6 +1,6 @@
 ---
 title: Best Cambridge past paper resources in 2026 (free and paid)
-description: Where to download papers, mark schemes, examiner reports, and marking tools — plus what to avoid when revising.
+description: Where to download papers, mark schemes, examiner reports, and marking tools — plus what to avoid when revising. An honest, no-fluff resource shortlist.
 date: 2026-04-22
 keywords: Cambridge past papers download, mark scheme PDF, A-Level resources 2026, revision tools
 author: hamza-gul

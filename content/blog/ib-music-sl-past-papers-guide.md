@@ -1,6 +1,6 @@
 ---
 title: IB Music SL assessment & portfolio guide
-description: IB Music SL: exploring, experimenting, presenting — inquiry, analysis, and performance criteria explained.
+description: IB Music SL: exploring, experimenting, presenting — inquiry, analysis, and performance criteria explained. Pair it with free MarkScheme IB courses.
 date: 2026-06-25
 keywords: IB Music SL, IB Music SL portfolio, IB Music SL presenting, IB Music SL criteria, IB Music SL assessment
 category: revision

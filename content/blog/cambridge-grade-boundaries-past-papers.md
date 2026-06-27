@@ -1,6 +1,6 @@
 ---
 title: Cambridge grade boundaries explained for past-paper students
-description: What grade boundaries mean, why they change each series, and how to use past-paper scores without fooling yourself.
+description: What grade boundaries mean, why they change each series, and how to use past-paper scores without fooling yourself. Read your scores like an examiner.
 date: 2026-05-08
 keywords: Cambridge grade boundaries, A-Level grades, past paper score, UMS marks, exam results
 author: hamza-gul

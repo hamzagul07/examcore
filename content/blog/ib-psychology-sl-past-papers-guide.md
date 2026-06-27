@@ -1,6 +1,6 @@
 ---
 title: IB Psychology SL past papers & revision guide
-description: IB Psychology SL: Paper 1 approaches, Paper 2 options, markbands, studies, and past paper revision for a 6 or 7.
+description: IB Psychology SL: Paper 1 approaches, Paper 2 options, markbands, studies, and past paper revision for a 6 or 7. With a timed past-paper revision plan.
 date: 2026-06-25
 keywords: IB Psychology SL, IB Psychology SL past papers, IB Psychology SL mark scheme, IB Psychology SL revision, IB Psychology SL markbands
 category: revision

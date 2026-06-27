@@ -1,6 +1,6 @@
 ---
 title: Switching A-Level subjects mid-course — Year 12 vs Year 13
-description: Deadlines, catch-up plans, and when changing subjects saves your grades versus when it costs a university cycle.
+description: Deadlines, catch-up plans, and when changing subjects saves your grades versus when it costs a university cycle. A practical decision and catch-up guide.
 date: 2026-06-08
 category: subject-choice
 keywords: change A-Level subjects, switch A-Levels Year 12, subject change deadlines, catch up A-Level

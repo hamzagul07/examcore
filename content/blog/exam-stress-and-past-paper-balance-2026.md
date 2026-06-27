@@ -1,7 +1,8 @@
 ---
-title: Exam stress and past-paper balance in 2026 — when to stop for the day
+title: Exam stress and past-paper balance — when to stop for the day
 description: Healthy Cambridge revision — sleep, stress signals, and how much past-paper work actually helps before burnout reverses your progress.
 date: 2026-06-12
+updated: 2026-06-28
 category: editorial
 keywords: exam stress 2026, revision burnout, past paper balance, healthy revision, Cambridge exam anxiety
 author: hamza-gul

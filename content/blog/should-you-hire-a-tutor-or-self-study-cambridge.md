@@ -1,6 +1,6 @@
 ---
 title: Should you hire a tutor or self-study Cambridge exams?
-description: When a tutor pays off — and when mark schemes, past papers, and MarkScheme beat expensive hourly help.
+description: When a tutor pays off — and when mark schemes, past papers, and MarkScheme beat expensive hourly help. A clear-eyed cost-benefit for Cambridge students.
 date: 2026-06-14
 category: editorial
 keywords: Cambridge tutor vs self study, A-Level tutoring, past paper self study, mark scheme revision, private tutor Cambridge

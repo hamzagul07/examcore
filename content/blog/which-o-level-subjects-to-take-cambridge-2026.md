@@ -1,7 +1,8 @@
 ---
-title: Which Cambridge O-Level subjects to take in 2026?
-description: Core vs optional O-Levels, bridging to A-Level, and how to avoid closing doors before Year 12 even starts.
+title: Which Cambridge O-Level subjects to take?
+description: Core vs optional O-Levels, bridging to A-Level, and how to avoid closing doors before Year 12 even starts. A practical, doors-open subject-choice guide.
 date: 2026-06-04
+updated: 2026-06-28
 category: subject-choice
 keywords: Cambridge O-Level subjects, IGCSE subject choice, O-Level to A-Level, core subjects, Cambridge 2026
 author: hamza-gul

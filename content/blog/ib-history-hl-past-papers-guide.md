@@ -1,6 +1,6 @@
 ---
 title: IB History HL past papers & revision guide
-description: IB History HL: Paper 1 sources, Paper 2 essays, Paper 3 regional depth, markbands, and revision workflow.
+description: IB History HL: Paper 1 sources, Paper 2 essays, Paper 3 regional depth, markbands, and revision workflow. Plus free band-by-band marking practice.
 date: 2026-06-25
 keywords: IB History HL, IB History HL past papers, IB History HL mark scheme, IB History HL revision, IB History HL markbands
 category: revision

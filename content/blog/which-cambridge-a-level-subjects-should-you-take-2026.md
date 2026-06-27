@@ -1,7 +1,8 @@
 ---
-title: Which Cambridge A-Level subjects should you take in 2026?
+title: Which Cambridge A-Level subjects should you take?
 description: Choose A-Levels for university courses, enjoyment, and sustainable workload — not because last year's cohort picked the same combo.
 date: 2026-06-02
+updated: 2026-06-28
 category: subject-choice
 featured: true
 keywords: Cambridge A-Level subjects, subject choice 2026, A-Level combinations, university requirements, Cambridge International

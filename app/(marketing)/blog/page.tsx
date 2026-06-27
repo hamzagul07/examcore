@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { BookOpen, Sparkles, TrendingUp } from 'lucide-react'
+import { buildSignUpHref } from '@/lib/auth-redirect'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
 import {
@@ -246,22 +247,28 @@ export default function BlogIndexPage() {
         <TopicHubStrip />
 
         <div className="ms-blog-cta" style={{ marginTop: 40 }}>
-          <p className="ms-overline">Read it. Mark it. Fix it.</p>
+          <p className="ms-overline">Keep learning</p>
           <h2 className="ms-h3" style={{ fontSize: 'clamp(1.35rem, 3vw, 1.75rem)', marginTop: 8 }}>
-            Turn a blog tip into a mark on your next paper
+            Guides for your subjects — in one place
           </h2>
           <p className="ms-lead mx-auto" style={{ marginTop: 12, maxWidth: 520 }}>
-            Photograph one question tonight — get examiner-style feedback against a real Cambridge
-            mark scheme.
+            Pick your board and papers once — get tailored guides, community rooms, and exam
+            updates. Marking and free courses unlock when you&apos;re ready.
           </p>
+          <ul className="ms-blog-cta__perks" aria-label="Included with a free account">
+            <li>Your subjects matched</li>
+            <li>Community rooms</li>
+            <li>7-day Pro trial</li>
+          </ul>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/mark" className="ec-btn-primary min-h-[48px] px-8">
-              Mark a question free
+            <Link href={buildSignUpHref('/blog')} className="ec-btn-primary min-h-[48px] px-8">
+              Create free revision hub
             </Link>
-            <Link href="/auth/signup" className="ec-btn-ghost min-h-[48px] px-8">
-              Create account
+            <Link href="/guides" className="ec-btn-ghost min-h-[48px] px-8">
+              Browse all guides
             </Link>
           </div>
+          <p className="ms-blog-cta__trust">No card required · Free forever tier</p>
         </div>
         <p className="ms-micro mt-8 text-center">
           <Link href="/guides" className="ec-btn-underline">

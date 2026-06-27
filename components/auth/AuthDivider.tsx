@@ -1,7 +1,15 @@
+import { cn } from '@/lib/utils'
+
 /** Visual separator between OAuth and email/password auth. */
-export function AuthDivider({ label = 'or' }: { label?: string }) {
+export function AuthDivider({
+  label = 'or',
+  className,
+}: {
+  label?: string
+  className?: string
+}) {
   return (
-    <div className="relative my-6" aria-hidden>
+    <div className={cn('relative my-6', className)} aria-hidden>
       <div className="absolute inset-0 flex items-center">
         <div className="w-full border-t border-[var(--ec-border)]" />
       </div>

@@ -5,7 +5,7 @@ import { isAdminEmail } from '@/lib/admin-auth'
 import { requireTeacher } from '@/lib/teacher-auth'
 import {
   matchesRoutePrefix,
-  requiresAccount,
+  requiresAuthMiddleware,
   requiresGuestSignup,
   requiresOnboarding,
 } from '@/lib/auth-gates'
@@ -80,7 +80,7 @@ export async function proxy(request: NextRequest) {
     return supabaseResponse
   }
 
-  if (!requiresAccount(pathname)) {
+  if (!requiresAuthMiddleware(pathname)) {
     return supabaseResponse
   }
 
@@ -89,17 +89,14 @@ export async function proxy(request: NextRequest) {
       return supabaseResponse
     }
 
-    const redirectUrl = request.nextUrl.clone()
-    redirectUrl.search = ''
-    const intended = request.nextUrl.pathname + request.nextUrl.search
-
     if (requiresGuestSignup(pathname)) {
-      redirectUrl.pathname = '/auth/signup'
-      redirectUrl.searchParams.set('redirect', intended)
-      return redirectWithCookies(redirectUrl, supabaseResponse)
+      return supabaseResponse
     }
 
+    const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/auth/signin'
+    redirectUrl.search = ''
+    const intended = request.nextUrl.pathname + request.nextUrl.search
     const cleanNext = postOnboardingHref(
       new URL(intended, request.url).searchParams.get('next'),
       pathname.startsWith('/onboarding') ? '/onboarding' : '/dashboard'

@@ -7,8 +7,10 @@ type Props = {
   redirectPath?: string | null
   disabled?: boolean
   onError?: (message: string) => void
-  /** Short line under the button (privacy reassurance). */
-  hint?: string
+  /** Short line under the button (privacy reassurance). Omit to hide. */
+  hint?: string | null
+  /** Hide the Recommended row — used in compact signup modals. */
+  compact?: boolean
 }
 
 export function GoogleAuthSection({
@@ -17,20 +19,26 @@ export function GoogleAuthSection({
   disabled,
   onError,
   hint = 'Uses your Google account — we only receive your name and email.',
+  compact = false,
 }: Props) {
   return (
-    <section aria-labelledby="google-auth-heading" className="space-y-3">
-      <div className="flex items-center justify-between gap-3">
-        <p
-          id="google-auth-heading"
-          className="text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]"
-        >
-          Recommended
-        </p>
-        <span className="rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]">
-          ~10 sec
-        </span>
-      </div>
+    <section
+      aria-labelledby={compact ? undefined : 'google-auth-heading'}
+      className={compact ? 'space-y-0' : 'space-y-3'}
+    >
+      {compact ? null : (
+        <div className="flex items-center justify-between gap-3">
+          <p
+            id="google-auth-heading"
+            className="text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]"
+          >
+            Recommended
+          </p>
+          <span className="rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]">
+            ~10 sec
+          </span>
+        </div>
+      )}
 
       <GoogleAuthButton
         label={label}
@@ -39,9 +47,11 @@ export function GoogleAuthSection({
         onError={onError}
       />
 
-      <p className="text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-        {hint}
-      </p>
+      {hint ? (
+        <p className="text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+          {hint}
+        </p>
+      ) : null}
     </section>
   )
 }

@@ -10,8 +10,9 @@ export type IbCatalogCard = MarginNotesSubject & {
   isNew?: boolean
 }
 
-/** Course folder slugs shipped in the June 2026 SL batch. */
+/** Recently-launched course folder slugs — show a "New" ribbon on catalog cards. */
 export const IB_NEW_COURSE_SLUGS = new Set([
+  // June 2026 SL batch
   'biology-sl',
   'business-management-sl',
   'chemistry-sl',
@@ -21,6 +22,15 @@ export const IB_NEW_COURSE_SLUGS = new Set([
   'maths-aa-sl',
   'maths-ai-sl',
   'psychology-sl',
+  // New subjects (HL + SL)
+  'global-politics-hl',
+  'global-politics-sl',
+  'digital-society-hl',
+  'digital-society-sl',
+  'sports-exercise-health-science-hl',
+  'sports-exercise-health-science-sl',
+  'design-technology-hl',
+  'design-technology-sl',
 ])
 
 export type IbCatalogTrackKey =

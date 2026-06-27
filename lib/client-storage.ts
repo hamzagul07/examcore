@@ -52,3 +52,9 @@ export function writeSessionStorage(key: string, value: string): void {
   if (typeof window === 'undefined') return
   window.sessionStorage.setItem(key, value)
 }
+
+export function removeSessionStorage(key: string): void {
+  if (typeof window === 'undefined') return
+  window.sessionStorage.removeItem(key)
+  window.sessionStorage.removeItem(legacyKey(key))
+}

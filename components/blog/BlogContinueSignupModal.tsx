@@ -7,8 +7,6 @@ import {
   BookOpen,
   MessageCircle,
   RotateCcw,
-  Sparkles,
-  Users,
 } from 'lucide-react'
 import { Sheet } from '@/components/ui/Sheet'
 import { trackBlogContinuePopupClick } from '@/lib/analytics/blog-events'
@@ -16,13 +14,14 @@ import { buildSignUpHref } from '@/lib/auth-redirect'
 import {
   readSessionStorage,
   removeClientStorage,
+  removeSessionStorage,
   STORAGE_KEYS,
   writeSessionStorage,
 } from '@/lib/client-storage'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 
-const SCROLL_THRESHOLD = 0.2
-const OPEN_DELAY_MS = 3500
+const SCROLL_THRESHOLD = 0.12
+const OPEN_DELAY_MS = 2000
 const TITLE_ID = 'blog-continue-dialog-title'
 
 type Props = {
@@ -31,12 +30,16 @@ type Props = {
   subjectName?: string | null
 }
 
-function isDismissedThisSession(): boolean {
-  return readSessionStorage(STORAGE_KEYS.blogSignupDismissed) === '1'
+function dismissKey(slug: string): string {
+  return `${STORAGE_KEYS.blogSignupDismissed}:${slug}`
 }
 
-function dismissPopup(): void {
-  writeSessionStorage(STORAGE_KEYS.blogSignupDismissed, '1')
+function isDismissedThisSession(slug: string): boolean {
+  return readSessionStorage(dismissKey(slug)) === '1'
+}
+
+function dismissPopup(slug: string): void {
+  writeSessionStorage(dismissKey(slug), '1')
 }
 
 /** Reliable scroll progress for window/document (0–1). */
@@ -44,36 +47,33 @@ function getScrollProgress(): number {
   const doc = document.documentElement
   const scrollTop = window.scrollY || doc.scrollTop || document.body.scrollTop || 0
   const maxScroll = Math.max(doc.scrollHeight, document.body.scrollHeight) - window.innerHeight
-  if (maxScroll <= 0) return scrollTop > 0 ? 1 : 0
+  if (maxScroll <= 0) return 1
   return scrollTop / maxScroll
 }
 
 function shouldOpenPopup(): boolean {
   const progress = getScrollProgress()
   const scrollTop = window.scrollY || document.documentElement.scrollTop || 0
-  // Short pages: any meaningful scroll counts once past threshold or ~20% equivalent
   if (progress >= SCROLL_THRESHOLD) return true
   const maxScroll =
     Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) -
     window.innerHeight
-  if (maxScroll <= 80 && scrollTop >= 24) return true
+  if (maxScroll <= 120 && scrollTop >= 16) return true
   return false
 }
 
 const PERKS = [
   { icon: RotateCcw, label: 'Pick up where you left off' },
   { icon: BookOpen, label: 'Guides for your subjects' },
-  { icon: Sparkles, label: '7-day Pro trial' },
 ] as const
 
 /**
- * Guest-only scroll popup — friendly signup + exam discussion.
- * Dismissible; full article stays in the DOM for SEO.
+ * Guest-only scroll popup — signup first, then exam discussion.
+ * Dismissible per article per session; full article stays in the DOM for SEO.
  */
 export function BlogContinueSignupModal({
   slug,
   subjectCode = null,
-  subjectName = null,
 }: Props) {
   const { user, loading } = useAuthCheck()
   const [hydrated, setHydrated] = useState(false)
@@ -82,40 +82,62 @@ export function BlogContinueSignupModal({
 
   useEffect(() => {
     setHydrated(true)
-    // Legacy 7-day localStorage dismiss — session dismiss replaces it.
     removeClientStorage(STORAGE_KEYS.blogSignupDismissed)
+    // Legacy global session key blocked popup on every blog post.
+    removeSessionStorage(STORAGE_KEYS.blogSignupDismissed)
   }, [])
 
-  const tryOpen = useCallback((force = false) => {
-    if (triggeredRef.current) return
-    if (!force && !shouldOpenPopup()) return
-    triggeredRef.current = true
-    setOpen(true)
-  }, [])
+  const tryOpen = useCallback(
+    (force = false) => {
+      if (triggeredRef.current || isDismissedThisSession(slug)) return
+      if (!force && !shouldOpenPopup()) return
+      triggeredRef.current = true
+      setOpen(true)
+    },
+    [slug]
+  )
 
   useEffect(() => {
-    if (!hydrated || loading || user || isDismissedThisSession()) return
+    if (!hydrated || loading || user || isDismissedThisSession(slug)) return
 
     function onScrollOrResize() {
       tryOpen()
     }
 
     tryOpen()
+
     const delayId = window.setTimeout(() => {
       tryOpen(true)
     }, OPEN_DELAY_MS)
+
+    const article = document.getElementById('blog-article-body')
+    let observer: IntersectionObserver | undefined
+    if (article) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.12) {
+              tryOpen()
+            }
+          }
+        },
+        { threshold: [0.12, 0.2, 0.35] }
+      )
+      observer.observe(article)
+    }
 
     window.addEventListener('scroll', onScrollOrResize, { passive: true })
     window.addEventListener('resize', onScrollOrResize, { passive: true })
     return () => {
       window.clearTimeout(delayId)
+      observer?.disconnect()
       window.removeEventListener('scroll', onScrollOrResize)
       window.removeEventListener('resize', onScrollOrResize)
     }
-  }, [hydrated, loading, user, tryOpen])
+  }, [hydrated, loading, slug, user, tryOpen])
 
   const close = useCallback(() => {
-    dismissPopup()
+    dismissPopup(slug)
     setOpen(false)
     trackBlogContinuePopupClick('dismiss', slug)
   }, [slug])
@@ -124,30 +146,23 @@ export function BlogContinueSignupModal({
     setOpen(false)
   }, [])
 
-  if (!hydrated || loading || user || isDismissedThisSession()) return null
+  if (!hydrated || loading || user || isDismissedThisSession(slug)) return null
 
-  const signupHref = buildSignUpHref(`/blog/${slug}`)
+  const articleHref = `/blog/${slug}`
   const communityHref = subjectCode ? `/community/s/${subjectCode}` : '/community'
-  const roomLabel = subjectCode
-    ? subjectName
-      ? `${subjectCode} ${subjectName}`
-      : subjectCode
-    : 'your subjects'
+  const signupHref = buildSignUpHref(articleHref)
+  const discussSignupHref = buildSignUpHref(communityHref)
 
   return (
     <Sheet
       open={open}
       onClose={close}
       labelledById={TITLE_ID}
-      className="ec-blog-continue-sheet border-0 sm:max-w-[420px] sm:overflow-hidden"
+      className="ec-blog-continue-sheet sm:max-w-[420px] sm:overflow-hidden"
       compactPadding
       showHandle
     >
       <div className="ec-blog-continue-popup">
-        <div className="ec-blog-continue-popup__hero" aria-hidden>
-          <div className="ec-blog-continue-popup__orb" />
-        </div>
-
         <div className="ec-blog-continue-popup__body">
           <div className="ec-blog-continue-popup__badge">
             <BookOpen className="h-3.5 w-3.5" aria-hidden />
@@ -162,61 +177,7 @@ export function BlogContinueSignupModal({
             students are asking right now.
           </p>
 
-          <ul className="ec-blog-continue-popup__perks" aria-label="Free account includes">
-            {PERKS.map(({ icon: Icon, label }) => (
-              <li key={label}>
-                <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                {label}
-              </li>
-            ))}
-          </ul>
-
-          <div className="ec-blog-continue-popup__discuss">
-            <div className="ec-discuss-live" aria-hidden>
-              <span className="ec-discuss-live__dot" />
-              Live now
-            </div>
-            <div className="ec-discuss-avatars" aria-hidden>
-              <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--a">A</span>
-              <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--b">M</span>
-              <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--c">S</span>
-              <span className="ec-discuss-avatars__more">+12</span>
-            </div>
-            <div className="ec-blog-continue-popup__discuss-head">
-              <span className="ec-blog-continue-popup__discuss-icon" aria-hidden>
-                <Users className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="ec-blog-continue-popup__discuss-kicker">Exam discussion</p>
-                <p className="ec-blog-continue-popup__discuss-title">
-                  {subjectCode ? (
-                    <>Ask &amp; read in the {roomLabel} room</>
-                  ) : (
-                    <>Talk with students revising the same papers</>
-                  )}
-                </p>
-              </div>
-            </div>
-            <p className="ec-blog-continue-popup__discuss-copy">
-              Past-paper tips, grade boundaries, and &ldquo;how do I answer this?&rdquo; — browse
-              free without an account. Sign up when you want to post and get replies.
-            </p>
-            <Link
-              href={communityHref}
-              className="ec-btn-discuss"
-              onClick={() => {
-                closeForNavigation()
-                trackBlogContinuePopupClick('community', slug)
-              }}
-            >
-              <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
-              Discuss with other students
-              <ArrowRight className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
-            </Link>
-          </div>
-
           <div className="ec-blog-continue-popup__signup">
-            <p className="ec-blog-continue-popup__signup-label">Save this guide</p>
             <Link
               href={signupHref}
               className="ec-btn-primary ec-blog-continue-popup__signup-btn"
@@ -230,6 +191,46 @@ export function BlogContinueSignupModal({
             <p className="ec-blog-continue-popup__trust">
               No card required · ~60 sec setup · back to this article
             </p>
+          </div>
+
+          <ul className="ec-blog-continue-popup__perks" aria-label="Free account includes">
+            {PERKS.map(({ icon: Icon, label }) => (
+              <li key={label}>
+                <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                {label}
+              </li>
+            ))}
+          </ul>
+
+          <div className="ec-blog-continue-popup__discuss">
+            <div className="ec-blog-continue-popup__discuss-meta">
+              <div className="ec-discuss-live" aria-hidden>
+                <span className="ec-discuss-live__dot" />
+                Live now
+              </div>
+              <div className="ec-discuss-avatars" aria-hidden>
+                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--a">A</span>
+                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--b">M</span>
+                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--c">S</span>
+                <span className="ec-discuss-avatars__more">+12</span>
+              </div>
+            </div>
+            <p className="ec-blog-continue-popup__discuss-kicker">Exam discussion</p>
+            <p className="ec-blog-continue-popup__discuss-title">
+              Talk with students revising the same papers
+            </p>
+            <Link
+              href={discussSignupHref}
+              className="ec-btn-secondary ec-blog-continue-popup__discuss-btn"
+              onClick={() => {
+                closeForNavigation()
+                trackBlogContinuePopupClick('community', slug)
+              }}
+            >
+              <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
+              Discuss with other students
+              <ArrowRight className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
+            </Link>
           </div>
 
           <button

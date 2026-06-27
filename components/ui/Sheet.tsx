@@ -61,6 +61,7 @@ export function Sheet({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[var(--ec-z-modal,250)] flex items-end justify-center p-0 sm:items-center sm:p-4"
+          style={{ zIndex: 250 }}
         >
           <div
             className="absolute inset-0 ec-modal-backdrop"

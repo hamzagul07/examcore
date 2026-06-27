@@ -2,7 +2,7 @@
 title: IB Spanish B SL past papers & revision guide
 description: IB Spanish B SL: Paper 1 writing, Paper 2 reading and listening, themes, rubrics, and revision for a 6 or 7.
 date: 2026-06-25
-keywords: IB Spanish B SL, IB Spanish B SL past papers, IB Spanish B mark scheme, IB Spanish SL revision, IB Spanish B rubric
+keywords: IB Spanish B SL, IB Spanish B SL past papers, IB Spanish B SL mark scheme, IB Spanish SL revision, IB Spanish B SL rubric
 category: revision
 author: hassan
 updated: 2026-06-25

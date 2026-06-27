@@ -1,8 +1,9 @@
 ---
 title: Cambridge O-Level Accounting (7707) — past papers, mark schemes & how to mark
-description: Complete guide to 7707 Accounting O-Level: paper structure, how Cambridge mark schemes work, common mistakes, revision plan, and marking your answers with MarkScheme.
+description: Complete guide to 7707 Accounting O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 7707 past papers, O-Level accounting Cambridge, accounting past papers, Cambridge O-Level
+author: hamza-gul
 ---
 
 You did not choose Accounting (7707) because you enjoy reading mark schemes for fun. You chose it because the grade matters — and past papers are where O-Level marks are actually won or lost.

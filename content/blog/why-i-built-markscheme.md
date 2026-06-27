@@ -2,7 +2,8 @@
 title: Why I built MarkScheme
 description: An A-Level student on waiting weeks for marked papers — and building the tool he wished existed.
 date: 2026-05-01
-keywords: Cambridge past papers, A-Level marking, AI marking A-Level, past paper feedback, exam revision
+keywords: why I built MarkScheme, MarkScheme founder story, student-built revision tool, honest AI marking, MarkScheme origin
+author: hamza-gul
 ---
 
 I was revising for A-Levels the way most students do: past papers, mark schemes, repeat. The problem wasn't motivation — it was feedback.

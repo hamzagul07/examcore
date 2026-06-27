@@ -17,6 +17,11 @@ import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
 import { BlogArticleHero } from '@/components/blog/BlogArticleHero'
 import { BlogAuthorByline } from '@/components/blog/BlogAuthorByline'
 import { BlogQuickAnswer } from '@/components/blog/BlogQuickAnswer'
+import { BlogSerpSnippets } from '@/components/blog/BlogSerpSnippets'
+import { BlogConversationalQueries } from '@/components/blog/BlogConversationalQueries'
+import { BlogInformationGain } from '@/components/blog/BlogInformationGain'
+import { BlogInContentLinks } from '@/components/blog/BlogInContentLinks'
+import { BlogSourcesBlock } from '@/components/blog/BlogSourcesBlock'
 import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
 import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
 import { BlogContinueSignupModal } from '@/components/blog/BlogContinueSignupModal'
@@ -86,7 +91,14 @@ export default async function BlogPostPage({ params }: Props) {
         {showResultsDayBanner ? (
           <ResultsDayBanner subjectCode={subjectCode} className="mb-8" />
         ) : null}
+        <BlogSerpSnippets content={post.content} />
+        <BlogConversationalQueries slug={slug} />
         <BlogAuthorByline authorId={post.author} />
+        <BlogInformationGain
+          slug={slug}
+          content={post.content}
+          informationGain={post.informationGain}
+        />
 
         <div
           id="blog-article-body"
@@ -95,9 +107,11 @@ export default async function BlogPostPage({ params }: Props) {
           <BlogTableOfContents headings={headings} />
           <div className="min-w-0">
             <BlogChunkedArticle content={post.content} slug={slug} />
+            <BlogInContentLinks slug={slug} />
           </div>
         </div>
 
+        <BlogSourcesBlock />
         <BlogFollowUpChain slug={slug} />
         <BlogPostCta
           variant={ctaVariant}

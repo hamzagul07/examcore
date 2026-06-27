@@ -4,6 +4,7 @@ description: Deadlines, catch-up plans, and when changing subjects saves your gr
 date: 2026-06-08
 category: subject-choice
 keywords: change A-Level subjects, switch A-Levels Year 12, subject change deadlines, catch up A-Level
+author: hamza-gul
 ---
 
 Realising you picked the wrong A-Level is common. Switching is possible — but **timing** determines whether you catch up or lose a year. Here is a practical decision frame for Cambridge International centres.

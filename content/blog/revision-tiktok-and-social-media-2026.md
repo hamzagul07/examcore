@@ -4,6 +4,7 @@ description: Study trends, past-paper creators, and algorithm traps — how to u
 date: 2026-06-10
 category: editorial
 keywords: revision TikTok, study social media, Cambridge revision trends, past paper TikTok, study tips 2026
+author: hamza-gul
 ---
 
 Revision TikTok can demo a clever mnemonic in sixty seconds — or eat three hours you thought were “productive.” In 2026 the **help/hurt** line is simple: **passive watching is not revision**; **marked past papers are**.

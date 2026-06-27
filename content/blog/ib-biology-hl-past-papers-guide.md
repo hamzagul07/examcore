@@ -2,7 +2,7 @@
 title: IB Biology HL past papers & revision guide
 description: How to revise IB Biology HL with past papers: Papers 1–3, AHL content, markbands, DBQs, and a workflow to reach a 6 or 7.
 date: 2026-06-25
-keywords: IB Biology HL, IB Biology HL past papers, IB Biology mark scheme, IB Biology HL revision, IB Biology markbands
+keywords: IB Biology HL, IB Biology HL past papers, IB Biology HL mark scheme, IB Biology HL revision, IB Biology HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

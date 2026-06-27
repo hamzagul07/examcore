@@ -2,7 +2,7 @@
 title: IB Economics HL past papers & revision guide
 description: IB Economics HL: Paper 1 essays, Paper 2 data response, Paper 3 policy/quantitative — markbands and revision workflow.
 date: 2026-06-25
-keywords: IB Economics HL, IB Economics HL past papers, IB Economics mark scheme, IB Economics HL revision, IB Economics markbands
+keywords: IB Economics HL, IB Economics HL past papers, IB Economics HL mark scheme, IB Economics HL revision, IB Economics HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

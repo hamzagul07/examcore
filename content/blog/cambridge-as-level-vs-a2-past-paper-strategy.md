@@ -3,6 +3,7 @@ title: AS Level vs A2 past papers — different jobs, different marking habits
 description: When to use AS papers, when to switch to A2, and how to mark each stage without mixing up components or expectations.
 date: 2026-04-28
 keywords: AS Level past papers, A2 past papers, Cambridge A-Level revision, 9709 AS, exam strategy
+author: hamza-gul
 ---
 
 AS and A2 are not “easier and harder versions of the same PDF.” They are **different exam contracts** — and your past-paper plan should treat them that way.

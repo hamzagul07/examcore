@@ -4,6 +4,7 @@ description: Using AI for revision vs exam misconduct — what schools and Cambr
 date: 2026-06-06
 category: editorial
 keywords: ChatGPT Cambridge exams, AI exam rules, academic integrity, AI revision, Cambridge malpractice 2026
+author: hamza-gul
 ---
 
 AI tools are in every student's pocket. Cambridge and schools are still catching policy wording up to reality — but the **principle** is stable: **your exam work must be yours alone**. Here is how to use AI without risking your certificate.

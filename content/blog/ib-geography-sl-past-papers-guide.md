@@ -2,7 +2,7 @@
 title: IB Geography SL past papers & revision guide
 description: IB Geography SL: Paper 1 themes, Paper 2 core units, markbands, case studies, and past paper revision.
 date: 2026-06-25
-keywords: IB Geography SL, IB Geography SL past papers, IB Geography mark scheme, IB Geography SL revision, IB Geography markbands
+keywords: IB Geography SL, IB Geography SL past papers, IB Geography SL mark scheme, IB Geography SL revision, IB Geography SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

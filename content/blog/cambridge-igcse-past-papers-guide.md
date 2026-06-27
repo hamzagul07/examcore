@@ -4,6 +4,7 @@ description: IGCSE past paper labelling, mark scheme habits, and revision focus 
 date: 2026-06-06
 category: revision
 keywords: IGCSE past papers, Cambridge IGCSE revision, IGCSE mark scheme, IGCSE vs O-Level
+author: hamza-gul
 ---
 
 IGCSE sits in the same Cambridge universe as O-Level and A-Level — but **paper codes, depth, and wording** differ. Treating them as interchangeable wastes marks.

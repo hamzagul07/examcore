@@ -14,7 +14,7 @@
  *   node scripts/generate-keyword-blog-posts.mjs --force    # overwrite existing
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
-import { join } from 'path'
+import { join, delimiter } from 'path'
 
 for (const line of readFileSync('.env.local', 'utf8').split('\n')) {
   const t = line.trim(); if (!t || t.startsWith('#')) continue
@@ -24,6 +24,16 @@ for (const line of readFileSync('.env.local', 'utf8').split('\n')) {
   if (process.env[k] === undefined) process.env[k] = v
 }
 process.env.USE_VERTEX_AI = 'true'
+
+// Resolve the Next-only `server-only` import (pulled in transitively by lib/seo
+// modules) to a local no-op shim. pnpm does not hoist `server-only`, and the real
+// package throws outside React Server Components — so bare `node`/`tsx` would fail.
+// NODE_PATH only affects this process, never the Next build. Run via: npm run content:generate
+process.env.NODE_PATH = [process.env.NODE_PATH, join(process.cwd(), 'scripts', 'shims')]
+  .filter(Boolean)
+  .join(delimiter)
+const { Module } = await import('node:module')
+Module._initPaths()
 
 const { generateGeminiText } = await import('../lib/ai/gemini-text.ts')
 const { jsonrepair } = await import('jsonrepair')
@@ -230,7 +240,9 @@ for (const [verb, meaning] of Object.entries(COMMAND_WORDS)) {
 }
 
 // 5. Per-subject command-words guides
-for (const code of ['9708', '9489', '9699', '9609', '9990', '9084', '9700', '9702', '9701', '9618', '9706', '9488']) {
+// (last 6 — 2281, 4037, 5070, 7115, 7707, 9607 — complete the matrix: these
+//  codes already have a subject guide + grade-boundaries post but no command-words post.)
+for (const code of ['9708', '9489', '9699', '9609', '9990', '9084', '9700', '9702', '9701', '9618', '9706', '9488', '2281', '4037', '5070', '7115', '7707', '9607']) {
   const s = SUBJECTS[code]
   briefs.push({
     slug: `cambridge-${code}-${s.label}-command-words-guide`,
@@ -595,6 +607,127 @@ briefs.push({
   links: [['/ib/past-papers', 'IB past papers'], ['/ib', 'IB Diploma hub'], ['/mark', 'get feedback on your answer']],
 })
 
+// 14. IGCSE per-subject past-paper guides (largest missing high-volume cluster).
+//     Slug cambridge-<4digit>-igcse-<label>-past-papers-guide routes to subject-guides.
+// `tiered` = subject is split into Core/Extended entry tiers. Untiered subjects
+// (English, Economics, Business, CS) put ALL candidates on the same papers —
+// never claim Core/Extended for them.
+const IGCSE_SUBJECTS = {
+  '0580': { name: 'Mathematics', label: 'mathematics', tiered: true,
+    papers: 'a Core tier (Papers 1 and 3) or an Extended tier (Papers 2 and 4); most students sit Extended for access to the top grades. Calculators are allowed throughout',
+    marking: 'point marks — method (M) marks for a correct approach and accuracy (A) marks for the result; show working to earn method marks even if the final answer is wrong' },
+  '0610': { name: 'Biology', label: 'biology', tiered: true,
+    papers: 'Core or Extended theory papers (multiple choice and structured) plus a practical assessment — either Paper 5 (practical test) or Paper 6 (alternative to practical)',
+    marking: 'keyword point marks with accept/reject lists — precise biological terminology is required' },
+  '0620': { name: 'Chemistry', label: 'chemistry', tiered: true,
+    papers: 'Core or Extended theory papers plus a practical assessment (Paper 5 practical or Paper 6 alternative to practical)',
+    marking: 'point marks — balanced equations, state symbols and precise chemical language must be exact' },
+  '0625': { name: 'Physics', label: 'physics', tiered: true,
+    papers: 'Core or Extended theory papers plus a practical assessment (Paper 5 practical or Paper 6 alternative to practical)',
+    marking: 'point marks for the formula, the substitution, and the final answer with a correct unit and sensible significant figures' },
+  '0500': { name: 'First Language English', label: 'first-language-english', tiered: false,
+    papers: 'Paper 1 (Reading) and Paper 2 (Directed Writing and Composition), with a coursework route available in some centres — there are no Core/Extended tiers',
+    marking: 'reading marks for understanding, analysis and summary skills; writing assessed on content and structure plus accuracy, against level bands' },
+  '0455': { name: 'Economics', label: 'economics', tiered: false,
+    papers: 'Paper 1 (multiple choice) and Paper 2 (structured data-response and an extended essay section) — all candidates sit the same papers, with no tiers',
+    marking: 'point marks for definitions and diagrams, with short level-of-response bands for analysis and evaluation' },
+  '0450': { name: 'Business Studies', label: 'business-studies', tiered: false,
+    papers: 'Paper 1 (short-answer and data response) and Paper 2 (case study) — a single untiered qualification with no Core/Extended split',
+    marking: 'applied marks that must reference the business in the stimulus, with analysis and a justified judgement for higher-tariff questions' },
+  '0478': { name: 'Computer Science', label: 'computer-science', tiered: false,
+    papers: 'Paper 1 (computer systems theory) and Paper 2 (algorithms, programming and logic) — every candidate sits the same two papers, with no Core/Extended tiers',
+    marking: 'point marks — correct pseudocode or flowchart logic, accurate trace tables, and precise technical vocabulary' },
+}
+for (const code of Object.keys(IGCSE_SUBJECTS)) {
+  const s = IGCSE_SUBJECTS[code]
+  const gradeFact = s.tiered
+    ? 'IGCSE grades run A*–G (with a 9–1 scale on some regional variants); your tier of entry (Core or Extended) caps the grades available to you.'
+    : `IGCSE grades run A*–G (with a 9–1 scale on some regional variants); ${code} is a single untiered qualification, so every candidate sits the same papers — there is no Core or Extended tier.`
+  briefs.push({
+    slug: `cambridge-${code}-igcse-${s.label}-past-papers-guide`,
+    cluster: 'subject-guides', format: 'guide', category: 'subject-guide',
+    title: `Cambridge IGCSE ${s.name} (${code}) — past papers, mark schemes & how to revise`,
+    description: `Revise Cambridge IGCSE ${s.name} (${code}) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.`,
+    keywords: `${code} past papers, IGCSE ${s.name} past papers, ${code} ${s.label} mark scheme, Cambridge IGCSE ${s.name}, ${code} revision`,
+    facts: [
+      `${code} is Cambridge IGCSE ${s.name}.`,
+      `Its papers: ${s.papers}.`,
+      `Marking: ${s.marking}.`,
+      'Cambridge publishes IGCSE past papers, mark schemes and examiner reports for free; attempt each paper under timed conditions before opening the mark scheme.',
+      gradeFact,
+      'The most effective revision loop: attempt a past paper timed, mark it strictly against the official scheme, list every mark you dropped, then re-drill those exact skills.',
+    ],
+    mustNotClaim: [
+      'Do NOT state specific grade boundary numbers — they are set after marking and move every session.',
+      s.tiered
+        ? 'Do NOT misstate the Core/Extended tier structure or invent paper numbers beyond those listed.'
+        : `Do NOT claim ${code} has Core/Extended tiers — it is untiered; all candidates sit the same papers. Do NOT invent paper numbers beyond those listed.`,
+    ],
+    links: [['/past-papers', 'browse Cambridge past papers'], ['/blog/cambridge-igcse-past-papers-guide', 'IGCSE past papers overview'], ['/mark', 'mark a past paper']],
+  })
+}
+
+// 15. Cambridge English + Geography/ICT subject guides (codes absent from the
+//     corpus). Mixed levels; the IGCSE entries are untiered (no Core/Extended).
+const MB4_SUBJECTS = [
+  { code: '9093', name: 'English Language', label: 'english-language', level: 'A-Level', levelSlug: 'a-level', tier: 'a-level',
+    papers: 'Reading, Writing, Text Analysis and Language Topics (such as child language acquisition and English in the world) across the AS and A Level components',
+    marking: 'level-of-response bands rewarding analysis of language features, accurate linguistic terminology, and controlled, purposeful writing' },
+  { code: '9695', name: 'Literature in English', label: 'english-literature', level: 'A-Level', levelSlug: 'a-level', tier: 'a-level',
+    papers: 'Drama, Prose, Poetry and Shakespeare/unseen components, assessed by passage-based and essay questions across AS and A Level',
+    marking: 'level-of-response bands rewarding informed personal response, close textual analysis, and understanding of form, structure and context' },
+  { code: '1123', name: 'English Language', label: 'english', level: 'O-Level', levelSlug: 'o-level', tier: 'o-level',
+    papers: 'Paper 1 (Writing — directed writing and a composition) and Paper 2 (Reading — comprehension and a summary task)',
+    marking: 'content and language marks for writing; comprehension and summary marks for reading, rewarding accuracy and concise expression' },
+  { code: '9696', name: 'Geography', label: 'geography', level: 'A-Level', levelSlug: 'a-level', tier: 'a-level',
+    papers: 'core physical and human geography papers plus advanced options (e.g. tropical or hazardous environments and global interdependence) across AS and A Level',
+    marking: 'point marks for knowledge and geographical skills, with level-of-response bands for extended evaluation; map, graph and data skills are tested' },
+  { code: '9626', name: 'Information Technology', label: 'information-technology', level: 'A-Level', levelSlug: 'a-level', tier: 'a-level',
+    papers: 'a written theory paper and practical papers covering spreadsheets, databases, website authoring and project work',
+    marking: 'theory point marks plus practical assessment of accuracy, efficiency and how well the response meets the task brief' },
+  { code: '0460', name: 'Geography', label: 'geography', level: 'IGCSE', levelSlug: 'igcse', tier: 'igcse-untiered',
+    papers: 'Paper 1 (Geographical Themes), Paper 2 (Geographical Skills), and either Paper 3 (Coursework) or Paper 4 (Alternative to Coursework) — there are no Core/Extended tiers',
+    marking: 'point marks for knowledge and skills, with short level-of-response bands for extended answers; map, graph and fieldwork data skills are tested' },
+  { code: '0417', name: 'ICT', fullName: 'Information and Communication Technology', label: 'ict', level: 'IGCSE', levelSlug: 'igcse', tier: 'igcse-untiered',
+    papers: 'Paper 1 (written theory) and two practical papers — Document Production, Databases and Presentations, and Data Analysis and Website Authoring — with no Core/Extended tiers',
+    marking: 'theory point marks plus practical marks for accuracy, correct techniques and meeting the task requirements exactly' },
+]
+const MB4_GRADE_FACT = {
+  'a-level': 'Cambridge A Level grades run A*–E (AS grades a–e); thresholds are raw marks set after marking each session, so a fixed percentage never guarantees a grade.',
+  'o-level': 'Cambridge O Level grades run A*–E; thresholds are raw marks set after marking each session and move between sittings.',
+}
+for (const s of MB4_SUBJECTS) {
+  const untiered = s.tier === 'igcse-untiered'
+  const gradeFact = untiered
+    ? `IGCSE grades run A*–G; ${s.code} is a single untiered qualification, so every candidate sits the same papers — there is no Core or Extended tier.`
+    : MB4_GRADE_FACT[s.tier]
+  const displayLevel = s.level === 'IGCSE' ? 'IGCSE' : s.level
+  briefs.push({
+    slug: `cambridge-${s.code}-${s.levelSlug}-${s.label}-past-papers-guide`,
+    cluster: 'subject-guides', format: 'guide', category: 'subject-guide',
+    title: `Cambridge ${displayLevel} ${s.name} (${s.code}) — past papers, mark schemes & how to revise`,
+    description: `Revise Cambridge ${displayLevel} ${s.name} (${s.code}) with past papers — paper structure, how the mark scheme works, common mistakes, and a revision plan.`,
+    keywords: `${s.code} past papers, ${displayLevel} ${s.name} past papers, ${s.code} ${s.label} mark scheme, Cambridge ${s.name} ${s.code}, ${s.code} revision`,
+    facts: [
+      s.fullName
+        ? `${s.code} is Cambridge ${displayLevel} ${s.fullName} (${s.name}).`
+        : `${s.code} is Cambridge ${displayLevel} ${s.name}.`,
+      `Its papers: ${s.papers}.`,
+      `Marking: ${s.marking}.`,
+      'Cambridge publishes past papers, mark schemes and examiner reports for free; attempt each paper under timed conditions before opening the mark scheme.',
+      gradeFact,
+      'The most effective revision loop: attempt a past paper timed, mark it strictly against the official scheme, list every mark you dropped, then re-drill those exact skills.',
+    ],
+    mustNotClaim: [
+      'Do NOT state specific grade boundary numbers — they are set after marking and move every session.',
+      untiered
+        ? `Do NOT claim ${s.code} has Core/Extended tiers — it is untiered; all candidates sit the same papers. Do NOT invent paper numbers beyond those listed.`
+        : 'Do NOT invent paper numbers, components or mark-scheme wording beyond what is listed.',
+    ],
+    links: [['/past-papers', 'browse Cambridge past papers'], ['/guides/subject-guides', 'all subject guides'], ['/mark', 'mark a past paper']],
+  })
+}
+
 // ---------- prompt + generation ----------
 function buildPrompt(b) {
   const isHowto = b.format === 'howto'
@@ -639,7 +772,7 @@ function frontmatter(b) {
     `date: ${DATE}`,
     `keywords: ${b.keywords}`,
     `category: ${b.category}`,
-    'author: hassan',
+    'author: hamza-gul',
     `updated: ${DATE}`,
     'informationGain: synthesis',
     '---',

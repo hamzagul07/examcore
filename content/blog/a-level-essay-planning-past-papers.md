@@ -4,6 +4,7 @@ description: A repeatable essay plan template for Cambridge humanities, economic
 date: 2026-06-03
 category: exam-technique
 keywords: A-Level essay plan, Cambridge essay technique, economics essay structure, history essay plan
+author: hamza-gul
 ---
 
 The essay that wins bands is usually planned in **four minutes**, not improvised for twenty.

@@ -3,6 +3,7 @@ title: How to study Cambridge past papers when you do not have a teacher to mark
 description: Self-study workflows for homeschooled, international, and evening students — marking rigour, accountability, and tools that help.
 date: 2026-05-05
 keywords: self study A-Level, mark past papers at home, Cambridge homeschool, no teacher feedback, past paper marking
+author: hamza-gul
 ---
 
 No teacher in the room does not mean no feedback loop. It means **you** build the loop — and most students build a generous one.

@@ -4,6 +4,7 @@ description: Paper-by-paper timing tactics for Cambridge A-Level and O-Level —
 date: 2026-06-08
 category: exam-technique
 keywords: past paper timing, Cambridge exam time management, A-Level exam strategy, finish paper on time
+author: hamza-gul
 ---
 
 Running out of time is not bad luck. It is usually **untrained pacing** — and it costs marks you already knew how to earn.

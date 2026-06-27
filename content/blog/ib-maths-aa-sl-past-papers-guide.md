@@ -2,7 +2,7 @@
 title: IB Maths AA SL past papers & revision guide
 description: IB Mathematics Analysis and Approaches SL: Paper 1 (no GDC) and Paper 2 (GDC) past paper workflow, markbands, and grade 7 strategies.
 date: 2026-06-25
-keywords: IB Maths AA SL, IB Maths AA SL past papers, IB Analysis and Approaches SL, IB Maths AA mark scheme, IB Maths SL revision
+keywords: IB Maths AA SL, IB Maths AA SL past papers, IB Analysis and Approaches SL, IB Maths AA SL mark scheme, IB Maths SL revision
 category: revision
 author: hassan
 updated: 2026-06-25

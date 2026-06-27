@@ -63,6 +63,7 @@ export function personNode(author: SiteAuthor): JsonLd {
     jobTitle: author.role,
     description: author.bio,
     url: author.url,
+    ...(author.image ? { image: author.image } : {}),
     worksFor: { '@id': `${SITE_URL}/#organization` },
     knowsAbout: [
       'Cambridge International examinations',

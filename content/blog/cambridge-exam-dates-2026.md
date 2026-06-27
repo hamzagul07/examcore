@@ -1,6 +1,6 @@
 ---
 title: Cambridge exam dates 2026: series and results days
-description: When the 2026 Cambridge International exams run — June and Oct/Nov series, the Feb/March series, and when results are released — plus where to get your exact timetable.
+description: When the 2026 Cambridge International exams run — Feb/March, June and Oct/Nov series, results dates, and where to find your exact timetable.
 date: 2026-06-19
 keywords: Cambridge exam dates 2026, Cambridge 2026 timetable, June 2026 exams, Cambridge results day 2026, A Level exam dates 2026
 category: revision

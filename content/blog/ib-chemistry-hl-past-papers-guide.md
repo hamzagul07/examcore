@@ -2,7 +2,7 @@
 title: IB Chemistry HL past papers & revision guide
 description: IB Chemistry HL past paper strategy: Papers 1–3, AHL mechanisms, markbands, and how to push from a 5 to a 7.
 date: 2026-06-25
-keywords: IB Chemistry HL, IB Chemistry HL past papers, IB Chemistry mark scheme, IB Chemistry HL revision, IB Chemistry markbands
+keywords: IB Chemistry HL, IB Chemistry HL past papers, IB Chemistry HL mark scheme, IB Chemistry HL revision, IB Chemistry HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

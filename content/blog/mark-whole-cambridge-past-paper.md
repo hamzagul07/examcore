@@ -3,6 +3,7 @@ title: How to mark a whole Cambridge past paper at home
 description: Full-paper sittings build stamina but are painful to mark. A split workflow — timed sit, batch marking, error log — for A-Level and O-Level mocks.
 date: 2026-05-14
 keywords: mark whole past paper, full paper marking, Cambridge past papers, A-Level past papers, whole paper marking
+author: hamza-gul
 ---
 
 Whole papers are the dress rehearsal. They are also **three hours of marking** if you are thorough — so students skip marking and wonder why mocks do not improve grades.
@@ -49,7 +50,7 @@ Uploading a full script lets you:
 - Compare **total** to grade boundaries roughly — schemes vary by session
 - Keep digital history for progress tracking
 
-Start at [/mark](/mark) with one component if a full paper feels heavy — build up.
+Start at [mark a paper](/mark)(/mark) with one component if a full paper feels heavy — build up.
 
 ## Grade boundaries caution
 

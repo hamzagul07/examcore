@@ -4,6 +4,7 @@ description: Skills, marking styles, workload myths, and career doors — choosi
 date: 2026-06-11
 category: subject-choice
 keywords: science vs humanities A-Level, STEM vs arts subjects, A-Level marking styles, subject choice Cambridge
+author: hamza-gul
 ---
 
 “I'm a science person” or “I'm bad at maths” decides too many timetables before anyone reads a **mark scheme**. Science and humanities A-Levels differ in **how** marks are earned — pick the path whose exam game you are willing to play for two years.

@@ -3,6 +3,7 @@ title: Seven mistakes students make when self-marking past papers
 description: Generous marking, scheme skipping, and “close enough” answers cost more marks than weak content. Fix the process before buying more revision books.
 date: 2026-05-22
 keywords: self marking past papers, marking your own answers, past paper self assessment, Cambridge past papers, common exam mistakes
+author: hamza-gul
 ---
 
 Self-marking fails quietly. Your score creeps up on paper while exam marks stay flat — because you trained yourself to be a **lenient examiner**.

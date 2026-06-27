@@ -1,8 +1,9 @@
 ---
 title: Cambridge A-Level Physics (9702) — past papers, mark schemes & how to mark
-description: Complete guide to 9702 Physics A-Level: paper structure, how Cambridge mark schemes work, common mistakes, revision plan, and marking your answers with MarkScheme.
+description: Complete guide to 9702 Physics A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9702 past papers, A-Level physics marking, Cambridge physics mark scheme, physics past paper practice
+author: hamza-gul
 ---
 
 You did not choose Physics (9702) because you enjoy reading mark schemes for fun. You chose it because the grade matters — and past papers are where A-Level marks are actually won or lost.

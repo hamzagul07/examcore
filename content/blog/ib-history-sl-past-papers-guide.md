@@ -2,7 +2,7 @@
 title: IB History SL past papers & revision guide
 description: IB History SL: Paper 1 sources, Paper 2 essays, markbands, and revision workflow — no Paper 3 at SL.
 date: 2026-06-25
-keywords: IB History SL, IB History SL past papers, IB History mark scheme, IB History SL revision, IB History markbands
+keywords: IB History SL, IB History SL past papers, IB History SL mark scheme, IB History SL revision, IB History SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

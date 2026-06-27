@@ -4,6 +4,7 @@ description: Plan November resits, June retakes, and component choices when AS o
 date: 2026-06-09
 category: editorial
 keywords: Cambridge retakes 2026, A-Level resit, November exam series, AS resit, mock exam recovery
+author: hamza-gul
 ---
 
 Weak mocks feel final — they are not. Cambridge offers **multiple series** and component retakes depending on your qualification structure. The skill is choosing **what** to resit **when**, without torching the rest of your profile.

@@ -1,8 +1,9 @@
 ---
 title: Cambridge O-Level Physics (5054) — past papers, mark schemes & how to mark
-description: Complete guide to 5054 Physics O-Level: paper structure, how Cambridge mark schemes work, common mistakes, revision plan, and marking your answers with MarkScheme.
+description: Complete guide to 5054 Physics O-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 5054 past papers, O-Level physics Cambridge, physics marking, Cambridge past papers
+author: hamza-gul
 ---
 
 You did not choose Physics (5054) because you enjoy reading mark schemes for fun. You chose it because the grade matters — and past papers are where O-Level marks are actually won or lost.

@@ -2,7 +2,7 @@
 title: IB Physics SL past papers & revision guide
 description: Revise IB Physics SL with past papers: MCQ Paper 1, structured Paper 2, option Paper 3, and markband technique for a 7.
 date: 2026-06-25
-keywords: IB Physics SL, IB Physics SL past papers, IB Physics mark scheme, IB Physics SL revision, IB Physics markbands
+keywords: IB Physics SL, IB Physics SL past papers, IB Physics SL mark scheme, IB Physics SL revision, IB Physics SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -3,6 +3,7 @@ title: Cambridge grade boundaries explained for past-paper students
 description: What grade boundaries mean, why they change each series, and how to use past-paper scores without fooling yourself.
 date: 2026-05-08
 keywords: Cambridge grade boundaries, A-Level grades, past paper score, UMS marks, exam results
+author: hamza-gul
 ---
 
 You finished a 2023 paper, added marks generously, got 78%, and feel ready for an A. **Grade boundaries exist precisely because that feeling is unreliable.**

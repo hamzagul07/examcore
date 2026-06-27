@@ -4,6 +4,7 @@ description: Healthy Cambridge revision — sleep, stress signals, and how much 
 date: 2026-06-12
 category: editorial
 keywords: exam stress 2026, revision burnout, past paper balance, healthy revision, Cambridge exam anxiety
+author: hamza-gul
 ---
 
 More past papers is not always more marks. Past a point, tired marking **rewards** careless errors and **punishes** sleep — the 2026 series rewards candidates who know **when to close the book**.

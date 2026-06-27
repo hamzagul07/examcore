@@ -4,6 +4,7 @@ description: When four A-Levels help university offers — and when three well-m
 date: 2026-06-07
 category: editorial
 keywords: fourth A-Level, 3 vs 4 A-Levels, A-Level workload, university offers, Cambridge A-Level 2026
+author: hamza-gul
 ---
 
 Universities rarely demand four A-Levels — yet schools sometimes encourage a fourth for “competitive edge.” In 2026, with linear courses and heavy past-paper demands, **four is a workload decision**, not a prestige badge.

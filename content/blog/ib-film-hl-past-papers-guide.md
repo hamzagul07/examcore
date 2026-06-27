@@ -2,7 +2,7 @@
 title: IB Film HL assessment & portfolio guide
 description: IB Film HL: textual analysis, comparative study, portfolio, and collaborative project — film language, criteria, and workflow.
 date: 2026-06-25
-keywords: IB Film HL, IB Film portfolio, IB Film textual analysis, IB Film comparative study, IB Film markbands
+keywords: IB Film HL, IB Film HL portfolio, IB Film HL textual analysis, IB Film HL comparative study, IB Film HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

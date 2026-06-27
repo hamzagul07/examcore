@@ -4,6 +4,7 @@ description: How to prepare for Paper 3/5-style practical skills, common vocabul
 date: 2026-06-04
 category: exam-technique
 keywords: Cambridge practical paper, ATP past papers, science practical revision, Paper 3 A-Level
+author: hamza-gul
 ---
 
 Practical papers punish vague vocabulary — **“add water”** vs **“add 25 cm³ of distilled water”** is often the difference between marks.

@@ -60,7 +60,7 @@ export default function AboutPage() {
 
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl">
-          <div className="ms-story-founder">
+          <div id="hamza-gul" className="ms-story-founder scroll-mt-24">
             <div className="ms-story-avatar">
               <span
                 className="font-[family-name:var(--ec-font-handwriting)] text-[19px] leading-tight text-[var(--ec-brand)]"

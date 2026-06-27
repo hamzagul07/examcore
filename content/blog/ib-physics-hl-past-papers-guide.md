@@ -2,7 +2,7 @@
 title: IB Physics HL past papers & revision guide
 description: Revise IB Physics HL with past papers: MCQ Paper 1, structured Paper 2, option Paper 3, and markband technique for a 7.
 date: 2026-06-25
-keywords: IB Physics HL, IB Physics HL past papers, IB Physics mark scheme, IB Physics HL revision, IB Physics markbands
+keywords: IB Physics HL, IB Physics HL past papers, IB Physics HL mark scheme, IB Physics HL revision, IB Physics HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -4,6 +4,7 @@ description: A realistic four-week Cambridge revision sprint — what to cut, wh
 date: 2026-06-07
 category: revision
 keywords: 4 week revision plan, Cambridge exam cramming, A-Level revision schedule, last month revision
+author: hamza-gul
 ---
 
 Four weeks is not enough to learn a syllabus from zero. It **is** enough to turn **past-paper performance** around if you are ruthless about priorities.

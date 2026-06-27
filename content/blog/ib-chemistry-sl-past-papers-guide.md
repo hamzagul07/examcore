@@ -2,7 +2,7 @@
 title: IB Chemistry SL past papers & revision guide
 description: IB Chemistry SL past paper strategy: Papers 1–3, stoichiometry under pressure, markbands, and how to push from a 5 to a 7.
 date: 2026-06-25
-keywords: IB Chemistry SL, IB Chemistry SL past papers, IB Chemistry mark scheme, IB Chemistry SL revision, IB Chemistry markbands
+keywords: IB Chemistry SL, IB Chemistry SL past papers, IB Chemistry SL mark scheme, IB Chemistry SL revision, IB Chemistry SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

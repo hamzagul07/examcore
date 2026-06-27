@@ -2,7 +2,7 @@
 title: IB Theatre SL assessment & portfolio guide
 description: IB Theatre SL: solo piece, director's notebook, research presentation — criteria, rehearsal workflow, and top-band tips.
 date: 2026-06-25
-keywords: IB Theatre SL, IB Theatre SL portfolio, Theatre director notebook, IB Theatre SL criteria, IB Theatre assessment
+keywords: IB Theatre SL, IB Theatre SL portfolio, Theatre director notebook, IB Theatre SL criteria, IB Theatre SL assessment
 category: revision
 author: hassan
 updated: 2026-06-25

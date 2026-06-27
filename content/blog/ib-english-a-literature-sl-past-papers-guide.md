@@ -2,7 +2,7 @@
 title: IB English A Literature SL revision guide
 description: IB English A Literature SL: guided literary analysis Paper 1, comparative Paper 2, assessment criteria, and revision workflow.
 date: 2026-06-25
-keywords: IB English Literature SL, IB English A Literature SL, IB Literature Paper 1, IB English SL revision, IB Literature markbands
+keywords: IB English Literature SL, IB English A Literature SL, IB Literature SL Paper 1, IB English SL revision, IB Literature SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

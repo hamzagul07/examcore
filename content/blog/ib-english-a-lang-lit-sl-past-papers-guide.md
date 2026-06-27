@@ -2,7 +2,7 @@
 title: IB English A Language & Literature SL revision guide
 description: IB English A Language and Literature SL: Paper 1 non-literary analysis, Paper 2 comparative essay, criteria, and exam technique.
 date: 2026-06-25
-keywords: IB English A Language and Literature SL, IB English Lang Lit SL, IB English Paper 1, IB English SL revision, IB English markbands
+keywords: IB English A Language and Literature SL, IB English Lang Lit SL, IB English SL Paper 1, IB English SL revision, IB English SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

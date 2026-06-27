@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'
 import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
+import { BLOG_CATEGORY_LABELS } from '@/lib/blog/meta'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
@@ -36,8 +37,12 @@ const STATIC_ROUTES = [
   { path: '/ib/past-papers', priority: 0.85, changeFrequency: 'weekly' as const },
   { path: '/ib/topic-practice', priority: 0.84, changeFrequency: 'weekly' as const },
   { path: '/past-papers/topics', priority: 0.84, changeFrequency: 'weekly' as const },
+  { path: '/tools', priority: 0.83, changeFrequency: 'monthly' as const },
   { path: '/tools/grade-boundary-calculator', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/tools/command-words', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/tools/ib-points-calculator', priority: 0.82, changeFrequency: 'monthly' as const },
+  { path: '/tools/pum-calculator', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/tools/exam-countdown', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/auth/signin', priority: 0.45, changeFrequency: 'monthly' as const },
   { path: '/auth/signup', priority: 0.45, changeFrequency: 'monthly' as const },
@@ -73,6 +78,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: 'weekly' as const,
     priority: 0.86,
+  }))
+
+  const blogCategoryEntries: MetadataRoute.Sitemap = Object.keys(
+    BLOG_CATEGORY_LABELS
+  ).map((category) => ({
+    url: `${base}/blog/category/${category}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
   }))
 
   const subjectEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().map(
@@ -211,6 +225,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...courseSubjectEntries,
     ...courseLessonEntries,
     ...communityEntries,
+    ...blogCategoryEntries,
     ...blogEntries,
   ]
 }

@@ -4,6 +4,7 @@ description: Viral grade stories vs how Cambridge awards marks — use schemes a
 date: 2026-06-13
 category: editorial
 keywords: Cambridge grade inflation, mark schemes, grade boundaries, A-Level grades 2026, examiner reports
+author: hamza-gul
 ---
 
 Every results day brings **“grades are easier/harder this year”** posts. Most are anecdote. Your mock-to-exam trajectory is shaped by **mark schemes and boundaries**, not TikTok inflation theories.

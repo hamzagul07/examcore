@@ -4,9 +4,10 @@ description: When school mocks matter, how to mark them properly, and how to com
 date: 2026-05-25
 category: revision
 keywords: mock exams Cambridge, school mocks vs past papers, A-Level mock revision, mock exam marking
+author: hamza-gul
 ---
 
-Mocks feel high-stakes. Past papers feel “practice”. **Marking quality** matters more than the label on the front.
+Mocks feel high-stakes. Past papers feel “practice”. [Marking quality](/blog/how-to-mark-cambridge-past-papers-yourself) matters more than the label on the front.
 
 ## What mocks give you
 

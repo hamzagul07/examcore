@@ -1,8 +1,9 @@
 ---
 title: How to read a Cambridge mark scheme (without getting lost)
-description: Mark schemes look intimidating at first. Here is how to navigate annotations, alternative methods, and what examiners actually look for on A-Level and O-Level papers.
+description: How to navigate mark scheme annotations, alternative methods, and what examiners actually look for on Cambridge A-Level and O-Level papers.
 date: 2026-04-14
 keywords: how to read a mark scheme, Cambridge mark scheme, marking scheme, Cambridge International, past paper feedback
+author: hamza-gul
 ---
 
 A Cambridge mark scheme is not a model answer essay. It is a **decision tree** written for examiners — shorthand, alternatives, and sometimes “do not accept” notes that never appear in textbooks.

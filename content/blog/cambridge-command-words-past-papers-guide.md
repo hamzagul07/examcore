@@ -3,6 +3,7 @@ title: Cambridge command words for past papers — explain, evaluate, assess (wi
 description: What exam command words actually require in Cambridge A-Level and O-Level answers — and how to mark yourself against them.
 date: 2026-04-15
 keywords: Cambridge command words, evaluate A-Level, explain exam answer, assess discuss, past paper technique
+author: hamza-gul
 ---
 
 You can know the syllabus and still lose marks because you answered a **discuss** question with a **describe** essay. Command words are the exam’s contract — break them and the mark scheme cannot save you.

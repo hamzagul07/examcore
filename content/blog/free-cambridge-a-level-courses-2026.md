@@ -1,6 +1,6 @@
 ---
 title: Free Cambridge A-Level & O-Level courses — topic-by-topic (2026)
-description: Free premium revision courses for Cambridge A-Level and O-Level — every syllabus topic, simpler explanations, real past-paper questions, and mark-scheme marking.
+description: Free revision courses for Cambridge A-Level and O-Level — every syllabus topic, simpler explanations, real past-paper questions, and mark-scheme marking.
 date: 2026-06-10
 category: editorial
 featured: true
@@ -78,4 +78,4 @@ Yes — subjects with syllabus trees in our system (e.g. via marking-enabled cod
 
 ## Bottom line
 
-If you searched **free A Level course any subject**, start at **[/courses](/courses)** — pick your code, learn one topic, mark one past-paper question. That loop is how grades actually move.
+If you searched **free A Level course any subject**, start at **[free courses](/courses)(/courses)** — pick your code, learn one topic, mark one past-paper question. That loop is how grades actually move.

@@ -2,7 +2,7 @@
 title: IB Psychology HL past papers & revision guide
 description: IB Psychology HL: Paper 1 approaches, Paper 2 options, Paper 3 qualitative research, markbands, and study technique.
 date: 2026-06-25
-keywords: IB Psychology HL, IB Psychology HL past papers, IB Psychology mark scheme, IB Psychology HL revision, IB Psychology markbands
+keywords: IB Psychology HL, IB Psychology HL past papers, IB Psychology HL mark scheme, IB Psychology HL revision, IB Psychology HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

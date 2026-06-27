@@ -3,6 +3,7 @@ title: How to mark Cambridge past papers yourself (and when to get a second opin
 description: A practical workflow for self-marking Cambridge A-Level and O-Level past papers using the official mark scheme — plus where students usually slip up.
 date: 2026-04-02
 keywords: Cambridge past papers, self marking past papers, mark my own past paper, Cambridge revision, past paper practice
+author: hamza-gul
 ---
 
 You already know past papers matter. The part that is quietly expensive is **how** you mark them — generous, tired, scheme-open-after-you-have-decided-you-were-right.

@@ -5,6 +5,7 @@ date: 2026-06-05
 category: editorial
 featured: true
 keywords: May June 2026 exams, Cambridge exam countdown, 8 week revision plan, exam timetable, A-Level 2026
+author: hamza-gul
 ---
 
 The **May/June 2026** series is when most Cambridge International candidates sit their main papers. Eight weeks out is not early — it is the window where **structure** beats **hours**. This countdown assumes you are past-paper ready, not learning the syllabus from zero.

@@ -3,6 +3,7 @@ title: When should you start Cambridge A-Level past papers?
 description: Too early wastes confidence; too late wastes exam technique. Signs you are ready for timed papers — and what to do before your first full sit.
 date: 2026-05-26
 keywords: A-Level past papers, when to start past papers, Cambridge A-Level, exam revision, past paper practice
+author: hamza-gul
 ---
 
 Students hear “start past papers in January” and either panic in September or delay until March. Timing depends on **coverage**, not calendar memes.
@@ -55,7 +56,7 @@ Prioritise full papers with strict mark over new content binge.
 
 ## Using MarkScheme in the ramp
 
-From Phase 2 onward, photo-upload marking gives fast scheme alignment on handwriting — useful when teachers have marking queues. [/mark](/mark) works for guests with daily limits; accounts track progress.
+From Phase 2 onward, photo-upload marking gives fast scheme alignment on handwriting — useful when teachers have marking queues. [mark a paper](/mark)(/mark) works for guests with daily limits; accounts track progress.
 
 ## Practical calendar (example: exams May/June)
 

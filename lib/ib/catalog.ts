@@ -24,6 +24,10 @@ export type IbSubject = {
 
 /** Recent exam series we present in the past-paper archive (post-COVID, accurate). */
 export const IB_SESSIONS = [
+  'May 2026',
+  'November 2025',
+  'May 2025',
+  'November 2024',
   'May 2024',
   'November 2023',
   'May 2023',

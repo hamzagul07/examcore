@@ -1,6 +1,6 @@
 ---
 title: Cambridge IGCSE most tested past paper topics for 2026
-description: High-frequency topics in IGCSE Maths 0580, Biology 0610, Chemistry 0620 and Physics 0625 from 2019–2025 papers — with a past-paper practice order that builds marks.
+description: High-frequency topics in IGCSE Maths 0580, Biology 0610, Chemistry 0620 and Physics 0625 — with a past-paper practice order that builds marks.
 date: 2026-06-10
 category: revision
 featured: true

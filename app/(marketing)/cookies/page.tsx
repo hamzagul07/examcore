@@ -40,8 +40,9 @@ export default function CookiesPage() {
                 remember choices such as your theme (light/dark) and exam board, stored in your
                 browser&apos;s <code>localStorage</code> so the app looks the way you left it.
                 We also store when you dismiss the optional blog signup popup (
-                <code>markscheme_blog_signup_dismissed</code>) so we do not show it again for
-                seven days.
+                <code>markscheme_blog_signup_dismissed</code> in{' '}
+                <code>sessionStorage</code>) so we do not show it again during the same
+                browser session.
               </li>
               <li>
                 <strong className="text-[var(--ec-text-primary)]">Local progress</strong> — to

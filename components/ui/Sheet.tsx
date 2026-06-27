@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useId, type ReactNode } from 'react'
+import { useEffect, useId, useState, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -36,7 +37,12 @@ export function Sheet({
   compactPadding = false,
 }: SheetProps) {
   const titleId = useId()
+  const [mounted, setMounted] = useState(false)
   useBodyScrollLock(open)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -47,15 +53,14 @@ export function Sheet({
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  return (
+  const sheet = (
     <AnimatePresence>
       {open && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[var(--ec-z-modal,90)] flex items-end justify-center p-0 sm:items-center sm:p-4"
-          style={{ zIndex: 90 }}
+          className="fixed inset-0 z-[var(--ec-z-modal,250)] flex items-end justify-center p-0 sm:items-center sm:p-4"
         >
           <div
             className="absolute inset-0 ec-modal-backdrop"
@@ -97,7 +102,7 @@ export function Sheet({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 top-3 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)] sm:right-4 sm:top-4"
+              className="absolute right-3 top-3 z-20 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-text-primary)] sm:right-4 sm:top-4"
               aria-label="Close"
             >
               <X className="h-5 w-5" />
@@ -108,4 +113,7 @@ export function Sheet({
       )}
     </AnimatePresence>
   )
+
+  if (!mounted) return null
+  return createPortal(sheet, document.body)
 }

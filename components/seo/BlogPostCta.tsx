@@ -57,6 +57,18 @@ export function BlogPostCta({
 
         <div className="ec-blog-footer-cta__actions">
           <div className="ec-blog-footer-cta__discuss">
+            <div className="ec-blog-footer-cta__discuss-meta">
+              <div className="ec-discuss-live" aria-hidden>
+                <span className="ec-discuss-live__dot" />
+                Live now
+              </div>
+              <div className="ec-discuss-avatars" aria-hidden>
+                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--a">A</span>
+                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--b">M</span>
+                <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--c">S</span>
+                <span className="ec-discuss-avatars__more">+12</span>
+              </div>
+            </div>
             <p className="ec-blog-footer-cta__discuss-label">Exam discussion</p>
             <Link href={communityHref} className="ec-btn-discuss">
               <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />

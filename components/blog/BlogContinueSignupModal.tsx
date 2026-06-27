@@ -13,11 +13,16 @@ import {
 import { Sheet } from '@/components/ui/Sheet'
 import { trackBlogContinuePopupClick } from '@/lib/analytics/blog-events'
 import { buildSignUpHref } from '@/lib/auth-redirect'
-import { readClientStorage, STORAGE_KEYS, writeClientStorage } from '@/lib/client-storage'
+import {
+  readSessionStorage,
+  removeClientStorage,
+  STORAGE_KEYS,
+  writeSessionStorage,
+} from '@/lib/client-storage'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 
-const DISMISS_MS = 7 * 24 * 60 * 60 * 1000
 const SCROLL_THRESHOLD = 0.2
+const OPEN_DELAY_MS = 3500
 const TITLE_ID = 'blog-continue-dialog-title'
 
 type Props = {
@@ -26,15 +31,12 @@ type Props = {
   subjectName?: string | null
 }
 
-function isDismissedRecently(): boolean {
-  const raw = readClientStorage(STORAGE_KEYS.blogSignupDismissed)
-  if (!raw) return false
-  const ts = Number(raw)
-  return Number.isFinite(ts) && Date.now() - ts < DISMISS_MS
+function isDismissedThisSession(): boolean {
+  return readSessionStorage(STORAGE_KEYS.blogSignupDismissed) === '1'
 }
 
 function dismissPopup(): void {
-  writeClientStorage(STORAGE_KEYS.blogSignupDismissed, String(Date.now()))
+  writeSessionStorage(STORAGE_KEYS.blogSignupDismissed, '1')
 }
 
 /** Reliable scroll progress for window/document (0–1). */
@@ -80,26 +82,33 @@ export function BlogContinueSignupModal({
 
   useEffect(() => {
     setHydrated(true)
+    // Legacy 7-day localStorage dismiss — session dismiss replaces it.
+    removeClientStorage(STORAGE_KEYS.blogSignupDismissed)
   }, [])
 
-  const tryOpen = useCallback(() => {
+  const tryOpen = useCallback((force = false) => {
     if (triggeredRef.current) return
-    if (!shouldOpenPopup()) return
+    if (!force && !shouldOpenPopup()) return
     triggeredRef.current = true
     setOpen(true)
   }, [])
 
   useEffect(() => {
-    if (!hydrated || loading || user || isDismissedRecently()) return
+    if (!hydrated || loading || user || isDismissedThisSession()) return
 
     function onScrollOrResize() {
       tryOpen()
     }
 
     tryOpen()
+    const delayId = window.setTimeout(() => {
+      tryOpen(true)
+    }, OPEN_DELAY_MS)
+
     window.addEventListener('scroll', onScrollOrResize, { passive: true })
     window.addEventListener('resize', onScrollOrResize, { passive: true })
     return () => {
+      window.clearTimeout(delayId)
       window.removeEventListener('scroll', onScrollOrResize)
       window.removeEventListener('resize', onScrollOrResize)
     }
@@ -115,7 +124,7 @@ export function BlogContinueSignupModal({
     setOpen(false)
   }, [])
 
-  if (!hydrated || loading || user || isDismissedRecently()) return null
+  if (!hydrated || loading || user || isDismissedThisSession()) return null
 
   const signupHref = buildSignUpHref(`/blog/${slug}`)
   const communityHref = subjectCode ? `/community/s/${subjectCode}` : '/community'
@@ -163,6 +172,16 @@ export function BlogContinueSignupModal({
           </ul>
 
           <div className="ec-blog-continue-popup__discuss">
+            <div className="ec-discuss-live" aria-hidden>
+              <span className="ec-discuss-live__dot" />
+              Live now
+            </div>
+            <div className="ec-discuss-avatars" aria-hidden>
+              <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--a">A</span>
+              <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--b">M</span>
+              <span className="ec-discuss-avatars__bubble ec-discuss-avatars__bubble--c">S</span>
+              <span className="ec-discuss-avatars__more">+12</span>
+            </div>
             <div className="ec-blog-continue-popup__discuss-head">
               <span className="ec-blog-continue-popup__discuss-icon" aria-hidden>
                 <Users className="h-5 w-5" />

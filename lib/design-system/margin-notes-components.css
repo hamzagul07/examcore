@@ -1535,4 +1535,21 @@
       background: var(--ec-brand-muted);
     }
   }
+
+  /* A11y: header icon buttons keep a 44px touch target even when shown icon-only
+     (WCAG 2.5.5). min-* clamps the computed size regardless of the width:36px rules. */
+  .ec-cmdk-btn,
+  .ec-theme-flip,
+  .ec-avatar-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* On small phones the truncated board-context pill crowds the logo + CTA;
+     hide it (the hamburger + breadcrumb still cover navigation). */
+  @media (max-width: 430px) {
+    .ec-nav-context {
+      display: none;
+    }
+  }
 }

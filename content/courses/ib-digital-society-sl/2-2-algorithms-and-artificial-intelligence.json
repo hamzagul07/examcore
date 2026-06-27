@@ -1,0 +1,169 @@
+{
+  "slug": "2-2-algorithms-and-artificial-intelligence",
+  "topicCode": "2.2",
+  "title": "Algorithms and artificial intelligence",
+  "paper": "Content",
+  "paperName": "Digital Society SL",
+  "status": "premium",
+  "summary": "This lesson introduces the foundational concepts of algorithms and artificial intelligence (AI). It explores the relationship between AI, machine learning, and deep learning, and critically examines their societal impacts, including ethical challenges like bias, accountability, and transparency.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Define and differentiate between algorithms, artificial intelligence (AI), and machine learning (ML).",
+    "Explain how algorithms and AI function in everyday digital systems.",
+    "Analyse the ethical and social impacts of AI, including bias, accountability, and transparency.",
+    "Apply these concepts to evaluate real-world scenarios involving AI systems."
+  ],
+  "simpleExplanation": {
+    "title": "AI: The Smart Recipe Book",
+    "summary": "Algorithms are like recipes that computers follow to complete tasks. Artificial intelligence is like a chef who can not only follow recipes but also learn from experience (data) to create new and better dishes on their own.",
+    "analogy": "Imagine you have a recipe for a cake. An algorithm is that exact, step-by-step recipe. Anyone following it precisely will produce the same cake. Now, imagine a master chef. They don't just follow recipes; they understand the principles of baking. They can taste a cake (analyse data), learn what works, and invent a new, delicious cake recipe. That's like AI—it learns from data to create its own instructions.",
+    "steps": [
+      "Define the Goal: First, determine the task the algorithm or AI needs to accomplish, such as identifying spam emails or recommending a film.",
+      "Gather the Data: The system collects relevant data, which acts as its ingredients and experience. This could be millions of emails (labelled as spam or not) or a user's viewing history.",
+      "Process and Learn: The algorithm processes the data to find patterns. A machine learning model is 'trained' on this data, learning the characteristics of spam or the user's taste in films.",
+      "Produce an Output and Refine: The system produces a result, like moving an email to the spam folder or suggesting a film. It then learns from the outcome (e.g., if you move an email out of spam) to improve its future performance."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Algorithm",
+      "back": "A finite sequence of well-defined, computer-implementable instructions to solve a class of problems or to perform a computation. Think of it as a recipe for a computer."
+    },
+    {
+      "front": "Artificial Intelligence (AI)",
+      "back": "The theory and development of computer systems able to perform tasks that normally require human intelligence, such as visual perception, speech recognition, and decision-making."
+    },
+    {
+      "front": "Machine Learning (ML)",
+      "back": "A subset of AI where systems automatically learn and improve from experience (data) without being explicitly programmed. It's about recognising patterns in data."
+    },
+    {
+      "front": "Deep Learning",
+      "back": "A subset of machine learning based on artificial neural networks with multiple layers (deep neural networks). It's responsible for many recent AI breakthroughs, like advanced image recognition."
+    },
+    {
+      "front": "Training Data",
+      "back": "The dataset used to teach a machine learning model. The quality and nature of this data are critical; biased data will lead to a biased model."
+    },
+    {
+      "front": "Algorithmic Bias",
+      "back": "Systematic and repeatable errors in a computer system that create unfair outcomes, such as privileging one arbitrary group of users over others. It often originates from biased training data or flawed algorithm design."
+    },
+    {
+      "front": "The 'Black Box' Problem",
+      "back": "A situation where an AI system's decision-making process is opaque and cannot be easily understood by humans. This makes it difficult to debug, audit, or trust the AI's output."
+    },
+    {
+      "front": "Algorithmic Transparency",
+      "back": "The principle that the factors and logic influencing an algorithmic decision should be visible or explainable to the people who use or are affected by it. It is the opposite of the 'black box' problem."
+    },
+    {
+      "front": "Supervised Learning",
+      "back": "A type of machine learning where the model is trained on a dataset that is 'labelled'. For example, an image dataset where each image is labelled as 'cat' or 'dog'. The algorithm learns to map input to output."
+    },
+    {
+      "front": "Unsupervised Learning",
+      "back": "A type of machine learning where the model is trained on an unlabelled dataset. The algorithm tries to find patterns and structures in the data on its own, for example, by clustering customers into different purchasing groups."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is AI the same as an algorithm?",
+      "a": "Not exactly. An algorithm is a set of instructions. AI is a broader concept where a system can perform tasks that require human-like intelligence. Many AI systems, especially those using machine learning, work by having an initial algorithm that allows them to learn from data and then create their own new, complex decision-making processes."
+    },
+    {
+      "q": "Will AI take away all our jobs?",
+      "a": "This is a major topic of debate. AI will certainly automate many tasks and change the nature of many jobs, likely eliminating some roles while creating new ones. Historically, technological revolutions have shifted the job market rather than causing mass, permanent unemployment. The key challenge for society is managing this transition through education, reskilling, and social safety nets."
+    },
+    {
+      "q": "Why can't developers just remove bias from training data?",
+      "a": "It's incredibly difficult. Bias can be deeply embedded in societal data in subtle ways that are hard to detect. Simply removing a protected characteristic like race might not work, as the AI can use proxy variables (like postcodes or names) to infer it. Furthermore, what one person considers 'fair' or 'unbiased' can be different from another's perspective, making it a complex socio-technical problem, not just a technical one."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From your social media feed to navigation apps, algorithms and artificial intelligence are the invisible engines driving much of our digital society. This lesson will demystify these powerful technologies. We will explore what they are, how they work, and, most importantly, critically evaluate their profound impact on individuals and society."
+    },
+    {
+      "type": "heading",
+      "content": "Deconstructing Algorithms"
+    },
+    {
+      "type": "text",
+      "content": "At its core, an algorithm is simply a set of step-by-step instructions for solving a problem or accomplishing a task. While we often associate them with complex computer code, we use algorithms in daily life, such as following a recipe or assembly instructions. In digital systems, algorithms are the fundamental building blocks that process data and automate decisions, determining everything from search engine results to the price of an airline ticket."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Finite:** An algorithm must eventually terminate after a finite number of steps.",
+        "**Well-defined:** Each step must be precisely defined and unambiguous.",
+        "**Input and Output:** An algorithm takes zero or more inputs and produces at least one output.",
+        "**Effective:** The instructions must be basic enough to be carried out in practice."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A new music streaming service wants to create a simple algorithm to generate a 'Discovery' playlist for a user. The goal is to recommend songs the user might like but hasn't heard. Using the concepts of algorithms, outline a three-step process the service could use. For each step, identify one piece of data it would need.",
+      "solution": "A possible algorithmic process could be:\n\n1.  **Step 1: Analyse User's Listening Profile.** The algorithm first needs to understand the user's taste. It would analyse the genres, artists, and audio features (e.g., tempo, energy) of songs the user frequently listens to or has explicitly 'liked'.\n    *   **Data needed:** User's listening history, list of liked songs, song metadata.\n\n2.  **Step 2: Identify Candidate Songs.** The algorithm then searches the platform's entire music catalogue for songs that are *not* in the user's listening history but share similar characteristics (genre, tempo, artist-similarity) with the user's preferred music.\n    *   **Data needed:** Full music catalogue with comprehensive metadata (genre, tempo, artist info, etc.).\n\n3.  **Step 3: Compile and Rank the Playlist.** The algorithm compiles a list of these new, similar songs. It might rank them based on popularity or a 'similarity score' and present them to the user as the 'Discovery' playlist. It may also add a few less similar songs to encourage exploration.\n    *   **Data needed:** A system to create and display a playlist; potentially popularity data for ranking."
+    },
+    {
+      "type": "heading",
+      "content": "From Instructions to Intelligence: AI and Machine Learning"
+    },
+    {
+      "type": "text",
+      "content": "Artificial Intelligence (AI) is a broad field of computer science focused on creating systems that can perform tasks requiring human intelligence. Machine Learning (ML) is a powerful subset of AI that gives computers the ability to learn from data without being explicitly programmed. Instead of writing step-by-step rules, developers 'train' a model on a vast dataset, and the model learns the patterns itself. Deep Learning, a further subset of ML, uses complex structures called neural networks to achieve even more impressive feats, especially in areas like image and speech recognition."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**AI (Artificial Intelligence):** The broad concept of machines being able to carry out tasks in a way that we would consider 'smart'.",
+        "**ML (Machine Learning):** An approach to AI where a program learns from data. The more data it gets, the better it becomes.",
+        "**Deep Learning:** A specific type of ML that uses multi-layered 'deep' neural networks, inspired by the human brain's structure.",
+        "**Relationship:** Think of them as Russian dolls: Deep Learning is inside ML, which is inside AI."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Societal and Ethical Dimensions"
+    },
+    {
+      "type": "text",
+      "content": "The rapid integration of AI and algorithms into society brings enormous benefits but also significant challenges. These systems are not inherently neutral; they reflect the data they are trained on and the values of their creators. This can lead to serious ethical issues, including the amplification of bias, threats to privacy, and questions of accountability when things go wrong."
+    },
+    {
+      "type": "workedExample",
+      "question": "A city council implements an AI-powered system to assess applications for social housing. The system is trained on historical data from the last 20 years of human-led decisions. After a year, an audit reveals that the system disproportionately rejects applications from single-parent households and recent immigrants. Identify and explain two distinct ethical issues present in this scenario.",
+      "solution": "1.  **Ethical Issue 1: Algorithmic Bias and Discrimination.** The AI has likely learned and automated biases present in the historical training data. If human assessors in the past were biased (consciously or unconsciously) against single-parent households or immigrants, the AI would codify these patterns as valid decision-making criteria. This results in a discriminatory system that reinforces existing social inequalities, allocating housing based on flawed historical patterns rather than current, objective need. The system is not 'fair' because its core logic is built on a biased foundation.\n\n2.  **Ethical Issue 2: Lack of Transparency and Accountability (The 'Black Box' Problem).** If the AI model is complex (like a deep neural network), it may be impossible for the city council to understand *why* it rejected a specific application. This opaqueness, known as the 'black box' problem, makes it extremely difficult for an applicant to challenge or appeal a decision. It also creates an accountability vacuum: is the council responsible for the discriminatory outcome? Or is it the software developer, or the provider of the historical data? Without transparency, there is no clear path for redress for those unfairly treated, and it is difficult to diagnose and fix the system's flaws."
+    },
+    {
+      "type": "examTip",
+      "content": "In your exam answers, always strive for balance. Acknowledge the potential benefits of an AI system (e.g., efficiency, speed, processing large datasets) before critically evaluating its drawbacks. Use specific terminology like 'algorithmic bias', 'training data', and 'black box' and support your points with real-world or plausible hypothetical examples to achieve higher marks."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge on Algorithms and AI",
+      "href": "/mark?subject=ib-digital-society-sl&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "The A-Z of AI - Google/Oxford Internet Institute",
+          "href": "https://www.oii.ox.ac.uk/study/oii-google-a-z-of-ai/"
+        },
+        {
+          "label": "AI, Ain't I A Woman? - An exploration of bias in AI",
+          "href": "https://www.youtube.com/watch?v=QxCA3z3J5lI"
+        },
+        {
+          "label": "What is an algorithm? - BBC Bitesize",
+          "href": "https://www.bbc.co.uk/bitesize/topics/z34k7ty/articles/z8wh6sg"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

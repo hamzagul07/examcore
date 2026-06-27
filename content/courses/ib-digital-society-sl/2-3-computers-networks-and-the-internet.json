@@ -1,0 +1,164 @@
+{
+  "slug": "2-3-computers-networks-and-the-internet",
+  "topicCode": "2.3",
+  "title": "Computers, networks and the internet",
+  "paper": "Content",
+  "paperName": "Digital Society SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of computers, networks, and the internet. It explores the hardware and software components that enable digital connectivity, from local area networks (LANs) to the global internet, and explains the protocols like TCP/IP that govern data transmission.",
+  "durationMin": 22,
+  "updated": "2026-06-27",
+  "learningObjectives": [
+    "Distinguish between key network types such as LAN, WAN, and the internet.",
+    "Explain the function of core network hardware like routers and switches.",
+    "Describe the process of data transmission using packet switching and the TCP/IP protocol suite.",
+    "Analyse the client-server model and the role of DNS in accessing online resources."
+  ],
+  "simpleExplanation": {
+    "title": "The Digital Postal Service",
+    "summary": "Computers are like individual houses, and networks are the roads that connect them. The internet is the worldwide system of all roads, allowing messages (data) to be sent from any house to any other.",
+    "analogy": "Imagine you want to send a multi-page letter to a friend across the country. Instead of one big envelope, you tear each page out, put it in a separate, smaller envelope, and write your friend's address and a page number (e.g., 'page 1 of 5') on each one. The postal service (the network) sends each envelope on the fastest route available, which might be different for each one. When they arrive, your friend uses the page numbers to reassemble the letter in the correct order. This is exactly how packet switching works on the internet.",
+    "steps": [
+      "A computer, or 'client', requests information, like a webpage. This request is broken down into small pieces of data called packets.",
+      "Each packet is labelled with the destination address (the server's IP address) and its own sequence number, like a numbered parcel.",
+      "Network devices like routers act as digital sorting offices, reading the address on each packet and forwarding it along the most efficient path towards the destination server.",
+      "The destination server receives the packets, which may arrive out of order. It uses the sequence numbers to reassemble them correctly and send the requested webpage back to the client, again as packets."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a Local Area Network (LAN)?",
+      "back": "A network that connects computers and devices in a limited geographical area such as a home, school, or office building. Typically owned and managed by a single organisation."
+    },
+    {
+      "front": "What is a Wide Area Network (WAN)?",
+      "back": "A network that connects devices over a large geographical area, such as a country or continent. The internet is the largest example of a WAN. WANs often use infrastructure from public carriers."
+    },
+    {
+      "front": "Define 'Protocol' in a networking context.",
+      "back": "A set of established rules that determines how data is transmitted between different devices in the same network. For example, TCP/IP, HTTP, FTP."
+    },
+    {
+      "front": "What is TCP/IP?",
+      "back": "Transmission Control Protocol/Internet Protocol. The fundamental protocol suite of the internet. TCP manages breaking down and reassembling data into packets, while IP handles addressing and routing these packets to their destination."
+    },
+    {
+      "front": "What is an IP Address?",
+      "back": "A unique numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. It's like a postal address for your device on the internet."
+    },
+    {
+      "front": "What is the function of a router?",
+      "back": "A network device that forwards data packets between computer networks. Routers perform the traffic directing functions on the Internet. A home router connects your LAN to your Internet Service Provider's (ISP) WAN."
+    },
+    {
+      "front": "What is the function of a switch?",
+      "back": "A network device that connects devices together on a computer network (typically a LAN) by using packet switching to receive, process, and forward data to the destination device. It operates within a single network."
+    },
+    {
+      "front": "Explain Packet Switching.",
+      "back": "A method of grouping data into packets that are transmitted over a digital network. Each packet is routed independently, and they may take different routes to the destination, where they are reassembled."
+    },
+    {
+      "front": "What is the Domain Name System (DNS)?",
+      "back": "The internet's phonebook. It translates human-readable domain names (like www.google.com) into machine-readable IP addresses (like 142.250.179.196) that computers use to locate each other."
+    },
+    {
+      "front": "What is the Client-Server Model?",
+      "back": "A distributed application structure that partitions tasks or workloads between the providers of a resource or service, called servers, and service requesters, called clients. Your web browser is a client requesting a webpage from a web server."
+    },
+    {
+      "front": "Common Trap: Is Wi-Fi the same as the Internet?",
+      "back": "No. Wi-Fi is a technology that allows devices to connect to a Local Area Network (LAN) wirelessly. The internet is the global Wide Area Network (WAN) that your LAN connects to (usually via a router and an ISP)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From sending a message to a friend to streaming a film, nearly every aspect of our digital lives depends on computers communicating with each other. This lesson unpacks the fundamental architecture of this communication, exploring the journey of data from your device, across local networks, and through the vast, interconnected web of the internet."
+    },
+    {
+      "type": "heading",
+      "content": "Building Blocks: Computers and Local Networks"
+    },
+    {
+      "type": "text",
+      "content": "At its core, a computer is a device that processes data. When we connect multiple computers and peripherals (like printers) in a confined area, such as an office or a school, we create a Local Area Network (LAN). This allows for shared resources and communication. Devices on a LAN are typically connected via Ethernet cables or wirelessly (Wi-Fi) to a central device called a switch, which intelligently forwards data only to the intended recipient device within the network."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Computer:** A programmable electronic device for storing and processing data.",
+        "**LAN (Local Area Network):** Confined to a small geographical area (e.g., one building). High speed, low cost, and privately owned.",
+        "**Switch:** A device that connects multiple devices on a LAN and directs traffic between them efficiently.",
+        "**Wi-Fi:** A wireless technology standard used for creating LANs."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A new secondary school is setting up its first IT suite with 30 desktop computers, a shared printer, and a central file storage system. Explain why a client-server LAN would be a suitable network architecture for this scenario, identifying two key hardware components required.",
+      "solution": "A client-server LAN is highly suitable for the school's IT suite. [1 mark]\n\n**Justification:**\nIn this model, the 30 desktop computers would act as 'clients', requesting services and resources. A powerful central 'server' would manage access to the shared printer and the central file storage. [1 mark] This is more efficient and secure than a peer-to-peer network, as user access, data backups, and software updates can be managed centrally by an IT administrator, which is essential in a school environment. [1 mark]\n\n**Key Hardware Components:**\n1. **Switch:** A network switch is required to connect all 30 computers, the server, and the printer. It will manage the flow of data within the LAN, ensuring that a print job from one computer goes directly to the printer without congesting the rest of the network. [1 mark]\n2. **Server:** A dedicated server computer is needed to host the central file storage and manage print jobs. This machine would be more powerful than the client desktops to handle multiple requests simultaneously. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "The Internet: A Global Network of Networks"
+    },
+    {
+      "type": "text",
+      "content": "The internet is not a single entity but a vast, global collection of interconnected public and private networks, from large corporate LANs to your small home network. It is a Wide Area Network (WAN). Your gateway to this global network is your Internet Service Provider (ISP). A device called a router is crucial here; it connects your entire LAN to the ISP's network, directing traffic between your local devices and the wider internet."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, be precise with your terminology. Do not use 'internet' and 'World Wide Web' (WWW) interchangeably. The internet is the global network infrastructure (the hardware and protocols), while the WWW is one of the services that runs on the internet (the system of interlinked web pages and resources)."
+    },
+    {
+      "type": "heading",
+      "content": "The Rules of the Road: Protocols and Data Transmission"
+    },
+    {
+      "type": "text",
+      "content": "For data to travel reliably across this complex system, it needs a set of rules, or protocols. The most important is the TCP/IP suite. When you request a webpage, TCP breaks your request into small packets. IP then addresses each packet with the destination server's IP address. These packets are sent independently via packet switching, with routers directing them across the internet. At the destination, TCP reassembles the packets in the correct order. To find the IP address in the first place, your computer uses the Domain Name System (DNS), which acts like the internet's address book, translating a website name like 'ibo.org' into a numerical IP address."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**TCP/IP:** The core protocol suite. TCP handles packet creation/reassembly and error checking. IP handles addressing and routing.",
+        "**Packet Switching:** Data is broken into packets, sent independently, and reassembled at the destination. This is efficient and robust.",
+        "**Router:** Connects different networks together (e.g., your LAN to the internet) and directs packets towards their final destination.",
+        "**DNS (Domain Name System):** Translates human-friendly domain names into computer-friendly IP addresses."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A user types 'www.example.com' into their web browser and presses Enter. The page loads successfully. Outline the key steps involving DNS and TCP/IP that occur to make this happen.",
+      "solution": "1. **DNS Lookup:** The user's computer does not know the IP address for 'www.example.com'. It sends a request to a DNS server. [1 mark] The DNS server looks up 'www.example.com' in its database and returns the corresponding IP address (e.g., 93.184.216.34) to the user's computer. [1 mark]\n\n2. **TCP Connection:** The user's browser (the client) now uses this IP address to establish a TCP connection with the web server at that address. This involves a 'three-way handshake' to ensure both client and server are ready to communicate. [1 mark]\n\n3. **HTTP Request & Packet Switching:** The browser sends an HTTP GET request for the webpage. TCP breaks this request into numbered packets. IP adds the source (user's) and destination (server's) IP addresses to each packet. [1 mark] The packets are sent across the internet, forwarded by routers, and reassembled by TCP at the server. [1 mark]\n\n4. **Server Response:** The server processes the request and sends the webpage's data back to the client, again broken into TCP/IP packets. The user's browser reassembles the packets and renders the webpage. [1 mark]"
+    },
+    {
+      "type": "faq",
+      "q": "What is the difference between a router and a switch?",
+      "a": "Think of it like post in an apartment building. A **switch** is like the internal mail sorter in the building's mailroom. It knows which flat (device) each piece of mail (data packet) goes to and delivers it only to that specific flat's mailbox. It operates *within* one network (the building). A **router** is like the postman for the whole street. It takes mail from your building (your LAN) and sends it out into the wider world (the internet/WAN), and also delivers incoming mail from the outside world to your building's mailroom. It connects *different* networks together."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-digital-society-sl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "How the Internet Works in 5 Minutes (Video)",
+          "href": "https://www.youtube.com/watch?v=7_LPdttKXPc"
+        },
+        {
+          "label": "Mozilla Developer Network: How the Web works",
+          "href": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works"
+        },
+        {
+          "label": "Cloudflare: What is a Network Switch vs. a Router?",
+          "href": "https://www.cloudflare.com/en-gb/learning/network-layer/router-vs-switch/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

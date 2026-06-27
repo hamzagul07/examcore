@@ -22,9 +22,9 @@ export const CONTACT_EMAIL = 'hello@markscheme.app'
 
 /**
  * Twitter/X handle (including the leading @) for Twitter card attribution.
- * Leave empty to omit site/creator from the card. Fill in once the account exists.
+ * Leave empty to omit site/creator from the card.
  */
-export const SITE_TWITTER = ''
+export const SITE_TWITTER = '@MarkSchemeApp'
 
 /** Default meta description — marking, courses, and student community. */
 export const DEFAULT_SITE_DESCRIPTION =

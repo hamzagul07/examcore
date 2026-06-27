@@ -3,7 +3,9 @@ import { DEFAULT_BLOG_AUTHOR } from '@/lib/seo/authors'
 
 // Live, verified brand profiles (public URLs). Kept as code defaults so they ship
 // in Organization.sameAs without a deploy env var; the env vars still override.
-const DEFAULT_BRAND_LINKEDIN = 'https://www.linkedin.com/company/markscheme'
+const DEFAULT_BRAND_LINKEDIN = 'https://www.linkedin.com/company/markscheme/'
+const DEFAULT_BRAND_TWITTER = 'https://twitter.com/MarkSchemeApp'
+const DEFAULT_BRAND_YOUTUBE = 'https://www.youtube.com/@MarkSchemeApp'
 const DEFAULT_BRAND_CRUNCHBASE = 'https://www.crunchbase.com/organization/markscheme'
 const DEFAULT_FOUNDER_LINKEDIN = 'https://www.linkedin.com/in/hamza-gul-hassan-0568b7367/'
 
@@ -11,11 +13,11 @@ const DEFAULT_FOUNDER_LINKEDIN = 'https://www.linkedin.com/in/hamza-gul-hassan-0
 export function getBrandSameAs(): string[] {
   return [
     process.env.NEXT_PUBLIC_WIKIDATA_ENTITY_URL,
-    process.env.NEXT_PUBLIC_TWITTER_URL,
+    process.env.NEXT_PUBLIC_TWITTER_URL ?? DEFAULT_BRAND_TWITTER,
     process.env.NEXT_PUBLIC_LINKEDIN_URL ?? DEFAULT_BRAND_LINKEDIN,
     process.env.NEXT_PUBLIC_CRUNCHBASE_URL ?? DEFAULT_BRAND_CRUNCHBASE,
     process.env.NEXT_PUBLIC_INSTAGRAM_URL,
-    process.env.NEXT_PUBLIC_YOUTUBE_URL,
+    process.env.NEXT_PUBLIC_YOUTUBE_URL ?? DEFAULT_BRAND_YOUTUBE,
     process.env.NEXT_PUBLIC_GITHUB_URL,
   ].filter((u): u is string => Boolean(u?.trim()))
 }

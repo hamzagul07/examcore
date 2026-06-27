@@ -2,7 +2,7 @@
 title: IB Maths AA HL past papers & revision guide
 description: IB Mathematics Analysis and Approaches HL: Paper 1 (no GDC), Paper 2 (GDC), Paper 3 problem-solving, and markband revision.
 date: 2026-06-25
-keywords: IB Maths AA HL, IB Maths AA HL past papers, IB Analysis and Approaches HL, IB Maths AA mark scheme, IB Maths AA HL revision
+keywords: IB Maths AA HL, IB Maths AA HL past papers, IB Analysis and Approaches HL, IB Maths AA HL mark scheme, IB Maths AA HL revision
 category: revision
 author: hassan
 updated: 2026-06-25

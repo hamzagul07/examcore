@@ -3,6 +3,7 @@ title: How many Cambridge past papers should you do before exams?
 description: A realistic past-paper count for A-Level and O-Level — by weeks to exams, subject type, and what “done” actually means (marking included).
 date: 2026-05-18
 keywords: how many past papers, Cambridge revision, A-Level past papers, exam preparation, past paper schedule
+author: hamza-gul
 ---
 
 “How many past papers do I need?” is the wrong question. **How many past papers have you marked honestly?** is the one that predicts grades.

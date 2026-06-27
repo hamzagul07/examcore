@@ -4,6 +4,7 @@ description: What ECF means in Cambridge maths and science marking, when it appl
 date: 2026-06-05
 category: mark-schemes
 keywords: error carried forward, ECF mark scheme, Cambridge maths marking, follow through marks
+author: hamza-gul
 ---
 
 One wrong number does not always kill the whole question — **if** your later method stays consistent and the scheme allows **error carried forward (ECF)**.
@@ -40,8 +41,7 @@ If yes, award the ecf marks the scheme lists.
 ---
 
 ## Practice on 9709 / sciences
-
-Pick one multi-part calculation from a recent paper. Deliberately use a wrong (a) and practise marking (b) with ecf — builds exam-day calm.
+Pick one multi-part calculation from a recent [9709](/blog/cambridge-9709-a-level-mathematics-past-papers-guide) paper. Deliberately use a wrong (a) and practise marking (b) with ecf — builds exam-day calm.
 
 ---
 

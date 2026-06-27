@@ -20,6 +20,12 @@ export const SITE_TAGLINE =
 
 export const CONTACT_EMAIL = 'hello@markscheme.app'
 
+/**
+ * Twitter/X handle (including the leading @) for Twitter card attribution.
+ * Leave empty to omit site/creator from the card. Fill in once the account exists.
+ */
+export const SITE_TWITTER = ''
+
 /** Default meta description — marking, courses, and student community. */
 export const DEFAULT_SITE_DESCRIPTION =
   'Mark Cambridge & IB past papers mark-by-mark, learn in free syllabus courses, and discuss in Exam Room — Reddit-style communities for every subject. Free tier to start.'

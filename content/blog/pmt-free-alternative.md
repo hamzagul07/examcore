@@ -1,6 +1,6 @@
 ---
 title: Physics & Maths Tutor free alternative for Cambridge revision
-description: Looking for a free alternative to Physics & Maths Tutor? Here are the best free Cambridge resources for notes, past papers and marking — and how to combine them.
+description: A free alternative to Physics & Maths Tutor: the best free Cambridge resources for notes, past papers and marking — and how to combine them.
 date: 2026-06-19
 keywords: Physics & Maths Tutor free alternative, Physics & Maths Tutor alternative, free Physics & Maths Tutor, Physics & Maths Tutor vs free, Cambridge revision free
 category: study-skills

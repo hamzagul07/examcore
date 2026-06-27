@@ -2,10 +2,11 @@
 title: Cambridge A-Level maths mark schemes explained — B1, M1, A1 and ECF
 description: What method marks and accuracy marks really mean on 9709 and other Cambridge maths papers, with examples of how examiners award (and withhold) marks.
 date: 2026-04-08
-keywords: B1 M1 A1 marks, A-Level maths marking, 9709 past papers, Cambridge mark scheme, method marks A-Level
+keywords: B1 M1 A1 marks, A-Level maths marking, method marks A-Level, 9709 mark scheme notation, Cambridge maths mark scheme
+author: hamza-gul
 ---
 
-If you have ever thought “my answer was basically right” and still lost half the marks, you have met Cambridge **method marking**. On papers like **9709**, examiners rarely award a single blob of points for a number at the bottom of the page.
+If you have ever thought “my answer was basically right” and still lost half the marks, you have met Cambridge **method marking**. On papers like [9709](/blog/cambridge-9709-a-level-mathematics-past-papers-guide), examiners rarely award a single blob of points for a number at the bottom of the page.
 
 ## The three letters you see everywhere
 

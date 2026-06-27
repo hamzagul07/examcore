@@ -3,6 +3,7 @@ title: A Cambridge past paper revision timetable that actually works
 description: How many past papers per week, when to go timed, and how to space subjects for A-Level and O-Level without burning out before exams.
 date: 2026-05-02
 keywords: Cambridge revision, past paper practice, exam revision timetable, A-Level past papers, Cambridge International
+author: hamza-gul
 ---
 
 “Do every past paper from 2018” sounds ambitious until Week 3, when you are tired, marking generously, and remembering nothing. A **sustainable** timetable beats a heroic one.

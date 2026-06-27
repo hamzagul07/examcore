@@ -2,7 +2,7 @@
 title: IB Music HL assessment & portfolio guide
 description: IB Music HL: exploring music, experimenting, presenting — inquiry, analysis, and performance criteria for a 6 or 7.
 date: 2026-06-25
-keywords: IB Music HL, IB Music portfolio, IB Music IA, IB Music HL revision, IB Music markbands
+keywords: IB Music HL, IB Music HL portfolio, IB Music HL IA, IB Music HL revision, IB Music HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

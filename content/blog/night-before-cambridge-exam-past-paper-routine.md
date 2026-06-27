@@ -4,6 +4,7 @@ description: A calm pre-exam routine: light recall, packing, sleep, and why a fu
 date: 2026-05-28
 category: study-skills
 keywords: night before exam, exam preparation, Cambridge exam tips, revision night before
+author: hamza-gul
 ---
 
 The night before is for **readiness**, not **cramming**. One more panicked paper can spike anxiety without raising marks.
@@ -28,7 +29,7 @@ The night before is for **readiness**, not **cramming**. One more panicked paper
 
 ## Light recall block (optional, 25 min)
 
-| 5 min | Command words |
+| 5 min | [Command words](/blog/cambridge-command-words-explained) |
 | 10 min | Five definitions from scheme wording |
 | 10 min | One worked example you often miss |
 

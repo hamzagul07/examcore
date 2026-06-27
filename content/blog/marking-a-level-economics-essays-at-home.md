@@ -2,14 +2,15 @@
 title: How to mark A-Level Economics essays at home (9708 and similar)
 description: Essay band descriptors are vague until you learn to spot evidence. A home marking checklist for Cambridge Economics past paper 20-mark questions.
 date: 2026-04-26
-keywords: A-Level economics essay marking, 9708 past papers, essay band descriptors, Cambridge past papers, past paper self assessment
+keywords: A-Level economics essay marking, 9708 essay marking, essay band descriptors, mark economics essays, Cambridge economics evaluation
+author: hamza-gul
 ---
 
 Economics essays punish vague confidence. You can write two pages, feel thorough, and still sit in **Band 2** because the examiner cannot see evaluation — only description wearing a tie.
 
 ## What the mark scheme actually rewards
 
-On typical Cambridge Economics essays, bands reward:
+On typical [Cambridge Economics](/blog/cambridge-9708-a-level-economics-past-papers-guide) essays, bands reward:
 
 - **Clear definitions** tied to the question, not textbook dumps
 - **Chains of reasoning** — because → therefore → impact on…

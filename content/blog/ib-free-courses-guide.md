@@ -23,7 +23,7 @@ MarkScheme hosts **free, syllabus-aligned IB Diploma courses** — not static PD
 
 **Group 6 arts (expanded):** [Dance](/ib/courses/dance-hl) · [Theatre](/ib/courses/theatre-hl) · [Music](/ib/courses/music-hl) · [Film](/ib/courses/film-hl) · [Visual Arts](/ib/courses/visual-arts-hl) — each with HL and SL courses and full topic practice grids.
 
-Each course follows official topic codes. Lessons link straight to [/mark](/mark) practice with IB assessment criteria — band-by-band feedback, not a generic grade.
+Each course follows official topic codes. Lessons link straight to [mark a paper](/mark)(/mark) practice with IB assessment criteria — band-by-band feedback, not a generic grade.
 
 ## How to use the courses
 1. Open the [IB courses catalog](/ib/courses) or browse from the [main courses page](/courses).
@@ -46,4 +46,4 @@ No. We link to legitimate sources (IBO specimens, RevisionDojo, ibresources.cc) 
 IB uses **markbands and assessment criteria**, not B1/M1/A1 codes. Our IB practice mode scores criterion-by-criterion. See [IB markbands explained](/blog/ib-markbands-explained).
 
 ## Bottom line
-If you want ZNotes-style coverage with marking built in, start at [/ib/courses](/ib/courses) — pick your subject and revise one topic at a time.
+If you want ZNotes-style coverage with marking built in, start at [free IB courses](/ib/courses)(/ib/courses) — pick your subject and revise one topic at a time.

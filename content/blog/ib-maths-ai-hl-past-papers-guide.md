@@ -2,7 +2,7 @@
 title: IB Maths AI HL past papers & revision guide
 description: IB Mathematics Applications and Interpretation HL: modelling papers, GDC mastery, Paper 3 problem-solving, and markband revision for a 7.
 date: 2026-06-25
-keywords: IB Maths AI HL, IB Maths AI past papers, IB Applications and Interpretation HL, IB Maths AI mark scheme, IB Maths AI HL revision
+keywords: IB Maths AI HL, IB Maths AI HL past papers, IB Applications and Interpretation HL, IB Maths AI HL mark scheme, IB Maths AI HL revision
 category: revision
 author: hassan
 updated: 2026-06-25

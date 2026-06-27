@@ -2,7 +2,7 @@
 title: IB Business Management SL past papers & revision guide
 description: IB Business Management SL past papers: case-study Paper 1, structured Paper 2, toolkit application, and markband essay technique.
 date: 2026-06-25
-keywords: IB Business Management SL, IB Business SL past papers, IB Business Management mark scheme, IB BM SL revision, IB Business markbands
+keywords: IB Business Management SL, IB Business SL past papers, IB Business Management SL mark scheme, IB BM SL revision, IB Business markbands
 category: revision
 author: hassan
 updated: 2026-06-25

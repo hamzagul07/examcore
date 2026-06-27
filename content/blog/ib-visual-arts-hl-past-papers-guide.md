@@ -2,7 +2,7 @@
 title: IB Visual Arts HL portfolio & assessment guide
 description: IB Visual Arts HL: comparative study, process portfolio, exhibition — criteria and top-band tips.
 date: 2026-06-25
-keywords: IB Visual Arts HL, IB Visual Arts HL portfolio, IB Visual Arts comparative study, IB Visual Arts exhibition, IB Visual Arts markbands
+keywords: IB Visual Arts HL, IB Visual Arts HL portfolio, IB Visual Arts HL comparative study, IB Visual Arts HL exhibition, IB Visual Arts HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

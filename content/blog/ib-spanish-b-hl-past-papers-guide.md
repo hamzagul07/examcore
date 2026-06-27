@@ -2,7 +2,7 @@
 title: IB Spanish B HL past papers & revision guide
 description: IB Spanish B HL: Paper 1 writing, Paper 2 receptive skills, themes, rubrics, and revision for a 6 or 7.
 date: 2026-06-25
-keywords: IB Spanish B HL, IB Spanish B HL past papers, IB Spanish B mark scheme, IB Spanish HL revision, IB Spanish B rubric
+keywords: IB Spanish B HL, IB Spanish B HL past papers, IB Spanish B HL mark scheme, IB Spanish HL revision, IB Spanish B HL rubric
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -4,6 +4,7 @@ description: Worked examples of Cambridge A-Level combos for popular university 
 date: 2026-06-03
 category: subject-choice
 keywords: A-Level combinations, medicine A-Levels, engineering subjects, law A-Levels, Cambridge subject choice
+author: hamza-gul
 ---
 
 “Best” depends on the degree — but some combinations recur because they ** satisfy admissions filters ** and build skills exams reward. Here are template routes for 2026 applicants, with reasons you can defend in a personal statement.

@@ -1,5 +1,6 @@
 import { getBlogPosts } from '@/lib/blog'
 import { getClusterForSlug } from '@/lib/seo/clusters'
+import { getAuthor } from '@/lib/seo/authors'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 export const dynamic = 'force-static'
@@ -26,6 +27,7 @@ export async function GET() {
           : cluster.id === 'subject-guides'
             ? 'Subject guides'
             : 'Cambridge'
+      const author = getAuthor(p.author)
       return `
     <item>
       <title>${escapeXml(p.title)}</title>
@@ -33,18 +35,23 @@ export async function GET() {
       <guid isPermaLink="true">${base}/blog/${p.slug}</guid>
       <description>${escapeXml(p.description)}</description>
       <category>${escapeXml(category)}</category>
+      <dc:creator>${escapeXml(author.name)}</dc:creator>
       ${pub ? `<pubDate>${new Date(pub).toUTCString()}</pubDate>` : ''}
     </item>`
     })
     .join('')
 
+  const latest = posts.find((p) => p.updated || p.date)
+  const lastBuild = latest ? new Date(latest.updated || latest.date).toUTCString() : ''
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${escapeXml(SITE_NAME)} Blog</title>
     <link>${base}/blog</link>
     <description>Cambridge A-Level, O-Level and IB Diploma past paper tips, mark schemes, markbands, and revision guides.</description>
     <language>en-gb</language>
+    ${lastBuild ? `<lastBuildDate>${lastBuild}</lastBuildDate>` : ''}
     <atom:link href="${base}/feed.xml" rel="self" type="application/rss+xml"/>
     ${items}
   </channel>

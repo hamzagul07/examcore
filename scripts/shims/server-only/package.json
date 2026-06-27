@@ -1,0 +1,6 @@
+{
+  "name": "server-only",
+  "version": "0.0.0-shim",
+  "description": "Local no-op shim so CLI scripts (run via tsx, outside the Next bundler) can import modules that pull in `server-only`. The real package throws outside React Server Components and pnpm does not hoist it. Resolved only via NODE_PATH in scripts/generate-keyword-blog-posts.mjs — never affects the Next build.",
+  "main": "index.js"
+}

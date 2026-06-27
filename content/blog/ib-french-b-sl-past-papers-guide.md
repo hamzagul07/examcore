@@ -2,7 +2,7 @@
 title: IB French B SL past papers & revision guide
 description: IB French B SL: Paper 1 writing tasks, Paper 2 receptive skills, theme vocabulary, and criterion-based revision.
 date: 2026-06-25
-keywords: IB French B SL, IB French B SL past papers, IB French B mark scheme, IB French SL revision, IB French B rubric
+keywords: IB French B SL, IB French B SL past papers, IB French B SL mark scheme, IB French SL revision, IB French B SL rubric
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -6,6 +6,7 @@ category: editorial
 featured: true
 spotlight: true
 keywords: Cambridge exam leaks 2026, exam malpractice, Cambridge integrity, leaked papers, May June exams
+author: hamza-gul
 ---
 
 Every May–June season, social media fills with claims that Cambridge papers have “leaked.” Some posts are hoaxes; some describe real security breaches. Either way, **chasing leaks is one of the worst revision strategies you can choose** — and it can end your qualification.

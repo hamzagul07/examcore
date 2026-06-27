@@ -1,8 +1,9 @@
 ---
 title: Cambridge A-Level Islamic Studies (9488) — past papers, mark schemes & how to mark
-description: Complete guide to 9488 Islamic Studies A-Level: paper structure, how Cambridge mark schemes work, common mistakes, revision plan, and marking your answers with MarkScheme.
+description: Complete guide to 9488 Islamic Studies A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9488 past papers, Islamic Studies A-Level Cambridge, Cambridge past papers, essay marking
+author: hamza-gul
 ---
 
 You did not choose Islamic Studies (9488) because you enjoy reading mark schemes for fun. You chose it because the grade matters — and past papers are where A-Level marks are actually won or lost.

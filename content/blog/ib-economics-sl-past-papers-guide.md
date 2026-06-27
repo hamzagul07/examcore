@@ -2,7 +2,7 @@
 title: IB Economics SL past papers & revision guide
 description: IB Economics SL: Paper 1 essays and Paper 2 data response — markbands, diagrams, evaluation, and past paper workflow.
 date: 2026-06-25
-keywords: IB Economics SL, IB Economics SL past papers, IB Economics mark scheme, IB Economics SL revision, IB Economics markbands
+keywords: IB Economics SL, IB Economics SL past papers, IB Economics SL mark scheme, IB Economics SL revision, IB Economics SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

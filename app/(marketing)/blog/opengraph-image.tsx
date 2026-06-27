@@ -6,7 +6,7 @@ export const contentType = 'image/png'
 
 export default function OgImage() {
   return createOgImage({
-    title: 'Blog',
-    subtitle: 'Exam tips, study strategies & product updates',
+    title: 'Revision guides',
+    subtitle: 'Cambridge & IB past-paper marking, mark schemes & exam technique',
   })
 }

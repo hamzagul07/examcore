@@ -2,7 +2,7 @@
 title: IB Biology SL past papers & revision guide
 description: How to revise IB Biology SL with past papers: Papers 1–3, markbands, data-based questions, and a workflow to reach a 6 or 7.
 date: 2026-06-25
-keywords: IB Biology SL, IB Biology SL past papers, IB Biology mark scheme, IB Biology SL revision, IB Biology markbands
+keywords: IB Biology SL, IB Biology SL past papers, IB Biology SL mark scheme, IB Biology SL revision, IB Biology SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

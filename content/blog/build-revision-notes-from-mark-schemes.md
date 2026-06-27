@@ -4,9 +4,10 @@ description: Turn Cambridge mark schemes and examiner reports into one-page revi
 date: 2026-05-15
 category: study-skills
 keywords: revision notes from mark schemes, Cambridge revision notes, examiner report notes, past paper notes
+author: hamza-gul
 ---
 
-Textbook notes are wide. Mark schemes are **what earns marks**. Build notes from schemes and you revise **exam language**.
+Textbook notes are wide. Mark schemes are **what earns marks** — learn to [read one like an examiner](/blog/how-to-read-a-cambridge-mark-scheme). Build notes from schemes and you revise **exam language**.
 
 ## One-page template per topic
 

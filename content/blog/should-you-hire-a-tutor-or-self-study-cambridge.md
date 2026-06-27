@@ -4,6 +4,7 @@ description: When a tutor pays off — and when mark schemes, past papers, and M
 date: 2026-06-14
 category: editorial
 keywords: Cambridge tutor vs self study, A-Level tutoring, past paper self study, mark scheme revision, private tutor Cambridge
+author: hamza-gul
 ---
 
 Tutors can unblock a concept in one hour — or become an expensive substitute for **marking**. Most Cambridge grade jumps come from **timed past papers + honest schemes**; the question is whether a tutor accelerates that loop or sits outside it.

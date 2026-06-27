@@ -2,7 +2,7 @@
 title: IB Film SL assessment & portfolio guide
 description: IB Film SL: textual analysis, comparative study, portfolio — film language, criteria, and workflow.
 date: 2026-06-25
-keywords: IB Film SL, IB Film SL portfolio, IB Film textual analysis, IB Film comparative study, IB Film criteria
+keywords: IB Film SL, IB Film SL portfolio, IB Film SL textual analysis, IB Film SL comparative study, IB Film SL criteria
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -4,6 +4,7 @@ description: Core vs optional O-Levels, bridging to A-Level, and how to avoid cl
 date: 2026-06-04
 category: subject-choice
 keywords: Cambridge O-Level subjects, IGCSE subject choice, O-Level to A-Level, core subjects, Cambridge 2026
+author: hamza-gul
 ---
 
 O-Level choices look smaller than A-Level — but they set the **foundation** for what your school will let you take at 9709, 9700, and everything after. Treat Year 9–10 decisions as a **bridge**, not a checkbox exercise.

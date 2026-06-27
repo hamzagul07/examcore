@@ -2,7 +2,7 @@
 title: IB English A Language & Literature HL revision guide
 description: IB English A Language and Literature HL: Paper 1 non-literary analysis, Paper 2 comparative essay, HL Essay, criteria, and technique.
 date: 2026-06-25
-keywords: IB English A Language and Literature HL, IB English Lang Lit HL, IB English Paper 1, IB English HL revision, IB English markbands
+keywords: IB English A Language and Literature HL, IB English Lang Lit HL, IB English HL Paper 1, IB English HL revision, IB English HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

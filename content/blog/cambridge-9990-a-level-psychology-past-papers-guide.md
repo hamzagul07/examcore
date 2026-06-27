@@ -1,8 +1,9 @@
 ---
 title: Cambridge A-Level Psychology (9990) — past papers, mark schemes & how to mark
-description: Complete guide to 9990 Psychology A-Level: paper structure, how Cambridge mark schemes work, common mistakes, revision plan, and marking your answers with MarkScheme.
+description: Complete guide to 9990 Psychology A-Level: paper structure, how Cambridge mark schemes work, common mistakes, and a revision plan.
 date: 2026-06-01
 keywords: 9990 past papers, A-Level psychology marking, Cambridge psychology, psychology past papers
+author: hamza-gul
 ---
 
 You did not choose Psychology (9990) because you enjoy reading mark schemes for fun. You chose it because the grade matters — and past papers are where A-Level marks are actually won or lost.

@@ -2,7 +2,7 @@
 title: IB Music SL assessment & portfolio guide
 description: IB Music SL: exploring, experimenting, presenting — inquiry, analysis, and performance criteria explained.
 date: 2026-06-25
-keywords: IB Music SL, IB Music SL portfolio, IB Music presenting, IB Music SL criteria, IB Music assessment
+keywords: IB Music SL, IB Music SL portfolio, IB Music SL presenting, IB Music SL criteria, IB Music SL assessment
 category: revision
 author: hassan
 updated: 2026-06-25

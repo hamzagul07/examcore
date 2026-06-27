@@ -22,6 +22,8 @@ Cambridge uses PUM on many international statements. Some school portals label i
 
 > **Key takeaway:** PUM 79 as a B is strong. PUM 61 as a B is fragile. Same letter, different story.
 
+Want your own number? Use the [PUM / UMS calculator](/tools/pum-calculator) to convert a raw mark to a Percentage Uniform Mark on the 0–100 scale.
+
 ## PUM grade bands (typical Cambridge international)
 
 | Grade | PUM range (typical) |

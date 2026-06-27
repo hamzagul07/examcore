@@ -38,7 +38,7 @@ Varies by subject (e.g. 2,200 History, 4,000 EE is separate). Check the current 
 Generally no — overlap is restricted. Discuss with your coordinator.
 
 ### Practice marking?
-Upload IA sections to [/mark](/mark) where your subject is supported for criterion feedback.
+Upload IA sections to [mark a paper](/mark)(/mark) where your subject is supported for criterion feedback.
 
 ## Bottom line
 Treat past papers and portfolio criteria as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

@@ -3,6 +3,7 @@ title: Cambridge MCQ past papers — how to mark and learn from wrong options
 description: Multiple-choice keys are fast to mark but slow to learn from. A drill for turning MCQ mistakes into specification revision on sciences and maths papers.
 date: 2026-05-18
 keywords: Cambridge MCQ past papers, multiple choice marking, past paper practice, Cambridge revision, 9702 past papers
+author: hamza-gul
 ---
 
 MCQ feels binary: right or wrong. Revision value lives in **distractors** — the wrong answers Cambridge designs to catch specific misconceptions.

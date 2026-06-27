@@ -2,7 +2,7 @@
 title: IB Dance HL assessment & portfolio guide
 description: IB Dance HL: composition, dance investigation, performance — choreography, analysis, and criterion-based preparation.
 date: 2026-06-25
-keywords: IB Dance HL, IB Dance portfolio, IB Dance composition, IB Dance investigation, IB Dance markbands
+keywords: IB Dance HL, IB Dance HL portfolio, IB Dance HL composition, IB Dance HL investigation, IB Dance HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -4,6 +4,7 @@ description: Structure for economics, business, and geography-style data respons
 date: 2026-05-20
 category: exam-technique
 keywords: data response questions, Cambridge economics paper, extract questions, business studies case study
+author: hamza-gul
 ---
 
 Data response questions are not essays about the topic — they are **answers about this extract**, with marks for using **their numbers**.
@@ -44,7 +45,7 @@ Scheme often lists **acceptable points** — tick only if your sentence matches 
 
 ## Practice
 
-One extract question per week from 9708 / 9609 / 2281 past papers.
+One extract question per week from [9708](/blog/cambridge-9708-a-level-economics-past-papers-guide) / 9609 / 2281 past papers.
 
 ---
 

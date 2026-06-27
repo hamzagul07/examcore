@@ -4,6 +4,7 @@ description: High-frequency Cambridge A-Level Mathematics (9709) topics across P
 date: 2026-05-22
 category: revision
 keywords: 9709 revision topics, A-Level maths past papers, 9709 pure maths, Cambridge maths topics
+author: hamza-gul
 ---
 
 9709 is vast. These topics appear **often enough** that skipping them is a gamble — prioritise by **your component list** first.

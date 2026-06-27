@@ -2,7 +2,7 @@
 title: IB Maths AI SL past papers & revision guide
 description: IB Maths Applications and Interpretation SL past papers: GDC-based Papers 1–2, modelling markbands, and revision workflow.
 date: 2026-06-25
-keywords: IB Maths AI SL, IB Maths AI SL past papers, IB Applications and Interpretation SL, IB Maths AI revision, IB Maths AI markbands
+keywords: IB Maths AI SL, IB Maths AI SL past papers, IB Applications and Interpretation SL, IB Maths AI SL revision, IB Maths AI SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

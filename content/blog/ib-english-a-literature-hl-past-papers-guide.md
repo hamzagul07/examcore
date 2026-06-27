@@ -2,7 +2,7 @@
 title: IB English A Literature HL revision guide
 description: IB English A Literature HL: guided literary analysis Paper 1, comparative Paper 2, HL Essay, assessment criteria, and workflow.
 date: 2026-06-25
-keywords: IB English Literature HL, IB English A Literature HL, IB Literature Paper 1, IB English HL revision, IB Literature markbands
+keywords: IB English Literature HL, IB English A Literature HL, IB Literature HL Paper 1, IB English HL revision, IB Literature HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

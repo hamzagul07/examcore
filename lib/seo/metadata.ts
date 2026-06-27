@@ -3,7 +3,7 @@ import { PAGE_KEYWORDS, SEO_KEYWORDS } from '@/lib/seo/keywords'
 import { keywordsForSubjectPath } from '@/lib/seo/subject-seo'
 import { keywordsForIbPath } from '@/lib/seo/ib-seo'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { SITE_NAME, SITE_TWITTER, SITE_URL } from '@/lib/site-config'
 
 type PageMetadataOptions = {
   title: string
@@ -110,6 +110,7 @@ export function createPageMetadata({
       title: ogTitle,
       description: metaDescription,
       images: ogImages(path, ogImagePath, ogTitle).map((i) => i.url),
+      ...(SITE_TWITTER ? { site: SITE_TWITTER, creator: SITE_TWITTER } : {}),
     },
     alternates: {
       canonical: canonicalUrl,
@@ -153,7 +154,7 @@ export function createBlogPostMetadata(post: {
     ogType: 'article',
     publishedTime: published,
     modifiedTime: modified,
-    ogImagePath: '/blog/opengraph-image',
+    ogImagePath: `/blog/${post.slug}/opengraph-image`,
   })
 }
 

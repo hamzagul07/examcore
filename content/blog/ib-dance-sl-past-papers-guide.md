@@ -2,7 +2,7 @@
 title: IB Dance SL assessment & portfolio guide
 description: IB Dance SL: composition, investigation, performance — choreography and embodied analysis for top criteria.
 date: 2026-06-25
-keywords: IB Dance SL, IB Dance SL portfolio, IB Dance composition, IB Dance investigation, IB Dance criteria
+keywords: IB Dance SL, IB Dance SL portfolio, IB Dance SL composition, IB Dance SL investigation, IB Dance SL criteria
 category: revision
 author: hassan
 updated: 2026-06-25

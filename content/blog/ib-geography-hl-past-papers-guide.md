@@ -2,7 +2,7 @@
 title: IB Geography HL past papers & revision guide
 description: IB Geography HL: Paper 1 themes, Paper 2 core, Paper 3 global interactions, markbands, and case studies.
 date: 2026-06-25
-keywords: IB Geography HL, IB Geography HL past papers, IB Geography mark scheme, IB Geography HL revision, IB Geography markbands
+keywords: IB Geography HL, IB Geography HL past papers, IB Geography HL mark scheme, IB Geography HL revision, IB Geography HL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

@@ -64,6 +64,18 @@ export const SITE_NAV_ITEMS: SiteNavItem[] = [
     isActive: (p) => p === '/community' || p.startsWith('/community/'),
   },
   {
+    id: 'guides',
+    href: '/guides',
+    label: 'Guides',
+    children: [
+      { href: '/guides', label: 'Revision guides', sublabel: 'Topic hubs by exam skill' },
+      { href: '/blog', label: 'Blog', sublabel: 'Tips, mark schemes & strategy' },
+      { href: '/tools', label: 'Free tools', sublabel: 'Grade calculator & command words' },
+    ],
+    variants: ['marketing', 'reading'],
+    isActive: (p) => isGuidesBlogNavActive(p) || p === '/tools' || p.startsWith('/tools/'),
+  },
+  {
     id: 'pricing',
     href: '/pricing',
     label: 'Pricing',
@@ -95,13 +107,15 @@ export function getNavItemsForVariant(variant: SiteHeaderVariant): SiteNavItem[]
   return SITE_NAV_ITEMS.filter((item) => item.variants.includes(variant))
 }
 
-/** Blog + guides share one nav item — active on either route. */
+/** Blog + guides + tools share one nav item — active on any of those routes. */
 export function isGuidesBlogNavActive(pathname: string) {
   return (
     pathname === '/blog' ||
     pathname.startsWith('/blog/') ||
     pathname === '/guides' ||
-    pathname.startsWith('/guides/')
+    pathname.startsWith('/guides/') ||
+    pathname === '/tools' ||
+    pathname.startsWith('/tools/')
   )
 }
 
@@ -140,6 +154,9 @@ export const FOOTER_PRODUCT_LINKS = [
   { href: '/courses', label: 'Free courses' },
   { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
   { href: '/tools/command-words', label: 'Command words' },
+  { href: '/tools/ib-points-calculator', label: 'IB points calculator' },
+  { href: '/tools/pum-calculator', label: 'PUM / UMS calculator' },
+  { href: '/tools/exam-countdown', label: 'Exam countdown' },
   { href: '/pricing', label: 'Pricing' },
 ]
 

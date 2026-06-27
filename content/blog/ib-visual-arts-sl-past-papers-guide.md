@@ -2,7 +2,7 @@
 title: IB Visual Arts SL portfolio & assessment guide
 description: IB Visual Arts SL: comparative study, process portfolio, exhibition criteria, and how to hit top markbands.
 date: 2026-06-25
-keywords: IB Visual Arts SL, IB Visual Arts SL portfolio, IB Visual Arts comparative study, IB Visual Arts exhibition, IB Visual Arts markbands
+keywords: IB Visual Arts SL, IB Visual Arts SL portfolio, IB Visual Arts SL comparative study, IB Visual Arts SL exhibition, IB Visual Arts SL markbands
 category: revision
 author: hassan
 updated: 2026-06-25

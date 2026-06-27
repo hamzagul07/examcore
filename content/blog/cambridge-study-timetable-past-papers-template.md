@@ -4,6 +4,7 @@ description: A weekly revision timetable that prioritises marking and rewrites â
 date: 2026-06-02
 category: revision
 keywords: revision timetable, A-Level study schedule, Cambridge revision plan, past paper schedule
+author: hamza-gul
 ---
 
 The best timetable is not colour-coded perfection â€” it is **repeatable slots** where marking happens while you are still awake.

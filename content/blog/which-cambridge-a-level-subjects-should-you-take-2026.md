@@ -5,6 +5,7 @@ date: 2026-06-02
 category: subject-choice
 featured: true
 keywords: Cambridge A-Level subjects, subject choice 2026, A-Level combinations, university requirements, Cambridge International
+author: hamza-gul
 ---
 
 The subject you pick in Year 11 echoes through **every personal statement line and every offer letter**. The goal is not the “hardest” trio — it is the **right** trio for where you are heading, what you can sustain, and what universities actually filter on.

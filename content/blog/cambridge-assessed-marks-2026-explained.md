@@ -1,6 +1,6 @@
 ---
 title: Cambridge assessed marks 2026 explained — voided papers & what happens to your grade
-description: Physics and maths papers were voided after leaks in May 2026. How Cambridge calculates assessed marks, who gets replacement exams, and what students should do now.
+description: After the May 2026 leaks voided papers: how Cambridge calculates assessed marks, who gets replacement exams, and what students should do now.
 date: 2026-06-22
 category: editorial
 featured: true

@@ -11,12 +11,23 @@ export function BlogAuthorByline({ authorId }: Props) {
 
   return (
     <div className="mt-6 flex flex-wrap items-start gap-4 border-t border-[var(--ec-border)] pt-6">
-      <div
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] font-semibold text-[var(--ec-brand)]"
-        aria-hidden
-      >
-        {author.name.charAt(0)}
-      </div>
+      {author.image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={author.image}
+          alt={author.name}
+          width={44}
+          height={44}
+          className="h-11 w-11 shrink-0 rounded-full border border-[var(--ec-border)] object-cover"
+        />
+      ) : (
+        <div
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] font-semibold text-[var(--ec-brand)]"
+          aria-hidden
+        >
+          {author.name.charAt(0)}
+        </div>
+      )}
       <div className="min-w-0 flex-1">
         <p className="ms-body-2 font-semibold text-[var(--ec-text-primary)]">
           Written by{' '}

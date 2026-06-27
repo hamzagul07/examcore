@@ -3,6 +3,7 @@ title: Cambridge O-Level past papers — how to use them effectively
 description: O-Level past papers (4024 Maths, 5090 Biology, and more) build exam technique early. A revision guide for students and parents new to Cambridge International.
 date: 2026-04-20
 keywords: O-Level past papers, Cambridge O-Level, O-Level marking, 4024 past papers, Cambridge revision
+author: hamza-gul
 ---
 
 Cambridge **O-Level** exams reward clear fundamentals: accurate definitions, standard methods, and disciplined time management. Past papers are still the best practice — but younger students often treat them like homework completion instead of **mark scheme training**.

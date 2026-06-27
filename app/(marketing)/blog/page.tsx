@@ -8,7 +8,13 @@ import {
   getIbSubjectGuidePosts,
   getIbIaGuidePosts,
 } from '@/lib/seo/subject-guides'
-import { enrichPostMeta, isEditorialPost, sortPostsForIndex } from '@/lib/blog/meta'
+import {
+  BLOG_CATEGORY_LABELS,
+  enrichPostMeta,
+  isEditorialPost,
+  sortPostsForIndex,
+} from '@/lib/blog/meta'
+import type { BlogCategory } from '@/lib/blog/meta'
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
@@ -164,11 +170,23 @@ export default function BlogIndexPage() {
                 <BlogPostCard key={post.slug} post={post} />
               ))}
             </div>
-            {generalPosts.length > 8 && (
-              <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
-                Plus {generalPosts.length - 8} more revision guides in the archive below.
-              </p>
-            )}
+            <div className="mt-8">
+              <p className="ms-overline text-center">Browse every article by category</p>
+              <nav
+                className="mt-3 flex flex-wrap justify-center gap-2"
+                aria-label="Browse blog categories"
+              >
+                {(Object.keys(BLOG_CATEGORY_LABELS) as BlogCategory[]).map((key) => (
+                  <Link
+                    key={key}
+                    href={`/blog/category/${key}`}
+                    className="ec-chip-ms ec-chip-ms--outline"
+                  >
+                    {BLOG_CATEGORY_LABELS[key]}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </>
         )}
       </MarketingSection>

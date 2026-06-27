@@ -4,24 +4,21 @@ import { isOnboardingComplete } from '@/lib/onboarding'
 import { isAdminEmail } from '@/lib/admin-auth'
 import { requireTeacher } from '@/lib/teacher-auth'
 import {
+  matchesRoutePrefix,
+  requiresAccount,
+  requiresGuestSignup,
+  requiresOnboarding,
+} from '@/lib/auth-gates'
+import {
   readPostAuthNextParam,
   resolvePostAuthPath,
   postOnboardingHref,
 } from '@/lib/auth-redirect'
 
-const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding', '/teacher', '/admin']
 const AUTH_ENTRY_PREFIXES = ['/auth/signin', '/auth/signup']
-
-const ONBOARDING_REQUIRED_PREFIXES = ['/dashboard', '/account', '/mark']
 
 const TEACHER_PREFIXES = ['/teacher']
 const ADMIN_PREFIXES = ['/admin']
-
-function matchesPrefix(pathname: string, prefixes: string[]) {
-  return prefixes.some(
-    (prefix) => pathname === prefix || pathname.startsWith(prefix + '/')
-  )
-}
 
 /** Preserve Supabase session cookies when issuing redirects. */
 function redirectWithCookies(url: URL | string, supabaseResponse: NextResponse) {
@@ -62,7 +59,7 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (matchesPrefix(pathname, AUTH_ENTRY_PREFIXES)) {
+  if (matchesRoutePrefix(pathname, AUTH_ENTRY_PREFIXES)) {
     if (user) {
       const { data: profile } = await supabase
         .from('user_profiles')
@@ -83,20 +80,26 @@ export async function proxy(request: NextRequest) {
     return supabaseResponse
   }
 
-  if (!matchesPrefix(pathname, PROTECTED_PREFIXES)) {
+  if (!requiresAccount(pathname)) {
     return supabaseResponse
   }
 
   if (!user) {
-    // Let the route handler refresh cookies and send a clean sign-in next=.
     if (pathname === '/onboarding/complete') {
       return supabaseResponse
     }
 
     const redirectUrl = request.nextUrl.clone()
-    redirectUrl.pathname = '/auth/signin'
     redirectUrl.search = ''
     const intended = request.nextUrl.pathname + request.nextUrl.search
+
+    if (requiresGuestSignup(pathname)) {
+      redirectUrl.pathname = '/auth/signup'
+      redirectUrl.searchParams.set('redirect', intended)
+      return redirectWithCookies(redirectUrl, supabaseResponse)
+    }
+
+    redirectUrl.pathname = '/auth/signin'
     const cleanNext = postOnboardingHref(
       new URL(intended, request.url).searchParams.get('next'),
       pathname.startsWith('/onboarding') ? '/onboarding' : '/dashboard'
@@ -105,14 +108,14 @@ export async function proxy(request: NextRequest) {
     return redirectWithCookies(redirectUrl, supabaseResponse)
   }
 
-  if (matchesPrefix(pathname, TEACHER_PREFIXES)) {
+  if (matchesRoutePrefix(pathname, TEACHER_PREFIXES)) {
     const teacherCheck = await requireTeacher(supabase, user.id)
     if (!teacherCheck.ok) {
       return redirectWithCookies(new URL('/dashboard', request.url), supabaseResponse)
     }
   }
 
-  if (matchesPrefix(pathname, ADMIN_PREFIXES) && !isAdminEmail(user.email)) {
+  if (matchesRoutePrefix(pathname, ADMIN_PREFIXES) && !isAdminEmail(user.email)) {
     return redirectWithCookies(new URL('/dashboard', request.url), supabaseResponse)
   }
 
@@ -143,7 +146,7 @@ export async function proxy(request: NextRequest) {
 
   if (
     !onboarded &&
-    matchesPrefix(pathname, ONBOARDING_REQUIRED_PREFIXES) &&
+    requiresOnboarding(pathname) &&
     !onOnboardingPage
   ) {
     const redirectUrl = request.nextUrl.clone()

@@ -15,6 +15,7 @@ import {
   SubmitButton,
 } from '@/components/AuthFormBits'
 import { buildSignUpHref, buildForgotPasswordHref } from '@/lib/auth-redirect'
+import { isContentGateReturnPath } from '@/lib/content-gate'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
 import {
@@ -22,6 +23,7 @@ import {
   GoogleAuthSectionSkeleton,
 } from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
+import { GuestBrowseSkip } from '@/components/auth/GuestBrowseSkip'
 
 const AUTH_CALLBACK_ERRORS: Record<string, string> = {
   missing_code: 'That sign-in link is invalid or expired. Request a new one.',
@@ -136,6 +138,7 @@ function SignInForm() {
 
   const signupHref = buildSignUpHref(nextParam)
   const forgotHref = buildForgotPasswordHref(nextParam)
+  const contentGateReturn = isContentGateReturnPath(nextParam) ? nextParam : null
 
   return (
     <AuthShell>
@@ -244,6 +247,10 @@ function SignInForm() {
               />
             </form>
           )}
+
+          {contentGateReturn ? (
+            <GuestBrowseSkip returnPath={contentGateReturn} className="mt-5 w-full" />
+          ) : null}
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Don&apos;t have an account?{' '}

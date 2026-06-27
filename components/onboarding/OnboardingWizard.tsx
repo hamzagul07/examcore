@@ -28,6 +28,10 @@ import {
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { postOnboardingHref, sanitizeNextPath } from '@/lib/auth-redirect'
+import {
+  inferMinimalOnboardingForContentPath,
+  isContentGateReturnPath,
+} from '@/lib/content-gate'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 
@@ -132,6 +136,33 @@ export function OnboardingWizard({
       setStage('other')
     }
     setErrorMsg('')
+  }
+
+  async function skipOnboardingForBrowse() {
+    if (!nextParam || !isContentGateReturnPath(nextParam)) return
+
+    const payload = inferMinimalOnboardingForContentPath(nextParam)
+    if (!payload) {
+      setErrorMsg('Could not open that topic yet. Pick a subject below to continue.')
+      return
+    }
+
+    setLoading(true)
+    setErrorMsg('')
+
+    try {
+      const result = await completeOnboardingRequest(saveToken, payload)
+      if (!result.ok) {
+        setErrorMsg(result.error || 'Could not save your profile. Try again.')
+        return
+      }
+      await navigateAfterOnboarding(postOnboardingHref(nextParam, nextParam))
+    } catch (err) {
+      console.error('[onboarding wizard] browse skip failed:', err)
+      setErrorMsg('Something went wrong. Try again or complete setup below.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   async function completeOnboarding(redirectHref: string) {
@@ -249,7 +280,12 @@ export function OnboardingWizard({
             transition={{ duration: 0.2 }}
           >
             {step === 1 && (
-              <StepWelcome onContinue={goNext} />
+              <StepWelcome
+                onContinue={goNext}
+                showBrowseSkip={Boolean(nextParam && isContentGateReturnPath(nextParam))}
+                browseSkipLoading={loading}
+                onBrowseSkip={() => void skipOnboardingForBrowse()}
+              />
             )}
             {step === 2 && (
               <StepSubjects
@@ -333,7 +369,17 @@ function ProgressSteps({ current, total }: { current: number; total: number }) {
   )
 }
 
-function StepWelcome({ onContinue }: { onContinue: () => void }) {
+function StepWelcome({
+  onContinue,
+  showBrowseSkip = false,
+  browseSkipLoading = false,
+  onBrowseSkip,
+}: {
+  onContinue: () => void
+  showBrowseSkip?: boolean
+  browseSkipLoading?: boolean
+  onBrowseSkip?: () => void
+}) {
   return (
     <div>
       <div className="mb-8 flex justify-center">
@@ -375,6 +421,16 @@ function StepWelcome({ onContinue }: { onContinue: () => void }) {
         <button type="button" onClick={onContinue} className="ec-btn-primary">
           Let&apos;s go <ArrowRight className="h-4 w-4" />
         </button>
+        {showBrowseSkip && onBrowseSkip ? (
+          <button
+            type="button"
+            onClick={onBrowseSkip}
+            disabled={browseSkipLoading}
+            className="ec-guest-browse-skip mt-3 w-full"
+          >
+            {browseSkipLoading ? 'Opening topic…' : 'Just browsing? Skip setup for now'}
+          </button>
+        ) : null}
       </div>
     </div>
   )

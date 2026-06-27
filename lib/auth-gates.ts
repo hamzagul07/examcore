@@ -19,6 +19,7 @@ function pathSegments(pathname: string): string[] {
 
 /**
  * Guest signup gate for deep content only — browse hubs & subject pages freely.
+ * Guests redirect to /auth/signup (fade handoff); may skip and browse for the session.
  *
  * Public:  /courses, /courses/[code], /past-papers, /past-papers/[code],
  *          /past-papers/topics, /ib/courses, /ib/courses/[slug],
@@ -36,11 +37,11 @@ export function requiresGuestSignup(pathname: string): boolean {
     return true
   }
 
-  if (parts[0] === 'ib' && parts[1] === 'courses' && parts.length >= 3) {
+  if (parts[0] === 'ib' && parts[1] === 'courses' && parts.length >= 4) {
     return true
   }
 
-  if (parts[0] === 'ib' && parts[1] === 'past-papers' && parts.length >= 3) {
+  if (parts[0] === 'ib' && parts[1] === 'past-papers' && parts.length >= 4) {
     return true
   }
 
@@ -56,8 +57,10 @@ export function requiresOnboarding(pathname: string): boolean {
 }
 
 export function requiresAccount(pathname: string): boolean {
-  return (
-    matchesRoutePrefix(pathname, PROTECTED_ROUTE_PREFIXES) ||
-    requiresGuestSignup(pathname)
-  )
+  return matchesRoutePrefix(pathname, PROTECTED_ROUTE_PREFIXES)
+}
+
+/** Routes where proxy runs auth/onboarding checks (app shell + deep content). */
+export function requiresAuthMiddleware(pathname: string): boolean {
+  return requiresAccount(pathname) || requiresGuestSignup(pathname)
 }

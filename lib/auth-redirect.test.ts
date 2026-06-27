@@ -3,6 +3,7 @@ import {
   buildResetPasswordCallbackUrl,
   buildSignInHref,
   buildSignUpHref,
+  buildContentGateSignUpHref,
   isSafeNextPath,
   postOnboardingHref,
   readPostAuthNextParam,
@@ -76,6 +77,11 @@ check(
 check(
   'sign-up href encodes redirect',
   buildSignUpHref('/mark') === '/auth/signup?redirect=%2Fmark'
+)
+check(
+  'content gate signup href encodes redirect and from',
+  buildContentGateSignUpHref('/courses/7115/topic?paper=1') ===
+    '/auth/signup?from=content&redirect=%2Fcourses%2F7115%2Ftopic%3Fpaper%3D1'
 )
 check(
   'forgot-password href encodes next',

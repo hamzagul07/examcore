@@ -37,6 +37,15 @@ export function buildSignUpHref(nextPath?: string | null): string {
   return '/auth/signup'
 }
 
+/** Signup from a gated topic/lesson — carries return path and entry context. */
+export function buildContentGateSignUpHref(returnPath: string): string {
+  const params = new URLSearchParams({ from: 'content' })
+  if (isSafeNextPath(returnPath)) {
+    params.set('redirect', returnPath.trim())
+  }
+  return `/auth/signup?${params.toString()}`
+}
+
 /** `/auth/signin` preserving a post-auth destination (`next` query). */
 export function buildSignInHref(nextPath?: string | null): string {
   if (isSafeNextPath(nextPath)) {

@@ -123,6 +123,16 @@ const BASE: BaseSubject[] = [
     levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.society, glyph: 'Ψ',
     blurb: 'The three approaches (Paper 1), research methods/options (Paper 2) and — at HL — qualitative research (Paper 3).',
   },
+  {
+    slugBase: 'global-politics', name: 'Global Politics', group: IB_GROUPS[2], groupNumber: 3,
+    levels: ['HL', 'SL'], papers: { HL: P12, SL: P12 }, accent: ACC.society, glyph: '🌐',
+    blurb: 'Stimulus-based source analysis (Paper 1) and essays across power, rights, development and peace (Paper 2), plus the engagement project — with an HL global political challenges extension.',
+  },
+  {
+    slugBase: 'digital-society', name: 'Digital Society', group: IB_GROUPS[2], groupNumber: 3,
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.society, glyph: '💻',
+    blurb: 'Concepts, content and contexts of digital systems through source response (Paper 1) and essays (Paper 2), with an HL pre-released intervention paper (Paper 3).',
+  },
   // Group 4 — Sciences
   {
     slugBase: 'biology', name: 'Biology', group: IB_GROUPS[3], groupNumber: 4,
@@ -148,6 +158,16 @@ const BASE: BaseSubject[] = [
     slugBase: 'environmental-systems-and-societies', name: 'Environmental Systems and Societies', group: IB_GROUPS[3], groupNumber: 4,
     levels: ['SL'], papers: { SL: P12 }, accent: ACC.science, glyph: '🌱',
     blurb: 'A transdisciplinary Group 3/4 course: case-study resource booklet (Paper 1) and structured essays (Paper 2).',
+  },
+  {
+    slugBase: 'sports-exercise-health-science', name: 'Sports, Exercise and Health Science', group: IB_GROUPS[3], groupNumber: 4,
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P123 }, accent: ACC.science, glyph: '🏃',
+    blurb: 'Anatomy, physiology and biomechanics: multiple choice (Paper 1), data and structured response (Paper 2) and the options paper (Paper 3).',
+  },
+  {
+    slugBase: 'design-technology', name: 'Design Technology', group: IB_GROUPS[3], groupNumber: 4,
+    levels: ['HL', 'SL'], papers: { HL: P123, SL: P12 }, accent: ACC.science, glyph: '⚙',
+    blurb: 'Design thinking from human factors to production: multiple choice (Paper 1), structured response (Paper 2) and — at HL — an extended options paper (Paper 3).',
   },
   // Group 5 — Mathematics
   {

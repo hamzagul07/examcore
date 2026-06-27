@@ -24,6 +24,7 @@ import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
+import { getSyllabusSubjectName } from '@/lib/syllabi'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -62,11 +63,17 @@ export default async function BlogPostPage({ params }: Props) {
           ? 'subject'
           : 'default'
 
+  const subjectName = subjectCode ? getSyllabusSubjectName(subjectCode) : null
+
   return (
-    <MarketingPageShell narrow>
+    <MarketingPageShell className="ms-blog-post-shell">
       <BlogPostGraphJsonLd post={post} content={post.content} />
       <BlogReadingProgress />
-      <BlogContinueSignupModal slug={slug} subjectCode={subjectCode} />
+      <BlogContinueSignupModal
+        slug={slug}
+        subjectCode={subjectCode}
+        subjectName={subjectName}
+      />
       <article className="ms-pg py-12 sm:py-16">
         <BlogBreadcrumbs slug={slug} title={post.title} />
         <BlogArticleHero post={enriched} />
@@ -92,7 +99,12 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <BlogFollowUpChain slug={slug} />
-        <BlogPostCta variant={ctaVariant} subjectCode={subjectCode} slug={slug} />
+        <BlogPostCta
+          variant={ctaVariant}
+          subjectCode={subjectCode}
+          subjectName={subjectName}
+          slug={slug}
+        />
         <BlogRelatedGrid posts={related} clusterId={cluster.id} />
       </article>
     </MarketingPageShell>

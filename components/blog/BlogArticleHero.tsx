@@ -42,7 +42,7 @@ export function BlogArticleHero({ post }: Props) {
         {post.title}
       </h1>
       {post.description ? (
-        <p className="ms-lead" style={{ marginTop: 16, maxWidth: 640 }}>
+        <p className="ms-lead ms-blog-hero-lead" style={{ marginTop: 16 }}>
           {post.description}
         </p>
       ) : null}

@@ -185,3 +185,10 @@ export const FOOTER_LEGAL_LINKS = [
   { href: '/refunds', label: 'Refunds' },
   { href: '/cookies', label: 'Cookies' },
 ]
+
+/** Public social profiles — keep in sync with Organization.sameAs (lib/seo/entity.ts). */
+export const FOOTER_SOCIAL_LINKS = [
+  { href: 'https://twitter.com/MarkSchemeApp', label: 'Twitter', icon: 'twitter' as const },
+  { href: 'https://www.youtube.com/@MarkSchemeApp', label: 'YouTube', icon: 'youtube' as const },
+  { href: 'https://www.linkedin.com/company/markscheme/', label: 'LinkedIn', icon: 'linkedin' as const },
+]

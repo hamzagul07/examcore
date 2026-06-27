@@ -1,7 +1,8 @@
 ---
-title: Best A-Level subject combinations for 2026 (medicine, engineering, law & more)
+title: Best A-Level subject combinations (medicine, engineering, law & more)
 description: Worked examples of Cambridge A-Level combos for popular university routes — with rationale, not ranking tables from a single school.
 date: 2026-06-03
+updated: 2026-06-28
 category: subject-choice
 keywords: A-Level combinations, medicine A-Levels, engineering subjects, law A-Levels, Cambridge subject choice
 author: hamza-gul

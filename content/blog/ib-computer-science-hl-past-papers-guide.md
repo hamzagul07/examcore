@@ -1,6 +1,6 @@
 ---
 title: IB Computer Science HL past papers & revision guide
-description: IB Computer Science HL: Paper 1 theory, Paper 2 case study, Paper 3 options, pseudocode, and workflow.
+description: IB Computer Science HL: Paper 1 theory, Paper 2 case study, Paper 3 options, pseudocode, and workflow. With a timed past-paper revision plan.
 date: 2026-06-25
 keywords: IB Computer Science HL, IB CS HL past papers, IB Computer Science HL mark scheme, IB CS HL revision, IB Computer Science HL markbands
 category: revision

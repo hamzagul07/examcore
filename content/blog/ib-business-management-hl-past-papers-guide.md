@@ -1,6 +1,6 @@
 ---
 title: IB Business Management HL past papers & revision guide
-description: IB Business Management HL: Paper 1 essays, Paper 2 case study, toolkit application, and markband technique.
+description: IB Business Management HL: Paper 1 essays, Paper 2 case study, toolkit application, and markband technique. Pair it with free MarkScheme IB courses.
 date: 2026-06-25
 keywords: IB Business Management HL, IB Business HL past papers, IB Business Management HL mark scheme, IB BM HL revision, IB Business markbands
 category: revision

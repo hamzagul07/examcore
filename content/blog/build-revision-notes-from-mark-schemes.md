@@ -1,6 +1,6 @@
 ---
 title: Build revision notes from mark schemes (not textbooks)
-description: Turn Cambridge mark schemes and examiner reports into one-page revision notes — faster recall, exam-accurate wording.
+description: Turn Cambridge mark schemes and examiner reports into one-page revision notes — faster recall, exam-accurate wording. A repeatable one-page note system.
 date: 2026-05-15
 category: study-skills
 keywords: revision notes from mark schemes, Cambridge revision notes, examiner report notes, past paper notes

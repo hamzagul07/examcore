@@ -1,7 +1,8 @@
 ---
-title: Revision TikTok and social media in 2026 — what helps vs what hurts
-description: Study trends, past-paper creators, and algorithm traps — how to use social media without replacing real marking.
+title: Revision TikTok and social media — what helps vs what hurts
+description: Study trends, past-paper creators, and algorithm traps — how to use social media without replacing real marking. Make the algorithm work for your grades.
 date: 2026-06-10
+updated: 2026-06-28
 category: editorial
 keywords: revision TikTok, study social media, Cambridge revision trends, past paper TikTok, study tips 2026
 author: hamza-gul

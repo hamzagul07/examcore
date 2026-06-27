@@ -1,7 +1,8 @@
 ---
-title: ChatGPT, AI and Cambridge exams — 2026 rules students should know
-description: Using AI for revision vs exam misconduct — what schools and Cambridge integrity policies generally expect in 2026.
+title: ChatGPT, AI and Cambridge exams — the rules students should know
+description: Using AI for revision vs exam misconduct — what schools and Cambridge integrity policies generally expect. Stay on the right side of the rules.
 date: 2026-06-06
+updated: 2026-06-28
 category: editorial
 keywords: ChatGPT Cambridge exams, AI exam rules, academic integrity, AI revision, Cambridge malpractice 2026
 author: hamza-gul

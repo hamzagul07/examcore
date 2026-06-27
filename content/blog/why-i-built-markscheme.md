@@ -1,6 +1,6 @@
 ---
 title: Why I built MarkScheme
-description: An A-Level student on waiting weeks for marked papers — and building the tool he wished existed.
+description: An A-Level student on waiting weeks for marked papers — and building the tool he wished existed. The honest origin story behind a student-built revision tool.
 date: 2026-05-01
 keywords: why I built MarkScheme, MarkScheme founder story, student-built revision tool, honest AI marking, MarkScheme origin
 author: hamza-gul

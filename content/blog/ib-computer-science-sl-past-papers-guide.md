@@ -1,6 +1,6 @@
 ---
 title: IB Computer Science SL past papers & revision guide
-description: IB Computer Science SL: Paper 1 theory, Paper 2 case study, markbands, pseudocode, and past paper workflow.
+description: IB Computer Science SL: Paper 1 theory, Paper 2 case study, markbands, pseudocode, and past paper workflow. Pair it with free MarkScheme IB courses.
 date: 2026-06-25
 keywords: IB Computer Science SL, IB CS SL past papers, IB Computer Science SL mark scheme, IB CS SL revision, IB Computer Science SL markbands
 category: revision

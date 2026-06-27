@@ -1,7 +1,8 @@
 ---
-title: Free Cambridge A-Level & O-Level courses — topic-by-topic (2026)
+title: Free Cambridge A-Level & O-Level courses — topic-by-topic
 description: Free revision courses for Cambridge A-Level and O-Level — every syllabus topic, simpler explanations, real past-paper questions, and mark-scheme marking.
 date: 2026-06-10
+updated: 2026-06-28
 category: editorial
 featured: true
 keywords: free A Level course, free Cambridge notes, ZNotes alternative, A Level revision free, 9709 course, 9702 course free

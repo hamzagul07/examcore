@@ -1,6 +1,6 @@
 ---
 title: Night before a Cambridge exam — what to do (and what to avoid)
-description: A calm pre-exam routine: light recall, packing, sleep, and why a full past paper the night before often backfires.
+description: A calm pre-exam routine: light recall, packing, sleep, and why a full past paper the night before often backfires. A calm, evidence-based checklist.
 date: 2026-05-28
 category: study-skills
 keywords: night before exam, exam preparation, Cambridge exam tips, revision night before

@@ -1,6 +1,6 @@
 ---
 title: IB French B HL past papers & revision guide
-description: IB French B HL: Paper 1 writing, Paper 2 receptive skills, theme vocabulary, and criterion-based revision.
+description: IB French B HL: Paper 1 writing, Paper 2 receptive skills, theme vocabulary, and criterion-based revision. Pair it with free MarkScheme IB courses.
 date: 2026-06-25
 keywords: IB French B HL, IB French B HL past papers, IB French B HL mark scheme, IB French HL revision, IB French B HL rubric
 category: revision

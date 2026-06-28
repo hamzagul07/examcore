@@ -3,7 +3,7 @@ import type { Board, PostKind } from '@/lib/community/posts'
 
 // Bump this when adding a new seed batch — it re-runs the idempotent seed once
 // (existing rows skip via ignoreDuplicates; only the new batch is inserted).
-const SEED_MARKER = 'b3000001-0000-4000-8000-000000000001'
+const SEED_MARKER = 'b4000001-0000-4000-8000-000000000001'
 
 type SeedUser = { id: string; email: string; username: string; name: string }
 
@@ -61,6 +61,15 @@ const POSTS: SeedPost[] = [
   { id: 'b3000006-0000-4000-8000-000000000006', author: 'studyhelper', board: 'ib', subjectCode: 'biology-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB Biology HL May 2026 — how was Paper 1 (multiple choice)?', bodyMd: 'Paper 1 for **Biology HL** is brutal under time. Which topics tripped people up this session?', score: 12, comments: 2, hoursAgo: 8 },
   { id: 'b3000007-0000-4000-8000-000000000007', author: 'examroom', board: 'ib', subjectCode: 'economics-hl', kind: 'question', flair: 'Revision', title: 'Best way to revise Economics HL diagrams?', bodyMd: 'For **Economics HL**, do you redraw diagrams from memory or just read them? Trying to make my evaluation paragraphs link back to the diagram properly.', score: 10, comments: 2, hoursAgo: 12 },
   { id: 'b3000008-0000-4000-8000-000000000008', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9701', kind: 'discussion', flair: 'Revision', title: 'Chemistry 9701 — how do you actually memorise organic mechanisms?', bodyMd: 'Mechanisms are where I bleed marks in **9701**. Curve arrows, conditions, intermediates — what finally made them stick for you?', score: 15, comments: 2, hoursAgo: 6 },
+
+  // ---- Batch 4: IB-focused (more HL subjects + results/next-steps) ----
+  { id: 'b4000001-0000-4000-8000-000000000001', author: 'examroom', board: 'ib', subjectCode: 'history-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB History HL Paper 3 — how did your regional option go this May?', bodyMd: 'Paper 3 for **History HL** lives or dies on essay planning. How did the prescribed-subject and regional questions feel this session — fair, or curveballs?', score: 13, comments: 2, pinned: true, hoursAgo: 4 },
+  { id: 'b4000002-0000-4000-8000-000000000002', author: 'studyhelper', board: 'ib', subjectCode: 'psychology-hl', kind: 'discussion', flair: 'Revision', title: 'Psychology HL — how are you revising the HL extensions?', bodyMd: 'The HL extensions in **Psychology HL** are easy to under-prepare. Are you doing them per approach, or by research method? What stuck best?', score: 11, comments: 2, hoursAgo: 7 },
+  { id: 'b4000003-0000-4000-8000-000000000003', author: 'pastpaper_pro', board: 'ib', subjectCode: 'english-a-literature-hl', kind: 'question', flair: 'Papers', title: 'English A Lit Paper 2 — comparing texts under time pressure?', bodyMd: 'For **English A Literature HL** Paper 2, how do you plan a comparison fast enough to actually write it well? My intros eat all my time.', score: 10, comments: 2, hoursAgo: 9 },
+  { id: 'b4000004-0000-4000-8000-000000000004', author: 'examroom', board: 'ib', subjectCode: 'business-management-hl', kind: 'discussion', flair: 'Exam reflections', title: 'Business Management HL Paper 2 — how was the quantitative section?', bodyMd: 'The data/quant part of **Business Management HL** Paper 2 catches people who only revise theory. How did everyone find it this series?', score: 9, comments: 1, hoursAgo: 11 },
+  { id: 'b4000005-0000-4000-8000-000000000005', author: 'studyhelper', board: 'ib', subjectCode: 'math-ai-hl', kind: 'question', flair: 'Papers', title: 'Math AI HL — how do you prep for the Paper 3 investigation?', bodyMd: 'Paper 3 for **Math AI HL** is one long modelling investigation. How do you practise something that open-ended? Past papers only go so far.', score: 12, comments: 2, hoursAgo: 6 },
+  { id: 'b4000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', board: 'ib', subjectCode: 'geography-hl', kind: 'discussion', flair: 'Next steps', title: 'What is your plan if your IB points land below your offer?', bodyMd: 'Trying to be calm and have a plan for **IB** results. Remark, retake in November, or call the university? What are people lining up just in case?', score: 14, comments: 3, hoursAgo: 3 },
+  { id: 'b4000007-0000-4000-8000-000000000007', author: 'examroom', board: 'ib', subjectCode: 'computer-science-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB Computer Science HL — how did Paper 1 and the case study go?', bodyMd: 'For **Computer Science HL**, the Paper 1 long questions and the annual case study both need very specific terminology. How did this session treat you?', score: 8, comments: 1, hoursAgo: 13 },
 ]
 
 const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; score: number; hoursAgo: number }[] = [
@@ -97,6 +106,14 @@ const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; sc
   { id: 'c3000005-0000-4000-8000-000000000005', postId: 'b3000001-0000-4000-8000-000000000001', author: 'studyhelper', bodyMd: 'Barely finished. Skimmed the case once, then went straight to the marks-heavy parts and came back to narrative last.', score: 5, hoursAgo: 3 },
   { id: 'c3000006-0000-4000-8000-000000000006', postId: 'b3000008-0000-4000-8000-000000000008', author: 'examroom', bodyMd: 'Re-draw each mechanism from a blank page, then check arrows/conditions against the mark scheme. Spaced over a week it sticks.', score: 9, hoursAgo: 5 },
   { id: 'c3000007-0000-4000-8000-000000000007', postId: 'b3000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', bodyMd: 'Time was the killer. Flag-and-move on MCQ — never sink three minutes into one mark.', score: 6, hoursAgo: 7 },
+
+  // ---- Batch 4 comments ----
+  { id: 'c4000001-0000-4000-8000-000000000001', postId: 'b4000001-0000-4000-8000-000000000001', author: 'studyhelper', bodyMd: 'Plan the essay in 5 mins flat: thesis, three arguments, one counter. The planning is what separates the bands.', score: 8, hoursAgo: 3 },
+  { id: 'c4000002-0000-4000-8000-000000000002', postId: 'b4000001-0000-4000-8000-000000000001', author: 'pastpaper_pro', bodyMd: 'Memorise 2–3 flexible examples per topic that you can angle at different questions — saves so much time.', score: 6, hoursAgo: 2 },
+  { id: 'c4000003-0000-4000-8000-000000000003', postId: 'b4000006-0000-4000-8000-000000000006', author: 'examroom', bodyMd: 'Try a remark first if you are a mark or two off — fastest and cheapest. Keep the November retake as the backup.', score: 9, hoursAgo: 2 },
+  { id: 'c4000004-0000-4000-8000-000000000004', postId: 'b4000006-0000-4000-8000-000000000006', author: 'studyhelper', bodyMd: 'Call the university the morning results drop — they often hold places if you are close and proactive.', score: 7, hoursAgo: 1 },
+  { id: 'c4000005-0000-4000-8000-000000000005', postId: 'b4000005-0000-4000-8000-000000000005', author: 'pastpaper_pro', bodyMd: 'Practise the *process*: clean variables, justify your model, then evaluate it. Markers reward the reasoning, not a perfect answer.', score: 7, hoursAgo: 5 },
+  { id: 'c4000006-0000-4000-8000-000000000006', postId: 'b4000003-0000-4000-8000-000000000003', author: 'examroom', bodyMd: 'One-sentence intro: name both texts + your comparative line. Save the depth for the body.', score: 6, hoursAgo: 8 },
 ]
 
 function userId(username: string) {

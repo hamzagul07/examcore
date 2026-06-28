@@ -941,6 +941,128 @@ briefs.push({
   links: [['/courses', 'free A Level courses'], ['/mark', 'mark a past paper'], ['/tools/grade-boundary-calculator', 'grade calculator']],
 })
 
+// ---- Evergreen study-skill gaps (high-traffic, not yet covered) ----
+briefs.push({
+  slug: 'how-to-use-active-recall-for-exam-revision',
+  cluster: 'revision-strategy', format: 'howto', category: 'study-skills',
+  title: 'How to use active recall for exam revision',
+  description: 'Active recall is the most evidence-backed way to revise. Here is how to use retrieval practice with past papers and mark schemes to remember more, faster.',
+  keywords: 'active recall, retrieval practice, how to revise effectively, testing yourself revision, active recall technique',
+  facts: [
+    'Active recall (retrieval practice) means testing yourself from memory rather than re-reading notes — research consistently shows it beats passive review.',
+    'The core move: close the book and write or say everything you can remember, then check against your notes or the mark scheme and fill the gaps.',
+    'Past-paper questions are ideal active recall: attempt from memory, then mark against the official scheme to see exactly what was missing.',
+    'Techniques include blank-page "brain dumps", flashcards (question one side, answer the other), and answering past-paper questions closed-book.',
+    'It feels harder than re-reading, and that difficulty (desirable difficulty) is what makes it work — do not mistake fluency from re-reading for real learning.',
+    'Pair active recall with spacing (revisiting topics over days/weeks) for the strongest effect.',
+  ],
+  mustNotClaim: [
+    'Do NOT promise specific grades or guaranteed results from any technique.',
+  ],
+  links: [['/mark', 'mark your past-paper attempts'], ['/courses', 'free Cambridge courses'], ['/tools/command-words', 'command words']],
+})
+
+briefs.push({
+  slug: 'how-to-use-spaced-repetition-for-exam-revision',
+  cluster: 'revision-strategy', format: 'howto', category: 'study-skills',
+  title: 'How to use spaced repetition for exam revision',
+  description: 'Spaced repetition beats cramming by reviewing topics at growing intervals. Here is how to build a simple spaced revision schedule that locks knowledge in.',
+  keywords: 'spaced repetition, spacing effect, revision intervals, revision schedule, how to stop cramming',
+  facts: [
+    'Spaced repetition means reviewing material at increasing intervals (for example after 1 day, 3 days, a week, then two weeks) rather than in one long session.',
+    'It works because each well-timed review just before you would forget strengthens long-term memory — the spacing effect.',
+    'It is the opposite of cramming, which produces fast forgetting; spacing trades a little short-term comfort for much better retention.',
+    'A simple system: keep a list of topics with the date you last revised each, and bring forward any topic you are starting to forget.',
+    'Combine it with active recall — each spaced review should be a test from memory (past-paper question or flashcard), not a re-read.',
+    'Digital tools and a plain paper tracker both work; consistency matters more than the tool.',
+  ],
+  mustNotClaim: [
+    'Do NOT promise specific grades or exact retention percentages.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/courses', 'free Cambridge courses'], ['/tools/grade-boundary-calculator', 'grade calculator']],
+})
+
+briefs.push({
+  slug: 'how-to-manage-exam-anxiety-and-nerves',
+  cluster: 'revision-strategy', format: 'howto', category: 'study-skills',
+  title: 'How to manage exam anxiety and nerves',
+  description: 'Exam nerves are normal — but they are manageable. Practical, calm strategies to steady yourself before and during a Cambridge or IB exam.',
+  keywords: 'exam anxiety, exam nerves, how to calm down before exam, exam stress, manage exam nerves',
+  facts: [
+    'Some nerves are normal and even helpful — the goal is to manage anxiety so it does not block recall, not to remove it entirely.',
+    'Preparation is the biggest anxiety reducer: doing past papers under timed conditions makes the real exam feel familiar.',
+    'Before the exam: protect your sleep the night before (better than late cramming), eat, arrive early, and avoid last-minute panic-comparing with classmates.',
+    'In the exam: read the whole paper first, start with a question you can do to build momentum, and use slow breathing if your mind races.',
+    'If you blank, move on and come back — leaving a question and returning often unlocks it.',
+    'If anxiety is persistent or overwhelming, talk to a teacher, school counsellor or a trusted adult — you do not have to manage it alone.',
+  ],
+  mustNotClaim: [
+    'Do NOT give clinical, medical or crisis mental-health advice; keep tips general and signpost trusted support.',
+    'Do NOT promise specific outcomes.',
+  ],
+  links: [['/mark', 'practise with marked past papers'], ['/courses', 'free Cambridge courses'], ['/tools/exam-countdown', 'exam countdown']],
+})
+
+briefs.push({
+  slug: 'how-to-manage-your-time-during-an-exam',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to manage your time during an exam',
+  description: 'Running out of time loses easy marks. Here is how to split exam time by marks, pace each question, and leave time to check — for any Cambridge or IB paper.',
+  keywords: 'exam time management, running out of time in exams, how to pace an exam, time per mark, exam timing strategy',
+  facts: [
+    'Work out a rough minutes-per-mark budget at the start: divide the total time (minus a few minutes to check) by the total marks.',
+    'Read the whole paper first so you can plan and spot the questions you answer best.',
+    'Do not overrun a hard question — if you are stuck past its time budget, flag it, move on, and come back with spare time.',
+    'Spend time in proportion to marks: a 2-mark question should not get the time of an 8-mark one.',
+    'Leave a few minutes at the end to check units, significant figures, and that every question is attempted — blank answers score zero.',
+    'Practise this under timed conditions with past papers so pacing becomes automatic on the day.',
+  ],
+  mustNotClaim: [
+    'Do NOT give a single fixed minutes-per-mark figure as universal — it depends on each paper’s total marks and duration.',
+  ],
+  links: [['/mark', 'mark a timed past paper'], ['/courses', 'free Cambridge courses'], ['/tools/command-words', 'command words']],
+})
+
+briefs.push({
+  slug: 'how-to-make-revision-flashcards-that-work',
+  cluster: 'revision-strategy', format: 'howto', category: 'study-skills',
+  title: 'How to make revision flashcards that work',
+  description: 'Most flashcards fail because they just copy notes. Here is how to build flashcards around active recall so they actually move your grade.',
+  keywords: 'revision flashcards, how to make flashcards, flashcards for exams, study cards, effective flashcards',
+  facts: [
+    'Good flashcards test recall: a clear question or prompt on one side, a concise answer on the other — not a paragraph copied from notes.',
+    'Keep one idea per card; cards crammed with information cannot be tested cleanly.',
+    'Write cards in your own words and turn facts into questions ("What does Evaluate require?") so each card forces retrieval.',
+    'Review them with spacing — sort into "know it" and "review soon" piles instead of flipping through all of them once.',
+    'For some subjects, test both directions (term to definition and definition to term) and include worked-step prompts for methods.',
+    'Digital and paper both work; the discipline of self-testing matters more than the format.',
+  ],
+  mustNotClaim: [
+    'Do NOT promise specific grades from using flashcards.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/courses', 'free Cambridge courses'], ['/tools/command-words', 'command words']],
+})
+
+briefs.push({
+  slug: 'calculator-vs-non-calculator-exam-strategy',
+  cluster: 'revision-strategy', format: 'guide', category: 'exam-technique',
+  title: 'Calculator vs non-calculator exam strategy',
+  description: 'Calculator and non-calculator papers reward different skills. Here is how to check which is which and prepare the right way for each Cambridge or IB paper.',
+  keywords: 'calculator exam strategy, non-calculator paper, calculators allowed exam, calculator paper tips, exam calculator skills',
+  facts: [
+    'Whether a calculator is allowed varies by subject and by paper — always check the instructions on the front of the question paper and past papers.',
+    'For calculator papers, practise fast, accurate calculator use (memory, brackets, the right mode) so you do not lose time or make slips.',
+    'For non-calculator papers, drill mental and written methods, estimation, and showing clear working — method marks reward the steps.',
+    'A calculator does not replace understanding: many marks come from setting up the method correctly, which the calculator cannot do.',
+    'Use the official mark scheme when you practise so you see exactly where method and accuracy marks are awarded.',
+    'Bring an allowed, working calculator and know its functions before the exam — exam day is not the time to learn it.',
+  ],
+  mustNotClaim: [
+    'Do NOT state which specific papers allow calculators for any subject — this varies; tell readers to check the paper instructions.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/courses', 'free Cambridge courses'], ['/tools/grade-boundary-calculator', 'grade calculator']],
+})
+
 const selected = briefs.filter((b) => ONLY.length === 0 || ONLY.some((o) => b.slug.includes(o)))
 console.log(`Generating ${selected.length} posts -> ${OUT_DIR}${WRITE ? ' (WRITE)' : ' (dry)'}\n`)
 let ok = 0, skip = 0, fail = 0

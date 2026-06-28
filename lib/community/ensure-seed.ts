@@ -3,7 +3,7 @@ import type { Board, PostKind } from '@/lib/community/posts'
 
 // Bump this when adding a new seed batch — it re-runs the idempotent seed once
 // (existing rows skip via ignoreDuplicates; only the new batch is inserted).
-const SEED_MARKER = 'b2000001-0000-4000-8000-000000000001'
+const SEED_MARKER = 'b3000001-0000-4000-8000-000000000001'
 
 type SeedUser = { id: string; email: string; username: string; name: string }
 
@@ -51,6 +51,16 @@ const POSTS: SeedPost[] = [
   { id: 'b2000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', board: 'ib', subjectCode: 'physics-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB Physics HL May 2026 — how did Paper 2 and 3 go?', bodyMd: 'Paper 2 felt long for **Physics HL** and the Option in Paper 3 was time-pressured again. How did everyone find the balance this session?', score: 19, comments: 2, hoursAgo: 8 },
   { id: 'b2000007-0000-4000-8000-000000000007', author: 'examroom', board: 'ib', subjectCode: 'math-aa-hl', kind: 'discussion', flair: 'Results', title: 'IB May 2026 results — anyone else already refreshing the portal?', bodyMd: 'The wait for **Math AA HL** (and everything else) is unreal. How is everyone holding up before results — and do you have a plan if a grade comes back lower than your offer needs?', score: 15, comments: 2, hoursAgo: 5 },
   { id: 'b2000008-0000-4000-8000-000000000008', author: 'studyhelper', board: 'cambridge', subjectCode: '9618', kind: 'discussion', flair: 'Next steps', title: 'Thinking about a November resit — what is your strategy?', bodyMd: 'If a grade does not land where I need it, I might resit **9618** in the November series. For anyone who has resat before: what actually moved your grade the second time?', score: 12, comments: 2, hoursAgo: 11 },
+
+  // ---- Batch 3: more subjects + study-technique threads ----
+  { id: 'b3000001-0000-4000-8000-000000000001', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9706', kind: 'discussion', flair: 'Exam reflections', title: 'Accounting June 2026 — how long did the Paper 3 case study take you?', bodyMd: 'The **9706** Paper 3 case study is a time sink. Did anyone actually finish with time to check? What did you cut to stay on pace?', score: 14, comments: 2, pinned: true, hoursAgo: 4 },
+  { id: 'b3000002-0000-4000-8000-000000000002', author: 'examroom', board: 'cambridge', subjectCode: '9990', kind: 'discussion', flair: 'Exam reflections', title: 'Psychology June 2026 — which core studies came up?', bodyMd: 'For **9990** — without breaking any rules, which research areas felt heavily weighted this series? Trying to gauge how the next cohort should prioritise.', score: 11, comments: 2, hoursAgo: 7 },
+  { id: 'b3000003-0000-4000-8000-000000000003', author: 'studyhelper', board: 'cambridge', subjectCode: '9609', kind: 'discussion', flair: 'Papers', title: 'Business Paper 3 case study — how do you manage the reading time?', bodyMd: 'For **9609**, do you read the whole case first or dive into the questions? I always feel like I lose 15 minutes just orienting myself.', score: 9, comments: 2, hoursAgo: 10 },
+  { id: 'b3000004-0000-4000-8000-000000000004', author: 'examroom', board: 'cambridge', subjectCode: '9709', kind: 'question', flair: 'Revision', title: 'Does active recall actually work for maths, or is it just doing past papers?', bodyMd: 'Everyone says active recall, but for **9709** isn\'t that basically just doing questions from memory? Curious how people apply it to maths specifically.', score: 17, comments: 3, hoursAgo: 5 },
+  { id: 'b3000005-0000-4000-8000-000000000005', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9700', kind: 'discussion', flair: 'Revision', title: 'What is on your Biology flashcards? Building a deck for next year', bodyMd: 'Starting a **9700** flashcard deck over summer. What actually deserves a card vs what is better learned by doing questions?', score: 13, comments: 2, hoursAgo: 13 },
+  { id: 'b3000006-0000-4000-8000-000000000006', author: 'studyhelper', board: 'ib', subjectCode: 'biology-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB Biology HL May 2026 — how was Paper 1 (multiple choice)?', bodyMd: 'Paper 1 for **Biology HL** is brutal under time. Which topics tripped people up this session?', score: 12, comments: 2, hoursAgo: 8 },
+  { id: 'b3000007-0000-4000-8000-000000000007', author: 'examroom', board: 'ib', subjectCode: 'economics-hl', kind: 'question', flair: 'Revision', title: 'Best way to revise Economics HL diagrams?', bodyMd: 'For **Economics HL**, do you redraw diagrams from memory or just read them? Trying to make my evaluation paragraphs link back to the diagram properly.', score: 10, comments: 2, hoursAgo: 12 },
+  { id: 'b3000008-0000-4000-8000-000000000008', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9701', kind: 'discussion', flair: 'Revision', title: 'Chemistry 9701 — how do you actually memorise organic mechanisms?', bodyMd: 'Mechanisms are where I bleed marks in **9701**. Curve arrows, conditions, intermediates — what finally made them stick for you?', score: 15, comments: 2, hoursAgo: 6 },
 ]
 
 const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; score: number; hoursAgo: number }[] = [
@@ -78,6 +88,15 @@ const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; sc
   { id: 'c2000006-0000-4000-8000-000000000006', postId: 'b2000005-0000-4000-8000-000000000005', author: 'examroom', bodyMd: 'Total your raw marks, then compare against the last 2-3 sessions of the same components. Treat it as a range, not a fixed grade.', score: 8, hoursAgo: 6 },
   { id: 'c2000007-0000-4000-8000-000000000007', postId: 'b2000005-0000-4000-8000-000000000005', author: 'pastpaper_pro', bodyMd: 'A grade boundary calculator helps — punch in your raw mark, the paper total, and recent thresholds.', score: 6, hoursAgo: 5 },
   { id: 'c2000008-0000-4000-8000-000000000008', postId: 'b2000007-0000-4000-8000-000000000007', author: 'studyhelper', bodyMd: 'Refreshing does nothing but I cannot stop either. Have a plan B per subject and it gets easier.', score: 5, hoursAgo: 4 },
+
+  // ---- Batch 3 comments ----
+  { id: 'c3000001-0000-4000-8000-000000000001', postId: 'b3000004-0000-4000-8000-000000000004', author: 'pastpaper_pro', bodyMd: 'For maths it is: attempt a question type from memory with the book closed, then mark against the scheme and redo what you missed. That IS active recall.', score: 11, hoursAgo: 4 },
+  { id: 'c3000002-0000-4000-8000-000000000002', postId: 'b3000004-0000-4000-8000-000000000004', author: 'studyhelper', bodyMd: 'Make cards for the *method* (when to use which substitution) rather than facts. Then do varied questions, spaced out.', score: 8, hoursAgo: 3 },
+  { id: 'c3000003-0000-4000-8000-000000000003', postId: 'b3000004-0000-4000-8000-000000000004', author: 'examroom', bodyMd: 'Key bit people skip: actually mark it against the official scheme so you see the exact step that lost the mark.', score: 6, hoursAgo: 2 },
+  { id: 'c3000004-0000-4000-8000-000000000004', postId: 'b3000005-0000-4000-8000-000000000005', author: 'examroom', bodyMd: 'Definitions, command-word requirements, and tricky exceptions get cards. Processes (e.g. data questions) are better drilled with past papers.', score: 7, hoursAgo: 10 },
+  { id: 'c3000005-0000-4000-8000-000000000005', postId: 'b3000001-0000-4000-8000-000000000001', author: 'studyhelper', bodyMd: 'Barely finished. Skimmed the case once, then went straight to the marks-heavy parts and came back to narrative last.', score: 5, hoursAgo: 3 },
+  { id: 'c3000006-0000-4000-8000-000000000006', postId: 'b3000008-0000-4000-8000-000000000008', author: 'examroom', bodyMd: 'Re-draw each mechanism from a blank page, then check arrows/conditions against the mark scheme. Spaced over a week it sticks.', score: 9, hoursAgo: 5 },
+  { id: 'c3000007-0000-4000-8000-000000000007', postId: 'b3000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', bodyMd: 'Time was the killer. Flag-and-move on MCQ — never sink three minutes into one mark.', score: 6, hoursAgo: 7 },
 ]
 
 function userId(username: string) {

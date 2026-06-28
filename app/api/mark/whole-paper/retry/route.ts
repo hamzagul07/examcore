@@ -52,6 +52,17 @@ export async function POST(request: NextRequest) {
         if (!teacherCheck.ok) {
           return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
         }
+        // Scope to the teacher's own classroom: the attempt was fetched with
+        // the service client (no RLS), so re-read it through the RLS-scoped
+        // client — a row returns only when this student is in their classroom.
+        const { data: scoped } = await supabaseAuth
+          .from('attempts')
+          .select('id')
+          .eq('id', attemptId)
+          .maybeSingle()
+        if (!scoped) {
+          return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+        }
       }
     } else {
       const ip = clientIp(request)

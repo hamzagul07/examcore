@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
-import { requireTeacher } from '@/lib/teacher-auth'
+import { requireTeacher, verifyTeacherOwnsClassroom } from '@/lib/teacher-auth'
 import { getClassroomStudentIds } from '@/lib/teacher-classroom-data'
 
 export async function GET(request: Request) {
@@ -20,6 +20,15 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url)
   const classroomId = searchParams.get('classroom_id')
+
+  // A supplied classroom_id must belong to the requesting teacher — otherwise
+  // a teacher could read another teacher's classroom roster.
+  if (classroomId) {
+    const owns = await verifyTeacherOwnsClassroom(supabase, user.id, classroomId)
+    if (!owns) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+  }
 
   const { data: classrooms } = await supabase
     .from('classrooms')

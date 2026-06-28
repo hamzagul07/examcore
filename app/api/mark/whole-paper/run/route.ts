@@ -21,6 +21,8 @@ import {
 } from '@/lib/billing/enforcement'
 import { clientIp, checkAnonymousMarkRateLimit, incrementAnonymousMarkRateLimit } from '@/lib/rate-limit'
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
+import { requireTeacher } from '@/lib/teacher-auth'
 
 export const maxDuration = 300
 
@@ -49,6 +51,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'attempt_id required' }, { status: 400 })
     }
 
+    const { supabase: supabaseAuth, user, pendingCookies } =
+      await authenticateRouteRequest(request)
+
     const { data: attempt, error: fetchError } = await supabaseAdmin
       .from('attempts')
       .select('id, ai_marking, user_id')
@@ -57,6 +62,22 @@ export async function POST(request: NextRequest) {
 
     if (fetchError || !attempt) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 })
+    }
+
+    // Ownership: a user-owned attempt may only be run by its owner (or a
+    // teacher); guest jobs (user_id null) are gated by the unguessable UUID.
+    if (attempt.user_id) {
+      if (!user) {
+        return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+          status: 401,
+        })
+      }
+      if (attempt.user_id !== user.id) {
+        const teacherCheck = await requireTeacher(supabaseAuth, user.id)
+        if (!teacherCheck.ok) {
+          return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+        }
+      }
     }
 
     const job = attempt.ai_marking

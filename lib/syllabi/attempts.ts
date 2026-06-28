@@ -1,9 +1,10 @@
 /**
- * Helpers for associating attempts with a Cambridge subject code.
+ * Helpers for associating attempts with a subject code (Cambridge or IB).
  */
 
 import type { AttemptLite } from '@/lib/mastery'
 import { getValidSyllabusCodes, hasSyllabusTree } from '@/lib/syllabi'
+import { getIbMarkableSubjectCodes } from '@/lib/ib/marking-config'
 
 const SYLLABUS_SUBJECT_CODES = [
   '9709',
@@ -36,6 +37,14 @@ function paperCodeFromAttempt(attempt: AttemptWithPaper): string | null {
   return code.split('/')[0] || null
 }
 
+// Cambridge codes first so existing tie-breaking is unchanged; IB subjects
+// (which have syllabus trees too) are appended so IB attempts — whose
+// paper_code is absent for practice marking — still resolve from their tags.
+const TAG_INFERENCE_SUBJECT_CODES: readonly string[] = [
+  ...SYLLABUS_SUBJECT_CODES,
+  ...getIbMarkableSubjectCodes(),
+]
+
 /** Infer subject from syllabus_tags when paper_code is unavailable. */
 function subjectFromTags(tags: string[] | null | undefined): string | null {
   if (!tags?.length) return null
@@ -43,7 +52,7 @@ function subjectFromTags(tags: string[] | null | undefined): string | null {
   let bestCode: string | null = null
   let bestScore = 0
 
-  for (const code of SYLLABUS_SUBJECT_CODES) {
+  for (const code of TAG_INFERENCE_SUBJECT_CODES) {
     if (!hasSyllabusTree(code)) continue
     const valid = new Set(getValidSyllabusCodes(code))
     let score = 0

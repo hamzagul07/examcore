@@ -21,6 +21,12 @@
   z-index: 60;
 }
 .nav-dd-menu--portal {
+  /* Must be out-of-flow from the very first render: without an explicit
+     position the empty initial inline style left it `position: static`, so it
+     measured as full page width and the position math flipped it under the
+     logo on first open (it only self-corrected on the second open). */
+  position: fixed;
+  max-width: 280px;
   max-height: min(70vh, 420px);
   overflow-y: auto;
   overscroll-behavior: contain;

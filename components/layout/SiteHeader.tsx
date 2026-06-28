@@ -9,7 +9,7 @@ import { SiteHeaderContext } from '@/components/layout/SiteHeaderContext'
 import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { LoadingLink } from '@/components/ui/LoadingLink'
-import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
+import { ThemeFlip } from '@/components/margin-notes'
 import { NotificationBell } from '@/components/community/NotificationBell'
 import { DiscussSubmitLink } from '@/components/community/DiscussSubmitLink'
 import { NavDropdown } from '@/components/layout/NavDropdown'
@@ -283,7 +283,6 @@ export function SiteHeader({ variant }: Props) {
               config.transparentShell && 'ec-nav-utils--frost'
             )}
           >
-            <CommandKTrigger />
             {showNotifications ? <NotificationBell dismiss={mobileOpen} /> : null}
             <ThemeFlip />
           </div>
@@ -399,7 +398,6 @@ export function SiteHeader({ variant }: Props) {
                       <CtaLabel cta={config.secondaryCta} />
                     </LoadingLink>
                   ) : null}
-                  <MobileSearchMenuButton onActivate={navigateFromMenu} />
                   <NavMobileMenu
                     items={navItems}
                     pathname={pathname}

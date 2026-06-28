@@ -37,24 +37,25 @@
   }
 
   /* ---- sticky nav shell (modern glass) ---- */
+  /* Floating-island header: the wrap is just the sticky layer + the gap that
+     lets the page show around the detached island (.ec-nav). All surface
+     styling lives on .ec-nav. */
   .ec-nav-wrap {
     position: sticky;
     top: 0;
     z-index: var(--ec-z-sticky, 50);
     overflow: visible;
-    --ec-nav-height: calc(72px + env(safe-area-inset-top, 0px));
-    /* One accent variable drives the active tab, context chip + hairline.
-       Per-section tone classes only re-point this (see below) — the layout
-       and surface styling stay identical on every page. */
+    --ec-nav-height: calc(82px + env(safe-area-inset-top, 0px));
+    /* One accent variable drives the active tab + context chip. Per-section
+       tone classes only re-point this — layout/surface stay identical. */
     --ec-nav-accent: var(--ec-brand);
-    background: color-mix(in srgb, var(--ec-canvas) 78%, transparent);
-    backdrop-filter: blur(20px) saturate(1.65);
-    -webkit-backdrop-filter: blur(20px) saturate(1.65);
-    border-bottom: 1px solid color-mix(in srgb, var(--ec-border) 50%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent),
-      inset 0 -1px 0 color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 12%, transparent),
-      0 10px 32px -24px rgba(0, 0, 0, 0.45);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: clamp(8px, 1.4vw, 14px) clamp(10px, 2.2vw, 22px) 0;
+    padding-top: calc(clamp(8px, 1.4vw, 14px) + env(safe-area-inset-top, 0px));
     will-change: transform;
   }
 
@@ -75,18 +76,14 @@
     pointer-events: none;
   }
 
+  /* On scroll the island tightens + lifts a little higher off the page. */
   .ec-nav-wrap--scrolled .ec-nav {
     padding-block: 7px;
-  }
-
-  .ec-nav-wrap--transparent.ec-nav-wrap--scrolled {
-    margin-inline: clamp(10px, 2.2vw, 22px);
-    border-radius: 0 0 18px 18px;
-    border: 1px solid color-mix(in srgb, var(--ec-border) 44%, transparent);
-    border-top: none;
+    background: color-mix(in srgb, var(--ec-surface) 94%, transparent);
     box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 24%, transparent),
-      0 14px 40px -18px rgba(0, 0, 0, 0.35);
+      inset 0 1px 0 color-mix(in srgb, #ffffff 42%, transparent),
+      0 18px 42px -18px rgba(18, 22, 30, 0.36),
+      0 6px 16px -10px rgba(18, 22, 30, 0.20);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -101,51 +98,11 @@
     }
   }
 
-  /* Consistent hairline — a soft centred glow in the section accent colour.
-     Same shape on every page; only the hue shifts with --ec-nav-accent. */
-  .ec-nav-wrap::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 55%, transparent),
-      transparent
-    );
-    opacity: 0.85;
-    pointer-events: none;
-    transition: opacity 200ms ease, background 200ms ease;
-  }
-
-  /* Transparent shell — frosted nav pill only (landing, courses, community, …) */
+  /* The island is identical on every page family, so the old transparent-shell
+     re-skinning is neutralised — these classes are kept (still applied by the
+     header) but no longer change the look. */
   .ec-nav-wrap--transparent {
     background: transparent;
-    border-bottom-color: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .ec-nav-wrap--transparent.ec-nav-wrap--scrolled {
-    background: color-mix(in srgb, var(--ec-canvas) 84%, transparent);
-    backdrop-filter: blur(20px) saturate(1.65);
-    -webkit-backdrop-filter: blur(20px) saturate(1.65);
-    border-bottom-color: color-mix(in srgb, var(--ec-border) 48%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 22%, transparent),
-      0 10px 32px -24px rgba(0, 0, 0, 0.4);
-  }
-
-  .ec-nav-wrap--transparent .ec-nav-links {
-    background: color-mix(in srgb, var(--ec-surface) 52%, transparent);
-    backdrop-filter: blur(18px) saturate(1.45);
-    -webkit-backdrop-filter: blur(18px) saturate(1.45);
-    border-color: color-mix(in srgb, var(--ec-border) 42%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 42%, transparent),
-      0 2px 12px rgba(0, 0, 0, 0.06);
   }
 
   .ec-nav-wrap--transparent .ec-nav-link--active {
@@ -200,14 +157,15 @@
     flex-shrink: 0;
   }
 
+  /* The island already provides the frosted surface — utils sit cleanly inside
+     it, no nested capsule. */
   .ec-nav-utils--frost {
-    padding: 3px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--ec-surface) 48%, transparent);
-    backdrop-filter: blur(14px) saturate(1.35);
-    -webkit-backdrop-filter: blur(14px) saturate(1.35);
-    border: 1px solid color-mix(in srgb, var(--ec-border) 38%, transparent);
-    box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 36%, transparent);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .ec-nav-utils--frost .ec-cmdk-btn,
@@ -265,7 +223,9 @@
   @media (min-width: 901px) {
     .ec-nav {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      /* brand + actions take their natural width FIRST (auto), nav gets the
+         flexible middle — so the centred nav can never overlap the actions. */
+      grid-template-columns: auto minmax(0, 1fr) auto;
       grid-template-areas: 'brand nav actions';
       align-items: center;
       column-gap: 12px;
@@ -302,45 +262,51 @@
       gap: 5px;
     }
 
-    /* Hero / landing — compact chrome so nav stays centered without overlapping search */
+    /* Compact chrome at laptop widths so the centred nav never collides with the
+       actions cluster — applies to EVERY page family (this was the overlap bug). */
     @media (max-width: 1279px) {
-      .ec-nav-wrap--layout-hero .ec-nav-context {
+      .ec-cmdk-btn span:not(.sr-only),
+      .ec-cmdk-btn kbd {
         display: none;
       }
 
-      .ec-nav-wrap--layout-hero .ec-cmdk-btn span:not(.sr-only),
-      .ec-nav-wrap--layout-hero .ec-cmdk-btn kbd {
-        display: none;
-      }
-
-      .ec-nav-wrap--layout-hero .ec-cmdk-btn {
+      .ec-cmdk-btn {
         width: 36px;
         height: 36px;
         padding: 0;
         justify-content: center;
       }
 
-      .ec-nav-wrap--layout-hero .ec-nav-link {
-        padding: 6px 10px;
+      .ec-nav-link {
+        padding: 6px 11px;
         font-size: 13.5px;
       }
 
-      .ec-nav-wrap--layout-hero .ec-cta-label--full {
+      .ec-cta-label--full {
         display: none;
       }
 
-      .ec-nav-wrap--layout-hero .ec-cta-label--short {
+      .ec-cta-label--short {
         display: inline;
       }
     }
 
-    @media (min-width: 901px) and (max-width: 1099px) {
-      .ec-nav-wrap--layout-hero .ec-nav-right a.ec-btn-warm {
+    /* Drop the secondary CTA before things get tight. */
+    @media (max-width: 1199px) {
+      .ec-nav-right a.ec-btn-warm,
+      .ec-nav-right a.ec-btn-ghost--sm:not(.ec-nav-signin) {
         display: none !important;
       }
     }
 
-    .ec-nav-wrap--layout-hero .ec-nav-links {
+    /* Context chip is the first thing to go on smaller laptops. */
+    @media (max-width: 1099px) {
+      .ec-nav-context {
+        display: none;
+      }
+    }
+
+    .ec-nav-links {
       margin-inline: 0;
     }
 
@@ -488,11 +454,25 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 12px;
     max-width: var(--ec-maxw, 1200px);
     margin: 0 auto;
-    padding: 10px clamp(16px, 3vw, 28px);
+    padding: 9px 16px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--ec-surface) 85%, transparent);
+    backdrop-filter: blur(22px) saturate(1.6);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    /* Per-section identity: the island border + lift glow pick up the section
+       accent, so each page family reads differently while the tabs stay put. */
+    border: 1px solid color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 24%, var(--ec-border));
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, #ffffff 45%, transparent),
+      /* very subtle accent glow hugging the border */
+      0 0 10px -1px color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 18%, transparent),
+      0 14px 34px -18px color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 24%, rgba(18, 22, 30, 0.30)),
+      0 4px 12px -8px rgba(18, 22, 30, 0.16);
+    transition: box-shadow 240ms ease, background 240ms ease, border-color 240ms ease;
   }
 
   .ec-wordmark-link:active .ec-wordmark,
@@ -559,14 +539,11 @@
   .ec-nav-links {
     display: none;
     align-items: center;
-    gap: 4px;
-    padding: 4px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--ec-surface) 82%, transparent);
-    border: 1px solid color-mix(in srgb, var(--ec-border) 65%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, #ffffff 35%, transparent),
-      0 1px 2px rgba(0, 0, 0, 0.04);
+    gap: 2px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
   .ec-nav-link {
@@ -998,7 +975,7 @@
 
   @media (max-width: 900px) {
     .ec-nav {
-      padding: 16px 18px;
+      padding: 7px 10px 7px 14px;
     }
 
     .ec-nav-burger {

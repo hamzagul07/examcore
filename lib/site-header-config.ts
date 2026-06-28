@@ -172,9 +172,9 @@ export function getSiteHeaderConfig(
       navItemIds: ['mark', 'courses', 'subjects', 'community', 'pricing'],
       context: { label: 'Cambridge & IB', href: '/subjects', glyph: '◇' },
       primaryCta: {
-        label: 'Mark free — no card',
-        shortLabel: 'Mark free',
-        href: '/mark',
+        label: 'Sign up — no card',
+        shortLabel: 'Sign up',
+        href: '/auth/signup',
         style: 'primary',
       },
       secondaryCta: { label: 'Free courses', href: '/courses', style: 'warm' },

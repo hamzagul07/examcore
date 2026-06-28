@@ -28,8 +28,10 @@ import { BlogContinueSignupModal } from '@/components/blog/BlogContinueSignupMod
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
 import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
+import { BlogShareButtons } from '@/components/blog/BlogShareButtons'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import { getSyllabusSubjectName } from '@/lib/syllabi'
+import { SITE_URL } from '@/lib/site-config'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -110,6 +112,8 @@ export default async function BlogPostPage({ params }: Props) {
             <BlogInContentLinks slug={slug} />
           </div>
         </div>
+
+        <BlogShareButtons url={`${SITE_URL}/blog/${slug}`} title={post.title} />
 
         <BlogSourcesBlock />
         <BlogFollowUpChain slug={slug} />

@@ -978,8 +978,11 @@ export default function MarkPage() {
           setUpgradeModal({ variant: 'anonymous' })
           return
         }
-        setErrorMsg(data.error || 'Marking failed.')
-        setErrorRetryable(!!data.retryable)
+        setErrorMsg(
+          data.error ||
+            'Marking failed — please try again. If it keeps happening, re-upload a clearer photo or PDF.'
+        )
+        setErrorRetryable(data.retryable ?? true)
         return
       }
 

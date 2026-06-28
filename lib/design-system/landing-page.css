@@ -1122,6 +1122,7 @@
 }
 
 .ms-scard2 {
+  position: relative;
   overflow: hidden;
   padding: 0;
   cursor: pointer;
@@ -1141,10 +1142,40 @@
   box-shadow: var(--ec-card-hover-shadow);
 }
 
-/* Keyboard focus indicator — these cards are role="link" with tabIndex={0}. */
+/* Keyboard focus indicator — legacy cards that are still role="link" with tabIndex={0}. */
 .ms-scard2:focus-visible {
   outline: 2px solid var(--sc, var(--ec-border));
   outline-offset: 2px;
+}
+
+/* Stretched-link pattern: the title link covers the whole card so the entire
+   card is clickable, while remaining a single real anchor for accessibility. */
+.ms-scard2 .ms-scard-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ms-scard2 .ms-scard-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.ms-scard2 .ms-scard-link:focus-visible {
+  outline: none;
+}
+
+.ms-scard2 .ms-scard-link:focus-visible::after {
+  outline: 2px solid var(--sc, var(--ec-border));
+  outline-offset: 2px;
+}
+
+/* Secondary links sit above the stretched overlay so they stay clickable. */
+.ms-scard2 .ms-slinks {
+  position: relative;
+  z-index: 2;
 }
 
 .ms-scard2 .ms-tile {
@@ -1283,6 +1314,10 @@
 }
 
 /* comparison */
+.ms-cmp-hint {
+  display: none;
+}
+
 .ms-cmp {
   margin-top: 44px;
   overflow: hidden;
@@ -1519,10 +1554,6 @@
     grid-template-columns: 1fr;
   }
 
-  .ms-marking-capabilities {
-    grid-template-columns: 1fr;
-  }
-
   .ms-platform-detail-wrap {
     padding-top: 48px;
   }
@@ -1590,6 +1621,10 @@
   }
 
   .ms-scard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-marking-capabilities {
     grid-template-columns: 1fr;
   }
 }

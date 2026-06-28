@@ -1127,6 +1127,37 @@
 .plan-feats li.no { color: color-mix(in oklch, var(--text) 52%, var(--surface)); }
 .feat-mark { width: 18px; flex-shrink: 0; font-weight: 700; color: var(--ink); }
 .plan-feats li.no .feat-mark { color: color-mix(in oklch, var(--text) 52%, var(--surface)); }
+
+/* pricing — full Free/Pro/Max feature comparison matrix */
+.ms-plan-matrix-wrap { max-width: 1040px; margin: 56px auto 0; }
+.ms-plan-matrix-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ms-plan-matrix { width: 100%; border-collapse: collapse; }
+.ms-plan-matrix th, .ms-plan-matrix td { padding: 13px 14px; text-align: center; vertical-align: middle; }
+.ms-plan-matrix thead th {
+  font-family: 'Newsreader', Georgia, serif; font-size: 18px; font-weight: 500; color: var(--text);
+  border-bottom: 1.5px solid var(--border-strong);
+}
+.ms-plan-matrix thead th.ms-matrix-feat-head { text-align: left; }
+.ms-plan-matrix tbody th.ms-matrix-feat {
+  text-align: left; font-weight: 500; font-size: 14.5px; color: var(--text);
+  border-bottom: 1px solid var(--border); padding-right: 18px;
+}
+.ms-plan-matrix tbody td { font-size: 14.5px; color: var(--text-2); border-bottom: 1px solid var(--border); }
+.ms-plan-matrix tbody tr:last-child th, .ms-plan-matrix tbody tr:last-child td { border-bottom: none; }
+.ms-matrix-yes { color: var(--ink); font-weight: 700; font-size: 16px; }
+.ms-matrix-no { color: color-mix(in oklch, var(--text) 42%, var(--surface)); }
+.ms-matrix-val { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--text); }
+.ms-plan-matrix .ms-matrix-col-featured {
+  background: var(--ec-surface-warm, color-mix(in srgb, var(--ink) 4%, var(--surface)));
+}
+.ms-plan-matrix thead th.ms-matrix-col-featured { color: var(--ink); border-top-left-radius: 10px; border-top-right-radius: 10px; }
+@media (max-width: 560px) {
+  .ms-plan-matrix th, .ms-plan-matrix td { padding: 11px 8px; }
+  .ms-plan-matrix thead th { font-size: 15px; }
+  .ms-plan-matrix tbody th.ms-matrix-feat, .ms-plan-matrix tbody td { font-size: 12.5px; }
+  .ms-plan-matrix tbody th.ms-matrix-feat { padding-right: 10px; }
+}
+
 .pricing-faqs { max-width: 760px; margin: 48px auto 0; }
 
 /* ============================================================

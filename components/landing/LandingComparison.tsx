@@ -37,13 +37,21 @@
   },
 ]
 
+const CELL_STATUS: Record<string, { cls: string; label: string }> = {
+  y: { cls: 'ms-cmp-cell--y', label: 'Yes' },
+  n: { cls: 'ms-cmp-cell--n', label: 'No' },
+  mid: { cls: 'ms-cmp-cell--mid', label: 'Partial' },
+}
+
 function parseCell(raw: string, us = false) {
   const [kind, ...rest] = raw.split(':')
   const text = rest.join(':')
-  const cls =
-    kind === 'y' ? 'ms-cmp-cell--y' : kind === 'n' ? 'ms-cmp-cell--n' : 'ms-cmp-cell--mid'
+  const status = CELL_STATUS[kind] ?? CELL_STATUS.mid
   return (
-    <div className={`ms-cmp-cell ${cls}${us ? ' ms-us-col' : ''}`}>{text}</div>
+    <div role="cell" className={`ms-cmp-cell ${status.cls}${us ? ' ms-us-col' : ''}`}>
+      <span className="sr-only">{status.label}: </span>
+      {text}
+    </div>
   )
 }
 
@@ -54,17 +62,20 @@ export function LandingComparison() {
       <h2 className="ms-h2">
         Generic AI guesses. <em>This one cites.</em>
       </h2>
+      <p className="ms-cmp-hint" aria-hidden="true">
+        Swipe to compare →
+      </p>
       <div className="ms-cmp-scroll">
-        <div className="ms-cmp">
-        <div className="ms-cmp-row ms-cmp-head">
-          <div />
-          <div className="ms-us-head">MarkScheme</div>
-          <div style={{ textAlign: 'center' }}>Generic AI chat</div>
-          <div style={{ textAlign: 'center' }}>Private tutor</div>
+        <div className="ms-cmp" role="table" aria-label="MarkScheme compared with generic AI chat and a private tutor">
+        <div className="ms-cmp-row ms-cmp-head" role="row">
+          <div role="columnheader"><span className="sr-only">Capability</span></div>
+          <div className="ms-us-head" role="columnheader">MarkScheme</div>
+          <div style={{ textAlign: 'center' }} role="columnheader">Generic AI chat</div>
+          <div style={{ textAlign: 'center' }} role="columnheader">Private tutor</div>
         </div>
         {ROWS.map((row) => (
-          <div key={row.label} className="ms-cmp-row">
-            <div className="ms-lab">{row.label}</div>
+          <div key={row.label} className="ms-cmp-row" role="row">
+            <div className="ms-lab" role="rowheader">{row.label}</div>
             {parseCell(row.ms, true)}
             {parseCell(row.chat)}
             {parseCell(row.tutor)}

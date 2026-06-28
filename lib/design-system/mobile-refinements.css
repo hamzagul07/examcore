@@ -858,6 +858,17 @@
 }
 
 @media (max-width: 520px) {
+  /* Comparison table overflows (min-width 520px) below this width — cue the swipe. */
+  .ms-cmp-hint {
+    display: block;
+    margin: 16px 0 -6px;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ec-text-faint);
+  }
+
   .ms-price-page .ms-h2 {
     font-size: clamp(28px, 7.5vw, 40px);
   }

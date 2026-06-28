@@ -43,13 +43,17 @@
     z-index: var(--ec-z-sticky, 50);
     overflow: visible;
     --ec-nav-height: calc(72px + env(safe-area-inset-top, 0px));
+    /* One accent variable drives the active tab, context chip + hairline.
+       Per-section tone classes only re-point this (see below) — the layout
+       and surface styling stay identical on every page. */
+    --ec-nav-accent: var(--ec-brand);
     background: color-mix(in srgb, var(--ec-canvas) 78%, transparent);
     backdrop-filter: blur(20px) saturate(1.65);
     -webkit-backdrop-filter: blur(20px) saturate(1.65);
     border-bottom: 1px solid color-mix(in srgb, var(--ec-border) 50%, transparent);
     box-shadow:
       inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent),
-      inset 0 -1px 0 color-mix(in srgb, var(--ec-brand) 12%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 12%, transparent),
       0 10px 32px -24px rgba(0, 0, 0, 0.45);
     will-change: transform;
   }
@@ -97,6 +101,8 @@
     }
   }
 
+  /* Consistent hairline — a soft centred glow in the section accent colour.
+     Same shape on every page; only the hue shifts with --ec-nav-accent. */
   .ec-nav-wrap::before {
     content: '';
     position: absolute;
@@ -104,15 +110,13 @@
     height: 2px;
     background: linear-gradient(
       90deg,
-      var(--ec-c-math),
-      var(--ec-brand),
-      var(--ec-c-phys),
-      var(--ec-c-chem),
-      var(--ec-accent-warm)
+      transparent,
+      color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 55%, transparent),
+      transparent
     );
-    opacity: 0.72;
+    opacity: 0.85;
     pointer-events: none;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease, background 200ms ease;
   }
 
   /* Transparent shell — frosted nav pill only (landing, courses, community, …) */
@@ -145,7 +149,7 @@
   }
 
   .ec-nav-wrap--transparent .ec-nav-link--active {
-    background: color-mix(in srgb, var(--ec-brand) 18%, transparent);
+    background: color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 18%, transparent);
   }
 
   .ec-nav-right--frost :is(
@@ -235,110 +239,18 @@
     border: 1px solid color-mix(in srgb, var(--ec-border) 40%, transparent);
   }
 
-  /* Page-family accent on the top gradient line */
-  .ec-nav-wrap--tone-hero::before {
-    opacity: 0.9;
+  /* Subtle section accents — each tone only re-points --ec-nav-accent.
+     hero / pricing / default keep the brand green (the base value). */
+  .ec-nav-wrap--tone-learn {
+    --ec-nav-accent: var(--ec-accent-warm);
   }
 
-  .ec-nav-wrap--tone-learn::before {
-    background: linear-gradient(
-      90deg,
-      var(--ec-accent-warm),
-      var(--ec-brand),
-      var(--ec-c-math),
-      var(--ec-c-bio)
-    );
+  .ec-nav-wrap--tone-discuss {
+    --ec-nav-accent: var(--ec-acc-violet);
   }
 
-  .ec-nav-wrap--tone-discuss::before {
-    background: linear-gradient(
-      90deg,
-      var(--ec-acc-violet),
-      var(--ec-c-phys),
-      var(--ec-acc-rose),
-      var(--ec-brand)
-    );
-  }
-
-  .ec-nav-wrap--tone-pricing::before {
-    background: linear-gradient(
-      90deg,
-      var(--ec-brand),
-      var(--ec-c-phys),
-      var(--ec-accent-warm)
-    );
-  }
-
-  .ec-nav-wrap--tone-mark::before {
-    background: linear-gradient(
-      90deg,
-      var(--ec-brand),
-      var(--ec-c-teal),
-      var(--ec-c-phys)
-    );
-  }
-
-  .ec-nav-wrap--tone-learn .ec-nav-link--active {
-    color: var(--ec-accent-warm-deep, var(--ec-accent-warm));
-    background: color-mix(in srgb, var(--ec-accent-warm) 16%, transparent);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ec-accent-warm) 28%, transparent);
-  }
-
-  .ec-nav-wrap--tone-discuss .ec-nav-link--active {
-    color: var(--ec-acc-violet);
-    background: color-mix(in srgb, var(--ec-acc-violet) 14%, transparent);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ec-acc-violet) 26%, transparent);
-  }
-
-  .ec-nav-wrap--tone-pricing .ec-nav-link--active {
-    color: var(--ec-brand);
-  }
-
-  /* Context badge colours per page family */
-  .ec-nav-wrap--tone-hero .ec-nav-context {
-    color: var(--ec-text-secondary);
-    background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
-    border-color: color-mix(in srgb, var(--ec-brand) 22%, transparent);
-  }
-
-  .ec-nav-wrap--tone-learn .ec-nav-context {
-    color: var(--ec-accent-warm-deep, var(--ec-accent-warm));
-    background: color-mix(in srgb, var(--ec-accent-warm) 16%, transparent);
-    border-color: color-mix(in srgb, var(--ec-accent-warm) 30%, transparent);
-  }
-
-  .ec-nav-wrap--tone-learn .ec-nav-links {
-    background: color-mix(in srgb, var(--ec-accent-warm) 10%, var(--ec-surface) 48%);
-  }
-
-  .ec-nav-wrap--tone-discuss .ec-nav-context {
-    color: var(--ec-acc-violet);
-    background: color-mix(in srgb, var(--ec-acc-violet) 14%, transparent);
-    border-color: color-mix(in srgb, var(--ec-acc-violet) 28%, transparent);
-  }
-
-  .ec-nav-wrap--tone-discuss .ec-nav-links {
-    background: color-mix(in srgb, var(--ec-acc-violet) 10%, var(--ec-surface) 48%);
-  }
-
-  .ec-nav-wrap--tone-pricing .ec-nav-context {
-    color: var(--ec-brand);
-    background: color-mix(in srgb, var(--ec-brand) 12%, transparent);
-    border-color: color-mix(in srgb, var(--ec-brand) 26%, transparent);
-  }
-
-  .ec-nav-wrap--tone-pricing .ec-nav-links {
-    background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface) 50%);
-  }
-
-  .ec-nav-wrap--tone-mark .ec-nav-context {
-    color: var(--ec-brand);
-    background: color-mix(in srgb, var(--ec-brand) 14%, transparent);
-    border-color: color-mix(in srgb, var(--ec-brand) 28%, transparent);
-  }
-
-  .ec-nav-wrap--tone-mark .ec-nav-links {
-    background: color-mix(in srgb, var(--ec-c-teal) 10%, var(--ec-surface) 48%);
+  .ec-nav-wrap--tone-mark {
+    --ec-nav-accent: var(--ec-c-teal);
   }
 
   /* Layout: community — tighter single-row chrome */
@@ -622,9 +534,11 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid transparent;
+    color: color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 88%, var(--ec-text-primary));
+    background: color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 11%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 24%, transparent);
     white-space: nowrap;
-    transition: background 150ms ease, border-color 150ms ease;
+    transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
   }
 
   .ec-nav-context-glyph {
@@ -674,24 +588,33 @@
       transform 120ms ease;
   }
 
-  /* Pill highlight — no underline bar in modern nav */
-  .ec-nav-link::after {
-    display: none;
-  }
-
   .ec-nav-link:hover {
     color: var(--ec-text-primary);
     background: color-mix(in srgb, var(--ec-text-primary) 6%, transparent);
   }
 
+  /* Active tab — consistent soft highlight + a 2px accent underline indicator,
+     all tinted by the section's --ec-nav-accent. */
   .ec-nav-link--active {
-    color: var(--ec-brand);
-    background: color-mix(in srgb, var(--ec-brand) 14%, var(--ec-surface));
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ec-brand) 22%, transparent);
+    color: var(--ec-nav-accent, var(--ec-brand));
+    background: color-mix(in srgb, var(--ec-nav-accent, var(--ec-brand)) 9%, transparent);
+  }
+
+  /* The accent underline is the primary cue — a soft tint sits behind it. */
+  .ec-nav-link--active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ec-nav-accent, var(--ec-brand));
   }
 
   .ec-nav-link:focus-visible {
-    outline: 2px solid var(--ec-brand);
+    outline: 2px solid var(--ec-nav-accent, var(--ec-brand));
     outline-offset: 5px;
     border-radius: 3px;
     color: var(--ec-text-primary);
@@ -727,8 +650,8 @@
   }
 
   .ec-theme-flip:hover {
-    border-color: var(--ec-brand);
-    color: var(--ec-brand);
+    border-color: var(--ec-nav-accent, var(--ec-brand));
+    color: var(--ec-nav-accent, var(--ec-brand));
   }
 
   .ec-cmdk-btn {
@@ -747,8 +670,8 @@
   }
 
   .ec-cmdk-btn:hover {
-    border-color: var(--ec-brand);
-    color: var(--ec-brand);
+    border-color: var(--ec-nav-accent, var(--ec-brand));
+    color: var(--ec-nav-accent, var(--ec-brand));
   }
 
   .ec-cmdk-btn kbd {
@@ -1490,10 +1413,11 @@
       right: 0;
       bottom: 0;
       z-index: 70;
-      background: color-mix(in srgb, var(--ec-canvas) 92%, transparent);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--ec-border);
+      background: color-mix(in srgb, var(--ec-canvas) 90%, transparent);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      border-top: 1px solid color-mix(in srgb, var(--ec-border) 70%, transparent);
+      box-shadow: 0 -6px 24px -18px rgba(0, 0, 0, 0.5);
       padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -1503,36 +1427,51 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: 3px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 6px 2px;
+      padding: 4px 2px;
       color: var(--ec-text-faint);
-      border-radius: 10px;
-      min-height: 48px;
+      min-height: 52px;
       text-decoration: none;
-      transition: color 150ms ease;
     }
 
+    /* Pill that highlights behind the active icon (Material-3 style) */
     .ec-tabbar__glyph {
-      font-family: var(--font-display, 'Newsreader', Georgia, serif);
-      font-size: 19px;
-      line-height: 1;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 26px;
+      border-radius: 999px;
+      color: var(--ec-text-secondary);
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .ec-tabbar__glyph svg {
+      width: 21px;
+      height: 21px;
     }
 
     .ec-tabbar__label {
       font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.08em;
+      font-size: 9.5px;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
+      transition: color 160ms ease;
     }
 
     .ec-tabbar a[aria-current='page'],
     .ec-tabbar .ec-tabbar-link[aria-current='page'],
     .ec-tabbar button[aria-current='page'] {
       color: var(--ec-brand);
+    }
+
+    .ec-tabbar a[aria-current='page'] .ec-tabbar__glyph,
+    .ec-tabbar .ec-tabbar-link[aria-current='page'] .ec-tabbar__glyph,
+    .ec-tabbar button[aria-current='page'] .ec-tabbar__glyph {
       background: var(--ec-brand-muted);
+      color: var(--ec-brand);
     }
   }
 

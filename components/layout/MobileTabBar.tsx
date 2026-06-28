@@ -1,12 +1,13 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { BookOpen, Home, LibraryBig, PenLine, User, type LucideIcon } from 'lucide-react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type TabItem = {
   href: string
   label: string
-  glyph: string
+  Icon: LucideIcon
   match: (p: string) => boolean
 }
 
@@ -14,13 +15,13 @@ const TABS: TabItem[] = [
   {
     href: '/mark',
     label: 'Mark',
-    glyph: '✎',
+    Icon: PenLine,
     match: (p) => p === '/mark' || p.startsWith('/mark/'),
   },
   {
     href: '/courses',
     label: 'Learn',
-    glyph: '∫',
+    Icon: BookOpen,
     match: (p) =>
       p === '/courses' ||
       p.startsWith('/courses/') ||
@@ -30,7 +31,7 @@ const TABS: TabItem[] = [
   {
     href: '/subjects',
     label: 'Subjects',
-    glyph: '§',
+    Icon: LibraryBig,
     match: (p) =>
       p === '/subjects' ||
       p.startsWith('/subjects/') ||
@@ -41,7 +42,7 @@ const TABS: TabItem[] = [
   {
     href: '/dashboard',
     label: 'Home',
-    glyph: '⌂',
+    Icon: Home,
     match: (p) =>
       p === '/dashboard' ||
       p.startsWith('/dashboard/progress') ||
@@ -50,7 +51,7 @@ const TABS: TabItem[] = [
   {
     href: '/account',
     label: 'You',
-    glyph: 'H',
+    Icon: User,
     match: (p) => p.startsWith('/account'),
   },
 ]
@@ -60,7 +61,7 @@ export function MobileTabBar() {
 
   return (
     <nav aria-label="Main navigation" className="ec-tabbar lg:hidden">
-      {TABS.map(({ href, label, glyph, match }) => {
+      {TABS.map(({ href, label, Icon, match }) => {
         const active = match(pathname)
         return (
           <LoadingLink
@@ -72,7 +73,7 @@ export function MobileTabBar() {
             className="ec-tabbar-link"
           >
             <span className="ec-tabbar__glyph" aria-hidden>
-              {glyph}
+              <Icon strokeWidth={active ? 2.4 : 2} />
             </span>
             <span className="ec-tabbar__label">{label}</span>
           </LoadingLink>

@@ -83,6 +83,19 @@ const PRICING_PKR_C = {
   mastery: { monthly: 699_900, yearly: 5_491_000 },
 }
 
+/** Tier A student/scholar fixed prices — keep in sync with lib/billing/pricing-usd.ts */
+const PRICING_FIXED_A = {
+  gbp: { monthly: 1300, yearly: 10200 },
+  eur: { monthly: 1300, yearly: 10200 },
+  aud: { monthly: 2000, yearly: 15700 },
+}
+
+/** Tier C student/scholar INR (paisa) */
+const PRICING_INR_C = {
+  student: { monthly: 230_000, yearly: 1_804_700 },
+  scholar: { monthly: 230_000, yearly: 1_804_700 },
+}
+
 const CURRENCIES_PER_TIER = {
   A: ['usd', 'gbp', 'eur', 'aud'],
   B: ['usd', 'eur'],
@@ -153,6 +166,24 @@ function tierCFromPkrAnchor(pkrCents, currency) {
 }
 
 function resolveAmountCents({ usdCents, currency, tier, productKey, period }) {
+  if (
+    tier === 'A' &&
+    ['student', 'scholar'].includes(productKey) &&
+    period &&
+    PRICING_FIXED_A[currency]
+  ) {
+    return PRICING_FIXED_A[currency][period]
+  }
+
+  if (
+    tier === 'C' &&
+    ['student', 'scholar'].includes(productKey) &&
+    period &&
+    currency === 'inr'
+  ) {
+    return PRICING_INR_C[productKey][period]
+  }
+
   if (
     tier === 'C' &&
     SUBSCRIPTION_KEYS.includes(productKey) &&

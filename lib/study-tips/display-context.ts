@@ -1,5 +1,6 @@
 import { getSyllabusTopicByCode as get9709Topic } from '@/lib/syllabus'
 import { getSyllabusTopicByCode, getSyllabusSubjectName } from '@/lib/syllabi'
+import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { getStudyTip, pickPrimarySyllabusTag } from './curated'
 
 export type MarkingDisplayContext = {
@@ -26,7 +27,8 @@ export function formatPaperReference(
   const subjectName = getSyllabusSubjectName(subjectCode) || subjectCode
   const session = paperSession?.trim() ? ` · ${paperSession.trim()}` : ''
   const q = questionNumber?.trim() ? ` · Question ${questionNumber.trim()}` : ''
-  return `Cambridge ${paperCode} (${subjectName})${q}${session}`
+  const board = isIbSubjectCode(subjectCode) ? 'IB' : 'Cambridge'
+  return `${board} ${paperCode} (${subjectName})${q}${session}`
 }
 
 export function buildMarkingDisplayContext(params: {

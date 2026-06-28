@@ -170,7 +170,20 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     : []
   const masteries = flattenLeafMasteries(parentMasteries)
   const coverage = calculateSyllabusCoverage(masteries)
-  const prediction = predictGrade(attempts, masteries)
+  const rawPrediction = predictGrade(attempts, masteries)
+  // IB is graded 1–7, not Cambridge A*–E — don't surface a Cambridge predicted
+  // grade, trajectory or "grade-up" win for IB subjects.
+  const prediction = isIbSubject
+    ? {
+        ...rawPrediction,
+        predictedGrade: '—' as const,
+        color: '#94a3b8',
+        nextLevelTip:
+          rawPrediction.averagePercentage != null
+            ? 'IB is graded 1–7 — keep marking to track your mastery and bands.'
+            : rawPrediction.nextLevelTip,
+      }
+    : rawPrediction
   const streakDays = computeStreak(allAttempts.map((a) => new Date(a.created_at)))
   const totalTopics = getTotalSyllabusLeaves(selectedCode)
   const actionItems = generateActionPlan(attempts, masteries, streakDays, {
@@ -181,7 +194,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const state = resolveDashboardState(attempts.length)
   const patterns = analysePatterns(attempts)
   const speedProfile = analyseSpeedProfile(attempts)
-  const wins = deriveWins(attempts, masteries, streakDays)
+  const wins = deriveWins(attempts, masteries, streakDays, isIbSubject)
   const timelineStations = buildTimeline(attempts)
 
   let recommendations: Recommendation[] = []
@@ -260,7 +273,9 @@ export default async function ProgressPage({ searchParams }: PageProps) {
         subjectLabel={`${boardPrefix} ${selectedCode} ${subjectLabel}`}
         totalTopics={totalTopics}
       />
-      <GradeTrajectory attempts={attempts} prediction={prediction} />
+      {!isIbSubject && (
+        <GradeTrajectory attempts={attempts} prediction={prediction} />
+      )}
       <MasteryMatrix
         parentMasteries={parentMasteries}
         attempts={attempts}

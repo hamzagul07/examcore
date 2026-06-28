@@ -22,7 +22,9 @@ function pct(a: AttemptLite): number {
 export function deriveWins(
   attempts: AttemptLite[],
   masteries: LeafMastery[],
-  streak: number
+  streak: number,
+  /** IB is graded 1–7, not Cambridge A*–E — skip Cambridge grade-up wins. */
+  isIb = false
 ): Win[] {
   if (attempts.length === 0) return []
 
@@ -91,7 +93,7 @@ export function deriveWins(
   }
 
   // Grade-up — only when the recent window genuinely beats the early window.
-  const gradeUp = detectGradeUp(oldestFirst)
+  const gradeUp = isIb ? null : detectGradeUp(oldestFirst)
   if (gradeUp) {
     wins.push({
       kind: 'grade_up',

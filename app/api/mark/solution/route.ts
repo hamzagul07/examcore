@@ -95,39 +95,28 @@ Total marks available: ${attempt.mark_schemes.total_marks ?? '(unknown)'}
 `
       : ''
 
-    const prompt = `You are an expert Cambridge A-Level Mathematics tutor. Generate a complete step-by-step worked solution to the following question.
+    const prompt = `You are an expert exam tutor and examiner across Cambridge and IB subjects. Produce a complete model answer / worked solution to the following exam question that would earn full marks. Work out the SUBJECT and QUESTION TYPE from the question and the marking criteria yourself — do NOT assume it is mathematics.
 
 Question:
 ${questionText}
 
 ${markSchemeBlock}
 
-Generate a clear, educational worked solution that a student can learn from. Requirements:
+Adapt the format to the question type:
 
-1. SHOW EVERY STEP. Don't skip algebra steps. Students need to see how each line leads to the next.
+- CALCULATION / MATHS / NUMERICAL-SCIENCE questions: show EVERY step, briefly explain the reasoning before each major step, and use proper LaTeX maths notation — wrap inline maths in $...$ and displayed equations in $$...$$ (e.g. $x^2$, $\\frac{a}{b}$, $\\binom{6}{2}$, $\\sqrt{16}$, \\pi). Never write maths as plain text. End with the final answer in **bold**.
 
-2. EXPLAIN THE REASONING. Before each major step, briefly explain WHY you're doing it (e.g., "We need to find the coefficient of $x^2$, so we'll use the binomial expansion formula...")
+- ESSAY / EXTENDED-WRITTEN questions (e.g. Theory of Knowledge, History, English Literature, Economics or Business essays, Psychology): give a strong MODEL ANSWER or a detailed answer plan — a clear thesis and line of argument, the key points/paragraphs that earn the marks, specific evidence or examples to use, and the evaluation/judgement the question demands. Reference the marking criteria or markbands where given.
 
-3. USE PROPER LATEX MATH NOTATION:
-   - Wrap inline math in $...$ (e.g., $x^2$, $\\binom{6}{2}$, $\\frac{a}{b}$)
-   - Wrap displayed equations in $$...$$ for important results
-   - Use proper notation: \\binom for binomial coefficients, \\frac for fractions, \\sqrt for roots, \\pi for pi, etc.
-   - NEVER write math as plain text like "x^2" or "sqrt(16)" — always use LaTeX
+- STRUCTURED / SHORT-ANSWER / DATA questions: give the model answer point by point, matching how the marks are awarded, using correct subject terminology.
 
-4. STRUCTURE THE SOLUTION as markdown:
-   - Start with a brief overview of the approach (1-2 sentences)
-   - Break into clearly labeled steps using markdown headers: ### Step 1, ### Step 2, etc.
-   - End with the final answer in **bold**
-   - Optionally add a short "**Why this works**" note at the end
-
-5. STUDENT-FRIENDLY TONE:
-   - Address the student as "you" or "we"
-   - Be encouraging where natural
-   - Clear and patient, like a good tutor explaining
-   - Avoid examiner jargon (B1/M1/A1) — that's for marking, not teaching
+General requirements:
+1. Make it genuinely educational — the student should learn HOW to produce the answer, not just see it.
+2. Structure as markdown with clear headers (### Step 1 / ### Point 1 / ### Paragraph 1, whichever fits); end with the final answer or conclusion in **bold**, and optionally a short "**Why this works**" note.
+3. Student-friendly tone: address the student as "you"/"we", be clear and patient. Avoid examiner codes (B1/M1/A1) — that is for marking, not teaching.
 
 OUTPUT FORMAT:
-Return ONLY the worked solution as plain markdown text. Do NOT wrap in JSON. Do NOT include any preamble like "Here is the solution:". Start directly with the overview sentence.`
+Return ONLY the model answer as plain markdown. Do NOT wrap in JSON. Do NOT include any preamble like "Here is the solution:". Start directly with a one-sentence overview of the approach.`
 
     const solution = await generateGeminiText(prompt, {
       task: 'solution',

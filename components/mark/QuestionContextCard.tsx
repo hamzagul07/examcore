@@ -7,6 +7,7 @@ import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { formatPaperReference } from '@/lib/study-tips/display-context'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
+import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import type { MarkingResultData } from '@/components/MarkingResultView'
 import { MARKING_TYPE_LABELS } from '@/components/mark/QuestionPreviewPanel'
 import type { MarkingStyle } from '@/lib/marking/types'
@@ -43,6 +44,8 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
 
   const paperLine = formatPaperReference(paperCode, paperSession, questionNumber)
   const paperSubjectCode = paperCode?.split('/')[0] || null
+  // Board-aware: IB is graded 1–7 (not A*–E) and isn't "Cambridge".
+  const isIb = isIbSubjectCode(subjectCode ?? paperSubjectCode ?? '')
   const subjectLabel = subjectCode
     ? getSubjectByCode(subjectCode)?.label
     : paperSubjectCode
@@ -61,7 +64,7 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
     result.total_marks > 0
       ? Math.round((result.marks_earned / result.total_marks) * 100)
       : 0
-  const grade = predictGradeFromPercentage(percentage)
+  const grade = isIb ? null : predictGradeFromPercentage(percentage)
 
   const tags =
     result.syllabus_tags?.length
@@ -109,7 +112,7 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
           <dt>Your score</dt>
           <dd>
             {result.marks_earned} / {result.total_marks}
-            {grade.grade ? ` · Grade ${grade.grade}` : ''}
+            {grade?.grade ? ` · Grade ${grade.grade}` : ''}
           </dd>
         </div>
         {markingType ? (
@@ -129,7 +132,7 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
         {result.marking_mode === 'official_mark_scheme' ? (
           <div>
             <dt>Scheme</dt>
-            <dd className="ms-question-context-scheme">Official Cambridge</dd>
+            <dd className="ms-question-context-scheme">Official {isIb ? 'IB' : 'Cambridge'}</dd>
           </div>
         ) : null}
       </dl>

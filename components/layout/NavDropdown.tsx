@@ -69,7 +69,16 @@ export function NavDropdown({
 }) {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [menuStyle, setMenuStyle] = useState<CSSProperties>({})
+  // Start fixed + off-screen so the very first render is out of flow: an empty
+  // style left the menu `position: static`, which measured as full page width
+  // and flipped its computed position under the logo on the first open.
+  const [menuStyle, setMenuStyle] = useState<CSSProperties>({
+    position: 'fixed',
+    top: -9999,
+    left: -9999,
+    minWidth: MENU_MIN_WIDTH,
+    zIndex: 222,
+  })
   const [placement, setPlacement] = useState<'below' | 'above'>('below')
   const rootRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)

@@ -1,7 +1,9 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import type { Board, PostKind } from '@/lib/community/posts'
 
-const SEED_MARKER = 'b1000001-0000-4000-8000-000000000001'
+// Bump this when adding a new seed batch — it re-runs the idempotent seed once
+// (existing rows skip via ignoreDuplicates; only the new batch is inserted).
+const SEED_MARKER = 'b2000001-0000-4000-8000-000000000001'
 
 type SeedUser = { id: string; email: string; username: string; name: string }
 
@@ -39,6 +41,16 @@ const POSTS: SeedPost[] = [
   { id: 'b1000010-0000-4000-8000-000000000010', author: 'pastpaper_pro', board: 'ib', subjectCode: 'math-aa-hl', kind: 'question', flair: 'IA', title: 'How do you prove series convergence rigorously for Math AA HL IA?', bodyMd: 'My teacher wants epsilon-style reasoning. What level of proof is enough?', score: 10, comments: 2, hoursAgo: 9 },
   { id: 'b1000011-0000-4000-8000-000000000011', author: 'examroom', board: 'cambridge', subjectCode: '9709', kind: 'resource', flair: 'Cheat sheet', title: 'My P3 formula sheet — everything I actually use in exams', bodyMd: 'Trig identities, integration tricks, and complex-number shortcuts for **9709** Pure 3.', score: 21, comments: 1, hoursAgo: 4 },
   { id: 'b1000012-0000-4000-8000-000000000012', author: 'studyhelper', board: 'ib', subjectCode: 'biology-sl', kind: 'resource', flair: 'Notes', title: 'Topic 6 Human physiology — one-page summary (SL)', bodyMd: 'Condensed **Biology SL** Topic 6 notes for last-week revision.', score: 8, comments: 1, hoursAgo: 16 },
+
+  // ---- Batch 2: seasonal, post-exam -> results day (June 2026 series) ----
+  { id: 'b2000001-0000-4000-8000-000000000001', author: 'examroom', board: 'cambridge', subjectCode: '9702', kind: 'discussion', flair: 'Exam reflections', title: 'How did everyone find the June 2026 Physics A-Level papers?', bodyMd: 'Now that **9702** is done — how did Paper 4 treat you? The capacitor question and the last circular-motion part split my whole class. No spoilers needed, just gut feeling: easier or harder than the 2024 papers?', score: 31, comments: 3, pinned: true, hoursAgo: 3 },
+  { id: 'b2000002-0000-4000-8000-000000000002', author: 'studyhelper', board: 'cambridge', subjectCode: '9709', kind: 'discussion', flair: 'Exam reflections', title: 'June 2026 Maths — did Pure 3 or Mechanics hit harder?', bodyMd: 'Genuinely split here. **9709** P3 felt long (that integration into partial fractions chain), but M1 had a nasty connected-particles question at the end. Which one cost you more time?', score: 24, comments: 2, hoursAgo: 6 },
+  { id: 'b2000003-0000-4000-8000-000000000003', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9700', kind: 'discussion', flair: 'Exam reflections', title: 'Biology June 2026 Paper 2 — how did the data-handling question go?', bodyMd: '**9700** Paper 2 always has one big data/stats question that decides grades. How did people find the analysis this series — and did you finish in time?', score: 18, comments: 2, hoursAgo: 9 },
+  { id: 'b2000004-0000-4000-8000-000000000004', author: 'examroom', board: 'cambridge', subjectCode: '9708', kind: 'discussion', flair: 'Results day', title: 'Results day is 13 August — how is everyone coping with the wait?', bodyMd: 'Six weeks of nothing to do but overthink. For anyone who sat A-Levels this June: what are you doing to stay sane until **results day on 13 August 2026**? Trips, work, getting ahead on uni reading?', score: 27, comments: 3, hoursAgo: 4 },
+  { id: 'b2000005-0000-4000-8000-000000000005', author: 'studyhelper', board: 'cambridge', subjectCode: '9701', kind: 'question', flair: 'Grade boundaries', title: 'How do you actually estimate your grade before results day?', bodyMd: 'I have rough raw marks from going through the papers with the mark scheme. How are people turning that into a predicted grade for **9701** when the 2026 boundaries are not out yet?', score: 16, comments: 2, hoursAgo: 7 },
+  { id: 'b2000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', board: 'ib', subjectCode: 'physics-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB Physics HL May 2026 — how did Paper 2 and 3 go?', bodyMd: 'Paper 2 felt long for **Physics HL** and the Option in Paper 3 was time-pressured again. How did everyone find the balance this session?', score: 19, comments: 2, hoursAgo: 8 },
+  { id: 'b2000007-0000-4000-8000-000000000007', author: 'examroom', board: 'ib', subjectCode: 'math-aa-hl', kind: 'discussion', flair: 'Results', title: 'IB May 2026 results — anyone else already refreshing the portal?', bodyMd: 'The wait for **Math AA HL** (and everything else) is unreal. How is everyone holding up before results — and do you have a plan if a grade comes back lower than your offer needs?', score: 15, comments: 2, hoursAgo: 5 },
+  { id: 'b2000008-0000-4000-8000-000000000008', author: 'studyhelper', board: 'cambridge', subjectCode: '9618', kind: 'discussion', flair: 'Next steps', title: 'Thinking about a November resit — what is your strategy?', bodyMd: 'If a grade does not land where I need it, I might resit **9618** in the November series. For anyone who has resat before: what actually moved your grade the second time?', score: 12, comments: 2, hoursAgo: 11 },
 ]
 
 const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; score: number; hoursAgo: number }[] = [
@@ -56,6 +68,16 @@ const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; sc
   { id: 'c1000023-0000-4000-8000-000000000023', postId: 'b1000011-0000-4000-8000-000000000011', author: 'studyhelper', bodyMd: 'Yes please upload the PDF — would save rebuilding mine before mocks.', score: 4, hoursAgo: 3 },
   { id: 'c1000010-0000-4000-8000-000000000010', postId: 'b1000005-0000-4000-8000-000000000005', author: 'studyhelper', bodyMd: 'Paper 2 EM was the killer for us. Heard 7 boundary might be low 70s%.', score: 5, hoursAgo: 2 },
   { id: 'c1000011-0000-4000-8000-000000000011', postId: 'b1000005-0000-4000-8000-000000000005', author: 'pastpaper_pro', bodyMd: 'Know your Hertzsprung-Russell diagram cold for astrophysics options.', score: 8, hoursAgo: 2 },
+
+  // ---- Batch 2 comments ----
+  { id: 'c2000001-0000-4000-8000-000000000001', postId: 'b2000001-0000-4000-8000-000000000001', author: 'studyhelper', bodyMd: 'Harder than 2024 imo — the capacitor discharge calc had an awkward log step. Hoping boundaries drop a bit.', score: 9, hoursAgo: 2 },
+  { id: 'c2000002-0000-4000-8000-000000000002', postId: 'b2000001-0000-4000-8000-000000000001', author: 'pastpaper_pro', bodyMd: 'Everyone struggling = lower boundary. Do not panic before the official CAIE thresholds on 13 Aug.', score: 12, hoursAgo: 2 },
+  { id: 'c2000003-0000-4000-8000-000000000003', postId: 'b2000001-0000-4000-8000-000000000001', author: 'examroom', bodyMd: 'Add your paper variant (42/52) when you reply so people compare like for like.', score: 5, hoursAgo: 1 },
+  { id: 'c2000004-0000-4000-8000-000000000004', postId: 'b2000004-0000-4000-8000-000000000004', author: 'pastpaper_pro', bodyMd: 'Getting ahead on first-year uni maths is the only thing keeping my brain off it.', score: 7, hoursAgo: 3 },
+  { id: 'c2000005-0000-4000-8000-000000000005', postId: 'b2000004-0000-4000-8000-000000000004', author: 'studyhelper', bodyMd: 'Part-time job + driving lessons. Highly recommend not doom-scrolling boundary predictions every day.', score: 6, hoursAgo: 2 },
+  { id: 'c2000006-0000-4000-8000-000000000006', postId: 'b2000005-0000-4000-8000-000000000005', author: 'examroom', bodyMd: 'Total your raw marks, then compare against the last 2-3 sessions of the same components. Treat it as a range, not a fixed grade.', score: 8, hoursAgo: 6 },
+  { id: 'c2000007-0000-4000-8000-000000000007', postId: 'b2000005-0000-4000-8000-000000000005', author: 'pastpaper_pro', bodyMd: 'A grade boundary calculator helps — punch in your raw mark, the paper total, and recent thresholds.', score: 6, hoursAgo: 5 },
+  { id: 'c2000008-0000-4000-8000-000000000008', postId: 'b2000007-0000-4000-8000-000000000007', author: 'studyhelper', bodyMd: 'Refreshing does nothing but I cannot stop either. Have a plan B per subject and it gets easier.', score: 5, hoursAgo: 4 },
 ]
 
 function userId(username: string) {

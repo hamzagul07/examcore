@@ -818,6 +818,129 @@ async function genBody(b) {
   return null
 }
 
+// ---- Seasonal / trending (post-exam -> results day 13 Aug 2026) ----
+briefs.push({
+  slug: 'how-to-predict-your-cambridge-grade-before-results-day',
+  cluster: 'revision-strategy', format: 'howto', category: 'mark-schemes',
+  title: 'How to predict your Cambridge grade before results day',
+  description: 'Estimate your Cambridge grade before 13 August 2026: total your raw marks, compare them with recent published thresholds, and use a grade boundary calculator.',
+  keywords: 'predict Cambridge grade, estimate exam grade, grade before results day, raw marks to grade, Cambridge results 2026',
+  facts: [
+    'June 2026 Cambridge International results are released on 13 August 2026; the official grade threshold tables appear that morning.',
+    'You can only estimate beforehand — the 2026 boundaries are not published until results day.',
+    'Add up your raw marks for each component using a copy of the question paper and the official mark scheme.',
+    'Compare your total against the official grade thresholds from the most recent two or three sessions of the SAME components — the closest sessions are the best guide.',
+    'Boundaries move each session (lower if the paper was hard, higher if easy), so treat any estimate as a range, not a fixed grade.',
+    'The full A Level grade is an aggregate across components; an A* needs strong A2 performance, not just one good paper.',
+    'A grade boundary calculator lets you enter your raw mark, the paper total and the thresholds you have to read off the grade.',
+  ],
+  mustNotClaim: [
+    'Do NOT state any specific 2026 grade boundary numbers — they are unpublished until results day.',
+    'Do NOT claim a fixed percentage always equals a given grade.',
+  ],
+  links: [['/tools/grade-boundary-calculator', 'grade boundary calculator'], ['/mark', 'mark a past paper'], ['/blog/cambridge-results-day-august-2026-guide', 'results day guide']],
+})
+
+briefs.push({
+  slug: 'what-to-do-while-waiting-for-cambridge-results',
+  cluster: 'revision-strategy', format: 'guide', category: 'revision',
+  title: 'What to do while waiting for Cambridge results',
+  description: 'The wait between Cambridge exams and 13 August 2026 results is long. Here is how to stay calm, stay productive, and prepare for every grade outcome.',
+  keywords: 'waiting for Cambridge results, after Cambridge exams, results day August 2026, exam results wait, what to do after exams',
+  facts: [
+    'June 2026 Cambridge International results are released on 13 August 2026.',
+    'Once your scripts are submitted the outcome is out of your hands — the wait is normal and worrying does not change marks.',
+    'Low-pressure, useful things to do: rest properly, get ahead on next year’s first topics, build a skill (a language, driving, work experience), and research your options for each outcome.',
+    'It helps to plan for three scenarios — above expectation, on target, and below — including enquiries about results (remarks) and the November resit series.',
+    'Comparing your raw marks against recent published thresholds gives a rough early estimate, but boundaries are not confirmed until results day.',
+  ],
+  mustNotClaim: [
+    'Do NOT give specific 2026 grade boundary numbers.',
+    'Do NOT give clinical mental-health advice; keep wellbeing tips general and signpost trusted support.',
+  ],
+  links: [['/tools/grade-boundary-calculator', 'estimate your grade'], ['/mark', 'mark a past paper'], ['/blog/cambridge-results-day-august-2026-guide', 'results day guide']],
+})
+
+briefs.push({
+  slug: 'how-to-cope-after-a-bad-exam',
+  cluster: 'revision-strategy', format: 'howto', category: 'study-skills',
+  title: 'How to cope after a bad exam (and refocus)',
+  description: 'Walked out of a Cambridge paper feeling awful? Here is how to put one bad exam in perspective, protect your next paper, and plan your options calmly.',
+  keywords: 'bad exam, coping after a bad exam, exam went badly, refocus after exam, Cambridge exam stress, one bad paper',
+  facts: [
+    'Feeling a paper went badly is extremely common and is often a poor predictor of the real grade — boundaries are set after marking and can be lower than expected.',
+    'One weak component rarely decides the whole grade: A Level grades are aggregated across components.',
+    'Practical steps: avoid exam post-mortems with classmates (they raise anxiety), protect your sleep and your next paper, and do not rip up a working plan over one feeling.',
+    'If a result later confirms a problem, options exist: an enquiry about results (remark) and the November resit series.',
+    'Talking early to a teacher, exams officer or trusted adult helps you plan calmly rather than spiral.',
+  ],
+  mustNotClaim: [
+    'Do NOT give clinical mental-health or crisis advice; keep it general and encourage speaking to a trusted adult or school support.',
+    'Do NOT promise a specific grade outcome.',
+  ],
+  links: [['/mark', 'mark a past paper to see what actually scored'], ['/blog/cambridge-enquiry-about-results-ear-guide-2026', 'enquiries about results'], ['/blog/cambridge-retakes-and-resits-2026-strategy', 'resit strategy']],
+})
+
+briefs.push({
+  slug: 'what-your-cambridge-grades-mean-for-university',
+  cluster: 'revision-strategy', format: 'guide', category: 'revision',
+  title: 'What your Cambridge grades mean for university',
+  description: 'How Cambridge International A Level grades feed into university offers worldwide, what conditional offers expect, and your options if you miss a grade.',
+  keywords: 'Cambridge grades for university, A Level grades university offers, conditional offer, Cambridge International university, missed offer grade',
+  facts: [
+    'Cambridge International A Level grades (A*–E) are recognised by universities worldwide; many make conditional offers requiring specific grades.',
+    'Requirements vary by country and university (UCAS tariff in the UK, GPA-style or direct grade requirements elsewhere) — always check each university’s own published requirements.',
+    'Meet your offer and you are usually confirmed; narrowly miss and options include contacting the university, an enquiry about results (remark), Clearing or adjustment in the UK, or a November resit.',
+    'June 2026 results are released on 13 August 2026; act quickly on any remark or appeal because university places can be time-sensitive.',
+    'AS grades alone are not the final A Level; the full grade comes from the A2 aggregate.',
+  ],
+  mustNotClaim: [
+    'Do NOT state specific entry requirements for any named university or country — they vary; tell readers to check official sources.',
+    'Do NOT give immigration or visa advice.',
+  ],
+  links: [['/blog/cambridge-results-day-august-2026-guide', 'results day guide'], ['/mark', 'mark a past paper'], ['/tools/grade-boundary-calculator', 'estimate your grade']],
+})
+
+briefs.push({
+  slug: 'how-to-talk-to-parents-about-cambridge-results',
+  cluster: 'revision-strategy', format: 'howto', category: 'study-skills',
+  title: 'How to talk to parents about Cambridge results',
+  description: 'Dreading the results conversation? Here is how to prepare your parents before 13 August 2026, frame the outcome honestly, and agree a plan together.',
+  keywords: 'talk to parents about results, exam results parents, results day parents, telling parents grades, Cambridge results conversation',
+  facts: [
+    'June 2026 Cambridge results are released on 13 August 2026.',
+    'Setting expectations before results day — how exams felt, and that boundaries are unknown until the day — reduces shock.',
+    'A calm conversation works best when you bring a plan for each outcome, not just the result: next steps for a strong result, on-target, or below.',
+    'If grades are lower than hoped, raise the real options: an enquiry about results (remark), the November resit series, and speaking to universities.',
+    'Parents usually want to help; sharing your plan and the support you need turns the conversation into problem-solving.',
+  ],
+  mustNotClaim: [
+    'Do NOT give family counselling or clinical advice; keep guidance practical and general.',
+    'Do NOT promise specific outcomes.',
+  ],
+  links: [['/blog/cambridge-results-day-august-2026-guide', 'results day guide'], ['/blog/cambridge-retakes-and-resits-2026-strategy', 'resit options'], ['/mark', 'mark a past paper']],
+})
+
+briefs.push({
+  slug: 'how-to-plan-your-next-year-after-cambridge-as-results',
+  cluster: 'revision-strategy', format: 'howto', category: 'revision',
+  title: 'How to plan your next year after Cambridge AS results',
+  description: 'AS results shape your A2 year. Here is how to read your Cambridge AS grades, decide whether to carry, drop or resit, and set up a strong A2.',
+  keywords: 'after AS results, AS to A2, Cambridge AS results, carry forward AS, A2 planning, AS resit',
+  facts: [
+    'Cambridge AS Level grades (a–e) can be carried forward and combined with A2 to give the full A Level (A*–E), depending on how your school enters you.',
+    'AS results help you decide which subjects to continue to A2, whether to resit an AS component, or whether to carry the AS mark forward.',
+    'The full A Level grade is an aggregate of AS and A2 components, so a weaker AS can often be balanced by a strong A2 — and an A* needs strong A2.',
+    'Carry-forward rules and entry options vary by school; confirm with your exams officer before deciding.',
+    'Use the summer to get ahead on the first A2 topics and to fix the weak areas your AS papers exposed.',
+  ],
+  mustNotClaim: [
+    'Do NOT state definitive carry-forward rules for an individual — they depend on the school’s entry; tell readers to confirm with their exams officer.',
+    'Do NOT invent grade boundary numbers.',
+  ],
+  links: [['/courses', 'free A Level courses'], ['/mark', 'mark a past paper'], ['/tools/grade-boundary-calculator', 'grade calculator']],
+})
+
 const selected = briefs.filter((b) => ONLY.length === 0 || ONLY.some((o) => b.slug.includes(o)))
 console.log(`Generating ${selected.length} posts -> ${OUT_DIR}${WRITE ? ' (WRITE)' : ' (dry)'}\n`)
 let ok = 0, skip = 0, fail = 0

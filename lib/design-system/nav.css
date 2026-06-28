@@ -28,7 +28,7 @@
 body.ec-nav-dropdown-open .ec-nav-wrap {
   z-index: 221;
 }
-.nav-dd-item { display: flex; flex-direction: column; gap: 1px; padding: 9px 12px; border-radius: 8px; text-decoration: none; color: var(--ec-text-primary, #25221b); }
+.nav-dd-item { display: flex; flex-direction: column; justify-content: center; gap: 1px; padding: 9px 12px; min-height: var(--ec-touch-min, 44px); border-radius: 8px; text-decoration: none; color: var(--ec-text-primary, #25221b); }
 .nav-dd-item:hover { background: color-mix(in srgb, var(--ec-brand, #19774d) 8%, transparent); }
 .nav-dd-item--active .nav-dd-item-label { color: var(--ec-brand, #19774d); }
 .nav-dd-item-label { font-weight: 600; font-size: 14px; }

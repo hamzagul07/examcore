@@ -1308,6 +1308,14 @@ export default function MarkPage() {
               </p>
             )}
 
+            <p className="text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+              Upload a clear photo or PDF of your written or typed answer — we mark it against
+              the official scheme in about a minute.{' '}
+              <Link href="/tools/command-words" className="ec-link">
+                What the command words mean
+              </Link>
+            </p>
+
             {uploadMode === 'whole_paper' && (
             <section>
               <div className="ec-card ec-card-rounded-lg space-y-4 p-5 sm:p-6">

@@ -15,6 +15,7 @@ import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
+import { PlanComparisonMatrix } from '@/components/courses/margin-notes/PlanComparisonMatrix'
 
 type Period = 'monthly' | 'yearly'
 
@@ -22,7 +23,12 @@ function Faq({ f }: { f: { q: string; a: string } }) {
   const [open, setOpen] = useState(false)
   return (
     <div className={`faq${open ? ' on' : ''}`}>
-      <button type="button" className="faq-q" onClick={() => setOpen((o) => !o)}>
+      <button
+        type="button"
+        className="faq-q"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+      >
         <CourseRichText content={f.q} variant="inline" className="faq-q-text" breakAnywhere={false} />
         <span className="faq-plus">{open ? '−' : '+'}</span>
       </button>
@@ -375,6 +381,8 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
             )
           })}
         </div>
+
+        <PlanComparisonMatrix />
 
         <div className="pricing-trust">
           <span className="pricing-trust-item">✓ Cancel anytime — no lock-in</span>

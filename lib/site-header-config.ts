@@ -26,7 +26,11 @@ export type SiteHeaderConfig = {
   tone: SiteHeaderTone
   transparentShell: boolean
   wordmarkHref: string
-  /** Nav ids in display order; omitted ids hidden on this page family. */
+  /**
+   * @deprecated No longer drives the primary tabs — the header now renders one
+   * consistent per-variant nav (see getNavItemsForConfig). Kept only so the
+   * existing per-tone config objects stay valid; editing it has no effect.
+   */
   navItemIds: string[]
   context?: HeaderContext
   primaryCta: HeaderCta
@@ -246,17 +250,25 @@ export function getSiteHeaderConfig(
   }
 }
 
+/**
+ * One consistent primary nav per variant — same items, in the same order, on
+ * every page. Previously each page "tone" supplied its own `navItemIds`, which
+ * made tabs appear/disappear (e.g. Subjects vanishing on /mark) and reorder
+ * between pages (Courses first here, Community first there). Account is surfaced
+ * as the top-right avatar, so it is not also a primary tab.
+ */
+const CONSISTENT_NAV_IDS: Record<SiteHeaderVariant, string[]> = {
+  marketing: ['mark', 'courses', 'subjects', 'community', 'pricing'],
+  reading: ['mark', 'courses', 'subjects', 'community', 'pricing'],
+  app: ['mark', 'courses', 'subjects', 'community', 'progress'],
+}
+
 export function getNavItemsForConfig(
   variant: SiteHeaderVariant,
-  config: SiteHeaderConfig
+  _config: SiteHeaderConfig
 ): SiteNavItem[] {
-  const byId = new Map(
-    SITE_NAV_ITEMS.filter((item) => item.variants.includes(variant)).map((item) => [
-      item.id,
-      item,
-    ])
-  )
-  return config.navItemIds
+  const byId = new Map(SITE_NAV_ITEMS.map((item) => [item.id, item]))
+  return CONSISTENT_NAV_IDS[variant]
     .map((id) => byId.get(id))
     .filter((item): item is SiteNavItem => item != null)
 }

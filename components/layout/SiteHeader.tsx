@@ -287,7 +287,6 @@ export function SiteHeader({ variant }: Props) {
             {showNotifications ? <NotificationBell dismiss={mobileOpen} /> : null}
             <ThemeFlip />
           </div>
-          {renderDesktopAuth()}
           {showPageCtas ? (
             <>
               {config.secondaryCta ? (
@@ -329,6 +328,8 @@ export function SiteHeader({ variant }: Props) {
               ✎
             </Link>
           ) : null}
+          {/* Account avatar lives last so it sits in the far top-right corner. */}
+          {renderDesktopAuth()}
           {showMobileMenu ? (
             <button
               ref={burgerRef}

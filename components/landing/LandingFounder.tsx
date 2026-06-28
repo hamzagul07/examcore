@@ -2,7 +2,10 @@ import Link from 'next/link'
 
 export function LandingFounder() {
   return (
-    <section id="story" className="ms-pg ms-sec scroll-mt-20">
+    <section id="story" className="ms-pg ms-sec scroll-mt-20" aria-labelledby="story-heading">
+      <h2 id="story-heading" className="sr-only">
+        Why a student built MarkScheme
+      </h2>
       <div className="ms-founder">
         <div className="ms-founder-avatar" aria-hidden>
           H

@@ -2,8 +2,8 @@ import type { BillingPeriod, RegionTier } from '@/lib/database.types'
 import type { ProductKey } from './pricing'
 
 /**
- * Tier C subscriptions: exact PKR list prices (Pakistan), with USD/INR derived via
- * real exchange rates so Rs 3,700/month ≈ $13.30 at ~278 PKR/USD.
+ * Tier C subscriptions: exact PKR list prices (Pakistan), USD derived from PKR/FX.
+ * Tier A GBP/EUR/AUD and tier C INR use fixed list prices (keep in sync with setup-stripe-products.mjs).
  */
 
 /** USD list prices in cents (tiers A/B + credits — keep in sync with setup-stripe-products.mjs). */
@@ -38,6 +38,22 @@ export const PRICING_PKR_C: Record<
   mastery: { monthly: 699_900, yearly: 5_491_000 },
 }
 
+/** Tier A student/scholar — fixed list prices in minor units (not FX-derived). */
+export const PRICING_FIXED_A: Record<
+  'gbp' | 'eur' | 'aud',
+  { monthly: number; yearly: number }
+> = {
+  gbp: { monthly: 1300, yearly: 10200 },
+  eur: { monthly: 1300, yearly: 10200 },
+  aud: { monthly: 2000, yearly: 15700 },
+}
+
+/** Tier C student/scholar INR (paisa). Yearly uses same PKR annual ratio as PRICING_PKR_C. */
+export const PRICING_INR_C: Record<'student' | 'scholar', { monthly: number; yearly: number }> = {
+  student: { monthly: 230_000, yearly: 1_804_700 },
+  scholar: { monthly: 230_000, yearly: 1_804_700 },
+}
+
 /** Units of each currency per 1 USD (fallback — setup-stripe-products.mjs fetches live FX). */
 export const PRICING_FX: Record<string, number> = {
   usd: 1,
@@ -60,6 +76,8 @@ export const PRICING_ROUND_TO_CENTS: Record<string, number> = {
 const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery'] as const
 
 const TIER_C_CURRENCIES = new Set(['usd', 'inr', 'pkr'])
+const FIXED_A_CURRENCIES = new Set(['gbp', 'eur', 'aud'])
+const FIXED_SUBSCRIPTION_PRODUCTS = new Set<ProductKey>(['student', 'scholar'])
 
 /** PKR paisa → USD cents using PKR/USD rate. */
 export function usdCentsFromPkrAnchor(pkrCents: number, pkrPerUsd = PRICING_FX.pkr): number {
@@ -115,6 +133,22 @@ export function getListAmountCents(opts: {
   const fx = opts.fx ?? PRICING_FX
   const cur = opts.currency.toLowerCase()
   const period = opts.billingPeriod === 'yearly' ? 'yearly' : 'monthly'
+
+  if (
+    opts.tier === 'A' &&
+    FIXED_SUBSCRIPTION_PRODUCTS.has(opts.product) &&
+    FIXED_A_CURRENCIES.has(cur)
+  ) {
+    return PRICING_FIXED_A[cur as keyof typeof PRICING_FIXED_A][period]
+  }
+
+  if (
+    opts.tier === 'C' &&
+    FIXED_SUBSCRIPTION_PRODUCTS.has(opts.product) &&
+    cur === 'inr'
+  ) {
+    return PRICING_INR_C[opts.product as 'student' | 'scholar'][period]
+  }
 
   if (
     opts.tier === 'C' &&

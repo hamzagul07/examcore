@@ -1063,6 +1063,128 @@ briefs.push({
   links: [['/mark', 'mark a past paper'], ['/courses', 'free Cambridge courses'], ['/tools/grade-boundary-calculator', 'grade calculator']],
 })
 
+// ---- IB-focused batch (gaps in the 69 existing IB posts) ----
+briefs.push({
+  slug: 'ib-results-day-2026-what-to-expect',
+  cluster: 'ib', format: 'guide', category: 'revision',
+  title: 'IB results day 2026: what to expect',
+  description: 'When IB May 2026 results come out, how to access them, what the 45-point scale means, and your options for each outcome — explained simply.',
+  keywords: 'IB results day 2026, IB results, IB May 2026 results, how to access IB results, IB 45 points',
+  facts: [
+    'IB Diploma results for the May 2026 session are released in early July 2026 — your IB coordinator confirms the exact date and provides your candidate access code.',
+    'You view results in the IB candidate results portal using the code from your coordinator; schools also receive them.',
+    'The Diploma is scored out of 45: six subjects at 1–7 (max 42) plus up to 3 core points from Theory of Knowledge and the Extended Essay combined.',
+    'To be awarded the Diploma you need at least 24 points and to meet the core and other conditions (no failing conditions).',
+    'If results are below a university offer, options include contacting the university, an enquiry upon results (remark), and the November retake session.',
+  ],
+  mustNotClaim: [
+    'Do NOT state a specific exact results date if unsure — say early July and tell readers to confirm with their coordinator.',
+    'Do NOT claim MarkScheme marks IB papers against official IB markbands; keep any marking/practice framing general.',
+  ],
+  links: [['/ib', 'IB past papers'], ['/mark', 'mark a past paper'], ['/ib/courses', 'free IB courses']],
+})
+
+briefs.push({
+  slug: 'ib-tok-essay-guide',
+  cluster: 'ib', format: 'guide', category: 'exam-technique',
+  title: 'IB TOK essay: how to plan and structure it',
+  description: 'A clear guide to the IB Theory of Knowledge essay: choosing a prescribed title, building knowledge questions, using real examples, and structuring for the top markbands.',
+  keywords: 'IB TOK essay, theory of knowledge essay, TOK essay structure, TOK prescribed titles, how to write TOK essay',
+  facts: [
+    'The TOK essay is a 1,600-word essay on one of six prescribed titles set by the IB for the session; it is externally assessed.',
+    'The essay grade (with the TOK exhibition) gives a TOK letter grade A–E, which combines with the Extended Essay for up to 3 core points.',
+    'Strong essays treat the title as a knowledge question, explore it across areas of knowledge, and develop a clear line of argument rather than listing opinions.',
+    'Use specific, real-life examples as evidence, and weigh different perspectives — evaluation and counter-claims matter more than description.',
+    'Structure: an introduction framing the question, body paragraphs each making and testing a claim, and a conclusion that answers the title directly.',
+    'Plan around the assessment instrument (the markbands) — clarity, a sustained focus on the title, and convincing evaluation score highest.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent the current session’s prescribed titles.',
+    'Do NOT claim MarkScheme marks the TOK essay; keep practice framing general.',
+  ],
+  links: [['/ib', 'IB resources'], ['/mark', 'mark a past paper'], ['/blog/ib-extended-essay-complete-guide', 'Extended Essay guide']],
+})
+
+briefs.push({
+  slug: 'ib-retakes-and-resits-guide',
+  cluster: 'ib', format: 'guide', category: 'revision',
+  title: 'IB retakes and resits: how they work',
+  description: 'Thinking about retaking IB exams? How the November retake session works, what you can re-sit, how it affects your Diploma points, and what to weigh up.',
+  keywords: 'IB retake, IB resit, IB November session, retake IB exams, improve IB score',
+  facts: [
+    'The IB offers retake sessions (November and May) so candidates can re-sit subjects to improve their result, usually within a limited number of sessions.',
+    'You can typically re-sit individual subjects rather than the whole Diploma, and your best result for a subject counts — confirm the rules with your coordinator.',
+    'Internal assessment and the Extended Essay can sometimes be re-submitted or carried forward depending on the subject and how long ago you sat it — check the current rules.',
+    'Retaking has trade-offs: a gap before university, extra study, and exam fees, balanced against a higher score; decide with your coordinator and target universities.',
+    'If a remark (enquiry upon results) could change a borderline grade, that is usually faster and cheaper to try first.',
+  ],
+  mustNotClaim: [
+    'Do NOT state exact retake limits, fees or carry-forward rules as fixed — they vary and change; tell readers to confirm with their coordinator.',
+  ],
+  links: [['/ib', 'IB past papers'], ['/mark', 'mark a past paper'], ['/ib/courses', 'free IB courses']],
+})
+
+briefs.push({
+  slug: 'ib-how-to-hit-the-top-markbands-in-essays',
+  cluster: 'ib', format: 'guide', category: 'exam-technique',
+  title: 'IB essays: how to hit the top markbands',
+  description: 'IB Paper 2 and essay questions are graded on markbands, not points. Here is how to write answers that reach the top descriptors across IB subjects.',
+  keywords: 'IB markbands, IB essay technique, IB Paper 2 essay, level of response IB, how to get top markband',
+  facts: [
+    'IB extended responses are marked against markbands (level descriptors), so reaching the top band depends on the QUALITY of argument, not just covering content.',
+    'Top markbands reward a sustained focus on the exact question, a clear and developed line of reasoning, and well-chosen evidence.',
+    'Evaluation lifts you up the bands: weigh perspectives, address counter-arguments, and reach a justified conclusion rather than describing.',
+    'Read the command term carefully — "evaluate", "discuss", and "to what extent" demand judgement, not just explanation.',
+    'Structure helps the examiner award the band: a clear thesis, paragraphs that each make and support a point, and a conclusion that answers the question.',
+    'Practise with past-paper questions and the published markbands so you can see the difference between a band 5 and a band 7 answer.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent specific markband wording or point values for any subject.',
+    'Do NOT claim MarkScheme applies official IB markbands; keep practice framing general.',
+  ],
+  links: [['/ib', 'IB past papers'], ['/mark', 'mark a past paper'], ['/blog/ib-markbands-explained', 'IB markbands explained']],
+})
+
+briefs.push({
+  slug: 'ib-points-and-university-offers-explained',
+  cluster: 'ib', format: 'guide', category: 'revision',
+  title: 'IB points and university offers explained',
+  description: 'How the IB 45-point scale maps to university offers worldwide, what conditional point requirements mean, and your options if you miss your offer.',
+  keywords: 'IB points university, IB diploma university offers, IB 45 points, IB conditional offer, IB points for university',
+  facts: [
+    'Universities express IB offers as a total points score, often with specific HL grade requirements (for example, a number of points including set HL subjects).',
+    'The IB Diploma is scored out of 45 (six subjects up to 42, plus up to 3 core points from TOK and the Extended Essay).',
+    'Requirements vary widely by country and university, and some courses also require specific subjects at HL — always check each university’s own stated requirements.',
+    'If you meet your offer you are usually confirmed; if you narrowly miss, options include contacting the university, an enquiry upon results, Clearing or adjustment in some countries, or a retake.',
+    'Predicted grades drive the offer stage; final results confirm it, so the gap between predicted and actual points matters.',
+  ],
+  mustNotClaim: [
+    'Do NOT state specific point requirements for any named university or course — they vary; tell readers to check official sources.',
+    'Do NOT give immigration or visa advice.',
+  ],
+  links: [['/ib', 'IB resources'], ['/mark', 'mark a past paper'], ['/blog/ib-predicted-grades-explained', 'IB predicted grades']],
+})
+
+briefs.push({
+  slug: 'ib-how-to-balance-six-subjects-and-the-core',
+  cluster: 'ib', format: 'guide', category: 'study-skills',
+  title: 'IB: how to balance six subjects and the core',
+  description: 'The IB workload — six subjects plus TOK, the Extended Essay and CAS — is its hardest part. Here is how to plan deadlines and study so nothing slips.',
+  keywords: 'IB workload, balance IB subjects, IB time management, IB core CAS TOK EE, manage IB diploma',
+  facts: [
+    'The IB Diploma is six subjects (usually three HL, three SL) plus the core: Theory of Knowledge, the Extended Essay, and CAS.',
+    'The core has fixed deadlines spread across two years; treat them as anchors and work backwards so the Extended Essay and IAs are not left to the end.',
+    'HL subjects carry more depth and assessment — protect time for them, but do not let SL IAs or the EE drift.',
+    'A weekly plan that allocates time to each subject and to one core task prevents the common failure of bingeing one subject and neglecting another.',
+    'Use active recall and spaced review across subjects rather than re-reading, and bring past-paper practice in early — not just in the final term.',
+    'CAS is about engagement, not hours-chasing; logging it as you go avoids a scramble before the deadline.',
+  ],
+  mustNotClaim: [
+    'Do NOT promise specific grades or point totals from any plan.',
+  ],
+  links: [['/ib/courses', 'free IB courses'], ['/mark', 'mark a past paper'], ['/blog/ib-extended-essay-complete-guide', 'Extended Essay guide']],
+})
+
 const selected = briefs.filter((b) => ONLY.length === 0 || ONLY.some((o) => b.slug.includes(o)))
 console.log(`Generating ${selected.length} posts -> ${OUT_DIR}${WRITE ? ' (WRITE)' : ' (dry)'}\n`)
 let ok = 0, skip = 0, fail = 0

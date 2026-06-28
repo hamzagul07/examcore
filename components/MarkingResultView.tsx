@@ -14,6 +14,7 @@ import {
   normalizeErrorClassification,
 } from '@/lib/error-classifications'
 import { getSubjectByCode } from '@/lib/profile-options'
+import { isIbSubjectCode } from '@/lib/ib/marking-config'
 import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
 import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
@@ -129,6 +130,10 @@ export function MarkingResultView({
       syllabus_tags: result.syllabus_tags,
     }) ?? undefined
 
+  // Board-aware labels: IB subjects must not be branded as Cambridge.
+  const isIb = isIbSubjectCode(badgeSubjectCode ?? '')
+  const boardLabel = isIb ? 'IB' : 'Cambridge'
+
   const percentage =
     result.total_marks > 0
       ? Math.round((result.marks_earned / result.total_marks) * 100)
@@ -217,7 +222,7 @@ export function MarkingResultView({
             onSelect={setSelectedIndex}
             marksEarned={result.marks_earned}
             totalMarks={result.total_marks}
-            gradeLabel={grade.grade}
+            gradeLabel={isIb ? null : grade.grade}
             schemeLabel={schemeLabel(result)}
             bandResult={result.ai_marking.band_result}
             criteriaResults={result.ai_marking.criteria_results}
@@ -240,7 +245,7 @@ export function MarkingResultView({
             <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
             <div>
               <p className="ec-banner__title">
-                Marked with official Cambridge mark scheme
+                Marked with the official {boardLabel} mark scheme
               </p>
               <p className="ec-banner__meta">
                 {result.detected_paper.paper_code} •{' '}
@@ -266,8 +271,8 @@ export function MarkingResultView({
                     {result.detected_paper.question_number}.{' '}
                   </>
                 )}
-                We marked your answer using general A-Level criteria. Think we
-                should add this paper? Email{' '}
+                We marked your answer using general {isIb ? 'IB' : 'A-Level'}{' '}
+                criteria. Think we should add this paper? Email{' '}
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="font-medium underline"
@@ -285,13 +290,14 @@ export function MarkingResultView({
             <Info className="ec-banner__icon h-5 w-5 shrink-0" />
             <div>
               <p className="ec-banner__title">
-                Marked with Cambridge{' '}
+                Marked with {boardLabel}{' '}
                 {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
-                  'A-Level'}{' '}
-                conventions
+                  (isIb ? 'Diploma' : 'A-Level')}{' '}
+                {isIb ? 'markbands' : 'conventions'}
               </p>
               <p className="ec-banner__meta">
-                Your own question (not a past paper) — same mark types and bands
+                Your own question (not a past paper) — the same{' '}
+                {isIb ? 'criteria and markbands' : 'mark types and bands'}{' '}
                 examiners use, without an official mark scheme from our database.
               </p>
             </div>
@@ -303,10 +309,11 @@ export function MarkingResultView({
             <Info className="ec-banner__icon h-5 w-5 shrink-0" />
             <div>
               <p className="ec-banner__title">
-                Marked with general A-Level criteria
+                Marked with general {isIb ? 'IB' : 'A-Level'} criteria
               </p>
               <p className="ec-banner__meta">
-                This was not detected as a Cambridge past paper question
+                This was not detected as {isIb ? 'an IB' : 'a Cambridge'} past
+                paper question
               </p>
             </div>
           </div>

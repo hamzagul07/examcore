@@ -18,6 +18,11 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // This site prerenders thousands of programmatic pages (command-words,
+  // grade-boundary, past-paper topics, IB lessons …). Late in that large export
+  // the default 60s per-page budget can be exceeded under memory/CPU pressure
+  // even though each page is light, so give static generation more headroom.
+  staticPageGenerationTimeout: 180,
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],

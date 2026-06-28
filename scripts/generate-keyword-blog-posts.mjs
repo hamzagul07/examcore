@@ -1185,6 +1185,127 @@ briefs.push({
   links: [['/ib/courses', 'free IB courses'], ['/mark', 'mark a past paper'], ['/blog/ib-extended-essay-complete-guide', 'Extended Essay guide']],
 })
 
+// ---- Subject-specific exam technique (writing top answers per subject) ----
+briefs.push({
+  slug: 'how-to-write-top-cambridge-economics-essays',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to write top Cambridge Economics essays',
+  description: 'Cambridge Economics essays reward more than knowledge. Here is how to define, diagram, analyse and evaluate so your 9708 essays reach the top band.',
+  keywords: 'Cambridge economics essay, 9708 essay technique, how to write economics essay, KAA evaluation economics, economics paper 4',
+  facts: [
+    'Cambridge A Level Economics essays are assessed across Knowledge, Application, Analysis and Evaluation (KAA + E) — strong answers do all four, not just recall.',
+    'Define the key economic terms in the question first, then use a clearly labelled, correctly drawn diagram and refer to it in your written analysis.',
+    'Analysis means a logical chain of reasoning ("a rise in X leads to Y because…"), not a list of points.',
+    'Evaluation lifts the grade: weigh both sides, consider magnitude, time period and assumptions, and finish with a justified judgement that answers the exact question.',
+    'Answer the specific command and context — "discuss", "evaluate" and "to what extent" all demand a supported conclusion.',
+    'Practise with past-paper essays and the official mark scheme so you can see exactly where evaluation marks are awarded.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent specific mark tariffs or band boundaries for any paper.',
+  ],
+  links: [['/mark', 'mark an economics essay'], ['/subjects/9708', '9708 Economics'], ['/tools/command-words', 'command words']],
+})
+
+briefs.push({
+  slug: 'how-to-analyse-sources-in-cambridge-history',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to analyse sources in Cambridge History',
+  description: 'Source questions are where History grades are won or lost. Here is how to evaluate provenance, value and limitations and cross-reference under exam time.',
+  keywords: 'Cambridge history source questions, history source analysis, evaluating sources history, 9489 history, provenance value limitations',
+  facts: [
+    'Strong source answers go beyond what a source says (content) to why it says it — its provenance: origin, purpose and intended audience.',
+    'Use provenance to judge a source’s value AND its limitations for the specific question, rather than dismissing it as simply "biased".',
+    'Cross-reference sources against each other and against your own contextual knowledge to test how far they agree.',
+    'Always tie the analysis back to the exact question (for example "how far do the sources support…") and reach a supported overall judgement.',
+    'Plan briefly so you group sources by argument instead of working through them one by one with no line of reasoning.',
+    'Practise with past papers and the mark scheme to see how examiners reward evaluation over description.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent specific mark allocations for source questions.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/subjects/9489', '9489 History'], ['/courses', 'free Cambridge courses']],
+})
+
+briefs.push({
+  slug: 'how-to-write-cambridge-english-literature-essays',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to write Cambridge English Literature essays',
+  description: 'Top English Literature essays analyse how writers create meaning, not just what happens. Here is how to structure analysis, quotations and personal response.',
+  keywords: 'Cambridge english literature essay, 9695 essay technique, literature essay structure, analysing language and form, english literature analysis',
+  facts: [
+    'High-scoring answers analyse HOW a writer creates meaning — language, form and structure — and link those choices to themes and effects on the reader.',
+    'Build the essay around an argument that answers the question, with each paragraph making a point, supporting it with a short embedded quotation, and analysing the writer’s method.',
+    'Use precise literary terminology accurately, but never at the expense of genuine analysis of the effect.',
+    'Develop an informed personal response and, where the question requires it, a focused comparison between texts.',
+    'Plan a clear line of argument before writing so the essay builds rather than retells the plot.',
+    'Practise timed essays against past papers and the mark scheme to calibrate depth versus coverage.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent set texts or specific assessment-objective weightings.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/subjects/9695', '9695 Literature'], ['/courses', 'free Cambridge courses']],
+})
+
+briefs.push({
+  slug: 'how-to-tackle-the-cambridge-business-case-study',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to tackle the Cambridge Business case study',
+  description: 'Business marks are lost by answering generically. Here is how to read the case, apply theory to that specific business, and evaluate under time pressure.',
+  keywords: 'Cambridge business case study, 9609 case study, business management case study technique, applied business answers, business paper time management',
+  facts: [
+    'Case-study marks reward APPLICATION: every point must be tied to the specific business in the case, not answered as a textbook generalisation.',
+    'Read the case once for the big picture, then mine it for evidence (figures, context, problems) you can quote to support your points.',
+    'Structure higher-mark answers as point → application to the case → analysis → evaluation with a justified recommendation.',
+    'Manage time by marks: do not let an early part overrun and starve the high-tariff evaluation question at the end.',
+    'Use relevant calculations and refer back to them when you evaluate, rather than leaving numbers unexplained.',
+    'Practise full case studies under timed conditions and check against the mark scheme.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent specific mark tariffs for any paper.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/subjects/9609', '9609 Business'], ['/tools/command-words', 'command words']],
+})
+
+briefs.push({
+  slug: 'how-to-structure-cambridge-psychology-essays',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to structure Cambridge Psychology answers',
+  description: 'Cambridge Psychology rewards describing AND evaluating studies. Here is how to structure answers, use research evidence, and evaluate methodology for top marks.',
+  keywords: 'Cambridge psychology essay, 9990 psychology technique, evaluate studies psychology, psychology answer structure, describe and evaluate psychology',
+  facts: [
+    'Many Psychology questions ask you to describe AND evaluate — make sure you do both; description alone caps your marks.',
+    'Support points with named research evidence (study, what was done, what was found) used accurately and concisely.',
+    'Evaluate methodology — sampling, validity, reliability, ethics, generalisability — and weigh strengths against limitations.',
+    'Bring in relevant debates and approaches (for example nature versus nurture, or individual versus situational explanations) where the question invites them.',
+    'Structure longer answers with a clear point, evidence, evaluation pattern and a focused conclusion that answers the question.',
+    'Practise against past papers and the mark scheme to see how evaluation is credited.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent specific named studies or mark tariffs; keep examples general unless you are certain.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/subjects/9990', '9990 Psychology'], ['/courses', 'free Cambridge courses']],
+})
+
+briefs.push({
+  slug: 'how-to-score-cambridge-biology-extended-questions',
+  cluster: 'revision-strategy', format: 'howto', category: 'exam-technique',
+  title: 'How to score on Cambridge Biology extended questions',
+  description: 'Cambridge Biology punishes pure memorisers on application and data questions. Here is how to apply knowledge, read data, and use precise terminology for the marks.',
+  keywords: 'Cambridge biology extended questions, 9700 application questions, biology data analysis, biology exam technique, AO2 biology',
+  facts: [
+    'A large share of marks tests APPLICATION — using your knowledge in an unfamiliar context — not recall, so practise novel-context questions, not just notes.',
+    'On data questions, describe the trend precisely using the figures, then explain it with biology; do not jump straight to an explanation.',
+    'Use accurate biological terminology and the right command word depth — "describe", "explain" and "suggest" want different things.',
+    'For calculations and statistics (for example chi-squared or rates), show clear working and quote data from the question.',
+    'Plan extended answers so each marking point is a distinct, clearly stated idea — examiners award discrete points.',
+    'Mark your attempts against the official scheme to see exactly which points scored.',
+  ],
+  mustNotClaim: [
+    'Do NOT invent specific mark allocations for any paper.',
+  ],
+  links: [['/mark', 'mark a past paper'], ['/subjects/9700', '9700 Biology'], ['/tools/command-words', 'command words']],
+})
+
 const selected = briefs.filter((b) => ONLY.length === 0 || ONLY.some((o) => b.slug.includes(o)))
 console.log(`Generating ${selected.length} posts -> ${OUT_DIR}${WRITE ? ' (WRITE)' : ' (dry)'}\n`)
 let ok = 0, skip = 0, fail = 0

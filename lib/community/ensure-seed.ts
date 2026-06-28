@@ -3,7 +3,7 @@ import type { Board, PostKind } from '@/lib/community/posts'
 
 // Bump this when adding a new seed batch — it re-runs the idempotent seed once
 // (existing rows skip via ignoreDuplicates; only the new batch is inserted).
-const SEED_MARKER = 'b4000001-0000-4000-8000-000000000001'
+const SEED_MARKER = 'b5000001-0000-4000-8000-000000000001'
 
 type SeedUser = { id: string; email: string; username: string; name: string }
 
@@ -70,6 +70,14 @@ const POSTS: SeedPost[] = [
   { id: 'b4000005-0000-4000-8000-000000000005', author: 'studyhelper', board: 'ib', subjectCode: 'math-ai-hl', kind: 'question', flair: 'Papers', title: 'Math AI HL — how do you prep for the Paper 3 investigation?', bodyMd: 'Paper 3 for **Math AI HL** is one long modelling investigation. How do you practise something that open-ended? Past papers only go so far.', score: 12, comments: 2, hoursAgo: 6 },
   { id: 'b4000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', board: 'ib', subjectCode: 'geography-hl', kind: 'discussion', flair: 'Next steps', title: 'What is your plan if your IB points land below your offer?', bodyMd: 'Trying to be calm and have a plan for **IB** results. Remark, retake in November, or call the university? What are people lining up just in case?', score: 14, comments: 3, hoursAgo: 3 },
   { id: 'b4000007-0000-4000-8000-000000000007', author: 'examroom', board: 'ib', subjectCode: 'computer-science-hl', kind: 'discussion', flair: 'Exam reflections', title: 'IB Computer Science HL — how did Paper 1 and the case study go?', bodyMd: 'For **Computer Science HL**, the Paper 1 long questions and the annual case study both need very specific terminology. How did this session treat you?', score: 8, comments: 1, hoursAgo: 13 },
+
+  // ---- Batch 5: subject exam-technique threads ----
+  { id: 'b5000001-0000-4000-8000-000000000001', author: 'studyhelper', board: 'cambridge', subjectCode: '9708', kind: 'question', flair: 'Exam technique', title: 'How do you structure a 9708 economics essay for the evaluation marks?', bodyMd: 'I can define and draw diagrams, but I keep losing the **evaluation** marks in **9708**. How do you actually weigh both sides and land a judgement without waffling?', score: 16, comments: 3, pinned: true, hoursAgo: 3 },
+  { id: 'b5000002-0000-4000-8000-000000000002', author: 'examroom', board: 'cambridge', subjectCode: '9489', kind: 'discussion', flair: 'Exam technique', title: 'History source questions — how do you evaluate provenance fast enough?', bodyMd: 'For **9489**, I know the content but run out of time on provenance (origin, purpose, audience). How do you make value/limitations quick and still score?', score: 12, comments: 2, hoursAgo: 6 },
+  { id: 'b5000003-0000-4000-8000-000000000003', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9695', kind: 'discussion', flair: 'Exam technique', title: 'English Lit — how much analysis vs context in a top essay?', bodyMd: 'In **9695**, where is the line between analysing language/form and giving context? My essays drift into summary and I lose the method marks.', score: 10, comments: 2, hoursAgo: 9 },
+  { id: 'b5000004-0000-4000-8000-000000000004', author: 'studyhelper', board: 'cambridge', subjectCode: '9609', kind: 'question', flair: 'Exam technique', title: 'Business case study — how do you apply theory to THIS business, not waffle?', bodyMd: 'My **9609** answers read like a textbook. How do you actually pull evidence from the case and tie every point back to that specific business?', score: 11, comments: 2, hoursAgo: 5 },
+  { id: 'b5000005-0000-4000-8000-000000000005', author: 'examroom', board: 'cambridge', subjectCode: '9990', kind: 'discussion', flair: 'Exam technique', title: 'Psychology — fitting describe AND evaluate into the time', bodyMd: 'For **9990**, describing a study eats my time and I rush the evaluation. How do you keep the description tight enough to leave room to evaluate properly?', score: 9, comments: 2, hoursAgo: 11 },
+  { id: 'b5000006-0000-4000-8000-000000000006', author: 'pastpaper_pro', board: 'cambridge', subjectCode: '9700', kind: 'discussion', flair: 'Exam technique', title: 'Biology application/data questions — how do you stop freezing on unfamiliar contexts?', bodyMd: 'My recall is fine but **9700** application questions throw a context I have never seen and I blank. How do you train for the "apply it to something new" questions?', score: 14, comments: 3, hoursAgo: 7 },
 ]
 
 const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; score: number; hoursAgo: number }[] = [
@@ -114,6 +122,15 @@ const COMMENTS: { id: string; postId: string; author: string; bodyMd: string; sc
   { id: 'c4000004-0000-4000-8000-000000000004', postId: 'b4000006-0000-4000-8000-000000000006', author: 'studyhelper', bodyMd: 'Call the university the morning results drop — they often hold places if you are close and proactive.', score: 7, hoursAgo: 1 },
   { id: 'c4000005-0000-4000-8000-000000000005', postId: 'b4000005-0000-4000-8000-000000000005', author: 'pastpaper_pro', bodyMd: 'Practise the *process*: clean variables, justify your model, then evaluate it. Markers reward the reasoning, not a perfect answer.', score: 7, hoursAgo: 5 },
   { id: 'c4000006-0000-4000-8000-000000000006', postId: 'b4000003-0000-4000-8000-000000000003', author: 'examroom', bodyMd: 'One-sentence intro: name both texts + your comparative line. Save the depth for the body.', score: 6, hoursAgo: 8 },
+
+  // ---- Batch 5 comments ----
+  { id: 'c5000001-0000-4000-8000-000000000001', postId: 'b5000001-0000-4000-8000-000000000001', author: 'pastpaper_pro', bodyMd: 'Evaluation = weigh magnitude, time period and assumptions, then a judgement that answers THE question. "It depends on X, and X is likely because…" gets the marks.', score: 12, hoursAgo: 2 },
+  { id: 'c5000002-0000-4000-8000-000000000002', postId: 'b5000001-0000-4000-8000-000000000001', author: 'examroom', bodyMd: 'Force a one-line conclusion at the end of every paragraph, not just the essay. Mini-judgements add up.', score: 8, hoursAgo: 2 },
+  { id: 'c5000003-0000-4000-8000-000000000003', postId: 'b5000001-0000-4000-8000-000000000001', author: 'studyhelper', bodyMd: 'Mark a couple against the official scheme — you will see the evaluation points are basically a checklist.', score: 6, hoursAgo: 1 },
+  { id: 'c5000004-0000-4000-8000-000000000004', postId: 'b5000002-0000-4000-8000-000000000002', author: 'pastpaper_pro', bodyMd: 'O-P-A in one line: Origin, Purpose, Audience → then "so it is valuable for X but limited for Y". Don\'t just say biased.', score: 9, hoursAgo: 5 },
+  { id: 'c5000005-0000-4000-8000-000000000005', postId: 'b5000006-0000-4000-8000-000000000006', author: 'examroom', bodyMd: 'Drill past-paper application questions specifically — the skill is recognising which bit of biology the new context is testing.', score: 10, hoursAgo: 6 },
+  { id: 'c5000006-0000-4000-8000-000000000006', postId: 'b5000006-0000-4000-8000-000000000006', author: 'studyhelper', bodyMd: 'On data: describe the trend with the actual figures FIRST, then explain. Most "blanks" are people skipping the describe step.', score: 7, hoursAgo: 5 },
+  { id: 'c5000007-0000-4000-8000-000000000007', postId: 'b5000004-0000-4000-8000-000000000004', author: 'pastpaper_pro', bodyMd: 'Every paragraph: point → quote a fact from the case → analyse → judge. If you cannot quote the case, you are waffling.', score: 8, hoursAgo: 4 },
 ]
 
 function userId(username: string) {

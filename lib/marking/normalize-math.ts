@@ -297,6 +297,16 @@ export function coerceMarkingResult(
     result.total_marks = fromScheme ?? Math.max(marks.length, result.marks_earned as number)
   }
 
+  // Guard against malformed/hallucinated model output: keep marks_earned within
+  // [0, total_marks] so percentages, grades and whole-paper aggregates can never
+  // go negative or exceed 100%.
+  const earned = result.marks_earned
+  const total = result.total_marks
+  if (typeof earned === 'number' && typeof total === 'number' && total > 0) {
+    const safeEarned = Number.isFinite(earned) ? earned : 0
+    result.marks_earned = Math.max(0, Math.min(safeEarned, total))
+  }
+
   return result
 }
 

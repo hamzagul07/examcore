@@ -49,6 +49,17 @@ export async function GET(request: NextRequest) {
       if (!teacherCheck.ok) {
         return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
       }
+      // Scope to the teacher's own classroom: the attempt was fetched with the
+      // service client (no RLS), so re-read it through the RLS-scoped client —
+      // it returns a row only when this student is in the teacher's classroom.
+      const { data: scoped } = await supabase
+        .from('attempts')
+        .select('id')
+        .eq('id', attemptId)
+        .maybeSingle()
+      if (!scoped) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      }
     }
   }
 

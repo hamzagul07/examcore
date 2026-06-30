@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { CSSProperties } from 'react'
-import { getNote } from '@/lib/community/notes'
+import { getNote } from '@/lib/community/notes-read'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
 import { NoteActions } from '@/components/community/NoteActions'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'

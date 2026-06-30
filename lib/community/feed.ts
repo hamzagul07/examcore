@@ -1,7 +1,6 @@
-import { createServiceClient } from '@/lib/supabase-server'
-import type { Question } from '@/lib/community/qa'
-import { listQuestions } from '@/lib/community/qa'
-import { listNotes } from '@/lib/community/notes'
+import type { Question } from '@/lib/community/qa-types'
+import { listQuestions } from '@/lib/community/qa-read'
+import { listNotes } from '@/lib/community/notes-read'
 import { getUserMasterySignals } from '@/lib/community/mastery-signals'
 
 export type FeedItem = {

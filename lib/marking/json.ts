@@ -88,6 +88,7 @@ function scoreJsonCandidate(parsed: unknown): number {
   // Syllabus-extraction payload: the wrapper {syllabus_year, objectives:[…]}
   // must outrank an individual objective object (which has more keys).
   if (Array.isArray(obj.objectives)) score += 100 + obj.objectives.length
+  if (Array.isArray(obj.tags)) score += 100 + obj.tags.length
   return score
 }
 

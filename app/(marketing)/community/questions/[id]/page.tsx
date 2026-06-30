@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { CSSProperties } from 'react'
-import { getQuestion } from '@/lib/community/qa'
+import { getQuestion } from '@/lib/community/qa-read'
 import { QuestionThread } from '@/components/community/QuestionThread'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { createPageMetadata } from '@/lib/seo/metadata'

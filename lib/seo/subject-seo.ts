@@ -1,7 +1,6 @@
 import type { SubjectOption } from '@/lib/profile-options'
 import type { CourseSeoContext } from '@/lib/courses/seo'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
-import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
 
 /** High-level SEO profile for each Cambridge marking syllabus. */
 export type SubjectSeoProfile = {
@@ -439,10 +438,4 @@ export function buildSubjectCourseSeo(course: CourseSeoContext, lessonCount: num
     topics: profile.topics,
     ogImagePath: `/courses/${course.code}/opengraph-image`,
   }
-}
-
-/** Ensure every live marking syllabus has an SEO profile (CI guard). */
-export function assertAllMarkingSubjectsHaveSeo(): string[] {
-  const missing = getMarkingSubjectCodes().filter((code) => !BY_CODE.has(code))
-  return missing
 }

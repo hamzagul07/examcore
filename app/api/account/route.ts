@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
   }
 
-  let board = (body.board || '').trim()
+  const board = (body.board || '').trim()
   let level = (body.level || '').trim()
   if (isIbBoard(board)) {
     level = IB_DIPLOMA_LEVEL

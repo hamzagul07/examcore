@@ -18,11 +18,24 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // Keep heavy Node-only SDKs out of Server Component / route bundles (Vercel 250MB limit).
+  serverExternalPackages: [
+    '@google/genai',
+    '@google-cloud/vertexai',
+    'google-auth-library',
+    'pdfjs-dist',
+    'canvas',
+  ],
   // This site prerenders thousands of programmatic pages (command-words,
   // grade-boundary, past-paper topics, IB lessons …). Late in that large export
   // the default 60s per-page budget can be exceeded under memory/CPU pressure
   // even though each page is light, so give static generation more headroom.
   staticPageGenerationTimeout: 180,
+  // Safety net: community/detail routes must not trace the full blog corpus if a
+  // metadata or JSON-LD import regresses (see lib/seo/graph-site.ts).
+  outputFileTracingExcludes: {
+    '/community/**': ['content/blog/**'],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],

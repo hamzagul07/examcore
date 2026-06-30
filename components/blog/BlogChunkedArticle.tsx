@@ -34,11 +34,7 @@ export function BlogChunkedArticle({ content, slug }: Props) {
           aria-labelledby={chunk.id}
         >
           {chunk.level === 2 ? (
-            <h2
-              id={chunk.id}
-              className="ms-h3 scroll-mt-28"
-              style={{ fontSize: 'clamp(1.35rem, 3vw, 1.75rem)' }}
-            >
+            <h2 id={chunk.id} className="ms-h3 scroll-mt-28">
               {chunk.heading}
             </h2>
           ) : (
@@ -46,10 +42,8 @@ export function BlogChunkedArticle({ content, slug }: Props) {
               {chunk.heading}
             </h3>
           )}
-          <p className="ec-chunk-lead mt-3 text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
-            {chunk.lead}
-          </p>
-          <div className="ec-chunk-body mt-4 text-[var(--ec-text-secondary)]">
+          <p className="ec-chunk-lead mt-3 font-medium">{chunk.lead}</p>
+          <div className="ec-chunk-body mt-4">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={blogMarkdownComponents}>
               {chunk.bodyMarkdown || ''}
             </ReactMarkdown>

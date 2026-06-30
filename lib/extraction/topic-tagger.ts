@@ -138,7 +138,12 @@ export function parseBatchTaggingResponse(
   const out = new Map<number, RawTopicTag[]>()
   let parsed: unknown
   try {
-    parsed = extractJSON(raw)
+    const trimmed = raw.trim()
+    if (trimmed.startsWith('[')) {
+      parsed = JSON.parse(trimmed)
+    } else {
+      parsed = extractJSON(raw)
+    }
   } catch {
     return out
   }

@@ -54,6 +54,7 @@
     "test:extraction": "tsx lib/ai/gemini-call-timeout.test.ts && tsx lib/extraction/diagram-persist.insert.test.ts && tsx lib/extraction/throughput-baseline.test.ts && tsx lib/extraction/katex-validate.test.ts && tsx lib/extraction/paper-meta.test.ts && tsx lib/extraction/question-splitter.test.ts && tsx lib/extraction/normalize-question-number.test.ts && tsx lib/extraction/topic-tagger.test.ts && tsx lib/extraction/paper5-section.test.ts && tsx lib/extraction/mark-scheme-linker.paper5.test.ts && tsx lib/extraction/adaptive-concurrency.test.ts && tsx lib/extraction/diagram-persist.test.ts && tsx lib/extraction/pdf-parser-latex-skip.test.ts",
     "test:content-source": "tsx lib/courses/content-source.test.ts",
     "test:lesson-generator": "tsx lib/courses/generator/lesson-schema.test.ts && tsx lib/courses/generator/validate-lesson.test.ts",
+    "test:ci": "node scripts/run-unit-tests.mjs",
     "generate:pilots": "tsx scripts/generate-pilot-lessons.mjs",
     "senpai:as-pilots": "node scripts/generate-senpai-as-pilots.mjs",
     "senpai:al-pilots": "node scripts/generate-senpai-pilots.mjs --level al",

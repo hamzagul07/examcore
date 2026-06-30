@@ -415,20 +415,15 @@
     align-items: start;
   }
 
-  .ms-blog-post-shell .ec-blog-prose {
-    font-size: 1.125rem;
-    line-height: 1.8;
-  }
-
-  .ms-blog-post-shell .ec-blog-prose h2,
-  .ms-blog-post-shell .ec-fanout-prose .ec-fanout-chunk h2 {
-    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  .ms-blog-post-shell .ec-reading-column {
+    font-size: var(--ec-reading-size);
+    line-height: var(--ec-reading-leading);
   }
 
   .ms-blog-post-shell .ms-content-hero .ms-lead,
   .ms-blog-post-shell .ms-blog-hero-lead,
   .ms-blog-post-shell .ms-quick-answer {
-    max-width: 72ch;
+    max-width: var(--ec-reading-measure);
   }
 }
 
@@ -447,6 +442,20 @@
 .ms-blog-toc {
   position: sticky;
   top: 6rem;
+}
+
+.ms-blog-toc a[data-active='true'] {
+  color: var(--ec-brand);
+  font-weight: 600;
+}
+
+/* Phase-1 focus visibility for the reading surface (in-body links + CTAs).
+   Fixes the missing focus ring on ec-btn-* within the article, scoped here. */
+.ms-blog-post-shell a:focus-visible,
+.ms-blog-post-shell button:focus-visible {
+  outline: none;
+  box-shadow: var(--ec-focus-ring);
+  border-radius: 4px;
 }
 
 .ms-blog-toc ol {

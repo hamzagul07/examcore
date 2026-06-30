@@ -17,6 +17,15 @@ export const blogMarkdownComponents: Components = {
   ),
   blockquote: ({ children }) => <blockquote>{children}</blockquote>,
   hr: () => <hr />,
+  img: ({ src, alt }) => (
+    // eslint-disable-next-line @next/next/no-img-element -- markdown content images carry no intrinsic dimensions; styled + lazy via .ec-blog-prose img
+    <img
+      src={typeof src === 'string' ? src : undefined}
+      alt={alt ?? ''}
+      loading="lazy"
+      decoding="async"
+    />
+  ),
   h2: ({ children }) => {
     const id = headingSlug(headingPlainText(children))
     return (

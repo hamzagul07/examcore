@@ -31,6 +31,12 @@ export class AdaptiveConcurrency {
     this.maybeAdjust()
   }
 
+  /** Apply one throttle step from the current window (used by unit tests). */
+  flushWindow(): void {
+    this.lastAdjustAt = 0
+    this.maybeAdjust()
+  }
+
   private maybeAdjust(): void {
     const now = Date.now()
     if (now - this.lastAdjustAt < this.adjustIntervalMs) return

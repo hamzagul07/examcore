@@ -22,6 +22,11 @@ export type BlogPostMeta = {
   updated?: string
   /** first-hand | synthesis | dataset | editorial — information gain signal */
   informationGain?: string
+  /** Board taxonomy (optional frontmatter; inferred from slug when absent) */
+  board?: string
+  subject?: string
+  level?: string
+  strand?: string
 }
 
 export type BlogPost = BlogPostMeta & {
@@ -75,6 +80,10 @@ function readPostFile(filename: string): BlogPost | null {
     author: meta.author || undefined,
     updated: meta.updated || undefined,
     informationGain: meta.informationGain || undefined,
+    board: meta.board || undefined,
+    subject: meta.subject || undefined,
+    level: meta.level || undefined,
+    strand: meta.strand || undefined,
     content,
   }
 }
@@ -87,19 +96,41 @@ export function getBlogPosts(): BlogPostMeta[] {
     .map((f) => readPostFile(f))
     .filter((p): p is BlogPost => p !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .map(({ slug, title, description, date, keywords, category, featured, spotlight, author, updated, informationGain }) => ({
-      slug,
-      title,
-      description,
-      date,
-      keywords,
-      category,
-      featured,
-      spotlight,
-      author,
-      updated,
-      informationGain,
-    }))
+    .map(
+      ({
+        slug,
+        title,
+        description,
+        date,
+        keywords,
+        category,
+        featured,
+        spotlight,
+        author,
+        updated,
+        informationGain,
+        board,
+        subject,
+        level,
+        strand,
+      }) => ({
+        slug,
+        title,
+        description,
+        date,
+        keywords,
+        category,
+        featured,
+        spotlight,
+        author,
+        updated,
+        informationGain,
+        board,
+        subject,
+        level,
+        strand,
+      })
+    )
 }
 
 export function getBlogPost(slug: string): BlogPost | null {

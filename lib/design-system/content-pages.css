@@ -449,6 +449,31 @@
   top: 6rem;
 }
 
+/* Board + subject filter (blog index + browse facet pages) */
+.ms-board-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ms-board-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ms-board-subjects .ec-chip-ms.on {
+  background: var(--ec-brand-muted);
+  border-color: var(--ec-brand-border);
+  color: var(--ec-brand);
+}
+
+.ms-board-subjects__count {
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
 .ms-blog-toc ol {
   list-style: none;
   margin: 0;

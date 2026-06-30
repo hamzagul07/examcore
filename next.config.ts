@@ -18,6 +18,14 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // Keep heavy Node-only SDKs out of Server Component / route bundles (Vercel 250MB limit).
+  serverExternalPackages: [
+    '@google/genai',
+    '@google-cloud/vertexai',
+    'google-auth-library',
+    'pdfjs-dist',
+    'canvas',
+  ],
   // This site prerenders thousands of programmatic pages (command-words,
   // grade-boundary, past-paper topics, IB lessons …). Late in that large export
   // the default 60s per-page budget can be exceeded under memory/CPU pressure

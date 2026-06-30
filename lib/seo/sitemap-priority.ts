@@ -1,6 +1,6 @@
 import { getBlogPost } from '@/lib/blog'
 import { isEditorialPost } from '@/lib/blog/meta'
-import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import { isSubjectGuideSlug } from '@/lib/seo/subject-guide-slugs'
 
 /** IB pillar / cross-subject guides — higher crawl priority than per-subject spokes. */
 const IB_EDITORIAL_SLUGS = new Set([

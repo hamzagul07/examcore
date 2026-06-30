@@ -22,6 +22,7 @@ import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogIndexJsonLd } from '@/components/seo/BlogPostJsonLd'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
+import { BoardSubjectFilter } from '@/components/content/BoardSubjectFilter'
 import { FeaturedGuideBlock } from '@/components/content/FeaturedGuideBlock'
 import { GuideArticleCard } from '@/components/content/GuideArticleCard'
 import { TopicHubStrip } from '@/components/content/TopicHubStrip'
@@ -94,6 +95,7 @@ export default function BlogIndexPage() {
         lead="Subject choice, exam-series prep, integrity after online leaks, AI rules, markbands, and mark-scheme-first revision — written for Cambridge A-Level, O-Level, and IB Diploma students, updated for 2026."
       >
         <ContentHubNav />
+        <BoardSubjectFilter activeBoard={null} activeSubject={null} />
       </MarketingHero>
 
       {featuredPost && (

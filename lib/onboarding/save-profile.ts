@@ -41,7 +41,7 @@ export async function saveOnboardingProfile(
 ): Promise<SaveOnboardingResult> {
   try {
     const role: UserRole = body.role === 'teacher' ? 'teacher' : 'student'
-    let board = (body.board || '').trim() || 'Cambridge International'
+    const board = (body.board || '').trim() || 'Cambridge International'
     let level = (body.level || '').trim() || 'A-Level'
     if (isIbBoard(board)) {
       level = IB_DIPLOMA_LEVEL

@@ -1,6 +1,5 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent } from '@/lib/community/sanitize'
-import { screenContribution } from '@/lib/community/ai-screen'
 import type { Board } from '@/lib/community/notes'
 
 export type Question = {
@@ -110,6 +109,7 @@ export async function createQuestion(input: {
   const title = (input.title || '').trim().slice(0, 160)
   const body = clampNoteContent((input.bodyMd || '').trim(), 8000)
   if (title.length < 8) return { ok: false, error: 'Write a clear question title (at least 8 characters).' }
+  const { screenContribution } = await import('@/lib/community/ai-screen')
   const verdict = await screenContribution({ kind: 'question', title, body, subject: input.subjectName || input.subjectCode })
   const status = verdict.ok ? 'published' : 'needs_edit'
   const admin = createServiceClient()
@@ -129,6 +129,7 @@ export async function createAnswer(input: {
 }): Promise<CreateResult> {
   const body = clampNoteContent((input.bodyMd || '').trim(), 8000)
   if (body.length < 15) return { ok: false, error: 'Write a proper answer (at least 15 characters).' }
+  const { screenContribution } = await import('@/lib/community/ai-screen')
   const verdict = await screenContribution({ kind: 'answer', body, subject: input.subjectName || 'this question' })
   const status = verdict.ok ? 'published' : 'needs_edit'
   const admin = createServiceClient()

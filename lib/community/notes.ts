@@ -1,6 +1,5 @@
 import { createServiceClient } from '@/lib/supabase-server'
 import { clampNoteContent } from '@/lib/community/sanitize'
-import { screenContribution } from '@/lib/community/ai-screen'
 
 export type Board = 'cambridge' | 'ib'
 
@@ -129,6 +128,7 @@ export async function createNote(input: CreateNoteInput): Promise<CreateNoteResu
   if (title.length < 4) return { ok: false, error: 'Give your note a title (at least 4 characters).' }
   if (content.length < 20) return { ok: false, error: 'Add a bit more detail (at least 20 characters).' }
 
+  const { screenContribution } = await import('@/lib/community/ai-screen')
   const verdict = await screenContribution({
     kind: 'note',
     title,

@@ -1,4 +1,3 @@
-import { createServiceClient } from '@/lib/supabase-server'
 import type { Question } from '@/lib/community/qa'
 import { listQuestions } from '@/lib/community/qa'
 import { listNotes } from '@/lib/community/notes'

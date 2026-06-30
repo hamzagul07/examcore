@@ -21,8 +21,8 @@ export function getSiteHeaderTone(pathname: string): SiteHeaderTone {
   return 'default'
 }
 
-/** Shell is see-through; nav pill + action chips stay frosted. */
-export function useTransparentHeaderShell(
+/** Whether the header shell is see-through (nav pill + chips stay frosted). */
+export function shouldUseTransparentHeaderShell(
   variant: SiteHeaderVariant,
   tone: SiteHeaderTone
 ): boolean {

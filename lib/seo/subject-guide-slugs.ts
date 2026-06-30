@@ -30,3 +30,50 @@ export function subjectCodeFromBlogSlug(slug: string): string | null {
   const m = slug.match(/cambridge-(\d{4})-/i)
   return m?.[1] ?? null
 }
+
+/** Static map — avoids fs.readdir of content/blog in server bundles (Vercel 250MB limit). */
+export const CAMBRIDGE_GUIDE_SLUG_BY_CODE: Record<string, string> = {
+  '0417': 'cambridge-0417-igcse-ict-past-papers-guide',
+  '0450': 'cambridge-0450-igcse-business-studies-past-papers-guide',
+  '0455': 'cambridge-0455-igcse-economics-past-papers-guide',
+  '0460': 'cambridge-0460-igcse-geography-past-papers-guide',
+  '0478': 'cambridge-0478-igcse-computer-science-past-papers-guide',
+  '0500': 'cambridge-0500-igcse-first-language-english-past-papers-guide',
+  '0580': 'cambridge-0580-igcse-mathematics-past-papers-guide',
+  '0610': 'cambridge-0610-igcse-biology-past-papers-guide',
+  '0620': 'cambridge-0620-igcse-chemistry-past-papers-guide',
+  '0625': 'cambridge-0625-igcse-physics-past-papers-guide',
+  '1123': 'cambridge-1123-o-level-english-past-papers-guide',
+  '2210': 'cambridge-2210-o-level-computer-science-past-papers-guide',
+  '2281': 'cambridge-2281-o-level-economics-past-papers-guide',
+  '4024': 'cambridge-4024-o-level-mathematics-past-papers-guide',
+  '4037': 'cambridge-4037-additional-mathematics-past-papers-guide',
+  '5054': 'cambridge-5054-o-level-physics-past-papers-guide',
+  '5070': 'cambridge-5070-o-level-chemistry-past-papers-guide',
+  '5090': 'cambridge-5090-o-level-biology-past-papers-guide',
+  '7115': 'cambridge-7115-o-level-business-studies-past-papers-guide',
+  '7707': 'cambridge-7707-o-level-accounting-past-papers-guide',
+  '9084': 'cambridge-9084-a-level-law-past-papers-guide',
+  '9093': 'cambridge-9093-a-level-english-language-past-papers-guide',
+  '9231': 'cambridge-9231-further-mathematics-past-papers-guide',
+  '9488': 'cambridge-9488-a-level-islamic-studies-past-papers-guide',
+  '9489': 'cambridge-9489-a-level-history-past-papers-guide',
+  '9607': 'cambridge-9607-a-level-media-studies-past-papers-guide',
+  '9609': 'cambridge-9609-a-level-business-past-papers-guide',
+  '9618': 'cambridge-9618-a-level-computer-science-past-papers-guide',
+  '9626': 'cambridge-9626-a-level-information-technology-past-papers-guide',
+  '9695': 'cambridge-9695-a-level-english-literature-past-papers-guide',
+  '9696': 'cambridge-9696-a-level-geography-past-papers-guide',
+  '9699': 'cambridge-9699-a-level-sociology-past-papers-guide',
+  '9700': 'cambridge-9700-a-level-biology-past-papers-guide',
+  '9701': 'cambridge-9701-a-level-chemistry-past-papers-guide',
+  '9702': 'cambridge-9702-a-level-physics-past-papers-guide',
+  '9706': 'cambridge-9706-a-level-accounting-past-papers-guide',
+  '9708': 'cambridge-9708-a-level-economics-past-papers-guide',
+  '9709': 'cambridge-9709-a-level-mathematics-past-papers-guide',
+  '9990': 'cambridge-9990-a-level-psychology-past-papers-guide',
+}
+
+export function getSubjectGuideSlugForCode(code: string): string | null {
+  return CAMBRIDGE_GUIDE_SLUG_BY_CODE[code] ?? null
+}

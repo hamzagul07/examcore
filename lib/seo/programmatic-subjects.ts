@@ -1,6 +1,6 @@
 import { SUBJECTS, type SubjectOption } from '@/lib/profile-options'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
-import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
+import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guide-slugs'
 import { buildSubjectMarkingSeo } from '@/lib/seo/subject-seo'
 
 /** Unique syllabus codes with live marking — programmatic SEO pages. */

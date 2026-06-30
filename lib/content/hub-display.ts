@@ -1,6 +1,6 @@
 import { getBlogPost, getBlogPosts } from '@/lib/blog'
 import { enrichPostMeta, sortPostsForIndex, type EnrichedBlogMeta } from '@/lib/blog/meta'
-import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import { isSubjectGuideSlug } from '@/lib/seo/subject-guide-slugs'
 
 function enrichAll() {
   return getBlogPosts().map((p) => {

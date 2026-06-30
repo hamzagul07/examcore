@@ -4,7 +4,7 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { datasetNode } from '@/lib/seo/structured-data'
-import { buildSiteGraph } from '@/lib/seo/graph'
+import { buildSiteGraph } from '@/lib/seo/graph-site'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SITE_URL } from '@/lib/site-config'
 

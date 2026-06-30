@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
+import { assertAllMarkingSubjectsHaveSeo } from './subject-seo-assert'
 import {
-  assertAllMarkingSubjectsHaveSeo,
   buildSubjectCourseSeo,
   buildSubjectMarkingSeo,
   getAllSubjectSeoProfiles,

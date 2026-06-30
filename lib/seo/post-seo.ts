@@ -1,5 +1,5 @@
 import { getBlogCategory } from '@/lib/blog/meta'
-import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import { isSubjectGuideSlug } from '@/lib/seo/subject-guide-slugs'
 import type { ContentFormat, SearchIntent } from '@/lib/seo/intent'
 import { getClusterForSlug, type ContentClusterId } from '@/lib/seo/clusters'
 

@@ -16,6 +16,7 @@ export {
   isIbIaGuideSlug,
   isGradeBoundaryGuideSlug,
   subjectCodeFromBlogSlug,
+  getSubjectGuideSlugForCode,
 } from '@/lib/seo/subject-guide-slugs'
 
 export function getSubjectGuidePosts(): BlogPostMeta[] {
@@ -32,12 +33,6 @@ export function getIbSubjectGuidePosts(): BlogPostMeta[] {
 
 export function getIbIaGuidePosts(): BlogPostMeta[] {
   return getBlogPosts().filter((p) => isIbIaGuideSlug(p.slug))
-}
-
-export function getSubjectGuideSlugForCode(code: string): string | null {
-  const prefix = `cambridge-${code}-`
-  const post = getBlogPosts().find((p) => p.slug.startsWith(prefix))
-  return post?.slug ?? null
 }
 
 export function getNonSubjectGuidePosts(): BlogPostMeta[] {

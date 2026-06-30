@@ -15,40 +15,15 @@ import {
   breadcrumbList,
   organizationNode,
   personNode,
-  softwareApplicationNode,
   websiteNode,
 } from '@/lib/seo/structured-data'
 
 const ORG_ID = `${SITE_URL}/#organization`
 const BRAND_ID = `${SITE_URL}/#brand`
 const WEBSITE_ID = `${SITE_URL}/#website`
-const APP_ID = `${SITE_URL}/#app`
 
 function wordCount(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length
-}
-
-/** Interconnected @graph for global layout (entity + retrieval). */
-export function buildSiteGraph(): JsonLd[] {
-  const author = getAuthor()
-  const person = personNode(author)
-  const org = organizationNode()
-  const brand = brandNode()
-  const site = websiteNode()
-  const app = {
-    ...softwareApplicationNode(),
-    '@id': APP_ID,
-    brand: { '@id': BRAND_ID },
-    provider: { '@id': ORG_ID },
-  }
-
-  return [
-    { ...org, '@id': ORG_ID },
-    { ...brand, '@id': BRAND_ID },
-    { ...site, '@id': WEBSITE_ID, publisher: { '@id': ORG_ID } },
-    { ...person, '@id': `${author.url}#${author.id}` },
-    app,
-  ]
 }
 
 /** Full page graph: WebPage ↔ Article ↔ Person ↔ Organization ↔ Breadcrumb. */
@@ -167,9 +142,4 @@ export function buildBlogPostGraph(post: BlogPost, content: string): JsonLd[] {
   return graph
 }
 
-export function wrapGraph(nodes: JsonLd[]): JsonLd {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': nodes.map((n) => ({ ...n, '@context': undefined })),
-  }
-}
+export { buildSiteGraph, wrapGraph } from '@/lib/seo/graph-site'

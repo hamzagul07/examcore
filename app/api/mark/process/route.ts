@@ -27,11 +27,12 @@ import {
   uploadAnswerPhoto as uploadAnswerPhotoBuffer,
 } from '@/lib/marking/mark-runner'
 import {
-  checkMarkAllowance,
-  recordMarkUsage,
+  reserveMarkUsage,
+  finalizeMarkReservation,
+  releaseMarkReservation,
   allowanceForResponse,
   quotaExceededBody,
-  type MarkAllowance,
+  type MarkReservation,
 } from '@/lib/billing/enforcement'
 import {
   checkAnonymousMarkRateLimit,
@@ -78,6 +79,9 @@ async function ocrImage(file: File, prompt: string): Promise<string> {
 
 export async function POST(request: NextRequest) {
   const startTime = Date.now()
+  // Reservation lives at function scope so the outer catch can release it.
+  let reservation: MarkReservation | null = null
+  let reservationSettled = false // flips once on finalize OR release → exactly-once
 
   try {
     const supabaseAuth = await createServerClient()
@@ -94,11 +98,21 @@ export async function POST(request: NextRequest) {
     const anonMarkCount = rateCheck.count
 
     // Signed-in users rely on subscription quotas; guests use the IP cap above.
-    let allowance: MarkAllowance | null = null
-    if (userId) {
-      allowance = await checkMarkAllowance(userId)
-      if (allowance.blocked_by_mode) {
-        return NextResponse.json(quotaExceededBody(allowance), { status: 402 })
+    // Reserved just below (once uploadMode is known). These helpers settle the
+    // reservation exactly once: whichever of finalize/release runs first wins.
+    const finalizeReservation = async (
+      attemptId: string | null,
+      eventType: 'mark_single' | 'mark_whole_paper'
+    ) => {
+      if (userId && reservation && !reservationSettled) {
+        reservationSettled = true
+        await finalizeMarkReservation(userId, reservation, attemptId, eventType)
+      }
+    }
+    const releaseReservation = async () => {
+      if (reservation && !reservationSettled) {
+        reservationSettled = true
+        await releaseMarkReservation(reservation)
       }
     }
 
@@ -132,6 +146,16 @@ export async function POST(request: NextRequest) {
 
     if (pageFiles.length === 0) {
       return NextResponse.json({ error: 'Answer photo is required' }, { status: 400 })
+    }
+
+    if (userId) {
+      reservation = await reserveMarkUsage(
+        userId,
+        uploadMode === 'whole_paper' ? 'mark_whole_paper' : 'mark_single'
+      )
+      if (reservation.blocked_by_mode) {
+        return NextResponse.json(quotaExceededBody(reservation.allowance), { status: 402 })
+      }
     }
 
     if (uploadMode === 'single_question') {
@@ -182,22 +206,20 @@ export async function POST(request: NextRequest) {
                 onProgress: (ev) => send(ev),
               })
               await bumpRateLimit()
-              if (userId) {
-                await recordMarkUsage(
-                  userId,
-                  (payload as { attempt_id?: string })?.attempt_id ?? null,
-                  'mark_single'
-                )
-              }
+              await finalizeReservation(
+                (payload as { attempt_id?: string })?.attempt_id ?? null,
+                'mark_single'
+              )
               send({
                 type: 'result',
                 payload: await signMarkPayloadForClient({
                   ...payload,
-                  _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+                  _allowance: reservation ? allowanceForResponse(reservation.allowance) : undefined,
                 }),
               })
               controller.close()
             } catch (err: unknown) {
+              await releaseReservation()
               const classified = classifyMarkingError(err)
               logMarkFailure(err, classified)
               send({
@@ -218,20 +240,18 @@ export async function POST(request: NextRequest) {
       try {
         const payload = await runSingleQuestionMark(pipelineInput)
         await bumpRateLimit()
-        if (userId) {
-          await recordMarkUsage(
-            userId,
-            (payload as { attempt_id?: string })?.attempt_id ?? null,
-            'mark_single'
-          )
-        }
+        await finalizeReservation(
+          (payload as { attempt_id?: string })?.attempt_id ?? null,
+          'mark_single'
+        )
         return NextResponse.json(
           await signMarkPayloadForClient({
             ...payload,
-            _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+            _allowance: reservation ? allowanceForResponse(reservation.allowance) : undefined,
           })
         )
       } catch (err: unknown) {
+        await releaseReservation()
         const classified = classifyMarkingError(err)
         logMarkFailure(err, classified)
         if (classified.code === 'client' || classified.code === 'ocr_empty') {
@@ -304,6 +324,7 @@ export async function POST(request: NextRequest) {
       const segments = parseWholePaperSegment(segText)
 
       if (!segments || segments.questions.length === 0) {
+        await releaseReservation()
         return NextResponse.json(
           {
             error:
@@ -317,6 +338,7 @@ export async function POST(request: NextRequest) {
       paperSession = paperSession || segments.paper_session
 
       if (!paperCode || !paperSession) {
+        await releaseReservation()
         return NextResponse.json(
           {
             error:
@@ -400,8 +422,8 @@ export async function POST(request: NextRequest) {
       )
 
       // Whole paper = exactly 1 mark (not N questions).
+      await finalizeReservation(attempt?.id ?? null, 'mark_whole_paper')
       if (userId) {
-        await recordMarkUsage(userId, attempt?.id ?? null, 'mark_whole_paper')
         const { isCommunityEnabled } = await import('@/lib/community/enabled')
         if (isCommunityEnabled() && attempt?.id) {
           const subjectCode = paperCode?.split('/')[0] ?? null
@@ -419,7 +441,7 @@ export async function POST(request: NextRequest) {
           attempt_id: attempt?.id,
           answer_photo_url: answerPhotoUrl,
           marking_mode: 'official_mark_scheme',
-          _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+          _allowance: reservation ? allowanceForResponse(reservation.allowance) : undefined,
         })
       )
     }
@@ -429,6 +451,10 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     )
   } catch (err: unknown) {
+    if (reservation && !reservationSettled) {
+      reservationSettled = true
+      await releaseMarkReservation(reservation)
+    }
     const classified = classifyMarkingError(err)
     logMarkFailure(err, classified)
     return NextResponse.json(

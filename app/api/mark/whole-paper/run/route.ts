@@ -15,9 +15,13 @@ import type { QuestionMarkResult } from '@/lib/marking/types'
 import { estimateMarkingSeconds } from '@/lib/marking/whole-paper'
 import { pagesForQuestion } from '@/lib/marking/whole-paper-pages'
 import {
-  recordMarkUsage,
+  reserveMarkUsage,
+  finalizeMarkReservation,
+  releaseMarkReservation,
   computeAllowance,
   allowanceForResponse,
+  quotaExceededBody,
+  type MarkReservation,
 } from '@/lib/billing/enforcement'
 import { clientIp, checkAnonymousMarkRateLimit, incrementAnonymousMarkRateLimit } from '@/lib/rate-limit'
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
@@ -40,6 +44,8 @@ async function updateJob(attemptId: string, state: WholePaperJobState) {
 export async function POST(request: NextRequest) {
   const startTime = Date.now()
   let attemptId: string | null = null
+  let reservation: MarkReservation | null = null
+  let reservationSettled = false // flips once on finalize OR release → exactly-once
 
   try {
     const body = await request.json().catch(() => ({}))
@@ -100,6 +106,16 @@ export async function POST(request: NextRequest) {
 
     if (!paperCode || !paperSession || segments.length === 0) {
       return NextResponse.json({ error: 'Job missing paper context' }, { status: 400 })
+    }
+
+    // Whole paper = 1 mark. Reserve atomically before the work; finalize on
+    // success, release on failure — same single-request pattern as /mark/process.
+    const markUserId = (attempt as { user_id?: string | null }).user_id ?? null
+    if (markUserId) {
+      reservation = await reserveMarkUsage(markUserId, 'mark_whole_paper')
+      if (reservation.blocked_by_mode) {
+        return NextResponse.json(quotaExceededBody(reservation.allowance), { status: 402 })
+      }
     }
 
     const markingState: WholePaperJobState = {
@@ -214,7 +230,6 @@ export async function POST(request: NextRequest) {
       .eq('id', attemptId)
 
     // Whole paper = exactly 1 mark, recorded on completion success only.
-    const markUserId = (attempt as { user_id?: string | null }).user_id ?? null
     if (!markUserId) {
       const ip = clientIp(request)
       const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, null)
@@ -227,7 +242,12 @@ export async function POST(request: NextRequest) {
     }
     let allowanceBlock: ReturnType<typeof allowanceForResponse> | undefined
     if (markUserId) {
-      await recordMarkUsage(markUserId, attemptId, 'mark_whole_paper')
+      if (!reservationSettled) {
+        reservationSettled = true
+        if (reservation) {
+          await finalizeMarkReservation(markUserId, reservation, attemptId, 'mark_whole_paper')
+        }
+      }
       allowanceBlock = allowanceForResponse(await computeAllowance(markUserId))
     }
 
@@ -246,6 +266,10 @@ export async function POST(request: NextRequest) {
       })
     )
   } catch (err) {
+    if (reservation && !reservationSettled) {
+      reservationSettled = true
+      await releaseMarkReservation(reservation)
+    }
     console.error('whole-paper run error:', err)
     if (attemptId) {
       await supabaseAdmin

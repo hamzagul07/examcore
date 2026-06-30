@@ -15,7 +15,7 @@ import {
   type StoredPageOcr,
 } from '@/lib/marking/whole-paper-pages'
 import {
-  checkMarkAllowance,
+  computeAllowance,
   allowanceForResponse,
   quotaExceededBody,
 } from '@/lib/billing/enforcement'
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       return rateLimitJson(rateCheck.message)
     }
 
-    let allowance: Awaited<ReturnType<typeof checkMarkAllowance>> | null = null
+    let allowance: Awaited<ReturnType<typeof computeAllowance>> | null = null
     let tier: SubscriptionTier = 'free'
     if (userId) {
       const service = createServiceClient()
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
         .maybeSingle()
       tier = (subRow?.tier ?? 'free') as SubscriptionTier
 
-      allowance = await checkMarkAllowance(userId)
+      allowance = await computeAllowance(userId)
       if (allowance.blocked_by_mode) {
         return NextResponse.json(quotaExceededBody(allowance), { status: 402 })
       }

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
@@ -159,6 +160,23 @@ export default async function BlogBrowsePage({ params }: Props) {
           {enriched.map((post) => (
             <BlogPostCard key={post.slug} post={post} />
           ))}
+        </div>
+
+        <div className="ms-hub-card ms-hub-cta" style={{ marginTop: 40 }}>
+          <p className="ms-greennote" style={{ margin: 0, flex: 1, minWidth: 240 }}>
+            Guides show how {boardName} marks work — now earn them ↓
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/mark" className="ec-btn-primary ec-btn-primary--sm">
+              Mark a {boardName} question — free
+            </Link>
+            <Link
+              href={board === 'ib' ? '/ib/courses' : '/courses'}
+              className="ec-btn-secondary ec-btn-secondary--sm"
+            >
+              {boardName} courses
+            </Link>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

@@ -10,6 +10,7 @@ import { collectionPageNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SITE_URL } from '@/lib/site-config'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
+import { BoardSubjectFilter } from '@/components/content/BoardSubjectFilter'
 import { FeaturedGuideBlock } from '@/components/content/FeaturedGuideBlock'
 import { GuideArticleCard } from '@/components/content/GuideArticleCard'
 import { getFeaturedHubPost, getGuideGridPosts } from '@/lib/content/hub-display'
@@ -64,6 +65,7 @@ export default function GuidesIndexPage() {
         lead="Short, specific guides on how Cambridge and IB examiners actually mark — written from the schemes and markbands, not vibes. Browse topic hubs or read individual articles on the blog."
       >
         <ContentHubNav />
+        <BoardSubjectFilter activeBoard={null} activeSubject={null} />
       </MarketingHero>
 
       {featured && (

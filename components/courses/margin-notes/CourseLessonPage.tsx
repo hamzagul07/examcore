@@ -349,9 +349,13 @@ export function CourseLessonPage({
 
       <div className="lesson-modebar-wrap">
         <div className="pg lesson-modebar">
-          <div className="mode-tabs">
+          <div className="mode-tabs" role="tablist" aria-label="Lesson view">
             <button
               type="button"
+              role="tab"
+              id="lesson-tab-learn"
+              aria-selected={mode === 'learn'}
+              aria-controls="lesson-panel-learn"
               className={`mode-tab${mode === 'learn' ? ' on' : ''}`}
               onClick={() => setLessonMode('learn')}
             >
@@ -359,6 +363,10 @@ export function CourseLessonPage({
             </button>
             <button
               type="button"
+              role="tab"
+              id="lesson-tab-papers"
+              aria-selected={mode === 'papers'}
+              aria-controls="lesson-panel-papers"
               className={`mode-tab${mode === 'papers' ? ' on' : ''}`}
               onClick={() => setLessonMode('papers')}
             >
@@ -405,7 +413,12 @@ export function CourseLessonPage({
       ) : null}
 
       {mode === 'papers' ? (
-        <div className="pg lesson-papers">
+        <div
+          className="pg lesson-papers"
+          role="tabpanel"
+          id="lesson-panel-papers"
+          aria-labelledby="lesson-tab-papers"
+        >
           <SecHead
             k="·"
             title="Past paper questions"
@@ -437,7 +450,12 @@ export function CourseLessonPage({
           </div>
         </div>
       ) : (
-        <div className="lesson-layout pg">
+        <div
+          className="lesson-layout pg"
+          role="tabpanel"
+          id="lesson-panel-learn"
+          aria-labelledby="lesson-tab-learn"
+        >
           <aside className="lesson-toc">
             <p className="micro toc-kicker">ON THIS PAGE</p>
             <nav>

@@ -63,6 +63,36 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000). Marking works for guests (IP rate-limited); signed-in users get per-account quotas.
 
+### macOS (moving from Windows)
+
+This repo is cross-platform. After cloning on a Mac:
+
+1. **Reinstall native deps** — Tailwind and other packages ship OS-specific binaries:
+
+```bash
+rm -rf node_modules .next
+pnpm install
+```
+
+2. **Vertex AI credentials** — copy your service account JSON from Windows to Mac:
+
+```bash
+mkdir -p ~/.gcp
+cp /path/to/markscheme-vertex-ai.json ~/.gcp/markscheme-vertex-ai.json
+```
+
+In `.env.local`, use a Mac-friendly path (either works):
+
+```env
+GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/markscheme-vertex-ai.json
+```
+
+The app expands `~` and also auto-converts leftover `C:/Users/...` paths to `/Users/...` on macOS.
+
+3. **Line endings** — `.gitattributes` keeps `LF` in the repo; if you see noisy diffs after Windows edits, run `git add --renormalize .` once.
+
+4. **Paper sync scripts** — optional `PAPACAMBRIDGE_USER_AGENT` in `.env.local` can use a Mac Chrome user-agent string instead of Windows.
+
 ## Deploy (Vercel)
 
 1. Import the repo on [Vercel](https://vercel.com) and add env vars from `.env.example` (at minimum the three Supabase keys + AI keys).

@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'
-import { getAllBlogSlugs, getBlogPosts, getBlogPostLastModified } from '@/lib/blog'
+import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
 import { BLOG_CATEGORY_LABELS } from '@/lib/blog/meta'
-import { BOARDS, resolveBoardMeta } from '@/lib/content/taxonomy'
+import { getAllBlogBrowseFacets } from '@/lib/content/blog-facets'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
@@ -213,28 +213,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }))
     : []
 
-  const browsePosts = getBlogPosts()
-  const browseFacetEntries: MetadataRoute.Sitemap = BOARDS.flatMap((board) => {
-    const subjects = new Set<string>()
-    for (const p of browsePosts) {
-      const m = resolveBoardMeta(p.slug, p)
-      if (m.board === board && m.subject) subjects.add(m.subject)
-    }
-    return [
-      {
-        url: `${base}/blog/browse/${board}`,
-        lastModified: now,
-        changeFrequency: 'weekly' as const,
-        priority: 0.6,
-      },
-      ...[...subjects].map((subject) => ({
-        url: `${base}/blog/browse/${board}/${subject}`,
-        lastModified: now,
-        changeFrequency: 'weekly' as const,
-        priority: 0.55,
-      })),
-    ]
-  })
+  const browseFacetEntries: MetadataRoute.Sitemap = getAllBlogBrowseFacets().map(
+    (facets) => ({
+      url: `${base}/blog/browse/${facets.join('/')}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: facets.length === 1 ? 0.6 : facets.length === 2 ? 0.55 : 0.5,
+    })
+  )
 
   return [
     ...staticEntries,

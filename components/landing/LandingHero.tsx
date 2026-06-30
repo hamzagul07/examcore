@@ -56,7 +56,7 @@ export function LandingHero({ markHref }: LandingHeroProps) {
         </h1>
         <p className="ms-lead ms-hero-lead">
           Photograph your handwritten answer. We mark it point by point against the official
-          Cambridge scheme — with Examiner&apos;s Ink in your margins.
+          mark scheme — with Examiner&apos;s Ink in your margins.
         </p>
         <div className="ms-hero-ctas">
           <LoadingLink

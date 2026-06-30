@@ -24,7 +24,7 @@ export function LandingSubjects() {
         ))}
       </div>
       <p className="ms-micro" style={{ marginTop: 22 }}>
-        + O-LEVEL SYLLABUSES · IB &amp; OTHER BOARDS COMING LATER
+        + O-LEVEL SYLLABUSES · IB DIPLOMA — HL &amp; SL
       </p>
     </section>
     </LandingSectionReveal>

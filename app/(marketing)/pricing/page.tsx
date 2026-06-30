@@ -45,7 +45,7 @@ export default async function PricingPage() {
     <>
       <PageJsonLd
         path="/pricing"
-        title="Pricing — Cambridge past paper marking"
+        title="Pricing — Cambridge & IB past paper marking"
         description="MarkScheme pricing: free courses forever, plus unlimited marking for exam season."
         breadcrumbs={[
           { name: 'Home', path: '/' },

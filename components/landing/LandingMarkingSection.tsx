@@ -33,7 +33,7 @@ const STEPS = [
 ]
 
 const CAPABILITIES = [
-  { glyph: 'MS', title: 'Official schemes', desc: 'Real Cambridge criteria, cited line by line' },
+  { glyph: 'MS', title: 'Official schemes', desc: 'Real Cambridge & IB criteria, cited line by line' },
   { glyph: '✎', title: "Examiner's Ink", desc: 'Stamps on your handwriting' },
   { glyph: 'Q·P', title: 'Single or full paper', desc: 'Quick check or projected grade' },
   { glyph: 'IMG', title: 'Photo · camera · PDF', desc: 'Multi-page with reorder' },

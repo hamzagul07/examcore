@@ -62,7 +62,7 @@ const TIERS: TierDef[] = [
 ]
 
 const FREE_FEATURES = [
-  'All 15 Cambridge subjects',
+  'Cambridge & IB Diploma subjects',
   'Single-question marking',
   "Examiner's Ink overlay",
   'Basic feedback + per-mark reasoning',

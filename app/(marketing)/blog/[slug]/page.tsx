@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: Props) {
           className="ms-blog-layout ec-blog-prose ec-fanout-prose mt-10 min-w-0 scroll-mt-24"
         >
           <BlogTableOfContents headings={headings} />
-          <div className="min-w-0">
+          <div className="ec-reading-column min-w-0">
             <BlogChunkedArticle content={post.content} slug={slug} />
             <BlogInContentLinks slug={slug} />
           </div>

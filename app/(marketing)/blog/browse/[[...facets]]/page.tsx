@@ -3,15 +3,17 @@ import type { Metadata } from 'next'
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import {
-  BOARDS,
   BOARD_LABELS,
-  matchesBoard,
+  LEVEL_LABELS,
   resolveBoardMeta,
   type Board,
+  type Level,
 } from '@/lib/content/taxonomy'
+import { getAllBlogBrowseFacets, getBoardSubjects } from '@/lib/content/blog-facets'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import {
   BoardSubjectFilter,
+  type LevelFacet,
   type SubjectFacet,
 } from '@/components/content/BoardSubjectFilter'
 import {
@@ -40,74 +42,77 @@ function subjectLabel(board: Board, subject: string): string {
     .join(' ')
 }
 
-function subjectsForBoard(board: Board): SubjectFacet[] {
-  const counts = new Map<string, number>()
-  for (const p of getBlogPosts()) {
-    const m = resolveBoardMeta(p.slug, p)
-    if (m.board === board && m.subject) {
-      counts.set(m.subject, (counts.get(m.subject) ?? 0) + 1)
-    }
-  }
-  return [...counts.entries()]
-    .map(([value, count]) => ({
-      value,
-      count,
-      label: subjectLabel(board, value),
-      href: `/blog/browse/${board}/${value}`,
-    }))
-    .sort((a, b) => a.label.localeCompare(b.label))
+function facetOptions(board: Board, subject: string | null) {
+  const entries = getBoardSubjects(board)
+  const toSubjectFacet = (e: (typeof entries)[number]): SubjectFacet => ({
+    value: e.value,
+    label: subjectLabel(board, e.value),
+    href: `/blog/browse/${board}/${e.value}`,
+    count: e.count,
+    core: e.core,
+  })
+  const subjectOptions = entries.filter((e) => !e.core).map(toSubjectFacet)
+  const coreOptions = entries.filter((e) => e.core).map(toSubjectFacet)
+  const active = subject ? entries.find((e) => e.value === subject) : null
+  const levelOptions: LevelFacet[] = (active?.levels ?? []).map((l) => ({
+    value: l.value,
+    label: LEVEL_LABELS[l.value] ?? l.value,
+    href: `/blog/browse/${board}/${subject}/${l.value}`,
+    count: l.count,
+  }))
+  return { subjectOptions, coreOptions, levelOptions, knownSubject: Boolean(active) }
 }
 
 export function generateStaticParams() {
-  const params: { facets: string[] }[] = []
-  for (const b of BOARDS) {
-    params.push({ facets: [b] })
-    for (const s of subjectsForBoard(b)) params.push({ facets: [b, s.value] })
-  }
-  return params
+  return getAllBlogBrowseFacets().map((facets) => ({ facets }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { facets } = await params
   const board = facets?.[0]
-  const subject = facets?.[1]
   if (!isBoard(board)) return { title: 'Browse guides by board' }
   const boardName = BOARD_LABELS[board]
-  if (subject) {
-    const label = subjectLabel(board, subject)
-    return {
-      title: `${boardName} ${label} guides`,
-      description: `${boardName} ${label} revision and past-paper guides.`,
-      alternates: { canonical: `${SITE_URL}/blog/browse/${board}/${subject}` },
-    }
-  }
+  const subject = facets?.[1]
+  const level = facets?.[2] as Level | undefined
+  const parts = [boardName]
+  if (subject) parts.push(subjectLabel(board, subject))
+  if (level) parts.push(LEVEL_LABELS[level] ?? level)
+  const canonical = `${SITE_URL}/blog/browse/${facets!.join('/')}`
   return {
-    title: `${boardName} revision & past-paper guides`,
-    description: `Every ${boardName} guide on MarkScheme — browse by subject.`,
-    alternates: { canonical: `${SITE_URL}/blog/browse/${board}` },
+    title: `${parts.join(' ')} guides`,
+    description: `${parts.join(' ')} revision and past-paper guides on MarkScheme.`,
+    alternates: { canonical },
   }
 }
 
 export default async function BlogBrowsePage({ params }: Props) {
   const { facets } = await params
   if (!facets || facets.length === 0) redirect('/blog')
-  if (facets.length > 2) notFound() // level facets land in a later increment
+  if (facets.length > 3) notFound()
 
   const board = facets[0]
   const subject = facets[1] ?? null
+  const level = (facets[2] as Level | undefined) ?? null
   if (!isBoard(board)) notFound()
 
+  const { subjectOptions, coreOptions, levelOptions, knownSubject } = facetOptions(
+    board,
+    subject
+  )
+  if (subject && !knownSubject) notFound()
+  if (level && !levelOptions.some((l) => l.value === level)) notFound()
+
   const boardName = BOARD_LABELS[board]
-  const subjectOptions = subjectsForBoard(board)
-  const subjectLabelText = subject ? subjectLabel(board, subject) : null
+  const subjectText = subject ? subjectLabel(board, subject) : null
+  const levelText = level ? (LEVEL_LABELS[level] ?? level) : null
 
   const matched = getBlogPosts().filter((p) => {
     const m = resolveBoardMeta(p.slug, p)
-    if (!matchesBoard(m, board)) return false
-    if (subject) return m.subject === subject
+    if (m.board !== board) return false
+    if (subject && m.subject !== subject) return false
+    if (level && m.level !== level) return false
     return true
   })
-
   if (matched.length === 0) notFound()
 
   const enriched = matched.map((p) => {
@@ -115,40 +120,37 @@ export default async function BlogBrowsePage({ params }: Props) {
     return enrichPostMeta(p, full?.content ?? '')
   })
 
-  const title = subjectLabelText ? `${boardName} ${subjectLabelText}` : `${boardName} guides`
-  const basePath = `/blog/browse/${board}${subject ? `/${subject}` : ''}`
+  const title = [boardName, subjectText, levelText].filter(Boolean).join(' ')
+  const basePath = `/blog/browse/${facets.join('/')}`
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: boardName, path: `/blog/browse/${board}` },
+    ...(subject ? [{ name: subjectText as string, path: `/blog/browse/${board}/${subject}` }] : []),
+    ...(level ? [{ name: levelText as string, path: basePath }] : []),
+  ]
 
   return (
     <MarketingPageShell>
       <PageJsonLd
         path={basePath}
-        title={`${title} — MarkScheme`}
-        description={`${boardName} revision and past-paper guides on MarkScheme.`}
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'Blog', path: '/blog' },
-          { name: boardName, path: `/blog/browse/${board}` },
-          ...(subject
-            ? [{ name: subjectLabelText as string, path: basePath }]
-            : []),
-        ]}
+        title={`${title} guides — MarkScheme`}
+        description={`${title} revision and past-paper guides on MarkScheme.`}
+        breadcrumbs={breadcrumbs}
       />
       <MarketingHero
         label="Guides & blog"
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'Blog', path: '/blog' },
-          { name: boardName, path: `/blog/browse/${board}` },
-        ]}
-        title={title}
-        lead={`${matched.length} ${boardName} guide${
-          matched.length === 1 ? '' : 's'
-        } — filter by subject below.`}
+        breadcrumbs={breadcrumbs.slice(0, subject ? 4 : 3)}
+        title={`${title} guides`}
+        lead={`${matched.length} ${title} guide${matched.length === 1 ? '' : 's'} — filter below.`}
       >
         <BoardSubjectFilter
           activeBoard={board}
           activeSubject={subject}
+          activeLevel={level}
           subjectOptions={subjectOptions}
+          coreOptions={coreOptions}
+          levelOptions={levelOptions}
         />
       </MarketingHero>
 

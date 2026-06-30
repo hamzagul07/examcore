@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'
-import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
+import { getAllBlogSlugs, getBlogPosts, getBlogPostLastModified } from '@/lib/blog'
 import { BLOG_CATEGORY_LABELS } from '@/lib/blog/meta'
+import { BOARDS, resolveBoardMeta } from '@/lib/content/taxonomy'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
@@ -212,6 +213,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }))
     : []
 
+  const browsePosts = getBlogPosts()
+  const browseFacetEntries: MetadataRoute.Sitemap = BOARDS.flatMap((board) => {
+    const subjects = new Set<string>()
+    for (const p of browsePosts) {
+      const m = resolveBoardMeta(p.slug, p)
+      if (m.board === board && m.subject) subjects.add(m.subject)
+    }
+    return [
+      {
+        url: `${base}/blog/browse/${board}`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
+      },
+      ...[...subjects].map((subject) => ({
+        url: `${base}/blog/browse/${board}/${subject}`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.55,
+      })),
+    ]
+  })
+
   return [
     ...staticEntries,
     ...guideEntries,
@@ -226,6 +250,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...courseLessonEntries,
     ...communityEntries,
     ...blogCategoryEntries,
+    ...browseFacetEntries,
     ...blogEntries,
   ]
 }

@@ -106,6 +106,7 @@ export default function IbCoursesIndexPage() {
               { href: '/blog/ib-free-courses-guide', label: 'Free courses guide', variant: 'muted' },
               { href: '/courses', label: 'Cambridge courses', variant: 'muted' },
               { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
+              { href: '/blog/browse/ib', label: 'IB guides by subject', variant: 'muted' },
               { href: '/mark', label: 'Criterion practice →', variant: 'primary' },
             ]}
           />

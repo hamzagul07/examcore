@@ -72,6 +72,7 @@ export default function CoursesIndexPage() {
             { href: '/courses/2281', label: '2281 Economics course', variant: 'ghost' },
             { href: '/courses/7115', label: '7115 Business course', variant: 'ghost' },
             { href: '/subjects', label: 'Browse subjects', variant: 'muted' },
+            { href: '/blog/browse/cambridge', label: 'Cambridge guides by subject', variant: 'muted' },
             { href: '/ib', label: 'IB hub', variant: 'muted' },
             { href: '/community', label: 'Exam Room community', variant: 'muted' },
             { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },

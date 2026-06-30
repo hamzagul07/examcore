@@ -1,12 +1,13 @@
 import { existsSync, writeFileSync } from 'fs'
 import { homedir, platform, tmpdir } from 'os'
-import { join } from 'path'
+import { isAbsolute, join } from 'path'
 
 let materialized = false
 
 /**
  * Resolve a credentials path for the current OS.
  * - Expands `~` to the user home directory (macOS/Linux).
+ * - Resolves project-relative paths (e.g. `.gcp/key.json`) from process.cwd().
  * - Converts `C:/Users/...` Windows paths when running on macOS/Linux
  *   (common when moving a project from Windows to Mac).
  */
@@ -16,6 +17,8 @@ export function resolveCredentialsPath(raw: string): string {
 
   if (path === '~' || path.startsWith('~/')) {
     path = join(homedir(), path === '~' ? '' : path.slice(2))
+  } else if (!isAbsolute(path)) {
+    path = join(process.cwd(), path)
   }
 
   if (platform() !== 'win32') {

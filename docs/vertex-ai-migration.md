@@ -20,12 +20,25 @@ Examcore can call Gemini through **two backends**. Switch with `USE_VERTEX_AI` i
 
 3. **Add to `.env.local`** (never commit the key file):
 
+**macOS / Linux:**
+
 ```env
 USE_VERTEX_AI=true
 GOOGLE_CLOUD_PROJECT=your-gcp-project-id
 GOOGLE_CLOUD_LOCATION=us-central1
-GOOGLE_APPLICATION_CREDENTIALS=C:/path/to/vertex-sa-key.json
+GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/markscheme-vertex-ai.json
 ```
+
+**Windows:**
+
+```env
+USE_VERTEX_AI=true
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=us-central1
+GOOGLE_APPLICATION_CREDENTIALS=C:/Users/you/.gcp/markscheme-vertex-ai.json
+```
+
+On macOS, `~` is expanded at runtime. If you still have a Windows-style path in `.env.local`, the app maps `C:/Users/...` → `/Users/...` automatically.
 
 **Vercel / serverless:** file paths do not work. Set `GOOGLE_APPLICATION_CREDENTIALS_JSON` to the full service-account JSON string (single line). The app writes it to `/tmp` at runtime for ADC.
 

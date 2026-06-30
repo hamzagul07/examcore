@@ -12,7 +12,21 @@ AI marking for Cambridge International A-Level and O-Level past papers. Students
 
 ## CI
 
-GitHub Actions runs typecheck, lint, and build on pushes and PRs to `main` (see `.github/workflows/ci.yml`). No secrets required for the build step beyond placeholder env vars in the workflow.
+GitHub Actions runs typecheck, lint, unit tests (`pnpm test:ci`), and build on pushes and PRs to `main` (see `.github/workflows/ci.yml`). No secrets required for the build step beyond placeholder env vars in the workflow.
+
+## Vercel deployment
+
+Production is at [markscheme.app](https://markscheme.app). Preview deploys for PR branches require a project-level env var that is **not** in `.env.local`:
+
+| Variable | Environments | Purpose |
+|----------|--------------|---------|
+| `VERCEL_SUPPORT_LARGE_FUNCTIONS` | **Production + Preview** | Allows serverless bundles above the default 250 MB cap (this app prerenders ~3,500 pages). |
+| `VERCEL_ANALYZE_BUILD_OUTPUT` | Preview (optional) | Logs per-function uncompressed sizes when debugging bundle regressions. |
+| `STRIPE_WEBHOOK_SECRET` | Production | Stripe billing webhooks |
+| `ADMIN_EMAILS` | Production | Comma-separated emails for `/admin` |
+| `CRON_SECRET` | Production | Protects `/api/cron/*` routes |
+
+Set these in the Vercel dashboard under **Project → Settings → Environment Variables**. Without `VERCEL_SUPPORT_LARGE_FUNCTIONS` on **Preview**, PR builds can fail at the “Deploying outputs…” stage even when the compile step succeeds.
 
 ## Local setup
 

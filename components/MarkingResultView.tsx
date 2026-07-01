@@ -133,6 +133,9 @@ export function MarkingResultView({
   // Board-aware labels: IB subjects must not be branded as Cambridge.
   const isIb = isIbSubjectCode(badgeSubjectCode ?? '')
   const boardLabel = isIb ? 'IB' : 'Cambridge'
+  // Paradigm-aware: IB points subjects (e.g. Maths) mark against analytic mark
+  // schemes (M/A marks), NOT markbands — so don't say "markbands" for them.
+  const isIbPoints = isIb && result.ai_marking?.marking_style === 'point_based'
 
   const percentage =
     result.total_marks > 0
@@ -293,11 +296,15 @@ export function MarkingResultView({
                 Marked with {boardLabel}{' '}
                 {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
                   (isIb ? 'Diploma' : 'A-Level')}{' '}
-                {isIb ? 'markbands' : 'conventions'}
+                {isIb ? (isIbPoints ? 'mark scheme conventions' : 'markbands') : 'conventions'}
               </p>
               <p className="ec-banner__meta">
                 Your own question (not a past paper) — the same{' '}
-                {isIb ? 'criteria and markbands' : 'mark types and bands'}{' '}
+                {isIbPoints
+                  ? 'method (M) and accuracy (A) marks'
+                  : isIb
+                    ? 'criteria and markbands'
+                    : 'mark types and bands'}{' '}
                 examiners use, without an official mark scheme from our database.
               </p>
             </div>

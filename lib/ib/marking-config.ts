@@ -454,7 +454,10 @@ export function getIbMarkingProfile(code: string): IbMarkingProfile | null {
 }
 
 export function isIbSubjectCode(code: string): boolean {
-  return code.startsWith('ib-') && BY_CODE.has(code)
+  // Any `ib-` prefixed code is an IB subject. (Do NOT also require a legacy
+  // marking profile: catalog subjects like `ib-maths-aa` are IB but have no
+  // profile — gating on BY_CODE mis-branded them as Cambridge.)
+  return code.startsWith('ib-')
 }
 
 export function getIbMarkableSubjectCodes(): string[] {

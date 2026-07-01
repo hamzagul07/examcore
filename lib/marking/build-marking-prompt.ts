@@ -192,7 +192,10 @@ export function buildMarkingPrompt(params: {
 }
 
 export function maxTokensForStyle(style: MarkingStyle): number {
-  if (style === 'level_of_response') return 8192
+  // level_of_response covers IB criteria/markband marking, whose output is large
+  // (per-criterion band descriptor + justification + strengths/improvements, plus
+  // a roll-up band_result). Give it more first-attempt room so it doesn't truncate.
+  if (style === 'level_of_response') return 12288
   if (style === 'mcq') return 4096
   return 6144
 }

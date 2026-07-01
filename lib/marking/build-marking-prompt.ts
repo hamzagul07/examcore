@@ -8,8 +8,10 @@ import {
   buildIbPointBasedMarkingPrompt,
   buildIbLorMarkingPrompt,
   buildIbCriterionMarkingPrompt,
+  buildIbCatalogPointsPrompt,
 } from './prompts'
 import { isIbSubjectCode, ibUsesCriterionRubrics } from '@/lib/ib/marking-config'
+import type { ResolvedIbComponent } from './types'
 
 const IB_BOARD = 'IB Diploma'
 import type { MarkSchemeRow } from './types'
@@ -24,6 +26,8 @@ export function buildMarkingPrompt(params: {
   subjectName: string
   subjectCode: string
   isOfficial: boolean
+  /** M1: when present, a resolved IB catalog component drives routing. */
+  resolvedIb?: ResolvedIbComponent | null
 }): string {
   const {
     markScheme,
@@ -33,7 +37,25 @@ export function buildMarkingPrompt(params: {
     subjectName,
     subjectCode,
     isOfficial,
+    resolvedIb,
   } = params
+
+  // M1 — catalog-driven IB points marking. Only engages when the upload resolved
+  // to a catalogued IB points component; everything below is unchanged otherwise.
+  if (resolvedIb && resolvedIb.assessmentModel === 'points') {
+    return buildIbCatalogPointsPrompt({
+      subjectName: resolvedIb.subjectName || subjectName,
+      componentLabel: resolvedIb.componentLabel,
+      questionText,
+      ocrText,
+      accept: resolvedIb.pointsConventions?.accept,
+      ecf: resolvedIb.pointsConventions?.ecf,
+      officialScheme:
+        resolvedIb.officialScheme != null
+          ? JSON.stringify(resolvedIb.officialScheme)
+          : null,
+    })
+  }
 
   const isIb =
     markScheme?.board === IB_BOARD || isIbSubjectCode(subjectCode)

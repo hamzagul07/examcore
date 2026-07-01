@@ -138,3 +138,17 @@ chrome-user-data/
 .cursor-server/
 .vscode/.shared/
 .vercel
+
+# ---------------------------------------------------------------------------
+# Licensed IBO content — reviewed locally / applied to Supabase, NEVER committed.
+# This repo is PUBLIC; committing verbatim IB guide/markscheme/paper text or the
+# source PDFs would republish copyrighted material regardless of license.
+# The STRUCTURAL migration (20260701_ib_assessment_catalog.sql — tables only, no
+# IBO content) and the calibration fixture (facts only) STAY tracked.
+# ---------------------------------------------------------------------------
+# licensed catalog seeds (verbatim descriptors/prose)
+supabase/migrations/*_ib_*_seed.sql
+# ingestion records contain verbatim descriptors/prose
+docs/ib-ingestion/
+# uploaded AA guide + question papers + markschemes (source docs)
+/Mathematics*.pdf

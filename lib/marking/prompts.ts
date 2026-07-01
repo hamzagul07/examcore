@@ -434,6 +434,77 @@ Return ONLY this JSON:
 }`
 }
 
+/**
+ * Catalog-driven IB points marking (M1). Used when the upload resolves to an IB
+ * catalog component with assessment_model = 'points' (e.g. Math AA Paper 1/2/3).
+ * Applies the subject's analytic-markscheme conventions (M/A/R marks, ECF,
+ * accept-equivalent-forms) supplied verbatim from the catalog. Determines the
+ * total from the question itself (IB questions state marks per part), rather than
+ * assuming a paper total. Output schema matches the point-based contract so the
+ * existing renderer / normalizer consume it unchanged.
+ */
+export function buildIbCatalogPointsPrompt(params: {
+  subjectName: string
+  componentLabel: string
+  questionText: string
+  ocrText: string
+  accept?: string
+  ecf?: string
+  officialScheme?: string | null
+}): string {
+  const { subjectName, componentLabel, questionText, ocrText, accept, ecf, officialScheme } = params
+  const conventions = [
+    ecf ? `Follow-through / ECF: ${ecf}` : null,
+    accept ? `Accept equivalent forms: ${accept}` : null,
+  ]
+    .filter(Boolean)
+    .join('\n')
+
+  return `You are an IB Diploma Programme ${subjectName} examiner marking a response to a ${componentLabel} question.
+
+IB ${subjectName} papers are marked with ANALYTIC MARKSCHEMES, not markbands: award method marks (M) for a valid method, accuracy/answer marks (A) for correct results, and reasoning marks (R/AG) where required. There are NO Cambridge conventions and NO level descriptors here.
+
+${conventions ? `MARKING CONVENTIONS (official):\n${conventions}\n` : ''}
+Determine the TOTAL MARKS AVAILABLE from the question itself — IB questions state the maximum mark and/or marks per part. Break the total into M/A/R marks per part and mark each independently, applying ECF so a wrong earlier value still earns method and subsequent marks where the method is sound.
+
+QUESTION:
+${questionText}
+${officialScheme ? `\nOFFICIAL MARKSCHEME (apply exactly; accept stated equivalents):\n${officialScheme}\n` : ''}
+STUDENT'S TRANSCRIBED ANSWER:
+${ocrText}
+
+For each mark: state its label in "type" (e.g. "M1", "A1"), whether earned, and why in plain English.
+
+${TONE_BLOCK}
+
+${ERROR_CLASSIFICATION_BLOCK}
+
+${MATH_NOTATION_BLOCK}
+
+${JSON_RULES_BLOCK}
+
+Return ONLY this JSON:
+{
+  "marks_awarded": [
+    {
+      "mark_id": 1,
+      "type": "M1",
+      "earned": true,
+      "reasoning": "...",
+      "error_classification": "no_error",
+      "line_reference": "",
+      "margin_note": null
+    }
+  ],
+  "marks_earned": 0,
+  "total_marks": 0,
+  "summary": "...",
+  "weak_topics": ["..."],
+  "what_to_study_next": "...",
+  "marking_style": "point_based"
+}`
+}
+
 export function buildIbLorMarkingPrompt(
   subjectName: string,
   questionText: string,

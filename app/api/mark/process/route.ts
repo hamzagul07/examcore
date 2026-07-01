@@ -141,6 +141,11 @@ export async function POST(request: NextRequest) {
     const practiceSubjectCode = (
       formData.get('practice_subject_code') as string | null
     )?.trim() || null
+    // M1: optional IB selection axes. Absent for all current traffic (inert).
+    const ibComponentKey = (
+      formData.get('ib_component_key') as string | null
+    )?.trim() || null
+    const ibLevel = (formData.get('ib_level') as string | null)?.trim() || null
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
@@ -171,6 +176,9 @@ export async function POST(request: NextRequest) {
         markIntent,
         practiceSubjectCode:
           markIntent === 'practice_question' ? practiceSubjectCode : null,
+        ibComponentKey:
+          markIntent === 'practice_question' ? ibComponentKey : null,
+        ibLevel: markIntent === 'practice_question' ? ibLevel : null,
         userId,
         startedAt: startTime,
       }

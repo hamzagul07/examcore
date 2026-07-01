@@ -22,7 +22,17 @@ import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
-import type { MarkIntent, MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
+import type {
+  MarkIntent,
+  MarkingMode,
+  MarkSchemeRow,
+  ResolvedIbComponent,
+} from '@/lib/marking/types'
+import {
+  resolveComponentForMarking,
+  splitLegacyIbCode,
+  type IbSelectableLevel,
+} from '@/lib/ib/assessment-catalog'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -39,6 +49,9 @@ export type SingleQuestionMarkInput = {
   /** When `practice_question`, skips past-paper detection and uses subject conventions. */
   markIntent?: MarkIntent
   practiceSubjectCode?: string | null
+  /** M1: IB selection axes. When set + catalogued, drives catalog-based marking. */
+  ibComponentKey?: string | null
+  ibLevel?: string | null
   userId: string | null
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
@@ -87,6 +100,8 @@ export async function runSingleQuestionMark(
     manualQuestionNumber,
     markIntent = 'past_paper',
     practiceSubjectCode,
+    ibComponentKey,
+    ibLevel,
     userId,
     startedAt = Date.now(),
     onProgress,
@@ -94,6 +109,7 @@ export async function runSingleQuestionMark(
 
   const isPracticeQuestion = markIntent === 'practice_question'
   const practiceCode = practiceSubjectCode?.trim() || null
+  let resolvedIb: ResolvedIbComponent | null = null
 
   const hasManualSelection =
     !isPracticeQuestion &&
@@ -187,6 +203,27 @@ export async function runSingleQuestionMark(
     )
     if (extracted.answer_text.trim().length >= 5) {
       ocrTextForMarking = extracted.answer_text
+    }
+
+    // M1: if the upload carries an IB component + level and the subject is
+    // catalogued, resolve it. Non-catalogued subjects return null → unchanged path.
+    if (practiceCode.startsWith('ib-') && ibComponentKey) {
+      const { subjectCode: catSubject, level: legacyLevel } =
+        splitLegacyIbCode(practiceCode)
+      const rawLevel = (ibLevel?.trim().toUpperCase() || legacyLevel) as
+        | IbSelectableLevel
+        | null
+      if (rawLevel === 'HL' || rawLevel === 'SL') {
+        try {
+          resolvedIb = await resolveComponentForMarking(
+            catSubject,
+            rawLevel,
+            ibComponentKey.trim()
+          )
+        } catch (err) {
+          console.warn('[mark] IB catalog resolve failed; using fallback', err)
+        }
+      }
     }
 
     markingMode = 'general_criteria_practice'
@@ -290,6 +327,7 @@ export async function runSingleQuestionMark(
       : detectedPaper?.paper_code,
     paperSession: detectedPaper?.paper_session,
     questionNumber: detectedPaper?.question_number,
+    resolvedIb,
   })
 
   if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {

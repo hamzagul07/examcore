@@ -191,6 +191,37 @@ export default function MarkPage() {
   const [selectedMarkBoard, setSelectedMarkBoard] = useState<MarkExamBoard>('cambridge')
   const [profileLoading, setProfileLoading] = useState(true)
 
+  // IB assessment catalog (M1) — drives Level + Component selection for catalogued subjects.
+  type IbCatalogComponent = {
+    component_key: string
+    label: string
+    level: string
+    assessment_model: string
+    max_marks: number | null
+  }
+  type IbCatalogSubject = {
+    code: string
+    name: string
+    level_scope: string
+    components: IbCatalogComponent[]
+  }
+  const [ibCatalog, setIbCatalog] = useState<IbCatalogSubject[]>([])
+  const [ibLevel, setIbLevel] = useState<'HL' | 'SL'>('SL')
+  const [ibComponentKey, setIbComponentKey] = useState('')
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/ib/catalog')
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled) setIbCatalog(Array.isArray(d?.subjects) ? d.subjects : [])
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   useEffect(() => {
     let cancelled = false
     async function loadBilling() {
@@ -636,6 +667,46 @@ export default function MarkPage() {
     [profileSelectableSubjects, selectedMarkBoard]
   )
 
+  // IB catalog: subject options shown for the IB board (catalogued subjects first,
+  // legacy profile codes they supersede filtered out). See /api/ib/catalog.
+  const ibSubjectOptions = useMemo(() => {
+    if (selectedMarkBoard !== 'ib') return boardFilteredSubjects
+    const catalogCodes = ibCatalog.map((s) => s.code)
+    const superseded = new Set(catalogCodes)
+    const legacy = boardFilteredSubjects.filter(
+      (code) => !superseded.has(code.replace(/-(hl|sl)$/i, ''))
+    )
+    return [...catalogCodes, ...legacy]
+  }, [selectedMarkBoard, boardFilteredSubjects, ibCatalog])
+
+  const catalogSubject = useMemo(
+    () => ibCatalog.find((s) => s.code === selectedSubject) ?? null,
+    [ibCatalog, selectedSubject]
+  )
+  const catalogLevels = useMemo<Array<'HL' | 'SL'>>(() => {
+    if (!catalogSubject) return []
+    if (catalogSubject.level_scope === 'HL_SL') return ['HL', 'SL']
+    if (catalogSubject.level_scope === 'HL_only') return ['HL']
+    if (catalogSubject.level_scope === 'SL_only') return ['SL']
+    return []
+  }, [catalogSubject])
+  const effectiveIbLevel: 'HL' | 'SL' = catalogLevels.includes(ibLevel)
+    ? ibLevel
+    : catalogLevels[0] ?? 'SL'
+  const catalogComponents = useMemo(
+    () =>
+      catalogSubject
+        ? catalogSubject.components.filter(
+            (c) =>
+              (c.level === effectiveIbLevel || c.level === 'both') &&
+              // M1 marks points components (papers). Criteria components (IA/EE/TOK)
+              // are catalogued but their marking path lands in M3 — hide for now.
+              c.assessment_model === 'points'
+          )
+        : [],
+    [catalogSubject, effectiveIbLevel]
+  )
+
   const componentLabel = useMemo(() => {
     const labels = new Map<string, string>()
     if (paperStructure) {
@@ -930,6 +1001,12 @@ export default function MarkPage() {
 
       if (isPracticeMode && selectedSubject) {
         formData.append('practice_subject_code', selectedSubject)
+        // M1: IB catalogued subject → send level + component so marking routes
+        // through the catalog points/criteria path.
+        if (catalogSubject && ibComponentKey) {
+          formData.append('ib_level', effectiveIbLevel)
+          formData.append('ib_component_key', ibComponentKey)
+        }
       }
 
       if (
@@ -1460,6 +1537,7 @@ export default function MarkPage() {
                       onChange={(e) => {
                         handleSubjectChange(e.target.value)
                         setShowManualPaper(true)
+                        setIbComponentKey('')
                       }}
                       disabled={profileLoading || papersLoading}
                       className="ec-input select-chevron appearance-none"
@@ -1467,9 +1545,11 @@ export default function MarkPage() {
                       <option value="">
                         {profileLoading ? 'Loading your subjects…' : 'Select subject…'}
                       </option>
-                      {boardFilteredSubjects.map((code) => {
+                      {(selectedMarkBoard === 'ib' ? ibSubjectOptions : boardFilteredSubjects).map((code) => {
+                        const catalog = ibCatalog.find((s) => s.code === code)
                         const meta = getSubjectByCode(code)
                         const label =
+                          catalog?.name ??
                           availablePapers?.[code]?.subject ??
                           meta?.label ??
                           resolveSubjectLabel(code)
@@ -1487,6 +1567,51 @@ export default function MarkPage() {
 
               {isPracticeMode && (
                 <div className="space-y-4">
+                  {catalogSubject && (
+                    <div className="space-y-3 rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
+                      <p className="label-overline">IB assessment</p>
+                      {catalogLevels.length > 1 && (
+                        <div>
+                          <Label htmlFor="ib-level" className="label-overline mb-2 inline-block">
+                            Level
+                          </Label>
+                          <select
+                            id="ib-level"
+                            value={effectiveIbLevel}
+                            onChange={(e) => {
+                              setIbLevel(e.target.value as 'HL' | 'SL')
+                              setIbComponentKey('')
+                            }}
+                            className="ec-input select-chevron appearance-none"
+                          >
+                            {catalogLevels.map((lv) => (
+                              <option key={lv} value={lv}>
+                                {lv}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
+                      <div>
+                        <Label htmlFor="ib-component" className="label-overline mb-2 inline-block">
+                          Component
+                        </Label>
+                        <select
+                          id="ib-component"
+                          value={ibComponentKey}
+                          onChange={(e) => setIbComponentKey(e.target.value)}
+                          className="ec-input select-chevron appearance-none"
+                        >
+                          <option value="">Select component…</option>
+                          {catalogComponents.map((c) => (
+                            <option key={`${c.component_key}-${c.level}`} value={c.component_key}>
+                              {c.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  )}
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                     Paste or photograph the question from your textbook, worksheet, or
                     notes. Add <strong className="text-[var(--ec-text-primary)]">one</strong> —

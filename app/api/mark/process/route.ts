@@ -146,6 +146,11 @@ export async function POST(request: NextRequest) {
       formData.get('ib_component_key') as string | null
     )?.trim() || null
     const ibLevel = (formData.get('ib_level') as string | null)?.trim() || null
+    const ibMarksRaw = (formData.get('ib_marks_available') as string | null)?.trim()
+    const ibMarksAvailable =
+      ibMarksRaw && Number.isFinite(Number(ibMarksRaw)) && Number(ibMarksRaw) > 0
+        ? Math.round(Number(ibMarksRaw))
+        : null
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
@@ -179,6 +184,7 @@ export async function POST(request: NextRequest) {
         ibComponentKey:
           markIntent === 'practice_question' ? ibComponentKey : null,
         ibLevel: markIntent === 'practice_question' ? ibLevel : null,
+        questionMarks: markIntent === 'practice_question' ? ibMarksAvailable : null,
         userId,
         startedAt: startTime,
       }

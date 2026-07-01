@@ -208,6 +208,7 @@ export default function MarkPage() {
   const [ibCatalog, setIbCatalog] = useState<IbCatalogSubject[]>([])
   const [ibLevel, setIbLevel] = useState<'HL' | 'SL'>('SL')
   const [ibComponentKey, setIbComponentKey] = useState('')
+  const [ibMarksAvailable, setIbMarksAvailable] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -1006,6 +1007,9 @@ export default function MarkPage() {
         if (catalogSubject && ibComponentKey) {
           formData.append('ib_level', effectiveIbLevel)
           formData.append('ib_component_key', ibComponentKey)
+          if (ibMarksAvailable.trim()) {
+            formData.append('ib_marks_available', ibMarksAvailable.trim())
+          }
         }
       }
 
@@ -1599,7 +1603,10 @@ export default function MarkPage() {
                         <select
                           id="ib-component"
                           value={ibComponentKey}
-                          onChange={(e) => setIbComponentKey(e.target.value)}
+                          onChange={(e) => {
+                            setIbComponentKey(e.target.value)
+                            setIbMarksAvailable('')
+                          }}
                           className="ec-input select-chevron appearance-none"
                         >
                           <option value="">Select component…</option>
@@ -1610,6 +1617,28 @@ export default function MarkPage() {
                           ))}
                         </select>
                       </div>
+                      {ibComponentKey && (
+                        <div>
+                          <Label htmlFor="ib-marks" className="label-overline mb-2 inline-block">
+                            Marks available (optional)
+                          </Label>
+                          <input
+                            id="ib-marks"
+                            type="number"
+                            min={1}
+                            max={100}
+                            inputMode="numeric"
+                            value={ibMarksAvailable}
+                            onChange={(e) => setIbMarksAvailable(e.target.value)}
+                            placeholder="e.g. 7"
+                            className="ec-input"
+                          />
+                          <p className="mt-1 text-xs ec-text-secondary">
+                            If your question states a mark total, enter it so we mark out of the
+                            right number. Leave blank and we&apos;ll read it from the question.
+                          </p>
+                        </div>
+                      )}
                     </div>
                   )}
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">

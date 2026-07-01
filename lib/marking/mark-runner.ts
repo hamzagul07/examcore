@@ -36,6 +36,7 @@ import type {
   MarkingStyle,
   UploadMode,
   QuestionMarkResult,
+  ResolvedIbComponent,
 } from '@/lib/marking/types'
 import { withGeminiRetry } from '@/lib/marking/gemini-retry'
 import { buildExtractionPrompt } from '@/lib/marking/extraction-prompts'
@@ -303,6 +304,12 @@ async function runGeminiMarking(
     Math.min(Math.round(maxTokens * 1.5), 8192),
   ]
   let lastText = ''
+  // A MAX_TOKENS finish that still parses (extractJSON salvages the braces)
+  // silently drops every field after the truncation point — summary,
+  // weak_topics, what_to_study_next, marking_style. Keep the best salvage so
+  // we can escalate the budget yet still return *something* if all retries
+  // also truncate.
+  let salvaged: Record<string, unknown> | null = null
 
   for (let attempt = 0; attempt < tokenBudgets.length; attempt++) {
     const { text, finishReason } = await generateGeminiTextWithMeta(prompt, {
@@ -320,8 +327,10 @@ async function runGeminiMarking(
       continue
     }
 
+    const hasMoreBudget = attempt < tokenBudgets.length - 1
+    let parsed: Record<string, unknown> | null = null
     try {
-      return parseMarkingResponse(text)
+      parsed = parseMarkingResponse(text)
     } catch (parseErr) {
       console.error(
         '[marking] JSON parse failed:',
@@ -332,11 +341,29 @@ async function runGeminiMarking(
         },
         parseErr
       )
-      if (finishReason === 'MAX_TOKENS' && attempt < tokenBudgets.length - 1) {
+      if (finishReason === 'MAX_TOKENS' && hasMoreBudget) {
         continue
       }
     }
+
+    if (parsed) {
+      // Truncated-but-salvageable: retry with the larger budget rather than
+      // return feedback with blank summary / undefined marking_style.
+      if (finishReason === 'MAX_TOKENS' && hasMoreBudget) {
+        console.warn('[marking] truncated result, retrying with larger budget', {
+          attempt: attempt + 1,
+          budget: tokenBudgets[attempt],
+        })
+        salvaged = salvaged ?? parsed
+        continue
+      }
+      return parsed
+    }
   }
+
+  // Every attempt truncated but at least one salvaged — prefer real marks
+  // (with blank trailing feedback) over a lossy repair round-trip.
+  if (salvaged) return salvaged
 
   try {
     const repairPrompt = buildMarkingJsonRepairPrompt(prompt, lastText)
@@ -368,6 +395,8 @@ export async function markSingleQuestion(params: {
   paperCode?: string
   paperSession?: string
   questionNumber?: string
+  /** M1: resolved IB catalog component; when a points component, drives the prompt. */
+  resolvedIb?: ResolvedIbComponent | null
 }): Promise<{
   markingResult: Record<string, unknown>
   lineReferences: ReturnType<typeof buildLineReferences>
@@ -382,6 +411,7 @@ export async function markSingleQuestion(params: {
     markScheme,
     markingMode: initialMode,
     paperCode,
+    resolvedIb,
   } = params
 
   let markingMode = initialMode
@@ -436,6 +466,12 @@ export async function markSingleQuestion(params: {
     markingMode = 'general_criteria'
   }
 
+  // M1: a catalogued IB points component marks as point_based regardless of the
+  // subject's default practice style (affects token budget + the fallback style).
+  if (resolvedIb?.assessmentModel === 'points') {
+    markingStyle = 'point_based'
+  }
+
   const promptSubjectCode = subjectCode ?? inferredSubject
   const markingPrompt = buildMarkingPrompt({
     markScheme: effectiveMarkScheme,
@@ -445,11 +481,19 @@ export async function markSingleQuestion(params: {
     subjectName,
     subjectCode: promptSubjectCode ?? '',
     isOfficial,
+    resolvedIb,
   })
 
   const markingResult = normalizeMarkingResult(
     await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
   )
+
+  // The model echoes marking_style in its JSON, but a truncated response can
+  // drop it. Fall back to the style we actually marked with so downstream UI
+  // never sees an undefined style.
+  if (typeof markingResult.marking_style !== 'string' || !markingResult.marking_style) {
+    markingResult.marking_style = markingStyle
+  }
 
   const lineReferences = buildLineReferences(
     Array.isArray(markingResult?.marks_awarded)

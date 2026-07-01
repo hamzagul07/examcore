@@ -14,6 +14,19 @@ import { isIbSubjectCode, ibUsesCriterionRubrics } from '@/lib/ib/marking-config
 import type { ResolvedIbComponent } from './types'
 
 const IB_BOARD = 'IB Diploma'
+
+/**
+ * Heuristic: does this question text look like multiple-choice? True when at
+ * least three of the four option markers (A. B. C. D. or A) B) …) are present,
+ * so a science Paper 1 Section-A upload routes to MCQ solve-mode marking.
+ */
+function looksLikeMcq(questionText: string): boolean {
+  if (!questionText) return false
+  const present = (['A', 'B', 'C', 'D'] as const).filter((letter) =>
+    new RegExp(`(^|\\s)${letter}[.)]\\s`).test(questionText)
+  ).length
+  return present >= 3
+}
 import type { MarkSchemeRow } from './types'
 import { parsePaperCode } from './component-types'
 import { buildSyllabusTaggingBlock } from '@/lib/syllabi'
@@ -46,6 +59,19 @@ export function buildMarkingPrompt(params: {
   // M1 — catalog-driven IB points marking. Only engages when the upload resolved
   // to a catalogued IB points component; everything below is unchanged otherwise.
   if (resolvedIb && resolvedIb.assessmentModel === 'points') {
+    // A points paper whose uploaded question is multiple-choice (e.g. the science
+    // Paper 1 Section-A MCQs) is marked board-aware in solve-mode: no stored answer
+    // key — the marker works out each correct option, then marks the student.
+    if (looksLikeMcq(questionText)) {
+      return buildMcqMarkingPrompt(
+        resolvedIb.subjectName || subjectName,
+        null,
+        ocrText,
+        questionTotalMarks ?? 0,
+        undefined,
+        { board: IB_BOARD, questionPaper: questionText }
+      )
+    }
     return buildIbCatalogPointsPrompt({
       subjectName: resolvedIb.subjectName || subjectName,
       componentLabel: resolvedIb.componentLabel,
@@ -151,7 +177,9 @@ export function buildMarkingPrompt(params: {
 
   if (isIb) {
     if (effectiveStyle === 'mcq') {
-      return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total)
+      return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total, undefined, {
+        board: IB_BOARD,
+      })
     }
     if (
       ibUsesCriterionRubrics(subjectCode) ||

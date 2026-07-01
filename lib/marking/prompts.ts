@@ -330,10 +330,11 @@ Return ONLY this JSON:
 
 export function buildMcqMarkingPrompt(
   subjectName: string,
-  markSchemeJson: string,
+  markSchemeJson: string | null,
   ocrText: string,
   totalMarks: number,
-  syllabusBlock?: string
+  syllabusBlock?: string,
+  opts?: { board?: string; questionPaper?: string | null }
 ): string {
   const taggingBlock = syllabusBlock
     ? `\n${syllabusBlock}\n`
@@ -341,20 +342,41 @@ export function buildMcqMarkingPrompt(
   const tagsField = syllabusBlock
     ? ',\n  "syllabus_tags": ["code"]'
     : ''
+  const board = opts?.board ?? 'Cambridge A-Level'
+  const hasKey =
+    !!markSchemeJson && !['', '{}', 'null'].includes(markSchemeJson.trim())
 
-  return `You are marking a Cambridge A-Level ${subjectName} multiple-choice paper.
+  // Two modes: (1) key-mode compares the student against a supplied answer key;
+  // (2) solve-mode (no key) works out the correct option for each question first,
+  // then marks the student against it. Solve-mode needs the question paper.
+  const sourceBlock = hasKey
+    ? `OFFICIAL ANSWER KEY:
+${markSchemeJson}
+
+Compare the student's selected answers against this key.`
+    : `No answer key is provided. Using your subject expertise, FIRST work out the single correct option for every question, then mark the student's selected answers against those correct options. Solve each question rigorously before deciding — do not guess.${
+        opts?.questionPaper
+          ? `\n\nQUESTION PAPER:\n${opts.questionPaper}`
+          : ''
+      }`
+
+  const totalField =
+    totalMarks > 0
+      ? String(totalMarks)
+      : '<number of questions you marked — each MCQ is worth 1 mark>'
+
+  return `You are marking a multiple-choice paper in ${board} ${subjectName}.
 
 Extract the student's selected answers from their transcribed work (e.g. "1 C, 2 B" or circled letters).
-Compare against the official answer key.
 
-OFFICIAL ANSWER KEY:
-${markSchemeJson}
+${sourceBlock}
 
 STUDENT'S TRANSCRIBED ANSWERS:
 ${ocrText}
 
-For each question: record student answer, correct answer, whether correct.
-Score = number of correct answers. If partial paper, only mark questions present in student work.
+For each question: record the student answer, the correct answer, and whether correct.
+Score = number of correct answers. Only mark questions the student actually attempted; set
+total_marks to the number of questions marked (each MCQ is worth 1 mark) unless a fixed paper total is given.
 ${taggingBlock}
 ${MATH_NOTATION_BLOCK}
 
@@ -366,7 +388,7 @@ Return ONLY this JSON:
     { "question_number": "1", "student_answer": "C", "correct_answer": "C", "correct": true }
   ],
   "marks_earned": 0,
-  "total_marks": ${totalMarks},
+  "total_marks": ${totalField},
   "marks_awarded": [],
   "summary": "...",
   "weak_topics": ["topics linked to wrong answers"],

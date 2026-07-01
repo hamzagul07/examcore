@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getCommunitySubjects } from '@/lib/community/subjects'
@@ -18,7 +18,7 @@ export const metadata = createPageMetadata({
 export const dynamic = 'force-dynamic'
 
 export default async function CommunitySubjectsPage() {
-  if (!isCommunityEnabled()) notFound()
+  if (!isCommunityEnabled()) redirect('/community')
   const counts = await getPostCountsBySubject()
   const cambridge = getCommunitySubjects().filter((s) => s.board === 'cambridge')
   const ib = getCommunitySubjects().filter((s) => s.board === 'ib')

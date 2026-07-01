@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { searchCommunity } from '@/lib/community/search'
@@ -21,7 +21,7 @@ const KIND_LABEL: Record<string, string> = { discussion: 'Discussion', question:
 type PageProps = { searchParams: Promise<{ q?: string; subject?: string }> }
 
 export default async function CommunitySearchPage({ searchParams }: PageProps) {
-  if (!isCommunityEnabled()) notFound()
+  if (!isCommunityEnabled()) redirect('/community')
   const sp = await searchParams
   const q = (sp.q ?? '').trim()
   const hits = q.length >= 2 ? await searchCommunity({ query: q, subjectCode: sp.subject, limit: 40 }) : []

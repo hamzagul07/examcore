@@ -84,6 +84,9 @@ export function buildMarkingPrompt(params: {
           name: c.name,
           max_marks: c.maxMarks,
           guidance: c.guidance ?? undefined,
+          // Operational examiner brief (from TSM) — sits alongside the verbatim
+          // descriptors to sharpen how the level is applied, not replace them.
+          examiner_marking_guidance: c.markingGuidance ?? undefined,
           bands: c.bands.map((b) => ({
             marks_min: b.min,
             marks_max: b.max,

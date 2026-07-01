@@ -12,6 +12,42 @@ export type MarkIntent = 'past_paper' | 'practice_question'
 
 export type UploadMode = 'single_question' | 'whole_paper'
 
+/** IB selection axes carried on an upload (M1). */
+export type IbLevel = 'HL' | 'SL'
+export type IbComponentKey =
+  | 'paper_1'
+  | 'paper_2'
+  | 'paper_3'
+  | 'ia'
+  | 'ee'
+  | 'tok_essay'
+  | 'tok_exhibition'
+  | 'io'
+
+/**
+ * DB-free view of a resolved IB catalog component, assembled by the pipeline from
+ * the ib_* tables and handed to prompt-building. Keeps build-marking-prompt free of
+ * any Supabase import. M1 consumes the `points` shape; `criteria` is carried for M3.
+ */
+export type ResolvedIbComponent = {
+  subjectName: string
+  componentLabel: string
+  level: IbLevel
+  assessmentModel: 'points' | 'criteria'
+  maxMarks: number | null
+  /** Points model: subject-level conventions + any matched per-question official scheme. */
+  pointsConventions?: { accept?: string; ecf?: string }
+  officialScheme?: unknown | null
+  /** Criteria model (M3): not consumed yet. */
+  criteria?: Array<{
+    letter: string
+    name: string
+    maxMarks: number
+    guidance?: string
+    bands: Array<{ min: number; max: number; descriptor: string; guidance?: string }>
+  }>
+}
+
 export type MarkSchemeRow = {
   id: string
   board: string

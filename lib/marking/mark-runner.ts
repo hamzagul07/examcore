@@ -301,7 +301,9 @@ async function runGeminiMarking(
 ): Promise<Record<string, unknown>> {
   const tokenBudgets = [
     maxTokens,
-    Math.min(Math.round(maxTokens * 1.5), 8192),
+    // Escalation headroom on a truncated/incomplete first attempt. Ceiling raised
+    // above 8192 so large criteria/markband (level_of_response) results can recover.
+    Math.min(Math.round(maxTokens * 1.5), 16384),
   ]
   let lastText = ''
   // A MAX_TOKENS finish that still parses (extractJSON salvages the braces)

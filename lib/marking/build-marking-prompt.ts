@@ -61,6 +61,48 @@ export function buildMarkingPrompt(params: {
     })
   }
 
+  // M3 — catalog-driven IB criteria/markband marking. Assembles the criterion
+  // markscheme from the resolved catalog criteria (verbatim descriptors, or the
+  // optional operational marking_guidance where authored) and reuses the proven
+  // criterion prompt, which emits the criteria_results + band_result contract.
+  if (
+    resolvedIb &&
+    resolvedIb.assessmentModel === 'criteria' &&
+    resolvedIb.criteria &&
+    resolvedIb.criteria.length > 0
+  ) {
+    const total =
+      resolvedIb.maxMarks ??
+      resolvedIb.criteria.reduce((sum, c) => sum + c.maxMarks, 0)
+    const schemeJson = JSON.stringify(
+      {
+        type: 'criterion',
+        assessment: 'criterion',
+        total_marks: total,
+        criteria: resolvedIb.criteria.map((c) => ({
+          id: c.letter,
+          name: c.name,
+          max_marks: c.maxMarks,
+          guidance: c.guidance ?? undefined,
+          bands: c.bands.map((b) => ({
+            marks_min: b.min,
+            marks_max: b.max,
+            descriptor: b.guidance?.trim() || b.descriptor,
+          })),
+        })),
+      },
+      null,
+      2
+    )
+    return buildIbCriterionMarkingPrompt(
+      resolvedIb.subjectName || subjectName,
+      questionText,
+      total,
+      schemeJson,
+      ocrText
+    )
+  }
+
   const isIb =
     markScheme?.board === IB_BOARD || isIbSubjectCode(subjectCode)
   const parsed = markScheme?.paper_code

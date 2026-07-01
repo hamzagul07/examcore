@@ -469,10 +469,13 @@ export async function markSingleQuestion(params: {
     markingMode = 'general_criteria'
   }
 
-  // M1: a catalogued IB points component marks as point_based regardless of the
-  // subject's default practice style (affects token budget + the fallback style).
+  // M1/M3: a catalogued IB component marks with the style its assessment model
+  // implies, regardless of the subject's default practice style (affects the
+  // token budget + the fallback marking_style).
   if (resolvedIb?.assessmentModel === 'points') {
     markingStyle = 'point_based'
+  } else if (resolvedIb?.assessmentModel === 'criteria') {
+    markingStyle = 'level_of_response'
   }
 
   const promptSubjectCode = subjectCode ?? inferredSubject

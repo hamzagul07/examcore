@@ -145,6 +145,12 @@ export function MarkingResultView({
   const overline = buildOverline(result)
   const selectedMark = marks[selectedIndex] ?? marks[0]
   const hasStructuredResult = marks.length > 0
+  // M2: criteria/markband results (IB essays, IA, TOK, EE) carry no per-mark
+  // array — render them on criteria_results / band_result instead of gating on marks.
+  const criteriaResults = result.ai_marking?.criteria_results
+  const hasCriteria =
+    (Array.isArray(criteriaResults) && criteriaResults.length > 0) ||
+    !!result.ai_marking?.band_result
   const activeMarkId = selectedMark?.type?.trim().toUpperCase() ?? null
 
   const handleInkMarkSelect = (markId: string) => {
@@ -172,8 +178,9 @@ export function MarkingResultView({
 
       <QuestionContextCard result={result} subjectCode={badgeSubjectCode} />
 
-      {hasStructuredResult ? (
+      {hasStructuredResult || hasCriteria ? (
         <div className="ms-result-grid">
+          {hasStructuredResult && (
           <div>
             {inkPages && inkPages.length > 0 ? (
               <div className="ms-mark-ink-block">
@@ -218,6 +225,7 @@ export function MarkingResultView({
               CLICK ANY LINE — THE AUDIT AND SCHEME CITATION FOLLOW IT
             </p>
           </div>
+          )}
 
           <MarkAuditPanel
             marks={marks}

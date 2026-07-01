@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import type { CSSProperties } from 'react'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function PostDetailPage({ params }: PageProps) {
-  if (!isCommunityEnabled()) notFound()
+  if (!isCommunityEnabled()) redirect('/community')
   const { id } = await params
   const post = await getPost(id)
   if (!post || post.status === 'removed') notFound()

@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import { isCommunityEnabled } from '@/lib/community/enabled'
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function SubjectCommunityPage({ params, searchParams }: PageProps) {
-  if (!isCommunityEnabled()) notFound()
+  if (!isCommunityEnabled()) redirect('/community')
   const { subject } = await params
   const sp = await searchParams
   const subjectMeta = findCommunitySubject(subject)

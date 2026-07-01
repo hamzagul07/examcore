@@ -69,7 +69,7 @@ export function LandingPlatformShowcase() {
               <p className="ms-showcase-panel-kicker">Discuss</p>
               <h3 className="ms-h3">Trending rooms</h3>
             </div>
-            <Link href="/community/subjects" className="ec-btn-underline ms-showcase-panel-link">
+            <Link href={communityLive ? '/community/subjects' : '/community'} className="ec-btn-underline ms-showcase-panel-link">
               All rooms →
             </Link>
           </div>
@@ -77,7 +77,7 @@ export function LandingPlatformShowcase() {
             {TRENDING_ROOMS.map((room) => (
               <Link
                 key={room.subject}
-                href={`/community/s/${room.subject}`}
+                href={communityLive ? `/community/s/${room.subject}` : '/community'}
                 className="ms-course-card"
               >
                 <span className="ms-code">{room.board}</span>

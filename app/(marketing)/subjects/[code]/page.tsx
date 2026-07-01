@@ -176,7 +176,9 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
             ...(course
               ? [{ href: course.path, label: `Free ${code} course`, variant: 'ghost' as const }]
               : []),
-            { href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const },
+            ...(communityOn
+              ? [{ href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const }]
+              : []),
             ...(copy.guideSlug
               ? [{ href: `/blog/${copy.guideSlug}`, label: `${code} revision guide`, variant: 'muted' as const }]
               : []),

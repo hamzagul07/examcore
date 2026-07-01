@@ -19,6 +19,7 @@ Rules:
 - Be precise with bounding boxes — they will overlay examiner marks on the original image.
 - One JSON object per writing line; don't merge multiple lines.
 - Include every step, even incorrect ones.
+- If the image is blank or contains no handwritten work, output {"full_text": "", "lines": []}.
 - Output ONLY valid JSON. No surrounding commentary.`
 
 export const ANSWER_OCR_PROMPT_GENERAL = `Transcribe the handwritten Cambridge A-Level exam work in this image. For each line of writing, provide:
@@ -39,6 +40,7 @@ Rules:
 - Be precise with bounding boxes — they will overlay examiner marks on the original image.
 - One JSON object per writing line; don't merge multiple lines.
 - Include every step, even incorrect ones.
+- If the image is blank or contains no handwritten work, output {"full_text": "", "lines": []}.
 - Output ONLY valid JSON. No surrounding commentary.`
 
 export const WHOLE_PAPER_OCR_PROMPT = `Transcribe this ENTIRE handwritten Cambridge A-Level exam answer paper.
@@ -66,7 +68,14 @@ export function parseOcrAnswer(raw: string): {
       parsed.full_text || parsed.lines.map((l) => l.text).join('\n')
     return { full_text: fullText, lines: parsed.lines }
   }
-  return { full_text: raw.trim(), lines: [] }
+  // Parsed-but-empty (blank page → {"full_text":"","lines":[]}) or unparseable.
+  // Never echo a raw JSON blob as the "answer" — that let blank submissions slip
+  // past the no-answer guard and get marked 0/N. Treat JSON/empty as no answer.
+  const trimmed = raw.trim()
+  if (!trimmed || trimmed.startsWith('{') || trimmed.startsWith('[')) {
+    return { full_text: '', lines: [] }
+  }
+  return { full_text: trimmed, lines: [] }
 }
 
 export function questionPhotoOcrPrompt(subjectName?: string): string {

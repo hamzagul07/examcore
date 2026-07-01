@@ -397,6 +397,8 @@ export async function markSingleQuestion(params: {
   questionNumber?: string
   /** M1: resolved IB catalog component; when a points component, drives the prompt. */
   resolvedIb?: ResolvedIbComponent | null
+  /** Optional student-supplied total marks for this question. */
+  questionTotalMarks?: number | null
 }): Promise<{
   markingResult: Record<string, unknown>
   lineReferences: ReturnType<typeof buildLineReferences>
@@ -412,6 +414,7 @@ export async function markSingleQuestion(params: {
     markingMode: initialMode,
     paperCode,
     resolvedIb,
+    questionTotalMarks,
   } = params
 
   let markingMode = initialMode
@@ -482,6 +485,7 @@ export async function markSingleQuestion(params: {
     subjectCode: promptSubjectCode ?? '',
     isOfficial,
     resolvedIb,
+    questionTotalMarks,
   })
 
   const markingResult = normalizeMarkingResult(

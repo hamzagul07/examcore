@@ -28,6 +28,8 @@ export function buildMarkingPrompt(params: {
   isOfficial: boolean
   /** M1: when present, a resolved IB catalog component drives routing. */
   resolvedIb?: ResolvedIbComponent | null
+  /** Optional student-supplied total marks for this question (deterministic denominator). */
+  questionTotalMarks?: number | null
 }): string {
   const {
     markScheme,
@@ -38,6 +40,7 @@ export function buildMarkingPrompt(params: {
     subjectCode,
     isOfficial,
     resolvedIb,
+    questionTotalMarks,
   } = params
 
   // M1 — catalog-driven IB points marking. Only engages when the upload resolved
@@ -54,6 +57,7 @@ export function buildMarkingPrompt(params: {
         resolvedIb.officialScheme != null
           ? JSON.stringify(resolvedIb.officialScheme)
           : null,
+      totalMarks: questionTotalMarks ?? null,
     })
   }
 

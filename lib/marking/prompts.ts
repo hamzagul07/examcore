@@ -451,8 +451,9 @@ export function buildIbCatalogPointsPrompt(params: {
   accept?: string
   ecf?: string
   officialScheme?: string | null
+  totalMarks?: number | null
 }): string {
-  const { subjectName, componentLabel, questionText, ocrText, accept, ecf, officialScheme } = params
+  const { subjectName, componentLabel, questionText, ocrText, accept, ecf, officialScheme, totalMarks } = params
   const conventions = [
     ecf ? `Follow-through / ECF: ${ecf}` : null,
     accept ? `Accept equivalent forms: ${accept}` : null,
@@ -460,12 +461,17 @@ export function buildIbCatalogPointsPrompt(params: {
     .filter(Boolean)
     .join('\n')
 
+  const hasTotal = typeof totalMarks === 'number' && totalMarks > 0
+  const totalInstruction = hasTotal
+    ? `TOTAL MARKS AVAILABLE: ${totalMarks}. Mark out of EXACTLY ${totalMarks} — "total_marks" must equal ${totalMarks}. Break this total into M/A/R marks per part.`
+    : `Determine the TOTAL MARKS AVAILABLE from the question itself — IB questions state the maximum mark and/or marks per part. Break the total into M/A/R marks per part.`
+
   return `You are an IB Diploma Programme ${subjectName} examiner marking a response to a ${componentLabel} question.
 
 IB ${subjectName} papers are marked with ANALYTIC MARKSCHEMES, not markbands: award method marks (M) for a valid method, accuracy/answer marks (A) for correct results, and reasoning marks (R/AG) where required. There are NO Cambridge conventions and NO level descriptors here.
 
 ${conventions ? `MARKING CONVENTIONS (official):\n${conventions}\n` : ''}
-Determine the TOTAL MARKS AVAILABLE from the question itself — IB questions state the maximum mark and/or marks per part. Break the total into M/A/R marks per part and mark each independently, applying ECF so a wrong earlier value still earns method and subsequent marks where the method is sound.
+${totalInstruction} Mark each independently, applying ECF so a wrong earlier value still earns method and subsequent marks where the method is sound.
 
 QUESTION:
 ${questionText}
@@ -497,7 +503,7 @@ Return ONLY this JSON:
     }
   ],
   "marks_earned": 0,
-  "total_marks": 0,
+  "total_marks": ${hasTotal ? totalMarks : 0},
   "summary": "...",
   "weak_topics": ["..."],
   "what_to_study_next": "...",

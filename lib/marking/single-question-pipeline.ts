@@ -52,6 +52,8 @@ export type SingleQuestionMarkInput = {
   /** M1: IB selection axes. When set + catalogued, drives catalog-based marking. */
   ibComponentKey?: string | null
   ibLevel?: string | null
+  /** Optional student-supplied total marks for this question. */
+  questionMarks?: number | null
   userId: string | null
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
@@ -102,6 +104,7 @@ export async function runSingleQuestionMark(
     practiceSubjectCode,
     ibComponentKey,
     ibLevel,
+    questionMarks,
     userId,
     startedAt = Date.now(),
     onProgress,
@@ -167,7 +170,9 @@ export async function runSingleQuestionMark(
     .filter((u): u is string => !!u)
 
   if (!ocrText || ocrText.trim().length < 5) {
-    throw new Error('No handwriting detected. Try a clearer photo.')
+    throw new Error(
+      "We couldn't read any answer in your photo. Upload a clear photo of your written working (a blank or unreadable page can't be marked)."
+    )
   }
 
   let questionText = questionTextInput.trim()
@@ -328,6 +333,7 @@ export async function runSingleQuestionMark(
     paperSession: detectedPaper?.paper_session,
     questionNumber: detectedPaper?.question_number,
     resolvedIb,
+    questionTotalMarks: questionMarks ?? null,
   })
 
   if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {

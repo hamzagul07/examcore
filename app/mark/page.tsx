@@ -698,14 +698,15 @@ export default function MarkPage() {
     () =>
       catalogSubject
         ? catalogSubject.components.filter(
-            (c) =>
-              (c.level === effectiveIbLevel || c.level === 'both') &&
-              // M1 marks points components (papers). Criteria components (IA/EE/TOK)
-              // are catalogued but their marking path lands in M3 — hide for now.
-              c.assessment_model === 'points'
+            (c) => c.level === effectiveIbLevel || c.level === 'both'
           )
         : [],
     [catalogSubject, effectiveIbLevel]
+  )
+  // The selected component's marking model (points papers vs criteria essays/IA).
+  const selectedCatalogComponent = useMemo(
+    () => catalogComponents.find((c) => c.component_key === ibComponentKey) ?? null,
+    [catalogComponents, ibComponentKey]
   )
 
   const componentLabel = useMemo(() => {
@@ -1617,7 +1618,7 @@ export default function MarkPage() {
                           ))}
                         </select>
                       </div>
-                      {ibComponentKey && (
+                      {ibComponentKey && selectedCatalogComponent?.assessment_model === 'points' && (
                         <div>
                           <Label htmlFor="ib-marks" className="label-overline mb-2 inline-block">
                             Marks available (optional)

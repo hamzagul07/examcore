@@ -43,7 +43,10 @@ export type ResolvedIbComponent = {
     letter: string
     name: string
     maxMarks: number
+    /** Verbatim criterion prose (guidance_notes) — authoritative, cited. */
     guidance?: string
+    /** Operational examiner brief (marking_guidance) — surfaced to the marker. */
+    markingGuidance?: string
     bands: Array<{ min: number; max: number; descriptor: string; guidance?: string }>
   }>
 }

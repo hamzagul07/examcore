@@ -243,6 +243,7 @@ export async function resolveComponentForMarking(
       name: c.name,
       maxMarks: c.max_marks,
       guidance: c.guidance_notes ?? undefined,
+      markingGuidance: c.marking_guidance ?? undefined,
       bands: c.bands.map((b) => ({
         min: b.marks_min,
         max: b.marks_max,

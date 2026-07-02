@@ -84,6 +84,8 @@ export function buildMarkingPrompt(params: {
           ? JSON.stringify(resolvedIb.officialScheme)
           : null,
       totalMarks: questionTotalMarks ?? null,
+      // IB maths (AA/AI) gets the official M/A/AG/FT/ISW/MR convention block.
+      mathConventions: /math/i.test(resolvedIb.subjectName || subjectName),
     })
   }
 

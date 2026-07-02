@@ -465,6 +465,18 @@ Return ONLY this JSON:
  * assuming a paper total. Output schema matches the point-based contract so the
  * existing renderer / normalizer consume it unchanged.
  */
+// IB mathematics marking conventions, distilled verbatim from the official
+// markscheme "Instructions to Examiners" (Analysis and Approaches / Applications
+// and Interpretation). Applied only to IB maths points marking.
+const MATH_MARKING_CONVENTIONS = `IB MATHEMATICS MARKING CONVENTIONS (apply exactly):
+- M = a valid method (must be seen; an implied (M) may be awarded if correct subsequent working shows it). A = an answer/accuracy mark and is normally DEPENDENT on the preceding M — do not award an A where the required M was not earned (no "M0 then A1").
+- Do NOT automatically give full marks for a correct final answer: check the working and award M/A per the method actually shown. Multiple A marks on one step are independent (a wrong first value then two correct values = A0A1A1).
+- ISW (ignore subsequent working): once a correct answer is seen, ignore further correct working. But if later working shows a genuine misunderstanding, withhold the final A. A correct exact value followed by an incorrect decimal still earns the mark, unless that wrong decimal is carried into a later part.
+- AG (answer given): when the answer is printed in the question, award marks only for valid working that genuinely leads to it — never for merely restating the given answer.
+- Follow-through / "their": if an earlier error is used correctly later, award FT marks for the subsequent work (working must usually be shown). Within a part, after an error no further A marks for work that uses the error, though M marks may still be earned. Do NOT award the final-answer mark if the error yields an impossible value (probability > 1, sin θ > 1, |r| ≥ 1 for an infinite GP sum, a non-integer where an integer is required, etc.).
+- Mis-read (MR): if the candidate miscopies data from the question, apply a 1-mark penalty to that question (only when working is seen); miscopying their own work is an error, not an MR.
+- Accept equivalent exact forms and answers that round to the required accuracy.`
+
 export function buildIbCatalogPointsPrompt(params: {
   subjectName: string
   componentLabel: string
@@ -474,8 +486,9 @@ export function buildIbCatalogPointsPrompt(params: {
   ecf?: string
   officialScheme?: string | null
   totalMarks?: number | null
+  mathConventions?: boolean
 }): string {
-  const { subjectName, componentLabel, questionText, ocrText, accept, ecf, officialScheme, totalMarks } = params
+  const { subjectName, componentLabel, questionText, ocrText, accept, ecf, officialScheme, totalMarks, mathConventions } = params
   const conventions = [
     ecf ? `Follow-through / ECF: ${ecf}` : null,
     accept ? `Accept equivalent forms: ${accept}` : null,
@@ -491,7 +504,7 @@ export function buildIbCatalogPointsPrompt(params: {
   return `You are an IB Diploma Programme ${subjectName} examiner marking a response to a ${componentLabel} question.
 
 IB ${subjectName} papers are marked with ANALYTIC MARKSCHEMES, not markbands: award method marks (M) for a valid method, accuracy/answer marks (A) for correct results, and reasoning marks (R/AG) where required. There are NO Cambridge conventions and NO level descriptors here.
-
+${mathConventions ? `\n${MATH_MARKING_CONVENTIONS}\n` : ''}
 ${conventions ? `MARKING CONVENTIONS (official):\n${conventions}\n` : ''}
 ${totalInstruction} Mark each independently, applying ECF so a wrong earlier value still earns method and subsequent marks where the method is sound.
 

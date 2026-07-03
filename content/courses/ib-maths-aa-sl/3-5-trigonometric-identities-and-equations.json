@@ -1,165 +1,126 @@
 {
   "slug": "3-5-trigonometric-identities-and-equations",
   "topicCode": "3.5",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "title": "Trigonometric identities and equations",
   "paper": "P1",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson introduces the two fundamental trigonometric identities: the Pythagorean identity and the tangent identity. You will learn how to use these identities to simplify expressions and solve a variety of trigonometric equations within a given domain, a key skill for Paper 1.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "This lesson builds the full 3.5 toolkit for identities and equations. It develops the two fundamental identities — the tangent identity $\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}$ and the Pythagorean identity $\\sin^2\\theta+\\cos^2\\theta=1$ — and the double-angle identities for $\\sin 2\\theta$ and $\\cos 2\\theta$ in all three forms. You then learn to prove identities, and to solve trigonometric equations over a given interval, including those that reduce to a quadratic in $\\sin$ or $\\cos$, always giving ALL solutions in the interval. Every worked example is laid out exactly the way our marking engine awards marks, because in Paper 1 how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and apply the Pythagorean identity $\\sin^2\\theta + \\cos^2\\theta \\equiv 1$.",
-    "Understand and apply the tangent identity $\\tan\\theta \\equiv \\frac{\\sin\\theta}{\\cos\\theta}$.",
-    "Solve trigonometric equations in a given interval, finding all solutions in radians or degrees.",
-    "Use trigonometric identities to transform equations into solvable forms, such as quadratics."
+    "Understand and apply the tangent identity $\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}$ and the Pythagorean identity $\\sin^2\\theta+\\cos^2\\theta=1$.",
+    "Recall and use the double-angle identities $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$ and $\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=1-2\\sin^2\\theta=2\\cos^2\\theta-1$, choosing the most useful form.",
+    "Prove trigonometric identities by transforming one side into the other.",
+    "Solve trigonometric equations over a given interval, including those reducible to a quadratic in $\\sin$ or $\\cos$, giving ALL solutions in the interval.",
+    "Present working so that method marks and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["3.5"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Trigonometry's Golden Rules",
-    "summary": "Trigonometric identities are like universal truths in the world of angles and circles, always holding true. We use these rules to simplify complex trigonometric puzzles (equations) and find specific solutions.",
-    "analogy": "Think of trigonometric identities as the rules of grammar in a language. Just as 'I before E, except after C' helps you spell correctly, identities like $\\sin^2\\theta + \\cos^2\\theta \\equiv 1$ help you correctly manipulate and solve trigonometric problems. They are fundamental truths you can always rely on to structure your mathematical sentences correctly.",
+    "summary": "Trigonometric identities are universal truths about angles that hold for every value of $\\theta$. We use them to rewrite a messy equation so it contains a single trig function, and then solve it like ordinary algebra — before carefully collecting every solution that lies in the required interval.",
+    "analogy": "Think of identities as the grammar of trigonometry. Just as grammar rules let you rewrite a sentence without changing its meaning, identities like $\\sin^2\\theta+\\cos^2\\theta=1$ let you rewrite an expression into a form you can actually solve. The identity never changes the truth — it just changes the shape.",
     "steps": [
-      "Simplify the equation using identities to have only one type of trigonometric function, if possible.",
-      "Rearrange the equation to isolate the trigonometric function or solve it as a polynomial (e.g., a quadratic).",
-      "Find the principal (or first) value by using the inverse trigonometric function.",
-      "Use the unit circle or graph properties to find all other solutions within the specified domain."
+      "Use an identity to rewrite the equation in terms of a single trig function, if possible.",
+      "Rearrange into a form you can solve — often a quadratic in $\\sin x$ or $\\cos x$; then factorise or use the formula.",
+      "Find the principal value with the inverse trig function.",
+      "Use the unit circle, symmetry and periodicity to collect ALL solutions inside the given interval — no more, no fewer."
     ]
   },
+  "keyConcepts": ["Pythagorean identity", "double-angle identities", "solving over an interval"],
   "flashcards": [
-    {
-      "front": "What is a trigonometric identity?",
-      "back": "An equation that is true for all possible values of the variable. We use the symbol $\\equiv$ to denote an identity."
-    },
-    {
-      "front": "What is the Pythagorean Identity?",
-      "back": "$\\sin^2\\theta + \\cos^2\\theta \\equiv 1$. This is true for any angle $\\theta$."
-    },
-    {
-      "front": "What is the Tangent Identity?",
-      "back": "$\\tan\\theta \\equiv \\frac{\\sin\\theta}{\\cos\\theta}$. This is true for any angle $\\theta$ where $\\cos\\theta \\neq 0$."
-    },
-    {
-      "front": "What is the difference between an equation and an identity?",
-      "back": "An equation is only true for specific values of the variable (its solutions). An identity is true for all values of the variable."
-    },
-    {
-      "front": "What is a 'principal value' when solving a trig equation?",
-      "back": "It is the first solution given by your calculator when you use an inverse trigonometric function (e.g., $\\arcsin$, $\\arccos$, $\\arctan$). It's just one of potentially many solutions."
-    },
-    {
-      "front": "How do you find other solutions for $\\sin x = k$ once you have the principal value $\\alpha$?",
-      "back": "The second solution in the interval $[0, 2\\pi]$ or $[0^circ, 360^circ]$ is $\\pi - \\alpha$ (in radians) or $180^circ - \\alpha$ (in degrees). All other solutions are found by adding/subtracting multiples of $2\\pi$ or $360^circ$."
-    },
-    {
-      "front": "How do you find other solutions for $\\cos x = k$ once you have the principal value $\\alpha$?",
-      "back": "The second solution in the interval $[0, 2\\pi]$ or $[0^circ, 360^circ]$ is $2\\pi - \\alpha$ (in radians) or $360^circ - \\alpha$ (in degrees). All other solutions are found by adding/subtracting multiples of $2\\pi$ or $360^circ$."
-    },
-    {
-      "front": "How do you find other solutions for $\\tan x = k$ once you have the principal value $\\alpha$?",
-      "back": "The solutions for $\\tan x$ repeat every $\\pi$ radians or $180^circ$. So, the general solution is $\\alpha + n\\pi$ or $\\alpha + n \\cdot 180^circ$ for integer $n$."
-    },
-    {
-      "front": "Common Trap: What's wrong with solving $\\sin x \\cos x = \\sin x$ by dividing by $\\sin x$?",
-      "back": "If you divide by $\\sin x$, you are assuming $\\sin x \\neq 0$. This makes you lose the solutions where $\\sin x = 0$. Instead, you should rearrange to $\\sin x \\cos x - \\sin x = 0$ and factorise: $\\sin x (\\cos x - 1) = 0$."
-    },
-    {
-      "front": "Common Trap: What must you check after squaring both sides of a trig equation?",
-      "back": "Squaring can introduce extraneous (false) solutions. You must substitute your final answers back into the original equation to check if they are valid."
-    }
+    { "front": "What is a trigonometric identity?", "back": "An equation true for ALL values of the variable, written with $\\equiv$. Contrast with an equation, which is true only for specific solution values.", "pillLabel": "Definition" },
+    { "front": "Pythagorean identity", "back": "$\\sin^2\\theta+\\cos^2\\theta\\equiv 1$, true for every angle $\\theta$. Rearranges to $\\sin^2\\theta=1-\\cos^2\\theta$ or $\\cos^2\\theta=1-\\sin^2\\theta$.", "pillLabel": "Formula" },
+    { "front": "Tangent identity", "back": "$\\tan\\theta\\equiv\\dfrac{\\sin\\theta}{\\cos\\theta}$, valid wherever $\\cos\\theta\\neq 0$.", "pillLabel": "Formula" },
+    { "front": "Double-angle: sine", "back": "$\\sin 2\\theta=2\\sin\\theta\\cos\\theta$. Note the angle doubles but there is no factor of 2 on the angle inside — the 2 multiplies the product.", "pillLabel": "Formula" },
+    { "front": "Double-angle: cosine (three forms)", "back": "$\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=1-2\\sin^2\\theta=2\\cos^2\\theta-1$. Use the $1-2\\sin^2\\theta$ form when the rest of the equation is in $\\sin$; use $2\\cos^2\\theta-1$ when it is in $\\cos$.", "pillLabel": "Formula" },
+    { "front": "Which $\\cos 2\\theta$ form do I pick?", "back": "Choose the form that matches the other terms so the whole equation ends up in ONE function. Sines elsewhere → $1-2\\sin^2\\theta$. Cosines elsewhere → $2\\cos^2\\theta-1$.", "pillLabel": "Framework" },
+    { "front": "Second solution for $\\sin x=k$", "back": "If the principal value is $\\alpha$, the second solution in $[0,2\\pi]$ is $\\pi-\\alpha$ (in degrees, $180^\\circ-\\alpha$). Further solutions add multiples of $2\\pi$.", "pillLabel": "Concept" },
+    { "front": "Second solution for $\\cos x=k$", "back": "If the principal value is $\\alpha$, the second solution in $[0,2\\pi]$ is $2\\pi-\\alpha$ (in degrees, $360^\\circ-\\alpha$). Further solutions add multiples of $2\\pi$.", "pillLabel": "Concept" },
+    { "front": "Solutions for $\\tan x=k$", "back": "Tangent repeats every $\\pi$. From the principal value $\\alpha$, all solutions are $\\alpha+n\\pi$ for integer $n$ (in degrees, $\\alpha+n\\cdot 180^\\circ$).", "pillLabel": "Concept" },
+    { "front": "Proving an identity", "back": "Start on one side (usually the more complicated one) and transform it step by step into the other side. Never move terms across as if it were an equation to solve — you are demonstrating the two sides are equal, not solving for $\\theta$.", "pillLabel": "Framework" },
+    { "front": "Exam Trap: dividing by $\\cos x$", "back": "In $\\sin x\\cos x=\\cos x$, dividing by $\\cos x$ assumes $\\cos x\\neq 0$ and LOSES the solutions where $\\cos x=0$. Factorise instead: $\\cos x(\\sin x-1)=0$.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: stopping at the principal value", "back": "The calculator gives ONE angle. A question over an interval usually has several solutions. Always use symmetry/periodicity to collect every solution in range before you stop.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which of these is a correct rearrangement of the Pythagorean identity?", "options": ["$\\sin^2\\theta = 1 + \\cos^2\\theta$", "$\\cos^2\\theta = 1 - \\sin^2\\theta$", "$\\sin^2\\theta + \\cos^2\\theta = 2$", "$\\sin\\theta + \\cos\\theta = 1$"], "answer": "$\\cos^2\\theta = 1 - \\sin^2\\theta$" },
+    { "prompt": "To solve $\\cos 2x + \\sin x = 0$ as a quadratic in $\\sin x$, the best form of $\\cos 2x$ to substitute is:", "options": ["$\\cos^2 x - \\sin^2 x$", "$2\\cos^2 x - 1$", "$1 - 2\\sin^2 x$", "$2\\sin x\\cos x$"], "answer": "$1 - 2\\sin^2 x$" },
+    { "prompt": "Solving $\\sin x = \\tfrac{1}{2}$ for $0 \\le x \\le 2\\pi$, a student writes only $x = \\tfrac{\\pi}{6}$. What is the error?", "options": ["$\\tfrac{\\pi}{6}$ is outside the interval", "They missed the second solution $x = \\tfrac{5\\pi}{6}$", "$\\sin x = \\tfrac12$ has no solution here", "They should have divided by $\\sin$"], "answer": "They missed the second solution $x = \\tfrac{5\\pi}{6}$" },
+    { "prompt": "A student solves $\\sin x\\cos x = \\sin x$ by dividing both sides by $\\sin x$, getting only $\\cos x = 1$. Which solutions have been lost?", "options": ["None — the method is fine", "The solutions where $\\sin x = 0$", "The solutions where $\\cos x = 1$", "The solutions where $\\cos x = -1$"], "answer": "The solutions where $\\sin x = 0$" },
+    { "prompt": "In $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$, what is $\\sin 2\\theta$ when $\\theta = 0$?", "options": ["$2$", "$1$", "$0$", "Undefined"], "answer": "$0$" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a trigonometric equation and a trigonometric identity?",
-      "a": "A trigonometric identity, like $\\sin^2x + \\cos^2x \\equiv 1$, is true for ALL values of $x$. A trigonometric equation, like $\\sin x = 0.5$, is only true for specific values of $x$ (in this case, $x = \\frac{\\pi}{6}, \\frac{5\\pi}{6}$, etc.). Your goal when solving an equation is to find those specific values."
-    },
-    {
-      "q": "How do I know which identity to use when solving an equation?",
-      "a": "Look at the functions in the equation. If you have a mix of functions, like $\\sin^2x$ and $\\cos x$, your goal is to get everything in terms of a single function. The Pythagorean identity is perfect for converting between a squared function (like $\\sin^2x$) and the other function ($\\cos x$). If you see $\\tan x$ mixed with $\\sin x$ and $\\cos x$, the tangent identity is your best bet."
-    },
-    {
-      "q": "What do I do if I find a solution that is outside the given domain?",
-      "a": "You should discard it. The question specifies the set of valid solutions. For example, if the domain is $0 \\le x \\le 2\\pi$ and you find a solution $x = -\\frac{\\pi}{3}$, this specific value is not a final answer. However, you can use it to find a valid solution within the domain by adding the period: $-\\frac{\\pi}{3} + 2\\pi = \\frac{5\\pi}{3}$, which is a valid solution."
-    },
-    {
-      "q": "Why can't I just divide by $\\cos x$ in an equation like $\\sin x \\cos x = \\cos x$?",
-      "a": "Dividing by an expression involving a variable is dangerous because you might be dividing by zero. If you divide by $\\cos x$, you implicitly assume $\\cos x \\neq 0$. But the values of $x$ where $\\cos x = 0$ (like $x = \\frac{\\pi}{2}, \\frac{3\\pi}{2}$) are actually solutions to the original equation! The correct method is to bring all terms to one side and factorise: $\\sin x \\cos x - \\cos x = 0 \\implies \\cos x (\\sin x - 1) = 0$. This gives you two paths to solutions: $\\cos x = 0$ or $\\sin x = 1$."
-    }
+    { "q": "What is the difference between a trigonometric equation and an identity?", "a": "An identity such as $\\sin^2x+\\cos^2x\\equiv 1$ is true for EVERY value of $x$. An equation such as $\\sin x=0.5$ is true only for particular values ($x=\\tfrac{\\pi}{6},\\tfrac{5\\pi}{6}$, and so on). When you 'prove an identity' you show the two sides are always equal; when you 'solve an equation' you hunt for the specific values that make it true." },
+    { "q": "How do I know which identity to use?", "a": "Look at the functions present and aim to reduce everything to ONE function. A squared term mixed with a first-power term (e.g. $\\sin^2x$ with $\\cos x$) is the signal for the Pythagorean identity. A doubled angle ($\\sin 2x$ or $\\cos 2x$) mixed with single-angle terms is the signal for a double-angle identity — and for $\\cos 2x$ you then pick whichever of its three forms leaves the equation in a single function." },
+    { "q": "How do I choose between the three forms of $\\cos 2\\theta$?", "a": "Match the form to the rest of the equation. If the other terms are in $\\sin$, use $\\cos 2\\theta=1-2\\sin^2\\theta$ so everything becomes $\\sin$. If the other terms are in $\\cos$, use $\\cos 2\\theta=2\\cos^2\\theta-1$. The form $\\cos^2\\theta-\\sin^2\\theta$ is most useful when proving identities rather than solving equations." },
+    { "q": "What if I find a solution outside the given interval?", "a": "Discard it — the interval defines the valid answers. But a value just outside can be used to reach one inside by adding or subtracting a period. For example, if $x=-\\tfrac{\\pi}{3}$ falls outside $0\\le x\\le 2\\pi$, then $-\\tfrac{\\pi}{3}+2\\pi=\\tfrac{5\\pi}{3}$ is a valid solution." },
+    { "q": "Why can't I just divide by $\\cos x$ in $\\sin x\\cos x=\\cos x$?", "a": "Because you might be dividing by zero. Dividing by $\\cos x$ silently assumes $\\cos x\\neq 0$, throwing away the solutions where $\\cos x=0$ ($x=\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2}$), which really do satisfy the equation. Instead bring everything to one side and factorise: $\\cos x(\\sin x-1)=0$, giving both $\\cos x=0$ and $\\sin x=1$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Trigonometry is the language of periodic phenomena, from sound waves to planetary orbits. To become fluent in this language, we need to understand its grammar – the trigonometric identities. These are fundamental rules that allow us to manipulate and simplify expressions, which in turn unlocks our ability to solve complex trigonometric equations. This lesson will equip you with the essential identities and strategies needed for the exam."
-    },
-    {
-      "type": "heading",
-      "content": "Fundamental Trigonometric Identities"
-    },
-    {
-      "type": "text",
-      "content": "An 'identity' is a special type of equation that holds true for any value of the variable. In trigonometry, we have two key identities that you must know by heart. They are derived directly from the definitions of sine, cosine, and tangent on the unit circle."
-    },
-    {
-      "type": "formula",
-      "content": "\\text{The Tangent Identity:} \\quad \\tan\\theta \\equiv \\frac{\\sin\\theta}{\\cos\\theta} \\quad (\\text{for } \\cos\\theta \\neq 0) \\\\ \\\\ \\text{The Pythagorean Identity:} \\quad \\sin^2\\theta + \\cos^2\\theta \\equiv 1"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The notation $\\sin^2\\theta$ is a shorthand for $(\\sin\\theta)^2$.",
-        "The Pythagorean identity comes from applying Pythagoras' theorem to the right-angled triangle in the unit circle, where the hypotenuse is 1 and the other two sides are $\\cos\\theta$ and $\\sin\\theta$.",
-        "These identities are on your formula booklet, but knowing them instantly will save you valuable time in an exam."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Solving Basic Trigonometric Equations"
-    },
-    {
-      "type": "text",
-      "content": "Solving a trigonometric equation means finding all the angle values within a specified domain that make the equation true. The general process involves isolating the trigonometric function, finding the first solution (principal value), and then using the symmetry and periodic nature of the trigonometric graphs or the unit circle to find all other solutions within the required interval."
-    },
-    {
-      "type": "workedExample",
-      "question": "Solve the equation $2\\cos x + \\sqrt{3} = 0$ for $0 \\le x \\le 2\\pi$.",
-      "solution": "First, we rearrange the equation to isolate $\\cos x$. \\\\ $2\\cos x = -\\sqrt{3}$ \\\\ $\\cos x = -\\frac{\\sqrt{3}}{2}$ \t (M1) for isolating $\\cos x$. \\\\ \\\\ Next, we find the principal value. Let's first consider the positive equivalent: $\\arccos(\\frac{\\sqrt{3}}{2}) = \\frac{\\pi}{6}$. Since our value for $\\cos x$ is negative, we are looking for angles in the second and third quadrants. \\\\ \\\\ The solution in the second quadrant is $x = \\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}$. \t (A1) \\\\ \\\\ The solution in the third quadrant is $x = \\pi + \\frac{\\pi}{6} = \\frac{7\\pi}{6}$. \t (M1) for using symmetry. \\\\ \\\\ Both solutions are within the domain $0 \\le x \\le 2\\pi$. \\\\ So, the solutions are $x = \\frac{5\\pi}{6}$ and $x = \\frac{7\\pi}{6}$. \t (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "Always check the domain given in the question! Is it in degrees ($0^\\circ \\le \\theta \\le 360^\\circ$) or radians ($0 \\le x \\le 2\\pi$)? Set your calculator to the correct mode at the start of the question to avoid errors. For non-calculator papers, you must know the exact values for $0, \\frac{\\pi}{6}, \\frac{\\pi}{4}, \\frac{\\pi}{3}, \\frac{\\pi}{2}$ and their multiples."
-    },
-    {
-      "type": "heading",
-      "content": "Using Identities to Solve Equations"
-    },
-    {
-      "type": "text",
-      "content": "More complex equations often involve a mix of trigonometric functions. The key is to use one of the fundamental identities to rewrite the equation so it contains only a single type of trigonometric function (e.g., only sines or only cosines). This often transforms the equation into a polynomial, typically a quadratic, which you can then solve by factorising or using the quadratic formula."
-    },
-    {
-      "type": "workedExample",
-      "question": "Solve the equation $2\\sin^2\\theta + \\cos\\theta = 1$ for $0^\\circ \\le \\theta \\le 360^\\circ$. Give your answers to the nearest degree where appropriate.",
-      "solution": "The equation has both $\\sin^2\\theta$ and $\\cos\\theta$. We use the Pythagorean identity $\\sin^2\\theta = 1 - \\cos^2\\theta$ to express everything in terms of $\\cos\\theta$. \\\\ $2(1 - \\cos^2\\theta) + \\cos\\theta = 1$ \t (M1) for substitution of identity. \\\\ \\\\ Expand and rearrange into a quadratic form $a\\cos^2\\theta + b\\cos\\theta + c = 0$. \\\\ $2 - 2\\cos^2\\theta + \\cos\\theta = 1$ \\\\ $0 = 2\\cos^2\\theta - \\cos\\theta - 1$ \t (A1) for correct quadratic equation. \\\\ \\\\ We can factorise this. Let $u = \\cos\\theta$. Then $2u^2 - u - 1 = 0$. \\\\ $(2u+1)(u-1) = 0$. \t (M1) for factorising. \\\\ So, we have two possible cases: \\\\ Case 1: $2\\cos\\theta + 1 = 0 \\implies \\cos\\theta = -\\frac{1}{2}$ \\\\ Principal value related to $\\arccos(\\frac{1}{2})$ is $60^\\circ$. Cosine is negative in Q2 and Q3. \\\\ $\\theta = 180^\\circ - 60^\\circ = 120^\\circ$ \\\\ $\\theta = 180^\\circ + 60^\\circ = 240^\\circ$ \t (A1) for both correct solutions. \\\\ \\\\ Case 2: $\\cos\\theta - 1 = 0 \\implies \\cos\\theta = 1$ \\\\ $\\theta = 0^\\circ$ or $\\theta = 360^\\circ$ \t (A1) for both correct solutions. \\\\ \\\\ The solutions in the domain $0^\\circ \\le \\theta \\le 360^\\circ$ are $\\theta = 0^\\circ, 120^\\circ, 240^\\circ, 360^\\circ$."
-    },
-    {
-      "type": "practice",
-      "label": "Practise solving trigonometric equations",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=3.5"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Interactive Unit Circle by GeoGebra",
-          "href": "https://www.geogebra.org/m/XUFB2Sj2"
-        },
-        {
-          "label": "Khan Academy: Solving trigonometric equations",
-          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:trig/x9e81a4f98389efdf:solve-sino-coso-tano-and-more/v/we-solving-trig-equations"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Trigonometry is the language of periodic phenomena — sound, light, tides, orbits. To use it fluently you need its grammar: a small set of identities that let you rewrite one expression as another without changing its value. Those identities are what turn an unsolvable-looking equation into a quadratic you can factorise. This lesson develops the fundamental and double-angle identities, shows how to prove identities, and then solves equations over an interval — always collecting EVERY solution in range. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The fundamental identities" },
+    { "type": "text", "content": "An identity is an equation that holds for any value of the variable; we write it with $\\equiv$. Two fundamental identities underpin almost everything in this topic, and both follow directly from the unit-circle definitions of sine and cosine." },
+    { "type": "formula", "content": "\\text{Tangent identity:}\\quad \\tan\\theta \\equiv \\frac{\\sin\\theta}{\\cos\\theta}\\quad(\\cos\\theta\\neq 0)\\\\ \\\\ \\text{Pythagorean identity:}\\quad \\sin^2\\theta+\\cos^2\\theta\\equiv 1" },
+    { "type": "keyPoints", "items": [
+      "The notation $\\sin^2\\theta$ means $(\\sin\\theta)^2$, not $\\sin(\\theta^2)$.",
+      "The Pythagorean identity is Pythagoras' theorem applied to the unit-circle triangle: hypotenuse $1$, legs $\\cos\\theta$ and $\\sin\\theta$.",
+      "Rearranged, it becomes $\\sin^2\\theta=1-\\cos^2\\theta$ or $\\cos^2\\theta=1-\\sin^2\\theta$ — the form you use to swap a squared function for the other one.",
+      "These are in the formula booklet, but recalling them instantly saves valuable time in Paper 1."
+    ]},
+
+    { "type": "heading", "content": "The double-angle identities" },
+    { "type": "text", "content": "The double-angle identities relate the trig functions of $2\\theta$ to those of $\\theta$. They let you collapse a doubled angle into single-angle terms so that the whole equation ends up in one function. The cosine identity comes in three equivalent forms, obtained from the first by substituting the Pythagorean identity." },
+    { "type": "formula", "content": "\\sin 2\\theta = 2\\sin\\theta\\cos\\theta\\\\ \\\\ \\cos 2\\theta = \\cos^2\\theta-\\sin^2\\theta = 1-2\\sin^2\\theta = 2\\cos^2\\theta-1" },
+    { "type": "keyPoints", "items": [
+      "The three cosine forms are equal: replacing $\\cos^2\\theta$ with $1-\\sin^2\\theta$ gives $1-2\\sin^2\\theta$; replacing $\\sin^2\\theta$ with $1-\\cos^2\\theta$ gives $2\\cos^2\\theta-1$.",
+      "Choosing the RIGHT form is the whole skill: pick the one that matches the other terms so the equation reduces to a single function.",
+      "Equation mostly in $\\sin$? Use $\\cos 2\\theta = 1-2\\sin^2\\theta$. Equation mostly in $\\cos$? Use $\\cos 2\\theta = 2\\cos^2\\theta-1$.",
+      "In $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$ the factor of $2$ multiplies the product; it is a common slip to write $\\sin 2\\theta=2\\sin\\theta$."
+    ]},
+
+    { "type": "heading", "content": "Proving identities" },
+    { "type": "text", "content": "To PROVE an identity you start with one side — usually the more complicated one — and transform it, one justified step at a time, until it becomes the other side. You must not shuffle terms across the $\\equiv$ sign as though solving an equation, because that would assume the very thing you are trying to prove. Typical moves are writing $\\tan$ as $\\frac{\\sin}{\\cos}$, applying $\\sin^2\\theta+\\cos^2\\theta=1$, and combining fractions over a common denominator." },
+    { "type": "workedExample", "question": "Prove the identity $\\dfrac{1-\\cos 2\\theta}{\\sin 2\\theta} \\equiv \\tan\\theta$. [4]", "solution": "Start with the left-hand side and choose double-angle forms that expose a common factor. For $\\cos 2\\theta$ use the form $1-2\\sin^2\\theta$, because it makes the numerator collapse.\n\n$\\text{LHS}=\\dfrac{1-\\cos 2\\theta}{\\sin 2\\theta}=\\dfrac{1-(1-2\\sin^2\\theta)}{2\\sin\\theta\\cos\\theta}$  (M1) for substituting suitable double-angle forms.\n\n$=\\dfrac{2\\sin^2\\theta}{2\\sin\\theta\\cos\\theta}$  (A1) for simplifying the numerator to $2\\sin^2\\theta$.\n\nCancel the common factor $2\\sin\\theta$:\n\n$=\\dfrac{\\sin\\theta}{\\cos\\theta}$  (M1) for cancelling.\n\n$=\\tan\\theta=\\text{RHS}$  (A1) for reaching the right-hand side via the tangent identity. $\\blacksquare$" },
+    { "type": "examTip", "content": "When proving an identity, work down ONE side and keep the other side untouched as your target. Writing 'LHS $=\\dots=$ RHS' with each step justified scores the method marks; rearranging both sides simultaneously (as if solving) can lose them even if your algebra is correct." },
+
+    { "type": "heading", "content": "Solving basic trigonometric equations" },
+    { "type": "text", "content": "Solving a trigonometric equation means finding EVERY angle in the stated interval that makes it true. Isolate the trig function, find the principal value with the inverse function, then use the symmetry of the unit circle and periodicity to collect all remaining solutions in range. Always check first whether the interval is in radians or degrees." },
+    { "type": "workedExample", "question": "Solve $2\\cos x + \\sqrt{3} = 0$ for $0 \\le x \\le 2\\pi$. [4]", "solution": "Isolate $\\cos x$:\n$2\\cos x=-\\sqrt{3}$, so $\\cos x=-\\dfrac{\\sqrt{3}}{2}$.  (M1) for isolating $\\cos x$.\n\nThe related acute angle is $\\arccos\\!\\left(\\dfrac{\\sqrt{3}}{2}\\right)=\\dfrac{\\pi}{6}$. Since $\\cos x$ is negative, $x$ lies in the second and third quadrants.\n\nSecond quadrant: $x=\\pi-\\dfrac{\\pi}{6}=\\dfrac{5\\pi}{6}$.  (A1)\n\nThird quadrant: $x=\\pi+\\dfrac{\\pi}{6}=\\dfrac{7\\pi}{6}$.  (M1) for using symmetry to find the second solution.\n\nBoth lie in $0\\le x\\le 2\\pi$, so the solutions are $x=\\dfrac{5\\pi}{6}$ and $x=\\dfrac{7\\pi}{6}$.  (A1) for all solutions in range." },
+    { "type": "examTip", "content": "Check the domain and the mode. Degrees ($0^\\circ\\le\\theta\\le 360^\\circ$) or radians ($0\\le x\\le 2\\pi$)? Set your calculator accordingly at the very start. For non-calculator work, know the exact values at $0,\\tfrac{\\pi}{6},\\tfrac{\\pi}{4},\\tfrac{\\pi}{3},\\tfrac{\\pi}{2}$ and their multiples." },
+
+    { "type": "heading", "content": "Equations that reduce to a quadratic" },
+    { "type": "text", "content": "Many equations mix a squared trig term with a first-power term. Use an identity to rewrite everything in a single function; the equation then becomes a quadratic in $\\sin x$ or $\\cos x$, which you solve by factorising (or with the quadratic formula). Solve for the function first, then convert each value back to angles, collecting all solutions in the interval." },
+    { "type": "workedExample", "question": "Solve $2\\sin^2\\theta + \\cos\\theta = 1$ for $0^\\circ \\le \\theta \\le 360^\\circ$. [6]", "solution": "The equation mixes $\\sin^2\\theta$ and $\\cos\\theta$, so use $\\sin^2\\theta=1-\\cos^2\\theta$ to express everything in $\\cos\\theta$.\n$2(1-\\cos^2\\theta)+\\cos\\theta=1$  (M1) for substituting the identity.\n\nExpand and rearrange into standard quadratic form:\n$2-2\\cos^2\\theta+\\cos\\theta=1$\n$2\\cos^2\\theta-\\cos\\theta-1=0$  (A1) for the correct quadratic.\n\nFactorise (let $u=\\cos\\theta$): $2u^2-u-1=(2u+1)(u-1)=0$.  (M1) for factorising.\nSo $\\cos\\theta=-\\dfrac{1}{2}$ or $\\cos\\theta=1$.  (A1)\n\n$\\cos\\theta=-\\dfrac{1}{2}$: related angle $60^\\circ$, cosine negative in Q2/Q3, so $\\theta=120^\\circ$ or $\\theta=240^\\circ$.  (A1)\n$\\cos\\theta=1$: $\\theta=0^\\circ$ or $\\theta=360^\\circ$.  (A1) for all solutions in range.\n\nSolutions: $\\theta=0^\\circ,120^\\circ,240^\\circ,360^\\circ$." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Misremembering the Pythagorean identity** — it is $\\sin^2\\theta+\\cos^2\\theta=1$, so $\\sin^2\\theta=1-\\cos^2\\theta$ (a minus, not a plus). Writing $\\sin^2\\theta=1+\\cos^2\\theta$ wrecks the whole quadratic.",
+      "**Choosing the wrong form of $\\cos 2\\theta$** — pick the form that leaves the equation in ONE function ($1-2\\sin^2\\theta$ when the rest is in $\\sin$; $2\\cos^2\\theta-1$ when it is in $\\cos$). The wrong choice leaves a mixture you cannot factorise.",
+      "**Dividing by $\\cos x$ or $\\sin x$** — this assumes it is non-zero and silently LOSES the solutions where it is zero. Always move everything to one side and factorise instead.",
+      "**Stopping at the principal value** — the calculator gives one angle; the interval usually contains several. Use unit-circle symmetry and periodicity to find EVERY solution in range.",
+      "**Solving for the function but forgetting to convert back** — an answer of $\\cos\\theta=\\tfrac12$ is not a solution; you must give the angles $\\theta$ that produce it.",
+      "**Ignoring the stated interval** — discard solutions outside it, and remember to include endpoints when the interval is closed (e.g. both $0^\\circ$ and $360^\\circ$).",
+      "**Writing $\\sin 2\\theta = 2\\sin\\theta$ or $\\cos 2\\theta = 2\\cos\\theta$** — the double-angle identities are $\\sin 2\\theta=2\\sin\\theta\\cos\\theta$ and $\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta$, not simple doublings."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and follow-through (FT) means a wrong value early on need not cost the marks that follow, provided your later work is correct on your own figures. Accuracy marks are dependent on the associated method mark, and the engine accepts equivalent and exact forms ($\\tfrac12$, $0.5$; $\\tfrac{\\pi}{6}$, $30^\\circ$). But this protection only exists if your method is on the page. Study how each mark below is earned by a specific line — and note that the final marks require ALL solutions in the interval." },
+    { "type": "workedExample", "question": "Solve $2\\cos^2 x - \\sin x - 1 = 0$ for $0 \\le x \\le 2\\pi$. [6]", "solution": "**Model answer — full working.**\n\nThe equation mixes $\\cos^2 x$ with $\\sin x$, so use the Pythagorean identity $\\cos^2 x = 1-\\sin^2 x$ to write everything in $\\sin x$.\n$2(1-\\sin^2 x)-\\sin x-1=0$\n\nExpand and rearrange into standard quadratic form:\n$2-2\\sin^2 x-\\sin x-1=0$\n$1-2\\sin^2 x-\\sin x=0$\n$2\\sin^2 x+\\sin x-1=0$\n\nFactorise (let $u=\\sin x$): $2u^2+u-1=(2u-1)(u+1)=0$.\nSo $\\sin x=\\dfrac{1}{2}$ or $\\sin x=-1$.\n\n$\\sin x=\\dfrac{1}{2}$: principal value $\\dfrac{\\pi}{6}$; sine positive in Q1/Q2, so $x=\\dfrac{\\pi}{6}$ and $x=\\pi-\\dfrac{\\pi}{6}=\\dfrac{5\\pi}{6}$.\n$\\sin x=-1$: the minimum of sine, at $x=\\dfrac{3\\pi}{2}$.\n\n**Final answer:** $x=\\dfrac{\\pi}{6},\\ \\dfrac{5\\pi}{6},\\ \\dfrac{3\\pi}{2}$ (all within $0\\le x\\le 2\\pi$).\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — substitute the identity.** Awarded for replacing $\\cos^2 x$ with $1-\\sin^2 x$ to eliminate the cosine. This is a METHOD mark: it is earned for the correct approach even if the algebra later slips.\n- **A1 — correct quadratic.** Awarded for reaching $2\\sin^2 x+\\sin x-1=0$ (or any equivalent arrangement). This accuracy mark depends on the M1 above.\n- **M1 — factorise (or use the formula).** Awarded for a valid attempt to solve the quadratic, e.g. $(2\\sin x-1)(\\sin x+1)=0$.\n- **A1 — values of $\\sin x$.** Awarded for $\\sin x=\\tfrac12$ or $\\sin x=-1$. Equivalent forms ($0.5$) are accepted.\n- **A1 — the two solutions from $\\sin x=\\tfrac12$.** Awarded for $x=\\tfrac{\\pi}{6}$ and $x=\\tfrac{5\\pi}{6}$. Here follow-through applies: a student whose quadratic was wrong but who then correctly solves THEIR equation and collects the angles in range still earns the solution marks on their own figures.\n- **A1 — the solution from $\\sin x=-1$.** Awarded for $x=\\tfrac{3\\pi}{2}$. This mark is specifically for not losing the 'edge' solution.\n\n**All solutions required.** The final accuracy marks are given only for the COMPLETE set in the interval. A student who stops at $x=\\tfrac{\\pi}{6}$, or who divides through and loses $\\sin x=-1$, forfeits marks even with perfect early algebra. Exact forms ($\\tfrac{\\pi}{6}$) are expected on Paper 1; the engine accepts equivalent exact forms and applies 'ignore subsequent working' (ISW) once a correct final set is seen.\n\n**Bottom line:** of the 6 marks, two are method marks that survive an algebra slip, and follow-through shields the solution marks — but only if the identity substitution, the quadratic, the factorisation and EVERY in-range angle are written down." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and 'accept equivalent/exact forms'. So always show the method: state the identity you substitute, write the quadratic, factorise, solve for the function, then list EVERY angle in the interval. The method marks and follow-through are what protect your score when one line slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "These identities are the workhorses of the rest of trigonometry. The double-angle results reappear when you differentiate and integrate trig functions and when you simplify expressions before finding areas or volumes of revolution. The 'reduce to a single function, solve the quadratic, collect all solutions' method is exactly the routine you will reuse for equations involving $\\sin 2x$, $\\cos 2x$ and, at HL, the reciprocal and compound-angle identities. Master the habit — rewrite with an identity, solve the algebra, collect every solution in range, show every line — and the harder trigonometry becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 1 solution marked: solve a trig equation with full working", "href": "/mark?subject=ib-maths-aa-sl&topic=3.5&component=paper_1" },
+    { "type": "resources", "items": [
+      { "label": "Interactive Unit Circle by GeoGebra", "href": "https://www.geogebra.org/m/XUFB2Sj2" },
+      { "label": "Khan Academy: Solving trigonometric equations", "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:trig/x9e81a4f98389efdf:solve-sino-coso-tano-and-more/v/we-solving-trig-equations" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Interactive Unit Circle by GeoGebra",

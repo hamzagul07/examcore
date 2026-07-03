@@ -5,15 +5,18 @@
   "paper": "P1",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental trigonometric functions: sine, cosine, and tangent. We will analyse their graphs, understand their key properties like period and amplitude, and learn how to apply transformations to sketch more complex functions. The focus is on graphical interpretation and solving equations without a calculator, aligning with Paper 1 skills.",
+  "summary": "This lesson builds the full 3.4 toolkit for trigonometric graphs. We start from the shapes, periods and ranges of $y=\\sin x$, $y=\\cos x$ and $y=\\tan x$ (including the asymptotes of the tangent curve), then master the transformed function $y=a\\sin(b(x-c))+d$ — reading the amplitude $|a|$, period $\\tfrac{2\\pi}{b}$, horizontal shift $c$ and vertical shift $d$ from an equation, from a graph, or from a context. We finish by modelling real periodic phenomena such as tides, temperature and a Ferris wheel. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your working decides how many marks you keep.",
   "durationMin": 120,
-  "updated": "2026-06-23",
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and use the definitions of sine, cosine, and tangent in relation to the unit circle.",
-    "Sketch the graphs of $y = a \\sin(b(x-c)) + d$ and $y = a \\cos(b(x-c)) + d$.",
-    "Identify the amplitude, period, phase shift, and vertical shift from a function's equation or graph.",
-    "Solve trigonometric equations graphically within a given domain."
+    "Sketch and describe the graphs of $y=\\sin x$, $y=\\cos x$ and $y=\\tan x$, stating period, range and — for tangent — the vertical asymptotes.",
+    "Interpret $y=a\\sin(b(x-c))+d$: identify the amplitude $|a|$, period $\\tfrac{2\\pi}{b}$, horizontal shift $c$ and vertical shift $d$.",
+    "Determine $a$, $b$, $c$ and $d$ from a given graph or from a described context.",
+    "Model periodic phenomena (tides, temperature, a Ferris wheel) with a sinusoidal function and extract features such as maxima, minima and the times they occur.",
+    "Present working so that method marks (M) and accuracy marks (A) — with follow-through — protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["3.4"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Riding the Trigonometric Waves",
     "summary": "Trigonometric functions describe repeating patterns, like waves, that appear everywhere from sound to circular motion. We'll explore the basic shapes of these graphs and learn how to stretch, squash, and shift them.",
@@ -21,146 +24,245 @@
     "steps": [
       "Begin with the unit circle, a circle with radius 1. As a point moves around it, its y-coordinate traces the sine function and its x-coordinate traces the cosine function.",
       "Plot these coordinates against the angle of rotation. This reveals the characteristic wave shapes of $y=\\sin x$ and $y=\\cos x$, and the repeating pattern of $y=\\tan x$.",
-      "Learn to transform these basic graphs. We use the parameters $a, b, c, d$ in $y = a\\sin(b(x-c)) + d$ to change the amplitude (height), period (width), and position of the wave.",
-      "Use your knowledge of the transformed graphs to identify key features like maximum and minimum values, and to solve equations by finding where the graph intersects a certain line."
+      "Learn to transform these basic graphs. We use the parameters $a, b, c, d$ in $y = a\\sin(b(x-c))+d$ to change the amplitude (height), period (width), and position of the wave.",
+      "Use your knowledge of the transformed graphs to identify key features like maximum and minimum values, and to model real periodic situations such as tides and temperature."
     ]
   },
+  "keyConcepts": ["periodic functions", "amplitude and period", "sinusoidal modelling"],
   "flashcards": [
     {
       "front": "What is the definition of $\\sin \\theta$ and $\\cos \\theta$ on the unit circle?",
-      "back": "For a point P(x, y) on the unit circle corresponding to an angle $\\theta$ from the positive x-axis, $\\cos \\theta = x$ and $\\sin \\theta = y$."
+      "back": "For a point P(x, y) on the unit circle corresponding to an angle $\\theta$ from the positive x-axis, $\\cos \\theta = x$ and $\\sin \\theta = y$.",
+      "pillLabel": "Definition"
     },
     {
       "front": "What is the definition of $\\tan \\theta$?",
-      "back": "$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$. This is the gradient of the line from the origin to the point on the unit circle."
+      "back": "$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$. This is the gradient of the line from the origin to the point on the unit circle.",
+      "pillLabel": "Definition"
     },
     {
       "front": "What is the period of the functions $y = \\sin x$ and $y = \\cos x$?",
-      "back": "The period is $2\\pi$ radians (or $360^\\circ$). The graph repeats every $2\\pi$ units."
+      "back": "The period is $2\\pi$ radians (or $360^\\circ$). The graph repeats every $2\\pi$ units.",
+      "pillLabel": "Graph"
     },
     {
       "front": "What is the period of the function $y = \\tan x$?",
-      "back": "The period is $\\pi$ radians (or $180^\\circ$). The graph repeats every $\\pi$ units."
+      "back": "The period is $\\pi$ radians (or $180^\\circ$). The graph repeats every $\\pi$ units.",
+      "pillLabel": "Graph"
     },
     {
       "front": "What is the amplitude of the function $y = a \\sin(x) + d$?",
-      "back": "The amplitude is $|a|$. It is half the distance between the maximum and minimum values of the function."
+      "back": "The amplitude is $|a|$. It is half the distance between the maximum and minimum values of the function.",
+      "pillLabel": "Formula"
     },
     {
       "front": "How do you find the period of $y = \\cos(bx)$?",
-      "back": "The period is calculated by $\\frac{2\\pi}{|b|}$. This represents a horizontal stretch or compression."
+      "back": "The period is calculated by $\\frac{2\\pi}{|b|}$. This represents a horizontal stretch or compression.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is a phase shift?",
-      "back": "A phase shift is a horizontal translation of the graph. For $y = \\sin(x-c)$, the phase shift is $c$ units to the right."
+      "front": "What does the horizontal shift $c$ do in $y = \\sin(x-c)$?",
+      "back": "It translates the graph $c$ units to the right. For $y = \\sin(x+c)$ the graph moves $c$ units to the left. Always factor $b$ out first before reading $c$.",
+      "pillLabel": "Definition"
     },
     {
       "front": "What is the principal axis?",
-      "back": "The principal axis is the horizontal line halfway between the maximum and minimum values. For $y = \\sin(x) + d$, the equation of the principal axis is $y=d$."
+      "back": "The principal axis is the horizontal line halfway between the maximum and minimum values. For $y = a\\sin(x) + d$, the equation of the principal axis is $y=d$.",
+      "pillLabel": "Concept"
     },
     {
       "front": "What are the vertical asymptotes of $y = \\tan x$?",
-      "back": "Vertical asymptotes occur where $\\cos x = 0$. This happens at $x = \\frac{\\pi}{2} + n\\pi$, where $n$ is an integer."
+      "back": "Vertical asymptotes occur where $\\cos x = 0$. This happens at $x = \\frac{\\pi}{2} + n\\pi$, where $n$ is an integer.",
+      "pillLabel": "Graph"
     },
     {
-      "front": "What is the relationship between the graphs of $y = \\sin x$ and $y = \\cos x$?",
-      "back": "The graph of $y = \\sin x$ is a horizontal translation of the graph of $y = \\cos x$. Specifically, $\\sin x = \\cos(x - \\frac{\\pi}{2})$."
+      "front": "How do you find the maximum and minimum of $y=a\\sin(b(x-c))+d$?",
+      "back": "With $a>0$: maximum $= d + a$ and minimum $= d - a$. The amplitude $|a|$ is the distance from the principal axis $y=d$ to either extreme.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Common Trap: What does a negative value for 'a' in $y=a\\sin(x)$ do?",
-      "back": "A negative 'a' (e.g., $y=-2\\sin x$) reflects the graph in the x-axis (or the principal axis). The amplitude is still $|a|$ (e.g., 2)."
+      "front": "Common Trap: What does a negative value for $a$ in $y=a\\sin(x)$ do?",
+      "back": "A negative $a$ (e.g. $y=-2\\sin x$) reflects the graph in the principal axis. The amplitude is still $|a|$ (e.g. 2) — amplitude is never negative.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Common Trap: In $y = \\sin(2x + \\pi)$, what is the phase shift?",
-      "back": "First, factor out the 'b' value: $y = \\sin(2(x + \\frac{\\pi}{2}))$. The phase shift is $-\\frac{\\pi}{2}$, meaning a shift of $\\frac{\\pi}{2}$ to the left."
+      "front": "Common Trap: In $y = \\sin(2x + \\pi)$, what is the horizontal shift?",
+      "back": "First, factor out the $b$ value: $y = \\sin(2(x + \\frac{\\pi}{2}))$. The shift is $\\frac{\\pi}{2}$ to the left. Never read the shift straight off $\\sin(bx+k)$ without factoring.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The function $y = 3\\sin(2x) + 4$ has amplitude:",
+      "options": ["6", "3", "1.5", "4"],
+      "answer": "3"
+    },
+    {
+      "prompt": "The period of $y = 5\\cos\\!\\big(\\tfrac{\\pi}{4}x\\big) - 2$ is:",
+      "options": ["$\\frac{\\pi}{4}$", "$8$", "$\\frac{\\pi}{2}$", "$4$"],
+      "answer": "$8$"
+    },
+    {
+      "prompt": "In $y = \\sin\\!\\big(x - \\tfrac{\\pi}{3}\\big)$ the graph is shifted:",
+      "options": ["$\\frac{\\pi}{3}$ to the left", "$\\frac{\\pi}{3}$ to the right", "$\\frac{\\pi}{3}$ upwards", "$3$ to the right"],
+      "answer": "$\\frac{\\pi}{3}$ to the right"
+    },
+    {
+      "prompt": "For $y = 4\\sin(x) + 7$ (with $x$ in radians), the maximum value is:",
+      "options": ["11", "7", "4", "28"],
+      "answer": "11"
+    },
+    {
+      "prompt": "For $y = 6\\cos(x) - 1$, the minimum value is:",
+      "options": ["$-7$", "$5$", "$-6$", "$-1$"],
+      "answer": "$-7$"
     }
   ],
   "faq": [
     {
       "q": "What is the difference between a phase shift and a horizontal shift?",
-      "a": "They mean the same thing in the context of trigonometric functions. 'Phase shift' is the specific term used for the horizontal translation of periodic functions like sine and cosine."
+      "a": "They mean the same thing in the context of trigonometric functions. 'Phase shift' is the specific term used for the horizontal translation $c$ of periodic functions like sine and cosine."
     },
     {
       "q": "How do I decide whether to use a sine or cosine function to model a situation?",
-      "a": "It depends on the starting condition at $t=0$ or $x=0$. If the situation starts at a maximum or minimum value, a cosine function ($y=a\\cos(bx)+d$) is often easier to use. If it starts at the equilibrium or middle value, a sine function ($y=a\\sin(bx)+d$) is usually more straightforward."
+      "a": "It depends on the starting condition at $t=0$ or $x=0$. If the situation starts at a maximum or minimum value, a cosine function ($y=a\\cos(bx)+d$) is often easier to use. If it starts at the equilibrium or middle value and is rising, a sine function ($y=a\\sin(bx)+d$) is usually more straightforward. Either can model the same situation once you match the amplitude, period, shift and principal axis."
+    },
+    {
+      "q": "How do I get amplitude, period and principal axis from a real context like tides?",
+      "a": "The amplitude $|a|$ is half the difference between the highest and lowest values (e.g. high tide minus low tide, divided by two). The principal axis $d$ is the average of the highest and lowest values. The period is the time for one full cycle (e.g. roughly 12 hours for a tide), and you get $b$ from period $=\\frac{2\\pi}{b}$."
     },
     {
       "q": "Why are radians preferred over degrees in IB Maths?",
-      "a": "Radians are the natural unit for measuring angles in mathematics, especially in calculus. Key formulae, such as the derivatives of trig functions (e.g., the derivative of $\\sin x$ is $\\cos x$), are only this simple when $x$ is in radians. Using degrees would introduce messy conversion factors into these formulae."
+      "a": "Radians are the natural unit for measuring angles in mathematics, especially in calculus. Key formulae, such as the derivatives of trig functions (the derivative of $\\sin x$ is $\\cos x$), are only this simple when $x$ is in radians. Modelling questions on Paper 1 almost always use radians, so read $b$ as $\\frac{2\\pi}{\\text{period}}$ in radians."
     },
     {
-      "q": "How do I find all solutions to a trigonometric equation in a given domain?",
-      "a": "First, find the principal value (the first solution your calculator or knowledge gives you). Then, use the symmetry and periodicity of the graph to find other solutions. For $\\sin x = k$, if $\\alpha$ is a solution, so is $\\pi - \\alpha$. For $\\cos x = k$, if $\\alpha$ is a solution, so is $-\\alpha$ (or $2\\pi - \\alpha$). For $\\tan x = k$, if $\\alpha$ is a solution, so is $\\alpha + \\pi$. Then, add or subtract multiples of the period ($2\\pi$ for sin/cos, $\\pi$ for tan) to find all solutions within the required domain."
+      "q": "How does the marking engine treat equivalent forms of an answer?",
+      "a": "It accepts equivalent forms. A period written as $\\frac{2\\pi}{\\pi/6}$, $12$ or $12\\text{ h}$ all earn the same mark, and a model written as a sine or an equivalent cosine both count. It also applies 'ignore subsequent working' (ISW): once you have written a correct answer, a later tidy-up that does not contradict it will not be penalised."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to our lesson on trigonometric functions. These functions are fundamental in mathematics and science for modelling periodic phenomena, from the swinging of a pendulum to alternating current in electronics. In this lesson, we will build a solid understanding of their graphs and transformations, which is a crucial skill for Paper 1."
+      "content": "Trigonometric functions are the mathematics of anything that repeats: the swing of a pendulum, alternating current, sound, the daily tide, the yearly temperature, a rotating Ferris wheel. In this lesson we build a secure picture of the three basic graphs, learn to stretch, squash and shift them with the parameters in $y=a\\sin(b(x-c))+d$, and then turn that skill into a modelling tool for real periodic phenomena. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Unit Circle: The Birthplace of Trig Functions"
+      "content": "The three basic graphs: $y=\\sin x$, $y=\\cos x$, $y=\\tan x$"
     },
     {
       "type": "text",
-      "content": "The simplest way to define sine, cosine, and tangent is by using the 'unit circle'. This is a circle centred at the origin $(0,0)$ with a radius of 1. Imagine a point $P(x,y)$ that moves along the circumference of this circle. The angle $\\theta$, measured in radians, is formed by the positive x-axis and the line segment from the origin to point P. The coordinates of P are directly related to the angle: the x-coordinate is $\\cos \\theta$ and the y-coordinate is $\\sin \\theta$. As the point P travels around the circle, the values of $\\sin \\theta$ and $\\cos \\theta$ oscillate between -1 and 1."
-    },
-    {
-      "type": "heading",
-      "content": "Graphing the Basic Functions: $y=\\sin x$, $y=\\cos x$, $y=\\tan x$"
-    },
-    {
-      "type": "text",
-      "content": "By plotting the values of $\\sin x$ and $\\cos x$ against the angle $x$ (in radians), we generate their characteristic wave-like graphs. Both functions have a domain of all real numbers and a range of $[-1, 1]$. They are periodic, meaning they repeat their values in regular intervals."
+      "content": "The simplest way to define sine and cosine is with the unit circle: a circle of radius 1 centred at the origin. For a point $P(x,y)$ at angle $\\theta$ (in radians) from the positive x-axis, $\\cos\\theta = x$ and $\\sin\\theta = y$. As $P$ travels round the circle, these coordinates oscillate between $-1$ and $1$, and plotting them against $\\theta$ produces the familiar waves. The tangent, $\\tan x = \\frac{\\sin x}{\\cos x}$, behaves very differently: it shoots off to infinity wherever $\\cos x = 0$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**$y=\\sin x$**: Starts at $(0,0)$, reaches a maximum of 1 at $x=\\frac{\\pi}{2}$, crosses the x-axis at $x=\\pi$, reaches a minimum of -1 at $x=\\frac{3\\pi}{2}$, and completes its cycle at $x=2\\pi$. The period is $2\\pi$.",
-        "**$y=\\cos x$**: Starts at a maximum $(0,1)$, crosses the x-axis at $x=\\frac{\\pi}{2}$, reaches a minimum of -1 at $x=\\pi$, crosses the x-axis again at $x=\\frac{3\\pi}{2}$, and completes its cycle at $x=2\\pi$. The period is $2\\pi$.",
-        "**$y=\\tan x$**: Since $\\tan x = \\frac{\\sin x}{\\cos x}$, the graph has vertical asymptotes wherever $\\cos x = 0$. This occurs at $x = \\dots, -\\frac{\\pi}{2}, \\frac{\\pi}{2}, \\frac{3\\pi}{2}, \\dots$. The period of the tangent function is $\\pi$. Its range is all real numbers."
+        "**$y=\\sin x$**: starts at $(0,0)$, maximum $1$ at $x=\\frac{\\pi}{2}$, back to $0$ at $x=\\pi$, minimum $-1$ at $x=\\frac{3\\pi}{2}$, cycle complete at $x=2\\pi$. Range $[-1,1]$, period $2\\pi$.",
+        "**$y=\\cos x$**: starts at a maximum $(0,1)$, crosses zero at $x=\\frac{\\pi}{2}$, minimum $-1$ at $x=\\pi$, crosses zero at $x=\\frac{3\\pi}{2}$, cycle complete at $x=2\\pi$. Range $[-1,1]$, period $2\\pi$.",
+        "**$y=\\tan x$**: repeating branches with period $\\pi$ and range all real numbers. Vertical asymptotes occur where $\\cos x = 0$, i.e. at $x=\\frac{\\pi}{2}+n\\pi$ for integer $n$. There is no amplitude — the curve is unbounded.",
+        "**Relationship:** $\\sin x = \\cos\\!\\big(x-\\frac{\\pi}{2}\\big)$, so the sine graph is the cosine graph shifted $\\frac{\\pi}{2}$ to the right."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Sketch the graph of the function $f(x) = 3\\cos x$ for the domain $0 \\le x \\le 2\\pi$. Label the coordinates of any maximum points, minimum points and x-intercepts.",
-      "solution": "The function is a vertical stretch of the standard $y=\\cos x$ graph by a factor of 3.\n\n1.  **Identify transformations**: The amplitude is $a=3$. The period is unchanged, $2\\pi$. There are no horizontal or vertical shifts.\n2.  **Find key points**:\n    *   The standard $\\cos x$ has a maximum value of 1. So, $f(x)$ has a maximum value of $3 \\times 1 = 3$. This occurs at $x=0$ and $x=2\\pi$. Maximum points: $(0, 3)$ and $(2\\pi, 3)$.\n    *   The standard $\\cos x$ has a minimum value of -1. So, $f(x)$ has a minimum value of $3 \\times (-1) = -3$. This occurs at $x=\\pi$. Minimum point: $(\\pi, -3)$.\n    *   The x-intercepts occur when $f(x)=0$. $3\\cos x = 0 \\implies \\cos x = 0$. This occurs at $x=\\frac{\\pi}{2}$ and $x=\\frac{3\\pi}{2}$. Intercepts: $(\\frac{\\pi}{2}, 0)$ and $(\\frac{3\\pi}{2}, 0)$.\n\n3.  **Sketch the graph**:\n    *   Draw the axes, labelling x from 0 to $2\\pi$ and y from -3 to 3.\n    *   Plot the maximum, minimum, and intercept points.\n    *   Draw a smooth cosine curve through these points.\n\n*(M1) for correct shape of a cosine curve.*\n*(A1) for correct amplitude, showing max at 3 and min at -3.*\n*(A1) for correctly labelled intercepts at $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$ and endpoints.*\n\n(A sketch would show a cosine wave starting at (0,3), going down through ($\\pi/2$,0) to a minimum at ($\\pi$,-3), up through ($3\\pi/2$,0) and ending at ($2\\pi$,3).)"
+      "question": "Sketch the graph of the function $f(x) = 3\\cos x$ for the domain $0 \\le x \\le 2\\pi$. Label the coordinates of any maximum points, minimum points and x-intercepts. [4]",
+      "solution": "The function is a vertical stretch of $y=\\cos x$ by scale factor 3.\n\n**1. Identify the transformation.** Amplitude $|a| = 3$; period unchanged at $2\\pi$; no horizontal or vertical shift.  [M1: correct cosine shape]\n\n**2. Maxima.** $\\cos x$ has maximum $1$, so $f$ has maximum $3\\times 1 = 3$, at $x=0$ and $x=2\\pi$: points $(0,3)$ and $(2\\pi,3)$.  [A1: amplitude, max $3$ and min $-3$ shown]\n\n**3. Minimum.** $\\cos x$ has minimum $-1$, so $f$ has minimum $-3$, at $x=\\pi$: point $(\\pi,-3)$.\n\n**4. x-intercepts.** $3\\cos x = 0 \\Rightarrow \\cos x = 0$ at $x=\\frac{\\pi}{2}$ and $x=\\frac{3\\pi}{2}$: points $\\left(\\frac{\\pi}{2},0\\right)$ and $\\left(\\frac{3\\pi}{2},0\\right)$.  [A1: intercepts correct]  [A1: endpoints $(0,3)$ and $(2\\pi,3)$ labelled]\n\nDraw a smooth cosine curve from $(0,3)$ down through $\\left(\\frac{\\pi}{2},0\\right)$ to the minimum $(\\pi,-3)$, up through $\\left(\\frac{3\\pi}{2},0\\right)$ and back to $(2\\pi,3)$.\n\n**Final answer:** maxima $(0,3)$, $(2\\pi,3)$; minimum $(\\pi,-3)$; x-intercepts $\\left(\\frac{\\pi}{2},0\\right)$, $\\left(\\frac{3\\pi}{2},0\\right)$."
     },
     {
       "type": "heading",
-      "content": "Transformations of Trigonometric Graphs"
+      "content": "Transformations: $y=a\\sin(b(x-c))+d$"
     },
     {
       "type": "text",
-      "content": "We can apply transformations to the basic trigonometric graphs to model a wider variety of periodic phenomena. The general form for these transformations is:"
+      "content": "By stretching and shifting the basic graphs we can match a huge range of periodic behaviour. The general sinusoidal form is written below, and each of the four parameters $a$, $b$, $c$, $d$ has a precise geometric meaning."
     },
     {
       "type": "formula",
-      "content": "y = a \\sin(b(x-c)) + d \\quad \\text{or} \\quad y = a \\cos(b(x-c)) + d"
+      "content": "y = a\\sin(b(x-c)) + d \\quad \\text{or} \\quad y = a\\cos(b(x-c)) + d"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**$a$ (Amplitude)**: $|a|$ is the amplitude. It's a vertical stretch. If $a<0$, the graph is also reflected in the principal axis.",
-        "**$b$ (Period)**: Affects the period (horizontal stretch/compression). The new period is $\\frac{2\\pi}{|b|}$ for sine/cosine and $\\frac{\\pi}{|b|}$ for tangent.",
-        "**$c$ (Phase Shift)**: The horizontal shift. The graph moves $c$ units to the right. For $(x+c)$, the shift is $c$ units to the left.",
-        "**$d$ (Vertical Shift)**: The vertical shift. The graph moves $d$ units up. The line $y=d$ is the new principal axis."
+        "**$a$ — amplitude.** The amplitude is $|a|$: the distance from the principal axis to a maximum (or minimum). If $a<0$ the graph is also reflected in the principal axis, but the amplitude is still $|a|$, never negative.",
+        "**$b$ — period.** The period is $\\frac{2\\pi}{b}$ for sine and cosine (and $\\frac{\\pi}{b}$ for tangent). A larger $b$ squashes the graph horizontally into more cycles.",
+        "**$c$ — horizontal shift.** The graph moves $c$ units right (left if $c<0$). Always factor $b$ out of the bracket first: in $\\sin(bx+k)$ rewrite as $\\sin\\!\\big(b(x+\\frac{k}{b})\\big)$ before reading the shift.",
+        "**$d$ — vertical shift.** The graph moves $d$ units up, so the principal axis is the line $y=d$. Then maximum $= d+|a|$ and minimum $= d-|a|$."
       ]
     },
     {
       "type": "examTip",
-      "content": "Always check if the question specifies the domain in degrees or radians. This is a common source of error. Also, when dealing with a phase shift in the form $\\sin(bx+k)$, always factor out the $b$ first to get $\\sin(b(x+k/b))$ to correctly identify the shift as $-k/b$."
+      "content": "Check whether the question is in radians or degrees before doing anything — mixing them is a classic slip. And when a phase appears as $\\sin(bx+k)$, always factor out $b$ first to read the horizontal shift as $-\\frac{k}{b}$; reading it straight off as $k$ is one of the most heavily penalised errors in this topic."
     },
     {
       "type": "workedExample",
-      "question": "The following graph shows a function of the form $y = a \\cos(bx) + d$. It has a maximum point at A$(0, 5)$ and a subsequent minimum point at B$(\\frac{\\pi}{2}, -1)$. Find the values of $a$, $b$, and $d$.",
-      "solution": "1.  **Find the vertical shift, $d$**:\nThe principal axis is the horizontal line halfway between the maximum and minimum y-values.\n$d = \\frac{\\text{max} + \\text{min}}{2} = \\frac{5 + (-1)}{2} = \\frac{4}{2} = 2$. (M1)(A1)\nSo, the principal axis is $y=2$.\n\n2.  **Find the amplitude, $a$**:\nThe amplitude is the distance from the principal axis to the maximum (or minimum).\n$a = \\text{max} - d = 5 - 2 = 3$. (M1)(A1)\nSince the graph starts at a maximum at $x=0$ (like a standard $\\cos x$ graph), $a$ is positive.\n\n3.  **Find the period and $b$**:\nThe horizontal distance from a maximum to the next minimum is half a period.\nHalf period = $\\frac{\\pi}{2} - 0 = \\frac{\\pi}{2}$.\nFull period = $2 \\times \\frac{\\pi}{2} = \\pi$. (M1)\nThe formula for the period is $\\frac{2\\pi}{|b|}$.\nSo, $\\pi = \\frac{2\\pi}{b} \\implies b\\pi = 2\\pi \\implies b=2$. (A1)\n\n4.  **Final Equation**:\nThe values are $a=3$, $b=2$, and $d=2$. The equation is $y = 3\\cos(2x) + 2$."
+      "question": "The graph shows a function of the form $y = a \\cos(bx) + d$. It has a maximum point at A$(0, 5)$ and the next minimum point at B$\\left(\\frac{\\pi}{2}, -1\\right)$. Find the values of $a$, $b$ and $d$. [5]",
+      "solution": "**1. Vertical shift $d$** — the principal axis is halfway between max and min.\n$d = \\dfrac{\\text{max}+\\text{min}}{2} = \\dfrac{5+(-1)}{2} = 2$.  [M1: averaging max and min]  [A1: $d=2$]\n\n**2. Amplitude $a$** — distance from the principal axis to the maximum.\n$a = \\text{max} - d = 5 - 2 = 3$. Since the graph starts at a maximum at $x=0$, $a>0$, so $a=3$.  [A1: $a=3$]\n\n**3. Period and $b$** — the gap from a maximum to the next minimum is half a period.\nHalf-period $= \\frac{\\pi}{2}-0 = \\frac{\\pi}{2}$, so period $= \\pi$.  [M1: period $=2\\times$ max-to-min gap]\nUsing period $=\\frac{2\\pi}{b}$: $\\pi = \\frac{2\\pi}{b} \\Rightarrow b = 2$.  [A1: $b=2$]\n\n**Final answer:** $a=3$, $b=2$, $d=2$, giving $y = 3\\cos(2x) + 2$."
+    },
+    {
+      "type": "heading",
+      "content": "Modelling periodic phenomena: tides, temperature and Ferris wheels"
+    },
+    {
+      "type": "text",
+      "content": "Real repeating situations map straight onto $y=a\\sin(b(x-c))+d$. To build the model, read off four things from the context. The amplitude $|a|$ is half the difference between the highest and lowest values. The principal axis $d$ is their average. The period is the time for one full cycle, which fixes $b=\\frac{2\\pi}{\\text{period}}$. The horizontal shift $c$ lines the curve up with the starting condition. Once the model is built, features fall out immediately: the maximum is $d+|a|$, the minimum is $d-|a|$, and for a sine model starting on the principal axis the first maximum occurs a quarter of a period after the start."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Tides:** height oscillates between high and low water; amplitude $=\\frac{\\text{high}-\\text{low}}{2}$, principal axis $=\\frac{\\text{high}+\\text{low}}{2}$, period $\\approx 12$ h.",
+        "**Temperature:** daily or yearly cycle; amplitude is half the range, principal axis is the mean temperature, period is 24 h or 12 months.",
+        "**Ferris wheel:** height above ground; amplitude $=$ radius, principal axis $=$ radius $+$ boarding height, period $=$ time for one revolution.",
+        "**Quarter-period rule:** for $y=a\\sin(b(t-c))+d$ with $a>0$, the first maximum after the principal-axis crossing at $t=c$ occurs at $t=c+\\frac{1}{4}\\cdot\\frac{2\\pi}{b}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The depth of water in a harbour is modelled by $H(t)=2.5\\sin\\!\\big(\\tfrac{\\pi}{6}t\\big)+6$, where $H$ is the depth in metres and $t$ is the time in hours after midnight. State the amplitude, the period and the principal axis, and find the minimum depth. [4]",
+      "solution": "Compare with $y=a\\sin(bt)+d$: here $a=2.5$, $b=\\frac{\\pi}{6}$, $d=6$.\n\n**Amplitude** $=|a|=2.5$ m.  [A1]\n**Principal axis** $y=d=6$ m.  [A1]\n**Period** $=\\dfrac{2\\pi}{b}=\\dfrac{2\\pi}{\\pi/6}=12$ h.  [M1: $\\frac{2\\pi}{b}$]  [A1]\n**Minimum depth** $=d-|a|=6-2.5=3.5$ m.\n\n**Final answer:** amplitude $2.5$ m, period $12$ h, principal axis $y=6$ m, minimum depth $3.5$ m."
     },
     {
       "type": "practice",
       "label": "Practise Graphing and Transformations",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=3.4"
+      "href": "/mark?subject=ib-maths-aa-sl&topic=3.4&component=paper_1"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Writing the amplitude as $2a$ or as a negative number** — the amplitude is $|a|$, always positive. For $y=3\\sin(2x)+4$ it is $3$, not $6$ and not $-3$.",
+        "**Confusing the coefficient $b$ with the period** — the period is $\\frac{2\\pi}{b}$, not $b$. For $y=5\\cos\\!\\big(\\frac{\\pi}{4}x\\big)$ the period is $\\frac{2\\pi}{\\pi/4}=8$, not $\\frac{\\pi}{4}$.",
+        "**Getting the direction of the horizontal shift wrong** — $\\sin(x-c)$ shifts RIGHT by $c$; $\\sin(x+c)$ shifts LEFT. And in $\\sin(bx+k)$ you must factor $b$ out first, giving a shift of $-\\frac{k}{b}$, not $k$.",
+        "**Taking the maximum as $a$ or the minimum as $-a$ and forgetting $d$** — with the principal axis at $y=d$, the maximum is $d+|a|$ and the minimum is $d-|a|$. For $y=4\\sin x+7$ the maximum is $11$, not $4$.",
+        "**Reading tangent as if it had an amplitude** — $y=\\tan x$ is unbounded with period $\\pi$ and asymptotes at $x=\\frac{\\pi}{2}+n\\pi$; it has no amplitude and no maximum or minimum.",
+        "**Working in the wrong angle unit** — modelling questions are almost always in radians. Check the mode and read $b=\\frac{2\\pi}{\\text{period}}$ in radians."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A), where an A-mark depends on the M-mark before it. Follow-through (FT) means a correct step built on an earlier wrong value can still score, and 'ignore subsequent working' (ISW) means a correct answer is not spoiled by a later tidy-up. The engine also accepts equivalent forms. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "The height of a tide is modelled by $H(t)=4\\sin\\!\\big(\\tfrac{\\pi}{6}t\\big)+7$, where $H$ is in metres and $t$ is the time in hours after midnight. State the amplitude and the period, and find the maximum height and the first time it occurs. [5]",
+      "solution": "**Model answer — full working.**\n\nCompare with $y=a\\sin(bt)+d$: $a=4$, $b=\\frac{\\pi}{6}$, $d=7$.\n\n**Amplitude.** The amplitude is $|a| = 4$ m. (It is read directly from the coefficient of the sine; the vertical shift $d=7$ is the principal axis, not the amplitude.)\n\n**Period.** Period $= \\dfrac{2\\pi}{b} = \\dfrac{2\\pi}{\\pi/6} = 2\\pi\\times\\dfrac{6}{\\pi} = 12$ hours.\n\n**Maximum height.** The sine term reaches its greatest value $+1$, so the maximum height is $d + a = 7 + 4 = 11$ m.\n\n**First time it occurs.** For $y=a\\sin(bt)+d$ with $a>0$, the model starts on the principal axis at $t=0$ and rises to its first maximum a quarter of a period later:\n$t = \\tfrac{1}{4}\\times 12 = 3$ hours.\n(Check: $H(3) = 4\\sin\\!\\big(\\frac{\\pi}{6}\\times 3\\big)+7 = 4\\sin\\!\\big(\\frac{\\pi}{2}\\big)+7 = 4(1)+7 = 11$ m. ✓)\n\n**Final answer:** amplitude $4$ m; period $12$ hours; maximum height $11$ m, first occurring at $t=3$ hours (03:00).\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **A1 — amplitude.** Awarded for amplitude $=4$ m, read as $|a|$. This is an accuracy mark: the value stands on its own.\n- **M1 — period method.** Awarded for using $\\dfrac{2\\pi}{b}$ with $b=\\frac{\\pi}{6}$, i.e. writing $\\dfrac{2\\pi}{\\pi/6}$. This is a METHOD mark: it is earned for the correct approach even if the simplification later slips.\n- **A1 — period.** Awarded for the period $=12$ hours. This A-mark depends on the M-mark above. The engine accepts equivalent forms: $\\frac{2\\pi}{\\pi/6}$, $12$ and $12\\text{ h}$ all score.\n- **A1 — maximum height.** Awarded for $d+a = 7+4 = 11$ m. Follow-through (FT) applies: a student who mis-read $d$ but then correctly did $d+a$ on their own figures still earns this mark.\n- **A1 — first time.** Awarded for $t=3$ h, using the quarter-period $\\frac{1}{4}\\times(\\text{their period})$. FT again protects this: if a student found a wrong period but correctly took a quarter of it, the mark is awarded on their figure.\n\n**'Accept equivalent forms and correct rounding.'** The engine accepts the period as $12$ or $\\frac{2\\pi}{\\pi/6}$, and the time as $3$ h or $03:00$; it applies ISW, so a correct answer followed by a harmless restatement is not penalised.\n\n**Bottom line:** of the 5 marks, one is a method mark for the period formula and two answer marks are shielded by follow-through. A student who writes only '11 m at 3 h' with no working risks losing the method and FT protection if a number slips; a student who shows $|a|$, the $\\frac{2\\pi}{b}$ step, $d+a$ and the quarter-period keeps the marks even when the arithmetic wobbles."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, follow-through and equivalent forms accepted. So always show the method: state $a$, $b$, $c$, $d$; write the period as $\\frac{2\\pi}{b}$ before simplifying; give the maximum as $d+|a|$; and justify the time from the quarter-period. The M-marks and follow-through are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Reading amplitude, period and shifts fluently is the foundation for solving trigonometric equations graphically, for the double-angle and identity work that follows, and — at HL — for calculus on trigonometric functions, where the derivative of $\\sin x$ being $\\cos x$ depends on working in radians. The modelling habit you have built here, matching a sinusoid to a real cycle, reappears throughout applied mathematics. Master the routine — read $|a|$, $\\frac{2\\pi}{b}$, $c$ and $d$; find maxima as $d+|a|$; justify times from the quarter-period; show every line — and periodic modelling becomes variations on a method you already own."
     },
     {
       "type": "resources",
@@ -176,7 +278,8 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Trigonometric Function Transformations",

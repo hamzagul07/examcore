@@ -5,171 +5,142 @@
   "paper": "P1",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental principles of counting, including the multiplication principle, permutations (where order matters), and combinations (where order does not matter). You will learn to differentiate between these concepts and apply the correct formulas to solve problems involving arrangements and selections, a key skill for probability and other areas of mathematics.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "unit": { "code": "1", "title": "Number and algebra" },
+  "summary": "Counting principles let you find how many outcomes a situation has without ever listing them one by one. This lesson builds the full 1.4 toolkit: the product (multiplication) and addition counting principles, factorials, permutations for ordered arrangements ($^nP_r=\\frac{n!}{(n-r)!}$) including problems with restrictions, combinations for unordered selections ($^nC_r=\\binom{n}{r}$), and the all-important decision of when order matters and when it does not, with a brief look at arrangements of identical items. Every worked example is laid out the way our marking engine awards marks, because in a counting question the examiner rewards the recognition and the method, not just the final number.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and apply the multiplication principle for counting.",
-    "Distinguish between a permutation and a combination in a given context.",
-    "Calculate the number of permutations and combinations using the appropriate formulae, $^nP_r$ and $^nC_r$.",
-    "Solve counting problems that may involve multiple steps or constraints."
+    "Apply the product (multiplication) and addition counting principles, and decide which one a situation needs.",
+    "Use factorial notation to count arrangements of distinct objects, and simplify factorial expressions by hand for Paper 1.",
+    "Distinguish a permutation from a combination in context by asking whether order matters, and apply $^nP_r$ and $^nC_r$ correctly.",
+    "Solve counting problems with restrictions and with identical items, and handle 'at least' phrasing using the complement.",
+    "Present working so that method marks are earned for the recognition and set-up, not only the final answer."
   ],
+  "syllabusObjectivesCovered": ["1.4"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Arrangements vs. Selections",
-    "summary": "This topic provides the tools to count the number of ways things can be arranged or chosen. The key is to figure out whether the order of the items makes a difference.",
-    "analogy": "Imagine you're making a pizza. If you're choosing 3 toppings from a list of 10, the order you pick them in doesn't matter – you get the same pizza. This is a 'combination'. But if you're setting a 3-digit passcode for your phone, the order of the digits is crucial. '1-2-3' is different from '3-2-1'. This is a 'permutation'.",
+    "title": "Arrangements vs. selections",
+    "summary": "This topic gives you the tools to count the number of ways things can be arranged or chosen. The whole decision hinges on one question: does the order of the items make a difference to the outcome?",
+    "analogy": "Imagine making a pizza. If you choose 3 toppings from a list of 10, the order you pick them in does not matter — you get the same pizza either way. That is a combination. But if you set a 3-digit passcode for your phone, the order is everything: 1-2-3 is a different passcode from 3-2-1. That is a permutation.",
     "steps": [
-      "Read the problem carefully to identify what you are counting: arrangements or groups.",
-      "Ask the key question: 'Does the order matter?'. If yes, it's a permutation. If no, it's a combination.",
-      "Identify the total number of items to choose from ($n$) and the number of items you are choosing/arranging ($r$).",
-      "Apply the correct formula ($^nP_r$ or $^nC_r$) and calculate the answer, simplifying factorials where necessary for non-calculator questions."
+      "Read the problem and decide what you are counting: whole sequences of decisions, ordered arrangements, or unordered groups.",
+      "If it is a sequence of independent decisions, multiply the options (product principle). If it is a choice between mutually exclusive cases, add them (addition principle).",
+      "For a single arrangement or selection ask the key question: does order matter? If yes, it is a permutation ($^nP_r$); if no, it is a combination ($^nC_r$).",
+      "Identify $n$ (how many to choose from) and $r$ (how many are chosen), apply the correct formula, and simplify factorials by hand for Paper 1."
     ]
   },
+  "keyConcepts": ["product and addition principles", "order matters vs order does not", "restrictions and complements"],
   "flashcards": [
-    {
-      "front": "What is the multiplication principle of counting?",
-      "back": "If there are $m$ ways to do one task and $n$ ways to do another, there are $m \\times n$ ways to perform both tasks in sequence."
-    },
-    {
-      "front": "What is a permutation?",
-      "back": "An arrangement of a set of objects in a specific order. The order of the objects is important."
-    },
-    {
-      "front": "What is a combination?",
-      "back": "A selection of items from a larger set where the order of selection does not matter."
-    },
-    {
-      "front": "What is the formula for permutations of $r$ objects from a set of $n$?",
-      "back": "$^nP_r = \\frac{n!}{(n-r)!}$"
-    },
-    {
-      "front": "What is the formula for combinations of $r$ objects from a set of $n$?",
-      "back": "$^nC_r = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$"
-    },
-    {
-      "front": "What does $n!$ (n factorial) mean?",
-      "back": "The product of all positive integers up to $n$. For example, $5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$. It represents the number of ways to arrange $n$ distinct objects."
-    },
-    {
-      "front": "What is the value of $0!$?",
-      "back": "$0! = 1$. This is a definition, which is necessary for the permutation and combination formulas to work when $r=n$ or $r=0$."
-    },
-    {
-      "front": "Which keywords suggest a permutation problem?",
-      "back": "'Arrange', 'order', 'line up', 'position', 'schedule', 'rank'."
-    },
-    {
-      "front": "Which keywords suggest a combination problem?",
-      "back": "'Choose', 'select', 'group', 'committee', 'team', 'sample'."
-    },
-    {
-      "front": "How are $^nP_r$ and $^nC_r$ related?",
-      "back": "$^nP_r = ^nC_r \\times r!$. The number of permutations is the number of combinations multiplied by the number of ways to arrange the chosen items."
-    },
-    {
-      "front": "How do you handle a problem with a constraint, like 'person A must be included'?",
-      "back": "Treat the constrained item as already chosen. Then, reduce the number of items to choose from ($n$) and the number of items to choose ($r$) accordingly for the rest of the selection."
-    }
+    { "front": "Product (multiplication) principle", "back": "If a task is done as a sequence of independent stages, with $m$ ways for the first and $n$ ways for the second, there are $m \\times n$ ways to complete both. It extends to any number of stages. Signal word: 'and' (do this AND then that).", "pillLabel": "Principle" },
+    { "front": "Addition principle", "back": "If an outcome falls into mutually exclusive cases with $m$ ways in one case and $n$ ways in another, there are $m + n$ ways in total. Signal word: 'or' (this case OR that case, with no overlap).", "pillLabel": "Principle" },
+    { "front": "Factorial $n!$", "back": "The product of all positive integers up to $n$: $n! = n \\times (n-1) \\times \\cdots \\times 1$. It counts the arrangements of $n$ distinct objects. For example $5! = 120$.", "pillLabel": "Definition" },
+    { "front": "Why $0! = 1$", "back": "$0! = 1$ by definition. There is exactly one way to arrange nothing, and this value is required so that $^nP_r$ and $^nC_r$ give sensible answers when $r = 0$ or $r = n$.", "pillLabel": "Definition" },
+    { "front": "Permutation $^nP_r$", "back": "An ordered arrangement of $r$ objects chosen from $n$ distinct objects: $^nP_r = \\dfrac{n!}{(n-r)!}$. Order matters — ABC differs from BCA.", "pillLabel": "Formula" },
+    { "front": "Combination $^nC_r$", "back": "An unordered selection of $r$ objects from $n$ distinct objects: $^nC_r = \\dbinom{n}{r} = \\dfrac{n!}{r!\\,(n-r)!}$. Order does not matter — $\\{A,B,C\\}$ equals $\\{B,C,A\\}$.", "pillLabel": "Formula" },
+    { "front": "Link between $^nP_r$ and $^nC_r$", "back": "$^nP_r = {}^nC_r \\times r!$. To arrange is to first select the group ($^nC_r$) and then order it ($r!$). This is why permutations are never fewer than combinations for $r > 1$.", "pillLabel": "Relationship" },
+    { "front": "Symmetry of combinations", "back": "$\\dbinom{n}{r} = \\dbinom{n}{n-r}$. Choosing the $r$ items you keep is the same as choosing the $n-r$ items you leave behind, so the two counts are equal.", "pillLabel": "Identity" },
+    { "front": "Which one: permutation or combination?", "back": "Ask: if I swap the order of the chosen items, is it a new outcome? Yes → permutation (arrange, order, line up, rank, password, medals, timetable). No → combination (choose, select, group, committee, team, sample, handshake).", "pillLabel": "Decision" },
+    { "front": "Arrangements with restrictions", "back": "Deal with the restricted position or item FIRST, then count the rest. 'A must be included' means A is already placed, so choose the remaining items from what is left. 'Two people sit together' means glue them into one block, then arrange within the block.", "pillLabel": "Technique" },
+    { "front": "'At least' and the complement", "back": "For 'at least one', it is usually faster to count the total and subtract the unwanted case: $P(\\text{at least one}) = \\text{total} - (\\text{none})$. Counting every 'one, two, three, …' case directly is slower and error-prone.", "pillLabel": "Technique" },
+    { "front": "Arrangements of identical items", "back": "The number of distinct arrangements of $n$ objects of which some are identical is $\\dfrac{n!}{p!\\,q!\\cdots}$, where $p, q, \\ldots$ are the counts of each repeated type. Example: MISSISSIPPI has $\\dfrac{11!}{1!\\,4!\\,4!\\,2!}$ arrangements.", "pillLabel": "Formula" },
+    { "front": "Exam trap: order matters vs not", "back": "The single most penalised error is using $^nP_r$ where $^nC_r$ is meant (or the reverse). A committee, team or hand of cards is UNORDERED — use combinations. Medals, seats and passwords are ORDERED — use permutations.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A committee of 3 is to be chosen from 10 people. The number of possible committees is:", "options": ["$^{10}P_3 = 720$, because we are choosing 3 people", "$^{10}C_3 = 120$, because a committee is unordered", "$10^3 = 1000$, one choice for each place", "$3! = 6$"], "answer": "$^{10}C_3 = 120$, because a committee is unordered" },
+    { "prompt": "A password is formed by arranging 3 different letters chosen from 10. The number of possible passwords is:", "options": ["$^{10}C_3 = 120$, because order does not matter", "$^{10}P_3 = 720$, because order matters", "$10 \\times 3 = 30$", "$3! = 6$"], "answer": "$^{10}P_3 = 720$, because order matters" },
+    { "prompt": "A meal is one main AND one dessert; there are 5 mains and 4 desserts. A snack is one item that is EITHER a main OR a dessert. The counts are:", "options": ["Meals $5 + 4 = 9$; snacks $5 \\times 4 = 20$", "Meals $5 \\times 4 = 20$; snacks $5 + 4 = 9$", "Both $20$", "Both $9$"], "answer": "Meals $5 \\times 4 = 20$; snacks $5 + 4 = 9$" },
+    { "prompt": "Five books are arranged on a shelf, but two particular books must be kept together. Treating them as one block, the number of arrangements is:", "options": ["$5! = 120$", "$4! = 24$", "$4! \\times 2! = 48$", "$2! = 2$"], "answer": "$4! \\times 2! = 48$" },
+    { "prompt": "A team of 4 is chosen from 9 players. The fastest way to count teams with 'at least one' of two named players is to:", "options": ["Add the cases: exactly one, plus exactly two", "Compute all teams and subtract those with neither named player", "Use $^9P_4$ because order matters", "Multiply $\\binom{9}{4}$ by 2"], "answer": "Compute all teams and subtract those with neither named player" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between $^nP_r$ and $^nC_r$ again?",
-      "a": "The key difference is order. $^nP_r$ (Permutation) counts arrangements where order matters. For example, 'ABC' is different from 'BCA'. $^nC_r$ (Combination) counts selections where order does not matter. The group {A, B, C} is the same as {B, C, A}. Always ask yourself: if I change the order of the items I've picked, do I get a new outcome? If yes, use Permutation. If no, use Combination."
-    },
-    {
-      "q": "How do I solve problems that mix permutations and combinations?",
-      "a": "Break the problem down into stages. Often, you might use a combination to select a group, and then a permutation to arrange the members of that group, or arrange the group with other items. Use the multiplication principle to combine the results from each stage. For example, 'Choose a committee of 3 from 10 people, and then assign the roles of Chair and Secretary from the committee'. This would be $\\binom{10}{3}$ to choose the committee, multiplied by $^3P_2$ to assign the roles."
-    },
-    {
-      "q": "Can I just use my calculator for all these questions?",
-      "a": "For Paper 2, yes, your GDC is a powerful tool and you should use the built-in `nPr` and `nCr` functions. However, for Paper 1 (the non-calculator paper), you will be expected to calculate these values by hand. This usually involves simplifying factorials. The numbers in Paper 1 questions are chosen to be manageable without a calculator, so practicing factorial simplification is essential."
-    }
+    { "q": "How do I decide between a permutation and a combination?", "a": "Ask a single question: if I swap the order of the items I have chosen, do I get a new outcome? If yes, order matters and you want a permutation, $^nP_r$. If no, order is irrelevant and you want a combination, $^nC_r$. Anchoring words help: 'arrange', 'order', 'line up', 'rank', 'password', 'medals' point to permutations; 'choose', 'select', 'group', 'committee', 'team', 'sample' point to combinations. When in doubt, test a tiny case — is picking A then B different from picking B then A?" },
+    { "q": "When do I multiply and when do I add?", "a": "Multiply when a task is a sequence of stages you carry out together — you do stage one AND stage two (product principle). Add when the outcome must fall into one of several separate, non-overlapping cases — case one OR case two (addition principle). A quick test: the word 'and' between the steps usually signals multiply; the word 'or' between mutually exclusive cases usually signals add. Many exam questions split into cases that you add, where each case is itself a product." },
+    { "q": "How do I handle questions that say 'at least'?", "a": "Use the complement. Counting 'at least one' directly means adding up 'exactly one', 'exactly two', and so on, which is slow and easy to get wrong. Instead count the total number of outcomes and subtract the single unwanted case — usually 'none'. So the number of committees containing at least one woman equals the total number of committees minus the number with no women at all." },
+    { "q": "Can I just use my calculator for all of this?", "a": "On Paper 2, yes — use the built-in nPr and nCr functions on your GDC. On Paper 1 (no calculator) you must evaluate these by hand, which means simplifying factorials. The numbers are chosen to stay manageable: for example $\\dfrac{8!}{6!} = \\dfrac{8 \\times 7 \\times 6!}{6!} = 56$. Practising this cancellation is essential, because writing out every factorial in full wastes time and invites arithmetic slips." },
+    { "q": "How do I count arrangements when some items are identical?", "a": "Divide the total factorial by a factorial for each repeated group. Arranging $n$ items where one letter repeats $p$ times and another repeats $q$ times gives $\\dfrac{n!}{p!\\,q!}$. The division removes the arrangements that only differ by swapping identical items, which are not actually distinct. For the word BANANA this is $\\dfrac{6!}{3!\\,2!} = 60$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of counting! This might sound simple, but it's a fundamental part of mathematics with huge applications, especially in probability, computer science, and statistics. In this lesson, we'll learn systematic ways to count outcomes, arrangements, and selections, moving beyond just listing them one by one. Mastering these principles is crucial for success in Paper 1."
-    },
-    {
-      "type": "heading",
-      "content": "The Foundation: The Multiplication Principle"
-    },
-    {
-      "type": "text",
-      "content": "The most basic tool in our counting toolkit is the multiplication principle. It states that if you have a sequence of choices to make, the total number of possibilities is the product of the number of options for each choice. For example, if you have 3 shirts and 4 pairs of trousers, you have $3 \\times 4 = 12$ possible outfits. This principle underpins everything else we will learn in this topic."
-    },
-    {
-      "type": "workedExample",
-      "question": "A restaurant menu offers a fixed-price dinner consisting of a starter, a main course, and a dessert. There are 4 starters, 8 main courses, and 3 desserts to choose from. How many different dinner combinations are possible?",
-      "solution": "This is a direct application of the multiplication principle. We have three independent choices to make.\n\nNumber of choices for starter = 4\nNumber of choices for main course = 8\nNumber of choices for dessert = 3\n\nTotal number of different dinners = (Number of starters) $\\times$ (Number of mains) $\\times$ (Number of desserts) [M1]\n\nTotal = $4 \\times 8 \\times 3 = 96$ [A1]\n\nThere are 96 different dinner combinations possible."
-    },
-    {
-      "type": "heading",
-      "content": "Permutations: When Order Matters"
-    },
-    {
-      "type": "text",
-      "content": "A permutation is an arrangement of objects in a specific order. Think about arranging books on a shelf, assigning roles in a play, or creating a password. In all these cases, changing the order creates a new, distinct outcome. The factorial notation, $n!$, is used to count the number of ways to arrange $n$ distinct objects."
-    },
-    {
-      "type": "formula",
-      "content": "Number of ways to arrange all $n$ objects: $n! = n \\times (n-1) \\times (n-2) \\times \\dots \\times 1$\n\nNumber of ways to arrange $r$ objects from $n$: $^nP_r = \\frac{n!}{(n-r)!}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Use permutations when the problem involves arranging, ordering, or assigning to specific positions.",
-        "The formula $^nP_r$ counts the number of ordered lists of size $r$ from $n$ items.",
-        "On Paper 1, you'll need to be able to simplify factorial expressions by hand, e.g., $\\frac{8!}{6!} = \\frac{8 \\times 7 \\times 6!}{6!} = 8 \\times 7 = 56$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "There are 8 runners in a 100-metre race. In how many different ways can the gold, silver, and bronze medals be awarded?",
-      "solution": "Here, the order is crucial. The runner who comes first gets gold, second gets silver, and third gets bronze. This is different from the runner who gets silver coming first. So, this is a permutation problem.\n\nWe are arranging 3 medal positions from 8 runners.\nSo, $n=8$ and $r=3$. [M1]\n\nWe need to calculate $^8P_3$.\n\nMethod 1: Using the formula\n$^8P_3 = \\frac{8!}{(8-3)!} = \\frac{8!}{5!}$ [M1]\n$= \\frac{8 \\times 7 \\times 6 \\times 5!}{5!} = 8 \\times 7 \\times 6 = 336$ [A1]\n\nMethod 2: Using the multiplication principle (box method)\nThere are 8 choices for the gold medal winner.\nOnce the gold is awarded, there are 7 remaining choices for the silver medal.\nThen, there are 6 remaining choices for the bronze medal.\nTotal ways = $8 \\times 7 \\times 6 = 336$ [M1][A1]\n\nThere are 336 different ways to award the medals."
-    },
-    {
-      "type": "heading",
-      "content": "Combinations: When Order Doesn't Matter"
-    },
-    {
-      "type": "text",
-      "content": "A combination is a selection of objects where the order does not matter. Think about picking a handful of sweets from a jar, forming a committee from a group of people, or choosing lottery numbers. In these scenarios, the group of items selected is what matters, not the order in which you picked them."
-    },
-    {
-      "type": "formula",
-      "content": "Number of ways to choose $r$ objects from $n$: $^nC_r = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Use combinations when the problem involves selecting, choosing, or forming a group where the internal order is irrelevant.",
-        "The number of combinations is always less than or equal to the number of permutations for the same $n$ and $r$ (when $r > 1$).",
-        "A useful identity is $\\binom{n}{r} = \\binom{n}{n-r}$. Choosing $r$ items to take is the same as choosing $n-r$ items to leave behind."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "The single most important skill in this topic is correctly identifying whether a problem requires a permutation or a combination. Underline keywords in the question. If you see 'arrange', 'order', 'positions', think Permutation. If you see 'select', 'choose', 'group', think Combination. If you're unsure, create a small, simple example. If you choose A then B, is that different from choosing B then A? If yes, it's a permutation. If no, it's a combination."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Counting Problems",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=1.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Maths AA SL Questionbank - Topic 1.4",
-          "href": "/questions?subject=ib-maths-aa-sl&topic=1.4"
-        },
-        {
-          "label": "GDC Guide: Permutations and Combinations",
-          "href": "/guides/gdc-permutations-combinations"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Counting sounds trivial, but doing it systematically is one of the most useful skills in the course — it underpins all of probability and appears throughout statistics and discrete work. The point of this topic is to count outcomes without ever listing them: to answer 'how many ways?' with a calculation rather than a hand-written table. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice, mark by mark, because in a counting question the recognition and the method carry marks in their own right." },
+
+    { "type": "heading", "content": "The two counting principles: product and addition" },
+    { "type": "text", "content": "Almost every counting problem is built from two ideas. The product (multiplication) principle handles a task done as a sequence of stages carried out together: if there are $m$ ways to complete the first stage and, for each of these, $n$ ways to complete the second, then there are $m \\times n$ ways to complete both. The addition principle handles a choice between separate, non-overlapping cases: if an outcome can arise in $m$ ways in one case or $n$ ways in a second case, with no overlap, there are $m + n$ ways in total. The quick test is the connecting word: 'and' between stages means multiply; 'or' between mutually exclusive cases means add." },
+    { "type": "keyPoints", "items": [
+      "**Product principle ('and'):** stages done together multiply. Three shirts and four pairs of trousers give $3 \\times 4 = 12$ outfits.",
+      "**Addition principle ('or'):** mutually exclusive cases add. A single item that is a shirt or a pair of trousers gives $3 + 4 = 7$ choices.",
+      "**Check for overlap before adding:** the addition principle needs the cases to be disjoint, otherwise you double-count.",
+      "**Combine freely:** many problems split into cases you add, where each case is itself a product of stages."
+    ]},
+    { "type": "workedExample", "question": "A restaurant offers a fixed-price dinner of one starter, one main course and one dessert. There are 4 starters, 8 main courses and 3 desserts. (a) How many different dinners are possible? (b) A lunch special is a single course only — any one starter, main or dessert. How many lunch specials are possible? [4]", "solution": "**(a) A dinner is a starter AND a main AND a dessert — three stages together, so multiply (product principle).**  [M1: multiply the stages]\nTotal dinners $= 4 \\times 8 \\times 3 = 96$.  [A1]\n\n**(b) A lunch special is one course that is a starter OR a main OR a dessert — three mutually exclusive cases, so add (addition principle).**  [M1: add the disjoint cases]\nTotal specials $= 4 + 8 + 3 = 15$.  [A1]\n\n**Final answer:** 96 possible dinners; 15 possible lunch specials." },
+
+    { "type": "heading", "content": "Factorials and permutations: when order matters" },
+    { "type": "text", "content": "A permutation is an arrangement of objects in a definite order. Arranging books on a shelf, assigning medals, setting a password — in each case changing the order produces a genuinely different outcome. To count the arrangements of $n$ distinct objects we use the factorial $n!$, the product of every positive integer up to $n$. There are $n$ choices for the first position, then $n-1$ for the second, and so on down to $1$, which is exactly $n!$. When we arrange only $r$ of the $n$ objects, the count is $^nP_r$." },
+    { "type": "formula", "content": "n! = n \\times (n-1) \\times (n-2) \\times \\cdots \\times 1, \\qquad 0! = 1\n\n^nP_r = \\dfrac{n!}{(n-r)!}" },
+    { "type": "keyPoints", "items": [
+      "Use a permutation when the task is to arrange, order, rank, or assign to distinct positions.",
+      "$^nP_r$ counts ordered lists of length $r$ drawn from $n$ distinct items.",
+      "On Paper 1, simplify factorials by cancelling: $\\dfrac{8!}{6!} = \\dfrac{8 \\times 7 \\times 6!}{6!} = 56$ — never write out both factorials in full.",
+      "The box (slot) method is equivalent: fill each position in turn with the number of remaining choices and multiply."
+    ]},
+    { "type": "workedExample", "question": "There are 8 runners in a race. In how many different ways can the gold, silver and bronze medals be awarded? [3]", "solution": "The medals are ordered — first, second, third are distinct positions — so this is a permutation. Arrange $r = 3$ positions from $n = 8$ runners.  [M1: recognise permutation, identify $n$ and $r$]\n\n**Formula method.**\n$^8P_3 = \\dfrac{8!}{(8-3)!} = \\dfrac{8!}{5!} = \\dfrac{8 \\times 7 \\times 6 \\times 5!}{5!}$  [M1: substitute and cancel]\n$= 8 \\times 7 \\times 6 = 336$.  [A1]\n\n**Box method (equivalent):** 8 choices for gold, then 7 for silver, then 6 for bronze: $8 \\times 7 \\times 6 = 336$.\n\n**Final answer:** the medals can be awarded in 336 ways." },
+
+    { "type": "heading", "content": "Permutations with restrictions" },
+    { "type": "text", "content": "Many arrangement questions add a condition: a particular item must go in a fixed place, two items must stay together, or an item is barred from a position. The reliable strategy is to deal with the restriction FIRST and count the rest afterwards. If a specific item must occupy a position, place it, then arrange what remains. If two items must be adjacent, glue them into a single block, arrange the blocks, then multiply by the internal arrangements of the block. If an item is forbidden somewhere, either count the allowed placements first or subtract the forbidden cases from the unrestricted total." },
+    { "type": "keyPoints", "items": [
+      "**Fixed position:** place the restricted item first, then arrange the remaining $n-1$ items in $(n-1)!$ ways.",
+      "**Must stay together:** treat the pair (or group) as one block. With a block of size $k$, arrange the blocks, then multiply by $k!$ for the order inside the block.",
+      "**Forbidden case:** total arrangements minus the arrangements that break the rule (the complement) is often quickest.",
+      "**Never double-handle:** once an item is placed or blocked, do not also count it among the free items."
+    ]},
+    { "type": "workedExample", "question": "Five different books, including a dictionary and a thesaurus, are arranged in a row on a shelf. (a) In how many ways can all five be arranged? (b) In how many of these arrangements are the dictionary and thesaurus next to each other? [4]", "solution": "**(a)** Five distinct books in a row is an arrangement of all five: $5! = 120$.  [A1]\n\n**(b)** Require the dictionary and thesaurus adjacent, so glue them into a single block. This gives 4 objects to arrange: the block plus the other 3 books.  [M1: treat the pair as one block]\nArrange the 4 objects: $4! = 24$.\nWithin the block the two books can be ordered in $2! = 2$ ways.  [M1: multiply by internal order]\nTotal $= 4! \\times 2! = 24 \\times 2 = 48$.  [A1]\n\n**Final answer:** 120 arrangements in total, of which 48 keep the two reference books together." },
+
+    { "type": "heading", "content": "Combinations: when order does not matter" },
+    { "type": "text", "content": "A combination is a selection where order is irrelevant. Forming a committee, dealing a hand of cards, choosing lottery numbers — the group you end up with is all that matters, not the sequence in which you picked it. Because each unordered group of $r$ items could be arranged in $r!$ different orders, there are always $r!$ times fewer combinations than permutations, which is exactly why we divide by $r!$ in the formula." },
+    { "type": "formula", "content": "^nC_r = \\dbinom{n}{r} = \\dfrac{n!}{r!\\,(n-r)!}, \\qquad ^nP_r = {}^nC_r \\times r!" },
+    { "type": "keyPoints", "items": [
+      "Use a combination when selecting or forming a group whose internal order is irrelevant.",
+      "$^nC_r \\le {}^nP_r$ for $r > 1$, because ordering the chosen group multiplies the count by $r!$.",
+      "The symmetry $\\dbinom{n}{r} = \\dbinom{n}{n-r}$ can shorten arithmetic: $\\dbinom{10}{8} = \\dbinom{10}{2} = 45$.",
+      "Selections from different pools combine with the product principle: choose from group A AND from group B, then multiply."
+    ]},
+    { "type": "workedExample", "question": "From a group of 12 students, a team of 5 is to be chosen. (a) How many different teams are possible? (b) One particular student, Maria, must be on the team. How many teams include Maria? [4]", "solution": "**(a)** A team is unordered, so this is a combination: choose $r = 5$ from $n = 12$.  [M1: recognise combination]\n$^{12}C_5 = \\dbinom{12}{5} = \\dfrac{12!}{5!\\,7!} = 792$.  [A1]\n\n**(b)** Maria is already in the team, so she is placed first. The remaining $4$ team members are chosen from the other $11$ students.  [M1: fix Maria, reduce $n$ and $r$]\n$^{11}C_4 = \\dbinom{11}{4} = \\dfrac{11!}{4!\\,7!} = 330$.  [A1]\n\n**Final answer:** 792 possible teams in total, of which 330 include Maria." },
+
+    { "type": "heading", "content": "'At least' problems and the complement" },
+    { "type": "text", "content": "When a question asks for 'at least one' of something, counting each qualifying case separately — exactly one, exactly two, and so on — is slow and a frequent source of error. The efficient method is the complement: count the total number of selections, then subtract the single case you do NOT want, which is usually 'none'. What remains is everything with at least one. This turns a multi-case sum into a single subtraction." },
+    { "type": "workedExample", "question": "A group consists of 6 women and 4 men. A committee of 4 is chosen at random. Find the number of committees that contain at least one man. [3]", "solution": "'At least one man' is fastest by the complement: total committees minus committees with no men.  [M1: complement method]\nTotal committees of 4 from 10 people: $\\dbinom{10}{4} = 210$.\nCommittees with no men (all 4 from the 6 women): $\\dbinom{6}{4} = 15$.  [M1: count the unwanted case]\nAt least one man $= 210 - 15 = 195$.  [A1]\n\n**Final answer:** 195 committees contain at least one man." },
+
+    { "type": "heading", "content": "Arrangements with identical items" },
+    { "type": "text", "content": "So far every object has been distinct. When some items are identical, swapping two of them does not create a new arrangement, so the plain factorial over-counts. To correct this, divide $n!$ by a factorial for each group of identical items. Arranging $n$ objects, where one type appears $p$ times and another appears $q$ times, gives $\\dfrac{n!}{p!\\,q!}$; the division removes the arrangements that differ only by rearranging indistinguishable items." },
+    { "type": "formula", "content": "\\text{Distinct arrangements} = \\dfrac{n!}{p!\\,q!\\,\\cdots} \\quad\\text{where } p, q, \\ldots \\text{ count each repeated type}" },
+    { "type": "keyPoints", "items": [
+      "Divide by a factorial for every repeated type. BANANA: $\\dfrac{6!}{3!\\,2!} = 60$ (three A's, two N's).",
+      "Letters or objects that appear once contribute $1! = 1$ and can be ignored in the denominator.",
+      "If every item is distinct there is no repetition, and the formula collapses back to $n!$."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Using a permutation where a combination is meant (or vice versa)** — the single most costly error. Committees, teams, hands and samples are UNORDERED (combinations); medals, seats, timetables and passwords are ORDERED (permutations). Always ask whether swapping the order changes the outcome.",
+      "**Multiplying when you should add, or adding when you should multiply** — stages done together ('and') multiply; mutually exclusive cases ('or') add. Watch for cases that are not actually disjoint, which causes double-counting.",
+      "**Tackling 'at least' by brute force** — adding every 'exactly $k$' case invites slips. Use the complement: total minus the unwanted case.",
+      "**Mishandling restrictions** — forgetting to multiply by $k!$ for the internal order of a 'together' block, or double-counting an item that has already been fixed in place.",
+      "**Forgetting the identical-items division** — writing $n!$ for a word with repeated letters over-counts; divide by a factorial for each repeated group.",
+      "**Writing only the final number on Paper 1** — a bare answer with no formula or working risks the method marks; the recognition of $^nP_r$ or $^nC_r$ and the substitution are each worth marks.",
+      "**Arithmetic from un-cancelled factorials** — expanding $12!$ or $8!$ in full wastes time and invites error; cancel against the denominator first."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In an IB Mathematics question the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach — here, recognising that order does not matter and setting up the right product of combinations — and an answer mark (A) rewards the correct value, but an A-mark is dependent on the M-mark that earns it. Follow-through (FT) means a value that follows correctly from your own earlier (possibly wrong) figure still scores, in-between working is ignored (ISW) once a correct answer is seen, and equivalent forms are accepted. Study how each of the 4 marks below is pinned to one line." },
+    { "type": "workedExample", "question": "A committee of 4 people is to be chosen from a group of 7 women and 5 men. Find the number of committees that consist of exactly 2 women and 2 men. [4]", "solution": "**Model answer — full working.**\n\nA committee is unordered, so this is a combinations problem — order does not matter. The committee is built in two independent stages: choose the women AND choose the men, so multiply (product principle).\n\nChoose 2 women from 7: $\\dbinom{7}{2} = \\dfrac{7!}{2!\\,5!} = 21$.\nChoose 2 men from 5: $\\dbinom{5}{2} = \\dfrac{5!}{2!\\,3!} = 10$.\nBy the product principle, total committees $= \\dbinom{7}{2} \\times \\dbinom{5}{2} = 21 \\times 10 = 210$.\n\n**Final answer:** 210 committees have exactly 2 women and 2 men.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — recognise combinations (order does not matter).** Awarded for treating the selection as unordered and using combinations rather than permutations. This is a METHOD mark: it is earned for the correct approach even if a later value slips.\n- **M1 — set up the product $\\dbinom{7}{2} \\times \\dbinom{5}{2}$.** Awarded for choosing the women AND the men and multiplying the two selections (product principle). The engine checks that both correct combinations appear and are multiplied, not added.\n- **A1 — $21 \\times 10$.** Awarded for the correct individual values $\\dbinom{7}{2} = 21$ and $\\dbinom{5}{2} = 10$. This answer mark is DEPENDENT on the second M-mark: it is only available once the product has been set up correctly.\n- **A1 — $210$.** Awarded for the final value. Follow-through (FT) applies: a student who mis-evaluated one combination but then multiplied their two values correctly still earns this mark on their own figures. Equivalent forms are accepted — $\\dbinom{7}{2}\\dbinom{5}{2}$, ${}^7C_2 \\times {}^5C_2$, or $210$ all score — and once the correct $210$ is seen, in-between working is ignored (ISW).\n\n**Accept equivalent forms.** The engine accepts $\\dbinom{7}{2}\\dbinom{5}{2}$, ${}^7C_2 \\cdot {}^5C_2$ and $210$ as equivalent; it does not demand a particular notation, only correct recognition, set-up and value.\n\n**Bottom line:** of the 4 marks, two are method marks for the recognition and set-up that survive an arithmetic slip, and the answer marks are shielded by follow-through. A student who writes only '210' with no working risks losing 2–3 marks if the number is wrong; a student who shows the combinations and the product keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and equivalent forms accepted. So always show the method: state whether order matters, write the $^nP_r$ or $^nC_r$ you chose, show the substitution, then the value. The method marks and follow-through are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Counting is the engine room of probability. Once you can count the total outcomes and the favourable outcomes, a probability is simply the ratio of the two, and combinations reappear throughout the binomial distribution, where $\\binom{n}{r}$ counts the ways of getting $r$ successes in $n$ trials. The binomial theorem in algebra uses the very same $\\binom{n}{r}$ as its coefficients. Master the core habit here — decide whether order matters, decide whether to multiply or add, deal with restrictions first, and show every line — and these later topics become variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 1 counting question marked: solve a permutations/combinations problem with full working", "href": "/mark?subject=ib-maths-aa-sl&topic=1.4&component=paper_1" },
+    { "type": "resources", "items": [
+      { "label": "IB Maths AA SL Questionbank - Topic 1.4", "href": "/questions?subject=ib-maths-aa-sl&topic=1.4" },
+      { "label": "GDC Guide: Permutations and Combinations", "href": "/guides/gdc-permutations-combinations" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

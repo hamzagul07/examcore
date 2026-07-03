@@ -5,173 +5,122 @@
   "paper": "P1",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson introduces integration as the reverse process of differentiation, known as antidifferentiation. You will learn how to find the indefinite integral of polynomial functions using the power rule and understand the crucial role of the constant of integration, 'C'.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "unit": { "code": "5", "title": "Calculus" },
+  "summary": "This lesson develops integration as antidifferentiation — the reverse of the differentiation you already know. It builds the full 5.5 toolkit: the indefinite integral and why every answer carries a constant of integration $+C$; the power rule $\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}+C$ for $n\\neq-1$; the integrals of the standard functions $e^x$, $\\frac{1}{x}$, $\\sin x$ and $\\cos x$; integrating a sum term by term; and recovering a function from its derivative using a boundary condition to pin down $C$ (a particular solution). Every worked example is laid out exactly the way our marking engine awards marks, because in a Paper 1 calculus question how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand integration as the reverse process of differentiation (antidifferentiation).",
-    "Find the indefinite integral of functions of the form f(x) = ax^n for n ∈ ℚ, n ≠ -1.",
-    "Recognise and include the constant of integration, '+ C', to represent a family of functions.",
-    "Use a given point on a curve to find the specific value of the constant of integration."
+    "Understand integration as the reverse process of differentiation (antidifferentiation), and read the notation $\\int f(x)\\,dx$.",
+    "Apply the power rule $\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}+C$ for $n\\in\\mathbb{Q}$, $n\\neq-1$, and integrate a sum term by term.",
+    "Recall and use the integrals of the standard functions $e^x$, $\\frac{1}{x}$, $\\sin x$ and $\\cos x$.",
+    "Include the constant of integration $+C$ to represent a whole family of antiderivatives.",
+    "Use a boundary or initial condition to find $C$ and so determine a particular solution, presenting working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.5"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Rewinding the Function Clock",
     "summary": "If differentiation is finding a function's rate of change, integration is working backwards to find the original function from that rate of change. It's the mathematical equivalent of un-baking a cake to find the recipe.",
     "analogy": "Imagine you're a food critic. Differentiation is like tasting a finished brownie and describing its flavour profile: 'intensely chocolatey with a hint of salt'. Integration is like being given that flavour profile and having to write the original recipe. You can figure out the main ingredients (flour, sugar, chocolate), but you might not know the exact amount of salt, or if there was a drop of vanilla extract. These small unknown quantities, which don't change the main flavour profile, are like the 'constant of integration'. There are a whole family of similar recipes that could produce that same taste.",
     "steps": [
-      "Identify the function to integrate, which is often given as a derivative like f'(x) or dy/dx.",
-      "Apply the power rule for integration to each term: increase the power by 1, then divide by the new power.",
-      "Add the constant of integration, '+ C', at the end. This represents all possible antiderivatives.",
-      "If a point on the curve is given, substitute the x and y values into your integrated function to solve for C."
+      "Identify the function to integrate, which is often given as a derivative like $f'(x)$ or $\\frac{dy}{dx}$.",
+      "Apply the power rule to each term: increase the power by 1, then divide by the new power — or quote the standard integral for $e^x$, $\\frac{1}{x}$, $\\sin x$ or $\\cos x$.",
+      "Add the constant of integration $+C$ at the end. This represents all possible antiderivatives.",
+      "If a point on the curve is given, substitute the $x$ and $y$ values into your integrated function and solve for $C$ to get the particular solution."
     ]
   },
+  "keyConcepts": ["antidifferentiation", "constant of integration", "particular solution"],
   "flashcards": [
-    {
-      "front": "What is antidifferentiation?",
-      "back": "The process of finding the original function, F(x), from its derivative, f(x). It is the reverse process of differentiation."
-    },
-    {
-      "front": "What is an indefinite integral?",
-      "back": "The result of antidifferentiation. It represents a 'family' of functions, not just one, which is why it includes the constant of integration, '+ C'."
-    },
-    {
-      "front": "What is the notation for an indefinite integral?",
-      "back": "$\\int f(x) \\, dx$. The $\\int$ is the integral sign, $f(x)$ is the integrand, and $dx$ indicates integration with respect to $x$."
-    },
-    {
-      "front": "What is the 'integrand'?",
-      "back": "The function that is being integrated. In $\\int f(x) \\, dx$, the integrand is $f(x)$."
-    },
-    {
-      "front": "What is the purpose of the '+ C' in an indefinite integral?",
-      "back": "It is the constant of integration. Since the derivative of any constant is zero, there are infinitely many possible constant terms for an antiderivative. '+ C' represents all of them."
-    },
-    {
-      "front": "State the power rule for integration.",
-      "back": "$\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$, for any rational number $n \\neq -1$."
-    },
-    {
-      "front": "Why does the power rule for integration have the condition $n \\neq -1$?",
-      "back": "If $n = -1$, the denominator in the rule becomes $n+1 = -1+1 = 0$. Division by zero is undefined."
-    },
-    {
-      "front": "What does the 'family of curves' represent in integration?",
-      "back": "The set of all functions that have the same derivative. They are vertical translations of each other, with the vertical shift determined by the constant of integration, C."
-    },
-    {
-      "front": "How do you find a specific value for the constant of integration, C?",
-      "back": "You need a 'boundary condition' or 'initial condition', which is usually a point $(x, y)$ that the function passes through. Substitute these values into the integrated function and solve for C."
-    },
-    {
-      "front": "What is the integral of a constant, $k$?",
-      "back": "$\\int k \\, dx = kx + C$. This is because the derivative of $kx$ is $k$."
-    },
-    {
-      "front": "How do you integrate a function that is a sum of terms, like $f(x) + g(x)$?",
-      "back": "Integrate each term separately and then add them together. $\\int (f(x) + g(x)) \\, dx = \\int f(x) \\, dx + \\int g(x) \\, dx$."
-    },
-    {
-      "front": "Common mistake: What is often forgotten when finding an indefinite integral?",
-      "back": "Forgetting to add the constant of integration, '+ C'. This will always lose at least one mark in an exam."
-    }
+    { "front": "What is antidifferentiation?", "back": "The process of finding an original function $F(x)$ from its derivative $f(x)$. It is the reverse of differentiation: if $F'(x)=f(x)$ then $F$ is an antiderivative of $f$.", "pillLabel": "Definition" },
+    { "front": "What is an indefinite integral?", "back": "The result of antidifferentiation. It represents a whole family of functions, not just one, which is why it always includes the constant of integration $+C$.", "pillLabel": "Definition" },
+    { "front": "What is the notation for an indefinite integral?", "back": "$\\int f(x)\\,dx$. The $\\int$ is the integral sign, $f(x)$ is the integrand, and $dx$ says integrate with respect to $x$.", "pillLabel": "Definition" },
+    { "front": "State the power rule for integration.", "back": "$\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}+C$, for any rational number $n\\neq-1$. In words: add one to the index, then divide by the new index.", "pillLabel": "Formula" },
+    { "front": "Why does the power rule require $n\\neq-1$?", "back": "If $n=-1$ the new denominator is $n+1=0$, and division by zero is undefined. The case $n=-1$ (i.e. $\\frac{1}{x}$) integrates to $\\ln|x|+C$ instead.", "pillLabel": "Formula" },
+    { "front": "$\\int e^x\\,dx$", "back": "$\\int e^x\\,dx=e^x+C$. The exponential function is its own derivative, so it is also its own integral.", "pillLabel": "Formula" },
+    { "front": "$\\int \\frac{1}{x}\\,dx$", "back": "$\\int \\frac{1}{x}\\,dx=\\ln|x|+C$. The modulus sign matters — it lets the result be defined for negative $x$ as well as positive.", "pillLabel": "Formula" },
+    { "front": "$\\int \\sin x\\,dx$ and $\\int \\cos x\\,dx$", "back": "$\\int \\sin x\\,dx=-\\cos x+C$ and $\\int \\cos x\\,dx=\\sin x+C$. Note the minus sign appears when integrating $\\sin x$, the reverse of the derivatives.", "pillLabel": "Formula" },
+    { "front": "How do you integrate a sum of terms?", "back": "Integrate each term separately and add: $\\int\\big(f(x)+g(x)\\big)\\,dx=\\int f(x)\\,dx+\\int g(x)\\,dx$. A constant multiplier can be taken outside the integral.", "pillLabel": "Framework" },
+    { "front": "What is the integral of a constant $k$?", "back": "$\\int k\\,dx=kx+C$, because the derivative of $kx$ is $k$. Treat $k$ as $kx^0$ if you prefer the power rule.", "pillLabel": "Formula" },
+    { "front": "Why does an indefinite integral give a family of curves?", "back": "The derivative of any constant is zero, so $F(x)$, $F(x)+1$ and $F(x)-10$ all share the same derivative. They are vertical translations of one another; $C$ selects which one.", "pillLabel": "Concept" },
+    { "front": "What is a particular solution?", "back": "A single member of the family, obtained by using a boundary/initial condition — a point $(x,y)$ the curve passes through — to solve for $C$.", "pillLabel": "Concept" },
+    { "front": "How do you find the value of $C$?", "back": "Substitute the given point's coordinates into your integrated function and solve the resulting equation for $C$.", "pillLabel": "Framework" },
+    { "front": "Exam Trap: the missing $+C$", "back": "Forgetting $+C$ on an indefinite integral loses an accuracy mark, and without it you cannot form the equation needed to find a particular solution. Write $+C$ the instant you integrate.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which of these is the correct value of $\\int (3x^2)\\,dx$?", "options": ["$6x+C$", "$x^3+C$", "$3x^3+C$", "$x^3$"], "answer": "$x^3+C$" },
+    { "prompt": "A student writes $\\int x^4\\,dx = 4x^3+C$. Their error is that they:", "options": ["Forgot the constant of integration", "Differentiated instead of integrated", "Used the wrong standard integral", "Divided by the old index instead of the new one"], "answer": "Differentiated instead of integrated" },
+    { "prompt": "What is $\\int \\frac{1}{x}\\,dx$?", "options": ["$\\frac{x^0}{0}+C$", "$-\\frac{1}{x^2}+C$", "$\\ln|x|+C$", "$1+C$"], "answer": "$\\ln|x|+C$" },
+    { "prompt": "Which statement about $\\int \\sin x\\,dx$ is correct?", "options": ["$\\int \\sin x\\,dx=\\cos x+C$", "$\\int \\sin x\\,dx=-\\cos x+C$", "$\\int \\sin x\\,dx=\\sin x+C$", "$\\int \\sin x\\,dx=-\\sin x+C$"], "answer": "$\\int \\sin x\\,dx=-\\cos x+C$" },
+    { "prompt": "A curve has $\\frac{dy}{dx}=4x$ and passes through $(1,3)$. After integrating to $y=2x^2+C$, the next step to find the particular solution is to:", "options": ["Differentiate $2x^2+C$ again", "Substitute $x=1,\\;y=3$ and solve for $C$", "Set $C=0$ because it is a constant", "Substitute $x=3,\\;y=1$ and solve for $C$"], "answer": "Substitute $x=1,\\;y=3$ and solve for $C$" }
   ],
   "faq": [
-    {
-      "q": "Why can't we use the power rule for integrating $x^{-1}$ (or $1/x$)?",
-      "a": "If we tried to apply the power rule, we would get $\\frac{x^{-1+1}}{-1+1} = \\frac{x^0}{0}$. Since division by zero is undefined, the rule doesn't work. The integral of $1/x$ is a special function, the natural logarithm, $\\ln|x| + C$, which you will study in more detail later."
-    },
-    {
-      "q": "What does the 'dx' at the end of an integral actually mean?",
-      "a": "The '$dx$' specifies the variable of integration. It tells you to integrate 'with respect to x'. If you had, for example, $\\int (2t^2) \\, dt$, the '$dt$' would tell you to integrate with respect to the variable $t$. It's a crucial part of the integral notation."
-    },
-    {
-      "q": "Is there a product or quotient rule for integration?",
-      "a": "Unlike differentiation, there is no simple product or quotient rule for integration. There are more advanced techniques called 'integration by parts' and 'integration by substitution' to handle such cases, but these are not part of the AA SL syllabus. For this course, you will typically need to expand brackets or simplify expressions into a sum of terms before you can integrate."
-    }
+    { "q": "Why can't we use the power rule for integrating $x^{-1}$ (that is, $\\frac{1}{x}$)?", "a": "If we tried, we would get $\\frac{x^{-1+1}}{-1+1}=\\frac{x^0}{0}$, and division by zero is undefined. So $n=-1$ is the one case the power rule cannot handle. Instead, $\\int \\frac{1}{x}\\,dx=\\ln|x|+C$ — this is one of the standard integrals you are expected to know." },
+    { "q": "What does the '$dx$' at the end of an integral actually mean?", "a": "It specifies the variable of integration — 'integrate with respect to $x$'. In $\\int (2t^2)\\,dt$ the '$dt$' tells you to integrate with respect to $t$ instead. It is a required part of the notation, not decoration; leaving it off is sloppy and can cost communication marks." },
+    { "q": "Is there a product or quotient rule for integration?", "a": "Not a simple one. Techniques such as integration by parts and by substitution exist but are beyond AA SL. For this course, first expand brackets or split a fraction into separate terms until you have a sum you can integrate term by term." },
+    { "q": "Do I really lose a mark for a missing $+C$?", "a": "Yes. On an indefinite integral the $+C$ carries its own accuracy mark, and — more importantly — a 'find the equation of the curve' question is impossible without it, because you need the $C$ to substitute your boundary condition into. Make writing $+C$ an automatic habit." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "So far in calculus, we've focused on differentiation: taking a function, $f(x)$, and finding its gradient function, $f'(x)$. Now, we'll explore the reverse process. What if you know the gradient of a curve at every point, and you want to find the equation of the curve itself? This reverse process is called integration, or more formally, antidifferentiation."
-    },
-    {
-      "type": "heading",
-      "content": "Antidifferentiation and the Indefinite Integral"
-    },
-    {
-      "type": "text",
-      "content": "If we know that differentiating $F(x)$ gives us $f(x)$, then we say that $F(x)$ is an antiderivative of $f(x)$. The process of finding this antiderivative is integration. The notation we use is the indefinite integral."
-    },
-    {
-      "type": "formula",
-      "content": "$\\int f(x) \\, dx = F(x) + C$"
-    },
-    {
-      "type": "text",
-      "content": "Here, the symbol $\\int$ is the integral sign. The function $f(x)$ is called the integrand. The $dx$ tells us that we are integrating with respect to the variable $x$. The result, $F(x) + C$, is the most general antiderivative, where $F'(x) = f(x)$ and $C$ is the constant of integration."
-    },
-    {
-      "type": "heading",
-      "content": "The Power Rule for Integration"
-    },
-    {
-      "type": "text",
-      "content": "Just as we have a power rule for differentiation, we have a corresponding rule for integration. It's the reverse of the differentiation rule. To differentiate $x^n$, we multiply by the power and then subtract one from the power. To integrate, we do the opposite steps in reverse order: we add one to the power, and then divide by the new power."
-    },
-    {
-      "type": "formula",
-      "content": "For any rational number $n \\neq -1$: \n$\\int ax^n \\, dx = \\frac{ax^{n+1}}{n+1} + C$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Step 1:** Increase the power (exponent) of $x$ by 1.",
-        "**Step 2:** Divide the term by this new power.",
-        "**Step 3:** Don't forget to add the constant of integration, $C$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Find the indefinite integral of $f(x) = 4x^3 - 6x^2 + 2x - 7$.",
-      "solution": "We need to find $\\int (4x^3 - 6x^2 + 2x - 7) \\, dx$. We integrate term by term.\n\n\\[ \\int (4x^3 - 6x^2 + 2x^1 - 7x^0) \\, dx \\]\n\nApplying the power rule $\\int ax^n \\, dx = \\frac{ax^{n+1}}{n+1} + C$ to each term:\n\nFor $4x^3$: $\\frac{4x^{3+1}}{3+1} = \\frac{4x^4}{4} = x^4$\n\nFor $-6x^2$: $\\frac{-6x^{2+1}}{2+1} = \\frac{-6x^3}{3} = -2x^3$\n\nFor $2x$: $\\frac{2x^{1+1}}{1+1} = \\frac{2x^2}{2} = x^2$\n\nFor $-7$: $\\frac{-7x^{0+1}}{0+1} = -7x$\n\nCombining these and adding the constant of integration:\n\\[ \\int (4x^3 - 6x^2 + 2x - 7) \\, dx = x^4 - 2x^3 + x^2 - 7x + C \\] \n\n**Marking:**\n*   **(M1)** for attempting to apply the power rule to at least one term (increasing power by 1).\n*   **(A1)** for $x^4 - 2x^3 + x^2 - 7x$.\n*   **(A1)** for including '+ C'."
-    },
-    {
-      "type": "heading",
-      "content": "Finding the Constant of Integration, C"
-    },
-    {
-      "type": "text",
-      "content": "The result of an indefinite integral is a 'family of functions', not a single function. For example, $x^2+1$, $x^2-10$, and $x^2+50$ all have the same derivative, $2x$. The constant $C$ represents this ambiguity. To find the specific function, we need more information – typically a point that the curve passes through. This is known as a boundary condition or initial condition."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 1, questions asking for 'the equation of the curve' require you to find a specific value for $C$. Forgetting to add '+ C' in your initial integration step is a very common error that prevents you from solving the problem correctly. Always write '+ C' immediately after integrating."
-    },
-    {
-      "type": "workedExample",
-      "question": "The gradient of a curve is given by $\\frac{dy}{dx} = 9x^2 - 4$. The curve passes through the point $(2, 10)$. Find the equation of the curve.",
-      "solution": "The equation of the curve, $y$, is the integral of its gradient function.\n\\[ y = \\int (9x^2 - 4) \\, dx \\]\n\nFirst, perform the integration:\n\\[ y = \\frac{9x^{2+1}}{2+1} - \\frac{4x^{0+1}}{0+1} + C \\]\n\\[ y = \\frac{9x^3}{3} - 4x + C \\]\n\\[ y = 3x^3 - 4x + C \\] \nThis is the general equation for the family of curves. **(M1)(A1)**\n\nNow, use the given point $(2, 10)$ to find the specific value of $C$. Substitute $x=2$ and $y=10$ into the equation:\n\\[ 10 = 3(2)^3 - 4(2) + C \\] **(M1)** for substitution.\n\\[ 10 = 3(8) - 8 + C \\]\n\\[ 10 = 24 - 8 + C \\]\n\\[ 10 = 16 + C \\]\n\\[ C = 10 - 16 = -6 \\]\n\nFinally, write the specific equation of the curve with the value of $C$:\n\\[ y = 3x^3 - 4x - 6 \\] **(A1)**"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Problems",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=5.5"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra: The Constant of Integration",
-          "href": "https://www.geogebra.org/m/CKEtSgWz"
-        },
-        {
-          "label": "Video: Introduction to Indefinite Integrals",
-          "href": "https://www.youtube.com/watch?v=2k32Oses4jE"
-        }
-      ]
-    }
+    { "type": "intro", "content": "So far in calculus we have focused on differentiation: taking a function $f(x)$ and finding its gradient function $f'(x)$. Now we run the process backwards. If you know the gradient of a curve at every point, how do you recover the equation of the curve itself? That reverse process is integration, or more formally antidifferentiation. This lesson builds the whole 5.5 toolkit — the indefinite integral and its constant $+C$, the power rule, the standard integrals of $e^x$, $\\frac{1}{x}$, $\\sin x$ and $\\cos x$, integrating a sum, and using a boundary condition to find a particular solution. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "Antidifferentiation and the indefinite integral" },
+    { "type": "text", "content": "If differentiating $F(x)$ gives $f(x)$, then $F(x)$ is an antiderivative of $f(x)$, and finding it is integration. We write this using the indefinite integral." },
+    { "type": "formula", "content": "$\\int f(x)\\,dx = F(x) + C$" },
+    { "type": "text", "content": "The symbol $\\int$ is the integral sign, $f(x)$ is the integrand, and $dx$ tells us we are integrating with respect to $x$. The result $F(x)+C$ is the most general antiderivative, where $F'(x)=f(x)$ and $C$ is the constant of integration. The word 'indefinite' signals that we are not yet pinning down a single function — we are describing a whole family at once." },
+
+    { "type": "heading", "content": "The power rule for integration" },
+    { "type": "text", "content": "Just as differentiation has a power rule, so does integration — and it is the differentiation rule run in reverse. To differentiate $x^n$ we multiply by the power and subtract one from it. To integrate we do the opposite, in the opposite order: add one to the power, then divide by the new power." },
+    { "type": "formula", "content": "For any rational $n\\neq-1$:\n$\\int x^n\\,dx = \\frac{x^{n+1}}{n+1} + C$\nand with a constant multiplier:\n$\\int ax^n\\,dx = \\frac{ax^{n+1}}{n+1} + C$" },
+    { "type": "keyPoints", "items": [
+      "**Step 1:** Increase the index (power) of $x$ by 1.",
+      "**Step 2:** Divide the term by this new index.",
+      "**Step 3:** Add the constant of integration $+C$.",
+      "**Condition:** the rule needs $n\\neq-1$, since $n=-1$ would divide by zero — that case is handled by $\\int\\frac{1}{x}\\,dx=\\ln|x|+C$ below."
+    ]},
+    { "type": "examTip", "content": "A three-second check every time: differentiate your answer in your head. If it returns to the integrand, you integrated correctly. The two commonest slips — dividing by the old index instead of the new one, and accidentally differentiating (multiplying down) instead of integrating — are both caught instantly by this reverse check." },
+    { "type": "workedExample", "question": "Find $\\int (4x^3 - 6x^2 + 2x - 7)\\,dx$.", "solution": "Integrate term by term, treating the constant as $-7x^0$.\n\n\\[ \\int (4x^3 - 6x^2 + 2x^1 - 7x^0)\\,dx \\]\n\nApplying $\\int ax^n\\,dx=\\frac{ax^{n+1}}{n+1}$ to each term:\n\nFor $4x^3$: $\\dfrac{4x^{4}}{4}=x^4$.\n\nFor $-6x^2$: $\\dfrac{-6x^{3}}{3}=-2x^3$.\n\nFor $2x$: $\\dfrac{2x^{2}}{2}=x^2$.\n\nFor $-7$: $\\dfrac{-7x^{1}}{1}=-7x$.\n\nCombine and add the constant of integration:\n\\[ \\int (4x^3 - 6x^2 + 2x - 7)\\,dx = x^4 - 2x^3 + x^2 - 7x + C \\]\n\n**How our marking engine awards the marks:**\n*   **(M1)** for applying the power rule to at least one term (adding 1 to the index and dividing).\n*   **(A1)** for the correct polynomial part $x^4 - 2x^3 + x^2 - 7x$ (**ISW** — ignore subsequent working if it is left un-simplified but correct).\n*   **(A1)** for including $+C$." },
+
+    { "type": "heading", "content": "Integrals of the standard functions" },
+    { "type": "text", "content": "Not everything is a power of $x$. Four standard integrals appear constantly and are simply the reverse of derivatives you already know. Learn them as a set — they are quoted, not derived, in an exam." },
+    { "type": "formula", "content": "$\\int e^x\\,dx = e^x + C$\n$\\int \\frac{1}{x}\\,dx = \\ln|x| + C$\n$\\int \\cos x\\,dx = \\sin x + C$\n$\\int \\sin x\\,dx = -\\cos x + C$" },
+    { "type": "keyPoints", "items": [
+      "$e^x$ is its own integral, exactly as it is its own derivative.",
+      "$\\frac{1}{x}$ integrates to $\\ln|x|+C$ — the modulus is required, and this fills the gap left by the power rule at $n=-1$.",
+      "**Watch the sign on the trig pair:** integrating $\\cos x$ gives $+\\sin x$, but integrating $\\sin x$ gives $-\\cos x$. The minus sign is the classic dropped mark.",
+      "Constant multiples and sums combine as usual: $\\int (3\\cos x - \\tfrac{2}{x})\\,dx = 3\\sin x - 2\\ln|x| + C$."
+    ]},
+    { "type": "workedExample", "question": "Find $\\int \\left( e^x + \\dfrac{4}{x} - 2\\sin x \\right)\\,dx$.", "solution": "Integrate term by term, pulling constant multipliers outside each integral.\n\n$\\int e^x\\,dx = e^x$.\n\n$\\int \\dfrac{4}{x}\\,dx = 4\\int \\dfrac{1}{x}\\,dx = 4\\ln|x|$.\n\n$\\int (-2\\sin x)\\,dx = -2\\int \\sin x\\,dx = -2(-\\cos x) = 2\\cos x$.\n\nCombine and add one constant of integration for the whole expression:\n\\[ \\int \\left( e^x + \\dfrac{4}{x} - 2\\sin x \\right)\\,dx = e^x + 4\\ln|x| + 2\\cos x + C \\]\n\n**How our marking engine awards the marks:**\n*   **(A1)** for $e^x$.\n*   **(A1)** for $4\\ln|x|$ (the modulus is expected).\n*   **(A1)** for $2\\cos x$ — note the double sign change from $-2\\sin x$ to $+2\\cos x$.\n*   **(A1)** for a single $+C$. **Accept equivalent forms**, e.g. $4\\ln|x|$ written as $\\ln(x^4)$ for $x>0$." },
+
+    { "type": "heading", "content": "Finding the constant: from a family to a particular solution" },
+    { "type": "text", "content": "An indefinite integral gives a family of functions, not one. For instance $x^2+1$, $x^2-10$ and $x^2+50$ all differentiate to $2x$; the constant $C$ is what distinguishes them, shifting the curve vertically. To select the single curve we want, we need one extra piece of information — a point the curve passes through, called a boundary condition or initial condition. Substituting that point lets us solve for $C$ and obtain the particular solution." },
+    { "type": "examTip", "content": "In Paper 1, 'find the equation of the curve' always means find a specific $C$. Forgetting $+C$ at the integration step makes the rest impossible — there is no constant left to solve for. Write $+C$ immediately after integrating, then substitute the given point." },
+    { "type": "workedExample", "question": "The gradient of a curve is given by $\\frac{dy}{dx} = 9x^2 - 4$. The curve passes through the point $(2, 10)$. Find the equation of the curve. [4]", "solution": "The curve $y$ is the integral of its gradient function.\n\\[ y = \\int (9x^2 - 4)\\,dx \\]\n\nIntegrate term by term and include $+C$:\n\\[ y = \\frac{9x^{3}}{3} - 4x + C = 3x^3 - 4x + C \\]\nThis is the general family of curves.  [M1: integrate]  [A1: $3x^3-4x+C$]\n\nUse the point $(2,10)$ to find $C$. Substitute $x=2$, $y=10$:\n\\[ 10 = 3(2)^3 - 4(2) + C \\]  [M1: substitute the boundary condition]\n\\[ 10 = 24 - 8 + C \\Rightarrow 10 = 16 + C \\Rightarrow C = -6 \\]\n\nWrite the particular solution:\n\\[ y = 3x^3 - 4x - 6 \\]  [A1]\n\n**Final answer:** $y = 3x^3 - 4x - 6$." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Forgetting the constant of integration** — every indefinite integral needs $+C$, and without it a 'find the curve' question cannot be finished. This is the single most penalised slip in the topic.",
+      "**Dividing by the old index instead of the new one** — the power rule divides by $n+1$, not $n$. $\\int x^3\\,dx = \\frac{x^4}{4}$, not $\\frac{x^4}{3}$.",
+      "**Differentiating by mistake** — writing $\\int x^4\\,dx = 4x^3$ multiplies down instead of building up. Always add one to the index. Reverse-check by differentiating your answer.",
+      "**Dropping the minus sign on $\\int \\sin x\\,dx$** — it is $-\\cos x + C$, while $\\int \\cos x\\,dx = +\\sin x + C$.",
+      "**Trying to use the power rule on $\\frac{1}{x}$** — the rule fails at $n=-1$; the answer is $\\ln|x|+C$, and the modulus must be there.",
+      "**Solving for $C$ but never writing the final equation** — after finding $C$, substitute it back and state $y=\\dots$. A value of $C$ alone is not the equation the question asked for.",
+      "**Substituting the coordinates the wrong way round** — put the $x$-value where $x$ appears and the $y$-value equal to the whole expression; swapping them corrupts the value of $C$."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and follow-through (FT) means a wrong number early on need not cost you the marks that depend on it, provided your later steps are correct on your own figure. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line: the integration, the constant, the substitution of the boundary condition, and the final equation." },
+    { "type": "workedExample", "question": "A curve has gradient $\\frac{dy}{dx}=6x^2 - 4x + 1$ and passes through the point $(1, 5)$. Find the equation of the curve. [5]", "solution": "**Model answer — full working.**\n\nThe equation of the curve is the integral of its gradient function, so integrate $\\frac{dy}{dx}$ with respect to $x$ and include the constant of integration.\n\n\\[ y = \\int (6x^2 - 4x + 1)\\,dx \\]\n\nIntegrate term by term (add one to each index, divide by the new index):\n\\[ y = \\frac{6x^{3}}{3} - \\frac{4x^{2}}{2} + \\frac{1x^{1}}{1} + C \\]\n\\[ y = 2x^3 - 2x^2 + x + C \\]\n\nThis is the general family of curves. Now use the boundary condition $(1,5)$ — substitute $x=1$ and $y=5$:\n\\[ 5 = 2(1)^3 - 2(1)^2 + (1) + C \\]\n\\[ 5 = 2 - 2 + 1 + C \\]\n\\[ 5 = 1 + C \\Rightarrow C = 4 \\]\n\nSubstitute $C=4$ back to state the particular solution:\n\\[ y = 2x^3 - 2x^2 + x + 4 \\]\n\n**Final answer:** $y = 2x^3 - 2x^2 + x + 4$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — method: integrate each term.** Awarded for applying the power rule to the gradient function — adding 1 to each index and dividing by the new index. This is a METHOD mark: it is earned for the correct approach even if one coefficient later slips.\n- **A1 — accuracy: $y = 2x^3 - 2x^2 + x + C$.** Awarded for the correct integrated expression *including the $+C$*. The constant is not optional here — without it the next steps cannot happen, so this accuracy mark depends on the preceding method mark being attempted.\n- **M1 — method: substitute the point.** Awarded for substituting $x=1,\\;y=5$ into the integrated expression to form an equation in $C$: $5 = 2 - 2 + 1 + C$. The engine checks the right values went into the right places.\n- **A1 — accuracy: solve $C = 4$.** Awarded for correctly solving that equation. FOLLOW-THROUGH applies: a student whose integration contained a slip but who then substituted correctly and solved consistently still earns this on their own figures.\n- **A1 — accuracy: $y = 2x^3 - 2x^2 + x + 4$.** Awarded for writing the final particular solution with $C$ substituted back. A value of $C$ alone does not earn this mark — the question asked for the equation of the curve. **Accept equivalent forms** (terms in any order).\n\n**Why $+C$ is essential.** The $+C$ is not decoration: it is the unknown you solve for. Omit it at the integration step and you lose the A-mark for the integral *and* have nothing to substitute the point into, so the final two marks become unreachable — a single missing symbol can cost up to three marks.\n\n**'Accept equivalent forms.'** The engine does not demand a fixed ordering of terms; $x + 2x^3 - 2x^2 + 4$ scores identically. It checks that your expression is algebraically the correct function.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and follow-through shields the accuracy marks that build on your own earlier line — but only if the integration, the $+C$, the substitution and the final equation are all written on the page." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write the integral with $+C$, substitute the boundary point to form an equation in $C$, solve it, then state the final equation $y=\\dots$. The method marks and follow-through are what protect your score when a coefficient slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Antidifferentiation is the engine of the rest of calculus. Once you can reverse the power rule and quote the standard integrals, definite integrals attach limits to find exact areas under curves, and boundary conditions reappear whenever a real quantity is reconstructed from its rate of change — displacement from velocity, or volume from a flow rate. Master the habit here — add one and divide, quote the standard integrals, never forget $+C$, and use the given point to pin it down — and the integration that follows becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 1 calculation marked: find the equation of a curve from its gradient, with full working", "href": "/mark?subject=ib-maths-aa-sl&topic=5.5&component=paper_1" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra: The Constant of Integration", "href": "https://www.geogebra.org/m/CKEtSgWz" },
+      { "label": "Video: Introduction to Indefinite Integrals", "href": "https://www.youtube.com/watch?v=2k32Oses4jE" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "The Constant of Integration",

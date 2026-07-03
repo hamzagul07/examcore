@@ -1,200 +1,131 @@
 {
   "slug": "5-2-differentiation-rules-chain-product-and-quotient",
   "topicCode": "5.2",
+  "unit": { "code": "5", "title": "Calculus" },
   "title": "Differentiation rules: chain, product and quotient",
   "paper": "P1",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson introduces the essential rules for differentiating more complex functions that are formed by multiplying, dividing, or composing simpler functions. We will cover the product rule, the quotient rule, and the chain rule, providing the tools needed to find the derivative of a wide variety of expressions encountered in the AA SL course.",
-  "durationMin": 25,
-  "updated": "2026-06-23",
+  "summary": "The power rule alone cannot differentiate a function built by multiplying, dividing or nesting simpler functions. This lesson assembles the full 5.2 toolkit: the power rule and the derivatives of the standard functions ($x^n$, $\\sin x$, $\\cos x$, $\\tan x$, $e^x$, $\\ln x$), then the three rules that combine them — the chain rule for composite functions, the product rule, and the quotient rule — finishing with questions that need two rules at once. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculus question how you show your working decides how many marks you keep.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Identify when to use the product, quotient, and chain rules.",
-    "State and apply the product rule to differentiate the product of two functions.",
-    "State and apply the quotient rule to differentiate the division of two functions.",
-    "State and apply the chain rule to differentiate composite functions."
+    "State the power rule and the derivatives of the standard functions $x^n$, $\\sin x$, $\\cos x$, $\\tan x$, $e^x$ and $\\ln x$.",
+    "Identify from a function's structure whether the chain, product or quotient rule is required.",
+    "Apply the chain rule $\\frac{dy}{dx}=\\frac{dy}{du}\\frac{du}{dx}$ to differentiate composite functions.",
+    "Apply the product rule $(uv)'=u'v+uv'$ and the quotient rule $\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}$, including combining rules within one question.",
+    "Present working so that method marks and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.2"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Unlocking Complex Derivatives",
-    "summary": "Simple functions are easy to differentiate with the power rule, but what about more complex ones? These three rules are your keys to unlocking the derivatives of functions that are multiplied, divided, or nested together.",
-    "analogy": "Think of the chain rule like Russian nesting dolls. To find out what's inside, you open the outermost doll first (differentiate the outer function), see the next doll inside (leaving the inner function untouched), and then you deal with that inner doll (multiply by the derivative of the inner function). For the product and quotient rules, imagine two partners in a project; their combined rate of change depends on how each partner's contribution is changing and the value of the other's contribution.",
+    "title": "Three Rules for Building-Block Functions",
+    "summary": "Complicated functions are almost always built from simple ones that are multiplied, divided or nested. Once you can spot how a function is assembled, one of three rules — chain, product or quotient — tells you how to differentiate it, and combining them handles everything on the AA SL course.",
+    "analogy": "Think of the chain rule like Russian nesting dolls: you open the outermost doll first (differentiate the outer function, leaving the inner one untouched), then deal with the doll inside (multiply by the derivative of the inner function). The product and quotient rules are like two partners in a project — the combined rate of change depends both on how each partner is changing and on the current value of the other.",
     "steps": [
-      "Analyse the function's structure. Is it a product (f(x) * g(x)), a quotient (f(x) / g(x)), or a composite function (f(g(x)))?",
-      "Select the appropriate differentiation rule based on the structure you identified.",
-      "Carefully apply the chosen formula. Identify the component parts (like u and v) and find their individual derivatives first.",
-      "Substitute the parts into the rule and simplify the resulting algebraic expression, being careful with signs and brackets."
+      "Read the function's structure. Is it a product $u\\cdot v$, a quotient $\\frac{u}{v}$, or a composite $f(g(x))$? Identify the outermost operation first.",
+      "Pick the matching rule. If more than one applies, start with the outermost and use a second rule on the part that needs it.",
+      "Find the pieces first: name $u$ and $v$ (or the outer and inner functions) and differentiate each on its own line.",
+      "Substitute into the rule, then simplify carefully — watch signs, brackets and the fixed order of the quotient-rule numerator."
     ]
   },
+  "keyConcepts": ["standard derivatives", "composite functions", "combining rules"],
   "flashcards": [
-    {
-      "front": "What is the Product Rule for differentiation?",
-      "back": "If $y = uv$, where $u$ and $v$ are functions of $x$, then $\\frac{dy}{dx} = u \\frac{dv}{dx} + v \\frac{du}{dx}$. Or, $(uv)' = u'v + uv'$."
-    },
-    {
-      "front": "What is the Quotient Rule for differentiation?",
-      "back": "If $y = \\frac{u}{v}$, then $\\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{v^2}$. Or, $(\\frac{u}{v})' = \\frac{u'v - uv'}{v^2}$."
-    },
-    {
-      "front": "What is the Chain Rule for differentiation?",
-      "back": "If $y = f(g(x))$, then $\\frac{dy}{dx} = f'(g(x)) \\cdot g'(x)$. In Leibniz notation, if $y$ is a function of $u$, and $u$ is a function of $x$, then $\\frac{dy}{dx} = \\frac{dy}{du} \\times \\frac{du}{dx}$."
-    },
-    {
-      "front": "What is a composite function?",
-      "back": "A composite function is a 'function of a function'. It's created when one function is substituted into another. For example, if $f(x) = x^2$ and $g(x) = x+1$, then $f(g(x)) = (x+1)^2$."
-    },
-    {
-      "front": "Common mistake with the product rule?",
-      "back": "A very common error is to think $(uv)' = u'v'$. This is incorrect! You must use the full product rule: $(uv)' = u'v + uv'$."
-    },
-    {
-      "front": "Mnemonic for the Quotient Rule numerator?",
-      "back": "\"Low d-high minus high d-low\". This helps remember the order: $v \\cdot u' - u \\cdot v'$. The denominator is \"low-low\" ($v^2$)."
-    },
-    {
-      "front": "How do you differentiate $y = (ax+b)^n$?",
-      "back": "Using the chain rule: Differentiate the 'outside' power function, leave the 'inside' alone, then multiply by the derivative of the 'inside'. So, $\\frac{dy}{dx} = n(ax+b)^{n-1} \\cdot a$."
-    },
-    {
-      "front": "How do you differentiate $y = e^{f(x)}$?",
-      "back": "Using the chain rule. The derivative of $e^{\\text{something}}$ is $e^{\\text{something}}$, multiplied by the derivative of the 'something'. So, $\\frac{dy}{dx} = e^{f(x)} \\cdot f'(x)$."
-    },
-    {
-      "front": "How do you differentiate $y = \\ln(f(x))$?",
-      "back": "Using the chain rule. The derivative of $\\ln(\\text{something})$ is $\\frac{1}{\\text{something}}$, multiplied by the derivative of the 'something'. So, $\\frac{dy}{dx} = \\frac{1}{f(x)} \\cdot f'(x) = \\frac{f'(x)}{f(x)}$."
-    },
-    {
-      "front": "When differentiating $y = 5x^2 \\sin(x)$, what are $u$ and $v$?",
-      "back": "You can group the constant with either function. The easiest way is to let $u = 5x^2$ and $v = \\sin(x)$. Alternatively, you could see it as $5 \\times (x^2 \\sin(x))$ and apply the product rule to the bracketed term."
-    },
-    {
-      "front": "What's a common trap when simplifying the result of the quotient rule?",
-      "back": "Incorrectly cancelling terms from the denominator ($v^2$) with terms in the numerator. You can only cancel a factor if it is common to *all* terms in the numerator."
-    }
+    { "front": "The power rule", "back": "For $y = x^n$, $\\frac{dy}{dx} = n x^{n-1}$ (any rational $n$). Extends termwise: the derivative of $ax^n$ is $anx^{n-1}$, and constants differentiate to $0$.", "pillLabel": "Formula" },
+    { "front": "Standard derivatives (trig)", "back": "$\\frac{d}{dx}(\\sin x) = \\cos x$; $\\frac{d}{dx}(\\cos x) = -\\sin x$ (note the minus sign); $\\frac{d}{dx}(\\tan x) = \\sec^2 x = \\dfrac{1}{\\cos^2 x}$.", "pillLabel": "Formula" },
+    { "front": "Standard derivatives ($e^x$ and $\\ln x$)", "back": "$\\frac{d}{dx}(e^x) = e^x$ — it is its own derivative. $\\frac{d}{dx}(\\ln x) = \\dfrac{1}{x}$ (for $x > 0$).", "pillLabel": "Formula" },
+    { "front": "The chain rule", "back": "If $y = f(g(x))$ then $\\frac{dy}{dx} = f'(g(x))\\cdot g'(x)$. In Leibniz form, with $y = f(u)$ and $u = g(x)$: $\\frac{dy}{dx} = \\frac{dy}{du}\\times\\frac{du}{dx}$.", "pillLabel": "Formula" },
+    { "front": "The product rule", "back": "If $y = uv$ then $\\frac{dy}{dx} = u'v + uv'$. Both terms are needed — $(uv)' \\ne u'v'$.", "pillLabel": "Formula" },
+    { "front": "The quotient rule", "back": "If $y = \\dfrac{u}{v}$ then $\\frac{dy}{dx} = \\dfrac{u'v - uv'}{v^2}$. The numerator order is fixed: 'derivative of top times bottom, minus top times derivative of bottom'.", "pillLabel": "Formula" },
+    { "front": "Composite function", "back": "A 'function of a function', formed by substituting one function into another. If $f(x) = x^2$ and $g(x) = x+1$ then $f(g(x)) = (x+1)^2$. Composites are the trigger for the chain rule.", "pillLabel": "Definition" },
+    { "front": "Chain rule on $(ax+b)^n$", "back": "$\\frac{d}{dx}(ax+b)^n = n(ax+b)^{n-1}\\cdot a$. Differentiate the outer power, keep the inside unchanged, then multiply by the derivative of the inside ($a$).", "pillLabel": "Technique" },
+    { "front": "Chain rule on $e^{f(x)}$ and $\\ln(f(x))$", "back": "$\\frac{d}{dx}\\,e^{f(x)} = e^{f(x)}\\cdot f'(x)$; $\\frac{d}{dx}\\ln(f(x)) = \\dfrac{f'(x)}{f(x)}$. The 'inside' derivative $f'(x)$ is the multiplier people most often forget.", "pillLabel": "Technique" },
+    { "front": "Which rule do I use?", "back": "Product $\\to$ two functions multiplied ($x^2\\cos x$). Quotient $\\to$ one function over another ($\\frac{x}{x+1}$). Chain $\\to$ one function nested inside another ($(x^2+1)^3$, $e^{\\sin x}$). Combine when the outermost structure contains a nested piece.", "pillLabel": "Framework" },
+    { "front": "Quotient-rule numerator mnemonic", "back": "'Low d-high minus high d-low, over low-low.' With $u$ = high (top) and $v$ = low (bottom): numerator $= u'v - uv'$, denominator $= v^2$. Getting the order backwards flips the sign of the whole answer.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: forgetting the inside derivative", "back": "$\\frac{d}{dx}\\sin(3x)$ is $3\\cos(3x)$, NOT $\\cos(3x)$. The chain rule always multiplies by the derivative of the inner function — omitting it is the single most penalised slip in this topic.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which rule is needed to differentiate $y = x^3 \\cos x$?", "options": ["The chain rule, because $\\cos x$ is composite", "The product rule, because two functions of $x$ are multiplied", "The quotient rule, because it can be written as a fraction", "The power rule alone"], "answer": "The product rule, because two functions of $x$ are multiplied" },
+    { "prompt": "Differentiating $y = (2x+5)^4$ by the chain rule gives:", "options": ["$4(2x+5)^3$", "$8(2x+5)^3$", "$4(2x+5)^3 \\cdot 5$", "$(2x+5)^3$"], "answer": "$8(2x+5)^3$" },
+    { "prompt": "For $y = \\dfrac{u}{v}$, the quotient rule numerator is:", "options": ["$uv' - u'v$", "$u'v - uv'$", "$u'v + uv'$", "$u'v' - uv$"], "answer": "$u'v - uv'$" },
+    { "prompt": "The derivatives $\\frac{d}{dx}(e^x)$ and $\\frac{d}{dx}(\\ln x)$ are, respectively:", "options": ["$xe^{x-1}$ and $x$", "$e^x$ and $\\dfrac{1}{x}$", "$e^x$ and $\\ln x$", "$e^{x}$ and $-\\dfrac{1}{x^2}$"], "answer": "$e^x$ and $\\dfrac{1}{x}$" },
+    { "prompt": "$\\dfrac{d}{dx}\\big(\\sin(x^2)\\big)$ equals:", "options": ["$\\cos(x^2)$", "$2x\\cos(x^2)$", "$\\cos(2x)$", "$2x\\sin(x^2)$"], "answer": "$2x\\cos(x^2)$" }
   ],
   "faq": [
-    {
-      "q": "How do I know which rule to use when looking at a function?",
-      "a": "Look at the main operation connecting the parts of the function. If two distinct functions of $x$ are multiplied (e.g., $x^2 \\cos(x)$), use the product rule. If they are divided (e.g., $\\frac{x}{x+1}$), use the quotient rule. If one function is 'inside' another (e.g., $(x^2+1)^3$ or $e^{\\sin(x)}$), use the chain rule. Sometimes you'll need to combine them, so identify the outermost operation first."
-    },
-    {
-      "q": "Can I use the product rule instead of the quotient rule?",
-      "a": "Yes, you can. Any quotient $\\frac{u}{v}$ can be rewritten as a product $u \\cdot v^{-1}$. You can then apply the product rule, but you will need to use the chain rule to differentiate the $v^{-1}$ term. For example, to differentiate $\\frac{x}{x+1}$, you could differentiate $x(x+1)^{-1}$. Sometimes this is simpler, but often the standard quotient rule is more direct and less prone to errors with negative indices."
-    },
-    {
-      "q": "Do I always have to simplify my answer after differentiating?",
-      "a": "It depends on the question. If the question just says 'Find the derivative' or 'Differentiate', a correctly applied rule without full simplification is often sufficient for full marks (e.g., $f'(x) = (2x)(2x-1) + (x^2+3)(2)$). However, if you need to use the derivative for something else, like finding the gradient at a point, finding equations of tangents, or finding coordinates of stationary points (where $f'(x)=0$), then simplification is essential to make the next step possible."
-    }
+    { "q": "How do I know which rule to use when I look at a function?", "a": "Read the outermost operation joining the parts. Two distinct functions of $x$ multiplied ($x^2\\cos x$) is a product; one function over another ($\\frac{x}{x+1}$) is a quotient; one function nested inside another ($(x^2+1)^3$, $e^{\\sin x}$, $\\ln(3x)$) is a composite needing the chain rule. If the outermost structure is, say, a product but one factor is itself composite, you use the product rule and reach for the chain rule to differentiate that factor." },
+    { "q": "Can I use the product rule instead of the quotient rule?", "a": "Yes. Any quotient $\\frac{u}{v}$ is the product $u\\cdot v^{-1}$, so you may apply the product rule together with the chain rule on $v^{-1}$. For example $\\frac{x}{x+1}$ can be differentiated as $x(x+1)^{-1}$. It gives the same answer, but the negative index makes sign slips more likely, so the direct quotient rule is usually safer." },
+    { "q": "Do I always have to simplify after differentiating?", "a": "It depends on the command term. 'Find the derivative' or 'differentiate' is usually satisfied by a correctly applied rule left unsimplified, e.g. $f'(x) = (2x)(2x-1) + (x^2+3)(2)$. But if you must then find a gradient, a tangent, or a stationary point (where $f'(x)=0$), simplification is essential to make the next step possible. Our engine accepts any form equivalent to the correct derivative." },
+    { "q": "Why does the chain rule multiply by the 'inside' derivative?", "a": "Because a composite function changes for two reasons at once: the outer function responds to its input, and that input is itself changing as $x$ changes. The Leibniz form $\\frac{dy}{dx} = \\frac{dy}{du}\\times\\frac{du}{dx}$ makes this explicit — the two rates of change multiply. Dropping the $\\frac{du}{dx}$ factor is the most common error in the whole topic, so always ask 'what is the inside, and what is its derivative?'." },
+    { "q": "What does the marking engine accept as a correct answer?", "a": "It marks by the IB Mathematics conventions: M for a valid method, A for accuracy (an A-mark is dependent on the method being present), follow-through (FT) so a wrong earlier value doesn't cost later marks, and 'accept equivalent forms'. So $2xe^{3x}+3x^2e^{3x}$ and the factorised $xe^{3x}(2+3x)$ score the same. Once you reach a correct expression, further correct-or-neutral simplification is ignored (ISW) — you cannot lose the mark by simplifying, only by introducing an error." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "So far, you've mastered differentiating simple polynomial terms using the power rule, as well as basic exponential and logarithmic functions. But what happens when functions get more complex? How would you find the derivative of $f(x) = x^2 \\ln(x)$ or $g(x) = (3x+1)^5$? You can't just differentiate each part separately. This is where we need a more powerful set of tools: the product, quotient, and chain rules. Mastering these will allow you to differentiate almost any function you'll encounter in this course."
-    },
-    {
-      "type": "heading",
-      "content": "The Product Rule"
-    },
-    {
-      "type": "text",
-      "content": "The product rule is used when you need to differentiate a function that is the product of two other functions. For example, $f(x) = x^3 e^x$ is the product of $u(x) = x^3$ and $v(x) = e^x$. A common mistake is to simply multiply the derivatives of the two parts, but this is incorrect. The rule accounts for how a change in each function affects the overall product."
-    },
-    {
-      "type": "formula",
-      "content": "If $f(x) = u(x)v(x)$, then its derivative is given by:\n\n$f'(x) = u'(x)v(x) + u(x)v'(x)$ \n\nOr in Leibniz notation, if $y = uv$: \n\n$\\frac{dy}{dx} = v \\frac{du}{dx} + u \\frac{dv}{dx}$"
-    },
-    {
-      "type": "workedExample",
-      "question": "Find the derivative of $f(x) = (x^2+3)(2x-1)$.",
-      "solution": "The function is a product of two functions. Let's identify $u$ and $v$.\n\nLet $u = x^2+3$ and $v = 2x-1$. [M1]\n\nNow, we find the derivatives of $u$ and $v$:\n$u' = 2x$ [A1]\n$v' = 2$ [A1]\n\nApply the product rule formula: $f'(x) = u'v + uv'$.\n$f'(x) = (2x)(2x-1) + (x^2+3)(2)$ [A1]\n\nNow, we simplify the expression:\n$f'(x) = 4x^2 - 2x + 2x^2 + 6$ [M1] for expansion\n$f'(x) = 6x^2 - 2x + 6$ [A1]\n\nNote: For a question like this, you could also expand the brackets first and then differentiate term by term. However, for more complex functions like $x^2 \\sin(x)$, the product rule is essential."
-    },
-    {
-      "type": "heading",
-      "content": "The Quotient Rule"
-    },
-    {
-      "type": "text",
-      "content": "The quotient rule is our tool for differentiating functions that are expressed as a fraction, where both the numerator and the denominator are functions of $x$. For example, $f(x) = \\frac{\\sin(x)}{x}$. The order of terms in the numerator of the formula is critical and a common source of errors."
-    },
-    {
-      "type": "formula",
-      "content": "If $f(x) = \\frac{u(x)}{v(x)}$, then its derivative is given by:\n\n$f'(x) = \\frac{u'(x)v(x) - u(x)v'(x)}{[v(x)]^2}$ \n\nOr in Leibniz notation, if $y = \\frac{u}{v}$: \n\n$\\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{v^2}$"
-    },
-    {
-      "type": "examTip",
-      "content": "The numerator of the quotient rule is $u'v - uv'$. A great way to remember this is the mnemonic: \"Low d-high minus high d-low, all over the square of what's below\". Here, 'low' is $v$, 'high' is $u$, and 'd' means 'the derivative of'. This helps you get the order right every time, as $u'v - uv'$ is not the same as $uv' - u'v$!"
-    },
-    {
-      "type": "workedExample",
-      "question": "Differentiate $y = \\frac{e^x}{x^2+1}$ with respect to $x$.",
-      "solution": "This is a quotient. Let's identify $u$ and $v$.\n\nLet $u = e^x$ (the 'high' function) and $v = x^2+1$ (the 'low' function). [M1]\n\nFind their derivatives:\n$u' = e^x$ [A1]\n$v' = 2x$ [A1]\n\nApply the quotient rule formula: $\\frac{dy}{dx} = \\frac{u'v - uv'}{v^2}$.\n$\\frac{dy}{dx} = \\frac{(e^x)(x^2+1) - (e^x)(2x)}{(x^2+1)^2}$ [A1]\n\nNow, simplify the numerator by factoring out the common term $e^x$.\n$\\frac{dy}{dx} = \\frac{e^x(x^2+1 - 2x)}{(x^2+1)^2}$ [M1]\n$\\frac{dy}{dx} = \\frac{e^x(x-1)^2}{(x^2+1)^2}$ [A1]\n\nSimplifying the numerator makes the derivative much easier to work with if you need to find stationary points (i.e., where $\\frac{dy}{dx}=0$)."
-    },
-    {
-      "type": "heading",
-      "content": "The Chain Rule"
-    },
-    {
-      "type": "text",
-      "content": "The chain rule is arguably the most important and widely used differentiation rule. It's used for composite functions – that is, a function 'nested' inside another function. Examples include $y = \\sin(x^2)$, $y = \\ln(3x-2)$, and $y = (5x+4)^7$. The rule essentially tells us to differentiate the 'outer' function while keeping the 'inner' function the same, and then multiply this by the derivative of the 'inner' function."
-    },
-    {
-      "type": "formula",
-      "content": "If $y = f(g(x))$, then its derivative is:\n\n$y' = f'(g(x)) \\cdot g'(x)$\n\nUsing Leibniz notation, if $y$ is a function of $u$, and $u$ is a function of $x$ (i.e., $y=f(u)$ and $u=g(x)$):\n\n$\\frac{dy}{dx} = \\frac{dy}{du} \\times \\frac{du}{dx}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Identify the 'outer' function and the 'inner' function.",
-        "Differentiate the outer function, but write the original inner function inside it.",
-        "Multiply your result by the derivative of the inner function.",
-        "Be careful with brackets, especially when the derivative of the inner function has more than one term."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Find the derivative of $f(x) = \\sqrt{4x^3+1}$.",
-      "solution": "First, rewrite the function using a power: $f(x) = (4x^3+1)^{1/2}$. This is a composite function.\n\nThe outer function is $(\\cdot)^{1/2}$ and the inner function is $4x^3+1$. [M1]\n\nMethod 1: Direct application\nDifferentiate the outer function: $\\frac{1}{2}(\\cdot)^{-1/2}$. Keep the inner function inside: $\\frac{1}{2}(4x^3+1)^{-1/2}$.\nThe derivative of the inner function ($4x^3+1$) is $12x^2$. [A1]\n\nMultiply them together: $f'(x) = \\frac{1}{2}(4x^3+1)^{-1/2} \\cdot (12x^2)$. [A1]\n\nSimplify: $f'(x) = 6x^2(4x^3+1)^{-1/2} = \\frac{6x^2}{\\sqrt{4x^3+1}}$. [A1]\n\nMethod 2: Using substitution (Leibniz notation)\nLet $u = 4x^3+1$. Then $y = u^{1/2}$. [M1]\n$\\frac{du}{dx} = 12x^2$ [A1]\n$\\frac{dy}{du} = \\frac{1}{2}u^{-1/2}$ [A1]\n\nUsing the chain rule, $\\frac{dy}{dx} = \\frac{dy}{du} \\times \\frac{du}{dx} = \\frac{1}{2}u^{-1/2} \\times 12x^2$.\nSubstitute $u$ back in: $\\frac{dy}{dx} = \\frac{1}{2}(4x^3+1)^{-1/2} \\times 12x^2 = \\frac{6x^2}{\\sqrt{4x^3+1}}$. [A1]"
-    },
-    {
-      "type": "heading",
-      "content": "Combining the Rules"
-    },
-    {
-      "type": "text",
-      "content": "Many exam questions will require you to use more than one of these rules in the same problem. For example, you might need to use the product rule where one of the functions itself requires the chain rule. The key is to identify the main structure of the function first (e.g., product) and then deal with the inner complexities as they arise."
-    },
-    {
-      "type": "workedExample",
-      "question": "Find the derivative of $g(x) = x^4 \\ln(2x+5)$.",
-      "solution": "The overall structure is a product of $x^4$ and $\\ln(2x+5)$. So we start with the product rule.\nLet $u = x^4$ and $v = \\ln(2x+5)$. [M1]\n\nFind the derivatives:\n$u' = 4x^3$. [A1]\nTo find $v'$, we need the chain rule. The outer function is $\\ln(\\cdot)$ and the inner is $2x+5$. The derivative of the inner function is 2.\nSo, $v' = \\frac{1}{2x+5} \\cdot 2 = \\frac{2}{2x+5}$. [A1]\n\nNow apply the product rule, $g'(x) = u'v + uv'$:\n$g'(x) = (4x^3)(\\ln(2x+5)) + (x^4) \\left(\\frac{2}{2x+5}\\right)$. [A1]\n\nThis can be written more neatly as:\n$g'(x) = 4x^3 \\ln(2x+5) + \\frac{2x^4}{2x+5}$. [A1]\nUnless asked to combine into a single fraction, this is a perfectly acceptable final answer."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 1 (non-calculator), you will often be asked to find the gradient at a specific point, or the coordinates of a stationary point. This means you must substitute a value for $x$ into your derivative. Do not over-simplify your derivative before substituting, as you might make an algebraic error. A partially un-simplified expression is often easier and safer for substitution."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Differentiation Rules",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=5.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Khan Academy: Product Rule",
-          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-8/v/product-rule"
-        },
-        {
-          "label": "Math is Fun: Chain Rule",
-          "href": "https://www.mathsisfun.com/calculus/chain-rule.html"
-        },
-        {
-          "label": "GeoGebra: Quotient Rule Visualisation",
-          "href": "https://www.geogebra.org/m/CjVswvYm"
-        }
-      ]
-    }
+    { "type": "intro", "content": "You can already differentiate simple polynomial terms and the basic standard functions. But how would you handle $f(x) = x^2\\ln x$, or $g(x) = (3x+1)^5$, or $y = \\dfrac{e^x}{x^2+1}$? You cannot just differentiate each piece separately. This lesson gives you the three rules that unlock these — the chain, product and quotient rules — built on top of a reliable table of standard derivatives. As in every calculus topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The power rule and the standard derivatives" },
+    { "type": "text", "content": "Before combining functions, you need the derivatives of the building blocks at your fingertips. The power rule handles every power of $x$, and a short table of standard results covers the trigonometric, exponential and logarithmic functions. These are given facts on the AA SL course — commit them to memory, because the three combination rules all depend on differentiating the pieces correctly first." },
+    { "type": "formula", "content": "Power rule: \\; \\dfrac{d}{dx}\\big(x^n\\big) = n\\,x^{n-1} \\quad (\\text{any rational } n)\n\n\\dfrac{d}{dx}(\\sin x) = \\cos x \\qquad \\dfrac{d}{dx}(\\cos x) = -\\sin x \\qquad \\dfrac{d}{dx}(\\tan x) = \\sec^2 x\n\n\\dfrac{d}{dx}(e^x) = e^x \\qquad \\dfrac{d}{dx}(\\ln x) = \\dfrac{1}{x}" },
+    { "type": "keyPoints", "items": [
+      "**Power rule:** multiply by the old power, then subtract one — works for negative and fractional powers too, so rewrite roots as $x^{1/2}$ and reciprocals as $x^{-1}$ first.",
+      "**The minus sign on $\\cos x$:** $\\frac{d}{dx}(\\cos x) = -\\sin x$. Forgetting this sign is one of the most frequently penalised slips.",
+      "**$e^x$ is its own derivative** — a fact you will use constantly, especially inside the chain rule as $e^{f(x)}$.",
+      "**$\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$**, valid for $x>0$. Combined with the chain rule this becomes $\\frac{f'(x)}{f(x)}$."
+    ]},
+
+    { "type": "heading", "content": "The chain rule" },
+    { "type": "text", "content": "The chain rule is the most widely used differentiation rule. It applies to composite functions — a function 'nested' inside another — such as $y = \\sin(x^2)$, $y = \\ln(3x-2)$ or $y = (5x+4)^7$. Differentiate the outer function while keeping the inner function unchanged, then multiply by the derivative of the inner function. That final multiplier is the part students most often forget." },
+    { "type": "formula", "content": "If $y = f(g(x))$, then:\n\n$y' = f'(g(x)) \\cdot g'(x)$\n\nUsing Leibniz notation, with $y = f(u)$ and $u = g(x)$:\n\n$\\dfrac{dy}{dx} = \\dfrac{dy}{du} \\times \\dfrac{du}{dx}$" },
+    { "type": "keyPoints", "items": [
+      "Identify the outer function and the inner function.",
+      "Differentiate the outer function, keeping the original inner function inside it unchanged.",
+      "Multiply by the derivative of the inner function — never omit this step.",
+      "Mind the brackets, especially when the inner derivative has more than one term."
+    ]},
+    { "type": "workedExample", "question": "Find the derivative of $f(x) = \\sqrt{4x^3+1}$. [3]", "solution": "Rewrite with a power: $f(x) = (4x^3+1)^{1/2}$. This is a composite function.\n\nThe outer function is $(\\;\\cdot\\;)^{1/2}$ and the inner function is $4x^3+1$.  [M1: recognise composite / choose chain rule]\n\n**Method 1 — direct.** Differentiate the outer function to $\\tfrac{1}{2}(\\;\\cdot\\;)^{-1/2}$, keep the inside unchanged, and note the inner derivative is $12x^2$.  [A1: $\\tfrac{1}{2}(4x^3+1)^{-1/2}$ and inner derivative $12x^2$]\n$f'(x) = \\tfrac{1}{2}(4x^3+1)^{-1/2}\\cdot 12x^2 = \\dfrac{6x^2}{\\sqrt{4x^3+1}}$.  [A1: correct simplified derivative]\n\n**Method 2 — substitution (Leibniz).** Let $u = 4x^3+1$, so $y = u^{1/2}$.\n$\\dfrac{du}{dx} = 12x^2$ and $\\dfrac{dy}{du} = \\tfrac{1}{2}u^{-1/2}$.\n$\\dfrac{dy}{dx} = \\dfrac{dy}{du}\\times\\dfrac{du}{dx} = \\tfrac{1}{2}(4x^3+1)^{-1/2}\\times 12x^2 = \\dfrac{6x^2}{\\sqrt{4x^3+1}}$.\n\n**Final answer:** $f'(x) = \\dfrac{6x^2}{\\sqrt{4x^3+1}}$ (equivalently $6x^2(4x^3+1)^{-1/2}$)." },
+
+    { "type": "heading", "content": "The product rule" },
+    { "type": "text", "content": "The product rule differentiates a function that is the product of two other functions — for example $f(x) = x^3 e^x$ is the product of $u = x^3$ and $v = e^x$. A tempting but wrong shortcut is to multiply the two derivatives; the rule instead accounts for how a change in each factor affects the whole product." },
+    { "type": "formula", "content": "If $f(x) = u(x)\\,v(x)$, then:\n\n$f'(x) = u'(x)\\,v(x) + u(x)\\,v'(x)$\n\nIn Leibniz notation, if $y = uv$:\n\n$\\dfrac{dy}{dx} = v\\,\\dfrac{du}{dx} + u\\,\\dfrac{dv}{dx}$" },
+    { "type": "workedExample", "question": "Find the derivative of $f(x) = (x^2+3)(2x-1)$. [3]", "solution": "The function is a product of two functions.\nLet $u = x^2+3$ and $v = 2x-1$.  [M1: identify product rule and set up $u$, $v$]\n\nDifferentiate each part:\n$u' = 2x$, \\quad $v' = 2$.  [A1: both derivatives correct]\n\nApply $f'(x) = u'v + uv'$:\n$f'(x) = (2x)(2x-1) + (x^2+3)(2)$.\n\nExpand and collect:\n$f'(x) = 4x^2 - 2x + 2x^2 + 6 = 6x^2 - 2x + 6$.  [A1: correct derivative]\n\nHere you could instead expand the brackets first and differentiate term by term — but for a product like $x^2\\sin x$, where expansion is impossible, the product rule is essential." },
+    { "type": "examTip", "content": "A very common error is to write $(uv)' = u'v'$. This is wrong: the product rule always has TWO terms, $u'v + uv'$. If your product-rule answer has only one term, you have almost certainly dropped a term — go back and check." },
+
+    { "type": "heading", "content": "The quotient rule" },
+    { "type": "text", "content": "The quotient rule differentiates a function written as a fraction whose numerator and denominator are both functions of $x$, such as $f(x) = \\dfrac{\\sin x}{x}$. The order of the two terms in the numerator is fixed and is a frequent source of sign errors." },
+    { "type": "formula", "content": "If $f(x) = \\dfrac{u(x)}{v(x)}$, then:\n\n$f'(x) = \\dfrac{u'(x)\\,v(x) - u(x)\\,v'(x)}{[v(x)]^2}$\n\nIn Leibniz notation, if $y = \\dfrac{u}{v}$:\n\n$\\dfrac{dy}{dx} = \\dfrac{v\\,\\dfrac{du}{dx} - u\\,\\dfrac{dv}{dx}}{v^2}$" },
+    { "type": "examTip", "content": "Remember the numerator with 'low d-high minus high d-low, all over the square of what's below', where 'low' is $v$, 'high' is $u$ and 'd' means 'the derivative of'. Because $u'v - uv'$ is NOT the same as $uv' - u'v$, getting the order backwards flips the sign of your entire answer — a costly slip that method marks cannot rescue." },
+    { "type": "workedExample", "question": "Differentiate $y = \\dfrac{e^x}{x^2+1}$ with respect to $x$. [4]", "solution": "This is a quotient.\nLet $u = e^x$ (high) and $v = x^2+1$ (low).  [M1: identify quotient rule, set up $u$, $v$]\n\nDifferentiate each part:\n$u' = e^x$, \\quad $v' = 2x$.  [A1: both derivatives correct]\n\nApply $\\dfrac{dy}{dx} = \\dfrac{u'v - uv'}{v^2}$:\n$\\dfrac{dy}{dx} = \\dfrac{(e^x)(x^2+1) - (e^x)(2x)}{(x^2+1)^2}$.  [A1: correct substitution, right order]\n\nFactor $e^x$ from the numerator:\n$\\dfrac{dy}{dx} = \\dfrac{e^x(x^2 - 2x + 1)}{(x^2+1)^2} = \\dfrac{e^x(x-1)^2}{(x^2+1)^2}$.  [A1: correct simplified derivative]\n\nThe factorised numerator makes it easy to solve $\\frac{dy}{dx}=0$ later, giving the stationary point at $x = 1$." },
+
+    { "type": "heading", "content": "Combining the rules" },
+    { "type": "text", "content": "Many exam questions need more than one rule in the same problem — most often a product or quotient where one part itself requires the chain rule. The strategy is always the same: identify the outermost structure first, apply its rule, and reach for a second rule to differentiate whichever piece needs it." },
+    { "type": "workedExample", "question": "Find the derivative of $g(x) = x^4 \\ln(2x+5)$. [4]", "solution": "The outermost structure is a product of $x^4$ and $\\ln(2x+5)$, so start with the product rule.\nLet $u = x^4$ and $v = \\ln(2x+5)$.  [M1: product rule set up]\n\n$u' = 4x^3$.  [A1]\nFor $v'$ use the chain rule: outer $\\ln(\\;\\cdot\\;)$, inner $2x+5$ with derivative $2$, so $v' = \\dfrac{1}{2x+5}\\cdot 2 = \\dfrac{2}{2x+5}$.  [A1: chain rule on $v$]\n\nApply $g'(x) = u'v + uv'$:\n$g'(x) = (4x^3)\\ln(2x+5) + (x^4)\\left(\\dfrac{2}{2x+5}\\right) = 4x^3\\ln(2x+5) + \\dfrac{2x^4}{2x+5}$.  [A1: correct derivative]\n\nUnless the question asks for a single combined fraction, this is a perfectly acceptable final answer." },
+    { "type": "examTip", "content": "In Paper 1 (non-calculator) you are often asked to find a gradient at a point or a stationary point, which means substituting a value of $x$ into your derivative. Do not over-simplify before substituting: a partly un-simplified derivative is often safer to evaluate, and our engine accepts any equivalent form." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Choosing the wrong rule** — product is for $u\\cdot v$, quotient for $\\frac{u}{v}$, chain for a nested function. Identify the OUTERMOST operation first; misreading the structure loses every mark that follows.",
+      "**Forgetting the inside derivative in the chain rule** — $\\frac{d}{dx}\\sin(3x) = 3\\cos(3x)$, not $\\cos(3x)$; $\\frac{d}{dx}(2x+5)^4 = 8(2x+5)^3$, not $4(2x+5)^3$. The $\\times\\frac{du}{dx}$ factor is non-negotiable.",
+      "**Writing $(uv)' = u'v'$** — the product rule has two terms, $u'v + uv'$. A one-term answer is a red flag.",
+      "**Reversing the quotient-rule numerator** — it is $u'v - uv'$ (low d-high minus high d-low), never $uv' - u'v$. The wrong order negates the whole derivative.",
+      "**Dropping the minus sign on $\\cos x$** — $\\frac{d}{dx}(\\cos x) = -\\sin x$. This sign is examined constantly.",
+      "**Muddling $e^x$ and $\\ln x$** — $\\frac{d}{dx}(e^x) = e^x$ and $\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$; do not write $xe^{x-1}$ or leave $\\ln x$ unchanged.",
+      "**Cancelling illegally after the quotient rule** — you may cancel a factor from $v^2$ only if it is common to EVERY term in the numerator; cancelling from a single term is invalid."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) for a valid approach or an accuracy mark (A) for a correct result. An A-mark is dependent: it is only available once the corresponding method is on the page. Follow-through (FT) means a wrong value carried correctly into later work still earns the later marks, and the engine accepts any equivalent form and ignores correct subsequent working (ISW). Study how each mark below is earned by a specific line in a question that combines the product and chain rules." },
+    { "type": "workedExample", "question": "Differentiate $y = x^2 e^{3x}$. [4]", "solution": "**Model answer — full working.**\n\nThe outermost structure is a product of $x^2$ and $e^{3x}$, so use the product rule, with the chain rule needed for $e^{3x}$.\n\nLet $u = x^2$ and $v = e^{3x}$.\n\nDifferentiate each part:\n$u' = 2x$.\n$v' = e^{3x}\\cdot 3 = 3e^{3x}$ (chain rule: outer $e^{(\\cdot)}$ stays $e^{3x}$, inner $3x$ has derivative $3$).\n\nApply the product rule $\\dfrac{dy}{dx} = u'v + uv'$:\n$\\dfrac{dy}{dx} = (2x)e^{3x} + (x^2)(3e^{3x}) = 2xe^{3x} + 3x^2e^{3x}$.\n\nFactorising (optional, and accepted either way):\n$\\dfrac{dy}{dx} = xe^{3x}(2 + 3x)$.\n\n**Final answer:** $\\dfrac{dy}{dx} = 2xe^{3x} + 3x^2e^{3x}$, or equivalently $xe^{3x}(2+3x)$.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — identify the product rule.** Awarded for recognising the product structure and setting up $u = x^2$, $v = e^{3x}$ (or an equivalent split). This is a METHOD mark: it is earned for the correct approach even if a later derivative slips.\n- **A1 — correct component derivatives.** Awarded for $u' = 2x$ AND $v' = 3e^{3x}$, the latter showing the chain rule applied to $e^{3x}$ (the $\\times 3$ from the inside function). Writing $v' = e^{3x}$ without the $\\times 3$ loses this accuracy mark.\n- **M1 — apply the product-rule structure.** Awarded for combining the pieces as $u'v + uv'$, i.e. $(2x)e^{3x} + (x^2)(v')$. This method mark is available on FOLLOW-THROUGH: a student who found a wrong $v'$ but assembled it correctly into $u'v + uv'$ still earns it.\n- **A1 — correct final derivative.** Awarded for $2xe^{3x} + 3x^2e^{3x}$ OR the factorised $xe^{3x}(2+3x)$ — accept equivalent forms; the engine treats them as identical. Because this A-mark depends on the method marks above, it is only in play once the product-and-chain method is shown.\n\n**FT and 'accept equivalent forms.'** A student who mis-differentiated $v$ to $e^{3x}$ but then applied $u'v+uv'$ correctly keeps the second M-mark and, on follow-through, can keep the final A-mark for a correct answer built on THEIR $v'$. The engine also ignores subsequent working (ISW): once you reach $2xe^{3x}+3x^2e^{3x}$, correctly factorising to $xe^{3x}(2+3x)$ cannot cost you a mark.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the answer marks are shielded by follow-through and equivalent-forms. A student who writes only a bare final expression risks 2–3 marks if it is wrong; a student who names $u$ and $v$, shows both derivatives, and assembles $u'v+uv'$ keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and equivalent-forms. So always show the method: name $u$ and $v$, differentiate each on its own line (applying the chain rule where a part is composite), then assemble the rule before simplifying. The method marks and FT are what protect your score when the final answer slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "These three rules are the engine of the whole calculus strand. Every later technique — finding tangents and normals, locating stationary points and classifying them, optimisation, and even reversing the process in integration by recognising a chain-rule pattern — assumes you can differentiate any AA SL function fluently. Master the habit here: read the structure, pick the rule, differentiate the pieces on their own lines, then combine and simplify. Do that consistently and the calculus that follows becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 1 derivative marked: differentiate with full working", "href": "/mark?subject=ib-maths-aa-sl&topic=5.2&component=paper_1" },
+    { "type": "resources", "items": [
+      { "label": "Khan Academy: Product Rule", "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-8/v/product-rule" },
+      { "label": "Math is Fun: Chain Rule", "href": "https://www.mathsisfun.com/calculus/chain-rule.html" },
+      { "label": "GeoGebra: Quotient Rule Visualisation", "href": "https://www.geogebra.org/m/CjVswvYm" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Quotient Rule Visualisation",

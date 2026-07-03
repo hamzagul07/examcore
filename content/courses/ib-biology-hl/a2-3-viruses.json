@@ -5,157 +5,141 @@
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the nature of viruses as non-living, obligate intracellular parasites. It details their structure, diverse replication strategies including the lytic and lysogenic cycles, and the specific mechanisms of retroviruses like HIV. The lesson also covers the public health implications of viral evolution through antigenic drift and shift.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Viruses sit right on the boundary of what we call life, and A2.3 asks you to explain both what they are and how they behave. This lesson builds the whole picture: the features every virus shares (tiny size, a nucleic-acid genome of DNA or RNA inside a protein capsid, sometimes wrapped in a lipid envelope) and the diversity that sits on top of that shared plan; why viruses are non-cellular and non-living outside a host; the lytic and lysogenic cycles of bacteriophages; how retroviruses such as HIV run reverse transcriptase to turn RNA into DNA; and the rapid evolution of viruses through high mutation rates and antigenic variation, with the public-health challenges that follow. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — one mark per distinct valid point — so you can see how the explanation is scored.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Outline the structure of viruses, including the capsid, nucleic acid, and envelope.",
+    "Describe the structural features common to all viruses — small size, a DNA or RNA genome enclosed in a protein capsid, and in some cases a lipid envelope — and outline their diversity.",
+    "Explain why viruses are described as non-cellular and non-living outside a host, referring to the absence of metabolism and ribosomes.",
     "Compare and contrast the lytic and lysogenic replication cycles of bacteriophages.",
-    "Explain the process of retroviral replication, using HIV as an example.",
-    "Distinguish between antigenic drift and antigenic shift in influenza viruses."
+    "Explain how retroviruses such as HIV use reverse transcriptase to produce DNA from an RNA genome, and how that DNA integrates into the host genome.",
+    "Explain the rapid evolution of viruses through high mutation rates and antigenic variation, and describe the consequences (e.g. seasonal influenza, emerging strains) and the challenges viruses pose.",
+    "Present an explanation as distinct, creditable points so that the analytic mark scheme awards every idea you make."
   ],
+  "syllabusObjectivesCovered": ["A2.3"],
+  "unit": { "code": "A", "title": "Unity and diversity" },
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "The Cellular Hijacker",
-    "summary": "Viruses are tiny, non-living agents that must invade a living cell to reproduce. They hijack the cell's machinery, forcing it to make countless copies of the virus, which then burst out to infect other cells.",
-    "analogy": "Imagine a rogue chef who doesn't have their own kitchen. They break into a fully equipped restaurant (the host cell), throw out the restaurant's menu, and use all the ingredients and equipment to cook only their own signature dish over and over. Once the kitchen is full of their dish, they break down the doors to send it out everywhere, often destroying the restaurant in the process.",
+    "title": "The borrowed factory",
+    "summary": "A virus is little more than a set of genetic instructions in a protein box. On its own it does nothing at all — it has no metabolism and no ribosomes, so it cannot make proteins, use energy, or copy itself. Only by getting inside a living cell and borrowing that cell's machinery can it force out thousands of new copies of itself.",
+    "analogy": "Think of a virus as a USB stick loaded with a single program and nothing else — no processor, no screen, no power. Left on a desk it is inert plastic and metal. Plug it into a working computer, though, and the program takes over: it makes the computer stop its own work and instead print copy after copy of the program, until the machine is jammed full and crashes. The stick never computed anything itself; it simply hijacked a computer that could.",
     "steps": [
-      "A virus is a simple package of genetic material (DNA or RNA) inside a protein coat called a capsid. Some also have an outer lipid envelope stolen from a previous host cell.",
-      "The virus attaches to a specific host cell and injects its genetic material. This is the lytic cycle's start, a fast and destructive replication pathway.",
-      "Alternatively, in the lysogenic cycle, the viral DNA integrates into the host's chromosome, lying dormant as a 'prophage' and being copied with the cell's own DNA.",
-      "A trigger, like cellular stress, can cause the prophage to exit the host chromosome and enter the lytic cycle, leading to the production and release of new viruses."
+      "Every virus is a genome — DNA or RNA, never both — packaged inside a protein coat called a capsid. Some animal viruses add an outer lipid envelope taken from a host cell membrane, studded with proteins for attachment.",
+      "Outside a host the virus is chemically inert: it carries no ribosomes and runs no metabolism, so it cannot replicate. This is why it is classed as non-cellular and non-living outside a host.",
+      "Inside a host cell the virus redirects the cell's ribosomes, enzymes and raw materials to build new viral genomes and proteins, which self-assemble into new virus particles.",
+      "Because viral genomes are copied quickly and often with errors, viruses mutate fast — their surface proteins change, immunity fades, and new strains keep appearing."
     ]
   },
+  "keyConcepts": ["structure and function", "non-living vs living", "viral replication", "evolution"],
   "flashcards": [
-    {
-      "front": "Virus",
-      "back": "An obligate intracellular parasite, composed of nucleic acid (DNA or RNA) enclosed in a protein coat (capsid). It is considered non-living as it cannot reproduce independently."
-    },
-    {
-      "front": "Capsid",
-      "back": "The protein shell of a virus that encloses its genetic material. It is made of protein subunits called capsomeres."
-    },
-    {
-      "front": "Viral Envelope",
-      "back": "A lipid bilayer derived from the host cell membrane that surrounds the capsid of some viruses (e.g., influenza, HIV). It contains viral glycoproteins for attachment."
-    },
-    {
-      "front": "Bacteriophage",
-      "back": "A virus that specifically infects and replicates within bacteria. Often used as a model to study viral replication cycles."
-    },
-    {
-      "front": "Lytic Cycle",
-      "back": "A viral replication cycle resulting in the rapid production of new virions and the death (lysis) of the host cell. Example: T4 bacteriophage in E. coli."
-    },
-    {
-      "front": "Lysogenic Cycle",
-      "back": "A viral replication cycle where the viral genome integrates into the host cell's chromosome (as a prophage) and is replicated along with it, without immediately destroying the cell."
-    },
-    {
-      "front": "Retrovirus",
-      "back": "An RNA virus that replicates by transcribing its RNA into DNA using an enzyme called reverse transcriptase. The DNA is then inserted into the host's genome. HIV is a key example."
-    },
-    {
-      "front": "Reverse Transcriptase",
-      "back": "An enzyme carried by retroviruses that synthesises a DNA strand from an RNA template. This violates the 'central dogma' of molecular biology."
-    },
-    {
-      "front": "Antigenic Drift",
-      "back": "Minor changes in the antigens (e.g., haemagglutinin, neuraminidase) of a virus due to random mutations in the viral genome. This is the reason for annual flu vaccine updates."
-    },
-    {
-      "front": "Antigenic Shift",
-      "back": "Major, abrupt changes in the antigens of a virus, typically occurring when two different viral strains infect the same cell and re-assort their genetic material. This can lead to pandemics."
-    },
-    {
-      "front": "Common Trap: Virus vs Prion",
-      "back": "A virus has genetic material (DNA/RNA) and a protein capsid. A prion is an infectious protein, with no genetic material, that causes neurodegenerative diseases by misfolding other proteins."
-    }
+    { "front": "Virus (structural definition)", "back": "A non-cellular infectious particle consisting of a nucleic-acid genome (DNA OR RNA) enclosed in a protein capsid, sometimes surrounded by a lipid envelope. It has no cytoplasm, no ribosomes and no metabolism of its own.", "pillLabel": "Definition" },
+    { "front": "Capsid", "back": "The protein coat that encloses and protects the viral genome. It is built from repeating protein subunits (capsomeres) that self-assemble, commonly into a helical or icosahedral shape.", "pillLabel": "Definition" },
+    { "front": "Lipid envelope", "back": "An outer membrane of lipid taken from a host cell, present in SOME viruses (e.g. influenza, HIV, coronaviruses). It carries viral glycoproteins used to attach to and enter host cells. Naked viruses lack it.", "pillLabel": "Definition" },
+    { "front": "Why viruses are non-living", "back": "They are non-cellular, have no metabolism, carry no ribosomes, and cannot replicate independently. Outside a host they are inert. They only show life-like activity (replication, evolution) by using a host cell's machinery.", "pillLabel": "Concept" },
+    { "front": "Viral diversity", "back": "Viruses vary in genome type (single- or double-stranded DNA or RNA), capsid shape, presence or absence of an envelope, size, and host range. Despite this diversity, all share the core plan: nucleic acid inside a protein capsid.", "pillLabel": "Concept" },
+    { "front": "Bacteriophage", "back": "A virus that infects bacteria. The classic model for studying replication; it injects its genome into the bacterium and can follow either the lytic or the lysogenic cycle.", "pillLabel": "Definition" },
+    { "front": "Lytic cycle", "back": "The virus replicates immediately: it takes over the host, mass-produces new virus particles, then lyses (bursts) the host cell to release them, killing the host.", "pillLabel": "Concept" },
+    { "front": "Lysogenic cycle", "back": "The viral genome integrates into the host chromosome as a provirus (prophage in bacteria) and is copied passively each time the host divides, WITHOUT killing the host. It can later switch to the lytic cycle.", "pillLabel": "Concept" },
+    { "front": "Provirus / prophage", "back": "Viral genetic material that has integrated into the host's genome and is replicated along with the host DNA. 'Prophage' is the term used for bacteriophages; 'provirus' for viruses such as HIV in animal cells.", "pillLabel": "Definition" },
+    { "front": "Retrovirus", "back": "An RNA virus that copies its RNA genome into DNA using the enzyme reverse transcriptase, then integrates that DNA into the host genome. HIV is the key example. This runs genetic information RNA → DNA, the reverse of the usual direction.", "pillLabel": "Definition" },
+    { "front": "Reverse transcriptase", "back": "The enzyme carried by retroviruses that synthesises a DNA strand using the viral RNA as a template. It is error-prone, which is one reason HIV evolves so rapidly.", "pillLabel": "Definition" },
+    { "front": "High mutation rate", "back": "Viral genome replication (especially by RNA polymerases and reverse transcriptase) lacks efficient proofreading, so errors accumulate quickly. This drives rapid evolution and the constant appearance of new variants.", "pillLabel": "Concept" },
+    { "front": "Antigenic variation", "back": "Change in a virus's surface antigens over time, so the host's existing antibodies no longer recognise it. In influenza this occurs by gradual antigenic drift (mutation) and abrupt antigenic shift (genome reassortment).", "pillLabel": "Concept" },
+    { "front": "Exam Trap: DNA OR RNA, never both", "back": "A virus has ONE type of nucleic acid as its genome — DNA or RNA — not both. Writing 'DNA and RNA' for the genome loses the mark.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: capsid is protein, not lipid", "back": "The capsid is a PROTEIN coat. The lipid layer, when present, is the separate OUTER envelope. Do not call the capsid a lipid coat.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which statement best describes why viruses are classified as non-living outside a host?", "options": ["They are too small to be seen with a light microscope", "They are non-cellular, have no metabolism and no ribosomes, so they cannot replicate independently", "They contain only RNA and never DNA", "They are made entirely of protein with no genetic material"], "answer": "They are non-cellular, have no metabolism and no ribosomes, so they cannot replicate independently" },
+    { "prompt": "A student writes that a virus's genome is 'made of DNA and RNA together'. Why is this wrong?", "options": ["Viral genomes are made of protein, not nucleic acid", "A virus has only one type of nucleic acid genome — DNA or RNA, not both", "All viruses have DNA and no viruses have RNA", "The genome is always double-stranded RNA"], "answer": "A virus has only one type of nucleic acid genome — DNA or RNA, not both" },
+    { "prompt": "Which set of features is common to ALL viruses?", "options": ["A lipid envelope, ribosomes and a DNA genome", "A nucleic-acid genome enclosed in a protein capsid, and small size", "A cell wall, cytoplasm and mitochondria", "Reverse transcriptase and an RNA genome"], "answer": "A nucleic-acid genome enclosed in a protein capsid, and small size" },
+    { "prompt": "What key difference distinguishes the lysogenic cycle from the lytic cycle?", "options": ["In the lysogenic cycle the virus immediately bursts and kills the host cell", "In the lysogenic cycle the viral genome integrates into the host genome and is replicated with it without killing the host", "The lysogenic cycle only occurs in retroviruses", "The lysogenic cycle produces new virus particles faster than the lytic cycle"], "answer": "In the lysogenic cycle the viral genome integrates into the host genome and is replicated with it without killing the host" },
+    { "prompt": "How does a retrovirus such as HIV differ from a typical virus during replication?", "options": ["It uses reverse transcriptase to make DNA from its RNA genome, which is then integrated into the host genome", "It has no genome and copies host DNA directly", "It replicates only in the lytic cycle and never integrates", "It uses the host's ribosomes to convert DNA into RNA before entry"], "answer": "It uses reverse transcriptase to make DNA from its RNA genome, which is then integrated into the host genome" }
   ],
   "faq": [
-    {
-      "q": "Are viruses alive?",
-      "a": "This is a topic of scientific debate. Viruses exhibit some characteristics of life, such as having genetic material and evolving through natural selection. However, they are not made of cells, have no metabolism of their own, and cannot reproduce without a host cell. For these reasons, most biologists classify them as non-living."
-    },
-    {
-      "q": "Why do we need a new flu vaccine every year?",
-      "a": "This is due to antigenic drift. The influenza virus's RNA polymerase is prone to making errors during replication, leading to constant, small mutations in the genes for its surface antigens (haemagglutinin and neuraminidase). These small changes mean that our immune system's memory from a previous infection or vaccination may not be fully effective against the new drifted strains, requiring an updated vaccine each year to match the circulating viruses."
-    },
-    {
-      "q": "Can a virus switch from the lysogenic to the lytic cycle?",
-      "a": "Yes. A prophage (the integrated viral DNA in the lysogenic cycle) can be induced to exit the host chromosome and enter the lytic cycle. This induction is often triggered by environmental stressors that damage the host cell's DNA, such as UV radiation or certain chemicals. This acts as a signal for the virus that its host is in danger, and it's time to replicate and escape."
-    }
+    { "q": "Are viruses alive or not?", "a": "It depends on the definition of life you apply, and IB expects you to argue it, not just assert it. Viruses do share some features of living things: they carry genetic material and they evolve by natural selection. But they are non-cellular, have no metabolism of their own, carry no ribosomes, and cannot replicate without hijacking a host cell. On the balance of the characteristics of life, biologists therefore classify them as non-living outside a host — they only display life-like activity when using a host's machinery." },
+    { "q": "What is the difference between a capsid and an envelope?", "a": "The capsid is the PROTEIN coat that every virus has — it packages and protects the genome and is built from repeating protein subunits. The envelope is an extra OUTER layer of lipid that only some viruses carry, taken from a host cell membrane when the virus buds out, and studded with viral glycoproteins for attachment. So all viruses have a capsid; only enveloped viruses (like HIV and influenza) also have a lipid envelope on the outside of it." },
+    { "q": "Why do we need a new flu vaccine so often?", "a": "Because influenza evolves rapidly through antigenic variation. Its RNA genome is copied without effective proofreading, so mutations accumulate steadily and the surface antigens gradually change — this is antigenic drift, and it means immunity from a previous infection or vaccine no longer matches the circulating virus. Occasionally two strains reassort their genome segments in a co-infected host to produce an abrupt, major change — antigenic shift — against which almost nobody is immune, and that can cause a pandemic. Constant antigenic change is exactly why influenza vaccines have to be reformulated." },
+    { "q": "Can a lysogenic virus become lytic later?", "a": "Yes. In the lysogenic cycle the viral genome sits integrated in the host chromosome as a provirus (prophage in bacteria) and is copied passively as the host divides. A trigger — often cellular stress or DNA damage, such as UV exposure — can cause the integrated genome to excise itself and switch into the lytic cycle, at which point the virus replicates rapidly and lyses the host. So lysogeny is not a permanent state; it is a dormant phase that can flip to active replication." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Viruses represent the boundary of life, existing as inert chemicals outside a host yet capable of immense biological impact once inside. As obligate intracellular parasites, they lack their own metabolic machinery and must exploit a host cell's resources to replicate. This topic delves into their structure, the clever strategies they employ for propagation, and their evolutionary arms race with host immune systems, which has profound implications for human health."
-    },
-    {
-      "type": "heading",
-      "content": "Fundamental Viral Structure"
-    },
-    {
-      "type": "text",
-      "content": "All viruses share a basic structure: a core of nucleic acid surrounded by a protein coat, the capsid. The nucleic acid can be DNA or RNA, and it can be single-stranded or double-stranded, linear or circular. The capsid provides protection and is composed of protein subunits called capsomeres, which self-assemble into various geometric shapes, most commonly helical or icosahedral. Some viruses, particularly those infecting animal cells, are further enclosed by a lipid envelope derived from the host cell membrane, studded with viral glycoproteins that are crucial for host cell recognition and entry."
-    },
-    {
-      "type": "heading",
-      "content": "Replication Cycles: Lytic vs. Lysogenic"
-    },
-    {
-      "type": "text",
-      "content": "Bacteriophages provide a classic model for understanding viral replication. The lytic cycle is a 'brute force' approach: the virus attaches, injects its DNA, hijacks the cell's machinery to synthesise new viral components, assembles new phages, and finally directs the production of an enzyme that destroys the cell wall, causing lysis and releasing hundreds of new virions. In contrast, the lysogenic cycle is more subtle. The viral DNA integrates into the host bacterium's chromosome, becoming a 'prophage'. The host cell lives and reproduces normally, copying the prophage along with its own DNA. An environmental cue, such as UV radiation or chemical exposure, can trigger the prophage to excise itself from the chromosome and enter the destructive lytic cycle."
-    },
-    {
-      "type": "workedExample",
-      "question": "The diagram shows an electron micrograph of an influenza virus. The magnification of the image is x80,000. The diameter of the virus in the image is 8 mm. Calculate the actual diameter of the influenza virus in nanometres (nm).",
-      "solution": "Step 1: State the formula for magnification.\nMagnification = Image size / Actual size\n\nStep 2: Rearrange the formula to solve for Actual size.\nActual size = Image size / Magnification\n\nStep 3: Convert units to be consistent. It is easiest to convert the image size from millimetres (mm) to micrometres (μm) first, as the magnification is large. There are 1000 μm in 1 mm.\nImage size = 8 mm = 8 x 1000 = 8000 μm\n\nStep 4: Substitute the values into the rearranged formula.\nActual size = 8000 μm / 80,000 = 0.1 μm\n\nStep 5: Convert the final answer to nanometres (nm) as requested. There are 1000 nm in 1 μm.\nActual size = 0.1 μm x 1000 = 100 nm\n\n**Final Answer: 100 nm**\n\n*Marking points: [1] for correct rearrangement of formula; [1] for correct calculation in μm; [1] for correct final conversion to nm.*"
-    },
-    {
-      "type": "heading",
-      "content": "Retroviruses: The Case of HIV"
-    },
-    {
-      "type": "text",
-      "content": "Retroviruses, such as the Human Immunodeficiency Virus (HIV), add a unique step to their replication. They are RNA viruses that carry an enzyme called reverse transcriptase. Upon entering a host cell (specifically, a helper T-cell in the case of HIV), the reverse transcriptase synthesises a DNA copy of the viral RNA. This single-stranded DNA is then replicated to form double-stranded DNA, which is integrated into the host cell's genome by another viral enzyme, integrase. The integrated viral DNA, now called a provirus, can remain latent for years or be actively transcribed by the host's own RNA polymerase to produce new viral RNA genomes and mRNA for viral proteins. This process ultimately leads to the destruction of helper T-cells, crippling the immune system and causing Acquired Immunodeficiency Syndrome (AIDS)."
-    },
-    {
-      "type": "examTip",
-      "content": "A common point of confusion is the difference between antigenic drift and shift. Remember 'Drift' is a small, gradual change, like a boat drifting slowly off course due to minor mutations. 'Shift' is a large, sudden change, like a tectonic plate shifting, caused by the re-assortment of genes from different viruses. Shift is what can cause pandemics, as the population has little to no pre-existing immunity to the new combination of antigens."
-    },
-    {
-      "type": "workedExample",
-      "question": "A clinical trial tested a new antiviral drug against HIV. The viral load (number of viral RNA copies per mL of blood) was measured in patients before treatment and after 12 weeks of treatment. The results are shown below:\n\n| Patient | Viral Load (Before) (copies/mL) | Viral Load (After) (copies/mL) |\n|---|---|---|\n| A | 150,000 | 1,200 |\n| B | 220,000 | 2,500 |\n| C | 95,000 | <50 |\n| D | 310,000 | 5,500 |\n\n(a) Calculate the percentage decrease in viral load for Patient D. \n(b) Based on the data, evaluate the effectiveness of the antiviral drug.",
-      "solution": "(a) Step 1: Calculate the absolute decrease in viral load for Patient D.\nDecrease = Initial Load - Final Load = 310,000 - 5,500 = 304,500 copies/mL\n\nStep 2: Calculate the percentage decrease using the formula: (Decrease / Initial Load) x 100%.\nPercentage Decrease = (304,500 / 310,000) x 100%\nPercentage Decrease ≈ 98.2%\n\n**Final Answer (a): 98.2%**\n\n(b) Evaluation of effectiveness:\n*Strength:* The drug appears highly effective. All four patients showed a significant reduction in viral load after 12 weeks. [1]\n*Data Support:* For example, Patient D had a >98% reduction, and Patient C's viral load was reduced to undetectable levels (<50 copies/mL). [1]\n*Limitation:* The sample size is very small (n=4), which limits the reliability of the conclusion. The results may not be generalisable to a larger population. [1]\n*Further Limitation:* There is no control group (patients receiving a placebo) to compare against, so we cannot be certain the decrease is solely due to the drug and not other factors. Also, the long-term effectiveness is unknown as the trial is only 12 weeks. [1]\n\n*Conclusion:* The preliminary data suggests the drug is effective at reducing HIV viral load, but larger, controlled, long-term studies are needed to confirm this. [1]"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Viruses are non-living obligate intracellular parasites with a nucleic acid core and protein capsid.",
-        "The lytic cycle results in host cell lysis and rapid viral proliferation.",
-        "The lysogenic cycle involves integration of the viral genome into the host chromosome as a prophage.",
-        "Retroviruses like HIV use reverse transcriptase to create DNA from their RNA genome, which is then integrated into the host DNA.",
-        "Antigenic drift (mutation) and shift (re-assortment) drive viral evolution and pose challenges for vaccine development."
-      ]
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Viruses",
-      "href": "/mark?subject=ib-biology-hl&topic=A2.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "ViralZone",
-          "href": "https://viralzone.expasy.org/"
-        },
-        {
-          "label": "HHMI BioInteractive - Virus Explorer",
-          "href": "https://www.biointeractive.org/classroom-resources/virus-explorer"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Viruses are the most abundant biological entities on Earth, yet they are barely 'entities' at all: outside a host a virus does nothing, uses no energy, and makes no proteins. It is only when a virus gets inside a living cell and borrows that cell's machinery that it springs into action, forcing the host to churn out thousands of new copies. A2.3 asks you to hold two things together — what viruses ARE (a shared, minimal structure with striking diversity on top of it) and what they DO (replicate through the lytic and lysogenic cycles, run reverse transcription in retroviruses, and evolve fast enough to keep outrunning our immune systems and vaccines). This lesson works through each of those, and every explanation example is set out the way marks are actually awarded on Paper 2, because in a topic that is mostly extended explanation, writing in distinct, creditable points is what protects your score." },
+
+    { "type": "heading", "content": "The structural features common to all viruses" },
+    { "type": "text", "content": "Strip a virus down to its essentials and you find the same minimal plan every time: a genome of nucleic acid enclosed in a protein coat called the capsid. Two features are worth stating precisely. First, the genome is a single type of nucleic acid — either DNA or RNA, never both — and it may be single- or double-stranded. Second, the capsid is made of PROTEIN subunits (capsomeres) that self-assemble around the genome, most often into a helical rod or an icosahedral shell. Some viruses, particularly those that infect animal cells, add one more layer: a lipid envelope taken from a host cell membrane as the virus buds out, studded with viral glycoproteins that let the virus recognise and enter its next host. Viruses are also extremely small — typically 20 to 300 nm across, far smaller than a bacterium and below the resolution of a light microscope." },
+    { "type": "keyPoints", "items": [
+      "**Small size:** roughly 20–300 nm — smaller than any cell and only visible with an electron microscope.",
+      "**Genome:** nucleic acid that is DNA OR RNA (never both), single- or double-stranded.",
+      "**Capsid:** a PROTEIN coat of self-assembling subunits that encloses and protects the genome.",
+      "**Envelope (some only):** an outer lipid layer from a host membrane, carrying glycoproteins for attachment — present in enveloped viruses, absent in naked ones."
+    ]},
+
+    { "type": "heading", "content": "Diversity built on a shared plan" },
+    { "type": "text", "content": "That common plan supports remarkable diversity. Viral genomes come in four flavours — single- or double-stranded DNA, and single- or double-stranded RNA — which is a far wider range than cellular life, whose genome is always double-stranded DNA. Capsids differ in shape and symmetry; some viruses are enveloped and some are naked; sizes span more than an order of magnitude; and host ranges vary from a single bacterial species to broad groups of animals or plants. The bacteriophage, with its distinctive head-and-tail structure, looks nothing like the roughly spherical enveloped influenza virus, yet both fit the same definition. The lesson to carry into the exam is that the shared essentials — nucleic acid inside a protein capsid, small, non-cellular — are what unite viruses, while genome type, capsid shape, envelope and host range are the axes along which they diverge." },
+
+    { "type": "heading", "content": "Non-cellular and non-living outside a host" },
+    { "type": "text", "content": "A virus is not a cell. It has no cytoplasm, no cell membrane of its own making, no organelles and — critically — no ribosomes. Because it has no ribosomes it cannot synthesise proteins, and because it has no metabolic machinery it cannot capture energy or carry out reactions. Outside a host cell, therefore, a virus is chemically inert: it does not grow, respond, use energy or replicate. It can only replicate by entering a living cell and commandeering that cell's ribosomes, enzymes, nucleotides and energy to build new viral components. This is why viruses are described as obligate intracellular parasites that are non-cellular and non-living outside a host. When IB asks whether viruses are alive, the strongest answer weighs both sides: they resemble living things in carrying genetic material and evolving by natural selection, but they fail the core criteria — no cellular structure, no metabolism, no independent reproduction — so they are best classed as non-living outside a host." },
+    { "type": "keyPoints", "items": [
+      "**Non-cellular:** no cytoplasm, no organelles, and crucially no ribosomes — so a virus cannot make its own proteins.",
+      "**No metabolism:** it cannot capture or use energy independently.",
+      "**No independent replication:** it must use a host cell's machinery to reproduce (an obligate intracellular parasite).",
+      "**The argument both ways:** virus-like life features are genetic material and evolution; the missing features are cells, metabolism and independent reproduction — on balance, non-living outside a host."
+    ]},
+
+    { "type": "heading", "content": "The lytic cycle of bacteriophages" },
+    { "type": "text", "content": "Bacteriophages give the clearest picture of viral replication because their two pathways are so distinct. The lytic cycle is the fast, destructive route. The phage attaches to the surface of a bacterium and injects its genome into the cell. That genome immediately takes over: the host's ribosomes and enzymes are redirected to transcribe and translate viral genes, so the cell stops making its own molecules and instead mass-produces viral genomes and capsid proteins. These self-assemble into hundreds of new phage particles. Finally the phage directs production of an enzyme that breaks down the bacterial cell wall, and the cell bursts — lyses — releasing the new virions to infect neighbouring cells. The defining feature of the lytic cycle is that the virus replicates immediately and kills (lyses) the host." },
+
+    { "type": "heading", "content": "The lysogenic cycle of bacteriophages" },
+    { "type": "text", "content": "The lysogenic cycle is the patient alternative. Instead of taking over at once, the injected viral genome integrates into the bacterial chromosome, where it is called a prophage. In this integrated state the virus does not replicate independently or kill the host; instead, every time the bacterium copies its own DNA and divides, the prophage is copied along with it and passed silently to both daughter cells. A whole population of infected bacteria can therefore carry the dormant viral genome. This is not permanent: a trigger such as cellular stress or DNA damage (for example UV radiation) can cause the prophage to excise itself from the host chromosome and switch into the lytic cycle, at which point it replicates rapidly and lyses the host. So the two cycles are linked — lysogeny is a dormant reservoir that can flip to lytic destruction." },
+    { "type": "keyPoints", "items": [
+      "**Lytic:** virus replicates immediately → mass-produces new virions → lyses and kills the host cell.",
+      "**Lysogenic:** viral genome integrates into the host genome as a provirus/prophage → replicated passively with the host → host survives.",
+      "**The link:** a lysogenic provirus can later switch to the lytic cycle when triggered (e.g. by stress or UV).",
+      "**The key contrast for marks:** immediate replication and host death (lytic) versus integration and host survival (lysogenic)."
+    ]},
+
+    { "type": "workedExample", "question": "An electron micrograph shows a virus at a magnification of ×250,000. The diameter of the virus in the image measures 25 mm. Calculate the actual diameter of the virus, giving your answer in nanometres (nm). [3]", "solution": "**Step 1 — state the magnification relationship and rearrange for actual size.**\nMagnification = image size ÷ actual size, so actual size = image size ÷ magnification.  [Point 1: correct rearrangement]\n\n**Step 2 — convert the image size to consistent units.**\nImage size = 25 mm. Convert to nm: 1 mm = 1 × 10⁶ nm, so 25 mm = 2.5 × 10⁷ nm.  [Point 2: correct unit handling]\n\n**Step 3 — substitute and evaluate.**\nActual size = (2.5 × 10⁷ nm) ÷ 250,000 = 100 nm.  [Point 3: correct final answer with unit]\n\n**Final answer: 100 nm.**\n\n*Each distinct valid point scores 1 mark: the correct rearrangement, the correct unit conversion, and the correct final value with its unit. 100 nm is a typical viral diameter — far below the ~200 nm resolution limit of a light microscope, which is exactly why viruses can only be seen with an electron microscope.*" },
+
+    { "type": "heading", "content": "Retroviruses and reverse transcriptase" },
+    { "type": "text", "content": "Most viruses run genetic information in the usual direction, DNA → RNA → protein, or use their RNA directly. Retroviruses break that pattern. A retrovirus, such as the Human Immunodeficiency Virus (HIV), has an RNA genome but carries the enzyme reverse transcriptase inside its capsid. Once inside a host cell, reverse transcriptase uses the viral RNA as a template to synthesise a complementary DNA strand, and then a double-stranded DNA copy of the whole genome. This viral DNA is inserted into the host cell's own genome, where it becomes a provirus. The integrated provirus can stay latent for years or be transcribed by the host's own RNA polymerase to make new viral RNA genomes and the mRNA for new viral proteins. In HIV the host cells are helper T-lymphocytes, and their progressive destruction cripples the immune system, eventually causing AIDS. Two exam-critical points: the enzyme is reverse transcriptase, and the information flow it drives is RNA → DNA, the reverse of transcription — which is where the name 'retro' comes from." },
+    { "type": "examTip", "content": "Be exact with the retrovirus story. The genome is RNA; the enzyme is reverse transcriptase; it makes DNA FROM RNA (RNA → DNA), which is then integrated into the host genome. Marks are lost by naming the wrong enzyme, by writing the information flow the normal way round (DNA → RNA), or by forgetting the integration step. Name the enzyme, state the direction, and include integration." },
+
+    { "type": "heading", "content": "The rapid evolution of viruses" },
+    { "type": "text", "content": "Viruses evolve faster than almost anything else alive, and the reason is built into how they copy their genomes. Viral polymerases — and reverse transcriptase in retroviruses — generally lack effective proofreading, so replication introduces mutations at a high rate. Combined with enormous population sizes and very short generation times, this means new variants arise constantly, and natural selection quickly favours any variant that escapes the host's immune response. The visible result is antigenic variation: the surface antigens the immune system recognises keep changing. In influenza this happens two ways. Antigenic drift is the gradual accumulation of point mutations in the genes for surface proteins, so immunity slowly stops matching the circulating virus — this is why flu vaccines are reformulated each year. Antigenic shift is an abrupt, major change that happens when two different influenza strains infect the same cell and reassort their segmented genomes, producing a virus with a new combination of surface proteins that almost nobody is immune to — the kind of event that can spark a pandemic." },
+    { "type": "keyPoints", "items": [
+      "**High mutation rate:** viral genome replication lacks efficient proofreading, so errors accumulate fast.",
+      "**Large populations, short generations:** many variants arise and are selected quickly.",
+      "**Antigenic drift:** gradual mutation of surface antigens → immunity slowly no longer matches (seasonal flu, annual vaccine updates).",
+      "**Antigenic shift:** abrupt reassortment of genome segments between strains → a new antigen combination → potential pandemic.",
+      "**Consequence:** immunity and vaccines are constantly outrun, and new strains keep emerging."
+    ]},
+
+    { "type": "heading", "content": "The challenges viruses pose" },
+    { "type": "text", "content": "The same features that define viruses make them difficult to fight. Because they replicate inside host cells using host machinery, most viral processes are hard to target with drugs without harming the host, so there are far fewer antivirals than antibacterials. Because they evolve so rapidly, immunity and vaccines are constantly outrun — antigenic variation forces vaccines to be updated and lets some viruses (like HIV) escape the immune response for years. Their ability to lie dormant, as an integrated provirus in the lysogenic state or a latent HIV provirus, means an infection can persist undetected and reactivate later. And their diversity and capacity to jump between host species means new viruses keep emerging. Taken together — intracellular replication, rapid evolution, latency, and emergence — these are the reasons viral diseases remain such a persistent public-health challenge." },
+
+    { "type": "workedExample", "question": "A trial measured the viral load (RNA copies per mL of blood) in an HIV patient before treatment and after 12 weeks of antiretroviral therapy. Before: 240,000 copies/mL. After: 3,600 copies/mL. (a) Calculate the percentage decrease in viral load. (b) Explain why HIV is particularly difficult to treat with a single drug. [4]", "solution": "**(a) Percentage decrease.**\nDecrease = 240,000 − 3,600 = 236,400 copies/mL.  [Point 1: correct absolute decrease]\nPercentage decrease = (236,400 ÷ 240,000) × 100 = 98.5%.  [Point 2: correct percentage]\n\n**(b) Why a single drug struggles — each distinct valid point scores 1 (max 2 here):**\n- HIV has a high mutation rate because reverse transcriptase lacks proofreading, so drug-resistant variants arise rapidly and are selected for. [Point 3]\n- The virus integrates as a provirus and can stay latent, so it is hidden from a drug that only acts on actively replicating virus. [Point 4]\n\n**Model marks:** 98.5% for part (a) over two points (decrease, then percentage), and any two distinct valid reasons for part (b). Accept equivalents such as 'antigenic variation lets it escape the immune response' or 'it destroys the very immune cells that would fight it'.\n\n*Notice the structure the marking engine rewards in (b): two SEPARATE ideas — rapid evolution/resistance and latency — rather than the same idea said twice. This is also the biological argument for combination therapy: hitting the virus several ways at once makes it far less likely that a single mutation confers resistance.*" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Writing the genome as 'DNA and RNA'** — a virus has ONE nucleic acid, DNA OR RNA, never both. State one.",
+      "**Calling the capsid a lipid coat** — the capsid is PROTEIN; the lipid layer, when present, is the separate outer envelope and only some viruses have it.",
+      "**Saying viruses are alive without qualification** — argue it: they carry genetic material and evolve, BUT are non-cellular, have no metabolism and no ribosomes, so they are non-living outside a host.",
+      "**Blurring lytic and lysogenic** — lytic = replicate immediately and lyse/kill the host; lysogenic = integrate into the host genome as a provirus and replicate with it without killing it. The contrast is the mark.",
+      "**Getting the retrovirus direction backwards** — reverse transcriptase makes DNA FROM RNA (RNA → DNA), then the DNA integrates. Do not write DNA → RNA or name the wrong enzyme.",
+      "**Confusing antigenic drift and shift** — drift is gradual mutation of surface antigens; shift is abrupt reassortment between strains. Shift, not drift, is the pandemic risk.",
+      "**Saying viruses 'grow' or 'divide'** — viruses do neither; new particles are ASSEMBLED from separately made components inside a host cell.",
+      "**Claiming antibiotics treat viral infections** — antibiotics target bacterial processes; viruses have none of them, so antibiotics do not work against viruses."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "A2.3 is dominated by extended explanation, and those marks are awarded analytically — each distinct valid biological point is worth one mark, and 'A' credits a correct detail. The engine does not reward length or repetition; it rewards separate, creditable ideas. Study how each mark below is tied to a specific named point rather than to loose phrasing, and note that stating the same idea twice scores only once." },
+    { "type": "workedExample", "question": "Explain the difference between the lytic and lysogenic cycles of a virus. [4]", "solution": "**Model answer.**\nIn the lytic cycle the virus replicates immediately: after injecting its genome it takes over the host cell's machinery to mass-produce new virus particles, and then it lyses (bursts) the host cell to release them, killing the host. In the lysogenic cycle the viral genome instead integrates into the host cell's genome as a provirus (a prophage in bacteria), where it is replicated passively along with the host DNA each time the host cell divides, without killing the host. A provirus in the lysogenic cycle can later switch to the lytic cycle when triggered, for example by cellular stress or UV radiation.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4); A = a correct detail; accept equivalents:\n\n- **Point 1 (A):** in the lytic cycle the virus replicates immediately and lyses / kills the host cell.\n- **Point 2 (A):** in the lysogenic cycle the viral DNA/genome integrates into the host genome as a provirus (prophage).\n- **Point 3 (A):** the integrated provirus is replicated along with the host DNA WITHOUT killing the host.\n- **Point 4 (A):** the lysogenic cycle can later switch to the lytic cycle (e.g. when triggered by stress / UV).\n\nBecause the points are distinct and independent, the engine credits each one on its own — a student who omits the 'switch' point but nails the other three still scores 3. It caps the award at the 4 marks available, so there is room to miss a point and still reach full marks, but only for SEPARATE ideas: writing 'the host cell is destroyed' and 'the host cell dies' is one point, not two.\n\n**What the engine rejects.** An answer that only says 'the lytic cycle is fast and the lysogenic cycle is slow' scores nothing, because it names neither replication and lysis, nor integration into the host genome. The mark scheme wants the biological mechanism — immediate replication with host death versus integration as a provirus with host survival — not a vague speed comparison.\n\n**Accept equivalents.** 'Provirus', 'prophage' and 'the viral genome is inserted into the host chromosome' are all credited for Point 2; 'bursts', 'lyses' and 'ruptures' are all credited for Point 1. The engine matches the IDEA, not one fixed wording." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer the same way — point by point, one mark per distinct valid idea, capped at the marks available, and it accepts equivalent wording. So write in separate, creditable statements: name immediate replication and lysis for the lytic cycle, name integration as a provirus and host survival for the lysogenic cycle, and add the switch back to lytic. Distinct ideas score; repeating the same idea in new words does not." },
+
+    { "type": "practice", "label": "Get a Paper 2 answer marked: explain a virus topic point by point and see exactly how each mark is awarded", "href": "/mark?subject=ib-biology-hl&topic=A2.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "ViralZone (SIB) — virus structure and replication reference", "href": "https://viralzone.expasy.org/" },
+      { "label": "HHMI BioInteractive — Virus Explorer", "href": "https://www.biointeractive.org/classroom-resources/virus-explorer" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

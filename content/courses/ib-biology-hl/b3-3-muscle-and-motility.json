@@ -5,185 +5,142 @@
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson delves into the molecular machinery of movement, exploring the intricate structure of striated muscle and the sliding filament theory. We will examine how nerve signals, calcium ions, and ATP orchestrate the powerful, coordinated process of muscle contraction.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Muscle is a molecular machine that turns chemical energy into movement. This lesson builds B3.3 from the ground up: the hierarchy of skeletal (striated) muscle from whole muscle down to the sarcomere, the actin (thin) and myosin (thick) filaments and the banding pattern they create, and the sliding-filament model of contraction — how myosin heads bind actin, form cross-bridges, execute the power stroke, then detach and re-attach using ATP, all triggered by Ca²⁺. It ties the mechanism to how a sarcomere actually shortens, to antagonistic muscle pairs moving joints, and briefly to other forms of motility. Every worked example is written the way our marking engine awards Paper 2 explanation marks — each distinct valid point is one mark — so you can see exactly how to phrase an answer that scores.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the structure of striated muscle fibres, including myofibrils, sarcomeres, actin and myosin.",
-    "Explain the sliding filament mechanism of muscle contraction, detailing the roles of ATP and calcium ions.",
-    "Outline the process of excitation-contraction coupling from the neuromuscular junction to the sarcoplasmic reticulum.",
-    "Analyse electron micrographs of muscle tissue to identify key structures and deduce the state of contraction."
+    "Describe the hierarchical structure of skeletal (striated) muscle — muscle fibre, myofibril and sarcomere — and identify actin (thin) and myosin (thick) filaments.",
+    "Interpret the sarcomere banding pattern (Z-discs, A-band, I-band, H-zone) and relate changes in the bands to the state of contraction.",
+    "Explain the sliding-filament model of contraction: cross-bridge formation, the power stroke, detachment and re-attachment, and the roles of Ca²⁺ and ATP.",
+    "Explain how antagonistic muscle pairs produce movement at a joint, and outline briefly how other forms of motility are generated.",
+    "Phrase explanation answers as distinct, creditable points so that analytic marking awards every mark available."
   ],
+  "syllabusObjectivesCovered": ["B3.3"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "The Muscle's Microscopic Tug-of-War",
-    "summary": "Muscle contraction is a microscopic 'tug-of-war' where protein filaments pull on each other to shorten the muscle. This process is powered by ATP and triggered by nerve signals releasing calcium.",
-    "analogy": "Imagine a long rope ladder with rungs you can grab (the actin filament). You are a climber with two very strong arms (a myosin head). To climb, you grab a rung, pull yourself up, let go with one hand, reach for the next rung, and repeat. The signal to start climbing is a shout from your coach (a nerve impulse releasing calcium), and the energy you use comes from energy bars you eat (ATP). By repeatedly grabbing, pulling, and releasing, you move along the ladder, just as myosin 'climbs' along actin to contract a muscle.",
+    "title": "A molecular tug-of-war",
+    "summary": "A muscle shortens because thousands of tiny protein motors, the myosin heads, repeatedly grab a neighbouring filament and haul on it. The filaments themselves never get shorter — they simply slide past one another, and calcium decides when the grabbing is allowed to start while ATP powers each pull.",
+    "analogy": "Picture a tug-of-war team hauling in a rope hand over hand. Each person grips the rope, pulls, lets go, reaches forward and grips again — and the rope creeps steadily toward them even though no one's arms and no part of the rope changes length. The myosin heads are the hands, the actin filament is the rope, the referee's whistle that says 'go' is the arrival of calcium ions, and the snack that lets each hand keep pulling is ATP. Many hands cycling out of step means the pull is smooth and continuous, so the whole team (the sarcomere) reels the rope in and shortens.",
     "steps": [
-      "A nerve impulse arrives, triggering the release of calcium ions ($Ca^{2+}$) into the muscle fibre.",
-      "Calcium binds to regulatory proteins, exposing binding sites on the thin (actin) filaments.",
-      "Thick (myosin) filament heads bind to the actin, forming cross-bridges.",
-      "Myosin heads pivot, pulling the actin filaments towards the centre. This 'power stroke' uses energy from ATP, shortening the muscle."
+      "A nerve impulse reaches the muscle fibre and calcium ions (Ca²⁺) flood into the myofibrils.",
+      "Ca²⁺ uncovers the myosin-binding sites on the actin (thin) filaments.",
+      "Myosin (thick) filament heads attach to actin, forming cross-bridges, and swivel — the power stroke pulls actin toward the centre of the sarcomere.",
+      "ATP binds each myosin head so it detaches, re-cocks, and grips the actin further along; repeated cycles slide the filaments and shorten the sarcomere."
     ]
   },
+  "keyConcepts": ["sarcomere structure", "sliding-filament model", "role of Ca²⁺ and ATP"],
   "flashcards": [
-    {
-      "front": "Sarcomere",
-      "back": "The fundamental contractile unit of a myofibril, extending from one Z-line to the next. It contains overlapping actin and myosin filaments."
-    },
-    {
-      "front": "Myosin",
-      "back": "The thick filament protein in a sarcomere. Its 'heads' bind to actin and use ATP to generate the force for muscle contraction."
-    },
-    {
-      "front": "Actin",
-      "back": "The main protein of the thin filament in a sarcomere. It has binding sites for myosin heads."
-    },
-    {
-      "front": "Tropomyosin",
-      "back": "A fibrous protein that runs along the actin filament, blocking the myosin-binding sites in a relaxed muscle."
-    },
-    {
-      "front": "Troponin",
-      "back": "A complex of three proteins attached to tropomyosin. When calcium ions bind to it, it changes shape, moving tropomyosin and exposing the myosin-binding sites on actin."
-    },
-    {
-      "front": "Sarcoplasmic Reticulum (SR)",
-      "back": "A specialised endoplasmic reticulum in muscle fibres that stores, releases, and reabsorbs calcium ions ($Ca^{2+}$) to control contraction."
-    },
-    {
-      "front": "Sliding Filament Theory",
-      "back": "The theory that muscle contraction occurs by the sliding of thin (actin) filaments past thick (myosin) filaments, without the filaments themselves changing length."
-    },
-    {
-      "front": "Cross-bridge cycle",
-      "back": "The repeated sequence of events where myosin heads bind to actin, perform a power stroke, detach, and re-energise, causing muscle contraction."
-    },
-    {
-      "front": "What are the two key roles of ATP in muscle contraction?",
-      "back": "1. Its hydrolysis (to ADP + Pi) provides energy to 're-cock' the myosin head for the power stroke. 2. Its binding to the myosin head causes detachment from the actin filament, breaking the cross-bridge."
-    },
-    {
-      "front": "What is a T-tubule (transverse tubule)?",
-      "back": "An invagination of the sarcolemma (muscle cell membrane) that penetrates deep into the muscle fibre, allowing action potentials to rapidly reach the sarcoplasmic reticulum."
-    },
-    {
-      "front": "Common misconception: Do muscle filaments shorten during contraction?",
-      "back": "No. This is a common trap. The actin and myosin filaments themselves do not change length. The sarcomere shortens because the filaments *slide* past one another."
-    },
-    {
-      "front": "What happens to the A-band and I-band during contraction?",
-      "back": "The A-band (myosin length) remains constant. The I-band (actin-only region) and H-zone (myosin-only region) both shorten as the filaments slide over each other."
-    }
+    { "front": "Muscle fibre", "back": "A single skeletal-muscle cell — long, cylindrical and multinucleate, bounded by the sarcolemma and packed with many myofibrils. Do not confuse the whole cell (fibre) with the organelle inside it (myofibril).", "pillLabel": "Definition" },
+    { "front": "Myofibril", "back": "A long contractile organelle running the length of a muscle fibre, made of a chain of sarcomeres joined end to end. Hundreds of myofibrils lie side by side in one fibre.", "pillLabel": "Definition" },
+    { "front": "Sarcomere", "back": "The functional (contractile) unit of a myofibril, defined as the region from one Z-disc to the next. It contains overlapping actin (thin) and myosin (thick) filaments and shortens during contraction.", "pillLabel": "Definition" },
+    { "front": "Actin (thin filament)", "back": "The thin filament of the sarcomere; a helix of actin subunits carrying the myosin-binding sites. In a resting muscle these sites are covered by tropomyosin.", "pillLabel": "Definition" },
+    { "front": "Myosin (thick filament)", "back": "The thick filament of the sarcomere; bundles of myosin molecules whose projecting heads bind actin, form cross-bridges and use ATP to generate the power stroke.", "pillLabel": "Definition" },
+    { "front": "Z-disc (Z-line)", "back": "The boundary of a sarcomere. Actin filaments anchor to the Z-disc; the distance between adjacent Z-discs is the sarcomere length, which decreases in contraction.", "pillLabel": "Definition" },
+    { "front": "A-band, I-band, H-zone", "back": "A-band = the full length of the thick (myosin) filaments (stays constant). I-band = the actin-only region between overlaps (shortens). H-zone = the myosin-only centre of the A-band (shortens).", "pillLabel": "Concept" },
+    { "front": "Sliding-filament model", "back": "Contraction occurs because thin (actin) filaments slide over thick (myosin) filaments, pulling the Z-discs closer. The filaments do NOT change length — the sarcomere shortens because of overlap.", "pillLabel": "Concept" },
+    { "front": "Cross-bridge", "back": "The temporary attachment formed when a myosin head binds an actin filament. The making, pulling and breaking of cross-bridges is the cross-bridge cycle.", "pillLabel": "Definition" },
+    { "front": "Role of Ca²⁺", "back": "Ca²⁺ is the TRIGGER, not the fuel. It binds a regulatory protein on actin, shifting tropomyosin off the binding sites so myosin can attach. Remove Ca²⁺ and the binding sites re-cover and the muscle relaxes.", "pillLabel": "Concept" },
+    { "front": "Role of ATP", "back": "ATP is the FUEL, and has two jobs: (1) binding to a myosin head makes it DETACH from actin; (2) its hydrolysis re-cocks the head to its high-energy position ready for the next power stroke.", "pillLabel": "Concept" },
+    { "front": "Antagonistic muscle pair", "back": "Two muscles across a joint that pull in opposite directions (e.g. biceps and triceps). One contracts to move the bone while the other relaxes; to reverse the movement the roles swap, because a muscle can only pull, not push.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: filaments do not shorten", "back": "The actin and myosin filaments keep the same length throughout contraction. Only the sarcomere shortens, because the filaments SLIDE and overlap more. Writing 'the filaments contract/shorten' loses the mark.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: Ca²⁺ is not the energy source", "back": "Ca²⁺ switches contraction ON; ATP provides the ENERGY. Saying calcium 'powers' the power stroke, or that ATP triggers contraction, swaps their roles and loses marks.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "During contraction, what actually happens to the actin and myosin filaments themselves?", "options": ["They shorten as the sarcomere shortens", "They stay the same length and slide over one another", "The actin shortens but the myosin stays the same", "They coil up to pull the Z-discs together"], "answer": "They stay the same length and slide over one another" },
+    { "prompt": "What is the specific role of calcium ions (Ca²⁺) in contraction?", "options": ["They provide the energy for the power stroke", "They cause myosin heads to detach from actin", "They expose the myosin-binding sites on actin so cross-bridges can form", "They break down ATP into ADP and phosphate"], "answer": "They expose the myosin-binding sites on actin so cross-bridges can form" },
+    { "prompt": "Which statement about ATP in the cross-bridge cycle is correct?", "options": ["ATP binding to a myosin head makes the head detach from actin", "ATP triggers the release of Ca²⁺ into the fibre", "ATP is needed only to build myosin filaments", "ATP directly pulls the actin filament toward the centre"], "answer": "ATP binding to a myosin head makes the head detach from actin" },
+    { "prompt": "Which correctly matches the filaments to their type?", "options": ["Actin is the thick filament; myosin is the thin filament", "Actin is the thin filament; myosin is the thick filament with the heads", "Both actin and myosin are thin filaments", "Myosin is the thin filament that anchors to the Z-disc"], "answer": "Actin is the thin filament; myosin is the thick filament with the heads" },
+    { "prompt": "A sarcomere is best defined as the region:", "options": ["From the middle of one A-band to the next", "Between two adjacent Z-discs", "Occupied only by myosin (the H-zone)", "Between the sarcolemma and the sarcoplasmic reticulum"], "answer": "Between two adjacent Z-discs" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a muscle fibre and a myofibril?",
-      "a": "A muscle fibre is a single muscle cell. It is a large, complex structure containing many components, including nuclei, mitochondria, and the sarcoplasmic reticulum. A myofibril is a smaller, cylindrical organelle found inside the muscle fibre. Each muscle fibre contains hundreds to thousands of myofibrils, which are the actual contractile elements made of sarcomeres."
-    },
-    {
-      "q": "Why do muscle cells have so many mitochondria?",
-      "a": "Muscle contraction is an extremely energy-intensive process. ATP is required for the power stroke, the detachment of myosin from actin, and for pumping calcium ions back into the sarcoplasmic reticulum (active transport). The large number of mitochondria ensures a constant and rapid supply of ATP through aerobic respiration to fuel sustained muscle activity."
-    },
-    {
-      "q": "What is rigor mortis and how does it relate to ATP?",
-      "a": "Rigor mortis is the stiffening of muscles that occurs after death. When an organism dies, cellular respiration ceases, and ATP production stops. Existing ATP is quickly used up. Without new ATP molecules to bind to the myosin heads, the cross-bridges cannot detach from the actin filaments. This results in a continuous state of muscle contraction, causing the body to become stiff."
-    },
-    {
-      "q": "Are smooth muscles and cardiac muscles structured the same way as striated skeletal muscle?",
-      "a": "No. While all use actin and myosin to contract, their organisation differs. Cardiac muscle is also striated with sarcomeres but has unique features like intercalated discs for cell-to-cell communication. Smooth muscle, found in organs like the intestines and blood vessels, is not striated because its actin and myosin filaments are not arranged in regular sarcomeres."
-    }
+    { "q": "What is the difference between a muscle fibre and a myofibril?", "a": "A muscle fibre is a whole muscle cell — a long, multinucleate cell wrapped in the sarcolemma. A myofibril is one of the many rod-like contractile organelles packed inside that cell, and each myofibril is a chain of sarcomeres. So the order of size is: muscle → bundle of fibres → single fibre (cell) → many myofibrils → chain of sarcomeres → actin and myosin filaments. Mixing up 'fibre' and 'myofibril' is one of the commonest slips in this topic, so pin down that the fibre is the cell and the myofibril is inside it." },
+    { "q": "Why is skeletal muscle called 'striated'?", "a": "Under a microscope skeletal muscle shows regular light and dark cross-stripes. These arise because the sarcomeres in neighbouring myofibrils line up, so their dark A-bands (regions containing myosin) and light I-bands (actin-only regions) register across the whole fibre. The stripes are therefore a direct visual read-out of the ordered actin–myosin arrangement, which is why 'striated' and 'skeletal' are used almost interchangeably for this tissue." },
+    { "q": "If the filaments do not shorten, what makes the sarcomere shorter?", "a": "Increased overlap. The myosin heads repeatedly pull the actin filaments toward the centre of the sarcomere, so the actin filaments — anchored at the Z-discs — drag the Z-discs inward. The filaments keep their original lengths; it is the distance between the Z-discs that falls. On the banding pattern this shows as a narrower I-band and H-zone while the A-band width is unchanged, because the A-band is simply the length of the myosin, which does not change." },
+    { "q": "Why does a muscle need an antagonistic partner?", "a": "A muscle can only generate force by pulling (shortening); it cannot actively push or lengthen itself. So to move a bone one way and then back again, joints are served by antagonistic pairs — for example the biceps flexes the elbow while the triceps extends it. When one contracts it pulls the bone and stretches its relaxed partner; reversing the movement requires the partner to contract and pull the bone the other way. This is why movement at a joint almost always involves two opposing muscles or muscle groups." },
+    { "q": "Is muscle the only way organisms move?", "a": "No — muscle is the animal solution for whole-body movement, but motility at the cellular level uses related machinery. Cilia and flagella beat using the motor protein dynein sliding microtubules; crawling cells such as amoebae and white blood cells push out and retract by assembling and disassembling actin; and vesicles are hauled along microtubules inside cells by kinesin and dynein. The recurring theme is a motor protein that changes shape using ATP to move along or slide a cytoskeletal filament — exactly the principle that myosin uses on actin in muscle." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Movement is a defining characteristic of animal life, and it is powered by the remarkable molecular machinery of muscle tissue. In this lesson, we will focus on striated muscle, the type responsible for voluntary movements like walking, lifting, and even breathing. We will dissect its structure from the macroscopic level down to the individual protein filaments and understand the precise, energy-dependent mechanism that allows these filaments to generate force and motion."
-    },
-    {
-      "type": "heading",
-      "content": "The Architecture of Striated Muscle"
-    },
-    {
-      "type": "text",
-      "content": "Striated muscle is organised in a hierarchical fashion. The whole muscle is composed of bundles of muscle fibres called fascicles. Each muscle fibre is a single, elongated, multinucleated cell, packed with cylindrical organelles called myofibrils. These myofibrils are the contractile elements, and their repeating structural pattern gives the muscle its characteristic striped, or 'striated', appearance."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Muscle Fibre (Cell):** Surrounded by a plasma membrane called the **sarcolemma**. Contains cytoplasm called **sarcoplasm**.",
-        "**Myofibrils:** Composed of contractile proteins arranged into repeating units called **sarcomeres**.",
-        "**Sarcoplasmic Reticulum (SR):** A network of membranes that stores high concentrations of calcium ions ($Ca^{2+}$).",
-        "**Mitochondria:** Numerous mitochondria are packed between myofibrils to supply the vast amounts of ATP needed for contraction and relaxation.",
-        "**T-tubules:** Invaginations of the sarcolemma that conduct electrical impulses deep into the fibre."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Sarcomere: The Contractile Unit"
-    },
-    {
-      "type": "text",
-      "content": "The sarcomere is the functional unit of the myofibril, extending between two Z-lines. Its distinct banding pattern is visible under an electron microscope and is key to understanding its function. The central **A-band** is dark and represents the full length of the thick myosin filaments, including where they overlap with thin actin filaments. The lighter **I-band** contains only thin actin filaments. Within the A-band is a paler region called the **H-zone**, which contains only myosin. The **M-line** is found in the centre of the H-zone and holds the thick filaments in place."
-    },
-    {
-      "type": "examTip",
-      "content": "You must be able to relate changes in the sarcomere's banding pattern to the state of contraction. During contraction, the Z-lines move closer, shortening the sarcomere. Consequently, the I-band and H-zone shorten, while the A-band width remains constant because the myosin filaments do not change length."
-    },
-    {
-      "type": "workedExample",
-      "question": "An electron micrograph of a relaxed sarcomere is shown. The length of the A-band is measured to be 1.6 µm. The length of the I-band is 1.0 µm. Calculate the total length of one sarcomere. Note: A full sarcomere contains one full A-band and two halves of an I-band.",
-      "solution": "1.  **Identify the components of a sarcomere's length:** The length of a sarcomere (from Z-line to Z-line) includes one full A-band and the two adjacent half I-bands (which together make one full I-band).\n2.  **Formula:** Sarcomere Length = Length of A-band + Length of I-band.\n3.  **Substitute values:** Sarcomere Length = 1.6 µm + 1.0 µm.\n4.  **Calculate:** Total length = 2.6 µm. [1 mark for correct calculation and unit]."
-    },
-    {
-      "type": "heading",
-      "content": "The Sliding Filament Mechanism"
-    },
-    {
-      "type": "text",
-      "content": "Muscle contraction is explained by the sliding filament theory. It is not the filaments themselves that shorten, but rather the thin actin filaments slide past the thick myosin filaments, pulling the Z-lines closer together and shortening the entire sarcomere. This process is driven by a series of molecular events known as the cross-bridge cycle, which is dependent on calcium ions and fuelled by ATP."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**1. Excitation:** A nerve impulse arrives at the neuromuscular junction, causing the release of acetylcholine. This generates an action potential that spreads across the sarcolemma and down the T-tubules.",
-        "**2. Calcium Release:** The action potential triggers the sarcoplasmic reticulum (SR) to release stored $Ca^{2+}$ ions into the sarcoplasm.",
-        "**3. Activation:** $Ca^{2+}$ ions bind to troponin. This causes troponin to change shape, which in turn pulls tropomyosin away from the myosin-binding sites on the actin filaments.",
-        "**4. Cross-Bridge Formation:** With the binding sites exposed, the energised myosin heads (containing ADP + Pi) bind to actin, forming a cross-bridge.",
-        "**5. Power Stroke:** The myosin head releases ADP and Pi, causing it to pivot and change to a low-energy state. This 'power stroke' pulls the actin filament towards the M-line.",
-        "**6. Detachment:** A new ATP molecule binds to the myosin head, causing it to detach from actin.",
-        "**7. Re-energising:** The enzyme ATPase on the myosin head hydrolyses the ATP into ADP and Pi. The energy released is used to 're-cock' the myosin head into its high-energy conformation, ready for another cycle. The cycle continues as long as $Ca^{2+}$ and ATP are present."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A single power stroke moves an actin filament by approximately 10 nm. A myosin head cycles about five times per second during a rapid contraction. Calculate the speed of filament sliding in micrometres per second (µm/s).",
-      "solution": "1.  **Calculate total distance per second:** Distance per cycle = 10 nm. Cycles per second = 5.\n    Total distance = 10 nm/cycle * 5 cycles/s = 50 nm/s. [1 mark]\n2.  **Convert units from nm/s to µm/s:** We know that 1 µm = 1000 nm. Therefore, to convert nm to µm, we divide by 1000.\n    Speed in µm/s = 50 nm/s / 1000 = 0.05 µm/s. [1 mark]\n3.  **Final Answer:** The speed of filament sliding is 0.05 µm/s."
-    },
-    {
-      "type": "examTip",
-      "content": "Examiners love to ask about the specific roles of ATP. Remember there are two distinct functions: 1) ATP binding causes myosin to *detach* from actin, and 2) ATP hydrolysis *provides the energy* for the myosin head to return to its high-energy, 'cocked' position. A lack of ATP causes rigor mortis because the myosin heads cannot detach."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Muscle and Motility",
-      "href": "/mark?subject=ib-biology-hl&topic=B3.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Interactive Animation of Muscle Contraction",
-          "href": "https://www.youtube.com/watch?v=gJ309LfHQvY"
-        },
-        {
-          "label": "Detailed Electron Micrographs of Sarcomeres",
-          "href": "https://www.ouhsc.edu/histology/text%20sections/muscle.html"
-        },
-        {
-          "label": "In-depth article on Excitation-Contraction Coupling",
-          "href": "https://www.ncbi.nlm.nih.gov/books/NBK559113/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every voluntary movement you make — turning this page, standing up, drawing breath — is powered by skeletal muscle converting the chemical energy of ATP into mechanical force. Remarkably, that force is produced by billions of copies of a single molecular event repeated in step: a myosin head grabbing an actin filament and pulling. B3.3 asks you to build the structure from whole muscle down to that molecular grip, then to explain, precisely, how the grip-and-pull cycle shortens a sarcomere. Because the exam rewards precise mechanism over vague description, this lesson pairs the biology with the way our marking engine actually awards Paper 2 marks — one mark for each distinct, correct point — so you can see how a full-mark answer is put together." },
+
+    { "type": "heading", "content": "The architecture of skeletal (striated) muscle" },
+    { "type": "text", "content": "Skeletal muscle is built in a strict hierarchy, and getting the levels in the right order is half the battle in this topic. A whole muscle is a bundle of muscle fibres. Each muscle fibre is a single, unusually large cell — long, cylindrical and containing many nuclei, wrapped in a plasma membrane called the sarcolemma. Packed lengthways inside every fibre are hundreds of myofibrils: rod-like contractile organelles that run the full length of the cell. A myofibril is itself a chain of repeating units called sarcomeres joined end to end, and it is the sarcomere that does the contracting. Because the sarcomeres of adjacent myofibrils line up in register, their dark and light regions form the regular cross-stripes that give the tissue its name: striated muscle." },
+    { "type": "keyPoints", "items": [
+      "**Muscle fibre = the cell:** long, multinucleate, bounded by the sarcolemma; contains many myofibrils.",
+      "**Myofibril = an organelle inside the fibre:** a chain of sarcomeres end to end; hundreds lie side by side in one fibre.",
+      "**Sarcomere = the contractile unit:** the region from one Z-disc to the next, containing overlapping actin and myosin.",
+      "**Actin = thin filament; myosin = thick filament** (the one with the protruding heads).",
+      "**Striations** arise because the sarcomeres of neighbouring myofibrils are aligned, so their bands register across the whole fibre."
+    ]},
+
+    { "type": "heading", "content": "The sarcomere and its banding pattern" },
+    { "type": "text", "content": "A sarcomere runs from one Z-disc to the next. The thin actin filaments are anchored to the Z-discs at each end and reach inward; the thick myosin filaments sit in the middle, held in place at the M-line and overlapping the actin. This arrangement creates a banding pattern that is easy to read once you know what each band represents. The A-band is the full length of the thick (myosin) filaments, including where they overlap with actin — it appears dark. The I-band is the region containing only thin (actin) filaments, on either side of the A-band — it appears light, and each Z-disc sits in its centre. The H-zone is the paler central part of the A-band where only myosin is present, with no actin overlap. Reading the bands is the key skill: the A-band is fixed because myosin does not change length, whereas the I-band and H-zone shrink as the filaments slide together." },
+    { "type": "keyPoints", "items": [
+      "**Z-disc:** the boundary of the sarcomere; actin filaments anchor here.",
+      "**A-band:** the length of the myosin (thick) filaments — stays CONSTANT during contraction because myosin does not shorten.",
+      "**I-band:** actin-only region either side of the A-band — SHORTENS during contraction.",
+      "**H-zone:** myosin-only centre of the A-band — SHORTENS during contraction.",
+      "**Sarcomere length = Z-disc to Z-disc:** this is what actually decreases when the muscle contracts."
+    ]},
+    { "type": "examTip", "content": "A classic Paper 2 question shows a sarcomere before and after contraction and asks which bands change. The safe answer: the sarcomere and its I-band and H-zone all get shorter, while the A-band width stays the same. The reason — the A-band is simply the length of the myosin filaments, and no filament changes length — is often worth its own mark, so always state it." },
+
+    { "type": "heading", "content": "The sliding-filament model of contraction" },
+    { "type": "text", "content": "The sliding-filament model explains contraction without any filament ever getting shorter. Instead, the thin actin filaments slide over the thick myosin filaments, increasing their overlap and dragging the Z-discs toward the centre so the sarcomere shortens. The sliding is driven by the cross-bridge cycle, a repeating sequence carried out by the myosin heads. Two ingredients control it: calcium ions (Ca²⁺) act as the switch that permits binding, and ATP acts as the fuel that powers detachment and re-cocking. Keep those two roles rigidly separate — confusing them is the single most penalised error in this topic." },
+    { "type": "keyPoints", "items": [
+      "**1. Trigger:** a nerve impulse causes Ca²⁺ to be released into the myofibrils.",
+      "**2. Sites exposed:** Ca²⁺ binds a regulatory protein on actin, moving tropomyosin off the myosin-binding sites.",
+      "**3. Cross-bridge forms:** an energised myosin head binds the exposed site on actin.",
+      "**4. Power stroke:** the myosin head swivels, pulling the actin filament toward the centre of the sarcomere.",
+      "**5. Detachment:** a new ATP molecule binds the myosin head, which releases from actin.",
+      "**6. Re-cocking:** the head hydrolyses ATP (to ADP + Pi), using the energy to return to its high-energy position, ready to bind further along the actin.",
+      "**Result:** many heads cycling out of step slide the filaments continuously, so the sarcomere shortens for as long as Ca²⁺ and ATP are present."
+    ]},
+    { "type": "examTip", "content": "Two distinct jobs for ATP are examined again and again: (1) ATP BINDING makes the myosin head DETACH from actin, and (2) ATP HYDROLYSIS provides the energy to re-cock the head for the next stroke. This is also why rigor mortis occurs after death — with no ATP, the heads cannot detach, so the cross-bridges lock and the muscle stiffens. Being able to state both roles separately is often two easy marks." },
+
+    { "type": "workedExample", "question": "A single power stroke slides an actin filament about 11 nm, and during a fast contraction a myosin head completes roughly 5 cycles per second. Estimate the speed at which the filament slides, in micrometres per second (µm/s). [2]", "solution": "**Step 1 — distance moved per second.**\nEach cycle slides the filament 11 nm, and there are 5 cycles per second:\ndistance per second = 11 nm × 5 = 55 nm/s.  [M1: multiplies stroke distance by cycle rate]\n\n**Step 2 — convert nm/s to µm/s.**\n1 µm = 1000 nm, so divide by 1000:\nspeed = 55 ÷ 1000 = 0.055 µm/s.  [A1: correct value and unit]\n\n*Note this is the speed of one head's contribution; across a whole myofibril many sarcomeres in series add their shortening, which is why a real muscle can shorten far faster than any single cross-bridge.*" },
+
+    { "type": "heading", "content": "How the sarcomere shortens — putting the bands and the model together" },
+    { "type": "text", "content": "Now connect the mechanism to the banding pattern. As the myosin heads pull the actin filaments toward the M-line, the actin slides deeper between the myosin filaments and the Z-discs are drawn inward. Because the actin filaments are anchored at the Z-discs, moving the actin moves the Z-discs, and the whole sarcomere shortens. On the banding pattern this appears as a narrower I-band (the actin-only region shrinks as overlap grows) and a narrower H-zone (the myosin-only centre is invaded by incoming actin), while the A-band stays exactly as wide as before — because it is simply the length of the myosin, which never changes. This is the through-line of B3.3: sliding increases overlap, overlap shortens the sarcomere, and the constant A-band is the proof that no filament shortened." },
+
+    { "type": "heading", "content": "Antagonistic muscle pairs and movement at joints" },
+    { "type": "text", "content": "A muscle can only pull — it generates force by shortening and cannot actively push or lengthen itself. To move a bone and then return it, joints are therefore served by antagonistic muscle pairs: two muscles that pull the bone in opposite directions. At the elbow, the biceps and triceps are the classic example. When the biceps contracts it shortens and pulls the forearm up, flexing the joint; at the same time the triceps relaxes and is stretched. To straighten the arm the roles reverse — the triceps contracts to extend the joint while the biceps relaxes. Tendons transmit the muscle's pull to the bone, and the bones act as levers pivoting at the joint, so a small muscle shortening produces a larger, faster movement of the limb. Because the two muscles are never both fully contracting, the pair gives smooth, reversible, controllable movement." },
+    { "type": "keyPoints", "items": [
+      "**Muscles pull, never push** — hence movement needs opposing muscles.",
+      "**Antagonistic pair:** one muscle (the agonist) contracts to move the bone; its partner (the antagonist) relaxes and is stretched.",
+      "**To reverse the movement**, the partner contracts and the first relaxes — the roles swap.",
+      "**Example:** biceps flexes the elbow, triceps extends it; when one contracts the other relaxes.",
+      "**Tendons and levers:** tendons transmit force to bone; the joint acts as a pivot, converting muscle shortening into limb movement."
+    ]},
+
+    { "type": "heading", "content": "Other forms of motility (brief)" },
+    { "type": "text", "content": "Skeletal muscle is the animal solution for moving a whole body, but movement at the cellular level uses the same underlying idea — a motor protein that changes shape using ATP to move along or slide a cytoskeletal filament. Cilia and flagella beat because the motor protein dynein makes adjacent microtubules slide past one another, bending the structure. Crawling cells, such as amoebae and migrating white blood cells, move by continually assembling actin filaments at the leading edge to push the membrane forward and disassembling them behind. Inside cells, the motors kinesin and dynein walk along microtubules to haul vesicles and organelles to where they are needed. In every case the motif recurs: chemical energy from ATP drives a conformational change in a motor protein that produces directed movement — exactly what myosin does on actin in muscle." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Saying the filaments shorten** — actin and myosin keep their length; only the sarcomere shortens because the filaments SLIDE and overlap more. 'The filaments contract' scores nothing.",
+      "**Swapping the roles of Ca²⁺ and ATP** — Ca²⁺ is the trigger that exposes binding sites; ATP is the fuel for detachment and re-cocking. Saying calcium 'powers' contraction or ATP 'triggers' it loses the mark.",
+      "**Confusing actin and myosin** — actin is the THIN filament anchored at the Z-disc; myosin is the THICK filament with the heads that pull. Getting these the wrong way round unravels the whole answer.",
+      "**Confusing muscle fibre with myofibril** — the fibre is the whole cell; the myofibril is an organelle inside it. Examiners test this distinction directly.",
+      "**Misplacing the sarcomere boundary** — a sarcomere is defined from Z-disc to Z-disc, not from one A-band to the next.",
+      "**Claiming the A-band shortens** — the A-band width is CONSTANT (it is the myosin length); it is the I-band and H-zone that shorten.",
+      "**Saying antagonistic muscles push** — muscles only pull; the antagonist relaxes and is stretched, then contracts to reverse the movement. It does not actively push the bone back.",
+      "**Describing 'the muscle just contracts'** — for an explanation mark you must give the mechanism (bind → power stroke → detach → re-attach), not simply assert that contraction happens."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Explanation marks in B3.3 are awarded analytically: each distinct, valid point is worth one mark, up to the total on the paper. The engine looks for named mechanism steps, not for length or fluency — so a tightly written answer that hits every step beats a long, vague one. Study how each mark below maps to a specific idea, and notice that repeating the same idea in different words scores only once." },
+    { "type": "workedExample", "question": "Explain how a sarcomere shortens during muscle contraction according to the sliding-filament model. [4]", "solution": "**Model answer.**\nCalcium ions expose the myosin-binding sites on the actin (thin) filaments, so the myosin heads bind to actin and form cross-bridges. Each myosin head then swivels in a power stroke that pulls the actin filament toward the centre of the sarcomere. A new molecule of ATP binds to the myosin head, causing it to detach from actin; hydrolysis of this ATP re-cocks the head so it can re-attach to a binding site further along the actin filament. Repeated cycles make the actin (thin) filaments slide over the myosin (thick) filaments, increasing the overlap and pulling the Z-discs closer together, so the sarcomere shortens — while the filaments themselves stay the same length.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1:** myosin heads bind to actin, forming cross-bridges (Ca²⁺ exposing the binding sites is accepted as part of / instead of this point).\n- **Point 2:** the power stroke pulls the actin filament toward the centre of the sarcomere.\n- **Point 3:** the myosin head detaches from actin when ATP binds, and re-attaches further along (ATP hydrolysis re-cocks the head — accept as the same or an additional point).\n- **Point 4:** the actin (thin) filaments slide over the myosin (thick) filaments, so the sarcomere shortens (the filaments do not change length).\n\n**A (accuracy) conditions:** a point is credited only if the step is correct AND correctly named — e.g. 'myosin binds actin', not 'actin binds actin'. Equivalent wording is accepted (e.g. 'ratchet' for cross-bridge cycle, 'toward the M-line' for 'toward the centre').\n\n**Distinct points only.** More than four creditable steps are available here, so there is deliberate room to miss one and still score full marks — but each mark is for a DIFFERENT idea. Writing 'the heads pull the actin' and 'the actin is pulled by the heads' is one idea stated twice and scores once.\n\n**What the engine rejects.** An answer that says only 'the muscle contracts' or 'the sarcomere gets shorter' scores ZERO, because it states the outcome without the mechanism. The engine rewards the mechanism — bind, pull, detach, re-attach, slide — not the assertion that contraction happened.\n\n**Bottom line:** to secure all 4 marks, give four distinct mechanism steps: heads bind actin (cross-bridges) → power stroke pulls actin inward → head detaches and re-binds using ATP → filaments slide so the sarcomere shortens." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, awarding one mark per distinct correct step and capping at the marks available. So write in separate, creditable statements: name the cross-bridge, name the power-stroke pull, name the ATP-driven detach-and-re-attach, and name the sliding that shortens the sarcomere. Don't pad — a vague 'the muscle contracts' earns nothing, while four crisp mechanism points earn full marks." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The sliding-filament idea is a template, not a one-off. The same motor-protein-plus-cytoskeletal-filament logic underlies cilia and flagella, cell crawling, and the transport of cargo inside every one of your cells — all powered by ATP-driven shape changes. Master the muscle case — structure from fibre to sarcomere, the cross-bridge cycle, and the strict separation of Ca²⁺ (trigger) from ATP (fuel) — and you have the conceptual key to cellular movement across biology." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain the sliding-filament model and how a sarcomere shortens, with each step credited", "href": "/mark?subject=ib-biology-hl&topic=B3.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Biology Guide (2025) — Unit B3.3 subject content", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/" },
+      { "label": "Khan Academy: Myosin and actin (muscle contraction)", "href": "https://www.khanacademy.org/science/biology/muscles" },
+      { "label": "OpenStax Biology: Muscle contraction and locomotion", "href": "https://openstax.org/books/biology-2e/pages/38-4-muscle-contraction-and-locomotion" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "unit": { "code": "B", "title": "Form and function" }
 }

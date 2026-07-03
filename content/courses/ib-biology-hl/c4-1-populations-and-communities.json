@@ -2,208 +2,412 @@
   "slug": "c4-1-populations-and-communities",
   "topicCode": "C4.1",
   "title": "Populations and communities",
+  "unit": {
+    "code": "C",
+    "title": "Interaction and interdependence"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of population ecology. We will define key terms like population, community, and niche, and explore the factors that limit population growth. You will learn to interpret the sigmoid (S-shaped) growth curve and apply the capture-mark-release-recapture method to estimate population sizes.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "C4.1 is where individual organisms give way to the collective behaviour of populations. This lesson builds the full toolkit: how a population and a community are defined, the four processes that change population size (natality, mortality, immigration, emigration), the sigmoid (logistic) growth curve and its exponential, transitional and plateau phases around a carrying capacity, the difference between density-dependent and density-independent limiting factors, the interspecific interactions that shape a community, predator-prey cycles, and the two field techniques you must be able to apply — quadrats for sessile organisms and capture-mark-recapture (the Lincoln index) for mobile ones. Every worked example is set out the way our marking engine actually awards Paper 2 marks, so you can see how showing your working protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and distinguish between population, community, ecosystem, habitat, and niche.",
-    "Explain how limiting factors (density-dependent and independent) determine the carrying capacity of an environment.",
-    "Analyse the sigmoid (S-shaped) population growth curve, explaining the exponential, transitional, and plateau phases.",
-    "Outline the principles and calculations of the capture-mark-release-recapture method for estimating population size."
+    "Define population and community, and distinguish the four processes that change population size: natality, mortality, immigration and emigration.",
+    "Explain the shape of the sigmoid (logistic) growth curve in terms of its exponential, transitional and plateau phases, and relate the plateau to carrying capacity.",
+    "Distinguish density-dependent from density-independent limiting factors, and describe interspecific interactions (competition, predation, herbivory, mutualism, parasitism, disease) and predator-prey cycles.",
+    "Apply quadrat sampling to estimate the abundance of sessile organisms and the capture-mark-recapture method (Lincoln index) to estimate the size of a mobile population.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "C4.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Ecosystem's Occupancy Limit",
-    "summary": "Every environment has a 'full' sign, known as its carrying capacity. This lesson explores how populations grow rapidly at first, then slow down as they hit this limit due to finite resources like food and space.",
-    "analogy": "Imagine a new, popular café opening. Initially, customers can walk right in and get a table (exponential growth). As word spreads, it gets crowded, queues form, and resources like seats and coffee run low (limiting factors). Eventually, the café can't hold any more people; it has reached its maximum capacity (carrying capacity), and the number of people inside stays relatively constant.",
+    "title": "Nature's Neighbourhoods",
+    "summary": "A population is a single species counted in one place; a community is all the interacting species that share that place. Numbers rise and fall through births, deaths and movement in and out, and the environment sets a ceiling — the carrying capacity — that no population climbs above for long.",
+    "analogy": "Picture a new town being settled. At first there is plenty of land, food and space, so families arrive and grow quickly — this is exponential growth. As the town fills up, housing runs short, jobs get competitive and disease spreads more easily; the growth rate eases off. Eventually the town holds about as many people as the land can support: newcomers and departures roughly cancel births and deaths, and the population levels off around a stable maximum. That maximum is the carrying capacity, and the shortages that impose it are the limiting factors.",
     "steps": [
-      "First, we define the key players: a 'population' is a group of one species, a 'community' is all the different populations interacting, and an 'ecosystem' includes the community and its physical environment.",
-      "Next, we identify the environmental limits. No population can grow forever because resources like food, water, and space are finite. These are called 'limiting factors'.",
-      "Then, we model this process with the S-shaped (sigmoid) growth curve. It shows a slow start, a rapid growth spurt, and a final levelling-off as the population hits the 'carrying capacity' ($K$).",
-      "Finally, we learn how to count a mobile population without counting every single individual. We use the 'capture-mark-release-recapture' method and a simple formula to estimate the total number."
+      "Fix what you are counting: one species (the population) in a defined area, and the web of species it lives among (the community).",
+      "Track the four levers on population size — births (natality) and immigration add individuals; deaths (mortality) and emigration remove them.",
+      "As numbers rise, limiting factors bite harder, bending the growth curve from exponential, through a transitional slowdown, to a plateau at the carrying capacity.",
+      "Because you rarely count every individual, estimate the total with a sampling method: quadrats for organisms that stay put, capture-mark-recapture for those that move."
     ]
   },
+  "keyConcepts": [
+    "population",
+    "carrying capacity",
+    "limiting factors",
+    "capture-mark-recapture"
+  ],
   "flashcards": [
     {
-      "front": "Define 'population'.",
-      "back": "A group of organisms of the same species who live in the same area at the same time."
+      "front": "Population",
+      "back": "A group of organisms of the SAME species living in the same area at the same time, and able to interbreed. Example: all the red deer in one Scottish glen.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define 'community'.",
-      "back": "A group of populations of different species living and interacting with each other in an area."
+      "front": "Community",
+      "back": "All the populations of DIFFERENT species living and interacting in the same area at the same time. A community is entirely BIOTIC — it does not include the non-living environment.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the difference between a fundamental niche and a realised niche?",
-      "back": "A fundamental niche is the potential range of conditions and resources an organism could use. A realised niche is the actual range it occupies due to competition and other interactions."
+      "front": "Four processes that change population size",
+      "back": "Increases: natality (births) and immigration (individuals moving IN). Decreases: mortality (deaths) and emigration (individuals moving OUT). Net change = (natality + immigration) − (mortality + emigration).",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Define 'carrying capacity' ($K$).",
-      "back": "The maximum population size of a species that can be sustainably supported by a given environment."
+      "front": "Carrying capacity (K)",
+      "back": "The maximum population size an environment can sustain indefinitely, given its limiting resources. Reached at the PLATEAU of the sigmoid curve, where natality ≈ mortality.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a density-dependent limiting factor?",
-      "back": "A factor that limits population growth and has a greater effect as population density increases. Examples: competition, predation, disease."
+      "front": "Sigmoid (logistic) growth curve",
+      "back": "An S-shaped curve of population against time with three phases: exponential (rapid growth, resources abundant), transitional (growth slows as limiting factors bite), plateau (population fluctuates around K).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a density-independent limiting factor?",
-      "back": "A factor that affects population size regardless of its density. Examples: natural disasters like fire, flood, or extreme weather events."
+      "front": "Exponential vs logistic growth",
+      "back": "Exponential (J-shaped) growth assumes UNLIMITED resources and has no ceiling. Logistic (sigmoid, S-shaped) growth includes limiting factors, so it levels off at a carrying capacity. Real populations follow logistic growth.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Describe the exponential growth phase of the sigmoid curve.",
-      "back": "The initial phase where the population growth rate is rapid because resources are abundant and limiting factors are negligible. Natality far exceeds mortality."
+      "front": "Density-dependent limiting factor",
+      "back": "A factor whose EFFECT PER INDIVIDUAL intensifies as population density rises — e.g. competition for food, predation, disease/parasites. These regulate a population back towards K.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Describe the plateau phase of the sigmoid curve.",
-      "back": "The final phase where the population size fluctuates around the carrying capacity ($K$). Natality is approximately equal to mortality."
+      "front": "Density-independent limiting factor",
+      "back": "A factor whose effect does NOT depend on population density — typically abiotic events such as drought, flood, fire or extreme cold. A frost kills the same proportion whether the population is dense or sparse.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the name of the formula used in the capture-mark-release-recapture method?",
-      "back": "The Lincoln-Petersen Index."
+      "front": "Interspecific interactions",
+      "back": "Between-species relationships within a community: competition (both harmed for a shared resource), predation and herbivory (one benefits, the other is consumed), mutualism (both benefit), parasitism and disease (parasite/pathogen benefits, host harmed).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "State one key assumption of the capture-mark-release-recapture method.",
-      "back": "The marking does not affect the survival or behaviour of the animal (e.g., make it more visible to predators). OR The marked individuals have had enough time to mix randomly with the rest of the population."
+      "front": "Predator-prey cycles",
+      "back": "Predator and prey numbers oscillate out of phase: rising prey feeds more predators, more predators cut prey numbers, scarce prey starves predators, then prey recover. Predator peaks LAG behind prey peaks.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What does the transitional phase of the S-curve represent?",
-      "back": "The phase where population growth slows down as limiting factors begin to take effect. The rate of natality decreases while the rate of mortality increases."
+      "front": "Quadrat sampling",
+      "back": "For SESSILE or slow-moving organisms (plants, algae, barnacles). Count individuals in randomly placed quadrats of known area, find mean density, then scale up to the whole habitat area.",
+      "pillLabel": "Method"
     },
     {
-      "front": "Distinguish between 'habitat' and 'ecosystem'.",
-      "back": "A habitat is the specific environment in which a species lives. An ecosystem is broader, encompassing the entire community of interacting organisms (biotic) and their physical environment (abiotic)."
+      "front": "Lincoln index (capture-mark-recapture)",
+      "back": "For MOBILE organisms. $N = \\dfrac{M \\times n}{m}$, where $M$ = number marked and released, $n$ = size of the second sample, $m$ = marked individuals recaptured in it. $N$ is the estimated total population.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Assumptions of the Lincoln index",
+      "back": "Marked individuals mix randomly and evenly with the population; the mark neither harms the organism nor makes it easier/harder to catch; and no significant birth, death, immigration or emigration occurs between the two samples.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A population is at its carrying capacity. This means:",
+      "options": [
+        "The population can never change again",
+        "The population has reached the largest number the environment can sustain, so natality is balanced by mortality",
+        "The birth rate has fallen to zero",
+        "All limiting factors have been removed"
+      ],
+      "answer": "The population has reached the largest number the environment can sustain, so natality is balanced by mortality"
+    },
+    {
+      "prompt": "Which of these is a DENSITY-INDEPENDENT limiting factor?",
+      "options": [
+        "Competition for food",
+        "Predation",
+        "A severe winter frost",
+        "The spread of a contagious disease"
+      ],
+      "answer": "A severe winter frost"
+    },
+    {
+      "prompt": "In the Lincoln index $N = \\dfrac{M \\times n}{m}$, the symbol $m$ represents:",
+      "options": [
+        "The total number caught in the second sample",
+        "The number marked in the first sample and released",
+        "The number of MARKED individuals recaptured in the second sample",
+        "The estimated total population"
+      ],
+      "answer": "The number of MARKED individuals recaptured in the second sample"
+    },
+    {
+      "prompt": "Which statement correctly contrasts exponential and logistic growth?",
+      "options": [
+        "Exponential growth levels off at a carrying capacity; logistic growth does not",
+        "Logistic (sigmoid) growth levels off at a carrying capacity because limiting factors act; exponential growth assumes unlimited resources and has no ceiling",
+        "They are two names for the same J-shaped curve",
+        "Logistic growth is faster than exponential growth at every point"
+      ],
+      "answer": "Logistic (sigmoid) growth levels off at a carrying capacity because limiting factors act; exponential growth assumes unlimited resources and has no ceiling"
+    },
+    {
+      "prompt": "During the exponential phase of a sigmoid growth curve, why does the population grow so rapidly?",
+      "options": [
+        "Because there are no births, only immigration",
+        "Because resources are abundant and competition is low, so the birth rate greatly exceeds the death rate",
+        "Because the population has already reached carrying capacity",
+        "Because density-dependent factors are at their strongest"
+      ],
+      "answer": "Because resources are abundant and competition is low, so the birth rate greatly exceeds the death rate"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between a population and a community?",
-      "a": "A population consists of all the individuals of a single species in a particular area. A community includes all the populations of all the different species interacting in that area. Think of it as one species vs. all species."
+      "q": "What exactly is the difference between a population and a community?",
+      "a": "A population is one species in one place at one time — all the perch in a lake, say. A community is every interacting population sharing that place: the perch plus the water plants they shelter in, the plankton they eat, the herons that eat them, and the parasites on their gills. Population is single-species; community is multi-species. Note that a community is purely biotic — add the non-living surroundings (water, minerals, light) and you are describing an ecosystem, which is beyond the community itself."
     },
     {
-      "q": "Is the carrying capacity ($K$) for a species always the same in every environment?",
-      "a": "No, carrying capacity is specific to a particular environment at a particular time. It can change if the environment changes. For example, a prolonged drought could lower the carrying capacity for a plant species, while a new food source could potentially increase it."
+      "q": "Why does a population stop growing at its carrying capacity?",
+      "a": "As density rises, density-dependent limiting factors strengthen: food and space run short, competition intensifies, predators are better fed, and disease spreads more readily through the crowd. These push the death rate up and the birth rate down until mortality balances natality. With no net gain, the population fluctuates around a stable maximum — the carrying capacity. It is a dynamic balance, not a frozen number, and it can shift if the environment changes."
     },
     {
-      "q": "Why is the capture-mark-release-recapture method an estimate and not an exact count?",
-      "a": "It's an estimate because it's based on a sample, not the entire population. Its accuracy depends on how well the assumptions are met. For example, if the marked animals don't mix randomly back into the population, the second sample won't be representative, leading to an inaccurate estimate."
+      "q": "How do I tell a density-dependent factor from a density-independent one?",
+      "a": "Ask whether the factor's effect gets stronger as the population gets more crowded. If it does — competition, predation, parasites and disease all spread or intensify with density — it is density-dependent, and it regulates the population back towards K. If the effect is the same regardless of crowding — a flood, drought, fire or hard frost hits a dense population and a sparse one in the same proportion — it is density-independent, and it is usually an abiotic event."
     },
     {
-      "q": "Can a population stay in the exponential growth phase forever?",
-      "a": "No, this is impossible in any natural ecosystem. Exponential growth assumes unlimited resources and no limiting factors, which is never the case in the real world. Sooner or later, every population will encounter limits that slow its growth."
+      "q": "When should I use quadrats and when should I use capture-mark-recapture?",
+      "a": "Match the method to how the organism moves. Quadrats suit sessile or slow organisms that stay put long enough to be counted in a frame — plants, fungi, barnacles, limpets. Capture-mark-recapture suits mobile animals that would flee or be double-counted — insects, small mammals, fish. A quadrat gives density you scale up by area; capture-mark-recapture gives a total from the proportion of marked individuals that reappear."
+    },
+    {
+      "q": "The Lincoln index assumes a closed population — is that ever really true?",
+      "a": "Rarely, which is why it is an estimate. The method assumes no births, deaths, immigration or emigration between samples, that marks do not fall off or affect survival, and that marked animals mix back in evenly. In practice you keep the interval between samples short (to limit births and deaths), use marks that neither harm nor attract predators, and allow enough time for mixing. Examiners often ask you to state or evaluate these assumptions, so learn them alongside the formula."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to population ecology, the branch of biology that studies the dynamics of species populations and how these populations interact with the environment. In this lesson, we'll unpack the core terminology used to describe ecological systems and investigate the mathematical models that predict how populations change over time. Understanding these principles is crucial for conservation, resource management, and predicting the ecological impact of environmental changes."
+      "content": "Up to now you have studied organisms one at a time. C4.1 changes the scale: from here on the unit of study is the population — a whole group of one species — and the community of species it lives among. That shift matters because populations behave in ways individuals cannot: they grow, level off, cycle with their predators, and are held in check by their own crowding. This lesson defines the vocabulary precisely, works through the sigmoid growth curve and the factors that shape it, surveys the interactions that knit a community together, and drills the two sampling techniques you will be examined on. As with every calculation-and-explanation topic, HOW you set out your working decides how many marks you keep — so the worked examples are laid out exactly the way our engine awards them."
     },
     {
       "type": "heading",
-      "content": "Fundamental Ecological Concepts"
+      "content": "Populations and communities defined"
     },
     {
       "type": "text",
-      "content": "To study ecology, we need a precise vocabulary. A **population** refers to all the organisms of a single species in a defined area. When we consider all the different populations of different species interacting within that area, we are talking about a **community**. The physical place where an organism lives is its **habitat**. Broadening our view further, an **ecosystem** includes the entire community (all biotic, or living, components) plus the non-living, or **abiotic**, components of the environment, such as water, soil, and sunlight."
-    },
-    {
-      "type": "heading",
-      "content": "The Niche Concept: An Organism's Role"
-    },
-    {
-      "type": "text",
-      "content": "An organism's **ecological niche** is its unique role and position within its ecosystem. It encompasses all its interactions with the biotic and abiotic factors of its environment – what it eats, what eats it, its habitat, and its behaviours. We can distinguish between two types of niches."
+      "content": "A **population** is a group of organisms of the same species living in the same area at the same time. Because they share a place and a species, they can interbreed — all the field mice in one meadow are a population. A **community** is all the populations of different species living and interacting in that same area: the mice, the grasses they eat, the owls that hunt them, the fungi in the soil and the fleas in their fur. The defining word is *interacting* — a community is not just a list of species that happen to be present, but the web of relationships between them. Note carefully that a community is entirely **biotic** (living); the moment you fold in the non-living surroundings such as soil, water and sunlight, you have moved up to describing an ecosystem."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Fundamental Niche:** The theoretical niche, representing the full range of environmental conditions and resources an organism could possibly occupy and use, in the absence of competition from other species.",
-        "**Realised Niche:** The actual niche an organism occupies. It is always smaller than the fundamental niche due to limiting factors, especially competition with other species for the same resources."
+        "**Population:** one species, one area, one time — capable of interbreeding.",
+        "**Community:** all the interacting populations of different species in that area — entirely biotic.",
+        "A community is defined by INTERACTION, not mere co-occurrence.",
+        "Add the abiotic environment to a community and you have an ecosystem — a distinction examiners test."
       ]
     },
     {
       "type": "heading",
-      "content": "Population Growth and Its Limits"
+      "content": "What changes a population's size"
     },
     {
       "type": "text",
-      "content": "In an ideal world with unlimited resources, a population would grow exponentially. However, in reality, every ecosystem has **limiting factors** that constrain growth. These factors determine the environment's **carrying capacity ($K$)**, which is the maximum population size that can be sustained indefinitely. These factors fall into two categories."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Density-dependent factors:** Their impact intensifies as the population becomes more crowded. Examples include competition for food, increased predation, and easier transmission of diseases and parasites.",
-        "**Density-independent factors:** They affect the population regardless of its density. Examples include natural disasters (floods, fires), climate change, and pollution events."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Sigmoid (S-Shaped) Growth Curve"
-    },
-    {
-      "type": "text",
-      "content": "The logistic or sigmoid growth model provides a more realistic picture of population growth than the exponential model. It is characterised by three distinct phases when population size is plotted against time."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Phase 1: Exponential (Lag/Log) Phase:** Growth is slow at first (lag) then becomes very rapid (log). Resources are plentiful, and the population is far below carrying capacity. The birth rate (natality) is much higher than the death rate (mortality).",
-        "**Phase 2: Transitional Phase:** The growth rate begins to slow down. This is because limiting factors are starting to have an effect. Competition increases, mortality rises, and/or natality falls.",
-        "**Phase 3: Plateau Phase:** The population size stabilises and fluctuates around the carrying capacity ($K$). The growth rate is zero as natality and mortality rates are roughly equal. The population has reached the maximum size the environment can support."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "For exams, you must be able to not only draw and label the S-shaped curve but also *explain* what is happening at each phase in terms of natality, mortality, and limiting factors. Remember to mention that the population in the plateau phase often oscillates around $K$ rather than remaining perfectly flat."
-    },
-    {
-      "type": "heading",
-      "content": "Estimating Population Size: Capture-Mark-Release-Recapture"
-    },
-    {
-      "type": "text",
-      "content": "For motile organisms, counting every individual is often impossible. Ecologists use the capture-mark-release-recapture method to estimate population size. The procedure involves capturing a sample of animals, marking them in a harmless way, releasing them back into the population, and then taking a second sample after a period of time to allow for mixing. The proportion of marked animals in the second sample is used to estimate the total population size."
+      "content": "Only four processes can change the number of individuals in a population. Two add individuals: **natality** (births) and **immigration** (individuals moving in from elsewhere). Two remove them: **mortality** (deaths) and **emigration** (individuals moving out). Every rise and fall you will ever plot is the net result of these four. Natality and mortality are the internal drivers, set by reproduction and survival; immigration and emigration are the movement terms, set by dispersal across the population's boundary. When additions exceed losses the population grows; when losses exceed additions it shrinks; when they balance, it holds steady."
     },
     {
       "type": "formula",
-      "content": "Population Size ($N$) = $\\frac{n_1 \\times n_2}{n_3}$"
+      "content": "\\Delta N = (\\text{natality} + \\text{immigration}) - (\\text{mortality} + \\text{emigration})"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Natality** — births; increases population size.",
+        "**Immigration** — individuals entering from outside; increases population size.",
+        "**Mortality** — deaths; decreases population size.",
+        "**Emigration** — individuals leaving; decreases population size.",
+        "Net change is the balance of additions against losses — a population is steady when they cancel."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The sigmoid (logistic) growth curve"
     },
     {
       "type": "text",
-      "content": "Where:\n- $n_1$ = number of individuals initially caught, marked and released.\n- $n_2$ = total number of individuals caught in the second sample.\n- $n_3$ = number of marked individuals recaptured in the second sample."
+      "content": "Plot a population that colonises a new, resource-rich habitat and you get a characteristic S-shape — the **sigmoid**, or **logistic**, growth curve. It has three phases. In the **exponential phase**, individuals are few relative to resources: food, space and other requirements are effectively unlimited, competition is low, and the birth rate far exceeds the death rate, so numbers climb ever more steeply. In the **transitional phase**, the growing crowd begins to strain its resources — food per individual falls, competition sharpens, predators and disease take a larger share — so the birth rate drops and/or the death rate rises, and the growth rate slows. In the **plateau phase**, the population has reached the **carrying capacity (K)**: births are balanced by deaths, the growth rate is effectively zero, and numbers simply fluctuate around this maximum sustainable level. Carrying capacity is not a fixed constant — a better season raises it, a harsh one lowers it — but it represents the ceiling the current environment can support."
     },
     {
-      "type": "workedExample",
-      "question": "A biologist is studying a population of snails in a garden. They collect and mark 80 snails ($n_1$) with a non-toxic paint dot. After one week, they return and collect 100 snails ($n_2$). Of these 100 snails, 16 are found to have the paint mark ($n_3$). Estimate the total snail population in the garden.",
-      "solution": "1. **State the formula:** The Lincoln-Petersen Index is used: $N = \\frac{n_1 \\times n_2}{n_3}$.\n2. **Identify the variables:**\n   - $n_1$ (first capture, marked) = 80\n   - $n_2$ (second capture, total) = 100\n   - $n_3$ (recaptured, marked) = 16\n3. **Substitute the values into the formula:**\n   $N = \\frac{80 \\times 100}{16}$\n4. **Calculate the result:**\n   $N = \\frac{8000}{16}$\n   $N = 500$\n5. **State the final answer with units:** The estimated population size is 500 snails."
-    },
-    {
-      "type": "workedExample",
-      "question": "In a capture-recapture study on field mice, 50 mice were initially captured and marked. In the second trapping, 60 mice were captured, of which only 5 were marked. However, the biologist suspects the marking paint made the mice more vulnerable to owls. Explain how this would affect the population estimate.",
-      "solution": "1. **Calculate the initial estimate:**\n   $N = \\frac{n_1 \\times n_2}{n_3} = \\frac{50 \\times 60}{5} = \\frac{3000}{5} = 600$ mice.\n2. **Analyse the effect of the violation:** The assumption is that marking does not affect survival. If the marking increased predation, the marked mice ($n_1$) would be removed from the population at a higher rate than unmarked mice.\n3. **Relate to the formula:** This would lead to a lower number of marked individuals being recaptured ($n_3$) than would be expected in a random sample. \n4. **Determine the impact on the estimate:** In the formula $N = (n_1 \\times n_2) / n_3$, a smaller denominator ($n_3$) results in a larger calculated value for $N$. Therefore, the population size would be **overestimated**."
+      "type": "keyPoints",
+      "items": [
+        "**Exponential phase:** resources abundant, competition low, birth rate >> death rate — rapid, accelerating growth.",
+        "**Transitional phase:** limiting factors intensify, birth rate falls and/or death rate rises — growth slows.",
+        "**Plateau phase:** births ≈ deaths at the carrying capacity (K) — population fluctuates around a stable maximum.",
+        "**Carrying capacity (K):** the maximum population an environment can sustain indefinitely; it can shift if conditions change."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Be prepared to discuss the assumptions of the capture-mark-release-recapture method. Key assumptions include: the marked individuals mix randomly, the marking is not lost and does not harm the animal, and there is no significant immigration, emigration, birth, or death between the two samples (a closed population)."
+      "content": "When you draw or annotate a sigmoid curve, put 'Time' on the x-axis and 'Population size' (or 'Number of individuals') on the y-axis, and label all three phases plus a dashed line at the carrying capacity K. A curve that keeps rising without levelling off is an exponential (J-shaped) curve, not a sigmoid one — mixing the two up is a classic way to lose marks."
+    },
+    {
+      "type": "heading",
+      "content": "Exponential versus logistic growth"
+    },
+    {
+      "type": "text",
+      "content": "It is worth stating the contrast sharply because examiners test it directly. **Exponential growth** is what a population would do with genuinely unlimited resources: it produces a J-shaped curve that rises without any ceiling, because nothing checks it. **Logistic growth** builds in the reality that resources run out: limiting factors slow the population as it grows, producing the S-shaped sigmoid curve that levels off at the carrying capacity. Real populations follow logistic growth; the exponential phase is only the early, uncrowded part of that S-shape, before limiting factors take hold. So 'exponential' describes a phase of the real curve and an idealised unlimited model, while 'logistic' describes the full, ceiling-bounded curve."
+    },
+    {
+      "type": "heading",
+      "content": "Density-dependent and density-independent limiting factors"
+    },
+    {
+      "type": "text",
+      "content": "The factors that slow and cap population growth fall into two kinds, distinguished by whether their strength depends on crowding. **Density-dependent** factors act more harshly as the population gets denser: competition for food and space, predation, and the spread of parasites and disease all intensify when individuals are packed together. Because their effect scales with density, these factors *regulate* a population — they push it back down towards the carrying capacity whenever it overshoots, and ease off when it falls, and they are typically biotic. **Density-independent** factors act with the same intensity whatever the density: a drought, flood, fire, frost or storm kills roughly the same proportion of a sparse population as a dense one. These are usually abiotic events, and they can knock a population well below its carrying capacity regardless of how crowded it was."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Density-dependent (mostly biotic):** competition, predation, disease/parasites — effect per individual rises with density; regulates population towards K.",
+        "**Density-independent (mostly abiotic):** drought, flood, fire, frost, storms — effect is the same regardless of density.",
+        "Only density-dependent factors can hold a population AT its carrying capacity, because only they respond to how crowded it is.",
+        "Test which kind a factor is by asking: does its impact get stronger as the population becomes more crowded?"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Interactions within a community"
+    },
+    {
+      "type": "text",
+      "content": "Species in a community affect one another through a set of named **interspecific interactions**, each with a characteristic pattern of who benefits and who is harmed. In **competition**, two species vie for the same limited resource, and both are harmed by the other's presence — think of two plant species competing for light. In **predation**, one species (the predator) kills and eats another (the prey); **herbivory** is the closely related case of an animal consuming a plant, which may harm rather than kill it. In **mutualism**, both species benefit — for instance, a pollinator gaining nectar while carrying a flower's pollen. In **parasitism**, a parasite lives on or in a host, benefiting at the host's expense, and **disease** is the analogous case of a pathogen harming its host. Reading these interactions off by their (+/−) sign pattern is the reliable way to classify them: competition is (−/−), predation, herbivory and parasitism are (+/−), and mutualism is (+/+)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Competition (−/−):** both species harmed while contesting a shared limited resource.",
+        "**Predation & herbivory (+/−):** consumer benefits, the organism consumed is harmed.",
+        "**Mutualism (+/+):** both species benefit from the interaction.",
+        "**Parasitism & disease (+/−):** parasite or pathogen benefits, host is harmed but often not immediately killed.",
+        "Classify any interaction by its effect on each partner: benefit (+), harm (−), or no effect (0)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Predator-prey population cycles"
+    },
+    {
+      "type": "text",
+      "content": "Where a predator depends heavily on a single prey, their populations often trace linked oscillations. Start with abundant prey: well-fed predators reproduce successfully and their numbers climb. The growing predator population eats prey faster than the prey can replace themselves, so prey numbers fall. With prey now scarce, predators starve and their numbers drop in turn. Relieved of heavy predation, the prey recover, and the cycle begins again. The key feature to describe — and the one examiners look for — is that the predator peak **lags behind** the prey peak: the predators can only build up *after* the prey have become plentiful, and they crash *after* the prey have declined. This is a density-dependent interaction in action, with each population regulating the other."
+    },
+    {
+      "type": "heading",
+      "content": "Estimating population size: quadrats for sessile organisms"
+    },
+    {
+      "type": "text",
+      "content": "Counting every individual is almost never practical, so ecologists estimate population size by sampling. For **sessile** organisms — plants, seaweeds, barnacles, limpets — or very slow movers, a **quadrat** is used: a frame of known area placed at random positions in the habitat. You count the individuals inside each quadrat, average across many quadrats to get a mean density, then scale that density up to the total area of the habitat. Random placement matters: choosing 'representative-looking' spots biases the estimate, so positions should be set by random coordinates. The more quadrats you sample, the more reliable your mean density."
+    },
+    {
+      "type": "workedExample",
+      "question": "An ecologist estimates the number of marsh marigolds in a 500 m² field. She places 25 quadrats at random, each of area 0.25 m², and counts 75 plants in total. Estimate the population size, and state one way to improve the reliability of the estimate. [4]",
+      "solution": "**Step 1 — total area sampled.**\nArea sampled = number of quadrats × area of one quadrat = 25 × 0.25 = 6.25 m².  [M1: correct total sampled area]\n\n**Step 2 — mean density.**\nMean density = total counted ÷ area sampled = 75 ÷ 6.25 = 12 plants m⁻².  [M1: density from count and area]\n\n**Step 3 — scale up to the whole field.**\nEstimated population = mean density × field area = 12 × 500 = 6000 plants.  [A1: 6000 marsh marigolds]\n\n**Improving reliability:** take a larger number of quadrats (and place them by random coordinates) so the mean density is less affected by patchiness. [A1: one valid improvement]\n\n*Because the marks are for the METHOD, a slip in the arithmetic of step 2 still earns the scale-up mark by error-carried-forward, provided the working is shown.*"
+    },
+    {
+      "type": "heading",
+      "content": "Estimating population size: capture-mark-recapture and the Lincoln index"
+    },
+    {
+      "type": "text",
+      "content": "For **mobile** animals — insects, small mammals, fish — a quadrat is useless, because the animals move and would be missed or double-counted. Instead you use **capture-mark-recapture**. Capture a first sample, mark each individual harmlessly, and release them. Allow time for the marked animals to mix back into the population. Then capture a second sample and count how many carry a mark. If the marked individuals have mixed in evenly, the proportion of marked animals in the second sample equals the proportion of marked animals in the whole population, and rearranging that proportion gives the **Lincoln index** estimate of total population size $N$."
+    },
+    {
+      "type": "formula",
+      "content": "N = \\frac{M \\times n}{m}"
+    },
+    {
+      "type": "text",
+      "content": "where $N$ is the estimated total population, $M$ is the number marked and released in the first sample, $n$ is the total number caught in the second sample, and $m$ is the number of those second-sample animals that were marked. The method rests on three assumptions: that marked individuals mix randomly and evenly with the rest; that the mark neither harms the animal nor changes how likely it is to be caught; and that no significant birth, death, immigration or emigration happens between the two samples. If any assumption fails — a mark that makes prey conspicuous, say, or a long gap in which many animals die — the estimate is thrown off."
+    },
+    {
+      "type": "workedExample",
+      "question": "To estimate a woodland population of wood mice, a researcher live-traps and marks 40 mice, then releases them. Two nights later she traps a second sample of 35 mice, of which 8 are marked. (a) Estimate the total population using the Lincoln index. (b) State one assumption of the method and explain how breaking it would affect the estimate. [4]",
+      "solution": "**(a) Apply the Lincoln index.**\nIdentify the terms: $M = 40$ (marked and released), $n = 35$ (second sample), $m = 8$ (marked recaptures).\n$N = \\dfrac{M \\times n}{m} = \\dfrac{40 \\times 35}{8}$.  [M1: correct formula and substitution]\n$N = \\dfrac{1400}{8} = 175$ mice.  [A1: 175]\n\n**(b) Assumption and its effect.**\nAssumption: no significant births, deaths, immigration or emigration occur between the two samples (a closed population). [A1: valid assumption]\nEffect if broken: if, say, marked mice died or emigrated before the second sample, fewer marks would be recaptured ($m$ smaller), so $N = M n / m$ would be OVER-estimated. [A1: correct directional reasoning]\n\n*Always write the formula and substitute before dividing — the method marks (M1) are secured even if the final division slips, and ECF then carries your value through to the assumption discussion.*"
+    },
+    {
+      "type": "examTip",
+      "content": "For any Lincoln-index question, write $N = \\dfrac{M \\times n}{m}$, label which number is which, and substitute before you divide. Marks are awarded for the correct method even when the final figure is wrong, and being ready to state the method's assumptions lets you pick up the evaluation marks that so often follow."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing population and community** — a population is ONE species; a community is many interacting species. Describing 'all the organisms in the pond' as a population loses the mark.",
+        "**Calling carrying capacity a fixed maximum that can never change** — K is the maximum SUSTAINABLE population for current conditions, and it shifts when the environment changes; it is where natality balances mortality, not where growth is forbidden.",
+        "**Mislabelling the growth curve** — a sigmoid (logistic) curve LEVELS OFF at K; a curve that rises without a ceiling is exponential. Do not call an unbounded J-shaped curve 'sigmoid'.",
+        "**Muddling density-dependent and density-independent factors** — competition, predation and disease are density-DEPENDENT (they intensify with crowding); drought, flood, fire and frost are density-INDEPENDENT. Only density-dependent factors hold a population at K.",
+        "**Writing the Lincoln index upside down** — it is $N = \\dfrac{M \\times n}{m}$ (marked × second sample ÷ marked recaptures), NOT $m$ on top. Putting the recaptures in the numerator gives a nonsensically small population.",
+        "**Ignoring the method's assumptions** — quoting a Lincoln estimate without noting that the population must be effectively closed and the marks harmless throws away easy evaluation marks.",
+        "**Forgetting the predator lag** — in predator-prey cycles the predator peak comes AFTER the prey peak; describing them as rising and falling together is wrong.",
+        "**Confusing interspecific with intraspecific** — interspecific interactions are BETWEEN different species; competition within one species is intraspecific."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "C4.1 pairs calculation with explanation, and the explanation marks are awarded analytically — each distinct valid biological point is worth one mark. Method marks (M) credit correct reasoning, answer marks (A) credit a correct conclusion, and error-carried-forward (ECF) means a wrong value early on does not cost you the marks that follow, provided your working is shown. Notice below how each mark is tied to a specific, named idea rather than to loose phrasing."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain the shape of the sigmoid (S-shaped) population growth curve. [4]",
+      "solution": "**Model answer.**\nIn the early, exponential phase the population is small relative to its resources: food and space are abundant and competition is low, so the birth rate greatly exceeds the death rate and numbers rise rapidly. As the population grows into the transitional phase, limiting factors intensify — resources per individual dwindle, competition sharpens and predation and disease increase — so the birth rate falls and/or the death rate rises and the growth rate slows. Finally, in the plateau phase the population reaches the carrying capacity of the environment: births are balanced by deaths, net growth is effectively zero, and the population fluctuates around this maximum sustainable level.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** exponential phase — abundant resources / low competition, so birth rate >> death rate → rapid growth.\n- **Point 2 (M):** transitional phase — limiting factors increase / resources become scarce, so growth rate slows.\n- **Point 3 (M):** plateau phase — births ≈ deaths / growth rate ≈ zero.\n- **Point 4 (A):** the plateau occurs AT the carrying capacity — the maximum sustainable population (the conclusion of the reasoning chain).\n\nThe A mark rewards correct PHASE reasoning tied to carrying capacity, not just the words 'it levels off'. Because the points are for DISTINCT ideas, restating 'the population grows fast' in two ways scores once. Equivalent phrasing is accepted — 'natality exceeds mortality' for 'birth rate exceeds death rate', 'resources run out' for 'limiting factors increase'.\n\n**What the engine rejects.** An answer that only redraws the curve in words ('it goes up, then slows, then flattens') without naming a CAUSE at each phase scores little: the marks are for the biological reasoning — resources, competition, birth and death rates — behind each part of the shape.\n\n**ECF and partial credit.** The points are independent, so a student who omits the transitional step but correctly explains the exponential and plateau phases still earns those points. There is no all-or-nothing penalty — each valid line stands on its own.\n\n**Bottom line:** to secure all 4 marks, give a named cause for each of the three phases and tie the plateau explicitly to the carrying capacity."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements: name the phase, give its CAUSE (resources, competition, birth vs death rate), and finish by tying the plateau to the carrying capacity. Describing the curve's shape without its causes feels complete but earns little; the mark scheme rewards the named biological reasoning, and showing each step is what protects your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The ideas in C4.1 are the foundation for the rest of the interaction-and-interdependence unit. Carrying capacity and limiting factors reappear when you study sustainability and the human population; interspecific interactions underpin food webs, energy flow and niche concepts; and the sampling techniques you have practised here are the same ones used in fieldwork to measure biodiversity and monitor conservation. Master the habit of reasoning from births, deaths and movement, and of matching a sampling method to how an organism lives, and you have a template that carries through the whole of ecology."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Populations and Communities",
-      "href": "/mark?subject=ib-biology-hl&topic=C4.1"
+      "label": "Get a Paper 2 question marked: explain the sigmoid growth curve and calculate a population size with full working",
+      "href": "/mark?subject=ib-biology-hl&topic=C4.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Population Ecology Graphs: Logistic Growth",
-          "href": "https://www.khanacademy.org/science/ap-biology/ecology-ap/population-ecology-ap/a/population-growth-and-regulation"
+          "label": "Population Ecology: Interactive Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/natural-selection"
         },
         {
-          "label": "Virtual Lab: Population Biology",
-          "href": "https://www.biologysimulations.com/population-biology"
+          "label": "Khan Academy: Population Ecology",
+          "href": "https://www.khanacademy.org/science/biology/ecology/population-ecology"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Population Ecology: Interactive Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/natural-selection/latest/natural-selection_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/natural-selection",
+    "hint": "Explore “Population Ecology: Interactive Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
 }

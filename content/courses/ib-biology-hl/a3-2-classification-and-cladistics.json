@@ -2,159 +2,384 @@
   "slug": "a3-2-classification-and-cladistics",
   "topicCode": "A3.2",
   "title": "Classification and cladistics",
+  "unit": {
+    "code": "A",
+    "title": "Unity and diversity"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the principles of cladistics, the modern approach to classifying organisms based on their evolutionary relationships. It contrasts traditional methods with evidence-based classification using molecular data and teaches how to construct and interpret cladograms.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Classification is how biology imposes order on millions of species, and cladistics is the modern, evidence-led version of that order. This lesson builds the full A3.2 toolkit: the taxonomic hierarchy from domain down to species, the three-domain system (Bacteria, Archaea, Eukarya), the difference between natural and artificial classification, what a clade is, how cladograms are constructed and — crucially — how they are interpreted, and how molecular evidence and the molecular clock reclassify organisms that physical features alone had grouped wrongly. Every worked example and the model answer are laid out exactly the way our marking engine awards Paper 2 marks, so you can see how each distinct idea earns its point.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define cladistics and explain the relationship between clades and cladograms.",
-    "Analyse cladograms to deduce evolutionary relationships and identify common ancestors.",
-    "Distinguish between homologous and analogous structures as evidence for evolution.",
-    "Explain how molecular evidence (DNA and protein sequences) has led to the reclassification of some groups."
+    "State the taxonomic hierarchy (domain, kingdom, phylum, class, order, family, genus, species) and the binomial naming of species.",
+    "Describe the three-domain system (Bacteria, Archaea, Eukarya) and explain why it is based on molecular rather than superficial evidence.",
+    "Distinguish natural classification (based on shared ancestry) from artificial classification (based on convenient, superficial traits).",
+    "Explain how cladistics uses shared characteristics — especially molecular data and the molecular clock — to group organisms into clades.",
+    "Construct and interpret cladograms, reading nodes as common ancestors and identifying the most recent common ancestor of any two taxa.",
+    "Distinguish homologous features (shared ancestry) from analogous features (convergent evolution) and explain why only homologous features are used in cladistics."
   ],
+  "syllabusObjectivesCovered": [
+    "A3.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Life's Family Tree",
-    "summary": "Cladistics is the modern science of building family trees for species. It uses shared, unique features, especially from DNA, to group organisms based on their most recent common ancestor.",
-    "analogy": "Imagine you're a detective trying to solve a case of related documents. You wouldn't group them by the type of font used (an superficial, 'analogous' trait), as different authors could use the same font. Instead, you'd look for a unique watermark or a specific turn of phrase that was passed down and modified from an original document. This shared, inherited feature (a 'homologous' trait) allows you to accurately reconstruct the 'family tree' of the documents, showing which was copied from which.",
+    "title": "Life's Family Tree, Read from DNA",
+    "summary": "Classification organises all living things into a nested hierarchy, like folders inside folders. Cladistics is the modern method that decides where each organism belongs by asking one question: who shares the most recent common ancestor? DNA and protein sequences answer that question far more reliably than looks alone, and the result is drawn as a branching diagram called a cladogram.",
+    "analogy": "Think of building a family tree with a DNA ancestry kit rather than old photographs. Photographs can mislead — two unrelated people can happen to look alike — but the genetic code records who is descended from whom. In the same way, two animals can look similar because they live similar lives (a shark and a dolphin are both streamlined), yet their DNA reveals that one is a fish and the other a mammal. Cladistics reads the genetic code so the tree reflects true ancestry, not surface resemblance.",
     "steps": [
-      "Select a group of organisms and identify an outgroup, a species known to be less related, to root the tree.",
-      "Compare characteristics between the organisms, focusing on molecular data like DNA or protein sequences.",
-      "Group organisms based on shared derived characteristics (synapomorphies), which are traits that appeared in their most recent common ancestor.",
-      "Construct the most parsimonious cladogram – the one with the fewest evolutionary changes – to show the branching pattern of descent."
+      "Choose the group of species you want to compare, and gather characteristics — most reliably the base sequences of a gene or the amino acid sequences of a shared protein.",
+      "Count the differences between the sequences. Fewer differences imply a more recent common ancestor; more differences imply a more distant one.",
+      "Use the differences (and the molecular clock, which assumes mutations accumulate at a roughly steady rate) to work out the order in which lineages split.",
+      "Draw the cladogram: every node is a common ancestor, and the branching pattern — not the left-to-right order of the tips — shows the inferred evolutionary history."
     ]
   },
+  "keyConcepts": [
+    "taxonomic hierarchy",
+    "cladistics",
+    "molecular evidence"
+  ],
   "flashcards": [
     {
-      "front": "What is cladistics?",
-      "back": "A method of classifying organisms into groups called clades, based on their most recent common ancestor."
+      "front": "Binomial system",
+      "back": "Each species has a unique two-part Latin name: the genus (capitalised) followed by the species epithet (lower case), written in italics — for example *Homo sapiens*. Universal names avoid the confusion of common names that differ between languages and regions.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a clade?",
-      "back": "A group of organisms that have evolved from a common ancestor. A clade includes the ancestral species and all of its descendants (it is monophyletic)."
+      "front": "Taxonomic hierarchy",
+      "back": "The nested ranks used to classify life: DOMAIN, kingdom, phylum, class, order, family, genus, species. Moving down the hierarchy, groups get smaller and members share more recent common ancestry.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is a cladogram?",
-      "back": "A tree-like diagram that shows the most probable sequence of divergence in clades."
+      "front": "The three domains",
+      "back": "The broadest rank has three domains: BACTERIA, ARCHAEA and EUKARYA. Bacteria and archaea are both prokaryotes but differ biochemically; archaea are actually more closely related to eukaryotes than to bacteria — a relationship revealed by molecular (rRNA) evidence, not appearance.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What are homologous structures?",
-      "back": "Structures that are similar in different species because they are inherited from a common ancestor. They may have different functions. E.g., the pentadactyl limb in vertebrates."
+      "front": "Natural classification",
+      "back": "Grouping organisms by shared evolutionary ancestry, so that each group (ideally) contains an ancestor and all of its descendants. It reflects phylogeny and has predictive power.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are analogous structures?",
-      "back": "Structures that have a similar function but have evolved independently in different lineages. They are a result of convergent evolution. E.g., the wings of a bird and an insect."
+      "front": "Artificial classification",
+      "back": "Grouping organisms by convenient, superficial features (e.g. 'animals that fly', 'plants with red flowers') regardless of ancestry. Convenient but can force unrelated organisms together and lacks predictive power.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the principle of parsimony?",
-      "back": "The principle that the simplest explanation is the most likely. In cladistics, it means the cladogram with the fewest evolutionary changes (e.g., mutations) is preferred."
+      "front": "Clade",
+      "back": "A group consisting of a common ancestor together with ALL of its descendants (a monophyletic group). Cladistics aims to make every named group a clade.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What does a node on a cladogram represent?",
-      "back": "A branching point that represents a hypothetical last common ancestor of the species or groups that diverge from it."
+      "front": "Cladogram",
+      "back": "A branching diagram showing inferred evolutionary relationships. Each NODE is a common ancestor; each branch point is where one lineage split into two. Only the branching pattern carries meaning — branches can be rotated about a node.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Why is molecular evidence (DNA/protein sequences) so valuable in cladistics?",
-      "back": "It provides a vast, objective, and quantifiable dataset. The number of differences in sequences can be used as a 'molecular clock' to estimate how long ago species diverged."
+      "front": "Node / most recent common ancestor (MRCA)",
+      "back": "A node is the point where two lineages diverge from a shared ancestor. The MRCA of two taxa is the node you reach by tracing both their lines back until they first meet.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is convergent evolution?",
-      "back": "The independent evolution of similar features in species of different lineages. It creates analogous structures."
+      "front": "Homologous features",
+      "back": "Features shared because they were inherited from a common ancestor, even if their functions now differ — e.g. the pentadactyl (five-boned) limb of humans, whales and bats. Homologies are the evidence cladistics relies on.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a common error when interpreting cladograms?",
-      "back": "Thinking that species on the right are more 'advanced' or that the number of nodes separating two species indicates their relatedness. Relatedness is determined only by the position of the most recent common ancestor."
+      "front": "Analogous features",
+      "back": "Features with similar function or appearance that evolved INDEPENDENTLY in separate lineages (convergent evolution) — e.g. the wings of insects and birds. Analogies mislead classification and must be excluded.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is an outgroup in cladistics?",
-      "back": "A species or group of species that is known to be less closely related to the other species being studied (the ingroup). It is used to root the cladogram."
+      "front": "Molecular clock",
+      "back": "The idea that mutations accumulate in DNA or protein at a roughly constant average rate, so the number of sequence differences between two species estimates the TIME since they diverged from a common ancestor.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Molecular evidence in reclassification",
+      "back": "Comparing DNA base sequences or amino acid sequences can overturn traditional groupings based on appearance. It is objective, abundant and not fooled by convergent evolution — which is why it has reorganised many taxa (e.g. the figwort family).",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Common trap: reading a cladogram",
+      "back": "An organism at the far right or 'top' of a cladogram is NOT more advanced. Relatedness is read from shared nodes, not from tip position. Two tips are most closely related when their lines meet at the most recent node.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Common trap: node = ancestor, not a living taxon",
+      "back": "A node represents an inferred COMMON ANCESTOR (usually extinct), not one of the living species at the tips. Saying 'species A evolved from species B' when both are tips is wrong — they share an ancestor at the node.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "On a cladogram, what does a node (branch point) represent?",
+      "options": [
+        "The most highly evolved species in the group",
+        "A common ancestor from which two lineages diverged",
+        "A living species that gave rise to the others",
+        "A point where two species interbred"
+      ],
+      "answer": "A common ancestor from which two lineages diverged"
+    },
+    {
+      "prompt": "The forelimbs of a whale and a bat share the same underlying pentadactyl bone arrangement but are used for swimming and flying. These limbs are best described as:",
+      "options": [
+        "Analogous, because they have different functions",
+        "Homologous, because they were inherited from a common ancestor",
+        "Analogous, because they evolved by convergent evolution",
+        "Vestigial, because they are no longer useful"
+      ],
+      "answer": "Homologous, because they were inherited from a common ancestor"
+    },
+    {
+      "prompt": "On a cladogram, two species are most closely related when:",
+      "options": [
+        "They are drawn next to each other at the tips",
+        "One is drawn directly above the other",
+        "Their branches meet at the most recent common node",
+        "They are furthest to the right of the diagram"
+      ],
+      "answer": "Their branches meet at the most recent common node"
+    },
+    {
+      "prompt": "The broadest level of the taxonomic hierarchy divides all life into three:",
+      "options": [
+        "Kingdoms: Animalia, Plantae, Fungi",
+        "Domains: Bacteria, Archaea, Eukarya",
+        "Domains: Prokarya, Eukarya, Virus",
+        "Kingdoms: Prokaryota, Protista, Eukaryota"
+      ],
+      "answer": "Domains: Bacteria, Archaea, Eukarya"
+    },
+    {
+      "prompt": "A protein from species P differs from the same protein in species Q at 2 amino acids, and from species R at 11 amino acids. Assuming a molecular clock, this suggests that:",
+      "options": [
+        "P and R share a more recent common ancestor than P and Q",
+        "P and Q share a more recent common ancestor than P and R",
+        "P is the ancestor of both Q and R",
+        "R is more advanced than P and Q"
+      ],
+      "answer": "P and Q share a more recent common ancestor than P and R"
     }
   ],
   "faq": [
     {
-      "q": "Why was the figwort family (Scrophulariaceae) reclassified?",
-      "a": "DNA evidence revealed that the traditional classification, based on shared flower and fruit morphology, had grouped together species that were not closely related. The original family was found to be polyphyletic. To create monophyletic groups that accurately reflect evolutionary history, the family was split, and many species were moved to other families like Plantaginaceae and Orobanchaceae."
+      "q": "Are humans descended from chimpanzees?",
+      "a": "No. A cladogram shows that humans and chimpanzees share a recent common ancestor that was neither human nor chimpanzee. They are evolutionary cousins whose lineages diverged from that common ancestral population roughly 6–7 million years ago. The node between them is the ancestor; neither living species descended from the other."
     },
     {
-      "q": "Is a cladogram the same as a phylogenetic tree?",
-      "a": "The terms are often used interchangeably in an introductory context. However, there's a technical difference. A cladogram shows only the branching pattern of ancestry. A phylogram is a type of phylogenetic tree where the branch lengths are proportional to the amount of genetic change or evolutionary time. For IB Biology, understanding the branching relationships shown in a cladogram is the key skill."
+      "q": "What is the difference between Bacteria and Archaea if both are prokaryotes?",
+      "a": "They look alike — small, single-celled, no nucleus — but they differ deeply in biochemistry: cell-membrane lipids, cell-wall composition and the details of their gene-expression machinery. Molecular comparison of ribosomal RNA showed archaea are actually more closely related to eukaryotes than to bacteria. That is a textbook case of molecular evidence revealing a relationship that appearance completely hides, and it is why the three-domain system replaced the older two-kingdom prokaryote view."
     },
     {
-      "q": "If two species are next to each other at the tips of a cladogram, does that mean they are the most closely related?",
-      "a": "Not necessarily. The order of species along the top is arbitrary and can be rotated at any node without changing the relationships. To determine relatedness, you must trace back to find the most recent common ancestor (the node where their lineages meet). The fewer nodes you have to go back to find a common ancestor for two species, the more closely related they are."
+      "q": "Why can't I use analogous features to build a cladogram?",
+      "a": "Analogous features (like the wings of insects and birds, or the streamlined shape of sharks and dolphins) evolved independently through convergent evolution because the organisms faced similar environmental pressures. They signal similar lifestyles, not shared ancestry, so including them would group unrelated organisms together. Cladistics uses homologous features — especially shared DNA and protein sequences — because these reflect descent from a common ancestor."
+    },
+    {
+      "q": "How reliable is the molecular clock?",
+      "a": "It is powerful but approximate. It assumes mutations accumulate at a roughly steady average rate, so more sequence differences mean a longer time since divergence. In reality the rate varies between genes and lineages, so biologists calibrate the clock against fossils of known age and average over many genes. For IB you should be able to state the principle — sequence differences are proportional to time since divergence — and note that it is an estimate, not an exact date."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "For centuries, biologists have sought to organise the vast diversity of life. Early systems, like that of Carl Linnaeus, were based on observable physical traits, creating a useful but sometimes artificial hierarchy. With the advent of evolutionary theory and modern genetics, classification has undergone a revolution. We now seek to build a 'natural' classification that reflects the true evolutionary history, or phylogeny, of organisms. This is the domain of cladistics."
+      "content": "There are millions of named species and many more undescribed, so biologists need a system that not only stores them tidily but also captures how they are related. Classification began with what could be seen — flower shape, body plan, number of legs — but the arrival of DNA and protein sequencing let biologists read ancestry directly from the genetic code. The result was a shift from grouping by appearance to grouping by evolutionary history: from artificial classification towards natural classification, and from intuition towards cladistics. This lesson builds that system from the hierarchy of taxa up to the molecular clock, and shows how our marking engine credits the reasoning in A3.2 answers."
     },
     {
       "type": "heading",
-      "content": "From Artificial to Natural Classification"
+      "content": "The taxonomic hierarchy and binomial names"
     },
     {
       "type": "text",
-      "content": "Traditional classification based on morphology (form and structure) can be misleading. Organisms can look similar due to convergent evolution, not shared ancestry. Cladistics provides a more rigorous, evidence-based approach by grouping organisms based on shared derived characteristics that trace back to a single common ancestor. This has led to significant re-evaluation of established taxonomic groups. A famous example is the figwort family, Scrophulariaceae, which was found to be polyphyletic (containing species from multiple ancestral lines) after DNA analysis. Consequently, the family was reorganised into several new, monophyletic clades."
-    },
-    {
-      "type": "heading",
-      "content": "The Principles of Cladistics"
-    },
-    {
-      "type": "text",
-      "content": "The fundamental unit in cladistics is the clade: a group comprising a single ancestral organism and all of its descendants. Cladograms are diagrams that represent hypotheses about the evolutionary relationships between the members of a clade. The branching points, or nodes, represent speciation events where an ancestral lineage diverged. All members of a clade share certain unique features, called synapomorphies, that were present in their last common ancestor but not in more distant ancestors."
+      "content": "Every species is given a unique two-part Latin name by the **binomial system**: the genus (capitalised) followed by the species epithet (lower case), both written in italics — for example *Panthera leo* (lion) and *Homo sapiens* (human). Universal Latin names avoid the ambiguity of common names, which differ between languages and even between regions of one country. Species are then nested into a hierarchy of ranks. In the modern scheme the full hierarchy, from broadest to narrowest, is: **domain, kingdom, phylum, class, order, family, genus, species**. As you move down the hierarchy the groups become smaller and their members share a more recent common ancestor, so they have more characteristics in common."
     },
     {
       "type": "keyPoints",
       "items": [
-        "A clade must be monophyletic, meaning it includes the ancestor and ALL of its descendants.",
-        "Cladograms are constructed based on shared derived characters (synapomorphies).",
-        "The principle of parsimony is applied to find the simplest and most likely evolutionary pathway.",
-        "The length of the branches in a basic cladogram does not typically represent time; it only shows the branching pattern."
+        "**Ranks (broad → narrow):** domain, kingdom, phylum, class, order, family, genus, species.",
+        "The binomial name uses the two narrowest ranks: *Genus species* (italic; genus capitalised, species lower case).",
+        "Lower down the hierarchy = smaller groups, more shared features, more recent common ancestry.",
+        "The rank names are shared across all of biology, so a classification is a compact statement of how an organism relates to every other."
       ]
     },
     {
       "type": "heading",
-      "content": "Homology vs. Analogy: The Evidence in Detail"
+      "content": "The three domains: Bacteria, Archaea and Eukarya"
     },
     {
       "type": "text",
-      "content": "A crucial distinction in cladistics is between homologous and analogous structures. Homologous structures, like the pentadactyl limb found in humans, whales, and bats, are derived from a common ancestor but may have been modified for different functions. These are the evidence of divergent evolution and are key to building accurate cladograms. In contrast, analogous structures, like the wings of a butterfly and a bird, serve a similar function but evolved independently due to similar environmental pressures (convergent evolution). Including analogous structures in a cladistic analysis would lead to incorrect conclusions about evolutionary relationships."
+      "content": "The broadest rank divides all cellular life into three **domains: Bacteria, Archaea and Eukarya**. Bacteria and archaea are both prokaryotes — small cells without a nucleus — so on appearance alone they were long lumped together. Molecular comparison changed that. When ribosomal RNA and other conserved sequences were compared, archaea turned out to differ from bacteria as much as either differs from eukaryotes, and in several molecular respects archaea are actually closer to Eukarya (the domain containing protists, fungi, plants and animals). This is a landmark example of the theme of this whole topic: a relationship that superficial features hid entirely was revealed by molecular evidence, forcing a reclassification of life at its very deepest level."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Bacteria** and **Archaea** are prokaryotes (no nucleus); **Eukarya** have membrane-bound nuclei and organelles.",
+        "Bacteria and Archaea look alike but differ in membrane lipids, cell-wall chemistry and gene-expression machinery.",
+        "Molecular (rRNA) evidence shows Archaea are more closely related to Eukarya than to Bacteria.",
+        "The three-domain system is a *natural* classification built on molecular data, not appearance."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Natural versus artificial classification"
+    },
+    {
+      "type": "text",
+      "content": "A **natural classification** groups organisms according to shared evolutionary ancestry, aiming for groups that each contain a common ancestor and all its descendants. Because such groups reflect real evolutionary history, they have predictive power: if you discover a new feature in one member of a natural group, related members are likely to share it. An **artificial classification**, by contrast, groups organisms by convenient but superficial traits — 'animals that fly', 'plants with red flowers', 'seaweeds' — regardless of ancestry. Artificial groupings can be useful shorthand, but they force together unrelated lineages (bats, birds and insects all 'fly') and lack predictive power. The modern goal, pursued through cladistics, is to make every named group a natural one."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Natural:** based on common ancestry; reflects phylogeny; has predictive power.",
+        "**Artificial:** based on convenient superficial features; may unite unrelated organisms; little predictive power.",
+        "'Animals that fly' or 'green plants' can be artificial groupings; a clade is a natural one.",
+        "Molecular evidence is steadily converting artificial groupings into natural ones."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Clades and cladistics"
+    },
+    {
+      "type": "text",
+      "content": "**Cladistics** is the method of classifying organisms by common ancestry so that every group is a **clade** — an ancestor together with *all* of its descendants (a monophyletic group). The evidence for grouping comes from shared characteristics, and the most powerful characteristics are molecular: the base sequences of DNA and the amino acid sequences of proteins. Crucially, cladistics counts only **homologous** features — features inherited from a common ancestor — and deliberately excludes **analogous** features, which resemble one another only because of convergent evolution. Distinguishing the two is the intellectual heart of the method."
+    },
+    {
+      "type": "heading",
+      "content": "Homologous versus analogous features"
+    },
+    {
+      "type": "text",
+      "content": "**Homologous features** are similar because they were inherited from a shared ancestor, even when their present functions differ. The classic example is the **pentadactyl limb**: the same five-boned skeletal plan underlies the human arm, the whale flipper and the bat wing, despite their very different jobs. **Analogous features** look or work alike but evolved independently in separate lineages that faced similar pressures — the wings of an insect and a bird, or the streamlined bodies of sharks (fish) and dolphins (mammals). Analogies signal similar *lifestyles*, not shared ancestry, so relying on them produces artificial groupings. Cladistics therefore builds trees from homologies — above all from shared molecular sequences, which are abundant, objective, and very hard for convergent evolution to fake in exactly the same way."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Homologous:** same underlying structure from a common ancestor; may differ in function (e.g. pentadactyl limb). USE these.",
+        "**Analogous:** similar function/appearance evolved independently (convergent evolution, e.g. insect vs bird wings). EXCLUDE these.",
+        "Cladistics groups by homologies, especially shared DNA and protein sequences.",
+        "Convergent evolution is exactly why appearance alone misleads and molecular evidence is preferred."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Molecular evidence and the molecular clock"
+    },
+    {
+      "type": "text",
+      "content": "Cladistics leans most heavily on molecular data. The base sequence of a gene, or the amino acid sequence of a protein such as haemoglobin or cytochrome c, is compared between species, and the number of differences is counted. The reasoning is simple: two species that diverged recently have had little time to accumulate independent mutations, so their sequences are very similar; species that diverged long ago have accumulated many differences. This is the **molecular clock** — the assumption that mutations build up at a roughly constant average rate, so the number of sequence differences is proportional to the time since two lineages shared a common ancestor. Because the clock rests on counting objective, plentiful differences rather than judging appearance, it is not fooled by convergent evolution, and it can date branch points when calibrated against fossils."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Compare DNA base sequences or protein amino acid sequences between species.",
+        "More differences ⇒ more distantly related (longer since the common ancestor); fewer differences ⇒ more closely related.",
+        "**Molecular clock:** mutations accumulate at a roughly steady average rate, so differences estimate time since divergence.",
+        "Molecular data are objective, abundant and not misled by analogous features — so they can reclassify organisms grouped wrongly by appearance."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "This is why molecular evidence so often *reclassifies* organisms. The **figwort family (Scrophulariaceae)** was traditionally a huge group united by flower structure. When several chloroplast genes were sequenced, the DNA showed the old family was not a clade at all — its members did not all descend from one common ancestor, having evolved similar flowers by convergent evolution. The family was broken up and its members redistributed, some moved into the plantain family and new families created. It is a clean illustration that a classification is a testable hypothesis: physical features proposed it, molecular evidence falsified it, and the natural classification replaced the artificial one."
+    },
+    {
+      "type": "heading",
+      "content": "Constructing and interpreting cladograms"
+    },
+    {
+      "type": "text",
+      "content": "A **cladogram** is a branching diagram that presents the results of cladistics. Read it carefully: each **node** (branch point) represents a **common ancestor** from which two lineages diverged, and tracing any two tips back until their lines first meet identifies their **most recent common ancestor (MRCA)**. Two organisms are most closely related when their lines join at the most recent node — *not* when they happen to be drawn side by side or near the top. The branching pattern is the only information a basic cladogram carries: you may rotate the branches about any node without changing the meaning, and the left-to-right order of the tips is arbitrary. An organism drawn at the far end is not more 'advanced'; every living tip has been evolving for exactly the same amount of time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Node = common ancestor** (usually extinct); **branch point = a lineage splitting in two**.",
+        "**MRCA of two taxa:** trace both back to the first node where their lines meet.",
+        "Most closely related = lines meet at the most RECENT node, regardless of tip position.",
+        "Only the branching pattern matters; branches can rotate about a node, and tip order is arbitrary.",
+        "No living tip is 'more evolved' than another — all have evolved for the same time."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "The table below shows the number of amino acid differences in the haemoglobin protein for five vertebrate species compared to humans. Construct a cladogram to show the likely evolutionary relationships between these six species (including humans). \n\n| Species | Amino Acid Differences from Human Haemoglobin |\n|---|---|\n| Chimpanzee | 0 |\n| Gibbon | 3 |\n| Rhesus Monkey | 8 |\n| Frog | 67 |\n| Lamprey | 125 |",
-      "solution": "The solution is based on the principle that a smaller number of amino acid differences indicates a more recent common ancestor.\n\n1.  **Identify the closest relative:** The Chimpanzee has 0 differences, meaning its haemoglobin is identical to human haemoglobin. They share the most recent common ancestor. [1 mark]\n\n2.  **Identify the next closest relatives in order:**\n    *   Gibbon (3 differences) is the next closest.\n    *   Rhesus Monkey (8 differences) is next.\n    *   Frog (67 differences) is much more distantly related.\n    *   Lamprey (125 differences) is the most distantly related and will serve as the outgroup, branching off first. [1 mark]\n\n3.  **Construct the cladogram:**\n    *   Draw a main line. The first branch from the base is the Lamprey.\n    *   Further up the main line, the next branch is the Frog.\n    *   Further still, the next branch is the Rhesus Monkey.\n    *   The next branch is the Gibbon.\n    *   The final node splits into Humans and Chimpanzees. [2 marks for correct branching order and placement of all species]\n\n    The final cladogram will show a nested hierarchy with (Human, Chimpanzee) as the tightest group, then Gibbon joining that branch, then Rhesus Monkey, then Frog, and finally Lamprey as the earliest divergence."
+      "question": "The table shows the number of amino acid differences in a shared protein between humans and four other primates.\n\n| Species | Amino acid differences from human |\n| :--- | :--- |\n| Chimpanzee | 0 |\n| Gorilla | 1 |\n| Gibbon | 3 |\n| Rhesus monkey | 8 |\n\n(a) Which species is most closely related to humans? Justify your answer. [2]\n(b) Construct a cladogram showing the relationships between all five species. [2]",
+      "solution": "**(a) [2 marks]**\nChimpanzee. [A1] It has zero amino acid differences from human, the fewest of any species in the table, so by the molecular clock it shares the most recent common ancestor with humans (least time to accumulate mutations). [A1 — reasoning]\n\n**(b) [2 marks]**\nThe branching order follows the number of differences: fewer differences ⇒ a more recent split. Human and chimpanzee join first (0), then gorilla (1), then gibbon (3), with rhesus monkey as the outgroup that branched off first (8). [M1 for correct order; A1 for a correctly drawn, fully resolved cladogram — one mark only if the order is partly right.]\n\n```\n            ┌────────── Human\n         ┌──┤\n         │  └────────── Chimpanzee\n      ┌──┤\n      │  └───────────── Gorilla\n   ┌──┤\n   │  └──────────────── Gibbon\n───┤\n   └─────────────────── Rhesus monkey\n```\n*The human–chimp pair can be swapped, and whole branches can be rotated about any node — the meaning is unchanged. Each node is a common ancestor, not one of the living species.*"
+    },
+    {
+      "type": "workedExample",
+      "question": "Interpreting a cladogram. The cladogram below shows five animals. Read the nodes as common ancestors.\n\n```\n            ┌────── Salmon\n         ┌──┤\n         │  └────── Frog\n      ┌──┤\n   ┌──┤  └───────── Lizard\n   │  └──────────── Mouse\n───┤\n   └─────────────── Shark\n```\n\n(a) Which animal is the outgroup — the most distantly related to the other four? [1]\n(b) A student says, 'The mouse is more closely related to the lizard than to the frog.' Use the nodes to evaluate this claim. [2]\n(c) Sharks and salmon are both streamlined fish-shaped swimmers, yet the cladogram separates them widely. Explain, using the terms analogous and homologous, why their body shape does not place them together. [2]",
+      "solution": "**(a) [1 mark]**\nThe shark. Its line branches off at the deepest (oldest) node, so it shares only the most distant common ancestor with the other four. [A1]\n\n**(b) [2 marks]**\n*Note: this cladogram is drawn so that, tracing back, mouse and lizard meet at a node more recent than the node they share with frog and salmon.* The claim is correct. [A1] Mouse and lizard share a more recent common ancestor (their lines meet at a more recent node) than the node linking the mouse to the frog, so the mouse and lizard are more closely related. Relatedness is judged from the position of the shared node, not from how the tips are listed. [A1 — reasoning]\n\n**(c) [2 marks]**\nThe streamlined fish-like shape of a shark and a salmon is an **analogous** feature: it evolved independently in the two lineages because both are fast swimmers (convergent evolution), so it reflects a shared lifestyle, not shared ancestry. [A1] Cladistics groups organisms by **homologous** features and molecular evidence inherited from a common ancestor, which place the shark on its own deep branch; analogous features are excluded precisely because they would group unrelated swimmers together. [A1]"
     },
     {
       "type": "examTip",
-      "content": "Examiners often use data tables of DNA base or amino acid differences. Remember the core rule: fewer differences = more closely related = more recent common ancestor. When drawing the cladogram, don't just list the organisms; show the branching pattern clearly. Each node represents a common ancestor."
+      "content": "When you interpret a cladogram, put your pencil on the two tips and trace both lines back to the first node where they meet — that node is their most recent common ancestor, and the more recent it is, the more closely related they are. Never judge relatedness from how near the tips are drawn or which one is 'on top'. State explicitly that a node represents a common ancestor; examiners look for that word."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Calling a node a living species** — a node is an inferred COMMON ANCESTOR, usually extinct, not one of the tip organisms. 'Humans evolved from chimps' is wrong; they share an ancestor at the node.",
+        "**Reading relatedness from tip position** — two tips are most closely related when their lines meet at the most RECENT node, not when they are drawn side by side or 'at the top'. No tip is more 'advanced'.",
+        "**Confusing homologous and analogous** — homologous = shared ancestry (pentadactyl limb); analogous = convergent evolution (insect vs bird wing). Only homologous features (and molecular data) are used to build cladograms.",
+        "**Using analogous features as evidence of relationship** — similar shape or function can come from convergent evolution and misleads classification; this is exactly why molecular evidence is preferred.",
+        "**Forgetting the domain level** — the modern hierarchy starts at DOMAIN (Bacteria, Archaea, Eukarya) above kingdom; leaving it out loses easy marks.",
+        "**Getting the molecular-clock direction backwards** — MORE sequence differences mean MORE distantly related (longer since divergence), not more closely related.",
+        "**Treating a classification as fixed fact** — classifications are testable hypotheses; state that molecular evidence can revise them (e.g. the figworts, the three domains).",
+        "**Sloppy binomial names** — genus capitalised, species lower case, whole name italicised: *Homo sapiens*, not 'Homo Sapiens' or 'homo sapiens'."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "A3.2 explanation questions are marked analytically: each distinct valid biological point is worth one mark, up to the total available. Method/knowledge marks (M) credit a correct idea; application/reasoning marks (A) credit correct use of that idea or a valid conclusion; and error-carried-forward (ECF) means an earlier slip does not automatically cost the later marks if your reasoning is sound. Study how each mark below is tied to a specific, named idea rather than to loose phrasing."
     },
     {
       "type": "workedExample",
-      "question": "Four species (A, B, C, D) are being analysed. A five-base DNA sequence is compared. The sequence for the outgroup is G-C-A-T-G. The table shows the sequences for the four species.\n\n| Species | Base 1 | Base 2 | Base 3 | Base 4 | Base 5 |\n|---|---|---|---|---|---|\n| A | G-T-A-C-G |\n| B | G-T-T-C-G |\n| C | A-T-T-C-G |\n| D | G-C-A-T-G |\n\nIdentify the shared derived characteristics (synapomorphies) and construct a parsimonious cladogram.",
-      "solution": "1.  **Compare sequences to the outgroup:** We look for changes (mutations) that have occurred relative to the outgroup sequence (G-C-A-T-G). Species D has the same sequence as the outgroup, so it retains the ancestral state for all five positions.\n\n2.  **Identify shared derived characters:**\n    *   **Position 2:** Species A, B, and C all have 'T' instead of 'C'. This is a synapomorphy for the clade (A, B, C). [1 mark]\n    *   **Position 3:** Species B and C have 'T' instead of 'A'. This is a synapomorphy for the smaller clade (B, C). [1 mark]\n    *   **Position 4:** Species A, B, and C all have 'C' instead of 'T'. This is another synapomorphy for the clade (A, B, C).\n    *   **Position 1:** Species C has 'A' instead of 'G'. This is a unique mutation for C (an autapomorphy).\n\n3.  **Construct the cladogram based on parsimony:**\n    *   The root of the tree is the outgroup/Species D.\n    *   The first split separates D from (A, B, C). The characteristics that define the (A, B, C) branch are the mutations at position 2 (C→T) and position 4 (T→C).\n    *   The next split separates A from (B, C). The characteristic that defines the (B, C) branch is the mutation at position 3 (A→T).\n    *   Finally, C has a unique mutation at position 1 (G→A) that distinguishes it from B.\n    *   The resulting cladogram shows D branching off first, then A, with B and C as the most closely related pair (sister taxa). [2 marks for correct cladogram structure]"
+      "question": "Explain how molecular evidence is used to construct cladograms and why it can be more reliable than physical features. [4]",
+      "solution": "**Model answer.**\nThe base sequences of a gene (or the amino acid sequences of a shared protein) are compared between the species being classified, and the number of differences between them is counted. Fewer differences indicate that two species diverged more recently and so share a more recent common ancestor, while more differences indicate a more distant relationship; because mutations accumulate at a roughly constant rate (the molecular clock), the number of differences estimates the time since divergence. The species are then grouped and the branching order of the cladogram is set so that the most similar sequences share the most recent nodes. Molecular evidence can be more reliable than physical features because it is objective and quantitative, and because it is not misled by convergent evolution: analogous features can make unrelated organisms look similar, whereas shared DNA and protein sequences reflect true common ancestry.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** compare DNA base sequences / protein amino acid sequences between species and count the differences.\n- **Point 2 (A):** fewer differences ⇒ more closely related / more recent common ancestor (more differences ⇒ more distantly related).\n- **Point 3 (M):** reference to the molecular clock — mutations accumulate at a roughly steady rate, so differences estimate time since divergence — used to order the branch points / place nodes.\n- **Point 4 (A):** molecular evidence is more reliable because it is objective/quantitative AND not misled by convergent (analogous) features, unlike physical appearance.\n\n**Equivalents accepted.** 'Amino acid sequence of haemoglobin/cytochrome c' for point 1; 'shares a more recent common ancestor' for 'more closely related' in point 2; naming a reclassification (e.g. the figwort family, or archaea grouping with eukaryotes) as evidence for point 4. The engine credits the idea however it is phrased.\n\n**ECF and partial credit.** The four points are independent, so a student who omits the molecular clock but correctly explains sequence comparison, the fewer-differences rule and the convergence argument still earns three marks. There is no all-or-nothing penalty.\n\n**What the engine rejects.** Vague statements such as 'DNA is more accurate' with no mechanism score nothing, because they name neither the comparison of sequences, nor the differences-to-relatedness link, nor the convergence advantage. Repeating one idea in two forms ('you look at the DNA' and 'you check the genes') scores once, because the marks are for DISTINCT ideas.\n\n**Bottom line:** to secure all 4 marks, make four separate points — compare-and-count sequences → fewer differences means more closely related → molecular clock estimates divergence time → molecular data are objective and immune to convergent evolution."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, awarding one mark per distinct valid idea, with ECF and a cap at the marks available. So write in separate, creditable statements: name the sequences you compare, state the fewer-differences rule, mention the molecular clock, and give the convergence advantage. A general 'DNA is best' sentence feels convincing but earns nothing; the engine rewards each named idea, so showing every step is what protects your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The habit built here — group by shared ancestry, read nodes as common ancestors, trust homologies and molecular data over appearance — is the backbone of evolutionary biology. The same sequence-comparison logic underlies phylogenetics across the whole tree of life, from tracing virus strains during an outbreak to placing a newly discovered microbe among the three domains. Once you can construct and, above all, *interpret* a cladogram, you can turn any set of molecular or morphological data into a testable statement about how organisms are related."
     },
     {
       "type": "practice",
-      "label": "Practice Exam Questions",
-      "href": "/mark?subject=ib-biology-hl&topic=A3.2"
+      "label": "Get a Paper 2 question marked: explain how molecular evidence builds cladograms, and interpret a cladogram with full reasoning",
+      "href": "/mark?subject=ib-biology-hl&topic=A3.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "UC Berkeley's Understanding Evolution: Cladistics",
-          "href": "https://evolution.berkeley.edu/evolution-101/systematics/cladistics/"
+          "label": "IB Biology Guide (2025): Unit A3.2 syllabus statements",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
         },
         {
-          "label": "Tree of Life Web Project",
-          "href": "http://tolweb.org/tree/"
+          "label": "Understanding Evolution (UC Berkeley): Reading trees",
+          "href": "https://evolution.berkeley.edu/phylogenetic-systematics/"
+        },
+        {
+          "label": "NCBI: What is a molecular clock?",
+          "href": "https://www.ncbi.nlm.nih.gov/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

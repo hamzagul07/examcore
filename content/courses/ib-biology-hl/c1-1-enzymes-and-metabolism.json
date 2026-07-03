@@ -2,176 +2,454 @@
   "slug": "c1-1-enzymes-and-metabolism",
   "topicCode": "C1.1",
   "title": "Enzymes and metabolism",
+  "unit": {
+    "code": "C",
+    "title": "Interaction and interdependence"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the intricate control of cellular chemistry, focusing on metabolic pathways as sequences of enzyme-catalysed reactions. It details the mechanisms of competitive and non-competitive inhibition and explains how end-product inhibition provides an elegant feedback system for regulating these pathways.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Enzymes are the molecular machines that make life's chemistry fast enough to be useful. This lesson builds the whole of C1.1: enzymes as biological catalysts that lower activation energy, the active site and the induced-fit model, substrate specificity, and the four factors that change the rate of an enzyme-catalysed reaction — temperature, pH, substrate concentration and enzyme concentration — each with the exact shape of its graph and the reason behind it. It then covers denaturation, competitive and non-competitive inhibition, and how these reactions are organised into anabolic and catabolic metabolic pathways controlled by enzymes. Every worked example and model answer is laid out the way our marking engine actually awards Paper 2 marks, so you can see how each distinct valid point earns its mark.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and describe metabolic pathways as sequences of enzyme-catalysed reactions.",
-    "Distinguish between competitive and non-competitive enzyme inhibition with reference to their mechanisms and effects on Vmax and Km.",
-    "Explain the role of end-product inhibition as a method of metabolic control.",
-    "Analyse graphical data to determine the type and effect of enzyme inhibitors."
+    "Explain how enzymes act as biological catalysts by lowering the activation energy of a reaction, without changing the overall energy of reactants or products.",
+    "Describe enzyme structure and the active site, and use the induced-fit model to account for substrate specificity.",
+    "Describe and explain the effect of temperature, pH, substrate concentration and enzyme concentration on the rate of an enzyme-catalysed reaction, including the shape of each graph.",
+    "Explain denaturation and distinguish competitive from non-competitive inhibition.",
+    "Define metabolism as the sum of anabolic and catabolic pathways, and explain how enzymes control those pathways.",
+    "Present explanations so that each distinct valid biological point earns a mark under analytic marking."
   ],
+  "syllabusObjectivesCovered": [
+    "C1.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Metabolic Traffic Control",
-    "summary": "Metabolism is like a city's road network, with chemical reactions as the roads and enzymes as the traffic lights. Inhibitors act like temporary road closures or red lights, controlling the flow of chemical traffic to meet the cell's needs.",
-    "analogy": "Imagine a factory assembly line for building toy cars. Each worker is an enzyme, performing one specific step. A competitive inhibitor is like a worker from another assembly line who occasionally sits in a spot, preventing the correct worker from doing their job until they leave. A non-competitive inhibitor is like a manager who switches off the power to a specific worker's station; it doesn't matter how many car parts (substrates) pile up, that station is simply out of action.",
+    "title": "The Cell's Chemical Workforce",
+    "summary": "Every second, thousands of chemical reactions run inside a cell. Left to themselves most would be far too slow to keep anything alive. Enzymes are protein catalysts that speed each reaction up by lowering the energy barrier it has to cross, and because each enzyme fits only its own substrate, the cell can switch reactions on and off one by one.",
+    "analogy": "Picture a chemical reaction as pushing a boulder over a hill to roll it down the far side. The height of the hill is the activation energy — the energy needed before anything happens. An enzyme does not make the boulder heavier or the far valley deeper (it does not change the overall energy released); it digs a lower pass through the hill so the boulder gets over far more easily. And each pass is shaped for one particular boulder, so an enzyme only helps its own reaction along.",
     "steps": [
-      "Observe a multi-step metabolic pathway where substance A is converted to substance D via enzymes 1, 2, and 3.",
-      "Introduce a competitive inhibitor that competes with substance B for the active site of enzyme 2. Notice that high concentrations of substance B can overcome the inhibition.",
-      "Introduce a non-competitive inhibitor that binds to an allosteric site on enzyme 1. Observe that the maximum rate of the pathway is reduced and cannot be restored by adding more of substance A.",
-      "Model end-product inhibition by showing how substance D, the final product, acts as a non-competitive inhibitor for enzyme 1, shutting down its own production when levels get too high."
+      "A substrate molecule collides with and binds to the active site of its specific enzyme, forming an enzyme-substrate complex.",
+      "Binding makes the active site mould slightly around the substrate (induced fit), which strains the substrate's bonds and lowers the activation energy.",
+      "The reaction proceeds far faster along this lower-energy route, and the product (or products) forms.",
+      "The product leaves the active site and the unchanged enzyme is free to bind another substrate molecule and repeat — enzymes are catalysts and are not used up."
     ]
   },
+  "keyConcepts": [
+    "biological catalysis",
+    "activation energy",
+    "enzyme specificity",
+    "metabolic control"
+  ],
   "flashcards": [
     {
-      "front": "What is a metabolic pathway?",
-      "back": "A sequence of chemical reactions occurring within a cell, where the product of one reaction is the substrate for the next. These pathways are catalysed by enzymes."
+      "front": "Enzyme",
+      "back": "A globular protein that acts as a biological catalyst, increasing the rate of a specific biochemical reaction by lowering its activation energy, without itself being changed or used up.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Distinguish between anabolism and catabolism.",
-      "back": "Anabolism is the synthesis of complex molecules from simpler ones, requiring energy (e.g., protein synthesis). Catabolism is the breakdown of complex molecules into simpler ones, releasing energy (e.g., cellular respiration)."
+      "front": "Activation energy ($E_a$)",
+      "back": "The minimum energy that colliding reactant molecules must have for a reaction to proceed. Enzymes LOWER this energy barrier; they do NOT change the overall energy difference ($\\Delta G$) between reactants and products.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is competitive inhibition?",
-      "back": "A type of enzyme inhibition where the inhibitor molecule is structurally similar to the substrate and binds to the active site, preventing the substrate from binding."
+      "front": "Active site",
+      "back": "A specific region on an enzyme, formed by its three-dimensional folding, whose shape and chemistry are complementary to the substrate. This is where the substrate binds and catalysis occurs.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is non-competitive inhibition?",
-      "back": "A type of enzyme inhibition where the inhibitor binds to a site on the enzyme other than the active site (an allosteric site), causing a conformational change that inactivates the enzyme."
+      "front": "Induced-fit model",
+      "back": "The active site is not rigid. When the substrate binds, it induces a conformational (shape) change in the enzyme so the active site moulds more closely around the substrate, straining its bonds and promoting the reaction.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is an allosteric site?",
-      "back": "A site on an enzyme, other than the active site, to which a molecule (an allosteric effector) can bind to regulate the enzyme's activity."
+      "front": "Enzyme specificity",
+      "back": "Each enzyme catalyses only one reaction (or one type) because only a substrate with a complementary shape and chemistry can bind and induce the correct fit at the active site.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How does a competitive inhibitor affect $V_{max}$ and $K_m$?",
-      "back": "$V_{max}$ remains unchanged because the inhibition can be overcome by high substrate concentrations. $K_m$ increases, as a higher substrate concentration is needed to reach half $V_{max}$."
+      "front": "Denaturation",
+      "back": "A permanent change to the three-dimensional SHAPE of an enzyme — caused by high temperature or extreme pH breaking the bonds holding the tertiary structure. The active site changes shape, the substrate can no longer bind, and activity is lost. The amino-acid SEQUENCE is unchanged.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How does a non-competitive inhibitor affect $V_{max}$ and $K_m$?",
-      "back": "$V_{max}$ is decreased because some enzyme molecules are permanently inactivated. $K_m$ remains unchanged as the affinity of the active enzymes for the substrate is not altered."
+      "front": "Optimum temperature / pH",
+      "back": "The temperature or pH at which an enzyme's rate is fastest. Human enzymes are typically optimal near 37°C; pepsin (stomach) near pH 2, while most cell enzymes prefer near-neutral pH.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is end-product inhibition (feedback inhibition)?",
-      "back": "A form of metabolic control where the final product of a metabolic pathway acts as a non-competitive inhibitor for an enzyme early in the pathway, thus regulating its own production."
+      "front": "Competitive inhibitor",
+      "back": "A molecule similar in shape to the substrate that binds to the ACTIVE SITE, blocking the substrate. Its effect can be OVERCOME by raising substrate concentration, so the maximum rate is still reached, just later.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Give a biological example of end-product inhibition.",
-      "back": "The synthesis of the amino acid isoleucine from threonine in E. coli. As isoleucine concentration increases, it binds to an allosteric site on the first enzyme in the pathway (threonine deaminase), inhibiting it."
+      "front": "Non-competitive inhibitor",
+      "back": "A molecule that binds to a site OTHER than the active site (an allosteric site), changing the enzyme's shape so the active site no longer fits the substrate. Raising substrate concentration does NOT overcome it, so the maximum rate is lowered.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Common Trap: Can you always overcome competitive inhibition by adding more substrate?",
-      "back": "In theory, yes. High substrate concentration outcompetes the inhibitor for the active site, allowing the reaction to eventually reach its normal $V_{max}$. This is the key difference from non-competitive inhibition."
+      "front": "Metabolism",
+      "back": "The sum of all enzyme-catalysed reactions occurring in a cell or organism, organised into metabolic pathways. It comprises anabolism and catabolism.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Anabolism vs catabolism",
+      "back": "Anabolism BUILDS larger molecules from smaller ones and requires energy (e.g. protein synthesis, photosynthesis). Catabolism BREAKS DOWN larger molecules into smaller ones and releases energy (e.g. digestion, cell respiration).",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Metabolic pathway",
+      "back": "A sequence of enzyme-catalysed reactions in which the product of one reaction is the substrate for the next. Pathways can be linear (e.g. glycolysis) or cyclical (e.g. the Krebs cycle). Each step is controlled by its own enzyme.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Common trap: enzymes lower $E_a$, not $\\Delta G$",
+      "back": "Enzymes lower the ACTIVATION ENERGY only. They do not supply energy, do not change whether a reaction is exergonic or endergonic, and do not alter the position of equilibrium — they simply reach it faster.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Common trap: 'the enzyme dies'",
+      "back": "Enzymes are molecules, not organisms — they cannot die. Above the optimum they DENATURE: the tertiary structure and active-site shape change so the substrate no longer binds. Marking engines reject 'the enzyme dies' or 'the enzyme is killed'.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "How does an enzyme increase the rate of a reaction?",
+      "options": [
+        "It lowers the activation energy of the reaction",
+        "It lowers the overall free-energy change ($\\Delta G$) of the reaction",
+        "It supplies energy to the reactants",
+        "It raises the temperature of the substrate"
+      ],
+      "answer": "It lowers the activation energy of the reaction"
+    },
+    {
+      "prompt": "During denaturation of an enzyme by heat, what actually changes?",
+      "options": [
+        "The sequence of amino acids in the enzyme",
+        "The three-dimensional shape of the enzyme and its active site",
+        "The identity of the substrate",
+        "The activation energy of the uncatalysed reaction"
+      ],
+      "answer": "The three-dimensional shape of the enzyme and its active site"
+    },
+    {
+      "prompt": "A competitive inhibitor differs from a non-competitive inhibitor because it:",
+      "options": [
+        "Binds to an allosteric site away from the active site",
+        "Binds to the active site and its effect can be reduced by adding more substrate",
+        "Permanently destroys the enzyme's amino-acid sequence",
+        "Lowers the maximum rate no matter how much substrate is added"
+      ],
+      "answer": "Binds to the active site and its effect can be reduced by adding more substrate"
+    },
+    {
+      "prompt": "After catalysing a reaction, an enzyme molecule is:",
+      "options": [
+        "Used up and must be replaced",
+        "Converted into product",
+        "Unchanged and free to catalyse another reaction",
+        "Permanently bound to its product"
+      ],
+      "answer": "Unchanged and free to catalyse another reaction"
+    },
+    {
+      "prompt": "On a graph of reaction rate against substrate concentration (fixed enzyme), the curve levels off at high substrate concentration because:",
+      "options": [
+        "The enzyme has denatured",
+        "All the active sites are occupied, so enzyme concentration now limits the rate",
+        "The substrate has run out",
+        "The pH has changed"
+      ],
+      "answer": "All the active sites are occupied, so enzyme concentration now limits the rate"
     }
   ],
   "faq": [
     {
-      "q": "Is end-product inhibition always non-competitive?",
-      "a": "In the context of the IB Biology syllabus and most biological examples, end-product inhibition is treated as a form of non-competitive (allosteric) inhibition. The final product binds to an allosteric site on an early enzyme, not the active site. This is the most common and efficient mechanism for this type of regulation."
+      "q": "What is the difference between the lock-and-key model and the induced-fit model?",
+      "a": "The older lock-and-key model pictured a rigid active site into which only an exactly matching substrate could fit, like a key in a lock. The induced-fit model refines this: the active site is flexible, and when the substrate binds it induces a small conformational change so the enzyme moulds more closely around the substrate. This tighter fit strains the substrate's bonds and helps lower the activation energy. Induced fit explains catalysis better and is the model the syllabus expects, but it still accounts for specificity because only a substrate of roughly the right shape can trigger the correct fit."
     },
     {
-      "q": "How can I quickly tell the difference between competitive and non-competitive inhibition from a Michaelis-Menten graph?",
-      "a": "Look at two key features. First, check the $V_{max}$ (the plateau of the curve). If the inhibitor's curve can eventually reach the same $V_{max}$ as the uninhibited enzyme, it's competitive. If the inhibitor's curve has a lower $V_{max}$, it's non-competitive. Second, look at the $K_m$. For a competitive inhibitor, the curve is shifted to the right, meaning a higher $K_m$. For a non-competitive inhibitor, the $K_m$ is unchanged."
+      "q": "Why does raising the temperature eventually make an enzyme work more slowly, when higher temperature usually speeds reactions up?",
+      "a": "Two opposing effects are at work. Up to the optimum, raising the temperature gives molecules more kinetic energy, so substrate and enzyme collide more often and with more energy, and the rate rises. Above the optimum, the extra thermal energy starts to break the weak bonds (such as hydrogen bonds) that hold the enzyme's tertiary structure together. The active site changes shape, the substrate no longer binds, and the enzyme denatures — so the rate falls sharply. The graph therefore rises to a peak at the optimum and then drops steeply, rather than continuing to rise."
     },
     {
-      "q": "Why is it important for an end-product to inhibit the *first* enzyme in a pathway?",
-      "a": "Inhibiting the first enzyme is the most efficient strategy. It immediately shuts down the entire pathway, preventing the build-up of any intermediate products. If a later enzyme were inhibited, the cell would continue to waste energy and resources making the intermediate compounds up to that point."
+      "q": "Are all enzymes proteins?",
+      "a": "Almost all the enzymes you meet in this course are globular proteins, and for C1.1 you can assume this. There are also catalytic RNA molecules called ribozymes, which shows that catalysis is not exclusive to proteins, but the standard model of an enzyme in IB Biology is a folded globular protein with a specific active site."
+    },
+    {
+      "q": "Do enzymes get used up in a reaction?",
+      "a": "No. This is a defining property of a catalyst. The enzyme takes part in the reaction — the substrate binds, is converted, and the product leaves — but the enzyme itself emerges unchanged and can catalyse the same reaction again and again. That is why a cell needs only tiny quantities of each enzyme. In an exam, never write that the enzyme is 'consumed' or 'used up'."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "The cell is a bustling hub of chemical activity, with thousands of reactions occurring every second. This sum total of reactions is called metabolism. Far from being chaotic, metabolism is highly organised into intricate metabolic pathways, with enzymes acting as the master regulators, ensuring that the cell produces what it needs, when it needs it, and in the correct amounts."
+      "content": "Life runs on chemistry, but the raw chemistry of the cell is far too slow to sustain life. Breaking down a sugar or building a protein at body temperature, unassisted, could take years. Enzymes solve this: they are protein catalysts that speed up specific reactions by huge factors while working under the mild conditions inside a cell. This lesson works through what enzymes are, how the active site and induced fit give them their specificity, and how four measurable factors — temperature, pH, substrate concentration and enzyme concentration — change the rate, together with the exact shape of each graph and the reason behind it. It then covers denaturation and inhibition, and finally shows how thousands of enzyme-catalysed steps are organised into the anabolic and catabolic pathways that make up metabolism. Because C1.1 is examined with both graph interpretation and extended explanation, every worked example is set out the way marks are actually awarded — one mark for each distinct valid point."
     },
     {
       "type": "heading",
-      "content": "Metabolic Pathways: The Cell's Chemical Assembly Lines"
+      "content": "Enzymes as biological catalysts: lowering activation energy"
     },
     {
       "type": "text",
-      "content": "A metabolic pathway is a series of linked, enzyme-catalysed reactions. The product of the first reaction becomes the substrate for the second, and so on. These pathways can be linear, like the conversion of threonine to isoleucine, or cyclical, like the Krebs cycle in cellular respiration. They are fundamental to all life, responsible for both breaking down molecules to release energy (catabolism) and building up complex molecules for growth and maintenance (anabolism)."
+      "content": "For any reaction to occur, the reacting molecules must collide with enough energy to break existing bonds and start forming new ones. That minimum energy is the activation energy, $E_a$ — an energy barrier that reactants must climb before they can turn into products. At the mild temperatures inside a cell, very few molecules have enough energy to cross a high barrier, so uncatalysed reactions are extremely slow. An enzyme is a biological catalyst: it provides an alternative reaction route with a LOWER activation energy, so a far greater proportion of collisions are successful and the rate increases dramatically. Crucially, the enzyme does not change the overall energy of the reactants or products — it does not make the reaction release or require more energy overall, and it does not shift the position of equilibrium. It only lowers the barrier between them, so equilibrium is reached faster. And because the enzyme is regenerated unchanged at the end, it is not used up and can act repeatedly."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Metabolic pathways are sequences of enzyme-catalysed reactions.",
-        "They can be linear chains or cycles.",
-        "Pathways are compartmentalised within the cell, often occurring in specific organelles.",
-        "Control of these pathways is essential for homeostasis."
+        "**Activation energy ($E_a$):** the minimum energy needed for a reaction to proceed. Enzymes LOWER it.",
+        "**Catalyst:** speeds up a reaction without being changed or used up — one enzyme molecule works over and over.",
+        "**What enzymes do NOT do:** they do not change the overall energy of reactants or products ($\\Delta G$), do not supply energy, and do not move the equilibrium position — only how fast it is reached.",
+        "Lowering $E_a$ means more collisions have enough energy to succeed, so the rate rises."
       ]
-    },
-    {
-      "type": "heading",
-      "content": "Enzyme Inhibition: Regulating the Flow"
-    },
-    {
-      "type": "text",
-      "content": "To prevent the wasteful overproduction of substances or the depletion of resources, cells must be able to control the activity of their metabolic pathways. One of the primary ways they achieve this is through enzyme inhibition. An inhibitor is a molecule that binds to an enzyme and decreases its activity. We will focus on two key types of reversible inhibition: competitive and non-competitive."
-    },
-    {
-      "type": "heading",
-      "content": "Competitive vs. Non-Competitive Inhibition"
-    },
-    {
-      "type": "text",
-      "content": "In **competitive inhibition**, the inhibitor molecule has a similar shape to the substrate and competes for the same active site. When the inhibitor is bound, the substrate cannot bind. However, this is a reversible process. If the substrate concentration is increased, the substrate molecules will out-compete the inhibitor for the active site, and the maximum rate of reaction ($V_{max}$) can still be reached. The Michaelis constant ($K_m$), which is the substrate concentration at half $V_{max}$, is increased in the presence of a competitive inhibitor, reflecting the need for more substrate to achieve the same rate."
-    },
-    {
-      "type": "text",
-      "content": "In **non-competitive inhibition**, the inhibitor binds to the enzyme at a location other than the active site, called an allosteric site. This binding causes the enzyme to change its three-dimensional shape (conformation), including the active site, so that it can no longer bind the substrate effectively, or cannot catalyse the reaction. Because the inhibitor does not compete with the substrate, increasing the substrate concentration will not overcome this type of inhibition. Consequently, the $V_{max}$ is lowered. The $K_m$ remains unchanged because the inhibitor does not affect the binding of substrate to the active enzymes that remain."
     },
     {
       "type": "examTip",
-      "content": "Examiners frequently use graphs of reaction rate versus substrate concentration to test your understanding of inhibition. Be prepared to identify the type of inhibitor by analysing changes in $V_{max}$ and $K_m$. Remember: Competitive increases $K_m$, no change in $V_{max}$. Non-competitive decreases $V_{max}$, no change in $K_m$."
-    },
-    {
-      "type": "workedExample",
-      "question": "The graph below shows the rate of an enzyme-catalysed reaction at different substrate concentrations, with and without the presence of an inhibitor. \n\n(a) Determine the $V_{max}$ and $K_m$ for the uninhibited reaction. \n(b) State the type of inhibition shown. \n(c) Justify your answer to (b) with reference to the data in the graph. \n\n(Assume the graph shows a curve for the uninhibited reaction reaching a $V_{max}$ of 80 µmol min⁻¹ and a curve for the inhibited reaction that also approaches 80 µmol min⁻¹ but requires a higher substrate concentration to do so. The $K_m$ for the uninhibited reaction is 4 mM, and for the inhibited reaction, it is 8 mM).",
-      "solution": "*(Note: A graph would be provided in an exam. The following solution is based on the described data.)*\n\n**(a) [2 marks]**\n- The $V_{max}$ for the uninhibited reaction is the maximum rate reached, which is **80 µmol min⁻¹**. [1]\n- The $K_m$ is the substrate concentration at half $V_{max}$ (40 µmol min⁻¹). From the graph, this corresponds to **4 mM**. [1]\n\n**(b) [1 mark]**\n- The type of inhibition is **competitive inhibition**. [1]\n\n**(c) [2 marks]**\n- The maximum velocity ($V_{max}$) is the same for both the inhibited and uninhibited reactions (80 µmol min⁻¹). This means at high substrate concentrations, the inhibition is overcome. [1]\n- The Michaelis constant ($K_m$) is increased in the presence of the inhibitor (from 4 mM to 8 mM), indicating that a higher substrate concentration is required to achieve half the maximum rate. This is characteristic of a competitive inhibitor competing for the active site. [1]"
+      "content": "Be precise: an enzyme 'increases the rate of reaction by lowering the activation energy'. Writing that it 'speeds up the reaction' or 'gives the reaction energy' will not earn the mechanism mark. The examinable idea is LOWERS ACTIVATION ENERGY — and specifically not the overall energy change of the reaction."
     },
     {
       "type": "heading",
-      "content": "End-Product Inhibition: An Elegant Feedback System"
+      "content": "Enzyme structure, the active site and the induced-fit model"
     },
     {
       "type": "text",
-      "content": "End-product inhibition is a clever and efficient biological control mechanism. In this process, the final product of a metabolic pathway binds to an allosteric site on the first enzyme of that same pathway. This binding inhibits the enzyme's activity, thereby slowing down or stopping the entire pathway. It's a classic example of negative feedback. When the cell has enough of the final product, the product itself switches off its own production line. As the cell uses up the product, its concentration falls, the inhibitor molecules detach from the enzyme, and the pathway becomes active again. This prevents the cell from wasting energy and resources synthesising a product it doesn't currently need."
+      "content": "An enzyme is a globular protein: a long chain of amino acids folded into a precise three-dimensional shape. Within that folded shape is a small pocket or groove called the active site, whose shape and chemical properties are complementary to a particular substrate — the reactant the enzyme acts on. Only a substrate that matches the active site can bind, forming an enzyme-substrate complex, and this is why enzymes are specific: one enzyme catalyses only one reaction, or one type of reaction. The way the fit works is described by the induced-fit model. Rather than being a rigid lock waiting for its key, the active site is slightly flexible. When the correct substrate begins to bind, it induces a conformational change in the enzyme so the active site moulds more closely around the substrate. This tighter grip puts strain on the substrate's bonds, which helps lower the activation energy and makes the reaction proceed. Once the product forms and leaves, the active site returns to its original shape, ready to bind again."
     },
     {
       "type": "keyPoints",
       "items": [
-        "The final product of a pathway inhibits an early enzyme (often the first one).",
-        "This is a form of non-competitive, allosteric inhibition.",
-        "It acts as a negative feedback loop, ensuring production matches cellular demand.",
-        "It is a reversible process, allowing the pathway to switch back on when product levels are low."
+        "Enzymes are **globular proteins** whose folding creates a specific **active site**.",
+        "The active site is **complementary** in shape and chemistry to one substrate → **specificity**.",
+        "**Induced fit:** substrate binding changes the active-site shape so it moulds around the substrate, straining bonds and lowering $E_a$.",
+        "Substrate + enzyme → **enzyme-substrate complex** → product + unchanged enzyme."
       ]
     },
     {
       "type": "workedExample",
-      "question": "An experiment was conducted to investigate the effect of two inhibitors, X and Y, on the activity of an enzyme. The rate of reaction was measured at various substrate concentrations. The enzyme's normal $V_{max}$ is 150 units and its $K_m$ is 5 mM. \n\nData Table:\n| Substrate [mM] | Rate with Inhibitor X (units) | Rate with Inhibitor Y (units) |\n|---|---|---|\n| 2.5 | 37.5 | 25.0 |\n| 5.0 | 60.0 | 37.5 |\n| 10.0 | 85.7 | 50.0 |\n| 20.0 | 114.3 | 60.0 |\n| 40.0 | 133.3 | 66.7 |\n\nIdentify the type of inhibition caused by inhibitor X and inhibitor Y. For each, provide a justification based on the data.",
-      "solution": "**Inhibitor X: [2 marks]**\n- **Identification:** Competitive inhibition. [1]\n- **Justification:** As the substrate concentration increases, the rate of reaction with inhibitor X approaches the uninhibited $V_{max}$ of 150 units (at 40mM substrate, the rate is 133.3, still rising). However, the rate at the original $K_m$ (5 mM) is 60 units, which is less than half the uninhibited $V_{max}$ (75 units), indicating the apparent $K_m$ has increased. This pattern is characteristic of competitive inhibition. [1]\n\n**Inhibitor Y: [2 marks]**\n- **Identification:** Non-competitive inhibition. [1]\n- **Justification:** The rate of reaction with inhibitor Y appears to be plateauing at a new, lower $V_{max}$ of approximately 75 units, which is half the original $V_{max}$. Even at high substrate concentrations (40 mM), the rate (66.7 units) does not approach the original $V_{max}$. This reduction in $V_{max}$ is the hallmark of non-competitive inhibition. [1]"
+      "question": "Using the induced-fit model, explain why an enzyme catalyses only one type of reaction. [3]",
+      "solution": "**Model answer.**\nThe enzyme's active site has a specific shape and chemistry that is complementary to only one substrate. Only that substrate can bind to the active site and induce the conformational change (induced fit) needed to form a functional enzyme-substrate complex. A molecule of a different shape cannot bind or cannot induce the correct fit, so no reaction is catalysed — making the enzyme specific to one substrate/reaction.\n\n---\n**How our marking engine awards the 3 marks** — each distinct valid point scores 1:\n\n- **Point 1:** the active site is complementary in shape (and chemistry) to only one (specific) substrate.\n- **Point 2:** only that substrate can bind / induce the correct fit to form the enzyme-substrate complex.\n- **Point 3:** other molecules do not fit / cannot induce the change, so are not catalysed — hence specificity.\n\nEquivalent phrasings are accepted (e.g. 'the substrate is complementary to the active site' counts for Point 1). Repeating the same idea in two ways scores once."
+    },
+    {
+      "type": "heading",
+      "content": "Factors affecting the rate of enzyme activity"
+    },
+    {
+      "type": "text",
+      "content": "The rate of an enzyme-catalysed reaction depends on four measurable factors: temperature, pH, substrate concentration and enzyme concentration. Each has a characteristic graph, and in the exam you are expected to draw or interpret the shape AND give the reason for it. The unifying idea is collision theory: a reaction happens when substrate molecules collide with the active sites of enzyme molecules with enough energy. Anything that changes how often, or how successfully, those collisions happen changes the rate — until some other factor becomes limiting or the enzyme is damaged."
+    },
+    {
+      "type": "heading",
+      "content": "Temperature"
+    },
+    {
+      "type": "text",
+      "content": "As temperature rises from low values, the rate increases: molecules gain kinetic energy, so enzyme and substrate move faster, collide more frequently, and more collisions have enough energy to react. The rate reaches a maximum at the optimum temperature (about 37°C for many human enzymes). Above the optimum the rate falls sharply, because the increasing thermal energy begins to break the weak bonds (such as hydrogen bonds) that hold the enzyme's tertiary structure together. The active site changes shape, the substrate can no longer bind, and the enzyme denatures. The graph is therefore a curve that rises to a peak at the optimum, then drops steeply — not a symmetrical bell, because denaturation causes a faster fall than the rise. The key contrast to make is: below the optimum, more kinetic energy → faster; above the optimum, denaturation → slower."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Shape:** rises to a peak at the optimum temperature, then falls steeply.",
+        "**Below optimum:** higher temperature → more kinetic energy → more frequent, more successful collisions → faster rate.",
+        "**Above optimum:** enzyme DENATURES → active site changes shape → substrate can't bind → rate falls.",
+        "**Do not write** that the enzyme 'dies' or 'is killed' — it denatures."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "pH"
+    },
+    {
+      "type": "text",
+      "content": "Each enzyme has an optimum pH at which its rate is fastest, and moving away from that pH in either direction lowers the rate. The graph is a curve that peaks at the optimum pH and falls away on both sides. The reason is that pH affects the charges on the amino-acid side chains (R groups) that form the active site and hold the enzyme's shape. Away from the optimum, these interactions are disrupted, the active site changes shape, and the substrate binds less well; at extreme pH the enzyme denatures. Different enzymes have different optima suited to where they work — for example pepsin, in the acidic stomach, has an optimum near pH 2, whereas most enzymes inside cells work best near neutral pH."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Shape:** a peak at the optimum pH, falling on both sides.",
+        "**Reason:** pH alters charges on R groups at/around the active site, changing its shape so the substrate binds less well; extreme pH denatures the enzyme.",
+        "Different enzymes have different optimum pH values matched to their environment (e.g. pepsin ≈ pH 2)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Substrate concentration"
+    },
+    {
+      "type": "text",
+      "content": "With a fixed amount of enzyme, increasing the substrate concentration first increases the rate: more substrate molecules mean more frequent collisions with active sites, so more enzyme-substrate complexes form per second. But the curve then levels off and plateaus. At high substrate concentration the active sites become saturated — essentially all of them are occupied at any instant, so adding more substrate cannot speed things up. The rate is now limited by how fast enzymes can process substrate, i.e. by the enzyme concentration, not the substrate. The characteristic shape is therefore a curve that rises steeply, then bends over to a plateau at the maximum rate."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Shape:** rises steeply, then levels off to a plateau (maximum rate).",
+        "**Rising part:** more substrate → more collisions with active sites → more enzyme-substrate complexes → faster rate.",
+        "**Plateau:** active sites are SATURATED; enzyme concentration (number of active sites) is now the limiting factor."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Enzyme concentration"
+    },
+    {
+      "type": "text",
+      "content": "With substrate in excess, increasing the enzyme concentration increases the rate in direct proportion: more enzyme molecules mean more active sites available, so more substrate can be processed at once and more enzyme-substrate complexes form per second. The graph is a straight line through the origin — as long as there is always plenty of substrate. If substrate ever became limiting, the line would level off, because extra active sites would have no substrate to act on."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Shape:** a straight line through the origin (rate directly proportional to enzyme concentration), provided substrate is in excess.",
+        "**Reason:** more enzyme → more active sites available → more enzyme-substrate complexes form per second → faster rate.",
+        "If substrate becomes limiting, the line levels off."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph below shows how the rate of an enzyme-catalysed reaction changes as temperature increases from 0°C to 60°C. The rate rises from near zero to a maximum at 40°C, then falls sharply to zero by 55°C.\n\n(a) State the optimum temperature for this enzyme. [1]\n(b) Explain the shape of the graph between 0°C and 40°C. [2]\n(c) Explain the shape of the graph between 40°C and 55°C. [3]",
+      "solution": "**(a)** 40°C. [1 — read directly from the peak]\n\n**(b) Model answer (2 marks).**\nAs temperature increases, the enzyme and substrate molecules gain more kinetic energy and move faster, so they collide more frequently and with more energy. This means more successful collisions per second, so more enzyme-substrate complexes form and the rate increases.\n\n*How the engine awards it — each distinct point scores 1 (max 2):*\n- **Point 1:** more kinetic energy → more frequent collisions between substrate and active site.\n- **Point 2:** more successful collisions / more enzyme-substrate complexes formed → higher rate.\n\n**(c) Model answer (3 marks).**\nAbove the optimum, the extra thermal energy breaks the weak bonds (e.g. hydrogen bonds) holding the enzyme's tertiary structure, so the enzyme denatures. The active site changes shape and is no longer complementary to the substrate, so the substrate can no longer bind. Fewer or no enzyme-substrate complexes form, so the rate falls (to zero once all enzymes are denatured).\n\n*How the engine awards it — each distinct point scores 1 (max 3):*\n- **Point 1:** the enzyme denatures / bonds holding tertiary structure break.\n- **Point 2:** the active site changes shape / is no longer complementary.\n- **Point 3:** substrate can no longer bind → fewer enzyme-substrate complexes → rate falls.\n\n*The engine rejects 'the enzyme dies' or 'is killed' for Point 1 — it requires the idea of denaturation / a shape change. Error-carried-forward applies: if a candidate states the wrong optimum in (a) but then explains the two regions correctly relative to it, the explanation marks in (b) and (c) still stand.*"
+    },
+    {
+      "type": "heading",
+      "content": "Denaturation"
+    },
+    {
+      "type": "text",
+      "content": "Denaturation is a permanent change to the three-dimensional shape of an enzyme. High temperature or extreme pH breaks the relatively weak bonds — hydrogen bonds and other interactions between R groups — that hold the folded tertiary structure in place. As the folding unravels, the active site loses its precise shape, so it is no longer complementary to the substrate; the substrate cannot bind, no enzyme-substrate complex forms, and catalytic activity is lost. The single most important exam point is what denaturation does NOT change: it does not alter the sequence of amino acids (the primary structure). Only the shape is affected. Because the bonds do not spontaneously reform correctly, denaturation is generally irreversible."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Denaturation = a permanent change in the enzyme's 3-D SHAPE**, caused by heat or extreme pH.",
+        "Weak bonds holding the tertiary structure break → active site changes shape → substrate can't bind → activity lost.",
+        "The amino-acid **sequence (primary structure) is unchanged** — do not write that heat 'changes the sequence' or 'breaks the enzyme into amino acids'.",
+        "It is generally **irreversible**, and the enzyme does not 'die' — enzymes are molecules, not living things."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Enzyme inhibition: competitive vs non-competitive"
+    },
+    {
+      "type": "text",
+      "content": "Inhibitors are molecules that reduce the rate of an enzyme-catalysed reaction, and there are two main types to contrast. A competitive inhibitor has a shape similar to the substrate, so it binds to the active site itself and blocks the substrate from entering. Because inhibitor and substrate compete for the same site, the effect depends on their relative amounts: adding more substrate makes it more likely a substrate molecule reaches the active site first, so competitive inhibition can be overcome, and the maximum rate is still reached — it just takes a higher substrate concentration to get there. A non-competitive inhibitor binds instead to a different site (an allosteric site) away from the active site. This binding changes the enzyme's overall shape, which in turn changes the shape of the active site so the substrate no longer fits well. Because the inhibitor is not competing for the active site, adding more substrate does NOT overcome it, and the maximum rate is lowered. Distinguishing the two on a graph of rate against substrate concentration: the competitive curve reaches the same plateau as the uninhibited enzyme but only at higher substrate concentration, whereas the non-competitive curve plateaus at a lower maximum rate."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Competitive inhibitor:** similar shape to substrate → binds the ACTIVE SITE → blocks substrate. Overcome by adding more substrate; same maximum rate reached, just later.",
+        "**Non-competitive inhibitor:** binds an ALLOSTERIC site (not the active site) → changes enzyme/active-site shape → substrate binds poorly. NOT overcome by adding substrate; maximum rate is lowered.",
+        "**Graph tell:** competitive → same plateau at higher [substrate]; non-competitive → lower plateau."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A student adds a competitive inhibitor to an enzyme reaction. Predict and explain the effect on the rate at (a) low substrate concentration and (b) very high substrate concentration. [4]",
+      "solution": "**Model answer.**\n**(a) Low substrate concentration:** the rate is much lower than without the inhibitor. The inhibitor has a shape similar to the substrate, so it competes for and binds to the active site, blocking substrate molecules; with little substrate present, the inhibitor occupies many active sites, so few enzyme-substrate complexes form.\n**(b) Very high substrate concentration:** the rate rises back towards the normal maximum. With a large excess of substrate, substrate molecules greatly outnumber inhibitor molecules and are far more likely to reach the active sites first, so the inhibition is effectively overcome and the maximum rate is still reached.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1:\n\n- **Point 1 (a):** at low [substrate], rate is reduced because the inhibitor binds/blocks the active site (competes with substrate).\n- **Point 2 (a):** so fewer enzyme-substrate complexes form → lower rate.\n- **Point 3 (b):** at high [substrate], substrate outnumbers inhibitor / is more likely to reach the active site first.\n- **Point 4 (b):** so the inhibition is overcome and the (same) maximum rate is reached.\n\nAccept equivalents (e.g. 'substrate outcompetes the inhibitor' for Point 3). A common error the engine rejects is claiming the maximum rate is LOWERED at high substrate — that describes non-competitive, not competitive, inhibition."
+    },
+    {
+      "type": "heading",
+      "content": "Metabolism: anabolic and catabolic pathways"
+    },
+    {
+      "type": "text",
+      "content": "Metabolism is the sum of all the enzyme-catalysed chemical reactions occurring in a cell or organism. These reactions fall into two categories. Anabolism is the building up of larger, more complex molecules from smaller ones — for example joining amino acids into proteins, or fixing carbon dioxide into glucose in photosynthesis — and it requires an input of energy (it is endergonic). Catabolism is the breaking down of larger molecules into smaller ones — for example the digestion of starch to glucose, or the oxidation of glucose in cell respiration — and it releases energy (it is exergonic). The two are linked: the energy released by catabolic reactions is used to drive anabolic ones, so metabolism as a whole keeps the cell supplied with both the molecules and the energy it needs."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Metabolism:** all the enzyme-catalysed reactions in an organism.",
+        "**Anabolism:** builds larger molecules from smaller ones; requires energy (endergonic). E.g. protein synthesis, photosynthesis.",
+        "**Catabolism:** breaks larger molecules into smaller ones; releases energy (exergonic). E.g. digestion, cell respiration.",
+        "Energy from catabolism drives anabolism."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Enzymes controlling metabolic pathways"
+    },
+    {
+      "type": "text",
+      "content": "The reactions of metabolism are not random — they are organised into metabolic pathways, sequences in which the product of one reaction becomes the substrate for the next. Every individual step is catalysed by its own specific enzyme. Because each step needs its own enzyme, the cell can control the whole pathway with great precision: by making more or less of a particular enzyme, or by switching enzymes on and off, it regulates which reactions run and how fast. Pathways can be linear, like glycolysis, with a clear start and end, or cyclical, like the Krebs cycle, where the starting molecule is regenerated each turn. Breaking a big chemical change into many small enzyme-controlled steps also lets energy be released or captured in manageable amounts, and provides many points at which the cell can regulate the flow. Enzymes are therefore not just catalysts but the control points of metabolism."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A **metabolic pathway** is a sequence of reactions where each product is the substrate for the next step.",
+        "**Each step has its own specific enzyme**, so the cell controls the pathway by controlling those enzymes.",
+        "Pathways can be **linear** (e.g. glycolysis) or **cyclical** (e.g. the Krebs cycle).",
+        "Small steps allow controlled energy transfer and many points of regulation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A linear metabolic pathway is shown:\n\nSubstance P $\\xrightarrow{\\text{Enzyme 1}}$ Substance Q $\\xrightarrow{\\text{Enzyme 2}}$ Substance R $\\xrightarrow{\\text{Enzyme 3}}$ Substance S\n\n(a) State whether the pathway would run if Enzyme 2 were non-competitively inhibited, and explain your answer. [3]\n(b) Explain why the cell benefits from carrying out this conversion in three enzyme-controlled steps rather than one. [2]",
+      "solution": "**(a) Model answer (3 marks).**\nThe pathway would stop at Substance Q. A non-competitive inhibitor binds an allosteric site on Enzyme 2 and changes the shape of its active site, so substrate Q can no longer bind and is not converted to R. Because R is the substrate for Enzyme 3, no S can be made either — the pathway is blocked from Q onwards.\n\n*How the engine awards it — each distinct point scores 1 (max 3):*\n- **Point 1:** Enzyme 2 is inhibited so Q is not converted to R (the pathway halts at Q).\n- **Point 2:** the non-competitive inhibitor changes the active-site shape so substrate Q cannot bind.\n- **Point 3:** R (and therefore S) cannot be produced because each product is the substrate for the next step.\n\n**(b) Model answer (2 marks).**\nSmall steps allow energy to be released or used in manageable amounts rather than one large burst, and each step provides a separate control point, so the cell can regulate the pathway precisely by controlling individual enzymes.\n\n*Each distinct point scores 1 (max 2): controlled/manageable energy transfer; multiple regulation points / finer control.*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying enzymes lower $\\Delta G$ or 'give the reaction energy'** — enzymes lower the ACTIVATION ENERGY only; they do not change the overall energy of reactants and products or the equilibrium position.",
+        "**Writing that a heated enzyme 'dies' or 'is killed'** — enzymes are molecules, not organisms. Above the optimum they DENATURE; the active site changes shape so the substrate can no longer bind.",
+        "**Claiming denaturation 'changes the amino-acid sequence'** — denaturation changes the SHAPE (tertiary structure); the primary sequence is unchanged.",
+        "**Confusing competitive and non-competitive inhibition** — competitive binds the active site and is overcome by more substrate (same maximum rate); non-competitive binds an allosteric site, is NOT overcome by more substrate, and lowers the maximum rate.",
+        "**Saying an enzyme is 'used up' in the reaction** — enzymes are catalysts; they emerge unchanged and act repeatedly.",
+        "**Forgetting the reason for the plateau in the substrate-concentration graph** — it levels off because active sites are SATURATED (enzyme concentration limiting), not because substrate runs out.",
+        "**Describing enzyme action vaguely as 'the substrate fits the enzyme'** — name the ACTIVE SITE and, for full credit, the induced-fit change in shape.",
+        "**Muddling anabolism and catabolism** — anabolism BUILDS UP and needs energy; catabolism BREAKS DOWN and releases energy."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Explanation questions in C1.1 are marked analytically: each distinct valid biological point earns one mark. There is no bonus for elegant writing and no penalty for a clumsy sentence — the engine looks for named, creditable ideas. Study how the four marks below attach to four separate points, how error-carried-forward (ECF) protects a chain of reasoning, and exactly which loose phrasing the engine refuses to credit."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain the effect of increasing temperature on the rate of an enzyme-catalysed reaction. [4]",
+      "solution": "**Model answer.**\nAs temperature increases towards the optimum, the enzyme and substrate molecules gain more kinetic energy and move faster, so they collide more often and more of the collisions are successful; more enzyme-substrate complexes form, so the rate increases. This continues up to an optimum temperature, at which the rate is at its maximum. Above the optimum, the increasing thermal energy breaks the bonds holding the enzyme's tertiary structure, so the enzyme denatures. The active site changes shape and is no longer complementary to the substrate, so the substrate can no longer bind and the rate falls.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** rate increases with temperature because molecules gain kinetic energy → more frequent / more successful collisions (more enzyme-substrate complexes).\n- **Point 2 (M):** the rate is maximum at an optimum temperature.\n- **Point 3 (M):** above the optimum the enzyme DENATURES — bonds holding the tertiary structure break.\n- **Point 4 (A):** the active site changes shape → substrate no longer binds → rate falls (the conclusion of the reasoning chain).\n\nMore than four creditable points appear here (kinetic energy, collisions, optimum, denaturation, active-site shape change, substrate can't bind), so the engine caps the award at 4 — there is deliberate room to miss one idea and still reach full marks. But marks are for DISTINCT points: writing 'the reaction goes faster because it is hotter' twice scores once.\n\n**A for the correct step; ECF; accept equivalents.** Point 4 is the answer mark that completes the chain, and error-carried-forward applies — if a student names the wrong optimum but still explains the rise as more kinetic energy and the fall as denaturation, the explanation marks stand. Equivalent phrasings are accepted: 'the shape of the active site changes' is credited for Point 4; 'more molecules have energy above the activation energy' is credited for Point 1.\n\n**What the engine rejects.** An answer that says the enzyme 'dies' or 'is killed' scores ZERO for Point 3, because denaturation is a change of shape, not death — enzymes are molecules. Likewise 'the enzyme melts' or 'the sequence changes' is rejected: the primary structure is unchanged. The mark scheme requires the named process (denatures → active site changes shape → substrate can't bind), not an analogy.\n\n**Bottom line:** to secure all 4 marks, give one idea for the rise (kinetic energy / successful collisions), name the optimum, name denaturation, and finish with the active-site shape change so the substrate no longer binds. Each valid line stands on its own."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements: name kinetic energy and successful collisions for the rise, name the optimum, name denaturation, then state that the active site changes shape so the substrate can no longer bind. Avoid 'the enzyme dies' entirely — it scores nothing. Showing each separate point is what protects your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Enzymes underpin almost everything else in biology. The same active-site and induced-fit ideas explain how the enzymes of cell respiration release energy from glucose, how the enzymes of photosynthesis fix carbon, how DNA polymerase and other enzymes copy and repair the genome, and how digestive enzymes break down food. The rate-controlling factors you have met here — temperature, pH, substrate concentration and inhibition — return whenever biologists design experiments or model metabolism, and inhibition in particular is the basis of how many drugs and poisons work. Master the reasoning template — bind at the active site, lower the activation energy, and watch what changes the collisions or the shape — and you can explain enzyme behaviour in any context the exam sets."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Enzymes and Metabolism",
-      "href": "/mark?subject=ib-biology-hl&topic=C1.1"
+      "label": "Get a Paper 2 question marked: explain how a named factor affects enzyme rate, or interpret an enzyme graph, with full analytic marking",
+      "href": "/mark?subject=ib-biology-hl&topic=C1.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive animation of enzyme inhibition",
-          "href": "https://www.wiley.com/college/boyer/0470003790/animations/enzyme_inhibition/enzyme_inhibition.htm"
+          "label": "IB Biology Guide (C1.1 syllabus statements)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
         },
         {
-          "label": "Detailed explanation of metabolic control from KEGG",
-          "href": "https://www.genome.jp/kegg/pathway.html"
+          "label": "Khan Academy: Enzymes and the active site",
+          "href": "https://www.khanacademy.org/science/biology/energy-and-enzymes"
+        },
+        {
+          "label": "PhET-style enzyme and reaction rate concepts",
+          "href": "https://www.khanacademy.org/science/biology/energy-and-enzymes/enzyme-regulation"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

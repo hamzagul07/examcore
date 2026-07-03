@@ -2,164 +2,429 @@
   "slug": "b3-2-transport",
   "topicCode": "B3.2",
   "title": "Transport",
+  "unit": {
+    "code": "B",
+    "title": "Form and function"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the intricate vascular systems of plants, focusing on how xylem and phloem are structurally adapted for their roles in transporting water, minerals, and sugars. We will dissect the mechanisms of transpiration and translocation, and analyse the environmental factors that influence water movement.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Transport is the story of how larger organisms move materials over distances too great for diffusion to handle. This lesson builds the whole B3.2 picture: why bigger bodies need mass-transport systems at all, the human circulatory system (heart structure, double circulation and a brief walk through the cardiac cycle), the three blood vessel types and how each one's structure fits its job, the adaptations that make capillaries superb exchange surfaces, and the parallel plant story — water pulled up the xylem by the transpiration stream and explained by cohesion-tension theory, sugars moved through the phloem from source to sink, and the factors that speed transpiration up or slow it down. The model answer is laid out exactly the way our marking engine awards Paper 2 explain marks, so you can see how each distinct point earns its mark.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the structure of xylem and phloem in relation to their functions in transport.",
-    "Describe the cohesion-tension theory for water transport in the xylem.",
-    "Explain the pressure-flow hypothesis for the translocation of sugars in the phloem.",
-    "Analyse data from experiments measuring transport rates in plants."
+    "Explain why larger, more active organisms need specialised transport systems rather than relying on diffusion alone.",
+    "Describe the structure of the human heart and the pattern of double circulation, and outline the cardiac cycle.",
+    "Relate the structure of arteries, capillaries and veins to their functions, and explain how capillaries are adapted for exchange.",
+    "Explain water transport in the xylem using the transpiration stream and cohesion-tension theory, and the role of stomata.",
+    "Outline translocation of sugars in the phloem from source to sink, and state the factors affecting the rate of transpiration."
   ],
+  "syllabusObjectivesCovered": [
+    "B3.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Plant's Plumbing and Delivery Service",
-    "summary": "Plants possess two specialised transport tissues: xylem for one-way water transport from roots to leaves, and phloem for two-way sugar transport. These systems work together to nourish the entire plant.",
-    "analogy": "Think of a skyscraper. The xylem is like the water pipes, using a powerful suction pump (transpiration) to pull water from the basement (roots) all the way up to the rooftop garden (leaves). The phloem is like a specialised lift, actively loading food parcels (sucrose) made in the rooftop kitchen and delivering them to residents on every floor (stems, roots, fruits) who need energy.",
+    "title": "Why big bodies need pipes and pumps",
+    "summary": "Diffusion is fast over microscopic distances and hopeless over large ones. Once an organism is bigger than a few cells thick, it must build transport systems — a heart and blood vessels in animals, xylem and phloem in plants — to carry materials the distances diffusion cannot.",
+    "analogy": "Picture a small village where everyone lives within a minute's walk of the well: no one needs a delivery service, they just fetch water themselves. That is a single cell relying on diffusion. Now picture a city of millions. You cannot expect every resident to walk to a single well; you need pumping stations, water mains, distribution pipes and a return system for waste. A large organism is that city — the heart is the pumping station, arteries and veins are the mains, and capillaries are the taps that reach every doorstep. Plants run the same idea with two one-way pipelines: the xylem carries water up, the phloem delivers sugar wherever it is needed.",
     "steps": [
-      "Water enters the roots by osmosis and is drawn into the xylem, a continuous network of pipes.",
-      "In the leaves, water evaporates and diffuses out through pores called stomata. This is transpiration.",
-      "This water loss creates a tension or 'pull' that, thanks to the cohesive properties of water, pulls the entire column of water up the xylem from the roots.",
-      "Meanwhile, sugars made in the leaves are actively loaded into the phloem, creating high pressure that pushes the sugary sap to parts of the plant that need it, like roots or fruits."
+      "As an organism gets larger its volume grows faster than its surface area, so diffusion across the outer surface can no longer supply the inner cells.",
+      "Animals solve this with a circulatory system: a muscular heart pumps blood through vessels so that materials are carried by mass flow, then diffuse the last short distance at the tissues.",
+      "In the human double circulation the blood passes through the heart twice per full circuit — once to the lungs, once to the body — keeping oxygen delivery efficient.",
+      "Plants pull water up the xylem by transpiration and push sugars through the phloem from where they are made (source) to where they are used (sink)."
     ]
   },
+  "keyConcepts": [
+    "mass transport",
+    "surface area to volume ratio",
+    "double circulation",
+    "cohesion-tension",
+    "source to sink"
+  ],
   "flashcards": [
     {
-      "front": "What is transpiration?",
-      "back": "The loss of water vapour from the leaves and stems of plants, primarily through stomata. It is the driving force for water movement in the xylem."
+      "front": "Why do larger organisms need transport systems?",
+      "back": "As size increases, the surface-area-to-volume ratio falls, and diffusion distances become too long. Diffusion alone cannot supply oxygen and nutrients to, or remove waste from, the inner cells fast enough, so a mass-transport system is required.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Define the cohesion-tension theory.",
-      "back": "The theory explaining water movement in the xylem. Tension (negative pressure) from transpiration pulls water up. Cohesion (attraction between water molecules) and adhesion (attraction to xylem walls) maintain a continuous column of water."
+      "front": "Double circulation",
+      "back": "Blood passes through the heart TWICE for each complete circuit of the body: the pulmonary circuit (heart to lungs and back) and the systemic circuit (heart to the rest of the body and back). This keeps pressures appropriate and delivery efficient.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Describe the structure of a mature xylem vessel.",
-      "back": "Composed of dead cells (tracheids/vessel elements) joined end to end with no cross-walls, forming a continuous tube. The walls are thickened and waterproofed with lignin."
+      "front": "Left vs right side of the heart",
+      "back": "The right side pumps deoxygenated blood to the lungs (lower pressure); the left side pumps oxygenated blood around the whole body (higher pressure), which is why the left ventricle wall is thicker and more muscular.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is translocation in plants?",
-      "back": "The transport of organic solutes, mainly sucrose, from a source to a sink via the phloem. This process is active and requires energy."
+      "front": "Atria vs ventricles",
+      "back": "Atria are the thin-walled upper chambers that receive blood returning to the heart; ventricles are the thick-walled lower chambers that pump blood out into arteries. Ventricle walls are thicker because they generate the pressure to push blood away from the heart.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Distinguish between a 'source' and a 'sink' in translocation.",
-      "back": "A source is a part of the plant that produces or releases sugars (e.g., a photosynthesising leaf, a storage organ in spring). A sink is a part that consumes or stores sugars (e.g., roots, fruits, developing leaves)."
+      "front": "Cardiac cycle (brief)",
+      "back": "One heartbeat has three phases: atrial systole (atria contract, filling ventricles), ventricular systole (ventricles contract, pushing blood into the arteries; atrioventricular valves close), and diastole (all chambers relax and refill). Valves ensure one-way flow.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What are the two main cell types in phloem tissue?",
-      "back": "Sieve tube elements, which form the transport tube, and companion cells, which provide metabolic support and are involved in loading/unloading sugars."
+      "front": "Artery structure and function",
+      "back": "Arteries carry blood AWAY from the heart at high pressure. They have thick walls with lots of muscle and elastic tissue and a narrow lumen, so they withstand and smooth out the high pulsing pressure. Arteries do NOT normally contain valves (except at the heart's exit).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Briefly explain the pressure-flow hypothesis.",
-      "back": "Sucrose is actively loaded into the phloem at the source, lowering water potential. Water enters by osmosis, creating high hydrostatic pressure. At the sink, sucrose is unloaded, water leaves, and pressure drops. This pressure gradient drives bulk flow."
+      "front": "Vein structure and function",
+      "back": "Veins carry blood BACK to the heart at low pressure. They have thin walls, little muscle/elastic tissue and a wide lumen, and they contain VALVES to prevent backflow because pressure is low.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How does humidity affect the rate of transpiration?",
-      "back": "High humidity decreases the rate of transpiration. This is because the water potential gradient between the moist inside of the leaf and the outside air is reduced, slowing down the rate of diffusion."
+      "front": "Capillary structure and function",
+      "back": "Capillaries are the site of exchange between blood and tissues. Their walls are a single layer of flattened endothelial cells (one cell thick), giving a very short diffusion distance. They are narrow and numerous, forming huge total surface area.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the function of lignin in xylem?",
-      "back": "Lignin provides mechanical strength and support to the plant, preventing the collapse of xylem vessels under negative pressure (tension). It also waterproofs the vessel."
+      "front": "How capillaries are adapted for exchange",
+      "back": "Wall one cell thick (short diffusion distance); very narrow lumen forcing red blood cells single-file close to the wall; extremely large total surface area from dense branching networks; often permeable/with small gaps so plasma can leak out as tissue fluid.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Common Trap: Is transport in the phloem always downwards?",
-      "back": "No. Transport in the phloem is from source to sink. While this is often from leaves (high) to roots (low), it can be upwards, for example, from storage roots (source) to new buds (sink) in the spring."
+      "front": "Xylem",
+      "back": "A transport tissue that carries water and dissolved minerals from the roots upward. Made of dead, hollow cells joined end to end into continuous vessels with lignified walls that resist collapse under tension. Transport is one-way: UP only.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Phloem",
+      "back": "A living transport tissue that carries sugars (mainly sucrose) from source to sink. Made of sieve tube elements connected by sieve plates, supported by companion cells. Transport can go UP or DOWN depending on where the sinks are.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Transpiration",
+      "back": "The loss of water vapour from a plant, mostly by evaporation from leaf cell surfaces followed by diffusion out through the stomata. It is the process that generates the pull driving the transpiration stream.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Cohesion-tension theory",
+      "back": "Transpiration creates tension (negative pressure) at the top of the xylem. Cohesion between water molecules (hydrogen bonding) holds the water in a continuous column, and adhesion to the xylem walls helps support it, so the whole column is pulled upward together.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Cohesion vs adhesion",
+      "back": "Cohesion is attraction between water molecules (same substance) via hydrogen bonds, keeping the column unbroken. Adhesion is attraction between water molecules and the xylem walls (different substances), helping hold the column up. Both rely on water's polarity.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Role of stomata",
+      "back": "Stomata are pores (mostly on the lower leaf surface) whose opening is controlled by guard cells. Open stomata allow CO₂ in for photosynthesis but also let water vapour out — a trade-off. Closing them reduces water loss but limits gas exchange.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Translocation (source to sink)",
+      "back": "The movement of sugars through the phloem from a SOURCE (where sugar is made or released, e.g. photosynthesising leaves) to a SINK (where sugar is used or stored, e.g. roots, fruits, growing tips). A part can switch between source and sink with the season.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Factors affecting transpiration rate",
+      "back": "Rate INCREASES with higher light intensity (opens stomata), higher temperature (faster evaporation), higher wind speed (removes humid boundary layer) and drier air. Rate DECREASES with high humidity (smaller water-potential gradient).",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Common Trap: xylem direction",
+      "back": "Xylem carries water UP only (roots to leaves); it never carries water back down. Only the phloem is bidirectional, moving sugars toward whichever sinks are active.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Common Trap: valves",
+      "back": "VEINS have valves (low pressure needs help preventing backflow); arteries generally do NOT. Do not put valves in arteries in a diagram or description.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which blood vessel has thick, muscular and elastic walls with a narrow lumen, and no valves along its length?",
+      "options": [
+        "A vein, to help return blood to the heart",
+        "A capillary, to allow exchange",
+        "An artery, to withstand high pulsing pressure",
+        "A venule, to collect blood from capillaries"
+      ],
+      "answer": "An artery, to withstand high pulsing pressure"
+    },
+    {
+      "prompt": "Why do veins contain valves but arteries generally do not?",
+      "options": [
+        "Veins carry blood at low pressure, so valves are needed to prevent backflow",
+        "Veins carry oxygenated blood that must not mix with deoxygenated blood",
+        "Arteries are too narrow for valves to fit",
+        "Valves in arteries would slow the heartbeat"
+      ],
+      "answer": "Veins carry blood at low pressure, so valves are needed to prevent backflow"
+    },
+    {
+      "prompt": "In which direction does the xylem transport water?",
+      "options": [
+        "Only downward, from leaves to roots",
+        "Only upward, from roots to leaves",
+        "Up or down, toward whichever part needs water",
+        "In whichever direction the phloem is not moving"
+      ],
+      "answer": "Only upward, from roots to leaves"
+    },
+    {
+      "prompt": "A student writes that transpiration is 'the movement of sugars from leaves to roots'. What is wrong?",
+      "options": [
+        "Nothing — that is the correct definition",
+        "That describes translocation in the phloem; transpiration is the loss of water vapour from the leaves",
+        "Transpiration moves sugars up, not down",
+        "Transpiration only happens at night"
+      ],
+      "answer": "That describes translocation in the phloem; transpiration is the loss of water vapour from the leaves"
+    },
+    {
+      "prompt": "Which best describes how water is held in a continuous column as it is pulled up the xylem?",
+      "options": [
+        "Active transport pushes each water molecule up using ATP",
+        "Cohesion between water molecules by hydrogen bonding, plus adhesion to the xylem walls",
+        "The heart pumps water up through the plant",
+        "Air pressure from below pushes the column upward"
+      ],
+      "answer": "Cohesion between water molecules by hydrogen bonding, plus adhesion to the xylem walls"
     }
   ],
   "faq": [
     {
-      "q": "Why do plants transport sucrose instead of glucose?",
-      "a": "Plants transport sucrose because it is a non-reducing sugar and is less chemically reactive than glucose. This makes it a more stable molecule for long-distance transport through the phloem, ensuring it arrives at the sink without being metabolised or reacting with other substances en route."
+      "q": "Why can't large organisms just rely on diffusion?",
+      "a": "Diffusion is only fast over very short distances. As an organism grows, its volume (the amount of tissue needing supply) rises faster than its surface area (where exchange happens), so the surface-area-to-volume ratio falls and the distances to inner cells grow. Beyond a few cell layers, diffusion simply cannot deliver oxygen and nutrients or remove carbon dioxide quickly enough, so a mass-transport system that moves fluid in bulk becomes essential."
     },
     {
-      "q": "Is the movement of water in the xylem a completely passive process?",
-      "a": "The movement of water up the stem via the transpiration stream is passive, driven by the evaporation of water from the leaves and the physical properties of water (cohesion and adhesion). However, the initial uptake of mineral ions into the roots, which helps draw water in by osmosis, is an active process requiring ATP. So, while the 'pull' is passive, setting up the initial conditions involves active transport."
+      "q": "What is the point of a double circulation?",
+      "a": "In a double circulation the blood passes through the heart twice per circuit: once on the low-pressure pulmonary loop to the lungs and back, and once on the higher-pressure systemic loop around the body. Separating the two means blood can be re-pressurised by the heart after the lungs before being sent to the body, giving faster, more efficient delivery than a single circuit could — important for an active, warm-bodied organism."
+    },
+    {
+      "q": "Is the water in the xylem pushed or pulled up the plant?",
+      "a": "It is mainly pulled. Evaporation of water from the leaves (transpiration) lowers the pressure at the top of the xylem, creating tension. Because water molecules cohere by hydrogen bonding, this tension is transmitted down a continuous column all the way to the roots, dragging water upward. Root pressure can add a small push from below, but the dominant force is the transpiration pull from above."
+    },
+    {
+      "q": "Can the same part of a plant be both a source and a sink?",
+      "a": "Yes, depending on the season and stage of growth. A potato tuber is a sink while it is storing starch during the growing season, but in spring, when it breaks that starch down to sugar and exports it to new shoots, it becomes a source. Phloem transport is bidirectional precisely because sources and sinks change over time."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Terrestrial plants face a fundamental challenge: their roots are in the ground, accessing water and minerals, while their leaves are in the air, capturing sunlight for photosynthesis. To connect these distant parts, plants have evolved a sophisticated internal transport system, analogous to our own circulatory system. This lesson delves into the structure and function of the two key components of this system: the xylem and the phloem."
+      "content": "A single cell exchanges everything it needs directly with its surroundings by diffusion, and for a bacterium that is enough. But a human is roughly a hundred trillion cells, and an oak tree lifts water tens of metres into the air — distances at which diffusion is useless. This is the central problem of B3.2: once an organism is large or active, it must build systems that move materials in bulk and then hand them off to diffusion only for the final, short step. This lesson works through both solutions to that problem. In animals we follow blood from the heart, through arteries, capillaries and veins, and back again, seeing how each vessel's structure fits its job. In plants we follow water up the xylem and sugar through the phloem. The explanation-style questions in this topic are marked point by point, so the model answer near the end is set out exactly the way our marking engine awards each mark — because how you phrase an explanation decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Xylem Transport: The Cohesion-Tension Theory"
+      "content": "Why larger organisms need transport systems"
     },
     {
       "type": "text",
-      "content": "The xylem is responsible for the bulk transport of water and dissolved mineral ions from the roots to the rest of the plant. Xylem vessels are remarkable structures, formed from cells that are dead at maturity. Their cell walls are heavily reinforced with lignin, a tough, waterproof polymer that provides structural support and prevents the vessels from collapsing under the immense negative pressure, or tension, generated during transport."
+      "content": "Diffusion moves substances from where they are abundant to where they are scarce, and over microscopic distances it is remarkably fast. The trouble is that its effectiveness falls off sharply with distance. As an organism grows, its volume increases with the cube of its size while its exchange surface increases only with the square, so the surface-area-to-volume ratio drops. A large body therefore has too little surface, and too great an internal distance, for diffusion across the outer surface to supply the cells buried deep inside. The solution is a mass-transport system: a fluid (blood, or sap) is moved in bulk by a pump or a physical gradient, carrying materials the long distance quickly, so that diffusion only has to cover the last few micrometres between the transport fluid and the cells. This is why active animals have a circulatory system and tall plants have vascular tissue — both convert an impossible long-distance diffusion problem into an easy short-distance one."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Transpiration Pull:** The process begins with transpiration, the evaporation of water from leaf surfaces through stomata. This water loss creates a negative pressure potential (tension) in the xylem of the leaf.",
-        "**Cohesion:** Because water molecules are polar, they form hydrogen bonds with each other. This property, known as cohesion, means that as water molecules are pulled from the leaf xylem, they pull the molecules behind them, creating a continuous column of water.",
-        "**Adhesion:** Water molecules also adhere to the hydrophilic cellulose and lignin in the xylem walls. This adhesion helps to counteract the downward pull of gravity and supports the water column.",
-        "**The Transpiration Stream:** Together, these forces create an unbroken 'stream' of water that is pulled up the plant from the roots, all without any metabolic energy expenditure by the plant itself."
+        "Volume rises faster than surface area as size increases, so the surface-area-to-volume ratio falls.",
+        "Diffusion is too slow across the long distances inside a large body.",
+        "A mass-transport system moves fluid in bulk, then diffusion handles only the final short step at the tissues.",
+        "Being larger AND more metabolically active both raise the demand that makes a transport system necessary."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "The human heart and double circulation"
+    },
+    {
+      "type": "text",
+      "content": "The human heart is a muscular double pump with four chambers. The two upper chambers, the atria, are thin-walled and receive blood returning to the heart; the two lower chambers, the ventricles, are thick-walled and pump blood out under pressure. The right side handles deoxygenated blood: it receives blood from the body and pumps it to the lungs. The left side handles oxygenated blood: it receives blood from the lungs and pumps it around the whole body. Because the left ventricle must generate enough pressure to drive blood through the entire body, its muscular wall is noticeably thicker than that of the right ventricle, which only has to reach the nearby lungs. Valves between the atria and ventricles (atrioventricular valves) and at the exits into the arteries (semilunar valves) ensure blood flows in one direction only."
+    },
+    {
+      "type": "text",
+      "content": "This arrangement is called a double circulation because blood passes through the heart twice for every complete circuit of the body. In the pulmonary circuit, the right ventricle sends deoxygenated blood to the lungs, where it is oxygenated and returns to the left atrium. In the systemic circuit, the left ventricle sends this oxygenated blood to the body's tissues, from which the now-deoxygenated blood returns to the right atrium. Passing through the heart between the two loops lets the blood be re-pressurised before the long systemic journey, making delivery to the tissues fast and efficient — an advantage for a warm-blooded, active organism."
+    },
+    {
+      "type": "text",
+      "content": "One heartbeat, the cardiac cycle, has three brief phases. In atrial systole the atria contract and top up the ventricles with blood. In ventricular systole the ventricles contract; the rising pressure snaps the atrioventricular valves shut (preventing backflow into the atria) and forces the semilunar valves open, ejecting blood into the pulmonary artery and aorta. In diastole all chambers relax, the semilunar valves close, and the heart refills. Throughout, the valves guarantee one-way flow, and the coordinated timing keeps the two sides pumping in step."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Four chambers: thin-walled atria receive blood; thick-walled ventricles pump it out.",
+        "Right side pumps deoxygenated blood to the lungs; left side pumps oxygenated blood to the body.",
+        "**Left ventricle wall is thicker** because it generates higher pressure to reach the whole body.",
+        "Double circulation = blood through the heart twice per circuit (pulmonary loop + systemic loop).",
+        "Cardiac cycle: atrial systole → ventricular systole → diastole; valves enforce one-way flow."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The three blood vessels: structure fits function"
+    },
+    {
+      "type": "text",
+      "content": "Blood leaves the heart in arteries, passes through capillaries at the tissues, and returns in veins, and each vessel's wall is built for the pressure it must handle. Arteries carry blood away from the heart at high, pulsing pressure, so they have thick walls containing plenty of smooth muscle and elastic fibres and a relatively narrow lumen. The elastic tissue stretches as the ventricle pumps and recoils between beats, smoothing the flow; the muscle and the narrow lumen help maintain the pressure. Arteries do not normally need valves because the pressure only pushes blood one way."
+    },
+    {
+      "type": "text",
+      "content": "Veins carry blood back to the heart at low pressure, so a thick muscular wall would be wasted; instead they have thin walls with little muscle or elastic tissue and a wide lumen that offers little resistance to the returning blood. Because the pressure is too low to guarantee forward flow on its own, veins contain valves along their length that snap shut to prevent blood flowing backward, while the squeezing of nearby skeletal muscles helps push the blood along. Capillaries, between the two, are where exchange actually happens, and their structure is discussed next."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Arteries:** thick muscular/elastic wall, narrow lumen, no valves — withstand and smooth high pulsing pressure; carry blood away from the heart.",
+        "**Veins:** thin wall, wide lumen, valves present — low-pressure return of blood to the heart; valves prevent backflow.",
+        "**Capillaries:** wall one cell thick — the exchange vessels between arteries and veins.",
+        "The wall thickness of each vessel matches the blood pressure it must handle."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "How capillaries are adapted for exchange"
+    },
+    {
+      "type": "text",
+      "content": "Capillaries are the only vessels thin enough to exchange materials with the tissues, and every feature of their structure serves that role. Their walls are just a single layer of flattened endothelial cells, so the diffusion distance between the blood and the surrounding cells is as short as possible. Their lumen is so narrow that red blood cells pass through almost single-file, which slows the blood and presses the cells right up against the wall, giving oxygen the shortest possible path to diffuse out. Capillaries also branch into vast networks that penetrate the tissues, so their combined surface area for exchange is enormous and no cell is far from one. Finally, the walls are permeable — often with tiny gaps between cells — so that plasma can leak out to form tissue fluid, bathing the cells and carrying dissolved substances the final distance. Short diffusion distance, huge surface area and slow flow together make the capillary a near-ideal exchange surface."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Wall one cell thick** (single layer of endothelium) → very short diffusion distance.",
+        "**Very narrow lumen** → red cells squeeze through single-file, slowing flow and pressing them near the wall.",
+        "**Extensive branching networks** → enormous total surface area; every cell lies close to a capillary.",
+        "**Permeable walls / small gaps** → plasma leaks out as tissue fluid to bathe the cells.",
+        "Slow flow gives more time for exchange to occur."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A capillary wall is 1 endothelial cell thick, giving a diffusion distance of about 1 µm, while the wall of a small artery is about 30 µm thick. Fick's law tells us that the rate of diffusion is proportional to (surface area × concentration difference) ÷ diffusion distance. If two vessels had the same surface area and the same oxygen concentration difference across their walls, how many times faster would oxygen diffuse across the capillary wall than across the artery wall, and explain why capillaries — not arteries — are the exchange vessels. [4]",
+      "solution": "**Step 1 — identify what changes.** Surface area and concentration difference are stated to be equal, so by Fick's law the rate depends only on the diffusion distance: rate ∝ 1 ÷ distance. [M1: recognises rate is inversely proportional to distance]\n\n**Step 2 — take the ratio of the two distances.**\nRatio = artery distance ÷ capillary distance = 30 µm ÷ 1 µm = 30. [M1: correct ratio set up]\n\n**Step 3 — state the result.**\nBecause rate ∝ 1 ÷ distance, the thinner capillary wall gives a diffusion rate about **30 times faster** than the artery wall for the same area and concentration gradient. [A1]\n\n**Step 4 — explain the biology.**\nCapillaries are the exchange vessels because their single-cell-thick walls give the very short diffusion distance that makes exchange fast, and their branching networks provide a large surface area — the two factors in Fick's law that raise the rate. Arteries have thick, muscular walls suited to withstanding high pressure, not to exchange. [A1: links structure to Fick's law]\n\n**Answer:** roughly **30× faster** across the capillary wall; the short diffusion distance and large surface area of capillaries make them the exchange vessels."
+    },
+    {
+      "type": "heading",
+      "content": "Water transport in the xylem: the transpiration stream"
+    },
+    {
+      "type": "text",
+      "content": "Plants face the same long-distance problem as animals, and the xylem is their solution for water. Xylem vessels are formed from cells that die and lose their contents, leaving continuous, hollow tubes joined end to end. Their walls are reinforced with lignin, a strong waterproof material that stops the vessels collapsing inward under the tension of the water column and provides structural support to the plant. Crucially, xylem carries water in one direction only — upward, from the roots to the leaves."
+    },
+    {
+      "type": "text",
+      "content": "The upward movement is explained by cohesion-tension theory. Water evaporates from the wet cell surfaces inside the leaf and diffuses out as vapour through the stomata — this is transpiration. Removing water from the top of the column lowers the pressure there, creating a tension (a negative pressure) that pulls on the water below. Because water molecules are polar, they hydrogen-bond to one another; this cohesion holds the water in a single, continuous, unbroken column so that a pull at the top is transmitted all the way down to the roots. Adhesion — the attraction of water molecules to the lignified xylem walls — helps hold the column up against gravity. The result is a continuous upward flow of water called the transpiration stream, driven ultimately by the sun's energy evaporating water at the leaf, and requiring no ATP from the plant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Xylem vessels are dead, hollow, lignified tubes; transport is UP only.",
+        "**Transpiration** (evaporation from leaf surfaces + diffusion out of stomata) creates tension at the top of the column.",
+        "**Cohesion** (hydrogen bonding between water molecules) keeps the column continuous so the pull reaches the roots.",
+        "**Adhesion** (water sticking to xylem walls) helps support the column.",
+        "The whole transpiration stream is passive — powered by evaporation, not by ATP."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The role of stomata and factors affecting transpiration"
+    },
+    {
+      "type": "text",
+      "content": "Stomata are tiny pores, mostly on the underside of the leaf, whose opening is controlled by a pair of guard cells. They exist so carbon dioxide can diffuse in for photosynthesis, but every open stoma also lets water vapour escape — an unavoidable trade-off between feeding and drying out. The rate of transpiration therefore responds to conditions that affect either stomatal opening or the rate of evaporation and vapour removal. Higher light intensity tends to open the stomata and raises the rate; higher temperature speeds evaporation and raises the rate; higher wind speed sweeps away the humid layer of air sitting against the leaf, steepening the water-potential gradient and raising the rate. High humidity does the opposite: it reduces the water-potential gradient between the moist leaf interior and the surrounding air, so transpiration slows. A potometer, which measures water uptake by a cut shoot, is the standard tool for investigating how these factors change the rate."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Stomata let CO₂ in for photosynthesis but also let water vapour out — a trade-off controlled by guard cells.",
+        "**Increase** transpiration: higher light intensity, higher temperature, higher wind speed, drier air.",
+        "**Decrease** transpiration: high humidity (smaller water-potential gradient).",
+        "A potometer measures water UPTAKE, used as an estimate of transpiration rate."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A student uses a potometer with a capillary tube of radius 0.50 mm to compare transpiration in still and moving air. In still air the air bubble moves 24 mm in 10 minutes; with a fan blowing across the leaves it moves 75 mm in 10 minutes. (a) Calculate the rate of water uptake in mm³ min⁻¹ with the fan. (b) Explain, in terms of transpiration, why the fan increases the rate. [4]",
+      "solution": "**(a) Rate of water uptake with the fan.**\nStep 1 — cross-sectional area of the tube (a circle): $A = \\pi r^2 = \\pi (0.50)^2 = 0.785$ mm². [M1: correct area]\nStep 2 — volume of water taken up = area × distance moved = $0.785 \\times 75 = 58.9$ mm³.\nStep 3 — rate = volume ÷ time = $58.9 \\div 10 = 5.9$ mm³ min⁻¹ (2 s.f.). [A1: correct rate with units]\n\n**(b) Why the fan raises the rate.**\nMoving air sweeps away the layer of humid air that otherwise builds up against the leaf surface. Removing this humid boundary layer keeps the water-potential (concentration) gradient between the leaf interior and the surrounding air steep, so water vapour diffuses out through the stomata faster. Faster transpiration increases the tension at the top of the xylem, so more water is pulled up and taken in — the higher uptake the potometer records. [M1: removes humid boundary layer / steeper gradient; A1: links faster transpiration to greater uptake]\n\n**Answer:** (a) about **5.9 mm³ min⁻¹**; (b) the fan removes the humid boundary layer, steepening the water-potential gradient so transpiration — and therefore water uptake — rises."
+    },
+    {
+      "type": "heading",
+      "content": "Sugar transport in the phloem: translocation"
+    },
+    {
+      "type": "text",
+      "content": "While the xylem moves water, the phloem moves the sugars made in photosynthesis — mainly sucrose — in a process called translocation. Phloem tissue is alive, made of sieve tube elements joined end to end through perforated sieve plates, supported by neighbouring companion cells that supply the energy and machinery the sieve tubes lack. Translocation runs from a source to a sink. A source is any part that makes or releases sugar, typically a photosynthesising leaf; a sink is any part that uses or stores it, such as a root, a fruit or a growing shoot tip. At the source, sugar is actively loaded into the phloem; at the sink it is removed. Because sources and sinks are found both above and below the leaves, phloem transport can run either up or down the plant — unlike the strictly upward xylem — and a single organ can act as a source at one time of year and a sink at another."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Phloem is LIVING tissue (sieve tube elements + companion cells); xylem is dead.",
+        "**Translocation** moves sugars (mainly sucrose) from source to sink.",
+        "**Source** = makes/releases sugar (e.g. leaves); **sink** = uses/stores sugar (e.g. roots, fruits, growing tips).",
+        "Phloem transport is bidirectional (up or down); xylem is upward only."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Putting valves in arteries** — valves belong to VEINS, where low pressure needs help preventing backflow. Arteries rely on high pressure and (apart from the semilunar valves at the heart) have none.",
+        "**Saying the artery wall is thick 'to carry more blood'** — the thick, muscular, elastic wall is to WITHSTAND and smooth the high pulsing pressure, not to increase capacity; in fact arteries have a narrow lumen.",
+        "**Claiming xylem carries water both ways** — xylem is one-way, UPWARD only. Only the phloem is bidirectional.",
+        "**Confusing transpiration with translocation** — transpiration is the loss of WATER vapour from leaves; translocation is the transport of SUGARS in the phloem. Do not mix the two.",
+        "**Describing water transport as 'the plant pumping water up'** — there is no pump and no ATP; water is PULLED up passively by tension from transpiration, held together by cohesion.",
+        "**Forgetting to name cohesion AND the hydrogen bonds behind it** — 'cohesion' scores best when you say water molecules hydrogen-bond to form a continuous column; a vague 'the water sticks together' is weaker.",
+        "**Mixing up cohesion and adhesion** — cohesion is water-to-water (keeps the column unbroken); adhesion is water-to-xylem-wall (helps support it).",
+        "**Saying the left ventricle is thicker because it holds more blood** — it is thicker because it must generate HIGHER pressure to reach the whole body, not because it has greater volume."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Explain questions in B3.2 are marked analytically: each distinct, valid biological point is worth one mark, up to the number of marks available. Method marks (M) credit a correct step in the reasoning; answer marks (A) credit a correct linked conclusion; and error-carried-forward (ECF) means that provided your reasoning is written down, one weak step does not automatically cost you the marks that follow. Equivalent correct wording is always accepted. Study how each mark below attaches to a specific named idea, not to loose phrasing."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain how water is transported from the roots to the leaves of a plant. [4]",
+      "solution": "**Model answer.**\nWater evaporates from the surfaces of the mesophyll cells inside the leaf and diffuses out through the stomata as water vapour (transpiration). This loss of water creates a tension, or pull, at the top of the xylem. Because water molecules are polar they form hydrogen bonds with one another, and this cohesion holds them in a continuous, unbroken column, so the pull is transmitted down the xylem all the way to the roots. Adhesion between the water molecules and the lignified xylem walls also helps to hold the column up. As a result the whole column of water is drawn upward through the xylem from the roots to the leaves in the transpiration stream, replacing the water lost by transpiration.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** water evaporates from the leaf / transpiration creates a pull (tension) at the top of the xylem.\n- **Point 2 (M):** cohesion of water molecules by HYDROGEN BONDING forms a continuous / unbroken column.\n- **Point 3 (M):** adhesion of water to the xylem walls helps support the column.\n- **Point 4 (A):** the transpiration stream / tension pulls the whole column up from roots to leaves — the linked conclusion of the reasoning.\n\nBecause more than four creditable ideas are shown (evaporation, tension, cohesion, hydrogen bonding, adhesion, continuous column, transpiration stream), the engine caps the award at 4 — there is deliberate slack, so you can miss one point and still score full marks. But the marks are for DISTINCT ideas: writing 'the water sticks together' twice in different words scores once. **A** is awarded for a correctly linked step, and **ECF** applies — if you get the mechanism of tension slightly wrong but still correctly describe cohesion and a continuous column pulling water up, those points stand on their own.\n\n**What the engine rejects.** 'The plant pumps the water up to the leaves' scores nothing, because there is no pump and no active transport — the mark scheme wants the PULL from transpiration and the cohesion of the column. 'The water just rises up the tubes' with no mechanism also scores zero. **Accept equivalents:** 'suction' for tension, 'water molecules attract each other' for cohesion (better if hydrogen bonds are named), 'water sticks to the vessel walls' for adhesion.\n\n**Bottom line:** to secure all 4 marks, name four distinct steps — transpiration pull, cohesion via hydrogen bonding, a continuous column, adhesion to the walls, drawn up as the transpiration stream. Distinct named mechanisms score; vague 'sticking' or 'pumping' does not."
     },
     {
       "type": "examTip",
-      "content": "When asked to explain water transport, always use the specific terms: transpiration, tension, cohesion, and adhesion. A full explanation requires linking all four concepts to show how a continuous column of water moves up the xylem."
-    },
-    {
-      "type": "workedExample",
-      "question": "A student used a potometer to investigate the effect of wind on transpiration. The air bubble in the capillary tube moved 60 mm in 10 minutes under windy conditions. The radius of the capillary tube is 0.4 mm. Calculate the rate of water uptake in mm³/min.",
-      "solution": "To solve this, we calculate the volume of water taken up and divide by the time taken.\n\n1.  **Identify the formula for the volume of a cylinder:** The water moving through the capillary tube forms a cylinder. The volume $V$ is given by $V = \\pi r^2 h$, where $r$ is the radius and $h$ is the distance moved.\n\n2.  **Substitute the values:**\n    $r = 0.4 \\text{ mm}$\n    $h = 60 \\text{ mm}$\n    $V = \\pi \\times (0.4 \\text{ mm})^2 \\times 60 \\text{ mm}$\n    $V = \\pi \\times 0.16 \\text{ mm}^2 \\times 60 \\text{ mm}$\n    $V = 30.16 \\text{ mm}^3$\n\n3.  **Calculate the rate:** Rate is volume per unit time.\n    Time = 10 min\n    Rate = $\\frac{\\text{Volume}}{\\text{Time}} = \\frac{30.16 \\text{ mm}^3}{10 \\text{ min}}$\n    Rate = $3.016 \\text{ mm}^3/\\text{min}$\n\n**Final Answer:** The rate of water uptake is **3.02 mm³/min** (to 3 significant figures)."
+      "content": "The Practice button marks YOUR answer this same way — point by point, each distinct valid idea worth one mark, with ECF and a cap at the marks available. So write in separate, creditable statements: name transpiration and the pull, name cohesion AND the hydrogen bonds, name adhesion to the xylem walls, then conclude with the column being drawn up. Padding the same idea in different words earns nothing extra; naming a new correct mechanism does."
     },
     {
       "type": "heading",
-      "content": "Phloem Transport: The Pressure-Flow Hypothesis"
+      "content": "Where this leads"
     },
     {
       "type": "text",
-      "content": "While the xylem is a passive system driven by physical forces, the phloem is an active, dynamic tissue responsible for transporting sugars (as sucrose) from where they are produced (sources) to where they are needed (sinks). This process is called translocation. Phloem tissue consists of sieve tube elements, which form the conduit, and their associated companion cells. Unlike xylem, these cells are alive at maturity, as translocation is an active process requiring ATP."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Phloem Loading:** At the source (e.g., a leaf), companion cells use ATP to actively transport sucrose into the sieve tube elements. This significantly increases the solute concentration inside the phloem.",
-        "**Pressure Generation:** The high solute concentration in the sieve tube lowers its water potential. Water from the adjacent xylem moves into the sieve tube by osmosis, creating a high hydrostatic pressure.",
-        "**Bulk Flow:** This high pressure pushes the phloem sap (sugar-rich water) along the sieve tube towards an area of lower pressure. This movement is called bulk flow.",
-        "**Phloem Unloading:** At the sink (e.g., a root or fruit), sucrose is actively transported out of the sieve tube for use or storage. As the sugar leaves, the water potential in the phloem rises, and water moves out by osmosis, reducing the hydrostatic pressure."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Radioactive carbon-14 ($^{14}$C) is supplied as CO₂ to a single, illuminated leaf on a plant for several hours. The plant is then analysed by autoradiography to locate the $^{14}$C. Predict and explain which two parts of the plant, other than the treated leaf, would show the highest concentration of $^{14}$C.",
-      "solution": "The question asks to predict where the products of photosynthesis will be transported.\n\n1.  **Identify the process:** The $^{14}$CO₂ will be fixed during photosynthesis in the treated leaf into sugars, such as glucose, which are then converted to sucrose for transport. The transport of these sugars is translocation via the phloem.\n\n2.  **Identify the source and sinks:** The treated leaf is the 'source'. Translocation moves sugars from the source to 'sinks' – areas of the plant with high metabolic demand or used for storage.\n\n3.  **Predict the sinks:** Common and strong sinks in a plant are:\n    a.  **Roots:** For cellular respiration and active transport of minerals, and for storage (e.g., as starch).\n    b.  **Apical meristems / young developing leaves:** For growth and cell division.\n    c.  **Fruits/seeds:** For storage of energy for the developing embryo.\n\n4.  **Formulate the explanation:**\n    - The radioactive carbon will be incorporated into sucrose in the source leaf.\n    - This sucrose is translocated via the phloem.\n    - It moves from the source to the strongest sinks.\n    - Therefore, the highest concentration of $^{14}$C will be found in the roots (for storage/respiration) and the apical meristems/young leaves (for growth). [2 marks]\n\n**Final Answer:** The roots and the apical meristems (or young, growing leaves) would show the highest concentration of $^{14}$C. This is because these are major sinks, actively importing sucrose via the phloem for respiration, growth, and storage."
-    },
-    {
-      "type": "heading",
-      "content": "Comparing Xylem and Phloem"
-    },
-    {
-      "type": "text",
-      "content": "A common exam question involves comparing and contrasting the two vascular tissues. Key differences lie in the cells (dead vs. living), the substances transported (water/minerals vs. sugars), the direction of flow (unidirectional vs. bidirectional from source to sink), and the mechanism (passive tension vs. active pressure)."
+      "content": "The logic of B3.2 — build a bulk-transport system, then let diffusion finish the job over a short distance across an adapted exchange surface — reappears throughout biology. The capillary's thin wall and huge surface area are the same design principles you meet in the alveoli of the lungs and the villi of the gut. The pressure-and-valve system of the heart and veins connects directly to gas exchange and to the control of blood flow. And the passive, cohesion-driven transpiration stream shows how a plant lifts water tens of metres using nothing but the sun's energy and the polarity of a water molecule. Master 'structure fits function' here and you have a template for every exchange and transport surface in the course."
     },
     {
       "type": "practice",
-      "label": "Test your understanding of plant transport",
-      "href": "/mark?subject=ib-biology-hl&topic=B3.2"
+      "label": "Get a Paper 2 question marked: explain water transport in the xylem, or compare artery, capillary and vein structure — with each point scored the way the exam does it",
+      "href": "/mark?subject=ib-biology-hl&topic=B3.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Visualising the Cohesion-Tension Theory",
-          "href": "https://www.youtube.com/watch?v=mc9g_kWfG2Y"
+          "label": "IB Biology Guide (syllabus, B3.2 Transport)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
         },
         {
-          "label": "Animation of Pressure-Flow Hypothesis",
-          "href": "https://www.youtube.com/watch?v=g_S1dCt_k2c"
+          "label": "Khan Academy: The circulatory system",
+          "href": "https://www.khanacademy.org/science/biology/human-biology/circulatory-pulmonary"
         },
         {
-          "label": "Reading: Plant Vascular Tissues",
-          "href": "https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/Book%3A_General_Biology_(Boundless)/25%3A_Seedless_Plants/25.04%3A_Vascular_Tissues_-_Xylem_and_Phloem"
+          "label": "Khan Academy: Transport in plants (xylem and phloem)",
+          "href": "https://www.khanacademy.org/science/biology/plant-biology/transport-in-plants/a/transport-in-plants"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

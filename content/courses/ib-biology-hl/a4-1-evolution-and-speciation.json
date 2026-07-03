@@ -2,179 +2,386 @@
   "slug": "a4-1-evolution-and-speciation",
   "topicCode": "A4.1",
   "title": "Evolution and speciation",
+  "unit": {
+    "code": "A",
+    "title": "Unity and diversity"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the processes of speciation, distinguishing between allopatric and sympatric mechanisms. It delves into polyploidy as a driver of sympatric speciation in plants and contrasts the evolutionary paces of gradualism and punctuated equilibrium.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Evolution is the change in the heritable characteristics of a population over successive generations, and it is the single idea that ties the whole of biology together. This lesson builds A4.1 from the ground up: what evolution actually means, the independent lines of evidence that support it (fossils, artificial selection, homologous structures, biogeography and molecular data), the mechanism of natural selection set out as a chain of necessary conditions, what adaptation does and does not mean, and how reproductive isolation drives one species to split into two through allopatric and sympatric speciation, with a brief look at gradualism versus punctuated equilibrium. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — each distinct valid point scoring one mark, with error-carried-forward — so you can see how the way you phrase an answer decides the score.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define speciation and explain the role of reproductive isolation.",
-    "Compare and contrast allopatric and sympatric speciation, providing examples.",
-    "Explain how polyploidy can lead to instantaneous sympatric speciation.",
-    "Discuss the concepts of gradualism and punctuated equilibrium as models for the pace of evolution."
+    "Define evolution as the change in the heritable characteristics of a population over time, and distinguish population-level change from change in an individual.",
+    "Describe the main lines of evidence for evolution: the fossil record, artificial selection, homologous structures, biogeography and molecular (DNA/protein) evidence.",
+    "Explain natural selection as a chain of conditions — heritable variation, overproduction, competition, and differential survival and reproduction — that changes allele frequencies in a population.",
+    "Explain speciation through reproductive isolation, and distinguish allopatric from sympatric speciation with examples.",
+    "Outline gradualism and punctuated equilibrium as models for the pace of evolutionary change.",
+    "Present answers so that each distinct valid point earns its mark and Lamarckian phrasing is avoided."
   ],
+  "syllabusObjectivesCovered": [
+    "A4.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "How New Species Are Born",
-    "summary": "Speciation is the evolutionary process by which new biological species arise. It's the ultimate result of populations diverging so much that they can no longer interbreed to produce fertile offspring.",
-    "analogy": "Imagine two groups of friends who were once part of a single large circle. One group moves to a new school. Over time, they develop their own slang, inside jokes, and social norms (like different selective pressures). When they meet the old group years later, they find they can't really connect or communicate effectively anymore (reproductive isolation). They have become two distinct social groups, much like new species.",
+    "title": "How Populations Change Over Time",
+    "summary": "Individuals do not evolve — populations do. Within any population there is heritable variation. Because more offspring are produced than can survive, individuals carrying advantageous alleles tend to survive and reproduce more, so those alleles become more common in the next generation. Repeat this over many generations and the population changes: it evolves.",
+    "analogy": "Think of a population as a huge deck of cards being reshuffled every generation, where each card is an allele. No single card changes its face — but if the red cards happen to help their holders survive and breed a little more often, then each time the deck is dealt again there are slightly more red cards in it. Nobody chose to make the deck redder, and no individual card tried to change colour; the proportions simply drifted toward red because red-holders left more copies behind. Over enough deals the deck looks completely different from the one you started with.",
     "steps": [
-      "A single, interbreeding population shares a common gene pool.",
-      "A barrier (geographical or biological) splits the population into two or more isolated groups, preventing gene flow.",
-      "Each group accumulates different genetic changes due to mutation, natural selection, and genetic drift, adapting to their unique environments.",
-      "The genetic differences become so significant that even if the barrier is removed, the groups can no longer interbreed to produce fertile offspring, meaning they are now distinct species."
+      "A population contains heritable variation — differences in alleles that can be passed to offspring.",
+      "Organisms overproduce: more offspring are born than the environment can support, so there is a struggle for limited resources.",
+      "Individuals whose alleles give an advantage in that environment survive and reproduce more successfully (differential survival and reproduction).",
+      "Because the advantage is heritable, the advantageous alleles increase in frequency over generations — the population becomes better adapted. Given reproductive isolation, two such populations can diverge until they become separate species."
     ]
   },
+  "keyConcepts": [
+    "heritable variation",
+    "natural selection",
+    "allele frequency",
+    "reproductive isolation"
+  ],
   "flashcards": [
     {
-      "front": "What is speciation?",
-      "back": "The formation of new and distinct species in the course of evolution. It involves the splitting of a single evolutionary lineage into two or more genetically independent ones."
+      "front": "Evolution",
+      "back": "The change in the heritable characteristics of a POPULATION over successive generations. It is measured as a change in allele frequencies, not as change within one individual.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define reproductive isolation.",
-      "back": "The inability of a species to breed successfully with related species due to geographical, behavioural, physiological, or genetic barriers or differences."
+      "front": "Natural selection",
+      "back": "The process by which individuals with heritable characteristics better suited to their environment tend to survive and reproduce more, so the alleles responsible increase in frequency over generations.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is allopatric speciation?",
-      "back": "Speciation that occurs when biological populations of the same species become isolated from each other to an extent that prevents or interferes with gene flow. 'Allo-' means 'other', and 'patric' means 'fatherland'."
+      "front": "Heritable variation",
+      "back": "Differences between individuals that are caused by their alleles and can therefore be passed to offspring. The ultimate source of new variation is mutation; sexual reproduction reshuffles it. Selection can only act on variation that is heritable.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is sympatric speciation?",
-      "back": "The evolution of a new species from a surviving ancestral species while both continue to inhabit the same geographic region. 'Sym-' means 'same'."
+      "front": "Adaptation",
+      "back": "A heritable characteristic that improves an organism's chance of survival and reproduction in its environment. Adaptations are the OUTCOME of natural selection over generations — they are not deliberately acquired by an organism in its lifetime.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Give an example of a pre-zygotic isolating mechanism.",
-      "back": "Temporal isolation (e.g., two species of frog breeding in different seasons), behavioural isolation (e.g., different courtship rituals in birds), or mechanical isolation (e.g., incompatible reproductive organs)."
+      "front": "Homologous structures",
+      "back": "Structures with the same basic anatomical plan inherited from a common ancestor, even when their function differs — e.g. the pentadactyl (five-digit) limb of mammals, birds and amphibians. Similarity of underlying structure indicates common ancestry.",
+      "pillLabel": "Evidence"
     },
     {
-      "front": "Give an example of a post-zygotic isolating mechanism.",
-      "back": "Hybrid inviability (the hybrid zygote fails to develop), hybrid sterility (the hybrid offspring is sterile, e.g., a mule), or hybrid breakdown (F1 hybrids are fertile, but F2 generation is feeble or sterile)."
+      "front": "Molecular evidence",
+      "back": "Comparisons of DNA base sequences or protein amino-acid sequences. The more recently two species shared a common ancestor, the fewer differences accumulate; a universal genetic code shared by all life points to a single origin.",
+      "pillLabel": "Evidence"
     },
     {
-      "front": "What is polyploidy?",
-      "back": "A condition where an organism has more than two complete sets of chromosomes. It is a common mechanism for sympatric speciation in plants."
+      "front": "Artificial selection",
+      "back": "Selective breeding by humans, choosing which individuals reproduce. Rapid, visible change (e.g. dog breeds, crop plants) shows that selecting heritable variation over generations changes a population — a model for how natural selection works.",
+      "pillLabel": "Evidence"
     },
     {
-      "front": "Distinguish between autopolyploidy and allopolyploidy.",
-      "back": "Autopolyploidy involves chromosome duplication from a single species (e.g., 2n -> 4n). Allopolyploidy results from the hybridisation of two different species followed by chromosome doubling."
+      "front": "Biogeography",
+      "back": "The geographic distribution of species. Related species cluster where they could have descended from a common ancestor (e.g. island endemics resembling the nearest mainland forms), which fits descent with modification better than independent creation.",
+      "pillLabel": "Evidence"
     },
     {
-      "front": "What is gradualism (or phyletic gradualism)?",
-      "back": "A model of evolution which theorises that most speciation is slow, uniform, and gradual. Evolution is seen as the steady accumulation of small changes over long periods."
+      "front": "Speciation",
+      "back": "The formation of new species when populations become reproductively isolated, stopping gene flow, so they diverge genetically until they can no longer interbreed to produce fertile offspring.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is punctuated equilibrium?",
-      "back": "A model of evolution which proposes that most species will exhibit little net evolutionary change for most of their geological history, remaining in an extended state called stasis. This is 'punctuated' by rare, rapid events of speciation."
+      "front": "Reproductive isolation",
+      "back": "Any barrier that prevents populations interbreeding and producing fertile offspring, halting gene flow. It is the condition that allows two populations to evolve independently and become separate species.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why are polyploid hybrids often sterile?",
-      "back": "Because their chromosomes are not homologous pairs. During meiosis I, chromosomes cannot pair up correctly, leading to non-viable gametes."
+      "front": "Allopatric speciation",
+      "back": "Speciation driven by GEOGRAPHIC isolation — a physical barrier (mountain, river, ocean) splits a population, and the separated groups diverge under different selection pressures and drift. 'Allo' = other, 'patric' = homeland.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Sympatric speciation",
+      "back": "Speciation WITHOUT a geographic barrier — populations sharing the same area become isolated by behavioural, temporal or genetic (e.g. polyploidy in plants) mechanisms. 'Sym' = same, 'patric' = homeland.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Gradualism",
+      "back": "The model that evolution proceeds by the slow, steady accumulation of many small changes over long periods, predicting a series of intermediate forms.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Punctuated equilibrium",
+      "back": "The model that species show long periods of little change (stasis) 'punctuated' by short bursts of rapid change, often around speciation events. Helps explain gaps in the fossil record.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: no 'need', 'want' or 'try'",
+      "back": "Natural selection is not goal-directed. Organisms do not try to adapt, develop a trait because they need it, or pass on characteristics acquired during life (Lamarckism). Variation arises first, by chance; the environment then selects among it. Teleological wording loses marks.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: individuals don't evolve",
+      "back": "Selection acts on the phenotypes of INDIVIDUALS, but evolution is a change in a POPULATION's allele frequencies over generations. An individual's alleles are fixed at fertilisation; it cannot evolve during its lifetime.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which statement is the most accurate definition of evolution?",
+      "options": [
+        "An individual organism changing its features to fit its environment during its lifetime",
+        "The change in the heritable characteristics of a population over successive generations",
+        "The appearance of a completely new organ in a single generation",
+        "The effort a species makes to survive when conditions get harder"
+      ],
+      "answer": "The change in the heritable characteristics of a population over successive generations"
+    },
+    {
+      "prompt": "For a difference between individuals to matter to natural selection, that variation must above all be:",
+      "options": [
+        "Visible to the human eye",
+        "Heritable, so it can be passed to offspring",
+        "Caused by the environment during the organism's life",
+        "Beneficial in every possible environment"
+      ],
+      "answer": "Heritable, so it can be passed to offspring"
+    },
+    {
+      "prompt": "Which phrase would our marking engine REJECT in an answer about how a fast-running prey species evolved?",
+      "options": [
+        "Faster individuals were more likely to escape predators and reproduce",
+        "The alleles for greater speed increased in frequency over generations",
+        "There was heritable variation in running speed within the population",
+        "The animals ran more to escape predators, so they needed to become faster and passed this on"
+      ],
+      "answer": "The animals ran more to escape predators, so they needed to become faster and passed this on"
+    },
+    {
+      "prompt": "The pentadactyl limb is found, with the same bone arrangement but different functions, in humans, whales and bats. This is best described as evidence from:",
+      "options": [
+        "Biogeography",
+        "Homologous structures indicating common ancestry",
+        "Artificial selection",
+        "Punctuated equilibrium"
+      ],
+      "answer": "Homologous structures indicating common ancestry"
+    },
+    {
+      "prompt": "Two beetle populations are separated by a new river and, over many generations, become unable to interbreed. This is an example of:",
+      "options": [
+        "Sympatric speciation",
+        "Allopatric speciation",
+        "Artificial selection",
+        "Adaptation within one individual's lifetime"
+      ],
+      "answer": "Allopatric speciation"
     }
   ],
   "faq": [
     {
-      "q": "Is punctuated equilibrium 'better' than gradualism?",
-      "a": "Neither model is inherently 'better'; they describe different patterns observed in the history of life. Some lineages may show gradual change, while others fit the punctuated equilibrium model. The fossil record for many marine invertebrates, like bryozoans, provides strong evidence for punctuated equilibrium, showing long periods of stasis followed by rapid change. Both are valid models for different evolutionary contexts."
+      "q": "What is the difference between evolution and natural selection?",
+      "a": "Evolution is the OUTCOME — a change in a population's heritable characteristics (allele frequencies) over generations. Natural selection is one of the MECHANISMS that produces that outcome, alongside processes like genetic drift and mutation. So natural selection is a cause; evolution is the observed change. In an exam, describe natural selection as the step-by-step process, and reserve 'evolution' for the resulting change in the population."
     },
     {
-      "q": "How common is sympatric speciation in animals?",
-      "a": "Sympatric speciation via polyploidy is rare in animals, possibly because it often interferes with sex determination mechanisms (e.g., X/Y chromosomes). However, sympatric speciation through ecological specialisation and disruptive selection is thought to occur. Famous examples include the cichlid fish in African rift lakes and the apple maggot fly in North America, which diverged based on their host fruit preference."
+      "q": "Why is it wrong to say an organism 'adapts to' its environment?",
+      "a": "Because it suggests the individual changes itself on purpose, which is the Lamarckian error the mark scheme penalises. An individual's alleles are fixed at fertilisation and do not change to suit the environment. What actually happens is that heritable variation already exists in the population by chance, and the environment selects among it — individuals with the more suitable alleles leave more offspring, so the POPULATION becomes better adapted over generations. Say 'the population became adapted', never 'the organism adapted itself because it needed to'."
     },
     {
-      "q": "Can species that have diverged ever merge back together?",
-      "a": "Yes, this process is called hybridisation. If reproductive isolation is incomplete, two related species may interbreed where their ranges overlap, sometimes forming a 'hybrid zone'. The outcome can vary: the hybrid zone may be stable, the two species may fully merge back into one (fusion), or natural selection may strengthen the reproductive barriers until they become completely separate (reinforcement)."
+      "q": "Isn't the fossil record too full of gaps to prove evolution?",
+      "a": "Fossilisation is rare and requires specific conditions, so gaps are expected — but the evidence for evolution does not rest on fossils alone. Homologous structures, biogeography, artificial selection and, most powerfully, molecular data (DNA and protein sequences) all point independently to descent with modification, and they agree with one another. When several unrelated lines of evidence converge on the same tree of relationships, that convergence is the strength of the case."
     },
     {
-      "q": "Why is genetic drift more significant in small, isolated populations during allopatric speciation?",
-      "a": "Genetic drift is the change in allele frequencies due to random chance events. In a large population, random events have little overall effect. However, in a small, isolated population (like one founded by a few individuals after a barrier forms), chance events can cause certain alleles to become fixed (100% frequency) or lost (0% frequency) much more quickly, leading to rapid genetic divergence from the parent population, independent of natural selection."
+      "q": "Can speciation ever happen quickly?",
+      "a": "Yes. Sympatric speciation by polyploidy in plants can create a new, reproductively isolated species in as little as one or two generations, because a change in chromosome number instantly blocks fertile interbreeding with the parent population. Allopatric speciation is usually far slower, unfolding over thousands to millions of generations. This range of tempos is part of why biologists discuss gradualism and punctuated equilibrium as complementary models rather than rivals."
+    },
+    {
+      "q": "Do gradualism and punctuated equilibrium contradict each other?",
+      "a": "Not really — they sit at two ends of a spectrum for the PACE of evolution, and the fossil record contains examples supporting both. Some lineages change slowly and steadily (gradualism); others stay much the same for long stretches, then change rapidly around speciation events (punctuated equilibrium). Which pattern dominates depends on the lineage and its environment, so most biologists treat both as real and context-dependent rather than choosing one."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Evolution by natural selection explains how populations adapt, but how do these changes lead to the formation of entirely new species? This is the central question of speciation. The biological species concept defines a species as a group of organisms that can interbreed to produce fertile offspring. Speciation, therefore, is the process by which populations evolve to become distinct species, primarily through the establishment of reproductive isolation."
+      "content": "Evolution is the change in the heritable characteristics of a population over successive generations, and it is the organising idea of the whole of biology — it explains both the unity of life (why all organisms share a genetic code) and its diversity (why there are millions of species). The key word is POPULATION: individuals do not evolve, populations do, because evolution is measured as a change in how common different alleles are from one generation to the next. This lesson sets out the evidence that convinced biologists evolution has happened, the mechanism of natural selection that drives much of it, and how that mechanism, combined with reproductive isolation, splits one species into two. As in every Paper 2 topic, the worked examples are marked the way the exam marks them — point by point — because in explanation questions HOW you phrase the mechanism decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Mechanisms of Speciation: Allopatric vs. Sympatric"
+      "content": "What evolution actually means"
     },
     {
       "type": "text",
-      "content": "The key to speciation is the cessation of gene flow between populations. The mechanisms by which this happens can be broadly categorised into two main modes: allopatric and sympatric speciation. The primary difference lies in the geographical context in which they occur."
+      "content": "Evolution is defined as the change in the heritable characteristics of a population over time. Two words in that definition carry most of the weight. 'Heritable' matters because only variation that can be passed to offspring can accumulate across generations — a change caused purely by the environment during an organism's life (a tan, a well-exercised muscle) is not passed on and so is not evolution. 'Population' matters because evolution is a property of a group, not an individual: an individual's alleles are set at fertilisation and cannot change to suit its surroundings, but the PROPORTIONS of alleles in a population can shift as some individuals leave more offspring than others. Biologists therefore describe evolution quantitatively as a change in allele frequencies within a population from one generation to the next."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Allopatric Speciation:** Occurs when a population is divided by a geographical barrier (e.g., a mountain range, river, or ocean). The separated populations then diverge genetically due to different selective pressures, mutation, and genetic drift. If they diverge enough, they become reproductively isolated. Example: Darwin's finches on the Galápagos Islands.",
-        "**Sympatric Speciation:** Occurs within a single, continuous population in the same geographic area. There is no physical barrier. Instead, reproductive isolation arises from other factors, such as ecological specialisation (e.g., apple maggot flies choosing different host fruits), behavioural changes, or chromosomal changes like polyploidy."
+        "Evolution = change in the HERITABLE characteristics of a POPULATION over successive generations.",
+        "It is measured as a change in ALLELE FREQUENCIES between generations.",
+        "Individuals do not evolve; their alleles are fixed at fertilisation. Populations evolve.",
+        "Non-heritable changes acquired during life (e.g. a suntan) are not passed on and are not evolution."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Evidence for evolution"
+    },
+    {
+      "type": "text",
+      "content": "The case for evolution does not depend on any single observation. Several independent lines of evidence, gathered by different methods, all point to the same conclusion — descent with modification from common ancestors — and, crucially, they agree with one another. When anatomy, geography and molecular data all reconstruct the same relationships between species, that convergence is what makes the evidence compelling."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Fossil record:** Fossils in dated rock layers show that life has changed through time, with older strata containing simpler or now-extinct forms and transitional fossils linking major groups. Gaps exist because fossilisation is rare, but the sequence of forms fits descent with modification.",
+        "**Artificial selection (selective breeding):** By choosing which individuals reproduce, humans have rapidly transformed populations — from wild grasses into maize, or wolves into hundreds of dog breeds. This shows directly that selecting heritable variation over generations changes a population, exactly as natural selection does but with humans as the selective agent.",
+        "**Homologous structures:** Structures sharing the same underlying anatomical plan despite different functions — such as the pentadactyl limb of humans, bats, whales and birds — indicate inheritance from a common ancestor. A shared basic plan is hard to explain unless the species descended from a form that already had it.",
+        "**Biogeography:** The geographic distribution of species fits common ancestry. Island species typically resemble the nearest mainland forms rather than ecologically similar species elsewhere, as expected if they descended from colonists that then diverged in isolation.",
+        "**Molecular (DNA and protein) evidence:** All life shares essentially the same genetic code, pointing to a single origin. Comparing DNA base sequences or protein amino-acid sequences shows that species which share a more recent common ancestor differ less; the pattern of differences reconstructs the same evolutionary tree as the anatomical and geographic evidence."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Molecular evidence is often treated as the most powerful of these lines because it is quantitative and independent of appearance: two organisms can look very different yet have highly similar DNA, and the number of sequence differences gives an objective measure of how closely related they are."
+    },
+    {
+      "type": "heading",
+      "content": "Natural selection: a chain of conditions"
+    },
+    {
+      "type": "text",
+      "content": "Natural selection is the main mechanism by which populations become better adapted to their environments. It is best understood not as a single step but as a chain of conditions, each of which must hold for the process to work. The logic is that variation exists first, by chance, and the environment then acts as a filter — it does not create the variation it selects. Because the chain has distinct links, exam mark schemes award a separate mark for each link you state clearly."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Heritable variation:** Individuals in a population differ, and some of these differences are heritable. New variation ultimately arises by MUTATION; sexual reproduction (meiosis and fertilisation) reshuffles existing alleles into new combinations.",
+        "**Overproduction:** Organisms produce far more offspring than the environment can support, so not all can survive.",
+        "**Competition / struggle for existence:** Because resources such as food, space, mates and light are limited, individuals compete and many die before reproducing.",
+        "**Differential survival and reproduction:** Individuals whose heritable characteristics give an advantage in that environment are, on average, more likely to survive and reproduce — this is 'survival of the fittest', where fitness means reproductive success.",
+        "**Change in allele frequency:** Because the advantageous characteristics are heritable, the alleles responsible are passed on more often and increase in frequency over generations. The population becomes better adapted — it evolves."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Notice what natural selection is NOT. It is not organisms striving, needing or trying to change; the variation is already present before the environment selects among it. It is not the inheritance of characteristics acquired during life — a giraffe that stretches its neck does not pass a longer neck to its calves. This mistaken 'use and disuse' idea is Lamarckism, and describing selection in those terms is one of the most heavily penalised errors in the exam."
+    },
+    {
+      "type": "heading",
+      "content": "Adaptation"
+    },
+    {
+      "type": "text",
+      "content": "An adaptation is a heritable characteristic that improves an organism's chances of survival and reproduction in its environment. Adaptations are the RESULT of natural selection acting over many generations, not something an individual designs or acquires on purpose. It is therefore accurate to say 'the population became adapted to cold conditions because individuals with thicker fur survived and reproduced more', and inaccurate to say 'the animals grew thicker fur because they needed to keep warm'. The first describes selection among pre-existing heritable variation; the second smuggles in intention and Lamarckian inheritance. Keeping adaptation firmly in the past tense and at the population level is the safest way to phrase it."
+    },
+    {
+      "type": "heading",
+      "content": "Speciation: reproductive isolation drives divergence"
+    },
+    {
+      "type": "text",
+      "content": "A species can be thought of as a group of organisms that can interbreed to produce fertile offspring. Speciation is the formation of new species, and it happens when a single population is divided into groups that can no longer exchange genes — that is, when gene flow between them stops. Once gene flow is interrupted, mutation, natural selection and genetic drift act on each group independently. Over many generations the groups diverge genetically and phenotypically, and eventually the differences become so great that even if the groups meet again they can no longer produce viable, fertile offspring. At that point they are separate species. Reproductive isolation is therefore the pivotal condition: without it, gene flow keeps the population mixed and prevents lasting divergence."
+    },
+    {
+      "type": "heading",
+      "content": "Allopatric versus sympatric speciation"
+    },
+    {
+      "type": "text",
+      "content": "Biologists classify speciation by the geographical setting in which reproductive isolation arises — specifically, whether a physical barrier is responsible for separating the populations."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Allopatric speciation:** Isolation is GEOGRAPHIC. A physical barrier — a mountain range, river, glacier or stretch of ocean — divides a population so that the groups can no longer meet. Cut off from one another, they experience different selection pressures and undergo independent genetic drift, and diverge until reproductively isolated. Island groups descended from a mainland colonist, such as species radiating across separate islands, are classic examples.",
+        "**Sympatric speciation:** Isolation arises WITHIN the same area, with no physical barrier. Reproductive isolation comes instead from behavioural, temporal or genetic mechanisms. Behavioural isolation: differences in courtship or mating signals mean individuals no longer recognise each other as mates. Temporal isolation: groups breed at different times of day, season or year, so they never interbreed. Genetic isolation by polyploidy: an error in cell division doubles the chromosome number, and the resulting polyploid — common in plants — is instantly unable to breed fertilely with the parent population, because crosses give offspring with an odd chromosome number that cannot pair chromosomes correctly at meiosis and so are sterile."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Researchers studied three populations of a species of lizard (Pop A, Pop B, Pop C). Pop A and B are separated by a new, wide canyon. Pop C lives on the same side of the canyon as Pop A but in a different habitat (forest vs. desert). Mating trials were conducted. The results show the percentage of successful fertilisations:\n- A x A: 98%\n- A x B: 15%\n- A x C: 75%\n- B x B: 97%\n- B x C: 12%\n- C x C: 99%\n\nExplain what type of speciation is likely occurring between populations A and B, and between A and C, using the data as evidence.",
-      "solution": "1. **Populations A and B:** These populations are geographically separated by a canyon, which is a physical barrier. This setup describes the conditions for **allopatric speciation**. [1 mark]\n2. **Evidence:** The low fertilisation success between A and B (15%) compared to within-population success (98% and 97%) suggests significant genetic divergence and the development of pre-zygotic reproductive isolation. [1 mark]\n3. **Populations A and C:** These populations are not geographically isolated but live in different habitats within the same area. This could lead to **sympatric speciation** (or a form of parapatric speciation) driven by ecological specialisation. [1 mark]\n4. **Evidence:** The fertilisation rate between A and C (75%) is lower than within-population rates but much higher than the A x B rate. This indicates some divergence and partial reproductive isolation, but less than that caused by the complete geographical barrier. They are on the path to speciation but are not as far along as A and B. [1 mark]"
+      "question": "A population of insects lives across a valley. A new, permanently flooded river channel forms and divides the valley, and the insects cannot cross open water. Explain how this could lead to allopatric speciation. [4]",
+      "solution": "**Model answer.**\nThe river is a geographic barrier that splits the single population into two, preventing gene flow between them. The environments on the two sides differ, so the two populations experience different selection pressures; different mutations also arise and genetic drift acts independently in each. Because there is no gene flow between them, the allele frequencies of the two populations change independently over many generations, and the populations diverge. Eventually the genetic differences become so great that, even if the insects met again, they could not interbreed to produce fertile offspring — they have become two separate species.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1:** the river acts as a geographic/physical barrier that separates the population and PREVENTS GENE FLOW.\n- **Point 2:** the two populations face different selection pressures (and/or different mutations / independent genetic drift).\n- **Point 3:** allele frequencies change INDEPENDENTLY in each population over many generations, so they diverge.\n- **Point 4:** divergence continues until the populations are REPRODUCTIVELY ISOLATED — cannot interbreed to give fertile offspring — i.e. two species.\n\n*The engine credits equivalent wording (e.g. 'stops interbreeding' for 'prevents gene flow') and applies ECF: if you name the barrier but describe divergence loosely, you still earn the points you did state. It rejects Lamarckian phrasing such as 'the insects adapted to each side because they needed to' — change comes from selection among heritable variation, not from need.*"
     },
     {
       "type": "heading",
-      "content": "Sympatric Speciation in Detail: Polyploidy"
+      "content": "The pace of evolution: gradualism and punctuated equilibrium"
     },
     {
       "type": "text",
-      "content": "While ecological and behavioural shifts can cause sympatric speciation, a more dramatic and rapid mechanism is polyploidy. This is particularly prevalent in the plant kingdom. Polyploidy is the state of having more than two sets of chromosomes. It can arise from errors during meiosis, leading to diploid gametes instead of haploid ones. If a diploid gamete fuses with a normal haploid gamete, a sterile triploid (3n) offspring results. However, if two diploid gametes fuse, or if a diploid organism undergoes chromosome doubling, a fertile tetraploid (4n) can be formed."
+      "content": "How fast does evolutionary change happen? Two models describe the tempo, and the fossil record contains evidence for both. Gradualism, the view associated with Darwin, holds that evolution proceeds by the slow, steady accumulation of many small changes, so a complete fossil record would show long series of intermediate forms. Punctuated equilibrium, proposed by Eldredge and Gould, holds that species often remain little changed for long periods (stasis), and that these periods are interrupted by short bursts of rapid change, typically around speciation events; on this view intermediate fossils are genuinely rare rather than merely undiscovered. The two models are not mutually exclusive — different lineages, in different environments, appear to follow different tempos, so most biologists regard both as real and context-dependent."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Instant Speciation:** A tetraploid (4n) plant can self-pollinate or mate with other tetraploids. However, if it tries to mate with the original diploid (2n) parent population, the offspring will be triploid (3n).",
-        "**Reproductive Isolation:** Triploid organisms are typically sterile because their chromosomes cannot form homologous pairs during meiosis, leading to aneuploid (incorrect chromosome number) gametes. This sterility immediately creates a reproductive barrier between the new tetraploid population and the original diploid population, making them distinct species."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The grass species *Spartina anglica* (2n = 126) arose in the 19th century from the hybridisation of European *S. maritima* (2n = 60) and introduced American *S. alterniflora* (2n = 62). Describe the chromosomal events that led to the formation of the fertile *S. anglica*.",
-      "solution": "1. **Hybridisation:** A gamete from *S. maritima* (n = 30) fused with a gamete from *S. alterniflora* (n = 31). [1 mark]\n2. **Sterile Hybrid:** This created a hybrid offspring with a diploid number of 2n = 30 + 31 = 61. This hybrid was sterile because its chromosomes could not form homologous pairs during meiosis. [1 mark]\n3. **Chromosome Doubling (Allopolyploidy):** A subsequent error, likely during mitosis in the sterile hybrid, led to a doubling of all chromosomes. This is an allopolyploidy event. [1 mark]\n4. **Fertile Allopolyploid:** The new chromosome number became 2n = 2 x 61 = 122. (Note: The actual number is 126, indicating some chromosomal rearrangements or aneuploidy occurred, but the principle is doubling). With a doubled set, each chromosome now has a homologous partner, allowing for normal meiosis and the production of viable gametes. This new fertile species, reproductively isolated from its parents, is *S. anglica*. [1 mark]"
-    },
-    {
-      "type": "heading",
-      "content": "The Pace of Evolution"
-    },
-    {
-      "type": "text",
-      "content": "The fossil record provides evidence for evolution, but it also raises questions about the speed at which it occurs. Two main models have been proposed to explain the tempo of evolutionary change: gradualism and punctuated equilibrium. These are not mutually exclusive and likely both play a role in the history of life."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Gradualism:** This classic Darwinian view suggests that evolution proceeds by the slow and steady accumulation of small changes over vast periods. The fossil record, in this view, should show smooth transitions from one form to another. Gaps in the fossil record are seen as imperfections in the record itself.",
-        "**Punctuated Equilibrium:** Proposed by Niles Eldredge and Stephen Jay Gould, this model suggests that species remain relatively unchanged for long periods (stasis), which are then interrupted (punctuated) by short bursts of rapid evolution and speciation. This model better explains the fossil record's tendency to show new species appearing suddenly with few transitional forms."
+        "**Gradualism:** slow, continuous accumulation of small changes; predicts many intermediate forms.",
+        "**Punctuated equilibrium:** long stasis interrupted by short, rapid bursts of change; predicts few intermediates and helps explain gaps in the fossil record.",
+        "Both patterns are seen in the fossil record; they describe the pace of change, not different mechanisms of inheritance."
       ]
     },
     {
       "type": "examTip",
-      "content": "In exam questions, be prepared to interpret data from graphs or tables as evidence for a specific mode of speciation or evolutionary pace. For speciation, look for data on mating success, hybrid viability, or genetic distance between populations. For evolutionary pace, analyse fossil diagrams showing morphological change over geological time. Always link the data directly to the concept you are discussing, for example, 'The lack of intermediate fossils between species X and Y supports the model of punctuated equilibrium'."
+      "content": "Whenever you write about how a characteristic evolved, run a quick language check before moving on. Have you said the variation was already there and HERITABLE? Have you said individuals with the advantageous alleles SURVIVED and REPRODUCED more? Have you said the alleles increased in FREQUENCY in the POPULATION over generations? If any sentence instead says an organism 'tried to', 'wanted to', 'needed to' or 'learned to' change, rewrite it — that phrasing is Lamarckian and scores nothing."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying an individual evolves or 'adapts itself'** — evolution is a change in a POPULATION's allele frequencies over generations; an individual's alleles are fixed at fertilisation. Selection acts on individuals, but only the population evolves.",
+        "**Lamarckian 'need / want / try' wording** — organisms do not change because they need to, nor pass on characteristics acquired during life. Variation exists first, by chance, and the environment selects among it. This is the single most heavily penalised error in the topic.",
+        "**Treating variation as non-heritable** — for selection to cause evolution, the variation must be HERITABLE (rooted in alleles). A difference caused only by the environment during life cannot be passed on and does not drive evolution.",
+        "**Confusing evolution with natural selection** — natural selection is a MECHANISM; evolution is the resulting change in the population. State the process step by step, then name the change.",
+        "**Forgetting that speciation requires the loss of gene flow** — without reproductive isolation, gene flow keeps populations mixed and prevents lasting divergence. Always identify the isolating barrier.",
+        "**Mixing up allopatric and sympatric speciation** — allopatric needs a GEOGRAPHIC barrier; sympatric occurs in the same area through behavioural, temporal or genetic (polyploidy) isolation. Name which one you mean.",
+        "**Describing fitness as strength or size** — 'fitness' means reproductive success in that environment, not physical fitness. The 'fittest' are simply those that leave the most fertile offspring."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "A4.1 explanation questions are marked analytically: each distinct valid point is worth one mark, method (M) marks credit correct reasoning at each step of the chain, answer (A) marks credit a correct concluding statement, and error-carried-forward (ECF) means a slip in one step does not cost you the independent marks around it. Study how each mark below is tied to a specific, named idea rather than to loose phrasing — and note exactly which phrasing the engine refuses to credit."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain how natural selection can lead to the evolution of a population that is better adapted to its environment. [4]",
+      "solution": "**Model answer.**\nWithin the population there is heritable variation, which ultimately arises from mutation. More offspring are produced than the environment can support, so individuals must compete for limited resources and not all survive. Individuals whose alleles give characteristics better suited to the environment are, on average, more likely to survive and reproduce. Because these advantageous characteristics are heritable, the alleles responsible are passed on to more offspring and so increase in frequency in the population over successive generations. Over time the population comes to consist mainly of individuals with the advantageous alleles — it has become better adapted, which is evolution.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** there is HERITABLE VARIATION in the population (accept: arising from mutation).\n- **Point 2 (M):** OVERPRODUCTION — more offspring are produced than can survive, so there is competition / a struggle for limited resources.\n- **Point 3 (M):** individuals with advantageous ALLELES are more likely to SURVIVE AND REPRODUCE (differential survival and reproduction).\n- **Point 4 (A):** those alleles INCREASE IN FREQUENCY in the population over generations, so the population becomes better adapted (the conclusion of the reasoning chain).\n\nFive creditable ideas are available for a 4-mark question (variation, overproduction/competition, differential survival, heritability of the advantage, change in allele frequency), so the engine caps the award at 4 — there is deliberate room to miss one point and still score full marks. But the marks are for DISTINCT ideas: stating 'the fittest survive' twice in different words scores once.\n\n**What the engine rejects.** Lamarckian phrasing scores ZERO for that point — for example 'the organisms tried to adapt', 'they became faster because they needed to escape predators', or 'they developed the trait during their lives and passed it on'. The mark scheme requires selection among PRE-EXISTING heritable variation, not organisms striving or inheriting acquired characteristics. It also rejects 'the individual evolved', because evolution is a change in the POPULATION.\n\n**ECF and equivalents.** The points are independent, so a student who omits overproduction but correctly gives heritable variation, differential survival and the change in allele frequency still earns those three. Equivalent wording is accepted — 'passed on to offspring' for heritability, 'become more common' for increases in frequency — provided the idea is unambiguous.\n\n**Bottom line:** to secure all 4 marks, state four distinct links of the chain — heritable variation (from mutation) → overproduction/competition → advantaged individuals survive and reproduce → their alleles rise in frequency over generations — and never phrase it as organisms needing, wanting or trying to change."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements: name heritable variation, name overproduction and competition, name differential survival and reproduction, then name the rise in allele frequency across generations. A fluent paragraph that never mentions alleles, or that says organisms 'tried to adapt', earns far less than a plain list of the correct named steps. Showing each link is what protects your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Evolution by natural selection is the thread running through the rest of biology. The same logic — heritable variation filtered by differential reproduction — explains antibiotic resistance in bacteria, pesticide resistance in insects and the diversity revealed by molecular phylogenies. Master the habit of writing evolution as a population-level change in allele frequencies, driven by selection among pre-existing heritable variation and never by an organism's needs, and you have a template that answers evolution questions across the whole course."
     },
     {
       "type": "practice",
-      "label": "Practice Questions: A4.1 Evolution and Speciation",
-      "href": "/mark?subject=ib-biology-hl&topic=A4.1"
+      "label": "Get a Paper 2 question marked: explain natural selection and speciation with each step credited point by point",
+      "href": "/mark?subject=ib-biology-hl&topic=A4.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Understanding Evolution: Speciation",
+          "label": "Berkeley Understanding Evolution: Natural Selection",
+          "href": "https://evolution.berkeley.edu/evolution-101/mechanisms-the-processes-of-evolution/natural-selection/"
+        },
+        {
+          "label": "Berkeley Understanding Evolution: Speciation",
           "href": "https://evolution.berkeley.edu/evolution-101/speciation/"
         },
         {
-          "label": "Video on Speciation by CrashCourse",
-          "href": "https://www.youtube.com/watch?v=2oKlKmrbLoU"
-        },
-        {
-          "label": "Polyploidy in Plants",
-          "href": "https://www.nature.com/scitable/topicpage/polyploidy-1552814/"
+          "label": "Amoeba Sisters: Natural Selection (video)",
+          "href": "https://www.youtube.com/watch?v=0SCjhI86grU"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

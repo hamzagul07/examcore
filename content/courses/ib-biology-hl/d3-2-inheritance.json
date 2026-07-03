@@ -2,191 +2,351 @@
   "slug": "d3-2-inheritance",
   "topicCode": "D3.2",
   "title": "Inheritance",
+  "unit": {
+    "code": "D",
+    "title": "Continuity and change"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores inheritance patterns that go beyond simple Mendelian genetics. It covers continuous and discontinuous variation, the mechanisms of polygenic inheritance, and gene linkage. A key focus is the application of the chi-squared test to analyse genetic data and test hypotheses about inheritance.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "This lesson builds the whole toolkit of D3.2 Mendelian genetics: the vocabulary of gene, allele, dominant and recessive, homozygous and heterozygous, genotype and phenotype and carrier; the principle of segregation; monohybrid crosses worked with full genetic diagrams and Punnett squares to predict genotype and phenotype ratios; test crosses to reveal a hidden genotype; codominance and multiple alleles through the ABO blood group system; sex determination and X-linked inheritance such as haemophilia and colour blindness; and a brief guide to reading pedigree charts. Every worked example is set out exactly the way our marking engine awards Paper 2 marks — method marks, answer marks and error-carried-forward — so you can see how showing your genetic diagram protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between continuous and discontinuous variation, linking them to monogenic and polygenic inheritance.",
-    "Explain polygenic inheritance using the example of human skin colour or height.",
-    "Calculate and interpret the results of the chi-squared test to evaluate genetic hypotheses.",
-    "Analyse dihybrid cross data to identify gene linkage and calculate recombination frequencies."
+    "Use the language of Mendelian genetics precisely — gene, allele, dominant, recessive, homozygous, heterozygous, genotype, phenotype and carrier.",
+    "Apply the principle of segregation and construct full genetic diagrams with Punnett squares for monohybrid crosses to predict offspring genotype and phenotype ratios.",
+    "Use a test cross to determine an unknown genotype, and analyse codominance and multiple alleles through the ABO blood group system.",
+    "Explain sex determination and work a sex-linked cross for an X-linked recessive condition, and interpret a pedigree chart to deduce the mode of inheritance.",
+    "Set out a genetic diagram so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "D3.2"
+  ],
+  "levelNote": "Common to SL and HL; dihybrid crosses and more complex inheritance are extended at HL.",
   "simpleExplanation": {
-    "title": "Genetics: The Full Picture",
-    "summary": "We explore how most traits are not simple on/off switches but are shaped by multiple genes and the environment. You'll learn how to statistically test genetic theories and understand what happens when genes are physically connected on a chromosome.",
-    "analogy": "Imagine baking a cake. A simple Mendelian trait is like a light switch: the cake is either chocolate or vanilla (discontinuous). Polygenic inheritance is like the cake's overall flavour complexity, resulting from mixing multiple ingredients (genes for flour, sugar, eggs, spices) in varying amounts. The final taste is also affected by the oven's temperature and baking time (the environment), creating a continuous range of outcomes.",
+    "title": "Your Genetic Blueprint",
+    "summary": "Inheritance is how alleles — the alternative versions of a gene — are passed from parents to offspring, and it follows rules predictable enough to be written out as a diagram and counted as a ratio.",
+    "analogy": "Think of each parent as holding a pair of cards for a trait, but able to pass only one card into any egg or sperm. Which of the pair goes in is decided fairly, like the toss of a coin — that is the principle of segregation. The offspring's hand is simply one card from each parent, and a Punnett square is just the tidy way of listing every possible pairing so you can read off how likely each hand is.",
     "steps": [
-      "First, identify the inheritance pattern by observing the phenotypes. Are they in discrete categories (discontinuous variation, likely monogenic) or a smooth range (continuous variation, likely polygenic)?",
-      "Next, for a genetic cross, formulate a null hypothesis ($H_0$). This is a testable statement, such as 'the genes for wing shape and body colour assort independently' with an expected 9:3:3:1 ratio.",
-      "Then, perform the chi-squared test. Use the formula $χ^2 = Σ((O-E)^2/E)$ to calculate a value that quantifies the deviation between your observed (O) and expected (E) results.",
-      "Finally, interpret the result. Compare your calculated $χ^2$ value to the critical value from a table. If your value is larger, you reject the null hypothesis, indicating a significant difference, possibly due to gene linkage."
+      "First, write the parents' genotypes using a chosen letter — capital for the dominant allele, the same letter in lower case for the recessive one (for example Pp and pp).",
+      "Next, work out the gametes: because the two alleles segregate, each gamete carries just one allele of the pair. Circle or box each gamete so it is clear.",
+      "Then draw a Punnett square, putting one parent's gametes along the top and the other's down the side, and fill each cell by combining the alleles that meet there.",
+      "Finally, read off and count the offspring genotypes and their phenotypes to state the expected ratios or probabilities."
     ]
   },
+  "keyConcepts": [
+    "segregation",
+    "genotype and phenotype",
+    "Punnett square"
+  ],
   "flashcards": [
     {
-      "front": "What is discontinuous variation?",
-      "back": "A type of variation where individuals fall into a limited number of distinct categories or classes for a specific trait. It is typically controlled by a single gene (monogenic). Example: ABO blood groups."
+      "front": "Gene vs allele",
+      "back": "A gene is a length of DNA that codes for a particular characteristic and sits at a fixed locus on a chromosome. An allele is one of the alternative versions of that gene (for example, the tall allele or the dwarf allele of the height gene).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is continuous variation?",
-      "back": "A type of variation where a characteristic shows a wide range of intermediate phenotypes between two extremes. It is controlled by multiple genes (polygenic) and is often influenced by environmental factors. Example: human height."
+      "front": "Genotype vs phenotype",
+      "back": "The genotype is the specific pair of alleles an organism carries for a gene (e.g. Pp). The phenotype is the observable characteristic that results (e.g. purple flowers), produced by the genotype together with the environment.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define polygenic inheritance.",
-      "back": "A pattern of inheritance where a single characteristic is controlled by the additive effects of two or more genes at different loci. This results in continuous variation."
+      "front": "Dominant vs recessive allele",
+      "back": "A dominant allele is expressed in the phenotype whenever it is present, even in a heterozygote; it is written as a capital letter. A recessive allele is expressed only when homozygous, and is masked by a dominant allele; it is written as the same letter in lower case.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the purpose of the null hypothesis ($H_0$) in a chi-squared test for genetics?",
-      "back": "It proposes that there is no statistically significant difference between the observed results of a cross and the expected results based on a specific genetic model (e.g., Mendelian independent assortment)."
+      "front": "Homozygous vs heterozygous",
+      "back": "Homozygous means the two alleles for a gene are the same (PP or pp). Heterozygous means the two alleles are different (Pp). A heterozygote shows the dominant phenotype but can pass on the recessive allele.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What does the chi-squared ($χ^2$) test measure?",
-      "back": "It is a statistical test that measures the 'goodness of fit' between observed and expected categorical data. In genetics, it determines if deviations from an expected ratio are due to random chance or a significant underlying factor like gene linkage."
+      "front": "Carrier",
+      "back": "A heterozygous individual who carries a recessive allele for a condition but does not show it, because the dominant allele masks it. Carriers can still pass the recessive allele to their offspring.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How do you calculate degrees of freedom (df) for a chi-squared test in genetics?",
-      "back": "Degrees of freedom are calculated as the number of phenotypic classes (n) minus one. Formula: df = n - 1."
+      "front": "Principle of segregation",
+      "back": "The two alleles of a gene separate during the formation of gametes, so each gamete receives only ONE allele of the pair. Fertilisation then restores the paired condition in the offspring.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the significance of the critical value in a $χ^2$ test?",
-      "back": "The critical value is a threshold from a probability table (usually at p=0.05). If your calculated $χ^2$ value is greater than the critical value, you reject the null hypothesis as the deviation is statistically significant."
+      "front": "Punnett square",
+      "back": "A grid used to predict the outcome of a cross. The gametes of one parent go along the top, those of the other down the side, and each cell shows one possible offspring genotype formed by combining the two.",
+      "pillLabel": "Tool"
     },
     {
-      "front": "Define gene linkage.",
-      "back": "The tendency for genes located on the same chromosome to be inherited together. Linked genes do not assort independently during meiosis, leading to a higher proportion of parental phenotypes in the offspring."
+      "front": "Test cross",
+      "back": "A cross of an individual showing the dominant phenotype (unknown genotype) with a homozygous recessive individual. If any offspring show the recessive phenotype, the tested parent must have been heterozygous.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What are recombinants in the context of linked genes?",
-      "back": "Offspring that have a different combination of alleles than either of the original parents. They are formed as a result of crossing over between homologous chromosomes during prophase I of meiosis, which separates linked genes."
+      "front": "Codominance",
+      "back": "An inheritance pattern where both alleles of a heterozygote are fully and separately expressed in the phenotype. Example: in the ABO system the alleles for A and B are codominant, so genotype I^A I^B gives blood group AB.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How is recombination frequency (RF) calculated and what does it indicate?",
-      "back": "RF = (Number of recombinant offspring / Total number of offspring) × 100%. It represents the frequency of crossing over between two linked genes and is used as a measure of the physical distance between them on a chromosome (1% RF = 1 map unit or centimorgan)."
+      "front": "Multiple alleles (ABO)",
+      "back": "A gene with more than two alleles in the population. The ABO gene has three alleles: I^A and I^B (codominant with each other) and i (recessive to both). Any one person still carries only two of them.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a test cross and why is it useful for studying linkage?",
-      "back": "A cross between an individual with an unknown genotype (usually heterozygous for the genes of interest) and a homozygous recessive individual. The phenotypes of the offspring directly reflect the gametes produced by the heterozygous parent, making it easy to identify parental and recombinant types."
+      "front": "Sex determination",
+      "back": "In humans, sex is set by the sex chromosomes: females are XX and males are XY. Eggs always carry an X; sperm carry either an X or a Y, so the sperm determines the sex of the offspring.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Sex linkage (X-linked)",
+      "back": "A trait controlled by a gene on the X chromosome. Because males (XY) have only one X, a single recessive allele is expressed, so X-linked recessive conditions such as haemophilia and red-green colour blindness affect more males than females.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: genotype vs phenotype ratio",
+      "back": "A monohybrid Pp × Pp cross gives a GENOTYPE ratio of 1 PP : 2 Pp : 1 pp but a PHENOTYPE ratio of 3 dominant : 1 recessive. Give whichever the question asks for, and do not merge them.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: males are not carriers",
+      "back": "For an X-linked gene a male (X^H Y) has only one allele, so he is either affected or unaffected — never a carrier. Only females can be heterozygous carriers of an X-linked recessive condition.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "An organism has the genotype Pp for flower colour and shows purple flowers. Which term correctly describes 'purple flowers'?",
+      "options": [
+        "Its genotype",
+        "Its phenotype",
+        "Its allele",
+        "Its recessive trait"
+      ],
+      "answer": "Its phenotype"
+    },
+    {
+      "prompt": "Which genotype is heterozygous?",
+      "options": [
+        "PP",
+        "pp",
+        "Pp",
+        "Both PP and pp"
+      ],
+      "answer": "Pp"
+    },
+    {
+      "prompt": "When setting out a monohybrid genetic cross, the gametes you place around the Punnett square should each contain:",
+      "options": [
+        "Both alleles of the parent",
+        "One allele of the pair, because the alleles segregate",
+        "The dominant allele only",
+        "A complete genotype"
+      ],
+      "answer": "One allele of the pair, because the alleles segregate"
+    },
+    {
+      "prompt": "Why are X-linked recessive conditions such as haemophilia more common in males than in females?",
+      "options": [
+        "The allele is on the Y chromosome, which only males have",
+        "Males are XY, so a single recessive allele on their one X is expressed; females need two copies",
+        "Males inherit the condition only from their fathers",
+        "The allele is dominant in males but recessive in females"
+      ],
+      "answer": "Males are XY, so a single recessive allele on their one X is expressed; females need two copies"
+    },
+    {
+      "prompt": "In the ABO blood group system, a person with genotype I^A I^B has blood group AB. This is because the alleles I^A and I^B are:",
+      "options": [
+        "Codominant, so both are fully expressed",
+        "Incompletely dominant, giving a blend",
+        "Both recessive to i",
+        "The same allele written two ways"
+      ],
+      "answer": "Codominant, so both are fully expressed"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between polygenic inheritance and multiple alleles?",
-      "a": "Polygenic inheritance involves multiple genes at different loci contributing to a single trait (e.g., skin colour, height), resulting in continuous variation. Multiple alleles involve a single gene that has more than two possible alleles within a population (e.g., the ABO blood group gene has three alleles: $I^A$, $I^B$, and $i$), resulting in discontinuous variation."
+      "q": "What is the difference between codominance and incomplete dominance?",
+      "a": "In codominance both alleles of a heterozygote are expressed fully and separately, so you see both characteristics at once — the ABO blood group AB, where genotype I^A I^B produces both A and B antigens, is the standard example. In incomplete dominance the heterozygote shows an intermediate, blended phenotype instead (a red and a white allele giving pink). The IB Biology course focuses on codominance through the ABO system, so if a heterozygote shows both parental traits rather than a blend, it is codominance."
     },
     {
-      "q": "Why is the p-value of 0.05 used as the standard significance level in biology?",
-      "a": "The p=0.05 level is a scientific convention. It establishes a 95% confidence level in our conclusion. It means we are willing to accept a 5% probability that we have incorrectly rejected the null hypothesis when it was actually true (this is called a Type I error). It provides a reasonable balance between being too strict and missing a real effect, and being too lenient and claiming an effect that is just due to random chance."
+      "q": "Can a male be a carrier for an X-linked recessive condition?",
+      "a": "No. 'Carrier' means a heterozygous individual who has the recessive allele but does not show the condition. A male is XY and so has only one copy of an X-linked gene; he cannot be heterozygous for it. If his single X carries the recessive allele he is affected, and if it carries the dominant allele he is unaffected — there is no carrier state. Only females (XX) can be heterozygous carriers of an X-linked recessive condition."
     },
     {
-      "q": "If two genes are on the same chromosome, does that automatically mean they are linked?",
-      "a": "Genetically, they are physically linked. However, for linkage to be *observed* in the results of a cross (i.e., RF < 50%), they must be relatively close together. If two genes are very far apart on the same large chromosome, crossing over will occur between them so frequently that they will assort independently, just as if they were on separate chromosomes. In this case, the recombination frequency would be 50%."
+      "q": "How do I know which letter to use for the alleles in a cross?",
+      "a": "Choose a single letter whose capital and lower-case forms look clearly different (letters like S/s and P/p are safer than C/c or O/o). Use the CAPITAL for the dominant allele and the same letter in LOWER CASE for the recessive allele, and always state at the top of your answer what each symbol means. For codominance and sex linkage the convention is different: ABO alleles are written as superscripts on the letter I (I^A, I^B, i), and X-linked alleles as superscripts on the X (X^H, X^h) with a bare Y for the Y chromosome. Defining your symbols first is itself often a marking point."
     },
     {
-      "q": "Can the chi-squared test prove that genes are linked?",
-      "a": "Strictly speaking, the chi-squared test cannot 'prove' linkage. What it does is provide statistical evidence to reject the null hypothesis of independent assortment. If the deviation from the expected 9:3:3:1 (or 1:1:1:1) ratio is statistically significant, gene linkage is the most likely biological explanation, but it's not absolute proof on its own."
+      "q": "What does a test cross actually tell you?",
+      "a": "An organism showing the dominant phenotype could be homozygous (PP) or heterozygous (Pp) — you cannot tell by looking. A test cross mates it with a homozygous recessive individual (pp). If it was PP, every offspring is Pp and shows the dominant phenotype; if it was Pp, about half the offspring are pp and show the recessive phenotype. So the appearance of any recessive offspring reveals that the tested parent was heterozygous."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "While Gregor Mendel's work laid the foundation of genetics, the inheritance of many traits is far more complex. In this topic, we move beyond simple dominant-recessive patterns to explore the nuances of real-world genetics. We will investigate how multiple genes can influence a single trait, how the environment plays a role, and what happens when genes are physically located on the same chromosome. Crucially, we will learn how to use statistical analysis to test our genetic hypotheses and draw valid conclusions from experimental data."
+      "content": "Our understanding of inheritance began in an abbey garden, where Gregor Mendel tracked single traits in pea plants across generations and found that they were passed on not by blending but by discrete 'heritable factors' — what we now call alleles. From that work come rules precise enough to predict offspring as ratios: define the parents' alleles, follow how they segregate into gametes, recombine them in a Punnett square, and count. This lesson builds that method for straightforward dominance, then extends it to codominance and multiple alleles in the ABO blood groups, to sex-linked genes on the X chromosome, and to reading pedigree charts. Every worked example is set out the way marks are actually awarded, because in genetics HOW you lay out the diagram decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Continuous vs. Discontinuous Variation"
+      "content": "The language of inheritance"
     },
     {
       "type": "text",
-      "content": "Genetic variation within a population can be classified into two main types. **Discontinuous variation** is where traits fall into distinct, non-overlapping categories. This is characteristic of traits controlled by a single gene with a few different alleles, such as human ABO blood groups (A, B, AB, or O) or the ability to roll one's tongue. In contrast, **continuous variation** shows a complete range of measurements from one extreme to another, with no clear-cut divisions. Examples include human height, weight, and skin colour. When plotted on a graph, continuous variation typically produces a bell-shaped curve, or normal distribution, with most individuals clustering around the mean value."
-    },
-    {
-      "type": "heading",
-      "content": "Polygenic Inheritance"
-    },
-    {
-      "type": "text",
-      "content": "Continuous variation is the result of **polygenic inheritance**, where a single characteristic is controlled by two or more genes. Each gene involved has an additive effect on the phenotype. A classic example is human skin colour, which is determined by the amount of melanin pigment produced. Several genes contribute to melanin production. For each gene, there are alleles that contribute to melanin production (contributing alleles) and alleles that do not. An individual with a high number of contributing alleles across all relevant genes will have darker skin, while an individual with few contributing alleles will have lighter skin. This additive effect of multiple genes creates the continuous spectrum of skin tones we see in the human population."
-    },
-    {
-      "type": "heading",
-      "content": "The Chi-Squared ($χ^2$) Test in Genetics"
-    },
-    {
-      "type": "text",
-      "content": "The chi-squared test is an essential statistical tool for geneticists. It allows us to compare the observed frequencies of phenotypes from a genetic cross with the frequencies we would expect based on a specific hypothesis (e.g., Mendelian inheritance). The test determines if any difference between the observed (O) and expected (E) values is statistically significant or simply due to random chance. This is crucial for determining if genes assort independently or if they are linked."
-    },
-    {
-      "type": "formula",
-      "content": "χ² = Σ \\frac{(O - E)²}{E}"
+      "content": "Genetics has a precise vocabulary, and examiners award — or withhold — marks on exactly these words. A **gene** is a length of DNA that codes for a characteristic and occupies a fixed position, or locus, on a chromosome. An **allele** is one of the alternative versions of a gene. Because chromosomes come in pairs, an individual carries two alleles for each gene; that pair is its **genotype**. A genotype with two identical alleles (PP or pp) is **homozygous**, and one with two different alleles (Pp) is **heterozygous**. The **phenotype** is the observable characteristic the genotype produces. A **dominant** allele (capital letter) is expressed in the phenotype whenever it is present, even in a heterozygote, while a **recessive** allele (lower-case letter) is expressed only when homozygous, because a dominant allele masks it. A heterozygote that shows the dominant phenotype but carries a hidden recessive allele for a condition is called a **carrier**."
     },
     {
       "type": "keyPoints",
       "items": [
-        "First, state a clear null hypothesis ($H_0$), which assumes no significant difference between observed and expected data (e.g., 'the data fits a 9:3:3:1 ratio').",
-        "Calculate the degrees of freedom (df), which is the number of phenotypic classes minus one (df = n - 1).",
-        "The standard significance level (p-value) in biology is 0.05. This means we accept a 5% chance of being wrong when rejecting the null hypothesis.",
-        "Compare the calculated $χ^2$ value to the critical value found in a probability table for the correct df and p=0.05.",
-        "If $χ^2$ > critical value, reject $H_0$. The difference is significant.",
-        "If $χ^2$ ≤ critical value, accept $H_0$. Any difference is likely due to chance."
+        "**Genotype** = the pair of alleles carried (e.g. Pp); **phenotype** = the observable trait (e.g. purple flowers).",
+        "**Homozygous** = two identical alleles (PP or pp); **heterozygous** = two different alleles (Pp).",
+        "**Dominant** allele (capital) is expressed even in a heterozygote; **recessive** allele (lower case) needs to be homozygous to show.",
+        "A **carrier** is a heterozygote that hides a recessive allele without showing the condition."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "The principle of segregation"
+    },
+    {
+      "type": "text",
+      "content": "Mendel's central insight is the **principle of segregation**: the two alleles of a gene separate from one another during the formation of gametes, so that each gamete receives only one allele of the pair. Biologically this happens at meiosis, when the members of each homologous pair of chromosomes are pulled into different cells. A homozygous parent (PP or pp) can therefore make only one kind of gamete for that gene, while a heterozygous parent (Pp) makes two kinds — half carrying P and half carrying p — in equal proportion. Fertilisation then brings one allele from each parent together at random, restoring the paired genotype in the offspring. This is why a genetic diagram always shows single alleles in the gametes, never pairs."
+    },
+    {
+      "type": "heading",
+      "content": "Monohybrid crosses and Punnett squares"
+    },
+    {
+      "type": "text",
+      "content": "A monohybrid cross follows the inheritance of a single characteristic. To predict its outcome we lay out a genetic diagram: state and define the allele symbols, write the two parental genotypes, work out the gametes each parent can make (one allele each, by segregation), then combine them in a Punnett square — one parent's gametes along the top, the other's down the side — and fill every cell to list the possible offspring. Reading the completed square gives two ratios: the **genotype ratio** (how many of each allele combination) and the **phenotype ratio** (how many show each observable trait). Keep them separate: a Pp × Pp cross gives a genotype ratio of 1 PP : 2 Pp : 1 pp but a phenotype ratio of 3 dominant : 1 recessive, because PP and Pp look the same."
     },
     {
       "type": "workedExample",
-      "question": "In pea plants, tall (T) is dominant to dwarf (t). A heterozygous tall plant was self-pollinated, producing 200 offspring. 160 were tall and 40 were dwarf. The expected Mendelian ratio is 3:1. Use a chi-squared test to determine if these results are consistent with Mendelian inheritance. The critical value for 1 degree of freedom at p=0.05 is 3.84.",
-      "solution": "1.  **Hypotheses:**\n    *   $H_0$ (Null Hypothesis): There is no significant difference between the observed and expected results; the trait follows a 3:1 Mendelian ratio.\n    *   $H_A$ (Alternative Hypothesis): There is a significant difference.\n\n2.  **Calculate Expected (E) values:**\n    *   Total offspring = 200.\n    *   Expected tall (3/4) = 0.75 × 200 = 150.\n    *   Expected dwarf (1/4) = 0.25 × 200 = 50.\n\n3.  **Calculate the $χ^2$ value:**\n    *   Create a table for clarity:\n| Phenotype | Observed (O) | Expected (E) | O - E | (O - E)² | (O - E)²/E |\n|-----------|--------------|--------------|-------|----------|-------------|\n| Tall      | 160          | 150          | 10    | 100      | 100/150 = 0.67 |\n| Dwarf     | 40           | 50           | -10   | 100      | 100/50 = 2.00 |\n\n    *   $χ^2 = Σ \\frac{(O - E)²}{E} = 0.67 + 2.00 = 2.67$\n\n4.  **Conclusion:**\n    *   Degrees of freedom (df) = number of classes - 1 = 2 - 1 = 1.\n    *   The calculated $χ^2$ value (2.67) is less than the critical value (3.84) for df=1 at p=0.05.\n    *   Therefore, we accept the null hypothesis. The observed results are not significantly different from the expected 3:1 ratio. The deviation is likely due to random chance."
+      "question": "In pea plants, the allele for tall stems (T) is dominant to the allele for dwarf stems (t). A homozygous tall plant is crossed with a dwarf plant, and the resulting F1 plants are then self-pollinated. Determine the expected phenotypic ratio of the F2 generation. [4]",
+      "solution": "**Symbols.** T = tall (dominant), t = dwarf (recessive).\n\n**Parental (P) cross.** homozygous tall (TT) × dwarf (tt). Gametes: all T from one parent, all t from the other. Every F1 offspring is Tt — heterozygous and therefore tall.\n\n**F1 self-pollination.** Tt × Tt. Each parent segregates to give gametes T and t.\n\n**Punnett square (F2):**\n\n|      | T  | t  |\n|------|----|----|\n| **T** | TT | Tt |\n| **t** | Tt | tt |\n\n**F2 genotype ratio:** 1 TT : 2 Tt : 1 tt.\n**F2 phenotype ratio:** TT and Tt are both tall, tt is dwarf, so **3 tall : 1 dwarf**.\n\n*Notice the two ratios differ: the genotype ratio is 1:2:1 but the phenotype ratio is 3:1, because a heterozygote is indistinguishable from a dominant homozygote.*"
     },
     {
       "type": "heading",
-      "content": "Gene Linkage and Recombination"
+      "content": "Test crosses"
     },
     {
       "type": "text",
-      "content": "According to Mendel's Law of Independent Assortment, alleles for different genes are inherited independently of one another. However, this only holds true for genes located on different chromosomes or very far apart on the same chromosome. Genes that are located close together on the same chromosome are said to be **linked**. They tend to be inherited as a single unit because they are physically connected. This linkage can be broken by crossing over during prophase I of meiosis, which can swap segments of homologous chromosomes. This process creates new combinations of alleles, resulting in **recombinant** gametes. The frequency of recombination between two linked genes is proportional to the physical distance between them."
+      "content": "An organism showing a dominant phenotype hides an ambiguity: its genotype could be homozygous (PP) or heterozygous (Pp), and you cannot tell by looking. A **test cross** resolves this by crossing the individual with a **homozygous recessive** partner (pp), which can only contribute recessive alleles. If the tested individual is homozygous dominant, all offspring inherit a dominant allele and show the dominant phenotype; if it is heterozygous, about half the offspring are homozygous recessive and show the recessive phenotype. So the appearance of even one recessive offspring proves the parent was heterozygous — the homozygous recessive partner acts as a genetic 'developer' that reveals the hidden allele."
     },
     {
       "type": "keyPoints",
       "items": [
-        "In a dihybrid cross involving linked genes, the parental (non-recombinant) phenotypes appear in the offspring at a much higher frequency than expected.",
-        "Recombinant phenotypes appear at a much lower frequency than expected.",
-        "A test cross (heterozygote × homozygous recessive) is the standard method for detecting linkage and measuring recombination frequency.",
-        "Recombination Frequency (RF) is calculated as: $RF = \\frac{\\text{Number of recombinant offspring}}{\\text{Total number of offspring}} \\times 100\\%$",
-        "An RF of < 50% indicates gene linkage. An RF of 50% indicates independent assortment."
+        "A test cross mates an individual of unknown genotype (dominant phenotype) with a **homozygous recessive** (pp).",
+        "**All offspring dominant** → the tested parent was most likely homozygous (PP).",
+        "**Any recessive offspring** → the tested parent must have been heterozygous (Pp), and a roughly 1:1 phenotype ratio is expected.",
+        "The recessive partner contributes only recessive alleles, so the offspring's phenotypes directly reveal the tested parent's second allele."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "Codominance and multiple alleles: the ABO blood groups"
+    },
+    {
+      "type": "text",
+      "content": "Not all alleles show simple dominance. In **codominance**, both alleles of a heterozygote are expressed fully and separately in the phenotype, so both characteristics appear at once. The standard example is the human ABO blood group system, which also illustrates **multiple alleles** — a gene with more than two alleles in the population. There are three ABO alleles: $I^A$ and $I^B$, which produce the A and B antigens and are **codominant** with each other, and $i$, which is **recessive** to both. Any one person still carries only two of the three. This gives four blood groups: group A ($I^A I^A$ or $I^A i$), group B ($I^B I^B$ or $I^B i$), group AB ($I^A I^B$, both antigens expressed), and group O ($ii$, neither antigen). Because $I^A$ and $I^B$ are codominant, an $I^A I^B$ person is genuinely AB — not an intermediate blend."
+    },
+    {
+      "type": "workedExample",
+      "question": "A woman with blood group A and a man with blood group B have a child with blood group O. Using a genetic diagram, determine the probability that their next child will have blood group AB. [4]",
+      "solution": "**Symbols.** $I^A$ = A antigen, $I^B$ = B antigen (codominant); $i$ = no antigen (recessive to both).\n\n**Deduce the parental genotypes.** The group O child is $ii$, so it inherited an $i$ from each parent. The mother (group A) must therefore be $I^A i$, and the father (group B) must be $I^B i$.  [M1: correct parental genotypes]\n\n**Gametes.** Mother: $I^A$ or $i$. Father: $I^B$ or $i$.\n\n**Punnett square:**\n\n|        | $I^A$      | $i$      |\n|--------|-----------|----------|\n| $I^B$  | $I^A I^B$ | $I^B i$  |\n| $i$    | $I^A i$   | $ii$     |\n\n[M1: correctly completed square]\n\n**Offspring:** $I^A I^B$ (AB), $I^B i$ (B), $I^A i$ (A), $ii$ (O) — a 1 : 1 : 1 : 1 phenotype ratio.  [A1: genotypes/phenotypes identified]\n\n**Probability of group AB** ($I^A I^B$) = one cell out of four = **1/4 (25%)**.  [A1]\n\n*Each child is an independent event, so the earlier group O child does not change the 25% for the next child.*"
+    },
+    {
+      "type": "heading",
+      "content": "Sex determination and sex-linked inheritance"
+    },
+    {
+      "type": "text",
+      "content": "In humans, sex is determined by the **sex chromosomes**: females are **XX** and males are **XY**. Eggs always carry an X, whereas sperm carry either an X or a Y, so it is the sperm that determines the sex of the offspring, and the expected ratio is 1 male : 1 female. The X chromosome is much larger than the Y and carries genes that have nothing to do with sex; a gene on the X is described as **sex-linked** (X-linked). Because a male has only one X, a single recessive allele on it is expressed with no second copy to mask it, so **X-linked recessive** conditions — such as **haemophilia** and **red-green colour blindness** — affect many more males than females. A female must inherit the recessive allele on both X chromosomes to be affected; a female with just one copy is an unaffected **carrier**. X-linked alleles are written as superscripts on the X, with a bare Y for the Y chromosome."
     },
     {
       "type": "examTip",
-      "content": "When answering a chi-squared question, structure is key to gaining full marks. Always explicitly state your null hypothesis, show your calculations for expected values, present the chi-squared calculation clearly (using a table is highly recommended), state the degrees of freedom and the critical value, and write a final concluding sentence that directly compares your calculated $χ^2$ to the critical value and accepts or rejects the null hypothesis in the biological context of the question."
+      "content": "For sex-linkage questions always write the alleles as superscripts on the sex chromosomes — for example $X^H X^h$ for a carrier female, $X^h Y$ for an affected male, $X^H Y$ for an unaffected male. This notation makes the link to the X chromosome explicit and stops you from writing an impossible genotype. Remember a male can never be a carrier: with a single X he is either affected or unaffected."
     },
     {
       "type": "workedExample",
-      "question": "In *Drosophila*, the gene for body colour (grey, B, is dominant to black, b) and wing shape (normal, Vg, is dominant to vestigial, vg) are linked. A fly heterozygous for both traits was test-crossed with a black-bodied, vestigial-winged fly. The following offspring were produced:\n*   Grey body, normal wings: 410\n*   Black body, vestigial wings: 422\n*   Grey body, vestigial wings: 82\n*   Black body, normal wings: 86\n\nCalculate the recombination frequency between these two genes.",
-      "solution": "1.  **Identify Parental and Recombinant Phenotypes:**\n    *   A test cross involves a homozygous recessive parent (bb vgvg), which only produces (b vg) gametes.\n    *   The phenotypes of the offspring therefore reveal the gametes produced by the heterozygous parent.\n    *   The most numerous offspring classes represent the parental gamete combinations: Grey/Normal (BVg) and Black/Vestigial (bvg). These are the non-recombinant types.\n    *   The least numerous classes represent gametes formed by crossing over: Grey/Vestigial (Bvg) and Black/Normal (bVg). These are the recombinant types.\n\n2.  **Count the Offspring:**\n    *   Number of recombinant offspring = 82 (Grey/Vestigial) + 86 (Black/Normal) = 168.\n    *   Total number of offspring = 410 + 422 + 82 + 86 = 1000.\n\n3.  **Calculate Recombination Frequency (RF):**\n    *   $RF = \\frac{\\text{Number of recombinant offspring}}{\\text{Total number of offspring}} \\times 100\\%$\n    *   $RF = \\frac{168}{1000} \\times 100\\% = 16.8\\%$\n\n4.  **Conclusion:**\n    *   The recombination frequency between the genes for body colour and wing shape is 16.8%. This indicates the genes are linked and are approximately 16.8 map units (centimorgans) apart on the chromosome."
+      "question": "Haemophilia is caused by an X-linked recessive allele ($X^h$). A woman who is a carrier for haemophilia has children with a man who is unaffected. Using a genetic diagram, determine the expected proportion of their SONS that will have haemophilia. [4]",
+      "solution": "**Symbols.** $X^H$ = normal allele (dominant), $X^h$ = haemophilia allele (recessive), on the X chromosome; Y carries no allele.\n\n**Parental genotypes.** Carrier mother = $X^H X^h$; unaffected father = $X^H Y$.  [M1: correct parental genotypes]\n\n**Gametes.** Mother: $X^H$ or $X^h$. Father: $X^H$ or Y.\n\n**Punnett square:**\n\n|        | $X^H$        | $X^h$        |\n|--------|-------------|-------------|\n| $X^H$  | $X^H X^H$   | $X^H X^h$   |\n| Y      | $X^H Y$     | $X^h Y$     |\n\n[M1: correctly completed square]\n\n**Offspring:** $X^H X^H$ (unaffected daughter), $X^H X^h$ (carrier daughter), $X^H Y$ (unaffected son), $X^h Y$ (affected son).  [A1: genotypes and phenotypes]\n\n**Sons only:** the two male offspring are $X^H Y$ (unaffected) and $X^h Y$ (affected), so **1/2 (50%) of the sons** are expected to have haemophilia. (None of the daughters is affected, though half are carriers.)  [A1]\n\n*Note the question asks specifically about sons, so the answer is a proportion of the male offspring, not of all children.*"
+    },
+    {
+      "type": "heading",
+      "content": "Reading pedigree charts"
+    },
+    {
+      "type": "text",
+      "content": "A **pedigree chart** is a family tree that tracks a single trait across generations, and analysing its pattern lets you deduce the mode of inheritance. By convention, circles are females and squares are males, a horizontal line joins a mating pair, vertical lines lead down to their offspring, and a **shaded** symbol marks an affected individual. Work through the chart asking a few diagnostic questions: does the trait appear in every generation, or does it skip? Do two unaffected parents ever produce an affected child? Are affected individuals overwhelmingly male? The answers point to whether the condition is dominant or recessive, and autosomal or X-linked."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Autosomal recessive:** can skip generations; two unaffected (carrier) parents can have an affected child; affects males and females about equally.",
+        "**Autosomal dominant:** appears in every generation; every affected child has at least one affected parent; affects males and females about equally.",
+        "**X-linked recessive:** affects many more males than females; can skip generations through carrier females; an affected father passes the allele to all his daughters (making them carriers) but to none of his sons.",
+        "A useful shortcut: two unaffected parents with an affected child means the condition is RECESSIVE; if it is also mostly males affected, suspect X-linked recessive."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing genotype with phenotype** — a genotype is the alleles (Pp); a phenotype is the trait (purple). Give the ratio the question asks for and label it: the genotype ratio (1:2:1) is not the phenotype ratio (3:1).",
+        "**Mixing up homozygous and heterozygous** — homozygous means two IDENTICAL alleles (PP or pp), heterozygous means two DIFFERENT alleles (Pp). A heterozygote shows the dominant phenotype but carries the recessive allele.",
+        "**Putting whole genotypes in the gametes** — gametes carry ONE allele each because the alleles segregate; writing 'Pp' in a gamete circle shows a misunderstanding and loses the method mark.",
+        "**Not defining the allele symbols** — always state what each letter means before the cross; an undefined or ambiguous symbol (like C/c) can cost a mark.",
+        "**Calling a male a carrier for an X-linked trait** — a male (XY) has only one X, so he is affected or unaffected, never a carrier. Only females can be carriers.",
+        "**Treating codominance as a blend** — in codominance BOTH alleles are fully expressed (I^A I^B is genuinely AB), not an intermediate; a blended heterozygote would be incomplete dominance instead.",
+        "**Dropping the sex chromosome from the notation** — write X-linked alleles as $X^H$, $X^h$, Y, not as bare letters, or the link to sex is lost and impossible genotypes creep in."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "A genetic-diagram question is marked analytically: the marks are split between method marks (M) for setting the cross out correctly and answer marks (A) for the ratios you read off it. Crucially, error-carried-forward (ECF) applies — if you make an early slip but your Punnett square is then completed correctly from the gametes you wrote, you still earn the method and any ratios that follow consistently. Study how each mark below is tied to a specific part of the diagram, not to loose wording."
+    },
+    {
+      "type": "workedExample",
+      "question": "A heterozygous purple-flowered plant (Pp) is crossed with a white-flowered plant (pp). Using a Punnett square, determine the expected genotype and phenotype ratios of the offspring. [4]",
+      "solution": "**Model answer.**\nSymbols: P = purple (dominant), p = white (recessive).\n\nParental genotypes: Pp (purple) × pp (white).\nGametes: the Pp parent produces P and p; the pp parent produces p and p.\n\nPunnett square:\n\n|      | P  | p  |\n|------|----|----|\n| **p** | Pp | pp |\n| **p** | Pp | pp |\n\nOffspring: Pp, pp, Pp, pp.\n\n**Genotype ratio:** 1 Pp : 1 pp.\n**Phenotype ratio:** 1 purple : 1 white.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — parental genotypes and gametes:** correct parents (Pp × pp) with correctly segregated gametes (P and p from one parent, p and p from the other), each gamete carrying a single allele.\n- **M1 — Punnett square:** a correctly drawn 2×2 grid with the four cells filled by combining the gametes (Pp, pp, Pp, pp).\n- **A1 — genotype ratio:** 1 Pp : 1 pp (equivalently 50% Pp, 50% pp).\n- **A1 — phenotype ratio:** 1 purple : 1 white (equivalently 50% purple, 50% white).\n\n**ECF and partial credit.** The two answer marks follow from the square by error-carried-forward: a student who defines the gametes wrongly but then completes the Punnett square correctly from those gametes, and reads off consistent ratios, still earns the method mark for the square and the ratio marks for a consistent answer. The marks are for distinct steps, so a correct genotype ratio and a correct phenotype ratio are credited separately.\n\n**Equivalents accepted.** Ratios may be written as 1:1, as fractions (½ : ½), or as percentages (50% : 50%); a clearly labelled percentage or probability is accepted in place of a ratio. Genotypes may be written Pp/pp in either order within the ratio.\n\n**What the engine rejects.** Whole genotypes written inside gamete circles, an undefined symbol, or a single merged '1:1' with no distinction between the genotype and phenotype ratios when both are asked for."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR genetic diagram this same way — step by step, with ECF and separate marks for the genotype and phenotype ratios. So show every stage: define your symbols, write the parental genotypes, circle the single-allele gametes, draw and fill the Punnett square, then state both ratios clearly and labelled. Showing the full diagram is what lets error-carried-forward protect your later marks even if you slip early."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The genetic-diagram habit built here — define alleles, segregate them into gametes, recombine in a Punnett square, count the ratios — is the template for every inheritance problem you will meet. At HL it extends to dihybrid crosses, where two genes are followed at once and the classic 9:3:3:1 phenotype ratio appears, and to more complex patterns of inheritance. Master the single-gene method now, keeping genotype and phenotype ratios distinct and laying every step out on the page, and those harder crosses become just more of the same careful bookkeeping."
     },
     {
       "type": "practice",
-      "label": "Test your knowledge of complex inheritance patterns",
-      "href": "/mark?subject=ib-biology-hl&topic=D3.2"
+      "label": "Get a Paper 2 question marked: set out a full genetic diagram and predict the offspring ratios with method marks and ECF",
+      "href": "/mark?subject=ib-biology-hl&topic=D3.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive Chi-Squared Calculator",
-          "href": "https://www.graphpad.com/quickcalcs/chisquared1.cfm"
+          "label": "BioNinja: D3.2 Inheritance",
+          "href": "https://www.ib.bioninja.com.au/standard-level/topic-3-genetics/32-inheritance/"
         },
         {
-          "label": "Khan Academy: Polygenic Inheritance and Environmental Effects",
-          "href": "https://www.khanacademy.org/science/ap-biology/heredity/non-mendelian-genetics/a/polygenic-inheritance-and-environmental-effects"
-        },
-        {
-          "label": "Nature Education: Gene Linkage and Genetic Mapping",
-          "href": "https://www.nature.com/scitable/topicpage/thomas-hunt-morgan-genetic-recombination-and-gene-496/"
+          "label": "IBO: Diploma Programme Biology resources",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

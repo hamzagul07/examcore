@@ -2,196 +2,352 @@
   "slug": "a1-2-nucleic-acids",
   "topicCode": "A1.2",
   "title": "Nucleic acids",
+  "unit": {
+    "code": "A",
+    "title": "Unity and diversity"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson delves into the advanced study of nucleic acids, exploring the pivotal experiments that established DNA as the genetic material, the detailed three-dimensional structure and packaging of DNA in eukaryotes, and the methods used to sequence it.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Nucleic acids are how living things store and pass on information. This lesson builds A1.2 from the monomer up: the three parts of a nucleotide (pentose sugar, phosphate, nitrogenous base), how DNA and RNA differ (deoxyribose vs ribose, thymine vs uracil, double vs single strand), and how two antiparallel sugar-phosphate backbones twist into the double helix. It then shows how complementary base pairing (A-T, G-C) and hydrogen bonds hold the strands together, how the base sequence itself stores information, why the molecule reads 5' to 3', and, for HL, what Chargaff's data revealed and why the structure is so well suited to replication. The model answer is laid out exactly the way our marking engine awards Paper 2 marks, so you can see how each distinct point earns its mark.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the Hershey and Chase experiment as evidence for DNA being the genetic material.",
-    "Describe the role of X-ray diffraction in determining the structure of DNA, with reference to the work of Rosalind Franklin and Maurice Wilkins.",
-    "Outline the structure of the nucleosome and its role in the supercoiling of DNA.",
-    "Explain the principles of the Sanger method for DNA sequencing."
+    "Outline the structure of a nucleotide as a pentose sugar, a phosphate group and a nitrogenous base.",
+    "Compare and contrast DNA and RNA in terms of sugar, bases and number of strands.",
+    "Describe the DNA double helix as two antiparallel strands with sugar-phosphate backbones on the outside and complementary base pairs on the inside.",
+    "Explain complementary base pairing (A-T, G-C) and the role of hydrogen bonds, and how the base sequence stores information read in the 5' to 3' direction.",
+    "(HL) Interpret Chargaff's data and explain why the double-helix structure is suited to accurate replication.",
+    "Present a structured answer so that each distinct valid point earns a mark under analytic marking."
   ],
+  "syllabusObjectivesCovered": [
+    "A1.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "DNA: The Ultimate Blueprint",
-    "summary": "We explore the classic experiments that proved DNA carries our genetic instructions. We then see how this incredibly long molecule is expertly packaged to fit inside our cells.",
-    "analogy": "Imagine you have a thread that's several kilometres long, but you need to store it in a small shoebox. You wouldn't just stuff it in; you'd wind it tightly around thousands of tiny spools. In your cells, the long DNA thread is wound around protein spools called histones, allowing it to fit neatly inside the tiny nucleus.",
+    "title": "The Blueprint of Life",
+    "summary": "Nucleic acids (DNA and RNA) are the information molecules of the cell. They are long chains built from repeating units called nucleotides, and the order of just four bases along the chain spells out the instructions for building an organism.",
+    "analogy": "Picture DNA as a twisted rope ladder. The two long side ropes are the sugar-phosphate backbones, giving the ladder its strength. The rungs are pairs of bases meeting in the middle, and each rung is held by weak hydrogen bonds so the ladder can be 'unzipped' down the centre to be read or copied. Crucially, the two ropes run in opposite directions, like two escalators side by side, one going up and one going down.",
     "steps": [
-      "First, we confirm DNA is the genetic material. The Hershey-Chase experiment used viruses and radioactive labels to 'tag' protein and DNA separately, proving that only the DNA entered the host cell to direct the production of new viruses.",
-      "Next, we visualise the molecule's shape. Rosalind Franklin's X-ray diffraction produced 'Photograph 51', a crucial image showing an 'X' pattern. This indicated a helical structure, providing the key dimensions for Watson and Crick to build their double helix model.",
-      "Then, we package the DNA. To fit into the nucleus, DNA is wrapped around a core of eight histone proteins, forming a structure called a nucleosome. An additional histone, H1, helps to lock the DNA in place, and these nucleosomes are then further coiled.",
-      "Finally, we read the sequence. The Sanger method determines the base sequence by creating DNA fragments of varying lengths. Special 'terminator' bases (ddNTPs) are used to stop DNA replication at each base type, and the resulting fragments are sorted by size to reveal the code."
+      "Build one nucleotide: a five-carbon (pentose) sugar in the middle, a phosphate group attached to its 5' carbon, and a nitrogenous base attached to its 1' carbon.",
+      "Link many nucleotides into a single strand: the sugar of one joins the phosphate of the next, forming a sugar-phosphate backbone with a direction (a 5' end and a 3' end).",
+      "For DNA, place two such strands side by side running in opposite (antiparallel) directions, and pair the bases across the gap: adenine with thymine, guanine with cytosine.",
+      "Hold the pairs together with hydrogen bonds (two for A-T, three for G-C) and let the whole molecule twist into a double helix. The order of the bases is the stored information."
     ]
   },
+  "keyConcepts": [
+    "nucleotide",
+    "complementary base pairing",
+    "double helix",
+    "antiparallel strands"
+  ],
   "flashcards": [
     {
-      "front": "What did the Hershey and Chase experiment prove?",
-      "back": "It provided definitive evidence that DNA, not protein, is the genetic material. They showed that viral DNA enters the host bacterium, while the viral protein coat does not."
+      "front": "The three components of a nucleotide",
+      "back": "A pentose (five-carbon) sugar, a phosphate group, and a nitrogenous base. In DNA the sugar is deoxyribose; in RNA it is ribose.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Which radioactive isotopes were used in the Hershey-Chase experiment and why?",
-      "back": "Sulphur-35 ($^{35}$S) to label proteins (as some amino acids contain sulphur) and Phosphorus-32 ($^{32}$P) to label DNA (as the phosphate group contains phosphorus)."
+      "front": "DNA sugar vs RNA sugar",
+      "back": "DNA has DEOXYribose (an H at the 2' carbon); RNA has ribose (an -OH at the 2' carbon). The extra oxygen makes RNA less chemically stable.",
+      "pillLabel": "Compare"
     },
     {
-      "front": "What was Rosalind Franklin's key contribution to understanding DNA structure?",
-      "back": "She produced high-resolution X-ray diffraction images of DNA, notably 'Photograph 51', which provided evidence for the helical structure and key dimensions of the molecule."
+      "front": "Thymine vs uracil",
+      "back": "DNA uses the bases A, G, C and THYMINE (T). RNA uses A, G, C and URACIL (U) in place of thymine. Uracil pairs with adenine just as thymine does.",
+      "pillLabel": "Compare"
     },
     {
-      "front": "Define a nucleosome.",
-      "back": "A basic unit of DNA packaging in eukaryotes, consisting of a segment of DNA wound around a core of eight histone proteins (a histone octamer)."
+      "front": "Double vs single strand",
+      "back": "DNA is normally DOUBLE-stranded (two strands wound into a double helix); RNA is normally SINGLE-stranded and shorter.",
+      "pillLabel": "Compare"
     },
     {
-      "front": "What are the components of the histone octamer at the core of a nucleosome?",
-      "back": "Two copies each of four different histone proteins: H2A, H2B, H3, and H4."
+      "front": "Complementary base pairing",
+      "back": "Across the two DNA strands, adenine always pairs with thymine (A-T) and guanine always pairs with cytosine (G-C). A purine always pairs with a pyrimidine, keeping the helix a constant width.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "What is the role of the H1 histone protein?",
-      "back": "H1 is a 'linker' histone. It binds to the DNA where it enters and exits the nucleosome core, helping to lock the DNA in place and facilitate further compaction into chromatin fibres."
+      "front": "Hydrogen bonds in base pairs",
+      "back": "A-T is held by TWO hydrogen bonds; G-C is held by THREE. These weak bonds hold the strands together yet allow the helix to be 'unzipped' for reading and copying.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What does 'antiparallel' mean in the context of DNA structure?",
-      "back": "The two strands of the DNA double helix run in opposite directions. One strand runs 5' to 3', while the complementary strand runs 3' to 5'."
+      "front": "Antiparallel strands",
+      "back": "The two strands run in OPPOSITE directions: one is oriented 5' to 3' while its partner runs 3' to 5'. This opposite orientation is required for the bases to pair correctly.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a phosphodiester bond?",
-      "back": "A strong covalent bond that links the 3' carbon atom of one sugar molecule and the 5' carbon atom of another in the sugar-phosphate backbone of DNA and RNA."
+      "front": "Sugar-phosphate backbone",
+      "back": "The alternating sugar and phosphate units on the OUTSIDE of the helix, linked by covalent bonds. It is the same in every organism; only the base sequence differs.",
+      "pillLabel": "Structure"
     },
     {
-      "front": "What is a dideoxyribonucleotide (ddNTP) and what is its role in Sanger sequencing?",
-      "back": "A modified nucleotide that lacks the 3'-hydroxyl group. When incorporated into a growing DNA strand, it terminates synthesis because no further phosphodiester bond can be formed."
+      "front": "How information is stored",
+      "back": "Information is carried by the SEQUENCE (order) of the four bases along a strand. With four possible bases at each position, a strand can encode an enormous number of different messages.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a Short Tandem Repeat (STR)?",
-      "back": "A region of DNA composed of a short sequence of nucleotides (e.g., GATA) that is repeated multiple times. The number of repeats varies between individuals, forming the basis of DNA profiling."
+      "front": "5' to 3' directionality",
+      "back": "The 5' and 3' labels refer to carbons of the sugar. A strand has a free phosphate at the 5' end and a free -OH at the 3' end; new nucleotides are always added at the 3' end, so synthesis runs 5' to 3'.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a common misconception about the discovery of the DNA double helix?",
-      "back": "A common trap is to say Watson and Crick 'discovered' the structure alone. It's crucial to state they *deduced* or *modelled* the structure based on evidence from others, primarily Franklin's X-ray diffraction data."
+      "front": "Chargaff's rules (HL)",
+      "back": "In any double-stranded DNA the amount of A equals T and the amount of G equals C, so %A = %T and %G = %C. This 1:1 matching was direct evidence for complementary base pairing.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "Why the structure suits replication (HL)",
+      "back": "Because each base pairs with only one complement, each strand acts as a TEMPLATE that specifies its partner exactly. Weak hydrogen bonds let the helix unzip, and antiparallel strands let each be copied faithfully.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "Exam Trap: bonds inside vs between strands",
+      "back": "Covalent bonds (sugar-phosphate) run ALONG each backbone; hydrogen bonds run BETWEEN the two strands, joining the base pairs. Do not swap these.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In double-stranded DNA, adenine pairs with:",
+      "options": [
+        "Cytosine",
+        "Guanine",
+        "Thymine",
+        "Another adenine"
+      ],
+      "answer": "Thymine"
+    },
+    {
+      "prompt": "Which set of features correctly describes RNA compared with DNA?",
+      "options": [
+        "Ribose, uracil, single-stranded",
+        "Deoxyribose, thymine, single-stranded",
+        "Ribose, thymine, double-stranded",
+        "Deoxyribose, uracil, double-stranded"
+      ],
+      "answer": "Ribose, uracil, single-stranded"
+    },
+    {
+      "prompt": "'The two strands of DNA are antiparallel' means that:",
+      "options": [
+        "The strands are identical copies of each other",
+        "One strand runs 5' to 3' and the other runs 3' to 5'",
+        "The strands are held together by covalent bonds",
+        "The strands carry no genetic information"
+      ],
+      "answer": "One strand runs 5' to 3' and the other runs 3' to 5'"
+    },
+    {
+      "prompt": "A single nucleotide is made of:",
+      "options": [
+        "Two sugars and a base",
+        "A pentose sugar, a phosphate group and a nitrogenous base",
+        "A phosphate group and two bases",
+        "A double helix of two strands"
+      ],
+      "answer": "A pentose sugar, a phosphate group and a nitrogenous base"
+    },
+    {
+      "prompt": "Which type of bond holds the two strands of the double helix together at the base pairs?",
+      "options": [
+        "Phosphodiester (covalent) bonds",
+        "Hydrogen bonds",
+        "Ionic bonds",
+        "Peptide bonds"
+      ],
+      "answer": "Hydrogen bonds"
     }
   ],
   "faq": [
     {
-      "q": "Why was it so important to prove that DNA, not protein, was the genetic material?",
-      "a": "In the early 20th century, proteins were considered the more likely candidate for genetic material. They are built from 20 different amino acids, allowing for immense complexity, whereas DNA is built from only four nucleotides. This apparent simplicity made DNA seem less capable of storing the vast amount of information needed for life. The Hershey-Chase experiment was a landmark because it definitively overturned this assumption and focused all future research on DNA as the molecule of heredity, paving the way for the discovery of the double helix and the entire field of molecular genetics."
+      "q": "What is the difference between a nucleotide and a base?",
+      "a": "A base is only one of the three parts of a nucleotide. A complete nucleotide is a base joined to a pentose sugar, which in turn carries a phosphate group. So 'adenine' names a base, whereas the nucleotide containing it also includes a sugar and a phosphate. When we describe how information is stored we talk about the sequence of bases, but the physical chain is a chain of nucleotides."
     },
     {
-      "q": "What is the difference between a nucleosome, chromatin, and a chromosome?",
-      "a": "These terms describe different levels of DNA packaging. A **nucleosome** is the most basic unit: DNA wrapped around a core of histone proteins. **Chromatin** is the entire complex of DNA and proteins (mostly histones) that makes up a chromosome. It can exist in a less condensed form ('beads-on-a-string') or more condensed forms (e.g., 30 nm fibre). A **chromosome** is the most highly condensed form of chromatin, visible during cell division, representing a single, continuous piece of DNA packaged into a compact structure."
+      "q": "What do the 5' and 3' notations actually mean?",
+      "a": "They refer to specific carbon atoms in the pentose sugar ring, numbered 1' to 5'. The phosphate group is attached at the 5' carbon and the free hydroxyl that joins to the next nucleotide is on the 3' carbon. This gives each strand a direction: one end of a strand exposes a 5' phosphate, the other a 3' hydroxyl. Because the two strands of a double helix point in opposite directions, they are described as antiparallel."
+    },
+    {
+      "q": "Why does G-C matter more than A-T for stability?",
+      "a": "A guanine-cytosine pair is held by three hydrogen bonds, whereas an adenine-thymine pair is held by only two. Regions of DNA rich in G-C therefore need more energy to separate the strands. This is why calculation questions often hinge on counting hydrogen bonds, and why the proportion of G-C pairs affects how easily a stretch of DNA can be unzipped."
+    },
+    {
+      "q": "How can just four bases store so much information? (HL)",
+      "a": "Information is held in the ORDER of the bases, not in the bases themselves. With four choices at each position, a sequence of n bases can spell out 4 to the power of n different messages, so even a short stretch has a huge number of possibilities. Chargaff's finding that %A = %T and %G = %C showed the pairing is fixed, but the sequence along a strand is free to vary, and it is that free sequence that carries the genetic code."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to our advanced exploration of nucleic acids. Building on your core understanding of DNA's structure and function, we will now examine the historical experiments that cemented its role as the molecule of heredity. We'll also dive deeper into its elegant three-dimensional organisation within eukaryotic cells and learn about the ingenious methods developed to read its sequence."
+      "content": "Every cell you are made of runs on instructions written in the same chemical alphabet, and A1.2 is where that alphabet is introduced. Nucleic acids, DNA and RNA, store and carry the information a cell needs to build proteins and to pass a full copy of itself to the next generation. The remarkable thing is how simple the ingredients are: a repeating chain built from just a few kinds of small unit, arranged so precisely that the order of four bases can spell out the design of an entire organism. This lesson works up from a single nucleotide to the double helix, shows how the two strands pair and store information, and, for HL, connects the structure to Chargaff's evidence and to replication. The model answer at the end is set out the way our marking engine actually awards the marks, because in a 'describe the structure' question, naming each distinct feature is exactly what earns the score."
     },
     {
       "type": "heading",
-      "content": "Evidence for DNA as the Genetic Material: The Hershey-Chase Experiment (1952)"
+      "content": "The structure of a nucleotide"
     },
     {
       "type": "text",
-      "content": "In the mid-20th century, scientists were unsure whether genetic information was stored in proteins or DNA. Proteins, with their 20 different amino acid building blocks, seemed more complex and thus more likely candidates than DNA, with its mere four bases. The experiment by Alfred Hershey and Martha Chase provided a clear answer. They used bacteriophages, viruses that infect bacteria, as their model system. Because viruses are simple structures composed of a protein coat surrounding a nucleic acid core, they were perfect for distinguishing the roles of the two molecules."
+      "content": "The monomer (repeating unit) of a nucleic acid is the nucleotide. Each nucleotide has three parts joined together: a pentose (five-carbon) sugar in the centre, a phosphate group attached to the 5' carbon of that sugar, and a nitrogenous base attached to the 1' carbon. The sugar differs between the two nucleic acids: DNA contains deoxyribose, while RNA contains ribose. The two sugars are almost identical, but deoxyribose lacks an oxygen at the 2' carbon (it has an -H there rather than an -OH), which is the origin of the 'deoxy' in its name and part of why DNA is the more chemically stable, longer-term store."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Step 1: Labelling.** Two batches of bacteriophages were prepared. One was grown with radioactive sulphur ($^{35}$S), which incorporates into proteins. The other was grown with radioactive phosphorus ($^{32}$P), which incorporates into DNA.",
-        "**Step 2: Infection.** Each batch of labelled viruses was used to infect separate cultures of *E. coli* bacteria.",
-        "**Step 3: Blending & Centrifugation.** After allowing time for infection, the cultures were agitated in a blender to separate the virus particles from the outside of the bacteria. The mixture was then centrifuged to pellet the heavier bacteria at the bottom, leaving the lighter viral components in the supernatant.",
-        "**Conclusion.** Radioactivity from $^{32}$P (DNA) was found inside the bacterial cells, while radioactivity from $^{35}$S (protein) was found in the supernatant. This demonstrated that the viral DNA, not the protein, enters the cell to direct the synthesis of new viruses, proving DNA is the genetic material."
+        "**Pentose sugar:** the five-carbon core of the nucleotide, deoxyribose in DNA or ribose in RNA.",
+        "**Phosphate group:** attached to the 5' carbon of the sugar; it is negatively charged, giving DNA its overall negative charge.",
+        "**Nitrogenous base:** attached to the 1' carbon; the four bases in DNA are adenine (A), guanine (G), cytosine (C) and thymine (T), while RNA uses uracil (U) in place of thymine.",
+        "**Purines (double-ring):** adenine and guanine. **Pyrimidines (single-ring):** cytosine, thymine and uracil."
       ]
     },
     {
+      "type": "text",
+      "content": "Nucleotides join into a long chain called a polynucleotide. The phosphate on the 5' carbon of one nucleotide links to the 3' carbon (through its hydroxyl) of the next, so the sugars and phosphates form a continuous alternating backbone. Because one end of the finished strand exposes a free 5' phosphate and the other a free 3' hydroxyl, the strand has a definite direction, described as running 5' to 3'."
+    },
+    {
       "type": "heading",
-      "content": "Elucidating the Double Helix: Franklin and Wilkins"
+      "content": "Comparing DNA and RNA"
     },
     {
       "type": "text",
-      "content": "While the Hershey-Chase experiment proved DNA's function, its structure remained a puzzle. Maurice Wilkins and Rosalind Franklin at King's College London used a technique called X-ray diffraction to study DNA fibres. By firing a beam of X-rays at a purified and aligned sample of DNA, they could record the pattern of scattered rays on photographic film. This pattern provided vital clues about the molecule's three-dimensional arrangement."
+      "content": "DNA and RNA are both polynucleotides, but three structural differences set them apart, and each difference fits their different jobs. DNA is the stable, long-term archive of genetic information; RNA is a shorter-lived working copy involved in reading out that information and making proteins. Being able to state these three contrasts precisely is a very common exam requirement."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Photograph 51:** Franklin's most famous image, produced in 1952, clearly showed a cross-shaped pattern of spots. This 'X' is a characteristic signature of a helical structure.",
-        "**Dimensional Clues:** The pattern also allowed for precise measurements. The distance between the spots indicated the pitch of the helix (3.4 nm per turn) and the distance from the centre to the top layer line indicated the spacing between base pairs (0.34 nm).",
-        "**Crucial Evidence:** This quantitative data was shared with James Watson and Francis Crick, who used it, along with Chargaff's rules, to build their accurate, now-famous double helix model. Franklin's work was therefore indispensable to one of the most significant discoveries in biology."
+        "**Sugar:** DNA contains deoxyribose; RNA contains ribose.",
+        "**Bases:** DNA uses A, G, C and thymine; RNA uses A, G, C and uracil (uracil replaces thymine).",
+        "**Strands:** DNA is normally double-stranded (a double helix); RNA is normally single-stranded and much shorter.",
+        "**Stability and role:** the double strand and deoxyribose make DNA more stable for long-term storage; single-stranded ribose RNA is a versatile, short-term molecule."
       ]
     },
     {
-      "type": "examTip",
-      "content": "In exam questions, be precise about the roles of the different scientists. Franklin and Wilkins produced the experimental data through X-ray diffraction. Watson and Crick interpreted this data, along with other evidence, to propose the final structural model. Avoid simply stating that Watson and Crick 'discovered' the double helix without acknowledging the foundational work of others."
-    },
-    {
       "type": "heading",
-      "content": "Eukaryotic DNA Packaging: Nucleosomes"
+      "content": "The DNA double helix"
     },
     {
       "type": "text",
-      "content": "The human genome contains approximately 3 billion base pairs, which, if stretched out, would measure about 2 metres in length. Fitting this into a nucleus with a diameter of about 6 micrometres requires an extraordinary level of compaction. This is achieved by wrapping the DNA around proteins called histones. The basic unit of this packaging is the nucleosome."
+      "content": "In DNA, two polynucleotide strands wind around each other to form the famous double helix. The two sugar-phosphate backbones lie on the outside of the helix, like the side rails of a spiral ladder, while the nitrogenous bases point inwards and meet in the middle. The two strands are antiparallel: they run in opposite directions, so where one strand runs 5' to 3', its partner runs 3' to 5'. This opposite orientation is not a detail to memorise for its own sake, it is what allows the bases to line up and pair correctly all the way along the molecule."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Structure:** A nucleosome consists of a core particle and linker DNA.",
-        "**Core Particle:** This is composed of approximately 146 base pairs of DNA making 1.65 left-handed superhelical turns around a histone octamer.",
-        "**Histone Octamer:** The core is made of eight histone proteins: two molecules each of H2A, H2B, H3, and H4. These are positively charged (basic) proteins, which allows them to bind tightly to the negatively charged sugar-phosphate backbone of DNA.",
-        "**Linker DNA & H1 Histone:** The 'string' of DNA connecting adjacent nucleosomes is called linker DNA. A fifth type of histone, H1, binds to the linker DNA and helps to further compact the chromatin into a 30 nm fibre."
+        "**Two strands:** DNA is made of two polynucleotide strands twisted into a double helix.",
+        "**Antiparallel:** the strands run in opposite directions (one 5' to 3', the other 3' to 5').",
+        "**Backbones outside:** the sugar-phosphate backbones form the outer rails; the bases face inwards.",
+        "**Base pairs inside:** the paired bases form the 'rungs', holding the two strands a fixed distance apart."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A segment of eukaryotic DNA is 10,000 base pairs (bp) long. A single nucleosome unit (core particle + linker DNA) occupies approximately 200 bp of DNA. (a) Estimate the number of nucleosomes in this segment. (b) If the DNA were fully extended, its length would be $10,000 \\text{ bp} \\times 0.34 \\text{ nm/bp}$. Calculate this length in micrometres (μm). (c) The 'beads-on-a-string' structure of chromatin has a diameter of about 11 nm. By what factor has the DNA been compacted in length at this first level of packaging?",
-      "solution": "**(a) Estimate the number of nucleosomes. [1 mark]**\n- Total length / length per unit = $10,000 \\text{ bp} / 200 \\text{ bp/nucleosome}$\n- **Answer:** 50 nucleosomes ✓\n\n**(b) Calculate the extended length in μm. [2 marks]**\n- Length in nm = $10,000 \\times 0.34 = 3400 \\text{ nm}$ ✓\n- Conversion to μm: $3400 \\text{ nm} / 1000 \\text{ nm/μm} = 3.4 \\text{ μm}$ ✓\n\n**(c) Calculate the compaction factor. [2 marks]**\n- The length of the DNA when packaged into 50 nucleosomes is roughly the number of nucleosomes multiplied by the diameter of one nucleosome. Length ≈ $50 \\times 11 \\text{ nm} = 550 \\text{ nm}$. ✓\n- Compaction factor = Extended length / Packaged length = $3400 \\text{ nm} / 550 \\text{ nm} \\approx 6.2$. The length is compacted by a factor of approximately 6. ✓"
-    },
-    {
       "type": "heading",
-      "content": "Reading the Genetic Code: The Sanger Sequencing Method"
+      "content": "Complementary base pairing and hydrogen bonds"
     },
     {
       "type": "text",
-      "content": "DNA sequencing is the process of determining the precise order of nucleotides within a DNA molecule. The first widely used method was the chain-termination method, developed by Frederick Sanger. It relies on creating copies of the DNA template that are terminated at specific points by special nucleotides."
+      "content": "The two strands are held together by pairing between their bases, and the pairing is not random. Adenine always pairs with thymine, and guanine always pairs with cytosine, a rule known as complementary base pairing. Each pair joins a double-ring purine to a single-ring pyrimidine, so every rung of the ladder is the same width and the helix stays uniform. The pairs are held by hydrogen bonds: two hydrogen bonds between A and T, and three between G and C. Individually these bonds are weak, but along a long molecule there are so many of them that the double helix is stable, while still able to be 'unzipped' locally when the information needs to be read or copied."
     },
     {
       "type": "formula",
-      "content": "Sanger Sequencing Reaction Mix:\n1. DNA template (to be sequenced)\n2. A single type of DNA primer\n3. DNA polymerase\n4. A mixture of all four normal deoxynucleoside triphosphates (dNTPs: dATP, dGTP, dCTP, dTTP)\n5. A small amount of one type of fluorescently labelled dideoxynucleoside triphosphate (ddNTP: ddATP, ddGTP, ddCTP, or ddTTP)"
+      "content": "\\text{A pairs with T (2 hydrogen bonds)} \\qquad \\text{G pairs with C (3 hydrogen bonds)}"
     },
     {
       "type": "text",
-      "content": "The key is the ddNTP. It lacks the 3'-OH group necessary for forming a phosphodiester bond. When a ddNTP is incorporated into the growing DNA strand, replication stops. By running four separate reactions, each with a different ddNTP, or a single reaction with each ddNTP labelled with a different colour, a collection of DNA fragments is generated, each ending at a specific base. These fragments are then separated by size using capillary gel electrophoresis, and the sequence is read by a detector."
+      "content": "Notice the division of labour between the two kinds of bond. Strong covalent bonds run ALONG each backbone, holding a single strand together; weaker hydrogen bonds run BETWEEN the two strands, holding the pair together. That combination, strong within a strand and weak between strands, is exactly what a molecule needs if it must survive intact yet be opened easily for reading and copying."
+    },
+    {
+      "type": "heading",
+      "content": "How the base sequence stores information"
+    },
+    {
+      "type": "text",
+      "content": "The backbone is identical in every organism, so it carries no message. The information lives in the SEQUENCE of the bases, the order in which A, G, C and T appear along a strand. With four possible bases at every position, even a short stretch of DNA can be arranged in an enormous number of ways, and it is this order that encodes the instructions for making proteins. Because the sequence has a direction, it is always read and written 5' to 3'; the same four letters in the reverse order would spell a different message, just as the letters of a word only make sense read one way."
     },
     {
       "type": "workedExample",
-      "question": "The diagram shows the result of a Sanger sequencing gel. The DNA fragments were separated by electrophoresis, with the smallest fragments at the bottom. The lanes are labelled with the ddNTP that was added to that reaction. Deduce the sequence of the *newly synthesised* DNA strand, from 5' to 3'.\n\n(Imagine a gel with lanes for ddG, ddA, ddT, ddC from left to right. Bands appear from bottom to top at these positions: T, A, G, C, G, A, T, G, C)",
-      "solution": "To deduce the sequence, you read the gel from bottom to top, as the smallest fragments travel furthest. The sequence of the newly synthesised strand is read directly from the bands.\n\n- **Step 1:** Identify the smallest fragment. It is at the bottom, in the 'T' lane. So the first base is T.\n- **Step 2:** Move up to the next smallest fragment. It is in the 'A' lane. The second base is A.\n- **Step 3:** Continue reading up the gel: G, C, G, A, T, G, C.\n\n**Marking points:**\n- Reading starts from the bottom. ✓\n- Correct sequence read in the correct direction (5' to 3'). ✓\n\n**Final Answer:** The sequence of the newly synthesised strand is 5' - T A G C G A T G C - 3' ✓\n\n**Note:** If the question asked for the template strand, you would need to write the complementary sequence (3' - A T C G C T A C G - 5')."
+      "question": "Describe the structure of a DNA molecule. [4]",
+      "solution": "**Model answer.**\nA DNA molecule is made of two polynucleotide strands wound into a double helix. Each strand is a chain of nucleotides, and each nucleotide is composed of a deoxyribose sugar, a phosphate group and a nitrogenous base. The sugars and phosphates form a sugar-phosphate backbone on the outside of the helix, while the bases point inwards. The two strands run in opposite (antiparallel) directions. The bases pair together by complementary base pairing, adenine with thymine and guanine with cytosine, and each pair is held by hydrogen bonds (two for A-T, three for G-C).\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1:** DNA is a double helix of two (polynucleotide) strands.\n- **Point 2:** the two strands are antiparallel (run in opposite directions).\n- **Point 3:** a sugar-phosphate backbone forms the outside of each strand.\n- **Point 4:** a nucleotide is made of a (pentose/deoxyribose) sugar, a phosphate and a base.\n- **Point 5:** complementary base pairing, A with T and G with C.\n- **Point 6 (A, detail):** the base pairs are held by hydrogen bonds (accept 2 for A-T, 3 for G-C as the creditable detail).\n\nSix creditable points are shown here for a 4-mark question, so the engine caps the award at 4, there is deliberate room to miss a point and still score full marks. But the marks are for DISTINCT ideas: writing 'two strands' and 'double-stranded' in two places scores once, not twice. The A mark rewards a precise structural detail (such as the correct hydrogen-bond count or naming deoxyribose) rather than loose phrasing.\n\n**Error carried forward (ECF).** The points are independent, so a candidate who mislabels the sugar but correctly describes the backbone, antiparallel strands and complementary pairing still earns those points; one slip does not cascade into the rest of the answer.\n\n**What the engine rejects.** Vague statements such as 'DNA is a twisted ladder that carries genes' score nothing on their own, because they name none of the required features (strands, backbone, nucleotide parts, base pairing). The mark scheme rewards named structural components, not the analogy.\n\n**Bottom line:** to bank all 4 marks, make four separate structural statements, double helix / antiparallel strands → sugar-phosphate backbone → nucleotide = sugar + phosphate + base → complementary base pairing (A-T, G-C) with hydrogen bonds. Accept equivalent correct wording throughout."
     },
     {
       "type": "examTip",
-      "content": "When interpreting Sanger sequencing gels, remember you are reading the sequence of the *new strand* being synthesised. The smallest fragment at the bottom of the gel represents the 5' end of this new strand. Always double-check if the question asks for the synthesised strand or the original template strand."
+      "content": "The Practice button marks YOUR answer this same way, point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements rather than one long sentence: name the double helix, the antiparallel strands, the sugar-phosphate backbone, the three parts of a nucleotide, and complementary base pairing with hydrogen bonds. An analogy on its own earns nothing; naming each structural feature is what protects your score."
+    },
+    {
+      "type": "workedExample",
+      "question": "One strand of a DNA molecule has the base sequence 5'-A T G C C A G T-3'. Write the base sequence of the complementary strand, and state the direction in which you have written it. [3]",
+      "solution": "**Step 1 — apply the pairing rules to each base.**\nGoing along the given strand, replace each base with its complement: A pairs with T, T with A, G with C, C with G. [1: correct complements chosen using A-T and G-C]\n\ngiven:      5'- A T G C C A G T -3'\ncomplement:     T A C G G T C A\n\n**Step 2 — set the direction of the new strand.**\nBecause the two strands are ANTIPARALLEL, the complementary strand runs in the opposite direction to the given one. The base opposite the given 5' end is the 3' end of the new strand. [1: recognises antiparallel orientation]\n\n**Step 3 — write the answer conventionally, 5' to 3'.**\nReading the complementary strand from its own 5' end gives:\n\n**3'- T A C G G T C A -5'**, or written conventionally 5' to 3': **5'- A C T G G C A T -3'**. [1: correct sequence with direction stated]\n\n*Check with Chargaff-style logic: the given strand has 2 A, 1 T, 2 G, 2 C, 1... count them, and the complement must have exactly a T for every A and a C for every G, which it does. Stating the direction is essential; a correct set of letters with no 5'/3' labels usually forfeits the direction mark.*"
+    },
+    {
+      "type": "heading",
+      "content": "Chargaff's data and replication (HL)"
+    },
+    {
+      "type": "text",
+      "content": "Before the double helix was worked out, Erwin Chargaff measured the base composition of DNA from many different species. He found a consistent pattern: in every sample the amount of adenine equalled the amount of thymine, and the amount of guanine equalled the amount of cytosine, so %A = %T and %G = %C, even though the overall proportion of A-T to G-C varied from species to species. At the time this 1:1 matching was unexplained, but it becomes obvious once you know that A always pairs with T and G always pairs with C: every A on one strand is matched by a T on the other, and every G by a C. Chargaff's rules were therefore direct chemical evidence for complementary base pairing, and they let you calculate any base percentage once one is known."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Chargaff's rules:** in double-stranded DNA, %A = %T and %G = %C.",
+        "**Why:** complementary base pairing means each A is matched by a T and each G by a C across the two strands.",
+        "**Use it:** if %G is known then %C is the same, and A and T share the remainder equally.",
+        "**Significance:** the fixed pairing means each strand exactly specifies its partner."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The same feature that explains Chargaff's data also makes the molecule ideally suited to replication. Because each base has only one possible partner, each strand carries all the information needed to rebuild the other: it acts as a template. The weak hydrogen bonds between the base pairs allow the helix to be unzipped without breaking the strong backbone, exposing the bases so that free nucleotides can pair against each exposed strand. Since the strands are antiparallel, each is copied faithfully in the 5' to 3' direction, and the result is two identical double helices, each keeping one original strand. This is why Watson and Crick famously noted that the pairing 'immediately suggests a possible copying mechanism' for the genetic material."
+    },
+    {
+      "type": "workedExample",
+      "question": "(HL) A sample of double-stranded DNA is found to contain 22% guanine. Calculate the percentage of thymine. [3]",
+      "solution": "**Step 1 — apply Chargaff's rule for G and C.**\nIn double-stranded DNA, %G = %C, so if guanine is 22% then cytosine is also 22%. [1]\n\n**Step 2 — find the combined A + T percentage.**\nThe four bases total 100%. G and C together account for 22% + 22% = 44%, so adenine and thymine together make up 100% − 44% = 56%. [1]\n\n**Step 3 — split A and T equally.**\nBy Chargaff's rule %A = %T, so thymine is 56% ÷ 2 = **28%**. [1]\n\n*This only works for DOUBLE-stranded DNA. In a single strand there is no pairing, so %A need not equal %T, a favourite trap in exam questions.*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Getting the pairing rules wrong** — it is A with T and G with C. Writing A-G or A-C, or 'A pairs with U in DNA', loses marks; uracil belongs to RNA, not DNA.",
+        "**Confusing bonds inside and between strands** — covalent (sugar-phosphate) bonds run ALONG each backbone; hydrogen bonds run BETWEEN the strands at the base pairs. Do not say the strands are held together by covalent bonds.",
+        "**Misstating the DNA/RNA differences** — DNA has deoxyribose, thymine and two strands; RNA has ribose, uracil and one strand. Mixing any of these up is a common lost mark.",
+        "**Explaining 'antiparallel' loosely** — it means the two strands run in OPPOSITE directions (one 5' to 3', the other 3' to 5'), not that they are simply 'next to each other' or 'identical'.",
+        "**Forgetting direction when writing a complementary strand** — a correct set of bases with no 5'/3' labels usually forfeits the direction mark; always state that the new strand is antiparallel and give it 5' to 3'.",
+        "**Naming a base as though it were a whole nucleotide** — a nucleotide is a base PLUS a sugar PLUS a phosphate; 'adenine' alone is only the base.",
+        "**Applying Chargaff's rule to single-stranded nucleic acids** — %A = %T and %G = %C hold only for double-stranded DNA, not for a single strand or for RNA."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The structure you have built here is the foundation for much of the rest of biology. Complementary base pairing reappears in DNA replication (A1.2 HL and beyond), in transcription where a base sequence is copied into RNA, and in translation where that sequence is read three bases at a time to build a protein. The same logic, that a fixed base pair means one strand can specify another, underpins the whole flow of genetic information. Get the double helix, antiparallel strands and base pairing secure now, and every later topic on gene expression rests on solid ground."
     },
     {
       "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-biology-hl&topic=A1.2"
+      "label": "Get a Paper 2 question marked: describe the structure of DNA and predict a complementary strand with full working",
+      "href": "/mark?subject=ib-biology-hl&topic=A1.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "3D Animation of Nucleosome Structure",
-          "href": "https://www.youtube.com/watch?v=gb_vU2T5A0k"
+          "label": "Interactive 3D DNA Model (yourgenome)",
+          "href": "https://www.yourgenome.org/activities/explore-a-3d-dna-model"
         },
         {
-          "label": "Animation of the Hershey-Chase Experiment",
-          "href": "https://www.dnalc.org/resources/3d/hershey-chase.html"
+          "label": "DNA Structure and Replication (Amoeba Sisters)",
+          "href": "https://www.youtube.com/watch?v=8kK2zwjRV0M"
         },
         {
-          "label": "Sanger Sequencing Explained",
-          "href": "https://www.yourgenome.org/facts/what-is-sanger-sequencing"
+          "label": "DNAi: The Discovery of the Double Helix",
+          "href": "https://www.dnai.org/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

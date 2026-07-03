@@ -1,194 +1,133 @@
 {
   "slug": "e-1-structure-of-the-atom",
   "topicCode": "E.1",
+  "unit": { "code": "E", "title": "Nuclear and quantum physics" },
   "title": "Structure of the atom",
   "paper": "P2",
   "paperName": "Physics SL",
   "status": "premium",
-  "summary": "This lesson introduces the nuclear model of the atom, stemming from the Rutherford-Geiger-Marsden experiment. It covers nuclear notation ($^A_Z X$), the concept of isotopes, and the fundamental forces at play within the nucleus, particularly the strong nuclear force.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "This lesson builds the full E.1 picture of the atom, from the nucleus outwards. It starts with the Geiger–Marsden (Rutherford) scattering evidence for a tiny dense nucleus, then fixes the language of protons, neutrons and electrons, nuclear notation $^{A}_{Z}X$ and isotopes. It then turns to the quantum side of the syllabus: why atoms only absorb and emit light at sharp, discrete wavelengths, how those line spectra are direct evidence for discrete atomic energy levels, the photon and $E = hf$, the electronvolt as a convenient energy unit, and how to calculate the wavelength or frequency of the photon emitted when an electron falls between levels. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the Rutherford-Geiger-Marsden experiment and its conclusions about atomic structure.",
-    "Use and interpret the standard nuclear notation $^A_Z X$ to describe nuclides.",
-    "Define isotopes and identify them based on their proton and neutron numbers.",
-    "Explain the role, range, and properties of the strong nuclear force in ensuring nuclear stability."
+    "Describe the Geiger–Marsden (Rutherford) scattering experiment and the conclusions it forces about atomic structure.",
+    "Use nuclear notation $^{A}_{Z}X$ to state the numbers of protons, neutrons and electrons, and define isotopes.",
+    "Explain how emission and absorption line spectra are evidence for discrete atomic energy levels.",
+    "Relate a photon's energy to its frequency and wavelength using $E = hf$ and $c = f\\lambda$, and convert between the electronvolt and the joule.",
+    "Calculate the wavelength or frequency of the photon emitted or absorbed in a transition between two energy levels, presenting working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["E.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Unveiling the Atomic Core",
-    "summary": "We'll explore how scientists discovered the tiny, dense nucleus inside atoms and learn how to describe different atomic versions. This involves understanding the powerful force holding it all together against immense repulsion.",
-    "analogy": "Imagine you're in a completely dark, massive warehouse and you suspect a tiny, solid steel ball is hidden somewhere inside. To find it, you start firing thousands of tiny pellets in all directions. Most pellets fly straight through and hit the far wall, telling you the warehouse is mostly empty. But every now and then, a pellet ricochets back at you with great force. This surprising rebound reveals the exact location and tiny size of the hidden steel ball. This is precisely how Rutherford's experiment revealed the atom's tiny, dense nucleus.",
+    "title": "A Barcode for Every Element",
+    "summary": "An atom is a tiny, dense, positive nucleus surrounded by electrons that are only allowed to sit at particular energy levels — like rungs on a ladder, never in between. When an electron drops from a higher rung to a lower one, the atom spits out a single packet of light (a photon) whose energy is exactly the gap between the rungs. Because the rungs are fixed, the colours an element emits are fixed too, giving every element a unique light 'barcode'.",
+    "analogy": "Think of a vending machine that only accepts exact change. The electron ladder has rungs worth fixed amounts of energy, and a photon is a coin of one fixed value. An electron can only jump down between rungs if a photon-coin of exactly the right value comes out; it can only jump up if it swallows a coin of exactly the right value. That is why a hot gas glows in a few sharp colours rather than a smooth rainbow — only certain coins exist for that element.",
     "steps": [
-      "Begin with the Rutherford scattering experiment, where alpha particles are fired at a thin gold foil.",
-      "Observe the results: most particles pass straight through, a few are deflected slightly, and a very small number (about 1 in 8000) are deflected by more than 90 degrees.",
-      "Draw conclusions about the atom's structure: it is mostly empty space, with a tiny, dense, and positively charged nucleus containing most of the mass.",
-      "Describe this nucleus using standard notation ($^A_Z X$) and understand the balance of forces (strong nuclear vs. electrostatic) that determines its stability."
+      "Fire alpha particles at gold foil (Geiger–Marsden) and, from the few that bounce back, deduce a tiny dense positive nucleus surrounded by mostly empty space.",
+      "Describe any nucleus with $^{A}_{Z}X$: $Z$ protons, $A-Z$ neutrons; isotopes share $Z$ but differ in $A$.",
+      "Accept that electrons occupy only discrete energy levels — the sharp lines in a spectrum prove the gaps are fixed.",
+      "Use $E = hf$ and $c = f\\lambda$ to turn the energy of a jump between two levels into the frequency or wavelength of the photon released, converting eV to J first."
     ]
   },
+  "keyConcepts": ["nuclear model", "discrete energy levels", "the photon and $E = hf$", "line spectra as evidence"],
   "flashcards": [
-    {
-      "front": "What is a nucleon?",
-      "back": "A particle found in the atomic nucleus. It can be either a proton or a neutron."
-    },
-    {
-      "front": "Define the proton number (Z).",
-      "back": "The number of protons in an atom's nucleus. It is also known as the atomic number and defines the element."
-    },
-    {
-      "front": "Define the nucleon number (A).",
-      "back": "The total number of protons and neutrons in an atom's nucleus. It is also known as the mass number."
-    },
-    {
-      "front": "What is the relationship between A, Z, and the neutron number (N)?",
-      "back": "The neutron number is the difference between the nucleon number and the proton number: $N = A - Z$."
-    },
-    {
-      "front": "What is a nuclide?",
-      "back": "A specific type of atomic nucleus, characterized by its particular proton number (Z) and neutron number (N)."
-    },
-    {
-      "front": "What are isotopes?",
-      "back": "Nuclides that have the same number of protons (same Z) but different numbers of neutrons (different N). For example, Carbon-12 and Carbon-14."
-    },
-    {
-      "front": "What was the key conclusion of the Rutherford-Geiger-Marsden experiment?",
-      "back": "The atom consists of a small, dense, positively charged nucleus surrounded by mostly empty space through which electrons orbit."
-    },
-    {
-      "front": "Describe the strong nuclear force.",
-      "back": "A fundamental force that acts over a very short range (approx. $10^{-15}$ m) to hold nucleons together in the nucleus. It is attractive and stronger than the electrostatic repulsion between protons."
-    },
-    {
-      "front": "Why are isotopes chemically identical?",
-      "back": "Chemical properties are determined by electron configuration. Since isotopes have the same number of protons, a neutral atom will have the same number of electrons, leading to identical chemical behaviour."
-    },
-    {
-      "front": "What is an alpha particle?",
-      "back": "A helium nucleus, consisting of 2 protons and 2 neutrons. It has a charge of +2e. It was used as a probe in the Rutherford scattering experiment."
-    },
-    {
-      "front": "Common Trap: What is the difference between Nucleon Number (A) and Neutron Number (N)?",
-      "back": "The Nucleon Number (A) is the TOTAL count of protons AND neutrons. The Neutron Number (N) is ONLY the count of neutrons. Don't mix them up; remember $N = A - Z$."
-    },
-    {
-      "front": "Compare the range of the strong nuclear force and the electrostatic force.",
-      "back": "The strong nuclear force is very short-ranged, acting only within the nucleus. The electrostatic force has an infinite range, although its strength decreases with the square of the distance."
-    }
+    { "front": "Geiger–Marsden key result", "back": "Alpha particles fired at thin gold foil: most pass almost straight through, a few deflect by large angles, about 1 in 8000 bounces back. Conclusion: the atom is mostly empty space with a tiny, dense, positively charged nucleus holding almost all the mass.", "pillLabel": "Experiment" },
+    { "front": "Nuclear notation $^{A}_{Z}X$", "back": "$Z$ = proton number (defines the element), $A$ = nucleon number (protons + neutrons). Neutron number $N = A - Z$. A neutral atom has $Z$ electrons.", "pillLabel": "Definition" },
+    { "front": "Isotopes", "back": "Nuclides of the same element — same $Z$ — but different $A$ (different neutron number). Same chemistry (same electrons), different mass and nuclear stability. Example: $^{12}_{6}C$ and $^{14}_{6}C$.", "pillLabel": "Definition" },
+    { "front": "Discrete energy levels", "back": "An electron in an atom can only have certain allowed energies, not any value in between. Levels are labelled with negative energies (the electron is bound); the least negative levels are highest, and $0$ eV means the electron is just free (ionised).", "pillLabel": "Concept" },
+    { "front": "The photon", "back": "A single quantum (packet) of electromagnetic radiation. Its energy depends only on its frequency, not its intensity: $E = hf$, where $h = 6.63 \\times 10^{-34}$ J s is the Planck constant.", "pillLabel": "Concept" },
+    { "front": "$E = hf$", "back": "Photon energy = Planck constant × frequency. Combined with $c = f\\lambda$ it gives $E = \\dfrac{hc}{\\lambda}$: higher frequency (shorter wavelength) means a more energetic photon.", "pillLabel": "Formula" },
+    { "front": "$c = f\\lambda$", "back": "For any electromagnetic wave in a vacuum, speed of light = frequency × wavelength, with $c = 3.0 \\times 10^{8}$ m s⁻¹. Rearranged, $\\lambda = c/f$ and $f = c/\\lambda$.", "pillLabel": "Formula" },
+    { "front": "Emission line spectrum", "back": "A hot, low-density gas emits light at only a few sharp wavelengths — bright coloured lines on a dark background. Each line is one specific electron transition down between two levels; the pattern is unique to the element.", "pillLabel": "Concept" },
+    { "front": "Absorption line spectrum", "back": "White light passed through a cool gas comes out with dark lines missing at exactly the wavelengths that gas would emit. Electrons absorb only photons whose energy matches an upward gap between levels.", "pillLabel": "Concept" },
+    { "front": "Photon energy = the DIFFERENCE", "back": "The emitted (or absorbed) photon's energy equals the DIFFERENCE between the two levels, $\\Delta E = E_{\\text{high}} - E_{\\text{low}}$ — never the value of a single level. Take the gap, then convert to joules.", "pillLabel": "Framework" },
+    { "front": "The electronvolt (eV)", "back": "The energy gained by an electron accelerated through a potential difference of 1 volt: $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J. To use $E = hf$ you must first convert eV to joules.", "pillLabel": "Definition" },
+    { "front": "eV ↔ J conversion", "back": "Multiply by $1.60 \\times 10^{-19}$ to go from eV to J; divide by $1.60 \\times 10^{-19}$ to go from J to eV. A 2 eV photon carries $3.2 \\times 10^{-19}$ J.", "pillLabel": "Formula" },
+    { "front": "Why levels have negative energy", "back": "A bound electron has less energy than a free one at rest, taken as the $0$ eV reference. So bound states are negative; the ground state is the most negative. The ionisation energy is how much you must add to reach $0$ eV.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: line spectra vs continuous", "back": "A continuous (rainbow) spectrum comes from hot solids/liquids/dense gases. Sharp LINES come from isolated atoms in a low-density gas and are the evidence for DISCRETE levels. Do not describe emission lines as 'a continuous spectrum'.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A low-density gas is heated until it glows and its light is passed through a diffraction grating. The most direct thing the sharp, separate bright lines tell us is that the atom's electrons:", "options": ["Can have any energy at all", "Occupy only certain discrete energy levels", "Are all in the nucleus", "Move faster than light"], "answer": "Occupy only certain discrete energy levels" },
+    { "prompt": "An electron falls from a level at $-1.5$ eV to a level at $-3.4$ eV. The energy of the emitted photon is:", "options": ["$3.4$ eV", "$1.5$ eV", "$1.9$ eV", "$4.9$ eV"], "answer": "$1.9$ eV" },
+    { "prompt": "A photon has energy $3.2 \\times 10^{-19}$ J. Its energy expressed in electronvolts is:", "options": ["$2.0$ eV", "$3.2$ eV", "$0.5$ eV", "$5.1 \\times 10^{-38}$ eV"], "answer": "$2.0$ eV" },
+    { "prompt": "Cool hydrogen gas in front of a white-light source produces a spectrum. Compared with hydrogen's emission spectrum, the dark absorption lines appear at:", "options": ["Completely different wavelengths", "Exactly the same wavelengths as the bright emission lines", "Only longer wavelengths", "Randomly shifting wavelengths"], "answer": "Exactly the same wavelengths as the bright emission lines" },
+    { "prompt": "Two photons are emitted, a red one and a blue one. Using $E = hf$, which statement is correct?", "options": ["The red photon has the higher energy because red is a longer wavelength", "The blue photon has the higher energy because it has the higher frequency", "They must have equal energy since both are visible light", "Energy depends only on brightness, not colour"], "answer": "The blue photon has the higher energy because it has the higher frequency" }
   ],
   "faq": [
-    {
-      "q": "If the strong nuclear force is so powerful, why don't all atomic nuclei just clump together?",
-      "a": "The strong nuclear force has an extremely short range, only being effective over distances of about $10^{-15}$ metres. This is roughly the diameter of a nucleon. Outside of the nucleus, its strength drops to virtually zero, so it cannot pull nucleons from other, separate atoms."
-    },
-    {
-      "q": "Why do neutrons help to hold the nucleus together?",
-      "a": "Neutrons play a crucial role in nuclear stability. They experience the attractive strong nuclear force with both protons and other neutrons, but they do not have any electric charge. Therefore, they add to the total attractive force holding the nucleus together without adding to the electrostatic repulsion that is trying to push it apart. This is why stable, larger nuclei always have more neutrons than protons."
-    },
-    {
-      "q": "What is an 'atomic mass unit' (u)?",
-      "a": "An atomic mass unit (u) is a unit of mass used to express atomic and molecular weights. It is defined as one-twelfth of the mass of an unbound neutral atom of carbon-12 in its nuclear and electronic ground state. Approximately, $1 \\text{ u} \\approx 1.661 \\times 10^{-27} \\text{ kg}$."
-    }
+    { "q": "Why are the levels written with negative energies?", "a": "The energy of a free electron at rest, far from the nucleus, is taken as the zero reference. Any electron bound to the atom has less energy than that, so its energy is negative. The ground state is the most negative (most tightly bound); levels closer to $0$ eV are higher and more loosely held. When an electron reaches $0$ eV it is just free — the atom has been ionised." },
+    { "q": "How exactly do line spectra prove the levels are discrete?", "a": "If electrons could have any energy, a gas would emit and absorb every wavelength and we would see a smooth continuous band. Instead we see a few sharp, precisely located lines. Each line corresponds to one fixed energy difference $\\Delta E$, and through $E = hf$ a fixed $\\Delta E$ means a fixed frequency. Sharp lines therefore mean sharply defined energy gaps, which is only possible if the electron energies themselves come in discrete allowed values." },
+    { "q": "What is the difference between an emission and an absorption spectrum?", "a": "In emission, electrons that were excited to higher levels fall back down and each drop releases a photon, giving bright coloured lines on a dark background. In absorption, white light passes through a cooler gas and electrons absorb only the photons whose energy matches an upward gap, so those wavelengths are removed and appear as dark lines. Crucially, the missing (dark) lines sit at exactly the same wavelengths as the bright emission lines for the same element, because the level structure is the same." },
+    { "q": "When do I use eV and when do I use joules?", "a": "Energy levels and photon energies are usually quoted in electronvolts because the numbers are convenient (a few eV rather than $10^{-19}$ J). But every equation in the data booklet — $E = hf$, $E = hc/\\lambda$ — expects SI units, so before you substitute you must convert eV to joules by multiplying by $1.60 \\times 10^{-19}$. Do the physics in joules, then convert back to eV only if the question asks for it." },
+    { "q": "Does a brighter light mean higher-energy photons?", "a": "No. The energy of each photon is set purely by its frequency through $E = hf$. Making a source brighter sends out MORE photons per second, but each individual photon still carries the same energy. To get higher-energy photons you need a higher frequency (shorter wavelength) — blue light photons are more energetic than red ones no matter how dim or bright each source is." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to our exploration of the atom's core. For a long time, scientists pictured the atom as a 'plum pudding' – a diffuse cloud of positive charge with electrons embedded within it. However, a groundbreaking experiment in the early 20th century shattered this model and gave us the picture of the atom we use today: a tiny, dense nucleus orbited by electrons. In this lesson, we'll dissect that experiment and learn the language used to describe the rich variety of atomic nuclei."
-    },
-    {
-      "type": "heading",
-      "content": "The Rutherford-Geiger-Marsden Experiment"
-    },
-    {
-      "type": "text",
-      "content": "In 1909, Hans Geiger and Ernest Marsden, under the direction of Ernest Rutherford, conducted an experiment that revolutionised our understanding of the atom. They fired a beam of alpha particles (which are helium nuclei, $^4_2He^{2+}$) at a very thin sheet of gold foil. A circular detector screen coated with zinc sulphide was placed around the foil, which would produce a small flash of light (a scintillation) whenever it was struck by an alpha particle."
-    },
-    {
-      "type": "text",
-      "content": "Based on the prevailing 'plum pudding' model, they expected the alpha particles to pass straight through the foil with minimal deviation. While this was true for the vast majority of particles, they were astonished to observe that a small number were deflected at large angles, and a very tiny fraction (about 1 in 8000) even bounced back towards the source. Rutherford famously remarked, \"It was almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you.\""
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Observation 1:** Most alpha particles passed straight through. **Conclusion:** The atom is mostly empty space.",
-        "**Observation 2:** A small fraction of alpha particles were deflected by large angles. **Conclusion:** There is a concentration of positive charge in the atom, as it repelled the positive alpha particles.",
-        "**Observation 3:** A very small number of alpha particles rebounded. **Conclusion:** The centre of positive charge (the nucleus) is very small, dense, and contains most of the atom's mass."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Nuclear Notation and Composition"
-    },
-    {
-      "type": "text",
-      "content": "The nucleus is composed of two types of particles, collectively known as nucleons: protons and neutrons. The number of protons defines the element, while the number of neutrons can vary. We use a standard notation to describe a specific nucleus, or nuclide."
-    },
-    {
-      "type": "formula",
-      "content": "$$^A_Z X$$"
-    },
-    {
-      "type": "text",
-      "content": "Here, $X$ is the chemical symbol for the element. $Z$ is the **proton number** (or atomic number), representing the number of protons. $A$ is the **nucleon number** (or mass number), representing the total number of protons and neutrons. The number of neutrons, $N$, can be found easily by the relation $N = A - Z$."
-    },
-    {
-      "type": "workedExample",
-      "question": "A nuclide of uranium is represented by $^{235}_{92}U$. Determine the number of (i) protons, (ii) neutrons, and (iii) nucleons in this nuclide.",
-      "solution": "We use the notation $^A_Z X$.\n\n(i) The proton number, $Z$, is the subscript. For $^{235}_{92}U$, the proton number is 92.\nNumber of protons = 92 ✓\n\n(ii) The nucleon number, $A$, is the superscript, which is 235. The neutron number is $N = A - Z$.\n$N = 235 - 92 = 143$\nNumber of neutrons = 143 ✓\n\n(iii) The nucleon number, $A$, is the total number of nucleons (protons + neutrons).\nNumber of nucleons = 235 ✓"
-    },
-    {
-      "type": "heading",
-      "content": "Isotopes"
-    },
-    {
-      "type": "text",
-      "content": "Isotopes are nuclides that share the same proton number ($Z$) but have different nucleon numbers ($A$). This means they are atoms of the same element but with a different number of neutrons in their nucleus. For example, the element carbon ($Z=6$) exists in several isotopic forms, including Carbon-12 ($^{12}_6C$), Carbon-13 ($^{13}_6C$), and Carbon-14 ($^{14}_6C$). Because they have the same number of protons, and therefore the same number of electrons in their neutral state, isotopes have identical chemical properties. However, their different masses and neutron-to-proton ratios give them different physical properties, such as nuclear stability and density."
-    },
-    {
-      "type": "heading",
-      "content": "The Strong Nuclear Force"
-    },
-    {
-      "type": "text",
-      "content": "Consider the nucleus of a helium atom, which contains two positively charged protons packed into an incredibly small volume. According to Coulomb's Law, these protons should exert a massive electrostatic repulsive force on each other, causing the nucleus to fly apart. The fact that nuclei are stable implies the existence of another, even stronger, attractive force. This is the **strong nuclear force**."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Strength:** It is the strongest of the four fundamental forces, but only over its specific range.",
-        "**Range:** It is extremely short-ranged, acting only over distances comparable to the size of a proton (around $10^{-15}$ m). Beyond this range, its effect is essentially zero.",
-        "**Action:** It acts between all nucleons: proton-proton, neutron-neutron, and proton-neutron.",
-        "**Charge Independence:** The force is independent of electric charge."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2, you may be asked to compare the properties of the strong nuclear force and the electrostatic force within a nucleus. A good answer will mention their relative strengths (strong force is stronger), their nature (strong force is attractive, electrostatic is repulsive between protons), and their range (strong force is short-range, electrostatic is long-range)."
-    },
-    {
-      "type": "workedExample",
-      "question": "Two common isotopes of chlorine are Chlorine-35 ($^{35}_{17}Cl$) and Chlorine-37 ($^{37}_{17}Cl$).\n\n(a) State the number of neutrons in a nucleus of each isotope.\n(b) Compare the electrostatic force and the strong nuclear force acting between two protons within a Chlorine-35 nucleus.",
-      "solution": "(a) For any nuclide $^A_Z X$, the neutron number is $N = A - Z$.\n\nFor $^{35}_{17}Cl$: \n$N = 35 - 17 = 18$ neutrons. ✓\n\nFor $^{37}_{17}Cl$: \n$N = 37 - 17 = 20$ neutrons. ✓\n\n(b) Comparison of forces between two protons in the nucleus:\n\n*   **Nature:** The electrostatic force is repulsive, while the strong nuclear force is attractive. ✓\n*   **Strength:** At the typical separation distances within the nucleus, the strong nuclear force is significantly stronger than the electrostatic force. ✓\n*   **Range:** The strong nuclear force is a short-range force, effective only within the nucleus. The electrostatic force is a long-range force (infinite range). ✓\n*(Note: A good comparison requires identifying points of similarity or difference. Simply stating properties of each force separately may not gain full marks.)*"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Exam Questions",
-      "href": "/mark?subject=ib-physics-sl&topic=E.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: Rutherford Scattering",
-          "href": "https://phet.colorado.edu/en/simulations/rutherford-scattering"
-        },
-        {
-          "label": "Video explanation of the Strong Nuclear Force",
-          "href": "https://www.youtube.com/watch?v=Yv3EMq2DgqY"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Everything you will meet in this unit — nuclear reactions, radioactivity, the photoelectric effect — rests on one picture of the atom: a minute, dense, positively charged nucleus surrounded by electrons that are only allowed to occupy particular energy levels. This lesson assembles that picture in two halves. First the nucleus: the scattering experiment that revealed it and the notation used to describe it. Then the electrons: why the light atoms emit comes in sharp lines, what those lines tell us about energy levels, and how to calculate the frequency or wavelength of the photon released in a transition. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice — the method on the page, mark by mark." },
+
+    { "type": "heading", "content": "Evidence for the nucleus: Geiger–Marsden scattering" },
+    { "type": "text", "content": "Before 1911 the accepted 'plum pudding' model imagined the atom as a diffuse cloud of positive charge with electrons dotted through it. Under Ernest Rutherford's direction, Hans Geiger and Ernest Marsden fired a beam of alpha particles (helium nuclei, $^{4}_{2}He^{2+}$) at a very thin gold foil, surrounded by a zinc-sulphide screen that flashed wherever a particle struck. If the plum-pudding picture were right, the fast, massive alpha particles should have sailed through with only tiny deflections." },
+    { "type": "text", "content": "Most did pass almost straight through — but a small fraction were deflected through large angles, and about 1 in 8000 bounced almost straight back towards the source. A diffuse charge could never turn a fast alpha particle around; only a concentrated charge could. Rutherford's own words capture the shock: it was 'almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you.'" },
+    { "type": "keyPoints", "items": [
+      "**Most pass nearly straight through** → the atom is mostly empty space.",
+      "**A few deflect through large angles** → there is a concentrated region of positive charge that repels the positive alpha particles.",
+      "**A tiny fraction rebound** → that charge sits in a nucleus that is extremely small, very dense, and carries almost all the atom's mass."
+    ]},
+
+    { "type": "heading", "content": "Protons, neutrons, electrons and nuclear notation" },
+    { "type": "text", "content": "The nucleus is built from nucleons — protons and neutrons — and is surrounded by electrons. The proton number $Z$ fixes which element you have; the number of neutrons can vary. Any specific nucleus (a nuclide) is written in standard notation." },
+    { "type": "formula", "content": "$$^{A}_{Z}X$$" },
+    { "type": "text", "content": "$X$ is the chemical symbol, $Z$ is the **proton number** (number of protons), and $A$ is the **nucleon number** (total protons + neutrons). The number of neutrons follows from $N = A - Z$. A neutral atom has as many electrons as protons, so it also has $Z$ electrons. **Isotopes** are nuclides of the same element — the same $Z$ — but with different $A$, and therefore a different number of neutrons; because they share the same electron count they are chemically identical but differ in mass and nuclear stability." },
+    { "type": "workedExample", "question": "A nuclide of uranium is written $^{235}_{92}U$. State the number of (i) protons, (ii) neutrons and (iii) electrons in a neutral atom of this nuclide. [3]", "solution": "Use $^{A}_{Z}X$ with $A = 235$, $Z = 92$.\n\n(i) Protons = $Z = 92$.  [A1]\n\n(ii) Neutrons = $A - Z = 235 - 92 = 143$.  [A1]\n\n(iii) A neutral atom has electrons equal to protons, so electrons = $92$.  [A1]\n\n**Final answer:** 92 protons, 143 neutrons, 92 electrons." },
+
+    { "type": "heading", "content": "Discrete energy levels and line spectra" },
+    { "type": "text", "content": "The electrons around the nucleus cannot take any energy they please. Each is restricted to a set of allowed **energy levels**, like rungs on a ladder with nothing permitted in between. The levels are labelled with negative energies because a bound electron has less energy than a free one (the free state at rest is the $0$ eV reference); the ground state is the most negative, and higher levels lie closer to $0$ eV. The strongest evidence for these discrete rungs comes from the light atoms give out." },
+    { "type": "text", "content": "Heat a low-density gas until it glows and split its light with a prism or diffraction grating, and you do not get a smooth rainbow. You get a few sharp bright lines at particular wavelengths — an **emission line spectrum** — with darkness in between. Each line is produced when an electron falls from a higher level to a lower one and the atom releases a single photon carrying exactly the energy gap. Pass white light through the same gas when it is cool and you see the reverse: a continuous spectrum crossed by dark **absorption** lines at exactly the same wavelengths, where electrons have absorbed photons to jump up. The pattern of lines is unique to each element — a light 'barcode' — and the very existence of sharp lines is only possible if the energy gaps, and hence the levels, are fixed and discrete." },
+    { "type": "keyPoints", "items": [
+      "**Continuous spectrum:** every wavelength present (hot solids, liquids, dense gases). Not evidence for discrete levels.",
+      "**Emission line spectrum:** bright lines on dark — electrons falling DOWN between levels emit photons.",
+      "**Absorption line spectrum:** dark lines on a continuous background — electrons jumping UP absorb matching photons.",
+      "Emission and absorption lines for one element sit at **identical wavelengths**, because the same level structure sets both."
+    ]},
+
+    { "type": "heading", "content": "The photon, $E = hf$ and the electronvolt" },
+    { "type": "text", "content": "Light is emitted and absorbed in discrete packets called **photons**. The energy of one photon depends only on its frequency, through Planck's relation." },
+    { "type": "formula", "content": "$$E = hf = \\frac{hc}{\\lambda}$$" },
+    { "type": "text", "content": "Here $h = 6.63 \\times 10^{-34}$ J s is the Planck constant, $f$ is the frequency, and the second form uses $c = f\\lambda$ with $c = 3.0 \\times 10^{8}$ m s⁻¹ to bring in the wavelength $\\lambda$. A higher frequency (shorter wavelength) always means a more energetic photon: blue-light photons carry more energy than red-light ones. Because atomic energies in joules are awkwardly small, physicists use the **electronvolt (eV)** — the energy an electron gains crossing a potential difference of one volt: $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J. Energy levels are usually quoted in eV, but $E = hf$ needs SI units, so you must convert any eV value to joules before substituting." },
+    { "type": "workedExample", "question": "A photon of green light has a frequency of $5.00 \\times 10^{14}$ Hz. Calculate its energy (a) in joules and (b) in electronvolts. (Take $h = 6.63 \\times 10^{-34}$ J s and $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J.) [3]", "solution": "**(a)** Use $E = hf$.  [M1: correct equation]\n$E = (6.63 \\times 10^{-34})(5.00 \\times 10^{14}) = 3.32 \\times 10^{-19}$ J.  [A1: answer with unit]\n\n**(b)** Convert joules to electronvolts by dividing by $1.60 \\times 10^{-19}$.\n$E = \\dfrac{3.32 \\times 10^{-19}}{1.60 \\times 10^{-19}} = 2.07$ eV.  [A1]\n\n**Final answer:** $3.32 \\times 10^{-19}$ J, or about $2.07$ eV." },
+    { "type": "workedExample", "question": "Convert (a) an ionisation energy of $13.6$ eV into joules, and (b) a photon energy of $8.0 \\times 10^{-19}$ J into electronvolts. (Use $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J.) [2]", "solution": "**(a) eV → J:** multiply by $1.60 \\times 10^{-19}$.\n$13.6 \\times 1.60 \\times 10^{-19} = 2.18 \\times 10^{-18}$ J.  [A1]\n\n**(b) J → eV:** divide by $1.60 \\times 10^{-19}$.\n$\\dfrac{8.0 \\times 10^{-19}}{1.60 \\times 10^{-19}} = 5.0$ eV.  [A1]\n\n**Check the direction:** going TO joules the number gets tiny; going TO eV a $10^{-19}$-scale energy becomes a handful of eV. If your answer moves the wrong way, you have multiplied where you should have divided." },
+    { "type": "examTip", "content": "Almost every mark lost in this topic comes from unit slips. Write $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J at the top of your working, convert every energy to joules before it touches $E = hf$ or $E = hc/\\lambda$, and only convert back to eV at the very end if the question asks for eV. Keep one extra significant figure through the middle and round once, right at the end." },
+
+    { "type": "heading", "content": "From a transition to a photon wavelength" },
+    { "type": "text", "content": "When an electron drops from a higher level $E_{\\text{high}}$ to a lower level $E_{\\text{low}}$, the photon released carries an energy equal to the **difference** between the levels — never the value of a single level. This is the single most common conceptual error in the topic." },
+    { "type": "formula", "content": "$$\\Delta E = E_{\\text{high}} - E_{\\text{low}} = hf = \\frac{hc}{\\lambda} \\quad\\Rightarrow\\quad \\lambda = \\frac{hc}{\\Delta E}$$" },
+    { "type": "workedExample", "question": "In a hydrogen atom an electron falls from the level at $-0.85$ eV to the level at $-3.40$ eV. Calculate the wavelength of the emitted photon. (Take $h = 6.63 \\times 10^{-34}$ J s, $c = 3.0 \\times 10^{8}$ m s⁻¹, $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J.) [3]", "solution": "**Step 1 — energy of the photon = the DIFFERENCE between the levels.**\n$\\Delta E = E_{\\text{high}} - E_{\\text{low}} = (-0.85) - (-3.40) = 2.55$ eV.  [M1: correct difference]\n\n**Step 2 — convert to joules.**\n$\\Delta E = 2.55 \\times 1.60 \\times 10^{-19} = 4.08 \\times 10^{-19}$ J.\n\n**Step 3 — wavelength from $\\lambda = hc/\\Delta E$.**\n$\\lambda = \\dfrac{(6.63 \\times 10^{-34})(3.0 \\times 10^{8})}{4.08 \\times 10^{-19}} = \\dfrac{1.989 \\times 10^{-25}}{4.08 \\times 10^{-19}}$  [M1: correct substitution]\n$\\lambda = 4.9 \\times 10^{-7}$ m ($\\approx 490$ nm, blue-green visible light).  [A1: answer with unit]\n\n**Final answer:** $\\lambda \\approx 4.9 \\times 10^{-7}$ m." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Using a single level's energy instead of the difference** — the photon energy is $\\Delta E = E_{\\text{high}} - E_{\\text{low}}$. Watch the double negative: $(-0.85)-(-3.40) = +2.55$ eV, not $-2.55$ or $4.25$.",
+      "**Forgetting to convert eV to joules** before substituting into $E = hf$ or $\\lambda = hc/E$ — the equations need SI units. This single slip typically costs the answer mark.",
+      "**Confusing multiply and divide in the eV↔J conversion** — multiply by $1.60 \\times 10^{-19}$ to reach joules, divide to reach eV.",
+      "**Calling emission lines a continuous spectrum** — sharp separate lines are the evidence for discrete levels; a continuous rainbow is not.",
+      "**Mixing up emission and absorption** — falling electrons EMIT (bright lines); electrons jumping up ABSORB (dark lines). Both appear at the same wavelengths for a given element.",
+      "**Thinking brighter light means higher-energy photons** — brightness sets the NUMBER of photons; $E = hf$ shows each photon's energy is fixed by frequency alone.",
+      "**Mishandling $c = f\\lambda$** — if given a frequency, find $\\lambda = c/f$; do not put a frequency where the equation expects a wavelength.",
+      "**Over-rounding mid-calculation or dropping units** — keep an extra figure through the working and attach m, Hz or J to the final answer."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means one wrong number early on does not have to cost you the marks that follow. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "An electron in an atom falls from a level at $-1.5$ eV to a level at $-3.4$ eV. Calculate the energy of the emitted photon and its wavelength. (Take $h = 6.63 \\times 10^{-34}$ J s, $c = 3.0 \\times 10^{8}$ m s⁻¹, $1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J.) [4]", "solution": "**Model answer — full working.**\n\n**Energy of the photon = the DIFFERENCE between the two levels, converted to joules.**\n$\\Delta E = E_{\\text{high}} - E_{\\text{low}} = (-1.5) - (-3.4) = 1.9$ eV.\n$\\Delta E = 1.9 \\times 1.60 \\times 10^{-19} = 3.04 \\times 10^{-19}$ J.\n\n**Wavelength from $\\lambda = hc/\\Delta E$.**\n$\\lambda = \\dfrac{(6.63 \\times 10^{-34})(3.0 \\times 10^{8})}{3.04 \\times 10^{-19}} = \\dfrac{1.989 \\times 10^{-25}}{3.04 \\times 10^{-19}}$\n$\\lambda = 6.5 \\times 10^{-7}$ m ($\\approx 650$ nm, red visible light).\n\n**Final answer:** photon energy $\\approx 3.0 \\times 10^{-19}$ J ($1.9$ eV); wavelength $\\approx 6.5 \\times 10^{-7}$ m.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — energy as a difference.** Awarded for taking $\\Delta E = (-1.5) - (-3.4) = 1.9$ eV, i.e. the gap between the levels rather than either level alone. A METHOD mark: earned for the right approach even if arithmetic later slips.\n- **M1 — convert eV to joules.** Awarded for $\\Delta E = 1.9 \\times 1.60 \\times 10^{-19} = 3.04 \\times 10^{-19}$ J. The engine checks that the eV value was converted before use.\n- **M1 — correct substitution into $\\lambda = hc/E$.** Awarded for putting $h$, $c$ and the joule energy into $\\lambda = hc/\\Delta E$ in the right places, whatever the earlier number was.\n- **A1 — wavelength with unit.** Awarded for $\\lambda \\approx 6.5 \\times 10^{-7}$ m (accept $6.5$–$6.6 \\times 10^{-7}$ m, or $650$ nm). ECF protects you: a student who mis-keyed the difference but then converted and substituted correctly still earns the method marks, and if the final wavelength follows correctly from THEIR energy the answer mark is protected too.\n\n**'Accept answers that round correctly.'** The engine accepts $6.5 \\times 10^{-7}$ m or $654$ nm — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 4 marks, three are method marks that survive an arithmetic slip, and the answer mark is shielded by ECF. A student who writes only a bare wavelength with no working risks losing 2–3 marks if the number is wrong; a student who shows the difference, the conversion and the substitution keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the level difference, convert eV to joules, state $\\lambda = hc/E$, substitute, then give the wavelength with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The discrete-level, photon picture built here underpins the rest of the unit. The same $E = hf$ governs the photoelectric effect, where photons eject electrons from a metal, and the same idea of quantised energy carries into the nucleus, where discrete nuclear energy states explain gamma emission. The eV, introduced here as a convenience, becomes the natural energy unit for nuclear reactions and mass–energy calculations. Master the habit — photon energy is the gap between levels, convert to joules, then use $E = hf = hc/\\lambda$ — and the quantum physics that follows becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: work an energy-level transition to a photon wavelength with full working", "href": "/mark?subject=ib-physics-sl&topic=E.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Physics Data Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/" },
+      { "label": "PhET Simulation: Rutherford Scattering", "href": "https://phet.colorado.edu/en/simulations/rutherford-scattering" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Rutherford Scattering",

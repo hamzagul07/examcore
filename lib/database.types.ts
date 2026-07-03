@@ -88,6 +88,8 @@ export interface UserSubscription {
   user_id: string
   stripe_customer_id: string | null
   stripe_subscription_id: string | null
+  polar_customer_id: string | null
+  polar_subscription_id: string | null
   tier: SubscriptionTier
   status: SubscriptionStatus
   billing_period: BillingPeriod | null

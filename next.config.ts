@@ -23,6 +23,16 @@ const nextConfig: NextConfig = {
   // the default 60s per-page budget can be exceeded under memory/CPU pressure
   // even though each page is light, so give static generation more headroom.
   staticPageGenerationTimeout: 180,
+  // Vercel serves everything under public/ from its CDN, so these files never
+  // need to live inside a serverless function. Next's output file tracer would
+  // otherwise bundle the whole public/courses/diagrams image tree (~190 MB) into
+  // the lesson-rendering functions — because enrich-lesson-visual.ts does a
+  // build-time fs.existsSync() against it — which pushed two functions past
+  // Vercel's 250 MB unzipped limit. Keys are route globs; '/*' targets all
+  // routes. content/source-notes is build-scripts-only (never read at runtime).
+  outputFileTracingExcludes: {
+    '/*': ['public/**', 'content/source-notes/**'],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],

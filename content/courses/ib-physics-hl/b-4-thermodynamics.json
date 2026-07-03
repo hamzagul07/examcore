@@ -1,186 +1,149 @@
 {
   "slug": "b-4-thermodynamics",
   "topicCode": "B.4",
+  "unit": { "code": "B", "title": "The particulate nature of matter" },
   "title": "Thermodynamics",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental principles of thermodynamics. It covers the First Law as a statement of energy conservation, detailing the relationship between internal energy, heat, and work. We will analyse four key thermodynamic processes (isobaric, isochoric, isothermal, adiabatic) using P-V diagrams. The lesson culminates with the Second Law of Thermodynamics, introducing entropy as a measure of disorder and exploring its profound implications for the direction of natural processes.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Thermodynamics is the bookkeeping of energy: it tracks how heat, work and internal energy trade places whenever a gas is heated, compressed or allowed to expand. This HL lesson builds the full B.4 toolkit. It states the first law $Q = \\Delta U + W$ as conservation of energy with a firm sign convention, defines the work done by a gas as $W = p\\Delta V$ and as the area under a p–V graph, and works the first law through the four processes — isothermal, isobaric, isochoric and adiabatic. It then turns to direction: entropy and the second law, why the entropy of an isolated system tends to increase, heat engines and their thermal efficiency $\\eta = W/Q_{in} = 1 - Q_{out}/Q_{in}$, and the Carnot cycle with its ceiling efficiency $\\eta_{max} = 1 - T_{cold}/T_{hot}$. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "State and apply the First Law of Thermodynamics to solve problems involving heat, work, and internal energy.",
-    "Describe and analyse isobaric, isochoric, isothermal, and adiabatic processes using P-V diagrams.",
-    "Calculate the work done by or on a gas from the area under a P-V graph.",
-    "State the Second Law of Thermodynamics in terms of entropy and analyse its implications for thermodynamic systems."
+    "State the first law of thermodynamics $Q = \\Delta U + W$ as energy conservation and apply its sign convention to heat, internal energy and work done BY a gas.",
+    "Calculate the work done by a gas as $W = p\\Delta V$ and as the area under a p–V graph.",
+    "Apply the first law to the four processes — isothermal, isobaric, isochoric and adiabatic — and identify each on a p–V diagram.",
+    "State the second law in terms of entropy, explain why the entropy of an isolated system tends to increase, and calculate entropy changes with $\\Delta S = Q/T$.",
+    "Analyse heat engines using thermal efficiency $\\eta = 1 - Q_{out}/Q_{in}$ and the Carnot limit $\\eta_{max} = 1 - T_{cold}/T_{hot}$, presenting working so method marks and ECF protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["B.4"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Thermodynamics: Energy, Work, and Disorder",
-    "summary": "Thermodynamics explains how energy moves and changes form, particularly between heat and mechanical work. It's governed by fundamental laws that dictate the efficiency and direction of all energy transformations in the universe.",
-    "analogy": "Imagine a bicycle pump. Pushing the handle does work on the air inside, compressing it. The pump and the air get warm, which means their internal energy has increased. Some of this warmth then escapes as heat into your hands and the surroundings. Thermodynamics is the physics of this precise energy accounting, ensuring that energy is always conserved but tends to spread out.",
+    "title": "Energy in, work out, disorder up",
+    "summary": "Thermodynamics is a strict accountant. Every joule you add to a gas as heat is either stored inside it (raising its internal energy and therefore its temperature) or spent by the gas pushing on its surroundings as work — never lost. A second rule then decides which way the accounts are allowed to run: left to itself, a system always spreads its energy out, so entropy climbs.",
+    "analogy": "Think of heating a sealed syringe of air. The heat you supply is like money coming into an account. Some of it is 'saved' as internal energy — the molecules jostle faster and the gas warms up. The rest is 'spent' as the gas pushes the plunger outward, doing work on your hand. The first law just balances the books: money in = money saved + money spent, which is $Q = \\Delta U + W$. The second law adds that the spending can never be undone for free — the disorder you create leaks away and cannot be gathered back without paying somewhere else.",
     "steps": [
-      "Identify the process type (isobaric, isochoric, isothermal, or adiabatic) from the problem description or a P-V diagram.",
-      "Apply the First Law of Thermodynamics, $\\Delta U = Q - W$, paying close attention to the sign conventions for heat ($Q$) and work ($W$).",
-      "Calculate the work done ($W$) by finding the area under the P-V graph. For a complete cycle, this is the area enclosed by the loop.",
-      "Apply the Second Law and the entropy formula, $\\Delta S = Q/T$, to determine the change in disorder and verify the direction of spontaneous change."
+      "Identify the process from the description or the p–V graph: isothermal ($\\Delta T = 0$), isobaric (constant $p$), isochoric (constant $V$) or adiabatic ($Q = 0$).",
+      "Write the first law in the exam form $Q = \\Delta U + W$, where $W$ is the work done BY the gas. Fix and state your signs: heat in is $+Q$, expansion is $+W$.",
+      "Find the work: for constant pressure use $W = p\\Delta V$; for any process read the area under the p–V curve; for a full cycle use the enclosed area.",
+      "For direction and efficiency questions, use $\\Delta S = Q/T$ (temperatures in kelvin), $\\eta = 1 - Q_{out}/Q_{in}$ and the Carnot ceiling $\\eta_{max} = 1 - T_{cold}/T_{hot}$."
     ]
   },
+  "keyConcepts": ["first law of thermodynamics", "work done by a gas", "entropy and the second law", "heat engines and Carnot efficiency"],
   "flashcards": [
-    {
-      "front": "What is the First Law of Thermodynamics?",
-      "back": "It is a statement of the conservation of energy. The change in the internal energy of a system ($\\Delta U$) is equal to the heat added to the system ($Q$) minus the work done by the system ($W$). The formula is $\\Delta U = Q - W$."
-    },
-    {
-      "front": "What is the sign convention for work ($W$) in the formula $\\Delta U = Q - W$?",
-      "back": "$W > 0$ when work is done *by* the system on its surroundings (expansion). $W < 0$ when work is done *on* the system by its surroundings (compression)."
-    },
-    {
-      "front": "What is the sign convention for heat ($Q$) in the formula $\\Delta U = Q - W$?",
-      "back": "$Q > 0$ when heat is added *to* the system from the surroundings. $Q < 0$ when heat is removed *from* the system to the surroundings."
-    },
-    {
-      "front": "What is an isochoric (isovolumetric) process?",
-      "back": "A thermodynamic process where the volume remains constant ($\\Delta V = 0$). No work is done ($W=0$), so the First Law simplifies to $\\Delta U = Q$. On a P-V diagram, this is a vertical line."
-    },
-    {
-      "front": "What is an isobaric process?",
-      "back": "A thermodynamic process where the pressure remains constant ($\\Delta p = 0$). The work done is given by $W = p \\Delta V$. On a P-V diagram, this is a horizontal line."
-    },
-    {
-      "front": "What is an isothermal process for an ideal gas?",
-      "back": "A process occurring at a constant temperature ($\\Delta T = 0$). Since the internal energy of an ideal gas depends only on its temperature, the change in internal energy is zero ($\\Delta U = 0$). Therefore, from the First Law, $Q = W$."
-    },
-    {
-      "front": "What is an adiabatic process?",
-      "back": "A process with no heat transfer between the system and its surroundings ($Q=0$). This can occur in a well-insulated system or during a very rapid process. The First Law becomes $\\Delta U = -W$."
-    },
-    {
-      "front": "How is work done represented on a Pressure-Volume (P-V) diagram?",
-      "back": "The work done ($W$) during a process is equal to the area under the curve on a P-V diagram. For a full cycle, the net work done is the area enclosed by the loop."
-    },
-    {
-      "front": "What is the Second Law of Thermodynamics?",
-      "back": "The total entropy of an isolated system (or the universe) always increases over time, or remains constant in ideal reversible processes. It never decreases. Mathematically, $\\Delta S_{universe} \\ge 0$."
-    },
-    {
-      "front": "Define the change in entropy ($\\Delta S$).",
-      "back": "Entropy is a measure of a system's microscopic disorder. For a reversible process at a constant absolute temperature $T$, the change in entropy is defined as the heat transferred ($Q$) divided by the temperature: $\\Delta S = Q/T$."
-    },
-    {
-      "front": "What is a common trap when calculating work in a thermodynamic cycle from a P-V diagram?",
-      "back": "Forgetting the significance of the cycle's direction. A clockwise cycle represents a heat engine and has a net positive work output ($W_{net} > 0$). An anticlockwise cycle represents a refrigerator or heat pump and has a net negative work output ($W_{net} < 0$), meaning net work is done on the system."
-    },
-    {
-      "front": "What is the change in internal energy for any complete thermodynamic cycle?",
-      "back": "Zero. The system returns to its initial state (same pressure, volume, and temperature). Since internal energy is a state function, its value at the start and end is the same, so $\\Delta U_{cycle} = 0$."
-    }
+    { "front": "First law of thermodynamics (IB form)", "back": "$Q = \\Delta U + W$: the heat added to a gas equals the increase in its internal energy plus the work done BY the gas. It is conservation of energy applied to a gas. Rearranged, $\\Delta U = Q - W$.", "pillLabel": "Formula" },
+    { "front": "Sign convention in $Q = \\Delta U + W$", "back": "$Q > 0$ = heat added TO the gas; $Q < 0$ = heat removed. $W > 0$ = work done BY the gas (expansion); $W < 0$ = work done ON the gas (compression). $\\Delta U > 0$ raises temperature.", "pillLabel": "Framework" },
+    { "front": "Internal energy $U$ of an ideal gas", "back": "The total random kinetic energy of the molecules. It depends only on the absolute temperature, so $\\Delta U \\propto \\Delta T$. If temperature is unchanged, $\\Delta U = 0$.", "pillLabel": "Definition" },
+    { "front": "Work done by a gas, $W = p\\Delta V$", "back": "Valid at constant pressure (isobaric). $W$ is positive when the gas expands ($\\Delta V > 0$) and negative when compressed. Pressure must be in pascals and volume in cubic metres to give joules.", "pillLabel": "Formula" },
+    { "front": "Work from a p–V graph", "back": "The work done by the gas equals the area under the p–V curve for any process, not just at constant pressure. For a complete cycle the net work is the area enclosed by the loop.", "pillLabel": "Graph" },
+    { "front": "Isothermal process", "back": "Constant temperature, so for an ideal gas $\\Delta U = 0$ and the first law gives $Q = W$. On a p–V diagram it is a hyperbola ($p \\propto 1/V$). All heat supplied is turned into work.", "pillLabel": "Process" },
+    { "front": "Isobaric process", "back": "Constant pressure. Work $W = p\\Delta V$; the first law is $Q = \\Delta U + p\\Delta V$. On a p–V diagram it is a horizontal line.", "pillLabel": "Process" },
+    { "front": "Isochoric (isovolumetric) process", "back": "Constant volume, so $\\Delta V = 0$ and no work is done: $W = 0$. The first law reduces to $Q = \\Delta U$ — all heat goes to internal energy. On a p–V diagram it is a vertical line.", "pillLabel": "Process" },
+    { "front": "Adiabatic process", "back": "No heat transfer, $Q = 0$ (well-insulated or very rapid). The first law gives $\\Delta U = -W$: a gas that expands adiabatically does work at the expense of its internal energy, so it cools. Steeper than an isotherm on a p–V graph.", "pillLabel": "Process" },
+    { "front": "Second law (entropy statement)", "back": "The entropy of an isolated system never decreases; it increases for every real (irreversible) process and stays constant only in an ideal reversible one. Equivalently $\\Delta S_{universe} \\ge 0$.", "pillLabel": "Framework" },
+    { "front": "Change in entropy, $\\Delta S = Q/T$", "back": "For heat $Q$ transferred at constant absolute temperature $T$ (in kelvin), the entropy change is $\\Delta S = Q/T$, measured in J K⁻¹. Heat into a body raises its entropy; heat out lowers it.", "pillLabel": "Formula" },
+    { "front": "Thermal efficiency of a heat engine", "back": "$\\eta = \\dfrac{W}{Q_{in}} = 1 - \\dfrac{Q_{out}}{Q_{in}}$. It is the useful work out divided by the heat taken in — always between 0 and 1, since some heat must be rejected to the cold reservoir.", "pillLabel": "Formula" },
+    { "front": "Carnot (maximum) efficiency", "back": "$\\eta_{max} = 1 - \\dfrac{T_{cold}}{T_{hot}}$, with both temperatures in kelvin. No engine working between two reservoirs can beat this ideal reversible limit; it is reached only by the Carnot cycle.", "pillLabel": "Formula" },
+    { "front": "Internal energy change over a full cycle", "back": "Zero. Internal energy is a state function, so returning the gas to its starting state gives $\\Delta U_{cycle} = 0$. Hence over a cycle $Q_{net} = W_{net}$.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: which W in the first law?", "back": "In the IB form $Q = \\Delta U + W$, the symbol $W$ is the work done BY the gas. Adding heat and letting the gas expand both count as the gas 'spending' energy outward. Compression makes $W$ negative.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "In the IB first law $Q = \\Delta U + W$, the symbol $W$ represents:", "options": ["The work done ON the gas by the surroundings", "The work done BY the gas on the surroundings", "The total heat rejected to the cold reservoir", "The change in internal energy of the gas"], "answer": "The work done BY the gas on the surroundings" },
+    { "prompt": "A gas is compressed so that work is done on it, while at the same time it is thermally insulated from its surroundings. During this adiabatic compression:", "options": ["$Q = 0$, so the internal energy and temperature rise", "$Q = 0$, so the temperature stays constant", "$\\Delta U = 0$, so all the work becomes heat", "$W = 0$, because the volume is fixed"], "answer": "$Q = 0$, so the internal energy and temperature rise" },
+    { "prompt": "For an ideal gas undergoing an isothermal expansion, the first law tells us that:", "options": ["$Q = 0$ because temperature is constant", "$\\Delta U = Q$ because no work is done", "$Q = W$ because $\\Delta U = 0$", "$W = 0$ because pressure changes"], "answer": "$Q = W$ because $\\Delta U = 0$" },
+    { "prompt": "An engineer computes a Carnot efficiency using reservoir temperatures of 200 °C and 27 °C. The correct value of $\\eta_{max}$ is:", "options": ["$1 - 27/200 = 0.865$", "$1 - 300/473 = 0.366$", "$1 - 200/27 = -6.4$", "$1 - 473/300 = -0.577$"], "answer": "$1 - 300/473 = 0.366$" },
+    { "prompt": "Heat flows spontaneously from a hot block to a cold block placed in contact inside an isolated box. For this process the total entropy change of the box is:", "options": ["Negative, because heat is lost by the hot block", "Zero, because energy is conserved", "Positive, because entropy of an isolated system tends to increase", "Undefined, because entropy applies only to gases"], "answer": "Positive, because entropy of an isolated system tends to increase" }
   ],
   "faq": [
-    {
-      "q": "Why is the change in internal energy zero for an isothermal process in an ideal gas?",
-      "a": "The internal energy of an ideal gas is defined as the total random kinetic energy of its molecules. This kinetic energy is directly proportional to the absolute temperature. If the temperature is constant (isothermal), the average kinetic energy of the molecules does not change. Consequently, the total internal energy ($U$) remains constant, and the change in internal energy ($\\Delta U$) is zero."
-    },
-    {
-      "q": "Can the entropy of a system ever decrease?",
-      "a": "Yes, the entropy of a specific *system* can decrease. For example, when water vapour condenses into liquid water, its entropy decreases as the molecules become more ordered. However, the Second Law of Thermodynamics applies to the *universe* (the system plus its surroundings). The condensation process releases heat into the surroundings, increasing the surroundings' entropy. This increase is always greater than or equal to the system's decrease, so the total entropy of the universe always increases or stays the same."
-    },
-    {
-      "q": "What is the difference between the physics and chemistry sign conventions for work?",
-      "a": "This is a common point of confusion. In physics and the IB syllabus, work done *by* the system on its surroundings (e.g., a gas expanding) is positive ($W>0$). In many chemistry contexts, work done *by* the system is considered negative. This leads to two forms of the first law: $\\Delta U = Q - W$ (physics) and $\\Delta U = Q + W$ (chemistry, where $W$ is work done *on* the system). For your IB Physics exams, you must use the convention where work done *by* the system is positive and the law is $\\Delta U = Q - W$."
-    }
+    { "q": "Why does the IB write the first law as $Q = \\Delta U + W$ rather than $\\Delta U = Q - W$?", "a": "They are the same equation rearranged. The IB form reads naturally as an energy budget: the heat you put in ($Q$) is shared between raising the internal energy ($\\Delta U$) and doing work as the gas expands ($W$). Both forms use the physics convention that $W$ is the work done BY the gas, so expansion is positive. Whichever form you quote, keep that one convention and your signs will stay consistent." },
+    { "q": "Why is the change in internal energy zero for an isothermal process?", "a": "The internal energy of an ideal gas is the total random kinetic energy of its molecules, and that is fixed by the absolute temperature alone. If the temperature does not change, the average molecular kinetic energy does not change, so the internal energy is unchanged and $\\Delta U = 0$. The first law then collapses to $Q = W$: every joule of heat supplied leaves again as work done by the expanding gas." },
+    { "q": "Can the entropy of something ever go down without breaking the second law?", "a": "Yes, a single system's entropy can fall — water freezing into ordered ice is an example. The second law is about an ISOLATED system, meaning the object together with its surroundings. Freezing releases heat to the surroundings, and that raises the surroundings' entropy by more than the ice's entropy falls. The total change is still positive. Only the isolated whole is forbidden from decreasing." },
+    { "q": "Why can't a heat engine be 100% efficient?", "a": "To run continuously an engine must return to its starting state each cycle, and the second law forbids simply converting all the incoming heat into work. Some heat must always be dumped into a colder reservoir, otherwise the total entropy would decrease. That rejected heat $Q_{out}$ is 'lost' from the work budget, so $\\eta = 1 - Q_{out}/Q_{in} < 1$. The best any engine can do between two temperatures is the reversible Carnot limit $\\eta_{max} = 1 - T_{cold}/T_{hot}$." },
+    { "q": "Do I ever use temperatures in Celsius in this topic?", "a": "For $\\Delta S = Q/T$, for the Carnot efficiency and for anything involving internal energy or the gas laws, temperature must be the absolute temperature in kelvin. A Celsius value in $1 - T_{cold}/T_{hot}$ gives a meaningless (often negative or absurd) efficiency. Convert first: $T(\\text{K}) = \\theta(\\degree\\text{C}) + 273$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the study of thermodynamics, the branch of physics that deals with heat, work, and temperature, and their relation to energy, radiation, and the physical properties of matter. At its core, thermodynamics is governed by two fundamental laws that dictate how and why energy flows and transforms. Understanding these laws is key to fields ranging from engineering to cosmology."
-    },
-    {
-      "type": "heading",
-      "content": "The First Law of Thermodynamics"
-    },
-    {
-      "type": "text",
-      "content": "The First Law is a version of the law of conservation of energy, adapted for thermodynamic systems. It states that the change in the internal energy of a system is equal to the heat added to the system minus the work done by the system on its surroundings. Internal energy ($U$) is the sum of all the microscopic kinetic and potential energies of the particles within the system."
-    },
-    {
-      "type": "formula",
-      "content": "$\\Delta U = Q - W$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$\\Delta U$ is the change in internal energy of the system.",
-        "$Q$ is the heat added to the system. ($Q>0$ for heat in, $Q<0$ for heat out).",
-        "$W$ is the work done by the system. ($W>0$ for expansion, $W<0$ for compression)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Thermodynamic Processes and P-V Diagrams"
-    },
-    {
-      "type": "text",
-      "content": "A P-V diagram is a graph of pressure versus volume for a gas, and it is an essential tool for visualising thermodynamic processes. The state of a gas is a point on the diagram, and a process is a path from one state to another. The area under this path represents the work done."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Isobaric (constant pressure):** Horizontal line on P-V diagram. $W = p\\Delta V$.",
-        "**Isochoric (constant volume):** Vertical line on P-V diagram. $W = 0$.",
-        "**Isothermal (constant temperature):** For an ideal gas, $\\Delta U = 0$, so $Q=W$. The curve is a hyperbola ($p \\propto 1/V$).",
-        "**Adiabatic (no heat exchange):** $Q = 0$, so $\\Delta U = -W$. The curve is steeper than an isotherm."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "An ideal gas expands at a constant pressure of 200 kPa from an initial volume of $1.5 \\times 10^{-3} \\text{ m}^3$ to a final volume of $4.0 \\times 10^{-3} \\text{ m}^3$. In this isobaric process, 550 J of heat is supplied to the gas. Calculate (a) the work done by the gas, and (b) the change in internal energy of the gas.",
-      "solution": "a) Identify the process and relevant formula.\nThis is an isobaric (constant pressure) process, so the work done is $W = p \\Delta V$.\n\nCalculate the change in volume:\n$\\Delta V = V_{final} - V_{initial} = (4.0 \\times 10^{-3}) - (1.5 \\times 10^{-3}) = 2.5 \\times 10^{-3} \\text{ m}^3$ ✓\n\nCalculate the work done:\n$p = 200 \\text{ kPa} = 200 \\times 10^3 \\text{ Pa}$\n$W = (200 \\times 10^3 \\text{ Pa}) \\times (2.5 \\times 10^{-3} \\text{ m}^3) = 500 \\text{ J}$ ✓\n\nb) Apply the First Law of Thermodynamics: $\\Delta U = Q - W$.\n\nIdentify the values for Q and W:\nHeat is supplied, so $Q = +550 \\text{ J}$.\nThe gas expands, so work is done by the gas, $W = +500 \\text{ J}$.\n\nCalculate the change in internal energy:\n$\\Delta U = 550 \\text{ J} - 500 \\text{ J} = 50 \\text{ J}$ ✓\nThe internal energy of the gas increases by 50 J."
-    },
-    {
-      "type": "heading",
-      "content": "The Second Law of Thermodynamics and Entropy"
-    },
-    {
-      "type": "text",
-      "content": "While the First Law states that energy is conserved, it doesn't explain why certain processes happen spontaneously and others don't (e.g., why heat flows from hot to cold). The Second Law introduces the concept of entropy ($S$), a measure of disorder or the number of ways energy can be distributed in a system. It states that for any spontaneous process, the total entropy of the universe must increase."
-    },
-    {
-      "type": "formula",
-      "content": "$\\Delta S_{universe} = \\Delta S_{system} + \\Delta S_{surroundings} \\ge 0$"
-    },
-    {
-      "type": "text",
-      "content": "For a reversible process occurring at a constant absolute temperature $T$, the change in a system's entropy is given by $\\Delta S = Q/T$, where $Q$ is the heat transferred to the system. This law sets a fundamental direction to the arrow of time and explains why perpetual motion machines of the second kind are impossible."
-    },
-    {
-      "type": "examTip",
-      "content": "On P-V diagrams, be meticulous with calculating the area under the graph for work. For complex shapes, break them down into rectangles and triangles. Remember that for a full cycle, the net work is the area *enclosed* by the loop. A clockwise loop means net work is done *by* the system ($W>0$), while an anticlockwise loop means net work is done *on* the system ($W<0$)."
-    },
-    {
-      "type": "workedExample",
-      "question": "A heat engine operates in a cycle. In one cycle, it absorbs 2500 J of heat from a hot reservoir at 750 K and expels 1500 J of heat to a cold reservoir at 300 K. Calculate (a) the net work done by the engine in one cycle, and (b) the total change in entropy of the universe for one cycle, stating whether the process is possible.",
-      "solution": "a) For a complete cycle, the change in internal energy is zero ($\\Delta U = 0$).\nFrom the First Law, $\\Delta U = Q_{net} - W_{net}$, so $W_{net} = Q_{net}$.\n\n$Q_{net}$ is the heat absorbed minus the heat expelled:\n$Q_{net} = Q_H - Q_C = 2500 \\text{ J} - 1500 \\text{ J} = 1000 \\text{ J}$ ✓\n\nTherefore, the net work done by the engine is $W_{net} = 1000 \\text{ J}$. ✓\n\nb) The total entropy change is the sum of the entropy changes of the reservoirs.\n$\\Delta S_{universe} = \\Delta S_{hot} + \\Delta S_{cold}$\n\nFor the hot reservoir (loses heat, so Q is negative):\n$\\Delta S_{hot} = \\frac{Q_H}{T_H} = \\frac{-2500 \\text{ J}}{750 \\text{ K}} = -3.33 \\text{ J K}^{-1}$ ✓\n\nFor the cold reservoir (gains heat, so Q is positive):\n$\\Delta S_{cold} = \\frac{Q_C}{T_C} = \\frac{+1500 \\text{ J}}{300 \\text{ K}} = +5.00 \\text{ J K}^{-1}$ ✓\n\nTotal entropy change:\n$\\Delta S_{universe} = -3.33 + 5.00 = +1.67 \\text{ J K}^{-1}$ ✓\n\nSince $\\Delta S_{universe} > 0$, the process is possible according to the Second Law of Thermodynamics. ✓"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-physics-hl&topic=B.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: Gas Properties",
-          "href": "https://phet.colorado.edu/en/simulations/gas-properties"
-        },
-        {
-          "label": "Video explanation of Thermodynamic Processes",
-          "href": "https://www.youtube.com/watch?v=YAl_y_V3s4M"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Thermodynamics is the physics of energy on the move — how heat, work and the internal energy of matter convert into one another, and which conversions nature actually permits. In this HL topic two laws do all the heavy lifting. The first law is conservation of energy written for a gas, and it lets you predict exactly how heating, compressing or expanding a gas changes its temperature and the work it delivers. The second law is subtler: it decides direction, telling you why heat flows from hot to cold, why no engine is perfectly efficient, and why the disorder of an isolated system only ever grows. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The first law of thermodynamics" },
+    { "type": "text", "content": "The first law is simply conservation of energy applied to a gas. Heat supplied to a gas cannot vanish: it either raises the internal energy of the gas or is spent by the gas doing work on its surroundings, or both. Writing $Q$ for the heat added to the gas, $\\Delta U$ for the change in internal energy and $W$ for the work done BY the gas, the budget balances exactly." },
+    { "type": "formula", "content": "$Q = \\Delta U + W$" },
+    { "type": "text", "content": "This is the form given in the IB data booklet. Rearranged it reads $\\Delta U = Q - W$, which some prefer, but both say the same thing. The internal energy $U$ is the total random kinetic energy of the molecules, and for an ideal gas it depends only on the absolute temperature — so a rise in $U$ always means a rise in temperature. Everything in this topic follows from applying this one equation with a firm, consistent sign convention." },
+    { "type": "keyPoints", "items": [
+      "$Q$ is the heat added to the gas: $Q > 0$ for heat in, $Q < 0$ for heat out.",
+      "$\\Delta U$ is the change in internal energy: $\\Delta U > 0$ raises the temperature of an ideal gas.",
+      "$W$ is the work done BY the gas: $W > 0$ when the gas expands, $W < 0$ when it is compressed.",
+      "Choose your signs once and keep them for every quantity in the problem — mixing conventions is the fastest way to lose marks."
+    ]},
+
+    { "type": "heading", "content": "Work done by a gas and the p–V diagram" },
+    { "type": "text", "content": "When a gas expands it pushes its boundary outward and does work on the surroundings. If the pressure stays constant while the volume changes by $\\Delta V$, the work done by the gas is the product of pressure and volume change." },
+    { "type": "formula", "content": "$W = p\\Delta V$" },
+    { "type": "text", "content": "For this to give joules, put the pressure in pascals and the volume change in cubic metres. More generally the pressure need not be constant, and then $W = p\\Delta V$ no longer applies directly. The powerful idea is that on a pressure–volume (p–V) diagram the work done by the gas is always the area under the curve for the process. A p–V diagram plots the state of the gas as a point, a process as a path between states, and the area beneath that path as the work exchanged. For a complete cycle the gas returns to its starting point and the net work is the area enclosed by the loop." },
+    { "type": "keyPoints", "items": [
+      "**Area under the p–V curve = work done by the gas** — true for any process, not just constant pressure.",
+      "Expansion (moving right on the diagram) gives positive work by the gas; compression (moving left) gives negative work.",
+      "For a full **clockwise** cycle the enclosed area is the net work done BY the gas ($W_{net} > 0$) — this is a heat engine.",
+      "For a full **anticlockwise** cycle the net work is done ON the gas ($W_{net} < 0$) — this is a refrigerator or heat pump."
+    ]},
+
+    { "type": "heading", "content": "The four processes and the first law" },
+    { "type": "text", "content": "Four idealised processes appear again and again, and the first law $Q = \\Delta U + W$ takes a simple form in each. Recognising the process is the first move in almost every thermodynamics question, because it immediately tells you which term is zero." },
+    { "type": "keyPoints", "items": [
+      "**Isothermal (constant $T$):** $\\Delta U = 0$ for an ideal gas, so $Q = W$. All heat supplied leaves as work. Curve on p–V: a hyperbola, $p \\propto 1/V$.",
+      "**Isobaric (constant $p$):** $W = p\\Delta V$, so $Q = \\Delta U + p\\Delta V$. Curve on p–V: a horizontal line.",
+      "**Isochoric / isovolumetric (constant $V$):** $\\Delta V = 0$ so $W = 0$, giving $Q = \\Delta U$. All heat raises the internal energy. Curve on p–V: a vertical line.",
+      "**Adiabatic (no heat, $Q = 0$):** $\\Delta U = -W$. An expanding gas cools because it does work at the expense of internal energy. Curve on p–V: steeper than an isotherm."
+    ]},
+    { "type": "workedExample", "question": "An ideal gas expands at a constant pressure of 200 kPa from a volume of $1.5 \\times 10^{-3}$ m³ to $4.0 \\times 10^{-3}$ m³ while 550 J of heat is supplied. Calculate (a) the work done by the gas and (b) the change in its internal energy. [4]", "solution": "**Identify the process.** Pressure is constant, so this is isobaric and $W = p\\Delta V$.\n\n**(a) Work done by the gas.**\n$\\Delta V = (4.0 - 1.5)\\times 10^{-3} = 2.5 \\times 10^{-3}$ m³.  [M1: $W = p\\Delta V$ with correct $\\Delta V$]\n$W = (200 \\times 10^{3})(2.5 \\times 10^{-3}) = 500$ J.  [A1: 500 J, work done BY the gas]\n\n**(b) Change in internal energy.** Use the first law $Q = \\Delta U + W$, so $\\Delta U = Q - W$.\nHeat is supplied, so $Q = +550$ J; the gas expands, so $W = +500$ J.  [M1: first law with correct signs]\n$\\Delta U = 550 - 500 = +50$ J.  [A1: internal energy rises by 50 J]\n\n**Final answer:** the gas does 500 J of work and its internal energy rises by 50 J." },
+
+    { "type": "heading", "content": "Entropy and the second law of thermodynamics" },
+    { "type": "text", "content": "The first law tells you energy is conserved, but not which way a process will actually go. Drop an ice cube in warm water and heat always flows from the water to the ice, never the reverse — yet both directions conserve energy. The second law supplies the missing arrow. It is stated using entropy $S$, a measure of how spread out, or disordered, the energy of a system is. The more ways the energy can be arranged among the molecules, the higher the entropy." },
+    { "type": "formula", "content": "$\\Delta S = \\dfrac{Q}{T}$" },
+    { "type": "text", "content": "For heat $Q$ transferred at a constant absolute temperature $T$ (in kelvin), the entropy change is $\\Delta S = Q/T$, measured in J K⁻¹. Heat entering a body raises its entropy; heat leaving lowers it. The second law then states that for any real process the total entropy of an isolated system — the object together with everything it exchanges energy with — tends to increase, and can at best stay constant in an ideal reversible process." },
+    { "type": "formula", "content": "$\\Delta S_{universe} = \\Delta S_{system} + \\Delta S_{surroundings} \\ge 0$" },
+    { "type": "text", "content": "This is why heat flows from hot to cold: the entropy lost by the hot body ($Q/T_{hot}$) is smaller than the entropy gained by the cold body ($Q/T_{cold}$) because dividing by the smaller temperature gives the larger change, so the total rises. A local decrease in entropy — water freezing, a crystal forming — is always allowed provided the surroundings gain even more. The second law forbids only a decrease of the isolated whole, and in doing so it sets the direction of the arrow of time." },
+
+    { "type": "heading", "content": "Heat engines and thermal efficiency" },
+    { "type": "text", "content": "A heat engine is any device that takes in heat $Q_{in}$ from a hot reservoir, converts part of it into useful work $W$, and rejects the remainder $Q_{out}$ to a cold reservoir. Over a complete cycle the gas returns to its starting state, so $\\Delta U = 0$ and the first law gives $W = Q_{in} - Q_{out}$. The thermal efficiency is the fraction of the incoming heat that is turned into useful work." },
+    { "type": "formula", "content": "$\\eta = \\dfrac{W}{Q_{in}} = 1 - \\dfrac{Q_{out}}{Q_{in}}$" },
+    { "type": "text", "content": "Because some heat must always be rejected ($Q_{out} > 0$) for the engine to keep running without decreasing the entropy of the universe, the efficiency is always less than 1. The second law forbids a perfect engine that turns all its incoming heat into work. The interesting question is: for two given reservoir temperatures, what is the highest efficiency physically allowed?" },
+
+    { "type": "heading", "content": "The Carnot cycle and maximum efficiency" },
+    { "type": "text", "content": "Sadi Carnot answered that question with an idealised, perfectly reversible cycle. The Carnot cycle consists of four reversible steps between a hot reservoir at $T_{hot}$ and a cold reservoir at $T_{cold}$: an isothermal expansion (absorbing heat at $T_{hot}$), an adiabatic expansion (cooling to $T_{cold}$), an isothermal compression (rejecting heat at $T_{cold}$) and an adiabatic compression (warming back to $T_{hot}$). Because every step is reversible, the total entropy change over the cycle is zero, and this gives the highest efficiency any engine can achieve between those two temperatures." },
+    { "type": "formula", "content": "$\\eta_{max} = 1 - \\dfrac{T_{cold}}{T_{hot}}$" },
+    { "type": "text", "content": "Both temperatures must be in kelvin. No real engine, with its friction and finite-rate heat flow, can reach the Carnot limit — it is an unattainable ceiling. But the formula is powerful: it shows efficiency rises as the reservoirs are pushed further apart in temperature, and it lets you judge instantly whether a claimed engine performance is even possible. Any engine claiming to beat $1 - T_{cold}/T_{hot}$ is claiming to break the second law." },
+    { "type": "examTip", "content": "Always convert reservoir temperatures to kelvin before touching $\\eta_{max} = 1 - T_{cold}/T_{hot}$ or $\\Delta S = Q/T$. A Celsius value here produces a nonsense efficiency — often greater than 1 or negative — and examiners award nothing for it. Add 273 first, then compute." },
+
+    { "type": "heading", "content": "Worked example — Carnot efficiency and maximum work" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow, provided your later steps follow correctly from it. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A heat engine takes in 800 J of heat from a hot reservoir at 500 K and rejects heat to a cold reservoir at 300 K. Calculate the maximum possible efficiency and the maximum work output. [4]", "solution": "**Model answer — full working.**\n\nThe maximum possible efficiency is the Carnot efficiency, using absolute temperatures.\n\n**Maximum (Carnot) efficiency.** Use $\\eta_{max} = 1 - \\dfrac{T_{cold}}{T_{hot}}$ with $T_{cold} = 300$ K and $T_{hot} = 500$ K.\n$\\eta_{max} = 1 - \\dfrac{300}{500} = 1 - 0.60 = 0.40$.\n\nSo the maximum possible efficiency is $0.40$ (40%).\n\n**Maximum work output.** The efficiency links work and heat in by $\\eta = \\dfrac{W}{Q_{in}}$, so $W = \\eta\\, Q_{in}$.\n$W = 0.40 \\times 800 = 320$ J.\n\n**Final answer:** the maximum possible efficiency is $0.40$ and the maximum work output is $320$ J.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — Carnot efficiency method.** Awarded for using $\\eta_{max} = 1 - T_{cold}/T_{hot}$ with the temperatures in kelvin (300 K and 500 K in the right places). This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **A1 — efficiency value.** Awarded for $\\eta_{max} = 0.40$ (accept 40%). A bare $0.40$ that follows correctly from the M1 line earns this mark.\n- **M1 — work method.** Awarded for using $W = \\eta\\, Q_{in}$ (equivalently $W = \\eta \\times 800$). The engine checks that the efficiency is multiplied by the heat taken IN, not the heat rejected.\n- **A1 — work value with unit.** Awarded for $W = 320$ J. Here ECF protects you: a student who found a wrong efficiency but then correctly computed $(\\text{their }\\eta) \\times 800$ still earns this mark on their own figure.\n\n**'Accept answers that round correctly.'** The engine accepts $0.40$ or $40\\%$ and $320$ J — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the two answer marks are shielded by ECF. A student who writes only '320 J' with no working risks losing 2–3 marks if the final number is wrong; a student who shows the Carnot formula, the efficiency, then $W = \\eta Q_{in}$ keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: quote the formula ($\\eta_{max} = 1 - T_{cold}/T_{hot}$, $W = \\eta Q_{in}$), substitute in kelvin, then give the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Worked example — first law and entropy in one cycle" },
+    { "type": "workedExample", "question": "A heat engine absorbs 2500 J of heat from a hot reservoir at 750 K and expels 1500 J to a cold reservoir at 300 K in each cycle. Calculate (a) the net work done per cycle, (b) the total entropy change of the universe per cycle, and state whether the engine is possible. [5]", "solution": "**(a) Net work.** Over a complete cycle $\\Delta U = 0$, so the first law gives $W_{net} = Q_{in} - Q_{out}$.  [M1: $\\Delta U = 0$ so $W = Q_{in} - Q_{out}$]\n$W_{net} = 2500 - 1500 = 1000$ J.  [A1: 1000 J]\n\n**(b) Entropy of the universe.** Add the entropy change of each reservoir, using $\\Delta S = Q/T$ in kelvin.\nHot reservoir loses heat: $\\Delta S_{hot} = \\dfrac{-2500}{750} = -3.33$ J K⁻¹.\nCold reservoir gains heat: $\\Delta S_{cold} = \\dfrac{+1500}{300} = +5.00$ J K⁻¹.  [M1: both terms with correct signs]\n$\\Delta S_{universe} = -3.33 + 5.00 = +1.67$ J K⁻¹.  [A1: +1.67 J K⁻¹]\n\nSince $\\Delta S_{universe} > 0$, the second law is satisfied and the engine is possible.  [A1: conclusion justified by sign]\n\n**Final answer:** net work 1000 J per cycle; total entropy change $+1.67$ J K⁻¹, so the engine is allowed." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Getting the sign of $W$ wrong in the first law** — in $Q = \\Delta U + W$ the symbol $W$ is the work done BY the gas, so expansion is positive and compression is negative. Reversing it flips the sign of $\\Delta U$ and loses the answer mark.",
+      "**Thinking 'adiabatic' means constant temperature** — adiabatic means no heat transfer, $Q = 0$, NOT $\\Delta T = 0$. An adiabatic expansion actually cools the gas because $\\Delta U = -W$. Constant temperature is the isothermal case.",
+      "**Confusing isothermal with adiabatic** — isothermal gives $\\Delta U = 0$ and $Q = W$; adiabatic gives $Q = 0$ and $\\Delta U = -W$. They are opposite simplifications of the first law.",
+      "**Using Celsius in $\\eta_{max} = 1 - T_{cold}/T_{hot}$ or $\\Delta S = Q/T$** — these formulae need absolute temperature in kelvin. A Celsius value gives a nonsense efficiency or entropy. Add 273 first.",
+      "**Dividing by $Q_{out}$ instead of $Q_{in}$ for efficiency** — thermal efficiency is $W/Q_{in} = 1 - Q_{out}/Q_{in}$; the heat TAKEN IN is always the denominator.",
+      "**Forgetting $W = 0$ for a constant-volume (isochoric) process** — with $\\Delta V = 0$ no work is done, so all the heat goes to internal energy, $Q = \\Delta U$.",
+      "**Claiming the entropy of an isolated system can decrease** — it never does; a system's own entropy may fall only if the surroundings gain at least as much, so the isolated total obeys $\\Delta S \\ge 0$.",
+      "**Reading area on a p–V graph carelessly** — the area under the curve is the work; for a full cycle it is the ENCLOSED area, positive for a clockwise loop (engine) and negative for an anticlockwise loop (refrigerator)."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Thermodynamics ties the microscopic picture of the previous topics — molecules with kinetic energy and the ideal gas law — to the large-scale behaviour of engines, refrigerators and the cosmos itself. The first law is conservation of energy you have met before, now sharpened for gases; the second law is the deeper statement, the one physical principle that distinguishes past from future. Master the habit — name the process, write $Q = \\Delta U + W$ with firm signs, work in kelvin, and show every line — and both the calculations and the conceptual questions in this topic become variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: solve a heat-engine problem with full working", "href": "/mark?subject=ib-physics-hl&topic=B.4&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Physics Data Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/" },
+      { "label": "PhET Simulation: Gas Properties", "href": "https://phet.colorado.edu/en/simulations/gas-properties" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Gas Properties",

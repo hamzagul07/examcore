@@ -1,192 +1,366 @@
 {
   "slug": "a-3-work-energy-and-power",
   "topicCode": "A.3",
+  "unit": {
+    "code": "A",
+    "title": "Space, time and motion"
+  },
   "title": "Work, energy and power",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson extends the core concepts of work, energy, and power to rotational dynamics. It introduces the rotational analogues of force (torque), mass (moment of inertia), and velocity (angular velocity) to analyse the energy and power of spinning objects.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Energy is the single accounting currency that ties the whole of mechanics together. This lesson builds the complete quantitative toolkit of A.3: work done by a force ($W = Fs\\cos\\theta$) and work as the area under a force–displacement graph, kinetic energy, gravitational and elastic potential energy, the principle of conservation of energy and energy transfers, mechanical power ($P = W/t = Fv$) and efficiency. It is a calculation-heavy topic, so it is built around fully worked examples marked exactly the way our engine marks your own practice, with method marks, answer marks and error-carried-forward made explicit.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Calculate the work done by a torque using the expression W = τΔθ.",
-    "Define and calculate rotational kinetic energy using Ek,rot = ½Iω².",
-    "Apply the work-energy theorem to solve problems involving rotating bodies.",
-    "Calculate the power developed by a torque using P = τω."
+    "Calculate the work done by a constant force using $W = Fs\\cos\\theta$, and find work as the area under a force–displacement graph.",
+    "Calculate kinetic energy $E_k = \\tfrac{1}{2}mv^2$, change in gravitational potential energy $\\Delta E_p = mg\\Delta h$, and elastic potential energy $E_e = \\tfrac{1}{2}kx^2$.",
+    "Apply the principle of conservation of energy to track energy transfers, including problems with and without friction.",
+    "Calculate power as $P = W/t = Fv$ and efficiency as useful output divided by total input.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "A.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Physics of Spin",
-    "summary": "Just like pushing an object in a straight line involves work and energy, spinning an object also requires work and gives it energy. We'll explore the rotational versions of familiar concepts like force, energy, and power.",
-    "analogy": "Imagine trying to spin a playground roundabout. It's much easier to get it moving by pushing on the outer edge than near the centre; this turning effect is 'torque'. A heavy, large roundabout is harder to start and stop than a light, small one, representing its 'moment of inertia'. The energy it possesses while spinning is its 'rotational kinetic energy'.",
+    "title": "Energy is a Currency You Cannot Destroy",
+    "summary": "Energy is like money in a sealed system: it moves from one account to another — motion, height, stretch, heat — but the total never changes. Work is a transfer of energy by a force, and power is how fast that transfer happens.",
+    "analogy": "Picture a skateboarder at the top of a ramp. At the top they have a full 'height account' (gravitational potential energy) and an empty 'speed account' (kinetic energy). Rolling down, money is transferred from the height account into the speed account — but no money is created or lost. If the ramp is rough, some money is quietly siphoned off into a 'heat account' by friction, so the speed account fills a little less. Add up every account at the bottom and you get exactly what you started with at the top.",
     "steps": [
-      "Identify the system as rotational and determine the acting torques. Is the torque constant or variable?",
-      "Calculate the work done by the net torque using W = τΔθ. Remember to use radians for the angular displacement Δθ.",
-      "Apply the rotational work-energy theorem: the net work done equals the change in rotational kinetic energy, W_net = ΔE_k,rot = ½Iω_f² - ½Iω_i².",
-      "Determine the power output at a specific instant using P = τω, ensuring angular velocity ω is in rad s⁻¹."
+      "Choose the system and identify every energy store involved — kinetic, gravitational, elastic, and any thermal energy lost to friction.",
+      "Write the total energy at the start and the total energy at the end; conservation of energy says they are equal.",
+      "For a single force, calculate the energy it transfers using $W = Fs\\cos\\theta$, or the area under a force–displacement graph.",
+      "If the question asks how fast the transfer happens, use power $P = W/t = Fv$; if it asks how much is usefully transferred, use efficiency = useful ÷ total."
     ]
   },
+  "keyConcepts": [
+    "energy",
+    "conservation of energy",
+    "energy transfer"
+  ],
   "flashcards": [
     {
-      "front": "What is torque (τ)?",
-      "back": "Torque is the rotational analogue of force; it is a measure of the turning effect of a force. It is calculated as τ = rFsinθ and has units of Newton-metres (Nm)."
+      "front": "Work done by a constant force",
+      "back": "$W = Fs\\cos\\theta$, where $\\theta$ is the angle between the force and the displacement. Only the component of force ALONG the displacement does work. Work is a scalar, measured in joules (J).",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is moment of inertia (I)?",
-      "back": "Moment of inertia is the rotational analogue of mass. It measures an object's resistance to angular acceleration. It depends on the mass and its distribution relative to the axis of rotation. Units are kg m²."
+      "front": "Work as area under a graph",
+      "back": "For a variable force, the work done equals the AREA under the force–displacement ($F$–$s$) graph. This is how the energy stored in a spring, $\\tfrac{1}{2}kx^2$, is obtained — the area of the triangle under $F = kx$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How do you calculate the work done by a constant torque?",
-      "back": "The work done (W) by a constant torque (τ) is the product of the torque and the angular displacement (Δθ) in radians. The formula is W = τΔθ."
+      "front": "Kinetic energy",
+      "back": "$E_k = \\tfrac{1}{2}mv^2$ — the energy of a moving mass. Note it depends on the SQUARE of speed, so doubling the speed quadruples the kinetic energy.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the formula for rotational kinetic energy?",
-      "back": "E_k,rot = ½Iω², where I is the moment of inertia and ω is the angular velocity in rad s⁻¹."
+      "front": "Change in gravitational potential energy",
+      "back": "$\\Delta E_p = mg\\Delta h$, where $\\Delta h$ is the change in VERTICAL height, not distance along a slope. Units: joules (J).",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the rotational equivalent of the work-energy theorem?",
-      "back": "The net work done on a rigid body by external torques is equal to the change in its rotational kinetic energy: W_net = ΔE_k,rot = ½Iω_f² - ½Iω_i²."
+      "front": "Elastic potential energy",
+      "back": "$E_e = \\tfrac{1}{2}kx^2$ — the energy stored in a spring (obeying Hooke's law $F = kx$) that is stretched or compressed by an extension $x$. It is the area under the force–extension graph.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How is power calculated in rotational motion?",
-      "back": "Power (P) is the rate at which work is done. For a rotating object, it is the product of torque (τ) and angular velocity (ω). The formula is P = τω."
+      "front": "Principle of conservation of energy",
+      "back": "In an isolated system the total energy is constant: energy is transferred between stores but never created or destroyed. Total energy before = total energy after.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a common unit conversion trap in rotational work calculations?",
-      "back": "Angular displacement (Δθ) must always be in radians, not degrees or revolutions. Remember that 1 revolution = 2π radians and 360° = 2π radians."
+      "front": "Power",
+      "back": "$P = \\dfrac{W}{t} = \\dfrac{\\Delta E}{t}$ — the RATE of doing work or transferring energy, measured in watts (W), where 1 W = 1 J s⁻¹.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the relationship between linear power (P=Fv) and rotational power (P=τω)?",
-      "back": "They are analogous. Torque τ is the rotational equivalent of force F, and angular velocity ω is the rotational equivalent of linear velocity v."
+      "front": "Power at constant velocity",
+      "back": "$P = Fv$, derived from $P = W/t = Fs/t = F(s/t)$. Useful when a force $F$ moves an object at speed $v$, e.g. a car overcoming drag at steady speed.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "If torque is not constant, how is work done calculated?",
-      "back": "If torque varies with angular position, the work done is the area under the torque-angle (τ vs θ) graph."
+      "front": "Efficiency",
+      "back": "$\\eta = \\dfrac{\\text{useful energy (or power) out}}{\\text{total energy (or power) in}}$. A dimensionless ratio, often written as a percentage. It is ALWAYS less than 1 (100%) for a real machine.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "A solid sphere and a hollow sphere of the same mass and radius roll down an incline. Which reaches the bottom first?",
-      "back": "The solid sphere. It has a smaller moment of inertia (I_solid = 2/5MR², I_hollow = 2/3MR²), so for a given potential energy loss, more energy is converted to translational kinetic energy, making it faster. This connects to Topic 9."
+      "front": "When is work zero?",
+      "back": "Work is zero if there is no displacement ($s = 0$), if the force is zero, or if the force is perpendicular to the motion ($\\cos 90^\\circ = 0$). Holding a heavy bag still does NO physics work on it.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the symbol for moment of inertia, and what can it be confused with?",
-      "back": "The symbol is I. In IB Physics, this can be confused with Impulse (also I or J) and electric current (I). Always read the question carefully to understand the context."
+      "front": "Negative work",
+      "back": "Work is negative when a force (or its component) opposes the displacement, e.g. friction. Negative work REMOVES kinetic energy from the object; it does not vanish, it becomes thermal energy.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: energy is not 'used up'",
+      "back": "Energy is never destroyed or 'used up'. When friction slows a car, the kinetic energy is TRANSFERRED to thermal energy in the brakes, tyres and air. In an answer, say where the energy goes, not that it disappears.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A cleaner pushes a mop with a force of 40 N along a handle at 60° to the horizontal floor, moving it 3.0 m along the floor. The work done ON the floor along the horizontal is:",
+      "options": [
+        "120 J (they used the full force)",
+        "60 J (using $\\cos 60^\\circ$)",
+        "104 J (using $\\cos 30^\\circ$)",
+        "0 J (the mop does no work)"
+      ],
+      "answer": "60 J (using $\\cos 60^\\circ$)"
+    },
+    {
+      "prompt": "A ball rolls down a frictionless slope and reaches the bottom. Which statement is correct?",
+      "options": [
+        "The gravitational potential energy is used up and lost",
+        "The gravitational potential energy is transferred to kinetic energy",
+        "Kinetic energy is created from nothing as it speeds up",
+        "Energy is destroyed by the slope"
+      ],
+      "answer": "The gravitational potential energy is transferred to kinetic energy"
+    },
+    {
+      "prompt": "Two motors both lift identical 50 kg loads through 4.0 m, but motor A takes 2.0 s and motor B takes 8.0 s. Compared with B, motor A does:",
+      "options": [
+        "More work and more power",
+        "The same work but more power",
+        "More work but the same power",
+        "Less work but more power"
+      ],
+      "answer": "The same work but more power"
+    },
+    {
+      "prompt": "An electric motor is supplied with 500 W of electrical power and delivers 350 W of useful mechanical power. Its efficiency is:",
+      "options": [
+        "143%",
+        "70%",
+        "35%",
+        "It could be 100% if it is well made"
+      ],
+      "answer": "70%"
+    },
+    {
+      "prompt": "A spring with spring constant $k = 200$ N m⁻¹ is compressed by 0.10 m. The elastic potential energy stored is:",
+      "options": [
+        "20 J",
+        "10 J",
+        "1.0 J",
+        "2.0 J"
+      ],
+      "answer": "1.0 J"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between work done by a force and work done by a torque?",
-      "a": "They are analogous concepts for different types of motion. Work done by a force ($W = Fd\\cos\\phi$) involves a force causing a linear displacement, typically changing an object's translational kinetic energy. Work done by a torque ($W = \\tau\\Delta\\theta$) involves a torque causing an angular displacement (rotation), changing an object's rotational kinetic energy."
+      "q": "Can work be negative, and what does that mean physically?",
+      "a": "Yes. Work is negative when the force (or a component of it) points opposite to the displacement, so $\\cos\\theta$ is negative. Friction is the classic example: it always opposes motion, so it does negative work, meaning it removes kinetic energy from the object. That energy is not destroyed — it is transferred to thermal energy in the surfaces and surroundings."
     },
     {
-      "q": "Why must angular displacement be in radians for these formulas?",
-      "a": "The formulas $W = \\tau\\Delta\\theta$ and the kinematic equations they derive from are based on the relationship between arc length ($s$), radius ($r$), and angle in radians ($s = r\\theta$). Using degrees or revolutions would introduce conversion factors (like $\\pi/180$) into the formulas, making them more complex. Radians provide the most direct and fundamental link between linear and angular quantities."
+      "q": "What is the difference between energy and power?",
+      "a": "Energy is the capacity to do work, measured in joules (J); it is a quantity that is stored and transferred. Power is the RATE at which energy is transferred, measured in watts (W), i.e. joules per second. Two athletes can do the same work (same energy transferred) but the more powerful one does it in less time. Think of energy as the water in a tank and power as the flow rate from the tap."
+    },
+    {
+      "q": "Why does the conservation-of-energy method avoid needing the acceleration or the forces at every instant?",
+      "a": "Because energy is a state quantity: the total at the start and the total at the end are equal, regardless of the path or the messy details in between. For a ball sliding down a curved, frictionless slope you would struggle to track the changing force and acceleration, but $mg\\Delta h = \\tfrac{1}{2}mv^2$ jumps straight from start to finish. This is exactly why energy methods are so powerful in the exam."
+    },
+    {
+      "q": "Why can efficiency never reach 100% for a real machine?",
+      "a": "Because some energy is always transferred to stores you did not want — usually thermal energy from friction, air resistance or electrical resistance, plus sound. Since efficiency is useful output ÷ total input and some input always ends up as unwanted output, the ratio is always below 1. An answer claiming 100% or more efficiency should immediately look wrong."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In previous topics, we studied work, energy, and power in the context of linear (or translational) motion. However, many real-world systems involve rotation, from planets orbiting the sun to the wheels of a car. This section extends our energy analysis to the realm of rotational dynamics, establishing direct parallels between linear and angular quantities."
+      "content": "Almost every mechanics problem can be solved twice: once with forces and acceleration, and once — often far more quickly — with energy. Energy is the universal accounting currency of physics: it flows between kinetic, gravitational, elastic and thermal stores, but the total in an isolated system never changes. This lesson builds that toolkit from the ground up: how a force transfers energy through work, the three energy stores you meet in this course, the principle of conservation of energy, and finally power and efficiency, which tell you how fast and how effectively energy is transferred. Because A.3 is calculation-heavy, every worked example is laid out exactly the way marks are awarded — because in this topic, HOW you show your working decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Work Done by a Torque"
+      "content": "Work: transferring energy with a force"
     },
     {
       "type": "text",
-      "content": "Just as a constant force doing work is given by $W = Fd$, a constant torque doing work is given by a similar expression. Torque, $\\tau$, is the rotational equivalent of force, and angular displacement, $\\Delta\\theta$, is the rotational equivalent of linear displacement, $d$. Therefore, the work done by a constant torque is the product of the torque and the angular displacement."
+      "content": "In physics, work has a precise meaning: work is done when a force causes a displacement, and it is the mechanism by which energy is transferred to or from an object. Crucially, only the component of the force acting ALONG the displacement does work. A force applied to an object that does not move does no work; a force perpendicular to the motion — such as the normal force on a book sliding across a table — does no work either."
     },
     {
       "type": "formula",
-      "content": "W = \\tau \\Delta\\theta"
+      "content": "W = Fs\\cos\\theta"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The angular displacement $\\Delta\\theta$ must be measured in radians (rad).",
-        "The torque $\\tau$ is assumed to be constant for this formula.",
-        "If the torque is not constant, the work done is found by calculating the area under a torque-angle graph.",
-        "Positive work is done when the torque acts in the same direction as the rotation, increasing the object's rotational energy."
+        "Work ($W$) is a scalar quantity measured in joules (J); 1 J = 1 N m.",
+        "$F$ is the magnitude of the force (N) and $s$ is the magnitude of the displacement (m).",
+        "$\\theta$ is the angle between the force and the displacement, so $F\\cos\\theta$ is the component of force along the motion.",
+        "Work is zero when $s = 0$, when $F = 0$, or when $\\theta = 90^\\circ$; work is negative when $\\theta > 90^\\circ$ (the force opposes the motion, e.g. friction)."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A motor applies a constant torque of 120 Nm to a grinding wheel. The wheel starts from rest and turns through 50 revolutions. Calculate the work done by the motor on the wheel.",
-      "solution": "1.  **Identify knowns:**\n    Torque, $\\tau = 120$ Nm\n    Angular displacement in revolutions = 50 rev\n\n2.  **Convert angular displacement to radians:**\n    The formula $W = \\tau \\Delta\\theta$ requires $\\Delta\\theta$ to be in radians.\n    $\\Delta\\theta = 50 \\text{ rev} \\times \\frac{2\\pi \\text{ rad}}{1 \\text{ rev}} = 100\\pi$ rad.\n\n3.  **Apply the work formula:**\n    $W = \\tau \\Delta\\theta$\n    $W = (120 \\text{ Nm}) \\times (100\\pi \\text{ rad})$\n\n4.  **Calculate the final answer:**\n    $W = 12000\\pi$ J\n    $W \\approx 37699$ J\n    To 3 significant figures, $W = 37700$ J or $37.7$ kJ. [3 marks]"
-    },
-    {
-      "type": "heading",
-      "content": "Rotational Kinetic Energy and the Work-Energy Theorem"
-    },
-    {
       "type": "text",
-      "content": "An object that is rotating possesses kinetic energy because its constituent particles are in motion. This is called rotational kinetic energy. Its formula is directly analogous to the one for linear kinetic energy, $E_k = \\frac{1}{2}mv^2$, by substituting mass $m$ with moment of inertia $I$ and linear velocity $v$ with angular velocity $\\omega$."
-    },
-    {
-      "type": "formula",
-      "content": "E_{k,rot} = \\frac{1}{2}I\\omega^2"
-    },
-    {
-      "type": "text",
-      "content": "The work-energy theorem also applies in a rotational context. The net work done by all torques acting on a body is equal to the change in its rotational kinetic energy."
-    },
-    {
-      "type": "formula",
-      "content": "W_{net} = \\Delta E_{k,rot} = \\frac{1}{2}I\\omega_f^2 - \\frac{1}{2}I\\omega_i^2"
+      "content": "The formula $W = Fs\\cos\\theta$ only applies to a constant force. When the force VARIES with displacement — as a spring's force does — the work done is instead the AREA under the force–displacement ($F$–$s$) graph. This graphical view is completely general: for a constant force the area is simply a rectangle of height $F$ and width $s$, recovering $W = Fs$, while for a spring obeying $F = kx$ the area is a triangle, which is where the elastic energy formula comes from."
     },
     {
       "type": "examTip",
-      "content": "Many problems involve objects that are both translating and rotating, like a ball rolling down a hill. In these cases, the total kinetic energy is the sum of the translational and rotational kinetic energies: $E_{k,total} = \\frac{1}{2}mv^2 + \\frac{1}{2}I\\omega^2$. Don't forget to account for both forms of energy!"
+      "content": "If a question shows an $F$–$s$ graph, do not reach for $W = Fs$. Find the AREA under the line instead — split it into rectangles and triangles if the shape is awkward. Marks are routinely lost by students who read a single force value off the axis and multiply, ignoring that the force changes."
     },
     {
       "type": "workedExample",
-      "question": "A flywheel with a moment of inertia of 2.5 kg m² is rotating at an angular velocity of 60.0 rad s⁻¹. A constant frictional torque is applied, bringing the flywheel to rest after 150 rotations. Calculate (a) the initial rotational kinetic energy and (b) the magnitude of the frictional torque.",
-      "solution": "**(a) Initial Rotational Kinetic Energy**\n\n1.  **Identify knowns:**\n    $I = 2.5$ kg m²\n    $\\omega_i = 60.0$ rad s⁻¹\n\n2.  **Apply the rotational kinetic energy formula:**\n    $E_{k,i} = \\frac{1}{2}I\\omega_i^2$\n    $E_{k,i} = \\frac{1}{2}(2.5 \\text{ kg m}^2)(60.0 \\text{ rad s}^{-1})^2$\n    $E_{k,i} = 0.5 \\times 2.5 \\times 3600$\n    $E_{k,i} = 4500$ J or 4.50 kJ. [2 marks]\n\n**(b) Magnitude of Frictional Torque**\n\n1.  **Apply the work-energy theorem:**\n    The work done by friction, $W_{fric}$, brings the flywheel to rest. So, the final kinetic energy $E_{k,f} = 0$.\n    $W_{fric} = \\Delta E_{k,rot} = E_{k,f} - E_{k,i} = 0 - 4500$ J = -4500 J.\n\n2.  **Calculate angular displacement in radians:**\n    $\\Delta\\theta = 150 \\text{ rotations} \\times 2\\pi \\text{ rad/rotation} = 300\\pi$ rad.\n\n3.  **Use the work formula to find torque:**\n    $W = \\tau \\Delta\\theta$\n    $-4500 \\text{ J} = \\tau \\times (300\\pi \\text{ rad})$\n    $\\tau = \\frac{-4500}{300\\pi} = -\\frac{15}{\\pi}$ Nm\n    $\\tau \\approx -4.77$ Nm.\n\n4.  **State the magnitude:**\n    The magnitude of the frictional torque is 4.77 Nm. The negative sign indicates the torque opposes the motion. [3 marks]"
+      "question": "A person pulls a 20.0 kg suitcase 15.0 m across a flat floor using a strap at 40° above the horizontal, with a constant force of 50.0 N. (a) Calculate the work done by the person on the suitcase. (b) The suitcase starts from rest and friction is negligible. Using the work–energy principle, find its final speed. [5]",
+      "solution": "**(a) Work done by the pull.**\nOnly the horizontal component of the force acts along the motion, so use $W = Fs\\cos\\theta$.\n$W = (50.0)(15.0)\\cos 40^\\circ = 750 \\times 0.766 = 575$ J.  [M1 method with $\\cos\\theta$, A1 answer to 3 s.f.]\n\n**(b) Final speed from the work–energy principle.**\nWith friction negligible, the pull is the only force doing work along the motion, so the net work equals the gain in kinetic energy: $W = \\tfrac{1}{2}mv^2 - 0$.\n$575 = \\tfrac{1}{2}(20.0)v^2$  [M1: sets net work = $\\Delta E_k$]\n$v^2 = \\dfrac{2 \\times 575}{20.0} = 57.5$\n$v = 7.58$ m s⁻¹.  [A1]\n\n*The vertical component of the pull does no work here because there is no vertical displacement — the suitcase stays on the floor.*"
     },
     {
       "type": "heading",
-      "content": "Power in Rotational Motion"
+      "content": "The three energy stores"
     },
     {
       "type": "text",
-      "content": "Power is the rate at which work is done or energy is transferred. In linear motion, instantaneous power is $P = Fv$. The analogous relationship in rotational motion gives power as the product of torque and angular velocity."
+      "content": "For mechanics you need three stores of energy. Kinetic energy ($E_k$) is the energy of motion — it grows with the square of the speed, so a car at 40 m s⁻¹ carries four times the kinetic energy it has at 20 m s⁻¹. Gravitational potential energy ($E_p$) is the energy of position in a gravitational field; lifting a mass raises it, and only the change in VERTICAL height matters. Elastic potential energy ($E_e$) is the energy stored in a stretched or compressed spring — it is the area under the spring's force–extension graph."
     },
     {
       "type": "formula",
-      "content": "P = \\tau \\omega"
+      "content": "E_k = \\tfrac{1}{2}mv^2 \\qquad \\Delta E_p = mg\\Delta h \\qquad E_e = \\tfrac{1}{2}kx^2"
     },
     {
       "type": "keyPoints",
       "items": [
-        "This formula gives the instantaneous power. If torque or angular velocity changes, the power will change.",
-        "Angular velocity $\\omega$ must be in rad s⁻¹.",
-        "The unit of power is the Watt (W), where 1 W = 1 J s⁻¹."
+        "$E_k = \\tfrac{1}{2}mv^2$: kinetic energy depends on the SQUARE of speed — doubling $v$ quadruples $E_k$.",
+        "$\\Delta E_p = mg\\Delta h$: use the vertical height change $\\Delta h$, not the distance along a ramp; $g = 9.81$ m s⁻² near Earth's surface.",
+        "$E_e = \\tfrac{1}{2}kx^2$: $k$ is the spring constant (N m⁻¹) and $x$ is the extension or compression (m); this is the triangular area under $F = kx$.",
+        "All three are measured in joules (J)."
       ]
     },
     {
+      "type": "heading",
+      "content": "Conservation of energy and energy transfers"
+    },
+    {
+      "type": "text",
+      "content": "The principle of conservation of energy states that in an isolated system the total energy is constant — energy is transferred between stores but is never created or destroyed. This is the single most powerful idea in mechanics, because it lets you jump directly from a starting state to a finishing state without tracking the forces at every instant. For a mass falling or sliding down a frictionless slope, gravitational potential energy is transferred entirely to kinetic energy: $mg\\Delta h = \\tfrac{1}{2}mv^2$. Notice the mass cancels, so the speed at the bottom does not depend on how heavy the object is."
+    },
+    {
+      "type": "text",
+      "content": "When friction or air resistance is present, energy is not lost — it is transferred to thermal energy in the surfaces and surroundings. The bookkeeping simply gains one more term: the energy at the start equals the useful kinetic energy at the end PLUS the energy transferred to thermal energy. This is why a real object always arrives at the bottom of a rough slope slower than the frictionless prediction: some of its potential energy has been siphoned off as heat."
+    },
+    {
+      "type": "formula",
+      "content": "mg\\Delta h = \\tfrac{1}{2}mv^2 + E_{\\text{thermal}}"
+    },
+    {
+      "type": "examTip",
+      "content": "The energy method avoids acceleration entirely. If you find yourself reaching for $v^2 = u^2 + 2as$ on a slope and the angle or path is awkward, switch to energy: equate the store you start with to the stores you finish with. Just remember to include a thermal-energy term whenever friction or drag is mentioned."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 2.0 kg box is released from rest at the top of a ramp and slides down a vertical drop of 3.0 m. (a) Assuming the ramp is frictionless, calculate the box's speed at the bottom. (b) In reality the box reaches the bottom at 6.0 m s⁻¹. Calculate the energy transferred to thermal energy by friction. (Use $g = 9.81$ m s⁻².) [5]",
+      "solution": "**(a) Frictionless case — energy conservation.**\nAll the gravitational potential energy becomes kinetic energy:\n$mg\\Delta h = \\tfrac{1}{2}mv^2$.  [M1]\nThe mass cancels: $v = \\sqrt{2g\\Delta h} = \\sqrt{2 \\times 9.81 \\times 3.0} = \\sqrt{58.9} = 7.67$ m s⁻¹.  [A1]\n\n**(b) With friction — the missing energy.**\nEnergy in at the top: $E_p = mg\\Delta h = 2.0 \\times 9.81 \\times 3.0 = 58.9$ J.\nActual kinetic energy at the bottom: $E_k = \\tfrac{1}{2}mv^2 = \\tfrac{1}{2}(2.0)(6.0)^2 = 36$ J.  [M1: both energies]\nEnergy transferred to thermal energy = energy in − useful kinetic energy out:\n$E_{\\text{thermal}} = 58.9 - 36 = 23$ J.  [A1 method, A1 answer]\n\n*The box arrives slower than the 7.67 m s⁻¹ frictionless prediction precisely because 23 J of its energy has been transferred to heat, not destroyed.*"
+    },
+    {
+      "type": "heading",
+      "content": "Power: the rate of energy transfer"
+    },
+    {
+      "type": "text",
+      "content": "Two machines can transfer the same energy, but the one that does it faster is more powerful. Power is the rate of doing work, or equivalently the rate of transferring energy, measured in watts (W), where one watt is one joule per second. For an object moving at a steady velocity $v$ under a constant force $F$, a compact form is available: since $W = Fs$ and $v = s/t$, we get $P = W/t = Fs/t = Fv$. This is ideal for steady-state motion such as a vehicle cruising against drag."
+    },
+    {
+      "type": "formula",
+      "content": "P = \\frac{W}{t} = \\frac{\\Delta E}{t} = Fv"
+    },
+    {
+      "type": "heading",
+      "content": "Efficiency: how much of the input is useful"
+    },
+    {
+      "type": "text",
+      "content": "No real machine transfers all of its input energy into the store you want — some always ends up as unwanted thermal energy or sound. Efficiency measures how much of the input is usefully transferred: it is the ratio of useful output to total input, and because some energy is always wasted, it is always less than 1, or below 100%. You can compute it from energies or from powers, since power is just energy per unit time — as long as you compare like with like."
+    },
+    {
+      "type": "formula",
+      "content": "\\eta = \\frac{\\text{useful energy output}}{\\text{total energy input}} = \\frac{\\text{useful power output}}{\\text{total power input}}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Efficiency is a dimensionless ratio, often expressed as a percentage (multiply by 100).",
+        "It is always less than 100% for a real machine — a value of 100% or more signals an error.",
+        "Use either energies (J) or powers (W), but never mix one on top and the other below.",
+        "The 'wasted' energy is not destroyed — it is transferred to the surroundings, usually as thermal energy."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An electric winch lifts a 65 kg crate vertically at a constant speed of 0.40 m s⁻¹. The winch draws 350 W of electrical power. (a) Calculate the useful mechanical power output. (b) Calculate the efficiency of the winch. (Use $g = 9.81$ m s⁻².) [4]",
+      "solution": "**(a) Useful output power.**\nAt constant speed the winch's lifting force balances the weight, $F = mg = 65 \\times 9.81 = 637.65$ N.\nUseful power lifts the crate: $P = Fv = 637.65 \\times 0.40 = 255$ W.  [M1 using $P = Fv$ (or $mgv$), A1]\n\n**(b) Efficiency.**\n$\\eta = \\dfrac{\\text{useful power out}}{\\text{total power in}} = \\dfrac{255}{350} = 0.729$.  [M1]\nAs a percentage, $\\eta = 73\\%$.  [A1]\n\n*The remaining 27% (about 95 W) is transferred to thermal energy in the motor, sound and friction — it is wasted, not destroyed. Efficiency below 100% is exactly what we expect for a real machine.*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting $\\cos\\theta$ in work** — work needs the displacement in the DIRECTION of the force. If the force is at an angle, you must use $W = Fs\\cos\\theta$, not $W = Fs$. Holding a weight still, or a force perpendicular to motion, does ZERO work.",
+        "**Saying energy is 'used up' or 'lost'** — energy is conserved, never destroyed. When friction slows an object, state that the kinetic energy is TRANSFERRED to thermal energy in the surfaces and surroundings.",
+        "**Using distance along a slope for $\\Delta h$** — gravitational potential energy uses the VERTICAL height change, not the length of the ramp. Take the vertical component.",
+        "**Forgetting the friction term in conservation of energy** — on a rough slope, $mg\\Delta h = \\tfrac{1}{2}mv^2 + E_{\\text{thermal}}$. Ignoring the thermal term overestimates the final speed.",
+        "**Confusing power with energy** — power is energy per second (W), energy is the total transferred (J). Doing the same job faster means more power, not more work.",
+        "**Quoting an efficiency of 100% or more** — a real machine always wastes some energy, so efficiency is always below 100%. A value at or above 100% means useful and total inputs have been swapped or a wasted term has been missed.",
+        "**Forgetting kinetic energy scales with $v^2$** — doubling the speed quadruples $E_k$; halving the speed quarters it. Do not treat $E_k$ as if it were proportional to $v$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not cost you every mark that follows, PROVIDED your method is written down. Notice how the marks here split between the numerical calculation and the physical REASONING about air resistance: the reasoning marks are earned by explanation, not arithmetic. Study how each mark is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 0.50 kg ball is dropped from rest at a height of 8.0 m. (a) Using energy conservation, calculate its speed just before it hits the ground. (b) Explain how your answer would change if air resistance were significant. (Use $g = 9.81$ m s⁻².) [4]",
+      "solution": "**Model answer — full working.**\n\n**(a)** Take the system as the ball and Earth, with no air resistance. By conservation of energy, all the gravitational potential energy lost is transferred to kinetic energy:\n$mg\\Delta h = \\tfrac{1}{2}mv^2$.\nThe mass cancels, so $v = \\sqrt{2g\\Delta h}$.\n$v = \\sqrt{2 \\times 9.81 \\times 8.0} = \\sqrt{156.96} = 12.5$ m s⁻¹.\n\n**(b)** If air resistance were significant, it would do negative work on the ball as it falls, transferring some of the gravitational potential energy to thermal energy in the ball and the surrounding air. Less energy would then arrive as kinetic energy, so the ball would hit the ground at a LOWER speed than 12.5 m s⁻¹.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — energy-conservation set-up.** Awarded for equating the gravitational potential energy to the kinetic energy, $mg\\Delta h = \\tfrac{1}{2}mv^2$ (or the rearranged $v = \\sqrt{2g\\Delta h}$). This is a METHOD mark: it is credited for the correct physics even if a later arithmetic slip changes the number. Writing the equation down is what earns it.\n- **A1 — correct speed.** Awarded for $v = 12.5$ m s⁻¹ (accept 12.5–12.6 m s⁻¹). Because it follows the method mark, **error-carried-forward** applies: a student who set up $mg\\Delta h = \\tfrac{1}{2}mv^2$ correctly but slipped on the arithmetic still earns this mark for a speed correctly computed from THEIR own figures.\n- **M1 (part b) — identifies the energy transfer.** Awarded for stating that air resistance does negative work / transfers energy to thermal energy (heat) in the ball and air. This is a REASONING mark — it is earned by the physical explanation, not by any calculation.\n- **A1 (part b) — states the effect on the answer.** Awarded for concluding that the ball therefore arrives at a LOWER speed than the frictionless value. The two part-(b) marks are DISTINCT from the calculation: you cannot earn them by re-quoting the number, only by explaining the mechanism and its consequence.\n\n**'Accept answers that round correctly.'** The engine accepts 12.5 or 12.53 rounding appropriately, and does not demand a fixed number of decimal places in the intermediate lines — it credits the correct method and a correctly-rounded final answer.\n\n**Bottom line:** of the 4 marks, only 2 come from the calculation; the other 2 come from REASONING about air resistance. A student who writes only '12.5 m s⁻¹' with no equation and no explanation risks losing up to 3 of the 4 marks. Showing the conservation set-up and explaining the energy transfer is what keeps the score."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the energy-conservation equation before substituting numbers, and when a question says 'explain', spend a full sentence on the energy transfer rather than just re-quoting a figure. The method marks and error-carried-forward are what protect your score when the final number slips, and the reasoning marks are only there for answers that actually reason."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Conservation of energy is not confined to this topic — it is the spine of the whole course. Momentum and collisions revisit kinetic energy to distinguish elastic from inelastic; simple harmonic motion swaps energy continually between elastic and kinetic stores; thermal physics tracks the very thermal energy that friction produces here; and in the study of fields, potential energy generalises from $mg\\Delta h$ to gravitational and electric potentials. Master the habit of accounting — write every store at the start, every store at the end, set them equal — and problem after problem across the syllabus becomes a variation on a method you already own."
+    },
+    {
       "type": "practice",
-      "label": "Test your understanding",
-      "href": "/mark?subject=ib-physics-hl&topic=A.3"
+      "label": "Get a Paper 2 energy calculation marked: use conservation of energy to find a speed, then reason about air resistance",
+      "href": "/mark?subject=ib-physics-hl&topic=A.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Torque",
-          "href": "https://phet.colorado.edu/en/simulations/torque"
+          "label": "PhET Simulation: Energy Skate Park",
+          "href": "https://phet.colorado.edu/en/simulations/energy-skate-park-basics"
         },
         {
-          "label": "Video Tutorial: Rotational Work and Energy",
-          "href": "https://www.youtube.com/watch?v=86-X2S52VwY"
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
-    "title": "Torque",
-    "embedUrl": "https://phet.colorado.edu/sims/html/torque/latest/torque_en.html",
-    "launchUrl": "https://phet.colorado.edu/en/simulations/torque",
-    "hint": "Explore “Torque” — drag sliders and watch how the model responds in real time.",
+    "title": "Energy Skate Park",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-skate-park-basics",
+    "hint": "Explore “Energy Skate Park” — drag sliders and watch how the model responds in real time.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "PhET Interactive Simulations, University of Colorado Boulder",

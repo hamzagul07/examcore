@@ -1,177 +1,392 @@
 {
   "slug": "e-5-fusion-and-stars",
   "topicCode": "E.5",
+  "unit": {
+    "code": "E",
+    "title": "Nuclear and quantum physics"
+  },
   "title": "Fusion and stars",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson explores the process of nuclear fusion as the energy source for stars. It details the necessary conditions for fusion, the specific reaction pathways like the proton-proton chain, and the role of stars in creating heavier elements through nucleosynthesis. Calculations involving mass defect and energy release are central to understanding stellar power output.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Stars are the universe's fusion reactors, and this lesson connects the nuclear physics inside their cores to the light we measure from them. It builds the full E.5 toolkit: why fusing light nuclei releases energy (the products sit higher on the binding-energy-per-nucleon curve), the extreme temperature and pressure needed to overcome electrostatic repulsion, the proton-proton chain that powers the Sun, and the hydrostatic equilibrium between gravity and radiation pressure that keeps a main-sequence star stable. It then turns outward to the quantities we observe: luminosity through the Stefan-Boltzmann law, apparent brightness through the inverse-square law, and the Hertzsprung-Russell diagram as a map of stellar life. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the conditions necessary for nuclear fusion to occur in a star's core.",
-    "Describe the proton-proton (p-p) chain as the principal energy source for stars like the Sun.",
-    "Apply Einstein's mass-energy equivalence to calculate the energy released in fusion reactions.",
-    "Relate a star's luminosity to its rate of fusion and mass consumption."
+    "Explain why fusing light nuclei releases energy in terms of an increase in binding energy per nucleon and the associated mass defect.",
+    "State the conditions required for fusion and explain why very high temperature and pressure are needed to overcome electrostatic repulsion.",
+    "Describe a main-sequence star as being in hydrostatic equilibrium, with gravitational collapse balanced by radiation and gas pressure.",
+    "Apply the Stefan-Boltzmann law ($L = \\sigma A T^4$) and the apparent-brightness relation ($b = L / 4\\pi d^2$) to calculate stellar quantities.",
+    "Interpret the Hertzsprung-Russell diagram qualitatively and outline the main stages in the evolution of a Sun-like star.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "E.5"
+  ],
+  "levelNote": "Common to SL and HL; detailed stellar evolution and the full HR diagram are extended at HL.",
   "simpleExplanation": {
-    "title": "Stellar Forges",
-    "summary": "Stars shine by fusing light atomic nuclei into heavier ones, a process that releases vast amounts of energy. This stellar alchemy requires overcoming the immense electrical repulsion between protons in the super-hot, dense core.",
-    "analogy": "Imagine trying to push two powerful, repelling magnets together. They naturally fly apart. But if you put them in a tiny, incredibly hot, and crowded box (the star's core) and shake it violently, they might occasionally get close enough for a much stronger, super-short-range 'superglue' (the strong nuclear force) to stick them together permanently. This sticking process releases a burst of energy, which powers the star.",
+    "title": "How Stars Shine",
+    "summary": "A star is a self-regulating furnace. Gravity tries to crush a huge ball of gas inward; nuclear fusion in the core releases energy that pushes back out. When the inward crush and the outward push balance, the star sits stable for billions of years, radiating the energy we see as starlight.",
+    "analogy": "Picture a hot-air balloon. The weight of the fabric and basket pulls everything down (gravity), while the burner heats the air so its pressure holds the balloon up (radiation and gas pressure). Turn the burner too low and it sinks; too high and it rises. A main-sequence star self-corrects: if fusion dips, gravity squeezes the core hotter, which speeds fusion back up — so it hovers in perfect balance without anyone touching the dial.",
     "steps": [
-      "Identify the reactants and products in a given fusion reaction, such as the proton-proton chain.",
-      "Calculate the mass defect (Δm) by subtracting the total mass of the products from the total mass of the reactants.",
-      "Convert the mass defect into the energy released (E) using Einstein's mass-energy equivalence, E = Δmc².",
-      "Use the star's total power output (luminosity) and the energy per reaction to determine the overall rate of fusion."
+      "A cloud of hydrogen collapses under gravity, heating up as it shrinks into a dense, hot protostar.",
+      "The core passes roughly 10 million kelvin — hot enough that protons collide violently enough to overcome their electrostatic repulsion and fuse.",
+      "Fusion converts hydrogen to helium; because helium-4 has a higher binding energy per nucleon, energy is released (via the mass defect, $E = \\Delta m c^2$).",
+      "The outward radiation and gas pressure from this energy balances the inward pull of gravity — hydrostatic equilibrium — and the star shines steadily on the main sequence."
     ]
   },
+  "keyConcepts": [
+    "binding energy per nucleon",
+    "hydrostatic equilibrium",
+    "luminosity and apparent brightness"
+  ],
   "flashcards": [
     {
-      "front": "What is nuclear fusion?",
-      "back": "The process where two or more light atomic nuclei combine to form one or more different atomic nuclei and subatomic particles (neutrons or protons). This process releases a large amount of energy."
+      "front": "Nuclear fusion",
+      "back": "The joining of two or more light nuclei to form a heavier nucleus. In stars, hydrogen nuclei fuse to helium. The process releases energy because the product has a higher binding energy per nucleon than the reactants.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the two main conditions required for fusion in a star's core?",
-      "back": "Extremely high temperature ( > 10⁷ K) to give nuclei sufficient kinetic energy, and extremely high pressure/density to ensure a high collision rate."
+      "front": "Why does fusion of light nuclei release energy?",
+      "back": "The heavier product nucleus has a GREATER binding energy per nucleon than the light reactants (it sits higher on the binding-energy curve, up to iron). The extra binding energy comes from a loss of mass — the mass defect $\\Delta m$ — released as energy via $E = \\Delta m c^2$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the role of quantum tunnelling in stellar fusion?",
-      "back": "Even at stellar core temperatures, most nuclei lack the kinetic energy to overcome the Coulomb (electrostatic) barrier. Quantum tunnelling allows nuclei to 'tunnel' through this barrier and fuse, even if they classically don't have enough energy."
+      "front": "Conditions required for fusion",
+      "back": "Very high temperature (over ~10 million K) so nuclei move fast enough to overcome their mutual electrostatic (Coulomb) repulsion, and very high pressure/density so collisions are frequent enough to sustain the reaction.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the proton-proton (p-p) chain?",
-      "back": "The primary fusion reaction sequence in stars with masses similar to or less than the Sun. It converts four protons (hydrogen nuclei) into one helium-4 nucleus, releasing energy."
+      "front": "Why is high temperature essential for fusion?",
+      "back": "Both nuclei are positively charged and repel each other electrostatically. Only at very high temperature do they have enough kinetic energy to get close enough for the short-range strong nuclear force to bind them. Temperature, not pressure, is what provides that kinetic energy.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the net reaction of the proton-proton chain?",
-      "back": "4¹H → ⁴He + 2e⁺ + 2νₑ + 2γ (Four protons become one helium nucleus, two positrons, two electron neutrinos, and gamma photons)."
+      "front": "Hydrostatic equilibrium",
+      "back": "The stable state of a main-sequence star in which the inward gravitational pressure is exactly balanced by the outward radiation pressure and gas pressure. It is self-regulating: a dip in fusion lets gravity compress and heat the core, restoring the fusion rate.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is mass defect (Δm)?",
-      "back": "The difference between the total mass of the individual nucleons (protons and neutrons) and the actual mass of the nucleus. It represents the mass converted to binding energy."
+      "front": "Radiation pressure",
+      "back": "The outward pressure exerted by the photons streaming out of the hot core. Together with the thermal gas pressure it opposes gravitational collapse and holds a star up.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How is energy release in a nuclear reaction calculated?",
-      "back": "Using Einstein's mass-energy equivalence equation, E = Δmc², where Δm is the mass defect (mass of reactants - mass of products) and c is the speed of light."
+      "front": "The proton-proton (p-p) chain",
+      "back": "The dominant fusion sequence in stars up to about the Sun's mass. Its net effect is $4\\,^1_1\\text{H} \\rightarrow \\,^4_2\\text{He} + 2e^+ + 2\\nu_e$, releasing about 26.7 MeV per helium nucleus formed.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is stellar nucleosynthesis?",
-      "back": "The process of creating new atomic nuclei within stars from pre-existing protons and neutrons. It explains the cosmic origin of elements heavier than hydrogen and helium."
+      "front": "Luminosity, $L$",
+      "back": "The total power radiated by a star in all directions, in watts (W). It is an INTRINSIC property of the star. Given by the Stefan-Boltzmann law $L = \\sigma A T^4 = \\sigma (4\\pi R^2) T^4$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the CNO cycle?",
-      "back": "A catalytic cycle of fusion reactions, involving Carbon, Nitrogen, and Oxygen, that is the dominant energy source in stars more massive than the Sun."
+      "front": "Apparent brightness, $b$",
+      "back": "The power received per unit area by an observer, in W m⁻². It depends on both the star's luminosity and its distance: $b = \\dfrac{L}{4\\pi d^2}$. Two identical stars look different in brightness only because of distance.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Common Trap: Confusing mass defect and binding energy.",
-      "back": "Mass defect is a quantity of mass (in kg or u). Binding energy is the energy equivalent of this mass (in J or MeV). They are related by E = mc² but are not the same quantity."
+      "front": "Stefan-Boltzmann law",
+      "back": "$L = \\sigma A T^4$, where $A = 4\\pi R^2$ is the surface area, $T$ is the surface temperature in kelvin, and $\\sigma = 5.67 \\times 10^{-8}$ W m⁻² K⁻⁴. Luminosity depends very steeply on temperature — the FOURTH power.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is hydrostatic equilibrium in the context of a star?",
-      "back": "The state of balance where the inward gravitational force is exactly counteracted by the outward pressure from radiation and hot gas generated by fusion in the core. This keeps the star stable."
+      "front": "Inverse-square law for brightness",
+      "back": "$b \\propto 1/d^2$: double the distance and the apparent brightness falls to a quarter, because the same luminosity spreads over a sphere of area $4\\pi d^2$ that grows with $d^2$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Hertzsprung-Russell (HR) diagram",
+      "back": "A plot of luminosity (y-axis, increasing upward) against surface temperature (x-axis, increasing to the LEFT — the axis is reversed). Most stars lie on the diagonal main sequence; giants sit top-right, white dwarfs bottom-left.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "White dwarf",
+      "back": "The hot, dense, Earth-sized remnant core left when a low-mass star ends fusion and sheds its outer layers. It is supported by electron degeneracy pressure, NOT by fusion, and slowly cools. Sits at the bottom-left of the HR diagram.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Exam Trap: luminosity vs apparent brightness",
+      "back": "Luminosity ($L$, in W) is the power the star actually emits — a property of the star alone. Apparent brightness ($b$, in W m⁻²) is what reaches us and depends on distance. A faint-looking star may be hugely luminous but simply far away.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: what balances gravity in a star?",
+      "back": "On the main sequence, gravitational collapse is balanced by outward RADIATION pressure and gas pressure from fusion energy — not by any repulsion between nuclei and not by the star's rotation.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Fusion requires very high temperatures in a star's core mainly in order to:",
+      "options": [
+        "Melt the hydrogen into a plasma",
+        "Give nuclei enough kinetic energy to overcome their electrostatic repulsion",
+        "Increase the gravitational pull on the core",
+        "Slow the nuclei down so they can bond"
+      ],
+      "answer": "Give nuclei enough kinetic energy to overcome their electrostatic repulsion"
+    },
+    {
+      "prompt": "Fusing hydrogen into helium releases energy because the helium-4 nucleus has, compared with the separate protons:",
+      "options": [
+        "A lower binding energy per nucleon",
+        "A higher binding energy per nucleon, so mass is released as energy",
+        "A larger mass, gained from the released energy",
+        "The same binding energy but a smaller radius"
+      ],
+      "answer": "A higher binding energy per nucleon, so mass is released as energy"
+    },
+    {
+      "prompt": "A star X appears much fainter than a star Y in our sky. Which statement is definitely correct?",
+      "options": [
+        "X must have a lower luminosity than Y",
+        "X must be cooler than Y",
+        "X has a lower apparent brightness than Y, but could be more luminous if it is farther away",
+        "X and Y must be the same distance away"
+      ],
+      "answer": "X has a lower apparent brightness than Y, but could be more luminous if it is farther away"
+    },
+    {
+      "prompt": "During its main-sequence life a star is stable because gravity is balanced by:",
+      "options": [
+        "The electrostatic repulsion between nuclei",
+        "The outward radiation pressure and gas pressure from fusion",
+        "The magnetic field of the star",
+        "The centrifugal effect of its rotation"
+      ],
+      "answer": "The outward radiation pressure and gas pressure from fusion"
+    },
+    {
+      "prompt": "On a Hertzsprung-Russell diagram, the surface-temperature axis is drawn so that temperature:",
+      "options": [
+        "Increases to the right, like a normal graph",
+        "Increases to the left (the axis is reversed)",
+        "Is plotted vertically",
+        "Has no fixed direction"
+      ],
+      "answer": "Increases to the left (the axis is reversed)"
     }
   ],
   "faq": [
     {
-      "q": "If the Sun is losing over 4 billion kilograms of mass per second, will it run out of fuel soon?",
-      "a": "While 4.2 billion kg/s sounds like a lot, the Sun's total mass is about $2 \\times 10^{30}$ kg. This rate of mass loss is incredibly small in comparison. The Sun has enough hydrogen fuel in its core to continue shining for another 5 billion years."
+      "q": "Why does joining light nuclei release energy, when splitting heavy ones (fission) also releases energy?",
+      "a": "Both are explained by the binding-energy-per-nucleon curve, which rises steeply to a peak at iron-56 and then falls slowly. Moving TOWARD the peak always releases energy. Light nuclei are on the rising side, so fusing them upward toward iron releases energy; heavy nuclei are on the falling side, so splitting them back toward iron also releases energy. Iron itself is the most stable, which is why neither fusion nor fission of iron releases energy."
     },
     {
-      "q": "Why doesn't fusion happen in a planet's core, like Jupiter's, which is also very hot and under high pressure?",
-      "a": "Although Jupiter is massive and has a hot, high-pressure core, the temperature and pressure are not high enough to initiate and sustain nuclear fusion. An object needs to be about 80 times the mass of Jupiter (or about 8% of the Sun's mass) to reach the necessary core conditions. Objects below this threshold are known as brown dwarfs."
+      "q": "If fusion produces so much outward pressure, why don't stars just blow themselves apart?",
+      "a": "Because of hydrostatic equilibrium. The outward radiation and gas pressure from fusion is precisely balanced by the inward pull of gravity. It is self-regulating: if fusion sped up, the extra pressure would expand and cool the core, slowing fusion again; if fusion dipped, gravity would compress and heat the core, speeding it back up. That feedback keeps a main-sequence star remarkably steady for billions of years."
     },
     {
-      "q": "What happens to the positrons produced in the proton-proton chain?",
-      "a": "A positron is the antimatter equivalent of an electron. As soon as a positron is created in the dense stellar core, it almost immediately encounters an electron. They annihilate each other, converting their entire mass into energy in the form of two high-energy gamma-ray photons. This annihilation energy contributes to the total energy output of the fusion process."
+      "q": "What is the difference between luminosity and apparent brightness in exam terms?",
+      "a": "Luminosity $L$ is the total power a star emits in all directions, measured in watts — an intrinsic property. Apparent brightness $b$ is the power per unit area that actually reaches an observer, in W m⁻², and it falls off with the square of distance through $b = L/4\\pi d^2$. Questions love to give you two of {luminosity, brightness, distance} and ask for the third. The Sun looks by far the brightest star in our sky only because it is so close, not because it is unusually luminous."
+    },
+    {
+      "q": "Do I need the steps of the proton-proton chain and the CNO cycle for SL?",
+      "a": "For SL you should know that the net result of the p-p chain is four protons forming one helium-4 nucleus with the release of about 26.7 MeV, and that this is the dominant process in stars up to about the Sun's mass. You do not need to memorise every intermediate step, and the CNO cycle (dominant in more massive stars) is beyond SL detail — be aware it exists, but you are not examined on its steps."
+    },
+    {
+      "q": "Why is the temperature axis of the HR diagram 'backwards'?",
+      "a": "It is a historical convention. Early astronomers ordered stars by spectral class O, B, A, F, G, K, M — hottest (O) to coolest (M) — and plotted them in that left-to-right order. Because O-type stars are the hottest and sit on the left, temperature ends up increasing to the left. Always check the axis direction before reading an HR diagram in an exam."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Stars, the celestial beacons that have captivated humanity for millennia, are powered by the most fundamental of energy sources: nuclear fusion. In this lesson, we will delve into the core of a star to understand how it forges new elements and releases the immense energy that makes life on Earth possible. We will explore the precise conditions needed for this process and quantify the energy produced."
+      "content": "Stars are the universe's engines: they forge the elements, light the sky, and make planets and life possible. This lesson links the nuclear physics deep in a star's core to the light we measure from Earth. We start with why fusing light nuclei releases energy and the extreme conditions that fusion demands, move to the balance of forces that keeps a star stable, and finish with the quantities we actually observe — luminosity, apparent brightness and the map of stellar lives, the Hertzsprung-Russell diagram. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "Conditions for Stellar Fusion"
+      "content": "Why fusion releases energy: the binding-energy curve"
     },
     {
       "type": "text",
-      "content": "For fusion to occur, atomic nuclei must be brought close enough for the strong nuclear force to overcome their mutual electrostatic repulsion. Protons, being positively charged, repel each other via the Coulomb force. To overcome this 'Coulomb barrier', the nuclei must have extremely high kinetic energy, which corresponds to temperatures exceeding 10 million Kelvin. The core of a star is a plasma, a state of matter where electrons are stripped from their atoms, leaving a sea of bare nuclei and free electrons."
-    },
-    {
-      "type": "text",
-      "content": "Even at these temperatures, classical physics suggests that very few particles would have sufficient energy to overcome the barrier. The process is made possible by a quantum mechanical phenomenon called **quantum tunnelling**. This allows a nucleus to have a small but non-zero probability of 'tunnelling' through the Coulomb barrier, even if it does not have enough energy to go 'over' it. This effect is crucial; without it, the Sun would not shine. In addition to high temperature, high density (and therefore pressure) is required to ensure that the collision rate between nuclei is high enough to sustain the fusion process."
+      "content": "Nuclear fusion is the joining of light nuclei to form a heavier one. In stars, hydrogen nuclei fuse step by step into helium. The reason this releases energy lies in the graph of binding energy per nucleon against nucleon number. That curve rises steeply from hydrogen, reaches a peak at iron-56, and then declines slowly for heavier nuclei. A higher binding energy per nucleon means a more tightly bound, more stable nucleus. When light nuclei fuse, the product sits higher on this curve — it is more tightly bound — so energy is released. The energy comes from a tiny loss of mass: the product is slightly lighter than the reactants, and this mass defect $\\Delta m$ appears as energy through $E = \\Delta m c^2$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**High Temperature (> 10⁷ K):** Provides nuclei with high kinetic energy to approach each other.",
-        "**High Density/Pressure:** Ensures a frequent rate of collisions between nuclei.",
-        "**Quantum Tunnelling:** Allows fusion to occur at temperatures slightly lower than classically required."
+        "**Fusion joins light nuclei** into a heavier one; **the product has a higher binding energy per nucleon** than the reactants.",
+        "**Higher binding energy per nucleon = more stable**, more tightly bound nucleus.",
+        "**Energy released** equals the mass defect times $c^2$: $E = \\Delta m c^2$.",
+        "This works only up to **iron-56**, the peak of the curve. Beyond iron, fusion would absorb energy, not release it."
       ]
-    },
-    {
-      "type": "heading",
-      "content": "The Proton-Proton Chain"
-    },
-    {
-      "type": "text",
-      "content": "In stars like our Sun, the dominant process for fusing hydrogen into helium is the proton-proton (p-p) chain. This is a multi-step process, but the net result is the conversion of four protons into one helium nucleus. The overall reaction releases energy, positrons (which immediately annihilate with electrons), and neutrinos."
-    },
-    {
-      "type": "formula",
-      "content": "4{_1^1}p \\rightarrow {_2^4}He + 2e^+ + 2\\nu_e + \\text{energy}"
-    },
-    {
-      "type": "text",
-      "content": "The energy released comes from a decrease in mass, known as the mass defect. The mass of one helium-4 nucleus is slightly less than the mass of four individual protons. This 'missing' mass has been converted into energy according to Einstein's famous equation."
     },
     {
       "type": "formula",
       "content": "E = \\Delta m c^2"
     },
     {
-      "type": "workedExample",
-      "question": "Calculate the energy released, in MeV, in the overall proton-proton chain reaction. Use the following data:\nMass of proton ($m_p$) = 1.007276 u\nMass of helium-4 nucleus ($m_{He}$) = 4.002602 u\nMass of positron ($m_e$) = 0.000549 u\n1 u = 931.5 MeVc⁻²",
-      "solution": "1. **Identify reactants and products.**\nReactants: 4 protons (4 x $m_p$)\nProducts: 1 He nucleus ($m_{He}$), 2 positrons (2 x $m_e$). Note: The neutrinos' mass is negligible.\n\n2. **Calculate the total mass of reactants and products.**\nMass of reactants = 4 × 1.007276 u = 4.029104 u\nMass of products = 4.002602 u + 2 × 0.000549 u = 4.002602 u + 0.001098 u = 4.003700 u\n\n3. **Calculate the mass defect (Δm).**\nΔm = Mass of reactants - Mass of products\nΔm = 4.029104 u - 4.003700 u = 0.025404 u\n\n4. **Convert mass defect to energy.**\nUsing the conversion factor 1 u = 931.5 MeVc⁻²:\nEnergy Released = Δm × 931.5 MeVc⁻² / c²\nEnergy Released = 0.025404 × 931.5 MeV\nEnergy Released ≈ 23.66 MeV\n\n**Final Answer:** The energy released is approximately 23.7 MeV. [3 marks]"
+      "type": "text",
+      "content": "Where $E$ is the energy released, $\\Delta m$ is the mass defect (the mass 'missing' from the products), and $c$ is the speed of light. This is the energy that powers the star and, ultimately, provides the outward pressure that holds it up against gravity."
     },
     {
-      "type": "examTip",
-      "content": "In exam questions, you may be given the mass of neutral atoms instead of bare nuclei. For example, the mass of a neutral Hydrogen-1 atom (¹H) includes one proton and one electron, and a neutral Helium-4 atom (⁴He) includes the nucleus and two electrons. If you use atomic masses, the electron masses often cancel out, simplifying the calculation. For 4¹H → ⁴He, the 4 electrons from the hydrogen atoms balance the 2 electrons in the helium atom plus the 2 positrons (which are anti-electrons). Always read the question carefully to see if you are given nuclear or atomic masses."
+      "type": "workedExample",
+      "question": "The net reaction of the proton-proton chain is $4\\,^1_1\\text{H} \\rightarrow \\,^4_2\\text{He} + 2e^+ + 2\\nu_e$. The binding energy per nucleon of helium-4 is 7.07 MeV; that of a single proton is zero. Estimate (a) the energy released, in MeV, when one helium-4 nucleus is formed, and (b) that energy in joules. ($1\\ \\text{eV} = 1.60 \\times 10^{-19}$ J.) [3]",
+      "solution": "**(a) Energy released from the gain in binding energy.** Four separate protons have zero binding energy. The helium-4 nucleus has 4 nucleons, each with binding energy 7.07 MeV.\nEnergy released $=$ total binding energy of the product $= 4 \\times 7.07 = 28.3$ MeV.  ✓\n\n**(b) Convert to joules.**\n$E = 28.3 \\times 10^{6}\\ \\text{eV} \\times 1.60 \\times 10^{-19}\\ \\text{J eV}^{-1}$\n$E = 4.53 \\times 10^{-12}$ J.  ✓\n\n**Final answer:** about $28$ MeV, or $4.5 \\times 10^{-12}$ J, per helium nucleus formed.  ✓\n\n**Physics note:** the accepted value released to the star is about 26.7 MeV — slightly less than this estimate because the two neutrinos carry roughly 0.5 MeV each straight out of the star. The gain in binding energy per nucleon is exactly why the reaction is energetically favourable."
     },
     {
       "type": "heading",
-      "content": "Stellar Luminosity and Fusion Rate"
+      "content": "The conditions required for fusion"
     },
     {
       "type": "text",
-      "content": "A star's luminosity is its total power output – the total energy it radiates per second. By knowing the energy released per fusion reaction, we can calculate the rate at which these reactions must occur to account for the star's luminosity. We can also determine the rate at which the star is consuming its mass."
+      "content": "Fusion does not happen easily. Every nucleus is positively charged, so any two nuclei repel each other through the electrostatic (Coulomb) force. To fuse, they must be pushed close enough for the short-range strong nuclear force to take over — closer than the Coulomb barrier normally allows. Two extreme conditions make this possible in a stellar core. First, a very high temperature (over about 10 million kelvin) gives the nuclei enough kinetic energy to approach one another despite their repulsion — temperature is what supplies that energy. Second, a very high pressure and density pack the nuclei together so that collisions are frequent enough to sustain the reaction. Both are provided naturally by gravity compressing the core of a forming star."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Electrostatic repulsion** between positive nuclei must be overcome before the strong force can bind them.",
+        "**Very high temperature (>~10 million K):** supplies the kinetic energy needed to overcome that repulsion.",
+        "**Very high pressure/density:** makes collisions frequent enough to sustain fusion.",
+        "It is the **temperature** — not merely the pressure — that lets individual nuclei breach the Coulomb barrier."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "If a question asks WHY fusion needs high temperature, the marking answer is about overcoming electrostatic (Coulomb) repulsion between positively charged nuclei — not 'to melt the gas' or 'to make it glow'. Name the repulsion explicitly and say that high temperature gives the nuclei enough kinetic energy to get close enough for the strong nuclear force to act."
+    },
+    {
+      "type": "heading",
+      "content": "Hydrostatic equilibrium: gravity versus radiation pressure"
+    },
+    {
+      "type": "text",
+      "content": "A star is a vast sphere of hot plasma held together by its own gravity. Gravity relentlessly tries to collapse it inward. Opposing this, the fusion in the core releases energy that streams outward as photons, creating radiation pressure, alongside the thermal gas pressure of the hot plasma. A stable star on the main sequence sits in hydrostatic equilibrium: at every layer the inward gravitational pressure is exactly balanced by the outward radiation and gas pressure. This balance is self-regulating. If the core cooled and fusion slowed, gravity would win briefly, compressing and heating the core, which speeds fusion up again; if fusion ran too fast, the extra pressure would expand and cool the core, slowing it down. That feedback keeps the star's size, temperature and luminosity nearly constant for billions of years."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Gravitational pressure:** inward, from the mutual attraction of all the star's mass.",
+        "**Radiation + gas pressure:** outward, from the energy released by core fusion.",
+        "**Hydrostatic equilibrium:** the two balance at every layer, keeping the star stable throughout its main-sequence life.",
+        "The balance is **self-correcting**, which is why main-sequence stars are so long-lived and steady."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Luminosity and the Stefan-Boltzmann law"
+    },
+    {
+      "type": "text",
+      "content": "The luminosity $L$ of a star is the total power it radiates in all directions, measured in watts. It is an intrinsic property — it does not depend on where the observer stands. Treating a star as a black body, its luminosity follows the Stefan-Boltzmann law, which links luminosity to surface area and surface temperature."
+    },
+    {
+      "type": "formula",
+      "content": "L = \\sigma A T^4 = \\sigma \\, (4\\pi R^2) \\, T^4"
+    },
+    {
+      "type": "text",
+      "content": "Here $\\sigma = 5.67 \\times 10^{-8}$ W m⁻² K⁻⁴ is the Stefan-Boltzmann constant, $A = 4\\pi R^2$ is the star's surface area, $R$ its radius, and $T$ its surface temperature in kelvin. Notice the fourth-power dependence on temperature: a modest rise in surface temperature produces an enormous rise in luminosity. This is why hot blue stars are so dramatically more luminous than cool red stars of the same size."
     },
     {
       "type": "workedExample",
-      "question": "The Sun has a luminosity (power output) of $3.8 \\times 10^{26}$ W. Using the result from the previous example, that one p-p chain reaction releases 23.7 MeV of energy, calculate:\na) The number of p-p chain reactions occurring in the Sun every second.\nb) The mass converted to energy in the Sun every second.",
-      "solution": "a) **Calculate the number of reactions per second.**\n1. Convert the energy per reaction from MeV to Joules.\nEnergy per reaction = 23.7 MeV = $23.7 \\times 10^6 \\times 1.60 \\times 10^{-19}$ J\nEnergy per reaction = $3.792 \\times 10^{-12}$ J\n\n2. Calculate the rate of reactions.\nRate = Total Power / Energy per reaction\nRate = $(3.8 \\times 10^{26} \\text{ J s}^{-1}) / (3.792 \\times 10^{-12} \\text{ J})$\nRate ≈ $1.0 \\times 10^{38}$ reactions per second.\n\nb) **Calculate the mass loss per second.**\n1. Use the mass-energy equivalence relation $E = mc^2$ rearranged for mass: $m = E/c^2$.\n2. The energy, E, released per second is the luminosity, $L = 3.8 \\times 10^{26}$ J.\nMass loss per second (Δm/Δt) = $L / c^2$\nΔm/Δt = $(3.8 \\times 10^{26} \\text{ J s}^{-1}) / (3.00 \\times 10^8 \\text{ m s}^{-1})^2$\nΔm/Δt = $(3.8 \\times 10^{26}) / (9.00 \\times 10^{16})$ kg s⁻¹\nΔm/Δt ≈ $4.2 \\times 10^9$ kg s⁻¹\n\n**Final Answer:**\na) Approximately $1.0 \\times 10^{38}$ reactions occur per second. [2 marks]\nb) The Sun converts approximately $4.2 \\times 10^9$ kg of mass into energy every second. [2 marks]"
+      "question": "A star has a radius of $7.0 \\times 10^{8}$ m and a surface temperature of 5800 K. Taking $\\sigma = 5.67 \\times 10^{-8}$ W m⁻² K⁻⁴, calculate its luminosity. [3]",
+      "solution": "**Choose the equation.** Luminosity from radius and temperature: $L = \\sigma (4\\pi R^2) T^4$.  ✓\n\n**Find the surface area.**\n$A = 4\\pi R^2 = 4\\pi (7.0 \\times 10^{8})^2 = 6.16 \\times 10^{18}\\ \\text{m}^2$.\n\n**Substitute.**\n$L = (5.67 \\times 10^{-8})(6.16 \\times 10^{18})(5800)^4$\n$(5800)^4 = 1.13 \\times 10^{15}\\ \\text{K}^4$\n$L = (5.67 \\times 10^{-8})(6.16 \\times 10^{18})(1.13 \\times 10^{15})$  ✓\n\n**Answer.**\n$L = 3.9 \\times 10^{26}$ W.  ✓\n\n**Final answer:** the luminosity is about $3.9 \\times 10^{26}$ W — close to the Sun's, as expected for these solar values."
+    },
+    {
+      "type": "heading",
+      "content": "Apparent brightness and the inverse-square law"
+    },
+    {
+      "type": "text",
+      "content": "Luminosity is what a star emits; apparent brightness is what we receive. As the light travels outward it spreads over the surface of an ever-larger sphere. By the time it reaches a distance $d$, the star's total power $L$ is spread over a sphere of area $4\\pi d^2$, so the power arriving per unit area — the apparent brightness $b$, in W m⁻² — is the luminosity divided by that area."
+    },
+    {
+      "type": "formula",
+      "content": "b = \\frac{L}{4\\pi d^2}"
+    },
+    {
+      "type": "text",
+      "content": "This is an inverse-square law: double the distance and the brightness falls to a quarter. It is why apparent brightness alone cannot tell you how luminous a star is — a dim-looking star could be intrinsically brilliant but very far away, or genuinely faint but close. Only by knowing the distance can you convert an observed brightness into a true luminosity. Keeping $L$ (intrinsic, in W) and $b$ (observed, in W m⁻²) strictly separate is one of the most commonly examined distinctions in this whole topic."
+    },
+    {
+      "type": "heading",
+      "content": "The Hertzsprung-Russell diagram and stellar evolution"
+    },
+    {
+      "type": "text",
+      "content": "The Hertzsprung-Russell (HR) diagram plots stars by luminosity (vertical axis, increasing upward) against surface temperature (horizontal axis, increasing to the LEFT — the axis is reversed by convention). It is not a graph of one star over time but a snapshot of many stars, and they fall into distinct groups. Around 90% lie along a diagonal band from top-left (hot, luminous, massive) to bottom-right (cool, dim, low-mass) — this is the main sequence, where a star spends most of its life fusing hydrogen to helium. Above and to the right sit the red giants: cool but very luminous because they are enormous. Down at the bottom-left lie the white dwarfs: very hot but dim because they are tiny."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Main sequence:** the diagonal band; hydrogen-fusing stars, hot/luminous at top-left to cool/dim at bottom-right.",
+        "**Red giants:** top-right — cool surfaces but huge, so very luminous.",
+        "**White dwarfs:** bottom-left — very hot but tiny, so low luminosity.",
+        "**Axes:** luminosity increases upward; temperature increases to the LEFT (reversed)."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A Sun-like star follows a clear path. It forms from a collapsing gas cloud as a protostar, then joins the main sequence when core fusion begins, and stays there for billions of years in hydrostatic equilibrium. When the core hydrogen runs out, fusion there stops, gravity compresses and heats the core, and hydrogen ignites in a shell around it. The outer layers swell and cool, and the star becomes a red giant. Eventually the outer layers drift away, leaving the hot, dense core exposed as a white dwarf, which is supported by electron degeneracy pressure rather than fusion and slowly cools over billions of years."
+    },
+    {
+      "type": "examTip",
+      "content": "Two axis traps on the HR diagram cost easy marks. First, temperature increases to the LEFT, not the right — always check the direction before reading a star's temperature. Second, luminosity (or absolute magnitude) is on the y-axis, not apparent brightness. Be ready to locate the main sequence, giants and white dwarfs, and to trace a Sun-like star's path: protostar → main sequence → red giant → white dwarf."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying high temperature is needed 'to melt' or 'to light' the gas** — the marking point is that temperature gives nuclei enough kinetic energy to overcome their electrostatic (Coulomb) repulsion so the strong force can bind them.",
+        "**Claiming fusion releases energy because the product is 'bigger' or 'heavier'** — it is the opposite: the product is slightly LIGHTER (mass defect) and has a HIGHER binding energy per nucleon, which is why it is more stable and energy is released.",
+        "**Confusing luminosity with apparent brightness** — luminosity $L$ (W) is intrinsic; apparent brightness $b$ (W m⁻²) depends on distance through $b = L/4\\pi d^2$. A faint-looking star may simply be far away.",
+        "**Forgetting the $4\\pi$ or squaring the distance wrongly** in $b = L/4\\pi d^2$ — the light spreads over a sphere of area $4\\pi d^2$, so it is an inverse-SQUARE law.",
+        "**Saying gravity is balanced by nuclear repulsion or rotation** — on the main sequence the inward gravitational pressure is balanced by outward RADIATION pressure and gas pressure from fusion.",
+        "**Reading the HR temperature axis left-to-right like a normal graph** — temperature increases to the LEFT, and the y-axis is luminosity, not apparent brightness.",
+        "**Using temperature in °C rather than kelvin in $L = \\sigma A T^4$** — the fourth power makes the unit error enormous; always convert to kelvin first."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line, in a classic apparent-brightness calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A star has luminosity $4.0 \\times 10^{26}$ W. Calculate the apparent brightness observed at a distance of $1.5 \\times 10^{11}$ m. [3]",
+      "solution": "**Model answer — full working.**\n\nApparent brightness is the luminosity spread over a sphere of radius equal to the distance.\n\n**Choose the equation:** $b = \\dfrac{L}{4\\pi d^2}$.\n\n**Substitute the values:**\n$b = \\dfrac{4.0 \\times 10^{26}}{4\\pi (1.5 \\times 10^{11})^2}$\n\n**Evaluate the denominator:** $4\\pi (1.5 \\times 10^{11})^2 = 4\\pi (2.25 \\times 10^{22}) = 2.83 \\times 10^{23}\\ \\text{m}^2$.\n\n$b = \\dfrac{4.0 \\times 10^{26}}{2.83 \\times 10^{23}} = 1.4 \\times 10^{3}\\ \\text{W m}^{-2}$.\n\n**Final answer:** the apparent brightness is about $1.4 \\times 10^{3}$ W m⁻² (this is essentially the Sun at one astronomical unit — the solar constant).\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct relationship.** Awarded for quoting $b = \\dfrac{L}{4\\pi d^2}$. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips. Writing $b = L/d^2$ without the $4\\pi$, or forgetting to square $d$, loses this mark.\n- **M1 — correct substitution.** Awarded for putting the right numbers in the right places: $b = \\dfrac{4.0 \\times 10^{26}}{4\\pi (1.5 \\times 10^{11})^2}$. The engine checks that the distance is squared inside the denominator.\n- **A1 — answer with unit.** Awarded for $b \\approx 1.4 \\times 10^{3}$ W m⁻² (accept correctly-rounded values such as $1.41 \\times 10^{3}$ W m⁻²). ECF protects you here: a student who wrote the correct formula and substitution but mis-keyed the final division still keeps the two M-marks, and if their answer follows correctly from THEIR own denominator the A-mark is protected too.\n\n**'Accept answers that round correctly.'** The engine accepts $1.4 \\times 10^{3}$ and $1.41 \\times 10^{3}$ W m⁻² — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit (W m⁻²).\n\n**Bottom line:** of the 3 marks, two are method marks that survive an arithmetic slip, and the answer mark is shielded by ECF. A student who writes only a bare number with no formula or substitution risks losing 2 marks if the final figure is wrong; a student who shows the relationship, the substitution and the answer with its unit keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: quote the equation ($b = L/4\\pi d^2$ or $L = \\sigma A T^4$), show the substitution with the distance squared and the $4\\pi$ in place, then give the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "This lesson ties the nuclear physics of E.5 to the astrophysics we observe. The binding-energy argument you used for fusion is the same one that explains fission of heavy nuclei, and the mass-energy equivalence $E = \\Delta m c^2$ recurs throughout nuclear and particle physics. The Stefan-Boltzmann and inverse-square relations are your bridge from what a star emits to what a telescope measures, and the HR diagram organises the whole life story of a star into one picture. Master the habit — quote the relationship, substitute carefully with correct units, keep luminosity and apparent brightness distinct, show every line — and stellar-physics questions become variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-physics-hl&topic=E.5"
+      "label": "Get a Paper 2 calculation marked: solve a luminosity or apparent-brightness problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=E.5&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Nuclear Fusion",
-          "href": "https://phet.colorado.edu/en/simulations/nuclear-fusion"
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
         },
         {
-          "label": "NASA's Hubblesite: How Stars Make Energy",
-          "href": "https://hubblesite.org/contents/articles/how-stars-make-energy"
+          "label": "PhET Simulation: Nuclear Fusion",
+          "href": "https://phet.colorado.edu/en/simulations/nuclear-fusion"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Nuclear Fusion",

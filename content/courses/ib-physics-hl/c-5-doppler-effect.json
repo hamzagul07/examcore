@@ -1,170 +1,336 @@
 {
   "slug": "c-5-doppler-effect",
   "topicCode": "C.5",
+  "unit": {
+    "code": "C",
+    "title": "Wave behaviour"
+  },
   "title": "Doppler effect",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson explores the Doppler effect, the apparent change in frequency and wavelength of a wave due to relative motion between the source and observer. We will derive and apply the formulae for both sound and electromagnetic waves, including the relativistic Doppler effect and its crucial application in cosmology.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "The Doppler effect is the change in the frequency and wavelength that an observer measures whenever there is relative motion between them and a wave source. This lesson builds the full C.5 toolkit: the qualitative picture of wavefronts bunching up ahead of an approaching source and stretching out behind a receding one; the two sound formulae — one for a moving source, one for a moving observer — with a reliable rule for choosing the sign; and the Doppler effect for light, where a red shift or blue shift lets astronomers measure how fast a galaxy is receding. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the Doppler effect as the change in observed frequency of a wave due to relative motion between the source and observer.",
-    "Solve problems involving the Doppler effect for sound waves with moving sources and/or observers.",
-    "Solve problems involving the Doppler effect for electromagnetic waves using the approximation $\\Delta f / f \\approx v/c$.",
-    "Explain the significance of redshift in the context of an expanding universe."
+    "Explain the Doppler effect qualitatively as the change in observed frequency and wavelength caused by relative motion compressing or stretching wavefronts.",
+    "Select and apply the moving-source and moving-observer Doppler formulae for sound, choosing the sign so that approaching gives a higher frequency.",
+    "Describe the Doppler effect for light as red shift and blue shift, and use it to explain how the recession speed of galaxies is measured.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "C.5"
+  ],
+  "levelNote": "Common to SL and HL; the moving-observer case and quantitative light Doppler are developed further at HL.",
   "simpleExplanation": {
-    "title": "The Sound of Speed",
-    "summary": "The Doppler effect is why an ambulance siren sounds higher-pitched as it approaches you and lower-pitched as it moves away. This apparent change in pitch (frequency) happens because the sound waves get bunched up or stretched out by the source's motion.",
-    "analogy": "Imagine you're standing by a road, and a friend is on a skateboard throwing tennis balls to you at a steady rate of one per second. If your friend skates towards you, they'll have travelled a bit closer for each new throw, so the balls arrive more frequently than one per second. If they skate away, the balls will arrive less frequently. The balls are like wave crests, and their arrival rate is the frequency you observe.",
+    "title": "The Sound of Motion",
+    "summary": "When a source moves towards you the waves in front of it get squashed together, so you hear a higher pitch. When it moves away the waves stretch out and the pitch drops. The source itself never changes what it emits — only what you receive changes.",
+    "analogy": "Stand by a road as an ambulance races past with its siren on. You hear a high 'neeee' as it approaches and a lower 'yooow' the instant it passes and pulls away. The siren's own note is completely constant; the drop you hear is entirely due to the ambulance's motion relative to your ears squeezing then stretching the sound waves.",
     "steps": [
-      "Identify the source and observer. Note their velocities ($v_s$, $v_o$) and the speed of the wave ($v$ for sound, $c$ for light).",
-      "Determine the direction of relative motion. Are they moving towards or away from each other? This dictates the signs in the formula.",
-      "Choose the correct formula. Use $f' = f \\left( \\frac{v \\pm v_o}{v \\mp v_s} \\right)$ for sound, and $\\Delta f / f \\approx v/c$ for light (for speeds much less than c).",
-      "Substitute the values, paying close attention to the signs, and calculate the observed frequency ($f'$) or the frequency/wavelength shift ($\"Delta f$, $\"Delta \\lambda$)."
+      "Decide who is moving: the source of the wave, the observer, or both.",
+      "Decide the direction: are the source and observer getting closer together or further apart?",
+      "Pick the matching formula — moving-source formula for a moving source, moving-observer formula for a moving observer.",
+      "Choose the sign so the physics is right: approaching must give a higher observed frequency, receding a lower one. Substitute and solve."
     ]
   },
+  "keyConcepts": [
+    "relative motion",
+    "wavefront compression",
+    "red shift and blue shift"
+  ],
   "flashcards": [
     {
-      "front": "What is the Doppler effect?",
-      "back": "The apparent change in the observed frequency and wavelength of a wave when there is relative motion between the source of the wave and the observer."
+      "front": "The Doppler effect",
+      "back": "The change in the frequency (and wavelength) measured by an observer when there is relative motion between the observer and the wave source. It is the OBSERVED frequency that changes, not the emitted one.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is 'redshift'?",
-      "back": "The phenomenon where electromagnetic radiation from an object moving away from an observer is shifted to longer wavelengths (lower frequencies). This is a key piece of evidence for the expanding universe."
+      "front": "Why does an approaching source sound higher?",
+      "back": "The source moves after each wavefront it emits, so successive wavefronts bunch up in front of it. The observed wavelength is shorter, and since $v = f\\lambda$ with $v$ fixed, a shorter wavelength means a higher observed frequency.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is 'blueshift'?",
-      "back": "The phenomenon where electromagnetic radiation from an object moving towards an observer is shifted to shorter wavelengths (higher frequencies)."
+      "front": "Moving-source formula (sound)",
+      "back": "$f' = f\\dfrac{v}{v \\pm v_s}$, where $f'$ is the observed frequency, $f$ the emitted frequency, $v$ the speed of sound and $v_s$ the source speed. The source speed sits in the DENOMINATOR.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Write the general formula for the Doppler effect for sound.",
-      "back": "$f' = f \\left( \\frac{v \\pm v_o}{v \\mp v_s} \\right)$, where $f'$ is observed frequency, $f$ is source frequency, $v$ is speed of sound, $v_o$ is observer's speed, and $v_s$ is source's speed."
+      "front": "Moving-observer formula (sound)",
+      "back": "$f' = f\\dfrac{v \\pm v_o}{v}$, where $v_o$ is the observer speed. The observer speed sits in the NUMERATOR.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the sign convention for the sound Doppler formula $f' = f \\left( \\frac{v \\pm v_o}{v \\mp v_s} \\right)$?",
-      "back": "Use the top signs ($+v_o$, $-v_s$) for 'towards' motion. Use the bottom signs ($-v_o$, $+v_s$) for 'away' motion. Always check if your answer makes sense: frequency increases for 'towards', decreases for 'away'."
+      "front": "Choosing the sign",
+      "back": "Never memorise '+ means towards'. Memorise the physics — approaching raises $f'$, receding lowers it — then pick the sign that produces it. Moving source approaching: use $v - v_s$ (smaller denominator, bigger $f'$). Moving observer approaching: use $v + v_o$ (bigger numerator, bigger $f'$).",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Write the approximate formula for the relativistic Doppler effect (for light).",
-      "back": "$\\frac{\\Delta f}{f} \\approx \\frac{v}{c}$ or $\\frac{\\Delta \\lambda}{\\lambda} \\approx \\frac{v}{c}$, where $v$ is the relative radial velocity between the source and observer. This is valid for $v \\ll c$."
+      "front": "Red shift",
+      "back": "The observed wavelength of light is longer (frequency lower) than emitted, shifting towards the red end of the spectrum. It occurs when the source is moving AWAY from the observer.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "A star is moving away from Earth. Will its spectral lines be redshifted or blueshifted?",
-      "back": "Redshifted. The light waves are 'stretched', increasing their wavelength and shifting them towards the red end of the spectrum."
+      "front": "Blue shift",
+      "back": "The observed wavelength of light is shorter (frequency higher) than emitted, shifting towards the blue end. It occurs when the source is moving TOWARDS the observer — for example the Andromeda galaxy.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "When must you use the relativistic Doppler formula instead of the classical one?",
-      "back": "For electromagnetic waves (like light and radio waves). The classical formula is for mechanical waves that require a medium, like sound."
+      "front": "Doppler light approximation ($v \\ll c$)",
+      "back": "$\\dfrac{\\Delta f}{f} \\approx \\dfrac{\\Delta \\lambda}{\\lambda} \\approx \\dfrac{v}{c}$, where $v$ is the relative radial speed of source and observer and $c$ is the speed of light. Valid only for speeds much less than $c$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What does the 'v' represent in the relativistic Doppler formula $\\Delta f / f \\approx v/c$?",
-      "back": "It represents the radial component of the relative velocity between the source and observer. It's the speed at which they are moving directly towards or away from each other."
+      "front": "How is a galaxy's recession speed found?",
+      "back": "A known spectral line (e.g. hydrogen at 656.3 nm) is identified in the galaxy's light and its observed wavelength measured. The fractional shift $\\Delta\\lambda/\\lambda$ gives the recession speed via $v \\approx c\\,\\Delta\\lambda/\\lambda$.",
+      "pillLabel": "Application"
     },
     {
-      "front": "A car horn sounds at 400 Hz. As it drives towards you, will you hear a frequency higher or lower than 400 Hz?",
-      "back": "Higher. The wavefronts are compressed from your perspective, leading to a higher observed frequency (higher pitch)."
+      "front": "Exam Trap: does the source frequency change?",
+      "back": "No. The source always emits the same frequency. Only the frequency RECEIVED by the observer changes. Saying 'the siren's frequency increases as it approaches' loses the mark — it is the observed frequency that increases.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A car sounding a constant horn drives towards a stationary listener. Compared with the horn's emitted frequency, the frequency the listener hears is:",
+      "options": [
+        "Lower, because the sound spreads out",
+        "Higher, because the wavefronts bunch up in front of the car",
+        "Exactly the same, because sound speed is constant",
+        "Higher only after the car has passed"
+      ],
+      "answer": "Higher, because the wavefronts bunch up in front of the car"
     },
     {
-      "front": "What is a common mistake when using the sound Doppler formula?",
-      "back": "Mixing up the signs. A good check is to remember that relative motion *towards* each other always increases the observed frequency, and motion *away* always decreases it. Ensure your chosen signs produce this result."
+      "prompt": "A source of sound moves while the observer stays still. Which formula applies?",
+      "options": [
+        "$f' = f\\dfrac{v}{v \\pm v_s}$ — the source speed in the denominator",
+        "$f' = f\\dfrac{v \\pm v_o}{v}$ — the observer speed in the numerator",
+        "$\\dfrac{\\Delta\\lambda}{\\lambda} \\approx \\dfrac{v}{c}$",
+        "Either sound formula gives the same answer"
+      ],
+      "answer": "$f' = f\\dfrac{v}{v \\pm v_s}$ — the source speed in the denominator"
+    },
+    {
+      "prompt": "As an ambulance approaches a stationary observer at constant speed, the frequency actually emitted by its siren:",
+      "options": [
+        "Increases as it gets closer",
+        "Decreases as it gets closer",
+        "Stays constant — only the observed frequency changes",
+        "Depends on the speed of sound that day"
+      ],
+      "answer": "Stays constant — only the observed frequency changes"
+    },
+    {
+      "prompt": "A hydrogen line from a distant galaxy is observed at a LONGER wavelength than in the laboratory. This tells us the galaxy is:",
+      "options": [
+        "Moving towards us (blue shift)",
+        "Moving away from us (red shift)",
+        "Stationary relative to us",
+        "Rotating but not translating"
+      ],
+      "answer": "Moving away from us (red shift)"
+    },
+    {
+      "prompt": "For a moving observer walking TOWARDS a stationary siren, which sign gives the correct (higher) observed frequency in $f' = f\\dfrac{v \\pm v_o}{v}$?",
+      "options": [
+        "The minus sign, because the observer is approaching",
+        "The plus sign, giving a larger numerator and a higher $f'$",
+        "Either sign — the numerator makes no difference",
+        "Neither; use the moving-source formula instead"
+      ],
+      "answer": "The plus sign, giving a larger numerator and a higher $f'$"
     }
   ],
   "faq": [
     {
-      "q": "What is the main difference between the Doppler effect for sound and for light?",
-      "a": "The main difference lies in the medium. Sound requires a medium to travel, and its speed is relative to that medium. The sound formula accounts for the motion of the source and observer relative to the medium. Light does not require a medium and its speed, $c$, is constant for all observers. This is why a different, relativistic formula is required for light."
+      "q": "How do I remember which formula has the speed on top and which has it on the bottom?",
+      "a": "Tie it to what is moving. When the SOURCE moves, it is chasing (or fleeing) its own wavefronts, so the wavelength itself is altered — that change lives in the DENOMINATOR: $f' = f\\,v/(v \\pm v_s)$. When the OBSERVER moves, the wavelength in the air is unchanged but the observer sweeps through wavefronts faster or slower, changing the rate they arrive — that lives in the NUMERATOR: $f' = f\\,(v \\pm v_o)/v$. Source → denominator, observer → numerator."
     },
     {
-      "q": "How can I remember the sign convention for the sound formula $f' = f \\left( \\frac{v \\pm v_o}{v \\mp v_s} \\right)$?",
-      "a": "Think conceptually: motion 'towards' always increases the frequency. The numerator relates to the observer ($v_o$), and the denominator to the source ($v_s$). To increase the overall fraction (and thus the frequency), you must make the numerator bigger ($v+v_o$) or the denominator smaller ($v-v_s$). So, 'towards' means $+v_o$ on top and $-v_s$ on the bottom."
+      "q": "How do I decide between plus and minus without memorising a rule for every case?",
+      "a": "Do not memorise four sign rules — memorise one fact: approaching raises the observed frequency, receding lowers it. Then look at the formula and ask which sign produces that. For a moving source approaching, you need a bigger $f'$, so you need a smaller denominator: use the minus, $v - v_s$. For a moving observer approaching, you need a bigger numerator: use the plus, $v + v_o$. The signs look opposite between the two formulae, but they encode the same physics."
     },
     {
-      "q": "If a source moves perpendicular to an observer, is there a Doppler effect?",
-      "a": "In classical physics (for sound), if the motion is exactly perpendicular, there is no change in the distance between source and observer at that instant, so there is no Doppler effect. This is called the transverse Doppler effect. In relativity, there *is* a transverse Doppler effect due to time dilation, but this is beyond the scope of the IB Physics HL syllabus calculations. For exam purposes, you only need to consider the radial component of velocity."
+      "q": "Why are the formulae for sound and light different?",
+      "a": "The sound formulae are derived assuming the wave travels through a medium (air), and the source and observer speeds are measured relative to that medium — which is why a moving source and a moving observer give slightly different results even at the same speed. Light needs no medium, and its speed $c$ is the same for every inertial observer, so only the RELATIVE speed of source and observer matters. For speeds far below $c$ this gives the single tidy approximation $\\Delta\\lambda/\\lambda \\approx v/c$."
+    },
+    {
+      "q": "What does red shift actually tell astronomers?",
+      "a": "A galaxy's light contains spectral lines from known elements at known rest wavelengths. Measuring how far those lines have shifted towards longer wavelengths gives $\\Delta\\lambda/\\lambda$, and hence the galaxy's recession speed $v \\approx c\\,\\Delta\\lambda/\\lambda$. Almost every distant galaxy is red-shifted, and the more distant ones are shifted more — the observational backbone of the expanding universe."
+    },
+    {
+      "q": "Is it the wavelength or the frequency that changes in the Doppler effect?",
+      "a": "Both change together, but think about which is fixed. For sound the wave SPEED $v$ is fixed by the medium, so $v = f\\lambda$ forces frequency and wavelength to change in opposite senses: a shorter observed wavelength means a higher observed frequency. For light the SPEED $c$ is fixed, so again a shorter wavelength (blue shift) means a higher frequency. Whichever you compute, describe the effect consistently."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Have you ever noticed how the pitch of a police siren or a racing car engine changes as it speeds past you? It sounds high-pitched as it approaches, and then suddenly drops to a lower pitch as it moves away. This isn't the driver changing the siren; it's a fundamental wave phenomenon called the Doppler effect. It affects all types of waves, from sound to light, and has profound implications, from catching speeding drivers to understanding the expansion of our universe."
+      "content": "You have heard it a hundred times: a siren or a racing engine sounds higher-pitched as it rushes towards you and drops the moment it passes and speeds away. That everyday shift in pitch is the Doppler effect, and the same idea — applied to light instead of sound — is how we know the universe is expanding. This lesson explains why it happens, gives you the two sound formulae with a foolproof way to pick the sign, and shows the light version astronomers use. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Doppler Effect for Sound"
+      "content": "What the Doppler effect is"
     },
     {
       "type": "text",
-      "content": "The Doppler effect for sound occurs because sound waves travel at a fixed speed through a medium (like air). When the source of the sound is moving towards an observer, it 'catches up' with the wavefronts it has already emitted. This effectively compresses the waves, shortening the wavelength and increasing the frequency (pitch) heard by the observer. Conversely, when the source moves away, it 'outruns' its wavefronts, stretching them out. This increases the wavelength and decreases the observed frequency."
+      "content": "The Doppler effect is the change in the frequency and wavelength that an observer measures whenever there is relative motion between the observer and the source of a wave. The crucial word is observer: the source keeps emitting exactly the same frequency the whole time. What changes is what reaches the observer. To see why, picture the wavefronts — the crests — spreading out from the source."
     },
     {
-      "type": "formula",
-      "content": "The observed frequency, $f'$, can be calculated using the general formula: \n\n$f' = f \\left( \\frac{v \\pm v_o}{v \\mp v_s} \\right)$ \n\nWhere: \n- $f$ is the frequency emitted by the source. \n- $f'$ is the frequency detected by the observer. \n- $v$ is the speed of sound in the medium. \n- $v_o$ is the speed of the observer. \n- $v_s$ is the speed of the source."
+      "type": "text",
+      "content": "If the source is stationary, the wavefronts are evenly spaced circles and every observer measures the emitted frequency. Now let the source move. In the time between emitting one crest and the next, the source has itself moved forward. So each new crest is emitted a little closer to the crest ahead of it: the wavefronts bunch up in front of the source and spread out behind it. An observer standing in front receives crests that are closer together — a shorter wavelength — and, because the wave speed $v$ in the medium is unchanged, $v = f\\lambda$ means a shorter wavelength is a higher frequency. An observer behind receives stretched-out crests: a longer wavelength and a lower frequency."
     },
     {
       "type": "keyPoints",
       "items": [
-        "The key to this formula is the sign convention. A simple rule is: 'Towards increases frequency'.",
-        "Use the **top signs** ($+v_o$ in the numerator, $-v_s$ in the denominator) when the observer or source is moving **towards** the other.",
-        "Use the **bottom signs** ($-v_o$ in the numerator, $+v_s$ in the denominator) when the observer or source is moving **away** from the other.",
-        "If the source or observer is stationary, their speed is zero in the equation."
+        "**Approaching:** wavefronts compressed → shorter observed wavelength → **higher** observed frequency (higher pitch).",
+        "**Receding:** wavefronts stretched → longer observed wavelength → **lower** observed frequency (lower pitch).",
+        "The **emitted** frequency never changes — only the **observed** frequency does.",
+        "The effect depends on relative motion, so it appears whether the source moves, the observer moves, or both."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Case 1: a moving source of sound"
+    },
+    {
+      "type": "text",
+      "content": "Take a source emitting frequency $f$ and moving at speed $v_s$ through still air, with a stationary observer listening. The speed of sound is $v$. Because the source moves between emissions, it is the wavelength itself that is altered, and the source speed appears in the denominator of the observed-frequency formula."
+    },
+    {
+      "type": "formula",
+      "content": "$f' = f\\dfrac{v}{v \\pm v_s}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use $v - v_s$ (minus) when the source moves **towards** the observer: the smaller denominator makes $f' > f$.",
+        "Use $v + v_s$ (plus) when the source moves **away** from the observer: the larger denominator makes $f' < f$.",
+        "$v$ is the speed of sound; $v_s$ is the speed of the source. The source speed lives in the denominator."
       ]
     },
     {
       "type": "workedExample",
-      "question": "An ambulance travels at 30.0 m s⁻¹ along a straight road. Its siren emits a sound with a frequency of 450 Hz. A person stands on the pavement. The speed of sound in air is 343 m s⁻¹. Calculate the frequency the person hears: \na) as the ambulance approaches them. \nb) as the ambulance moves away from them.",
-      "solution": "Here, the source is moving and the observer is stationary. \nGiven: \nSource frequency, $f = 450$ Hz \nSpeed of source, $v_s = 30.0$ m s⁻¹ \nSpeed of observer, $v_o = 0$ m s⁻¹ \nSpeed of sound, $v = 343$ m s⁻¹ \n\n**a) Ambulance approaching** \nWe expect the frequency to be higher. We use the 'towards' signs. For a moving source towards a stationary observer, the formula is $f' = f \\left( \\frac{v}{v - v_s} \\right)$. \n\n$f' = 450 \\left( \\frac{343}{343 - 30.0} \\right)$ ✓ \n$f' = 450 \\left( \\frac{343}{313} \\right)$ \n$f' = 450 \\times 1.0958...$ \n$f' \\approx 493$ Hz ✓ \n\n**b) Ambulance moving away** \nWe expect the frequency to be lower. We use the 'away' signs. For a moving source away from a stationary observer, the formula is $f' = f \\left( \\frac{v}{v + v_s} \\right)$. \n\n$f' = 450 \\left( \\frac{343}{343 + 30.0} \\right)$ ✓ \n$f' = 450 \\left( \\frac{343}{373} \\right)$ \n$f' = 450 \\times 0.9195...$ \n$f' \\approx 414$ Hz ✓ \n\n*(Marks: 1 for correct formula selection in each part, 1 for correct final answer in each part. Note the significant figures.)*"
+      "question": "A train sounds a whistle of constant frequency 480 Hz and moves along a straight track at 34 m s⁻¹. A stationary observer stands beside the track. The speed of sound in air is 340 m s⁻¹. Calculate the frequency heard (a) as the train approaches and (b) after it has passed and is receding. [4]",
+      "solution": "**Identify the case.** The source (train) moves, the observer is still → moving-source formula, source speed in the denominator.\n\n**(a) Approaching.** Approaching must give a higher frequency, so choose the smaller denominator: use $v - v_s$.\n$f' = f\\dfrac{v}{v - v_s} = 480 \\times \\dfrac{340}{340 - 34}$  [M1: equation with minus sign for approaching]\n$f' = 480 \\times \\dfrac{340}{306} = 480 \\times 1.111$  [M1: substitution]\n$f' \\approx 533$ Hz.  [A1: answer with unit]\n\n**(b) Receding.** Receding must give a lower frequency, so use the larger denominator $v + v_s$.\n$f' = 480 \\times \\dfrac{340}{340 + 34} = 480 \\times \\dfrac{340}{374} = 480 \\times 0.9091 \\approx 436$ Hz.  [A1: answer with unit]\n\n**Final answer:** approaching $\\approx 533$ Hz; receding $\\approx 436$ Hz — higher then lower, exactly as the physics demands."
     },
     {
       "type": "heading",
-      "content": "The Doppler Effect for Light"
+      "content": "Case 2: a moving observer of sound"
     },
     {
       "type": "text",
-      "content": "The Doppler effect also applies to electromagnetic waves like light. However, there's a crucial difference: the speed of light, $c$, is constant for all observers, regardless of their motion. This is a cornerstone of special relativity. Therefore, we cannot simply use the sound formula. For speeds much less than the speed of light ($v \\ll c$), which is true for most astronomical objects, we can use a simple approximation."
+      "content": "Now keep the source fixed and let the observer move at speed $v_o$. The wavefronts in the air are evenly spaced — the source is not moving, so the wavelength is unchanged. What changes is how quickly the observer sweeps through those crests. Move towards the source and you meet crests more often (higher frequency); move away and you meet them less often (lower frequency). Because it is the rate of arrival that changes, the observer speed appears in the numerator."
     },
     {
       "type": "formula",
-      "content": "The change in frequency, $\\Delta f$, or wavelength, $\\Delta \\lambda$, is given by: \n\n$\\frac{\\Delta f}{f} \\approx \\frac{v}{c}$ \n\nand since $f = c/\\lambda$, this is equivalent to: \n\n$\\frac{\\Delta \\lambda}{\\lambda} \\approx \\frac{v}{c}$ \n\nWhere: \n- $v$ is the relative radial velocity between the source and observer. \n- $c$ is the speed of light ($3.00 \\times 10^8$ m s⁻¹). \n- A positive $v$ (moving away) gives a positive $\\Delta \\lambda$ (redshift) and a negative $\\Delta f$. \n- A negative $v$ (moving towards) gives a negative $\\Delta \\lambda$ (blueshift) and a positive $\\Delta f$."
+      "content": "$f' = f\\dfrac{v \\pm v_o}{v}$"
     },
     {
-      "type": "examTip",
-      "content": "In exams, for light, you will almost always use the approximation $\\Delta \\lambda / \\lambda \\approx v/c$. Remember that $\\Delta \\lambda$ is the shift in wavelength ($\\lambda_{observed} - \\lambda_{emitted}$). For redshift (moving away), $\\Delta \\lambda$ is positive. For blueshift (moving towards), $\\Delta \\lambda$ is negative."
+      "type": "keyPoints",
+      "items": [
+        "Use $v + v_o$ (plus) when the observer moves **towards** the source: the larger numerator makes $f' > f$.",
+        "Use $v - v_o$ (minus) when the observer moves **away** from the source: the smaller numerator makes $f' < f$.",
+        "The signs look opposite to the moving-source case, but they encode the same fact: approaching raises the observed frequency."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "The hydrogen-alpha spectral line is measured in the laboratory to have a wavelength of 656.3 nm. The same line observed in the spectrum of a distant galaxy is measured to be 672.8 nm. \na) Is the galaxy moving towards or away from Earth? \nb) Calculate the speed at which the galaxy is receding from Earth.",
-      "solution": "**a) Direction of motion** \nThe observed wavelength (672.8 nm) is longer than the emitted wavelength (656.3 nm). An increase in wavelength is known as redshift. ✓ \nRedshift occurs when the source is moving away from the observer. Therefore, the galaxy is moving away from Earth. ✓ \n\n**b) Calculation of speed** \nWe use the relativistic Doppler approximation for light. \nFirst, calculate the wavelength shift, $\\Delta \\lambda$: \n$\\Delta \\lambda = \\lambda_{observed} - \\lambda_{emitted} = 672.8 \\text{ nm} - 656.3 \\text{ nm} = 16.5 \\text{ nm}$ ✓ \n\nNow, use the formula $\\frac{\\Delta \\lambda}{\\lambda} \\approx \\frac{v}{c}$. \nHere, $\\lambda$ is the source wavelength, $\\lambda_{emitted}$. \n\n$\\frac{16.5 \\text{ nm}}{656.3 \\text{ nm}} = \\frac{v}{3.00 \\times 10^8 \\text{ m s}^{-1}}$ ✓ \n\n$v = (3.00 \\times 10^8) \\times \\frac{16.5}{656.3}$ \n$v = (3.00 \\times 10^8) \\times 0.02513...$ \n$v \\approx 7.54 \\times 10^6$ m s⁻¹ ✓ \n\nThe galaxy is receding at a speed of approximately $7.54 \\times 10^6$ m s⁻¹.\n\n*(Marks: 2 for part (a) for identifying redshift and linking to recession. 3 for part (b) for calculating shift, correct formula use, and final answer with units.)*"
+      "question": "A stationary loudspeaker emits a steady tone of 500 Hz. A cyclist rides directly towards the loudspeaker at 8.0 m s⁻¹. The speed of sound in air is 340 m s⁻¹. Calculate the frequency the cyclist hears. [3]",
+      "solution": "**Identify the case.** The observer (cyclist) moves, the source is still → moving-observer formula, observer speed in the numerator.\n\n**Choose the sign.** The cyclist is approaching, so the observed frequency must be higher: use the larger numerator, $v + v_o$.\n$f' = f\\dfrac{v + v_o}{v} = 500 \\times \\dfrac{340 + 8.0}{340}$  [M1: equation with plus sign for approaching observer]\n$f' = 500 \\times \\dfrac{348}{340} = 500 \\times 1.0235$  [M1: substitution]\n$f' \\approx 512$ Hz.  [A1: answer with unit]\n\n**Final answer:** the cyclist hears about $512$ Hz — higher than the emitted 500 Hz, as expected for approach."
+    },
+    {
+      "type": "examTip",
+      "content": "The IB data booklet gives you both formulae but not the sign rules. Do not try to memorise four separate rules. Memorise one physical fact — approaching → higher frequency, receding → lower — and then pick whichever sign makes the formula obey it. For a moving source that means a smaller denominator when approaching ($v - v_s$); for a moving observer it means a larger numerator when approaching ($v + v_o$). Same physics, sign chosen to fit."
     },
     {
       "type": "heading",
-      "content": "Applications and Cosmological Significance"
+      "content": "The Doppler effect for light"
     },
     {
       "type": "text",
-      "content": "The Doppler effect has numerous practical applications. Police radar guns use the Doppler shift of microwaves bouncing off a car to determine its speed. In medicine, Doppler ultrasound uses the shift in sound waves reflecting off red blood cells to measure blood flow. However, its most profound application is in cosmology. By observing the redshift of light from distant galaxies, Edwin Hubble discovered that nearly all galaxies are moving away from us, and the further away they are, the faster they are moving. This was the first observational evidence for the expansion of the universe."
+      "content": "Light shows a Doppler effect too, but the reasoning is different because light needs no medium and travels at the same speed $c$ for every inertial observer — so only the relative motion of source and observer matters, not their motion through any 'air'. When a light source moves away, the observed wavelength is stretched towards the red end of the spectrum: a **red shift**. When it moves towards us, the wavelength is squeezed towards the blue end: a **blue shift**. For relative speeds far below the speed of light ($v \\ll c$) the size of the shift is given by a simple approximation."
+    },
+    {
+      "type": "formula",
+      "content": "$\\dfrac{\\Delta f}{f} \\approx \\dfrac{\\Delta \\lambda}{\\lambda} \\approx \\dfrac{v}{c}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$v$ is the relative radial speed of source and observer; $c$ is the speed of light.",
+        "**Red shift** ($\\Delta\\lambda > 0$, longer wavelength) → source receding. Nearly all distant galaxies are red-shifted.",
+        "**Blue shift** ($\\Delta\\lambda < 0$, shorter wavelength) → source approaching, e.g. the Andromeda galaxy.",
+        "Astronomers measure a known spectral line's shift to find how fast a galaxy is receding — key evidence for the expanding universe."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In the spectrum of a distant galaxy, a hydrogen line with a laboratory (rest) wavelength of 656.3 nm is observed at 674.0 nm. Taking $c = 3.00 \\times 10^8$ m s⁻¹, (a) state whether the galaxy is approaching or receding and (b) calculate its speed relative to Earth. [3]",
+      "solution": "**(a)** The observed wavelength (674.0 nm) is LONGER than the rest wavelength (656.3 nm), so the light is red-shifted. The galaxy is **receding**.  [reasoning mark within the working]\n\n**(b)** The change in wavelength is\n$\\Delta\\lambda = 674.0 - 656.3 = 17.7$ nm.\nApply the light Doppler approximation, rearranged for $v$:\n$\\dfrac{\\Delta\\lambda}{\\lambda} \\approx \\dfrac{v}{c} \\;\\Rightarrow\\; v \\approx c\\dfrac{\\Delta\\lambda}{\\lambda}$  [M1: correct equation and rearrangement]\n$v \\approx (3.00 \\times 10^8) \\times \\dfrac{17.7}{656.3}$  [M1: substitution — the nm units cancel, so no conversion needed]\n$v \\approx (3.00 \\times 10^8) \\times 0.02697 \\approx 8.09 \\times 10^6$ m s⁻¹.  [A1: answer with unit]\n\n**Final answer:** the galaxy is receding at about $8.1 \\times 10^6$ m s⁻¹ (roughly 2.7% of the speed of light), so the low-speed approximation is well justified."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying the source frequency changes** — it does not. The emitted frequency is constant; only the OBSERVED frequency changes. Write 'observed frequency' explicitly.",
+        "**Getting the approach/recede direction backwards** — approaching always raises the observed frequency, receding always lowers it. Sanity-check every numerical answer against this before moving on.",
+        "**Putting the speed in the wrong place** — a moving source's speed goes in the DENOMINATOR, a moving observer's speed goes in the NUMERATOR. Swapping them is a classic lost mark.",
+        "**Guessing the sign instead of reasoning it** — do not memorise '+ = towards'. Choose the sign that makes an approaching case come out higher; the sign genuinely differs between the source and observer formulae.",
+        "**Calling a longer-wavelength shift a blue shift** — longer wavelength is RED shift (receding); shorter wavelength is BLUE shift (approaching). Mixing these reverses the astronomy conclusion.",
+        "**Using the sound formulae for light (or vice versa)** — light uses $\\Delta\\lambda/\\lambda \\approx v/c$ and depends only on relative speed; the sound formulae need the wave speed $v$ of the medium.",
+        "**Dropping units or over-rounding mid-calculation** — carry extra figures through, round only the final answer, and always attach the correct unit (Hz, m s⁻¹, etc.)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line, especially the choice of sign, which examiners award as its own method mark."
+    },
+    {
+      "type": "workedExample",
+      "question": "An ambulance siren emits a constant frequency of 800 Hz and moves directly towards a stationary observer at 30 m s⁻¹. Calculate the frequency heard by the observer. (Speed of sound in air = 340 m s⁻¹.) [3]",
+      "solution": "**Model answer — full working.**\n\nThe source (ambulance) is moving and the observer is stationary, so this is the moving-source case:\n$f' = f\\dfrac{v}{v \\pm v_s}$.\nThe source is approaching, so the observed frequency must be higher than 800 Hz. A higher $f'$ needs a smaller denominator, so choose the MINUS sign:\n$f' = f\\dfrac{v}{v - v_s}$.\nSubstitute $f = 800$ Hz, $v = 340$ m s⁻¹, $v_s = 30$ m s⁻¹:\n$f' = 800 \\times \\dfrac{340}{340 - 30} = 800 \\times \\dfrac{340}{310}$\n$f' = 800 \\times 1.0968 = 877$ Hz.\n\n**Final answer:** the observer hears about $877$ Hz — higher than 800 Hz, as expected for an approaching source.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct equation with the correct sign for an approaching source.** Awarded for selecting the moving-source formula AND choosing $v - v_s$ (the minus) because the source approaches. This is a METHOD mark: it rewards the physical reasoning — approaching → smaller denominator → higher $f'$ — even if the arithmetic later slips. A candidate who picks the moving-observer formula, or who uses $v + v_s$ here, does not earn it.\n- **M1 — correct substitution.** Awarded for putting the right numbers in the right places: $800 \\times 340/(340 - 30)$. The engine checks that $f$, $v$ and $v_s$ each landed where they belong.\n- **A1 — answer with unit.** Awarded for $f' \\approx 877$ Hz (accept correctly-rounded values such as 877 Hz or 876 Hz, with the unit). ECF applies: a student who chose the right equation and sign and substituted correctly but mis-keyed the final division still keeps both method marks, and if their answer follows correctly from their own earlier figure the answer mark is protected too.\n\n**'Accept answers that round correctly.'** The engine accepts 877 Hz or 876 Hz — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 3 marks, two are method marks that survive an arithmetic slip. A student who writes only '877 Hz' with no working risks losing 2 marks if the number is wrong; a student who states the formula, justifies the minus sign and shows the substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: name the case (moving source or moving observer), write the formula, justify the sign in one line ('approaching → higher $f'$ → smaller denominator → minus'), then show the substitution and the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The Doppler effect ties the wave behaviour of this option back to motion and to astrophysics. The same wavefront picture explains police speed guns and weather radar, where a reflected wave is Doppler-shifted twice. The light version underpins the evidence for an expanding universe and, at HL, connects to the quantitative treatment of red shift and cosmology. Master the habit here — name the case, write the formula, justify the sign, show every line — and the reasoning transfers directly to those later topics."
     },
     {
       "type": "practice",
-      "label": "Practise Doppler Effect Problems",
-      "href": "/mark?subject=ib-physics-hl&topic=C.5"
+      "label": "Get a Paper 2 calculation marked: solve a Doppler problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=C.5&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Doppler Effect",
-          "href": "https://phet.colorado.edu/en/simulations/doppler-effect"
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
         },
         {
-          "label": "Video explanation of Redshift and Hubble's Law",
-          "href": "https://www.youtube.com/watch?v=KkCOSc_b7-s"
+          "label": "PhET Simulation: Doppler Effect",
+          "href": "https://phet.colorado.edu/en/simulations/doppler-effect"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Doppler Effect",

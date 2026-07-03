@@ -177,9 +177,19 @@ async function syncSubscription(
 
 async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
   switch (event.type) {
+    // Sync group: every lifecycle change that KEEPS the subscription mapped to a
+    // tier. Crucially `subscription.canceled` belongs here — for a cancel at
+    // period end Polar fires it immediately while the customer keeps access
+    // until current_period_end (status stays `active`, cancel_at_period_end
+    // true). syncSubscription records that faithfully; access is only removed
+    // by `subscription.revoked` below. `past_due` keeps access during dunning
+    // (see effectiveAccess); `uncanceled` clears the pending cancellation.
     case 'subscription.created':
     case 'subscription.active':
-    case 'subscription.updated': {
+    case 'subscription.updated':
+    case 'subscription.canceled':
+    case 'subscription.uncanceled':
+    case 'subscription.past_due': {
       const sub = event.data as unknown as PolarSubscription
       const { ok, userId, tier } = await syncSubscription(supabase, sub)
       // Only greet on activation, not on every update.
@@ -193,16 +203,21 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       break
     }
 
-    case 'subscription.canceled':
     case 'subscription.revoked': {
+      // Access ends now: at period end for a scheduled cancel, or immediately
+      // for a revoke / final dunning failure.
       const sub = event.data as unknown as PolarSubscription
       const userId = await resolveUserId(supabase, {
         externalId: sub.customer?.externalId,
+        metadataUserId:
+          typeof sub.metadata?.supabase_user_id === 'string'
+            ? (sub.metadata.supabase_user_id as string)
+            : null,
         polarCustomerId: sub.customerId,
       })
       if (!userId) {
         console.warn(
-          `[polar-webhook] ${event.type} ${sub.id}: no resolvable user. Skipping.`
+          `[polar-webhook] subscription.revoked ${sub.id}: no resolvable user. Skipping.`
         )
         break
       }
@@ -216,7 +231,7 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
           updated_at: new Date().toISOString(),
         })
         .eq('user_id', userId)
-      if (error) throw new Error(`subscription cancel update failed: ${error.message}`)
+      if (error) throw new Error(`subscription.revoked update failed: ${error.message}`)
       break
     }
 
@@ -270,6 +285,51 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         detail: `${resolved.credits} marking credit${resolved.credits === 1 ? '' : 's'} have been added to your account.`,
         stripeSessionId: order.id,
       })
+      break
+    }
+
+    case 'order.refunded': {
+      // Claw back credits when a one-time credit pack is refunded. Subscription
+      // refunds are handled by subscription.revoked (access), not here. Partial
+      // refunds still claw back the full pack (floored at the current balance);
+      // spent credits can't be reclaimed.
+      const order = event.data as unknown as {
+        id: string
+        productId: string | null
+        customerId: string
+        customer?: { externalId?: string | null } | null
+        metadata?: Record<string, unknown> | null
+      }
+
+      if (!order.productId) break
+      const resolved = resolvePolarProduct(order.productId)
+      if (!resolved || resolved.isSubscription || resolved.credits <= 0) break
+
+      const userId = await resolveUserId(supabase, {
+        externalId: order.customer?.externalId,
+        metadataUserId:
+          typeof order.metadata?.supabase_user_id === 'string'
+            ? (order.metadata.supabase_user_id as string)
+            : null,
+        polarCustomerId: order.customerId,
+      })
+      if (!userId) {
+        console.warn(
+          `[polar-webhook] order.refunded ${order.id}: no resolvable user. Skipping.`
+        )
+        break
+      }
+
+      const { error } = await supabase.rpc('apply_credit_refund', {
+        p_user_id: userId,
+        p_credits: resolved.credits,
+        p_metadata: {
+          polar_order_id: order.id,
+          product: resolved.productKey,
+          reason: 'refund',
+        },
+      })
+      if (error) throw new Error(`apply_credit_refund failed: ${error.message}`)
       break
     }
 

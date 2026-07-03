@@ -7,7 +7,11 @@ import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
  */
 export type EffectiveAccess = 'free' | 'trial' | 'pro' | 'max'
 
-const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing']
+// `past_due` keeps access during Polar's payment-recovery (dunning) window — a
+// temporary card decline shouldn't instantly lock the user out. Access is only
+// removed when Polar escalates to `subscription.revoked` (→ tier free / status
+// canceled) or the status moves to canceled/unpaid.
+export const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing', 'past_due']
 
 export function effectiveAccess(opts: {
   tier: SubscriptionTier

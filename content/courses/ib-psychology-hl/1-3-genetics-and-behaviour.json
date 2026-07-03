@@ -1,174 +1,335 @@
 {
   "slug": "1-3-genetics-and-behaviour",
   "topicCode": "1.3",
+  "unit": {
+    "code": "1",
+    "title": "Biological approach to behaviour"
+  },
   "title": "Genetics and behaviour",
   "paper": "P1",
   "paperName": "Psychology HL",
   "status": "premium",
-  "summary": "This lesson explores the influence of genetics on human behaviour. It covers foundational concepts such as genes, heritability, and the distinction between genotype and phenotype. We will examine key research methods used in behavioural genetics, including twin, adoption, and family studies, and evaluate their strengths and limitations. The lesson emphasises the modern understanding of gene-environment interaction (GxE) and introduces concepts like epigenetics, moving beyond the simplistic 'nature vs. nurture' debate.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Genes influence behaviour, but they do not dictate it. This lesson builds the whole 1.3 story: how genes create predispositions rather than destinies; how twin, kinship and adoption studies let psychologists infer genetic influence; what heritability estimates really mean (and where they mislead); how genes and environment interact, including an overview of epigenetics; and how evolutionary psychology explains behaviour and why it is criticised. Named studies are worked through with aim, procedure and findings, then evaluated — and one is marked live against the IB Paper 1 SAQ /9 markband.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the principles of behavioural genetics, including the concepts of heritability and concordance rates.",
-    "Outline the research methods used to study the influence of genetics on behaviour (e.g., twin and adoption studies).",
-    "Discuss the role of gene-environment interaction and epigenetics in shaping behaviour.",
-    "Evaluate key studies related to genetics and behaviour, such as those on intelligence or mental disorders."
+    "Explain how genes create a predisposition to a behaviour rather than determining it, using a named example.",
+    "Describe and evaluate twin studies (MZ vs DZ concordance) and kinship/adoption studies as methods for inferring genetic influence.",
+    "Interpret heritability estimates correctly and state their main limitations.",
+    "Explain gene-environment interaction and outline epigenetics, and evaluate evolutionary explanations of behaviour."
   ],
+  "syllabusObjectivesCovered": [
+    "1.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Nature's Blueprint, Nurture's Builder",
-    "summary": "Our genes provide a 'blueprint' of potential traits and predispositions, but our environment acts as the 'builder', determining how and if these genetic instructions are carried out. Behaviour is almost always the product of this complex and continuous interaction.",
-    "analogy": "Think of your genes as a detailed recipe for a cake. The recipe lists all the ingredients (e.g., flour, sugar, eggs) and provides basic instructions. However, the final cake depends on the 'environment' – the skill of the baker, the quality of the ingredients you actually use, the oven's temperature, and how long you bake it. A great recipe can still lead to a bad cake in the wrong conditions, and a simple recipe can be made brilliant by a skilled baker.",
+    "title": "Genes load the gun, the environment pulls the trigger",
+    "summary": "Your genes set out possibilities and vulnerabilities, not fixed outcomes. Whether a genetic tendency ever shows up as a behaviour usually depends on the environment you meet. Psychologists study this indirectly, by comparing people who share different amounts of DNA.",
+    "analogy": "Think of a genotype as a hand of cards you are dealt at conception. The hand influences how likely you are to win, but it does not decide the game on its own. How you play — the environment, your experiences, chance events, even how the cards are 'switched on or off' over time — shapes the final result. Two people dealt the identical hand can finish the game in completely different places.",
     "steps": [
-      "Identify the specific behaviour being investigated (e.g., intelligence, depression) and the genetic argument being made.",
-      "Describe the research method used to establish a genetic link, such as a twin study comparing concordance rates between MZ and DZ twins.",
-      "Analyse the results, explaining what the data (e.g., heritability estimate) suggests about the genetic influence on the behaviour.",
-      "Critically evaluate the conclusion by considering alternative explanations, methodological limitations (like the equal environments assumption), and the crucial role of gene-environment interactions."
+      "Name the genetic factor under study: a specific gene variant (e.g. the 5-HTTLPR short allele) or a degree of genetic relatedness (e.g. MZ vs DZ twins).",
+      "Name the behaviour or trait being measured: e.g. depression, IQ, or a personality trait.",
+      "State the proposed link as a predisposition, and describe how it is thought to raise vulnerability — often via a physiological pathway such as neurotransmitter regulation.",
+      "Evaluate: bring in the environment, gene-environment interaction, the limits of heritability, and the difference between correlation and causation."
     ]
   },
   "flashcards": [
     {
-      "front": "Genotype",
-      "back": "An individual's unique genetic make-up, the set of genes they possess. It is fixed from conception."
+      "front": "Genotype vs phenotype",
+      "back": "The genotype is the full set of genes an individual inherits, fixed from conception. The phenotype is the observable result — traits and behaviour — produced by the genotype interacting with the environment over a lifetime.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Phenotype",
-      "back": "The observable characteristics of an individual, resulting from the interaction of their genotype and the environment. This includes physical traits and behaviours."
+      "front": "Genetic predisposition (not determinism)",
+      "back": "Genes raise or lower the probability of a behaviour; they rarely fix it. A predisposition is a tendency that may or may not be expressed depending on environmental conditions. Claiming a gene 'causes' a behaviour on its own is genetic determinism, which the evidence contradicts.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "MZ vs DZ twins",
+      "back": "Monozygotic (identical) twins form from one zygote and share ~100% of their DNA. Dizygotic (fraternal) twins form from two zygotes and share ~50%, like ordinary siblings. Comparing the two lets researchers estimate genetic influence.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Concordance rate",
+      "back": "The probability that if one twin shows a trait, the co-twin shows it too. A markedly higher MZ than DZ concordance points to a genetic contribution. Crucially, concordance is almost never 100%, so environment must also matter.",
+      "pillLabel": "Concept"
     },
     {
       "front": "Heritability",
-      "back": "A statistical estimate of the proportion of variation in a trait within a population that can be attributed to genetic differences. It is not a measure of genetic influence on an individual."
+      "back": "A population statistic: the proportion of VARIATION in a trait across a group that is attributable to genetic differences among its members. It describes populations, never individuals, and it is specific to the population and environment studied.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Concordance Rate",
-      "back": "The probability that if one individual in a pair has a certain trait, the other individual will also have it. It is often expressed as a percentage and is central to twin studies."
+      "front": "Kinship / family studies",
+      "back": "Compare how often a trait appears across relatives of differing genetic closeness (parents, siblings, cousins). Clustering with closeness suggests a genetic component — but shared families also share environments, which is a confound.",
+      "pillLabel": "Method"
     },
     {
-      "front": "Monozygotic (MZ) Twins",
-      "back": "Identical twins who develop from a single fertilised egg that splits. They share 100% of their genes."
+      "front": "Adoption studies",
+      "back": "Compare an adoptee with their biological relatives (shared genes, different environment) and adoptive relatives (shared environment, different genes). Resemblance to biological relatives implies genetic influence; resemblance to adoptive relatives implies environmental influence.",
+      "pillLabel": "Method"
     },
     {
-      "front": "Dizygotic (DZ) Twins",
-      "back": "Fraternal twins who develop from two separate fertilised eggs. They share, on average, 50% of their genes, the same as any other siblings."
-    },
-    {
-      "front": "Twin Study",
-      "back": "A research method that compares the concordance rates of a trait between monozygotic (MZ) and dizygotic (DZ) twins. A higher concordance rate in MZ twins suggests a genetic influence."
-    },
-    {
-      "front": "Adoption Study",
-      "back": "A research method that compares an adopted child to their biological parents (genetic influence) and their adoptive parents (environmental influence) to disentangle the effects of nature and nurture."
-    },
-    {
-      "front": "Equal Environments Assumption",
-      "back": "A key criticism of twin studies. It is the assumption that MZ and DZ twins experience equally similar environments. However, MZ twins may be treated more similarly, potentially inflating the perceived genetic influence."
-    },
-    {
-      "front": "Gene-Environment Interaction (GxE)",
-      "back": "The concept that individuals with different genotypes may respond to the same environment in different ways. A classic example is the diathesis-stress model."
-    },
-    {
-      "front": "Diathesis-Stress Model",
-      "back": "A psychological theory that attempts to explain behaviour as a predispositional vulnerability (diathesis) combined with stress from life experiences. The genetic predisposition is only expressed when triggered by an environmental stressor."
+      "front": "Gene-environment interaction (GxE)",
+      "back": "The effect of a gene depends on the environment, and vice versa. The same environment affects different genotypes differently. The diathesis-stress model is one example: a genetic vulnerability is expressed only under environmental stress.",
+      "pillLabel": "Concept"
     },
     {
       "front": "Epigenetics",
-      "back": "The study of changes in organisms caused by modification of gene expression rather than alteration of the genetic code itself. Environmental factors can cause genes to be 'switched on' or 'off'."
+      "back": "The study of changes in gene EXPRESSION (genes switched on or off) caused by the environment, without altering the DNA sequence itself. Mechanisms such as DNA methylation can be triggered by experience and, in some cases, persist. It shows environment reaching 'into' the genome.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Evolutionary explanation of behaviour",
+      "back": "Argues that behaviours which improved survival and reproduction in ancestral environments were naturally selected and so persist today (e.g. disgust reducing disease risk). Powerful but hard to test — criticised as post-hoc, hard to falsify, and neglectful of culture and learning.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The equal environment assumption",
+      "back": "The key assumption behind twin studies: that MZ and DZ pairs share environments to the same degree. If MZ twins are actually treated more alike, twin studies overstate genetic influence.",
+      "pillLabel": "Evaluation"
+    },
+    {
+      "front": "Correlation is not causation",
+      "back": "Twin, family and adoption studies are correlational/quasi-experimental. A higher MZ concordance shows an association consistent with genetic influence; it cannot by itself prove genes cause the behaviour, because environment and gene expression are entangled.",
+      "pillLabel": "Evaluation"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A student writes that someone with 'the depression gene' will definitely become depressed. The examiner marks this as wrong because:",
+      "options": [
+        "Depression has no genetic component at all",
+        "Genes create a predisposition, not a certainty; expression depends on the environment",
+        "Only DZ twins can inherit depression",
+        "Heritability of depression is exactly 100%"
+      ],
+      "answer": "Genes create a predisposition, not a certainty; expression depends on the environment"
+    },
+    {
+      "prompt": "In a twin study, MZ and DZ twins are compared because:",
+      "options": [
+        "MZ twins share ~50% of genes and DZ ~100%",
+        "MZ twins share ~100% of genes and DZ ~50%, so a higher MZ concordance suggests genetic influence",
+        "Only MZ twins can be raised apart",
+        "DZ twins always have identical environments"
+      ],
+      "answer": "MZ twins share ~100% of genes and DZ ~50%, so a higher MZ concordance suggests genetic influence"
+    },
+    {
+      "prompt": "A trait shows an MZ concordance of 48%. The single most important thing this tells us is:",
+      "options": [
+        "Genes play no role in the trait",
+        "The environment must also contribute, because concordance is well below 100%",
+        "The study must be invalid",
+        "The trait is fully determined by genetics"
+      ],
+      "answer": "The environment must also contribute, because concordance is well below 100%"
+    },
+    {
+      "prompt": "Which statement about heritability is correct?",
+      "options": [
+        "It tells you how much of an individual's trait is caused by their genes",
+        "It is a population statistic about variation, and is specific to the population and environment studied",
+        "A high heritability means the environment is irrelevant",
+        "Heritability of 0.7 means 70% of a person is genetic"
+      ],
+      "answer": "It is a population statistic about variation, and is specific to the population and environment studied"
+    },
+    {
+      "prompt": "Why can a twin or adoption study not on its own prove that a gene CAUSES a behaviour?",
+      "options": [
+        "Because such studies are true experiments with random allocation",
+        "Because they are correlational: genetic relatedness and shared environment are difficult to separate fully",
+        "Because genes cannot be measured",
+        "Because concordance rates are always 100%"
+      ],
+      "answer": "Because they are correlational: genetic relatedness and shared environment are difficult to separate fully"
     }
   ],
   "faq": [
     {
-      "q": "Is there a single 'gene for' a complex behaviour like intelligence or aggression?",
-      "a": "No, this is a common misconception. Complex behaviours are polygenic, meaning they are influenced by many genes, each with a small effect. Furthermore, these genes interact with each other and with a multitude of environmental factors. There is no single 'intelligence gene' or 'aggression gene'."
+      "q": "If a behaviour is highly heritable, does that mean the environment doesn't matter?",
+      "a": "No. Heritability describes how much of the VARIATION between people in a particular population is linked to genetic differences — it says nothing about a single individual, and nothing about whether the environment could change the average level of the trait. Height is highly heritable, yet nutrition still determines whether a person reaches their potential height. A high heritability figure and a powerful environmental effect can be true at the same time."
     },
     {
-      "q": "What is the main limitation of twin studies?",
-      "a": "The primary limitation is the 'equal environments assumption'. This is the assumption that identical (MZ) and fraternal (DZ) twins experience equally similar environments. Critics argue that because MZ twins are physically identical, they are likely to be treated more similarly by parents, teachers, and peers than DZ twins. This greater environmental similarity, rather than just greater genetic similarity, could account for their higher concordance rates."
+      "q": "Does inheriting a risk allele mean I will get the disorder?",
+      "a": "No. This is genetic determinism, and the evidence is against it. Risk variants raise the probability of a trait, but expression typically depends on the environment. Caspi et al. (2003) found that the short 5-HTTLPR allele only predicted more depression in people who also faced several stressful life events; carriers with little stress were not more depressed. Many people carrying a risk variant never develop the disorder because they never meet the triggering environment."
     },
     {
-      "q": "If a trait has high heritability, does that mean it can't be changed?",
-      "a": "Not at all. Heritability is a population statistic about the source of variation, not a statement about an individual's destiny. For example, height is highly heritable, but average height in many populations has increased dramatically over the last century due to improved nutrition (an environmental factor). A high heritability does not imply that a trait is unchangeable."
+      "q": "What is epigenetics in one sentence, and why does it matter here?",
+      "a": "Epigenetics is the study of how the environment switches genes on or off (changing gene expression) without changing the DNA code itself — for example through DNA methylation. It matters because it gives a biological mechanism for gene-environment interaction: experience can literally change which genes are active, which is another reason 'genes are destiny' is too simple."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "For centuries, thinkers have debated the origins of our behaviour: are we products of our innate biology ('nature') or our life experiences ('nurture')? Modern psychology reframes this as a false dichotomy. This lesson delves into behavioural genetics, the field that scientifically investigates the intricate interplay between our genetic inheritance and our environment in shaping who we are and what we do."
+      "content": "For a long time the debate was framed as nature versus nurture: are we the product of our genes or our upbringing? Modern psychology has retired that either/or. The interesting question is how genes and environment work together to shape behaviour. This lesson gives you the tools to describe the evidence — twin, kinship and adoption studies — and, just as importantly, to evaluate it: to say what a concordance rate can and cannot prove, what heritability really measures, and why the phrase 'a gene for X' is almost always misleading."
     },
     {
       "type": "heading",
-      "content": "Principles of Genetic Inheritance"
+      "content": "Genes create predispositions, not destinies"
     },
     {
       "type": "text",
-      "content": "Every human has a set of chromosomes containing genes, which are segments of DNA that code for specific proteins. These proteins influence the structure and function of our body and brain, thereby creating predispositions for certain behaviours. It's crucial to distinguish between genotype (the genetic code itself) and phenotype (the observable trait). While your genotype is fixed, your phenotype is the result of your genes interacting with environmental factors, from prenatal nutrition to social experiences."
+      "content": "DNA is organised into chromosomes inside the nucleus of our cells. A gene is a segment of DNA that codes for a protein or function; your complete set of genes is your genotype. What you can actually observe — traits, personality, vulnerability to disorders — is your phenotype, and the phenotype is produced by the genotype interacting with the environment across your whole life. The single most important idea in this topic follows from that: genes influence behaviour by shaping probabilities and tendencies, not by fixing outcomes. A genetic predisposition raises the likelihood that a behaviour appears; whether it actually does often depends on experience. Treating a gene as a direct cause of a behaviour is called genetic determinism, and the research below repeatedly shows why that view is too simple."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Polygenic Traits:** Most complex behaviours (e.g., intelligence, aggression) are not caused by a single gene but are polygenic, meaning they are influenced by multiple genes working in combination.",
-        "**Genetic Predisposition:** Genes do not determine behaviour directly. Instead, they create a vulnerability or predisposition. The behaviour itself is only expressed under certain environmental conditions.",
-        "**Heritability:** This is a population-level statistic, not an individual one. A heritability estimate of 0.40 for depression means that 40% of the *variation* in depressive symptoms *across a population* can be attributed to genetic differences among individuals in that population."
+        "**Genotype** = the genes you inherit (fixed at conception). **Phenotype** = the observable outcome of genotype interacting with environment.",
+        "Genes work as **predispositions**: they change the odds, they do not guarantee a behaviour.",
+        "**Genetic determinism** — 'genes are destiny' — is contradicted by the evidence throughout this topic."
       ]
     },
     {
       "type": "heading",
-      "content": "Researching Genetic Influences"
+      "content": "Methods: twin, kinship and adoption studies"
     },
     {
       "type": "text",
-      "content": "Since we cannot ethically manipulate human genes in a lab, psychologists use quasi-experimental methods to infer genetic influence. The core logic involves comparing the similarity of behaviour (concordance) between individuals with known degrees of genetic relatedness. The three main methods are twin, adoption, and family studies."
+      "content": "We cannot ethically manipulate human genes, so psychologists use natural variation in genetic relatedness to infer genetic influence. Each method is a way of holding either genes or environment roughly constant so the other can be examined. None is a true experiment, which is why every one of them supports correlational, not causal, conclusions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Twin studies** compare the **concordance rate** of a trait in monozygotic (MZ, ~100% shared genes) versus dizygotic (DZ, ~50% shared genes) twins. A substantially higher MZ concordance suggests genetic influence — provided the **equal environment assumption** holds.",
+        "**Kinship / family studies** track how often a trait appears across relatives of differing genetic closeness. Clustering with closeness hints at genetics, but families share environments too, which is a confound.",
+        "**Adoption studies** compare adoptees with their **biological** relatives (shared genes, different environment) and their **adoptive** relatives (shared environment, different genes). Resemblance to biological relatives points to genes; resemblance to adoptive relatives points to environment."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Because concordance rates in these studies are almost never 100% — even for MZ twins with essentially identical DNA — the studies themselves demonstrate that the environment must contribute. That built-in gap is one of the most quotable evaluation points in the whole topic."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 1 — a twin study of a trait, described and linked"
     },
     {
       "type": "workedExample",
-      "question": "A study by Bouchard et al. (1990) investigated the heritability of intelligence (IQ). They found a concordance rate of 0.86 for MZ twins reared apart and 0.76 for MZ twins reared together. Explain what these results suggest about the influence of genetics on intelligence.",
-      "solution": "The results from Bouchard et al. (1990) provide strong evidence for a significant genetic influence on intelligence.\n\n[1 Mark] The high concordance rate of 0.86 for monozygotic (MZ) twins reared apart is particularly compelling. Since these twins share 100% of their genes but were raised in different environments, their similarity in IQ scores strongly suggests that genetics play a major role.\n\n[1 Mark] The fact that their IQs are not perfectly correlated (i.e., not 1.0) indicates that the environment also plays a role. The 14% difference (1.0 - 0.86) can be attributed to environmental factors.\n\n[1 Mark] The slightly lower concordance rate for MZ twins reared together (0.76) compared to those reared apart (0.86) is an unusual finding in this specific dataset, but generally, comparing MZ twins (100% shared genes) to DZ twins (50% shared genes) is the standard method. A significantly higher concordance in MZ twins than DZ twins would be the classic argument for heritability. In this case, the high value for twins reared apart is the key finding pointing to a strong genetic component."
+      "question": "Using one twin study, explain how genetics can influence one behaviour. [9]",
+      "solution": "**The method.** Twin studies compare the concordance rate of a trait between MZ twins, who share ~100% of their genes, and DZ twins, who share ~50%. If the MZ concordance is substantially higher than the DZ concordance, this suggests a genetic contribution, because the main systematic difference between the two twin types is the amount of shared DNA.\n\n**The study (aim, procedure, findings).** A classic application is the Minnesota Study of Twins Reared Apart (Bouchard et al., 1990), which investigated the heritability of intelligence, measured by IQ tests. Its striking feature was a sample of MZ twins who had been separated early and raised apart (MZA), alongside MZ twins raised together (MZT). Because MZA twins share their genes but not their upbringing, resemblance between them is hard to attribute to a shared home. The researchers found that IQ correlations were high even for twins reared apart — higher than would be expected if intelligence were mainly environmental — and estimated that a large share of the variance in IQ within the studied population was associated with genetic differences.\n\n**The explicit link to behaviour.** This shows genetic influence on intelligence in two ways. First, MZ twins reared apart still resembled each other closely, so their similarity cannot be explained by a shared environment — it tracks their shared genes. Second, the resemblance was less than perfect, and MZT pairs tended to be slightly more alike than MZA pairs, which shows that environment still contributes. The pattern therefore supports genetic influence on IQ as a predisposition operating alongside the environment, not as a sole determinant."
     },
     {
       "type": "examTip",
-      "content": "Avoid deterministic language. Never say a gene 'causes' a behaviour. Instead, use phrases like 'genes may contribute to a predisposition for...', 'there is a correlation between this gene and...', or 'genes can increase the vulnerability to...'. This demonstrates a nuanced understanding required for top marks."
+      "content": "Notice the three moves in that answer: (1) name and describe the method, (2) give the study's aim, procedure and findings, (3) LINK the findings back to the behaviour named in the question. Skipping step 3 — describing a study but never connecting it to the behaviour — is the most common reason strong knowledge scores only in the middle band."
     },
     {
       "type": "heading",
-      "content": "Beyond Genes: Interaction and Epigenetics"
+      "content": "Heritability: what the number does and does not mean"
     },
     {
       "type": "text",
-      "content": "The most current understanding is that genes and the environment are in a constant, dynamic dialogue. The concept of Gene-Environment Interaction (GxE) proposes that the effect of a gene depends on the environment, and the effect of the environment depends on the genes. A well-supported model for this is the diathesis-stress model, which posits that a genetic vulnerability (diathesis) is only expressed when an individual encounters a significant environmental stressor."
+      "content": "Heritability estimates are everywhere in this topic, and they are constantly misread. Heritability is a population statistic: it estimates the proportion of the VARIATION in a trait across a group that is associated with genetic differences among its members. It does not describe any single person — you cannot say '70% of this child's intelligence is genetic'. It is also specific to the population and environment measured: change the environment (say, remove severe deprivation) and the heritability figure itself can change. And a high heritability does not make the environment powerless: a trait can be highly heritable yet still be strongly shifted, on average, by environmental change."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Diathesis-Stress Model:** A person might carry genes linked to depression, but only develop the disorder after experiencing a major life stressor like bereavement or job loss.",
-        "**Epigenetics:** This is the mechanism through which the environment can directly modify gene *expression*. Environmental factors like diet, stress, and toxins can attach chemical markers to our DNA, effectively 'dimming' or 'brightening' certain genes without changing the DNA sequence itself. These changes can sometimes even be passed on to the next generation."
+        "Heritability describes **variation in a population**, never an individual.",
+        "It is **context-dependent**: tied to the specific population and range of environments studied.",
+        "**High heritability does not mean the environment is irrelevant** to the average level of a trait.",
+        "It rests on **assumptions** (e.g. the equal environment assumption) that, if wrong, inflate the estimate."
       ]
     },
     {
+      "type": "heading",
+      "content": "Gene-environment interaction and epigenetics"
+    },
+    {
+      "type": "text",
+      "content": "The modern picture replaces 'genes versus environment' with gene-environment interaction (GxE): the effect of a gene depends on the environment, and the effect of the environment depends on the genotype. The diathesis-stress model is the classic case — a genetic vulnerability (diathesis) is expressed only when environmental stress is present. Epigenetics gives this a biological mechanism. It studies changes in gene EXPRESSION — genes switched on or off, for instance through DNA methylation — that are triggered by the environment without altering the DNA sequence itself. In other words, experience can change which genes are active. Epigenetics is examined here at overview level: you need the idea that environment can regulate gene expression, and why that is further evidence against simple genetic determinism."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 2 — gene-environment interaction, described and linked"
+    },
+    {
       "type": "workedExample",
-      "question": "Using one study, explain the role of gene-environment interaction in one behaviour. (9 marks)",
-      "solution": "One study demonstrating gene-environment interaction (GxE) is Caspi et al. (2003), which investigated the role of the 5-HTT gene in depression following stressful life events.\n\n**Genetic Component (Diathesis):** The 5-HTT gene influences the production of serotonin transporters, which are involved in regulating mood. The gene has two common variants: a long allele and a short allele. Individuals can have two long (l/l), one of each (l/s), or two short (s/s) alleles. The short allele is associated with lower transporter efficiency and is considered the genetic vulnerability.\n\n**Environmental Component (Stress):** The researchers assessed the number of stressful life events (e.g., financial, health, relationship problems) experienced by participants between the ages of 21 and 26.\n\n**Interaction and Behaviour:** Participants were assessed for symptoms of major depression. The study found that the effect of life events on depression depended on the participants' genotype. Individuals with one or two copies of the short allele (s/l or s/s) exhibited significantly more depressive symptoms and were more likely to be diagnosed with depression following stressful life events than those with two long alleles (l/l). Participants with the l/l genotype were more resilient and showed no increase in depressive symptoms, regardless of the number of stressful events they experienced.\n\n**Conclusion:** This study exemplifies the GxE. The genetic predisposition (the short 5-HTT allele) did not 'cause' depression on its own. It only increased the risk of developing depression *in response to* environmental stressors. This supports the diathesis-stress model and shows that it is the interaction between nature and nurture that best explains the behaviour."
+      "question": "Explain, with reference to one study, how gene-environment interaction can influence one behaviour. [9]",
+      "solution": "**The concept.** Gene-environment interaction means a genotype changes how a person responds to their environment. Genes do not act alone; they set a predisposition whose expression is moderated by experience — the logic of the diathesis-stress model.\n\n**The study (aim, procedure, findings).** Caspi et al. (2003) examined whether a variation in the 5-HTT (serotonin transporter) gene moderated the effect of stressful life events on depression. Participants from a long-running New Zealand cohort were grouped by their 5-HTTLPR alleles: two short alleles (s/s), one short and one long (s/l), or two long (l/l). Researchers recorded the number of stressful life events participants experienced across early adulthood and assessed depression symptoms. The finding was an interaction: carriers of at least one short allele who had experienced several stressful events showed markedly more depression than long/long carriers with the same stress — but among people with little or no stress, genotype made essentially no difference.\n\n**The explicit link to behaviour.** This explains depression as a product of genes AND environment together, not either alone. The short allele did not by itself produce depression — without stress it had no measurable effect — so it functioned as a vulnerability that the environment activated. Equally, stress did not affect everyone the same way; its impact depended on genotype. The study therefore shows gene-environment interaction shaping depression, and stands as direct evidence against genetic determinism."
+    },
+    {
+      "type": "examTip",
+      "content": "For a GxE answer, make the interaction explicit: state that the gene had an effect ONLY under certain environmental conditions (and vice versa). Writing 'the gene causes depression' throws away the whole point of the study and drops you a band."
+    },
+    {
+      "type": "heading",
+      "content": "Evolutionary explanations of behaviour — and their critics"
+    },
+    {
+      "type": "text",
+      "content": "Evolutionary psychology argues that behaviours which improved survival and reproduction in ancestral environments were naturally selected and so remain common today. Disgust, for example, can be explained as an evolved response that reduced contact with sources of disease. The approach is genuinely useful for generating hypotheses about universal human tendencies. But it draws heavy criticism. Many evolutionary explanations are post-hoc 'just-so stories' constructed after the fact and hard to falsify, because we cannot rerun ancestral conditions. The approach can also underplay culture and learning, and risks the naturalistic fallacy — treating 'evolved' as 'natural' and therefore acceptable. Use it as one lens among several, and always pair it with these limitations."
+    },
+    {
+      "type": "heading",
+      "content": "Evaluating genetic explanations"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Strength — converging methods.** Twin, kinship and adoption studies use different designs yet often point the same way, which strengthens the case for genetic influence on many behaviours.",
+        "**Limitation — correlation, not causation.** These are quasi-experimental designs; relatedness and shared environment are entangled, so they cannot establish that genes CAUSE a behaviour.",
+        "**Limitation — the equal environment assumption.** If MZ twins are treated more alike than DZ twins, twin studies overstate heritability.",
+        "**Limitation — reductionism.** Explaining behaviour by a single gene or allele can oversimplify complex, socially embedded phenomena.",
+        "**Strength/limitation — GxE and epigenetics.** These refine genetic explanations and rule out crude determinism, but also make single-gene claims harder to sustain.",
+        "**Ethics.** Genetic data is highly sensitive: informed consent, anonymity/confidentiality and the risk of psychological harm or genetic discrimination must all be managed."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Genetic determinism** — writing that a gene 'causes' or guarantees a behaviour. Genes predispose; expression depends on the environment.",
+        "**Mixing up MZ and DZ** — MZ share ~100% of genes, DZ ~50%. Reversing these, or forgetting the equal environment assumption, undermines the whole answer.",
+        "**Treating concordance below 100% as a problem to hide** — instead, USE it: a concordance under 100% is direct evidence that environment also matters.",
+        "**Misreading heritability** — applying a population statistic to an individual, or claiming high heritability means the environment is irrelevant.",
+        "**Confusing correlation with causation** — twin and adoption studies are correlational; they support, but cannot prove, a causal genetic effect.",
+        "**Describing a study but never linking it** — naming aim, procedure and findings without connecting them to the behaviour in the question caps you in the middle band."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real IB SAQ markband"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 1 SAQ: Explain one study investigating the genetic basis of behaviour. [9]",
+      "solution": "**Model answer.**\nOne study investigating the genetic basis of behaviour is Caspi et al. (2003), which examined the genetic basis of depression through the serotonin transporter gene 5-HTT. The command term is 'explain', so the study must be both described and explicitly connected to the genetic basis of the behaviour.\n\nThe aim was to test whether a variation in the 5-HTT gene moderated the effect of stressful life events on depression — in other words, whether a genetic factor underlies vulnerability to depression. Participants from a New Zealand cohort were divided by their 5-HTTLPR genotype into short/short, short/long and long/long groups. The researchers measured how many stressful life events each participant experienced in early adulthood and assessed their depression symptoms.\n\nThe findings showed that participants carrying at least one short allele who experienced several stressful events reported significantly more depression than long/long carriers facing the same stress, whereas genotype made little difference for those with low stress.\n\nThis explains a genetic basis of behaviour because it shows that a specific gene variant — the short 5-HTT allele — is associated with a raised vulnerability to depression. The genetic factor did not act alone: it operated as a predisposition expressed under environmental stress, which is exactly how genes are understood to influence behaviour. The study therefore demonstrates a genetic contribution to depression while showing that this contribution is probabilistic, not deterministic.\n\n---\n**How this maps to our IB markband (Paper 1 SAQ, out of 9):**\n- **7–9:** the answer is *fully focused* on the question and *meets the command term*, *knowledge is accurate*, and research is *DESCRIBED AND EXPLICITLY LINKED* to the question.\n- **4–6:** the answer is *relevant but does not meet the command term*, *knowledge is limited*, and research is *described* (but not clearly linked).\n- **1–3:** the answer has *limited relevance*, *knowledge is inaccurate*, and research is *only listed*.\n\nWhy this answer sits in **7–9**:\n- **Fully focused / meets 'explain':** it does not just describe Caspi et al. — it explains HOW the 5-HTT variant underlies vulnerability to depression, addressing the genetic basis directly.\n- **Accurate knowledge:** genotype groups, the stress measure and the interaction finding are stated correctly.\n- **Described AND explicitly linked:** aim, procedure and findings are given (described) and then tied back to 'the genetic basis of behaviour' in the final paragraph (linked).\n\nAn answer that recounted the same study but stopped at the findings — never saying how it shows a genetic basis — would meet the 4–6 descriptor ('described' but not meeting the command term). One that merely name-dropped '5-HTT and depression' with no accurate procedure would fall to 1–3 ('only listed'). The single move that lifts you into the top band is the explicit link."
+    },
+    {
+      "type": "examTip",
+      "content": "This is exactly what the Practice button below does: write your own answer to 'Explain one study investigating the genetic basis of behaviour. [9]', submit it, and our marking engine grades it against this same /9 SAQ markband — telling you which band you reached and why. The habit that moves you up the bands is describe-AND-link: never leave a study described but unconnected to the behaviour in the question."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Genetics is one pillar of the biological approach; it sits alongside the brain, hormones and neurotransmitters covered elsewhere in Unit 1. The evaluative moves you have practised here — predisposition not determinism, correlation not causation, heritability as a population statistic — transfer directly to those topics and to any Paper 1 question that asks you to weigh a biological explanation of behaviour."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Genetics and Behaviour",
-      "href": "/mark?subject=ib-psychology-hl&topic=1.3"
+      "label": "Get a Paper 1 SAQ marked: explain one study investigating the genetic basis of behaviour",
+      "href": "/mark?subject=ib-psychology-hl&topic=1.3&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Video: Twin and Adoption Studies (CrashCourse)",
-          "href": "https://www.youtube.com/watch?v=h24gXyI-yto"
+          "label": "Minnesota Center for Twin and Family Research",
+          "href": "https://mctfr.psych.umn.edu/"
         },
         {
-          "label": "Article: Epigenetics and the influence of our genes",
-          "href": "https://www.whatisepigenetics.com/what-is-epigenetics/"
-        },
-        {
-          "label": "Study Summary: Caspi et al. (2003)",
-          "href": "https://www.simplypsychology.org/caspi-et-al.html"
+          "label": "Nature: an introduction to epigenetics",
+          "href": "https://www.nature.com/scitable/topicpage/epigenetic-influences-and-disease-895/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

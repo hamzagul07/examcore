@@ -1,203 +1,148 @@
 {
   "slug": "c-3-wave-phenomena",
   "topicCode": "C.3",
+  "unit": { "code": "C", "title": "Wave behaviour" },
   "title": "Wave phenomena",
   "paper": "P2",
   "paperName": "Physics SL",
   "status": "premium",
-  "summary": "Explores the key wave phenomena of diffraction, interference, and resolution. This topic covers the conditions for constructive and destructive interference, the behaviour of light in single-slit, double-slit, and diffraction grating setups, and the limits of resolving power for optical instruments.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Wave phenomena are the behaviours that only make sense once you accept that light and sound are waves, not straight-line rays. This lesson builds the full C.3 toolkit: reflection and the law of reflection; refraction, Snell's law and the refractive index; total internal reflection and the critical angle; diffraction and how it depends on the gap-to-wavelength ratio; the principle of superposition with constructive and destructive interference expressed through path difference; and Young's double-slit fringe spacing. It then extends (HL) to single-slit diffraction and the diffraction grating. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the phenomenon of diffraction and the characteristics of the single-slit diffraction pattern.",
-    "Solve problems involving Young's double-slit experiment and diffraction gratings.",
-    "Explain the role of path difference and phase change in thin-film interference.",
-    "State and apply the Rayleigh criterion to problems on resolution for circular apertures."
+    "State the law of reflection and apply Snell's law with the refractive index $n = c/v$ to problems on refraction.",
+    "Define the critical angle, derive it from Snell's law and explain the conditions required for total internal reflection.",
+    "Describe diffraction and explain how the amount of spreading depends on the ratio of gap size to wavelength.",
+    "Apply the principle of superposition, using path difference to predict constructive and destructive interference, and solve Young's double-slit problems with $s = \\lambda D/d$.",
+    "(HL) Analyse single-slit diffraction and the diffraction grating equation $d\\sin\\theta = n\\lambda$.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["C.3"],
+  "levelNote": "Common to SL and HL; single-slit diffraction and diffraction gratings are HL.",
   "simpleExplanation": {
-    "title": "Ripples, Rainbows, and Resolution",
-    "summary": "Waves don't just travel in straight lines; they spread, overlap, and interact to create complex patterns. Understanding this behaviour explains the colours on a soap bubble and the clarity of a telescope's image.",
-    "analogy": "Imagine you and a friend are dropping pebbles into a still pond a short distance apart. The circular ripples from each pebble spread out and cross over. Where two crests meet, the water is extra high. Where a crest meets a trough, the water is flat. This pattern of high and flat spots is exactly like the pattern of bright and dark fringes seen when light waves interfere.",
+    "title": "Why Light Bends, Bounces and Spreads",
+    "summary": "Waves rarely travel in perfectly straight lines. At a boundary they bounce (reflection) or bend (refraction); through a narrow gap they fan out (diffraction); and where two waves overlap they add up (superposition) into a pattern of bright and dark. Four simple rules — the law of reflection, Snell's law, the gap-to-wavelength ratio, and the path-difference condition — capture almost every question in this topic.",
+    "analogy": "Picture straight ranks of ocean swell rolling towards a beach. Where they hit a sea wall at an angle they reflect off symmetrically. Where they cross from deep into shallow water they slow down and swing round to a new direction — that is refraction. Squeeze them through a narrow harbour mouth and they fan out into curved arcs — that is diffraction. And where two sets of arcs cross, the water piles up in some places and cancels in others — that is interference. Light does exactly the same, just on a scale too small to see directly.",
     "steps": [
-      "First, identify the wave setup: Is it a single slit (diffraction), double slit/grating (interference), a thin film, or an aperture (resolution)?",
-      "For interference, determine the path difference between the waves. This is the extra distance one wave travels compared to the other to reach a point.",
-      "For thin films, check for phase changes on reflection. A wave reflecting from a denser medium (higher refractive index) flips, adding a half-wavelength path difference.",
-      "Finally, apply the correct formula (e.g., $s = \\frac{\\lambda D}{d}$ for double-slit, $d \\sin\\theta = n\\lambda$ for gratings, $\\theta = 1.22 \\frac{\\lambda}{b}$ for resolution) to find the required value."
+      "Decide what the wave meets: a mirror-like boundary (reflection), a transparent boundary where it speeds up or slows down (refraction), a narrow gap (diffraction), or another wave (interference).",
+      "For refraction, put the two media into Snell's law $n_1\\sin\\theta_1 = n_2\\sin\\theta_2$, measuring both angles from the normal.",
+      "Going from a slow (dense) medium towards a fast (less dense) one, check whether the angle exceeds the critical angle — if so the ray is totally internally reflected.",
+      "For overlapping waves, find the path difference: a whole number of wavelengths gives a bright fringe (constructive), an odd number of half-wavelengths gives a dark fringe (destructive)."
     ]
   },
+  "keyConcepts": ["refractive index", "critical angle", "path difference", "superposition"],
   "flashcards": [
-    {
-      "front": "What is diffraction?",
-      "back": "The spreading of a wave as it passes through an aperture or around an obstacle. It is most significant when the size of the aperture or obstacle is comparable to the wavelength of the wave."
-    },
-    {
-      "front": "What is the principle of superposition?",
-      "back": "When two or more waves overlap, the resultant displacement at any point and at any instant is the vector sum of the displacements that each individual wave would cause at that point and instant."
-    },
-    {
-      "front": "What are coherent sources?",
-      "back": "Sources of waves are coherent if they emit waves that have a constant phase difference between them and have the same frequency."
-    },
-    {
-      "front": "What is path difference?",
-      "back": "The difference in the distance travelled by two waves from their sources to a specific point. It is often expressed as a multiple of the wavelength, $\\lambda$."
-    },
-    {
-      "front": "What is the condition for constructive interference in terms of path difference?",
-      "back": "Constructive interference occurs when the path difference is an integer multiple of the wavelength: Path Difference = $n\\lambda$, where $n = 0, 1, 2, ...$"
-    },
-    {
-      "front": "What is the condition for destructive interference in terms of path difference?",
-      "back": "Destructive interference occurs when the path difference is a half-integer multiple of the wavelength: Path Difference = $(n + \\frac{1}{2})\\lambda$, where $n = 0, 1, 2, ...$"
-    },
-    {
-      "front": "What is the formula for fringe spacing in Young's double-slit experiment?",
-      "back": "$s = \\frac{\\lambda D}{d}$, where $s$ is the fringe spacing, $\\lambda$ is the wavelength, $D$ is the distance to the screen, and $d$ is the slit separation."
-    },
-    {
-      "front": "What is a diffraction grating?",
-      "back": "An optical component with a periodic structure that splits and diffracts light into several beams travelling in different directions. It consists of many closely spaced parallel slits or grooves."
-    },
-    {
-      "front": "When does a phase change of $\\pi$ radians occur upon reflection?",
-      "back": "A phase change of $\\pi$ radians (or 180°) occurs when a wave reflects off the boundary of a medium with a higher refractive index (an optically denser medium)."
-    },
-    {
-      "front": "What is the Rayleigh criterion?",
-      "back": "Two point sources are just resolved (distinguishable) if the central maximum of the diffraction pattern of one source is located on the first minimum of the diffraction pattern of the other source."
-    },
-    {
-      "front": "What is resolution in optics?",
-      "back": "The ability of an imaging instrument (like a telescope or microscope) to produce separate images of two closely spaced objects."
-    }
+    { "front": "Law of reflection", "back": "The angle of incidence equals the angle of reflection, and the incident ray, reflected ray and normal all lie in the same plane. Both angles are measured from the normal, not from the surface.", "pillLabel": "Definition" },
+    { "front": "Refractive index ($n$)", "back": "$n = c/v$ — the ratio of the speed of light in a vacuum to its speed in the medium. It is always $\\ge 1$; a larger $n$ means light travels more slowly and the medium is optically denser.", "pillLabel": "Formula" },
+    { "front": "Snell's law", "back": "$n_1\\sin\\theta_1 = n_2\\sin\\theta_2$. Light bends TOWARDS the normal on entering a denser (higher $n$) medium and AWAY from the normal on entering a less dense medium. All angles are measured from the normal.", "pillLabel": "Formula" },
+    { "front": "Critical angle ($\\theta_c$)", "back": "The angle of incidence in the denser medium for which the refracted ray travels along the boundary ($\\theta_2 = 90°$). From Snell's law, $\\sin\\theta_c = n_2/n_1$ (with $n_1 > n_2$).", "pillLabel": "Definition" },
+    { "front": "Total internal reflection (TIR)", "back": "When light meeting a boundary is entirely reflected back into the original medium. It requires TWO conditions together: the ray travels from a denser to a less dense medium AND the angle of incidence exceeds the critical angle.", "pillLabel": "Concept" },
+    { "front": "Diffraction", "back": "The spreading of a wave as it passes through a gap or around an obstacle. The spreading is greatest when the gap width is about equal to the wavelength ($b \\approx \\lambda$); a gap much wider than $\\lambda$ produces almost no noticeable spreading.", "pillLabel": "Concept" },
+    { "front": "Principle of superposition", "back": "When two or more waves meet, the resultant displacement at each point is the vector sum of the individual displacements. After overlapping, the waves pass through unchanged.", "pillLabel": "Framework" },
+    { "front": "Coherent sources", "back": "Sources that emit waves of the same frequency with a constant phase difference. Coherence is required for a stable, observable interference pattern.", "pillLabel": "Definition" },
+    { "front": "Path difference", "back": "The extra distance one wave travels compared with the other to reach a given point. Constructive interference: path difference $= n\\lambda$. Destructive interference: path difference $= (n + \\tfrac{1}{2})\\lambda$, with $n = 0, 1, 2, \\ldots$", "pillLabel": "Concept" },
+    { "front": "Young's double-slit fringe spacing", "back": "$s = \\dfrac{\\lambda D}{d}$, where $s$ is the spacing between adjacent bright fringes, $\\lambda$ the wavelength, $D$ the slit-to-screen distance and $d$ the slit separation. Valid when $D \\gg d$.", "pillLabel": "Formula" },
+    { "front": "Diffraction grating equation (HL)", "back": "$d\\sin\\theta = n\\lambda$, where $d$ is the spacing between adjacent slits, $\\theta$ the angle of the $n$-th order maximum and $n = 0, 1, 2, \\ldots$ A grating gives sharper, brighter maxima than two slits, ideal for spectroscopy.", "pillLabel": "Formula" },
+    { "front": "Single-slit first minimum (HL)", "back": "The first dark minimum of a single-slit diffraction pattern lies at $\\theta = \\lambda/b$ (in radians), where $b$ is the slit width. The central maximum is twice as wide as the secondary maxima.", "pillLabel": "Formula" },
+    { "front": "Exam Trap: which $n$ goes where in Snell's law", "back": "Each $n$ must be paired with the angle IN THAT SAME medium. $n_1$ multiplies $\\sin\\theta_1$ where $\\theta_1$ is the angle in medium 1. Swapping them is one of the most common mark-losing slips.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Light passes from water ($n_1 = 1.33$) into glass ($n_2 = 1.50$). Which form of Snell's law is written correctly?", "options": ["$1.33\\sin\\theta_1 = 1.50\\sin\\theta_2$", "$1.50\\sin\\theta_1 = 1.33\\sin\\theta_2$", "$1.33\\sin\\theta_2 = 1.50\\sin\\theta_1$", "$\\dfrac{\\sin\\theta_1}{\\sin\\theta_2} = \\dfrac{1.33}{1.50}$"], "answer": "$1.33\\sin\\theta_1 = 1.50\\sin\\theta_2$" },
+    { "prompt": "Total internal reflection can occur only when light:", "options": ["Travels from a less dense to a denser medium at any angle", "Travels from a denser to a less dense medium AND exceeds the critical angle", "Strikes any boundary exactly along the normal", "Travels from a denser to a less dense medium at any angle below the critical angle"], "answer": "Travels from a denser to a less dense medium AND exceeds the critical angle" },
+    { "prompt": "Two coherent waves arrive at a point with a path difference of exactly $2\\lambda$. The interference there is:", "options": ["Destructive, because 2 is even", "Constructive, because the path difference is a whole number of wavelengths", "Destructive, because the path difference is non-zero", "Neither — the waves cancel to half amplitude"], "answer": "Constructive, because the path difference is a whole number of wavelengths" },
+    { "prompt": "A water wave of wavelength 3 cm meets four gaps. Diffraction (spreading) is GREATEST for the gap of width:", "options": ["30 cm", "12 cm", "3 cm", "0.3 mm — much smaller than the wavelength"], "answer": "3 cm" },
+    { "prompt": "The critical angle for a glass-air boundary is found from $\\sin\\theta_c = n_2/n_1$. For glass ($n_1 = 1.50$) to air ($n_2 = 1.00$), $\\theta_c$ is closest to:", "options": ["19°", "42°", "48°", "There is no critical angle for this boundary"], "answer": "42°" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between diffraction and interference?",
-      "a": "In simple terms, diffraction is the spreading of a single wave, while interference is the superposition (or 'adding up') of multiple waves. However, they are fundamentally linked. In an experiment like the double-slit, light first diffracts through each individual slit, and it is these two diffracted waves that then interfere with each other to create the final pattern. You can think of interference as the result of overlapping diffracted waves."
-    },
-    {
-      "q": "Why is the central maximum in a single-slit pattern twice as wide as the others?",
-      "a": "The central maximum extends from the first minimum on one side to the first minimum on the other. The angle to the first minimum is $\\theta = \\lambda/b$. So, the total angular width of the central maximum is $2\\theta = 2\\lambda/b$. The next maximum is located roughly halfway between the first and second minima. The angular positions of the minima are at $n\\lambda/b$ (for $n=1, 2, 3...$), so the width of the secondary maxima (e.g., between the first and second minima) is approximately $\\lambda/b$. Thus, the central maximum is twice as wide."
-    }
+    { "q": "How do I decide which way light bends when it refracts?", "a": "Compare the refractive indices. Entering a denser medium (larger $n$, slower light) the ray bends TOWARDS the normal; entering a less dense medium (smaller $n$, faster light) it bends AWAY from the normal. A quick sanity check on any Snell's-law answer: if you moved into a denser medium your refracted angle should be smaller than the incident one." },
+    { "q": "What is the difference between reflection, total internal reflection, and refraction?", "a": "Ordinary reflection happens at any boundary — some light always bounces back with the angle of incidence equal to the angle of reflection. Refraction is the bending of the transmitted ray as it changes speed crossing the boundary. Total internal reflection is the special case where NONE of the light gets through: it only happens going from a denser to a less dense medium when the angle of incidence exceeds the critical angle, so all the light is reflected back." },
+    { "q": "When does diffraction actually matter?", "a": "Diffraction is always present, but it is only noticeable when the gap or obstacle is about the same size as the wavelength. Sound waves (wavelengths of tens of centimetres to metres) diffract round doorways easily, which is why you hear someone before you see them. Light has a wavelength of only a few hundred nanometres, so it needs an extremely narrow slit before its spreading becomes obvious — which is exactly why the double-slit and single-slit experiments use such fine slits." },
+    { "q": "Why must the two sources in Young's experiment be coherent?", "a": "A stable interference pattern needs the path-difference condition at each point to stay fixed over time. That only happens if the two waves keep a constant phase difference — the definition of coherence. Two independent bulbs have randomly drifting phases, so the bright and dark fringes would wash out too quickly to see. Young solved this by illuminating both slits with light from a single source, so the two slits become coherent copies of each other." },
+    { "q": "What is the difference between a double slit and a diffraction grating (HL)?", "a": "Both rely on interference between light from many identical, equally spaced slits, and the maxima obey $d\\sin\\theta = n\\lambda$. The difference is the NUMBER of slits: a grating has thousands where a double slit has two. More slits make each bright maximum much sharper and brighter and push them further apart, so a grating separates wavelengths far more precisely — which is why gratings, not double slits, are used in spectrometers." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "While we often model light as travelling in straight lines (rays), this is only an approximation. In reality, light is a wave, and it exhibits behaviours that are unique to waves. This lesson explores some of the most important wave phenomena: diffraction, interference, and resolution. These concepts are fundamental to understanding how optical instruments work and provide some of the strongest evidence for the wave nature of light."
-    },
-    {
-      "type": "heading",
-      "content": "Diffraction and the Single Slit"
-    },
-    {
-      "type": "text",
-      "content": "Diffraction is the tendency of waves to spread out as they pass through an opening (aperture) or bend around an obstacle. This effect is most pronounced when the size of the aperture, $b$, is on the order of the wavelength, $\\lambda$, of the wave. When monochromatic light passes through a single narrow slit, it doesn't just create a single bright spot on a screen. Instead, it forms a central bright band, which is much wider and more intense than the dimmer, narrower bright bands on either side, separated by dark minima."
-    },
-    {
-      "type": "formula",
-      "content": "The angular position, $\\theta$, of the first minimum in a single-slit diffraction pattern is given by: $$\\theta = \\frac{\\lambda}{b}$$ where $\\lambda$ is the wavelength of the light and $b$ is the width of the slit. Note that this angle is in radians."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Diffraction is the spreading of waves.",
-        "The effect is most significant when aperture size $\\approx$ wavelength.",
-        "A single-slit pattern has a wide, bright central maximum, which is twice the width of the secondary maxima.",
-        "The intensity of the maxima decreases rapidly as you move away from the centre."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Interference: Young's Double-Slit Experiment"
-    },
-    {
-      "type": "text",
-      "content": "When waves from two coherent sources overlap, they interfere. Thomas Young's double-slit experiment is a classic demonstration of this. Monochromatic light is passed through two very narrow, closely spaced slits. The light diffracts at each slit, and the two resulting cylindrical waves act as coherent sources. On a distant screen, a pattern of equally spaced bright and dark bands, called interference fringes, is observed. Bright fringes (maxima) occur where the waves interfere constructively, and dark fringes (minima) occur where they interfere destructively."
-    },
-    {
-      "type": "formula",
-      "content": "The separation between adjacent bright fringes (the fringe spacing, $s$) is given by: $$s = \\frac{\\lambda D}{d}$$ where $\\lambda$ is the wavelength, $D$ is the perpendicular distance from the slits to the screen, and $d$ is the separation of the centres of the slits."
-    },
-    {
-      "type": "workedExample",
-      "question": "Light of wavelength 633 nm from a laser is incident on two parallel slits. An interference pattern is observed on a screen 2.5 m away. The distance between the central bright fringe and the fourth bright fringe is 1.2 cm. Calculate the separation of the slits.",
-      "solution": "1.  **Identify knowns and convert units:**\n    Wavelength, $\\lambda = 633 \\text{ nm} = 633 \\times 10^{-9} \\text{ m}$\n    Distance to screen, $D = 2.5 \\text{ m}$\n    Distance for 4 fringes = $1.2 \\text{ cm} = 1.2 \\times 10^{-2} \\text{ m}$\n\n2.  **Calculate the fringe spacing, s:**\n    The distance from the central maximum (n=0) to the 4th bright fringe (n=4) corresponds to 4 fringe spacings.\n    $4s = 1.2 \\times 10^{-2} \\text{ m}$\n    $s = \\frac{1.2 \\times 10^{-2}}{4} = 3.0 \\times 10^{-3} \\text{ m}$ ✓\n\n3.  **Rearrange the formula and solve for d:**\n    The formula for fringe spacing is $s = \\frac{\\lambda D}{d}$.\n    Rearranging for the slit separation, $d$: $d = \\frac{\\lambda D}{s}$ ✓\n\n4.  **Substitute values and calculate:**\n    $d = \\frac{(633 \\times 10^{-9} \\text{ m}) \\times (2.5 \\text{ m})}{3.0 \\times 10^{-3} \\text{ m}}$\n    $d = 5.275 \\times 10^{-4} \\text{ m}$ ✓\n    $d \\approx 5.3 \\times 10^{-4} \\text{ m}$ (or 0.53 mm)"
-    },
-    {
-      "type": "heading",
-      "content": "Diffraction Gratings"
-    },
-    {
-      "type": "text",
-      "content": "A diffraction grating is essentially a multi-slit device, consisting of thousands of very fine, parallel, equally spaced slits or grooves on a glass or plastic slide. When light passes through a grating, the interference pattern is dramatically different from a double slit. The bright maxima become much sharper, brighter, and more widely separated. This makes diffraction gratings extremely useful for separating light into its constituent wavelengths, a process called spectroscopy."
-    },
-    {
-      "type": "formula",
-      "content": "The condition for constructive interference (bright maxima) for a diffraction grating is: $$d \\sin\\theta = n\\lambda$$ where $d$ is the distance between adjacent slits, $\\theta$ is the angle of the maximum relative to the central 'straight-through' direction, $n$ is the order of the maximum ($n=0, 1, 2, ...$), and $\\lambda$ is the wavelength of light."
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to the units for a diffraction grating. Often, the grating is specified by the number of lines per millimetre or per metre, $N$. The slit separation $d$ is the reciprocal of this value, i.e., $d = 1/N$. Always convert $N$ to lines per metre to find $d$ in metres before using the formula."
-    },
-    {
-      "type": "heading",
-      "content": "Thin-Film Interference"
-    },
-    {
-      "type": "text",
-      "content": "The vibrant, swirling colours seen on soap bubbles or oil slicks are caused by thin-film interference. This occurs when light waves reflecting from the top and bottom surfaces of a thin, transparent film interfere with each other. The key to understanding this phenomenon is to consider both the path difference created by the film's thickness and any phase changes that occur upon reflection."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A phase change of $\\pi$ radians (180°) occurs when light reflects from a boundary with an optically denser medium (higher refractive index).",
-        "No phase change occurs on reflection from a boundary with an optically less dense medium (lower refractive index).",
-        "The geometric path difference for light entering and exiting the film at near-normal incidence is approximately $2t$, where $t$ is the film thickness.",
-        "The wavelength of light changes inside the film: $\\lambda_{film} = \\lambda_{vacuum} / n_{film}$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A soap bubble has a refractive index of 1.33. Calculate the minimum non-zero thickness of the bubble that will result in constructive interference for reflected light with a wavelength of 550 nm in a vacuum.",
-      "solution": "1.  **Analyse reflections and phase changes:**\n    - Reflection 1 (front surface): Air ($n \\approx 1$) to soap ($n = 1.33$). This is a reflection at a denser boundary, so there is a $\\pi$ phase change. ✓\n    - Reflection 2 (back surface): Soap ($n = 1.33$) to air ($n \\approx 1$). This is a reflection at a less dense boundary, so there is no phase change. ✓\n\n2.  **Determine the condition for constructive interference:**\n    Because there is one phase change, the two reflected waves are already out of phase by $\\pi$ radians. For them to interfere constructively, the path difference must compensate for this. The path difference must be a half-integer multiple of the wavelength in the film.\n    Path difference = $2t$. Wavelength in film = $\\lambda' = \\lambda/n$.\n    Condition for constructive interference: $2t = (m + \\frac{1}{2})\\lambda'$ where $m = 0, 1, 2, ...$ ✓\n\n3.  **Find the minimum thickness:**\n    Minimum non-zero thickness occurs for the smallest value of $m$, which is $m=0$.\n    $2t = (0 + \\frac{1}{2})\\lambda' = \\frac{\\lambda'}{2}$\n    $t = \\frac{\\lambda'}{4} = \\frac{\\lambda}{4n}$ ✓\n\n4.  **Substitute values and calculate:**\n    $t = \\frac{550 \\times 10^{-9} \\text{ m}}{4 \\times 1.33}$\n    $t = 1.0338... \\times 10^{-7} \\text{ m}$\n    $t \\approx 103 \\text{ nm}$ ✓"
-    },
-    {
-      "type": "heading",
-      "content": "Resolution"
-    },
-    {
-      "type": "text",
-      "content": "Due to diffraction, the image of a point source of light produced by a lens or mirror is not a perfect point but a diffraction pattern. For a circular aperture like a telescope lens, this is an 'Airy disk'—a bright central spot surrounded by concentric rings. Resolution is the ability of an optical instrument to distinguish between two closely spaced objects. If two objects are too close, their Airy disks overlap so much that they cannot be seen as separate."
-    },
-    {
-      "type": "formula",
-      "content": "The Rayleigh criterion gives the minimum angular separation, $\\theta$, at which two point sources can be just resolved by a circular aperture: $$\\theta \\approx 1.22 \\frac{\\lambda}{b}$$ where $\\lambda$ is the wavelength of light and $b$ is the diameter of the circular aperture (e.g., the diameter of the objective lens of a telescope)."
-    },
-    {
-      "type": "examTip",
-      "content": "To improve resolution, you need to make the minimum resolvable angle $\\theta$ smaller. According to the Rayleigh criterion, this can be achieved by either decreasing the wavelength $\\lambda$ (e.g., using a blue filter instead of a red one) or increasing the aperture diameter $b$ (which is why research telescopes have very large mirrors)."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions: Wave Phenomena",
-      "href": "/mark?subject=ib-physics-sl&topic=C.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: Wave Interference",
-          "href": "https://phet.colorado.edu/en/simulations/wave-interference"
-        },
-        {
-          "label": "Video Explainer: Diffraction and Resolution",
-          "href": "https://www.youtube.com/watch?v=F6s9s433qCg"
-        }
-      ]
-    }
+    { "type": "intro", "content": "We often draw light as a straight ray, but that is only an approximation that breaks down as soon as light meets a boundary, a narrow gap, or another wave. This lesson gathers the wave phenomena that reveal the true wave nature of light and sound: reflection, refraction, total internal reflection, diffraction, and interference. Each is governed by a compact rule you can apply directly in an exam. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "Reflection and the law of reflection" },
+    { "type": "text", "content": "When a wave meets a boundary, some of it is always reflected. The law of reflection states that the angle of incidence equals the angle of reflection, with both angles measured from the normal — the line drawn perpendicular to the surface at the point where the ray strikes. The incident ray, the reflected ray and the normal all lie in the same plane. Measuring from the normal rather than from the surface is essential: it is the convention used everywhere in this topic, including in Snell's law." },
+    { "type": "keyPoints", "items": [
+      "**Angle of incidence = angle of reflection**, both measured from the normal.",
+      "The incident ray, reflected ray and normal are **coplanar**.",
+      "Reflection occurs at every boundary — even one that mostly transmits light still reflects a little.",
+      "A rough surface reflects each ray by the same law but in scattered directions (diffuse reflection); a smooth surface gives a clear image (specular reflection)."
+    ]},
+
+    { "type": "heading", "content": "Refraction, the refractive index and Snell's law" },
+    { "type": "text", "content": "When light crosses from one transparent medium into another it changes speed, and unless it strikes along the normal this change of speed bends the ray. The refractive index of a medium, $n = c/v$, measures how much light slows down in it: $c$ is the speed of light in a vacuum and $v$ its speed in the medium. Because light never travels faster than $c$, $n \\ge 1$; a larger $n$ means slower light and an optically denser medium. Light slowing down (entering a denser medium) bends towards the normal; light speeding up (entering a less dense medium) bends away from the normal." },
+    { "type": "formula", "content": "Refractive index: \\; n = \\dfrac{c}{v}\n\\\\[4pt]\nSnell's law: \\; n_1\\sin\\theta_1 = n_2\\sin\\theta_2" },
+    { "type": "text", "content": "In Snell's law, $\\theta_1$ is the angle in the medium of index $n_1$ and $\\theta_2$ is the angle in the medium of index $n_2$, both measured from the normal. The single rule that prevents most errors: each refractive index must be paired with the angle in that same medium. Keep the subscripts consistent from the first line of working and the algebra takes care of itself." },
+    { "type": "workedExample", "question": "A ray of light in air ($n = 1.00$) strikes the flat surface of a glass block ($n = 1.50$) at an angle of incidence of 40°. Calculate the angle of refraction inside the glass. [3]", "solution": "**List the quantities and pair each index with its own angle.**\nMedium 1 (air): $n_1 = 1.00$, $\\theta_1 = 40°$.\nMedium 2 (glass): $n_2 = 1.50$, $\\theta_2 = ?$\n\n**Apply Snell's law.**\n$n_1\\sin\\theta_1 = n_2\\sin\\theta_2$  [M1: correct equation]\n$1.00\\sin 40° = 1.50\\sin\\theta_2$\n$\\sin\\theta_2 = \\dfrac{1.00 \\times 0.643}{1.50} = 0.4285$  [M1: correct substitution and rearrangement]\n$\\theta_2 = \\sin^{-1}(0.4285) = 25.4° \\approx 25°$.  [A1: answer with unit]\n\n**Sense check:** the ray entered a denser medium, so it should bend towards the normal — and indeed $25° < 40°$.\n\n**Final answer:** the angle of refraction is $\\approx 25°$." },
+    { "type": "examTip", "content": "Always confirm the direction of bending as a free check on your arithmetic. Into a denser medium (higher $n$) the refracted angle must be SMALLER than the incident angle; into a less dense medium it must be LARGER. If your answer bends the wrong way, you have almost certainly paired an index with the wrong angle." },
+
+    { "type": "heading", "content": "Total internal reflection and the critical angle" },
+    { "type": "text", "content": "When light travels from a denser medium towards a less dense one, it bends away from the normal, so the refracted angle is larger than the angle of incidence. Increase the angle of incidence and eventually the refracted ray reaches 90°, grazing along the boundary. The angle of incidence that produces this is the critical angle, $\\theta_c$. Beyond it there is no refracted ray at all: the light is entirely reflected back into the denser medium. This is total internal reflection." },
+    { "type": "formula", "content": "At the critical angle the refracted angle is $90°$, so Snell's law $n_1\\sin\\theta_c = n_2\\sin 90°$ gives:\n$$\\sin\\theta_c = \\dfrac{n_2}{n_1} \\quad (n_1 > n_2)$$" },
+    { "type": "keyPoints", "items": [
+      "TIR needs **two conditions together**: light must travel from a denser to a less dense medium ($n_1 > n_2$), AND the angle of incidence must EXCEED the critical angle.",
+      "At exactly $\\theta_c$ the refracted ray runs along the boundary; only ABOVE $\\theta_c$ is the reflection total.",
+      "Because $\\sin\\theta_c = n_2/n_1$ needs $n_2 < n_1$, there is no critical angle when going into a denser medium.",
+      "TIR is how optical fibres trap light and how prisms replace mirrors in binoculars and periscopes."
+    ]},
+
+    { "type": "heading", "content": "Diffraction: spreading through a gap" },
+    { "type": "text", "content": "Diffraction is the spreading of a wave as it passes through a gap or bends around an obstacle. Crucially, the amount of spreading depends on the ratio of the gap width $b$ to the wavelength $\\lambda$. When the gap is much wider than the wavelength ($b \\gg \\lambda$) the wave passes almost straight through with only slight fraying at the edges. As the gap narrows towards the wavelength ($b \\approx \\lambda$) the spreading becomes dramatic, with the wave fanning out in wide arcs on the far side. This is why sound (long wavelength) bends round a doorway readily, while light (very short wavelength) needs an extremely fine slit before its diffraction is visible." },
+    { "type": "keyPoints", "items": [
+      "Diffraction is greatest when the **gap width is about equal to the wavelength** ($b \\approx \\lambda$).",
+      "A gap much larger than the wavelength produces almost no noticeable spreading.",
+      "Longer wavelengths diffract more than shorter ones through the same gap.",
+      "Diffraction is what limits how narrowly light can be focused, and it is the first stage in the double- and single-slit patterns."
+    ]},
+
+    { "type": "heading", "content": "Superposition and interference" },
+    { "type": "text", "content": "When two or more waves meet, the principle of superposition states that the resultant displacement at any instant is the vector sum of the individual displacements. Where two crests coincide the wave is reinforced (constructive interference); where a crest meets a trough they cancel (destructive interference). For a fixed, observable pattern the sources must be coherent — same frequency and a constant phase difference. Which type of interference occurs at a given point is decided by the path difference: the extra distance one wave travels compared with the other to reach that point." },
+    { "type": "formula", "content": "For two coherent, in-phase sources:\n$$\\text{Constructive: path difference} = n\\lambda$$\n$$\\text{Destructive: path difference} = \\left(n + \\tfrac{1}{2}\\right)\\lambda$$\nwith $n = 0, 1, 2, \\ldots$" },
+    { "type": "workedExample", "question": "Two loudspeakers are driven in phase by the same signal generator, emitting sound of wavelength 0.25 m. A listener stands where the distances to the two speakers are 4.60 m and 4.85 m. State and explain whether the listener hears a loud sound or a quiet sound at this point. [4]", "solution": "**Find the path difference.**\n$\\Delta = 4.85 - 4.60 = 0.25$ m.  [M1: path difference calculated]\n\n**Compare it with the wavelength.**\n$\\dfrac{\\Delta}{\\lambda} = \\dfrac{0.25}{0.25} = 1$, so the path difference is exactly $1\\lambda$.  [M1: expressed as a multiple of $\\lambda$]\n\n**Apply the interference condition.**\nA path difference equal to a whole number of wavelengths ($n\\lambda$ with $n = 1$) satisfies the condition for CONSTRUCTIVE interference.  [A1: correct condition identified]\n\n**Conclusion.**\nThe two waves arrive in phase, reinforce each other, and the listener hears a LOUD sound.  [A1: reasoned conclusion]\n\n**Final answer:** loud — the path difference of $0.25$ m equals one full wavelength, giving constructive interference." },
+    { "type": "text", "content": "The same reasoning underlies every interference question: find the path difference, divide by the wavelength, and read off whether it is a whole number (constructive) or a whole number plus a half (destructive). It does not matter whether the waves are sound, water or light — only the path difference decides." },
+
+    { "type": "heading", "content": "Young's double-slit experiment" },
+    { "type": "text", "content": "Thomas Young passed monochromatic light through two very narrow, closely spaced slits. Light diffracts at each slit, so the two slits behave as coherent sources whose waves overlap and interfere. On a distant screen this produces a pattern of equally spaced bright and dark fringes: bright where the path difference is a whole number of wavelengths, dark where it is an odd number of half-wavelengths. The experiment is one of the strongest pieces of evidence that light is a wave." },
+    { "type": "formula", "content": "The spacing between adjacent bright fringes is:\n$$s = \\dfrac{\\lambda D}{d}$$\nwhere $\\lambda$ is the wavelength, $D$ the perpendicular slit-to-screen distance and $d$ the slit separation. The relation holds when $D \\gg d$." },
+    { "type": "workedExample", "question": "Light of wavelength 633 nm from a laser passes through two slits separated by 0.45 mm. An interference pattern forms on a screen 2.5 m away. Calculate the spacing between adjacent bright fringes. [3]", "solution": "**List the quantities and convert to SI units.**\n$\\lambda = 633\\text{ nm} = 633 \\times 10^{-9}$ m\n$d = 0.45\\text{ mm} = 0.45 \\times 10^{-3}$ m\n$D = 2.5$ m\n\n**Select and apply the fringe-spacing equation.**\n$s = \\dfrac{\\lambda D}{d}$  [M1: correct equation]\n$s = \\dfrac{(633 \\times 10^{-9})(2.5)}{0.45 \\times 10^{-3}}$  [M1: correct substitution with converted units]\n$s = 3.52 \\times 10^{-3}$ m $\\approx 3.5$ mm.  [A1: answer with unit]\n\n**Sense check:** a few millimetres between fringes on a screen a couple of metres away is exactly what such experiments produce.\n\n**Final answer:** the fringe spacing is $\\approx 3.5$ mm ($3.5 \\times 10^{-3}$ m)." },
+    { "type": "examTip", "content": "Unit conversion is where most double-slit marks are lost. Nanometres and millimetres must both become metres BEFORE you substitute. A single un-converted $d$ in millimetres will throw the answer out by a factor of a thousand — and while ECF may rescue the method marks, it is an avoidable slip." },
+
+    { "type": "heading", "content": "Single-slit diffraction and the diffraction grating (HL)" },
+    { "type": "text", "content": "**This section is HL only.** Passing monochromatic light through one narrow slit of width $b$ produces a diffraction pattern: a broad, bright central maximum flanked by dimmer secondary maxima separated by dark minima. The first minimum sits at an angle $\\theta = \\lambda/b$ (in radians) from the centre, which makes the central maximum twice as wide as the secondary ones. Narrowing the slit or using a longer wavelength widens the whole pattern — the same gap-to-wavelength dependence seen in diffraction generally." },
+    { "type": "formula", "content": "Single-slit first minimum: \\; \\theta = \\dfrac{\\lambda}{b}\n\\\\[4pt]\nDiffraction grating maxima: \\; d\\sin\\theta = n\\lambda" },
+    { "type": "text", "content": "A diffraction grating replaces two slits with thousands of equally spaced ones. Every slit contributes light that interferes, and the many-slit interference makes the bright maxima far sharper, brighter and more widely separated than a double slit. Their positions obey $d\\sin\\theta = n\\lambda$, where $d$ is the spacing between adjacent slits, $\\theta$ the angle of the $n$-th order maximum from the straight-through direction, and $n = 0, 1, 2, \\ldots$ Gratings are often quoted as $N$ lines per metre, in which case $d = 1/N$; convert to a spacing in metres before substituting." },
+    { "type": "examTip", "content": "For a grating specified as lines per millimetre, first convert to lines per metre, then take the reciprocal to get $d$ in metres. And remember the grating equation caps the number of visible orders: since $\\sin\\theta \\le 1$, the highest order is the largest integer $n$ for which $n\\lambda \\le d$." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Pairing the wrong index with the wrong angle in Snell's law** — $n_1$ goes with $\\theta_1$, the angle in medium 1. Swapping them inverts the bending. Write the subscripts first and keep them consistent.",
+      "**Measuring angles from the surface instead of the normal** — every angle in reflection, refraction and TIR is measured from the normal. An angle taken from the surface is $90°$ out.",
+      "**Quoting only ONE condition for total internal reflection** — TIR needs BOTH: light going from a denser to a less dense medium AND an angle of incidence greater than the critical angle. Stating only 'angle greater than $\\theta_c$' loses the mark.",
+      "**Thinking diffraction is greatest for a wide gap** — spreading is greatest when the gap is about equal to the wavelength ($b \\approx \\lambda$); a wide gap barely diffracts at all.",
+      "**Confusing the interference conditions** — constructive interference is path difference $= n\\lambda$ (a WHOLE number of wavelengths); destructive is $(n + \\tfrac{1}{2})\\lambda$. Do not read 'even $n$' as destructive.",
+      "**Forgetting to convert nm and mm to metres in $s = \\lambda D/d$** — mixed units are the single biggest source of wrong double-slit answers.",
+      "**Applying $d\\sin\\theta = n\\lambda$ with $d$ as lines per metre** — $d$ is the slit SPACING in metres, i.e. the reciprocal of the number of lines per metre."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down, and in an 'explain' part the reasoning marks are separate from the calculation marks. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "Light passes from glass ($n = 1.50$) into air ($n = 1.00$). Calculate the critical angle, and explain what happens to a ray striking the boundary at an angle greater than this. [4]", "solution": "**Model answer — full working.**\n\n**Calculate the critical angle.** At the critical angle the refracted ray travels along the boundary, so the angle of refraction is $90°$. Snell's law gives $n_1\\sin\\theta_c = n_2\\sin 90°$, and since $\\sin 90° = 1$:\n$$\\sin\\theta_c = \\dfrac{n_2}{n_1} = \\dfrac{1.00}{1.50} = 0.667$$\n$$\\theta_c = \\sin^{-1}(0.667) = 41.8° \\approx 42°.$$\n\n**Explain the behaviour above the critical angle.** A ray striking the glass-air boundary at an angle of incidence GREATER than $41.8°$ cannot be refracted out into the air, because that would require an angle of refraction beyond $90°$. Instead, all of the light is reflected back into the glass, obeying the law of reflection (angle of incidence = angle of reflection). This is total internal reflection: none of the light escapes into the air.\n\n**Final answer:** the critical angle is $\\approx 42°$; above it the ray undergoes total internal reflection back into the glass.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — correct method for the critical angle.** Awarded for using $\\sin\\theta_c = n_2/n_1$ (equivalently, applying Snell's law with the refracted angle set to $90°$). This is a METHOD mark: it is earned for the correct relationship even if the arithmetic later slips.\n- **A1 — critical angle value.** Awarded for $\\theta_c \\approx 42°$ (accept $41.8°$ or any correctly-rounded equivalent). Here ECF protects you: a student who used the right relationship but mis-keyed the division still keeps M1, and if their angle follows correctly from THEIR value of $n_2/n_1$ the A-mark is protected too.\n- **A1 — total internal reflection identified.** Awarded for stating that above the critical angle the light is TOTALLY INTERNALLY REFLECTED / entirely reflected back into the glass. This is a distinct mark from the calculation — naming the phenomenon is what earns it.\n- **A1 — reasoned explanation.** Awarded for the reason: no refracted ray is possible (refraction would need an angle beyond $90°$), so all the light reflects back obeying the law of reflection. The engine looks for the CAUSE, not just the name.\n\n**'Accept answers that round correctly.'** The engine accepts $42°$ and $41.8°$ alike — it does not demand a fixed number of decimal places, only a correctly-rounded value with the right unit.\n\n**Bottom line:** of the 4 marks, one is a method mark that survives an arithmetic slip, one is an answer mark shielded by ECF, and two reward the physics of the explanation. A student who writes only '$42°$' with no reasoning throws away the two explanation marks; a student who shows the relationship, the substitution, names total internal reflection and gives its cause keeps all four." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method AND, in an 'explain' part, spell out the physics: write the relationship you chose, show the substitution, then for the explanation name the phenomenon and give its cause. The method marks and error-carried-forward protect your score when a number slips, and the explanation marks only come from reasoning that is actually on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "These wave phenomena reappear throughout physics. Total internal reflection underpins optical fibres and modern communications; interference and path difference return in thin films, standing waves and, at HL, in the resolution of optical instruments. The habit built here — measure angles from the normal, pair each index with its own angle, and let the path difference decide constructive from destructive — carries directly into every later wave and optics problem. Master the method, show every line, and the rest of wave physics becomes variations on rules you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: solve a refraction or interference problem with full working", "href": "/mark?subject=ib-physics-sl&topic=C.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Physics Data Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/" },
+      { "label": "PhET Simulation: Wave Interference", "href": "https://phet.colorado.edu/en/simulations/wave-interference" },
+      { "label": "PhET Simulation: Bending Light (refraction and TIR)", "href": "https://phet.colorado.edu/en/simulations/bending-light" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Wave Interference",

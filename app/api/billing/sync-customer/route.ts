@@ -1,14 +1,14 @@
 import { NextRequest } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
-import { getOrCreateStripeCustomer } from '@/lib/billing/customer'
+import { getOrCreatePolarCustomer } from '@/lib/polar/customer'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /**
- * Ensure the signed-in user has a linked Stripe customer. Called after email
- * verification and lazily on first authenticated load. Best-effort: if Stripe
+ * Ensure the signed-in user has a linked Polar customer. Called after email
+ * verification and lazily on first authenticated load. Best-effort: if Polar
  * is unreachable we log and return 200 with synced:false so we never block the
  * user's signup/app flow.
  */
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const service = createServiceClient()
-    const customerId = await getOrCreateStripeCustomer(service, {
+    const customerId = await getOrCreatePolarCustomer(service, {
       id: user.id,
       email: user.email,
     })

@@ -15,8 +15,6 @@ type Result = {
   reset: () => void
 }
 
-const RESET_MS = 4000
-
 export function useStripePortal({ returnUrl = '/account/billing' }: Options = {}): Result {
   const [state, setState] = useState<StripePortalState>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -52,19 +50,12 @@ export function useStripePortal({ returnUrl = '/account/billing' }: Options = {}
         return
       }
 
-      const opened = window.open(data.url as string, '_blank', 'noopener,noreferrer')
-      if (!opened) {
-        setState('error')
-        setErrorMessage(
-          'Your browser blocked the new tab. Allow pop-ups for MarkScheme, then try again.'
-        )
-        return
-      }
-
+      // Navigate in the same tab. window.open('_blank') after an await is
+      // outside the click's user-gesture context, so browsers block it as a
+      // pop-up. A full-page redirect always works; the Polar portal has its own
+      // "back" navigation to return here.
       setState('opened')
-      timersRef.current.push(
-        setTimeout(() => setState('idle'), RESET_MS)
-      )
+      window.location.assign(data.url as string)
     } catch {
       setState('error')
       setErrorMessage('Could not open the billing portal.')
@@ -79,7 +70,7 @@ export function stripePortalButtonLabel(state: StripePortalState, idleLabel: str
     case 'loading':
       return 'Opening your billing portal…'
     case 'opened':
-      return 'Opened in new tab'
+      return 'Redirecting…'
     default:
       return idleLabel
   }

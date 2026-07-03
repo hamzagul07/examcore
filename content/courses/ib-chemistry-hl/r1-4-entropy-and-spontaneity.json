@@ -1,201 +1,131 @@
 {
   "slug": "r1-4-entropy-and-spontaneity",
   "topicCode": "R1.4",
+  "unit": { "code": "R", "title": "What drives chemical reactions?" },
   "title": "Entropy and spontaneity",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores entropy as a measure of disorder and its role in determining the spontaneity of chemical reactions. You will learn to calculate entropy changes and use the Gibbs free energy equation, $\\Delta G = \\Delta H - T\\Delta S$, to predict whether a reaction will proceed spontaneously under given conditions.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Some reactions release energy, yet ice still melts in your hand and salt still dissolves in water while getting colder — so energy alone cannot decide what happens. This lesson builds the second driving force, entropy, and shows how it combines with enthalpy to predict whether a reaction goes at all. We treat entropy ($S$) as the dispersal of energy and matter, learn to predict the sign of $\\Delta S$, calculate the standard entropy change of a reaction, and use Gibbs free energy $\\Delta G = \\Delta H - T\\Delta S$ to decide spontaneity — including the temperature at which a reaction switches over. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
+  "levelNote": "HL only (AHL) — Higher Level content.",
   "learningObjectives": [
-    "Define entropy ($S$) and predict the sign of entropy changes ($\\Delta S$) for physical and chemical processes.",
-    "Calculate the standard entropy change for a reaction ($\\Delta S^\\ominus_{rxn}$) using standard entropy values ($S^\\ominus$).",
-    "Understand and apply the Gibbs free energy equation ($\\Delta G = \\Delta H - T\\Delta S$) to predict the spontaneity of a reaction.",
-    "Analyse the effect of temperature on the spontaneity of a reaction based on the signs of $\\Delta H$ and $\\Delta S$."
+    "Describe entropy ($S$) as a measure of the dispersal or distribution of energy and matter in a system, and predict the sign of $\\Delta S$ for physical and chemical changes.",
+    "Calculate the standard entropy change of a reaction from standard molar entropies using $\\Delta S^\\ominus = \\sum S^\\ominus(\\text{products}) - \\sum S^\\ominus(\\text{reactants})$.",
+    "Apply Gibbs free energy $\\Delta G = \\Delta H - T\\Delta S$ and the condition $\\Delta G < 0$ to decide whether a reaction is spontaneous.",
+    "Use the signs of $\\Delta H$ and $\\Delta S$ together with temperature to predict spontaneity, and find the crossover temperature $T = \\Delta H / \\Delta S$.",
+    "Lay out calculations with consistent units ($\\Delta H$ in kJ, $\\Delta S$ in J K⁻¹) so that method marks and error-carried-forward protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["R1.4"],
+  "keyConcepts": ["entropy", "spontaneity", "Gibbs free energy"],
   "simpleExplanation": {
-    "title": "The Universe's Drive for Messiness",
-    "summary": "Entropy is simply a scientific measure of chaos or disorder. The universe tends to favour processes that increase overall disorder, and we call these 'spontaneous' processes.",
-    "analogy": "Think of your bedroom. It naturally tends to get messy over time (high entropy). It takes effort and energy to tidy it up and keep it organised (low entropy). Chemical reactions are similar; they often prefer to move towards a state of greater disorder, unless energy factors strongly oppose it.",
+    "title": "Two drives, one decision",
+    "summary": "A reaction happens on its own when it lowers the usable energy of the system. Two things pull on that: enthalpy (reactions like to release heat) and entropy (the universe likes energy and matter spread out). Gibbs free energy is the single number that weighs both and tells you which way the reaction really goes.",
+    "analogy": "Imagine tidying a room versus letting it drift into mess. Left alone, things spread out and get disordered — that is entropy rising, and it happens for free. Bringing order back (a highly structured product) costs something. A reaction proceeds spontaneously when the books balance in favour of going: either it releases enough heat, or it spreads energy and matter out enough, or both. Temperature sets how much weight the 'spreading out' side of the scale carries.",
     "steps": [
-      "Determine the signs of the enthalpy change ($\\Delta H$) and entropy change ($\\Delta S$) for the reaction.",
-      "Select the Gibbs free energy equation: $\\Delta G = \\Delta H - T\\Delta S$.",
-      "Substitute values, ensuring consistent units. Convert $\\Delta S$ from J to kJ by dividing by 1000, and ensure temperature ($T$) is in Kelvin.",
-      "Calculate $\\Delta G$. If $\\Delta G < 0$, the reaction is spontaneous. If $\\Delta G > 0$, it is non-spontaneous. If $\\Delta G = 0$, the system is at equilibrium."
+      "Read the process and predict the sign of $\\Delta S$ — is energy and matter becoming more spread out (gas made, solid dissolving) or more confined?",
+      "Find $\\Delta H$ (given or calculated) and $\\Delta S$, and make their units match: $\\Delta H$ in kJ, so convert $\\Delta S$ from J K⁻¹ to kJ K⁻¹ by dividing by 1000.",
+      "Substitute into $\\Delta G = \\Delta H - T\\Delta S$ with $T$ in kelvin.",
+      "Judge the sign: $\\Delta G < 0$ spontaneous, $\\Delta G > 0$ non-spontaneous, $\\Delta G = 0$ at equilibrium — and if the sign can flip, find the crossover temperature $T = \\Delta H/\\Delta S$."
     ]
   },
   "flashcards": [
-    {
-      "front": "What is entropy ($S$)?",
-      "back": "Entropy is a thermodynamic property that measures the degree of disorder or randomness in a system. It is related to the number of possible microscopic arrangements (microstates) of the particles."
-    },
-    {
-      "front": "What does a positive $\\Delta S$ value indicate?",
-      "back": "A positive entropy change ($\\Delta S > 0$) indicates an increase in disorder or randomness in the system."
-    },
-    {
-      "front": "What is a spontaneous process?",
-      "back": "A process that is thermodynamically feasible and can occur without the continuous input of external energy. It does not imply anything about the rate of the process."
-    },
-    {
-      "front": "What is the Second Law of Thermodynamics?",
-      "back": "For any spontaneous process, the total entropy of the universe (system + surroundings) must increase. $\\Delta S_{universe} > 0$."
-    },
-    {
-      "front": "What is Gibbs free energy ($G$)?",
-      "back": "Gibbs free energy is a thermodynamic potential that can be used to determine the maximum amount of non-expansion work that can be extracted from a thermodynamically closed system. It is the ultimate indicator of spontaneity at constant temperature and pressure."
-    },
-    {
-      "front": "What is the Gibbs free energy equation?",
-      "back": "$\\Delta G = \\Delta H - T\\Delta S$, where $\\Delta G$ is the Gibbs free energy change, $\\Delta H$ is the enthalpy change, $T$ is the absolute temperature in Kelvin, and $\\Delta S$ is the entropy change."
-    },
-    {
-      "front": "What is the condition for a reaction to be spontaneous?",
-      "back": "The Gibbs free energy change must be negative ($\\Delta G < 0$)."
-    },
-    {
-      "front": "What is the condition for a system to be at equilibrium?",
-      "back": "The Gibbs free energy change is zero ($\\Delta G = 0$)."
-    },
-    {
-      "front": "Common Trap: What units must temperature be in for the Gibbs free energy equation?",
-      "back": "Temperature ($T$) must always be in Kelvin (K). To convert from Celsius (°C) to Kelvin, use K = °C + 273.15 (or often just 273 for IB calculations)."
-    },
-    {
-      "front": "Common Trap: What is the most common mistake when calculating $\\Delta G$?",
-      "back": "Forgetting to convert the units of entropy change ($\\Delta S$) from J K⁻¹ mol⁻¹ to kJ K⁻¹ mol⁻¹ to match the units of enthalpy change ($\\Delta H$), which are typically in kJ mol⁻¹. Divide the value of $\\Delta S$ by 1000."
-    },
-    {
-      "front": "If a reaction is exothermic ($\\Delta H < 0$) and results in more disorder ($\\Delta S > 0$), is it spontaneous?",
-      "back": "Yes, it is spontaneous at all temperatures. Both terms in $\\Delta G = \\Delta H - T\\Delta S$ contribute to making $\\Delta G$ negative."
-    },
-    {
-      "front": "If a reaction is endothermic ($\\Delta H > 0$) and results in more order ($\\Delta S < 0$), is it spontaneous?",
-      "back": "No, it is non-spontaneous at all temperatures. Both terms contribute to making $\\Delta G$ positive."
-    }
+    { "front": "Entropy ($S$)", "back": "A measure of how dispersed the energy and matter of a system are — the number of ways ($W$) the particles and their energy can be arranged (microstates). More ways of arranging means higher entropy. Units: J K⁻¹ mol⁻¹.", "pillLabel": "Definition" },
+    { "front": "Standard molar entropy ($S^\\ominus$)", "back": "The entropy of one mole of a substance under standard conditions, in J K⁻¹ mol⁻¹. Unlike enthalpies of formation, absolute entropies are positive for all substances (a perfect crystal at 0 K would be zero). Values are in the data booklet.", "pillLabel": "Definition" },
+    { "front": "$\\Delta S^\\ominus$ of a reaction", "back": "$\\Delta S^\\ominus = \\sum S^\\ominus(\\text{products}) - \\sum S^\\ominus(\\text{reactants})$, each term multiplied by its coefficient. A 'products minus reactants' sum, just like enthalpy.", "pillLabel": "Formula" },
+    { "front": "Predicting the sign of $\\Delta S$", "back": "$\\Delta S > 0$ (more dispersed) when: solid→liquid→gas, a solid dissolves, or the number of moles of GAS increases. $\\Delta S < 0$ when gas is consumed or a more ordered state forms.", "pillLabel": "Framework" },
+    { "front": "Gibbs free energy change ($\\Delta G$)", "back": "$\\Delta G = \\Delta H - T\\Delta S$. The single quantity, at constant temperature and pressure, that decides spontaneity by combining the enthalpy and entropy of the system.", "pillLabel": "Formula" },
+    { "front": "Condition for spontaneity", "back": "A reaction is spontaneous (thermodynamically feasible) when $\\Delta G < 0$. If $\\Delta G > 0$ it is non-spontaneous (the reverse is spontaneous); if $\\Delta G = 0$ the system is at equilibrium.", "pillLabel": "Concept" },
+    { "front": "Crossover temperature", "back": "The temperature where $\\Delta G = 0$ and spontaneity switches over: $T = \\dfrac{\\Delta H}{\\Delta S}$. Both must be in matching energy units before dividing (both J, or both kJ).", "pillLabel": "Formula" },
+    { "front": "$\\Delta H<0,\\ \\Delta S>0$", "back": "Both terms favour going: $\\Delta G$ is negative at ALL temperatures — always spontaneous.", "pillLabel": "Framework" },
+    { "front": "$\\Delta H>0,\\ \\Delta S<0$", "back": "Both terms oppose going: $\\Delta G$ is positive at ALL temperatures — never spontaneous.", "pillLabel": "Framework" },
+    { "front": "$\\Delta H<0,\\ \\Delta S<0$", "back": "Enthalpy favours, entropy opposes. Spontaneous only at LOW temperature, where the small $T\\Delta S$ term cannot overturn the favourable $\\Delta H$.", "pillLabel": "Framework" },
+    { "front": "$\\Delta H>0,\\ \\Delta S>0$", "back": "Enthalpy opposes, entropy favours. Spontaneous only at HIGH temperature, where the large $T\\Delta S$ term overcomes the unfavourable $\\Delta H$.", "pillLabel": "Framework" },
+    { "front": "Spontaneous ≠ fast", "back": "Spontaneity is thermodynamics (whether a reaction CAN go), not kinetics (how FAST). Diamond→graphite has $\\Delta G < 0$ yet takes geological time. A negative $\\Delta G$ says nothing about rate.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: units in $\\Delta G$", "back": "$\\Delta H$ is in kJ mol⁻¹ but $\\Delta S$ is in J K⁻¹ mol⁻¹. Divide $\\Delta S$ by 1000 before substituting, or your $T\\Delta S$ term is 1000× too big. This is the single most penalised slip in the topic.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "For the reaction CaCO₃(s) → CaO(s) + CO₂(g), the sign of $\\Delta S$ is expected to be:", "options": ["Negative, because a solid is a product", "Positive, because a mole of gas is produced from a solid", "Zero, because the number of moles is unchanged", "Negative, because two products form from one reactant"], "answer": "Positive, because a mole of gas is produced from a solid" },
+    { "prompt": "A reaction is spontaneous (thermodynamically feasible) when:", "options": ["$\\Delta G > 0$", "$\\Delta G = 0$", "$\\Delta G < 0$", "$\\Delta H < 0$ only"], "answer": "$\\Delta G < 0$" },
+    { "prompt": "In $\\Delta G = \\Delta H - T\\Delta S$, if $\\Delta H = -60$ kJ mol⁻¹ and $\\Delta S = +80$ J K⁻¹ mol⁻¹, before substituting you must:", "options": ["Multiply $\\Delta S$ by 1000", "Divide $\\Delta S$ by 1000 to get 0.080 kJ K⁻¹ mol⁻¹", "Convert $\\Delta H$ to J by dividing by 1000", "Leave both as they are — the units already match"], "answer": "Divide $\\Delta S$ by 1000 to get 0.080 kJ K⁻¹ mol⁻¹" },
+    { "prompt": "A reaction has $\\Delta H = +100$ kJ mol⁻¹ and $\\Delta S = +200$ J K⁻¹ mol⁻¹. The temperature above which it becomes spontaneous is:", "options": ["0.5 K", "500 K", "2000 K", "20 000 K"], "answer": "500 K" },
+    { "prompt": "A reaction with $\\Delta H < 0$ and $\\Delta S < 0$ is:", "options": ["Spontaneous at all temperatures", "Non-spontaneous at all temperatures", "Spontaneous only at low temperatures", "Spontaneous only at high temperatures"], "answer": "Spontaneous only at low temperatures" }
   ],
   "faq": [
-    {
-      "q": "Does 'spontaneous' mean the reaction happens quickly?",
-      "a": "No, this is a crucial distinction. Spontaneity relates to thermodynamics (if a reaction *can* happen), not kinetics (how *fast* it happens). A spontaneous reaction can be incredibly slow, like the conversion of diamond to graphite, which is thermodynamically favourable but takes millions of years."
-    },
-    {
-      "q": "Why do we use Gibbs free energy instead of just the total entropy of the universe?",
-      "a": "The Second Law of Thermodynamics states that for a spontaneous process, the total entropy of the universe (system + surroundings) must increase. However, measuring the entropy change of the entire universe is impractical. Gibbs free energy is a clever mathematical construct that allows us to predict spontaneity by only considering the properties of the system itself ($\\Delta H_{system}$ and $\\Delta S_{system}$) at constant temperature and pressure. A negative $\\Delta G$ is equivalent to a positive $\\Delta S_{universe}$."
-    },
-    {
-      "q": "Can a reaction have a $\\Delta G$ of exactly zero?",
-      "a": "Yes. When $\\Delta G = 0$, the system is at equilibrium. This means the rate of the forward reaction is equal to the rate of the reverse reaction, and there is no net change in the concentrations of reactants and products. This is a dynamic state, not a static one."
-    }
+    { "q": "Does 'spontaneous' mean the reaction is fast?", "a": "No — this is the distinction examiners test most. Spontaneity is a thermodynamic verdict ($\\Delta G < 0$ means the reaction CAN proceed on its own), while rate is kinetics, governed by activation energy. A reaction can be strongly spontaneous yet immeasurably slow: the conversion of diamond to graphite has a negative $\\Delta G$ but is held back by a huge activation barrier, so it takes millions of years. Never infer speed from $\\Delta G$." },
+    { "q": "Why do we bother with Gibbs free energy instead of just the entropy of the universe?", "a": "The second law says a spontaneous process increases the total entropy of the universe, $\\Delta S_{univ} = \\Delta S_{sys} + \\Delta S_{surr} > 0$. But measuring the surroundings is impractical. Gibbs free energy is a repackaging that uses only properties of the SYSTEM: at constant $T$ and $p$, $\\Delta G = -T\\Delta S_{univ}$, so $\\Delta G < 0$ is exactly equivalent to $\\Delta S_{univ} > 0$. It lets you predict spontaneity from $\\Delta H$ and $\\Delta S$ of the reaction alone." },
+    { "q": "Why can absolute entropies be quoted, but not absolute enthalpies?", "a": "Entropy has a natural zero: a perfect crystal at 0 K has only one arrangement, so its entropy is zero (the third law). Every substance's entropy can therefore be measured up from that baseline, which is why data-booklet $S^\\ominus$ values are all positive numbers for products AND reactants. Enthalpy has no such absolute zero, so we only ever tabulate CHANGES (e.g. enthalpies of formation)." },
+    { "q": "What actually happens at the crossover temperature $T = \\Delta H/\\Delta S$?", "a": "At that exact temperature $\\Delta G = 0$, so the reaction is at equilibrium — neither the forward nor reverse direction is favoured overall. It is the tipping point. Below it and above it, one of the two terms in $\\Delta G = \\Delta H - T\\Delta S$ dominates, so the sign of $\\Delta G$ (and therefore the spontaneous direction) flips. This is why raising temperature can 'switch on' an endothermic reaction like thermal decomposition." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "We've previously seen that exothermic reactions, which release energy, are often spontaneous. However, this isn't the whole story. Some endothermic processes, like ice melting at room temperature, also happen spontaneously. This suggests another driving force is at play, a factor related to disorder. This lesson introduces entropy, the quantitative measure of disorder, and combines it with enthalpy to provide a complete picture of reaction spontaneity through the concept of Gibbs free energy."
-    },
-    {
-      "type": "heading",
-      "content": "Entropy (S): A Measure of Disorder"
-    },
-    {
-      "type": "text",
-      "content": "Entropy, symbolised by $S$, is a measure of the distribution of energy within a system. A simpler way to think about it is as a measure of randomness or disorder. The more ways the particles and their energy can be arranged (known as microstates), the higher the entropy. The universe tends towards states of higher entropy."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**States of Matter:** Entropy increases from solid to liquid to gas. $S_{gas} \\gg S_{liquid} > S_{solid}$. Gases have the most freedom of movement and energy distribution.",
-        "**Number of Moles:** For reactions involving gases, an increase in the number of moles of gas generally leads to an increase in entropy (positive $\\Delta S$).",
-        "**Temperature:** Increasing the temperature of a substance increases its entropy as particles have more kinetic energy and move more randomly.",
-        "**Mixing/Dissolving:** Dissolving a solid in a liquid generally increases entropy as the ordered crystal lattice breaks down and particles become dispersed."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Calculating Standard Entropy Change ($\\Delta S^\\ominus$)"
-    },
-    {
-      "type": "text",
-      "content": "Just like with enthalpy, we can calculate the standard entropy change of a reaction ($\\Delta S^\\ominus_{rxn}$) by using the standard molar entropies ($S^\\ominus$) of the reactants and products. These values are found in the IB data booklet. The calculation follows a 'products minus reactants' rule."
-    },
-    {
-      "type": "formula",
-      "content": "\\Delta S^\\ominus_{reaction} = \\sum n S^\\ominus_{products} - \\sum m S^\\ominus_{reactants}"
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the standard entropy change, $\\Delta S^\\ominus$, for the combustion of methane at 298 K.\n$CH_4(g) + 2O_2(g) \\rightarrow CO_2(g) + 2H_2O(l)$\nStandard entropy values ($S^\\ominus$ / J K⁻¹ mol⁻¹): $CH_4(g) = 186.2$, $O_2(g) = 205.1$, $CO_2(g) = 213.7$, $H_2O(l) = 69.9$.",
-      "solution": "1. **Identify products and reactants:**\n   - Products: $1 \\times CO_2(g)$, $2 \\times H_2O(l)$\n   - Reactants: $1 \\times CH_4(g)$, $2 \\times O_2(g)$\n\n2. **Apply the formula $\\Delta S^\\ominus = \\sum S^\\ominus_{products} - \\sum S^\\ominus_{reactants}$:**\n   - $\\sum S^\\ominus_{products} = (1 \\times S^\\ominus_{CO_2}) + (2 \\times S^\\ominus_{H_2O}) = (1 \\times 213.7) + (2 \\times 69.9) = 213.7 + 139.8 = 353.5$ J K⁻¹ mol⁻¹\n   - $\\sum S^\\ominus_{reactants} = (1 \\times S^\\ominus_{CH_4}) + (2 \\times S^\\ominus_{O_2}) = (1 \\times 186.2) + (2 \\times 205.1) = 186.2 + 410.2 = 596.4$ J K⁻¹ mol⁻¹\n\n3. **Calculate $\\Delta S^\\ominus_{reaction}$:**\n   - $\\Delta S^\\ominus = 353.5 - 596.4 = -242.9$ J K⁻¹ mol⁻¹\n\n**Marking:** [1] for correct substitution into products sum. [1] for correct substitution into reactants sum. [1] for final correct answer with units. The negative sign is expected as 3 moles of gas are converted to 1 mole of gas, indicating a decrease in disorder."
-    },
-    {
-      "type": "heading",
-      "content": "Gibbs Free Energy (G) and Spontaneity"
-    },
-    {
-      "type": "text",
-      "content": "To determine if a reaction is truly spontaneous, we need to consider both the enthalpy change ($\\Delta H$) and the entropy change ($\\Delta S$). Gibbs free energy, $G$, combines these two factors into a single quantity. The change in Gibbs free energy, $\\Delta G$, for a process at constant temperature and pressure dictates its spontaneity."
-    },
-    {
-      "type": "formula",
-      "content": "\\Delta G = \\Delta H - T\\Delta S"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "If **$\\Delta G < 0$**, the reaction is **spontaneous** in the forward direction.",
-        "If **$\\Delta G > 0$**, the reaction is **non-spontaneous** in the forward direction (the reverse reaction is spontaneous).",
-        "If **$\\Delta G = 0$**, the system is at **equilibrium**, and there is no net change in either direction."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "The two most critical points for calculations involving the Gibbs free energy equation are units and temperature. Always convert $\\Delta S$ to kJ K⁻¹ mol⁻¹ by dividing by 1000 to match $\\Delta H$ in kJ mol⁻¹. Secondly, ensure temperature $T$ is in Kelvin (K = °C + 273). Examiners frequently set traps based on these two points."
-    },
-    {
-      "type": "workedExample",
-      "question": "For the reaction $N_2(g) + 3H_2(g) \\rightleftharpoons 2NH_3(g)$, the standard enthalpy change, $\\Delta H^\\ominus$, is $-92.2$ kJ mol⁻¹ and the standard entropy change, $\\Delta S^\\ominus$, is $-198.1$ J K⁻¹ mol⁻¹. Calculate the standard Gibbs free energy change, $\\Delta G^\\ominus$, at 298 K and state whether the reaction is spontaneous.",
-      "solution": "1. **Check and convert units:**\n   - $\\Delta H^\\ominus = -92.2$ kJ mol⁻¹\n   - $\\Delta S^\\ominus = -198.1$ J K⁻¹ mol⁻¹. Convert to kJ: $\\frac{-198.1}{1000} = -0.1981$ kJ K⁻¹ mol⁻¹. [1 mark for conversion]\n   - $T = 298$ K\n\n2. **Use the Gibbs free energy equation:**\n   - $\\Delta G^\\ominus = \\Delta H^\\ominus - T\\Delta S^\\ominus$\n\n3. **Substitute the values:**\n   - $\\Delta G^\\ominus = (-92.2) - (298 \\times -0.1981)$ [1 mark for correct substitution]\n   - $\\Delta G^\\ominus = -92.2 - (-59.0338)$\n   - $\\Delta G^\\ominus = -92.2 + 59.0338 = -33.1662$ kJ mol⁻¹\n\n4. **State the final answer and conclusion:**\n   - $\\Delta G^\\ominus \\approx -33.2$ kJ mol⁻¹ (to 3 s.f.). [1 mark for answer]\n   - Since $\\Delta G^\\ominus < 0$, the reaction is **spontaneous** under standard conditions. [1 mark for conclusion linked to sign of $\\Delta G$]"
-    },
-    {
-      "type": "heading",
-      "content": "The Effect of Temperature on Spontaneity"
-    },
-    {
-      "type": "text",
-      "content": "The spontaneity of a reaction can depend on the temperature, as seen in the term $-T\\Delta S$. The impact of temperature depends on the signs of $\\Delta H$ and $\\Delta S$. We can find the temperature at which a reaction switches between being spontaneous and non-spontaneous by finding the temperature where it is at equilibrium ($\\Delta G = 0$)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**$\\Delta H < 0$, $\\Delta S > 0$:** Favourable enthalpy and entropy. Reaction is spontaneous at all temperatures. $\\Delta G$ is always negative.",
-        "**$\\Delta H > 0$, $\\Delta S < 0$:** Unfavourable enthalpy and entropy. Reaction is non-spontaneous at all temperatures. $\\Delta G$ is always positive.",
-        "**$\\Delta H < 0$, $\\Delta S < 0$:** Enthalpically driven. Spontaneous at low temperatures where the favourable $\\Delta H$ term dominates.",
-        "**$\\Delta H > 0$, $\\Delta S > 0$:** Entropically driven. Spontaneous at high temperatures where the favourable $-T\\Delta S$ term overcomes the unfavourable $\\Delta H$."
-      ]
-    },
-    {
-      "type": "formula",
-      "content": "At equilibrium, $\\Delta G = 0$, so $0 = \\Delta H - T\\Delta S$. Rearranging gives the equilibrium temperature: $T_{eq} = \\frac{\\Delta H}{\\Delta S}$"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-chemistry-hl&topic=R1.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/chemistry/assessment/"
-        },
-        {
-          "label": "Khan Academy: Gibbs Free Energy",
-          "href": "https://www.khanacademy.org/science/chemistry/thermodynamics-chemistry/gibbs-free-energy/a/gibbs-free-energy-and-spontaneity"
-        }
-      ]
-    }
+    { "type": "intro", "content": "You already know that many exothermic reactions happen on their own. But that cannot be the whole story: ice melts spontaneously in a warm room even though melting is endothermic, and ammonium nitrate dissolves in water while the beaker gets noticeably colder. Energy is being taken IN, yet the change still goes. Something other than enthalpy is driving these processes — and that something is the tendency of energy and matter to spread out. This lesson makes that tendency quantitative through entropy, then combines entropy with enthalpy into a single deciding quantity, Gibbs free energy. Because this is a calculation topic, every worked example is written the way our engine marks your own practice: method marks, accuracy marks, and error-carried-forward." },
+
+    { "type": "heading", "content": "Entropy: the dispersal of energy and matter" },
+    { "type": "text", "content": "Entropy, symbol $S$, is a measure of how spread out the energy and matter of a system are. The more ways the particles and their quanta of energy can be arranged — the number of microstates, $W$ — the higher the entropy. A system left to itself moves towards the macrostate that can be realised in the greatest number of ways, which is why energy and matter tend to disperse rather than concentrate. 'Disorder' is a useful shorthand, but the precise idea is dispersal: a gas fills its container, a hot object shares its energy with a cold one, and a drop of dye spreads through water, all because the dispersed arrangement is overwhelmingly more probable. Standard molar entropies, $S^\\ominus$, in J K⁻¹ mol⁻¹, are tabulated in the data booklet and are positive for every substance." },
+    { "type": "keyPoints", "items": [
+      "**State of matter:** entropy rises solid → liquid → gas. $S_{gas} \\gg S_{liquid} > S_{solid}$, because gas particles access far more positions and energy arrangements.",
+      "**Moles of gas:** for a reaction, the sign of $\\Delta S$ is usually decided by whether the number of moles of GAS goes up (positive $\\Delta S$) or down (negative $\\Delta S$).",
+      "**Dissolving:** a solid dissolving generally increases entropy as the ordered lattice breaks up and the ions or molecules disperse through the solvent.",
+      "**Temperature:** heating a substance raises its entropy, as more energy levels become populated and the energy is more widely distributed."
+    ]},
+
+    { "type": "heading", "content": "Predicting the sign of ΔS" },
+    { "type": "text", "content": "Many exam marks come simply from predicting whether $\\Delta S$ is positive or negative and justifying it in one line. The reliable rule is to count the moles of gas on each side: gas contributes far more entropy than liquids or solids, so a change that makes more gas has $\\Delta S > 0$, and a change that consumes gas has $\\Delta S < 0$. When the moles of gas are unchanged, look to dissolving, state changes, or an increase in the total number of particles." },
+    { "type": "workedExample", "question": "Predict, with a reason, the sign of $\\Delta S$ for each change: (a) $2\\text{SO}_2(g) + \\text{O}_2(g) \\rightarrow 2\\text{SO}_3(g)$; (b) $\\text{NH}_4\\text{NO}_3(s) \\rightarrow \\text{NH}_4^+(aq) + \\text{NO}_3^-(aq)$; (c) $\\text{H}_2\\text{O}(l) \\rightarrow \\text{H}_2\\text{O}(g)$. [3]", "solution": "**(a)** Count moles of gas: 3 mol gas (2 SO₂ + 1 O₂) → 2 mol gas (2 SO₃). Gas moles DECREASE, so energy and matter become less dispersed: $\\Delta S < 0$ (negative).  [1]\n\n**(b)** An ordered ionic solid breaks up and its ions disperse through the solvent as free aqueous ions. Matter becomes more spread out: $\\Delta S > 0$ (positive).  [1]\n\n**(c)** Liquid water becomes gaseous water; gas particles are far more dispersed than liquid: $\\Delta S > 0$ (positive).  [1]\n\n*Each mark is for the correct sign WITH a valid reason — the reason (moles of gas / dispersal) is what the examiner credits, not the sign alone.*" },
+
+    { "type": "heading", "content": "Calculating the standard entropy change of a reaction" },
+    { "type": "text", "content": "Because standard molar entropies are tabulated for individual substances, the entropy change of a reaction is a 'products minus reactants' sum, exactly like a Hess's-law enthalpy calculation. Each substance's $S^\\ominus$ is multiplied by its coefficient in the balanced equation." },
+    { "type": "formula", "content": "\\Delta S^\\ominus = \\sum S^\\ominus(\\text{products}) - \\sum S^\\ominus(\\text{reactants})" },
+    { "type": "workedExample", "question": "Calculate the standard entropy change for the decomposition of calcium carbonate:\n$\\text{CaCO}_3(s) \\rightarrow \\text{CaO}(s) + \\text{CO}_2(g)$\n$S^\\ominus$ / J K⁻¹ mol⁻¹: CaCO₃(s) = 92.9, CaO(s) = 39.7, CO₂(g) = 213.8. Comment on the sign. [3]", "solution": "**Step 1 — sum the products.**\n$\\sum S^\\ominus(\\text{products}) = S^\\ominus(\\text{CaO}) + S^\\ominus(\\text{CO}_2) = 39.7 + 213.8 = 253.5$ J K⁻¹ mol⁻¹.  [M1: products sum]\n\n**Step 2 — sum the reactants.**\n$\\sum S^\\ominus(\\text{reactants}) = S^\\ominus(\\text{CaCO}_3) = 92.9$ J K⁻¹ mol⁻¹.\n\n**Step 3 — subtract.**\n$\\Delta S^\\ominus = 253.5 - 92.9 = +160.6$ J K⁻¹ mol⁻¹.  [A1: value with sign and units]\n\n**Comment:** $\\Delta S^\\ominus$ is positive because a mole of gas (CO₂) is generated from a solid, greatly increasing the dispersal of matter.  [1]\n\n*The large positive value comes almost entirely from creating gas — this is why heating decomposes the carbonate: the favourable entropy term grows with temperature.*" },
+
+    { "type": "heading", "content": "Gibbs free energy and the condition for spontaneity" },
+    { "type": "text", "content": "Enthalpy and entropy pull in their own directions, and Gibbs free energy combines them into one deciding quantity. At constant temperature and pressure, the change in Gibbs free energy is $\\Delta G = \\Delta H - T\\Delta S$. Its sign is the verdict on spontaneity, because $\\Delta G = -T\\Delta S_{univ}$ — a negative $\\Delta G$ is exactly a positive total entropy change of the universe, which the second law requires for a spontaneous change." },
+    { "type": "formula", "content": "\\Delta G = \\Delta H - T\\Delta S" },
+    { "type": "keyPoints", "items": [
+      "$\\Delta G < 0$ — the reaction is **spontaneous** (thermodynamically feasible) in the forward direction.",
+      "$\\Delta G > 0$ — the reaction is **non-spontaneous** forward (the reverse direction is spontaneous).",
+      "$\\Delta G = 0$ — the system is at **equilibrium**, with no net drive either way.",
+      "Spontaneous is not the same as fast: $\\Delta G$ says whether a reaction can go, never how quickly."
+    ]},
+    { "type": "examTip", "content": "Two traps decide most of the marks on Gibbs calculations. First, UNITS: $\\Delta H$ is in kJ mol⁻¹ but $\\Delta S$ is in J K⁻¹ mol⁻¹ — divide $\\Delta S$ by 1000 before you substitute, or the $T\\Delta S$ term comes out a thousand times too large. Second, TEMPERATURE must be in kelvin ($K = {}^\\circ C + 273$). Get these two right and the arithmetic is easy." },
+
+    { "type": "heading", "content": "How ΔH, ΔS and temperature decide spontaneity" },
+    { "type": "text", "content": "Because the entropy term carries a factor of $T$, temperature can change the sign of $\\Delta G$ — but only in two of the four sign combinations. When $\\Delta H$ and $\\Delta S$ agree (both favour going, or both oppose), temperature cannot overturn the verdict. When they disagree, temperature is the tie-breaker: raising it increases the weight of the $T\\Delta S$ term until it dominates." },
+    { "type": "keyPoints", "items": [
+      "**$\\Delta H < 0$, $\\Delta S > 0$:** both terms make $\\Delta G$ negative — spontaneous at **all** temperatures.",
+      "**$\\Delta H > 0$, $\\Delta S < 0$:** both terms make $\\Delta G$ positive — **never** spontaneous.",
+      "**$\\Delta H < 0$, $\\Delta S < 0$:** enthalpy-driven — spontaneous only at **low** temperature, where $T\\Delta S$ is small.",
+      "**$\\Delta H > 0$, $\\Delta S > 0$:** entropy-driven — spontaneous only at **high** temperature, where $T\\Delta S$ overcomes $\\Delta H$."
+    ]},
+    { "type": "text", "content": "In the two temperature-dependent cases there is a crossover temperature at which the sign flips. It is found by setting $\\Delta G = 0$, the point of equilibrium, and rearranging." },
+    { "type": "formula", "content": "\\Delta G = 0 \\ \\Rightarrow\\ 0 = \\Delta H - T\\Delta S \\ \\Rightarrow\\ T = \\frac{\\Delta H}{\\Delta S}" },
+    { "type": "text", "content": "Both quantities must be in matching energy units before dividing (both in J, or both in kJ). For an endothermic, entropy-increasing reaction ($\\Delta H>0$, $\\Delta S>0$) this $T$ is the temperature ABOVE which the reaction becomes spontaneous; for the enthalpy-driven case ($\\Delta H<0$, $\\Delta S<0$) it is the temperature BELOW which it stays spontaneous." },
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific line of working. A method mark (M) is earned for a correct process — the right substitution, the right rearrangement — even if a number is wrong; an accuracy mark (A) is earned for the correct value and DEPENDS on the method being present. Error-carried-forward (ECF) means a wrong number early on is only penalised once: later marks are awarded on your figures provided the method is sound. None of that protection exists unless the method is written down. Study how each of the five marks below attaches to one line." },
+    { "type": "workedExample", "question": "For a reaction, $\\Delta H = +120$ kJ mol⁻¹ and $\\Delta S = +250$ J K⁻¹ mol⁻¹. Calculate $\\Delta G$ at 298 K and determine whether the reaction is spontaneous, then find the temperature above which it becomes spontaneous. [5]", "solution": "**Model answer — full working.**\n\n**Step 1 — make the units consistent.** $\\Delta H$ is in kJ, so convert $\\Delta S$ to kJ:\n$\\Delta S = \\dfrac{250}{1000} = 0.250$ kJ K⁻¹ mol⁻¹.\n\n**Step 2 — substitute into $\\Delta G = \\Delta H - T\\Delta S$ at $T = 298$ K:**\n$\\Delta G = 120 - (298 \\times 0.250)$\n$\\Delta G = 120 - 74.5 = +45.5$ kJ mol⁻¹.\n\n**Step 3 — verdict.** $\\Delta G = +45.5$ kJ mol⁻¹ is positive, so at 298 K the reaction is **not spontaneous**.\n\n**Step 4 — crossover temperature.** Set $\\Delta G = 0$ and rearrange:\n$T = \\dfrac{\\Delta H}{\\Delta S} = \\dfrac{120}{0.250} = 480$ K.\n\nBecause $\\Delta H > 0$ and $\\Delta S > 0$, the reaction becomes spontaneous **above 480 K**.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — unit conversion.** Awarded for converting $\\Delta S$ from 250 J K⁻¹ mol⁻¹ to 0.250 kJ K⁻¹ mol⁻¹ (or equivalently keeping everything in J). This is the method step examiners most often see missed.\n- **M1 — Gibbs substitution.** Awarded for a correct substitution into $\\Delta G = \\Delta H - T\\Delta S$: $120 - 298 \\times 0.250$. Credited for the correct process even if the arithmetic slips.\n- **A1 — value and conclusion.** Awarded for $\\Delta G = +45.5$ kJ mol⁻¹ AND the statement 'not spontaneous', the conclusion linked to the positive sign. This accuracy mark depends on M1 substitution being present.\n- **M1 — set $\\Delta G = 0$.** Awarded for recognising equilibrium at the crossover and forming $T = \\Delta H / \\Delta S$.\n- **A1 — crossover temperature.** Awarded for $T = 480$ K (and, for full credit, 'spontaneous above this temperature').\n\n**ECF in action:** suppose a student forgot to convert $\\Delta S$ and wrote $\\Delta G = 120 - 298 \\times 250 = -74\\,380$. They lose M1 (conversion) and the A1 value, but if they then correctly set $\\Delta G = 0$ and computed $120/250$ on THEIR figures, the two crossover marks are still available on ECF because the METHOD is right. A student who writes only '+45.5, not spontaneous, 480 K' with no working risks losing the method marks entirely if any number is off." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, line by line, with ECF. So always show the method: write the unit conversion, write the full substitution into $\\Delta G = \\Delta H - T\\Delta S$, and show $T = \\Delta H/\\Delta S$ set from $\\Delta G = 0$. The method marks and error-carried-forward are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Mixing J and kJ in $\\Delta G$** — $\\Delta H$ is in kJ mol⁻¹ but $\\Delta S$ is in J K⁻¹ mol⁻¹. Divide $\\Delta S$ by 1000 first, or the $T\\Delta S$ term is a thousandfold too large and the answer is nonsense.",
+      "**Using temperature in °C** — $T$ must be in kelvin. Add 273 to a Celsius value before it enters the equation.",
+      "**Getting the spontaneity condition backwards** — spontaneous means $\\Delta G < 0$ (negative), NOT positive. A positive $\\Delta G$ is non-spontaneous.",
+      "**Confusing spontaneous with fast** — $\\Delta G < 0$ tells you a reaction is feasible, never how quickly it goes. Rate is a separate, kinetic question.",
+      "**Sign errors from the double negative** — when $\\Delta S$ is negative, $-T\\Delta S$ becomes a POSITIVE contribution to $\\Delta G$. Track the signs carefully.",
+      "**Wrong crossover units** — in $T = \\Delta H/\\Delta S$ both quantities must be in the same energy unit (both J or both kJ). Dividing kJ by J K⁻¹ gives a temperature 1000× too small.",
+      "**Predicting $\\Delta S$ from the total number of species instead of moles of gas** — the sign is dominated by the change in moles of GAS; a change from solid+aqueous to solid can still be entropy-decreasing.",
+      "**Quoting a sign for $\\Delta S$ with no reason** — exam marks for predicting $\\Delta S$ require the justification (moles of gas / dispersal), not just the sign."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Gibbs free energy is the hinge between the thermodynamics you have here and equilibrium later in the course: $\\Delta G^\\ominus$ is linked to the equilibrium constant, so a more negative $\\Delta G^\\ominus$ means an equilibrium lying further towards products. The same $\\Delta G = \\Delta H - T\\Delta S$ explains why raising temperature can drive an endothermic reaction and shift its position of equilibrium, and it underpins electrochemistry, where cell potentials are Gibbs energies in disguise. Master the habit — predict the sign of $\\Delta S$, match your units, substitute, judge the sign of $\\Delta G$ — and the rest of physical chemistry becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 thermodynamics question marked: calculate ΔG, decide spontaneity, and find the crossover temperature with full working", "href": "/mark?subject=ib-chemistry-hl&topic=R1.4&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (standard entropy and enthalpy data)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

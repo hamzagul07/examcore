@@ -1,163 +1,367 @@
 {
   "slug": "r1-3-energy-from-fuels",
   "topicCode": "R1.3",
+  "unit": {
+    "code": "R1",
+    "title": "What drives chemical reactions?"
+  },
   "title": "Energy from fuels",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores the quantitative comparison of different fuels. It introduces and differentiates between specific energy (energy per unit mass) and energy density (energy per unit volume), providing the tools to calculate and compare the energy output from various fuel sources, including hydrocarbons, hydrogen, and biofuels.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "A fuel is a store of chemical energy that combustion releases as heat. This lesson builds the whole of R1.3: what combustion is, the difference between fossil fuels and biofuels, complete versus incomplete combustion and the very different products each gives, how we compare fuels using specific energy (calorific value) and energy density, and the environmental cost of burning them — carbon dioxide and the enhanced greenhouse effect, carbon monoxide and particulates. For HL it then adds the deeper question of what actually DRIVES a reaction: entropy change (ΔS), Gibbs free energy ΔG = ΔH − TΔS, and how the sign of ΔG predicts spontaneity. Every worked example is laid out exactly the way our marking engine marks your own practice, with method marks and error-carried-forward.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and calculate the specific energy of a fuel.",
-    "Define and calculate the energy density of a fuel.",
-    "Compare the specific energy and energy density of different fuels, such as fossil fuels, hydrogen, and biofuels.",
-    "Analyse the relationship between the nature of a fuel and its energy output."
+    "Describe combustion as an exothermic redox reaction, and distinguish fossil fuels from biofuels in terms of origin and renewability.",
+    "Write and interpret equations for complete and incomplete combustion, and identify the products (CO₂ and H₂O versus CO, C and H₂O) and their consequences.",
+    "Compare fuels using specific energy (calorific value) in kJ g⁻¹ and energy density in kJ cm⁻³, and calculate the energy released when a fuel burns.",
+    "Explain the environmental impact of combustion: carbon dioxide and the enhanced greenhouse effect, carbon monoxide toxicity and particulates.",
+    "(HL) Predict the sign of the entropy change ΔS, and use ΔG = ΔH − TΔS — with consistent units — to determine whether a reaction is spontaneous at a given temperature.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "R1.3"
+  ],
+  "levelNote": "Common to SL and HL; entropy, ΔG and spontaneity are HL.",
   "simpleExplanation": {
-    "title": "Fuel Power: More Bang for Your Gram",
-    "summary": "Specific energy tells you how much energy you get from a certain mass of fuel, while energy density tells you how much energy is packed into a certain volume. These two measures help us choose the best fuel for a specific job, like flying a plane or driving a car.",
-    "analogy": "Imagine packing snacks for a long hike. You could bring a watermelon, which is heavy and bulky but not very energy-rich for its weight (low specific energy). Or, you could bring a small bag of nuts; it's lightweight but packed with calories (high specific energy). Specific energy is like the energy-to-weight ratio of your snack, while energy density is the energy-to-space ratio in your backpack.",
+    "title": "How Much Energy, at What Cost?",
+    "summary": "Fuels are chemicals that lock away energy in their bonds. Burning them in oxygen releases that energy as heat. This lesson is about two questions: how much energy a fuel gives per gram, and what the burning does to the atmosphere — plus, for HL, what really decides whether a reaction happens at all.",
+    "analogy": "Think of choosing a phone battery. You care about two things: how much charge it holds for its size and weight (that is a fuel's specific energy and energy density), and the hidden cost of making and disposing of it (that is a fuel's environmental impact — the CO₂, the soot, the carbon monoxide). A 'good' fuel, like a 'good' battery, is a trade-off between energy and cost, not just one number.",
     "steps": [
-      "Identify the fuel and the given quantity (mass or volume).",
-      "Find the correct energy value: specific energy (e.g., kJ g⁻¹) or energy density (e.g., MJ dm⁻³).",
-      "Select the appropriate formula: Energy = mass × specific energy, or Energy = volume × energy density.",
-      "Calculate the total energy, ensuring units are consistent and the final answer has the correct significant figures."
+      "Identify the fuel and whether it is a fossil fuel (finite) or a biofuel (renewable biomass).",
+      "Decide whether combustion is complete (plenty of O₂ → CO₂ + H₂O) or incomplete (limited O₂ → CO and/or C soot + H₂O).",
+      "Compare fuels by energy: specific energy in kJ g⁻¹ (energy per gram) and energy density in kJ cm⁻³ (energy per volume).",
+      "Weigh the environmental cost: CO₂ and the enhanced greenhouse effect, toxic CO, and particulates.",
+      "(HL) Ask what drives it: combine ΔH and ΔS in ΔG = ΔH − TΔS to see if the reaction is spontaneous."
     ]
   },
+  "keyConcepts": [
+    "combustion",
+    "energy of fuels",
+    "entropy and spontaneity"
+  ],
   "flashcards": [
     {
-      "front": "What is specific energy?",
-      "back": "Specific energy is the amount of energy released per unit mass of a fuel. It is calculated by dividing the total energy released by the mass of the fuel burnt."
+      "front": "Combustion",
+      "back": "An exothermic redox reaction in which a fuel reacts rapidly with oxygen, releasing energy as heat (and usually light). ΔH is always negative.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the common units for specific energy?",
-      "back": "Joules per gram (J g⁻¹), kilojoules per gram (kJ g⁻¹), or megajoules per kilogram (MJ kg⁻¹)."
+      "front": "Fossil fuels",
+      "back": "Coal, crude oil (petroleum) and natural gas, formed over millions of years from the remains of ancient organisms. They are finite (non-renewable) and release stored carbon as CO₂ when burned.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is energy density?",
-      "back": "Energy density is the amount of energy released per unit volume of a fuel. It is calculated by dividing the total energy released by the volume of the fuel burnt."
+      "front": "Biofuels",
+      "back": "Fuels made from recently living biomass — e.g. bioethanol (fermented sugars), biodiesel and biogas. They are renewable, and the CO₂ released was recently absorbed from the air, so they are often described as approximately carbon-neutral.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What are the common units for energy density?",
-      "back": "Joules per cubic centimetre (J cm⁻³), kilojoules per cubic decimetre (kJ dm⁻³), or megajoules per cubic metre (MJ m⁻³)."
+      "front": "Complete combustion",
+      "back": "Occurs in a plentiful oxygen supply. A hydrocarbon gives CO₂ + H₂O only, burns with a clean (blue) flame and releases the maximum energy.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the formula to calculate energy from specific energy?",
-      "back": "Total Energy = mass × specific energy"
+      "front": "Incomplete combustion",
+      "back": "Occurs when oxygen is limited. Produces carbon monoxide (CO) and/or carbon (C, soot) as well as H₂O, burns with a smoky yellow flame and releases LESS energy than complete combustion.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the formula to calculate energy from energy density?",
-      "back": "Total Energy = volume × energy density"
+      "front": "Specific energy (calorific value)",
+      "back": "The energy released per unit MASS of fuel, in kJ g⁻¹ (or MJ kg⁻¹). Calculated as |ΔH_c| ÷ M. Higher is better for a given mass, e.g. for aircraft or rockets.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Why does hydrogen have a very high specific energy?",
-      "back": "Because hydrogen has a very low molar mass (approx. 2 g mol⁻¹). A small mass of hydrogen contains a large number of moles, and since combustion energy is released per mole, the energy per gram is exceptionally high."
+      "front": "Energy density",
+      "back": "The energy released per unit VOLUME of fuel, in kJ cm⁻³ (or MJ dm⁻³). Important when storage space matters, e.g. a vehicle fuel tank.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why is hydrogen's low energy density a problem?",
-      "back": "As a gas at standard conditions, hydrogen molecules are far apart, so a large volume is needed to store a meaningful mass of fuel. This makes storage and transport for applications like cars very challenging."
+      "front": "Enhanced greenhouse effect",
+      "back": "Extra warming caused when combustion adds CO₂ (a greenhouse gas) to the atmosphere. CO₂ absorbs outgoing infrared radiation, trapping heat and driving climate change.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How does specific energy generally change as the hydrocarbon chain length increases?",
-      "back": "For alkanes, specific energy increases slightly and then plateaus. Shorter chains have a higher proportion of C-H bonds to C-C bonds, but also a higher proportion of oxygen is needed for the balanced equation, making the trend complex. It generally converges towards the value for polyethylene (~46 kJ g⁻¹)."
+      "front": "Carbon monoxide (CO)",
+      "back": "A toxic, colourless, odourless product of incomplete combustion. It binds to haemoglobin more strongly than O₂, reducing the blood's ability to carry oxygen.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is a common mistake when comparing specific energy and enthalpy of combustion?",
-      "back": "Enthalpy of combustion is typically given per mole (kJ mol⁻¹). Specific energy is per mass (kJ g⁻¹ or kJ kg⁻¹). You must use the molar mass to convert between them."
+      "front": "Particulates",
+      "back": "Tiny solid carbon (soot) particles from incomplete combustion. They cause respiratory problems and smog, and deposit as dirt on surfaces.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Compare the specific energy of ethanol and octane.",
-      "back": "Octane (a major component of petrol) has a higher specific energy (~47 kJ g⁻¹) than ethanol (~30 kJ g⁻¹). This is because ethanol is a partially oxidised hydrocarbon; the oxygen atom in its structure does not contribute to combustion energy but adds to the molar mass."
+      "front": "Entropy, S (HL)",
+      "back": "A measure of how dispersed the energy and matter of a system are — loosely, its 'disorder'. Units J K⁻¹ mol⁻¹. Gases have higher entropy than liquids, which have higher entropy than solids.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Sign of ΔS (HL)",
+      "back": "ΔS > 0 when disorder increases: solid→liquid→gas, dissolving, or when a reaction produces MORE moles of gas than it consumes. ΔS < 0 when gas moles decrease.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Gibbs free energy, ΔG (HL)",
+      "back": "ΔG = ΔH − TΔS, in kJ mol⁻¹, with T in kelvin. It combines the enthalpy and entropy changes into a single test for spontaneity.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "ΔG and spontaneity (HL)",
+      "back": "ΔG < 0 → reaction is spontaneous (feasible); ΔG > 0 → non-spontaneous; ΔG = 0 → system is at equilibrium. Watch units: ΔS must be converted from J to kJ before combining with ΔH.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Exam Trap: ΔS units (HL)",
+      "back": "ΔH is in kJ mol⁻¹ but ΔS is in J K⁻¹ mol⁻¹. Before using ΔG = ΔH − TΔS you MUST divide ΔS by 1000 to convert J to kJ, or the TΔS term is 1000× too big.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which set of products indicates INCOMPLETE combustion of a hydrocarbon?",
+      "options": [
+        "CO₂ and H₂O only",
+        "CO, C (soot) and H₂O",
+        "CO₂ and H₂ only",
+        "O₂ and H₂O"
+      ],
+      "answer": "CO, C (soot) and H₂O"
+    },
+    {
+      "prompt": "In ΔG = ΔH − TΔS, ΔH is given in kJ mol⁻¹ and ΔS in J K⁻¹ mol⁻¹. Before combining them you must:",
+      "options": [
+        "Multiply ΔS by 1000",
+        "Divide ΔS by 1000 to convert J to kJ",
+        "Divide ΔH by 1000",
+        "Leave both units unchanged"
+      ],
+      "answer": "Divide ΔS by 1000 to convert J to kJ"
+    },
+    {
+      "prompt": "A reaction is spontaneous (feasible) at a given temperature when:",
+      "options": [
+        "ΔG > 0",
+        "ΔG = 0",
+        "ΔG < 0",
+        "ΔH < 0, whatever ΔG is"
+      ],
+      "answer": "ΔG < 0"
+    },
+    {
+      "prompt": "Two fuels release the same energy per mole, but fuel A has the smaller molar mass. Which has the greater specific energy (energy per gram)?",
+      "options": [
+        "Fuel A",
+        "Fuel B",
+        "They are exactly equal",
+        "It cannot be determined"
+      ],
+      "answer": "Fuel A"
+    },
+    {
+      "prompt": "Compared with complete combustion, incomplete combustion of the same amount of fuel releases:",
+      "options": [
+        "More energy",
+        "Less energy",
+        "Exactly the same energy",
+        "No energy at all"
+      ],
+      "answer": "Less energy"
     }
   ],
   "faq": [
     {
-      "q": "Why is specific energy more important for aeroplanes, while energy density is more important for cars?",
-      "a": "For an aeroplane, every kilogram of mass requires a significant amount of energy (lift) to keep it in the air. Therefore, minimising the mass of the fuel is paramount, making high specific energy (energy per kg) the most critical factor. For a car, the total weight is less critical, but the space available for the fuel tank is limited. Therefore, packing as much energy as possible into that fixed volume is key, making high energy density (energy per dm³) the more important property."
+      "q": "What is the real difference between fossil fuels and biofuels?",
+      "a": "It is about timescale and the carbon cycle. Fossil fuels (coal, oil, natural gas) formed from organisms that lived millions of years ago, so their carbon has been locked away for geological time; burning them adds 'new' CO₂ to today's atmosphere, and the supply is finite. Biofuels come from recently grown biomass, so the CO₂ released when they burn was absorbed from the air only recently by photosynthesis. That near-balance is why biofuels are described as approximately carbon-neutral — though growing, harvesting and processing them still uses energy, so they are not perfectly neutral."
     },
     {
-      "q": "How does specific energy relate to the enthalpy of combustion, ΔHc?",
-      "a": "The standard enthalpy of combustion ($ΔH_c^⦵$) is the energy released per mole of a substance (units: kJ mol⁻¹). Specific energy is the energy released per unit mass (e.g., kJ g⁻¹). You can convert between them using the molar mass (M, in g mol⁻¹) of the substance: Specific Energy = $\\frac{|ΔH_c^⦵|}{M}$."
+      "q": "Why does incomplete combustion release less energy than complete combustion?",
+      "a": "Because the fuel is not fully oxidised. Complete combustion takes every carbon atom all the way to CO₂, extracting the maximum energy. In incomplete combustion the carbon only gets partway — to carbon monoxide (CO) or stays as soot (C) — so a large part of the energy that would have been released by forming CO₂ is never released. The leftover CO and soot still contain chemical energy that has not been given out as heat."
     },
     {
-      "q": "Why do biofuels like ethanol have lower specific energy than fossil fuels like octane?",
-      "a": "Ethanol ($C_2H_5OH$) is a partially oxidised hydrocarbon; it contains an oxygen atom. This oxygen atom adds to the molar mass of the molecule but does not contribute to the energy released during combustion (as it's already bonded to carbon and hydrogen). In contrast, hydrocarbons like octane ($C_8H_{18}$) consist solely of carbon and hydrogen. For a given mass, octane has a higher proportion of high-energy C-H and C-C bonds, resulting in a higher specific energy upon combustion."
+      "q": "How do I decide which fuel is 'better'?",
+      "a": "There is no single answer — it is a trade-off. Compare specific energy (kJ per gram, matters when mass is limited, e.g. aircraft), energy density (kJ per unit volume, matters when storage space is limited), availability and renewability (a biofuel can be regrown; a fossil fuel cannot), and pollutants produced (CO₂ and its greenhouse effect, plus CO and particulates from incomplete combustion). A fuel with a very high specific energy may still be a poor choice if it is scarce or highly polluting."
+    },
+    {
+      "q": "(HL) A reaction can be exothermic (ΔH negative) but still non-spontaneous — how?",
+      "a": "Because spontaneity is decided by ΔG, not ΔH alone. ΔG = ΔH − TΔS. If a reaction is exothermic (ΔH < 0) but its entropy falls sharply (ΔS < 0), then the −TΔS term is positive and grows with temperature. At high enough temperature it can outweigh the negative ΔH, making ΔG positive and the reaction non-spontaneous. This is exactly why you must combine BOTH terms — and convert ΔS from J to kJ — rather than judging feasibility from the enthalpy change on its own."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Our world runs on energy, and for decades, the primary source has been the combustion of fuels. But not all fuels are created equal. To make informed decisions about energy sources, from powering vehicles to generating electricity, we need a way to quantitatively compare them. This lesson introduces two crucial metrics: specific energy and energy density, which allow us to evaluate and rank fuels based on their energy output relative to their mass and volume."
+      "content": "Almost all the energy that powers homes, transport and industry comes from one reaction: combustion. A fuel is simply a store of chemical energy, and burning it in oxygen releases that energy as heat. But choosing and using a fuel raises two very different questions. The practical one is how much energy it gives and at what environmental cost — that is the SL heart of this topic. The deeper one, for HL, is what actually drives a reaction to happen at all: not just whether it gives out heat, but whether entropy and temperature let it proceed. We will build both, and every worked example is laid out exactly the way marks are awarded, because in this topic how you show your working decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Defining Energy Output: Specific Energy and Energy Density"
+      "content": "Combustion, fossil fuels and biofuels"
     },
     {
       "type": "text",
-      "content": "When we burn a fuel, we are carrying out an exothermic reaction that releases chemical potential energy as heat. To compare how 'good' a fuel is, we need to standardise the amount of energy it produces. We can do this in two main ways. Specific energy considers the mass of the fuel, which is a critical factor in applications where weight must be minimised, such as in aviation. Energy density considers the volume of the fuel, which is vital when storage space is limited, as in the fuel tank of a car."
-    },
-    {
-      "type": "formula",
-      "content": "Specific Energy = \\frac{\\text{Energy Released (J)}}{\\text{Mass of Fuel (kg)}} \\quad (Units: J\\,kg^{-1})\n\nEnergy Density = \\frac{\\text{Energy Released (J)}}{\\text{Volume of Fuel (m}^3)}} \\quad (Units: J\\,m^{-3})"
+      "content": "Combustion is an exothermic redox reaction in which a fuel reacts rapidly with oxygen, releasing energy as heat and light; its enthalpy change ΔH is always negative. The fuels we burn fall into two families. Fossil fuels — coal, crude oil (petroleum) and natural gas — formed over millions of years from the buried remains of ancient organisms. They are finite (non-renewable) and release carbon that has been locked underground for geological time. Biofuels — such as bioethanol from fermented sugars, biodiesel and biogas — come from recently living biomass. They are renewable, and because the carbon they release was only recently taken from the air by photosynthesis, they are often described as approximately carbon-neutral."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Specific Energy**: Energy per unit mass. High specific energy means more 'power for the pound'. Units are typically kJ g⁻¹ or MJ kg⁻¹.",
-        "**Energy Density**: Energy per unit volume. High energy density means more energy in a smaller space. Units are typically kJ cm⁻³ or MJ dm⁻³.",
-        "These two properties are distinct and the preferred fuel depends on the application's constraints (weight vs. space)."
+        "Combustion is exothermic and is a redox reaction: the fuel is oxidised, oxygen is reduced.",
+        "Fossil fuels (coal, oil, natural gas) are finite and add long-buried carbon to the atmosphere.",
+        "Biofuels (bioethanol, biodiesel, biogas) are renewable and roughly carbon-neutral, though growing and processing them still costs energy.",
+        "A useful fuel is judged on energy content, availability, renewability and pollution together — never on one factor alone."
       ]
     },
     {
       "type": "heading",
-      "content": "Comparing Fuels: A Case Study of Hydrocarbons"
+      "content": "Complete vs incomplete combustion"
     },
     {
       "type": "text",
-      "content": "Hydrocarbons, the primary components of fossil fuels, provide a useful context for understanding these concepts. As the length of an alkane chain increases, the molar mass increases. The enthalpy of combustion per mole also increases, as more C-C and C-H bonds are broken and more C=O and O-H bonds are formed. The specific energy (energy per gram) shows a less dramatic trend, increasing slightly before levelling off for long chains. This is because the ratio of high-energy C-H bonds to C-C bonds changes, and the overall composition approaches a repeating $-CH_2-$ unit. Energy density, however, generally increases with chain length for liquid hydrocarbons, as the longer molecules pack together more efficiently, increasing the density of the fuel."
+      "content": "The products of burning a hydrocarbon depend entirely on how much oxygen is available. With a plentiful oxygen supply, combustion is complete: every carbon atom is oxidised all the way to carbon dioxide, and the only products are CO₂ and H₂O. The flame is clean and blue, and the maximum energy is released. When oxygen is limited, combustion is incomplete: the carbon is only partly oxidised, giving carbon monoxide (CO) and/or unburnt carbon as soot (C), together with water. The flame is smoky and yellow, and less energy is released because the fuel is not fully oxidised."
     },
     {
-      "type": "workedExample",
-      "question": "Propane, $C_3H_8$, is a common fuel used for heating and cooking. Its standard enthalpy of combustion is $-2220$ kJ mol⁻¹. Calculate its specific energy in kJ g⁻¹.",
-      "solution": "1. **Find the molar mass (M) of propane, $C_3H_8$.**\n   $M = (3 \\times 12.01) + (8 \\times 1.01) = 36.03 + 8.08 = 44.11$ g mol⁻¹.\n\n2. **Identify the energy released per mole.**\n   The enthalpy of combustion is $-2220$ kJ mol⁻¹. For energy calculations, we use the magnitude: $2220$ kJ mol⁻¹.\n\n3. **Calculate the specific energy.**\n   Specific energy is the energy per gram. We can find this by dividing the energy per mole by the mass per mole (molar mass).\n   Specific Energy = $\\frac{\\text{Energy per mole}}{\\text{Molar mass}}$\n   Specific Energy = $\\frac{2220 \\text{ kJ mol}^{-1}}{44.11 \\text{ g mol}^{-1}} = 50.328...$ kJ g⁻¹.\n\n4. **State the answer to the correct significant figures.**\n   The data is given to 4 and 4 significant figures. So the answer should be given to 3 or 4 s.f. Let's use 3 s.f.\n   Specific Energy = $50.3$ kJ g⁻¹."
+      "type": "formula",
+      "content": "\\text{Complete:}\\quad \\text{CH}_4 + 2\\text{O}_2 \\rightarrow \\text{CO}_2 + 2\\text{H}_2\\text{O}"
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Incomplete:}\\quad 2\\text{CH}_4 + 3\\text{O}_2 \\rightarrow 2\\text{CO} + 4\\text{H}_2\\text{O}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Complete combustion (excess O₂): products are CO₂ + H₂O only; clean blue flame; maximum energy released.",
+        "Incomplete combustion (limited O₂): products include CO and/or C (soot) plus H₂O; smoky yellow flame; less energy released.",
+        "Both CO and soot represent chemical energy that was never given out as heat — this is why incomplete combustion is less energy-efficient.",
+        "The exact incomplete-combustion equation depends on the oxygen supply; you may be asked to write one giving CO, or one giving C."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Always pay close attention to the units given and required. A common source of error is mixing up kJ and J, or g and kg. It's good practice to write the units at every step of your calculation to avoid mistakes. For example, if you are given specific energy in kJ g⁻¹ but a mass in kg, you must convert one of them before multiplying."
+      "content": "When a question asks for the products of incomplete combustion, do NOT just write 'CO₂ and water'. Name carbon monoxide (CO) and/or carbon (soot), and if asked to explain the energy difference, state that the fuel is only partially oxidised, so less energy is released than in complete combustion. Vague answers like 'it burns badly' earn nothing."
     },
     {
       "type": "heading",
-      "content": "Alternative Fuels: Hydrogen and Biofuels"
+      "content": "Comparing fuels: specific energy and energy density"
     },
     {
       "type": "text",
-      "content": "The search for cleaner energy sources has led to great interest in alternatives like hydrogen ($H_2$) and biofuels like ethanol ($C_2H_5OH$). Hydrogen boasts an exceptionally high specific energy (around 142 kJ g⁻¹), over double that of petrol. This is due to its extremely low molar mass. However, its major drawback is its very low energy density as a gas, making it difficult and expensive to store enough of it on board a vehicle. Ethanol, produced from fermentation of biomass, is a renewable fuel. Its specific energy (~30 kJ g⁻¹) is lower than that of petrol (~47 kJ g⁻¹) because it is already partially oxidised. This means a car running on pure ethanol would require a larger mass of fuel to travel the same distance."
+      "content": "To compare fuels fairly we standardise the energy they release. The specific energy (also called the calorific value) is the energy released per unit MASS of fuel, in kJ g⁻¹ (or MJ kg⁻¹); you obtain it by dividing the magnitude of the molar enthalpy of combustion by the molar mass, |ΔH_c| ÷ M. The energy density is the energy released per unit VOLUME of fuel, in kJ cm⁻³. Which one matters depends on the application: specific energy is decisive when mass is limited (an aircraft or a rocket), while energy density matters when storage volume is limited (a car's fuel tank). A fuel can score well on one and poorly on the other."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{specific energy} = \\frac{|\\Delta H_c|}{M} \\quad (\\text{kJ g}^{-1})"
     },
     {
       "type": "workedExample",
-      "question": "A bus is designed to run on compressed hydrogen gas. Its fuel tank holds 40.0 kg of $H_2$. Given that the specific energy of hydrogen is 142 MJ kg⁻¹, calculate the total energy stored in the tank. If diesel has an energy density of 35.8 MJ dm⁻³, what volume of diesel would be required to provide the same amount of energy?",
-      "solution": "1. **Calculate the total energy from hydrogen.**\n   Use the formula: Energy = mass × specific energy.\n   Energy = $40.0 \\text{ kg} \\times 142 \\text{ MJ kg}^{-1} = 5680$ MJ.\n\n2. **Calculate the required volume of diesel.**\n   First, rearrange the energy density formula: Volume = $\\frac{\\text{Energy}}{\\text{Energy Density}}$.\n   The energy required is the same as that provided by the hydrogen: 5680 MJ.\n   Volume = $\\frac{5680 \\text{ MJ}}{35.8 \\text{ MJ dm}^{-3}} = 158.659...$ dm³.\n\n3. **State the answer to the correct significant figures.**\n   The data is given to 3 significant figures. \n   Total energy from hydrogen = $5680$ MJ (or $5.68 \\times 10^3$ MJ).\n   Volume of diesel = $159$ dm³.\n\n   This shows that while hydrogen is very light for the energy it provides, a large volume of diesel would be needed to match it, highlighting the different advantages of each fuel."
+      "question": "A camping stove burns 0.320 g of butane, C₄H₁₀. The standard enthalpy of combustion of butane is −2877 kJ mol⁻¹. (a) Calculate the energy released. (b) Calculate the specific energy of butane in kJ g⁻¹. [4]",
+      "solution": "**Step 1 — molar mass of butane.**\n$M(\\text{C}_4\\text{H}_{10}) = 4(12.01) + 10(1.01) = 48.04 + 10.10 = 58.14$ g mol⁻¹.  [M1: correct molar mass]\n\n**Step 2 — amount of butane burned.**\n$n = \\dfrac{m}{M} = \\dfrac{0.320}{58.14} = 5.504 \\times 10^{-3}$ mol.\n\n**Step 3 — energy released.**\nEach mole releases 2877 kJ, so:\n$E = n \\times |\\Delta H_c| = (5.504 \\times 10^{-3}) \\times 2877 = 15.8$ kJ.  [A1: energy released, 3 s.f.]\n\n**Step 4 — specific energy (per gram).**\n$\\text{specific energy} = \\dfrac{|\\Delta H_c|}{M} = \\dfrac{2877}{58.14} = 49.5$ kJ g⁻¹.  [M1 method, A1 value]\n\n*Butane's specific energy (≈49.5 kJ g⁻¹) is high, which is why it is a popular portable fuel. Compare methane at ≈55 kJ g⁻¹ and ethanol at only ≈30 kJ g⁻¹ — the more hydrogen-rich the fuel, the greater its specific energy.*"
+    },
+    {
+      "type": "heading",
+      "content": "Environmental impact of burning fuels"
+    },
+    {
+      "type": "text",
+      "content": "Every combustion reaction has a cost. Complete combustion of any carbon-based fuel produces carbon dioxide, a greenhouse gas: CO₂ absorbs outgoing infrared radiation from the Earth's surface and re-emits it, trapping heat. Adding fossil-fuel CO₂ to the atmosphere strengthens this natural warming — the enhanced greenhouse effect — driving climate change. Incomplete combustion adds two further problems. Carbon monoxide (CO) is toxic: it binds to haemoglobin far more strongly than oxygen does, so it reduces the blood's capacity to carry oxygen. Particulates — tiny soot (carbon) particles — cause respiratory illness and smog and blacken surfaces. Comparing fuels therefore means weighing energy content against all of these emissions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "CO₂ (from complete combustion) is a greenhouse gas; extra CO₂ enhances the greenhouse effect and drives climate change.",
+        "CO (from incomplete combustion) is toxic because it binds strongly to haemoglobin, reducing oxygen transport.",
+        "Particulates (soot) from incomplete combustion cause respiratory problems and smog.",
+        "Comparing fuels: balance specific energy and energy density against renewability, availability and these pollutants."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "(HL) What drives a reaction? Entropy"
+    },
+    {
+      "type": "text",
+      "content": "So far we have measured how much energy a fuel gives, but that does not fully explain why a reaction happens. Some spontaneous reactions are even endothermic. The missing idea is entropy, symbol S, a measure of how dispersed the energy and matter of a system are — loosely, its 'disorder'. Entropy increases when matter and energy spread out: gases have more entropy than liquids, which have more than solids; dissolving increases entropy; and, most usefully for predicting the sign of ΔS, a reaction that produces more moles of gas than it consumes has a positive ΔS. Combustion of a hydrocarbon in which the gas moles fall (for example forming liquid water) has a negative ΔS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Entropy S has units J K⁻¹ mol⁻¹ — note the JOULES, not kilojoules.",
+        "ΔS > 0 when disorder rises: melting, boiling, dissolving, or producing more gas moles than are consumed.",
+        "ΔS < 0 when disorder falls: freezing, condensing, or producing fewer gas moles.",
+        "To predict the sign of ΔS quickly, count the change in moles of GAS across the equation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "(HL) Gibbs free energy and spontaneity"
+    },
+    {
+      "type": "text",
+      "content": "Enthalpy and entropy are combined into a single test for spontaneity by the Gibbs free energy change, ΔG = ΔH − TΔS, where T is the absolute temperature in kelvin. The sign of ΔG is what decides feasibility: a reaction is spontaneous when ΔG < 0, non-spontaneous when ΔG > 0, and at equilibrium when ΔG = 0. Because ΔH is in kJ mol⁻¹ but ΔS is in J K⁻¹ mol⁻¹, the single most common error is a units mismatch: you must convert ΔS from joules to kilojoules (divide by 1000) before multiplying by T, otherwise the TΔS term comes out one thousand times too large and the conclusion is wrong."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta G = \\Delta H - T\\Delta S"
+    },
+    {
+      "type": "workedExample",
+      "question": "(HL) For the combustion of methane, CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l), ΔH = −890 kJ mol⁻¹ and ΔS = −243 J K⁻¹ mol⁻¹. Determine ΔG at 298 K and state whether the reaction is spontaneous. [3]",
+      "solution": "**Step 1 — convert ΔS to kJ.**\n$\\Delta S = -243$ J K⁻¹ mol⁻¹ $= -0.243$ kJ K⁻¹ mol⁻¹ (divide by 1000).  [M1: unit conversion + method]\n\n**Step 2 — apply ΔG = ΔH − TΔS.**\n$T\\Delta S = 298 \\times (-0.243) = -72.4$ kJ mol⁻¹.\n$\\Delta G = \\Delta H - T\\Delta S = -890 - (-72.4) = -890 + 72.4 = -818$ kJ mol⁻¹.  [A1: value]\n\n**Step 3 — conclusion.**\n$\\Delta G$ is negative, so the reaction **is spontaneous** at 298 K.  [A1: correct conclusion consistent with the value]\n\n*Note the sign trap: subtracting a NEGATIVE TΔS adds to ΔG. Here the entropy falls (3 mol gas → 1 mol gas + liquid water), so the −TΔS term is positive, but the large negative ΔH still dominates and the reaction remains spontaneous.*"
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for the topic. In Paper 2, marks are analytic: each is tied to a specific line of working (a method mark, M, or an answer mark, A), and error-carried-forward (ECF) means a slip early on does not automatically cost you every later mark — but only if your method is written down. Study how each of the three marks below is earned by a specific line, and notice how the units step is itself worth a mark."
+    },
+    {
+      "type": "workedExample",
+      "question": "(HL) A reaction has ΔH = −92.0 kJ mol⁻¹ and ΔS = −198 J K⁻¹ mol⁻¹. Determine whether the reaction is spontaneous at 298 K. [3]",
+      "solution": "**Model answer — full working.**\n\nConvert the entropy change to kJ so the units match ΔH:\n$\\Delta S = -198$ J K⁻¹ mol⁻¹ $= -0.198$ kJ K⁻¹ mol⁻¹.\n\nApply the Gibbs equation:\n$\\Delta G = \\Delta H - T\\Delta S$\n$\\Delta G = -92.0 - (298 \\times -0.198)$\n$\\Delta G = -92.0 - (-59.0)$\n$\\Delta G = -92.0 + 59.0 = -33.0$ kJ mol⁻¹.\n\nSince $\\Delta G < 0$, the reaction **is spontaneous** at 298 K.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — method with consistent units.** Awarded for using ΔG = ΔH − TΔS AND converting ΔS from J to kJ (÷1000) before combining, with T = 298 K in the TΔS term. This is a METHOD mark: it is earned for the correct process — including the units conversion — even if a later arithmetic slip changes the number. A candidate who forgets to convert ΔS (leaving it in J) does not earn this mark, because the method is unit-inconsistent.\n- **A1 — correct value of ΔG.** Awarded for the correct numerical answer, −33.0 kJ mol⁻¹ (accept −33 kJ mol⁻¹; sign and units required). **Error-carried-forward** applies: a candidate who made an arithmetic slip in the TΔS term but combined the terms correctly still earns credit on THEIR figures.\n- **A1 — correct spontaneity conclusion, consistent with the value.** Awarded for stating the reaction IS spontaneous/feasible because ΔG < 0. Under ECF this mark is judged against the candidate's OWN ΔG: if their working gave a positive ΔG and they correctly concluded 'non-spontaneous', they still earn this mark for a conclusion consistent with their value.\n\n**'Accept answers that round correctly.'** The engine accepts −33.0 or −33 kJ mol⁻¹ and does not demand a fixed number of decimal places in intermediate lines — it credits the correct method, correct units, and a conclusion that matches the calculated sign.\n\n**Bottom line:** of the 3 marks, 1 is a method mark that survives an arithmetic slip and rewards getting the units right, and the two answer marks are protected by ECF. A candidate who writes only 'spontaneous' with no working risks losing 2 marks; one who shows the units conversion, the substitution and the sign of ΔG keeps the method mark regardless of arithmetic."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the ΔS conversion from J to kJ, show the substitution into ΔG = ΔH − TΔS, then state the conclusion against the SIGN of your ΔG. The method mark for consistent units and the error-carried-forward on the value and conclusion are what protect your score when the arithmetic slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Giving CO₂ and H₂O as the products of incomplete combustion** — incomplete combustion produces carbon monoxide (CO) and/or soot (C) as well as water; CO₂ is the product of COMPLETE combustion.",
+        "**Leaving ΔS in joules when using ΔG = ΔH − TΔS** — ΔH is in kJ but ΔS is in J K⁻¹ mol⁻¹; convert ΔS to kJ (÷1000) first, or the TΔS term is 1000× too large.",
+        "**Getting the sign rule for ΔG backwards** — spontaneous means ΔG < 0 (negative), not positive. ΔG = 0 is equilibrium.",
+        "**Mishandling the double negative in −TΔS** — subtracting a negative ΔS ADDS to ΔG; write the substitution out fully to avoid a sign slip.",
+        "**Judging feasibility from ΔH alone** — an exothermic reaction is not automatically spontaneous; you must combine ΔH and ΔS through ΔG.",
+        "**Comparing fuels on a single figure** — a high specific energy does not make a fuel 'best' if it is scarce, hard to store, or highly polluting; weigh energy against renewability and emissions.",
+        "**Blaming 'human error' for a low experimental energy value** — name a specific cause such as heat loss to the surroundings or incomplete combustion instead."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The ideas here run through the rest of energetics. Specific energy connects directly to the calorimetry and q = mcΔT calculations of R1.1, where the same combustion is measured experimentally. The environmental discussion feeds into the wider chemistry of the atmosphere and green-chemistry themes. And for HL, ΔG = ΔH − TΔS is the bridge from thermochemistry to equilibrium and electrochemistry: the same sign of ΔG that decides whether a fuel burns spontaneously also decides which way a reaction lies at equilibrium and whether a cell reaction is feasible. Master the two habits of this topic — read the oxygen supply to get the right products, and convert ΔS to kJ before combining — and the harder energetics ahead becomes variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test your knowledge on Energy from Fuels",
-      "href": "/mark?subject=ib-chemistry-hl&topic=R1.3"
+      "label": "Get a Paper 2 answer marked: determine ΔG and whether a reaction is spontaneous, with full working",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R1.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/chemistry/assessment/"
-        },
-        {
-          "label": "Khan Academy: Enthalpy of Combustion",
-          "href": "https://www.khanacademy.org/science/chemistry/thermochemistry-chemistry/enthalpy-calorimetry/a/enthalpy"
+          "label": "IB Chemistry Data Booklet (Sections 1 and 12)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-course-specific-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

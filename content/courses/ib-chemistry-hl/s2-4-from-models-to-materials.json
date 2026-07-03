@@ -1,189 +1,376 @@
 {
   "slug": "s2-4-from-models-to-materials",
   "topicCode": "S2.4",
+  "unit": {
+    "code": "S2",
+    "title": "Models of bonding and structure"
+  },
   "title": "From models to materials",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson connects microscopic bonding models to the macroscopic properties of materials. We explore why metals conduct, why diamond is hard, how polymers are formed, and the unique characteristics of modern materials like nanomaterials and liquid crystals.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Ionic, covalent and metallic bonding are not three separate boxes — they are idealised corners of a continuum, and most real substances lie somewhere in between. This lesson builds the S2.4 picture: bonding as a spectrum rather than three categories, polar covalent bonding as the intermediate case, and the van Arkel–Ketelaar bonding triangle that classifies a substance from two numbers — the electronegativity difference (Δχ) and the average electronegativity. It then follows the continuum outward to materials: alloys as metallic-character mixtures, and how bonding and structure guide the choice of polymers and composites. Every worked example is laid out exactly the way our marking engine awards marks, so you can see where each M and A mark is earned.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the physical properties of metals, alloys, and ionic compounds using models of bonding and structure.",
-    "Compare and contrast the structures and properties of the allotropes of carbon (diamond, graphite, graphene) and silicon dioxide.",
-    "Relate the properties of polymers to their monomer structure, chain length, branching, and cross-linking.",
-    "Describe the structures and unique properties of nanomaterials and liquid crystals."
+    "Explain why ionic, covalent and metallic bonding are idealised models and describe why real bonding lies on a continuum rather than in three discrete categories.",
+    "Use the electronegativity difference (Δχ) and the average electronegativity of two elements to place a compound on the van Arkel–Ketelaar bonding triangle and deduce the dominant bonding type.",
+    "Describe polar covalent bonding as the intermediate case between pure covalent and ionic bonding, and relate bond polarity to Δχ.",
+    "Describe alloys as mixtures that retain metallic character, and outline how bonding and structure guide material choice for polymers and composites.",
+    "Present working so that method (M) marks, answer (A) marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "S2.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "From Atoms to Objects",
-    "summary": "This topic reveals how the arrangement of atoms and the bonds between them dictate a material's real-world properties. By understanding the microscopic structure, we can predict and explain why steel is strong, rubber is flexible, and graphite can write.",
-    "analogy": "Think of it like cooking with the same basic ingredients—flour, water, sugar, eggs. Depending on how you combine and process them (the 'bonding' and 'structure'), you can make a hard biscuit, a soft sponge cake, or a chewy bread. The ingredients are the atoms; the final product's texture and properties depend entirely on how they are put together.",
+    "title": "Three corners, one map",
+    "summary": "The three bonding types you first learned — ionic, covalent, metallic — are idealised extremes. Real substances sit on a continuous map between them. Two numbers taken from electronegativity values tell you where a substance sits, and that position tells you the dominant kind of bonding.",
+    "analogy": "Think of colour. 'Red', 'green' and 'blue' are three pure corners, but almost every colour you actually see is a blend somewhere between them. Ionic, covalent and metallic are the three pure corners of bonding; a bond like the one in HCl is a 'blend' — mostly covalent but with ionic character, the way orange is mostly red with some yellow. The bonding triangle is the colour wheel: give it two coordinates and it tells you which blend you have.",
     "steps": [
-      "First, identify the fundamental particle: is it a metal atom, an ion, a discrete molecule, or a repeating monomer?",
-      "Next, determine the forces holding the particles together. Are they metallic, ionic, strong covalent bonds, or weak intermolecular forces?",
-      "Then, visualise the three-dimensional arrangement. Is it an ordered lattice, a giant network, long tangled chains, or separate molecules?",
-      "Finally, link this structure to the material's properties. For example, a 'sea' of delocalised electrons allows for electrical conductivity in metals."
+      "Look up the electronegativity ($\\chi$) of each element from Section 9 of the data booklet.",
+      "Find the difference $\\Delta\\chi = |\\chi_A - \\chi_B|$ — this is the vertical axis and measures ionic character.",
+      "Find the average $\\bar{\\chi} = \\dfrac{\\chi_A + \\chi_B}{2}$ — this is the horizontal axis and separates metallic from covalent.",
+      "Plot the point on the triangle and read off the dominant bonding type: high $\\Delta\\chi$ → ionic; low $\\Delta\\chi$ with high $\\bar{\\chi}$ → covalent; low $\\Delta\\chi$ with low $\\bar{\\chi}$ → metallic."
     ]
   },
+  "keyConcepts": [
+    "bonding continuum",
+    "electronegativity",
+    "polarity",
+    "structure and properties"
+  ],
   "flashcards": [
     {
-      "front": "What is an alloy?",
-      "back": "A mixture containing a metal and at least one other element, which can be a metal or non-metal. Example: Brass is an alloy of copper and zinc."
+      "front": "Why are ionic, covalent and metallic bonding called 'models'?",
+      "back": "They are idealised limiting cases. Pure ionic (complete electron transfer), pure covalent (perfectly equal sharing) and pure metallic bonding are extremes; almost every real substance shows a blend of character and lies between the corners.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why are alloys generally harder and less malleable than pure metals?",
-      "back": "The different-sized atoms of the added element disrupt the regular, orderly lattice of the main metal. This prevents the layers of metal ions from sliding over each other easily."
+      "front": "What is the bonding continuum?",
+      "back": "The idea that bonding type varies smoothly rather than falling into three separate boxes. A bond can be, for example, 60% covalent and 40% ionic in character — polar covalent bonds are the intermediate region between pure covalent and pure ionic.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Distinguish between a thermoplastic and a thermosetting plastic.",
-      "back": "Thermoplastics have long polymer chains with weak intermolecular forces between them; they can be melted and reshaped. Thermosetting plastics have strong covalent cross-links between chains, forming a rigid 3D structure; they do not melt but char upon heating."
+      "front": "Electronegativity ($\\chi$)",
+      "back": "A measure of the tendency of an atom to attract a shared (bonding) pair of electrons. Increases across a period and up a group; fluorine is highest. Values are in Section 9 of the IB data booklet — you do not memorise them.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a key property of nanomaterials and why does it arise?",
-      "back": "They have an extremely high surface-area-to-volume ratio. This is because as a particle gets smaller, the proportion of atoms on its surface increases dramatically compared to the atoms in its bulk."
+      "front": "Electronegativity difference, $\\Delta\\chi$",
+      "back": "$\\Delta\\chi = |\\chi_A - \\chi_B|$. It measures ionic character and is the VERTICAL axis of the bonding triangle. Large $\\Delta\\chi$ → ionic; small $\\Delta\\chi$ → covalent or metallic.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is a liquid crystal?",
-      "back": "A state of matter, or 'mesophase', with properties between those of a conventional liquid and a solid crystal. The molecules have some orientational order (like a solid) but can move around (like a liquid)."
+      "front": "Average electronegativity, $\\bar{\\chi}$",
+      "back": "$\\bar{\\chi} = \\dfrac{\\chi_A + \\chi_B}{2}$. It is the HORIZONTAL axis of the bonding triangle and distinguishes metallic (low $\\bar{\\chi}$) from covalent (high $\\bar{\\chi}$) when $\\Delta\\chi$ is small.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Explain why graphite conducts electricity while diamond does not.",
-      "back": "In graphite, each carbon is $sp^2$ hybridised, leaving one delocalised p-electron per atom. These electrons form a pi system and are mobile within the layers, allowing conductivity. In diamond, all four valence electrons of each $sp^3$ hybridised carbon are localised in strong sigma bonds, so there are no mobile charge carriers."
+      "front": "van Arkel–Ketelaar triangle",
+      "back": "A triangular map with pure ionic, pure covalent and pure metallic at the three corners. Plotting a substance by $\\Delta\\chi$ (vertical) against $\\bar{\\chi}$ (horizontal) locates its dominant bonding type on the continuum.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Why are ionic compounds brittle?",
-      "back": "When a force is applied, it can shift the layers of ions. This brings ions with like charges next to each other, causing strong electrostatic repulsion that shatters the crystal lattice."
+      "front": "Polar covalent bond",
+      "back": "The intermediate case: electrons are shared but unequally, because the two atoms differ in electronegativity. The more electronegative atom carries a partial negative charge ($\\delta-$) and the other a partial positive charge ($\\delta+$).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the difference between addition and condensation polymerisation?",
-      "back": "Addition polymerisation involves the joining of monomers (usually with a C=C double bond) without the loss of any atoms. Condensation polymerisation involves the reaction between two functional groups, forming a larger molecule and eliminating a small molecule, such as water or HCl."
+      "front": "Roughly, how does $\\Delta\\chi$ map to bond type?",
+      "back": "As a guide (not a hard rule): $\\Delta\\chi$ near 0 → pure/nonpolar covalent; small-to-moderate $\\Delta\\chi$ → polar covalent; large $\\Delta\\chi$ (roughly ≳ 1.8) → predominantly ionic. The triangle is preferred to a single cut-off because it also uses $\\bar{\\chi}$.",
+      "pillLabel": "Guide"
     },
     {
-      "front": "What is the effect of increasing cross-linking in a polymer?",
-      "back": "Increasing the number of covalent cross-links between polymer chains makes the material more rigid, stronger, and less flexible. It increases the melting point (or decomposition temperature)."
+      "front": "Alloy",
+      "back": "A mixture of a metal with one or more other elements (metal or non-metal). It retains metallic bonding and metallic character (conductivity, malleability) but the different-sized atoms disrupt the lattice, so alloys are usually harder than the pure metal.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Describe the structure of graphene.",
-      "back": "Graphene is a single, two-dimensional layer of carbon atoms arranged in a hexagonal lattice. It is essentially one layer of graphite. It is incredibly strong, light, and an excellent electrical conductor."
+      "front": "Why is an alloy not a compound?",
+      "back": "The components are not in a fixed whole-number ratio and are not chemically bonded in fixed proportions — brass can hold a range of zinc percentages. It is a mixture (a solid solution) with metallic bonding, not a compound.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Composite material",
+      "back": "A material made by combining two or more materials with different bonding/structure (e.g. glass fibres in a polymer resin) so the combination has properties neither has alone — for example high stiffness with low density.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "How does bonding guide material choice?",
+      "back": "Bonding and structure set the properties (stiffness, conductivity, density, response to heat), so engineers choose a material by the bonding it needs: metallic for conduction and toughness, giant covalent for hardness, polymers for lightness and mouldability, composites to combine strengths.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam trap: the two axes are different quantities",
+      "back": "The vertical axis is the DIFFERENCE in electronegativity ($\\Delta\\chi$); the horizontal axis is the AVERAGE electronegativity ($\\bar{\\chi}$). Swapping them puts the substance in the wrong region and loses the placement mark.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam trap: 'ionic OR covalent'",
+      "back": "Bonding is a spectrum, so the correct language is about the DOMINANT character or the region of the triangle, not a strict either/or. A bond can be described as 'predominantly ionic with covalent character', which the three-box view cannot express.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which statement best reflects the modern view of chemical bonding?",
+      "options": [
+        "Every bond is exactly one of ionic, covalent or metallic",
+        "Bonding lies on a continuum; the three types are idealised limiting cases",
+        "Only metals show a continuum of bonding",
+        "Polar covalent bonds are a fourth separate category unrelated to the others"
+      ],
+      "answer": "Bonding lies on a continuum; the three types are idealised limiting cases"
+    },
+    {
+      "prompt": "On the van Arkel–Ketelaar bonding triangle, what does the VERTICAL axis represent?",
+      "options": [
+        "The average electronegativity, $\\bar{\\chi}$",
+        "The electronegativity difference, $\\Delta\\chi$",
+        "The sum of the two atomic radii",
+        "The number of valence electrons"
+      ],
+      "answer": "The electronegativity difference, $\\Delta\\chi$"
+    },
+    {
+      "prompt": "Two elements each have low electronegativity, and the difference between them is very small. Their bonding is best described as:",
+      "options": [
+        "Ionic",
+        "Polar covalent",
+        "Metallic",
+        "Pure (nonpolar) covalent"
+      ],
+      "answer": "Metallic"
+    },
+    {
+      "prompt": "A polar covalent bond is best described as:",
+      "options": [
+        "Complete transfer of electrons from one atom to the other",
+        "Equal sharing of the bonding electrons",
+        "Unequal sharing of the bonding electrons, giving partial charges",
+        "A sea of delocalised electrons around metal cations"
+      ],
+      "answer": "Unequal sharing of the bonding electrons, giving partial charges"
+    },
+    {
+      "prompt": "Brass (copper + zinc) is classified as:",
+      "options": [
+        "An ionic compound",
+        "A giant covalent structure",
+        "A mixture with metallic character (an alloy)",
+        "A thermosetting polymer"
+      ],
+      "answer": "A mixture with metallic character (an alloy)"
     }
   ],
   "faq": [
     {
-      "q": "Why are alloys harder than the pure metals they are made from?",
-      "a": "Pure metals have a regular lattice of identically sized ions. Layers can slide over each other easily, making the metal malleable. In an alloy, atoms of a different size are introduced, disrupting this regular pattern. This makes it much more difficult for the layers of ions to slide, increasing the material's hardness and strength."
+      "q": "If bonding is a continuum, why do we still talk about 'ionic', 'covalent' and 'metallic' at all?",
+      "a": "Because the three idealised models are still the most useful starting point: they capture the corners of the map and give you clean rules for the extremes (a giant ionic lattice, a simple molecule, a metallic sea). The continuum refines that picture for the many substances that sit between corners — it does not throw the models away. In the exam you use the model that matches where the substance lies on the triangle, and you use the language of 'dominant character' for the in-between cases."
     },
     {
-      "q": "What is the key structural difference between a thermoplastic and a thermosetting plastic?",
-      "a": "The key difference lies in the bonding between polymer chains. In thermoplastics, the long chains are held together only by weak intermolecular forces (like London dispersion forces or dipole-dipole interactions). In thermosetting plastics, strong covalent bonds, known as cross-links, exist between the chains, creating a single, rigid, giant molecular structure."
+      "q": "How do the two axes of the bonding triangle actually tell bonding types apart?",
+      "a": "The vertical axis is $\\Delta\\chi$, the electronegativity difference, and it measures ionic character — a big difference means electrons are pulled strongly toward one atom (ionic). The horizontal axis is $\\bar{\\chi}$, the average electronegativity. When $\\Delta\\chi$ is small the bond is not ionic, and $\\bar{\\chi}$ then decides between the other two corners: a low average (two electron-poor metals) gives metallic bonding, while a high average (two electron-hungry non-metals) gives covalent bonding. You need BOTH numbers to place a substance."
     },
     {
-      "q": "How can a material be both a 'liquid' and a 'crystal'?",
-      "a": "This refers to the mesophase of matter. The 'liquid' part means the molecules are not fixed in a lattice and can move past one another, allowing the substance to flow. The 'crystal' part means the molecules maintain a degree of long-range order, specifically orientational order, where the molecules tend to point in the same direction. So, it flows like a liquid but has some of the structural order of a crystal."
+      "q": "Is there a single Δχ cut-off that tells me whether a bond is ionic or covalent?",
+      "a": "Rules of thumb exist (for example, $\\Delta\\chi$ above about 1.8 is often treated as predominantly ionic), but they are only approximate and can misclassify substances. The bonding triangle is preferred because it uses the average electronegativity as well, which is exactly why it can separate metallic bonding from covalent bonding — something a single Δχ cut-off cannot do. Quote a cut-off if it helps your reasoning, but justify the final placement using the triangle."
     },
     {
-      "q": "Are fullerene and carbon nanotubes also allotropes of carbon?",
-      "a": "Yes, they are. Buckminsterfullerene (C$_{60}$) consists of molecules where carbon atoms form a sphere of interconnected pentagons and hexagons. Carbon nanotubes are cylindrical molecules made of rolled-up sheets of graphene. Both are important examples of nanomaterials and demonstrate the versatility of carbon's bonding capabilities."
+      "q": "Why are alloys treated as materials rather than as new compounds?",
+      "a": "An alloy keeps metallic bonding — a lattice of cations in a sea of delocalised electrons — so it still conducts and is malleable, and its composition can vary continuously rather than sitting at a fixed formula. That makes it a mixture (a solid solution), not a compound. The point of alloying is engineering: adding differently sized atoms disrupts the layers so they slide less easily, tuning hardness and strength while keeping the useful metallic properties."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our study of chemistry, we often focus on models of atoms and bonding. But how do these microscopic theories explain the world we can see and touch? This topic acts as a bridge, connecting the concepts of structure and bonding to the tangible, macroscopic properties of materials. By understanding this link, we can not only explain why materials behave as they do but also design new materials with specific, desirable properties."
+      "content": "When you first met chemical bonding you sorted every substance into one of three boxes: ionic, covalent or metallic. That is a powerful starting model, but it is a simplification. Real bonding is a continuum, and most substances lie somewhere between the corners rather than sitting cleanly in a box. This lesson upgrades the three-box picture into a map — the van Arkel–Ketelaar bonding triangle — that places a substance from just two numbers taken from electronegativity values, and then follows that map outward from bonds to the materials engineers actually build with: alloys, polymers and composites. As with every calculation-style topic, the worked examples are marked exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Metals and Alloys"
+      "content": "The three models are idealised extremes"
     },
     {
       "type": "text",
-      "content": "Metals are characterised by a unique set of properties: they are good conductors of heat and electricity, malleable (can be hammered into sheets), and ductile (can be drawn into wires). These properties are explained by the **electron sea model**. The metal atoms are considered to be positive ions (cations) arranged in a fixed crystal lattice, immersed in a 'sea' of delocalised valence electrons. These electrons are not associated with any single atom and are free to move throughout the lattice, acting as mobile charge carriers, which explains electrical conductivity."
-    },
-    {
-      "type": "text",
-      "content": "When a force is applied, the layers of metal cations can slide over one another without breaking the metallic bonds, as the delocalised electrons can adjust to the new positions. This explains malleability and ductility. An **alloy** is a mixture of a metal with another element. Introducing atoms of a different size into the metal lattice disrupts its regular structure. This makes it more difficult for the layers to slide, resulting in a material that is typically harder and stronger, but often less ductile, than the pure parent metal. For example, steel (iron and carbon) is much stronger than pure iron."
-    },
-    {
-      "type": "heading",
-      "content": "Giant Covalent Structures"
-    },
-    {
-      "type": "text",
-      "content": "While some covalent substances form simple, discrete molecules, others form vast, three-dimensional networks called giant covalent or network covalent structures. In these materials, atoms are joined by strong covalent bonds throughout the entire structure. Consequently, a huge amount of energy is required to break these bonds, leading to very high melting and boiling points. Their properties, however, can vary dramatically depending on the specific arrangement of atoms and the type of bonding."
+      "content": "Ionic, covalent and metallic bonding are limiting cases. A perfectly ionic bond would mean one atom transfers electrons completely to another; a perfectly covalent bond would mean two atoms share electrons perfectly equally; metallic bonding is a lattice of cations in a sea of delocalised electrons. These extremes are rarely realised exactly. In sodium chloride the bonding is close to the ionic corner, and in the chlorine molecule Cl₂ it is genuinely at the covalent corner, but a huge number of substances — hydrogen chloride, water, silicon carbide, semiconductors, alloys — sit between corners and are best described as a blend of character."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Diamond:** Each carbon atom is $sp^3$ hybridised and covalently bonded to four other carbons in a tetrahedral arrangement. This creates a rigid, strong, 3D lattice, making diamond the hardest known natural substance. All valence electrons are localised in sigma bonds, so it does not conduct electricity.",
-        "**Graphite:** Each carbon atom is $sp^2$ hybridised and bonded to three others in a trigonal planar geometry, forming hexagonal layers. The layers are held together by weak London dispersion forces, allowing them to slide past each other, making graphite a good lubricant. The remaining p-electron on each carbon is delocalised within the layer, allowing graphite to conduct electricity.",
-        "**Graphene:** A single layer of graphite. It possesses exceptional strength, flexibility, and electrical conductivity due to its 2D structure and delocalised electron system.",
-        "**Silicon Dioxide ($SiO_2$):** Also known as silica, found in quartz and sand. Similar to diamond, each silicon atom is covalently bonded to four oxygen atoms, and each oxygen to two silicon atoms, in a strong, tetrahedral 3D network. This gives it a high melting point and makes it hard and insoluble."
+        "**Pure ionic** = complete electron transfer (a limiting case, e.g. close to it in CsF).",
+        "**Pure covalent** = perfectly equal sharing (only truly reached between identical atoms, e.g. Cl₂).",
+        "**Pure metallic** = cations in a delocalised electron sea (e.g. Na, Cu).",
+        "Most real substances lie **between** these corners on a continuous spectrum, not inside one of three boxes."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "Explain, with reference to their structure and bonding, why graphite is used as a lubricant while diamond is used in cutting tools.",
-      "solution": "1. **Diamond's Structure and Hardness:**\n   - Each carbon atom in diamond is $sp^3$ hybridised and forms four strong covalent bonds with neighbouring atoms. [1]\n   - These atoms are arranged in a rigid, tetrahedral 3D lattice/network. [1]\n   - A large amount of energy is required to break these strong covalent bonds, making diamond extremely hard and suitable for cutting tools. [1]\n\n2. **Graphite's Structure and Lubricating Properties:**\n   - Graphite consists of layers of carbon atoms arranged in hexagons. Within each layer, carbon atoms are held by strong covalent bonds ($sp^2$ hybridisation). [1]\n   - The layers are held together by weak London dispersion/van der Waals forces. [1]\n   - These weak forces allow the layers to slide easily over one another, giving graphite its lubricating properties. [1]"
-    },
-    {
       "type": "heading",
-      "content": "Polymers"
+      "content": "Polar covalent: the intermediate case"
     },
     {
       "type": "text",
-      "content": "Polymers are large molecules (macromolecules) made up of many repeating subunits called monomers. The properties of a polymer are determined by the monomer it's made from, the length of the polymer chains, and how the chains interact with each other. For example, longer chains lead to stronger intermolecular forces, increasing the melting point and viscosity. Branching in the chains prevents them from packing closely, which typically lowers the density and strength of the material."
+      "content": "The clearest window onto the continuum is the polar covalent bond. When two different non-metal atoms share a pair of electrons, the more electronegative atom pulls the shared pair closer to itself. The sharing is unequal, so that atom gains a partial negative charge ($\\delta-$) and the other a partial positive charge ($\\delta+$). This is neither the equal sharing of a pure covalent bond nor the complete transfer of an ionic bond — it is the middle ground. As the electronegativity difference grows, the bond shifts steadily from nonpolar covalent, through polar covalent, toward ionic. The difference in electronegativity, $\\Delta\\chi$, is therefore a direct measure of ionic character."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Addition Polymers:** Formed from monomers (usually alkenes) adding to one another, breaking the C=C double bond. The empirical formula of the polymer is the same as the monomer. Example: poly(ethene).",
-        "**Condensation Polymers:** Formed when monomers with two functional groups react, eliminating a small molecule (like $H_2O$ or $HCl$) for each bond formed. Examples: polyesters (ester linkage) and polyamides (amide linkage, like nylon).",
-        "**Thermoplastics:** Consist of individual polymer chains held together by weak intermolecular forces. They soften upon heating and can be remoulded. Example: PET, used in drink bottles.",
-        "**Thermosetting Plastics:** Have strong covalent bonds (cross-links) between the polymer chains, creating a rigid 3D network. They do not melt upon heating but decompose at high temperatures. Example: Bakelite, used in electrical fittings."
+        "$\\Delta\\chi \\approx 0$ (identical or near-identical atoms): **pure / nonpolar covalent** (e.g. Cl₂).",
+        "Small-to-moderate $\\Delta\\chi$: **polar covalent** — unequal sharing with $\\delta+$/$\\delta-$ (e.g. HCl).",
+        "Large $\\Delta\\chi$ (roughly ≳ 1.8): **predominantly ionic** (e.g. NaCl).",
+        "The cut-offs are approximate guides — the bonding triangle gives a fuller classification because it also uses the average electronegativity."
       ]
     },
     {
       "type": "examTip",
-      "content": "When asked to draw the repeating unit of a polymer, be precise. For an addition polymer, show the single bond that was formed from the double bond and the bonds extending out of the brackets. For a condensation polymer, ensure you have correctly drawn the new linkage (e.g., ester or amide) and removed the atoms of the eliminated small molecule."
-    },
-    {
-      "type": "workedExample",
-      "question": "Nylon 6,6 is a condensation polymer formed from hexanedioic acid ($HOOC(CH_2)_4COOH$) and 1,6-diaminohexane ($H_2N(CH_2)_6NH_2$).\n(i) Identify the small molecule eliminated during this polymerisation.\n(ii) Draw the structure of the repeating unit of Nylon 6,6, showing the amide linkage.",
-      "solution": "(i) The reaction is between a carboxylic acid group (-COOH) and an amine group (-NH$_2$). The -OH from the acid and one -H from the amine combine to form water ($H_2O$).\n   - **Small molecule eliminated: Water / $H_2O$** [1]\n\n(ii) To form the repeating unit, we remove the -OH from the acid and one -H from the amine at each end and join the remaining fragments. This forms an amide link (-CO-NH-).\n   - **Structure:**\n   `-[CO-(CH_2)_4-CO-NH-(CH_2)_6-NH]-`\n   - Correct amide linkage (-CO-NH-) shown. [1]\n   - Correct structures of both monomer residues and continuation bonds shown. [1]"
+      "content": "Avoid writing 'the bond is ionic OR covalent' as if it were a strict either/or. The examiner-approved language for intermediate cases is about DOMINANT character — for example 'predominantly ionic with some covalent character', or 'polar covalent'. This phrasing shows you understand bonding as a continuum, which is exactly what S2.4 assesses."
     },
     {
       "type": "heading",
-      "content": "Advanced Materials: Nanomaterials and Liquid Crystals"
+      "content": "The bonding triangle: two numbers place a substance"
     },
     {
       "type": "text",
-      "content": "**Nanomaterials** are substances with at least one dimension in the nanoscale range (1-100 nm). At this scale, materials can exhibit different properties compared to their bulk counterparts. The most significant factor is their vast surface-area-to-volume ratio. This makes them highly effective in applications like catalysis (more active sites) and sunscreens (zinc oxide nanoparticles are transparent while still blocking UV light)."
+      "content": "The van Arkel–Ketelaar bonding triangle turns the continuum into a map you can read. The three corners are pure ionic (top), pure covalent (bottom right) and pure metallic (bottom left). A substance is plotted using two coordinates calculated from the electronegativity ($\\chi$) values of its elements — the difference on the vertical axis and the average on the horizontal axis."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta\\chi = |\\chi_A - \\chi_B| \\qquad\\text{and}\\qquad \\bar{\\chi} = \\frac{\\chi_A + \\chi_B}{2}"
     },
     {
       "type": "text",
-      "content": "**Liquid crystals** represent a fascinating intermediate state of matter, a **mesophase**, between a solid and a liquid. They are typically composed of elongated, rod-shaped organic molecules. In the liquid crystal phase, these molecules have lost the positional order of a solid (they can flow like a liquid) but have retained some degree of orientational order. The most common type is the nematic phase, where the molecules are aligned in a common direction. This alignment can be influenced by an electric field, which is the principle behind Liquid Crystal Displays (LCDs). Applying a voltage changes the molecular alignment, which in turn alters how light passes through the material, creating an image."
+      "content": "The vertical axis, $\\Delta\\chi$, measures how unevenly the electrons are attracted, i.e. ionic character — a large difference pushes a substance up toward the ionic corner. The horizontal axis, $\\bar{\\chi}$, measures how electronegative the elements are on average. When $\\Delta\\chi$ is small the substance is not ionic, and the average then decides between the two lower corners: a low average (two electron-poor metals) sits at the metallic corner, while a high average (two electron-hungry non-metals) sits at the covalent corner. You need both numbers — that is why a single $\\Delta\\chi$ cut-off cannot, on its own, separate metallic from covalent bonding."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Vertical axis** = $\\Delta\\chi$ = electronegativity **difference** = ionic character.",
+        "**Horizontal axis** = $\\bar{\\chi}$ = **average** electronegativity = separates metallic (low) from covalent (high).",
+        "**High $\\Delta\\chi$** → top of the triangle → **ionic**.",
+        "**Low $\\Delta\\chi$, high $\\bar{\\chi}$** → bottom right → **covalent**.",
+        "**Low $\\Delta\\chi$, low $\\bar{\\chi}$** → bottom left → **metallic**.",
+        "Regions between corners describe **polar covalent** and mixed-character bonding — the point of the continuum."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The single most common triangle error is swapping the axes — using the average for the vertical axis or the difference for the horizontal. Label them before you plot: DIFFERENCE goes up, AVERAGE goes across. Getting the axes right is what earns the placement (A) mark."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sodium chloride, NaCl, has electronegativity values $\\chi(\\text{Na}) = 0.9$ and $\\chi(\\text{Cl}) = 3.2$. Using these values, calculate the electronegativity difference and the average electronegativity, and use the bonding triangle to deduce the dominant type of bonding. [3]",
+      "solution": "**Step 1 — electronegativity difference (vertical axis).**\n$\\Delta\\chi = |\\chi(\\text{Cl}) - \\chi(\\text{Na})| = |3.2 - 0.9| = 2.3$.  [M1: correct difference]\n\n**Step 2 — average electronegativity (horizontal axis).**\n$\\bar{\\chi} = \\dfrac{3.2 + 0.9}{2} = \\dfrac{4.1}{2} = 2.05 \\approx 2.1$.  [M1: correct average]\n\n**Step 3 — place on the triangle and conclude.**\nA large $\\Delta\\chi$ of 2.3 sits high up the vertical axis, in the **ionic** region at the top of the triangle. With a high difference the average is secondary, but $\\bar{\\chi} \\approx 2.1$ keeps the point toward the upper part of the triangle rather than a lower corner.\nThe dominant bonding is therefore **ionic**.  [A1: correct placement and conclusion]\n\n*This matches what you already know — NaCl is a giant ionic lattice — and shows the method giving the expected answer on a clear-cut case.*"
+    },
+    {
+      "type": "workedExample",
+      "question": "Hydrogen chloride, HCl, has electronegativity values $\\chi(\\text{H}) = 2.2$ and $\\chi(\\text{Cl}) = 3.2$. Using these values and the bonding triangle, deduce the dominant type of bonding in HCl and comment on its position on the bonding continuum. [3]",
+      "solution": "**Step 1 — electronegativity difference.**\n$\\Delta\\chi = |3.2 - 2.2| = 1.0$.  [M1: correct difference]\n\n**Step 2 — average electronegativity.**\n$\\bar{\\chi} = \\dfrac{3.2 + 2.2}{2} = \\dfrac{5.4}{2} = 2.7$.  [M1: correct average]\n\n**Step 3 — place on the triangle and conclude.**\nThe difference (1.0) is small-to-moderate, so the point sits low on the vertical axis — well below the ionic corner. The average (2.7) is high, placing the point toward the bottom-right, **covalent** region.\nThe dominant bonding is therefore **covalent**, but because $\\Delta\\chi = 1.0$ is not zero, it is specifically **polar covalent** — an intermediate point on the continuum, with the chlorine carrying $\\delta-$ and the hydrogen $\\delta+$.  [A1: correct placement and conclusion, with continuum comment]\n\n*Notice how the same two numbers that placed NaCl in the ionic region place HCl in the polar-covalent part of the covalent region — the triangle captures the in-between character that a three-box classification cannot.*"
+    },
+    {
+      "type": "heading",
+      "content": "From bonds to materials: alloys"
+    },
+    {
+      "type": "text",
+      "content": "Following the continuum toward the metallic corner leads to alloys. An alloy is a mixture of a metal with one or more other elements, and crucially it keeps its metallic character: metallic bonding — cations in a sea of delocalised electrons — persists, so the alloy still conducts electricity and heat and remains workable. What changes is the mechanical behaviour. Introducing atoms of a different size disrupts the regular layers of the host lattice, so the layers can no longer slide over one another as easily. The result is a harder, stronger material than the pure metal, which is why brass (copper and zinc) is harder than copper and steel is harder than iron. Because the composition can be varied continuously rather than fixed at a formula, an alloy is a mixture — a solid solution — not a compound."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An alloy **retains metallic bonding and metallic character** — it still conducts and is malleable.",
+        "**Different-sized atoms disrupt the layers**, so they slide less easily → the alloy is harder and stronger than the pure metal.",
+        "Composition can vary continuously → an alloy is a **mixture (solid solution), not a compound**.",
+        "Alloying is a way of **tuning properties** while keeping the useful metallic behaviour."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "From bonds to materials: polymers and composites"
+    },
+    {
+      "type": "text",
+      "content": "The same logic — bonding and structure set the properties — guides how engineers choose materials beyond the metals. Polymers are long-chain molecules whose behaviour depends on how the chains are held together: chains linked only by weak intermolecular forces can slide and be remoulded on heating (thermoplastic behaviour), while chains joined by strong covalent cross-links form a rigid network that does not soften (thermosetting behaviour). Composites go a step further by combining materials with different bonding and structure — for example stiff glass or carbon fibres embedded in a flexible polymer resin — so that the combination has a property profile neither part has alone, such as high stiffness at low density. Choosing a material is really choosing the bonding you need: metallic for conduction and toughness, giant covalent for hardness, polymers for lightness and mouldability, and composites to combine those strengths."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Bonding and structure decide properties**, so material choice is really a choice of bonding.",
+        "**Polymers:** weak intermolecular forces between chains → mouldable/remouldable (thermoplastic); covalent cross-links → rigid, non-melting (thermosetting).",
+        "**Composites:** combine materials of different bonding/structure (e.g. fibres in resin) to get properties neither has alone, such as high stiffness with low density.",
+        "The bonding continuum links the microscopic model (where a substance sits on the triangle) to the macroscopic engineering decision."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Treating bonding as three separate boxes** — the correct view is a continuum; describe in-between substances by their DOMINANT character (e.g. 'polar covalent', 'predominantly ionic'), not a strict ionic/covalent either/or.",
+        "**Swapping the two axes** — the vertical axis is the electronegativity DIFFERENCE ($\\Delta\\chi$); the horizontal axis is the AVERAGE electronegativity ($\\bar{\\chi}$). Swapping them misplaces the substance and loses the placement mark.",
+        "**Using $\\Delta\\chi$ alone to separate metallic from covalent** — a small $\\Delta\\chi$ is not enough; you must use the average electronegativity to decide between the metallic corner (low average) and the covalent corner (high average).",
+        "**Calling a polar covalent bond 'ionic'** — unequal sharing with partial charges ($\\delta+$/$\\delta-$) is still covalent bonding, just polarised; it is not the same as the complete transfer of an ionic bond.",
+        "**Describing an alloy as a compound** — it is a mixture (solid solution) that retains metallic bonding; its composition is not fixed at a formula.",
+        "**Forgetting the absolute value in $\\Delta\\chi$** — the difference is $|\\chi_A - \\chi_B|$ and is never negative."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for a placement question. In Paper 2 the marks are analytic: each is tied to a specific line of working (a method mark, M, or an answer mark, A), and error-carried-forward (ECF) means a slip in an early number does not automatically cost you the marks that follow — provided your method is written down. Study how each of the three marks below is earned by a specific line, and note where the accept ranges and ECF apply."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using electronegativity values, deduce the dominant type of bonding in aluminium chloride, AlCl₃, and justify your answer using a bonding triangle. $\\chi(\\text{Al}) = 1.6$, $\\chi(\\text{Cl}) = 3.2$. [3]",
+      "solution": "**Model answer — full working.**\n\n**Step 1 — electronegativity difference (vertical axis).**\n$\\Delta\\chi = |\\chi(\\text{Cl}) - \\chi(\\text{Al})| = |3.2 - 1.6| = 1.6$.\n\n**Step 2 — average electronegativity (horizontal axis).**\n$\\bar{\\chi} = \\dfrac{3.2 + 1.6}{2} = \\dfrac{4.8}{2} = 2.4$.\n\n**Step 3 — place on the triangle and conclude.**\nA moderate $\\Delta\\chi$ of 1.6 sits partway up the vertical axis — below the clearly ionic region — while the high average $\\bar{\\chi} = 2.4$ pushes the point toward the bottom-right. The point therefore falls in the **polar covalent** part of the covalent region, near the ionic boundary. The dominant bonding is best described as **(polar) covalent with significant ionic character**, i.e. intermediate on the continuum rather than purely ionic.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct method/calculation of $\\Delta\\chi$.** Awarded for computing the electronegativity DIFFERENCE, $|3.2 - 1.6| = 1.6$. This is a METHOD mark: it credits the correct process (subtract, take the modulus) and is earned even if a value is misread, as long as the method is right.\n- **M1 — correct method/calculation of $\\bar{\\chi}$.** Awarded for computing the AVERAGE, $(3.2 + 1.6)/2 = 2.4$. Again a method mark — the credit is for averaging the two electronegativities.\n- **A1 — correct placement and conclusion.** Awarded for placing the point using $\\Delta\\chi$ on the vertical axis and $\\bar{\\chi}$ on the horizontal axis and concluding the dominant bonding type consistent with that position. **Error-carried-forward applies:** if a student calculated $\\Delta\\chi$ or $\\bar{\\chi}$ slightly wrongly but then plotted THEIR values correctly and drew the consistent conclusion, this placement mark is still awarded on their figures.\n\n**Accept ranges.** The engine accepts small variation in the electronegativity values quoted (data booklet values differ slightly between editions), so it accepts $\\Delta\\chi$ in roughly the 1.5–1.7 band and $\\bar{\\chi}$ around 2.3–2.5. For the conclusion it accepts either 'polar covalent with ionic character' or an equivalent 'intermediate / borderline covalent–ionic' description, because AlCl₃ genuinely sits near a boundary — what it does NOT accept is an unqualified 'purely ionic' with no reference to the point's position.\n\n**Bottom line:** two of the three marks are method marks that survive an arithmetic or value-reading slip, and the placement mark is protected by ECF. A student who writes only 'covalent' with no calculation risks losing 2 marks; a student who shows both coordinates and reads the triangle keeps the method marks regardless of the final wording."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, accept ranges and ECF. So always show both coordinates: write the DIFFERENCE, write the AVERAGE, then state where the point sits and conclude. The method marks and error-carried-forward are what protect your score when a value or a placement is borderline — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Seeing bonding as a continuum reframes everything that follows. Intermolecular forces, polarity and solubility all trace back to the $\\delta+$/$\\delta-$ separation of polar covalent bonds; the properties of giant structures and metals map onto the corners of the triangle; and the materials chapter — alloys, polymers, composites — is the continuum applied to engineering. Master the two-number method (find the difference, find the average, read the triangle) and you can classify the bonding in almost any binary substance and justify it the way the exam rewards."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-chemistry-hl&topic=S2.4"
+      "label": "Get a Paper 2 answer marked: use electronegativity values and a bonding triangle to deduce the dominant bonding type",
+      "href": "/mark?subject=ib-chemistry-hl&topic=S2.4&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Chemguide: Giant Covalent Structures",
-          "href": "https://www.chemguide.co.uk/atoms/structures/giantcov.html"
+          "label": "IB Chemistry Data Booklet (Section 9: electronegativity values)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         },
         {
-          "label": "RSC: Polymers",
-          "href": "https://edu.rsc.org/resources/polymers/401.article"
-        },
-        {
-          "label": "Introduction to Liquid Crystals",
-          "href": "http://plc.cwru.edu/tutorial/enhanced/files/lc/lc.htm"
+          "label": "PhET Simulation: States of Matter",
+          "href": "https://phet.colorado.edu/en/simulations/states-of-matter-basics"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "States of Matter",
+    "embedUrl": "https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/states-of-matter-basics",
+    "hint": "Explore “States of Matter” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
 }

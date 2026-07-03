@@ -1,213 +1,398 @@
 {
   "slug": "r3-2-electron-transfer-reactions",
   "topicCode": "R3.2",
+  "unit": {
+    "code": "R3",
+    "title": "What are the mechanisms of chemical change?"
+  },
   "title": "Electron transfer reactions",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores the principles of electron transfer reactions, focusing on electrochemical cells. It covers the distinction between spontaneous voltaic cells and non-spontaneous electrolytic cells, the calculation of cell potentials under standard and non-standard conditions, and the quantitative aspects of electrolysis.",
-  "durationMin": 55,
-  "updated": "2026-06-20",
+  "summary": "Redox is the chemistry of moving electrons — from the corrosion of iron to the batteries in your phone. This lesson builds the whole R3.2 toolkit: oxidation and reduction as electron transfer (OIL RIG), the hierarchical rules for assigning oxidation states, spotting oxidising and reducing agents, writing and balancing half-equations and combining them into overall redox equations, the reactivity (activity) series and displacement reactions, and disproportionation. The HL extension covers the electrochemical series, voltaic (galvanic) and electrolytic cells, standard electrode potentials and cell potential. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between voltaic (galvanic) and electrolytic cells in terms of energy conversion and electrode polarity.",
-    "Calculate cell potentials using standard electrode potentials ($E^\\ominus$) and predict the spontaneity of redox reactions.",
-    "Apply the Nernst equation to determine cell potentials under non-standard conditions.",
-    "Perform quantitative calculations related to electrolysis using Faraday's laws."
+    "Define oxidation and reduction in terms of electron transfer and change in oxidation state (OIL RIG).",
+    "Assign oxidation states to atoms in elements, ions and compounds using the hierarchical rules, including the peroxide and hydride exceptions.",
+    "Identify the oxidising agent and reducing agent in a redox reaction, and explain why each is itself reduced or oxidised.",
+    "Write half-equations balanced for atoms and charge and combine them into a balanced overall redox equation.",
+    "Use the reactivity series to predict displacement reactions, and recognise disproportionation.",
+    "(HL) Use the electrochemical series and standard electrode potentials to calculate a cell potential and describe voltaic and electrolytic cells.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "R3.2"
+  ],
+  "levelNote": "Common to SL and HL; electrochemical cells and standard electrode potentials are HL.",
   "simpleExplanation": {
-    "title": "Redox Batteries and Forced Reactions",
-    "summary": "Electrochemical cells are systems where redox reactions either produce electricity or are driven by it. Understanding which direction electrons want to flow tells us if a reaction can power a device or if it needs power to occur.",
-    "analogy": "Imagine a waterfall versus a water pump. A waterfall is a spontaneous process where water flows downhill, releasing potential energy which could be used to turn a turbine. This is like a voltaic cell (a battery). A water pump, however, uses energy to force water uphill against gravity. This is like an electrolytic cell, which uses electricity to drive a non-spontaneous chemical reaction.",
+    "title": "The Great Electron Swap",
+    "summary": "A redox reaction is a transfer of electrons from one species to another. Oxidation and reduction always happen together — electrons lost by one species are exactly the electrons gained by another — and oxidation states are the bookkeeping tool that lets you track where those electrons went.",
+    "analogy": "Picture a marketplace where the only currency is electrons. A reducing agent is a seller: it hands over electrons and is oxidised (its oxidation state rises). An oxidising agent is a buyer: it takes electrons in and is reduced (its oxidation state falls). Every sale needs a buyer and a seller, so you can never have oxidation without reduction — and the electrons the buyer gains are precisely the electrons the seller loses.",
     "steps": [
-      "Identify the oxidation and reduction half-reactions and locate their standard electrode potentials ($E^\\ominus$) in the data booklet.",
-      "Calculate the standard cell potential ($E^\\ominus_{cell}$) to determine the spontaneous direction of the reaction under standard conditions.",
-      "For non-standard conditions (e.g., concentrations not 1 mol dm⁻³), apply the Nernst equation to find the actual cell potential ($E_{cell}$).",
-      "In electrolytic cells, use Faraday's laws ($Q=It$ and $n(e^-)=Q/F$) to calculate the amount of substance produced or consumed by a given current over time."
+      "Assign an oxidation state to every atom using the rules — this is the electron-accounting position of each atom.",
+      "Find the atom whose oxidation state goes UP (oxidised) and the one whose state goes DOWN (reduced).",
+      "Write a half-equation for each process, balancing atoms first, then charge with electrons.",
+      "Scale the two half-equations so the electrons cancel, then add them to get the balanced overall equation."
     ]
   },
+  "keyConcepts": [
+    "electron transfer",
+    "oxidation state",
+    "conservation of charge"
+  ],
   "flashcards": [
     {
-      "front": "What is a voltaic (galvanic) cell?",
-      "back": "An electrochemical cell that converts chemical energy from a spontaneous redox reaction into electrical energy. $E_{cell}$ is positive and $\\Delta G$ is negative."
+      "front": "OIL RIG",
+      "back": "Oxidation Is Loss, Reduction Is Gain — of electrons. Oxidation raises the oxidation state; reduction lowers it. The two always occur together in a redox reaction.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is an electrolytic cell?",
-      "back": "An electrochemical cell that uses electrical energy to drive a non-spontaneous redox reaction. $E_{cell}$ is negative and $\\Delta G$ is positive."
+      "front": "Oxidation state (oxidation number)",
+      "back": "The hypothetical charge an atom would carry if every bond to a different element were 100% ionic. It is a bookkeeping tool for tracking electron transfer, not a real charge.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the anode in an electrochemical cell?",
-      "back": "The electrode where oxidation occurs. It is the negative electrode in a voltaic cell and the positive electrode in an electrolytic cell."
+      "front": "Oxidising agent (oxidant)",
+      "back": "The species that ACCEPTS electrons and is therefore itself REDUCED. It causes the other species to be oxidised. Classic examples: MnO₄⁻, Cr₂O₇²⁻, Cl₂.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the cathode in an electrochemical cell?",
-      "back": "The electrode where reduction occurs. It is the positive electrode in a voltaic cell and the negative electrode in an electrolytic cell."
+      "front": "Reducing agent (reductant)",
+      "back": "The species that DONATES electrons and is therefore itself OXIDISED. It causes the other species to be reduced. Classic examples: reactive metals, H₂, C, Fe²⁺.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the function of a salt bridge?",
-      "back": "To complete the electrical circuit by allowing the migration of ions between the two half-cells, maintaining charge neutrality."
+      "front": "Exam Trap: which agent is which?",
+      "back": "The oxidising agent is the one that gets REDUCED, and the reducing agent is the one that gets OXIDISED. The 'agent' makes the action happen to the OTHER species, not to itself. This crossover is one of the most-penalised errors.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is Standard Electrode Potential ($E^\\ominus$)?",
-      "back": "The potential difference of a half-cell measured under standard conditions (1 mol dm⁻³ concentration, 100 kPa pressure, 298 K) relative to the Standard Hydrogen Electrode (SHE)."
+      "front": "Oxidation state: free element",
+      "back": "Any atom in an uncombined element has oxidation state 0 — e.g. Fe(s), O₂, P₄, Cl₂ are all 0, no matter how many atoms are in the molecule.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "What is the Standard Hydrogen Electrode (SHE)?",
-      "back": "The reference electrode used for measuring other electrode potentials, assigned a potential of exactly 0.00 V. The reaction is $2H^+(aq) + 2e^- \\rightleftharpoons H_2(g)$."
+      "front": "Oxidation state: monatomic ion",
+      "back": "Equal to the charge on the ion. Na⁺ is +1, Mg²⁺ is +2, S²⁻ is −2, Cl⁻ is −1.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "How do you calculate the standard cell potential, $E^\\ominus_{cell}$?",
-      "back": "$E^\\ominus_{cell} = E^\\ominus_{cathode} - E^\\ominus_{anode}$. The values for $E^\\ominus$ are taken directly from the data booklet (which lists reduction potentials)."
+      "front": "Oxidation state: oxygen and its exceptions",
+      "back": "Oxygen is usually −2. Exceptions: −1 in PEROXIDES (H₂O₂, Na₂O₂), and positive (+2) in OF₂ because fluorine is more electronegative.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "What condition on $E^\\ominus_{cell}$ indicates a spontaneous reaction?",
-      "back": "A positive value for $E^\\ominus_{cell}$ ($E^\\ominus_{cell} > 0$) indicates a spontaneous reaction under standard conditions."
+      "front": "Oxidation state: hydrogen and its exception",
+      "back": "Hydrogen is usually +1. The exception is METAL HYDRIDES (NaH, CaH₂) where it is −1 because the metal is less electronegative.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "What is the Nernst Equation used for?",
-      "back": "To calculate the cell potential ($E_{cell}$) under non-standard conditions of concentration and temperature. $E_{cell} = E^\\ominus_{cell} - \\frac{RT}{nF} \\ln Q$."
+      "front": "Sum rule for oxidation states",
+      "back": "The oxidation states in a neutral compound sum to 0; in a polyatomic ion they sum to the ionic charge. This single rule lets you solve for an unknown oxidation state algebraically.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is Faraday's constant (F)?",
-      "back": "The electric charge carried by one mole of electrons. Its value is approximately 96500 C mol⁻¹."
+      "front": "Half-equation",
+      "back": "An equation showing one half of a redox process on its own, with electrons written explicitly. Reduction gains electrons on the LEFT (e.g. Cu²⁺ + 2e⁻ → Cu); oxidation loses electrons on the RIGHT (e.g. Zn → Zn²⁺ + 2e⁻).",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the relationship between charge (Q), current (I), and time (t)?",
-      "back": "$Q = I \\times t$, where Q is in coulombs (C), I is in amperes (A), and t is in seconds (s)."
+      "front": "Reactivity (activity) series",
+      "back": "Metals ranked by how readily they are oxidised (lose electrons). A more reactive metal will displace a less reactive metal ion from solution. Order (high→low): K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Ag.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Displacement reaction",
+      "back": "A more reactive metal reduces the ion of a less reactive metal, taking its place. E.g. Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s): Zn is oxidised, Cu²⁺ is reduced.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Disproportionation",
+      "back": "A reaction in which the SAME element in a SINGLE species is simultaneously oxidised AND reduced. E.g. Cl₂ + 2NaOH → NaCl + NaClO + H₂O: Cl (0) goes to −1 and +1 at once.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "HL: Standard electrode potential (E°)",
+      "back": "The voltage of a half-cell measured against the standard hydrogen electrode (0.00 V) under standard conditions (298 K, 100 kPa, 1 mol dm⁻³). A more positive E° means the species is a better oxidising agent (more readily reduced).",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "HL: Cell potential",
+      "back": "$E°_{cell} = E°_{cathode} - E°_{anode}$ (equivalently $E°_{reduced} - E°_{oxidised}$). A positive $E°_{cell}$ means a voltaic cell reaction is spontaneous.",
+      "pillLabel": "HL"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In the reaction Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s), which statement is correct?",
+      "options": [
+        "Zn is reduced because it gains electrons",
+        "Zn is oxidised because it loses electrons (OIL)",
+        "Cu²⁺ is oxidised because its oxidation state falls",
+        "No electron transfer occurs"
+      ],
+      "answer": "Zn is oxidised because it loses electrons (OIL)"
+    },
+    {
+      "prompt": "What is the oxidation state of oxygen in hydrogen peroxide, H₂O₂?",
+      "options": [
+        "−2, as in most compounds",
+        "−1, because it is a peroxide",
+        "+1",
+        "0, because it is close to elemental oxygen"
+      ],
+      "answer": "−1, because it is a peroxide"
+    },
+    {
+      "prompt": "In the reaction where MnO₄⁻ oxidises Fe²⁺, the oxidising agent is:",
+      "options": [
+        "Fe²⁺, because it loses electrons",
+        "MnO₄⁻, because it is itself reduced (gains electrons)",
+        "MnO₄⁻, because it is itself oxidised",
+        "Fe³⁺, because it has the highest oxidation state"
+      ],
+      "answer": "MnO₄⁻, because it is itself reduced (gains electrons)"
+    },
+    {
+      "prompt": "A student writes the reduction half-equation as Cu²⁺ + e⁻ → Cu. The error is:",
+      "options": [
+        "Copper should be on the left",
+        "The charge is unbalanced — 2 electrons are needed: Cu²⁺ + 2e⁻ → Cu",
+        "Electrons belong on the right for a reduction",
+        "There is no error"
+      ],
+      "answer": "The charge is unbalanced — 2 electrons are needed: Cu²⁺ + 2e⁻ → Cu"
+    },
+    {
+      "prompt": "Which reaction is a disproportionation?",
+      "options": [
+        "Zn + Cu²⁺ → Zn²⁺ + Cu",
+        "2Na + Cl₂ → 2NaCl",
+        "Cl₂ + 2NaOH → NaCl + NaClO + H₂O",
+        "Fe²⁺ + Ag⁺ → Fe³⁺ + Ag"
+      ],
+      "answer": "Cl₂ + 2NaOH → NaCl + NaClO + H₂O"
     }
   ],
   "faq": [
     {
-      "q": "Why do the anode and cathode have different signs in voltaic and electrolytic cells?",
-      "a": "The signs are a consequence of the process. In a voltaic cell, the spontaneous reaction at the anode releases electrons, creating a negative charge buildup, so it's the negative terminal. In an electrolytic cell, an external power supply forces electrons onto the cathode, making it electron-rich and thus the negative terminal. The definitions of anode (oxidation) and cathode (reduction) are constant, but the polarity depends on whether the cell is producing or consuming electricity."
+      "q": "Why do oxidation and reduction always happen together?",
+      "a": "Electrons are not created or destroyed in a reaction — they are transferred. Every electron gained by one species (reduction) must have been lost by another (oxidation), so the two processes are two halves of a single event. That is why we split a redox reaction into two half-equations and insist the electrons cancel exactly when we recombine them: the number lost must equal the number gained."
     },
     {
-      "q": "What happens if the salt bridge is removed from a voltaic cell?",
-      "a": "If the salt bridge is removed, the circuit becomes incomplete. As the reaction proceeds, positive charge would build up in the anode compartment (as metal ions are formed) and negative charge would build up in the cathode compartment (as positive ions are consumed). This charge imbalance quickly opposes the flow of electrons, and the current stops almost immediately."
+      "q": "Is the oxidation state the same as the real charge on an atom?",
+      "a": "No. Oxidation state is a hypothetical charge that assumes every bond is fully ionic — a deliberate over-simplification chosen because it makes electron-tracking easy. In a covalent molecule like H₂O the oxygen is assigned −2 even though it does not literally carry a 2− charge. It is a bookkeeping device, not a measurement."
     },
     {
-      "q": "In the electrolysis of aqueous sodium chloride, why is hydrogen gas produced at the cathode instead of sodium metal?",
-      "a": "In aqueous solution, there are two possible reduction reactions at the cathode: $Na^+(aq) + e^- \\rightarrow Na(s)$ ($E^\\ominus = -2.71\\,V$) and $2H_2O(l) + 2e^- \\rightarrow H_2(g) + 2OH^-(aq)$ ($E^\\ominus = -0.83\\,V$ at pH 7). Since the reduction of water has a significantly less negative (more positive) electrode potential, it is much easier to reduce water than sodium ions. Therefore, hydrogen gas is produced."
+      "q": "How do I decide which metal displaces which?",
+      "a": "Use the reactivity (activity) series. A more reactive metal is more easily oxidised, so it will hand its electrons to the ion of a less reactive metal and take its place in solution. Zinc is above copper, so zinc metal displaces copper from Cu²⁺(aq); the reverse — copper metal displacing zinc — does not happen. At HL the same logic is quantified by standard electrode potentials."
     },
     {
-      "q": "How does the Nernst equation relate to the concept of chemical equilibrium?",
-      "a": "When a cell reaches equilibrium, the reaction stops, and the cell potential ($E_{cell}$) becomes zero. This is a 'dead' battery. If we set $E_{cell} = 0$ in the Nernst equation, we get $E^\\ominus_{cell} = \\frac{RT}{nF} \\ln K$, where Q has become the equilibrium constant K. This powerful equation shows the direct thermodynamic link between the standard cell potential and the equilibrium constant for a redox reaction."
+      "q": "Can one substance be both the oxidising and the reducing agent?",
+      "a": "Yes — that is exactly what disproportionation is. The same element in a single species is oxidised in part and reduced in part. In Cl₂ + 2NaOH → NaCl + NaClO + H₂O, chlorine starts at oxidation state 0 and ends up at −1 in NaCl and +1 in NaClO simultaneously, so chlorine is both oxidised and reduced."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of electron transfer reactions, the heart of electrochemistry. This field bridges the gap between chemical reactions and electricity, underpinning technologies from the batteries in your phone to industrial processes like metal refining. In this lesson, we will dissect the two main types of electrochemical cells, learn how to predict whether a reaction will happen spontaneously, and calculate just how much product we can get from driving a reaction with electricity."
+      "content": "From the rusting of a car body to the discharge of the battery in your phone, an enormous share of chemistry comes down to one idea: the transfer of electrons. Reactions in which electrons move from one species to another are called redox reactions, and they are governed by a bookkeeping system — oxidation states — that lets you follow every electron. This lesson builds that system from the ground up: how to assign oxidation states, how to name the oxidising and reducing agents, how to write and combine half-equations, and how the reactivity series predicts which reactions actually go. As always, each worked example is set out exactly the way our engine marks your own practice, because in redox the way you show your reasoning decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Voltaic (Galvanic) Cells: Generating Electricity"
+      "content": "Oxidation and reduction: OIL RIG"
     },
     {
       "type": "text",
-      "content": "A voltaic cell is a device that harnesses a spontaneous redox reaction to produce an electric current. It consists of two half-cells, each containing an electrode immersed in an electrolyte solution. The electrode where oxidation occurs is the anode (the negative terminal), and the electrode where reduction occurs is the cathode (the positive terminal). A salt bridge connects the two half-cells, allowing ions to flow and maintain charge balance, thus completing the circuit."
+      "content": "At the centre of every redox reaction are two processes that always occur together, because electrons lost by one species are the electrons gained by another. The mnemonic OIL RIG captures both: Oxidation Is Loss of electrons, Reduction Is Gain of electrons. Historically 'oxidation' meant gaining oxygen and 'reduction' meant losing it, but the modern, general definition is written purely in terms of electron transfer — and equivalently in terms of oxidation state, which rises on oxidation and falls on reduction."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Converts chemical energy to electrical energy.",
-        "Based on a spontaneous reaction ($\\Delta G < 0$, $E_{cell} > 0$).",
-        "Anode: Oxidation occurs, negative terminal.",
-        "Cathode: Reduction occurs, positive terminal.",
-        "Mnemonic: **AN OX** (Anode-Oxidation) and **RED CAT** (Reduction-Cathode)."
+        "**Oxidation**: loss of electrons; oxidation state INCREASES.",
+        "**Reduction**: gain of electrons; oxidation state DECREASES.",
+        "**Redox reaction**: one in which both oxidation and reduction occur — you cannot have one without the other.",
+        "The electrons lost in the oxidation are exactly the electrons gained in the reduction."
       ]
     },
     {
       "type": "heading",
-      "content": "Standard Electrode Potentials and Spontaneity"
+      "content": "The bookkeeping of electrons: oxidation states"
     },
     {
       "type": "text",
-      "content": "To compare the tendencies of different half-reactions to occur, we use standard electrode potentials, $E^\\ominus$. These are measured relative to the Standard Hydrogen Electrode (SHE) under standard conditions (298 K, 1 mol dm⁻³ solutions, 100 kPa gases). The values, found in the IB Data Booklet (Section 24), are all listed as reduction potentials. A more positive $E^\\ominus$ value indicates a greater tendency for the species to be reduced. We can use these values to calculate the overall cell potential for any combination of half-cells."
-    },
-    {
-      "type": "formula",
-      "content": "E^\\ominus_{cell} = E^\\ominus_{reduction \\, (cathode)} - E^\\ominus_{oxidation \\, (anode)}"
-    },
-    {
-      "type": "text",
-      "content": "A positive $E^\\ominus_{cell}$ signifies that the forward reaction is spontaneous under standard conditions. The Gibbs free energy change is related by the equation $\\Delta G^\\ominus = -nFE^\\ominus_{cell}$, where 'n' is the number of moles of electrons transferred and 'F' is the Faraday constant."
-    },
-    {
-      "type": "workedExample",
-      "question": "A voltaic cell is constructed from a zinc half-cell, $Zn(s) | Zn^{2+}(aq)$, and a copper half-cell, $Cu(s) | Cu^{2+}(aq)$, under standard conditions. Using the data booklet, determine:\n(a) The standard cell potential, $E^\\ominus_{cell}$.\n(b) The overall balanced equation for the spontaneous reaction.\n\nData: $E^\\ominus(Zn^{2+}/Zn) = -0.76\\,V$; $E^\\ominus(Cu^{2+}/Cu) = +0.34\\,V$.",
-      "solution": "**(a) Determine the standard cell potential**\n\n1.  **Identify cathode and anode:** The half-reaction with the more positive $E^\\ominus$ value will be the reduction (cathode). Here, $Cu^{2+}/Cu$ has $E^\\ominus = +0.34\\,V$, which is more positive than $Zn^{2+}/Zn$ ($E^\\ominus = -0.76\\,V$).\n    *   Cathode (Reduction): $Cu^{2+}(aq) + 2e^- \\rightarrow Cu(s)$\n    *   Anode (Oxidation): $Zn(s) \\rightarrow Zn^{2+}(aq) + 2e^-$\n\n2.  **Calculate $E^\\ominus_{cell}$:** Use the formula $E^\\ominus_{cell} = E^\\ominus_{cathode} - E^\\ominus_{anode}$.\n    *   $E^\\ominus_{cell} = (+0.34\\,V) - (-0.76\\,V)$ ✓\n    *   $E^\\ominus_{cell} = +1.10\\,V$ ✓\n    *(Since $E^\\ominus_{cell}$ is positive, the reaction is spontaneous.)*\n\n**(b) Write the overall balanced equation**\n\n1.  **Combine half-equations:** Add the cathode and anode half-equations, ensuring the electrons cancel out.\n    *   Reduction: $Cu^{2+}(aq) + 2e^- \\rightarrow Cu(s)$\n    *   Oxidation: $Zn(s) \\rightarrow Zn^{2+}(aq) + 2e^-$\n    *   Overall: $Zn(s) + Cu^{2+}(aq) \\rightarrow Zn^{2+}(aq) + Cu(s)$ ✓"
-    },
-    {
-      "type": "examTip",
-      "content": "A very common mistake is to flip the sign of the $E^\\ominus$ value for the anode *before* substituting it into the $E^\\ominus_{cell} = E^\\ominus_{cathode} - E^\\ominus_{anode}$ formula. Do not do this! The formula is designed to use the reduction potentials directly from the data booklet. The subtraction operation effectively accounts for the reversal of the oxidation half-reaction."
-    },
-    {
-      "type": "heading",
-      "content": "The Nernst Equation: Non-Standard Conditions"
-    },
-    {
-      "type": "text",
-      "content": "Standard conditions are rarely met in reality. The Nernst equation allows us to calculate the cell potential, $E_{cell}$, under any set of conditions. It adjusts the standard cell potential based on the reaction quotient, Q, which has the same form as the equilibrium constant expression but uses non-equilibrium concentrations. For a generic reaction $aA + bB \\rightarrow cC + dD$, $Q = \\frac{[C]^c[D]^d}{[A]^a[B]^b}$."
-    },
-    {
-      "type": "formula",
-      "content": "E_{cell} = E^\\ominus_{cell} - \\frac{RT}{nF} \\ln Q"
+      "content": "In an ionic reaction it is obvious which species gains and loses electrons, but most redox reactions involve covalent bonds where electrons are shared, not fully transferred. To track electrons in every case, chemists assign each atom an oxidation state (or oxidation number): the hypothetical charge it would carry if all its bonds to different elements were 100% ionic. A change in an atom's oxidation state between reactants and products is the definitive signal that a redox process has taken place. The states are assigned by a short hierarchy of rules — when two rules seem to conflict, the one higher in the list wins."
     },
     {
       "type": "keyPoints",
       "items": [
-        "R is the ideal gas constant (8.31 J K⁻¹ mol⁻¹).",
-        "T is the temperature in Kelvin.",
-        "n is the number of moles of electrons transferred in the balanced equation.",
-        "F is the Faraday constant (96500 C mol⁻¹).",
-        "If $Q < 1$ (reactants > products), $\\ln Q$ is negative, and $E_{cell} > E^\\ominus_{cell}$.",
-        "If $Q > 1$ (products > reactants), $\\ln Q$ is positive, and $E_{cell} < E^\\ominus_{cell}$."
+        "**Rule 1** — An atom in a free element is 0 (e.g. Fe, O₂, P₄, Cl₂).",
+        "**Rule 2** — A monatomic ion equals its charge (Na⁺ is +1, S²⁻ is −2).",
+        "**Rule 3** — Fluorine is always −1 in compounds; the other halogens are −1 except when bonded to oxygen or a more electronegative halogen.",
+        "**Rule 4** — Oxygen is usually −2. Exceptions: −1 in peroxides (H₂O₂, Na₂O₂) and positive in OF₂.",
+        "**Rule 5** — Hydrogen is usually +1. Exception: −1 in metal hydrides (NaH, CaH₂).",
+        "**Rule 6** — Oxidation states sum to 0 in a neutral compound.",
+        "**Rule 7** — Oxidation states sum to the ionic charge in a polyatomic ion."
       ]
     },
     {
       "type": "workedExample",
-      "question": "For the Zn/Cu cell from the previous example, calculate the cell potential at 298 K if the concentrations are $[Zn^{2+}] = 1.50\\,mol\\,dm^{-3}$ and $[Cu^{2+}] = 0.10\\,mol\\,dm^{-3}$.",
-      "solution": "1.  **Recall standard information:**\n    *   $E^\\ominus_{cell} = +1.10\\,V$\n    *   Overall reaction: $Zn(s) + Cu^{2+}(aq) \\rightarrow Zn^{2+}(aq) + Cu(s)$\n    *   Number of electrons transferred, $n = 2$.\n\n2.  **Calculate the reaction quotient, Q:**\n    *   $Q = \\frac{[Products]}{[Reactants]} = \\frac{[Zn^{2+}]}{[Cu^{2+}]}$ (Solids are not included)\n    *   $Q = \\frac{1.50}{0.10} = 15.0$ ✓\n\n3.  **Apply the Nernst Equation:**\n    *   $E_{cell} = E^\\ominus_{cell} - \\frac{RT}{nF} \\ln Q$\n    *   $E_{cell} = 1.10 - \\frac{(8.31)(298)}{(2)(96500)} \\ln(15.0)$ ✓\n    *   $E_{cell} = 1.10 - (0.01284) \\times (2.708)$\n    *   $E_{cell} = 1.10 - 0.0348\\,V$\n    *   $E_{cell} = 1.0652\\,V \\approx 1.07\\,V$ (to 3 s.f.) ✓\n    *(As expected, since $Q>1$, the cell potential has decreased from its standard value.)*"
+      "question": "Determine the oxidation state of sulfur in the sulfate ion, SO₄²⁻. [2]",
+      "solution": "**Step 1 — apply the fixed rules.**\nOxygen is −2 (Rule 4, no peroxide here). There are 4 oxygen atoms, contributing $4 \\times (-2) = -8$.  [M1: correct method — oxygen fixed at −2 and the sum set equal to the charge]\n\n**Step 2 — use the sum rule (Rule 7).**\nLet the oxidation state of sulfur be $x$. The sum must equal the ionic charge, −2:\n$x + 4(-2) = -2$\n$x - 8 = -2 \\implies x = +6$.\n\nThe oxidation state of sulfur in SO₄²⁻ is **+6**.  [A1]\n\n*The +6 matches the Roman numeral you would see in a name such as 'sulfate(VI)'.*"
     },
     {
       "type": "heading",
-      "content": "Electrolytic Cells and Quantitative Electrolysis"
+      "content": "Oxidising and reducing agents"
     },
     {
       "type": "text",
-      "content": "Electrolytic cells use an external power source to drive non-spontaneous reactions. This process, called electrolysis, is crucial for applications like electroplating and producing reactive metals from their ores. In an electrolytic cell, the anode is still the site of oxidation, but it is now the positive electrode, connected to the positive terminal of the power supply. The cathode is the site of reduction and is the negative electrode. The amount of substance produced is directly proportional to the total electric charge passed through the cell."
+      "content": "Naming the agents is where marks are most often thrown away, so fix the logic firmly. The oxidising agent is the species that brings about oxidation in something else — it does so by accepting the electrons, which means the oxidising agent is itself REDUCED. The reducing agent brings about reduction in something else by donating electrons, so the reducing agent is itself OXIDISED. The 'agent' is the cause; the change named applies to its partner, not to itself."
     },
     {
-      "type": "formula",
-      "content": "Charge (C): Q = I \\times t \\quad | \\quad Moles of electrons: n(e^-) = \\frac{Q}{F} = \\frac{I \\times t}{F}"
+      "type": "keyPoints",
+      "items": [
+        "**Oxidising agent (oxidant)** — electron acceptor; is itself reduced; its oxidation state falls.",
+        "**Reducing agent (reductant)** — electron donor; is itself oxidised; its oxidation state rises.",
+        "To identify them, first work out the oxidation-state changes, then read off which species went down (the oxidant) and which went up (the reductant)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Half-equations and combining them"
+    },
+    {
+      "type": "text",
+      "content": "Because a redox reaction is two processes at once, the cleanest way to build and balance it is to write each half separately as a half-equation, with the electrons shown explicitly. A reduction half-equation gains electrons on the left-hand side; an oxidation half-equation loses electrons on the right-hand side. Each half must be balanced for both atoms AND charge — the electrons are what balance the charge. Once you have both halves, you scale them so the number of electrons is identical, then add them so the electrons cancel and disappear from the overall equation. In acidic solution you balance oxygen with H₂O and hydrogen with H⁺ before adding electrons."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Balance atoms** other than O and H first.",
+        "**Balance O** by adding H₂O, then **balance H** by adding H⁺ (acidic solution).",
+        "**Balance charge** by adding electrons to the more positive side.",
+        "**Scale** each half-equation so the electrons match, then **add** and cancel the electrons."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Calculate the mass of magnesium metal produced at the cathode during the electrolysis of molten $MgCl_2$ if a current of 10.0 A is applied for 1.50 hours. ($M_r(Mg) = 24.31$)",
-      "solution": "1.  **Write the half-equation:** At the cathode (negative electrode), magnesium ions are reduced.\n    *   $Mg^{2+}(l) + 2e^- \\rightarrow Mg(l)$ ✓\n    *   This shows that 2 moles of electrons are required to produce 1 mole of Mg.\n\n2.  **Calculate the total charge (Q):** First, convert time to seconds.\n    *   $t = 1.50 \\, hours \\times \\frac{3600 \\, s}{1 \\, hour} = 5400 \\, s$ ✓\n    *   $Q = I \\times t = 10.0 \\, A \\times 5400 \\, s = 54000 \\, C$ ✓\n\n3.  **Calculate moles of electrons ($n(e^-)$):**\n    *   $n(e^-) = \\frac{Q}{F} = \\frac{54000 \\, C}{96500 \\, C \\, mol^{-1}} = 0.55958... \\, mol$ ✓\n\n4.  **Calculate moles of Magnesium ($n(Mg)$):** Use the mole ratio from the half-equation.\n    *   $n(Mg) = n(e^-) \\times \\frac{1 \\, mol \\, Mg}{2 \\, mol \\, e^-} = 0.55958... \\div 2 = 0.27979... \\, mol$ ✓\n\n5.  **Calculate mass of Magnesium:**\n    *   $mass = n \\times M_r = 0.27979... \\, mol \\times 24.31 \\, g \\, mol^{-1}$ ✓\n    *   $mass = 6.802... \\, g \\approx 6.80 \\, g$ (to 3 s.f.) ✓"
+      "question": "Acidified manganate(VII), MnO₄⁻, oxidises iron(II) to iron(III). The reduction half-equation for manganese is incomplete. Complete and balance it: MnO₄⁻(aq) → Mn²⁺(aq). [3]",
+      "solution": "**Step 1 — balance atoms other than O and H.**\nThere is 1 Mn on each side already, so Mn is balanced.\n\n**Step 2 — balance oxygen with H₂O.**\nFour O atoms on the left, so add 4 H₂O on the right:\n$\\text{MnO}_4^- \\rightarrow \\text{Mn}^{2+} + 4\\text{H}_2\\text{O}$.  [M1: O balanced with water]\n\n**Step 3 — balance hydrogen with H⁺.**\nThe 4 H₂O give 8 H on the right, so add 8 H⁺ on the left:\n$\\text{MnO}_4^- + 8\\text{H}^+ \\rightarrow \\text{Mn}^{2+} + 4\\text{H}_2\\text{O}$.  [M1: H balanced with H⁺]\n\n**Step 4 — balance charge with electrons.**\nLeft charge: $(-1) + 8(+1) = +7$. Right charge: $+2$. Add 5 electrons to the LEFT to bring +7 down to +2:\n$\\text{MnO}_4^-(aq) + 8\\text{H}^+(aq) + 5e^- \\rightarrow \\text{Mn}^{2+}(aq) + 4\\text{H}_2\\text{O}(l)$.  [A1: charge balanced, 5e⁻ on the left]\n\n*Check: Mn is reduced from +7 to +2, a gain of 5 electrons — exactly the 5e⁻ we added. This is the reduction half; the oxidation half is Fe²⁺ → Fe³⁺ + e⁻.*"
     },
     {
       "type": "examTip",
-      "content": "For electrolysis of aqueous solutions, you must consider the possible reduction of water at the cathode ($2H_2O + 2e^- \\rightarrow H_2 + 2OH^-$) and oxidation of water at the anode ($2H_2O \\rightarrow O_2 + 4H^+ + 4e^-$). Compare the $E^\\ominus$ values of the competing reactions to predict the products. Water is preferentially reduced if the metal cation is very reactive (e.g., Na⁺, K⁺, Mg²⁺) and preferentially oxidised if the anion is a polyatomic ion like SO₄²⁻ or NO₃⁻."
+      "content": "When you combine half-equations, the electrons MUST cancel completely — if any e⁻ survives in your overall equation, it is not balanced. Here the Fe²⁺ half loses 1 electron and the MnO₄⁻ half gains 5, so multiply the iron half-equation by 5 before adding: MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺. Marks are awarded for the correct H⁺/H₂O terms and for the electrons balancing exactly."
+    },
+    {
+      "type": "heading",
+      "content": "The reactivity series and displacement reactions"
+    },
+    {
+      "type": "text",
+      "content": "Metals differ in how readily they give up electrons: the more reactive a metal, the more easily it is oxidised. Ranking metals by this tendency gives the reactivity (activity) series. Its practical payoff is displacement: a more reactive metal will reduce the ion of a less reactive metal, pushing it out of solution and taking its place. The classic demonstration is a strip of zinc in copper(II) sulfate solution — the blue colour fades as Zn²⁺ forms and a reddish deposit of copper metal appears on the zinc."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reactivity (high → low): K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Ag.",
+        "A metal higher in the series displaces the ion of a metal lower down.",
+        "The metal being displaced is REDUCED (its ion gains electrons); the displacing metal is OXIDISED.",
+        "If the metals are in the 'wrong' order — e.g. copper added to Zn²⁺ — no reaction occurs."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A piece of zinc is placed in copper(II) sulfate solution and a reaction occurs: Zn(s) + CuSO₄(aq) → ZnSO₄(aq) + Cu(s). Identify the species oxidised and reduced, and state the oxidising agent and reducing agent, justifying each with oxidation-state changes. [4]",
+      "solution": "**Step 1 — assign oxidation states to the changing species.**\nZn(s): 0 (free element). Cu in Cu²⁺: +2. Zn in Zn²⁺: +2. Cu(s): 0.\nThe sulfate ion, SO₄²⁻, is a spectator — its atoms do not change oxidation state.  [M1: oxidation states of Zn and Cu before and after]\n\n**Step 2 — identify oxidation and reduction (OIL RIG).**\nZinc goes from 0 to +2: it LOSES 2 electrons, so **zinc is oxidised**.  [A1]\nCopper goes from +2 to 0: it GAINS 2 electrons, so **Cu²⁺ is reduced**.  [A1]\n\n**Step 3 — name the agents.**\nThe reducing agent donates electrons and is itself oxidised → **Zn is the reducing agent**.\nThe oxidising agent accepts electrons and is itself reduced → **Cu²⁺ is the oxidising agent**.  [A1: both agents correct with the reduced/oxidised justification]\n\n*Half-equations: Zn → Zn²⁺ + 2e⁻ (oxidation) and Cu²⁺ + 2e⁻ → Cu (reduction). The 2 electrons cancel exactly, confirming the balance.*"
+    },
+    {
+      "type": "heading",
+      "content": "Disproportionation"
+    },
+    {
+      "type": "text",
+      "content": "Usually the species that is oxidised and the species that is reduced are different. In a disproportionation reaction they are the same element in the same starting species: one portion is oxidised while another is reduced, so a single element ends up in two different oxidation states in the products. The standard example is chlorine reacting with cold, dilute sodium hydroxide: Cl₂ + 2NaOH → NaCl + NaClO + H₂O. Chlorine starts at oxidation state 0; in NaCl it has fallen to −1 (reduction) and in NaClO it has risen to +1 (oxidation). The same element is both the oxidising and the reducing agent."
+    },
+    {
+      "type": "heading",
+      "content": "HL: the electrochemical series and cells"
+    },
+    {
+      "type": "text",
+      "content": "(HL only.) At Higher Level the qualitative reactivity series is made quantitative. Each reduction half-reaction is assigned a standard electrode potential, E°, measured in volts against the standard hydrogen electrode (defined as exactly 0.00 V) under standard conditions: 298 K, 100 kPa gas pressure and 1 mol dm⁻³ solutions. Ranking half-reactions by E° gives the electrochemical series. A more positive E° means the species is more readily reduced, i.e. a stronger oxidising agent; a more negative E° means the species is more readily oxidised, i.e. a stronger reducing agent. These values are tabulated in the data booklet — you do not memorise them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Standard hydrogen electrode (SHE)**: the 0.00 V reference against which all E° values are measured.",
+        "**More positive E°** = stronger oxidising agent (more easily reduced); **more negative E°** = stronger reducing agent (more easily oxidised).",
+        "**Voltaic (galvanic) cell**: a spontaneous redox reaction generates electricity. Oxidation occurs at the anode (negative), reduction at the cathode (positive).",
+        "**Electrolytic cell**: an external power supply forces a non-spontaneous reaction. Oxidation still occurs at the anode, reduction at the cathode, but the electrode signs are reversed (anode positive, cathode negative).",
+        "**Cell potential**: $E°_{cell} = E°_{cathode} - E°_{anode}$. A positive value means the voltaic cell reaction is spontaneous."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "E°_{cell} = E°_{cathode} - E°_{anode}"
+    },
+    {
+      "type": "text",
+      "content": "(HL only.) For example, a Daniell cell pairs zinc, $E° = -0.76$ V, with copper, $E° = +0.34$ V. Copper has the more positive potential, so it is reduced at the cathode and zinc is oxidised at the anode. The cell potential is $E°_{cell} = (+0.34) - (-0.76) = +1.10$ V. The positive result confirms the familiar zinc-displaces-copper reaction is spontaneous — the same conclusion the qualitative reactivity series gave, now with a number attached."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Getting OIL RIG backwards** — oxidation is LOSS of electrons (state goes up), reduction is GAIN (state goes down). Reversing this reverses everything that follows.",
+        "**Swapping the oxidising and reducing agents** — the oxidising agent is the one REDUCED; the reducing agent is the one OXIDISED. The agent causes the change in its partner, not in itself.",
+        "**Forgetting the oxygen and hydrogen exceptions** — oxygen is −1 in peroxides (H₂O₂), and hydrogen is −1 in metal hydrides (NaH). Applying the usual −2 or +1 blindly gives the wrong answer.",
+        "**Leaving a half-equation unbalanced for charge** — the electrons are what balance the charge; check that the total charge is equal on both sides after adding them (e.g. Cu²⁺ + 2e⁻ → Cu, not + e⁻).",
+        "**Not cancelling electrons when combining halves** — scale each half so the electrons are equal, then add; no electron may remain in the final overall equation.",
+        "**Calling a spectator ion a reactant** — ions like SO₄²⁻ or Na⁺ whose oxidation state does not change take no part in the redox and should be left out of the ionic/half-equation reasoning.",
+        "**(HL) Using $E°_{anode} - E°_{cathode}$** — the cell potential is cathode minus anode; getting the order wrong flips the sign and reverses your spontaneity conclusion."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Redox questions are marked analytically: each mark is tied to a specific step — a method mark (M) for the correct approach or an answer mark (A) for the correct result — and error-carried-forward (ECF) means an early slip does not have to cost you every mark after it, PROVIDED your method is written down. Study how each mark below is earned by a specific line of working."
+    },
+    {
+      "type": "workedExample",
+      "question": "Determine the oxidation state of manganese in MnO₄⁻, and deduce whether Mn is oxidised or reduced when MnO₄⁻ is converted to Mn²⁺. [3]",
+      "solution": "**Model answer — full working.**\n\n**Oxidation state of Mn in MnO₄⁻.**\nOxygen is −2 (no peroxide). Let the oxidation state of Mn be $x$. By the sum rule, the total must equal the ionic charge, −1:\n$x + 4(-2) = -1$\n$x - 8 = -1 \\implies x = +7$.\nSo Mn is **+7** in MnO₄⁻.\n\n**Change on forming Mn²⁺.**\nIn Mn²⁺ the oxidation state of manganese is +2 (monatomic ion = its charge). Manganese therefore falls from +7 to +2, a decrease of 5. A decrease in oxidation state means a GAIN of electrons (5 electrons per Mn), so **manganese is reduced**.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct method for the oxidation state.** Awarded for setting oxygen at −2 and writing the sum equal to the charge, $x + 4(-2) = -1$. This is a METHOD mark: it is credited for the correct approach even if the final arithmetic slips.\n- **A1 — correct value, +7.** Awarded for solving to reach the oxidation state +7 for manganese.\n- **A1 — 'reduced', with electron-gain reasoning.** Awarded for stating manganese is reduced AND justifying it by the fall in oxidation state / gain of electrons (+7 → +2). Here **ECF** protects you: a student who found, say, +6 by an arithmetic slip in M1 but then correctly reasoned that going from that value to +2 is a decrease, and therefore reduction, still earns this final mark — the engine credits the correct REASONING applied to the student's own figure.\n\n**'Accept equivalents.'** The engine accepts equivalent phrasings — 'oxidation number' for 'oxidation state', 'gains electrons' or 'oxidation state decreases' as the justification for reduction — and does not demand a specific wording as long as the electron-transfer logic is present. Simply writing 'reduced' with no reason does not earn the third mark; the justification is what is being credited.\n\n**Bottom line:** of the 3 marks, 1 is a method mark that survives an arithmetic slip and the final mark is protected by ECF — but only if you write the reasoning down. 'Mn is +7, reduced' with no method risks losing the method mark and the reasoning mark if any number is off."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR redox working exactly this way — analytically, mark by mark, with ECF and accepted equivalents. So always show the method: write the sum equation for the oxidation state, state the value, then justify oxidised/reduced by the direction of the change and electron transfer. The method mark and ECF are what protect your score when a number slips, and you only get that protection if the reasoning is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Redox underpins much of the chemistry ahead. Reactivity trends explain why some metals corrode and others are used to protect them; electrochemistry turns these half-equations into working cells and batteries; and quantitative redox titrations combine half-equations with the mole calculations from S1.4 to measure unknown concentrations. Master the core habit here — assign oxidation states, split into half-equations, balance atoms then charge, then recombine so the electrons cancel — and every electrochemical topic becomes a variation on a method you already own."
     },
     {
       "type": "practice",
-      "label": "R3.2 Practice Questions",
-      "href": "/mark?subject=ib-chemistry-hl&topic=R3.2"
+      "label": "Get a Paper 2 redox answer marked: assign an oxidation state and deduce oxidation or reduction with full reasoning",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R3.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/chemistry/chemistry-data-booklet/"
-        },
-        {
-          "label": "In-depth guide to Electrochemistry",
-          "href": "https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Supplemental_Modules_(Analytical_Chemistry)/Electrochemistry"
+          "label": "IB Chemistry Data Booklet (Section 24: standard electrode potentials, HL)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -5,164 +5,117 @@
   "paper": "P1",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson introduces rational functions, which are fractions of polynomials. You will learn how to identify vertical and horizontal asymptotes, find intercepts, and use these key features to sketch the graph of a rational function. This is a crucial skill for Paper 1, where you'll need to analyse functions without a calculator.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "unit": { "code": "2", "title": "Functions" },
+  "summary": "This lesson builds the full toolkit for the rational functions on the AA SL syllabus: the reciprocal function $y=\\frac{1}{x}$ and its symmetry, and the linear rational function $y=\\frac{ax+b}{cx+d}$. You will learn to locate the vertical asymptote (where the denominator is zero) and the horizontal asymptote (from the ratio of the leading coefficients), find the x- and y-intercepts, state the domain and range, and use all of this to produce a clean Paper 1 sketch by hand. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand the definition of a rational function and its domain.",
-    "Determine the equations of vertical and horizontal asymptotes of a rational function.",
-    "Sketch the graph of a rational function, showing all asymptotes and intercepts.",
-    "Analyse the behaviour of the function as it approaches its asymptotes."
+    "Describe the reciprocal function $y=\\frac{1}{x}$ and its key features: asymptotes, symmetry, domain and range.",
+    "Determine the vertical asymptote of $y=\\frac{ax+b}{cx+d}$ by setting the denominator equal to zero.",
+    "Determine the horizontal asymptote from the ratio of the leading coefficients.",
+    "Find the x- and y-intercepts and use the asymptotes and intercepts to sketch the graph.",
+    "State the domain and range of a linear rational function, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["2.5"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Graphing the Gaps",
-    "summary": "A rational function is like a mathematical fraction with variables. Its graph often has 'gaps' or 'boundaries' called asymptotes, which are lines the curve approaches but (usually) never touches.",
-    "analogy": "Imagine you're sailing a ship and trying to get as close as possible to a long, straight coastline. The path of your ship is the function's graph, and the coastline is the asymptote. You can get incredibly close, sailing parallel to it for miles, but you never actually land on it.",
+    "summary": "A rational function is a fraction with a polynomial on the top and a polynomial on the bottom. Its graph often has 'walls' and 'floors' called asymptotes — lines the curve rushes towards but never actually reaches.",
+    "analogy": "Imagine sailing a ship as close as you can to a long, straight coastline. The path of your ship is the graph and the coastline is the asymptote. You can sail parallel to it for miles, getting closer and closer, but you never quite land on it.",
     "steps": [
-      "Find the vertical lines the graph avoids. Set the denominator of the function to zero and solve for $x$. These are your vertical asymptotes.",
-      "Find the horizontal line the graph settles towards. Compare the highest powers (degrees) of $x$ in the numerator and denominator to find the horizontal asymptote.",
-      "Pinpoint where the graph crosses the axes. Find the y-intercept by calculating $f(0)$ and the x-intercept(s) by setting the numerator to zero and solving for $x$.",
-      "Sketch the curve. Draw the asymptotes as dashed lines, plot the intercepts, and then draw the smooth curves in the regions defined by the asymptotes."
+      "Find the vertical wall: set the denominator equal to zero and solve. That $x$-value is the vertical asymptote — and the one value missing from the domain.",
+      "Find the horizontal floor: for $y=\\frac{ax+b}{cx+d}$ the top and bottom have the same degree, so the horizontal asymptote is $y=\\frac{a}{c}$, the ratio of the leading coefficients.",
+      "Pinpoint the crossings: the y-intercept is $f(0)$; the x-intercept comes from setting the numerator equal to zero.",
+      "Sketch: draw the asymptotes as dashed lines, plot the intercepts, then draw the two smooth branches of the hyperbola in the regions the asymptotes create."
     ]
   },
+  "keyConcepts": ["reciprocal function", "vertical and horizontal asymptotes", "domain and range"],
   "flashcards": [
-    {
-      "front": "What is a rational function?",
-      "back": "A function of the form $f(x) = \\frac{P(x)}{Q(x)}$, where $P(x)$ and $Q(x)$ are polynomials and $Q(x) \\neq 0$."
-    },
-    {
-      "front": "What is a vertical asymptote?",
-      "back": "A vertical line $x=a$ that the graph of a function approaches but never touches or crosses. It occurs where the function is undefined."
-    },
-    {
-      "front": "How do you find the vertical asymptote(s) of $f(x) = \\frac{P(x)}{Q(x)}$?",
-      "back": "Solve the equation $Q(x) = 0$. The solutions for $x$ give the equations of the vertical asymptotes, provided the factor doesn't cancel with one in the numerator."
-    },
-    {
-      "front": "What is a horizontal asymptote?",
-      "back": "A horizontal line $y=b$ that the graph of a function approaches as $x \\to \\infty$ or $x \\to -\\infty$. It describes the end behaviour of the function."
-    },
-    {
-      "front": "How do you find the horizontal asymptote if the degree of the numerator is LESS than the degree of the denominator?",
-      "back": "The horizontal asymptote is the line $y=0$ (the x-axis)."
-    },
-    {
-      "front": "How do you find the horizontal asymptote if the degree of the numerator is EQUAL to the degree of the denominator?",
-      "back": "The horizontal asymptote is $y = \\frac{a}{b}$, where $a$ and $b$ are the leading coefficients of the numerator and denominator, respectively."
-    },
-    {
-      "front": "What if the degree of the numerator is GREATER than the degree of the denominator?",
-      "back": "For IB Maths AA SL, there is no horizontal asymptote. The function value grows without bound as $x \\to \\pm \\infty$."
-    },
-    {
-      "front": "How do you find the y-intercept of a rational function?",
-      "back": "Calculate $f(0)$. The y-intercept is the point $(0, f(0))$. If $f(0)$ is undefined, there is no y-intercept."
-    },
-    {
-      "front": "How do you find the x-intercept(s) of a rational function $f(x) = \\frac{P(x)}{Q(x)}$?",
-      "back": "Set the numerator equal to zero and solve for $x$. The solutions give the x-coordinates of the x-intercepts. That is, solve $P(x)=0$."
-    },
-    {
-      "front": "Common Trap: Can a function's graph ever cross its horizontal asymptote?",
-      "back": "Yes. A horizontal asymptote describes the end behaviour as $x \\to \\pm \\infty$. The graph can cross the asymptote for 'middle' values of $x$. It cannot cross a vertical asymptote."
-    },
-    {
-      "front": "What is the domain of a rational function?",
-      "back": "The set of all real numbers except for the values of $x$ that make the denominator zero. These excluded values correspond to the vertical asymptotes."
-    }
+    { "front": "The reciprocal function $y=\\frac{1}{x}$", "back": "A hyperbola with a vertical asymptote $x=0$ and a horizontal asymptote $y=0$. It is undefined at $x=0$, has no intercepts, and has two branches: one in the first quadrant, one in the third. It has rotational symmetry of order 2 about the origin (it is an odd function).", "pillLabel": "Definition" },
+    { "front": "Domain and range of $y=\\frac{1}{x}$", "back": "Domain: $x \\in \\mathbb{R}, x \\neq 0$. Range: $y \\in \\mathbb{R}, y \\neq 0$. The excluded $x$-value is the vertical asymptote; the excluded $y$-value is the horizontal asymptote.", "pillLabel": "Concept" },
+    { "front": "Linear rational function", "back": "A function of the form $f(x)=\\frac{ax+b}{cx+d}$ with $c \\neq 0$. Its graph is a hyperbola with one vertical and one horizontal asymptote — a translated, scaled version of $y=\\frac{1}{x}$.", "pillLabel": "Definition" },
+    { "front": "Vertical asymptote of $y=\\frac{ax+b}{cx+d}$", "back": "Set the denominator to zero: $cx+d=0 \\Rightarrow x=-\\frac{d}{c}$. The function is undefined there, so this line is the vertical asymptote and the value excluded from the domain.", "pillLabel": "Formula" },
+    { "front": "Horizontal asymptote of $y=\\frac{ax+b}{cx+d}$", "back": "Numerator and denominator have the same degree (1), so the horizontal asymptote is the ratio of the leading coefficients: $y=\\frac{a}{c}$. This value is excluded from the range.", "pillLabel": "Formula" },
+    { "front": "y-intercept of a rational function", "back": "Evaluate $f(0)$. For $f(x)=\\frac{ax+b}{cx+d}$ this is $\\frac{b}{d}$ (provided $d \\neq 0$). The y-intercept is the point $\\left(0,\\frac{b}{d}\\right)$.", "pillLabel": "Method" },
+    { "front": "x-intercept of a rational function", "back": "A fraction is zero only when its numerator is zero (and the denominator is not). Set the numerator equal to zero: $ax+b=0 \\Rightarrow x=-\\frac{b}{a}$.", "pillLabel": "Method" },
+    { "front": "Domain of $y=\\frac{ax+b}{cx+d}$", "back": "All real numbers except the value that makes the denominator zero: $x \\in \\mathbb{R}, x \\neq -\\frac{d}{c}$. The excluded value is exactly the vertical asymptote.", "pillLabel": "Concept" },
+    { "front": "Range of $y=\\frac{ax+b}{cx+d}$", "back": "All real numbers except the horizontal asymptote value: $y \\in \\mathbb{R}, y \\neq \\frac{a}{c}$. The curve approaches this line but never takes that value.", "pillLabel": "Concept" },
+    { "front": "Can a graph cross its horizontal asymptote?", "back": "For a linear rational function, no — but in general a horizontal asymptote only describes end behaviour as $x \\to \\pm\\infty$, so a more complicated graph may cross it for 'middle' values of $x$. A graph can NEVER cross a vertical asymptote.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: which polynomial gives which asymptote", "back": "Vertical asymptote comes from the DENOMINATOR (set it to zero). Horizontal asymptote comes from the LEADING COEFFICIENTS (their ratio). Swapping these two is the single most common error on this topic.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "For $f(x)=\\frac{3x+1}{x-4}$, the equation of the vertical asymptote is:", "options": ["$x=4$", "$x=-4$", "$y=3$", "$x=-\\frac{1}{4}$"], "answer": "$x=4$" },
+    { "prompt": "For $f(x)=\\frac{2x-1}{x+3}$, the equation of the horizontal asymptote is:", "options": ["$y=2$", "$y=-3$", "$y=-\\frac{1}{3}$", "$y=\\frac{1}{2}$"], "answer": "$y=2$" },
+    { "prompt": "The y-intercept of $f(x)=\\frac{2x-1}{x+3}$ is found by evaluating $f(0)$. It is:", "options": ["$\\left(0,-\\frac{1}{3}\\right)$", "$\\left(0,\\frac{1}{2}\\right)$", "$\\left(0,2\\right)$", "$\\left(0,-3\\right)$"], "answer": "$\\left(0,-\\frac{1}{3}\\right)$" },
+    { "prompt": "The x-intercept of $f(x)=\\frac{2x-1}{x+3}$ comes from setting the numerator to zero. It is:", "options": ["$\\left(\\frac{1}{2},0\\right)$", "$\\left(-3,0\\right)$", "$\\left(-\\frac{1}{2},0\\right)$", "$\\left(2,0\\right)$"], "answer": "$\\left(\\frac{1}{2},0\\right)$" },
+    { "prompt": "The domain of $f(x)=\\frac{2x-1}{x+3}$ is:", "options": ["$x \\in \\mathbb{R}, x \\neq -3$", "$x \\in \\mathbb{R}, x \\neq 2$", "$x \\in \\mathbb{R}, x \\neq 3$", "all real numbers"], "answer": "$x \\in \\mathbb{R}, x \\neq -3$" }
   ],
   "faq": [
-    {
-      "q": "Can a graph cross its horizontal asymptote?",
-      "a": "Yes, it can. A horizontal asymptote describes the 'end behaviour' of the function as $x$ becomes very large or very small ($x \\to \\pm \\infty$). The function can cross the line for other values of $x$. However, a graph can never cross its vertical asymptote."
-    },
-    {
-      "q": "What happens if the numerator and denominator have a common factor, like in $f(x) = \\frac{x^2-1}{x-1}$?",
-      "a": "This is a great question. If we factorise the numerator, we get $f(x) = \\frac{(x-1)(x+1)}{x-1}$. For $x \\neq 1$, we can cancel the $(x-1)$ term, leaving $f(x) = x+1$. So the graph looks just like the line $y=x+1$, but with a 'hole' or 'point of discontinuity' at $x=1$ because the original function was undefined there. This is different from an asymptote."
-    },
-    {
-      "q": "Why are they called 'rational' functions?",
-      "a": "The name comes from 'ratio'. Just as a rational number is a ratio of two integers (like $\\frac{3}{4}$), a rational function is a ratio of two polynomials (like $\\frac{x+2}{x-5}$). It's all about the structure of being a fraction."
-    }
+    { "q": "How do I remember which asymptote comes from where?", "a": "Vertical asymptotes are about where the function BREAKS — that happens when you divide by zero, so they come from the denominator. Set the denominator equal to zero and solve. Horizontal asymptotes are about the LONG-RUN value — for very large $x$ only the leading terms matter, so they come from the ratio of the leading coefficients. Denominator to zero for vertical; leading-coefficient ratio for horizontal." },
+    { "q": "Why is the linear rational function just a transformed $y=\\frac{1}{x}$?", "a": "Every $\\frac{ax+b}{cx+d}$ can be rewritten by dividing out as $\\frac{a}{c}+\\frac{k}{cx+d}$ for some constant $k$. That is the reciprocal shape $\\frac{1}{x}$ stretched and shifted so its vertical asymptote moves to $x=-\\frac{d}{c}$ and its horizontal asymptote moves to $y=\\frac{a}{c}$. That is why the graph is always a hyperbola with the same two-branch shape." },
+    { "q": "What is the difference between an asymptote and a 'hole'?", "a": "If a factor cancels between numerator and denominator — for example $\\frac{x^2-1}{x-1}=\\frac{(x-1)(x+1)}{x-1}=x+1$ for $x \\neq 1$ — the graph is the line $y=x+1$ with a single point missing (a hole) at $x=1$, not an asymptote. An asymptote occurs where the denominator is zero and the factor does NOT cancel, so the function genuinely blows up there." },
+    { "q": "Why are they called 'rational' functions?", "a": "The word comes from 'ratio'. Just as a rational number is a ratio of two integers like $\\frac{3}{4}$, a rational function is a ratio of two polynomials like $\\frac{x+2}{x-5}$. The whole behaviour of the graph flows from that fraction structure." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of rational functions. The name comes from 'ratio', as these functions are defined as the ratio of two polynomial functions. Their graphs are distinctive, often featuring breaks called asymptotes. Understanding how to analyse and sketch these functions is a key skill for calculus and function analysis."
-    },
-    {
-      "type": "heading",
-      "content": "Vertical Asymptotes: The Forbidden Zones"
-    },
-    {
-      "type": "text",
-      "content": "A vertical asymptote is a vertical line that the graph of a function approaches but never touches. These occur at x-values where the function is undefined, which for a rational function means where the denominator is zero. Think of them as vertical walls that the function cannot cross."
-    },
-    {
-      "type": "formula",
-      "content": "For a rational function $f(x) = \\frac{P(x)}{Q(x)}$, the vertical asymptotes are the lines $x=a$ for which $Q(a)=0$ (and $P(a) \\neq 0$)."
-    },
-    {
-      "type": "workedExample",
-      "question": "Consider the function $f(x) = \\frac{2x+4}{x-3}$.\n\na) State the equation of the vertical asymptote.\nb) State the equation of the horizontal asymptote.\nc) Find the coordinates of the y-intercept and x-intercept.\nd) Hence, sketch the graph of $y=f(x)$, clearly showing all asymptotes and intercepts.",
-      "solution": "a) The vertical asymptote occurs when the denominator is zero.\n$x-3 = 0 \\implies x=3$ (A1)\nThe equation is $x=3$.\n\nb) The degree of the numerator (1) is equal to the degree of the denominator (1). We look at the ratio of the leading coefficients.\nNumerator leading coefficient: 2\nDenominator leading coefficient: 1\nHorizontal asymptote is $y = \\frac{2}{1} = 2$. (M1)(A1)\nThe equation is $y=2$.\n\nc) For the y-intercept, set $x=0$.\n$f(0) = \\frac{2(0)+4}{0-3} = \\frac{4}{-3}$ (M1)\nThe y-intercept is $(0, -\\frac{4}{3})$. (A1)\nFor the x-intercept, set the numerator to zero.\n$2x+4 = 0 \\implies 2x = -4 \\implies x=-2$ (M1)\nThe x-intercept is $(-2, 0)$. (A1)\n\nd) To sketch the graph:\n1. Draw dashed lines for the asymptotes $x=3$ and $y=2$ and label them. (A1 for asymptotes)\n2. Plot the intercepts $(0, -\\frac{4}{3})$ and $(-2, 0)$. (A1 for intercepts)\n3. Sketch the two branches of the hyperbola, ensuring they approach the asymptotes and pass through the plotted points. The graph should be in the top-left and bottom-right regions formed by the asymptotes. (A1 for correct shape and location)"
-    },
-    {
-      "type": "heading",
-      "content": "Horizontal Asymptotes: The Long-Run Behaviour"
-    },
-    {
-      "type": "text",
-      "content": "Horizontal asymptotes tell us what y-value the function approaches as our x-value gets extremely large (approaching $\\infty$) or extremely small (approaching $-\\infty$). Unlike vertical asymptotes, a function can sometimes cross its horizontal asymptote. The rule for finding it depends on comparing the 'degree' (the highest power of $x$) of the polynomials in the numerator and denominator."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Let $f(x) = \\frac{a_n x^n + ...}{b_m x^m + ...}$ where $n$ is the degree of the numerator and $m$ is the degree of the denominator.",
-        "**Case 1: $n < m$** (Numerator degree is less than denominator degree). The horizontal asymptote is the line $y=0$ (the x-axis).",
-        "**Case 2: $n = m$** (Degrees are equal). The horizontal asymptote is the line $y = \\frac{a_n}{b_m}$, the ratio of the leading coefficients.",
-        "**Case 3: $n > m$** (Numerator degree is greater than denominator degree). There is no horizontal asymptote. The function increases or decreases without bound as $x \\to \\pm \\infty$."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "On an exam, always draw asymptotes as dashed lines and clearly label them with their equations (e.g., $x=3$, $y=2$). This is often worth a specific mark. Also, ensure your sketch shows the curve getting closer and closer to the asymptotes, not curling away from them."
-    },
-    {
-      "type": "heading",
-      "content": "Putting It All Together: Sketching the Graph"
-    },
-    {
-      "type": "text",
-      "content": "Sketching a rational function is a systematic process. By finding the asymptotes and intercepts, you create a 'scaffold' for your graph. These key features dictate the overall shape and position of the curve. Sometimes it's helpful to test a point in each region created by the vertical asymptotes to confirm where the curve lies (above or below the horizontal asymptote)."
-    },
-    {
-      "type": "workedExample",
-      "question": "Let $g(x) = \\frac{8}{x^2-4}$.\n\na) Find the equations of all asymptotes.\nb) Find the coordinates of any intercepts.\nc) Sketch the graph of $y=g(x)$ for $-6 \\le x \\le 6$.",
-      "solution": "a) **Vertical Asymptotes:** Set the denominator to zero.\n$x^2 - 4 = 0 \\implies (x-2)(x+2) = 0$ (M1)\n$x=2$ and $x=-2$ are the vertical asymptotes. (A1)(A1)\n\n**Horizontal Asymptote:**\nThe degree of the numerator is 0 (since $8 = 8x^0$).\nThe degree of the denominator is 2.\nSince degree of numerator < degree of denominator, the horizontal asymptote is $y=0$. (M1)(A1)\n\nb) **y-intercept:** Set $x=0$.\n$g(0) = \\frac{8}{0^2-4} = \\frac{8}{-4} = -2$. (M1)\nThe y-intercept is $(0, -2)$. (A1)\n\n**x-intercept:** Set the numerator to zero.\n$8=0$. This is impossible. (R1)\nTherefore, there are no x-intercepts. The graph never crosses the x-axis.\n\nc) **Sketching the graph:**\n1. Draw dashed lines for the asymptotes $x=2$, $x=-2$, and $y=0$. (A1 for asymptotes)\n2. Plot the y-intercept $(0, -2)$. (A1 for intercept)\n3. Consider the behaviour in the three regions defined by the vertical asymptotes:\n   - For $x < -2$ (e.g., $x=-3$), $g(-3) = \\frac{8}{(-3)^2-4} = \\frac{8}{5} > 0$. The curve is above the x-axis.\n   - For $-2 < x < 2$, the curve passes through $(0, -2)$ and approaches both vertical asymptotes downwards.\n   - For $x > 2$ (e.g., $x=3$), $g(3) = \\frac{8}{3^2-4} = \\frac{8}{5} > 0$. The curve is above the x-axis.\n4. Draw the three separate branches of the curve consistent with this analysis. (A1 for correct shape)"
-    },
-    {
-      "type": "examTip",
-      "content": "For Paper 1, you must produce the sketch by hand. For Paper 2, you can use your GDC to draw the graph, but you still need to know the theory to find an appropriate viewing window and to interpret what you see. For example, your calculator might draw a near-vertical line where an asymptote should be; you need to recognise this as an asymptote and draw it correctly as a dashed line."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Rational Functions",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=2.5"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Khan Academy: Rational functions",
-          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:rational"
-        },
-        {
-          "label": "Paul's Online Math Notes: Graphing Rational Functions",
-          "href": "https://tutorial.math.lamar.edu/classes/alg/graphingrationalfcns.aspx"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Welcome to rational functions. The name comes from 'ratio': these functions are the quotient of two polynomials. On AA SL the two you must know completely are the reciprocal function $y=\\frac{1}{x}$ and the linear rational function $y=\\frac{ax+b}{cx+d}$. Their graphs are hyperbolas, defined by two invisible guide lines — the asymptotes — and a couple of intercepts. Because Paper 1 is non-calculator, you have to find these features by hand and sketch from them. As in every calculation topic, the worked examples below are written exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The reciprocal function $y=\\frac{1}{x}$" },
+    { "type": "text", "content": "Everything on this topic grows from one graph: the reciprocal function $y=\\frac{1}{x}$. Because you can never divide by zero, the function is undefined at $x=0$, so the y-axis $x=0$ is a vertical asymptote. As $x$ grows very large the fraction $\\frac{1}{x}$ shrinks towards zero, so the x-axis $y=0$ is a horizontal asymptote. The graph has two branches — one in the first quadrant where both $x$ and $y$ are positive, and one in the third quadrant where both are negative — and it has rotational symmetry of order 2 about the origin (it is an odd function). It has no intercepts, because it never reaches either axis." },
+    { "type": "keyPoints", "items": [
+      "**Vertical asymptote:** $x=0$ (the function is undefined there).",
+      "**Horizontal asymptote:** $y=0$ (the value it approaches as $x \\to \\pm\\infty$).",
+      "**Domain:** $x \\in \\mathbb{R}, x \\neq 0$. **Range:** $y \\in \\mathbb{R}, y \\neq 0$.",
+      "**Symmetry:** rotational symmetry of order 2 about the origin; no x- or y-intercepts."
+    ]},
+    { "type": "workedExample", "question": "The function $h$ is defined by $h(x)=\\frac{1}{x}$. State (a) the equations of the two asymptotes, (b) the domain and range, and (c) explain why the graph has no axis intercepts. [4]", "solution": "**(a) Asymptotes.** The denominator is $x$, which is zero at $x=0$, so the vertical asymptote is $x=0$.  [A1]\nAs $x \\to \\pm\\infty$, $\\frac{1}{x} \\to 0$, so the horizontal asymptote is $y=0$.  [A1]\n\n**(b) Domain and range.** The only value that breaks the function is $x=0$, so the domain is $x \\in \\mathbb{R}, x \\neq 0$.  [A1]\nThe curve approaches but never equals $y=0$, so the range is $y \\in \\mathbb{R}, y \\neq 0$.  [A1]\n\n**(c) Intercepts.** For a y-intercept we would need $h(0)$, but $x=0$ is not in the domain, so there is no y-intercept. For an x-intercept we would need the numerator to be zero, but the numerator is the constant $1$, which is never zero, so there is no x-intercept." },
+
+    { "type": "heading", "content": "The linear rational function $y=\\frac{ax+b}{cx+d}$" },
+    { "type": "text", "content": "A linear rational function has a linear (degree-1) polynomial on the top and on the bottom: $f(x)=\\frac{ax+b}{cx+d}$ with $c \\neq 0$. Its graph is a hyperbola — the reciprocal shape stretched and shifted. To analyse any such function you locate four things in a fixed order: the vertical asymptote, the horizontal asymptote, the y-intercept and the x-intercept. Get those, and the sketch draws itself." },
+    { "type": "formula", "content": "\\text{Vertical asymptote: } cx+d=0 \\;\\Rightarrow\\; x=-\\tfrac{d}{c}\\\\\n\\text{Horizontal asymptote: } y=\\tfrac{a}{c} \\text{ (ratio of leading coefficients)}\\\\\n\\text{y-intercept: } f(0)=\\tfrac{b}{d}\\\\\n\\text{x-intercept: } ax+b=0 \\;\\Rightarrow\\; x=-\\tfrac{b}{a}" },
+    { "type": "text", "content": "Two of these features are exactly the excluded values of the domain and range. The vertical asymptote $x=-\\frac{d}{c}$ is the one value the domain cannot include, and the horizontal asymptote $y=\\frac{a}{c}$ is the one value the range cannot include. So once you have the asymptotes, the domain and range come for free." },
+
+    { "type": "heading", "content": "Vertical asymptotes: the forbidden zones" },
+    { "type": "text", "content": "A vertical asymptote is a vertical line the graph approaches but never crosses. It occurs where the function is undefined — for a rational function, where the denominator is zero. Think of it as a wall the curve cannot pass through. To find it, set the denominator equal to zero and solve for $x$." },
+    { "type": "examTip", "content": "The vertical asymptote always comes from the DENOMINATOR. A common slip is to set the numerator to zero instead — but the numerator gives the x-intercept, not the asymptote. Denominator zero for the wall; numerator zero for the crossing." },
+
+    { "type": "heading", "content": "Horizontal asymptotes: the long-run behaviour" },
+    { "type": "text", "content": "A horizontal asymptote tells you what $y$-value the function settles towards as $x$ becomes very large or very small ($x \\to \\pm\\infty$). For a linear rational function the numerator and denominator both have degree 1, so for large $x$ only the leading terms $ax$ and $cx$ matter, and their ratio $\\frac{ax}{cx}=\\frac{a}{c}$ is the horizontal asymptote $y=\\frac{a}{c}$. The general rule for comparing degrees is worth knowing because it appears in later work." },
+    { "type": "keyPoints", "items": [
+      "Let $f(x)=\\frac{a_n x^n + \\cdots}{b_m x^m + \\cdots}$ where $n$ is the degree of the numerator and $m$ the degree of the denominator.",
+      "**Case $n < m$:** the horizontal asymptote is $y=0$ (the x-axis).",
+      "**Case $n = m$:** the horizontal asymptote is $y=\\frac{a_n}{b_m}$, the ratio of the leading coefficients. This is the case for every $\\frac{ax+b}{cx+d}$.",
+      "**Case $n > m$:** there is no horizontal asymptote; the function grows without bound as $x \\to \\pm\\infty$."
+    ]},
+
+    { "type": "heading", "content": "Putting it all together: sketching the graph" },
+    { "type": "text", "content": "Sketching a rational function is systematic. The asymptotes form a 'scaffold' — two dashed guide lines — and the intercepts pin the curve to the axes. Draw the asymptotes first, plot the intercepts, then draw the two branches of the hyperbola so that each branch hugs both asymptotes. If you are unsure which regions the branches sit in, test one convenient point in each region." },
+    { "type": "workedExample", "question": "Consider $f(x)=\\frac{2x+4}{x-3}$.\n\n(a) State the equation of the vertical asymptote.\n(b) State the equation of the horizontal asymptote.\n(c) Find the coordinates of the y-intercept and x-intercept.\n(d) State the domain and range.\n(e) Hence sketch $y=f(x)$, clearly showing all asymptotes and intercepts. [8]", "solution": "**(a) Vertical asymptote.** Set the denominator to zero: $x-3=0 \\Rightarrow x=3$.  [M1][A1]\nThe vertical asymptote is $x=3$.\n\n**(b) Horizontal asymptote.** Numerator and denominator both have degree 1, so take the ratio of leading coefficients: $\\frac{2}{1}=2$.  [A1]\nThe horizontal asymptote is $y=2$.\n\n**(c) Intercepts.** y-intercept: $f(0)=\\frac{2(0)+4}{0-3}=\\frac{4}{-3}=-\\frac{4}{3}$, giving $\\left(0,-\\frac{4}{3}\\right)$.  [A1]\nx-intercept: set the numerator to zero, $2x+4=0 \\Rightarrow x=-2$, giving $(-2,0)$.  [A1]\n\n**(d) Domain and range.** Domain: $x \\in \\mathbb{R}, x \\neq 3$ (the vertical asymptote). Range: $y \\in \\mathbb{R}, y \\neq 2$ (the horizontal asymptote).  [A1]\n\n**(e) Sketch.** Draw dashed lines $x=3$ and $y=2$ and label them; plot $\\left(0,-\\frac{4}{3}\\right)$ and $(-2,0)$; draw the two branches of the hyperbola approaching both asymptotes, one branch through the two plotted intercepts in the lower-left region and the other in the upper-right region.  [A1 correct shape and asymptotic behaviour]" },
+    { "type": "examTip", "content": "On Paper 1 always draw asymptotes as dashed lines and label them with their equations (for example $x=3$, $y=2$) — that labelling is often a mark in its own right. Make sure each branch gets closer and closer to the asymptotes rather than curling away from them." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Taking the vertical asymptote from the numerator** — it comes from the DENOMINATOR. Set $cx+d=0$, not $ax+b=0$. Setting the numerator to zero gives the x-intercept instead.",
+      "**Taking the horizontal asymptote from the constant terms** — for $\\frac{ax+b}{cx+d}$ it is the ratio of the LEADING coefficients $y=\\frac{a}{c}$, not $\\frac{b}{d}$ (that is the y-intercept).",
+      "**Confusing the x- and y-intercepts** — the y-intercept is $f(0)$; the x-intercept comes from setting the numerator to zero. Swapping them is a frequent slip.",
+      "**Forgetting to exclude the vertical asymptote from the domain** — the domain is $x \\in \\mathbb{R}, x \\neq -\\frac{d}{c}$; writing 'all real numbers' loses the mark.",
+      "**Forgetting to exclude the horizontal asymptote from the range** — the range is $y \\in \\mathbb{R}, y \\neq \\frac{a}{c}$.",
+      "**Drawing the curve crossing a vertical asymptote, or leaving the asymptotes unlabelled** — a graph can never cross a vertical asymptote, and unlabelled asymptotes forfeit the labelling mark.",
+      "**Letting a branch bend away from an asymptote** — both branches must hug the guide lines as $x \\to \\pm\\infty$."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A). Follow-through (FT) means a correct step performed on your own earlier (possibly wrong) value still earns its mark, and ISW ('ignore subsequent working') means once you have written a correct answer, a clumsy later step will not be penalised again. Equivalent forms are accepted — $-\\frac{1}{3}$ and $-0.333\\ldots$ score the same. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "For $f(x)=\\frac{2x-1}{x+3}$, find the equations of the vertical and horizontal asymptotes and the coordinates of the axis intercepts. [6]", "solution": "**Model answer — full working.**\n\n**Vertical asymptote — set the denominator to zero.**\n$x+3=0 \\Rightarrow x=-3$.\nSo the vertical asymptote is $x=-3$.\n\n**Horizontal asymptote — ratio of leading coefficients.**\nNumerator and denominator are both degree 1, with leading coefficients $2$ and $1$, so\n$y=\\frac{2}{1}=2$.\nSo the horizontal asymptote is $y=2$.\n\n**y-intercept — evaluate $f(0)$.**\n$f(0)=\\frac{2(0)-1}{0+3}=\\frac{-1}{3}=-\\frac{1}{3}$.\nThe y-intercept is $\\left(0,-\\frac{1}{3}\\right)$.\n\n**x-intercept — set the numerator to zero.**\n$2x-1=0 \\Rightarrow x=\\frac{1}{2}$.\nThe x-intercept is $\\left(\\frac{1}{2},0\\right)$.\n\n**Final answer:** vertical asymptote $x=-3$; horizontal asymptote $y=2$; y-intercept $\\left(0,-\\frac{1}{3}\\right)$; x-intercept $\\left(\\frac{1}{2},0\\right)$.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — set the denominator equal to zero.** Awarded for writing $x+3=0$ (the correct METHOD for a vertical asymptote), even if the solving then slips. This is the method mark: it rewards the right approach, not the final number.\n- **A1 — $x=-3$.** Awarded for the correct vertical asymptote. Accept it written as 'VA: $x=-3$'.\n- **M1 — use the ratio of the leading coefficients.** Awarded for identifying $\\frac{2}{1}$ (or clearly stating that equal degrees means you take the leading-coefficient ratio). Again a METHOD mark, independent of the arithmetic.\n- **A1 — $y=2$.** Awarded for the correct horizontal asymptote.\n- **A1 — y-intercept $\\left(0,-\\frac{1}{3}\\right)$.** Awarded for $f(0)=-\\frac{1}{3}$. Equivalent forms accepted: $-\\frac{1}{3}$, $-0.333$ (3 s.f.), or the coordinate pair.\n- **A1 — x-intercept $\\left(\\frac{1}{2},0\\right)$.** Awarded for solving the numerator, $2x-1=0 \\Rightarrow x=\\frac{1}{2}$. Accept $0.5$.\n\n**Follow-through (FT).** If a student mis-solved the denominator as $x=3$ but then correctly stated the domain as $x \\neq 3$, or fed their own asymptote into a sketch consistently, the dependent marks are awarded on their figure. A correct process on a wrong earlier value still scores.\n\n**Bottom line:** four of the six marks hang on writing the two methods explicitly — 'set denominator $=0$' and 'ratio of leading coefficients'. A student who writes only the four final answers with no method risks the M-marks if a single value is wrong; a student who shows each method line keeps those marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and equivalent forms accepted. So always show the method: write 'denominator $=0$' for the vertical asymptote, 'ratio of leading coefficients' for the horizontal asymptote, then $f(0)$ and 'numerator $=0$' for the intercepts. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The reciprocal and linear rational functions are your first meeting with asymptotic behaviour, and the habits transfer directly. Recognising $\\frac{ax+b}{cx+d}$ as a shifted, scaled $\\frac{1}{x}$ is a transformations-of-graphs skill; excluding the asymptote values sharpens your command of domain and range; and setting a denominator to zero to spot where a function breaks reappears throughout calculus, in limits and in curve sketching. Master the fixed routine — denominator to zero for the vertical asymptote, leading-coefficient ratio for the horizontal, $f(0)$ and numerator-zero for the intercepts, then sketch — and every rational-function question becomes a variation on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 1 sketch marked: find the asymptotes and intercepts of a rational function with full working", "href": "/mark?subject=ib-maths-aa-sl&topic=2.5&component=paper_1" },
+    { "type": "resources", "items": [
+      { "label": "Khan Academy: Rational functions", "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:rational" },
+      { "label": "Paul's Online Math Notes: Graphing Rational Functions", "href": "https://tutorial.math.lamar.edu/classes/alg/graphingrationalfcns.aspx" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

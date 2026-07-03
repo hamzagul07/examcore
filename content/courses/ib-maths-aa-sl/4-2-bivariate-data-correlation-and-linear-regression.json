@@ -5,173 +5,136 @@
   "paper": "P2",
   "paperName": "Mathematics: Analysis and Approaches SL",
   "status": "premium",
-  "summary": "This lesson explores bivariate data, focusing on how to visualise relationships using scatter diagrams, quantify them with Pearson's correlation coefficient ($r$), and model them using linear regression. You will learn to use your GDC to find the line of best fit and make predictions, while also understanding the important distinction between interpolation and extrapolation.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "unit": { "code": "4", "title": "Statistics and probability" },
+  "summary": "Bivariate data is how mathematics investigates whether two measured quantities move together — study hours and exam scores, temperature and sales, age and value. This lesson builds the full 4.2 toolkit: drawing and reading scatter diagrams to describe correlation by direction and strength; Pearson's product-moment correlation coefficient $r$ and what its value between $-1$ and $1$ does and does not tell you; why correlation is not causation; the least-squares regression line of $y$ on $x$ and how to find it on a GDC; using that line to predict, and the sharp distinction between safe interpolation and dangerous extrapolation. Because this is a Paper 2 topic, the GDC does the arithmetic — so the marks live in how you set up the calculation, interpret the output and justify each answer. Every worked example is laid out exactly the way our marking engine awards marks.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Create and interpret scatter diagrams to identify the nature of the relationship between two variables.",
-    "Calculate and interpret Pearson's product-moment correlation coefficient ($r$) to measure the strength and direction of a linear correlation.",
-    "Determine the equation of the least squares regression line of $y$ on $x$ using a GDC.",
-    "Use the regression line to make predictions (interpolation) and understand the limitations of predicting outside the data range (extrapolation)."
+    "Create and interpret scatter diagrams to describe the direction and strength of the relationship between two variables.",
+    "Calculate Pearson's product-moment correlation coefficient $r$ on a GDC and interpret it, knowing that $-1 \\le r \\le 1$ and that correlation does not imply causation.",
+    "Find the equation of the least-squares regression line of $y$ on $x$ using a GDC and use it to make predictions.",
+    "Distinguish interpolation from extrapolation, justify the reliability of a prediction, and use the fact that the mean point $(\\bar x, \\bar y)$ lies on the regression line.",
+    "Present working so that method marks (M) and accuracy marks (A) are earned line by line, with follow-through (FT) protecting later answers."
   ],
+  "syllabusObjectivesCovered": ["4.2"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Finding Patterns in Paired Data",
-    "summary": "This topic is about examining pairs of data to see if they're connected. We use graphs and a special number, 'r', to describe this connection, and then create a line to predict future outcomes.",
-    "analogy": "Imagine you're tracking how many hours you study for your maths tests and the scores you get. You'd expect that more study hours lead to higher scores. Bivariate analysis is like plotting these pairs of points (hours, score) on a graph, seeing they form a rough line going upwards, and then drawing that 'line of best fit' to predict what score you might get if you study for, say, 7 hours.",
+    "summary": "This topic is about examining pairs of measurements to see whether they are connected. A scatter diagram shows the pattern by eye, the number $r$ measures how strong and in which direction a straight-line pattern is, and the regression line turns that pattern into an equation you can predict with.",
+    "analogy": "Imagine tracking how many hours you study for each maths test and the score you get. You'd expect more study to go with higher scores. Bivariate analysis plots those pairs (hours, score) as points, spots that they rise roughly along a line, and then draws that 'line of best fit'. You can read off a predicted score for 7 hours of study — but you should be wary of predicting the score for 40 hours, which is far beyond anything you have actually observed.",
     "steps": [
-      "First, plot your two variables (e.g., hours studied vs. exam score) on a scatter diagram to see what the relationship looks like.",
-      "Next, calculate Pearson's correlation coefficient, $r$, using your GDC. This number tells you exactly how strong and in what direction the linear relationship is.",
-      "Then, find the equation of the line of best fit, called the regression line ($y = ax + b$), which models the trend in your data.",
-      "Finally, use this equation to make sensible predictions for new data points, and understand why predicting too far from your known data is risky."
+      "Plot the two variables on a scatter diagram to see whether the relationship looks positive, negative, or absent, and how tightly the points cluster.",
+      "Enter the data into your GDC and read off Pearson's $r$. Its sign gives the direction; how close $|r|$ is to $1$ gives the strength.",
+      "If the correlation supports it, read the regression line $y = ax + b$ from the GDC — this models the trend.",
+      "Substitute an $x$-value to predict $y$, and check whether that $x$ lies inside the data range (interpolation, reliable) or outside it (extrapolation, unreliable)."
     ]
   },
+  "keyConcepts": ["correlation vs causation", "least-squares regression", "interpolation vs extrapolation"],
   "flashcards": [
-    {
-      "front": "What is bivariate data?",
-      "back": "Data that has two variables for each observation. For example, the height and weight of a group of people."
-    },
-    {
-      "front": "What is a scatter diagram used for?",
-      "back": "To visually represent the relationship between two variables in a bivariate data set. It helps to identify patterns, trends, and potential outliers."
-    },
-    {
-      "front": "What does Pearson's correlation coefficient, $r$, measure?",
-      "back": "It measures the strength and direction of the *linear* relationship between two variables. It is a value between -1 and 1."
-    },
-    {
-      "front": "What does an $r$ value of -0.9 indicate?",
-      "back": "A strong, negative, linear correlation. As one variable increases, the other tends to decrease in a strong linear fashion."
-    },
-    {
-      "front": "What does an $r$ value close to 0 indicate?",
-      "back": "Very weak or no *linear* correlation between the variables. The points on the scatter diagram do not follow a linear pattern."
-    },
-    {
-      "front": "What is the key difference between correlation and causation?",
-      "back": "Correlation indicates a relationship or association between two variables, but it does not mean that one variable *causes* the change in the other. For example, ice cream sales and shark attacks are correlated, but one does not cause the other (the lurking variable is hot weather)."
-    },
-    {
-      "front": "What is a regression line (line of best fit)?",
-      "back": "A straight line that best represents the linear relationship between the two variables on a scatter diagram. The most common type is the 'least squares regression line'."
-    },
-    {
-      "front": "What is interpolation?",
-      "back": "Using the regression line to predict a $y$-value for an $x$-value that is *within* the range of the original data. It is generally considered a reliable prediction."
-    },
-    {
-      "front": "What is extrapolation?",
-      "back": "Using the regression line to predict a $y$-value for an $x$-value that is *outside* the range of the original data. It is generally considered an unreliable prediction as the trend may not continue."
-    },
-    {
-      "front": "In the regression equation $y = ax + b$, what does the gradient, $a$, represent?",
-      "back": "The gradient, $a$, represents the predicted change in the dependent variable ($y$) for every one-unit increase in the independent variable ($x$)."
-    },
-    {
-      "front": "In the regression equation $y = ax + b$, what does the y-intercept, $b$, represent?",
-      "back": "The y-intercept, $b$, is the predicted value of $y$ when $x=0$. In some contexts this value may not be meaningful (e.g., the weight of a person with height 0 cm)."
-    }
+    { "front": "What is bivariate data?", "back": "Data in which each observation records two variables, e.g. the height and weight of each person in a group. We study whether the two variables are associated.", "pillLabel": "Definition" },
+    { "front": "What is a scatter diagram used for?", "back": "To display bivariate data as points $(x, y)$ so you can see the direction (positive/negative), the strength (tight/loose), the linear or non-linear form of the relationship, and any outliers.", "pillLabel": "Definition" },
+    { "front": "What does Pearson's $r$ measure?", "back": "The strength and direction of the LINEAR relationship between two variables. It always satisfies $-1 \\le r \\le 1$. It says nothing about non-linear patterns.", "pillLabel": "Definition" },
+    { "front": "Interpreting $|r|$", "back": "$|r| = 1$ is a perfect linear relationship; $|r|$ near $1$ is strong; near $0.5$ is moderate; near $0$ is weak or no linear correlation. The sign of $r$ gives the direction.", "pillLabel": "Framework" },
+    { "front": "What does $r \\approx -0.9$ indicate?", "back": "A strong, negative, linear correlation: as one variable increases the other tends to decrease, and the points lie close to a straight line.", "pillLabel": "Concept" },
+    { "front": "What does $r$ close to $0$ indicate?", "back": "Very weak or no LINEAR correlation. The points may still follow a strong curved pattern — $r$ near $0$ only rules out a straight-line relationship.", "pillLabel": "Trap" },
+    { "front": "Correlation vs causation", "back": "A strong $r$ shows association, not that one variable causes the other. Ice-cream sales and drownings correlate, but the lurking variable — hot weather — drives both. Never claim causation from $r$ alone.", "pillLabel": "Concept" },
+    { "front": "Least-squares regression line of $y$ on $x$", "back": "The line $y = ax + b$ that minimises the total squared VERTICAL distance from the points to the line. In AA SL you read $a$ and $b$ from the GDC; it predicts $y$ from $x$.", "pillLabel": "Definition" },
+    { "front": "The mean point on the line", "back": "The least-squares regression line always passes through the mean point $(\\bar x, \\bar y)$. This is a guaranteed property, useful as a check or when a question gives you the means.", "pillLabel": "Framework" },
+    { "front": "Meaning of the gradient $a$", "back": "In $y = ax + b$, the gradient $a$ is the predicted change in $y$ for each one-unit increase in $x$. Its sign matches the sign of $r$.", "pillLabel": "Concept" },
+    { "front": "Meaning of the intercept $b$", "back": "In $y = ax + b$, the intercept $b$ is the predicted $y$ when $x = 0$. It may be meaningless in context (e.g. the weight predicted for height $0$ cm).", "pillLabel": "Concept" },
+    { "front": "Interpolation", "back": "Predicting $y$ for an $x$-value INSIDE the range of the data. Generally reliable, because the observed trend is being used where it was actually established.", "pillLabel": "Concept" },
+    { "front": "Extrapolation", "back": "Predicting $y$ for an $x$-value OUTSIDE the range of the data. Generally unreliable: there is no evidence the linear trend continues beyond the observed values.", "pillLabel": "Trap" },
+    { "front": "Do I memorise the $r$ formula?", "back": "No. In AA SL you are not required to compute $r$ by hand. You find it on the GDC and interpret it in context; the formula is not in the SL toolkit.", "pillLabel": "Exam" }
+  ],
+  "quickCheck": [
+    { "prompt": "A data set gives $r = 0.08$. The best description of the linear correlation is:", "options": ["Strong positive", "Strong negative", "Very weak or none", "Perfect"], "answer": "Very weak or none" },
+    { "prompt": "Over one summer, the weekly number of ice creams sold and the weekly number of sunburn cases are found to have $r = 0.94$. The safest conclusion is:", "options": ["Eating ice cream causes sunburn", "Sunburn causes people to buy ice cream", "The two are correlated, likely through a lurking variable such as hot, sunny weather", "There is no real relationship because $r$ cannot show causation"], "answer": "The two are correlated, likely through a lurking variable such as hot, sunny weather" },
+    { "prompt": "A regression line is found from data with $x$ ranging from $5$ to $20$. Using the line to predict $y$ when $x = 12$ is an example of:", "options": ["Extrapolation, and unreliable", "Interpolation, and generally reliable", "Causation", "An invalid calculation"], "answer": "Interpolation, and generally reliable" },
+    { "prompt": "The same line (data $x$ from $5$ to $20$) is used to predict $y$ when $x = 60$. This prediction is:", "options": ["Reliable, because the equation still gives a number", "Interpolation, so reliable", "Extrapolation, so unreliable — $x = 60$ is outside the data range", "Impossible to calculate"], "answer": "Extrapolation, so unreliable — $x = 60$ is outside the data range" },
+    { "prompt": "The regression line of $y$ on $x$ is $y = 3x + 4$. What is it designed to do?", "options": ["Predict a value of $y$ from a given value of $x$", "Predict a value of $x$ from a given value of $y$", "Prove that $x$ causes $y$", "Measure the strength of correlation"], "answer": "Predict a value of $y$ from a given value of $x$" }
   ],
   "faq": [
-    {
-      "q": "What's the difference between correlation and causation?",
-      "a": "Correlation is a statistical measure that describes the size and direction of a relationship between two or more variables. Causation indicates that one event is the result of the occurrence of the other event. A strong correlation does not imply causation. For example, the number of people who drown at the beach is correlated with ice cream sales, but eating ice cream does not cause drowning. The lurking variable is the hot weather, which causes both to increase."
-    },
-    {
-      "q": "Do I need to memorise the formula for Pearson's correlation coefficient ($r$)?",
-      "a": "No. For the IB Maths AA SL course, you are not required to memorise or use the formula for $r$. You are expected to find its value using your GDC and interpret its meaning in the context of the problem."
-    },
-    {
-      "q": "My calculator gives both $y=ax+b$ and $y=a+bx$. Which one should I use?",
-      "a": "The IB syllabus and formula booklet use the form $y=ax+b$, where $a$ is the gradient and $b$ is the y-intercept. Most calculators allow you to choose or will default to this. Always be careful to correctly identify which value your calculator outputs for the gradient ('a') and which for the intercept ('b'). Check your GDC's settings to ensure it matches the IB convention."
-    },
-    {
-      "q": "When should I use the unrounded vs. rounded values from my calculator?",
-      "a": "For any subsequent calculations (like making a prediction with your regression equation), you must use the full, unrounded values for $a$ and $b$ stored in your calculator to maintain accuracy. Only round your final answer to 3 significant figures, unless the question specifies otherwise."
-    }
+    { "q": "What's the difference between correlation and causation?", "a": "Correlation describes the strength and direction of a relationship between two variables; causation means one variable actually produces the change in the other. A strong correlation never proves causation on its own. Drownings at the beach correlate with ice-cream sales, yet ice cream does not cause drowning — hot weather (a lurking variable) drives both. In an exam, if asked to interpret $r$, describe the association and, unless the question gives grounds for it, do not assert that one variable causes the other." },
+    { "q": "Do I need to memorise the formula for Pearson's $r$?", "a": "No. In AA SL you are not required to memorise or use the formula for $r$. You find its value on your GDC and interpret it in context. The same applies to the regression coefficients $a$ and $b$ — the GDC computes them." },
+    { "q": "My calculator gives both $y = ax + b$ and $y = a + bx$. Which do I use?", "a": "The IB formula booklet uses $y = ax + b$, where $a$ is the gradient and $b$ is the $y$-intercept. Many calculators default to $a + bx$ (where then $b$ is the gradient). Always identify which output is the gradient and which is the intercept before writing the equation, and present it in the booklet's form $y = ax + b$." },
+    { "q": "When do I use unrounded values instead of rounded ones?", "a": "For any further calculation — especially substituting into the regression line to predict — use the full unrounded $a$ and $b$ stored in the calculator, then round only the final answer, normally to 3 significant figures. Rounding $a$ and $b$ first and then predicting can throw the answer outside the accepted range and cost the accuracy mark." },
+    { "q": "How do I know if a prediction is reliable?", "a": "Check whether the $x$-value lies inside the range of the data used to build the line. Inside the range is interpolation and is generally reliable; outside it is extrapolation and is generally unreliable because there is no evidence the linear trend continues. State explicitly which one it is — that justification is usually where the mark is." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the study of bivariate data. In many real-world situations, we collect information on two different variables to see if there is a connection between them. For instance, do higher advertising budgets lead to higher sales? Does the age of a car affect its resale value? This topic gives you the statistical tools to analyse these relationships, quantify their strength, and make educated predictions. As this is a Paper 2 topic, your Graphical Display Calculator (GDC) will be your most important tool."
-    },
-    {
-      "type": "heading",
-      "content": "Visualising Relationships: Scatter Diagrams"
-    },
-    {
-      "type": "text",
-      "content": "The first step in analysing bivariate data is to create a scatter diagram. This is a graph where each pair of data values is plotted as a point $(x, y)$ on a Cartesian plane. The independent variable (the one you control or that changes naturally, like time) is plotted on the horizontal axis ($x$-axis), and the dependent variable (the one you measure) is on the vertical axis ($y$-axis). By looking at the cloud of points, we can get an initial idea of the relationship: positive (points trend upwards), negative (points trend downwards), or no correlation (points are scattered randomly)."
-    },
-    {
-      "type": "heading",
-      "content": "Quantifying Correlation: Pearson's Coefficient ($r$)"
-    },
-    {
-      "type": "text",
-      "content": "While a scatter diagram gives a visual impression, we need a precise numerical measure of the linear relationship. This is given by Pearson's product-moment correlation coefficient, denoted by $r$. Your GDC will calculate this for you. The value of $r$ is always between -1 and 1, inclusive."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**$r = 1$**: Perfect positive linear correlation.",
-        "**$0.75 \\le |r| < 1$**: Strong linear correlation.",
-        "**$0.5 \\le |r| < 0.75$**: Moderate linear correlation.",
-        "**$0.25 \\le |r| < 0.5$**: Weak linear correlation.",
-        "**$0 \\le |r| < 0.25$**: Very weak or no linear correlation.",
-        "**$r = -1$**: Perfect negative linear correlation.",
-        "A positive $r$ value means the correlation is positive, and a negative $r$ value means the correlation is negative."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A café owner records the number of hot chocolates sold and the average daily temperature (°C) for 8 days. The data is shown in the table below.\n\n| Temp (°C), $T$ | 18 | 15 | 12 | 10 | 8 | 5 | 6 | 11 |\n|---|---|---|---|---|---|---|---|---|\n| Hot Chocolates, $H$ | 12 | 16 | 25 | 28 | 36 | 45 | 42 | 27 |\n\n(a) Calculate Pearson's product-moment correlation coefficient, $r$. [2]\n(b) Describe the correlation between the average daily temperature and the number of hot chocolates sold. [1]",
-      "solution": "(a) Enter the temperature data ($T$) into List 1 and the hot chocolate data ($H$) into List 2 on your GDC.\nUse the two-variable statistics or linear regression function.\n\n$r = -0.9863...$ (M1 for using GDC)\n$r \\approx -0.986$ (A1)\n\n(b) Since $r$ is very close to -1, there is a strong, negative, linear correlation between the average daily temperature and the number of hot chocolates sold. (A1)\nThis means that as the temperature decreases, the number of hot chocolates sold tends to increase."
-    },
-    {
-      "type": "heading",
-      "content": "Making Predictions: The Regression Line of $y$ on $x$"
-    },
-    {
-      "type": "text",
-      "content": "If the correlation is strong enough, we can model the relationship with a straight line called the 'line of best fit' or, more formally, the 'least squares regression line'. This line is calculated to minimise the total squared vertical distance from each data point to the line. Its purpose is to allow us to make predictions. The equation is given in the form:"
-    },
-    {
-      "type": "formula",
-      "content": "y = ax + b"
-    },
-    {
-      "type": "text",
-      "content": "Here, $a$ is the gradient and $b$ is the y-intercept. Your GDC will calculate the values of $a$ and $b$ for you from the data lists. Once you have the equation, you can substitute a value for the independent variable ($x$) to predict the corresponding value of the dependent variable ($y$)."
-    },
-    {
-      "type": "examTip",
-      "content": "Always write down the unrounded values for $a$ and $b$ from your calculator display before giving the final answer rounded to 3 significant figures. When asked to comment on the reliability of a prediction, first check if it is interpolation (reliable) or extrapolation (unreliable) and state this clearly in your answer for the (R1) mark."
-    },
-    {
-      "type": "workedExample",
-      "question": "Using the data from the previous example about hot chocolate sales ($H$) and temperature ($T$):\n\n(a) Find the equation of the regression line of $H$ on $T$. [3]\n(b) Use your equation to estimate the number of hot chocolates sold on a day when the average temperature is 9°C. [2]\n(c) The owner wants to predict sales for a day with a temperature of 25°C. Comment on the reliability of this prediction. [1]",
-      "solution": "(a) Using the same GDC function as before, find the values for $a$ and $b$.\nFrom the GDC:\n$a = -2.5786...$\n$b = 58.392...$\n\n(M1) for finding $a$ and $b$.\nSo, the equation is $H = -2.58T + 58.4$ (A2 for correct equation rounded to 3 s.f.)\n\n(b) Substitute $T=9$ into the full, unrounded equation.\n$H = -2.5786... \\times 9 + 58.392...$ (M1 for substitution)\n$H = 35.184...$\nWe would expect to sell approximately 35 hot chocolates. (A1)\n(Note: Since 'number of hot chocolates' is discrete, rounding to the nearest whole number is appropriate).\n\n(c) The temperature 25°C is outside the range of the given data [5°C, 18°C]. Therefore, this is an extrapolation. (R1)\nThe prediction is unreliable because we cannot assume the linear trend continues beyond the observed data range."
-    },
-    {
-      "type": "practice",
-      "label": "Practise Correlation and Regression",
-      "href": "/mark?subject=ib-maths-aa-sl&topic=4.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "TI-Nspire Tutorial: Linear Regression",
-          "href": "https://www.youtube.com/watch?v=FwI-3g0-J4k"
-        },
-        {
-          "label": "GeoGebra: Line of Best Fit Visualiser",
-          "href": "https://www.geogebra.org/m/sancvbyj"
-        }
-      ]
-    }
+    { "type": "intro", "content": "In many real situations we record two quantities together and ask whether they are related: does a bigger advertising budget go with higher sales? Does a car's age affect its resale value? Bivariate statistics gives you the tools to see such a relationship, measure it, and cautiously predict with it. Because 4.2 is a Paper 2 topic, your GDC does the heavy arithmetic — it produces $r$, the gradient and the intercept in seconds. That shifts every mark onto what you do with those numbers: how you interpret $r$, how you set up a prediction, and how you justify its reliability. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice — mark by mark." },
+
+    { "type": "heading", "content": "Visualising relationships: scatter diagrams" },
+    { "type": "text", "content": "The first step is always a scatter diagram: plot each data pair as a point $(x, y)$. The independent (explanatory) variable goes on the horizontal axis and the dependent (response) variable on the vertical axis. From the cloud of points you read off two things at once. The direction is positive if the points trend upwards (as $x$ increases, $y$ increases), negative if they trend downwards, and there is no correlation if they scatter with no slope. The strength is how tightly the points hug a straight line — the closer they are to lying on one line, the stronger the correlation. A scatter diagram also exposes outliers and shows whether the pattern is linear at all; a strong U-shaped curve, for instance, is a real relationship that a straight-line measure will miss." },
+    { "type": "keyPoints", "items": [
+      "**Direction:** positive (upward trend), negative (downward trend), or none.",
+      "**Strength:** how closely the points cluster around a straight line — tight = strong, loose = weak.",
+      "**Form:** check the pattern is roughly linear before trusting $r$ or a regression line; a curved pattern needs a different model.",
+      "**Outliers:** single points far from the trend can distort both $r$ and the regression line — always look for them."
+    ]},
+
+    { "type": "heading", "content": "Quantifying correlation: Pearson's coefficient $r$" },
+    { "type": "text", "content": "A scatter diagram is a judgement by eye; Pearson's product-moment correlation coefficient $r$ turns it into a single number. Your GDC computes it from the two data lists. It always lies in the range $-1 \\le r \\le 1$. The sign gives the direction — positive $r$ for a positive correlation, negative $r$ for a negative one — and the size of $|r|$ gives the strength: the closer $|r|$ is to $1$, the more nearly the points lie on a straight line, while $r$ near $0$ means little or no LINEAR relationship. Two cautions matter for full marks. First, $r$ only measures LINEAR association: a data set curving strongly can have $r$ close to $0$ yet be tightly related. Second, a large $|r|$ shows association, not cause — correlation is never, by itself, evidence of causation." },
+    { "type": "keyPoints", "items": [
+      "**$r = 1$**: perfect positive linear correlation; **$r = -1$**: perfect negative linear correlation.",
+      "**$0.75 \\le |r| < 1$**: strong linear correlation.",
+      "**$0.5 \\le |r| < 0.75$**: moderate linear correlation.",
+      "**$0.25 \\le |r| < 0.5$**: weak linear correlation.",
+      "**$0 \\le |r| < 0.25$**: very weak or no linear correlation.",
+      "The sign of $r$ shows the direction; $|r|$ shows the strength; $r$ says nothing about causation or about non-linear patterns."
+    ]},
+    { "type": "workedExample", "question": "A café owner records the number of hot chocolates sold, $H$, and the average daily temperature (°C), $T$, for 8 days.\n\n| Temp (°C), $T$ | 18 | 15 | 12 | 10 | 8 | 5 | 6 | 11 |\n|---|---|---|---|---|---|---|---|---|\n| Hot chocolates, $H$ | 12 | 16 | 25 | 28 | 36 | 45 | 42 | 27 |\n\n(a) Find Pearson's product-moment correlation coefficient $r$. [2]\n(b) Describe the correlation between temperature and hot chocolates sold. [1]", "solution": "**(a)** Enter $T$ into List 1 and $H$ into List 2 and run linear regression (or two-variable statistics) on the GDC.  [M1: correct use of GDC]\n$r = -0.9863\\ldots \\approx -0.986$.  [A1: value to 3 s.f.]\n\n**(b)** Since $r$ is very close to $-1$, there is a strong, negative, linear correlation between the average daily temperature and the number of hot chocolates sold: as the temperature falls, sales tend to rise.  [A1: direction and strength in context]\n\n**Final answer:** $r \\approx -0.986$; strong negative linear correlation." },
+
+    { "type": "heading", "content": "The least-squares regression line of $y$ on $x$" },
+    { "type": "text", "content": "If the linear correlation is strong enough to justify it, we model the relationship with the least-squares regression line — the line for which the total of the squared VERTICAL distances from the data points to the line is as small as possible. The IB formula booklet writes it as:" },
+    { "type": "formula", "content": "y = ax + b" },
+    { "type": "text", "content": "where $a$ is the gradient and $b$ is the $y$-intercept, both produced by your GDC. This is the regression line of $y$ ON $x$: it is built to predict $y$ from a given $x$, so substitute an $x$-value to obtain a predicted $y$. Two facts are worth carrying into every question. First, the sign of the gradient $a$ always matches the sign of $r$. Second — a guaranteed property — the line always passes through the mean point $(\\bar x, \\bar y)$, so if a question hands you both means, you know one exact point on the line, and you can use it as a check on the GDC output." },
+    { "type": "keyPoints", "items": [
+      "The line $y = ax + b$ of $y$ on $x$ predicts $y$ from $x$ — not the other way round.",
+      "The gradient $a$ is the predicted change in $y$ per unit increase in $x$; its sign matches the sign of $r$.",
+      "The intercept $b$ is the predicted $y$ at $x = 0$, which may be meaningless in context.",
+      "The line always passes through the mean point $(\\bar x, \\bar y)$."
+    ]},
+    { "type": "examTip", "content": "Write down the unrounded $a$ and $b$ from the calculator before rounding the equation to 3 significant figures, and use those unrounded values for any prediction. When you are asked to comment on a prediction's reliability, decide interpolation versus extrapolation and state it explicitly — that sentence is usually where the mark is awarded." },
+    { "type": "workedExample", "question": "Using the café data ($H$ hot chocolates, $T$ temperature in °C):\n\n(a) Find the equation of the regression line of $H$ on $T$. [3]\n(b) Estimate the number of hot chocolates sold when the average temperature is 9 °C. [2]\n(c) Comment on the reliability of using the line to predict sales at 25 °C. [1]", "solution": "**(a)** From the GDC's linear regression on the same two lists:\n$a = -2.5786\\ldots$ and $b = 58.392\\ldots$  [M1: values of $a$ and $b$ from GDC]\nSo the line of $H$ on $T$ is $H = -2.58\\,T + 58.4$.  [A2: correct equation to 3 s.f.]\n\n**(b)** Substitute $T = 9$ into the UNROUNDED equation:\n$H = -2.5786\\ldots \\times 9 + 58.392\\ldots$  [M1: substitution into the regression equation]\n$H = 35.18\\ldots \\approx 35$ hot chocolates.  [A1]\n(Sales are a whole-number count, so rounding to the nearest integer is appropriate here.)\n\n**(c)** $T = 25$ °C lies outside the data range $[5, 18]$ °C, so this is extrapolation; the prediction is unreliable because there is no evidence the linear trend continues beyond the observed temperatures.  [R1]\n\n**Final answer:** $H = -2.58\\,T + 58.4$; about $35$ sold at $9$ °C; the $25$ °C prediction is unreliable (extrapolation)." },
+
+    { "type": "heading", "content": "Prediction: interpolation versus extrapolation" },
+    { "type": "text", "content": "The whole value of the regression line is prediction, but not every prediction deserves the same trust. Interpolation means substituting an $x$-value that lies INSIDE the range of the original data; the line was established across exactly that range, so the estimate is generally reliable. Extrapolation means substituting an $x$-value OUTSIDE the data range; the line simply continues its straight trend into territory where no data was ever collected, and there is no guarantee the real relationship stays linear — or stays at all. This is why extrapolation is treated as unreliable and is a favourite examiner target. A model that fits perfectly across observed temperatures may predict, if pushed far enough, a negative number of sales, which is nonsense. Whenever you predict, look at the data range first and name which side of it your $x$-value falls on." },
+    { "type": "keyPoints", "items": [
+      "**Interpolation** — $x$ inside the data range — generally reliable.",
+      "**Extrapolation** — $x$ outside the data range — generally unreliable.",
+      "Justify reliability by comparing the prediction's $x$-value with the smallest and largest $x$ in the data.",
+      "Far extrapolation can give physically impossible answers (e.g. negative counts), a sign the model has been pushed too far."
+    ]},
+
+    { "type": "heading", "content": "Using the GDC efficiently" },
+    { "type": "text", "content": "On Paper 2 the GDC produces $r$, $a$ and $b$ together from one linear-regression command, so the routine is always the same: enter the explanatory variable in the first list and the response variable in the second, run the regression, and read off the three numbers. Keep the full-precision $a$ and $b$ — either leave them on screen or store them in memory — and only round the values you actually write as final answers. A quick reliability check on the whole set-up: because the line passes through $(\\bar x, \\bar y)$, substituting the mean of your $x$-list should return (very close to) the mean of your $y$-list. If it does not, the lists were probably entered in the wrong order or a value was mistyped." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Reading $r$ near $0$ as 'no relationship'** — it only rules out a LINEAR one; a strong curve can give $r \\approx 0$. Always look at the scatter diagram.",
+      "**Claiming causation from a strong $r$** — a large $|r|$ shows association only. Do not say $x$ causes $y$ without separate justification; watch for a lurking variable.",
+      "**Extrapolating without flagging it** — predicting outside the data range is unreliable, and the mark is for saying so explicitly, not for producing a number.",
+      "**Using the wrong regression line** — the line of $y$ on $x$ predicts $y$ from $x$; do not use it to predict an $x$ from a given $y$.",
+      "**Rounding $a$ and $b$ before predicting** — substitute the FULL unrounded values, then round only the final answer, normally to 3 s.f.; premature rounding can miss the accepted range.",
+      "**Misreading the GDC output** — check which value is the gradient and which is the intercept before writing $y = ax + b$; the calculator may list them as $a + bx$.",
+      "**Forgetting the mean point** — the line must pass through $(\\bar x, \\bar y)$; ignoring this loses an easy check and sometimes an easy mark."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) for the correct approach or an accuracy mark (A) for a correct value that DEPENDS on that method being right. Follow-through (FT) means a correct step built on an earlier slip can still score, 'ISW' (ignore subsequent working) means a correct answer is not un-done by extra scribble, and equivalent forms and correctly-rounded values are accepted. But that protection only exists if the method is on the page. Study how each of the 5 marks below is earned by a specific line — the interpretation, the substitution, the value, and the two-part reliability judgement." },
+    { "type": "workedExample", "question": "A GDC gives the regression line of $y$ on $x$ as $y = 2.4x + 5.1$ with $r = 0.92$. The data used had $x$ ranging from $2$ to $15$.\n\n(a) Interpret the value of $r$. \n(b) Use the line to predict $y$ when $x = 8$. \n(c) Comment on the reliability of predicting $y$ when $x = 40$. [5]", "solution": "**Model answer — full working.**\n\n**(a) Interpret $r = 0.92$.** Since $r$ is positive and close to $1$, there is a strong, positive, linear correlation between $x$ and $y$: as $x$ increases, $y$ tends to increase, with the points lying close to a straight line. (This is association, not proof that $x$ causes $y$.)\n\n**(b) Predict $y$ when $x = 8$.** Substitute $x = 8$ into $y = 2.4x + 5.1$:\n$y = 2.4 \\times 8 + 5.1 = 19.2 + 5.1 = 24.3$.\nSo the predicted value is $y = 24.3$.\n\n**(c) Reliability when $x = 40$.** The data only covered $x$ from $2$ to $15$, and $40$ lies outside that range, so predicting at $x = 40$ is extrapolation. It is therefore unreliable: there is no evidence the linear trend continues so far beyond the observed data.\n\n**Final answer:** strong positive linear correlation; $y = 24.3$ at $x = 8$; the $x = 40$ prediction is unreliable because it is extrapolation beyond the data.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **A1 — interpret $r$.** Awarded for describing the correlation as strong AND positive (linear). 'Strong positive correlation' scores; a bare 'positive' without the strength, or vice versa, does not fully satisfy it. Naming causation as if proven would be penalised.\n- **M1 — substitute $x = 8$.** A METHOD mark for correctly substituting into the regression line, i.e. $y = 2.4 \\times 8 + 5.1$. It is earned for the correct approach even if the arithmetic then slips.\n- **A1 — value $y = 24.3$.** An ACCURACY mark, dependent on the M1: awarded for $24.3$ (accept the exact $24.3$; correctly-rounded equivalents accepted). FT applies — a student who substituted correctly but mis-added still earns this on their own figure, and ISW means a correct $24.3$ is not spoiled by extra working.\n- **A1 — identify extrapolation.** Awarded for stating that $x = 40$ is outside the data range $[2, 15]$, i.e. that this is extrapolation. Recognising the position relative to the data is the markable idea.\n- **A1 — conclude unreliable.** Awarded for the conclusion that the prediction is therefore unreliable (the linear trend cannot be assumed to continue). This mark depends on the extrapolation point: naming extrapolation and concluding 'unreliable' together secure both of the final two marks.\n\n**'Accept equivalent forms and correct rounding.'** The engine accepts $24.3$ however it is presented, and accepts a reliability comment in any wording that makes both points — outside the data range, hence unreliable.\n\n**Bottom line:** of the 5 marks, one is a method mark that survives an arithmetic slip and the accuracy marks are shielded by follow-through. A student who writes only 'unreliable' with no reason, or gives $y = 24.3$ with no substitution shown, risks losing 2–3 marks; a student who interprets $r$ properly, shows the substitution, and names extrapolation explicitly keeps every mark even if a number slips." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: interpret $r$ with BOTH strength and direction, write the substitution before the predicted value, and when judging a prediction, name interpolation or extrapolation explicitly against the data range. The method and accuracy marks are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Correlation and regression are your first models of a relationship between two variables, and the habits they teach carry forward: describe before you compute, let the GDC do arithmetic while you own the interpretation, and always ask whether a prediction sits inside the evidence. The same caution about extrapolation reappears wherever any model is used to forecast, and the idea that a summary number can hide a non-linear reality is a theme throughout statistics. Master the routine — scatter first, interpret $r$ with sign and strength, read the line, predict only with a reliability check — and bivariate questions become a fixed, high-scoring method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: interpret $r$, find a regression line, and justify a prediction with full working", "href": "/mark?subject=ib-maths-aa-sl&topic=4.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "TI-Nspire Tutorial: Linear Regression", "href": "https://www.youtube.com/watch?v=FwI-3g0-J4k" },
+      { "label": "GeoGebra: Line of Best Fit Visualiser", "href": "https://www.geogebra.org/m/sancvbyj" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Line of Best Fit Visualiser",

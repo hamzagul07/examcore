@@ -1,5 +1,5 @@
-// Daily "visitor journeys" digest — one admin email summarizing each signed-in
-// user's page journey and approximate time spent over a day window. Server-only
+// Daily activity digest — one admin email with (1) new signups that day and
+// (2) each signed-in user's page journey + approximate time spent. Server-only
 // (service-role client + admin auth lookups).
 import { createServiceClient } from '@/lib/supabase/service'
 import { adminNotifyAddress, sendEmail } from '@/lib/email/send'
@@ -7,8 +7,10 @@ import { SITE_NAME } from '@/lib/site-config'
 
 const MAX_USERS = 200 // cap per email so a busy day can't produce a giant message
 const MAX_PATHS_PER_USER = 40
+const MAX_SIGNUPS = 200
 
 type Row = { user_id: string; path: string; dwell_ms: number; created_at: string }
+type Signup = { id: string; email: string | null; created_at: string }
 
 function fmtMinutes(ms: number): string {
   const totalSec = Math.round(ms / 1000)
@@ -31,22 +33,44 @@ function yesterdayWindow(now: Date): { startISO: string; endISO: string; label: 
 
 export async function sendVisitorDigest(
   now: Date = new Date()
-): Promise<{ sent: boolean; users: number; events: number }> {
+): Promise<{ sent: boolean; signups: number; users: number; events: number }> {
   const supabase = createServiceClient()
   const { startISO, endISO, label } = yesterdayWindow(now)
 
-  const { data, error } = await supabase
-    .from('page_events')
-    .select('user_id, path, dwell_ms, created_at')
-    .gte('created_at', startISO)
-    .lt('created_at', endISO)
-    .order('created_at', { ascending: true })
+  const [eventsRes, signupsRes] = await Promise.all([
+    supabase
+      .from('page_events')
+      .select('user_id, path, dwell_ms, created_at')
+      .gte('created_at', startISO)
+      .lt('created_at', endISO)
+      .order('created_at', { ascending: true }),
+    supabase.rpc('signups_between', { p_start: startISO, p_end: endISO }),
+  ])
 
-  if (error) throw new Error(`visitor-digest query failed: ${error.message}`)
-  const rows = (data ?? []) as Row[]
-  if (rows.length === 0) return { sent: false, users: 0, events: 0 }
+  if (eventsRes.error) throw new Error(`visitor-digest events query failed: ${eventsRes.error.message}`)
+  if (signupsRes.error) throw new Error(`visitor-digest signups query failed: ${signupsRes.error.message}`)
 
-  // Group into ordered per-user journeys.
+  const rows = (eventsRes.data ?? []) as Row[]
+  const signups = (signupsRes.data ?? []) as Signup[]
+
+  // Nothing happened → don't send an empty email.
+  if (rows.length === 0 && signups.length === 0) {
+    return { sent: false, signups: 0, users: 0, events: 0 }
+  }
+
+  const lines: string[] = [`Daily summary for ${label} (UTC).`, '']
+
+  // ── New signups ──────────────────────────────────────────────────────────
+  lines.push(`New signups: ${signups.length}`)
+  for (const s of signups.slice(0, MAX_SIGNUPS)) {
+    lines.push(`  • ${s.email ?? s.id}`)
+  }
+  if (signups.length > MAX_SIGNUPS) {
+    lines.push(`  …and ${signups.length - MAX_SIGNUPS} more`)
+  }
+  lines.push('')
+
+  // ── Visitor journeys ─────────────────────────────────────────────────────
   const byUser = new Map<string, { total: number; steps: { path: string; ms: number }[] }>()
   for (const r of rows) {
     let u = byUser.get(r.user_id)
@@ -58,18 +82,16 @@ export async function sendVisitorDigest(
     u.steps.push({ path: r.path, ms: r.dwell_ms })
   }
 
-  // Busiest users first.
   const users = [...byUser.entries()].sort((a, b) => b[1].total - a[1].total)
-  const shown = users.slice(0, MAX_USERS)
 
-  // Resolve emails (best-effort; fall back to the user id).
-  const lines: string[] = [
-    `Visitor journeys for ${label} (UTC).`,
-    `${users.length} signed-in user${users.length === 1 ? '' : 's'} · ${rows.length} page views.`,
-    '',
-  ]
+  lines.push(
+    `Visitor journeys: ${users.length} signed-in user${users.length === 1 ? '' : 's'} · ${rows.length} page views`
+  )
+  if (users.length === 0) {
+    lines.push('  (no tracked page activity — tracking only records visits after deploy)')
+  }
 
-  for (const [userId, info] of shown) {
+  for (const [userId, info] of users.slice(0, MAX_USERS)) {
     let who = userId
     try {
       const { data: authData } = await supabase.auth.admin.getUserById(userId)
@@ -77,26 +99,23 @@ export async function sendVisitorDigest(
     } catch {
       // keep the user id
     }
-    lines.push(`• ${who} — ${fmtMinutes(info.total)} total`)
+    lines.push('', `• ${who} — ${fmtMinutes(info.total)} total`)
     const steps = info.steps.slice(0, MAX_PATHS_PER_USER)
-    for (const s of steps) {
-      lines.push(`    ${s.path} (${fmtMinutes(s.ms)})`)
-    }
+    for (const s of steps) lines.push(`    ${s.path} (${fmtMinutes(s.ms)})`)
     if (info.steps.length > steps.length) {
       lines.push(`    …and ${info.steps.length - steps.length} more`)
     }
-    lines.push('')
   }
-  if (users.length > shown.length) {
-    lines.push(`(+${users.length - shown.length} more users omitted)`)
+  if (users.length > MAX_USERS) {
+    lines.push('', `(+${users.length - MAX_USERS} more users omitted)`)
   }
 
   await sendEmail({
     to: adminNotifyAddress(),
-    subject: `[${SITE_NAME}] Visitor journeys — ${label}`,
-    preheader: `${users.length} users · ${rows.length} page views`,
+    subject: `[${SITE_NAME}] Daily summary — ${label}`,
+    preheader: `${signups.length} signups · ${users.length} active users · ${rows.length} page views`,
     text: lines.join('\n'),
   })
 
-  return { sent: true, users: users.length, events: rows.length }
+  return { sent: true, signups: signups.length, users: users.length, events: rows.length }
 }

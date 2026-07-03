@@ -2,196 +2,155 @@
   "slug": "d2-1-cell-and-nuclear-division",
   "topicCode": "D2.1",
   "title": "Cell and nuclear division",
+  "unit": { "code": "D", "title": "Continuity and change" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson explores the intricacies of the cell cycle, focusing on the phases of interphase and mitosis. It details the molecular control mechanisms involving cyclins and cyclin-dependent kinases (CDKs) and investigates the consequences of losing this control, leading to cancer. Calculation of the mitotic index is also covered as a key practical skill.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Life continues because cells divide, but not all division is the same. This lesson works through the whole of D2.1: the cell cycle and its interphase (G1, S, G2) and M phase; mitosis as the nuclear division that yields two genetically identical diploid daughter cells, together with an overview of its stages and its roles in growth, repair and asexual reproduction; cytokinesis; meiosis as the reduction division that yields four genetically different haploid gametes across two divisions; how crossing over in prophase I and independent assortment in metaphase I generate variation; a direct comparison of mitosis and meiosis; and, for context, what happens when division control is lost and cancer develops. The worked examples and the model answer are laid out exactly the way our marking engine awards Paper 2 marks, so you can see how each distinct point earns its credit.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Outline the phases of the cell cycle, including interphase (G1, S, G2), mitosis, and cytokinesis.",
-    "Explain the role of cyclins and cyclin-dependent kinases (CDKs) in controlling the cell cycle.",
-    "Discuss the link between oncogenes, mutagens, and the development of primary and secondary tumours.",
-    "Calculate the mitotic index from a micrograph or data table."
+    "Outline the cell cycle, including interphase (G1, S, G2) and the M phase of mitosis and cytokinesis.",
+    "Describe mitosis as the division of a nucleus into two genetically identical diploid nuclei, name its stages (prophase, metaphase, anaphase, telophase) in overview, and state its roles in growth, tissue repair and asexual reproduction.",
+    "Describe meiosis as a reduction division of two successive divisions that produces four genetically different haploid gametes, and explain how crossing over in prophase I and independent assortment in metaphase I generate genetic variation.",
+    "Compare and contrast mitosis and meiosis, including the number and type of daughter cells produced.",
+    "Relate the loss of control over the cell cycle to uncontrolled cell division and the development of cancer.",
+    "Present explanations so that each distinct valid point earns its analytic mark, with error-carried-forward (ECF) protecting later marks."
   ],
+  "syllabusObjectivesCovered": ["D2.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Cell's Life and Division",
-    "summary": "The cell cycle is the carefully regulated life story of a cell, from its birth to its own division into two new daughter cells. This process is controlled by special proteins that act like checkpoints to ensure everything happens correctly and at the right time.",
-    "analogy": "Imagine the cell cycle is like a strictly scheduled school day. Interphase is the long 'lesson time' where you grow your knowledge and copy your notes (DNA replication). Mitosis is the short, intense 'exam period' where the notes are perfectly divided. Cyclins are like the school bells, signalling when to move from one activity to the next, ensuring you don't start the exam before you've finished studying.",
+    "title": "Two kinds of cell division",
+    "summary": "A cell spends most of its life in interphase, growing and copying its DNA, before it divides. There are two very different ways to divide. Mitosis makes two cells that are exact copies of the parent, used to build and repair the body. Meiosis makes four cells that are all different and carry only half the usual number of chromosomes, used to make gametes for sexual reproduction.",
+    "analogy": "Think of a cell's DNA as a full set of two-volume encyclopaedias. Mitosis is like a perfect photocopier: it first copies every page, then hands each of two identical new offices a complete, matching set — same information, same amount. Meiosis is more like sharing out a library between four new branches after first shuffling the volumes between the two matching copies: each branch ends up with only ONE volume of each pair, and because the volumes were shuffled first, no two branches get the same selection. Same starting shelf, but two completely different outcomes.",
     "steps": [
-      "Interphase: The cell grows, carries out its normal functions, and duplicates its DNA. This is the longest phase, split into G1, S, and G2 stages.",
-      "Mitosis & Cytokinesis: The duplicated chromosomes are separated into two identical nuclei (mitosis), and the cytoplasm divides to form two distinct daughter cells (cytokinesis).",
-      "Regulation: Proteins called cyclins and cyclin-dependent kinases (CDKs) act as internal signals, controlling the progression through checkpoints in the cell cycle.",
-      "Loss of Control: If mutations occur in genes that regulate the cycle (like oncogenes), cells can divide uncontrollably, leading to the formation of tumours and potentially cancer."
+      "Interphase: the cell grows (G1), replicates its DNA (S) and prepares to divide (G2). Every chromosome is now two identical sister chromatids joined together.",
+      "Mitosis: the nucleus divides once so that each daughter nucleus receives one copy of every chromosome — two nuclei that are genetically identical and diploid.",
+      "Cytokinesis: the cytoplasm splits, giving two separate daughter cells; this is used for growth, repair and asexual reproduction.",
+      "Meiosis: two divisions with only one round of DNA replication give four cells, each with HALF the chromosome number (haploid). Crossing over and independent assortment make all four genetically different — the source of variation in offspring."
     ]
   },
+  "keyConcepts": ["cell cycle", "mitosis", "meiosis", "genetic variation"],
   "flashcards": [
-    {
-      "front": "What is the cell cycle?",
-      "back": "The ordered sequence of events that a cell passes through between one cell division and the next. It consists of interphase, mitosis, and cytokinesis."
-    },
-    {
-      "front": "What are the three stages of interphase?",
-      "back": "G1 (Gap 1): Cell growth and protein synthesis. S (Synthesis): DNA replication. G2 (Gap 2): Further growth and preparation for division."
-    },
-    {
-      "front": "What is mitosis?",
-      "back": "The division of the nucleus into two genetically identical daughter nuclei."
-    },
-    {
-      "front": "What is cytokinesis?",
-      "back": "The division of the cytoplasm to form two separate daughter cells, which occurs after mitosis."
-    },
-    {
-      "front": "What are cyclins?",
-      "back": "A family of proteins that control the progression of a cell through the cell cycle by activating cyclin-dependent kinase (CDK) enzymes."
-    },
-    {
-      "front": "How do cyclins control the cell cycle?",
-      "back": "Cyclin concentrations rise and fall in a cyclical pattern. When a cyclin binds to its specific CDK, it activates the kinase, which then phosphorylates target proteins to trigger specific cell cycle events."
-    },
-    {
-      "front": "What is a tumour?",
-      "back": "A mass of cells formed by uncontrolled cell division. Tumours can be benign (not cancerous) or malignant (cancerous)."
-    },
-    {
-      "front": "What is metastasis?",
-      "back": "The spread of cancer cells from a primary tumour to form secondary tumours in other parts of the body."
-    },
-    {
-      "front": "What is an oncogene?",
-      "back": "A mutated gene that has the potential to cause cancer. They are often derived from proto-oncogenes, which normally control cell growth and division."
-    },
-    {
-      "front": "What is a mutagen?",
-      "back": "An agent, such as radiation or a chemical substance, that causes a genetic mutation. Some mutagens are carcinogenic (cancer-causing)."
-    },
-    {
-      "front": "Distinction: Mitosis vs. Cell Division",
-      "back": "Mitosis is specifically the division of the nucleus. Cell division is the entire process, including both mitosis (nuclear division) and cytokinesis (cytoplasmic division)."
-    },
-    {
-      "front": "What is the mitotic index used for?",
-      "back": "It is a measure of the proliferation status of a cell population (i.e., how many cells are dividing). It is often used to predict the response of cancer cells to chemotherapy."
-    }
+    { "front": "The cell cycle", "back": "The ordered sequence of events from one cell division to the next: interphase (G1, S, G2) followed by the M phase (mitosis and cytokinesis).", "pillLabel": "Definition" },
+    { "front": "Interphase (G1, S, G2)", "back": "The longest part of the cycle. G1: growth and protein synthesis. S: DNA is replicated, so each chromosome becomes two identical sister chromatids. G2: further growth and preparation for division.", "pillLabel": "Concept" },
+    { "front": "Mitosis", "back": "Nuclear division producing TWO daughter nuclei that are genetically IDENTICAL to each other and to the parent, and DIPLOID (full chromosome number). One division only.", "pillLabel": "Definition" },
+    { "front": "Stages of mitosis (PMAT)", "back": "Prophase: chromosomes condense, spindle forms. Metaphase: chromosomes line up on the equator. Anaphase: sister chromatids are pulled to opposite poles. Telophase: two nuclei re-form.", "pillLabel": "Sequence" },
+    { "front": "Cytokinesis", "back": "Division of the CYTOPLASM after mitosis to give two separate cells. Not part of mitosis itself — mitosis divides the nucleus, cytokinesis divides the rest of the cell.", "pillLabel": "Definition" },
+    { "front": "Roles of mitosis", "back": "Growth (increasing cell number), tissue repair and replacement of worn-out cells, and asexual reproduction — all needing genetically identical cells.", "pillLabel": "Concept" },
+    { "front": "Meiosis", "back": "A reduction division of TWO successive divisions producing FOUR daughter cells that are genetically DIFFERENT and HAPLOID (half the chromosome number). Produces gametes.", "pillLabel": "Definition" },
+    { "front": "Diploid (2n) vs haploid (n)", "back": "Diploid cells have chromosomes in homologous pairs (e.g. human 2n = 46). Haploid cells have one chromosome of each pair (e.g. human gamete n = 23). Meiosis halves the number, 2n → n.", "pillLabel": "Definition" },
+    { "front": "Crossing over", "back": "In prophase I, homologous chromosomes pair up and exchange corresponding segments, swapping ALLELES between them. This creates new combinations of alleles on a chromosome — a source of variation.", "pillLabel": "Concept" },
+    { "front": "Independent assortment", "back": "In metaphase I, each homologous PAIR lines up and separates independently of the other pairs, so maternal and paternal chromosomes are mixed at random. With n pairs this alone gives 2^n possible combinations.", "pillLabel": "Concept" },
+    { "front": "How meiosis generates variation", "back": "Crossing over (prophase I) + independent assortment (metaphase I) inside meiosis, then random fertilisation between gametes afterwards. Together they make each offspring genetically unique.", "pillLabel": "Concept" },
+    { "front": "Uncontrolled division and cancer", "back": "If the genes that control the cell cycle mutate, cells divide uncontrollably and form a tumour. Malignant tumours can spread (metastasis). Cancer is a disease of lost cell-cycle control.", "pillLabel": "Context" },
+    { "front": "Exam Trap: mitosis vs meiosis products", "back": "MITOSIS → 2 identical DIPLOID cells. MEIOSIS → 4 different HAPLOID cells. Muddling the number, the ploidy or the 'identical vs different' is the most common lost mark.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: crossing over vs independent assortment", "back": "Crossing over EXCHANGES segments between homologues (prophase I). Independent assortment SHUFFLES whole chromosomes as pairs separate (metaphase I). They are two DISTINCT mechanisms — name the right one.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A human body cell (2n = 46) divides by mitosis. Each daughter cell is:", "options": ["Haploid and genetically identical", "Diploid and genetically identical", "Haploid and genetically different", "Diploid and genetically different"], "answer": "Diploid and genetically identical" },
+    { "prompt": "How many cells does one meiotic division of a single parent cell produce, and are they identical?", "options": ["Two cells, genetically identical", "Two cells, genetically different", "Four cells, genetically identical", "Four cells, genetically different"], "answer": "Four cells, genetically different" },
+    { "prompt": "Which event exchanges alleles BETWEEN homologous chromosomes, and when does it occur?", "options": ["Independent assortment, in metaphase I", "Crossing over, in prophase I", "Independent assortment, in prophase I", "Crossing over, in anaphase II"], "answer": "Crossing over, in prophase I" },
+    { "prompt": "The random arrangement and separation of homologous pairs in metaphase I is called:", "options": ["Crossing over", "Cytokinesis", "Independent assortment", "DNA replication"], "answer": "Independent assortment" },
+    { "prompt": "Which change in chromosome number correctly describes a reduction division?", "options": ["Haploid parent cell to diploid gametes", "Diploid parent cell to diploid daughter cells", "Diploid parent cell to haploid gametes", "Haploid parent cell to haploid daughter cells"], "answer": "Diploid parent cell to haploid gametes" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a proto-oncogene and an oncogene?",
-      "a": "A proto-oncogene is a normal gene that helps regulate cell division and growth. An oncogene is a mutated version of a proto-oncogene. This mutation leads to the gene becoming overactive, which can result in uncontrolled cell division and contribute to the development of cancer."
-    },
-    {
-      "q": "Why is the mitotic index important in medicine?",
-      "a": "The mitotic index is a measure of how many cells in a tissue are actively dividing. In cancer diagnosis, a high mitotic index in a tumour sample often indicates a more aggressive cancer that is likely to grow and spread quickly. It can also be used to predict how well a cancer might respond to chemotherapy drugs that target rapidly dividing cells."
-    },
-    {
-      "q": "Do all cells in the body go through the cell cycle?",
-      "a": "No. Many specialised cells, such as mature nerve cells and muscle cells, enter a quiescent state called G0. In this phase, they are metabolically active and perform their functions but do not divide or prepare for division. They have permanently or semi-permanently exited the cell cycle."
-    },
-    {
-      "q": "If cyclins are proteins, what codes for them?",
-      "a": "Like all proteins, cyclins are coded for by genes in the cell's DNA. The expression of these cyclin genes is itself tightly regulated, ensuring that the right cyclins are produced at the right time during the cell cycle."
-    },
-    {
-      "q": "Can a single mutation cause cancer?",
-      "a": "It is very rare for a single mutation to cause cancer. Cancer is typically a 'multi-hit' disease, meaning it results from the accumulation of several mutations in different genes (both oncogenes and tumour suppressor genes) over time. This is why the risk of cancer increases with age."
-    }
+    { "q": "Why does DNA get replicated only once even though meiosis divides twice?", "a": "DNA is copied a single time, in the S phase before meiosis begins. The first meiotic division separates the homologous chromosomes (halving the chromosome number, 2n to n), and the second division separates the sister chromatids of each chromosome, like a mitosis on haploid cells. Because there is one replication but two separations, the four products end up with half the original chromosome number — which is exactly the point of a reduction division." },
+    { "q": "What is the real difference between crossing over and independent assortment?", "a": "They both create variation but by different means and at different stages. Crossing over happens in prophase I: homologous chromosomes pair up and swap matching segments, so a single chromosome ends up carrying a NEW mix of alleles it did not have before. Independent assortment happens in metaphase I: each pair of homologues lines up and then separates independently of every other pair, so which whole chromosomes end up together is random. Crossing over rearranges alleles within chromosomes; independent assortment shuffles the chromosomes themselves." },
+    { "q": "Are the two cells from mitosis really identical, given mutations happen?", "a": "In principle mitosis produces two genetically identical diploid daughter cells, because DNA replication copies every chromosome faithfully and each daughter receives one copy of each. In practice, rare copying errors (mutations) can occur, so 'identical' is the intended outcome rather than an absolute guarantee. For exam purposes the correct statement is that mitosis produces genetically identical cells — the contrast with meiosis, which deliberately produces different cells, is what matters." },
+    { "q": "How does cancer connect to normal cell division?", "a": "Cancer is normal mitosis with the brakes off. The cell cycle is normally paused at checkpoints until conditions are right; if the genes controlling those checkpoints mutate, a cell can divide again and again without restraint. The uncontrolled mitosis builds a tumour, and if cells break away and spread (metastasis) they seed secondary tumours. So cancer is not a special kind of division — it is ordinary division that has lost its control." },
+    { "q": "Where exactly does variation between siblings come from?", "a": "From three places. Inside meiosis, crossing over in prophase I and independent assortment in metaphase I mean each gamete is genetically unique. Then, at fertilisation, which particular sperm meets which particular egg is itself random. The combination of these means siblings (other than identical twins) inherit different mixes of their parents' alleles." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Cell division is a fundamental process for life, essential for growth, tissue repair, and asexual reproduction. The process is not a simple, one-step event but a highly regulated and complex sequence known as the cell cycle. In this lesson, we will dissect the stages of this cycle, uncover the molecular machinery that drives it, and explore the dire consequences when this control system fails, leading to diseases like cancer."
-    },
-    {
-      "type": "heading",
-      "content": "The Phases of the Cell Cycle"
-    },
-    {
-      "type": "text",
-      "content": "The cell cycle is divided into two main parts: Interphase and the M phase (Mitotic phase). Interphase is the longest part, where the cell grows and prepares for division. It is subdivided into three distinct stages: G1 (Gap 1), S (Synthesis), and G2 (Gap 2). During G1, the cell grows and synthesises proteins. The crucial event of the S phase is the replication of DNA, ensuring that each daughter cell will receive a complete set of genetic material. In G2, the cell continues to grow and produces the proteins needed for mitosis. The M phase includes mitosis (nuclear division) and cytokinesis (cytoplasmic division), resulting in two genetically identical daughter cells."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Interphase:** The preparatory phase, comprising G1, S, and G2.",
-        "**G1 Phase:** Cell growth, organelle duplication, protein synthesis.",
-        "**S Phase:** DNA is replicated (synthesised).",
-        "**G2 Phase:** Final growth and preparation for division.",
-        "**M Phase:** Mitosis (nuclear division) and cytokinesis (cell division)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Molecular Control of the Cell Cycle"
-    },
-    {
-      "type": "text",
-      "content": "Progression through the cell cycle is not automatic; it is tightly regulated by molecular checkpoints. These checkpoints ensure that one phase is completed successfully before the next one begins. The key players in this regulation are proteins called cyclins and enzymes called cyclin-dependent kinases (CDKs). CDKs are always present in the cell but are only active when bound to their specific cyclin partner. The concentration of each type of cyclin rises and falls in a predictable pattern throughout the cycle. For example, Cyclin D levels rise in G1, triggering the transition to the S phase. This binding activates the CDK, which then phosphorylates and activates other proteins, driving the cell into the next phase."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Cyclins:** Regulatory proteins whose concentrations fluctuate cyclically.",
-        "**Cyclin-Dependent Kinases (CDKs):** Enzymes that, when activated by a cyclin, phosphorylate target proteins to regulate the cell cycle.",
-        "**Checkpoints:** Control points (e.g., at the end of G1 and G2) where the cycle can be paused if conditions are not favourable or processes are incomplete.",
-        "**Example:** Cyclin E binds to CDK2 to control the transition from G1 to S phase."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A micrograph of a root tip tissue sample shows a total of 250 cells. On closer inspection, 15 cells are observed to be in prophase, 8 in metaphase, 3 in anaphase, and 4 in telophase. Calculate the mitotic index for this tissue sample.",
-      "solution": "1. **Identify the formula:** The mitotic index is the ratio of cells in mitosis to the total number of cells.\n   $\\text{Mitotic Index} = \\frac{\\text{Number of cells in mitosis}}{\\text{Total number of cells}}$\n\n2. **Calculate the total number of cells in mitosis:** This is the sum of cells in all phases of mitosis (prophase, metaphase, anaphase, telophase).\n   Number in mitosis = 15 (prophase) + 8 (metaphase) + 3 (anaphase) + 4 (telophase) = 30 cells.\n\n3. **Identify the total number of cells:** This is given in the question as 250 cells.\n\n4. **Substitute the values into the formula and calculate:**\n   $\\text{Mitotic Index} = \\frac{30}{250} = 0.12$\n\n**Answer:** The mitotic index is 0.12. (This can also be expressed as 12%)."
-    },
-    {
-      "type": "heading",
-      "content": "Cancer: The Cell Cycle Out of Control"
-    },
-    {
-      "type": "text",
-      "content": "Cancer is fundamentally a disease of the cell cycle. It arises from the loss of control over cell division, leading to the formation of a tumour, which is an abnormal mass of cells. This loss of control is caused by mutations in specific genes that regulate the cycle. Proto-oncogenes are genes that normally promote cell division in a controlled way. When mutated, they can become oncogenes, which are like a stuck accelerator pedal, causing constant cell division. Tumour suppressor genes, on the other hand, normally act as the brakes, halting the cell cycle. Mutations in these genes can cause the brakes to fail. The development of cancer is a multi-step process, often requiring mutations in several different genes. These mutations can be caused by exposure to mutagens, which are agents like UV radiation, certain chemicals, and some viruses."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Uncontrolled Division:** Cancer cells ignore signals that normally stop division.",
-        "**Oncogenes:** Mutated versions of proto-oncogenes that promote uncontrolled cell growth.",
-        "**Tumour Suppressor Genes:** Genes that normally inhibit cell division. When mutated, this inhibition is lost.",
-        "**Tumour Formation:** A primary tumour is the initial mass of cancerous cells. If these cells invade other tissues and spread through the blood or lymph systems, they can form secondary tumours in a process called metastasis."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, be precise with your language. Do not say 'cyclins control the cell cycle'. Instead, explain *how*: 'Cyclin concentrations rise and fall, binding to and activating specific CDKs. The activated CDK complex then phosphorylates target proteins that trigger the next phase of the cell cycle.' This level of detail demonstrates a deeper understanding and is more likely to earn full marks."
-    },
-    {
-      "type": "workedExample",
-      "question": "A student observes that cells in a garlic root tip take 24 hours (1440 minutes) to complete one cell cycle. They count the number of cells in each stage from a micrograph: 800 cells in interphase, 120 in prophase, 40 in metaphase, 16 in anaphase, and 24 in telophase. Calculate the duration, in minutes, of metaphase.",
-      "solution": "1. **Find the total number of cells counted:**\n   Total cells = 800 + 120 + 40 + 16 + 24 = 1000 cells.\n\n2. **Calculate the proportion of cells in metaphase:**\n   Proportion = $\\frac{\\text{Number of cells in metaphase}}{\\text{Total number of cells}} = \\frac{40}{1000} = 0.04$\n\n3. **Calculate the duration of metaphase:** The time spent in a phase is proportional to the number of cells found in that phase. Multiply the proportion by the total time of the cell cycle.\n   Duration of metaphase = Proportion in metaphase × Total cycle time\n   Duration = $0.04 \\times 1440 \\text{ minutes}$\n\n4. **Calculate the final answer:**\n   Duration = 57.6 minutes.\n\n**Answer:** The calculated duration of metaphase is 57.6 minutes."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Cell and Nuclear Division",
-      "href": "/mark?subject=ib-biology-sl&topic=D2.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Detailed animation of the cell cycle and mitosis",
-          "href": "https://www.youtube.com/watch?v=f-ldPgEfAHI"
-        },
-        {
-          "label": "Interactive simulation of the cell cycle control",
-          "href": "https://phet.colorado.edu/en/simulations/cell-cycle"
-        },
-        {
-          "label": "Reading from Cancer Research UK on cell cycle and cancer",
-          "href": "https://www.cancerresearchuk.org/about-cancer/what-is-cancer/how-cancer-starts/the-cell-cycle-and-cancer"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every one of the trillions of cells in your body traces back to a single fertilised egg, and every generation of a species is linked to the last by cell division. But there are two fundamentally different divisions doing two different jobs. One, mitosis, copies a cell exactly, so a body can grow and repair itself and some organisms can reproduce asexually. The other, meiosis, halves the genetic material and deliberately reshuffles it, producing the varied gametes that sexual reproduction depends on. This lesson builds the cell cycle first, then walks through mitosis and cytokinesis, then meiosis and the two mechanisms that make its products different, sets the two divisions side by side, and finally looks at what happens when division control fails. As in every Paper 2 topic, the worked examples show HOW marks are awarded, because writing distinct, creditable points is what protects your score." },
+
+    { "type": "heading", "content": "The cell cycle: interphase and the M phase" },
+    { "type": "text", "content": "A dividing cell does not simply split in two on demand; it moves through an ordered sequence called the cell cycle. The cycle has two main parts. Interphase is the long preparatory part and is itself divided into three stages: G1 (Gap 1), in which the cell grows and makes proteins and organelles; S (Synthesis), in which the DNA is replicated so that every chromosome becomes two identical sister chromatids joined at a centromere; and G2 (Gap 2), in which the cell completes its growth and assembles what it needs to divide. The M phase (Mitotic phase) then follows and is much shorter: it consists of mitosis, the division of the nucleus, and cytokinesis, the division of the cytoplasm. The essential point is that DNA is copied once, during S phase, before either kind of nuclear division starts." },
+    { "type": "keyPoints", "items": [
+      "**Interphase** is the longest part of the cycle: G1, S and G2.",
+      "**G1:** cell growth, protein synthesis, organelle duplication.",
+      "**S phase:** DNA is replicated, giving each chromosome two identical sister chromatids.",
+      "**G2:** final growth and preparation for division.",
+      "**M phase:** mitosis (nuclear division) followed by cytokinesis (cytoplasmic division)."
+    ]},
+
+    { "type": "heading", "content": "Mitosis: two identical diploid daughter cells" },
+    { "type": "text", "content": "Mitosis is the division of a nucleus into two daughter nuclei that are genetically identical to each other and to the original, and that keep the full (diploid) chromosome number. It is a continuous process, but for description it is divided into four stages. In prophase the chromosomes condense and become visible as pairs of sister chromatids, and a spindle of microtubules begins to form. In metaphase the chromosomes are moved to the equator (the middle) of the cell and held there by the spindle. In anaphase the sister chromatids of each chromosome are pulled apart to opposite poles, so each pole receives one identical copy of every chromosome. In telophase the chromosomes arrive at the poles and a nuclear membrane re-forms around each set, giving two nuclei. Because DNA was copied exactly in S phase and the identical chromatids were shared out one-to-each, the two nuclei carry identical genetic information. This is precisely what growth, tissue repair and asexual reproduction require: new cells that are exact copies." },
+    { "type": "keyPoints", "items": [
+      "**Prophase:** chromosomes condense (visible as sister chromatids); spindle forms.",
+      "**Metaphase:** chromosomes line up on the equator of the cell.",
+      "**Anaphase:** sister chromatids separate and move to opposite poles.",
+      "**Telophase:** two nuclei re-form, one at each pole.",
+      "**Products:** two genetically IDENTICAL DIPLOID nuclei.",
+      "**Roles:** growth, tissue repair/replacement, and asexual reproduction."
+    ]},
+
+    { "type": "heading", "content": "Cytokinesis" },
+    { "type": "text", "content": "Mitosis divides the nucleus, but the cell is not yet two cells. Cytokinesis is the division of the cytoplasm that follows, physically pinching or partitioning one cell into two. In animal cells the plasma membrane is drawn inwards by a ring of protein filaments, forming a cleavage furrow that deepens until the cell splits. In plant cells, whose stiff cell wall cannot be pinched, vesicles gather along the middle and fuse to build a new cell plate that grows outwards into a dividing wall. The important distinction for the exam is that mitosis and cytokinesis are separate events: mitosis is nuclear division, cytokinesis is cytoplasmic division, and together they complete the M phase to yield two distinct daughter cells." },
+
+    { "type": "workedExample", "question": "A mammal has a diploid number of 2n = 8. A single cell in this animal is followed through (i) mitosis and (ii) meiosis. For EACH process, state the number of daughter cells produced, the number of chromosomes in each daughter cell, and whether the daughter cells are genetically identical to the parent cell. [6]", "solution": "**Set-up.** The parent cell is diploid with 2n = 8, so it starts with 8 chromosomes (4 homologous pairs). Compare the two divisions point by point.\n\n**(i) Mitosis.**\n- Number of daughter cells = **2**. [1]\n- Chromosomes per daughter cell = **8** (diploid, the full number is kept). [1]\n- Genetically **identical** to the parent (and to each other). [1]\n\n**(ii) Meiosis.**\n- Number of daughter cells = **4**. [1]\n- Chromosomes per daughter cell = **4** (haploid, the number is halved, 2n to n). [1]\n- Genetically **different** from the parent and from one another (because of crossing over and independent assortment). [1]\n\n**Answer summary.** Mitosis: 2 cells, 8 chromosomes each, identical. Meiosis: 4 cells, 4 chromosomes each, all different.\n\n*Each of the six statements is a separate mark. Notice the mitosis chromosome number stays at 8 while meiosis falls to 4 — halving the chromosome number is the defining feature of a reduction division, and writing 8 for meiosis would lose that mark outright.*" },
+
+    { "type": "heading", "content": "Meiosis: four different haploid gametes" },
+    { "type": "text", "content": "Meiosis is the reduction division used to make gametes. Starting from one diploid cell it carries out TWO successive divisions after only a single round of DNA replication, producing four haploid cells — cells with half the original chromosome number. In humans, for example, a diploid cell of 2n = 46 gives rise to gametes of n = 23. The two divisions do different jobs. The first division (meiosis I) separates the homologous chromosomes, one of each pair going to each new cell, and this is the step that halves the chromosome number. The second division (meiosis II) then separates the sister chromatids of each chromosome, much like a mitosis but in the now-haploid cells, giving four cells in total. Crucially, the four products are not identical: meiosis is built to create variation." },
+    { "type": "keyPoints", "items": [
+      "Meiosis is a **reduction division**: diploid (2n) parent → haploid (n) gametes.",
+      "**Two divisions**, one DNA replication: meiosis I separates homologous chromosomes; meiosis II separates sister chromatids.",
+      "**Products:** FOUR genetically DIFFERENT HAPLOID cells.",
+      "Meiosis produces the gametes for **sexual reproduction**."
+    ]},
+
+    { "type": "heading", "content": "How meiosis generates genetic variation" },
+    { "type": "text", "content": "Two events inside meiosis make the four gametes genetically different. The first is crossing over, which happens in prophase I: homologous chromosomes pair up closely, and corresponding segments are exchanged between them. Because the maternal and paternal chromosomes of a pair carry different alleles of the same genes, this swap produces chromosomes with NEW combinations of alleles that neither parent chromosome had. The second is independent assortment, which happens in metaphase I: each homologous pair lines up on the equator and then separates independently of every other pair, so whether a given cell inherits the maternal or the paternal member of each pair is decided at random. With n pairs of chromosomes, independent assortment alone can produce 2^n different combinations of whole chromosomes. On top of these two internal mechanisms, sexual reproduction adds a third source of variation after meiosis is over: random fertilisation, since it is a matter of chance which sperm fertilises which egg. Together these mean each new individual is a genetically unique reshuffling of its parents' alleles." },
+    { "type": "keyPoints", "items": [
+      "**Crossing over (prophase I):** homologous chromosomes exchange segments, creating new allele combinations on a chromosome.",
+      "**Independent assortment (metaphase I):** homologous pairs line up and separate at random, mixing maternal and paternal chromosomes; n pairs give 2^n combinations.",
+      "**Random fertilisation (after meiosis):** any gamete can fuse with any other, adding further variation.",
+      "Together these make each gamete — and each offspring — genetically unique."
+    ]},
+
+    { "type": "workedExample", "question": "In an organism with a haploid number of n = 3 (three pairs of homologous chromosomes), calculate the number of genetically different gamete types that can arise from INDEPENDENT ASSORTMENT alone, ignoring crossing over. Show how the number is obtained. [2]", "solution": "**Method.** For each homologous pair, meiosis can send either the maternal or the paternal chromosome into a given gamete — 2 possibilities per pair. The pairs assort independently, so the total number of combinations is 2 multiplied by itself once for each pair:\n$2^n$, where $n$ is the number of pairs. [M1: recognises 2 raised to the number of pairs]\n\n**Substitute** $n = 3$:\n$2^3 = 8$ genetically different gamete types. [A1]\n\n*This counts only independent assortment. Crossing over adds many more possibilities by creating recombinant chromosomes, which is why the real number of distinct gametes is far larger than $2^n$. For humans ($n = 23$) independent assortment alone already gives $2^{23} \\approx 8.4$ million combinations.*" },
+
+    { "type": "heading", "content": "Comparing mitosis and meiosis" },
+    { "type": "text", "content": "It is worth holding the two divisions directly against each other, because most exam errors come from blurring them. Both are preceded by one round of DNA replication in S phase and both use a spindle to move chromosomes. But mitosis is a single division that keeps homologous chromosomes separate throughout and produces two diploid cells identical to the parent, whereas meiosis is two divisions in which homologous chromosomes first pair and then separate, producing four haploid cells that are all different. Only meiosis has crossing over and independent assortment of homologous pairs, and only meiosis halves the chromosome number. In short: mitosis is for making more of the same cell (growth, repair, asexual reproduction); meiosis is for making varied gametes (sexual reproduction)." },
+    { "type": "keyPoints", "items": [
+      "**Number of divisions:** mitosis one; meiosis two.",
+      "**Daughter cells:** mitosis two; meiosis four.",
+      "**Chromosome number:** mitosis keeps it (diploid → diploid); meiosis halves it (diploid → haploid).",
+      "**Genetic outcome:** mitosis identical to parent; meiosis all genetically different.",
+      "**Variation mechanisms:** crossing over and independent assortment occur in meiosis only.",
+      "**Role:** mitosis for growth, repair and asexual reproduction; meiosis for gamete production in sexual reproduction."
+    ]},
+
+    { "type": "heading", "content": "Context: uncontrolled division and cancer" },
+    { "type": "text", "content": "The cell cycle is normally held under tight control, pausing at checkpoints until it is safe to proceed. When the genes that regulate the cycle mutate, this control can be lost, and a cell may divide again and again without restraint. The result is a tumour, an abnormal mass of cells produced by uncontrolled mitosis. A benign tumour stays where it is, but a malignant (cancerous) tumour can invade surrounding tissue and shed cells that travel in the blood or lymph to start secondary tumours elsewhere, a process called metastasis. Mutations of this kind can be triggered by mutagens such as certain chemicals, some viruses and ionising or UV radiation, and cancer usually requires several such mutations to accumulate. The key idea for D2.1 is simply that cancer is what happens when the normal control of cell division breaks down — division itself is the same process, but its regulation has failed." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Swapping the products of the two divisions** — mitosis gives TWO IDENTICAL DIPLOID cells, meiosis gives FOUR DIFFERENT HAPLOID cells. Getting the number, the ploidy, or 'identical vs different' the wrong way round is the single most common lost mark.",
+      "**Saying meiosis keeps the chromosome number** — meiosis is a REDUCTION division; the daughter cells are haploid (2n → n). Writing the full number for a gamete throws away the defining feature.",
+      "**Confusing crossing over with independent assortment** — crossing over EXCHANGES segments between homologues in prophase I; independent assortment SHUFFLES whole pairs in metaphase I. Name the correct mechanism and the correct stage.",
+      "**Placing variation in the wrong division** — crossing over and independent assortment both occur in meiosis I, not meiosis II and not mitosis. Mitosis produces no variation.",
+      "**Confusing mitosis with cytokinesis** — mitosis divides the NUCLEUS; cytokinesis divides the CYTOPLASM. They are separate events within the M phase.",
+      "**Calling meiosis 'cell division for growth'** — growth, repair and asexual reproduction use MITOSIS; meiosis makes gametes for sexual reproduction.",
+      "**Treating cancer as a different kind of division** — cancer is uncontrolled MITOSIS caused by loss of cell-cycle control, not a separate process."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "D2.1 explanation questions are marked analytically: each distinct valid biological point is worth one mark, up to the total available. Method-style points (M) credit correct mechanism, and where a question builds on an earlier value, error-carried-forward (ECF) means a wrong figure early on does not cost you the marks that follow, provided your reasoning is shown. Study how each mark below is pinned to a specific named idea — a stage and a mechanism — rather than to loose wording, because that is exactly how the Practice engine will read your answer." },
+    { "type": "workedExample", "question": "Explain how meiosis produces gametes that are genetically different from each other and from the parent cell. [4]", "solution": "**Model answer.**\nDuring prophase I, homologous chromosomes pair up and crossing over occurs: corresponding segments are exchanged between them, so alleles are swapped between the maternal and paternal chromosomes and new combinations of alleles are produced. During metaphase I, the homologous pairs line up on the equator and separate by independent (random) assortment, so each gamete receives a random mixture of maternal and paternal chromosomes. Because both processes occur at random, each of the four gametes ends up with a different combination of alleles, making them genetically different from one another and from the diploid parent cell. When these gametes later fuse at random fertilisation, still more variation is generated in the offspring.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** crossing over occurs in PROPHASE I, exchanging segments/alleles between homologous chromosomes. [A for correctly naming the mechanism]\n- **Point 2 (M):** this produces NEW combinations of alleles on a chromosome.\n- **Point 3 (M):** independent (random) assortment in METAPHASE I gives gametes a random mix of maternal and paternal chromosomes.\n- **Point 4 (M):** these processes generate genetic variation, so the gametes differ from each other and from the parent.\n- **Further point (A):** random fertilisation afterwards adds still more variation. Credited as an equivalent valid point.\n\nFive creditable points are shown for a 4-mark question, so the engine caps the award at 4 — there is deliberate room to miss one and still score full marks. But the marks are for DISTINCT ideas: stating 'crossing over happens' and 'segments are exchanged' is one point, not two.\n\n**What the engine rejects.** An answer that only says 'meiosis mixes up the genes' or 'the gametes are all different' scores ZERO for mechanism, because it names neither crossing over, nor independent assortment, nor the stage at which each occurs. Equivalents are accepted (for example 'random assortment' for 'independent assortment'), but a vague statement is not.\n\n**ECF and partial credit.** The points are independent, so a student who forgets crossing over but correctly explains independent assortment and random fertilisation still earns those points. There is no all-or-nothing penalty — each valid line stands on its own.\n\n**Bottom line:** to secure all 4 marks, name TWO distinct meiotic mechanisms with their stages (crossing over in prophase I; independent assortment in metaphase I), state that they create new allele combinations, and conclude that this makes the gametes genetically different. Adding random fertilisation is a safe fifth point." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, accepting equivalents, with ECF and a cap at the marks available. So write in distinct, creditable statements: name crossing over AND its stage (prophase I), name independent assortment AND its stage (metaphase I), say they produce new allele combinations, then conclude the gametes are genetically different. A single vague sentence about 'shuffling genes' earns nothing; naming each mechanism and stage is what protects your score." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "These two divisions underpin much of the rest of the course. Mitosis is the engine of growth and repair and the basis of asexual reproduction and cloning; understanding its loss of control is the foundation for the biology of cancer. Meiosis, with its crossing over, independent assortment and the random fertilisation that follows, is the ultimate source of the genetic variation that natural selection acts on — so it connects directly to inheritance, gene linkage and evolution. Get the products straight (two identical diploid cells versus four different haploid cells) and you have a template that anchors every genetics and continuity topic to come." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain how meiosis generates variation, or compare the products of mitosis and meiosis", "href": "/mark?subject=ib-biology-sl&topic=D2.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Detailed animation of the cell cycle and mitosis", "href": "https://www.youtube.com/watch?v=f-ldPgEfAHI" },
+      { "label": "Interactive simulation of the cell cycle control", "href": "https://phet.colorado.edu/en/simulations/cell-cycle" },
+      { "label": "Reading from Cancer Research UK on the cell cycle and cancer", "href": "https://www.cancerresearchuk.org/about-cancer/what-is-cancer/how-cancer-starts/the-cell-cycle-and-cancer" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Interactive simulation of the cell cycle control",

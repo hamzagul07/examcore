@@ -2,181 +2,148 @@
   "slug": "a3-1-diversity-of-organisms",
   "topicCode": "A3.1",
   "title": "Diversity of organisms",
+  "unit": { "code": "A", "title": "Unity and diversity" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson explores the concept of biodiversity, distinguishing between species richness and evenness. It introduces Simpson's Diversity Index (D) as a quantitative tool for comparing habitats and explains how to calculate and interpret it. The role of indicator species and biotic indices in monitoring environmental health, particularly pollution, is also covered.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "A3.1 is where biology decides what counts as a species and how the living world is sorted. This lesson builds the whole toolkit: the biological species concept — interbreeding to produce fertile offspring — and the real cases where it breaks down (asexual reproduction, hybrids, ring species and chronospecies); variation within and between species; the rules of binomial nomenclature; the sheer breadth of eukaryotic and prokaryotic diversity; how different environments select for different forms; and how biodiversity is measured through species richness and evenness. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — each distinct valid point scoring one mark, with error-carried-forward — so you can see how a precise, well-structured answer protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the concept of biodiversity in terms of species richness and species evenness.",
-    "Calculate Simpson's diversity index (D) for different habitats using the provided formula.",
-    "Analyse the value of Simpson's diversity index (D) to compare the biodiversity of two ecosystems.",
-    "Outline the use of indicator species and biotic indices in monitoring environmental change."
+    "State the biological species concept — a group of organisms that can interbreed and produce fertile offspring — and explain why fertility of the offspring is essential to the definition.",
+    "Outline situations where the biological species concept is difficult to apply: asexually reproducing organisms, hybrids such as the mule, ring species, and chronospecies known only from fossils.",
+    "Distinguish variation within a species (intraspecific) from variation between species (interspecific), and identify the sources of variation.",
+    "Apply the conventions of binomial nomenclature: a capitalised genus, a lower-case species epithet, and both names in italics (or underlined when handwritten).",
+    "Describe the breadth of eukaryotic and prokaryotic diversity and explain how different environments select for different adaptations, and outline how biodiversity is estimated through species richness and evenness."
   ],
+  "syllabusObjectivesCovered": ["A3.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Nature's Census: More Than Just a Headcount",
-    "summary": "Biodiversity isn't just about how many different species live in a place, but also how balanced their populations are. We use a formula called Simpson's Diversity Index to capture both these ideas in a single number, allowing us to compare the health of different ecosystems.",
-    "analogy": "Imagine two different bags of sweets. Bag A has 100 sweets: 99 are lemon-flavoured and one is strawberry. Bag B also has 100 sweets, but it has 10 sweets of 10 different flavours. If you picked a sweet from each bag without looking, you'd almost certainly get a lemon from Bag A, but you have an equal chance of getting any of the 10 flavours from Bag B. Bag B is more 'diverse'. Simpson's Diversity Index is a way of scoring how diverse each bag is.",
+    "title": "Sorting the Living World",
+    "summary": "Life comes in a staggering variety of forms, so biologists need a rule for deciding where one kind of organism ends and another begins, and a shared system for naming each kind. The biological species concept says organisms belong to the same species if they can interbreed and produce fertile offspring — a neat rule that works for most animals but runs into trouble at the edges.",
+    "analogy": "Think of species as separate lakes and gene flow as water moving between them. If two populations can freely exchange 'water' — mate and produce fertile young whose own young are fertile too — they are really one connected lake, one species. A mule is like water poured into a sealed jar: a horse and a donkey can mix once, but the mule is sterile, so no water flows on to the next generation and the two lakes stay separate. And some cases are genuinely blurry: a chain of neighbouring ponds where each links to the next, yet the two ends can no longer mix — that is a ring species, and it shows the boundary of a 'lake' is not always sharp.",
     "steps": [
-      "First, for a given habitat, create a table listing all the species found. Count the number of individuals for each species (this is 'n').",
-      "Next, sum the counts for all species to find the total number of all organisms (this is 'N').",
-      "Then, use the Simpson's Diversity Index formula, $D = \\frac{N(N-1)}{\\sum n(n-1)}$, which is in your data booklet. Calculate the value for $\\sum n(n-1)$ by working it out for each species and then adding them all together.",
-      "Finally, interpret the result. A higher value of D indicates greater biodiversity, suggesting a more stable and healthy ecosystem. Compare D values between habitats to make a judgement."
+      "Ask whether two organisms can interbreed AND whether their offspring are themselves fertile — both conditions are needed for the same-species verdict.",
+      "Check for the awkward cases the rule cannot judge: organisms that reproduce asexually, sterile hybrids, ring species and fossil chronospecies.",
+      "Name each species with a two-part Latin name — a capitalised genus and a lower-case species epithet, both in italics — so scientists everywhere refer to the same organism.",
+      "Recognise the breadth of life, from prokaryotes to eukaryotes, and understand that different environments select for the different adaptations we see, which biodiversity surveys then estimate through richness and evenness."
     ]
   },
+  "keyConcepts": ["species", "variation", "biodiversity"],
   "flashcards": [
-    {
-      "front": "What is biodiversity?",
-      "back": "The variety of life on Earth. It can be considered at three levels: genetic diversity (variety of genes within a species), species diversity (variety of species in an ecosystem), and ecosystem diversity (variety of ecosystems in a region)."
-    },
-    {
-      "front": "What is species richness?",
-      "back": "The number of different species present in an ecosystem. It is a simple count of species."
-    },
-    {
-      "front": "What is species evenness?",
-      "back": "The relative abundance of individuals of each species in an ecosystem. It measures how similar the population sizes of different species are."
-    },
-    {
-      "front": "What does Simpson's Diversity Index (D) measure?",
-      "back": "It is a quantitative measure of species diversity that takes into account both species richness and species evenness."
-    },
-    {
-      "front": "What does a high value of Simpson's Diversity Index (D) indicate?",
-      "back": "A high value of D (D > 1) suggests a stable and ancient ecosystem with high species richness and evenness. It is less likely to be dominated by a single species."
-    },
-    {
-      "front": "What does a low value of Simpson's Diversity Index (D) indicate?",
-      "back": "A low value of D (close to 1) suggests an ecosystem with low biodiversity, possibly due to pollution, recent colonisation, or agricultural management (e.g., a monoculture)."
-    },
-    {
-      "front": "What is an indicator species?",
-      "back": "A species whose presence, absence, or abundance reflects a specific environmental condition, such as the level of pollution."
-    },
-    {
-      "front": "Give an example of an indicator species for air pollution.",
-      "back": "Lichens are sensitive to sulfur dioxide ($SO_2$). The abundance and diversity of lichen species decrease as air pollution increases. Bushy lichens are very sensitive, while crusty lichens are more tolerant."
-    },
-    {
-      "front": "Give an example of an indicator species for water pollution.",
-      "back": "Mayfly larvae are sensitive to low oxygen levels and are typically found in clean, unpolluted water. Their absence can indicate organic pollution."
-    },
-    {
-      "front": "What is a biotic index?",
-      "back": "A scale (e.g., 1-10) that gives a measure of the quality of an ecosystem by noting the presence and abundance of specific indicator species."
-    },
-    {
-      "front": "Common Trap: What is the difference between species richness and biodiversity?",
-      "back": "Species richness is only one component of biodiversity. Biodiversity also includes species evenness. Two areas could have the same richness (same number of species) but different evenness, leading to different overall biodiversity."
-    },
-    {
-      "front": "Common Trap: What is a frequent mistake when calculating the denominator of Simpson's Index, $\\sum n(n-1)$?",
-      "back": "A common mistake is to calculate $(\\sum n)(\\sum n - 1)$ instead. You must calculate $n(n-1)$ for each species individually and *then* sum the results."
-    }
+    { "front": "Biological species concept", "back": "A species is a group of organisms that can INTERBREED and produce FERTILE offspring. Both parts matter: interbreeding alone is not enough — the offspring must themselves be able to reproduce.", "pillLabel": "Definition" },
+    { "front": "Why 'fertile' is essential", "back": "A horse and a donkey interbreed to give a mule, but the mule is (almost always) sterile, so no continuous gene flow links horses and donkeys. They therefore remain SEPARATE species. Fertile offspring is what keeps a gene pool connected.", "pillLabel": "Concept" },
+    { "front": "Hybrid", "back": "The offspring of two different species (e.g. mule = female horse × male donkey; liger = lion × tiger). Hybrids are usually sterile because the parents' chromosomes cannot pair correctly at meiosis.", "pillLabel": "Definition" },
+    { "front": "Why the species concept struggles with asexual organisms", "back": "Bacteria and many plants reproduce ASEXUALLY, so 'can they interbreed?' has no meaning for them. The biological species concept relies on sexual reproduction and simply cannot be applied to purely asexual life.", "pillLabel": "Concept" },
+    { "front": "Ring species", "back": "A chain of neighbouring populations that can each interbreed with their neighbours, but the two ends of the ring can no longer interbreed where they meet. There is no clean line at which one species becomes another.", "pillLabel": "Definition" },
+    { "front": "Chronospecies", "back": "A species defined from the fossil record as it changes gradually over long spans of time. Because the organisms are extinct and separated in time, no interbreeding test is possible, so the species boundary is drawn arbitrarily.", "pillLabel": "Definition" },
+    { "front": "Variation within vs between species", "back": "Variation WITHIN a species (intraspecific) — e.g. human height — arises from meiosis, sexual reproduction and mutation. Variation BETWEEN species (interspecific) is generally far greater and reflects separate evolutionary histories.", "pillLabel": "Concept" },
+    { "front": "Sources of variation", "back": "MUTATION is the ultimate source of new alleles; MEIOSIS (crossing over and independent assortment) and RANDOM FERTILISATION during sexual reproduction shuffle existing alleles into new combinations.", "pillLabel": "Concept" },
+    { "front": "Binomial nomenclature", "back": "Every species has a two-part Latin name: GENUS (capitalised) + species epithet (lower case), both ITALICISED, e.g. *Homo sapiens*. Handwritten, both parts are underlined. After first use the genus may be abbreviated: *H. sapiens*.", "pillLabel": "Definition" },
+    { "front": "Prokaryote vs eukaryote diversity", "back": "PROKARYOTES (bacteria and archaea) lack a nucleus and membrane-bound organelles but show enormous metabolic diversity and dominate in numbers. EUKARYOTES (animals, plants, fungi, protists) have a nucleus and are more varied in size and form.", "pillLabel": "Concept" },
+    { "front": "How environments select for diversity", "back": "Different environments impose different selection pressures, so populations accumulate different adaptations by natural selection. Distinct niches allow many species to coexist, driving the diversity seen along environmental gradients.", "pillLabel": "Concept" },
+    { "front": "Species richness vs evenness", "back": "RICHNESS is simply the NUMBER of different species present. EVENNESS is how equally individuals are spread among those species. Two habitats can have equal richness but very different evenness — both feed into a measure of biodiversity.", "pillLabel": "Definition" },
+    { "front": "Exam Trap: interbreeding is not enough", "back": "Defining a species as 'organisms that can interbreed' loses the mark. The offspring must be FERTILE — otherwise the mule (a sterile hybrid) would wrongly merge horses and donkeys into one species.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: naming conventions", "back": "*Homo sapiens*, never *homo Sapiens* or 'Homo Sapiens'. Genus capitalised, species lower case, both italicised (underlined by hand). Getting the case or italics wrong is a needless lost mark in a naming question.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which statement most correctly completes the biological species concept? 'Members of the same species are organisms that can interbreed and produce...'", "options": ["...any offspring at all", "...offspring that are themselves fertile", "...offspring that look identical to the parents", "...offspring in large numbers"], "answer": "...offspring that are themselves fertile" },
+    { "prompt": "A mule is produced by crossing a horse and a donkey. What does the mule tell us about horses and donkeys?", "options": ["They are the same species, because they interbreed", "They are different species, because the mule is sterile so gene flow is not maintained", "They are the same species, because the mule is healthy", "They are subspecies of one species"], "answer": "They are different species, because the mule is sterile so gene flow is not maintained" },
+    { "prompt": "Which is the correctly written scientific name for the human species?", "options": ["homo sapiens", "Homo Sapiens", "*Homo sapiens*", "*HOMO SAPIENS*"], "answer": "*Homo sapiens*" },
+    { "prompt": "Which of these is the ULTIMATE source of the new alleles on which variation depends?", "options": ["Mutation", "Crossing over in meiosis", "Random fertilisation", "Independent assortment"], "answer": "Mutation" },
+    { "prompt": "Why is the biological species concept difficult to apply to a bacterium?", "options": ["Bacteria are too small to observe", "Bacteria reproduce asexually, so 'interbreeding' does not apply", "Bacteria have no DNA", "Bacteria never vary genetically"], "answer": "Bacteria reproduce asexually, so 'interbreeding' does not apply" }
   ],
   "faq": [
-    {
-      "q": "Is a higher Simpson's Diversity Index always 'better'?",
-      "a": "Generally, a higher D value indicates a more stable, complex, and resilient ecosystem, which is often considered 'better' from a conservation standpoint. However, some natural ecosystems, like salt marshes or arctic tundra, have naturally low diversity. The index is most powerful when comparing similar types of habitats or monitoring changes in a single habitat over time."
-    },
-    {
-      "q": "Do I need to memorise the formula for Simpson's Diversity Index?",
-      "a": "No, the formula $D = \\frac{N(N-1)}{\\sum n(n-1)}$ is provided in the IB Biology data booklet. Your task is to understand what each variable represents and how to apply the formula correctly to given data."
-    },
-    {
-      "q": "What's the difference between an indicator species and a keystone species?",
-      "a": "An indicator species' presence, absence or abundance reflects a specific environmental condition (e.g., pollution). A keystone species has a disproportionately large effect on its ecosystem relative to its abundance (e.g., sea otters maintaining kelp forests by preying on sea urchins). While a keystone species can sometimes also be an indicator species, their defining roles are different."
-    }
+    { "q": "If two species can produce a hybrid like a mule, why aren't they the same species?", "a": "Because the biological species concept requires FERTILE offspring, not just any offspring. A horse and a donkey can mate and produce a mule, but the mule is almost always sterile: its horse and donkey chromosomes cannot pair up correctly during meiosis, so it cannot form working gametes. No fertile offspring means no continuing gene flow between horses and donkeys, so their gene pools stay separate and they remain two distinct species." },
+    { "q": "What exactly is a ring species and why does it cause trouble?", "a": "A ring species is a chain of neighbouring populations arranged in a loop around a barrier. Each population can interbreed with its immediate neighbours, so there is no obvious break — yet where the two ends of the ring meet, they have diverged so much that they can no longer interbreed. There is no single point at which 'species A' becomes 'species B', which is exactly why a hard interbreeding rule cannot draw a clean line. Ring species show that speciation is a gradual process, not a sudden switch." },
+    { "q": "Why do biologists still use Latin names instead of common names?", "a": "Common names are ambiguous — a 'robin' means different birds in Europe and North America, and one organism may have many local names. A binomial like *Erithacus rubecula* is unique, recognised worldwide, and encodes relationships: species sharing a genus name are close relatives. The strict conventions (capital genus, lower-case species, italics) keep the system unambiguous across every language and journal." },
+    { "q": "Do I need to memorise a biodiversity formula for A3.1?", "a": "For A3.1 itself you are expected to understand biodiversity qualitatively — that it combines species RICHNESS (how many species) and EVENNESS (how equally individuals are distributed) — rather than to crunch a specific index. Diversity indices such as Simpson's are developed in the ecology and conservation material; here the marks are for explaining what richness and evenness mean and why both matter, not for a calculation." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Biodiversity is the cornerstone of life on Earth, encompassing the vast variety of organisms, their genetic differences, and the complex ecosystems they form. Understanding and quantifying this diversity is crucial for conservation efforts and for monitoring the health of our planet. In this lesson, we will learn how to measure biodiversity using a specific mathematical tool and how certain species can act as living signposts for environmental quality."
-    },
-    {
-      "type": "heading",
-      "content": "Measuring Biodiversity: Richness and Evenness"
-    },
-    {
-      "type": "text",
-      "content": "When ecologists assess the biodiversity of a particular area, they focus on two key components of species diversity. **Species richness** is the total number of different species present. For example, a woodland with 15 different tree species has a higher species richness than one with only 5. However, richness alone doesn't tell the whole story. **Species evenness** refers to the relative abundance of each species. An ecosystem is considered to have high evenness if the number of individuals is distributed equitably among the different species, rather than being dominated by just one or two."
-    },
-    {
-      "type": "heading",
-      "content": "Simpson's Diversity Index (D)"
-    },
-    {
-      "type": "text",
-      "content": "To combine richness and evenness into a single, useful figure, we use a quantitative measure called Simpson's Diversity Index (D). This index calculates the probability that two individuals selected at random from a sample will belong to the same species. The formula we use in the IB syllabus is a reciprocal version, so a higher value of D means higher diversity."
-    },
-    {
-      "type": "formula",
-      "content": "D = \\frac{N(N-1)}{\\sum n(n-1)}"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**D** = Simpson's Diversity Index",
-        "**N** = total number of organisms of all species found",
-        "**n** = number of individuals of a particular species",
-        "**$\\sum$** = sum of",
-        "A **high D value** indicates high biodiversity, suggesting a stable, complex ecosystem.",
-        "A **low D value** (close to 1) indicates low biodiversity, often found in polluted, stressed, or very young ecosystems."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A student collected leaf litter from a forest floor and identified the invertebrates present. The results are shown in the table below. Calculate the Simpson's Diversity Index (D) for this sample.\n\n| Species | Number of individuals (n) |\n| :--- | :--- |\n| Woodlouse | 42 |\n| Centipede | 8 |\n| Millipede | 15 |\n| Rove beetle | 11 |",
-      "solution": "1.  **Calculate N (total number of organisms):**\n    $N = 42 + 8 + 15 + 11 = 76$\n\n2.  **Calculate N(N-1):**\n    $N(N-1) = 76 \\times (76-1) = 76 \\times 75 = 5700$\n\n3.  **Calculate $\\sum n(n-1)$ for each species:**\n    *   Woodlouse: $n(n-1) = 42 \\times 41 = 1722$\n    *   Centipede: $n(n-1) = 8 \\times 7 = 56$\n    *   Millipede: $n(n-1) = 15 \\times 14 = 210$\n    *   Rove beetle: $n(n-1) = 11 \\times 10 = 110$\n\n4.  **Sum these values:**\n    $\\sum n(n-1) = 1722 + 56 + 210 + 110 = 2098$\n\n5.  **Calculate D:**\n    $D = \\frac{N(N-1)}{\\sum n(n-1)} = \\frac{5700}{2098} = 2.72$ (to 3 s.f.)\n\n    **[3 marks]** for correct calculation. 1 mark for correct N and N(N-1), 1 mark for correct $\\sum n(n-1)$, 1 mark for the final correct answer."
-    },
-    {
-      "type": "workedExample",
-      "question": "An ecologist sampled aquatic invertebrates from two different sites on a river. Site A is upstream from a factory outlet, and Site B is downstream. The data is below. Calculate D for both sites and use the data to deduce which site is more polluted.\n\n| Species | Site A count (n) | Site B count (n) |\n| :--- | :--- | :--- |\n| Mayfly larva | 28 | 3 |\n| Stonefly larva | 22 | 0 |\n| Caddisfly larva | 35 | 8 |\n| Sludgeworm | 10 | 65 |\n\n",
-      "solution": "**Site A (Upstream):**\n1.  $N = 28 + 22 + 35 + 10 = 95$\n2.  $N(N-1) = 95 \\times 94 = 8930$\n3.  $\\sum n(n-1) = (28 \\times 27) + (22 \\times 21) + (35 \\times 34) + (10 \\times 9) = 756 + 462 + 1190 + 90 = 2498$\n4.  $D_A = \\frac{8930}{2498} = 3.57$\n\n**Site B (Downstream):**\n1.  $N = 3 + 0 + 8 + 65 = 76$\n2.  $N(N-1) = 76 \\times 75 = 5700$\n3.  $\\sum n(n-1) = (3 \\times 2) + (0 \\times -1) + (8 \\times 7) + (65 \\times 64) = 6 + 0 + 56 + 4160 = 4222$\n4.  $D_B = \\frac{5700}{4222} = 1.35$\n\n**Conclusion:**\nSite A has a higher diversity index (D=3.57) than Site B (D=1.35). This indicates lower biodiversity at Site B. The low diversity and high abundance of sludgeworms (which tolerate low oxygen) at Site B suggest it is more polluted, likely due to the factory outlet. **[5 marks]**"
-    },
-    {
-      "type": "examTip",
-      "content": "The formula for Simpson's Diversity Index is in the data booklet, so you don't need to memorise it. However, you must know how to use it. For questions requiring calculation, always show your working clearly, including the values for N, N(N-1), and the final sum for $\\sum n(n-1)$. This allows you to gain partial marks even if you make a small arithmetic error."
-    },
-    {
-      "type": "heading",
-      "content": "Indicator Species and Biotic Indices"
-    },
-    {
-      "type": "text",
-      "content": "Some species are particularly sensitive or tolerant to changes in their environment. These are known as **indicator species**. Their presence, absence, or abundance can provide a clear signal about the health of an ecosystem. For example, the presence of certain aquatic insects can indicate the level of oxygen in water, which is affected by organic pollution. By sampling these species, scientists can calculate a **biotic index**, which is a score that reflects the overall environmental quality. This is often a more rapid and cost-effective method than performing complex chemical tests."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Lichens:** Different types of lichen have different tolerances to sulfur dioxide pollution. The presence of bushy, leafy lichens indicates clean air, while only crusty lichens or no lichens suggests high pollution.",
-        "**Mayfly Larvae:** Require high oxygen levels and are found in clean, fast-flowing rivers. Their absence is an indicator of organic pollution.",
-        "**Sludgeworms (Tubifex):** Are very tolerant of low oxygen conditions and high levels of organic waste. Their high abundance is a strong indicator of severe water pollution."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "When asked about indicator species, it is not enough to simply name a species. You must link its presence or absence to a specific abiotic factor (e.g., oxygen level, sulfur dioxide concentration) and explain what this indicates about the environment's health."
-    },
-    {
-      "type": "practice",
-      "label": "Test your knowledge on diversity of organisms",
-      "href": "/mark?subject=ib-biology-sl&topic=A3.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "National Geographic: Biodiversity",
-          "href": "https://www.nationalgeographic.org/encyclopedia/biodiversity/"
-        },
-        {
-          "label": "Freshwater Biological Association: Biotic Indices",
-          "href": "https://www.fba.org.uk/FBA/Public/Discover-and-learn/Activities/Biotic-Indices.aspx"
-        }
-      ]
-    }
+    { "type": "intro", "content": "How many kinds of living thing are there, and how do we decide where one kind stops and the next begins? A3.1 tackles those questions head-on. It starts with a working definition of a species — organisms that can interbreed and produce fertile offspring — then immediately tests that definition against the messy cases it cannot handle: organisms that never interbreed at all, sterile hybrids, chains of populations that blur into one another, and species known only as fossils. From there the topic builds outwards to the variation that exists within and between species, the two-part naming system that keeps that variety organised, the vast span of prokaryotic and eukaryotic life, and the way different environments select for the diversity we see. Throughout, the worked examples are written the way marks are actually awarded, because in a definition-and-explanation topic like this, precise wording is exactly what the mark scheme rewards." },
+
+    { "type": "heading", "content": "What is a species? The biological species concept" },
+    { "type": "text", "content": "The most widely used definition is the **biological species concept**: a species is a group of organisms that can **interbreed and produce fertile offspring**. Read that carefully, because both halves carry weight. It is not enough for two organisms simply to mate, and it is not enough for them to produce any offspring at all — the offspring must themselves be **fertile**. That fertility requirement is what keeps a gene pool connected: alleles can pass from one generation to the next and spread through the whole population, so the group evolves as a single unit. When two populations can no longer exchange fertile offspring, gene flow between them stops, their gene pools drift apart, and biologists recognise them as separate species." },
+    { "type": "keyPoints", "items": [
+      "A **species** = a group of organisms that can **interbreed** and produce **fertile** offspring.",
+      "The offspring must be fertile so that **gene flow** continues from one generation to the next.",
+      "A shared, connected gene pool means the group evolves together as one species.",
+      "When two populations can no longer produce fertile offspring together, gene flow ceases and they are **different species**."
+    ]},
+
+    { "type": "heading", "content": "Where the biological species concept breaks down" },
+    { "type": "text", "content": "The biological species concept works beautifully for most sexually reproducing animals, but it has clear limits — and examiners love to probe them. There are four classic situations you should be able to describe. First, **asexually reproducing organisms**: bacteria and many plants reproduce without mating, so the question 'can they interbreed?' has no meaning and the concept simply cannot be applied. Second, **hybrids**: closely related species can sometimes mate to produce a hybrid, such as the mule (from a female horse and a male donkey) or the liger (lion and tiger), but these hybrids are almost always sterile because the two parental chromosome sets cannot pair correctly at meiosis. Third, **ring species**: a chain of neighbouring populations in which each can interbreed with its neighbours, yet the two ends of the chain, where they overlap, can no longer interbreed — so there is no single line at which one species becomes another. Fourth, **chronospecies**: species defined from the fossil record as a lineage changes gradually over vast spans of time; the organisms are long extinct and separated by millions of years, so no interbreeding test is possible and the boundary between one chronospecies and the next has to be drawn arbitrarily." },
+    { "type": "keyPoints", "items": [
+      "**Asexual organisms:** bacteria and many plants do not interbreed, so 'can they interbreed?' is meaningless — the concept cannot apply.",
+      "**Hybrids:** a mule (horse × donkey) forms but is sterile, so horses and donkeys stay separate species; interbreeding without fertile offspring is not enough.",
+      "**Ring species:** neighbouring populations interbreed all round a ring, but the two ends cannot — there is no sharp species boundary.",
+      "**Chronospecies:** fossil lineages change gradually over time; extinct organisms cannot be bred, so the species limit is set arbitrarily."
+    ]},
+
+    { "type": "heading", "content": "Variation within and between species" },
+    { "type": "text", "content": "No two members of a species are identical, and this **variation within a species** (intraspecific variation) — for example the range of human height or the different shell patterns in a snail population — is the raw material on which natural selection acts. Its sources are worth stating precisely: **mutation** is the ultimate origin of new alleles, while **meiosis** (through crossing over and independent assortment) and **random fertilisation** during sexual reproduction reshuffle those alleles into an almost limitless number of new combinations. **Variation between species** (interspecific variation) is generally far greater, reflecting long, separate evolutionary histories and the accumulation of different mutations under different selection pressures. Recognising the difference matters: intraspecific variation exists within one shared gene pool, whereas interspecific variation lies between gene pools that no longer exchange genes." },
+    { "type": "keyPoints", "items": [
+      "**Within a species (intraspecific):** differences among members of one gene pool, e.g. human height, coat colour in a litter.",
+      "**Between species (interspecific):** generally larger differences between separate, non-interbreeding gene pools.",
+      "**Ultimate source:** mutation, which creates entirely new alleles.",
+      "**Reshuffling:** meiosis (crossing over, independent assortment) and random fertilisation generate new allele combinations from existing variation."
+    ]},
+
+    { "type": "heading", "content": "Naming species: binomial nomenclature" },
+    { "type": "text", "content": "To refer unambiguously to any species, biologists use **binomial nomenclature** — a two-part Latin name devised so that scientists in every country name the same organism the same way. The first part is the **genus**, always written with a **capital letter**; the second is the **species epithet**, always **lower case**. Both parts are **italicised** in print, and **underlined** when handwritten (since you cannot italicise by hand). Thus the human species is *Homo sapiens* and the domestic dog is *Canis familiaris*. Once the full name has been given, the genus may be abbreviated to its initial — *H. sapiens* — but the species epithet is never used alone. These conventions are not decoration: they make the name unique and instantly recognisable, and they encode relationship, because species that share a genus name are close relatives." },
+    { "type": "keyPoints", "items": [
+      "**Two parts:** Genus + species epithet, e.g. *Homo sapiens*.",
+      "**Genus:** capital first letter. **Species epithet:** lower case, always.",
+      "**Formatting:** italics in print, underline when handwritten — both parts.",
+      "**Abbreviation:** after first use the genus can be shortened (*H. sapiens*); the species epithet is never written on its own."
+    ]},
+    { "type": "examTip", "content": "Naming questions are free marks if you follow the conventions exactly. Capitalise ONLY the genus, keep the species epithet lower case, and italicise (or underline) both words. Writing 'Homo Sapiens', 'homo sapiens' or leaving the name in ordinary type throws away easy marks that the mark scheme awards for correct format alone." },
+
+    { "type": "workedExample", "question": "A farmer crosses a female horse (*Equus caballus*) with a male donkey (*Equus asinus*) and obtains a mule. The mule is healthy but cannot itself produce offspring. (a) Using the biological species concept, explain whether the horse and the donkey belong to the same species. (b) State one convention of binomial nomenclature illustrated by the names *Equus caballus* and *Equus asinus*. [4]", "solution": "**(a) Same species or not?** [3]\n- The biological species concept defines a species as organisms that can interbreed to produce FERTILE offspring. [1]\n- The horse and donkey interbreed and produce offspring (the mule), but the mule is STERILE / cannot produce offspring of its own. [1]\n- Because no fertile offspring are produced, gene flow between horses and donkeys is not maintained, so they are DIFFERENT species. [1]\n\n**(b) Naming convention.** [1]\n- Any one valid point scores: the shared first word *Equus* is the GENUS (capitalised), showing the two are closely related; the second word is the lower-case species epithet; both names are written in italics. [1]\n\n*Note how part (a) hinges on the word 'fertile'. An answer that stops at 'they interbreed, so they are the same species' contradicts its own data — the mule is sterile — and would score only the definition mark, not the conclusion.*" },
+
+    { "type": "heading", "content": "The diversity of eukaryotic and prokaryotic organisms" },
+    { "type": "text", "content": "The variety of life divides at the most basic level into two cell types. **Prokaryotes** — the bacteria and archaea — have no nucleus and no membrane-bound organelles; their DNA sits free in the cytoplasm. What they lack in cellular complexity they make up for in **metabolic diversity** and sheer numbers: prokaryotes photosynthesise, fix nitrogen, respire with or without oxygen, and thrive in boiling springs, deep rock and acidic pools where nothing else survives. **Eukaryotes** — animals, plants, fungi and the diverse protists — have a true nucleus and membrane-bound organelles, and they span an enormous range of size and form, from single-celled algae to whales and giant trees. Appreciating this breadth is the point of A3.1: life is not just abundant but astonishingly varied in structure, chemistry and lifestyle, and every one of these forms is a species that could, in principle, be named and placed." },
+    { "type": "keyPoints", "items": [
+      "**Prokaryotes (bacteria, archaea):** no nucleus or membrane-bound organelles; enormous metabolic diversity; dominant in numbers and in extreme habitats.",
+      "**Eukaryotes (animals, plants, fungi, protists):** true nucleus and membrane-bound organelles; vast range of size and multicellular complexity.",
+      "The two cell types represent the deepest division in the diversity of life.",
+      "Diversity spans not only body form but metabolism, habitat and mode of nutrition."
+    ]},
+
+    { "type": "heading", "content": "How environments select for diversity" },
+    { "type": "text", "content": "Diversity is not random — it is generated and maintained by the environment acting through **natural selection**. Different habitats impose different **selection pressures**: temperature, water availability, predators, competitors and food supply all differ from place to place, so the individuals best suited to one environment leave the most offspring there, and populations gradually accumulate different **adaptations**. Because an environment offers many distinct **niches** — ways of making a living — many species can coexist without directly competing, and along environmental gradients (up a mountain, down a shore, across a rainforest) the community changes as conditions change. Over long timescales this same process, working on isolated populations, drives the origin of new species. The living variety we survey is therefore the accumulated product of countless environments selecting for countless different solutions." },
+
+    { "type": "workedExample", "question": "Two populations of a lizard species become separated when a river changes course, leaving one population in cool, shaded forest and the other on hot, exposed rocks. After many generations the two populations differ markedly, and when brought together they no longer produce fertile offspring. Explain how the environment has driven this diversity, and identify what the lizards have become. [4]", "solution": "**Explanation of how diversity arose:** [3]\n- The two environments impose DIFFERENT selection pressures (e.g. temperature, exposure, predators). [1]\n- Within each population there is VARIATION; individuals with adaptations suited to their local environment survive and reproduce more (natural selection), passing on the favourable alleles. [1]\n- Over many generations the two isolated populations accumulate DIFFERENT adaptations, so their gene pools diverge. [1]\n\n**What they have become:** [1]\n- Because they can no longer produce fertile offspring together, gene flow is lost and they are now SEPARATE species (speciation has occurred). [1]\n\n*The 'no fertile offspring' detail is the examiner's signal to apply the biological species concept: separation plus loss of fertile interbreeding equals a new species, not merely a variety.*" },
+
+    { "type": "heading", "content": "Measuring biodiversity: richness and evenness" },
+    { "type": "text", "content": "When ecologists want to describe how diverse a community is, they combine two ideas. **Species richness** is simply the **number** of different species present — a count. **Species evenness** describes how **equally** the individuals are distributed among those species. The two are independent: a woodland with ten tree species split evenly is more diverse than one with the same ten species where a single species makes up ninety per cent of the trees, even though their richness is identical. True **biodiversity** takes both into account, which is why a bare species count can be misleading. In practice, richness and evenness are estimated from field **sampling** — you rarely count every individual — and combined into a diversity measure so that habitats can be compared or monitored over time. For A3.1 the emphasis is understanding what richness and evenness mean and why both matter, rather than performing a particular calculation." },
+    { "type": "examTip", "content": "If a question asks you to compare the biodiversity of two habitats, never rely on richness alone. State clearly that biodiversity depends on BOTH the number of species (richness) AND how evenly individuals are spread among them (evenness). A habitat dominated by one species has low evenness and therefore lower biodiversity even if its species count is high." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Dropping 'fertile' from the species definition** — 'organisms that can interbreed' is incomplete; the offspring must be able to reproduce, or the sterile mule would wrongly merge horses and donkeys.",
+      "**Calling a mule a species** — a mule is a sterile HYBRID, not a species; its existence shows horses and donkeys are different species.",
+      "**Getting the naming conventions wrong** — the genus is capitalised, the species epithet is lower case, and both are italicised or underlined; 'Homo Sapiens' or non-italic type loses format marks.",
+      "**Confusing the sources of variation** — mutation is the ULTIMATE source of new alleles; meiosis and random fertilisation only reshuffle existing ones.",
+      "**Applying the biological species concept to asexual organisms** — bacteria and many plants do not interbreed, so the concept cannot be used; say so rather than forcing it.",
+      "**Judging biodiversity by richness alone** — a species count ignores evenness; a community dominated by one species has low biodiversity despite high richness.",
+      "**Confusing intraspecific and interspecific variation** — variation WITHIN one species shares a gene pool; variation BETWEEN species lies across separate, non-interbreeding gene pools."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "A3.1 questions are marked analytically: each distinct, valid biological point is worth one mark, up to the total available. Method-style reasoning marks (M) credit correct biological reasoning, answer marks (A) credit a correctly stated example or conclusion, and error-carried-forward (ECF) means a slip early on does not automatically forfeit the marks that follow, as long as your reasoning is shown. Equivalent correct wording is always accepted — the engine rewards the idea, not a fixed phrase. Study how each mark below attaches to one specific, named idea." },
+    { "type": "workedExample", "question": "Explain the biological species concept and outline TWO situations in which it is difficult to apply. [4]", "solution": "**Model answer.**\nAccording to the biological species concept, a species is a group of organisms that can interbreed to produce offspring that are themselves fertile; this shared, fertile interbreeding maintains gene flow within a single connected gene pool. The concept is difficult to apply in several situations. First, it cannot be applied to organisms that reproduce asexually, such as bacteria and many plants, because they do not interbreed at all, so the interbreeding test is meaningless. Second, it struggles with ring species: a chain of neighbouring populations that can each interbreed with their immediate neighbours, yet the two ends of the ring can no longer interbreed where they meet, so there is no clear point at which one species becomes another.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M): the definition — interbreeding.** States that members can interbreed / mate to produce offspring.\n- **Point 2 (A): the definition — fertile offspring.** States that the offspring must be FERTILE (accept: able to reproduce / maintains gene flow). Points 1 and 2 together are the full definition; each scores separately.\n- **Point 3 (A): a first valid difficulty, with a correct example.** e.g. asexual organisms (bacteria/plants) do not interbreed; OR sterile hybrids such as the mule; OR chronospecies known only from fossils. The example must correctly illustrate the difficulty.\n- **Point 4 (A): a second, DIFFERENT valid difficulty, correctly explained.** e.g. ring species where the ends cannot interbreed. A second example must be genuinely distinct from the first — two versions of 'hybrids' score once.\n\nBecause more than four creditable points exist (the definition has two, and there are four possible difficulties), the engine caps the award at 4 — there is deliberate room to miss one point and still reach full marks. But the marks are for DISTINCT ideas: stating the definition twice in different words, or giving two examples of the same difficulty, scores only once.\n\n**What the engine rejects.** 'A species is organisms that look the same' scores zero for the definition — it names neither interbreeding nor fertile offspring. 'They can interbreed' alone earns Point 1 but not Point 2, because the crucial fertility condition is missing.\n\n**ECF and equivalents.** The four points are independent, so a candidate who muddles the definition can still score both difficulty marks if the examples are valid. Equivalent phrasing is accepted throughout — 'offspring that can themselves breed' earns Point 2 exactly as 'fertile offspring' does.\n\n**Bottom line:** to secure all 4 marks, give BOTH halves of the definition (interbreed + fertile offspring) and TWO genuinely different difficulties, each with a correct example." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, accepting equivalents, applying ECF, and capping at the marks available. So write in distinct, creditable statements: give both parts of the definition (interbreed AND fertile offspring), then name two DIFFERENT difficulties with correct examples. Padding the same idea twice earns nothing; separate, correctly named points are what protect your score." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The ideas in A3.1 underpin much of the rest of biology. The species concept and its limits set up classification and the tree of life; variation within species is the fuel for the evolution and natural selection you meet later in Unit A; and the survey of prokaryotic and eukaryotic diversity connects forward to ecology, where richness and evenness become quantitative tools for conservation. Master the habit this topic teaches — define a species by fertile interbreeding, then check the awkward cases, and name every organism precisely — and you have a framework that organises the whole of the living world." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain the biological species concept and outline where it fails, point by point with ECF", "href": "/mark?subject=ib-biology-sl&topic=A3.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IBO: Biology Guide (2025) — Unit A Unity and diversity", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/" },
+      { "label": "Encyclopaedia Britannica: Species concept", "href": "https://www.britannica.com/science/species-taxon" },
+      { "label": "Understanding Evolution (UC Berkeley): Defining a species", "href": "https://evolution.berkeley.edu/evolution-101/speciation/defining-a-species/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

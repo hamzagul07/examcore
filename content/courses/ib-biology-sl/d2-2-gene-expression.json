@@ -2,170 +2,127 @@
   "slug": "d2-2-gene-expression",
   "topicCode": "D2.2",
   "title": "Gene expression",
+  "unit": { "code": "D", "title": "Continuity and change" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson explores gene expression, the process by which genetic information is used to create a functional product like a protein. We will examine how this process is precisely regulated at the transcriptional level by promoters, regulatory proteins, and environmental factors, as well as through epigenetic modifications like DNA methylation.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Every cell in a body carries the same genome, yet a neuron, a muscle cell and a skin cell look and behave completely differently. This lesson builds the whole of D2.2: gene expression as the switching on and off of genes so that only the proteins a cell needs are made; the regulation of transcription by promoters and transcription factors; how differential gene expression explains cell specialisation from one identical genome; the way environmental factors such as temperature, light and chemicals alter which genes are expressed; and epigenetics — heritable changes in gene expression that occur without any change to the DNA base sequence, through DNA methylation and histone modification. The worked examples and the model answer are laid out exactly the way our marking engine awards Paper 2 marks, so you can see how each distinct point earns credit.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the role of promoters and transcription factors in initiating transcription.",
-    "Describe how regulatory proteins and specific DNA sequences control gene expression.",
-    "Analyse the effect of the environment on gene expression using a specific example.",
-    "Outline the role of epigenetics, including DNA methylation, in regulating gene expression."
+    "Describe gene expression as the switching on and off of genes so that a cell makes only the proteins it requires.",
+    "Outline how transcription is regulated by promoters and transcription factors.",
+    "Explain how differential gene expression produces specialised cells from a single, identical genome.",
+    "Analyse how environmental factors such as temperature, light and chemicals influence gene expression, using a named example.",
+    "Outline epigenetics — heritable changes in gene expression without a change in the DNA base sequence — through DNA methylation and histone modification, and explain how the environment can influence and sometimes pass on these changes."
   ],
+  "syllabusObjectivesCovered": ["D2.2"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Cell's Internal Director",
-    "summary": "Gene expression is how a cell controls which genes are 'switched on' to produce proteins and which are 'switched off'. This regulation is vital for cells to develop specialised functions and respond to their environment.",
-    "analogy": "Imagine your DNA is a vast library of cookbooks. You don't cook every recipe every day. Gene expression is the librarian (the cell) deciding which recipe (a gene) to use. The librarian uses bookmarks (promoters) to find the start of the recipe and sticky notes (regulatory proteins) that say 'Cook this now!' or 'Save for later', controlling which cakes (proteins) get baked.",
+    "title": "One genome, many switches",
+    "summary": "Gene expression is a cell deciding which of its genes to switch ON to make protein and which to leave switched OFF. Because different cells throw different combinations of switches, one shared set of genes can build a whole body of specialised cells, and the environment can flip some of those switches too.",
+    "analogy": "Picture the genome as a huge building where every room has the same master wiring, but each room only turns on the lights it needs. A muscle room lights up the contraction circuits; a pancreas room lights up the insulin circuit; the others stay dark. Transcription factors are the hands on the switches, the promoter is the switch plate they press, and epigenetic marks (methylation, histone changes) are like tape placed over a switch so it stays off long-term — the wiring underneath (the DNA sequence) is never altered, and the tape can even be left in place for the next occupant.",
     "steps": [
-      "Transcription is initiated when transcription factors bind to the promoter region of a gene, recruiting RNA polymerase.",
-      "Regulatory proteins, called activators or repressors, bind to DNA sequences (enhancers or silencers) to control the rate of transcription.",
-      "Environmental signals, such as temperature or diet, can influence the binding of these proteins, altering which genes are expressed.",
-      "Epigenetic marks, like methylation of DNA, can chemically modify genes to switch them on or off long-term without changing the DNA sequence itself."
+      "A gene is 'expressed' when it is transcribed (and usually translated), so its protein is made; a gene that is switched off makes no product.",
+      "Transcription factors bind the promoter of a gene and control whether RNA polymerase starts transcription — this is the main on/off decision.",
+      "Different cell types express different subsets of the same genome (differential gene expression), which is why they become specialised.",
+      "Environmental signals — temperature, light, chemicals — can change which genes are switched on, and epigenetic marks such as DNA methylation and histone modification can lock those changes in without altering the base sequence, sometimes being inherited."
     ]
   },
+  "keyConcepts": ["gene regulation", "differential expression", "epigenetics"],
   "flashcards": [
-    {
-      "front": "What is gene expression?",
-      "back": "The process by which information from a gene is used in the synthesis of a functional gene product, such as a protein or functional RNA molecule."
-    },
-    {
-      "front": "What is a promoter?",
-      "back": "A non-coding region of DNA located near the start of a gene that serves as the binding site for RNA polymerase, initiating transcription."
-    },
-    {
-      "front": "What are transcription factors?",
-      "back": "Proteins that bind to specific DNA sequences (like promoters and enhancers) to help control the rate of transcription."
-    },
-    {
-      "front": "What is the difference between an enhancer and a silencer?",
-      "back": "Enhancers are DNA sequences that increase the rate of transcription when bound by activator proteins. Silencers are DNA sequences that decrease transcription when bound by repressor proteins."
-    },
-    {
-      "front": "How does the environment affect gene expression?",
-      "back": "Environmental factors can influence the expression of genes, leading to different phenotypes. For example, temperature affects the expression of the coat colour gene in Himalayan rabbits."
-    },
-    {
-      "front": "What is epigenetics?",
-      "back": "The study of heritable changes in gene expression that do not involve alterations to the DNA sequence itself. It refers to modifications 'on top of' the genetic code."
-    },
-    {
-      "front": "What is DNA methylation?",
-      "back": "An epigenetic mechanism where a methyl group ($CH_3$) is added to a cytosine base in DNA, typically leading to the repression (silencing) of gene transcription."
-    },
-    {
-      "front": "How does DNA methylation silence a gene?",
-      "back": "Methylation makes the DNA more condensed (heterochromatin), preventing transcription factors and RNA polymerase from accessing the promoter region of the gene."
-    },
-    {
-      "front": "Explain the coat colour of Himalayan rabbits.",
-      "back": "They have a gene for a pigment-producing enzyme (tyrosinase) that is temperature-sensitive. The enzyme is inactive at warmer core body temperatures (white fur) but active in cooler extremities like ears and paws (black fur)."
-    },
-    {
-      "front": "Common Trap: Do all cells in an organism have the same genes?",
-      "back": "Yes, nearly all somatic cells have the same set of genes (genome). Their different structures and functions (e.g., nerve vs. muscle cell) are due to differential gene expression, not different genes."
-    },
-    {
-      "front": "What is the relationship between gene expression and cell differentiation?",
-      "back": "Cell differentiation is the result of differential gene expression. Specific sets of genes are switched on or off, leading to the development of specialised cell types with unique functions and structures."
-    }
+    { "front": "Gene expression", "back": "The process by which the information in a gene is used to make a functional product — usually a protein. A gene is 'switched on' when it is being expressed and 'switched off' when it is not, so a cell makes only the proteins it needs.", "pillLabel": "Definition" },
+    { "front": "Promoter", "back": "A non-coding DNA sequence just before a gene where transcription factors and RNA polymerase bind. It marks where transcription starts and is a key control point for switching a gene on.", "pillLabel": "Definition" },
+    { "front": "Transcription factor", "back": "A protein that binds to specific DNA sequences (such as the promoter) and controls whether, and how fast, a gene is transcribed. Some promote transcription, some repress it.", "pillLabel": "Definition" },
+    { "front": "Differential gene expression", "back": "The expression of DIFFERENT subsets of the same genome in different cells. It is why cells with an identical set of genes become specialised — nerve, muscle and gland cells switch on different genes.", "pillLabel": "Concept" },
+    { "front": "Why don't all cells look the same if they share a genome?", "back": "Almost all body (somatic) cells contain the SAME genes. Their differences come from which genes are switched on, not from having different genes. Specialisation = differential gene expression.", "pillLabel": "Concept" },
+    { "front": "Environmental influence on expression", "back": "External signals — temperature, light, chemicals/diet — can change which genes are transcribed, so the same genotype can give different phenotypes in different environments.", "pillLabel": "Concept" },
+    { "front": "Epigenetics", "back": "Heritable changes in gene expression that occur WITHOUT any change to the DNA base sequence. The DNA text is unchanged; only how it is read is altered, through marks such as methylation and histone modification.", "pillLabel": "Definition" },
+    { "front": "DNA methylation", "back": "Addition of a methyl group (–CH₃) to cytosine bases, often in a gene's promoter. Heavy methylation typically SILENCES the gene by blocking transcription. The base sequence is not changed.", "pillLabel": "Concept" },
+    { "front": "Histone modification", "back": "Chemical tags (e.g. acetyl or methyl groups) added to histone proteins that DNA wraps around. They loosen the chromatin (making genes accessible/expressed) or tighten it (silencing genes) — again without changing the DNA sequence.", "pillLabel": "Concept" },
+    { "front": "Are epigenetic changes inherited?", "back": "They can be. Epigenetic marks are copied when cells divide, and some marks are passed from parent to offspring, so an environmentally triggered change in expression can sometimes be inherited.", "pillLabel": "Concept" },
+    { "front": "Himalayan rabbit coat colour", "back": "A temperature-sensitive allele for the pigment enzyme (tyrosinase) is expressed/active only in cool body regions (ears, nose, paws → dark) and switched off/inactive in warm regions (body → white). Same genotype, environment sets the phenotype.", "pillLabel": "Example" },
+    { "front": "Exam Trap: epigenetics ≠ mutation", "back": "Epigenetic change alters gene EXPRESSION, not the DNA sequence. A mutation changes the base sequence. Saying epigenetic marks 'change the DNA' or 'cause a mutation' loses the mark.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: expression is not the same as having the gene", "back": "A cell can carry a gene and still not express it. 'The gene is present' does not mean 'the protein is made' — expression depends on the gene being switched on.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A liver cell and a neuron come from the same person. The best explanation for why they are so different is that they:", "options": ["Contain different genes", "Have lost the genes they do not use", "Express different subsets of the same genome", "Have different DNA base sequences"], "answer": "Express different subsets of the same genome" },
+    { "prompt": "Which statement about DNA methylation is correct?", "options": ["It changes the DNA base sequence to silence a gene", "It adds methyl groups that can silence a gene without altering the base sequence", "It is a type of mutation in the promoter", "It permanently deletes the gene from the cell"], "answer": "It adds methyl groups that can silence a gene without altering the base sequence" },
+    { "prompt": "The coat colour of a Himalayan rabbit is dark on the ears and paws but pale on the body. This is best described as:", "options": ["A mutation in the extremities", "The environment (temperature) influencing gene expression", "Two different alleles in different cells", "A permanent change to the DNA sequence"], "answer": "The environment (temperature) influencing gene expression" },
+    { "prompt": "Which of these is a defining feature of an EPIGENETIC change?", "options": ["It always changes the amino acid sequence of a protein", "It alters gene expression without changing the DNA base sequence", "It can never be inherited", "It only ever switches genes on, never off"], "answer": "It alters gene expression without changing the DNA base sequence" },
+    { "prompt": "A cell contains the insulin gene but makes no insulin. The most accurate description is that the insulin gene is:", "options": ["Missing from this cell", "Mutated in this cell", "Present but switched off (not expressed)", "Being translated but not transcribed"], "answer": "Present but switched off (not expressed)" }
   ],
   "faq": [
-    {
-      "q": "Is gene expression the same as protein synthesis?",
-      "a": "Not exactly. Gene expression is the entire process of converting genetic information into a functional product. While this often means protein synthesis (transcription followed by translation), some genes code for functional RNA molecules (like tRNA or rRNA) that are not translated into proteins. So, protein synthesis is a major outcome of gene expression, but not the only one."
-    },
-    {
-      "q": "Can epigenetic changes be reversed?",
-      "a": "Yes, unlike changes to the DNA sequence (mutations), epigenetic marks are often dynamic and can be reversed. For example, enzymes can demethylate DNA. This reversibility allows cells to respond to changing environmental conditions. However, some epigenetic patterns are very stable and are maintained through cell division."
-    },
-    {
-      "q": "If all my cells have the same genes, why is the gene for insulin only expressed in my pancreas?",
-      "a": "This is the core concept of differential gene expression. In your pancreatic beta cells, specific transcription factors are present that activate the insulin gene promoter. At the same time, in other cells like your neurons, the insulin gene is kept silent, likely through repressive mechanisms like DNA methylation. This ensures every cell only produces the proteins it needs for its specific job."
-    }
+    { "q": "If gene expression is just protein synthesis, why use a different word?", "a": "Because expression is the whole regulated decision of whether a gene is used at all, not only the mechanics of making protein. Most expressed genes are transcribed and then translated into protein, but some are transcribed into functional RNA (such as tRNA or rRNA) that is never translated. So protein synthesis is the usual outcome of gene expression, but the key idea is control: which genes are switched on, in which cells, at which times." },
+    { "q": "How can cells be so different if they all have the same DNA?", "a": "This is the heart of differential gene expression. Almost every somatic cell carries the full genome, but each cell type activates a different set of genes. A pancreatic cell switches on the insulin gene while keeping muscle genes silent; a muscle cell does the reverse. Transcription factors present in one cell type, together with epigenetic marks that keep unneeded genes switched off, decide which subset of the shared genome is read. Same library, different books opened." },
+    { "q": "What is the difference between an epigenetic change and a mutation?", "a": "A mutation is a change to the DNA base sequence itself — the text is rewritten. An epigenetic change leaves the base sequence untouched and instead changes how the text is read, through marks such as DNA methylation and histone modification that switch genes on or off. Mutations are usually permanent; epigenetic marks are often reversible, can be influenced by the environment, and can sometimes be inherited even though the sequence never changed." },
+    { "q": "Can something in the environment really change how my genes work?", "a": "Yes — but through expression, not by rewriting your DNA. Temperature, light, diet and chemicals can change which genes a cell transcribes, and can add or remove epigenetic marks that switch genes on or off. That is how identical twins with the same genome can develop differences over a lifetime, and why the same genotype can produce different phenotypes in different conditions. The base sequence stays the same; what changes is which genes are switched on." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "While every somatic cell in your body contains the same library of genetic information, a muscle cell functions very differently from a neuron or a skin cell. This specialisation is possible thanks to the precise control of gene expression. This process ensures that only the necessary genes are activated at the right time and in the right place, turning genetic potential into functional reality. Understanding this regulation is key to understanding development, health, and disease."
-    },
-    {
-      "type": "heading",
-      "content": "Regulation of Transcription"
-    },
-    {
-      "type": "text",
-      "content": "Transcription, the synthesis of RNA from a DNA template, is the first and most critical control point for gene expression in eukaryotes. The process doesn't just happen; it is meticulously regulated. Central to this is the promoter, a specific DNA sequence upstream of a gene. The promoter acts as a docking site for the enzyme RNA polymerase. However, RNA polymerase often requires the assistance of a group of proteins called general transcription factors to bind effectively and initiate transcription."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A promoter is a non-coding sequence that indicates the start of a gene.",
-        "RNA polymerase binds to the promoter to begin transcription.",
-        "General transcription factors are proteins necessary for the binding of RNA polymerase to the promoter in all cells."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Fine-Tuning Expression: Activators and Repressors"
-    },
-    {
-      "type": "text",
-      "content": "Beyond the basic on/off switch provided by the promoter, gene expression is fine-tuned by other proteins that bind to different DNA sequences. Activator proteins bind to sequences called enhancers, which can be located thousands of base pairs away from the gene. This binding increases the rate of transcription, often by helping to loop the DNA to bring the enhancer close to the promoter. Conversely, repressor proteins bind to sequences called silencers, which inhibit transcription. This interplay between activators, repressors, and their binding sites allows a cell to precisely control the level of a gene's expression in response to internal and external signals."
-    },
-    {
-      "type": "heading",
-      "content": "Environmental Influence on Gene Expression"
-    },
-    {
-      "type": "text",
-      "content": "An organism's phenotype is not determined by its genotype alone; the environment plays a crucial role by influencing gene expression. A classic example is the coat colour of the Himalayan rabbit. These rabbits possess a gene that codes for the tyrosinase enzyme, which is required to produce melanin, the pigment responsible for dark fur. However, this particular allele produces an enzyme that is temperature-sensitive."
-    },
-    {
-      "type": "workedExample",
-      "question": "A Himalayan rabbit has its normal white body with black fur on its ears, nose, and paws. A patch of fur on its back is shaved, and an ice pack is kept on the shaved area while the fur regrows. Predict and explain the colour of the regrown fur in this patch. [3 marks]",
-      "solution": "1. **Prediction:** The fur that regrows on the patch will be black. [1]\n2. **Explanation (Enzyme Activity):** The gene for pigment production (tyrosinase) is temperature-sensitive. The cold temperature from the ice pack allows the enzyme to become active in the skin cells of that patch. [1]\n3. **Explanation (Pigment Production):** The active enzyme produces melanin pigment, which is deposited into the growing hair shafts, resulting in black fur, similar to the cooler extremities of the rabbit. [1]"
-    },
-    {
-      "type": "heading",
-      "content": "Epigenetics: Control Beyond the Sequence"
-    },
-    {
-      "type": "text",
-      "content": "Epigenetics refers to modifications that regulate gene activity without changing the underlying DNA sequence. These changes can be long-lasting and even heritable. One of the most studied epigenetic mechanisms is DNA methylation. This involves the addition of a methyl group ($CH_3$) to cytosine nucleotides, particularly in regions called CpG islands which are often found in or near promoter regions."
-    },
-    {
-      "type": "text",
-      "content": "Generally, high levels of DNA methylation in a gene's promoter region lead to gene silencing. The methyl groups act as 'roadblocks', preventing transcription factors and RNA polymerase from binding to the DNA. They also recruit proteins that cause the chromatin to become more compact, further restricting access to the gene. These epigenetic patterns are crucial for normal development and can be influenced by factors like diet, stress, and toxins."
-    },
-    {
-      "type": "examTip",
-      "content": "When answering questions about gene expression, be precise. Distinguish between transcription factors (proteins) and promoters/enhancers (DNA sequences). For epigenetics, remember the key phrase: 'changes in gene expression without a change in the DNA sequence'. This is a common point of confusion."
-    },
-    {
-      "type": "workedExample",
-      "question": "Researchers analysed the promoter of the lactase gene (LCT) in intestinal cells and liver cells from the same adult individual. In intestinal cells, the promoter showed 5% methylation. In liver cells, it showed 90% methylation. Explain these results in the context of gene expression and cell function. [4 marks]",
-      "solution": "1. **Methylation and Expression:** Low methylation (5%) is associated with active gene expression, while high methylation (90%) is associated with gene silencing/repression. [1]\n2. **Intestinal Cell Function:** The lactase gene (LCT) codes for lactase, an enzyme that digests lactose. This function is required in intestinal cells. The low methylation in these cells allows the LCT gene to be transcribed and the enzyme to be produced. [1]\n3. **Liver Cell Function:** The liver does not digest lactose, so the lactase enzyme is not needed. The high methylation in liver cells silences the LCT gene, preventing its expression. [1]\n4. **Conclusion (Differential Expression):** This is an example of differential gene expression, where epigenetic modifications ensure that genes are expressed only in the cell types where their products are needed. [1]"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-biology-sl&topic=D2.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Learn.Genetics - Epigenetics",
-          "href": "https://learn.genetics.utah.edu/content/epigenetics/"
-        },
-        {
-          "label": "Khan Academy - Regulation of Gene Expression",
-          "href": "https://www.khanacademy.org/science/biology/gene-regulation/gene-regulation-in-eukaryotes/a/eukaryotic-gene-regulation"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Almost every cell in your body carries the same complete set of genes, yet a neuron, a muscle cell and a pancreatic cell are utterly different in shape and job. The reason is gene expression: at any moment a cell switches some genes ON — transcribing and usually translating them so their protein is made — and leaves the rest switched OFF, so it builds only the proteins it needs. This lesson works through how that switching is regulated at transcription, how throwing different combinations of switches turns one identical genome into many specialised cell types, how the environment can flip some switches, and how epigenetics can lock changes in place without ever altering the DNA sequence. As in every D2.2 answer, the marks go to precise, distinct points — so the worked examples show exactly how each idea is credited." },
+
+    { "type": "heading", "content": "Gene expression: switching genes on and off" },
+    { "type": "text", "content": "Gene expression is the process by which the information in a gene is used to make a functional product, usually a protein. The crucial idea for D2.2 is that expression is regulated: a gene that is being transcribed is 'switched on' and its product is made, while a gene that is not transcribed is 'switched off' and makes nothing, even though it is still physically present in the cell. This on/off control matters because a cell would waste enormous resources — and could not specialise — if it made every possible protein at once. Instead each cell expresses only the genes whose products it actually needs. Note the careful wording: a cell can carry a gene and still not express it. 'Having the gene' and 'making the protein' are not the same thing." },
+    { "type": "keyPoints", "items": [
+      "Gene expression = using a gene's information to make its functional product (usually a protein).",
+      "A gene is switched **ON** when it is transcribed/expressed and **OFF** when it is not — so a cell makes only the proteins it needs.",
+      "A switched-off gene is still present in the cell; it is silenced, not removed.",
+      "Regulation lets one genome run efficiently and lets different cells behave differently."
+    ]},
+
+    { "type": "heading", "content": "Regulating transcription: promoters and transcription factors" },
+    { "type": "text", "content": "The main point at which a gene is switched on or off is transcription — the making of RNA from the DNA template. Two players control it. The promoter is a short non-coding DNA sequence just before the gene; it is the site where the transcription machinery assembles and it marks where transcription begins. Transcription factors are proteins that bind to the promoter (and to other regulatory sequences) and determine whether RNA polymerase can start transcribing. Some transcription factors promote transcription (switching a gene on or turning it up), while others repress it (switching a gene off or turning it down). Because transcription factors are proteins, and different cells contain different sets of them, the same promoter can be active in one cell type and silent in another. Keep the categories straight: promoters are DNA sequences; transcription factors are proteins that bind them." },
+    { "type": "keyPoints", "items": [
+      "**Promoter (DNA):** a non-coding sequence before a gene marking where transcription starts.",
+      "**Transcription factors (proteins):** bind the promoter/regulatory sequences and control whether RNA polymerase transcribes the gene.",
+      "Transcription factors can **activate** (switch on / increase) or **repress** (switch off / decrease) transcription.",
+      "Different cells hold different transcription factors, so the same gene can be on in one cell and off in another."
+    ]},
+
+    { "type": "heading", "content": "Differential gene expression and cell specialisation" },
+    { "type": "text", "content": "Because a cell's set of active transcription factors and its epigenetic marks determine which genes are switched on, different cell types express different subsets of the same genome. This is called differential gene expression, and it is the answer to the classic puzzle: if all my cells share one identical genome, why are they so different? A pancreatic beta cell switches on the insulin gene and makes insulin; a neuron keeps the insulin gene switched off but switches on genes for neurotransmitter handling. Neither cell has different genes — they read different parts of the same genome. Cell specialisation (differentiation) is therefore the visible result of differential gene expression: as a cell commits to a type, it stably switches on the genes for that role and switches off the rest." },
+    { "type": "workedExample", "question": "All the cells in a human body develop from one fertilised egg and contain the same genome, yet they form over 200 specialised cell types. Explain how one identical genome can give rise to many different specialised cells. [3]", "solution": "**Point 1 — same genome, different expression.**\nAlmost all body cells contain the same genes (the same genome); they do not have different genes. [1]\n\n**Point 2 — differential gene expression.**\nDifferent cell types express (switch on) different subsets of these genes — differential gene expression — while switching the rest off, so each cell makes only the proteins its role requires. [1]\n\n**Point 3 — control mechanism / specialisation.**\nWhich genes are switched on is set by the transcription factors present (and epigenetic marks such as methylation) in that cell; this pattern of expression makes the cell specialised (differentiated), e.g. only pancreatic cells express the insulin gene. [1]\n\n*The mark scheme wants the distinction 'same genes, different expression' explicit — an answer that says the cells 'have different genes' scores zero on the central idea.*" },
+
+    { "type": "heading", "content": "Environmental influence on gene expression" },
+    { "type": "text", "content": "A phenotype is not fixed by the genotype alone: the environment can change which genes are expressed. Temperature, light and chemicals (including diet and hormones) all act as signals that alter transcription, so the same genotype can produce different phenotypes in different conditions. The classic example is the coat colour of the Himalayan rabbit. It carries an allele for tyrosinase, the enzyme needed to make the dark pigment melanin, but this version of the enzyme is temperature-sensitive: it is active only at cooler temperatures. In the warm core of the body the pigment pathway is effectively switched off and the fur grows pale; in the cool extremities — ears, nose, paws — the enzyme is active, so those regions grow dark fur. The genome is identical across the whole animal; the environment (temperature) decides where the gene's product is functional. Other examples include light triggering flowering genes in plants, and dietary chemicals altering expression in developing organisms." },
+    { "type": "workedExample", "question": "A patch of fur is shaved from the pale back of a Himalayan rabbit and an ice pack is held against the bare skin while the fur regrows. Predict the colour of the regrown fur and explain your answer in terms of gene expression. [3]", "solution": "**Prediction.**\nThe fur regrows dark (black) in the cooled patch. [1]\n\n**Explanation — environment affects the enzyme's activity/expression.**\nThe rabbit carries a temperature-sensitive allele for tyrosinase (the pigment enzyme); the ice pack keeps this patch cool, and at low temperature the enzyme is active. [1]\n\n**Explanation — link to phenotype.**\nThe active enzyme produces melanin, which is deposited in the growing hairs, so the fur is dark — the same reason the naturally cool extremities are dark, even though the whole rabbit has the same genotype. [1]\n\n*The examinable idea is that the environment (temperature), not a change in the DNA, sets the phenotype by controlling whether the gene's product is functional/expressed.*" },
+
+    { "type": "heading", "content": "Epigenetics: heritable expression changes without changing the DNA" },
+    { "type": "text", "content": "Epigenetics is the study of heritable changes in gene expression that occur WITHOUT any change to the DNA base sequence. This definition is the single most important line in the topic: the DNA text is left completely unchanged; what changes is how that text is read — which genes are switched on or off. Two overview mechanisms are required. In DNA methylation, methyl groups (–CH₃) are added to cytosine bases, often in a gene's promoter; heavy methylation there typically silences the gene by blocking the transcription machinery from binding. In histone modification, chemical tags are added to the histone proteins that DNA is wrapped around: some tags loosen the packaging so genes become accessible and can be expressed, while others tighten it so genes are silenced. In neither case is a single DNA base altered — which is exactly why these changes are epigenetic and not mutations." },
+    { "type": "keyPoints", "items": [
+      "**Definition:** epigenetics = heritable changes in gene expression WITHOUT a change to the DNA base sequence.",
+      "**DNA methylation:** methyl (–CH₃) groups added to cytosine, often in the promoter, usually **silencing** the gene.",
+      "**Histone modification:** tags on histone proteins loosen chromatin (genes expressed) or tighten it (genes silenced).",
+      "Neither mechanism changes a DNA base — so an epigenetic change is not a mutation."
+    ]},
+    { "type": "text", "content": "Two further features make epigenetics powerful. First, epigenetic marks can be influenced by the environment: temperature, diet, stress and chemicals can add or remove methylation and histone tags, changing which genes are expressed without touching the sequence. Second, these marks are heritable — they are copied when a cell divides (so a silenced gene stays silenced in daughter cells), and some marks are even passed from parent to offspring, so an environmentally triggered change in expression can sometimes be inherited. Because the sequence is untouched, many epigenetic marks are also reversible, letting expression patterns respond to changing conditions." },
+    { "type": "examTip", "content": "Be precise with two distinctions examiners test constantly. (1) Epigenetics changes gene EXPRESSION, not the DNA base SEQUENCE — never say methylation 'mutates' or 'changes the DNA'. (2) Distinguish the DNA sequences from the proteins: promoters and regulatory sequences are DNA; transcription factors and histones are proteins. Answers that blur these lines lose easy marks." },
+    { "type": "workedExample", "question": "The promoter of the lactase gene (LCT) was found to be 5% methylated in intestinal cells but 90% methylated in liver cells of the same adult. Explain these results in terms of gene expression, and explain why they are described as epigenetic. [4]", "solution": "**Point 1 — methylation and expression.**\nHigh methylation of a promoter silences a gene, while low methylation allows it to be expressed. [1]\n\n**Point 2 — intestinal cells.**\nIntestinal cells need lactase to digest lactose, so the low (5%) methylation lets the LCT gene be transcribed and lactase is made. [1]\n\n**Point 3 — liver cells.**\nThe liver does not digest lactose, so lactase is not needed; the high (90%) methylation silences the LCT gene and no lactase is made — an example of differential gene expression from an identical genome. [1]\n\n**Point 4 — why epigenetic.**\nThe two cell types have the SAME DNA base sequence for LCT; only the methylation pattern (how the gene is read) differs, and it is heritable through cell division — so this is an epigenetic change, not a mutation. [1]\n\n*Point 4 is the one weaker answers drop: you must state that the base sequence is unchanged to justify the word 'epigenetic'.*" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Saying epigenetic changes alter the DNA** — methylation and histone modification change EXPRESSION, not the base sequence. Calling an epigenetic mark a 'mutation' or saying it 'changes the DNA' loses the mark.",
+      "**Claiming specialised cells have different genes** — almost all body cells share the SAME genome; they differ by differential gene EXPRESSION, not by which genes they contain.",
+      "**Confusing 'having a gene' with 'expressing it'** — a cell can carry a gene and still not make the protein. State that the gene is present but switched off / not transcribed.",
+      "**Mixing DNA sequences with proteins** — promoters and regulatory sequences are DNA; transcription factors and histones are proteins. Do not call a promoter a protein or a transcription factor a DNA sequence.",
+      "**Saying the environment changes the genotype/DNA** — the environment changes the PHENOTYPE by altering gene expression; the base sequence is untouched (e.g. temperature and the Himalayan rabbit).",
+      "**Treating methylation as always switching genes ON** — promoter methylation usually SILENCES genes; be careful with the direction.",
+      "**Forgetting that epigenetic marks can be heritable** — they are copied at cell division and can sometimes be passed to offspring; describing them as purely temporary misses a required point."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "D2.2 'explain' questions are marked analytically: each distinct valid biological point is worth one mark, up to the total available. Method/idea marks (M) credit correct reasoning, answer marks (A) credit a correct named conclusion or example, and error-carried-forward (ECF) means a slip early on does not cost later marks that follow correctly from it. Equivalent correct wording is accepted. Study how each mark below is tied to a specific, named idea, not to loose phrasing." },
+    { "type": "workedExample", "question": "Explain how the environment can influence the expression of an organism's genes. [4]", "solution": "**Model answer.**\nGenes can be switched on or off (their transcription regulated), so a cell expresses only some of its genes at any time. Environmental signals — such as temperature, light or chemicals — can change which genes are transcribed, and therefore which proteins are made, without altering the DNA base sequence. Some of these changes are epigenetic: environmental factors can add or remove marks such as DNA methylation, which silences genes without changing the sequence. As a result the same genotype can produce different phenotypes in different environments. For example, the Himalayan rabbit carries a temperature-sensitive pigment-enzyme allele that is active (expressed) only in its cool extremities, so those regions grow dark fur while the warm body grows pale fur.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4); accept equivalents; ECF applies:\n\n- **Point 1 (M):** genes can be switched on/off / transcription is regulated so only some genes are expressed.\n- **Point 2 (M):** an environmental signal (e.g. temperature / light / chemicals / diet) alters which genes are transcribed / expressed.\n- **Point 3 (M):** epigenetic change — e.g. DNA methylation — silences genes WITHOUT changing the DNA base sequence.\n- **Point 4 (A):** a correct named example (e.g. Himalayan rabbit coat colour and temperature / flowering triggered by light).\n- **Also creditable (A):** same genotype → different phenotype in different environments.\n\nBecause five creditable points are shown for a 4-mark question, the engine caps the award at 4 — there is deliberate room to miss one and still score full marks. But marks are for DISTINCT ideas: writing 'the environment changes the genes' twice in different words scores once. Equivalent correct terms are accepted (e.g. 'switched off' = 'silenced' = 'not transcribed').\n\n**What the engine rejects.** 'The environment changes/mutates the DNA' scores ZERO for that point, because the base sequence is not changed — the environment changes EXPRESSION. A vague 'genes react to the environment' with no mechanism earns nothing.\n\n**ECF and partial credit.** The points are independent, so a student who omits the epigenetics point but correctly gives regulation, an environmental signal and a named example still earns those three marks. Each valid line stands on its own." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, accepting equivalents, applying ECF and capping at the marks available. So write in distinct, creditable statements: say genes are switched on/off, name an environmental signal, state that an epigenetic change (e.g. methylation) alters expression without changing the DNA sequence, and give a named example. A vague 'the environment affects the genes' earns nothing; naming the mechanism and an example is what protects your score." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Gene regulation is the thread running through the rest of D. Differential gene expression underlies development and the specialisation of stem cells; environmental and epigenetic control connects to how phenotypes vary within a population and how organisms respond to their surroundings. Once you can say clearly that genes are switched on and off, that transcription factors and promoters do the switching, and that epigenetic marks change expression without changing the sequence, you have the framework for the whole continuity-and-change unit." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain how the environment and epigenetics influence gene expression, with a named example", "href": "/mark?subject=ib-biology-sl&topic=D2.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Learn.Genetics (Utah) — Epigenetics", "href": "https://learn.genetics.utah.edu/content/epigenetics/" },
+      { "label": "Khan Academy — Regulation of gene expression in eukaryotes", "href": "https://www.khanacademy.org/science/biology/gene-regulation/gene-regulation-in-eukaryotes/a/eukaryotic-gene-regulation" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

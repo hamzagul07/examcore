@@ -1,182 +1,124 @@
 {
   "slug": "s1-3-electron-configurations",
   "topicCode": "S1.3",
+  "unit": { "code": "S1", "title": "Models of the particulate nature of matter" },
   "title": "Electron configurations",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson details how electrons are arranged within an atom's energy levels, sub-levels, and orbitals. Understanding electron configurations is fundamental to predicting an element's chemical properties, its position in the periodic table, and how it will bond with other atoms.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "How do we know electrons occupy discrete energy levels rather than orbiting anywhere they like? This lesson builds the evidence — the line emission spectrum of hydrogen and the pattern of successive ionization energies — and then uses the Bohr/energy-level model to place electrons into main levels (n), sub-levels (s, p, d) and to write electron configurations in full and condensed noble-gas form. HL extends this to orbitals and the 4s/3d ordering nuance.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the arrangement of electrons in atoms using s, p, and d notation for principal energy levels up to n=4.",
-    "Apply the Aufbau principle, Hund's rule, and the Pauli exclusion principle to determine the electron configuration of atoms and ions up to Z=36.",
-    "Recognise and explain the anomalous electron configurations of chromium (Cr) and copper (Cu).",
-    "Represent electron configurations using full notation, condensed (noble gas) notation, and orbital box diagrams."
+    "Explain how the line emission spectrum of hydrogen provides evidence that electrons occupy discrete energy levels.",
+    "Distinguish continuous spectra from line spectra, and describe the convergence of lines at higher energy.",
+    "Describe the arrangement of electrons in main energy levels (n) and sub-levels (s, p, d).",
+    "Write electron configurations of atoms and ions up to Z=36 using the Aufbau principle, in full and condensed noble-gas notation.",
+    "Interpret successive ionization energy data as evidence for the existence of energy levels (shells)."
   ],
+  "syllabusObjectivesCovered": ["S1.3"],
+  "keyConcepts": ["energy levels", "spectra", "electron configuration"],
+  "levelNote": "Common to SL and HL at this level; orbitals (s/p/d shapes) and the 4s/3d ordering are HL.",
   "simpleExplanation": {
-    "title": "The Electron Hotel: Assigning Rooms",
-    "summary": "Electron configuration is the specific address of every electron in an atom. This address tells us the electron's energy and the shape of the space it occupies, which in turn dictates the atom's chemical behaviour.",
-    "analogy": "Imagine an atom is a multi-storey hotel for electrons. The floors are the main energy levels (1, 2, 3...). Each floor has different types of rooms, called sub-levels (s, p, d). The 's' sub-levels have one room (orbital), 'p' sub-levels have three rooms, and 'd' have five. Electrons are lazy and prefer to fill the cheapest rooms on the lowest floors first. They also prefer to have their own room before sharing, and if they must share, they do so with a partner of opposite 'spin'.",
+    "title": "Electrons Live on Steps, Not a Ramp",
+    "summary": "An electron in an atom cannot have just any energy. It is restricted to specific allowed energy levels — like standing on the steps of a staircase but never in between. The light atoms give out, and the energy needed to strip electrons away, both reveal these hidden steps.",
+    "analogy": "Picture a staircase. You can stand on step 1, step 2 or step 3, but never hover halfway between two steps. To move up, you must absorb exactly the right amount of energy to reach the next step; when you drop back down, you release exactly that amount — no more, no less. Because only fixed jumps are possible, an atom only ever emits light of certain fixed energies, which is why we see sharp coloured lines instead of a smooth rainbow.",
     "steps": [
-      "Identify the total number of electrons, which equals the atomic number (Z) for a neutral atom.",
-      "Begin filling orbitals from the lowest energy level upwards, following the Aufbau principle order: 1s, 2s, 2p, 3s, 3p, 4s, 3d...",
-      "Distribute electrons within sub-levels according to Hund's rule: place one electron in each orbital before pairing any up.",
-      "Ensure each orbital contains a maximum of two electrons with opposite spins (Pauli exclusion principle), represented by up and down arrows in box diagrams."
+      "Give a hydrogen atom energy and its electron jumps up to a higher energy level.",
+      "The electron falls back down, releasing the energy difference as a single photon of light.",
+      "Because only certain jumps exist, only certain photon energies (colours) appear — a line spectrum, not a continuous one.",
+      "Fill the levels from the bottom up (Aufbau) to write the electron configuration; condense the inner electrons as the previous noble gas."
     ]
   },
   "flashcards": [
-    {
-      "front": "What is an electron configuration?",
-      "back": "The distribution of electrons of an atom or molecule in atomic or molecular orbitals. For example, the configuration of Neon is 1s²2s²2p⁶."
-    },
-    {
-      "front": "State the Aufbau Principle.",
-      "back": "Electrons fill atomic orbitals of the lowest available energy levels before occupying higher levels. The filling order is 1s, 2s, 2p, 3s, 3p, 4s, 3d, etc."
-    },
-    {
-      "front": "State Hund's Rule of Maximum Multiplicity.",
-      "back": "Every orbital in a sub-level is singly occupied with one electron before any one orbital is doubly occupied, and all electrons in singly occupied orbitals have the same spin."
-    },
-    {
-      "front": "State the Pauli Exclusion Principle.",
-      "back": "No two electrons in the same atom can have the identical set of four quantum numbers. In practice, this means an orbital can hold a maximum of two electrons, and they must have opposite spins."
-    },
-    {
-      "front": "What is an atomic orbital?",
-      "back": "A mathematical function describing the wave-like behavior of an electron in an atom. It represents a region of space where there is a high probability (typically >90%) of finding an electron."
-    },
-    {
-      "front": "What is the maximum number of electrons that can be held in the n=3 principal energy level?",
-      "back": "18 electrons. The n=3 level contains a 3s sub-level (2e⁻), a 3p sub-level (6e⁻), and a 3d sub-level (10e⁻). Total = 2 + 6 + 10 = 18."
-    },
-    {
-      "front": "Write the full electron configuration for a Chlorine atom (Cl, Z=17).",
-      "back": "1s²2s²2p⁶3s²3p⁵"
-    },
-    {
-      "front": "Write the condensed electron configuration for Iron (Fe, Z=26).",
-      "back": "[Ar] 4s²3d⁶. Note the 4s sub-level is filled before the 3d sub-level."
-    },
-    {
-      "front": "Why is the electron configuration of Chromium (Cr, Z=24) an exception?",
-      "back": "Its configuration is [Ar] 4s¹3d⁵, not [Ar] 4s²3d⁴. A half-filled d sub-level (3d⁵) provides extra stability, so one electron is 'promoted' from the 4s to the 3d sub-level."
-    },
-    {
-      "front": "What is the electron configuration of the Cu⁺ ion?",
-      "back": "[Ar] 3d¹⁰. First, write the configuration for neutral Cu: [Ar] 4s¹3d¹⁰ (an exception). To form the Cu⁺ ion, remove the outermost electron, which is the 4s¹ electron."
-    },
-    {
-      "front": "What is the electron configuration of the S²⁻ ion?",
-      "back": "[Ne] 3s²3p⁶ or [Ar]. A neutral Sulphur atom (Z=16) is [Ne] 3s²3p⁴. The S²⁻ ion has gained two electrons, filling the 3p sub-level."
-    }
+    { "front": "Continuous spectrum vs line spectrum", "back": "A continuous spectrum shows all wavelengths merging smoothly (e.g. white light through a prism). A line (emission) spectrum shows only a few discrete coloured lines against a dark background — evidence that only certain electron energy jumps are allowed.", "pillLabel": "Concept" },
+    { "front": "Why does hydrogen give a LINE spectrum?", "back": "Electrons occupy discrete energy levels. When an excited electron falls from a higher to a lower level it emits a photon whose energy equals the gap between the two levels (E = hf). Only fixed gaps exist, so only fixed frequencies appear — discrete lines, not a continuum.", "pillLabel": "Analysis" },
+    { "front": "Why do the lines CONVERGE at higher frequency?", "back": "The energy levels get closer together as n increases. So the energy gaps for transitions to a given level shrink and the emission lines crowd together (converge) towards a limit at high energy.", "pillLabel": "Analysis" },
+    { "front": "E = hf", "back": "The energy of a photon equals Planck's constant (h) multiplied by the frequency (f) of the light. A larger energy gap between levels means a higher-frequency (bluer) photon is emitted.", "pillLabel": "Formula" },
+    { "front": "Main energy levels and sub-levels", "back": "Electrons occupy main energy levels labelled n = 1, 2, 3, 4... Each main level is divided into sub-levels: s (holds 2 e-), p (holds 6 e-), and d (holds 10 e-). Level n=1 has only s; n=2 has s and p; n=3 has s, p and d.", "pillLabel": "Framework" },
+    { "front": "Aufbau principle", "back": "Electrons fill the lowest-energy sub-levels first. Filling order: 1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p... The 4s sub-level fills before 3d because it is slightly lower in energy.", "pillLabel": "Framework" },
+    { "front": "Condensed (noble-gas) configuration", "back": "Replace the inner electrons matching the previous noble gas with that gas in brackets. Sodium 1s2s2p3s -> [Ne]3s1. Iron -> [Ar]4s3d6. It highlights only the valence (outer) electrons.", "pillLabel": "Definition" },
+    { "front": "Successive ionization energies", "back": "The energies needed to remove electrons one at a time from a gaseous atom: 1st, 2nd, 3rd... They always increase (electrons pulled from an increasingly positive ion), but LARGE jumps appear when an electron is removed from a new, lower main energy level closer to the nucleus.", "pillLabel": "Concept" },
+    { "front": "How does a big jump in successive IE reveal a new shell?", "back": "A sudden large increase means the next electron came from a level closer to the nucleus (less shielded, more strongly attracted). Counting electrons removed before each big jump gives the number of electrons in each main energy level — evidence for shells.", "pillLabel": "Analysis" },
+    { "front": "Write the full configuration for chlorine (Cl, Z=17).", "back": "1s2s2p3s3p (written with superscripts: 1s2 2s2 2p6 3s2 3p5). Seven outer electrons place chlorine in group 17.", "pillLabel": "Worked" },
+    { "front": "Write the condensed configuration for iron (Fe, Z=26).", "back": "[Ar] 4s2 3d6. The 4s sub-level is filled before 3d (Aufbau). HL: when Fe forms ions, the 4s electrons are lost first.", "pillLabel": "Worked" },
+    { "front": "HL: orbit vs orbital", "back": "The Bohr model pictured electrons on fixed circular ORBITS. The quantum model replaces these with ORBITALS — regions of space (s spherical, p dumbbell-shaped at HL) where an electron is most likely to be found. Orbitals explain the 4s/3d ordering and finer spectral detail.", "pillLabel": "HL" }
+  ],
+  "quickCheck": [
+    { "prompt": "The emission spectrum of hydrogen consists of a few discrete coloured lines, not a continuous band of colour. This is direct evidence that:", "options": ["Electrons can have any energy value", "Electrons occupy discrete (quantised) energy levels", "Hydrogen contains several different isotopes", "The nucleus emits the light"], "answer": "Electrons occupy discrete (quantised) energy levels" },
+    { "prompt": "As the frequency of the lines in the hydrogen emission spectrum increases, the lines:", "options": ["Spread further apart", "Converge (get closer together) towards a limit", "Stay evenly spaced", "Disappear entirely"], "answer": "Converge (get closer together) towards a limit" },
+    { "prompt": "Which is the correct Aufbau filling order for the sub-levels shown?", "options": ["1s 2s 2p 3s 3p 3d 4s", "1s 2s 2p 3s 3p 4s 3d", "1s 2s 3s 2p 3p 4s 3d", "1s 2p 2s 3s 3p 4s 3d"], "answer": "1s 2s 2p 3s 3p 4s 3d" },
+    { "prompt": "The successive ionization energies of an element are (kJ/mol): 738, 1451, 7733, 10540... The large jump between the 2nd and 3rd values shows that:", "options": ["The element is a non-metal", "The 3rd electron is removed from a new main energy level closer to the nucleus", "The atom has three isotopes", "The first two electrons are in the 3d sub-level"], "answer": "The 3rd electron is removed from a new main energy level closer to the nucleus" },
+    { "prompt": "Which statement about a continuous spectrum is correct?", "options": ["It shows only a few bright lines", "It shows all wavelengths merging smoothly, with no gaps", "It is produced only by hydrogen", "It proves energy levels are quantised"], "answer": "It shows all wavelengths merging smoothly, with no gaps" }
   ],
   "faq": [
-    {
-      "q": "Why does the 4s orbital fill before the 3d orbital?",
-      "a": "Although the 4s orbital belongs to a higher principal energy level (n=4) than the 3d orbital (n=3), it is actually slightly lower in energy. This is due to the complex interplay of electron-electron repulsions and the penetration of orbitals. Therefore, according to the Aufbau principle, electrons fill the lower-energy 4s orbital first."
-    },
-    {
-      "q": "What is the difference between an orbit (from the Bohr model) and an orbital?",
-      "a": "An orbit, from the older Bohr model, is a fixed, circular path that an electron was thought to travel around the nucleus. An orbital, from the modern quantum mechanical model, is a three-dimensional region of space around the nucleus where there is a high probability of finding an electron. Orbitals have specific shapes (s is spherical, p is dumbbell-shaped) and do not define a fixed path."
-    },
-    {
-      "q": "How do I write the electron configuration for a negative ion (anion)?",
-      "a": "First, determine the number of electrons in the neutral atom from its atomic number. Then, add the number of electrons corresponding to the negative charge. For example, for O²⁻ (Z=8), a neutral oxygen atom has 8 electrons (1s²2s²2p⁴). The 2- charge means it has gained 2 electrons. These are added to the lowest available energy orbital, resulting in a configuration of 1s²2s²2p⁶."
-    }
+    { "q": "Why is a line spectrum, rather than a continuous spectrum, such strong evidence for energy levels?", "a": "If an electron could have any energy, it could release any amount of energy when it lost energy, producing light of every wavelength — a continuous spectrum. Instead hydrogen emits only specific frequencies, seen as sharp lines. The only way to explain fixed frequencies is fixed (discrete) differences in energy, which means the electron itself can only occupy fixed energy levels. The line pattern is therefore a direct fingerprint of quantised energy levels." },
+    { "q": "Why do the emission lines get closer together at higher frequency?", "a": "The energy levels themselves converge — the gaps between successive levels (n=1 to 2, 2 to 3, 3 to 4...) get smaller as n increases. Since each line corresponds to the energy gap of a transition, and those gaps shrink towards a limit, the lines crowd together (converge) at the high-energy end of the spectrum. The convergence limit corresponds to ionization from that level." },
+    { "q": "HL: Why does the 4s sub-level fill before 3d if it is in a higher main level?", "a": "Although 4s belongs to the n=4 main level and 3d to n=3, the 4s sub-level is slightly LOWER in energy because a 4s electron penetrates closer to the nucleus and is less shielded. By the Aufbau principle, electrons fill the lower-energy 4s first. A useful HL consequence: when transition metals form ions, the 4s electrons are removed before the 3d electrons." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of electron configurations, the blueprint for an atom's identity. Just as a building's design determines its function, the arrangement of electrons dictates how an atom behaves chemically. In this lesson, we will learn the rules that govern this arrangement and how to write these configurations for any atom or simple ion, a skill essential for understanding bonding, reactivity, and the structure of the periodic table."
-    },
-    {
-      "type": "heading",
-      "content": "The Rules of Electron Arrangement"
-    },
-    {
-      "type": "text",
-      "content": "To correctly place electrons in an atom, we must follow a set of three fundamental rules. These rules arise from quantum mechanics and describe how electrons populate the available energy levels and orbitals to achieve the most stable arrangement. An orbital is a region of space with a high probability of finding an electron, and each orbital can hold a maximum of two electrons."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**The Aufbau Principle:** Electrons progressively fill orbitals starting from the lowest energy level. The order of filling is not always intuitive (e.g., 4s fills before 3d) but can be remembered using the periodic table or a diagonal diagram.",
-        "**The Pauli Exclusion Principle:** An atomic orbital can hold a maximum of two electrons, and these electrons must have opposite spins. We represent these spins with up (↑) and down (↓) arrows in orbital diagrams.",
-        "**Hund's Rule:** When filling orbitals within the same sub-level (e.g., the three p orbitals), electrons are placed singly in each orbital before any orbital is doubly occupied. These single electrons will all have the same spin."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Writing Electron Configurations"
-    },
-    {
-      "type": "text",
-      "content": "We use a standard notation to write electron configurations. This notation clearly shows the distribution of electrons across the principal energy levels and sub-levels."
-    },
-    {
-      "type": "formula",
-      "content": "n l^x"
-    },
-    {
-      "type": "text",
-      "content": "Here, 'n' is the principal energy level (e.g., 1, 2, 3), 'l' is the sub-level type (s, p, d, or f), and 'x' is the number of electrons in that sub-level. For example, 2p⁶ means there are six electrons in the p sub-level of the second principal energy level. The full configuration is a list of all occupied sub-levels."
-    },
-    {
-      "type": "workedExample",
-      "question": "Determine the full electron configuration and the orbital box diagram for a neutral silicon atom (Si, Z=14).",
-      "solution": "1.  **Find the number of electrons:** For a neutral atom, the number of electrons equals the atomic number. Si has Z=14, so it has 14 electrons. [1 mark]\n\n2.  **Fill orbitals using the Aufbau principle:** We fill in order until all 14 electrons are placed.\n    - 1s sub-level takes 2 electrons: 1s² (12 electrons remaining)\n    - 2s sub-level takes 2 electrons: 1s²2s² (10 electrons remaining)\n    - 2p sub-level takes 6 electrons: 1s²2s²2p⁶ (4 electrons remaining)\n    - 3s sub-level takes 2 electrons: 1s²2s²2p⁶3s² (2 electrons remaining)\n    - 3p sub-level takes the final 2 electrons: 1s²2s²2p⁶3s²3p²\n    **Final configuration:** 1s²2s²2p⁶3s²3p² [1 mark]\n\n3.  **Draw the orbital box diagram:** Represent each orbital with a box and fill with arrows according to Hund's rule and the Pauli principle.\n    - The 3p sub-level has 2 electrons. Hund's rule states they should occupy separate orbitals with parallel spins.\n    **Diagram:**\n    1s: [↑↓]\n    2s: [↑↓]\n    2p: [↑↓][↑↓][↑↓]\n    3s: [↑↓]\n    3p: [↑ ][↑ ][  ] [1 mark for correct 3p filling]"
-    },
-    {
-      "type": "heading",
-      "content": "Condensed Configurations and Ions"
-    },
-    {
-      "type": "text",
-      "content": "Writing the full configuration can be lengthy. We can use a shorthand or condensed notation by referencing the electron configuration of the preceding noble gas. For example, sodium (1s²2s²2p⁶3s¹) can be written as [Ne] 3s¹, since 1s²2s²2p⁶ is the configuration of neon (Ne). When forming ions, electrons are added to or removed from the valence shell. For transition metals, electrons are removed from the highest principal energy level first, which means the 4s electrons are removed *before* the 3d electrons."
-    },
-    {
-      "type": "workedExample",
-      "question": "Determine the condensed electron configuration for the iron(III) ion, Fe³⁺. (Iron, Fe, has Z=26).",
-      "solution": "1.  **Write the configuration for the neutral atom:** Fe has 26 electrons. The preceding noble gas is Argon (Ar, Z=18).\n    - The configuration starts with [Ar].\n    - We then fill the next orbitals: 4s² (20 electrons total), then 3d⁶ (26 electrons total).\n    - Neutral Fe configuration: [Ar] 4s²3d⁶ [1 mark]\n\n2.  **Determine the electrons to be removed:** The charge is 3+, so we must remove 3 electrons.\n\n3.  **Remove electrons from the highest principal energy level (n) first:** The outermost shell is n=4 (the 4s orbital), not n=3 (the 3d orbital).\n    - Remove the two 4s electrons: [Ar] 4s⁰3d⁶ = [Ar] 3d⁶\n    - Remove one more electron from the next highest energy sub-level, which is 3d.\n    - Removing one electron from 3d⁶ gives 3d⁵.\n\n4.  **Write the final ion configuration:**\n    - Fe³⁺: [Ar] 3d⁵ [1 mark]\n    - *Common error trap: Do not remove electrons from 3d first. The configuration is NOT [Ar] 4s²3d³.*"
-    },
-    {
-      "type": "heading",
-      "content": "Exceptions for Chromium and Copper"
-    },
-    {
-      "type": "text",
-      "content": "The Aufbau principle is a useful guideline, but there are important exceptions. The two you must know for IB Chemistry SL are chromium (Cr) and copper (Cu). In both cases, an electron is promoted from the 4s sub-level to the 3d sub-level. This occurs because half-filled (d⁵) and fully-filled (d¹⁰) d sub-levels have a special, enhanced stability. This lower-energy, more stable state is favoured over the one predicted by a strict application of the Aufbau principle."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Chromium (Cr, Z=24):** Expected configuration is [Ar] 4s²3d⁴. Actual configuration is **[Ar] 4s¹3d⁵**. This gives a half-filled 4s sub-level and a more stable half-filled 3d sub-level.",
-        "**Copper (Cu, Z=29):** Expected configuration is [Ar] 4s²3d⁹. Actual configuration is **[Ar] 4s¹3d¹⁰**. This gives a half-filled 4s sub-level and a more stable fully-filled 3d sub-level."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Examiners frequently ask for the electron configurations of Cr, Cu, or their ions (like Cu⁺, Cu²⁺, Cr³⁺). Memorise these two exceptions! Also, when drawing orbital box diagrams for marks, always label the boxes with the sub-level (e.g., 2p, 3d) and ensure your arrows for paired electrons point in opposite directions."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Electron Configurations",
-      "href": "/mark?subject=ib-chemistry-sl&topic=S1.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Interactive Periodic Table with Electron Configurations",
-          "href": "https://ptable.com/#Properties/ElectronConfiguration"
-        },
-        {
-          "label": "Khan Academy: Electron Configurations",
-          "href": "https://www.khanacademy.org/science/chemistry/electronic-structure-of-atoms/electron-configurations-jay-sal/a/electron-configurations"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Before we can arrange electrons, we should ask a sharper question: how do we even know electrons occupy fixed energy levels rather than orbiting the nucleus at any distance? The answer comes from two independent pieces of experimental evidence — the light hydrogen atoms emit (its emission spectrum) and the energy needed to remove electrons one by one (successive ionization energies). Once the evidence is in, the Bohr/energy-level model lets us place every electron and write the configuration that governs an element's chemistry." },
+
+    { "type": "heading", "content": "Evidence 1: the emission spectrum of hydrogen" },
+    { "type": "text", "content": "When white light is passed through a prism it spreads into a continuous spectrum — every wavelength of the rainbow blending smoothly with no gaps. But when energy is supplied to hydrogen gas (for example in a discharge tube) and the light it emits is passed through a prism, something very different appears: only a few sharp, discrete coloured lines against a dark background. This is a line emission spectrum." },
+    { "type": "keyPoints", "items": [
+      "**Continuous spectrum** — all wavelengths present, merging smoothly (e.g. white light). No information about energy levels.",
+      "**Line (emission) spectrum** — only certain discrete frequencies appear as separate lines. Each element has its own characteristic pattern.",
+      "The fact that hydrogen emits only *specific* frequencies, not a continuum, is the key experimental clue."
+    ]},
+    { "type": "text", "content": "The Bohr / energy-level model explains this. An electron in a hydrogen atom can only occupy certain allowed energy levels, labelled n = 1, 2, 3, 4... When the atom is given energy an electron is promoted (excited) to a higher level. It is unstable there, so it falls back to a lower level, and the energy it loses is released as a single photon of light. The energy of that photon is fixed by the gap between the two levels." },
+    { "type": "formula", "content": "E(photon) = E(higher level) - E(lower level) = hf" },
+    { "type": "text", "content": "Because only certain energy gaps exist, only certain photon energies — and therefore only certain frequencies (colours) — can ever be emitted. That is exactly why we see discrete lines rather than a continuous band. A crucial detail: the lines are not evenly spaced. As we look to higher frequency (higher energy), the lines get closer together and converge towards a limit. This is because the energy levels themselves get closer together as n increases; the gaps shrink, so the lines crowd together. The convergence limit corresponds to the electron being removed entirely (ionization) from that level." },
+
+    { "type": "heading", "content": "Model answer — mapped to our marking engine" },
+    { "type": "workedExample", "question": "Explain how the emission spectrum of hydrogen provides evidence that electrons occupy discrete energy levels. [3]", "solution": "**Model answer:**\nWhen energy is supplied to hydrogen atoms, electrons are excited to higher energy levels and then fall back to lower levels. As an electron falls, it emits a photon of light whose energy equals the difference between the two energy levels (E = hf). The spectrum observed is a *line* spectrum — only certain discrete frequencies (lines) are seen, not a continuous band of all frequencies. Since only specific photon energies are emitted, the differences between energy levels must be fixed, which means the electron can only occupy fixed, discrete energy levels. (The lines also converge at higher frequency, showing the levels get closer together as n increases.)\n\n---\n**How our marking engine awards the marks (analytic, 1 mark per distinct valid point):**\n- ✅ **Mark 1** — Only specific frequencies / discrete lines are seen, NOT a continuous spectrum. *(The line-vs-continuum distinction is essential and must be explicit.)*\n- ✅ **Mark 2** — Each line corresponds to a photon emitted as an electron falls from a higher energy level to a lower one.\n- ✅ **Mark 3** — The photon energy equals the energy-level difference (E = hf), so discrete emitted energies imply discrete energy levels. *(Convergence of lines is accepted as an alternative valid point.)*\n\n**Accept / reject nuance the engine applies:**\n- ❌ A vague statement such as \"electrons jump around\" or \"electrons move to give off light\" earns **no mark** — it does not identify discrete levels or the line pattern.\n- ❌ Describing emission without ever contrasting *lines* against a *continuous* spectrum loses the essential distinction and caps the score.\n- ✅ The three points may be made in any order; each distinct, correct point scores once." },
+    { "type": "examTip", "content": "The Practice button marks YOUR own answer the same way: each required distinct point must be clearly present in your writing. Submit your response and the marking engine checks for the line-vs-continuum distinction, the photon-per-transition idea, and the E = hf / energy-gap link — awarding one mark for each. Writing more words does not help; making each distinct point clearly does." },
+
+    { "type": "heading", "content": "Evidence 2: successive ionization energies" },
+    { "type": "text", "content": "The second, independent line of evidence comes from removing electrons one at a time. The successive ionization energies are the energies needed to remove the 1st, 2nd, 3rd... electron from a gaseous atom. Each value is larger than the last, because after each removal the remaining electrons are held by the same nuclear charge but there are fewer of them — the ion becomes more positive and holds on more tightly. But the increase is not smooth: it shows sudden large jumps." },
+    { "type": "keyPoints", "items": [
+      "Successive ionization energies always increase across a single atom.",
+      "A **large jump** occurs when the next electron must be removed from a main energy level (shell) *closer to the nucleus* — less shielded and more strongly attracted, so much more energy is needed.",
+      "Counting how many electrons are removed *before* each big jump reveals how many electrons occupy each main energy level — direct evidence for shells.",
+      "Example: sodium removes 1 electron easily (outer n=3), then a large jump before the next 8 (n=2), then another large jump before the final 2 (n=1) — the 2,8,1 pattern."
+    ]},
+    { "type": "workedExample", "question": "The graph below shows the successive ionization energies of an element X (all values in kJ/mol, plotted against the number of electrons removed):\n\n| Electron removed | 1st | 2nd | 3rd | 4th | 5th |\n|---|---|---|---|---|---|\n| IE (kJ/mol) | 578 | 1817 | 2745 | 11580 | 14840 |\n\n(a) Explain why the ionization energies increase from the 1st to the 3rd. (b) Explain the large jump between the 3rd and 4th values. (c) Deduce which main energy level (shell) the outer electrons occupy and hence identify the group of element X.", "solution": "**(a)** Each successive electron is removed from a species that is already more positively charged, while the nuclear charge stays the same. With fewer electrons but the same number of protons, the remaining electrons are held more strongly, so more energy is needed each time. The rise 578 -> 1817 -> 2745 reflects this steadily increasing attraction within the same main energy level.\n\n**(b)** There is a very large jump from the 3rd (2745) to the 4th (11580) ionization energy. This means the 4th electron is removed from a main energy level *closer to the nucleus* than the first three. That inner-level electron is much less shielded and much more strongly attracted, so far more energy is required. The jump marks the boundary between two shells.\n\n**(c)** Three electrons are removed relatively easily *before* the big jump, so element X has **3 electrons in its outer main energy level**. An element with 3 outer electrons is in **group 13**. (Consistent with aluminium: outer configuration 3s3p, i.e. [Ne]3s2 3p1, three outer electrons then a jump down to the n=2 shell.)" },
+    { "type": "examTip", "content": "In IE questions, always explain a jump in terms of a *new, closer, less-shielded main energy level* — not just 'it is harder'. To find the group number, count the electrons removed before the FIRST big jump: that is the number of outer-shell electrons, which equals the group number (groups 1, 2, 13-18)." },
+
+    { "type": "heading", "content": "Main energy levels and sub-levels" },
+    { "type": "text", "content": "The energy-level model is refined by dividing each main energy level (n) into sub-levels. At SL you need three types: s, p and d. An s sub-level holds up to 2 electrons, a p sub-level up to 6, and a d sub-level up to 10. Which sub-levels exist depends on the main level: n=1 has only 1s; n=2 has 2s and 2p; n=3 has 3s, 3p and 3d; n=4 has 4s, 4p, 4d... This structure is what the finer detail of atomic spectra reveals." },
+    { "type": "keyPoints", "items": [
+      "**Main level n=1:** 1s (max 2 electrons).",
+      "**Main level n=2:** 2s, 2p (max 2 + 6 = 8 electrons).",
+      "**Main level n=3:** 3s, 3p, 3d (max 2 + 6 + 10 = 18 electrons).",
+      "**Sub-level capacities:** s = 2, p = 6, d = 10 electrons."
+    ]},
+
+    { "type": "heading", "content": "Writing electron configurations (Aufbau)" },
+    { "type": "text", "content": "To write an electron configuration we place the atom's electrons (equal to the atomic number Z for a neutral atom) into sub-levels from lowest energy upwards — the Aufbau principle. The filling order is 1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p... Notice that 4s fills before 3d: although 4s is in a higher main level, it is slightly lower in energy. Each occupied sub-level is written as n followed by the letter and a superscript giving the number of electrons in it." },
+    { "type": "workedExample", "question": "Write the full and the condensed (noble-gas) electron configuration of a neutral calcium atom (Ca, Z = 20). [2]", "solution": "**1. Count the electrons:** a neutral atom has electrons equal to Z, so Ca has **20 electrons**.\n\n**2. Fill sub-levels in Aufbau order** until all 20 are placed:\n- 1s takes 2 -> 1s2 (18 left)\n- 2s takes 2 -> 2s2 (16 left)\n- 2p takes 6 -> 2p6 (10 left)\n- 3s takes 2 -> 3s2 (8 left)\n- 3p takes 6 -> 3p6 (2 left)\n- 4s takes the final 2 -> 4s2 (0 left) — remember 4s fills *before* 3d.\n\n**Full configuration:** 1s2 2s2 2p6 3s2 3p6 4s2  ✅ [1 mark]\n\n**3. Condense using the previous noble gas.** The noble gas before calcium is argon (Ar, Z = 18), whose configuration is 1s2 2s2 2p6 3s2 3p6. Replace that block with [Ar]:\n\n**Condensed configuration:** [Ar] 4s2  ✅ [1 mark]\n\n*Check: the two electrons written after [Ar] plus argon's 18 give 20 — correct. The two 4s electrons are the valence electrons that make calcium a group 2 metal.*" },
+    { "type": "text", "content": "The condensed form is quicker and highlights the chemically important valence electrons. For example sodium is [Ne]3s1, iron is [Ar]4s2 3d6, and bromine is [Ar]4s2 3d10 4p5. Always check the superscripts add up to Z." },
+
+    { "type": "heading", "content": "HL extension: orbitals and the 4s/3d nuance" },
+    { "type": "text", "content": "**HL only.** At HL the sub-levels are described in terms of orbitals — regions of space where an electron is most likely to be found. An s sub-level is one spherical orbital; a p sub-level is three dumbbell-shaped orbitals; a d sub-level is five orbitals. Each orbital holds a maximum of two electrons. The orbital picture explains, more precisely than simple Bohr orbits, why the 4s sub-level is filled *before* the 3d: a 4s electron penetrates closer to the nucleus and is less shielded, making 4s slightly lower in energy than 3d. **HL consequence:** when transition metals such as iron form positive ions, the 4s electrons are removed *before* the 3d electrons (e.g. Fe -> Fe2+ is [Ar]3d6, not [Ar]4s2 3d4)." },
+    { "type": "examTip", "content": "HL flag: the 4s-before-3d filling but 4s-removed-first-on-ionization pattern is a classic HL trap. SL students should still know the Aufbau order includes 4s before 3d; the orbital shapes and ion-formation nuance are examined at HL." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Confusing a line spectrum with a continuous spectrum** — the evidence for discrete levels is that only *specific lines* appear, NOT a smooth band. Omitting this distinction loses the key mark.",
+      "**Saying the lines spread apart at high energy** — they *converge* (get closer) because the energy levels get closer together as n increases.",
+      "**Explaining an ionization-energy jump as just 'harder to remove'** — you must say the electron comes from a *new main level closer to the nucleus, less shielded and more strongly attracted*.",
+      "**Filling 3d before 4s** — the Aufbau order is 3s, 3p, 4s, 3d. The 4s sub-level fills first.",
+      "**Superscripts that don't add up to Z** — always total the electrons; a miscount is the most common configuration error.",
+      "**Vague answers like 'electrons jump around'** — this earns nothing; the marking engine needs the discrete-levels / line-spectrum / E=hf points made explicitly.",
+      "**HL: removing 3d before 4s when forming ions** — 4s electrons are lost first from transition-metal atoms."
+    ]},
+
+    { "type": "practice", "label": "Get a Paper 2 answer marked: explain how hydrogen's emission spectrum shows discrete energy levels", "href": "/mark?subject=ib-chemistry-sl&topic=S1.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Interactive Periodic Table with Electron Configurations", "href": "https://ptable.com/#Properties/ElectronConfiguration" },
+      { "label": "Khan Academy: Bohr model and atomic spectra", "href": "https://www.khanacademy.org/science/chemistry/electronic-structure-of-atoms/bohr-model-hydrogen/a/bohr-s-model-of-hydrogen" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

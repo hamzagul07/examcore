@@ -1,207 +1,344 @@
 {
   "slug": "3-3-low-unemployment",
   "topicCode": "3.3",
+  "unit": {
+    "code": "3",
+    "title": "Macroeconomics"
+  },
   "title": "Low unemployment",
   "paper": "P1",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson explores the macroeconomic objective of low unemployment. It covers the definition and measurement of unemployment, analyses its different types (frictional, structural, cyclical, seasonal), and evaluates its significant economic and social costs. The lesson concludes by examining the range of demand-side and supply-side policies governments and central banks can use to reduce unemployment, emphasising the importance of correctly diagnosing the type of unemployment before implementing a policy solution.",
-  "durationMin": 90,
-  "updated": "2026-06-21",
+  "summary": "Low unemployment is one of the central macroeconomic objectives. This lesson builds the topic carefully: how unemployment is measured (the unemployment rate and the labour force), why the official figure can mislead (hidden unemployment, underemployment and discouraged workers), the four types of unemployment and their distinct causes, the economic and personal/social costs of high unemployment, and a distinction examiners love to test — the difference between a change in unemployment and a change in the participation rate.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and explain the concept of unemployment and the unemployment rate.",
-    "Distinguish between frictional, structural, seasonal, and cyclical unemployment.",
-    "Analyse the economic and social consequences of unemployment.",
-    "Evaluate the effectiveness of demand-side and supply-side policies in reducing unemployment."
+    "Calculate the unemployment rate and define the labour force it is measured against.",
+    "Explain why official unemployment figures can understate or misstate true labour market slack (hidden unemployment, underemployment, discouraged workers).",
+    "Distinguish frictional, structural, seasonal and cyclical (demand-deficient) unemployment by their causes.",
+    "Evaluate the economic and personal/social costs of high unemployment.",
+    "Distinguish a change in the unemployment rate from a change in the participation rate."
   ],
+  "syllabusObjectivesCovered": [
+    "3.3"
+  ],
+  "keyConcepts": [
+    "economic well-being",
+    "change"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Economy's Idle Hands",
-    "summary": "Unemployment measures the proportion of people who are actively seeking work but cannot find a job. This isn't just a personal problem; it represents a waste of a country's most valuable resource – its people – and has significant costs for the entire economy.",
-    "analogy": "Imagine a professional orchestra with several highly skilled musicians sitting in the audience, wanting to play, but there are no empty chairs on stage. The orchestra can still play music, but it's not producing the richest, fullest sound it's capable of. Those musicians are the unemployed: they are able, willing, and available to contribute, but the economy isn't creating a place for them. The result is a performance that's less impressive than its potential, just as an economy with high unemployment has lower output and well-being.",
+    "title": "Who Counts as Unemployed?",
+    "summary": "Unemployment is not simply 'people without a job'. To be counted, a person must be of working age, without work, available to start, and actively looking. That precise definition is the key to almost every exam question on this topic — and to why the headline figure can hide a lot.",
+    "analogy": "Picture the working-age population as everyone invited to a job fair. Some walk in and take a role (employed). Some walk in and keep searching (unemployed). Some never walk in at all — students, carers, the retired — and some walk out disheartened after months of no offers. Only the people inside the fair count as the labour force; the unemployment rate measures the searchers as a share of just those inside, not of everyone invited.",
     "steps": [
-      "First, we define unemployment and the labour force, clarifying who is counted and who is not.",
-      "Next, we calculate the unemployment rate and critically examine the limitations of this single statistic, such as hidden unemployment and underemployment.",
-      "Then, we dissect unemployment into its main types – frictional, structural, and cyclical – to understand its different causes.",
-      "Finally, we analyse the severe consequences of unemployment and evaluate the various government policies designed to tackle each specific type."
+      "Measure it: unemployment rate = unemployed ÷ labour force × 100 — note the denominator is the labour force, not the whole population.",
+      "Question the number: discouraged workers, underemployment and hidden unemployment mean the true picture is often worse than the headline.",
+      "Diagnose the type: is it frictional, structural, seasonal or cyclical? Each has a different cause.",
+      "Weigh the costs: lost output for the economy, lost income and wellbeing for individuals, and wider social strain.",
+      "Separate two ideas: a change in the unemployment rate is not the same as a change in the participation rate."
     ]
   },
   "flashcards": [
     {
       "front": "Unemployment",
-      "back": "A situation where individuals are of working age, actively seeking employment, but are unable to find a job."
+      "back": "Being of working age, without a job, available to start work, and actively seeking employment. All four conditions must hold.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Labour Force",
-      "back": "The total number of people of working age who are either employed or actively seeking employment. It is the sum of the employed and the unemployed."
+      "front": "Labour force",
+      "back": "The employed plus the unemployed. It is NOT the whole working-age population — it excludes those who are of working age but not seeking work (students, carers, retirees).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Unemployment Rate",
-      "back": "The number of unemployed people expressed as a percentage of the total labour force. Formula: (Number of unemployed / Labour Force) x 100."
+      "front": "Unemployment rate",
+      "back": "The number of unemployed as a percentage of the labour force: (unemployed ÷ labour force) × 100. The denominator is the labour force, not the population.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Participation (activity) rate",
+      "back": "The labour force as a percentage of the working-age population: (labour force ÷ working-age population) × 100. It measures how many working-age people are IN the labour market, whether working or searching.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Frictional unemployment",
+      "back": "Short-term unemployment while people move between jobs or enter the labour force for the first time. A sign of a dynamic labour market, not a weak economy.",
+      "pillLabel": "Type"
+    },
+    {
+      "front": "Structural unemployment",
+      "back": "Long-term unemployment from a mismatch between the skills or location of workers and the jobs available — caused by automation, globalisation, or the permanent decline of an industry.",
+      "pillLabel": "Type"
+    },
+    {
+      "front": "Seasonal unemployment",
+      "back": "Unemployment because demand for certain labour rises and falls with the time of year — e.g. ski instructors in summer, fruit pickers out of harvest.",
+      "pillLabel": "Type"
+    },
+    {
+      "front": "Cyclical (demand-deficient) unemployment",
+      "back": "Unemployment caused by a fall in aggregate demand during a downturn. Firms cut output and lay off workers. It falls again as the economy recovers.",
+      "pillLabel": "Type"
+    },
+    {
+      "front": "Discouraged workers",
+      "back": "People who want to work but have given up actively searching after repeated failure. Because they no longer search, they leave the labour force and are NOT counted as unemployed — flattering the official rate.",
+      "pillLabel": "Difficulty"
     },
     {
       "front": "Underemployment",
-      "back": "A situation where a worker is employed but not in the desired capacity, whether in terms of hours (part-time instead of full-time) or skills (overqualified for the job). This is a form of hidden unemployment."
+      "back": "People who ARE employed but want more work or are over-qualified for their role (e.g. a part-timer wanting full-time hours, or a graduate working as a barista). Counted as employed, so it hides labour market slack.",
+      "pillLabel": "Difficulty"
     },
     {
-      "front": "Frictional Unemployment",
-      "back": "Short-term unemployment that occurs when workers are between jobs. It is considered a natural and even healthy part of a dynamic economy as people move to better-suited positions."
+      "front": "Hidden unemployment",
+      "back": "Joblessness not captured by the official rate — chiefly discouraged workers and the underemployed — meaning the published figure understates the true weakness of the labour market.",
+      "pillLabel": "Difficulty"
     },
     {
-      "front": "Structural Unemployment",
-      "back": "Long-term unemployment caused by a mismatch between the skills of workers and the skills demanded by employers, often due to technological change, international competition, or changes in the structure of the economy."
+      "front": "Exam Trap: unemployment RATE vs NUMBER unemployed",
+      "back": "The rate can fall while the number rises (or vice versa) if the labour force changes. Always check whether a question asks for the percentage or the headcount.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A skilled coal miner loses their job when the last local pit shuts permanently and their skills are not demanded elsewhere in the region. This is BEST described as:",
+      "options": [
+        "Frictional unemployment",
+        "Structural unemployment",
+        "Seasonal unemployment",
+        "Cyclical unemployment"
+      ],
+      "answer": "Structural unemployment"
     },
     {
-      "front": "Cyclical (Demand-Deficient) Unemployment",
-      "back": "Unemployment that arises from a downturn in the business cycle, when aggregate demand for goods and services is too low to create jobs for everyone who wants to work."
+      "prompt": "A recent graduate spends two months applying for and comparing job offers before accepting one. While searching they are classed as:",
+      "options": [
+        "Structurally unemployed",
+        "Frictionally unemployed",
+        "Cyclically unemployed",
+        "Not in the labour force"
+      ],
+      "answer": "Frictionally unemployed"
     },
     {
-      "front": "Natural Rate of Unemployment (NRU)",
-      "back": "The rate of unemployment that exists when the economy is in long-run equilibrium, producing at its potential output level. It is comprised of frictional, structural, and seasonal unemployment. It is not zero."
+      "prompt": "A country's labour force grows quickly as many new workers enter and start searching. Even though the NUMBER of unemployed rises, the unemployment RATE could:",
+      "options": [
+        "Only ever rise",
+        "Fall, if the labour force grows faster than the number unemployed",
+        "Stay fixed by definition",
+        "Fall only if the number unemployed falls"
+      ],
+      "answer": "Fall, if the labour force grows faster than the number unemployed"
     },
     {
-      "front": "Full Employment",
-      "back": "An economic situation where the unemployment rate is equal to the Natural Rate of Unemployment (NRU). It does not mean that unemployment is zero."
+      "prompt": "During a deep recession, aggregate demand collapses and firms across all industries lay off staff. The dominant type of unemployment here is:",
+      "options": [
+        "Structural, because skills are mismatched",
+        "Frictional, because people are between jobs",
+        "Cyclical (demand-deficient), because it stems from low aggregate demand",
+        "Seasonal, because it will reverse next quarter"
+      ],
+      "answer": "Cyclical (demand-deficient), because it stems from low aggregate demand"
     },
     {
-      "front": "Hysteresis (in labour markets)",
-      "back": "An HL concept where a period of high unemployment leads to an increase in the long-run Natural Rate of Unemployment. This can happen if the long-term unemployed lose skills, motivation, or become stigmatised, making them structurally unemployed."
-    },
-    {
-      "front": "Trap: Confusing 'unemployed' with 'not working'",
-      "back": "A person is only counted as unemployed if they are actively seeking work. Students, retirees, and those not looking for a job are considered 'outside the labour force', not unemployed."
-    },
-    {
-      "front": "Demand-Side Policies for Unemployment",
-      "back": "Policies aimed at increasing aggregate demand to reduce cyclical unemployment. Examples include expansionary fiscal policy (cutting taxes, increasing G) and expansionary monetary policy (lowering interest rates)."
+      "prompt": "Discouraged workers stop searching for jobs and drop out of the labour force. Holding the number of employed constant, the OFFICIAL unemployment rate will:",
+      "options": [
+        "Rise, because more people lack work",
+        "Fall, because the unemployed count and the labour force both shrink",
+        "Be unaffected, because they still want work",
+        "Rise, because the participation rate rises"
+      ],
+      "answer": "Fall, because the unemployed count and the labour force both shrink"
     }
   ],
   "faq": [
     {
-      "q": "Is it possible to have zero unemployment?",
-      "a": "No, it is neither possible nor desirable in a market economy. There will always be some level of frictional unemployment as people move between jobs, and some structural unemployment as the economy evolves. This is the Natural Rate of Unemployment (NRU). A level of 0% would imply a stagnant economy where no one ever changes jobs and no new industries emerge."
+      "q": "Can the unemployment rate fall at the same time as the number of unemployed people rises?",
+      "a": "Yes — and this catches students out. The rate is unemployed ÷ labour force. If the labour force grows faster than the number of unemployed (for example, many new entrants find work while a smaller number join the jobless), the fraction can fall even as the raw headcount of unemployed rises. Always separate the percentage from the headcount."
     },
     {
-      "q": "What is the relationship between unemployment and inflation?",
-      "a": "In the short run, there is often a trade-off between unemployment and inflation, as illustrated by the Phillips Curve. Policies that boost aggregate demand to lower cyclical unemployment can lead to higher inflation. However, in the long run, most economists believe that the unemployment rate settles at the NRU regardless of the inflation rate."
+      "q": "How is underemployment different from unemployment?",
+      "a": "An unemployed person has no job but is actively seeking one. An underemployed person HAS a job but it falls short of their needs — they want full-time hours but only get part-time, or they are over-qualified for the work (a graduate serving coffee). Because they are employed, they are excluded from the unemployment count, which is one reason the official rate can understate labour market weakness."
     },
     {
-      "q": "What is the difference between being 'unemployed' and being 'out of the labour force'?",
-      "a": "This is a critical distinction. A person is only counted as 'unemployed' if they are actively seeking a job but cannot find one. Someone who is not working and is NOT actively looking for a job (e.g., a retiree, a full-time student, or a 'discouraged worker' who has given up their search) is considered 'out of the labour force' and is not included in the unemployment rate calculation."
+      "q": "Why does the type of unemployment matter so much?",
+      "a": "Because the cause determines the cure. Cyclical unemployment comes from deficient aggregate demand, so demand-side policy (fiscal or monetary) is the appropriate response. Frictional and structural unemployment are supply-side problems in how the labour market functions, so better job-matching, retraining and education are needed. Prescribing a demand-side fix for a structural problem — or vice versa — is a classic evaluation error."
     },
     {
-      "q": "Why do governments want to reduce unemployment?",
-      "a": "Governments aim to reduce unemployment for both economic and social reasons. Economically, high unemployment represents a waste of resources and lost potential output, leading to lower GDP. It also strains public finances through lower tax revenues and higher spending on benefits. Socially, unemployment is a major cause of poverty, inequality, and health problems, and can lead to social unrest and political instability."
+      "q": "Is a change in unemployment the same as a change in the participation rate?",
+      "a": "No. The unemployment rate measures searchers as a share of the labour force. The participation rate measures the labour force as a share of the working-age population. People can leave unemployment by getting a job (unemployment falls) OR by giving up the search entirely (they leave the labour force, so participation falls). A falling unemployment rate driven by discouraged workers leaving is very different from one driven by people finding jobs — even though the headline number improves in both cases."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Along with inflation, economic growth, and a stable balance of payments, achieving a low rate of unemployment is a fundamental macroeconomic objective for nearly every government. High unemployment is not just an abstract statistic; it represents lost potential for the economy and can have devastating consequences for individuals, families, and the social fabric of a nation. Understanding its causes, consequences, and potential remedies is therefore a cornerstone of macroeconomic analysis."
+      "content": "Low unemployment is one of the four principal macroeconomic objectives, prized because idle workers mean lost output for the economy and lost income and dignity for individuals. But 'unemployment' is a technical term with a precise definition, and the headline rate hides as much as it reveals. This lesson works through how unemployment is measured, why the official figure can mislead, the different types and their causes, the costs high unemployment imposes, and a distinction examiners repeatedly test — unemployment versus the participation rate."
     },
     {
       "type": "heading",
-      "content": "Measuring Unemployment"
+      "content": "Measuring unemployment: the rate and the labour force"
     },
     {
       "type": "text",
-      "content": "To be officially classified as unemployed, an individual must meet three criteria, as defined by the International Labour Organisation (ILO): they must be without a job, available to start work within the next two weeks, and have been actively seeking work for the past four weeks. People who are of working age but do not meet these criteria (e.g., full-time students, retirees, or 'discouraged workers' who have given up looking for a job) are considered economically inactive and are not part of the labour force."
+      "content": "To be officially counted as unemployed under the International Labour Organization (ILO) standard, a person must satisfy all of the following: be of working age, be without a job, be available to start work, and have actively looked for work in the recent period. People who are working and people who are unemployed together make up the **labour force**. Crucially, the labour force is NOT the whole working-age population — it excludes people of working age who are neither working nor seeking work, such as full-time students, carers and the retired."
     },
     {
       "type": "formula",
-      "content": "Unemployment Rate = \\frac{\\text{Number of Unemployed}}{\\text{Labour Force}} \\times 100"
+      "content": "\\text{Unemployment rate} = \\frac{\\text{Number of unemployed}}{\\text{Labour force}} \\times 100"
     },
     {
       "type": "text",
-      "content": "While the unemployment rate is a vital headline figure, it has significant limitations. It does not capture the issue of underemployment, where individuals are working fewer hours than they would like or are in jobs that do not utilise their skills. Furthermore, the national average can mask significant disparities in unemployment across different regions, age groups, genders, and ethnic backgrounds. These limitations mean the official rate may understate the true extent of labour market slack."
+      "content": "It is worth pairing this with a second ratio you will meet in exams. The **participation rate** (or activity rate) measures how many working-age people are actually in the labour force at all:"
     },
     {
-      "type": "heading",
-      "content": "Types and Causes of Unemployment"
-    },
-    {
-      "type": "text",
-      "content": "Not all unemployment is the same. Economists categorise unemployment by its underlying cause, which is crucial because the appropriate policy response depends entirely on the type of unemployment a country is facing. The main types are frictional, structural, and cyclical unemployment."
+      "type": "formula",
+      "content": "\\text{Participation rate} = \\frac{\\text{Labour force}}{\\text{Working-age population}} \\times 100"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Frictional Unemployment:** This is short-term unemployment experienced by people who are in between jobs or entering the labour market for the first time. It is caused by the time and information required to match a worker with a suitable job. It is generally considered unavoidable and even beneficial in a dynamic economy.",
-        "**Structural Unemployment:** This is a more serious, long-term form of unemployment caused by a fundamental mismatch between the skills workers possess and the skills employers demand. It often arises from technological advancements (e.g., automation replacing factory workers), changes in consumer demand, or globalisation (e.g., an industry moving overseas).",
-        "**Seasonal Unemployment:** This type of unemployment occurs because the demand for labour in certain industries changes with the seasons. Examples include ski instructors in the summer or fruit pickers in the winter.",
-        "**Cyclical (or Demand-Deficient) Unemployment:** This is unemployment caused by a lack of aggregate demand (AD) in the economy. During a recession, firms cut back on production and lay off workers because people are buying fewer goods and services. This is the type of unemployment that rises during economic downturns and falls during booms."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "The combination of frictional, structural, and seasonal unemployment is referred to as the **Natural Rate of Unemployment (NRU)**. This is the unemployment rate that persists even when the economy is at its long-run equilibrium or 'full employment' level of output. It is important to note that full employment does not mean zero unemployment."
-    },
-    {
-      "type": "heading",
-      "content": "Consequences of Unemployment"
-    },
-    {
-      "type": "text",
-      "content": "The costs of unemployment are borne by the unemployed individuals themselves, but also by the government and society as a whole. These can be broadly categorised into economic and social costs."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Economic Costs:** The primary economic cost is the lost output that the unemployed could have produced, representing an opportunity cost to society. This is shown as an economy operating inside its Production Possibilities Curve (PPC). Other costs include reduced tax revenue for the government (less income tax and VAT) and increased government spending on unemployment benefits and other social support.",
-        "**Personal & Social Costs:** For individuals, unemployment leads to a loss of income, which can result in debt, poverty, and homelessness. It is also associated with significant stress, anxiety, depression, and other mental and physical health problems. For society, high unemployment can lead to increased crime rates, social exclusion, and political instability."
+        "The **denominator of the unemployment rate is the labour force**, never the total or working-age population.",
+        "The **labour force = employed + unemployed** — people not seeking work are outside it.",
+        "The **participation rate** tells you what share of working-age people are IN the labour force; the **unemployment rate** tells you what share of that labour force lacks a job."
       ]
     },
     {
       "type": "workedExample",
-      "question": "The nation of Economia has a total population of 50 million. Of these, 10 million are under 16 or institutionalised, 5 million are retired, and 5 million are full-time students or stay-at-home parents not looking for work. There are 28 million people with jobs, but 3 million of them are working part-time and wish to work full-time. The remaining individuals are actively seeking work.\n\n(a) Calculate the size of the labour force.\n(b) Calculate the number of unemployed people.\n(c) Calculate the unemployment rate.\n(d) Explain what the information about the 3 million part-time workers tells us.",
-      "solution": "**Mark Scheme Working:**\n\n(a) **Labour Force Calculation:**\n- Population not in labour force = 10m (young/inst.) + 5m (retired) + 5m (students/parents) = 20 million. [1 mark]\n- Working-age population available for work = Total Population - Population not in labour force = 50m - 20m = 30 million. [1 mark]\n- The labour force is 30 million. [1 mark]\n\n(b) **Number of Unemployed Calculation:**\n- Labour Force = Employed + Unemployed\n- 30 million = 28 million + Unemployed [1 mark]\n- Number of Unemployed = 30 million - 28 million = 2 million. [1 mark]\n\n(c) **Unemployment Rate Calculation:**\n- Unemployment Rate = (Number of Unemployed / Labour Force) x 100\n- Unemployment Rate = (2 million / 30 million) x 100 [1 mark]\n- Unemployment Rate = 6.67% [1 mark]\n\n(d) **Explanation of Part-Time Workers:**\n- The 3 million workers who are part-time but want full-time work are classified as **underemployed**. [1 mark]\n- While they are officially counted as 'employed', their situation indicates that the labour market is weaker than the 6.67% unemployment rate suggests. This is a form of **hidden unemployment** and shows a significant amount of slack in the labour market that the headline unemployment figure fails to capture. [1 mark for evaluation]"
+      "question": "The nation of Econland has a total population of 50 million. Of these, 10 million are below or above working age, and a further 5 million are of working age but are students, carers or retirees not seeking work. The number of people in employment is 33.5 million.\n(a) Calculate the size of the labour force. [1]\n(b) Calculate the number of unemployed. [1]\n(c) Calculate the unemployment rate and the participation rate. [2]",
+      "solution": "**(a) Labour force.**\nStart from the working-age population: 50m total − 10m outside working age = 40m of working age.\nOf those, 5m are not seeking work, so they are outside the labour force.\nLabour force = 40m − 5m = **35 million**.\n\n**(b) Number unemployed.**\nUnemployed = labour force − employed = 35m − 33.5m = **1.5 million**.\n\n**(c) The two rates.**\nUnemployment rate = (1.5m ÷ 35m) × 100 = **4.29% (approx.)** — note the denominator is the labour force (35m), not the population or the working-age population.\nParticipation rate = (labour force ÷ working-age population) × 100 = (35m ÷ 40m) × 100 = **87.5%**.\n\nUse the correct denominator each time: the labour force for the unemployment rate, the working-age population for the participation rate."
     },
     {
       "type": "heading",
-      "content": "Policies to Address Unemployment"
+      "content": "Why the official figure can mislead"
     },
     {
       "type": "text",
-      "content": "The choice of policy to combat unemployment depends critically on its diagnosed cause. Policies are broadly divided into demand-side (tackling cyclical unemployment) and supply-side (tackling the natural rate of unemployment)."
+      "content": "The headline unemployment rate is a useful signal, but it systematically misses several groups, and it almost always understates the true amount of unused labour — what economists call labour market slack."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Demand-Side Policies (for Cyclical Unemployment):** These policies aim to increase Aggregate Demand (AD). **Expansionary Fiscal Policy** involves the government increasing its spending (G) or cutting taxes (T) to boost consumption (C) and investment (I). **Expansionary Monetary Policy** involves the central bank lowering interest rates to encourage borrowing and spending by firms and households. Both shift the AD curve to the right, increasing real GDP and reducing demand-deficient unemployment.",
-        "**Interventionist Supply-Side Policies (for NRU):** These involve government intervention to improve the quality and quantity of the factors of production. To tackle structural unemployment, governments can invest heavily in education and retraining programmes to equip workers with new skills. They can also improve the flow of job information through public employment agencies to reduce frictional unemployment.",
-        "**Market-Based Supply-Side Policies (for NRU):** These policies focus on making labour markets more flexible and efficient by reducing government intervention. Examples include reducing the power of trade unions, lowering the minimum wage, and cutting unemployment benefits to increase the incentive to find work. The aim is to reduce wage rigidity and improve the ability of the market to match workers to jobs."
+        "**Discouraged workers** — people who want a job but have stopped actively searching after repeated rejection. Because searching is one of the ILO conditions, they leave the labour force and vanish from the unemployment count. This makes the official rate look better precisely when the labour market is weak.",
+        "**Underemployment** — people with a job that falls short of what they want: part-timers seeking full-time hours, or the over-qualified (a graduate working as a barista). They are counted as employed, so their spare capacity is invisible in the figure.",
+        "**Hidden unemployment** — the umbrella term for joblessness the official rate does not capture, chiefly the discouraged and the underemployed, meaning published unemployment understates the real shortfall of work.",
+        "**Regional and demographic averages** — a single national rate can hide severe unemployment among particular regions, age groups or ethnic groups behind a comfortable-looking average."
       ]
     },
     {
       "type": "examTip",
-      "content": "In a Paper 1 essay on unemployment, your ability to evaluate is paramount. A top-level response will always begin by identifying the specific type of unemployment in the question's context. Never suggest a single policy as a magic bullet. For example, when evaluating a policy, always consider its trade-offs (e.g., expansionary fiscal policy may cause inflation or a budget deficit), time lags (supply-side policies take years to work), and constraints. The best answers argue that a combination of policies, tailored to the specific causes of unemployment, is usually most effective."
+      "content": "When a data-response or essay asks whether the unemployment rate is a good measure of economic health, do not just define it. Show evaluation: name discouraged workers, underemployment and hidden unemployment, and explain the DIRECTION of the bias — the official rate tends to understate true labour market slack, and can even improve for the wrong reason when the discouraged stop searching."
+    },
+    {
+      "type": "heading",
+      "content": "Types of unemployment and their causes"
+    },
+    {
+      "type": "text",
+      "content": "Diagnosing the TYPE of unemployment is the single most valuable skill in this topic, because the cause dictates the appropriate policy. There are four types, grouped into two families: cyclical unemployment is caused by deficient demand, while frictional, structural and seasonal unemployment are supply-side, arising from how the labour market itself works."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Frictional** — short-term unemployment while people move between jobs or first enter the labour market. Cause: the time and search involved in matching workers to suitable vacancies. It is a feature of a healthy, mobile labour market rather than a symptom of a sick economy.",
+        "**Structural** — long-term unemployment from a mismatch between the skills, or location, of available workers and the jobs on offer. Causes: automation and technological change, globalisation shifting production abroad, and the permanent decline of whole industries. These workers are not simply 'between jobs' — their old skills are no longer wanted.",
+        "**Seasonal** — unemployment because demand for particular labour rises and falls predictably with the time of year. Causes: weather- and calendar-linked demand, e.g. tourism, agriculture and construction.",
+        "**Cyclical (demand-deficient)** — unemployment caused by a fall in aggregate demand during a downturn. Cause: as spending falls, firms cut output and lay off workers across the economy; it reverses as demand and the business cycle recover. This is the type demand-side (fiscal and monetary) policy targets."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The frictional/structural boundary is a favourite exam trap. Ask one question: **could this worker walk into a similar job soon?** If yes and they are simply searching or transitioning, it is frictional. If their skills or location no longer match ANY available demand, so retraining or relocation is needed, it is structural."
+    },
+    {
+      "type": "heading",
+      "content": "The costs of high unemployment"
+    },
+    {
+      "type": "text",
+      "content": "High unemployment is costly on three fronts — for the economy, for the individuals affected, and for wider society. Strong answers weigh both the economic and the personal/social costs rather than listing only lost output."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Economic costs** — lost potential output: the economy operates INSIDE its production possibilities curve, so goods and services that could have been produced are permanently forgone. Government finances worsen from both sides: lower tax revenue (less income and expenditure tax) and higher spending on unemployment benefits, squeezing the budget and crowding out other priorities. Prolonged unemployment also erodes workers' skills, lowering the economy's future productive capacity.",
+        "**Personal costs** — a sharp fall in income and living standards, risk of poverty and debt, and well-documented harm to physical and mental health, including stress, anxiety and loss of self-esteem. Long spells out of work erode skills and confidence, making re-employment harder — a 'scarring' effect.",
+        "**Social costs** — rising inequality and, at the extreme, greater crime, social tension and family breakdown in the worst-affected communities, straining social cohesion and public services."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "A country is experiencing a high rate of structural unemployment due to the decline of its traditional manufacturing industries. Using an AD/AS diagram, evaluate the government's decision to use expansionary fiscal policy as the primary tool to solve this problem.",
-      "solution": "**Mark Scheme Working:**\n\n**1. Definition and Diagram:**\n- Define structural unemployment as a mismatch of skills. Define expansionary fiscal policy as increasing G or decreasing T to boost AD. [1 mark]\n- Draw a correctly labelled AD/AS diagram. Show the initial equilibrium (Y1, PL1). Show the AD curve shifting right to AD2, leading to a new equilibrium (Y2, PL2). [2 marks]\n\n**2. Analysis of the Policy's Effect:**\n- Explain that expansionary fiscal policy increases aggregate demand. In the diagram, this shifts AD to AD2. [1 mark]\n- This will lead to a short-term increase in real GDP (from Y1 to Y2) and may reduce any co-existing cyclical unemployment. Firms may hire more workers to meet the higher demand. [1 mark]\n\n**3. Evaluation of the Policy's Suitability (The Core of the Answer):**\n- **Argument against:** The primary problem is structural, not a deficiency in demand. The unemployed manufacturing workers lack the skills needed for new jobs in the growing sectors of the economy (e.g., tech, services). Simply boosting demand will not give them these skills. [2 marks for evaluation]\n- **Consequence:** The main effect of the policy will be to create inflationary pressure (PL1 to PL2) without significantly reducing the long-term structural unemployment rate. The economy may hit its (now lower) potential output, and the main result is inflation. [2 marks for evaluation]\n\n**4. Suggestion of Alternative Policies:**\n- A more appropriate response would be to use supply-side policies. [1 mark]\n- **Interventionist policies:** The government should fund retraining and education programmes to help displaced workers acquire new, relevant skills. Subsidies could be given to firms that hire and train these workers. [1 mark]\n- **Market-based policies:** Policies to improve labour market flexibility, such as improving geographical mobility through housing reforms, could also help. [1 mark]\n\n**5. Conclusion:**\n- Conclude that while expansionary fiscal policy might offer a short-term boost and reduce any cyclical component of unemployment, it is an inappropriate and ineffective primary tool for tackling structural unemployment. Its main effect will likely be inflation. A long-term solution requires targeted supply-side policies to address the root cause of the skills mismatch. [2 marks for a well-supported conclusion]"
+      "question": "A country's economy enters a recession. Aggregate demand falls, and the unemployment rate rises from 5% to 9%. The labour force is 20 million.\n(a) Calculate the increase in the number of unemployed. [2]\n(b) Identify the type of unemployment described and explain ONE economic and ONE personal cost of it. [4]",
+      "solution": "**(a) Increase in the number unemployed.**\nInitial unemployed = 5% of 20m = 0.05 × 20,000,000 = 1,000,000.\nNew unemployed = 9% of 20m = 0.09 × 20,000,000 = 1,800,000.\nIncrease = 1,800,000 − 1,000,000 = **800,000 people** (working shown).\n\n**(b) Type and costs.**\nThe trigger is a fall in aggregate demand in a recession, so this is **cyclical (demand-deficient) unemployment**.\n- *Economic cost:* lost potential output. With 800,000 more workers idle, the economy produces inside its PPC, so output of goods and services is permanently forgone; GDP is lower and government tax revenue falls while benefit spending rises, worsening the budget.\n- *Personal cost:* affected workers suffer a large fall in income and living standards, with a risk of poverty and debt, alongside the stress and loss of self-esteem that long unemployment brings — and a 'scarring' loss of skills that makes re-employment harder.\n\nBecause the cause is deficient demand, the appropriate remedy would be demand-side (fiscal or monetary) policy — not the retraining schemes used for structural unemployment."
+    },
+    {
+      "type": "heading",
+      "content": "Unemployment versus the participation rate"
+    },
+    {
+      "type": "text",
+      "content": "One of the most testable ideas in this topic is that a change in the unemployment rate is NOT the same as a change in the participation rate, because the two ratios have different denominators. A person can stop being 'unemployed' in two very different ways: by finding a job (a genuine improvement), or by giving up the search entirely and leaving the labour force (which lowers participation and simply hides the problem)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The **unemployment rate** measures searchers as a share of the labour force; the **participation rate** measures the labour force as a share of the working-age population.",
+        "When discouraged workers stop searching, they leave the labour force: the participation rate falls, and — because both the unemployed count and the labour force shrink — the official unemployment rate can even FALL, flattering the data.",
+        "A falling unemployment rate driven by people finding jobs is good news; a falling rate driven by people giving up is not. Always ask WHY the rate moved before judging whether the labour market has improved."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In Year 1 a country has a working-age population of 30 million, of whom 24 million are in the labour force and 2.4 million are unemployed. In Year 2 the working-age population is unchanged, but 1 million long-term jobless people become discouraged and stop searching, while the number in work is unchanged.\n(a) Calculate the unemployment rate and participation rate in Year 1. [2]\n(b) Recalculate both for Year 2 and comment on what happens. [3]",
+      "solution": "**(a) Year 1.**\nUnemployment rate = (2.4m ÷ 24m) × 100 = **10%**.\nParticipation rate = (24m ÷ 30m) × 100 = **80%**.\n\n**(b) Year 2.**\nThe 1m discouraged workers stop searching, so they leave BOTH the unemployed count and the labour force.\nNew unemployed = 2.4m − 1m = 1.4m.\nNew labour force = 24m − 1m = 23m (the 1m are now outside it; the number employed is unchanged).\nUnemployment rate = (1.4m ÷ 23m) × 100 = **6.09% (approx.)**.\nParticipation rate = (23m ÷ 30m) × 100 = **76.7% (approx.)**.\n\n**Comment:** Not a single extra person found work, yet the headline unemployment rate FELL from 10% to about 6.1%. The improvement is illusory — it happened only because discouraged workers left the labour force, which is exactly why the participation rate DROPPED from 80% to about 76.7%. This shows why a falling unemployment rate must be read alongside the participation rate before concluding the labour market has genuinely improved."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using the wrong denominator** — the unemployment rate divides by the LABOUR FORCE, not the total population or the working-age population. Dividing by the wrong base loses the calculation marks.",
+        "**Confusing the unemployment RATE with the NUMBER unemployed** — the rate can fall while the headcount rises (or vice versa) when the labour force changes. Read carefully which the question wants.",
+        "**Mixing up frictional and structural unemployment** — frictional is short-term job-search where similar work is available; structural is a lasting skills or location mismatch needing retraining. They demand different policies.",
+        "**Blaming cyclical unemployment on skills, or structural on the business cycle** — cyclical unemployment stems from deficient aggregate demand and calls for demand-side policy; structural stems from mismatch and calls for supply-side policy. Getting the cause wrong makes any policy evaluation wrong.",
+        "**Treating a fall in the unemployment rate as automatically good** — if it fell because discouraged workers left the labour force (participation falling), the labour market has not actually improved.",
+        "**Listing only lost output** — full-mark answers on costs balance economic costs (lost GDP, worse government finances) with personal and social costs (income loss, health, inequality)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real IB markband"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 1, part (a): Explain the difference between structural and cyclical unemployment, and the main costs of high unemployment to an economy. [10]",
+      "solution": "**Model answer:**\n**Structural unemployment** is long-term unemployment caused by a mismatch between the skills or location of available workers and the jobs on offer. It arises on the supply side of the labour market — through automation, globalisation shifting production abroad, or the permanent decline of an industry — so affected workers cannot simply move into a similar job; their skills are no longer demanded and they need retraining or relocation.\n\n**Cyclical (demand-deficient) unemployment**, by contrast, is caused by a fall in aggregate demand during a downturn in the business cycle. As total spending falls, firms across the economy cut output and lay off workers; when aggregate demand and the cycle recover, this unemployment reverses. The key DIFFERENCE is therefore the cause: structural unemployment comes from a lasting mismatch in the labour market (a supply-side problem), while cyclical unemployment comes from deficient aggregate demand (a demand-side problem) — which is why they call for different policy responses, supply-side measures such as retraining for the former and demand-side fiscal or monetary policy for the latter.\n\n*(A diagram is optional here — 'where appropriate'. One could add an AD/AS diagram showing a leftward shift of AD opening a deflationary gap to illustrate cyclical unemployment, but the question is fully answerable in prose, so its absence does not cap the mark.)*\n\nThe **main costs of high unemployment to an economy** are, first, lost potential output: with workers idle the economy produces inside its production possibilities curve, so goods and services are permanently forgone and GDP is lower. Second, public finances deteriorate — tax revenue falls while spending on unemployment benefits rises, worsening the government budget and crowding out other priorities. Third, prolonged unemployment erodes workers' skills ('scarring'), lowering the economy's future productive capacity. Alongside these economic costs run heavy personal and social costs: lost household income and living standards, poverty risk, worse physical and mental health, and greater inequality and social tension.\n\n---\n**How this maps to our IB markband (Paper 1 part (a), out of 10):**\n- **9–10:** the answer addresses the demands of the question; relevant economic theory is FULLY explained; relevant terms are used appropriately THROUGHOUT the response; where appropriate, a relevant diagram is included and FULLY explained.\n- **7–8:** the demands are addressed and explained; relevant terms are used mostly appropriately.\n- **5–6:** the demands are partially addressed; relevant theory is PARTLY explained; some relevant terms are used.\n- **3–4:** relevant theory is DESCRIBED; some relevant terms are used.\n- **1–2:** the response is not relevant to the question.\n\n**Why this reaches the top band (9–10):** it addresses BOTH demands — the difference between the two types AND the costs — rather than one; the theory is fully explained (each type is defined AND traced to its cause, and the difference is drawn out explicitly, not just implied); relevant terms (aggregate demand, business cycle, skills mismatch, potential output, PPC, government budget) are used throughout; and a diagram is not essential here — the rubric only asks for one 'where appropriate', so a complete prose explanation of two concepts and their costs earns full marks without one. An answer that merely DESCRIBED the two types with a few terms would sit in the 3–4 band; one that partly explained them would reach 5–6."
+    },
+    {
+      "type": "examTip",
+      "content": "This is exactly what the Practice button below does: write your own answer to this 10-mark question, submit it, and our marking engine grades it against this very markband — telling you which band you reached and why. The habit that lifts you into the top band here: address BOTH demands of the question and EXPLAIN each type through its cause, rather than just describing or defining them."
     },
     {
       "type": "practice",
-      "label": "Test your knowledge on Unemployment",
-      "href": "/mark?subject=ib-economics-hl&topic=3.3"
+      "label": "Get a Paper 1 (a) answer marked: structural vs cyclical unemployment and the costs of high unemployment",
+      "href": "/mark?subject=ib-economics-hl&topic=3.3&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "ILOSTAT - Global Labour Statistics",
+          "label": "International Labour Organization (ILO) statistics",
           "href": "https://ilostat.ilo.org/"
         },
         {
-          "label": "UK Office for National Statistics (ONS) - Labour Market Overview",
+          "label": "UK Office for National Statistics (ONS) — Labour Market Overview",
           "href": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/uklabourmarket/latest"
-        },
-        {
-          "label": "Tutor2u - Unemployment Notes",
-          "href": "https://www.tutor2u.net/economics/reference/unemployment-introduction"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

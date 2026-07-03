@@ -1,169 +1,325 @@
 {
   "slug": "4-7-measuring-economic-development",
   "topicCode": "4.7",
+  "unit": {
+    "code": "4",
+    "title": "The global economy"
+  },
   "title": "Measuring economic development",
   "paper": "P2",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson explores the crucial distinction between economic growth and economic development, moving beyond simple income measures like GNI per capita. It introduces and analyses key composite indicators such as the Human Development Index (HDI), Gender Inequality Index (GII), and Multidimensional Poverty Index (MPI), equipping students to evaluate a country's overall well-being and progress.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Growth is not the same as development. This lesson separates economic growth (more real output) from economic development (a broader, multidimensional rise in well-being), then works through how development is measured: single indicators such as GNI per capita, health and education statistics, and infrastructure access; the composite Human Development Index (HDI) and its three dimensions; other indices such as the inequality-adjusted HDI and the Gender Inequality Index; and why no single number can fully capture development.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between economic growth and economic development.",
-    "Explain the components and interpretation of the Human Development Index (HDI).",
-    "Analyse the value of other composite indicators like the Gender Inequality Index (GII) and Multidimensional Poverty Index (MPI).",
-    "Evaluate the strengths and limitations of using various single and composite indicators to measure development."
+    "Distinguish clearly between economic growth and economic development.",
+    "Explain single indicators of development — GNI per capita, health, education, and energy/infrastructure access — and what each reveals and omits.",
+    "Explain the three dimensions of the Human Development Index (HDI) and evaluate its strengths and limitations.",
+    "Outline other composite measures (inequality-adjusted and gender indices) and explain why no single measure fully captures development.",
+    "Interpret and compare HDI values and other indicators across countries."
   ],
+  "syllabusObjectivesCovered": [
+    "4.7"
+  ],
+  "keyConcepts": [
+    "economic well-being",
+    "equity"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Beyond the Bank Balance",
-    "summary": "Measuring a country's development is like judging a person's well-being; you need more than just their income. We look at health, education, and equality to get a complete picture, not just the size of their economy.",
-    "analogy": "Imagine you're looking at two students' school reports. Student A has a top grade in Maths but poor marks everywhere else and low attendance. Student B has good grades across all subjects, participates in sports, and has excellent attendance. Just looking at the Maths grade (like GNI per capita) gives a misleading picture. To understand who is a more 'developed' student, you need a holistic report that includes multiple aspects (like the HDI).",
+    "title": "A Nation's Report Card, Not Just Its Bank Balance",
+    "summary": "Judging a country only by its income is like judging a student on one test score. Development is the full report card — income plus health plus education — and even that report card leaves things out.",
+    "analogy": "Think of a school report. A high Maths mark is good news, but it does not tell you whether the student is thriving. To see the whole picture you also want their English and Science results, their attendance, and their well-being. The Human Development Index does the same for a country: it blends income with life expectancy and schooling into one score. But like any report, an average grade can hide a struggling student sitting behind a strong class average.",
     "steps": [
-      "First, understand that a high national income (GNI per capita) doesn't automatically mean citizens have good lives. This is the difference between economic growth and economic development.",
-      "Next, examine the Human Development Index (HDI). It combines income with health (life expectancy) and education (years of schooling) to provide a more balanced view.",
-      "Then, consider other dimensions of development. Indicators like the Gender Inequality Index (GII) and Multidimensional Poverty Index (MPI) reveal issues that HDI might miss, such as inequality between men and women or deprivation in sanitation and electricity.",
-      "Finally, evaluate the strengths and weaknesses of each indicator. No single number is perfect, so economists use a dashboard of indicators to assess a country's development progress and challenges."
+      "Separate growth (more real national income) from development (a wider rise in living standards, health, education and freedom).",
+      "Use single indicators — GNI per capita, life expectancy, schooling, access to electricity — noting what each shows and misses.",
+      "Combine them with a composite indicator: the HDI's three dimensions of health, education and income.",
+      "Recognise the limits — averages hide inequality — and why extra indices (IHDI, GII) are needed alongside the HDI."
     ]
   },
   "flashcards": [
     {
-      "front": "Economic Development",
-      "back": "A multidimensional concept involving sustained improvements in the standard of living, including increased income, better education, better health, and greater equality of opportunity."
-    },
-    {
       "front": "Economic Growth",
-      "back": "An increase in a country's real output over time, typically measured by the percentage change in real GDP or GNI."
+      "back": "An increase in an economy's real output over time, usually the percentage change in real GDP or GNI. It is quantitative and a means to an end.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Gross National Income (GNI) per capita",
-      "back": "The total income generated by a country's factors of production, regardless of their location, divided by the mid-year population. It's a measure of the average income per person."
+      "front": "Economic Development",
+      "back": "A multidimensional improvement in living standards, health, education, freedom and economic choice. It is qualitative as well as quantitative, and it is the end goal that growth serves.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Growth vs development in one line",
+      "back": "Growth is more output; development is a broader, better life. Growth can occur without development if the gains are concentrated, temporary, or bought at high social or environmental cost.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "GNI per capita (PPP$)",
+      "back": "Gross National Income per person, adjusted for purchasing power parity so a given income buys a comparable basket of goods across countries. A single indicator of average income.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Purchasing Power Parity (PPP)",
-      "back": "An exchange rate that equalises the purchasing power of different currencies by eliminating differences in price levels between countries. It helps make GNI per capita figures more comparable."
+      "back": "An adjustment that equates the purchasing power of different currencies by comparing the price of a common basket of goods, allowing fairer cross-country comparison of living standards.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Single indicator",
+      "back": "A measure of one dimension of development — e.g. infant mortality (health), adult literacy or mean years of schooling (education), or the share of the population with access to electricity (infrastructure).",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Health and education indicators",
+      "back": "Health: life expectancy at birth, infant/maternal mortality. Education: adult literacy rate, mean and expected years of schooling. Each captures one dimension of well-being that income alone misses.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Energy / infrastructure indicators",
+      "back": "Measures such as access to electricity, clean water, sanitation, internet or mobile coverage. They reveal the productive and living conditions that raw income figures can hide.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Composite indicator",
+      "back": "An index combining several single indicators into one value for a more holistic view. The HDI is the leading example.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Human Development Index (HDI)",
-      "back": "A composite indicator measuring average achievement in three key dimensions of human development: a long and healthy life, being knowledgeable, and having a decent standard of living."
+      "back": "A UN composite indicator scoring average achievement in three dimensions — a long and healthy life, knowledge, and a decent standard of living — on a scale from 0 to 1.",
+      "pillLabel": "Model"
     },
     {
-      "front": "What are the three components of the HDI?",
-      "back": "1. Health (Life expectancy at birth)\n2. Education (Expected years of schooling and Mean years of schooling)\n3. Standard of Living (GNI per capita, PPP$).$"
+      "front": "The three HDI dimensions",
+      "back": "1) A long and healthy life — life expectancy at birth. 2) Knowledge — mean and expected years of schooling. 3) A decent standard of living — GNI per capita (PPP$). It is the geometric mean of the three sub-indices.",
+      "pillLabel": "Model"
+    },
+    {
+      "front": "Inequality-adjusted HDI (IHDI)",
+      "back": "The HDI discounted for inequality within each of its three dimensions. If distribution were perfectly equal, IHDI = HDI; the larger the gap, the greater the internal inequality.",
+      "pillLabel": "Analysis"
     },
     {
       "front": "Gender Inequality Index (GII)",
-      "back": "A composite indicator that measures gender inequalities in three important aspects of human development: reproductive health, empowerment, and economic status."
+      "back": "A composite measuring disparities between women and men in reproductive health, empowerment and labour-market participation. A higher GII means greater inequality.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Multidimensional Poverty Index (MPI)",
-      "back": "An international measure of acute multidimensional poverty covering over 100 developing countries. It complements traditional monetary poverty measures by capturing the acute deprivations in health, education, and living standards that a person faces simultaneously."
+      "front": "What the HDI does NOT capture",
+      "back": "Inequality of distribution, depth of poverty, gender gaps, political freedom, human security, cultural life and environmental sustainability. This is why complementary indices exist.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Limitation of GNI per capita as a development measure?",
-      "back": "It's an average and hides income inequality. It also doesn't account for the informal economy, unpaid work, or negative externalities like pollution."
+      "front": "Exam Trap: growth = development",
+      "back": "A common error is to treat rising GDP as automatic development. Development also requires the gains to raise health, education and living standards for the population, not just headline output.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A country's real GDP rises 6% in a year, but the gains go almost entirely to a small elite while health and schooling are unchanged. This is best described as:",
+      "options": [
+        "Both growth and development",
+        "Economic growth without much economic development",
+        "Economic development without growth",
+        "Neither growth nor development"
+      ],
+      "answer": "Economic growth without much economic development"
     },
     {
-      "front": "Why is the HDI calculated using a geometric mean?",
-      "back": "To ensure that poor performance in one dimension is not fully compensated for by strong performance in another. It highlights that all three dimensions are equally important and substitutability is limited."
+      "prompt": "Two countries have identical GDP per capita. It is still possible for one to be far more developed than the other because GDP per capita:",
+      "options": [
+        "Always equals HDI",
+        "Is an average that ignores health, education and distribution",
+        "Cannot be measured accurately",
+        "Includes life expectancy"
+      ],
+      "answer": "Is an average that ignores health, education and distribution"
     },
     {
-      "front": "What does a GII value of 0 mean?",
-      "back": "A GII value of 0 indicates perfect gender equality, meaning women and men fare equally in all measured dimensions."
+      "prompt": "Which three dimensions does the Human Development Index combine?",
+      "options": [
+        "Income, inflation and unemployment",
+        "Health, education and income",
+        "Health, equality and environment",
+        "GDP, GNI and PPP"
+      ],
+      "answer": "Health, education and income"
+    },
+    {
+      "prompt": "In the HDI, a long and healthy life is measured by:",
+      "options": [
+        "GNI per capita (PPP$)",
+        "Mean years of schooling",
+        "Life expectancy at birth",
+        "The infant mortality rate"
+      ],
+      "answer": "Life expectancy at birth"
+    },
+    {
+      "prompt": "A country has a high HDI but a much lower inequality-adjusted HDI (IHDI). This tells us that:",
+      "options": [
+        "Its data are unreliable",
+        "Its average achievements are unequally distributed within the population",
+        "It has no economic growth",
+        "Its GNI per capita is falling"
+      ],
+      "answer": "Its average achievements are unequally distributed within the population"
     }
   ],
   "faq": [
     {
-      "q": "What is the main difference between GNI per capita and HDI?",
-      "a": "GNI per capita measures the average income per person in a country, focusing solely on the economic standard of living. HDI is a broader, composite measure that includes not only income (GNI per capita) but also health (life expectancy) and education (schooling years). A country can have a high GNI per capita but a lower HDI if its wealth is not translated into better health and education for its citizens."
+      "q": "Why adjust GNI per capita for Purchasing Power Parity (PPP)?",
+      "a": "Because the same amount of money buys different quantities of goods in different countries. A given income stretches much further where prices are low. The PPP adjustment converts incomes into international dollars of equal purchasing power, so cross-country comparisons of living standards are fairer. Without it, high-price countries can look richer in real terms than they actually are."
     },
     {
-      "q": "Why do we use PPP dollars to compare GNI per capita?",
-      "a": "We use Purchasing Power Parity (PPP) dollars because the cost of goods and services varies greatly between countries. A US dollar can buy much more in Vietnam than it can in Switzerland. PPP adjusts for these price differences, giving a more accurate comparison of what a person's income can actually purchase, i.e., their real standard of living."
+      "q": "If a country has a high HDI, is everyone in it well off?",
+      "a": "Not necessarily. The HDI is an average and can hide large internal inequalities — a wealthy, educated urban majority alongside a poor rural minority with little healthcare or schooling. This is exactly why the UN also publishes the inequality-adjusted HDI (IHDI): when the IHDI is well below the HDI, the country's achievements are shared unevenly."
     },
     {
-      "q": "Is a high HDI score always good? What does it miss?",
-      "a": "A high HDI score is generally a positive sign of a country's development. However, it's not perfect. The HDI is an average and does not show inequality within a country (e.g., between rich and poor, or urban and rural areas). It also doesn't measure political freedom, human rights, environmental sustainability, or personal security. That's why other indicators like the GII and MPI are also useful."
+      "q": "What are the main alternatives or complements to the HDI?",
+      "a": "The inequality-adjusted HDI (IHDI) discounts the HDI for internal inequality; the Gender Inequality Index (GII) measures disparities between women and men; the Multidimensional Poverty Index (MPI) counts overlapping deprivations at the household level; and measures such as the Happy Planet Index bring in environmental sustainability. Each captures something the HDI leaves out, which is why development is best judged with several indicators together."
     },
     {
-      "q": "For the exam, do I need to calculate the HDI from raw data?",
-      "a": "No, you are not expected to calculate the full HDI value from raw data (e.g., life expectancy in years). The formula is complex. However, you must know the three dimensions and their respective indicators, understand how they are combined, and be able to interpret and compare HDI values and ranks given to you in an exam question."
+      "q": "Why can no single measure fully capture development?",
+      "a": "Development is multidimensional — it spans income, health, education, equality, freedom, security and the environment. Any single number must leave dimensions out, and any average conceals distribution. Even a rich composite like the HDI omits inequality, political freedom and environmental damage. So economists read a dashboard of indicators rather than trusting one figure."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to our exploration of measuring economic development. For decades, economists equated a country's success with its economic growth rate. However, we now understand that development is a much broader, more meaningful concept. This lesson will equip you to critically analyse and compare the well-being of populations using a range of sophisticated tools beyond simple income statistics."
+      "content": "Imagine two countries. Country A has a high average income, but a small elite holds most of the wealth, life expectancy is only average, and many children leave school early. Country B has a more modest average income spread more evenly, its citizens live long lives, and schooling is universal. Which is more 'developed'? Answering that question is what this lesson is about: moving beyond a single income figure to capture the fuller meaning of human development — and understanding why even our best composite measure is not the whole story."
     },
     {
       "type": "heading",
-      "content": "Single Indicators: The Starting Point"
+      "content": "Growth is not development"
     },
     {
       "type": "text",
-      "content": "The most common starting point for measuring development is to look at income per person. Gross National Income (GNI) per capita, adjusted for Purchasing Power Parity (PPP), is the standard metric. GNI measures the total income of a country's residents, and dividing it by the population gives a rough idea of the average standard of living. Using PPP helps to account for differences in the cost of living between countries, making comparisons more accurate."
+      "content": "It is essential not to use these terms interchangeably. Economic growth is the increase in a country's real national output over time — a quantitative measure, usually the percentage change in real Gross Domestic Product (GDP) or Gross National Income (GNI). Economic development is broader and qualitative: it is a sustained, multidimensional improvement in human well-being, covering health, education, living standards, and the freedom to make choices. Growth is often a necessary condition for development because it provides the resources to fund schools, clinics and infrastructure — but it is not sufficient on its own."
     },
     {
       "type": "keyPoints",
       "items": [
-        "GNI per capita (PPP$) is a measure of the average income per person.$",
-        "Strengths: It is widely available, relatively easy to calculate, and correlates strongly with many other development indicators (e.g., health outcomes).",
-        "Weaknesses: It ignores income distribution, non-marketed output (e.g., subsistence farming, household work), negative externalities (e.g., pollution), and other dimensions of well-being like freedom or security."
+        "**Growth** — an increase in real GDP/GNI. It is a *means*.",
+        "**Development** — a broad rise in living standards, health, education and freedom. It is the *end*.",
+        "Growth can occur **without** development if the gains are captured by a few, are short-lived (e.g. from a single resource boom), or come at heavy social or environmental cost.",
+        "Development without growth is harder to sustain, because improving health and education over the long run needs resources that growth provides."
       ]
     },
     {
       "type": "heading",
-      "content": "Composite Indicators: The Human Development Index (HDI)"
+      "content": "Single indicators of development"
     },
     {
       "type": "text",
-      "content": "Recognising the limitations of single indicators, the United Nations Development Programme (UNDP) developed the Human Development Index (HDI). The HDI is a composite index that provides a more holistic view by combining measures of health, education, and standard of living. It ranks countries on a scale from 0 to 1, with 1 being the highest level of human development."
+      "content": "A single indicator measures one dimension of development. Each is useful but partial, so economists read several together as a 'dashboard'. Income is captured by GNI per capita (PPP$). Health is captured by life expectancy at birth and by infant and maternal mortality rates. Education is captured by the adult literacy rate and by mean and expected years of schooling. Living conditions and productive capacity are captured by energy and infrastructure indicators such as the share of the population with access to electricity, clean water, sanitation, or the internet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Income:** GNI per capita (PPP$) — average income, adjusted for the cost of living.",
+        "**Health:** life expectancy at birth; infant and maternal mortality rates.",
+        "**Education:** adult literacy rate; mean and expected years of schooling.",
+        "**Energy / infrastructure:** access to electricity, clean water, sanitation, mobile and internet coverage.",
+        "Each single indicator lights up one dimension and leaves the rest dark — which is exactly why composite measures were created."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Country X has a Gross National Income (GNI) of 450 billion dollars and a population of 20 million. Country Y has a GNI of 1,200 billion dollars and a population of 150 million.\n\n(a) Calculate GNI per capita for each country.\n(b) State which country has the higher average income on this indicator.\n(c) Explain one reason why this single indicator may still mislead about which country is more developed.",
+      "solution": "**(a)** GNI per capita = Total GNI / Population.\n- Country X: 450,000,000,000 / 20,000,000 = **22,500 dollars per person**.\n- Country Y: 1,200,000,000,000 / 150,000,000 = **8,000 dollars per person**.\n\n**(b)** On this single indicator, **Country X** has the higher average income (22,500 vs 8,000), even though Country Y's *total* GNI is far larger. Development depends on income *per person*, not total output.\n\n**(c)** GNI per capita is an **average**, so it hides distribution. Country X's 22,500 could be concentrated in a wealthy elite while most citizens earn far less, whereas Country Y's income could be spread more evenly. The figure also ignores health, education, unpaid and informal work, and negative externalities such as pollution. So a higher GNI per capita does not automatically mean a more developed society — it is one dimension only."
+    },
+    {
+      "type": "heading",
+      "content": "The Human Development Index (HDI)"
+    },
+    {
+      "type": "text",
+      "content": "The best-known composite indicator is the United Nations' Human Development Index (HDI). It summarises average achievement in three dimensions of human development and reports a single score between 0 and 1: the closer to 1, the higher the development. The HDI is calculated as the geometric mean of three normalised sub-indices, which means a country cannot compensate for a very weak dimension simply by excelling in another — balanced progress matters."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Dimension 1 — a long and healthy life:** measured by *life expectancy at birth*.",
+        "**Dimension 2 — knowledge:** measured by *mean years of schooling* (adults aged 25+) and *expected years of schooling* (children entering school).",
+        "**Dimension 3 — a decent standard of living:** measured by *GNI per capita (PPP$)*.",
+        "The score runs from 0 to 1, and countries are grouped into four tiers: **low, medium, high and very high** human development."
+      ]
     },
     {
       "type": "formula",
-      "content": "\\text{HDI} = \\sqrt[3]{\\text{Health Index} \\times \\text{Education Index} \\times \\text{Income Index}}"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Health Dimension: Measured by life expectancy at birth.",
-        "Education Dimension: Measured by the average of mean years of schooling (for adults aged 25+) and expected years of schooling (for children of school-entering age).",
-        "Standard of Living Dimension: Measured by GNI per capita (PPP$). The logarithm of income is used to reflect the diminishing importance of income with increasing GNI.$",
-        "A country's HDI rank can be very different from its GNI per capita rank, highlighting that wealth does not perfectly translate into well-being."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The table below shows data for two countries, A and B, in 2022. \n\n| Indicator | Country A | Country B |\n| :--- | :--- | :--- |\n| GNI per capita (PPP$) | $15,000 | $14,500 |$\n| Life Expectancy (years) | 72 | 79 |\n| Mean Years of Schooling | 9 | 13 |\n| Expected Years of Schooling | 14 | 16 |\n\nUsing the data, explain which country is likely to have a higher level of economic development.",
-      "solution": "*(Marks: 4)*\n\n**Definition:** Economic development is a multidimensional process involving improvements in standards of living, including health, education, and income. [1 mark]\n\n**Analysis & Application:**\n- Country A has a slightly higher GNI per capita ($15,000 vs $14,500), suggesting a marginally higher average standard of living based on income alone. [1 mark]\n- However, Country B performs significantly better on both health and education indicators. Its life expectancy is 7 years higher, and its population has, on average, 4 more years of schooling, with higher expected schooling as well. [1 mark]\n\n**Conclusion:**\n- Despite Country A's slightly higher income, Country B is likely to have a higher level of economic development. This is because development is a broader concept than income. Country B's superior outcomes in health and education, key components of the HDI, indicate a higher overall quality of life and human capability, outweighing the small difference in GNI per capita. [1 mark]"
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2 data response questions, you will often be given a table of development indicators. Don't just state the numbers. You must *use* the data to support your argument. For example, instead of saying 'Country B has a higher life expectancy', say 'Country B has a significantly higher life expectancy of 79 years compared to Country A's 72 years, indicating better healthcare and living conditions.' This shows direct application of the data provided."
-    },
-    {
-      "type": "heading",
-      "content": "Beyond HDI: GII and MPI"
+      "content": "Conceptually, the HDI is the geometric mean of its three sub-indices:\nHDI = cube root of (Health Index x Education Index x Income Index)"
     },
     {
       "type": "text",
-      "content": "While the HDI is a powerful tool, it is still an average and can mask significant inequalities within a country. To address this, other composite indicators have been developed. The Gender Inequality Index (GII) measures the development cost of gender inequality, while the Multidimensional Poverty Index (MPI) identifies individuals who suffer from multiple deprivations at the household level."
+      "content": "Because it blends income with health and education, the HDI corrects the biggest weakness of GNI per capita: it recognises that a rich country with poor health or schooling is not fully developed, and that a middle-income country with long lives and strong education may be more developed than its income alone suggests. That is its central strength — but it still leaves out inequality, gender gaps, freedom and the environment."
+    },
+    {
+      "type": "workedExample",
+      "question": "The table shows illustrative data for two countries.\n\n| Indicator | Coastland | Highvale |\n|---|---|---|\n| HDI value | 0.915 (very high) | 0.535 (low) |\n| Life expectancy at birth | 82 years | 61 years |\n| Expected years of schooling | 17 years | 9 years |\n| GNI per capita (PPP$) | 55,000 | 3,400 |\n\n(a) Compare the level of development in the two countries using the HDI.\n(b) Support your comparison with each of the three HDI dimensions.\n(c) Explain one thing these HDI values still do NOT tell you about either country.",
+      "solution": "**(a)** Coastland is far more developed than Highvale: its HDI of **0.915** places it in the **'very high'** tier, while Highvale's **0.535** sits in the **'low'** tier — a gap of 0.38 on a 0-to-1 scale, meaning Coastland's population is on average much healthier, better educated and better off.\n\n**(b)** The gap shows up in all three dimensions:\n- **Health:** life expectancy is 82 years in Coastland versus 61 in Highvale — 21 years longer.\n- **Education:** a child in Coastland can expect 17 years of schooling versus 9 in Highvale — nearly double.\n- **Income:** GNI per capita is 55,000 dollars (PPP) in Coastland versus 3,400 in Highvale — roughly sixteen times higher.\nBecause the HDI is a geometric mean, weakness in *all three* dimensions compounds to give Highvale its low overall score.\n\n**(c)** The HDI values are **averages**, so they say nothing about how income, health or education are **distributed** within each country. Coastland's 0.915 could conceal sharp regional or gender inequality; Highvale's population could be more equal despite being poorer. The HDI also omits political freedom, human security and environmental sustainability. To judge distribution we would need the **inequality-adjusted HDI (IHDI)** or the **Gender Inequality Index (GII)** alongside it."
+    },
+    {
+      "type": "heading",
+      "content": "Other measures — and why we need them"
+    },
+    {
+      "type": "text",
+      "content": "Because the HDI is an average of just three dimensions, the UN and others publish complementary indices that fill specific gaps. The inequality-adjusted HDI (IHDI) discounts the HDI according to how unequally each dimension is distributed: where distribution is perfectly equal, IHDI equals HDI; the wider the gap between them, the greater the internal inequality. The Gender Inequality Index (GII) captures disparities between women and men in reproductive health, empowerment and labour-market participation. The Multidimensional Poverty Index (MPI) counts overlapping deprivations at household level, and measures such as the Happy Planet Index bring in environmental sustainability."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Gender Inequality Index (GII):** Measures inequality between men and women in three areas: reproductive health (maternal mortality, adolescent birth rates), empowerment (parliamentary seats, secondary education attainment), and economic activity (labour force participation). A higher GII value means greater inequality.",
-        "**Multidimensional Poverty Index (MPI):** Measures acute poverty by looking at 10 indicators across health, education, and living standards (e.g., nutrition, child mortality, years of schooling, access to electricity, clean water, sanitation). It captures the intensity of poverty, not just the number of poor people."
+        "**IHDI** — the HDI adjusted downwards for inequality within its three dimensions; the HDI-IHDI gap measures the 'loss' due to inequality.",
+        "**GII** — measures gender disparities; a higher value means greater inequality between women and men.",
+        "**MPI** — measures the incidence and intensity of overlapping deprivations (health, education, living standards) at the individual/household level.",
+        "**No single measure is enough:** development spans income, health, education, equality, freedom, security and the environment — any one number must leave dimensions out and any average hides distribution."
       ]
     },
     {
+      "type": "examTip",
+      "content": "When evaluating an indicator, always give a balanced argument. For **GNI per capita**: strength = simple, widely available, correlates with other outcomes; weakness = an average that hides inequality and ignores non-marketed output and externalities. For the **HDI**: strength = multidimensional, so it corrects income-only measures; weakness = it still omits inequality (the IHDI addresses this), gender gaps (the GII addresses this), political freedom and environmental damage. The examiner rewards you for naming *which* index fixes *which* gap — not just saying 'the HDI is limited'."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Treating growth as development** — rising GDP is growth; development also needs the gains to raise health, education and living standards across the population. State this distinction explicitly.",
+        "**Claiming GDP/GNI per capita measures development** — it is one income *average*. It ignores distribution, non-marketed and informal output, and externalities, so it cannot on its own show how developed a country is.",
+        "**Muddling the three HDI dimensions** — the HDI is health (life expectancy), education (mean and expected years of schooling) and income (GNI per capita, PPP). Do not add inflation, unemployment or the environment; do not drop education.",
+        "**Reading an HDI value as a guarantee for everyone** — it is a national average, so a high HDI can still hide deep inequality. Bring in the IHDI or GII to discuss distribution.",
+        "**Saying the HDI captures all of development** — it deliberately omits inequality, gender, freedom and sustainability. The mark comes from explaining *why* one number cannot capture a multidimensional concept."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real IB markband"
+    },
+    {
       "type": "workedExample",
-      "question": "Country X has a GII value of 0.450. The female labour force participation rate is 30%, while the male rate is 75%. Only 15% of parliamentary seats are held by women.\n\n(a) Explain what Country X's GII value indicates. (2 marks)\n(b) Suggest two policies that the government of Country X could implement to improve its GII value. (4 marks)",
-      "solution": "**(a) Explanation (2 marks):**\nA GII value of 0.450 indicates a significant level of gender inequality in Country X. A value of 0 represents perfect equality and 1 represents perfect inequality. Therefore, 0.450 suggests substantial disparities between men and women in the measured dimensions of reproductive health, empowerment, and economic status. [2 marks]\n\n**(b) Policy Suggestions (4 marks):**\nOne policy is to promote female education and empowerment. The government could introduce subsidies or conditional cash transfers for families who send their daughters to secondary and tertiary education. This would improve female educational attainment, a component of the GII's empowerment dimension, and in the long run, likely increase their participation in the labour force. [2 marks]\n\nA second policy is to introduce quotas for female representation in parliament. Since only 15% of seats are held by women, legally mandating that a certain percentage of political candidates or parliamentary seats are reserved for women would directly address this component of the GII. This would increase female empowerment at the political level. [2 marks]"
+      "question": "Paper 1, part (a): Explain, using the Human Development Index, why composite indicators may measure development better than GDP per capita alone. [10 marks]",
+      "solution": "**Model answer:**\nEconomic development is a multidimensional improvement in well-being — covering income, health and education — and is broader than economic growth, which is simply a rise in real output. GDP (or GNI) per capita measures only the *income* dimension: it is the average income of the population. Because it is a single, income-based average, it has two major weaknesses. First, it ignores non-income dimensions of development such as health and education; a country could have high income yet low life expectancy and poor schooling. Second, being an average, it hides the *distribution* of income, so a high figure can coexist with widespread poverty behind a wealthy elite.\n\nA composite indicator such as the Human Development Index (HDI) addresses the first weakness directly by combining three dimensions into one score between 0 and 1: a long and healthy life (measured by life expectancy at birth), knowledge (measured by mean and expected years of schooling), and a decent standard of living (measured by GNI per capita, PPP$). Because the HDI is the geometric mean of these three sub-indices, a country cannot mask weak health or education simply by having high income — balanced progress across all three dimensions is required to score highly. This makes the HDI a fuller measure of development than income alone.\n\nFor example, a middle-income country with long life expectancy and universal schooling can achieve a higher HDI than a higher-income country where citizens die younger and leave school early. GDP per capita would rank the second country ahead; the HDI reveals that the first is more developed. In this way the composite indicator captures the multidimensional nature of development that a single income figure cannot.\n\n*[Diagram optional here: this question is best answered in prose, but a simple bar chart contrasting two countries' HDI and its three sub-components could be included and explained.]*\n\nThe HDI is not perfect — as an average it still hides inequality (addressed by the inequality-adjusted HDI), gender gaps (the Gender Inequality Index) and it omits political freedom and environmental sustainability. But precisely because it goes beyond income to include health and education, it measures development better than GDP per capita alone.\n\n---\n**How this maps to our IB markband (Paper 1 part (a), out of 10):**\n- **9-10:** the demands of the question are addressed, relevant economic theory is FULLY explained, relevant terms are used appropriately THROUGHOUT, and where appropriate a relevant diagram is included and FULLY explained.\n- **7-8:** the demands of the question are explained, and relevant terms are mostly used appropriately.\n- **5-6:** the demands of the question are partially addressed, relevant economic theory is PARTLY explained, and some relevant terms are used.\n- **3-4:** relevant economic theory is DESCRIBED, and some relevant terms are used.\n- **1-2:** the response is not relevant to the question.\n\n**Why this answer reaches the top band (9-10):**\n- ✅ Demands addressed: it explains *why* the HDI is better than GDP per capita, not just what each is.\n- ✅ Theory FULLY explained: it derives the argument — GDP per capita omits dimensions and hides distribution; the HDI adds health and education and uses a geometric mean so weak dimensions cannot be masked.\n- ✅ Terms used THROUGHOUT: economic development, composite indicator, GNI per capita (PPP$), life expectancy, mean/expected years of schooling, geometric mean, IHDI, GII.\n- ✅ A diagram is optional here and, where appropriate, would be fully explained rather than merely drawn.\nAn answer that only *defined* the HDI and GDP per capita, or *described* the three dimensions without explaining why they make the HDI a better measure, would sit in the 3-4 ('described') or 5-6 ('partly explained') band. Explaining the link — not just listing components — is exactly what our marking engine rewards."
+    },
+    {
+      "type": "examTip",
+      "content": "This is precisely what the Practice button does: write your own answer to this exact question, submit it, and our marking engine grades it against this same official markband — telling you which band you reached and why. The habit that moves you up the bands: don't just list the three HDI dimensions — EXPLAIN why combining them beats income alone."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "How we measure development shapes the policies that follow. Once you accept that development is multidimensional, the natural next questions are about the barriers to it and the strategies to overcome them — the focus of the rest of Unit 4. Keep two key concepts in view here: **economic well-being** (development is ultimately about human flourishing, not just output) and **equity** (averages such as GNI per capita and the HDI can hide who actually benefits, which is why distribution-sensitive measures matter)."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Measuring Development",
-      "href": "/mark?subject=ib-economics-hl&topic=4.7"
+      "label": "Get a Paper 1 (a) answer marked: use the HDI to explain why composite indicators can beat GDP per capita",
+      "href": "/mark?subject=ib-economics-hl&topic=4.7&component=paper_1"
     },
     {
       "type": "resources",
@@ -173,15 +329,11 @@
           "href": "https://hdr.undp.org/"
         },
         {
-          "label": "World Bank Open Data on Development Indicators",
-          "href": "https://data.worldbank.org/indicator"
-        },
-        {
-          "label": "Our World in Data - Human Development Index",
-          "href": "https://ourworldindata.org/human-development-index"
+          "label": "World Bank Open Data: GNI per capita, PPP",
+          "href": "https://data.worldbank.org/indicator/NY.GNP.PCAP.PP.CD"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

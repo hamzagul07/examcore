@@ -1,217 +1,383 @@
 {
   "slug": "2-10-market-structures-perfect-competition-and-monopoly",
   "topicCode": "2.10",
+  "unit": {
+    "code": "2",
+    "title": "Microeconomics"
+  },
   "title": "Market structures: perfect competition and monopoly",
   "paper": "P1",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson introduces and contrasts the two extreme market structures: perfect competition and monopoly. We will analyse their defining characteristics, diagrammatic representations, and critically evaluate their impact on price, output, and economic efficiency.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "An HL-only study of the two theoretical extremes of the market-structure spectrum. We build perfect competition from its assumptions up to long-run equilibrium, show why free entry competes abnormal profit away, and prove it is both allocatively and productively efficient. We then contrast it with monopoly — barriers to entry, why marginal revenue lies below average revenue, profit maximisation at MR=MC, the welfare (deadweight) loss relative to perfect competition, natural monopoly, and price discrimination.",
+  "durationMin": 34,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and explain the assumptions of perfect competition and monopoly.",
-    "Draw and analyse diagrams for firms in perfect competition and monopoly in both the short run and long run.",
-    "Compare and contrast the outcomes of perfect competition and monopoly with respect to price, output, and efficiency.",
-    "Evaluate the role of government in regulating monopolies and the concept of a natural monopoly."
+    "State the assumptions of perfect competition and monopoly and explain why they make a firm a price taker or a price maker.",
+    "Apply the universal profit-maximisation rule MR=MC and distinguish normal profit, abnormal (supernormal) profit and economic loss.",
+    "Explain short-run versus long-run equilibrium in perfect competition and show, with diagrams, why free entry and exit drive the industry to normal profit and to both allocative and productive efficiency.",
+    "Explain why a monopolist's marginal revenue lies below its average revenue, and evaluate the welfare loss of monopoly relative to perfect competition, including natural monopoly and price discrimination."
   ],
+  "syllabusObjectivesCovered": [
+    "2.10"
+  ],
+  "keyConcepts": [
+    "efficiency",
+    "intervention"
+  ],
+  "levelNote": "HL only — market structures are assessed at Higher Level.",
   "simpleExplanation": {
-    "title": "From Price Takers to Price Makers",
-    "summary": "This lesson explores the two extremes of market structure. We'll see how a perfectly competitive firm is a tiny player with no market power, while a monopolist is a single giant that controls the entire market.",
-    "analogy": "Imagine a huge farmers' market where hundreds of stalls sell identical carrots. That's like perfect competition – no single seller can change the market price because you can just walk to the next stall. Now, imagine your town has only one company providing tap water. That's a monopoly – they set the price because there are no alternatives.",
+    "title": "From Wheat Farmer to Water Company",
+    "summary": "Market structure describes how much power a single firm has over the price it charges. It runs from perfect competition, where a firm is one tiny voice in a crowd and must accept the market price, to monopoly, where a firm IS the whole market. But even a monopolist is not all-powerful — it is still boxed in by what consumers are willing to pay.",
+    "analogy": "Picture a wholesale market with hundreds of wheat farmers selling identical grain. Charge a penny more than the going rate and buyers simply walk to the next stall — you are a price TAKER. Now picture the single company piping water to your town. It can pick its price, but if it sets it too high people install rain butts, drink less, or the regulator steps in — it is a price MAKER, but still limited by the demand curve. Market structures live on the line between these two.",
     "steps": [
-      "First, identify the key assumptions for each market structure: number of firms, product type, and barriers to entry. This determines whether a firm is a price taker or a price maker.",
-      "Next, draw the correct diagrams. For perfect competition, this means a horizontal demand curve for the firm. For monopoly, it's a downward-sloping demand curve with the marginal revenue curve below it.",
-      "Then, apply the profit maximisation rule by finding the output level where Marginal Cost (MC) equals Marginal Revenue (MR). From this quantity, read up to the demand curve (AR) to find the price.",
-      "Finally, analyse efficiency. Compare the firm's price and output with the points of allocative efficiency (where P=MC) and productive efficiency (the minimum of the Average Total Cost curve)."
+      "Count the firms: one seller, a few, or a very large number?",
+      "Look at the product: identical (homogeneous) or unique with no close substitutes?",
+      "Check the barriers to entry: can new firms freely enter, or are they blocked?",
+      "Deduce the pricing power: price taker (horizontal demand) or price maker (downward-sloping demand)?"
     ]
   },
   "flashcards": [
     {
-      "front": "Perfect Competition",
-      "back": "A market structure with a very large number of small firms, homogenous products, no barriers to entry or exit, and perfect information. Firms are price takers."
+      "front": "The four assumptions of perfect competition",
+      "back": "1. A very large number of small firms. 2. A homogeneous (identical) product. 3. No barriers to entry or exit. 4. Perfect information and perfect resource mobility. Together these make each firm a price taker.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Monopoly",
-      "back": "A market structure where a single firm dominates the market for a product with no close substitutes, and there are high barriers to entry. The firm is a price maker."
+      "front": "Why is a perfectly competitive firm's demand curve horizontal?",
+      "back": "Each firm is so small relative to the market that it can sell any quantity at the ruling price but nothing above it (identical products + perfect information). So for the firm, Price = AR = MR, all equal and constant.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Price Taker",
-      "back": "A firm that cannot influence the market price and must accept the price determined by the market forces of supply and demand. This is a key feature of perfect competition."
+      "front": "The universal profit-maximisation rule",
+      "back": "EVERY firm, in any market structure, maximises profit where Marginal Cost = Marginal Revenue (MC=MR), provided MC is rising through MR. It is the price that differs between structures, not the rule.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "Price Maker (or Price Setter)",
-      "back": "A firm with significant market power that can influence the price of its product by controlling output. This is a key feature of monopoly."
+      "front": "Normal profit",
+      "back": "The minimum reward needed to keep the entrepreneur in this line of business — it just covers all costs INCLUDING opportunity cost. It occurs where AR = ATC (TR = TC). Normal profit is counted as a cost, so it is embedded in the ATC curve.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Homogenous Product",
-      "back": "Products that are identical and perfect substitutes in the eyes of consumers, regardless of who produces them. A key assumption of perfect competition."
+      "front": "Abnormal (supernormal) profit",
+      "back": "Any profit ABOVE normal profit: AR > ATC, so TR > TC including opportunity cost. It signals to outside firms that this industry is more rewarding than the next best alternative.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Barriers to Entry",
-      "back": "Obstacles that make it difficult or impossible for new firms to enter a market. Examples include patents, economies of scale, brand loyalty, and government regulations."
+      "front": "Why only normal profit in the long run under perfect competition?",
+      "back": "With no barriers to entry, abnormal profit attracts new firms → market supply rises → price falls until AR = ATC (normal profit). Losses cause exit → supply falls → price rises back to normal profit. Free entry/exit is the engine.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Profit Maximisation Rule",
-      "back": "Firms produce at the quantity where Marginal Revenue (MR) equals Marginal Cost (MC). This rule applies to all market structures, but the resulting outcomes differ."
+      "front": "Allocative efficiency",
+      "back": "Producing the quantity society values most: where P = MC. At this output the value of the last unit to consumers (P) equals its marginal cost of production. Achieved by perfect competition; NOT by monopoly (P > MC).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Supernormal Profit (Abnormal Profit)",
-      "back": "Profit earned when Total Revenue (TR) exceeds Total Cost (TC), or when Price (AR) is greater than Average Total Cost (ATC) at the profit-maximising output."
+      "front": "Productive efficiency",
+      "back": "Producing at the lowest possible average cost: the minimum point of the ATC curve. Long-run perfect competition forces firms here; a monopolist need not produce at min ATC.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Allocative Efficiency",
-      "back": "Occurs when resources are allocated to produce the combination of goods and services most wanted by society. It is achieved where Price (P) equals Marginal Cost (MC)."
+      "front": "Barriers to entry",
+      "back": "Obstacles that keep new firms out and let a monopolist sustain abnormal profit in the long run: economies of scale (natural monopoly), legal barriers (patents, licences, copyright), control of an essential resource, and strategic barriers (branding, limit pricing).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Productive Efficiency",
-      "back": "Occurs when a firm produces its output at the lowest possible cost per unit. This is achieved at the minimum point of the Average Total Cost (ATC) curve."
+      "front": "Why is the monopolist's MR below its AR?",
+      "back": "The monopolist faces the whole downward-sloping market demand (AR) curve. To sell one more unit it must cut the price on ALL units, not just the extra one, so the revenue from the last unit (MR) is less than its price (AR). Hence MR lies below AR and falls twice as steeply.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Natural Monopoly",
-      "back": "A situation where a single firm can supply the entire market at a lower average cost than two or more firms could, due to extensive economies of scale."
+      "front": "Welfare (deadweight) loss of monopoly",
+      "back": "Because the monopolist restricts output to where MR=MC (higher price, lower quantity than the competitive P=MC point), some units whose value to society exceeds their marginal cost are never produced. The lost consumer + producer surplus on those units is the deadweight welfare loss.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Common Trap: Confusing firm and market diagrams in perfect competition.",
-      "back": "Remember that the overall *market* has a standard downward-sloping demand curve. The individual *firm* within that market faces a perfectly elastic (horizontal) demand curve at the price set by the market."
+      "front": "Natural monopoly",
+      "back": "An industry (e.g. water pipes, rail track) where economies of scale are so large that one firm supplying the whole market has a lower average cost than several competing firms could. Splitting it up would raise costs — a case for regulation rather than competition.",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Price discrimination",
+      "back": "Charging different consumers different prices for the SAME good for reasons not based on cost. Requires: price-setting power, ability to separate markets by elasticity, and no resale between them. It lets the monopolist convert consumer surplus into extra profit.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Exam Trap: 'a monopoly can charge whatever it likes'",
+      "back": "FALSE. A monopolist is a price maker, not a magician. It is still constrained by the demand curve: a higher price always means a lower quantity sold. It chooses the profit-maximising price ON the demand curve, not any price it fancies.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A student writes: 'Because it has no competitors, a monopolist can set any price it wants.' The best correction is:",
+      "options": [
+        "Correct — monopolists face no constraints",
+        "A monopolist is limited by its costs only, not demand",
+        "A monopolist is still constrained by the demand curve: a higher price means fewer units sold",
+        "Only natural monopolists face a demand curve"
+      ],
+      "answer": "A monopolist is still constrained by the demand curve: a higher price means fewer units sold"
+    },
+    {
+      "prompt": "In the long run, a firm in perfect competition earns:",
+      "options": [
+        "Abnormal profit, protected by barriers to entry",
+        "Normal profit, because free entry and exit compete abnormal profit away",
+        "An economic loss it can sustain indefinitely",
+        "Zero total revenue"
+      ],
+      "answer": "Normal profit, because free entry and exit compete abnormal profit away"
+    },
+    {
+      "prompt": "'Normal profit' is best described as:",
+      "options": [
+        "Any profit a firm makes in a normal year",
+        "Profit where AR is greater than ATC",
+        "The minimum profit needed to keep the firm in the industry, earned where AR = ATC",
+        "The same thing as abnormal profit"
+      ],
+      "answer": "The minimum profit needed to keep the firm in the industry, earned where AR = ATC"
+    },
+    {
+      "prompt": "For which firm is it true that Price = AR = MR at every level of output?",
+      "options": [
+        "A monopolist",
+        "A perfectly competitive firm, because its demand curve is horizontal",
+        "A natural monopoly only",
+        "Both, because MR always equals AR"
+      ],
+      "answer": "A perfectly competitive firm, because its demand curve is horizontal"
+    },
+    {
+      "prompt": "Compared with a perfectly competitive industry, a monopoly with the same costs will produce at a point where:",
+      "options": [
+        "P = MC, so it is allocatively efficient",
+        "P > MC, restricting output and creating a deadweight welfare loss",
+        "P < MC, over-producing the good",
+        "MR = AR, so there is no welfare loss"
+      ],
+      "answer": "P > MC, restricting output and creating a deadweight welfare loss"
     }
   ],
   "faq": [
     {
-      "q": "Can a perfectly competitive firm ever make a profit?",
-      "a": "Yes, in the short run, a perfectly competitive firm can make supernormal profit if the market price is above its average total cost. However, in the long run, these profits are competed away by new entrants, which increases market supply and lowers the price until firms only make normal profit (where P = ATC)."
+      "q": "If MR=MC is the rule for everyone, why do monopoly and perfect competition end up so different?",
+      "a": "Because the SHAPE of the revenue curves differs. In perfect competition the firm's demand curve is horizontal, so P = AR = MR; producing where MR=MC therefore also means producing where P=MC (allocative efficiency) and, in the long run, at minimum ATC (productive efficiency). For a monopolist the demand curve slopes down, so MR lies below AR; producing where MR=MC leaves price ABOVE marginal cost. Same rule, different revenue curves, very different welfare outcome."
     },
     {
-      "q": "Is monopoly always bad for consumers?",
-      "a": "Not necessarily. A natural monopoly, due to massive economies of scale, can provide a good or service at a lower average cost than multiple competing firms could. Also, the supernormal profits earned by a monopolist can fund innovation and R&D (dynamic efficiency), leading to better products in the long run. However, the lack of competition often leads to higher prices, lower output, and less choice than is socially optimal, which is a significant disadvantage for consumers."
+      "q": "Is normal profit a cost or a profit?",
+      "a": "In economics it is treated as a cost — specifically the opportunity cost of the entrepreneur's time and capital. That is why it is included in the ATC curve. A firm earning exactly normal profit is doing as well as it could in its next best alternative, so it has no incentive to enter or leave. Abnormal (supernormal) profit is the surplus ON TOP of this and is what drives entry into competitive markets."
     },
     {
-      "q": "Why is Marginal Revenue (MR) below Average Revenue (AR) for a monopolist?",
-      "a": "Because the monopolist faces the entire downward-sloping market demand curve (which is its AR curve). To sell one more unit, it must lower the price. This new, lower price applies not just to the extra unit sold, but to all previous units it could have sold at a higher price. This loss of revenue on all prior units means the marginal (additional) revenue from selling one more unit is less than the price it is sold for."
+      "q": "Why can't a monopolist's abnormal profit be competed away like it is in perfect competition?",
+      "a": "The competing-away mechanism relies on FREE ENTRY: new firms are attracted by abnormal profit and their extra supply drives the price down. A monopoly is defined by high barriers to entry — patents, huge economies of scale, control of a resource — which block that entry. With no new entrants, market supply does not rise, price does not fall, and the abnormal profit persists into the long run."
     },
     {
-      "q": "What is 'normal profit' and why is it considered a cost?",
-      "a": "Normal profit is the minimum level of profit needed to keep a firm in its current line of business in the long run. It represents the opportunity cost of the entrepreneur's resources (time, capital). Since it's the return the resources could have earned elsewhere, economists include it as part of the firm's total costs. Supernormal profit is any profit earned above this minimum."
+      "q": "Is a monopoly always bad?",
+      "a": "Not necessarily, and good HL evaluation says so. A natural monopoly (e.g. a water network) can supply the whole market at a lower average cost than several duplicated networks could, so competition would raise costs. Abnormal profits may also fund research and development, giving dynamic efficiency and innovation a competitive market might not deliver. Against this sit the higher price, lower output, deadweight loss and risk of X-inefficiency (complacency). Which dominates depends on the industry — hence the case for regulation or intervention rather than automatic break-up."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In economics, we use market structures to categorise industries based on the degree and nature of competition for goods and services. This is a spectrum, not a set of rigid boxes. Today, we explore the two theoretical extremes: perfect competition and monopoly. Understanding these models is crucial as they provide benchmarks against which we can measure and evaluate real-world markets."
+      "content": "This lesson is Higher Level only — market structures are assessed at HL in the 2022 course. It examines the two theoretical extremes of competition: perfect competition, where an enormous number of tiny firms sell an identical product, and monopoly, where a single firm IS the market. Real industries lie somewhere in between, but the two extremes are the reference points against which every real market — and every argument about efficiency, welfare and government intervention — is judged. Master the diagrams here and the rest of microeconomics falls into place."
     },
     {
       "type": "heading",
-      "content": "The World of Perfect Competition"
+      "content": "Perfect competition: the assumptions"
     },
     {
       "type": "text",
-      "content": "Perfect competition is a theoretical market structure that represents a benchmark for efficiency. While few, if any, real-world markets are perfectly competitive, some agricultural markets (like for wheat or milk) come close. The model is built on a set of strict assumptions."
+      "content": "Perfect competition is a theoretical model built on four strict assumptions. No real market meets them all, but some (wholesale wheat, foreign exchange) come close, and the model's predictions about long-run price, profit and efficiency are what make it so useful as a benchmark."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Many small firms:** Each firm has a negligible market share, so no single firm can influence the market price.",
-        "**Homogenous products:** All firms produce identical goods, making them perfect substitutes for one another.",
-        "**Freedom of entry and exit:** There are no barriers preventing new firms from entering or existing firms from leaving the market.",
-        "**Perfect information:** All buyers and sellers have complete information about prices, quality, and production methods."
+        "**A very large number of small firms** — each firm's output is trivial relative to the whole market, so no single firm can influence the market price.",
+        "**A homogeneous (identical) product** — buyers see no difference between firms, so no firm can charge a premium.",
+        "**No barriers to entry or exit** — firms can freely enter when profits are attractive and leave when they are not. This is the assumption that drives the long-run result.",
+        "**Perfect information and perfect factor mobility** — buyers and sellers know all prices and products, and resources can move freely between uses."
       ]
     },
     {
       "type": "text",
-      "content": "These assumptions collectively mean that an individual firm is a 'price taker'. It has no power to set its own price and must accept the prevailing market price. This results in a perfectly elastic (horizontal) demand curve for the firm. At this price, the firm can sell as much as it wants. For a price taker, the price is equal to both its average revenue (AR) and its marginal revenue (MR)."
-    },
-    {
-      "type": "formula",
-      "content": "For a perfectly competitive firm: $Price (P) = Average Revenue (AR) = Marginal Revenue (MR)$"
+      "content": "Together these make every firm a **price taker**: it must accept the price set by total market supply and demand. Its own demand curve is therefore a horizontal (perfectly elastic) line at that price. Because each extra unit sells at the same unchanged price, **Price = Average Revenue = Marginal Revenue (P = AR = MR)**. This single fact — that P, AR and MR are all equal and constant — is the source of every efficiency result that follows, and it is what distinguishes perfect competition from every other structure."
     },
     {
       "type": "heading",
-      "content": "Profit Maximisation and Long-Run Equilibrium in Perfect Competition"
+      "content": "Profit maximisation: the MC=MR rule"
     },
     {
       "type": "text",
-      "content": "In the short run, a perfectly competitive firm can earn supernormal profits, make a loss, or break even (earn normal profit). It will always produce where MC = MR to maximise profit (or minimise loss). However, the freedom of entry and exit ensures that in the long run, firms will only earn normal profit. If firms are making supernormal profits, new firms will enter the market, increasing market supply, and driving the price down until profits are eliminated. Conversely, if firms are making losses, some will exit the market, decreasing supply and raising the price until the remaining firms break even."
+      "content": "Whatever the market structure, a firm maximises profit at the output where **marginal cost equals marginal revenue (MC = MR)**, with MC rising through MR. The logic is simple: if MR > MC, the last unit added more to revenue than to cost, so producing it raised profit — keep expanding. If MR < MC, the last unit cost more than it earned — cut back. Profit is therefore greatest exactly where MC = MR. What changes between structures is not the rule but the height of MR relative to price."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Short Run:** Firms can make supernormal profit ($P > ATC$), normal profit ($P = ATC$), or a loss ($P < ATC$).",
-        "**Long Run Adjustment:** Profits attract entry, losses cause exit.",
-        "**Long Run Equilibrium:** The market settles where firms produce at the quantity where $P = MC = min(ATC)$. This means the market is both allocatively efficient ($P=MC$) and productively efficient (producing at the lowest average cost)."
+        "In **perfect competition**, MR = P, so MC = MR also means **MC = P** — the allocatively efficient output.",
+        "In **monopoly**, MR < P (because demand slopes down), so MC = MR leaves **P > MC** — output is restricted below the efficient level.",
+        "The rule identifies the QUANTITY; the price is then read off the demand (AR) curve directly above that quantity.",
+        "Whether the firm makes abnormal profit, normal profit or a loss depends on where **ATC** sits relative to AR at that quantity — the MC=MR rule alone does not tell you."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A perfectly competitive firm farms carrots. The market price is £1.50 per kg. The firm's marginal cost function is given by $MC = 0.5Q + 0.5$, where Q is in thousands of kgs. At the profit-maximising output, its Average Total Cost (ATC) is £1.20. Calculate the firm's:\na) Profit-maximising output\nb) Total revenue, total cost, and daily profit.",
-      "solution": "a) **Profit-maximising output:**\nIn perfect competition, the firm is a price taker, so $P = MR = £1.50$.\nThe profit maximisation rule is $MC = MR$.\n$0.5Q + 0.5 = 1.50$\n$0.5Q = 1.00$\n$Q = 2$ (which represents 2,000 kg).\n\n**Marking guidance:** [1 mark] for correctly identifying MR=P. [1 mark] for equating MC and MR and solving for Q.\n\nb) **Revenue, Cost, and Profit:**\n**Total Revenue (TR):** $TR = P \\times Q = £1.50 \\times 2000 = £3000$.\n**Total Cost (TC):** $TC = ATC \\times Q = £1.20 \\times 2000 = £2400$.\n**Profit:** $Profit = TR - TC = £3000 - £2400 = £600$.\nThis is a supernormal profit.\n\n**Marking guidance:** [1 mark] for TR calculation. [1 mark] for TC calculation. [1 mark] for final profit calculation. Correct units (£) are required."
-    },
-    {
       "type": "heading",
-      "content": "The Power of Monopoly"
+      "content": "Short run versus long run in perfect competition"
     },
     {
       "type": "text",
-      "content": "A monopoly exists when a single firm is the sole producer of a good or service with no close substitutes. This market dominance stems from high barriers to entry, which prevent potential competitors from entering the market. These barriers are the source of the monopolist's power."
+      "content": "In the SHORT run a perfectly competitive firm can be in any of three positions, depending only on where the market price sits relative to its ATC. If price (AR) is above ATC it earns **abnormal profit** (AR > ATC); if price equals ATC it earns **normal profit**; if price is below ATC it makes an **economic loss** (and shuts down entirely if price falls below average variable cost). Remember that normal profit — the entrepreneur's opportunity cost — is already built into the ATC curve, so 'AR = ATC' means the firm is doing exactly as well as in its next best alternative."
+    },
+    {
+      "type": "text",
+      "content": "In the LONG run the no-barriers assumption takes over and forces the industry to a unique outcome. Suppose firms are earning abnormal profit. Because entry is free, new firms are attracted in; the extra output shifts **market supply to the right**, and the market price falls. Entry continues until the price has fallen to the level where AR just equals ATC — normal profit — and the incentive to enter disappears. If instead firms were making losses, some would exit, market supply would shift left, and the price would rise back up to normal profit. Either way the long-run equilibrium is the same: **every firm earns exactly normal profit, producing where P = MR = MC = ATC at the minimum point of ATC.**"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Single Seller:** The firm is the industry.",
-        "**Unique Product:** No close substitutes exist, giving the firm price-making power.",
-        "**High Barriers to Entry:** These can be natural (e.g., massive economies of scale creating a natural monopoly), legal (e.g., patents, copyrights, government licenses), or strategic (e.g., predatory pricing)."
+        "**Short run:** abnormal profit, normal profit OR loss are all possible — price relative to ATC decides.",
+        "**Long run:** free entry competes abnormal profit away; free exit removes losses. Only **normal profit** survives.",
+        "The adjustment works through **shifts in market supply** (entry/exit), which move the price the individual price-taking firm faces.",
+        "At long-run equilibrium the firm sits at the **bottom of its ATC curve**, where P = MR = MC = ATC — a very special, efficient point."
       ]
     },
     {
-      "type": "text",
-      "content": "Unlike a perfectly competitive firm, a monopolist faces the entire downward-sloping market demand curve. To sell more output, it must lower its price. This has a crucial implication: its marginal revenue (MR) is always less than its price (AR). This is because when it lowers the price to sell one more unit, it must also accept that lower price on all the units it could have sold at a higher price."
-    },
-    {
       "type": "heading",
-      "content": "Profit Maximisation and Efficiency in Monopoly"
+      "content": "Efficiency in perfect competition"
     },
     {
       "type": "text",
-      "content": "A monopolist also uses the $MC = MR$ rule to decide its output level. However, after finding this quantity, it charges the highest price consumers are willing to pay, which is found by reading up to the demand curve (AR). Because the demand curve lies above the MR curve, the monopolist's price will always be greater than its marginal cost at the profit-maximising output. This is the primary source of inefficiency in a monopoly."
+      "content": "The long-run equilibrium of perfect competition is prized because it delivers BOTH types of static efficiency simultaneously — the reason economists use it as the welfare benchmark."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Profit Maximisation:** Output is set where $MC = MR$, but price is determined by the demand curve, so $P > MR$.",
-        "**Long-Run Supernormal Profits:** High barriers to entry prevent competition, allowing the monopolist to sustain supernormal profits in the long run.",
-        "**Inefficiency:** Monopolies are generally allocatively inefficient ($P > MC$) and productively inefficient (not necessarily producing at minimum ATC). This results in a deadweight loss to society.",
-        "**Potential for Dynamic Efficiency:** A counter-argument is that the long-run supernormal profits can be reinvested into research and development (R&D), leading to innovation and better products over time. This is known as dynamic efficiency."
+        "**Allocative efficiency (P = MC):** because P = MR and the firm produces where MC = MR, it automatically produces where P = MC — in BOTH the short and long run. Society's valuation of the last unit (its price) equals the marginal cost of making it, so resources are allocated to exactly what consumers want. There is no deadweight loss.",
+        "**Productive efficiency (min ATC):** in the LONG run the firm is forced to the lowest point of its ATC curve, so each unit is produced at the lowest possible average cost. Any firm not doing so would make losses and be driven out.",
+        "**Consumer benefit:** the combination of low price (equal to marginal cost) and least-cost production is the best static outcome consumers can get."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A monopolist in software has a demand curve given by $P = 200 - Q$ and a marginal cost curve given by $MC = Q + 20$. All prices are in pounds (£).\na) Find the profit-maximising price and quantity.\nb) Calculate the price and quantity that would be allocatively efficient.",
-      "solution": "a) **Profit-maximising price and quantity:**\nFirst, find the marginal revenue (MR) curve. For a linear demand curve $P = a - bQ$, the MR curve is $MR = a - 2bQ$. Here, $a=200$ and $b=1$, so $MR = 200 - 2Q$.\nNext, set $MC = MR$ to find the profit-maximising quantity:\n$Q + 20 = 200 - 2Q$\n$3Q = 180$\n$Q = 60$ units.\nSubstitute $Q=60$ back into the demand curve to find the price:\n$P = 200 - 60 = £140$.\nThe profit-maximising output is 60 units at a price of £140.\n\n**Marking guidance:** [1 mark] for deriving the correct MR function. [1 mark] for equating MC and MR. [1 mark] for solving for Q and P.\n\nb) **Allocatively efficient outcome:**\nAllocative efficiency occurs where $P = MC$. We use the demand curve for P.\n$200 - Q = Q + 20$\n$180 = 2Q$\n$Q = 90$ units.\nTo find the price at this quantity, substitute $Q=90$ into either the P or MC equation:\n$P = 200 - 90 = £110$.\n(Check with MC: $MC = 90 + 20 = £110$).\nThe allocatively efficient outcome is 90 units at a price of £110. This shows the monopolist under-produces and over-charges compared to the socially optimal level.\n\n**Marking guidance:** [1 mark] for setting P=MC. [1 mark] for solving for the efficient Q and P."
+      "question": "A wheat farm operates in a perfectly competitive market where the ruling price is £20 per bushel. Its short-run total costs are:\n\n| Quantity (bushels) | Total Cost (£) |\n|---|---|\n| 0 | 50 |\n| 10 | 200 |\n| 20 | 300 |\n| 30 | 420 |\n| 40 | 580 |\n| 50 | 800 |\n\n(a) Identify the profit-maximising output. (2)\n(b) Calculate the economic profit or loss at that output, and state whether it is abnormal profit, normal profit or a loss. (3)\n(c) Explain what will happen to this industry in the long run. (2)",
+      "solution": "**(a) Profit-maximising output.** In perfect competition P = MR = £20, so we apply MC = MR by finding marginal cost (the change in total cost per 10-bushel batch):\n- 10th batch: (200 − 50)/10 = **£15**\n- 20th batch: (300 − 200)/10 = **£10**\n- 30th batch: (420 − 300)/10 = **£12**\n- 40th batch: (580 − 420)/10 = **£16**\n- 50th batch: (800 − 580)/10 = **£22**\n\nThe firm produces every unit where MR (£20) ≥ MC. That holds up to 40 bushels (MC £16 ≤ £20) but fails on the 50th (MC £22 > £20). Profit-maximising output = **40 bushels**. [2]\n\n**(b) Profit or loss.**\n- Total Revenue = P × Q = £20 × 40 = **£800**\n- Total Cost at Q = 40 (from the table) = **£580**\n- Profit = TR − TC = 800 − 580 = **£220**\n\nBecause TR exceeds TC (which already includes the opportunity cost embedded as normal profit), this £220 is **abnormal (supernormal) profit**. [3]\n\n**(c) Long run.** Since perfect competition has no barriers to entry, this abnormal profit attracts new farms. Their extra output shifts **market supply right**, pushing the market price DOWN. Entry continues until price has fallen to where AR = ATC and only **normal profit** remains — the classic perfectly-competitive long-run result. [2]"
+    },
+    {
+      "type": "heading",
+      "content": "Monopoly: a single seller behind barriers to entry"
+    },
+    {
+      "type": "text",
+      "content": "A monopoly exists when a single firm is the sole supplier of a good with no close substitutes. Its market power comes entirely from **barriers to entry** — the obstacles that stop rivals from competing the profit away. Because it is the only seller, the monopolist faces the WHOLE market demand curve, so its demand curve (its AR curve) slopes downward. That downward slope is the root of everything that makes monopoly different from perfect competition."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Economies of scale** — if average cost keeps falling over the whole range of demand, one large firm undercuts any smaller entrant. This is the source of **natural monopoly**.",
+        "**Legal barriers** — patents, copyright, licences and government franchises legally exclude competitors.",
+        "**Control of an essential resource** — owning the only mine, port or network locks rivals out.",
+        "**Strategic barriers** — strong branding, aggressive advertising, or limit pricing (setting price low enough to deter entry) can protect an incumbent."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Why the monopolist's MR lies below its AR.** Facing the downward-sloping demand curve, the monopolist can only sell an extra unit by lowering the price — and, selling a single homogeneous product, it must lower the price on ALL units, not just the last one. So the marginal revenue from the extra unit is its price MINUS the revenue lost by marking down every earlier unit. Marginal revenue is therefore always **less than average revenue (price)**, and the MR curve lies below the AR curve, falling twice as steeply. This is the decisive contrast with perfect competition, where MR = AR."
+    },
+    {
+      "type": "text",
+      "content": "**Profit maximisation and long-run abnormal profit.** The monopolist still obeys MC = MR: it finds the output where its (below-AR) marginal revenue curve cuts marginal cost, then charges the price read UP on the demand curve above that output. Because MR < AR, this price sits **above marginal cost (P > MC)**. And because barriers to entry block new firms, no extra supply arrives to erode the profit — so a monopolist can sustain **abnormal profit in the long run**, the very thing free entry destroys under perfect competition."
+    },
+    {
+      "type": "heading",
+      "content": "Monopoly versus perfect competition: the welfare loss"
+    },
+    {
+      "type": "text",
+      "content": "Comparing a monopoly with a perfectly competitive industry that has the same costs exposes the welfare cost of market power. The competitive industry produces where P = MC (allocatively efficient). The monopolist, restricting output to where MR = MC, produces LESS and charges MORE."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Higher price, lower output:** at the monopoly output P > MC, so the monopolist supplies fewer units at a higher price than the competitive P=MC outcome.",
+        "**Allocative inefficiency and deadweight loss:** on every unit between the monopoly output and the competitive output, the value to consumers (height of the demand curve) exceeds the marginal cost — yet those units are never produced. The lost consumer-plus-producer surplus is the **deadweight welfare loss** of monopoly.",
+        "**Productive inefficiency:** the monopolist need not produce at minimum ATC, and, sheltered from competition, may become complacent and X-inefficient (costs drift above the minimum).",
+        "**Redistribution:** the high price transfers surplus from consumers to the monopolist as abnormal profit.",
+        "**But not always worse:** a natural monopoly may achieve LOWER average cost than fragmented competition, and abnormal profit can fund R&D and innovation (dynamic efficiency) — the standard evaluation points, and the reason governments regulate rather than automatically break monopolies up."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Natural monopoly** is the important exception. Where economies of scale are so vast that average cost falls right across the market — water pipes, electricity grids, rail track — a single firm genuinely produces at lower average cost than several duplicated networks could. Splitting it up would RAISE costs, so the efficient answer is one firm subject to **government regulation** (price caps forcing it toward the competitive outcome) rather than enforced competition. This is a direct application of the key concept of *intervention*."
+    },
+    {
+      "type": "text",
+      "content": "**Price discrimination (briefly).** A monopolist with price-setting power can sometimes charge different consumers different prices for the SAME good — cheaper off-peak rail fares, student discounts, higher prices in less price-sensitive markets. It works only if the firm can (i) set prices, (ii) separate consumers by their price elasticity of demand, and (iii) prevent resale between the groups. By charging each group closer to its willingness to pay, the monopolist converts consumer surplus into extra profit; output can actually be higher than under a single price, though the distribution of surplus shifts toward the firm."
     },
     {
       "type": "examTip",
-      "content": "When comparing perfect competition and monopoly in an essay, structure is key. Use diagrams as the foundation of your analysis. A common error is drawing the monopoly diagram correctly but forgetting that the perfectly competitive firm's demand curve is horizontal. For evaluation, always contrast the long-run outcomes: perfect competition achieves both allocative ($P=MC$) and productive efficiency ($P=minATC$) with only normal profit. In contrast, monopoly typically leads to allocative and productive inefficiency but offers the potential for dynamic efficiency through reinvestment of its long-run supernormal profits. Use this trade-off for balanced evaluation."
+      "content": "Diagrams win the marks on this HL topic. Be ready to draw and FULLY label three set-pieces: (1) the perfectly competitive firm in short-run abnormal profit AND long-run normal profit (horizontal P=AR=MR line, U-shaped ATC and MC, profit/normal-profit points); (2) the monopoly with its downward-sloping AR, a steeper MR below it, MC cutting MR at the profit-max output, price read up on AR, and the abnormal-profit rectangle; (3) monopoly versus perfect competition on one diagram, shading the deadweight welfare loss triangle. Always label axes (Price/Cost/Revenue and Quantity), every curve (MC, ATC, AR, MR) and every key point — an unexplained diagram is a mid-band answer at best."
+    },
+    {
+      "type": "workedExample",
+      "question": "A monopolist faces the demand and cost data below (units per day). Marginal cost is constant at £20.\n\n| Quantity | Price = AR (£) | Total Revenue (£) | ATC (£) |\n|---|---|---|---|\n| 60 | 60 | 3600 | 38 |\n| 80 | 55 | 4400 | 36 |\n| 100 | 50 | 5000 | 35 |\n| 120 | 45 | 5400 | 36 |\n| 140 | 40 | 5600 | 38 |\n\n(a) Using marginal revenue, identify the profit-maximising output and price. (3)\n(b) Calculate the daily abnormal profit at that output. (2)\n(c) Explain, with reference to P and MC, why the monopolist is allocatively inefficient and creates a welfare loss. (3)",
+      "solution": "**(a) Profit-maximising output.** Marginal revenue is the change in total revenue per extra 20-unit block:\n- 60→80: (4400 − 3600)/20 = **£40**\n- 80→100: (5000 − 4400)/20 = **£30**\n- 100→120: (5400 − 5000)/20 = **£20**\n- 120→140: (5600 − 5400)/20 = **£10**\n\nNotice MR (£40, £30, £20, £10) lies BELOW price/AR (£55, £50, £45, £40) at every step — exactly as theory predicts for a downward-sloping demand curve. The firm expands while MR ≥ MC (£20). MR equals MC (£20) on the block ending at **Q = 120**; beyond that MR (£10) < MC (£20). Profit-maximising output = **120 units**, and the price is read UP on the demand curve: **P = £45**. [3]\n\n**(b) Abnormal profit.** Profit per unit = P − ATC = 45 − 36 = £9. Total abnormal profit = (P − ATC) × Q = £9 × 120 = **£1,080 per day**. Because barriers to entry block new firms, this abnormal profit persists into the long run. [2]\n\n**(c) Allocative inefficiency.** Allocative efficiency requires **P = MC**. Here, at Q = 120, price is £45 but marginal cost is only £20, so **P > MC (£45 > £20)**. Consumers value an extra unit at £45 while it costs just £20 to make, yet the monopolist withholds it to keep the price up. Every unit between the monopoly output and the competitive P=MC output would have added more value than cost; not producing them destroys that surplus — the **deadweight welfare loss** of monopoly. [3]"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**'A monopolist can charge any price it likes.'** No — it is a price maker but still bound by the demand curve. A higher price ALWAYS means fewer units sold; the monopolist can pick a price OR a quantity, not both, and it chooses the point on the demand curve that maximises profit.",
+        "**Confusing normal and abnormal profit.** Normal profit (AR = ATC) is the minimum needed to stay in business and is a COST, buried in the ATC curve. Abnormal profit (AR > ATC) is the surplus on top. Saying a long-run competitive firm makes 'no profit' loses marks — it makes normal profit.",
+        "**Claiming MR = AR for a monopolist.** MR = AR (= P) ONLY under perfect competition, where the demand curve is horizontal. For a monopolist the demand curve slopes down, so MR lies BELOW AR. Drawing the monopoly's MR on top of its AR is a classic diagram error.",
+        "**Forgetting the entry mechanism.** In perfect competition abnormal profit is competed away by NEW FIRMS ENTERING and shifting market supply — not by the existing firm choosing to lower its price. Miss the entry/exit mechanism and the long-run explanation collapses.",
+        "**Saying opportunity cost / normal profit is ignored.** A perfectly competitive firm at 'AR = ATC' is still covering the entrepreneur's opportunity cost — it is doing as well as its next best alternative, which is precisely why entry stops.",
+        "**Asserting monopoly is 'always bad'.** Top-band evaluation notes natural monopoly (lower average cost), possible R&D and dynamic efficiency, and the case for regulation — set against higher price, lower output and deadweight loss."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real IB markband"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 1, part (a): Explain, using diagrams, why a firm in perfect competition earns only normal profit in the long run, whereas a monopoly can sustain abnormal profit. [10]",
+      "solution": "**Model answer:**\nMarket structures differ chiefly in their **barriers to entry**, and that single difference explains the contrast in long-run profit.\n\n**Perfect competition.** A perfectly competitive firm is a price taker: it is one of a very large number of firms selling a homogeneous product, so its demand curve is horizontal and **P = AR = MR**. It maximises profit where **MC = MR**.\n\n*[Diagram 1 — the competitive firm, two panels. Vertical axis 'Price/Cost/Revenue', horizontal axis 'Quantity'. SHORT RUN: a horizontal P₁ = AR = MR line ABOVE a U-shaped ATC, with U-shaped MC cutting ATC at its minimum; MC=MR fixes output Q₁; a shaded rectangle between P₁ and ATC shows abnormal profit. LONG RUN: the price line has fallen to P₂, now TANGENT to the minimum of ATC, so AR = ATC and the firm earns only normal profit at Q₂.]*\n\nSuppose firms initially earn abnormal profit (AR > ATC, short-run panel). Because there are **no barriers to entry**, new firms are attracted in. Their extra output shifts **market supply to the right**, driving the market price down. Entry continues until the price has fallen to where **AR = ATC** — normal profit — at which point the incentive to enter disappears. Hence in the long run the competitive firm earns only **normal profit**, producing at the minimum of ATC (productively efficient) where P = MC (allocatively efficient).\n\n**Monopoly.** A monopoly is the sole seller behind **high barriers to entry** (economies of scale, patents, control of a resource). It faces the whole downward-sloping market demand curve, so **AR slopes down and MR lies below it**. It too maximises profit where **MC = MR**.\n\n*[Diagram 2 — the monopoly. Same axes. Downward-sloping AR (=D); a steeper MR below AR; U-shaped MC and ATC. MC cuts MR at output Qm; the profit-maximising price Pm is read UP on the AR curve above Qm; since Pm > ATC at Qm, a shaded rectangle between Pm and ATC shows abnormal profit. Pm lies above MC, indicating allocative inefficiency.]*\n\nAt the profit-maximising output Qm the monopolist charges Pm > ATC and earns abnormal profit. Crucially, because **barriers to entry block new firms**, no extra supply arrives to compete the profit away — so unlike perfect competition, the monopolist **sustains abnormal profit into the long run**. The contrast turns entirely on entry: free entry erodes profit under perfect competition; blocked entry protects it under monopoly.\n\n---\n**How this maps to our IB markband (Paper 1 part (a), out of 10):**\n- **9–10:** the demands of the question are addressed, relevant economic theory is FULLY explained, relevant terms are used appropriately THROUGHOUT, and relevant diagram(s) are included and FULLY explained.\n- **7–8:** relevant economic theory is explained, relevant terms are mostly used appropriately, and relevant diagrams are included and explained.\n- **5–6:** the question is partially addressed, relevant economic theory is PARTLY explained, some relevant terms are used, and relevant diagrams are included.\n- **3–4:** relevant economic theory is DESCRIBED, and some relevant terms are used.\n- **1–2:** the answer is not relevant to the question.\n\n**Why this response reaches 9–10:**\n- ✅ *Both demands addressed* — it explains the competitive long-run normal-profit result AND the monopoly abnormal-profit result, and explicitly links them through the entry/barrier mechanism.\n- ✅ *Theory FULLY explained* — the diagrams are used to DERIVE each result (supply shifting on entry until AR = ATC; MR below AR with blocked entry protecting profit), not merely mentioned.\n- ✅ *Terms used THROUGHOUT* — price taker, homogeneous product, P=AR=MR, MC=MR, barriers to entry, normal and abnormal profit, allocative efficiency.\n- ✅ *Diagrams included AND fully explained* — both are labelled (axes, MC, ATC, AR, MR, profit areas) and every feature is referenced in the prose.\nAn answer that only DESCRIBED the two structures with unexplained or unlabelled diagrams would sit in the 3–4 band; one that partly explained the theory with a diagram merely 'included' would reach only 5–6. The jump to the top band is the FULL explanation of the labelled diagrams — exactly what our marking engine rewards."
+    },
+    {
+      "type": "examTip",
+      "content": "This is exactly what the Practice button does: write your own answer to this 10-mark question, submit it, and our marking engine grades it against this SAME official markband — telling you which band you hit and why. The habit that lifts you into 9–10: don't just draw the two diagrams, EXPLAIN every labelled feature and tie the whole answer back to barriers to entry."
+    },
+    {
+      "type": "heading",
+      "content": "Key concepts and where this leads"
+    },
+    {
+      "type": "text",
+      "content": "This HL lesson advances two of the course's key concepts. **Efficiency** is the thread throughout — perfect competition achieves both allocative (P = MC) and productive (min ATC) efficiency, while monopoly achieves neither and imposes a deadweight welfare loss. **Intervention** follows directly: because monopoly power harms welfare (yet natural monopoly and innovation complicate the picture), governments regulate — price caps, competition law, breaking up cartels. Everything here feeds the later HL analysis of market power, regulation and the wider case for and against government intervention."
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-economics-hl&topic=2.10"
+      "label": "Get a Paper 1 (a) answer marked: use diagrams to explain why perfect competition earns only normal profit long run while monopoly sustains abnormal profit",
+      "href": "/mark?subject=ib-economics-hl&topic=2.10&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Tutor2u on Perfect Competition",
-          "href": "https://www.tutor2u.net/economics/reference/perfect-competition"
+          "label": "IB Economics subject page (IBO)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/individuals-and-societies/economics/"
         },
         {
-          "label": "Tutor2u on Monopoly",
-          "href": "https://www.tutor2u.net/economics/reference/monopoly-market-structure"
-        },
-        {
-          "label": "Khan Academy: Monopoly basics",
-          "href": "https://www.khanacademy.org/economics-finance-domain/microeconomics/perfect-competition-monopoly/monopoly-basics/v/monopolies-vs-perfect-competition"
+          "label": "The Economist economics A–Z: Monopoly",
+          "href": "https://www.economist.com/economics-a-to-z/m#monopoly"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

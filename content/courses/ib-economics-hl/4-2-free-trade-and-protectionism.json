@@ -1,184 +1,349 @@
 {
   "slug": "4-2-free-trade-and-protectionism",
   "topicCode": "4.2",
+  "unit": {
+    "code": "4",
+    "title": "The global economy"
+  },
   "title": "Free trade and protectionism",
   "paper": "P1",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental debate between free trade and protectionism. It covers the theoretical benefits of unrestricted international trade, based on comparative advantage, and contrasts this with the various arguments for and methods of protectionism, such as tariffs, quotas, and subsidies. Students will learn to analyse the economic effects of these policies on different stakeholders and evaluate their overall impact on welfare.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Why do economists almost universally praise free trade, yet almost every government restricts it? This lesson builds the case for free trade (lower prices, greater choice, competition and efficiency, economies of scale and comparative advantage), then examines the main protectionist tools — tariffs, quotas, production subsidies and administrative barriers — with a full welfare analysis of the tariff diagram (who gains, who loses, government revenue and deadweight loss). It closes with a balanced evaluation of the arguments for and against protectionism, worked through to a marked Paper 1 (b) model answer.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the arguments for and against free trade, including the concepts of absolute and comparative advantage.",
-    "Analyse the effects of tariffs, quotas, subsidies, and administrative barriers on consumers, producers, the government, and society.",
-    "Use diagrams to illustrate the effects of protectionist policies, including identifying changes in consumer surplus, producer surplus, and deadweight welfare loss.",
-    "Evaluate the use of protectionist policies from the perspective of different stakeholders and in different economic contexts."
+    "Explain the benefits of free trade, including lower prices, greater choice, competition and efficiency, economies of scale, and comparative advantage.",
+    "Distinguish between the main types of protectionism — tariffs, quotas, production subsidies and administrative/regulatory barriers.",
+    "Use a tariff welfare diagram to analyse the effect on the domestic price, consumers, producers, government revenue and overall welfare (deadweight loss).",
+    "Evaluate the arguments for and against protectionism and reach a reasoned, balanced judgement."
   ],
+  "syllabusObjectivesCovered": [
+    "4.2"
+  ],
+  "keyConcepts": [
+    "interdependence",
+    "efficiency",
+    "intervention"
+  ],
+  "levelNote": "Common to SL and HL; comparative-advantage numerical analysis is HL.",
   "simpleExplanation": {
     "title": "Open Gates or High Walls?",
-    "summary": "This topic examines the choice countries face between allowing goods to flow freely across borders (free trade) or erecting barriers to protect domestic industries (protectionism). We'll explore who wins and who loses when these different strategies are used.",
-    "analogy": "Imagine your school is forming a football team. A 'free trade' approach means you recruit the best players you can find, even if they're from other schools, leading to a very strong team. A 'protectionist' approach means you only pick players from your own school. This gives your own students a chance to play and develop, but the team might not be as competitive initially. Protectionism in trade is like reserving spots on the team for local players, even if there are better players available from elsewhere.",
+    "summary": "Free trade means goods cross borders with no barriers, so countries specialise in what they do best and everyone gets more choice at lower prices. Protectionism means a government builds 'walls' — taxes and limits on imports — to shield its own producers. The walls help those producers, but they make almost everyone else pay more.",
+    "analogy": "Think of your school canteen. Under 'free trade' you can also order from local pizza places and sandwich shops: more choice, keener prices, and the canteen has to raise its game to keep you. Under 'protectionism' the school bans outside food so everyone must buy from its own — possibly pricier — canteen. The canteen (domestic producers) wins; the students (consumers) pay more and choose from less.",
     "steps": [
-      "First, understand the ideal of free trade, where countries specialise based on comparative advantage, leading to greater global output and lower prices for consumers.",
-      "Next, explore the reasons why countries adopt protectionism, such as to protect jobs, national security, or new 'infant' industries.",
-      "Then, analyse the specific impacts of a protectionist tool like a tariff using a supply and demand diagram. We'll see how it raises prices, reduces imports, and creates winners (domestic producers, government) and losers (consumers).",
-      "Finally, evaluate the overall effects. We weigh the gains for protected industries against the costs to consumers and the economy's efficiency, considering potential retaliation from other countries."
+      "Free trade lets countries specialise where they have a comparative advantage, raising world output and giving consumers lower prices and greater choice.",
+      "Governments turn to protectionism to shield infant industries, protect jobs, counter dumping, safeguard strategic industries, or curb a current-account deficit.",
+      "The classic tool is a tariff — a tax on imports that raises the domestic price. Read its diagram carefully: it reshuffles surplus between consumers, producers and the government.",
+      "Weigh both sides: producers and the government gain, but consumers lose more, there is a net deadweight welfare loss, and trading partners may retaliate."
     ]
   },
   "flashcards": [
     {
-      "front": "Free Trade",
-      "back": "A policy where governments do not restrict imports from, or exports to, other countries. It is the absence of tariffs, quotas, or other trade barriers."
+      "front": "Free trade",
+      "back": "A situation where trade in goods and services between countries flows without government-imposed barriers such as tariffs, quotas or subsidies.",
+      "pillLabel": "Concept"
     },
     {
       "front": "Protectionism",
-      "back": "The practice of shielding a country's domestic industries from foreign competition by taxing imports (tariffs), placing limits on import quantities (quotas), or other barriers."
+      "back": "Government policies that restrict international trade to shield domestic industries from foreign competition — for example tariffs, quotas, subsidies and administrative barriers.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Comparative advantage",
+      "back": "The ability of a country to produce a good at a lower opportunity cost than another country. It is the theoretical basis for the gains from specialisation and trade. (Numerical analysis is HL.)",
+      "pillLabel": "Analysis"
     },
     {
       "front": "Tariff",
-      "back": "A tax imposed by a government on imported goods or services. It increases the price of the imported good for domestic consumers."
+      "back": "A tax on imported goods or services. It raises the domestic price of the import, reduces the quantity imported, and generates revenue for the government.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Quota",
-      "back": "A government-imposed trade restriction that limits the number, or monetary value, of goods that a country can import or export during a particular period."
+      "front": "Import quota",
+      "back": "A physical limit on the quantity of a good that may be imported over a period. It raises the domestic price but the extra revenue (quota rent) goes to licence holders, not the government.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Subsidy",
-      "back": "A payment from the government to a domestic producer to lower their production costs. This can make them more competitive against foreign imports or in export markets."
+      "front": "Production subsidy",
+      "back": "A per-unit payment to domestic producers that lowers their costs and shifts the domestic supply curve right, letting them capture more of the market without directly raising the price consumers pay.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Administrative Barriers",
-      "back": "Trade restrictions in the form of complex administrative procedures, such as customs procedures, safety standards, and health regulations, that raise the cost for importers. Also known as 'red tape'."
-    },
-    {
-      "front": "Infant Industry Argument",
-      "back": "The justification for temporarily protecting new industries from foreign competition until they have matured, achieved economies of scale, and can compete on an equal footing."
+      "front": "Administrative / regulatory barriers",
+      "back": "Non-tariff barriers such as complex health, safety, labelling or licensing rules that raise the cost of importing and so discourage imports without an explicit tax or quota.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Dumping",
-      "back": "The practice of a country or company exporting a product at a price that is lower in the foreign importing market than the price in the exporter's domestic market. It is often seen as an unfair trade practice."
+      "back": "Exporting a good at a price below its cost of production or below the price charged at home, often to drive out foreign rivals. It is a common justification for anti-dumping protection.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Comparative Advantage",
-      "back": "The ability of a country to produce a particular good or service at a lower opportunity cost than its trading partners. This is the theoretical foundation for the gains from free trade."
+      "front": "Infant industry argument",
+      "back": "The claim that a new domestic industry needs temporary protection until it grows large enough to reach economies of scale and compete internationally.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Deadweight Welfare Loss",
-      "back": "The loss of economic efficiency that occurs when the free-market equilibrium is not achieved. In the context of protectionism, it represents the net loss in total surplus (consumer + producer) that is not captured by anyone."
+      "front": "Deadweight welfare loss (tariff)",
+      "back": "The net loss of social surplus a tariff creates, shown as TWO triangles: a production-inefficiency triangle (higher-cost domestic output replaces cheaper imports) and a consumption-inefficiency triangle (consumers priced out of the market).",
+      "pillLabel": "Diagram"
     },
     {
-      "front": "Quota Rent",
-      "back": "The extra profit that domestic importers or foreign exporters make when a quota is imposed. It is the difference between the domestic price and the world price, multiplied by the quantity of imports allowed."
+      "front": "Reading a tariff diagram: government revenue",
+      "back": "Government revenue is the RECTANGLE only — tariff per unit x the quantity STILL imported after the tariff (the width between the new domestic supply and new domestic demand). It is NOT the whole area under the price rise.",
+      "pillLabel": "Diagram"
+    },
+    {
+      "front": "Exam trap: tariff vs quota",
+      "back": "A tariff and an equivalent quota can raise the domestic price and create the same deadweight loss, but a tariff gives the government revenue whereas a quota's gain (quota rent) is captured by private licence holders.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "On a standard tariff diagram, the government's tariff revenue is represented by:",
+      "options": [
+        "The whole area between the world price and the tariff price",
+        "The rectangle equal to the tariff per unit multiplied by the quantity still imported after the tariff",
+        "The gain in producer surplus",
+        "The two deadweight-loss triangles"
+      ],
+      "answer": "The rectangle equal to the tariff per unit multiplied by the quantity still imported after the tariff"
+    },
+    {
+      "prompt": "The deadweight welfare loss caused by a tariff is shown by:",
+      "options": [
+        "A single rectangle under the world price",
+        "The rise in producer surplus",
+        "Two triangles — one for production inefficiency and one for consumption inefficiency",
+        "The fall in government revenue"
+      ],
+      "answer": "Two triangles — one for production inefficiency and one for consumption inefficiency"
+    },
+    {
+      "prompt": "Compared with a tariff that raises the domestic price by the same amount, an import quota differs mainly because:",
+      "options": [
+        "It generates more government revenue",
+        "The extra revenue (quota rent) goes to licence-holding importers, not the government",
+        "It lowers the domestic price",
+        "It creates no deadweight loss"
+      ],
+      "answer": "The extra revenue (quota rent) goes to licence-holding importers, not the government"
+    },
+    {
+      "prompt": "When a tariff is imposed on an imported good, which group unambiguously loses surplus?",
+      "options": [
+        "Domestic producers",
+        "The government",
+        "Domestic consumers, who pay a higher price and buy less",
+        "Foreign exporters only"
+      ],
+      "answer": "Domestic consumers, who pay a higher price and buy less"
+    },
+    {
+      "prompt": "A production subsidy to domestic firms differs from a tariff because it:",
+      "options": [
+        "Raises the price consumers pay above the world price",
+        "Shifts the domestic supply curve right and need not raise the price consumers pay",
+        "Generates revenue for the government",
+        "Is a quantitative limit on imports"
+      ],
+      "answer": "Shifts the domestic supply curve right and need not raise the price consumers pay"
     }
   ],
   "faq": [
     {
-      "q": "What is the main difference in the economic impact of a tariff versus a quota?",
-      "a": "Both tariffs and quotas raise domestic prices and reduce imports, creating a deadweight welfare loss. The key difference is who receives the financial benefit. With a tariff, the government collects tax revenue. With a quota, the financial gain (known as 'quota rent') goes to the holder of the import license, which could be a domestic firm or a foreign government/firm."
+      "q": "Which is 'worse' for a country, a tariff or a quota that cuts imports by the same amount?",
+      "a": "On pure welfare grounds they can be equally costly, because both can raise the domestic price and create the same deadweight loss. The decisive difference is who captures the extra revenue from the higher price. A tariff hands it to the government, which can fund public services or cut other taxes. A quota hands it to whoever holds the import licences as 'quota rent', giving no direct benefit to the public purse. For that reason most economists rank a tariff above a quota."
     },
     {
-      "q": "Is the 'infant industry' argument a valid reason for protectionism?",
-      "a": "In theory, yes. It suggests that a new industry needs temporary protection to mature and achieve economies of scale. However, in practice, it's difficult for governments to identify which industries will become successful, and protected industries often lobby to keep the protection long after it's needed, leading to long-term inefficiency."
+      "q": "If free trade is so beneficial, why do governments still use protectionism?",
+      "a": "Because the politics and the economics point in different directions. The benefits of protecting an industry are concentrated on a few firms and their workers, who lobby hard, while the costs are spread thinly across millions of consumers who barely notice a small price rise on each purchase. Add genuinely contested arguments — national security, infant industries, retaliation against dumping — and governments have both electoral incentives and defensible-sounding reasons to intervene."
     },
     {
-      "q": "How does the World Trade Organization (WTO) promote free trade?",
-      "a": "The WTO promotes free trade through several functions. It provides a forum for member countries to negotiate the reduction of trade barriers, it sets out the legal rules for international commerce, and it provides a mechanism for resolving trade disputes between countries. Its goal is to ensure that trade flows as smoothly, predictably, and freely as possible."
+      "q": "Does the infant industry argument actually work in practice?",
+      "a": "It is theoretically sound but hard to apply. The state must correctly 'pick a winner' — identify an industry that will genuinely become competitive — which is difficult. And once protection is granted it is politically hard to remove, so a supposedly temporary shield can outlive its purpose and shelter permanently inefficient firms. Evaluation should note that success depends on the protection being temporary, conditional on performance, and credibly withdrawn."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "International trade is a cornerstone of the modern global economy. While most economists agree on the benefits of free and open trade, nearly every country in the world employs some form of protectionism. This topic delves into this central conflict, examining the arguments for opening borders to trade versus the pressures to protect domestic industries from foreign competition."
+      "content": "International trade sits at the heart of the global economy, and the question of whether it should be free or restricted is one of the oldest debates in the subject. This lesson makes the theoretical case for free trade, then works carefully through the tools of protectionism — above all the tariff, whose welfare diagram you must be able to draw, label and read. Along the way we keep three key concepts in view: interdependence (economies increasingly rely on one another), efficiency (free trade's central promise), and intervention (what a government changes when it protects)."
     },
     {
       "type": "heading",
-      "content": "The Case for Free Trade"
+      "content": "The case for free trade"
     },
     {
       "type": "text",
-      "content": "The primary argument for free trade rests on the principle of comparative advantage. When countries specialise in producing goods where they have a lower opportunity cost, total world output increases. This leads to a more efficient allocation of global resources."
+      "content": "Free trade means goods and services cross borders without government barriers. Its foundation is the theory of comparative advantage: when each country specialises in what it produces at the lowest opportunity cost and then trades, total world output rises and every trading partner can consume beyond its own production possibilities. From that single idea flow a cluster of benefits."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Increased Efficiency:** Countries produce what they are best at, leading to a more efficient allocation of world resources.",
-        "**Lower Prices and More Choice:** Consumers gain access to a wider variety of goods at lower prices due to increased competition and specialisation.",
-        "**Economies of Scale:** Producers can access larger markets, allowing them to increase production and benefit from lower average costs.",
-        "**Innovation:** Increased competition from abroad incentivises domestic firms to become more innovative and efficient.",
-        "**Economic Growth:** Trade acts as an engine of growth, boosting exports and allowing for the import of capital and technology."
+        "**Lower prices** — imports and import competition push prices down, raising consumer surplus and real incomes.",
+        "**Greater choice** — consumers and firms gain access to a far wider range of goods, services, inputs and technologies than any one economy could produce alone.",
+        "**Competition and efficiency** — exposure to foreign rivals forces domestic firms to cut costs and innovate (greater productive and allocative efficiency), rather than shelter behind a captive home market.",
+        "**Economies of scale** — producing for a world market rather than a domestic one lets firms operate at larger scale and lower average cost.",
+        "**Comparative advantage** — specialisation according to opportunity cost raises total world output; the resulting gains can be shared through trade. *(Numerical comparative-advantage analysis is HL.)*"
       ]
     },
     {
+      "type": "text",
+      "content": "Free trade also deepens interdependence: economies become linked through supply chains and export markets, which can spread growth and ideas — though, as later evaluation shows, it can also transmit shocks."
+    },
+    {
       "type": "heading",
-      "content": "Arguments for Protectionism"
+      "content": "The tools of protectionism"
     },
     {
       "type": "text",
-      "content": "Despite the strong theoretical case for free trade, many arguments are made for restricting it. These arguments range from economic justifications, such as protecting new industries, to more political ones, like safeguarding national security or domestic jobs."
+      "content": "Protectionism is government intervention that restricts trade to shield domestic industry. The four tools you must know differ in HOW they restrict imports and in WHO captures the resulting gain."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Protecting Infant Industries:** New industries may need temporary protection to grow and achieve economies of scale before they can compete with established foreign firms.",
-        "**National Security:** A country may want to protect industries essential for defence, such as steel or electronics, to ensure supply during times of conflict.",
-        "**Preventing Dumping:** Protectionism can be used to counter foreign firms selling goods at artificially low prices to drive domestic competitors out of business.",
-        "**Protecting Domestic Employment:** The most common argument is that restricting imports protects jobs in domestic industries that would otherwise struggle to compete.",
-        "**Correcting a Balance of Payments Deficit:** A government might restrict imports to reduce a large and persistent deficit on its current account.",
-        "**Source of Government Revenue:** For some developing countries, tariffs can be a significant and easy-to-collect source of government revenue."
+        "**Tariffs** — a tax on imports. Raises the domestic price of the import, cuts the quantity imported, and generates revenue for the government. The tool with the fullest welfare diagram (analysed below).",
+        "**Quotas** — a physical limit on the quantity that may be imported. Restricting supply raises the domestic price, but the extra revenue (quota rent) is captured by the private importers who hold the licences, not the government.",
+        "**Production subsidies** — a per-unit payment to domestic producers. It lowers their costs and shifts the domestic supply curve to the right, letting them supply more without the price to consumers necessarily rising — but it has an opportunity cost to the government budget.",
+        "**Administrative / regulatory barriers** — non-tariff barriers such as complex safety, health, labelling, environmental or licensing requirements. They raise the cost and delay of importing, discouraging imports without an explicit tax or quantitative limit."
       ]
     },
     {
       "type": "heading",
-      "content": "Analysing Tariffs"
+      "content": "The tariff welfare diagram — reading the areas"
     },
     {
       "type": "text",
-      "content": "A tariff is a tax on imported goods. When a tariff is imposed, the domestic price of the imported good rises. This has several effects: domestic consumption falls, domestic production increases, and imports decrease. While domestic producers and the government benefit, consumers lose out, and there is a net loss to society's welfare."
+      "content": "For a small country facing a perfectly elastic world supply at price $P_w$, a tariff of $t$ per unit lifts the domestic price to $P_w + t$. Nothing shifts the domestic demand (D) or domestic supply ($S_{dom}$) curves; the higher price simply moves us along them. At the higher price, domestic producers supply more (from $Q_{S1}$ to $Q_{S2}$) and domestic consumers buy less (from $Q_{D1}$ to $Q_{D2}$), so imports are squeezed from both ends. Reading the resulting areas correctly is where marks are won and lost."
     },
     {
-      "type": "workedExample",
-      "question": "The UK market for imported wine has a world price of £10 per bottle. Domestic demand is given by $Q_d = 50 - 2P$ (in millions of bottles) and domestic supply is $Q_s = P + 5$. The government imposes a £2 tariff per bottle. Calculate:\n(a) The original quantity of imports.\n(b) The quantity of imports after the tariff.\n(c) The government revenue from the tariff.\n(d) The deadweight welfare loss.",
-      "solution": "**Marking Scheme:**\n\n**(a) Original Imports [2 marks]**\n1. At the world price $P_w = £10$:\n   - Domestic demand: $Q_d = 50 - 2(10) = 30$ million bottles.\n   - Domestic supply: $Q_s = 10 + 5 = 15$ million bottles. [1 mark]\n2. Original imports = $Q_d - Q_s = 30 - 15 = 15$ million bottles. [1 mark]\n\n**(b) Post-Tariff Imports [2 marks]**\n1. The new domestic price is $P_t = P_w + \\text{tariff} = £10 + £2 = £12$. [1 mark]\n2. At $P_t = £12$:\n   - New domestic demand: $Q_d' = 50 - 2(12) = 26$ million bottles.\n   - New domestic supply: $Q_s' = 12 + 5 = 17$ million bottles.\n3. New imports = $Q_d' - Q_s' = 26 - 17 = 9$ million bottles. [1 mark]\n\n**(c) Government Revenue [1 mark]**\n1. Revenue = Tariff per unit $\\times$ Quantity of imports = $£2 \\times 9$ million = £18 million. [1 mark]\n\n**(d) Deadweight Welfare Loss [3 marks]**\n1. DWL consists of two triangles. First, the production inefficiency loss:\n   - $0.5 \\times (Q_s' - Q_s) \\times (P_t - P_w) = 0.5 \\times (17 - 15) \\times (12 - 10) = 0.5 \\times 2 \\times 2 = £2$ million. [1 mark]\n2. Second, the consumption inefficiency loss:\n   - $0.5 \\times (Q_d - Q_d') \\times (P_t - P_w) = 0.5 \\times (30 - 26) \\times (12 - 10) = 0.5 \\times 4 \\times 2 = £4$ million. [1 mark]\n3. Total DWL = £2 million + £4 million = £6 million. [1 mark]"
-    },
-    {
-      "type": "heading",
-      "content": "Analysing Quotas"
-    },
-    {
-      "type": "text",
-      "content": "A quota is a physical limit on the quantity of a good that can be imported. By restricting supply, a quota drives up the domestic price of the good. The welfare effects are similar to a tariff, but instead of the government earning revenue, the extra profit (known as 'quota rent') is captured by the firms who hold the licenses to import, which could be domestic importers or foreign exporters."
-    },
-    {
-      "type": "workedExample",
-      "question": "Consider the same wine market as before ($P_w = £10$, $Q_d = 50 - 2P$, $Q_s = P + 5$). Instead of a tariff, the government imposes a quota limiting imports to 3 million bottles. Calculate:\n(a) The new domestic price.\n(b) The value of the quota rent.\n(c) The deadweight welfare loss.",
-      "solution": "**Marking Scheme:**\n\n**(a) New Domestic Price [3 marks]**\n1. A quota of 3 million means the difference between domestic demand and supply must be 3: $Q_d - Q_s = 3$. [1 mark]\n2. Substitute the equations: $(50 - 2P) - (P + 5) = 3$. [1 mark]\n3. Solve for P: $45 - 3P = 3 \\implies 42 = 3P \\implies P = £14$. The new domestic price is £14. [1 mark]\n\n**(b) Quota Rent [2 marks]**\n1. Quota rent is the extra profit per unit multiplied by the quota quantity. The price difference is $P_{quota} - P_w = £14 - £10 = £4$. [1 mark]\n2. Total quota rent = Price difference $\\times$ Quota quantity = $£4 \\times 3$ million = £12 million. [1 mark]\n\n**(c) Deadweight Welfare Loss [3 marks]**\n1. First, find quantities at the new price of £14. $Q_s' = 14 + 5 = 19$. $Q_d' = 50 - 2(14) = 22$. (Check: $22-19=3$, correct).\n2. Production inefficiency loss: $0.5 \\times (Q_s' - Q_s) \\times (P_{quota} - P_w) = 0.5 \\times (19 - 15) \\times (14 - 10) = 0.5 \\times 4 \\times 4 = £8$ million. [1 mark]\n3. Consumption inefficiency loss: $0.5 \\times (Q_d - Q_d') \\times (P_{quota} - P_w) = 0.5 \\times (30 - 22) \\times (14 - 10) = 0.5 \\times 8 \\times 4 = £16$ million. [1 mark]\n4. Total DWL = £8 million + £16 million = £24 million. [1 mark]"
+      "type": "keyPoints",
+      "items": [
+        "**Domestic price and quantity** — price rises from $P_w$ to $P_w + t$; imports fall from ($Q_{D1} - Q_{S1}$) to ($Q_{D2} - Q_{S2}$).",
+        "**Consumers lose** — consumer surplus shrinks by the whole area between $P_w$ and $P_w+t$ up to the demand curve. Consumers are the biggest losers: they pay more and consume less.",
+        "**Domestic producers gain** — producer surplus expands by the area to the left, between the two prices and above the domestic supply curve (they sell more, at a higher price).",
+        "**Government gains revenue** — the RECTANGLE only: tariff per unit $t$ multiplied by the quantity STILL imported after the tariff ($Q_{D2} - Q_{S2}$). Not the whole price-rise band.",
+        "**Deadweight welfare loss** — the TWO triangles left over: a production-inefficiency triangle (higher-cost domestic output $Q_{S1}\\!\\to\\!Q_{S2}$ replaces cheaper imports) and a consumption-inefficiency triangle (consumers priced out, $Q_{D2}\\!\\to\\!Q_{D1}$). Together they are the net loss to society."
+      ]
     },
     {
       "type": "examTip",
-      "content": "For Paper 1, Part (b) questions often ask you to 'discuss' or 'evaluate' a policy like protectionism. A top-level response requires a balanced argument. Always analyse the impacts on multiple stakeholders: consumers (higher prices, less choice), domestic producers (higher revenue, less incentive to be efficient), the government (tariff revenue), and foreign producers (lost exports). Conclude with a nuanced judgement that considers the specific context (e.g., developing vs. developed country) and potential long-term consequences like retaliation and inefficiency."
+      "content": "In Paper 1 you must draw AND fully label the tariff diagram: world price $P_w$, tariff price $P_w+t$, the four quantities $Q_{S1}, Q_{S2}, Q_{D2}, Q_{D1}$, and the shaded areas for lost consumer surplus, gained producer surplus, government revenue (the rectangle) and the two deadweight-loss triangles. A fully explained diagram is what separates the top band from the middle."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 1 — reading the welfare areas off a tariff diagram"
+    },
+    {
+      "type": "workedExample",
+      "question": "A small country imports steel. The world price is $P_w = \\$400$ per tonne and world supply is perfectly elastic. At $P_w$, domestic firms supply 20 (thousand tonnes) and domestic consumers demand 100, so imports are 80. The government imposes a tariff of $\\$100$ per tonne. After the tariff, domestic supply rises to 40 and domestic demand falls to 80.\n(a) State the new domestic price and the new level of imports.\n(b) Identify, in words, the area that becomes government revenue and calculate it.\n(c) The tariff creates two deadweight-loss triangles. Calculate each and the total deadweight loss.\n(d) Explain who gains and who loses from this tariff.",
+      "solution": "**(a) New price and imports.**\nThe tariff adds $\\$100$ to the world price, so the domestic price rises to $P_w + t = 400 + 100 = \\$500$ per tonne. Imports are now domestic demand minus domestic supply at that price: $80 - 40 = 40$ (thousand tonnes) — down from 80.\n\n**(b) Government revenue (the rectangle).**\nGovernment revenue is the tariff per unit multiplied by the quantity STILL imported after the tariff — NOT the whole band under the price rise.\n- Revenue $= t \\times (Q_{D2} - Q_{S2}) = \\$100 \\times 40 = \\$4{,}000$ (i.e. \\$4 million, since quantities are in thousands).\n\n**(c) The two deadweight-loss triangles.**\nEach triangle has a height equal to the price rise ($\\$100$) and a base equal to the change in the relevant quantity.\n- Production-inefficiency triangle (domestic supply expands $Q_{S1}\\!\\to\\!Q_{S2}$, from 20 to 40): $0.5 \\times (40 - 20) \\times \\$100 = 0.5 \\times 20 \\times 100 = \\$1{,}000$.\n- Consumption-inefficiency triangle (demand contracts $Q_{D2}\\!\\to\\!Q_{D1}$, from 80 to 100): $0.5 \\times (100 - 80) \\times \\$100 = 0.5 \\times 20 \\times 100 = \\$1{,}000$.\n- **Total deadweight loss $= 1{,}000 + 1{,}000 = \\$2{,}000$** (i.e. \\$2 million of net welfare lost).\n\n**(d) Winners and losers.**\n- **Domestic producers gain**: they sell more (20 → 40) at a higher price ($\\$400 \\to \\$500$), so producer surplus rises.\n- **The government gains** \\$4 million of tariff revenue.\n- **Domestic consumers lose**: they pay $\\$100$ more per tonne and consume less (100 → 80); their lost surplus exceeds the producer and government gains combined.\n- **Foreign exporters lose** sales (imports fall 80 → 40).\n- **Society as a whole loses** the \\$2 million deadweight loss — the part of consumer surplus that is transferred to no one. The gains to producers and the government are transfers FROM consumers; the two triangles are pure waste."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 2 — quota vs tariff, and the quota rent"
+    },
+    {
+      "type": "text",
+      "content": "The same market can be attacked with a quota instead of a tariff. This example uses explicit demand and supply functions so you can see exactly where the quota rent goes — the number-one difference examiners test."
+    },
+    {
+      "type": "workedExample",
+      "question": "A small country's domestic market for a good is $Q_D = 200 - 2P$ and $Q_S = 2P - 40$ (quantities in thousands, price in \\$). The world price is $P_w = \\$50$, with perfectly elastic world supply. Instead of a tariff, the government imposes an import quota of 20 (thousand units).\n(a) Find the new domestic price.\n(b) Calculate the quota rent and explain who receives it.\n(c) Calculate the deadweight welfare loss.\n(d) State one way this quota would differ from a tariff that raised the price to the same level.",
+      "solution": "**(a) New domestic price.**\nWith the quota, total supply is domestic supply plus the fixed quota: $S_{Total} = (2P - 40) + 20 = 2P - 20$.\nSet total supply equal to demand: $200 - 2P = 2P - 20 \\implies 220 = 4P \\implies P = \\$55$. The domestic price rises from \\$50 to **\\$55**.\n\n**(b) Quota rent.**\nAt $P = \\$55$: domestic supply $Q_S = 2(55) - 40 = 70$; domestic demand $Q_D = 200 - 2(55) = 90$; imports $= 90 - 70 = 20$ (exactly the quota).\nThe quota rent is the quantity imported times the gap between the domestic price and the world price the importers actually pay:\n- Quota rent $= 20 \\times (\\$55 - \\$50) = 20 \\times \\$5 = \\$100$ (i.e. \\$100,000).\n- **It goes to the private importers who hold the licences**, because they buy at the \\$50 world price and resell at the \\$55 domestic price. Under a tariff this same rectangle would instead be **government revenue**.\n\n**(c) Deadweight welfare loss.**\nTwo triangles, each of height \\$5 (the price rise):\n- Production inefficiency: $0.5 \\times (Q_{S2} - Q_{S1}) \\times \\$5$. At $P_w=50$, $Q_{S1} = 2(50)-40 = 60$; so $0.5 \\times (70 - 60) \\times 5 = 0.5 \\times 10 \\times 5 = \\$25$.\n- Consumption inefficiency: at $P_w=50$, $Q_{D1} = 200-2(50) = 100$; so $0.5 \\times (100 - 90) \\times 5 = 0.5 \\times 10 \\times 5 = \\$25$.\n- **Total deadweight loss $= 25 + 25 = \\$50$** (i.e. \\$50,000).\n\n**(d) Key difference from a tariff.**\nA tariff raising the price to \\$55 would create the SAME deadweight loss (\\$50,000) and the same producer gain, but the \\$100,000 rectangle would be **government revenue rather than private quota rent**. That is why economists generally prefer a tariff to an equivalent quota — the government, not licence holders, captures the transfer."
+    },
+    {
+      "type": "heading",
+      "content": "Arguments FOR protectionism"
+    },
+    {
+      "type": "text",
+      "content": "Despite free trade's efficiency case, almost every government protects some industries. A strong evaluation states each argument fairly, then tests it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Infant industry** — a new industry may need temporary shelter to reach the scale and experience needed to compete. *But:* governments struggle to pick winners, and 'temporary' protection is politically hard to remove.",
+        "**Protecting jobs** — barriers can save jobs in industries hit by cheap imports. *But:* they raise costs for downstream firms and consumers, can cost jobs elsewhere, and often merely delay necessary adjustment.",
+        "**Anti-dumping** — protection can counter foreign firms selling below cost to drive out rivals. *But:* genuine dumping is hard to prove, and 'anti-dumping' is easily abused as disguised protection.",
+        "**Strategic / national security** — a country may protect industries vital in wartime (steel, energy, food, semiconductors) to guarantee supply. *But:* 'strategic' is elastic and invites lobbying by industries that are not truly essential.",
+        "**Correcting a current-account deficit** — restricting imports can narrow a deficit. *But:* it treats a symptom not the cause, invites retaliation that hits exports, and can raise input costs and inflation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Arguments AGAINST protectionism"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Higher prices and less choice** — consumers pay more and buy from a narrower range, cutting real incomes; the burden falls hardest on low-income households.",
+        "**Net welfare (deadweight) loss** — as the tariff diagram shows, the loss to consumers exceeds the gains to producers and the government; society is worse off overall.",
+        "**Inefficiency** — sheltered firms face weaker pressure to cut costs and innovate, entrenching productive inefficiency and a misallocation of resources away from comparative advantage.",
+        "**Retaliation and trade wars** — trading partners often respond in kind, so protected exporters lose overseas markets and interdependence turns a domestic policy into a shared loss.",
+        "**Hurts developing-country exporters** — barriers in rich markets can block the very exports that developing economies rely on to grow."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mislabelling government revenue on the tariff diagram** — revenue is the RECTANGLE (tariff x quantity STILL imported), not the whole area between $P_w$ and $P_w+t$, and not the producer-gain area.",
+        "**Forgetting there are TWO deadweight-loss triangles** — one for production inefficiency and one for consumption inefficiency; naming only one, or calling a rectangle a 'deadweight loss', loses marks.",
+        "**Saying a quota gives the government revenue** — it gives quota rent to private licence holders; only a tariff gives the government revenue. This is the single most tested tariff-vs-quota point.",
+        "**Claiming 'everyone loses' or 'everyone gains' from a tariff** — be precise: producers and the government gain, consumers and foreign exporters lose, and society suffers a net loss. Identify each group.",
+        "**One-sided evaluation** — for a part (b) command like 'Evaluate' or 'Discuss', listing only costs (or only benefits) caps you below the top band. You must weigh both sides and judge.",
+        "**Asserting a diagram instead of explaining it** — a drawn-but-unexplained diagram is described, not analysed; link each labelled area to the argument in words."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real IB markband"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 1, part (b): Evaluate the view that protectionism does more harm than good to an economy that adopts it. [15 marks]",
+      "solution": "**Model answer:**\nProtectionism refers to government policies — tariffs, quotas, subsidies and administrative barriers — that restrict imports to shield domestic industry. Whether it does more harm than good depends on the tool used, the industry, and the time horizon, so the claim must be weighed rather than simply accepted.\n\n**The case that protectionism does harm (theory + diagram).**\nConsider a tariff of $t$ per unit imposed by a small country facing a perfectly elastic world supply at price $P_w$.\n\n*[Diagram: domestic demand (D) and domestic supply ($S_{dom}$) curves; a horizontal world-supply line at $P_w$ and a second horizontal line at $P_w + t$. At $P_w$ domestic supply is $Q_{S1}$ and demand is $Q_{D1}$, so imports are $Q_{D1}-Q_{S1}$. After the tariff the price rises to $P_w+t$: domestic supply rises to $Q_{S2}$, demand falls to $Q_{D2}$, and imports shrink to $Q_{D2}-Q_{S2}$. Shade: consumer surplus lost (the whole band between the two prices up to D); producer surplus gained (left area between the prices above $S_{dom}$); government revenue (the RECTANGLE $t \\times (Q_{D2}-Q_{S2})$); and the TWO deadweight-loss triangles — production inefficiency between $Q_{S1}$ and $Q_{S2}$, and consumption inefficiency between $Q_{D2}$ and $Q_{D1}$.]*\n\nThe diagram shows the tariff raises the domestic price from $P_w$ to $P_w+t$. Consumers lose the most surplus: they pay more and consume less. Part of that loss is transferred to domestic producers (higher producer surplus) and part to the government (the revenue rectangle), but the two triangles are transferred to no one — they are a **net deadweight welfare loss**, reflecting higher-cost domestic output replacing cheaper imports (production inefficiency) and consumers priced out of the market (consumption inefficiency). So on efficiency grounds a tariff makes the adopting economy worse off overall.\n\n**Real-world example (fully developed).**\nWhen the United States imposed tariffs of 25% on imported steel, US steelmakers gained: their prices and output rose, and some steel jobs were protected — exactly the producer-surplus and jobs effect the diagram predicts. But steel is an INPUT for far larger industries — carmakers, appliance and construction firms — whose costs rose, so they raised prices, lost competitiveness and shed jobs; studies found the jobs lost in steel-using industries outnumbered the jobs saved in steelmaking. Trading partners retaliated with their own tariffs on US exports, so American farmers and manufacturers lost overseas sales. This single example shows the mechanism on both sides: a concentrated, visible gain to the protected industry set against diffuse, larger losses to consumers, downstream firms and exporters — the deadweight loss and retaliation of the theory made concrete.\n\n**The case that protectionism can do good (the other side).**\nThe view is not wholly true, however. Protection can be justified in specific cases. An **infant industry** shielded temporarily may reach the economies of scale needed to become genuinely competitive, turning a short-run cost into a long-run gain. Protecting **strategic industries** (steel, energy, semiconductors, food) can be worth some efficiency loss if it guarantees supply in a crisis — a security benefit the welfare diagram does not capture. Credible **anti-dumping** duties can prevent predatory foreign pricing from wiping out viable domestic firms. And tariff **revenue** matters for some developing economies with limited alternative tax bases. In these cases the 'harm' (deadweight loss, higher prices) may be outweighed by dynamic or non-economic benefits.\n\n**Balanced judgement.**\nOn balance, for a typical manufactured good in a developed economy, protectionism does do more harm than good: the deadweight loss, higher consumer prices, weakened efficiency and the serious risk of retaliation usually outweigh the concentrated gains to protected producers, as the steel case illustrates. But the verdict is conditional, not absolute. Where protection is temporary, conditional on performance, and aimed at a genuine infant or strategic industry, it can raise long-run welfare. The decisive factors are therefore the tool chosen (a tariff is preferable to a quota because the government, not licence holders, keeps the revenue), whether the protection is time-limited, and whether trading partners retaliate. The blanket claim is too strong: protectionism USUALLY harms the adopting economy, but not always.\n\n---\n**How this maps to our IB markband (Paper 1 part (b), out of 15):**\nThe top band, **13–15**, requires: the demands of the question addressed; relevant economic theory FULLY explained; relevant terms used appropriately THROUGHOUT; where appropriate a relevant diagram included AND FULLY explained; evidence of EFFECTIVE and BALANCED evaluation; and a relevant real-world example FULLY DEVELOPED.\n- ✅ Demands addressed — the response tackles 'more harm than good' directly and reaches a verdict.\n- ✅ Theory FULLY explained — the tariff's effect on price, consumers, producers, government and welfare is derived, not merely asserted.\n- ✅ Terms used appropriately THROUGHOUT — deadweight loss, consumer/producer surplus, comparative advantage, retaliation, infant industry.\n- ✅ Diagram included AND FULLY explained — every shaded area is linked to the argument in words, not left for the marker to interpret.\n- ✅ EFFECTIVE and BALANCED evaluation — BOTH the harm (deadweight loss, higher prices, inefficiency, retaliation) AND the potential good (infant industry, strategic, anti-dumping, revenue) are weighed, then judged with explicit conditions.\n- ✅ Real-world example FULLY DEVELOPED — the steel-tariff case is carried through the mechanism (producer gain and jobs saved) to its wider costs (downstream job losses, retaliation), not just named.\n\nWhat would drop this to lower bands? The **10–12** band is for evaluation that is only MOSTLY balanced with an example that is developed but less thoroughly. The **7–9** band applies where the theory is only partly explained, some terms are used, a diagram is included but the evaluation LACKS BALANCE and the example is only partly developed — for instance, listing only the costs of protectionism, or naming 'steel tariffs' without tracing their effects. The **4–6** band is for a response that merely DESCRIBES protectionism with SUPERFICIAL evaluation and an example only identified. The **1–3** band is for material that is not relevant and shows NO evaluation. The two things that lift this answer into 13–15 are precisely the FULLY DEVELOPED real-world example and the BALANCED, judged evaluation — assert the diagram or argue one side only, and the same content would fall two bands."
+    },
+    {
+      "type": "examTip",
+      "content": "This is exactly what the Practice button does: write your own answer to a Paper 1 (b) evaluation question, submit it, and our marking engine grades it against this same official 15-mark markband, telling you which band you reached and why. Two issues cap marks more than any other, so guard against both: an UNDEVELOPED real-world example (naming 'steel tariffs' but never tracing their effects) and a ONE-SIDED evaluation (listing only harms or only benefits without weighing them and judging). Develop the example and balance the evaluation, and you move from the 7–9 band into the top."
+    },
+    {
+      "type": "heading",
+      "content": "Key concepts in this lesson"
+    },
+    {
+      "type": "text",
+      "content": "This topic is built around three of the course's key concepts. **Interdependence** — trade links economies, so a tariff at home can trigger retaliation abroad. **Efficiency** — free trade's central promise is a more efficient allocation of world resources through comparative advantage, which protection erodes (the deadweight loss). **Intervention** — protectionism is precisely a government choosing to intervene in a market, redistributing surplus between consumers, producers and the state. Keep all three in view when you evaluate: the strongest answers link the diagram back to these concepts. This content is common to SL and HL; the numerical comparative-advantage analysis is HL only."
     },
     {
       "type": "practice",
-      "label": "Test your knowledge of free trade and protectionism with past paper questions.",
-      "href": "/mark?subject=ib-economics-hl&topic=4.2"
+      "label": "Get a Paper 1 (b) evaluation marked: evaluate whether protectionism does more harm than good",
+      "href": "/mark?subject=ib-economics-hl&topic=4.2&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "World Trade Organization (WTO) - What is the WTO?",
+          "label": "World Trade Organization — What is the WTO?",
           "href": "https://www.wto.org/english/thewto_e/whatis_e/whatis_e.htm"
         },
         {
-          "label": "The Economist - Explainer on Tariffs",
+          "label": "The Economist explains — What are tariffs and how do they work?",
           "href": "https://www.economist.com/the-economist-explains/2018/03/07/what-are-tariffs-how-do-they-work"
         },
         {
-          "label": "Peterson Institute for International Economics - Trade Topic",
+          "label": "Peterson Institute for International Economics — Trade",
           "href": "https://www.piie.com/research/topics/trade"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

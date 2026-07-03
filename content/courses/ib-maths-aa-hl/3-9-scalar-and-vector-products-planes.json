@@ -1,174 +1,339 @@
 {
   "slug": "3-9-scalar-and-vector-products-planes",
   "topicCode": "3.9",
+  "unit": {
+    "code": "3",
+    "title": "Geometry and trigonometry"
+  },
   "title": "Scalar and vector products; planes",
   "paper": "P1",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson explores the two ways to multiply vectors: the scalar (dot) product and the vector (cross) product. We'll learn how to calculate them and understand their geometric meanings, such as finding angles and perpendicular vectors. This knowledge is then applied to define and work with equations of planes in three-dimensional space.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "There are two ways to multiply vectors, and each answers a different geometric question. The scalar (dot) product returns a number and tells you about angle and perpendicularity; the vector (cross) product returns a new vector perpendicular to the first two, which is exactly what you need to describe a flat surface in space. This lesson builds both products from their definitions, then uses them to write the equation of a plane in vector, Cartesian and normal forms, to find the normal to a plane, and to compute angles between lines and planes and their intersections. Every worked example is laid out the way our marking engine awards marks, because in a calculation topic your working is what protects your score.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Calculate the scalar and vector product of two vectors.",
-    "Understand and apply the geometric interpretation of the scalar and vector products, including finding angles between lines and vectors.",
-    "Determine the vector, scalar product, and Cartesian equations of a plane.",
-    "Solve problems involving intersections between lines and planes, and angles between planes."
+    "Compute the scalar (dot) product both algebraically and geometrically, and use it to find the angle between two vectors and to test perpendicularity.",
+    "Compute the vector (cross) product, and use its magnitude for areas and its direction as a normal vector.",
+    "Write the equation of a plane in vector, Cartesian ($ax+by+cz=d$) and normal forms, reading the normal straight off the coefficients.",
+    "Find the angle between a line and a plane, and between two planes, choosing sine or cosine correctly.",
+    "Find the intersection of a line and a plane, and present working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "3.9"
+  ],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Vectors in 3D: Dots, Crosses, and Flat Surfaces",
-    "summary": "We learn two special ways to multiply vectors. The scalar product gives a single number telling us about the angle between vectors, while the vector product gives a new vector that's perpendicular to the first two.",
-    "analogy": "Imagine pushing a heavy box across a floor. The scalar product is like measuring how much of your push is actually in the direction the box is moving. Now, imagine using a wrench to tighten a bolt. The vector product is like the direction the bolt moves (straight down) which is perpendicular to both the wrench's handle and the force you apply to turn it. A plane is simply a perfectly flat, infinite surface, like an endless tabletop, which we can describe using one of these perpendicular vectors.",
+    "title": "Two Products, One Flat Surface",
+    "summary": "Multiply two vectors with the dot product and you get a number that measures how aligned they are — perfect for angles and right angles. Multiply them with the cross product and you get a new arrow at right angles to both — perfect for pointing 'straight out of' a flat surface, which is how we pin a plane down in space.",
+    "analogy": "Picture a solar panel bolted to a roof. The dot product is like asking how squarely the sunlight hits the panel — a single number, biggest when the light is head-on and zero when it grazes the surface. The cross product is like the bolt sticking straight out of the panel: it is perpendicular to the whole surface, and once you know which way that bolt points, you know exactly how the panel is tilted. That perpendicular bolt is the plane's normal vector.",
     "steps": [
-      "Use the scalar (dot) product $\\boldsymbol{a} \\cdot \\boldsymbol{b}$ to find the angle between two vectors or to check if they are perpendicular ($cos \\theta = 0$).",
-      "Use the vector (cross) product $\\boldsymbol{a} \\times \\boldsymbol{b}$ to find a new vector $\\boldsymbol{n}$ that is perpendicular to both $\\boldsymbol{a}$ and $\\boldsymbol{b}$.",
-      "Define a plane using this normal vector $\\boldsymbol{n}$ and a known point $\\boldsymbol{a}$ on the plane, forming the equation $\\boldsymbol{r} \\cdot \\boldsymbol{n} = \\boldsymbol{a} \\cdot \\boldsymbol{n}$.",
-      "Convert the plane's equation into its Cartesian form $ax+by+cz=d$ to solve problems like finding intersections with lines or other planes."
+      "Use the scalar (dot) product $\\mathbf{a}\\cdot\\mathbf{b}=|\\mathbf{a}||\\mathbf{b}|\\cos\\theta$ to find the angle between two vectors, or to test perpendicularity ($\\mathbf{a}\\cdot\\mathbf{b}=0$).",
+      "Use the vector (cross) product $\\mathbf{a}\\times\\mathbf{b}$ to build a vector $\\mathbf{n}$ perpendicular to both $\\mathbf{a}$ and $\\mathbf{b}$; its length is the area of the parallelogram they span.",
+      "Pin down a plane with a normal $\\mathbf{n}$ and one known point, giving $\\mathbf{r}\\cdot\\mathbf{n}=\\mathbf{a}\\cdot\\mathbf{n}$, then read off the Cartesian form $ax+by+cz=d$.",
+      "For angles and intersections, remember the normal IS the plane's coefficients: dot with a line's direction for a line–plane angle, dot two normals for a plane–plane angle."
     ]
   },
+  "keyConcepts": [
+    "dot product and the angle",
+    "cross product and the normal",
+    "equations of a plane"
+  ],
   "flashcards": [
     {
-      "front": "Scalar Product (algebraic form)",
-      "back": "For $\\boldsymbol{v} = v_1\\boldsymbol{i} + v_2\\boldsymbol{j} + v_3\\boldsymbol{k}$ and $\\boldsymbol{w} = w_1\\boldsymbol{i} + w_2\\boldsymbol{j} + w_3\\boldsymbol{k}$, the scalar product is $\\boldsymbol{v} \\cdot \\boldsymbol{w} = v_1w_1 + v_2w_2 + v_3w_3$. The result is a scalar."
+      "front": "Scalar (dot) product — the two forms",
+      "back": "Algebraic: $\\mathbf{a}\\cdot\\mathbf{b}=a_1b_1+a_2b_2+a_3b_3$. Geometric: $\\mathbf{a}\\cdot\\mathbf{b}=|\\mathbf{a}||\\mathbf{b}|\\cos\\theta$. The result is a scalar. Both are in the formula booklet.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Scalar Product (geometric form)",
-      "back": "$\\boldsymbol{v} \\cdot \\boldsymbol{w} = |\\boldsymbol{v}| |\\boldsymbol{w}| \\cos \\theta$, where $\\theta$ is the angle between the vectors."
+      "front": "Angle between two vectors",
+      "back": "Equate the two forms: $\\cos\\theta=\\dfrac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$. A positive dot product gives an acute angle, a negative one an obtuse angle.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Condition for Perpendicular Vectors",
-      "back": "Two non-zero vectors $\\boldsymbol{v}$ and $\\boldsymbol{w}$ are perpendicular (orthogonal) if and only if their scalar product is zero: $\\boldsymbol{v} \\cdot \\boldsymbol{w} = 0$."
+      "front": "Perpendicularity test",
+      "back": "Two non-zero vectors are perpendicular if and only if $\\mathbf{a}\\cdot\\mathbf{b}=0$. This is the single most-used consequence of the dot product.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Vector Product (determinant form)",
-      "back": "$\\boldsymbol{v} \\times \\boldsymbol{w} = \\begin{vmatrix} \\boldsymbol{i} & \\boldsymbol{j} & \\boldsymbol{k} \\\\ v_1 & v_2 & v_3 \\\\ w_1 & w_2 & w_3 \\end{vmatrix} = (v_2w_3 - v_3w_2)\\boldsymbol{i} - (v_1w_3 - v_3w_1)\\boldsymbol{j} + (v_1w_2 - v_2w_1)\\boldsymbol{k}$."
+      "front": "Vector (cross) product — magnitude and direction",
+      "back": "$|\\mathbf{a}\\times\\mathbf{b}|=|\\mathbf{a}||\\mathbf{b}|\\sin\\theta$, and $\\mathbf{a}\\times\\mathbf{b}$ is perpendicular to BOTH $\\mathbf{a}$ and $\\mathbf{b}$. The result is a vector.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Geometric meaning of Vector Product",
-      "back": "The vector $\\boldsymbol{v} \\times \\boldsymbol{w}$ is perpendicular to both $\\boldsymbol{v}$ and $\\boldsymbol{w}$. Its magnitude, $|\\boldsymbol{v} \\times \\boldsymbol{w}| = |\\boldsymbol{v}| |\\boldsymbol{w}| \\sin \\theta$, is the area of the parallelogram formed by $\\boldsymbol{v}$ and $\\boldsymbol{w}$."
+      "front": "Cross product — determinant form",
+      "back": "$\\mathbf{a}\\times\\mathbf{b}=\\begin{vmatrix}\\mathbf{i}&\\mathbf{j}&\\mathbf{k}\\\\a_1&a_2&a_3\\\\b_1&b_2&b_3\\end{vmatrix}=\\begin{pmatrix}a_2b_3-a_3b_2\\\\a_3b_1-a_1b_3\\\\a_1b_2-a_2b_1\\end{pmatrix}$. Mind the sign of the middle component.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Condition for Parallel Vectors",
-      "back": "Two non-zero vectors $\\boldsymbol{v}$ and $\\boldsymbol{w}$ are parallel if and only if their vector product is the zero vector: $\\boldsymbol{v} \\times \\boldsymbol{w} = \\boldsymbol{0}$."
+      "front": "Areas from the cross product",
+      "back": "$|\\mathbf{a}\\times\\mathbf{b}|$ is the area of the parallelogram spanned by $\\mathbf{a}$ and $\\mathbf{b}$; a triangle with those two sides has area $\\frac{1}{2}|\\mathbf{a}\\times\\mathbf{b}|$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Anti-commutativity of Vector Product",
-      "back": "The vector product is anti-commutative: $\\boldsymbol{v} \\times \\boldsymbol{w} = -(\\boldsymbol{w} \\times \\boldsymbol{v})$. The order of multiplication matters and reversing it flips the direction of the resulting vector."
+      "front": "Parallel and anti-commutative",
+      "back": "Non-zero $\\mathbf{a}$ and $\\mathbf{b}$ are parallel iff $\\mathbf{a}\\times\\mathbf{b}=\\mathbf{0}$. Order matters: $\\mathbf{a}\\times\\mathbf{b}=-(\\mathbf{b}\\times\\mathbf{a})$.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Vector Equation of a Plane",
-      "back": "$\\boldsymbol{r} \\cdot \\boldsymbol{n} = \\boldsymbol{a} \\cdot \\boldsymbol{n}$, where $\\boldsymbol{r}$ is the position vector of any point on the plane, $\\boldsymbol{a}$ is the position vector of a known point on the plane, and $\\boldsymbol{n}$ is a normal vector to the plane."
+      "front": "Normal to a plane",
+      "back": "A vector perpendicular to a plane is its normal $\\mathbf{n}$. From three points $A,B,C$: $\\mathbf{n}=\\vec{AB}\\times\\vec{AC}$. Any non-zero scalar multiple of $\\mathbf{n}$ is also a valid normal.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Cartesian Equation of a Plane",
-      "back": "$ax + by + cz = d$. The coefficients $a, b, c$ are the components of the normal vector $\\boldsymbol{n} = \\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix}$."
+      "front": "Equation of a plane — three forms",
+      "back": "Vector: $\\mathbf{r}\\cdot\\mathbf{n}=\\mathbf{a}\\cdot\\mathbf{n}$. Cartesian: $ax+by+cz=d$, where $(a,b,c)$ ARE the components of $\\mathbf{n}$ and $d=\\mathbf{a}\\cdot\\mathbf{n}$. Normal form: $\\mathbf{r}\\cdot\\hat{\\mathbf{n}}=p$, with $\\hat{\\mathbf{n}}$ a unit normal.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How to find the normal vector to a plane given three points A, B, C?",
-      "back": "1. Find two vectors lying in the plane, e.g., $\\vec{AB} = \\boldsymbol{b} - \\boldsymbol{a}$ and $\\vec{AC} = \\boldsymbol{c} - \\boldsymbol{a}$. 2. Calculate their vector product: $\\boldsymbol{n} = \\vec{AB} \\times \\vec{AC}$."
+      "front": "Read the normal off the Cartesian equation",
+      "back": "For $ax+by+cz=d$ the normal is $\\mathbf{n}=\\begin{pmatrix}a\\\\b\\\\c\\end{pmatrix}$ — just the coefficients. The constant $d$ shifts the plane but does not change its direction.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Angle between a line and a plane",
+      "back": "With line direction $\\mathbf{d}$ and plane normal $\\mathbf{n}$: $\\sin\\theta=\\dfrac{|\\mathbf{d}\\cdot\\mathbf{n}|}{|\\mathbf{d}||\\mathbf{n}|}$. SINE, because $\\theta$ is measured from the plane, not from its normal.",
+      "pillLabel": "Trap"
     },
     {
       "front": "Angle between two planes",
-      "back": "The angle between two planes is the angle between their normal vectors, $\\boldsymbol{n}_1$ and $\\boldsymbol{n}_2$. Use the scalar product: $\\cos \\theta = \\frac{|\\boldsymbol{n}_1 \\cdot \\boldsymbol{n}_2|}{|\\boldsymbol{n}_1| |\\boldsymbol{n}_2|}$. We use the absolute value to find the acute angle."
+      "back": "It equals the angle between the normals: $\\cos\\theta=\\dfrac{|\\mathbf{n}_1\\cdot\\mathbf{n}_2|}{|\\mathbf{n}_1||\\mathbf{n}_2|}$. The absolute value gives the acute angle.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Common Trap: Scalar vs Vector Product",
-      "back": "A common error is confusing the two products. Remember: 'scalar' product gives a scalar (a number), 'vector' product gives a vector. You cannot write $\\boldsymbol{a} \\cdot (\\boldsymbol{b} \\cdot \\boldsymbol{c})$ as the part in brackets is a scalar."
+      "front": "Line–plane intersection",
+      "back": "Substitute the line's parametric coordinates into the plane's Cartesian equation, solve for the parameter $t$, then put that $t$ back into the line to get the point.",
+      "pillLabel": "Framework"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which product and formula do you use to find the ANGLE between two vectors $\\mathbf{a}$ and $\\mathbf{b}$?",
+      "options": [
+        "The scalar product, via $\\cos\\theta=\\dfrac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$",
+        "The vector product, via $\\mathbf{a}\\times\\mathbf{b}$",
+        "Simply $\\mathbf{a}\\cdot\\mathbf{b}$ on its own, with no magnitudes",
+        "Add the vectors and take the magnitude"
+      ],
+      "answer": "The scalar product, via $\\cos\\theta=\\dfrac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$"
+    },
+    {
+      "prompt": "Two non-zero vectors are perpendicular. What must be true of their scalar product?",
+      "options": [
+        "It equals zero",
+        "It equals one",
+        "It equals $|\\mathbf{a}||\\mathbf{b}|$",
+        "It is the zero vector $\\mathbf{0}$"
+      ],
+      "answer": "It equals zero"
+    },
+    {
+      "prompt": "What is the defining geometric property of $\\mathbf{a}\\times\\mathbf{b}$?",
+      "options": [
+        "It is perpendicular to both $\\mathbf{a}$ and $\\mathbf{b}$",
+        "It is parallel to $\\mathbf{a}+\\mathbf{b}$",
+        "It is a scalar equal to $|\\mathbf{a}||\\mathbf{b}|\\cos\\theta$",
+        "It lies in the same direction as $\\mathbf{a}$"
+      ],
+      "answer": "It is perpendicular to both $\\mathbf{a}$ and $\\mathbf{b}$"
+    },
+    {
+      "prompt": "A plane has Cartesian equation $3x-2y+z=7$. What is a normal vector to the plane?",
+      "options": [
+        "$\\begin{pmatrix}3\\\\-2\\\\1\\end{pmatrix}$",
+        "$\\begin{pmatrix}3\\\\-2\\\\7\\end{pmatrix}$",
+        "$\\begin{pmatrix}7\\\\7\\\\7\\end{pmatrix}$",
+        "$\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}$"
+      ],
+      "answer": "$\\begin{pmatrix}3\\\\-2\\\\1\\end{pmatrix}$"
+    },
+    {
+      "prompt": "To find the angle between a line (direction $\\mathbf{d}$) and a plane (normal $\\mathbf{n}$), which relation is correct?",
+      "options": [
+        "$\\sin\\theta=\\dfrac{|\\mathbf{d}\\cdot\\mathbf{n}|}{|\\mathbf{d}||\\mathbf{n}|}$",
+        "$\\cos\\theta=\\dfrac{|\\mathbf{d}\\cdot\\mathbf{n}|}{|\\mathbf{d}||\\mathbf{n}|}$",
+        "$\\tan\\theta=\\dfrac{|\\mathbf{d}\\times\\mathbf{n}|}{|\\mathbf{d}\\cdot\\mathbf{n}|}$",
+        "$\\theta=\\mathbf{d}\\cdot\\mathbf{n}$"
+      ],
+      "answer": "$\\sin\\theta=\\dfrac{|\\mathbf{d}\\cdot\\mathbf{n}|}{|\\mathbf{d}||\\mathbf{n}|}$"
     }
   ],
   "faq": [
     {
-      "q": "What is the actual difference between the scalar and vector products?",
-      "a": "The scalar product (dot product) results in a scalar value and is used to find angles and check for perpendicularity. The vector product (cross product) results in a new vector that is perpendicular to the two original vectors and is used to find normal vectors for planes."
+      "q": "What is the real difference between the scalar and vector products?",
+      "a": "The scalar (dot) product turns two vectors into a single number that measures how aligned they are — it is the tool for angles and for testing perpendicularity. The vector (cross) product turns two vectors into a new vector that is perpendicular to both, whose length equals the area of the parallelogram they span. So if a question mentions an angle or a right angle, think dot product; if it wants a vector perpendicular to two others, or the equation of a plane (which needs a normal), think cross product."
     },
     {
-      "q": "How do I know which product to use in a problem?",
-      "a": "If the question involves an angle, projection, or asks if vectors are perpendicular, think scalar product. If the question asks for a vector that is perpendicular to two others, or asks for the equation of a plane (which needs a normal vector), think vector product."
+      "q": "Why is it sine for a line and a plane, but cosine for two planes?",
+      "a": "The dot product always compares directions of the two vectors you feed it. For two planes, those vectors are the two normals, and the angle between the normals equals the angle between the planes — so cosine works directly. For a line and a plane, the natural vectors are the line's direction and the plane's normal, but the angle between them is $90^\\circ$ minus the angle you actually want (the tilt from the surface). Since $\\cos(90^\\circ-\\theta)=\\sin\\theta$, the dot-product formula gives $\\sin\\theta$ for the line–plane angle."
     },
     {
-      "q": "Can a plane have more than one equation?",
-      "a": "Yes. The equation of a plane is not unique. For example, $x+y+z=5$ and $2x+2y+2z=10$ represent the exact same plane. Any scalar multiple of a valid normal vector is also a valid normal vector, which leads to a scaled version of the Cartesian equation."
+      "q": "Can a plane have more than one correct equation?",
+      "a": "Yes. The normal is only defined up to a non-zero scalar multiple, so any multiple of a valid equation describes the same plane: $x+y+z=5$ and $2x+2y+2z=10$ are identical planes. When you find a normal by a cross product, it is good practice to divide out any common factor before finding the constant $d$, which keeps the arithmetic clean."
+    },
+    {
+      "q": "Is the cross product actually needed, or can I always avoid it?",
+      "a": "For a plane through three points, the cross product is the fastest route to a normal, and it is in the AA HL syllabus, so you should be fluent with it. You can sometimes avoid it — for instance by substituting the three points into $ax+by+cz=d$ and solving the resulting system — but that is slower and more error-prone under exam pressure. Learn the determinant layout and the sign pattern once, and it becomes reliable."
+    },
+    {
+      "q": "How do I know a line and a plane actually meet at a single point?",
+      "a": "Substitute the line into the plane and look at the equation you get for the parameter $t$. If it gives one value of $t$, there is a single intersection point. If it collapses to a false statement like $3=5$, the line is parallel to the plane and never meets it. If it collapses to a true statement like $0=0$, the line lies entirely in the plane. A quick check: $\\mathbf{d}\\cdot\\mathbf{n}=0$ means the line is parallel to the plane, so watch for that."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our journey through vectors, we've treated them as objects to be added, subtracted, and scaled. Now, we introduce two distinct forms of multiplication: the scalar product and the vector product. These powerful tools are the key to unlocking the geometry of three-dimensional space, allowing us to calculate angles, determine perpendicularity, and, most significantly, to define and analyse planes."
+      "content": "So far vectors have been things you add, subtract and scale. Now you meet two ways to multiply them, and the whole of 3D geometry opens up. The scalar (dot) product hands you a number that measures angle and perpendicularity; the vector (cross) product hands you a new vector at right angles to both inputs, which is precisely what is needed to describe a plane. In this lesson we build both products, use the cross product to find normals and areas, write the equation of a plane in its three standard forms, and finish with the angles and intersections that Paper 1 loves. As always, each worked example is set out the way our engine marks your own practice — method mark by method mark."
     },
     {
       "type": "heading",
-      "content": "The Scalar (Dot) Product: Measuring Projection"
+      "content": "The scalar (dot) product"
     },
     {
       "type": "text",
-      "content": "The scalar product, also known as the dot product, takes two vectors and returns a single number (a scalar). This number has a profound geometric meaning: it's related to the projection of one vector onto another. Its most common application in exams is to find the angle between two vectors or to test if they are perpendicular."
+      "content": "The scalar product multiplies two vectors and returns a single number. It has two equivalent forms — an algebraic one you compute from components, and a geometric one built from magnitudes and the angle between the vectors. Setting the two equal is what lets you extract an angle, and the special case where the number is zero is what tests for a right angle."
     },
     {
       "type": "formula",
-      "content": "Given two vectors $\\boldsymbol{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$ and $\\boldsymbol{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{pmatrix}$: \\\\ Algebraic form: $\\boldsymbol{a} \\cdot \\boldsymbol{b} = a_1 b_1 + a_2 b_2 + a_3 b_3$ \\\\ Geometric form: $\\boldsymbol{a} \\cdot \\boldsymbol{b} = |\\boldsymbol{a}| |\\boldsymbol{b}| \\cos \\theta$"
+      "content": "For $\\mathbf{a}=\\begin{pmatrix}a_1\\\\a_2\\\\a_3\\end{pmatrix}$ and $\\mathbf{b}=\\begin{pmatrix}b_1\\\\b_2\\\\b_3\\end{pmatrix}$:\n$\\mathbf{a}\\cdot\\mathbf{b}=|\\mathbf{a}||\\mathbf{b}|\\cos\\theta = a_1b_1+a_2b_2+a_3b_3.$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The result of a scalar product is always a scalar, not a vector.",
-        "Combining the two forms gives the formula for the angle between two vectors: $\\cos \\theta = \\frac{\\boldsymbol{a} \\cdot \\boldsymbol{b}}{|\\boldsymbol{a}| |\\boldsymbol{b}|}$.",
-        "The most important property: two non-zero vectors $\\boldsymbol{a}$ and $\\boldsymbol{b}$ are perpendicular (orthogonal) if and only if $\\boldsymbol{a} \\cdot \\boldsymbol{b} = 0$."
+        "The result is a SCALAR (a number), never a vector.",
+        "Equating the two forms gives the angle: $\\cos\\theta=\\dfrac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$.",
+        "Perpendicularity: two non-zero vectors satisfy $\\mathbf{a}\\cdot\\mathbf{b}=0$ if and only if they are at right angles.",
+        "The sign tells the story: a positive dot product means an acute angle, negative means obtuse."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Consider the vectors $\\boldsymbol{a} = 2\\boldsymbol{i} - 3\\boldsymbol{j} + \\boldsymbol{k}$ and $\\boldsymbol{b} = \\boldsymbol{i} + 4\\boldsymbol{j} - 2\\boldsymbol{k}$. Find the angle $\\theta$ between $\\boldsymbol{a}$ and $\\boldsymbol{b}$ in radians, giving your answer in terms of arccos.",
-      "solution": "First, we calculate the scalar product $\\boldsymbol{a} \\cdot \\boldsymbol{b}$. \\\\ $\\boldsymbol{a} \\cdot \\boldsymbol{b} = (2)(1) + (-3)(4) + (1)(-2)$ (M1) \\\\ $= 2 - 12 - 2 = -12$. (A1) \\\\ Next, we find the magnitudes of both vectors. \\\\ $|\\boldsymbol{a}| = \\sqrt{2^2 + (-3)^2 + 1^2} = \\sqrt{4 + 9 + 1} = \\sqrt{14}$. (A1) \\\\ $|\\boldsymbol{b}| = \\sqrt{1^2 + 4^2 + (-2)^2} = \\sqrt{1 + 16 + 4} = \\sqrt{21}$. (A1) \\\\ Now, we use the formula $\\cos \\theta = \\frac{\\boldsymbol{a} \\cdot \\boldsymbol{b}}{|\\boldsymbol{a}| |\\boldsymbol{b}|}$. \\\\ $\\cos \\theta = \\frac{-12}{\\sqrt{14}\\sqrt{21}}$ (M1) \\\\ $\\cos \\theta = \\frac{-12}{\\sqrt{14 \\times 21}} = \\frac{-12}{\\sqrt{294}} = \\frac{-12}{\\sqrt{49 \\times 6}} = \\frac{-12}{7\\sqrt{6}}$. \\\\ So, $\\theta = \\arccos\\left(\\frac{-12}{7\\sqrt{6}}\\right)$. (A1)"
+      "question": "The vectors $\\mathbf{a}=\\begin{pmatrix}3\\\\-1\\\\2\\end{pmatrix}$ and $\\mathbf{b}=\\begin{pmatrix}k\\\\4\\\\1\\end{pmatrix}$ are perpendicular. Find the value of $k$. [3]",
+      "solution": "Perpendicular vectors have a zero scalar product, so set $\\mathbf{a}\\cdot\\mathbf{b}=0$ and solve.\n\n**Apply the perpendicularity condition:**\n$\\mathbf{a}\\cdot\\mathbf{b}=0$  [M1: sets dot product to zero]\n\n**Compute the dot product in terms of $k$:**\n$(3)(k)+(-1)(4)+(2)(1)=3k-4+2=3k-2$  [A1: correct expression]\n\n**Solve:**\n$3k-2=0 \\;\\Rightarrow\\; k=\\dfrac{2}{3}$.  [A1: value]\n\n**Final answer:** $k=\\dfrac{2}{3}$."
     },
     {
       "type": "heading",
-      "content": "The Vector (Cross) Product: Finding the Normal"
+      "content": "The vector (cross) product"
     },
     {
       "type": "text",
-      "content": "Exclusive to 3D space, the vector product (or cross product) of two vectors $\\boldsymbol{a}$ and $\\boldsymbol{b}$ produces a third vector, $\\boldsymbol{a} \\times \\boldsymbol{b}$. This new vector has the unique and crucial property of being perpendicular to both $\\boldsymbol{a}$ and $\\boldsymbol{b}$. This makes it the perfect tool for finding the normal vector to a plane."
+      "content": "The vector product is available only in 3D. It takes two vectors and returns a third vector that is perpendicular to both of them — which is exactly the ingredient you need to describe a plane. Its magnitude carries geometric meaning too: it equals the area of the parallelogram the two vectors span."
     },
     {
       "type": "formula",
-      "content": "For $\\boldsymbol{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$ and $\\boldsymbol{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{pmatrix}$, the vector product is calculated using a determinant: \\\\ $\\boldsymbol{a} \\times \\boldsymbol{b} = \\begin{vmatrix} \\boldsymbol{i} & \\boldsymbol{j} & \\boldsymbol{k} \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix} = \\begin{pmatrix} a_2 b_3 - a_3 b_2 \\\\ a_3 b_1 - a_1 b_3 \\\\ a_1 b_2 - a_2 b_1 \\end{pmatrix}$"
+      "content": "$\\mathbf{a}\\times\\mathbf{b}=\\begin{vmatrix}\\mathbf{i}&\\mathbf{j}&\\mathbf{k}\\\\a_1&a_2&a_3\\\\b_1&b_2&b_3\\end{vmatrix}=\\begin{pmatrix}a_2b_3-a_3b_2\\\\a_3b_1-a_1b_3\\\\a_1b_2-a_2b_1\\end{pmatrix},$\n$\\quad |\\mathbf{a}\\times\\mathbf{b}|=|\\mathbf{a}||\\mathbf{b}|\\sin\\theta.$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The vector $\\boldsymbol{a} \\times \\boldsymbol{b}$ is orthogonal to both $\\boldsymbol{a}$ and $\\boldsymbol{b}$.",
-        "The product is anti-commutative: $\\boldsymbol{a} \\times \\boldsymbol{b} = -(\\boldsymbol{b} \\times \\boldsymbol{a})$. Order is critical!",
-        "If $\\boldsymbol{a} \\times \\boldsymbol{b} = \\boldsymbol{0}$, the non-zero vectors $\\boldsymbol{a}$ and $\\boldsymbol{b}$ are parallel.",
-        "The magnitude $|\\boldsymbol{a} \\times \\boldsymbol{b}|$ represents the area of the parallelogram with adjacent sides defined by vectors $\\boldsymbol{a}$ and $\\boldsymbol{b}$."
+        "$\\mathbf{a}\\times\\mathbf{b}$ is perpendicular to BOTH $\\mathbf{a}$ and $\\mathbf{b}$ — this is why it gives a normal.",
+        "$|\\mathbf{a}\\times\\mathbf{b}|$ is the parallelogram area; halve it for the triangle with sides $\\mathbf{a}$, $\\mathbf{b}$.",
+        "Anti-commutative: $\\mathbf{a}\\times\\mathbf{b}=-(\\mathbf{b}\\times\\mathbf{a})$, so order flips the direction.",
+        "If $\\mathbf{a}\\times\\mathbf{b}=\\mathbf{0}$ (with both non-zero), the vectors are parallel."
       ]
     },
     {
       "type": "examTip",
-      "content": "When calculating the determinant for the vector product, be extremely careful with the signs, especially for the $\\boldsymbol{j}$ component which has a negative sign in the expansion: $-(a_1 b_3 - a_3 b_1)\\boldsymbol{j}$. Writing out the full $3 \\times 3$ determinant and expanding carefully can prevent costly errors."
-    },
-    {
-      "type": "heading",
-      "content": "Equations of a Plane"
-    },
-    {
-      "type": "text",
-      "content": "A plane is a flat, two-dimensional surface that extends infinitely in 3D space. To uniquely define a plane, we need two pieces of information: a vector that is normal (perpendicular) to the plane, and the position vector of at least one point that lies on the plane. The vector product is our tool for finding this normal vector."
-    },
-    {
-      "type": "formula",
-      "content": "Let $\\boldsymbol{n} = \\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix}$ be a normal vector and $\\boldsymbol{p}_0 = \\begin{pmatrix} x_0 \\\\ y_0 \\\\ z_0 \\end{pmatrix}$ be the position vector of a point on the plane. \\\\ Vector form: $(\\boldsymbol{r} - \\boldsymbol{p}_0) \\cdot \\boldsymbol{n} = 0$, which is usually written as $\\boldsymbol{r} \\cdot \\boldsymbol{n} = \\boldsymbol{p}_0 \\cdot \\boldsymbol{n}$. \\\\ Cartesian form: $ax + by + cz = d$, where $d = \\boldsymbol{p}_0 \\cdot \\boldsymbol{n} = ax_0 + by_0 + cz_0$."
+      "content": "The middle ($\\mathbf{j}$) component of the determinant carries a hidden minus sign: expanding along the top row gives $-\\mathbf{j}(a_1b_3-a_3b_1)$. Writing the full $3\\times3$ determinant and expanding carefully — rather than trying to memorise the component formula raw — is the surest way to avoid a sign slip that would send your normal in the wrong direction."
     },
     {
       "type": "workedExample",
-      "question": "Find the Cartesian equation of the plane passing through the points A(1, 2, 2), B(2, 0, 3), and C(3, 1, 1).",
-      "solution": "To find the equation of the plane, we first need a normal vector $\\boldsymbol{n}$. We can find this by taking the vector product of two vectors lying in the plane. Let's find $\\vec{AB}$ and $\\vec{AC}$. \\\\ $\\vec{AB} = \\boldsymbol{b} - \\boldsymbol{a} = \\begin{pmatrix} 2 \\\\ 0 \\\\ 3 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ 2 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ -2 \\\\ 1 \\end{pmatrix}$. (A1) \\\\ $\\vec{AC} = \\boldsymbol{c} - \\boldsymbol{a} = \\begin{pmatrix} 3 \\\\ 1 \\\\ 1 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ 2 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ -1 \\\\ -1 \\end{pmatrix}$. (A1) \\\\ Now, we calculate the normal vector $\\boldsymbol{n} = \\vec{AB} \\times \\vec{AC}$. (M1) \\\\ $\\boldsymbol{n} = \\begin{vmatrix} \\boldsymbol{i} & \\boldsymbol{j} & \\boldsymbol{k} \\\\ 1 & -2 & 1 \\\\ 2 & -1 & -1 \\end{vmatrix} = \\boldsymbol{i}((-2)(-1) - (1)(-1)) - \\boldsymbol{j}((1)(-1) - (1)(2)) + \\boldsymbol{k}((1)(-1) - (-2)(2))$ (M1) \\\\ $\\boldsymbol{n} = \\boldsymbol{i}(2+1) - \\boldsymbol{j}(-1-2) + \\boldsymbol{k}(-1+4) = 3\\boldsymbol{i} + 3\\boldsymbol{j} + 3\\boldsymbol{k} = \\begin{pmatrix} 3 \\\\ 3 \\\\ 3 \\end{pmatrix}$. (A1) \\\\ We can use a simpler normal vector by dividing by 3, so let's use $\\boldsymbol{n'} = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. The equation of the plane is of the form $x+y+z = d$. \\\\ To find $d$, we substitute one of the points, for example A(1, 2, 2). (M1) \\\\ $d = (1) + (2) + (2) = 5$. \\\\ The Cartesian equation of the plane is $x+y+z=5$. (A1)"
+      "question": "Points $P(1,1,1)$, $Q(3,2,1)$ and $R(2,4,3)$ form a triangle. Find the area of triangle $PQR$, giving your answer in exact form. [5]",
+      "solution": "Two sides of the triangle from $P$ are $\\vec{PQ}$ and $\\vec{PR}$; their cross product's magnitude is the parallelogram area, so half of it is the triangle.\n\n**Two side vectors:**\n$\\vec{PQ}=\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix}, \\quad \\vec{PR}=\\begin{pmatrix}1\\\\3\\\\2\\end{pmatrix}$  [A1: both correct]\n\n**Cross product:**\n$\\vec{PQ}\\times\\vec{PR}=\\begin{pmatrix}(1)(2)-(0)(3)\\\\(0)(1)-(2)(2)\\\\(2)(3)-(1)(1)\\end{pmatrix}=\\begin{pmatrix}2\\\\-4\\\\5\\end{pmatrix}$  [M1: cross product method] [A1: correct vector]\n\n**Magnitude:**\n$|\\vec{PQ}\\times\\vec{PR}|=\\sqrt{2^2+(-4)^2+5^2}=\\sqrt{45}=3\\sqrt{5}$  [M1: magnitude of cross product]\n\n**Halve for the triangle:**\nArea $=\\dfrac{1}{2}(3\\sqrt{5})=\\dfrac{3\\sqrt{5}}{2}$.  [A1: exact area]\n\n**Final answer:** Area $=\\dfrac{3\\sqrt{5}}{2}\\approx 3.35$ square units."
+    },
+    {
+      "type": "heading",
+      "content": "Equations of a plane"
+    },
+    {
+      "type": "text",
+      "content": "A plane is a flat surface stretching out forever in 3D. To fix it uniquely you need just two things: a normal vector $\\mathbf{n}$ (the direction 'straight out' of the surface) and one point known to lie on it. Every form of the plane's equation is really the same statement — that the vector from the known point to any point on the plane is perpendicular to $\\mathbf{n}$."
+    },
+    {
+      "type": "formula",
+      "content": "With normal $\\mathbf{n}=\\begin{pmatrix}a\\\\b\\\\c\\end{pmatrix}$ and a point with position vector $\\mathbf{a}_0$ on the plane:\nvector form: $\\mathbf{r}\\cdot\\mathbf{n}=\\mathbf{a}_0\\cdot\\mathbf{n}$\nCartesian form: $ax+by+cz=d, \\quad d=\\mathbf{a}_0\\cdot\\mathbf{n}$\nnormal form: $\\mathbf{r}\\cdot\\hat{\\mathbf{n}}=p, \\quad \\hat{\\mathbf{n}}=\\dfrac{\\mathbf{n}}{|\\mathbf{n}|}.$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "In $ax+by+cz=d$ the coefficients $(a,b,c)$ ARE the normal vector — read it off directly.",
+        "The three forms are interchangeable: expand the dot product in $\\mathbf{r}\\cdot\\mathbf{n}=d$ to reach the Cartesian form.",
+        "In the normal form, $\\hat{\\mathbf{n}}$ is a unit normal and $p$ is the perpendicular distance from the origin to the plane.",
+        "Any non-zero multiple of $(a,b,c,d)$ gives the same plane, so simplify the normal before finding $d$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the Cartesian equation of the plane through the points $P(1,1,1)$, $Q(3,2,1)$ and $R(2,4,3)$. [5]",
+      "solution": "A plane through three points needs a normal, and the cross product of two in-plane vectors supplies one. We already have suitable side vectors from $P$.\n\n**Two in-plane vectors:**\n$\\vec{PQ}=\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix}, \\quad \\vec{PR}=\\begin{pmatrix}1\\\\3\\\\2\\end{pmatrix}$  [A1]\n\n**Normal via cross product:**\n$\\mathbf{n}=\\vec{PQ}\\times\\vec{PR}=\\begin{pmatrix}2\\\\-4\\\\5\\end{pmatrix}$  [M1: cross product for normal] [A1: correct normal]\n\n**Form the equation** $2x-4y+5z=d$ and find $d$ by substituting $P(1,1,1)$:\n$d=2(1)-4(1)+5(1)=3$  [M1: substitute a point]\n\n**Cartesian equation:**\n$2x-4y+5z=3.$  [A1]\n\n**Check** with $Q(3,2,1)$: $2(3)-4(2)+5(1)=6-8+5=3$ ✓, and $R(2,4,3)$: $2(2)-4(4)+5(3)=4-16+15=3$ ✓.\n\n**Final answer:** $2x-4y+5z=3$."
     },
     {
       "type": "examTip",
-      "content": "If you find a normal vector like $\\begin{pmatrix} 10 \\\\ -5 \\\\ 15 \\end{pmatrix}$, you can (and should!) simplify it by dividing by the greatest common divisor (5) to get $\\begin{pmatrix} 2 \\\\ -1 \\\\ 3 \\end{pmatrix}$. This makes subsequent calculations, like finding the value of $d$ or intersections, much easier and less prone to arithmetic errors."
+      "content": "Once you have a candidate plane through three points, spend five seconds substituting the OTHER two points to confirm they both give the same $d$. It is a near-free check that catches a sign error in the cross product or an arithmetic slip in $d$ before it costs you the accuracy marks that follow."
+    },
+    {
+      "type": "heading",
+      "content": "Angles: line to plane, and plane to plane"
+    },
+    {
+      "type": "text",
+      "content": "Both angle calculations run through the dot product, but you must feed it the right vectors and pick the right trig ratio. For two planes, dot their normals and use cosine, because the angle between the normals equals the angle between the planes. For a line and a plane, dot the line's direction with the plane's normal — but that gives the angle to the normal, so the tilt from the surface itself comes out through sine."
+    },
+    {
+      "type": "formula",
+      "content": "Line (direction $\\mathbf{d}$) and plane (normal $\\mathbf{n}$): $\\sin\\theta=\\dfrac{|\\mathbf{d}\\cdot\\mathbf{n}|}{|\\mathbf{d}||\\mathbf{n}|}$.\nTwo planes (normals $\\mathbf{n}_1,\\mathbf{n}_2$): $\\cos\\theta=\\dfrac{|\\mathbf{n}_1\\cdot\\mathbf{n}_2|}{|\\mathbf{n}_1||\\mathbf{n}_2|}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Line–plane uses SINE; plane–plane uses COSINE. Mixing them is a classic lost mark.",
+        "The absolute value $|\\cdots|$ delivers the acute angle every time.",
+        "For a line and a plane, $\\mathbf{d}\\cdot\\mathbf{n}=0$ means the line is parallel to (or lies in) the plane.",
+        "For two planes, $\\mathbf{n}_1\\parallel\\mathbf{n}_2$ means the planes are parallel."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A line has equation $\\mathbf{r}=\\begin{pmatrix}4\\\\-1\\\\3\\end{pmatrix}+t\\begin{pmatrix}2\\\\3\\\\6\\end{pmatrix}$ and a plane has equation $x+2y+2z=6$. (a) Find the acute angle between the line and the plane. (b) Find the point where the line meets the plane. [6]",
+      "solution": "The line's direction is $\\mathbf{d}=\\begin{pmatrix}2\\\\3\\\\6\\end{pmatrix}$ and the plane's normal, read off the coefficients, is $\\mathbf{n}=\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$.\n\n**(a) Angle.** Line and plane, so use sine.\n$\\mathbf{d}\\cdot\\mathbf{n}=(2)(1)+(3)(2)+(6)(2)=2+6+12=20$  [M1: dot product of direction and normal]\n$|\\mathbf{d}|=\\sqrt{2^2+3^2+6^2}=\\sqrt{49}=7, \\quad |\\mathbf{n}|=\\sqrt{1^2+2^2+2^2}=\\sqrt{9}=3$\n$\\sin\\theta=\\dfrac{|20|}{(7)(3)}=\\dfrac{20}{21}$  [M1: correct sine formula]\n$\\theta=\\arcsin\\!\\left(\\tfrac{20}{21}\\right)=72.2^\\circ$ (3 s.f.).  [A1: angle]\n\n**(b) Intersection.** Write the line in coordinates, $x=4+2t$, $y=-1+3t$, $z=3+6t$, and substitute into the plane.\n$(4+2t)+2(-1+3t)+2(3+6t)=6$  [M1: substitute line into plane]\n$4+2t-2+6t+6+12t=6 \\;\\Rightarrow\\; 8+20t=6 \\;\\Rightarrow\\; t=-0.1$  [A1: value of $t$]\nPut $t=-0.1$ back into the line: $x=3.8$, $y=-1.3$, $z=2.4$.\n\n**Final answer:** angle $\\approx 72.2^\\circ$; intersection point $(3.8,\\,-1.3,\\,2.4)$.  [A1: point]"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using the dot product for the angle without the magnitudes** — the angle comes from $\\cos\\theta=\\frac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, not from $\\mathbf{a}\\cdot\\mathbf{b}$ alone. Forgetting to divide by $|\\mathbf{a}||\\mathbf{b}|$ loses the method.",
+        "**Confusing the two zero conditions** — perpendicular means the SCALAR product is $0$; parallel means the VECTOR product is $\\mathbf{0}$. Swapping them is a frequent error.",
+        "**Thinking $\\mathbf{a}\\times\\mathbf{b}$ is a number** — the cross product is a VECTOR (perpendicular to both inputs); the dot product is the scalar. Writing one where the other belongs is penalised.",
+        "**Misreading the normal from the plane** — for $ax+by+cz=d$ the normal is $(a,b,c)$, not $(a,b,d)$; the constant $d$ is not part of the normal.",
+        "**Sine/cosine mix-up for angles** — line-to-plane uses SINE, plane-to-plane uses COSINE. Using the wrong ratio gives the complementary angle.",
+        "**Dropping the sign in the cross-product determinant** — the middle component is $a_3b_1-a_1b_3$ (from the $-\\mathbf{j}$ expansion); a sign slip reverses the normal's direction.",
+        "**Rounding too early** — carry exact or full-precision magnitudes like $\\sqrt{45}$ into the next step; rounding $|\\mathbf{n}|$ before dividing corrupts the accuracy marks that depend on it."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark ($M$) for the correct approach, or an accuracy mark ($A$) for the right value, where an $A$ mark is dependent on the $M$ mark before it. The engine accepts exact forms and any correctly-rounded value, and awards degrees or radians alike. Watch how each of the four marks below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the angle between the vectors $\\mathbf{a}=(2,\\,1,\\,2)$ and $\\mathbf{b}=(1,\\,-2,\\,2)$. [4]",
+      "solution": "**Model answer — full working.**\n\nThe angle between two vectors comes from equating the algebraic and geometric forms of the scalar product, so first compute $\\mathbf{a}\\cdot\\mathbf{b}$ and the two magnitudes.\n\n**Scalar product:**\n$\\mathbf{a}\\cdot\\mathbf{b}=(2)(1)+(1)(-2)+(2)(2)=2-2+4=4.$\n\n**Magnitudes:**\n$|\\mathbf{a}|=\\sqrt{2^2+1^2+2^2}=\\sqrt{9}=3, \\qquad |\\mathbf{b}|=\\sqrt{1^2+(-2)^2+2^2}=\\sqrt{9}=3.$\n\n**Angle:**\n$\\cos\\theta=\\dfrac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}=\\dfrac{4}{(3)(3)}=\\dfrac{4}{9}$\n$\\theta=\\arccos\\!\\left(\\tfrac{4}{9}\\right)=63.6^\\circ$ (3 s.f.), or $1.11$ radians.\n\n**Final answer:** $\\theta=\\arccos\\!\\left(\\tfrac{4}{9}\\right)\\approx 63.6^\\circ$.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — set up the scalar product.** Awarded for computing $\\mathbf{a}\\cdot\\mathbf{b}$ from components, i.e. $(2)(1)+(1)(-2)+(2)(2)$. This METHOD mark is for the correct approach and survives an arithmetic slip.\n- **A1 — value of the scalar product.** Awarded for $\\mathbf{a}\\cdot\\mathbf{b}=4$. It is dependent on the M1 above.\n- **M1 — use $\\cos\\theta=\\frac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$.** Awarded for dividing the dot product by the product of the magnitudes, here $\\cos\\theta=\\frac{4}{3\\times3}$ — the right formula, with the magnitudes correctly found as $3$ and $3$.\n- **A1 — the angle.** Awarded for $\\theta\\approx 63.6^\\circ$. The engine 'accepts answers that round correctly' and takes exact or radian equivalents, so $\\arccos\\!\\left(\\tfrac{4}{9}\\right)$, $63.6^\\circ$, or $1.11$ rad all score; a bare $\\frac{4}{9}$ with no inverse-cosine does not.\n\n**Bottom line:** two method marks reward the structure (form the dot product, then divide by the magnitudes) and survive a keying slip, while the two accuracy marks accept exact forms and any correctly-rounded value — including $1.11$ radians. A candidate who writes only '$63.6^\\circ$' with no dot product or magnitudes risks the two method marks if any number is off."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, accepting exact forms and correctly-rounded values in degrees or radians. So always show the structure: write the dot product, then the magnitudes, then the $\\cos\\theta=\\frac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$ line, then the angle. The method marks are what protect your score when the final number slips, and you only get that protection if the working is on the page."
     },
     {
       "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=3.9"
+      "label": "Get a Paper 1 question marked: find an angle, a normal, or a plane with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.9&component=paper_1"
     },
     {
       "type": "resources",
@@ -180,5 +345,5 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

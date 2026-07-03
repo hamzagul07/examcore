@@ -5,163 +5,112 @@
   "paper": "P2",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson explores conditional probability, the probability of an event occurring given that another event has already occurred. We will cover the core formula, its application using tree and Venn diagrams, and extend this to the powerful Bayes' theorem for updating probabilities based on new evidence.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": { "code": "4", "title": "Statistics and probability" },
+  "summary": "Conditional probability is the mathematics of updating: how the chance of one event changes once we know that another has happened. This lesson builds the core formula $P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}$, uses it to define independence precisely, assembles the law of total probability, and arrives at Bayes' theorem $P(A\\mid B)=\\frac{P(B\\mid A)P(A)}{P(B)}$. We then apply the whole machinery to the problems examiners love most — tree diagrams and reliability/medical-test questions where false positives make the intuitive answer badly wrong.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and apply the formula for conditional probability, P(A|B).",
-    "Represent conditional probability problems using tree diagrams and Venn diagrams.",
-    "Understand the statement and application of Bayes' theorem for two events.",
-    "Solve complex probability problems involving conditional events and Bayes' theorem in various contexts."
+    "Apply the conditional probability formula $P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}$ and its rearrangement $P(A\\cap B)=P(A\\mid B)P(B)$.",
+    "Test whether two events are independent using $P(A\\mid B)=P(A)$ or $P(A\\cap B)=P(A)P(B)$.",
+    "Build and use the law of total probability to compute the denominator in a conditional-probability problem.",
+    "State and apply Bayes' theorem to reverse a conditional probability, including multi-branch tree-diagram and medical-test problems where false positives dominate."
   ],
+  "syllabusObjectivesCovered": ["4.7"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Updating Beliefs with New Clues",
-    "summary": "Conditional probability adjusts the likelihood of an event based on new information. Bayes' theorem is a formal method for reversing this logic, allowing us to calculate the probability of an earlier event given a later outcome.",
-    "analogy": "Imagine you're a detective. At the start of a case, you have several suspects (initial probabilities). When you find a clue at the crime scene—say, a size 11 footprint—you update your beliefs. Suspects with size 11 feet become more likely culprits, while others become less likely. Bayes' theorem is the mathematical tool you'd use to precisely calculate how much more likely each suspect becomes.",
+    "title": "Probability as Updating What You Know",
+    "summary": "A probability is a measure of belief given the information you have. The moment you learn something new, that belief should change. Conditional probability is the rule for this update; Bayes' theorem is the same rule run backwards, letting you infer a hidden cause from an observed effect.",
+    "analogy": "Picture the whole sample space as a room full of people. Asking $P(A)$ is asking what fraction of the whole room satisfies A. Asking $P(A\\mid B)$ tells everyone who does NOT satisfy B to leave, then asks what fraction of the people REMAINING satisfy A. Conditioning shrinks the room. Bayes' theorem is what you use when the clue you observe (a positive test) is downstream of the thing you actually want to know (whether the disease is present) — you have to reason from effect back to cause.",
     "steps": [
-      "Define the events. Clearly state what A and B represent, and identify if you need to find P(A|B) or P(B|A).",
-      "Choose your tool. A tree diagram is excellent for sequential events, while a Venn diagram or formula is good for simultaneous information.",
-      "Calculate necessary components. Find P(A ∩ B) and P(B) to use the main formula P(A|B) = P(A ∩ B) / P(B).",
-      "For Bayes' theorem, use the formula P(A|B) = (P(B|A)P(A)) / P(B) to find the 'posterior' probability after considering new evidence."
+      "Name every event and write down every probability the question gives you, including the conditional ones.",
+      "Decide what you are asked for: is it $P(A\\mid B)$ or its reverse $P(B\\mid A)$? They are almost never equal.",
+      "If you need a denominator like $P(B)$, build it with the law of total probability: sum the probabilities of every path that ends in B.",
+      "To reverse a conditional, apply Bayes: $P(A\\mid B)=\\dfrac{P(B\\mid A)P(A)}{P(B)}$, which is just (one favourable path) divided by (all paths to B)."
     ]
   },
   "flashcards": [
-    {
-      "front": "What is the formula for the conditional probability of event A given event B?",
-      "back": "$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$, provided $P(B) \\neq 0$."
-    },
-    {
-      "front": "In words, what does $P(A|B)$ mean?",
-      "back": "The probability of event A occurring, given that event B has already occurred."
-    },
-    {
-      "front": "What is the key difference between independent and dependent events in terms of conditional probability?",
-      "back": "For independent events, $P(A|B) = P(A)$. For dependent events, $P(A|B) \\neq P(A)$. The occurrence of B changes the probability of A."
-    },
-    {
-      "front": "What is the formula for Bayes' Theorem for two events A and B?",
-      "back": "$P(A|B) = \\frac{P(B|A)P(A)}{P(B)}$."
-    },
-    {
-      "front": "What is the 'Law of Total Probability' often used for the denominator in Bayes' theorem?",
-      "back": "To find $P(B)$, we can sum over all possibilities: $P(B) = P(B|A)P(A) + P(B|A')P(A')$."
-    },
-    {
-      "front": "What is the common trap when interpreting medical test results?",
-      "back": "Confusing the probability of having the disease given a positive test, $P(\\text{Disease}|\\text{Positive})$, with the probability of testing positive given you have the disease, $P(\\text{Positive}|\\text{Disease})$. Bayes' theorem is needed to find the former."
-    },
-    {
-      "front": "How can you rearrange the conditional probability formula to find the intersection (multiplication rule)?",
-      "back": "$P(A \\cap B) = P(A|B)P(B)$ or $P(A \\cap B) = P(B|A)P(A)$."
-    },
-    {
-      "front": "If events A and B are mutually exclusive, what is $P(A|B)$?",
-      "back": "Zero. If B has occurred, A cannot occur, so $P(A \\cap B) = 0$."
-    },
-    {
-      "front": "What is a 'prior probability' in the context of Bayes' theorem?",
-      "back": "The initial probability of an event before any new evidence is considered. For example, $P(A)$ is the prior probability of A."
-    },
-    {
-      "front": "What is a 'posterior probability' in the context of Bayes' theorem?",
-      "back": "The revised or updated probability of an event after new evidence has been taken into account. For example, $P(A|B)$ is the posterior probability of A given B."
-    },
-    {
-      "front": "How do you represent conditional probability on a tree diagram?",
-      "back": "The probabilities on the second (and subsequent) set of branches are conditional probabilities. For example, the path A then B would have branches with probabilities $P(A)$ and then $P(B|A)$."
-    }
+    { "front": "Conditional probability formula", "back": "$P(A\\mid B)=\\dfrac{P(A\\cap B)}{P(B)}$, valid whenever $P(B)>0$. It re-scales the joint probability by the probability of the event you are conditioning on.", "pillLabel": "Formula" },
+    { "front": "Multiplication rule (rearranged)", "back": "$P(A\\cap B)=P(A\\mid B)\\,P(B)=P(B\\mid A)\\,P(A)$. This is what you multiply along the branches of a tree diagram.", "pillLabel": "Formula" },
+    { "front": "Independence — the test", "back": "Events A and B are independent iff $P(A\\cap B)=P(A)\\,P(B)$, equivalently $P(A\\mid B)=P(A)$. Independence means learning B tells you nothing about A.", "pillLabel": "Concept" },
+    { "front": "Law of total probability", "back": "If B has occurred through mutually exclusive, exhaustive causes $A$ and $A'$: $P(B)=P(B\\mid A)P(A)+P(B\\mid A')P(A')$. Generalises to any partition $A_1,\\dots,A_n$.", "pillLabel": "Formula" },
+    { "front": "Bayes' theorem (two events)", "back": "$P(A\\mid B)=\\dfrac{P(B\\mid A)P(A)}{P(B)}=\\dfrac{P(B\\mid A)P(A)}{P(B\\mid A)P(A)+P(B\\mid A')P(A')}$.", "pillLabel": "Formula" },
+    { "front": "Prior vs posterior", "back": "PRIOR $P(A)$ is your probability for A before the evidence. POSTERIOR $P(A\\mid B)$ is the updated probability after observing B. Bayes' theorem converts prior into posterior.", "pillLabel": "Concept" },
+    { "front": "$P(A\\mid B)$ vs $P(B\\mid A)$", "back": "These are generally NOT equal. $P(\\text{positive}\\mid\\text{disease})$ (test sensitivity, usually high) is a different number from $P(\\text{disease}\\mid\\text{positive})$ (what a patient cares about, often low). Confusing them is the 'prosecutor's fallacy'.", "pillLabel": "Trap" },
+    { "front": "Base-rate neglect", "back": "Ignoring the prior $P(A)$. When a disease is rare, even an accurate test yields mostly false positives among the positives, because there are so many more healthy people to generate them.", "pillLabel": "Trap" },
+    { "front": "Mutually exclusive vs independent", "back": "NOT the same. If A and B are mutually exclusive (and both non-zero), then $P(A\\mid B)=0\\neq P(A)$, so they are actually DEPENDENT. Exclusivity is about $P(A\\cap B)=0$; independence is about $P(A\\cap B)=P(A)P(B)$.", "pillLabel": "Trap" },
+    { "front": "Conditional probabilities on a tree", "back": "First-layer branches carry unconditional probabilities like $P(A)$; second-layer branches carry conditionals like $P(B\\mid A)$. A complete path multiplies to a joint probability, and branches from any node sum to 1.", "pillLabel": "Method" }
+  ],
+  "quickCheck": [
+    { "prompt": "A test detects a disease correctly in 99% of people who have it. A student concludes: 'So if I test positive, there's a 99% chance I have the disease.' This reasoning is:", "options": ["Correct — 99% accuracy transfers directly to the patient", "Flawed — it confuses $P(\\text{positive}\\mid\\text{disease})$ with $P(\\text{disease}\\mid\\text{positive})$; the base rate is ignored", "Correct only if the disease is common", "Flawed — because 99% should be written as 0.99"], "answer": "Flawed — it confuses $P(\\text{positive}\\mid\\text{disease})$ with $P(\\text{disease}\\mid\\text{positive})$; the base rate is ignored" },
+    { "prompt": "Events $A$ and $B$ satisfy $P(A)=0.5$, $P(B)=0.4$ and $P(A\\cap B)=0.2$. Are they independent?", "options": ["No, because $P(A\\cap B)\\neq 0$", "Yes, because $P(A\\cap B)=P(A)P(B)=0.2$", "No, because $P(A)\\neq P(B)$", "Cannot be determined without $P(A\\cup B)$"], "answer": "Yes, because $P(A\\cap B)=P(A)P(B)=0.2$" },
+    { "prompt": "To find $P(B)$ when B can arise via mutually exclusive causes $A$ and $A'$, the correct expression is:", "options": ["$P(B)=P(B\\mid A)+P(B\\mid A')$", "$P(B)=P(B\\mid A)P(A)+P(B\\mid A')P(A')$", "$P(B)=P(A\\mid B)P(B)+P(A'\\mid B)P(B)$", "$P(B)=P(B\\mid A)P(A')+P(B\\mid A')P(A)$"], "answer": "$P(B)=P(B\\mid A)P(A)+P(B\\mid A')P(A')$" },
+    { "prompt": "In a town, 1% of people carry a certain gene. A test is positive for 100% of carriers and for 5% of non-carriers. Roughly what fraction of people who test positive are actually carriers?", "options": ["About 100%, since carriers always test positive", "About 95%, matching the test's non-carrier accuracy", "About 17%, because the many non-carriers produce many false positives", "About 1%, the same as the base rate"], "answer": "About 17%, because the many non-carriers produce many false positives" },
+    { "prompt": "Events $A$ and $B$ are mutually exclusive with $P(A)>0$ and $P(B)>0$. What is $P(A\\mid B)$, and are the events independent?", "options": ["$P(A\\mid B)=P(A)$; they are independent", "$P(A\\mid B)=1$; they are independent", "$P(A\\mid B)=0$; they are NOT independent", "$P(A\\mid B)=P(B)$; they are dependent"], "answer": "$P(A\\mid B)=0$; they are NOT independent" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between $P(A|B)$ and $P(B|A)$?",
-      "a": "They are fundamentally different and a common source of confusion. $P(A|B)$ is the probability of A happening, given that B has already happened. $P(B|A)$ is the probability of B happening, given that A has already happened. Think of the medical test example: $P(\\text{Positive}|\\text{Disease})$ is the probability a sick person tests positive (usually high), while $P(\\text{Disease}|\\text{Positive})$ is the probability a person who tested positive is actually sick (can be surprisingly low). Bayes' theorem is the tool that connects these two reverse probabilities."
-    },
-    {
-      "q": "When should I use a Venn diagram versus a tree diagram?",
-      "a": "A Venn diagram is great for visualizing the relationship between events when you're given information about intersections and unions, like in the first worked example ($P(M)$, $P(P)$, $P(M \\cap P)$). A tree diagram is superior for sequential events where outcomes happen in a specific order, or for problems where you're given conditional probabilities directly, like in the Bayes' theorem example ($P(T|D)$)."
-    }
+    { "q": "Why isn't $P(A\\mid B)$ the same as $P(B\\mid A)$?", "a": "Because they divide the same joint probability $P(A\\cap B)$ by different denominators: $P(A\\mid B)$ divides by $P(B)$, while $P(B\\mid A)$ divides by $P(A)$. Only when $P(A)=P(B)$ do they coincide. The medical-test setting makes the gap vivid: $P(\\text{positive}\\mid\\text{disease})$ (the test's sensitivity) can be 95%, while $P(\\text{disease}\\mid\\text{positive})$ (a patient's real concern) can be under 20%, purely because the disease is rare. Bayes' theorem is precisely the bridge that converts one direction into the other." },
+    { "q": "When do I use a tree diagram rather than the formula directly?", "a": "Use a tree whenever the information is given as a sequence of stages, or as conditional probabilities such as $P(\\text{positive}\\mid\\text{disease})$. The first layer of branches is the hidden 'true state' (disease / no disease) and the second layer is the observed 'evidence' (positive / negative). Multiplying along a path gives a joint probability, and the law of total probability is just adding up the paths that end in your evidence. The tree is really Bayes' theorem drawn out, and it makes the denominator almost impossible to get wrong." },
+    { "q": "What is 'base-rate neglect' and why does it matter so much?", "a": "It is the mistake of judging how likely a disease (or any rare cause) is from the test's accuracy alone, while ignoring how rare the disease is to begin with — its base rate, or prior. When a condition affects only a small percentage of people, the huge majority who are healthy generate a flood of false positives, and these can easily outnumber the true positives. That is why a '95% accurate' test can still leave a positive patient more likely healthy than ill. Bayes' theorem forces the base rate back into the calculation." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to our lesson on conditional probability and Bayes' theorem. We often encounter situations where the probability of an event depends on whether another event has happened. For example, the probability of it raining tomorrow might be higher if we know it's cloudy today. This lesson will formalise this idea, providing you with the tools to tackle complex probability problems, a common feature of Paper 2."
-    },
-    {
-      "type": "heading",
-      "content": "Conditional Probability"
-    },
-    {
-      "type": "text",
-      "content": "Conditional probability is the heart of understanding how events relate to one another. The notation $P(A|B)$ asks for the probability of event A happening, under the new condition that we know for certain event B has already happened. This effectively reduces our 'sample space' of all possible outcomes to only those outcomes where B is true."
-    },
-    {
-      "type": "formula",
-      "content": "The probability of A given B is defined as: $$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$$ where $P(B) > 0$."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The vertical bar '|' is read as 'given'.",
-        "$P(A \\cap B)$ is the probability that both A and B occur.",
-        "The formula essentially re-scales the probability of the intersection, $P(A \\cap B)$, by the probability of the new, smaller sample space, $P(B)$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "At a university, 60% of students take a mathematics course (M), 35% take a physics course (P), and 20% take both.\n\n(a) A student is chosen at random. Find the probability that the student takes physics, given that they take mathematics.\n\n(b) Determine if the events 'takes mathematics' and 'takes physics' are independent.",
-      "solution": "Let M be the event a student takes mathematics, and P be the event a student takes physics.\nWe are given: $P(M) = 0.60$, $P(P) = 0.35$, and $P(M \\cap P) = 0.20$.\n\n(a) We need to find $P(P|M)$.\nUsing the formula for conditional probability:\n$P(P|M) = \\frac{P(P \\cap M)}{P(M)}$ [M1]\n$P(P|M) = \\frac{0.20}{0.60}$ [A1]\n$P(P|M) = \\frac{1}{3} \\approx 0.333$ [A1]\n\nThe probability that a student takes physics, given they take mathematics, is $\\frac{1}{3}$.\n\n(b) For events to be independent, we must have $P(P|M) = P(P)$ or $P(M \\cap P) = P(M)P(P)$.\n\nMethod 1: Using conditional probability.\nWe found $P(P|M) = \\frac{1}{3} \\approx 0.333$. [R1]\nWe are given $P(P) = 0.35$.\nSince $0.333 \\neq 0.35$, the events are not independent. [A1]\n\nMethod 2: Using the intersection formula.\n$P(M) \\times P(P) = 0.60 \\times 0.35 = 0.21$. [M1]\nWe are given $P(M \\cap P) = 0.20$.\nSince $P(M \\cap P) \\neq P(M)P(P)$ (i.e., $0.20 \\neq 0.21$), the events are not independent. [R1][A1]\n\nBoth methods show the events are dependent."
-    },
-    {
-      "type": "heading",
-      "content": "Visualising with Tree Diagrams"
-    },
-    {
-      "type": "text",
-      "content": "Tree diagrams are exceptionally useful for problems involving a sequence of events. The first set of branches represents the probabilities of the first event. The second set of branches shows the conditional probabilities of the second event, given the outcome of the first. To find the probability of a specific path (an intersection of events), you multiply the probabilities along the branches."
-    },
-    {
-      "type": "examTip",
-      "content": "Always draw a tree diagram for sequential probability questions. It helps to structure your thoughts and ensures you don't miss any outcomes. Label each branch clearly with the event and its probability. Remember that the probabilities branching from a single point must sum to 1."
-    },
-    {
-      "type": "heading",
-      "content": "Bayes' Theorem: Reversing the Condition"
-    },
-    {
-      "type": "text",
-      "content": "Often, we know $P(B|A)$ but we need to find $P(A|B)$. For example, we might know the probability of a fire alarm ringing given there is a fire, but we want to know the probability there is a fire given that the alarm is ringing. Bayes' theorem provides the formula to do exactly this, allowing us to update our initial (prior) beliefs in light of new evidence."
-    },
-    {
-      "type": "formula",
-      "content": "Bayes' Theorem: $$P(A|B) = \\frac{P(B|A)P(A)}{P(B)}$$\nOften, the denominator $P(B)$ is not given directly and must be calculated using the Law of Total Probability:\n$$P(B) = P(B|A)P(A) + P(B|A')P(A')$$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A rare disease affects 1 in 1000 people. A test for this disease is 99% accurate for those who have it (true positive) and has a 2% false positive rate (i.e., it incorrectly indicates the disease is present in 2% of healthy people). A person is selected at random and tests positive. What is the probability they actually have the disease?",
-      "solution": "Let D be the event the person has the disease, and T be the event the person tests positive.\nWe are given:\n$P(D) = \\frac{1}{1000} = 0.001$ (Prior probability)\n$P(D') = 1 - 0.001 = 0.999$\n$P(T|D) = 0.99$ (True positive rate)\n$P(T|D') = 0.02$ (False positive rate)\n\nWe want to find $P(D|T)$, the probability of having the disease given a positive test.\n\nUsing Bayes' theorem: $P(D|T) = \\frac{P(T|D)P(D)}{P(T)}$ [M1]\n\nFirst, we need to find $P(T)$ using the Law of Total Probability:\n$P(T) = P(T|D)P(D) + P(T|D')P(D')$ [M1]\n$P(T) = (0.99)(0.001) + (0.02)(0.999)$ [A1]\n$P(T) = 0.00099 + 0.01998 = 0.02097$\n\nNow substitute this back into Bayes' theorem:\n$P(D|T) = \\frac{(0.99)(0.001)}{0.02097}$ [M1]\n$P(D|T) = \\frac{0.00099}{0.02097} \\approx 0.04721...$\n\nSo, $P(D|T) \\approx 0.0472$ (to 3 s.f.) [A1]\n\nThis surprising result means that even with a positive test, there is only about a 4.7% chance the person actually has the disease. This is a classic example of how Bayes' theorem challenges our intuition, especially when dealing with rare events."
-    },
-    {
-      "type": "examTip",
-      "content": "For Bayes' theorem questions, especially in medical or quality control contexts, drawing a tree diagram is highly recommended. Let the first branches be the 'true state' (e.g., Disease/No Disease) and the second branches be the 'evidence' (e.g., Test Positive/Test Negative). This makes it much easier to calculate the denominator $P(B)$ and the numerator $P(A \\cap B)$."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Problems",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=4.7"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Maths AA HL Questionbank",
-          "href": "/questionbank?subject=ib-maths-aa-hl"
-        },
-        {
-          "label": "Past Paper Video Solutions",
-          "href": "https://www.youtube.com/playlist?list=PL_S28kr0L-OO3u9969G5n5R-A0R3fS6pT"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Almost every interesting probability is conditional. The chance a patient has a disease depends on their test result; the chance a component is faulty depends on which factory made it; the chance it rains depends on whether the sky is already cloudy. This lesson formalises how a probability should change when new information arrives. We build one core formula, use it to pin down exactly what 'independence' means, assemble the law of total probability, and reach Bayes' theorem — the tool that lets us reason backwards from an observed effect to a hidden cause. This material is a reliable source of longer structured questions on Paper 2." },
+
+    { "type": "heading", "content": "Conditional probability: shrinking the sample space" },
+    { "type": "text", "content": "The notation $P(A\\mid B)$, read 'the probability of $A$ given $B$', asks a specific question: among the outcomes in which $B$ is already known to have happened, what fraction also satisfy $A$? Conditioning on $B$ throws away every outcome outside $B$ and treats $B$ as the new, smaller universe of possibilities. To measure $A$ inside that universe, we take the outcomes in both $A$ and $B$, namely $A\\cap B$, and divide by the size of the new universe, $P(B)$." },
+    { "type": "formula", "content": "$$P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)},\\qquad P(B)>0.$$" },
+    { "type": "keyPoints", "items": [
+      "The bar $\\mid$ is read as 'given'; everything to the right of it is assumed to have already happened.",
+      "$P(A\\cap B)$ is the probability that $A$ **and** $B$ both occur — the numerator is always the joint probability.",
+      "Rearranging gives the **multiplication rule** $P(A\\cap B)=P(A\\mid B)\\,P(B)=P(B\\mid A)\\,P(A)$, the rule you use along tree branches.",
+      "Order matters: $P(A\\mid B)$ and $P(B\\mid A)$ answer different questions and are generally different numbers."
+    ]},
+    { "type": "workedExample", "question": "In a sixth form, 60% of students study Mathematics ($M$), 35% study Physics ($P$), and 20% study both.\n\n(a) A student is chosen at random. Find the probability that the student studies Physics given that they study Mathematics. [2]\n\n(b) Determine, with justification, whether the events 'studies Mathematics' and 'studies Physics' are independent. [2]", "solution": "Let $P(M)=0.60$, $P(P)=0.35$, $P(M\\cap P)=0.20$.\n\n**(a)** By definition,\n$$P(P\\mid M)=\\frac{P(P\\cap M)}{P(M)}=\\frac{0.20}{0.60}=\\frac{1}{3}\\approx 0.333.$$\nGiven that a student studies Mathematics, the probability they also study Physics is $\\tfrac13$.\n\n**(b)** Independence requires $P(M\\cap P)=P(M)\\,P(P)$. Here\n$$P(M)\\,P(P)=0.60\\times 0.35=0.21,\\qquad\\text{but } P(M\\cap P)=0.20.$$\nSince $0.20\\neq 0.21$, the events are **not** independent. (Equivalently, $P(P\\mid M)=0.333\\neq 0.35=P(P)$, so knowing a student studies Mathematics does change the probability that they study Physics.)" },
+
+    { "type": "heading", "content": "Independence, stated precisely" },
+    { "type": "text", "content": "Independence has an intuitive meaning — learning that $B$ happened tells you nothing about whether $A$ happened — and an exact mathematical test. The two agree: if $B$ carries no information about $A$, then conditioning on $B$ should not move the probability, so $P(A\\mid B)=P(A)$. Substituting this into the multiplication rule gives the symmetric form below, which is usually the cleanest to check because it needs no division." },
+    { "type": "formula", "content": "$$A\\text{ and }B\\text{ independent}\\iff P(A\\cap B)=P(A)\\,P(B)\\iff P(A\\mid B)=P(A).$$" },
+    { "type": "examTip", "content": "Do not confuse **independent** with **mutually exclusive** — a very common slip. Mutually exclusive events cannot both happen, so $P(A\\cap B)=0$; if both have positive probability this forces $P(A\\mid B)=0\\neq P(A)$, meaning they are actually strongly dependent. Independence is $P(A\\cap B)=P(A)P(B)$, which is a different condition entirely." },
+
+    { "type": "heading", "content": "Tree diagrams and the law of total probability" },
+    { "type": "text", "content": "Many questions describe events happening in stages, and give you conditional probabilities directly. A tree diagram is then the natural tool. The first set of branches shows the unconditional probabilities of the first stage; the second set shows conditional probabilities of the second stage given the first. Multiply along a path to get the joint probability of that whole path, and remember that the branches leaving any single node must sum to 1." },
+    { "type": "text", "content": "When an event $B$ can be reached by several mutually exclusive routes — say through $A$ or through its complement $A'$ — its total probability is the sum of the probabilities of all routes that end in $B$. This is the law of total probability, and it is exactly how we assemble the denominator we will need for Bayes' theorem." },
+    { "type": "formula", "content": "$$P(B)=P(B\\mid A)\\,P(A)+P(B\\mid A')\\,P(A').$$\nMore generally, for a partition $A_1,A_2,\\dots,A_n$ of the sample space,\n$$P(B)=\\sum_{i=1}^{n}P(B\\mid A_i)\\,P(A_i).$$" },
+    { "type": "workedExample", "question": "A factory makes bolts on two machines. Machine I produces 70% of the bolts and Machine II produces the remaining 30%. Of Machine I's bolts, 4% are defective; of Machine II's bolts, 6% are defective. A bolt is selected at random from the day's production.\n\n(a) Find the probability that the bolt is defective. [3]\n\n(b) Given that the bolt is defective, find the probability it was made on Machine II. [3]", "solution": "Let $I$ and $II$ be the machines and $D$ the event 'defective'. Then\n$$P(I)=0.70,\\quad P(II)=0.30,\\quad P(D\\mid I)=0.04,\\quad P(D\\mid II)=0.06.$$\n\n**(a)** By the law of total probability,\n$$P(D)=P(D\\mid I)P(I)+P(D\\mid II)P(II)=0.04\\times0.70+0.06\\times0.30$$\n$$=0.028+0.018=0.046.$$\n\n**(b)** By Bayes' theorem,\n$$P(II\\mid D)=\\frac{P(D\\mid II)P(II)}{P(D)}=\\frac{0.06\\times0.30}{0.046}=\\frac{0.018}{0.046}\\approx 0.391.$$\nSo although Machine II makes only 30% of the bolts, it accounts for about 39% of the defective ones, because its defect rate is higher." },
+
+    { "type": "heading", "content": "Bayes' theorem: reversing the condition" },
+    { "type": "text", "content": "Very often we know a probability in one direction but need it in the other. A test tells us $P(\\text{positive}\\mid\\text{disease})$, but a patient wants $P(\\text{disease}\\mid\\text{positive})$. Bayes' theorem performs this reversal. It follows in one line from the fact that the joint probability $P(A\\cap B)$ can be written two ways, $P(A\\mid B)P(B)=P(B\\mid A)P(A)$; dividing by $P(B)$ isolates the conditional we want." },
+    { "type": "formula", "content": "$$P(A\\mid B)=\\frac{P(B\\mid A)\\,P(A)}{P(B)}=\\frac{P(B\\mid A)\\,P(A)}{P(B\\mid A)\\,P(A)+P(B\\mid A')\\,P(A')}.$$" },
+    { "type": "keyPoints", "items": [
+      "The **numerator** is the single path you care about: prior $\\times$ likelihood, $P(A)\\,P(B\\mid A)$.",
+      "The **denominator** is *all* paths that end in $B$, built with the law of total probability.",
+      "So Bayes is simply: (probability of the favourable path) $\\div$ (probability of every path to the evidence).",
+      "The **prior** $P(A)$ (the base rate) sits in both numerator and denominator — never omit it."
+    ]},
+    { "type": "examTip", "content": "For any reliability or medical-test question, draw the tree with the hidden 'true state' first (disease / no disease) and the observed 'evidence' second (positive / negative). Then the denominator $P(\\text{positive})$ is just the sum of the two paths ending in a positive, and the numerator is the one path that is both diseased and positive. Setting it up this way makes false positives visible and stops you from dividing by the wrong quantity." },
+
+    { "type": "heading", "content": "Model answer — mapped to our marking engine" },
+    { "type": "workedExample", "question": "A disease affects 2% of a population. A test is 95% accurate for those with the disease and gives a false positive for 10% of those without it. Given that a person tests positive, find the probability that they actually have the disease. [5]", "solution": "**Model answer:**\nLet $D$ be 'has the disease' and $+$ be 'tests positive'. From the information:\n$$P(D)=0.02,\\quad P(D')=0.98,\\quad P(+\\mid D)=0.95,\\quad P(+\\mid D')=0.10.$$\n\nBy the law of total probability, the probability of a positive test is\n$$P(+)=P(+\\mid D)P(D)+P(+\\mid D')P(D')=0.02\\times0.95+0.98\\times0.10$$\n$$=0.019+0.098=0.117.$$\n\nBy Bayes' theorem,\n$$P(D\\mid +)=\\frac{P(+\\mid D)P(D)}{P(+)}=\\frac{0.019}{0.117}\\approx 0.162.$$\n\nSo despite the positive result, there is only about a **16.2%** chance the person actually has the disease. The disease is rare, so the 10% of the large healthy majority who test positive (a false-positive probability contribution of $0.098$) vastly outnumber the true positives (contribution $0.019$).\n\n---\n**How our marking engine awards the marks [5]:**\nThis is marked with the IB Mathematics **M (method)** and **A (accuracy)** convention. An A mark is *dependent* on the corresponding M mark, and all equivalent correct forms (fractions, decimals, percentages, unsimplified expressions) are accepted.\n- **M1** — correctly identifying the probabilities / setting up the tree: $P(D)=0.02$, $P(+\\mid D)=0.95$, $P(+\\mid D')=0.10$ (and hence $P(D')=0.98$).\n- **M1** — using the law of total probability to form $P(+)=0.02\\times0.95+0.98\\times0.10$. This M mark is for the correct *method* even if the arithmetic slips.\n- **A1** — the correct value $P(+)=0.117$ (accept $\\tfrac{117}{1000}$).\n- **M1** — applying Bayes' ratio: dividing the diseased-and-positive probability by the total positive probability, $\\dfrac{0.019}{0.117}$ (or $\\dfrac{0.02\\times0.95}{0.117}$).\n- **A1** — the final answer $\\approx 0.162$ (accept $0.162$, $16.2\\%$, or $\\tfrac{19}{117}$; this A1 is dependent on the preceding M1).\n\n**Error carried forward (ECF / follow-through):** if a candidate makes an earlier slip — say a wrong $P(+)$ — but then applies Bayes correctly to *their* value, the later M1 and the dependent A1 are still available. Marks are lost only where the method itself is wrong (e.g. quoting $P(+\\mid D)=0.95$ as the final answer, which is base-rate neglect) or where an A mark has no supporting method." },
+    { "type": "examTip", "content": "This is exactly what the Practice button does. Write out your own full solution to this question, submit it, and our marking engine awards the marks the way a real examiner would: an M for each correct method step (identify the probabilities, total probability, Bayes ratio) and a dependent A for each correct value, accepting equivalent forms and applying follow-through on your own figures. The habit that scores: show the total-probability line and the Bayes ratio explicitly — never jump straight to a decimal." },
+
+    { "type": "heading", "content": "Extending Bayes to more than two causes" },
+    { "type": "text", "content": "Nothing changes when the evidence can arise from three or more mutually exclusive causes; the denominator simply gains more terms. If the causes partition the sample space as $A_1,\\dots,A_n$, then for any particular cause $A_k$, $P(A_k\\mid B)=\\dfrac{P(B\\mid A_k)P(A_k)}{\\sum_{i} P(B\\mid A_i)P(A_i)}$. The recipe is unchanged: the numerator is the one path through $A_k$, the denominator is the sum of all paths to $B$." },
+    { "type": "workedExample", "question": "An email filter classifies mail as spam or not. Historically 40% of incoming mail is spam. The filter flags 98% of spam and, mistakenly, 3% of legitimate mail. An email has just been flagged. Find the probability that it really is spam. [4]", "solution": "Let $S$ be 'spam' and $F$ be 'flagged'. Then\n$$P(S)=0.40,\\quad P(S')=0.60,\\quad P(F\\mid S)=0.98,\\quad P(F\\mid S')=0.03.$$\n\nLaw of total probability:\n$$P(F)=P(F\\mid S)P(S)+P(F\\mid S')P(S')=0.98\\times0.40+0.03\\times0.60$$\n$$=0.392+0.018=0.410.$$\n\nBayes' theorem:\n$$P(S\\mid F)=\\frac{P(F\\mid S)P(S)}{P(F)}=\\frac{0.392}{0.410}\\approx 0.956.$$\n\nBecause spam is common here (a 40% base rate) and false flags are rare, a flagged email is about 95.6% likely to be genuine spam — the opposite conclusion from the rare-disease case, and a direct consequence of the different prior." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Swapping $P(A\\mid B)$ for $P(B\\mid A)$.** Quoting the test's sensitivity ($P(+\\mid D)$) as if it were the patient's risk ($P(D\\mid+)$) is the single most penalised error. Always check which way the bar points.",
+      "**Neglecting the base rate.** Leaving out the prior $P(A)$ — reasoning from the test's accuracy alone — gives a wildly wrong posterior when the event is rare. The prior must appear in both numerator and denominator.",
+      "**Building the denominator wrongly.** $P(B)\\neq P(B\\mid A)+P(B\\mid A')$. You must weight each conditional by its prior: $P(B)=P(B\\mid A)P(A)+P(B\\mid A')P(A')$.",
+      "**Confusing mutually exclusive with independent.** Mutually exclusive means $P(A\\cap B)=0$; independent means $P(A\\cap B)=P(A)P(B)$. For non-zero probabilities, mutually exclusive events are actually dependent.",
+      "**Testing independence with the wrong equation.** Independence is $P(A\\cap B)=P(A)P(B)$, not $P(A\\cup B)=P(A)+P(B)$ and not merely $P(A\\cap B)\\neq 0$. State the correct condition and compare both sides.",
+      "**Skipping the method lines.** Writing only a final decimal forfeits the M marks. Show the total-probability sum and the Bayes ratio explicitly, so that method credit (and follow-through) is available even if the arithmetic slips."
+    ]},
+
+    { "type": "practice", "label": "Get a Paper 2 answer marked: a positive-test Bayes' theorem question", "href": "/mark?subject=ib-maths-aa-hl&topic=4.7&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics: Analysis and Approaches Guide (from IBO)", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Conditional probability — overview", "href": "https://en.wikipedia.org/wiki/Conditional_probability" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

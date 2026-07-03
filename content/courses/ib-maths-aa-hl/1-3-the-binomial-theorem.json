@@ -5,177 +5,322 @@
   "paper": "P1",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson introduces the binomial theorem, a fundamental tool for expanding expressions of the form $(a+b)^n$. We will explore its connection to Pascal's triangle, learn to use the formula for expansions, and master the technique of finding specific terms and coefficients, a common task in IB examinations.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
+  "summary": "The binomial theorem is the fast, reliable way to expand $(a+b)^n$ for a positive integer $n$ without multiplying brackets one at a time. This lesson builds the full 1.3 toolkit: how Pascal's triangle generates the coefficients, how those coefficients are the combinations $\\binom{n}{r}={}^nC_r=\\frac{n!}{r!(n-r)!}$, how the general term $\\binom{n}{r}a^{n-r}b^r$ lets you pick out any single term or coefficient without a full expansion, and how the first few terms give a quick approximation. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your method decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
+  "syllabusObjectivesCovered": [
+    "1.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "learningObjectives": [
-    "Understand the binomial theorem for a positive integer index $n$.",
-    "Use Pascal's triangle and the combination formula $\\binom{n}{r}$ to find binomial coefficients.",
-    "Apply the binomial theorem to expand binomials and find specific terms in an expansion.",
-    "Solve problems involving finding unknown constants or terms in binomial expansions."
+    "Expand $(a+b)^n$ for a positive integer $n$ using the binomial theorem and Pascal's triangle.",
+    "Evaluate binomial coefficients $\\binom{n}{r}={}^nC_r=\\frac{n!}{r!(n-r)!}$ by hand and recognise their symmetry.",
+    "Use the general term $\\binom{n}{r}a^{n-r}b^r$ to find a specific term or coefficient without expanding fully.",
+    "Apply the first few terms of a binomial expansion to make a numerical approximation.",
+    "Present working so that method marks (M) and accuracy marks (A) protect the final answer under our marking engine."
   ],
   "simpleExplanation": {
-    "title": "Expanding Brackets, Supercharged!",
-    "summary": "The binomial theorem provides a fast, powerful formula for expanding expressions like $(x+y)^7$ without the tedious process of repeated multiplication. It reveals a beautiful and predictable pattern in the coefficients and powers of the terms.",
-    "analogy": "Imagine you're at a pizza shop ordering a custom pizza with $n$ possible toppings. For each topping, you have two choices: 'add it' or 'don't add it'. The binomial theorem is like a master list of all possible pizzas you could create. Finding the term with $k$ toppings is like asking the formula, 'Show me the combination that involves choosing exactly $k$ toppings out of the $n$ available'.",
+    "title": "Super-Powered Brackets",
+    "summary": "The binomial theorem is a fast-track formula for expanding brackets raised to a power, like $(a+b)^n$. It saves you from the long process of multiplying the brackets out one by one, and it lets you jump straight to any single term you want.",
+    "analogy": "Imagine an assembly line with $n$ stations, and at each station a machine stamps on either an $a$ or a $b$. Every finished product is a string of $a$'s and $b$'s, and any term like $a^{n-r}b^r$ is made every time the line happens to stamp $b$ at exactly $r$ of the stations. The binomial coefficient $\\binom{n}{r}$ simply counts how many different ways that can happen — which is exactly how big that term's coefficient is.",
     "steps": [
-      "Identify the components $a$, $b$, and the power $n$ from the expression $(a+b)^n$.",
-      "Write down the general term formula: $T_{r+1} = \\binom{n}{r} a^{n-r} b^r$. Remember that $b$ includes its sign.",
-      "To find a specific term (e.g., the term containing $x^k$), create an equation using the powers of the variables and solve for $r$.",
-      "Substitute this value of $r$ back into the general term formula to calculate the required coefficient or the full term."
+      "Read off $a$, $b$ and $n$ from $(a+b)^n$. Keep any minus sign with the second term: in $(2x-3)^8$, $a=2x$ and $b=-3$.",
+      "Write the general term $T_{r+1}=\\binom{n}{r}a^{n-r}b^r$. This one template produces every term in the expansion.",
+      "For a named term set $r$ directly (the 4th term is $r=3$); for a required power of $x$, equate the power of $x$ in the general term to that number and solve for $r$.",
+      "Substitute your $r$, evaluate $\\binom{n}{r}$ and the powers of $a$ and $b$, then simplify. If the question asks for a coefficient, quote just the number."
     ]
   },
+  "keyConcepts": [
+    "Pascal's triangle",
+    "binomial coefficients",
+    "the general term"
+  ],
   "flashcards": [
     {
-      "front": "What is the binomial theorem for $(a+b)^n$?",
-      "back": "It is the expansion $(a+b)^n = \\sum_{r=0}^{n} \\binom{n}{r} a^{n-r} b^r$, where $n$ is a positive integer."
+      "front": "What is a binomial expression?",
+      "back": "An algebraic expression with exactly two terms, such as $(x+y)$ or $(3a-2b)$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the formula for the binomial coefficient $\\binom{n}{r}$?",
-      "back": "$\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$. This is also written as $^nC_r$ and can be found on your calculator."
+      "front": "The binomial theorem in summation form",
+      "back": "$(a+b)^n=\\sum_{r=0}^{n}\\binom{n}{r}a^{n-r}b^r$, valid for a positive integer $n$. The power of $a$ falls from $n$ to $0$ while the power of $b$ rises from $0$ to $n$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the general term, $T_{r+1}$, in the expansion of $(a+b)^n$?",
-      "back": "$T_{r+1} = \\binom{n}{r} a^{n-r} b^r$. This formula gives the $(r+1)^{th}$ term in the expansion."
+      "front": "What does $\\binom{n}{r}$ mean and how is it computed?",
+      "back": "It is ${}^nC_r$, the number of ways to choose $r$ objects from $n$: $\\binom{n}{r}=\\frac{n!}{r!(n-r)!}$. Read as '$n$ choose $r$'.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the value of $0!$?",
-      "back": "$0! = 1$. This is a convention that makes many mathematical formulas, including the binomial coefficient, work correctly."
+      "front": "The general term of $(a+b)^n$",
+      "back": "The $(r+1)$th term is $T_{r+1}=\\binom{n}{r}a^{n-r}b^r$. Use it to isolate one term without expanding everything.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How many terms are in the expansion of $(a+b)^n$?",
-      "back": "There are $n+1$ terms."
+      "front": "Which $r$ gives the 4th term?",
+      "back": "$r=3$. The term number is always one more than $r$ because counting starts at $r=0$ for the first term.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Common Trap: Which term does $T_{r+1}$ represent?",
-      "back": "It represents the $(r+1)^{th}$ term. For example, to find the 5th term, you must use $r=4$."
+      "front": "How many terms in $(2x-5y)^{10}$?",
+      "back": "$n+1$ terms, so $10+1=11$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How do you handle the expansion of $(a-b)^n$?",
-      "back": "Treat it as $(a + (-b))^n$. The term $b^r$ in the general formula becomes $(-b)^r$, which will be negative when $r$ is odd."
+      "front": "Symmetry of binomial coefficients",
+      "back": "$\\binom{n}{r}=\\binom{n}{n-r}$, and $\\binom{n}{0}=\\binom{n}{n}=1$. Each row of Pascal's triangle reads the same forwards and backwards.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How can you quickly find the sum of all coefficients in an expansion of a polynomial $P(x)$?",
-      "back": "Calculate $P(1)$. For $(ax+b)^n$, the sum of coefficients is $(a+b)^n$."
+      "front": "Pascal's triangle and the coefficients",
+      "back": "Row $n$ (starting at row $0$) lists $\\binom{n}{0},\\binom{n}{1},\\dots,\\binom{n}{n}$. Each entry is the sum of the two directly above it.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What does it mean to find the 'constant term' in an expansion?",
-      "back": "It means finding the term that is independent of any variables, i.e., the term where the power of the variable is zero (e.g., the $x^0$ term)."
+      "front": "Sum of the powers in any term",
+      "back": "For the term $a^{n-r}b^r$ the exponents add to $(n-r)+r=n$. A quick self-check: every term's powers must total $n$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the relationship between the coefficients in the expansion of $(a+b)^n$ and Pascal's Triangle?",
-      "back": "The coefficients $\\binom{n}{r}$ for $r=0, 1, ..., n$ correspond to the numbers in the $n^{th}$ row of Pascal's Triangle (starting the row count from $n=0$)."
+      "front": "Exam Trap: signs in $(x-2)^7$",
+      "back": "Here $a=x$ and $b=-2$. The term $(-2)^r$ is positive when $r$ is even and negative when $r$ is odd — so signs alternate along the expansion.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What are the values of $\\binom{n}{0}$, $\\binom{n}{1}$, and $\\binom{n}{n}$?",
-      "back": "$\\binom{n}{0} = 1$, $\\binom{n}{1} = n$, and $\\binom{n}{n} = 1$. These are useful shortcuts."
+      "front": "Exam Trap: term vs coefficient",
+      "back": "The 'term in $x^5$' includes the $x^5$ (e.g. $-48384x^5$); the 'coefficient of $x^5$' is only the number ($-48384$). Answer exactly what is asked.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In the expansion of $(a+b)^{9}$, which value of $r$ in the general term $\\binom{9}{r}a^{9-r}b^{r}$ gives the term containing $b^{4}$?",
+      "options": [
+        "$r=3$",
+        "$r=4$",
+        "$r=5$",
+        "$r=6$"
+      ],
+      "answer": "$r=4$"
+    },
+    {
+      "prompt": "In the expansion of $(x-2)^{6}$, the sign of the term in $x^{3}$ is:",
+      "options": [
+        "Positive, because $x^3$ is positive",
+        "Negative, because the power of $(-2)$ is odd",
+        "Positive, because the power of $(-2)$ is even",
+        "Cannot be determined without expanding fully"
+      ],
+      "answer": "Negative, because the power of $(-2)$ is odd"
+    },
+    {
+      "prompt": "Using the symmetry $\\binom{n}{r}=\\binom{n}{n-r}$, the value of $\\binom{10}{8}$ equals:",
+      "options": [
+        "$\\binom{10}{2}=45$",
+        "$\\binom{10}{8}=80$",
+        "$\\binom{10}{1}=10$",
+        "$\\binom{10}{9}=10$"
+      ],
+      "answer": "$\\binom{10}{2}=45$"
+    },
+    {
+      "prompt": "A question asks for the coefficient of $x^{2}$ and you find the term to be $\\binom{7}{2}(3)^{5}x^{2}=5103x^{2}$. The correct final answer to give is:",
+      "options": [
+        "$5103x^{2}$",
+        "$5103$",
+        "$\\binom{7}{2}$",
+        "$x^{2}$"
+      ],
+      "answer": "$5103$"
+    },
+    {
+      "prompt": "How many terms are there in the full expansion of $(2x-5)^{12}$?",
+      "options": [
+        "$11$",
+        "$12$",
+        "$13$",
+        "$24$"
+      ],
+      "answer": "$13$"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between $\\binom{n}{r}$ and $^nC_r$?",
-      "a": "There is no difference. They are two different notations for the same concept: the number of ways to choose $r$ items from a set of $n$ distinct items. The $\\binom{n}{r}$ notation is more common in modern textbooks, while $^nC_r$ is also widely used, especially on calculators."
+      "q": "How do I decide which value of $r$ I need?",
+      "a": "Write the general term, then look only at the power of the variable. Collect the powers of $x$ into a single exponent, set that exponent equal to the power you want, and solve for $r$. If the question names a term instead (say 'the 5th term'), use $r=$ term number $-1$."
     },
     {
-      "q": "How do I find the middle term in an expansion?",
-      "a": "It depends on whether $n$ is even or odd. If $n$ is even, there is one middle term, which is the $(\\frac{n}{2} + 1)^{th}$ term. You find it by setting $r = \\frac{n}{2}$. If $n$ is odd, there are two middle terms, found by setting $r = \\frac{n-1}{2}$ and $r = \\frac{n+1}{2}$."
+      "q": "What's the difference between expanding $(a+b)^n$ and $(b+a)^n$?",
+      "a": "Because $a+b=b+a$, the final polynomial is identical. The terms may be generated in a different order — one version increases the power of $a$, the other increases the power of $b$ — but the sum is the same."
     },
     {
-      "q": "Does the binomial theorem work for negative or fractional powers?",
-      "a": "Yes, it does, but it results in an infinite series and has conditions for convergence. This is part of the Maclaurin series topic, which is an extension in the AA syllabus. For the core of Topic 1.3, you only need to consider cases where the power $n$ is a positive integer, which results in a finite expansion."
+      "q": "Can I use the binomial theorem for negative or fractional powers?",
+      "a": "For SL you only need positive integer $n$, where the expansion is finite with $n+1$ terms. A generalised version exists for any real power but produces an infinite series; that is HL content, not SL."
     },
     {
-      "q": "Why is 0! defined as 1?",
-      "a": "Defining $0! = 1$ is a mathematical convention, but it's a very useful one. It ensures that many important formulas, like $\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$, work consistently even in edge cases. For example, for the formula to be true for $\\binom{n}{n} = 1$, we need $\\frac{n!}{n!0!} = 1$, which implies $0!$ must be 1."
+      "q": "My calculator errors on $\\binom{5}{6}$. Why?",
+      "a": "$\\binom{n}{r}$ counts ways of choosing $r$ items from $n$, so it is only defined for integers with $0\\le r\\le n$. You cannot choose $6$ items from $5$, so the value does not exist."
+    },
+    {
+      "q": "How do I find the 'constant term'?",
+      "a": "The constant term has variable power zero. Set the collected exponent of the variable in the general term equal to $0$, solve for $r$, then substitute back. It is the same routine as finding any specific term."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Have you ever tried to expand $(x+y)^5$ by hand? It involves a lot of tedious and error-prone multiplication. The binomial theorem is a cornerstone of algebra that provides an elegant and efficient method for this exact task. It's not just about saving time; it reveals deep patterns in mathematics and is a vital tool for probability, statistics, and calculus. In this lesson, we'll unpack this powerful theorem and learn how to apply it to the types of problems you'll face in your exams."
+      "content": "Finding $(x+y)^2=x^2+2xy+y^2$ is quick, and $(x+y)^3$ is manageable, but expanding $(x+y)^8$ by repeated multiplication is slow and error-prone. The binomial theorem replaces all that multiplication with a single formula that gives any term you want in one step. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "From Pascal's Triangle to Binomial Coefficients"
+      "content": "Pascal's triangle: where the coefficients come from"
     },
     {
       "type": "text",
-      "content": "For small integer powers, you might have used Pascal's Triangle to find the coefficients of an expansion. The $n^{th}$ row of the triangle gives the coefficients for $(a+b)^n$. For example, the row '1 4 6 4 1' gives the coefficients for $(a+b)^4$. While useful, this method becomes impractical for large values of $n$. We need a more direct method."
-    },
-    {
-      "type": "text",
-      "content": "This is where the binomial coefficient, denoted $\\binom{n}{r}$ or $^nC_r$, comes in. It's defined by the formula for combinations and calculates the coefficient of the term with $b^r$ in the expansion of $(a+b)^n$ directly, without needing to compute previous rows of a triangle. Your GDC has a function to calculate this, typically found in the probability menu."
+      "content": "Write out the expansions of $(a+b)^n$ for small $n$ and look only at the numerical coefficients. For $n=0,1,2,3,4$ they are $1$; $\\;1\\;1$; $\\;1\\;2\\;1$; $\\;1\\;3\\;3\\;1$; $\\;1\\;4\\;6\\;4\\;1$. Stacked up, these rows form Pascal's triangle, and it has a beautifully simple building rule: each entry is the sum of the two entries directly above it, with a $1$ down each edge. The row for exponent $n$ gives every coefficient you need to expand $(a+b)^n$."
     },
     {
       "type": "formula",
-      "content": "\\binom{n}{r} = \\frac{n!}{r!(n-r)!}"
+      "content": "$\\begin{array}{c} 1 \\\\ 1 \\quad 1 \\\\ 1 \\quad 2 \\quad 1 \\\\ 1 \\quad 3 \\quad 3 \\quad 1 \\\\ 1 \\quad 4 \\quad 6 \\quad 4 \\quad 1 \\end{array}$"
+    },
+    {
+      "type": "text",
+      "content": "Pascal's triangle is ideal for small powers you can build quickly by hand. For larger $n$ — where writing out every row would be slow — we compute each coefficient directly with the combinations formula instead."
     },
     {
       "type": "heading",
-      "content": "The Binomial Theorem"
+      "content": "The binomial coefficients $\\binom{n}{r}$"
     },
     {
       "type": "text",
-      "content": "The binomial theorem provides the complete formula for the expansion of $(a+b)^n$ for any positive integer $n$. It combines the binomial coefficients with the powers of $a$ and $b$ in a structured way. Notice how the powers of 'a' descend from $n$ to 0, while the powers of 'b' ascend from 0 to $n$. The sum of the powers in any single term is always $n$."
+      "content": "The number in row $n$, position $r$ (counting from $r=0$) is the binomial coefficient $\\binom{n}{r}$, which is exactly the ${}^nC_r$ from combinatorics — the number of ways to choose $r$ objects from $n$. That is why it also counts how many times the term $a^{n-r}b^r$ appears when you multiply $(a+b)$ by itself $n$ times. You can evaluate it directly:"
     },
     {
       "type": "formula",
-      "content": "(a+b)^n = \\sum_{r=0}^{n} \\binom{n}{r} a^{n-r} b^r \\\\ = \\binom{n}{0}a^n + \\binom{n}{1}a^{n-1}b + \\binom{n}{2}a^{n-2}b^2 + \\dots + \\binom{n}{n}b^n"
+      "content": "$\\binom{n}{r}={}^nC_r=\\frac{n!}{r!\\,(n-r)!}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The expansion has $n+1$ terms.",
-        "The powers of $a$ decrease by 1 in each successive term.",
-        "The powers of $b$ increase by 1 in each successive term.",
-        "The sum of the powers of $a$ and $b$ in each term is always $n$.",
-        "The coefficients $\\binom{n}{r}$ are symmetric: $\\binom{n}{r} = \\binom{n}{n-r}$."
+        "**Number of terms:** the expansion of $(a+b)^n$ has $n+1$ terms, from $r=0$ to $r=n$.",
+        "**Symmetry:** $\\binom{n}{r}=\\binom{n}{n-r}$ — pick the easier one to compute (e.g. $\\binom{10}{8}=\\binom{10}{2}=45$).",
+        "**Endpoints:** $\\binom{n}{0}=\\binom{n}{n}=1$, so the outer coefficients are always $1$.",
+        "**Power check:** in every term the powers of $a$ and $b$ add to $n$."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "Find the first three terms, in descending powers of $x$, of the expansion of $(2x - \\frac{1}{2})^8$.",
-      "solution": "The expression is $(a+b)^n$ where $a=2x$, $b=-\\frac{1}{2}$, and $n=8$.\n\nThe expansion is $(2x - \\frac{1}{2})^8 = \\sum_{r=0}^{8} \\binom{8}{r} (2x)^{8-r} (-\\frac{1}{2})^r$.\n\n**First term (r=0):**\n$T_1 = \\binom{8}{0} (2x)^{8-0} (-\\frac{1}{2})^0$  (M1 for attempting to use the binomial formula)\n$= 1 \\cdot (2^8 x^8) \\cdot 1$\n$= 256x^8$ (A1)\n\n**Second term (r=1):**\n$T_2 = \\binom{8}{1} (2x)^{8-1} (-\\frac{1}{2})^1$\n$= 8 \\cdot (2^7 x^7) \\cdot (-\\frac{1}{2})$\n$= 8 \\cdot (128x^7) \\cdot (-\\frac{1}{2})$\n$= -4 \\cdot 128x^7$\n$= -512x^7$ (A1)\n\n**Third term (r=2):**\n$T_3 = \\binom{8}{2} (2x)^{8-2} (-\\frac{1}{2})^2$\n$= \\frac{8 \\cdot 7}{2 \\cdot 1} \\cdot (2^6 x^6) \\cdot (\\frac{1}{4})$\n$= 28 \\cdot (64x^6) \\cdot (\\frac{1}{4})$\n$= 7 \\cdot 64x^6$\n$= 448x^6$ (A1)\n\nThe first three terms are $256x^8 - 512x^7 + 448x^6$."
+      "type": "examTip",
+      "content": "On Paper 1 (non-calculator) evaluate $\\binom{n}{r}$ by cancelling factorials, not by working out huge factorials in full. For example $\\binom{8}{3}=\\dfrac{8!}{3!\\,5!}=\\dfrac{8\\times 7\\times 6}{3\\times 2\\times 1}=\\dfrac{336}{6}=56$: cancel the $5!$ first, then simplify. Practise until this is fast."
     },
     {
       "type": "heading",
-      "content": "Finding a Specific Term"
+      "content": "The binomial theorem"
     },
     {
       "type": "text",
-      "content": "Often, an exam question will not ask for the full expansion, but for a single specific term, such as the term containing $x^5$ or the constant term. Calculating the entire expansion would be a waste of time. For this, we use the general term formula, which is just one piece of the main summation formula."
+      "content": "Putting the coefficients and the powers together gives the theorem itself. Each term pairs a binomial coefficient with a falling power of $a$ and a rising power of $b$."
     },
     {
       "type": "formula",
-      "content": "The general term is $T_{r+1} = \\binom{n}{r} a^{n-r} b^r$."
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to the wording. The '4th term' corresponds to $r=3$. Also, when dealing with expressions like $(2x-3)^n$, remember to identify $a=2x$ and $b=-3$. The negative sign is part of $b$ and must be raised to the power $r$. Forgetting this is a very common source of errors."
+      "content": "$(a+b)^n=\\binom{n}{0}a^n+\\binom{n}{1}a^{n-1}b+\\binom{n}{2}a^{n-2}b^2+\\cdots+\\binom{n}{n}b^n$\n\nor concisely\n\n$(a+b)^n=\\displaystyle\\sum_{r=0}^{n}\\binom{n}{r}a^{n-r}b^r.$"
     },
     {
       "type": "workedExample",
-      "question": "Find the constant term in the expansion of $(2x^2 - \\frac{3}{x})^9$.",
-      "solution": "The expression is $(a+b)^n$ where $a=2x^2$, $b=-\\frac{3}{x}$, and $n=9$.\nThe general term is $T_{r+1} = \\binom{n}{r} a^{n-r} b^r$.\n\nSubstitute the values for $a$, $b$, and $n$:\n$T_{r+1} = \\binom{9}{r} (2x^2)^{9-r} (-\\frac{3}{x})^r$ (M1 for correct substitution into the general term formula)\n\nNow, let's simplify the expression, focusing on the powers of $x$:\n$T_{r+1} = \\binom{9}{r} 2^{9-r} (x^2)^{9-r} (-3)^r (x^{-1})^r$\n$T_{r+1} = \\binom{9}{r} 2^{9-r} (-3)^r x^{2(9-r)} x^{-r}$\n$T_{r+1} = \\binom{9}{r} 2^{9-r} (-3)^r x^{18-2r-r}$ (M1 for simplifying powers)\n$T_{r+1} = \\binom{9}{r} 2^{9-r} (-3)^r x^{18-3r}$\n\nThe constant term is the term where the power of $x$ is 0. So we need to find the value of $r$ for which $x^{18-3r} = x^0$.\n$18 - 3r = 0$ (M1 for setting the power of x to zero)\n$3r = 18$\n$r = 6$ (A1)\n\nNow substitute $r=6$ back into the general term formula to find the constant term:\nConstant Term $= T_{6+1} = T_7 = \\binom{9}{6} 2^{9-6} (-3)^6$\n$= \\binom{9}{6} 2^3 (-3)^6$\n\nCalculate the components:\n$\\binom{9}{6} = \\binom{9}{3} = \\frac{9 \\cdot 8 \\cdot 7}{3 \\cdot 2 \\cdot 1} = 84$\n$2^3 = 8$\n$(-3)^6 = 729$\n\nConstant Term $= 84 \\cdot 8 \\cdot 729$ (M1 for substituting r=6 into the coefficient part)\n$= 672 \\cdot 729$\n$= 489888$ (A1)\n\nThe constant term is 489,888."
+      "question": "Use the binomial theorem to expand $(2x+3y)^4$ fully. [5]",
+      "solution": "**Identify the parts.** Here $a=2x$, $b=3y$, $n=4$, so there are $n+1=5$ terms. The row-4 coefficients from Pascal's triangle are $1,4,6,4,1$.  [M1: correct structure with coefficients]\n\nApply $T_{r+1}=\\binom{4}{r}(2x)^{4-r}(3y)^r$ term by term:\n\n$r=0:\\; 1\\cdot(2x)^4=16x^4$\n$r=1:\\; 4\\cdot(2x)^3(3y)=4\\cdot 8x^3\\cdot 3y=96x^3y$\n$r=2:\\; 6\\cdot(2x)^2(3y)^2=6\\cdot 4x^2\\cdot 9y^2=216x^2y^2$  [M1: coefficients AND powers of $2$ and $3$ handled]\n$r=3:\\; 4\\cdot(2x)(3y)^3=4\\cdot 2x\\cdot 27y^3=216xy^3$\n$r=4:\\; 1\\cdot(3y)^4=81y^4$  [A1: all five terms correct]\n\n**Expansion:**\n$(2x+3y)^4=16x^4+96x^3y+216x^2y^2+216xy^3+81y^4.$  [A1]\n\n**Check:** the powers in each term sum to $4$, and the coefficients $16,96,216,216,81$ are symmetric only if $a$ and $b$ were equal — here they differ, so no symmetry is expected. [A1: presentation/verification]\n\n*A common slip is to apply the coefficient $1,4,6,4,1$ but forget to raise the $2$ and the $3$ to their powers — always cube the whole $(2x)$, not just the $x$.*"
+    },
+    {
+      "type": "heading",
+      "content": "Finding a specific term or coefficient"
+    },
+    {
+      "type": "text",
+      "content": "Exam questions often ask for just one term — 'the term in $x^5$', 'the coefficient of $x^2$', or 'the constant term'. Writing out the whole expansion wastes time. Instead, work with the general term, collect the powers of the variable into one exponent, and solve for the $r$ that produces the power you need."
+    },
+    {
+      "type": "formula",
+      "content": "General term: $\\;T_{r+1}=\\binom{n}{r}a^{n-r}b^r.$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the term in $x^5$ in the expansion of $\\left(3x-\\dfrac{2}{x^2}\\right)^8$. [6]",
+      "solution": "**Identify the parts.** $a=3x$, $b=-\\dfrac{2}{x^2}$, $n=8$.  [M1: correct $a$, $b$, $n$ including the sign]\n\nGeneral term:\n$T_{r+1}=\\binom{8}{r}(3x)^{8-r}\\left(-\\dfrac{2}{x^2}\\right)^r.$  [M1: general term set up]\n\nSeparate coefficients from powers of $x$:\n$T_{r+1}=\\binom{8}{r}\\,3^{8-r}(-2)^r\\,x^{8-r}\\,x^{-2r}=\\binom{8}{r}\\,3^{8-r}(-2)^r\\,x^{8-3r}.$  [A1: collected power $x^{8-3r}$]\n\n**Match the power.** We want $x^5$, so\n$8-3r=5\\;\\Rightarrow\\;3r=3\\;\\Rightarrow\\;r=1.$  [M1: equate power; A1: $r=1$]\n\n**Substitute $r=1$:**\n$T_2=\\binom{8}{1}\\,3^{7}(-2)^1\\,x^5=8\\cdot 2187\\cdot(-2)\\,x^5=-34992x^5.$  [A1]\n\n**Term in $x^5$:** $-34992x^5$. (If the question had asked for the *coefficient*, the answer would be $-34992$.)"
+    },
+    {
+      "type": "examTip",
+      "content": "Whenever the bracket contains a minus sign or a fraction, carry it inside the power explicitly: $\\left(-\\frac{2}{x^2}\\right)^r=(-2)^r x^{-2r}$. Dropping the sign or forgetting the $x^{-2r}$ is the single most common way students lose the accuracy mark here."
+    },
+    {
+      "type": "heading",
+      "content": "Using the theorem for approximations"
+    },
+    {
+      "type": "text",
+      "content": "Because the first terms of a binomial expansion are the largest when $b$ is small, the opening terms give a quick numerical approximation. For example, to estimate $(1.02)^6$, write it as $(1+0.02)^6$ and keep only the first few terms: $1+\\binom{6}{1}(0.02)+\\binom{6}{2}(0.02)^2+\\cdots=1+0.12+0.0030+\\cdots\\approx 1.1230$. Each later term is much smaller than the one before, so a handful of terms already gives several correct decimal places (the exact value is $1.12616\\ldots$). Keep more terms for more accuracy."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Dropping the sign of a negative second term** — in $(a-b)^n$ the term is $(-b)^r$, so it alternates: positive for even $r$, negative for odd $r$. Forgetting this flips the sign of the answer.",
+        "**Not raising the whole term to its power** — $(2x)^{8-r}$ means $2^{8-r}x^{8-r}$, not $2x^{8-r}$. The numerical factor must be powered too.",
+        "**Confusing the term with its coefficient** — 'the term in $x^5$' keeps the $x^5$; 'the coefficient of $x^5$' is only the number. Read the demand precisely.",
+        "**Off-by-one on term number** — the $(r+1)$th term uses $r$, so the 4th term is $r=3$, not $r=4$.",
+        "**Mishandling powers of $x$ in a fraction** — $\\left(\\frac{c}{x^2}\\right)^r=c^r x^{-2r}$; forgetting the $x^{-2r}$ gives the wrong power and the wrong $r$.",
+        "**Using $n+1$ or $n-1$ terms** — the expansion of $(a+b)^n$ has exactly $n+1$ terms.",
+        "**Arithmetic slips in $\\binom{n}{r}$** — cancel factorials before multiplying, and use the symmetry $\\binom{n}{r}=\\binom{n}{n-r}$ to keep the numbers small."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards the correct approach even if the arithmetic later slips; an accuracy mark (A) is for a correct result and is dependent on the relevant method mark being earned. Follow-through (FT) means a correct answer that flows from an earlier slip can still score, 'ignore subsequent working' (ISW) means correct work is not un-done by later fumbling, and equivalent or exact forms are accepted. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the coefficient of $x^5$ in the expansion of $(2x-3)^8$. [5]",
+      "solution": "**Model answer — full working.**\n\nIdentify $a=2x$, $b=-3$, $n=8$. The general term of $(a+b)^n$ is\n$T_{r+1}=\\binom{8}{r}(2x)^{8-r}(-3)^r.$\n\nSeparate the power of $x$:\n$T_{r+1}=\\binom{8}{r}\\,2^{8-r}(-3)^r\\,x^{8-r}.$\n\nWe want $x^5$, so set the power of $x$ equal to $5$:\n$8-r=5\\;\\Rightarrow\\;r=3.$\n\nSubstitute $r=3$:\n$\\binom{8}{3}(2x)^{5}(-3)^3=\\binom{8}{3}\\,2^{5}\\,(-3)^3\\,x^5.$\n\nEvaluate the coefficient:\n$\\binom{8}{3}=56,\\quad 2^5=32,\\quad(-3)^3=-27,$\n$\\text{coefficient}=56\\times 32\\times(-27)=-48384.$\n\n**Final answer:** the coefficient of $x^5$ is $-48384$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — general term.** Awarded for writing a correct general term $\\binom{8}{r}(2x)^{8-r}(-3)^r$ (or clear equivalent). This is a METHOD mark: it stands even if the arithmetic later slips, provided the structure — coefficient, power of $(2x)$, power of $(-3)$ — is right, sign included.\n- **M1 — locate the term.** Awarded for equating the power of $x$ to $5$ and solving: $8-r=5\\Rightarrow r=3$. The engine checks that the correct exponent condition was used.\n- **M1 — substitute.** Awarded for substituting $r=3$ back into the term, i.e. forming $\\binom{8}{3}(2)^5(-3)^3$. Right values in the right places.\n- **A1 — exact form.** Awarded for the correct un-simplified expression $\\binom{8}{3}(2)^5(-3)^3$ (accept any equivalent exact form, e.g. $56\\cdot 32\\cdot(-27)$). This A-mark depends on the substitution M-mark.\n- **A1 — final coefficient.** Awarded for $-48384$. FOLLOW-THROUGH applies: a student who set up the correct method but, say, used $r=3$ with a single mis-keyed factor still earns the earlier marks, and an answer that follows correctly from their own earlier figure can score this A-mark on FT.\n\n**Accept equivalent / exact forms; ISW.** The engine accepts $\\binom{8}{3}2^5(-3)^3$, $56\\times32\\times(-27)$, or the evaluated $-48384$ — it does not insist on one written form. Under ISW, once $-48384$ is correctly reached, an unnecessary later line does not lose the mark. A student who answers 'the term is $-48384x^5$' is not penalised for giving the term as long as the coefficient is unambiguous; but a student who writes only a bare wrong number with no general term risks losing 3–4 marks, because there is no method on the page to reward.\n\n**Bottom line:** three of the five marks are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through — but only if the general term, the power condition and the substitution are all written down."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through and 'accept equivalent forms'. So always show the method: write the general term, state the power condition that fixes $r$, show the substitution, then evaluate. The method and accuracy marks that protect your score when the final number slips only exist if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The binomial theorem reappears throughout the course. The coefficients $\\binom{n}{r}$ are the same ${}^nC_r$ that count combinations in probability, and the alternating-sign handling here is the same care you will use expanding brackets in calculus and series work. At HL the theorem extends to any rational power as an infinite series, but the machine you have just built — general term, match the power, substitute — is exactly the routine you carry forward. Master the habit: identify $a,b,n$ with signs, write the general term, fix $r$ from the power you want, then evaluate and show every line."
     },
     {
       "type": "practice",
-      "label": "Practise Binomial Theorem Problems",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=1.3"
+      "label": "Get a Paper 1 binomial question marked: find a coefficient with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.3&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Revision Village: Binomial Theorem",
-          "href": "https://www.revisionvillage.com/ib-math/analysis-and-approaches-hl/algebra/key-concepts-formulae-binomial-theorem/"
-        },
-        {
           "label": "Khan Academy: Binomial Theorem",
           "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:poly-factor/x2ec2f6f830c9fb89:binomial/v/binomial-theorem"
+        },
+        {
+          "label": "Math is Fun: Binomial Theorem",
+          "href": "https://www.mathsisfun.com/algebra/binomial-theorem.html"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

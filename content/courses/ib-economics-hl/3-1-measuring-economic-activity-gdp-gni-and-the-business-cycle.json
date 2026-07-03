@@ -1,201 +1,127 @@
 {
   "slug": "3-1-measuring-economic-activity-gdp-gni-and-the-business-cycle",
   "topicCode": "3.1",
+  "unit": { "code": "3", "title": "Macroeconomics" },
   "title": "Measuring economic activity: GDP, GNI and the business cycle",
   "paper": "P3",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson introduces the core macroeconomic indicators used to measure a country's economic activity. We will define and differentiate between Gross Domestic Product (GDP) and Gross National Income (GNI), distinguish between nominal and real values, and explore the cyclical nature of economic growth through the business cycle model.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Macroeconomics begins with a measurement problem: how do you put a single number on the size of a whole economy? This lesson builds that number from the ground up — the circular flow of income, the three equivalent methods of measuring GDP, the move from GDP to GNI, and the crucial adjustment from nominal to real values using a price deflator. It ends with the business cycle and an honest look at why national income statistics are an imperfect measure of well-being. Because 3.1 is assessed on Paper 3, every idea is paired with the quantitative technique examiners actually mark.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and calculate GDP using the expenditure approach.",
-    "Distinguish between nominal and real GDP, and calculate real GDP using a deflator.",
-    "Explain the concept of GNI and its relationship to GDP.",
-    "Describe the phases of the business cycle and the relationship between real GDP and time."
+    "Describe the circular flow of income and explain why the three methods of measuring GDP (output, income, expenditure) must give the same value.",
+    "Distinguish GDP from GNI, and calculate GNI using net property (factor) income from abroad.",
+    "Distinguish nominal from real GDP, and use a GDP deflator to convert between them and to calculate a real growth rate.",
+    "Interpret GDP and GNI per capita, and evaluate the limitations of national income statistics as a measure of well-being.",
+    "Identify the phases of the business cycle and relate short-run fluctuations to the long-term growth trend."
   ],
+  "syllabusObjectivesCovered": ["3.1"],
+  "keyConcepts": ["economic well-being", "change", "efficiency"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Nation's Economic Pulse",
-    "summary": "GDP is like a country's annual income statement, measuring the total value of everything produced within its borders. By tracking GDP, we can gauge the health and growth of an economy, much like a doctor checks a patient's pulse.",
-    "analogy": "Imagine a household's total income. It's the sum of everyone's wages, profits from a small business, and any other earnings. This is like a country's GDP. If the household's income rises from £50,000 to £52,000, they might feel richer. But if the price of their weekly shopping has also risen by 4%, they aren't actually better off. To know if their purchasing power has truly increased, they need to account for inflation – just as economists use 'real' GDP to see if a country's output has actually grown.",
+    "title": "Putting a Number on a Whole Economy",
+    "summary": "GDP is the total value of everything a country produces in a year. But a raw GDP figure hides two traps: rising prices can make output look bigger than it really is, and where production happens is not the same as who earns the income. Real GDP and GNI fix those two problems, and the business cycle reminds us the number never grows in a straight line.",
+    "analogy": "Think of an economy as a giant relay race where money is the baton. Households hand spending to firms; firms hand wages, rent, interest and profit back to households. Whether you count the baton as it leaves the hand (expenditure), as it lands in the other hand (income), or by the distance covered (output), you are measuring the same lap — so all three counts must agree. And if you photograph the race twice a year apart, you must check the camera wasn't just zoomed in: that zoom is inflation, and undoing it gives you real GDP.",
     "steps": [
-      "First, we measure the total value of all goods and services produced in a country in a year. This is called Gross Domestic Product (GDP).",
-      "Next, we adjust this value for inflation. This gives us 'real' GDP, which allows for fair comparisons of economic output over time.",
-      "Then, we can refine this measure by considering income flowing in and out of the country. This gives us Gross National Income (GNI).",
-      "Finally, we plot real GDP over time to visualise the business cycle, showing the natural ups and downs of economic activity, such as booms and recessions."
+      "Money flows in a circle: household spending becomes firms' revenue, which becomes household income, which is spent again.",
+      "Measure that flow three ways — output, income, expenditure — and, by construction, they are equal.",
+      "Adjust GDP for income earned across borders to get GNI; adjust for rising prices to get real GDP.",
+      "Divide by population for a per-capita figure, then plot real GDP over time to see the business cycle around its trend."
     ]
   },
   "flashcards": [
-    {
-      "front": "What is Gross Domestic Product (GDP)?",
-      "back": "The total market value of all final goods and services produced within a country's borders in a given period of time (usually a year or a quarter)."
-    },
-    {
-      "front": "What is the expenditure approach formula for GDP?",
-      "back": "GDP = C + I + G + (X - M), where C=Consumption, I=Investment, G=Government Spending, X=Exports, M=Imports."
-    },
-    {
-      "front": "What is the difference between Nominal GDP and Real GDP?",
-      "back": "Nominal GDP is measured at current market prices, while Real GDP is measured at constant prices from a base year, thus adjusting for inflation."
-    },
-    {
-      "front": "What is Gross National Income (GNI)?",
-      "back": "GNI is the total income received by a country from its residents and businesses regardless of whether they are located in the country or abroad. GNI = GDP + Net Factor Income from Abroad."
-    },
-    {
-      "front": "What is Net Factor Income from Abroad?",
-      "back": "It is the income earned by a country's residents and firms from abroad minus the income paid to foreign residents and firms operating in the country."
-    },
-    {
-      "front": "What is a 'recession'?",
-      "back": "A period of economic contraction, technically defined as two consecutive quarters of negative real GDP growth."
-    },
-    {
-      "front": "What are the four main phases of the business cycle?",
-      "back": "Expansion (or recovery), peak, contraction (or recession), and trough."
-    },
-    {
-      "front": "What is the GDP Deflator?",
-      "back": "A price index that measures the level of prices of all new, domestically produced, final goods and services in an economy. It is used to convert nominal GDP into real GDP."
-    },
-    {
-      "front": "Why might GNI be a better indicator than GDP for a country like the Philippines?",
-      "back": "The Philippines has a large number of citizens working abroad who send remittances home. GNI includes this income, providing a more accurate picture of the nation's total income than GDP, which only measures domestic production."
-    },
-    {
-      "front": "What is GDP per capita?",
-      "back": "Total GDP divided by the population size. It is often used as an indicator of the average standard of living, but it can mask income inequality."
-    },
-    {
-      "front": "Exam Trap: Confusing 'Investment' (I) in the GDP formula.",
-      "back": "In the context of national income accounting, 'Investment' (I) refers to spending by firms on capital goods (machinery, factories) and changes in inventories, NOT buying stocks and shares, which is a financial transaction."
-    }
+    { "front": "Gross Domestic Product (GDP)", "back": "The total market value of all final goods and services produced WITHIN a country's borders in a given period, regardless of who owns the factors of production.", "pillLabel": "Definition" },
+    { "front": "The circular flow of income", "back": "A model showing that the flow of spending from households to firms (expenditure) equals the flow of factor payments from firms to households (income), which equals the value of what is produced (output). This identity is why the three methods of measuring GDP agree.", "pillLabel": "Model" },
+    { "front": "The three methods of measuring GDP", "back": "OUTPUT (sum of value added at each stage of production), INCOME (sum of wages, rent, interest and profit), and EXPENDITURE (C + I + G + (X − M)). All three measure the same circular flow, so all three give the same figure.", "pillLabel": "Framework" },
+    { "front": "Why 'value added' and not total sales?", "back": "The output method counts only the value ADDED at each stage, or equivalently only FINAL goods. Counting the flour, the bread and the sandwich separately would double- or triple-count the same wheat.", "pillLabel": "Analysis" },
+    { "front": "Expenditure formula for GDP", "back": "GDP = C + I + G + (X − M): Consumption + Investment + Government spending + Net exports. Investment here means firms' spending on capital and inventories — NOT buying financial assets.", "pillLabel": "Formula" },
+    { "front": "Gross National Income (GNI)", "back": "The total income earned by a country's residents and firms, wherever in the world it is earned. GNI = GDP + net property (factor) income from abroad.", "pillLabel": "Definition" },
+    { "front": "Net property (factor) income from abroad", "back": "Income (wages, profit, interest, dividends) earned by domestic residents ABROAD minus income earned by foreign residents WITHIN the country. It can be positive or negative, and it is what turns GDP into GNI.", "pillLabel": "Definition" },
+    { "front": "Nominal vs real GDP", "back": "Nominal GDP is valued at the CURRENT prices of each year. Real GDP is valued at the CONSTANT prices of a base year, so it strips out inflation and reflects changes in the actual quantity of output.", "pillLabel": "Definition" },
+    { "front": "GDP deflator and the conversion formula", "back": "A price index (base year = 100) covering all goods in GDP. Real GDP = (Nominal GDP ÷ GDP deflator) × 100. A deflator above 100 means prices have risen since the base year, so real GDP is below nominal GDP.", "pillLabel": "Formula" },
+    { "front": "GDP / GNI per capita", "back": "Total GDP (or GNI) divided by population — an estimate of average income per person. Better than the total for comparing living standards, but it says nothing about how that income is distributed.", "pillLabel": "Definition" },
+    { "front": "The four phases of the business cycle", "back": "Expansion (rising real GDP), peak (upper turning point), contraction/recession (falling real GDP), and trough (lower turning point) — fluctuations of actual real GDP around a rising long-term trend.", "pillLabel": "Model" },
+    { "front": "Exam Trap: nominal growth is not real growth", "back": "A rise in nominal GDP can be entirely price inflation with no extra output. Only REAL GDP growth tells you the economy actually produced more. Always deflate before comparing years.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A country's nominal GDP rises by 6% while its GDP deflator rises by 6% over the same year. The change in real GDP is approximately:", "options": ["A rise of about 12%", "A rise of about 6%", "Roughly zero — output is unchanged", "A fall of about 6%"], "answer": "Roughly zero — output is unchanged" },
+    { "prompt": "The correct formula to convert nominal GDP into real GDP is:", "options": ["Real GDP = Nominal GDP × GDP deflator ÷ 100", "Real GDP = (Nominal GDP ÷ GDP deflator) × 100", "Real GDP = Nominal GDP − GDP deflator", "Real GDP = (GDP deflator ÷ Nominal GDP) × 100"], "answer": "Real GDP = (Nominal GDP ÷ GDP deflator) × 100" },
+    { "prompt": "A country where many multinationals repatriate profits abroad, and few residents earn income overseas, will typically have:", "options": ["GNI greater than GDP", "GNI equal to GDP", "GNI less than GDP", "A GDP deflator below 100"], "answer": "GNI less than GDP" },
+    { "prompt": "The lowest point of real GDP, at the end of a contraction and just before recovery, is the:", "options": ["Peak", "Trough", "Long-term trend", "Expansion"], "answer": "Trough" },
+    { "prompt": "The three methods of measuring GDP (output, income, expenditure) give the same value because:", "options": ["Governments force them to match by law", "One firm's spending is another's income, and both equal the value of what is produced", "Nominal and real GDP are always equal", "Imports are always equal to exports"], "answer": "One firm's spending is another's income, and both equal the value of what is produced" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a recession and a depression?",
-      "a": "A recession is a significant decline in economic activity, typically defined as two consecutive quarters of falling real GDP. A depression is a much more severe and prolonged downturn. There is no official definition, but a depression is characterised by a very large drop in GDP (e.g., more than 10%) and/or a sustained period of high unemployment lasting several years."
-    },
-    {
-      "q": "Why is GDP per capita a better measure of living standards than total GDP?",
-      "a": "Total GDP measures the size of an economy, but it doesn't account for the size of the population. A country with a large population like China will have a very high total GDP, but this doesn't mean the average citizen is wealthy. GDP per capita (GDP divided by population) gives an indication of the average income per person, which is a more relevant, though still imperfect, proxy for the average standard of living."
-    },
-    {
-      "q": "Do GDP and GNI tell us everything about a country's well-being?",
-      "a": "No, they are purely economic measures and have significant limitations as indicators of overall well-being. They do not account for income inequality, the value of unpaid work (e.g., caring for family), environmental damage, leisure time, or the informal/black market economy. For a more holistic view, economists often look at alternative measures like the Human Development Index (HDI), which includes health and education alongside income."
-    }
+    { "q": "If the three methods always give the same answer, why do statistical agencies bother with all three?", "a": "In theory the output, income and expenditure methods are identical because they measure the same circular flow. In practice the raw data come from different sources — tax records, business surveys, trade figures — collected at different times, so the three estimates rarely match to the last dollar. Agencies compute all three, reconcile them, and report a 'statistical discrepancy'. The identity is exact conceptually; the measurement is not." },
+    { "q": "When is GNI a better measure than GDP, and when is GDP better?", "a": "Use GNI when you care about the income actually available to a nation's residents — for example the Philippines or Bangladesh, where remittances from workers abroad make GNI noticeably larger than GDP. Use GDP when you care about production and jobs located inside the country — for example Ireland, where large multinational profits inflate GDP well above the income (GNI) that residents actually keep. Neither is 'more correct'; they answer different questions." },
+    { "q": "Does higher real GDP per capita mean people are better off?", "a": "Only roughly. Real GDP per capita corrects for both inflation and population size, so it is the best single income-based indicator — but it is still an average that hides inequality, ignores unpaid and informal work, puts no value on leisure or the environment, and counts some 'bads' (like clean-up after a disaster) as output. This is why economists pair it with broader measures such as the Human Development Index." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to our study of macroeconomics. Before we can analyse economic problems or propose policies, we must first learn how to measure the economy itself. This lesson focuses on the primary metrics used globally to track economic performance: GDP and GNI. We'll explore how they are calculated, what they can and cannot tell us, and how economic activity naturally fluctuates over time in what is known as the business cycle."
-    },
-    {
-      "type": "heading",
-      "content": "Measuring National Income: Gross Domestic Product (GDP)"
-    },
-    {
-      "type": "text",
-      "content": "Gross Domestic Product (GDP) is the cornerstone of national income accounting. It represents the total monetary value of all final goods and services produced within a country's geographical boundaries during a specific time period, typically a year. There are three ways to calculate GDP which should, in theory, all yield the same result: the output approach (summing the value added at each stage of production), the income approach (summing all incomes earned), and the expenditure approach."
-    },
-    {
-      "type": "text",
-      "content": "The expenditure approach is the most common and is central to the IB syllabus. It categorises spending in the economy into four components:"
-    },
-    {
-      "type": "formula",
-      "content": "GDP = C + I + G + (X - M)"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Consumption (C):** Spending by households on goods and services.",
-        "**Investment (I):** Spending by firms on capital equipment, inventories, and new housing. This is *not* financial investment like buying shares.",
-        "**Government Spending (G):** Spending by all levels of government on final goods and services (e.g., defence, infrastructure). It excludes transfer payments like unemployment benefits.",
-        "**Net Exports (X - M):** The value of exports (X) minus the value of imports (M)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Adjusting for Inflation: Nominal vs. Real GDP"
-    },
-    {
-      "type": "text",
-      "content": "If a country's GDP increases from one year to the next, it could be because it produced more goods and services, or simply because the prices of those goods and services rose (inflation). To get a true picture of whether output has grown, we must adjust for price changes. Nominal GDP is calculated using current prices and can be inflated by price increases. Real GDP is calculated using the prices of a fixed base year, giving us a measure of output in constant prices."
-    },
-    {
-      "type": "formula",
-      "content": "Real\\ GDP = \\frac{Nominal\\ GDP}{GDP\\ Deflator} \\times 100"
-    },
-    {
-      "type": "workedExample",
-      "question": "The country of Econland provides the following data. The base year for the GDP deflator is Year 1. Calculate:\na) The Real GDP for Year 2 and Year 3.\nb) The percentage growth in Real GDP between Year 2 and Year 3.\n\n| Year | Nominal GDP (billions of €) | GDP Deflator | \n| :--- | :--- | :--- | \n| 1 | 500 | 100 | \n| 2 | 550 | 105 | \n| 3 | 600 | 112 |",
-      "solution": "**Part a) Calculating Real GDP**\n\nWe use the formula: `Real GDP = (Nominal GDP / GDP Deflator) * 100`\n\n*   **For Year 2:**\n    Real GDP = (€550bn / 105) * 100 = **€523.81 billion** (2 d.p.)\n\n*   **For Year 3:**\n    Real GDP = (€600bn / 112) * 100 = **€535.71 billion** (2 d.p.)\n\n**Part b) Calculating Real GDP Growth**\n\nWe use the percentage change formula: `((New Value - Old Value) / Old Value) * 100`\n\n*   **Growth between Year 2 and Year 3:**\n    Growth Rate = ((€535.71bn - €523.81bn) / €523.81bn) * 100\n    Growth Rate = (€11.9bn / €523.81bn) * 100 = **2.27%** (2 d.p.)"
-    },
-    {
-      "type": "heading",
-      "content": "A Broader Measure: Gross National Income (GNI)"
-    },
-    {
-      "type": "text",
-      "content": "GDP is about where production happens. But what if a country's citizens earn a lot of income from abroad, or if foreign companies within the country send their profits home? GDP doesn't capture these international income flows. Gross National Income (GNI) measures the total income earned by a nation's people and businesses, regardless of their location. It starts with GDP and then adjusts for the net income received from or paid to the rest of the world."
-    },
-    {
-      "type": "formula",
-      "content": "GNI = GDP + (Factor income earned from abroad - Factor income paid abroad)"
-    },
-    {
-      "type": "examTip",
-      "content": "In an exam, if you need to compare living standards, GNI per capita is often considered superior to GDP per capita. For countries like Ireland, with many multinational corporations, GDP is significantly higher than GNI because of profit repatriation. For countries like Bangladesh, with many citizens working abroad sending money home, GNI is higher than GDP. Always consider the context of the country when choosing your measure."
-    },
-    {
-      "type": "workedExample",
-      "question": "In 2023, the nation of Macrovia had a GDP of $800 billion. During the year, Macrovia's citizens and firms earned $50 billion from their investments and work abroad. Foreign citizens and firms operating in Macrovia earned $35 billion, which was sent back to their home countries. Calculate Macrovia's GNI for 2023.$",
-      "solution": "**Step 1: Identify the components.**\n*   GDP = $800 billion$\n*   Factor income earned from abroad = $50 billion$\n*   Factor income paid abroad = $35 billion$\n\n**Step 2: Calculate Net Factor Income from Abroad.**\n*   Net Factor Income = Income from abroad - Income paid abroad\n*   Net Factor Income = $50 billion - $35 billion = $15 billion$\n\n**Step 3: Calculate GNI.**\n*   GNI = GDP + Net Factor Income from Abroad\n*   GNI = $800 billion + $15 billion\n*   **GNI = $815 billion**$\n\n*Working:* The calculation clearly shows that Macrovia's GNI is higher than its GDP because it has a positive net inflow of income from the rest of the world."
-    },
-    {
-      "type": "heading",
-      "content": "The Business Cycle"
-    },
-    {
-      "type": "text",
-      "content": "Economies do not grow in a straight line. They experience fluctuations in real GDP around a long-term growth trend. This pattern of ups and downs is called the business cycle. A diagram would show time on the x-axis and real GDP on the y-axis, with a fluctuating line moving around a steady upward-sloping trend line."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Expansion:** A period of rising real GDP. Unemployment falls, and consumer and business confidence are high. Inflation may start to rise.",
-        "**Peak:** The highest point of real GDP before it begins to fall. At the peak, unemployment is at its lowest, but inflationary pressures are likely to be high.",
-        "**Contraction (Recession):** A period of falling real GDP. Unemployment rises, and confidence falls. A recession is officially two consecutive quarters of negative growth.",
-        "**Trough:** The lowest point of real GDP at the end of a contraction. Unemployment is at its highest, and there may be deflationary pressure."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Paper 3 questions will often require you to perform calculations like the ones in the worked examples. You must show all your working clearly, step-by-step, and include the correct units (e.g., $, £, %, billions). Marks are awarded for the process as well as the final answer. Also, be prepared to evaluate the limitations of GDP/GNI as measures of well-being, for instance, they ignore the informal economy, environmental degradation, and income distribution.$"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-economics-hl&topic=3.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "World Bank Open Data",
-          "href": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG"
-        },
-        {
-          "label": "IMF Data",
-          "href": "https://data.imf.org/"
-        },
-        {
-          "label": "The Economist Explains: What is GDP?",
-          "href": "https://www.economist.com/big-mac-index"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every macroeconomic debate — growth, unemployment, inflation, government policy — rests on one prior question: how big is the economy, and is it getting bigger? This lesson answers that question carefully. We start with the circular flow of income, which shows why an economy can be measured three different ways that must agree. We then refine the raw figure twice: once to separate output from prices (real GDP), and once to separate where production happens from who earns the income (GNI). Because topic 3.1 is examined on Paper 3, each concept is tied to the exact calculation you will be asked to perform." },
+    { "type": "heading", "content": "The circular flow of income" },
+    { "type": "text", "content": "Imagine an economy stripped to two groups: households, who own the factors of production, and firms, who use them. Households supply land, labour, capital and enterprise to firms, and in return receive rent, wages, interest and profit. They then spend that income buying the goods and services firms produce. Firms use the revenue to pay the factors again, and the cycle repeats. This is the circular flow of income." },
+    { "type": "text", "content": "The model delivers a powerful insight for free. Follow the money around one loop: the value households SPEND (expenditure) must equal the value firms PAY OUT as factor incomes (income), which must equal the value of what firms PRODUCE (output). These are not three separate quantities that happen to be close — they are three views of a single flow. That is precisely why GDP can be measured three ways." },
+    { "type": "heading", "content": "The three methods of measuring GDP" },
+    { "type": "text", "content": "GDP is the total market value of all final goods and services produced within a country's borders in a period. The circular flow tells us there are three routes to that total, and by construction they give the same number:" },
+    { "type": "keyPoints", "items": [
+      "**Output method:** sum the VALUE ADDED at every stage of production (or, equivalently, the value of final goods only). Counting flour, then bread, then a sandwich made from that bread would count the same wheat three times — value added avoids this double-counting.",
+      "**Income method:** sum every factor income generated in production — wages, rent, interest and profit. Transfer payments (e.g. pensions, benefits) are excluded because no output is produced in return for them.",
+      "**Expenditure method:** sum all spending on final output: GDP = C + I + G + (X − M). This is the version the IB uses most.",
+      "**They must be equal** because one agent's spending is another's income, and both equal the value of what was produced. Any gap in published figures is measurement error (a 'statistical discrepancy'), not a flaw in the theory."
+    ]},
+    { "type": "formula", "content": "GDP = C + I + G + (X - M)" },
+    { "type": "keyPoints", "items": [
+      "**Consumption (C):** household spending on goods and services.",
+      "**Investment (I):** firms' spending on capital goods and inventories — *not* the purchase of shares, which is a financial transfer, not new output.",
+      "**Government spending (G):** government purchases of final goods and services; excludes transfer payments.",
+      "**Net exports (X − M):** exports minus imports, so that spending on foreign-made goods is removed from domestic output."
+    ]},
+    { "type": "heading", "content": "From GDP to GNI: net property income from abroad" },
+    { "type": "text", "content": "GDP answers 'how much is produced HERE?' It does not ask who owns the factories or where the income ends up. A foreign-owned car plant's profits count in the host country's GDP even though they are sent home to shareholders abroad; a citizen working overseas earns income that never appears in domestic GDP at all. Gross National Income (GNI) corrects for this by asking instead 'how much do our residents EARN, wherever the earning happens?'" },
+    { "type": "formula", "content": "GNI = GDP + net\\ property\\ (factor)\\ income\\ from\\ abroad" },
+    { "type": "text", "content": "Net property income from abroad is income earned by domestic residents abroad minus income earned by foreign residents at home. If it is positive (residents earn more abroad than foreigners earn locally), GNI exceeds GDP; if negative, GNI is below GDP." },
+    { "type": "workedExample", "question": "In 2023 the nation of Macrovia had a GDP of $800 billion. Its residents and firms earned $50 billion from work and investments abroad, while foreign residents and firms operating in Macrovia earned $35 billion, which they sent home. Calculate Macrovia's GNI for 2023. [3]", "solution": "**Step 1 — net property income from abroad.**\nIncome earned abroad by residents − income earned locally by foreigners = $50bn − $35bn = **+$15 billion**.\n\n**Step 2 — apply the GNI identity.**\nGNI = GDP + net property income from abroad = $800bn + $15bn.\n\n**Step 3 — state the result with units.**\nGNI = **$815 billion**.\n\nBecause net property income from abroad is positive, Macrovia's residents earn more than the country produces at home, so GNI (\\$815bn) exceeds GDP (\\$800bn)." },
+    { "type": "heading", "content": "Nominal vs real GDP, and the price deflator" },
+    { "type": "text", "content": "Suppose GDP rises from one year to the next. Did the country actually produce more, or did the same output simply cost more? Nominal GDP is measured at each year's current prices, so it rises with either extra output OR higher prices. Real GDP is measured at the constant prices of a chosen base year, so it isolates the change in actual quantity produced. The tool that separates the two is the GDP deflator — a price index for everything in GDP, set to 100 in the base year." },
+    { "type": "formula", "content": "Real\\ GDP = \\frac{Nominal\\ GDP}{GDP\\ deflator} \\times 100" },
+    { "type": "text", "content": "A deflator above 100 means the price level has risen since the base year, so real GDP is pulled below nominal GDP. To compare living standards over time or between countries you must always work with REAL figures — comparing nominal GDP across years mistakes inflation for growth." },
+    { "type": "heading", "content": "Model answer — marked against the real IB Paper 3 scheme" },
+    { "type": "workedExample", "question": "Paper 3 (quantitative): A country's nominal GDP in year 2 is $550 billion and the GDP deflator (base year 1 = 100) is 110. Calculate the real GDP in year 2, and the real GDP growth rate if real GDP in year 1 was $480 billion. [4]", "solution": "**Model answer:**\n\n**Part 1 — real GDP in year 2.**\nMethod: Real GDP = (Nominal GDP ÷ GDP deflator) × 100.\nReal GDP = ($550bn ÷ 110) × 100 = **$500 billion**.\n\n**Part 2 — real GDP growth rate, year 1 to year 2.**\nMethod: growth rate = ((real GDP year 2 − real GDP year 1) ÷ real GDP year 1) × 100.\nGrowth rate = (($500bn − $480bn) ÷ $480bn) × 100 = (20 ÷ 480) × 100 = **4.17%** (2 d.p.).\n\nSo the economy's real output grew by about 4.17%, even though nominal GDP was $550bn — the deflator of 110 tells us prices rose 10% above the base year, and stripping that out leaves real growth of roughly 4.17%.\n\n---\n**How our marking engine awards the marks (Paper 3, POINTS):**\nPaper 3 quantitative questions are marked on POINTS — marks split between **M (method)** and **A (accuracy)**, with **working shown** and **follow-through (own-figure rule)** applied.\n- **M1** — correct method for real GDP: dividing nominal GDP by the deflator and multiplying by 100. This mark is earned for the correct *approach* even before the arithmetic.\n- **A1** — correct answer $500 billion, with the unit ($, billion) shown.\n- **M1** — correct method for the growth rate: the percentage-change formula applied to the two REAL GDP figures (not the nominal ones).\n- **A1** — correct answer 4.17% (accept 4.2% / 4%; the % sign is required).\n- **Follow-through:** if a candidate made an arithmetic slip in Part 1 but then correctly used their own real-GDP figure in the Part 2 method, the second M1 (and often A1) is still awarded — the error is not penalised twice. This is why writing the method line explicitly, and showing every step, protects marks even when a number comes out wrong." },
+    { "type": "examTip", "content": "This is exactly what the Practice button does. Write your own full solution to the question above, submit it, and our marking engine grades it on the same Paper 3 POINTS scheme — checking whether you stated the method (M marks), reached the accurate figure with correct units (A marks), showed your working, and earning you follow-through credit where your later steps correctly use your own earlier answer. The habit that scores: write the formula line FIRST, then substitute, then state the answer with its unit." },
+    { "type": "heading", "content": "GDP / GNI per capita and the limits of national income statistics" },
+    { "type": "text", "content": "A large total GDP can simply reflect a large population, so to compare average living standards we divide by population to get GDP (or GNI) per capita. Real GDP per capita — corrected for both inflation and population — is the single best income-based indicator of living standards. But 'best available' is not 'complete', and examiners reward students who can say precisely why." },
+    { "type": "keyPoints", "items": [
+      "**Distribution is invisible:** an average says nothing about inequality. Two countries with identical GDP per capita can have very different lived experiences if income is concentrated at the top.",
+      "**Non-market activity is missing:** unpaid work (childcare, housework, volunteering) and the informal/black-market economy produce real value that GDP omits — and the size of that gap varies hugely between countries.",
+      "**Quality of life is ignored:** GDP places no value on leisure, health, political freedom or environmental quality. Faster growth bought with pollution or exhaustion may lower well-being while raising GDP.",
+      "**Some 'output' is really repair:** spending to clean up disasters or fight crime adds to GDP without making anyone better off than before.",
+      "**Comparisons need care:** to compare across countries you must also adjust for price-level differences (purchasing power parity), not just convert at exchange rates."
+    ]},
+    { "type": "heading", "content": "The business cycle" },
+    { "type": "text", "content": "Real GDP does not grow smoothly. It fluctuates around a rising long-term trend in a pattern called the business (or trade) cycle. On a diagram with time on the horizontal axis and real GDP on the vertical axis, actual output traces a wave that rises above and dips below a gently upward-sloping trend line representing the economy's average growth rate." },
+    { "type": "keyPoints", "items": [
+      "**Expansion (recovery):** real GDP is rising; unemployment falls, and consumer and business confidence strengthen. Inflationary pressure tends to build as the expansion matures.",
+      "**Peak:** the upper turning point where real GDP stops rising. Unemployment is low and inflationary pressure is typically at its highest.",
+      "**Contraction (recession):** real GDP is falling; unemployment rises and confidence weakens. A recession is commonly defined as two consecutive quarters of negative real GDP growth.",
+      "**Trough:** the lower turning point — the lowest level of real GDP before recovery begins. Unemployment is high and there may be deflationary pressure.",
+      "**Long-term trend:** the smooth line through the cycle, showing the economy's average (potential) growth rate over time; the cycle is the short-run deviation around it."
+    ]},
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Treating a rise in nominal GDP as growth** — a bigger nominal figure can be pure inflation. Only real GDP growth shows extra output; always deflate before comparing years.",
+      "**Inverting the deflator formula** — real GDP = (nominal ÷ deflator) × 100. Multiplying by the deflator instead of dividing turns a price rise into fake growth and loses the method mark.",
+      "**Confusing GDP with GNI** — GDP is production located inside the borders; GNI is income earned by residents anywhere. Muddling the direction of net property income from abroad flips the answer.",
+      "**Calculating a growth rate from nominal figures** — the Paper 3 growth-rate question almost always wants the change in REAL GDP; using nominal numbers forfeits the accuracy marks.",
+      "**Dropping units or the % sign** — on Paper 3 the accuracy (A) mark requires the correct unit ($, £, billion) or the % sign. A bare number is an incomplete answer.",
+      "**Not showing working** — Paper 3 awards method (M) marks and follow-through for the process. An unexplained final answer that is wrong scores nothing, whereas shown working can still earn most of the marks."
+    ]},
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Every macroeconomic topic ahead is measured with the tools built here. When later lessons ask whether growth is 'good', whether a country is in recession, or how policy should respond, they are reading the very indicators you have just learned to calculate and critique — real GDP, GNI, per-capita figures and the position of the economy in its business cycle. Master the measurement, and the analysis that follows becomes far clearer." },
+    { "type": "practice", "label": "Get a Paper 3 answer marked: calculate real GDP and a real growth rate from a deflator", "href": "/mark?subject=ib-economics-hl&topic=3.1&component=paper_3" },
+    { "type": "resources", "items": [
+      { "label": "World Bank Open Data: GDP and GNI indicators", "href": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG" },
+      { "label": "IMF Data Portal", "href": "https://data.imf.org/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

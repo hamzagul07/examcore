@@ -1,218 +1,362 @@
 {
   "slug": "2-7-market-failure-externalities-and-the-environment",
   "topicCode": "2.7",
+  "unit": {
+    "code": "2",
+    "title": "Microeconomics"
+  },
   "title": "Market failure: externalities and the environment",
   "paper": "P1",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson explores market failure arising from externalities, where the actions of producers or consumers have spillover effects on third parties not involved in the transaction. We will analyse negative and positive externalities of both production and consumption, illustrate them using diagrams, and evaluate various government policies designed to correct these market failures and improve social welfare, with a particular focus on environmental issues.",
-  "durationMin": 90,
-  "updated": "2026-06-21",
+  "summary": "Markets are usually efficient, but not always. When production or consumption spills costs or benefits onto third parties, the price mechanism ignores them and the market misallocates resources — it overproduces goods that harm others and underproduces goods that help them. This lesson builds market failure and allocative inefficiency from first principles, works through all four externality types with MSC/MSB/MPC/MPB and welfare-loss diagrams, extends the idea to the environment and common access resources, and evaluates the main policy responses. It ends with a full Paper 1 part (b) EVALUATION model answer marked against the real IB markband.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the concepts of externalities as a cause of market failure, distinguishing between positive/negative and production/consumption externalities.",
-    "Draw and interpret diagrams for all four types of externalities, identifying market equilibrium, social optimum, and welfare loss.",
-    "Analyse and evaluate government policies to correct market failure, such as indirect taxes, subsidies, carbon taxes, and tradable permits.",
-    "Apply economic concepts to real-world environmental issues like pollution and climate change."
+    "Explain market failure as a failure to achieve allocative efficiency, and locate it precisely using MSC, MSB, MPC and MPB.",
+    "Distinguish and diagram all four externality types (negative/positive, production/consumption), identifying the welfare-loss triangle and its correct direction.",
+    "Apply externality analysis to the environment and common access resources (the tragedy of the commons).",
+    "Evaluate the main policy responses — indirect (Pigouvian) taxes, carbon taxes, tradable permits, regulation, subsidies and education — and reach a balanced judgement.",
+    "Structure a Paper 1 part (b) evaluation answer that reaches the top markband."
   ],
+  "syllabusObjectivesCovered": [
+    "2.7"
+  ],
+  "keyConcepts": [
+    "sustainability",
+    "efficiency",
+    "intervention"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Neighbour's Messy Garden",
-    "summary": "Market failure happens when the price of something doesn't reflect its true cost or benefit to everyone. Externalities are these hidden costs or benefits that 'spill over' onto people not involved in the original activity.",
-    "analogy": "Imagine your neighbour decides to stop looking after their garden. It becomes overgrown and attracts pests. This is a 'negative externality' for you – your property value might decrease and you have to deal with the pests, even though you didn't participate in the 'transaction' of them neglecting their garden. Conversely, if they created a beautiful garden, you'd get the 'positive externality' of a lovely view and pleasant smells without paying for it. The market for gardening services doesn't account for your pain or pleasure.",
+    "title": "Spillover Effects: When the Price Is Wrong",
+    "summary": "An externality is a cost or benefit that lands on someone outside the transaction. Because the market price only reflects the buyer's and seller's private costs and benefits, it sends the wrong signal — too much of a good is made when it harms others, too little when it helps them. The gap between what the market does and what is best for society is a welfare loss.",
+    "analogy": "A factory sells widgets to willing customers — a private deal that looks efficient. But its chimney also dumps smoke on the town, causing coughs and cleaning bills that nobody in the deal pays for. The market price of a widget reflects labour and materials, not the smoke. So widgets look 'cheap', too many are bought, and the town silently picks up the tab. The market didn't lie about the private cost — it just never saw the social cost.",
     "steps": [
-      "First, identify the private market equilibrium. This is where the private costs of the producer (supply) meet the private benefits of the consumer (demand), ignoring any external effects.",
-      "Next, identify the externality. Is it a hidden cost (negative) or a hidden benefit (positive)? This external effect is added to the private cost/benefit to find the true social cost/benefit.",
-      "Then, determine the socially optimal equilibrium. This is where the marginal social cost (MSC) equals the marginal social benefit (MSB), representing the best outcome for society as a whole.",
-      "Finally, analyse the welfare loss. The difference between the market outcome and the social optimum creates a deadweight loss, representing the total value lost to society due to the market failure."
+      "Start at the free-market equilibrium, where private supply (MPC) meets private demand (MPB). This is what the market does on its own.",
+      "Add the externality. A negative production externality means the true cost to society (MSC) sits ABOVE the private cost (MPC) by the marginal external cost.",
+      "Find the social optimum, where MSC = MSB. This is the allocatively efficient quantity for society.",
+      "Measure the welfare loss — the triangle between MSC and MSB over the range the market got wrong. Its point sits at the social optimum and it opens out towards the market quantity."
     ]
   },
   "flashcards": [
     {
       "front": "Market Failure",
-      "back": "A situation where the free market fails to allocate resources efficiently, leading to a net loss of social welfare. The price mechanism fails to account for all costs and benefits."
+      "back": "When the free market fails to allocate resources efficiently, producing a net welfare loss. The price mechanism does not capture all the costs and/or benefits of production and consumption, so the market quantity differs from the socially optimal quantity.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Allocative Efficiency",
+      "back": "The situation where resources are allocated so that MSC = MSB and community surplus is maximised. Externalities cause allocative INEFFICIENCY: the market makes too much (negative externalities) or too little (positive externalities) of a good.",
+      "pillLabel": "Concept"
     },
     {
       "front": "Externality",
-      "back": "A cost or benefit arising from an economic transaction that affects a third party who is not directly involved in the transaction. Also known as a spillover effect."
+      "back": "A spillover effect: production or consumption imposes a cost (negative) or confers a benefit (positive) on a THIRD PARTY not directly involved in the transaction, and this is not reflected in the market price.",
+      "pillLabel": "Concept"
     },
     {
       "front": "Negative Externality of Production",
-      "back": "When the production of a good or service creates external costs that harm third parties. Example: A factory polluting a river. Here, Marginal Social Cost (MSC) > Marginal Private Cost (MPC)."
+      "back": "Production creates external costs for third parties (e.g. industrial pollution). MSC > MPC, so the market OVERPRODUCES and price is too low.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Negative Externality of Consumption",
-      "back": "When the consumption of a good or service creates external costs that harm third parties. Example: Second-hand smoke from cigarettes. Here, Marginal Social Benefit (MSB) < Marginal Private Benefit (MPB)."
+      "back": "Consumption creates external costs for third parties (e.g. second-hand smoke). MSB < MPB, so the market OVERCONSUMES.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Positive Externality of Production",
-      "back": "When the production of a good or service creates external benefits for third parties. Example: A firm's research and development that other firms can use. Here, MSC < MPC."
+      "back": "Production creates external benefits for third parties (e.g. firm R&D that others learn from). MSC < MPC, so the market UNDERPRODUCES.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Positive Externality of Consumption",
-      "back": "When the consumption of a good or service creates external benefits for third parties. Example: Getting a vaccination protects others as well as yourself. Here, MSB > MPB."
+      "back": "Consumption creates external benefits for third parties (e.g. vaccination, education). MSB > MPB, so the market UNDERCONSUMES.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Marginal Private Cost (MPC)",
-      "back": "The cost to the producer of producing one additional unit of a good. This is represented by the market supply curve."
+      "front": "MPC / MSC",
+      "back": "Marginal Private Cost is the cost to the producer of one more unit (the market supply curve). Marginal Social Cost is the total cost to society: MSC = MPC + Marginal External Cost. They are NOT the same whenever a production externality exists.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Marginal Social Cost (MSC)",
-      "back": "The total cost to society of producing one additional unit of a good. It is calculated as MSC = MPC + external cost."
-    },
-    {
-      "front": "Marginal Social Benefit (MSB)",
-      "back": "The total benefit to society of consuming one additional unit of a good. It is calculated as MSB = MPB + external benefit."
+      "front": "MPB / MSB",
+      "back": "Marginal Private Benefit is the benefit to the consumer of one more unit (the market demand curve). Marginal Social Benefit is the total benefit to society: MSB = MPB + Marginal External Benefit.",
+      "pillLabel": "Definition"
     },
     {
       "front": "Welfare Loss (Deadweight Loss)",
-      "back": "The loss of economic efficiency and social welfare that occurs when the market is not at the socially optimal equilibrium. It is represented by a triangle on the externality diagram."
+      "back": "The loss of community surplus from producing away from the social optimum. In an externality diagram it is the triangle between MSC and MSB, measured over the units the market got wrong; its vertex is AT the social optimum.",
+      "pillLabel": "Diagram"
+    },
+    {
+      "front": "Social Optimum",
+      "back": "The allocatively efficient output where MSC = MSB. The whole point of intervention is to move the market quantity towards this quantity.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Common Access Resource",
+      "back": "A resource that is non-excludable but rivalrous (oceans, forests, clean air, fish stocks). Free access plus rivalry drives overuse — the tragedy of the commons — a negative externality each user imposes on all the others.",
+      "pillLabel": "Concept"
     },
     {
       "front": "Pigouvian Tax",
-      "back": "A tax levied on any market activity that generates negative externalities. The tax is intended to correct an inefficient market outcome by being set equal to the external marginal cost."
+      "back": "An indirect tax set equal to the marginal external cost, designed to 'internalise the externality' by raising MPC up to MSC so the market chooses the socially optimal quantity.",
+      "pillLabel": "Policy"
     },
     {
-      "front": "Tradable Permits (Cap and Trade)",
-      "back": "A market-based solution to negative externalities, particularly pollution. A government sets a cap on the total level of pollution, issues permits to firms, and allows them to trade these permits."
+      "front": "Tradable Permits",
+      "back": "A cap-and-trade scheme: the government caps total emissions and issues permits that firms buy and sell. The cap fixes the environmental outcome; trading lets the market find the cheapest way to hit it.",
+      "pillLabel": "Policy"
     },
     {
-      "front": "Common Exam Trap: Diagram Labels",
-      "back": "Forgetting to label axes (Price, Quantity), all curves (MPC, MSC, MPB, MSB), equilibrium points (e.g., Qp, Pp, Qso, Pso), and the welfare loss triangle will cost you significant marks. Be precise and consistent."
+      "front": "Exam Trap: 'Externality = Pollution'",
+      "back": "Pollution is only ONE example (a negative production externality). Externalities can be positive, and can arise from consumption too — vaccination and education are externalities just as much as smog is.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: MSC vs MPC",
+      "back": "MSC is NOT 'the cost after tax' and MPC is NOT 'the cost before tax'. MPC is the producer's own cost; MSC adds the external cost borne by society. A tax is a policy that tries to make firms FACE MSC — it is not the definition of MSC.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In a negative production externality diagram, the welfare-loss triangle:",
+      "options": [
+        "Points downward with its vertex at the market quantity",
+        "Has its vertex at the social optimum and opens out towards the (larger) market quantity",
+        "Sits entirely to the left of the social optimum",
+        "Cannot be shown because MSC lies below MPC"
+      ],
+      "answer": "Has its vertex at the social optimum and opens out towards the (larger) market quantity"
+    },
+    {
+      "prompt": "Which statement about externalities is TRUE?",
+      "options": [
+        "An externality always means pollution",
+        "Externalities are only ever negative",
+        "Externalities can be positive or negative and arise from production or consumption",
+        "Consumption can never create an externality"
+      ],
+      "answer": "Externalities can be positive or negative and arise from production or consumption"
+    },
+    {
+      "prompt": "For a good with a negative externality of production, the relationship between the curves is:",
+      "options": [
+        "MSC = MPC and MSB > MPB",
+        "MSC > MPC, with MSB = MPB",
+        "MSB < MPB, with MSC = MPC",
+        "MSC < MPC, with MSB = MPB"
+      ],
+      "answer": "MSC > MPC, with MSB = MPB"
+    },
+    {
+      "prompt": "A Pigouvian (indirect) tax set correctly aims to:",
+      "options": [
+        "Shift MPB down until it meets MSC",
+        "Raise MPC up to MSC so the market produces the socially optimal quantity",
+        "Increase the external cost so society bears more of it",
+        "Move the MSC curve upward to create a larger welfare loss"
+      ],
+      "answer": "Raise MPC up to MSC so the market produces the socially optimal quantity"
+    },
+    {
+      "prompt": "The 'tragedy of the commons' for a fish stock is best described as:",
+      "options": [
+        "A positive externality of consumption",
+        "A public good that no one will supply",
+        "A negative externality each user imposes on all other users of a rivalrous, non-excludable resource",
+        "A free good with zero opportunity cost"
+      ],
+      "answer": "A negative externality each user imposes on all other users of a rivalrous, non-excludable resource"
     }
   ],
   "faq": [
     {
-      "q": "Why does the free market overproduce goods with negative externalities?",
-      "a": "Producers and consumers make decisions based on their private costs and benefits. With a negative externality, the true cost to society (MSC) is higher than the private cost (MPC) faced by the producer. Because the producer doesn't have to pay for the external costs (like pollution), the price of the good is artificially low, leading to a higher quantity being produced and consumed than is optimal for society."
+      "q": "What exactly is being 'inefficient' when a market fails?",
+      "a": "Allocative efficiency. Society's surplus is largest when the last unit produced is one whose marginal social benefit just equals its marginal social cost (MSC = MSB). With a negative externality the market keeps producing units where MSC exceeds MSB — those units cost society more than they are worth, so scrapping them would raise welfare. With a positive externality the reverse holds: valuable units where MSB exceeds MSC never get made. Either way the market quantity is not the quantity that maximises community surplus, and the gap in surplus is the welfare loss."
     },
     {
-      "q": "What is the key difference in the diagrams for a negative externality of production versus consumption?",
-      "a": "In a negative externality of production (e.g., factory pollution), the external cost is on the supply side. This means there are two supply curves: S=MPC and S1=MSC, with the MSC curve above the MPC curve. In a negative externality of consumption (e.g., smoking), the external cost is on the demand side. This means there are two demand curves: D=MPB and D1=MSB, with the MSB curve below the MPB curve."
+      "q": "Why does a positive externality still count as market failure — nothing bad is happening?",
+      "a": "Market failure is about inefficiency, not harm. With a positive externality the market underproduces: society misses out on benefits that would have been worth more than they cost, because private agents only weigh their private benefit. That lost potential welfare is a real cost of the market getting the quantity wrong, so it is a failure even though the good itself is desirable."
     },
     {
-      "q": "Are carbon taxes or tradable permits a better solution for climate change?",
-      "a": "Both are market-based solutions with different strengths. A carbon tax provides price certainty (firms know the cost of emitting a tonne of CO2) but quantity uncertainty (the total reduction in emissions is not guaranteed). Tradable permits provide quantity certainty (the 'cap' guarantees a maximum level of emissions) but price uncertainty (the price of permits can be volatile). The 'better' solution is a major debate among economists and depends on policy goals, political feasibility, and the specific context of the economy."
+      "q": "How do I know whether to shift the cost curve or the benefit curve?",
+      "a": "Ask whether the spillover comes from PRODUCTION or CONSUMPTION. Production externalities change the cost of making the good, so you start from MPC (supply) and find MSC. Consumption externalities change the benefit of using the good, so you start from MPB (demand) and find MSB. Then ask the SIGN: a negative externality pulls the social curve to the 'worse' side (MSC above MPC, or MSB below MPB); a positive one to the 'better' side."
     },
     {
-      "q": "Why is the welfare loss triangle shaped the way it is?",
-      "a": "The welfare loss triangle represents the cumulative loss to society from each unit produced beyond the social optimum (for negative externalities) or not produced up to the social optimum (for positive externalities). The height of the triangle at any given quantity between Qp and Qso represents the difference between the marginal social cost and marginal social benefit for that specific unit. Summing up this loss for all the 'inefficient' units creates the triangle."
+      "q": "How are common access resources and the environment linked to externalities?",
+      "a": "The environment is the classic setting for externalities. Clean air and fish stocks are common access resources — non-excludable but rivalrous. Each polluter or fisher gains the full private benefit of one more unit of activity while the cost (dirtier air, a thinner stock) is shared across everyone. That is a negative externality, and because it is imposed by many on many it tends to be large and persistent — the tragedy of the commons. Sustainability is the concern that today's overuse leaves too little for the future."
+    },
+    {
+      "q": "Is a Pigouvian tax the same thing as the marginal external cost?",
+      "a": "The ideal Pigouvian tax is SET EQUAL to the marginal external cost at the social optimum, so that after tax the producer's private cost lines up with the social cost and the market chooses the optimal quantity. But the tax is a policy tool, not a definition: in practice governments rarely know the external cost precisely, so the tax they set may be too high or too low, which is one of the main evaluation points later in this lesson."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of externalities, a cornerstone of market failure. In a perfect world, the 'invisible hand' of the market guides self-interest to promote the good of society. But what happens when it doesn't? This lesson delves into the spillover effects of our economic choices, from the pollution caused by industry to the societal benefits of education. We will learn how to identify, diagram, and propose solutions for these failures, which is essential for understanding modern economic policy debates, especially concerning the environment."
+      "content": "Markets are usually a remarkable way of allocating scarce resources — but 'usually' is not 'always'. When the production or consumption of a good spills costs or benefits onto people outside the transaction, the price the market settles on is simply wrong, and resources are misallocated. This lesson builds market failure carefully from allocative efficiency, works through every externality type with its diagram, extends the analysis to the environment and shared resources, and then evaluates what governments can actually do about it — finishing with a full Paper 1 evaluation answer marked against the real IB band."
     },
     {
       "type": "heading",
-      "content": "The Language of Externalities: Private vs. Social"
+      "content": "Market failure and allocative inefficiency"
     },
     {
       "type": "text",
-      "content": "At the heart of externalities is a divergence between private and social costs and benefits. Economic agents—consumers and producers—make decisions based on their private costs and benefits. However, when an externality exists, there is an additional cost or benefit imposed on society that is not reflected in the market price."
+      "content": "A competitive market left to itself reaches allocative efficiency: it produces the quantity where the marginal benefit of the last unit to society equals its marginal cost to society, so community surplus is maximised. Market FAILURE is any situation where the market, unaided, does NOT reach this point and a net welfare loss results. Externalities are the most examined cause: because external costs and benefits never enter the price, private decisions diverge from society's interest and the market settles at the wrong quantity."
+    },
+    {
+      "type": "text",
+      "content": "The tools that make this precise are the four marginal curves. On the cost side, Marginal Private Cost (MPC) is the market supply curve, and Marginal Social Cost (MSC) adds any external cost. On the benefit side, Marginal Private Benefit (MPB) is the market demand curve, and Marginal Social Benefit (MSB) adds any external benefit. The market equilibrium sits where MPC = MPB. The social optimum sits where MSC = MSB. Whenever those two quantities differ, the market has failed, and the size of the failure is the welfare-loss triangle between them."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Private Costs/Benefits:** The costs/benefits directly incurred by the individuals involved in a transaction.",
-        "**External Costs/Benefits:** The spillover costs/benefits imposed on third parties.",
-        "**Social Costs/Benefits:** The total costs/benefits to society as a whole. They are the sum of private and external costs/benefits."
+        "**Private** costs/benefits fall on the participants; **external** costs/benefits fall on third parties; **social** = private + external.",
+        "**Market equilibrium:** where MPC = MPB (what the market does).",
+        "**Social optimum:** where MSC = MSB (what is allocatively efficient).",
+        "**Market failure** = the two quantities differ, producing a **welfare loss** — the triangle between MSC and MSB over the mis-produced units."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "Negative externalities: the market overdoes it"
+    },
+    {
+      "type": "text",
+      "content": "A **negative externality of production** arises when making the good imposes costs on others — a chemical plant polluting a river is the standard case. The external cost pushes MSC above MPC, so the true cost of each unit exceeds what the firm pays. The market, pricing only MPC, overproduces. A **negative externality of consumption** arises when using the good harms others — cigarette smoke reaching bystanders, say. Here the external cost lowers the benefit to society, so MSB lies below MPB and the market overconsumes."
     },
     {
       "type": "formula",
-      "content": "Marginal Social Cost (MSC) = Marginal Private Cost (MPC) + Marginal External Cost (MEC)"
+      "content": "Negative production externality: $MSC > MPC$ (market OVERPRODUCES).  \\\\  Negative consumption externality: $MSB < MPB$ (market OVERCONSUMES)."
+    },
+    {
+      "type": "text",
+      "content": "Reading the welfare-loss triangle correctly is where marks are won and lost. For a negative production externality the MSC curve sits above MPC. The market makes Qmkt (where MPC = MPB); the optimum is the smaller Qopt (where MSC = MSB). Over the overproduced range Qopt→Qmkt, MSC lies ABOVE MSB — society is paying more for those units than they are worth. The welfare loss is the triangle bounded by MSC above and MSB below across that range. Its VERTEX sits at the social optimum (where MSC and MSB cross) and it OPENS OUT towards the larger market quantity. It never points 'down' at Qmkt, and it is never drawn to the left of the optimum."
+    },
+    {
+      "type": "workedExample",
+      "question": "A chemical plant's output pollutes a river. The private market clears at £80 per tonne and 500 tonnes per week. The marginal external cost (MEC) of the pollution is constant at £30 per tonne. Find the socially optimal output, and calculate the weekly welfare loss at the free-market equilibrium. Describe the diagram you would draw.",
+      "solution": "**Set-up.** Supply is MPC and demand is MPB (which equals MSB here — the externality is in production, not consumption). Because the MEC is a constant £30, the MSC curve is the MPC curve shifted vertically UP by £30 at every quantity.\n\n**Diagram to draw.** Price/cost on the vertical axis, quantity (tonnes) on the horizontal. Downward-sloping MPB (= MSB). Upward-sloping MPC, and MSC drawn £30 above it and parallel. Mark Qmkt = 500 where MPC = MPB (price £80). Mark the smaller Qopt where MSC = MSB. Shade the welfare-loss triangle between MSC and MSB over Qopt→Qmkt, vertex AT Qopt, opening out towards 500.\n\n**Find Qopt.** At the optimum MSC = MSB. Suppose the demand (MSB) and MPC lines give a social optimum of Qopt = 350 tonnes at a price of £95 (i.e. reducing output by 150 tonnes raises the marginal social benefit of the last unit to meet the £30-higher MSC). The market therefore OVERPRODUCES by 500 − 350 = 150 tonnes.\n\n**Welfare loss.** The triangle's height (horizontal spread) is the overproduction, 150 tonnes. Its base (vertical gap between MSC and MSB at Qmkt) is the MEC, £30, because at Qmkt private cost equals private benefit and MSC sits exactly £30 above.\n\nWelfare loss = ½ × base × height = ½ × £30 × 150 = **£2,250 per week**.\n\n**Marking points:** correct, fully-labelled diagram with MSC above MPC [2]; welfare-loss triangle correctly located with vertex at the optimum [1]; correct calculation with working [2]."
+    },
+    {
+      "type": "examTip",
+      "content": "Label externality diagrams in full: both axes, both relevant curves (e.g. MPC and MSC), Qmkt and Pmkt, Qopt and Popt, and the shaded welfare loss. Then say IN WORDS why the shaded area is a loss — 'over this range MSC exceeds MSB, so these units cost society more than they are worth.' A drawn-but-unexplained triangle rarely reaches the top band."
+    },
+    {
+      "type": "heading",
+      "content": "Positive externalities: the market holds back"
+    },
+    {
+      "type": "text",
+      "content": "A **positive externality of production** occurs when production benefits third parties — a firm's R&D that rivals and suppliers learn from, or a beekeeper whose hives pollinate nearby orchards. The external benefit means the true cost to society is below the private cost, MSC < MPC, and the market underproduces. A **positive externality of consumption** is the more heavily examined case: consuming the good benefits others too — vaccination reduces everyone's infection risk; education raises productivity and lowers crime. Here MSB lies above MPB and the market underconsumes."
     },
     {
       "type": "formula",
-      "content": "Marginal Social Benefit (MSB) = Marginal Private Benefit (MPB) + Marginal External Benefit (MEB)"
-    },
-    {
-      "type": "text",
-      "content": "Market failure occurs because the free market operates at the point where MPB = MPC, ignoring the external components. The socially efficient or 'allocatively efficient' level of output is where MSB = MSC."
-    },
-    {
-      "type": "heading",
-      "content": "Negative Externalities: The Costs We Don't Pay For"
-    },
-    {
-      "type": "text",
-      "content": "Negative externalities occur when the social cost of an activity is greater than the private cost. This leads to over-production or over-consumption of the good in a free market, resulting in a welfare loss to society. A classic example is industrial pollution."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Negative Externality of Production:** MSC > MPC. The market over-produces the good (Qp > Qso). Examples: Air pollution from factories, noise pollution from an airport.",
-        "**Negative Externality of Consumption:** MSB < MPB. The market over-consumes the good (Qp > Qso). Examples: Smoking in public places, traffic congestion from driving."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "When drawing negative externality diagrams, the welfare loss triangle always points towards the socially optimal quantity (Qso). The base of the triangle is the vertical distance between the two relevant curves (e.g., MSC and MPC) at the market quantity (Qp). This shows the size of the external cost per unit at that output level."
+      "content": "Positive production externality: $MSC < MPC$ (market UNDERPRODUCES).  \\\\  Positive consumption externality: $MSB > MPB$ (market UNDERCONSUMES)."
     },
     {
       "type": "workedExample",
-      "question": "A steel plant's production process pollutes a nearby river. The market for steel has a demand function $P = 150 - Q$ and a supply (MPC) function $P = 30 + Q$. The external cost of pollution is estimated to be a constant £20 per unit of steel produced. \n\n1. Find the market equilibrium price and quantity.\n2. Determine the socially optimal quantity and the price at that quantity.\n3. Calculate the size of the Pigouvian tax needed to correct this externality.\n4. Show the value of the welfare loss.",
-      "solution": "1. **Market Equilibrium (MPB = MPC):**\n   Set demand equal to supply: $150 - Q = 30 + Q$  \n   $120 = 2Q \\implies Q_p = 60$ units. \n   Substitute Q back into either equation: $P_p = 150 - 60 = £90$. \n   *Market equilibrium is at Q=60 units, P=£90.*\n\n2. **Socially Optimal Equilibrium (MSB = MSC):**\n   First, find the MSC function. MSC = MPC + External Cost. \n   The MPC curve is $P = 30 + Q$. So, $MSC = (30 + Q) + 20 = 50 + Q$. \n   The MSB is the same as MPB (demand curve), as there's no consumption externality: $MSB = 150 - Q$. \n   Set MSB = MSC: $150 - Q = 50 + Q$ \n   $100 = 2Q \\implies Q_{so} = 50$ units. \n   The price at this quantity on the demand curve is $P_{so} = 150 - 50 = £100$. \n   *Socially optimal equilibrium is at Q=50 units, P=£100.*\n\n3. **Pigouvian Tax:**\n   The tax should equal the marginal external cost at the socially optimal quantity. Here, the external cost is a constant £20 per unit. \n   *The required Pigouvian tax is £20 per unit.*\n\n4. **Welfare Loss:**\n   The welfare loss is the area of the triangle between Qso and Qp, bounded by the MSC and MSB curves. \n   Base of triangle = $Q_p - Q_{so} = 60 - 50 = 10$ units. \n   Height of triangle = Marginal External Cost = $£20$. (Or MSC - MPC at Qp: $(50+60) - (30+60) = 110 - 90 = £20$). \n   Area = $0.5 \\times \\text{base} \\times \\text{height} = 0.5 \\times 10 \\times 20 = £100$. \n   *The welfare loss due to overproduction is £100.*"
-    },
-    {
-      "type": "heading",
-      "content": "Positive Externalities: The Benefits We Don't Get Paid For"
-    },
-    {
-      "type": "text",
-      "content": "Positive externalities exist when the social benefit of an activity exceeds the private benefit. This leads to the under-production or under-consumption of the good in a free market, as producers and consumers do not account for the benefits bestowed upon others. This also results in a potential welfare gain that is not realised."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Positive Externality of Production:** MSC < MPC. The market under-produces the good (Qp < Qso). Example: A beekeeper whose bees pollinate a nearby apple orchard.",
-        "**Positive Externality of Consumption:** MSB > MPB. The market under-consumes the good (Qp < Qso). Examples: Higher education, vaccinations."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The market for university education has a demand (MPB) function $P = 40 - 0.5Q$ and a supply (MPC=MSC) function $P = 10 + 0.5Q$. Prices are in thousands of pounds (£'000) and quantity is in thousands of students. It is estimated that university education provides an external benefit to society (e.g., a more productive workforce) represented by the function MEB = 10. \n\n1. Find the market equilibrium quantity and price.\n2. Determine the socially optimal quantity of students.\n3. Calculate the per-student subsidy required to reach the social optimum.\n4. Show the value of the potential welfare gain.",
-      "solution": "1. **Market Equilibrium (MPB = MPC):**\n   Set demand equal to supply: $40 - 0.5Q = 10 + 0.5Q$ \n   $30 = Q$. So, $Q_p = 30$ thousand students. \n   Substitute Q back: $P_p = 10 + 0.5(30) = 10 + 15 = £25$ thousand. \n   *Market equilibrium is 30,000 students at a price of £25,000.*\n\n2. **Socially Optimal Equilibrium (MSB = MSC):**\n   First, find the MSB function. MSB = MPB + MEB. \n   $MSB = (40 - 0.5Q) + 10 = 50 - 0.5Q$. \n   The MSC is the same as MPC, as there's no production externality: $MSC = 10 + 0.5Q$. \n   Set MSB = MSC: $50 - 0.5Q = 10 + 0.5Q$ \n   $40 = Q$. So, $Q_{so} = 40$ thousand students. \n   *The socially optimal quantity is 40,000 students.*\n\n3. **Optimal Subsidy:**\n   The subsidy should equal the marginal external benefit at the socially optimal quantity. The MEB is a constant £10 thousand. \n   *The required subsidy is £10,000 per student.*\n   This subsidy would shift the MPB curve up by 10 to become the MSB curve, or shift the MPC curve down by 10, achieving Qso.\n\n4. **Potential Welfare Gain:**\n   This is the welfare loss from under-consumption, which can be gained by moving to Qso. It's the triangle between Qp and Qso, bounded by the MSB and MSC curves. \n   Base of triangle = $Q_{so} - Q_p = 40 - 30 = 10$ thousand students. \n   Height of triangle = Marginal External Benefit = $£10$ thousand. \n   Area = $0.5 \\times \\text{base} \\times \\text{height} = 0.5 \\times 10 \\times 10 = £50$ million. \n   *The potential welfare gain from correcting the market failure is £50 million.*"
-    },
-    {
-      "type": "heading",
-      "content": "Government Intervention and Evaluation"
-    },
-    {
-      "type": "text",
-      "content": "Governments can use several policies to address externalities and move the market towards the social optimum. These are broadly categorized as market-based policies (taxes, subsidies, tradable permits) and command-and-control policies (regulations, direct provision)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Pigouvian Taxes:** Increase MPC to align with MSC. Pro: Internalises the externality, raises government revenue. Con: Difficult to quantify the exact value of the external cost, can be politically unpopular.",
-        "**Subsidies:** Decrease MPC or increase MPB to encourage production/consumption. Pro: Increases output of merit goods. Con: High cost to government (opportunity cost), difficult to quantify external benefit.",
-        "**Tradable Permits:** Sets a cap on pollution and creates a market for permits. Pro: Guarantees a certain level of pollution reduction, creates an incentive for firms to invest in green technology. Con: Can be expensive to monitor and enforce, initial allocation of permits can be politically difficult.",
-        "**Regulation:** Legal limits or bans (e.g., emission standards for cars, ban on smoking in public). Pro: Simple to understand and can be very effective if enforced. Con: No incentive for firms to go beyond the minimum standard, can stifle innovation, high enforcement costs."
-      ]
+      "question": "The market for university places clears at 300,000 enrolments with a tuition fee of £9,250 per year. Each graduate generates an estimated marginal external benefit (MEB) to society — higher tax revenue, lower crime, civic participation — of £4,000 per student per year. The socially optimal enrolment is 400,000. Calculate the welfare loss from the positive externality, and describe the diagram.",
+      "solution": "**Set-up.** Demand is MPB; supply is MPC (= MSC — the externality is in consumption). The MSB curve is the MPB curve shifted UP by the MEB of £4,000 at every quantity.\n\n**Diagram to draw.** Price/cost on the vertical axis, number of students on the horizontal. Upward MPC (= MSC). Downward MPB, with MSB drawn £4,000 above it and parallel. Mark Qmkt = 300,000 where MPC = MPB. Mark the larger Qopt = 400,000 where MSC = MSB. Shade the welfare-loss triangle between MSB (above) and MSC (below) over the UNDER-consumed range Qmkt→Qopt, vertex AT Qopt.\n\n**Welfare loss.** The triangle's height (horizontal spread) is the under-consumption, 400,000 − 300,000 = 100,000 students. Its base (vertical gap between MSB and MSC at Qmkt) is the MEB, £4,000, since at Qmkt private benefit equals private cost and MSB sits £4,000 above.\n\nWelfare loss = ½ × £4,000 × 100,000 = **£200,000,000 per year** of forgone net social benefit.\n\n**Marking points:** correct, fully-labelled diagram with MSB above MPB [2]; welfare-loss triangle correctly located [1]; correct calculation with working [2]."
     },
     {
       "type": "examTip",
-      "content": "For evaluation questions (e.g., 'Discuss the best way to solve...'), don't just list pros and cons. Use the P-P-C-C-L-E framework: Prioritise arguments, consider short-run vs. long-run effects (Perspectives), weigh Costs vs. Benefits, acknowledge Constraints (e.g., information gaps, political feasibility), and consider Local vs. national impacts (or different stakeholders). A strong conclusion will make a justified judgement based on this evaluation."
+      "content": "Remember the shift rule with the first letters: **P**roduction externalities move a cost curve (MPC → MSC); **C**onsumption externalities move a benefit curve (MPB → MSB). Then fix the direction from the sign: negative pushes the social curve to the 'worse' side, positive to the 'better' side."
+    },
+    {
+      "type": "heading",
+      "content": "The environment and common access resources"
+    },
+    {
+      "type": "text",
+      "content": "The environment is where externalities matter most. Clean air, rivers, the atmosphere and ocean fish stocks are **common access resources** — non-excludable (you cannot fence people out) but rivalrous (one person's use diminishes what is left for others). That combination is dangerous. Each individual polluter or fisher captures the full private benefit of one more unit of activity while the cost — dirtier air, a depleted stock, a warming climate — is spread thinly across everyone. So every user has a private incentive to keep going even though the collective outcome is ruinous: the **tragedy of the commons**."
+    },
+    {
+      "type": "text",
+      "content": "Framed in our curves, each user's activity generates a negative externality on all the others, so MSC lies well above MPC and the resource is overused relative to the social optimum. Because the damage often accumulates over time and can be irreversible — a collapsed fishery, a destabilised climate — this is also the home of the **sustainability** concept: an allocation is unsustainable when current use degrades the resource base future generations will need. Climate change is the largest example of all, a global negative externality whose costs fall on people who did not create them, including those not yet born."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Common access resource** = non-excludable + rivalrous → systematic overuse.",
+        "**Tragedy of the commons** = each user's private gain imposes a shared cost, so self-interest depletes the resource.",
+        "**Sustainability** concern = today's overuse leaves too little for future generations; some damage is irreversible.",
+        "Climate change is a **global negative externality** — the reason carbon pricing is on the syllabus."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Policy responses: correcting the failure"
+    },
+    {
+      "type": "text",
+      "content": "If the market gets the quantity wrong, government policy tries to move it back towards the social optimum — for a negative externality, to raise cost or restrict quantity so output falls to Qopt; for a positive externality, to lower cost or boost demand so output rises to Qopt. Each instrument does this differently, and each has strengths and weaknesses that you must be able to WEIGH, because Paper 1 part (b) is an evaluation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Indirect (Pigouvian) taxes** — a per-unit tax on a good with a negative externality. Set equal to the MEC, it raises MPC up to MSC and 'internalises the externality', pushing output to Qopt and raising government revenue. Strengths: keeps the price mechanism working, generates revenue, targets the externality. Weaknesses: the correct tax is hard to measure; demand for the taxed good is often inelastic (little quantity change); can be regressive; risks evasion or smuggling.",
+        "**Carbon taxes** — a specific Pigouvian tax per tonne of CO₂. Puts a price on emissions so firms and consumers face the climate cost. Strengths: broad, technology-neutral, revenue-raising. Weaknesses: setting the right rate, competitiveness/'carbon leakage' to untaxed countries, political resistance and regressive impact on energy bills.",
+        "**Tradable permits (cap-and-trade)** — government caps total emissions and issues tradable permits. Strengths: the cap FIXES the environmental outcome, and trading finds the least-cost abatement; permits can be tightened over time. Weaknesses: setting the cap correctly, price volatility, monitoring emissions, and over-generous initial allocations that make permits too cheap.",
+        "**Regulation (command-and-control)** — legal limits, bans or standards (emission ceilings, catch quotas, minimum efficiency rules). Strengths: simple, certain, good where any amount is unacceptable. Weaknesses: no incentive to cut below the limit, one-size-fits-all ignores differing firm costs, and it needs costly monitoring and enforcement.",
+        "**Subsidies** — payments that lower cost/price for goods with POSITIVE externalities (vaccines, renewable energy, public transport), raising output towards Qopt. Strengths: encourage the beneficial activity directly. Weaknesses: opportunity cost of government spending, hard to set correctly, risk of subsidising producers who would have supplied anyway.",
+        "**Education and awareness** — information campaigns that shift MPB towards MSB (anti-smoking, healthy eating, recycling) for consumption externalities. Strengths: cheap relative to bans, tackles the root preference, no black markets. Weaknesses: slow, uncertain effect, and easy to ignore."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Notice the pattern that examiners reward: no instrument is best in all cases. Taxes and permits harness the market but depend on getting a price or cap right; regulation is certain but blunt; subsidies and education fit positive externalities but cost money or work slowly. The right answer is almost always 'it depends' — on elasticity, on how measurable the externality is, on enforcement capacity, and on equity. Holding two of these instruments against each other is exactly what the model answer below does."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Drawing the welfare-loss triangle the wrong way round** — for BOTH negative and positive externalities the triangle's vertex sits AT the social optimum and opens out towards the wrong market quantity. Do not point it at Qmkt or place it on the wrong side of Qopt.",
+        "**Thinking 'externality' means 'pollution'** — externalities can be positive and can come from consumption. Vaccination, education and R&D are externalities every bit as much as smog is.",
+        "**Confusing MSC and MPC (or MSB and MPB)** — MPC is the producer's own cost; MSC adds the external cost. MSC is NOT 'the cost after tax'. A tax is a policy that tries to make the firm face MSC — it is not the definition of MSC.",
+        "**Saying the market 'fails' only when something harmful happens** — positive externalities are market failures too, because the market underproduces something worth more than it costs.",
+        "**Treating a policy as a costless fix** — every instrument has limitations (measurement, elasticity, enforcement, equity, opportunity cost). An answer that only lists strengths cannot reach the top evaluation band.",
+        "**Forgetting to internalise correctly** — an indirect tax should shift MPC up to MSC (production case). Do not shift the demand curve for a production externality, and do not draw the tax as larger or smaller than the MEC without saying why."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — Paper 1 part (b), marked against the real IB markband"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 1, part (b): Evaluate the view that indirect (Pigouvian) taxes are the most effective way to correct the market failure caused by negative externalities of production. [15 marks]",
+      "solution": "**MODEL ANSWER**\n\n*Theory and the externality diagram.* A negative externality of production occurs when producing a good imposes costs on third parties not part of the transaction — for example, a coal-fired power station emitting CO₂ and particulates. The firm's marginal private cost (MPC) omits this external cost, so the marginal social cost (MSC) lies above MPC by the marginal external cost (MEC). The free market produces where MPC = MPB at Qmkt, which exceeds the socially optimal Qopt where MSC = MSB. Over the range Qopt→Qmkt, MSC exceeds MSB, generating a welfare-loss triangle (vertex at Qopt, opening out towards Qmkt): allocative inefficiency, because society overproduces a good whose social cost exceeds its social benefit.\n\n*[Diagram to include and explain: price/cost on the vertical axis, quantity on the horizontal; MPB (= MSB) downward-sloping; MPC upward; MSC drawn above MPC by the MEC; Qmkt where MPC = MPB and the smaller Qopt where MSC = MSB; the welfare-loss triangle shaded between MSC and MSB over Qopt→Qmkt.]*\n\nAn indirect (Pigouvian) tax set equal to the MEC raises the firm's private cost so that the after-tax supply curve coincides with MSC. Producers now face the full social cost, the market 'internalises the externality', and output falls to Qopt where the welfare loss is eliminated. On the diagram the tax shifts MPC up onto MSC, cutting quantity from Qmkt to Qopt and raising price towards Popt.\n\n*Real-world example.* A carbon tax is a Pigouvian tax on CO₂ emissions. By charging producers a price per tonne of carbon, it raises the cost of the most polluting production, encourages a switch to cleaner methods, and — unlike a simple ban — leaves firms free to find the cheapest way to cut emissions. It also raises revenue that a government can use to fund clean-energy investment or to compensate low-income households. (A sugar tax works the same way on the consumption side.)\n\n*Strengths (why taxes are effective).* First, a tax keeps the price mechanism working: it corrects the quantity without the government having to dictate methods, so firms with the lowest abatement costs cut the most — an efficient outcome. Second, it internalises the externality precisely if the MEC is known, restoring allocative efficiency. Third, it raises revenue that can be recycled into complementary policies or used to offset regressive effects. Fourth, it creates a permanent, dynamic incentive: every unit still produced is taxed, so firms keep looking for cleaner technology, unlike a fixed legal limit that offers no reward for going further.\n\n*Limitations (why taxes may NOT be the most effective).* First, setting the right tax is extremely hard: the MEC of pollution is difficult to value, so a tax set too low leaves a residual welfare loss, and one set too high overshoots the optimum. Second, if demand for the good is price-INELASTIC — as it often is for energy or fuel — a tax raises price but cuts quantity only slightly, so pollution barely falls while the burden lands on consumers as higher prices. Third, indirect taxes are typically REGRESSIVE: energy and fuel take a larger share of poorer households' income, so a carbon tax can worsen equity unless revenue is redistributed. Fourth, enforcement and measurement are costly, and taxed firms may relocate to untaxed countries ('carbon leakage'), shifting emissions rather than reducing them. Alternatives may do better in specific cases: tradable permits fix the total quantity of emissions with certainty (valuable when the environmental target matters more than the price), while regulation is simpler where any level of a pollutant is unacceptable, and subsidies or education suit the positive-externality problems a tax cannot address.\n\n*Judgement.* Indirect taxes are a powerful and often effective instrument: they harness the market, raise revenue and give a lasting incentive to pollute less, which is why carbon taxes are widely used. But 'the MOST effective way' overstates the case. Their success is CONDITIONAL — on demand being sufficiently elastic, on the government being able to estimate the external cost, on enforceable measurement, and on the revenue being used to offset regressivity. Where the environmental outcome must be guaranteed, tradable permits may dominate; where the harm is intolerable at any level, regulation may be better; and taxes do nothing for positive externalities. On balance, a Pigouvian tax is usually part of the best solution — frequently the centrepiece — but the most effective policy is typically a MIX of instruments matched to the elasticity of the good, the measurability of the externality and the government's enforcement capacity, rather than a tax alone.\n\n---\n**How this maps to our IB markband (Paper 1 part (b), out of 15):**\n\n- **13–15:** the demands of the question are addressed; relevant economic theory is FULLY explained; relevant terms are used appropriately THROUGHOUT; a relevant diagram is included and FULLY explained; there is EFFECTIVE and BALANCED synthesis/evaluation; and a real-world example is FULLY DEVELOPED.\n- **10–12:** relevant theory is explained; terms are used appropriately (mostly); a diagram is included and explained; evaluation is MOSTLY balanced; a real-world example is developed.\n- **7–9:** the question is PARTIALLY addressed; theory is PARTLY explained; some relevant terms are used; a diagram is included; evaluation LACKS BALANCE; a real-world example is partly developed.\n- **4–6:** theory is DESCRIBED; some relevant terms are used; evaluation is SUPERFICIAL; a real-world example is identified.\n- **1–3:** the response is not relevant to the question; there is NO evaluation.\n\n**Why this answer reaches 13–15.** It addresses the exact demand ('most effective way'), not a generic 'discuss taxes'. The theory is fully explained — MSC/MPC/MEC and the welfare-loss triangle are derived, not merely named — and the terms recur throughout. The diagram is described AND explained, including how the tax shifts MPC onto MSC. Crucially for the top band, TWO things are present that most answers miss: (1) a FULLY DEVELOPED real-world example — the carbon tax is not just named but explained (price per tonne, incentive to switch, revenue use, contrast with a ban); and (2) BALANCED evaluation — genuine strengths set against genuine limitations (inelastic demand, setting the right tax, regressivity, enforcement/leakage) and weighed against alternatives, leading to a reasoned, conditional judgement rather than a one-line verdict. Drop the developed example, or argue only one side, and the same response falls to 7–9 ('evaluation lacks balance', 'example partly developed') no matter how good the theory is. The top band is gated specifically on a fully-developed real-world example AND balanced evaluation — that is the difference between 12 and 15."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button below marks YOUR own part (b) answer against this exact 15-mark band. The two things that most often cap marks are (1) a missing or undeveloped real-world example and (2) one-sided evaluation — an answer that only lists a policy's strengths (or only its flaws). Name a real example AND develop it, weigh strengths against limitations, and finish with a reasoned, conditional judgement. That is what moves you from the 7–9 band into 13–15."
     },
     {
       "type": "practice",
-      "label": "Test your knowledge of externalities",
-      "href": "/mark?subject=ib-economics-hl&topic=2.7"
+      "label": "Get a Paper 1 (b) evaluation marked: are Pigouvian taxes the most effective way to correct negative production externalities?",
+      "href": "/mark?subject=ib-economics-hl&topic=2.7&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "The Economist: Explaining Carbon Pricing",
-          "href": "https://www.economist.com/schools-brief/2020/07/25/the-social-cost-of-carbon"
+          "label": "The Economist explains: Externalities",
+          "href": "https://www.economist.com/economics-a-to-z/e#externality"
         },
         {
-          "label": "IMF: What Are Externalities?",
-          "href": "https://www.imf.org/external/pubs/ft/fandd/2010/06/basics.htm"
+          "label": "IMF: What Is a Carbon Tax?",
+          "href": "https://www.imf.org/en/Publications/fandd/issues/2019/12/the-economics-of-climate-change-carbon-tax-basics"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

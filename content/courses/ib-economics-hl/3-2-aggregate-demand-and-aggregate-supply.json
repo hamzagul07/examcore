@@ -1,213 +1,364 @@
 {
   "slug": "3-2-aggregate-demand-and-aggregate-supply",
   "topicCode": "3.2",
+  "unit": {
+    "code": "3",
+    "title": "Macroeconomics"
+  },
   "title": "Aggregate demand and aggregate supply",
   "paper": "P1",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson introduces the Aggregate Demand (AD) and Aggregate Supply (AS) model, the cornerstone of macroeconomic analysis. We will explore the components of AD, the different perspectives on AS (Keynesian and Neoclassical), and how their interaction determines an economy's overall price level, output, and employment.",
-  "durationMin": 120,
-  "updated": "2026-06-21",
+  "summary": "The engine room of macroeconomics. Aggregate demand (AD) and aggregate supply (AS) do for a whole economy what demand and supply do for one market — they determine the price level and real output together. This lesson builds AD from its components (C + I + G + (X − M)), explains why the AD curve slopes downward, distinguishes short-run AS from the two long-run models (Keynesian AS and the neoclassical/monetarist vertical LRAS), locates short-run macroeconomic equilibrium, and introduces the multiplier as a first look at how a change in spending ripples through the economy.",
+  "durationMin": 42,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define Aggregate Demand (AD) and Aggregate Supply (AS) and their respective components.",
-    "Analyse the causes of shifts in the AD, SRAS, and LRAS curves.",
-    "Compare and contrast the Neoclassical and Keynesian models of aggregate supply.",
-    "Use the AD/AS model to analyse macroeconomic issues such as inflation, unemployment, and economic growth."
+    "Define aggregate demand and explain each component of C + I + G + (X − M) and the factors that shift it.",
+    "Explain why the AD curve is downward-sloping and distinguish a movement along AD from a shift of AD.",
+    "Explain the shape of short-run aggregate supply (SRAS) and the determinants that shift it.",
+    "Compare the two models of long-run aggregate supply — the Keynesian AS curve and the neoclassical/monetarist vertical LRAS.",
+    "Locate short-run macroeconomic equilibrium and outline how the multiplier magnifies an initial change in spending (developed further at HL)."
   ],
+  "syllabusObjectivesCovered": [
+    "3.2"
+  ],
+  "keyConcepts": [
+    "change",
+    "interdependence"
+  ],
+  "levelNote": "Common to SL and HL; the multiplier is developed further at HL.",
   "simpleExplanation": {
-    "title": "The Economy's Big Picture",
-    "summary": "The AD/AS model is like a bird's-eye view of the entire economy. It shows the relationship between the total quantity of goods and services demanded and supplied at various price levels, helping us understand major economic events like recessions and inflation.",
-    "analogy": "Imagine a massive national market. Aggregate Demand is the total shopping list of everyone in the country—households, firms, and the government—at different overall price levels. Aggregate Supply is the total amount all businesses are willing and able to produce. Where these two meet determines the country's economic 'weather'—the general price level and how much is being produced and earned.",
+    "title": "Demand and Supply for the Whole Economy",
+    "summary": "Zoom out from a single market to the entire nation. Aggregate demand is total planned spending on a country's output; aggregate supply is total planned production. Where they meet fixes the average price level and the amount of real output (real GDP) — the two numbers behind inflation, growth and jobs.",
+    "analogy": "Think of a country as one enormous shopping centre. Aggregate demand is everything all the shoppers, businesses, the government and foreign buyers together plan to spend across every shop. Aggregate supply is what all the shops together are willing to stock and sell. If shoppers suddenly want to spend much more but the shops can only stretch output so far, some of that extra spending shows up as higher prices rather than more goods — that is the AD/AS story in miniature.",
     "steps": [
-      "First, we define Aggregate Demand (AD) as the total spending on domestic goods and services. We break it down into its components, C+I+G+(X-M), and explain why the AD curve slopes downwards.",
-      "Next, we examine the factors that shift the entire AD curve. These are non-price factors that change consumption, investment, government spending, or net exports, such as changes in consumer confidence or interest rates.",
-      "Then, we introduce the two main models of Aggregate Supply (AS). We explore the short-run and long-run AS curves in the Neoclassical model and the single, three-section AS curve in the Keynesian model.",
-      "Finally, we bring AD and AS together to analyse macroeconomic equilibrium. We see how shifts in either curve can create inflationary or deflationary gaps, affecting real GDP, employment, and the price level."
+      "Aggregate demand is the sum of four spending flows: consumption (C), investment (I), government spending (G) and net exports (X − M). Anything that changes one of these shifts the whole AD curve.",
+      "The AD curve slopes down for macro reasons — the wealth, interest-rate and net-export effects — NOT the micro law of demand.",
+      "Short-run aggregate supply slopes up because, with wages sticky, higher output prices widen profit margins and firms produce more.",
+      "In the long run there are two rival pictures: the Keynesian AS curve (flat, then rising, then vertical) and the neoclassical/monetarist LRAS (a single vertical line at full-employment output).",
+      "Where AD meets AS is the short-run equilibrium; a shift in either curve moves the economy, and the multiplier means the final change in output can exceed the initial change in spending."
     ]
   },
   "flashcards": [
     {
-      "front": "Aggregate Demand (AD)",
-      "back": "The total quantity of all goods and services that are demanded by households, firms, the government, and foreigners at different price levels in an economy, ceteris paribus. Formula: AD = C + I + G + (X-M)."
+      "front": "Aggregate demand (AD)",
+      "back": "The total planned spending on an economy's domestically produced goods and services at each average price level in a given period. AD = C + I + G + (X − M).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Aggregate Supply (AS)",
-      "back": "The total quantity of goods and services that all firms in an economy are willing and able to produce at different price levels, ceteris paribus."
+      "front": "Consumption (C) — what shifts it",
+      "back": "Household spending on goods and services. Shifts with disposable income, consumer confidence, interest rates, household wealth and the level of household debt.",
+      "pillLabel": "Component"
     },
     {
-      "front": "Short-Run Aggregate Supply (SRAS)",
-      "back": "Shows the relationship between the price level and the quantity of real output produced when input prices (especially nominal wages) are assumed to be fixed or 'sticky'. It is upward sloping."
+      "front": "Investment (I) — what shifts it",
+      "back": "Firms' spending on capital goods (plus new housing). Shifts with interest rates, business confidence (‘animal spirits’), technology, corporate taxes and the level of spare capacity.",
+      "pillLabel": "Component"
     },
     {
-      "front": "Neoclassical Long-Run Aggregate Supply (LRAS)",
-      "back": "Represents the economy's potential output when all resources are fully employed. It is vertical at the full employment level of output ($Y_f$) because in the long run, output is determined by the quantity and quality of factors of production, not the price level."
+      "front": "Government spending (G) — what shifts it",
+      "back": "Spending by government on public goods and services and transfers-in-kind. Shifts with fiscal policy, the political cycle and the state of the economy (e.g. stimulus in a recession).",
+      "pillLabel": "Component"
     },
     {
-      "front": "Keynesian Aggregate Supply Curve",
-      "back": "An AS curve with three sections: 1) Perfectly elastic at low levels of output (spare capacity), 2) Upward sloping as output nears full employment (bottlenecks), and 3) Perfectly inelastic at full capacity. It assumes wages and prices are 'sticky downwards'."
+      "front": "Net exports (X − M) — what shifts it",
+      "back": "Export revenue minus import spending. Shifts with the exchange rate, incomes abroad, relative inflation rates and trade policy (tariffs, agreements).",
+      "pillLabel": "Component"
     },
     {
-      "front": "Wealth Effect",
-      "back": "One reason for the downward slope of AD. A lower price level increases the real value of wealth, encouraging consumers to spend more, thus increasing the quantity of real GDP demanded."
+      "front": "Why does the AD curve slope downwards?",
+      "back": "Three macro effects: (1) the WEALTH effect — a lower price level raises the real value of money and wealth, so spending rises; (2) the INTEREST-RATE effect — a lower price level cuts demand for money, lowering interest rates and boosting investment and interest-sensitive consumption; (3) the NET-EXPORT effect — a lower domestic price level makes exports cheaper and imports dearer, raising (X − M).",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Interest Rate Effect",
-      "back": "One reason for the downward slope of AD. A lower price level reduces the demand for money, lowering interest rates, which in turn encourages investment and interest-sensitive consumption, increasing the quantity of real GDP demanded."
+      "front": "Short-run aggregate supply (SRAS)",
+      "back": "Total output firms plan to produce at each price level while factor prices (especially wages) are assumed fixed/sticky. Upward-sloping: higher output prices with fixed costs widen margins, so firms supply more.",
+      "pillLabel": "Model"
     },
     {
-      "front": "International Trade Effect",
-      "back": "One reason for the downward slope of AD. A lower domestic price level makes a country's exports cheaper and imports more expensive, leading to an increase in net exports (X-M) and thus a higher quantity of real GDP demanded."
+      "front": "What shifts SRAS?",
+      "back": "Changes in the costs of production: wage rates, raw-material and commodity prices (e.g. oil), indirect/business taxes, subsidies, and supply-side shocks. A cost rise shifts SRAS left; a cost fall shifts it right.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Stagflation",
-      "back": "A situation of a stagnant economy (falling output and rising unemployment) combined with inflation (rising price level). Typically caused by a leftward shift of the SRAS curve."
+      "front": "Neoclassical/monetarist LRAS",
+      "back": "A vertical line at the full-employment (potential) level of output, Yfe. Output in the long run depends on the quantity and quality of factors of production and technology, NOT on the price level. Shifts only with changes in the quantity/quality of resources or technology.",
+      "pillLabel": "Model"
     },
     {
-      "front": "Full Employment Level of Output ($Y_f$)",
-      "back": "The level of real GDP produced when the economy is at its natural rate of unemployment. This is where the LRAS curve is positioned. It is also called potential output."
+      "front": "Keynesian AS curve",
+      "back": "A single AS curve with three sections: HORIZONTAL at low output (lots of spare capacity, so output can rise with no price rise), then UPWARD-SLOPING as bottlenecks appear, then VERTICAL at full capacity. Implies demand-side policy can raise output without inflation when there is a large output gap.",
+      "pillLabel": "Model"
     },
     {
-      "front": "Inflationary Gap",
-      "back": "Occurs when the equilibrium level of real GDP is greater than the full employment level of output ($Y_{eq} > Y_f$). This puts upward pressure on prices."
+      "front": "Movement along vs shift of AD",
+      "back": "A change in the AVERAGE PRICE LEVEL causes a movement ALONG AD. A change in a non-price determinant of C, I, G or (X − M) SHIFTS the whole AD curve.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Deflationary (Recessionary) Gap",
-      "back": "Occurs when the equilibrium level of real GDP is less than the full employment level of output ($Y_{eq} < Y_f$). This is associated with high unemployment."
+      "front": "Short-run macroeconomic equilibrium",
+      "back": "The price level and real output at which AD intersects SRAS — total planned spending equals total planned output, so there is no tendency to change in the short run.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The multiplier (brief)",
+      "back": "An initial injection of spending is received as income, part of which is re-spent, becoming further income, and so on. The final rise in real GDP is a MULTIPLE of the initial injection. Its size depends on how much of extra income is re-spent domestically. Developed formally at HL.",
+      "pillLabel": "HL flag"
+    },
+    {
+      "front": "Exam Trap: ‘AD’ is not ‘demand’",
+      "back": "Micro DEMAND is for a single good and shifts/slopes for micro reasons (income and substitution effects). AGGREGATE demand is total spending on ALL of an economy's output and slopes down for the wealth, interest-rate and net-export effects. Never explain the AD slope with the micro law of demand.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Aggregate demand differs from a single market's demand curve because AD:",
+      "options": [
+        "Slopes downward for the same income and substitution effects",
+        "Measures total spending on ALL of an economy's output and slopes down for the wealth, interest-rate and net-export effects",
+        "Is always vertical",
+        "Only includes household consumption"
+      ],
+      "answer": "Measures total spending on ALL of an economy's output and slopes down for the wealth, interest-rate and net-export effects"
+    },
+    {
+      "prompt": "A fall in the exchange rate makes exports cheaper and raises net exports. On the diagram this is shown as:",
+      "options": [
+        "A movement up along the AD curve",
+        "A shift of the whole AD curve to the right",
+        "A movement down along the AD curve",
+        "A shift of SRAS to the left"
+      ],
+      "answer": "A shift of the whole AD curve to the right"
+    },
+    {
+      "prompt": "A sharp rise in world oil prices raises firms' costs across the economy. In the AD/AS model this is shown as a:",
+      "options": [
+        "Rightward shift of AD",
+        "Leftward shift of SRAS",
+        "Movement along SRAS",
+        "Rightward shift of LRAS"
+      ],
+      "answer": "Leftward shift of SRAS"
+    },
+    {
+      "prompt": "Which statement best captures the difference between the two aggregate-supply models?",
+      "options": [
+        "Both are always vertical at full employment",
+        "The Keynesian AS curve is horizontal then rising then vertical, while the neoclassical LRAS is a single vertical line at potential output",
+        "The neoclassical LRAS is horizontal at low output",
+        "The Keynesian curve slopes downward"
+      ],
+      "answer": "The Keynesian AS curve is horizontal then rising then vertical, while the neoclassical LRAS is a single vertical line at potential output"
+    },
+    {
+      "prompt": "The neoclassical/monetarist LRAS curve is vertical because, in the long run, an economy's output depends on:",
+      "options": [
+        "The average price level",
+        "The quantity and quality of its factors of production and technology, not the price level",
+        "The size of the government budget only",
+        "Consumer confidence alone"
+      ],
+      "answer": "The quantity and quality of its factors of production and technology, not the price level"
     }
   ],
   "faq": [
     {
-      "q": "What is the main difference between the SRAS and LRAS curves in the neoclassical model?",
-      "a": "The key difference lies in the flexibility of input prices, especially wages. The SRAS curve is upward sloping because it assumes wages are 'sticky' in the short run. The LRAS curve is vertical because it assumes wages are fully flexible in the long run, so output depends only on the factors of production, not the price level."
+      "q": "What is the real difference between microeconomic ‘demand’ and macroeconomic ‘aggregate demand’?",
+      "a": "Micro demand is the quantity of ONE good buyers will purchase at various prices, and it slopes down because of the income and substitution effects for that single good. Aggregate demand is total planned spending on ALL of an economy's output (measured as real GDP) by households, firms, government and foreigners, plotted against the AVERAGE price level. Because it is an economy-wide total, its downward slope comes from three different, macro reasons — the wealth, interest-rate and net-export effects — not from the micro law of demand. Confusing the two is one of the most heavily penalised errors on this topic."
     },
     {
-      "q": "Why is the Keynesian AS curve shaped the way it is?",
-      "a": "Its unique shape reflects Keynes's view of an economy, particularly during a recession. The horizontal part shows that when there's lots of unemployment (spare capacity), output can increase without raising prices. The upward-sloping part shows that as the economy nears full employment, resource 'bottlenecks' cause prices to rise. The vertical part shows that once the economy is at full capacity, it's impossible to produce more, so any extra demand just causes inflation."
+      "q": "Which aggregate-supply model should I use — Keynesian or neoclassical?",
+      "a": "Both are on the syllabus and you should be able to draw and explain each. The neoclassical/monetarist view splits AS into an upward-sloping SRAS and a vertical LRAS at potential output; it implies that demand-side stimulus only raises output temporarily and eventually just raises prices. The Keynesian view uses a single AS curve — horizontal when there is spare capacity, rising as bottlenecks appear, and vertical at full capacity; it implies demand-side policy can raise real output with little inflation when the economy is deep in a recession. Choose the model that fits the question, and in evaluation you can contrast what each predicts."
     },
     {
-      "q": "Can an economy operate beyond its LRAS?",
-      "a": "Yes, but only in the short run. This is shown as an inflationary gap, where the short-run equilibrium (AD intersecting SRAS) is to the right of the vertical LRAS. This means the economy is 'overheating'—unemployment is below its natural rate, and workers are doing overtime. This is unsustainable and will lead to rising wages, which shifts the SRAS curve to the left, eventually bringing the economy back to the LRAS at a higher price level."
+      "q": "Why is the neoclassical LRAS curve vertical?",
+      "a": "In the long run all prices, including wages, are flexible. If every price and wage doubled, firms' real profit margins would be unchanged, so they would have no incentive to produce more. Potential output therefore depends only on the quantity and quality of factors of production and the state of technology — not on the price level. That is why LRAS is drawn as a vertical line at the full-employment output, Yfe, and shifts only when resources or technology change."
     },
     {
-      "q": "Which model is 'correct', Keynesian or Neoclassical?",
-      "a": "Neither is universally 'correct'; they are different tools for different situations. Many economists believe the Keynesian model is a good description of the short run, especially during a recession when prices and wages are indeed sticky. The Neoclassical model, with its focus on long-run adjustment, is often seen as a better guide to the economy's long-term growth path. For the IB exam, you need to know and be able to apply both."
+      "q": "What exactly is the multiplier and why is it flagged for HL?",
+      "a": "The multiplier captures the fact that an initial injection of new spending circulates: it becomes someone's income, part of which is spent again, becoming further income, and so on. So the eventual increase in real GDP is a MULTIPLE of the original injection, and the AD shift produces a larger final change in output than the initial one. At SL you need the intuition; at HL you calculate its size from the marginal propensities to consume, save, tax and import. This lesson gives the SL-level intuition and flags the HL extension."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the engine room of macroeconomics. While microeconomics focuses on individual markets, the AD/AS model allows us to analyse the entire economy in one framework. We will explore how total spending (Aggregate Demand) interacts with the economy's total productive capacity (Aggregate Supply) to determine national output, employment levels, and the general price level. Mastering this model is crucial for understanding government economic policy and current events."
+      "content": "Microeconomics studies one market at a time. Macroeconomics zooms out to the whole economy — and its central tool is the aggregate demand / aggregate supply model. AD/AS lets us analyse inflation, unemployment and growth on one diagram, and evaluate the fiscal, monetary and supply-side policies governments use to steer the economy. This lesson builds the model piece by piece: aggregate demand and what shifts it, aggregate supply in both the short and long run, the two rival AS models, the short-run equilibrium where they meet, and a first look at the multiplier."
     },
     {
       "type": "heading",
-      "content": "Understanding Aggregate Demand (AD)"
+      "content": "Aggregate demand and its components"
     },
     {
       "type": "text",
-      "content": "Aggregate Demand represents the total demand for a nation's output at a given price level over a specific period. It is composed of four key components: Consumption (C), Investment (I), Government Spending (G), and Net Exports (X-M). The AD curve is downward sloping, indicating an inverse relationship between the price level and the quantity of real GDP demanded."
+      "content": "Aggregate demand is the total planned spending on an economy's domestically produced goods and services at each average price level in a period. It is made up of four spending flows, and the single most important skill in this section is knowing what shifts each one — because a change in any component shifts the whole AD curve."
     },
     {
       "type": "formula",
-      "content": "AD = C + I + G + (X - M)"
+      "content": "AD = C + I + G + (X − M)"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Consumption (C): Spending by households on goods and services.",
-        "Investment (I): Spending by firms on capital goods (e.g., machinery) and spending by households on new housing.",
-        "Government Spending (G): Spending by the government on public goods and services (e.g., defence, education). It does not include transfer payments.",
-        "Net Exports (X-M): The value of exports minus the value of imports."
+        "**C — Consumption:** household spending. Shifts with disposable income, consumer confidence, interest rates, household wealth and debt levels.",
+        "**I — Investment:** firms' spending on capital goods (and new housing). Shifts with interest rates, business confidence, technology, corporate taxes and spare capacity.",
+        "**G — Government spending:** state spending on public goods and services. Shifts with fiscal policy and the economic cycle (e.g. stimulus during a recession).",
+        "**(X − M) — Net exports:** export revenue minus import spending. Shifts with the exchange rate, incomes abroad, relative inflation rates and trade policy."
       ]
     },
     {
       "type": "text",
-      "content": "The AD curve slopes downwards for three main reasons: the Wealth Effect (lower prices make consumers feel wealthier and spend more), the Interest Rate Effect (lower prices reduce demand for money, lowering interest rates and boosting investment), and the International Trade Effect (lower prices make domestic goods cheaper for foreigners, boosting net exports)."
+      "content": "Note the sign convention: because imports (M) are spending that leaks abroad rather than onto domestic output, they are subtracted. A rise in incomes abroad raises X and shifts AD right; a domestic boom that sucks in imports raises M and, other things equal, drags AD in the opposite direction."
     },
     {
       "type": "heading",
-      "content": "Shifts in the Aggregate Demand Curve"
+      "content": "Why the AD curve slopes downward"
     },
     {
       "type": "text",
-      "content": "A change in the price level causes a movement along the AD curve. However, a change in any of the components of AD (C, I, G, or X-M) for a reason other than a change in the price level will cause the entire AD curve to shift. A rightward shift indicates an increase in AD, while a leftward shift indicates a decrease."
+      "content": "The AD curve is drawn with the average price level on the vertical axis and real GDP on the horizontal axis, and it slopes downward. It is essential to explain that slope with the correct MACRO reasons, not the micro law of demand — because in AD we are looking at the average price of ALL goods at once, so the substitution ‘to another good’ that explains a single market cannot apply to the whole economy."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Shifts from Consumption (C): Changes in consumer confidence, wealth, income taxes, or household indebtedness.",
-        "Shifts from Investment (I): Changes in interest rates, business confidence ('animal spirits'), technology, or corporate taxes.",
-        "Shifts from Government Spending (G): Discretionary fiscal policy, such as increased spending on infrastructure or defence.",
-        "Shifts from Net Exports (X-M): Changes in foreign incomes, exchange rates, or trade policies (tariffs/quotas)."
+        "**Wealth effect:** a lower average price level raises the real value of households' money and savings, so they feel richer and spend more.",
+        "**Interest-rate effect:** a lower price level reduces the demand for money; interest rates fall, encouraging interest-sensitive investment and consumption.",
+        "**Net-export effect:** a lower domestic price level makes exports cheaper and imports dearer, so net exports (X − M) rise."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "The UK government announces a £20 billion tax cut for households. Ceteris paribus, explain the likely impact on the UK's aggregate demand. Illustrate this on a diagram.",
-      "solution": "1. **Identify the component:** The tax cut directly affects household disposable income, which is a key determinant of Consumption (C).\n2. **Determine the direction of change:** A tax cut increases disposable income, leading to an increase in consumption, assuming the marginal propensity to consume is greater than zero. \n3. **Analyse the effect on AD:** Since C is a component of AD (AD = C+I+G+(X-M)), an increase in C will lead to an increase in AD at every price level.\n4. **Illustrate the shift:** The AD curve will shift to the right, from AD1 to AD2. On a diagram with Price Level on the y-axis and Real GDP on the x-axis, this shows that for any given price level (e.g., P1), the total quantity of output demanded has increased from Y1 to Y2.\n\n**Mark scheme points:**\n- For explaining that a tax cut increases disposable income. [1 mark]\n- For linking increased disposable income to an increase in consumption (C). [1 mark]\n- For stating that this increases Aggregate Demand. [1 mark]\n- For drawing a correctly labelled AD/AS diagram showing a rightward shift of the AD curve. [2 marks for diagram: axes, curves, shift indicated]."
+      "type": "text",
+      "content": "Keep two ideas separate. A change in the average PRICE LEVEL causes a MOVEMENT ALONG the AD curve (via the three effects above). A change in any non-price determinant of C, I, G or (X − M) — a confidence swing, a tax cut, a weaker exchange rate — SHIFTS the entire AD curve. Mislabelling a shift as a movement (or vice versa) is a classic exam error."
     },
     {
       "type": "heading",
-      "content": "Aggregate Supply (AS): The Two Main Perspectives"
+      "content": "Short-run aggregate supply (SRAS)"
     },
     {
       "type": "text",
-      "content": "Aggregate Supply represents the total output that firms are willing and able to produce at various price levels. Economists have two main models of AS, based on different assumptions about how quickly wages and other input prices adjust to changes in the price level. These are the Neoclassical (or New Classical/Monetarist) model and the Keynesian model."
+      "content": "Short-run aggregate supply shows total planned output at each price level while the prices of factors of production — above all wages — are assumed to be ‘sticky’, i.e. fixed for now. SRAS is upward-sloping: if firms can sell output at higher prices while their input costs stay put, profit margins widen and they have an incentive to produce more."
+    },
+    {
+      "type": "text",
+      "content": "SRAS SHIFTS when the costs of production change. A rise in wage rates, commodity prices (e.g. an oil-price spike), or business/indirect taxes raises costs and shifts SRAS to the LEFT (higher prices, lower output). A fall in those costs, or a new subsidy, shifts SRAS to the RIGHT. A leftward SRAS shift produces stagflation — rising prices AND falling output at the same time — which demand-side policy alone cannot cure without a trade-off."
     },
     {
       "type": "heading",
-      "content": "The Neoclassical Model: SRAS and LRAS"
+      "content": "The two models of aggregate supply in the long run"
     },
     {
       "type": "text",
-      "content": "The Neoclassical model splits AS into the short run and the long run. The **Short-Run Aggregate Supply (SRAS)** curve is upward sloping. This is because in the short run, nominal wages and other input costs are 'sticky'. If the price level rises, firms receive more revenue for their products but their costs (e.g., wages) don't rise immediately, making it profitable to increase output. The **Long-Run Aggregate Supply (LRAS)** curve is vertical at the full-employment level of output ($Y_f$). This reflects the belief that in the long run, wages and input prices are fully flexible and will adjust to the price level. Therefore, output is determined solely by the economy's factors of production (labour, capital, technology), not by the price level."
+      "content": "The syllabus asks you to know two rival pictures of aggregate supply beyond the short run. They agree that SRAS slopes up but disagree about the economy's long-run behaviour — and the choice of model changes what you predict about demand-side policy."
     },
     {
-      "type": "heading",
-      "content": "The Keynesian Model"
+      "type": "keyPoints",
+      "items": [
+        "**Neoclassical / monetarist LRAS:** a single VERTICAL line at the full-employment (potential) output, Yfe. Long-run output depends only on the quantity and quality of factors of production and technology, so it is independent of the price level. Implication: demand-side stimulus raises output only temporarily; in the long run it just raises the price level. LRAS shifts (economic growth) only when resources or technology improve.",
+        "**Keynesian AS:** a SINGLE curve in three sections — HORIZONTAL at low output (deep spare capacity, so output can rise with no price rise), then UPWARD-SLOPING as bottlenecks emerge, then VERTICAL at full capacity. Implication: when the economy is far below capacity, demand-side policy can raise real output with little or no inflation."
+      ]
     },
     {
       "type": "text",
-      "content": "The Keynesian model, developed during the Great Depression, uses a single AS curve with three distinct sections. It is based on the idea that wages are 'sticky downwards' – they don't fall easily even when there is high unemployment. \n\n1.  **Horizontal Section:** At low levels of output, there is high unemployment and spare capacity. Firms can increase output without needing to raise wages or prices.\n2.  **Upward-Sloping Section:** As the economy approaches full employment, 'bottlenecks' start to appear for certain resources, and firms may need to offer higher wages to attract skilled workers. This causes both output and the price level to rise.\n3.  **Vertical Section:** At full employment, the economy has reached its maximum capacity. Any further increase in AD will only lead to inflation, with no increase in real output."
+      "content": "You do not have to believe one model over the other — good evaluation contrasts them. Faced with a large recessionary gap, the Keynesian model supports demand-side stimulus (output rises, prices barely move); the neoclassical model warns that near full employment the same stimulus mostly feeds inflation. Interdependence is the theme: what AD does to output depends entirely on which part of the AS curve the economy sits on."
     },
     {
       "type": "examTip",
-      "content": "In an exam, you must be able to draw and explain both the Neoclassical and Keynesian AS models. The question will often provide clues as to which is more appropriate. For example, a question about long-run growth implies the LRAS, while a question about a deep recession might be better analysed with the Keynesian model. If in doubt, state your assumptions clearly."
+      "content": "Be surgical with diagrams. Label both axes (Average price level; Real GDP/output), every curve (AD, SRAS, and either LRAS or the Keynesian AS), and every equilibrium (P1, Y1 → P2, Y2). Draw an arrow showing the DIRECTION of any shift and reference the labelled points in your written explanation. Under IB marking, a diagram earns top-band credit only when it is both fully labelled AND explained in the prose — never just pasted in."
     },
     {
       "type": "heading",
-      "content": "Macroeconomic Equilibrium and Gaps"
+      "content": "Short-run macroeconomic equilibrium"
     },
     {
       "type": "text",
-      "content": "Short-run macroeconomic equilibrium occurs where the AD curve intersects the SRAS curve. This determines the current price level and real GDP. Long-run equilibrium in the neoclassical model occurs where AD intersects both SRAS and LRAS at the same point ($Y_f$). If the short-run equilibrium output is below $Y_f$, the economy is in a **deflationary (or recessionary) gap**. If it is above $Y_f$, it is in an **inflationary gap**."
+      "content": "Short-run macroeconomic equilibrium is the price level and real output at which the AD curve intersects the SRAS curve: total planned spending equals total planned output, so there is no tendency to change in the short run. From here, a rightward shift of AD (say, a jump in consumer confidence) raises both the price level and real output as the economy moves up along SRAS; a leftward SRAS shift (say, an oil shock) raises the price level but lowers output. The magnitude of each effect depends on the slopes of the curves and on where the economy sits relative to capacity."
     },
     {
       "type": "workedExample",
-      "question": "An economy is in long-run equilibrium. Due to a global pandemic, consumer and business confidence plummets. Using the neoclassical AD/AS model, analyse the short-run and long-run consequences for the price level and real GDP, assuming no government intervention.",
-      "solution": "1. **Initial Situation:** The economy starts at point A, where AD1 intersects SRAS1 and LRAS at price level P1 and full employment output Yf.\n\n2. **Short-Run Impact:** The fall in confidence causes a decrease in both Consumption (C) and Investment (I). This shifts the AD curve to the left from AD1 to AD2. The new short-run equilibrium is at point B, where AD2 intersects SRAS1. At this point, the real GDP has fallen to Y2, and the price level has dropped to P2. The economy is now in a deflationary (recessionary) gap because Y2 < Yf.\n\n3. **Long-Run Adjustment (Neoclassical View):** The high unemployment and low output at Y2 put downward pressure on wages and other input prices. As nominal wages fall, firms' costs of production decrease. This causes the SRAS curve to shift to the right, from SRAS1 to SRAS2. This shift continues until the economy reaches a new long-run equilibrium at point C.\n\n4. **New Long-Run Equilibrium:** At point C, the economy is back at the full employment level of output, Yf. The price level, however, is now permanently lower at P3. The economy has self-corrected from the recession, but at the cost of a period of high unemployment and deflation.\n\n**Mark scheme points:**\n- Correctly labelled diagram showing initial equilibrium, leftward AD shift, and rightward SRAS shift. [3 marks]\n- Explanation of AD shift due to fall in C and I. [1 mark]\n- Identification of short-run equilibrium with lower GDP and price level (recessionary gap). [2 marks]\n- Explanation of the long-run self-correction mechanism via falling nominal wages shifting SRAS rightwards. [2 marks]\n- Identification of the new long-run equilibrium at Yf but at a lower price level P3. [1 mark]"
+      "question": "An economy starts in equilibrium with real GDP of $500 billion and a price-level index of 100. A large exporter's currency depreciates, raising net exports and shifting AD to the right; at the same time firms' imported input costs rise, shifting SRAS slightly left. The new short-run equilibrium is at real GDP of $520 billion and a price-level index of 108.\n\n(a) Using an AD/AS diagram, explain the change in the price level and real output.\n(b) Which single effect is doing more of the work on the price level here, and why?",
+      "solution": "**(a) Diagram and explanation:**\nDraw an upward-sloping SRAS (SRAS1) and a downward-sloping AD (AD1) intersecting at (Y1 = $500bn, P1 = 100). The depreciation raises (X − M), a non-price determinant of AD, so the WHOLE AD curve shifts right to AD2 — this is a shift, not a movement, because the trigger is not the price level. The rise in imported input costs raises firms' costs, shifting SRAS left to SRAS2. The new equilibrium (AD2 ∩ SRAS2) sits at Y2 = $520bn and P2 = 108. Real output rises because the demand-side boost outweighs the supply-side drag on output; the price level rises for BOTH reasons — stronger demand pulling prices up and higher costs pushing them up.\n\n**(b) Which effect dominates the price level:**\nBoth shifts push the price level in the SAME direction (up), so they reinforce each other — that is why prices rise a clear 8% while output rises a more modest 4%. Output rose only modestly because the leftward SRAS shift partly offsets the demand-led expansion, whereas on prices the two shifts add together. This illustrates interdependence: the outcome depends on the two curves acting jointly, not on either alone."
+    },
+    {
+      "type": "heading",
+      "content": "The multiplier — a first look (HL developed further)"
+    },
+    {
+      "type": "text",
+      "content": "When AD shifts, the FINAL change in real GDP is usually larger than the initial change in spending. That is the multiplier. An initial injection — say extra government spending — is received by firms and workers as income; they spend part of it, which becomes someone else's income, part of which is spent again, and so on in successive, shrinking rounds. The total rise in output is a multiple of the first injection. How large depends on how much of each extra pound of income is re-spent within the domestic economy rather than saved, taxed away or spent on imports."
+    },
+    {
+      "type": "workedExample",
+      "question": "A government increases spending by $10 billion. Households re-spend 60% of any extra income they receive within the domestic economy (the rest is saved, taxed or spent on imports).\n\n(a) Trace the first three rounds of extra spending and explain the mechanism.\n(b) Explain, without a formula, why the final rise in real GDP exceeds $10 billion, and state one thing that would make the multiplier SMALLER.\n(HL note: at HL you would compute the exact multiplier from the marginal propensities.)",
+      "solution": "**(a) Rounds of spending:**\n- Round 1: the government spends $10bn — this is received as income.\n- Round 2: households re-spend 60% of $10bn = $6bn on domestic output, which becomes further income.\n- Round 3: they re-spend 60% of $6bn = $3.6bn, and so on.\nEach round is 60% of the previous one, so the injections get smaller and smaller but keep adding to output: $10bn + $6bn + $3.6bn + … The extra income circulates through the economy rather than stopping at the first recipient.\n\n**(b) Why the final effect exceeds $10bn, and what shrinks it:**\nBecause part of every round is re-spent, the sum of all the shrinking rounds is greater than the original $10bn injection — the final rise in real GDP is a MULTIPLE of it. The multiplier would be SMALLER if households re-spent a smaller fraction domestically — for example if they saved more, faced higher taxes, or spent more of the extra income on IMPORTS (a leakage abroad). (At HL the exact size is found from the marginal propensities to save, tax and import.)"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Treating ‘aggregate demand’ as just ‘demand’** — AD is total spending on ALL of an economy's output and slopes down for the wealth, interest-rate and net-export effects, NOT the micro income/substitution effects for a single good.",
+        "**Explaining the AD slope with the micro law of demand** — there is no ‘other good’ to substitute towards when the AVERAGE price of everything changes; use the three macro effects.",
+        "**Confusing a movement ALONG a curve with a SHIFT of it** — a change in the price level moves the economy along AD/SRAS; a change in a non-price determinant shifts the whole curve. Say which, and why.",
+        "**Blurring the two AS models** — the neoclassical/monetarist LRAS is a single vertical line at Yfe; the Keynesian AS curve is horizontal, then rising, then vertical. Do not draw a hybrid and do not call SRAS the ‘long run’.",
+        "**Saying an SRAS shift is caused by higher demand** — SRAS shifts from changes in COSTS (wages, commodities, taxes, subsidies); demand changes shift AD.",
+        "**Unlabelled or unexplained diagrams** — a diagram scores in the top band only when axes, curves, shift arrows and equilibrium points are labelled AND referenced in the written answer.",
+        "**Claiming stimulus always raises output** — whether AD stimulus raises real output or just the price level depends on which part of the AS curve the economy is on; state your assumption."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real IB markband"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 1, part (a): Explain, using an AD/AS diagram, how an increase in consumer confidence affects the level of real output in the short run. [10]",
+      "solution": "**Model answer:**\nAggregate demand (AD) is the total planned spending on an economy's domestically produced output at each average price level, AD = C + I + G + (X − M). Consumer confidence is a key non-price determinant of the consumption component (C): when households feel more optimistic about their future incomes and job security, they spend more of their income now and save less. Because this is a change in a non-price determinant — not a change in the price level — it SHIFTS the whole AD curve to the right rather than causing a movement along it.\n\n*[Diagram: average price level on the vertical axis, real GDP (real output) on the horizontal axis. An upward-sloping SRAS curve and a downward-sloping AD1 curve intersect at equilibrium point E1 (price level P1, output Y1). The rise in consumer confidence shifts AD right, from AD1 to AD2 (arrow showing the rightward shift). The new equilibrium E2, where AD2 cuts SRAS, is at a higher price level P2 and a higher real output Y2.]*\n\nAt the original equilibrium E1, AD1 intersects SRAS at price level P1 and real output Y1. The rise in confidence raises planned consumption, shifting AD to AD2. As spending rises, firms find they can sell more and raise prices; because factor prices such as wages are sticky in the short run, higher output prices widen profit margins, so firms expand output by moving UP ALONG the SRAS curve. The new short-run equilibrium E2 lies at a higher price level P2 and, crucially for this question, a higher level of real output Y2. Therefore an increase in consumer confidence raises real output in the short run (Y1 → Y2), accompanied by some increase in the price level (P1 → P2). The size of the output rise depends on how much of the AD shift is absorbed by higher prices versus higher output — i.e. on the slope of SRAS and how close the economy is to capacity.\n\n---\n**How this maps to our IB markband (Paper 1 part (a), out of 10):**\n- **9–10:** the demands of the question are addressed; relevant economic theory is FULLY explained; relevant terms are used appropriately THROUGHOUT; where appropriate, a relevant diagram is included and FULLY explained.\n- **7–8:** the demands of the question are addressed; relevant economic theory is explained; relevant terms are used mostly appropriately; where appropriate, a relevant diagram is included and explained.\n- **5–6:** the demands of the question are partially addressed; relevant economic theory is PARTLY explained; some relevant terms are used appropriately; where appropriate, a relevant diagram is included.\n- **3–4:** relevant economic theory is DESCRIBED; some relevant terms are used appropriately.\n- **1–2:** the response is not relevant to the question.\n\nWhy this answer reaches the top (9–10) band:\n- ✅ **Demands addressed:** it answers precisely what was asked — the effect on real OUTPUT in the SHORT RUN — and states the direction (Y1 → Y2), not just ‘AD rises’.\n- ✅ **Theory fully explained:** it works through the full chain — confidence → higher C → rightward AD shift → movement up along SRAS (with the sticky-wage/margin reason) → higher output — rather than merely asserting the result.\n- ✅ **Terms used throughout:** aggregate demand, non-price determinant, shift vs movement, short-run aggregate supply, equilibrium, real output, price level.\n- ✅ **Diagram included AND fully explained:** axes, both curves, the shift arrow and both equilibrium points are labelled and each is referenced in the prose.\nAn answer that only DESCRIBED ‘confidence up, AD up, output up’ with an unlabelled or unexplained diagram would sit in the 3–4 band; adding partial explanation and a bare diagram would reach 5–6. The single move that lifts it to the top band is EXPLAINING the diagram — deriving the output change from it — rather than just drawing it."
     },
     {
       "type": "examTip",
-      "content": "Diagrams are your best friend in macroeconomics, but they are also a major source of lost marks. Always label your axes (Price Level, Real GDP), all curves (AD, SRAS, LRAS), all equilibrium points (e.g., A, B, C), and all corresponding price and output levels (P1, Y1, Yf, etc.). A clear, well-labelled diagram is worth many marks."
+      "content": "This is exactly what the Practice button does. Write your own answer to this 10-mark question, submit it, and our marking engine grades it against this same official markband — telling you which band you reached and why. The habit that moves you up the bands on AD/AS questions: name the shift, walk the economy along the other curve, and EXPLAIN your diagram rather than just drawing it."
+    },
+    {
+      "type": "heading",
+      "content": "Key concepts in this lesson"
+    },
+    {
+      "type": "text",
+      "content": "Two of the course's nine key concepts run through this topic. **Change** is everywhere: shifts in AD and AS are how the model represents economic events, and the whole point of the diagram is to trace how one change ripples into new levels of output and prices. **Interdependence** is the deeper lesson: output and the price level are determined jointly, and what a demand shift does depends entirely on the supply side it meets — the same rise in AD raises output cheaply on the flat Keynesian range but mostly raises prices near the vertical LRAS. Hold both concepts in mind when you evaluate policy."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "AD/AS is the platform for the rest of macroeconomics. Every later topic — demand-side (fiscal and monetary) policy, supply-side policy, inflation, unemployment and economic growth — is analysed by shifting one of these curves and reading off the new equilibrium. Master the shifts, the two AS models and the multiplier intuition here, and those chapters become applications of a single diagram rather than new material."
     },
     {
       "type": "practice",
-      "label": "Test your understanding of AD/AS",
-      "href": "/mark?subject=ib-economics-hl&topic=3.2"
+      "label": "Get a Paper 1 (a) answer marked: use an AD/AS diagram to explain how higher consumer confidence affects short-run real output",
+      "href": "/mark?subject=ib-economics-hl&topic=3.2&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Khan Academy: Aggregate Demand",
-          "href": "https://www.khanacademy.org/economics-finance-domain/macroeconomics/income-and-expenditure-topic/aggregate-demand-and-aggregate-supply/v/aggregate-demand"
+          "label": "Khan Academy: Aggregate demand and aggregate supply",
+          "href": "https://www.khanacademy.org/economics-finance-domain/macroeconomics/income-and-expenditure-topic/aggregate-demand-and-aggregate-supply-topic/v/aggregate-demand"
         },
         {
-          "label": "Tutor2u: Aggregate Supply - Keynesian vs Classical",
-          "href": "https://www.tutor2u.net/economics/reference/aggregate-supply-keynesian-v-classical"
+          "label": "Tutor2u: Aggregate supply — an introduction",
+          "href": "https://www.tutor2u.net/economics/reference/aggregate-supply-as-an-introduction"
+        },
+        {
+          "label": "The Economist economics A–Z: the output gap",
+          "href": "https://www.economist.com/economics-a-to-z/o/output-gap"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -1,184 +1,134 @@
 {
   "slug": "4-4-exchange-rates",
   "topicCode": "4.4",
+  "unit": { "code": "4", "title": "The global economy" },
   "title": "Exchange rates",
   "paper": "P3",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson explores the concept of exchange rates, detailing their determination in floating, fixed, and managed systems. It analyses the factors causing exchange rate fluctuations and evaluates the consequences of these changes on a country's macroeconomic objectives, including the balance of payments, inflation, and economic growth.",
-  "durationMin": 120,
-  "updated": "2026-06-21",
+  "summary": "An exchange rate is simply the price of one currency in terms of another — and on Paper 3 you will be asked to work with that price numerically. This lesson defines the exchange rate, shows how a floating rate is set by the demand for and supply of a currency, explains what causes appreciation and depreciation, and teaches the two conversions examiners test most: turning a price in one currency into another, and judging how a rate change affects exports, imports, the current account, inflation and growth. Fixed and managed systems are covered briefly at the end.",
+  "durationMin": 60,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define exchange rates and understand their role in the foreign exchange (forex) market.",
-    "Analyse the determination of exchange rates in a floating system using supply and demand diagrams.",
-    "Compare and contrast fixed, floating, and managed exchange rate systems, including the role of central banks.",
-    "Evaluate the consequences of exchange rate appreciation and depreciation on the economy, including the current account balance (Marshall-Lerner condition and J-curve effect), inflation, and growth."
+    "Define an exchange rate and explain how a floating rate is determined by the demand for and supply of a currency.",
+    "Explain appreciation and depreciation and identify the causes of each in a floating system.",
+    "Convert accurately between two currencies using an exchange rate, showing method and units.",
+    "Analyse the effects of a change in the exchange rate on exports, imports, the current account, inflation and growth.",
+    "Outline briefly how fixed and managed exchange-rate systems work."
   ],
+  "syllabusObjectivesCovered": ["4.4"],
+  "keyConcepts": ["interdependence", "change", "economic well-being"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Global Price Tag",
-    "summary": "An exchange rate is simply the price of one country's currency in terms of another. These prices are set in a massive global marketplace and change constantly based on supply and demand.",
-    "analogy": "Imagine a giant, worldwide farmers' market, but instead of selling fruit and vegetables, traders are buying and selling currencies like US dollars, Euros, and Japanese Yen. If a new recipe makes British apples suddenly very popular (high demand), their price goes up. Similarly, if international investors all want to buy British pounds to invest in the UK, the 'price' of the pound—its exchange rate—will rise.",
+    "title": "The Price of Money",
+    "summary": "An exchange rate is the price of one country's money measured in another country's money. Like any price in a free market, it is set by demand and supply — and when it moves, the price of everything a country buys from or sells to the rest of the world moves with it.",
+    "analogy": "Think of currencies as goods on sale in a giant global shop. The pound has a price tag written in dollars: £1 = $1.25. If more people around the world want pounds — to buy British exports or invest in Britain — the pound's price tag rises, say to £1 = $1.40. That is an appreciation. When the pound is dearer, everything priced in pounds costs foreigners more dollars, so British exports become harder to sell; but American goods become cheaper for Britons to buy.",
     "steps": [
-      "First, identify the specific currency market you are analysing, for example, the market for British Pounds (£). The vertical axis of your diagram will be the price of that currency in terms of another, such as US Dollars per Pound ($/£).$",
-      "Next, analyse the economic event or policy change. Determine whether it affects the demand for the currency (e.g., foreign demand for UK exports) or the supply of the currency (e.g., UK residents wanting to import goods or invest abroad).",
-      "Then, illustrate this change on a supply and demand diagram. A factor increasing demand shifts the demand curve to the right, while a factor increasing supply shifts the supply curve to the right.",
-      "Finally, explain the outcome. Describe whether the currency has appreciated (strengthened) or depreciated (weakened) and analyse the consequences for macroeconomic objectives like inflation, unemployment, and the current account balance."
+      "An exchange rate is the price of one currency in terms of another (e.g. £1 = $1.25).",
+      "In a floating system that price is set where demand for the currency meets supply of it.",
+      "Appreciation = the currency rises in value; depreciation = it falls.",
+      "A stronger currency makes exports dearer and imports cheaper; a weaker currency does the reverse."
     ]
   },
   "flashcards": [
-    {
-      "front": "What is an exchange rate?",
-      "back": "The value of one currency expressed in terms of another currency. For example, £1 = $1.25.$"
-    },
-    {
-      "front": "What is currency appreciation?",
-      "back": "An increase in the value of a currency in a floating exchange rate system, caused by market forces (increase in demand or decrease in supply). The currency can now buy more of another currency."
-    },
-    {
-      "front": "What is currency depreciation?",
-      "back": "A decrease in the value of a currency in a floating exchange rate system, caused by market forces (decrease in demand or increase in supply). The currency can now buy less of another currency."
-    },
-    {
-      "front": "Distinguish between devaluation and depreciation.",
-      "back": "Depreciation is a fall in a currency's value due to market forces in a floating system. Devaluation is an official lowering of a currency's value by the government or central bank in a fixed or managed system."
-    },
-    {
-      "front": "Distinguish between revaluation and appreciation.",
-      "back": "Appreciation is a rise in a currency's value due to market forces in a floating system. Revaluation is an official raising of a currency's value by the government or central bank in a fixed or managed system."
-    },
-    {
-      "front": "What is a floating exchange rate system?",
-      "back": "A system where the value of a currency is determined solely by the market forces of supply and demand, with no government or central bank intervention."
-    },
-    {
-      "front": "What is a fixed exchange rate system?",
-      "back": "A system where a currency's value is pegged (fixed) to the value of another currency, a basket of currencies, or a commodity like gold. The central bank must intervene to maintain this fixed rate."
-    },
-    {
-      "front": "What is a managed float (or dirty float) system?",
-      "back": "A system that is primarily floating, but where the central bank periodically intervenes in the foreign exchange market to influence the currency's value, typically to smooth out volatility or achieve a policy goal."
-    },
-    {
-      "front": "What is the Marshall-Lerner condition?",
-      "back": "A condition stating that a currency depreciation/devaluation will only lead to an improvement in the current account balance if the sum of the price elasticities of demand for exports and imports is greater than one ($PED_X + PED_M > 1$)."
-    },
-    {
-      "front": "What is the J-curve effect?",
-      "back": "A short-term worsening of the current account balance following a currency depreciation/devaluation, before it begins to improve in the long term. This is because import/export volumes are inelastic in the short run."
-    },
-    {
-      "front": "What is 'hot money'?",
-      "back": "Short-term capital flows moving quickly between countries to take advantage of higher interest rates or expected exchange rate changes. It can cause significant volatility in exchange rates."
-    }
+    { "front": "Exchange rate", "back": "The value (price) of one currency expressed in terms of another currency, e.g. £1 = $1.25. It is the price at which one money is traded for another in the foreign exchange market.", "pillLabel": "Definition" },
+    { "front": "Floating exchange rate", "back": "A rate determined solely by the market demand for and supply of the currency, with no central-bank intervention. The rate settles where quantity demanded equals quantity supplied.", "pillLabel": "Definition" },
+    { "front": "Demand for a currency", "back": "Comes from foreigners who need it to buy the country's exports, to invest in the country (FDI or financial investment), or to speculate that the currency will rise. The demand curve slopes downwards.", "pillLabel": "Analysis" },
+    { "front": "Supply of a currency", "back": "Comes from domestic residents who need foreign currency to buy imports, to invest abroad, or to speculate that their own currency will fall. Supplying your own currency means selling it for another. The supply curve slopes upwards.", "pillLabel": "Analysis" },
+    { "front": "Appreciation", "back": "A rise in the value of a currency in a floating system, caused by an increase in demand for it or a decrease in its supply. One unit now buys MORE foreign currency (e.g. £1 = $1.25 → £1 = $1.40).", "pillLabel": "Concept" },
+    { "front": "Depreciation", "back": "A fall in the value of a currency in a floating system, caused by a decrease in demand for it or an increase in its supply. One unit now buys LESS foreign currency (e.g. £1 = $1.25 → £1 = $1.10).", "pillLabel": "Concept" },
+    { "front": "Converting a home price into foreign currency", "back": "MULTIPLY by the exchange rate. If £1 = $1.25 and a good costs £80, its dollar price is 80 × 1.25 = $100. (Home → foreign: multiply.)", "pillLabel": "Method" },
+    { "front": "Converting a foreign price into home currency", "back": "DIVIDE by the exchange rate. If £1 = $1.25 and a good costs $100, its pound price is 100 ÷ 1.25 = £80. (Foreign → home: divide.)", "pillLabel": "Method" },
+    { "front": "Effect of appreciation on trade", "back": "Exports become DEARER for foreigners (bad for export sales); imports become CHEAPER for domestic buyers. Remember the phrase SPICED — Strong Pound, Imports Cheaper, Exports Dearer.", "pillLabel": "Analysis" },
+    { "front": "Effect of depreciation on trade", "back": "Exports become CHEAPER for foreigners (more competitive); imports become DEARER for domestic buyers, which can cause imported (cost-push) inflation.", "pillLabel": "Analysis" },
+    { "front": "Fixed exchange rate", "back": "A rate pegged by the government/central bank to another currency, a basket, or a commodity. The central bank buys or sells its currency using reserves to hold the peg. An official rise is a revaluation; an official fall is a devaluation.", "pillLabel": "Definition" },
+    { "front": "Managed float", "back": "A mainly market-determined rate in which the central bank intervenes occasionally to smooth volatility or nudge the rate towards a target level. It sits between a pure float and a fixed peg.", "pillLabel": "Definition" }
+  ],
+  "quickCheck": [
+    { "prompt": "The pound moves from £1 = $1.20 to £1 = $1.35. This is:", "options": ["A depreciation of the pound", "An appreciation of the pound", "A devaluation of the dollar by the Fed", "No change in the pound's value"], "answer": "An appreciation of the pound" },
+    { "prompt": "A US product is priced at $60 and the exchange rate is £1 = $1.20. Converted correctly into pounds, its price is:", "options": ["£72 (multiply by 1.20)", "£50 (divide by 1.20)", "£60 (rates do not matter)", "£1.20 (the rate itself)"], "answer": "£50 (divide by 1.20)" },
+    { "prompt": "When a country's currency appreciates, other things equal:", "options": ["Exports become cheaper and imports dearer", "Exports become dearer and imports cheaper", "Both exports and imports become cheaper", "Neither exports nor imports change in price"], "answer": "Exports become dearer and imports cheaper" },
+    { "prompt": "Which of the following would most directly INCREASE the demand for a country's currency and cause it to appreciate?", "options": ["Domestic residents buying more imported goods", "A rise in foreign demand for the country's exports", "Domestic firms investing heavily abroad", "The central bank cutting interest rates below foreign rates"], "answer": "A rise in foreign demand for the country's exports" },
+    { "prompt": "A depreciation of the currency is most likely to cause:", "options": ["Imported (cost-push) inflation as imports become dearer", "Cheaper imports and lower inflation", "An immediate fall in export competitiveness", "A rise in the currency's value against others"], "answer": "Imported (cost-push) inflation as imports become dearer" }
   ],
   "faq": [
-    {
-      "q": "Why would a country choose a fixed exchange rate if it means losing control over its monetary policy?",
-      "a": "Countries, especially smaller or developing economies, might choose a fixed exchange rate to create stability and predictability for trade and investment. It can act as a credible anchor for monetary policy, helping to control inflation. For example, if a country with a history of hyperinflation pegs its currency to the US dollar, it effectively 'borrows' the credibility of the US Federal Reserve, which can reassure investors and citizens."
-    },
-    {
-      "q": "How does a central bank intervene to influence its currency's value?",
-      "a": "To strengthen its currency (prevent depreciation), a central bank will buy its own currency on the forex market using its reserves of foreign currency. This increases demand for the domestic currency, pushing its value up. To weaken its currency (prevent appreciation), it will sell its own currency and buy foreign currency. This increases the supply of the domestic currency, pushing its value down."
-    },
-    {
-      "q": "Is a strong currency always good for an economy?",
-      "a": "Not necessarily. A strong currency (appreciation) has both pros and cons. The benefit is that it makes imports cheaper, which helps control domestic inflation and increases consumers' purchasing power for foreign goods. The downside is that it makes the country's exports more expensive and less competitive on the world market, which can harm export industries, lead to job losses, and worsen the current account deficit. The 'ideal' exchange rate level is a subject of much debate."
-    },
-    {
-      "q": "What's the difference between the Marshall-Lerner condition and the J-Curve?",
-      "a": "The Marshall-Lerner condition is the mathematical rule that tells us *if* a depreciation will ultimately improve the current account ($PED_X + PED_M > 1$). The J-Curve is a graphical model that shows *how* the current account balance changes over time after a depreciation. It shows that even if the Marshall-Lerner condition holds, the current account will likely get worse in the short-term before it gets better in the long-term, tracing the shape of the letter 'J'."
-    }
+    { "q": "Do I multiply or divide when converting between currencies?", "a": "Anchor everything to how the rate is written. With £1 = $1.25, the rate is 'dollars per pound'. To go FROM pounds TO dollars you MULTIPLY (£80 × 1.25 = $100), because each pound is worth 1.25 dollars. To go FROM dollars back TO pounds you DIVIDE ($100 ÷ 1.25 = £80). A quick check: converting into the 'stronger-numbered' currency should give a bigger number, converting into the other should give a smaller one." },
+    { "q": "Is a strong (appreciating) currency good or bad for the economy?", "a": "It depends, which is why examiners like it. An appreciation makes imports cheaper — good for consumers' purchasing power and for reducing inflation, and helpful if firms rely on imported raw materials. But it makes exports dearer and less competitive, which can shrink export revenue, slow growth and cost jobs in exporting industries. There is no single 'good' level; it depends on the economy's structure and objectives." },
+    { "q": "What is the difference between depreciation and devaluation?", "a": "Both mean the currency has fallen in value, but the mechanism differs. Depreciation happens through market forces in a FLOATING system — demand falls or supply rises. Devaluation is a deliberate, official lowering of the rate by the authorities in a FIXED or managed system. The mirror images are appreciation (market-driven rise) and revaluation (official rise)." },
+    { "q": "How does a central bank hold a fixed exchange rate?", "a": "By intervening in the foreign exchange market. To stop its currency falling below the peg, it buys its own currency using foreign-currency reserves, raising demand for it; it may also raise interest rates to attract inflows. To stop the currency rising above the peg, it sells its own currency (increasing supply) and accumulates reserves. Defending a peg can therefore be costly and constrains the use of monetary policy for domestic goals." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "In our interconnected global economy, transactions between countries are constant. To buy a Japanese car, a British firm needs yen; for an American to holiday in Spain, they need euros. The price they pay for this foreign currency is the exchange rate. This topic delves into how this crucial 'price' is determined and the profound impact its fluctuations have on a nation's economic health, influencing everything from the price of your imported smartphone to the competitiveness of your country's exports."
-    },
-    {
-      "type": "heading",
-      "content": "The Foreign Exchange (Forex) Market and Exchange Rate Determination"
-    },
-    {
-      "type": "text",
-      "content": "The exchange rate is determined in the foreign exchange (forex) market, a global, decentralised marketplace for trading currencies. Like any market, it is governed by supply and demand. The demand for a currency, say the British Pound (£), comes from foreign entities who need pounds to buy UK goods and services (exports), invest in UK assets, or speculate. The supply of pounds comes from UK residents who need foreign currency to buy foreign goods and services (imports), invest abroad, or speculate. In a floating system, the equilibrium exchange rate is where the quantity of pounds demanded equals the quantity supplied."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Demand for a currency is derived from:** Foreign demand for a country's exports, inward foreign direct investment (FDI) and financial investment, and speculation that the currency will appreciate.",
-        "**Supply of a currency is created by:** Domestic demand for other countries' imports, outward FDI and financial investment, and speculation that the currency will depreciate.",
-        "**Diagrammatic Representation:** The vertical axis shows the price of the currency in terms of another (e.g., $/£). The horizontal axis shows the Quantity of the currency. The demand curve is downward sloping, and the supply curve is upward sloping.$"
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "When drawing a forex diagram, be precise with your labels. The vertical axis MUST be labelled as the price of one currency in terms of another (e.g., 'Price of € in $'). The horizontal axis should be 'Quantity of €'. A common mistake is to just write 'Price' and 'Quantity', which is too vague for full marks.$"
-    },
-    {
-      "type": "workedExample",
-      "question": "The exchange rate between the British Pound (£) and the US Dollar ($) is £1 = $1.25. A UK tourist is planning a trip to New York and wants to buy a Broadway ticket that costs $150. $\n\na) Calculate the cost of the ticket in pounds (£).\n\nb) Before the tourist buys the ticket, the pound appreciates by 10% against the dollar. Calculate the new exchange rate and the new cost of the ticket in pounds.",
-      "solution": "**Part a)**\n\nTo find the cost in pounds, we divide the dollar price by the exchange rate:\nCost in £ = Cost in $ / ($ per £)\nCost in £ = $150 / 1.25 = £120$\n\n*Working: [1 mark] for correct calculation. [1 mark] for correct answer with unit.*\n\n**Part b)**\n\nFirst, calculate the new exchange rate. A 10% appreciation means the new rate is 1.25 * (1 + 0.10):\nNew exchange rate = $1.25 * 1.10 = $1.375\nSo, £1 = $1.375$\n\nNow, calculate the new cost of the ticket in pounds using the new rate:\nNew Cost in £ = $150 / 1.375 = £109.09 (rounded to 2 d.p.)$\n\n*Working: [1 mark] for calculating the new exchange rate. [1 mark] for calculating the new cost in pounds. The appreciation of the pound makes the US ticket cheaper for the UK tourist.*"
-    },
-    {
-      "type": "heading",
-      "content": "Exchange Rate Systems: Fixed, Floating, and Managed"
-    },
-    {
-      "type": "text",
-      "content": "Governments and their central banks can choose how to manage their currency's value. There are three main systems. A **floating exchange rate** is determined by market forces of supply and demand without intervention. A **fixed exchange rate** involves the central bank pegging its currency to another currency or commodity and actively intervening to maintain that rate. A **managed float** is a hybrid system where the rate is primarily market-determined, but the central bank intervenes to prevent excessive fluctuations or to steer the currency towards a desired level."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Floating System Advantages:** Automatic correction of current account imbalances; freedom to use monetary policy for domestic goals.",
-        "**Floating System Disadvantages:** Volatility can create uncertainty for businesses and investors; can be subject to speculative bubbles.",
-        "**Fixed System Advantages:** Certainty and stability for international trade and investment; imposes discipline on domestic fiscal/monetary policy.",
-        "**Fixed System Disadvantages:** Loss of independent monetary policy; requires large foreign currency reserves to defend the peg; can become over/undervalued."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Consequences of Exchange Rate Fluctuations"
-    },
-    {
-      "type": "text",
-      "content": "Changes in exchange rates have wide-ranging effects. An **appreciation** makes exports more expensive for foreigners and imports cheaper for domestic consumers. This can worsen the current account balance (fewer exports, more imports), reduce inflationary pressure (cheaper imports), and potentially slow economic growth if export industries suffer. A **depreciation** has the opposite effects: exports become cheaper and more competitive, while imports become more expensive. This can improve the current account balance, but may also lead to imported inflation."
-    },
-    {
-      "type": "formula",
-      "content": "The Marshall-Lerner Condition: $PED_X + PED_M > 1$"
-    },
-    {
-      "type": "text",
-      "content": "For a depreciation to improve the current account, the Marshall-Lerner condition must hold. This states that the sum of the price elasticity of demand for exports ($PED_X$) and imports ($PED_M$) must be greater than one. If demand is inelastic, the fall in export prices and rise in import prices won't lead to a sufficient change in quantity demanded, and the trade balance could worsen. The J-curve effect illustrates this, showing a typical initial worsening of the trade balance post-depreciation before it improves over time as elasticities increase."
-    },
-    {
-      "type": "workedExample",
-      "question": "The country of Econland has a current account deficit. The government decides to devalue its currency, the 'Econ'. Before the devaluation, Econland exported 1,000 units of a good at a price of 20 Econs per unit, and imported 800 units of a good at a price of $10 per unit. The exchange rate was 2.5 Econs = $1.\n\nAfter a 20% devaluation, the new exchange rate is 3.0 Econs = $1. The price elasticity of demand for its exports is 0.6, and the price elasticity of demand for its imports is 0.7.$\n\nDetermine whether the Marshall-Lerner condition is met and calculate the impact on Econland's current account balance in terms of Econs.",
-      "solution": "**Step 1: Check the Marshall-Lerner Condition**\n\nThe condition is $PED_X + PED_M > 1$.\nHere, $0.6 + 0.7 = 1.3$.\nSince $1.3 > 1$, the Marshall-Lerner condition is met. We expect the current account to improve.\n\n*Working: [1 mark] for correctly stating the condition and summing the PEDs. [1 mark] for the conclusion.*\n\n**Step 2: Calculate the initial Current Account Balance (in Econs)**\n\nExport Revenue = 1,000 units * 20 Econs/unit = 20,000 Econs\nImport Expenditure (in $) = 800 units * $10/unit = $8,000$\nImport Expenditure (in Econs) = $8,000 * 2.5 Econs/$ = 20,000 Econs\nInitial Current Account = Export Revenue - Import Expenditure = 20,000 - 20,000 = 0 Econs. (Let's adjust the premise slightly for a deficit, say initial imports were 850 units, making expenditure 21,250 Econs and deficit -1,250 Econs. For this example, we'll proceed with the initial figures for simplicity of calculation, assuming a deficit existed due to other factors).\n\n**Step 3: Calculate the impact of devaluation on quantities**\n\n% change in export quantity = $PED_X$ * % change in foreign price of exports. The devaluation makes exports cheaper for foreigners. The foreign price falls. The devaluation is 20%, but we need the price change in $. Price went from 20 Econs ($8) to 20 Econs ($6.67). This is a 16.67% fall. % change in Qx = 0.6 * 16.67% = +10%. New Qx = 1,100 units.$\n\n% change in import quantity = $PED_M$ * % change in domestic price of imports. The price of imports in Econs rises from 25 Econs ($10 * 2.5) to 30 Econs ($10 * 3.0), a 20% rise. % change in Qm = 0.7 * 20% = -14%. New Qm = 800 * (1-0.14) = 688 units.\n\n**Step 4: Calculate the new Current Account Balance (in Econs)**\n\nNew Export Revenue = 1,100 units * 20 Econs/unit = 22,000 Econs\nNew Import Expenditure (in $) = 688 units * $10/unit = $6,880$\nNew Import Expenditure (in Econs) = $6,880 * 3.0 Econs/$ = 20,640 Econs\nNew Current Account = 22,000 - 20,640 = +1,360 Econs.\n\n**Conclusion:** The current account balance improved from 0 to a surplus of 1,360 Econs, as predicted by the Marshall-Lerner condition.\n\n*Working: [1 mark] for calculating new export revenue. [1 mark] for calculating new import expenditure. [1 mark] for the final balance and conclusion.*"
-    },
-    {
-      "type": "examTip",
-      "content": "For HL Paper 3, you will be expected to perform calculations like the ones in the worked examples. Always show your working clearly, step-by-step. Even if your final answer is incorrect, you can earn significant marks for demonstrating the correct method."
-    },
-    {
-      "type": "practice",
-      "label": "Test your knowledge of Exchange Rates with exam-style questions.",
-      "href": "/mark?subject=ib-economics-hl&topic=4.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IMF Data on Exchange Rates",
-          "href": "https://data.imf.org/?sk=E6A5467B-AB46-4277-880B-875626049A48"
-        },
-        {
-          "label": "Bank of England - Understanding Exchange Rates",
-          "href": "https://www.bankofengland.co.uk/knowledgebank/what-are-exchange-rates"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every cross-border transaction runs through an exchange rate. A British importer buying American software, an American tourist booking a London hotel, a pension fund moving money into foreign shares — each must first swap one currency for another at a price. That price is the exchange rate, and it is arguably the single most important price in an open economy, because it links every domestic price to the rest of the world. This is a Paper 3 topic, so alongside understanding WHY rates move you must be able to work with them NUMERICALLY: converting prices, and reasoning precisely about what a change does to exports, imports, the current account, inflation and growth." },
+
+    { "type": "heading", "content": "What an exchange rate is" },
+    { "type": "text", "content": "An exchange rate is the price of one currency expressed in terms of another. Written as £1 = $1.25, it tells you that one pound trades for 1.25 US dollars. Read the other way, one dollar trades for 1 ÷ 1.25 = $0.80 worth of a pound (80 pence). Because it is a price, an exchange rate always has two sides: whenever the pound is worth more dollars, the dollar is automatically worth fewer pounds. Getting the direction right is half the battle in every Paper 3 question on this topic." },
+    { "type": "keyPoints", "items": [
+      "An exchange rate is a **price** — the value of one currency in terms of another.",
+      "It is a **two-sided** ratio: if £1 = $1.25 then $1 = £0.80. Raising one side lowers the other.",
+      "Always note **which way round** the quote is written (dollars per pound, or pounds per dollar) before you calculate anything."
+    ]},
+
+    { "type": "heading", "content": "How a floating rate is determined: demand and supply of a currency" },
+    { "type": "text", "content": "In a floating system the exchange rate is set exactly like any price in a competitive market — where the demand for the currency meets the supply of it. Consider the market for pounds, with the price of pounds in dollars ($/£) on the vertical axis and the quantity of pounds on the horizontal axis. Demand for pounds comes from anyone who needs pounds: foreigners buying UK exports, foreigners investing in UK assets, and speculators betting the pound will rise. Supply of pounds comes from anyone selling pounds for another currency: UK residents buying imports, UK residents investing abroad, and speculators betting the pound will fall. The equilibrium rate is where the quantity of pounds demanded equals the quantity supplied." },
+    { "type": "keyPoints", "items": [
+      "**Demand for a currency** rises with: foreign demand for the country's exports; inward investment (FDI and financial flows); higher relative interest rates attracting 'hot money'; and speculation that the currency will appreciate.",
+      "**Supply of a currency** rises with: domestic demand for imports; outward investment abroad; lower relative interest rates; and speculation that the currency will depreciate.",
+      "**Diagram labels matter:** vertical axis = price of the currency in another (e.g. '$ per £'), horizontal axis = 'Quantity of £'. Demand slopes down, supply slopes up, equilibrium where they cross."
+    ]},
+    { "type": "examTip", "content": "On a forex diagram, never label the axes just 'Price' and 'Quantity'. Write the price of one specific currency in terms of another (e.g. 'Price of £ in $') and 'Quantity of £'. Vague axis labels are one of the most common reasons students lose diagram marks on this topic." },
+
+    { "type": "heading", "content": "Appreciation and depreciation, and what causes them" },
+    { "type": "text", "content": "An appreciation is a rise in the currency's value: the pound moves from £1 = $1.25 to, say, £1 = $1.40, so each pound now buys more dollars. It is caused by an increase in demand for the currency (the demand curve shifts right) or a decrease in its supply (the supply curve shifts left). A depreciation is the opposite — a fall in value, say £1 = $1.25 to £1 = $1.10 — caused by falling demand or rising supply. Keep the vocabulary precise: in a floating system market forces produce appreciation and depreciation, whereas a deliberate official change to a pegged rate is a revaluation (up) or devaluation (down)." },
+    { "type": "keyPoints", "items": [
+      "**Causes of appreciation:** stronger foreign demand for exports; rising inward investment; higher relative interest rates; improved economic outlook; expectation the currency will rise.",
+      "**Causes of depreciation:** stronger domestic demand for imports; capital flowing abroad; lower relative interest rates; weaker economic outlook; expectation the currency will fall.",
+      "**Vocabulary:** appreciation/depreciation = market-driven (floating). Revaluation/devaluation = deliberate official change (fixed/managed)."
+    ]},
+
+    { "type": "heading", "content": "Converting between currencies" },
+    { "type": "text", "content": "Paper 3 rewards clean, correct conversions. The safe rule is to read the quote literally. With £1 = $1.25 the rate is 'dollars per pound', so to turn a pound price INTO dollars you MULTIPLY by 1.25, and to turn a dollar price back INTO pounds you DIVIDE by 1.25. Do a common-sense check afterwards: because a pound is worth more than a dollar here, a price should have a bigger number in dollars than in pounds. If your answer fails that check, you have multiplied where you should have divided." },
+    { "type": "workedExample", "question": "The exchange rate is £1 = $1.25. A UK product is priced at £80. Calculate its price in US dollars. If the pound then appreciates to £1 = $1.40, recalculate the dollar price and comment on the likely effect on UK exports. [4]", "solution": "**Step 1 — Convert at the original rate (£ → $, so multiply):**\nDollar price = £80 × 1.25 = **$100**\n\n**Step 2 — Convert at the new rate after the pound appreciates (£1 = $1.40):**\nNew dollar price = £80 × 1.40 = **$112**\n\n**Step 3 — Comment on the effect on UK exports:**\nThe appreciation of the pound has raised the product's price in US dollars from $100 to $112 — the same UK good is now dearer for American buyers. Because exports have become more expensive abroad, the quantity of UK exports demanded is likely to fall (the size of the fall depends on how price-elastic US demand for the product is). More broadly, an appreciation tends to reduce export competitiveness while making imports cheaper.\n\n**Answer:** $100; after appreciation $112; UK exports become dearer for foreigners, so demand for them is likely to fall." },
+    { "type": "text", "content": "**How our marking engine awards the marks (Paper 3, [4]).** Paper 3 quantitative questions are marked on POINTS: an **M** point for showing a valid method, and **A** points for accuracy, with working shown and full follow-through if an early figure is wrong. For this question our engine looks for four things:\n\n- **M1 — Method:** multiplying the pound price by the exchange rate to convert £ → $ (showing 80 × 1.25, in any equivalent form).\n- **A1 — Accuracy:** the correct original dollar price, **$100**.\n- **A1 — Accuracy:** the correct recalculated dollar price after appreciation, **$112** (80 × 1.40).\n- **A1 — Correct effect:** identifying that the higher dollar price makes UK exports dearer abroad, so demand for UK exports is likely to fall.\n\n**Follow-through:** if a student sets the method up correctly but slips on the first figure, the engine still credits the M point and awards the later accuracy points on THEIR figure, provided the reasoning is internally consistent (e.g. if $100 were wrongly computed, the export comment is still marked against the candidate's own numbers). Units ($) and clearly shown working are expected — a bare number with no method risks the M mark." },
+    { "type": "examTip", "content": "This is exactly what the Practice button below does. Write your own answer to this £80 conversion question, press Practice, and our marking engine grades it against these same POINTS — telling you which M and A marks you earned and, crucially, where working or units were missing. The habit that scores on Paper 3: always show the method line (e.g. '80 × 1.40') AND the unit, so the method mark is never lost even if a figure slips." },
+
+    { "type": "heading", "content": "Effects of a change in the exchange rate" },
+    { "type": "text", "content": "Because the exchange rate connects domestic prices to world prices, a change in it ripples through the whole economy. The clearest way to remember the trade effects is SPICED — a Strong Pound means Imports Cheaper, Exports Dearer (a weak pound reverses each). From those two facts everything else follows: the current account, inflation and growth all respond to how export and import prices, and therefore quantities and values, change." },
+    { "type": "keyPoints", "items": [
+      "**Exports:** an appreciation makes exports dearer abroad → export volumes tend to fall; a depreciation makes them cheaper → volumes tend to rise.",
+      "**Imports:** an appreciation makes imports cheaper at home → import volumes tend to rise; a depreciation makes them dearer → volumes tend to fall.",
+      "**Current account:** an appreciation tends to WORSEN the current account balance (fewer, dearer exports; more, cheaper imports); a depreciation tends to IMPROVE it — but only if demand is sufficiently price-elastic (the Marshall–Lerner condition, PEDx + PEDm > 1). In the short run the J-curve effect can make things worse first.",
+      "**Inflation:** an appreciation is disinflationary (cheaper imported goods and raw materials); a depreciation raises imported (cost-push) inflation as imports and inputs cost more.",
+      "**Growth and employment:** because exports are a component of aggregate demand, a depreciation that raises net exports can boost AD, growth and jobs; an appreciation can dampen them by squeezing export industries."
+    ]},
+    { "type": "text", "content": "None of these effects is automatic or one-directional in welfare terms. A depreciation may boost exports and growth but stoke inflation and hurt import-dependent firms; an appreciation may tame inflation and lift consumers' purchasing power but damage exporters. The exam-strong answer states the effect AND the condition or trade-off, rather than asserting that a weak currency is simply 'good' or a strong currency simply 'bad'." },
+    { "type": "workedExample", "question": "The exchange rate is €1 = $1.10. A German machine is priced at €50,000 and is sold in the United States. (a) Calculate its US price. (b) The euro then depreciates to €1 = $1.00. Recalculate the US price and explain the likely effect on German exports to the US and on the German current account. [4]", "solution": "**(a) Convert €50,000 into dollars (€ → $, multiply):**\nUS price = €50,000 × 1.10 = **$55,000**\n\n**(b) After the euro depreciates to €1 = $1.00:**\nNew US price = €50,000 × 1.00 = **$50,000**\n\nThe depreciation has cut the machine's US price from $55,000 to $50,000 — the same German machine is now cheaper for American buyers. German exports become more price-competitive, so the quantity of German exports demanded in the US is likely to RISE. If demand for exports (and imports) is sufficiently price-elastic (Marshall–Lerner: PEDx + PEDm > 1), the value of net exports rises and the German current account tends to IMPROVE. In the very short run, before quantities adjust, the J-curve effect may worsen the balance first.\n\n**Marks:** M1 method (€ → $ conversion, ×1.10); A1 $55,000; A1 $50,000; A1 correct effect (cheaper exports → higher export demand, current account tends to improve subject to elasticity). Follow-through applies to the effect if a figure is mis-stated." },
+
+    { "type": "heading", "content": "Fixed and managed exchange-rate systems (brief)" },
+    { "type": "text", "content": "Not every currency floats freely. Under a fixed exchange rate the authorities peg the currency to another currency, a basket, or a commodity, and the central bank intervenes to hold that peg: it buys its own currency with foreign-currency reserves (and may raise interest rates) to prevent a fall, or sells its own currency to prevent a rise. Under a managed float the rate is mostly market-determined, but the central bank steps in occasionally to smooth excessive volatility or to steer the rate towards a preferred level. Fixed systems offer certainty and can anchor inflation, but they cost reserves and surrender independent monetary policy; floating systems give policy freedom and adjust automatically, but can be volatile." },
+    { "type": "keyPoints", "items": [
+      "**Fixed:** central bank actively defends a pegged rate using reserves and interest rates. Official changes are revaluation (up) or devaluation (down).",
+      "**Managed float:** mainly market-set, with occasional intervention to reduce volatility or reach a target.",
+      "**Trade-off:** stability and inflation-anchoring (fixed) versus policy independence and automatic adjustment (floating)."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Confusing appreciation with depreciation** — if the currency now buys MORE foreign currency (£1 = $1.25 → $1.40) it has APPRECIATED. Read the number movement carefully before labelling it.",
+      "**Converting the wrong way** — home → foreign MULTIPLY, foreign → home DIVIDE. Always sanity-check: converting into the more valuable currency should give the larger number.",
+      "**Getting the trade effect backwards** — a STRONGER currency makes exports DEARER and imports CHEAPER (SPICED). Many scripts state the reverse.",
+      "**Saying a depreciation always improves the current account** — it only does so if demand is sufficiently elastic (Marshall–Lerner, PEDx + PEDm > 1), and even then the J-curve means it can worsen first.",
+      "**Mixing up market and official terms** — appreciation/depreciation are market-driven (floating); revaluation/devaluation are deliberate official changes (fixed). Using the wrong pair loses precision marks.",
+      "**Dropping units and working on Paper 3** — a bare number with no method line or currency unit forfeits the method mark, and blocks follow-through if the figure is wrong."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Exchange rates are the hinge between a country and the rest of the world, so this topic connects directly to the balance of payments (4.5) and to exchange-rate and expenditure-switching policies used to correct current-account imbalances. The same numerical discipline you practised here — convert carefully, show method, judge the effect with its condition — is exactly what Paper 3 tests across the global-economy unit." },
+
+    { "type": "practice", "label": "Get a Paper 3 exchange-rate calculation marked: convert a price at two rates and explain the effect on exports.", "href": "/mark?subject=ib-economics-hl&topic=4.4&component=paper_3" },
+    { "type": "resources", "items": [
+      { "label": "Bank of England — What are exchange rates?", "href": "https://www.bankofengland.co.uk/knowledgebank/what-are-exchange-rates" },
+      { "label": "IMF — Exchange rates data", "href": "https://data.imf.org" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -1,184 +1,174 @@
 {
   "slug": "2-9-theory-of-the-firm-costs-revenues-and-profit",
   "topicCode": "2.9",
+  "unit": { "code": "2", "title": "Microeconomics" },
   "title": "Theory of the firm: costs, revenues and profit",
   "paper": "P3",
   "paperName": "Economics HL",
   "status": "premium",
-  "summary": "This lesson introduces the foundational concepts of costs, revenues, and profit, which are central to understanding firm behaviour. We will distinguish between different types of costs and revenues, and critically evaluate the concept of profit from both an accounting and an economic perspective, a key distinction for HL students.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "The HL toolkit for looking inside the firm. Starting from short-run production and the law of diminishing marginal returns, this lesson builds every cost curve (TFC, TVC, TC, AFC, AVC, ATC, MC), adds economies and diseconomies of scale in the long run, derives the revenue curves (TR, AR, MR), and arrives at the single most important decision rule in the theory of the firm: produce where MC = MR. It ends with normal versus abnormal profit, the break-even and shut-down points, and a map of the four market structures — all with the worked numerical practice Paper 3 rewards.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between explicit and implicit costs, and explain the difference between economic and accounting profit.",
-    "Calculate total, average, and marginal revenue and cost from data.",
-    "Explain the concepts of normal profit, supernormal (abnormal) profit, and economic loss.",
-    "Understand the relationship between short-run and long-run costs."
+    "Explain short-run production and the law of diminishing marginal returns, and link them to the shape of the cost curves.",
+    "Calculate and distinguish fixed, variable and total costs (TFC, TVC, TC) and the average and marginal costs derived from them (AFC, AVC, ATC, MC).",
+    "Explain economies and diseconomies of scale using the long-run average total cost curve.",
+    "Derive total, average and marginal revenue (TR, AR, MR) and apply the profit-maximisation rule (produce where MC = MR).",
+    "Distinguish normal from abnormal (economic) profit and identify the break-even and shut-down points.",
+    "Give a brief overview of the four market structures: perfect competition, monopoly, monopolistic competition and oligopoly."
   ],
+  "syllabusObjectivesCovered": ["2.9"],
+  "keyConcepts": ["efficiency", "choice", "economic well-being"],
+  "levelNote": "HL only — Higher Level content assessed on Paper 3.",
   "simpleExplanation": {
-    "title": "The Firm's Financial Scoreboard",
-    "summary": "This topic is about how a business keeps score. We look at all the money coming in (revenue) and all the money going out (costs) to figure out if the business is actually winning (making a profit).",
-    "analogy": "Imagine you're running a weekend food stall selling gourmet burgers. Your costs are the ingredients (buns, meat, cheese - variable costs) and the stall rental fee (a fixed cost). Your revenue is the total cash you get from selling the burgers. Your profit is what's left in your cash box after you've paid for all the ingredients and the stall rental. But what if you could have earned £100 working at a café instead? That lost earning is an 'opportunity cost', and economists include it when calculating 'economic profit' to see if running the stall was truly the best use of your time.",
+    "title": "Looking Inside the Firm",
+    "summary": "Every firm faces two flows: money going out (costs) and money coming in (revenue). This topic gives you the tools to measure both per unit, then combines them into one rule that tells the firm exactly how much to produce to make the most profit possible.",
+    "analogy": "Picture a pizza kitchen. The oven and the rent are fixed — they cost the same whether you bake 10 pizzas or 100. The flour, cheese and delivery drivers are variable — the more pizzas, the more you spend. As you cram more cooks into one kitchen they start bumping elbows, so each extra pizza gets more expensive to make: that is diminishing marginal returns pushing marginal cost up. You keep baking one more pizza as long as the money it brings in (marginal revenue) is bigger than what it costs to make it (marginal cost). Stop the moment the two are equal — that is your profit-maximising output.",
     "steps": [
-      "First, identify all business costs. Separate them into fixed costs (like rent, which don't change with output) and variable costs (like raw materials, which do).",
-      "Next, calculate total revenue. This is simply the price of your product multiplied by the quantity you've sold.",
-      "Then, calculate profit by subtracting total costs from total revenue. A positive number is a profit, a negative number is a loss.",
-      "Finally, for a true economic picture, consider implicit costs, especially the opportunity cost of the entrepreneur's time and capital. Subtracting both explicit and implicit costs from revenue gives you the economic profit."
+      "Split costs into fixed (don't change with output) and variable (do change with output).",
+      "Turn totals into per-unit figures: average and marginal cost. Diminishing returns make the MC curve turn upward.",
+      "Do the same on the revenue side: total, average and marginal revenue.",
+      "Apply the golden rule — produce where MC = MR — then read off whether the firm makes normal profit, abnormal profit, or a loss."
     ]
   },
   "flashcards": [
-    {
-      "front": "Explicit Costs",
-      "back": "Direct, out-of-pocket payments for factors of production, such as wages, rent, and materials. These are the costs an accountant would list."
-    },
-    {
-      "front": "Implicit Costs",
-      "back": "The opportunity cost of using a firm's own resources or those of the owner. For example, the salary an entrepreneur could have earned elsewhere. Not recorded in standard accounting."
-    },
-    {
-      "front": "Accounting Profit",
-      "back": "Total Revenue (TR) minus Total Explicit Costs. This is the profit figure reported in financial statements."
-    },
-    {
-      "front": "Economic Profit",
-      "back": "Total Revenue (TR) minus Total Economic Costs (which are Explicit Costs + Implicit Costs). This is the measure economists use to determine business viability."
-    },
-    {
-      "front": "Normal Profit",
-      "back": "The minimum level of profit needed to keep a firm in its current business. It occurs when Economic Profit is zero (TR = Total Economic Costs). It means the firm is covering all its explicit and implicit costs."
-    },
-    {
-      "front": "Supernormal (Abnormal) Profit",
-      "back": "Any profit earned above normal profit. It occurs when Economic Profit is positive (TR > Total Economic Costs)."
-    },
-    {
-      "front": "Total Revenue (TR)",
-      "back": "The total amount of money a firm receives from selling a certain quantity of output. Formula: $TR = Price \\times Quantity$."
-    },
-    {
-      "front": "Marginal Revenue (MR)",
-      "back": "The extra revenue gained from selling one more unit of output. Formula: $MR = \\Delta TR / \\Delta Q$."
-    },
-    {
-      "front": "Total Cost (TC)",
-      "back": "The sum of all costs of production, both fixed and variable. Formula: $TC = TFC + TVC$."
-    },
-    {
-      "front": "Marginal Cost (MC)",
-      "back": "The extra cost incurred from producing one more unit of output. Formula: $MC = \\Delta TC / \\Delta Q$."
-    },
-    {
-      "front": "Short Run vs. Long Run",
-      "back": "In the short run, at least one factor of production is fixed (e.g., factory size), leading to fixed costs. In the long run, all factors of production are variable."
-    },
-    {
-      "front": "Economic Loss",
-      "back": "Occurs when a firm's total revenue is less than its total economic costs (explicit + implicit). The firm is not covering its opportunity costs."
-    }
+    { "front": "Law of diminishing marginal returns", "back": "In the SHORT RUN, as successive units of a variable factor (e.g. labour) are added to a FIXED factor (e.g. capital), the marginal product of the variable factor eventually falls. It is a short-run law and it is what drives marginal cost upward.", "pillLabel": "Concept" },
+    { "front": "Fixed vs variable cost", "back": "Total fixed cost (TFC) does not change with output (rent, insurance, loan repayments). Total variable cost (TVC) rises as output rises (raw materials, hourly wages, power). TC = TFC + TVC.", "pillLabel": "Definition" },
+    { "front": "AFC, AVC, ATC", "back": "AFC = TFC/Q (falls continuously — spreading fixed cost over more units). AVC = TVC/Q. ATC = TC/Q = AFC + AVC. Both AVC and ATC are U-shaped.", "pillLabel": "Formula" },
+    { "front": "Marginal cost (MC)", "back": "The addition to total cost from producing one more unit: MC = ΔTC/ΔQ. Because TFC is constant, MC also equals ΔTVC/ΔQ. The MC curve cuts both the AVC and ATC curves at their lowest points.", "pillLabel": "Formula" },
+    { "front": "Why is MC U-shaped?", "back": "At low output, increasing marginal returns make each extra unit cheaper, so MC falls. Once diminishing marginal returns set in, each extra unit needs more variable input, so MC rises. Hence the U shape.", "pillLabel": "Analysis" },
+    { "front": "MC and the average curves", "back": "When MC is below an average curve it pulls the average down; when MC is above it, it pulls the average up. So MC intersects AVC and ATC exactly at their minimum points.", "pillLabel": "Analysis" },
+    { "front": "Economies of scale", "back": "In the LONG RUN (all factors variable), long-run ATC falls as the scale of production rises — through purchasing, technical, managerial, financial and risk-bearing advantages. This is the downward part of the LRATC curve.", "pillLabel": "Concept" },
+    { "front": "Diseconomies of scale", "back": "Beyond a certain size, long-run ATC rises as output grows — usually from coordination, communication and motivation problems in very large firms. This is the upward part of the LRATC curve.", "pillLabel": "Concept" },
+    { "front": "Total, average, marginal revenue", "back": "TR = P × Q. AR = TR/Q = price (so the AR curve is the firm's demand curve). MR = ΔTR/ΔQ, the revenue from selling one more unit. Under perfect competition price is constant, so P = AR = MR.", "pillLabel": "Formula" },
+    { "front": "Profit-maximisation rule", "back": "A firm maximises profit at the output where MC = MR (with MC rising through MR). If MR > MC, the extra unit adds to profit, so expand; if MR < MC, the extra unit subtracts from profit, so cut back.", "pillLabel": "Framework" },
+    { "front": "Normal vs abnormal profit", "back": "Normal profit is the minimum return needed to keep the firm in the industry; it occurs when economic profit = 0 (AR = ATC). Abnormal (supernormal/economic) profit is anything above that, when AR > ATC.", "pillLabel": "Definition" },
+    { "front": "Break-even vs shut-down point", "back": "Break-even: AR = ATC (normal profit, economic profit zero). Shut-down (short run): the firm produces only if AR ≥ AVC; below minimum AVC it cannot even cover variable costs, so it shuts down. In the long run it must cover ATC to remain.", "pillLabel": "Framework" },
+    { "front": "The four market structures", "back": "Perfect competition (many firms, identical product, price takers), monopoly (single dominant firm, high barriers), monopolistic competition (many firms, differentiated products), oligopoly (few interdependent firms, high barriers). They differ in number of firms, product type, barriers to entry and price-setting power.", "pillLabel": "Framework" },
+    { "front": "Exam Trap: MC = MR", "back": "Profit is maximised where MC = MR, NOT where profit per unit is highest and NOT where TR is highest. Confusing the profit-max rule with revenue maximisation is a classic Paper 3 error.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A firm maximises profit at the level of output where:", "options": ["Average total cost is at its minimum", "Total revenue is at its maximum", "Marginal cost equals marginal revenue", "Average revenue is at its maximum"], "answer": "Marginal cost equals marginal revenue" },
+    { "prompt": "Which of the following is a FIXED cost for a bakery?", "options": ["The flour used to bake bread", "The monthly rent on the shop", "The wages of hourly casual staff", "The electricity used to run the ovens"], "answer": "The monthly rent on the shop" },
+    { "prompt": "A firm is earning NORMAL profit. This means that:", "options": ["Its total revenue exceeds its total economic costs", "Its economic profit is exactly zero and all costs, including opportunity cost, are covered", "It is making an accounting loss", "Its average revenue is below its average variable cost"], "answer": "Its economic profit is exactly zero and all costs, including opportunity cost, are covered" },
+    { "prompt": "As a firm expands output in the long run, its long-run average total cost FALLS. This is caused by:", "options": ["Diseconomies of scale", "The law of diminishing marginal returns", "Economies of scale", "Rising average fixed cost"], "answer": "Economies of scale" },
+    { "prompt": "In the short run, a firm should continue producing (rather than shut down) as long as its:", "options": ["Average revenue is at least equal to its average variable cost", "Average revenue is at least equal to its average total cost", "Total revenue exceeds its total fixed cost", "Marginal revenue exceeds its average fixed cost"], "answer": "Average revenue is at least equal to its average variable cost" }
   ],
   "faq": [
-    {
-      "q": "Why is the Marginal Cost (MC) curve usually U-shaped?",
-      "a": "The MC curve initially falls due to increasing marginal returns (specialisation and efficiency gains as output increases). It then rises due to the law of diminishing marginal returns, where adding more variable inputs (like workers) to a fixed input (like a factory) eventually leads to each additional input being less productive, thus increasing the cost of each additional unit."
-    },
-    {
-      "q": "Can a firm be making an accounting profit but an economic loss?",
-      "a": "Yes, absolutely. This is a common scenario and a key concept for HL Economics. It happens when the accounting profit is positive but smaller than the firm's implicit costs. For example, if a firm makes £30,000 in accounting profit, but the owner's opportunity cost (e.g., a foregone salary) is £40,000, the firm is making an economic loss of £10,000."
-    },
-    {
-      "q": "What is the relationship between Average Cost (AC) and Marginal Cost (MC)?",
-      "a": "When MC is below AC, it pulls the average down, so AC is falling. When MC is above AC, it pulls the average up, so AC is rising. Therefore, the MC curve must intersect the AC curve at the AC curve's lowest point. Think of your grade in a class: if your score on the next (marginal) test is lower than your average, your average will fall."
-    }
+    { "q": "Why does average fixed cost (AFC) keep falling but never reach zero?", "a": "AFC = TFC / Q. The total fixed cost is a constant lump (say rent of $2,000), and as output Q rises that same lump is spread over ever more units, so cost per unit falls. Firms call this 'spreading the overheads'. It gets closer and closer to zero as output rises but never actually reaches it, because you are always dividing a positive number by a finite quantity. This is also why the gap between the AVC and ATC curves narrows as output increases — that gap IS the AFC." },
+    { "q": "What is the difference between diminishing marginal returns and diseconomies of scale?", "a": "They are easy to confuse but belong to different time periods. Diminishing marginal returns is a SHORT-RUN idea: at least one factor is fixed, and adding more of a variable factor to that fixed factor eventually reduces marginal product, pushing marginal cost UP. Diseconomies of scale is a LONG-RUN idea: ALL factors are variable, the firm changes its whole scale, and beyond some size long-run average total cost rises because a very large organisation becomes hard to coordinate and manage. Short run = returns; long run = scale." },
+    { "q": "Why does the profit-maximising firm produce where MC = MR rather than where average profit is highest?", "a": "Because total profit, not profit per unit, is what the firm maximises. Whenever MR > MC, the next unit adds more to revenue than to cost, so producing it INCREASES total profit — even if it lowers the average. The firm should keep expanding until the last unit adds exactly nothing more to profit, which is precisely where MC = MR. Stopping earlier (at maximum profit per unit) leaves profitable units unproduced." },
+    { "q": "Can a firm keep operating while making a loss?", "a": "Yes — in the short run. If average revenue is below average total cost the firm makes a loss, but as long as AR is at least equal to average variable cost it still covers its variable costs and makes some contribution towards its fixed costs. Since fixed costs must be paid whether or not it produces, staying open minimises the loss. Only when AR falls below AVC (the shut-down point) does closing down become the better option, because then producing adds to the loss." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the engine room of microeconomics. Understanding how firms manage their costs, generate revenue, and pursue profit is fundamental to analysing market structures, from perfect competition to monopoly. This topic provides the essential toolkit for evaluating a firm's performance and decision-making process."
-    },
-    {
-      "type": "heading",
-      "content": "The Two Sides of Cost: Explicit and Implicit"
-    },
-    {
-      "type": "text",
-      "content": "In economics, 'cost' is a more nuanced term than in everyday language or accounting. We must distinguish between two types. Explicit costs are the tangible, out-of-pocket payments a firm makes for its resources – think wages for employees, rent for an office, or bills for electricity. These are easily quantifiable and are what an accountant tracks."
-    },
-    {
-      "type": "text",
-      "content": "Implicit costs, however, are the opportunity costs of using the firm's own resources. The most common examples are the salary the owner could have earned by working for someone else, or the interest the owner's capital could have earned if invested elsewhere. These are not cash payments, but they represent real costs of doing business. For an economist, Total Cost includes both."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Economic Cost** = Explicit Costs + Implicit Costs",
-        "**Accounting Cost** = Explicit Costs only",
-        "This distinction is the primary reason for the difference between accounting profit and economic profit."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Analysing Cost and Revenue Curves"
-    },
-    {
-      "type": "text",
-      "content": "To make decisions about production levels, firms analyse their costs and revenues on a per-unit basis. This involves understanding average and marginal figures. The relationship between these curves is critical for finding the profit-maximising level of output."
-    },
-    {
-      "type": "formula",
-      "content": "Key Cost Formulas: $TC = TFC + TVC$ (Total Cost = Total Fixed Cost + Total Variable Cost) | $AC = TC/Q$ (Average Cost) | $MC = \\Delta TC / \\Delta Q$ (Marginal Cost)"
-    },
-    {
-      "type": "formula",
-      "content": "Key Revenue Formulas: $TR = P \\times Q$ (Total Revenue) | $AR = TR/Q$ (Average Revenue) | $MR = \\Delta TR / \\Delta Q$ (Marginal Revenue)"
-    },
-    {
-      "type": "workedExample",
-      "question": "A small coffee shop has monthly fixed costs (rent, insurance) of £2,000. The variable cost (coffee beans, milk, cups) per coffee sold is £0.80. In June, it sold 4,000 coffees. Calculate the shop's Total Fixed Cost (TFC), Total Variable Cost (TVC), Total Cost (TC), and Average Cost (AC) per coffee for June.",
-      "solution": "Here is the step-by-step calculation:\n1.  **TFC:** The fixed costs are given as £2,000. They do not change with the number of coffees sold. So, TFC = £2,000.\n2.  **TVC:** The variable cost per unit is £0.80, and 4,000 units were sold. TVC = Cost per unit × Quantity = £0.80 × 4,000 = £3,200.\n3.  **TC:** Total cost is the sum of fixed and variable costs. TC = TFC + TVC = £2,000 + £3,200 = £5,200.\n4.  **AC:** Average cost is the total cost divided by the quantity. AC = TC / Q = £5,200 / 4,000 = £1.30 per coffee."
-    },
-    {
-      "type": "heading",
-      "content": "Profit: The Ultimate Goal"
-    },
-    {
-      "type": "text",
-      "content": "Profit is the reward for entrepreneurship and the primary incentive for firms in a market economy. However, as economists, we must be precise about what we mean by 'profit'. The distinction between accounting and economic profit is crucial for evaluating whether a firm is truly succeeding."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Accounting Profit** = TR - Explicit Costs. A positive value is good, but doesn't tell the whole story.",
-        "**Economic Profit** = TR - (Explicit + Implicit Costs). A positive value here is called **supernormal profit** and indicates the firm is performing better than the next best alternative.",
-        "**Normal Profit** is when Economic Profit = 0. The firm is covering all its costs, including the opportunity cost of the entrepreneur's time and capital. It's the minimum required to stay in business in the long run.",
-        "**Economic Loss** is when Economic Profit < 0. The firm would be better off shutting down and deploying its resources elsewhere."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 3, you will be expected to calculate both accounting and economic profit from a given dataset. Always show your working clearly. State the formulas you are using, substitute the values, and present the final answer with units. When asked to comment on the result, explicitly state whether the firm is making a supernormal profit, normal profit, or an economic loss, and briefly explain what that means for the firm's future."
-    },
-    {
-      "type": "workedExample",
-      "question": "An independent app developer generates £80,000 in annual revenue from her app. Her explicit costs for marketing and server hosting are £25,000 per year. She runs the business from a spare room in her house. To run the business, she quit her job as a software engineer where she earned £50,000 per year. Calculate her accounting profit and her economic profit. Advise her on whether she should continue her business.",
-      "solution": "1.  **Calculate Accounting Profit:**\n    *   Formula: Accounting Profit = Total Revenue - Explicit Costs\n    *   TR = £80,000\n    *   Explicit Costs = £25,000\n    *   Accounting Profit = £80,000 - £25,000 = £55,000.\n\n2.  **Calculate Economic Profit:**\n    *   First, identify all costs. Explicit costs are £25,000. The implicit cost is the opportunity cost of her time, which is the £50,000 salary she gave up.\n    *   Total Economic Cost = Explicit Costs + Implicit Costs = £25,000 + £50,000 = £75,000.\n    *   Formula: Economic Profit = Total Revenue - Total Economic Cost\n    *   Economic Profit = £80,000 - £75,000 = £5,000.\n\n3.  **Advise the developer:**\n    *   The developer is making an accounting profit of £55,000 and an economic profit of £5,000.\n    *   Since the economic profit is positive, she is earning a supernormal profit. This means she is earning £5,000 more than she would in her next best alternative (working as a software engineer).\n    *   Therefore, from a purely economic standpoint, she should continue running her app business."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Costs, Revenue and Profit",
-      "href": "/mark?subject=ib-economics-hl&topic=2.9"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Investopedia: Economic Profit vs. Accounting Profit",
-          "href": "https://www.investopedia.com/ask/answers/032415/what-difference-between-economic-profit-and-accounting-profit.asp"
-        },
-        {
-          "label": "Khan Academy: Cost Functions",
-          "href": "https://www.khanacademy.org/economics-finance-domain/microeconomics/firm-economic-profit/average-costs-tutorial/v/fixed-variable-and-marginal-cost"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Welcome to the engine room of microeconomics. Every market structure you will study — perfect competition, monopoly, monopolistic competition and oligopoly — is built on one common foundation: how a firm's costs and revenues behave as it changes output, and the single rule it uses to decide how much to produce. This HL lesson assembles that foundation piece by piece, from the productivity of a single extra worker to the shape of the long-run average cost curve, and shows you the numerical technique Paper 3 rewards." },
+
+    { "type": "heading", "content": "Short-run production and the law of diminishing marginal returns" },
+    { "type": "text", "content": "Economists distinguish two time periods. In the SHORT RUN at least one factor of production is fixed — typically capital, such as the size of a factory or the number of machines. In the LONG RUN every factor is variable: the firm can build a new plant, buy more machines, or shut sites entirely. The behaviour of costs is completely different in the two periods, so always know which one a question is asking about." },
+    { "type": "text", "content": "Consider a firm in the short run adding more workers (the variable factor) to a fixed amount of capital. At first, extra workers allow specialisation and fuller use of the machinery, so each additional worker adds a lot to output — marginal product rises. But because capital is fixed, there comes a point where workers start to get in each other's way and share equipment: each additional worker adds less to output than the one before. This is the LAW OF DIMINISHING MARGINAL RETURNS — as successive units of a variable factor are added to a fixed factor, the marginal product of the variable factor eventually falls. It is a short-run law, and it is the reason marginal cost eventually rises." },
+    { "type": "keyPoints", "items": [
+      "**Short run** — at least one factor is fixed (giving rise to fixed costs).",
+      "**Long run** — all factors are variable (no fixed costs; the firm changes its whole scale).",
+      "**Diminishing marginal returns** — a short-run phenomenon: extra variable input added to a fixed input eventually raises output by less and less.",
+      "Falling marginal product means rising marginal cost — this is the bridge from production to cost curves."
+    ]},
+
+    { "type": "heading", "content": "Costs: fixed, variable and total" },
+    { "type": "text", "content": "Total cost splits into two parts. Total fixed cost (TFC) does not change with the level of output — rent, insurance, business rates and loan repayments must be paid even if the firm produces nothing. Total variable cost (TVC) rises as output rises — raw materials, power and hourly wages all increase the more the firm makes. Adding them gives total cost." },
+    { "type": "formula", "content": "$TC = TFC + TVC$  (Total Cost = Total Fixed Cost + Total Variable Cost). Note that TFC is a horizontal line, while TVC and TC both rise with output." },
+
+    { "type": "heading", "content": "Average and marginal cost, and the shape of the curves" },
+    { "type": "text", "content": "To decide on output, firms convert totals into per-unit figures. Average cost tells us the cost per unit; marginal cost tells us the cost of one more unit. There are three average measures and one marginal measure to master." },
+    { "type": "formula", "content": "$AFC = \\dfrac{TFC}{Q}$  |  $AVC = \\dfrac{TVC}{Q}$  |  $ATC = \\dfrac{TC}{Q} = AFC + AVC$  |  $MC = \\dfrac{\\Delta TC}{\\Delta Q}$" },
+    { "type": "keyPoints", "items": [
+      "**AFC** falls continuously as output rises — the fixed lump is spread over more and more units (it approaches, but never reaches, zero).",
+      "**AVC** and **ATC** are both **U-shaped**: they fall while increasing returns dominate, then rise once diminishing returns set in.",
+      "**MC** is also **U-shaped**, for exactly the same reason — it is the mirror image of marginal product.",
+      "**MC cuts both AVC and ATC at their minimum points.** When MC is below an average it pulls the average down; when MC is above it, it pulls the average up; so they can only cross at the lowest point of the average curve.",
+      "The vertical gap between ATC and AVC at any output equals AFC — and that gap narrows as output rises because AFC is falling."
+    ]},
+    { "type": "text", "content": "The averages-and-marginal relationship is the same one you meet with test scores: if your next (marginal) test score is below your current average, the average falls; if it is above, the average rises; and your average is at its lowest exactly when the marginal score crosses it from below. That is why the MC curve must pass through the bottom of the ATC and AVC curves." },
+
+    { "type": "workedExample", "question": "A firm has total fixed costs of $60. The table shows its total variable cost at each level of output.\n\n| Output (Q) | TVC ($) |\n|---|---|\n| 0 | 0 |\n| 1 | 30 |\n| 2 | 50 |\n| 3 | 66 |\n| 4 | 88 |\n| 5 | 120 |\n\n(a) Calculate total cost (TC) at 3 units.\n(b) Calculate average total cost (ATC) at 3 units.\n(c) Calculate the marginal cost (MC) of the 4th unit.\n(d) Between which units does the law of diminishing marginal returns first begin to affect this firm's costs? Justify your answer.", "solution": "**(a) TC at 3 units:** TC = TFC + TVC = $60 + $66 = **$126**.\n\n**(b) ATC at 3 units:** ATC = TC / Q = $126 / 3 = **$42 per unit**.\n\n**(c) MC of the 4th unit:** MC = ΔTC / ΔQ. Because TFC is constant, ΔTC = ΔTVC = 88 − 66 = $22 for one extra unit. So **MC of the 4th unit = $22**.\n\n**(d)** Track the marginal cost of each unit (ΔTVC): unit 1 = $30, unit 2 = $20, unit 3 = $16, unit 4 = $22, unit 5 = $32. MC falls while marginal product is rising (units 1–3), then starts to rise from the **4th unit onwards**. The turning point — where MC stops falling and begins to rise — is where **diminishing marginal returns set in**, i.e. from the 4th unit. Rising MC is the cost-side signature of falling marginal product." },
+
+    { "type": "heading", "content": "The long run: economies and diseconomies of scale" },
+    { "type": "text", "content": "In the long run there are no fixed factors — the firm can vary everything, including the size of its plant. The relevant curve is now the long-run average total cost (LRATC) curve, which shows the lowest cost per unit achievable at each scale of production. It is U-shaped, but for a completely different reason from the short-run curves: it reflects economies and diseconomies of scale, not diminishing returns." },
+    { "type": "keyPoints", "items": [
+      "**Economies of scale** (downward part of LRATC): as the firm grows, cost per unit FALLS. Sources include purchasing (bulk-buying discounts), technical (larger, more efficient machinery), managerial (specialist managers), financial (cheaper borrowing) and risk-bearing (diversification) economies.",
+      "**Constant returns to scale** (flat part): a range of output over which cost per unit is roughly unchanged.",
+      "**Diseconomies of scale** (upward part): beyond some size, cost per unit RISES, usually because a very large organisation becomes hard to coordinate, communicate within and motivate.",
+      "**Minimum efficient scale (MES)** — the lowest output at which LRATC is minimised; the smallest size a firm must reach to be cost-competitive."
+    ]},
+    { "type": "examTip", "content": "Do not confuse the two U-shapes. The SHORT-RUN ATC curve is U-shaped because of the law of diminishing marginal returns (a fixed factor). The LONG-RUN ATC curve is U-shaped because of economies then diseconomies of scale (all factors variable). Using 'diminishing returns' to explain the long-run curve, or 'diseconomies of scale' to explain the short-run curve, is a frequent and easily avoided error." },
+
+    { "type": "heading", "content": "Revenues: total, average and marginal" },
+    { "type": "text", "content": "On the other side of the ledger is revenue — the money the firm receives from selling its output. As with costs, we work with totals, averages and marginals." },
+    { "type": "formula", "content": "$TR = P \\times Q$  (Total Revenue)  |  $AR = \\dfrac{TR}{Q} = P$  (Average Revenue — equal to price, so the AR curve is the firm's demand curve)  |  $MR = \\dfrac{\\Delta TR}{\\Delta Q}$  (Marginal Revenue)" },
+    { "type": "keyPoints", "items": [
+      "**AR always equals price**, so the average revenue curve is simply the demand curve facing the firm.",
+      "Under **perfect competition** the firm is a price taker — it sells all it wants at the market price — so price is constant and **P = AR = MR** (a horizontal line).",
+      "Under **imperfect competition** (monopoly, monopolistic competition, oligopoly) the firm faces a downward-sloping demand curve; to sell more it must lower price, so **MR < AR** and MR falls faster than AR.",
+      "When MR is positive, TR is still rising; TR is maximised where MR = 0; when MR is negative, TR is falling."
+    ]},
+
+    { "type": "heading", "content": "The profit-maximisation rule: produce where MC = MR" },
+    { "type": "text", "content": "We can now combine the two sides. A profit-maximising firm produces the output at which marginal cost equals marginal revenue, MC = MR (with MC rising through MR at that point). The logic is decisive: if MR > MC, the next unit adds more to revenue than to cost, so producing it raises total profit — keep expanding. If MR < MC, the next unit costs more than it earns, so producing it lowers total profit — cut back. Only where MC = MR is there no way to increase profit by changing output. This rule holds in EVERY market structure." },
+    { "type": "keyPoints", "items": [
+      "**MR > MC** → expand output (each extra unit adds to profit).",
+      "**MR < MC** → reduce output (each extra unit subtracts from profit).",
+      "**MR = MC** → profit-maximising output (nothing more to gain).",
+      "This is NOT the same as maximising total revenue (that is where MR = 0) or maximising profit per unit (minimum ATC). Maximising TOTAL profit means MC = MR."
+    ]},
+
+    { "type": "workedExample", "question": "A firm sells at a constant price of $12. At 100 units its total cost is $900; at 101 units its total cost is $908. Determine the marginal revenue and marginal cost of the 101st unit and state whether the firm should produce it to maximise profit. [4]", "solution": "**Marginal revenue of the 101st unit:**\nThe firm sells at a constant price of $12, so each extra unit adds exactly the price to total revenue. Therefore MR = P = **$12**.\n(Formally, MR = ΔTR / ΔQ. TR at 100 = 100 × $12 = $1,200; TR at 101 = 101 × $12 = $1,212; ΔTR = $12 for one extra unit, so MR = $12.)\n\n**Marginal cost of the 101st unit:**\nMC = ΔTC / ΔQ = ($908 − $900) / (101 − 100) = $8 / 1 = **$8**.\n\n**Decision:**\nMR ($12) > MC ($8). Because the 101st unit adds more to revenue ($12) than to cost ($8), it adds $4 to profit. **The firm should produce it.** A profit-maximising firm keeps producing while MR > MC, stopping only where MC = MR." },
+    { "type": "text", "content": "**How our marking engine awards the marks [4]:**" },
+    { "type": "keyPoints", "items": [
+      "**M1 — Method, marginal revenue.** Recognising that at a constant selling price marginal revenue equals price (MR = P, or correctly computing ΔTR/ΔQ). The method mark is for the correct approach, even before the number.",
+      "**A1 — Accuracy, $12.** Stating MR = $12. Under our follow-through rule, this accuracy mark still stands if it is consistent with a valid method shown above.",
+      "**M1 — Method, marginal cost.** Showing MC = ΔTC/ΔQ, i.e. subtracting the two total costs and dividing by the change in output (908 − 900) ÷ 1. Working must be shown — a bare answer with no method risks losing this mark.",
+      "**A1 — Accuracy & conclusion, $8 and produce.** Stating MC = $8 AND correctly concluding that, since MR ($12) > MC ($8), the firm should produce the 101st unit. The final mark ties the two numbers to the MC = MR decision rule.",
+      "**Follow-through (own-figure rule):** if a candidate makes an early slip (say a subtraction error giving MC = $18) but then correctly applies the MC vs MR comparison to THEIR figure, the decision mark can still be awarded — the examiner rewards correct economic reasoning applied to a candidate's own consistent numbers."
+    ]},
+    { "type": "examTip", "content": "This is exactly what the Practice button does: attempt this MC = MR calculation yourself, submit it, and our marking engine grades it against this Paper 3 quantitative scheme — awarding the M (method) marks for showing MR = P and MC = ΔTC/ΔQ, the A (accuracy) marks for $12 and $8, and applying follow-through to your own figures. The habit that earns full marks on Paper 3: always SHOW YOUR WORKING and finish with an explicit decision, never just a bare number." },
+
+    { "type": "heading", "content": "Normal profit, abnormal profit, and the break-even and shut-down points" },
+    { "type": "text", "content": "Economists measure profit against economic cost, which includes the opportunity cost of the owner's resources (implicit costs) as well as explicit out-of-pocket costs. This gives three outcomes at the profit-maximising output, all read by comparing average revenue (price) with average total cost." },
+    { "type": "keyPoints", "items": [
+      "**Normal profit** — economic profit is exactly zero: AR = ATC. The firm is covering ALL its costs, including opportunity cost, so it earns just enough to stay in the industry. This is the **break-even point**.",
+      "**Abnormal (supernormal / economic) profit** — AR > ATC: the firm earns more than the minimum needed to stay, attracting entry where barriers are low.",
+      "**Economic loss** — AR < ATC: the firm is not covering all its costs and would, in the long run, leave the industry.",
+      "**Shut-down point (short run)** — the firm keeps producing at a loss only while AR ≥ AVC, because it is still covering its variable costs and contributing towards fixed costs. If AR falls below minimum AVC, it should shut down, since producing then adds to the loss.",
+      "**Long run** — a firm must cover ATC to survive; persistent economic losses force exit, while abnormal profits attract entry (in competitive markets)."
+    ]},
+
+    { "type": "workedExample", "question": "A firm produces 500 units. Its price (average revenue) is $10, its average total cost is $8.50 and its average variable cost is $6. \n\n(a) Calculate the firm's total economic profit or loss.\n(b) State whether it is earning normal profit, abnormal profit or a loss, and explain.\n(c) If price fell to $5, should the firm shut down in the short run? Justify using the shut-down rule.", "solution": "**(a)** Profit per unit = AR − ATC = $10 − $8.50 = $1.50. Total profit = profit per unit × Q = $1.50 × 500 = **$750 abnormal (economic) profit**.\n\n**(b)** Because AR ($10) > ATC ($8.50), the firm earns **abnormal (supernormal) profit** — it is covering all explicit and implicit costs AND earning a surplus above the normal profit needed to stay in the industry. In a market with low barriers to entry, this profit would attract new firms.\n\n**(c)** Apply the shut-down rule: compare AR with AVC. At a price of $5, AR ($5) < AVC ($6). The firm can no longer cover even its variable costs, so each unit produced adds to its loss. It should therefore **shut down in the short run**. (Had AR been $7 — above AVC of $6 but below ATC of $8.50 — it would keep producing at a loss in the short run, because it would still make a $1 per-unit contribution towards its fixed costs.)" },
+
+    { "type": "heading", "content": "A brief overview of the four market structures" },
+    { "type": "text", "content": "The cost and revenue tools you have just built are applied, in later lessons, to four market structures. They are distinguished by the number of firms, whether the product is identical or differentiated, how high the barriers to entry are, and how much power the firm has over price. Here is the map." },
+    { "type": "keyPoints", "items": [
+      "**Perfect competition** — very many small firms, an identical (homogeneous) product, no barriers to entry, and perfect information. Each firm is a **price taker** (P = AR = MR). Abnormal profits are competed away in the long run, leaving only normal profit.",
+      "**Monopoly** — a single dominant firm (or one with substantial market power), high barriers to entry, and considerable **price-setting power**. Can sustain abnormal profit in the long run because entry is blocked.",
+      "**Monopolistic competition** — many firms selling **differentiated** products (branding, quality, location), with low barriers to entry. Firms have some price-setting power in the short run, but entry erodes abnormal profit to normal profit in the long run.",
+      "**Oligopoly** — a **few** large, **interdependent** firms dominate, behind high barriers to entry. Each firm's decisions depend on rivals' likely reactions, so outcomes range from price wars to collusion. Product may be homogeneous (e.g. oil) or differentiated (e.g. cars)."
+    ]},
+    { "type": "text", "content": "In every one of these structures the firm still chooses output where MC = MR — what changes between them is the shape of the demand (AR) curve the firm faces and therefore how much price-setting power it has and whether abnormal profit survives into the long run." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Profit-maximising at the wrong point** — profit is maximised where MC = MR, NOT where total revenue is highest (MR = 0) and NOT where average profit per unit is greatest (minimum ATC). This is the single most-penalised error in the topic.",
+      "**Mislabelling fixed and variable costs** — rent, insurance and loan repayments are FIXED (unchanged by output); raw materials, power and hourly wages are VARIABLE. Do not call a cost 'fixed' just because its per-unit value is constant.",
+      "**Confusing normal and abnormal profit** — normal profit means economic profit is ZERO (AR = ATC), not that the firm makes 'a normal amount of money'. Abnormal profit is the surplus ABOVE that, when AR > ATC.",
+      "**Confusing diminishing returns with diseconomies of scale** — diminishing marginal returns is SHORT RUN (a fixed factor, explains the short-run MC/ATC U-shape); diseconomies of scale is LONG RUN (all factors variable, explains the LRATC U-shape).",
+      "**Using the wrong shut-down test** — the short-run shut-down rule compares AR with AVC (shut down if AR < AVC), not with ATC. A firm making a loss can still be right to keep producing if it covers its variable costs.",
+      "**Forgetting to show working or units on Paper 3** — the M (method) marks are for the working itself; a correct final number with no method shown, or a number with no $ or unit, throws away marks the marking engine would otherwise award."
+    ]},
+
+    { "type": "practice", "label": "Get a Paper 3 quantitative answer marked: calculate MR, MC and apply the MC = MR rule", "href": "/mark?subject=ib-economics-hl&topic=2.9&component=paper_3" },
+    { "type": "resources", "items": [
+      { "label": "Investopedia: Marginal Cost of Production", "href": "https://www.investopedia.com/terms/m/marginalcostofproduction.asp" },
+      { "label": "Khan Academy: Fixed, variable and marginal cost", "href": "https://www.khanacademy.org/economics-finance-domain/microeconomics/firm-economic-profit/average-costs-tutorial/v/fixed-variable-and-marginal-cost" },
+      { "label": "Investopedia: Economies of Scale", "href": "https://www.investopedia.com/terms/e/economiesofscale.asp" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

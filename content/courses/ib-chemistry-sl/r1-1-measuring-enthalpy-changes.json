@@ -1,199 +1,138 @@
 {
   "slug": "r1-1-measuring-enthalpy-changes",
   "topicCode": "R1.1",
+  "unit": { "code": "R1", "title": "What drives chemical reactions?" },
   "title": "Measuring enthalpy changes",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces calorimetry, the experimental method for measuring the heat energy change in a chemical reaction. You will learn how to use the formula q = mcΔT to calculate the enthalpy change of a reaction from experimental data and understand the key assumptions and sources of error involved in simple calorimetry experiments.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Almost every reaction moves energy in or out as heat, and this lesson is where you learn to put a number and a sign on that flow. It builds the whole of R1.1: exothermic and endothermic reactions and how to read their energy profile diagrams; the enthalpy change ΔH with its sign conventions and standard conditions; measuring ΔH in the lab by calorimetry using q = mcΔT and converting a heat change into an enthalpy change per mole; and estimating ΔH from bond enthalpies as bonds broken minus bonds formed. It is a calculation-heavy topic, so it is built around fully worked examples laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define standard enthalpy change of reaction, ΔH⊖.",
-    "Describe the experimental setup for simple calorimetry and outline the procedure.",
-    "Calculate the enthalpy change for a reaction using the formula q = mcΔT and experimental data.",
-    "Evaluate the assumptions and limitations of simple calorimetry, including sources of error."
+    "Distinguish exothermic and endothermic reactions in terms of energy transfer to or from the surroundings, and interpret their energy profile diagrams.",
+    "Define the enthalpy change ΔH, apply the sign convention (negative for exothermic, positive for endothermic), and state the standard conditions for ΔH⊖.",
+    "Measure an enthalpy change by calorimetry using q = mcΔT and convert the heat change into a molar enthalpy change in kJ mol⁻¹.",
+    "Estimate a reaction enthalpy from bond enthalpies as (bonds broken) − (bonds formed).",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["R1.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Catching Chemical Heat",
-    "summary": "Calorimetry is like being a detective for heat. We use an insulated container to trap the heat released or absorbed by a reaction, measuring the temperature change to figure out exactly how much energy was involved.",
-    "analogy": "Imagine making a cup of hot chocolate. You mix hot milk (one reactant) with chocolate powder (another reactant). The cup gets warm, and steam rises. In chemistry, we try to 'catch' all that heat that escapes to the cup and the air. A calorimeter is like a super-insulated mug with a thermometer, designed to trap and measure the heat from the chemical reaction 'hot chocolate' as accurately as possible.",
+    "title": "Putting a Number on Heat",
+    "summary": "Reactions release or absorb heat, and enthalpy is our way of bookkeeping that energy. Exothermic reactions hand energy out to the surroundings and warm them up; endothermic reactions pull energy in and cool them down. Measuring the temperature change of the surroundings, or comparing the strengths of the bonds broken and made, lets us pin down exactly how much.",
+    "analogy": "Think of a chemical reaction as a bank account of energy stored in bonds. Breaking bonds is a withdrawal — it costs energy. Making bonds is a deposit — it releases energy. If the deposits are bigger than the withdrawals, the reaction pays out the surplus as heat (exothermic, ΔH negative). If the withdrawals are bigger, the reaction has to draw energy in from its surroundings to balance the books (endothermic, ΔH positive).",
     "steps": [
-      "Measure the initial temperature and precise volumes or masses of your reactants.",
-      "Combine the reactants in an insulated container, like a polystyrene cup with a lid, and stir.",
-      "Record the temperature at regular intervals until it has clearly peaked and started to fall, to find the maximum temperature change (ΔT).",
-      "Use the formula q = mcΔT to calculate the heat exchanged, then convert this to the molar enthalpy change (ΔH)."
+      "Decide the direction: does the temperature of the surroundings go up (exothermic) or down (endothermic)?",
+      "Measure the heat moved into or out of the surroundings with q = mcΔT.",
+      "Divide by the moles of the reactant that reacted to get an enthalpy change per mole, and attach the correct sign.",
+      "Or estimate it from the data booklet: add up the bond enthalpies of bonds broken, subtract the bond enthalpies of bonds formed."
     ]
   },
+  "keyConcepts": ["enthalpy", "energy transfer", "conservation of energy"],
   "flashcards": [
-    {
-      "front": "What is calorimetry?",
-      "back": "The science of measuring the change in heat associated with a chemical reaction or physical process. It is typically carried out in an insulated container called a calorimeter."
-    },
-    {
-      "front": "What is the meaning of an exothermic reaction and what is the sign of its ΔH?",
-      "back": "An exothermic reaction releases heat energy into the surroundings. The products have lower enthalpy than the reactants, so the sign of ΔH is negative (ΔH < 0)."
-    },
-    {
-      "front": "What is the meaning of an endothermic reaction and what is the sign of its ΔH?",
-      "back": "An endothermic reaction absorbs heat energy from the surroundings. The products have higher enthalpy than the reactants, so the sign of ΔH is positive (ΔH > 0)."
-    },
-    {
-      "front": "What is the formula used to calculate the heat energy change in a calorimetry experiment?",
-      "back": "q = mcΔT, where q is heat energy (J), m is the mass of the substance changing temperature (g), c is the specific heat capacity (J g⁻¹ K⁻¹), and ΔT is the change in temperature (K or °C)."
-    },
-    {
-      "front": "What does the 'm' in q = mcΔT represent in a reaction between two aqueous solutions?",
-      "back": "It represents the total mass of the final solution. This is calculated by adding the masses of the two solutions, which are often found by assuming their density is 1.00 g cm⁻³ and using their volumes."
-    },
-    {
-      "front": "What is specific heat capacity, c?",
-      "back": "The amount of heat energy required to raise the temperature of 1 gram of a substance by 1 Kelvin (or 1 °C). For water, it is 4.18 J g⁻¹ K⁻¹."
-    },
-    {
-      "front": "Why is a polystyrene cup used as a simple calorimeter?",
-      "back": "Polystyrene is a good thermal insulator, which minimises heat loss to or heat gain from the surroundings, making the measured temperature change more accurate."
-    },
-    {
-      "front": "What is the main source of error in simple coffee-cup calorimetry?",
-      "back": "Heat loss to the surroundings. The insulation is not perfect, so some heat will always escape, leading to a smaller measured temperature change and a calculated |ΔH| value that is less than the true value."
-    },
-    {
-      "front": "What are two key assumptions made when calculating ΔH from a solution-based calorimetry experiment?",
-      "back": "1. The specific heat capacity of the resulting solution is the same as that of pure water (4.18 J g⁻¹ K⁻¹). 2. The density of the solution is the same as that of pure water (1.00 g cm⁻³)."
-    },
-    {
-      "front": "What is the difference between heat change (q) and molar enthalpy change (ΔH)?",
-      "back": "Heat change (q) is the total energy released or absorbed in Joules for the specific amounts used in the experiment. Molar enthalpy change (ΔH) is the energy change per mole of a substance (in kJ mol⁻¹) and is an intensive property."
-    },
-    {
-      "front": "How do you find ΔT if you are given the initial and final temperatures?",
-      "back": "ΔT = T_final - T_initial. The unit can be °C or K, as a change of 1°C is equal to a change of 1 K."
-    }
+    { "front": "Enthalpy (H)", "back": "The heat content of a system at constant pressure. Its absolute value cannot be measured; only the CHANGE, ΔH, during a reaction can be measured.", "pillLabel": "Definition" },
+    { "front": "Enthalpy change (ΔH)", "back": "The heat energy exchanged between the reaction (system) and its surroundings at constant pressure. $\\Delta H = H(\\text{products}) - H(\\text{reactants})$, in kJ mol⁻¹.", "pillLabel": "Definition" },
+    { "front": "Exothermic reaction", "back": "Releases heat TO the surroundings, so the surroundings warm up. Products have lower enthalpy than reactants, so ΔH is NEGATIVE (ΔH < 0).", "pillLabel": "Concept" },
+    { "front": "Endothermic reaction", "back": "Absorbs heat FROM the surroundings, so the surroundings cool down. Products have higher enthalpy than reactants, so ΔH is POSITIVE (ΔH > 0).", "pillLabel": "Concept" },
+    { "front": "Standard enthalpy change (ΔH⊖)", "back": "The enthalpy change measured under standard conditions: pressure 100 kPa and a stated temperature (usually 298 K), with all substances in their standard states and solutions at 1 mol dm⁻³.", "pillLabel": "Definition" },
+    { "front": "$q = mc\\Delta T$", "back": "The heat transferred to the surroundings. q = heat (J), m = mass of the SURROUNDINGS being heated/cooled (usually water, in g), c = specific heat capacity (J g⁻¹ K⁻¹), ΔT = temperature change (K or °C).", "pillLabel": "Formula" },
+    { "front": "Specific heat capacity (c)", "back": "The energy needed to raise the temperature of 1 g of a substance by 1 K. For water, c = 4.18 J g⁻¹ K⁻¹ (Section 2 of the data booklet).", "pillLabel": "Definition" },
+    { "front": "Converting q to ΔH per mole", "back": "$\\Delta H = \\dfrac{-q}{n}$, where n is the moles of the reactant that reacted. The minus sign flips the sign because heat gained by the surroundings equals heat lost by the system. Convert J to kJ.", "pillLabel": "Formula" },
+    { "front": "Energy profile diagram", "back": "A graph of enthalpy (y-axis) against reaction progress (x-axis). Reactants and products sit at fixed enthalpy levels; ΔH is the vertical gap between them; the hump is the activation energy Ea.", "pillLabel": "Framework" },
+    { "front": "Bond enthalpy", "back": "The energy needed to break one mole of a particular covalent bond in the gaseous state. Breaking bonds is always ENDOTHERMIC (needs energy); making bonds is always EXOTHERMIC (releases energy).", "pillLabel": "Definition" },
+    { "front": "Estimating ΔH from bonds", "back": "$\\Delta H = \\Sigma(\\text{bonds broken}) - \\Sigma(\\text{bonds formed})$. Broken first (in), formed second (out). Only an estimate, because tabulated bond enthalpies are averages and apply to gases.", "pillLabel": "Formula" },
+    { "front": "Exam Trap: which mass in q = mcΔT?", "back": "m is the mass of the SURROUNDINGS that changed temperature — usually the water — NOT the mass of the fuel or solid that reacted. Using the fuel's mass is a classic error.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A reaction causes the temperature of the surrounding water to RISE. The reaction is:", "options": ["Endothermic, ΔH positive", "Exothermic, ΔH negative", "Exothermic, ΔH positive", "Endothermic, ΔH negative"], "answer": "Exothermic, ΔH negative" },
+    { "prompt": "0.30 g of a fuel is burned to heat 150 g of water. In q = mcΔT, the mass m you must use is:", "options": ["0.30 g (the fuel)", "150 g (the water)", "150.30 g (fuel + water)", "0.30 + the mass of oxygen"], "answer": "150 g (the water)" },
+    { "prompt": "A solution cools from 25.0 °C to 18.0 °C. The value of ΔT to put into q = mcΔT is:", "options": ["7.0 (a change of 7 K)", "18.0", "43.0", "291.15"], "answer": "7.0 (a change of 7 K)" },
+    { "prompt": "Using bond enthalpies, ΔH is calculated as:", "options": ["bonds formed − bonds broken", "bonds broken − bonds formed", "bonds broken + bonds formed", "bonds formed ÷ bonds broken"], "answer": "bonds broken − bonds formed" },
+    { "prompt": "On an energy profile diagram, the products sit LOWER than the reactants. This tells you the reaction is:", "options": ["Endothermic, ΔH positive", "Exothermic, ΔH negative", "At equilibrium, ΔH = 0", "Impossible to determine without Ea"], "answer": "Exothermic, ΔH negative" }
   ],
   "faq": [
-    {
-      "q": "Why is the enthalpy change (ΔH) for an exothermic reaction negative?",
-      "a": "In an exothermic reaction, the system releases heat energy to the surroundings. This means the products have a lower enthalpy (heat content) than the reactants. The change in enthalpy is calculated as H(products) - H(reactants). Since H(products) is smaller than H(reactants), the result is a negative value."
-    },
-    {
-      "q": "What is the difference between heat (q) and enthalpy change (ΔH)?",
-      "a": "Heat (q) is the total amount of energy transferred in a specific experiment, measured in Joules. Enthalpy change (ΔH) is a standardized value, representing the heat transferred per mole of reactant, expressed in kJ mol⁻¹. ΔH is an intensive property, while q is an extensive property that depends on the amounts used."
-    },
-    {
-      "q": "Why do we assume the density and specific heat capacity of the solution are the same as pure water?",
-      "a": "This is a simplifying assumption that makes calculations easier. For dilute aqueous solutions, the vast majority of the substance is water, so its properties are very close to those of pure water. While this introduces a small error, it is often less significant than the error from heat loss in a simple lab setup."
-    },
-    {
-      "q": "How can I get a more accurate value for ΔT if the reaction is slow?",
-      "a": "For slow reactions, or for very precise measurements, you should record the temperature at regular intervals (e.g., every 30 seconds) and plot a graph of temperature versus time. You can then extrapolate the cooling part of the curve back to the time of mixing to find a more accurate maximum temperature change, which corrects for heat lost while the reaction was proceeding."
-    }
+    { "q": "Why is ΔH negative for an exothermic reaction when heat is 'released'?", "a": "ΔH is defined from the point of view of the SYSTEM (the reactants and products), not the surroundings. $\\Delta H = H(\\text{products}) - H(\\text{reactants})$. In an exothermic reaction the products store less energy than the reactants, so this subtraction gives a negative number. The energy that leaves the system is what warms the surroundings up — but the system itself has lost enthalpy, hence the minus sign." },
+    { "q": "In q = mcΔT, why do we use the mass of the water and not the mass of the fuel or the solid?", "a": "q = mcΔT measures the heat absorbed by the SURROUNDINGS, and the surroundings are what is changing temperature — normally the water. The fuel or solid is the source of the heat, not the thing being heated, so its mass never goes into mcΔT. The mass of the reactant is used separately, to work out the number of MOLES when you convert q into ΔH per mole." },
+    { "q": "Why does a bond-enthalpy calculation only give an ESTIMATE of ΔH?", "a": "Tabulated bond enthalpies are AVERAGE values taken across many different molecules, so the real bond in your specific compound may be a little stronger or weaker. They also strictly apply to substances in the gaseous state, so if a reactant or product is a liquid or solid the estimate ignores the enthalpy involved in changing state. That is why a bond-enthalpy value and a directly measured (experimental) value rarely match exactly." },
+    { "q": "Why doesn't my experimental enthalpy of combustion match the data booklet value?", "a": "Simple calorimetry loses heat to the surroundings, and combustion experiments also suffer from incomplete combustion, evaporation of the fuel, and heat carried away by the container. All of these mean less heat reaches the water than the reaction actually produced, so the measured temperature rise — and therefore the calculated |ΔH| — comes out smaller than the true value. Examiners expect 'heat loss to the surroundings' as the main reason." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Many chemical reactions involve a change in energy, most commonly in the form of heat. The enthalpy change (ΔH) is a measure of this heat transfer at constant pressure. In this lesson, we'll explore how to measure this quantity in the lab using a technique called calorimetry and how to perform the necessary calculations to determine the enthalpy change of a reaction."
-    },
-    {
-      "type": "heading",
-      "content": "Enthalpy and Enthalpy Change (ΔH)"
-    },
-    {
-      "type": "text",
-      "content": "Enthalpy ($H$) is the total heat content of a system. We cannot measure the absolute enthalpy of a system, but we can measure the change in enthalpy ($Delta H$) that occurs during a chemical reaction. This is the heat energy exchanged between the reaction system and its surroundings at constant pressure."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Exothermic reactions** release heat into the surroundings, causing the temperature of the surroundings to increase. The products have less enthalpy than the reactants, so $\\Delta H$ is negative.",
-        "**Endothermic reactions** absorb heat from the surroundings, causing the temperature of the surroundings to decrease. The products have more enthalpy than the reactants, so $\\Delta H$ is positive."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Measuring Heat Change: Simple Calorimetry"
-    },
-    {
-      "type": "text",
-      "content": "Calorimetry is the experimental technique used to measure heat changes. A simple calorimeter can be constructed from two nested polystyrene cups with a lid. Polystyrene is an excellent insulator, which helps to minimise heat exchange with the surroundings. A thermometer is inserted through the lid to measure the temperature change of the solution inside the cup where the reaction takes place."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**System:** The chemical reaction (reactants and products).",
-        "**Surroundings:** The solvent (usually water), the calorimeter cup, and the air outside.",
-        "**Assumption:** In a simple setup, we assume that any heat released by the reaction (system) is absorbed only by the aqueous solution (surroundings), and there is no heat loss to the cup or the air."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Calorimetry Calculation"
-    },
-    {
-      "type": "text",
-      "content": "The heat energy absorbed or released by the surroundings (the solution) can be calculated using a fundamental equation. This value, $q$, has the same magnitude as the enthalpy change of the reaction but the opposite sign, i.e., $q_{surroundings} = -\\Delta H_{reaction}$."
-    },
-    {
-      "type": "formula",
-      "content": "q = mc\\Delta T"
-    },
-    {
-      "type": "text",
-      "content": "Here, $q$ is the heat absorbed or released in Joules (J). The mass, $m$, is the total mass of the solution in grams (g). The specific heat capacity, $c$, is usually taken as that of water, 4.18 J g⁻¹ K⁻¹. The temperature change, $\\Delta T$, is the final temperature minus the initial temperature ($T_{final} - T_{initial}$) in Kelvin (K) or degrees Celsius (°C)."
-    },
-    {
-      "type": "examTip",
-      "content": "A common mistake is using the mass of only one reactant for 'm'. Remember, 'm' is the total mass of the substance whose temperature is changing, which is typically the entire solution. If you mix 50 cm³ of one solution with 50 cm³ of another, the total volume is 100 cm³, and assuming a density of 1.00 g cm⁻³, the total mass 'm' is 100 g."
-    },
-    {
-      "type": "workedExample",
-      "question": "In a calorimetry experiment, 50.0 cm³ of 1.00 mol dm⁻³ HCl(aq) is added to 50.0 cm³ of 1.00 mol dm⁻³ NaOH(aq) in a polystyrene cup. The initial temperature of both solutions was 21.5 °C, and the maximum temperature reached was 28.2 °C. Calculate the molar enthalpy change of neutralisation, in kJ mol⁻¹.\n(Assume the density of the solutions is 1.00 g cm⁻³ and the specific heat capacity of the final solution is 4.18 J g⁻¹ K⁻¹).",
-      "solution": "1.  **Calculate total mass of solution (m):**\n    Total volume = 50.0 cm³ + 50.0 cm³ = 100.0 cm³\n    Mass m = Volume × Density = 100.0 cm³ × 1.00 g cm⁻³ = 100.0 g\n\n2.  **Calculate temperature change (ΔT):**\n    ΔT = T_final - T_initial = 28.2 °C - 21.5 °C = 6.7 °C (which is also 6.7 K)\n\n3.  **Calculate heat absorbed by the solution (q):**\n    q = mcΔT = (100.0 g) × (4.18 J g⁻¹ K⁻¹) × (6.7 K)\n    q = 2800.6 J\n\n4.  **Calculate moles of limiting reactant (n):**\n    Moles of HCl = Concentration × Volume = 1.00 mol dm⁻³ × (50.0 / 1000) dm³ = 0.0500 mol\n    Moles of NaOH = 1.00 mol dm⁻³ × (50.0 / 1000) dm³ = 0.0500 mol\n    The reaction is 1:1, so either can be used. n = 0.0500 mol.\n\n5.  **Calculate molar enthalpy change (ΔH):**\n    The reaction is exothermic (temperature increased), so ΔH must be negative.\n    ΔH = -q / n\n    ΔH = -2800.6 J / 0.0500 mol = -56012 J mol⁻¹\n\n6.  **Convert to kJ mol⁻¹ and apply significant figures:**\n    ΔH = -56012 / 1000 kJ mol⁻¹ = -56.012 kJ mol⁻¹\n    The temperature change has 2 significant figures (6.7), so the final answer should be given to 2 or 3 s.f. \n    **ΔH = -56 kJ mol⁻¹**"
-    },
-    {
-      "type": "workedExample",
-      "question": "2.50 g of ammonium nitrate (NH₄NO₃) is dissolved in 50.0 g of water in a calorimeter. The temperature of the water drops from 22.0 °C to 18.5 °C. Calculate the molar enthalpy of solution for ammonium nitrate in kJ mol⁻¹.\n(Molar mass of NH₄NO₃ = 80.05 g mol⁻¹; specific heat capacity of the solution, c = 4.18 J g⁻¹ K⁻¹).",
-      "solution": "1.  **Calculate total mass of solution (m):**\n    m = mass of water + mass of NH₄NO₃ = 50.0 g + 2.50 g = 52.5 g\n\n2.  **Calculate temperature change (ΔT):**\n    ΔT = T_final - T_initial = 18.5 °C - 22.0 °C = -3.5 °C (or -3.5 K)\n\n3.  **Calculate heat change of the solution (q):**\n    q = mcΔT = (52.5 g) × (4.18 J g⁻¹ K⁻¹) × (-3.5 K)\n    q = -768.075 J\n    This is the heat *lost* by the solution. The reaction *absorbed* this amount of heat from the solution.\n\n4.  **Determine the heat absorbed by the reaction:**\n    The heat absorbed by the reaction is equal in magnitude but opposite in sign to the heat change of the solution. So, heat for reaction = -q = +768.075 J.\n\n5.  **Calculate moles of NH₄NO₃ (n):**\n    n = mass / Molar mass = 2.50 g / 80.05 g mol⁻¹ = 0.03123 mol\n\n6.  **Calculate molar enthalpy of solution (ΔH_sol):**\n    The reaction is endothermic (temperature decreased), so ΔH must be positive.\n    ΔH_sol = (Heat absorbed by reaction) / n\n    ΔH_sol = +768.075 J / 0.03123 mol = +24594 J mol⁻¹\n\n7.  **Convert to kJ mol⁻¹ and apply significant figures:**\n    ΔH_sol = +24594 / 1000 kJ mol⁻¹ = +24.594 kJ mol⁻¹\n    The temperature change has 2 significant figures (3.5), so the answer is best reported to 2 or 3 s.f.\n    **ΔH_sol = +25 kJ mol⁻¹**"
-    },
-    {
-      "type": "heading",
-      "content": "Sources of Error and Improvements"
-    },
-    {
-      "type": "text",
-      "content": "Simple calorimetry experiments are subject to several sources of error, which means the calculated enthalpy change is often different from the accepted literature value. The most significant error is heat loss to the surroundings. Because the polystyrene cup is not a perfect insulator, heat can be lost to the air, the bench, and the thermometer, especially if the reaction is slow. This leads to a smaller measured |ΔT| and thus a calculated |ΔH| that is smaller than the true value."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Heat Loss:** The primary systematic error. Minimized by using a lid, better insulation (e.g., a vacuum flask), or by extrapolating a cooling curve to find a more accurate ΔT.",
-        "**Assumptions:** Assuming the solution has the specific heat capacity and density of water can introduce inaccuracies, especially for concentrated solutions.",
-        "**Incomplete Reaction:** If the reaction does not go to completion, the heat released or absorbed will be less than the theoretical maximum.",
-        "**Measurement Errors:** Inaccuracies in reading the thermometer or measuring volumes contribute to random errors."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "When asked to evaluate a calorimetry experiment, always state that the major source of error is heat loss to the surroundings. For an exothermic reaction, this leads to a calculated enthalpy change that is 'less exothermic' (i.e., a smaller negative number) than the true value. For an endothermic reaction, it leads to a 'less endothermic' (smaller positive) value."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions: Measuring enthalpy changes",
-      "href": "/mark?subject=ib-chemistry-sl&topic=R1.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Video tutorial on Calorimetry Calculations",
-          "href": "https://www.youtube.com/watch?v=GH4w39hUf_k"
-        },
-        {
-          "label": "Enthalpy Change Simulation",
-          "href": "https://phet.colorado.edu/en/simulation/energy-forms-and-changes"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Strike a match, dissolve a fertiliser, neutralise an acid — in every case energy is quietly moving between the reaction and its surroundings as heat. The enthalpy change, ΔH, is how chemists measure that flow: its size tells you how much heat, and its sign tells you which way. This lesson gives you three ways to get at ΔH — reading it from an energy profile diagram, measuring it in the lab with q = mcΔT, and estimating it from bond enthalpies — and every worked example is laid out exactly the way marks are awarded, because in a calculation topic HOW you show your working decides how many marks you keep." },
+
+    { "type": "heading", "content": "Exothermic and endothermic reactions" },
+    { "type": "text", "content": "Chemical bonds store energy, and a reaction rearranges those bonds, so almost every reaction transfers energy to or from its surroundings. If the reaction gives out energy — the surroundings get hotter — it is exothermic. Combustion, neutralisation and most oxidation reactions are exothermic; you can feel the heat. If instead the reaction takes energy in — the surroundings get colder — it is endothermic. Dissolving ammonium nitrate, or the thermal decomposition of a carbonate, are endothermic; the flask feels cold. The key is that we judge the direction by what happens to the SURROUNDINGS, because that is what we can actually put a thermometer in." },
+    { "type": "keyPoints", "items": [
+      "**Exothermic:** heat flows OUT of the system into the surroundings. Surroundings warm up. Products have LOWER enthalpy than reactants, so ΔH is NEGATIVE.",
+      "**Endothermic:** heat flows INTO the system from the surroundings. Surroundings cool down. Products have HIGHER enthalpy than reactants, so ΔH is POSITIVE.",
+      "The system is the reactants and products; the surroundings are the solvent, the container and the air.",
+      "Whatever heat the system loses, the surroundings gain (and vice versa): $q_{surroundings} = -q_{system}$."
+    ]},
+
+    { "type": "heading", "content": "Energy profile diagrams" },
+    { "type": "text", "content": "An energy profile diagram plots enthalpy on the vertical axis against the progress of the reaction on the horizontal axis. The reactants start at one enthalpy level and the products end at another; the difference in height between them is ΔH. Between the two there is a hump — the reaction has to climb over an energy barrier before new bonds can form. The height of that barrier above the reactants is the activation energy, Ea. For an EXOTHERMIC reaction the products sit LOWER than the reactants (the line finishes below where it started, ΔH negative); for an ENDOTHERMIC reaction the products sit HIGHER than the reactants (the line finishes above where it started, ΔH positive)." },
+    { "type": "keyPoints", "items": [
+      "**ΔH** is the vertical gap from the reactant level to the product level: products below reactants → exothermic (−); products above → endothermic (+).",
+      "**Activation energy Ea** is the height of the peak measured UP from the reactant level, not from the baseline.",
+      "The arrow for ΔH runs from reactants to products; the arrow for Ea runs from reactants up to the top of the hump.",
+      "A bigger hump does not change ΔH — activation energy and enthalpy change are independent quantities."
+    ]},
+    { "type": "workedExample", "question": "An energy profile diagram shows the reactants at an enthalpy of 250 kJ, the peak of the curve at 400 kJ, and the products at 100 kJ (all on the same arbitrary scale). (a) State, with a reason, whether the reaction is exothermic or endothermic. (b) Determine ΔH for the reaction. (c) Determine the activation energy, Ea. [4]", "solution": "**(a)** The products (100 kJ) lie BELOW the reactants (250 kJ), so the system loses enthalpy to the surroundings — the reaction is **exothermic**.  [A1]\n\n**(b)** $\\Delta H = H(\\text{products}) - H(\\text{reactants}) = 100 - 250 = -150$ kJ.\nThe negative sign confirms it is exothermic.  [M1 subtraction in the right order, A1 value and sign]\n\n**(c)** Activation energy is measured from the REACTANT level up to the peak:\n$E_a = 400 - 250 = +150$ kJ.  [A1]\n\n*Note that Ea is measured from the reactants (250), not from the baseline (0) — measuring from zero is a common slip.*" },
+
+    { "type": "heading", "content": "Enthalpy change ΔH: sign conventions and standard conditions" },
+    { "type": "text", "content": "Enthalpy, symbol $H$, is the heat content of a system at constant pressure. We cannot measure the absolute enthalpy of anything, but we can measure the CHANGE that accompanies a reaction, and that is the enthalpy change, $\\Delta H$. It is defined as the enthalpy of the products minus the enthalpy of the reactants, which is why the sign falls out automatically: if the products hold less energy, ΔH is negative and the reaction is exothermic." },
+    { "type": "formula", "content": "\\Delta H = H(\\text{products}) - H(\\text{reactants})" },
+    { "type": "text", "content": "Because the amount of heat a reaction gives out depends on conditions such as temperature and pressure, chemists quote a STANDARD enthalpy change, written $\\Delta H^{\\ominus}$, measured under an agreed set of conditions so that values can be compared fairly. ΔH is always quoted per mole of reaction as written in the balanced equation, in kJ mol⁻¹." },
+    { "type": "keyPoints", "items": [
+      "**Sign convention:** exothermic ΔH < 0 (negative); endothermic ΔH > 0 (positive). Never quote an enthalpy change without its sign.",
+      "**Standard conditions (⊖):** pressure 100 kPa, a stated temperature (usually 298 K / 25 °C), each substance in its standard state, and any solutions at a concentration of 1 mol dm⁻³.",
+      "**Units:** kJ mol⁻¹, per mole of reaction as written in the balanced equation.",
+      "Doubling the equation doubles ΔH; reversing the equation reverses the sign of ΔH."
+    ]},
+    { "type": "examTip", "content": "The sign is worth marks on its own. A calorimetry answer of '56 kJ mol⁻¹' for an exothermic reaction is incomplete — it must be −56 kJ mol⁻¹. Decide the sign from the physics (did the surroundings warm up or cool down?), not from whatever sign your calculator happens to show." },
+
+    { "type": "heading", "content": "Measuring ΔH by calorimetry" },
+    { "type": "text", "content": "Calorimetry measures an enthalpy change indirectly, by measuring the temperature change of the surroundings — usually water. A simple calorimeter is an insulated container, such as nested polystyrene cups with a lid, so that the heat released or absorbed by the reaction goes into (or comes from) the water rather than leaking to the room. We measure how much the water's temperature changes and turn that into a heat quantity, q, using the relationship below." },
+    { "type": "formula", "content": "q = mc\\Delta T" },
+    { "type": "text", "content": "Here $q$ is the heat transferred (J), $m$ is the mass of the SURROUNDINGS being heated or cooled — the water — in grams, $c$ is the specific heat capacity (4.18 J g⁻¹ K⁻¹ for water, from the data booklet), and $\\Delta T = T_{final} - T_{initial}$ is the temperature change in K (a change of 1 °C is a change of 1 K, so either unit works). Two steps then turn q into a molar enthalpy change: first, the heat gained by the water equals the heat lost by the reaction but with the opposite sign, so $\\Delta H = -q/n$; second, divide by the number of moles of the reactant that actually reacted and convert from J to kJ." },
+    { "type": "examTip", "content": "The single most common calorimetry error is putting the wrong mass into q = mcΔT. m is the mass of WATER (the surroundings), never the mass of the fuel or the solid that dissolved. The mass of the reactant is used separately — to work out the moles when you convert q into ΔH per mole. Keep the two masses in different boxes on your page." },
+    { "type": "workedExample", "question": "50.0 cm³ of 2.00 mol dm⁻³ hydrochloric acid is mixed with 50.0 cm³ of 2.00 mol dm⁻³ sodium hydroxide in a polystyrene cup. Both start at 20.0 °C and the temperature rises to a maximum of 33.6 °C. Calculate the enthalpy change of neutralisation in kJ mol⁻¹. (Assume the mixture has the density and specific heat capacity of water: 1.00 g cm⁻³ and 4.18 J g⁻¹ K⁻¹.) [4]", "solution": "**Step 1 — mass of the surroundings (the water).**\nTotal volume = 50.0 + 50.0 = 100.0 cm³, so $m = 100.0 \\times 1.00 = 100.0$ g.  [use mass of solution, NOT of any solid]\n\n**Step 2 — temperature change and heat.**\n$\\Delta T = 33.6 - 20.0 = 13.6$ K.\n$q = mc\\Delta T = 100.0 \\times 4.18 \\times 13.6 = 5684.8$ J $= 5.685$ kJ.  [M1]\n\n**Step 3 — moles of the reactant.**\n$n(\\text{HCl}) = c \\times V = 2.00 \\times \\dfrac{50.0}{1000} = 0.100$ mol, and the acid and base react 1 : 1, so 0.100 mol of water is formed.  [M1]\n\n**Step 4 — enthalpy change per mole, with sign.**\nThe temperature rose, so the reaction is exothermic and ΔH is negative:\n$\\Delta H = \\dfrac{-q}{n} = \\dfrac{-5.685}{0.100} = -56.8$ kJ mol⁻¹.  [A1 magnitude, A1 sign and units]\n\n*ΔT is given to 3 s.f., so −56.8 kJ mol⁻¹ (3 s.f.) is appropriate; −57 kJ mol⁻¹ is also acceptable.*" },
+
+    { "type": "heading", "content": "Estimating ΔH from bond enthalpies" },
+    { "type": "text", "content": "A reaction is really the breaking of some bonds and the making of others. Breaking a bond always COSTS energy (it is endothermic), and making a bond always RELEASES energy (it is exothermic). The bond enthalpy is the energy needed to break one mole of a given bond in the gaseous state, and the data booklet lists average values. If the bonds made are stronger, in total, than the bonds broken, the reaction releases a net surplus of energy and is exothermic. This gives a quick way to estimate ΔH without any experiment." },
+    { "type": "formula", "content": "\\Delta H = \\Sigma(\\text{bond enthalpies of bonds broken}) - \\Sigma(\\text{bond enthalpies of bonds formed})" },
+    { "type": "keyPoints", "items": [
+      "**Bonds broken go first (energy in, positive); bonds formed go second (energy out, negative).** Broken minus formed.",
+      "Count every bond in the balanced equation, remembering coefficients (2 mol HCl means 2 × the H–Cl bond enthalpy).",
+      "A negative answer means the bonds formed are stronger overall → exothermic; a positive answer means the bonds broken are stronger overall → endothermic.",
+      "It is only an ESTIMATE: tabulated bond enthalpies are averages and strictly apply to gases, so the value differs from a directly measured one."
+    ]},
+    { "type": "workedExample", "question": "Estimate the enthalpy change for the reaction H₂(g) + Cl₂(g) → 2HCl(g) using these average bond enthalpies (kJ mol⁻¹): H–H = 436, Cl–Cl = 242, H–Cl = 431. [3]", "solution": "**Step 1 — bonds broken (reactants).**\n1 mol H–H + 1 mol Cl–Cl $= 436 + 242 = 678$ kJ (energy IN).  [M1]\n\n**Step 2 — bonds formed (products).**\n2 mol H–Cl $= 2 \\times 431 = 862$ kJ (energy OUT).  [M1]\n\n**Step 3 — apply broken − formed.**\n$\\Delta H = \\Sigma(\\text{broken}) - \\Sigma(\\text{formed}) = 678 - 862 = -184$ kJ mol⁻¹.  [A1 value and sign]\n\n*The answer is negative, so the reaction is exothermic — the two H–Cl bonds formed are stronger, in total, than the H–H and Cl–Cl bonds broken.*" },
+    { "type": "examTip", "content": "Write the calculation in the fixed order 'broken − formed' every single time. Students who set it up as 'formed − broken' get the right magnitude with the wrong sign, and the sign is where the mark is. Also make sure you have multiplied by the coefficients: forgetting the '2' in 2HCl is the other classic bond-enthalpy slip." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Dropping or reversing the sign of ΔH** — exothermic must be negative, endothermic positive. Decide the sign from whether the surroundings warmed or cooled, and always write it down.",
+      "**Using the mass of the fuel or solid in q = mcΔT** — m is the mass of the water (the surroundings) that changed temperature, not the mass of the reactant.",
+      "**Muddling ΔT** — ΔT is the CHANGE in temperature ($T_{final}-T_{initial}$), not a final temperature and not a value converted to kelvin by adding 273 (a change of 7 °C is a change of 7 K).",
+      "**Forgetting to divide by moles / not converting J to kJ** — q from mcΔT is the heat for the amount used, in joules; ΔH is per mole, in kJ mol⁻¹. Divide by n and divide by 1000.",
+      "**Bond enthalpies the wrong way round** — ΔH = bonds BROKEN − bonds FORMED, and you must multiply each bond by its coefficient in the equation.",
+      "**Measuring activation energy from the baseline** — Ea is the height of the peak above the REACTANT level, not above zero.",
+      "**Confusing q and ΔH** — q is the heat measured in the experiment (J, for the amount used); ΔH is the standardised value per mole (kJ mol⁻¹) and carries the opposite sign to q."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each mark is tied to a specific line of working (a method mark, M, or an answer mark, A), and — crucially — the method marks and error-carried-forward (ECF) mean a wrong number early on does not cost you every mark that follows. That is only true if the method is written down. Study how each of the four marks below is earned by a specific line." },
+    { "type": "workedExample", "question": "Burning 0.25 g of ethanol raised the temperature of 100 g of water by 12.5 °C. Calculate the enthalpy of combustion of ethanol in kJ mol⁻¹. (c = 4.18 J g⁻¹ K⁻¹) [4]", "solution": "**Model answer — full working.**\n\n**Step 1 — heat gained by the water, q = mcΔT.**\nThe water is the surroundings, so $m = 100$ g, $\\Delta T = 12.5$ K:\n$q = mc\\Delta T = 100 \\times 4.18 \\times 12.5 = 5225$ J $= 5.225$ kJ.\n\n**Step 2 — moles of ethanol burned.**\n$M(\\text{C}_2\\text{H}_5\\text{OH}) = 2(12.01) + 6(1.01) + 16.00 = 46.08$ g mol⁻¹.\n$n = \\dfrac{m}{M} = \\dfrac{0.25}{46.08} = 5.43 \\times 10^{-3}$ mol.\n\n**Step 3 — enthalpy of combustion per mole, with sign.**\nThe temperature rose, so combustion is exothermic and ΔH is negative:\n$\\Delta H_c = \\dfrac{-q}{n} = \\dfrac{-5.225}{5.43 \\times 10^{-3}} = -963$ kJ mol⁻¹.\n\nSo $\\Delta H_c \\approx \\mathbf{-963\\ kJ\\ mol^{-1}}$ (accept −960 kJ mol⁻¹ to 2 s.f.).\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — heat calculation.** Awarded for a correct q = mcΔT using the mass of WATER (100 g) and ΔT = 12.5 K: q = 5225 J. This is a METHOD mark — it is credited for the correct process even if the arithmetic slips.\n- **M1 — moles of fuel.** Awarded for n = mass ÷ molar mass using the fuel's mass (0.25 g) and M(ethanol) = 46.08 g mol⁻¹. Using the fuel's mass HERE (not in mcΔT) is exactly what the question is testing.\n- **A1 — magnitude of ΔH per mole.** Awarded for dividing q (in kJ) by n to reach ≈ 963 kJ mol⁻¹. Here is the protection: **error-carried-forward** — a student who made an earlier slip but correctly computed ΔH = q ÷ n on THEIR figures still earns this mark, because it credits the method of dividing heat by moles.\n- **A1 — correct negative sign and units.** Awarded for stating the value as −963 kJ mol⁻¹: the negative sign (exothermic) AND the units kJ mol⁻¹.\n\n**'Accept answers that round correctly.'** The engine accepts −963, −960 and −963.1 kJ mol⁻¹ as the same answer, and does not demand a fixed number of decimal places in the intermediate lines — it credits the correct method and a correctly-rounded final value.\n\n**Bottom line:** of the 4 marks, 2 are method marks that survive an arithmetic slip and the answer marks are protected by ECF. A student who writes only '−963' with no working risks losing 2–3 marks if the final number is wrong; a student who shows every line keeps the method marks regardless. (The data-booklet value is about −1367 kJ mol⁻¹; the experimental figure is smaller because of heat loss to the surroundings and incomplete combustion.)" },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write out q = mcΔT with the right mass, show n = m/M, show ΔH = −q/n, and attach the sign. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Enthalpy is the first step into thermodynamics, the study of what drives reactions. From here, Hess's law lets you combine enthalpy changes you can measure to find ones you cannot; enthalpy cycles use exactly the bond-breaking and bond-making bookkeeping you met above. Later you will add entropy and Gibbs free energy to decide not just how much energy a reaction moves but whether it happens at all. The habit built here — measure the heat, divide by the moles, attach the sign — is the foundation for all of it." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: calculate an enthalpy change from calorimetry data with full working", "href": "/mark?subject=ib-chemistry-sl&topic=R1.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (Sections 2 and 11: bond enthalpies)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -1,177 +1,146 @@
 {
   "slug": "r2-3-how-far-the-extent-of-chemical-change",
   "topicCode": "R2.3",
+  "unit": { "code": "R2", "title": "How much, how fast and how far?" },
   "title": "How far? The extent of chemical change",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces the equilibrium constant, Kc, as a quantitative measure of the extent of a reversible reaction. You will learn how to write the expression for Kc, calculate its value from equilibrium concentrations, and interpret its magnitude to predict whether reactants or products are favoured at equilibrium.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Many reactions do not run to completion — they settle into a dynamic equilibrium where forward and reverse reactions continue at equal rates and concentrations stay constant. This lesson builds the whole of R2.3: what dynamic equilibrium is and how to recognise it, Le Chatelier's principle and how to predict the effect of changing concentration, pressure/volume and temperature (and why a catalyst never shifts the position), and the equilibrium constant Kc — how to write its expression and read its magnitude as a measure of extent. The HL extension adds the reaction quotient Q versus Kc and Kc calculations. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand the concept of the equilibrium constant, Kc, and its relationship to the position of equilibrium.",
-    "Construct the mathematical expression for Kc for any homogeneous reversible reaction.",
-    "Calculate the value of Kc from given equilibrium concentrations.",
-    "Deduce the extent of a reaction by comparing the relative magnitudes of Kc values."
+    "Describe dynamic equilibrium in a closed system as the state where the forward and reverse reactions occur at equal rates so that macroscopic concentrations remain constant.",
+    "State the characteristics of a system at equilibrium and distinguish equilibrium from a reaction that has simply stopped.",
+    "Apply Le Chatelier's principle to predict the effect of changing concentration, pressure/volume and temperature on the position of equilibrium, and explain why a catalyst does not shift it.",
+    "Construct the expression for the equilibrium constant Kc and interpret its magnitude to deduce the extent of reaction.",
+    "(HL) Deduce the direction of reaction by comparing the reaction quotient Q with Kc, and calculate Kc from equilibrium concentrations.",
+    "Present reasoning so that method marks (M) and answer/conclusion marks (A), with error-carried-forward (ECF), protect the score."
   ],
+  "syllabusObjectivesCovered": ["R2.3"],
+  "levelNote": "Common to SL and HL; the reaction quotient and Kc calculations are HL.",
   "simpleExplanation": {
-    "title": "The Equilibrium Balancing Act",
-    "summary": "The equilibrium constant, Kc, is a special number for a reaction that tells us the balance between products and reactants once the reaction has settled. A large Kc means lots of products are made, while a small Kc means the reaction barely gets going.",
-    "analogy": "Imagine a game of tug-of-war between 'Reactants' and 'Products'. The position of the central flag when the pulling stops represents equilibrium. If the flag is deep in the Reactants' territory, it means the Products team is much stronger, and we have a large Kc. If the flag has barely moved from the Reactants' starting line, the Reactants team is stronger, and we have a small Kc.",
+    "title": "A Balanced Tug-of-War",
+    "summary": "In a closed container, a reversible reaction never truly stops. The forward and reverse reactions keep going at exactly the same rate, so the amounts of everything stay constant even though molecules are still reacting. The equilibrium constant, Kc, is a single number that tells you where that balance sits — mostly products, mostly reactants, or a bit of both.",
+    "analogy": "Picture a tug-of-war where both teams pull with exactly equal force: the rope is still under tension and both teams are still working hard, but the flag in the middle does not move. That is dynamic equilibrium — busy at the molecular level, yet unchanging on the outside. A large Kc means the flag sits deep in the products' territory; a small Kc means it barely left the reactants' side.",
     "steps": [
-      "Write down the balanced chemical equation for the reversible reaction.",
-      "Construct the expression for the equilibrium constant, Kc, by placing product concentrations in the numerator and reactant concentrations in the denominator, each raised to the power of its stoichiometric coefficient.",
-      "Substitute the given molar concentrations of each species at equilibrium into the expression.",
-      "Calculate the value of Kc. A large value means products are favoured, a small value means reactants are favoured."
+      "Confirm the system is closed and reversible, so nothing escapes and both directions can occur.",
+      "Recognise equilibrium: forward rate = reverse rate, so concentrations become constant (not necessarily equal).",
+      "To predict a shift, apply Le Chatelier's principle — the system moves to partially oppose whatever change you impose.",
+      "To judge the extent, write the Kc expression (products over reactants, each raised to its coefficient) and read its magnitude."
     ]
   },
+  "keyConcepts": ["dynamic equilibrium", "Le Chatelier's principle", "equilibrium constant"],
   "flashcards": [
-    {
-      "front": "What is the equilibrium constant, $K_c$?",
-      "back": "$K_c$ is a ratio that relates the concentrations of products to the concentrations of reactants at equilibrium for a reversible reaction. Its value indicates the extent to which the reaction proceeds."
-    },
-    {
-      "front": "How do you write the general expression for $K_c$ for the reaction $aA + bB \\rightleftharpoons cC + dD$?",
-      "back": "$K_c = \\frac{\\left[ C \\right]^c \\left[ D \\right]^d}{\\left[ A \\right]^a \\left[ B \\right]^b}$. Concentrations are in mol dm⁻³ and are measured at equilibrium."
-    },
-    {
-      "front": "What does a large value of $K_c$ (e.g., $K_c > 1000$) signify?",
-      "back": "A large $K_c$ indicates that the equilibrium lies far to the right. At equilibrium, the concentration of products is much greater than the concentration of reactants. The reaction is considered to go almost to completion."
-    },
-    {
-      "front": "What does a small value of $K_c$ (e.g., $K_c < 0.001$) signify?",
-      "back": "A small $K_c$ indicates that the equilibrium lies far to the left. At equilibrium, the concentration of reactants is much greater than the concentration of products. The reaction barely proceeds."
-    },
-    {
-      "front": "What does a $K_c$ value of approximately 1 signify?",
-      "back": "A $K_c$ value close to 1 indicates that there are significant concentrations of both reactants and products at equilibrium. The equilibrium is positioned centrally."
-    },
-    {
-      "front": "Which states of matter are excluded from the $K_c$ expression?",
-      "back": "Pure solids (s) and pure liquids (l) are excluded. Their concentrations are considered constant and are incorporated into the value of $K_c$."
-    },
-    {
-      "front": "What is the ONLY factor that can change the value of the equilibrium constant, $K_c$?",
-      "back": "Only a change in temperature can alter the value of $K_c$. For an exothermic reaction, increasing temperature decreases $K_c$. For an endothermic reaction, increasing temperature increases $K_c$."
-    },
-    {
-      "front": "How does changing pressure or concentration affect the value of $K_c$?",
-      "back": "Changing pressure or concentration does NOT affect the value of $K_c$. It will shift the position of equilibrium to re-establish the same $K_c$ ratio, but the constant itself remains unchanged (at a constant temperature)."
-    },
-    {
-      "front": "How does a catalyst affect $K_c$ and the position of equilibrium?",
-      "back": "A catalyst does not affect the value of $K_c$ or the final position of equilibrium. It increases the rate of both the forward and reverse reactions equally, allowing equilibrium to be reached faster."
-    },
-    {
-      "front": "Does $K_c$ have units?",
-      "back": "In the IB Chemistry syllabus, $K_c$ is treated as a dimensionless quantity, so you are not required to include units in your answer. Technically, units can be derived from the expression, but they are omitted by convention in IB."
-    }
+    { "front": "Dynamic equilibrium", "back": "In a closed system, the state reached when the forward and reverse reactions occur at equal rates, so the concentrations of reactants and products remain constant. The reaction has not stopped — both directions continue.", "pillLabel": "Definition" },
+    { "front": "Characteristics of equilibrium", "back": "Reached in a CLOSED system; forward rate = reverse rate; macroscopic properties (concentration, colour, pressure) are constant; it is dynamic, not static; can be approached from either direction and reaches the same position.", "pillLabel": "Concept" },
+    { "front": "Constant does NOT mean equal", "back": "At equilibrium the concentrations of reactants and products stop changing, but they are almost never equal to each other. 'Constant concentrations' and 'equal concentrations' are completely different claims.", "pillLabel": "Trap" },
+    { "front": "Le Chatelier's principle", "back": "If a change is imposed on a system at equilibrium, the position of equilibrium shifts in the direction that partially opposes (counteracts) the change, until a new equilibrium is established.", "pillLabel": "Definition" },
+    { "front": "Effect of changing concentration", "back": "Increasing the concentration of a species shifts equilibrium AWAY from it (to remove some of it); decreasing it shifts equilibrium TOWARDS that species (to replace it). Kc is unchanged.", "pillLabel": "Framework" },
+    { "front": "Effect of pressure / volume (gases)", "back": "Increasing pressure (decreasing volume) shifts equilibrium towards the side with FEWER moles of gas; decreasing pressure shifts towards MORE moles of gas. If both sides have equal moles of gas, pressure has no effect. Kc is unchanged.", "pillLabel": "Framework" },
+    { "front": "Effect of temperature", "back": "Increasing temperature shifts equilibrium in the ENDOTHERMIC direction; decreasing temperature shifts it in the EXOTHERMIC direction. Temperature is the only change that also alters the value of Kc.", "pillLabel": "Framework" },
+    { "front": "Effect of a catalyst", "back": "A catalyst speeds up the forward and reverse reactions EQUALLY, so equilibrium is reached faster but the position of equilibrium and the value of Kc are unchanged. Yield is not increased.", "pillLabel": "Trap" },
+    { "front": "Equilibrium constant, $K_c$", "back": "For a homogeneous reaction the ratio of product concentrations to reactant concentrations at equilibrium, each raised to its stoichiometric coefficient. Its magnitude measures the extent of reaction.", "pillLabel": "Definition" },
+    { "front": "$K_c$ expression for $aA + bB \\rightleftharpoons cC + dD$", "back": "$K_c = \\dfrac{[C]^c[D]^d}{[A]^a[B]^b}$. Concentrations are equilibrium values in mol dm⁻³. Pure solids and pure liquids are omitted; their 'concentration' is constant and absorbed into $K_c$.", "pillLabel": "Formula" },
+    { "front": "Reading the magnitude of $K_c$", "back": "$K_c \\gg 1$: products favoured, equilibrium lies right, high extent. $K_c \\ll 1$: reactants favoured, equilibrium lies left, low extent. $K_c \\approx 1$: appreciable amounts of both.", "pillLabel": "Concept" },
+    { "front": "What changes $K_c$?", "back": "ONLY temperature. Changing concentration, pressure or volume, or adding a catalyst shifts the position of equilibrium but leaves $K_c$ unchanged — the system re-adjusts to restore the same ratio.", "pillLabel": "Trap" },
+    { "front": "Reaction quotient, $Q$ (HL)", "back": "Same expression as $K_c$ but evaluated with the concentrations present at ANY moment, not just at equilibrium. Comparing $Q$ with $K_c$ tells you which way the reaction must go.", "pillLabel": "HL" },
+    { "front": "Using $Q$ vs $K_c$ (HL)", "back": "$Q < K_c$: too few products, reaction goes FORWARD (right). $Q > K_c$: too many products, reaction goes REVERSE (left). $Q = K_c$: system is already at equilibrium.", "pillLabel": "HL" }
+  ],
+  "quickCheck": [
+    { "prompt": "A reaction reaches equilibrium in a closed flask. Which statement is correct?", "options": ["The forward and reverse reactions have both stopped", "The concentrations of reactants and products are equal", "The forward and reverse reactions occur at equal rates and concentrations are constant", "The reaction is now static and no molecules react"], "answer": "The forward and reverse reactions occur at equal rates and concentrations are constant" },
+    { "prompt": "A catalyst is added to a gaseous system at equilibrium. What happens to the position of equilibrium and to Kc?", "options": ["The position shifts right and Kc increases", "Neither the position nor Kc changes; equilibrium is just reached faster", "The position shifts towards fewer moles of gas", "Kc increases but the position is unchanged"], "answer": "Neither the position nor Kc changes; equilibrium is just reached faster" },
+    { "prompt": "For an exothermic reaction at equilibrium, the temperature is increased. The position of equilibrium and Kc will:", "options": ["Shift right; Kc increases", "Shift left (endothermic direction); Kc decreases", "Shift left; Kc stays the same", "Not shift because temperature does not affect equilibrium"], "answer": "Shift left (endothermic direction); Kc decreases" },
+    { "prompt": "For N₂(g) + 3H₂(g) ⇌ 2NH₃(g), the pressure is increased by reducing the volume. The equilibrium shifts:", "options": ["Left, towards the 4 moles of gas", "Right, towards the 2 moles of gas (fewer moles)", "It does not shift because pressure has no effect", "Right, and this increases the value of Kc"], "answer": "Right, towards the 2 moles of gas (fewer moles)" },
+    { "prompt": "(HL) At a given instant the reaction quotient Q is calculated and found to be smaller than Kc. The reaction will:", "options": ["Proceed forward (to the right) to make more product", "Proceed in reverse (to the left) to make more reactant", "Already be at equilibrium", "Stop, because Q must equal Kc to react"], "answer": "Proceed forward (to the right) to make more product" }
   ],
   "faq": [
-    {
-      "q": "Why are solids and pure liquids not included in the $K_c$ expression?",
-      "a": "The 'concentration' of a pure solid or a pure liquid (its density) is essentially constant. Because their values do not change during the reaction, they are incorporated into the equilibrium constant, $K_c$, itself. We only include species whose concentrations can change, which are gases and aqueous solutes."
-    },
-    {
-      "q": "What is the difference between the reaction quotient, Q, and the equilibrium constant, $K_c$?",
-      "a": "The expression for Q is identical to $K_c$, but Q can be calculated at any point in a reaction using the current concentrations, not just at equilibrium. By comparing Q to $K_c$, we can predict the direction the reaction will shift to reach equilibrium. If $Q < K_c$, the reaction shifts right (towards products). If $Q > K_c$, it shifts left (towards reactants). If $Q = K_c$, the system is at equilibrium."
-    },
-    {
-      "q": "If I reverse a reaction, what happens to the value of $K_c$?",
-      "a": "If you reverse a reaction, the new equilibrium constant, $K_c'$, is the reciprocal of the original equilibrium constant. So, $K_c' = 1/K_c$. This is because the reactants and products have swapped places in the expression."
-    }
+    { "q": "Why is equilibrium described as 'dynamic' rather than the reaction simply stopping?", "a": "Because both reactions are still happening. At equilibrium the forward reaction and the reverse reaction are proceeding at exactly the same rate, so for every product molecule formed, one is converted back. Nothing changes on the outside — colour, concentration and pressure are constant — but at the molecular level the system is constantly reacting in both directions. A reaction that had truly stopped would be static, not dynamic." },
+    { "q": "What is the difference between constant concentrations and equal concentrations?", "a": "Constant means unchanging over time — that is what equilibrium guarantees. Equal means reactants and products happen to have the same numerical concentration — that is almost never true. A system can sit at equilibrium with, say, 0.90 mol dm⁻³ of product and 0.20 mol dm⁻³ of reactant: those concentrations are constant but very much not equal. Saying 'at equilibrium the concentrations are equal' is one of the most heavily penalised errors in the topic." },
+    { "q": "Why does a catalyst not change the position of equilibrium or the yield?", "a": "A catalyst lowers the activation energy for the forward and reverse reactions by the same amount, so it speeds both up equally. Because both rates increase in the same proportion, the system reaches the same balance point — just sooner. It changes how fast equilibrium is reached, never where the equilibrium lies, so Kc and the yield are unchanged." },
+    { "q": "What is the difference between the reaction quotient Q and the equilibrium constant Kc? (HL)", "a": "They use the identical algebraic expression, but Q is evaluated with whatever concentrations are present at a given moment, whereas Kc uses the concentrations at equilibrium. Comparing them predicts the direction of change: if Q < Kc the system has too little product and shifts forward; if Q > Kc it has too much product and shifts back; if Q = Kc it is already at equilibrium. Kc is a fixed value at a given temperature; Q changes as the reaction proceeds until it equals Kc." },
+    { "q": "Why are pure solids and liquids left out of the Kc expression?", "a": "The effective concentration of a pure solid or pure liquid is its density, which does not change as the reaction proceeds. Because that value is constant, it is absorbed into the constant Kc rather than written explicitly. Only species whose concentrations genuinely change during the reaction — gases and aqueous solutes — appear in the expression." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "In chemistry, we often think of reactions going from reactants to products and then stopping. However, many important chemical reactions are reversible, meaning they can proceed in both the forward and reverse directions. These reactions don't go to completion; instead, they reach a state of dynamic equilibrium. In this lesson, we'll learn how to quantify just how far a reaction proceeds using a powerful tool: the equilibrium constant, $K_c$."
-    },
-    {
-      "type": "heading",
-      "content": "The Equilibrium Constant ($K_c$)"
-    },
-    {
-      "type": "text",
-      "content": "For any reversible reaction at a constant temperature, the ratio of product concentrations to reactant concentrations reaches a constant value once equilibrium is established. This value is known as the equilibrium constant, denoted by $K_c$. The 'c' indicates that the constant is expressed in terms of molar concentrations."
-    },
-    {
-      "type": "formula",
-      "content": "For a general homogeneous reaction: $aA(g) + bB(g) \\rightleftharpoons cC(g) + dD(g)$ \\\\ The equilibrium constant expression is: \\\\ $K_c = \\frac{\\left[ C \\right]^c \\left[ D \\right]^d}{\\left[ A \\right]^a \\left[ B \\right]^b}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The square brackets, [ ], denote the molar concentration (in mol dm⁻³) of a species at equilibrium.",
-        "The concentrations of products are always in the numerator (top).",
-        "The concentrations of reactants are always in the denominator (bottom).",
-        "Each concentration is raised to the power of its stoichiometric coefficient from the balanced chemical equation.",
-        "The concentrations of pure solids and pure liquids are considered constant and are NOT included in the $K_c$ expression."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Consider the synthesis of ammonia via the Haber process at a certain temperature: \\\\ $N_2(g) + 3H_2(g) \\rightleftharpoons 2NH_3(g)$ \\\\ At equilibrium, the concentrations were found to be: $[N_2] = 0.50$ mol dm⁻³, $[H_2] = 0.80$ mol dm⁻³, and $[NH_3] = 0.20$ mol dm⁻³. Calculate the value of $K_c$ for this reaction at this temperature.",
-      "solution": "1. **Write the $K_c$ expression:** \\\\ $K_c = \\frac{\\left[ NH_3 \\right]^2}{\\left[ N_2 \\right] \\left[ H_2 \\right]^3}$ \\\\ [1 mark for correct expression] \\\\ 2. **Substitute the equilibrium concentrations:** \\\\ $K_c = \\frac{(0.20)^2}{(0.50)(0.80)^3}$ \\\\ [1 mark for correct substitution] \\\\ 3. **Calculate the value:** \\\\ $K_c = \\frac{0.04}{(0.50)(0.512)} = \\frac{0.04}{0.256}$ \\\\ $K_c = 0.15625$ \\\\ $K_c \\approx 0.16$ (to 2 significant figures) \\\\ [1 mark for correct final answer]"
-    },
-    {
-      "type": "heading",
-      "content": "Interpreting the Magnitude of $K_c$"
-    },
-    {
-      "type": "text",
-      "content": "The numerical value of $K_c$ provides a direct indication of the extent of the forward reaction at equilibrium. It tells us whether the equilibrium mixture contains mostly reactants, mostly products, or significant amounts of both."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "If $\\boldsymbol{K_c >> 1}$ (typically > 10³): The equilibrium lies to the right. The reaction proceeds almost to completion, and the equilibrium mixture is rich in products.",
-        "If $\\boldsymbol{K_c << 1}$ (typically < 10⁻³): The equilibrium lies to the left. The reaction barely proceeds, and the equilibrium mixture is rich in reactants.",
-        "If $\\boldsymbol{K_c \\approx 1}$ (between 10⁻³ and 10³): The equilibrium is positioned more centrally. There are significant concentrations of both reactants and products in the equilibrium mixture."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, always write out the $K_c$ expression first, even if you make a mistake in the calculation later. This will often secure you a mark. Also, double-check the equation for any solids or liquids – it's a common trick to include them, but you must remember to leave them out of your expression."
-    },
-    {
-      "type": "heading",
-      "content": "Factors Affecting the Equilibrium Constant"
-    },
-    {
-      "type": "text",
-      "content": "While changes in concentration, pressure, or the addition of a catalyst can shift the position of equilibrium, they do not change the value of the equilibrium constant itself. The system adjusts to restore the same $K_c$ ratio. There is only one factor that changes the value of $K_c$."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Temperature is the only factor that changes the value of $K_c$.**",
-        "For an **exothermic** reaction ($\\Delta H$ is negative), increasing the temperature will **decrease** the value of $K_c$. The equilibrium shifts left to oppose the change.",
-        "For an **endothermic** reaction ($\\Delta H$ is positive), increasing the temperature will **increase** the value of $K_c$. The equilibrium shifts right to oppose the change."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "For the reaction $2SO_2(g) + O_2(g) \\rightleftharpoons 2SO_3(g)$, the equilibrium constant $K_c$ is 4.3 at 800 K. In an equilibrium mixture at this temperature, the concentrations of $SO_2$ and $SO_3$ were found to be 0.20 mol dm⁻³ and 0.90 mol dm⁻³ respectively. Calculate the equilibrium concentration of oxygen, $O_2$.",
-      "solution": "1. **Write the $K_c$ expression:** \\\\ $K_c = \\frac{\\left[ SO_3 \\right]^2}{\\left[ SO_2 \\right]^2 \\left[ O_2 \\right]}$ \\\\ [1 mark for correct expression] \\\\ 2. **Rearrange the expression to solve for $[O_2]$:** \\\\ $\\left[ O_2 \\right] = \\frac{\\left[ SO_3 \\right]^2}{\\left[ SO_2 \\right]^2 K_c}$ \\\\ [1 mark for correct rearrangement] \\\\ 3. **Substitute the known values:** \\\\ $\\left[ O_2 \\right] = \\frac{(0.90)^2}{(0.20)^2 (4.3)}$ \\\\ $\\left[ O_2 \\right] = \\frac{0.81}{(0.04)(4.3)} = \\frac{0.81}{0.172}$ \\\\ 4. **Calculate the concentration:** \\\\ $\\left[ O_2 \\right] = 4.709...$ mol dm⁻³ \\\\ $\\left[ O_2 \\right] \\approx 4.7$ mol dm⁻³ (to 2 significant figures) \\\\ [1 mark for correct final answer with units]"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-chemistry-sl&topic=R2.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/globalassets/programme-information/dp/chemistry/chemistry-data-booklet-2025-en.pdf"
-        },
-        {
-          "label": "Video: Introduction to Equilibrium Constants",
-          "href": "https://www.youtube.com/watch?v=yMMZUT4hS0Y"
-        }
-      ]
-    }
+    { "type": "intro", "content": "We often picture a reaction running left to right until the reactants are used up. Many of the most important reactions in chemistry do not behave that way: in a closed container they are reversible and settle into a state called dynamic equilibrium, where the forward and reverse reactions run at equal rates and the amounts of everything stop changing. This lesson answers two questions about such systems — which way will the equilibrium move if we disturb it (Le Chatelier's principle), and how far did the reaction get in the first place (the equilibrium constant, Kc). As always, the worked examples are marked exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Dynamic equilibrium and its characteristics" },
+    { "type": "text", "content": "When a reversible reaction takes place in a closed system — one that cannot exchange matter with its surroundings — the forward reaction is fast at first and the reverse reaction is slow, because there is little product to react back. As product builds up, the reverse rate rises and the forward rate falls. Eventually the two rates become equal. From that moment the concentrations of every species stay constant, even though molecules are still reacting in both directions at the same pace. This is dynamic equilibrium: dynamic because reactions continue, equilibrium because nothing changes on the outside." },
+    { "type": "keyPoints", "items": [
+      "Equilibrium is reached only in a **closed system** (no matter enters or leaves).",
+      "At equilibrium the **forward rate equals the reverse rate**.",
+      "**Macroscopic properties are constant** — concentration, colour and (for gases) pressure no longer change.",
+      "Equilibrium is **dynamic, not static**: both reactions are still occurring.",
+      "Constant does **not** mean equal — reactant and product concentrations are usually different from each other.",
+      "The same equilibrium position is reached whether you start from reactants or from products."
+    ]},
+
+    { "type": "heading", "content": "Le Chatelier's principle" },
+    { "type": "text", "content": "Le Chatelier's principle lets us predict what happens when a system at equilibrium is disturbed: the position of equilibrium shifts in the direction that partially opposes the change imposed, until a new equilibrium is established. The word 'partially' matters — the system reduces the effect of the change but never fully cancels it. Three disturbances are examinable: changing a concentration, changing pressure or volume, and changing temperature." },
+    { "type": "keyPoints", "items": [
+      "**Concentration:** increasing the amount of a species shifts equilibrium AWAY from it; decreasing a species shifts equilibrium TOWARDS it. (Removing a product, for example, pulls the reaction forward.)",
+      "**Pressure / volume (gases only):** increasing pressure — usually by decreasing the volume — shifts equilibrium towards the side with FEWER moles of gas; decreasing pressure shifts towards MORE moles of gas. If both sides have the same number of moles of gas, changing pressure has no effect on the position.",
+      "**Temperature:** raising the temperature shifts equilibrium in the ENDOTHERMIC direction; lowering it shifts equilibrium in the EXOTHERMIC direction. You must know the sign of ΔH to decide which way.",
+      "**Catalyst:** speeds up forward and reverse reactions EQUALLY, so equilibrium is reached faster but its position — and the yield — is unchanged."
+    ]},
+    { "type": "text", "content": "Only one of these disturbances changes the value of the equilibrium constant. Changing concentration or pressure shifts the position but the system re-adjusts to restore the same Kc; a catalyst leaves both position and Kc untouched. Temperature is the exception: it changes the position AND the value of Kc, because it changes the balance of the forward and reverse rates themselves." },
+
+    { "type": "workedExample", "question": "Ethanoic acid and ethanol form an ester in a reversible reaction: CH₃COOH(l) + C₂H₅OH(l) ⇌ CH₃COOC₂H₅(l) + H₂O(l). The forward reaction is used to make the ester. State and explain, using Le Chatelier's principle, TWO changes that would increase the equilibrium yield of the ester. [4]", "solution": "**Change 1 — remove a product (or add a reactant).**\nContinuously removing the ester (or the water) as it forms, OR adding an excess of one reactant such as ethanol, disturbs the balance.  [M1: correct change stated]\nBy Le Chatelier's principle the equilibrium shifts to oppose the change: removing a product shifts equilibrium to the RIGHT to replace it (adding a reactant shifts it right to use the extra reactant up), increasing the yield of ester.  [A1: correct direction linked to increased yield]\n\n**Change 2 — use a suitable concentration of reactant / drive with excess.**\nIncreasing the concentration of a reactant shifts equilibrium AWAY from that reactant, i.e. to the right, forming more product.  [M1: correct change stated]\nBecause the position moves towards the products, the equilibrium yield of the ester rises.  [A1: correct direction linked to increased yield]\n\n*Note what does NOT help: adding a catalyst reaches equilibrium faster but does not change the yield, and pressure has no useful effect because all species are liquids, not gases.*" },
+
+    { "type": "heading", "content": "The equilibrium constant, $K_c$" },
+    { "type": "text", "content": "Le Chatelier tells us which way a system moves; the equilibrium constant tells us how far the reaction got. For a homogeneous reaction at a fixed temperature, once equilibrium is reached the ratio of product concentrations to reactant concentrations takes a constant value called Kc. The 'c' signals that it is written in terms of molar concentrations (mol dm⁻³)." },
+    { "type": "formula", "content": "aA + bB \\rightleftharpoons cC + dD \\qquad K_c = \\frac{[C]^c[D]^d}{[A]^a[B]^b}" },
+    { "type": "keyPoints", "items": [
+      "Square brackets $[\\;]$ mean the equilibrium molar concentration (mol dm⁻³) of a species.",
+      "Products go on top (numerator); reactants go on the bottom (denominator).",
+      "Each concentration is raised to the power of its stoichiometric coefficient from the balanced equation.",
+      "Pure solids and pure liquids are OMITTED — their concentration is constant and is absorbed into $K_c$.",
+      "$K_c$ is constant at a given temperature; it changes value only if the temperature changes."
+    ]},
+    { "type": "text", "content": "The magnitude of Kc is a direct measure of the extent of reaction. A large value means the top of the fraction dominates, so products are favoured; a small value means reactants dominate." },
+    { "type": "keyPoints", "items": [
+      "$K_c \\gg 1$ (roughly $> 10^3$): equilibrium lies far to the RIGHT; the mixture is mostly products; the reaction goes nearly to completion.",
+      "$K_c \\ll 1$ (roughly $< 10^{-3}$): equilibrium lies far to the LEFT; the mixture is mostly reactants; the reaction barely proceeds.",
+      "$K_c \\approx 1$: appreciable amounts of both reactants and products are present at equilibrium."
+    ]},
+
+    { "type": "workedExample", "question": "Hydrogen and iodine reach equilibrium: H₂(g) + I₂(g) ⇌ 2HI(g). (a) Write the expression for Kc. (b) At a certain temperature the equilibrium concentrations are [H₂] = 0.20 mol dm⁻³, [I₂] = 0.20 mol dm⁻³ and [HI] = 1.60 mol dm⁻³. Calculate Kc and comment on the extent of reaction. [4]", "solution": "**(a) Kc expression.**\n$K_c = \\dfrac{[HI]^2}{[H_2][I_2]}$ — product on top, squared because its coefficient is 2; both reactants on the bottom.  [M1: correct expression]\n\n**(b) Substitute the equilibrium concentrations.**\n$K_c = \\dfrac{(1.60)^2}{(0.20)(0.20)} = \\dfrac{2.56}{0.040}$  [M1: correct substitution]\n$K_c = 64$  (no units, by IB convention)  [A1: correct value]\n\n**Comment on extent.** $K_c = 64$ is well above 1, so the equilibrium lies to the right and products (HI) are favoured — a fairly high extent of reaction, with more product than reactant present at equilibrium.  [A1: valid interpretation of magnitude]\n\n*Because HI appears squared, forgetting the power gives $12.8$ instead of $64$ — a classic lost mark.*" },
+    { "type": "examTip", "content": "Always write the Kc expression before you touch the numbers. Even if the arithmetic later slips, the correct expression usually secures a mark on its own, and it is where error-carried-forward begins. Then check the equation for any (s) or (l) species — leaving them out of the expression is a deliberately common trap." },
+
+    { "type": "heading", "content": "The reaction quotient, $Q$, versus $K_c$ (HL)" },
+    { "type": "text", "content": "At Higher Level we often want to know the direction a reaction will move before it reaches equilibrium. The reaction quotient Q uses the same expression as Kc, but with the concentrations present at the current instant rather than at equilibrium. Comparing Q with Kc predicts what happens next: the system always moves so that Q heads towards Kc." },
+    { "type": "keyPoints", "items": [
+      "$Q < K_c$: too little product relative to equilibrium, so the reaction proceeds FORWARD (to the right) to make more product.",
+      "$Q > K_c$: too much product relative to equilibrium, so the reaction proceeds in REVERSE (to the left).",
+      "$Q = K_c$: the system is already at equilibrium and there is no net change.",
+      "Q changes continuously as the reaction proceeds; it stops changing once it equals Kc."
+    ]},
+    { "type": "text", "content": "At HL you also calculate Kc from equilibrium concentrations, and sometimes work backwards to find a missing concentration by rearranging the expression. The method is identical to the worked example above: write the expression, substitute the equilibrium values, and evaluate — remembering to raise each concentration to its coefficient." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Saying 'at equilibrium the concentrations are equal'** — they are CONSTANT, not equal. This confusion is heavily penalised.",
+      "**Claiming a catalyst increases yield or shifts the equilibrium** — it only speeds up reaching equilibrium; position, yield and Kc are unchanged.",
+      "**Getting the temperature direction wrong** — increasing temperature favours the ENDOTHERMIC direction; you must use the sign of ΔH to decide, not guess.",
+      "**Thinking pressure or concentration changes the value of Kc** — they change the POSITION of equilibrium; only a change in temperature changes Kc.",
+      "**Shifting the wrong way for pressure** — higher pressure favours FEWER moles of gas; and if both sides have equal moles of gas, pressure has no effect at all.",
+      "**Including solids or liquids in the Kc expression** — omit pure (s) and (l); only gases and aqueous species appear.",
+      "**Forgetting the stoichiometric powers** — each concentration is raised to its coefficient (e.g. $[HI]^2$, $[H_2]^3$); missing a power gives the wrong Kc.",
+      "**(HL) Reversing the Q vs Kc logic** — $Q < K_c$ means go FORWARD; $Q > K_c$ means go reverse."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for an explanation-style question. In Paper 2 the marks are analytic: each distinct valid point scores 1 mark, typically a reasoning step (M) followed by the conclusion it supports (A). The engine credits each correct point independently and accepts equivalent wording, and error-carried-forward means a sound consequence drawn from an earlier (even mistaken) statement can still score. Study how each of the four marks below is tied to one specific idea." },
+    { "type": "workedExample", "question": "For the Haber process, N₂(g) + 3H₂(g) ⇌ 2NH₃(g), ΔH < 0. Explain the effect of (i) increasing the pressure and (ii) increasing the temperature on the position of equilibrium and on the yield of ammonia. [4]", "solution": "**Model answer.**\n\n**(i) Increasing the pressure.**\nThe left side has 4 moles of gas (1 N₂ + 3 H₂) and the right side has 2 moles of gas (2 NH₃). By Le Chatelier's principle, increasing the pressure shifts the equilibrium towards the side with FEWER moles of gas to oppose the rise in pressure — that is, to the RIGHT.  [reasoning]\nTherefore the equilibrium position moves towards the products and the yield of ammonia INCREASES.  [conclusion]\n\n**(ii) Increasing the temperature.**\nThe forward reaction is exothermic (ΔH < 0), so the reverse reaction is endothermic. By Le Chatelier's principle, increasing the temperature shifts the equilibrium in the ENDOTHERMIC direction to absorb the added heat — that is, to the LEFT.  [reasoning]\nTherefore the equilibrium position moves towards the reactants and the yield of ammonia DECREASES (and Kc decreases too).  [conclusion]\n\n---\n**How our marking engine awards the 4 marks (1 mark per distinct valid point):**\n\n- **M mark, part (i) — reasoning.** Awarded for identifying that the product side has fewer moles of gas (2 vs 4) AND stating that higher pressure shifts equilibrium towards fewer moles of gas / to the right. This is the reasoning point.\n- **A mark, part (i) — conclusion.** Awarded for the correct consequence: the yield of ammonia increases. It must follow the shift you argued — this is where ECF lives: a student whose reasoning pointed the shift the other way but who then draws the matching yield conclusion is credited for the consistent conclusion.\n- **M mark, part (ii) — reasoning.** Awarded for recognising the forward reaction is exothermic (so the reverse is endothermic) AND stating that increasing temperature shifts equilibrium in the endothermic direction / to the left.\n- **A mark, part (ii) — conclusion.** Awarded for the correct consequence: the yield of ammonia decreases (accept also 'Kc decreases').\n\n**Accept equivalents.** 'Fewer gas molecules', 'fewer moles of gas' and 'the side with 2 mol of gas' all score the pressure reasoning. 'Shifts to absorb heat / in the endothermic direction / backward' all score the temperature reasoning. Directions (left/right) may be given by words or arrows.\n\n**Bottom line:** four distinct points, four marks — two reasoning (M) and two conclusion (A). A bare answer such as 'yield goes up then down' with no reasoning scores at most the two conclusion marks, and risks losing those too if the engine cannot see the argument behind them. Show the reasoning and the marks are protected." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer exactly this way — point by point, with each distinct valid idea scoring a mark and ECF protecting a consistent conclusion. So spell out both halves of every point: the reasoning (why the equilibrium shifts) AND the conclusion (what happens to the yield). Writing only the conclusion leaves method marks on the table." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Equilibrium ideas run through the rest of the course. Acid–base chemistry is equilibrium with Ka, Kb and Kw; solubility uses the same reasoning; industrial processes such as the Haber and Contact processes are Le Chatelier trade-offs between yield and rate. Fix the two questions of this topic — which way will it move (Le Chatelier) and how far did it get (Kc) — and every later equilibrium becomes a variation on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 answer marked: apply Le Chatelier's principle and reason with Kc, with full working", "href": "/mark?subject=ib-chemistry-sl&topic=R2.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -12,6 +12,7 @@ import { InternalNavigationCapture } from "@/components/ui/InternalNavigationCap
 import { ScrollToTopOnRoute } from "@/components/ui/ScrollToTopOnRoute";
 import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
 import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
+import { VisitTracker } from "@/components/analytics/VisitTracker";
 import { OmniAILazy } from "@/components/omni-ai/OmniAILazy";
 import { SeoAnalytics } from "@/components/seo/SeoAnalytics";
 import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
@@ -125,6 +126,7 @@ export default function RootLayout({
               <NavigationLoader />
               <InternalNavigationCapture />
               <ScrollToTopOnRoute />
+              <VisitTracker />
               <RootHeader />
               <div
                 id="main-content"

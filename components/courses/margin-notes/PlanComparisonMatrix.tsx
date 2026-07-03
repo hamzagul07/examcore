@@ -1,4 +1,5 @@
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 
 /**
  * Full Free / Pro / Max feature matrix. Rows mirror the per-plan card lists on
@@ -28,7 +29,7 @@ const ROWS: Row[] = [
       String(omniCapForTier('mastery')),
     ],
   },
-  { label: 'Live interactive diagrams', cells: [false, true, true] },
+  { label: 'Live interactive diagrams', cells: [INTERACTIVE_DIAGRAMS_FREE, true, true] },
   { label: 'Past-paper practice, flashcards & quizzes', cells: [false, true, true] },
   { label: 'Whole-paper marking', cells: [false, true, true] },
   { label: 'Projected grade estimates', cells: [false, false, true] },

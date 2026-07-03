@@ -4,6 +4,14 @@ export function isPaidTier(tier: SubscriptionTier): boolean {
   return tier !== 'free'
 }
 
+/**
+ * Launch promo: interactive diagrams (the lesson "Explore the concept" visuals)
+ * are free for everyone while MarkScheme is new. Flip to `false` to move them
+ * back behind Pro/Max — that single change re-gates the lesson section AND
+ * updates the pricing page / comparison-matrix copy.
+ */
+export const INTERACTIVE_DIAGRAMS_FREE = true
+
 /** Max questions marked per whole-paper upload on the free tier (preview). */
 export const FREE_WHOLE_PAPER_QUESTION_LIMIT = 3
 

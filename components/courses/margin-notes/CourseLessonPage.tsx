@@ -19,6 +19,7 @@ import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
 import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
+import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 import {
   jumpTo,
   lessonTopicHref,
@@ -64,6 +65,9 @@ export function CourseLessonPage({
   // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
   // crawlers index everything and paid users never flash to a locked state.
   const locked = access === 'free'
+  // Interactive diagrams are free during launch (see INTERACTIVE_DIAGRAMS_FREE),
+  // so they stay open even for the free tier. Everything else follows `locked`.
+  const diagramsLocked = locked && !INTERACTIVE_DIAGRAMS_FREE
   const trialDays = access === 'trial' ? trialDaysLeft(trialEndsAt) : 0
   const acc = accentCssVar(subjectAcc)
   const pathname = usePathname()
@@ -119,7 +123,7 @@ export function CourseLessonPage({
       [
         { id: 'simple', label: 'Simple explanation', on: !!L.simple },
         { id: 'syllabus', label: 'Syllabus coverage', on: !!L.subtopics?.length },
-        { id: 'visual', label: 'Visual learning', on: hasVisual && !locked },
+        { id: 'visual', label: 'Visual learning', on: hasVisual && !diagramsLocked },
         { id: 'formulas', label: 'Key formulas', on: !!L.formulas?.length },
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
         { id: 'notes', label: 'Full notes', on: !!L.notes?.length },
@@ -133,7 +137,7 @@ export function CourseLessonPage({
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
       ].filter((s) => s.on),
-    [L, hasVisual, locked]
+    [L, hasVisual, locked, diagramsLocked]
   )
 
   useEffect(() => {
@@ -331,7 +335,7 @@ export function CourseLessonPage({
                   : 'Practise & mark this topic →'}
               </button>
             )}
-            {hasVisual && !locked ? (
+            {hasVisual && !diagramsLocked ? (
               <button
                 type="button"
                 className="btn-ghost sm btn-block btn-block-gap"
@@ -582,7 +586,7 @@ export function CourseLessonPage({
                         : 'Use the live diagram and synced steps — play it or tap a step card to walk through.'
                   }
                 />
-                {locked ? (
+                {diagramsLocked ? (
                   <LessonUpsell feature="diagrams" signedIn={signedIn} />
                 ) : (
                   <div className="visual-stack">

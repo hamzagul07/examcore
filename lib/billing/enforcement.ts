@@ -15,7 +15,12 @@ import {
   TIER_MONTHLY_CAPS,
   TIER_OMNI_CAPS,
 } from './caps'
-import { capTierForAccess, effectiveAccess, type EffectiveAccess } from './access'
+import {
+  ACTIVE_STATUSES,
+  capTierForAccess,
+  effectiveAccess,
+  type EffectiveAccess,
+} from './access'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
 
 export { TIER_MONTHLY_CAPS, TIER_OMNI_CAPS }
@@ -62,8 +67,6 @@ export type BillingSummary = {
   questions: QuotaAllowance
   omni: QuotaAllowance
 }
-
-const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing']
 
 type BillingContext = {
   tier: SubscriptionTier

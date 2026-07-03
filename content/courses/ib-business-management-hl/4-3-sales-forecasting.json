@@ -2,182 +2,133 @@
   "slug": "4-3-sales-forecasting",
   "topicCode": "4.3",
   "title": "Sales forecasting",
+  "unit": { "code": "4", "title": "Marketing" },
   "paper": "P2",
   "paperName": "Business Management HL",
   "status": "premium",
-  "summary": "This lesson explores the crucial business activity of sales forecasting. You will learn quantitative techniques, such as time series analysis and moving averages, to predict future sales based on past data. We will also evaluate the benefits and limitations of these methods, considering the impact of seasonal, cyclical, and random variations on their accuracy.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Sales forecasting turns yesterday's numbers into tomorrow's plan. This HL-only lesson works through the whole of syllabus 4.3: why firms forecast and who benefits; the four components of a time series (trend, seasonal, cyclical and random variations); how to calculate a moving average — including a 3- or 4-period average and the centring an even-period average needs — to isolate the trend; how to extrapolate that trend to project future sales; how to measure seasonal variation as actual minus trend and use it to adjust a forecast; and the benefits and limitations of forecasting. Because 4.3 is a quantitative topic, the model answer is a moving-average calculation set out exactly the way our marking engine awards Business Management M/A (method and accuracy) marks — so you can see how the working, not just the final number, is what earns the marks and how follow-through protects you after a single slip.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the value of sales forecasting for different business functions.",
-    "Calculate and interpret 3-period and 4-period centred moving averages to identify sales trends.",
-    "Analyse the benefits and limitations of sales forecasting.",
-    "Evaluate the use of sales forecasting in different business contexts."
+    "Explain the purpose and benefits of sales forecasting for different business functions.",
+    "Identify and distinguish the four components of a time series — trend, seasonal, cyclical and random variations.",
+    "Calculate a 3-period and a 4-period centred moving average to identify the underlying sales trend.",
+    "Use the trend to extrapolate a future sales figure and adjust it for seasonal variation (actual minus trend).",
+    "Evaluate the benefits and limitations of sales forecasting in different business contexts."
   ],
+  "syllabusObjectivesCovered": ["4.3"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Predicting Your Sales Weather",
-    "summary": "Sales forecasting is like being a business weather forecaster. You use past data to predict future sales, which helps the company prepare for what's coming, whether it's a sunny sales season or a stormy downturn.",
-    "analogy": "Imagine you run an ice cream van. To decide how much ice cream to stock each week, you wouldn't just guess. You'd look at your sales from the last few weeks and the same time last year. You'd notice you sell more on sunny weekends (seasonal variation) and that sales are generally growing year on year (the trend). Sales forecasting applies this same logic to business, using historical data to make informed predictions about the future.",
+    "title": "Reading the sales weather",
+    "summary": "Sales forecasting is weather forecasting for a business. Past sales are the historical readings; the trend is the climate; the seasonal, cyclical and random variations are the day-to-day weather on top of it. A moving average is the tool that smooths the noisy daily readings so the underlying climate shows through, and extrapolation is the forecast for next week based on that climate.",
+    "analogy": "Picture an ice-cream van. Weekly takings jump around — a heatwave weekend spikes them, a rainy week flattens them — so no single week tells you much. But if you average each week together with the weeks either side, the spikes and dips cancel out and a smooth line appears underneath: sales are quietly rising month after month. That smoothed line is the trend. Once you can see it, you extend it forward to predict next month, then add back the usual summer boost to turn a bland trend figure into a realistic forecast for a hot July.",
     "steps": [
-      "Gather historical sales data over a consistent period, such as months or quarters.",
-      "Calculate moving averages to smooth out short-term fluctuations and reveal the underlying trend.",
-      "Extrapolate the trend line into the future to create a baseline forecast.",
-      "Critically evaluate the forecast by considering qualitative factors and the inherent limitations of the method."
+      "Collect historical sales over equal, consistent periods — usually quarters or months.",
+      "Calculate a moving average to smooth out the seasonal, cyclical and random noise and reveal the underlying trend.",
+      "Extrapolate the trend into the future to get a baseline forecast for the period you want.",
+      "Adjust that baseline for the period's seasonal variation (actual minus trend), then sense-check it against qualitative judgement and the method's limitations."
     ]
   },
+  "keyConcepts": ["trend", "seasonal variation", "extrapolation"],
   "flashcards": [
-    {
-      "front": "Sales Forecasting",
-      "back": "The process of predicting a firm's future sales volume or value. It uses historical data and analysis of market trends."
-    },
-    {
-      "front": "Time Series Analysis",
-      "back": "A quantitative forecasting technique that uses historical sales data to discover underlying patterns and trends, which are then extrapolated into the future."
-    },
-    {
-      "front": "Trend",
-      "back": "The long-term underlying movement of data in a time series, indicating a general direction (e.g., upward, downward, or stable)."
-    },
-    {
-      "front": "Seasonal Variations",
-      "back": "Predictable, repeating fluctuations in sales data that occur within a 12-month period (e.g., higher sales of coats in winter)."
-    },
-    {
-      "front": "Cyclical Variations",
-      "back": "Fluctuations in sales data linked to the economic cycle (boom, recession, etc.). These patterns occur over a longer period than one year."
-    },
-    {
-      "front": "Random Variations",
-      "back": "Unpredictable, erratic fluctuations in sales data caused by unforeseen events like a natural disaster, a competitor's sudden collapse, or a pandemic."
-    },
-    {
-      "front": "Moving Average",
-      "back": "A calculation used to smooth out fluctuations in a time series by creating a series of averages from subsets of the full data set. This helps to identify the trend."
-    },
-    {
-      "front": "Extrapolation",
-      "back": "The process of extending a trend line identified from past data into the future to make a prediction. It assumes past trends will continue."
-    },
-    {
-      "front": "Centred Moving Average",
-      "back": "A moving average that is aligned with the centre of the data period it represents. This is necessary for even-numbered moving averages (e.g., 4-quarter) to align the trend with the actual time periods."
-    },
-    {
-      "front": "Common Trap: Seasonal vs. Cyclical",
-      "back": "Don't confuse the two. Seasonal variations happen within one year (e.g., Christmas sales). Cyclical variations happen over several years and are tied to the wider economy (e.g., a recession)."
-    },
-    {
-      "front": "Quantitative Forecasting",
-      "back": "Forecasting methods that are based on numerical data and statistical models, such as time series analysis and moving averages."
-    },
-    {
-      "front": "Qualitative Forecasting",
-      "back": "Forecasting methods based on subjective opinions, intuition, and expert judgment, such as the Delphi method or consumer surveys. It's useful when historical data is not available."
-    }
+    { "front": "Sales forecasting", "back": "The process of predicting a firm's future sales volume or value, usually from historical data and analysis of market conditions. It underpins budgeting, production, staffing and cash-flow planning.", "pillLabel": "Definition" },
+    { "front": "Time series analysis", "back": "A quantitative forecasting technique that uses historical sales data recorded at regular intervals to identify underlying patterns, which are then projected into the future.", "pillLabel": "Definition" },
+    { "front": "Trend", "back": "The long-term underlying direction of the data once short-term fluctuations are smoothed out — upward, downward or flat. It is what a moving average is designed to reveal.", "pillLabel": "Component" },
+    { "front": "Seasonal variation", "back": "Regular, predictable fluctuations that repeat WITHIN a 12-month period — e.g. more sun cream in summer, more toys in December. Measured as actual sales minus the trend for that period.", "pillLabel": "Component" },
+    { "front": "Cyclical variation", "back": "Longer-term fluctuations tied to the economic (business) cycle of boom and recession. These repeat over several YEARS, not within a single year.", "pillLabel": "Component" },
+    { "front": "Random variation", "back": "Irregular, unpredictable 'blips' caused by one-off events — extreme weather, a strike, a competitor's collapse, a pandemic. They cannot be forecast and are the noise a moving average tries to remove.", "pillLabel": "Component" },
+    { "front": "Moving average", "back": "A series of averages, each taken from a fixed number of consecutive periods, used to smooth out fluctuations and expose the trend. A 3-period average sums three periods and divides by 3, then 'moves' along one period.", "pillLabel": "Definition" },
+    { "front": "Centred moving average", "back": "When an even number of periods (e.g. 4 quarters) is averaged, the result falls BETWEEN two periods. Centring — averaging two consecutive moving averages — realigns the trend value onto an actual period so it can be compared with real sales.", "pillLabel": "Concept" },
+    { "front": "Extrapolation", "back": "Extending the identified trend beyond the last data point to project future sales. It assumes the past trend continues — a strength when conditions are stable, a weakness when they are not.", "pillLabel": "Concept" },
+    { "front": "Seasonal variation = actual − trend", "back": "For each period, subtract the trend (moving average) from the actual sales. A positive figure means the period usually sells above trend; a negative figure means below. Averaging these per season gives the seasonal adjustment.", "pillLabel": "Formula" },
+    { "front": "Adjusting a forecast", "back": "Forecast = extrapolated trend + seasonal variation for that period. The bare trend is the baseline; adding the season's typical variation turns it into a realistic period forecast.", "pillLabel": "Formula" },
+    { "front": "Qualitative forecasting", "back": "Prediction from expert judgement, intuition and market intelligence (e.g. the Delphi method, sales-force opinion, consumer surveys) rather than numbers. Vital for new products or volatile markets where past data is a poor guide.", "pillLabel": "Definition" },
+    { "front": "Trap: seasonal vs cyclical", "back": "Seasonal variation repeats WITHIN one year; cyclical variation repeats over SEVERAL years and follows the economy. Naming a Christmas spike 'cyclical' is a classic error.", "pillLabel": "Trap" },
+    { "front": "Trap: extrapolation is not certainty", "back": "Extrapolation only projects the PAST trend forward. It says nothing about whether that trend will hold — a new competitor or recession can break it. The further ahead you forecast, the less reliable it is.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "What is the primary purpose of calculating a moving average in time series analysis?", "options": ["To smooth out short-term fluctuations and reveal the underlying trend", "To measure the exact seasonal variation for each quarter", "To guarantee the forecast will be accurate", "To convert quarterly data into annual totals"], "answer": "To smooth out short-term fluctuations and reveal the underlying trend" },
+    { "prompt": "Seasonal variation for a given period is correctly calculated as:", "options": ["trend minus actual sales", "actual sales minus the trend", "actual sales divided by the trend", "the average of the four quarterly trends"], "answer": "actual sales minus the trend" },
+    { "prompt": "A firm extrapolates its rising sales trend to forecast next year. What key assumption does extrapolation rely on?", "options": ["That seasonal variations will disappear", "That the underlying past trend will continue into the future", "That random variations can be predicted", "That the economy is entering a recession"], "answer": "That the underlying past trend will continue into the future" },
+    { "prompt": "A toy retailer's sales spike every December and fall every January, repeating each year. This pattern is an example of:", "options": ["cyclical variation", "random variation", "seasonal variation", "the long-term trend"], "answer": "seasonal variation" },
+    { "prompt": "Why must a 4-quarter moving average be 'centred' before it can be used as the trend?", "options": ["Because an even-period average falls between two periods and must be realigned onto an actual period", "Because four quarters make a full year and must be divided by two", "Because centring removes the seasonal variation from the data", "Because odd-period averages are always inaccurate"], "answer": "Because an even-period average falls between two periods and must be realigned onto an actual period" }
   ],
   "faq": [
-    {
-      "q": "What is the main difference between seasonal and cyclical variations?",
-      "a": "The key difference is the time frame. Seasonal variations are regular patterns that occur within a single year (e.g., higher sales of fireworks in November). Cyclical variations are tied to the broader economic cycle (recession, growth, boom) and occur over several years."
-    },
-    {
-      "q": "Why do we need to 'centre' a 4-period moving average?",
-      "a": "An average of an even number of data points (like 4 quarters) mathematically falls *between* the central data points. For example, the average of Q1, Q2, Q3, and Q4 belongs between Q2 and Q3. Centring, which is taking a 2-period average of the moving averages, realigns the trend value with a specific time period (Q3 in this case), making it possible to compare the trend directly with actual sales data."
-    },
-    {
-      "q": "Is qualitative or quantitative forecasting better?",
-      "a": "Neither is inherently 'better'; they serve different purposes. Quantitative forecasting is objective and excellent for stable environments with plenty of historical data. Qualitative forecasting is subjective but invaluable for new businesses, new product launches, or in highly volatile markets where past data is a poor guide to the future. Most businesses use a combination of both for a more balanced and realistic forecast."
-    }
+    { "q": "Why do businesses bother forecasting sales at all?", "a": "Because almost every operational decision depends on an expected sales figure. Finance uses it to build cash-flow forecasts and budgets; operations uses it to schedule production and set stock levels so the firm neither runs out nor over-orders; human resources uses it to plan staffing and recruitment; and marketing uses it to size campaigns and set targets. A shared, evidence-based sales estimate lets these functions plan together instead of guessing separately." },
+    { "q": "What is the difference between seasonal and cyclical variation?", "a": "The time frame. Seasonal variation is a regular pattern that repeats within a single year — higher ice-cream sales each summer, higher toy sales each December. Cyclical variation is tied to the wider economic cycle of boom and recession and repeats over several years, so it is much harder to time. Calling a within-year Christmas peak 'cyclical' is one of the most common exam errors." },
+    { "q": "Why do we have to 'centre' a 4-period moving average but not a 3-period one?", "a": "An average of an odd number of periods lands neatly on the middle period — the average of Q1, Q2 and Q3 sits on Q2. An average of an even number of periods lands between two periods — the average of Q1–Q4 sits between Q2 and Q3, where there is no actual data. Centring takes a second average of two consecutive four-period averages, which shifts the value onto a real period (Q3) so it can be lined up against actual sales." },
+    { "q": "How do I turn a trend figure into an actual forecast for, say, Quarter 4?", "a": "In two steps. First extrapolate the trend forward to the period you want — extend the smoothed trend line to get a baseline. Then adjust for that period's seasonal variation, which you find as actual minus trend averaged over past years. Forecast = extrapolated trend + seasonal variation. If Q4 typically runs $8,000 above trend, you add that back so the forecast reflects the usual Q4 boost rather than a bland average." },
+    { "q": "Is quantitative or qualitative forecasting better?", "a": "Neither on its own. Quantitative methods like moving averages are objective and strong when there is plenty of stable historical data. But they are backward-looking and blind to anything new — a fresh competitor, a launch, a downturn. Qualitative judgement fills that gap for new products, volatile markets or one-off shocks. The best forecasts combine the two: a numerical baseline, sense-checked and adjusted by managers who know the market." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Imagine trying to run a business without any idea of how many customers you'll have next month. How much stock should you order? How many staff do you need on duty? How much revenue can you expect? Sales forecasting is the tool businesses use to answer these critical questions, enabling them to plan resources, manage cash flow, and set realistic objectives."
-    },
-    {
-      "type": "heading",
-      "content": "The Components of Time Series Analysis"
-    },
-    {
-      "type": "text",
-      "content": "Most quantitative sales forecasting is based on time series analysis. This involves breaking down past sales data into four key components to understand the complete picture. By isolating the underlying trend, a business can make more reliable predictions."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Trend:** The long-term general direction of the data, once short-term fluctuations are smoothed out.",
-        "**Seasonal Variations:** Regular and predictable fluctuations that occur within a 12-month period. For example, a retailer selling more sun cream in the summer.",
-        "**Cyclical Variations:** Longer-term fluctuations tied to the business or economic cycle. For example, sales of luxury cars may fall during a recession.",
-        "**Random Variations:** Irregular, unforeseeable 'blips' in the data caused by one-off events like a major sporting victory, extreme weather, or a key competitor going out of business."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Calculating Moving Averages to Find the Trend"
-    },
-    {
-      "type": "text",
-      "content": "The primary goal of a moving average is to smooth out the 'noise' from seasonal, cyclical, and random variations to clearly identify the underlying trend. It works by calculating a series of averages from the data. The 'period' of the moving average (e.g., 3-month or 4-quarter) is chosen to match the frequency of the seasonal variations."
-    },
-    {
-      "type": "workedExample",
-      "question": "A coffee shop, 'The Daily Grind', has recorded its quarterly sales (£'000) for the last two years. Calculate the 3-period moving average to help identify the sales trend.\n\n**Data:**\nYear 1 Q1: 20\nYear 1 Q2: 25\nYear 1 Q3: 22\nYear 1 Q4: 28\nYear 2 Q1: 24\nYear 2 Q2: 30",
-      "solution": "To calculate the 3-period moving average, we take the average of three consecutive periods. The result is placed alongside the middle value of the period.\n\n**Step 1: Calculate the first moving total**\nPeriods: Y1Q1, Y1Q2, Y1Q3\nTotal: 20 + 25 + 22 = 67\n\n**Step 2: Calculate the first moving average**\nAverage: 67 / 3 = 22.33. This value is placed next to the middle period, Y1Q2.\n\n**Step 3: Continue for all periods**\n\n| Period | Sales (£'000) | 3-Period Moving Total | 3-Period Moving Average | \n|---|---|---|---|\n| Y1 Q1 | 20 | | |\n| Y1 Q2 | 25 | 20+25+22 = 67 | 67/3 = 22.33 |\n| Y1 Q3 | 22 | 25+22+28 = 75 | 75/3 = 25.00 |\n| Y1 Q4 | 28 | 22+28+24 = 74 | 74/3 = 24.67 |\n| Y2 Q1 | 24 | 28+24+30 = 82 | 82/3 = 27.33 |\n| Y2 Q2 | 30 | | |\n\n**Working:**\n- (20+25+22)/3 = 22.33\n- (25+22+28)/3 = 25.00\n- (22+28+24)/3 = 24.67\n- (28+24+30)/3 = 27.33\n\n**Conclusion:** The 3-period moving average shows a clear upward trend from £22,330 to £27,330, smoothing out the dip in Y1Q3 and Y2Q1."
-    },
-    {
-      "type": "examTip",
-      "content": "In an exam, always show your working for moving average calculations. Even if your final answer is incorrect, you can earn marks for demonstrating the correct method. Use a table to keep your calculations organised and clear."
-    },
-    {
-      "type": "heading",
-      "content": "Advanced: 4-Period Centred Moving Averages"
-    },
-    {
-      "type": "text",
-      "content": "When dealing with an even number of periods, like 4 quarters in a year, a standard moving average falls between two time periods. For example, the average of Q1, Q2, Q3, and Q4 would naturally sit between Q2 and Q3. To fix this and align the trend with the actual periods, we must 'centre' the average. This involves a two-step process: calculating a 4-period moving average, and then calculating a 2-period moving average of those results."
-    },
-    {
-      "type": "workedExample",
-      "question": "Using the same data for 'The Daily Grind', calculate the 4-quarter centred moving average.\n\n**Data:**\nYear 1 Q1: 20\nYear 1 Q2: 25\nYear 1 Q3: 22\nYear 1 Q4: 28\nYear 2 Q1: 24\nYear 2 Q2: 30\nYear 2 Q3: 27\nYear 2 Q4: 35",
-      "solution": "This is a two-stage calculation.\n\n**Stage 1: Calculate 4-Quarter Moving Totals and Averages**\n- Total 1 (Y1Q1-Q4): 20+25+22+28 = 95. Average = 95/4 = 23.75. (Placed between Q2 & Q3)\n- Total 2 (Y1Q2-Y2Q1): 25+22+28+24 = 99. Average = 99/4 = 24.75. (Placed between Q3 & Q4)\n- And so on.\n\n**Stage 2: Centre the Averages**\n- Take the average of the first two 4-quarter moving averages: (23.75 + 24.75) / 2 = 24.25. This is the centred moving average for Y1Q3.\n\n**Table of Results:**\n| Period | Sales (£'000) | 4-Qtr Moving Total | 4-Qtr Moving Average | Centred Moving Average (Trend) |\n|---|---|---|---|---|\n| Y1 Q1 | 20 | | | |\n| Y1 Q2 | 25 | | | |\n| | | 95 | 23.75 | |\n| Y1 Q3 | 22 | | | (23.75+24.75)/2 = **24.25** |\n| | | 99 | 24.75 | |\n| Y1 Q4 | 28 | | | (24.75+25.75)/2 = **25.25** |\n| | | 103 | 25.75 | |\n| Y2 Q1 | 24 | | | (25.75+27.25)/2 = **26.50** |\n| | | 109 | 27.25 | |\n| Y2 Q2 | 30 | | | (27.25+29)/2 = **28.13** |\n| | | 116 | 29.00 | |\n| Y2 Q3 | 27 | | | |\n| Y2 Q4 | 35 | | | |\n\n**Conclusion:** The 4-quarter centred moving average reveals a strong, consistent upward trend in sales for The Daily Grind, starting at £24,250 in Y1Q3 and rising to £28,130 by Y2Q2."
-    },
-    {
-      "type": "heading",
-      "content": "Evaluating Sales Forecasting"
-    },
-    {
-      "type": "text",
-      "content": "While incredibly useful, no forecast is a crystal ball. Businesses must understand the strengths and weaknesses of their chosen forecasting methods to use them effectively."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Benefits:** Better cash flow management, reduced inventory holding costs, improved production scheduling, informed marketing strategies, and enhanced capacity utilisation.",
-        "**Limitations:** It is based on past data and cannot predict the future with certainty. It is less reliable for new businesses with no historical data. It can be disrupted by unexpected random variations. The accuracy diminishes the further into the future you forecast."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "For evaluation questions (e.g., 'Discuss the value of sales forecasting to...'), you must apply your answer to the context given in the case study. A forecast for a stable utility company is far more reliable than for a fast-fashion brand. Acknowledge the limitations and suggest that forecasts should be used as a guide, not a guarantee, and should be supplemented with qualitative insights."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge of Sales Forecasting",
-      "href": "/mark?subject=ib-business-management-hl&topic=4.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Investopedia: Guide to Sales Forecasting",
-          "href": "https://www.investopedia.com/terms/s/sales-forecasting.asp"
-        },
-        {
-          "label": "YouTube: Time Series Analysis Explained",
-          "href": "https://www.youtube.com/watch?v=c_gS-j02m_Y"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Before a business orders stock, rosters staff or builds a budget, it needs one number it does not yet have: how much it will sell. Sales forecasting is how firms estimate that number from evidence rather than hope. This HL-only lesson covers the whole of syllabus 4.3 — the purpose and benefits of forecasting; the four components of a time series; how to calculate a moving average (including centring an even-period average) to isolate the trend; how to extrapolate that trend and adjust it for seasonal variation; and the method's benefits and limitations. Because 4.3 is a quantitative topic, the model answer is a moving-average calculation marked the way our engine actually awards marks — a method mark for the right approach and an accuracy mark for the right figure — so you can see why showing your working, not just writing an answer, is what earns the marks." },
+
+    { "type": "heading", "content": "Why firms forecast: purpose and benefits" },
+    { "type": "text", "content": "A sales forecast is a shared estimate of future demand, and almost every function of the business leans on it. Finance turns the forecast into a cash-flow projection and a budget; operations uses it to schedule production and set inventory so the firm holds neither too much stock nor too little; human resources plans recruitment and shift patterns around expected demand; and marketing sizes its campaigns and sets realistic targets against it. A forecast does not have to be perfectly right to be valuable — it just has to be better than a guess, and shared, so the whole business plans from the same expectation." },
+    { "type": "keyPoints", "items": [
+      "**Better cash-flow and budgeting:** an expected sales figure lets finance predict inflows, plan for shortfalls and set departmental budgets.",
+      "**Efficient stock and production:** operations orders materials and schedules output to match expected demand, cutting both stock-outs and costly over-stocking.",
+      "**Smarter staffing:** HR can recruit, train and roster staff ahead of predicted busy periods rather than reacting late.",
+      "**Focused marketing and targets:** marketing scales campaigns and sets achievable, evidence-based objectives.",
+      "**A shared plan:** one forecast aligns the functions so they plan together instead of pulling in different directions."
+    ]},
+
+    { "type": "heading", "content": "The four components of a time series" },
+    { "type": "text", "content": "Time series analysis assumes that any run of historical sales data is really four things layered on top of one another. Separating them is what makes forecasting possible: once the predictable trend and seasonal pattern are pulled out from the unpredictable cyclical and random noise, the firm can project the parts that repeat and treat the rest with caution." },
+    { "type": "keyPoints", "items": [
+      "**Trend:** the long-term underlying direction of sales once the short-term ups and downs are smoothed away — the single most useful component to extract.",
+      "**Seasonal variation:** regular, predictable fluctuations that repeat within a 12-month period, such as higher heating-oil sales every winter.",
+      "**Cyclical variation:** longer-term swings tied to the economic cycle of boom and recession, repeating over several years rather than within one.",
+      "**Random variation:** irregular, unforeseeable blips from one-off events — a heatwave, a strike, a viral moment, a pandemic — that no model can predict."
+    ]},
+    { "type": "examTip", "content": "The seasonal-versus-cyclical distinction is a favourite trap. Seasonal = within one year and repeats every year (Christmas, summer). Cyclical = across several years and follows the economy (recession, boom). If the pattern lines up with the calendar it is seasonal; if it lines up with the state of the economy it is cyclical." },
+
+    { "type": "heading", "content": "Calculating a moving average to find the trend" },
+    { "type": "text", "content": "A moving average smooths the noise so the trend shows through. You add up a fixed number of consecutive periods, divide by that number to get an average, then slide the window along one period and repeat. The size of the window is chosen to match the seasonal cycle — four quarters for quarterly data, three periods where a shorter smoothing is wanted — so that a whole cycle of highs and lows cancels out in each average. With an ODD number of periods the average lands neatly on the middle period; with an EVEN number it lands between two periods and must be centred, which we handle next." },
+    { "type": "workedExample", "question": "A garden centre records its quarterly sales ($000s): Y1 Q1 = 30, Y1 Q2 = 62, Y1 Q3 = 44, Y1 Q4 = 20, Y2 Q1 = 34, Y2 Q2 = 68. Calculate the 3-period moving average to identify the underlying trend.", "solution": "**Method.** For a 3-period moving average, add three consecutive quarters, divide by 3, and place the result next to the MIDDLE quarter. Then slide the window forward one quarter and repeat.\n\n**Working (each average sits on the middle quarter):**\n- Centred on Y1 Q2: (30 + 62 + 44) ÷ 3 = 136 ÷ 3 = **45.33**\n- Centred on Y1 Q3: (62 + 44 + 20) ÷ 3 = 126 ÷ 3 = **42.00**\n- Centred on Y1 Q4: (44 + 20 + 34) ÷ 3 = 98 ÷ 3 = **32.67**\n- Centred on Y2 Q1: (20 + 34 + 68) ÷ 3 = 122 ÷ 3 = **40.67**\n\n| Quarter | Sales ($000s) | 3-period moving total | 3-period moving average (trend) |\n|---|---|---|---|\n| Y1 Q1 | 30 | | |\n| Y1 Q2 | 62 | 136 | 45.33 |\n| Y1 Q3 | 44 | 126 | 42.00 |\n| Y1 Q4 | 20 | 98 | 32.67 |\n| Y2 Q1 | 34 | 122 | 40.67 |\n| Y2 Q2 | 68 | | |\n\n**Interpretation.** The raw quarterly figures swing wildly between 20 and 68, driven by seasonal demand, but the moving average is far calmer. Note that with only six data points a 3-period average still carries some seasonal noise (the trend dips then rises), which is exactly why quarterly data is usually smoothed with a 4-quarter average instead — the topic of the next example. The first and last quarters never get a trend value, because a 3-period window has no data on one side of them." },
+
+    { "type": "heading", "content": "Centring a 4-period moving average" },
+    { "type": "text", "content": "Quarterly data has four periods in its seasonal cycle, so a 4-quarter moving average smooths it best — but four is even, so each average falls between two quarters (the average of Q1–Q4 sits between Q2 and Q3). To line the trend up with real quarters, we centre it: take a second average of each neighbouring pair of 4-quarter averages. That two-step process — a 4-quarter average, then a 2-period average of those averages — pins the trend onto an actual quarter so it can be compared directly with real sales." },
+    { "type": "workedExample", "question": "A ski-hire firm records quarterly sales ($000s): Y1 Q1 = 80, Y1 Q2 = 24, Y1 Q3 = 16, Y1 Q4 = 96, Y2 Q1 = 88, Y2 Q2 = 30, Y2 Q3 = 22, Y2 Q4 = 104. Calculate the 4-quarter centred moving average to find the trend.", "solution": "**Stage 1 — four-quarter moving averages (each falls between two quarters):**\n- Y1 Q1–Q4: (80 + 24 + 16 + 96) ÷ 4 = 216 ÷ 4 = **54.0** (between Q2 and Q3)\n- Y1 Q2–Y2 Q1: (24 + 16 + 96 + 88) ÷ 4 = 224 ÷ 4 = **56.0** (between Q3 and Q4)\n- Y1 Q3–Y2 Q2: (16 + 96 + 88 + 30) ÷ 4 = 230 ÷ 4 = **57.5** (between Q4 and Y2 Q1)\n- Y1 Q4–Y2 Q3: (96 + 88 + 30 + 22) ÷ 4 = 236 ÷ 4 = **59.0** (between Y2 Q1 and Q2)\n- Y2 Q1–Q4: (88 + 30 + 22 + 104) ÷ 4 = 244 ÷ 4 = **61.0** (between Y2 Q2 and Q3)\n\n**Stage 2 — centre by averaging each neighbouring pair:**\n- Trend at Y1 Q3: (54.0 + 56.0) ÷ 2 = **55.00**\n- Trend at Y1 Q4: (56.0 + 57.5) ÷ 2 = **56.75**\n- Trend at Y2 Q1: (57.5 + 59.0) ÷ 2 = **58.25**\n- Trend at Y2 Q2: (59.0 + 61.0) ÷ 2 = **60.00**\n\n| Quarter | Sales ($000s) | 4-qtr average | Centred moving average (trend) |\n|---|---|---|---|\n| Y1 Q1 | 80 | | |\n| Y1 Q2 | 24 | | |\n| | | 54.0 | |\n| Y1 Q3 | 16 | | 55.00 |\n| | | 56.0 | |\n| Y1 Q4 | 96 | | 56.75 |\n| | | 57.5 | |\n| Y2 Q1 | 88 | | 58.25 |\n| | | 59.0 | |\n| Y2 Q2 | 30 | | 60.00 |\n| | | 61.0 | |\n| Y2 Q3 | 22 | | |\n| Y2 Q4 | 104 | | |\n\n**Interpretation.** The actual figures lurch between 16 and 104, yet the centred trend rises smoothly from 55.00 to 60.00 — clear, steady growth of roughly 1.6 per quarter once the seasonal swings are stripped out. That smooth, aligned trend is exactly what we extrapolate next." },
+
+    { "type": "heading", "content": "Extrapolating the trend and adjusting for seasonal variation" },
+    { "type": "text", "content": "The trend on its own is a baseline; a usable forecast for a specific quarter needs the season added back. First extrapolate — extend the trend forward at its established rate of change to the period you want. Then find the seasonal variation for that period as actual sales minus trend, averaged across the years you have, and add it to the extrapolated trend. Forecast = extrapolated trend + seasonal variation. A positive seasonal figure lifts a peak quarter above the baseline; a negative one pulls a trough quarter below it." },
+    { "type": "workedExample", "question": "Using the ski-hire firm above, the centred trend rose by about 1.6 per quarter (55.00 → 60.00). (a) Extrapolate the trend to Y2 Q4. (b) The firm knows Q4 typically sells about +40 above trend (a strong winter quarter). Forecast actual sales for Y2 Q4.", "solution": "**Part (a) — extrapolate the trend.** The last centred trend value we have is 60.00 at Y2 Q2. The trend grows by about 1.6 per quarter, so project forward two quarters to Y2 Q4:\n- Y2 Q3 trend ≈ 60.00 + 1.6 = 61.6\n- Y2 Q4 trend ≈ 61.6 + 1.6 = **63.2** ($000s)\n\n**Part (b) — adjust for the seasonal variation.** Seasonal variation for a period = actual − trend. Q4 is a peak winter quarter running about +40 above trend, so:\n- Forecast = extrapolated trend + seasonal variation = 63.2 + 40 = **$103.2 thousand**\n\n**Interpretation.** Notice how the seasonal adjustment does the heavy lifting for a highly seasonal business: the bare trend (63.2) badly understates a peak quarter, but adding the +40 winter uplift produces a forecast (103.2) close to the firm's real Q4 pattern of around 104. Extrapolation gives the baseline; the seasonal adjustment makes it realistic. Both steps assume the past trend and seasonal pattern continue — the key assumption, and the key weakness, of the method." },
+
+    { "type": "heading", "content": "Benefits and limitations of sales forecasting" },
+    { "type": "text", "content": "Time series forecasting is objective, cheap once the data exists, and powerful for planning — but it is only ever a projection of the past. Its reliability depends entirely on the past being a fair guide to the future, which is why the strongest answers weigh its benefits against its limits for the specific business in question rather than treating a forecast as fact." },
+    { "type": "keyPoints", "items": [
+      "**Benefits:** it is objective and data-driven, not guesswork; it improves cash-flow, stock, production and staffing decisions; it is inexpensive once historical data exists; and it aligns every function around one shared estimate.",
+      "**Limitations:** it is backward-looking and assumes the past trend continues; accuracy falls the further ahead you forecast; it needs plenty of reliable historical data, so it is weak for new firms and new products; random and cyclical shocks can break it completely; and it captures no qualitative change — a new competitor, a technology shift, a change in taste.",
+      "**In practice:** treat the forecast as a guide, not a guarantee — supplement the numbers with qualitative judgement, update it as new data arrives, and be most cautious in volatile markets and over long horizons."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Confusing seasonal and cyclical variation** — seasonal repeats WITHIN a year (Christmas, summer); cyclical follows the multi-year economic cycle. Labelling a December spike 'cyclical' loses the mark.",
+      "**Getting the seasonal formula backwards** — seasonal variation is actual MINUS trend, not trend minus actual. Reversing the subtraction flips every sign and wrecks the adjustment.",
+      "**Forgetting to centre an even-period average** — a raw 4-quarter average sits between two quarters; failing to centre it leaves the trend misaligned and forfeits the accuracy mark.",
+      "**Placing an odd-period average on the wrong row** — a 3-period average belongs on the MIDDLE period, not the first or last of the three.",
+      "**Not showing working** — writing only a final figure risks losing every method mark if the answer is wrong; the calculation earns the marks, so set out each sum.",
+      "**Rounding too early or inconsistently** — rounding the intermediate averages before centring or extrapolating drags the final answer off; keep decimals until the end and state the unit ($000s).",
+      "**Treating extrapolation as certainty** — presenting a projected figure as a guaranteed outcome ignores the method's core assumption that the past trend holds, and forfeits the evaluation marks.",
+      "**Confusing quantitative and qualitative forecasting** — a moving average is quantitative; the Delphi method and sales-force opinion are qualitative. The best real forecasts combine both, but do not mislabel them."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Quantitative Business Management questions are marked with the M/A convention: M marks reward the correct METHOD (the right operation, set out clearly), and A marks reward the correct ACCURACY (the right figure). Crucially, the marking applies FOLLOW-THROUGH: if you use the correct method on figures carried from an earlier slip, you still earn the method mark and the follow-through accuracy mark, so one arithmetic error does not cost you the whole question. Watch how the marks below attach to the working, not just the final number — which is exactly why you must show each sum." },
+    { "type": "workedExample", "question": "Quarterly sales ($000s) are: Q1 = 40, Q2 = 52, Q3 = 60, Q4 = 48, next Q1 = 44. Calculate the first two three-quarter moving averages. [4]", "solution": "**Model answer.**\nA three-quarter moving average sums three consecutive quarters and divides by three, then moves the window on by one quarter.\n\n**First moving average (Q1–Q3):**\nMA1 = (40 + 52 + 60) ÷ 3 = 152 ÷ 3 = **50.67** ($000s)\n\n**Second moving average (Q2–Q4):**\nMA2 = (52 + 60 + 48) ÷ 3 = 160 ÷ 3 = **53.33** ($000s)\n\nThe two averages (50.67 then 53.33) show the underlying trend rising once the quarter-to-quarter swings are smoothed out.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — method:** sums the FIRST three consecutive quarters and divides by 3: (40 + 52 + 60) ÷ 3. The mark is for the correct operation, shown, regardless of the final figure.\n- **A1 — accuracy:** correct first answer, **50.67** (accept 50.7 or 50 2/3; the exact value is 50.666…).\n- **M1 — method:** sums the SECOND (moved-on) three quarters and divides by 3: (52 + 60 + 48) ÷ 3. Note the window has slid forward by one quarter and dropped Q1 — a candidate who re-uses Q1 loses this method mark.\n- **A1 — accuracy:** correct second answer, **53.33** (accept 53.3 or 53 1/3).\n- **Follow-through:** if a candidate makes a slip in the first sum but then applies the correct second-window method to their own carried figures, the second method mark and the follow-through accuracy mark are still awarded — one error does not cascade into losing every mark.\n- **What the engine rejects:** a bare final number with no division shown risks losing the method marks if the figure is wrong; averaging the wrong window (e.g. keeping Q1 in the second average, or using four quarters); and rounding so severely that the accuracy is lost." },
+    { "type": "examTip", "content": "The Practice button marks YOUR calculation this same M/A way — a method mark for the correct operation shown and an accuracy mark for the correct figure, with follow-through if you carry an earlier slip correctly. So always set out every sum: write the three (or four) values you are adding, the division, and then the answer to two decimals with the unit ($000s). Showing the working is not neatness — it is where the method marks are, and it is what protects your accuracy marks through follow-through when one number goes astray." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Sales forecasting feeds straight into the rest of the course. The forecast figure becomes the top line of the cash-flow forecasts and budgets you meet in the finance unit; it drives the stock-control and capacity decisions in operations; and the trend-versus-noise thinking here returns whenever you have to judge how much weight past data deserves. Master the habit built in this topic — smooth the data to find the trend, extrapolate it, adjust for the season, then temper the number with judgement — and you have a method that is both examinable in its own right and a tool you will reuse across Business Management." },
+
+    { "type": "practice", "label": "Get a quantitative question marked: calculate a moving average and identify the trend, marked by IB Business Management M/A method-and-accuracy conventions with follow-through", "href": "/mark?subject=ib-business-management-hl&topic=4.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Investopedia: Guide to sales forecasting", "href": "https://www.investopedia.com/terms/s/sales-forecasting.asp" },
+      { "label": "Investopedia: Moving average explained", "href": "https://www.investopedia.com/terms/m/movingaverage.asp" },
+      { "label": "BBC Bitesize: Analysing markets and marketing", "href": "https://www.bbc.co.uk/bitesize/guides/zwmv97h/revision/1" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

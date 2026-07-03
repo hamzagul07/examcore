@@ -2,180 +2,355 @@
   "slug": "3-3-costs-and-revenues",
   "topicCode": "3.3",
   "title": "Costs and revenues",
+  "unit": {
+    "code": "3",
+    "title": "Finance and accounts"
+  },
   "paper": "P2",
   "paperName": "Business Management HL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of costs and revenues, which are the building blocks of financial analysis for any business. We will explore different types of costs, learn how to calculate total costs, total revenue, and profit, and introduce the crucial concept of contribution. Mastering these calculations is essential for making informed business decisions and for success in Paper 2.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Before a business can measure profit, plan pricing or judge whether an order is worth taking, it has to know what things cost and what its sales bring in. This lesson works through the whole of syllabus 3.3: fixed, variable and semi-variable costs; total cost (TC = FC + VC); the separate direct-versus-indirect (overhead) classification; average cost; revenue and the formula revenue = price × quantity sold; multiple revenue streams; and the pivotal distinction between cost and revenue and why it decides profit. Because 3.3 is a quantitative topic, the model answer is a calculation set out exactly the way our marking engine awards Business Management marks — method marks (M) for the correct formula and approach, accuracy marks (A) for the correct figure with units, and the own-figure-rule that protects a right-method / wrong-number answer — so you can see how the marks are actually won, not just what the right answer is.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between fixed, variable, semi-variable, direct, and indirect costs.",
-    "Calculate total cost, total revenue, and profit or loss for a given scenario.",
-    "Calculate contribution per unit and total contribution.",
-    "Apply cost and revenue information to analyse business performance and support decision-making."
+    "Distinguish between fixed, variable and semi-variable costs, and between direct and indirect costs (overheads).",
+    "Calculate total cost using TC = FC + VC, and calculate average (unit) cost.",
+    "Calculate total revenue using revenue = price × quantity sold, and identify multiple revenue streams.",
+    "Explain the distinction between cost and revenue and why it determines profit.",
+    "Set out a costs-and-revenues calculation the way the marking engine awards method and accuracy marks, including correct units and follow-through."
   ],
+  "syllabusObjectivesCovered": [
+    "3.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Your Business's Financial Health Check",
-    "summary": "This topic is about the fundamental accounting of a business: tracking all the money coming in from sales (revenue) and all the money going out to operate (costs). Understanding this balance is crucial for survival and growth.",
-    "analogy": "Imagine you're selling custom-printed t-shirts. The rent for your small workshop is a fixed cost – you pay it even if you sell zero shirts. The blank t-shirts and ink are variable costs – they increase with every shirt you make. Your revenue is the total money from selling the finished shirts. Your profit is what's left after paying for the workshop and all the materials.",
+    "title": "Costs and revenue: the food-truck basics",
+    "summary": "Costs are the money flowing OUT of a business to make and sell its product; revenue is the money flowing IN from selling it. Keep the two apart and profit is just the gap between them. Blur them and every later calculation goes wrong.",
+    "analogy": "Picture running a taco truck at a weekend festival. The pitch fee to park the truck is a fixed cost — you pay it whether you sell one taco or a thousand. The tortilla, meat and salsa that go into each taco are variable costs — the more tacos you make, the more you spend on ingredients. Add the pitch fee to all the ingredient spending and you have your total cost. The cash in your till at the end of the day is your revenue: the price of a taco multiplied by the number you sold. Put revenue next to total cost and the difference is your profit for the day — that single comparison is what tells you whether the taco venture was actually worth doing.",
     "steps": [
-      "Classify Costs: First, identify all your business expenses and sort them into categories: fixed (like rent) and variable (like raw materials).",
-      "Calculate Total Revenue: Determine the total income from sales by multiplying the price per unit by the number of units sold.",
-      "Calculate Total Costs: Sum up your total fixed costs and your total variable costs (variable cost per unit multiplied by the number of units).",
-      "Find the Profit or Loss: Subtract your total costs from your total revenue to see if you've made a profit or a loss."
+      "Separate the costs. Fixed costs stay the same whatever the output (pitch fee, rent, salaries); variable costs rise and fall with output (ingredients, raw materials).",
+      "Build total cost. Total variable cost = variable cost per unit × units made; total cost = fixed cost + total variable cost (TC = FC + VC).",
+      "Build revenue. Revenue = price × quantity sold. If the business has more than one source of income, add each revenue stream together.",
+      "Compare the two. Profit = total revenue − total cost. Revenue is money in; cost is money out; profit is only ever the gap between them."
     ]
   },
+  "keyConcepts": [
+    "total cost",
+    "revenue",
+    "profit"
+  ],
   "flashcards": [
     {
-      "front": "Fixed Costs (FC)",
-      "back": "Costs that do not vary with the level of output or sales in the short run. Examples include rent, salaries, and insurance. They must be paid even if the business produces nothing."
+      "front": "Fixed costs (FC)",
+      "back": "Costs that do NOT change with the level of output and must be paid even at zero production. Examples: rent, insurance, salaried staff, loan interest. On a per-unit basis they fall as output rises, but the total stays constant.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Variable Costs (VC)",
-      "back": "Costs that vary directly with the level of output or sales. Examples include raw materials, piece-rate labour, and packaging. Total variable cost is the variable cost per unit multiplied by the quantity produced."
+      "front": "Variable costs (VC)",
+      "back": "Costs that change in direct proportion to output — the more the business produces, the higher they are, and at zero output they are zero. Examples: raw materials, packaging, piece-rate labour, commission.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Semi-Variable Costs",
-      "back": "Costs that have both a fixed and a variable component. For example, a utility bill might have a fixed monthly line rental charge plus a variable charge based on usage."
+      "front": "Semi-variable costs",
+      "back": "Costs with BOTH a fixed and a variable element. Example: an energy or phone bill with a fixed standing charge plus a usage charge, or a salesperson on a basic salary plus commission. Neither wholly fixed nor wholly variable.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Direct Costs",
-      "back": "Costs that can be clearly and specifically identified with a particular product, service, or cost centre. For example, the wood used to make a specific table."
+      "front": "Total cost (TC)",
+      "back": "The whole cost of producing a given output for a period: TC = FC + VC, where VC = variable cost per unit × quantity produced. It is the money-OUT figure you compare against revenue to find profit.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Indirect Costs (Overheads)",
-      "back": "Costs that cannot be easily traced to a specific product, service, or cost centre. They are the general running costs of the business, such as the salary of the factory manager or administrative staff."
+      "front": "Average cost (unit cost)",
+      "back": "The cost of producing one unit: average cost = total cost ÷ quantity produced. Because fixed cost is spread over more units, average cost usually falls as output rises.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Total Revenue (TR)",
-      "back": "The total amount of money a business generates from the sale of its goods or services. It is calculated as Price per unit × Quantity sold (P × Q)."
+      "front": "Direct costs",
+      "back": "Costs that can be clearly traced to a specific product, service or cost centre. Example: the wood in one specific table, or the wage of a worker building only that product line.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Total Costs (TC)",
-      "back": "The sum of all costs incurred by a business. It is calculated as Total Fixed Costs + Total Variable Costs (TFC + TVC)."
+      "front": "Indirect costs (overheads)",
+      "back": "Costs that cannot be traced to a single product — the general running costs that support the whole business. Examples: the factory supervisor's salary, head-office electricity, company-wide marketing.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Profit",
-      "back": "The financial gain when total revenue is greater than total costs. It is calculated as Total Revenue - Total Costs (TR - TC). A negative result indicates a loss."
+      "front": "Revenue",
+      "back": "The income a business earns from its normal trading activities, chiefly selling goods and services. Also called sales revenue or turnover. It is the money-IN figure, before any costs are taken off.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Contribution per unit",
-      "back": "The amount each unit of production contributes towards covering fixed costs and then generating profit. It is calculated as Selling Price per unit - Variable Cost per unit (P - AVC)."
+      "front": "Revenue = price × quantity sold",
+      "back": "Total revenue is the selling price per unit multiplied by the number of units SOLD (not merely produced). TR = P × Q. Where prices differ across products, revenue is the sum of each price × quantity.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Total Contribution",
-      "back": "The total amount available to cover fixed costs and contribute to profit. Calculated as Contribution per unit × Quantity sold, OR Total Revenue - Total Variable Costs."
+      "front": "Revenue stream",
+      "back": "A distinct source of income. A single business often has several: a gym earns from membership fees, personal-training sessions and merchandise; a newspaper from copy sales and advertising. Total revenue adds every stream together.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Common Trap: Confusing Direct/Indirect with Fixed/Variable Costs",
-      "back": "These are two different ways of classifying costs. A direct cost (e.g., raw materials) is usually variable, but a direct cost can be fixed (e.g., rental of a machine used for only one product). An indirect cost (e.g., rent) is often fixed, but can be variable (e.g., electricity for the whole factory)."
+      "front": "Cost vs revenue (why it matters)",
+      "back": "Cost is money leaving the business to make and sell the product; revenue is money coming in from selling it. Profit = total revenue − total cost. High revenue with even higher costs is a LOSS, which is why the two must never be confused.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Trap: direct is NOT the same as variable",
+      "back": "A cost can be direct (traceable to a product) yet fixed — e.g. a machine leased solely for one product line. And an indirect overhead can be variable — e.g. factory-wide electricity that rises with total output. Direct/indirect and fixed/variable are TWO separate classifications.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Trap: produced vs sold",
+      "back": "Total cost is driven by units PRODUCED; revenue is driven by units SOLD. If a firm makes 100 units but sells 90, cost is based on 100 and revenue on 90 — the 10 unsold units become inventory, not revenue.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A bakery's monthly workshop rent stays at $2,000 whether it bakes 500 loaves or 5,000. This rent is best classified as a:",
+      "options": [
+        "Variable cost, because it is paid every month",
+        "Fixed cost, because it does not change with the level of output",
+        "Semi-variable cost, because baking uses electricity",
+        "Direct cost, because it is traced to each loaf"
+      ],
+      "answer": "Fixed cost, because it does not change with the level of output"
+    },
+    {
+      "prompt": "Which statement about the total cost formula is correct?",
+      "options": [
+        "Total cost = fixed cost − variable cost",
+        "Total cost = revenue − profit only",
+        "Total cost = fixed cost + variable cost (TC = FC + VC)",
+        "Total cost = variable cost per unit × price"
+      ],
+      "answer": "Total cost = fixed cost + variable cost (TC = FC + VC)"
+    },
+    {
+      "prompt": "A firm has fixed costs of $9,000 and variable costs of $6 per unit. If it produces 3,000 units, what is its total cost?",
+      "options": [
+        "$18,000",
+        "$27,000",
+        "$9,000",
+        "$45,000"
+      ],
+      "answer": "$27,000"
+    },
+    {
+      "prompt": "Which is the clearest example of an indirect cost (overhead) rather than a direct cost for a furniture maker?",
+      "options": [
+        "The wood used in one specific table",
+        "The piece-rate wage of the worker who builds that table",
+        "The salary of the factory supervisor who oversees all production",
+        "The fabric used to upholster that specific chair"
+      ],
+      "answer": "The salary of the factory supervisor who oversees all production"
+    },
+    {
+      "prompt": "A cafe sells 400 coffees at $3 each and 150 cakes at $4 each in a day. Using revenue = price × quantity sold, what is its total revenue?",
+      "options": [
+        "$1,200",
+        "$1,800",
+        "$2,200",
+        "$550"
+      ],
+      "answer": "$1,800"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between direct costs and variable costs? They seem very similar.",
-      "a": "This is a common point of confusion. The key is the basis of classification. 'Variable vs. Fixed' classifies costs based on how they behave with changes in output. 'Direct vs. Indirect' classifies costs based on whether they can be traced to a specific product.\n\nOften, a direct cost is also a variable cost (e.g., raw materials for one chair). However, a direct cost could be fixed. For example, if you rent a specific machine that is only used to produce one type of product, the rental cost is a direct cost for that product, but it's also a fixed cost. Conversely, a variable cost can be indirect. For example, the electricity used to power a factory producing many different products is a variable cost (more production = more electricity), but it's indirect because you can't trace the exact amount of electricity to a single product."
+      "q": "Is a salary always a fixed cost?",
+      "a": "Usually, but not always. A worker paid a set amount each period — say $30,000 a year — is a fixed cost, because the total does not change with how much the business produces. But a worker paid an hourly wage or a piece rate (a fixed amount per item made) is a variable cost, because the total rises and falls with output. So look at HOW the person is paid, not the word 'salary', before you classify it."
     },
     {
-      "q": "Why is 'contribution' so important if profit is the final goal?",
-      "a": "Contribution is a vital decision-making tool. While profit tells you the final outcome, contribution helps you understand *how* you get there. By knowing the contribution per unit, a manager can quickly assess the profitability of different products, decide whether to accept a one-off special order at a lower price (as long as the price is above the variable cost, it contributes to fixed costs), and determine which products to promote. It is the key metric used in break-even analysis, which is a cornerstone of business planning."
+      "q": "What is the difference between total variable cost and variable cost per unit?",
+      "a": "Variable cost per unit is the cost of the materials and inputs for ONE item — for example $4 of ingredients per meal. Total variable cost is that figure multiplied by every unit produced — $4 × 5,000 meals = $20,000. Exam questions often give you the per-unit figure and expect you to scale it up to a total before adding fixed costs. Forgetting to multiply is a classic slip."
+    },
+    {
+      "q": "Can a cost be both direct and fixed?",
+      "a": "Yes. Direct/indirect and fixed/variable are two independent classifications. A machine leased for a fixed monthly fee and used to make only one product is a direct cost of that product (traceable to it) AND a fixed cost (unchanged by output). Equally, an overhead can be variable — factory-wide electricity that rises with total production is indirect yet variable. Never assume 'direct = variable'."
+    },
+    {
+      "q": "What is the difference between revenue and profit?",
+      "a": "This is the distinction the whole topic turns on. Revenue is the 'top-line' money coming IN from sales, before any costs are deducted (price × quantity sold). Profit is the 'bottom-line' figure left AFTER total cost is taken off revenue (profit = total revenue − total cost). A business can have huge revenue and still make a loss if its costs are higher, which is exactly why cost and revenue must be kept separate."
+    },
+    {
+      "q": "Do I use units produced or units sold in these calculations?",
+      "a": "Total cost is based on units PRODUCED, because you pay for the materials and labour of everything you make. Revenue is based on units SOLD, because you only earn money on what customers actually buy. If a firm makes 100 but sells 90, cost uses 100 and revenue uses 90. Read the question carefully — mixing these up is one of the most heavily penalised errors in 3.3."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the financial engine room of a business. Understanding costs and revenues isn't just for accountants; it's a vital skill for any manager. Every strategic decision, from setting a price to launching a new product, is underpinned by the principles we'll cover here. This topic lays the groundwork for more advanced analysis, such as break-even and investment appraisal."
+      "content": "Welcome to the engine room of business finance. Every judgement in the finance unit — setting a price, accepting an order, forecasting a budget, deciding whether a product is worth keeping — rests on two figures: what the business spends (its costs) and what it earns (its revenue). Get those two straight and the gap between them, profit, falls out cleanly. Blur them and every later calculation is built on sand. This lesson covers the whole of syllabus 3.3: classifying costs as fixed, variable or semi-variable, and separately as direct or indirect; building total cost with TC = FC + VC; finding average cost; calculating revenue as price × quantity sold; recognising multiple revenue streams; and the distinction between cost and revenue that decides profit. Because 3.3 is a quantitative topic, the model answer is a full calculation marked exactly the way our engine awards Business Management marks — method marks for the right approach, accuracy marks for the right figure with units, and follow-through that protects a correct method even when a number goes astray."
     },
     {
       "type": "heading",
-      "content": "Understanding Business Costs"
+      "content": "Classifying costs by behaviour: fixed, variable and semi-variable"
     },
     {
       "type": "text",
-      "content": "Costs are the expenses a business incurs to produce and sell its goods or services. To manage them effectively, we must first classify them. The two primary methods of classification are by behaviour (fixed, variable, semi-variable) and by function (direct, indirect)."
+      "content": "To judge profitability you must first break spending down. The most important split is by how a cost BEHAVES as output changes. Fixed costs stay constant whatever the level of production; variable costs move in step with it; semi-variable costs do a bit of both. This split matters because it lets a business forecast what its costs will be at different output levels and decide whether producing more is worthwhile."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Fixed Costs (FC):** Remain constant regardless of output (e.g., rent, manager salaries).",
-        "**Variable Costs (VC):** Change in direct proportion to output (e.g., raw materials, components).",
-        "**Semi-Variable Costs:** Contain both a fixed and a variable element (e.g., a salesperson's salary with a basic pay plus commission).",
-        "**Direct Costs:** Can be traced directly to a single product or 'cost object' (e.g., the leather for a pair of shoes).",
-        "**Indirect Costs (Overheads):** Cannot be traced to a single product; they are costs of running the business as a whole (e.g., factory heating, marketing department salaries)."
+        "**Fixed costs (FC):** the costs of simply being open — rent, insurance, salaried staff, loan interest. They do not change with output, so they must be paid even if the business makes nothing. Spread over more units they fall per unit, but the TOTAL is flat.",
+        "**Variable costs (VC):** costs that rise and fall directly with output — raw materials, packaging, piece-rate labour, sales commission. At zero output they are zero; make one more unit and they rise by the variable cost of that unit.",
+        "**Semi-variable costs:** hybrids with a fixed base plus a variable top-up — an energy bill with a standing charge plus usage, or a salesperson on a basic salary plus commission. Split them into their two parts before using them in a calculation.",
+        "**Total cost (TC):** the sum of all fixed and all variable costs for the period — the single money-OUT figure you compare against revenue."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Total cost (TC) = Fixed costs (FC) + Variable costs (VC), where VC = variable cost per unit × quantity produced"
+    },
+    {
+      "type": "workedExample",
+      "question": "A furniture maker, 'Oak & Anvil', has these monthly costs: workshop rent $2,000; full-time administrator's salary $1,800; wood and materials $50 per chair; piece-rate labour $30 per chair. In March it produced 100 chairs. Calculate the total cost for March. [4]",
+      "solution": "**Step 1 — Total fixed cost (FC).**\nRent and the administrator's salary do not change with the number of chairs, so both are fixed.\nFC = $2,000 + $1,800 = $3,800.\n\n**Step 2 — Variable cost per unit, then total variable cost (VC).**\nWood/materials and piece-rate labour rise with each chair made.\nVariable cost per chair = $50 + $30 = $80.\nVC = $80 × 100 chairs = $8,000.\n\n**Step 3 — Total cost (TC = FC + VC).**\nTC = $3,800 + $8,000 = **$11,800.**\n\n**Oak & Anvil's total cost for March was $11,800.**\n\nNotice the two-step trap the examiner is testing: the variable figure given ($80) is PER UNIT, so it must be scaled up by output (× 100) before it is added to fixed cost. Adding $80 straight to $3,800 would be wrong."
+    },
+    {
+      "type": "heading",
+      "content": "A second, separate split: direct costs and indirect costs (overheads)"
+    },
+    {
+      "type": "text",
+      "content": "Costs can also be classified by whether they can be TRACED to a specific product — and this is a completely separate question from whether they are fixed or variable. Direct costs attach to one product or cost centre; indirect costs (overheads) are general costs that support the whole business and cannot be pinned to a single item. The distinction drives pricing decisions and lets a firm judge whether an individual product line actually pays its way."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Direct costs:** clearly traceable to one product or service — the steel, tyres and engine in one specific car, or the wage of a worker building only that model. Most (not all) direct costs happen to be variable.",
+        "**Indirect costs (overheads):** general costs that keep the whole business running but cannot be traced to one product — factory heating, the finance director's salary, company-wide advertising. Most (not all) overheads happen to be fixed.",
+        "**Two independent classifications:** a cost can be direct AND fixed (a machine leased just for one product line) or indirect AND variable (factory electricity that rises with total output). Never treat 'direct' and 'variable' as the same word."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When a case study asks you to classify costs, draw a quick three-column table: 'Cost item', 'Fixed or variable?', 'Direct or indirect?'. Filling BOTH classification columns separately stops you from collapsing the two ideas together and shows the examiner you know they are independent — the single most common way marks are dropped in this part of 3.3."
+    },
+    {
+      "type": "heading",
+      "content": "Average (unit) cost"
+    },
+    {
+      "type": "text",
+      "content": "Total cost tells you the whole bill; average cost tells you what one unit costs to make. It is total cost divided by the quantity produced. Average cost matters because it is the floor beneath any sensible selling price — sell below it for long and the business loses money on every unit. Because fixed costs are spread over more and more units as output rises, average cost typically falls as production grows."
+    },
+    {
+      "type": "formula",
+      "content": "Average cost (per unit) = Total cost ÷ Quantity produced"
+    },
+    {
+      "type": "workedExample",
+      "question": "Using Oak & Anvil's March figures — total cost $11,800 for 100 chairs — calculate the average cost per chair. Then state what happens to average cost if output rises to 200 chairs, given fixed costs stay at $3,800 and variable cost stays $80 per chair. [4]",
+      "solution": "**Step 1 — Average cost at 100 chairs.**\nAverage cost = total cost ÷ quantity = $11,800 ÷ 100 = **$118 per chair.**\n\n**Step 2 — Total cost at 200 chairs.**\nVC = $80 × 200 = $16,000; TC = $3,800 + $16,000 = $19,800.\n\n**Step 3 — Average cost at 200 chairs.**\nAverage cost = $19,800 ÷ 200 = **$99 per chair.**\n\n**Average cost falls from $118 to $99 per chair.** The variable cost per chair is unchanged at $80, but the $3,800 of fixed cost is now spread over 200 chairs instead of 100 — $19 of fixed cost per chair rather than $38 — so the average cost drops. This spreading of fixed cost over more units is why higher output usually lowers the cost of each item."
+    },
+    {
+      "type": "heading",
+      "content": "Revenue and revenue streams"
+    },
+    {
+      "type": "text",
+      "content": "Revenue is the money flowing INTO the business from its trading — the income earned from selling goods and services, also called sales revenue or turnover. Its core formula is simple: revenue = price × quantity SOLD. The word 'sold' matters: a firm earns revenue only on units customers actually buy, not on everything it produces. Many businesses also earn from more than one source — these separate sources are revenue streams, and total revenue adds them all together. A cinema, for example, earns from ticket sales, from food and drink, and from advertising, and its total revenue is the sum of the three."
+    },
+    {
+      "type": "formula",
+      "content": "Total revenue (TR) = Price per unit (P) × Quantity sold (Q); with several revenue streams, TR = sum of (price × quantity) for each stream"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Price × quantity SOLD:** revenue counts units bought by customers, not units made. Produce 100 but sell 90 and revenue is based on 90.",
+        "**Multiple revenue streams:** a single business can have several income sources — a gym earns from memberships, personal training and merchandise; a newspaper from copy sales and advertising.",
+        "**Add the streams:** total revenue is every stream's price × quantity added together, which is why a business can grow revenue by opening a new stream as well as by selling more of the existing one.",
+        "**Revenue is money IN, before costs:** it is never the same as profit — the costs still have to be taken off."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Continuing with Oak & Anvil: it sells each chair for $200. In March it produced 100 chairs but sold only 90. It also earned $1,500 that month from a separate stream — repairing customers' old furniture. Using the total cost of $11,800 from earlier, calculate total revenue and the resulting profit or loss for March. [6]",
+      "solution": "**Step 1 — Revenue from chair sales (price × quantity SOLD).**\nRevenue only counts the 90 chairs actually sold, not the 100 produced.\nChair revenue = $200 × 90 = $18,000.\n\n**Step 2 — Add the second revenue stream.**\nTotal revenue = chair sales + repairs = $18,000 + $1,500 = **$19,500.**\n\n**Step 3 — Profit or loss (revenue − total cost).**\nProfit = total revenue − total cost = $19,500 − $11,800 = **$7,700 profit.**\n\n**Oak & Anvil earned $19,500 of revenue across two streams and made a profit of $7,700 in March.**\n\nTwo deliberate traps here: revenue uses the 90 chairs SOLD (not the 100 produced), and the repairs stream must be ADDED in — a firm's total revenue is the sum of all its streams. The cost of the 10 unsold chairs sits inside the $11,800 total cost for the period; those chairs become inventory rather than revenue."
+    },
+    {
+      "type": "heading",
+      "content": "Cost vs revenue: the distinction that decides profit"
+    },
+    {
+      "type": "text",
+      "content": "Everything in this topic exists to support one comparison. Cost is money flowing OUT of the business to make and sell its product; revenue is money flowing IN from selling it; and profit is nothing more than the gap between them: profit = total revenue − total cost. Keeping the two figures rigorously apart is what makes the profit calculation meaningful. The danger is treating high revenue as if it were success in itself. A firm can post enormous revenue and still make a loss if its costs are higher still — turnover is vanity, profit is sanity. This is also why the produced-versus-sold distinction matters: cost is driven by what the business PRODUCES, revenue by what it SELLS, and only by lining the correct figures up on each side do you get a profit number you can trust."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Cost = money out; revenue = money in; profit = revenue − cost.** Three distinct ideas, never interchangeable.",
+        "**Big revenue is not the same as profit.** If total cost exceeds total revenue the business makes a LOSS, however large the sales figure looks.",
+        "**Cost tracks units produced; revenue tracks units sold.** Match the right quantity to each side before comparing.",
+        "**Why it matters for decisions:** pricing, accepting orders, dropping a product and forecasting all depend on comparing the cost of an action with the revenue it brings — get the two mixed up and the decision is wrong."
       ]
     },
     {
       "type": "heading",
-      "content": "Calculating Revenue, Costs, and Profit"
+      "content": "Common mistakes examiners penalise"
     },
     {
-      "type": "text",
-      "content": "Once costs are identified, we can perform fundamental calculations to assess business performance. The ultimate short-term goal for most firms is to ensure that revenue exceeds costs, resulting in a profit."
-    },
-    {
-      "type": "formula",
-      "content": "Total Revenue (TR) = Price (P) \\times Quantity (Q)"
-    },
-    {
-      "type": "formula",
-      "content": "Total Variable Cost (TVC) = Average Variable Cost (AVC) \\times Quantity (Q)"
-    },
-    {
-      "type": "formula",
-      "content": "Total Cost (TC) = Total Fixed Cost (TFC) + Total Variable Cost (TVC)"
-    },
-    {
-      "type": "formula",
-      "content": "Profit (or Loss) = Total Revenue (TR) - Total Cost (TC)"
-    },
-    {
-      "type": "workedExample",
-      "question": "Artisan Bakes Ltd. sells sourdough loaves. In March, they sold 2,000 loaves at a price of £4.00 each. Their monthly fixed costs (rent, salaries, insurance) are £2,500. The variable cost per loaf (flour, yeast, energy) is £1.50. Calculate the total revenue, total cost, and profit for March.",
-      "solution": "Here is the step-by-step calculation:\n\n**1. Calculate Total Revenue (TR):**\nTR = Price × Quantity\nTR = £4.00 × 2,000\n**TR = £8,000**\n\n**2. Calculate Total Variable Cost (TVC):**\nTVC = Variable Cost per unit × Quantity\nTVC = £1.50 × 2,000\n**TVC = £3,000**\n\n**3. Calculate Total Cost (TC):**\nTC = Total Fixed Costs + Total Variable Costs\nTC = £2,500 + £3,000\n**TC = £5,500**\n\n**4. Calculate Profit:**\nProfit = Total Revenue - Total Costs\nProfit = £8,000 - £5,500\n**Profit = £2,500**\n\n*Artisan Bakes Ltd. made a profit of £2,500 in March.*"
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2, quantitative questions require you to show your workings clearly. Always state the formula you are using, substitute the values from the case study, and present your final answer with the correct units (e.g., £, $, units). Even if your final answer is incorrect, you can earn marks for the correct method and formulas.$"
+      "type": "keyPoints",
+      "items": [
+        "**Confusing fixed and variable costs** — rent, insurance and salaried pay are fixed (unchanged by output); raw materials, packaging and piece-rate pay are variable (rise with output). Mislabelling one wrecks the whole total-cost calculation.",
+        "**Forgetting to scale variable cost by output** — a per-unit variable figure ($4 per unit) must be multiplied by quantity before it is added to fixed cost. Adding the per-unit figure straight to fixed cost is a frequent, heavily penalised slip.",
+        "**Getting TC = FC + VC wrong** — total cost ADDS fixed and variable cost; it never subtracts them and is not the same as average cost. Quote the formula, then substitute.",
+        "**Treating 'direct' and 'variable' as the same thing** — direct/indirect (traceability) and fixed/variable (behaviour) are two separate classifications; a cost can be direct and fixed, or indirect and variable.",
+        "**Mixing up units produced and units sold** — total cost uses units PRODUCED; revenue = price × units SOLD. Using the wrong quantity on either side corrupts the profit figure.",
+        "**Confusing revenue with profit** — revenue is money in before costs; profit is what remains after total cost is deducted. High revenue with higher costs is a loss.",
+        "**Dropping units and currency** — a naked number like '32000' with no '$' loses the accuracy mark. Always attach the currency and, where the case gives one, the timeframe (per month, per year).",
+        "**Ignoring extra revenue streams** — if a business has more than one source of income, total revenue is the SUM of all of them; counting only the main product understates it."
+      ]
     },
     {
       "type": "heading",
-      "content": "The Power of Contribution"
+      "content": "Model answer — marked the way our engine marks it"
     },
     {
       "type": "text",
-      "content": "Contribution is a powerful concept that helps managers make decisions. It isolates the variable costs from the price to show how much money each unit sold 'contributes' towards paying off the fixed costs. Once fixed costs are covered, this contribution becomes pure profit. This is particularly useful for portfolio analysis, special order decisions, and break-even analysis."
-    },
-    {
-      "type": "formula",
-      "content": "Contribution per unit = Price (P) - Average Variable Cost (AVC)"
-    },
-    {
-      "type": "formula",
-      "content": "Total Contribution = Contribution per unit \\times Quantity (Q) \\quad OR \\quad TR - TVC"
+      "content": "Because 3.3 is quantitative, the model answer is a CALCULATION, and our marking engine awards it using the IB Business Management method-and-accuracy conventions. A method mark (M) is given for the correct formula or approach — showing you know TC = FC + VC or revenue = price × quantity — even before any number is produced. An accuracy mark (A) is given for the correct final figure carried to the right units and currency. Crucially, the engine applies the own-figure-rule (follow-through): if you use the right method but carry an earlier wrong number forward, you still earn the method marks and any accuracy mark that is correct GIVEN your earlier figure. So the way to protect marks is always to show the formula and every step, not just the final answer. Watch how the marks below attach to method, to accurate figures with units, and to correctly followed-through arithmetic."
     },
     {
       "type": "workedExample",
-      "question": "TechGadgets Ltd. manufactures two products: the 'Alpha' phone case and the 'Beta' tablet stand. The following data is available for last month:\n\n| | Alpha Case | Beta Stand |\n|---|---|---|\n| Selling Price | £20 | £35 |\n| Variable Cost per unit | £8 | £20 |\n| Units Sold | 500 | 300 |\n\nThe firm's total fixed costs for the month were £10,000. \n\n(a) Calculate the total contribution for each product.\n(b) Calculate the total profit for the firm last month.",
-      "solution": "**(a) Calculate Total Contribution for each product:**\n\n**For the Alpha Case:**\n1.  **Contribution per unit** = P - AVC = £20 - £8 = £12\n2.  **Total Contribution (Alpha)** = Contribution per unit × Q = £12 × 500 = **£6,000**\n\n**For the Beta Stand:**\n1.  **Contribution per unit** = P - AVC = £35 - £20 = £15\n2.  **Total Contribution (Beta)** = Contribution per unit × Q = £15 × 300 = **£4,500**\n\n*(Note: The Beta Stand has a higher contribution per unit, but the Alpha Case generates a higher total contribution due to higher sales volume.)*\n\n**(b) Calculate the total profit for the firm:**\n\n1.  **Calculate Total Contribution for the firm:**\n    Total Contribution (Firm) = Total Contribution (Alpha) + Total Contribution (Beta)\n    Total Contribution (Firm) = £6,000 + £4,500 = £10,500\n\n2.  **Calculate Total Profit:**\n    Profit = Total Contribution - Total Fixed Costs (TFC)\n    Profit = £10,500 - £10,000 = **£500**\n\n*TechGadgets Ltd. made a total profit of £500 last month.*"
+      "question": "A firm has fixed costs of $12,000 per month, variable costs of $4 per unit, and sells 5,000 units at $10 each. Calculate its total costs, total revenue and profit for the month. [6]",
+      "solution": "**Model answer.**\n\n**Total cost.**\nTC = FC + VC = FC + (variable cost per unit × quantity)\nTC = $12,000 + ($4 × 5,000)\nTC = $12,000 + $20,000 = **$32,000**\n\n**Total revenue.**\nTR = price × quantity sold\nTR = $10 × 5,000 = **$50,000**\n\n**Profit.**\nProfit = total revenue − total cost\nProfit = $50,000 − $32,000 = **$18,000 profit per month**\n\n---\n**How our marking engine awards the 6 marks** — three method marks for the right formulae and three accuracy marks for the right figures with units:\n\n- **M1 — total-cost method:** correctly forms TC = FC + VC and scales the variable cost by output, i.e. $12,000 + ($4 × 5,000). The method mark is earned for the correct approach even if the arithmetic then slips.\n- **A1 — total-cost accuracy:** the correct figure **$32,000**, carried with the currency sign.\n- **M1 — revenue method:** correctly forms revenue = price × quantity sold, i.e. $10 × 5,000.\n- **A1 — revenue accuracy:** the correct figure **$50,000**, with currency.\n- **A1 — profit accuracy:** profit = total revenue − total cost = $50,000 − $32,000 = **$18,000**, with currency and stated as a profit.\n- **Own-figure-rule (follow-through):** if a candidate had, say, mis-added total cost to $33,000 but then correctly did $50,000 − $33,000 = $17,000, the profit accuracy mark is still awarded because the METHOD (revenue − cost) is right and the figure follows correctly from their own earlier number. Method marks are never lost for a downstream arithmetic error, which is why showing every line is worth doing.\n- **What the engine will NOT credit:** a bare final number such as '18000' with no working and no currency forfeits the method marks and risks the accuracy mark; writing TC = FC − VC, or basing revenue on units produced rather than sold, loses the corresponding method mark; and dropping the '$' throughout can cost the accuracy marks even when the arithmetic is right."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR calculation the same way — a method mark for the correct formula, an accuracy mark for the correct figure with units, and follow-through that protects a right-method / wrong-number answer. So never write only the final number: state the formula (TC = FC + VC, revenue = price × quantity, profit = revenue − cost), substitute the figures on a new line, show the arithmetic, and carry the currency ($) and any timeframe all the way through. The method marks and the follow-through are where a shaky answer keeps most of its credit."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "These two figures — cost and revenue — are the raw material for almost everything else in the finance unit. Total cost and total revenue feed straight into break-even analysis, where you find the output at which revenue first covers cost. The fixed-versus-variable split reappears in contribution and in make-or-buy and special-order decisions. Average cost underpins cost-plus pricing, and the profit figure you build here is the starting point for the profit-and-loss (income) statement and profitability ratios. Master the habit built in this lesson — separate cost from revenue, match the right quantity to each, quote the formula, substitute, and carry the units through — and you have the template that earns marks across every quantitative question in Business Management."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Costs and Revenues",
-      "href": "/mark?subject=ib-business-management-hl&topic=3.3"
+      "label": "Get a Paper 2 calculation marked: work out total cost, total revenue and profit, showing method and accuracy the way the engine awards the marks",
+      "href": "/mark?subject=ib-business-management-hl&topic=3.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "In-depth guide to cost classification",
-          "href": "https://www.investopedia.com/terms/c/cost-classification.asp"
+          "label": "Investopedia: Fixed vs. variable costs",
+          "href": "https://www.investopedia.com/articles/financial-theory/08/fixed-variable-costs.asp"
         },
         {
-          "label": "Video explanation of contribution margin",
-          "href": "https://www.youtube.com/watch?v=hdwypzY1-aI"
+          "label": "BBC Bitesize: Revenue, costs, profit and loss",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z4brkqt/revision/1"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

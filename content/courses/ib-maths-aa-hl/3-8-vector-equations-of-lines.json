@@ -1,166 +1,327 @@
 {
   "slug": "3-8-vector-equations-of-lines",
   "topicCode": "3.8",
+  "unit": {
+    "code": "3",
+    "title": "Geometry and trigonometry"
+  },
   "title": "Vector equations of lines",
   "paper": "P1",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson introduces the vector equation of a line in two and three dimensions. It covers the core components of a position vector and a direction vector, how to construct the equation, and how to use it to solve geometric problems involving points and relationships between lines (parallel, intersecting, skew).",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A single point does not fix a line, and a direction alone floats free of the plane — but pin an anchor point to a direction and you have named every line in space exactly once. This lesson builds the vector equation of a line $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$ from those two ingredients, converts it to parametric and Cartesian forms, finds the line through two points, tests whether a point lies on a line, measures the angle between two lines from their directions, and classifies two lines as intersecting, parallel, or skew — solving for the intersection point when one exists. Every worked example is laid out exactly the way our marking engine awards marks, because in a method topic how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and determine the vector equation of a line in 3D, given a point and a direction vector or two points.",
-    "Convert between the vector, parametric, and Cartesian forms of a line's equation.",
-    "Determine if a given point lies on a line.",
-    "Analyse the relationship between two lines: parallel, intersecting, or skew, and find the point of intersection if it exists."
+    "Write the vector equation of a line $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$ from a point and a direction vector, and read off the anchor point and direction from a given equation.",
+    "Find the equation of the line through two points, and convert freely between vector, parametric, and Cartesian forms.",
+    "Determine whether a given point lies on a line by testing for one parameter value consistent across all components.",
+    "Find the angle between two lines from their direction vectors using the scalar product.",
+    "Classify two lines as intersecting, parallel, or skew, and find the point of intersection when it exists, presenting working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "3.8"
+  ],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Vectors as a GPS for Lines",
-    "summary": "A vector equation of a line is like giving a set of instructions to trace it through space. You start at a fixed point and then move in a specific direction by a certain amount.",
-    "analogy": "Imagine giving a friend directions to a straight road. You'd say, 'Start at the town hall (this is your position vector, $\\boldsymbol{a}$), and then walk continuously in the direction of the clock tower (this is your direction vector, $\\boldsymbol{d}$).' The vector equation $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}$ simply formalises this: any point $\\boldsymbol{r}$ on the road can be reached by starting at the town hall and walking some multiple, $\\lambda$, of the direction towards the clock tower.",
+    "title": "A Line as an Address Plus a Heading",
+    "summary": "A vector equation of a line is a set of walking instructions: stand at a known point, then step any distance you like along a fixed direction. The point is your starting address; the direction is your heading; the parameter is how far you walk.",
+    "analogy": "Think of setting a friend on a straight footpath. You do not list every paving slab — you say 'start at the postbox, then keep walking towards the church tower.' The postbox is the position vector $\\mathbf{a}$, the heading towards the tower is the direction vector $\\mathbf{b}$, and how many strides they take is the parameter $\\lambda$. Every point on the path is 'postbox plus $\\lambda$ strides towards the tower', which is exactly $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$.",
     "steps": [
-      "First, identify a fixed point on the line. Its position vector, from the origin to the point, is your 'starting address', \\boldsymbol{a}.",
-      "Next, determine the line's direction. This is a vector parallel to the line, called the direction vector, \\boldsymbol{d}.",
-      "Combine these to form the vector equation $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}$, where $\\lambda$ is a scalar parameter that can be any real number.",
-      "Use the equation to find any point on the line by choosing a value for $\\lambda$, or to check if a point is on the line by solving for a consistent value of $\\lambda$."
+      "Pin down one point that lies on the line. Its position vector from the origin is your anchor, $\\mathbf{a}$.",
+      "Find a direction vector $\\mathbf{b}$ — any non-zero vector parallel to the line. Through two points, $\\mathbf{b}=\\vec{AB}=\\mathbf{b}_{\\text{pos}}-\\mathbf{a}$.",
+      "Assemble $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$, where $\\lambda$ is a scalar that can be any real number.",
+      "Feed the equation: choose a $\\lambda$ to generate a point, or test a point by demanding a single $\\lambda$ that works in every component at once."
     ]
   },
+  "keyConcepts": [
+    "point plus direction",
+    "one parameter, all components",
+    "intersecting, parallel, or skew"
+  ],
   "flashcards": [
     {
-      "front": "What is the general vector equation of a line?",
-      "back": "$\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}$, where $\\boldsymbol{r}$ is the position vector of any point on the line, $\\boldsymbol{a}$ is the position vector of a known point on the line, $\\boldsymbol{d}$ is a direction vector parallel to the line, and $\\lambda$ is a scalar parameter."
+      "front": "Vector equation of a line",
+      "back": "$\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$, where $\\mathbf{a}$ is the position vector of a known point on the line, $\\mathbf{b}$ is a direction vector parallel to the line, $\\lambda\\in\\mathbb{R}$ is a scalar parameter, and $\\mathbf{r}$ is the position vector of a general point.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "In $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}$, what does the vector $\\boldsymbol{a}$ represent?",
-      "back": "$\\boldsymbol{a}$ is the position vector of a specific, known point that lies on the line. It acts as an 'anchor' or starting point for the line."
+      "front": "What does $\\mathbf{a}$ represent?",
+      "back": "The position vector of one specific, known point on the line — the anchor. Any point on the line may be used, so the same line has many valid $\\mathbf{a}$'s.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "In $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}$, what does the vector $\\boldsymbol{d}$ represent?",
-      "back": "$\\boldsymbol{d}$ is the direction vector of the line. It is any non-zero vector that is parallel to the line."
+      "front": "What does $\\mathbf{b}$ represent?",
+      "back": "A direction vector: any non-zero vector parallel to the line. Any scalar multiple of $\\mathbf{b}$ (including a simplified or reversed version) is equally valid.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How do you find the direction vector of a line passing through points A and B?",
-      "back": "The direction vector $\\boldsymbol{d}$ can be found by calculating the vector from A to B: $\\boldsymbol{d} = \\vec{AB} = \\boldsymbol{b} - \\boldsymbol{a}$, where $\\boldsymbol{a}$ and $\\boldsymbol{b}$ are the position vectors of A and B respectively."
+      "front": "Direction vector from two points",
+      "back": "For the line through $A$ and $B$, take $\\mathbf{b}=\\vec{AB}=\\vec{OB}-\\vec{OA}$. Subtract position vectors — never add them. Then anchor at $A$ or $B$; both give the same line.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What are the parametric equations of a line?",
-      "back": "They are derived by equating the components of the vector equation. If $\\boldsymbol{r} = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, $\\boldsymbol{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$, $\\boldsymbol{d} = \\begin{pmatrix} d_1 \\\\ d_2 \\\\ d_3 \\end{pmatrix}$, the parametric equations are $x = a_1 + \\lambda d_1$, $y = a_2 + \\lambda d_2$, $z = a_3 + \\lambda d_3$."
+      "front": "Parametric form",
+      "back": "Reading off components of $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$: $x=a_1+\\lambda b_1$, $y=a_2+\\lambda b_2$, $z=a_3+\\lambda b_3$. Three equations sharing the one parameter $\\lambda$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How do you get the Cartesian equation of a line from the parametric form?",
-      "back": "Rearrange each parametric equation to make $\\lambda$ the subject, then set them equal to each other: $\\frac{x - a_1}{d_1} = \\frac{y - a_2}{d_2} = \\frac{z - a_3}{d_3}$."
+      "front": "Cartesian form",
+      "back": "Make $\\lambda$ the subject of each parametric equation and equate: $\\dfrac{x-a_1}{b_1}=\\dfrac{y-a_2}{b_2}=\\dfrac{z-a_3}{b_3}$ (each $b_i\\neq0$). A zero component is written separately, e.g. $y=a_2$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the condition for two lines, $L_1$ and $L_2$, with direction vectors $\\boldsymbol{d}_1$ and $\\boldsymbol{d}_2$ to be parallel?",
-      "back": "The lines are parallel if their direction vectors are scalar multiples of each other. That is, $\\boldsymbol{d}_1 = k \\boldsymbol{d}_2$ for some non-zero scalar $k$."
+      "front": "Does a point lie on the line?",
+      "back": "Substitute the point for $\\mathbf{r}$ and solve for $\\lambda$ in ONE component. The point lies on the line only if that same $\\lambda$ satisfies EVERY component. One inconsistency means it is off the line.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the condition for two lines to be perpendicular?",
-      "back": "The lines are perpendicular if the scalar (dot) product of their direction vectors is zero: $\\boldsymbol{d}_1 \\cdot \\boldsymbol{d}_2 = 0$."
+      "front": "Angle between two lines",
+      "back": "Use the direction vectors: $\\cos\\theta=\\dfrac{\\mathbf{b}_1\\cdot\\mathbf{b}_2}{|\\mathbf{b}_1|\\,|\\mathbf{b}_2|}$. Take the acute angle; if the value is negative, the acute angle is $\\arccos$ of its absolute value.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the difference between intersecting and skew lines in 3D?",
-      "back": "Intersecting lines meet at a single point. Skew lines are not parallel and do not meet at any point. They exist in different planes."
+      "front": "Parallel lines",
+      "back": "Directions are scalar multiples: $\\mathbf{b}_1=k\\mathbf{b}_2$. Every component ratio must match the same $k$. Distinct parallel lines never meet; if they share a point they are identical.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Common Trap: When checking for an intersection between two lines, you solve two equations for $\\lambda$ and $\\mu$. What must you do next?",
-      "back": "You must substitute the found values of $\\lambda$ and $\\mu$ into the third equation (e.g., the z-component equation). If the equation holds true, the lines intersect. If not, they are skew."
+      "front": "Intersecting lines",
+      "back": "Not parallel, and there is a unique $(\\lambda,\\mu)$ solving $\\mathbf{a}_1+\\lambda\\mathbf{b}_1=\\mathbf{a}_2+\\mu\\mathbf{b}_2$. Solve two components, then the pair MUST satisfy the third for a genuine intersection.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Skew lines",
+      "back": "Not parallel and never meeting — a possibility unique to 3D. The two components solve for $(\\lambda,\\mu)$, but those values fail the third component. Distinct planes, no common point.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Trap: the consistency check",
+      "back": "After solving two component equations for $\\lambda$ and $\\mu$, you MUST substitute into the third. Consistent ⇒ intersecting; inconsistent (and not parallel) ⇒ skew. Skipping this loses the reasoning mark.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Trap: adding instead of subtracting",
+      "back": "$\\vec{AB}=\\vec{OB}-\\vec{OA}$, not $\\vec{OA}+\\vec{OB}$. Adding position vectors gives a direction pointing nowhere useful and quietly wrecks the whole question.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The line passes through $A(1,3,2)$ and $B(4,3,6)$. Which is a correct direction vector?",
+      "options": [
+        "$\\begin{pmatrix} 3 \\\\ 0 \\\\ 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 5 \\\\ 6 \\\\ 8 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 4 \\\\ 3 \\\\ 6 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 3 \\\\ 6 \\\\ 4 \\end{pmatrix}$"
+      ],
+      "answer": "$\\begin{pmatrix} 3 \\\\ 0 \\\\ 4 \\end{pmatrix}$"
+    },
+    {
+      "prompt": "Testing whether $P$ lies on $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$, you get $\\lambda=2$ from the $x$-equation and $\\lambda=2$ from the $y$-equation, but the $z$-equation gives $\\lambda=-1$. What do you conclude?",
+      "options": [
+        "$P$ does not lie on the line — the parameter must be the same in every component",
+        "$P$ lies on the line because two of the three components agree",
+        "$P$ lies on the line; the $z$-equation only needs to hold approximately",
+        "You should average the values to get $\\lambda=1$"
+      ],
+      "answer": "$P$ does not lie on the line — the parameter must be the same in every component"
+    },
+    {
+      "prompt": "Two lines have direction vectors $\\begin{pmatrix} 2 \\\\ -4 \\\\ 6 \\end{pmatrix}$ and $\\begin{pmatrix} -1 \\\\ 2 \\\\ -3 \\end{pmatrix}$. The lines are therefore:",
+      "options": [
+        "Parallel, since one direction is $-\\tfrac{1}{2}$ times the other",
+        "Perpendicular, since the directions are different",
+        "Intersecting, because their directions are not equal",
+        "Skew, because the vectors point opposite ways"
+      ],
+      "answer": "Parallel, since one direction is $-\\tfrac{1}{2}$ times the other"
+    },
+    {
+      "prompt": "You set two lines equal, solve the $x$- and $y$-equations for $(\\lambda,\\mu)$, and those values do NOT satisfy the $z$-equation. The lines are not parallel. What are they?",
+      "options": [
+        "Skew",
+        "Intersecting",
+        "Parallel and distinct",
+        "Identical"
+      ],
+      "answer": "Skew"
+    },
+    {
+      "prompt": "Using $\\cos\\theta=\\dfrac{\\mathbf{b}_1\\cdot\\mathbf{b}_2}{|\\mathbf{b}_1|\\,|\\mathbf{b}_2|}$ you get $\\cos\\theta=-0.6$. What is the angle between the two lines?",
+      "options": [
+        "The acute angle, $\\arccos(0.6)\\approx53.1^\\circ$",
+        "The obtuse angle, $\\arccos(-0.6)\\approx126.9^\\circ$",
+        "There is no angle; the lines must be skew",
+        "$0^\\circ$, because the value is negative"
+      ],
+      "answer": "The acute angle, $\\arccos(0.6)\\approx53.1^\\circ$"
     }
   ],
   "faq": [
     {
-      "q": "When finding the equation of a line through two points A and B, does it matter if I use A or B for the position vector?",
-      "a": "No, it does not matter. Using point A gives an equation $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda(\\boldsymbol{b}-\\boldsymbol{a})$, and using point B gives $\\boldsymbol{r} = \\boldsymbol{b} + \\mu(\\boldsymbol{b}-\\boldsymbol{a})$. These equations look different, but they trace out the exact same line. The parameters are just shifted; for any point on the line, the value of $\\lambda$ in the first equation will be different from the value of $\\mu$ in the second."
+      "q": "When a line goes through two points $A$ and $B$, does it matter which one I use as the anchor $\\mathbf{a}$?",
+      "a": "No. Anchoring at $A$ gives $\\mathbf{r}=\\mathbf{a}+\\lambda(\\mathbf{b}-\\mathbf{a})$ and anchoring at $B$ gives $\\mathbf{r}=\\mathbf{b}+\\mu(\\mathbf{b}-\\mathbf{a})$. The equations look different but trace exactly the same line — only the value of the parameter that reaches a given point changes. You may also reverse or scale the direction vector. Markers accept any correct anchor-and-direction pair."
     },
     {
-      "q": "What is the vector equation for a line segment between points A and B?",
-      "a": "It's the same as the equation for the full line, $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda(\\boldsymbol{b}-\\boldsymbol{a})$, but with a restriction on the parameter $\\lambda$. For the line segment including the endpoints A and B, the restriction is $0 \\le \\lambda \\le 1$. When $\\lambda=0$, $\\boldsymbol{r}=\\boldsymbol{a}$. When $\\lambda=1$, $\\boldsymbol{r}=\\boldsymbol{b}$."
+      "q": "Why must the same $\\lambda$ work in every component when I test whether a point is on the line?",
+      "a": "A single value of $\\lambda$ locates one specific point on the line — it moves you one fixed distance along one fixed direction, which sets all three coordinates simultaneously. If reaching the right $x$ needs $\\lambda=2$ but the right $z$ needs $\\lambda=-1$, no single stride along the line lands on the point, so the point is off the line. Consistency across all components is the whole test."
     },
     {
-      "q": "Can lines be skew in 2D?",
-      "a": "No, the concept of skew lines only exists in three or more dimensions. In a 2D plane, two distinct lines are either parallel or they must intersect at some point."
+      "q": "How is the intersection test different from the point-on-line test?",
+      "a": "For a point, you have one unknown $\\lambda$ and demand it fits all three components. For two lines you have two unknowns, $\\lambda$ and $\\mu$ (use different letters — this is essential). You solve two of the three component equations for the pair, then check the third. If it holds, the lines meet; if not, and they are not parallel, they are skew."
     },
     {
-      "q": "My direction vector has fractions or large numbers. Can I simplify it?",
-      "a": "Yes. Any scalar multiple of a direction vector is also a valid direction vector because it points in the same (or exactly opposite) direction. For example, if you calculate a direction vector $\\boldsymbol{d} = \\begin{pmatrix} -10 \\\\ 5 \\\\ -15 \\end{pmatrix}$, it is often much easier to use the simplified vector $\\boldsymbol{d}' = \\begin{pmatrix} -2 \\\\ 1 \\\\ -3 \\end{pmatrix}$ by dividing by 5. This will make subsequent calculations, like finding intersections, much simpler."
+      "q": "Can two lines be skew in 2D?",
+      "a": "No. Skewness needs the room of three dimensions. In a plane, two distinct lines are either parallel or they must cross somewhere — there is no way for them to dodge each other forever. Skew lines are non-parallel lines lying in different planes, so they only appear in 3D and beyond."
+    },
+    {
+      "q": "My direction vector has awkward numbers. Can I simplify it before continuing?",
+      "a": "Yes, and you usually should. Any non-zero scalar multiple of a direction vector points along the same line, so dividing out a common factor — turning $\\begin{pmatrix} 6 \\\\ -9 \\\\ 3 \\end{pmatrix}$ into $\\begin{pmatrix} 2 \\\\ -3 \\\\ 1 \\end{pmatrix}$, for instance — keeps the line identical while making intersection and angle calculations cleaner. Just be consistent once you have chosen a version."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of lines in three-dimensional space. While you're familiar with lines in 2D from GCSE/MYP, vectors provide a powerful and elegant way to describe lines in any dimension. This topic is fundamental in connecting algebra with geometry and is a cornerstone for more advanced concepts in vector calculus and mechanics."
+      "content": "You already describe lines in 2D by $y=mx+c$ — but that form breaks down in three dimensions, where a single gradient cannot capture a direction, and vertical lines have no gradient at all. Vectors fix this at a stroke: any line, in any dimension, is captured by one point on it and one direction along it. This lesson builds that equation, converts it to parametric and Cartesian forms, uses it to test points and measure angles, and classifies pairs of lines as intersecting, parallel, or skew. As in every method topic, the worked examples here are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Anatomy of a Vector Equation of a Line"
+      "content": "The anatomy of a vector equation of a line"
     },
     {
       "type": "text",
-      "content": "To define a line in space, you need two key pieces of information: a point on the line and the direction of the line. Think of it as needing a starting location and a path to follow. In vector terms, we use a position vector to specify the point and a direction vector to specify the path."
+      "content": "To fix a line in space you need exactly two things: somewhere it passes through, and which way it points. The first is a point, captured by its position vector; the second is a direction, captured by a direction vector. Everything else on the line is reached by starting at the point and travelling some multiple of the direction."
     },
     {
       "type": "formula",
-      "content": "\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}"
+      "content": "$\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "$\\boldsymbol{a}$ is the position vector of a known, fixed point on the line (e.g., $\\vec{OA}$).",
-        "$\\boldsymbol{d}$ is a non-zero vector parallel to the line, known as the direction vector.",
-        "$\\lambda$ (lambda) is a scalar parameter. As $\\lambda$ varies over all real numbers, the point with position vector $\\boldsymbol{r}$ traces out the entire line.",
-        "$\\boldsymbol{r}$ is the position vector of a general point on the line. It can be written as $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$."
+        "$\\mathbf{a}$ is the position vector of a known, fixed point on the line (for example $\\vec{OA}$).",
+        "$\\mathbf{b}$ is any non-zero vector parallel to the line — the direction vector.",
+        "$\\lambda$ (lambda) is a scalar parameter; as it ranges over all real numbers, $\\mathbf{r}$ sweeps out the entire line.",
+        "$\\mathbf{r}=\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$ is the position vector of a general point on the line."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A line $L$ passes through the points A(2, -1, 4) and B(5, 5, 1).\n\n(a) Find a vector equation for the line $L$.\n(b) The point C has coordinates (0, -5, 6). Show that C does not lie on the line $L$.",
-      "solution": "(a) To find the vector equation, we need a position vector of a point on the line and a direction vector.\n\nWe can use point A for the position vector: $\\boldsymbol{a} = \\vec{OA} = \\begin{pmatrix} 2 \\\\ -1 \\\\ 4 \\end{pmatrix}$. (M1 for choosing a valid point)\n\nThe direction vector $\\boldsymbol{d}$ can be found by $\\vec{AB} = \\boldsymbol{b} - \\boldsymbol{a}$.\n$\\boldsymbol{d} = \\begin{pmatrix} 5 \\\\ 5 \\\\ 1 \\end{pmatrix} - \\begin{pmatrix} 2 \\\\ -1 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 6 \\\\ -3 \\end{pmatrix}$. (M1 for a correct subtraction)\n\nWe can simplify this direction vector by dividing by a common factor of 3, so $\\boldsymbol{d}' = \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix}$. This is also a valid direction vector.\n\nThe vector equation is $\\boldsymbol{r} = \\boldsymbol{a} + \\lambda \\boldsymbol{d}$.\n$L: \\boldsymbol{r} = \\begin{pmatrix} 2 \\\\ -1 \\\\ 4 \\end{pmatrix} + \\lambda \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix}$. (A1 for a fully correct equation. Using the unsimplified direction vector is also correct).\n\n(b) To check if C(0, -5, 6) lies on $L$, we substitute its position vector for $\\boldsymbol{r}$ and see if we can find a single value of $\\lambda$ that satisfies the equation.\n$\\begin{pmatrix} 0 \\\\ -5 \\\\ 6 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ -1 \\\\ 4 \\end{pmatrix} + \\lambda \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix}$. (M1 for setting up the equation)\n\nThis gives us a system of three equations:\n1) $0 = 2 + \\lambda \\implies \\lambda = -2$\n2) $-5 = -1 + 2\\lambda \\implies -4 = 2\\lambda \\implies \\lambda = -2$\n3) $6 = 4 - \\lambda \\implies 2 = -\\lambda \\implies \\lambda = -2$\n\nWait, let me re-check my calculation for C. The question asks to show it does *not* lie on the line. Let's use C(0, -5, 7) instead to demonstrate the method.\n\nLet's check C(0, -5, 7).\n$\\begin{pmatrix} 0 \\\\ -5 \\\\ 7 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ -1 \\\\ 4 \\end{pmatrix} + \\lambda \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix}$. (M1)\n\nSystem of equations:\n1) $0 = 2 + \\lambda \\implies \\lambda = -2$\n2) $-5 = -1 + 2\\lambda \\implies -4 = 2\\lambda \\implies \\lambda = -2$\n3) $7 = 4 - \\lambda \\implies 3 = -\\lambda \\implies \\lambda = -3$\n\nSince the value of $\\lambda$ is not consistent across all three components ($-2 \\neq -3$), the point C does not lie on the line $L$. (R1 for the reasoning, A1 for the correct conclusion)."
+      "type": "text",
+      "content": "Neither ingredient is unique. Any point on the line can serve as $\\mathbf{a}$, and any scalar multiple of $\\mathbf{b}$ — larger, smaller, or reversed — is an equally good direction. So the very same line has infinitely many correct vector equations, which is why markers award full credit to any valid anchor-and-direction pair, not just the 'textbook' one."
     },
     {
       "type": "heading",
-      "content": "Different Forms of the Line Equation"
+      "content": "Parametric and Cartesian forms"
     },
     {
       "type": "text",
-      "content": "The vector equation is compact, but sometimes it's more convenient to work with the individual components. This leads to the parametric and Cartesian forms of the equation, which are essential for certain types of problems, especially those involving intersections with planes or other surfaces."
+      "content": "The vector equation is compact, but its component form is what you actually compute with. Reading off each coordinate line by line gives the parametric form; eliminating the parameter from those three equations gives the Cartesian form, which is convenient for finding where a line meets a plane or surface."
     },
     {
       "type": "formula",
-      "content": "Vector form: $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix} + \\lambda \\begin{pmatrix} d_1 \\\\ d_2 \\\\ d_3 \\end{pmatrix}$\n\nParametric form:\n$x = a_1 + \\lambda d_1$\n$y = a_2 + \\lambda d_2$\n$z = a_3 + \\lambda d_3$\n\nCartesian form (for $d_1, d_2, d_3 \\neq 0$):\n$\\frac{x - a_1}{d_1} = \\frac{y - a_2}{d_2} = \\frac{z - a_3}{d_3} \\; (=\\lambda)$"
+      "content": "Vector form: $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}=\\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}+\\lambda\\begin{pmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{pmatrix}$\n\nParametric form: $x=a_1+\\lambda b_1,\\quad y=a_2+\\lambda b_2,\\quad z=a_3+\\lambda b_3$\n\nCartesian form (each $b_i\\neq0$): $\\dfrac{x-a_1}{b_1}=\\dfrac{y-a_2}{b_2}=\\dfrac{z-a_3}{b_3}\\;(=\\lambda)$"
     },
     {
       "type": "examTip",
-      "content": "For the Cartesian form, if one of the direction vector components is zero, say $d_2=0$, you cannot divide by it. In this case, the equation is written as $\\frac{x - a_1}{d_1} = \\frac{z - a_3}{d_3}$ and $y = a_2$. This means the line lies on the plane $y=a_2$."
+      "content": "If a direction component is zero — say $b_2=0$ — you cannot divide by it. Write that coordinate as a fixed equation and pair up the rest: $\\dfrac{x-a_1}{b_1}=\\dfrac{z-a_3}{b_3}$ with $y=a_2$. Geometrically the line lies in the plane $y=a_2$. Forcing a division by zero into the chained Cartesian form is a classic dropped mark."
     },
     {
       "type": "heading",
-      "content": "Relationships Between Lines"
+      "content": "The line through two points, and testing a point"
     },
     {
       "type": "text",
-      "content": "In three dimensions, two lines can have one of three relationships: they can be parallel, they can intersect at a single point, or they can be skew. Skew lines are a new concept in 3D; they are not parallel but never meet, like two planes flying at different altitudes on different paths."
+      "content": "Given two points, the direction is the vector from one to the other, $\\vec{AB}=\\vec{OB}-\\vec{OA}$ — a subtraction, never an addition. Anchor at either point and you are done. To test whether some other point lies on the line, substitute it for $\\mathbf{r}$ and demand a single value of $\\lambda$ that satisfies every component at once: one stride length must set all three coordinates together."
+    },
+    {
+      "type": "workedExample",
+      "question": "A line passes through $A(1,-2,4)$ with direction $\\mathbf{b}=\\begin{pmatrix} 2 \\\\ 1 \\\\ -3 \\end{pmatrix}$. Determine whether the point $P(7,1,-5)$ lies on the line. [3]",
+      "solution": "Write the line and substitute $P$ for $\\mathbf{r}$, looking for one consistent $\\lambda$.\n\n**Set up the equation:**\n$\\begin{pmatrix} 7 \\\\ 1 \\\\ -5 \\end{pmatrix}=\\begin{pmatrix} 1 \\\\ -2 \\\\ 4 \\end{pmatrix}+\\lambda\\begin{pmatrix} 2 \\\\ 1 \\\\ -3 \\end{pmatrix}$  [M1: substitute the point and set up the components]\n\n**Solve one component for $\\lambda$:**\n$x$: $7=1+2\\lambda\\Rightarrow\\lambda=3$.  [A1: value of $\\lambda$ from one component]\n\n**Check the remaining components with $\\lambda=3$:**\n$y$: $-2+1(3)=1$ ✓ matches.\n$z$: $4-3(3)=4-9=-5$ ✓ matches.\n\nAll three components agree on $\\lambda=3$, so $P$ lies on the line.  [A1: consistency shown and conclusion stated]\n\n**Final answer:** $P(7,1,-5)$ lies on the line, at $\\lambda=3$."
+    },
+    {
+      "type": "heading",
+      "content": "The angle between two lines"
+    },
+    {
+      "type": "text",
+      "content": "The angle between two lines is the angle between their directions — where the lines actually sit in space is irrelevant, and they need not even meet. Use the scalar (dot) product of the direction vectors. Because a line points 'both ways', we always report the acute angle: if the cosine comes out negative, take the absolute value before applying $\\arccos$."
+    },
+    {
+      "type": "formula",
+      "content": "$\\cos\\theta=\\dfrac{\\mathbf{b}_1\\cdot\\mathbf{b}_2}{|\\mathbf{b}_1|\\,|\\mathbf{b}_2|}$, and the angle between the lines is $\\theta=\\arccos\\left(\\dfrac{|\\mathbf{b}_1\\cdot\\mathbf{b}_2|}{|\\mathbf{b}_1|\\,|\\mathbf{b}_2|}\\right)$ (the acute angle)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the acute angle between the lines with direction vectors $\\mathbf{b}_1=\\begin{pmatrix} 1 \\\\ 2 \\\\ 2 \\end{pmatrix}$ and $\\mathbf{b}_2=\\begin{pmatrix} 2 \\\\ -1 \\\\ 2 \\end{pmatrix}$. [4]",
+      "solution": "**Scalar product:**\n$\\mathbf{b}_1\\cdot\\mathbf{b}_2=(1)(2)+(2)(-1)+(2)(2)=2-2+4=4$.  [M1: scalar product]\n\n**Magnitudes:**\n$|\\mathbf{b}_1|=\\sqrt{1^2+2^2+2^2}=\\sqrt{9}=3$, $\\quad|\\mathbf{b}_2|=\\sqrt{2^2+(-1)^2+2^2}=\\sqrt{9}=3$.  [A1: both magnitudes]\n\n**Apply the formula:**\n$\\cos\\theta=\\dfrac{4}{3\\times3}=\\dfrac{4}{9}=0.444\\ldots$  [M1: substitution into the cosine formula]\n\n**Solve (value already positive, so it is the acute angle):**\n$\\theta=\\arccos(0.444\\ldots)=63.6^\\circ$ (3 s.f.).  [A1: acute angle]\n\n**Final answer:** the acute angle between the lines is $\\approx63.6^\\circ$."
+    },
+    {
+      "type": "heading",
+      "content": "Relationships between two lines"
+    },
+    {
+      "type": "text",
+      "content": "In three dimensions two lines fall into exactly one of three cases. They may be parallel (same direction, up to scaling), they may intersect at a single point, or they may be skew — non-parallel yet never meeting, like two aircraft on crossing headings but at different altitudes. Skewness is genuinely new in 3D; it cannot happen in a plane."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Parallel Lines:** Their direction vectors are scalar multiples, i.e., $\\boldsymbol{d}_1 = k \\boldsymbol{d}_2$.",
-        "**Intersecting Lines:** They are not parallel, and there exists a unique pair of parameters $(\\lambda, \\mu)$ that makes the position vectors equal: $\\boldsymbol{a}_1 + \\lambda \\boldsymbol{d}_1 = \\boldsymbol{a}_2 + \\mu \\boldsymbol{d}_2$.",
-        "**Skew Lines:** They are not parallel, and there is no solution for $(\\lambda, \\mu)$ when you set the equations equal. They never meet."
+        "**Parallel:** the directions are scalar multiples, $\\mathbf{b}_1=k\\mathbf{b}_2$. Same $k$ in every component. (Share a point too, and the lines coincide.)",
+        "**Intersecting:** not parallel, and some unique $(\\lambda,\\mu)$ solves $\\mathbf{a}_1+\\lambda\\mathbf{b}_1=\\mathbf{a}_2+\\mu\\mathbf{b}_2$ in all three components.",
+        "**Skew:** not parallel, and the two-component solution for $(\\lambda,\\mu)$ fails the third component — no common point exists."
       ]
     },
     {
+      "type": "text",
+      "content": "The method is always the same. First compare directions: proportional means parallel, and you are done. If not parallel, set the two equations equal, giving three component equations in the two unknowns $\\lambda$ and $\\mu$ — use different letters for the two parameters, or the whole test collapses. Solve two of the equations, then substitute into the third: consistent means the lines intersect, and back-substitution gives the point; inconsistent means the lines are skew."
+    },
+    {
       "type": "workedExample",
-      "question": "Consider the lines $L_1: \\boldsymbol{r} = \\begin{pmatrix} 8 \\\\ 7 \\\\ 12 \\end{pmatrix} + \\lambda \\begin{pmatrix} 3 \\\\ 2 \\\\ 4 \\end{pmatrix}$ and $L_2: \\boldsymbol{r} = \\begin{pmatrix} 3 \\\\ 1 \\\\ -2 \\end{pmatrix} + \\mu \\begin{pmatrix} -1 \\\\ 3 \\\\ 1 \\end{pmatrix}$. Determine if the lines are parallel, intersecting, or skew. If they intersect, find the coordinates of the intersection point.",
-      "solution": "1. **Check for parallelism.**\nThe direction vectors are $\\boldsymbol{d}_1 = \\begin{pmatrix} 3 \\\\ 2 \\\\ 4 \\end{pmatrix}$ and $\\boldsymbol{d}_2 = \\begin{pmatrix} -1 \\\\ 3 \\\\ 1 \\end{pmatrix}$.\nIs there a $k$ such that $\\boldsymbol{d}_1 = k \\boldsymbol{d}_2$? \n$3 = -k$, $2 = 3k$, $4 = k$. This is impossible. So the lines are not parallel. (M1 for comparing direction vectors)\n\n2. **Check for intersection.**\nSet the equations for $L_1$ and $L_2$ equal to each other:\n$\\begin{pmatrix} 8 \\\\ 7 \\\\ 12 \\end{pmatrix} + \\lambda \\begin{pmatrix} 3 \\\\ 2 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 1 \\\\ -2 \\end{pmatrix} + \\mu \\begin{pmatrix} -1 \\\\ 3 \\\\ 1 \\end{pmatrix}$ (M1 for setting up the system)\n\nThis gives three simultaneous equations:\n(1) $8 + 3\\lambda = 3 - \\mu \\implies 3\\lambda + \\mu = -5$\n(2) $7 + 2\\lambda = 1 + 3\\mu \\implies 2\\lambda - 3\\mu = -6$\n(3) $12 + 4\\lambda = -2 + \\mu \\implies 4\\lambda - \\mu = -14$\n\nLet's solve (1) and (2). From (1), $\\mu = -5 - 3\\lambda$. Substitute into (2):\n$2\\lambda - 3(-5 - 3\\lambda) = -6$\n$2\\lambda + 15 + 9\\lambda = -6$\n$11\\lambda = -21 \\implies \\lambda = -21/11$. This looks complicated, let's try solving (1) and (3) instead as they both have $\\mu$.\n\nAdd (1) and (3):\n$(3\\lambda + \\mu) + (4\\lambda - \\mu) = -5 + (-14)$\n$7\\lambda = -19 \\implies \\lambda = -19/7$. Let's use integers for a cleaner example. Let's adjust the starting point of L1 to (9, 1, 0).\n\n**Corrected Example:** $L_1: \\boldsymbol{r} = \\begin{pmatrix} 9 \\\\ 1 \\\\ 0 \\end{pmatrix} + \\lambda \\begin{pmatrix} 3 \\\\ 2 \\\\ 4 \\end{pmatrix}$ and $L_2: \\boldsymbol{r} = \\begin{pmatrix} 3 \\\\ 1 \\\\ -2 \\end{pmatrix} + \\mu \\begin{pmatrix} -1 \\\\ 3 \\\\ 1 \\end{pmatrix}$.\n\n(1) $9 + 3\\lambda = 3 - \\mu \\implies 3\\lambda + \\mu = -6$\n(2) $1 + 2\\lambda = 1 + 3\\mu \\implies 2\\lambda - 3\\mu = 0$\n(3) $4\\lambda = -2 + \\mu \\implies 4\\lambda - \\mu = -2$\n\nAdd (1) and (3): $7\\lambda = -8 \\implies \\lambda = -8/7$. Still messy. Let's design a problem that works nicely.\n\n**Final Attempt at a clean Worked Example:**\n$L_1: \\boldsymbol{r} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix} + \\lambda \\begin{pmatrix} 1 \\\\ -1 \\\\ 2 \\end{pmatrix}$ and $L_2: \\boldsymbol{r} = \\begin{pmatrix} 2 \\\\ 0 \\\\ 9 \\end{pmatrix} + \\mu \\begin{pmatrix} 2 \\\\ 1 \\\\ -1 \\end{pmatrix}$.\n\n(1) $1 + \\lambda = 2 + 2\\mu \\implies \\lambda - 2\\mu = 1$\n(2) $2 - \\lambda = \\mu \\implies \\lambda + \\mu = 2$\n(3) $3 + 2\\lambda = 9 - \\mu \\implies 2\\lambda + \\mu = 6$\n\nSolve (1) and (2): Subtract (1) from (2):\n$(\\lambda + \\mu) - (\\lambda - 2\\mu) = 2 - 1 \\implies 3\\mu = 1 \\implies \\mu = 1/3$. \nSubstitute $\\mu=1/3$ into (2): $\\lambda + 1/3 = 2 \\implies \\lambda = 5/3$. (M1 for attempting to solve a pair of equations)\n\nNow, **check these values in equation (3)**. This is the crucial step.\nLHS: $2\\lambda + \\mu = 2(5/3) + 1/3 = 10/3 + 1/3 = 11/3$.\nRHS: $6$.\nSince $11/3 \\neq 6$, the values are not consistent. (R1 for checking the third equation)\nTherefore, the lines do not intersect. Since they are not parallel, they must be **skew**. (A1)\n\nIf the third equation had been satisfied, you would substitute $\\lambda$ back into $L_1$ (or $\\mu$ into $L_2$) to find the coordinates of the intersection point. For example, if $\\lambda=2$ was the solution, the point would be $(1,2,3) + 2(1,-1,2) = (3,0,7)$."
+      "question": "Consider $L_1:\\mathbf{r}=\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}+\\lambda\\begin{pmatrix} 1 \\\\ -1 \\\\ 2 \\end{pmatrix}$ and $L_2:\\mathbf{r}=\\begin{pmatrix} 2 \\\\ 0 \\\\ 9 \\end{pmatrix}+\\mu\\begin{pmatrix} 2 \\\\ 1 \\\\ -1 \\end{pmatrix}$. Determine whether the lines are parallel, intersecting, or skew. If they intersect, find the point of intersection. [6]",
+      "solution": "**Check for parallelism.** The directions are $\\begin{pmatrix} 1 \\\\ -1 \\\\ 2 \\end{pmatrix}$ and $\\begin{pmatrix} 2 \\\\ 1 \\\\ -1 \\end{pmatrix}$. Is one a scalar multiple of the other? From the $x$-components $k=2$, but then the $y$-components would need $-1=2(1)$, which is false. Not parallel.  [M1: directions compared]\n\n**Set the lines equal:**\n$\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}+\\lambda\\begin{pmatrix} 1 \\\\ -1 \\\\ 2 \\end{pmatrix}=\\begin{pmatrix} 2 \\\\ 0 \\\\ 9 \\end{pmatrix}+\\mu\\begin{pmatrix} 2 \\\\ 1 \\\\ -1 \\end{pmatrix}$  [M1: system set up with distinct parameters]\n\nComponent equations:\n(1) $x$: $1+\\lambda=2+2\\mu\\Rightarrow\\lambda-2\\mu=1$\n(2) $y$: $2-\\lambda=\\mu\\Rightarrow\\lambda+\\mu=2$\n(3) $z$: $3+2\\lambda=9-\\mu\\Rightarrow2\\lambda+\\mu=6$\n\n**Solve two of them.** Subtract (1) from (2): $(\\lambda+\\mu)-(\\lambda-2\\mu)=2-1\\Rightarrow3\\mu=1\\Rightarrow\\mu=\\tfrac{1}{3}$. Then (2) gives $\\lambda=2-\\tfrac{1}{3}=\\tfrac{5}{3}$.  [A1: values of $\\lambda$ and $\\mu$ from two equations]\n\n**Consistency check in the third equation** — this is the decisive step.\nLHS of (3): $2\\lambda+\\mu=2\\left(\\tfrac{5}{3}\\right)+\\tfrac{1}{3}=\\tfrac{10}{3}+\\tfrac{1}{3}=\\tfrac{11}{3}$. RHS: $6$.\nSince $\\tfrac{11}{3}\\neq6$, the values are inconsistent.  [R1: third equation tested and shown to fail]\n\nThe lines are not parallel and have no common point, so they are **skew**.  [A1: conclusion]\n\n**Final answer:** the lines are skew. (Had (3) been satisfied, we would substitute $\\lambda=\\tfrac{5}{3}$ into $L_1$ to obtain the intersection point.)"
     },
     {
       "type": "examTip",
-      "content": "When showing lines are skew, it is not enough to just show they are not parallel. You MUST show that the system of simultaneous equations is inconsistent. Always solve for the parameters using two of the equations and then show they do not work in the third. This demonstrates a full understanding and secures the reasoning (R1) mark."
+      "content": "Showing lines are skew is never just 'they are not parallel'. You must show the simultaneous equations are inconsistent: solve two of the three for $\\lambda$ and $\\mu$, then demonstrate those values break the third. That final substitution is what earns the reasoning (R1) mark, and it is exactly the step students most often skip."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Adding position vectors instead of subtracting** — the direction through $A$ and $B$ is $\\vec{AB}=\\vec{OB}-\\vec{OA}$, never $\\vec{OA}+\\vec{OB}$. Adding gives a meaningless direction and derails everything after it.",
+        "**Accepting a point on partial agreement** — a point lies on a line only if ONE value of $\\lambda$ fits ALL components. Two out of three is a fail, not a pass.",
+        "**Reusing one parameter for two lines** — set $L_1$ and $L_2$ equal with DIFFERENT letters, $\\lambda$ and $\\mu$. Using $\\lambda$ for both forces a false constraint and invents an intersection that is not there.",
+        "**Skipping the third-equation check** — solving two component equations is not proof of intersection. Substitute the pair into the third: consistent ⇒ intersecting; inconsistent (and not parallel) ⇒ skew.",
+        "**Mistaking proportional directions for 'different' lines** — $\\begin{pmatrix} 2 \\\\ -4 \\\\ 6 \\end{pmatrix}$ and $\\begin{pmatrix} -1 \\\\ 2 \\\\ -3 \\end{pmatrix}$ are scalar multiples, so those lines are parallel, however different the numbers look.",
+        "**Reporting the obtuse angle between lines** — if $\\mathbf{b}_1\\cdot\\mathbf{b}_2<0$, take the absolute value before $\\arccos$ so you give the acute angle the question wants.",
+        "**Dividing by a zero component in Cartesian form** — when some $b_i=0$, write that coordinate as a separate equation (e.g. $y=a_2$) rather than dividing by zero."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark ($M$) for the correct approach, or an accuracy mark ($A$) for the right value, where an $A$ mark is dependent on the $M$ mark before it. Follow-through (FT) means that a right method carried out on a wrong earlier number still earns the marks that depend on it. But this protection only exists if the method is on the page. Study how each of the five marks below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find a vector equation of the line through the points $A(2, 1, 0)$ and $B(4, 5, 2)$, and determine whether the point $C(6, 9, 4)$ lies on it. [5]",
+      "solution": "**Model answer — full working.**\n\n**Direction vector.** The line runs from $A$ to $B$, so take\n$\\mathbf{b}=\\vec{AB}=\\vec{OB}-\\vec{OA}=\\begin{pmatrix} 4 \\\\ 5 \\\\ 2 \\end{pmatrix}-\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix}=\\begin{pmatrix} 2 \\\\ 4 \\\\ 2 \\end{pmatrix}$.\n\n**Vector equation.** Anchoring at $A$:\n$\\mathbf{r}=\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix}+\\lambda\\begin{pmatrix} 2 \\\\ 4 \\\\ 2 \\end{pmatrix}$.\n(The simplified direction $\\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix}$, or anchoring at $B$, is equally correct.)\n\n**Test $C(6,9,4)$.** Substitute $\\mathbf{r}=\\begin{pmatrix} 6 \\\\ 9 \\\\ 4 \\end{pmatrix}$ and solve one component for $\\lambda$:\n$x$: $2+2\\lambda=6\\Rightarrow\\lambda=2$.\n\n**Check the others with $\\lambda=2$:**\n$y$: $1+4(2)=9$ ✓\n$z$: $0+2(2)=4$ ✓\n\nAll three components agree on $\\lambda=2$, so $C$ lies on the line.\n\n**Final answer:** $\\mathbf{r}=\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix}+\\lambda\\begin{pmatrix} 2 \\\\ 4 \\\\ 2 \\end{pmatrix}$; the point $C(6,9,4)$ lies on the line, at $\\lambda=2$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — direction vector.** Awarded for computing $\\vec{AB}=\\vec{OB}-\\vec{OA}$, i.e. subtracting the position vectors to get $\\begin{pmatrix} 2 \\\\ 4 \\\\ 2 \\end{pmatrix}$ (or any scalar multiple). This is a METHOD mark: it stands even if the arithmetic later slips.\n- **A1 — correct vector equation.** Awarded for a fully correct $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$ with a valid anchor and direction. The engine accepts any equivalent form — simplified direction, reversed direction, or anchoring at $B$ — because they all describe the same line.\n- **M1 — substitute $C$ and solve for $\\lambda$.** Awarded for setting $\\mathbf{r}=\\begin{pmatrix} 6 \\\\ 9 \\\\ 4 \\end{pmatrix}$ and forming the component equations to find a candidate $\\lambda$. This tests the right idea regardless of the number that pops out.\n- **A1 — $\\lambda=2$.** Awarded for the correct parameter value from a component equation.\n- **A1 — verify all components and conclude.** Awarded for checking that $\\lambda=2$ satisfies the $y$- and $z$-components too and stating the conclusion that $C$ lies on the line. A bare 'yes' with no verification does not earn it.\n- **FT protection.** Suppose a student mis-subtracts and uses direction $\\begin{pmatrix} 2 \\\\ 4 \\\\ 1 \\end{pmatrix}$. They lose the first M1, but if they then correctly substitute $C$ and test for consistency using THEIR direction, the method marks for the test still score on follow-through — a right method on a wrong vector is not punished twice.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, the accuracy marks accept any equivalent correct form, and follow-through shields a right-method / wrong-vector answer. A student who writes only 'yes, $C$ is on the line' with no direction vector, no equation, and no component check risks 4 of the 5 marks."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: subtract to get the direction, write $\\mathbf{r}=\\mathbf{a}+\\lambda\\mathbf{b}$, then substitute and verify EVERY component before concluding. When you classify two lines, state the parallel check, the two-parameter setup, and the third-equation consistency test. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Vector Equations of Lines",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=3.8"
+      "label": "Get a Paper 1 question marked: find a line, test a point, or classify two lines with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.8&component=paper_1"
     },
     {
       "type": "resources",
@@ -168,15 +329,11 @@
         {
           "label": "GeoGebra: 3D Vector Equation of a Line",
           "href": "https://www.geogebra.org/m/C7gV5d36"
-        },
-        {
-          "label": "ExamSolutions: Vector Equation of a Line",
-          "href": "https://www.examsolutions.net/tutorials/the-vector-equation-of-a-line/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "3D Vector Equation of a Line",

@@ -5,159 +5,294 @@
   "paper": "P2",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson introduces discrete random variables, which model random processes with a countable number of outcomes. You will learn to construct and analyse probability distributions, and to calculate the expected value (mean), a crucial concept for predicting long-term averages and making decisions under uncertainty.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "4",
+    "title": "Statistics and probability"
+  },
+  "summary": "A discrete random variable turns the outcomes of a random experiment into numbers we can average, sum and predict. This lesson builds the full 4.4 toolkit: what a discrete random variable is, how to write its probability distribution as a table of $x$ against $P(X=x)$, the rule that the probabilities must sum to 1, and how to use that rule to pin down an unknown probability or constant. It then develops the expected value $E(X)=\\sum x\\,P(X=x)$, explains why it is the long-run mean and not a single possible outcome, and applies it to fair games and everyday decisions. Every worked example is set out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 27,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define a discrete random variable and construct its probability distribution.",
-    "Verify the properties of a probability distribution.",
-    "Calculate and interpret the expected value (mean) of a discrete random variable.",
-    "Apply these concepts to solve problems involving games of chance, insurance, and other real-world scenarios."
+    "Define a discrete random variable and write its probability distribution as a table of $x$ against $P(X=x)$.",
+    "Apply the condition $\\sum P(X=x)=1$ (with each probability between 0 and 1) to verify a distribution and to find an unknown probability or constant.",
+    "Calculate and interpret the expected value $E(X)=\\sum x\\,P(X=x)$ as the long-run mean of the variable.",
+    "Analyse fair games and applications, where a game is fair when the expected gain is zero or equal to the stake.",
+    "Present working so that method marks (M) and follow-through (FT) protect the final accuracy mark (A)."
   ],
+  "syllabusObjectivesCovered": [
+    "4.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Predicting the Average Outcome",
-    "summary": "A discrete random variable takes specific, separate numerical values based on chance. The expected value tells us the long-run average outcome we'd anticipate if we repeated the random experiment countless times.",
-    "analogy": "Imagine a simple carnival game where you spin a wheel to win money. The prizes are £0, £1, £5, and £20, but they aren't equally likely. The random variable is the prize money you win on a single spin. While you can't predict one spin, the 'expected value' is the average amount of money you would expect to win per spin if you played all day. It helps you decide if the game is worth playing.",
+    "title": "The Long-Run Average",
+    "summary": "A discrete random variable attaches a probability to each countable numerical outcome of a random event, like the score on a die. The expected value is the average result you would get if you repeated the event a very large number of times — a weighted average, not necessarily an outcome you could ever see on a single trial.",
+    "analogy": "Picture a charity raffle where each ticket costs 1 unit of money. One ticket in 500 wins a prize of 100; the rest win nothing. Your winnings from a single ticket are random: almost always 0, occasionally 100. The expected value is what those winnings average out to over millions of imaginary plays: $\\frac{1}{500}\\times 100 + \\frac{499}{500}\\times 0 = 0.20$. You can never actually win 0.20 on one ticket — but that number is the honest long-run value of the chance, and it is exactly what tells you the ticket price of 1 makes the raffle a poor bet.",
     "steps": [
-      "Identify the discrete random variable, $X$, and list all its possible numerical outcomes, $x$.",
-      "Determine the probability, $P(X=x)$, for each possible outcome. Check that all probabilities are between 0 and 1.",
-      "Organise the outcomes and their probabilities in a probability distribution table. Ensure the sum of all probabilities is exactly 1.",
-      "Calculate the expected value, $E(X)$, by summing the products of each outcome and its corresponding probability."
+      "Identify the discrete random variable $X$ and list every possible numerical value $x$ it can take.",
+      "Write the probability distribution as a table: each value $x$ paired with its probability $P(X=x)$. Check the probabilities are each between 0 and 1 and sum to exactly 1.",
+      "If a probability is unknown, use $\\sum P(X=x)=1$ to form an equation and solve it.",
+      "Compute $E(X)=\\sum x\\,P(X=x)$ by multiplying each outcome by its probability and adding, then interpret the result in context (for a game, a profit of 0 means fair)."
     ]
   },
+  "keyConcepts": [
+    "probability distribution",
+    "sum of probabilities equals 1",
+    "expected value as long-run mean",
+    "fair games"
+  ],
   "flashcards": [
     {
-      "front": "What is a discrete random variable?",
-      "back": "A variable, $X$, whose value is a numerical outcome of a random phenomenon, which can only take a countable number of distinct values. For example, the score on a die."
+      "front": "Discrete random variable",
+      "back": "A variable $X$ whose value is a numerical outcome of a random experiment, taking a finite or countably infinite set of distinct values — things you count, such as the score on a die or the number of defective items.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a probability distribution for a discrete random variable?",
-      "back": "A table, function, or graph that lists all possible values of the random variable and their corresponding probabilities."
+      "front": "Probability distribution",
+      "back": "A specification — usually a table — that lists every possible value $x$ of a discrete random variable $X$ together with its probability $P(X=x)$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the two essential properties of a discrete probability distribution?",
-      "back": "1. The probability of any value $x$ is $0 \\le P(X=x) \\le 1$. \\n2. The sum of all probabilities is 1: $\\sum P(X=x) = 1$."
+      "front": "The two conditions for a valid distribution",
+      "back": "1. Every probability lies between 0 and 1 inclusive: $0 \\le P(X=x) \\le 1$. 2. The probabilities sum to exactly one: $\\sum P(X=x)=1$.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the formula for the expected value of a discrete random variable $X$?",
-      "back": "$E(X) = \\sum x \\cdot P(X=x)$. It is the sum of each outcome multiplied by its probability."
+      "front": "Finding an unknown probability or constant",
+      "back": "Set the sum of all the listed probabilities equal to 1, $\\sum P(X=x)=1$, and solve the resulting equation for the unknown. This is almost always the first move when a distribution contains a letter such as $k$.",
+      "pillLabel": "Method"
     },
     {
-      "front": "What is another name and symbol for the expected value, $E(X)$?",
-      "back": "The mean, denoted by the Greek letter $\\mu$ (mu)."
+      "front": "Expected value $E(X)$",
+      "back": "$E(X)=\\sum x\\,P(X=x)$ — each outcome multiplied by its probability, then summed. It is a weighted average of the outcomes.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What does the expected value, $E(X)$, represent in a practical sense?",
-      "back": "It represents the long-run average value of the random variable over many repeated trials of the experiment."
+      "front": "What $E(X)$ means",
+      "back": "The long-run mean: the average value of $X$ over a very large number of repetitions of the experiment. It is also written $\\mu$ and called the mean of the distribution.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "True or False: The expected value must be one of the possible outcomes of the random variable.",
-      "back": "False. For example, the expected score when rolling a fair six-sided die is 3.5, which is not a possible outcome on a single roll."
+      "front": "Expected value need not be a possible outcome",
+      "back": "$E(X)$ is an average, so it can be a value $X$ can never take. The expected number of heads in three tosses is $1.5$, yet you can never see $1.5$ heads on a single trial.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What does it mean for a game to be 'fair' in the context of expected value?",
-      "back": "A game is considered fair if the expected profit or net winnings are zero. $E(X) = 0$."
+      "front": "Expected value vs most likely outcome",
+      "back": "$E(X)$ is the weighted mean of all outcomes; the most likely outcome is the mode — the single value with the largest probability. They need not be equal.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the formula for the expectation of a linear transformation, $E(aX+b)$?",
-      "back": "$E(aX+b) = aE(X) + b$. The expectation of a linear transformation is the linear transformation of the expectation."
+      "front": "Fair game",
+      "back": "A game is fair when the expected gain is zero, i.e. the expected winnings equal the stake, so on average a player neither wins nor loses in the long run.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Common Trap: You are given a probability distribution with a missing probability, $p$. How do you find it?",
-      "back": "Use the property that the sum of all probabilities must be 1. Add up all the known probabilities and subtract from 1 to find the value of $p$."
+      "front": "Expected value on a GDC (Paper 2)",
+      "back": "Enter the outcomes $x$ in one list and the probabilities $P(X=x)$ in a second list as frequencies, then run 1-variable statistics: the reported mean $\\bar{x}$ is $E(X)$.",
+      "pillLabel": "Calculator"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "For a table to be a valid probability distribution of a discrete random variable, the probabilities must:",
+      "options": [
+        "Sum to 1 and each lie between 0 and 1",
+        "Sum to 0",
+        "All be equal to each other",
+        "Each be greater than 1"
+      ],
+      "answer": "Sum to 1 and each lie between 0 and 1"
     },
     {
-      "front": "How can you calculate $E(X)$ efficiently on a GDC?",
-      "back": "Enter the outcomes ($x$ values) into List 1 and the probabilities ($P(X=x)$ values) into List 2. Then use the 1-Variable Statistics function, setting List 1 as the 'List' and List 2 as the 'FreqList'. The mean, $\\bar{x}$, shown in the output is your $E(X)$."
+      "prompt": "A distribution lists $P(X=1)=0.3$, $P(X=2)=0.2$ and $P(X=3)=k$. The value of $k$ is:",
+      "options": [
+        "0.5",
+        "0.6",
+        "1",
+        "0.25"
+      ],
+      "answer": "0.5"
+    },
+    {
+      "prompt": "The expected value of a discrete random variable $X$ is calculated using:",
+      "options": [
+        "$E(X)=\\sum x\\,P(X=x)$",
+        "$E(X)=\\sum P(X=x)$",
+        "$E(X)=\\sum x$",
+        "$E(X)=\\dfrac{\\sum x}{n}$ with every outcome weighted equally"
+      ],
+      "answer": "$E(X)=\\sum x\\,P(X=x)$"
+    },
+    {
+      "prompt": "The expected number of heads in three fair coin tosses is 1.5. This tells us that:",
+      "options": [
+        "The expected value is a long-run average and need not be a possible outcome",
+        "The calculation must be wrong because you cannot get 1.5 heads",
+        "1.5 heads will occur on exactly half of all trials",
+        "The variable is continuous, not discrete"
+      ],
+      "answer": "The expected value is a long-run average and need not be a possible outcome"
+    },
+    {
+      "prompt": "A game costs 4 to play and gives random winnings $W$. The game is fair when:",
+      "options": [
+        "$E(W)=4$",
+        "$E(W)=0$",
+        "$E(W)>4$",
+        "$E(W)=8$"
+      ],
+      "answer": "$E(W)=4$"
     }
   ],
   "faq": [
     {
-      "q": "Can the expected value be a number that the random variable cannot actually take?",
-      "a": "Yes, absolutely. A classic example is rolling a fair six-sided die. The possible outcomes are {1, 2, 3, 4, 5, 6}, but the expected value is 3.5. This is because the expected value is a long-term average, not a prediction for a single event."
+      "q": "Can an expected value be negative?",
+      "a": "Yes. If $X$ is the profit from a game, a negative expected value such as $-0.50$ means a player loses 50p per play on average over the long run. This is precisely how lotteries and casinos are designed to make money — the player's expected profit is negative, so the operator's is positive."
     },
     {
-      "q": "What is the difference between a discrete and a continuous random variable again?",
-      "a": "The key difference is countability. A discrete random variable has values you can count, often integers (e.g., number of cars passing a point, number of defective items). There are gaps between the values. A continuous random variable has values you measure, which can take any value in a given range (e.g., height, weight, time). There are no gaps between possible values."
+      "q": "What is the difference between a discrete and a continuous random variable?",
+      "a": "A discrete random variable takes separate, countable values with gaps between them (0, 1, 2, 3, …), such as a number of goals. A continuous random variable can take any value in a range, such as a height between 1.70 m and 1.80 m. You count discrete variables but measure continuous ones; only discrete variables are studied in this topic."
     },
     {
-      "q": "How do I use my GDC to calculate expected value?",
-      "a": "The most reliable method is using lists. For a variable $X$ with outcomes $x$ and probabilities $P(X=x)$: \n1. Go to your statistics editor. \n2. Enter all the outcomes ($x$ values) into List 1. \n3. Enter the corresponding probabilities into List 2. \n4. Select the '1-Variable Statistics' calculation. \n5. Set your 'List' to L1 and your 'FreqList' (or 'Frequency') to L2. \n6. Execute the calculation. The mean value displayed, usually as $\\bar{x}$, is the expected value $E(X)$."
+      "q": "The question asks for the 'mean' of the random variable — is that the expected value?",
+      "a": "Yes. For a discrete random variable the words 'mean', 'expected value' and the symbol $\\mu$ all denote the same quantity, $E(X)=\\sum x\\,P(X=x)$. If a question says 'find the mean of $X$', compute the expected value."
     },
     {
-      "q": "What if the probabilities are given as a function, like $P(X=x) = x/10$ for $x=1,2,3,4$?",
-      "a": "First, you need to generate the probability distribution table. Calculate $P(X=x)$ for each value of $x$. For this example: $P(X=1)=1/10$, $P(X=2)=2/10$, $P(X=3)=3/10$, $P(X=4)=4/10$. Always check that the probabilities sum to 1: $(1+2+3+4)/10 = 10/10 = 1$. Once you have the table, you can calculate the expected value as usual."
+      "q": "How do I know whether to solve $E(X)=0$ or $E(X)=\\text{stake}$ for a fair game?",
+      "a": "It depends on how the variable is defined. If the variable is the player's profit (winnings minus stake), a fair game has $E(\\text{profit})=0$. If the variable is the gross winnings, a fair game has $E(\\text{winnings})=\\text{stake}$. The two are the same statement: expected profit zero is expected winnings equal to the stake. Read the definition of the variable before you write the equation."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In mathematics, we often seek certainty and precise answers. However, the world is full of uncertainty, from weather forecasts to lottery jackpots. This topic provides the tools to quantify and analyse this uncertainty. We will explore how to model random events with numbers and calculate the 'expected' outcome, a powerful concept that forms the bedrock of insurance, finance, and game theory."
+      "content": "Probability so far has told you how likely a single event is. This lesson goes further: it takes an entire random experiment, attaches a probability to every numerical outcome, and squeezes that whole picture into one representative number — the expected value. Along the way you will learn to write a probability distribution, to exploit the fact that the probabilities must total exactly one, and to interpret an average that you might never actually observe on a single trial. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "Discrete Random Variables"
+      "content": "Discrete random variables and probability distributions"
     },
     {
       "type": "text",
-      "content": "A **random variable** is a variable whose value depends on the outcome of a random event. We use a capital letter, like $X$, to denote a random variable. A **discrete** random variable is one that can only take on a countable number of specific values. Think of things you can count, not measure. For example, if we flip a coin three times, the number of heads we get, $H$, can be 0, 1, 2, or 3. It cannot be 2.5. This makes $H$ a discrete random variable. In contrast, the height of a student is a continuous variable because it can take any value within a given range."
-    },
-    {
-      "type": "heading",
-      "content": "Probability Distributions"
+      "content": "A **random variable** is a variable whose value is a numerical outcome of a random experiment. We write it with a capital letter such as $X$, and use the matching lowercase letter $x$ for a particular value it can take. A random variable is **discrete** when the values it can take form a finite or countably infinite list of separate numbers — the kind of thing you count. The score on a die, the number of sixes in five rolls, and the number of faulty bulbs in a box are all discrete. A continuous variable, by contrast, could be any value in an interval, like a length or a time; those are not the subject of this topic."
     },
     {
       "type": "text",
-      "content": "A probability distribution provides a full picture of a discrete random variable. It tells us every possible value the variable can take, along with the probability of each of those values occurring. We can represent this information in a table, as a function (called a probability mass function or p.m.f.), or visually with a bar chart."
+      "content": "A **probability distribution** for a discrete random variable $X$ pairs each possible value of $X$ with its probability. It is almost always displayed as a table, with the values $x$ across the top and the probabilities $P(X=x)$ beneath. Whatever else a table shows, two conditions must hold for it to be a genuine probability distribution."
     },
     {
       "type": "keyPoints",
       "items": [
-        "For any probability distribution, two conditions must always be met:",
-        "1. Every individual probability must be between 0 and 1, inclusive: $0 \\le P(X=x) \\le 1$.",
-        "2. The sum of all the probabilities for all possible outcomes must be exactly 1: $\\sum P(X=x) = 1$."
+        "**Each probability is valid:** $0 \\le P(X=x) \\le 1$ for every value $x$.",
+        "**The probabilities are exhaustive:** they cover every outcome and sum to exactly one, $\\sum P(X=x)=1$.",
+        "These two facts are the engine of the whole topic — the sum-to-one rule in particular is what lets you find an unknown probability or constant."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A spinner is biased. The random variable $S$ represents the score, and its probability distribution is given in the table below. \n\n| $s$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $P(S=s)$ | $0.4$ | $k$ | $2k$ | $0.1$ |\n\n(a) Find the value of $k$. \n(b) State the complete probability distribution for $S$.",
-      "solution": "(a) The sum of probabilities in a probability distribution must be 1. \n\n$P(S=1) + P(S=2) + P(S=3) + P(S=4) = 1$ \n\n$0.4 + k + 2k + 0.1 = 1$  (M1 for setting up the sum to 1)\n\n$0.5 + 3k = 1$ \n\n$3k = 0.5$ \n\n$k = \\frac{0.5}{3} = \\frac{1}{6}$ (A1)\n\n(b) Now substitute $k = 1/6$ back into the table.\n\n$P(S=2) = k = 1/6$ \n\n$P(S=3) = 2k = 2(1/6) = 1/3$ \n\nThe complete probability distribution is: \n\n| $s$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $P(S=s)$ | $0.4$ | $1/6$ | $1/3$ | $0.1$ |\n\n(A1 for correct probabilities. It's good practice to check: $0.4 + 1/6 + 1/3 + 0.1 = 2/5 + 1/6 + 2/6 + 1/10 = 12/30 + 5/30 + 10/30 + 3/30 = 30/30 = 1$)"
-    },
-    {
-      "type": "heading",
-      "content": "Expected Value: The Long-Run Average"
-    },
-    {
-      "type": "text",
-      "content": "The expected value, denoted $E(X)$ or $\\mu$, is the single most important value describing a random variable. It's not what we 'expect' to happen on the next trial, but rather the theoretical mean outcome if the experiment were repeated an infinite number of times. For instance, if you play a game with an expected winning of £2, you might lose on the next go, but if you played thousands of times, you'd expect your average winnings per game to be very close to £2."
-    },
-    {
-      "type": "formula",
-      "content": "E(X) = \\mu = \\sum_{i=1}^{n} x_i P(X=x_i) = x_1 P(X=x_1) + x_2 P(X=x_2) + \\dots + x_n P(X=x_n)"
+      "question": "A biased four-sided die is rolled and the score is the random variable $S$. Its probability distribution is:\n\n| $s$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $P(S=s)$ | $0.4$ | $k$ | $2k$ | $0.1$ |\n\n(a) Find the value of $k$.\n(b) Hence find $P(S>2)$. [4]",
+      "solution": "**(a) Use the sum-to-one rule.** The probabilities must total 1.  [M1: set the sum equal to 1]\n$0.4 + k + 2k + 0.1 = 1$\n$0.5 + 3k = 1$\n$3k = 0.5$\n$k = \\dfrac{0.5}{3} = \\dfrac{1}{6}$.  [A1: $k=\\tfrac{1}{6}\\approx 0.167$]\n\n**(b) Identify the required outcomes.** $S>2$ means $S=3$ or $S=4$, so $P(S>2)=P(S=3)+P(S=4)$.  [M1: add the correct two probabilities]\n$P(S=3)=2k=2\\times\\tfrac{1}{6}=\\tfrac{1}{3}$ and $P(S=4)=0.1=\\tfrac{1}{10}$.\n$P(S>2)=\\dfrac{1}{3}+\\dfrac{1}{10}=\\dfrac{10}{30}+\\dfrac{3}{30}=\\dfrac{13}{30}\\approx 0.433$.  [A1: exact $\\tfrac{13}{30}$ or $0.433$]\n\n**Final answer:** $k=\\tfrac{1}{6}$ and $P(S>2)=\\tfrac{13}{30}\\approx 0.433$."
     },
     {
       "type": "examTip",
-      "content": "On Paper 2, you will always have your GDC. For calculating expected value, this is a huge time-saver. Enter the outcomes ($x$ values) into one list (e.g., L1) and the corresponding probabilities into a second list (e.g., L2). Use the 1-Var Stats function, specifying L1 as your data list and L2 as your frequency list. The calculator's mean ($\\bar{x}$) is the expected value $E(X)$."
+      "content": "Whenever a distribution table contains a letter, your first line should be the sum-to-one equation — it is worth a method mark on its own. Write $\\sum P(X=x)=1$ explicitly before you solve; a marker (human or our engine) rewards seeing the correct method stated even if the arithmetic later slips."
+    },
+    {
+      "type": "heading",
+      "content": "Expected value: the long-run mean"
+    },
+    {
+      "type": "text",
+      "content": "The **expected value** of a discrete random variable is the number you would get by averaging the variable over a very large number of repetitions of the experiment. It is a weighted average of the possible values, where each value is weighted by how likely it is. Because it is the mean of the distribution it is also written $\\mu$."
+    },
+    {
+      "type": "formula",
+      "content": "E(X) = \\mu = \\sum x\\,P(X=x)"
+    },
+    {
+      "type": "text",
+      "content": "In words: multiply every outcome $x$ by its probability $P(X=x)$, then add all those products together. Two features of $E(X)$ trip students up. First, it is a long-run average, so it need not equal any value the variable can actually take — the expected score on a fair die is $3.5$, which no single roll can produce. Second, it is not the same as the most likely outcome (the mode); a lopsided distribution can have its mean well away from its most probable value."
     },
     {
       "type": "workedExample",
-      "question": "A small business makes a profit of £50,000 in a good year with probability 0.6, and suffers a loss of £20,000 in a bad year with probability 0.4. Let the random variable $P$ be the annual profit in pounds.\n\n(a) Construct the probability distribution table for $P$.\n(b) Calculate the expected annual profit.\n(c) The business owner pays a consultant £1,000 to help improve their chances. This changes the probability of a good year to 0.65. Is the consultant's fee a worthwhile investment based on the change in expected profit?",
-      "solution": "(a) The possible values for the profit $P$ are £50,000 and -£20,000. The probability distribution is:\n\n| Profit, $p$ (£) | 50,000 | -20,000 |\n|---|---|---|\n| $P(P=p)$ | 0.6 | 0.4 |\n\n(A1 for correct table)\n\n(b) We calculate the expected value $E(P)$.\n\n$E(P) = \\sum p \\cdot P(P=p)$ \n\n$E(P) = (50000)(0.6) + (-20000)(0.4)$ (M1 for correct substitution into formula)\n\n$E(P) = 30000 - 8000$ \n\n$E(P) = 22000$ (A1)\n\nThe expected annual profit is £22,000.\n\n(c) First, calculate the new expected profit, let's call it $E(P_{new})$.\nThe probability of a good year is now 0.65, so the probability of a bad year is $1 - 0.65 = 0.35$. (M1 for finding new probability)\n\n$E(P_{new}) = (50000)(0.65) + (-20000)(0.35)$ \n\n$E(P_{new}) = 32500 - 7000 = 25500$ (A1)\n\nThe new expected profit is £25,500. The increase in expected profit is:\n\nIncrease = $E(P_{new}) - E(P) = 25500 - 22000 = £3500$. (M1 for finding the difference)\n\nThe consultant's fee is £1,000. Since the increase in expected profit (£3,500) is greater than the fee (£1,000), it is a worthwhile investment. (R1 for correct comparison and conclusion)"
+      "question": "The random variable $X$ has the probability distribution below.\n\n| $x$ | 0 | 1 | 2 | 3 |\n|---|---|---|---|---|\n| $P(X=x)$ | $0.1$ | $0.3$ | $0.4$ | $0.2$ |\n\nFind $E(X)$. [3]",
+      "solution": "**Apply the expected-value formula.**  [M1: use $E(X)=\\sum x\\,P(X=x)$]\n$E(X) = (0)(0.1) + (1)(0.3) + (2)(0.4) + (3)(0.2)$  [M1: correct products substituted]\n$E(X) = 0 + 0.3 + 0.8 + 0.6 = 1.7$.  [A1]\n\n**Final answer:** $E(X)=1.7$. Notice this is not one of the possible values $0,1,2,3$ — it is the long-run mean, sitting between the outcomes."
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 2 you may compute $E(X)$ on your GDC: enter the outcomes $x$ in one list and the probabilities in a second list used as frequencies, then run 1-variable statistics and read off the mean $\\bar{x}$. It is faster and safer than hand arithmetic — but if a question says 'show that', write out the sum $\\sum x\\,P(X=x)$ in full so the method mark is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Fair games and applications"
+    },
+    {
+      "type": "text",
+      "content": "Expected value is the backbone of decisions under uncertainty — in insurance, finance and gambling. A **game is fair** when a player's expected gain is zero: over the long run they neither win nor lose. If the variable you are working with is the player's profit (winnings minus stake), fairness means $E(\\text{profit})=0$. If instead you are working with the gross winnings, the equivalent condition is that the expected winnings equal the stake, $E(\\text{winnings})=\\text{stake}$. A positive expected profit favours the player; a negative one favours the house, which is why commercial games are always tilted so the operator's expected profit is positive."
+    },
+    {
+      "type": "workedExample",
+      "question": "A player pays 5 to play a game and spins a wheel with four sectors labelled 1, 2, 3, 4 whose probabilities are $0.4$, $0.3$, $0.2$ and $0.1$. The winnings are $2$, $5$, $8$ and $k$ for the four sectors respectively.\n(a) Find $E(W)$, the expected winnings, in terms of $k$.\n(b) Given the game is fair, find $k$. [5]",
+      "solution": "**(a) Write the winnings distribution and apply the formula.**\n\n| $w$ | 2 | 5 | 8 | $k$ |\n|---|---|---|---|---|\n| $P(W=w)$ | 0.4 | 0.3 | 0.2 | 0.1 |\n\n$E(W)=\\sum w\\,P(W=w)$  [M1: expected-value method]\n$E(W)=(2)(0.4)+(5)(0.3)+(8)(0.2)+(k)(0.1)$\n$E(W)=0.8+1.5+1.6+0.1k = 3.9+0.1k$.  [A1: $E(W)=3.9+0.1k$]\n\n**(b) Impose the fairness condition.** The player pays a stake of 5, so a fair game requires the expected winnings to equal the stake: $E(W)=5$.  [M1: set $E(W)=5$ (or expected profit $=0$)]\n$3.9+0.1k = 5$  [M1: substitute the part (a) expression]\n$0.1k = 1.1 \\implies k = 11$.  [A1]\n\n**Final answer:** $k=11$ — the sector-4 prize must be 11 for the game to be fair."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting the sum-to-one rule** — a distribution with an unknown must be pinned down by $\\sum P(X=x)=1$ first; skipping it loses the opening method mark and every mark that depends on the missing value.",
+        "**Confusing $E(X)$ with $\\sum P(X=x)$** — the expected value weights each outcome by its probability, $\\sum x\\,P(X=x)$; it is not the sum of the probabilities (which is always 1) nor the plain average of the outcomes.",
+        "**Expecting $E(X)$ to be a possible outcome** — it is a long-run mean and may fall between the values, like $3.5$ for a fair die; do not 'round it to a real outcome'.",
+        "**Confusing the expected value with the mode** — the most likely single outcome is the mode, not the mean; they coincide only by chance.",
+        "**Mishandling the stake in a fair game** — decide whether your variable is profit or gross winnings, then use $E(\\text{profit})=0$ or $E(\\text{winnings})=\\text{stake}$ accordingly; mixing the two shifts the answer by exactly the stake.",
+        "**Giving a rounded decimal when an exact form is available** — a probability such as $\\tfrac{1}{6}$ or an expected value such as $\\tfrac{13}{30}$ should be left exact unless the question asks for a decimal; premature rounding can lose the accuracy mark.",
+        "**Writing only a final number with no working** — in an analytic scheme the method marks live in the lines above the answer; without them a wrong final value can cost most of the marks."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A), where an A-mark is dependent on the corresponding M-mark being earned. Follow-through (FT) means a correct value carried on from an earlier slip still earns the later marks, and ISW ('ignore subsequent working') means once you have written a correct answer, extra scribble does not lose it. The examples above already carry the [M]/[A] tags line by line; the one below shows the full protocol on a classic 5-mark distribution question, and then spells out exactly how each mark is awarded."
+    },
+    {
+      "type": "workedExample",
+      "question": "A discrete random variable $X$ has $P(X=x)=kx$ for $x=1,2,3,4$. Find the value of $k$, and hence find $E(X)$. [5]",
+      "solution": "**Model answer — full working.**\n\n**Step 1 — find $k$ using the sum-to-one rule.** The probabilities are $P(X=1)=k$, $P(X=2)=2k$, $P(X=3)=3k$, $P(X=4)=4k$, and they must total 1:\n$$k(1+2+3+4)=1$$\n$$10k=1 \\implies k=\\tfrac{1}{10}.$$\n\nSo the completed distribution is:\n\n| $x$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $P(X=x)$ | $\\tfrac{1}{10}$ | $\\tfrac{2}{10}$ | $\\tfrac{3}{10}$ | $\\tfrac{4}{10}$ |\n\n**Step 2 — find $E(X)$ using the expected-value formula.**\n$$E(X)=\\sum x\\,P(X=x) = (1)\\tfrac{1}{10}+(2)\\tfrac{2}{10}+(3)\\tfrac{3}{10}+(4)\\tfrac{4}{10}$$\n$$E(X)=\\frac{1+4+9+16}{10}=\\frac{30}{10}=3.$$\n\n**Final answer:** $k=\\tfrac{1}{10}$ and $E(X)=3$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — form the sum-to-one equation.** Awarded for setting the total probability equal to 1: $k(1+2+3+4)=1$ (equivalently $k+2k+3k+4k=1$). This is a METHOD mark for the correct approach, earned even if the arithmetic later slips.\n- **A1 — solve for $k$.** Awarded for $k=\\tfrac{1}{10}$ (accept the equivalent $0.1$). This ACCURACY mark depends on the M1 above having been earned.\n- **M1 — state the expected-value method.** Awarded for using $E(X)=\\sum x\\,P(X=x)$ — recognising that each outcome is multiplied by its probability and summed.\n- **M1 — substitute correctly.** Awarded for the substitution $E(X)=(1)k+(2)(2k)+(3)(3k)+(4)(4k)$, or the numerical version with $k=\\tfrac{1}{10}$. The engine checks the right values went into the right places.\n- **A1 — final value.** Awarded for $E(X)=3$. Follow-through (FT) applies: a student who found a wrong $k$ but then substituted it correctly into $\\sum x\\,P(X=x)$ still earns this mark on THEIR value of $k$. Exact and equivalent forms are accepted ($3$, $\\tfrac{30}{10}$, $3.0$), and ISW means tidy-up working after a correct 3 does not lose the mark."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write the sum-to-one equation, solve for the unknown, state $E(X)=\\sum x\\,P(X=x)$, show the substitution, then give the value. The method marks and FT are what protect your score when a single number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The expected value is the first of the summary numbers that describe a distribution; the variance and standard deviation, which measure spread, are built on the very same weighted-sum idea. The habit you have practised here — tabulate the outcomes, enforce $\\sum P(X=x)=1$, then weight and sum — reappears directly in the binomial distribution, where the probabilities come from a formula rather than a table, and again in continuous distributions such as the normal, where the sum becomes an integral. Master the routine now and each of those topics becomes a variation on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=4.4"
+      "label": "Get a Paper 2 calculation marked: find $k$ and $E(X)$ for a distribution with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.4&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB Maths AA HL Questionbank",
-          "href": "/questionbank?subject=ib-maths-aa-hl"
+          "label": "IB Mathematics: Analysis and Approaches formula booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
+        },
+        {
+          "label": "Khan Academy: Expected value of a discrete random variable",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/expected-value-random-variables/v/expected-value-of-a-discrete-random-variable"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

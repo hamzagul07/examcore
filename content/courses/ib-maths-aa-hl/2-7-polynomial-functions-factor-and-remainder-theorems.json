@@ -1,110 +1,218 @@
 {
   "slug": "2-7-polynomial-functions-factor-and-remainder-theorems",
   "topicCode": "2.7",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
   "title": "Polynomial functions, factor and remainder theorems",
   "paper": "P1",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson explores polynomial functions, focusing on the Remainder and Factor Theorems. You'll learn how to efficiently find remainders, identify factors, solve polynomial equations, and fully factorise polynomials, which are essential skills for Paper 1.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "This lesson builds the full 2.7 toolkit for polynomial functions. It starts with the shape of a polynomial graph — how its degree, leading coefficient and end behaviour are read off the equation — then develops the two theorems that make Paper 1 polynomial work possible without a calculator: the remainder theorem (dividing $P(x)$ by $(x-a)$ leaves remainder $P(a)$) and the factor theorem ($(x-a)$ is a factor exactly when $P(a)=0$). From there it links roots to factors, factorises cubics by finding a first root and equating coefficients, and closes with the sum and product of the roots. Every worked example is laid out exactly the way our marking engine awards marks, because in a method topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and apply the Remainder Theorem to find the remainder when a polynomial is divided by a linear expression.",
-    "Apply the Factor Theorem to determine if a linear expression is a factor of a polynomial and to find unknown coefficients.",
-    "Use polynomial division (long or synthetic) in conjunction with the Factor Theorem to completely factorise polynomials of degree 3 or higher.",
-    "Solve polynomial equations and identify the roots of polynomial functions."
+    "Describe a polynomial by its degree and leading coefficient, and predict the end behaviour of its graph.",
+    "Apply the remainder theorem to find the remainder when a polynomial is divided by a linear expression.",
+    "Use the factor theorem to test for factors, find roots, and factorise cubic polynomials.",
+    "Relate the roots of a polynomial to its linear factors, and use the sum and product of the roots.",
+    "Present working so that method marks (M) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "2.7"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Polynomials: The Remainder and Factor Shortcuts",
-    "summary": "The Remainder and Factor Theorems are powerful shortcuts that let you test for factors of polynomials without performing long division. They help you break down complex polynomials into simpler parts.",
-    "analogy": "Imagine a polynomial is a locked safe. Trying to guess the combination (the roots) is hard. The Remainder Theorem is like a device that tells you how close one of your number guesses is. The Factor Theorem is when that device beeps 'zero' – you've found a correct number in the combination, and the safe's door clicks open a little, making it easier to find the rest.",
+    "title": "Unlocking Polynomial Secrets",
+    "summary": "The factor and remainder theorems are clever shortcuts for working with polynomials. They let you find a remainder, or check whether something is a factor, by a single substitution — no long division required.",
+    "analogy": "Imagine a long string of pearls that stands for a polynomial. You want to know whether it splits into equal-length bracelets (the factors) with no pearls left over (the remainder). Instead of physically cutting and measuring the whole string (long division), you use a trick: the remainder theorem tells you exactly how many pearls would be left over for a chosen bracelet length, and the factor theorem tells you whether a length divides it perfectly with none left over.",
     "steps": [
-      "Given a polynomial $P(x)$ and a potential linear factor $(x-a)$, identify the value of $a$.",
-      "Substitute $a$ into the polynomial to calculate $P(a)$. This value is the remainder.",
-      "Check if the remainder is zero. If $P(a)=0$, the Factor Theorem confirms that $(x-a)$ is a factor.",
-      "If a factor is found, use polynomial division to find the quotient. Then, factorise the quotient to find all remaining factors and roots."
+      "Write the polynomial $P(x)$ and the linear divisor in the form $(x-a)$, so its root is $x=a$.",
+      "To find the remainder, substitute $x=a$ and calculate $P(a)$.",
+      "To test whether $(x-a)$ is a factor, check whether $P(a)=0$. If it is, you have found a factor and a root.",
+      "Use these results to factorise the polynomial or to solve for unknown coefficients."
     ]
   },
+  "keyConcepts": [
+    "degree and leading coefficient",
+    "factor and remainder theorems",
+    "roots and factors"
+  ],
   "flashcards": [
     {
-      "front": "What is the Remainder Theorem?",
-      "back": "When a polynomial $P(x)$ is divided by a linear expression $(x-a)$, the remainder is equal to the value of the polynomial at $x=a$, which is $P(a)$."
+      "front": "What is a polynomial function, $P(x)$?",
+      "back": "An expression of the form $a_n x^n + a_{n-1}x^{n-1} + \\dots + a_1 x + a_0$, where the coefficients $a_i$ are real numbers and the powers are non-negative integers. $a_n$ (with $a_n \\neq 0$) is the leading coefficient.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the Factor Theorem?",
-      "back": "A linear expression $(x-a)$ is a factor of a polynomial $P(x)$ if and only if $P(a) = 0$. It's a special case of the Remainder Theorem where the remainder is zero."
+      "front": "Degree of a polynomial",
+      "back": "The highest power of $x$ that appears. The degree of $3x^4 - 2x + 1$ is $4$. A polynomial of degree $n$ has at most $n$ real roots and at most $n-1$ turning points.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the connection between a factor and a root?",
-      "back": "If $(x-a)$ is a factor of a polynomial $P(x)$, then $x=a$ is a root of the equation $P(x)=0$. A root is a value of $x$ that makes the polynomial equal to zero."
+      "front": "End behaviour of a graph",
+      "back": "For large $|x|$ the leading term $a_n x^n$ dominates. Odd degree: ends point in opposite directions; even degree: ends point the same way. A positive leading coefficient sends the right-hand end upwards; a negative one sends it downwards.",
+      "pillLabel": "Graph"
     },
     {
-      "front": "How do you apply the theorems if the divisor is $(ax-b)$?",
-      "back": "The divisor $(ax-b)$ corresponds to the root $x = b/a$. To find the remainder, you calculate $P(b/a)$. If $P(b/a) = 0$, then $(ax-b)$ is a factor."
+      "front": "State the remainder theorem.",
+      "back": "When a polynomial $P(x)$ is divided by $(x-a)$, the remainder equals $P(a)$.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Common trap: What is the value of 'a' for the divisor $(x+3)$?",
-      "back": "The divisor is in the form $(x-a)$, so for $(x+3)$, which is $(x-(-3))$, the value to substitute is $a = -3$. A common mistake is to use $a=3$."
+      "front": "Remainder when dividing by $(bx-c)$",
+      "back": "The remainder is $P\\!\\left(\\tfrac{c}{b}\\right)$. Set the divisor to zero, $bx-c=0 \\Rightarrow x=\\tfrac{c}{b}$, and substitute that value into $P(x)$.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What does the degree of a polynomial tell you?",
-      "back": "The degree of a polynomial is the highest power of the variable. A polynomial of degree $n$ has at most $n$ distinct real roots."
+      "front": "State the factor theorem.",
+      "back": "$(x-a)$ is a factor of $P(x)$ if and only if $P(a)=0$. It is the special case of the remainder theorem where the remainder is zero.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "How can you find a first factor for a cubic polynomial in an exam?",
-      "back": "Use the Rational Root Theorem (implicitly). Test integer values that are factors of the constant term. For $P(x) = x^3 + \\dots + 6$, try $x = \\pm 1, \\pm 2, \\pm 3, \\pm 6$."
+      "front": "What is a root of a polynomial?",
+      "back": "A value $x=a$ with $P(a)=0$. The roots are the solutions of $P(x)=0$ and correspond to the $x$-intercepts of $y=P(x)$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What's the difference between 'factorise' and 'solve'?",
-      "back": "'Factorise' means to write the polynomial as a product of its factors, e.g., $(x-1)(x+2)(x-3)$. 'Solve' means to find the roots of the equation $P(x)=0$, e.g., $x=1, x=-2, x=3$."
+      "front": "Roots and factors",
+      "back": "$x=a$ is a root $\\iff$ $P(a)=0$ $\\iff$ $(x-a)$ is a factor. If a polynomial has known roots $a$, $b$, $c$, then $P(x)=k(x-a)(x-b)(x-c)$ for some constant $k$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What must you show in your working after finding a root?",
-      "back": "You must explicitly state the connection. For example: \"Let $P(x) = \\dots$. $P(2) = 8 - 8 + 2 - 2 = 0$. Since $P(2)=0$, $(x-2)$ is a factor.\" This earns a reasoning mark (R1)."
+      "front": "Sum and product of the roots (quadratic)",
+      "back": "For $ax^2+bx+c=0$ with roots $\\alpha, \\beta$: sum $\\alpha+\\beta = -\\dfrac{b}{a}$, product $\\alpha\\beta = \\dfrac{c}{a}$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What if you use the Remainder Theorem and the result is, say, 5?",
-      "back": "It means that when $P(x)$ is divided by $(x-a)$, the remainder is 5. It also means $(x-a)$ is NOT a factor of $P(x)$."
+      "front": "Sum and product of the roots (cubic)",
+      "back": "For $ax^3+bx^2+cx+d=0$ with roots $\\alpha, \\beta, \\gamma$: sum $= -\\dfrac{b}{a}$, sum of pairs $\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha = \\dfrac{c}{a}$, product $\\alpha\\beta\\gamma = -\\dfrac{d}{a}$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Common Trap: dividing $P(x)$ by $(x+5)$",
+      "back": "Substitute $x=-5$, not $x=5$. Always use the value that makes the divisor zero: $x+5=0 \\Rightarrow x=-5$. The sign flips.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Finding a first factor of a cubic without a calculator",
+      "back": "Test integer factors of the constant term. For $P(x)=x^3-2x^2-5x+6$, try $x=\\pm1,\\pm2,\\pm3,\\pm6$: $P(1)=1-2-5+6=0$, so $(x-1)$ is a factor. Then equate coefficients to find the quadratic factor.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "What does $\\iff$ mean in the factor theorem?",
+      "back": "A two-way implication. (1) If $(x-a)$ is a factor then $P(a)=0$; AND (2) if $P(a)=0$ then $(x-a)$ is a factor. Both directions hold.",
+      "pillLabel": "Concept"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "$(x-3)$ is a factor of $P(x)$ if and only if which condition holds?",
+      "options": [
+        "$P(3)=0$",
+        "$P(-3)=0$",
+        "$P(0)=3$",
+        "$P(3)$ is the remainder, which may be non-zero"
+      ],
+      "answer": "$P(3)=0$"
+    },
+    {
+      "prompt": "When $P(x)$ is divided by $(x+4)$, the remainder is:",
+      "options": [
+        "$P(4)$",
+        "$P(-4)$",
+        "$P(0)$",
+        "always $0$"
+      ],
+      "answer": "$P(-4)$"
+    },
+    {
+      "prompt": "A cubic polynomial $P(x)$ has $P(2)=0$. Which statement is guaranteed to be true?",
+      "options": [
+        "$(x+2)$ is a factor of $P(x)$",
+        "$(x-2)$ is a factor and $x=2$ is a root",
+        "$P(x)$ has exactly three real roots",
+        "The remainder on dividing by $(x-2)$ is $2$"
+      ],
+      "answer": "$(x-2)$ is a factor and $x=2$ is a root"
+    },
+    {
+      "prompt": "A polynomial of degree $5$ has, over the real numbers:",
+      "options": [
+        "Exactly $5$ real roots always",
+        "At most $5$ real roots",
+        "At least $5$ real roots",
+        "Exactly $4$ real roots"
+      ],
+      "answer": "At most $5$ real roots"
+    },
+    {
+      "prompt": "The quadratic $x^2 - 7x + 12 = 0$ has roots whose sum and product are:",
+      "options": [
+        "Sum $-7$, product $12$",
+        "Sum $7$, product $12$",
+        "Sum $7$, product $-12$",
+        "Sum $12$, product $7$"
+      ],
+      "answer": "Sum $7$, product $12$"
     }
   ],
   "faq": [
     {
-      "q": "What's the main difference between the Remainder and Factor Theorems?",
-      "a": "The Factor Theorem is a specific outcome of the Remainder Theorem. The Remainder Theorem gives you the remainder for *any* linear division. The Factor Theorem just deals with the special case where that remainder is 0, which tells you the divisor is a factor."
+      "q": "What's the difference between the remainder theorem and the factor theorem?",
+      "a": "The factor theorem is the special case of the remainder theorem where the remainder is zero. The remainder theorem gives the remainder $P(a)$ for any division by $(x-a)$; the factor theorem simply notes that when that remainder is $0$, the divisor divides exactly and is therefore a factor."
     },
     {
-      "q": "Do I have to use polynomial long division? Can I use synthetic division?",
-      "a": "You can use whichever method you prefer and are more accurate with. Synthetic division is often faster for linear divisors like $(x-a)$, but it's crucial to be careful with signs. Long division is more versatile and can be used for non-linear divisors (though this is less common in AA HL). Both methods are accepted in exams."
+      "q": "Do I have to use polynomial long division to find the other factors?",
+      "a": "It works, but it is rarely the fastest route in Paper 1. Once you have one linear factor $(x-a)$ of a cubic, write $P(x)=(x-a)(x^2+bx+c)$ and equate coefficients (inspection). This is quicker and less error-prone than long division, and it earns the same method marks."
     },
     {
-      "q": "How does the Remainder Theorem work with a divisor like $(2x-1)$?",
-      "a": "First, find the root of the divisor: $2x-1=0 \\implies x = 1/2$. Then, substitute this value into the polynomial, $P(1/2)$. The result, $P(1/2)$, is the remainder when $P(x)$ is divided by $(2x-1)$. The same logic applies to the Factor Theorem: if $P(1/2)=0$, then $(2x-1)$ is a factor."
+      "q": "What if the divisor is something like $(2x-1)$?",
+      "a": "The theorems still apply. Set the divisor to zero: $2x-1=0 \\Rightarrow x=\\tfrac12$. Then $P\\!\\left(\\tfrac12\\right)$ is the remainder, and $(2x-1)$ is a factor exactly when $P\\!\\left(\\tfrac12\\right)=0$."
+    },
+    {
+      "q": "How do the degree and leading coefficient control the graph?",
+      "a": "For large $|x|$ the leading term $a_n x^n$ dominates, so it fixes the end behaviour. Odd degree gives ends in opposite directions; even degree gives ends the same way. A positive $a_n$ lifts the right-hand end upwards, a negative $a_n$ pushes it down. The number of real roots — where the graph crosses the $x$-axis — can be anything from $0$ up to the degree."
+    },
+    {
+      "q": "When would I use the sum and product of the roots?",
+      "a": "When a question gives you information about the roots as a group rather than individually — for example, 'the roots sum to $6$' or 'the product of the roots is $-8$'. Reading the sum and product straight off the coefficients often forms an equation faster than solving for each root separately."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to our lesson on polynomial functions. Polynomials appear everywhere in mathematics and science, from modelling projectile motion to designing rollercoasters. In this lesson, we'll master two powerful tools, the Remainder and Factor Theorems, which provide elegant shortcuts for factorising and solving polynomial equations – key skills for success in Paper 1."
+      "content": "You already know linear functions (degree 1) and quadratics (degree 2). Polynomials extend these to any non-negative integer degree, and with higher degree comes a richer graph and harder factorising. This lesson gives you the tools 2.7 demands: first how the degree and leading coefficient shape the graph, then the two theorems — remainder and factor — that let you factorise cubics and solve equations by hand, and finally the link between roots and factors and a first look at the sum and product of the roots. As in every method topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "Revisiting Polynomials"
+      "content": "Polynomial functions and their graphs"
     },
     {
       "type": "text",
-      "content": "A polynomial function is an expression consisting of variables and coefficients, involving only the operations of addition, subtraction, multiplication, and non-negative integer exponents of variables. The degree of a polynomial is the highest exponent of its variable. For example, $f(x) = 3x^4 - 5x^2 + x - 10$ is a polynomial of degree 4."
+      "content": "A polynomial function is $P(x)=a_n x^n + a_{n-1}x^{n-1} + \\dots + a_1 x + a_0$, where the coefficients are real numbers and the powers are non-negative integers. Two numbers control the overall shape. The degree $n$ is the highest power; it caps the number of real roots at $n$ and the number of turning points at $n-1$. The leading coefficient $a_n$ scales the dominant term. Together they fix the end behaviour — what the graph does for large $|x|$ — because far from the origin the leading term $a_n x^n$ swamps every other term."
     },
     {
-      "type": "formula",
-      "content": "The general form of a polynomial of degree $n$ is: $P(x) = a_n x^n + a_{n-1} x^{n-1} + \\dots + a_1 x + a_0$, where $a_n, a_{n-1}, \\dots, a_0$ are constant coefficients and $a_n \\neq 0$."
+      "type": "keyPoints",
+      "items": [
+        "**Degree $n$:** a polynomial of degree $n$ has at most $n$ real roots and at most $n-1$ turning points.",
+        "**Leading coefficient $a_n$:** its sign decides which way the right-hand end of the graph points — up if $a_n>0$, down if $a_n<0$.",
+        "**Odd degree:** the two ends point in opposite directions, so the graph must cross the $x$-axis at least once (at least one real root).",
+        "**Even degree:** the two ends point the same way; the graph may have no real roots at all."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "So for a positive-leading-coefficient cubic ($n=3$, $a_n>0$) the graph rises from bottom-left to top-right, and because the degree is odd it is guaranteed at least one real root. That guarantee is what makes the factor theorem so useful: on a cubic there is always a root to find."
     },
     {
       "type": "heading",
-      "content": "The Remainder Theorem: A Clever Shortcut"
+      "content": "The remainder theorem"
     },
     {
       "type": "text",
-      "content": "Imagine you need to find the remainder when a large polynomial is divided by a simple linear expression. You could use polynomial long division, but this can be time-consuming and prone to errors. The Remainder Theorem gives us a much faster way. It states that the remainder of this division is simply the value of the polynomial when you substitute the root of the linear expression."
+      "content": "Suppose you must divide a polynomial such as $P(x)=2x^3 - 5x^2 + x - 7$ by a linear expression like $(x-3)$. Long division gets the answer but is slow and error-prone. If you only need the remainder, the remainder theorem hands it to you in one substitution."
     },
     {
       "type": "formula",
@@ -112,52 +220,124 @@
     },
     {
       "type": "workedExample",
-      "question": "Find the remainder when the polynomial $P(x) = 2x^3 - 5x^2 + x + 8$ is divided by $(x-3)$.",
-      "solution": "Let the divisor be $(x-a)$, so here $a=3$. (M1 for identifying the correct value to substitute)\n\nAccording to the Remainder Theorem, the remainder is $P(3)$.\n\n$P(3) = 2(3)^3 - 5(3)^2 + (3) + 8$ (M1 for substitution)\n\n$P(3) = 2(27) - 5(9) + 3 + 8$\n\n$P(3) = 54 - 45 + 11$\n\n$P(3) = 9 + 11 = 20$\n\nSo, the remainder is 20. (A1)"
+      "question": "Find the remainder when $P(x) = 2x^3 - 5x^2 + x - 7$ is divided by $(x-3)$. [3]",
+      "solution": "The divisor is $(x-3)$, so set $x-3=0$ to get $a=3$; by the remainder theorem the remainder is $P(3)$.  [M1: apply the remainder theorem — substitute $x=3$]\n$P(3) = 2(3)^3 - 5(3)^2 + (3) - 7$  [M1: correct substitution]\n$= 2(27) - 5(9) + 3 - 7$\n$= 54 - 45 + 3 - 7$\n$= 5$.  [A1]\n\n**Remainder $= 5$.** (Because $P(3)\\neq 0$, $(x-3)$ is not a factor.)"
     },
     {
       "type": "heading",
-      "content": "The Factor Theorem: Finding the Keys"
+      "content": "The factor theorem"
     },
     {
       "type": "text",
-      "content": "The Factor Theorem is a direct and powerful consequence of the Remainder Theorem. What happens if the remainder is zero? It means the division is perfect, and the divisor is a factor of the polynomial. This theorem is the cornerstone of factorising higher-degree polynomials without a calculator."
-    },
-    {
-      "type": "formula",
-      "content": "$(x-a)$ is a factor of a polynomial $P(x)$ if and only if $P(a) = 0$."
+      "content": "What happens when the remainder is zero? Then the division is exact and the divisor is a factor. This is the factor theorem, and it is the bridge between the algebra of factors and the geometry of roots and $x$-intercepts."
     },
     {
       "type": "keyPoints",
       "items": [
-        "If $P(a) = 0$, then $(x-a)$ is a factor of $P(x)$.",
-        "If $(x-a)$ is a factor of $P(x)$, then $P(a) = 0$.",
-        "If $(x-a)$ is a factor, then $x=a$ is a root (or zero) of the polynomial equation $P(x)=0$."
+        "$(x-a)$ is a factor of $P(x)$ $\\iff$ $P(a)=0$.",
+        "$x=a$ is a root of $P(x)=0$ $\\iff$ $P(a)=0$.",
+        "The graph of $y=P(x)$ has an $x$-intercept at $(a,0)$ $\\iff$ $P(a)=0$.",
+        "Sign warning: for the factor $(x-a)$ you substitute $x=a$; for $(x+a)$ you substitute $x=-a$."
       ]
     },
     {
       "type": "workedExample",
-      "question": "The polynomial $P(x) = x^3 + ax^2 - x - 6$ has a factor of $(x+2)$.\n(a) Find the value of $a$.\n(b) Hence, factorise $P(x)$ completely and state its roots.",
-      "solution": "(a) Since $(x+2)$ is a factor, by the Factor Theorem, $P(-2) = 0$. (M1 for applying the Factor Theorem)\n\n$P(-2) = (-2)^3 + a(-2)^2 - (-2) - 6 = 0$\n\n$-8 + a(4) + 2 - 6 = 0$ (A1 for correct substitution)\n\n$4a - 12 = 0$\n\n$4a = 12$\n\n$a = 3$ (A1)\n\n(b) So, the polynomial is $P(x) = x^3 + 3x^2 - x - 6$. We know $(x+2)$ is a factor. We can use polynomial long division or synthetic division to find the other factors.\n\nUsing long division:\n```\n        x²  + x  - 3\n      ________________\nx + 2 | x³ + 3x² - x - 6\n      -(x³ + 2x²)\n      _________\n            x² - x\n          -(x² + 2x)\n          _________\n               -3x - 6\n             -(-3x - 6)\n             __________\n                    0\n```\n(M1 for attempting division)\n\nThe quotient is $x^2 + x - 3$. (A1)\n\nSo, $P(x) = (x+2)(x^2 + x - 3)$.\n\nThe quadratic factor $x^2 + x - 3$ cannot be factorised easily into integers. The question asks to factorise completely and state the roots.\n\nComplete factorisation: $P(x) = (x+2)(x^2 + x - 3)$. (A1)\n\nThe roots are found by setting each factor to zero:\n$x+2 = 0 \\implies x = -2$\n$x^2 + x - 3 = 0 \\implies x = \\frac{-1 \\pm \\sqrt{1^2 - 4(1)(-3)}}{2(1)} = \\frac{-1 \\pm \\sqrt{13}}{2}$ (M1 for using quadratic formula)\n\nThe roots are $x = -2$, $x = \\frac{-1 + \\sqrt{13}}{2}$, and $x = \\frac{-1 - \\sqrt{13}}{2}$. (A1)"
+      "question": "Let $P(x) = x^3 + 2x^2 - 5x - 6$.\n(a) Show that $(x+1)$ is a factor of $P(x)$.\n(b) Hence factorise $P(x)$ fully and state its roots. [6]",
+      "solution": "**(a)** The factor $(x+1)$ has root $x=-1$, so by the factor theorem test $P(-1)$.  [M1: apply factor theorem with $x=-1$]\n$P(-1) = (-1)^3 + 2(-1)^2 - 5(-1) - 6 = -1 + 2 + 5 - 6 = 0$.  [A1]\nSince $P(-1)=0$, $(x+1)$ is a factor of $P(x)$.  [R1: conclusion stated — this is a 'show that' (AG)]\n\n**(b)** Write $P(x) = (x+1)(x^2 + bx + c)$ and equate coefficients.  [M1: valid method to find the quadratic factor]\nConstant term: $1 \\times c = -6 \\Rightarrow c = -6$.\n$x^2$ term: coefficient is $b + 1 = 2 \\Rightarrow b = 1$.\nSo $P(x) = (x+1)(x^2 + x - 6)$.\nFactorise the quadratic: $x^2 + x - 6 = (x+3)(x-2)$.\n$$P(x) = (x+1)(x+3)(x-2).$$  [A1: correct full factorisation]\nSetting each factor to zero gives the roots $x=-1,\\; x=-3,\\; x=2$.  [A1]"
     },
     {
       "type": "examTip",
-      "content": "In Paper 1, when asked to factorise a cubic, you are expected to find the first root by testing integer factors of the constant term. For $P(x) = x^3 - 2x^2 - 5x + 6$, the constant term is 6. You should test $P(1), P(-1), P(2)$, etc. Once you find one that gives zero, e.g., $P(1)=0$, immediately state 'Therefore $(x-1)$ is a factor' to secure the reasoning mark before proceeding with division."
+      "content": "In a 'show that' (AG) part like (a), the answer is given, so you must show the substitution and the line $=0$, then state the conclusion in words. Writing only 'so it is a factor' without the $P(-1)=0$ working scores nothing — the marks are for the demonstration, not the claim."
+    },
+    {
+      "type": "heading",
+      "content": "Roots, factors, and the sum and product of the roots"
+    },
+    {
+      "type": "text",
+      "content": "Because $x=a$ is a root exactly when $(x-a)$ is a factor, a polynomial with known roots can be built directly: if the roots are $a$, $b$, $c$ then $P(x)=k(x-a)(x-b)(x-c)$ for some non-zero constant $k$. Reading this the other way round gives useful shortcuts. Multiplying the factors out and comparing coefficients shows that the sum and product of the roots are fixed by the coefficients alone, so you can often extract them without ever solving the equation."
+    },
+    {
+      "type": "formula",
+      "content": "For $ax^2+bx+c=0$ with roots $\\alpha,\\beta$: \\quad \\alpha+\\beta = -\\frac{b}{a}, \\qquad \\alpha\\beta = \\frac{c}{a}.\n\nFor $ax^3+bx^2+cx+d=0$ with roots $\\alpha,\\beta,\\gamma$: \\quad \\alpha+\\beta+\\gamma = -\\frac{b}{a}, \\qquad \\alpha\\beta\\gamma = -\\frac{d}{a}."
+    },
+    {
+      "type": "workedExample",
+      "question": "The quadratic $2x^2 - 3x + 5 = 0$ has roots $\\alpha$ and $\\beta$. Without solving the equation, find (a) $\\alpha + \\beta$ and (b) $\\alpha\\beta$. [3]",
+      "solution": "Here $a=2$, $b=-3$, $c=5$.\n**(a)** $\\alpha+\\beta = -\\dfrac{b}{a} = -\\dfrac{-3}{2} = \\dfrac{3}{2}$.  [M1: use $-b/a$]  [A1]\n**(b)** $\\alpha\\beta = \\dfrac{c}{a} = \\dfrac{5}{2}$.  [A1]\n\n**Sum $=\\tfrac{3}{2}$, product $=\\tfrac{5}{2}$.** (The discriminant $9-40<0$, so the roots are complex — but the sum and product are still real and read straight off the coefficients.)"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Wrong sign in the factor theorem** — for the factor $(x-a)$ you substitute $x=a$; for $(x+a)$ you substitute $x=-a$. Testing $(x+5)$ with $x=5$ instead of $x=-5$ is the single most common slip.",
+        "**Confusing a root with a factor** — 'a root of $2$' means $x=2$ and the factor $(x-2)$, not $(x+2)$. Root and factor carry opposite signs.",
+        "**Believing degree equals number of real roots** — a degree-$n$ polynomial has at most $n$ real roots; repeated roots and complex roots mean it can have fewer.",
+        "**Using the factor theorem when the remainder is not zero** — if $P(a)\\neq 0$ then $(x-a)$ is not a factor; $P(a)$ is simply the remainder. Do not force it.",
+        "**Skipping the conclusion in a 'show that' part** — after $P(a)=0$ you must state 'therefore $(x-a)$ is a factor'; the mark is for the reasoning.",
+        "**Long-division arithmetic slips** — once one factor is known, equating coefficients is faster and less error-prone than long division; still show the comparison so the method mark is secured.",
+        "**Dropping the constant $k$ when building a polynomial from its roots** — $P(x)=k(x-a)(x-b)(x-c)$; the leading coefficient need not be $1$, and a data point is needed to fix $k$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an A-mark depends on the M-mark it follows, so a correct method protects the answer. Follow-through (FT) means a wrong value early on need not cost the marks that come after, provided the later work is correct on your own figures. But that protection only exists if the method is written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "The polynomial $P(x)=x^3 + ax^2 - 7x + b$ has a factor $(x-2)$ and leaves a remainder of $-6$ when divided by $(x+1)$. Find $a$ and $b$. [6]",
+      "solution": "**Model answer — full working.**\n\nUse the two pieces of information to form two equations in $a$ and $b$.\n\n**Factor $(x-2)$.** By the factor theorem, $P(2)=0$.\n$P(2) = (2)^3 + a(2)^2 - 7(2) + b = 8 + 4a - 14 + b = 0$\n$\\Rightarrow 4a + b = 6.$  (Equation 1)\n\n**Remainder $-6$ on division by $(x+1)$.** The divisor $(x+1)$ has root $x=-1$, so by the remainder theorem $P(-1)=-6$.\n$P(-1) = (-1)^3 + a(-1)^2 - 7(-1) + b = -1 + a + 7 + b = -6$\n$\\Rightarrow a + b = -12.$  (Equation 2)\n\n**Solve simultaneously.** Subtract (2) from (1):\n$(4a + b) - (a + b) = 6 - (-12)$\n$3a = 18 \\Rightarrow a = 6.$\nSubstitute into (2): $6 + b = -12 \\Rightarrow b = -18.$\n\n**Final answer:** $a = 6$ and $b = -18$, so $P(x) = x^3 + 6x^2 - 7x - 18$.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — apply the factor theorem.** Awarded for setting $P(2)=0$ (recognising that the factor $(x-2)$ gives the substitution $x=2$). This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **A1 — first equation.** Awarded for the correct simplified equation $4a + b = 6$. This ACCURACY mark depends on the M1 above; it is only available once the method is in place. Accept any equivalent form, e.g. $b = 6 - 4a$.\n- **M1 — apply the remainder theorem.** Awarded for setting $P(-1)=-6$ (recognising that $(x+1)$ gives the substitution $x=-1$, with the correct sign).\n- **A1 — second equation.** Awarded for $a + b = -12$ (or equivalent). Depends on the preceding M1.\n- **M1 — solve the simultaneous equations.** Awarded for a valid method to eliminate one unknown — here subtracting the equations to reach a single equation in $a$. FT applies: if a student's two equations were wrong but their elimination method is correct, this method mark still stands.\n- **A1 — values of $a$ and $b$.** Awarded for $a=6$ and $b=-18$. Under follow-through, a student whose equations were slightly off but who then solves THEIR system correctly earns this final mark on their own figures.\n\n**'Accept equivalent forms.'** The engine accepts the equations in any rearranged form and does not insist on a particular order of working — only that the two conditions are correctly set up and correctly solved. ISW (ignore subsequent working) means that once the correct $a$ and $b$ are stated, an unnecessary extra line does not lose the mark.\n\n**Bottom line:** of the 6 marks, three are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A student who writes only '$a=6,\\ b=-18$' with no working risks losing up to 4 marks if either number is wrong; a student who shows $P(2)=0$, $P(-1)=-6$, both equations and the elimination keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write the theorem you are applying ($P(2)=0$ or $P(-1)=-6$), form each equation, then show the elimination. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The factor theorem turns a cubic into a product of linear factors, which is exactly the form you need to sketch its graph, solve $P(x)=0$, and read off intercepts — the graphing skills of the rest of the functions unit. The sum and product of the roots reappear whenever a question describes the roots collectively. Master the habit — set the divisor to zero, substitute, state the conclusion, equate coefficients, show every line — and higher-degree algebra becomes variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=2.7"
+      "label": "Get a Paper 1 polynomial question marked: find the unknown coefficients with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.7&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Polynomials on GeoGebra",
-          "href": "https://www.geogebra.org/graphing?lang=en"
+          "label": "GeoGebra: Polynomial Factorisation",
+          "href": "https://www.geogebra.org/m/y9btrwky"
+        },
+        {
+          "label": "Khan Academy: Polynomial Remainder Theorem",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:poly-div/x2ec2f6f830c9fb89:remainder-theorem/v/polynomial-remainder-theorem"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Polynomial Factorisation",
+    "embedUrl": "https://www.geogebra.org/classic?material=y9btrwky",
+    "launchUrl": "https://www.geogebra.org/classic?material=y9btrwky",
+    "hint": "Use “Polynomial Factorisation” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

@@ -5,184 +5,323 @@
   "paper": "P1",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson explores two major applications of calculus: optimization and kinematics. Students will learn to model real-world scenarios to find maximum or minimum values, and to analyse the motion of objects by relating displacement, velocity, and acceleration through differentiation and integration.",
-  "durationMin": 110,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "This lesson turns the derivative into a problem-solving tool through the two applications examiners love most: optimisation and kinematics. In optimisation you learn to build a function from a real situation, use a constraint to reduce it to one variable, differentiate, solve $f'(x)=0$, and — crucially — justify whether the stationary point is a maximum or a minimum. In kinematics you learn to move between displacement $s(t)$, velocity $v=\\frac{ds}{dt}$ and acceleration $a=\\frac{dv}{dt}=\\frac{d^2s}{dt^2}$, and to read what the motion is actually doing: at rest when $v=0$, maximum displacement where $v=0$, and direction from the sign of $v$. Every worked example is laid out exactly the way our marking engine awards marks, because on Paper 1 how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Formulate a function to model a real-world optimization problem, including identifying constraints and a valid domain.",
-    "Apply the first and second derivative tests to find and classify stationary points to solve for maximum and minimum values.",
-    "Understand and apply the relationships between displacement, velocity, and acceleration using differentiation and integration.",
-    "Solve kinematics problems, including calculating total distance travelled and determining when a particle is speeding up or slowing down."
+    "Formulate an optimisation problem by writing the quantity to be maximised or minimised as a function, and use a constraint to reduce it to a single variable.",
+    "Differentiate, solve $f'(x)=0$ to locate stationary points, and justify the nature of each point using the sign of $f'$ or the second derivative.",
+    "Relate displacement, velocity and acceleration through differentiation: $v=\\frac{ds}{dt}$ and $a=\\frac{dv}{dt}=\\frac{d^2s}{dt^2}$.",
+    "Interpret motion: identify when a particle is at rest ($v=0$), find maximum displacement, and determine the direction of motion from the sign of $v$.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "5.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Calculus in Action: Finding the Best and How Things Move",
-    "summary": "This topic uses differentiation to solve two types of problems: finding the 'best' possible outcome in a situation (optimization) and describing the motion of objects (kinematics). It's where the abstract rules of calculus meet concrete, real-world applications.",
-    "analogy": "For optimization, imagine you're a packaging designer with a fixed amount of cardboard. You want to design a box that holds the most stuff possible. Calculus helps you find the exact dimensions to maximize the volume. For kinematics, think of tracking a rocket launch. Its height is its displacement, its speed is its velocity, and how fast its speed changes is its acceleration. Calculus provides the mathematical language to connect these three concepts and predict the rocket's entire journey.",
+    "title": "Calculus in Action: Finding the Best and the Fastest",
+    "summary": "Calculus isn't just abstract theory; it's a tool for two everyday questions. Optimisation asks 'what choice gives the best outcome?' — the biggest area, the least material. Kinematics asks 'how is this thing moving?' — where it is, how fast, speeding up or slowing down. Both come down to one idea: the derivative measures how a quantity is changing, and where that rate is zero something special happens.",
+    "analogy": "Imagine building a rectangular garden with a fixed length of fencing but wanting the biggest area — calculus finds the exact dimensions. Now think of a car journey: its position is the displacement, the speedometer shows velocity (the rate of change of position), and pressing the accelerator or brake changes the acceleration (the rate of change of velocity). In both stories the interesting moments — the maximum area, the instant the car is momentarily still — are exactly where a derivative equals zero.",
     "steps": [
-      "Model the Problem: Translate the word problem into a mathematical function. For optimization, this is the quantity to be maximized or minimized (e.g., Area $A(x)$). For kinematics, you'll be given a function for displacement, velocity, or acceleration.",
-      "Find Stationary Points: Differentiate the function and set the derivative equal to zero. Solving this equation gives you the critical points where a maximum or minimum might occur.",
-      "Test the Nature: Use the second derivative test. A negative result means a local maximum, and a positive result means a local minimum. This confirms the nature of your stationary point.",
-      "Interpret and Conclude: Answer the original question. This might be finding the maximum area, the minimum cost, the total distance travelled, or the time when maximum velocity is reached. Always check endpoints and constraints."
+      "Model the situation: identify the quantity to maximise or minimise (area, volume, cost) and write a formula for it; or, for motion, write down the displacement $s(t)$.",
+      "Reduce to one variable: use any constraint to express the objective in terms of a single variable; or, for motion, differentiate to get $v(t)$ and $a(t)$.",
+      "Differentiate and solve: set the derivative to zero — $f'(x)=0$ for optimisation, $v(t)=0$ for 'at rest' or maximum displacement — and solve.",
+      "Justify and conclude: confirm a maximum or minimum with the second derivative or a sign diagram, or interpret the motion; then answer the actual question, with units."
     ]
   },
+  "keyConcepts": [
+    "stationary points",
+    "constraints and single-variable functions",
+    "displacement–velocity–acceleration"
+  ],
   "flashcards": [
     {
-      "front": "What is an optimization problem in calculus?",
-      "back": "A problem that involves finding the maximum or minimum value of a function, often subject to certain constraints. For example, finding the maximum volume of a container given a fixed surface area."
+      "front": "What is an optimisation problem in calculus?",
+      "back": "A problem where you find the maximum or minimum value of a quantity, usually subject to a constraint. You write the quantity as a function, use the constraint to reduce it to one variable, then differentiate. Example: maximising the volume of a box made from a fixed amount of cardboard.",
+      "pillLabel": "Definition"
     },
     {
       "front": "What is a stationary point?",
-      "back": "A point on a curve where the derivative is zero or undefined. These are candidates for local maxima, local minima, or horizontal points of inflection."
+      "back": "A point on a curve where the derivative is zero, $f'(x) = 0$. It may be a local maximum, a local minimum, or a stationary point of inflexion — you must justify which.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "State the Second Derivative Test for a local maximum.",
-      "back": "If $f'(c) = 0$ and $f''(c) < 0$, then the function $f$ has a local maximum at $x=c$."
+      "front": "How does the First Derivative Test classify a stationary point at $x=c$?",
+      "back": "Check the sign of $f'(x)$ just before and just after $c$. Sign change $+\\to-$ means a local maximum; $-\\to+$ means a local minimum; no change means a stationary point of inflexion.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "State the Second Derivative Test for a local minimum.",
-      "back": "If $f'(c) = 0$ and $f''(c) > 0$, then the function $f$ has a local minimum at $x=c$."
+      "front": "What is the Second Derivative Test at a stationary point $x=c$?",
+      "back": "Evaluate $f''(c)$. If $f''(c) > 0$ it is a local minimum (curve concave up); if $f''(c) < 0$ it is a local maximum (concave down); if $f''(c) = 0$ the test is inconclusive — fall back to the sign of $f'$.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the relationship between displacement ($s$), velocity ($v$), and acceleration ($a$)?",
-      "back": "Velocity is the derivative of displacement with respect to time: $v = \\frac{ds}{dt}$. Acceleration is the derivative of velocity with respect to time: $a = \\frac{dv}{dt} = \\frac{d^2s}{dt^2}$."
+      "front": "Why must you justify the nature of a stationary point?",
+      "back": "Solving $f'(x)=0$ only locates a candidate; it does not tell you whether it is the maximum or minimum the question wants. IB awards a reasoning mark for the justification, so an answer with no test is an incomplete solution even if the number is right.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the relationship between speed and velocity?",
-      "back": "Velocity is a vector quantity (it has direction, indicated by its sign). Speed is the scalar magnitude of velocity. Speed = $|v(t)|$."
+      "front": "In kinematics, what is displacement $s(t)$?",
+      "back": "The position of a particle relative to a fixed origin at time $t$. It is a signed (vector) quantity, so it can be positive, negative or zero.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "When is a particle momentarily at rest?",
-      "back": "A particle is momentarily at rest when its velocity is zero, i.e., $v(t) = 0$."
+      "front": "How are displacement, velocity and acceleration related by differentiation?",
+      "back": "Velocity is the derivative of displacement, $v(t)=\\frac{ds}{dt}=s'(t)$. Acceleration is the derivative of velocity, $a(t)=\\frac{dv}{dt}=v'(t)=s''(t)$ — the second derivative of displacement.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How do you determine if a particle is speeding up or slowing down?",
-      "back": "It is speeding up if velocity and acceleration have the same sign ($v \\cdot a > 0$). It is slowing down if they have opposite signs ($v \\cdot a < 0$)."
+      "front": "How are they related by integration?",
+      "back": "Velocity is the integral of acceleration, $v(t)=\\int a(t)\\,dt$; displacement is the integral of velocity, $s(t)=\\int v(t)\\,dt$. Never forget the constant of integration $+C$, found from an initial condition.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is a common trap when asked for 'total distance travelled'?",
-      "back": "Forgetting to check for changes in direction (where $v(t)=0$). You must integrate over each interval between direction changes and sum the absolute values of the displacements, not just integrate over the whole time period."
+      "front": "What does it mean for a particle to be 'at rest'?",
+      "back": "Its velocity is zero. To find when a particle is at rest, solve $v(t)=0$ — NOT $s(t)=0$, which only says it is back at the origin.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the significance of the constant of integration, $C$, in kinematics?",
-      "back": "When integrating velocity to find displacement ($s(t) = \\int v(t) dt$), the constant $C$ represents the initial displacement, $s(0)$. An initial condition is needed to solve for $C$."
+      "front": "How do you find the maximum displacement of a particle?",
+      "back": "Maximum (or minimum) displacement occurs at a stationary point of $s(t)$, i.e. where $v(t)=s'(t)=0$. Solve $v=0$ for the time, then substitute back into $s(t)$ to get the displacement.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "In an optimization problem on a closed interval $[a, b]$, where can the global maximum/minimum occur?",
-      "back": "The global maximum or minimum can occur at a stationary point within the interval or at the endpoints, $x=a$ or $x=b$. You must check the function's value at all these points."
+      "front": "How do you find when a particle changes direction?",
+      "back": "A particle changes direction when its velocity changes sign, which can only happen where $v(t)=0$. Solve $v=0$, then confirm the sign of $v$ is genuinely different on either side of that time.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Displacement vs total distance travelled",
+      "back": "Displacement is the change in position, $s(t_2)-s(t_1)$, and can be negative. Total distance is the sum of the path lengths and is never negative. If the particle reverses (where $v=0$), split the journey at those times and add the magnitudes.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "What does 'initial' mean in a kinematics problem?",
+      "back": "The value at $t=0$. 'Initial displacement' is $s(0)$, 'initial velocity' is $v(0)$, 'initial acceleration' is $a(0)$.",
+      "pillLabel": "Definition"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A particle has displacement $s(t)$ and velocity $v(t)$. The particle is at rest when:",
+      "options": [
+        "$s(t) = 0$",
+        "$v(t) = 0$",
+        "$a(t) = 0$",
+        "$s(t) = v(t)$"
+      ],
+      "answer": "$v(t) = 0$"
+    },
+    {
+      "prompt": "If a particle's velocity is $v(t) = 3t^2 - 12t + 9$, its acceleration is:",
+      "options": [
+        "$\\int v\\,dt = t^3 - 6t^2 + 9t$",
+        "$v'(t) = 6t - 12$",
+        "$v(t)$ divided by $t$",
+        "$3t^2 - 12t + 9$ again"
+      ],
+      "answer": "$v'(t) = 6t - 12$"
+    },
+    {
+      "prompt": "You have solved $f'(x)=0$ for an optimisation problem and found $x=4$. To show this gives a MAXIMUM you should check that:",
+      "options": [
+        "$f(4) > 0$",
+        "$f''(4) < 0$ (or $f'$ changes from $+$ to $-$)",
+        "$f''(4) > 0$",
+        "$x=4$ is a whole number"
+      ],
+      "answer": "$f''(4) < 0$ (or $f'$ changes from $+$ to $-$)"
+    },
+    {
+      "prompt": "A rectangle of length $x$ and width $y$ has a fixed perimeter $20$. To maximise its area using calculus in one variable, you should first:",
+      "options": [
+        "Differentiate $A = xy$ with respect to both $x$ and $y$",
+        "Use $2x+2y=20$ to write $y=10-x$, then $A(x)=x(10-x)$",
+        "Set $x = y$ immediately",
+        "Set the perimeter equal to zero"
+      ],
+      "answer": "Use $2x+2y=20$ to write $y=10-x$, then $A(x)=x(10-x)$"
+    },
+    {
+      "prompt": "A particle has $s(t)=t^3-6t^2+9t$. Its maximum displacement on $0\\le t\\le 2$ occurs where:",
+      "options": [
+        "$s(t)=0$",
+        "$v(t)=s'(t)=0$",
+        "$a(t)=0$",
+        "$t=2$ always, because it is the end of the interval"
+      ],
+      "answer": "$v(t)=s'(t)=0$"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between a local maximum/minimum and a global maximum/minimum?",
-      "a": "A local maximum/minimum is a point that is higher/lower than all other points in its immediate vicinity. A global maximum/minimum is the absolute highest/lowest point over the function's entire valid domain. For a closed interval $[a, b]$, the global extremum can occur at a local extremum within the interval or at one of the endpoints, $f(a)$ or $f(b)$."
+      "q": "How do I justify whether a stationary point is a maximum or a minimum?",
+      "a": "Use the second derivative test first: evaluate $f''$ at the stationary point. If $f''>0$ the curve is concave up, so it is a local minimum; if $f''<0$ it is a local maximum. If $f''=0$ the test is inconclusive and you fall back to the first derivative test — build a sign diagram for $f'$ and check the sign just before and just after the point: $+\\to-$ gives a maximum, $-\\to+$ gives a minimum, and no change gives a point of inflexion. IB expects this justification to be written down; without it the solution is incomplete."
     },
     {
-      "q": "How do I know when to use the first derivative test vs the second derivative test?",
-      "a": "The second derivative test is often quicker if the second derivative is easy to compute. If $f'(c)=0$, check $f''(c)$. If it's positive, you have a local min; if negative, a local max. However, if $f''(c)=0$, the test is inconclusive. In this case, you must use the first derivative test, which involves checking the sign of $f'(x)$ to the left and right of the stationary point $c$."
+      "q": "Why is 'at rest' about velocity, not displacement?",
+      "a": "Displacement $s(t)$ tells you WHERE the particle is; velocity $v(t)$ tells you HOW it is moving. A particle can be at the origin ($s=0$) while whizzing straight through it at high speed, and it can be far from the origin yet momentarily still. 'At rest' means not moving, so it is defined by $v(t)=0$. Solving $s(t)=0$ instead answers a different question — when the particle is back at the origin."
     },
     {
-      "q": "Can you clarify the difference between speed and velocity again?",
-      "a": "Velocity is a vector; it has both magnitude and direction. In one-dimensional motion, the sign indicates direction (e.g., positive for right, negative for left). Speed is the magnitude of velocity, so it is always non-negative. Speed = $|v(t)|$. A car travelling at -50 km/h and a car travelling at 50 km/h have different velocities but the same speed."
+      "q": "How do I choose between the second derivative test and a sign diagram?",
+      "a": "The second derivative test is usually quickest when $f''$ is easy to evaluate and clearly non-zero at the point. Reach for a first-derivative sign diagram when $f''$ is awkward to compute, when $f''$ comes out as zero (test inconclusive), or when you suspect a point of inflexion. Both are fully acceptable in IB; pick whichever gives clean, convincing working."
     },
     {
-      "q": "Why is the constant of integration, C, so important in kinematics?",
-      "a": "When you integrate velocity to find displacement, you are finding an antiderivative. For any velocity function $v(t)$, there are infinitely many possible displacement functions $s(t)+C$ that have $v(t)$ as their derivative. The constant $C$ accounts for the initial position of the particle. Without an initial condition (e.g., 'the particle starts at $s=5$ when $t=0$'), you cannot find the specific displacement function."
+      "q": "What's the difference between displacement and total distance travelled?",
+      "a": "Displacement is the net change in position, $s(t_{\\text{final}}) - s(t_{\\text{initial}})$, and can be negative. Total distance is the sum of the lengths of every leg of the journey and is always non-negative. If the particle reverses direction, find the times where $v(t)=0$, work out the displacement over each sub-interval, and add the magnitudes. A question that asks for 'total distance' is signalling that you must check for a change of direction."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to one of the most powerful and practical topics in calculus. Here, we move beyond abstract differentiation and integration to solve tangible problems. We will explore how to find the 'best' solution in a given situation through optimization, a technique used everywhere from engineering to economics. We will also delve into kinematics, the mathematics of motion, to precisely describe and predict how objects move. This topic is a cornerstone of applied mathematics and physics, and mastering it demonstrates a deep understanding of calculus."
+      "content": "Welcome to two of the most useful applications of differential calculus: optimisation and kinematics. These are not abstract exercises — engineers minimise material, designers maximise capacity, and physicists describe motion using exactly these techniques. In optimisation you will build a function from a real situation and find its best value; in kinematics you will connect where a particle is, how fast it moves, and how that speed changes. Both rest on a single idea — the derivative measures a rate of change, and setting it to zero locates the moments that matter. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "Optimization Problems"
+      "content": "Part 1: Optimisation"
     },
     {
       "type": "text",
-      "content": "The core idea of optimization is to find the maximum or minimum value of a quantity. This might be the maximum profit, minimum cost, maximum area, or minimum travel time. The process involves translating a real-world problem into a mathematical function and then using the tools of differential calculus to find the value of the variable that yields the desired optimal outcome."
+      "content": "Optimisation is the process of finding the best possible value of a quantity — the largest area, the greatest volume, the least cost or material. The strategy is always the same. Write the quantity you care about (the objective) as a function; if it depends on more than one variable, use a constraint to eliminate all but one; then differentiate, set the derivative to zero to find the stationary points, and justify whether each is the maximum or minimum you want. The justification is not optional: solving $f'(x)=0$ only finds candidates, and IB awards a reasoning mark for showing which candidate is genuinely the extremum."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Model:** Read the problem, draw a diagram, and define variables. Write an equation for the quantity to be optimized (e.g., $V$ for volume).",
-        "**Constrain:** Use given constraints to express the quantity as a function of a *single* variable (e.g., $V(x)$).",
-        "**Domain:** Determine the sensible range of values for your variable based on the physical constraints of the problem.",
-        "**Differentiate:** Find the first derivative of your function (e.g., $V'(x)$).",
-        "**Find Stationary Points:** Set the derivative to zero ($V'(x)=0$) and solve for the variable. These are your candidate points for a maximum or minimum.",
-        "**Test:** Use the second derivative test to classify each stationary point. If $V''(x) < 0$, it's a local maximum. If $V''(x) > 0$, it's a local minimum.",
-        "**Check Endpoints:** If your domain is a closed interval, you must also evaluate the function at the endpoints to find the global maximum/minimum.",
-        "**Conclude:** State your final answer clearly, with units, in the context of the original problem."
+        "**Objective function:** identify the quantity to optimise and write it as a function, e.g. $A(x)$ for area or $C(r)$ for cost.",
+        "**Constraint:** use the given fixed information (a perimeter, a volume, a length of fencing) to express the objective in terms of a single variable. This is usually the step candidates find hardest.",
+        "**Differentiate and solve:** compute the derivative and solve $f'(x)=0$ to locate the stationary points.",
+        "**Justify and conclude:** confirm a maximum with $f''<0$ (or $f'$ changing $+\\to-$) and a minimum with $f''>0$ (or $f'$ changing $-\\to+$), then re-read the question and state the answer it asked for, with units."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A rectangular garden is to be enclosed by a fence. One side of the garden is against a stone wall, so it does not need fencing. The total length of the fence available is 20 metres. Find the dimensions of the garden that give the maximum possible area.",
-      "solution": "Let the sides of the garden perpendicular to the wall be of length $x$ metres, and the side parallel to the wall be of length $y$ metres.\n\n[M1] A diagram would show a rectangle with three sides fenced ($x, y, x$) and one side as the wall.\n\nThe total length of the fence is given by $2x + y = 20$. We want to maximize the area, $A = xy$.\n\nFirst, express $A$ as a function of a single variable. From the constraint, we have $y = 20 - 2x$. [M1]\nSubstituting this into the area formula:\n$A(x) = x(20 - 2x) = 20x - 2x^2$. [A1]\n\nFor the dimensions to be physically possible, $x > 0$ and $y > 0$. The condition $y>0$ implies $20 - 2x > 0$, so $2x < 20$, which means $x < 10$. The domain is $0 < x < 10$.\n\nTo find the maximum area, we find the derivative of $A(x)$ and set it to zero.\n$A'(x) = 20 - 4x$. [A1]\n\nSet $A'(x) = 0$: \n$20 - 4x = 0 \\implies 4x = 20 \\implies x = 5$. [M1]\n\nNow, we must verify that this gives a maximum. We use the second derivative test:\n$A''(x) = -4$. [A1]\nSince $A''(5) = -4 < 0$, the area is indeed maximised at $x=5$. [R1]\n\nWhen $x=5$ metres, the corresponding length of $y$ is:\n$y = 20 - 2(5) = 20 - 10 = 10$ metres.\n\nThe dimensions for the maximum area are 5 metres by 10 metres. The maximum area is $A = 5 \\times 10 = 50$ m$^2$. The question asks for the dimensions.\n\nFinal Answer: The dimensions are 5 m and 10 m. [A1]"
+      "question": "A company is designing a cylindrical can that must hold a volume of $330\\text{ cm}^3$. It wants to minimise the metal used, which is proportional to the total surface area. Find the radius and height that minimise the surface area, giving your answers to 3 significant figures, and justify that your answer is a minimum. [7]",
+      "solution": "Let the radius be $r$ cm and the height be $h$ cm.\n\n**Set up the constraint.** The volume is $V=\\pi r^2 h = 330$, so $h=\\dfrac{330}{\\pi r^2}$.  [M1: use the volume constraint]\n\n**Write the objective.** The surface area (two circular ends plus the curved side) is $A = 2\\pi r^2 + 2\\pi r h$.  [M1: correct surface-area expression]\n\n**Reduce to one variable.** Substitute for $h$:\n$A(r) = 2\\pi r^2 + 2\\pi r\\left(\\dfrac{330}{\\pi r^2}\\right) = 2\\pi r^2 + \\dfrac{660}{r}$.  [A1: correct single-variable function]\n\n**Differentiate.** Writing $A(r)=2\\pi r^2 + 660r^{-1}$,\n$\\dfrac{dA}{dr} = 4\\pi r - \\dfrac{660}{r^2}$.  [A1: correct derivative]\n\n**Solve $\\dfrac{dA}{dr}=0$.**  [M1: set derivative to zero]\n$4\\pi r = \\dfrac{660}{r^2} \\;\\Rightarrow\\; 4\\pi r^3 = 660 \\;\\Rightarrow\\; r^3 = \\dfrac{165}{\\pi}$\n$r = \\sqrt[3]{\\dfrac{165}{\\pi}} \\approx 3.74$ cm.  [A1: correct radius]\n\nThen $h = \\dfrac{330}{\\pi (3.7449\\ldots)^2} \\approx 7.49$ cm.\n\n**Justify it is a minimum.** $\\dfrac{d^2A}{dr^2} = 4\\pi + \\dfrac{1320}{r^3}$. For any $r>0$ this is positive, so the curve is concave up and the stationary point is a minimum.  [R1: valid justification]\n\n**Conclusion:** the minimum surface area occurs at radius $r\\approx 3.74$ cm and height $h\\approx 7.49$ cm."
     },
     {
       "type": "examTip",
-      "content": "In optimization questions, marks are often awarded for justifying that your result is a maximum or a minimum. Simply finding a stationary point is not enough. Always show your use of the first or second derivative test. Also, re-read the question at the end to ensure you're providing the answer it asks for (e.g., dimensions vs. the actual maximum area)."
+      "content": "Always draw a diagram and label your variables before writing any equations — it makes the constraint and the objective obvious and stops you optimising the wrong quantity. And never skip the justification: an answer that solves $f'=0$ but never shows $f''<0$ (or a sign diagram) throws away the reasoning mark even when the number is perfect."
     },
     {
       "type": "heading",
-      "content": "Kinematics: The Mathematics of Motion"
+      "content": "Part 2: Kinematics"
     },
     {
       "type": "text",
-      "content": "Kinematics is the branch of mechanics that describes the motion of points, objects, and systems of objects without considering the forces that cause them to move. In this course, we focus on motion in a straight line. Calculus is the perfect tool for this, as it is fundamentally about rates of change."
+      "content": "Kinematics describes the motion of an object without worrying about the forces behind it. In this course the motion is along a straight line, and calculus links its three descriptions. The displacement $s(t)$ says where the particle is relative to the origin; differentiating gives the velocity $v(t)$, which says how fast and in which direction it moves; differentiating again gives the acceleration $a(t)$, which says how the velocity is changing. Reading motion is then a matter of interpreting these functions: the particle is at rest where $v=0$, its extreme displacements occur where $v=0$, and the sign of $v$ tells you the direction of travel."
     },
     {
       "type": "formula",
-      "content": "Velocity: $v(t) = \\frac{ds}{dt} = s'(t)$ \n\nAcceleration: $a(t) = \\frac{dv}{dt} = v'(t) = s''(t)$"
-    },
-    {
-      "type": "text",
-      "content": "The process can also be reversed using integration. To find velocity from acceleration or displacement from velocity, we integrate. This will introduce a constant of integration, $C$, which must be determined using given initial conditions."
-    },
-    {
-      "type": "formula",
-      "content": "Displacement: $s(t) = \\int v(t) \\, dt$ \n\nVelocity: $v(t) = \\int a(t) \\, dt$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A particle moves along a straight line. Its velocity, $v$ ms$^{-1}$, at time $t$ seconds is given by $v(t) = 3t^2 - 10t + 3$, for $t \\ge 0$.\n(a) Find the values of $t$ for which the particle is at rest.\n(b) Find the acceleration of the particle at $t=2$.\n(c) Find the total distance travelled by the particle in the first 2 seconds.",
-      "solution": "(a) The particle is at rest when $v(t) = 0$.\n$3t^2 - 10t + 3 = 0$ [M1]\nFactoring the quadratic: $(3t - 1)(t - 3) = 0$. [A1]\nSo, $t = \\frac{1}{3}$ or $t = 3$. The particle is at rest at $t = \\frac{1}{3}$ seconds and $t = 3$ seconds. [A1]\n\n(b) Acceleration is the derivative of velocity: $a(t) = v'(t)$.\n$a(t) = \\frac{d}{dt}(3t^2 - 10t + 3) = 6t - 10$. [A1]\nAt $t=2$, the acceleration is:\n$a(2) = 6(2) - 10 = 12 - 10 = 2$ ms$^{-2}$. [A1]\n\n(c) Total distance requires checking for changes in direction in the interval $[0, 2]$. From part (a), we know the particle changes direction at $t = \\frac{1}{3}$.\nWe need to find the displacement in the intervals $[0, \\frac{1}{3}]$ and $[\\frac{1}{3}, 2]$ and sum their magnitudes.\nFirst, find the displacement function $s(t)$ by integrating $v(t)$. Assume $s(0)=0$.\n$s(t) = \\int (3t^2 - 10t + 3) \\, dt = t^3 - 5t^2 + 3t + C$. [M1]\nWith $s(0)=0$, we have $C=0$. So, $s(t) = t^3 - 5t^2 + 3t$.\n\nDisplacement from $t=0$ to $t=\\frac{1}{3}$:\n$s(\\frac{1}{3}) - s(0) = (\\frac{1}{3})^3 - 5(\\frac{1}{3})^2 + 3(\\frac{1}{3}) - 0 = \\frac{1}{27} - \\frac{5}{9} + 1 = \\frac{1 - 15 + 27}{27} = \\frac{13}{27}$. [A1]\n\nDisplacement from $t=\\frac{1}{3}$ to $t=2$:\nWe need $s(2) = (2)^3 - 5(2)^2 + 3(2) = 8 - 20 + 6 = -6$.\nThe displacement during this interval is $s(2) - s(\\frac{1}{3}) = -6 - \\frac{13}{27} = -\\frac{162}{27} - \\frac{13}{27} = -\\frac{175}{27}$. [A1]\n\nTotal distance = $|s(\\frac{1}{3}) - s(0)| + |s(2) - s(\\frac{1}{3})|$.\nTotal distance = $|\\frac{13}{27}| + |-\\frac{175}{27}| = \\frac{13}{27} + \\frac{175}{27} = \\frac{188}{27}$ metres. [A1][R1]"
-    },
-    {
-      "type": "examTip",
-      "content": "For 'total distance travelled' questions on Paper 1, be prepared for arithmetic with fractions. The most common mistake is to simply calculate $\\int_a^b v(t) \\, dt$, which gives net displacement. Always find the roots of $v(t)=0$ first to see if you need to split the integral."
-    },
-    {
-      "type": "heading",
-      "content": "Connecting Optimization and Kinematics"
-    },
-    {
-      "type": "text",
-      "content": "The principles of optimization are directly applicable to kinematics problems. For instance, you might be asked to find the maximum displacement of a particle from the origin, or the time at which its velocity is at a maximum. These are simply optimization problems where the function to be optimized is $s(t)$ or $v(t)$."
+      "content": "The core relationships are:\nVelocity: $v(t) = \\dfrac{ds}{dt} = s'(t)$\nAcceleration: $a(t) = \\dfrac{dv}{dt} = v'(t) = \\dfrac{d^2s}{dt^2} = s''(t)$\nAnd, going the other way, by integration:\nVelocity: $v(t) = \\int a(t)\\,dt$\nDisplacement: $s(t) = \\int v(t)\\,dt$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "To find maximum or minimum displacement, solve $v(t) = s'(t) = 0$ and test the sign of $a(t) = s''(t)$.",
-        "To find maximum or minimum velocity, solve $a(t) = v'(t) = 0$ and test the sign of $a'(t)$ (the rate of change of acceleration, sometimes called 'jerk').",
-        "A question asking for maximum speed requires you to find the maximum value of $|v(t)|$, which might occur when velocity is at a maximum positive value or a minimum negative value."
+        "**Displacement ($s$)** is the signed position from the origin; it can be positive, negative or zero.",
+        "**Velocity ($v=s'$)** is the rate of change of displacement. Positive $v$ means moving in the positive direction, negative $v$ the other way, and the particle is **at rest when $v=0$**.",
+        "**Acceleration ($a=v'=s''$)** is the rate of change of velocity — the second derivative of displacement.",
+        "**Maximum (or minimum) displacement** occurs at a stationary point of $s$, i.e. where $v=0$; substitute that time back into $s(t)$ to get the value.",
+        "**Total distance** over an interval requires checking for a change of direction (where $v=0$), then summing the magnitudes of the displacement over each leg."
       ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle moves along a straight line so that its displacement, $s$ metres, from a fixed point O at time $t$ seconds ($t\\ge 0$) is $s(t) = t^3 - 6t^2 + 9t + 2$.\n(a) Find the initial displacement.\n(b) Find an expression for the velocity $v(t)$.\n(c) Find the time(s) when the particle is at rest.\n(d) Find the total distance travelled in the first 4 seconds. [8]",
+      "solution": "**(a)** The initial displacement is $s(0)$.\n$s(0) = 0 - 0 + 0 + 2 = 2$ m.  [A1]\n\n**(b)** Velocity is the derivative of displacement.\n$v(t) = s'(t) = 3t^2 - 12t + 9$.  [A2] (A1 if one term is wrong)\n\n**(c)** The particle is at rest when $v(t)=0$.\n$3t^2 - 12t + 9 = 0$  [M1: set their $v(t)=0$]\n$t^2 - 4t + 3 = 0 \\;\\Rightarrow\\; (t-1)(t-3) = 0$  [M1: solve the quadratic]\n$t = 1$ s and $t = 3$ s.  [A1]\n\n**(d)** The particle reverses direction at $t=1$ and $t=3$, so split $[0,4]$ at those times. Evaluate $s$:\n$s(0)=2,\\quad s(1)=1-6+9+2=6,\\quad s(3)=27-54+27+2=2,\\quad s(4)=64-96+36+2=6$.  [M1: displacements at the key times]\nDistances: $|6-2|=4$, then $|2-6|=4$, then $|6-2|=4$.  [M1: sum the magnitudes]\nTotal distance $= 4+4+4 = 12$ m.  [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "The commonest kinematics slip is answering 'at rest' with $s(t)=0$ instead of $v(t)=0$ — one asks when the particle is back at the origin, the other when it stops. And whenever a question says 'total distance', treat it as a warning: find where $v=0$, split the interval there, and add the magnitudes, because a straight $s(4)-s(0)$ silently cancels the parts where the motion reversed."
+    },
+    {
+      "type": "heading",
+      "content": "Connecting the two ideas"
+    },
+    {
+      "type": "text",
+      "content": "Optimisation and kinematics feel like different topics, but they are the same technique in different clothing. Finding the maximum displacement of a particle means finding a stationary point of $s(t)$ — solving $s'(t)=v(t)=0$ — which is exactly what you do to maximise an area or volume in optimisation. In both cases you differentiate, set the derivative to zero, and then justify or interpret what that stationary point means. Recognising this shared structure means you are really only learning one method, applied to two families of question."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying a particle is at rest when $s=0$** — 'at rest' means $v(t)=0$. Setting $s(t)=0$ finds when it is back at the origin, a different question entirely.",
+        "**Treating acceleration as $v/t$ or an integral** — acceleration is the DERIVATIVE of velocity, $a=v'=s''$. Integrating goes the wrong way (that recovers displacement from velocity).",
+        "**Solving $f'(x)=0$ but never justifying the nature of the point** — the reasoning mark requires $f''<0$ for a maximum or $f''>0$ for a minimum (or a first-derivative sign diagram). No justification, no mark.",
+        "**Confusing the constraint with the objective** — optimise the quantity the question asks about, and use the fixed information only to eliminate a variable. Differentiating the constraint by mistake is a classic error.",
+        "**Forgetting to reduce to a single variable before differentiating** — you cannot apply the single-variable derivative to a function of two variables; substitute using the constraint first.",
+        "**Confusing displacement with total distance** — for total distance, split at every time where $v=0$ and add the magnitudes; do not just compute $s(t_2)-s(t_1)$.",
+        "**Dropping units or the constant of integration** — quote answers with units, and when integrating $a$ or $v$ include $+C$ and find it from an initial condition."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct final step performed on your own earlier (wrong) value still scores, ISW ('ignore subsequent working') means a correct answer is not un-marked by a later fumble, and equivalent correct forms are accepted. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle moves so that its displacement is $s(t) = t^3 - 6t^2 + 9t$ metres, $t \\ge 0$ seconds. Find the times when the particle is at rest, and the acceleration at $t = 4$. [5]",
+      "solution": "**Model answer — full working.**\n\n**Velocity.** Differentiate the displacement:\n$v(t) = \\dfrac{ds}{dt} = 3t^2 - 12t + 9$.\n\n**At rest means $v=0$.** Solve:\n$3t^2 - 12t + 9 = 0$\n$t^2 - 4t + 3 = 0$\n$(t-1)(t-3) = 0$\n$t = 1\\text{ s}$ and $t = 3\\text{ s}$.\n\n**Acceleration.** Differentiate the velocity:\n$a(t) = \\dfrac{dv}{dt} = 6t - 12$.\nAt $t=4$: $a(4) = 6(4) - 12 = 12\\ \\text{m s}^{-2}$.\n\n**Final answer:** the particle is at rest at $t=1$ s and $t=3$ s, and its acceleration at $t=4$ is $12\\ \\text{m s}^{-2}$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — differentiate for velocity.** Awarded for attempting $v=\\frac{ds}{dt}$ by differentiating $s(t)$ (powers reduced correctly). This is a METHOD mark: it stands even if a coefficient later slips.\n- **A1 — correct velocity.** Awarded for $v(t) = 3t^2 - 12t + 9$. This accuracy mark depends on the M1: it is only available once a genuine differentiation has been attempted.\n- **M1 — set $v=0$ and solve.** Awarded for setting THEIR velocity equal to zero and attempting to solve the quadratic (factorising, formula or GDC). Because it acts on 'their $v$', a student who mis-differentiated still earns this method mark for the correct approach.\n- **A1 — correct times.** Awarded for $t=1$ and $t=3$ (both required). Accept equivalent forms and either order; ISW means a correct pair is not lost if the student then writes an unnecessary extra line.\n- **A1 — acceleration.** Awarded for $a(t)=6t-12$ and $a(4)=12\\ \\text{m s}^{-2}$. Follow-through (FT) applies: a student who found a wrong $v$ but then correctly differentiated it and evaluated at $t=4$ still earns this mark on their own figure.\n\n**Accept equivalent forms.** The engine accepts $t=1,3$ written in any order or as a solution set $\\{1,3\\}$, and accepts the acceleration with or without the unit spelled out as $\\text{m s}^{-2}$ or $\\text{m/s}^2$ — it marks the mathematics, not the formatting.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip and the accuracy marks are shielded by FT and ISW. A student who writes only 'the answer is 12' with no working risks losing 3–4 marks if a number is wrong; a student who shows $v=s'$, the solved $v=0$, and $a=v'$ evaluated at $t=4$ keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write $v=\\frac{ds}{dt}$ and the differentiated expression, show $v=0$ being solved, then $a=\\frac{dv}{dt}$ evaluated at the required time, each with its unit. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Everything here is one skill — differentiate, set the derivative to zero, interpret the result — applied to two contexts. That skill returns immediately in integration, where you reverse it to recover velocity and displacement from acceleration (remembering $+C$), and in the area-under-a-curve problems that follow. Master the habit — model the quantity, reduce to one variable or differentiate for $v$ and $a$, solve, then justify or interpret — and the rest of calculus becomes variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Practice Optimization & Kinematics",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=5.4"
+      "label": "Get a Paper 1 calculation marked: solve a kinematics or optimisation problem with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.4&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB Maths AA HL Questionbank",
-          "href": "/questions/ib-maths-aa-hl"
+          "label": "GeoGebra: Visualising Optimization",
+          "href": "https://www.geogebra.org/m/p76t5s4a"
+        },
+        {
+          "label": "Khan Academy: Optimization",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-applications-of-derivatives/ab-optimization/v/optimization-intro"
+        },
+        {
+          "label": "Physics Classroom: Kinematics",
+          "href": "https://www.physicsclassroom.com/class/1DKin/Lesson-1/Introduction"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Visualising Optimization",
+    "embedUrl": "https://www.geogebra.org/classic?material=p76t5s4a",
+    "launchUrl": "https://www.geogebra.org/classic?material=p76t5s4a",
+    "hint": "Use “Visualising Optimization” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

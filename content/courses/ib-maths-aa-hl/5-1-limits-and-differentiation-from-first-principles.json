@@ -5,180 +5,342 @@
   "paper": "P1",
   "paperName": "Maths AA HL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concept of a limit and its application in defining the derivative of a function from first principles. Students will learn to evaluate limits, understand continuity, and use the formal definition to find the gradient function, laying the groundwork for all of calculus.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "This lesson opens calculus by building the derivative from the ground up. It develops the idea of a limit, then the gradient of a curve as the limiting gradient of a chord, and uses these to define the derivative $f'(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}{h}$. You will differentiate simple polynomials from first principles, meet the notation $f'(x)$ and $\\frac{dy}{dx}$, read the derivative as both a rate of change and a gradient function, and see how the power rule falls out as the result. Every worked example is laid out exactly the way our marking engine awards marks, because in a 'from first principles' question how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
+  "syllabusObjectivesCovered": [
+    "5.1"
+  ],
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "levelNote": "Common to SL and HL at this level.",
   "learningObjectives": [
-    "Understand and evaluate limits of functions, including one-sided limits.",
-    "Determine if a function is continuous at a point by applying the three conditions of continuity.",
-    "Understand the derivative as the gradient of a tangent, derived from the limit of the gradient of a secant line.",
-    "Calculate the derivative of a function from first principles using the formal limit definition."
+    "Understand the concept of a limit and use correct notation.",
+    "Interpret the gradient of a curve at a point as the limit of the gradient of a chord (secant).",
+    "State and apply the first-principles definition of the derivative to differentiate simple polynomials.",
+    "Use and connect the notations $f'(x)$ and $\\frac{dy}{dx}$, and read the derivative as a rate of change and gradient function.",
+    "Recognise the power rule as the result that first principles produces, and present working so method (M) marks and answer-given (AG) requirements are met."
   ],
   "simpleExplanation": {
-    "title": "The Gradient Under the Microscope",
-    "summary": "Differentiation from first principles is the method of finding the exact gradient of a curve at a single point. We do this by calculating the gradient between two points on the curve and then moving them infinitely close together using limits.",
-    "analogy": "Imagine you're tracking a race car. To find its exact speed at a precise moment, you could measure the distance it travels in a very short time interval, say 0.01 seconds, and calculate 'distance over time'. Differentiation from first principles is like making that time interval infinitesimally small. The resulting calculation gives you the car's perfect, instantaneous speed, which is analogous to the curve's instantaneous gradient.",
+    "title": "Zooming in on Gradients",
+    "summary": "Differentiation finds the exact gradient at a single point on a curve. We do this by calculating the gradient between two points that are incredibly close together and seeing what value it approaches as the distance between them shrinks to zero.",
+    "analogy": "Imagine you're driving a car and want to know your exact speed at one precise moment. You can't measure speed over zero time, but you can measure your average speed over a very short interval, like 0.1 seconds. To get more accurate you measure over 0.01 seconds, then 0.001 seconds. The value your average speed is 'homing in on' as the interval shrinks towards zero is your instantaneous speed. Finding a derivative is the mathematical equivalent of this process for the gradient of a curve.",
     "steps": [
-      "Start with a function $f(x)$ and a point $(x, f(x))$.",
-      "Consider a second point a tiny horizontal distance $h$ away, at $(x+h, f(x+h))$.",
-      "Calculate the gradient of the secant line connecting these two points: $\\frac{f(x+h) - f(x)}{h}$.",
-      "Find the limit of this gradient as the separation $h$ shrinks to zero. This gives the gradient of the tangent, $f'(x)$."
+      "Start with a function $f(x)$ and a point $x$. We want the gradient of the tangent line there.",
+      "Choose a second point a small distance $h$ away, at $x+h$. The gradient of the chord (secant) joining $(x, f(x))$ and $(x+h, f(x+h))$ is $\\frac{f(x+h) - f(x)}{h}$.",
+      "To turn this chord into a tangent, make $h$ infinitesimally small by taking the limit as $h \\to 0$.",
+      "The result, $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$, is the derivative — the definition we call differentiation from first principles."
     ]
   },
+  "keyConcepts": [
+    "limit",
+    "gradient of a chord",
+    "derivative as a gradient function"
+  ],
   "flashcards": [
     {
-      "front": "What is the notation for the limit of a function $f(x)$ as $x$ approaches $c$?",
-      "back": "$\\lim_{x \\to c} f(x) = L$, where $L$ is the value the function approaches."
+      "front": "What is a limit?",
+      "back": "The value a function 'approaches' as its input approaches some value. It describes the behaviour of the function near a point, not necessarily its value at the point.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the intuitive definition of a limit?",
-      "back": "A limit is the value that a function 'approaches' as the input 'approaches' some value. It's about the journey, not necessarily the destination."
+      "front": "Notation for the limit of $f(x)$ as $x \\to c$",
+      "back": "$\\lim_{x \\to c} f(x) = L$, where $L$ is the limit.",
+      "pillLabel": "Notation"
     },
     {
-      "front": "When does the limit $\\lim_{x \\to c} f(x)$ exist?",
-      "back": "The limit exists if and only if the left-hand limit equals the right-hand limit. That is, $\\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x)$."
+      "front": "First thing to try when evaluating a limit",
+      "back": "Direct substitution. Put the value $x$ is approaching into $f(x)$. If you get a finite number, that is the limit.",
+      "pillLabel": "Method"
     },
     {
-      "front": "What are the three conditions for a function $f(x)$ to be continuous at a point $x=c$?",
-      "back": "1. $f(c)$ must be defined. 2. $\\lim_{x \\to c} f(x)$ must exist. 3. $\\lim_{x \\to c} f(x) = f(c)$."
+      "front": "Gradient of a chord (secant)",
+      "back": "For points at $x$ and $x+h$ on $y=f(x)$, the chord gradient is $\\frac{f(x+h)-f(x)}{h}$ — the average rate of change between them.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the formula for differentiation from first principles?",
-      "back": "$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+      "front": "Differentiation from first principles",
+      "back": "Using the formal limit definition $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$ to find the derivative, rather than a shortcut rule.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What does the expression $\\frac{f(x+h) - f(x)}{h}$ represent geometrically?",
-      "back": "It represents the gradient of the secant line passing through the points $(x, f(x))$ and $(x+h, f(x+h))$ on the curve of $y=f(x)$."
+      "front": "What does $h$ represent?",
+      "back": "A small change in the $x$-value. The limit finds what the chord gradient approaches as this change becomes infinitesimally small — turning the chord into the tangent.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What does $f'(x)$ represent geometrically?",
-      "back": "$f'(x)$ represents the gradient of the tangent line to the curve $y=f(x)$ at the point $(x, f(x))$. It gives the instantaneous rate of change of the function at that point."
+      "front": "Secant vs tangent",
+      "back": "A secant (chord) meets the curve at two points; a tangent touches at one point and its gradient is the instantaneous rate of change there. The tangent is the limiting position of the chord as $h \\to 0$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is an 'indeterminate form' when evaluating limits?",
-      "back": "An expression like $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$. It signals that you need to perform more algebraic manipulation (e.g., factorisation, rationalisation) to find the limit's true value."
+      "front": "Why not substitute $h=0$ at the start?",
+      "back": "It gives $\\frac{f(x)-f(x)}{0} = \\frac{0}{0}$, an indeterminate form. You must simplify and cancel the $h$ first, then take the limit.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Common trap: What is the error in finding $\\lim_{h \\to 0} \\frac{(x+h)^2 - x^2}{h}$ by substituting $h=0$ immediately?",
-      "back": "Substituting $h=0$ immediately gives $\\frac{x^2 - x^2}{0} = \\frac{0}{0}$, which is indeterminate. You must first expand and simplify the numerator: $\\frac{x^2 + 2xh + h^2 - x^2}{h} = \\frac{2xh + h^2}{h} = 2x + h$. Then you can take the limit, which is $2x$."
+      "front": "The two notations for the derivative",
+      "back": "$f'(x)$ (Lagrange) and $\\frac{dy}{dx}$ (Leibniz) mean the same thing for $y=f(x)$: the gradient function. $\\frac{dy}{dx}$ literally reads as the limiting ratio of a small change in $y$ to a small change in $x$.",
+      "pillLabel": "Notation"
     },
     {
-      "front": "If a question asks you to differentiate 'from first principles' or 'using the definition', can you use the power rule?",
-      "back": "No. You must use the full limit definition, $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$, to receive any marks. The rules are shortcuts not permitted for this type of question."
+      "front": "What is $f'(x)$ geometrically and physically?",
+      "back": "Geometrically, the gradient of the tangent to $y=f(x)$ at any $x$ (the gradient function). Physically, the instantaneous rate of change of $f$ with respect to $x$.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The power rule (the result of first principles)",
+      "back": "For $f(x)=x^n$, first principles gives $f'(x)=nx^{n-1}$. So $\\frac{d}{dx}(x^2)=2x$, $\\frac{d}{dx}(x^3)=3x^2$. It is a shortcut for the limit process, not a replacement for it when 'first principles' is demanded.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Derivative of a constant, e.g. $f(x)=5$",
+      "back": "$f'(x)=0$. The graph $y=5$ is a horizontal line with gradient $0$ everywhere; first principles gives $\\frac{5-5}{h}=0$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Exam Trap: 'from first principles' means the rule is banned",
+      "back": "If a question says 'from first principles' you MUST use the limit definition. Writing the answer straight from the power rule scores $0$, even if the answer is correct.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: forgetting to take the limit",
+      "back": "Stopping at $\\frac{h(2x+h)}{h}=2x+h$ is not the derivative. You must state $\\lim_{h\\to0}(2x+h)=2x$ — dropping the $h$ without the limit line loses the final mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The derivative of $f(x)$ from first principles is defined as:",
+      "options": [
+        "$\\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$",
+        "$\\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{x}$",
+        "$\\frac{f(x+h) - f(x)}{h}$ with $h = 0$",
+        "$\\lim_{x \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+      ],
+      "answer": "$\\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+    },
+    {
+      "prompt": "Working from first principles you reach $\\frac{h(2x+h)}{h}$. The correct next and final step is:",
+      "options": [
+        "Cancel $h$ and stop: the answer is $2x+h$",
+        "Put $h=0$ before cancelling to get $\\frac{0}{0}$",
+        "Cancel $h$, then take $\\lim_{h\\to0}(2x+h)=2x$",
+        "Cancel $h$ to get $2x+h$, then substitute $x=0$"
+      ],
+      "answer": "Cancel $h$, then take $\\lim_{h\\to0}(2x+h)=2x$"
+    },
+    {
+      "prompt": "The gradient of the tangent to a curve at a point is best described as:",
+      "options": [
+        "The gradient of a chord through two fixed points",
+        "The limit of the chord gradient as the two points come together ($h\\to0$)",
+        "The average rate of change over the whole curve",
+        "Always equal to zero at that point"
+      ],
+      "answer": "The limit of the chord gradient as the two points come together ($h\\to0$)"
+    },
+    {
+      "prompt": "For $y=f(x)$, which statement about the derivative is correct?",
+      "options": [
+        "$f'(x)$ and $\\frac{dy}{dx}$ mean different things",
+        "$f'(x)$ is a single number, never a function of $x$",
+        "$f'(x)=\\frac{dy}{dx}$ is the gradient function, giving the gradient at any $x$",
+        "$\\frac{dy}{dx}$ only applies to straight lines"
+      ],
+      "answer": "$f'(x)=\\frac{dy}{dx}$ is the gradient function, giving the gradient at any $x$"
+    },
+    {
+      "prompt": "A Paper 1 question asks for the derivative of $f(x)=x^2$ 'from first principles'. Which response earns full marks?",
+      "options": [
+        "Writing $f'(x)=2x$ straight from the power rule",
+        "Setting up the limit, expanding $(x+h)^2$, cancelling $h$ and taking $\\lim_{h\\to0}(2x+h)=2x$",
+        "Stating $f'(x)=2x+h$ after cancelling $h$",
+        "Substituting $h=0$ into $\\frac{(x+h)^2-x^2}{h}$ immediately"
+      ],
+      "answer": "Setting up the limit, expanding $(x+h)^2$, cancelling $h$ and taking $\\lim_{h\\to0}(2x+h)=2x$"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between the value of a function at a point, $f(c)$, and the limit as $x$ approaches $c$?",
-      "a": "The value $f(c)$ is the actual output of the function when the input is exactly $c$. The limit, $\\lim_{x \\to c} f(x)$, describes what value the function's output is getting closer and closer to as the input gets arbitrarily close to $c$. For a continuous function, these two are the same. However, for a function with a 'hole' at $x=c$, the limit might exist while $f(c)$ is undefined."
+      "q": "Why can't I just substitute h=0 into the first principles formula at the very beginning?",
+      "a": "If you substitute $h=0$ at the start, the denominator becomes zero. Division by zero is undefined, and the numerator becomes $f(x) - f(x) = 0$, giving the indeterminate form $\\frac{0}{0}$. The whole point of the limit process is to manipulate the expression algebraically so you can cancel the $h$ in the denominator, removing the division-by-zero problem, and only then let $h \\to 0$ to find the gradient."
     },
     {
-      "q": "Why do we need to learn differentiation from first principles if there are much faster rules?",
-      "a": "First principles is the formal definition upon which all of calculus is built. Understanding it is crucial for grasping what a derivative actually is. The faster rules are shortcuts derived from this fundamental definition. IB exams specifically include questions on first principles to test this foundational understanding, not just your ability to apply a rule."
+      "q": "What is the difference between $f'(x)$ and $\\frac{dy}{dx}$?",
+      "a": "Nothing, for $y = f(x)$ — they are two notations for the same derivative. $f'(x)$ (Lagrange notation) reads as 'f prime of x'; $\\frac{dy}{dx}$ (Leibniz notation) reads as 'the derivative of y with respect to x' and is a reminder that the derivative is a limiting ratio of a small change in $y$ to a small change in $x$. Use whichever the question uses; both give the gradient function."
     },
     {
-      "q": "What does it mean if I get $\\frac{0}{0}$ when trying to evaluate a limit?",
-      "a": "This is called an indeterminate form. It does not mean the limit is zero or undefined. It's a sign that you need to do more work. The function's value at that exact point might be undefined, but the limit might still exist. You must use algebraic techniques like factorisation, expansion, or rationalisation to simplify the expression and eliminate the cause of the $\\frac{0}{0}$ form before you can evaluate the limit."
+      "q": "Where does the power rule come from?",
+      "a": "It is exactly what first principles produces. Differentiating $x^2$ from first principles gives $2x$, $x^3$ gives $3x^2$, and in general $x^n$ gives $nx^{n-1}$. The power rule $\\frac{d}{dx}(x^n) = nx^{n-1}$ is a shortcut that saves you doing the limit every time. But when a question says 'from first principles', you must still show the full limit — the rule alone scores nothing there."
+    },
+    {
+      "q": "What does it mean if a limit does not exist?",
+      "a": "A limit may fail to exist if the function approaches different values from the left and the right, or increases or decreases without bound ($\\pm\\infty$), or oscillates. For the polynomial functions you differentiate from first principles in this course, the limits always exist."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the foundation of differential calculus. So far in mathematics, you've mostly dealt with constant rates of change, like the gradient of a straight line. But how do we find the rate of change of a curve, which is constantly changing? This lesson introduces the concept of a limit, which allows us to 'zoom in' on a point on a curve until it looks like a straight line, enabling us to find its gradient precisely. This process is called differentiation from first principles."
+      "content": "Welcome to the start of calculus. So far you have mostly dealt with constant rates of change, like the gradient of a straight line. But the world is full of changing rates — the acceleration of a car, the cooling of a cup of tea, the growth of a population. Calculus gives us the tools to analyse these. We begin with a fundamental problem: how do we find the gradient of a curve at a single point? The answer is the concept of a 'limit', which we use to build the derivative from the ground up. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Concept of a Limit"
+      "content": "An intuitive introduction to limits"
     },
     {
       "type": "text",
-      "content": "A limit describes the behaviour of a function as its input gets closer and closer to a particular value. It's not about what happens *at* the value, but what happens in its immediate neighbourhood. We use the following notation:"
+      "content": "A limit describes how a function behaves as its input gets closer and closer to a particular value. Imagine walking along the graph of a function towards a specific $x$-coordinate: the limit is the $y$-value you are getting closer and closer to. Crucially, the limit does not care what the function's value is *at* the point, only what it *approaches* as you get near."
+    },
+    {
+      "type": "text",
+      "content": "We write 'the limit of $f(x)$ as $x$ approaches $c$ is $L$' as $\\lim_{x \\to c} f(x) = L$. For most functions in this course the simplest way to find a limit is direct substitution: if putting $x=c$ into $f(x)$ gives a finite number, that number is the limit."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the limit $\\lim_{x \\to 3} (2x^2 - 4x + 1)$. [2]",
+      "solution": "This is a polynomial, so use direct substitution.\n\nSubstitute $x = 3$:\n$2(3)^2 - 4(3) + 1$  [M1: substitute the value $x=3$]\n$= 2(9) - 12 + 1 = 18 - 12 + 1 = 7$  [A1]\n\nSo $\\lim_{x \\to 3} (2x^2 - 4x + 1) = 7$."
+    },
+    {
+      "type": "heading",
+      "content": "From chord gradient to tangent gradient"
+    },
+    {
+      "type": "text",
+      "content": "We already know how to find the gradient of a straight line: 'rise over run'. We can approximate the gradient of a curve by drawing a **chord** (a secant line) through two points on the curve, at $x$ and $x+h$. The 'run' is $(x+h) - x = h$ and the 'rise' is $f(x+h) - f(x)$. This gives the average rate of change between the two points."
     },
     {
       "type": "formula",
-      "content": "\\lim_{x \\to c} f(x) = L"
+      "content": "Gradient of the chord: $m_{\\text{chord}} = \\frac{f(x+h) - f(x)}{h}$"
     },
     {
       "type": "text",
-      "content": "This is read as 'the limit of $f(x)$ as $x$ approaches $c$ is $L$'. For a limit to exist, the function must approach the same value from both the left and the right side. We call these one-sided limits: $\\lim_{x \\to c^-} f(x)$ (from the left, i.e., values less than $c$) and $\\lim_{x \\to c^+} f(x)$ (from the right, i.e., values greater than $c$). The limit $L$ exists if and only if both one-sided limits exist and are equal to $L$."
+      "content": "Our goal is the gradient at a single point — the gradient of the **tangent** there. Imagine sliding the point at $x+h$ along the curve towards the point at $x$. As the two points close in, $h$ shrinks and the chord becomes a better and better approximation of the tangent. The tangent is the limiting position of the chord as $h \\to 0$: the gradient of the curve at a point is the limit of the gradient of the chord."
+    },
+    {
+      "type": "heading",
+      "content": "The formal definition: differentiation from first principles"
+    },
+    {
+      "type": "text",
+      "content": "Combining the chord gradient with the concept of a limit gives the formal definition of the derivative. The derivative of $f(x)$, written $f'(x)$ or $\\frac{dy}{dx}$, is the gradient of the tangent at any point $x$ — a whole new function, the **gradient function**. Finding it from this definition is called 'differentiating from first principles'."
+    },
+    {
+      "type": "formula",
+      "content": "The derivative from first principles: $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+    },
+    {
+      "type": "text",
+      "content": "The two notations mean the same thing. $f'(x)$ (Lagrange) is read 'f prime of x'; $\\frac{dy}{dx}$ (Leibniz), for $y = f(x)$, is read 'the derivative of $y$ with respect to $x$' and is a reminder that the derivative is the limiting ratio of a small change in $y$ to a small change in $x$. Both give the gradient function, and both can be read physically as the instantaneous **rate of change** of $f$ with respect to $x$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Direct Substitution:** If the function is continuous at $c$, the limit is simply $f(c)$.",
-        "**Factorisation:** If substitution gives $\\frac{0}{0}$, try to factorise the numerator and denominator to cancel common factors.",
-        "**Rationalisation:** If you have square roots and get $\\frac{0}{0}$, try multiplying the numerator and denominator by the conjugate."
+        "The formula gives the instantaneous rate of change of $f(x)$ with respect to $x$, i.e. the gradient function.",
+        "Substitute $f(x+h)$ and $f(x)$ into the formula, keeping the $\\lim_{h\\to0}$ written on every line until you take the limit.",
+        "Expand and simplify the numerator until the $h$ in the denominator cancels — the numerator will always have $h$ as a factor.",
+        "Only after cancelling the $h$ do you evaluate the limit by letting $h \\to 0$."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Find the limit $\\lim_{x \\to 3} \\frac{x^2 - x - 6}{x - 3}$.",
-      "solution": "Direct substitution of $x=3$ gives $\\frac{3^2 - 3 - 6}{3 - 3} = \\frac{9 - 9}{0} = \\frac{0}{0}$. This is an indeterminate form, so we must simplify the expression.\n\nFactorise the numerator: $x^2 - x - 6 = (x-3)(x+2)$. [M1]\n\nNow substitute this back into the limit expression:\n$\\lim_{x \\to 3} \\frac{(x-3)(x+2)}{x - 3}$\n\nSince $x$ is approaching 3 but is not equal to 3, $x-3 \\neq 0$, so we can cancel the $(x-3)$ terms. [M1]\n$\\lim_{x \\to 3} (x+2)$\n\nNow we can use direct substitution:\n$3 + 2 = 5$ [A1]\n\nSo, $\\lim_{x \\to 3} \\frac{x^2 - x - 6}{x - 3} = 5$."
+      "question": "Find the derivative of $f(x) = 3x^2 - 2x$ from first principles. [5]",
+      "solution": "Use $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$.\n\nFirst find $f(x+h)$:\n$f(x+h) = 3(x+h)^2 - 2(x+h) = 3(x^2 + 2xh + h^2) - 2x - 2h = 3x^2 + 6xh + 3h^2 - 2x - 2h$\n\nSubstitute into the formula:  [M1: correct definition]  [M1: substitute $f(x+h)$ and $f(x)$]\n$f'(x) = \\lim_{h \\to 0} \\frac{(3x^2 + 6xh + 3h^2 - 2x - 2h) - (3x^2 - 2x)}{h}$\n\nSimplify the numerator:\n$f'(x) = \\lim_{h \\to 0} \\frac{6xh + 3h^2 - 2h}{h}$  [A1: correct expansion and simplification]\n\nFactor $h$ and cancel:\n$f'(x) = \\lim_{h \\to 0} \\frac{h(6x + 3h - 2)}{h} = \\lim_{h \\to 0} (6x + 3h - 2)$  [M1: factor and cancel $h$]\n\nTake the limit as $h \\to 0$:\n$f'(x) = 6x - 2$  [A1]\n\nThe derivative of $f(x) = 3x^2 - 2x$ is $f'(x) = 6x - 2$."
     },
     {
       "type": "heading",
-      "content": "Continuity"
+      "content": "The power rule as the result"
     },
     {
       "type": "text",
-      "content": "A function is continuous if you can draw its graph without lifting your pen from the paper. More formally, a function $f$ is continuous at a point $x=c$ if the limit as $x$ approaches $c$ is equal to the function's value at $c$. This simple idea is powerful and relies on three conditions being met."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A function $f$ is continuous at $x=c$ if all three of these conditions are met:",
-        "1. $f(c)$ is defined (the point exists).",
-        "2. $\\lim_{x \\to c} f(x)$ exists (the function approaches a single value from both sides).",
-        "3. $\\lim_{x \\to c} f(x) = f(c)$ (the limit value is the same as the point's value)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Differentiation from First Principles"
-    },
-    {
-      "type": "text",
-      "content": "The derivative of a function, denoted $f'(x)$, gives the gradient of the tangent line at any point $x$. To find this, we start by approximating it with the gradient of a secant line between two points: $(x, f(x))$ and a nearby point $(x+h, f(x+h))$. The gradient of this secant is $\\frac{f(x+h) - f(x)}{h}$. By taking the limit as the distance between these points, $h$, approaches zero, the secant line becomes the tangent line, and its gradient becomes the derivative."
+      "content": "Once you have differentiated $x^2$ from first principles (giving $2x$) and $x^3$ (giving $3x^2$), a pattern emerges. Differentiating $x^n$ from first principles always produces the same shape of answer, and this is the **power rule**."
     },
     {
       "type": "formula",
-      "content": "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}"
+      "content": "Power rule: $\\frac{d}{dx}\\left(x^n\\right) = n x^{n-1}$, and $\\frac{d}{dx}\\left(a x^n\\right) = a n x^{n-1}$ for a constant $a$."
+    },
+    {
+      "type": "text",
+      "content": "So $\\frac{d}{dx}(3x^2 - 2x) = 6x - 2$, matching the first-principles answer above. The power rule is a shortcut that saves you the limit every time — but it does not *replace* first principles. When a question demands 'from first principles', the power rule alone scores nothing; you must show the limit. A useful strategy is to work out the target answer with the power rule in your head first, so you know what you are aiming for as you carry out the limit."
+    },
+    {
+      "type": "workedExample",
+      "question": "The point $P(2, 5)$ lies on the curve $y = x^2 + 1$. Given $\\frac{dy}{dx} = 2x$, find the gradient of the tangent to the curve at $P$, and interpret its meaning. [3]",
+      "solution": "The derivative $\\frac{dy}{dx} = 2x$ is the gradient function: it gives the gradient of the tangent at any point on the curve.  [M1: recognise derivative as gradient function]\n\nSubstitute the $x$-coordinate of $P$, namely $x = 2$:\n$\\left.\\frac{dy}{dx}\\right|_{x=2} = 2(2) = 4$  [A1]\n\n**Interpretation:** the tangent to the curve at $P(2,5)$ has gradient $4$, so at that point $y$ is increasing at a rate of $4$ units per unit increase in $x$.  [A1: correct interpretation as a rate of change]"
     },
     {
       "type": "examTip",
-      "content": "In an exam, if a question explicitly states 'from first principles' or 'using the definition of the derivative', you MUST use the limit formula. Using differentiation rules (like the power rule) will score zero marks, even if the final answer is correct. Show every step of your algebraic simplification clearly."
+      "content": "The derivative is one object with two jobs. Geometrically it is the gradient of the tangent (a gradient function); physically it is a rate of change. Exam questions freely switch between the two languages — 'gradient of the curve at $x=2$' and 'rate of change when $x=2$' both mean 'substitute $x=2$ into $f'(x)$'."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Substituting $h = 0$ too early** — do it at the start and you get $\\frac{0}{0}$, an indeterminate form. Simplify and cancel the $h$ first, then take the limit.",
+        "**Dropping the $\\lim_{h\\to0}$ notation** — the limit symbol must appear on every line until you actually evaluate it. Writing bare fractions loses method marks even if the algebra is right.",
+        "**Forgetting to take the limit at the end** — stopping at $2x + h$ after cancelling is not the derivative. You must write $\\lim_{h\\to0}(2x+h) = 2x$; leaving the $h$ in the final answer loses the final accuracy mark.",
+        "**Using the power rule when 'first principles' is demanded** — writing the answer straight from $nx^{n-1}$ scores $0$ on a first-principles question, even if the answer is correct.",
+        "**Expanding $(x+h)^2$ incorrectly** — it is $x^2 + 2xh + h^2$, not $x^2 + h^2$. A dropped middle term wrecks the simplification and the cancellation.",
+        "**Sign slips subtracting $f(x)$** — remember to subtract the *whole* of $f(x)$; bracket it, e.g. $-(3x^2 - 2x) = -3x^2 + 2x$, so the $+2x$ is not forgotten.",
+        "**Confusing chord and tangent** — the chord gradient is an average over an interval; the tangent gradient (the derivative) is the limit of that chord gradient as $h \\to 0$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 1 a 'from first principles' question is an **answer-given style** of task in spirit: the marks are analytic, tied to specific lines of working, and the credit lives in the *method*, not just the final expression. Each mark is either a method mark (M) — for the correct approach — or an accuracy mark (A) — for correct working or the correct answer, and an A mark is dependent on the M mark it follows. 'ISW' (ignore subsequent working) means a correct answer is not un-credited by later clutter, and 'FT' (follow-through) can carry an earlier slip forward. But because the answer is effectively given (you can get it instantly from the power rule), the working *must* be shown — an unsupported answer earns nothing. Study how each mark below is earned by a specific line."
     },
     {
       "type": "workedExample",
-      "question": "Let $f(x) = 3x^2 + 4x - 1$. Using the definition of the derivative, find $f'(x)$.",
-      "solution": "We use the formula $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$.\n\nFirst, find an expression for $f(x+h)$:\n$f(x+h) = 3(x+h)^2 + 4(x+h) - 1$\n$= 3(x^2 + 2xh + h^2) + 4x + 4h - 1$\n$= 3x^2 + 6xh + 3h^2 + 4x + 4h - 1$ [A1]\n\nNow substitute $f(x+h)$ and $f(x)$ into the formula: [M1]\n$f'(x) = \\lim_{h \\to 0} \\frac{(3x^2 + 6xh + 3h^2 + 4x + 4h - 1) - (3x^2 + 4x - 1)}{h}$\n\nSimplify the numerator by collecting like terms. Notice that all terms without an $h$ will cancel out.\n$f'(x) = \\lim_{h \\to 0} \\frac{3x^2 - 3x^2 + 6xh + 3h^2 + 4x - 4x + 4h - 1 + 1}{h}$\n$f'(x) = \\lim_{h \\to 0} \\frac{6xh + 3h^2 + 4h}{h}$ [A1]\n\nFactor out $h$ from the numerator:\n$f'(x) = \\lim_{h \\to 0} \\frac{h(6x + 3h + 4)}{h}$ [M1]\n\nCancel the $h$ terms (since $h \\neq 0$):\n$f'(x) = \\lim_{h \\to 0} (6x + 3h + 4)$\n\nNow, evaluate the limit by substituting $h=0$:\n$f'(x) = 6x + 3(0) + 4$\n$f'(x) = 6x + 4$ [A1][AG]\n\nNote: The final [AG] (Answer Given) mark is often used in such questions, so showing clear steps is crucial."
+      "question": "Find the derivative of $f(x) = x^2 + 3x$ from first principles. [5]",
+      "solution": "**Model answer — full working.**\n\nUse the first-principles definition:\n$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$\n\nFind $f(x+h)$ by replacing every $x$ with $x+h$:\n$f(x+h) = (x+h)^2 + 3(x+h)$\n\nSubstitute $f(x+h)$ and $f(x) = x^2 + 3x$ into the definition:\n$f'(x) = \\lim_{h \\to 0} \\frac{\\big[(x+h)^2 + 3(x+h)\\big] - \\big[x^2 + 3x\\big]}{h}$\n\nExpand the numerator:\n$(x+h)^2 + 3(x+h) = x^2 + 2xh + h^2 + 3x + 3h$\n\nSo the numerator becomes:\n$x^2 + 2xh + h^2 + 3x + 3h - x^2 - 3x = 2xh + h^2 + 3h$\n\nHence:\n$f'(x) = \\lim_{h \\to 0} \\frac{2xh + h^2 + 3h}{h}$\n\nFactor $h$ and cancel (valid because $h \\neq 0$ in the limit process):\n$f'(x) = \\lim_{h \\to 0} \\frac{h(2x + h + 3)}{h} = \\lim_{h \\to 0} (2x + h + 3)$\n\nTake the limit as $h \\to 0$:\n$f'(x) = 2x + 3$\n\n**Final answer:** $f'(x) = 2x + 3$. (Check with the power rule: $\\frac{d}{dx}(x^2 + 3x) = 2x + 3$. ✓)\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — write the first-principles definition.** Awarded for stating $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$. This is a METHOD mark: it credits the correct approach.\n- **M1 — substitute $f(x+h)$.** Awarded for forming $f(x+h) = (x+h)^2 + 3(x+h)$ and placing it, with $f(x)$, into the quotient. The engine checks the right expression went into the right place.\n- **A1 — expand $(x+h)^2 + 3(x+h)$.** Awarded for the correct expansion $x^2 + 2xh + h^2 + 3x + 3h$ (in particular the middle term $2xh$ is present and $f(x)$ is fully subtracted). This ACCURACY mark depends on the substitution M1 above it.\n- **M1 — simplify and divide by $h$.** Awarded for reducing the numerator to $2xh + h^2 + 3h$, factoring $h$, and cancelling to reach $\\lim_{h\\to0}(2x + h + 3)$.\n- **A1 — take the limit.** Awarded for $\\lim_{h \\to 0}(2x + 3 + h) = 2x + 3$. The final limit line must appear; leaving the answer as $2x + 3 + h$ does not earn this mark.\n\n**Because this is answer-given (AG), the working must be shown.** The result $2x + 3$ is obtainable in one line from the power rule, so the credit is entirely in the limit process. A response that writes only '$f'(x) = 2x + 3$' with no first-principles working scores **0 of 5**, even though the answer is correct.\n\n**Bottom line:** three method marks reward the *process* — the definition, the substitution, the cancel — and the two accuracy marks reward correct algebra and the final limit. Show every line and the marks are secure; skip the limit and you cap yourself below full marks even with the right answer on the page."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, and it enforces the answer-given rule that the first-principles steps must be shown. So always write the definition, substitute $f(x+h)$, expand and subtract carefully, cancel the $h$, and finish with the explicit $\\lim_{h\\to0}$ line. Those method marks are what protect your score, and on an AG question you only earn them if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "First principles is the definition; the power rule is the shortcut it justifies. From here you will differentiate sums of powers, then products, quotients and composite functions with further rules — each one ultimately provable from the same limit. The two readings of the derivative you met here, gradient of a tangent and rate of change, drive everything that follows: finding equations of tangents and normals, locating maximum and minimum points where $f'(x)=0$, and modelling how quantities change in kinematics and optimisation. Master the habit — write the definition, substitute, expand, cancel, take the limit — and the calculus that follows becomes variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Practice First Principles",
-      "href": "/mark?subject=ib-maths-aa-hl&topic=5.1"
+      "label": "Get a Paper 1 answer marked: differentiate a polynomial from first principles with full working",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.1&component=paper_1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GeoGebra: Secant line to Tangent line",
-          "href": "https://www.geogebra.org/m/C3t3kE3h"
+          "label": "GeoGebra: Secant Line to Tangent Line",
+          "href": "https://www.geogebra.org/m/c3b5AwhV"
         },
         {
-          "label": "Khan Academy: Limits and continuity",
-          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-limits-new"
+          "label": "Khan Academy: Derivative as a limit",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-limit"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
-    "title": "Secant line to Tangent line",
-    "embedUrl": "https://www.geogebra.org/classic?material=C3t3kE3h",
-    "launchUrl": "https://www.geogebra.org/classic?material=C3t3kE3h",
-    "hint": "Use “Secant line to Tangent line” — shift curves or drag points to see equilibrium and slopes change.",
+    "title": "Secant Line to Tangent Line",
+    "embedUrl": "https://www.geogebra.org/classic?material=c3b5AwhV",
+    "launchUrl": "https://www.geogebra.org/classic?material=c3b5AwhV",
+    "hint": "Use “Secant Line to Tangent Line” — shift curves or drag points to see equilibrium and slopes change.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "GeoGebra",

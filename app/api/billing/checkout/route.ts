@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
+import { createServiceClient } from '@/lib/supabase/service'
 import { polar } from '@/lib/polar/server'
 import {
   type ProductKey,
@@ -11,6 +12,12 @@ import { polarProductId } from '@/lib/polar/products'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
 import { resolveSiteUrl } from '@/lib/site-url'
 import type { BillingPeriod } from '@/lib/database.types'
+
+// A customer can hold only one Polar subscription, so switching plans (upgrade /
+// downgrade / monthly<->yearly) must UPDATE the existing subscription rather than
+// open a new checkout (Polar rejects a second one). These statuses mean there's a
+// live Polar subscription to switch.
+const LIVE_SUB_STATUSES = new Set(['active', 'trialing', 'past_due'])
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -77,6 +84,55 @@ export async function POST(req: NextRequest) {
   const origin = appOrigin(req)
   const returnPath = sanitizeNextPath(body.return_url, '/account')
   const successUrl = `${origin}${returnPath}?checkout=success`
+
+  // Plan switch: if the user already has a live Polar subscription, update it in
+  // place instead of creating a second checkout (which Polar rejects). Trial
+  // users have no Polar subscription yet (polar_subscription_id is null), so they
+  // fall through to normal checkout.
+  if (isSubscriptionProduct(product)) {
+    const service = createServiceClient()
+    const { data: current } = await service
+      .from('user_subscriptions')
+      .select('polar_subscription_id, status, tier, billing_period')
+      .eq('user_id', user.id)
+      .maybeSingle()
+
+    if (
+      current?.polar_subscription_id &&
+      LIVE_SUB_STATUSES.has(current.status)
+    ) {
+      // No-op if they picked the exact plan they're already on.
+      const currentProductId = polarProductId(
+        current.tier as ProductKey,
+        current.billing_period as BillingPeriod | null
+      )
+      if (currentProductId === productId) {
+        return jsonWithAuthCookies(
+          { url: `${origin}${returnPath}?checkout=success` },
+          pendingCookies
+        )
+      }
+
+      try {
+        await polar.subscriptions.update({
+          id: current.polar_subscription_id,
+          subscriptionUpdate: { productId, prorationBehavior: 'invoice' },
+        })
+        // The subscription.updated webhook syncs the new tier. Redirect the
+        // client to the billing page so it re-fetches the summary.
+        return jsonWithAuthCookies(
+          { url: `${origin}${returnPath}?checkout=success` },
+          pendingCookies
+        )
+      } catch (err) {
+        console.error('[billing/checkout] Polar subscription update failed:', err)
+        return NextResponse.json(
+          { error: 'Could not change your plan. Try again in a moment.' },
+          { status: 502 }
+        )
+      }
+    }
+  }
 
   try {
     const checkout = await polar.checkouts.create({

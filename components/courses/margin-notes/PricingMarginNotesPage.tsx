@@ -10,9 +10,9 @@ import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { PricingDisplay, SubscriptionDisplayPrices } from '@/lib/billing/display-prices'
 import type { EffectiveAccess } from '@/lib/billing/access'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
-import { SUPPORTED_CURRENCIES } from '@/lib/billing/region-cookie'
 import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { PlanComparisonMatrix } from '@/components/courses/margin-notes/PlanComparisonMatrix'
@@ -57,12 +57,11 @@ const PRO_OMNI = omniCapForTier('scholar')
 const MAX_Q = capForTier('mastery')
 const MAX_OMNI = omniCapForTier('mastery')
 
-export function PricingMarginNotesPage({ display, signedIn, access, region }: Props) {
+export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
   const router = useRouter()
   const [period, setPeriod] = useState<Period>('yearly')
   const [busy, setBusy] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
-  const [switching, setSwitching] = useState(false)
   const cur = display.currency
 
   async function checkout(product: 'scholar' | 'mastery') {
@@ -96,22 +95,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
       setNotice('Could not start checkout. Try again in a moment.')
     }
     setBusy(null)
-  }
-
-  async function changeCurrency(currency: string) {
-    setSwitching(true)
-    try {
-      await fetch('/api/billing/region', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currency }),
-      })
-      router.refresh()
-    } catch (err) {
-      console.error('PricingMarginNotesPage: failed to change currency', err)
-    } finally {
-      setSwitching(false)
-    }
   }
 
   function priceBlock(prices: SubscriptionDisplayPrices) {
@@ -205,7 +188,12 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
         ['Notes, formulas & worked examples', true],
         [`Mark ${FREE_Q} questions / month`, true],
         [`${FREE_OMNI} study-chat messages / month`, true],
-        ['Live interactive diagrams', false],
+        [
+          INTERACTIVE_DIAGRAMS_FREE
+            ? 'Live interactive diagrams — free while in beta'
+            : 'Live interactive diagrams',
+          INTERACTIVE_DIAGRAMS_FREE,
+        ],
         ['Past-paper practice & flashcards', false],
         ['Projected grades', false],
       ],
@@ -253,7 +241,11 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
     },
     {
       q: 'What’s included on the free plan?',
-      a: `Free gives you every lesson — notes, formulas, simple explanations and worked examples — across all fifteen Cambridge subjects, plus ${FREE_Q} marked questions and ${FREE_OMNI} study-chat messages each month. Live diagrams, practice questions and flashcards are part of Pro and Max.`,
+      a: `Free gives you every lesson — notes, formulas, simple explanations and worked examples — across all fifteen Cambridge subjects, plus ${FREE_Q} marked questions and ${FREE_OMNI} study-chat messages each month.${
+        INTERACTIVE_DIAGRAMS_FREE
+          ? ' Live interactive diagrams are free for everyone while we’re in beta. Past-paper practice and flashcards are part of Pro and Max.'
+          : ' Live diagrams, practice questions and flashcards are part of Pro and Max.'
+      }`,
     },
     {
       q: 'Can I cancel anytime?',
@@ -307,20 +299,6 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
               </button>
             ))}
           </div>
-          <label className="pricing-currency">
-            <span className="sr-only">Currency</span>
-            <select
-              value={cur}
-              disabled={switching}
-              onChange={(e) => changeCurrency(e.target.value)}
-            >
-              {SUPPORTED_CURRENCIES.map((c) => (
-                <option key={c} value={c}>
-                  {c.toUpperCase()}
-                </option>
-              ))}
-            </select>
-          </label>
         </div>
 
         {notice ? <p className="pricing-notice">{notice}</p> : null}
@@ -389,8 +367,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
           <span className="pricing-trust-item">✓ 15 Cambridge subjects, AS &amp; A Level</span>
           <span className="pricing-trust-item">✓ Marked against official schemes</span>
           <span className="pricing-trust-item">
-            ✓ Prices in {cur.toUpperCase()}
-            {region.country && !region.override ? ` for ${region.country}` : ''}
+            ✓ Billed in {cur.toUpperCase()} · shown in your local currency at checkout
           </span>
         </div>
 

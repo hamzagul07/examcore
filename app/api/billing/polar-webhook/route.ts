@@ -1,0 +1,281 @@
+import { NextRequest, NextResponse } from 'next/server'
+import type { SupabaseClient } from '@supabase/supabase-js'
+import { validateEvent, WebhookVerificationError } from '@polar-sh/sdk/webhooks'
+import { createServiceClient } from '@/lib/supabase/service'
+import { resolvePolarProduct } from '@/lib/polar/products'
+import { notifyPurchaseEmails } from '@/lib/email/notifications'
+
+export const runtime = 'nodejs' // not edge — needs the raw body
+export const dynamic = 'force-dynamic'
+
+// The validated event union. We only act on a few types; the rest are ACKed.
+type PolarEvent = ReturnType<typeof validateEvent>
+
+export async function POST(req: NextRequest) {
+  const secret = process.env.POLAR_WEBHOOK_SECRET
+  if (!secret) {
+    console.error('[polar-webhook] POLAR_WEBHOOK_SECRET is not set')
+    return new NextResponse('Webhook not configured', { status: 500 })
+  }
+
+  const body = await req.text() // raw body for signature verification
+  const headers: Record<string, string> = {}
+  req.headers.forEach((value, key) => {
+    headers[key] = value
+  })
+
+  let event: PolarEvent
+  try {
+    event = validateEvent(body, headers, secret)
+  } catch (err) {
+    if (err instanceof WebhookVerificationError) {
+      console.error('[polar-webhook] signature verification failed:', err.message)
+      return new NextResponse('Invalid signature', { status: 403 })
+    }
+    console.error('[polar-webhook] failed to parse event:', err)
+    return new NextResponse('Invalid payload', { status: 400 })
+  }
+
+  // Idempotency key: the standard-webhooks delivery id (already signed, so it's
+  // trustworthy after validateEvent succeeded).
+  const eventId = headers['webhook-id'] || `${event.type}:unknown`
+  const supabase = createServiceClient()
+
+  const { data: existing } = await supabase
+    .from('polar_webhook_events')
+    .select('id')
+    .eq('id', eventId)
+    .maybeSingle()
+
+  if (existing) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('[polar-webhook] already processed:', eventId)
+    }
+    return NextResponse.json({ received: true, duplicate: true })
+  }
+
+  try {
+    await handlePolarEvent(event, supabase)
+
+    // Record success AFTER side effects, so a crash mid-processing leaves no
+    // record and Polar's retry can re-run it.
+    await supabase.from('polar_webhook_events').insert({
+      id: eventId,
+      type: event.type,
+      payload: event as unknown as Record<string, unknown>,
+    })
+
+    return NextResponse.json({ received: true })
+  } catch (err) {
+    console.error('[polar-webhook] processing error:', err)
+    // 500 so Polar retries (transient DB/Polar failure).
+    const message = err instanceof Error ? err.message : 'unknown'
+    return NextResponse.json({ error: message }, { status: 500 })
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function isoOrNull(d: Date | null | undefined): string | null {
+  return d ? new Date(d).toISOString() : null
+}
+
+async function findUserIdByPolarCustomer(
+  supabase: SupabaseClient,
+  polarCustomerId: string
+): Promise<string | null> {
+  const { data } = await supabase
+    .from('user_subscriptions')
+    .select('user_id')
+    .eq('polar_customer_id', polarCustomerId)
+    .maybeSingle()
+  return data?.user_id ?? null
+}
+
+/**
+ * Resolve the Supabase user for an event. Prefer the customer's externalId
+ * (set to user.id at checkout), then checkout/order metadata, then a lookup by
+ * the cached polar_customer_id.
+ */
+async function resolveUserId(
+  supabase: SupabaseClient,
+  opts: {
+    externalId?: string | null
+    metadataUserId?: string | null
+    polarCustomerId?: string | null
+  }
+): Promise<string | null> {
+  if (opts.externalId) return opts.externalId
+  if (opts.metadataUserId) return opts.metadataUserId
+  if (opts.polarCustomerId) {
+    return findUserIdByPolarCustomer(supabase, opts.polarCustomerId)
+  }
+  return null
+}
+
+type PolarSubscription = {
+  id: string
+  status: string
+  productId: string
+  customerId: string
+  customer?: { externalId?: string | null } | null
+  currentPeriodStart?: Date | null
+  currentPeriodEnd?: Date | null
+  cancelAtPeriodEnd?: boolean
+  canceledAt?: Date | null
+  metadata?: Record<string, unknown> | null
+}
+
+async function syncSubscription(
+  supabase: SupabaseClient,
+  sub: PolarSubscription
+): Promise<{ ok: boolean; userId: string | null; tier: string }> {
+  const userId = await resolveUserId(supabase, {
+    externalId: sub.customer?.externalId,
+    metadataUserId:
+      typeof sub.metadata?.supabase_user_id === 'string'
+        ? (sub.metadata.supabase_user_id as string)
+        : null,
+    polarCustomerId: sub.customerId,
+  })
+  if (!userId) {
+    console.warn(
+      `[polar-webhook] subscription ${sub.id}: no resolvable user (customer ${sub.customerId}). Skipping.`
+    )
+    return { ok: false, userId: null, tier: 'free' }
+  }
+
+  const resolved = resolvePolarProduct(sub.productId)
+  if (!resolved) {
+    console.warn(
+      `[polar-webhook] subscription ${sub.id}: unknown product ${sub.productId}. Tier defaults to free.`
+    )
+  }
+
+  const { error } = await supabase.from('user_subscriptions').upsert(
+    {
+      user_id: userId,
+      polar_customer_id: sub.customerId,
+      polar_subscription_id: sub.id,
+      tier: resolved?.tier ?? 'free',
+      status: sub.status,
+      billing_period: resolved?.billingPeriod ?? null,
+      current_period_start: isoOrNull(sub.currentPeriodStart),
+      current_period_end: isoOrNull(sub.currentPeriodEnd),
+      cancel_at_period_end: sub.cancelAtPeriodEnd ?? false,
+      canceled_at: isoOrNull(sub.canceledAt),
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id' }
+  )
+  if (error) throw new Error(`syncSubscription upsert failed: ${error.message}`)
+
+  return { ok: true, userId, tier: resolved?.tier ?? 'paid' }
+}
+
+async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
+  switch (event.type) {
+    case 'subscription.created':
+    case 'subscription.active':
+    case 'subscription.updated': {
+      const sub = event.data as unknown as PolarSubscription
+      const { ok, userId, tier } = await syncSubscription(supabase, sub)
+      // Only greet on activation, not on every update.
+      if (ok && userId && event.type === 'subscription.active') {
+        void notifyPurchaseEmails(supabase, userId, {
+          kind: 'subscription',
+          detail: `Your ${tier} plan is now active.`,
+          stripeSessionId: sub.id,
+        })
+      }
+      break
+    }
+
+    case 'subscription.canceled':
+    case 'subscription.revoked': {
+      const sub = event.data as unknown as PolarSubscription
+      const userId = await resolveUserId(supabase, {
+        externalId: sub.customer?.externalId,
+        polarCustomerId: sub.customerId,
+      })
+      if (!userId) {
+        console.warn(
+          `[polar-webhook] ${event.type} ${sub.id}: no resolvable user. Skipping.`
+        )
+        break
+      }
+      const { error } = await supabase
+        .from('user_subscriptions')
+        .update({
+          tier: 'free',
+          status: 'canceled',
+          cancel_at_period_end: false,
+          canceled_at: isoOrNull(sub.canceledAt) ?? new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .eq('user_id', userId)
+      if (error) throw new Error(`subscription cancel update failed: ${error.message}`)
+      break
+    }
+
+    case 'order.paid': {
+      // Covers subscription invoices AND one-time credit purchases. Subscription
+      // tier is handled by subscription.* events, so here we only act on credit
+      // packs (one-time products).
+      const order = event.data as unknown as {
+        id: string
+        productId: string | null
+        customerId: string
+        subscriptionId: string | null
+        customer?: { externalId?: string | null } | null
+        metadata?: Record<string, unknown> | null
+      }
+
+      if (!order.productId) break
+      const resolved = resolvePolarProduct(order.productId)
+      if (!resolved || resolved.isSubscription) break // credits only here
+      if (resolved.credits <= 0) break
+
+      const userId = await resolveUserId(supabase, {
+        externalId: order.customer?.externalId,
+        metadataUserId:
+          typeof order.metadata?.supabase_user_id === 'string'
+            ? (order.metadata.supabase_user_id as string)
+            : null,
+        polarCustomerId: order.customerId,
+      })
+      if (!userId) {
+        console.warn(
+          `[polar-webhook] order.paid ${order.id}: no resolvable user. Skipping.`
+        )
+        break
+      }
+
+      // Atomic balance bump + usage_events log. Idempotency guaranteed by the
+      // outer event-id dedup.
+      const { error } = await supabase.rpc('apply_credit_topup', {
+        p_user_id: userId,
+        p_credits: resolved.credits,
+        p_metadata: {
+          polar_order_id: order.id,
+          product: resolved.productKey,
+        },
+      })
+      if (error) throw new Error(`apply_credit_topup failed: ${error.message}`)
+
+      void notifyPurchaseEmails(supabase, userId, {
+        kind: 'credits',
+        detail: `${resolved.credits} marking credit${resolved.credits === 1 ? '' : 's'} have been added to your account.`,
+        stripeSessionId: order.id,
+      })
+      break
+    }
+
+    default:
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('[polar-webhook] unhandled type:', event.type)
+      }
+  }
+}

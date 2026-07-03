@@ -1,189 +1,338 @@
 {
   "slug": "s1-2-the-nuclear-atom",
   "topicCode": "S1.2",
+  "unit": {
+    "code": "S1",
+    "title": "Models of the particulate nature of matter"
+  },
   "title": "The nuclear atom",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental structure of the atom, focusing on the nucleus. It covers the properties of subatomic particles, the concepts of atomic number, mass number, and isotopes. The lesson culminates in understanding how the mass spectrometer is used to determine isotopic abundances and calculate relative atomic mass.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "The atom is the foundation of the whole course. This lesson builds the nuclear model from the ground up: the relative mass and charge of protons, neutrons and electrons; how atomic number and mass number define an atom; how to read and write nuclide symbols; what isotopes are and why they matter; how a mass spectrometer reveals isotopic abundance; and how to calculate relative atomic mass as a weighted average. It closes with a fully worked exam calculation marked exactly the way our engine marks your own.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the properties and locations of protons, neutrons, and electrons in an atom.",
-    "Determine the number of subatomic particles in atoms and ions from the nuclear symbol.",
-    "Define isotopes and explain why they have similar chemical properties but different physical properties.",
-    "Calculate the relative atomic mass of an element from isotopic abundance data obtained from a mass spectrometer."
+    "State the position, relative mass, and relative charge of protons, neutrons, and electrons.",
+    "Define atomic number (Z), mass number (A), and isotopes of an element, and write and interpret nuclide symbols.",
+    "Deduce the number of protons, neutrons, and electrons in atoms and ions from nuclide notation.",
+    "Explain how a mass spectrometer determines isotopic abundance, and calculate relative atomic mass from isotopic composition."
   ],
+  "syllabusObjectivesCovered": [
+    "S1.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Inside the Atom's Core",
-    "summary": "Atoms are composed of a tiny, dense nucleus containing protons and neutrons, which is surrounded by a vast region of space occupied by electrons. The specific number of these particles defines an element, its mass, and its isotopes.",
-    "analogy": "Imagine a huge sports stadium represents an atom. A single, heavy marble placed on the centre spot is the nucleus. The entire mass of the 'stadium' is concentrated in that marble. A few tiny, almost weightless gnats flying around the stands are the electrons. The vast majority of the stadium is just empty space, highlighting how small and dense the nucleus is compared to the whole atom.",
+    "title": "The Atom's Tiny Core",
+    "summary": "Atoms are mostly empty space with a tiny, dense, positively charged nucleus at their centre, containing protons and neutrons. Negatively charged electrons occupy the vast space around it in energy levels.",
+    "analogy": "Imagine a huge sports stadium. The nucleus is like a marble on the centre spot — incredibly small and dense, holding almost all the mass. The electrons are like a few flies buzzing around the whole stadium: tiny, fast, filling a vast volume but weighing almost nothing.",
     "steps": [
-      "Identify the key numbers for an atom: the atomic number (Z, number of protons) and the mass number (A, total protons and neutrons).",
-      "Use these numbers to deduce the count of each subatomic particle. For ions, adjust the electron count based on the charge.",
-      "Recognise that isotopes are versions of the same element with the same number of protons but a different number of neutrons, leading to a different mass number.",
-      "Calculate the element's relative atomic mass by taking a weighted average of the masses of its naturally occurring isotopes."
+      "Read the nuclide symbol, e.g. $^{12}_{6}C$: the top number is the mass number (A), the bottom is the atomic number (Z).",
+      "Protons = Z. Electrons in a neutral atom = Z as well.",
+      "Neutrons = A − Z (mass number minus atomic number).",
+      "For ions, adjust only the electrons: subtract for cations (positive), add for anions (negative). The nucleus never changes."
     ]
   },
   "flashcards": [
     {
-      "front": "What are the relative mass and relative charge of a proton?",
-      "back": "Relative mass: 1. Relative charge: +1."
+      "front": "Relative charge and mass of a proton",
+      "back": "Charge +1, relative mass 1. Located in the nucleus.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the relative mass and relative charge of a neutron?",
-      "back": "Relative mass: 1. Relative charge: 0."
+      "front": "Relative charge and mass of a neutron",
+      "back": "Charge 0, relative mass 1. Located in the nucleus.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the relative mass and relative charge of an electron?",
-      "back": "Relative mass: ~1/1836 (often approximated as 0). Relative charge: -1."
+      "front": "Relative charge and mass of an electron",
+      "back": "Charge −1, relative mass ~1/1836 (treated as negligible). Located outside the nucleus in energy levels.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define Atomic Number (Z).",
-      "back": "The number of protons in the nucleus of an atom. It defines the element."
+      "front": "Atomic number (Z)",
+      "back": "The number of protons in the nucleus. It defines which element the atom is — change Z and you change the element.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define Mass Number (A).",
-      "back": "The total number of protons and neutrons in the nucleus of a specific nuclide. It is always an integer."
+      "front": "Mass number (A)",
+      "back": "The total number of protons plus neutrons (nucleons) in the nucleus. Always a whole number for a single atom.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define Isotopes.",
-      "back": "Atoms of the same element (same number of protons) that have a different number of neutrons, and therefore a different mass number."
+      "front": "Isotopes",
+      "back": "Atoms of the same element (same number of protons) with different numbers of neutrons, and therefore different mass numbers.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the key difference between Mass Number (A) and Relative Atomic Mass ($A_r$)?",
-      "back": "Mass Number (A) is an integer count of protons and neutrons for a single isotope. Relative Atomic Mass ($A_r$) is the weighted average mass of all isotopes of an element, and is usually not an integer."
+      "front": "What information is in $^{37}_{17}Cl$?",
+      "back": "A chlorine atom with mass number 37 and atomic number 17: 17 protons, 17 electrons, and 37 − 17 = 20 neutrons.",
+      "pillLabel": "Model"
     },
     {
-      "front": "Why do isotopes of an element have identical chemical properties?",
-      "back": "Because they have the same number of electrons in the same configuration. Chemical reactions are determined by electron interactions."
+      "front": "Mass number (A) vs relative atomic mass (A_r)",
+      "back": "A is an integer count of protons + neutrons for a SINGLE isotope. A_r is the WEIGHTED AVERAGE mass of all an element's isotopes — usually not a whole number, and found on the periodic table.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What are the five main stages in a mass spectrometer?",
-      "back": "Vaporisation, Ionisation, Acceleration, Deflection, Detection. (Mnemonic: VIADD)"
+      "front": "Electrons in a negative ion, e.g. S²⁻",
+      "back": "Sulfur's atomic number is 16 (16 protons, 16 electrons when neutral). A 2− charge means 2 electrons gained: 16 + 2 = 18 electrons.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "In a mass spectrum, what do the x-axis and y-axis represent?",
-      "back": "The x-axis represents the mass-to-charge ratio (m/z). The y-axis represents the relative abundance or intensity of the ions."
+      "front": "What do isotopes of an element share?",
+      "back": "Identical chemical properties (same protons and electrons, so same electron arrangement). Physical properties such as density and rate of diffusion differ slightly because of the mass difference.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "How do you calculate the number of neutrons in a nuclide?",
-      "back": "Number of neutrons = Mass Number (A) - Atomic Number (Z)."
+      "front": "What does a mass spectrometer measure?",
+      "back": "The mass-to-charge ratio (m/z) of ions and the relative abundance of each. For a single element it gives one peak per isotope; peak position = isotopic mass, peak height = abundance.",
+      "pillLabel": "Model"
+    },
+    {
+      "front": "Weighted-average formula for A_r",
+      "back": "A_r = Σ(isotopic mass × fractional abundance). Convert every percentage to a decimal first, then multiply and add.",
+      "pillLabel": "Framework"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Two atoms are isotopes of the same element. They MUST differ in their number of:",
+      "options": [
+        "Protons",
+        "Electrons",
+        "Neutrons",
+        "Protons and electrons together"
+      ],
+      "answer": "Neutrons"
+    },
+    {
+      "prompt": "Chlorine's relative atomic mass is 35.45, yet no single chlorine atom has that mass. This is because 35.45 is:",
+      "options": [
+        "The mass number of the most common isotope",
+        "A weighted average of the isotope masses",
+        "A rounding error in the periodic table",
+        "The mass of a chlorine molecule Cl₂"
+      ],
+      "answer": "A weighted average of the isotope masses"
+    },
+    {
+      "prompt": "Which set of relative charges is correct for proton, neutron, and electron in that order?",
+      "options": [
+        "+1, 0, −1",
+        "+1, −1, 0",
+        "0, +1, −1",
+        "−1, 0, +1"
+      ],
+      "answer": "+1, 0, −1"
+    },
+    {
+      "prompt": "In a mass spectrum of a pure element, the HEIGHT of each peak tells you the:",
+      "options": [
+        "Mass number of that isotope",
+        "Relative abundance of that isotope",
+        "Charge on the ion",
+        "Number of protons"
+      ],
+      "answer": "Relative abundance of that isotope"
+    },
+    {
+      "prompt": "How many neutrons are in the ion ⁴⁰₂₀Ca²⁺?",
+      "options": [
+        "18",
+        "20",
+        "22",
+        "40"
+      ],
+      "answer": "20"
     }
   ],
   "faq": [
     {
-      "q": "Why do isotopes have different physical properties?",
-      "a": "Physical properties like density, rate of diffusion, and melting/boiling points depend on the mass of the atom. Since isotopes have different numbers of neutrons, they have different masses, leading to slight variations in these physical properties."
+      "q": "Why is the mass of the electron ignored in the mass number?",
+      "a": "A proton or neutron is about 1836 times heavier than an electron, so the electrons contribute almost nothing to the atom's mass. Because the mass is concentrated in the nucleus, the mass number (A) counts only protons and neutrons."
     },
     {
-      "q": "What is the difference between mass number and relative atomic mass?",
-      "a": "The mass number (A) is an integer representing the total count of protons and neutrons in a single, specific atom (a nuclide). The relative atomic mass ($A_r$) is the weighted average mass of all the naturally occurring isotopes of an element, and it is rarely an integer."
+      "q": "Can two different elements have the same mass number?",
+      "a": "Yes — these are called isobars. Argon-40 ($^{40}_{18}Ar$) has 18 protons and 22 neutrons; calcium-40 ($^{40}_{20}Ca$) has 20 protons and 20 neutrons. Both have mass number 40, but different numbers of protons make them different elements."
     },
     {
-      "q": "In the mass spectrometer, why are positive ions formed instead of negative ions?",
-      "a": "It is much more energy-efficient to remove one or more electrons from a neutral atom (ionisation) than it is to add an electron to create a negative ion. The process is designed to create a consistent type of particle (positive ions) that can be easily manipulated by electric and magnetic fields."
+      "q": "Do isotopes react differently?",
+      "a": "Chemically, no. Reactions depend on electron arrangement, which depends on the number of protons — identical across isotopes of one element. Physical properties such as density, diffusion rate and boiling point can differ slightly because the atoms have different masses."
+    },
+    {
+      "q": "How does a mass spectrometer actually give abundance?",
+      "a": "A sample is vaporised and ionised, the ions are accelerated and separated by their mass-to-charge ratio, and a detector counts how many ions of each mass arrive. Each isotope produces a separate peak: its position gives the isotopic mass and its height gives the relative abundance — the exact numbers needed to calculate A_r."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Our modern understanding of the atom began with Ernest Rutherford's groundbreaking gold foil experiment. By firing alpha particles at a thin sheet of gold, he observed that while most passed straight through, a small fraction were deflected at large angles. This led to the revolutionary nuclear model: a tiny, dense, positively charged nucleus containing most of the atom's mass, with lightweight electrons occupying the vast empty space around it. This lesson delves into the composition of this nucleus and its implications for the properties of elements."
+      "content": "Modern chemistry is built on the atom. The ancient Greeks imagined an indivisible particle, but only in the 20th century — most famously through Ernest Rutherford's gold-foil experiment — did the atom's internal structure emerge: a tiny, dense, positively charged nucleus surrounded by electrons. This lesson unpacks the subatomic particles, shows how their numbers define an element and its isotopes, and builds to the calculation examiners test most often: finding relative atomic mass from isotopic abundance."
     },
     {
       "type": "heading",
-      "content": "Subatomic Particles"
+      "content": "Subatomic particles"
     },
     {
       "type": "text",
-      "content": "Atoms are built from three fundamental subatomic particles: protons, neutrons, and electrons. Protons and neutrons, collectively known as nucleons, are located in the central nucleus. Electrons orbit the nucleus in specific energy levels. The identity of an element is determined solely by the number of protons in its nucleus."
+      "content": "Atoms are built from three particles: protons, neutrons and electrons. Protons and neutrons, together called nucleons, sit in the small, dense, positively charged nucleus. Electrons occupy the much larger region of space around the nucleus, arranged in energy levels (shells)."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Proton (p$^{+}$)**: Found in the nucleus. Has a relative charge of +1 and a relative mass of approximately 1.",
-        "**Neutron (n$^{0}$)**: Found in the nucleus. Has a relative charge of 0 and a relative mass of approximately 1.",
-        "**Electron (e$^{-}$)**: Orbits the nucleus. Has a relative charge of -1 and a very small relative mass (~1/1836)."
+        "**Proton (p⁺):** relative charge +1, relative mass 1 — in the nucleus.",
+        "**Neutron (n⁰):** relative charge 0, relative mass 1 — in the nucleus.",
+        "**Electron (e⁻):** relative charge −1, relative mass ~1/1836 (negligible) — outside the nucleus.",
+        "The nucleus holds almost all the mass but fills a tiny fraction of the atom's volume — the atom is mostly empty space.",
+        "A neutral atom has equal numbers of protons and electrons, so the positive and negative charges cancel."
       ]
     },
     {
       "type": "heading",
-      "content": "Nuclear Symbolism and Isotopes"
+      "content": "Nuclide notation, atomic number and mass number"
     },
     {
       "type": "text",
-      "content": "We use a standard notation to represent a specific atom or nuclide, which concisely provides information about its subatomic composition. This notation is crucial for distinguishing between isotopes."
+      "content": "To describe a specific atom precisely we use nuclide notation, which states the atomic number and mass number and so fixes the count of every particle."
     },
     {
       "type": "formula",
-      "content": "$^{A}_{Z}X$"
+      "content": "Nuclide notation: $^{A}_{Z}X$"
     },
     {
       "type": "text",
-      "content": "Here, $X$ is the element symbol, $Z$ is the atomic number (number of protons), and $A$ is the mass number (number of protons + neutrons). For a neutral atom, the number of electrons equals the number of protons. For an ion, the charge indicates the gain or loss of electrons. For example, chlorine has two common isotopes: chlorine-35 ($^{35}_{17}Cl$) and chlorine-37 ($^{37}_{17}Cl$). Both have 17 protons, but they have 18 and 20 neutrons, respectively."
+      "content": "Here $X$ is the element symbol, $A$ is the **mass number** (protons + neutrons), and $Z$ is the **atomic number** (protons). Because the atomic number defines the element, $Z$ is often left off — the symbol alone tells you it. From these two numbers: protons = Z, neutrons = A − Z, and electrons = Z in a neutral atom (adjusted for any ionic charge)."
     },
     {
       "type": "workedExample",
-      "question": "Determine the number of protons, neutrons, and electrons in a neutral atom of gold-197 ($^{197}_{79}Au$) and in a sulfide ion ($^{34}_{16}S^{2-}$).",
-      "solution": "**For $^{197}_{79}Au$ (neutral atom):**\n*   The atomic number, Z, is 79. So, **Number of protons = 79**.\n*   As it's a neutral atom, the number of electrons equals the number of protons. **Number of electrons = 79**.\n*   The mass number, A, is 197. Number of neutrons = A - Z = 197 - 79. **Number of neutrons = 118**.\n\n**For $^{34}_{16}S^{2-}$ (ion):**\n*   The atomic number, Z, is 16. So, **Number of protons = 16**.\n*   The mass number, A, is 34. Number of neutrons = A - Z = 34 - 16. **Number of neutrons = 18**.\n*   The ion has a 2- charge, meaning it has gained 2 electrons compared to a neutral atom. Number of electrons = Number of protons + 2 = 16 + 2. **Number of electrons = 18**."
+      "question": "Deduce the number of protons, neutrons, and electrons in a neutral atom of fluorine, $^{19}_{9}F$, and in the fluoride ion, $F^{-}$.",
+      "solution": "**For the neutral atom, $^{19}_{9}F$:**\n*   **Protons:** the atomic number (Z, subscript) is 9, so 9 protons. [1]\n*   **Electrons:** the atom is neutral, so electrons = protons = 9 electrons. [1]\n*   **Neutrons:** the mass number (A, superscript) is 19, so neutrons = A − Z = 19 − 9 = 10 neutrons. [1]\n\n**For the fluoride ion, $F^{-}$:**\n*   **Protons and neutrons:** the nucleus is unchanged when an ion forms — still 9 protons and 10 neutrons. [1]\n*   **Electrons:** a 1− charge means one electron gained: 9 + 1 = 10 electrons. [1]\n\nKey idea: forming an ion changes only the electron count, never the nucleus."
     },
     {
       "type": "heading",
-      "content": "Relative Atomic Mass and the Mass Spectrometer"
+      "content": "The nuclear model of the atom"
     },
     {
       "type": "text",
-      "content": "The relative atomic mass ($A_r$) of an element, as found on the periodic table, is not a whole number because it is a weighted average of the masses of its naturally occurring isotopes. This data is obtained using a powerful instrument called a mass spectrometer."
+      "content": "Rutherford's experiment fired positive alpha particles at thin gold foil. Most passed straight through, showing the atom is mostly empty space, but a few bounced sharply back — evidence of a tiny, dense, positively charged nucleus. This is the nuclear model: protons and neutrons packed into a central nucleus, with electrons occupying the surrounding space in energy levels. It explains why the atom is electrically neutral overall and why nearly all its mass is concentrated in an almost vanishingly small volume."
     },
     {
-      "type": "keyPoints",
-      "items": [
-        "**1. Vaporisation:** The sample is heated and turned into a gas.",
-        "**2. Ionisation:** The gaseous atoms are bombarded with high-energy electrons, knocking off one or more electrons to form positive ions (e.g., $X \\rightarrow X^{+} + e^{-}$).",
-        "**3. Acceleration:** The positive ions are accelerated by an electric field so they all have the same kinetic energy.",
-        "**4. Deflection:** The ions are deflected by a magnetic field. Lighter ions are deflected more than heavier ions.",
-        "**5. Detection:** The deflected ions hit a detector, which records their mass-to-charge ratio (m/z) and their relative abundance."
-      ]
+      "type": "callout",
+      "content": "Explore this model directly in the PhET “Build an Atom” simulation embedded below: add protons, neutrons and electrons and watch the element, charge and mass update live. Notice that adding a proton changes the element, while adding a neutron only changes the isotope."
+    },
+    {
+      "type": "heading",
+      "content": "Isotopes and relative atomic mass (A_r)"
+    },
+    {
+      "type": "text",
+      "content": "All atoms of an element share the same number of protons, but they can hold different numbers of neutrons. These variants are isotopes. For example, carbon-12 ($^{12}C$) has 6 protons and 6 neutrons, while carbon-14 ($^{14}C$) has 6 protons and 8 neutrons. Isotopes react identically because they have the same electron arrangement; only their masses differ. Since most elements occur as a mixture of isotopes, we describe an element's mass with a weighted average — the relative atomic mass ($A_r$) — rather than the mass of any single atom."
     },
     {
       "type": "formula",
-      "content": "A_r = \\sum \\frac{(\\text{isotopic mass} \\times \\text{relative abundance})}{(\\text{total abundance})}"
+      "content": "A_r = \\sum (\\text{isotopic mass} \\times \\text{fractional abundance})"
     },
     {
       "type": "examTip",
-      "content": "In IB Chemistry, for ions produced in a mass spectrometer, the charge (z) is almost always +1. This means the m/z value on the x-axis is numerically equal to the mass of the isotope. Also, your calculated $A_r$ must lie between the mass numbers of the lightest and heaviest isotopes. If it doesn't, you've made a calculation error."
+      "content": "A very common mistake is to confuse the mass number (A) with the relative atomic mass ($A_r$). 'A' is a whole-number count of protons + neutrons for a single isotope; '$A_r$' is the weighted average for the element, found on the periodic table, and is rarely a whole number. Never use the periodic-table $A_r$ to work out the number of neutrons."
+    },
+    {
+      "type": "heading",
+      "content": "How mass spectrometry gives isotopic abundance"
+    },
+    {
+      "type": "text",
+      "content": "A mass spectrometer is the instrument that supplies the two numbers the $A_r$ calculation needs. In outline, a sample is vaporised and ionised, the resulting ions are accelerated and then separated according to their mass-to-charge ratio (m/z), and a detector records how many ions of each mass arrive. For a pure element, every isotope produces its own peak."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The **horizontal position** of each peak (m/z) gives the **isotopic mass** — assuming singly charged ions, m/z equals the isotope's mass.",
+        "The **height** (or area) of each peak gives that isotope's **relative abundance**.",
+        "Converting each peak height to a percentage of the total gives the fractional abundances that feed straight into $A_r = \\sum(\\text{mass} \\times \\text{fractional abundance})$.",
+        "A spectrum with two chlorine peaks — a tall one at m/z 35 and a shorter one at m/z 37 — is exactly the data behind chlorine's $A_r$ of 35.45."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "So mass spectrometry and the $A_r$ calculation are two halves of one idea: the instrument measures which isotopes are present and in what proportion, and the weighted average turns that raw abundance data into the single relative atomic mass we use in chemistry."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example — a model answer marked by our engine"
     },
     {
       "type": "workedExample",
-      "question": "The mass spectrum of a sample of boron is shown to have two peaks: one at m/z = 10.0 with a relative abundance of 19.9%, and another at m/z = 11.0 with a relative abundance of 80.1%. Calculate the relative atomic mass of boron.",
-      "solution": "**Step 1: Identify the data for each isotope.**\n*   Isotope 1: mass = 10.0, abundance = 19.9%\n*   Isotope 2: mass = 11.0, abundance = 80.1%\n\n**Step 2: Apply the formula for relative atomic mass.**\n$A_r = \\frac{(10.0 \\times 19.9) + (11.0 \\times 80.1)}{100}$\n\n**Step 3: Calculate the weighted contributions.**\n$A_r = \\frac{199 + 881.1}{100}$\n\n**Step 4: Compute the final result.**\n$A_r = \\frac{1080.1}{100} = 10.801$\n\nThe relative atomic mass of boron is **10.8** (to 3 significant figures, consistent with the data provided)."
+      "question": "Chlorine exists as two isotopes: 75.77% Cl-35 and 24.23% Cl-37. Calculate the relative atomic mass of chlorine to 2 decimal places. [2]",
+      "solution": "**Model answer (full working):**\n\n1. **Convert percentages to fractional abundances:**\n   *   Cl-35: 75.77% = 0.7577\n   *   Cl-37: 24.23% = 0.2423\n\n2. **Set up the weighted average** (method):\n   $A_r = (0.7577 \\times 35) + (0.2423 \\times 37)$ **[M1]**\n\n3. **Evaluate:**\n   $A_r = 26.5195 + 8.9651 = 35.4846$\n\n4. **Round to 2 decimal places:**\n   $A_r = 35.48$ **[A1]**\n\n---\n**How our marking engine awards the marks:**\n*   **M1 — method mark:** awarded for the correct weighted-average set-up, $(0.7577 \\times 35) + (0.2423 \\times 37)$. This mark is for *how* you combine mass and abundance, not for the final digits.\n*   **A1 — answer mark:** awarded for the correct value, **35.48** (values that round correctly to 35.48 are accepted).\n*   **ECF (error carried forward):** if you set the method up correctly but slip in the arithmetic, you still earn **M1** — the method mark protects you. Only the A1 is lost.\n*   **Bare answers:** because this is a calculation, a **bare correct answer (35.48) with no working earns full marks**. But a **wrong answer with no working earns nothing** — there is no method on the page for the engine to reward. Always show the weighted-average line so M1 is safe even if the number is off.\n\n(If the exam supplies precise isotopic masses of 34.97 and 36.97 u, the same method gives 35.45 u, the periodic-table value — the whole-number masses used above give 35.48, which the mark scheme accepts for this question.)"
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks your own working exactly this way. Type your calculation, submit it, and the engine looks first for the weighted-average method (M1) and then for the correct value (A1). That means the method mark protects you even if your final number is slightly off — so always write the $(\\text{abundance} \\times \\text{mass})$ line before the answer."
+    },
+    {
+      "type": "heading",
+      "content": "Second worked example — abundance from A_r"
+    },
+    {
+      "type": "workedExample",
+      "question": "Boron has two isotopes, B-10 and B-11, and a relative atomic mass of 10.81. Calculate the percentage abundance of each isotope.",
+      "solution": "Let the fractional abundance of B-11 be $x$; then B-10 is $(1 - x)$.\n\n1. **Set up the weighted average and put it equal to $A_r$:**\n   $11x + 10(1 - x) = 10.81$ **[M1]**\n\n2. **Expand and solve:**\n   $11x + 10 - 10x = 10.81$\n   $x = 0.81$\n\n3. **Convert to percentages:**\n   *   B-11: $0.81 = 81\\%$\n   *   B-10: $1 - 0.81 = 0.19 = 19\\%$ **[A1]**\n\nCheck: $(0.19 \\times 10) + (0.81 \\times 11) = 1.90 + 8.91 = 10.81$ ✓. This reverses the standard calculation — the same weighted-average relationship, solved for the unknown abundance."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying isotopes differ in protons or electrons** — isotopes of an element differ ONLY in neutrons. Different proton number means a different element entirely.",
+        "**Confusing mass number (A) with relative atomic mass ($A_r$)** — A is a whole number for one isotope; $A_r$ is the weighted average for the element and is usually not whole. Never use $A_r$ to count neutrons.",
+        "**Forgetting to convert percentages to decimals** — divide each abundance by 100 before multiplying, or divide the final sum by 100. Skipping this gives an answer 100× too large.",
+        "**Getting the charge of the particles wrong** — proton +1, neutron 0, electron −1; and adjusting the nucleus when an ion forms instead of only the electrons.",
+        "**Misreading a mass spectrum** — peak position (m/z) is the isotopic mass; peak height is the abundance. Reading them the wrong way round inverts the calculation.",
+        "**Rounding too early** — keep full precision through the working and round only the final $A_r$ to the decimal places asked for."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The nuclear atom is not just an opening topic — it underpins electron configuration, the periodic table, bonding and every mole calculation to come. Relative atomic mass, built here from isotopic abundance, is the quantity you will use to convert between mass and amount of substance throughout the course. This content is common to SL and HL at this level."
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-chemistry-hl&topic=S1.2"
+      "label": "Get a calculation marked: find relative atomic mass from isotopic abundance",
+      "href": "/mark?subject=ib-chemistry-hl&topic=S1.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Mass Spectrometry Explained",
-          "href": "https://www.youtube.com/watch?v=J-wao0O0_qM"
+          "label": "IB Chemistry Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-subject-data-booklets/"
         },
         {
-          "label": "Interactive: Build an Atom",
+          "label": "Video: Rutherford's Gold Foil Experiment",
+          "href": "https://www.youtube.com/watch?v=XBqHkraf8iE"
+        },
+        {
+          "label": "PhET Simulation: Build an Atom",
           "href": "https://phet.colorado.edu/en/simulations/build-an-atom"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
-    "title": "Interactive: Build an Atom",
+    "title": "Build an Atom",
     "embedUrl": "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html",
     "launchUrl": "https://phet.colorado.edu/en/simulations/build-an-atom",
-    "hint": "Explore “Interactive: Build an Atom” — drag sliders and watch how the model responds in real time.",
+    "hint": "Explore “Build an Atom” — drag sliders and watch how the model responds in real time.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "PhET Interactive Simulations, University of Colorado Boulder",

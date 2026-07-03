@@ -1,171 +1,345 @@
 {
   "slug": "s2-1-the-ionic-model",
   "topicCode": "S2.1",
+  "unit": {
+    "code": "S2",
+    "title": "Models of bonding and structure"
+  },
   "title": "The ionic model",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores the ionic model, focusing on the energetic changes involved in forming an ionic lattice. You will learn to define and calculate lattice enthalpy using Born-Haber cycles, and to evaluate the extent of covalent character in ionic compounds by comparing theoretical and experimental data.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "The ionic model explains a huge class of everyday solids — salts, oxides, minerals — as three-dimensional lattices of oppositely charged ions held by electrostatic attraction. This lesson builds the whole of S2.1: how metals and non-metals form cations and anions by electron transfer and reach noble-gas electron configurations, how the charge on an ion is predicted from its group, how to deduce the formula of an ionic compound by balancing charges, and how every physical property — high melting and boiling points, conductivity only when molten or aqueous, brittleness and solubility in water — is explained by the giant lattice. It closes with a Paper 2 structured question marked exactly the way our engine marks your own practice: point by point, with M, A and error-carried-forward.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define lattice enthalpy, electron affinity, and other key enthalpy changes.",
-    "Construct Born-Haber cycles for simple ionic compounds (e.g., MX and MX₂) to determine lattice enthalpy.",
-    "Explain how ionic charge and radius affect the magnitude of lattice enthalpy.",
-    "Use the discrepancy between theoretical and experimental lattice enthalpies to assess the degree of covalent character in an ionic bond."
+    "Describe the formation of cations and anions by the transfer of electrons, and give the resulting noble-gas electron configurations.",
+    "Predict the charge on a monatomic ion from its position in the periodic table and use ionic charges to deduce the formula of an ionic compound.",
+    "Describe the structure of an ionic compound as a giant three-dimensional lattice held by non-directional electrostatic attraction.",
+    "Explain the physical properties of ionic compounds — melting and boiling point, electrical conductivity, brittleness and solubility — in terms of the lattice.",
+    "Relate the melting point of an ionic compound to ionic charge and ionic radius (the factors behind lattice enthalpy)."
   ],
+  "syllabusObjectivesCovered": [
+    "S2.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Price of an Ionic Crystal",
-    "summary": "The ionic model describes how positive and negative ions snap together to form a strong crystal lattice. We can calculate the huge energy release during this process, called lattice enthalpy, using a clever energy accounting loop called a Born-Haber cycle.",
-    "analogy": "Imagine building a complex LEGO model. You could try to measure the total effort to build it in one go, which is tricky. Alternatively, you could measure the effort for each small, distinct step: opening the bags, sorting the bricks, and clicking each piece into place. A Born-Haber cycle is like adding up the energy cost (or gain) of each small chemical step to find the total energy change for building the final crystal.",
+    "title": "Opposite Charges, Locked in a Grid",
+    "summary": "An ionic bond forms when a metal atom hands one or more electrons to a non-metal atom. This turns them into oppositely charged ions, and the electrostatic pull between those ions — extended in every direction — locks millions of them into a rigid, repeating grid called a giant ionic lattice.",
+    "analogy": "Think of a stadium crowd where every red seat must sit next to blue seats and vice versa. No single red person is 'bonded' to one particular blue person — each is pulled equally by all its blue neighbours in every direction. That is why the whole block is so rigid: to move anyone you would have to fight the pull of all their neighbours at once. That non-directional, all-at-once attraction is exactly what makes ionic solids hard, high-melting and stiff.",
     "steps": [
-      "Start with the elements in their standard states, for example, solid sodium and chlorine gas.",
-      "Convert the solid metal and molecular non-metal into separate, gaseous atoms. This requires energy (enthalpy of atomisation).",
-      "Convert the gaseous atoms into gaseous ions. This involves removing electrons from the metal (ionisation energy) and adding them to the non-metal (electron affinity).",
-      "Combine the gaseous positive and negative ions to form the solid ionic lattice. This step releases a large amount of energy, which is the lattice enthalpy."
+      "Spot the metal and the non-metal. The metal (low ionisation energy) loses electrons; the non-metal (high electron affinity) gains them.",
+      "Transfer electrons until each ion has a full outer shell — a noble-gas configuration — and write the charge on each ion.",
+      "Balance the total positive and negative charge to deduce the formula (the compound is always neutral overall).",
+      "Explain every property from the lattice: strong attraction in all directions means high melting points, fixed ions mean no conduction until melted or dissolved, and shifting layers means brittleness."
     ]
   },
+  "keyConcepts": [
+    "electrostatic attraction",
+    "electron transfer",
+    "giant lattice structure"
+  ],
   "flashcards": [
     {
-      "front": "What is Lattice Enthalpy (ΔH°_lat)?",
-      "back": "The standard enthalpy change when one mole of a solid ionic compound is formed from its constituent gaseous ions. It is always a large, exothermic value (negative ΔH)."
+      "front": "Ionic bond",
+      "back": "The electrostatic force of attraction between oppositely charged ions, formed by the transfer of one or more electrons from a metal atom to a non-metal atom. The attraction is non-directional.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is First Electron Affinity (EA₁)?",
-      "back": "The standard enthalpy change when one mole of gaseous atoms each acquires one electron to form one mole of gaseous 1- ions. For most non-metals, this is an exothermic process."
+      "front": "Cation",
+      "back": "A positively charged ion, formed when an atom (usually a metal) LOSES one or more valence electrons. It has more protons than electrons. Example: Na → Na⁺ + e⁻.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Why is the Second Electron Affinity (EA₂) always endothermic?",
-      "back": "Energy is required to add a negative electron to an already negative ion (e.g., O⁻(g) + e⁻ → O²⁻(g)) due to electrostatic repulsion between the like charges."
+      "front": "Anion",
+      "back": "A negatively charged ion, formed when an atom (usually a non-metal) GAINS one or more electrons. It has more electrons than protons. Example: Cl + e⁻ → Cl⁻.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the purpose of a Born-Haber cycle?",
-      "back": "It is an application of Hess's Law used to calculate the lattice enthalpy of an ionic compound, which cannot be measured directly. It relates lattice enthalpy to other measurable enthalpy changes."
+      "front": "Noble-gas configuration",
+      "back": "The stable full-outer-shell arrangement ions reach. Na⁺ has the configuration of neon (2,8); Cl⁻ has the configuration of argon (2,8,8). Ions and their nearest noble gas are isoelectronic.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the 'ionic model'?",
-      "back": "A model that assumes ions are perfect, hard spheres with evenly distributed charge. It assumes bonding is 100% electrostatic attraction, with no covalent character."
+      "front": "Predicting ionic charge",
+      "back": "From the group: Group 1 → 1+, Group 2 → 2+, Group 13 → 3+; Group 15 → 3−, Group 16 → 2−, Group 17 → 1−. The charge is the number of electrons lost or gained to reach a full shell.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What two factors make lattice enthalpy more exothermic (a larger negative value)?",
-      "back": "1. Higher ionic charges (e.g., Mg²⁺O²⁻ vs Na⁺Cl⁻). 2. Smaller ionic radii (e.g., Li⁺F⁻ vs Cs⁺I⁻). Both increase the electrostatic attraction between ions."
+      "front": "Giant ionic lattice",
+      "back": "A regular, repeating three-dimensional array of alternating cations and anions held by strong electrostatic attraction in all directions. 'Giant' means the lattice extends over the whole crystal — there are no separate molecules.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is meant by 'polarisation' in an ionic bond?",
-      "back": "The distortion of the electron cloud of the anion by the positive charge of the cation. This introduces some sharing of electrons, leading to covalent character."
+      "front": "Coordination number",
+      "back": "The number of nearest oppositely charged ions immediately surrounding a given ion. In sodium chloride each Na⁺ is surrounded by 6 Cl⁻ and each Cl⁻ by 6 Na⁺ (6:6 coordination).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Which type of cation has the highest polarising power?",
-      "back": "A cation with a high charge density: one that is small and/or has a high positive charge (e.g., Al³⁺ is highly polarising)."
+      "front": "Why ionic solids have high melting points",
+      "back": "Melting means overcoming the strong electrostatic attraction between oppositely charged ions throughout the giant lattice. That takes a large amount of thermal energy, so melting and boiling points are high.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Which type of anion is most easily polarised?",
-      "back": "An anion with a diffuse electron cloud: one that is large and/or has a high negative charge (e.g., I⁻ is more polarisable than F⁻)."
+      "front": "Why ionic solids conduct only when molten or aqueous",
+      "back": "Conduction needs mobile charge carriers. In the solid the ions are locked in fixed lattice positions, so it does not conduct. When molten or dissolved the ions are free to move and carry current.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How does a large difference between experimental and theoretical lattice enthalpy indicate covalent character?",
-      "back": "The theoretical value is calculated using the perfect ionic model. The experimental value is from a Born-Haber cycle. If the experimental value is significantly more exothermic (more negative) than the theoretical one, it suggests additional bonding is present, i.e., covalent character, which strengthens the lattice."
+      "front": "Why ionic crystals are brittle",
+      "back": "A blow shifts one layer of ions over another so that like charges (e.g. cation over cation) come to face each other. The sudden strong repulsion pushes the layers apart and the crystal cleaves.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the relationship between the enthalpy changes in a Born-Haber cycle?",
-      "back": "Based on Hess's Law, the direct route (enthalpy of formation) is equal to the sum of the enthalpy changes in the indirect route.  $\\Delta H_f^\\circ = \\Sigma (\\text{other enthalpy changes})$. Be careful with signs!"
+      "front": "Solubility in water",
+      "back": "Polar water molecules surround and pull the ions from the lattice (hydration). If the energy released by hydrating the ions is comparable to the lattice enthalpy, the compound dissolves; the ions become mobile in solution.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Factors controlling melting point (lattice strength)",
+      "back": "Attraction — and therefore melting point — rises with (1) larger ionic charges and (2) smaller ionic radii, because both increase the electrostatic force between ions. MgO (2+/2−, small ions) melts far higher than NaCl (1+/1−).",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Lattice enthalpy (idea)",
+      "back": "The energy needed to separate one mole of a solid ionic lattice into gaseous ions. Larger charge and smaller radius give a more exothermic (larger-magnitude) lattice enthalpy and a stronger, higher-melting solid.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Exam Trap: 'free electrons'",
+      "back": "Ionic conduction is by MOBILE IONS, not free electrons. Saying an ionic melt conducts 'because of delocalised/free electrons' describes metals and is penalised. Name the moving ions as the charge carriers.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: no such thing as an NaCl molecule",
+      "back": "A formula like NaCl is the simplest whole-number RATIO of ions (a formula unit), not a molecule. An ionic compound is one continuous lattice, so never call NaCl 'a molecule'.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Solid sodium chloride does not conduct electricity because:",
+      "options": [
+        "It contains no charged particles at all",
+        "The ions are held in fixed positions and cannot move",
+        "Its electrons are too tightly bound to flow",
+        "It has no delocalised electrons like a metal"
+      ],
+      "answer": "The ions are held in fixed positions and cannot move"
+    },
+    {
+      "prompt": "What is the formula of the ionic compound formed between aluminium (Group 13) and oxygen (Group 16)?",
+      "options": [
+        "AlO",
+        "Al₂O₃",
+        "Al₃O₂",
+        "AlO₂"
+      ],
+      "answer": "Al₂O₃"
+    },
+    {
+      "prompt": "Ionic crystals are brittle and shatter when struck because:",
+      "options": [
+        "The covalent bonds between ions break",
+        "Shifting a layer brings like charges together and they repel",
+        "The free electrons escape from the lattice",
+        "Heat from the blow melts the lattice locally"
+      ],
+      "answer": "Shifting a layer brings like charges together and they repel"
+    },
+    {
+      "prompt": "Which pair of ions would form the compound with the HIGHEST melting point?",
+      "options": [
+        "Na⁺ and Cl⁻",
+        "K⁺ and Br⁻",
+        "Mg²⁺ and O²⁻",
+        "Na⁺ and F⁻"
+      ],
+      "answer": "Mg²⁺ and O²⁻"
+    },
+    {
+      "prompt": "When a chlorine atom becomes a chloride ion, Cl⁻, it:",
+      "options": [
+        "Loses one electron and becomes positive",
+        "Gains one electron and reaches the configuration of argon",
+        "Gains one proton and reaches the configuration of argon",
+        "Shares one electron with sodium"
+      ],
+      "answer": "Gains one electron and reaches the configuration of argon"
     }
   ],
   "faq": [
     {
-      "q": "Why is lattice enthalpy defined as formation from gaseous ions, not the other way around?",
-      "a": "This is a standard convention. The formation of the lattice from gaseous ions is a highly exothermic process, reflecting the stability of the resulting crystal. Defining it this way gives a large negative value. The reverse process, breaking one mole of the solid lattice into its constituent gaseous ions, is called the lattice dissociation enthalpy. It is an endothermic process with an equal but opposite magnitude (e.g., if ΔH°_lat = -787 kJ mol⁻¹, then ΔH°_diss = +787 kJ mol⁻¹)."
+      "q": "How do I know how many electrons an atom will lose or gain?",
+      "a": "Count what it takes to reach a full outer shell (a noble-gas configuration). Metals in Groups 1, 2 and 13 lose 1, 2 or 3 electrons to empty their outer shell, forming 1+, 2+ and 3+ ions. Non-metals in Groups 15, 16 and 17 gain 3, 2 or 1 electron to fill their outer shell, forming 3−, 2− and 1− ions. So the group number tells you the charge directly, and the ion ends up isoelectronic with the nearest noble gas."
     },
     {
-      "q": "Can a Born-Haber cycle be used for covalent compounds?",
-      "a": "No, the Born-Haber cycle is specifically designed for ionic compounds. The steps involve forming ions (ionisation energy, electron affinity) and a lattice (lattice enthalpy), which are concepts central to ionic bonding. The energetics of covalent compounds are typically described using bond enthalpies."
+      "q": "Is any bond 100% ionic?",
+      "a": "No. No bond is purely ionic — there is always some degree of electron sharing (covalent character). The ionic model is an idealisation that works best when the difference in electronegativity between the two elements is large (roughly greater than 1.8). We speak of a bond's 'ionic character', which increases with electronegativity difference."
+    },
+    {
+      "q": "Why does magnesium oxide melt at a much higher temperature than sodium chloride?",
+      "a": "Both are giant ionic lattices, but the strength of the electrostatic attraction depends on ionic charge and ionic radius. MgO is built from 2+ and 2− ions, whereas NaCl is built from 1+ and 1− ions. The larger charges (and the smaller ions) in MgO give a much stronger attraction — a more exothermic lattice enthalpy — so far more energy is needed to break the lattice, and MgO melts near 2850 °C versus about 800 °C for NaCl."
+    },
+    {
+      "q": "If the ions in a solid can't move, how does dissolving it in water make it conduct?",
+      "a": "Dissolving separates the lattice: polar water molecules surround each ion (hydration) and pull it away from its neighbours. The ions are now free to move through the solution, so they can carry charge to the electrodes. It is the mobility of the ions — not any electrons — that lets a molten or aqueous ionic compound conduct."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In Topic 4, we learned about ionic bonding as the electrostatic attraction between oppositely charged ions. The ionic model is a refinement of this idea, treating ions as perfect spheres and the bonding as purely electrostatic. While this is a useful simplification, this topic delves into the energetics of forming an ionic lattice and explores the limitations of the 'perfect' ionic model, introducing the idea of covalent character."
+      "content": "Table salt, limestone, rust and most minerals in the Earth's crust share one structure: a giant lattice of ions. The ionic model explains how the simple transfer of electrons between a metal and a non-metal produces charged particles whose mutual attraction builds enormous, rigid crystals, and how that single picture predicts everything those crystals do — why they are hard yet brittle, why they melt only at high temperatures, and why they conduct electricity when melted or dissolved but never as solids. In this lesson we build the ionic model from electron transfer up to properties, and the closing structured question is marked exactly the way our engine will mark your own answer."
     },
     {
       "type": "heading",
-      "content": "Lattice Enthalpy (ΔH°_lat)"
+      "content": "Forming ions by electron transfer"
     },
     {
       "type": "text",
-      "content": "Lattice enthalpy is the cornerstone of this topic. It quantifies the strength of the ionic bond in a crystal lattice. Formally, it is the standard enthalpy change that occurs upon the formation of one mole of a solid ionic compound from its constituent gaseous ions under standard conditions. As forming a bond is an energy-releasing process, lattice enthalpy is always exothermic, meaning its value is negative."
-    },
-    {
-      "type": "formula",
-      "content": "For a generic salt MX: \\\\ $M^+(g) + X^-(g) \\rightarrow MX(s) \\quad \\Delta H_{lat}^\\circ < 0$"
+      "content": "Ionic bonding occurs between elements with a large difference in electronegativity, almost always a metal and a non-metal. The metal has a low ionisation energy, so it loses its valence electrons readily; the non-metal has a high electron affinity, so it accepts them readily. Electrons transfer from metal to non-metal until each atom reaches a stable, full outer shell — the electron configuration of the nearest noble gas. Sodium, [Ne]3s¹, loses its single 3s electron to become Na⁺ (2,8), isoelectronic with neon; chlorine, [Ne]3s²3p⁵, gains one electron to become Cl⁻ (2,8,8), isoelectronic with argon."
     },
     {
       "type": "keyPoints",
       "items": [
-        "A more negative lattice enthalpy indicates stronger electrostatic attraction and a more stable lattice.",
-        "Magnitude of ΔH°_lat increases with higher ionic charges (e.g., MgO vs NaCl). The force of attraction is proportional to the product of the charges ($Q_1Q_2$).",
-        "Magnitude of ΔH°_lat increases with smaller ionic radii. The ions are closer together, leading to a stronger electrostatic force (inversely proportional to the distance between ions)."
+        "**Cations** are positive ions formed when metal atoms LOSE valence electrons: Na → Na⁺ + e⁻; Mg → Mg²⁺ + 2e⁻.",
+        "**Anions** are negative ions formed when non-metal atoms GAIN electrons: Cl + e⁻ → Cl⁻; O + 2e⁻ → O²⁻.",
+        "The magnitude of the charge equals the number of electrons transferred to reach a noble-gas configuration.",
+        "An ion and its nearest noble gas are **isoelectronic** — same number of electrons — but the ion keeps its own nuclear charge, so Na⁺ is smaller than Ne and Cl⁻ is larger than a Cl atom."
       ]
     },
     {
       "type": "heading",
-      "content": "The Born-Haber Cycle"
+      "content": "Predicting ionic charge and formulae"
     },
     {
       "type": "text",
-      "content": "It is impossible to directly measure the energy change when gaseous ions combine. Instead, we use an energy cycle called a Born-Haber cycle. This is a practical application of Hess's Law, which states that the total enthalpy change for a reaction is independent of the route taken. The cycle relates the standard enthalpy of formation (the direct route) to a series of steps that form the ionic lattice from its elements (the indirect route)."
+      "content": "Because the charge on a monatomic ion is set by how many electrons it must lose or gain to fill its outer shell, you can read the likely charge straight off the periodic table. Group 1 forms 1+, Group 2 forms 2+, Group 13 forms 3+; Group 15 forms 3−, Group 16 forms 2−, Group 17 forms 1−. To build a formula, remember that the compound must be electrically neutral: the total positive charge from the cations must exactly cancel the total negative charge from the anions. The quickest route is to find the lowest whole-number ratio of ions that makes the charges balance."
     },
     {
-      "type": "formula",
-      "content": "For a compound like MgCl₂, the overall relationship is: \\\\ $\\Delta H_f^\\circ = \\Delta H_{at(Mg)}^\\circ + 2\\Delta H_{at(Cl)}^\\circ + IE_1(Mg) + IE_2(Mg) + 2EA_1(Cl) + \\Delta H_{lat}^\\circ$ \\\\ This can be rearranged to find the unknown lattice enthalpy."
+      "type": "keyPoints",
+      "items": [
+        "Write each ion with its charge, e.g. Ca²⁺ and Cl⁻.",
+        "Find the lowest ratio that makes total + charge equal total − charge. For Ca²⁺ and Cl⁻ you need two Cl⁻ per Ca²⁺, giving CaCl₂.",
+        "A useful shortcut is the 'cross-over' rule: the magnitude of each ion's charge becomes the subscript of the other — but always cancel down to the simplest ratio afterwards (Mg²⁺ with O²⁻ gives Mg₂O₂ → **MgO**, not Mg₂O₂).",
+        "Polyatomic ions (e.g. sulfate SO₄²⁻, nitrate NO₃⁻) balance the same way; keep the whole ion together and use brackets when more than one is needed, e.g. Ca(NO₃)₂."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Calculate the lattice enthalpy of sodium chloride (NaCl) using the data provided below. \\\\ Standard enthalpy of formation of NaCl(s): -411 kJ mol⁻¹ \\\\ Enthalpy of atomisation of Na(s): +107 kJ mol⁻¹ \\\\ First ionisation energy of Na(g): +496 kJ mol⁻¹ \\\\ Enthalpy of atomisation of Cl(g): +122 kJ mol⁻¹ \\\\ First electron affinity of Cl(g): -349 kJ mol⁻¹",
-      "solution": "The Born-Haber cycle for NaCl relates the enthalpy of formation to the individual steps. \\\\ **Step 1: Set up the Hess's Law equation.** \\\\ $\\Delta H_f^\\circ (NaCl) = \\Delta H_{at}^\\circ (Na) + IE_1(Na) + \\Delta H_{at}^\\circ (Cl) + EA_1(Cl) + \\Delta H_{lat}^\\circ (NaCl)$ \\\\ *[1 mark for correct equation]* \\\\ **Step 2: Rearrange the equation to solve for lattice enthalpy.** \\\\ $\\Delta H_{lat}^\\circ = \\Delta H_f^\\circ - (\\Delta H_{at(Na)}^\\circ + IE_1(Na) + \\Delta H_{at(Cl)}^\\circ + EA_1(Cl))$ \\\\ *[1 mark for correct rearrangement]* \\\\ **Step 3: Substitute the values and calculate.** \\\\ $\\Delta H_{lat}^\\circ = (-411) - (107 + 496 + 122 + (-349))$ \\\\ $\\Delta H_{lat}^\\circ = -411 - (725 - 349)$ \\\\ $\\Delta H_{lat}^\\circ = -411 - 376$ \\\\ $\\Delta H_{lat}^\\circ = -787 \\text{ kJ mol}^{-1}$ \\\\ *[1 mark for correct substitution and final answer with units]*"
+      "question": "Deduce the formula of the ionic compound formed between magnesium and nitrogen, showing how the charges balance. [3]",
+      "solution": "**Step 1 — deduce the ion each element forms.**\nMagnesium is in Group 2, configuration [Ne]3s². It loses 2 electrons to reach a noble-gas configuration: Mg → Mg²⁺ + 2e⁻.\nNitrogen is in Group 15, configuration [He]2s²2p³. It gains 3 electrons to fill its outer shell: N + 3e⁻ → N³⁻.  [M1: correct ions Mg²⁺ and N³⁻]\n\n**Step 2 — balance the charges.**\nThe compound must be neutral. The lowest common multiple of the charge magnitudes 2 and 3 is 6.\nThree Mg²⁺ give a total of +6; two N³⁻ give a total of −6, which cancel.  [M1: balancing to a neutral ratio]\n\n**Step 3 — write the formula.**\nThe ratio of Mg²⁺ : N³⁻ is 3 : 2, so the formula is **Mg₃N₂** (magnesium nitride).  [A1: correct formula]\n\n*Check: 3(+2) + 2(−3) = +6 − 6 = 0. Neutral, so the formula is correct.*"
+    },
+    {
+      "type": "heading",
+      "content": "The giant ionic lattice"
+    },
+    {
+      "type": "text",
+      "content": "Once formed, ions do not simply pair off. The electrostatic attraction of an ion is non-directional — a positive ion attracts every nearby negative ion equally in all directions, and vice versa. Ions therefore pack together in the arrangement that maximises attraction between opposite charges and minimises repulsion between like charges, producing a regular, repeating three-dimensional array called a giant ionic lattice. In sodium chloride each Na⁺ is surrounded by six Cl⁻ and each Cl⁻ by six Na⁺ (a coordination number of 6), and this pattern repeats over the entire crystal. There are no molecules: a formula such as NaCl gives only the simplest ratio of ions, called a formula unit."
+    },
+    {
+      "type": "heading",
+      "content": "Explaining the physical properties"
+    },
+    {
+      "type": "text",
+      "content": "Every characteristic property of an ionic compound follows from one idea: a giant lattice held by strong, non-directional electrostatic attraction, in which the ions are fixed in the solid but can move once the lattice is broken."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**High melting and boiling points.** Melting requires overcoming the strong electrostatic attraction between oppositely charged ions throughout the lattice, which needs a large amount of thermal energy — so these compounds are solids at room temperature.",
+        "**Electrical conductivity.** As a solid, the ions are locked in fixed lattice positions and cannot move, so it does not conduct. When molten or dissolved in water the ions become mobile and are free to move to the electrodes, so it conducts. The charge carriers are IONS, not electrons.",
+        "**Brittleness.** The lattice is hard, but a blow that shifts one layer of ions brings like charges opposite each other; the resulting repulsion pushes the layers apart and the crystal cleaves — brittle rather than malleable.",
+        "**Solubility in water.** Polar water molecules are attracted to the ions and surround them, pulling them out of the lattice (hydration). When the energy released on hydrating the ions is comparable to the lattice enthalpy, the compound dissolves and the ions become mobile in solution."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Always draw a sketch of the Born-Haber cycle diagram in an exam. It helps you visualise the steps and ensure you have the correct signs and stoichiometry. For diatomic elements like Cl₂, F₂, or O₂, remember that the enthalpy of atomisation is per mole of atoms. So for MgCl₂, you need 2 x ΔH°_at(Cl). Alternatively, if given bond enthalpy for Cl-Cl, you use that value directly as it produces 2Cl(g)."
+      "content": "Use the exact vocabulary the mark scheme looks for. For melting point say 'strong electrostatic attraction between oppositely charged ions' — not just 'strong bonds'. For conductivity always name the STATE (molten or aqueous) AND the carriers ('ions are free to move'); never write 'free electrons' for an ionic compound, as that describes a metal and is penalised."
     },
     {
       "type": "heading",
-      "content": "Assessing the Ionic Model: Covalent Character"
+      "content": "Melting point, ionic charge and radius"
     },
     {
       "type": "text",
-      "content": "The perfect ionic model assumes ions are hard spheres and bonding is 100% electrostatic. However, in reality, the positive cation can attract and distort the electron cloud of the negative anion. This distortion is called polarisation. When the electron cloud is polarised, electron density is drawn between the two nuclei, introducing a degree of electron sharing, which is the definition of a covalent bond. Therefore, most real ionic compounds have some covalent character."
+      "content": "Not all ionic solids melt at the same temperature. The strength of the electrostatic attraction between two ions — and hence the energy needed to break the lattice — increases when the ionic charges are larger and when the ionic radii are smaller, because both bring more charge closer together. These are precisely the two factors that make a lattice enthalpy larger in magnitude. So magnesium oxide (Mg²⁺, O²⁻ — both doubly charged and small) has a much stronger lattice and a far higher melting point than sodium chloride (Na⁺, Cl⁻ — singly charged and larger). Down a group, as ionic radius grows, melting points of comparable compounds tend to fall (LiF > NaCl > KBr)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain, in terms of structure and bonding, why magnesium oxide (m.p. 2852 °C) has a much higher melting point than sodium chloride (m.p. 801 °C). [3]",
+      "solution": "**Step 1 — identify the ions and charges.**\nSodium chloride is a giant lattice of Na⁺ and Cl⁻ ions (charges 1+ and 1−).\nMagnesium oxide is a giant lattice of Mg²⁺ and O²⁻ ions (charges 2+ and 2−).  [context]\n\n**Step 2 — compare the strength of attraction.**\nThe strength of the electrostatic attraction in an ionic lattice increases with larger ionic charge and smaller ionic radius. The ions in MgO carry double the charge of those in NaCl, and Mg²⁺ and O²⁻ are also smaller than Na⁺ and Cl⁻, so the attraction between oppositely charged ions is much stronger in MgO.  [M1: greater charge / smaller radius → stronger attraction]\n\n**Step 3 — relate to melting point.**\nBecause the electrostatic attraction (and the lattice enthalpy) is much greater in MgO, considerably more thermal energy is needed to overcome it and break down the lattice.  [M1: more energy needed to overcome attraction]\nTherefore MgO has a much higher melting point than NaCl.  [A1: correct linked conclusion]"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Cation's polarising power:** Small, highly charged cations (e.g., Al³⁺, Mg²⁺) are strong polarisers.",
-        "**Anion's polarisability:** Large, highly charged anions (e.g., I⁻, S²⁻) are easily polarised.",
-        "**Consequence:** A significant difference between the experimental lattice enthalpy (from a Born-Haber cycle) and the theoretical lattice enthalpy (calculated using the perfect ionic model) suggests significant covalent character. The experimental value will be more exothermic because the covalent character provides additional lattice stability."
+        "**Saying ionic melts/solutions conduct 'because of free electrons'** — the charge carriers in an ionic compound are MOBILE IONS. 'Free/delocalised electrons' describes metals and loses the mark.",
+        "**Explaining conduction without naming the state** — you must say the ions conduct when MOLTEN or in AQUEOUS solution, and that in the solid the ions are FIXED. 'Ionic compounds conduct electricity' with no condition is wrong.",
+        "**Calling a formula unit a 'molecule'** — NaCl is the simplest ratio of ions in a giant lattice, not a discrete molecule. Do not write 'NaCl molecule'.",
+        "**Forgetting to cancel a formula to its lowest ratio** — Mg²⁺ with O²⁻ is MgO, not Mg₂O₂; cross-over subscripts must always be simplified.",
+        "**Getting the charge sign or size wrong** — metals form CATIONS (positive) by LOSING electrons; non-metals form ANIONS (negative) by GAINING electrons. The charge equals the number of electrons transferred.",
+        "**Vague 'strong bonds' for high melting point** — name them: 'strong electrostatic attraction between oppositely charged ions' throughout the giant lattice.",
+        "**Attributing brittleness to breaking bonds directly** — the crystal cleaves because shifting a layer aligns LIKE charges, which then REPEL; say the repulsion explicitly."
       ]
     },
     {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Structured 'explain' questions in Paper 2 are marked analytically: the marks are a checklist of distinct valid points, not a holistic markband. Each separate correct idea scores 1 mark, and the engine credits any wording that carries the same chemistry ('equivalent'). A mark tagged M is a reasoning point (the correct link, e.g. 'because the ions are fixed'); a mark tagged A is a correct conclusion or statement of fact. Error-carried-forward (ECF) means a correct consequence drawn from an earlier wrong statement can still score. Study how each of the four marks below is tied to one specific idea."
+    },
+    {
       "type": "workedExample",
-      "question": "The theoretical lattice enthalpy for silver chloride (AgCl), calculated assuming a perfect ionic model, is -770 kJ mol⁻¹. The experimental value, determined from a Born-Haber cycle, is -905 kJ mol⁻¹. \\\\ (a) Calculate the percentage difference between the two values. \\\\ (b) Explain the discrepancy with reference to the bonding in AgCl.",
-      "solution": "**(a) Percentage Difference Calculation** \\\\ Difference = |Experimental - Theoretical| = |-905 - (-770)| = 135 kJ mol⁻¹ \\\\ Percentage difference = (Difference / |Theoretical|) * 100 \\\\ Percentage difference = (135 / 770) * 100 = 17.5% \\\\ *[1 mark for correct calculation and answer]* \\\\ **(b) Explanation of Discrepancy** \\\\ The experimental lattice enthalpy is significantly more exothermic (more negative) than the theoretical value. *[1 mark]* \\\\ The theoretical value is based on a pure ionic model with 100% electrostatic attraction. *[1 mark]* \\\\ The discrepancy suggests that the bonding in AgCl is not purely ionic and has significant covalent character. The Ag⁺ ion polarises the Cl⁻ ion, leading to some electron sharing, which strengthens the overall bonding and makes the lattice more stable than predicted by the ionic model. *[1 mark for linking polarisation/covalent character to stronger bonding/more exothermic enthalpy]*"
+      "question": "Explain why sodium chloride has a high melting point and only conducts electricity when molten or dissolved in water. [4]",
+      "solution": "**Model answer — full response.**\n\nSodium chloride exists as a giant ionic lattice of Na⁺ and Cl⁻ ions held together by strong electrostatic forces of attraction between the oppositely charged ions, acting in all directions throughout the lattice.\n\nTo melt it, this strong electrostatic attraction between the oppositely charged ions must be overcome, and because the attraction is strong a large amount of thermal energy is required — so the melting point is high.\n\nIn the solid state the ions are held in fixed positions in the lattice and are not free to move, so solid sodium chloride cannot carry a current and does not conduct.\n\nWhen sodium chloride is melted or dissolved in water, the lattice breaks down and the ions become free to move; these mobile ions can carry charge to the electrodes, so the molten or aqueous compound conducts electricity.\n\n---\n**How our marking engine awards the 4 marks (each distinct valid point = 1 mark):**\n\n- **A1 — structure named.** Awarded for identifying sodium chloride as a giant ionic lattice with strong electrostatic attraction between oppositely charged ions. This is a fact/statement mark. *Accept equivalent wording:* 'strong ionic bonding between Na⁺ and Cl⁻', 'strong forces between + and − ions'. NOT awarded for a bare 'strong bonds'.\n- **M1 — reason for the high melting point.** Awarded for the reasoning link: melting requires a large amount of energy to OVERCOME that strong attraction. This is a reasoning (M) mark — it must connect the strength of attraction to the energy needed.\n- **M1 — reason the solid does not conduct.** Awarded for stating the ions are in FIXED positions / not free to move in the solid, so there are no mobile charge carriers. Reasoning mark. *Accept:* 'ions cannot move', 'ions are locked in the lattice'.\n- **A1 — condition and carrier for conduction.** Awarded for stating that when MOLTEN or AQUEOUS the ions are free to move and carry charge. The state and the mobile-ion idea together earn this mark.\n\n**Error-carried-forward (ECF):** if a student wrongly wrote that NaCl is 'a molecule with strong covalent bonds' (losing A1) but then correctly reasoned that a lot of energy is needed to overcome those bonds and that particles must be free to move to conduct, the engine can still award the two reasoning (M) marks for the valid downstream logic applied to their own premise.\n\n**'Accept equivalent wording.'** The engine is checking for the chemistry, not a fixed phrase: 'ions can migrate', 'ions are mobile' and 'ions are free to move' all score the conduction point. But an answer that says 'free electrons carry the charge' scores zero for that point — it is the wrong carrier for an ionic compound.\n\n**Bottom line:** four distinct ideas, four marks. A one-line answer such as 'strong bonds, and it conducts when melted' collapses several separate points into vague phrases and would typically score 1–2; naming the lattice, the attraction, the fixed vs mobile ions and the state keeps all four."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer exactly this way — point by point, with M for valid reasoning and A for a correct conclusion, awarding a mark for every distinct valid idea and accepting equivalent wording, with ECF protecting correct logic built on an earlier slip. So make each idea explicit and separate: name the giant lattice, name the strong electrostatic attraction, say the ions are fixed in the solid, and say they are free to move when molten or aqueous. One clear point per mark is how you bank all four."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The ionic model is one of three bonding models in this unit. Next you will meet the covalent model (shared electrons and discrete molecules) and the metallic model (a lattice of cations in a sea of delocalised electrons), and then learn to place real bonds on a continuum of bonding using electronegativity difference. The same habit carries through: describe the structure, identify the forces, and let the forces explain the properties. Master that for ions here and the covalent and metallic models become variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-chemistry-hl&topic=S2.1"
+      "label": "Get a Paper 2 structured answer marked: explain an ionic compound's properties from its structure",
+      "href": "/mark?subject=ib-chemistry-hl&topic=S2.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive Born-Haber Cycle Builder",
-          "href": "https://www.chem.uic.edu/dept/jc/serve/GENCHEM/A/BORN/Born.html"
-        },
-        {
-          "label": "Video explanation of Born-Haber Cycles by MaChemGuy",
-          "href": "https://www.youtube.com/watch?v=iQ_iH5aY_s0"
+          "label": "IB Chemistry Data Booklet (Sections 6 and 9)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Ionic Bonding Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-an-atom",
+    "hint": "Explore “Ionic Bonding Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
 }

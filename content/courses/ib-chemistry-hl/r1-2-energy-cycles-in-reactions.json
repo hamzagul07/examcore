@@ -1,176 +1,365 @@
 {
   "slug": "r1-2-energy-cycles-in-reactions",
   "topicCode": "R1.2",
+  "unit": {
+    "code": "R1",
+    "title": "What drives chemical reactions?"
+  },
   "title": "Energy cycles in reactions",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores Hess's Law and its application in constructing energy cycles, particularly Born-Haber cycles for ionic compounds. You will learn to calculate unknown enthalpy changes by relating them to known values, and to analyse the factors influencing the magnitude of lattice enthalpy.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Some enthalpy changes cannot be measured on a balance and a thermometer — the reaction is too slow, too messy, or simply will not happen on its own. Hess's law rescues these cases: because enthalpy is a state function, the enthalpy change of a reaction depends only on the start and finish, not the path taken. This lesson builds the whole R1.2 toolkit around that idea — stating and justifying Hess's law, constructing enthalpy cycles, defining standard enthalpies of formation and combustion, and calculating an unknown $\\Delta H_{reaction}$ from $\\Delta H_f$ data (Σproducts − Σreactants) and from combustion data. It closes with the HL extension — Born–Haber cycles, lattice enthalpy and enthalpy of solution — and every worked example is laid out exactly the way our marking engine awards Paper 2 marks.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and apply Hess's Law to calculate enthalpy changes for reactions.",
-    "Construct Born-Haber cycles for Group 1 and Group 2 ionic compounds.",
-    "Calculate lattice enthalpy from experimental data using a Born-Haber cycle.",
-    "Explain how ionic radius and ionic charge affect the magnitude of lattice enthalpy."
+    "State Hess's law and justify it from the fact that enthalpy is a state function, so $\\Delta H$ is independent of the path taken.",
+    "Construct enthalpy cycles from standard enthalpies of formation and of combustion, and read the correct relationship off the arrows.",
+    "Define standard enthalpy of formation ($\\Delta H_f^\\ominus$) and standard enthalpy of combustion ($\\Delta H_c^\\ominus$), and know that $\\Delta H_f^\\ominus$ of an element in its standard state is zero.",
+    "Calculate $\\Delta H_{reaction}^\\ominus$ from formation data using $\\sum \\Delta H_f^\\ominus(\\text{products}) - \\sum \\Delta H_f^\\ominus(\\text{reactants})$, and from combustion data using a cycle.",
+    "(HL) Construct Born–Haber cycles, and use them with Hess's law to find lattice enthalpy and enthalpy of solution.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "R1.2"
+  ],
+  "levelNote": "Common to SL and HL; Born–Haber cycles and lattice enthalpy are HL.",
   "simpleExplanation": {
-    "title": "The Enthalpy Jigsaw",
-    "summary": "Hess's Law states that the total energy change of a reaction is the same, no matter which route is taken. We can use this principle to build energy cycles and find an unknown enthalpy change by piecing together known ones.",
-    "analogy": "Imagine you need to travel from your home (reactants) to school (products). You could take a direct bus route, which represents the overall enthalpy change. Alternatively, you could walk to a friend's house, then take a train with them, and finally walk the last bit to school. This indirect route involves several steps (atomisation, ionisation, etc.). Hess's Law tells us that the total energy change from 'home' to 'school' is identical, regardless of whether you took the direct bus or the multi-step journey.",
+    "title": "The Chemical Detour",
+    "summary": "Hess's law says the total energy change of a reaction is the same no matter which route you take from reactants to products. So an enthalpy change you cannot measure directly can be found by adding up the steps of an easier, indirect route that starts and ends at the same place.",
+    "analogy": "Think of the altitude difference between the base and the summit of a mountain. Measuring it as a single vertical drop is awkward, but you can hike any winding trail to the top and add up the small ups and downs along the way — the net change in height is identical for every route, because height depends only on where you start and finish. Enthalpy behaves exactly like altitude: it is a state function, so the enthalpy change depends only on the initial and final states, not the path.",
     "steps": [
-      "Identify the target reaction with the unknown enthalpy change, writing the balanced chemical equation.",
-      "Construct an energy cycle connecting the reactants and products via an alternative pathway using known enthalpy changes (e.g., formation, combustion, atomisation).",
-      "Apply Hess's Law by equating the energy change of the direct route to the sum of the energy changes in the indirect route.",
-      "Rearrange the resulting equation to solve for the unknown enthalpy change, paying close attention to the signs and stoichiometry of each step."
+      "Write the target reaction whose enthalpy change $\\Delta H_{reaction}$ you want — this is the 'direct route'.",
+      "Choose an 'indirect route' that links the same reactants and products through a common set of species, using enthalpy values you already know (formation or combustion).",
+      "Sketch the cycle and mark every arrow with its known $\\Delta H$; going with an arrow adds it, going against an arrow subtracts it (reverse the sign).",
+      "Apply Hess's law: the direct route equals the sum of the indirect route, and solve for the unknown $\\Delta H_{reaction}$."
     ]
   },
+  "keyConcepts": [
+    "state function",
+    "conservation of energy",
+    "enthalpy cycle"
+  ],
   "flashcards": [
     {
-      "front": "State Hess's Law.",
-      "back": "The total enthalpy change for a chemical reaction is independent of the route by which the reaction takes place, provided the initial and final conditions are the same."
+      "front": "Hess's law",
+      "back": "The total enthalpy change for a reaction is independent of the route taken, provided the initial and final conditions (and states) are the same. It follows directly from conservation of energy.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define standard enthalpy of formation, $\\Delta H_f^\\ominus$.",
-      "back": "The enthalpy change when one mole of a compound is formed from its elements in their standard states under standard conditions (298 K and 100 kPa)."
+      "front": "State function",
+      "back": "A property whose value depends only on the current state of the system, not on how that state was reached. Enthalpy $H$ is a state function — that is why $\\Delta H$ is path-independent.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Define standard enthalpy of combustion, $\\Delta H_c^\\ominus$.",
-      "back": "The enthalpy change when one mole of a substance is completely combusted in excess oxygen under standard conditions (298 K and 100 kPa)."
+      "front": "Standard enthalpy of formation ($\\Delta H_f^\\ominus$)",
+      "back": "The enthalpy change when one mole of a compound is formed from its constituent elements in their standard states, under standard conditions (100 kPa, a stated temperature, usually 298 K).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define lattice enthalpy, $\\Delta H_{lat}^\\ominus$ (IB definition).",
-      "back": "The enthalpy change required to convert one mole of a solid ionic compound into its gaseous constituent ions under standard conditions. It is an endothermic process ($\\Delta H > 0$)."
+      "front": "Standard enthalpy of combustion ($\\Delta H_c^\\ominus$)",
+      "back": "The enthalpy change when one mole of a substance undergoes complete combustion in excess oxygen under standard conditions. Always negative (combustion is exothermic).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define first ionisation energy.",
-      "back": "The minimum energy required to remove one mole of electrons from one mole of gaseous atoms to form one mole of gaseous 1+ ions. E.g., $X(g) \\rightarrow X^+(g) + e^-$."
+      "front": "$\\Delta H_f^\\ominus$ of an element",
+      "back": "Zero, by definition. Forming an element from itself in its standard state (e.g. O₂(g), Na(s), C(s, graphite)) involves no change, so there is nothing to release or absorb.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Define first electron affinity.",
-      "back": "The enthalpy change when one mole of gaseous atoms gains one mole of electrons to form one mole of gaseous 1- ions. E.g., $X(g) + e^- \\rightarrow X^-(g)$. Usually exothermic."
+      "front": "ΔH from formation data",
+      "back": "$\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_f^\\ominus(\\text{products}) - \\sum \\Delta H_f^\\ominus(\\text{reactants})$. Products minus reactants — because the elements sit at the BOTTOM of a formation cycle.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Define standard enthalpy of atomisation, $\\Delta H_{at}^\\ominus$.",
-      "back": "The enthalpy change when one mole of gaseous atoms is formed from an element in its standard state under standard conditions."
+      "front": "ΔH from combustion data",
+      "back": "$\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_c^\\ominus(\\text{reactants}) - \\sum \\Delta H_c^\\ominus(\\text{products})$. Reactants minus products — the reverse order — because the combustion products sit at the BOTTOM of a combustion cycle.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is a common mistake when using Hess's Law cycles with enthalpies of combustion?",
-      "back": "Incorrectly setting up the cycle. For combustion cycles, the arrows for reactants and products should point DOWN to the combustion products (e.g., CO₂, H₂O)."
+      "front": "Reversing a step",
+      "back": "If you traverse a known reaction backwards in a cycle, invert the sign of its $\\Delta H$. An exothermic forward step ($\\Delta H < 0$) becomes endothermic in reverse ($\\Delta H > 0$) with the same magnitude.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "In a Born-Haber cycle for MgCl₂, what values must be doubled?",
-      "back": "The enthalpy of atomisation of chlorine (as Cl₂) and the first electron affinity of chlorine, because the formula unit contains two chloride ions."
+      "front": "Multiplying by coefficients",
+      "back": "Enthalpy values are per mole of substance, so multiply each by its stoichiometric coefficient in the balanced equation before summing (e.g. 3 mol H₂ contributes $3 \\times \\Delta H_c^\\ominus(\\text{H}_2)$).",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Why is the second electron affinity (e.g., for oxygen forming O²⁻) always endothermic?",
-      "back": "Energy is required to overcome the electrostatic repulsion between the negatively charged ion (O⁻) and the incoming electron."
+      "front": "Why Hess's law is useful",
+      "back": "It gives enthalpy changes for reactions that cannot be measured directly — too slow (graphite → diamond), too dangerous, or accompanied by side reactions — by routing through species with known enthalpies.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the standard enthalpy of formation of an element in its standard state, like O₂(g) or Na(s)?",
-      "back": "Zero. By definition, no energy change occurs when an element is 'formed' from itself."
+      "front": "Formation cycle — arrow direction",
+      "back": "The constituent elements sit at the bottom; arrows point UP from the elements to the reactants and to the products.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Combustion cycle — arrow direction",
+      "back": "The combustion products (CO₂(g) and H₂O(l)) sit at the bottom; arrows point DOWN from the reactants and from the products to those combustion products.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Lattice enthalpy (HL)",
+      "back": "The enthalpy change when one mole of a solid ionic compound is formed from its gaseous ions (an exothermic, lattice-formation convention). It cannot be measured directly, so it is found from a Born–Haber cycle.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "Born–Haber cycle (HL)",
+      "back": "An enthalpy cycle that links the formation of an ionic solid to a sequence of steps — atomisation, ionisation energies, electron affinities and lattice enthalpy — so an unmeasurable step can be found by Hess's law.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "Enthalpy of solution (HL)",
+      "back": "The enthalpy change when one mole of a solute dissolves in enough solvent to give an infinitely dilute solution. Found from lattice enthalpy and the hydration enthalpies of the ions via a cycle.",
+      "pillLabel": "HL"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A cycle contains the known step A → B with $\\Delta H = -150$ kJ, but your indirect route needs to go B → A. What value do you use for that step?",
+      "options": [
+        "$-150$ kJ (unchanged)",
+        "$+150$ kJ (sign reversed)",
+        "$-75$ kJ (halved)",
+        "$0$ kJ"
+      ],
+      "answer": "$+150$ kJ (sign reversed)"
+    },
+    {
+      "prompt": "Using standard enthalpies of FORMATION, the correct expression for $\\Delta H_{reaction}^\\ominus$ is:",
+      "options": [
+        "Σ$\\Delta H_f$(reactants) − Σ$\\Delta H_f$(products)",
+        "Σ$\\Delta H_f$(products) − Σ$\\Delta H_f$(reactants)",
+        "Σ$\\Delta H_f$(products) + Σ$\\Delta H_f$(reactants)",
+        "Σ$\\Delta H_f$(reactants) only"
+      ],
+      "answer": "Σ$\\Delta H_f$(products) − Σ$\\Delta H_f$(reactants)"
+    },
+    {
+      "prompt": "What is the standard enthalpy of formation of oxygen gas, O₂(g), at 298 K?",
+      "options": [
+        "$+249$ kJ mol⁻¹",
+        "$-286$ kJ mol⁻¹",
+        "$0$ kJ mol⁻¹",
+        "It cannot be determined without data"
+      ],
+      "answer": "$0$ kJ mol⁻¹"
+    },
+    {
+      "prompt": "For 2Al(s) + Fe₂O₃(s) → Al₂O₃(s) + 2Fe(s), which terms are needed in Σ$\\Delta H_f$(reactants)?",
+      "options": [
+        "$\\Delta H_f$(Fe₂O₃) only — the elements Al and Fe are zero",
+        "$\\Delta H_f$(Al) + $\\Delta H_f$(Fe₂O₃)",
+        "$2\\times\\Delta H_f$(Al) + $\\Delta H_f$(Fe₂O₃)",
+        "$\\Delta H_f$(Al₂O₃) + $2\\times\\Delta H_f$(Fe)"
+      ],
+      "answer": "$\\Delta H_f$(Fe₂O₃) only — the elements Al and Fe are zero"
+    },
+    {
+      "prompt": "A combustion cycle gives 3 mol of H₂ combusting, with $\\Delta H_c^\\ominus(\\text{H}_2) = -286$ kJ mol⁻¹. The contribution of the hydrogen to that side of the cycle is:",
+      "options": [
+        "$-286$ kJ",
+        "$-858$ kJ",
+        "$-95.3$ kJ",
+        "$+858$ kJ"
+      ],
+      "answer": "$-858$ kJ"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between lattice enthalpy and lattice dissociation enthalpy?",
-      "a": "In the context of the IB Chemistry syllabus, these terms are often used for the same process. The IB Data Booklet (Section 19) defines lattice enthalpy as the endothermic process of separating one mole of a solid ionic compound into its gaseous ions (e.g., NaCl(s) → Na⁺(g) + Cl⁻(g), ΔH > 0). Some older textbooks may define lattice enthalpy as the exothermic formation process (Na⁺(g) + Cl⁻(g) → NaCl(s), ΔH < 0). Always follow the IB definition in an exam, which is an endothermic value."
+      "q": "Do I have to draw the cycle, or can I just use the formula?",
+      "a": "For a clean set of formation or combustion data you can earn full marks with the formula alone. But a quick sketch of the cycle is the safest habit: it shows you which formula applies (products − reactants for formation, reactants − products for combustion), and it makes sign errors obvious because you simply follow the arrows. When a question mixes data types, the cycle is not optional — it is the only reliable route."
     },
     {
-      "q": "Why do we use a Born-Haber cycle? Can't we just measure lattice enthalpy directly?",
-      "a": "It is practically impossible to measure the energy change of converting a solid crystal directly into a gas of ions in a single step in a laboratory calorimeter. The Born-Haber cycle is a theoretical tool that allows us to calculate this value indirectly by using other enthalpy changes that can be measured experimentally (like ionisation energy, enthalpy of formation, etc.)."
+      "q": "Why is it 'products − reactants' for formation but 'reactants − products' for combustion?",
+      "a": "It comes straight from where the common species sit in each cycle. In a formation cycle the elements are at the BOTTOM, so the indirect route goes up from reactants and down to products — algebraically that gives Σproducts − Σreactants. In a combustion cycle the combustion products are at the bottom, so the route goes down from reactants and up to products, reversing the order to Σreactants − Σproducts. If you ever forget, redraw the cycle and read the arrows."
     },
     {
-      "q": "In a Hess's Law calculation, how do I know whether to use the formation formula or the combustion formula?",
-      "a": "Look at the data provided in the question. If you are given a list of standard enthalpies of formation (ΔH_f^⦵), use the formula ΔH_reaction = ΣΔH_f(products) - ΣΔH_f(reactants). If you are given standard enthalpies of combustion (ΔH_c^⦵), use the formula ΔH_reaction = ΣΔH_c(reactants) - ΣΔH_c(products). Notice the order is reversed for combustion!"
+      "q": "What if a question gives a mixture of formation and combustion data?",
+      "a": "Neither standard formula applies directly. Build a bespoke cycle: place your target reactants and products, then use each piece of given data as an arrow linking them to a common intermediate (elements, or combustion products). Add the steps along a complete path from reactants to products, reversing the sign of any step you travel backwards. This is exactly the Hess's-law reasoning the formulae are shortcuts for."
+    },
+    {
+      "q": "(HL) Why can't lattice enthalpy just be measured directly?",
+      "a": "You cannot take a beaker of isolated gaseous Na⁺ and Cl⁻ ions and watch them snap into a crystal — that state does not exist to hand. So lattice enthalpy is found indirectly with a Born–Haber cycle: every other step (atomisation, ionisation energy, electron affinity, enthalpy of formation) can be measured, and Hess's law lets you solve for the one unknown. It is the same detour logic as the rest of R1.2, applied to ionic solids."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of energy cycles. Many important enthalpy changes, such as lattice enthalpy, cannot be measured directly in a calorimeter. Hess's Law, a consequence of the law of conservation of energy, provides an elegant indirect method. By constructing energy cycles, we can calculate these elusive values and gain deeper insights into chemical bonding and stability."
+      "content": "In thermochemistry we constantly want the enthalpy change of a particular reaction, but not every reaction cooperates with a calorimeter. Some are too slow to measure, like graphite turning into diamond; some run alongside messy side reactions; some cannot be made to happen in isolation at all. Energy cycles and Hess's law are the way around this: because enthalpy is a state function, the enthalpy change of a reaction depends only on the initial and final states, so we can reach an unmeasurable value along an indirect route built from enthalpies we already know. This lesson is calculation-heavy, and every worked example is laid out exactly the way our marking engine awards the marks — because in R1.2 how you show your working decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Hess's Law: The Foundation of Energy Cycles"
+      "content": "Hess's law and why it works"
     },
     {
       "type": "text",
-      "content": "Hess's Law states that the total enthalpy change for a reaction is constant, regardless of the number of steps or the pathway taken. This allows us to calculate an unknown enthalpy change by constructing an alternative route for which all the enthalpy changes are known. We can express this mathematically in two common ways, depending on the data provided."
-    },
-    {
-      "type": "formula",
-      "content": "Using standard enthalpies of formation ($\\Delta H_f^\\ominus$):\n$\\Delta H_{reaction}^\\ominus = \\sum \\nu \\Delta H_f^\\ominus (products) - \\sum \\nu \\Delta H_f^\\ominus (reactants)$"
-    },
-    {
-      "type": "formula",
-      "content": "Using standard enthalpies of combustion ($\\Delta H_c^\\ominus$):\n$\\Delta H_{reaction}^\\ominus = \\sum \\nu \\Delta H_c^\\ominus (reactants) - \\sum \\nu \\Delta H_c^\\ominus (products)$"
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the standard enthalpy of formation of methane, CH₄(g), using the following standard enthalpy of combustion data.\nC(s, graphite): -394 kJ mol⁻¹\nH₂(g): -286 kJ mol⁻¹\nCH₄(g): -891 kJ mol⁻¹",
-      "solution": "1.  **Target Equation:** Write the equation for the formation of methane.\n    C(s) + 2H₂(g) → CH₄(g)    $\\Delta H_f^\\ominus$ = ?\n\n2.  **Construct Cycle:** Since we are given combustion data, the cycle will involve the combustion products CO₂(g) and H₂O(l).\n    - Route 1: Direct formation (the unknown $\\Delta H_f^\\ominus$).\n    - Route 2: Combust the reactants (C + 2H₂) and then 'un-combust' the product (CH₄).\n\n3.  **Apply Hess's Law:**\n    The cycle is: \n    C(s) + 2H₂(g) → CH₄(g)\n    ↓ $\\Delta H_1$        ↑ $\\Delta H_2$\n    CO₂(g) + 2H₂O(l)\n\n    According to Hess's Law, the sum of enthalpy changes in a closed loop is zero, or the energy for the direct route equals the energy for the indirect route.\n    $\\Delta H_f^\\ominus(CH_4) = \\Delta H_1 - \\Delta H_2$\n\n    Where:\n    $\\Delta H_1$ = Enthalpy of combustion of reactants\n    = $\\Delta H_c^\\ominus$(C) + 2 × $\\Delta H_c^\\ominus$(H₂)\n    = (-394) + 2 × (-286) = -394 - 572 = -966 kJ\n\n    $\\Delta H_2$ = Enthalpy of combustion of the product\n    = $\\Delta H_c^\\ominus$(CH₄) = -891 kJ\n\n4.  **Calculate:**\n    $\\Delta H_f^\\ominus$(CH₄) = $\\sum \\Delta H_c^\\ominus(reactants) - \\sum \\Delta H_c^\\ominus(products)$\n    $\\Delta H_f^\\ominus$(CH₄) = [(-394) + 2(-286)] - [-891]\n    $\\Delta H_f^\\ominus$(CH₄) = [-966] - [-891] = -75 kJ mol⁻¹\n\n    **Marking:** [1] for correct cycle or formula. [1] for correct substitution including stoichiometry. [1] for final answer with correct sign and units."
-    },
-    {
-      "type": "heading",
-      "content": "The Born-Haber Cycle"
-    },
-    {
-      "type": "text",
-      "content": "The Born-Haber cycle is a specific application of Hess's Law used to analyse the formation of ionic compounds. It allows us to calculate the lattice enthalpy, which is a measure of the strength of the ionic bond, by breaking down the formation of an ionic solid into a series of distinct, measurable steps. This provides a powerful link between macroscopic thermodynamic data and microscopic properties like ionisation energy and electron affinity."
+      "content": "Hess's law states that the total enthalpy change during a reaction is the same regardless of the route by which the reaction is carried out. It is not a separate rule of nature but a direct consequence of the conservation of energy: enthalpy is a state function, so its value depends only on the current state of the system (temperature, pressure, composition), not on the path taken to get there. The enthalpy difference between reactants and products is therefore fixed. If it were not — if one route released more energy than another — you could loop around the cycle and create energy from nothing."
     },
     {
       "type": "keyPoints",
       "items": [
-        "The cycle starts with the elements in their standard states and ends with the formation of one mole of the ionic solid.",
-        "The indirect route involves atomising the elements, ionising the metal atoms, forming gaseous non-metal anions (electron affinity), and finally combining the gaseous ions to form the lattice.",
-        "The sum of all enthalpy changes in the cycle is zero.",
-        "By Hess's Law: $\\Delta H_f^\\ominus = \\Delta H_{at(metal)}^\\ominus + IE + \\Delta H_{at(non-metal)}^\\ominus + EA + \\Delta H_{lat(formation)}^\\ominus$. Since IB defines lattice enthalpy as dissociation (endothermic), the equation becomes: $\\Delta H_f^\\ominus = \\Delta H_{at(metal)}^\\ominus + IE + \\Delta H_{at(non-metal)}^\\ominus + EA - \\Delta H_{lat(dissociation)}^\\ominus$."
+        "Enthalpy $H$ is a state function; $\\Delta H$ depends only on the initial and final states.",
+        "Hess's law: the enthalpy change of a reaction is independent of the pathway taken between fixed start and end points.",
+        "It lets us calculate enthalpy changes that cannot be measured directly, by routing through species with known enthalpies.",
+        "States must match at the start and end (e.g. H₂O(l) is not H₂O(g)) or the enthalpy values will not be consistent."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "Constructing enthalpy cycles"
+    },
+    {
+      "type": "text",
+      "content": "An enthalpy cycle is the picture of Hess's law. The target reaction with the unknown $\\Delta H_{reaction}$ is the 'direct route' along the top; the 'indirect route' links the same reactants and products through a common set of species. The two workhorse cycles use standard enthalpies of formation ($\\Delta H_f^\\ominus$), where the common species are the constituent elements, and standard enthalpies of combustion ($\\Delta H_c^\\ominus$), where the common species are the products of complete combustion. Once the cycle is drawn, the rule is mechanical: travelling WITH an arrow adds its $\\Delta H$; travelling AGAINST an arrow subtracts it (reverse the sign)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Formation cycles:** the constituent elements in their standard states sit at the bottom; arrows point UP to reactants and products.",
+        "**Combustion cycles:** the complete-combustion products (CO₂(g) and H₂O(l)) sit at the bottom; arrows point DOWN from reactants and products.",
+        "Mark every arrow with its known $\\Delta H$, remembering to multiply by the stoichiometric coefficient of each substance.",
+        "Read the relationship by following a complete path from reactants to products: with-arrow adds, against-arrow subtracts."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Standard enthalpies of formation and combustion"
+    },
+    {
+      "type": "text",
+      "content": "The standard enthalpy of formation, $\\Delta H_f^\\ominus$, is the enthalpy change when one mole of a compound forms from its constituent elements in their standard states under standard conditions (100 kPa, usually 298 K). A crucial consequence: the $\\Delta H_f^\\ominus$ of any element in its standard state — O₂(g), Na(s), C(s, graphite) — is exactly zero, because forming an element from itself is no change at all. The standard enthalpy of combustion, $\\Delta H_c^\\ominus$, is the enthalpy change when one mole of a substance burns completely in excess oxygen under standard conditions; it is always negative because combustion is exothermic. These two quantities anchor the two standard cycles."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 1 — a Hess-cycle calculation"
+    },
+    {
+      "type": "workedExample",
+      "question": "Carbon can be oxidised in two steps. Using the cycle data below, calculate $\\Delta H$ for the direct combustion of carbon to carbon dioxide, C(s) + O₂(g) → CO₂(g).\n\nStep 1: C(s) + ½O₂(g) → CO(g), $\\Delta H_1 = -111$ kJ mol⁻¹\nStep 2: CO(g) + ½O₂(g) → CO₂(g), $\\Delta H_2 = -283$ kJ mol⁻¹ [3]",
+      "solution": "**Step 1 — see the cycle.** The direct route C(s) + O₂(g) → CO₂(g) can be reached indirectly by going C → CO (Step 1) and then CO → CO₂ (Step 2). Both indirect steps run in the same forward direction as the target, so neither sign is reversed.  [M1: correct route — target = Step 1 + Step 2]\n\n**Step 2 — apply Hess's law along the indirect route.**\n$\\Delta H_{reaction} = \\Delta H_1 + \\Delta H_2$\n$\\Delta H_{reaction} = (-111) + (-283)$  [M1: correct substitution]\n\n**Step 3 — evaluate.**\n$\\Delta H_{reaction} = -394$ kJ mol⁻¹.  [A1: answer with negative sign and units]\n\n*Both steps are exothermic and travelled forwards, so they simply add. If the target had instead been CO₂ → C + O₂, every sign would flip to give $+394$ kJ mol⁻¹.*"
+    },
+    {
+      "type": "heading",
+      "content": "Calculations using enthalpies of formation"
+    },
+    {
+      "type": "text",
+      "content": "In a formation cycle the elements sit at the bottom. The indirect route 'decomposes' the reactants into their elements (the reverse of formation, so those signs flip) and then 'forms' the products from those same elements. Reversing the reactant side is exactly what turns the relationship into products minus reactants."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_f^\\ominus(\\text{products}) - \\sum \\Delta H_f^\\ominus(\\text{reactants})"
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 2 — a ΣΔH_f calculation"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard enthalpy change for the hydrogenation of propene to propane: C₃H₆(g) + H₂(g) → C₃H₈(g).\n\n$\\Delta H_f^\\ominus(\\text{C}_3\\text{H}_6, g) = +20.4$ kJ mol⁻¹\n$\\Delta H_f^\\ominus(\\text{C}_3\\text{H}_8, g) = -104.7$ kJ mol⁻¹ [3]",
+      "solution": "**Step 1 — choose the formation formula and list the species.**\nProducts: C₃H₈(g). Reactants: C₃H₆(g) and H₂(g). H₂(g) is an element in its standard state, so $\\Delta H_f^\\ominus(\\text{H}_2, g) = 0$.  [M1: correct method, Σproducts − Σreactants]\n\n**Step 2 — substitute.**\n$\\Delta H_{reaction}^\\ominus = [\\Delta H_f^\\ominus(\\text{C}_3\\text{H}_8)] - [\\Delta H_f^\\ominus(\\text{C}_3\\text{H}_6) + \\Delta H_f^\\ominus(\\text{H}_2)]$\n$\\Delta H_{reaction}^\\ominus = [-104.7] - [(+20.4) + 0]$  [M1: correct substitution, including 0 for H₂]\n\n**Step 3 — evaluate.**\n$\\Delta H_{reaction}^\\ominus = -104.7 - 20.4 = -125.1$ kJ mol⁻¹.  [A1: answer with sign and units]\n\n*Hydrogenation is exothermic, consistent with the negative value. The zero for H₂ is doing real work here — leaving it out is one of the most common errors.*"
+    },
+    {
+      "type": "heading",
+      "content": "Calculations using enthalpies of combustion"
+    },
+    {
+      "type": "text",
+      "content": "In a combustion cycle the common species are the combustion products at the bottom. The indirect route combusts the reactants (downwards) and then reverses the combustion of the products to climb back up to them. Reversing the product side is what flips the relationship into reactants minus products — the mirror image of the formation formula."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_c^\\ominus(\\text{reactants}) - \\sum \\Delta H_c^\\ominus(\\text{products})"
     },
     {
       "type": "examTip",
-      "content": "Pay extremely close attention to state symbols (s, l, g) and signs (+/-) in Born-Haber cycles. A common error is forgetting to multiply values by stoichiometric coefficients, for example, for MgCl₂ you need two moles of gaseous Cl atoms and two moles of electrons for the electron affinity step."
-    },
-    {
-      "type": "workedExample",
-      "question": "Construct a Born-Haber cycle for magnesium chloride, MgCl₂, and use the data below to calculate the lattice enthalpy, $\\Delta H_{lat}^\\ominus$, of MgCl₂.\nEnthalpy of formation of MgCl₂(s): -641 kJ mol⁻¹\nEnthalpy of atomisation of Mg(s): +148 kJ mol⁻¹\nFirst ionisation energy of Mg(g): +738 kJ mol⁻¹\nSecond ionisation energy of Mg(g): +1451 kJ mol⁻¹\nEnthalpy of atomisation of Cl₂(g): +122 kJ mol⁻¹ (per mole of Cl atoms)\nFirst electron affinity of Cl(g): -349 kJ mol⁻¹",
-      "solution": "1.  **Construct Cycle:** The cycle connects the formation of MgCl₂(s) from Mg(s) and Cl₂(g) via an indirect route involving gaseous ions.\n\n    *   Mg(s) + Cl₂(g) → MgCl₂(s)  ($\\Delta H_f^\\ominus$ = -641)\n    *   Step 1: Atomise Mg. Mg(s) → Mg(g)  ($\\Delta H_{at}^\\ominus$ = +148)\n    *   Step 2: Atomise Cl₂. Cl₂(g) → 2Cl(g)  (2 × $\\Delta H_{at}^\\ominus$ = 2 × +122 = +244)\n    *   Step 3: Ionise Mg. Mg(g) → Mg²⁺(g) + 2e⁻ (IE₁ + IE₂ = +738 + +1451 = +2189)\n    *   Step 4: Form Cl⁻ ions. 2Cl(g) + 2e⁻ → 2Cl⁻(g) (2 × EA₁ = 2 × -349 = -698)\n    *   Step 5: Lattice dissociation. MgCl₂(s) → Mg²⁺(g) + 2Cl⁻(g) ($\\Delta H_{lat}^\\ominus$ = ?)\n\n2.  **Apply Hess's Law:**\n    The direct route (formation) must equal the sum of the indirect steps. Let's set up the equation based on the cycle:\n    $\\Delta H_f^\\ominus = \\Delta H_{at(Mg)}^\\ominus + (IE_1 + IE_2)_{Mg} + 2 \\times \\Delta H_{at(Cl)}^\\ominus + 2 \\times EA_{Cl} - \\Delta H_{lat}^\\ominus$\n\n3.  **Substitute and Solve:**\n    -641 = (+148) + (+2189) + (+244) + (-698) - $\\Delta H_{lat}^\\ominus$\n    -641 = 148 + 2189 + 244 - 698 - $\\Delta H_{lat}^\\ominus$\n    -641 = 1883 - $\\Delta H_{lat}^\\ominus$\n\n4.  **Rearrange for $\\Delta H_{lat}^\\ominus$:**\n    $\\Delta H_{lat}^\\ominus$ = 1883 - (-641)\n    $\\Delta H_{lat}^\\ominus$ = 1883 + 641\n    $\\Delta H_{lat}^\\ominus$ = +2524 kJ mol⁻¹\n\n    **Marking:** [1] for correctly constructed cycle. [1] for correct application of Hess's Law with correct stoichiometry. [1] for final answer with correct sign and units."
+      "content": "The single most common mix-up is the order of subtraction. Formation is 'products − reactants'; combustion is 'reactants − products'. If you are ever unsure, sketch the cycle and follow the arrows: going with an arrow is positive, against an arrow is negative. The arrows never lie, and they will always hand you the correct order."
     },
     {
       "type": "heading",
-      "content": "Factors Affecting Lattice Enthalpy"
+      "content": "Worked example 3 — a combustion-data cycle"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard enthalpy of formation of ethanol, C₂H₅OH(l), for the reaction 2C(s, graphite) + 3H₂(g) + ½O₂(g) → C₂H₅OH(l).\n\n$\\Delta H_c^\\ominus(\\text{C}, s) = -393.5$ kJ mol⁻¹\n$\\Delta H_c^\\ominus(\\text{H}_2, g) = -285.8$ kJ mol⁻¹\n$\\Delta H_c^\\ominus(\\text{C}_2\\text{H}_5\\text{OH}, l) = -1367.3$ kJ mol⁻¹ [3]",
+      "solution": "**Step 1 — draw the combustion cycle.** The reactants (2C, 3H₂) and the product (C₂H₅OH) all combust downwards to the same species, CO₂(g) and H₂O(l). Following the route — reactants down, then up the reverse of the product's combustion — gives Σ$\\Delta H_c$(reactants) − Σ$\\Delta H_c$(products). Oxygen does not combust, so it contributes nothing.  [M1: correct method with stoichiometric coefficients]\n\n**Step 2 — substitute, multiplying each value by its coefficient.**\n$\\Delta H_f^\\ominus(\\text{C}_2\\text{H}_5\\text{OH}) = [2\\times(-393.5) + 3\\times(-285.8)] - [1\\times(-1367.3)]$  [M1: correct substitution]\n\n**Step 3 — evaluate.**\n$= [-787.0 - 857.4] - [-1367.3]$\n$= -1644.4 + 1367.3$\n$= -277.1$ kJ mol⁻¹.  [A1: answer with sign and units]\n\n*Note the coefficients: 2 mol of carbon and 3 mol of hydrogen each scale the per-mole combustion value. Forgetting the ×2 and ×3 is a classic error that would give a badly wrong number.*"
+    },
+    {
+      "type": "heading",
+      "content": "(HL) Born–Haber cycles, lattice enthalpy and enthalpy of solution"
     },
     {
       "type": "text",
-      "content": "Lattice enthalpy is a measure of the strength of the electrostatic forces of attraction between the gaseous ions in an ionic lattice. Its magnitude is governed by two key factors: the charges on the ions and the distance between them (determined by their ionic radii). These factors are related through Coulomb's Law, which states that the force of attraction is proportional to the product of the charges and inversely proportional to the square of the distance between them."
+      "content": "For an ionic solid, some enthalpy changes cannot be measured directly at all — you cannot assemble a crystal from a jar of isolated gaseous ions. The lattice enthalpy (here, the enthalpy of forming one mole of the ionic solid from its gaseous ions, an exothermic quantity) is found instead from a Born–Haber cycle: an enthalpy cycle that decomposes the formation of the ionic compound into a chain of measurable steps — atomisation of the elements, ionisation energies to make cations, electron affinities to make anions, and the lattice-formation step. Applying Hess's law around the closed cycle lets you solve for whichever single step is unknown, exactly as in the SL cycles. The enthalpy of solution — the enthalpy change when one mole of solute dissolves to give a very dilute solution — is likewise found from a cycle linking the lattice enthalpy to the hydration enthalpies of the separated ions."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Ionic Charge:** A greater charge on the ions leads to a much stronger electrostatic attraction and therefore a larger (more endothermic) lattice enthalpy. For example, the lattice enthalpy of MgO (Mg²⁺O²⁻) is significantly larger than that of NaCl (Na⁺Cl⁻).",
-        "**Ionic Radius:** Smaller ionic radii allow the ions to pack more closely together. This smaller internuclear distance results in a stronger electrostatic attraction and a larger lattice enthalpy. For example, LiF has a larger lattice enthalpy than CsI because Li⁺ and F⁻ are much smaller than Cs⁺ and I⁻.",
-        "**Dominance:** Ionic charge is the dominant factor. The effect of doubling the charge on ions is much greater than a small change in ionic radius."
+        "**HL only:** Born–Haber cycles and lattice enthalpy are assessed at Higher Level; SL students are not examined on them.",
+        "A Born–Haber cycle is just Hess's law applied to an ionic compound, with the sum around the closed cycle equal to zero.",
+        "Lattice enthalpy is found by rearranging the cycle for the one step that cannot be measured directly.",
+        "Enthalpy of solution = lattice enthalpy (bond-breaking, endothermic in the reverse convention) combined with the hydration enthalpies of the gaseous ions (exothermic)."
       ]
     },
     {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Not reversing the sign of a reversed step** — if you travel a known reaction backwards in a cycle, flip its sign. An exothermic forward step becomes endothermic in reverse.",
+        "**Getting the subtraction order wrong** — formation is Σproducts − Σreactants; combustion is Σreactants − Σproducts. They are mirror images; picking the wrong one negates your answer.",
+        "**Forgetting that $\\Delta H_f^\\ominus$ of an element is zero** — elements in their standard states (H₂, O₂, Na, C) contribute 0, but they must still appear in the working, not be silently dropped or given a made-up value.",
+        "**Not multiplying by the stoichiometric coefficients** — enthalpy values are per mole, so 3 mol H₂ contributes $3\\times\\Delta H$, not one lot. Skipping the multiplier is a frequent and costly slip.",
+        "**Mismatched states** — H₂O(l) and H₂O(g) have different enthalpies; using the wrong state, or letting reactant and product states differ from the data, breaks the cycle.",
+        "**Dropping the sign or units on the final answer** — an enthalpy change without its sign (and kJ mol⁻¹) is incomplete and loses the answer mark, even when the arithmetic is right."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not cost you every mark that follows, provided the method is written down. Study how each mark below is earned by a specific line, and notice that two of the three marks survive an arithmetic slip."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard enthalpy change, $\\Delta H_{reaction}^\\ominus$, for the reaction 2H₂S(g) + 3O₂(g) → 2SO₂(g) + 2H₂O(l), using standard enthalpies of formation:\n$\\Delta H_f^\\ominus(\\text{H}_2\\text{S}, g) = -21$ kJ mol⁻¹\n$\\Delta H_f^\\ominus(\\text{SO}_2, g) = -297$ kJ mol⁻¹\n$\\Delta H_f^\\ominus(\\text{H}_2\\text{O}, l) = -286$ kJ mol⁻¹ [3]",
+      "solution": "**Model answer — full working.**\n\nO₂(g) is an element in its standard state, so $\\Delta H_f^\\ominus(\\text{O}_2) = 0$.\n\nUsing $\\Delta H_{reaction}^\\ominus = \\sum \\Delta H_f^\\ominus(\\text{products}) - \\sum \\Delta H_f^\\ominus(\\text{reactants})$ and multiplying each value by its coefficient:\n\n$\\sum\\text{products} = 2(-297) + 2(-286) = -594 - 572 = -1166$ kJ\n$\\sum\\text{reactants} = 2(-21) + 3(0) = -42$ kJ\n\n$\\Delta H_{reaction}^\\ominus = -1166 - (-42) = -1124$ kJ mol⁻¹.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct method.** Awarded for using the formation relationship Σ$\\Delta H_f$(products) − Σ$\\Delta H_f$(reactants), with O₂ taken as zero. This is a METHOD mark: it is credited for the correct approach even if a number is later mis-copied.\n- **M1 — correct substitution.** Awarded for substituting the data with the right stoichiometric coefficients: $[2(-297) + 2(-286)] - [2(-21) + 3(0)]$. The ×2 and ×3 multipliers must be present. ECF applies — a candidate who mislabels one datum but substitutes it correctly into the right structure still earns this mark.\n- **A1 — final answer with sign.** Awarded for $-1124$ kJ mol⁻¹, with the negative sign and units. Under ECF, if an earlier arithmetic slip fed through the correct method, the answer mark is still given on the candidate's own consistent figures.\n\n**'Accept answers that round correctly.'** The engine accepts a final value that rounds correctly (e.g. $-1124$ or a legitimately rounded $-1120$ kJ mol⁻¹) and does not demand a fixed number of decimal places in the intermediate lines — it credits the correct method and a correctly-rounded, correctly-signed final answer.\n\n**Bottom line:** of the 3 marks, 2 are method marks that survive an arithmetic slip and the answer mark is protected by ECF. A candidate who writes only '−1124' with no working risks losing 2 marks if the final number is wrong; one who shows the formula, the substitution and the coefficients keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: state the formula, substitute with the stoichiometric coefficients, include the zero for any element, and finish with a signed answer and units. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Energy cycles are the reasoning engine behind much of what follows. Bond-enthalpy calculations are Hess's law with 'break all bonds' as the common intermediate; at HL, Born–Haber and solution cycles extend the same detour logic to ionic compounds; and the sign and size of $\\Delta H$ feed directly into spontaneity and Gibbs energy later in R1. Master the habit — draw the cycle, follow the arrows, reverse the sign when you go backwards, multiply by the coefficients — and every enthalpy problem in the course becomes a variation on a method you already own."
+    },
+    {
       "type": "practice",
-      "label": "Test Your Knowledge on Energy Cycles",
-      "href": "/mark?subject=ib-chemistry-hl&topic=R1.2"
+      "label": "Get a Paper 2 calculation marked: find ΔH_reaction from formation data with full working",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R1.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive Born-Haber Cycle Builder",
-          "href": "https://www.chemguide.co.uk/physical/energetics/bornhaber.html"
-        },
-        {
-          "label": "Video Tutorial: Hess's Law Calculations",
-          "href": "https://www.youtube.com/watch?v=i_2x3a_59p4"
+          "label": "IB Chemistry Data Booklet (Sections 12 and 13: enthalpy data)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

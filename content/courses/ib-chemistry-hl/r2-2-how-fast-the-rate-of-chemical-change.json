@@ -1,172 +1,373 @@
 {
   "slug": "r2-2-how-fast-the-rate-of-chemical-change",
   "topicCode": "R2.2",
+  "unit": {
+    "code": "R2",
+    "title": "How much, how fast and how far?"
+  },
   "title": "How fast? The rate of chemical change",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson introduces chemical kinetics, focusing on defining and measuring the rate of a chemical reaction. You will learn how to interpret graphical data to determine instantaneous and average rates, and explore various experimental techniques used to monitor reaction progress.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Chemical kinetics asks how fast reactions go and why. This lesson defines the rate of reaction and how it is measured, then explains every rate-changing factor — concentration, pressure, surface area, temperature and catalysts — through a single idea: collision theory. A successful collision needs sufficient energy (at least the activation energy, Ea) AND the correct orientation. The Maxwell–Boltzmann distribution makes the temperature and catalyst effects visible, showing that what really matters is the FRACTION of molecules with E ≥ Ea. Higher Level extends this to rate expressions and orders, the rate-determining step and the Arrhenius equation. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 32,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define the rate of a chemical reaction and state its units.",
-    "Describe experimental methods for measuring reaction rates, including gas collection, mass change, and colorimetry.",
-    "Analyse graphical data to determine the rate of reaction at a specific time (instantaneous rate) and over a time interval (average rate).",
-    "Understand the relationship between the rate of reaction and the stoichiometry of the chemical equation."
+    "Define the rate of reaction and describe experimental methods for measuring it (change in mass, gas volume, colour/absorbance, conductivity or pH).",
+    "State collision theory and explain that a successful collision requires both sufficient energy (E ≥ Ea) and correct orientation.",
+    "Explain the effect of concentration, pressure, surface area, temperature and a catalyst on rate in terms of collision theory.",
+    "Interpret the Maxwell–Boltzmann distribution and use it to explain why raising temperature and adding a catalyst increase the fraction of molecules with E ≥ Ea.",
+    "Explain activation energy and how a catalyst provides an alternative reaction pathway of lower Ea.",
+    "(HL) Deduce rate expressions and orders from data, identify the rate-determining step, and use the Arrhenius equation."
   ],
+  "syllabusObjectivesCovered": [
+    "R2.2"
+  ],
+  "levelNote": "Common to SL and HL; rate laws, orders, rate-determining step and Arrhenius are HL.",
   "simpleExplanation": {
-    "title": "The Speed of Chemistry",
-    "summary": "Chemical kinetics is the study of how fast chemical reactions happen. Just like a car's speed, a reaction's rate can be fast, slow, and can change over time.",
-    "analogy": "Imagine making popcorn. The 'rate of reaction' is how many kernels pop per second. At the start, with lots of un-popped kernels (reactants) and high heat, the popping is fast. As kernels run out, the popping slows down and eventually stops, leaving you with a bowl of popcorn (products). We can measure this rate by counting pops, or by measuring the increasing volume of the popcorn in the bowl over time.",
+    "title": "Reactions as a Numbers Game of Collisions",
+    "summary": "For particles to react they must crash into each other, and not just any crash will do — the collision has to be hard enough and lined up correctly. Every way of speeding a reaction up works by making the RIGHT kind of collision happen more often.",
+    "analogy": "Think of a busy junction where cars must meet head-on to 'react'. More cars on the road (concentration) means more crashes per minute. Faster, more energetic driving (temperature) means more crashes are hard enough to count — and crucially a much bigger share now clear the threshold needed to do damage. A roundabout that lets cars meet more easily (a catalyst) provides an easier route to the same destination. The rate of reaction is just how many successful crashes happen each second.",
     "steps": [
-      "First, define the rate of reaction as the change in a measurable quantity (like concentration or mass) divided by the time taken for that change.",
-      "Next, choose a suitable experimental technique to monitor a property that changes during the reaction, such as collecting a gas produced or measuring a colour change.",
-      "Then, record measurements of this property at regular time intervals from the start of the reaction until it finishes.",
-      "Finally, plot a graph of the measured property against time. The gradient (steepness) of this graph reveals the reaction rate at any given moment."
+      "Define rate as the change in concentration of a reactant or product per unit time.",
+      "Remember that only collisions with energy ≥ Ea AND the correct orientation are successful.",
+      "For any factor (concentration, pressure, surface area, temperature, catalyst) ask: does it change the collision FREQUENCY, the FRACTION with E ≥ Ea, or the activation energy itself?",
+      "Use the Maxwell–Boltzmann distribution to see how temperature and catalysts change the shaded fraction of molecules that can react."
     ]
   },
+  "keyConcepts": [
+    "collision theory",
+    "activation energy",
+    "Maxwell–Boltzmann distribution"
+  ],
   "flashcards": [
     {
-      "front": "What is the definition of the rate of a chemical reaction?",
-      "back": "The change in concentration of a reactant or product per unit time. It is a measure of how fast a reaction proceeds."
+      "front": "Rate of reaction",
+      "back": "The change in concentration of a reactant or product per unit time, $\\text{rate} = \\dfrac{\\Delta[\\text{substance}]}{\\Delta t}$. Standard units mol dm⁻³ s⁻¹. Always a positive value.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the standard units for the rate of a reaction in solution?",
-      "back": "mol dm⁻³ s⁻¹ (moles per decimetre cubed per second)."
+      "front": "Collision theory",
+      "back": "Reactions occur when particles collide. A collision only leads to reaction if it has (1) energy at least equal to the activation energy, E ≥ Ea, AND (2) the correct mutual orientation. These are 'successful' collisions.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Why does the rate of reaction typically decrease over time?",
-      "back": "Because the concentration of reactants decreases as they are converted into products. This leads to fewer successful collisions between reactant particles per unit time."
+      "front": "Activation energy (Ea)",
+      "back": "The minimum kinetic energy that colliding particles must have for a reaction to occur — the energy barrier to forming the transition state. Found in the data booklet-style Arrhenius work; a lower Ea means a faster reaction.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the 'initial rate' of reaction?",
-      "back": "The instantaneous rate of reaction at time t=0. It is found from the gradient of the tangent to the concentration-time graph at the very beginning of the reaction."
+      "front": "Successful vs total collisions",
+      "back": "Only a small fraction of all collisions succeed. Rate depends on the frequency of SUCCESSFUL collisions, i.e. those with E ≥ Ea and correct orientation — not on the total collision frequency alone.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How is the instantaneous rate of reaction determined from a graph?",
-      "back": "By drawing a tangent to the curve at a specific time point and calculating the gradient of that tangent (change in y / change in x)."
+      "front": "Effect of concentration / pressure",
+      "back": "Higher concentration (or higher pressure for gases) packs particles closer, so collisions are more FREQUENT. More successful collisions per second, so a faster rate. Ea and the energy distribution are unchanged.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Describe the 'gas collection' method for measuring reaction rate.",
-      "back": "If a reaction produces a gas, its volume can be collected in a gas syringe or over water in a measuring cylinder. The volume is recorded at regular time intervals to plot a graph of volume vs. time."
+      "front": "Effect of surface area",
+      "back": "Breaking a solid into smaller pieces (or a powder) exposes more particles at the surface, so more collisions with the other reactant per second. Faster rate; the total amount of solid is unchanged.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Describe the 'change in mass' method for measuring reaction rate.",
-      "back": "If a reaction produces a gas that is allowed to escape, the total mass of the flask and its contents will decrease. This mass loss is measured on a balance at regular time intervals. This method is unsuitable for gases less dense than air, like hydrogen."
+      "front": "Effect of temperature",
+      "back": "Raising temperature makes particles move faster, so collisions are slightly more frequent — but the MAIN effect is that a much greater FRACTION of molecules now have E ≥ Ea, so a far larger share of collisions succeed. This is why rate roughly doubles for a modest rise.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the role of a colorimeter in kinetics?",
-      "back": "A colorimeter measures the absorbance of light by a coloured solution. If a reactant or product is coloured, its concentration change can be followed by measuring the change in absorbance over time."
+      "front": "Catalyst",
+      "back": "A substance that increases rate by providing an ALTERNATIVE reaction pathway with a lower activation energy, and is regenerated (not used up). It lowers Ea, so a greater fraction of molecules have E ≥ Ea.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "For the reaction $A \\rightarrow 2B$, how does the rate of formation of B relate to the rate of consumption of A?",
-      "back": "The rate of formation of B is twice the rate of consumption of A. This is due to the 1:2 stoichiometric ratio."
+      "front": "Catalyst vs enthalpy change",
+      "back": "A catalyst lowers Ea for BOTH the forward and reverse reactions equally. It does NOT change ΔH, the position of equilibrium, or the products — only the rate at which equilibrium is reached.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the difference between average rate and instantaneous rate?",
-      "back": "Average rate is calculated over a time interval (e.g., between 10s and 30s), while instantaneous rate is the rate at a single moment in time (e.g., at t=20s), found from the tangent to the graph."
+      "front": "Maxwell–Boltzmann distribution",
+      "back": "A graph of the number (or fraction) of molecules against kinetic energy. It starts at the origin, rises to a peak (most probable energy), then tails off. The TOTAL area under the curve = total number of molecules and is constant at fixed amount.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Why is a negative sign used when expressing the rate in terms of a reactant's concentration?",
-      "back": "The concentration of a reactant decreases over time, making $\\Delta$[Reactant] negative. The negative sign is used to make the overall rate of reaction a positive value. For example, Rate = -$\\frac{\\Delta[Reactant]}{ \\Delta t}$."
+      "front": "M–B curve: the shaded fraction",
+      "back": "The area to the RIGHT of Ea represents the fraction of molecules with enough energy to react. Increasing this fraction — by raising temperature or lowering Ea with a catalyst — increases the rate.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "M–B curve on heating",
+      "back": "At higher temperature the peak moves right and lowers, and the curve flattens and spreads. The total area is unchanged, but the area beyond Ea (fraction with E ≥ Ea) increases sharply.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "M–B curve with a catalyst",
+      "back": "The distribution is UNCHANGED (temperature is the same), but Ea moves to the LEFT. A larger area now lies beyond the new, lower Ea, so a greater fraction of molecules can react.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "HL — Rate expression and order",
+      "back": "$\\text{rate} = k[\\text{A}]^m[\\text{B}]^n$. The order with respect to a reactant ($m$, $n$) is found EXPERIMENTALLY, not from the stoichiometric coefficients. Overall order = $m + n$; $k$ is the rate constant.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "HL — Rate-determining step (RDS)",
+      "back": "The slowest step in a multi-step mechanism. It governs the overall rate, so only species involved up to and including the RDS appear in the rate expression — which is why orders need not match the overall equation.",
+      "pillLabel": "HL"
+    },
+    {
+      "front": "HL — Arrhenius equation",
+      "back": "$k = A e^{-E_a/RT}$, or $\\ln k = \\ln A - \\dfrac{E_a}{R}\\cdot\\dfrac{1}{T}$. A plot of $\\ln k$ against $1/T$ is a straight line of gradient $-E_a/R$ and intercept $\\ln A$ ($A$ = frequency/pre-exponential factor).",
+      "pillLabel": "HL"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "How does a catalyst speed up a reaction?",
+      "options": [
+        "It lowers the activation energy by providing an alternative pathway",
+        "It lowers the enthalpy change (ΔH) of the reaction",
+        "It increases the average kinetic energy of the particles",
+        "It shifts the equilibrium towards the products"
+      ],
+      "answer": "It lowers the activation energy by providing an alternative pathway"
+    },
+    {
+      "prompt": "Increasing temperature increases rate MAINLY because:",
+      "options": [
+        "Particles collide slightly more often",
+        "A much greater fraction of molecules now have energy E ≥ Ea",
+        "The activation energy of the reaction is lowered",
+        "The enthalpy change becomes more exothermic"
+      ],
+      "answer": "A much greater fraction of molecules now have energy E ≥ Ea"
+    },
+    {
+      "prompt": "When the temperature of a fixed amount of gas is raised, the total area under its Maxwell–Boltzmann curve:",
+      "options": [
+        "Increases, because the molecules have more energy",
+        "Decreases, because the peak gets lower",
+        "Stays the same, because the number of molecules is unchanged",
+        "Doubles for every 10 °C rise"
+      ],
+      "answer": "Stays the same, because the number of molecules is unchanged"
+    },
+    {
+      "prompt": "Doubling the concentration of a reactant increases the rate because it:",
+      "options": [
+        "Increases the frequency of collisions between particles",
+        "Increases the fraction of collisions with E ≥ Ea",
+        "Lowers the activation energy",
+        "Raises the temperature of the mixture"
+      ],
+      "answer": "Increases the frequency of collisions between particles"
+    },
+    {
+      "prompt": "A collision between reactant particles will NOT lead to reaction if:",
+      "options": [
+        "The particles have energy well above Ea but the wrong orientation",
+        "The particles have E ≥ Ea and the correct orientation",
+        "The concentration is high",
+        "A catalyst is present"
+      ],
+      "answer": "The particles have energy well above Ea but the wrong orientation"
     }
   ],
   "faq": [
     {
-      "q": "Why is the initial rate of reaction usually the fastest?",
-      "a": "The initial rate is the fastest because at the very beginning of the reaction (t=0), the concentration of reactants is at its maximum. According to collision theory, a higher concentration leads to more frequent collisions between reactant particles, resulting in a higher frequency of successful collisions and thus a faster rate."
+      "q": "Why does temperature have such a big effect on rate when it only raises the average energy a little?",
+      "a": "Because rate depends on the fraction of molecules ABOVE the activation-energy threshold, not on the average. On the Maxwell–Boltzmann distribution, Ea sits well out on the high-energy tail. A modest rise in temperature shifts and flattens the whole curve, and even a small shift pushes a disproportionately large slice of that steep tail past Ea. The collision frequency also rises, but only slightly (roughly with the square root of temperature); the dominant factor is the sharply increased fraction with E ≥ Ea. This is why a rise of about 10 °C can roughly double the rate of many reactions."
     },
     {
-      "q": "How do I decide which experimental technique to use to measure a reaction's rate?",
-      "a": "The choice depends on the properties of the substances involved. If a gas is produced, collecting the gas is a good option. If there's a colour change, use a colorimeter. If ions are consumed or produced, a conductivity probe might work. You need to identify a property that changes measurably and can be linked to the concentration of a reactant or product."
+      "q": "Does a catalyst change how much product you get?",
+      "a": "No. A catalyst provides an alternative pathway with a lower activation energy, so more molecules can react per second and the reaction reaches completion (or equilibrium) faster. But it does not change the enthalpy change ΔH, the products, or — for a reversible reaction — the position of equilibrium, because it lowers Ea for the forward and reverse reactions by the same amount. It changes the speed, not the destination, and it is regenerated at the end."
     },
     {
-      "q": "What is the practical difference between average rate and instantaneous rate?",
-      "a": "Average rate gives a general idea of the speed over a period, like calculating your average speed on a long car journey. Instantaneous rate is like looking at your car's speedometer at a specific moment; it tells you the exact speed at that instant. In chemistry, the instantaneous rate is more useful for understanding the reaction mechanism as it reflects the conditions (concentrations, temperature) at that precise moment."
+      "q": "Why can't I read the order of a reaction off the balanced equation? (HL)",
+      "a": "Because the overall equation only tells you the net change, not the mechanism. Reactions usually happen in a sequence of steps, and the rate is set by the slowest — the rate-determining step. Only species that take part up to and including that step appear in the rate expression, and their orders reflect how many are involved there. So orders must be found experimentally (for example by the initial-rates method), and they frequently differ from the stoichiometric coefficients."
+    },
+    {
+      "q": "What is the difference between activation energy and enthalpy change?",
+      "a": "Activation energy (Ea) is the energy BARRIER that reactant particles must climb to reach the transition state — it controls the rate. The enthalpy change (ΔH) is the difference in energy between products and reactants — it tells you whether the reaction releases or absorbs energy overall and is unrelated to speed. A reaction can be strongly exothermic (large negative ΔH) yet extremely slow because Ea is high. A catalyst lowers Ea but leaves ΔH untouched."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Some chemical reactions, like explosions, are over in a flash. Others, like the rusting of iron, take years. Understanding and controlling the speed, or rate, of these changes is fundamental to chemistry. From designing effective medicines to optimising industrial processes like the Haber process, the study of reaction rates—known as chemical kinetics—is of paramount importance."
+      "content": "Kinetics is the study of how fast reactions go and, more powerfully, WHY they go at that speed. The 'why' rests on a single unifying idea: collision theory. Once you can see a reaction as a numbers game of collisions — most of them useless, a few of them successful — every factor that speeds a reaction up or slows it down makes sense as one clear move. This lesson defines rate and how we measure it, builds collision theory, then uses it and the Maxwell–Boltzmann distribution to explain concentration, pressure, surface area, temperature and catalysts. Higher Level then adds rate expressions, orders, the rate-determining step and the Arrhenius equation. As in every topic, the worked answers are laid out exactly the way our marking engine awards the marks."
     },
     {
       "type": "heading",
-      "content": "Defining and Quantifying Reaction Rate"
+      "content": "Rate of reaction and how it is measured"
     },
     {
       "type": "text",
-      "content": "The rate of a chemical reaction is a measure of how quickly reactants are used up or how quickly products are formed. To quantify this, we measure the change in a specific property over a period of time. For reactions in solution, this property is most often concentration."
+      "content": "The rate of a reaction is the change in concentration of a reactant or product per unit time. Because a reactant's concentration falls, we write $\\text{rate} = -\\dfrac{\\Delta[\\text{reactant}]}{\\Delta t}$ (the minus sign keeps the rate positive); for a product it is $\\dfrac{\\Delta[\\text{product}]}{\\Delta t}$. The standard units are mol dm⁻³ s⁻¹. To measure a rate we monitor any property that changes as the reaction proceeds and record it against time."
     },
     {
       "type": "formula",
-      "content": "Rate of reaction = $\\frac{\\text{change in concentration}}{\\text{time taken}} = \\frac{\\Delta[C]}{\\Delta t}$"
-    },
-    {
-      "type": "text",
-      "content": "The square brackets, $[ ]$, denote concentration in moles per decimetre cubed ($mol \\cdot dm^{-3}$). Time is usually measured in seconds ($s$). Therefore, the units for reaction rate are typically $mol \\cdot dm^{-3} \\cdot s^{-1}$. It's crucial to remember that the rate of reaction is always a positive value. Since reactant concentrations decrease, we place a negative sign before the expression for a reactant's rate of change to ensure the overall reaction rate is positive."
-    },
-    {
-      "type": "heading",
-      "content": "Experimental Techniques for Measuring Rate"
-    },
-    {
-      "type": "text",
-      "content": "To measure a reaction rate, we must be able to monitor a measurable, changing property. The choice of technique depends entirely on the nature of the reactants and products in the specific reaction being studied."
+      "content": "\\text{rate} = \\frac{\\Delta[\\text{substance}]}{\\Delta t}"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Change in Volume of Gas:** Collect the gas produced in a gas syringe or by displacing water in an inverted measuring cylinder. Record volume at regular time intervals.",
-        "**Change in Mass:** Place the reaction flask on a digital balance. If a gas is evolved and allowed to escape, the mass of the system will decrease. This is suitable for dense gases like $CO_2$.",
-        "**Change in Concentration by Titration:** Small samples (aliquots) are taken from the reaction mixture at intervals and the reaction is stopped by 'quenching' (e.g., by rapid cooling or adding a chemical). The concentration of a reactant or product is then determined by titration.",
-        "**Change in Colour:** If a reactant or product is coloured, a colorimeter or spectrophotometer can be used to measure the change in absorbance of light, which is proportional to the concentration of the coloured species (Beer-Lambert Law).",
-        "**Change in Electrical Conductivity:** If the number or type of ions in solution changes, the electrical conductivity of the solution will change. This can be monitored with a conductivity probe.",
-        "**Change in pH:** For reactions that produce or consume $H^+$ or $OH^-$ ions, a pH meter can track the change in pH over time."
+        "**Change in mass** — if a gas escapes an open flask, follow the falling mass on a balance.",
+        "**Gas volume** — collect an evolved gas in a syringe or over water and record volume against time.",
+        "**Colour / absorbance** — if a species is coloured, a colorimeter tracks concentration through absorbance.",
+        "**Conductivity or pH** — useful when the number of ions or [H⁺] changes during the reaction.",
+        "The gradient of a concentration–time (or proxy) graph gives the rate; it is steepest at the start and falls to zero when a reactant is used up."
       ]
     },
     {
       "type": "heading",
-      "content": "Analysing Rate Graphs"
+      "content": "Collision theory: what makes a collision 'successful'"
     },
     {
       "type": "text",
-      "content": "A graph of concentration (or mass, volume, etc.) versus time provides a wealth of information. The steepness, or gradient, of the curve at any point represents the rate of reaction at that instant. The curve is steepest at the beginning (t=0), indicating the highest initial rate, and becomes less steep as the reaction proceeds, eventually becoming horizontal when the reaction stops."
+      "content": "For particles to react they must first collide, but the overwhelming majority of collisions achieve nothing. A collision only leads to reaction if it satisfies BOTH of two conditions. First, the colliding particles must have a combined kinetic energy at least equal to the activation energy, Ea — enough to break the existing bonds and reach the transition state. Second, the particles must meet in the correct orientation, so that the right atoms are positioned to form the new bonds. A collision meeting both conditions is a successful collision, and the rate of reaction is set by how many successful collisions occur each second."
     },
     {
-      "type": "workedExample",
-      "question": "The decomposition of hydrogen peroxide, $2H_2O_2(aq) \\rightarrow 2H_2O(l) + O_2(g)$, was monitored by measuring the concentration of $H_2O_2$ over time. The following data were collected.\n\n| Time / s | $[H_2O_2]$ / mol dm⁻³ |\n|----------|----------------------|\n| 0        | 1.00                 |\n| 20       | 0.78                 |\n| 40       | 0.61                 |\n| 60       | 0.48                 |\n\nCalculate the average rate of reaction, in $mol \\cdot dm^{-3} \\cdot s^{-1}$, over the first 20 seconds.",
-      "solution": "Step 1: Identify the relevant data.\nAt t = 0 s, $[H_2O_2]$ = 1.00 mol dm⁻³.\nAt t = 20 s, $[H_2O_2]$ = 0.78 mol dm⁻³.\n\nStep 2: Calculate the change in concentration and the change in time.\n$\\Delta[H_2O_2] = [H_2O_2]_{\\text{final}} - [H_2O_2]_{\\text{initial}} = 0.78 - 1.00 = -0.22 \\text{ mol dm}^{-3}$.\n$\\Delta t = 20 - 0 = 20 \\text{ s}$.\n\nStep 3: Calculate the rate. Since $H_2O_2$ is a reactant, we use a negative sign to get a positive rate.\nRate = $-\\frac{\\Delta[H_2O_2]}{\\Delta t} = -\\frac{-0.22 \\text{ mol dm}^{-3}}{20 \\text{ s}}$\n\nStep 4: State the final answer with units.\nRate = $0.011 \\text{ mol dm}^{-3} \\text{ s}^{-1}$.\n[2 marks: 1 for correct calculation, 1 for correct units and sign]"
-    },
-    {
-      "type": "examTip",
-      "content": "When asked to find the instantaneous rate from a graph, you MUST draw a tangent to the curve at the specified time. Make the triangle you use to calculate the gradient as large as possible to minimise reading errors. Clearly show your working for the gradient calculation: $\\frac{\\text{change in y}}{\\text{change in x}}$."
+      "type": "keyPoints",
+      "items": [
+        "A successful collision needs **energy E ≥ Ea AND correct orientation** — both, not either.",
+        "Activation energy Ea is the minimum energy barrier to reaction; a lower Ea means more collisions clear it.",
+        "Rate depends on the frequency of SUCCESSFUL collisions, not on the total collision frequency alone.",
+        "Every rate-changing factor works by altering one of three things: collision frequency, the fraction with E ≥ Ea, or Ea itself."
+      ]
     },
     {
       "type": "heading",
-      "content": "Rate and Stoichiometry"
+      "content": "Factors affecting rate, explained by collision theory"
     },
     {
       "type": "text",
-      "content": "For a general reaction $aA + bB \\rightarrow cC + dD$, the rates of change for each species are related by their stoichiometric coefficients. The rate of reaction is a unique, positive value for the overall reaction. It is defined to be independent of which species is monitored."
+      "content": "The power of collision theory is that one framework explains every factor. Group them by which lever they pull: concentration, pressure and surface area change how OFTEN particles collide; temperature changes both the frequency and, decisively, the fraction of collisions energetic enough to react; a catalyst lowers the energy barrier itself."
     },
     {
-      "type": "formula",
-      "content": "Rate = $-\\frac{1}{a}\\frac{\\Delta[A]}{\\Delta t} = -\\frac{1}{b}\\frac{\\Delta[B]}{\\Delta t} = +\\frac{1}{c}\\frac{\\Delta[C]}{\\Delta t} = +\\frac{1}{d}\\frac{\\Delta[D]}{\\Delta t}$"
+      "type": "keyPoints",
+      "items": [
+        "**Concentration (and pressure for gases):** more particles in the same volume → collisions are more FREQUENT → more successful collisions per second → faster rate. Ea and the energy distribution are unchanged.",
+        "**Surface area of a solid:** powdering a solid exposes more particles at the surface → more collisions with the other reactant per second → faster rate.",
+        "**Temperature:** particles move faster, so collisions are slightly more frequent — but the MAIN effect is that a much greater FRACTION of molecules now have E ≥ Ea, so far more collisions succeed.",
+        "**Catalyst:** provides an ALTERNATIVE pathway with a lower Ea, so a greater fraction of molecules have E ≥ Ea. It is regenerated and does not change ΔH."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks you to explain a temperature increase, the single most important phrase examiners look for is that a GREATER FRACTION of molecules have energy ≥ Ea. Saying only 'the particles move faster so they collide more often' is not enough for full marks — and our marking engine treats it the same way. Collision frequency is a minor contributor; the increased fraction above Ea is the dominant reason."
+    },
+    {
+      "type": "heading",
+      "content": "The Maxwell–Boltzmann distribution"
     },
     {
       "type": "text",
-      "content": "This means if you measure the rate of appearance of product C, you can calculate the rate of disappearance of reactant A without measuring it directly, provided you know the balanced chemical equation."
+      "content": "Not all molecules in a sample move at the same speed. The Maxwell–Boltzmann distribution is a graph of the number (or fraction) of molecules against their kinetic energy. It starts at the origin (no molecule has zero energy in a way that contributes), rises to a peak at the most probable energy, then tails off to the right — a few molecules always have very high energy. Two features carry most of the exam marks. First, the TOTAL AREA under the curve equals the total number of molecules and does not change when you heat the sample or add a catalyst (the amount of substance is fixed). Second, the activation energy Ea can be marked on the energy axis, and the AREA to the right of Ea represents the fraction of molecules with enough energy to react."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The curve starts at the origin, peaks at the most probable energy, and has a long high-energy tail.",
+        "**Total area = total number of molecules = constant** for a fixed amount of substance.",
+        "The area to the RIGHT of Ea = the fraction of molecules with E ≥ Ea (the ones able to react).",
+        "**Raising temperature:** the peak moves right and drops, the curve flattens and spreads, and the area beyond Ea increases sharply — even though the total area is unchanged.",
+        "**Adding a catalyst:** the distribution itself is UNCHANGED (same temperature), but Ea moves to the LEFT, so a larger area lies beyond the new, lower Ea."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "In the reaction between magnesium and hydrochloric acid, $Mg(s) + 2HCl(aq) \\rightarrow MgCl_2(aq) + H_2(g)$, a graph of volume of hydrogen gas produced against time was plotted. The gradient of the tangent at t=0 was found to be $+2.4 \\text{ cm}^3 \\text{ s}^{-1}$.\n(a) State the initial rate of reaction in $cm^3 \\cdot s^{-1}$.\n(b) Calculate the initial rate of consumption of HCl in $mol \\cdot s^{-1}$. Assume the reaction is at Standard Temperature and Pressure (STP), where the molar volume of a gas is $22.7 \\text{ dm}^3 \\text{ mol}^{-1}$.",
-      "solution": "(a) The initial rate is the gradient of the graph at t=0.\nInitial rate = $2.4 \\text{ cm}^3 \\text{ s}^{-1}$.\n\n(b) Step 1: Convert the rate from $cm^3 \\cdot s^{-1}$ to $mol \\cdot s^{-1}$ for hydrogen gas.\nFirst, convert volume to $dm^3$: $2.4 \\text{ cm}^3 = 0.0024 \\text{ dm}^3$.\nRate of $H_2$ formation in $mol \\cdot s^{-1} = \\frac{\\text{volume rate}}{\\text{molar volume}} = \\frac{0.0024 \\text{ dm}^3 \\text{ s}^{-1}}{22.7 \\text{ dm}^3 \\text{ mol}^{-1}} = 1.057 \\times 10^{-4} \\text{ mol s}^{-1}$.\n\nStep 2: Use stoichiometry to find the rate of HCl consumption.\nThe stoichiometric ratio of $HCl$ to $H_2$ is 2:1.\nTherefore, HCl is consumed at twice the rate that $H_2$ is produced.\nRate of HCl consumption = $2 \\times$ Rate of $H_2$ formation.\nRate of HCl consumption = $2 \\times (1.057 \\times 10^{-4} \\text{ mol s}^{-1}) = 2.114 \\times 10^{-4} \\text{ mol s}^{-1}$.\n\nStep 3: State the final answer to an appropriate number of significant figures.\nInitial rate of HCl consumption = $2.1 \\times 10^{-4} \\text{ mol s}^{-1}$ (to 2 s.f., matching the data provided).\n[3 marks: 1 for converting volume rate to mole rate, 1 for using 2:1 stoichiometry, 1 for final answer.]"
+      "question": "Using the Maxwell–Boltzmann distribution, explain why adding a catalyst increases the rate of a reaction without changing the temperature. [3]",
+      "solution": "**Step 1 — what a catalyst does.**\nA catalyst provides an alternative reaction pathway with a LOWER activation energy, $E_{a}(\\text{cat}) < E_{a}$.  [M1]\n\n**Step 2 — link to the distribution.**\nThe temperature is unchanged, so the Maxwell–Boltzmann curve itself is identical (same shape, same total area). However, the activation energy line moves to the LEFT to the new value $E_{a}(\\text{cat})$.  [M1]\n\n**Step 3 — conclusion via the shaded fraction.**\nA larger area now lies to the right of the (lower) activation energy, so a GREATER FRACTION of molecules have energy ≥ Ea. More collisions are therefore successful per second and the rate increases.  [A1]\n\n*Note the discipline: the curve does not move (temperature is fixed) — it is Ea that moves. The conclusion must reference the increased fraction with E ≥ Ea, not merely 'a lower barrier'.*"
+    },
+    {
+      "type": "heading",
+      "content": "Activation energy and catalysts: an alternative pathway"
+    },
+    {
+      "type": "text",
+      "content": "On an energy profile, reactants must climb over an energy barrier — the activation energy — to reach the transition state before falling to products. The height of that barrier, not the overall enthalpy change, controls the rate: a large ΔH can accompany a slow reaction if Ea is high. A catalyst does not push molecules over the existing barrier; it opens a different route with a lower barrier. Because Ea is smaller on the catalysed pathway, a larger fraction of molecules possess sufficient energy at any given temperature, so the rate rises. Crucially, the catalyst lowers Ea for the forward and reverse directions equally, leaving ΔH, the products and the equilibrium position untouched — it changes only the speed at which the outcome is reached, and it is regenerated at the end."
+    },
+    {
+      "type": "heading",
+      "content": "Higher Level: rate expressions, orders and the rate-determining step"
+    },
+    {
+      "type": "text",
+      "content": "At Higher Level we quantify rate. The rate expression is $\\text{rate} = k[\\text{A}]^m[\\text{B}]^n$, where $k$ is the rate constant and the powers $m$ and $n$ are the ORDERS with respect to A and B. A vital point: the orders are found EXPERIMENTALLY and are not read from the stoichiometric coefficients. The reason is mechanism — most reactions proceed through several steps, and the slowest is the rate-determining step (RDS). Only species that appear up to and including the RDS influence the rate, which is why orders can differ from the balanced equation. The overall order is $m + n$, and the units of $k$ change with overall order (for example, a first-order $k$ has units s⁻¹, a second-order $k$ has units mol⁻¹ dm³ s⁻¹)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\text{rate} = k[\\text{A}]^m[\\text{B}]^n$; orders $m$, $n$ are experimental, not from coefficients.",
+        "**Zero order** in a reactant: changing its concentration has NO effect on rate (it appears after the RDS).",
+        "**First order:** rate is proportional to concentration; doubling it doubles the rate.",
+        "**Second order:** doubling the concentration multiplies the rate by four ($2^2$).",
+        "The rate-determining step is the slowest step; the rate expression reflects the species involved up to it."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "For the reaction A + B → products, the following initial-rate data were collected. Deduce the order with respect to A and to B, the overall order, and write the rate expression. [4]\n\n| Experiment | [A] / mol dm⁻³ | [B] / mol dm⁻³ | Initial rate / mol dm⁻³ s⁻¹ |\n|---|---|---|---|\n| 1 | 0.10 | 0.10 | 2.0 × 10⁻³ |\n| 2 | 0.20 | 0.10 | 4.0 × 10⁻³ |\n| 3 | 0.20 | 0.20 | 1.6 × 10⁻² |",
+      "solution": "**Step 1 — order with respect to A (hold [B] constant: experiments 1 → 2).**\n[B] is fixed at 0.10. [A] doubles (0.10 → 0.20) and the rate doubles ($2.0\\times10^{-3} \\to 4.0\\times10^{-3}$), a factor of 2.\nSince $2 = 2^{1}$, the reaction is **first order in A** ($m = 1$).  [M1: correct comparison and deduction]\n\n**Step 2 — order with respect to B (hold [A] constant: experiments 2 → 3).**\n[A] is fixed at 0.20. [B] doubles (0.10 → 0.20) and the rate goes from $4.0\\times10^{-3}$ to $1.6\\times10^{-2}$, a factor of 4.\nSince $4 = 2^{2}$, the reaction is **second order in B** ($n = 2$).  [A1: correct order in B]\n\n**Step 3 — overall order.**\nOverall order $= m + n = 1 + 2 = 3$ (third order overall).  [A1]\n\n**Step 4 — rate expression.**\n$\\text{rate} = k[\\text{A}][\\text{B}]^{2}$.  [A1]\n\n*Method reminder: always change ONE concentration at a time and see how the rate responds — a ×2 in concentration giving ×2 is first order, ×4 is second order, ×1 (no change) is zero order.*"
+    },
+    {
+      "type": "heading",
+      "content": "Higher Level: the Arrhenius equation"
+    },
+    {
+      "type": "text",
+      "content": "The Arrhenius equation puts numbers to the temperature effect on the rate constant: $k = A e^{-E_a/RT}$, where $A$ is the pre-exponential (frequency) factor tied to collision frequency and orientation, $E_a$ is the activation energy, $R$ is the gas constant and $T$ is the absolute temperature. Taken in logarithmic form, $\\ln k = \\ln A - \\dfrac{E_a}{R}\\cdot\\dfrac{1}{T}$, it is the equation of a straight line: plotting $\\ln k$ against $1/T$ gives a gradient of $-E_a/R$ (from which Ea is found) and an intercept of $\\ln A$. The exponential term $e^{-E_a/RT}$ is precisely the fraction of molecules with E ≥ Ea from the Maxwell–Boltzmann picture — so a higher T or a lower Ea makes that term larger and $k$ (and the rate) rises. It is the same physics, now made quantitative."
+    },
+    {
+      "type": "formula",
+      "content": "\\ln k = \\ln A - \\frac{E_a}{R}\\cdot\\frac{1}{T}"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying a catalyst lowers ΔH** — it lowers the ACTIVATION ENERGY (Ea) by an alternative pathway; ΔH, the products and the equilibrium position are unchanged.",
+        "**Explaining a temperature rise only as 'particles collide more often'** — the dominant reason is the greater FRACTION of molecules with E ≥ Ea. Collision frequency is a minor contributor and cannot earn full marks on its own.",
+        "**Drawing the Maxwell–Boltzmann curve with a changed total area** — the total area (number of molecules) is CONSTANT; heating flattens and spreads the curve but does not add molecules.",
+        "**Confusing concentration with the energy of collisions** — higher concentration raises collision FREQUENCY, not the fraction above Ea; it does not lower Ea.",
+        "**Forgetting orientation** — a collision with E ≥ Ea still fails if the particles are wrongly aligned; both conditions are required.",
+        "**Reading orders off the equation (HL)** — orders are EXPERIMENTAL; they reflect the rate-determining step, not the stoichiometric coefficients.",
+        "**Moving the M–B curve for a catalyst (HL/SL)** — a catalyst does not change temperature, so the curve stays put; it is the Ea line that moves left."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Explain-and-conclude questions in Paper 2 are marked analytically: each distinct valid point is worth one mark, method/reasoning marks (M) build to an answer/conclusion mark (A), and error-carried-forward (ECF) means a reasonable follow-on from an earlier idea is still credited. Study how each mark below is tied to a specific, distinct point — and note the point the engine will NOT accept on its own."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the Maxwell–Boltzmann distribution and collision theory, explain why increasing the temperature increases the rate of reaction. [4]",
+      "solution": "**Model answer — full explanation.**\n\nAt a higher temperature the molecules have a greater average kinetic energy, so they move faster and collide slightly more FREQUENTLY. This alone gives only a small increase in rate.\n\nThe decisive effect is seen on the Maxwell–Boltzmann distribution: raising the temperature shifts the peak to the right and flattens the curve, so a much GREATER FRACTION of molecules now have kinetic energy equal to or greater than the activation energy, E ≥ Ea.\n\nBecause more molecules can now clear the activation-energy barrier (and are correctly oriented), a greater proportion of collisions are SUCCESSFUL. The frequency of successful collisions per second therefore rises sharply.\n\nAs a result, the rate of reaction increases.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — more frequent collisions.** Awarded for stating that particles move faster and collide more often at higher temperature. This is a valid distinct point, but on its own it is only ONE mark and does NOT explain the large effect.\n- **M2 — greater fraction with E ≥ Ea.** Awarded for the crucial point that a greater FRACTION of molecules have energy ≥ Ea (ideally linked to the area beyond Ea shifting on the Maxwell–Boltzmann curve). This is the point examiners most want to see, and each distinct valid point scores separately.\n- **M3 — more successful collisions.** Awarded for connecting the increased fraction to a higher frequency of SUCCESSFUL collisions (E ≥ Ea and correct orientation).\n- **A1 — conclusion.** Awarded for the explicit conclusion that the rate of reaction increases. The reasoning marks (M) must be present to reach it.\n\n**What the engine rejects:** an answer that says only 'the particles move faster so they collide more often, so the rate increases' scores M1 and possibly the conclusion, but is CAPPED — it cannot gain M2/M3 because it omits the greater fraction of molecules with E ≥ Ea. Our engine specifically flags the missing 'fraction ≥ Ea' point and withholds those marks.\n\n**ECF in action:** if a student wrongly writes that the activation energy 'decreases' with temperature (it does not) but then correctly argues that a greater fraction of molecules exceed the barrier and gives a valid conclusion, the engine still credits the fraction and conclusion points on the student's own reasoning, penalising only the incorrect statement.\n\n**Bottom line:** four distinct points, four marks. The frequency point is real but minor; the fraction-with-E ≥ Ea point is the one the mark scheme is built around, so never leave it out."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR explanation exactly this way — point by point, with ECF. So make every distinct idea explicit: name the increased collision frequency, then the GREATER FRACTION of molecules with E ≥ Ea, then the rise in successful collisions, then the conclusion. Writing 'they move faster so more collisions' captures one mark at most; spelling out the fraction above Ea is what unlocks the rest of the marks."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Collision theory and the activation-energy picture underpin everything that follows in reactivity. Equilibrium (R2.3) revisits catalysts and temperature — this time asking not how fast but how far a reaction goes, and why a catalyst speeds both directions equally without shifting the balance. At Higher Level, mechanisms and the rate-determining step explain why rate expressions look the way they do, and the Arrhenius equation turns the Maxwell–Boltzmann tail into a straight-line graph you can extract Ea from. Master the one habit — for any change, ask whether it alters collision frequency, the fraction with E ≥ Ea, or Ea itself — and kinetics becomes a single idea applied over and over."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-chemistry-hl&topic=R2.2"
+      "label": "Get a Paper 2 explanation marked: use the Maxwell–Boltzmann distribution and collision theory to explain a rate change, with full reasoning",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R2.2&component=paper_2"
     },
     {
       "type": "resources",
@@ -176,13 +377,13 @@
           "href": "https://phet.colorado.edu/en/simulations/reactions-and-rates"
         },
         {
-          "label": "Video Tutorial on Reaction Rates",
-          "href": "https://www.youtube.com/watch?v=N_G1p5t2w2A"
+          "label": "IB Chemistry Data Booklet (Section 1: physical constants and equations)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Reactions & Rates",

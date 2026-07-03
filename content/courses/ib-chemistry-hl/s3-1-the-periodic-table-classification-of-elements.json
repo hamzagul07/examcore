@@ -1,163 +1,408 @@
 {
   "slug": "s3-1-the-periodic-table-classification-of-elements",
   "topicCode": "S3.1",
+  "unit": {
+    "code": "S3",
+    "title": "Classification of matter"
+  },
   "title": "The periodic table: classification of elements",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental principles of classifying elements in the periodic table based on their electron configurations. Students will learn to deduce the period, group, and block of an element, including the transition metals and f-block elements, and understand the chemical significance of this classification.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "The periodic table is the single most powerful predictive tool in chemistry: arrange the elements by atomic number and their properties fall into repeating patterns you can explain and even forecast. This lesson builds the whole of S3.1 — how periods, groups and blocks map onto electron configuration; the periodicity of atomic radius, ionic radius, first ionization energy (including the small dips), electronegativity and electron affinity, each with the underlying reasoning; metallic versus non-metallic character; and the reactivity trends of Group 1 (alkali metals) and Group 17 (halogens). It closes with an HL look at the transition elements. Every trend is argued from nuclear charge, shielding and radius, and the worked examples are laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Deduce the position of an element in the periodic table from its electron configuration.",
-    "Identify an element's block (s, p, d, f) based on its valence electron configuration.",
-    "Explain the relationship between the group number and the number of valence electrons for s-block and p-block elements.",
-    "Understand the classification of elements into metals, non-metals, and metalloids."
+    "Relate an element's period, group and block to its electron configuration, and deduce position from configuration (and vice versa).",
+    "State and EXPLAIN the periodic trends in atomic radius, ionic radius, first ionization energy, electronegativity and electron affinity using nuclear charge, shielding and atomic radius.",
+    "Account for the small dips in first ionization energy across a period (Group 2→13 and Group 15→16) in terms of sub-shell and electron-pair effects.",
+    "Explain how metallic and non-metallic character change across a period and down a group, and describe the reactivity trends of the alkali metals and the halogens.",
+    "(HL) Recognise the characteristic properties of the transition elements: variable oxidation states, coloured complexes and catalytic behaviour.",
+    "Present a trend explanation so that each distinct valid point earns a mark and error-carried-forward (ECF) protects the conclusion."
   ],
+  "syllabusObjectivesCovered": [
+    "S3.1"
+  ],
+  "levelNote": "Common to SL and HL; transition elements and coloured complexes are HL.",
   "simpleExplanation": {
-    "title": "The Periodic Table's Address System",
-    "summary": "The periodic table is like a giant city where every element has a specific address. This address—its group, period, and block—is determined entirely by how its electrons are arranged in energy shells.",
-    "analogy": "Imagine you're organising a massive library. You wouldn't just place books randomly. You'd group them by genre (the 'block'), then arrange them on shelves (the 'periods') and in specific numbered positions on those shelves (the 'groups'). An element's electron configuration is its unique barcode, telling you exactly where in the library it belongs.",
+    "title": "The Periodic Table: A Map You Can Read",
+    "summary": "The periodic table is not a random chart — it is elements lined up in order of atomic number, and that single ordering makes their properties repeat in patterns. Once you know WHY a property changes (it almost always comes down to how strongly the nucleus pulls on the outer electrons), you can predict the behaviour of an element you have never met.",
+    "analogy": "Think of the outer electrons as held by an elastic band anchored to the nucleus. Add protons to the nucleus and the pull gets stronger; add a whole new shell and the electrons sit further out and inner shells 'shield' them, so the pull feels weaker. Almost every trend on this page — size, ionization energy, electronegativity — is just this tug-of-war between a growing nuclear charge and a growing, shielding electron cloud.",
     "steps": [
-      "Start with the element's atomic number to determine the total number of electrons.",
-      "Write out the full electron configuration, filling orbitals according to the Aufbau principle.",
-      "The highest principal energy level (the largest 'n' value) gives you the element's period.",
-      "The type of orbital (s, p, d, f) holding the outermost electrons determines the block, and the number of these electrons helps find the group."
+      "Fix an element's address: its period (row) is the highest principal energy level occupied; its group (column) sets the number of valence electrons; its block (s, p, d, f) is the sub-shell being filled.",
+      "For any trend, ask three questions: is the nuclear charge changing, is the shielding (inner shells) changing, and is the radius changing?",
+      "Across a period the nuclear charge rises but shielding barely changes, so the pull strengthens and atoms get smaller, harder to ionise and more electronegative.",
+      "Down a group a new shell is added each time, so radius and shielding grow, the pull on the outer electron weakens, and metals become MORE reactive while non-metals become LESS reactive."
     ]
   },
+  "keyConcepts": [
+    "periodicity",
+    "nuclear charge and shielding",
+    "electron configuration"
+  ],
   "flashcards": [
     {
-      "front": "What determines the period of an element?",
-      "back": "The highest principal energy level ($n$) of its electrons. For example, an element with the configuration $[Ne] 3s^1$ is in Period 3."
+      "front": "Period",
+      "back": "A horizontal row. The period number equals the highest principal energy level (n) that holds electrons in the ground-state atom. Period 3 = elements filling the n = 3 shell.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What determines the block (s, p, d, f) of an element?",
-      "back": "The type of orbital that contains the highest energy electrons (the last orbital being filled according to the Aufbau principle)."
+      "front": "Group",
+      "back": "A vertical column (1–18). Elements in a group share the same number of valence electrons and hence similar chemistry. Group number in the main groups tells you the valence-electron count.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How do you determine the group number for an s-block element?",
-      "back": "The group number is equal to the number of electrons in the outer s-orbital. For example, $ns^1$ is Group 1 and $ns^2$ is Group 2."
+      "front": "Blocks (s, p, d, f)",
+      "back": "Regions named after the sub-shell being filled: Groups 1–2 = s-block, Groups 13–18 = p-block, Groups 3–12 = d-block (transition elements), and the lanthanoids/actinoids = f-block.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "How do you determine the group number for a p-block element?",
-      "back": "Group number = 10 + (number of valence electrons). For example, an element with configuration $[Ne] 3s^2 3p^4$ has 6 valence electrons, so it is in Group 10 + 6 = 16."
+      "front": "Effective nuclear charge (Z_eff)",
+      "back": "The net positive pull felt by an outer electron: the true nuclear charge reduced by the shielding of inner electrons. It RISES across a period and stays roughly constant down a group. It drives nearly every trend.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "How is the group number typically determined for a d-block element?",
-      "back": "For Groups 3-12, the group number is generally the sum of the electrons in the outer s and d orbitals. For example, Scandium ($[Ar] 4s^2 3d^1$) is in Group 2+1=3."
+      "front": "Shielding (screening)",
+      "back": "Inner-shell electrons repel outer electrons and partly cancel the nuclear pull. Adding a whole new shell down a group increases shielding a lot; adding electrons to the SAME shell across a period increases it only slightly.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a metalloid?",
-      "back": "An element that has physical properties intermediate between those of metals and non-metals. They are found on the 'staircase' line separating metals and non-metals in the p-block."
+      "front": "Atomic radius trend",
+      "back": "DECREASES across a period (rising nuclear charge, near-constant shielding pulls the same shell in) and INCREASES down a group (each element adds a new, larger shell).",
+      "pillLabel": "Trend"
     },
     {
-      "front": "What are the Lanthanoids and Actinoids?",
-      "back": "They are the two series of elements that make up the f-block. Lanthanoids are in Period 6 (filling the 4f sub-level) and Actinoids are in Period 7 (filling the 5f sub-level)."
+      "front": "Ionic radius",
+      "back": "Cations are SMALLER than their atom (lost the outer shell; fewer electrons pulled in harder). Anions are LARGER than their atom (added electrons, more repulsion). Across an isoelectronic series, more protons = smaller ion.",
+      "pillLabel": "Trend"
     },
     {
-      "front": "Why is Helium (Z=2) placed in Group 18 and not Group 2?",
-      "back": "Although its electron configuration is $1s^2$, which suggests Group 2, its chemical properties (a full valence shell, extreme stability, high ionisation energy) are characteristic of a noble gas, so it is placed in Group 18."
+      "front": "First ionization energy (IE₁)",
+      "back": "The energy to remove one mole of electrons from one mole of gaseous atoms: X(g) → X⁺(g) + e⁻. INCREASES across a period and DECREASES down a group. High for noble gases, low for Group 1.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Identify the six metalloids you need to know.",
-      "back": "Boron (B), Silicon (Si), Germanium (Ge), Arsenic (As), Antimony (Sb), and Tellurium (Te)."
+      "front": "The two IE dips across a period",
+      "back": "IE dips at Group 2→13 (a p electron is higher in energy and slightly shielded by the full s sub-shell) and at Group 15→16 (the first paired p electron suffers extra electron–electron repulsion, so it leaves more easily).",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the electron configuration for Copper (Cu, Z=29)?",
-      "back": "$[Ar] 4s^1 3d^{10}$. This is an exception to the Aufbau principle, as a full d-subshell provides extra stability."
+      "front": "Electronegativity",
+      "back": "The tendency of an atom to attract a shared (bonding) pair of electrons. INCREASES across a period and DECREASES down a group. Fluorine is the most electronegative element (~4.0). Noble gases are usually left off the scale.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the electron configuration for Chromium (Cr, Z=24)?",
-      "back": "$[Ar] 4s^1 3d^5$. This is an exception to the Aufbau principle, as a half-full d-subshell provides extra stability."
+      "front": "Electron affinity",
+      "back": "The enthalpy change when a gaseous atom gains an electron: X(g) + e⁻ → X⁻(g). Generally becomes MORE negative (more energy released) across a period; the halogens have the most exothermic values.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Metallic vs non-metallic character",
+      "back": "Metallic character (tendency to lose electrons) INCREASES down a group and DECREASES across a period. Non-metallic character does the opposite. So the most metallic elements are bottom-left, the most non-metallic (bar noble gases) top-right.",
+      "pillLabel": "Trend"
+    },
+    {
+      "front": "Group 1 (alkali metals) reactivity",
+      "back": "Reactivity INCREASES down the group: the outer electron is further out and more shielded, so it is lost more easily. All react with water to give H₂ and an alkaline hydroxide, forming +1 ions.",
+      "pillLabel": "Trend"
+    },
+    {
+      "front": "Group 17 (halogens) reactivity",
+      "back": "Reactivity DECREASES down the group: the atom must GAIN an electron, and a larger, more shielded atom attracts an incoming electron less strongly. They form −1 ions and act as oxidising agents (F₂ strongest).",
+      "pillLabel": "Trend"
+    },
+    {
+      "front": "HL — Transition elements",
+      "back": "d-block metals that form at least one ion with a partially filled d sub-shell. Characteristic features: variable oxidation states, coloured complexes (d–d transitions), and catalytic activity (e.g. Fe in Haber, MnO₂, V₂O₅).",
+      "pillLabel": "HL"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Going LEFT to RIGHT across Period 3 from Na to Ar, the atomic radius:",
+      "options": [
+        "Increases, because more electrons are added",
+        "Decreases, because rising nuclear charge pulls the same shell in more tightly",
+        "Stays the same, because the electrons are in the same shell",
+        "Increases, because the atoms gain protons and neutrons"
+      ],
+      "answer": "Decreases, because rising nuclear charge pulls the same shell in more tightly"
+    },
+    {
+      "prompt": "As you move across Period 3, the shielding experienced by the outer electrons is best described as:",
+      "options": [
+        "Increasing sharply, because a new shell is added each element",
+        "Roughly constant, because the added electrons all go into the same outer shell",
+        "Decreasing, because electrons are lost",
+        "Zero, because there are no inner electrons"
+      ],
+      "answer": "Roughly constant, because the added electrons all go into the same outer shell"
+    },
+    {
+      "prompt": "The first ionization energy of aluminium (Group 13) is LOWER than that of magnesium (Group 2). The best explanation is:",
+      "options": [
+        "Aluminium has fewer protons than magnesium",
+        "Aluminium's outer electron is a 3p electron, which is higher in energy and slightly shielded by the full 3s sub-shell, so it is easier to remove",
+        "Aluminium is a non-metal",
+        "Magnesium has a full outer shell"
+      ],
+      "answer": "Aluminium's outer electron is a 3p electron, which is higher in energy and slightly shielded by the full 3s sub-shell, so it is easier to remove"
+    },
+    {
+      "prompt": "The first ionization energy of sulfur (Group 16) is slightly LOWER than that of phosphorus (Group 15) because:",
+      "options": [
+        "Sulfur has a smaller nuclear charge",
+        "In sulfur the fourth 3p electron must pair up, and electron–electron repulsion in that filled orbital makes it easier to remove",
+        "Phosphorus is a metal",
+        "Sulfur has a complete octet"
+      ],
+      "answer": "In sulfur the fourth 3p electron must pair up, and electron–electron repulsion in that filled orbital makes it easier to remove"
+    },
+    {
+      "prompt": "Which statement about metallic character is correct?",
+      "options": [
+        "Metallic character increases DOWN a group, because the outer electron is further out and more shielded, so it is lost more easily",
+        "Metallic character decreases down a group",
+        "Metallic character increases across a period from left to right",
+        "Metallic character is the same for every element in a period"
+      ],
+      "answer": "Metallic character increases DOWN a group, because the outer electron is further out and more shielded, so it is lost more easily"
     }
   ],
   "faq": [
     {
-      "q": "Why are the lanthanoids and actinoids placed at the bottom of the periodic table?",
-      "a": "They are placed separately to prevent the main body of the periodic table from becoming excessively wide and difficult to display. If they were inserted in their correct positions (lanthanoids after Ba in Period 6, actinoids after Ra in Period 7), the table would be 32 columns wide instead of 18."
+      "q": "Why does atomic radius DECREASE across a period even though electrons are being added?",
+      "a": "Because the extra electrons go into the SAME outer shell, they add almost no shielding, while each step adds a proton to the nucleus. The rising nuclear charge (increasing Z_eff) pulls that unchanged outer shell inward, so the atom actually gets smaller left to right. Down a group the opposite happens: each element starts a new, larger shell, so radius grows."
     },
     {
-      "q": "How do I determine the group of a d-block element if the 'sum of s and d electrons' rule seems to fail for groups 8, 9, and 10?",
-      "a": "While the rule 'group number = s electrons + d electrons' works well for groups 3-7, it becomes less straightforward for later transition metals. For IB Chemistry, it's most reliable to work backwards: know that Groups 3-12 are the d-block. If you determine an element is in the d-block, you can count across from Group 3 to find its group number based on its number of d-electrons (e.g., $d^1$ is Group 3, $d^2$ is Group 4, ..., $d^6$ is Group 8, $d^7$ is Group 9, $d^8$ is Group 10, $d^{10}s^1$ is Group 11, $d^{10}s^2$ is Group 12)."
+      "q": "What exactly is the difference between ionization energy, electron affinity and electronegativity?",
+      "a": "Ionization energy is the energy needed to REMOVE an electron from a gaseous atom (always endothermic). Electron affinity is the enthalpy change when a gaseous atom GAINS an electron (usually exothermic for non-metals). Electronegativity is not an energy at all — it is a relative, unitless tendency of a BONDED atom to attract a shared pair of electrons. All three broadly increase across a period and decrease down a group because they all trace back to how strongly the nucleus attracts electrons."
     },
     {
-      "q": "Is hydrogen a metal or a non-metal?",
-      "a": "Hydrogen is a non-metal. It is placed in Group 1 because its electron configuration is $1s^1$, giving it one valence electron like the alkali metals. However, its chemical and physical properties are distinctly non-metallic."
+      "q": "Why are there small dips in first ionization energy across Period 3?",
+      "a": "Two of them. Between Group 2 (Mg) and Group 13 (Al) the electron removed changes from a 3s to a 3p electron; the 3p is higher in energy and is slightly shielded by the full 3s pair, so it needs less energy. Between Group 15 (P) and Group 16 (S) the fourth 3p electron in sulfur must go into an already-occupied orbital, and the extra electron–electron repulsion of that pair makes it easier to remove. These dips are strong evidence for sub-shells and for the way electrons pair up."
+    },
+    {
+      "q": "Why do the alkali metals get MORE reactive down the group while the halogens get LESS reactive?",
+      "a": "Alkali metals react by LOSING their single outer electron; going down the group that electron is further from the nucleus and more shielded, so it is lost more easily — reactivity rises. Halogens react by GAINING an electron; going down the group the atom is larger and the incoming electron ends up further from the nucleus and more shielded, so it is attracted less strongly — reactivity falls. Same underlying physics, opposite direction, because one group loses and the other gains."
+    },
+    {
+      "q": "What makes the transition elements (HL) special compared with Group 1 or 2 metals?",
+      "a": "Their 3d and 4s sub-shells are close in energy, so they can lose different numbers of electrons and show VARIABLE oxidation states (e.g. Fe²⁺ and Fe³⁺). Partially filled d orbitals split in a ligand field and absorb visible light, giving COLOURED complexes. And because they can readily change oxidation state and offer surfaces/empty d orbitals, many act as CATALYSTS (iron in the Haber process, MnO₂, V₂O₅). Group 1 and 2 metals have only one common oxidation state, form colourless ions and are not typical catalysts."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "The periodic table is arguably the most important tool in chemistry. It's not just a list of elements; it's a sophisticated classification system based on atomic structure. In this lesson, we will delve into how an element's electron configuration dictates its precise location—its period, group, and block—and consequently, its chemical character."
+      "content": "The periodic table is far more than a poster on the lab wall. It is the elements arranged in order of increasing atomic number, and that single decision makes their properties repeat in patterns — a phenomenon called periodicity. In this lesson we do two things at once: we learn WHERE an element sits (its period, group and block, read straight from its electron configuration) and we learn WHY its properties trend the way they do. Almost every trend on this page — size, ionization energy, electronegativity, reactivity — comes back to one tug-of-war: a nuclear charge that grows across a period versus an electron cloud whose shielding grows down a group. Get that idea, and you can explain trends rather than memorise them, which is exactly what examiners reward. Each worked example is laid out the way our marking engine actually awards the marks."
     },
     {
       "type": "heading",
-      "content": "Electron Configuration: The Periodic Table's Blueprint"
+      "content": "Reading the table: periods, groups and blocks"
     },
     {
       "type": "text",
-      "content": "The arrangement of elements in the periodic table is a direct consequence of their electron configurations. By understanding how electrons fill orbitals, we can predict and explain the periodic trends in properties. The key principle is that elements in the same group have similar valence electron configurations, leading to similar chemical behaviour."
-    },
-    {
-      "type": "heading",
-      "content": "Periods, Groups, and Blocks"
-    },
-    {
-      "type": "text",
-      "content": "The periodic table is structured into horizontal rows called **periods** and vertical columns called **groups**."
+      "content": "The modern periodic table lists the elements in order of increasing atomic number Z. Its layout is a direct picture of electron configuration. The PERIOD (row) number equals the highest principal energy level occupied in the ground-state atom — so Period 3 elements are filling the n = 3 shell. The GROUP (column) number, in the main groups, tells you the number of valence electrons, which is why elements in the same group behave alike. And the table divides into BLOCKS named after the sub-shell being filled: the s-block (Groups 1–2), the p-block (Groups 13–18), the d-block or transition elements (Groups 3–12), and the f-block (the lanthanoids and actinoids drawn below the main body)."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Periods (Rows 1-7):** The period number corresponds to the highest principal energy level ($n$) occupied by electrons. For example, Sodium ($Na$, $1s^2 2s^2 2p^6 3s^1$) has its outermost electron in the $n=3$ level, so it is in Period 3.",
-        "**Groups (Columns 1-18):** Elements in the same group have the same number of valence electrons and similar chemical properties. For main group elements (s- and p-blocks), the group number reveals the number of valence electrons.",
-        "**Blocks (s, p, d, f):** The table is divided into blocks corresponding to the sub-level containing the highest-energy electrons. This is the orbital being filled as we move across the period."
+        "**Period** = highest occupied principal energy level (n). Sodium, [Ne]3s¹, is in Period 3.",
+        "**Group** = number of valence electrons (main groups). Sodium has one valence electron, so it is in Group 1.",
+        "**Block** = sub-shell being filled: s-block (Gp 1–2), p-block (Gp 13–18), d-block/transition (Gp 3–12), f-block (lanthanoids and actinoids).",
+        "Position and electron configuration are two views of the same fact — you can deduce one from the other."
       ]
     },
     {
-      "type": "formula",
-      "content": "For p-block elements (Groups 13-18): \\\\ \\text{Group Number} = 10 + (\\text{number of valence electrons})"
-    },
-    {
       "type": "workedExample",
-      "question": "An element has the atomic number Z = 34. Deduce its group, period, and block in the periodic table.",
-      "solution": "1. **Determine the electron configuration:** An atom with Z=34 has 34 electrons. Using the Aufbau principle, the configuration is $1s^2 2s^2 2p^6 3s^2 3p^6 4s^2 3d^{10} 4p^4$. A condensed form is $[Ar] 4s^2 3d^{10} 4p^4$. \\n\\n 2. **Determine the period:** The highest principal energy level ($n$) is 4 (from $4s^2$ and $4p^4$). Therefore, the element is in **Period 4**. \\n\\n 3. **Determine the block:** The highest energy electrons are being added to the 4p sub-level. Therefore, the element is in the **p-block**. \\n\\n 4. **Determine the group:** For p-block elements, the group number is 10 + (number of valence electrons). The valence electrons are in the $n=4$ shell, which are the $4s^2$ and $4p^4$ electrons. Total valence electrons = 2 + 4 = 6. \\n Group = 10 + 6 = **16**. \\n\\n **Conclusion:** The element is Selenium (Se), located in Period 4, Group 16, and the p-block."
+      "question": "An element has the ground-state electron configuration 1s²2s²2p⁶3s²3p⁴. Deduce its period, group and block, and name the element. [3]",
+      "solution": "**Step 1 — period.** The highest principal energy level occupied is n = 3, so the element is in **Period 3**. [1]\n\n**Step 2 — group.** Count the valence (outer-shell, n = 3) electrons: 3s²3p⁴ = 6 valence electrons. In the p-block the group number is 10 + (valence electrons), giving Group 16. So it is in **Group 16**. [1]\n\n**Step 3 — block and identity.** The outermost sub-shell being filled is 3p, so it is a **p-block** element. Total electrons = 16, so Z = 16: the element is **sulfur (S)**. [1]\n\n*Reading position straight from configuration is a routine mark-earner: n gives the period, the outer sub-shell gives the block, and the valence count gives the group.*"
     },
     {
       "type": "heading",
-      "content": "Metals, Non-metals, and Metalloids"
+      "content": "Metals, non-metals and metalloids"
     },
     {
       "type": "text",
-      "content": "Beyond the block classification, elements can be broadly categorised by their metallic character. A diagonal 'staircase' line in the p-block, starting from Boron (B), separates the metals from the non-metals. Elements to the left of this line are metals (which constitute the vast majority of elements), while elements to the right are non-metals. The elements that lie on this staircase line (B, Si, Ge, As, Sb, Te) are known as **metalloids** or semi-metals, exhibiting properties of both metals and non-metals."
+      "content": "The broadest classification is by metallic character — an element's tendency to LOSE electrons. A diagonal 'staircase' line, beginning between boron (B) and aluminium (Al), separates the table. Metals sit to the left, non-metals to the upper right, and a thin band of metalloids straddles the line. This is not just descriptive: it is the visible result of the trends we are about to explain, because losing electrons becomes easier towards the bottom-left (low ionization energy) and gaining them becomes easier towards the top-right (high electronegativity and electron affinity)."
     },
     {
-      "type": "examTip",
-      "content": "When asked to deduce a position, always show your working by writing out the electron configuration first. For d-block elements, remember the two key exceptions to the Aufbau principle: Chromium (Cr) and Copper (Cu). These are frequently tested."
+      "type": "keyPoints",
+      "items": [
+        "**Metals** (left of the staircase): shiny, good conductors, malleable and ductile; they LOSE electrons to form cations. Most elements are metals.",
+        "**Non-metals** (upper right, plus hydrogen): often dull, brittle, poor conductors; they GAIN or SHARE electrons to form anions or covalent bonds.",
+        "**Metalloids** (on the staircase: B, Si, Ge, As, Sb, Te): intermediate properties. Silicon is a semiconductor, central to electronics.",
+        "**Metallic character** increases DOWN a group and DECREASES across a period, so the most metallic elements lie bottom-left and the most non-metallic (excluding noble gases) lie top-right."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Atomic radius — the trend everything else follows"
+    },
+    {
+      "type": "text",
+      "content": "Atomic radius is the master trend, because the size of an atom controls how strongly its outer electrons are held. Across a period the radius DECREASES: each step adds a proton (raising the nuclear charge) while the extra electron joins the SAME outer shell and adds almost no shielding, so the growing effective nuclear charge (Z_eff) drags that shell inward. Down a group the radius INCREASES: each element begins a new, larger principal shell, and the extra inner shells add substantial shielding, so the outer electrons sit further out and are held more loosely. Keep this picture in mind — smaller atom means stronger pull on the outer electrons, and that single idea explains ionization energy, electronegativity and reactivity in turn."
     },
     {
       "type": "workedExample",
-      "question": "Element Y is in Period 4 and Group 11 of the periodic table. \\n (i) State the block in which element Y is found. \\n (ii) Deduce the condensed electron configuration of a Y atom.",
-      "solution": "(i) **Identify the block:** Groups 3 to 12 constitute the d-block. Since element Y is in Group 11, it is in the **d-block**. \\n\\n (ii) **Deduce the electron configuration:** \\n 1. Period 4 means the highest principal energy level is $n=4$. The noble gas core is Argon, $[Ar]$. \\n 2. The configuration will be of the form $[Ar] 4s^x 3d^y$. \\n 3. Group 11 is one of the exceptions to the Aufbau principle. To achieve the extra stability of a full d-subshell, one electron is promoted from the 4s orbital to the 3d orbital. \\n 4. Instead of the expected $[Ar] 4s^2 3d^9$, the configuration becomes $[Ar] 4s^1 3d^{10}$. \\n\\n **Final Answer:** The condensed electron configuration is **$[Ar] 4s^1 3d^{10}$**. (This element is Copper, Cu)."
+      "question": "Explain why the atomic radius of magnesium is smaller than that of sodium, but larger than that of chlorine. [3]",
+      "solution": "**Na → Mg (across a period, moving right):** Sodium is [Ne]3s¹ and magnesium is [Ne]3s². Magnesium has one more proton, so a greater nuclear charge, while the extra electron is in the SAME 3s sub-shell and adds negligible shielding. The greater Z_eff pulls the outer shell in more tightly, so **Mg is smaller than Na**. [1]\n\n**Mg → Cl (still across Period 3):** Chlorine has still more protons (Z = 17 vs 12), again with the added electrons in the same n = 3 shell and roughly constant shielding, so Z_eff is even larger and the shell is pulled in further — **Cl is smaller than Mg**. [1]\n\n**Putting it together:** all three are in Period 3, so the radius simply decreases left to right as nuclear charge rises with near-constant shielding: Na > Mg > Cl. [1]\n\n*The whole argument rests on 'more protons, same shell, near-constant shielding, so stronger pull and smaller atom' — state that mechanism, don't just assert the order.*"
+    },
+    {
+      "type": "heading",
+      "content": "Ionic radius"
+    },
+    {
+      "type": "text",
+      "content": "Forming an ion changes the size in a predictable way. A CATION is smaller than its parent atom: a metal usually loses its entire outer shell, and the remaining electrons feel the same nuclear charge shared among fewer electrons, so they are pulled in tighter — Na⁺ is much smaller than Na. An ANION is larger than its parent atom: adding electrons increases electron–electron repulsion and spreads the outer shell out, so Cl⁻ is larger than Cl. When comparing an ISOELECTRONIC series (ions with the same number of electrons, e.g. N³⁻, O²⁻, F⁻, Na⁺, Mg²⁺, Al³⁺, all with 10 electrons), the ion with the MOST protons is the smallest, because the same 10 electrons are pulled in by an increasing nuclear charge."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Cation < atom:** electrons lost (often a whole shell); remaining electrons pulled in more tightly.",
+        "**Anion > atom:** electrons gained; extra repulsion expands the outer shell.",
+        "**Isoelectronic series:** same electron count, so more protons ⇒ smaller ion (Mg²⁺ < Na⁺ < F⁻ < O²⁻).",
+        "Down a group, ionic radius still increases (more shells), just as atomic radius does."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "First ionization energy — and its two revealing dips"
+    },
+    {
+      "type": "text",
+      "content": "The first ionization energy (IE₁) is the energy needed to remove one mole of electrons from one mole of gaseous atoms: X(g) → X⁺(g) + e⁻. It is a direct measure of how tightly the outermost electron is held, so it tracks atomic radius. Across a period IE₁ generally INCREASES: nuclear charge rises, shielding is near-constant and the radius shrinks, so the outer electron is held more strongly and is harder to remove. Down a group IE₁ DECREASES: the outer electron is further from the nucleus and better shielded by more inner shells, so it is easier to remove. Superimposed on the general rise across a period are two small but important DIPS, and they are prized exam material because they are direct evidence for sub-shells and electron pairing."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**General rise across a period:** increasing nuclear charge + near-constant shielding + decreasing radius ⇒ stronger attraction ⇒ higher IE₁.",
+        "**Fall down a group:** increasing radius + increasing shielding ⇒ weaker attraction ⇒ lower IE₁.",
+        "**Dip at Group 2 → 13 (e.g. Mg → Al):** the electron removed is now a p electron, higher in energy and slightly shielded by the full s sub-shell, so less energy is needed.",
+        "**Dip at Group 15 → 16 (e.g. P → S):** the fourth p electron must pair up in an already-occupied orbital; the extra electron–electron repulsion makes it easier to remove."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The first ionization energies (kJ mol⁻¹) of four consecutive Period 3 elements are: Mg 738, Al 578, Si 786, P 1012. Explain why the value for Al is LOWER than that for Mg, despite aluminium having a greater nuclear charge. [2]",
+      "solution": "**The key is which electron leaves.** In magnesium ([Ne]3s²) the electron removed comes from the 3s sub-shell. In aluminium ([Ne]3s²3p¹) the electron removed is the single **3p electron**. [1]\n\n**Why that lowers the value:** a 3p electron is at a slightly higher energy than a 3s electron and is slightly shielded by the filled 3s sub-shell, so it is held less tightly and needs LESS energy to remove — even though aluminium has one more proton than magnesium. Hence IE₁(Al) < IE₁(Mg). [1]\n\n*The extra nuclear charge would predict a higher value; the sub-shell change overrides it. Naming the 3p electron and its shielding by the 3s pair is what earns the marks — 'more shielding' alone, without identifying the sub-shell, is too vague.*"
+    },
+    {
+      "type": "heading",
+      "content": "Electronegativity and electron affinity"
+    },
+    {
+      "type": "text",
+      "content": "Electronegativity is the tendency of an atom to attract a shared pair of electrons in a covalent bond. It is a relative, unitless scale (Pauling), and it follows the radius story exactly: it INCREASES across a period (smaller atoms with higher nuclear charge pull bonding electrons more strongly) and DECREASES down a group (bonding electrons sit further from the nucleus and are more shielded). Fluorine, small and highly charged, is the most electronegative element at about 4.0; the noble gases are normally left off the scale because they rarely bond. Electron affinity is a closely related quantity — the enthalpy change when a gaseous atom gains an electron, X(g) + e⁻ → X⁻(g). It is usually exothermic (negative) and becomes MORE exothermic across a period, with the halogens releasing the most energy because a nearly-full outer shell strongly attracts an extra electron to complete the octet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Electronegativity** increases across a period, decreases down a group; F is the highest (~4.0), Cs/Fr among the lowest.",
+        "It measures attraction for a SHARED pair in a bond, so it applies to bonded atoms — it is not an energy.",
+        "**Electron affinity** is the enthalpy change for gaining an electron; generally more negative (more exothermic) across a period.",
+        "Halogens have the most exothermic electron affinities — one electron short of a full shell — which underpins their oxidising behaviour."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Group 1 and Group 17: opposite reactivity trends, one explanation"
+    },
+    {
+      "type": "text",
+      "content": "The alkali metals (Group 1: Li, Na, K, Rb, Cs) and the halogens (Group 17: F, Cl, Br, I) show the trends at their most vivid — and in OPPOSITE directions, which is a favourite exam contrast. Alkali metals react by LOSING their single outer electron to form +1 ions; going down the group that electron is further from the nucleus and more shielded, so it is lost more easily and reactivity INCREASES down the group (Cs is far more violent with water than Li). Halogens react by GAINING an electron to form −1 ions; going down the group the atom is larger, so an incoming electron ends up further from the nucleus and more shielded, is attracted less strongly, and reactivity DECREASES down the group (F₂ is the most reactive, the strongest oxidising agent). It is the same physics — distance and shielding weakening the nucleus's grip — producing opposite outcomes because one group loses and the other gains."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Group 1 (alkali metals):** soft, low-density, low melting points; react with water to give H₂ and a hydroxide (alkaline solution); form +1 ions; reactivity INCREASES down the group.",
+        "**Group 17 (halogens):** reactive non-metals existing as diatomic molecules (F₂, Cl₂...); form −1 halide ions; act as oxidising agents; reactivity DECREASES down the group.",
+        "**Displacement:** a more reactive halogen displaces a less reactive one from solution (e.g. Cl₂ + 2KBr → 2KCl + Br₂), a direct demonstration of the trend.",
+        "Same underlying cause (radius and shielding), opposite direction, because Group 1 loses an electron and Group 17 gains one."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Place the elements Li, K and Na in order of INCREASING reactivity with water, and place F, Cl and Br in order of INCREASING reactivity. Justify each order in terms of atomic structure. [3]",
+      "solution": "**Alkali metals (increasing reactivity):** Li < Na < K. [1] Down Group 1 the outer electron is in a higher shell, further from the nucleus and more shielded by additional inner shells, so it is lost more easily — reactivity rises down the group, making K the most reactive of the three. [1]\n\n**Halogens (increasing reactivity):** Br < Cl < F. [1] Down Group 17 the atom is larger, so an incoming electron is captured further from the nucleus and is more shielded, so it is attracted less strongly — reactivity FALLS down the group, making F the most reactive.\n\n*Notice the orders run opposite ways down their groups: Group 1 loses an electron (bigger = easier), Group 17 gains one (bigger = harder). Award is for the correct order AND the radius/shielding reason, not the order alone.*"
+    },
+    {
+      "type": "heading",
+      "content": "HL — The transition elements"
+    },
+    {
+      "type": "text",
+      "content": "The d-block metals (Groups 3–12) are the transition elements, defined more precisely as elements that form at least one stable ion with a partially filled d sub-shell. Because their 4s and 3d sub-shells lie close in energy, transition elements behave differently from the s-block metals in three signature ways. First, VARIABLE OXIDATION STATES: they can lose different numbers of electrons (iron forms both Fe²⁺ and Fe³⁺; manganese ranges up to +7 in MnO₄⁻). Second, COLOURED COMPLEXES: ligands split the d orbitals into two energy levels, and electrons absorb specific visible wavelengths jumping between them (d–d transitions), so [Cu(H₂O)₆]²⁺ is blue and [Ni(H₂O)₆]²⁺ is green. Third, CATALYSIS: their ability to change oxidation state easily and to offer empty d orbitals for bonding makes many of them catalysts — iron in the Haber process, vanadium(V) oxide in the Contact process, MnO₂ for decomposing hydrogen peroxide. By contrast, Group 1 and 2 metals show a single common oxidation state, form colourless ions and are not typical catalysts. (Note: scandium and zinc are d-block but are not usually counted as transition elements, because Sc³⁺ has an empty d sub-shell and Zn²⁺ has a full one.)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Definition (HL):** a transition element forms at least one ion with a partially filled d sub-shell (so Sc and Zn are excluded).",
+        "**Variable oxidation states:** 4s and 3d close in energy ⇒ several accessible oxidation states (Fe²⁺/Fe³⁺, Cu⁺/Cu²⁺, Mn up to +7).",
+        "**Coloured complexes:** d-orbital splitting by ligands ⇒ d–d transitions absorb visible light ⇒ colour.",
+        "**Catalysis:** easy change of oxidation state and available d orbitals ⇒ many are catalysts (Fe, V₂O₅, MnO₂, Ni)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying atomic radius INCREASES across a period** — it decreases. The added electrons enter the same shell and add little shielding, so rising nuclear charge pulls that shell in and the atom shrinks left to right.",
+        "**Claiming shielding rises sharply ACROSS a period** — it is roughly constant across a period (same shell); shielding rises mainly DOWN a group as whole new shells are added. Confusing the two wrecks trend explanations.",
+        "**Explaining IE₁ with 'more protons so it's harder' and nothing else** — you must link the greater nuclear charge to the near-constant shielding and the smaller radius/stronger attraction. The bare 'more protons' statement is marked as too vague.",
+        "**Forgetting the two IE dips** — Group 2→13 (s→p sub-shell change) and Group 15→16 (electron pairing repulsion). Treating the period as a smooth rise loses the mark that tests sub-shell understanding.",
+        "**Getting the two group reactivity trends backwards** — alkali metals get MORE reactive down the group (lose an electron more easily), halogens get LESS reactive down the group (gain an electron less easily).",
+        "**Saying metallic character DECREASES down a group** — it increases down a group (and decreases across a period), because the outer electron becomes easier to lose lower down.",
+        "**Calling hydrogen an alkali metal** — it sits in Group 1 for its one valence electron but is a non-metal with unique behaviour.",
+        "**Confusing electronegativity with ionization energy or electron affinity** — electronegativity is a relative, unitless bonding tendency; the other two are energies (removing vs gaining an electron)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Explanation questions on periodicity are marked ANALYTICALLY: the mark scheme is a list of distinct valid points, and each independent, correct point you make scores one mark up to the total. There is a method/reasoning half (M — the mechanism) and an answer/conclusion half (A — the outcome you draw from it), and error-carried-forward (ECF) means a conclusion that follows correctly from an earlier (even mistaken) statement can still score. Study how the three marks below attach to three separate ideas, not to how many sentences you write."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain why the first ionization energy generally increases across Period 3 from sodium (Na) to argon (Ar). [3]",
+      "solution": "**Model answer.**\nAcross Period 3 the nuclear charge increases (from 11 protons in Na to 18 in Ar), while the electrons are added to the same outer principal energy level (n = 3), so the shielding by inner shells stays roughly constant. With a greater effective nuclear charge and near-constant shielding, the outer electrons are pulled in closer and the atomic radius decreases. Therefore the outermost electron is attracted more strongly and more energy is required to remove it, so the first ionization energy increases from Na to Ar.\n\n---\n**How our marking engine awards the 3 marks** — each distinct valid point = 1 mark:\n\n- **Point 1 (M — nuclear charge):** 'nuclear charge / number of protons increases across the period.' A reasoning mark for the cause. Awarded for the increasing-nuclear-charge idea however it is phrased.\n- **Point 2 (M — shielding / same shell):** 'shielding stays approximately constant because the electrons are added to the same (outer) shell.' A second, INDEPENDENT reasoning mark. This is the point most often missing — see the note below.\n- **Point 3 (A — radius/attraction conclusion):** 'so the radius decreases / the outer electron is attracted more strongly / held more tightly, hence IE increases.' The answer mark that ties the mechanism to the conclusion.\n\n**ECF and equivalents.** The engine ACCEPTS equivalent wording — 'effective nuclear charge increases', 'stronger attraction between nucleus and outer electron', 'electron closer to the nucleus' all score their respective points. Under ECF, if a student wrongly states shielding but then draws the conclusion that correctly follows from THEIR reasoning, the conclusion (Point 3) can still be credited.\n\n**What our engine REJECTS.** A bare 'more protons so it's harder to remove the electron' scores only Point 1 — it is treated as too vague because it omits the shielding/radius link (Points 2 and 3). Two sentences that both make the same nuclear-charge point score ONE mark, not two: the marks are for DISTINCT points, so a full-mark answer must supply three different ideas (charge, shielding, radius/attraction).\n\n**Bottom line:** think in points, not paragraphs. Charge up, shielding constant, radius down and attraction up — three distinct ideas, three marks."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR periodicity answers exactly this way — point by point, with M reasoning and A conclusion, ECF and 'accept equivalents' applied. So make each mark visible: name the rising nuclear charge, state that shielding is roughly constant (same shell), and finish with the radius/attraction conclusion. Don't fuse everything into a vague 'more protons so harder to remove' — that scores one point where three were available."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Periodicity is the scaffolding for much of the course ahead. Ionization energies and electronegativities decide whether atoms form ionic or covalent bonds and how polar those bonds are (Structure 2); electron affinity and ionic radius feed directly into lattice enthalpies and Born–Haber cycles; and the group trends you have just explained underpin the chemistry of the s-block and p-block families. Master the single habit of arguing every trend from nuclear charge, shielding and radius, and you will be able to predict — not just recall — the behaviour of elements you meet later."
     },
     {
       "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-chemistry-hl&topic=S3.1"
+      "label": "Get a Paper 2 periodicity explanation marked: explain a trend point-by-point with full reasoning",
+      "href": "/mark?subject=ib-chemistry-hl&topic=S3.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive Periodic Table (RSC)",
-          "href": "https://www.rsc.org/periodic-table/"
+          "label": "IB Chemistry Data Booklet (Sections 8, 9 and the periodic table)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         },
         {
-          "label": "Video Explanation of Electron Configurations",
-          "href": "https://www.youtube.com/watch?v=2AFPfg0Como"
+          "label": "Interactive Periodic Table (Royal Society of Chemistry)",
+          "href": "https://www.rsc.org/periodic-table"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

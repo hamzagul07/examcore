@@ -1,162 +1,317 @@
 {
   "slug": "r3-3-electron-sharing-reactions",
   "topicCode": "R3.3",
+  "unit": {
+    "code": "R3",
+    "title": "What are the mechanisms of chemical change?"
+  },
   "title": "Electron sharing reactions",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson explores drugs that form strong, permanent covalent bonds with their biological targets. We will examine the chemical mechanisms involving nucleophiles and electrophiles, using the examples of penicillin's action on bacterial enzymes and cisplatin's interaction with DNA.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Electron-sharing reactions are the world of the free radical: a species with a single unpaired electron that is fiercely reactive. This lesson builds the whole of R3.3 — homolytic versus heterolytic bond fission, how ultraviolet light generates radicals, and the free-radical substitution of alkanes worked all the way through its three stages of initiation, propagation and termination. We use the single-headed 'fish-hook' arrow to track single electrons, explain why a mixture of products always forms, and connect the chemistry to the real-world story of ozone depletion by CFCs. As with every lesson, the worked examples are laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the mechanism of covalent modification of proteins and DNA by drugs.",
-    "Identify nucleophilic groups in biological molecules and electrophilic centres in drugs.",
-    "Explain the mode of action of penicillin and cisplatin as examples of covalent inhibitors.",
-    "Distinguish between covalent and non-covalent drug interactions and their consequences."
+    "Distinguish between homolytic and heterolytic bond fission and the species each one produces.",
+    "Describe a free radical and explain the role of ultraviolet (UV) light in generating radicals.",
+    "Write the initiation, propagation and termination equations for the free-radical substitution of an alkane by a halogen.",
+    "Use the single-headed 'fish-hook' arrow to represent the movement of a single electron, and explain why a mixture of products forms.",
+    "Relate free-radical chemistry to real contexts such as the depletion of stratospheric ozone by CFCs."
   ],
+  "syllabusObjectivesCovered": [
+    "R3.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Unbreakable Handshake",
-    "summary": "Some drugs don't just temporarily interact with their target; they form a permanent covalent bond, like a key breaking off in a lock. This permanently disables the target, leading to a powerful and long-lasting therapeutic effect.",
-    "analogy": "Imagine a game of tag. Most drugs are like players who just tap their target and run away – the interaction is temporary. Covalent drugs are like players who use superglue on their hands. When they tag someone, they become permanently stuck together, taking that player out of the game for good. In the body, this 'player' is often a crucial enzyme or a strand of DNA.",
+    "title": "The Chain of Lonely Electrons",
+    "summary": "Most bonds break by handing both shared electrons to one atom, making ions. But a bond can also split fairly, giving one electron to each atom. Each fragment is then left with a single unpaired electron — a free radical — and radicals are so reactive that they set off a chain reaction that keeps making more of themselves.",
+    "analogy": "Think of a shared bond as two people holding one rope between them. Heterolytic fission is one person snatching the whole rope and walking off (they become 'charged', an ion). Homolytic fission is the rope tearing exactly in half, so each person walks away holding a frayed end — an unpaired, reactive strand. Those frayed ends are radicals: they grab at anything to pair up, and in doing so they create a new frayed end somewhere else, which is why the reaction runs as a chain.",
     "steps": [
-      "Identify the drug's electrophilic centre, often a strained ring or a group with a partial positive charge.",
-      "Identify the biological target's nucleophilic group, typically an amino acid residue like serine (-OH) or cysteine (-SH), or a base in DNA.",
-      "Visualise the nucleophilic attack: an electron pair from the nucleophile forms a new bond with the electrophilic centre in the drug.",
-      "Describe the outcome: a stable covalent bond is formed, permanently modifying and inactivating the biological target."
+      "A bond must first be broken evenly (homolytically) to make the first radicals — this needs energy, usually from UV light. This is INITIATION.",
+      "A radical attacks a stable molecule, makes a product, and generates a brand-new radical. The number of radicals is conserved, so the cycle repeats over and over. This is PROPAGATION.",
+      "Occasionally two radicals collide and pair up their lone electrons, forming a stable molecule and removing radicals from the mixture. This is TERMINATION.",
+      "Because radicals attack somewhat indiscriminately and can substitute more than once, the reaction produces a MIXTURE of products, not a single clean one."
     ]
   },
+  "keyConcepts": [
+    "free radical",
+    "reaction mechanism",
+    "homolytic fission"
+  ],
   "flashcards": [
     {
-      "front": "What is covalent modification in drug action?",
-      "back": "The formation of a stable, covalent bond between a drug molecule and its biological target (e.g., an enzyme or DNA), leading to irreversible inhibition or modification."
+      "front": "Free radical",
+      "back": "A species with an unpaired electron, shown with a dot (e.g. Cl•, •CH₃). The unpaired electron makes radicals extremely reactive. The dot is not optional — an examiner reads Cl and Cl• as different species.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define a nucleophile in a biological context.",
-      "back": "An electron-rich species that donates a pair of electrons to form a new covalent bond. Common examples in proteins are the side chains of serine (-OH), cysteine (-SH), and lysine (-NH₂)."
+      "front": "Homolytic fission",
+      "back": "A covalent bond breaks EVENLY: each atom takes one of the two shared electrons, producing two radicals. X–X → X• + X•. Favoured by non-polar bonds and driven by UV light or heat.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define an electrophile in the context of a drug molecule.",
-      "back": "An electron-deficient species that accepts a pair of electrons to form a new covalent bond. Examples include the carbonyl carbon in the strained β-lactam ring of penicillin."
+      "front": "Heterolytic fission",
+      "back": "A covalent bond breaks UNEVENLY: one atom takes BOTH shared electrons, producing two oppositely charged ions. X–Y → X⁺ + Y⁻ (or X:⁻ + Y⁺). This makes ions, NOT radicals.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the electrophilic part of the penicillin molecule?",
-      "back": "The carbonyl carbon within the highly strained, four-membered β-lactam ring. The ring strain makes it highly susceptible to nucleophilic attack."
+      "front": "Role of UV light",
+      "back": "Ultraviolet photons supply the energy to break a bond homolytically and create the first radicals. UV is the condition that starts (initiates) free-radical substitution; without it the reaction of an alkane and a halogen is negligible in the dark.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the biological target of penicillin?",
-      "back": "The bacterial enzyme transpeptidase, which is essential for building the bacterial cell wall. Specifically, a nucleophilic serine residue in the enzyme's active site."
+      "front": "Initiation step",
+      "back": "The step that CREATES radicals from a stable molecule by homolytic fission, e.g. Cl₂ →(UV) 2Cl•. It happens once to get the chain going and is the only step that needs the UV input.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is an irreversible inhibitor?",
-      "back": "A substance that binds to an enzyme, often covalently, and permanently deactivates it. The enzyme's function cannot be restored."
+      "front": "Propagation step",
+      "back": "A step that USES a radical and MAKES a new radical, so the total number of radicals is unchanged. These steps carry the chain: e.g. Cl• + CH₄ → •CH₃ + HCl, then •CH₃ + Cl₂ → CH₃Cl + Cl•.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the primary biological target of the anticancer drug cisplatin?",
-      "back": "DNA. Specifically, it binds to the nucleophilic N7 atom of guanine bases, causing cross-linking and distorting the DNA structure."
+      "front": "Termination step",
+      "back": "A step that DESTROYS radicals: two radicals combine, pairing their lone electrons to form a stable molecule, e.g. Cl• + Cl• → Cl₂ or •CH₃ + Cl• → CH₃Cl. This removes radicals and slows the reaction.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why is cisplatin considered a prodrug?",
-      "back": "It is administered in an inactive form. It becomes activated inside the cell via aquation, where water molecules replace its chloride ligands, making the platinum centre more electrophilic and reactive towards DNA."
+      "front": "Fish-hook (single-headed) arrow",
+      "back": "A half-arrow (⤙, one barb) that shows the movement of a SINGLE electron. A full double-headed curly arrow shows a PAIR of electrons. Radical mechanisms use fish-hooks because radicals move electrons one at a time.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the consequence of cisplatin binding to DNA?",
-      "back": "It forms intrastrand and interstrand cross-links, distorting the DNA double helix. This inhibits DNA replication and transcription, ultimately triggering apoptosis (programmed cell death) in the cancer cell."
+      "front": "Free-radical substitution",
+      "back": "An H atom on an alkane is replaced by a halogen atom via a radical chain (initiation → propagation → termination). Overall for the first substitution: CH₄ + Cl₂ →(UV) CH₃Cl + HCl.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why doesn't penicillin harm human cells?",
-      "back": "Human cells lack a cell wall and therefore do not possess the transpeptidase enzyme that penicillin targets. This is a key example of selective toxicity."
+      "front": "Why a mixture of products forms",
+      "back": "The chlorine radical can abstract H from a product as easily as from the starting alkane, so substitution repeats: CH₃Cl, CH₂Cl₂, CHCl₃, CCl₄. Termination also joins radicals (e.g. •CH₃ + •CH₃ → C₂H₆). One clean product is impossible.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the geometry of cisplatin, Pt(NH₃)₂Cl₂?",
-      "back": "Square planar. This specific geometry is crucial for its ability to bind to DNA in the correct orientation to form cross-links."
+      "front": "CFCs and ozone (context)",
+      "back": "UV light breaks the C–Cl bond in a CFC homolytically to give Cl• radicals in the stratosphere. Each Cl• catalyses the breakdown of many ozone (O₃) molecules in a chain, then is regenerated — the same radical-chain idea applied to the atmosphere.",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Exam Trap: dots and charges",
+      "back": "Radicals carry a DOT and no charge; ions from heterolytic fission carry a CHARGE and no dot. Writing Cl⁻ where you mean Cl•, or dropping the dot on •CH₃, changes the species and loses the mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which type of bond fission produces free radicals?",
+      "options": [
+        "Heterolytic fission, because it makes charged ions",
+        "Homolytic fission, because each atom keeps one electron of the pair",
+        "Both produce radicals equally",
+        "Neither — radicals come only from ionisation"
+      ],
+      "answer": "Homolytic fission, because each atom keeps one electron of the pair"
+    },
+    {
+      "prompt": "In the chlorination of methane, which step regenerates a chlorine radical so the chain continues?",
+      "options": [
+        "Cl₂ → 2Cl• (initiation)",
+        "Cl• + CH₄ → •CH₃ + HCl (propagation)",
+        "•CH₃ + Cl₂ → CH₃Cl + Cl• (propagation)",
+        "Cl• + Cl• → Cl₂ (termination)"
+      ],
+      "answer": "•CH₃ + Cl₂ → CH₃Cl + Cl• (propagation)"
+    },
+    {
+      "prompt": "Which equation represents a termination step?",
+      "options": [
+        "Cl₂ →(UV) 2Cl•",
+        "Cl• + CH₄ → •CH₃ + HCl",
+        "•CH₃ + Cl₂ → CH₃Cl + Cl•",
+        "•CH₃ + Cl• → CH₃Cl"
+      ],
+      "answer": "•CH₃ + Cl• → CH₃Cl"
+    },
+    {
+      "prompt": "Why does the reaction of methane with excess chlorine give a mixture of products?",
+      "options": [
+        "Because chlorine radicals also substitute H atoms in the products, giving CH₂Cl₂, CHCl₃ and CCl₄",
+        "Because heterolytic fission makes several ions",
+        "Because UV light changes the molar mass of methane",
+        "Because termination is impossible with chlorine"
+      ],
+      "answer": "Because chlorine radicals also substitute H atoms in the products, giving CH₂Cl₂, CHCl₃ and CCl₄"
+    },
+    {
+      "prompt": "What is the role of UV light in the mechanism?",
+      "options": [
+        "It supplies energy to break Cl₂ homolytically and create the first radicals (initiation)",
+        "It joins two radicals together in termination",
+        "It converts CH₃Cl back into CH₄",
+        "It makes the propagation steps stop"
+      ],
+      "answer": "It supplies energy to break Cl₂ homolytically and create the first radicals (initiation)"
     }
   ],
   "faq": [
     {
-      "q": "Are all covalent drug interactions beneficial?",
-      "a": "Not necessarily. While drugs like penicillin and cisplatin use covalent binding for their therapeutic effect, unwanted covalent binding can be a major cause of drug toxicity. If a drug or its metabolite covalently binds to essential proteins (like liver enzymes) or DNA in healthy cells, it can lead to severe side effects, such as liver damage or carcinogenesis. Drug development extensively tests for this 'reactive metabolite' formation."
+      "q": "How do I decide whether a bond will break homolytically or heterolytically?",
+      "a": "It depends on the bond and the conditions. Non-polar bonds between identical or similar atoms (Cl–Cl, C–H, C–C) tend to break homolytically into radicals, especially when energised by UV light or high temperature in the gas phase. Polar bonds (C–Br, C–OH under acid/base conditions, and most reactions in solution) tend to break heterolytically into ions, because one atom is already electron-rich. Free-radical substitution of alkanes is the classic homolytic, UV-driven, gas-phase case."
     },
     {
-      "q": "If penicillin forms a covalent bond, why do you need to take multiple doses?",
-      "a": "Several factors are at play. Firstly, the drug is metabolised and cleared from the body over time. Secondly, bacteria are constantly replicating and synthesising new transpeptidase enzymes. A continuous or repeated dose is needed to inhibit these newly made enzymes and keep the bacterial population suppressed long enough for the immune system to clear the infection. Thirdly, the emergence of bacterial resistance mechanisms (like enzymes that destroy penicillin) can also reduce its effectiveness."
+      "q": "What is the difference between a fish-hook arrow and a normal curly arrow?",
+      "a": "A normal curly arrow has a full (double-barbed) head and shows a PAIR of electrons moving together — this is used in ionic (heterolytic) mechanisms. A fish-hook arrow has a single barb (a half-head) and shows just ONE electron moving. Radical mechanisms use fish-hooks because a radical has a single unpaired electron and rearranges electrons one at a time. You are not required to draw full mechanisms at this level, but you should recognise that the single-headed arrow represents single-electron movement."
+    },
+    {
+      "q": "Why can't the reaction just stop after making CH₃Cl?",
+      "a": "Because the chlorine radical is not selective. Once CH₃Cl has formed, a Cl• radical can abstract a hydrogen atom from CH₃Cl just as readily as from CH₄, producing •CH₂Cl, which then reacts with Cl₂ to give CH₂Cl₂ — and the same logic continues to CHCl₃ and CCl₄. So with excess chlorine you always get a mixture. Using a large excess of methane instead of chlorine favours the mono-substituted product CH₃Cl, but never gives it perfectly pure."
+    },
+    {
+      "q": "How does this alkane chemistry connect to ozone depletion?",
+      "a": "It is the same mechanism on an atmospheric scale. High-energy UV light in the stratosphere breaks a C–Cl bond in a chlorofluorocarbon (CFC) homolytically, releasing a chlorine radical, Cl•. That radical reacts with ozone (Cl• + O₃ → ClO• + O₂), and a further step regenerates Cl• (ClO• + O → Cl• + O₂), so a single chlorine radical destroys ozone catalytically — cycling many times, exactly like a propagation chain. This is why radical chemistry matters far beyond a lab flask."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "While many drugs function through reversible, non-covalent interactions like hydrogen bonds and van der Waals forces, a powerful class of medicines operates by forming irreversible covalent bonds. These 'electron sharing reactions' permanently alter the drug's biological target, leading to a long-lasting and often potent effect. In this lesson, we will delve into the chemical mechanisms behind this action, focusing on the roles of nucleophiles and electrophiles in two landmark drugs: penicillin and cisplatin."
+      "content": "Not every reaction moves electrons in pairs. In this lesson we meet the free radical — a species carrying a single, unpaired electron — and the sharing reactions it drives. Radicals are made when a bond breaks fairly, giving one electron to each atom, and they are so reactive that they set off self-sustaining chains. We will build the free-radical substitution of alkanes stage by stage, learn how UV light and the single-headed 'fish-hook' arrow fit in, understand why these reactions never give one clean product, and see the same chemistry at work in the destruction of the ozone layer. Every worked example is written out the way our marking engine awards the marks."
     },
     {
       "type": "heading",
-      "content": "The Chemistry of Covalent Binding: Nucleophiles and Electrophiles"
+      "content": "Two ways to break a bond: homolytic vs heterolytic fission"
     },
     {
       "type": "text",
-      "content": "At the heart of covalent drug action is a classic chemical reaction between a nucleophile and an electrophile. Biological macromolecules, particularly proteins and nucleic acids, are rich in nucleophilic groups. These are atoms or functional groups with a lone pair of electrons they are 'willing' to donate. Drugs designed to be covalent inhibitors, on the other hand, must contain an electrophilic centre—an electron-deficient atom that 'seeks' to accept an electron pair."
+      "content": "A covalent bond is a shared pair of electrons. When the bond breaks, those two electrons have to go somewhere, and there are exactly two possibilities. In HETEROLYTIC fission the bond breaks unevenly: one atom keeps BOTH electrons, so it becomes a negative ion, while the other atom leaves with none and becomes a positive ion. In HOMOLYTIC fission the bond breaks evenly: each atom keeps ONE of the shared electrons, so each fragment leaves with a single unpaired electron. A fragment with an unpaired electron is a free radical, written with a dot, such as Cl• or •CH₃."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Biological Nucleophiles:** Key groups on amino acid side chains in proteins include the hydroxyl (-OH) of serine, the thiol (-SH) of cysteine, and the amine (-NH₂) of lysine. In DNA, the nitrogen atoms in the purine and pyrimidine bases (e.g., N7 of guanine) are common nucleophilic sites.",
-        "**Drug Electrophiles:** These are often created by incorporating features that make a particular atom electron-deficient. This can be a carbonyl group in a strained ring (e.g., penicillin), an alkyl halide, or a metal ion with a positive charge (e.g., platinum in cisplatin)."
+        "**Heterolytic fission:** X–Y → X⁺ + :Y⁻. Both electrons go to one atom → two IONS. Common for polar bonds and reactions in solution.",
+        "**Homolytic fission:** X–X → X• + X•. One electron to each atom → two RADICALS. Common for non-polar bonds energised by UV light or heat.",
+        "A **free radical** has an unpaired electron (shown by a dot) and is highly reactive; it seeks another electron to pair with.",
+        "Radicals carry a DOT and no charge; ions carry a CHARGE and no dot. Keep the two notations strictly apart."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "For each process, state whether the bond fission is homolytic or heterolytic, and identify the species produced. (a) Cl₂ → 2Cl.  (b) H–Br → H + Br. [2]",
+      "solution": "**(a)** The Cl–Cl bond splits so that each chlorine atom keeps one electron, giving two identical fragments each with an unpaired electron: **2Cl•**. Because the electrons are shared out evenly and radicals are formed, this is **homolytic fission**.  [1]\n\n**(b)** When H–Br breaks heterolytically, the more electronegative bromine takes both bonding electrons, giving **H⁺ and Br⁻** (ions, not radicals). Because the electron pair goes to one atom to form ions, this is **heterolytic fission**.  [1]\n\n*Notice how the answer to (a) needs the dots and the answer to (b) needs the charges — mixing them up would change the species.*"
+    },
+    {
+      "type": "heading",
+      "content": "Free radicals and the role of UV light"
+    },
+    {
+      "type": "text",
+      "content": "Making the first radicals costs energy: you have to break a bond homolytically, and that does not happen on its own at room temperature in the dark. The energy is supplied by ULTRAVIOLET (UV) light. A UV photon carries enough energy to break a relatively weak, non-polar bond such as Cl–Cl evenly, generating two chlorine radicals. This is why the condition attached to free-radical substitution is always UV light (sometimes written as 'sunlight' or hv). Alkanes and halogens can be mixed in the dark almost indefinitely; shine UV on them and the chain reaction begins."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "UV light provides the energy to break a bond **homolytically** and create radicals.",
+        "The condition 'UV light' (or hv / sunlight) is required and must be stated in the initiation step.",
+        "Only the initiation step needs the UV input; once radicals exist, the propagation chain sustains itself.",
+        "The single-headed **fish-hook arrow** represents the movement of ONE electron (a full curly arrow represents a pair)."
       ]
     },
     {
       "type": "heading",
-      "content": "Case Study 1: Penicillin's Attack on Bacterial Cell Walls"
+      "content": "Free-radical substitution: the three stages"
     },
     {
       "type": "text",
-      "content": "Penicillin's discovery revolutionised medicine. Its effectiveness stems from its ability to permanently shut down a crucial bacterial enzyme, transpeptidase. The drug's structure features a β-lactam, a four-membered ring containing a nitrogen atom. This ring is highly strained, making the amide bond within it unusually reactive. The carbonyl carbon of this amide acts as a potent electrophilic centre."
+      "content": "The reaction of an alkane with a halogen in UV light replaces a hydrogen atom with a halogen atom — a substitution — and it proceeds as a radical chain in three named stages. We use methane and chlorine as the standard example. The overall reaction for the first substitution is CH₄ + Cl₂ →(UV) CH₃Cl + HCl, but that overall equation hides the mechanism, which is what examiners test."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Initiation** — radicals are CREATED by homolytic fission of the halogen using UV light:  Cl₂ →(UV) 2Cl•.",
+        "**Propagation** — the chain-carrying steps; each USES one radical and MAKES another, so the radical count stays constant:  Cl• + CH₄ → •CH₃ + HCl,  then  •CH₃ + Cl₂ → CH₃Cl + Cl•.",
+        "**Termination** — radicals are DESTROYED when two of them combine, pairing their lone electrons:  Cl• + Cl• → Cl₂,  •CH₃ + Cl• → CH₃Cl,  •CH₃ + •CH₃ → C₂H₆.",
+        "Each single electron shifting in these steps is drawn with a **fish-hook (single-headed) arrow**."
+      ]
     },
     {
       "type": "text",
-      "content": "The transpeptidase enzyme, which bacteria use to cross-link peptides to build their cell walls, has a key serine residue in its active site. The hydroxyl group of this serine acts as a nucleophile. It attacks the electrophilic carbonyl carbon of the β-lactam ring. This attack opens the strained ring and forms a stable covalent ester bond between the penicillin molecule and the enzyme. The enzyme is now irreversibly inhibited, cell wall synthesis halts, and the bacterium dies."
-    },
-    {
-      "type": "workedExample",
-      "question": "The active site of a bacterial enzyme contains a cysteine residue (R-SH). A new antibiotic, similar in structure to penicillin, is designed to target this enzyme. Show, using curly arrows, the mechanism for the reaction between the cysteine thiol group and the β-lactam ring of the antibiotic, and draw the structure of the final covalently modified enzyme.",
-      "solution": "1. **Identify Nucleophile and Electrophile:**\n   - Nucleophile: The lone pair of electrons on the sulfur atom of the cysteine residue (-SH).\n   - Electrophile: The carbonyl carbon ($C=O$) of the β-lactam ring.\n\n2. **Mechanism (Curly Arrows):**\n   - A curly arrow starts from the lone pair on the sulfur atom and points to the carbonyl carbon of the β-lactam ring. This shows the nucleophilic attack.\n   - Simultaneously, a curly arrow goes from the $C=O$ double bond onto the oxygen atom.\n   - The intermediate collapses. A curly arrow from the lone pair on the nitrogen in the ring moves to form a $C-N$ double bond (this is one possible resonance form, but simpler is to show the ring opening directly). The $C-N$ bond of the ring breaks, with the electrons moving onto the nitrogen atom, which then gets protonated by a nearby source (like the H from the original SH group).\n   - A simplified representation shows the S-atom attacking the carbonyl carbon, and the C-N bond in the ring breaking simultaneously, with the nitrogen atom picking up a proton.\n\n3. **Final Product:**\n   - The final structure shows the cysteine residue's sulfur atom forming a thioester bond ($R-S-C(=O)-$) with the opened penicillin derivative. The original enzyme is now permanently attached to the drug molecule. \n   - Structure: Enzyme-CH₂-S-C(=O)-[rest of opened penicillin molecule]."
+      "content": "Read the propagation steps carefully: the first one consumes a Cl• radical but produces a •CH₃ radical; the second consumes the •CH₃ radical but produces a Cl• radical again. The chlorine radical is regenerated, so the two steps cycle round and round, converting many molecules of methane and chlorine for every radical made in initiation. That is what 'chain reaction' means."
     },
     {
       "type": "heading",
-      "content": "Case Study 2: Cisplatin's Distortion of Cancer Cell DNA"
+      "content": "Why a mixture of products forms"
     },
     {
       "type": "text",
-      "content": "Cisplatin, [Pt(NH₃)₂Cl₂], is a cornerstone of chemotherapy. It is a square planar platinum(II) complex that acts as a prodrug. In the bloodstream, the high chloride concentration keeps it stable. However, upon entering a cell where the chloride concentration is much lower, the chloride ligands are slowly replaced by water molecules in a process called aquation. This forms a positively charged, highly electrophilic species, [Pt(NH₃)₂(H₂O)₂]²⁺."
+      "content": "Free-radical substitution is not clean. The chlorine radical is indiscriminate: it will abstract a hydrogen atom from a product molecule just as happily as from methane itself. So once CH₃Cl has formed, a Cl• radical can turn it into •CH₂Cl, which reacts with chlorine to give CH₂Cl₂ — and the process repeats to give CHCl₃ and finally CCl₄. On top of this, termination joins radicals in several combinations, so even ethane (C₂H₆, from two methyl radicals) appears. The result is always a MIXTURE, and this is a key limitation of the reaction. Using a large excess of the alkane favours the mono-substituted product but never delivers it pure."
     },
     {
-      "type": "text",
-      "content": "This activated complex is a powerful electrophile that seeks out nucleophiles. Its primary target is DNA. The N7 atom of the guanine base is particularly nucleophilic and is the most common binding site. The platinum complex can bind to two different guanine bases, forming a 'cross-link'. Most commonly, this is an 'intrastrand' cross-link between adjacent guanines on the same DNA strand. This binding puts a significant kink in the DNA double helix, which disrupts DNA replication and transcription. The cell's repair mechanisms may be overwhelmed, triggering apoptosis (programmed cell death) and thus killing the cancer cell."
+      "type": "keyPoints",
+      "items": [
+        "Chlorine radicals substitute repeatedly: CH₄ → CH₃Cl → CH₂Cl₂ → CHCl₃ → CCl₄.",
+        "Termination gives extra products, including ethane from •CH₃ + •CH₃ → C₂H₆.",
+        "A single pure product is not obtainable; excess alkane only shifts the balance toward mono-substitution."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "A standard intravenous dose of cisplatin for a patient might be 2.85 g. If the molar mass of cisplatin, Pt(NH₃)₂Cl₂, is 300.05 g mol⁻¹, calculate the number of moles of cisplatin administered. If this dose is dissolved in 500.0 cm³ of saline solution, what is the initial concentration in mol dm⁻³?",
-      "solution": "**Part 1: Calculate moles of cisplatin**\n- Formula: $moles = \\frac{mass}{molar\\ mass}$\n- Substitution: $moles = \\frac{2.85\\ g}{300.05\\ g\\ mol⁻¹}$\n- Answer: $moles = 0.009498...\\ mol$\n- Correct sig figs (3 s.f.): $0.00950\\ mol$ [1 mark]\n\n**Part 2: Calculate concentration**\n- First, convert volume to dm³: $500.0\\ cm³ = 0.5000\\ dm³$\n- Formula: $concentration = \\frac{moles}{volume\\ (dm³)}$\n- Substitution: $concentration = \\frac{0.009498...\\ mol}{0.5000\\ dm³}$\n- Answer: $concentration = 0.01899...\\ mol\\ dm⁻³$\n- Correct sig figs (3 s.f.): $0.0190\\ mol\\ dm⁻³$ [1 mark for conversion and calculation]"
+      "question": "Ethane, C₂H₆, reacts with chlorine, Cl₂, in the presence of UV light. Write one equation for each of the initiation, propagation (two steps) and termination stages of the free-radical substitution, using ethyl radicals where appropriate. [5]",
+      "solution": "**Initiation** — homolytic fission of chlorine by UV light:\n$$\\text{Cl}_2 \\xrightarrow{\\ UV\\ } 2\\text{Cl}\\bullet$$  [1]\n\n**Propagation step 1** — a chlorine radical abstracts a hydrogen atom from ethane, making an ethyl radical and HCl:\n$$\\text{Cl}\\bullet + \\text{C}_2\\text{H}_6 \\rightarrow \\bullet\\text{C}_2\\text{H}_5 + \\text{HCl}$$  [1]\n\n**Propagation step 2** — the ethyl radical reacts with a chlorine molecule, forming chloroethane and regenerating a chlorine radical:\n$$\\bullet\\text{C}_2\\text{H}_5 + \\text{Cl}_2 \\rightarrow \\text{C}_2\\text{H}_5\\text{Cl} + \\text{Cl}\\bullet$$  [1]\n\n**Termination** — any two radicals combine; for example:\n$$\\bullet\\text{C}_2\\text{H}_5 + \\text{Cl}\\bullet \\rightarrow \\text{C}_2\\text{H}_5\\text{Cl}$$\n(Also acceptable: $\\text{Cl}\\bullet + \\text{Cl}\\bullet \\rightarrow \\text{Cl}_2$ or $\\bullet\\text{C}_2\\text{H}_5 + \\bullet\\text{C}_2\\text{H}_5 \\rightarrow \\text{C}_4\\text{H}_{10}$.)  [1]\n\n**Correct radical notation throughout** (every radical carries a dot; the two propagation steps together conserve radicals).  [1]\n\n*The structure is identical to the methane case — only the organic fragment changes from methyl (•CH₃) to ethyl (•C₂H₅).*"
+    },
+    {
+      "type": "heading",
+      "content": "Relevance: CFCs and the ozone layer"
+    },
+    {
+      "type": "text",
+      "content": "Free-radical chains are not a laboratory curiosity — they shape the atmosphere. Chlorofluorocarbons (CFCs), once widely used as refrigerants and propellants, are so unreactive that they drift intact into the stratosphere. There the intense UV light breaks a C–Cl bond homolytically, releasing a chlorine radical, Cl•. That radical then destroys ozone in a propagation-like cycle: Cl• + O₃ → ClO• + O₂, followed by ClO• + O → Cl• + O₂. The chlorine radical is regenerated each cycle, so one Cl• can destroy thousands of ozone molecules before a termination step removes it. It is exactly the initiation–propagation logic of alkane halogenation, playing out on a planetary scale — and it is why CFCs were phased out under the Montreal Protocol."
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Mechanism questions in Paper 2 are marked analytically: each mark is tied to one specific correct step or condition. A method mark (M) is earned for a chemically valid step in the right stage; an answer mark (A) is earned for the correct species — with the radical dots present. Error-carried-forward (ECF) means that if you wrote a slightly wrong radical earlier but then used it correctly in the next step, the follow-on mark can still be awarded. Study how each mark below is pinned to a single line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Write equations for the initiation and the two propagation steps in the free-radical substitution of methane by chlorine, and state the condition required. [4]",
+      "solution": "**Model answer.**\n\n**Initiation** (condition: **UV light**):\n$$\\text{Cl}_2 \\xrightarrow{\\ UV\\ } 2\\text{Cl}\\bullet$$\n\n**Propagation step 1:**\n$$\\text{Cl}\\bullet + \\text{CH}_4 \\rightarrow \\bullet\\text{CH}_3 + \\text{HCl}$$\n\n**Propagation step 2:**\n$$\\bullet\\text{CH}_3 + \\text{Cl}_2 \\rightarrow \\text{CH}_3\\text{Cl} + \\text{Cl}\\bullet$$\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **Mark 1 — initiation equation (M for a valid homolytic step, A for the correct radicals).** Awarded for Cl₂ → 2Cl• showing the halogen molecule splitting homolytically into TWO chlorine radicals. The engine requires the radical dot: '2Cl' or 'Cl⁻' does not score, because it is not the radical species.\n- **Mark 2 — first propagation step.** Awarded for Cl• + CH₄ → •CH₃ + HCl. The method mark recognises a radical abstracting a hydrogen atom; the answer element requires the correct products, including the methyl radical •CH₃ with its dot.\n- **Mark 3 — second propagation step.** Awarded for •CH₃ + Cl₂ → CH₃Cl + Cl•. **ECF applies:** a student who wrote a slightly different (but reasonable) organic radical in step 1 and then used that same radical consistently here can still earn this mark, because the credited idea is the radical reacting with Cl₂ to regenerate a chlorine radical.\n- **Mark 4 — the condition.** Awarded for stating **UV light** (accept 'ultraviolet light', 'sunlight', or 'hv'). This is a standalone mark and is lost if the condition is omitted, even when all three equations are perfect.\n\n**'Accept equivalents.'** The engine accepts hv, sunlight or 'ultraviolet' for the condition, and accepts the propagation steps written in either order. It does NOT credit an ionic step (e.g. Cl• + CH₄ → CH₃⁺ + ...): free-radical substitution is a radical mechanism, so ionic products score zero even if the atoms balance.\n\n**Bottom line:** every dot and the stated condition are load-bearing. Three of the four marks are equations that must show radicals; the fourth is the UV condition. Omitting the condition or dropping a dot is the most common way this 4-mark question loses marks."
     },
     {
       "type": "examTip",
-      "content": "When drawing mechanisms for covalent modification, always use curly arrows that start from a lone pair or a bond and point to the atom where the new bond is forming. Be precise! For example, state that the 'lone pair on the oxygen of the serine side chain' is the nucleophile. Marks are often awarded for identifying the specific nucleophilic and electrophilic atoms."
+      "content": "The Practice button marks YOUR mechanism the same way — step by step, with the radical dots and the condition each carrying their own mark, and ECF protecting a follow-on step built on an earlier slip. So always write the dots, write BOTH propagation steps, and never forget to state 'UV light'. An equation that is chemically ionic will score zero however neatly it balances."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing homolytic and heterolytic fission** — homolytic (even split) makes radicals with dots; heterolytic (uneven split) makes ions with charges. Don't describe a radical reaction as making ions.",
+        "**Dropping the radical dot** — Cl and Cl•, or CH₃ and •CH₃, are different species. A missing dot changes the species and loses the answer mark.",
+        "**Writing an ionic step in a radical mechanism** — free-radical substitution never has a step like Cl• + CH₄ → CH₃⁺ + ...; ionic products score zero even when balanced.",
+        "**Forgetting to state the UV condition** — the initiation step is meaningless without it, and it is a mark in its own right.",
+        "**Mislabelling the stages** — initiation CREATES radicals (needs UV), propagation USES and REMAKES a radical (chain-carrying), termination DESTROYS radicals (two combine). Putting a step in the wrong stage loses the mark.",
+        "**Claiming a single pure product** — chlorine radicals substitute repeatedly and termination joins radicals, so a MIXTURE (CH₃Cl, CH₂Cl₂, CHCl₃, CCl₄, plus C₂H₆) always forms.",
+        "**Not balancing HCl in propagation** — the hydrogen abstracted from the alkane must appear as HCl, not as a free H atom or as H₂."
+      ]
     },
     {
       "type": "practice",
-      "label": "Practice Questions: Electron Sharing Reactions",
-      "href": "/mark?subject=ib-chemistry-hl&topic=R3.3"
+      "label": "Get a Paper 2 mechanism marked: write the initiation, propagation and termination steps for a free-radical substitution with full radical notation",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R3.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Animation: Penicillin Mechanism",
-          "href": "https://www.youtube.com/watch?v=g-b2z2K4c3c"
-        },
-        {
-          "label": "In-depth article: Cisplatin's Mode of Action",
-          "href": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4286923/"
+          "label": "IB Chemistry Data Booklet (bond enthalpies, Section 12)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

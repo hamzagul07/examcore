@@ -1,185 +1,408 @@
 {
   "slug": "s1-1-introduction-to-the-particulate-nature-of-matter",
   "topicCode": "S1.1",
+  "unit": {
+    "code": "S1",
+    "title": "Models of the particulate nature of matter"
+  },
   "title": "Introduction to the particulate nature of matter",
   "paper": "P2",
   "paperName": "Chemistry HL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of matter, including the classification of substances as elements, compounds, or mixtures. It establishes the quantitative basis of chemistry through the definitions of relative atomic/molecular mass, the mole, and Avogadro's constant, and develops skills in stoichiometric calculations.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "The starting point of the whole course. All matter is made of particles that are in constant motion, and everything else — states of matter, changes of state, temperature, and how we separate mixtures — follows from how those particles are arranged and how much energy they have. This lesson builds the kinetic molecular theory, classifies matter into elements, compounds and mixtures (homogeneous and heterogeneous), interprets heating and cooling curves in terms of kinetic and potential energy, links temperature on the Kelvin scale to particle kinetic energy, and shows which separation technique suits which mixture.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between atoms, elements, compounds, and mixtures.",
-    "Define relative atomic mass ($A_r$) and relative molecular/formula mass ($M_r$) based on the carbon-12 scale.",
-    "Define the mole as the SI unit for amount of substance and state the value of Avogadro's constant ($L$).",
-    "Solve problems involving the interconversion of mass, moles, and the number of particles."
+    "State the postulates of the kinetic molecular theory and use them to describe the three states of matter in terms of particle arrangement, motion and energy.",
+    "Classify matter as an element, a compound or a mixture, and distinguish homogeneous from heterogeneous mixtures.",
+    "Explain changes of state in terms of energy changes, and interpret heating and cooling curves by separating changes in kinetic energy from changes in potential energy.",
+    "Relate temperature on the Kelvin scale to the average kinetic energy of particles, including the meaning of absolute zero.",
+    "Select and justify an appropriate separation technique (filtration, evaporation, distillation, chromatography) for a given mixture."
   ],
+  "syllabusObjectivesCovered": [
+    "S1.1"
+  ],
+  "keyConcepts": [
+    "particulate nature of matter",
+    "kinetic molecular theory",
+    "states of matter"
+  ],
+  "levelNote": "Common to SL and HL at this level; HL extensions appear in later Structure 1 topics.",
   "simpleExplanation": {
-    "title": "From Atoms to Moles: Chemistry's Counting Unit",
-    "summary": "All matter is made of tiny particles like atoms and molecules. To work with them in the lab, we need a way to count them, and the 'mole' is the chemist's special unit for doing just that.",
-    "analogy": "Imagine you're a banker counting a vast number of coins. You wouldn't count them one by one. Instead, you'd weigh them, knowing that a certain mass corresponds to a specific number of coins. Chemists do the same with atoms; they 'weigh' out a specific mass of a substance, called a molar mass, to get a specific number of particles, which is one mole ($6.02 \\times 10^{23}$ particles).",
+    "title": "Matter's Great Dance",
+    "summary": "Everything is made of tiny particles that are always moving. How they are arranged and how much they move determines whether something is a solid, liquid or gas — and heating or cooling changes that motion, driving every change of state.",
+    "analogy": "Imagine people at an event. Sitting in fixed seats in a theatre, fidgeting but never leaving their spot, they are like particles in a solid. Mingling shoulder-to-shoulder at a party, close together but sliding past one another, they are like a liquid. Sprinting around a huge empty park, far apart and moving randomly, they are like a gas. Turning up the 'energy' of the crowd is what moves them from one scene to the next.",
     "steps": [
-      "First, classify the substance. Is it a pure element (like iron), a compound (like water, H₂O), or a mixture (like salt water)?",
-      "Next, determine its relative mass. For an element, find its relative atomic mass ($A_r$) on the periodic table. For a compound, calculate its relative formula mass ($M_r$) by adding the $A_r$ of all its atoms.",
-      "Then, convert the mass of your sample into an amount in moles. You do this by dividing the mass (in grams) by the molar mass (the $M_r$ value in g/mol).",
-      "Finally, find the number of particles. Multiply the amount in moles by Avogadro's constant ($6.02 \\times 10^{23}$) to find the exact number of atoms or molecules."
+      "First, identify the state of a substance by its properties — does it hold its own shape and volume?",
+      "Next, picture the particles: a fixed lattice (solid), close but mobile (liquid), or far apart and fast (gas)?",
+      "Then track the energy — heating raises particle motion (kinetic energy); at a change of state the energy instead goes into overcoming the forces between particles (potential energy).",
+      "Finally, if you have a mixture rather than a pure substance, choose a separation method that exploits a difference in a physical property (particle size, boiling point, or affinity for a surface)."
     ]
   },
   "flashcards": [
     {
-      "front": "What is an element?",
-      "back": "A pure substance consisting of only one type of atom, which cannot be broken down into a simpler substance by chemical means. Example: Fe (iron), O₂ (oxygen)."
+      "front": "Particulate nature of matter",
+      "back": "The model that all matter is composed of discrete, tiny particles (atoms, molecules or ions) that are in constant, random motion. Their arrangement and energy determine an object's macroscopic properties.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a compound?",
-      "back": "A pure substance formed when two or more different elements are chemically bonded together in a fixed ratio. Example: H₂O (water), CO₂ (carbon dioxide)."
+      "front": "Kinetic molecular theory (postulates)",
+      "back": "Matter is made of small particles in constant motion; the average kinetic energy of the particles is proportional to the absolute (Kelvin) temperature; particles are attracted to one another, and the strength of that attraction and the energy of the particles decide the state.",
+      "pillLabel": "Model"
     },
     {
-      "front": "What is the difference between a compound and a mixture?",
-      "back": "A compound has elements chemically bonded in a fixed ratio with new properties. A mixture consists of two or more substances that are not chemically bonded, have variable proportions, and retain their individual properties."
+      "front": "Element vs compound vs mixture",
+      "back": "An element contains only one type of atom (e.g. Cu, O₂). A compound contains two or more elements chemically bonded in a fixed ratio (e.g. H₂O). A mixture contains two or more substances physically combined in any ratio, each keeping its own properties and separable by physical means.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define relative atomic mass, $A_r$.",
-      "back": "The weighted average mass of an atom of an element, relative to 1/12th the mass of an atom of carbon-12. It is a dimensionless quantity."
+      "front": "Homogeneous vs heterogeneous mixture",
+      "back": "A homogeneous mixture has uniform composition throughout with no visible boundaries (e.g. salt water, air, brass). A heterogeneous mixture has a non-uniform composition with distinct regions you can, in principle, tell apart (e.g. sand and iron filings, oil and water).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define relative molecular mass, $M_r$.",
-      "back": "The sum of the relative atomic masses of the atoms in a molecule or formula unit. It is also a dimensionless quantity."
+      "front": "Particles in a solid",
+      "back": "Closely packed in a fixed, regular lattice; lowest kinetic energy; vibrate about fixed positions but do not move from place to place. Fixed shape and fixed volume.",
+      "pillLabel": "States"
     },
     {
-      "front": "What is a mole (mol)?",
-      "back": "The SI unit for the amount of a substance. It is the amount of substance that contains the same number of specified elementary entities as there are atoms in exactly 12 g of carbon-12."
+      "front": "Particles in a liquid",
+      "back": "Closely packed but randomly arranged; enough energy to slide past one another, so the liquid flows and takes the shape of its container. Fixed volume, no fixed shape.",
+      "pillLabel": "States"
     },
     {
-      "front": "What is Avogadro's constant, $L$ (or $N_A$)?",
-      "back": "The number of particles (atoms, molecules, ions) in one mole of a substance. Its value is $6.02 \\times 10^{23}$ mol⁻¹."
+      "front": "Particles in a gas",
+      "back": "Far apart and randomly arranged; high kinetic energy; move rapidly in all directions with negligible forces between them. No fixed shape or volume — expand to fill the container.",
+      "pillLabel": "States"
     },
     {
-      "front": "What is molar mass, $M$?",
-      "back": "The mass of one mole of a substance. Its units are grams per mole (g mol⁻¹). Numerically, it is equal to the substance's $A_r$ or $M_r$."
+      "front": "Kinetic vs potential energy on heating",
+      "back": "Kinetic energy is the energy of particle motion and is proportional to the Kelvin temperature — it rises on the sloped parts of a heating curve. Potential energy is stored in the forces between particles — it rises on the flat parts (changes of state), where the temperature stays constant.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Common Trap: Units for $A_r$ vs Molar Mass",
-      "back": "Relative atomic mass ($A_r$) and relative molecular mass ($M_r$) are ratios and have no units. Molar mass ($M$) is the mass of one mole and MUST have units of g mol⁻¹."
+      "front": "Why temperature is constant during a change of state",
+      "back": "The energy added is used to overcome (or, on cooling, is released as particles re-form) the forces of attraction between particles — this changes potential energy, not average kinetic energy. Since temperature measures average kinetic energy, it stays constant until the change is complete.",
+      "pillLabel": "Analysis"
     },
     {
-      "front": "Common Trap: Atoms vs Molecules in calculations",
-      "back": "Be careful what the question asks for. One mole of O₂ contains $6.02 \\times 10^{23}$ molecules of oxygen, but it contains $2 \\times (6.02 \\times 10^{23})$ atoms of oxygen."
+      "front": "The Kelvin scale and absolute zero",
+      "back": "T(K) = T(°C) + 273. Kelvin is an absolute scale: 0 K (absolute zero, −273 °C) is the temperature at which particle motion is at a minimum and kinetic energy is effectively zero. Average kinetic energy is proportional to the KELVIN temperature, which is why Kelvin is used in gas and energy calculations.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a homogeneous mixture?",
-      "back": "A mixture that has a uniform composition and properties throughout. For example, salt dissolved in water."
+      "front": "Endothermic vs exothermic changes of state",
+      "back": "Endothermic changes absorb energy to separate particles: melting, boiling/vaporisation and sublimation. Exothermic changes release energy as particles come together: freezing, condensation and deposition.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a heterogeneous mixture?",
-      "back": "A mixture that does not have a uniform composition and where components are visibly distinguishable. For example, sand and water."
+      "front": "Boiling vs evaporation",
+      "back": "Boiling happens throughout the liquid at one fixed temperature (the boiling point). Evaporation happens only at the surface and can occur at any temperature, as the fastest surface particles escape the liquid.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Filtration",
+      "back": "Separates an insoluble solid from a liquid (or solution) using filter paper: the solid (residue) is trapped while the liquid (filtrate) passes through. Relies on a difference in particle size. Example: sand from water.",
+      "pillLabel": "Separation"
+    },
+    {
+      "front": "Evaporation / crystallisation",
+      "back": "Recovers a dissolved (soluble) solid from its solution by evaporating the solvent, leaving the solid behind. Example: obtaining salt from salt water. Relies on the solvent having a much lower boiling point than the solute.",
+      "pillLabel": "Separation"
+    },
+    {
+      "front": "Distillation",
+      "back": "Separates a liquid from a solution (simple distillation) or two miscible liquids (fractional distillation) by exploiting differences in boiling point: the more volatile component vaporises, then condenses back to a pure liquid. Example: pure water from salt water; ethanol from a water–ethanol mixture.",
+      "pillLabel": "Separation"
+    },
+    {
+      "front": "Chromatography",
+      "back": "Separates the components of a mixture (e.g. dyes in an ink) by their different affinities for a stationary phase versus a mobile phase. Components that are more attracted to the mobile phase travel further. Relies on differing solubility/adsorption.",
+      "pillLabel": "Separation"
+    },
+    {
+      "front": "Exam trap: melting/boiling breaks WHAT?",
+      "back": "A change of state breaks the forces of attraction BETWEEN molecules (intermolecular forces), NOT the covalent bonds within molecules. Steam is still H₂O — the O–H bonds are intact; only the forces between water molecules have been overcome.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "When ice melts and then water boils, what is being overcome?",
+      "options": [
+        "The covalent bonds inside each H₂O molecule",
+        "The forces of attraction between the H₂O molecules",
+        "The nuclei of the hydrogen atoms",
+        "Nothing — the molecules are destroyed"
+      ],
+      "answer": "The forces of attraction between the H₂O molecules"
+    },
+    {
+      "prompt": "Which of the following is a HETEROGENEOUS mixture?",
+      "options": [
+        "Filtered air",
+        "A cup of well-stirred salt water",
+        "Sand mixed with iron filings",
+        "Pure molten copper"
+      ],
+      "answer": "Sand mixed with iron filings"
+    },
+    {
+      "prompt": "On the FLAT (constant-temperature) part of a heating curve, the energy added is increasing the particles':",
+      "options": [
+        "Kinetic energy only",
+        "Potential energy, as forces of attraction are overcome",
+        "Temperature",
+        "Mass"
+      ],
+      "answer": "Potential energy, as forces of attraction are overcome"
+    },
+    {
+      "prompt": "A student wants to obtain pure water from a sample of seawater. The best technique is:",
+      "options": [
+        "Filtration",
+        "Simple distillation",
+        "Chromatography",
+        "Evaporation to dryness"
+      ],
+      "answer": "Simple distillation"
+    },
+    {
+      "prompt": "The average kinetic energy of the particles in a gas is directly proportional to:",
+      "options": [
+        "The temperature in degrees Celsius",
+        "The absolute (Kelvin) temperature",
+        "The pressure only",
+        "The number of particles"
+      ],
+      "answer": "The absolute (Kelvin) temperature"
     }
   ],
   "faq": [
     {
-      "q": "Why is carbon-12 used as the standard for relative atomic mass?",
-      "a": "Carbon-12 was chosen for several reasons. It is a very common and stable isotope. Its mass can be measured very accurately using a mass spectrometer. By defining its mass as exactly 12, the relative atomic masses of most other elements become very close to whole numbers (especially hydrogen, which is close to 1), which is convenient."
+      "q": "What is the difference between boiling and evaporation?",
+      "a": "Boiling is a bulk phenomenon that occurs at one fixed temperature (the boiling point) throughout the entire liquid. Evaporation is a surface phenomenon that can occur at any temperature below the boiling point: only the fastest-moving particles at the surface have enough kinetic energy to escape into the gas phase, which is why a puddle can dry out on a cool day without ever boiling."
     },
     {
-      "q": "What is the difference between relative molecular mass ($M_r$) and molar mass ($M$)?",
-      "a": "$M_r$ is a relative value and has no units; it's the mass of one molecule relative to 1/12th the mass of a C-12 atom. Molar mass ($M$) is the actual mass of one mole of a substance and has units of grams per mole (g mol⁻¹). Numerically, they are the same, but conceptually and in terms of units, they are different."
+      "q": "Why doesn't the temperature change during melting or boiling, even though heat is still being added?",
+      "a": "The added energy is used to overcome the forces of attraction between particles, increasing their potential energy, not their kinetic energy. Because temperature measures the AVERAGE kinetic energy of the particles, it stays constant on the plateau until the change of state is complete — only then does further heating raise the temperature again."
     },
     {
-      "q": "Can I have a mole of anything?",
-      "a": "Yes, in principle. The mole is just a number, like a dozen. You can have a mole of atoms, a mole of molecules, a mole of ions, a mole of electrons, or even a mole of stars! In chemistry, we almost always use it to refer to elementary particles like atoms, molecules, or ions."
+      "q": "Do melting and boiling break chemical bonds?",
+      "a": "No. Changes of state are physical changes: they overcome the intermolecular forces BETWEEN molecules, not the covalent bonds WITHIN them. An H₂O molecule is the same molecule in ice, liquid water and steam. This distinction is one of the most heavily penalised errors in exams."
+    },
+    {
+      "q": "How do I choose the right separation technique?",
+      "a": "Match the technique to the difference in physical properties. Insoluble solid + liquid → filtration. Soluble solid you want back → evaporation/crystallisation. Pure liquid you want back from a solution → simple distillation; two miscible liquids → fractional distillation (different boiling points). Coloured or soluble components you want to identify or separate → chromatography (different affinities for stationary vs mobile phase)."
+    },
+    {
+      "q": "Why do chemists use the Kelvin scale rather than Celsius?",
+      "a": "Because the average kinetic energy of particles is proportional to the ABSOLUTE temperature. On the Kelvin scale, doubling the temperature genuinely doubles the average kinetic energy; on the Celsius scale it does not, because 0 °C is not the true zero of particle energy. Absolute zero (0 K = −273 °C) is where particle motion is at a minimum. Convert with T(K) = T(°C) + 273."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the foundation of quantitative chemistry. This topic explores the particulate nature of matter, teaching us to see the world as chemists do: as a collection of atoms, molecules, and ions. We will learn how to classify different types of matter and, crucially, how to 'count' particles using the concept of the mole. Mastering these skills is essential for understanding chemical reactions and stoichiometry."
+      "content": "Welcome to the very foundation of chemistry. Everything you can touch, taste or smell is matter, and all matter is made of tiny particles — atoms, molecules or ions — that are in constant, restless motion. Almost every idea in this course grows from that single insight. In this lesson we build the kinetic molecular theory, use it to explain the three states of matter and the changes between them, sort matter into elements, compounds and mixtures, connect temperature to particle energy through the Kelvin scale, and finish with the techniques chemists use to pull mixtures apart."
     },
     {
       "type": "heading",
-      "content": "1. Classification of Matter"
+      "content": "The kinetic molecular theory"
     },
     {
       "type": "text",
-      "content": "All matter can be classified as either a pure substance or a mixture. Pure substances have a fixed composition and distinct properties. They are further divided into elements and compounds."
+      "content": "The particulate nature of matter is captured by the kinetic molecular theory, a model with a few simple postulates that turn out to explain a huge amount. Because it is a model, it is an approximation — but a powerful one that predicts real behaviour reliably at this level."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Element:** A substance made of only one type of atom (e.g., He, N₂).",
-        "**Compound:** A substance made of two or more types of atoms chemically bonded in a fixed ratio (e.g., H₂O, NaCl).",
-        "**Mixture:** A combination of two or more substances that are not chemically bonded. They can be separated by physical means.",
-        "**Homogeneous Mixture:** Uniform composition throughout (e.g., air, salt water). Also known as a solution.",
-        "**Heterogeneous Mixture:** Non-uniform composition, with distinguishable components (e.g., sand in water, oil and vinegar)."
+        "All matter is made of small particles (atoms, molecules or ions) with empty space between them.",
+        "The particles are in constant, random motion.",
+        "The average kinetic energy of the particles is directly proportional to the **absolute (Kelvin) temperature** — hotter means faster.",
+        "There are forces of attraction between the particles; their strength, set against the particles' energy, determines whether the substance is a solid, liquid or gas."
       ]
     },
     {
       "type": "heading",
-      "content": "2. Relative Atomic and Molecular Mass"
+      "content": "Classifying matter: elements, compounds and mixtures"
     },
     {
       "type": "text",
-      "content": "Since atoms are incredibly small, we use a relative scale to describe their mass. The standard is the carbon-12 isotope, which is assigned a mass of exactly 12 units. The relative atomic mass ($A_r$) of an element is the weighted average mass of its isotopes compared to 1/12th the mass of a carbon-12 atom. You can find these values on the periodic table."
+      "content": "Before describing states, it helps to classify what the particles actually are. Matter is either a pure substance (an element or a compound) or a mixture. An element contains only one kind of atom and cannot be broken down chemically. A compound contains two or more elements chemically bonded together in a fixed whole-number ratio, so its properties differ completely from those of its elements. A mixture contains two or more substances that are only physically combined, in any proportion; each keeps its own properties, and the components can be separated by physical means such as those in the last section of this lesson."
     },
     {
-      "type": "text",
-      "content": "For a compound, we calculate the relative molecular mass ($M_r$) or relative formula mass by summing the $A_r$ values of all the atoms in its chemical formula. Remember, both $A_r$ and $M_r$ are dimensionless ratios."
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the relative formula mass ($M_r$) of hydrated iron(II) sulfate, FeSO₄·7H₂O. Use the following relative atomic masses from the IB data booklet: Fe = 55.85, S = 32.07, O = 16.00, H = 1.01.",
-      "solution": "1.  **Break down the formula:** The compound consists of one FeSO₄ unit and seven H₂O units.\n2.  **Calculate the mass of the H₂O part:**\n    $M_r(\\text{H}_2\\text{O}) = 2 \\times A_r(\\text{H}) + A_r(\\text{O})$\n    $M_r(\\text{H}_2\\text{O}) = 2(1.01) + 16.00 = 18.02$\n    Mass of 7 water molecules = $7 \\times 18.02 = 126.14$\n3.  **Calculate the mass of the FeSO₄ part:**\n    $M_r(\\text{FeSO}_4) = A_r(\\text{Fe}) + A_r(\\text{S}) + 4 \\times A_r(\\text{O})$\n    $M_r(\\text{FeSO}_4) = 55.85 + 32.07 + 4(16.00) = 55.85 + 32.07 + 64.00 = 151.92$\n4.  **Sum the parts:**\n    $M_r(\\text{FeSO}_4\\cdot7\\text{H}_2\\text{O}) = 151.92 + 126.14 = 277.96$\n    **Final Answer:** 277.96 (no units)."
-    },
-    {
-      "type": "heading",
-      "content": "3. The Mole and Avogadro's Constant"
-    },
-    {
-      "type": "text",
-      "content": "The mole is the chemist's 'dozen'. It's a unit that represents a specific, very large number of particles. This number is Avogadro's constant ($L$), which is approximately $6.02 \\times 10^{23}$ particles per mole. One mole of any substance contains $6.02 \\times 10^{23}$ elementary entities (which could be atoms, molecules, ions, etc.)."
-    },
-    {
-      "type": "text",
-      "content": "The crucial link between the microscopic world of atoms and the macroscopic world of grams is the molar mass ($M$). The molar mass of a substance is its relative mass ($A_r$ or $M_r$) expressed in grams per mole (g mol⁻¹). For example, since the $A_r$ of Carbon is 12.01, its molar mass is 12.01 g mol⁻¹."
-    },
-    {
-      "type": "formula",
-      "content": "Amount (mol), $n = \\frac{\\text{mass (g), } m}{\\text{Molar Mass (g mol}^{-1}\\text{), } M}$"
-    },
-    {
-      "type": "formula",
-      "content": "Number of particles, $N = \\text{Amount (mol), } n \\times \\text{Avogadro's constant, } L$"
+      "type": "keyPoints",
+      "items": [
+        "**Element:** one type of atom only (e.g. copper Cu, oxygen O₂). Cannot be split by chemical reactions.",
+        "**Compound:** elements chemically bonded in a fixed ratio (e.g. water H₂O, sodium chloride NaCl). Fixed composition; new properties.",
+        "**Mixture:** substances physically mixed in any ratio (e.g. air, seawater, brass). Components keep their own properties and are physically separable.",
+        "**Homogeneous mixture:** uniform throughout, no visible boundaries between components (e.g. salt water, clean air, an alloy such as brass). A single visible phase.",
+        "**Heterogeneous mixture:** non-uniform, with distinct regions or phases you can tell apart (e.g. sand and iron filings, oil and water, granite)."
+      ]
     },
     {
       "type": "examTip",
-      "content": "In Paper 2, always show your working clearly. For mole calculations, state the formula you are using, substitute the values with units, and give your final answer to the correct number of significant figures, as determined by the data in the question."
+      "content": "'Homogeneous' does not mean 'a single substance' — it means uniform composition. Air and salt water are homogeneous MIXTURES: still mixtures (separable by physical means), but uniform to the eye. Do not confuse a homogeneous mixture with a compound; the mixture has no fixed ratio and can be separated physically."
+    },
+    {
+      "type": "heading",
+      "content": "The three states of matter"
+    },
+    {
+      "type": "text",
+      "content": "The state of a substance at a given temperature and pressure is decided by the balance between the kinetic energy of its particles and the forces of attraction between them. As energy is added, the particles move faster and the forces are progressively overcome, taking the substance from solid to liquid to gas."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Solids:** particles held in fixed positions in a regular crystal lattice, closely packed; least kinetic energy; only vibrate. Fixed shape and fixed volume.",
+        "**Liquids:** particles still close together but randomly arranged; enough energy to slide past one another. Fixed volume, but take the shape of the container.",
+        "**Gases:** particles far apart and randomly arranged; high kinetic energy; move rapidly in all directions with negligible forces between them. No fixed shape or volume — they expand to fill the container and are compressible."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Temperature, the Kelvin scale and kinetic energy"
+    },
+    {
+      "type": "text",
+      "content": "Temperature is a measure of the AVERAGE kinetic energy of the particles in a substance — not the total energy, and not the energy of any single particle (particles in a sample have a spread of speeds). Because kinetic energy is proportional to the ABSOLUTE temperature, chemists measure temperature on the Kelvin scale, where 0 K is absolute zero (−273 °C), the point of minimum particle motion. Convert with the relationship T in kelvin = T in degrees Celsius + 273. On the Kelvin scale, doubling the temperature doubles the average kinetic energy; on the Celsius scale it does not, which is why Kelvin is used whenever particle energy matters."
+    },
+    {
+      "type": "examTip",
+      "content": "When a question links temperature to particle energy, always say 'average kinetic energy' and refer to the KELVIN (absolute) temperature. Writing that energy is proportional to the Celsius temperature is a common and easily avoided error."
+    },
+    {
+      "type": "heading",
+      "content": "Changes of state"
+    },
+    {
+      "type": "text",
+      "content": "Substances move between states by gaining or losing energy, usually as heat. These are physical changes because the chemical identity of the substance does not change — ice, liquid water and steam are all H₂O. Changes that absorb energy to pull particles apart are endothermic; changes that release energy as particles come together are exothermic. Crucially, the energy involved goes into overcoming or re-forming the forces of attraction BETWEEN particles, never the bonds within molecules."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Melting (s → l):** endothermic. Energy overcomes the forces holding particles in the lattice.",
+        "**Boiling / vaporisation (l → g):** endothermic. Energy separates particles fully against the forces holding the liquid together.",
+        "**Sublimation (s → g):** endothermic. Direct solid to gas, e.g. dry ice, CO₂(s), and iodine.",
+        "**Freezing / solidification (l → s):** exothermic. Energy is released as particles settle into the lattice.",
+        "**Condensation (g → l):** exothermic. Energy is released as gas particles come together into a liquid.",
+        "**Deposition (g → s):** exothermic. Direct gas to solid, e.g. frost forming on a cold surface."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "A sample contains 11.0 g of propane (C₃H₈). Calculate the total number of hydrogen atoms in the sample. (Avogadro's constant, $L = 6.02 \\times 10^{23}$ mol⁻¹).",
-      "solution": "1.  **Calculate the molar mass of propane (C₃H₈):**\n    $M(\\text{C}_3\\text{H}_8) = 3 \\times A_r(\\text{C}) + 8 \\times A_r(\\text{H})$\n    $M(\\text{C}_3\\text{H}_8) = 3(12.01) + 8(1.01) = 36.03 + 8.08 = 44.11$ g mol⁻¹\n2.  **Calculate the amount (moles) of propane:**\n    $n = m/M$\n    $n(\\text{C}_3\\text{H}_8) = \\frac{11.0 \\text{ g}}{44.11 \\text{ g mol}^{-1}} = 0.2493...$ mol\n3.  **Calculate the amount (moles) of hydrogen atoms:**\n    Each molecule of C₃H₈ contains 8 hydrogen atoms. Therefore, 1 mole of C₃H₈ contains 8 moles of H atoms.\n    $n(\\text{H}) = 8 \\times n(\\text{C}_3\\text{H}_8) = 8 \\times 0.2493... \\text{ mol} = 1.995...$ mol\n4.  **Calculate the total number of hydrogen atoms:**\n    $N(\\text{H}) = n(\\text{H}) \\times L$\n    $N(\\text{H}) = 1.995... \\text{ mol} \\times 6.02 \\times 10^{23} \\text{ mol}^{-1} = 1.201... \\times 10^{24}$ atoms\n5.  **Final answer to correct significant figures:**\n    The given mass (11.0 g) has 3 significant figures.\n    **Answer:** $1.20 \\times 10^{24}$ hydrogen atoms."
+      "question": "A sample of solid naphthalene, C₁₀H₈, is heated from 60 °C to 100 °C. Its melting point is 80 °C and its boiling point is 218 °C. Describe the arrangement and motion of the particles at (i) 70 °C and (ii) 90 °C.",
+      "solution": "**(i) At 70 °C** (below the melting point, so solid):\n- **Arrangement:** the C₁₀H₈ molecules are held in a regular, repeating crystal lattice, closely packed. [1 mark]\n- **Motion:** they vibrate about fixed positions but cannot move from place to place. [1 mark]\n\n**(ii) At 90 °C** (above the melting point but below the boiling point, so liquid):\n- **Arrangement:** the molecules are still close together but now randomly arranged, no longer in fixed positions. [1 mark]\n- **Motion:** they have more kinetic energy and can slide past one another, allowing the liquid to flow. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting heating and cooling curves"
+    },
+    {
+      "type": "text",
+      "content": "A heating curve plots temperature against time as a substance is heated at a constant rate; a cooling curve is its mirror image. The SLOPED sections show the temperature changing — here the average kinetic energy of the particles is rising (heating) or falling (cooling). The FLAT plateaus occur during a change of state: the temperature is constant because the energy being added or removed is changing the particles' POTENTIAL energy (overcoming or re-forming forces of attraction), not their kinetic energy. Reading a curve is really a matter of asking, at each part, whether kinetic energy or potential energy is changing."
+    },
+    {
+      "type": "examTip",
+      "content": "To explain why temperature is constant during a phase change, be precise: state that the energy supplied is used to overcome the forces of attraction between particles, increasing their POTENTIAL energy, NOT their kinetic energy — and that temperature is a measure of average kinetic energy. Saying merely 'the energy is used for the phase change' rarely earns full marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "The cooling curve for lauric acid is recorded, starting from its liquid phase. The temperature falls from 60 °C, holds constant at 44 °C for several minutes, then falls again.\n\n(a) State the freezing point of lauric acid.\n(b) Explain, in terms of particles and energy, what is happening during the constant-temperature section.\n(c) What state is the lauric acid in on the final downward slope?",
+      "solution": "**(a)** The freezing point is the temperature of the flat plateau on the cooling curve: **44 °C**. [1 mark]\n\n**(b)** During the plateau the liquid is freezing. As it cools, particles lose kinetic energy; at the freezing point they begin to settle into a fixed solid lattice, and as the forces of attraction between them re-form, energy is RELEASED (an exothermic change). This released energy exactly offsets the heat lost to the surroundings, so the temperature stays constant — the particles' potential energy is falling while their average kinetic energy (and hence temperature) is unchanged — until all the liquid has solidified. [2 marks]\n\n**(c)** After the plateau all the lauric acid has solidified, so on the final slope it is **solid**, and its temperature is now falling as the particles lose kinetic energy. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Separating mixtures"
+    },
+    {
+      "type": "text",
+      "content": "Because the components of a mixture keep their own physical properties, we can separate them by exploiting a DIFFERENCE in one of those properties. The trick in exams is to match the method to the difference — particle size, solubility, boiling point, or affinity for a surface."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Filtration** — separates an insoluble solid from a liquid, using a difference in particle size. The solid stays on the filter paper as the *residue*; the liquid passing through is the *filtrate*. Example: sand from water.",
+        "**Evaporation / crystallisation** — recovers a soluble solid from its solution by evaporating the solvent, leaving the solid behind. Example: obtaining salt from salt water.",
+        "**Simple distillation** — recovers the pure liquid (solvent) from a solution by boiling it off and condensing the vapour; the dissolved solid stays behind. Example: pure water from seawater.",
+        "**Fractional distillation** — separates two or more miscible liquids with different boiling points; the more volatile liquid vaporises and condenses first. Example: ethanol from a water–ethanol mixture; components of crude oil.",
+        "**Chromatography** — separates dissolved components by their different affinities for a stationary phase versus a mobile phase; the component more attracted to the mobile phase travels furthest. Example: separating and identifying dyes in an ink or pigments in a leaf."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Distillation vs evaporation trips students up. If you want the SOLID back, evaporate the solvent away. If you want the pure LIQUID back, distil — the vapour is condensed and collected while the solute is left behind. Read carefully which component the question asks you to recover."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying melting or boiling 'breaks the bonds' of the molecules** — a change of state overcomes the forces of attraction BETWEEN molecules, not the covalent bonds within them. Steam is still H₂O.",
+        "**Claiming temperature rises during a change of state** — on the plateau the temperature is constant; the energy changes potential energy, not kinetic energy.",
+        "**Confusing kinetic and potential energy** — kinetic energy changes on the slopes (temperature changing); potential energy changes on the plateaus (state changing). Do not swap them.",
+        "**Using Celsius where Kelvin is required** — average kinetic energy is proportional to the ABSOLUTE (Kelvin) temperature; convert with +273.",
+        "**Confusing a homogeneous mixture with a compound** — a homogeneous mixture (air, salt water) is uniform but has no fixed ratio and is separable physically; a compound has a fixed ratio and needs a chemical change to break apart.",
+        "**Muddling boiling and evaporation** — boiling is a bulk process at one fixed temperature; evaporation is a surface process at any temperature.",
+        "**Choosing the wrong separation** — filtration only works for an INSOLUBLE solid; you cannot filter salt out of salt water because it is dissolved."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked by our marking engine"
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 2 style: Explain, in terms of particles, what happens to the arrangement and motion of the particles when a solid is heated until it melts and then boils. [4]",
+      "solution": "**Model answer:**\nIn the solid, the particles are held closely together in a fixed, regular lattice and can only vibrate about fixed positions. As the solid is heated, the particles gain kinetic energy and vibrate more vigorously. At the melting point, the particles have enough energy to overcome the forces of attraction holding them in the lattice, so they break free of their fixed positions: the arrangement becomes random (though still closely packed) and the particles can now move past one another — the substance is a liquid. On further heating the particles gain still more kinetic energy and move faster. At the boiling point they have enough energy to overcome the remaining forces of attraction completely, so they separate widely: the particles become far apart, randomly arranged, and move rapidly in all directions — the substance is a gas.\n\n---\n**How our marking engine awards the marks (IB analytic / points-based, out of 4):**\nEach distinct valid point earns 1 mark; equivalent correct wording is accepted. Four creditworthy points in this answer:\n- **[1 — M, method/reasoning]** Heating gives the particles more kinetic energy so they vibrate/move faster. This is a reasoning mark: it is credited for the correct mechanism even if a later detail were wrong.\n- **[1 — A, accuracy]** On melting, particles overcome the forces of attraction and break free of the lattice, becoming a randomly arranged but still close-packed liquid that can flow / move past one another.\n- **[1 — M, method/reasoning]** Further heating increases their kinetic energy again so they move faster still (the reasoning that leads into boiling).\n- **[1 — A, accuracy]** On boiling, particles overcome the forces of attraction completely and move far apart, becoming a gas that moves rapidly and randomly in all directions.\n\n**ECF (error carried forward):** if a candidate mistakenly wrote that melting 'breaks the covalent bonds' but then correctly described the liquid arrangement and motion, the two later description marks are still available — a wrong earlier statement used consistently afterwards does not doubly penalise. **Equivalent wording** such as 'intermolecular forces are overcome' for 'forces of attraction between particles are overcome' is accepted. No marks are awarded for stating a temperature change, because the question asks about arrangement and motion of particles."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks your own answer exactly this way: our marking engine scans for each distinct required point and awards a mark for each one it finds, accepting equivalent wording and carrying forward earlier errors. The reward comes from stating each distinct point clearly and separately — so make the examiner's job easy: one clear idea per sentence, and name the forces of attraction being overcome at each change."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The particle model you have just built is the lens for almost everything ahead. When later topics ask why ionic compounds have high melting points, why gases exert pressure, or how intermolecular forces set boiling points, the underlying question is always the same one from this lesson: how are the particles arranged, how much energy do they have, and how strongly are they attracted to one another? This content is common to SL and HL at this level; HL extensions appear in later Structure 1 topics."
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-chemistry-hl&topic=S1.1"
+      "label": "Get a Paper 2 particle-model answer marked: describe arrangement and motion through melting and boiling",
+      "href": "/mark?subject=ib-chemistry-hl&topic=S1.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive Periodic Table",
-          "href": "https://ptable.com/?lang=en"
+          "label": "PhET: States of Matter Basics Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/states-of-matter-basics"
         },
         {
-          "label": "Khan Academy: The Mole and Avogadro's Number",
-          "href": "https://www.khanacademy.org/science/chemistry/atomic-structure-and-properties/introduction-to-the-mole-chemistry/v/the-mole-and-avogadro-s-number"
-        },
-        {
-          "label": "ChemGuide: Elements, Compounds and Mixtures",
-          "href": "https://www.chemguide.co.uk/atoms/basic/elements.html"
+          "label": "IB Chemistry Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/chemistry-data-booklet/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Introduction to States of Matter Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/states-of-matter-basics",
+    "hint": "Explore “Introduction to States of Matter Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
 }

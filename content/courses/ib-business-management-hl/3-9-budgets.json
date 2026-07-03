@@ -2,182 +2,139 @@
   "slug": "3-9-budgets",
   "topicCode": "3.9",
   "title": "Budgets",
+  "unit": { "code": "3", "title": "Finance and accounts" },
   "paper": "P2",
   "paperName": "Business Management HL",
   "status": "premium",
-  "summary": "This lesson explores the critical role of budgets as a financial planning and control tool. It covers the creation of budgets, the distinction between cost and profit centres, and the process of variance analysis to measure performance against financial targets. Students will learn to calculate and interpret variances, and evaluate the strategic importance and limitations of budgeting in a business context.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A plan that no one checks is just a wish. This HL-only lesson works through the whole of syllabus 3.9: why businesses budget at all (planning, control, coordination and motivation), the crucial difference between a budget and a forecast, the main types of budget (income/sales, expenditure and cash), and — at the quantitative heart of the topic — variance analysis. You will learn the IB convention that a variance equals the budgeted figure minus the actual figure, how to classify each variance as FAVOURABLE or ADVERSE for costs and for revenues (the two work in opposite directions), how to interpret variances and choose a sensible response, and where budgeting falls short. Because 3.9 is a QUANTITATIVE topic, every worked example is set out exactly the way our marking engine awards marks — an M mark for the correct method, an A mark for the accurate value AND the correct favourable/adverse label, and follow-through on a correct method built on an earlier slip — so you can see precisely where each mark is won and lost.",
+  "durationMin": 23,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define and explain the role of budgets in business planning and control.",
-    "Distinguish between cost centres and profit centres.",
-    "Prepare simple budgets and conduct variance analysis.",
-    "Evaluate the advantages and disadvantages of using budgets for an organisation."
+    "Explain the purpose and benefits of budgeting — planning, control, coordination and motivation — and distinguish a budget from a forecast.",
+    "Identify the main types of budget: income (sales), expenditure and cash budgets.",
+    "Calculate variances using variance = budgeted figure − actual figure and classify each as favourable or adverse for both costs and revenues.",
+    "Interpret variances in context, recommend appropriate responses, and evaluate the limitations of budgeting."
   ],
+  "syllabusObjectivesCovered": ["3.9"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Your Business's Financial Road Map",
-    "summary": "Budgets are detailed financial plans that forecast a business's future income and expenditure over a specific period. They act as a guide for decision-making and a benchmark for measuring actual performance.",
-    "analogy": "Imagine you're planning a school fundraising bake sale. You'd first create a budget: estimating how much money you'll make from selling cakes (income) and how much you'll spend on flour, sugar, and decorations (expenditure). After the sale, you compare your actual income and spending to your budget. If you made more money than planned, that's a 'favourable variance'. If you spent more on ingredients, that's an 'adverse variance'. This process helps you plan better for the next bake sale.",
+    "title": "The plan, and the scoreboard that checks it",
+    "summary": "A budget is a financial plan set BEFORE a period begins — how much money the business expects to bring in and how much it expects to spend. Variance analysis is the scoreboard AFTER the period: it compares what actually happened with what was planned, so managers can see where reality beat the plan (favourable) and where it fell short (adverse), and then act on it.",
+    "analogy": "Imagine you plan a weekend food stall. Before you start, you write a budget: expect to take $500 in sales and spend $200 on ingredients, so you plan for $300 profit. That is your plan. After the weekend you count up: you actually took $470 and spent $180. Comparing the two is variance analysis. Sales came in $30 UNDER plan — bad news for a revenue line, so that is an ADVERSE variance. But ingredients cost $20 LESS than planned — good news for a cost line, so that is a FAVOURABLE variance. The magic is that the same direction of miss means opposite things depending on whether the line is money coming IN or money going OUT.",
     "steps": [
-      "Set Financial Objectives: The business determines its goals for the upcoming period, such as increasing sales by 10% or reducing production costs by 5%.",
-      "Prepare Budgets: Based on the objectives, managers for different departments (e.g., sales, production) create detailed forecasts for income and expenditure.",
-      "Monitor Performance: As the business operates, it records the actual income earned and costs incurred.",
-      "Analyse Variances: The business compares the actual figures to the budgeted figures. The differences, known as variances, are calculated and investigated to inform future decisions."
+      "Set the budget first: agree the planned income and planned expenditure for the period, and the planned profit that follows.",
+      "Record the actuals: as the period runs, log what really came in and what was really spent.",
+      "Calculate the variance for each line as budgeted figure − actual figure, then label it favourable or adverse — remembering costs and revenues work in opposite directions.",
+      "Interpret and respond: investigate the big or unexpected variances, work out the cause, and decide on corrective action for the next period."
     ]
   },
+  "keyConcepts": ["planning", "control", "variance", "favourable and adverse"],
   "flashcards": [
-    {
-      "front": "Budget",
-      "back": "A quantitative financial plan that estimates revenue and expenditure for a specified future period. It is a key tool for planning and control."
-    },
-    {
-      "front": "Variance",
-      "back": "The difference between a budgeted or planned figure and the actual figure. It can be favourable or adverse."
-    },
-    {
-      "front": "Favourable Variance (F)",
-      "back": "A variance that is beneficial to the business. This occurs when actual profit is higher than budgeted profit, either through higher-than-expected revenue or lower-than-expected costs."
-    },
-    {
-      "front": "Adverse Variance (A)",
-      "back": "A variance that is detrimental to the business. This occurs when actual profit is lower than budgeted profit, either through lower-than-expected revenue or higher-than-expected costs."
-    },
-    {
-      "front": "Cost Centre",
-      "back": "A department or section of a business to which costs can be allocated, but which does not directly generate revenue. Examples include HR, IT, and accounting departments."
-    },
-    {
-      "front": "Profit Centre",
-      "back": "A department or section of a business to which both costs and revenues can be allocated, allowing for the calculation of its own profit. Examples include a specific product line or a retail store branch."
-    },
-    {
-      "front": "Variance Analysis",
-      "back": "The process of calculating variances and attempting to identify their causes. It is a management control tool used to assess performance and take corrective action."
-    },
-    {
-      "front": "Master Budget",
-      "back": "The overall budget for a business, which is comprised of all the individual departmental budgets (e.g., sales, production, marketing). It provides a consolidated view of the firm's financial plans."
-    },
-    {
-      "front": "Incremental Budgeting",
-      "back": "A method of budgeting that uses the previous period's budget as a baseline, with incremental amounts added for the new budget period. It is simple but can perpetuate past inefficiencies."
-    },
-    {
-      "front": "Zero-Based Budgeting (ZBB)",
-      "back": "A method of budgeting where all expenses must be justified for each new period, starting from a 'zero base'. It is time-consuming but effective at cutting unnecessary costs."
-    },
-    {
-      "front": "Common Trap: Interpreting Variances",
-      "back": "A higher actual cost than budgeted cost is an ADVERSE variance. A higher actual revenue than budgeted revenue is a FAVOURABLE variance. Don't just look at the number; consider if it's income or expenditure."
-    }
+    { "front": "Budget", "back": "A quantitative financial plan agreed for a specified future period, setting out expected revenue and expenditure. It is prepared BEFORE the period and used for planning and control.", "pillLabel": "Definition" },
+    { "front": "Budget vs forecast", "back": "A forecast is a PREDICTION of what is likely to happen (e.g. expected sales given market conditions). A budget is a TARGET the business commits to and is held accountable against. A budget is often built on a forecast, but a forecast carries no commitment to act.", "pillLabel": "Concept" },
+    { "front": "Variance", "back": "The difference between a budgeted (planned) figure and the actual figure. In IB Business Management: Variance = budgeted figure − actual figure. It is then labelled favourable or adverse.", "pillLabel": "Definition" },
+    { "front": "Variance formula", "back": "Variance = Budgeted figure − Actual figure. The size tells you HOW MUCH the plan was missed by; the favourable/adverse label tells you whether the miss HELPED or HURT profit.", "pillLabel": "Formula" },
+    { "front": "Favourable variance (F)", "back": "A variance that INCREASES profit above plan. It occurs when actual revenue is HIGHER than budgeted, or when actual costs are LOWER than budgeted.", "pillLabel": "Concept" },
+    { "front": "Adverse variance (A)", "back": "A variance that REDUCES profit below plan. It occurs when actual revenue is LOWER than budgeted, or when actual costs are HIGHER than budgeted.", "pillLabel": "Concept" },
+    { "front": "Income (sales) budget", "back": "A budget setting the planned revenue from sales over the period. Actual revenue is later compared against it: actual above budget is favourable, below budget is adverse.", "pillLabel": "Definition" },
+    { "front": "Expenditure budget", "back": "A budget setting planned spending — on materials, wages, rent and other costs. For costs, spending LESS than budgeted is favourable; spending MORE is adverse.", "pillLabel": "Definition" },
+    { "front": "Cash budget", "back": "A month-by-month plan of cash inflows and outflows, showing the expected closing cash balance. It flags likely cash shortages in advance so the business can arrange finance before a crisis.", "pillLabel": "Definition" },
+    { "front": "Trap: same miss, opposite label", "back": "Actual ABOVE budget is FAVOURABLE for revenue but ADVERSE for a cost. Actual BELOW budget is ADVERSE for revenue but FAVOURABLE for a cost. Never label a variance from the number alone — always ask first: is this line income or expenditure?", "pillLabel": "Trap" },
+    { "front": "Interpreting a variance", "back": "A variance is a signal, not a verdict. Investigate why it arose (e.g. a supplier price rise, a marketing success, an over-cautious budget) before deciding whether it needs action — some favourable variances are warning signs (e.g. underspending on maintenance).", "pillLabel": "Concept" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between incremental and zero-based budgeting?",
-      "a": "Incremental budgeting takes the previous year's budget as a starting point and makes adjustments (e.g., +5% for inflation). It's quick but can carry over past inefficiencies. Zero-based budgeting (ZBB) requires managers to justify every single expense for the new budget period from scratch ('from a zero base'). ZBB is very time-consuming but excellent for identifying and cutting wasteful spending."
-    },
-    {
-      "q": "Is a negative variance always a bad thing?",
-      "a": "Not necessarily, it depends on the context. This is why the terms 'Favourable' and 'Adverse' are more useful. A favourable variance is one that increases profit (e.g., actual revenue is higher than budget, or actual costs are lower than budget). An adverse variance is one that decreases profit (e.g., actual revenue is lower than budget, or actual costs are higher than budget). For example, `Budgeted Cost £100 - Actual Cost £110 = -£10`. This is a negative number and an adverse variance."
-    },
-    {
-      "q": "How can budgets be used for motivation?",
-      "a": "Budgets can be a powerful motivator when they are developed with employee participation (participative budgeting). This gives employees a sense of ownership over the targets. If the budget targets are seen as challenging but achievable, meeting or exceeding them can lead to job satisfaction and may be linked to financial rewards like bonuses. Conversely, budgets imposed from above that are perceived as impossible to achieve can be highly demotivating."
-    }
+    { "q": "What exactly is the difference between a budget and a forecast?", "a": "A forecast is a prediction: the business's best estimate of what is likely to happen, such as expected sales given the economy and the market. A budget is a plan the business commits to and is then held accountable against — a target for income and spending. In practice a budget is usually built from a forecast, but the two are not the same: a forecast just says what MIGHT happen, whereas a budget says what the business INTENDS to achieve and will measure its performance against through variance analysis. Confusing the two is a common exam slip." },
+    { "q": "Why is a favourable variance not always good news?", "a": "Because the label 'favourable' only means it raised profit against plan this period — it does not mean it was healthy. A favourable expenditure variance might come from cutting spending on staff training, maintenance or quality control, which flatters short-term profit but stores up problems. A favourable sales variance might mean the budget was set too cautiously in the first place, hiding weak forecasting. That is why interpretation matters: you investigate the CAUSE of a variance, not just its sign, before deciding whether it is genuinely good and whether any response is needed." },
+    { "q": "How can budgeting motivate — or demotivate — staff?", "a": "Budgets motivate when targets are realistic and set with employee participation (participative budgeting), giving managers ownership and a clear, achievable goal, sometimes linked to bonuses. They demotivate when imposed from above at levels seen as impossible, or used punitively to blame managers for adverse variances outside their control — for example a materials price rise driven by world markets. The motivational effect therefore depends far more on HOW the budget is set and used than on the numbers themselves." },
+    { "q": "What are the main limitations of budgeting?", "a": "Budgets are time-consuming to prepare and, once set, can become rigid — they may not fit fast-changing markets, tempting managers to stick to a plan that no longer makes sense. They rely on forecasts that can simply be wrong. They can trigger dysfunctional behaviour, such as 'spending up to budget' near year-end so next year's allocation is not cut, or gaming targets. And they can cause conflict between departments competing for limited funds. Budgets are a valuable planning and control tool, but they support judgement rather than replace it." },
+    { "q": "How do I decide how to respond to a variance?", "a": "Start by asking whether the variance is significant and whether it is controllable. A small, one-off variance rarely needs action. A large or recurring one should be investigated for its cause: an adverse cost variance from a supplier price rise might prompt renegotiation or a new supplier; an adverse sales variance might prompt a marketing push or a price review; a favourable variance from under-delivering (e.g. skipping maintenance) might actually need correcting. Only after finding the cause do you choose a response — and sometimes the right response is to revise the budget itself." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Every organisation, from a small local charity to a multinational corporation, needs a financial plan to guide its actions and achieve its objectives. This financial plan is known as a budget. Budgets are not just about restricting spending; they are a fundamental tool for strategic planning, coordination, motivation, and, crucially, for controlling the business by measuring performance against set targets."
-    },
-    {
-      "type": "heading",
-      "content": "The Role and Importance of Budgets"
-    },
-    {
-      "type": "text",
-      "content": "Budgets serve several critical functions within a business. Primarily, they are an instrument of planning, forcing managers to think ahead and anticipate future challenges and opportunities. They also act as a communication tool, ensuring that all departments are aware of the organisation's objectives and their specific role in achieving them. By allocating resources, budgets help to coordinate activities between different parts of the business, preventing departments from working at cross-purposes."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Planning: Sets targets and allocates resources to achieve strategic objectives.",
-        "Coordination: Aligns the activities of all departments towards a common goal.",
-        "Control: Provides a benchmark (the budget) against which to compare actual performance, enabling variance analysis.",
-        "Motivation: Can motivate staff if targets are realistic and participatively set. Achieving budget targets can be linked to rewards."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Cost Centres and Profit Centres"
-    },
-    {
-      "type": "text",
-      "content": "To effectively manage and control a business, it is often broken down into smaller, manageable units. For budgeting purposes, these units are typically classified as either cost centres or profit centres. A cost centre is a part of the business where managers are responsible for costs but not revenues (e.g., the Human Resources department). A profit centre is a part where managers are responsible for both costs and revenues, and therefore profit (e.g., a specific branch of a retail chain). This distinction is vital for accountability, as it allows senior management to assess the performance of individual managers based on the factors they can actually control."
-    },
-    {
-      "type": "heading",
-      "content": "Preparing Budgets and Variance Analysis"
-    },
-    {
-      "type": "text",
-      "content": "The budgeting process culminates in the creation of several key documents, including the sales (income) budget, the production (expenditure) budget, and the profit budget. Once the budget period is underway, the control process begins. This involves comparing the actual financial outcomes with the budgeted figures. The difference is the variance."
-    },
-    {
-      "type": "formula",
-      "content": "Variance = Budgeted Figure - Actual Figure"
-    },
-    {
-      "type": "text",
-      "content": "Interpreting the result is key. For **expenditure**, a positive result (actual < budget) is Favourable (F). For **income**, a negative result (actual > budget) is Favourable (F). An adverse (A) variance is the opposite in each case and reduces profit."
-    },
-    {
-      "type": "workedExample",
-      "question": "‘The Daily Grind’ coffee shop prepared a budget for May. It budgeted for sales revenue of £12,000. Its budgeted costs were: Cost of coffee beans £3,000, Staff wages £4,500, and Rent £1,500. The actual results for May were: Sales revenue £13,200, Cost of coffee beans £3,400, Staff wages £4,500, and Rent £1,500. Calculate the variance for sales revenue and each cost, and the overall profit variance. State whether each variance is Favourable (F) or Adverse (A).",
-      "solution": "First, calculate the budgeted profit:\nBudgeted Profit = Budgeted Revenue - Budgeted Total Costs\nBudgeted Profit = £12,000 - (£3,000 + £4,500 + £1,500) = £12,000 - £9,000 = £3,000\n\nNext, calculate the actual profit:\nActual Profit = Actual Revenue - Actual Total Costs\nActual Profit = £13,200 - (£3,400 + £4,500 + £1,500) = £13,200 - £9,400 = £3,800\n\nNow, calculate the variances:\n- **Sales Revenue Variance:** £12,000 - £13,200 = -£1,200. Since actual revenue is higher, this is **£1,200 Favourable (F)**.\n- **Coffee Beans Variance:** £3,000 - £3,400 = -£400. Since actual cost is higher, this is **£400 Adverse (A)**.\n- **Staff Wages Variance:** £4,500 - £4,500 = £0. There is **no variance**.\n- **Rent Variance:** £1,500 - £1,500 = £0. There is **no variance**.\n\n- **Total Profit Variance:** Budgeted Profit - Actual Profit = £3,000 - £3,800 = -£800. Since actual profit is higher, the overall variance is **£800 Favourable (F)**.\n(Alternatively, sum the individual variances: £1,200 F - £400 A = £800 F)."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2, simply calculating variances is not enough for high marks. You must use the context of the case study to analyse the *reasons* for significant variances. For example, an adverse materials cost variance could be due to an unexpected rise in commodity prices or a new, less efficient supplier. Then, recommend specific and justified corrective actions."
-    },
-    {
-      "type": "workedExample",
-      "question": "The marketing department of 'Innovate Ltd' is a cost centre. Its budget for the first quarter was: Advertising £50,000, Staff Salaries £75,000, and Events £20,000. The actual expenditure was: Advertising £47,000, Staff Salaries £78,000, and Events £23,000. Calculate the variance for each item and the total variance for the department, identifying each as Favourable (F) or Adverse (A).",
-      "solution": "We are analysing a cost centre, so all variances relate to expenditure.\n\n- **Advertising Variance:** Budgeted £50,000 - Actual £47,000 = +£3,000. Since actual cost is lower than budgeted, this is **£3,000 Favourable (F)**.\n\n- **Staff Salaries Variance:** Budgeted £75,000 - Actual £78,000 = -£3,000. Since actual cost is higher than budgeted (perhaps due to overtime or an unexpected hire), this is **£3,000 Adverse (A)**.\n\n- **Events Variance:** Budgeted £20,000 - Actual £23,000 = -£3,000. Since actual cost is higher, this is **£3,000 Adverse (A)**.\n\n- **Total Department Variance:** Sum of the individual variances.\nTotal Variance = £3,000 (F) + (-£3,000) (A) + (-£3,000) (A) = -£3,000.\nThe total variance for the marketing department is **£3,000 Adverse (A)**."
-    },
-    {
-      "type": "heading",
-      "content": "Evaluation of Budgets"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Advantages:** Provides clear targets, improves financial control, helps secure finance from banks, and forces forward-thinking.",
-        "**Disadvantages:** Can be rigid and inflexible in dynamic markets, time-consuming to prepare, can cause inter-departmental rivalry if resources are scarce, and may be demotivating if set unrealistically."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "For AO3 evaluation questions, always provide a balanced argument. Conclude with a justified judgement that considers the specific context of the business in the question. For example, you might argue that for a start-up in a volatile tech market, a rigid annual budget is less useful than for a stable, mature manufacturing firm."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Budgets",
-      "href": "/mark?subject=ib-business-management-hl&topic=3.9"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Investopedia: Budgeting and Variance Analysis",
-          "href": "https://www.investopedia.com/terms/v/variance-analysis.asp"
-        },
-        {
-          "label": "Tutor2u: Introduction to Budgets",
-          "href": "https://www.tutor2u.net/business/reference/introduction-to-budgets"
-        }
-      ]
-    }
+    { "type": "intro", "content": "A plan that nobody checks is just a wish. Businesses spend enormous effort setting financial plans — budgets — but the value only appears when those plans are compared against reality and acted on. That comparison is variance analysis, and it is the engine of financial control. This HL-only lesson covers the whole of syllabus 3.9: why firms budget (planning, control, coordination and motivation); how a budget differs from a forecast; the main types of budget (income/sales, expenditure and cash); and, at the quantitative core, how to calculate a variance, label it favourable or adverse, interpret it and respond. Because 3.9 is a quantitative topic, the worked examples are set out exactly the way our marking engine awards marks — an M mark for the correct method, an A mark for the accurate value AND the correct favourable/adverse label, with follow-through — so you can see where every mark is earned." },
+
+    { "type": "heading", "content": "The purpose and benefits of budgeting" },
+    { "type": "text", "content": "A budget is a quantitative financial plan agreed before a period begins, setting out the revenue a business expects to earn and the expenditure it expects to incur. Budgeting is far more than restraining spending. It forces managers to think ahead and turn strategy into numbers; it coordinates the activities of different departments so they pull the same way; it gives a benchmark against which real performance can be judged; and, done well, it motivates the people responsible for hitting the targets. These four purposes — planning, control, coordination and motivation — are why almost every organisation, from a charity to a multinational, budgets." },
+    { "type": "keyPoints", "items": [
+      "**Planning:** budgeting turns objectives into concrete financial targets and forces managers to anticipate future costs, revenues and resource needs before they arise.",
+      "**Control:** the budget is the benchmark for variance analysis — comparing actual results with plan lets managers spot problems early and take corrective action.",
+      "**Coordination:** allocating resources across departments aligns their activities and stops them working at cross-purposes or double-spending.",
+      "**Motivation:** realistic, participatively set targets give managers ownership and a clear goal; meeting them can be linked to rewards. Unrealistic imposed targets do the opposite."
+    ]},
+
+    { "type": "heading", "content": "Budget versus forecast" },
+    { "type": "text", "content": "Students routinely blur these two, and examiners routinely penalise it. A forecast is a PREDICTION — the business's best estimate of what is likely to happen, such as the sales it expects given the state of the economy and the market. A budget is a PLAN the business commits to and is then measured against: a target for income and spending, with managers held accountable for the difference between budget and actual. A budget is usually built from a forecast, but the forecast merely says what might happen, whereas the budget says what the firm intends to achieve and will control against. The forecast is the weather report; the budget is the itinerary you commit to and then check you kept to." },
+
+    { "type": "heading", "content": "Types of budget" },
+    { "type": "text", "content": "The syllabus focuses on three budgets that together cover income, spending and liquidity. The income (sales) budget and expenditure budget feed the profit plan; the cash budget tracks whether the business will actually have money in the bank each month, which is a different question from whether it is profitable." },
+    { "type": "keyPoints", "items": [
+      "**Income (sales) budget:** the planned revenue from sales for the period. Actual revenue is compared against it — actual ABOVE budget is favourable, actual BELOW budget is adverse.",
+      "**Expenditure budget:** the planned spending on costs such as materials, wages, rent and marketing. For costs the logic reverses — spending LESS than budgeted is favourable, spending MORE is adverse.",
+      "**Cash budget:** a month-by-month plan of cash inflows and outflows and the resulting closing balance. It warns of likely cash shortfalls in advance so finance can be arranged before a crisis — a profitable firm can still run out of cash."
+    ]},
+
+    { "type": "heading", "content": "Variance analysis: the formula and the labels" },
+    { "type": "text", "content": "Once a period is over, the business compares each actual figure with its budget. The difference is the variance. In IB Business Management the convention is fixed: subtract the actual from the budget." },
+    { "type": "formula", "content": "\\text{Variance} = \\text{Budgeted figure} - \\text{Actual figure}" },
+    { "type": "text", "content": "The number tells you the SIZE of the miss. The favourable/adverse label tells you the EFFECT on profit — and here costs and revenues behave in opposite ways. Get into the habit of asking one question before you label anything: is this line money coming IN (revenue) or money going OUT (a cost)?" },
+    { "type": "keyPoints", "items": [
+      "**Revenue line:** actual HIGHER than budget → more income than planned → **favourable (F)**. Actual LOWER than budget → **adverse (A)**.",
+      "**Cost line:** actual LOWER than budget → spent less than planned → **favourable (F)**. Actual HIGHER than budget → **adverse (A)**.",
+      "**The sign is not the label:** the same arithmetic sign means opposite things for costs and revenues, so never read the F/A label straight off the plus or minus.",
+      "**Favourable raises profit, adverse cuts it:** every favourable variance moves actual profit above budgeted profit; every adverse variance moves it below."
+    ]},
+    { "type": "workedExample", "question": "'The Daily Grind' coffee shop budgeted for May: sales revenue $12,000; cost of coffee beans $3,000; staff wages $4,500; rent $1,500. The actual results for May were: sales revenue $13,200; cost of coffee beans $3,400; staff wages $4,500; rent $1,500. Calculate the variance for sales revenue and each cost, and the overall profit variance, stating whether each is favourable (F) or adverse (A). [6]", "solution": "**Model answer.**\n\n**Budgeted profit** = $12,000 − ($3,000 + $4,500 + $1,500) = $12,000 − $9,000 = **$3,000**.\n**Actual profit** = $13,200 − ($3,400 + $4,500 + $1,500) = $13,200 − $9,400 = **$3,800**.\n\n**Variances** (budgeted − actual):\n- **Sales revenue:** $12,000 − $13,200 = −$1,200. Actual revenue is higher, so **$1,200 favourable (F)**.\n- **Coffee beans:** $3,000 − $3,400 = −$400. Actual cost is higher, so **$400 adverse (A)**.\n- **Staff wages:** $4,500 − $4,500 = $0 — **no variance**.\n- **Rent:** $1,500 − $1,500 = $0 — **no variance**.\n- **Total profit variance:** budgeted profit − actual profit = $3,000 − $3,800 = −$800, i.e. actual profit is higher, so **$800 favourable (F)**. (Check: $1,200 F − $400 A = $800 F.)\n\n---\n**How our marking engine awards the 6 marks** — this is a quantitative response marked by M (method) and A (accuracy) conventions:\n\n- **M1:** correct variance method — budgeted minus actual — applied to sales revenue. **A1:** value **$1,200** with the correct **favourable** label.\n- **M1:** correct method applied to the coffee-beans cost line. **A1:** value **$400** with the correct **adverse** label.\n- **A1:** correct total profit variance **$800 favourable**, consistent with the budgeted-vs-actual profit comparison ($3,000 vs $3,800).\n- **Follow-through:** a correct budgeted−actual method built on a mis-read figure still earns its method mark, but the accuracy mark needs BOTH the right value AND the right F/A label — a correct number with the wrong label does not score the A." },
+    { "type": "examTip", "content": "The zero-variance lines (wages, rent) are there on purpose: state 'no variance' rather than inventing a favourable or adverse label. And always attach F or A to every non-zero figure — a bare number like '$1,200' with no label cannot earn the accuracy mark, because half the point of the calculation is which direction it moves profit." },
+
+    { "type": "heading", "content": "Interpreting variances and choosing a response" },
+    { "type": "text", "content": "Calculating a variance is the easy part; the marks — and the management value — are in interpretation. A variance is a signal that reality differed from plan, not an instant verdict. Before acting, a manager asks whether the variance is significant, whether it is controllable, and what caused it. Only then does a sensible response follow. Crucially, a favourable variance is not automatically good and an adverse one is not automatically a failure." },
+    { "type": "keyPoints", "items": [
+      "**Adverse cost variance:** investigate the cause — a supplier price rise, waste, or an over-optimistic budget. Responses: renegotiate with suppliers, find a new supplier, cut waste, or revise the budget if the old figure was unrealistic.",
+      "**Adverse sales variance:** could reflect weak demand, new competition or a downturn. Responses: a marketing push, a price review, or a product change — but if the whole market has shrunk, the right response may be to reset the target.",
+      "**Favourable variance — check it is genuine:** a favourable expenditure variance from skipping maintenance, training or quality control flatters this period's profit but risks bigger costs later. A favourable sales variance may just reveal an over-cautious budget and weak forecasting.",
+      "**Match the response to the cause and to context:** small one-off variances rarely need action; large or recurring ones do. Sometimes the best response is to revise the budget itself."
+    ]},
+
+    { "type": "heading", "content": "The limitations of budgeting" },
+    { "type": "text", "content": "Budgets are a cornerstone of financial control, but they are a tool for judgement, not a substitute for it. A strong HL answer sets the benefits against clear-eyed limits rather than treating the budget as gospel." },
+    { "type": "keyPoints", "items": [
+      "**Only as good as the forecast:** budgets rest on predictions that can be wrong, especially in volatile or fast-changing markets.",
+      "**Rigidity:** once set, a budget can trap managers into following a plan that no longer fits reality, discouraging sensible adaptation.",
+      "**Time-consuming and costly:** preparing, negotiating and monitoring budgets absorbs management time that could be spent elsewhere.",
+      "**Dysfunctional behaviour:** managers may 'spend up to budget' near year-end to protect next year's allocation, or game targets rather than pursue the firm's real interests.",
+      "**Conflict and demotivation:** competition for limited funds can cause inter-departmental rivalry, and targets seen as unrealistic or used to apportion blame can demotivate."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Labelling a cost overspend 'favourable'** — spending MORE than budgeted on a cost is ADVERSE. Actual above budget is favourable only for REVENUE. Always ask 'income or cost?' before choosing F or A.",
+      "**Getting the formula backwards** — the IB convention is variance = BUDGETED − ACTUAL, not actual − budget. The safest habit is to compute the size, then decide F or A from the profit effect rather than from the sign.",
+      "**Giving a number with no F/A label** — the accuracy mark needs BOTH the value AND the correct favourable/adverse label; a bare figure scores no A mark.",
+      "**Confusing a budget with a forecast** — a forecast predicts what is likely; a budget is a committed target measured against actuals. Treating them as identical loses easy marks.",
+      "**Calling every favourable variance 'good'** — a favourable variance from underspending on maintenance, training or quality is often a warning sign, not a success.",
+      "**Calculating without interpreting** — a correct variance with no comment on its likely cause or the appropriate response cannot reach the higher marks; always say what it means for THIS business."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Because 3.9 is a quantitative topic, our marking engine assesses variance answers with IB Business Management M (method) and A (accuracy) conventions rather than the essay-style AO bands. An M mark rewards the correct method — the right formula (budgeted − actual) with the right figures substituted in — even if an earlier slip feeds a wrong number into it (follow-through). An A mark rewards the accurate value WITH its correct favourable/adverse label. A further mark rewards a valid budgeted-versus-actual profit comparison. Watch how the marks below attach to method, to accurate values with their F/A labels, and to the profit comparison." },
+    { "type": "workedExample", "question": "A business budgeted sales revenue of $250,000 and costs of $180,000, but actual sales revenue was $240,000 and actual costs were $172,000. Calculate the sales-revenue variance and the cost variance, stating whether each is favourable or adverse, and the effect on budgeted versus actual profit. [5]", "solution": "**Model answer.**\n\n**Sales-revenue variance** = budgeted − actual = $250,000 − $240,000 = $10,000. Actual revenue is LOWER than budgeted, so this is **$10,000 adverse (A)**.\n\n**Cost variance** = budgeted − actual = $180,000 − $172,000 = $8,000. Actual cost is LOWER than budgeted, so this is **$8,000 favourable (F)**.\n\n**Profit comparison.**\nBudgeted profit = $250,000 − $180,000 = **$70,000**.\nActual profit = $240,000 − $172,000 = **$68,000**.\nSo actual profit is $2,000 below budget. (Check: $10,000 A on sales, partly offset by $8,000 F on costs, gives a net $2,000 adverse effect on profit.)\n\n**Comment.** Revenue fell short of plan while costs were controlled better than planned; the cost saving cushioned but did not fully offset the sales shortfall, leaving profit $2,000 under budget. The business should investigate why sales missed target — weak demand, competition or an over-ambitious sales budget — before deciding whether to boost marketing, revise price, or reset the target.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — sales-variance method:** budgeted − actual for revenue, correctly substituted as $250,000 − $240,000.\n- **A1 — sales-variance accuracy:** correct value **$10,000** WITH the correct **adverse** label (actual revenue below budget).\n- **M1 — cost-variance method:** budgeted − actual for costs, correctly substituted as $180,000 − $172,000.\n- **A1 — cost-variance accuracy:** correct value **$8,000** WITH the correct **favourable** label (actual cost below budget).\n- **A1 — profit comparison:** budgeted profit **$70,000** versus actual profit **$68,000** (a $2,000 adverse net effect), correctly derived.\n- **Follow-through:** a candidate who applies the correct budgeted−actual method to a mis-read figure still earns the method mark; the accuracy marks, however, require BOTH the right value AND the right F/A label — a correct number labelled with the wrong direction, or with no label at all, does not score the A." },
+    { "type": "examTip", "content": "The Practice button marks YOUR calculation this same way — an M mark for the correct method (budgeted − actual, right figures), an A mark for the accurate value WITH its correct favourable/adverse label, and a further mark for the budgeted-versus-actual profit comparison, with follow-through on a correct method built on an earlier slip. So always show your working, decide F or A from the effect on profit (not from the sign), never leave a variance unlabelled, and finish by saying what it means for the business. The method, the label and the interpretation are where the marks are won." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Budgeting ties the whole finance unit together. It draws on cost and revenue concepts (3.2) and profitability, it feeds cash-flow management and the cash budget (3.7), and variance analysis is the control loop that turns any financial plan into managed performance. The same discipline you build here — set a clear plan, compare it honestly against actuals, label the gap correctly, then interpret and respond in context — is exactly what earns marks on every planning-and-control question in Business Management, and it is how real managers keep a strategy on track." },
+
+    { "type": "practice", "label": "Get a Paper 2 quantitative question marked: calculate the variances, label each favourable or adverse, and compare budgeted with actual profit", "href": "/mark?subject=ib-business-management-hl&topic=3.9&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Investopedia: Variance Analysis", "href": "https://www.investopedia.com/terms/v/variance-analysis.asp" },
+      { "label": "Investopedia: Budgeting", "href": "https://www.investopedia.com/terms/b/budget.asp" },
+      { "label": "Corporate Finance Institute: Cash Budget", "href": "https://corporatefinanceinstitute.com/resources/financial-modeling/cash-budget/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "quickCheck": [
+    { "prompt": "A department's actual costs were $52,000 against a budget of $48,000. How is this cost variance classified?", "options": ["$4,000 adverse — actual spending is higher than budgeted", "$4,000 favourable — the department was active", "$4,000 favourable — actual is higher than budget", "$100,000 adverse — add the two figures"], "answer": "$4,000 adverse — actual spending is higher than budgeted" },
+    { "prompt": "In IB Business Management, how is a variance calculated?", "options": ["Variance = budgeted figure − actual figure", "Variance = actual figure − budgeted figure", "Variance = actual figure ÷ budgeted figure", "Variance = budgeted figure + actual figure"], "answer": "Variance = budgeted figure − actual figure" },
+    { "prompt": "Which statement correctly distinguishes a budget from a forecast?", "options": ["A budget is a committed target the firm is measured against; a forecast is a prediction of what is likely to happen", "A budget predicts the future while a forecast is a fixed target", "A budget and a forecast are two names for the same document", "A forecast is always more accurate than a budget"], "answer": "A budget is a committed target the firm is measured against; a forecast is a prediction of what is likely to happen" },
+    { "prompt": "Actual sales revenue of $310,000 came in against a budgeted $290,000. How is this revenue variance classified?", "options": ["$20,000 favourable — actual revenue is higher than budgeted", "$20,000 adverse — actual revenue is higher than budgeted", "$20,000 adverse — any difference from budget is adverse", "$600,000 favourable — add the two figures"], "answer": "$20,000 favourable — actual revenue is higher than budgeted" },
+    { "prompt": "A firm reports a favourable expenditure variance because it spent far less on machine maintenance than budgeted. What is the best interpretation?", "options": ["It may be a warning sign — underspending on maintenance can flatter profit now but cause bigger costs later", "It is unambiguously good news and needs no further thought", "It means revenue must have risen", "It proves the budget was set too low"], "answer": "It may be a warning sign — underspending on maintenance can flatter profit now but cause bigger costs later" }
+  ],
+  "generatorVersion": "ib-course-authored-1"
 }

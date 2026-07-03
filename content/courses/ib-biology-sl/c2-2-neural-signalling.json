@@ -2,173 +2,155 @@
   "slug": "c2-2-neural-signalling",
   "topicCode": "C2.2",
   "title": "Neural signalling",
+  "unit": { "code": "C", "title": "Interaction and interdependence" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson details the mechanism of neural signalling, focusing on the generation and propagation of action potentials. It covers the establishment of resting potential, the phases of an action potential (depolarisation, repolarisation, hyperpolarisation), and the role of myelination in saltatory conduction.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Neural signalling is how a neuron carries information as a fast electrical impulse and then passes it, chemically, to the next cell. This lesson builds the whole C2.2 picture: the structure of a neuron, the resting potential set up by the sodium–potassium pump, the all-or-nothing action potential (depolarisation by Na+ influx, repolarisation by K+ efflux) and how examiners want a voltage–time graph read, the propagation of the impulse and why myelination speeds it up through saltatory conduction, the synapse and the sequence of synaptic transmission, and the reflex arc. The model answer is laid out exactly the way our marking engine awards Paper 2 marks — one mark per distinct valid point, with error-carried-forward — so you can see how each named step protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the establishment of resting potential in a neurone, including the role of the sodium-potassium pump and leak channels.",
-    "Describe the generation of an action potential, including depolarisation, repolarisation, and the role of voltage-gated ion channels.",
-    "Analyse graphical representations of action potentials to identify key phases and values.",
-    "Outline how nerve impulses are propagated along an axon, including the principles of saltatory conduction."
+    "Label the main parts of a neuron (dendrites, cell body, axon, myelin sheath, axon terminals) and relate each to its function in carrying a signal.",
+    "Explain how the resting potential of about −70 mV is established and maintained by the sodium–potassium pump.",
+    "Describe the action potential as an all-or-nothing event: depolarisation by Na+ influx and repolarisation by K+ efflux, triggered only once threshold is reached.",
+    "Interpret a voltage–time graph of an action potential, identifying resting potential, threshold, depolarisation, repolarisation and peak.",
+    "Explain the propagation of the impulse along an axon and how myelination produces faster saltatory conduction.",
+    "Describe synaptic transmission as a one-directional chemical relay, and outline the reflex arc.",
+    "Present answers as distinct, creditable points so that method marks and error-carried-forward protect the final mark."
   ],
+  "syllabusObjectivesCovered": ["C2.2"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Neurone's Electrical Message",
-    "summary": "Neurones send rapid electrical signals called action potentials to communicate. This involves carefully controlling the movement of charged ions across the cell membrane.",
-    "analogy": "Imagine a line of dominoes. The neurone at rest is like the dominoes set up and ready to fall (resting potential). A stimulus pushes the first domino (threshold potential), causing it to fall (depolarisation). This triggers the next domino, and the next, sending a wave of falling dominoes down the line (propagation). After each domino falls, it needs to be reset (repolarisation) before it can fall again.",
+    "title": "An electrical message, then a chemical handover",
+    "summary": "A neuron is a long cell that carries information in two stages. Inside one neuron the signal is electrical — a pulse of voltage that races along the axon. Between neurons the signal is chemical — a burst of molecules that crosses a tiny gap to the next cell. Both stages depend on carefully controlled movements of charged ions across the membrane.",
+    "analogy": "Picture a relay race run on a track that is mostly wire. Along each runner's own lane the baton is passed as a spark shooting down a wire (the electrical action potential). But between one runner and the next there is a small gap they cannot cross by wire, so the baton is physically handed over (the chemical neurotransmitter at the synapse). The handover only ever goes forwards — the next runner cannot pass the baton back — which is why signals travel in one direction.",
     "steps": [
-      "A neurone maintains a 'resting potential' of about -70mV. This is achieved by the sodium-potassium pump, which actively transports 3 Na+ ions out for every 2 K+ ions in, making the inside more negative.",
-      "A stimulus causes voltage-gated sodium channels to open. If the stimulus is strong enough to reach the 'threshold potential' (around -55mV), a massive influx of Na+ ions occurs, causing the membrane to 'depolarise' to about +30mV.",
-      "At the peak of the action potential, sodium channels inactivate and voltage-gated potassium channels open. K+ ions rush out of the cell, causing the membrane to 'repolarise' and return to a negative potential.",
-      "The action potential propagates along the axon as a wave of depolarisation. In myelinated axons, this process is sped up through 'saltatory conduction', where the signal 'jumps' between the nodes of Ranvier."
+      "At rest the neuron is like a charged battery held at about −70 mV inside relative to outside. The sodium–potassium pump keeps it charged by pumping 3 Na+ out for every 2 K+ in, using ATP.",
+      "A stimulus that pushes the membrane to the threshold (about −55 mV) flings open voltage-gated Na+ channels. Na+ rushes in and the inside briefly swings positive (about +30 mV) — this is depolarisation, the action potential.",
+      "The membrane then resets: Na+ channels close, K+ channels open, K+ flows out and the potential drops back down (repolarisation). The impulse regenerates itself point by point all the way along the axon.",
+      "At the axon terminal the electrical signal cannot jump the gap, so it triggers the release of a chemical neurotransmitter that diffuses across the synaptic cleft and starts a fresh impulse in the next neuron."
     ]
   },
+  "keyConcepts": ["resting potential", "action potential", "synaptic transmission"],
   "flashcards": [
-    {
-      "front": "What is resting potential?",
-      "back": "The electrical potential difference across the plasma membrane of a nerve cell in the non-excited state, typically around -70mV. It is established and maintained by the sodium-potassium pump."
-    },
-    {
-      "front": "What is an action potential?",
-      "back": "A rapid, temporary change in membrane potential of a neurone, from negative to positive and back again, that propagates along the axon. It is an 'all-or-nothing' event."
-    },
-    {
-      "front": "Define threshold potential.",
-      "back": "The critical level of membrane potential (around -55mV) that must be reached to trigger an action potential. A stimulus below this level will not generate an impulse."
-    },
-    {
-      "front": "What happens during depolarisation?",
-      "back": "The membrane potential becomes less negative (more positive). In an action potential, this is caused by the rapid influx of sodium ions (Na+) through voltage-gated sodium channels."
-    },
-    {
-      "front": "What happens during repolarisation?",
-      "back": "The membrane potential returns to a negative value after depolarisation. This is caused by the closure of sodium channels and the efflux of potassium ions (K+) through voltage-gated potassium channels."
-    },
-    {
-      "front": "What is hyperpolarisation?",
-      "back": "A phase where the membrane potential becomes more negative than the resting potential. This occurs because potassium channels are slow to close, allowing K+ to continue leaving the cell. It results in the refractory period."
-    },
-    {
-      "front": "What is the role of the sodium-potassium pump in neural signalling?",
-      "back": "It actively transports 3 Na+ ions out of the neurone for every 2 K+ ions pumped in. This establishes the concentration gradients and negative resting potential necessary for an action potential to occur."
-    },
-    {
-      "front": "What is saltatory conduction?",
-      "back": "The 'jumping' of action potentials from one node of Ranvier to the next along a myelinated axon. This significantly increases the speed of nerve impulse conduction."
-    },
-    {
-      "front": "What is the myelin sheath?",
-      "back": "A fatty layer that insulates the axon of some neurones, formed by Schwann cells. It prevents ion leakage and forces the action potential to regenerate only at the gaps, called nodes of Ranvier."
-    },
-    {
-      "front": "Common Trap: Do stronger stimuli create bigger action potentials?",
-      "back": "No. Action potentials are 'all-or-nothing'. A stronger stimulus does not increase the amplitude (size) of an action potential, but it can increase the frequency (number) of action potentials fired per unit of time."
-    }
+    { "front": "Neuron structure", "back": "Dendrites receive signals and carry them TO the cell body; the cell body contains the nucleus; the axon carries the impulse AWAY from the cell body; the myelin sheath insulates the axon; the axon terminals form synapses with the next cell.", "pillLabel": "Structure" },
+    { "front": "Resting potential", "back": "The potential difference across the membrane of a resting neuron, about −70 mV (inside negative relative to outside). It is established and maintained by the sodium–potassium pump.", "pillLabel": "Definition" },
+    { "front": "Sodium–potassium pump", "back": "Active transport (uses ATP) that moves 3 Na+ OUT of the neuron for every 2 K+ IN, against their gradients. This sets up the ion gradients and the negative resting potential.", "pillLabel": "Definition" },
+    { "front": "Action potential", "back": "A rapid, transient reversal of membrane potential (from about −70 mV to about +30 mV and back) that travels along the axon. It is an ALL-OR-NOTHING event.", "pillLabel": "Definition" },
+    { "front": "Threshold potential", "back": "The membrane potential (about −55 mV) that must be reached to trigger an action potential. Below threshold, nothing fires; at or above it, a full-sized action potential always fires.", "pillLabel": "Definition" },
+    { "front": "Depolarisation", "back": "The inside of the membrane becomes less negative and then positive. Caused by voltage-gated Na+ channels opening and Na+ flooding IN down its electrochemical gradient.", "pillLabel": "Concept" },
+    { "front": "Repolarisation", "back": "The membrane potential returns toward rest. Caused by Na+ channels closing and voltage-gated K+ channels opening, so K+ flows OUT of the cell.", "pillLabel": "Concept" },
+    { "front": "Myelin sheath and saltatory conduction", "back": "The myelin sheath is a fatty insulating layer with gaps (nodes of Ranvier). The impulse jumps from node to node — saltatory conduction — which is FASTER and more energy-efficient than continuous conduction in an unmyelinated axon.", "pillLabel": "Concept" },
+    { "front": "Synaptic transmission", "back": "Impulse arrives → Ca2+ enters the terminal → vesicles release neurotransmitter into the synaptic cleft → it diffuses across → binds to specific receptors on the post-synaptic membrane → ion channels open and a new impulse can start.", "pillLabel": "Sequence" },
+    { "front": "Why synapses are one-directional", "back": "Only the pre-synaptic terminal contains vesicles of neurotransmitter, and only the post-synaptic membrane has the matching receptors. So the signal can cross the cleft in one direction only.", "pillLabel": "Concept" },
+    { "front": "Reflex arc", "back": "A fast, involuntary pathway: receptor → sensory neuron → relay neuron (in the CNS) → motor neuron → effector. It can produce a response without waiting for conscious processing by the brain.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: all-or-nothing", "back": "A stronger stimulus does NOT make a bigger action potential. Every action potential is the same size; a stronger stimulus increases the FREQUENCY of action potentials, not their amplitude.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: depolarisation is Na+ IN", "back": "Depolarisation is caused by Na+ moving INTO the cell, not out, and not by K+. Naming the wrong ion or the wrong direction loses the mark.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "The resting potential of a neuron is maintained mainly by:", "options": ["Voltage-gated Na+ channels opening", "The sodium–potassium pump moving 3 Na+ out and 2 K+ in", "Neurotransmitter binding to receptors", "The myelin sheath insulating the axon"], "answer": "The sodium–potassium pump moving 3 Na+ out and 2 K+ in" },
+    { "prompt": "During the depolarisation phase of an action potential, the membrane potential rises because:", "options": ["K+ ions move out of the cell", "Na+ ions move into the cell", "Na+ ions are pumped out of the cell", "Cl− ions move into the cell"], "answer": "Na+ ions move into the cell" },
+    { "prompt": "A stimulus is applied that is twice as strong as one that already produced an action potential. The action potential produced is:", "options": ["Twice the amplitude, because the stimulus is stronger", "The same amplitude — action potentials are all-or-nothing", "Half the amplitude, because of the refractory period", "Not produced, because threshold has been exceeded"], "answer": "The same amplitude — action potentials are all-or-nothing" },
+    { "prompt": "Why is a myelinated axon faster than an unmyelinated one of the same diameter?", "options": ["Myelin adds more voltage-gated channels along the whole axon", "The impulse jumps between nodes of Ranvier (saltatory conduction)", "Myelin increases the resting potential to −90 mV", "Myelin lets the impulse travel in both directions at once"], "answer": "The impulse jumps between nodes of Ranvier (saltatory conduction)" },
+    { "prompt": "A synapse transmits a signal in one direction only because:", "options": ["The post-synaptic membrane is positively charged", "Neurotransmitter is only in the pre-synaptic terminal and receptors are only on the post-synaptic membrane", "The synaptic cleft is too wide to cross backwards", "Ca2+ can only enter the post-synaptic neuron"], "answer": "Neurotransmitter is only in the pre-synaptic terminal and receptors are only on the post-synaptic membrane" }
   ],
   "faq": [
-    {
-      "q": "Why is the refractory period important?",
-      "a": "The refractory period has two key functions. Firstly, it ensures that the action potential propagates in only one direction along the axon, away from the cell body. Secondly, it limits the maximum frequency at which a neurone can fire, which is an important aspect of how the nervous system codes for stimulus intensity."
-    },
-    {
-      "q": "What is the difference between the sodium-potassium pump and the voltage-gated channels?",
-      "a": "The sodium-potassium pump is a form of active transport that requires ATP. It works continuously to establish and maintain the resting potential by pumping Na+ out and K+ in against their concentration gradients. Voltage-gated channels are involved in facilitated diffusion and only open or close in response to changes in membrane potential. They are responsible for the rapid ion movements during the action potential itself."
-    }
+    { "q": "What exactly maintains the −70 mV resting potential?", "a": "The sodium–potassium pump does the essential work: it uses ATP to move 3 Na+ out of the neuron for every 2 K+ it brings in, against their concentration gradients. This sets up a high Na+ concentration outside and high K+ inside, and because more positive charge is pumped out than in, it helps make the inside negative. The membrane is also more permeable to K+ than to Na+ at rest, so some K+ leaks back out, adding to the negative interior. If you name only 'ions moving' you will not score — the mark scheme wants the pump, the 3:2 ratio, and the resulting negative inside." },
+    { "q": "Why does the impulse travel in only one direction along the axon?", "a": "Just behind the advancing action potential the membrane is in its refractory period — the Na+ channels are temporarily inactivated and cannot reopen straight away. So the region the impulse has just passed through cannot be re-excited, and the wave of depolarisation can only spread forwards into the resting membrane ahead. This one-way travel along the axon, reinforced by the one-way handover at the synapse, keeps information flowing in a single direction." },
+    { "q": "How is saltatory conduction actually faster if the impulse still has to be regenerated?", "a": "In an unmyelinated axon the action potential is regenerated at every point along the membrane, which is slow. In a myelinated axon the fatty myelin insulates most of the membrane, and voltage-gated channels are concentrated only at the nodes of Ranvier. The depolarisation therefore only has to be regenerated at the nodes, and the signal effectively 'jumps' from node to node. Fewer regeneration steps over the same distance means a much higher conduction speed, and it uses less ATP because fewer ions have to be pumped back afterwards." },
+    { "q": "Is the synapse electrical or chemical?", "a": "The synapses you need for C2.2 are chemical. Inside a neuron the signal is electrical (the action potential), but at the synapse there is a physical gap — the synaptic cleft — that an electrical signal cannot cross. Instead the impulse triggers the release of a chemical neurotransmitter that diffuses across the cleft and binds to receptors on the next cell. This chemical step is what makes synapses one-directional and is where many drugs and toxins act." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "The nervous system is the body's primary communication network, and its messages are sent as electrical signals. Understanding how a single nerve cell, or neurone, can generate and transmit these signals is fundamental to biology. This process, known as neural signalling, underpins everything from a simple reflex to complex thought."
-    },
-    {
-      "type": "heading",
-      "content": "The Resting Potential: A State of Readiness"
-    },
-    {
-      "type": "text",
-      "content": "Before a neurone can fire a signal, it must be in a state of readiness called the resting potential. The inside of the neurone's membrane is maintained at approximately -70 millivolts (mV) relative to the outside. This potential difference is like a charged battery, storing energy for the nerve impulse."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The sodium-potassium ($Na^+$/$K^+$) pump is crucial. It uses ATP to actively transport three sodium ions ($Na^+$) out of the axon for every two potassium ions ($K^+$) it brings in.",
-        "This active transport creates steep concentration gradients: high $[Na^+]$ outside the cell and high $[K^+]$ inside the cell.",
-        "The membrane is more permeable to $K^+$ than to $Na^+$ at rest due to the presence of potassium 'leak' channels. This allows some $K^+$ to diffuse out of the cell down its concentration gradient, making the inside of the membrane negative.",
-        "Large, negatively charged proteins trapped inside the axon also contribute to the overall negative charge."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Action Potential: Firing the Signal"
-    },
-    {
-      "type": "text",
-      "content": "An action potential is a rapid, all-or-nothing electrical impulse. It is triggered when a stimulus causes the membrane potential to reach a specific 'threshold potential', typically around -55 mV. If the threshold is not reached, no action potential is generated. If it is reached, a full action potential occurs, always with the same amplitude."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Depolarisation:** Upon reaching the threshold, voltage-gated $Na^+$ channels open. $Na^+$ ions flood into the cell, down their electrochemical gradient, causing the membrane potential to rapidly shoot up to about +30 mV.",
-        "**Repolarisation:** At the peak of the action potential, the voltage-gated $Na^+$ channels inactivate, and voltage-gated $K^+$ channels open. $K^+$ ions now rush out of the cell, down their electrochemical gradient, causing the membrane potential to become negative again.",
-        "**Hyperpolarisation (Refractory Period):** The $K^+$ channels are slow to close, so for a brief period, the membrane potential becomes more negative than the resting potential. This 'refractory period' ensures the action potential only travels in one direction and prevents the neurone from firing again immediately."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "An oscilloscope trace shows an action potential. The resting potential is -70 mV. The peak potential reached is +35 mV. The time taken for the depolarisation phase (from -55 mV to +35 mV) is 0.5 ms. Calculate the rate of depolarisation in mV/ms.",
-      "solution": "1. **Identify the change in potential:** The potential changes from -55 mV to +35 mV. Total change = Final potential - Initial potential = 35 mV - (-55 mV) = 90 mV. [1 mark]\n2. **Identify the time taken:** The time for this change is given as 0.5 ms. [1 mark]\n3. **Calculate the rate:** Rate = Change in potential / Time taken = 90 mV / 0.5 ms = 180 mV/ms. [1 mark]\n\n**Final Answer:** The rate of depolarisation is 180 mV/ms."
-    },
-    {
-      "type": "heading",
-      "content": "Propagation and Saltatory Conduction"
-    },
-    {
-      "type": "text",
-      "content": "For a nerve impulse to be useful, it must travel along the length of the axon. The action potential at one point on the membrane creates local currents that depolarise the adjacent region to its threshold, triggering a new action potential there. This process repeats, creating a wave of depolarisation that moves along the axon. The speed of this propagation is critical and is enhanced by the myelin sheath."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Myelin Sheath:** Many vertebrate neurones are wrapped in a fatty layer called myelin, which acts as an electrical insulator.",
-        "**Nodes of Ranvier:** The myelin sheath is not continuous; it has small gaps called nodes of Ranvier. Voltage-gated ion channels are concentrated at these nodes.",
-        "**Saltatory Conduction:** In a myelinated axon, the action potential can only be generated at the nodes. The electrical signal 'jumps' from one node to the next. This is much faster and more energy-efficient than continuous propagation along an unmyelinated axon."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Be precise with your language! Examiners look for specific terms. Don't just say 'ions move'; specify *which* ion ($Na^+$ or $K^+$), *which direction* (into or out of the cell), and through *what structure* (e.g., voltage-gated sodium channel, sodium-potassium pump, leak channel). Simply stating 'sodium and potassium move' will not earn marks."
-    },
-    {
-      "type": "workedExample",
-      "question": "A myelinated neurone has an axon length of 80 cm. A nerve impulse travels this distance in 10 milliseconds (ms). An unmyelinated neurone of the same length transmits the impulse in 400 ms. \na) Calculate the conduction velocity in the myelinated neurone in m/s. \nb) Calculate how many times faster the myelinated neurone is compared to the unmyelinated one.",
-      "solution": "**Part a)**\n1. **Convert units:** Length = 80 cm = 0.8 m. Time = 10 ms = 0.010 s. [1 mark for both conversions]\n2. **Calculate velocity:** Velocity = Distance / Time = 0.8 m / 0.010 s = 80 m/s. [1 mark]\n\n**Part b)**\n1. **Find the ratio of times:** Time (unmyelinated) / Time (myelinated) = 400 ms / 10 ms = 40. [1 mark]\n2. **State the conclusion:** The myelinated neurone conducts the impulse 40 times faster than the unmyelinated neurone. [1 mark]\n\n**Final Answers:** a) 80 m/s, b) 40 times faster."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-biology-sl&topic=C2.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Action Potential Animation",
-          "href": "https://www.youtube.com/watch?v=OZG-i8wY3fA"
-        },
-        {
-          "label": "Interactive Neurone Simulation",
-          "href": "https://phet.colorado.edu/en/simulations/neuron"
-        },
-        {
-          "label": "IB Biology Syllabus (C2.2)",
-          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every thought, sensation and movement depends on neurons passing signals to one another quickly and reliably. A neuron does this in two very different ways. Along its own length it carries an electrical impulse — the action potential — that can travel metres in a fraction of a second. But where one neuron meets the next there is a gap that electricity cannot cross, so the signal is handed over chemically at a synapse. This lesson works through the structure of a neuron, how the resting potential and action potential are generated, how the impulse propagates and why myelin speeds it up, and how the synapse and the reflex arc pass signals on. The model answer at the end is set out exactly the way marks are awarded, because in an explain-type topic like this, WHICH named points you make decides how many marks you keep." },
+
+    { "type": "heading", "content": "The structure of a neuron" },
+    { "type": "text", "content": "A neuron is a cell specialised for carrying signals over long distances. Signals arrive at the branching dendrites, which carry them toward the cell body. The cell body contains the nucleus and most of the organelles. A single long fibre, the axon, then carries the impulse away from the cell body toward its targets. In many neurons the axon is wrapped in a fatty myelin sheath that insulates it, interrupted by small gaps called nodes of Ranvier. At the far end the axon divides into axon terminals, which form synapses with the next neuron or with an effector such as a muscle. Knowing what each part does makes the rest of the topic fall into place: the resting and action potentials happen across the axon membrane, and the synapse is what the terminals form." },
+    { "type": "keyPoints", "items": [
+      "**Dendrites:** receive incoming signals and carry them TOWARD the cell body.",
+      "**Cell body:** contains the nucleus and organelles; integrates incoming signals.",
+      "**Axon:** carries the action potential AWAY from the cell body, often over a long distance.",
+      "**Myelin sheath:** a fatty insulating layer around the axon, with gaps (nodes of Ranvier) where the impulse is regenerated.",
+      "**Axon terminals:** the ends of the axon that form synapses and release neurotransmitter."
+    ]},
+
+    { "type": "heading", "content": "The resting potential: a neuron ready to fire" },
+    { "type": "text", "content": "Before a neuron can send a signal it sits at a resting potential of about −70 mV, meaning the inside of the axon membrane is 70 millivolts more negative than the outside. This is not a passive situation — it is actively maintained. The sodium–potassium pump uses ATP to move three sodium ions (Na+) out of the cell for every two potassium ions (K+) it brings in. Because it exports more positive charge than it imports, and because it sets up a high Na+ concentration outside and a high K+ concentration inside, the interior of the axon is held negative. The membrane is also more permeable to K+ than to Na+ at rest, so a little K+ leaks back out down its gradient, adding to the negative interior. The result is a membrane that is like a charged battery, storing the potential difference that an action potential will briefly release." },
+    { "type": "keyPoints", "items": [
+      "The resting potential is about −70 mV, inside negative relative to outside.",
+      "The **sodium–potassium pump** uses ATP to move **3 Na+ out** for every **2 K+ in**, against their gradients.",
+      "This builds up high Na+ outside and high K+ inside, and keeps the inside of the membrane negative.",
+      "At rest the membrane is more permeable to K+, so some K+ leaks out, reinforcing the negative interior."
+    ]},
+
+    { "type": "heading", "content": "The action potential: an all-or-nothing signal" },
+    { "type": "text", "content": "An action potential is a rapid, temporary reversal of the membrane potential that carries the signal. It begins only if a stimulus depolarises the membrane to the threshold potential of about −55 mV. Below threshold nothing happens; at or above threshold a full-sized action potential always fires — this is what 'all-or-nothing' means. Once threshold is reached, voltage-gated Na+ channels open and Na+ floods into the cell down its electrochemical gradient, driving the potential up to about +30 mV: this is depolarisation. Almost immediately the Na+ channels close and voltage-gated K+ channels open, so K+ flows out of the cell and the potential falls back toward rest: this is repolarisation. K+ channels are slow to close, so the membrane briefly overshoots to below the resting potential before the sodium–potassium pump restores the resting state. Crucially, a stronger stimulus does not make a bigger action potential — it makes action potentials fire more frequently." },
+    { "type": "keyPoints", "items": [
+      "**Threshold (≈ −55 mV):** must be reached to trigger firing; below it, no action potential.",
+      "**Depolarisation:** voltage-gated Na+ channels open, Na+ moves IN, potential rises to about +30 mV.",
+      "**Repolarisation:** Na+ channels close, voltage-gated K+ channels open, K+ moves OUT, potential falls back.",
+      "**All-or-nothing:** every action potential is the same size; a stronger stimulus raises the FREQUENCY of impulses, not their amplitude."
+    ]},
+
+    { "type": "workedExample", "question": "A student records the membrane potential of an axon on an oscilloscope. The trace shows the potential resting at −70 mV, then rising sharply to a peak of +30 mV, then falling. (a) State the value of the resting potential and name the phase in which the potential rises from −55 mV to +30 mV. (b) Name the ion movement responsible for that rising phase. (c) The depolarisation from −55 mV to +30 mV takes 0.50 ms. Calculate the mean rate of change of potential during depolarisation, in mV ms⁻¹. [4]", "solution": "**(a) Reading the graph.**\nThe resting potential is the flat line before the spike: −70 mV. The sharp rise from threshold (−55 mV) to the peak (+30 mV) is **depolarisation**. [A1: −70 mV and depolarisation named]\n\n**(b) Ion movement.**\nDepolarisation is caused by **Na+ moving into the cell** through voltage-gated sodium channels. [A1: Na+ IN — not out, not K+]\n\n**(c) Rate of change.**\nChange in potential = final − initial = (+30) − (−55) = **85 mV**. [M1: correct change, including the sign of −55]\nRate = change ÷ time = 85 mV ÷ 0.50 ms = **170 mV ms⁻¹**. [A1]\n\n*The most common slip here is subtracting the resting potential (−70) instead of the threshold (−55) that the question specifies, or forgetting that subtracting a negative adds. Read the graph values the question actually gives you.*" },
+
+    { "type": "heading", "content": "Propagation along the axon and the role of myelin" },
+    { "type": "text", "content": "An action potential is only useful if it travels. When one patch of membrane depolarises, the local flow of ions depolarises the neighbouring patch to its threshold, triggering a fresh action potential there. This regeneration repeats point by point, so the impulse moves along the axon as a self-renewing wave rather than fading out. It travels in one direction only because the region just behind the impulse is in its refractory period and cannot be re-excited. Myelination changes the speed dramatically. Where the axon is wrapped in fatty myelin the membrane is insulated and cannot depolarise, and the voltage-gated channels are concentrated only at the nodes of Ranvier. The action potential therefore only has to be regenerated at the nodes, and effectively jumps from node to node — this is saltatory conduction. Because there are far fewer regeneration steps over the same distance, a myelinated axon conducts much faster, and it also uses less ATP because fewer ions need to be pumped back afterwards." },
+    { "type": "keyPoints", "items": [
+      "An action potential depolarises the next region of membrane to threshold, regenerating itself along the axon.",
+      "The **refractory period** just behind the impulse ensures it travels in ONE direction only.",
+      "**Myelin** insulates the axon; voltage-gated channels are concentrated at the **nodes of Ranvier**.",
+      "**Saltatory conduction:** the impulse jumps node to node, so a myelinated axon is FASTER (and more energy-efficient) than an unmyelinated one."
+    ]},
+
+    { "type": "workedExample", "question": "Two axons are the same length, 60 cm. In a myelinated axon the impulse takes 5.0 ms to travel the full length; in an unmyelinated axon of the same length it takes 300 ms. (a) Calculate the conduction speed in the myelinated axon in m s⁻¹. (b) Determine how many times faster the myelinated axon conducts, and explain in terms of saltatory conduction why it is faster. [4]", "solution": "**(a) Speed in the myelinated axon.**\nConvert units: length = 60 cm = 0.60 m; time = 5.0 ms = 5.0 × 10⁻³ s. [M1: both conversions]\nSpeed = distance ÷ time = 0.60 ÷ (5.0 × 10⁻³) = **120 m s⁻¹**. [A1]\n\n**(b) How many times faster, and why.**\nRatio of times = 300 ms ÷ 5.0 ms = **60 times faster**. [M1: correct ratio]\nIn the myelinated axon the impulse only has to be regenerated at the nodes of Ranvier and jumps between them (saltatory conduction), whereas in the unmyelinated axon it must be regenerated continuously along the whole membrane — so the myelinated axon conducts far faster. [A1: saltatory conduction explanation]\n\n*Notice the ratio (60×) has no units because the lengths are identical and cancel — you are comparing two times, not recomputing a speed.*" },
+
+    { "type": "heading", "content": "The synapse and synaptic transmission" },
+    { "type": "text", "content": "Where a neuron meets the next cell there is a synapse: a tiny gap called the synaptic cleft separates the pre-synaptic axon terminal from the post-synaptic membrane. An electrical impulse cannot cross this gap, so the signal is passed chemically. When the action potential reaches the terminal it causes voltage-gated calcium channels to open, and Ca2+ ions flow in. This influx triggers vesicles of neurotransmitter to fuse with the pre-synaptic membrane and release their contents into the cleft. The neurotransmitter diffuses across the cleft and binds to specific receptors on the post-synaptic membrane. Binding opens ion channels in the post-synaptic membrane, depolarising it; if enough channels open to reach threshold, a new action potential is triggered in the next neuron. Because neurotransmitter is stored only in the pre-synaptic terminal and the matching receptors sit only on the post-synaptic membrane, transmission can occur in one direction only — this is what makes the whole nervous system's signalling directional." },
+    { "type": "keyPoints", "items": [
+      "The impulse arriving at the terminal opens voltage-gated **Ca2+ channels**; Ca2+ enters the pre-synaptic terminal.",
+      "Ca2+ influx triggers **vesicles to release neurotransmitter** into the synaptic cleft.",
+      "Neurotransmitter **diffuses** across the cleft and **binds to specific receptors** on the post-synaptic membrane.",
+      "Binding **opens ion channels / depolarises** the post-synaptic membrane, which can start a **new action potential**.",
+      "Because vesicles are only pre-synaptic and receptors only post-synaptic, the synapse is **one-directional**."
+    ]},
+
+    { "type": "heading", "content": "The reflex arc" },
+    { "type": "text", "content": "A reflex is a rapid, automatic response that does not depend on conscious thought, and it is carried by a simple pathway called the reflex arc. A receptor detects the stimulus and passes the signal along a sensory neuron into the central nervous system. There a relay neuron connects, through synapses, to a motor neuron, which carries the impulse out to an effector such as a muscle or gland that produces the response. Because the signal can trigger the effector directly through the spinal cord without waiting for the brain to process it, reflexes are fast — which is exactly what is needed for protective responses such as pulling your hand away from something sharp." },
+    { "type": "keyPoints", "items": [
+      "Pathway: **receptor → sensory neuron → relay neuron (in the CNS) → motor neuron → effector**.",
+      "The response is **fast and involuntary** because it does not require conscious processing by the brain.",
+      "Reflexes are typically **protective** (e.g. withdrawing from a painful stimulus)."
+    ]},
+
+    { "type": "examTip", "content": "Be specific about ions, direction and structure. Examiners reward precise language, so never write only 'ions move' or 'sodium and potassium move'. State WHICH ion (Na+ or K+ or Ca2+), WHICH direction (into or out of the cell), and through WHAT (voltage-gated sodium channel, the sodium–potassium pump, a receptor). A vague answer that does not name the ion and direction will not earn the mark even if the general idea is right." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Saying a stronger stimulus makes a bigger action potential** — action potentials are all-or-nothing; a stronger stimulus increases the FREQUENCY of impulses, not their amplitude.",
+      "**Getting the depolarising ion wrong** — depolarisation is Na+ moving IN, not K+ and not Na+ out. Repolarisation is K+ moving OUT. Swapping the ions or directions loses the mark.",
+      "**Crediting the pump for the action potential** — the sodium–potassium pump maintains the RESTING potential; the rapid ion movements of the action potential are through VOLTAGE-GATED channels, which is a different mechanism.",
+      "**Describing the synapse as electrical or two-directional** — the synapse is chemical and one-directional; neurotransmitter is only pre-synaptic and receptors are only post-synaptic.",
+      "**Vague ion statements** — 'ions move across the membrane' scores nothing; you must name the ion, the direction and the structure it moves through.",
+      "**Confusing myelin's effect** — myelin does not add channels along the axon; it insulates the membrane so the impulse jumps between nodes (saltatory conduction), which is what makes it faster.",
+      "**Forgetting Ca2+ at the synapse** — many students jump straight to 'neurotransmitter is released' and miss that the impulse first triggers Ca2+ influx into the terminal, which causes the vesicles to release."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Explain-type questions in C2.2 are marked analytically: each distinct, valid point is worth one mark, up to the total available. Method marks (M) credit a correct named step in the mechanism, answer marks (A) credit the correct outcome, and error-carried-forward (ECF) means one missing step does not cost you the marks that follow. The key is to write in separate, creditable statements — name each ion, structure and step — rather than in a single vague sentence. Study how each mark below is tied to one specific idea." },
+    { "type": "workedExample", "question": "Explain how an action potential is transmitted across a synapse from one neuron to the next. [4]", "solution": "**Model answer.**\nWhen the action potential reaches the axon terminal it causes voltage-gated calcium channels to open, so Ca2+ ions flow into the pre-synaptic terminal. This influx of Ca2+ triggers vesicles of neurotransmitter to fuse with the pre-synaptic membrane and release neurotransmitter into the synaptic cleft. The neurotransmitter diffuses across the cleft and binds to specific receptors on the post-synaptic membrane. Binding opens ion channels, depolarising the post-synaptic membrane, and if threshold is reached a new action potential is triggered in the next neuron. Because the neurotransmitter is stored only in the pre-synaptic terminal and the receptors are only on the post-synaptic membrane, transmission occurs in one direction only.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** the impulse arriving triggers Ca2+ influx into the terminal / vesicles release neurotransmitter into the cleft.\n- **Point 2 (M):** the neurotransmitter DIFFUSES across the synaptic cleft.\n- **Point 3 (M):** it binds to SPECIFIC receptors on the POST-SYNAPTIC membrane.\n- **Point 4 (A):** this opens ion channels / depolarises the post-synaptic neuron, starting a new impulse (the outcome of the reasoning chain).\n\nMore than four creditable points are shown here, so the engine caps the award at 4 — there is deliberate room to miss one point and still reach full marks. But the marks are for DISTINCT ideas: writing 'the neurotransmitter crosses the gap' twice in different words scores once.\n\n**Equivalents and ECF.** The engine accepts equivalents — 'transmitter substance' for neurotransmitter, 'synaptic gap' for cleft, a named example such as acetylcholine — and awards each point independently (ECF). A student who omits the Ca2+ step but correctly describes diffusion, receptor binding and post-synaptic depolarisation still earns those three points; there is no all-or-nothing penalty.\n\n**What the engine rejects.** An answer that says only 'the signal jumps across the synapse' or 'the electrical impulse crosses the gap' scores ZERO for the mechanism, because the synapse is chemical, not electrical, and no named step (release, diffusion, receptor binding) is given.\n\n**Bottom line:** to secure all 4 marks, make four separate, named points — release into the cleft (via Ca2+/vesicles) → diffusion across the cleft → binding to specific post-synaptic receptors → opening of ion channels/depolarisation starting a new impulse." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, accepting equivalents, applying ECF and capping at the marks available. So write in distinct, creditable statements: name Ca2+ and vesicle release, name diffusion across the cleft, name binding to specific post-synaptic receptors, then name the depolarisation that starts a new impulse. One flowing sentence that blurs the steps together will score fewer marks than four clearly separated points." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The ideas in C2.2 are the foundation for the rest of the animal-physiology material. The resting-potential and action-potential machinery reappears wherever cells signal electrically, from sensory receptors to muscle fibres. The chemical synapse is where many drugs, toxins and neurotransmitters act, so understanding release–diffusion–receptor binding sets you up to analyse how substances excite or inhibit a post-synaptic neuron. And the one-directional logic — refractory period along the axon, receptors only on the post-synaptic side at the synapse — is the reason nervous signals carry reliable, directional information at all." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain synaptic transmission and interpret an action-potential graph with full working", "href": "/mark?subject=ib-biology-sl&topic=C2.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Action Potential Animation", "href": "https://www.youtube.com/watch?v=OZG-i8wY3fA" },
+      { "label": "Interactive Neurone Simulation", "href": "https://phet.colorado.edu/en/simulations/neuron" },
+      { "label": "IB Biology Syllabus (C2.2)", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Interactive Neurone Simulation",

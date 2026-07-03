@@ -2,171 +2,158 @@
   "slug": "c2-1-chemical-signalling",
   "topicCode": "C2.1",
   "title": "Chemical signalling",
+  "unit": { "code": "C", "title": "Interaction and interdependence" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson explores the intricate world of chemical signalling, detailing how cells communicate over various distances using molecules like hormones and neurotransmitters. It contrasts the mechanisms of steroid and peptide hormones and delves into the concept of signal transduction, using the adrenaline-cAMP pathway as a key example of signal amplification and cellular response.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Chemical signalling is how the trillions of cells in a body coordinate without touching. This lesson builds the whole of C2.1: how cells communicate at a distance using chemical signals, the endocrine system and the hormones it secretes into the blood, why only target cells respond (receptor–ligand specificity and complementary shape), how a signal at a receptor is turned into a cellular response through signal transduction and second messengers, the contrast between slow widespread hormonal signalling and fast localised neural signalling, negative feedback control of blood glucose by insulin and glucagon, and why steroid hormones use intracellular receptors while peptide hormones use cell-surface receptors. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — one mark per distinct valid point, with error-carried-forward — so you can see how the way you phrase an explanation decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between autocrine, paracrine, and endocrine signalling.",
-    "Compare and contrast the mechanisms of action for steroid and peptide hormones.",
-    "Explain the process of signal transduction, including the roles of receptors, G-proteins, and second messengers.",
-    "Outline the cascade of events initiated by adrenaline binding to a liver cell receptor."
+    "Explain how cells communicate over a distance using chemical signals, and describe the endocrine system as glands secreting hormones into the blood to act on target cells.",
+    "Account for the specificity of a hormone's action in terms of receptor–ligand specificity and complementary shape between the signal and its receptor.",
+    "Outline signal transduction — how binding at a receptor triggers a cellular response, including the role of second messengers.",
+    "Compare hormonal signalling (slow, widespread, long-lasting) with neural signalling (fast, localised, short-lived), and explain negative feedback control of blood glucose by insulin and glucagon.",
+    "Distinguish steroid hormones (intracellular receptors) from peptide hormones (cell-surface receptors), and present explanation answers as distinct, creditable points."
   ],
+  "syllabusObjectivesCovered": ["C2.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Cellular Postal Service",
-    "summary": "Cells in your body constantly send and receive chemical messages to coordinate their actions, much like a postal service delivering instructions. This ensures that different parts of the body work together harmoniously.",
-    "analogy": "Imagine you want to tell your friend to start baking a cake. You could write a letter (the chemical signal) and post it. The letter will only be read by your friend because it's addressed to them and they have the key to their letterbox (the specific receptor). Once they read the letter, they follow the instructions and start baking (the cellular response). Some messages are sent to a neighbour (paracrine), some are sent across the country (endocrine), and some are just reminders you write to yourself (autocrine).",
+    "title": "Messages With the Right Address",
+    "summary": "Cells cannot shout across the body, so they send chemical messages instead. A hormone released into the blood reaches almost every cell, yet only the cells carrying the matching receptor can read it and respond — like a letter that anyone can carry but only the addressee can open.",
+    "analogy": "Picture a radio broadcast going out across a whole city. The signal reaches every building, but only the houses that own a receiver tuned to that exact frequency actually pick up the programme. A hormone works the same way: it travels everywhere in the bloodstream, but a cell responds only if it owns a receptor whose shape matches the hormone. Turning that received signal into an action inside the cell — switching on an enzyme or a gene — is the job of signal transduction, the wiring that connects the aerial to the loudspeaker.",
     "steps": [
-      "A signalling cell releases a chemical messenger, such as a hormone, into the extracellular space.",
-      "The messenger travels to a target cell and binds to a specific receptor protein, either on the cell surface or inside the cytoplasm.",
-      "This binding event triggers a chain reaction inside the target cell, known as signal transduction, which often amplifies the original signal.",
-      "The signal transduction pathway culminates in a specific cellular response, such as activating an enzyme, altering gene expression, or changing cell shape."
+      "An endocrine gland secretes a hormone (the chemical signal) into the bloodstream, which carries it throughout the body.",
+      "The hormone passes almost every cell, but only a target cell carries a receptor with a shape complementary to the hormone.",
+      "The hormone binds to that specific receptor, and the binding is detected at the cell surface or inside the cell.",
+      "Binding triggers signal transduction — a chain of events, often using a second messenger — that produces the cellular response only in the target cell."
     ]
   },
+  "keyConcepts": ["cell communication", "receptor specificity", "negative feedback"],
   "flashcards": [
-    {
-      "front": "Hormone",
-      "back": "A chemical messenger produced by an endocrine gland and transported via the bloodstream to a target organ to elicit a specific response."
-    },
-    {
-      "front": "Endocrine signalling",
-      "back": "A type of long-distance signalling where hormones are released into the bloodstream to act on distant target cells."
-    },
-    {
-      "front": "Paracrine signalling",
-      "back": "A type of local signalling where a cell releases a signal that acts on nearby target cells. Example: neurotransmitters at a synapse."
-    },
-    {
-      "front": "Autocrine signalling",
-      "back": "A type of signalling where a cell releases a signal that acts upon itself. Example: a T-lymphocyte stimulating its own proliferation."
-    },
-    {
-      "front": "Steroid hormone",
-      "back": "A lipid-soluble hormone (derived from cholesterol) that can pass through the cell membrane and bind to intracellular receptors to directly influence gene expression. Examples: testosterone, oestrogen."
-    },
-    {
-      "front": "Peptide hormone",
-      "back": "A water-soluble hormone made of amino acids. It cannot cross the cell membrane and must bind to a receptor on the cell surface, triggering a second messenger system. Examples: insulin, adrenaline."
-    },
-    {
-      "front": "Signal transduction",
-      "back": "The process by which a chemical signal received at the cell surface is converted into a specific cellular response through a series of intracellular events."
-    },
-    {
-      "front": "Second messenger",
-      "back": "A small, non-protein, intracellular signalling molecule that relays a signal from a receptor to its target within the cell. Example: cyclic AMP (cAMP)."
-    },
-    {
-      "front": "G-protein coupled receptor (GPCR)",
-      "back": "A large family of transmembrane receptors that sense molecules outside the cell and activate inside signal transduction pathways, often via an intermediary G-protein."
-    },
-    {
-      "front": "Adenylyl cyclase",
-      "back": "An enzyme, typically embedded in the cell membrane, that is activated by a G-protein and catalyses the conversion of ATP to cyclic AMP (cAMP)."
-    },
-    {
-      "front": "Protein kinase",
-      "back": "An enzyme that modifies other proteins by chemically adding phosphate groups to them (phosphorylation), a common mechanism for regulating protein activity."
-    },
-    {
-      "front": "Common Trap: Steroid vs. Peptide Hormones",
-      "back": "Students often forget which hormone type uses a second messenger. Remember: Peptides are 'Polite' - they knock on the door (cell surface receptor) and send a message inside (second messenger). Steroids are 'Sneaky' - they slip right through the door (cell membrane) to act directly inside."
-    }
+    { "front": "Chemical signalling", "back": "Communication between cells in which one cell releases a chemical signal (ligand) that is detected by another cell carrying a matching receptor, producing a coordinated response — often over distances too great for direct contact.", "pillLabel": "Definition" },
+    { "front": "Hormone", "back": "A chemical signal secreted by an endocrine gland directly into the blood, which transports it throughout the body to act on target cells that possess the specific receptor for it.", "pillLabel": "Definition" },
+    { "front": "Endocrine system", "back": "The system of ductless glands (e.g. pancreas, adrenal glands, thyroid) that secrete hormones INTO THE BLOOD. Because the signal is carried in the blood, endocrine signalling is slow, widespread and long-lasting.", "pillLabel": "Definition" },
+    { "front": "Target cell", "back": "A cell that can respond to a particular hormone BECAUSE it carries the specific receptor for that hormone. Cells lacking the receptor cannot detect or respond to the hormone, even though the hormone reaches them.", "pillLabel": "Definition" },
+    { "front": "Receptor–ligand specificity", "back": "A receptor binds only ligands whose shape is COMPLEMENTARY to its binding site. The precise fit means one receptor responds to one signal (or a narrow group), which is why a hormone acts only on cells with the matching receptor.", "pillLabel": "Concept" },
+    { "front": "Signal transduction", "back": "The process by which binding of a signal to its receptor is CONVERTED into a cellular response — a relay of intracellular events, often amplifying the signal, that ends in an action such as activating an enzyme or altering gene expression.", "pillLabel": "Concept" },
+    { "front": "Second messenger", "back": "A small intracellular molecule (e.g. cyclic AMP, cAMP) produced when a signal binds a cell-surface receptor. It relays and amplifies the signal inside the cell — the hormone itself never enters the cell.", "pillLabel": "Definition" },
+    { "front": "Peptide hormone", "back": "A water-soluble (hydrophilic) hormone made of amino acids, e.g. insulin, glucagon. It CANNOT cross the membrane, so it binds a CELL-SURFACE receptor and works through signal transduction / a second messenger.", "pillLabel": "Definition" },
+    { "front": "Steroid hormone", "back": "A lipid-soluble (hydrophobic) hormone derived from cholesterol, e.g. oestrogen, testosterone. It DIFFUSES THROUGH the membrane and binds an INTRACELLULAR receptor, and the complex usually alters gene expression.", "pillLabel": "Definition" },
+    { "front": "Hormonal vs neural signalling", "back": "Hormonal: chemical in the blood, SLOW, WIDESPREAD, LONG-LASTING. Neural: electrical impulse along neurons plus neurotransmitter at synapses, FAST, LOCALISED, SHORT-LIVED. Different speeds and reach suit different jobs.", "pillLabel": "Concept" },
+    { "front": "Negative feedback", "back": "A control mechanism in which a change is DETECTED and a response is triggered that OPPOSES the change, returning the variable towards its set point. Blood glucose control by insulin and glucagon is the classic example.", "pillLabel": "Concept" },
+    { "front": "Insulin vs glucagon", "back": "Both are peptide hormones from the pancreas. Insulin is released when blood glucose is HIGH and LOWERS it (uptake and storage as glycogen). Glucagon is released when glucose is LOW and RAISES it (glycogen breakdown). They are antagonistic.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: why only target cells respond", "back": "The hormone reaches ALL cells in the blood — the difference is the RECEPTOR, not the delivery. Only cells with a receptor complementary to the hormone can bind it and respond. Never say the hormone 'only goes to target cells'.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: steroid receptor location", "back": "Steroid hormones bind INTRACELLULAR receptors (they cross the membrane); peptide hormones bind CELL-SURFACE receptors (they cannot). Swapping these round is a common lost mark.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A hormone is carried in the blood past every cell in the body. Why do only certain cells respond to it?", "options": ["The hormone is only released near its target cells", "Only target cells carry a receptor with a shape complementary to the hormone", "The hormone is destroyed before it reaches non-target cells", "Only target cells are close enough to the endocrine gland"], "answer": "Only target cells carry a receptor with a shape complementary to the hormone" },
+    { "prompt": "Which set of properties best describes hormonal signalling compared with neural signalling?", "options": ["Fast, localised and short-lived", "Slow, widespread and long-lasting", "Fast, widespread and long-lasting", "Slow, localised and short-lived"], "answer": "Slow, widespread and long-lasting" },
+    { "prompt": "A steroid hormone and a peptide hormone act on the same cell. Where does each bind its receptor?", "options": ["Both bind receptors on the cell surface", "Both bind receptors inside the cell", "The steroid binds an intracellular receptor; the peptide binds a cell-surface receptor", "The steroid binds a cell-surface receptor; the peptide binds an intracellular receptor"], "answer": "The steroid binds an intracellular receptor; the peptide binds a cell-surface receptor" },
+    { "prompt": "Blood glucose concentration rises after a meal. In a negative feedback response, this triggers the pancreas to release:", "options": ["Glucagon, which raises blood glucose further", "Insulin, which lowers blood glucose back towards the set point", "Glucagon, which lowers blood glucose back towards the set point", "Insulin, which raises blood glucose towards the set point"], "answer": "Insulin, which lowers blood glucose back towards the set point" },
+    { "prompt": "A peptide hormone binds its receptor on the outside of a cell but never enters the cell. How does its message reach the cytoplasm?", "options": ["The hormone slowly diffuses through the membrane afterwards", "Binding triggers signal transduction, often producing a second messenger inside the cell", "The receptor carries the hormone into the nucleus", "The hormone is broken down into amino acids that act as the signal"], "answer": "Binding triggers signal transduction, often producing a second messenger inside the cell" }
   ],
   "faq": [
-    {
-      "q": "Why do different cells, like liver cells and heart cells, respond differently to the same hormone, adrenaline?",
-      "a": "Different cells respond differently for two main reasons. First, they may have different types of adrenaline receptors (e.g., α vs. β receptors). Second, even with the same receptor, they have different internal proteins and machinery. So, the signal transduction pathway, while starting similarly, can be wired to different final responses. In the liver, it causes glycogen breakdown; in the heart, it increases the rate and force of contraction."
-    },
-    {
-      "q": "What is the main advantage of having a multi-step signal transduction cascade?",
-      "a": "The primary advantage is signal amplification. At several steps in the cascade (e.g., adenylyl cyclase making many cAMPs, and protein kinases phosphorylating many substrates), the number of activated molecules increases exponentially. This means that a very small number of hormone molecules binding to the cell surface can generate a very large and rapid cellular response."
-    },
-    {
-      "q": "Are all hormones either steroids or peptides?",
-      "a": "No, while these are the two major classes you need to know for IB Biology, there is another class called amino-acid derived hormones. These are modified from single amino acids (e.g., tyrosine). Some, like adrenaline, are water-soluble and act like peptide hormones. Others, like thyroxine (thyroid hormone), are lipid-soluble and act more like steroid hormones."
-    }
+    { "q": "If a hormone reaches every cell in the blood, why doesn't it affect every cell?", "a": "Delivery is not the same as detection. The bloodstream does carry a hormone past almost every cell, but a cell can only respond if it owns a receptor whose binding site is complementary in shape to that hormone. Cells without the matching receptor have no way to bind the signal, so nothing happens in them. The specificity of a hormone's action therefore comes from the pattern of receptors on cells, not from where the hormone travels." },
+    { "q": "What is the point of a second messenger — why not let the hormone act directly?", "a": "Peptide hormones are water-soluble and cannot cross the hydrophobic cell membrane, so they physically cannot get inside to act directly. Binding at the surface instead sets off signal transduction, and a second messenger such as cyclic AMP carries and amplifies the message inside the cell. Amplification matters: a single hormone molecule at the surface can lead to many second-messenger molecules and a large response, which is how a tiny hormone concentration produces a big, fast effect." },
+    { "q": "How is hormonal signalling different from the nervous system doing the same job?", "a": "They trade speed against reach and duration. Neural signalling sends an electrical impulse along a specific neuron and releases neurotransmitter at a synapse, so it is fast, precisely targeted and short-lived — ideal for reflexes and moment-to-moment control. Hormonal signalling releases a chemical into the blood that spreads to many tissues at once and lingers, so it is slower but widespread and long-lasting — ideal for coordinating growth, metabolism and processes that must run for hours or days." },
+    { "q": "Why do insulin and glucagon have opposite effects?", "a": "Blood glucose has to be held near a set point, and negative feedback needs a way to push it in either direction. Insulin is released when glucose is too high and lowers it by promoting uptake and storage as glycogen; glucagon is released when glucose is too low and raises it by promoting glycogen breakdown. Because the two hormones oppose each other (they are antagonistic), the body can correct a rise or a fall, keeping glucose stable rather than only being able to fix one direction." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "For a multicellular organism to function as a cohesive whole, its trillions of cells must communicate effectively. This communication network relies on chemical signals that coordinate everything from growth and metabolism to responding to threats. In this topic, we will dissect the language of cells, exploring how signals are sent, received, and interpreted to produce a physiological response."
-    },
-    {
-      "type": "heading",
-      "content": "Modes of Chemical Signalling"
-    },
-    {
-      "type": "text",
-      "content": "Chemical signalling can be categorised by the distance the signal travels. \n\n*   **Endocrine signalling** is for long-distance communication. Endocrine glands release hormones into the bloodstream, which carries them throughout the body to target cells that may be far away.\n*   **Paracrine signalling** is local. A cell releases a signal that diffuses through the extracellular fluid to affect only nearby cells. The transmission of a signal from a nerve cell to a muscle cell at a neuromuscular junction is a classic example.\n*   **Autocrine signalling** is a form of self-talk. A cell releases a signal that binds to receptors on its own surface, stimulating a response in the same cell."
-    },
-    {
-      "type": "heading",
-      "content": "Hormone Action: Steroids vs. Peptides"
-    },
-    {
-      "type": "text",
-      "content": "The chemical nature of a hormone determines how it interacts with its target cell. The primary distinction is between lipid-soluble steroid hormones and water-soluble peptide hormones."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Steroid Hormones (e.g., testosterone, oestrogen):** These are lipids and are hydrophobic. They can diffuse directly across the phospholipid bilayer of the cell membrane. Inside the cell, they bind to an **intracellular receptor** in the cytoplasm or nucleus. The hormone-receptor complex then acts as a transcription factor, binding to DNA and directly altering gene expression (switching genes on or off).",
-        "**Peptide Hormones (e.g., insulin, adrenaline):** These are proteins or polypeptides and are hydrophilic. They cannot cross the cell membrane. Instead, they bind to a specific **transmembrane receptor** on the cell's surface. This binding event initiates a signal transduction pathway inside the cell, often involving a **second messenger**."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A newly discovered hormone, 'Myostatin', is found to be a small protein that inhibits muscle growth. Predict the mechanism of action of Myostatin, starting from its arrival at a muscle cell. [4 marks]",
-      "solution": "1. As Myostatin is a protein, it is a peptide hormone and therefore water-soluble/hydrophilic. It cannot cross the cell membrane. [1]\n2. It will bind to a specific receptor protein located on the outer surface of the muscle cell membrane. [1]\n3. This binding will trigger a conformational change in the receptor, initiating a signal transduction cascade within the cytoplasm. [1]\n4. This cascade, likely involving second messengers and protein kinases, will lead to the cellular response of inhibiting processes related to muscle growth (e.g., inhibiting protein synthesis). [1]"
-    },
-    {
-      "type": "heading",
-      "content": "Signal Transduction: The Adrenaline Cascade"
-    },
-    {
-      "type": "text",
-      "content": "Signal transduction is the process that converts an external signal into an internal response. A key feature is signal amplification, where one hormone molecule can lead to the activation of millions of target molecules. The 'fight or flight' response triggered by adrenaline (epinephrine) is a classic example."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**1. Reception:** Adrenaline (a peptide hormone) travels through the blood and binds to a specific G-protein coupled receptor (GPCR) on the surface of a liver or muscle cell.",
-        "**2. Transduction (Part 1):** The receptor changes shape and activates an associated G-protein. The G-protein then activates the membrane-bound enzyme, adenylyl cyclase.",
-        "**3. Transduction (Part 2):** Activated adenylyl cyclase converts many molecules of ATP into cyclic AMP (cAMP), the second messenger. This step amplifies the signal.",
-        "**4. Transduction (Part 3):** cAMP molecules diffuse through the cytoplasm and activate protein kinase A (PKA). Each PKA can then phosphorylate and activate many molecules of another enzyme, phosphorylase kinase.",
-        "**5. Response:** Activated phosphorylase kinase activates the final enzyme, glycogen phosphorylase. This enzyme breaks down glycogen into glucose-1-phosphate, which is then converted to glucose and released into the blood, providing a rapid energy source."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "For questions on signal transduction cascades like the adrenaline pathway, you must name the specific molecules involved in the correct sequence. Simply saying 'a series of enzymes are activated' will not earn full marks. Name the G-protein, adenylyl cyclase, cAMP, and protein kinases."
-    },
-    {
-      "type": "workedExample",
-      "question": "An experiment measured the concentration of cyclic AMP (cAMP) in liver cells before and after the addition of adrenaline. The results are shown below.\n\n| Time (minutes) | Adrenaline Added? | cAMP concentration (pmol mg⁻¹ protein) |\n| :--- | :--- | :--- |\n| 0 | No | 4.5 |\n| 2 | Yes | 4.5 |\n| 4 | Yes | 28.8 |\n| 6 | Yes | 18.1 |\n\n(a) Calculate the percentage increase in cAMP concentration from 2 minutes to 4 minutes. [2]\n(b) Explain the role of cAMP in the response of the liver cell to adrenaline. [2]",
-      "solution": "(a) \n*   Change in concentration = 28.8 - 4.5 = 24.3 pmol mg⁻¹ protein [1]\n*   Percentage increase = (change / original) × 100 = (24.3 / 4.5) × 100 = 540% [1]\n\n(b) \n*   cAMP acts as a second messenger, relaying the signal from the cell surface receptor into the cytoplasm. [1]\n*   It activates protein kinase A (PKA), which initiates a phosphorylation cascade leading to the breakdown of glycogen into glucose (glycogenolysis). [1]"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Chemical Signalling",
-      "href": "/mark?subject=ib-biology-sl&topic=C2.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Animation of a G-Protein Signal Pathway",
-          "href": "https://www.youtube.com/watch?v=V_0EcUr_txk"
-        },
-        {
-          "label": "Detailed overview of cell signalling",
-          "href": "https://www.khanacademy.org/science/ap-biology/cell-communication-and-cell-cycle/cell-communication/a/introduction-to-cell-signaling"
-        }
-      ]
-    }
+    { "type": "intro", "content": "A human body is built from trillions of cells that never meet, yet they must act as one — releasing glucose at the right moment, growing in step, responding together to a threat. They manage this by chemical signalling: one cell releases a molecule that another cell detects and acts on. C2.1 asks you to explain how these signals travel, why a signal in the blood affects only some cells and not others, how binding at a receptor is turned into a response inside the cell, and how the body uses these signals in negative feedback to hold conditions steady. Much of this topic is explanation rather than calculation, and in explanation the marks go to distinct, precisely-named ideas — so every worked example below is set out exactly the way our marking engine awards them." },
+
+    { "type": "heading", "content": "Cell-to-cell communication by chemical signals" },
+    { "type": "text", "content": "In a multicellular organism, cells must coordinate their activities even when they are far apart. They do this by chemical signalling: a signalling cell releases a chemical (a ligand), and a receiving cell detects it using a receptor protein. Some signals travel only a short distance to neighbouring cells; others are carried across the whole body in the blood. Whatever the distance, the logic is always the same — a signal is released, it reaches a cell, and a response occurs only if that cell can bind the signal. The rest of this topic follows one especially important long-distance route: hormonal signalling through the endocrine system." },
+    { "type": "keyPoints", "items": [
+      "Cells communicate by releasing chemical signals (ligands) that other cells detect with receptor proteins.",
+      "Signals may act locally on nearby cells or travel long distances in the blood.",
+      "A response occurs only where a cell carries a receptor able to bind the signal — communication requires both a signal and a matching receptor.",
+      "Chemical signalling lets distant cells coordinate growth, metabolism and responses to change without direct contact."
+    ]},
+
+    { "type": "heading", "content": "The endocrine system and hormones" },
+    { "type": "text", "content": "The endocrine system is the body's long-distance chemical messaging network. It is made of endocrine glands — such as the pancreas, adrenal glands and thyroid — that secrete hormones directly into the blood (they are ductless glands). The blood then carries each hormone throughout the body. A hormone is therefore a chemical signal that is secreted into the blood and acts on target cells: cells that carry the specific receptor for that hormone. Because a hormone can be carried anywhere the blood goes, one gland can influence many tissues at once, and its effect can last as long as the hormone remains in circulation." },
+    { "type": "keyPoints", "items": [
+      "Endocrine glands secrete hormones directly into the blood, which distributes them around the body.",
+      "A hormone acts on **target cells** — cells that carry the specific receptor for that hormone.",
+      "Cells reached by the hormone but lacking its receptor are unaffected.",
+      "Because the signal travels in the blood and reaches many tissues, endocrine effects are widespread and can be long-lasting."
+    ]},
+
+    { "type": "heading", "content": "Receptor–ligand specificity and complementary shape" },
+    { "type": "text", "content": "The reason a hormone in the blood affects only its target cells lies in the shape of the receptor. A receptor has a binding site whose shape is complementary to the hormone (the ligand), rather like the fit between a substrate and an enzyme's active site, or an antigen and an antibody. Only a molecule with a matching shape can bind. This receptor–ligand specificity means a given receptor responds to one signal (or a small family of related signals) and ignores all the others washing past in the blood. So even though a hormone reaches almost every cell, it produces a response only in cells that display a receptor complementary to it — and different cell types can be given different responsibilities simply by carrying different sets of receptors." },
+    { "type": "keyPoints", "items": [
+      "A receptor binds a signal because the two have **complementary shapes** — a specific fit at the binding site.",
+      "This specificity means one receptor responds to one signal (or a narrow group), not to others.",
+      "A hormone acts only where cells carry the matching receptor, so the receptor pattern — not the delivery — decides which cells respond.",
+      "Changing which receptors a cell displays changes which signals it can respond to."
+    ]},
+
+    { "type": "heading", "content": "Where the receptor sits: peptide vs steroid hormones" },
+    { "type": "text", "content": "Whether a receptor lies on the cell surface or inside the cell depends on the chemistry of the hormone. Peptide hormones (made of amino acids, e.g. insulin and glucagon) are water-soluble and cannot cross the hydrophobic phospholipid bilayer, so their receptors must sit on the cell surface, spanning the membrane. Steroid hormones (derived from cholesterol, e.g. oestrogen and testosterone) are lipid-soluble and diffuse straight through the membrane, so their receptors are intracellular — in the cytoplasm or nucleus. The consequences differ: a peptide hormone must relay its message inward through signal transduction, whereas a steroid hormone–receptor complex commonly acts in the nucleus to alter gene expression, switching particular genes on or off." },
+    { "type": "keyPoints", "items": [
+      "**Peptide hormones** are water-soluble, cannot cross the membrane, and bind **cell-surface (transmembrane) receptors**; the message is relayed inward by signal transduction.",
+      "**Steroid hormones** are lipid-soluble, diffuse through the membrane, and bind **intracellular receptors** in the cytoplasm or nucleus.",
+      "A steroid hormone–receptor complex typically alters **gene expression**, changing which proteins the cell makes.",
+      "The hormone's solubility, not the cell type, decides whether its receptor is on the surface or inside."
+    ]},
+
+    { "type": "workedExample", "question": "A newly identified hormone is a short chain of amino acids that slows the division of certain skin cells. Predict where its receptor is located and outline how it produces a response in a target cell. Explain your reasoning. [4]", "solution": "**Model answer.**\nBecause the hormone is made of amino acids, it is a peptide hormone and is water-soluble, so it cannot cross the hydrophobic cell membrane [1]. Its receptor must therefore be on the cell surface, spanning the membrane, and the hormone binds to this receptor because their shapes are complementary [1]. Binding triggers signal transduction inside the cell — often producing a second messenger — which relays and amplifies the signal without the hormone itself entering the cell [1]. This intracellular pathway leads to the cellular response, here slowing cell division, and only skin cells carrying the specific receptor respond [1].\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (A):** identifies it as a peptide / water-soluble hormone that cannot cross the membrane.\n- **Point 2 (A):** receptor is on the cell surface, and hormone binds because shapes are complementary (receptor–ligand specificity).\n- **Point 3 (M):** binding triggers signal transduction / a second messenger inside the cell.\n- **Point 4 (A):** the pathway leads to the response, and only cells with the specific receptor respond.\n\n*ECF applies: if a student wrongly decided the hormone was a steroid but then reasoned consistently (intracellular receptor → altered gene expression), the downstream reasoning points can still be credited. The engine rewards a correct chain of reasoning, not just the final label.*" },
+
+    { "type": "heading", "content": "Signal transduction and second messengers" },
+    { "type": "text", "content": "Binding a hormone to its receptor is only the first step; the cell still has to turn that event into an action. Signal transduction is the process that converts the signal at the receptor into a cellular response. For a cell-surface receptor, binding changes the receptor's shape and sets off a relay of events inside the cell. A key part of many of these pathways is a second messenger — a small intracellular molecule such as cyclic AMP (cAMP) — produced in response to the binding. The second messenger spreads the signal through the cytoplasm and amplifies it, so that one hormone molecule at the surface can trigger a large response inside. The eventual response depends on the cell: it might activate an enzyme, change how much of a substance the cell takes up, or alter gene expression. You are expected to understand this as an overview — a signal at the receptor triggers, via transduction and (for surface receptors) a second messenger, a response inside the cell." },
+    { "type": "keyPoints", "items": [
+      "**Signal transduction** converts binding at the receptor into a cellular response.",
+      "For a cell-surface receptor, binding changes the receptor and starts an intracellular relay.",
+      "A **second messenger** (e.g. cAMP) carries the signal into the cytoplasm and **amplifies** it.",
+      "The final response varies by cell type — activating an enzyme, changing uptake, or altering gene expression."
+    ]},
+    { "type": "examTip", "content": "For a peptide-hormone question, do not write that the hormone 'enters the cell and acts directly' — it cannot cross the membrane. The creditable idea is that binding at the SURFACE triggers signal transduction and a SECOND MESSENGER carries the signal inside. Naming the second messenger step is often where the transduction mark is won or lost." },
+
+    { "type": "heading", "content": "Hormonal signalling versus neural signalling" },
+    { "type": "text", "content": "The body has a second way to send messages: the nervous system. Comparing the two shows why it needs both. Hormonal signalling releases a chemical into the blood; the message spreads to any tissue with the right receptor, travels at the speed of the circulation, and can persist while the hormone remains — so it is slow, widespread and long-lasting. Neural signalling sends an electrical impulse along a specific neuron and passes it to the next cell using a neurotransmitter at a synapse; the message goes only where the neuron reaches, arrives in milliseconds, and stops quickly once the impulse ends — so it is fast, localised and short-lived. Fast, precise control (a reflex, a muscle twitch) suits neural signalling; slow, body-wide, sustained control (metabolism, growth, blood glucose over hours) suits hormonal signalling." },
+    { "type": "keyPoints", "items": [
+      "**Hormonal:** chemical signal in the **blood** — **slow**, **widespread**, **long-lasting**.",
+      "**Neural:** electrical impulse along neurons + neurotransmitter at synapses — **fast**, **localised**, **short-lived**.",
+      "Neural signalling suits rapid, precisely targeted responses; hormonal signalling suits sustained, body-wide coordination.",
+      "The two systems complement each other, covering different speeds, reaches and durations of control."
+    ]},
+
+    { "type": "heading", "content": "Negative feedback control: blood glucose" },
+    { "type": "text", "content": "Hormones are the tools the body uses to hold internal conditions steady, and it does so mainly through negative feedback: a change is detected, and a response is triggered that opposes the change, returning the variable towards its set point. Blood glucose is the classic example, controlled by two antagonistic peptide hormones from the pancreas. When blood glucose rises after a meal, the pancreas secretes insulin; insulin causes body cells to take up glucose and the liver to store it as glycogen, so glucose falls back towards normal. When blood glucose falls — during fasting or exercise — the pancreas secretes glucagon; glucagon causes the liver to break glycogen back down and release glucose, so glucose rises towards normal. Each response removes the stimulus that caused it (rising glucose triggers insulin, which lowers glucose), which is exactly what makes it negative feedback and keeps blood glucose oscillating narrowly around its set point." },
+    { "type": "keyPoints", "items": [
+      "**Negative feedback:** a detected change triggers a response that **opposes** the change, restoring the set point.",
+      "High blood glucose → pancreas releases **insulin** → cells take up glucose, liver stores it as glycogen → glucose falls.",
+      "Low blood glucose → pancreas releases **glucagon** → liver breaks down glycogen and releases glucose → glucose rises.",
+      "Insulin and glucagon are **antagonistic**, so glucose can be corrected in either direction and held near its set point."
+    ]},
+
+    { "type": "workedExample", "question": "After a carbohydrate-rich meal a person's blood glucose concentration rises sharply, then returns to its normal level over the next two hours. Using the idea of negative feedback, explain how the hormone insulin brings the blood glucose concentration back down. [4]", "solution": "**Model answer.**\nThe rise in blood glucose above the set point is detected by the pancreas, which secretes insulin into the blood [1]. Insulin is carried in the blood and binds to specific receptors on its target cells, such as liver and muscle cells [1]. This stimulates these cells to take up glucose from the blood and the liver to convert glucose into glycogen for storage [1]. As glucose is removed from the blood, its concentration falls back towards the set point; because the response opposes the original rise, this is negative feedback, and the falling glucose reduces further insulin secretion [1].\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (A):** rise in glucose is detected and the pancreas secretes insulin.\n- **Point 2 (A):** insulin travels in the blood and binds specific receptors on target cells (liver/muscle).\n- **Point 3 (A):** target cells take up glucose / liver stores glucose as glycogen.\n- **Point 4 (A):** glucose falls back towards the set point — the response opposes the change (negative feedback).\n\n*Accept equivalents: e.g. 'promotes glycogenesis' for the storage point. ECF applies — a student who states the response reduces glucose and identifies it as negative feedback earns the final point even if an earlier detail is thin. Note the answer must not say insulin 'raises' glucose; that reverses the mechanism and scores zero for that point.*" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Saying the hormone 'only travels to' its target cells** — the hormone in the blood reaches nearly ALL cells; the difference is that only target cells carry the complementary RECEPTOR. State the receptor idea explicitly.",
+      "**Forgetting to mention complementary shape / specificity** — 'the cell responds because it is a target cell' is circular. The creditable reason is that the receptor's shape is complementary to the hormone.",
+      "**Swapping the receptor locations** — steroid (lipid-soluble) hormones use INTRACELLULAR receptors; peptide (water-soluble) hormones use CELL-SURFACE receptors. Reversing these is a common lost mark.",
+      "**Claiming a peptide hormone enters the cell to act** — it cannot cross the membrane; it binds at the surface and its message is relayed inward by signal transduction / a second messenger.",
+      "**Mixing up insulin and glucagon** — insulin LOWERS blood glucose (released when it is high); glucagon RAISES it (released when it is low). Getting the direction wrong reverses the feedback.",
+      "**Describing feedback as 'positive' or leaving out the set point** — glucose control is NEGATIVE feedback: the response opposes the change and returns the variable towards its set point.",
+      "**Blurring hormonal and neural signalling** — pair the properties correctly: hormonal is slow/widespread/long-lasting, neural is fast/localised/short-lived. Do not attribute one system's properties to the other."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Most C2.1 marks are explanation marks, and our engine awards them analytically: each distinct valid biological point is worth one mark, up to the number of marks available. Answer marks (A) credit a correct step in the reasoning, and error-carried-forward (ECF) means a slip early on does not automatically cost the later marks, provided the reasoning that follows is sound. Study how each mark below is tied to a specific, named idea — 'complementary receptor', 'binds', 'signal transduction' — rather than to loose phrasing, because that is exactly what the Practice button rewards." },
+    { "type": "workedExample", "question": "Explain how a hormone produces a response in its specific target cells but not in other cells. [4]", "solution": "**Model answer.**\nThe hormone is secreted into the blood, which carries it throughout the body so that it reaches essentially all cells. Only the target cells, however, carry a receptor whose shape is complementary (specific) to the hormone. The hormone binds to this specific receptor on (or in) the target cell. Binding triggers signal transduction — a chain of events inside the cell, often involving a second messenger — that produces the cellular response. Because non-target cells lack the specific receptor, the hormone cannot bind them and no response occurs, so the response happens only in the target cells.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (A):** the hormone travels in the blood and reaches all / most cells of the body.\n- **Point 2 (A):** only target cells have the specific receptor / a receptor with a complementary shape.\n- **Point 3 (A):** the hormone binds to that specific receptor.\n- **Point 4 (A):** binding triggers signal transduction / a response in that cell only (and non-target cells lack the receptor, so cannot respond).\n\nFive creditable ideas are shown for a 4-mark question, so the engine caps the award at 4 — there is deliberate room to miss one and still score full marks. But the marks are for DISTINCT ideas: writing 'the receptor is specific' twice in different words scores once.\n\n**ECF and equivalents.** The points are independent, so a student who omits the delivery step but correctly explains the receptor, the binding and the response still earns those marks. The engine accepts equivalents — 'complementary shape', 'specific receptor' and 'matching receptor' all credit Point 2; 'sets off a signal transduction pathway' and 'produces a second messenger that triggers the response' both credit Point 4.\n\n**What the engine rejects.** An answer that says only 'the hormone goes to the target cells and makes them respond' scores at most one mark: it never names the receptor, the complementary shape, the binding or the transduction. The mark scheme requires the mechanism (reaches all cells → only target cells have the complementary receptor → hormone binds → transduction/response), not a restatement of the question.\n\n**Bottom line:** to secure all 4 marks, make four distinct statements — hormone reaches all cells in the blood, only target cells have the specific/complementary receptor, the hormone binds that receptor, and binding triggers transduction/the response so only target cells react." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, awarding one mark per distinct valid idea, applying ECF, and capping at the marks available. So write in separate, creditable statements: name that the hormone travels in the blood to all cells, name the specific/complementary receptor, name the binding, then name signal transduction / the response. Vague sentences that restate the question earn nothing; the engine rewards the named mechanism, and separating each step is what protects your score." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The logic of C2.1 — a signal, a complementary receptor, a transduced response — is the template for cell communication everywhere in biology. The same receptor–ligand specificity underlies how neurotransmitters act at synapses, how the immune system recognises antigens, and how many medicines work by mimicking or blocking a natural ligand at its receptor. Negative feedback, met here in blood glucose, is the pattern behind homeostasis of temperature, water balance and hormone levels throughout the course. Master the idea that a response depends on both a signal and a matching receptor, and you have a framework that explains coordination from a single synapse to the whole endocrine system." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain hormone specificity, signal transduction, or negative feedback control of blood glucose with full reasoning", "href": "/mark?subject=ib-biology-sl&topic=C2.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Khan Academy: Introduction to cell signalling", "href": "https://www.khanacademy.org/science/ap-biology/cell-communication-and-cell-cycle/cell-communication/a/introduction-to-cell-signaling" },
+      { "label": "Khan Academy: Regulation of blood glucose by insulin and glucagon", "href": "https://www.khanacademy.org/science/biology/human-biology/the-endocrine-system/a/regulation-of-blood-sugar" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

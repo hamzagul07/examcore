@@ -2,202 +2,143 @@
   "slug": "c1-3-photosynthesis",
   "topicCode": "C1.3",
   "title": "Photosynthesis",
+  "unit": { "code": "C", "title": "Interaction and interdependence" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson explores the process of photosynthesis, the cornerstone of most ecosystems. We will dissect the overall chemical reaction, investigate the two key stages (light-dependent and light-independent reactions), and analyse the environmental factors that can limit the rate of this vital process.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Photosynthesis is where light energy becomes the chemical energy that feeds almost every ecosystem. This lesson builds the whole C1.3 toolkit: photosynthesis as an energy conversion, the overall equation, the two linked stages (light-dependent reactions in the thylakoids and the light-independent Calvin cycle in the stroma), the pigments that harvest light, the difference between absorption and action spectra, and the limiting factors — light intensity, carbon dioxide concentration and temperature — that set the rate, including the shapes of their graphs and how the rate is measured. The worked examples and the model answer are laid out exactly the way our marking engine awards Paper 2 marks, so you can see how showing your reasoning protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "State the overall balanced chemical equation for photosynthesis.",
-    "Outline the light-dependent and light-independent reactions, including their locations and key products.",
-    "Explain the concept of limiting factors in photosynthesis, specifically light intensity, carbon dioxide concentration, and temperature.",
-    "Distinguish between action and absorption spectra for photosynthesis."
+    "Describe photosynthesis as the conversion of light energy into chemical energy and state the overall balanced equation.",
+    "Outline the light-dependent reactions (thylakoids) and the light-independent reactions / Calvin cycle (stroma), including their locations and key products.",
+    "Distinguish between the absorption spectrum of photosynthetic pigments and the action spectrum of photosynthesis.",
+    "Explain how light intensity, carbon dioxide concentration and temperature act as limiting factors, and interpret rate-versus-factor graphs.",
+    "Describe how the rate of photosynthesis can be measured, and present reasoning the way marks are actually awarded."
   ],
+  "syllabusObjectivesCovered": ["C1.3"],
+  "levelNote": "Common to SL and HL; the biochemical detail of the Calvin cycle and electron transport is developed at HL.",
   "simpleExplanation": {
     "title": "Sunlight to Sugar: The Plant's Power Plant",
-    "summary": "Photosynthesis is the remarkable process where plants use sunlight, water, and carbon dioxide to create their own food—glucose. This process not only feeds the plant but also releases the oxygen we breathe.",
-    "analogy": "Imagine a solar-powered bakery. The bakery building is the chloroplast. The solar panels (chlorophyll) capture energy from the sun. The bakers use this energy, along with ingredients like water and flour (carbon dioxide), to bake bread (glucose). As a byproduct, the ovens release steam (oxygen). The rate of baking is limited by the amount of sunlight, the supply of flour, or the oven's temperature.",
+    "summary": "Photosynthesis is the process where plants use sunlight, water and carbon dioxide to build their own food — carbohydrate — and release the oxygen we breathe. At heart it is an energy conversion: light energy in, chemical energy locked into sugar out.",
+    "analogy": "Picture a solar-powered bakery. The building is the chloroplast. Solar panels (chlorophyll) capture energy from the Sun. The bakers use that energy, together with ingredients delivered as water and carbon dioxide, to bake bread (carbohydrate). Steam (oxygen) escapes as a by-product. And just like a real bakery, the rate of baking is capped by whatever is in shortest supply on the day — too little sunlight, too little flour, or an oven that is too cold.",
     "steps": [
-      "Light energy is absorbed by chlorophyll, a pigment in the chloroplasts, exciting electrons.",
-      "Water molecules are split in a process called photolysis, releasing oxygen, protons ($H^+$), and the excited electrons.",
-      "The captured light energy is converted into chemical energy in the form of ATP and NADPH during the light-dependent reactions.",
-      "In the light-independent reactions (Calvin cycle), the chemical energy from ATP and NADPH is used to convert carbon dioxide into glucose."
+      "Light energy is absorbed by chlorophyll in the chloroplasts, exciting electrons to a higher energy level.",
+      "Water is split in photolysis, releasing oxygen as a waste product, protons ($H^+$) and the excited electrons.",
+      "The captured light energy is converted into chemical energy carried by ATP and reduced NADP (NADPH) — this is the light-dependent stage.",
+      "In the light-independent stage (Calvin cycle) the ATP and NADPH are used to fix carbon dioxide into carbohydrate."
     ]
   },
+  "keyConcepts": ["energy conversion", "limiting factors", "absorption vs action spectrum"],
   "flashcards": [
-    {
-      "front": "Photosynthesis",
-      "back": "The process by which green plants and some other organisms use sunlight to synthesise foods from carbon dioxide and water. It is an anabolic process that converts light energy into chemical energy."
-    },
-    {
-      "front": "Chlorophyll",
-      "back": "The main photosynthetic pigment in chloroplasts that absorbs light energy, primarily in the blue and red regions of the spectrum, and reflects green light."
-    },
-    {
-      "front": "Light-Dependent Reactions",
-      "back": "The first stage of photosynthesis, occurring in the thylakoid membranes. It involves the photolysis of water and the conversion of light energy into chemical energy (ATP and NADPH)."
-    },
-    {
-      "front": "Light-Independent Reactions",
-      "back": "The second stage of photosynthesis (also known as the Calvin cycle), occurring in the stroma. It uses ATP and NADPH from the light-dependent reactions to fix carbon dioxide into glucose."
-    },
-    {
-      "front": "Photolysis",
-      "back": "The splitting of a molecule using light energy. In photosynthesis, water is split to produce oxygen, protons ($H^+$), and electrons ($e^-$)."
-    },
-    {
-      "front": "Limiting Factor",
-      "back": "A factor that is in the shortest supply and restricts the rate of a process, such as photosynthesis, even if other factors are optimal. Examples include light intensity, CO₂ concentration, and temperature."
-    },
-    {
-      "front": "Action Spectrum",
-      "back": "A graph that shows the rate of photosynthesis at different wavelengths of light. It indicates which wavelengths are most effective for photosynthesis."
-    },
-    {
-      "front": "Absorption Spectrum",
-      "back": "A graph that shows the percentage of light absorbed by a pigment (like chlorophyll) at different wavelengths."
-    },
-    {
-      "front": "ATP (Adenosine Triphosphate)",
-      "back": "A molecule that acts as the main energy currency of the cell. It is produced during the light-dependent reactions and used to power the light-independent reactions."
-    },
-    {
-      "front": "NADPH",
-      "back": "An electron carrier molecule. It is produced in the light-dependent reactions and provides the reducing power (donates electrons) for the synthesis of glucose in the Calvin cycle."
-    },
-    {
-      "front": "Common Trap: Do plants only respire at night?",
-      "back": "No, this is a common misconception. Plants respire continuously, 24 hours a day, to produce ATP for cellular processes. Photosynthesis only occurs in the presence of light. The net gas exchange changes, but respiration does not stop."
-    }
+    { "front": "Photosynthesis (as energy conversion)", "back": "The process by which plants, algae and some bacteria convert LIGHT energy into CHEMICAL energy, using carbon dioxide and water to synthesise carbohydrate and releasing oxygen. It is an anabolic (building-up) process.", "pillLabel": "Definition" },
+    { "front": "Overall equation", "back": "$6CO_2 + 6H_2O \\xrightarrow{\\text{light}} C_6H_{12}O_6 + 6O_2$. Reactants: carbon dioxide + water. Products: carbohydrate (glucose) + oxygen. Light energy drives it and is stored in the bonds of the sugar.", "pillLabel": "Formula" },
+    { "front": "Light-dependent reactions", "back": "First stage, in the THYLAKOID membranes. Chlorophyll absorbs light; water is split (photolysis) releasing O₂; ATP and reduced NADP (NADPH) are made. Requires light.", "pillLabel": "Concept" },
+    { "front": "Light-independent reactions (Calvin cycle)", "back": "Second stage, in the STROMA. CO₂ is fixed and reduced to carbohydrate using the ATP and NADPH from the light-dependent stage. Does not use light directly but stops quickly without those products.", "pillLabel": "Concept" },
+    { "front": "Photolysis", "back": "The splitting of a molecule using light energy. In photosynthesis WATER is split, producing OXYGEN (the source of the O₂ released), protons ($H^+$) and electrons ($e^-$). The oxygen comes from water, not from carbon dioxide.", "pillLabel": "Concept" },
+    { "front": "Chlorophyll and accessory pigments", "back": "Chlorophyll a and b are the main pigments; carotenoids (e.g. carotene, xanthophyll) are accessory pigments that absorb other wavelengths and pass the energy on. Chlorophyll absorbs mainly blue-violet and red light and reflects green.", "pillLabel": "Definition" },
+    { "front": "Absorption spectrum", "back": "A graph of the amount of light ABSORBED by a pigment against wavelength. Chlorophyll shows peaks in the blue-violet (~400–450 nm) and red (~650–700 nm) and a trough in the green.", "pillLabel": "Definition" },
+    { "front": "Action spectrum", "back": "A graph of the RATE of photosynthesis against wavelength — which wavelengths actually drive the process. Its close match to the absorption spectrum is evidence that the absorbed light is used in photosynthesis.", "pillLabel": "Definition" },
+    { "front": "Limiting factor", "back": "The factor, of several needed for a process, that is in SHORTEST supply and therefore sets (limits) the rate — even when other factors are plentiful. For photosynthesis: light intensity, CO₂ concentration and temperature.", "pillLabel": "Concept" },
+    { "front": "ATP", "back": "The cell's short-term energy currency. Made in the light-dependent reactions and used in the Calvin cycle to fix CO₂ into carbohydrate.", "pillLabel": "Definition" },
+    { "front": "Reduced NADP (NADPH)", "back": "An electron/hydrogen carrier made in the light-dependent reactions. It provides the reducing power to convert CO₂ into carbohydrate in the stroma.", "pillLabel": "Definition" },
+    { "front": "Exam Trap: what limits the rate", "back": "The limiting factor is the one in SHORTEST supply, not simply the one that is 'lowest' on a graph or the last one you increased. State that increasing it raises the rate while the others are in excess.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: where each stage happens", "back": "Light-DEPENDENT → thylakoids. Light-INDEPENDENT (Calvin cycle) → stroma. Swapping the two locations, or saying the Calvin cycle 'needs no light so happens at night indefinitely', loses marks.", "pillLabel": "Trap" },
+    { "front": "Common Trap: do plants only respire at night?", "back": "No. Plants respire continuously, day and night, to make ATP. Photosynthesis only happens in the light. Net gas exchange changes with light, but respiration never stops.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "At a given moment, light is plentiful and temperature is optimal, but CO₂ is scarce. The limiting factor for the rate of photosynthesis is:", "options": ["Light intensity, because light drives the reaction", "Carbon dioxide concentration, because it is in shortest supply", "Temperature, because enzymes are involved", "There is no limiting factor when light is plentiful"], "answer": "Carbon dioxide concentration, because it is in shortest supply" },
+    { "prompt": "In which part of the chloroplast do the light-dependent reactions take place?", "options": ["The stroma", "The thylakoid membranes", "The outer membrane", "The intermembrane space of a mitochondrion"], "answer": "The thylakoid membranes" },
+    { "prompt": "Which statement correctly distinguishes the two spectra?", "options": ["The absorption spectrum shows the rate of photosynthesis at each wavelength", "The action spectrum shows how much light each pigment absorbs", "The absorption spectrum shows light absorbed by pigments; the action spectrum shows the rate of photosynthesis at each wavelength", "They are the same graph under different names"], "answer": "The absorption spectrum shows light absorbed by pigments; the action spectrum shows the rate of photosynthesis at each wavelength" },
+    { "prompt": "In photolysis, water is split. The oxygen released by a photosynthesising plant comes from:", "options": ["Carbon dioxide", "Water", "Glucose", "ATP"], "answer": "Water" },
+    { "prompt": "On a light-intensity graph the rate rises then plateaus while temperature and CO₂ are held constant and plentiful. The plateau shows that:", "options": ["Light intensity is now the limiting factor", "The plant has stopped respiring", "Some other factor (e.g. CO₂ or temperature) has become the limiting factor", "The enzymes have denatured"], "answer": "Some other factor (e.g. CO₂ or temperature) has become the limiting factor" }
   ],
   "faq": [
-    {
-      "q": "Why are leaves green?",
-      "a": "Leaves are green because the primary photosynthetic pigment, chlorophyll, absorbs red and blue-violet light very effectively but reflects green light. Our eyes perceive this reflected light, making the leaf appear green."
-    },
-    {
-      "q": "What is the difference between the action spectrum and the absorption spectrum?",
-      "a": "The absorption spectrum shows which wavelengths of light are absorbed by a pigment. The action spectrum shows which wavelengths of light are most effective at driving photosynthesis. They are very similar, which provides strong evidence that chlorophyll is the pigment responsible for photosynthesis."
-    },
-    {
-      "q": "If the light-independent reactions don't need light, can they happen in the dark?",
-      "a": "Yes, but only for a very short time. The light-independent reactions require ATP and NADPH, which are products of the light-dependent reactions. As soon as the supply of ATP and NADPH runs out (which happens quickly when the light is turned off), the light-independent reactions will stop."
-    },
-    {
-      "q": "Do plants respire as well as photosynthesise?",
-      "a": "Yes, absolutely. All living cells, including plant cells, need to respire to produce ATP for metabolic processes like growth and active transport. Photosynthesis creates the glucose, and respiration breaks it down to release energy. Photosynthesis occurs in the light, while respiration occurs 24/7."
-    }
+    { "q": "Why are leaves green?", "a": "Chlorophyll absorbs red and blue-violet light strongly but reflects green light. Our eyes detect the reflected green, so the leaf looks green. The green trough in chlorophyll's absorption spectrum is exactly this poorly absorbed region." },
+    { "q": "What is the difference between the absorption spectrum and the action spectrum?", "a": "The absorption spectrum shows which wavelengths a pigment absorbs. The action spectrum shows which wavelengths most effectively drive photosynthesis. They are very similar — and that close match is strong evidence that the light absorbed by chlorophyll is the light used to power photosynthesis." },
+    { "q": "If the light-independent reactions don't need light, can they run in the dark?", "a": "Only very briefly. The Calvin cycle depends on ATP and NADPH made in the light-dependent stage. Once the light is switched off those supplies are used up within seconds, and the light-independent reactions stop. So the two stages are tightly linked even though only one directly needs light." },
+    { "q": "How is the rate of photosynthesis measured in the lab?", "a": "The most common school method uses an aquatic plant such as Elodea (or Cabomba) and measures oxygen production — by counting bubbles per minute or, more precisely, collecting the gas and measuring its volume over time. Other approaches track carbon dioxide uptake (e.g. a pH or indicator change) or the increase in biomass. The rate is then the amount produced or used divided by the time." },
+    { "q": "Do plants respire as well as photosynthesise?", "a": "Yes. All living cells, including plant cells, respire continuously to make ATP for growth and active transport. Photosynthesis builds glucose in the light; respiration breaks it down 24 hours a day. This is why measured gas exchange is a NET figure — the balance between the two processes." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the engine room of life on Earth. Photosynthesis is more than just a topic in a biology textbook; it is the fundamental process that sustains nearly all ecosystems by converting sunlight into usable chemical energy. In this lesson, we will explore how plants achieve this incredible feat of chemical engineering, from the overall reaction to the specific factors that govern its speed."
-    },
-    {
-      "type": "heading",
-      "content": "The Overall Equation of Photosynthesis"
-    },
-    {
-      "type": "text",
-      "content": "At its core, photosynthesis can be summarised by a single chemical equation. This equation represents the net consumption of reactants and production of products. It's an endergonic reaction, meaning it requires an input of energy, which is provided by sunlight."
-    },
-    {
-      "type": "formula",
-      "content": "6CO₂ + 6H₂O \\xrightarrow{\\text{light energy}} C₆H₁₂O₆ + 6O₂"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Reactants:** Six molecules of carbon dioxide (CO₂) and six molecules of water (H₂O).",
-        "**Products:** One molecule of glucose (C₆H₁₂O₆) and six molecules of oxygen (O₂).",
-        "**Energy:** Light energy is required to drive the reaction, and it is converted into chemical energy stored in the bonds of glucose."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Two Stages of Photosynthesis"
-    },
-    {
-      "type": "text",
-      "content": "The overall equation is a simplification. Photosynthesis is a complex metabolic pathway divided into two distinct stages: the light-dependent reactions and the light-independent reactions. These stages are linked by the flow of energy and electrons, carried by ATP and NADPH."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Light-Dependent Reactions:** Occur in the thylakoid membranes of the chloroplasts. They require light. Water is split (photolysis), oxygen is released as a waste product, and the energy carriers ATP and NADPH are produced.",
-        "**Light-Independent Reactions (Calvin Cycle):** Occur in the stroma of the chloroplasts. They do not directly require light but depend on the products of the light-dependent stage. ATP and NADPH are used to 'fix' carbon dioxide into organic molecules, ultimately producing glucose."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Examiners often ask about the specific locations of these reactions. Remember: 'Light-Dependent' happens in the Thylakoids (L-D-T), and the 'Stroma' is where the 'Synthesis' of sugar happens (S-S)."
-    },
-    {
-      "type": "heading",
-      "content": "Limiting Factors"
-    },
-    {
-      "type": "text",
-      "content": "The rate of photosynthesis is not always constant. It is affected by the availability of its essential components. The principle of limiting factors states that the rate of a process is determined by the factor that is in shortest supply. For photosynthesis, the main limiting factors are light intensity, carbon dioxide concentration, and temperature."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Light Intensity:** At low light levels, light is the limiting factor. As intensity increases, the rate increases, until another factor (like CO₂ concentration) becomes limiting and the rate plateaus.",
-        "**Carbon Dioxide Concentration:** Similar to light, low CO₂ levels limit the rate. The rate increases with CO₂ concentration until light or temperature becomes the limiting factor.",
-        "**Temperature:** Photosynthesis is controlled by enzymes, which have an optimal temperature. At low temperatures, enzyme activity is slow. As temperature increases, the rate increases up to an optimum. Beyond this, enzymes begin to denature, and the rate rapidly decreases."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The graph shows the effect of light intensity on the rate of photosynthesis at two different carbon dioxide concentrations (0.04% and 0.1%).\n\n(a) Identify the limiting factor at point X (low light intensity).\n(b) Identify the limiting factor at point Y (high light intensity on the 0.04% CO₂ curve).",
-      "solution": "**(a) Limiting factor at point X:**\n*   **Observation:** At low light intensities (like at point X), the rate of photosynthesis increases as light intensity increases. Both curves (0.04% and 0.1% CO₂) follow the same path. [1]\n*   **Conclusion:** This indicates that light intensity is the limiting factor. The plant can process more light if it were available, regardless of the CO₂ concentration. [1]\n\n**(b) Limiting factor at point Y:**\n*   **Observation:** At point Y, the curve for 0.04% CO₂ has plateaued. Increasing the light intensity further does not increase the rate of photosynthesis. However, the curve for 0.1% CO₂ shows a higher rate at the same light intensity. [1]\n*   **Conclusion:** This shows that light is no longer the limiting factor. Since increasing the CO₂ concentration increases the rate, carbon dioxide concentration is the limiting factor at point Y. [1]"
-    },
-    {
-      "type": "heading",
-      "content": "Action and Absorption Spectra"
-    },
-    {
-      "type": "text",
-      "content": "Plants don't use all colours of light equally. The effectiveness of different wavelengths of light for photosynthesis is shown by the action spectrum. This is closely related to the absorption spectrum of photosynthetic pigments, primarily chlorophyll a, chlorophyll b, and carotenoids. The absorption spectrum shows which wavelengths of light are absorbed by the pigments."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Absorption Spectrum:** Shows peaks in the blue-violet (approx. 400-450 nm) and red (approx. 650-700 nm) regions. Green light is poorly absorbed and is mostly reflected, which is why plants appear green.",
-        "**Action Spectrum:** Also shows peaks in the blue-violet and red regions, corresponding to the absorption spectrum. This strong correlation is evidence that the light absorbed by chlorophyll is used in photosynthesis."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "An experiment using an aquatic plant, *Elodea*, measures the rate of photosynthesis by counting the number of oxygen bubbles produced per minute. At a light intensity of 50 arbitrary units, the plant produces 24 bubbles in 2 minutes. Calculate the rate of photosynthesis in bubbles per minute.",
-      "solution": "*   **Formula:** Rate = Total number of bubbles / Total time [1]\n*   **Substitution:** Rate = 24 bubbles / 2 minutes [1]\n*   **Calculation:** Rate = 12 bubbles min⁻¹ [1]\n*   **Final Answer:** The rate of photosynthesis is 12 bubbles per minute."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-biology-sl&topic=C1.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Video on Photosynthesis by Crash Course",
-          "href": "https://www.youtube.com/watch?v=sQK3Yr4Sc_k"
-        },
-        {
-          "label": "Interactive Photosynthesis Simulation",
-          "href": "https://phet.colorado.edu/en/simulations/photosynthesis"
-        },
-        {
-          "label": "Detailed Notes on BioNinja",
-          "href": "https://ib.bioninja.com.au/higher-level/topic-8-metabolism-cell/83-photosynthesis/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Welcome to the engine room of life on Earth. Photosynthesis is the process that captures sunlight and converts it into the chemical energy that feeds almost every ecosystem — and it releases the oxygen the rest of us breathe. In this lesson we build it up in stages: photosynthesis as an energy conversion and its overall equation, the two linked reactions inside the chloroplast, the pigments that harvest light, the spectra that reveal which wavelengths matter, and the limiting factors that decide how fast the whole thing runs. Because C1.3 mixes description, graph interpretation and explanation, every worked example and the final model answer are set out the way marks are actually awarded — so you can see how HOW you write your answer decides how many marks you keep." },
+
+    { "type": "heading", "content": "Photosynthesis as an energy conversion" },
+    { "type": "text", "content": "The single most important idea in this topic is that photosynthesis is an energy conversion: light energy is transformed into chemical energy stored in the bonds of carbohydrate. It is an anabolic, endergonic process — it builds large molecules and requires an energy input, supplied by light. Everything else in the lesson is the machinery that carries out this conversion, and the factors that control how fast it happens." },
+
+    { "type": "heading", "content": "The overall equation of photosynthesis" },
+    { "type": "text", "content": "At the whole-organism level, photosynthesis can be summarised by one balanced equation. It shows the net reactants consumed and products formed; the individual steps are hidden inside the two stages we meet next." },
+    { "type": "formula", "content": "6CO_2 + 6H_2O \\xrightarrow{\\text{light energy}} C_6H_{12}O_6 + 6O_2" },
+    { "type": "keyPoints", "items": [
+      "**Reactants:** six carbon dioxide (CO₂) and six water (H₂O).",
+      "**Products:** one glucose (C₆H₁₂O₆) and six oxygen (O₂).",
+      "**Energy:** light energy drives the reaction and ends up stored as chemical energy in the carbohydrate.",
+      "**Note:** the oxygen released comes from the water (via photolysis), not from the carbon dioxide."
+    ]},
+
+    { "type": "heading", "content": "The two stages of photosynthesis" },
+    { "type": "text", "content": "The overall equation is a summary. Photosynthesis actually proceeds in two distinct, linked stages inside the chloroplast: the light-dependent reactions and the light-independent reactions (Calvin cycle). The link between them is the flow of energy and reducing power carried by ATP and reduced NADP (NADPH) from the first stage to the second." },
+    { "type": "keyPoints", "items": [
+      "**Light-dependent reactions — in the thylakoid membranes.** Chlorophyll absorbs light; water is split by photolysis, releasing oxygen as waste; ATP and reduced NADP (NADPH) are produced. This stage requires light.",
+      "**Light-independent reactions / Calvin cycle — in the stroma.** Carbon dioxide is fixed and reduced to carbohydrate, powered by the ATP and NADPH made in the first stage. It does not use light directly, but stops soon after the light goes out because ATP and NADPH run low."
+    ]},
+    { "type": "examTip", "content": "Locations are a favourite exam target. Remember: 'Light-Dependent' happens in the Thylakoids (L-D-T), and the 'Stroma' is where the 'Synthesis' of sugar happens (S-S). Swapping the two, or claiming the Calvin cycle can run indefinitely in the dark, loses easy marks." },
+
+    { "type": "heading", "content": "Chlorophyll and other photosynthetic pigments" },
+    { "type": "text", "content": "Light is harvested by pigments in the thylakoid membranes. Chlorophyll a and chlorophyll b are the main pigments, absorbing strongly in the blue-violet and red parts of the spectrum. Accessory pigments — the carotenoids, such as carotene and xanthophyll — absorb additional wavelengths (particularly blue-green) and pass the captured energy on to chlorophyll, broadening the range of light the plant can use. Because green light is poorly absorbed and largely reflected, leaves appear green." },
+
+    { "type": "heading", "content": "Absorption and action spectra" },
+    { "type": "text", "content": "Two related graphs describe how a plant uses different colours of light, and it is essential to keep them apart. The absorption spectrum plots how much light a pigment ABSORBS at each wavelength. The action spectrum plots the RATE of photosynthesis at each wavelength — that is, how effective each colour is at actually driving the process. The two curves have very similar shapes, both peaking in the blue-violet and red and dipping in the green. That close correspondence is powerful evidence that the light absorbed by chlorophyll is the light that powers photosynthesis." },
+    { "type": "keyPoints", "items": [
+      "**Absorption spectrum:** amount of light absorbed by pigments vs wavelength. Peaks in blue-violet (~400–450 nm) and red (~650–700 nm); trough in the green.",
+      "**Action spectrum:** rate of photosynthesis vs wavelength. Peaks in the same blue-violet and red regions.",
+      "**The match matters:** the close fit between the two spectra shows the absorbed light is used for photosynthesis. The small differences are largely due to accessory pigments contributing to the action spectrum."
+    ]},
+
+    { "type": "heading", "content": "Limiting factors" },
+    { "type": "text", "content": "The rate of photosynthesis is not fixed. It depends on the supply of the things the process needs, and the principle of limiting factors states that the rate is set by whichever required factor is in SHORTEST supply at that moment. Increasing that factor raises the rate; increasing any factor that is already plentiful does nothing. For photosynthesis the three factors to master are light intensity, carbon dioxide concentration and temperature — and each produces a characteristic graph shape." },
+    { "type": "keyPoints", "items": [
+      "**Light intensity:** at low light, light limits the rate, so the rate rises steeply as intensity increases. Eventually another factor (CO₂ or temperature) takes over and the curve PLATEAUS — a straight, flat line.",
+      "**Carbon dioxide concentration:** CO₂ is the raw material fixed in the Calvin cycle. At low concentration it limits the rate, so the rate rises with CO₂ and then plateaus once light or temperature becomes limiting.",
+      "**Temperature:** photosynthesis is enzyme-controlled. The rate rises with temperature to an optimum (faster molecular movement, more enzyme–substrate collisions), then falls sharply as the enzymes denature — giving a rise-and-fall (humped) curve, not a plateau."
+    ]},
+    { "type": "text", "content": "The tell-tale graphical signature of a limiting factor is a line that is still RISING: while a curve climbs, the factor on the x-axis is limiting. Where it levels off, something else has taken over. Comparing two curves at different fixed values of a second factor (for example two CO₂ concentrations on the same light-intensity axis) lets you identify exactly which factor is limiting at each point — the skill tested in the worked example below." },
+
+    { "type": "workedExample", "question": "The graph shows how the rate of photosynthesis varies with light intensity at two carbon dioxide concentrations, 0.04% and 0.10%.\n\n(a) Identify and explain the limiting factor at point X (low light intensity, where the two curves overlap).\n(b) Identify and explain the limiting factor at point Y (high light intensity, on the plateau of the 0.04% CO₂ curve). [4]", "solution": "**(a) Limiting factor at point X.**\n*   **Observation:** at low light both curves rise together and lie on top of each other; the rate increases as light intensity increases. [1 — reads the graph]\n*   **Explanation:** because the rate depends on light and is unaffected by the different CO₂ levels here, LIGHT INTENSITY is the limiting factor at X. [1 — correct factor with reason]\n\n**(b) Limiting factor at point Y.**\n*   **Observation:** at Y the 0.04% curve has plateaued — more light no longer raises the rate — yet the 0.10% curve reaches a higher rate at the same light intensity. [1 — reads the graph]\n*   **Explanation:** since raising the CO₂ concentration raises the rate but raising the light does not, CARBON DIOXIDE CONCENTRATION is the limiting factor at Y. [1 — correct factor with reason]\n\n*How the engine marks it:* one mark for each correctly identified factor and one for each valid supporting reason drawn from the graph. Error-carried-forward applies — if you named the wrong factor in (a) but reasoned consistently in (b), the reasoning mark can still be earned. A bare 'light' or 'CO₂' with no reference to the curves scores the identification but not the explanation." },
+
+    { "type": "heading", "content": "Measuring the rate of photosynthesis" },
+    { "type": "text", "content": "To study limiting factors you need a measurable rate. The classic school method uses an aquatic plant such as Elodea or Cabomba and measures OXYGEN output — either by counting bubbles released per minute or, more reliably, by collecting the gas in a capillary tube or gas syringe and measuring its volume over time. Alternatives include measuring CO₂ uptake (for example, via a colour change in hydrogencarbonate indicator) or the gain in dry biomass over a longer period. In every case the rate is the amount of product formed (or reactant used) divided by time. Bubble counting is quick but crude — bubbles vary in size — so volume-per-unit-time is the more valid measure." },
+
+    { "type": "workedExample", "question": "An aquatic plant is illuminated and the oxygen it produces is collected. In 4 minutes it releases 3.0 cm³ of oxygen. Calculate the rate of photosynthesis in cm³ of oxygen per minute. [2]", "solution": "*   **Method:** rate = volume of gas produced ÷ time. [1 — correct method, i.e. product per unit time]\n*   **Substitution and calculation:** rate = 3.0 cm³ ÷ 4 min = 0.75 cm³ min⁻¹. [1 — correct value with unit]\n*   **Final answer:** the rate of photosynthesis is 0.75 cm³ of oxygen per minute.\n\n*How the engine marks it:* one method mark for dividing gas volume by time and one answer mark for the correct value WITH its unit. Error-carried-forward means that if your arithmetic slipped but the method was right, the method mark still stands — which is exactly why you should always write the rate equation down before substituting." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Misdefining the limiting factor** — it is the factor in SHORTEST supply that sets the rate, not just 'the lowest one on the graph' or the last one changed. Say that increasing it raises the rate while the others are in excess.",
+      "**Swapping the two stages' locations** — light-DEPENDENT reactions are in the thylakoids; the light-INDEPENDENT Calvin cycle is in the stroma. Getting these the wrong way round is a frequent, avoidable error.",
+      "**Confusing absorption and action spectra** — absorption = light absorbed by pigments; action = rate of photosynthesis at each wavelength. Describing one when asked for the other loses the mark.",
+      "**Saying the oxygen comes from carbon dioxide** — photolysis splits WATER, so the released O₂ comes from water, not CO₂.",
+      "**Claiming the Calvin cycle needs no light so runs indefinitely in the dark** — it depends on ATP and NADPH from the light stage and stops within seconds once these run out.",
+      "**Reading a plateau as 'the rate has stopped'** — a plateau means a DIFFERENT factor has become limiting; photosynthesis continues at a steady maximum rate.",
+      "**Forgetting that temperature gives a rise-and-fall curve** — unlike light and CO₂ (which plateau), temperature peaks at an optimum then falls as enzymes denature.",
+      "**Treating measured gas exchange as pure photosynthesis** — plants respire at the same time, so measured values are NET; the true photosynthetic rate is higher."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Explanation marks in C1.3 are awarded analytically: each distinct valid biological point is worth one mark, up to the number of marks available. Method-style points (M) credit correct reasoning, answer points (A) credit a correct conclusion, and error-carried-forward (ECF) means a slip early on need not cost the marks that follow, provided your reasoning is written down. Study how each mark below is tied to a specific named idea, not to loose phrasing." },
+    { "type": "workedExample", "question": "Explain how light intensity, carbon dioxide concentration and temperature can each act as a limiting factor for the rate of photosynthesis. [4]", "solution": "**Model answer.**\nThe rate of photosynthesis is set by whichever required factor is in shortest supply — the limiting factor — even when the others are plentiful. When light intensity is low it limits the rate, because light provides the energy for the light-dependent reactions; increasing the light then raises the rate until another factor takes over. Carbon dioxide can be limiting because it is the raw material fixed in the light-independent reactions (Calvin cycle), so a low CO₂ concentration restricts how much carbohydrate can be made and raising it increases the rate. Temperature can be limiting because photosynthesis is controlled by enzymes: below the optimum a low temperature slows enzyme activity and so slows the rate, while above the optimum the enzymes denature and the rate falls. At any moment only the factor in shortest supply limits the rate, and increasing that factor increases the rate until a different factor becomes limiting.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** the limiting factor is the required factor in SHORTEST supply — it sets the rate while the others are in excess.\n- **Point 2 (M):** increasing light intensity raises the rate (light drives the light-dependent reactions) until another factor limits it.\n- **Point 3 (M):** carbon dioxide is needed as the raw material for the Calvin cycle / light-independent reactions, so low CO₂ limits the rate.\n- **Point 4 (M):** temperature affects the ENZYMES — too low slows them, too high denatures them — so it limits the rate away from the optimum.\n- **Conclusion (A):** correct reasoning that only the factor in shortest supply limits the rate at a given moment, and increasing it raises the rate until another becomes limiting.\n\nBecause more than four creditable points are shown for a 4-mark question, the engine CAPS the award at 4 — there is deliberate room to miss one point and still score full marks. But marks are for DISTINCT ideas: making the same point about light twice scores once.\n\n**Equivalents and ECF.** The engine accepts equivalent wording — 'the factor in least supply', 'CO₂ is fixed in the stroma', 'enzymes work slowly when cold' all earn their point. The points are independent, so a student who omits the temperature point but nails the other three still scores 3; a wrong earlier claim does not sink the later, correctly reasoned points (ECF).\n\n**What the engine rejects.** A vague answer such as 'the plant needs light, CO₂ and warmth to photosynthesise' with no mention of shortest supply, the Calvin cycle or enzymes scores little — it lists requirements without explaining how each LIMITS the rate.\n\n**Bottom line:** state the shortest-supply principle, then give one limiting mechanism each for light, CO₂ and temperature. Three named mechanisms plus the principle secure all 4 marks." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, accepting equivalents, applying ECF and capping at the marks available. So write in distinct, creditable statements: name the shortest-supply principle, tie CO₂ to the Calvin cycle, and tie temperature to the enzymes. Listing requirements without explaining how each limits the rate feels complete but earns little; showing each mechanism is what protects your score." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Photosynthesis is one half of the great carbon and energy exchange in ecosystems; cell respiration is the other. The limiting-factor thinking you have practised here — identify what is in shortest supply, predict the graph shape, read a plateau as a change of factor — transfers directly to enzyme kinetics, respiration and crop-yield questions. And the two-stage, energy-conversion model of the chloroplast is the foundation on which HL builds the detailed electron transport chain and the steps of the Calvin cycle." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain how light, CO₂ and temperature limit the rate, and interpret a limiting-factor graph with full reasoning", "href": "/mark?subject=ib-biology-sl&topic=C1.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Video on Photosynthesis by Crash Course", "href": "https://www.youtube.com/watch?v=sQK3Yr4Sc_k" },
+      { "label": "Interactive Photosynthesis Simulation (PhET)", "href": "https://phet.colorado.edu/en/simulations/photosynthesis" },
+      { "label": "IB Biology guide (subject page)", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Interactive Photosynthesis Simulation",

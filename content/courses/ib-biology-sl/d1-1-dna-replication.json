@@ -2,165 +2,124 @@
   "slug": "d1-1-dna-replication",
   "topicCode": "D1.1",
   "title": "DNA replication",
+  "unit": { "code": "D", "title": "Continuity and change" },
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "summary": "This lesson details the process of DNA replication, focusing on its semi-conservative nature. We will explore the crucial roles of the enzymes helicase and DNA polymerase in creating two identical DNA molecules from one original, a fundamental process for cell division and inheritance.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "DNA replication is how a cell copies its entire genome before it divides, and D1.1 asks you to explain why the process is described as semi-conservative and how it stays astonishingly accurate. This lesson builds the whole picture: the semi-conservative model and the Meselson–Stahl evidence that confirmed it; the roles of the key enzymes — helicase unwinding and separating the strands, DNA polymerase adding complementary nucleotides 5'→3', and DNA ligase joining fragments; how complementary base pairing guarantees each new molecule matches the original; and why faithful copying matters for passing genetic information to daughter cells. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — each distinct valid point earns a mark, with error-carried-forward — so you can see how writing in clear, separate points protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain that DNA replication is semi-conservative.",
+    "Explain why DNA replication is described as semi-conservative and outline the Meselson–Stahl evidence that confirmed the model.",
     "Describe the role of helicase in unwinding the double helix and separating the two strands by breaking hydrogen bonds.",
-    "Describe the role of DNA polymerase in synthesising new strands by linking nucleotides together.",
-    "Outline the process of DNA replication, including the formation of two new DNA molecules identical to the original."
+    "Describe the role of DNA polymerase in adding complementary nucleotides in a 5' to 3' direction using each strand as a template, and the role of DNA ligase in joining fragments.",
+    "Explain how complementary base pairing ensures the two new molecules are identical to the original, and why accurate replication matters for daughter cells.",
+    "(HL) Relate the antiparallel structure of DNA to leading and lagging strands, Okazaki fragments and the need for primers."
   ],
+  "syllabusObjectivesCovered": ["D1.1"],
+  "levelNote": "Common to SL and HL; leading/lagging strands and primers are HL.",
   "simpleExplanation": {
     "title": "Photocopying the Blueprint of Life",
-    "summary": "DNA replication is the cell's way of making an exact copy of its DNA before it divides. This ensures that each new cell receives a complete and identical set of genetic instructions.",
-    "analogy": "Imagine a book with two bound halves. To copy it, you first separate the two halves. Then, you use each half as a template to write out a new, matching half, resulting in two complete, identical books. In DNA, the 'old' halves are conserved in the new copies.",
+    "summary": "DNA replication is the cell's way of making an exact copy of its DNA before it divides, so that each new cell receives a complete and identical set of genetic instructions. The trick that keeps the copy accurate is that each old strand acts as a template, and the base-pairing rules only allow one correct partner for every base.",
+    "analogy": "Imagine a zip with two interlocking halves. To copy it you first unzip it into two separate rows of teeth. Each row is then used as a guide: a new matching row is built against it, tooth by tooth, so where one side has a bump the new side must have the exact matching dip. You end up with two complete zips, each made of one original half and one brand-new half — which is why replication is called 'semi-conservative': half of every new molecule is conserved from the parent.",
     "steps": [
-      "The enzyme helicase unwinds the DNA double helix, like unzipping a jacket.",
-      "Helicase then breaks the weak hydrogen bonds holding the two strands together, separating them.",
-      "The enzyme DNA polymerase moves along each separated strand, adding new, complementary nucleotides.",
-      "Two new, identical DNA molecules are formed, each consisting of one original strand and one newly synthesised strand."
+      "Helicase unwinds the double helix and breaks the hydrogen bonds between base pairs, separating the two strands.",
+      "Each separated strand acts as a template; free nucleotides line up against it following complementary base pairing (A–T, G–C).",
+      "DNA polymerase links these nucleotides into a new strand, working in the 5'→3' direction, and DNA ligase joins any fragments into a continuous strand.",
+      "Two identical DNA molecules are formed, each with one original (parental) strand and one newly synthesised strand."
     ]
   },
+  "keyConcepts": ["semi-conservative replication", "complementary base pairing", "genetic continuity"],
   "flashcards": [
-    {
-      "front": "DNA Replication",
-      "back": "The process by which a double-stranded DNA molecule is copied to produce two identical DNA molecules."
-    },
-    {
-      "front": "Semi-conservative replication",
-      "back": "The mechanism of DNA replication in which each new DNA molecule consists of one original (parental) strand and one newly synthesised strand."
-    },
-    {
-      "front": "Helicase",
-      "back": "The enzyme that unwinds the DNA double helix and separates the two strands by breaking the hydrogen bonds between complementary base pairs."
-    },
-    {
-      "front": "DNA Polymerase",
-      "back": "The enzyme that synthesises new DNA strands by adding nucleotides that are complementary to the template strand, in a 5' to 3' direction."
-    },
-    {
-      "front": "Template Strand",
-      "back": "An original DNA strand that is used to synthesise a new, complementary DNA strand during replication."
-    },
-    {
-      "front": "Complementary Base Pairing",
-      "back": "The rule that dictates the pairing of bases in DNA: Adenine (A) with Thymine (T), and Guanine (G) with Cytosine (C)."
-    },
-    {
-      "front": "Nucleotide",
-      "back": "The building block of DNA, consisting of a deoxyribose sugar, a phosphate group, and a nitrogenous base (A, T, C, or G)."
-    },
-    {
-      "front": "Hydrogen Bonds",
-      "back": "The weak chemical bonds that hold the two strands of the DNA double helix together between the complementary base pairs."
-    },
-    {
-      "front": "5' to 3' direction",
-      "back": "The direction in which DNA polymerase synthesises a new DNA strand, adding new nucleotides to the 3' end of the growing chain."
-    },
-    {
-      "front": "Common Mistake: Confusing Enzyme Roles",
-      "back": "A common error is swapping the roles of helicase and DNA polymerase. Remember: Helicase 'un-helices' (unwinds), while Polymerase 'builds a polymer' (the new strand)."
-    },
-    {
-      "front": "Where does the energy for adding nucleotides come from?",
-      "back": "The nucleotides added are deoxyribonucleoside triphosphates (dNTPs). The cleavage of two phosphate groups provides the energy to form the phosphodiester bond."
-    }
+    { "front": "DNA replication", "back": "The process by which a double-stranded DNA molecule is copied to produce two identical daughter DNA molecules, ready to be passed to two daughter cells. Occurs in the S phase of interphase.", "pillLabel": "Definition" },
+    { "front": "Semi-conservative replication", "back": "Each new DNA molecule consists of ONE original (parental) strand and ONE newly synthesised strand. Half of every daughter molecule is conserved from the parent — hence 'semi'-conservative.", "pillLabel": "Concept" },
+    { "front": "Helicase", "back": "The enzyme that unwinds the double helix and separates the two strands by BREAKING the hydrogen bonds between complementary base pairs. It unzips — it does not build.", "pillLabel": "Enzyme" },
+    { "front": "DNA polymerase", "back": "Adds free complementary nucleotides to a template strand, building the new strand in the 5'→3' direction by forming phosphodiester bonds. It also proofreads its own work.", "pillLabel": "Enzyme" },
+    { "front": "DNA ligase", "back": "Joins adjacent DNA fragments together by sealing the gap in the sugar–phosphate backbone (a phosphodiester bond), producing a continuous strand. Essential on the lagging strand (HL).", "pillLabel": "Enzyme" },
+    { "front": "Template strand", "back": "An original DNA strand whose base sequence dictates, by complementary base pairing, the sequence of the new strand built against it.", "pillLabel": "Definition" },
+    { "front": "Complementary base pairing", "back": "A pairs only with T (2 hydrogen bonds) and G pairs only with C (3 hydrogen bonds). Because each base has exactly one correct partner, the template determines the new strand precisely — the basis of accurate copying.", "pillLabel": "Rule" },
+    { "front": "Meselson–Stahl experiment", "back": "Grew bacteria in heavy nitrogen (¹⁵N), then switched to light (¹⁴N). After one round DNA was of a single intermediate density (one heavy + one light strand); after two rounds, intermediate and light bands appeared. This ruled out conservative and dispersive models and confirmed semi-conservative replication.", "pillLabel": "Evidence" },
+    { "front": "5'→3' direction", "back": "DNA polymerase can only add a new nucleotide to the free 3'-OH end of the growing strand, so synthesis always runs 5'→3'. Because the two strands are antiparallel, the enzyme reads each template 3'→5'.", "pillLabel": "Concept" },
+    { "front": "Leading vs lagging strand (HL)", "back": "The leading strand is synthesised continuously towards the replication fork. The lagging strand runs the opposite way, so it is made discontinuously as short Okazaki fragments that are later joined by DNA ligase.", "pillLabel": "HL" },
+    { "front": "Primer (HL)", "back": "A short nucleotide sequence laid down first, providing the free 3'-OH end that DNA polymerase needs to begin adding nucleotides. Without a primer, polymerase cannot start a new strand.", "pillLabel": "HL" },
+    { "front": "Why replication must be accurate", "back": "Both daughter cells must receive the same genetic information as the parent so that genes are expressed correctly. Errors (mutations) can disrupt gene function; complementary base pairing plus polymerase proofreading keeps the error rate extremely low.", "pillLabel": "Significance" },
+    { "front": "Common Mistake: swapping enzyme roles", "back": "Helicase 'un-helices' (unwinds and breaks hydrogen bonds); polymerase 'builds a polymer' (adds nucleotides). Do not write that helicase adds nucleotides or that polymerase separates the strands.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which statement correctly describes what 'semi-conservative' means?", "options": ["Each new molecule is made entirely of new nucleotides", "Each new molecule has one original strand and one new strand", "Half of the DNA is copied and half is left uncopied", "The original molecule is broken up and shared randomly between the two copies"], "answer": "Each new molecule has one original strand and one new strand" },
+    { "prompt": "What is the specific role of helicase in replication?", "options": ["It adds complementary nucleotides to the template strand", "It joins Okazaki fragments together", "It unwinds the helix and breaks the hydrogen bonds between base pairs", "It reflects incoming nucleotides back to the fork"], "answer": "It unwinds the helix and breaks the hydrogen bonds between base pairs" },
+    { "prompt": "In which direction does DNA polymerase synthesise a new strand?", "options": ["3' to 5'", "5' to 3'", "Either direction, depending on the template", "From the middle outwards in both directions"], "answer": "5' to 3'" },
+    { "prompt": "How does complementary base pairing keep replication accurate?", "options": ["Because any base can pair with any other base at random", "Because each base has exactly one correct partner (A–T, G–C), so the template fixes the new sequence", "Because helicase checks each base as it unwinds", "Because DNA ligase replaces any wrong bases"], "answer": "Because each base has exactly one correct partner (A–T, G–C), so the template fixes the new sequence" },
+    { "prompt": "A single DNA molecule made only of ¹⁵N (heavy) DNA is replicated once in ¹⁴N (light) medium. What does the Meselson–Stahl result predict for the two daughter molecules?", "options": ["Both are fully heavy", "Both are fully light", "Both have intermediate density (one heavy strand + one light strand)", "One is fully heavy and one is fully light"], "answer": "Both have intermediate density (one heavy strand + one light strand)" }
   ],
   "faq": [
-    {
-      "q": "Why is DNA replication called 'semi-conservative'?",
-      "a": "It's called 'semi-conservative' because half ('semi') of the original DNA molecule is saved, or conserved, in each of the two new molecules. Each new double helix is a hybrid of one old strand and one new strand."
-    },
-    {
-      "q": "What happens if DNA polymerase makes a mistake?",
-      "a": "DNA polymerase has a proofreading function. It can 'backtrack' to remove an incorrectly paired nucleotide and replace it with the correct one. While not perfect, this mechanism makes DNA replication incredibly accurate, with an error rate of about one in a billion nucleotides."
-    },
-    {
-      "q": "Where in the cell cycle does DNA replication occur?",
-      "a": "DNA replication takes place during the S phase (Synthesis phase) of interphase, which is the period of the cell cycle between cell divisions (mitosis)."
-    },
-    {
-      "q": "Why does DNA polymerase only work in the 5' to 3' direction?",
-      "a": "This is due to the chemical structure of the nucleotides and the active site of the enzyme. DNA polymerase can only add a new nucleotide to the hydroxyl (-OH) group found on the 3' carbon of the deoxyribose sugar of the preceding nucleotide. This inherent chemical constraint dictates the direction of synthesis."
-    }
+    { "q": "Why is DNA replication called 'semi-conservative'?", "a": "Because half ('semi') of the original molecule is conserved in each daughter. When the two strands separate, each acts as a template for a new partner strand, so every new double helix is a hybrid: one old strand and one newly built strand. The Meselson–Stahl experiment confirmed this by showing that after one round of replication in light nitrogen, DNA that had started fully heavy became a single intermediate density — exactly what a one-old-one-new molecule predicts." },
+    { "q": "What happens if DNA polymerase adds the wrong nucleotide?", "a": "DNA polymerase has a proofreading function: it can detect a mismatched base pair, backtrack to remove the incorrect nucleotide, and replace it with the correct one. Combined with the fact that complementary base pairing only allows one correct partner for each base, this makes replication extremely accurate, with a final error rate of roughly one in a billion nucleotides. Errors that do slip through are mutations." },
+    { "q": "Why can DNA polymerase only work in the 5' to 3' direction?", "a": "DNA polymerase can only attach a new nucleotide to the free hydroxyl (-OH) group on the 3' carbon of the last nucleotide in the growing chain. That chemical constraint means the strand can only grow at its 3' end, i.e. in the 5'→3' direction. Because the two template strands are antiparallel, this is also why one new strand (leading) is made continuously and the other (lagging) must be made in fragments — an HL detail." },
+    { "q": "Do I need to know DNA ligase, leading and lagging strands for SL?", "a": "The core enzymes to know for both SL and HL are helicase, DNA polymerase and DNA ligase. The finer detail of leading and lagging strands, Okazaki fragments and primers is HL only. If you are sitting SL, focus on the semi-conservative model, the three enzyme roles, complementary base pairing and why accuracy matters; treat the leading/lagging material as enrichment." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Before a cell can divide, it must make a complete and faithful copy of its genetic material. This process, known as DNA replication, occurs during the S phase of interphase in the cell cycle. It ensures that both daughter cells receive an identical set of chromosomes and, therefore, the same genetic instructions as the parent cell."
-    },
-    {
-      "type": "heading",
-      "content": "The Semi-Conservative Model"
-    },
-    {
-      "type": "text",
-      "content": "DNA replication is described as 'semi-conservative'. This means that when a new DNA molecule is formed, it consists of one strand from the original molecule and one newly synthesised strand. The original strand acts as a template, dictating the sequence of the new strand through complementary base pairing. This model was confirmed by the elegant experiments of Meselson and Stahl in 1958, which used nitrogen isotopes to track the original and new DNA strands over several generations of bacterial cell division."
-    },
-    {
-      "type": "heading",
-      "content": "The Key Enzymes of Replication"
-    },
-    {
-      "type": "text",
-      "content": "The process of DNA replication is orchestrated by a team of highly specific enzymes. For the SL course, you need to know the roles of two main players: helicase and DNA polymerase. These enzymes work together with incredible speed and accuracy to copy the entire genome."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Helicase:** This enzyme's primary function is to unwind the DNA double helix. It moves along the DNA molecule, breaking the hydrogen bonds between the complementary base pairs, effectively 'unzipping' the two strands to expose the bases.",
-        "**DNA Polymerase:** This is the 'builder' enzyme. It moves along each of the separated template strands and adds free nucleotides from the nucleoplasm. It always follows the complementary base pairing rule (A with T, C with G) and synthesises the new strand in a 5' to 3' direction."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Mechanism of Replication"
-    },
-    {
-      "type": "text",
-      "content": "The process begins at specific locations on the DNA called origins of replication. Here, helicase binds and starts to unwind the DNA, creating a 'replication bubble' with two 'replication forks'. As the two strands separate, they become template strands for the synthesis of new DNA."
-    },
-    {
-      "type": "text",
-      "content": "Free-floating deoxyribonucleoside triphosphates (dNTPs) in the nucleus are used as the building blocks. DNA polymerase binds to the template strand and begins adding these nucleotides one by one. It reads the template strand and adds the corresponding complementary nucleotide to the 3' end of the growing new strand. This process continues until the entire molecule is copied, resulting in two DNA molecules that are genetically identical to each other and to the original molecule."
-    },
-    {
-      "type": "workedExample",
-      "question": "A diagram of a replication fork shows a molecule labelled 'X' separating the two DNA strands. Another molecule, labelled 'Y', is shown adding nucleotides to form a new strand. Identify molecules X and Y and describe their functions.",
-      "solution": "X is helicase. [1 mark] Its function is to unwind the DNA double helix and break the hydrogen bonds between the base pairs. [1 mark]\n\nY is DNA polymerase. [1 mark] Its function is to synthesise a new DNA strand by linking nucleotides together, using the original strand as a template and following complementary base pairing rules. [1 mark]"
-    },
-    {
-      "type": "workedExample",
-      "question": "A single DNA molecule undergoes three complete rounds of replication in a medium containing non-radioactive nucleotides. The original DNA molecule was made entirely of a radioactive isotope. After three rounds, what percentage of the DNA molecules will contain any of the original radioactive material?",
-      "solution": "The replication is semi-conservative, meaning each new molecule contains one old strand and one new strand.\n\nOriginal molecule: 1 (contains 2 radioactive strands).\n\nAfter Round 1: 2 molecules are formed. Both molecules contain one original radioactive strand and one new non-radioactive strand. So, 2 out of 2 molecules (100%) contain radioactivity.\n\nAfter Round 2: 4 molecules are formed. The 2 radioactive strands from the original molecule are now distributed among 4 molecules. Therefore, 2 of the 4 molecules will contain one radioactive strand each. The other 2 molecules will be entirely non-radioactive. So, 2 out of 4 molecules (50%) contain radioactivity.\n\nAfter Round 3: 8 molecules are formed. The 2 original radioactive strands are now distributed among 8 molecules. Therefore, 2 of the 8 molecules will contain one radioactive strand each. [1 mark] The other 6 will be entirely non-radioactive.\n\nPercentage of molecules with radioactivity = (2 / 8) * 100% = 25%. [1 mark]"
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, always use the term 'semi-conservative' when explaining DNA replication. When describing the roles of enzymes, be precise. State that helicase 'breaks hydrogen bonds' not just 'separates strands'. State that DNA polymerase 'links nucleotides' or 'forms phosphodiester bonds' in a '5\\' to 3\\' direction'."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-biology-sl&topic=D1.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "DNA Replication Animation (HD)",
-          "href": "https://www.youtube.com/watch?v=TNKWgcFPHqw"
-        },
-        {
-          "label": "Interactive DNA Replication Explorer",
-          "href": "https://www.wiley.com/college/pratt/0471393878/student/animations/dna_replication/index.html"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Before a cell can divide, it must make a complete and faithful copy of its entire genome, so that both daughter cells inherit the same genetic instructions as the parent. This copying, DNA replication, happens during the S (synthesis) phase of interphase. Two questions sit at the heart of D1.1: why do we call the process 'semi-conservative', and how does the cell copy three billion bases with so few mistakes? Answering them means following the strands apart, meeting the enzymes that do the work, and seeing how the simple rules of base pairing turn one molecule into two identical ones. Every worked example below is set out the way marks are actually awarded, because in an explain-type topic like this, writing in clear, distinct points is what keeps your marks." },
+
+    { "type": "heading", "content": "The semi-conservative model" },
+    { "type": "text", "content": "DNA replication is described as 'semi-conservative' because each new DNA molecule is built from one strand of the original molecule and one newly synthesised strand. The original strand is not consumed or discarded — it is conserved and used as a template that dictates the base sequence of its new partner through complementary base pairing. So each daughter molecule is half old and half new, which is exactly what 'semi' (half) conservative means. This single idea underpins everything else in the topic: because one parental strand survives intact in each copy, and because base pairing only permits one correct partner per base, the two daughter molecules are guaranteed to have the same sequence as the parent." },
+    { "type": "heading", "content": "How we know: the Meselson–Stahl evidence" },
+    { "type": "text", "content": "Before 1958 three models were plausible: conservative (the whole original helix stays together and an all-new helix is made), semi-conservative (one old + one new strand each), and dispersive (old and new DNA scattered along both strands). Meselson and Stahl distinguished them elegantly. They grew bacteria for many generations in a medium containing heavy nitrogen (¹⁵N) so that all the DNA was 'heavy', then switched the cells to normal light nitrogen (¹⁴N) and let them replicate. After one round of replication, all the DNA had a single intermediate density — heavier than pure light DNA but lighter than pure heavy DNA. That immediately rules out the conservative model (which predicts a heavy band and a separate light band). After a second round, two bands appeared: intermediate and light. This pattern is precisely what the semi-conservative model predicts — each molecule keeps one original heavy strand paired with a new light one — and it rules out the dispersive model too. Their result is the classic confirmation that replication is semi-conservative." },
+    { "type": "keyPoints", "items": [
+      "Each daughter molecule = one parental strand + one new strand (semi-conservative).",
+      "The parental strand acts as a template; complementary base pairing copies its sequence into the new strand.",
+      "**Meselson–Stahl:** after one round in light nitrogen, formerly-heavy DNA became a single INTERMEDIATE density — the signature of one heavy + one light strand.",
+      "After two rounds, intermediate and light bands appear, confirming semi-conservative and excluding the conservative and dispersive models."
+    ]},
+
+    { "type": "heading", "content": "The key enzymes of replication" },
+    { "type": "text", "content": "Replication is carried out by a team of specific enzymes working together at high speed. Three roles are essential for D1.1 at both SL and HL: helicase unwinds and separates the strands, DNA polymerase builds the new strands, and DNA ligase joins fragments into a continuous strand. Being precise about what each enzyme does — and does not do — is where marks are won and lost in the exam." },
+    { "type": "keyPoints", "items": [
+      "**Helicase:** unwinds the double helix and separates the two strands by BREAKING the hydrogen bonds between complementary base pairs, creating a replication fork. It exposes the bases but adds nothing.",
+      "**DNA polymerase:** moves along each template strand and adds free complementary nucleotides to the 3' end of the growing strand, following the base-pairing rules (A–T, G–C) and forming phosphodiester bonds. It works only in the 5'→3' direction and proofreads as it goes.",
+      "**DNA ligase:** seals the gaps in the sugar–phosphate backbone, joining adjacent fragments into one continuous strand. It is essential for completing the lagging strand (HL)."
+    ]},
+
+    { "type": "heading", "content": "The mechanism, step by step" },
+    { "type": "text", "content": "Replication begins at specific sites called origins of replication. Helicase binds and unwinds the helix, breaking the hydrogen bonds so the two strands come apart to form a replication fork; each exposed strand now acts as a template. Free deoxyribonucleoside triphosphates (dNTPs) from the nucleoplasm supply both the building blocks and, through the cleavage of their extra phosphate groups, the energy to form each new bond. DNA polymerase reads the template and adds the one nucleotide whose base is complementary to the template base, extending the new strand at its 3' end. Because base pairing permits only one correct partner per base, the sequence of the new strand is fixed by the template — this is the molecular reason replication is so accurate. The result is two DNA molecules, each identical to the original and to each other, ready to be separated into the two daughter cells." },
+    { "type": "text", "content": "Why does this accuracy matter? Each daughter cell must inherit a faithful copy of every gene so that it can build the correct proteins and function like the parent cell. If replication introduced frequent errors, genes could be disrupted (mutations), potentially impairing the cell or, in a whole organism, being passed on to offspring. Accurate, semi-conservative replication is therefore the foundation of genetic continuity — the reliable passing of genetic information from one cell generation to the next." },
+
+    { "type": "heading", "content": "HL: leading and lagging strands, and primers" },
+    { "type": "text", "content": "This section is HL only. The two strands of DNA are antiparallel — they run in opposite directions (one 5'→3', the other 3'→5'). Since DNA polymerase can only extend a strand in the 5'→3' direction, the two new strands cannot both be made the same way. On the leading strand, synthesis runs continuously towards the advancing replication fork. On the lagging strand, which runs the opposite way, DNA polymerase must work away from the fork, so the strand is built in short pieces called Okazaki fragments as the fork keeps opening. These fragments are then joined together by DNA ligase to make one continuous strand. In addition, DNA polymerase cannot start a strand from scratch — it can only add to an existing 3'-OH end — so a short primer is laid down first to provide that starting point. The leading strand needs one primer; the lagging strand needs a new primer for each Okazaki fragment." },
+    { "type": "keyPoints", "items": [
+      "The strands are ANTIPARALLEL, and polymerase works only 5'→3', so the two new strands are made differently.",
+      "**Leading strand:** synthesised continuously towards the fork.",
+      "**Lagging strand:** synthesised discontinuously as Okazaki fragments, later joined by DNA ligase.",
+      "**Primers:** short sequences that provide the 3'-OH end polymerase needs to begin; the lagging strand needs one per fragment."
+    ]},
+
+    { "type": "workedExample", "question": "A diagram of a replication fork shows a molecule labelled X separating the two DNA strands, and a molecule labelled Y adding nucleotides to build a new strand. Identify X and Y and describe the function of each. [4]", "solution": "**Model answer.**\nX is helicase. Its function is to unwind the double helix and separate the two strands by breaking the hydrogen bonds between the complementary base pairs, exposing the bases as templates.\n\nY is DNA polymerase. Its function is to synthesise a new DNA strand by adding free nucleotides that are complementary to the template strand (A–T, G–C), linking them in the 5'→3' direction.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1:\n- **Point 1:** X = helicase.\n- **Point 2:** helicase unwinds the helix / breaks the hydrogen bonds to separate the strands.\n- **Point 3:** Y = DNA polymerase.\n- **Point 4:** polymerase adds complementary nucleotides using the strand as a template (accept: works 5'→3' / forms phosphodiester bonds).\n\n*Equivalent correct phrasing is accepted, and error-carried-forward applies — if you mislabel X but then describe 'the enzyme that breaks hydrogen bonds' correctly, the function point still stands.*" },
+
+    { "type": "workedExample", "question": "A single DNA molecule made entirely of a radioactive isotope undergoes three complete rounds of replication in a medium containing only non-radioactive nucleotides. What percentage of the resulting DNA molecules will contain any of the original radioactive material? Explain using the semi-conservative model. [3]", "solution": "**Model answer.**\nReplication is semi-conservative, so each new molecule keeps one original (radioactive) strand and gains one new (non-radioactive) strand. The two original radioactive strands are conserved throughout and simply become diluted among more and more molecules.\n\n- Start: 1 molecule = 2 radioactive strands.\n- After round 1: 2 molecules, each with one radioactive strand → 2 of 2 (100%) radioactive.\n- After round 2: 4 molecules; the 2 radioactive strands are now in 2 different molecules → 2 of 4 (50%) radioactive.\n- After round 3: 8 molecules; the 2 radioactive strands are in 2 molecules → **2 of 8 = 25%** contain radioactivity.\n\n---\n**How our marking engine awards the 3 marks** — each distinct valid point scores 1:\n- **Point 1 (M):** states/uses the semi-conservative idea — the two original strands are conserved and never destroyed.\n- **Point 2 (M):** correct reasoning that after three rounds there are 8 molecules and only 2 contain an original strand.\n- **Point 3 (A):** final answer 25% (ECF: if an earlier count is wrong but the '2 original strands ÷ total molecules' method is shown, the answer mark still follows from that method)." },
+
+    { "type": "examTip", "content": "In explain-type answers, always name the term 'semi-conservative' and be precise about the enzymes. Say helicase 'breaks hydrogen bonds', not merely 'separates strands'; say DNA polymerase 'adds complementary nucleotides 5'→3'' or 'forms phosphodiester bonds', not merely 'copies the DNA'. Vague verbs like 'splits' or 'copies' rarely earn the specific marks the scheme is looking for." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Getting 'semi-conservative' wrong** — it means one OLD + one NEW strand per daughter molecule, not 'half copied' and not 'the old molecule broken up and shared'. State the one-old-one-new point explicitly.",
+      "**Swapping the enzyme roles** — helicase unwinds and breaks hydrogen bonds; DNA polymerase adds nucleotides. Writing that helicase builds the new strand, or that polymerase separates the strands, loses the marks.",
+      "**Saying helicase 'just separates the strands'** — you must state that it BREAKS the hydrogen bonds between base pairs to get the specific mark.",
+      "**Forgetting the direction** — DNA polymerase works only 5'→3'; leaving this out (or writing 3'→5') costs a mark in HL strand questions.",
+      "**Vague accuracy claims** — the reason replication is accurate is that complementary base pairing allows only one correct partner per base (A–T, G–C), reinforced by polymerase proofreading. 'The enzyme is careful' scores nothing.",
+      "**Confusing replication with transcription** — replication copies the whole DNA into DNA using both strands; transcription copies a gene into RNA. Do not mention RNA, mRNA or ribosomes in a replication answer.",
+      "**Bringing HL detail into an SL 'wrong' place, or omitting it in HL** — leading/lagging strands, Okazaki fragments and primers are HL; know which paper you are sitting."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "D1.1 explain questions are marked analytically: each distinct valid biological point is worth one mark, method marks (M) credit correct reasoning, answer/analysis marks (A) credit a correct concluding statement, equivalent wording is accepted, and error-carried-forward (ECF) means an early slip does not cost you later marks if your method is shown. Study how each mark below is tied to a specific, named idea rather than to loose phrasing." },
+    { "type": "workedExample", "question": "Explain why DNA replication is described as semi-conservative, and how complementary base pairing ensures the two new molecules are identical to the original. [4]", "solution": "**Model answer.**\nDuring replication the double helix is unwound and the two strands are separated (by helicase breaking the hydrogen bonds). Each original strand then acts as a template for building a new strand. Free nucleotides pair with the exposed bases according to complementary base pairing — adenine only with thymine and guanine only with cytosine — so the sequence of each new strand is fixed by its template. Because every base has exactly one correct partner, the new strand is an exact complement of the old one, and the resulting double helix has the same base sequence as the original. Each daughter molecule therefore consists of one original (conserved) strand and one newly made strand, which is why replication is called semi-conservative — and why both molecules are identical to the parent.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** the two strands separate / are unwound (accept: helicase breaks the hydrogen bonds).\n- **Point 2 (M):** each (original) strand acts as a template.\n- **Point 3 (M):** free nucleotides pair complementarily — A with T and G with C.\n- **Point 4 (A):** each new molecule = one original strand + one new strand (semi-conservative), so it has the same sequence as / is identical to the original.\n- **Alternative Point (A):** because each base has only one correct partner, the template determines the new sequence exactly, ensuring accuracy — accepted in place of one of the above if a student makes this the explicit 'identical' point.\n\nBecause five creditable points are shown for a 4-mark question, the engine caps the award at 4 — there is deliberate room to miss one point and still score full marks. But the marks are for DISTINCT ideas: writing 'A pairs with T' and 'G pairs with C' as two lines still scores the base-pairing point once.\n\n**What the engine rejects.** 'The DNA copies itself accurately' or 'each half is saved' with no mechanism scores nothing for the base-pairing and template points, because it names neither the template role nor complementary base pairing.\n\n**ECF and partial credit.** The points are independent — a student who omits the 'strands separate' step but correctly gives template + complementary pairing + one-old-one-new still earns those three marks. There is no all-or-nothing penalty; each valid line stands on its own." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, accepting equivalents, applying ECF, and capping at the marks available. So write in distinct, creditable statements: strands separate → each acts as a template → nucleotides pair complementarily (A–T, G–C) → one original + one new strand, so identical. Four clean points beat one long paragraph that circles the same idea, because the engine credits DISTINCT points, not word count." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: explain semi-conservative replication, the enzyme roles and how base pairing ensures accuracy", "href": "/mark?subject=ib-biology-sl&topic=D1.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "DNA Replication Animation (HD)", "href": "https://www.youtube.com/watch?v=TNKWgcFPHqw" },
+      { "label": "Interactive DNA Replication Explorer", "href": "https://www.wiley.com/college/pratt/0471393878/student/animations/dna_replication/index.html" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

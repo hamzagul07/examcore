@@ -1,177 +1,135 @@
 {
   "slug": "2-11-market-structures-monopolistic-competition-and-oligopoly",
   "topicCode": "2.11",
+  "unit": { "code": "2", "title": "Microeconomics" },
   "title": "Market structures: monopolistic competition and oligopoly",
   "paper": "P1",
   "paperName": "Economics SL",
   "status": "premium",
-  "summary": "This lesson explores the middle ground of market structures: monopolistic competition and oligopoly. It details their defining characteristics, firm behaviour in the short and long run, and the concept of strategic interdependence, providing the analytical tools to understand most real-world markets.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "The two 'imperfect competition' structures that describe most real markets. Monopolistic competition has many firms selling differentiated products behind low barriers, so short-run abnormal profit is competed away to normal profit in the long run, leaving excess capacity. Oligopoly has a few interdependent firms whose strategic choices — to collude or compete — are best understood through the kinked demand curve and simple game theory. This lesson is Higher Level material.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the characteristics of monopolistic competition and oligopoly.",
-    "Draw and interpret diagrams for a monopolistically competitive firm in the short and long run.",
-    "Understand the concept of interdependence and its implications for firm behaviour in an oligopoly.",
-    "Calculate and interpret concentration ratios as a measure of market structure."
+    "Explain the characteristics of monopolistic competition and oligopoly and distinguish them from monopoly and perfect competition.",
+    "Draw and interpret short-run and long-run diagrams for a monopolistically competitive firm, and explain excess capacity and inefficiency.",
+    "Analyse interdependence in oligopoly, including collusive (tacit and overt/cartel) and non-collusive behaviour, non-price competition, and the kinked demand curve.",
+    "Use a simple prisoner's dilemma payoff matrix to explain why collusive agreements are unstable."
   ],
+  "syllabusObjectivesCovered": ["2.11"],
+  "keyConcepts": ["interdependence", "efficiency"],
+  "levelNote": "HL only — market structures are assessed at Higher Level.",
   "simpleExplanation": {
     "title": "High Street Battles: Coffee Shops vs. Supermarkets",
-    "summary": "Most markets aren't perfect monopolies or perfectly competitive. This lesson explores the realistic middle ground where firms, like your local coffee shop or mobile phone provider, compete.",
-    "analogy": "Imagine a busy food court. You have lots of independent stalls selling similar but slightly different food, like burgers or noodles. That's monopolistic competition – each stall tries to make its food unique to attract customers. Now, think about the big supermarket chains in a town. There are only a few, and if one lowers the price of milk, the others will likely react immediately. That's an oligopoly – a few big players constantly watching each other's moves.",
+    "summary": "Most markets are neither pure monopolies nor perfectly competitive. This lesson explores the realistic middle ground where firms — like your local coffee shop or the big supermarket chains — compete for you.",
+    "analogy": "Picture a busy food court. Dozens of independent stalls sell similar-but-slightly-different food; each tries to stand out to win customers. That is monopolistic competition — many firms, differentiated products, easy to open a new stall. Now picture the handful of supermarket chains in a town. There are only a few, so if one cuts the price of milk the others notice at once and react. That is oligopoly — a few big players locked in a staring contest, each move triggering a counter-move.",
     "steps": [
-      "First, identify the market's key features. Count the number of firms, check if products are identical or differentiated, and see how easy it is for new firms to enter.",
-      "Next, analyse a single firm's behaviour. In the short run, a firm in monopolistic competition acts like a mini-monopoly, setting its price where MR=MC to maximise profit.",
-      "Then, consider the long-run adjustment. If firms are making supernormal profits, new competitors will enter the market, stealing customers and eroding those profits until only normal profit remains.",
-      "Finally, for markets with only a few firms (oligopolies), evaluate their strategic interaction. Firms are interdependent, meaning one firm's pricing decision directly impacts its rivals, leading to complex behaviours like price wars or collusion."
+      "First, read the market's structure: count the firms, check whether products are identical or differentiated, and judge how easy entry is.",
+      "In monopolistic competition, a single firm behaves like a mini-monopoly in the short run, setting output where MR = MC and possibly earning abnormal profit.",
+      "In the long run, low barriers let new firms enter, competing that profit away until only normal profit remains — but at less than the lowest-cost output, so there is excess capacity.",
+      "In oligopoly, firms are interdependent: each decision depends on the expected reaction of rivals, which pushes them towards either collusion or strategic (often non-price) competition."
     ]
   },
   "flashcards": [
-    {
-      "front": "Monopolistic Competition",
-      "back": "A market structure with a large number of firms, producing differentiated products, and with low barriers to entry and exit."
-    },
-    {
-      "front": "Oligopoly",
-      "back": "A market structure dominated by a small number of large firms, with high barriers to entry, and strong interdependence between firms."
-    },
-    {
-      "front": "Product Differentiation",
-      "back": "The process of distinguishing a product or service from others to make it more attractive to a particular target market. This can be through branding, quality, design, or location."
-    },
-    {
-      "front": "Non-price Competition",
-      "back": "A marketing strategy where firms try to distinguish their product or service from competing products on the basis of attributes like design, workmanship, and especially branding and advertising."
-    },
-    {
-      "front": "What is the key difference between Perfect and Monopolistic Competition?",
-      "back": "Product differentiation. In perfect competition, products are homogeneous (identical), while in monopolistic competition, they are differentiated."
-    },
-    {
-      "front": "Long-run equilibrium in Monopolistic Competition",
-      "back": "Firms earn only normal profit because freedom of entry allows new firms to compete away any short-run supernormal profits. The firm's demand curve becomes tangent to its ATC curve."
-    },
-    {
-      "front": "Interdependence (in Oligopoly)",
-      "back": "The condition where the actions of one firm will have a significant impact on the other firms in the market. This forces firms to consider the reactions of their rivals when making decisions."
-    },
-    {
-      "front": "Collusion",
-      "back": "An agreement between firms in an oligopoly to fix prices, limit output, or otherwise restrict competition. This is usually illegal."
-    },
-    {
-      "front": "Cartel",
-      "back": "A formal organisation of producers that agree to coordinate prices and production. It is a formal form of collusion. OPEC is a well-known example."
-    },
-    {
-      "front": "Concentration Ratio (CR)",
-      "back": "The percentage of total market share held by a specified number of the largest firms in an industry. For example, CR4 is the market share of the four largest firms."
-    },
-    {
-      "front": "Why is the demand curve for a monopolistically competitive firm downward-sloping?",
-      "back": "Because of product differentiation. The firm has some market power and can raise its price without losing all its customers, as some will remain loyal to its specific brand or version of the product."
-    }
+    { "front": "Monopolistic Competition", "back": "A market structure with a large number of firms selling differentiated products, with low barriers to entry and exit. Each firm has a little price-setting power but no ability to earn long-run abnormal profit.", "pillLabel": "Definition" },
+    { "front": "Oligopoly", "back": "A market dominated by a small number of large, interdependent firms, typically with high barriers to entry. Products may be differentiated (cars) or homogeneous (oil).", "pillLabel": "Definition" },
+    { "front": "Product Differentiation", "back": "Distinguishing a product from rivals — through branding, quality, design, service or location — to build brand loyalty and give the firm a downward-sloping demand curve.", "pillLabel": "Concept" },
+    { "front": "Non-price Competition", "back": "Competing on attributes other than price — advertising, branding, product design, loyalty schemes, service. It dominates in oligopoly, where price cuts are easily matched.", "pillLabel": "Concept" },
+    { "front": "Long-run equilibrium in Monopolistic Competition", "back": "Firms earn only normal profit: free entry competes away abnormal profit until the firm's demand (AR) curve is tangent to its ATC curve (P = ATC). Output is below minimum-ATC output — excess capacity.", "pillLabel": "Analysis" },
+    { "front": "Excess Capacity", "back": "In long-run monopolistic competition the firm produces where AR = ATC on the falling part of the ATC curve, not at minimum ATC. The gap between this output and the productively efficient output is excess capacity — a source of allocative and productive inefficiency.", "pillLabel": "HL" },
+    { "front": "Interdependence (in Oligopoly)", "back": "Each firm's best decision depends on how rivals are expected to react, so no firm can plan price or output in isolation. This is the defining feature of oligopoly.", "pillLabel": "Concept" },
+    { "front": "Collusion: tacit vs overt", "back": "Overt (explicit) collusion is a formal agreement to fix prices or output — e.g. a cartel; usually illegal. Tacit collusion is coordination without a formal deal, e.g. price leadership, which is harder for regulators to prove.", "pillLabel": "Analysis" },
+    { "front": "Cartel", "back": "A formal (overt) agreement between producers to coordinate prices and output to raise joint profit toward the monopoly outcome. OPEC is the classic example. Cartels are unstable because each member has an incentive to cheat.", "pillLabel": "Definition" },
+    { "front": "Kinked Demand Curve", "back": "A model of price rigidity in non-collusive oligopoly: rivals MATCH price cuts (demand below the current price is inelastic) but IGNORE price rises (demand above is elastic). The kink creates a vertical gap in the MR curve, so price stays stable even if marginal cost changes within that gap.", "pillLabel": "HL" },
+    { "front": "Prisoner's Dilemma", "back": "A game showing why rational, self-interested firms may fail to cooperate: each has a dominant strategy to defect (undercut), so both defect and end up worse off than if they had colluded. Explains cartel instability.", "pillLabel": "HL" },
+    { "front": "Concentration Ratio (CR)", "back": "The combined market share of the largest n firms. A high CRn (e.g. CR4) signals oligopoly or monopoly; a low ratio signals monopolistic or perfect competition.", "pillLabel": "Definition" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which feature separates monopolistic competition from monopoly?", "options": ["Products are differentiated", "There are many firms and low barriers to entry, so no long-run abnormal profit", "The firm faces a downward-sloping demand curve", "The firm produces where MR = MC"], "answer": "There are many firms and low barriers to entry, so no long-run abnormal profit" },
+    { "prompt": "In long-run equilibrium, a monopolistically competitive firm produces at an output where:", "options": ["ATC is minimised, so the firm is productively efficient", "P = ATC but output is below minimum-ATC output, leaving excess capacity", "P > ATC, so abnormal profit persists", "P = MC, so the firm is allocatively efficient"], "answer": "P = ATC but output is below minimum-ATC output, leaving excess capacity" },
+    { "prompt": "Which statement about oligopoly is correct?", "options": ["Oligopolists always form cartels and collude", "Oligopolists never compete on price", "Oligopolists are interdependent and may either collude or compete", "Oligopoly always leads to perfectly competitive prices"], "answer": "Oligopolists are interdependent and may either collude or compete" },
+    { "prompt": "In the kinked demand curve model, why does a firm expect NOT to gain from raising its price?", "options": ["Rivals will match the rise, so it loses nothing", "Rivals will ignore the rise, so demand above the current price is elastic and it loses many customers", "Marginal cost has risen", "Demand below the current price is inelastic"], "answer": "Rivals will ignore the rise, so demand above the current price is elastic and it loses many customers" },
+    { "prompt": "In a two-firm prisoner's dilemma over a price-fixing deal, the dominant strategy for each firm is to:", "options": ["Stick to the agreement, because joint profit is highest", "Defect (undercut), because it is the best response whatever the rival does", "Exit the market", "Raise price above the agreed level"], "answer": "Defect (undercut), because it is the best response whatever the rival does" }
   ],
   "faq": [
-    {
-      "q": "Why don't firms in monopolistic competition make supernormal profits in the long run?",
-      "a": "Because there are low barriers to entry. If firms are making supernormal profits in the short run, this signals a profitable opportunity to new entrepreneurs. New firms will enter the market, offering similar but differentiated products. This increases the number of substitutes available, causing the demand for each existing firm's product to decrease and become more elastic. Their demand curve shifts left until it is just tangent to the average total cost (ATC) curve, at which point Price = ATC and only normal profit is made."
-    },
-    {
-      "q": "Is collusion in an oligopoly always illegal?",
-      "a": "In most countries, explicit collusion (forming a cartel to fix prices) is illegal and subject to heavy fines. However, firms may engage in 'tacit collusion', where they coordinate their actions without a formal agreement. For example, one firm might act as a 'price leader', and other firms follow its price changes. This is a grey area and much harder for regulators to prove and prosecute."
-    }
+    { "q": "Why don't firms in monopolistic competition make abnormal profits in the long run?", "a": "Because barriers to entry are low. Short-run abnormal profit signals a profitable opportunity, so new firms enter with similar-but-differentiated products. This adds substitutes, shifting each existing firm's demand curve left and making it more elastic, until the demand (AR) curve is just tangent to the average total cost (ATC) curve. At that point P = ATC and only normal profit is earned. Note the tangency occurs on the downward-sloping part of ATC, not at its minimum — so the firm carries excess capacity and is not productively efficient." },
+    { "q": "Do oligopolists always collude?", "a": "No. Interdependence creates a temptation to collude (to push prices toward the monopoly level and share higher joint profit), but it does not guarantee it. Collusion is often illegal and, even where it is not, it is unstable: each firm has a private incentive to cheat by quietly undercutting the agreed price to capture extra sales. Oligopolists therefore frequently compete instead — through price wars or, more commonly, non-price competition such as advertising and product design. Game theory (the prisoner's dilemma) is used to show exactly why a collusive agreement is so hard to sustain." },
+    { "q": "What does the 'kink' in the kinked demand curve actually represent?", "a": "It represents an asymmetric expectation about rivals' reactions in a non-collusive oligopoly. A firm assumes that if it CUTS price, rivals will match to avoid losing sales, so it gains few extra customers — demand below the current price is relatively inelastic. If it RAISES price, rivals will hold theirs, so it loses many customers — demand above the current price is relatively elastic. The two elasticities meet at a kink at the current price. This produces a discontinuity (vertical section) in the MR curve, meaning marginal cost can change within that gap without changing the profit-maximising price. The result is price rigidity, which helps explain why oligopoly prices are often stable and firms compete on non-price factors instead." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the real world of economics. While perfect competition and monopoly are useful theoretical models, most industries you interact with daily—from restaurants and hairdressers to mobile phone networks and supermarkets—fall somewhere in between. This space is occupied by monopolistic competition and oligopoly, two forms of 'imperfect competition' where firms have some degree of market power and engage in strategic behaviour."
-    },
-    {
-      "type": "heading",
-      "content": "Monopolistic Competition: Many Firms, Many Choices"
-    },
-    {
-      "type": "text",
-      "content": "This market structure blends elements of both monopoly and perfect competition. Like perfect competition, there are many firms and low barriers to entry. However, like a monopoly, each firm's product is slightly different from its competitors', giving it a small degree of price-setting power."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Large number of firms:** Each firm has a small market share, and no single firm can dominate.",
-        "**Product differentiation:** The key characteristic. Products are distinguished by branding, quality, location, or service. This creates brand loyalty.",
-        "**Freedom of entry and exit:** Low barriers to entry mean that if firms are making supernormal profits, new firms will be attracted to the market.",
-        "**Non-price competition:** Firms compete through advertising, branding, and packaging rather than just on price."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "In the short run, a monopolistically competitive firm can earn supernormal profits, just like a monopolist, by producing where marginal cost (MC) equals marginal revenue (MR). However, in the long run, these profits are competed away. The freedom of entry allows new firms to enter the market, which shifts the demand curve for existing firms to the left until it is tangent to the Average Total Cost (ATC) curve. At this point, firms only make normal profit (Price = ATC)."
-    },
-    {
-      "type": "workedExample",
-      "question": "The diagram below shows the cost and revenue curves for 'The Daily Grind', a coffee shop operating in a monopolistically competitive market in the short run. The currency is pounds (£).<br><br>a) Identify the profit-maximising level of output.<br>b) Calculate the total supernormal profit made by The Daily Grind at this output.",
-      "solution": "*(Diagram would show a downward-sloping D and MR curve, with U-shaped MC and ATC curves. MC intersects MR at Q=100 cups. At Q=100, the price on the D curve is £3.50 and the ATC is £2.50)*<br><br>**a) Identify the profit-maximising level of output. (1 mark)**<br>The firm maximises profit where marginal cost (MC) equals marginal revenue (MR). On the diagram, this occurs at an output of **100 cups** per day.<br><br>**b) Calculate the total supernormal profit. (3 marks)**<br>1. **Identify Price:** At the profit-maximising output of 100 cups, the price is found on the demand (AR) curve. Price (P) = **£3.50**.<br>2. **Identify Average Cost:** At the output of 100 cups, the average total cost (ATC) is found on the ATC curve. ATC = **£2.50**.<br>3. **Calculate Total Profit:** Total Profit = (Price - ATC) x Quantity.<br>Total Profit = (£3.50 - £2.50) x 100<br>Total Profit = £1.00 x 100 = **£100**."
-    },
-    {
-      "type": "heading",
-      "content": "Oligopoly: The Few and the Powerful"
-    },
-    {
-      "type": "text",
-      "content": "An oligopoly is a market dominated by a few large firms. Think of UK supermarkets (Tesco, Sainsbury's, Asda, Morrisons), mobile phone providers (EE, O2, Vodafone), or global soft drink giants (Coca-Cola, PepsiCo). The most important feature of an oligopoly is interdependence: each firm must consider the reactions of its rivals when making any decision about price, output, or advertising."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Few large firms:** A small number of firms account for a large proportion of the industry's output.",
-        "**High barriers to entry:** Significant obstacles like economies of scale, patents, or high advertising costs prevent new firms from entering.",
-        "**Interdependence:** Firms are mutually dependent. One firm's actions directly affect the others, leading to strategic behaviour.",
-        "**Products may be differentiated or homogeneous:** For example, cars are differentiated, while steel or oil can be homogeneous."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "This interdependence can lead to two main outcomes. Firms might engage in **collusion**, where they cooperate to act like a monopoly, raising prices and restricting output to increase their joint profits. This is often illegal. Alternatively, they may engage in **non-collusive competition**, where they compete on price, advertising, or innovation. This can sometimes lead to destructive price wars."
-    },
-    {
-      "type": "heading",
-      "content": "Measuring Market Concentration"
-    },
-    {
-      "type": "text",
-      "content": "Economists use concentration ratios to measure the degree of competition in a market. A concentration ratio measures the combined market share of the largest firms in an industry. A high concentration ratio suggests an oligopoly or monopoly, while a low ratio suggests monopolistic or perfect competition."
-    },
-    {
-      "type": "formula",
-      "content": "n-firm Concentration Ratio (CRn) = $\\frac{\\text{Total sales of n largest firms}}{\\text{Total market sales}} \\times 100$"
-    },
-    {
-      "type": "workedExample",
-      "question": "The UK supermarket industry has the following market shares: Tesco (27%), Sainsbury's (15%), Asda (14%), Morrisons (9%), Aldi (10%), Lidl (8%), and Others (17%). Calculate the 4-firm concentration ratio (CR4) and briefly comment on the market structure.",
-      "solution": "**1. Identify the four largest firms and their market shares. (1 mark)**<br>The four largest firms are Tesco (27%), Sainsbury's (15%), Asda (14%), and Aldi (10%). *Note: Morrisons is 9%, so Aldi is the 4th largest.*<br><br>**2. Calculate the CR4. (1 mark)**<br>CR4 = Sum of market shares of the top 4 firms<br>CR4 = 27% + 15% + 14% + 10% = **66%**<br><br>**3. Comment on the market structure. (2 marks)**<br>A CR4 of 66% is considered high. This indicates that the market is dominated by a few large firms and is characteristic of an **oligopoly**. The high concentration suggests significant market power among the top firms and high barriers to entry."
-    },
-    {
-      "type": "examTip",
-      "content": "For Paper 1 essays, being able to accurately draw and explain the long-run equilibrium for a monopolistically competitive firm is crucial. Make sure you can explain *why* supernormal profits are competed away. For oligopoly, focus on explaining the concept of interdependence with real-world examples, as this is the defining feature."
-    },
-    {
-      "type": "practice",
-      "label": "Test your knowledge on monopolistic competition and oligopoly",
-      "href": "/mark?subject=ib-economics-sl&topic=2.11"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "The Economics of Oligopolies - Investopedia",
-          "href": "https://www.investopedia.com/terms/o/oligopoly.asp"
-        },
-        {
-          "label": "Monopolistic Competition - Khan Academy",
-          "href": "https://www.khanacademy.org/economics-finance-domain/microeconomics/perfect-and-imperfect-competition/monopolistic-competition/v/monopolistic-competition-and-economic-profit"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Perfect competition and monopoly are useful benchmarks, but almost every industry you deal with day to day — cafés, hairdressers, clothing brands, supermarkets, mobile networks — sits between them. This is the world of imperfect competition, occupied by monopolistic competition and oligopoly. In both, firms have some market power and behave strategically; the difference lies in how many rivals there are and, crucially, whether those rivals are watching each other. Note: market structures are Higher Level content, so everything in this lesson is examined at HL only." },
+    { "type": "heading", "content": "HL flag: where this sits in the course" },
+    { "type": "text", "content": "**HL only.** The full treatment of market structures — including monopolistic competition, oligopoly, the kinked demand curve and game theory — is assessed at Higher Level. SL students are not examined on this material. HL Paper 1 and Paper 3 can both draw on it, and Paper 3 may require calculation and diagram work built on these models." },
+    { "type": "heading", "content": "Monopolistic Competition: Many Firms, Many Choices" },
+    { "type": "text", "content": "Monopolistic competition blends the two benchmark models. Like perfect competition it has many firms and low barriers to entry; like monopoly, each firm sells a product that is slightly different from its rivals', which gives it a downward-sloping demand curve and a small amount of price-setting power." },
+    { "type": "keyPoints", "items": [
+      "**Large number of firms:** each has a small market share and none can dominate; firms act independently and ignore rivals' individual reactions.",
+      "**Product differentiation:** the defining feature — products differ by branding, quality, design, service or location, creating brand loyalty and a downward-sloping demand curve.",
+      "**Low barriers to entry and exit:** if incumbents earn abnormal profit, new firms can enter freely and compete it away.",
+      "**Non-price competition:** firms compete heavily through advertising, branding and packaging rather than price alone."
+    ]},
+    { "type": "text", "content": "In the **short run**, a monopolistically competitive firm behaves like a mini-monopolist. It maximises profit where marginal revenue equals marginal cost (MR = MC) and can earn abnormal (supernormal) profit if price exceeds average total cost at that output (P > ATC)." },
+    { "type": "text", "content": "In the **long run**, that abnormal profit cannot last. Low barriers mean new firms enter, drawing customers away and shifting each incumbent's demand (AR) curve to the left and making it flatter (more elastic), because more substitutes now exist. Entry continues until the demand curve is just tangent to the ATC curve, where P = ATC and only **normal profit** remains. Symmetrically, short-run losses would trigger exit until the survivors return to normal profit." },
+    { "type": "heading", "content": "Excess capacity and inefficiency (HL)" },
+    { "type": "text", "content": "The long-run tangency point is the key HL insight. Because the demand curve slopes downward, it can only be tangent to ATC on the **falling** part of the ATC curve — never at its minimum. So the firm produces LESS than the output that would minimise average cost. The gap between the firm's actual output and the minimum-ATC (productively efficient) output is called **excess capacity**." },
+    { "type": "keyPoints", "items": [
+      "**Productive inefficiency:** the firm does not produce at minimum ATC, so average costs are higher than they could be — society could have the same goods at lower cost.",
+      "**Allocative inefficiency:** price exceeds marginal cost (P > MC), so output is below the socially optimal level where P = MC; consumers value extra units by more than they cost to make.",
+      "**But:** consumers gain variety and choice from differentiation, which some economists argue partly offsets the efficiency loss."
+    ]},
+    { "type": "workedExample", "question": "'The Daily Grind' is a coffee shop in a monopolistically competitive market. In the short run it maximises profit where MR = MC at an output of 100 cups per day; at that output the price read off the demand (AR) curve is £3.50 and average total cost (ATC) is £2.50. The currency is pounds (£).<br><br>a) Identify the profit-maximising output and explain the rule used. [2]<br>b) Calculate the short-run abnormal profit. [3]<br>c) Explain what happens to this profit in the long run and why the outcome involves excess capacity. [4]", "solution": "**a) Profit-maximising output (2)**<br>The firm maximises profit where **marginal cost equals marginal revenue (MC = MR)** — the last unit adds exactly as much to revenue as to cost. That occurs at **100 cups per day**. (Producing more would add more to cost than revenue; producing less would forgo profitable units.)<br><br>**b) Short-run abnormal profit (3)**<br>Abnormal profit = (Price − ATC) × Quantity.<br>= (£3.50 − £2.50) × 100<br>= £1.00 × 100 = **£100 per day**. Because P (£3.50) > ATC (£2.50), the firm earns abnormal profit in the short run.<br><br>**c) Long run and excess capacity (4)**<br>The £100 abnormal profit signals a profitable opportunity. Because barriers to entry are low, **new coffee shops enter**, drawing customers away from The Daily Grind. Its demand (AR) curve shifts **left and becomes more elastic** as more substitutes appear. Entry stops only when abnormal profit is gone — when the AR curve is just **tangent to ATC**, so P = ATC and the firm earns just **normal profit**. Since AR slopes down, that tangency must be on the **falling** part of ATC, so the firm produces **below the minimum-ATC output**. The difference between that output and the least-cost output is **excess capacity** — the firm is not productively efficient." },
+    { "type": "heading", "content": "Oligopoly: The Few and the Interdependent" },
+    { "type": "text", "content": "An oligopoly is a market dominated by a few large firms — think supermarket chains, mobile networks, or global soft-drink and aircraft makers. Its defining feature is **interdependence**: because each firm is large relative to the market, one firm's decision on price, output or advertising materially affects its rivals, who then respond. Every firm must therefore anticipate rivals' reactions before it acts. This strategic dimension is why game theory is the natural tool for oligopoly." },
+    { "type": "keyPoints", "items": [
+      "**Few large firms:** a small number account for most industry output; measured by a high concentration ratio.",
+      "**High barriers to entry:** economies of scale, brand loyalty, patents or heavy sunk advertising costs deter new entrants.",
+      "**Interdependence:** firms are mutually dependent — the key behavioural feature, absent from monopolistic competition.",
+      "**Products differentiated OR homogeneous:** cars and phones are differentiated; oil, steel and cement are near-homogeneous."
+    ]},
+    { "type": "heading", "content": "Collusion versus non-collusion" },
+    { "type": "text", "content": "Interdependence pulls oligopolists in two directions. They may **collude** — cooperate to behave like a single monopolist, restricting output and raising price to increase joint profit — or they may act **non-collusively**, competing on price or, more often, on non-price factors. Collusion itself comes in two forms." },
+    { "type": "keyPoints", "items": [
+      "**Overt (formal) collusion / cartel:** an explicit agreement to fix prices or share out output, e.g. OPEC. In most countries this is illegal and attracts heavy fines.",
+      "**Tacit collusion:** coordination without a formal agreement — most commonly **price leadership**, where a dominant firm sets a price and others follow. Harder to prove, so harder to prosecute.",
+      "**Why collusion is unstable:** each member can raise its own profit by secretly **cheating** — undercutting the agreed price to grab extra sales — so agreements tend to break down (see the game-theory section).",
+      "**Non-price competition:** where firms do not collude, they usually avoid price wars (easily matched, mutually damaging) and compete instead through advertising, branding, product design, quality and loyalty schemes."
+    ]},
+    { "type": "heading", "content": "The kinked demand curve and price rigidity (HL)" },
+    { "type": "text", "content": "The kinked demand curve model explains why prices in a non-collusive oligopoly are often **rigid** — they stay put even when costs change. It rests on an asymmetric assumption about how rivals react, taken from each firm's own point of view at the current market price." },
+    { "type": "keyPoints", "items": [
+      "**If the firm cuts its price,** rivals will MATCH the cut to avoid losing customers. The firm gains few extra sales, so demand BELOW the current price is relatively **inelastic**.",
+      "**If the firm raises its price,** rivals will IGNORE the rise and keep theirs low. The firm loses many customers, so demand ABOVE the current price is relatively **elastic**.",
+      "**The kink:** these two segments meet at a kink at the current price P*. The result is a demand curve that is flat (elastic) above P* and steep (inelastic) below it.",
+      "**The MR gap:** the kink produces a vertical discontinuity in the marginal revenue curve. Marginal cost can rise or fall anywhere WITHIN that gap and the profit-maximising price stays at P*.",
+      "**Conclusion:** price is sticky. This helps explain why oligopolists so often leave price alone and compete on non-price factors instead."
+    ]},
+    { "type": "text", "content": "A caution examiners like to test: the kinked demand curve DESCRIBES price rigidity, but it does not explain how the price P* was set in the first place, and it is only one model of non-collusive behaviour. Real oligopolies also show price wars and price leadership, so treat the kink as one useful tool, not the whole story." },
+    { "type": "heading", "content": "Game theory and the prisoner's dilemma (HL)" },
+    { "type": "text", "content": "Game theory models the strategic interdependence at the heart of oligopoly. The classic set-up is the **prisoner's dilemma**, shown as a 2×2 payoff matrix for two firms each choosing between two strategies — for example, 'keep to the agreed high price (collude)' or 'undercut (defect)'. Each cell shows the payoff (profit) to each firm for that combination of choices. The dilemma: each firm has a **dominant strategy** to defect — undercutting is its best response whatever the rival does — so both defect and both end up worse off than if they had trusted each other and colluded. That is precisely why cartels are so hard to sustain." },
+    { "type": "workedExample", "question": "Two petrol stations, A and B, are the only sellers on a motorway junction. Each can set a HIGH price (the collusive outcome) or a LOW price (undercut). The payoff matrix shows daily profit (£), written as (Profit to A, Profit to B):<br><br>| | B: HIGH | B: LOW |<br>|---|---|---|<br>| **A: HIGH** | (100, 100) | (20, 130) |<br>| **A: LOW** | (130, 20) | (50, 50) |<br><br>Using the matrix, explain the likely outcome and why the firms fail to sustain the collusive (High, High) result.", "solution": "**Step 1 — Read the joint-best outcome.** If both keep the HIGH price, each earns £100 — the collusive outcome, and the highest COMBINED profit (£200). This is what a cartel between A and B would try to achieve.<br><br>**Step 2 — Find A's best response to each of B's choices.**<br>• If **B plays HIGH**: A earns £100 by playing High, but **£130 by playing Low** (undercutting to steal B's customers). A prefers **Low**.<br>• If **B plays LOW**: A earns only £20 by staying High (it is undercut), but **£50 by also playing Low**. A prefers **Low**.<br>So whatever B does, A is better off playing **Low** — Low is A's **dominant strategy**.<br><br>**Step 3 — By symmetry, do the same for B.** The payoffs mirror A's, so **Low is also B's dominant strategy**.<br><br>**Step 4 — Predicted outcome.** Both play their dominant strategy, giving **(Low, Low) = (£50, £50)** — the Nash equilibrium. Note this is **worse for both** than the (£100, £100) they could have earned by colluding.<br><br>**Step 5 — Why collusion breaks down.** Even if A and B formally agree to hold the High price, each sees a private £30 gain (130 vs 100) from secretly cheating. Because both face that identical incentive, the agreement is **unstable** — the very interdependence that makes collusion tempting also makes it fragile. In practice firms may sustain cooperation only through **repeated interaction, trust or the threat of retaliation** (a future price war), which the one-shot prisoner's dilemma leaves out." },
+    { "type": "heading", "content": "Measuring market concentration" },
+    { "type": "text", "content": "Economists gauge how concentrated a market is with a **concentration ratio** — the combined market share of the largest firms. A high ratio points to oligopoly or monopoly; a low ratio to monopolistic or perfect competition." },
+    { "type": "formula", "content": "n-firm Concentration Ratio (CRn) = $\\frac{\\text{Total sales of n largest firms}}{\\text{Total market sales}} \\times 100$" },
+    { "type": "workedExample", "question": "A supermarket industry has these market shares: Firm 1 (27%), Firm 2 (15%), Firm 3 (14%), Firm 4 (9%), Firm 5 (10%), Firm 6 (8%), Others (17%). Calculate the 4-firm concentration ratio (CR4) and comment on the market structure. [4]", "solution": "**1. Identify the four largest firms. (1)**<br>Ranked by share: Firm 1 (27%), Firm 2 (15%), Firm 3 (14%), then Firm 5 (10%) — Firm 5 at 10% is larger than Firm 4 at 9%, so Firm 5 is the fourth largest.<br><br>**2. Calculate CR4. (1)**<br>CR4 = 27% + 15% + 14% + 10% = **66%**.<br><br>**3. Comment on structure. (2)**<br>A CR4 of 66% is **high**: two-thirds of the market is held by just four firms. This is characteristic of an **oligopoly** — a few large, interdependent firms with significant market power and likely high barriers to entry. Given the interdependence, we would expect strategic behaviour such as non-price competition or possible (tacit) collusion." },
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Confusing monopolistic competition with monopoly** — both have downward-sloping demand and set MR = MC, but monopolistic competition has MANY firms and LOW barriers, so abnormal profit is competed away to normal profit in the long run. A monopoly can keep abnormal profit behind high barriers.",
+      "**Forgetting excess capacity** — in long-run monopolistic competition the firm is at P = ATC but NOT at minimum ATC. Saying it is 'productively efficient like perfect competition' loses marks; stress the tangency on the falling part of ATC.",
+      "**Assuming oligopolists always collude** — interdependence creates a TEMPTATION to collude, but firms may just as well compete (price wars, non-price competition), and collusion is unstable and often illegal. State the incentive to cheat.",
+      "**Misreading the kinked demand curve** — the inelastic segment is BELOW the current price (rivals match cuts); the elastic segment is ABOVE it (rivals ignore rises). Reversing these, or claiming the model explains how the price was originally set, are classic errors.",
+      "**Muddling the prisoner's dilemma** — the dominant strategy is to DEFECT (undercut), and both defecting leaves both WORSE off than colluding. Do not claim the equilibrium is the joint-best (collusive) outcome.",
+      "**Treating an oligopoly diagram as one-size-fits-all** — there is no single oligopoly diagram; choose the model (kinked demand, game theory, or collusion drawn like monopoly) that fits the question."
+    ]},
+    { "type": "examTip", "content": "For HL Paper 1, learn to draw the long-run monopolistic-competition diagram (AR tangent to ATC, MR = MC, output below minimum ATC) AND to set out a 2×2 prisoner's-dilemma matrix — examiners reward a correct, fully-explained diagram or payoff matrix, not just a mention. For oligopoly, always anchor your answer in interdependence." },
+    { "type": "heading", "content": "Model answer — marked against the real IB markband" },
+    { "type": "workedExample", "question": "Paper 1, part (a): Explain, using a game-theory (prisoner's dilemma) example, why firms in an oligopoly may fail to sustain a collusive agreement. [10]", "solution": "**Model answer:**\nAn oligopoly is a market dominated by a few large firms that are **interdependent** — each firm's best decision depends on how its rivals are expected to react. This interdependence gives firms an incentive to **collude**: by jointly restricting output and holding a high price (acting like a monopolist) they can raise their combined profit. But the same interdependence makes such an agreement fragile, and game theory shows why.\n\nConsider two firms, A and B, each choosing to keep the agreed **HIGH** price (collude) or to **UNDERCUT** (defect). The payoff matrix below shows daily profit as (A, B):\n\n*[Payoff matrix: If both keep HIGH → (100, 100). If A undercuts while B stays HIGH → (130, 20). If B undercuts while A stays HIGH → (20, 130). If both undercut → (50, 50).]*\n\nExamine A's incentives. If B keeps the HIGH price, A earns 100 by colluding but 130 by undercutting — so A undercuts. If B undercuts, A earns just 20 by staying High but 50 by also undercutting — so A undercuts again. Undercutting is therefore A's **dominant strategy**: it is A's best response whatever B does. By symmetry the same is true for B. Both firms follow their dominant strategy and the market settles at **(Undercut, Undercut) = (50, 50)** — the Nash equilibrium.\n\nCrucially, this outcome (50, 50) is **worse for both firms** than the collusive (100, 100) they could have achieved together. Yet each is driven to it by the private incentive to cheat: even after agreeing to collude, each firm can raise its own profit by secretly cutting price, and because both face that identical temptation the agreement collapses. This is exactly why cartels are unstable and collusive agreements are so hard to sustain. (In reality, **repeated** interaction and the threat of retaliation — a future price war — can help firms sustain cooperation, but the one-shot dilemma shows the underlying pressure to defect.)\n\n---\n**How this maps to our IB markband (Paper 1 part (a), out of 10):**\n- **9–10:** demands addressed, theory FULLY explained, terms used appropriately THROUGHOUT, and where appropriate a diagram/payoff-matrix included and FULLY explained.\n- **7–8:** theory explained, terms mostly appropriate.\n- **5–6:** partially addressed, theory PARTLY explained, some terms.\n- **3–4:** theory DESCRIBED, some terms.\n- **1–2:** not relevant.\n\n**Why the model answer reaches 9–10:** it addresses the exact demand (why collusion FAILS), and it FULLY explains the theory — interdependence, the incentive to collude, dominant strategy, Nash equilibrium and the incentive to cheat are reasoned through, not just named. Key terms (oligopoly, interdependence, collusion, dominant strategy, Nash equilibrium, defect) are used THROUGHOUT. And the payoff matrix is not merely shown — every cell is used to walk through each firm's best response and to prove the (50, 50) result is worse than (100, 100). An answer that only DESCRIBED collusion and drew an unexplained matrix would sit in the 3–4 band; one that partly explained it, in 5–6. Explaining the matrix rather than just presenting it is what lifts this into the top band — and it is exactly what our marking engine rewards." },
+    { "type": "examTip", "content": "That is precisely what the **Practice** button does: write your own answer to this 10-mark question, submit it, and our marking engine grades it against this same official markband — telling you which band you reached and why. The habit that moves you up the bands: EXPLAIN your payoff matrix (work through each firm's best response), don't just draw it." },
+    { "type": "heading", "content": "Key concepts in this lesson" },
+    { "type": "text", "content": "This HL lesson develops two of the course's key concepts. **Interdependence** is the behavioural core of oligopoly — no firm can decide in isolation, which is why collusion, the kinked demand curve and game theory all matter. **Efficiency** runs through the comparison of structures: monopolistic competition carries excess capacity (productive and allocative inefficiency), while oligopoly outcomes range from near-monopoly (collusion) to more competitive results depending on firms' strategic choices. Reminder: this material is examined at Higher Level only." },
+    { "type": "practice", "label": "Get a Paper 1 (a) answer marked: use a prisoner's dilemma to explain why oligopoly collusion breaks down", "href": "/mark?subject=ib-economics-sl&topic=2.11&component=paper_1" },
+    { "type": "resources", "items": [
+      { "label": "The Economics of Oligopolies - Investopedia", "href": "https://www.investopedia.com/terms/o/oligopoly.asp" },
+      { "label": "Monopolistic Competition - Khan Academy", "href": "https://www.khanacademy.org/economics-finance-domain/microeconomics/perfect-and-imperfect-competition/monopolistic-competition/v/monopolistic-competition-and-economic-profit" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

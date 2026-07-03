@@ -36,39 +36,45 @@ export async function POST(req: NextRequest) {
     return new NextResponse('Invalid payload', { status: 400 })
   }
 
-  // Idempotency key: the standard-webhooks delivery id (already signed, so it's
-  // trustworthy after validateEvent succeeded).
-  const eventId = headers['webhook-id'] || `${event.type}:unknown`
+  // Idempotency key: the standard-webhooks delivery id. Signature verification
+  // requires this header, so a validated event always has it.
+  const eventId = headers['webhook-id']
+  if (!eventId) {
+    console.error('[polar-webhook] missing webhook-id header after validation')
+    return new NextResponse('Missing webhook id', { status: 400 })
+  }
   const supabase = createServiceClient()
 
-  const { data: existing } = await supabase
-    .from('polar_webhook_events')
-    .select('id')
-    .eq('id', eventId)
-    .maybeSingle()
+  // CLAIM the event id atomically BEFORE any side effects. The primary-key
+  // insert is atomic, so concurrent or retried duplicate deliveries of the same
+  // event can never both proceed — a unique violation means it's already owned.
+  // This closes the check-then-act race of the old select-then-insert, which
+  // could double-apply non-idempotent side effects like credit top-ups.
+  const { error: claimError } = await supabase.from('polar_webhook_events').insert({
+    id: eventId,
+    type: event.type,
+    payload: event as unknown as Record<string, unknown>,
+  })
 
-  if (existing) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('[polar-webhook] already processed:', eventId)
+  if (claimError) {
+    if (claimError.code === '23505') {
+      // Already claimed/processed — duplicate delivery.
+      return NextResponse.json({ received: true, duplicate: true })
     }
-    return NextResponse.json({ received: true, duplicate: true })
+    // Couldn't claim (transient DB error) — 500 so Polar retries.
+    console.error('[polar-webhook] claim insert failed:', claimError.message)
+    return NextResponse.json({ error: claimError.message }, { status: 500 })
   }
 
   try {
     await handlePolarEvent(event, supabase)
-
-    // Record success AFTER side effects, so a crash mid-processing leaves no
-    // record and Polar's retry can re-run it.
-    await supabase.from('polar_webhook_events').insert({
-      id: eventId,
-      type: event.type,
-      payload: event as unknown as Record<string, unknown>,
-    })
-
     return NextResponse.json({ received: true })
   } catch (err) {
     console.error('[polar-webhook] processing error:', err)
-    // 500 so Polar retries (transient DB/Polar failure).
+    // Release the claim so Polar's retry can reprocess. Each event performs a
+    // single atomic side effect, so re-running after a thrown error is safe
+    // (the throw means the side effect had not been applied).
+    await supabase.from('polar_webhook_events').delete().eq('id', eventId)
     const message = err instanceof Error ? err.message : 'unknown'
     return NextResponse.json({ error: message }, { status: 500 })
   }

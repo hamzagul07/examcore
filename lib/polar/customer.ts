@@ -40,11 +40,20 @@ export async function getOrCreatePolarCustomer(
   }
 
   if (!customerId) {
-    const created = await polar.customers.create({
-      email: user.email ?? `${user.id}@no-email.local`,
-      externalId: user.id,
-    })
-    customerId = created.id
+    try {
+      const created = await polar.customers.create({
+        email: user.email ?? `${user.id}@no-email.local`,
+        externalId: user.id,
+      })
+      customerId = created.id
+    } catch (err) {
+      // Race: the customer may have been created concurrently (e.g. by a
+      // checkout that set the same externalId, which is unique per org). Re-fetch
+      // by external id before surfacing the error.
+      const found = await polar.customers.getExternal({ externalId: user.id })
+      if (!found?.id) throw err
+      customerId = found.id
+    }
   }
 
   const { error } = await service

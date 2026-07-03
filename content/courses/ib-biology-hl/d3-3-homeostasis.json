@@ -2,180 +2,332 @@
   "slug": "d3-3-homeostasis",
   "topicCode": "D3.3",
   "title": "Homeostasis",
+  "unit": {
+    "code": "D",
+    "title": "Continuity and change"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores homeostasis, the dynamic process of maintaining a stable internal environment. It details the negative feedback mechanisms controlling body temperature, blood glucose concentration, and blood pH, highlighting the roles of key organs and hormones.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Homeostasis is the maintenance of a stable internal environment within narrow limits, and this lesson builds the whole D3.3 picture around one repeating idea: the negative-feedback control loop. You will trace the general loop — receptor detects a change, a coordination centre processes it, an effector produces a response that counteracts the change and returns the variable to its set point — and then see it play out in three worked systems: thermoregulation (vasodilation, vasoconstriction, sweating, shivering in endotherms), the control of blood glucose (insulin lowers, glucagon raises, with the pancreas and liver at the centre, plus a diabetes overview), and a brief look at osmoregulation by the kidney. Every worked example is set out the way our marking engine actually awards Paper 2 marks — one mark per distinct valid point, with A marks and error-carried-forward — so you can see how showing each step protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the concept of homeostasis as the maintenance of a stable internal environment.",
-    "Describe the negative feedback mechanisms involved in the control of body temperature (thermoregulation).",
-    "Outline the hormonal control of blood glucose concentration by insulin and glucagon.",
-    "Explain the roles of the respiratory and renal systems in controlling blood pH."
+    "Define homeostasis as the maintenance of a stable internal environment within narrow limits, and explain why cells need it.",
+    "Describe the general negative-feedback control loop: receptor → coordination centre → effector → response that returns the variable to its set point.",
+    "Explain thermoregulation in humans, including detection of temperature change and the responses of vasodilation, vasoconstriction, sweating and shivering in endotherms.",
+    "Explain the control of blood glucose concentration by insulin and glucagon, including the roles of the pancreas and liver, and give an overview of diabetes.",
+    "Outline osmoregulation and the role of the kidney in maintaining the water balance of the blood.",
+    "Present answers so that each distinct valid point earns its mark, with error-carried-forward protecting the steps that follow."
   ],
+  "syllabusObjectivesCovered": [
+    "D3.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Your Body's Internal Thermostat",
-    "summary": "Homeostasis is your body's clever way of keeping its internal conditions, like temperature and sugar levels, within a narrow, healthy range. It's a constant balancing act, essential for your cells to function correctly.",
-    "analogy": "Imagine your home's heating system. You set the thermostat to 20°C (the 'set point'). If the temperature drops, the sensor tells the boiler (the 'effector') to switch on and heat the house. Once it reaches 20°C, the sensor tells the boiler to switch off. Your body uses similar 'negative feedback' loops to control its internal environment, just with hormones and nerve signals instead of wires and a boiler.",
+    "title": "Your Body's Automatic Thermostat",
+    "summary": "Homeostasis is your body's ability to keep its internal conditions — temperature, blood glucose, water balance — steady within a narrow healthy range, whatever the outside world is doing. It works through negative feedback: whenever a variable drifts away from its set point, the body responds in the opposite direction to pull it back.",
+    "analogy": "Think of a heated room controlled by a thermostat. You choose a target temperature (the 'set point'). A sensor measures the actual temperature; when the room drops below target, the thermostat switches the heater on, and when the room climbs above target, it switches the heater off. The response always opposes the change. Your body does exactly this for temperature, blood sugar and water — the 'sensors' are receptors, the 'thermostat' is a coordination centre, and the 'heater' is an effector.",
     "steps": [
-      "A change, or 'stimulus', disrupts the body's internal balance (e.g., blood glucose rises after a meal).",
-      "Specialised 'receptors' detect this change and send a signal to a 'control centre' (like the brain or pancreas).",
-      "The control centre processes the information and instructs 'effectors' (like muscles or glands) to respond.",
-      "The effector's action counteracts the original stimulus, returning the internal environment to its set point in a process called 'negative feedback'."
+      "A variable drifts away from its set point — for example, blood glucose rises after a meal, or body temperature falls on a cold day. This is the stimulus.",
+      "A receptor detects the change and signals a coordination centre (a control region such as the pancreas or the hypothalamus).",
+      "The coordination centre activates an effector — a gland, muscle or organ — that produces a response.",
+      "The response counteracts the original change (glucose is taken up and stored; heat is generated or conserved), returning the variable to its set point. Because the response opposes the change, this is negative feedback."
     ]
   },
+  "keyConcepts": [
+    "negative feedback",
+    "set point",
+    "internal environment"
+  ],
   "flashcards": [
     {
-      "front": "What is homeostasis?",
-      "back": "The maintenance of a constant internal environment within narrow physiological limits, despite changes in the external environment. It is a dynamic equilibrium."
+      "front": "Homeostasis",
+      "back": "The maintenance of a stable internal environment within narrow limits, despite changes in the external environment. It keeps conditions such as temperature, blood glucose and water balance close to a set point.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define negative feedback.",
-      "back": "A control mechanism where the response produced by an effector counteracts the original stimulus, restoring the system to its set point. It is the primary mechanism for maintaining homeostasis."
+      "front": "Negative feedback",
+      "back": "A control mechanism in which the response produced counteracts (opposes) the change that triggered it, returning the variable towards its set point. This is the basis of homeostasis.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the role of the hypothalamus in thermoregulation?",
-      "back": "It acts as the body's thermostat. It receives information from thermoreceptors in the skin and blood, and coordinates corrective responses via the nervous and endocrine systems."
+      "front": "Set point",
+      "back": "The target value (or narrow range of values) of a physiological variable that homeostatic control works to maintain.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Distinguish between vasodilation and vasoconstriction.",
-      "back": "Vasodilation is the widening of arterioles near the skin surface to increase blood flow and heat loss. Vasoconstriction is the narrowing of these arterioles to reduce blood flow and conserve heat."
+      "front": "The general control loop",
+      "back": "Receptor detects the change → coordination centre processes the information → effector produces a response → the response returns the variable to the set point.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the effector for shivering?",
-      "back": "Skeletal muscles. They undergo involuntary, rapid contractions and relaxations, which generates metabolic heat."
+      "front": "Receptor vs effector",
+      "back": "A RECEPTOR detects the change (input); an EFFECTOR carries out the response (output). Mixing up their order in a feedback loop is a classic error.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Which cells in the pancreas detect blood glucose levels?",
-      "back": "The islets of Langerhans. Specifically, β-cells detect high blood glucose and secrete insulin, while α-cells detect low blood glucose and secrete glucagon."
+      "front": "Vasodilation",
+      "back": "Widening of arterioles supplying the skin, increasing blood flow near the surface so more heat is lost to the surroundings. It is a COOLING response.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the two main effects of insulin?",
-      "back": "1. Increases glucose uptake by body cells (especially muscle and adipose tissue). 2. Stimulates the liver and muscle cells to convert excess glucose into glycogen for storage (glycogenesis)."
+      "front": "Vasoconstriction",
+      "back": "Narrowing of arterioles supplying the skin, reducing blood flow near the surface so less heat is lost. It is a HEAT-CONSERVING response used when cold.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the two main effects of glucagon?",
-      "back": "1. Stimulates the liver to break down stored glycogen into glucose (glycogenolysis). 2. Stimulates the liver to synthesise glucose from non-carbohydrate sources like amino acids (gluconeogenesis)."
+      "front": "Endotherm",
+      "back": "An animal (such as a human) that maintains a stable core body temperature using heat generated by its own metabolism, adjusting heat loss and heat production by negative feedback.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the primary buffer system in the blood?",
-      "back": "The bicarbonate buffer system, which involves the equilibrium: $CO_2 + H_2O \\rightleftharpoons H_2CO_3 \\rightleftharpoons H^+ + HCO_3^-$."
+      "front": "Insulin",
+      "back": "A hormone secreted by the β-cells of the pancreas when blood glucose is HIGH. It causes body cells (liver, muscle) to take up glucose and the liver to convert glucose to glycogen, LOWERING blood glucose.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How does the respiratory system regulate blood pH?",
-      "back": "By controlling the concentration of dissolved carbon dioxide. An increase in breathing rate (hyperventilation) expels more $CO_2$, reducing acidity (raising pH). A decrease in breathing rate (hypoventilation) retains $CO_2$, increasing acidity (lowering pH)."
+      "front": "Glucagon",
+      "back": "A hormone secreted by the α-cells of the pancreas when blood glucose is LOW. It stimulates the liver to break glycogen back down to glucose (glycogenolysis), RAISING blood glucose.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Common Trap: Confusing glycogen and glucagon.",
-      "back": "Glycogen is the storage polysaccharide for glucose in animals. Glucagon is the peptide hormone that stimulates the breakdown of glycogen. Remember: 'Glucagon says glucose is gone'."
+      "front": "Roles of pancreas and liver",
+      "back": "The PANCREAS is the coordination centre and receptor for blood glucose — it detects the level and secretes insulin or glucagon. The LIVER is the main effector store — it takes up glucose as glycogen or releases glucose from glycogen.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Type I vs Type II diabetes",
+      "back": "Type I: β-cells destroyed (autoimmune), so little or no insulin is made — treated with insulin injections. Type II: cells become resistant to insulin (linked to lifestyle) — managed with diet, exercise and medication.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Osmoregulation",
+      "back": "The control of the water and solute balance of the blood, keeping its osmotic concentration steady. In humans the kidneys are the main effector organs, adjusting how much water is reabsorbed and how concentrated the urine is.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Exam Trap: negative feedback reverses the change",
+      "back": "The response always OPPOSES the change. A rise triggers a lowering response; a fall triggers a raising response. Saying the response 'continues' or 'amplifies' the change describes positive feedback, not homeostasis.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: insulin vs glucagon",
+      "back": "INsulin puts glucose INto cells → lowers blood glucose. Glucagon means glucose is 'gone' from store into blood → raises blood glucose. Swapping them loses the mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Blood glucose rises after a meal. In a negative-feedback loop, the response the body produces will:",
+      "options": [
+        "Raise blood glucose further, to speed the change",
+        "Lower blood glucose back towards the set point",
+        "Have no effect until the next meal",
+        "Fix blood glucose at exactly the peak value"
+      ],
+      "answer": "Lower blood glucose back towards the set point"
+    },
+    {
+      "prompt": "Which pair correctly states the effect of each hormone on blood glucose concentration?",
+      "options": [
+        "Insulin raises it; glucagon lowers it",
+        "Insulin lowers it; glucagon raises it",
+        "Both lower it",
+        "Both raise it"
+      ],
+      "answer": "Insulin lowers it; glucagon raises it"
+    },
+    {
+      "prompt": "On a hot day the arterioles supplying the skin undergo vasodilation. The purpose of this response is to:",
+      "options": [
+        "Conserve heat by keeping blood away from the surface",
+        "Increase blood flow near the skin surface so more heat is lost",
+        "Generate extra heat by muscle contraction",
+        "Reduce sweating to save water"
+      ],
+      "answer": "Increase blood flow near the skin surface so more heat is lost"
+    },
+    {
+      "prompt": "Which sequence correctly orders the components of a negative-feedback control loop?",
+      "options": [
+        "Effector → receptor → coordination centre → response",
+        "Coordination centre → effector → receptor → response",
+        "Receptor → coordination centre → effector → response",
+        "Response → effector → receptor → coordination centre"
+      ],
+      "answer": "Receptor → coordination centre → effector → response"
+    },
+    {
+      "prompt": "When core body temperature falls below the set point, the correct homeostatic response is:",
+      "options": [
+        "Vasodilation and sweating to lose heat",
+        "Vasoconstriction and shivering to conserve and generate heat",
+        "Vasodilation and shivering",
+        "Sweating and vasoconstriction"
+      ],
+      "answer": "Vasoconstriction and shivering to conserve and generate heat"
     }
   ],
   "faq": [
     {
       "q": "What is the difference between negative and positive feedback?",
-      "a": "Negative feedback is the most common mechanism in homeostasis and works to counteract a change, bringing a variable back to its set point (e.g., sweating to cool down). Positive feedback amplifies a stimulus, pushing the variable further away from the set point. It is much rarer and is usually part of a process that needs to be completed quickly, such as the release of oxytocin during childbirth to intensify contractions."
+      "a": "Negative feedback opposes a change: when a variable moves away from its set point, the response pushes it back, which produces the stability that homeostasis requires. Positive feedback does the opposite — the response amplifies the original change, pushing the variable further from where it started. Positive feedback is used for rapid, one-off events such as the surge of oxytocin during childbirth, but it cannot maintain a stable internal environment, so almost all homeostatic control is negative feedback."
     },
     {
-      "q": "How is Type 1 diabetes a failure of homeostasis?",
-      "a": "In Type 1 diabetes, the body's immune system destroys the β-cells in the pancreas. This means the body cannot produce insulin. Without insulin, glucose cannot be effectively removed from the blood after a meal. This leads to chronic high blood glucose (hyperglycaemia), a failure of the homeostatic control system for blood sugar. The negative feedback loop is broken because the effector hormone is missing."
+      "q": "Why is the response often described as reaching a set point rather than a single fixed value?",
+      "a": "Real physiological variables oscillate slightly around their target rather than sitting at one exact number. Because there is always a small delay between a change being detected and the effector correcting it, the variable overshoots and undershoots by a little each time, so it fluctuates within a narrow band around the set point. 'Within narrow limits' in the definition of homeostasis captures exactly this — control keeps the variable close to, not perfectly at, the ideal value."
+    },
+    {
+      "q": "How are the roles of the pancreas and the liver different in blood glucose control?",
+      "a": "The pancreas is the sensing and signalling organ: its islet cells detect the blood glucose level (β-cells respond to a rise, α-cells to a fall) and secrete the hormones insulin or glucagon. The liver is the main effector and store: in response to insulin it takes glucose out of the blood and stores it as glycogen, and in response to glucagon it breaks glycogen down and releases glucose back into the blood. So the pancreas decides what needs to happen, and the liver is where much of it actually happens."
+    },
+    {
+      "q": "How does the kidney fit into homeostasis?",
+      "a": "The kidney is the main effector for osmoregulation — the control of the water and solute concentration of the blood. Receptors in the hypothalamus detect how concentrated the blood is; when it is too concentrated (too little water), more antidiuretic hormone is released and the kidney reabsorbs more water, producing a smaller volume of concentrated urine. When the blood is too dilute, less hormone is released and the kidney allows more water to leave as a larger volume of dilute urine. The loop is the same negative-feedback pattern used everywhere else in this topic."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Homeostasis is a fundamental concept in biology, referring to the processes by which an organism maintains a stable and constant internal environment. This internal stability, or 'steady state', is crucial for the optimal functioning of enzymes and metabolic pathways that sustain life. This lesson will dissect the negative feedback loops that regulate core physiological variables: body temperature, blood glucose, and blood pH."
+      "content": "Every cell in your body relies on its surroundings staying steady. Enzymes work fastest within a narrow temperature band, reactions depend on a reliable supply of glucose, and cells are damaged if the water balance of the blood swings too far in either direction. Homeostasis is the maintenance of this stable internal environment within narrow limits, and the striking thing is that a single design solves the whole problem: the negative-feedback loop. Once you can trace that loop — a change is detected, processed, and reversed by a response — you can apply it to temperature, to blood glucose and to water balance without learning three unrelated stories. This lesson builds the general loop first, then follows it through thermoregulation, blood glucose control and osmoregulation, and every worked example is laid out exactly the way our marking engine awards Paper 2 marks."
     },
     {
       "type": "heading",
-      "content": "The Core Principle: Negative Feedback"
+      "content": "Homeostasis and the negative-feedback loop"
     },
     {
       "type": "text",
-      "content": "Most homeostatic control mechanisms operate through negative feedback. This is a self-regulating process where a change in a variable triggers a response that counteracts the initial change, bringing the variable back towards its 'set point' or normal range. A typical negative feedback loop consists of a stimulus (the change), a receptor to detect it, a control centre to process the information, and an effector to carry out the corrective response."
-    },
-    {
-      "type": "heading",
-      "content": "Control of Body Temperature (Thermoregulation)"
-    },
-    {
-      "type": "text",
-      "content": "Humans are endotherms, meaning we generate our own body heat and maintain a core body temperature of approximately 37°C. The primary control centre for thermoregulation is the hypothalamus in the brain. It monitors the temperature of the blood flowing through it and also receives input from thermoreceptors in the skin."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**If body temperature rises:** The hypothalamus triggers cooling mechanisms. Arterioles in the skin undergo vasodilation, increasing blood flow to the surface to radiate heat away. Sweat glands are activated to secrete sweat, which cools the skin as it evaporates.",
-        "**If body temperature falls:** The hypothalamus triggers warming mechanisms. Arterioles in the skin undergo vasoconstriction, reducing blood flow to the surface to conserve heat. Skeletal muscles begin to shiver, generating heat through metabolic activity. Non-shivering thermogenesis, the breakdown of brown adipose tissue, can also increase metabolic heat production."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "When describing thermoregulation, be precise. Instead of saying 'blood vessels get wider', state that 'smooth muscles in the walls of arterioles relax, causing vasodilation'. This level of detail demonstrates a deeper understanding and is expected at HL."
-    },
-    {
-      "type": "workedExample",
-      "question": "An athlete's core body temperature was monitored during a 30-minute run. At the start (0 minutes), their temperature was 37.0°C. After 15 minutes of running, it peaked at 38.5°C. By 30 minutes, it had decreased to 38.1°C, despite continued running. Explain the physiological mechanisms responsible for the temperature decrease between 15 and 30 minutes.",
-      "solution": "1. **Stimulus and Receptor:** The increase in core body temperature to 38.5°C is the stimulus. This is detected by thermoreceptors in the hypothalamus. [1 mark]\n2. **Control Centre:** The hypothalamus coordinates a response to lower the body temperature back towards the set point of 37°C. [1 mark]\n3. **Effector Responses:** The hypothalamus sends nerve impulses to effectors. This causes vasodilation, the widening of arterioles supplying skin capillaries, which increases blood flow to the skin surface, enhancing heat loss to the environment via radiation. [1 mark]\n4. **Second Effector Response:** Sweat glands are stimulated to secrete sweat onto the skin surface. The evaporation of this sweat has a significant cooling effect as it removes latent heat of vaporisation from the body. [1 mark]\n5. **Outcome:** These combined cooling mechanisms are effective enough to cause the temperature to begin falling from its peak, even while the athlete continues to generate heat from exercise. This demonstrates a successful homeostatic response. [1 mark]"
-    },
-    {
-      "type": "heading",
-      "content": "Control of Blood Glucose Concentration"
-    },
-    {
-      "type": "text",
-      "content": "The concentration of glucose in the blood must be kept within a narrow range (typically 4.0-7.8 mmol L⁻¹). This is regulated by two antagonistic hormones, insulin and glucagon, which are produced in the islets of Langerhans in the pancreas. Beta (β) cells secrete insulin when blood glucose is high, and alpha (α) cells secrete glucagon when blood glucose is low."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**High Blood Glucose (e.g., after a meal):** β-cells secrete insulin. Insulin stimulates liver, muscle, and adipose cells to take up glucose from the blood. In the liver and muscles, insulin promotes the conversion of glucose to its storage form, glycogen (glycogenesis). This lowers blood glucose.",
-        "**Low Blood Glucose (e.g., during fasting or exercise):** α-cells secrete glucagon. Glucagon primarily acts on the liver, stimulating the breakdown of glycogen back into glucose (glycogenolysis). It also promotes the synthesis of glucose from other sources like amino acids (gluconeogenesis). This raises blood glucose."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A patient's fasting blood glucose level is 6.5 mmol L⁻¹. After an injection of insulin, their blood glucose level drops to 4.8 mmol L⁻¹ over 60 minutes. \na) Calculate the percentage decrease in blood glucose concentration. \nb) Explain the role of the liver in this response.",
-      "solution": "a) **Calculation:**\nInitial concentration = 6.5 mmol L⁻¹\nFinal concentration = 4.8 mmol L⁻¹\nDecrease = 6.5 - 4.8 = 1.7 mmol L⁻¹ [1 mark]\nPercentage decrease = (Decrease / Initial) × 100\nPercentage decrease = (1.7 / 6.5) × 100 = 26.2% (to 3 s.f.) [1 mark]\n\nb) **Explanation:**\nInsulin binds to receptors on the surface of liver cells (hepatocytes). [1 mark]\nThis stimulates the liver cells to increase their uptake of glucose from the bloodstream via glucose transporter proteins. [1 mark]\nInside the liver cells, insulin activates enzymes that catalyse the conversion of glucose into glycogen for storage, a process called glycogenesis. This removal of glucose from the blood and its storage as glycogen is the primary reason for the observed drop in blood glucose concentration. [1 mark]"
-    },
-    {
-      "type": "heading",
-      "content": "Control of Blood pH"
-    },
-    {
-      "type": "text",
-      "content": "The pH of human blood is tightly regulated at approximately 7.4. Deviations can denature proteins and disrupt cellular function. The main source of acid in the blood is carbon dioxide from cellular respiration, which dissolves to form carbonic acid. Control is achieved through chemical buffers in the blood and physiological regulation by the lungs and kidneys."
+      "content": "Homeostasis is the maintenance of a stable internal environment within narrow limits despite changes in the external environment. Each controlled variable has a set point — the value the body aims to hold. Control is achieved almost entirely by negative feedback, in which any deviation from the set point triggers a response that opposes and cancels that deviation. The general loop has four parts working in a fixed order: a receptor detects the change; a coordination centre (a control region such as the hypothalamus or the pancreas) receives that information and 'decides' on the correction; an effector (a gland, muscle or organ) carries out a response; and the response counteracts the original change, returning the variable towards the set point. Because the response always reverses the change rather than adding to it, the variable is held within a narrow band around the set point."
     },
     {
       "type": "formula",
-      "content": "CO_2 + H_2O \\rightleftharpoons H_2CO_3 \\rightleftharpoons H^+ + HCO_3^-"
+      "content": "\\text{stimulus} \\to \\text{receptor} \\to \\text{coordination centre} \\to \\text{effector} \\to \\text{response} \\to \\text{returns to set point}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Homeostasis:** a stable internal environment kept within narrow limits around a set point.",
+        "**Negative feedback:** the response OPPOSES the change — a rise triggers a lowering response, a fall triggers a raising response.",
+        "**Fixed loop order:** receptor (detects) → coordination centre (processes) → effector (acts) → response (counteracts).",
+        "**Positive feedback is the exception:** it amplifies a change and so cannot maintain stability — it is not how homeostasis works."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Thermoregulation in humans"
     },
     {
       "type": "text",
-      "content": "This is the bicarbonate buffer system. If $H^+$ concentration rises (pH falls), the equilibrium shifts to the left, consuming $H^+$ to form carbonic acid, which then becomes $CO_2$ and water. The lungs then remove the excess $CO_2$ through increased ventilation (breathing rate). If $H^+$ concentration falls (pH rises), the equilibrium shifts to the right, releasing more $H^+$. The kidneys also play a crucial, albeit slower, role by selectively excreting $H^+$ or reabsorbing bicarbonate ions ($HCO_3^-$) to fine-tune pH over hours and days."
+      "content": "Humans are endotherms: we hold a stable core temperature (about 37°C) using heat released by our own metabolism, adjusting how much heat we lose and generate. Temperature receptors in the skin detect the temperature of the surroundings, while receptors in the hypothalamus detect the temperature of the blood; the hypothalamus is the coordination centre. When the core temperature rises above the set point, the hypothalamus triggers cooling responses: vasodilation, in which the arterioles supplying the skin widen so that more warm blood flows near the surface and more heat is lost to the surroundings, and sweating, in which sweat glands release sweat that absorbs heat as it evaporates. When the core temperature falls below the set point, the hypothalamus triggers the opposite responses: vasoconstriction, in which those arterioles narrow so less blood flows near the surface and less heat is lost, and shivering, in which skeletal muscles contract rapidly and repeatedly, releasing heat from respiration. In every case the response opposes the change and returns the temperature towards the set point — the same negative-feedback loop as before."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Detection:** temperature receptors in the skin sense the surroundings; receptors in the HYPOTHALAMUS sense blood temperature. The hypothalamus is the coordination centre.",
+        "**Too hot → cool down:** vasodilation (more blood near the skin → more heat lost) and sweating (evaporation removes heat).",
+        "**Too cold → warm up / conserve:** vasoconstriction (less blood near the skin → less heat lost) and shivering (muscle contraction releases heat).",
+        "**Endotherms** rely on metabolic heat and adjust heat loss/production by negative feedback to hold a near-constant core temperature."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Questions often link cellular respiration, exercise, and blood pH. Remember the chain of events: increased exercise → increased cellular respiration → increased blood $CO_2$ → increased $H^+$ (lower pH) → chemoreceptors in the aorta and medulla oblongata detect this → medulla increases breathing rate to expel $CO_2$ and restore pH."
+      "content": "Vasodilation and vasoconstriction describe the ARTERIOLES, not the blood vessels moving up or down. A frequent error is to write that 'blood vessels move to the surface' — they do not move; they widen or narrow to change how much blood flows near the skin. State clearly that vasodilation increases surface blood flow to LOSE heat and vasoconstriction reduces it to CONSERVE heat."
+    },
+    {
+      "type": "workedExample",
+      "question": "A person walks out of a warm building into cold air. Their skin temperature begins to fall. Describe the negative-feedback response that returns their core body temperature to its set point, naming each component of the control loop. [4]",
+      "solution": "**Model answer, traced through the loop.**\n\n**Receptor (detection).** Temperature receptors in the skin (and receptors in the hypothalamus monitoring blood temperature) detect the fall in temperature. [Point 1]\n\n**Coordination centre.** The information is sent to the hypothalamus, which processes it and identifies that the core is below its set point. [Point 2]\n\n**Effector and response — conserve heat.** The hypothalamus triggers vasoconstriction: the arterioles supplying the skin narrow, so less warm blood flows near the surface and less heat is lost to the surroundings. [Point 3]\n\n**Effector and response — generate heat.** It also triggers shivering: skeletal muscles contract rapidly, and the heat released by increased respiration warms the blood. [Point 4]\n\n**Return to set point.** These responses oppose the original fall, so the core temperature rises back towards the set point — negative feedback.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n- **Point 1 (M):** the change is DETECTED by temperature receptors (skin / hypothalamus).\n- **Point 2 (M):** the hypothalamus acts as the coordination centre / processes the information.\n- **Point 3 (A):** vasoconstriction → less blood near the skin surface → less heat lost.\n- **Point 4 (A):** shivering → muscle contraction / respiration releases heat.\n- **Also creditable:** a clear statement that the response OPPOSES the change and returns temperature to the set point (negative feedback).\n\nBecause more than four creditable points are available, the engine caps the award at 4 — there is room to miss one and still score full marks. ECF applies: naming the correct loop component earns its mark even if a neighbouring step is imperfect. Equivalents are accepted (e.g. 'sensory neurones in the skin' for receptors)."
+    },
+    {
+      "type": "heading",
+      "content": "Control of blood glucose concentration"
+    },
+    {
+      "type": "text",
+      "content": "Blood glucose concentration is the D3.3 system examiners return to most, and it is a clean negative-feedback loop with the pancreas as both receptor and coordination centre and the liver as the main effector store. The pancreas contains clusters of cells called the islets of Langerhans, with two key cell types: β-cells, which respond to a HIGH blood glucose level, and α-cells, which respond to a LOW level. After a meal, blood glucose rises above the set point (the stimulus). The β-cells detect this and secrete the hormone insulin into the blood. Insulin travels to body cells — especially the liver and muscle — and causes them to take up glucose from the blood; in the liver it also stimulates the conversion of glucose to glycogen for storage. Glucose is removed from the blood, so the level falls back towards the set point. Conversely, when blood glucose falls below the set point — for example during exercise or fasting — the α-cells detect this and secrete glucagon. Glucagon stimulates the liver to break stored glycogen back down into glucose (glycogenolysis) and release it into the blood, raising the level back towards the set point. The two hormones act in opposite directions, and both responses are negative feedback: insulin lowers a high level, glucagon raises a low one."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pancreas = receptor + coordination centre:** β-cells detect a HIGH level and release insulin; α-cells detect a LOW level and release glucagon.",
+        "**Insulin LOWERS blood glucose:** body cells / liver take up glucose; the liver converts glucose → glycogen.",
+        "**Glucagon RAISES blood glucose:** the liver converts glycogen → glucose and releases it into the blood.",
+        "**Liver = main effector store:** it holds the glycogen reserve that is built up or broken down.",
+        "**Both are negative feedback:** each hormone's response opposes the change that triggered it."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Diabetes overview.** Diabetes mellitus is a failure of this control loop that leaves blood glucose persistently too high (hyperglycaemia). In **Type I diabetes**, the immune system destroys the insulin-secreting β-cells, so little or no insulin is produced; it usually appears in childhood and is treated with insulin injections timed to meals. In **Type II diabetes**, the β-cells still make insulin but the body's cells become resistant to it, so glucose is not taken up efficiently; it is strongly linked to lifestyle factors such as obesity and inactivity and is usually managed with diet, exercise and medication, with insulin used later if needed. In both types the negative-feedback loop can no longer bring a raised blood glucose level back to the set point without help."
+    },
+    {
+      "type": "heading",
+      "content": "Osmoregulation and the kidney"
+    },
+    {
+      "type": "text",
+      "content": "Osmoregulation is the control of the water and solute concentration of the blood, and it follows the same negative-feedback design. Receptors in the hypothalamus detect the osmotic concentration of the blood. When the blood becomes too concentrated (for example after sweating or when water intake is low), the response increases water reabsorption in the kidney, so a small volume of concentrated urine is produced and water is retained in the blood, diluting it back towards the set point. When the blood becomes too dilute (after drinking a large volume of water), less water is reabsorbed, so a large volume of dilute urine is produced and the excess water is removed. The kidney is therefore the main effector for water balance, adjusting how much water is returned to the blood so that its concentration stays within narrow limits — a brief but perfect example of the general loop applied to a third variable."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Describing a response that adds to the change** — negative feedback REVERSES the deviation. If your answer has a rise in glucose causing a further rise, or heat loss when cold, you have described positive feedback and lost the mark.",
+        "**Swapping insulin and glucagon** — insulin LOWERS blood glucose (glucose into cells and glycogen), glucagon RAISES it (glycogen back to glucose). Getting the direction wrong usually costs both hormone marks.",
+        "**Calling vasodilation a warming response** — vasodilation increases surface blood flow to LOSE heat (a cooling response); vasoconstriction conserves heat. Pair each response with the correct direction of temperature change.",
+        "**Scrambling the loop order** — the sequence is receptor → coordination centre → effector → response. Putting the effector before the receptor, or omitting the coordination centre, breaks the logic examiners are marking.",
+        "**Saying the pancreas or liver 'detects and stores' interchangeably** — be precise: the PANCREAS detects glucose and secretes hormones; the LIVER is the effector store that builds or breaks down glycogen.",
+        "**Writing that blood vessels 'move' to or from the skin** — arterioles do not move; they widen (vasodilation) or narrow (vasoconstriction) to change surface blood flow.",
+        "**Confusing the two types of diabetes** — Type I is a lack of insulin (β-cells destroyed); Type II is insulin resistance. Name which one you mean before describing cause or treatment."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Blood glucose questions are marked analytically: each distinct valid point in the negative-feedback chain is worth one mark. Answer marks (A) credit a correct step, error-carried-forward (ECF) means one wrong link does not cost you the marks that follow, and equivalent wording is accepted as long as the biology is right. Study how each mark below is tied to a specific, named step rather than to loose phrasing."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain how blood glucose concentration is returned to normal after it rises following a meal. [4]",
+      "solution": "**Model answer.**\nAfter a meal the blood glucose concentration rises above its set point. This rise is detected by the pancreas — specifically the β-cells of the islets of Langerhans. In response the pancreas secretes the hormone insulin into the blood. Insulin travels to the body cells and causes them, particularly the liver and muscle cells, to take up glucose from the blood; in the liver it also stimulates the conversion of glucose into glycogen for storage. As glucose is removed from the blood, the blood glucose concentration falls back towards the set point (normal). Because the response opposes the original rise, this is negative feedback.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (A):** a RISE in blood glucose is DETECTED by the pancreas (accept β-cells / islets of Langerhans).\n- **Point 2 (A):** the pancreas SECRETES INSULIN.\n- **Point 3 (A):** insulin causes body cells / the liver to TAKE UP GLUCOSE, and the liver to convert glucose to GLYCOGEN. (This can score twice if uptake and glycogen conversion are stated as separate points.)\n- **Point 4 (A):** blood glucose FALLS back to the set point / normal — identified as NEGATIVE FEEDBACK.\n\n**How the marks combine.** More than four creditable statements are available here (detection, insulin secretion, cellular uptake, glycogen storage, return to set point, negative feedback), so the engine caps the award at 4 — you can miss one link and still reach full marks.\n\n**ECF and equivalents.** The points are independent, so a candidate who forgets to name the β-cells but correctly describes insulin causing glucose uptake and glycogen storage still earns those later marks. Equivalent wording is accepted — 'stored as glycogen in the liver' scores the same as 'liver converts glucose to glycogen', and 'brings glucose back to normal' scores the return-to-set-point mark.\n\n**What the engine rejects.** Naming glucagon here scores nothing — glucagon RAISES glucose and is the wrong hormone for a fall. An answer that says only 'the body lowers the glucose' with no mechanism earns no mechanism marks, because it names neither the detector, the hormone, nor the effector action."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer to a question like this the same way — point by point, with error-carried-forward and a cap at the marks available. So write in distinct, creditable steps: name the detector (pancreas / β-cells), name the hormone (insulin), name what it makes cells DO (take up glucose, store it as glycogen), and finish with the return to the set point as negative feedback. A vague 'the body sorts it out' scores nothing; the mark scheme rewards each named link in the loop, and showing every step is what protects your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The negative-feedback loop you have traced here is not a one-topic trick — it is the organising idea behind physiological control across biology. The same receptor–coordination-centre–effector logic governs the control of heart rate, breathing rate, blood pressure and the release of almost every hormone. Master the habit of naming each component and checking that the response OPPOSES the change, and you have a template that unlocks any control-system question the course can ask, whatever the variable being regulated."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Homeostasis",
-      "href": "/mark?subject=ib-biology-hl&topic=D3.3"
+      "label": "Get a Paper 2 question marked: trace a negative-feedback response and explain the control of blood glucose with full working",
+      "href": "/mark?subject=ib-biology-hl&topic=D3.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Khan Academy: Homeostasis",
-          "href": "https://www.khanacademy.org/science/high-school-biology/hs-human-body-systems/hs-body-structure-and-homeostasis/a/homeostasis"
+          "label": "IB Biology Guide (assessment and syllabus resources)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
         },
         {
-          "label": "YouTube: The Amoeba Sisters - Homeostasis and Negative/Positive Feedback",
-          "href": "https://www.youtube.com/watch?v=Iz0Q9nTZCw4"
+          "label": "NHS: Diabetes overview",
+          "href": "https://www.nhs.uk/conditions/diabetes/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -2,166 +2,378 @@
   "slug": "d1-3-mutation-and-gene-editing",
   "topicCode": "D1.3",
   "title": "Mutation and gene editing",
+  "unit": {
+    "code": "D",
+    "title": "Continuity and change"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental processes of mutation, including their types and causes (mutagens). It then delves into the revolutionary technology of gene editing, focusing on the CRISPR-Cas9 system, its mechanism, applications in medicine and research, and the profound ethical considerations it raises.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "A mutation is a change in the base sequence of a gene, and this lesson builds the whole D1.3 picture from that single idea. We cover the types of gene (point) mutation — substitution, insertion and deletion — and trace each through transcription and translation to its consequence for the protein: silent (neutral), missense, nonsense, and the frameshift that insertions and deletions cause. We look at where mutations come from (spontaneous replication errors and mutagens such as radiation and chemicals) and stress their random, undirected nature; why only germ-line mutations are heritable; and why mutation is the ultimate source of the genetic variation that evolution acts on, with sickle-cell anaemia as the worked substitution example. Finally we set out CRISPR-Cas9 gene editing and its applications and ethics. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — point by point, with error-carried-forward — so you can see how each creditable statement protects your score.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Distinguish between gene and chromosomal mutations, and outline the effects of different types of mutagens.",
-    "Explain the mechanism of the CRISPR-Cas9 system for gene editing.",
-    "Analyse the applications and ethical implications of gene editing technologies in various contexts.",
-    "Evaluate the potential consequences of somatic versus germline mutations."
+    "Define gene mutation and distinguish the types of point mutation: substitution, insertion and deletion.",
+    "Trace a specific base change through transcription and translation to classify its effect on the protein as silent (neutral), missense or nonsense, and explain why insertions and deletions cause a frameshift.",
+    "Explain the causes of mutation — spontaneous replication errors and mutagens (radiation, chemicals) — and describe why mutation is random and undirected.",
+    "Distinguish somatic from germ-line mutations and explain why only germ-line mutations are heritable, and why mutation is the ultimate source of genetic variation and the raw material for evolution.",
+    "Describe the CRISPR-Cas9 mechanism and discuss the applications and ethics of gene editing.",
+    "Present an explanation so that each distinct valid point earns a mark, using error-carried-forward (ECF) to protect the answer."
   ],
+  "syllabusObjectivesCovered": [
+    "D1.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "DNA's Spellchecker and Editor",
-    "summary": "Mutations are like typos in the book of life, which can be harmless, helpful, or harmful. Gene editing tools like CRISPR are like a 'find and replace' function, allowing scientists to correct these typos with precision.",
-    "analogy": "Imagine a huge instruction manual written in a four-letter code. A mutation is a typo in that manual. To fix it, you use a tool like CRISPR. You first create a 'guide' that is a perfect copy of the sentence with the typo (the 'find' function). This guide leads a molecular scissor (the 'replace' button) directly to the typo, which then cuts it out. The cell's own repair crew then either pastes the ends back together, often disabling the faulty instruction, or uses a correct template you provide to perfectly rewrite the sentence.",
+    "title": "Editing the Book of Life",
+    "summary": "DNA is a written instruction manual for building proteins. A mutation is a permanent typo in that manual — sometimes harmless, sometimes serious. Gene-editing tools such as CRISPR act like a precise 'find and replace' that can locate a specific typo and change it.",
+    "analogy": "Think of a codon as a three-letter word in a recipe. A substitution swaps one letter of one word — 'BAT' becomes 'CAT'; the recipe might still make sense (silent), read as a different word (missense), or turn into a full stop that ends the sentence early (nonsense). An insertion or deletion is worse: remove one letter and every word after it re-groups into gibberish, because the reader still reads in threes — that is a frameshift. Gene editing is a magic pen that finds one specific word and rewrites just that word.",
     "steps": [
-      "A specific 'guide RNA' (gRNA) is designed to match the target DNA sequence you want to edit.",
-      "The gRNA is attached to a DNA-cutting enzyme called Cas9, and this complex is introduced into a cell.",
-      "The gRNA molecule guides the Cas9 enzyme to the exact corresponding sequence in the cell's DNA.",
-      "Cas9 cuts both strands of the DNA. The cell then repairs the break, either by sticking the ends together (disrupting the gene) or by using a provided template to insert new DNA (correcting the gene)."
+      "A gene is a sequence of DNA bases; read in triplets, it specifies the amino acid sequence of a protein.",
+      "A mutation changes that base sequence — a single-base substitution, or an insertion or deletion of bases.",
+      "The changed sequence may leave the protein unchanged (silent), change one amino acid (missense), end it early (nonsense), or — for insertions/deletions — shift the reading frame and garble everything downstream.",
+      "CRISPR-Cas9 uses a guide RNA to find one target sequence and the Cas9 enzyme to cut it, so a faulty sequence can be corrected."
     ]
   },
+  "keyConcepts": [
+    "mutation",
+    "genetic variation",
+    "gene editing"
+  ],
   "flashcards": [
     {
-      "front": "What is a gene mutation?",
-      "back": "A permanent alteration in the DNA sequence that makes up a single gene. Examples include point mutations and small insertions/deletions."
+      "front": "Gene mutation",
+      "back": "A change in the base (nucleotide) sequence of a gene. It is a permanent, heritable change in the DNA if it occurs in a cell line that is passed on.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a mutagen?",
-      "back": "A physical, chemical, or biological agent that increases the frequency of mutations above the natural background rate. Examples include UV radiation, asbestos, and human papillomavirus (HPV)."
+      "front": "Substitution (point mutation)",
+      "back": "One base is replaced by another, changing a single codon. Consequence depends on the new codon: silent, missense or nonsense. It does NOT shift the reading frame.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Distinguish between a somatic and a germline mutation.",
-      "back": "A somatic mutation occurs in a non-reproductive body cell and is not inherited. A germline mutation occurs in a gamete (sperm or egg) and can be passed on to offspring."
+      "front": "Insertion / deletion",
+      "back": "One or more bases are added to or removed from the sequence. If the number is not a multiple of three, all codons downstream are re-grouped — a frameshift.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the two key components of the CRISPR-Cas9 system?",
-      "back": "1. Cas9 enzyme: A nuclease that cuts the DNA. 2. Guide RNA (gRNA): A short RNA molecule that directs the Cas9 to a specific target sequence in the genome."
+      "front": "Silent (neutral) mutation",
+      "back": "A base change that does not alter the amino acid coded for, so the protein is unchanged. Possible because the genetic code is degenerate — several codons specify the same amino acid.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the purpose of the double-strand break (DSB) created by Cas9?",
-      "back": "The DSB triggers the cell's natural DNA repair mechanisms. It is the activation of these repair pathways that allows for gene editing to occur."
+      "front": "Missense mutation",
+      "back": "A substitution that changes one codon so it codes for a DIFFERENT amino acid, altering one residue of the polypeptide. May change the protein's folding, structure and function. Example: sickle-cell anaemia.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is Non-Homologous End Joining (NHEJ)?",
-      "back": "A DNA repair pathway that quickly ligates broken DNA ends. It is error-prone and often introduces small insertions or deletions (indels), which can be used to knock out (disable) a gene."
+      "front": "Nonsense mutation",
+      "back": "A substitution that turns a codon into a STOP codon, terminating translation early and giving a shortened, usually non-functional protein.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is Homology-Directed Repair (HDR)?",
-      "back": "A DNA repair pathway that uses a homologous DNA template to accurately repair a double-strand break. Scientists can supply an engineered template to make precise edits, such as correcting a mutation or inserting a new gene."
+      "front": "Frameshift mutation",
+      "back": "The reading-frame shift caused by an insertion or deletion that is not a multiple of three. Every codon after the mutation changes, so most amino acids downstream are wrong — usually a non-functional protein.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What are 'off-target effects' in gene editing?",
-      "back": "Unintended cuts and edits made by the CRISPR-Cas9 system at sites in the genome that are similar, but not identical, to the intended target sequence. This is a major safety concern for therapeutic applications."
+      "front": "Mutagen",
+      "back": "An environmental agent that raises the mutation rate — e.g. ionising and UV radiation, and chemicals such as those in tobacco smoke. Mutagens increase the chance of a change; they do not choose which gene changes.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "IB Exam Trap: Are all mutations harmful?",
-      "back": "No. Many mutations are neutral, having no effect on the phenotype (e.g., silent mutations, mutations in non-coding regions). A small fraction are beneficial, providing a selective advantage. Avoid stating that mutation is always negative."
+      "front": "Are mutations directed?",
+      "back": "No. Mutations are random and spontaneous with respect to what the organism 'needs'. A mutagen or an environment can raise the rate, but not steer a change towards a useful outcome. Natural selection — not mutation — is the directional step.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the difference between a missense and a nonsense mutation?",
-      "back": "A missense mutation is a point mutation that results in a different amino acid being coded for. A nonsense mutation is a point mutation that results in a premature stop codon, truncating the protein."
+      "front": "Somatic vs germ-line",
+      "back": "Somatic mutations occur in body cells and affect only the individual — they are NOT passed to offspring. Germ-line mutations occur in gametes (or their precursors) and CAN be inherited.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Mutation and variation",
+      "back": "Mutation is the ULTIMATE source of new alleles and therefore of genetic variation. It supplies the raw material on which natural selection acts, so without it there would be no evolution.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Sickle-cell anaemia",
+      "back": "A single base substitution in the β-globin gene changes codon 6 from GAG to GUG, replacing glutamic acid with valine — a missense mutation. The altered haemoglobin (HbS) polymerises when deoxygenated, distorting red blood cells into a sickle shape.",
+      "pillLabel": "Example"
+    },
+    {
+      "front": "CRISPR-Cas9",
+      "back": "A gene-editing tool with two parts: a guide RNA (gRNA) complementary to the target DNA, and the Cas9 nuclease that cuts DNA. The gRNA directs Cas9 to a specific sequence, where it makes a double-strand break.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Role of the guide RNA",
+      "back": "A short RNA engineered to be complementary to the target sequence. It base-pairs with that sequence and so guides Cas9 to the exact locus — the 'postcode' that gives CRISPR its specificity.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: substitution ≠ frameshift",
+      "back": "A substitution changes ONE codon only and never shifts the frame. Only an insertion or deletion (not a multiple of three) causes a frameshift. Calling a substitution a frameshift loses the mark.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: 'all mutations are harmful'",
+      "back": "False. Many are silent (no effect), some are neutral, and a few are beneficial — the source of adaptive variation. Only some are harmful. State the range, not a blanket claim.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A single base in a gene is replaced by a different base. Which term correctly describes this, and does it shift the reading frame?",
+      "options": [
+        "A frameshift mutation; yes, all downstream codons change",
+        "A substitution; no, only one codon is affected",
+        "A deletion; yes, one codon is lost",
+        "An insertion; no, the frame is preserved"
+      ],
+      "answer": "A substitution; no, only one codon is affected"
+    },
+    {
+      "prompt": "A substitution changes the mRNA codon from GAA to GAG. Both code for glutamic acid. This is best described as:",
+      "options": [
+        "A missense mutation, because the base changed",
+        "A nonsense mutation, because a codon changed",
+        "A silent (neutral) mutation, because the genetic code is degenerate",
+        "A frameshift mutation, because a base was altered"
+      ],
+      "answer": "A silent (neutral) mutation, because the genetic code is degenerate"
+    },
+    {
+      "prompt": "A mutation arises in a skin cell of an adult. With respect to inheritance, this mutation:",
+      "options": [
+        "Will be passed to all the person's offspring",
+        "Cannot be inherited, because it is somatic, not germ-line",
+        "Will be inherited only by daughters",
+        "Becomes heritable if it is caused by a mutagen"
+      ],
+      "answer": "Cannot be inherited, because it is somatic, not germ-line"
+    },
+    {
+      "prompt": "A population is exposed to a mutagen. Which statement is correct?",
+      "options": [
+        "The mutagen directs mutations towards alleles the population needs",
+        "The mutagen raises the mutation rate, but which base changes is random",
+        "The mutagen guarantees only beneficial mutations occur",
+        "The mutagen causes mutations only in germ-line cells"
+      ],
+      "answer": "The mutagen raises the mutation rate, but which base changes is random"
+    },
+    {
+      "prompt": "A substitution changes an mRNA codon into UAA, a stop codon, midway through a gene. The most likely consequence is:",
+      "options": [
+        "No change, because stop codons are always ignored",
+        "One amino acid is swapped for another (missense)",
+        "A shortened, usually non-functional protein (nonsense mutation)",
+        "Every downstream amino acid is different (frameshift)"
+      ],
+      "answer": "A shortened, usually non-functional protein (nonsense mutation)"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between somatic and germline gene editing?",
-      "a": "Somatic gene editing targets the body cells of an individual to treat a disease. These changes are not heritable and affect only that person. Germline editing targets reproductive cells (sperm, eggs, or embryos). These changes are heritable and would be passed on to all future generations, which is why it is far more ethically controversial."
+      "q": "How can a mutation change the DNA but not change the protein?",
+      "a": "The genetic code is degenerate: most amino acids are specified by more than one codon, and codons for the same amino acid often differ only in the third base. So a substitution — especially at the third base — can produce a new codon that still codes for the same amino acid. The amino acid sequence, and therefore the protein, is unchanged. This is a silent, or neutral, mutation, and it is why not every DNA change has a consequence."
     },
     {
-      "q": "Are all mutations bad?",
-      "a": "No. In fact, most mutations are neutral; they have no effect on an organism's fitness. Some occur in non-coding DNA, while others are 'silent' and don't change the amino acid sequence. A small minority of mutations are beneficial, providing new variation for natural selection to act upon, while others are deleterious or harmful."
+      "q": "Why is a frameshift usually more damaging than a substitution?",
+      "a": "A substitution alters at most one codon, so it changes at most one amino acid (or none, or introduces one stop). An insertion or deletion that is not a multiple of three shifts the reading frame: the ribosome still reads in triplets, but the grouping is different from that point on, so every codon downstream is re-read and most amino acids after the mutation are wrong. A premature stop codon is also likely to appear. The result is usually a completely non-functional protein — which is why frameshifts tend to be far more disruptive than a single substitution."
     },
     {
-      "q": "Is CRISPR the only gene-editing tool?",
-      "a": "No, but it is the most famous due to its efficiency, low cost, and ease of use. Other gene-editing tools exist, such as Zinc-Finger Nucleases (ZFNs) and Transcription Activator-Like Effector Nucleases (TALENs). These were developed before CRISPR and also work by creating double-strand breaks at specific genomic locations, but they are generally more complex and expensive to engineer."
+      "q": "If most mutations are harmful or neutral, how do they drive evolution?",
+      "a": "Mutation is the only source of genuinely new alleles — new genetic variation. It happens at random, and most changes are neutral or harmful, but occasionally one is beneficial in a given environment. Natural selection then increases the frequency of that beneficial allele over generations. So the two steps are separate: mutation supplies the raw material (undirected), and selection provides the direction. Without mutation there would be nothing new for selection to act on."
+    },
+    {
+      "q": "Why is editing germ-line cells more controversial than editing somatic cells?",
+      "a": "Editing somatic (body) cells affects only the treated individual, so it is comparable to other medical therapies. Editing germ-line cells — gametes or early embryos — changes DNA that is passed to every future generation. That raises deeper concerns: the consent of people not yet born, unforeseen long-term effects, off-target edits that are also inherited, unequal access, and the prospect of non-therapeutic 'enhancement'. These are why many countries permit somatic gene-editing research while restricting heritable germ-line editing."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "The genetic code is the blueprint of life, remarkable for its stability across generations. However, this code is not immutable. It is subject to spontaneous and induced changes known as mutations. While mutation is the ultimate source of all genetic variation and the raw material for evolution, it can also cause disease. In this topic, we will examine the nature of mutations and explore how our understanding has led to the development of powerful gene-editing tools that promise to rewrite the code of life itself."
+      "content": "The base sequence of a gene is the instruction for building a protein, but that sequence is not fixed — it can change, and a change in the base sequence of a gene is a mutation. This lesson follows a mutation from the DNA outwards: the types of point mutation, what each does to the protein, where mutations come from, why only some are heritable, and why — despite most being neutral or harmful — mutation is the raw material that makes evolution possible. Sickle-cell anaemia serves as our worked example of a single base change, and CRISPR-Cas9 shows how such changes can now be made deliberately. Because the explanation marks in this topic are awarded point by point, every worked example is set out the way our marking engine actually awards them."
     },
     {
       "type": "heading",
-      "content": "The Nature and Causes of Mutation"
+      "content": "What a gene mutation is"
     },
     {
       "type": "text",
-      "content": "A mutation is a change in the nucleotide sequence of an organism's DNA. These can be classified by their scale. **Gene mutations** affect a single gene, often involving a single nucleotide (point mutations) or a few nucleotides (small insertions/deletions). **Chromosomal mutations** are large-scale changes affecting the structure or number of chromosomes. Mutations can arise spontaneously due to errors in DNA replication, or they can be induced by mutagens."
+      "content": "A gene mutation is a change in the base (nucleotide) sequence of a gene. It may be as small as a single base or involve several bases. Mutations arise in two broad ways: spontaneously, as rare mistakes made by DNA polymerase during replication that escape proofreading, and by induction, when a mutagen in the environment increases the error rate. Either way the change is permanent once it is copied into a new DNA strand, and if it occurs in a cell line that gives rise to daughter cells it is passed on to them. The key point for everything that follows is that the effect of a mutation is decided at the level of the codon: how the change alters the triplet code determines whether the protein changes at all, and if so, how."
+    },
+    {
+      "type": "heading",
+      "content": "Types of gene (point) mutation"
+    },
+    {
+      "type": "text",
+      "content": "Gene mutations are classified by what happens to the bases. In a substitution, one base is replaced by a different base — this changes a single codon and never shifts the reading frame. In an insertion, one or more bases are added; in a deletion, one or more bases are removed. Insertions and deletions matter far more than their size suggests, because the ribosome reads mRNA in fixed groups of three from a set starting point. Add or remove a number of bases that is not a multiple of three and every codon after the change is re-grouped — a frameshift."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Point Mutations**: Substitution of a single base. Can be silent (no amino acid change), missense (different amino acid), or nonsense (creates a stop codon).",
-        "**Frameshift Mutations**: Insertions or deletions of nucleotides not in multiples of three. They alter the reading frame of all subsequent codons, usually resulting in a non-functional protein.",
-        "**Mutagens**: Agents that increase mutation rate. Physical (e.g., UV light, X-rays), Chemical (e.g., nitrosamines in tobacco smoke, benzene), and Biological (e.g., certain viruses like HPV, bacteria like *Helicobacter pylori*)."
+        "**Substitution:** one base swapped for another; one codon changed; reading frame preserved. Effect is silent, missense or nonsense.",
+        "**Insertion:** one or more bases added. If not a multiple of three, causes a frameshift.",
+        "**Deletion:** one or more bases removed. If not a multiple of three, causes a frameshift.",
+        "**Reading frame:** the fixed triplet grouping of the code. Substitutions leave it intact; frameshifts destroy it from the mutation onward."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Consequences at the protein level"
+    },
+    {
+      "type": "text",
+      "content": "A substitution has one of three outcomes, and which one occurs depends entirely on the new codon. A silent (neutral) mutation produces a codon that still codes for the same amino acid — possible because the genetic code is degenerate, so several codons specify the same amino acid — and the protein is unchanged. A missense mutation produces a codon for a different amino acid, changing one residue in the polypeptide; depending on where it sits and how different the new amino acid is, this may barely matter or may disrupt the protein's folding and function. A nonsense mutation produces a stop codon, ending translation early and giving a shortened, usually non-functional protein. Insertions and deletions that cause a frameshift usually devastate the protein: every amino acid downstream is wrong and a premature stop codon commonly appears, so the polypeptide is almost always non-functional."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Silent / neutral:** new codon, same amino acid (degenerate code) → protein unchanged.",
+        "**Missense:** new codon, different amino acid → one residue changed; may alter folding and function.",
+        "**Nonsense:** new codon is a stop codon → translation ends early → truncated, usually non-functional protein.",
+        "**Frameshift (from insertion/deletion):** all downstream codons re-grouped → most amino acids wrong → almost always non-functional."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A researcher exposes a culture of bacteria to UV radiation. The initial mutation rate in the *lacZ* gene was measured as $2.5 \\times 10^{-8}$ mutations per cell division. After exposure, the rate increased to $4.0 \\times 10^{-6}$ mutations per cell division. \n\n(i) Calculate the fold increase in the mutation rate. [1]\n(ii) State the type of mutagen used. [1]\n(iii) Suggest one possible consequence of a mutation in the *lacZ* gene for a bacterium in a lactose-rich environment. [1]",
-      "solution": "(i) Fold increase = (Final rate) / (Initial rate) \n= $(4.0 \\times 10^{-6}) / (2.5 \\times 10^{-8})$ \n= $(400 \\times 10^{-8}) / (2.5 \\times 10^{-8})$ \n= 160\nThe mutation rate increased 160-fold. ✓\n\n(ii) Physical mutagen (or UV radiation). ✓\n\n(iii) The *lacZ* gene codes for β-galactosidase, which digests lactose. A mutation would likely render this enzyme non-functional. Therefore, the bacterium would be unable to metabolise lactose and would not be able to grow or compete effectively in that environment. ✓"
+      "question": "Use this section of the genetic code (mRNA codon → amino acid): GAG → Glu (glutamic acid); GUG → Val (valine); GAA → Glu (glutamic acid); UAG → Stop.\n\nIn the β-globin gene, codon 6 of the mRNA normally reads GAG. In sickle-cell anaemia a single base substitution changes the middle base A→U, so the codon becomes GUG.\n\n(a) State the amino acid coded by the normal codon and by the mutated codon.\n(b) Classify this mutation and justify your classification.\n(c) A different substitution changes the same GAG codon to GAA. State and explain the effect on the protein.\n(d) Outline how the codon 6 change leads to the sickling of red blood cells. [6]",
+      "solution": "**(a) Reading the two codons.**\nNormal codon GAG → glutamic acid (Glu). Mutated codon GUG → valine (Val). [A1]\n\n**(b) Classifying the mutation.**\nOne base has been replaced by another (A→U), so it is a SUBSTITUTION. [1] It changes the codon to one that codes for a DIFFERENT amino acid (Glu → Val), so it is a MISSENSE mutation. [1] Only one codon is affected and the reading frame is unchanged — it is not a frameshift.\n\n**(c) The GAG → GAA substitution.**\nGAA also codes for glutamic acid, the SAME amino acid as the original GAG. [1] So the amino acid sequence — and therefore the protein — is unchanged: this is a SILENT (neutral) mutation, possible because the genetic code is degenerate. [1]\n\n**(d) From base change to sickling.**\nReplacing glutamic acid (hydrophilic, charged) with valine (hydrophobic) on the surface of each β-globin chain creates a 'sticky' hydrophobic patch. When this haemoglobin (HbS) is deoxygenated, the patches make the molecules associate into long fibres that polymerise inside the red blood cell, distorting it into the rigid sickle shape. [1]\n\n*Notice how one base decides everything: A→U gives a disease-causing missense change, while A→A-position change to GAA gives no effect at all. That contrast is exactly what silent-versus-missense questions test.*"
+    },
+    {
+      "type": "workedExample",
+      "question": "Use this section of the genetic code (mRNA codon → amino acid): AUG → Met; AAA → Lys; CCC → Pro; GGG → Gly; AAC → Asn; CCG → Pro.\n\nA short mRNA reads 5'-AUG AAA CCC GGG-3'. Two different mutations are studied:\nMutation 1 — the first A of the second codon is deleted.\nMutation 2 — the first A of the second codon is substituted to G (so AAA → GAA).\n\n(a) Give the amino acid sequence of the original mRNA.\n(b) State the new codons and the effect of Mutation 1, and name this type of mutation.\n(c) Explain why Mutation 2 affects at most one amino acid, whereas Mutation 1 affects many. [5]",
+      "solution": "**(a) Original sequence.**\nAUG AAA CCC GGG → Met – Lys – Pro – Gly. [A1]\n\n**(b) Mutation 1 — deletion.**\nDeleting the first A of the second codon removes one base, so the ribosome re-groups everything after the deletion: the sequence becomes AUG · AAC · CCG · GG… → Met – Asn – Pro – … [1] Every codon after the deletion is different, and the message runs out of frame (the final GG is an incomplete codon). This is a FRAMESHIFT mutation, caused by the deletion. [1]\n\n**(c) Why the two differ.**\nMutation 2 is a substitution: it replaces one base with another and shifts nothing, so only the single codon it lies in can change — at most one amino acid is altered (or none, if the change is silent). [1] Mutation 1 is a deletion of one base, which is not a multiple of three, so the reading frame shifts and every codon downstream is re-read incorrectly, changing many amino acids and usually introducing a premature stop. [1]\n\n*This is the classic 'substitution versus frameshift' discrimination: the number of bases changed matters less than whether the reading frame survives.*"
     },
     {
       "type": "heading",
-      "content": "Gene Editing with CRISPR-Cas9"
+      "content": "Causes: mutagens and the random nature of mutation"
     },
     {
       "type": "text",
-      "content": "CRISPR-Cas9 is a powerful gene-editing technology adapted from a natural defence system in bacteria. It allows for precise, targeted modification of an organism's genome. The system has two main components: the Cas9 protein, which is an endonuclease that acts like molecular scissors to cut DNA, and a guide RNA (gRNA), which is a small, customisable RNA molecule that directs the Cas9 to a specific 20-base-pair sequence in the genome. When the gRNA binds to its complementary DNA sequence, the Cas9 enzyme creates a double-strand break (DSB) in the DNA."
+      "content": "Most mutations are spontaneous — rare copying errors during replication. Their rate is raised by mutagens: ionising radiation (such as X-rays and gamma rays) and ultraviolet light, which damage DNA directly, and chemical mutagens such as those in tobacco smoke and certain industrial compounds, which react with bases and cause mispairing. It is essential to be precise about what mutagens do. A mutagen increases the probability that a mutation occurs; it does not decide which gene mutates or steer the change towards anything useful. In this sense mutation is random and undirected with respect to the organism's needs: an environment that would benefit from a particular allele does not make that allele more likely to arise. This is the single most important conceptual point in the topic, and the one examiners most often test."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Mechanism**: The gRNA-Cas9 complex scans the genome. When the gRNA finds its matching DNA sequence, it binds, and Cas9 cuts the DNA.",
-        "**Repair Pathway 1: NHEJ**: Non-Homologous End Joining is the cell's default, error-prone repair mechanism. It often creates small insertions or deletions ('indels') at the cut site, which disrupts the gene's reading frame and 'knocks out' its function.",
-        "**Repair Pathway 2: HDR**: Homology-Directed Repair is a more precise mechanism that uses a DNA template to repair the break. Scientists can supply an artificial donor template containing a desired sequence. The cell uses this template to repair the DSB, allowing for precise correction of a mutation or insertion of a new gene."
+        "**Spontaneous:** rare, uncorrected replication errors — the baseline source of mutation.",
+        "**Mutagens (induced):** radiation (ionising, UV) and chemicals raise the mutation rate.",
+        "**Random and undirected:** mutagens change the RATE, not the DIRECTION — a needed allele is not made more likely by need.",
+        "**Two-step logic:** mutation supplies undirected variation; natural selection provides the direction."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where mutations matter: somatic versus germ-line"
+    },
+    {
+      "type": "text",
+      "content": "Whether a mutation can be inherited depends on which cells it occurs in. A somatic mutation arises in a body cell; it is copied to that cell's descendants within the individual — and can, for example, contribute to cancer — but it cannot be passed to offspring. A germ-line mutation arises in a gamete or in the cells that produce gametes; it can be inherited, and if it is, it will be present in every cell of the offspring. Only germ-line mutations are heritable, and only they contribute to the variation on which evolution acts. This distinction also underpins the ethics of gene editing: changing somatic cells affects one person, whereas changing germ-line cells changes all future generations."
+    },
+    {
+      "type": "heading",
+      "content": "Mutation as the raw material for evolution"
+    },
+    {
+      "type": "text",
+      "content": "Sexual reproduction — meiosis and fertilisation — reshuffles existing alleles into new combinations, but it cannot create an allele that did not already exist. Mutation is the ultimate source of new alleles, and therefore of all genetic variation. Most mutations are neutral or harmful, but occasionally one is beneficial in a particular environment. Natural selection then raises the frequency of that beneficial allele over generations. So mutation and selection play distinct roles: mutation is the undirected source of new variation, and selection is the directional filter. Without mutation there would be no new variation for selection to act on, and evolution would have no raw material."
+    },
+    {
+      "type": "heading",
+      "content": "CRISPR-Cas9: editing a specific sequence"
+    },
+    {
+      "type": "text",
+      "content": "CRISPR-Cas9 lets scientists make a change at a chosen point in the genome — in effect, a deliberate mutation. It was discovered as a bacterial defence system against viruses and adapted for use in other cells. It has two working parts: a guide RNA (gRNA), a short RNA engineered to be complementary to the target DNA sequence, and Cas9, a nuclease enzyme that cuts DNA. The gRNA base-pairs with its complementary sequence in the genome, which brings Cas9 to precisely that locus; Cas9 then makes a double-strand break. The cell's own repair machinery seals the break — and if scientists also supply a corrected DNA template, the cell can copy it during repair, changing the sequence to the desired version."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Design:** a gRNA is made complementary to the target gene sequence.",
+        "**Target:** the gRNA base-pairs with the matching genomic sequence, giving the specificity.",
+        "**Cut:** Cas9, guided to that locus, makes a double-strand break in the DNA.",
+        "**Repair:** the cell repairs the break; a supplied correct template can be copied in, editing the sequence."
       ]
     },
     {
       "type": "examTip",
-      "content": "When explaining CRISPR, always mention both components: the guide RNA (gRNA) for specificity and the Cas9 enzyme for cutting. For top marks, you must also distinguish between the two repair pathways (NHEJ and HDR) and their different outcomes (gene knockout vs. precise editing)."
+      "content": "To earn CRISPR marks you must name BOTH components and their roles: the guide RNA gives specificity by base-pairing with the target, and Cas9 is the enzyme that cuts. 'CRISPR cuts the DNA' alone is not enough — say what targets the cut and what makes it."
     },
     {
       "type": "heading",
-      "content": "Applications and Ethical Dimensions"
+      "content": "Applications and ethics"
     },
     {
       "type": "text",
-      "content": "The potential applications of CRISPR are vast. In medicine, it's being explored to treat monogenic diseases like sickle cell anaemia and cystic fibrosis by correcting the causative mutations in somatic cells. In agriculture, it can be used to create crops with enhanced yield, drought resistance, or nutritional value. However, the power of this technology raises significant ethical questions. The most contentious issue is germline editing—making heritable changes to human embryos or gametes. While this could potentially eradicate genetic diseases from a family line, it raises concerns about unforeseen long-term effects, consent, and the potential for creating 'designer babies', exacerbating social inequalities."
+      "content": "Gene editing has broad potential: correcting the single-gene mutations behind disorders such as sickle-cell anaemia and cystic fibrosis, engineering crops for higher yield or disease resistance, and creating precise research models. But the same power raises hard questions. The central ethical line is between somatic editing (affecting only the treated individual, and broadly comparable to other therapies) and germ-line editing (heritable, affecting all future generations). Further concerns include off-target edits, unequal access, consent for people not yet born, and the difference between treating disease and non-therapeutic 'enhancement'. These are why heritable germ-line editing in humans is widely restricted even where somatic gene-editing research is permitted."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Calling a substitution a frameshift** — a substitution changes only one codon and never shifts the reading frame. Only insertions or deletions (not a multiple of three) cause a frameshift.",
+        "**Forgetting silent mutations** — because the code is degenerate, a base change can leave the amino acid unchanged. An answer that assumes every substitution changes the protein is incomplete.",
+        "**Saying 'all mutations are harmful'** — many are neutral or silent and a few are beneficial. State the full range, and note that beneficial mutations are the source of adaptive variation.",
+        "**Claiming somatic mutations are inherited** — only germ-line mutations (in gametes or their precursors) can be passed to offspring. Somatic mutations affect only the individual.",
+        "**Saying mutations are 'directed' by need or by a mutagen** — mutations are random; a mutagen raises the rate, not the direction. Natural selection, not mutation, supplies the direction.",
+        "**Describing CRISPR as just 'cutting DNA'** — you must state that the guide RNA provides specificity by complementary base-pairing and that Cas9 is the enzyme that cuts.",
+        "**Confusing missense and nonsense** — missense = different amino acid; nonsense = premature stop codon and a truncated protein."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is an 'explain' question, so the marks are awarded analytically: each distinct valid biological point is worth one mark, up to the maximum. Method-style points (M) credit correct reasoning about the mechanism, answer points (A) credit a correct stated outcome, and error-carried-forward (ECF) means that if you set up one step wrongly but reason correctly from it, the later points can still be earned. Study how each mark below is tied to a specific named idea, not to loose phrasing."
     },
     {
       "type": "workedExample",
-      "question": "A research team is developing a CRISPR-based therapy for a genetic liver disease. They need to deliver the CRISPR-Cas9 system into liver cells (hepatocytes) and then use HDR to correct the faulty gene. The efficiency of delivering the system into a hepatocyte is 30%. Of the cells that receive the system, the HDR pathway is successfully used for correction in only 5% of cases. Calculate the overall percentage of hepatocytes in the patient's liver that would be successfully corrected by this therapy. [2]",
-      "solution": "This is a two-step probability problem. Both events must occur for a cell to be successfully corrected.\n\n1. Probability of delivery (transfection) = 30% = 0.30\n2. Probability of HDR, given successful delivery = 5% = 0.05\n\nOverall probability = P(delivery) × P(HDR | delivery) ✓\n= 0.30 × 0.05\n= 0.015\n\nTo express this as a percentage, multiply by 100:\n0.015 × 100 = 1.5%\n\nTherefore, only 1.5% of the total hepatocytes would be successfully corrected. ✓\n(This highlights the significant efficiency challenges in developing in vivo gene therapies)."
+      "question": "Explain how a single base substitution in a gene may or may not affect the protein produced. [4]",
+      "solution": "**Model answer.**\nA substitution changes one base and therefore alters a single codon of the mRNA. Because the genetic code is degenerate, the new codon may still code for the same amino acid, so the amino acid sequence — and hence the protein — is unchanged; this is a silent (neutral) mutation. Alternatively, the new codon may code for a different amino acid (a missense mutation), changing one residue of the polypeptide and possibly altering the protein's folding, structure and function. Or the new codon may become a stop codon (a nonsense mutation), which ends translation early and produces a shortened, usually non-functional protein. Which outcome occurs depends entirely on the new codon.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** a substitution changes one base / alters a single codon (reading frame unchanged).\n- **Point 2 (A):** because the code is DEGENERATE the new codon may code for the SAME amino acid → silent/no effect on the protein.\n- **Point 3 (A):** the new codon may code for a DIFFERENT amino acid → missense → one residue changed, altering the protein.\n- **Point 4 (A):** the new codon may become a STOP codon → nonsense → translation ends early → truncated / non-functional protein.\n\nThe engine credits DISTINCT ideas: naming both 'silent' and 'no change to the protein' is one point, not two. Because the question is worth 4 and there are several creditable outcomes, there is deliberate room to miss one and still score full marks.\n\n**How A marks and ECF work here.** The A marks are for the correct OUTCOME attached to each case (silent → unchanged; missense → altered; nonsense → truncated). Equivalent wording is accepted — 'neutral' for silent, 'premature stop codon' for nonsense, 'polypeptide' for protein. Under ECF, a student who defines degeneracy slightly wrongly but then reasons correctly to 'same amino acid, no change' still earns that outcome mark, because the reasoning chain is intact.\n\n**What the engine rejects.** 'A substitution always changes the protein' scores no more than the mechanism point, because it misses the silent case. 'The mutation is bad for the cell' scores nothing — it names no codon-level mechanism and no specific outcome.\n\n**Bottom line:** to secure all 4 marks, state the single-codon change, then give the three possible outcomes tied to their causes (degeneracy → silent; different amino acid → missense; stop codon → nonsense). Each named case is a separate mark."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements: name the single-codon change, then each outcome with its cause (degeneracy → silent, different amino acid → missense, stop codon → nonsense). Vague statements like 'it might change the protein' earn nothing; the named mechanism and outcomes are what protect your score."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Mutation ties this topic to the rest of the course. It is the source of the new alleles that population genetics and natural selection then act on; the substitution/missense/nonsense logic depends directly on transcription, translation and the degenerate genetic code; and CRISPR-Cas9 is applied molecular biology built on complementary base-pairing and enzyme specificity. Master the codon-level reasoning here — trace a base change to its codon, then to the amino acid, then to the protein — and both the exam calculations and the bigger evolutionary picture fall into place."
     },
     {
       "type": "practice",
-      "label": "Practice Questions: D1.3 Mutation and Gene Editing",
-      "href": "/mark?subject=ib-biology-hl&topic=D1.3"
+      "label": "Get a Paper 2 answer marked: explain how a base substitution may or may not affect the protein, with full point-by-point credit",
+      "href": "/mark?subject=ib-biology-hl&topic=D1.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Video: What is CRISPR?",
-          "href": "https://www.youtube.com/watch?v=jAhjPd4uNFY"
+          "label": "Video: What is CRISPR? (McGovern Institute, MIT)",
+          "href": "https://www.youtube.com/watch?v=2pp17E4E-O8"
         },
         {
-          "label": "Article: Gene editing and its ethical dilemmas",
-          "href": "https://www.nature.com/articles/d41586-019-00673-1"
+          "label": "Article: A simple guide to CRISPR (The Conversation)",
+          "href": "https://theconversation.com/a-simple-guide-to-crispr-one-of-the-biggest-science-stories-of-the-decade-128913"
         },
         {
-          "label": "Interactive: DNA Mutation Simulation",
-          "href": "https://www.sepa.du.edu/education/simulations/dnarom_sim.html"
+          "label": "Interactive: DNA Mutation (Learn.Genetics, University of Utah)",
+          "href": "https://learn.genetics.utah.edu/content/basics/mutation"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

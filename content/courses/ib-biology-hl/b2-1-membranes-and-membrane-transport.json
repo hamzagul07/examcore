@@ -2,192 +2,410 @@
   "slug": "b2-1-membranes-and-membrane-transport",
   "topicCode": "B2.1",
   "title": "Membranes and membrane transport",
+  "unit": {
+    "code": "B",
+    "title": "Form and function"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson explores the structure of cell membranes as described by the fluid mosaic model and delves into the diverse mechanisms by which substances cross this selective barrier, from passive diffusion to energy-dependent active transport and bulk transport.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "The plasma membrane is where cell biology meets physical chemistry. This lesson builds B2.1 from the ground up: why phospholipids spontaneously assemble into a bilayer, the fluid mosaic model and the roles of integral proteins, peripheral proteins, cholesterol and glycoproteins, what controls membrane fluidity, and how selective permeability arises. It then works through every transport route — simple diffusion, facilitated diffusion through channel and carrier proteins, osmosis and water potential, active transport and the sodium-potassium pump, and bulk transport by endocytosis and exocytosis. The worked examples and the model answer are laid out exactly the way our marking engine awards Paper 2 marks — one mark per distinct valid point, credit for a correct example, and error-carried-forward — so you can see how each idea earns its mark.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the fluid mosaic model of membrane structure, including the roles of phospholipids, cholesterol, and proteins.",
-    "Distinguish between simple diffusion, facilitated diffusion, osmosis, and active transport, citing examples.",
-    "Analyse data on membrane transport, including factors affecting the rate of diffusion and osmolarity experiments.",
-    "Describe the mechanisms of endocytosis and exocytosis for the bulk transport of materials."
+    "Explain why phospholipids form a bilayer in water in terms of their hydrophilic heads and hydrophobic tails.",
+    "Describe the fluid mosaic model, including integral and peripheral proteins, cholesterol and glycoproteins, and account for membrane fluidity and selective permeability.",
+    "Distinguish passive transport (simple diffusion, facilitated diffusion, osmosis) from active transport, and predict cell behaviour in hypertonic, hypotonic and isotonic solutions using water potential.",
+    "Outline active transport and the sodium-potassium pump, and describe bulk transport by endocytosis and exocytosis.",
+    "Present an explanation so that each distinct valid point earns a mark, with a correct named example and error-carried-forward protecting the score."
   ],
+  "syllabusObjectivesCovered": [
+    "B2.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Cell's Border Control",
-    "summary": "The cell membrane acts like a country's border, meticulously controlling everything that enters and leaves. This ensures the cell maintains a stable internal environment, distinct from its surroundings.",
-    "analogy": "Imagine a bustling city surrounded by a smart wall. The wall itself is flexible (fluid), made of individual bricks (phospholipids). Embedded in the wall are various gates and checkpoints (proteins). Some small, approved items can slip through gaps, some need a specific gate to open for them, and some require a guard to use energy to physically carry them across, especially if they're going to a more crowded area. This entire system ensures only the right things get in and out, keeping the city functioning perfectly.",
+    "title": "The Cell's Gatekeeper",
+    "summary": "The plasma membrane is a thin, flexible barrier that decides what enters and leaves a cell. It has to be sealed enough to hold the cell's contents together, yet selective enough to let the right substances cross at the right rate — and that balance comes straight from the way its molecules are arranged.",
+    "analogy": "Picture the security wall around a busy venue. The solid wall itself is the phospholipid bilayer: it keeps the inside separate from the outside. A few tiny, easily-dissolved visitors slip straight through the fabric of the wall (simple diffusion). Others can only enter through a specific gate, and each gate fits only one kind of visitor (facilitated diffusion). Some visitors have to be pushed in against a crowd streaming the other way, which takes a paid guard doing work (active transport, powered by ATP). And a whole coach-load arriving at once is admitted through a special loading bay that opens, swallows the coach and reseals (endocytosis).",
     "steps": [
-      "First, understand the membrane's structure: a fluid phospholipid bilayer with embedded proteins, like a mosaic. Cholesterol in animal cells modulates this fluidity.",
-      "Next, explore passive transport. This includes simple diffusion for small, nonpolar molecules and facilitated diffusion for ions and polar molecules, both moving down a concentration gradient without energy.",
-      "Then, examine active transport. This process moves substances against their concentration gradient, requiring specific protein pumps and energy from ATP, like the sodium-potassium pump.",
-      "Finally, learn about bulk transport. Endocytosis brings large materials into the cell by forming vesicles, while exocytosis expels materials from the cell by fusing vesicles with the membrane."
+      "Phospholipids have a water-loving head and two water-fearing tails, so in water they line up into a bilayer with the tails tucked away from water — this happens spontaneously and gives the membrane its basic sealed sheet.",
+      "The fluid mosaic model adds proteins, cholesterol and glycoproteins to that sheet; components drift sideways (fluid) and vary across the membrane (mosaic), which is why the membrane can carry out so many jobs.",
+      "Passive transport moves substances down their concentration or water-potential gradient with no ATP: simple diffusion, facilitated diffusion and osmosis.",
+      "Active transport uses ATP and protein pumps to move substances against the gradient, while bulk transport packages large materials into vesicles for endocytosis (in) and exocytosis (out)."
     ]
   },
+  "keyConcepts": [
+    "fluid mosaic model",
+    "selective permeability",
+    "water potential"
+  ],
   "flashcards": [
     {
-      "front": "What is the fluid mosaic model?",
-      "back": "A model describing the cell membrane as a fluid bilayer of phospholipids with a mosaic of embedded proteins. The 'fluid' part refers to the lateral movement of lipids and some proteins, while 'mosaic' refers to the scattered pattern of proteins."
+      "front": "Phospholipid",
+      "back": "An amphipathic molecule with a hydrophilic (polar) phosphate head and two hydrophobic (nonpolar) fatty-acid tails. This split personality is what drives bilayer formation in water.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the function of cholesterol in animal cell membranes?",
-      "back": "Cholesterol acts as a fluidity buffer. At high temperatures, it restrains phospholipid movement, reducing fluidity. At low temperatures, it prevents tight packing, increasing fluidity and preventing solidification."
+      "front": "Why a bilayer forms",
+      "back": "In water the hydrophilic heads face outward toward the aqueous surroundings while the hydrophobic tails cluster inward away from water. The bilayer is the arrangement that is most stable in water — it forms spontaneously, no energy input needed.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Distinguish between integral and peripheral proteins.",
-      "back": "Integral proteins are embedded within the phospholipid bilayer, often spanning the entire membrane (transmembrane). Peripheral proteins are loosely bound to the surface of the membrane, often attached to integral proteins."
+      "front": "Fluid mosaic model",
+      "back": "The membrane is a FLUID bilayer of phospholipids in which proteins and other molecules drift laterally, forming a MOSAIC of many different components (Singer and Nicolson, 1972).",
+      "pillLabel": "Model"
     },
     {
-      "front": "Define simple diffusion.",
-      "back": "The net movement of small, nonpolar molecules (e.g., O₂, CO₂) across a membrane from a region of higher concentration to a region of lower concentration, without the help of proteins or energy."
+      "front": "Integral vs peripheral protein",
+      "back": "Integral proteins are embedded in the hydrophobic core, often spanning the whole membrane (transmembrane); many are transporters. Peripheral proteins sit on a surface, attached to the heads or to an integral protein, and are not embedded in the core.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define facilitated diffusion.",
-      "back": "The passive movement of specific molecules (e.g., glucose, ions) across a membrane down their concentration gradient, mediated by channel or carrier proteins. It does not require metabolic energy (ATP)."
+      "front": "Cholesterol",
+      "back": "A lipid wedged between phospholipids in animal-cell membranes that buffers fluidity: it stops the membrane becoming too fluid when warm and too rigid when cold, keeping it stable across a range of temperatures.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is osmosis?",
-      "back": "The net movement of free water molecules across a selectively permeable membrane from a region of higher water potential (lower solute concentration) to a region of lower water potential (higher solute concentration)."
+      "front": "Glycoprotein",
+      "back": "A membrane protein with a carbohydrate chain attached, projecting from the outer surface. Glycoproteins act as cell-recognition markers and receptors — molecular ID tags read by other cells.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a common mistake when comparing facilitated diffusion and active transport?",
-      "back": "Confusing the two because both use proteins. The key difference is energy: facilitated diffusion is passive (down a gradient, no ATP), while active transport is active (against a gradient, requires ATP)."
+      "front": "Selective permeability",
+      "back": "The membrane lets some substances cross freely while restricting others. Small nonpolar molecules cross the bilayer easily; ions and large polar molecules need specific proteins — so the cell controls its internal composition.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Describe the function of the sodium-potassium pump ($Na^+/K^+$ pump).",
-      "back": "A primary active transport protein that pumps 3 sodium ions ($Na^+$) out of the cell and 2 potassium ions ($K^+$) into the cell, against their respective concentration gradients, using one molecule of ATP per cycle. This maintains electrochemical gradients."
+      "front": "Simple diffusion",
+      "back": "Net movement of small nonpolar molecules (e.g. O₂, CO₂) directly through the bilayer from higher to lower concentration. Passive: no ATP, no protein needed.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is endocytosis?",
-      "back": "A process where the cell takes in macromolecules or particulate matter by forming a new vesicle from the plasma membrane. Includes phagocytosis ('cell eating') and pinocytosis ('cell drinking')."
+      "front": "Facilitated diffusion",
+      "back": "PASSIVE movement of ions or large polar molecules (e.g. glucose) down their gradient THROUGH a channel or carrier protein. Still no ATP — the protein only provides a route, it does not supply energy.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is exocytosis?",
-      "back": "A process where a transport vesicle from within the cell fuses with the plasma membrane to release its contents (e.g., hormones, neurotransmitters) to the extracellular space."
+      "front": "Channel vs carrier protein",
+      "back": "A channel protein is a hydrophilic pore that specific ions pass straight through. A carrier protein binds the substance and changes shape to move it across. Both are used in facilitated diffusion; carriers are also used in active transport.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is water potential (ψ)?",
-      "back": "The potential energy of water per unit volume relative to pure water in reference conditions. It quantifies the tendency of water to move from one area to another. It is affected by solute concentration (solute potential) and pressure (pressure potential)."
+      "front": "Osmosis",
+      "back": "The net movement of WATER only across a partially permeable membrane, from a region of higher water potential to a region of lower water potential. It is a passive process — a special case of diffusion, for water.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is meant by an amphipathic molecule?",
-      "back": "A molecule that has both a hydrophilic (water-attracting) region and a hydrophobic (water-repelling) region. Phospholipids are a key example, with a hydrophilic phosphate head and hydrophobic fatty acid tails."
+      "front": "Water potential and tonicity",
+      "back": "Water potential falls as solute concentration rises. A HYPERTONIC solution has lower water potential than the cell (cell loses water); a HYPOTONIC solution has higher water potential (cell gains water); an ISOTONIC solution has equal water potential (no net movement).",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Active transport",
+      "back": "Movement of a substance AGAINST its concentration gradient, requiring ATP and a specific carrier protein (pump). Because it works against the gradient it is not spontaneous and must be powered.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Sodium-potassium pump",
+      "back": "An active-transport pump using ATP to move 3 Na⁺ out of the cell and 2 K⁺ in, both against their gradients. It maintains the ion gradients used in nerve impulses and in co-transport of glucose.",
+      "pillLabel": "Example"
+    },
+    {
+      "front": "Endocytosis and exocytosis",
+      "back": "Bulk transport of large materials in vesicles, needing energy and membrane fluidity. Endocytosis takes material IN by infolding the membrane to form a vesicle; exocytosis expels material as a vesicle fuses with the membrane and releases its contents.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Exam Trap: osmosis is water",
+      "back": "Osmosis is the movement of WATER, not solute. Never write 'the sugar moves in by osmosis' — the water moves toward the higher solute concentration (lower water potential); the solute is what stays put.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: facilitated diffusion is passive",
+      "back": "Using a protein does NOT make it active. Facilitated diffusion still runs down the gradient and uses no ATP. Only movement AGAINST the gradient with ATP counts as active transport.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A student writes that 'glucose moves into a cell by osmosis when there is more glucose outside'. What is wrong with this statement?",
+      "options": [
+        "Nothing — this is a correct use of osmosis",
+        "Osmosis is the movement of water, not solute; glucose would enter by facilitated diffusion",
+        "Osmosis only happens in plant cells",
+        "Glucose cannot cross a membrane at all"
+      ],
+      "answer": "Osmosis is the movement of water, not solute; glucose would enter by facilitated diffusion"
+    },
+    {
+      "prompt": "Facilitated diffusion uses a membrane protein. Does this make it a form of active transport?",
+      "options": [
+        "Yes — any process using a protein is active transport",
+        "Yes — the protein supplies energy to move the molecule",
+        "No — it moves substances down the gradient and uses no ATP, so it is passive",
+        "No — but only because it moves ions rather than glucose"
+      ],
+      "answer": "No — it moves substances down the gradient and uses no ATP, so it is passive"
+    },
+    {
+      "prompt": "An animal cell is placed in a HYPERTONIC solution. What happens to the cell?",
+      "options": [
+        "It swells and may burst, because water enters",
+        "It shrinks (crenates), because water leaves by osmosis",
+        "Nothing, because the solutions are in balance",
+        "It takes in solute by active transport until balanced"
+      ],
+      "answer": "It shrinks (crenates), because water leaves by osmosis"
+    },
+    {
+      "prompt": "Which statement about the sodium-potassium pump is correct?",
+      "options": [
+        "It moves ions down their gradients, so it needs no energy",
+        "It moves ions against their gradients and requires ATP",
+        "It moves water against its gradient using ATP",
+        "It is an example of simple diffusion through the bilayer"
+      ],
+      "answer": "It moves ions against their gradients and requires ATP"
+    },
+    {
+      "prompt": "Why can oxygen cross the phospholipid bilayer directly, while sodium ions cannot?",
+      "options": [
+        "Oxygen is charged and sodium is not",
+        "Oxygen is small and nonpolar, so it passes through the hydrophobic core; the charged Na⁺ is repelled and needs a protein",
+        "Sodium is smaller than oxygen so it bounces off",
+        "Both cross equally easily; the question is based on a false premise"
+      ],
+      "answer": "Oxygen is small and nonpolar, so it passes through the hydrophobic core; the charged Na⁺ is repelled and needs a protein"
     }
   ],
   "faq": [
     {
-      "q": "Why is the membrane described as 'fluid'?",
-      "a": "The term 'fluid' refers to the fact that the individual phospholipid molecules and some of the embedded proteins are not fixed in place. They can move laterally, like people in a crowd. This fluidity is crucial for membrane function, allowing for processes like cell movement, growth, and vesicle fusion."
+      "q": "Why do phospholipids form a bilayer instead of just floating around?",
+      "a": "Each phospholipid is amphipathic: its phosphate head is hydrophilic and its two fatty-acid tails are hydrophobic. In water the tails cannot mix with the surrounding molecules, so the system is most stable when the tails hide away from water and the heads face it. A double layer — heads out on both faces, tails sandwiched in the middle — achieves exactly that, which is why the bilayer assembles spontaneously with no energy input. The same physics is why a torn membrane reseals itself."
     },
     {
-      "q": "What is the main difference between facilitated diffusion and active transport?",
-      "a": "Both use membrane proteins, which can cause confusion. The key difference is the energy requirement and direction of movement. Facilitated diffusion moves substances *down* their concentration gradient and requires *no* metabolic energy (ATP). Active transport moves substances *against* their concentration gradient and *requires* energy from ATP."
+      "q": "What is the difference between a channel protein and a carrier protein?",
+      "a": "Both are used in facilitated diffusion. A channel protein is a hydrophilic pore that lets specific ions or small molecules pass straight through when it is open. A carrier protein binds its target on one side of the membrane, changes shape, and releases it on the other side. The key extra point is that carrier proteins are also used in active transport — when driven by ATP, the same shape-change can pump a substance against its gradient."
     },
     {
-      "q": "If plant cells have a cell wall, why do they need to worry about osmosis?",
-      "a": "The cell wall is fully permeable to water and solutes, so it does not control what enters or leaves the cell in that regard. The selectively permeable barrier is the plasma membrane, located just inside the cell wall. Osmosis occurs across this membrane. The rigid cell wall provides structural support and prevents the cell from bursting (lysis) when it takes in a lot of water in a hypotonic environment, instead allowing it to become turgid."
+      "q": "How is osmosis different from diffusion?",
+      "a": "Osmosis is really a special case of diffusion that applies only to water across a partially permeable membrane. In diffusion we track any substance moving down its concentration gradient; in osmosis we track water moving from higher to lower water potential. The common exam error is to describe solute 'moving by osmosis' — only the water moves in osmosis, toward the region of higher solute concentration."
     },
     {
-      "q": "Are channel proteins and carrier proteins the same thing?",
-      "a": "No, they are two different types of transport proteins used mainly in facilitated diffusion. Channel proteins form a hydrophilic pore through the membrane that specific ions or small molecules can pass through. Carrier proteins bind to a specific substance, change their shape (conformation), and transport the substance to the other side of the membrane. Carriers are generally slower than channels."
+      "q": "Do plant cells burst in a hypotonic solution like animal cells do?",
+      "a": "No, and the reason is the cell wall. In a hypotonic solution water enters both plant and animal cells by osmosis. An animal cell keeps swelling and can lyse (burst). A plant cell swells until it presses against its rigid cellulose cell wall; the wall pushes back, generating turgor pressure that stops further water entry, so the cell becomes turgid rather than bursting. This turgor is what keeps non-woody plants upright — lose it and the plant wilts."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Every living cell is enclosed by a plasma membrane, a remarkable structure that is far more than a simple container. It is a dynamic, selective barrier that mediates all interactions between the cell and its environment. In this lesson, we will dissect the elegant architecture of the membrane and explore the sophisticated mechanisms that govern the passage of substances, a process fundamental to life itself."
+      "content": "Every cell has to be both sealed and open at once: sealed enough to keep its carefully controlled contents from mixing with the surroundings, yet open enough to take in nutrients, expel waste and respond to signals. The plasma membrane resolves that tension. It is only a few nanometres thick, yet its molecular design lets it act as a selective barrier that decides which substances cross and how fast. This lesson starts with why the membrane has the structure it does, then works through each transport route in turn. As in the exemplar topics, the worked examples and the model answer are set out the way marks are actually awarded — because in an explain-heavy topic, HOW you phrase each point decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "The Fluid Mosaic Model: A Dynamic Barrier"
+      "content": "The phospholipid bilayer and why it forms"
     },
     {
       "type": "text",
-      "content": "The currently accepted model for the structure of the plasma membrane is the fluid mosaic model, proposed by Singer and Nicolson in 1972. It describes the membrane as a 'fluid' structure because its components, primarily phospholipids and proteins, can move laterally. The 'mosaic' aspect refers to the patchwork of different proteins embedded within or attached to the phospholipid bilayer. The fundamental framework is the phospholipid bilayer, with the hydrophilic (polar) heads facing the aqueous environments inside and outside the cell, and the hydrophobic (non-polar) tails shielded in the interior."
+      "content": "The foundation of every membrane is the phospholipid. Each phospholipid molecule is amphipathic — it has two chemically opposite ends. One end is a phosphate-containing head that is hydrophilic (polar, water-attracting); the other end is a pair of fatty-acid tails that are hydrophobic (nonpolar, water-repelling). Place many phospholipids in a watery environment and they arrange themselves so that the hydrophilic heads face the water while the hydrophobic tails huddle together away from it. The lowest-energy, most stable arrangement is a bilayer: two sheets of phospholipids tail-to-tail, with heads facing the aqueous fluids inside and outside the cell and the tails forming a nonpolar core in the middle. This assembly is spontaneous — it needs no energy — and it is self-sealing, because any gap exposes tails to water and is immediately closed."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Phospholipids:** Form the basic bilayer structure. They are amphipathic.",
-        "**Cholesterol (in animal cells):** Tucked between phospholipids, it modulates membrane fluidity, acting as a buffer against temperature changes.",
-        "**Integral Proteins:** Penetrate the hydrophobic core. Transmembrane proteins span the entire membrane and are crucial for transport.",
-        "**Peripheral Proteins:** Located on the surface of the membrane, often serving as enzymes or for structural support.",
-        "**Glycoproteins & Glycolipids:** Proteins and lipids with attached carbohydrate chains. They function in cell-cell recognition, adhesion, and as receptors."
+        "**Amphipathic phospholipids:** hydrophilic phosphate head, hydrophobic fatty-acid tails.",
+        "**Heads out, tails in:** heads face the aqueous fluids either side; tails cluster into a nonpolar core, hidden from water.",
+        "**Spontaneous and self-sealing:** the bilayer is the most stable arrangement in water, so it forms without energy and reseals when disrupted.",
+        "**Consequence — selective barrier:** the hydrophobic core blocks charged and large polar molecules, which is where selective permeability begins."
       ]
     },
     {
       "type": "heading",
-      "content": "Movement Across the Membrane: Passive Transport"
+      "content": "The fluid mosaic model"
     },
     {
       "type": "text",
-      "content": "Passive transport mechanisms move substances down their electrochemical gradient and do not require the cell to expend metabolic energy (ATP). Simple diffusion is the movement of small, lipid-soluble molecules like oxygen and carbon dioxide directly through the bilayer. Facilitated diffusion also moves substances down their gradient, but requires the help of membrane proteins. Channel proteins provide a hydrophilic corridor for specific ions or molecules, while carrier proteins change shape to shuttle their cargo across. Osmosis is a specific case of facilitated diffusion for water, often through channel proteins called aquaporins."
+      "content": "The accepted description of membrane structure is the fluid mosaic model, proposed by Singer and Nicolson in 1972. 'Fluid' captures the fact that the phospholipids, and many of the proteins, are not fixed — they drift sideways within the plane of the membrane, so the whole sheet behaves like a two-dimensional liquid. 'Mosaic' captures the fact that the membrane is a patchwork of many different components set into the bilayer. Alongside the phospholipids sit integral proteins, embedded in the hydrophobic core and often spanning the whole membrane as transmembrane transporters; peripheral proteins, attached loosely to a surface or to an integral protein without entering the core; cholesterol, a lipid wedged between phospholipids in animal cells; and glycoproteins, proteins bearing carbohydrate chains that project from the outer surface as cell-recognition markers."
     },
     {
-      "type": "workedExample",
-      "question": "A student places several 2.0 g cubes of potato tissue into a beaker containing a 0.6 M sucrose solution. The initial water potential of the potato cells is -700 kPa. The water potential of the sucrose solution is -1600 kPa. After 60 minutes, a cube is removed and its mass is found to be 1.7 g. \n\n(a) Calculate the percentage change in mass of the potato cube. \n(b) Explain the change in mass with reference to water potential.",
-      "solution": "**(a) Calculation of percentage change:**\n\n1.  **Find the change in mass:**\n    Final mass - Initial mass = 1.7 g - 2.0 g = -0.3 g\n\n2.  **Calculate percentage change:**\n    (Change in mass / Initial mass) × 100%\n    (-0.3 g / 2.0 g) × 100% = **-15%** [2 marks]\n\n**(b) Explanation:**\n\n1.  **Identify direction of water movement:** The mass of the potato cube decreased, indicating a net movement of water out of the potato cells and into the sucrose solution. [1 mark]\n\n2.  **Relate to water potential:** Water moves by osmosis from a region of higher water potential to a region of lower water potential. [1 mark]\n\n3.  **Compare potentials:** The water potential of the potato cells (-700 kPa) is higher (less negative) than the water potential of the surrounding sucrose solution (-1600 kPa). [1 mark]\n\n4.  **Conclusion:** Therefore, there was a net efflux of water from the potato cells, causing them to lose turgor and mass. [1 mark]"
-    },
-    {
-      "type": "examTip",
-      "content": "When discussing osmosis, always refer to 'water potential' rather than just 'concentration'. While a high solute concentration corresponds to a low water potential, using the correct terminology (water potential) demonstrates a deeper understanding and is expected at HL. Be precise: state which region has the higher/lower water potential."
+      "type": "keyPoints",
+      "items": [
+        "**Phospholipid bilayer:** the fluid fabric of the membrane.",
+        "**Integral proteins:** embedded in the core, often transmembrane; carry out transport and act as receptors and enzymes.",
+        "**Peripheral proteins:** attached to a surface or to an integral protein, not embedded in the core; often structural or enzymatic.",
+        "**Cholesterol:** wedged between phospholipids (animal cells); buffers fluidity.",
+        "**Glycoproteins:** carbohydrate-tagged proteins on the outer face acting as recognition markers and receptors."
+      ]
     },
     {
       "type": "heading",
-      "content": "Movement Against the Gradient: Active Transport"
+      "content": "Membrane fluidity"
     },
     {
       "type": "text",
-      "content": "To move substances against their concentration or electrochemical gradient, cells must use active transport, a process that requires energy, typically from the hydrolysis of ATP. This is performed by specific carrier proteins called 'pumps'. Primary active transport directly uses ATP to power the transport. The most famous example is the sodium-potassium pump ($Na^+/K^+$ pump), which is vital for maintaining the membrane potential of cells, especially neurons. Secondary active transport uses the gradient established by a primary active transporter to drive the movement of another substance against its own gradient."
-    },
-    {
-      "type": "workedExample",
-      "question": "The graph below shows the rate of uptake of substance X into a cell at different external concentrations. The experiment was repeated in the presence of DNP, a metabolic inhibitor that blocks ATP synthesis.\n\n[Imagine a graph with 'Concentration of X' on the x-axis and 'Rate of Uptake' on the y-axis. The 'Normal' line starts at the origin, rises steeply, and then plateaus. The '+DNP' line is a flat line along the x-axis, showing zero uptake.]\n\n(a) Describe the pattern of uptake for substance X under normal conditions.\n(b) Deduce the mechanism of transport for substance X, using all the information provided.",
-      "solution": "**(a) Description:**\n\n1.  As the external concentration of X increases, the rate of uptake increases initially. [1 mark]\n2.  The rate of uptake then reaches a maximum and plateaus, even as the external concentration continues to increase. This indicates the transport system is saturated. [1 mark]\n\n**(b) Deduction of mechanism:**\n\n1.  **Protein involvement:** The saturation (plateau) at high concentrations suggests the involvement of a limited number of membrane proteins (carrier or pump proteins), as simple diffusion would show a linear relationship. [1 mark]\n\n2.  **Energy requirement:** The presence of DNP, an ATP synthesis inhibitor, completely stops the uptake of substance X. [1 mark]\n\n3.  **Conclusion:** Since the process requires metabolic energy (ATP) and involves saturable proteins, the mechanism must be **active transport**. [1 mark]\n\n4.  **Distinction:** It cannot be facilitated diffusion because that process is passive and does not require ATP. It cannot be simple diffusion because it shows saturation. [1 mark for reasoning]"
+      "content": "Fluidity is not an incidental detail — it is essential for transport, for vesicle formation and for membranes to fuse and reseal. Two main factors control it. The first is the fatty-acid tails: tails with double bonds (unsaturated) have kinks that stop the phospholipids packing tightly, keeping the membrane more fluid, while straight saturated tails pack closely and make it more rigid. The second is cholesterol, which acts as a fluidity buffer in animal cells. At higher temperatures cholesterol restrains the phospholipids and stops the membrane becoming too fluid; at lower temperatures it keeps them apart and stops the membrane solidifying. The result is a membrane that stays workable across the range of temperatures a cell experiences."
     },
     {
       "type": "heading",
-      "content": "Bulk Transport: Moving Large Cargo"
+      "content": "Selective permeability"
     },
     {
       "type": "text",
-      "content": "For molecules or particles too large to pass through proteins, the cell uses bulk transport mechanisms involving vesicles. Both are active processes requiring energy. **Endocytosis** is the process of taking material into the cell. It occurs in two main forms: **phagocytosis** ('cell eating'), where the cell engulfs large solid particles (like a bacterium), and **pinocytosis** ('cell drinking'), where the cell takes in droplets of extracellular fluid in small vesicles. **Exocytosis** is the reverse process, used to export materials from the cell. A transport vesicle, often from the Golgi apparatus, moves to the plasma membrane, fuses with it, and releases its contents outside the cell. This is how cells secrete hormones, neurotransmitters, and waste products."
+      "content": "Because the middle of the bilayer is hydrophobic, the membrane is selectively permeable: it lets some substances cross freely and restricts others. Small nonpolar molecules such as oxygen and carbon dioxide dissolve into the hydrophobic core and pass straight through. Small uncharged polar molecules like water cross slowly. But ions and large polar molecules such as glucose are repelled by the core and can only cross with the help of transport proteins. This selectivity is the whole point of the membrane: by controlling which substances cross, and by using proteins that can be regulated, the cell maintains an internal composition quite different from its surroundings."
+    },
+    {
+      "type": "text",
+      "content": "Transport across the membrane falls into two broad categories. Passive transport moves substances DOWN a gradient and needs no metabolic energy; it includes simple diffusion, facilitated diffusion and osmosis. Active transport moves substances AGAINST a gradient and therefore requires energy from ATP together with a protein pump. Bulk transport handles materials too large for either route by packaging them into vesicles."
+    },
+    {
+      "type": "heading",
+      "content": "Passive transport: simple diffusion, facilitated diffusion and osmosis"
+    },
+    {
+      "type": "text",
+      "content": "Passive transport is driven by the random thermal motion of particles. Because particles spread out from where they are crowded to where they are sparse, the net movement is always DOWN the concentration gradient, from higher to lower concentration, until the two sides are equal. No ATP is spent — the energy comes free from the particles' own motion. There are three passive routes across the plasma membrane."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Simple diffusion:** small nonpolar molecules (O₂, CO₂) pass directly through the bilayer down their gradient. No protein, no ATP.",
+        "**Facilitated diffusion:** ions and large polar molecules (glucose) move down their gradient THROUGH a channel or carrier protein. The protein provides a route but no energy — it is still passive.",
+        "**Osmosis:** the net movement of WATER only, across a partially permeable membrane, from higher water potential to lower water potential. Passive, and a special case of diffusion for water."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Osmosis is best described using water potential. Water potential is a measure of the tendency of water to move; pure water has the highest value, and adding solute lowers it. Water always moves by osmosis from higher water potential to lower water potential — which means, in everyday terms, toward the more concentrated solution. Comparing a cell with its surroundings gives three cases, described by tonicity. In a HYPERTONIC solution the outside has lower water potential than the cell, so water leaves the cell. In a HYPOTONIC solution the outside has higher water potential, so water enters the cell. In an ISOTONIC solution the water potentials are equal, so there is no net movement."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Hypertonic surroundings → water leaves:** an animal cell shrinks/crenates; a plant cell loses turgor and becomes flaccid, then plasmolysed if severe.",
+        "**Hypotonic surroundings → water enters:** an animal cell swells and may lyse (burst); a plant cell becomes turgid, held in check by its cell wall.",
+        "**Isotonic surroundings → no net movement:** cell volume stays constant."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A red blood cell (which has no cell wall) is placed in a concentrated salt solution that is hypertonic to its cytoplasm. Predict and explain what happens to the cell. Then state what would happen to a plant cell placed in the same solution. [4]",
+      "solution": "**Model answer.**\nThe salt solution is hypertonic, so it has a LOWER water potential than the cytoplasm of the red blood cell. Water therefore moves out of the cell by osmosis, from the higher water potential inside to the lower water potential outside, across the partially permeable membrane. As the cell loses water its cytoplasm shrinks and the cell crenates (shrivels); because a red blood cell has no cell wall, there is nothing to resist this, so the cell simply shrinks. A plant cell placed in the same solution would also lose water by osmosis, but its rigid cellulose cell wall stops it collapsing entirely — instead the cell loses turgor and becomes flaccid, and in a strongly hypertonic solution the cell membrane pulls away from the wall (plasmolysis).\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** the solution is hypertonic / has lower water potential than the cell.\n- **Point 2 (M):** water leaves the cell by OSMOSIS, from higher to lower water potential (state that it is water moving, not solute).\n- **Point 3 (A):** correct prediction for the red blood cell — it shrinks / crenates (accept 'shrivels').\n- **Point 4 (A):** correct contrast for the plant cell — it becomes flaccid / plasmolysed because the cell wall prevents it shrinking like the animal cell.\n\n*The most common way to lose Point 2 is to write that 'salt moves into the cell' — the solute does not move in osmosis; the WATER moves out. State the direction in terms of water potential and you protect the mark.*"
     },
     {
       "type": "examTip",
-      "content": "Diagrams of membrane transport are common in exams. Be prepared to draw and annotate the fluid mosaic model, the sodium-potassium pump cycle, or the processes of endo/exocytosis. Ensure your labels are clear and your diagrams accurately represent the relative movements and conformational changes."
+      "content": "In osmosis questions, always name the substance that moves (WATER) and the direction (from higher to lower water potential). Vague phrases like 'the solutions balance out' or 'the salt moves across' throw away marks. Compare the water potentials first, then predict the water movement, then state the effect on the cell — that ordering earns each mark in turn."
+    },
+    {
+      "type": "heading",
+      "content": "Active transport and the sodium-potassium pump"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes a cell needs to move a substance the 'wrong' way — against its concentration gradient, from where it is scarce to where it is already abundant. This does not happen spontaneously, so it must be powered: active transport uses energy from ATP together with a specific carrier protein, called a pump. The ATP causes the pump to change shape, carrying the bound substance across and releasing it on the far side, then resetting. Because it depends on ATP, active transport stops if respiration is inhibited — a useful experimental way to tell it apart from passive transport, which continues regardless."
+    },
+    {
+      "type": "text",
+      "content": "The classic example is the sodium-potassium pump, found in the membranes of animal cells. Using the energy from one ATP, it pumps 3 sodium ions (Na⁺) out of the cell and 2 potassium ions (K⁺) into the cell, both against their concentration gradients. This maintains a low internal Na⁺ and high internal K⁺, setting up the electrochemical gradients that nerve cells use to transmit impulses and that other cells use to drive the co-transport of substances such as glucose."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Against the gradient:** active transport moves substances from lower to higher concentration.",
+        "**Requires ATP:** the energy from ATP drives the shape change of the carrier protein (pump).",
+        "**Uses a specific carrier protein:** each pump transports particular substances.",
+        "**Sodium-potassium pump:** 3 Na⁺ out and 2 K⁺ in per ATP, maintaining ion gradients for nerve impulses and co-transport."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Bulk transport: endocytosis and exocytosis"
+    },
+    {
+      "type": "text",
+      "content": "Some materials are simply too large to cross the membrane through the bilayer or a protein — whole proteins, polysaccharides, or even entire microorganisms. These are moved by bulk transport, which relies on the membrane's fluidity to form and fuse vesicles, and which requires energy. In endocytosis the membrane folds inward around the material, pinches off, and forms a vesicle that carries the material into the cytoplasm; when the material is solid this is called phagocytosis ('cell eating') and when it is dissolved it is pinocytosis ('cell drinking'). Exocytosis is the reverse: a vesicle carrying material — for example, a secreted protein — moves to the plasma membrane, fuses with it, and releases its contents to the outside. Both processes let cells handle cargo far larger than any single molecule that diffusion or pumping could manage."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Endocytosis:** membrane infolds and pinches off a vesicle, bringing large material INTO the cell (phagocytosis of solids, pinocytosis of liquids).",
+        "**Exocytosis:** a vesicle fuses with the membrane and releases its contents OUT of the cell (e.g. secretion of proteins).",
+        "**Requires energy and membrane fluidity:** vesicles must form, move and fuse — impossible in a rigid membrane."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Compare the surface-area-to-volume ratio of a small cubic cell of side 2 µm with a larger cubic cell of side 8 µm, and explain the significance of the difference for exchange across the membrane. [4]",
+      "solution": "**Step 1 — small cell (side s = 2 µm).**\nSurface area $= 6s^2 = 6 \\times 2^2 = 24\\ \\text{µm}^2$; volume $= s^3 = 2^3 = 8\\ \\text{µm}^3$.\nSA:V $= 24 / 8 = 3.0$.  [M1: correct SA and V for one cell]\n\n**Step 2 — large cell (side s = 8 µm).**\nSurface area $= 6 \\times 8^2 = 384\\ \\text{µm}^2$; volume $= 8^3 = 512\\ \\text{µm}^3$.\nSA:V $= 384 / 512 = 0.75$.  [A1: both ratios correct — 3.0 and 0.75]\n\n**Step 3 — interpret.**\nThe smaller cell has the much larger surface-area-to-volume ratio. [M1]\n\n**Step 4 — significance.**\nA larger SA:V means more membrane is available per unit of cytoplasm, so substances can be exchanged (by diffusion, osmosis and active transport) fast enough to supply the whole volume's needs and remove its wastes. As a cell grows, volume rises faster than surface area, the ratio falls, and exchange across the membrane may become too slow to serve the interior — which limits how large a single cell can be. [A1: links high SA:V to efficient exchange and a limit on cell size]\n\n*If your ratios were wrong but you correctly stated that a higher SA:V means faster exchange relative to volume, the interpretation marks are still awarded by error-carried-forward — the method is what the engine credits.*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying solute 'moves by osmosis'** — osmosis is the movement of WATER only. Write that water moves from higher to lower water potential; the solute stays put.",
+        "**Calling facilitated diffusion 'active'** — using a protein does not make it active. Facilitated diffusion runs DOWN the gradient with NO ATP, so it is passive. Only movement against the gradient using ATP is active transport.",
+        "**Forgetting to state ATP for active transport** — you must say active transport requires ATP AND moves substances against the concentration gradient. Leaving out either half loses the mark.",
+        "**Predicting the wrong cell result for tonicity** — a HYPERTONIC solution makes a cell LOSE water and shrink; a HYPOTONIC solution makes it gain water and swell. Mixing these up reverses the whole answer.",
+        "**Ignoring the cell wall in plant-cell osmosis** — a plant cell in a hypotonic solution becomes turgid (not burst) because the wall resists; in a hypertonic solution it plasmolyses. Treating a plant cell like an animal cell loses marks.",
+        "**Describing the membrane as a solid 'wall'** — it is a FLUID mosaic; the fluidity is what allows transport proteins to work and vesicles to form and fuse.",
+        "**Confusing channel and carrier proteins** — a channel is an open pore for ions; a carrier changes shape to move its cargo. Only carriers are used in active transport."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "B2.1 asks you to explain processes, and explanation marks are awarded analytically — each distinct valid biological point is worth one mark. Method-style points (M) credit correct reasoning about a mechanism, answer-style points (A) credit a correct named example or conclusion, and error-carried-forward (ECF) means an early slip does not cost the marks that follow, provided your reasoning is written down. Notice how every mark below is tied to a specific named idea, not to loose phrasing, and how the engine accepts equivalent correct wording."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain how substances move across the plasma membrane by passive and active transport. [4]",
+      "solution": "**Model answer.**\nIn passive transport, substances move DOWN their concentration gradient (or, for water, from higher to lower water potential) without any input of ATP: this includes simple diffusion of small nonpolar molecules directly through the bilayer, facilitated diffusion of ions and large polar molecules through channel or carrier proteins, and osmosis, the movement of water across a partially permeable membrane. In active transport, substances move AGAINST their concentration gradient, from lower to higher concentration, which is not spontaneous and therefore requires energy from ATP together with a specific carrier protein (a pump). A named example of active transport is the sodium-potassium pump, which uses ATP to move 3 Na⁺ out of the cell and 2 K⁺ in, both against their gradients.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M) — passive definition:** passive transport moves substances DOWN the gradient (or water from high to low water potential) with NO ATP.\n- **Point 2 (M) — a passive mechanism named:** any correct one of simple diffusion / facilitated diffusion (through channel or carrier proteins) / osmosis.\n- **Point 3 (M) — active definition:** active transport moves substances AGAINST the gradient using ATP and a protein pump. Both halves — 'against the gradient' AND 'ATP' — must be present for this mark.\n- **Point 4 (A) — a correct example:** a valid named example of transport, most obviously the sodium-potassium pump for active transport (accept any correct named example, e.g. glucose by facilitated diffusion for the passive side).\n\nBecause more than four creditable points are available (two passive mechanisms, the passive definition, the active definition and a named example), the engine caps the award at 4 — there is deliberate room to miss a point and still reach full marks. But the marks are for DISTINCT ideas: naming diffusion twice in different words scores once.\n\n**Equivalents accepted.** The engine accepts equivalent correct wording — 'requires energy from ATP' or 'uses metabolic energy from respiration', 'against the gradient' or 'from low to high concentration', 'partially permeable' or 'semi-permeable'. It credits the biology, not a fixed phrase.\n\n**ECF and partial credit.** The points are independent, so a student who muddles one mechanism but correctly contrasts passive (down, no ATP) with active (against, ATP + pump) and gives a valid example still banks those points. There is no all-or-nothing penalty.\n\n**What the engine rejects.** Saying only 'substances move across the membrane' with no direction, or calling facilitated diffusion 'active' because it uses a protein, scores nothing for that point — the mark scheme needs the direction (down vs against the gradient) and the energy status (no ATP vs ATP)."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, with ECF, accepting equivalents, and capping at the marks available. So write in distinct, creditable statements: contrast passive (down the gradient, no ATP) with active (against the gradient, ATP + pump), name at least one mechanism, and give a correct example such as the sodium-potassium pump. Each named idea is a mark; a vague sentence that names neither direction nor energy earns nothing."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The transport principles here underpin much of the rest of biology. Facilitated diffusion and active transport reappear in the absorption of nutrients in the gut, in reabsorption in the kidney, and in the loading of ions in plant roots. The sodium-potassium pump is the engine behind the resting potential and nerve impulses. Osmosis and water potential govern water uptake in plants and the fate of cells in medical fluids. Master the two questions — which way is the substance moving relative to its gradient, and does the cell have to spend ATP — and you have a framework that explains membrane transport in every one of those contexts."
     },
     {
       "type": "practice",
-      "label": "Test your knowledge on Membranes and Transport",
-      "href": "/mark?subject=ib-biology-hl&topic=B2.1"
+      "label": "Get a Paper 2 question marked: explain passive and active transport across the membrane, and predict cell behaviour in different solutions with full reasoning",
+      "href": "/mark?subject=ib-biology-hl&topic=B2.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Animation of the Fluid Mosaic Model",
-          "href": "https://www.youtube.com/watch?v=LKN5sq5dtW4"
-        },
-        {
-          "label": "Interactive on Membrane Transport",
+          "label": "PhET Simulation: Membrane Channels",
           "href": "https://phet.colorado.edu/en/simulations/membrane-channels"
         },
         {
-          "label": "Detailed explanation of the Sodium-Potassium Pump",
-          "href": "https://www.khanacademy.org/science/biology/human-biology/neuron-nervous-system/a/the-membrane-potential"
+          "label": "IB Biology Guide (assessment and syllabus resources)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
+        },
+        {
+          "label": "Video Explanation: Cell Membranes and Transport",
+          "href": "https://www.youtube.com/watch?v=Pfu1DE9PK2w"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
-    "title": "Interactive on Membrane Transport",
+    "title": "Membrane Channels",
     "embedUrl": "https://phet.colorado.edu/sims/html/membrane-channels/latest/membrane-channels_en.html",
     "launchUrl": "https://phet.colorado.edu/en/simulations/membrane-channels",
-    "hint": "Explore “Interactive on Membrane Transport” — drag sliders and watch how the model responds in real time.",
+    "hint": "Explore “Membrane Channels” — drag sliders and watch how the model responds in real time.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "PhET Interactive Simulations, University of Colorado Boulder",

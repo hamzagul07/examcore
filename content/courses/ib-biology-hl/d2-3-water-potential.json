@@ -2,179 +2,138 @@
   "slug": "d2-3-water-potential",
   "topicCode": "D2.3",
   "title": "Water potential",
+  "unit": { "code": "D", "title": "Continuity and change" },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson delves into the concept of water potential, a key factor governing water movement in plants. It breaks down water potential into its components—solute potential and pressure potential—and explores how to calculate and apply these values to predict water transport from roots to leaves.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Water potential is the single idea that lets you predict, without guessing, which way water will move between any two cells or solutions. This Higher Level lesson defines water potential $\\Psi$ as the tendency of water to move, fixes pure water at 0 kPa as the reference, and splits $\\Psi$ into its two components — the always-negative solute potential $\\Psi_s$ and the pressure potential $\\Psi_p$ — combined as $\\Psi = \\Psi_s + \\Psi_p$. From there it treats osmosis as flow down a water-potential gradient, the responses of plant cells (turgid, flaccid, plasmolysed) and animal cells in hypertonic, hypotonic and isotonic solutions, and how to predict the direction of net water movement from $\\Psi$ values. Every worked example is laid out the way our marking engine actually awards Paper 2 marks — method marks, answer marks and error-carried-forward — so you can see how showing your working protects your score.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define water potential and its components (solute potential and pressure potential).",
-    "Calculate water potential using the formula Ψ = Ψs + Ψp.",
-    "Predict the direction of water movement between cells and solutions based on water potential gradients.",
-    "Explain the role of water potential in water uptake and transport throughout a plant."
+    "Define water potential $\\Psi$ as the tendency of water to move, measured in kPa, with pure water at atmospheric pressure set to 0.",
+    "Distinguish the solute potential $\\Psi_s$ (always negative) from the pressure potential $\\Psi_p$, and combine them using $\\Psi = \\Psi_s + \\Psi_p$.",
+    "Explain osmosis as the net movement of water from higher (less negative) to lower (more negative) water potential.",
+    "Describe the behaviour of plant cells (turgid, flaccid, plasmolysed) and animal cells in hypertonic, hypotonic and isotonic solutions.",
+    "Predict the direction of net water movement between cells and solutions from their water-potential values, showing working the way marks are awarded."
   ],
+  "syllabusObjectivesCovered": ["D2.3"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Water's Will to Move",
-    "summary": "Water potential is a measure of the 'free energy' of water, which determines its tendency to move. This movement is influenced by dissolved solutes and physical pressure, dictating everything from a single cell's water balance to the flow of water up a tall tree.",
-    "analogy": "Imagine two connected rooms, one crowded and one nearly empty. People will naturally move from the crowded room (high potential to move) to the empty one (low potential). Now, if we add lots of furniture (solutes) to the crowded room, it becomes harder for people to leave, lowering their 'potential' to move. If a bouncer (pressure) starts pushing people into the room, their 'potential' to move out increases. Water potential is just like this, combining the effects of solute concentration and physical pressure to predict where water will go.",
+    "title": "Which way will the water go?",
+    "summary": "Water potential ($\\Psi$) is a number that tells you how ready water is to leave a place. Pure water at ordinary pressure is the zero mark; dissolving anything in it pulls the number below zero. Compare the numbers for two neighbouring places and water always drifts from the higher (less negative) one to the lower (more negative) one.",
+    "analogy": "Picture water potential as height on a hillside, but the whole hill sits below sea level so every reading is a negative number. Pure water is the shoreline at 0. Dissolve salt or sugar and you dig the ground lower — the more solute, the deeper the pit. Squeeze the water (as a plant's cell wall does when the cell is full) and you push the ground back up. Water, like a ball on a slope, always rolls downhill: from the shallower pit to the deeper one, that is, from higher $\\Psi$ to lower $\\Psi$. It stops rolling only when both spots sit at the same level.",
     "steps": [
-      "Understand the core concept: Water potential (Ψ) is the measure of water's capacity to move. Water always moves from a region of higher water potential to a region of lower water potential.",
-      "Break down the formula: Water potential is the sum of two components: Solute Potential (Ψs) and Pressure Potential (Ψp). The formula is Ψ = Ψs + Ψp.",
-      "Analyse the components: Solute potential (Ψs) is always negative or zero, becoming more negative as solute concentration increases. Pressure potential (Ψp) is the effect of physical pressure, which is positive in turgid cells (turgor pressure) and negative in xylem (tension).",
-      "Apply the principle: To find the direction of water movement, calculate the total water potential (Ψ) for two adjacent areas (e.g., a cell and a solution). Water will flow from the higher (less negative) Ψ value to the lower (more negative) Ψ value."
+      "Start from the reference: pure water at atmospheric pressure has $\\Psi = 0$ kPa. Everything real in a cell is more negative than this.",
+      "Add solutes and the solute potential $\\Psi_s$ goes negative — the more concentrated the solution, the more negative $\\Psi_s$.",
+      "Add or feel pressure and the pressure potential $\\Psi_p$ changes — a turgid plant cell's wall pushes back, giving a positive $\\Psi_p$.",
+      "Combine them: $\\Psi = \\Psi_s + \\Psi_p$. Then compare two regions — water moves from the higher $\\Psi$ to the lower (more negative) $\\Psi$ until they are equal."
     ]
   },
+  "keyConcepts": ["water potential", "osmosis", "turgor"],
   "flashcards": [
-    {
-      "front": "What is water potential (Ψ)?",
-      "back": "The potential energy of water per unit volume relative to pure water. It quantifies the tendency of water to move from one area to another and is measured in megapascals (MPa)."
-    },
-    {
-      "front": "What is the formula for water potential?",
-      "back": "Ψ = Ψs + Ψp (Water Potential = Solute Potential + Pressure Potential)."
-    },
-    {
-      "front": "What is solute potential (Ψs)?",
-      "back": "The component of water potential due to the presence of dissolved solutes. It is also known as osmotic potential. It is always negative or zero."
-    },
-    {
-      "front": "Why is solute potential (Ψs) always negative?",
-      "back": "Because dissolved solutes reduce the free energy of water molecules, making them less likely to move away than pure water. Pure water is the reference point, with a Ψs of 0 MPa."
-    },
-    {
-      "front": "What is pressure potential (Ψp)?",
-      "back": "The component of water potential due to the physical pressure exerted on water. It can be positive (e.g., turgor pressure in a plant cell), negative (e.g., tension in xylem), or zero (e.g., in an open container)."
-    },
-    {
-      "front": "What is the water potential of pure water at standard atmospheric pressure?",
-      "back": "0 MPa. This is the reference point. Both Ψs and Ψp are zero for pure water in an open container."
-    },
-    {
-      "front": "In which direction does water move in terms of water potential?",
-      "back": "Water always moves down a water potential gradient, from an area of higher (less negative) water potential to an area of lower (more negative) water potential."
-    },
-    {
-      "front": "A plant cell has Ψ = -0.5 MPa. It is placed in a solution with Ψ = -0.2 MPa. What happens?",
-      "back": "Water will move from the solution (higher Ψ of -0.2 MPa) into the cell (lower Ψ of -0.5 MPa), causing the cell to become more turgid."
-    },
-    {
-      "front": "What is turgor pressure?",
-      "back": "The positive hydrostatic pressure within a plant cell that pushes the plasma membrane against the cell wall. It contributes a positive value to the pressure potential (Ψp)."
-    },
-    {
-      "front": "What does it mean if a cell is 'flaccid' in terms of water potential?",
-      "back": "A flaccid cell has lost water, and its plasma membrane is not pressing against the cell wall. Its pressure potential (Ψp) is zero."
-    },
-    {
-      "front": "What is plasmolysis?",
-      "back": "The process in which the plasma membrane pulls away from the cell wall in a plant cell due to water loss, occurring when the cell is in a hypertonic solution with a much lower water potential."
-    },
-    {
-      "front": "Common Trap: Is a water potential of -2 MPa higher or lower than -1 MPa?",
-      "back": "Lower. In the context of water potential, 'higher' means less negative. Water would move from -1 MPa to -2 MPa."
-    }
+    { "front": "Water potential ($\\Psi$)", "back": "A measure of the tendency of water to move out of a system by osmosis. Water moves from higher (less negative) to lower (more negative) water potential. Measured here in kilopascals (kPa).", "pillLabel": "Definition" },
+    { "front": "Reference value of water potential", "back": "Pure water at atmospheric pressure is defined as $\\Psi = 0$ kPa. Because solutes lower it, real solutions and cells almost always have a NEGATIVE water potential.", "pillLabel": "Concept" },
+    { "front": "Solute potential ($\\Psi_s$)", "back": "The component of water potential due to dissolved solutes. It is ALWAYS negative (or zero for pure water): more solute means a more negative $\\Psi_s$. Also called osmotic potential.", "pillLabel": "Definition" },
+    { "front": "Pressure potential ($\\Psi_p$)", "back": "The component of water potential due to physical pressure. It is positive in a turgid plant cell (the wall pushes in), roughly zero in an open solution or a flaccid cell, and can be negative under tension.", "pillLabel": "Definition" },
+    { "front": "Water potential equation", "back": "$\\Psi = \\Psi_s + \\Psi_p$: total water potential equals solute potential plus pressure potential. In an open solution $\\Psi_p = 0$, so $\\Psi = \\Psi_s$.", "pillLabel": "Formula" },
+    { "front": "Direction of osmosis", "back": "Net water movement is always from the region of HIGHER (less negative) water potential to the region of LOWER (more negative) water potential, until the two are equal.", "pillLabel": "Concept" },
+    { "front": "Which is higher: −400 kPa or −650 kPa?", "back": "−400 kPa is HIGHER (less negative). Water would move from the −400 kPa region to the −650 kPa region. 'Higher $\\Psi$' means closer to zero, not larger in magnitude.", "pillLabel": "Trap" },
+    { "front": "Turgid plant cell", "back": "A plant cell that has gained water in a hypotonic solution. The vacuole swells and the membrane presses on the cell wall, so $\\Psi_p$ is large and positive. The wall prevents bursting; turgor supports the plant.", "pillLabel": "Concept" },
+    { "front": "Flaccid plant cell", "back": "A plant cell in an isotonic (or slightly hypertonic) solution with no net water gain. The membrane no longer presses on the wall, so $\\Psi_p \\approx 0$ and the tissue is limp.", "pillLabel": "Concept" },
+    { "front": "Plasmolysed plant cell", "back": "A plant cell in a strongly hypertonic solution: so much water leaves that the membrane pulls away from the cell wall. This is plasmolysis, and it can be lethal.", "pillLabel": "Concept" },
+    { "front": "Animal cell in a hypotonic solution", "back": "Water enters by osmosis and, with no cell wall to resist the swelling, the cell may burst (lysis / haemolysis for a red blood cell).", "pillLabel": "Concept" },
+    { "front": "Animal cell in a hypertonic solution", "back": "Water leaves by osmosis and the cell shrinks and shrivels (crenation in a red blood cell). In an isotonic solution there is no net movement and the cell keeps its shape.", "pillLabel": "Concept" },
+    { "front": "Why plant cells do not burst but animal cells can", "back": "The rigid cellulose cell wall generates a rising pressure potential as water enters; when $\\Psi_p$ makes the cell's $\\Psi$ equal to the outside, net inflow stops. Animal cells have no wall, so nothing halts the inflow before lysis.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: 'water moves to where it is more concentrated'", "back": "State it in water-potential terms: water moves toward LOWER (more negative) water potential — i.e. toward the more concentrated solution. Never write that water moves to higher water potential.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Cell X has $\\Psi = -300$ kPa; neighbouring cell Y has $\\Psi = -550$ kPa. In which direction is the net movement of water?", "options": ["From Y to X, toward the higher water potential", "From X to Y, from higher to lower water potential", "There is no net movement because both are negative", "From X to Y, from lower to higher water potential"], "answer": "From X to Y, from higher to lower water potential" },
+    { "prompt": "Which statement about solute potential ($\\Psi_s$) is correct?", "options": ["It is always negative (or zero for pure water)", "It is always positive because solutes add energy", "It equals zero in every living cell", "It becomes less negative as more solute is added"], "answer": "It is always negative (or zero for pure water)" },
+    { "prompt": "An open beaker of solution has $\\Psi_s = -450$ kPa. What is its total water potential $\\Psi$?", "options": ["+450 kPa, because pressure is added", "0 kPa, because it is a solution", "−450 kPa, because $\\Psi_p = 0$ in an open container", "It cannot be found without the temperature"], "answer": "−450 kPa, because $\\Psi_p = 0$ in an open container" },
+    { "prompt": "A plant cell is placed in a strongly hypertonic solution. What is the most likely outcome?", "options": ["It becomes turgid as water enters", "It bursts because there is no cell wall", "It becomes plasmolysed as water leaves and the membrane pulls from the wall", "Its solute potential becomes positive"], "answer": "It becomes plasmolysed as water leaves and the membrane pulls from the wall" },
+    { "prompt": "A red blood cell (animal cell) is placed in pure water. What happens and why?", "options": ["It shrivels, because water leaves down the water-potential gradient", "It swells and may burst, because water enters and there is no cell wall to resist", "Nothing, because the solutions are isotonic", "It becomes turgid, because its pressure potential rises like a plant cell"], "answer": "It swells and may burst, because water enters and there is no cell wall to resist" }
   ],
   "faq": [
-    {
-      "q": "Why is solute potential always negative?",
-      "a": "Solute potential is measured relative to pure water, which is assigned a value of 0 MPa. Adding any solute to water reduces its free energy and its ability to move freely. This reduction is represented by a negative value. The more solutes you add, the more you reduce the water's free energy, and the more negative the solute potential becomes."
-    },
-    {
-      "q": "Can water potential (Ψ) ever be positive?",
-      "a": "Yes, but it's rare in biological contexts. For total water potential (Ψ) to be positive, the positive pressure potential (Ψp) would have to be greater in magnitude than the negative solute potential (Ψs). This could happen if water is put under extreme physical pressure, but in typical plant cells, Ψ is usually negative or zero because the negative solute potential is significant."
-    },
-    {
-      "q": "What's the difference between water potential and osmosis?",
-      "a": "Osmosis is the net movement of water molecules across a partially permeable membrane from a region of higher water concentration to a region of lower water concentration. Water potential is the concept that quantifies the driving force behind this movement. It provides a more complete picture by including the effect of pressure, not just solute concentration, allowing us to predict water movement in more complex systems like the entire plant."
-    }
+    { "q": "Why is solute potential always negative?", "a": "Pure water is defined as the zero point. Dissolving a solute lowers the tendency of water to leave, so the water potential contributed by solutes falls below zero. Because you can only ever add solute (never 'un-dissolve' below pure water), $\\Psi_s$ can be zero at best and is negative for any real solution. The more concentrated the solution, the more negative $\\Psi_s$ becomes." },
+    { "q": "What is the difference between water potential and osmosis?", "a": "Osmosis is the process — the net movement of water across a partially permeable membrane. Water potential is the quantity that tells you which way that process runs and when it stops. Instead of vaguely talking about 'water concentration', you compare two $\\Psi$ values: water moves from higher to lower until they are equal. Because $\\Psi$ also includes pressure, it predicts water movement in turgid plant cells that a solute-only argument cannot." },
+    { "q": "How can a turgid plant cell stop taking in water even though it sits in dilute surroundings?", "a": "As water enters, the cell contents push the membrane against the rigid cell wall and the wall pushes back, raising the pressure potential $\\Psi_p$. This positive $\\Psi_p$ makes the cell's overall $\\Psi = \\Psi_s + \\Psi_p$ less negative. When $\\Psi_p$ has risen enough that the cell's $\\Psi$ equals the surrounding $\\Psi$, there is no gradient and net inflow stops — the cell is turgid, not burst. Animal cells lack this wall-generated pressure, which is why they can keep taking in water until they lyse." },
+    { "q": "Why do we sometimes see MPa and sometimes kPa in textbooks?", "a": "They are the same quantity in different units: 1 MPa = 1000 kPa, so $-0.4$ MPa is $-400$ kPa. This lesson works in kPa. Whichever unit a question uses, keep it consistent throughout your working and never drop the minus sign, because the sign is what tells you the direction of water movement." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "While we often use osmosis to describe water movement, it's only part of the story, especially in plants. To understand how a towering redwood tree gets water to its highest leaves, or how a plant wilts and recovers, we need a more comprehensive concept: water potential. This lesson will equip you with the tools to quantify and predict water's journey through biological systems."
-    },
-    {
-      "type": "heading",
-      "content": "Defining Water Potential (Ψ)"
-    },
-    {
-      "type": "text",
-      "content": "Water potential, symbolised by the Greek letter psi ($Ψ$), is a measure of the potential energy of water in a particular environment compared to the potential energy of pure water at the same temperature and atmospheric pressure. It essentially describes water's 'eagerness' to move. By convention, the water potential of pure water in an open container at sea level is set to zero. The units are typically megapascals (MPa), a unit of pressure."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Water moves spontaneously from areas of higher water potential to areas of lower water potential.",
-        "Higher Ψ means a greater capacity to 'give' water.",
-        "Lower Ψ (i.e., more negative) means a greater capacity to 'take' water."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Components of Water Potential"
-    },
-    {
-      "type": "text",
-      "content": "The total water potential in a system is determined by two main factors: the concentration of solutes and the physical pressure being applied. We can express this with a simple equation:"
-    },
-    {
-      "type": "formula",
-      "content": "\\Psi = \\Psi_s + \\Psi_p"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Solute Potential ($Ψ_s$)**: Also called osmotic potential. This reflects the effect of dissolved solutes. Solutes 'trap' water molecules, reducing their freedom to move, thus lowering the water potential. Adding any solute will make $Ψ_s$ negative. The more solute, the more negative the $Ψ_s$. Pure water has a $Ψ_s$ of 0 MPa.",
-        "**Pressure Potential ($Ψ_p$)**: This is the effect of physical pressure on water. In plant cells, the influx of water pushes the cell membrane against the rigid cell wall, creating positive pressure called turgor pressure. This makes $Ψ_p$ positive. Conversely, tension (a pull) in the xylem creates a negative $Ψ_p$."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "A very common mistake is to confuse 'higher/lower' with the magnitude of the number. Remember that on the number line, -0.2 is a *higher* value than -0.8. Water will always flow from the less negative potential to the more negative potential."
-    },
-    {
-      "type": "workedExample",
-      "question": "A potato cell has a solute potential ($Ψ_s$) of -0.9 MPa and is initially flaccid. It is placed in a beaker of sucrose solution that has a solute potential of -0.4 MPa. Determine the initial water potential of the cell and the solution, and predict the initial direction of net water movement.",
-      "solution": "1. **Calculate the initial water potential of the potato cell ($Ψ_{cell}$):**\n   - The cell is flaccid, which means its pressure potential ($Ψ_p$) is 0 MPa.\n   - $Ψ_{cell} = Ψ_s + Ψ_p = -0.9 \\text{ MPa} + 0 \\text{ MPa} = -0.9 \\text{ MPa}$. [1 mark]\n\n2. **Calculate the initial water potential of the sucrose solution ($Ψ_{solution}$):**\n   - The solution is in an open beaker, so its pressure potential ($Ψ_p$) is 0 MPa.\n   - $Ψ_{solution} = Ψ_s + Ψ_p = -0.4 \\text{ MPa} + 0 \\text{ MPa} = -0.4 \\text{ MPa}$. [1 mark]\n\n3. **Predict the direction of water movement:**\n   - Compare the two water potentials: $Ψ_{solution} = -0.4 \\text{ MPa}$ and $Ψ_{cell} = -0.9 \\text{ MPa}$.\n   - Since -0.4 MPa is higher (less negative) than -0.9 MPa, water will move from the region of higher potential to the region of lower potential.\n   - Therefore, water will move from the sucrose solution into the potato cell. [1 mark]"
-    },
-    {
-      "type": "heading",
-      "content": "Water Potential in Action: From Soil to Leaf"
-    },
-    {
-      "type": "text",
-      "content": "The entire process of water transport in plants is driven by a continuous water potential gradient. Water moves from the relatively high water potential of moist soil, into the root cells (which have lower $Ψ$ due to solutes), up the xylem (where negative pressure potential creates a very low $Ψ$), and finally into the air surrounding the leaf (which has an extremely low $Ψ$, especially on a dry day). Turgor pressure, a result of positive pressure potential, is also crucial for providing structural support to non-woody stems and leaves."
-    },
-    {
-      "type": "workedExample",
-      "question": "A turgid plant cell with a solute potential ($Ψ_s$) of -1.2 MPa is in equilibrium with the surrounding solution. The solute potential of the solution is -0.7 MPa. What is the pressure potential ($Ψ_p$) of the cell?",
-      "solution": "1. **Understand the condition of equilibrium:**\n   - At equilibrium, there is no net movement of water. This means the water potential of the cell is equal to the water potential of the solution: $Ψ_{cell} = Ψ_{solution}$. [1 mark]\n\n2. **Calculate the water potential of the solution ($Ψ_{solution}$):**\n   - The solution is in an open environment, so its pressure potential is 0 MPa.\n   - $Ψ_{solution} = Ψ_s + Ψ_p = -0.7 \\text{ MPa} + 0 \\text{ MPa} = -0.7 \\text{ MPa}$.\n\n3. **Use the equilibrium condition to find the cell's pressure potential:**\n   - We know $Ψ_{cell} = -0.7 \\text{ MPa}$.\n   - We also know the formula for the cell's water potential: $Ψ_{cell} = Ψ_s + Ψ_p$.\n   - Substitute the known values: $-0.7 \\text{ MPa} = -1.2 \\text{ MPa} + Ψ_p$. [1 mark]\n\n4. **Solve for $Ψ_p$:**\n   - $Ψ_p = -0.7 \\text{ MPa} - (-1.2 \\text{ MPa})$\n   - $Ψ_p = -0.7 \\text{ MPa} + 1.2 \\text{ MPa}$\n   - $Ψ_p = +0.5 \\text{ MPa}$. [1 mark]\n   - The pressure potential (turgor pressure) of the cell is +0.5 MPa."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2 questions, you must show your working. Write down the formula, substitute the values with their units, and state the final answer clearly. For direction questions, explicitly state 'from X to Y' and justify it by comparing the calculated Ψ values."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions: D2.3 Water Potential",
-      "href": "/mark?subject=ib-biology-hl&topic=D2.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: Diffusion and Membranes",
-          "href": "https://phet.colorado.edu/en/simulations/membrane-channels"
-        },
-        {
-          "label": "Visualising Water Potential Gradient in Plants",
-          "href": "https://www.youtube.com/watch?v=dp-v_k47-Yk"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Ask a plant cell whether it will gain or lose water and it will not answer with 'concentration' — it answers with water potential. Water potential turns the loose idea of osmosis into a single signed number you can compare between any two places, so that predicting the direction of water movement becomes arithmetic rather than intuition. This Higher Level lesson builds that number from the ground up: the reference point of pure water, the two components that shift it, the equation that combines them, and the way real plant and animal cells behave in solutions of different strength. Because D2.3 questions mix short calculations with explanations, every worked example here is set out exactly the way our marking engine awards Paper 2 marks — so you can see how showing each step protects your score." },
+
+    { "type": "heading", "content": "Defining water potential" },
+    { "type": "text", "content": "Water potential, written with the Greek letter psi ($\\Psi$), is a measure of the tendency of water to move out of a system by osmosis. It captures, in one number, how 'free' the water is to leave. The reference point is fixed by convention: pure water at atmospheric pressure has a water potential of exactly 0. We measure $\\Psi$ in units of pressure — this lesson uses kilopascals (kPa). Because dissolving solutes lowers water's tendency to move, and cells are full of solutes, the water potential of a living cell or a real solution is almost always a NEGATIVE number. The whole predictive power of the idea comes from one rule that never changes: water moves from higher (less negative) water potential to lower (more negative) water potential." },
+    { "type": "keyPoints", "items": [
+      "$\\Psi$ measures the tendency of water to move out of a system by osmosis.",
+      "Pure water at atmospheric pressure is the reference: $\\Psi = 0$ kPa.",
+      "Real solutions and living cells have NEGATIVE water potential.",
+      "Net water movement is always from HIGHER (less negative) to LOWER (more negative) $\\Psi$, until the two are equal."
+    ]},
+
+    { "type": "heading", "content": "The two components: solute potential and pressure potential" },
+    { "type": "text", "content": "Two independent factors set a cell's water potential, and the equation simply adds them together:" },
+    { "type": "formula", "content": "\\Psi = \\Psi_s + \\Psi_p" },
+    { "type": "text", "content": "The solute potential $\\Psi_s$ (sometimes called osmotic potential) is the contribution of dissolved solutes. Because solutes can only lower water's tendency to move relative to pure water, $\\Psi_s$ is always negative — the more concentrated the solution, the more negative it becomes. The pressure potential $\\Psi_p$ is the contribution of physical pressure on the water. In an open beaker of solution there is no extra pressure, so $\\Psi_p = 0$ and the solution's $\\Psi$ is simply its $\\Psi_s$. Inside a plant cell, water entering makes the contents press outward on the rigid cell wall; the wall pushes back and generates a positive pressure potential (turgor). Under tension, as in the xylem of a transpiring plant, $\\Psi_p$ can even be negative." },
+    { "type": "keyPoints", "items": [
+      "**Solute potential $\\Psi_s$:** contribution of dissolved solutes; ALWAYS negative (0 for pure water); more solute → more negative.",
+      "**Pressure potential $\\Psi_p$:** contribution of pressure; positive in a turgid plant cell, ≈ 0 in an open solution or flaccid cell, negative under tension.",
+      "**Combine them:** $\\Psi = \\Psi_s + \\Psi_p$. In an open solution $\\Psi_p = 0$, so $\\Psi = \\Psi_s$."
+    ]},
+    { "type": "examTip", "content": "The most common slip in this whole topic is treating 'higher' as 'bigger number'. On the number line, −350 kPa is HIGHER than −500 kPa because it is closer to zero. Water flows toward the more negative value. Sketch a quick number line if you are unsure — it prevents the single most-penalised error in D2.3." },
+
+    { "type": "heading", "content": "Osmosis as movement down a water-potential gradient" },
+    { "type": "text", "content": "Osmosis is the net movement of water across a partially permeable membrane, and water potential tells us exactly which way it runs. Rather than argue about 'where the water is more concentrated', we compare two $\\Psi$ values and let water move from the higher to the lower. The flow continues until the two water potentials are equal, at which point there is no net movement — the system is at equilibrium (though water molecules still cross the membrane in both directions at equal rates). Because $\\Psi$ folds pressure in alongside solutes, this single rule works even where a solute-only account fails, such as a turgid plant cell that has stopped taking in water despite sitting in dilute surroundings." },
+
+    { "type": "heading", "content": "Plant cells: turgid, flaccid and plasmolysed" },
+    { "type": "text", "content": "Place a plant cell in a HYPOTONIC solution — one with a higher (less negative) water potential than the cell — and water enters by osmosis. The vacuole swells and pushes the membrane against the cellulose cell wall, which resists and generates a positive pressure potential. As $\\Psi_p$ rises, the cell's overall $\\Psi$ becomes less negative until it matches the surroundings and net inflow stops. The cell is now TURGID, firm and supportive; the wall prevents it from bursting. In an ISOTONIC solution there is no net movement and, with the membrane no longer pressing hard on the wall, the cell is FLACCID and the tissue limp. Place the cell in a strongly HYPERTONIC solution — lower (more negative) water potential than the cell — and water leaves. So much water can be lost that the membrane peels away from the cell wall: this is PLASMOLYSIS, and severe plasmolysis kills the cell." },
+    { "type": "keyPoints", "items": [
+      "**Turgid (hypotonic surroundings):** water enters, $\\Psi_p$ rises, cell firm and supportive; the wall stops it bursting.",
+      "**Flaccid (isotonic surroundings):** no net movement, membrane not pressing on wall, tissue limp.",
+      "**Plasmolysed (hypertonic surroundings):** water leaves, membrane pulls away from the wall; can be lethal."
+    ]},
+
+    { "type": "heading", "content": "Animal cells: no wall, no safety net" },
+    { "type": "text", "content": "Animal cells face the same water-potential gradients but lack a cell wall, so nothing generates a rising pressure potential to halt the flow. In a HYPOTONIC solution (higher $\\Psi$ outside) water floods in and the cell swells and may burst — lysis, or haemolysis for a red blood cell. In a HYPERTONIC solution (lower $\\Psi$ outside) water leaves and the cell shrinks and shrivels (crenation in a red blood cell). Only in an ISOTONIC solution, where inside and outside water potentials are equal, is there no net movement and the cell keeps its normal shape. This is exactly why the water potential of blood and tissue fluid is kept tightly regulated, and why cells for transfusion or culture are suspended in isotonic solutions." },
+    { "type": "keyPoints", "items": [
+      "**Hypotonic (higher $\\Psi$ outside):** water enters; animal cell swells and may burst (lysis).",
+      "**Hypertonic (lower $\\Psi$ outside):** water leaves; animal cell shrinks / shrivels (crenation).",
+      "**Isotonic (equal $\\Psi$):** no net movement; cell keeps its shape.",
+      "The absence of a cell wall means nothing stops inflow before the cell bursts — unlike a plant cell."
+    ]},
+
+    { "type": "heading", "content": "Predicting the direction of net water movement" },
+    { "type": "text", "content": "To predict where water will go between any two regions — two cells, a cell and a solution, or two solutions — work each one's total water potential from $\\Psi = \\Psi_s + \\Psi_p$, then compare. Water moves from the higher (less negative) $\\Psi$ to the lower (more negative) $\\Psi$. State the direction explicitly as 'from X to Y' and justify it by naming which value is higher. The two worked examples below show this in action, including the calculation-and-direction combination that D2.3 exam questions love." },
+    { "type": "workedExample", "question": "Cell P has a solute potential of −700 kPa and a pressure potential of +250 kPa. It is placed in a large open beaker of solution whose solute potential is −300 kPa. Calculate the water potential of the cell and of the solution, and predict the direction of net water movement. [4]", "solution": "**Step 1 — water potential of cell P.**\n$\\Psi_P = \\Psi_s + \\Psi_p = -700 + 250 = -450$ kPa.  [M1: correct use of $\\Psi = \\Psi_s + \\Psi_p$; A1: −450 kPa]\n\n**Step 2 — water potential of the solution.**\nThe beaker is open, so its pressure potential is 0.\n$\\Psi_{sol} = \\Psi_s + \\Psi_p = -300 + 0 = -300$ kPa.  [M1: recognises $\\Psi_p = 0$ in an open solution]\n\n**Step 3 — compare and predict.**\n$-300$ kPa is higher (less negative) than $-450$ kPa, so water moves from the solution (higher $\\Psi$) into the cell (lower $\\Psi$).  [A1: correct direction with justification]\n\n*The cell would take in water and become more turgid until its rising $\\Psi_p$ lifts $\\Psi_P$ up to −300 kPa, at which point net movement stops.*" },
+    { "type": "workedExample", "question": "Two adjacent cells in a leaf are in contact. Cell M has a water potential of −520 kPa and cell N has a water potential of −380 kPa. State and explain the direction of net water movement between them. [2]", "solution": "**Compare the values.**\n−380 kPa (cell N) is higher (less negative) than −520 kPa (cell M).  [M1: identifies N as the higher water potential]\n\n**State the direction.**\nNet water moves from cell N (−380 kPa) to cell M (−520 kPa), i.e. from higher to lower water potential.  [A1: correct direction from N to M]\n\n*It does not matter that both values are negative — only the comparison matters. Water always flows toward the more negative value.*" },
+    { "type": "examTip", "content": "In direction questions, never leave the answer as a bare 'from higher to lower'. Name the actual regions and their values ('from N at −380 kPa to M at −520 kPa') and, in calculation questions, write the equation, substitute with signs, then state the result. Marks are lost far more often for an unjustified direction than for arithmetic." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Getting the direction backwards** — writing that water moves to the HIGHER water potential. Water moves to the LOWER (more negative) $\\Psi$. This single sign error is the most heavily penalised mistake in D2.3.",
+      "**Confusing 'higher' with 'bigger magnitude'** — −350 kPa is higher than −500 kPa. Treating −500 as 'higher' because 500 > 350 flips the answer.",
+      "**Making solute potential positive** — $\\Psi_s$ is ALWAYS negative (or zero). A positive solute potential is not possible; adding solute can only lower water potential.",
+      "**Dropping the minus sign in $\\Psi = \\Psi_s + \\Psi_p$** — e.g. writing −500 + 150 = 650 instead of −350. The signs carry the physics; lose them and the direction is meaningless.",
+      "**Confusing turgid with plasmolysed** — turgid means full and firm after gaining water (hypotonic surroundings); plasmolysed means the membrane has pulled off the wall after losing water (hypertonic surroundings). They are opposite outcomes.",
+      "**Claiming a plant cell bursts** — the cell wall generates a pressure potential that stops net inflow, so plant cells do not burst; only wall-less animal cells lyse.",
+      "**Answering direction questions with 'water goes where it is more concentrated' alone** — restate it in water-potential terms and name the regions and values, or the explanation mark is not awarded."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "D2.3 questions pair a short calculation with a stated, justified direction, and our marking engine awards them analytically — each distinct valid point is a separate mark. Method marks (M) credit correct reasoning or a correct set-up, answer marks (A) credit a correct value or conclusion, and error-carried-forward (ECF) means a wrong number early on does not cost you the marks that follow, provided your method is written down. Study how each mark below is tied to a specific, named step rather than to loose phrasing." },
+    { "type": "workedExample", "question": "Cell A has a water potential of −400 kPa and neighbouring cell B has a water potential of −650 kPa. State and explain the direction of net water movement, and calculate the water potential of a cell with solute potential −500 kPa and pressure potential +150 kPa. [4]", "solution": "**Model answer.**\nCompare the two water potentials: −400 kPa (cell A) is higher, i.e. less negative, than −650 kPa (cell B). Water moves from higher water potential to lower water potential, so net water movement is from cell A (−400 kPa) to cell B (−650 kPa). For the second cell, using $\\Psi = \\Psi_s + \\Psi_p = -500 + 150 = -350$ kPa.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **M1 (method):** compares the two water potentials / identifies that water moves from higher (less negative) to lower (more negative) water potential.\n- **A1 (answer):** states net movement is from A to B, with reasoning that −400 kPa is higher than −650 kPa.\n- **M1 (method):** correct use of $\\Psi = \\Psi_s + \\Psi_p$ with the values substituted (−500 + 150).\n- **A1 (answer):** $\\Psi = -350$ kPa (correct value and sign).\n\n**Equivalents and ECF accepted.** The engine accepts equivalent phrasings — 'from the less negative to the more negative', 'down the water-potential gradient from A to B', or working shown in MPa (−0.35 MPa) — and applies error-carried-forward: if a student mis-adds to, say, −650 kPa but shows $\\Psi = \\Psi_s + \\Psi_p$ correctly set up, the method mark still stands. Likewise, a correct direction based on a candidate's own (even wrong) earlier values earns the direction marks.\n\n**What the engine rejects.** Stating 'from B to A' or 'toward the higher water potential' scores zero for direction — the sign is the physics. A bare '−350' with no equation, or an answer that drops the minus sign to give +650, loses the corresponding mark because the reasoning is not creditable.\n\n**Bottom line:** to secure all 4 marks, (1) compare the $\\Psi$ values, (2) state A→B with the higher-to-lower justification, (3) write $\\Psi = \\Psi_s + \\Psi_p$ with substitution, and (4) give −350 kPa. Each line stands on its own." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, with ECF and a cap at the marks available. So write in distinct, creditable statements: compare the water potentials, name the direction as 'from A to B' with the higher-to-lower reason, show $\\Psi = \\Psi_s + \\Psi_p$ substituted, and give the final value with its sign. Showing each step is exactly what protects your score." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Water potential is the engine behind water transport across the whole plant: a gradient of steadily falling $\\Psi$ runs from moist soil, through the root and up the xylem under tension, to the leaf air spaces and out into a dry atmosphere with an extremely negative water potential. The same signed-number reasoning underlies osmoregulation in animals, the design of intravenous and rehydration fluids, and why salting food or over-fertilising soil draws water out of cells. Master the habit — work each region's $\\Psi = \\Psi_s + \\Psi_p$, compare, and let water fall to the more negative value — and you can predict water movement in any system you meet." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: predict the direction of water movement and calculate a water potential with full working", "href": "/mark?subject=ib-biology-hl&topic=D2.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "PhET Simulation: Membrane Channels", "href": "https://phet.colorado.edu/en/simulations/membrane-channels" },
+      { "label": "IB Biology guide (2025): Continuity and change", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Diffusion and Membranes",

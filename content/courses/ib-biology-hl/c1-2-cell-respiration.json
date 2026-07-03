@@ -2,168 +2,391 @@
   "slug": "c1-2-cell-respiration",
   "topicCode": "C1.2",
   "title": "Cell respiration",
+  "unit": {
+    "code": "C",
+    "title": "Interaction and interdependence"
+  },
   "paper": "P2",
   "paperName": "Biology HL",
   "status": "premium",
-  "summary": "This lesson details the final stage of aerobic respiration, oxidative phosphorylation. It explores the roles of the electron transport chain, chemiosmosis, and oxygen in generating the majority of a cell's ATP within the mitochondrion, emphasising the link between structure and function.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Cell respiration is the controlled release of energy from organic molecules to make ATP, the cell's usable energy currency. This lesson builds the whole C1.2 picture: why cells need ATP and what makes it useful, the split between anaerobic and aerobic respiration and their very different ATP yields, glycolysis in the cytoplasm as the shared first step, the two anaerobic fates (lactate in animals, ethanol and CO2 in yeast), and an overview of aerobic respiration in the mitochondria — the link reaction, the Krebs cycle and the electron transport chain, with oxygen as the final electron acceptor and the large ATP payoff. A comparison table, respirometry, two worked examples and a model answer show exactly how our marking engine awards Paper 2 marks.",
+  "durationMin": 24,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Explain the process of oxidative phosphorylation, including the electron transport chain, chemiosmosis, and the role of oxygen.",
-    "Annotate a diagram of a mitochondrion to show the locations of the key processes in aerobic respiration.",
-    "Analyse data from experiments involving inhibitors or uncouplers of oxidative phosphorylation.",
-    "Describe the adaptation of mitochondria to their function, including the role of cristae and the mitochondrial matrix."
+    "Explain cell respiration as the controlled release of energy from organic molecules to produce ATP, and describe why ATP is a useful energy currency.",
+    "Distinguish anaerobic from aerobic respiration in terms of oxygen requirement, location, products and relative ATP yield.",
+    "Outline glycolysis in the cytoplasm and the two anaerobic pathways: lactate in animals and ethanol plus carbon dioxide in yeast.",
+    "Outline aerobic respiration in the mitochondria — the link reaction, Krebs cycle and electron transport chain — identifying oxygen as the final electron acceptor and explaining the large ATP yield.",
+    "Describe how a respirometer measures the rate of respiration, and present exam answers so that analytic marking and error-carried-forward protect your score."
   ],
+  "syllabusObjectivesCovered": [
+    "C1.2"
+  ],
+  "levelNote": "Common to SL and HL; the detailed stages (Krebs, oxidative phosphorylation) are developed at HL.",
   "simpleExplanation": {
-    "title": "The Cell's Powerhouse Finale",
-    "summary": "Oxidative phosphorylation is the cell's main ATP-producing assembly line, located in the inner mitochondrial membrane. It uses high-energy electrons from glucose breakdown to create a proton gradient that powers ATP synthesis.",
-    "analogy": "Imagine a hydroelectric dam. Water stored at a high level (protons in the intermembrane space) has potential energy. When the water flows down through turbines (ATP synthase), it generates electricity (ATP). The electron transport chain is like the pump that pushes the water up to the high level in the first place, and oxygen is what collects the water at the bottom so the process can continue.",
+    "title": "How cells cash in food for energy",
+    "summary": "Cells cannot burn glucose in one uncontrolled flash the way a fire does — that would waste the energy as heat and cook the cell. Instead they release it in small, enzyme-controlled steps and capture it in a rechargeable molecule called ATP, which every energy-using process in the cell can then spend.",
+    "analogy": "Think of glucose as a large banknote and ATP as a pocketful of coins. You cannot feed a large note into a vending machine, and breaking it all at once in the street would be reckless. So the cell takes the note to a series of tellers (enzymes), each of whom hands back a little change as ATP. With oxygen present the cell has a full bank open and gets a great deal of change; without oxygen only the front desk (glycolysis) is working, so it gets only a few coins but can still buy something in a hurry.",
     "steps": [
-      "High-energy electrons, carried by NADH and FADH₂, are delivered to protein complexes in the inner mitochondrial membrane.",
-      "As electrons pass along this 'chain' of proteins, their energy is used to pump protons (H⁺) from the mitochondrial matrix into the intermembrane space.",
-      "This creates a high concentration of protons in the intermembrane space, forming an electrochemical gradient known as the proton-motive force.",
-      "Protons flow back into the matrix down their concentration gradient through a special channel protein, ATP synthase, which uses the energy of this flow to synthesise ATP."
+      "Glucose is broken down in small enzyme-controlled steps so its chemical energy is released gradually, not as one destructive burst.",
+      "Some of that released energy is used to attach a phosphate to ADP, forming ATP — the molecule the cell actually spends.",
+      "Without oxygen, only glycolysis runs in the cytoplasm, giving a small ATP yield plus lactate (animals) or ethanol and CO2 (yeast).",
+      "With oxygen, the products of glycolysis are fully oxidised in the mitochondria, oxygen accepts the spent electrons at the end, and a large amount of ATP is made."
     ]
   },
+  "keyConcepts": [
+    "ATP as energy currency",
+    "aerobic vs anaerobic",
+    "controlled energy release"
+  ],
   "flashcards": [
     {
-      "front": "What is oxidative phosphorylation?",
-      "back": "The metabolic pathway in which cells use enzymes to oxidise nutrients, thereby releasing chemical energy which is used to produce ATP. It comprises the electron transport chain and chemiosmosis."
+      "front": "Cell respiration",
+      "back": "The controlled release of energy from organic molecules (such as glucose) in a series of enzyme-catalysed steps, used to produce ATP. It is a chemical process inside cells — not the same as breathing/ventilation.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define chemiosmosis.",
-      "back": "The movement of ions (specifically protons, H⁺) across a selectively permeable membrane, down their electrochemical gradient. In respiration, this refers to the flow of protons through ATP synthase."
+      "front": "ATP (adenosine triphosphate)",
+      "back": "The cell's immediate, usable energy currency. Energy is released when its terminal phosphate bond is hydrolysed (ATP → ADP + Pi), and stored again when ADP is re-phosphorylated during respiration.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the role of the Electron Transport Chain (ETC)?",
-      "back": "A series of protein complexes in the inner mitochondrial membrane that transfer electrons from electron donors (NADH, FADH₂) to electron acceptors (O₂), using the released energy to pump protons into the intermembrane space."
+      "front": "Why ATP is a useful energy currency",
+      "back": "It releases a small, manageable amount of energy in a single quick step, can be used directly to drive almost any cellular process, is made and re-made continuously (recycled), and does not leave the cell — so cells hold only a small pool and recharge it constantly.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the 'final electron acceptor' in aerobic respiration?",
-      "back": "Oxygen (O₂). It accepts electrons at the end of the ETC and combines with protons to form water (H₂O)."
+      "front": "Aerobic respiration",
+      "back": "Respiration that requires oxygen. Glucose is fully oxidised to CO2 and H2O in the cytoplasm and mitochondria, giving a LARGE ATP yield (about 30–38 ATP per glucose).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the proton-motive force?",
-      "back": "The potential energy stored in the form of a proton electrochemical gradient, generated by the pumping of hydrogen ions (H⁺) across a biological membrane during chemiosmosis."
+      "front": "Anaerobic respiration",
+      "back": "Respiration without oxygen. Only glycolysis proceeds, giving a SMALL ATP yield (a net 2 ATP per glucose) plus lactate (animals) or ethanol + CO2 (yeast).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Where in the mitochondrion does the ETC occur?",
-      "back": "The inner mitochondrial membrane. The large surface area provided by the cristae accommodates many ETCs."
+      "front": "Glycolysis",
+      "back": "The first stage of all respiration, occurring in the CYTOPLASM. One glucose (6C) is converted to two pyruvate (3C), with a small NET yield of 2 ATP. It does not require oxygen.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Where in the mitochondrion does the Krebs cycle occur?",
-      "back": "The mitochondrial matrix. This is also where pyruvate oxidation occurs."
+      "front": "Anaerobic pathway in animals",
+      "back": "Pyruvate is converted to LACTATE (lactic acid). This regenerates the carrier needed for glycolysis to continue, allowing a small ATP supply during intense exercise when oxygen is limited.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the function of ATP synthase?",
-      "back": "An enzyme complex in the inner mitochondrial membrane that synthesises ATP from ADP and inorganic phosphate (Pi), using the energy from the flow of protons down their concentration gradient."
+      "front": "Anaerobic pathway in yeast",
+      "back": "Pyruvate is converted to ETHANOL and carbon dioxide (alcoholic fermentation). This is the basis of brewing and bread-making; the CO2 makes bread rise.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Distinguish between substrate-level phosphorylation and oxidative phosphorylation.",
-      "back": "Substrate-level phosphorylation directly transfers a phosphate group from a substrate to ADP (e.g., in glycolysis). Oxidative phosphorylation is an indirect process involving an ETC and chemiosmosis to generate ATP."
+      "front": "Link reaction",
+      "back": "In the mitochondrial matrix, each pyruvate (3C) is oxidised and decarboxylated, losing CO2 to form a 2C acetyl group that enters the Krebs cycle. Requires oxygen to be present (aerobic).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is an uncoupling protein (e.g., thermogenin)?",
-      "back": "A protein in the inner mitochondrial membrane that allows protons to leak back into the matrix, bypassing ATP synthase. The energy from the proton gradient is released as heat instead of being used for ATP synthesis."
+      "front": "Krebs cycle",
+      "back": "In the mitochondrial matrix, the acetyl group is fully oxidised, releasing CO2 and transferring energised electrons (as reduced carriers) to the electron transport chain. A small amount of ATP is made directly.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why is FADH₂ worth fewer ATP than NADH?",
-      "back": "FADH₂ donates its electrons to a later complex (Complex II) in the ETC, bypassing the first proton pump (Complex I). Consequently, fewer protons are pumped per FADH₂, resulting in a smaller contribution to the proton-motive force and thus less ATP synthesis."
+      "front": "Electron transport chain (ETC)",
+      "back": "On the inner mitochondrial membrane, energised electrons pass along carriers; the energy released is used to make a LARGE amount of ATP. Oxygen is the FINAL electron acceptor, combining with electrons and H+ to form water.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Oxygen's role in aerobic respiration",
+      "back": "Oxygen is the FINAL (terminal) electron acceptor at the end of the electron transport chain. Without it the chain backs up and stops, so aerobic ATP production halts and cells fall back on anaerobic respiration.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: respiration ≠ breathing",
+      "back": "Cell respiration is a chemical energy-releasing process inside every living cell. Breathing (ventilation) is the movement of air in and out of lungs. Writing about 'breathing' when asked about respiration scores nothing.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Exam Trap: where glycolysis happens",
+      "back": "Glycolysis occurs in the CYTOPLASM, not in the mitochondria. Only the link reaction, Krebs cycle and electron transport chain are in the mitochondria.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A student writes that 'respiration is breathing air in and out of the lungs.' The main error is:",
+      "options": [
+        "Nothing — this is the correct definition",
+        "Confusing cell respiration (a chemical process releasing energy from glucose) with breathing/ventilation",
+        "Respiration only happens in the lungs",
+        "Respiration does not involve oxygen at all"
+      ],
+      "answer": "Confusing cell respiration (a chemical process releasing energy from glucose) with breathing/ventilation"
+    },
+    {
+      "prompt": "In which part of the cell does glycolysis take place?",
+      "options": [
+        "The mitochondrial matrix",
+        "The inner mitochondrial membrane",
+        "The cytoplasm",
+        "The nucleus"
+      ],
+      "answer": "The cytoplasm"
+    },
+    {
+      "prompt": "What is the role of oxygen in aerobic respiration?",
+      "options": [
+        "It is the first molecule broken down in glycolysis",
+        "It is the final electron acceptor at the end of the electron transport chain",
+        "It is used to convert pyruvate to lactate",
+        "It provides the energised electrons for the electron transport chain"
+      ],
+      "answer": "It is the final electron acceptor at the end of the electron transport chain"
+    },
+    {
+      "prompt": "Compared with anaerobic respiration, how much ATP does the complete aerobic respiration of one glucose molecule yield?",
+      "options": [
+        "Slightly less ATP",
+        "About the same amount of ATP",
+        "Much more ATP (roughly 30–38 versus a net 2)",
+        "No ATP at all — aerobic respiration only releases heat"
+      ],
+      "answer": "Much more ATP (roughly 30–38 versus a net 2)"
+    },
+    {
+      "prompt": "Which products correctly match anaerobic respiration in humans and in yeast?",
+      "options": [
+        "Humans: ethanol + CO2; Yeast: lactate",
+        "Humans: lactate; Yeast: ethanol + CO2",
+        "Both produce lactate",
+        "Both produce ethanol + CO2"
+      ],
+      "answer": "Humans: lactate; Yeast: ethanol + CO2"
     }
   ],
   "faq": [
     {
-      "q": "Why is the actual ATP yield from one glucose molecule (around 30-32 ATP) less than the theoretical maximum (around 38 ATP)?",
-      "a": "There are several reasons for this discrepancy. Firstly, the inner mitochondrial membrane is not completely impermeable to protons, so some 'leak' back into the matrix without passing through ATP synthase. Secondly, the proton-motive force is also used for other processes, such as transporting pyruvate and phosphate into the mitochondrial matrix. Finally, transporting NADH produced during glycolysis in the cytoplasm into the mitochondria requires energy, which can reduce the net ATP yield."
+      "q": "Why does the cell bother making ATP instead of using glucose directly?",
+      "a": "Glucose holds a large amount of energy that is released only when the whole molecule is oxidised — too much to couple usefully to a single small task, and releasing it all at once would just heat the cell. ATP breaks the supply into small, uniform packets: hydrolysing one phosphate bond gives a manageable amount of energy in a single quick step that can be coupled directly to muscle contraction, active transport, synthesis and so on. ATP is also continuously recycled between ATP and ADP, so a cell only needs a small working pool that it recharges thousands of times per second."
     },
     {
-      "q": "What happens if there is no oxygen available?",
-      "a": "Without oxygen to act as the final electron acceptor, the electron transport chain backs up and stops functioning. Electrons can no longer be passed along the chain, so NADH and FADH₂ cannot be re-oxidised to NAD⁺ and FAD. This halts the Krebs cycle and oxidative phosphorylation. The cell must then rely solely on anaerobic respiration (glycolysis followed by fermentation) to produce a small amount of ATP."
+      "q": "If anaerobic respiration makes so little ATP, why do cells ever use it?",
+      "a": "Because it needs no oxygen and it is fast. During intense exercise a muscle can demand ATP faster than oxygen can be delivered; anaerobic respiration keeps a small ATP supply flowing so the muscle can keep working, converting pyruvate to lactate to allow glycolysis to continue. The trade-off is a low yield and a build-up of lactate. Yeast uses its anaerobic pathway (producing ethanol and CO2) to survive when oxygen runs out — and that is exactly what humans exploit in brewing and baking."
+    },
+    {
+      "q": "Why does aerobic respiration release so much more ATP than anaerobic respiration?",
+      "a": "Glycolysis alone only partly breaks down glucose, so pyruvate still contains most of the original energy. Aerobic respiration takes those products into the mitochondria and oxidises them fully in the link reaction, Krebs cycle and electron transport chain. The chain uses the energy of electrons to make the bulk of the ATP, and this only works because oxygen is present at the end to accept the spent electrons. Anaerobic respiration cannot access any of that mitochondrial ATP — it stops at glycolysis, so it keeps only the small net 2 ATP."
+    },
+    {
+      "q": "Does anaerobic respiration in animals use up oxygen or release carbon dioxide?",
+      "a": "No. Lactate fermentation in animals consumes no oxygen and releases no carbon dioxide — it simply converts pyruvate to lactate. This is why a respirometer measuring oxygen uptake reads zero for an animal respiring purely anaerobically. Yeast is different: its anaerobic pathway releases CO2 (along with ethanol), though it still uses no oxygen."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the final and most significant stage of aerobic cell respiration. Having followed the breakdown of glucose through glycolysis and the Krebs cycle, we now focus on how the high-energy electron carriers, NADH and FADH₂, are used to generate a vast amount of ATP. This process, known as oxidative phosphorylation, is a testament to the intricate efficiency of cellular machinery and highlights the critical role of the mitochondrion's structure."
+      "content": "Every living cell needs a constant supply of usable energy — to contract muscle, pump ions across membranes, build large molecules and copy DNA. Cell respiration is how cells get it: the controlled, step-by-step release of energy from organic molecules such as glucose, captured in the form of ATP. The word 'controlled' matters. Burning glucose in a flame would release the same energy, but as a useless, destructive burst of heat. Cells instead dismantle glucose gradually through enzyme-catalysed steps, trapping the energy in ATP a little at a time. This lesson follows that process from glucose to ATP: first glycolysis, the shared first step; then the two anaerobic fates when oxygen is absent; then the full aerobic route through the mitochondria, where oxygen's role as the final electron acceptor unlocks a far larger ATP yield. Along the way we look at how respiration is measured and, crucially, how Paper 2 answers on this topic are actually marked."
     },
     {
       "type": "heading",
-      "content": "The Mitochondrial Arena: Structure and Function"
+      "content": "Cell respiration and ATP"
     },
     {
       "type": "text",
-      "content": "The mitochondrion is specifically adapted for its role in aerobic respiration. Its double membrane creates distinct compartments with unique functions. The inner mitochondrial membrane is folded into cristae, which dramatically increases the surface area available for the electron transport chain and ATP synthase. The innermost compartment, the mitochondrial matrix, is the site of the Krebs cycle and pyruvate oxidation, ensuring the products (NADH and FADH₂) are produced right where they are needed for the next stage."
+      "content": "Cell respiration is the controlled release of energy from organic molecules to produce ATP. The energy in glucose is not used directly; instead it is transferred to ATP (adenosine triphosphate), the cell's immediate energy currency. ATP stores energy in the bond to its terminal phosphate group. When a cell needs energy, that bond is hydrolysed — ATP becomes ADP plus an inorganic phosphate — releasing a small, usable quantity of energy that can be coupled straight to work. Respiration then re-attaches a phosphate to ADP to remake ATP, so the two forms are continuously recycled. Because the packets are small and uniform, ATP can power almost any cellular process on demand."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Outer membrane:** Separates the mitochondrion from the cytoplasm.",
-        "**Intermembrane space:** The region between the inner and outer membranes. Protons are pumped into this space, creating a high concentration.",
-        "**Inner membrane:** Site of the electron transport chain and ATP synthase. Impermeable to protons, which is crucial for maintaining the gradient.",
-        "**Cristae:** Folds of the inner membrane that increase its surface area.",
-        "**Matrix:** The innermost space containing enzymes for the Krebs cycle, mitochondrial DNA, and ribosomes."
+        "**Definition:** cell respiration is the controlled release of energy from organic molecules to produce ATP.",
+        "**Controlled, not combustion:** energy is released gradually in enzyme-catalysed steps, so it is captured rather than lost as a burst of heat.",
+        "**ATP is the currency:** energy is released by hydrolysing ATP to ADP + Pi, and stored again by re-phosphorylating ADP during respiration.",
+        "**Why ATP is useful:** it releases a small, manageable amount of energy in one step, is used directly for cellular work, is constantly recycled, and stays inside the cell.",
+        "**Respiration is not breathing:** it is a chemical process inside cells, distinct from ventilation of the lungs."
       ]
     },
     {
       "type": "heading",
-      "content": "The Electron Transport Chain: A Cascade of Energy"
+      "content": "Anaerobic versus aerobic respiration: the big picture"
     },
     {
       "type": "text",
-      "content": "The electron transport chain (ETC) is a series of four large protein complexes embedded in the inner mitochondrial membrane. Reduced NAD (NADH) and reduced FAD (FADH₂) from the Krebs cycle and glycolysis donate their high-energy electrons to the chain. As electrons are passed from one complex to the next, they move to progressively lower energy levels. The energy released at several steps is used by the complexes to actively transport protons (H⁺) from the matrix into the intermembrane space."
+      "content": "All respiration of glucose begins the same way, with glycolysis in the cytoplasm. What happens next depends on whether oxygen is available. Without oxygen (anaerobic respiration), the cell can only run glycolysis and then convert the product to keep glycolysis going; the yield is a small net 2 ATP per glucose. With oxygen (aerobic respiration), the products of glycolysis are taken into the mitochondria and fully oxidised, releasing far more energy and yielding roughly 30–38 ATP per glucose. The same starting molecule therefore gives a very different payoff depending on the presence of one gas. This contrast — same start, oxygen requirement, location, products and yield — is the backbone of most C1.2 exam questions."
     },
     {
-      "type": "examTip",
-      "content": "Be precise with locations! Marks are often awarded for stating that protons are pumped *from the matrix to the intermembrane space*, and that electrons are passed *along the inner mitochondrial membrane*. Avoid vague statements like 'protons move across the membrane'."
+      "type": "keyPoints",
+      "items": [
+        "**Shared start:** both pathways begin with glycolysis in the cytoplasm, producing pyruvate and a net 2 ATP.",
+        "**Oxygen:** aerobic requires oxygen; anaerobic does not.",
+        "**Location:** anaerobic is confined to the cytoplasm; aerobic continues in the mitochondria.",
+        "**Products:** aerobic produces CO2 and H2O; anaerobic produces lactate (animals) or ethanol + CO2 (yeast).",
+        "**Yield:** aerobic gives a large ATP yield (≈30–38); anaerobic gives a small net yield (2)."
+      ]
     },
     {
       "type": "heading",
-      "content": "Chemiosmosis: Coupling the Gradient to ATP Synthesis"
+      "content": "Glycolysis: the shared first step"
     },
     {
       "type": "text",
-      "content": "The pumping of protons creates a steep electrochemical gradient across the inner mitochondrial membrane, known as the proton-motive force. This gradient represents a form of stored potential energy. The inner membrane is impermeable to protons, so they can only flow back into the matrix down their concentration gradient through a specific channel protein: ATP synthase. This process is called chemiosmosis. As protons rush through ATP synthase, they cause a part of the enzyme to rotate, driving the catalytic conversion of ADP and inorganic phosphate (Pi) into ATP."
+      "content": "Glycolysis takes place in the cytoplasm and does not require oxygen. In outline, one molecule of glucose (a 6-carbon sugar) is split and rearranged through a sequence of enzyme-catalysed steps into two molecules of pyruvate (each 3 carbons). A little ATP is invested at the start to get the process going, but more is generated later, leaving a small net gain of 2 ATP per glucose. Energised electrons are also removed and picked up by carrier molecules. Because glycolysis needs no oxygen and no mitochondria, it is the common foundation of both anaerobic and aerobic respiration — the difference between the two pathways lies entirely in what happens to the pyruvate afterwards."
     },
     {
-      "type": "formula",
-      "content": "Overall reaction for oxygen as the final electron acceptor: $O_2 + 4e^- + 4H^+ \\rightarrow 2H_2O$"
+      "type": "keyPoints",
+      "items": [
+        "**Location:** the cytoplasm (not the mitochondria).",
+        "**Overview:** glucose (6C) → 2 pyruvate (3C).",
+        "**Yield:** a small NET gain of 2 ATP per glucose.",
+        "**Oxygen:** not required — glycolysis runs whether or not oxygen is present.",
+        "**Role:** the shared first stage of both anaerobic and aerobic respiration."
+      ]
     },
     {
-      "type": "workedExample",
-      "question": "A scientist is studying mitochondrial respiration. They measure that for every 10 molecules of NADH that are oxidised by the ETC, 25 molecules of ATP are produced. For every 10 molecules of FADH₂ oxidised, 15 molecules of ATP are produced. Calculate the P/O ratio (ATP produced per molecule of O atom reduced) for both NADH and FADH₂. (Note: The reduction of one oxygen atom, O, requires 2 electrons).",
-      "solution": "The P/O ratio is the amount of ATP produced per pair of electrons transferred to oxygen. One molecule of NADH or FADH₂ provides one pair of electrons.\n\n**For NADH:**\n1.  **Find ATP per NADH:** 25 ATP / 10 NADH = 2.5 ATP per NADH.\n2.  **Relate to Oxygen:** The oxidation of one NADH involves the transfer of 2 electrons, which reduces half an O₂ molecule (one O atom). Therefore, the P/O ratio is the ATP yield per NADH.\n3.  **Result:** The P/O ratio for NADH is 2.5. [2 marks]\n\n**For FADH₂:**\n1.  **Find ATP per FADH₂:** 15 ATP / 10 FADH₂ = 1.5 ATP per FADH₂.\n2.  **Relate to Oxygen:** Similarly, the oxidation of one FADH₂ reduces one O atom.\n3.  **Result:** The P/O ratio for FADH₂ is 1.5. [2 marks]\n\n*Marking points: 1 mark for correct calculation of ATP per NADH. 1 mark for stating the P/O ratio for NADH. 1 mark for correct calculation of ATP per FADH₂. 1 mark for stating the P/O ratio for FADH₂.*"
+      "type": "heading",
+      "content": "Anaerobic pathways: lactate and ethanol"
     },
     {
-      "type": "workedExample",
-      "question": "An experiment measures oxygen consumption and ATP synthesis in isolated mitochondria under different conditions. Condition A is the control. In Condition B, the chemical rotenone, which inhibits Complex I of the ETC, is added. In Condition C, the chemical dinitrophenol (DNP), an uncoupling agent, is added. Predict the effect of each condition on both oxygen consumption and ATP synthesis, explaining your reasoning.",
-      "solution": " **Condition B (Rotenone):**\n*   **Oxygen Consumption:** Will decrease significantly. Rotenone blocks the transfer of electrons from NADH at Complex I. This halts the entire ETC, so electrons cannot reach oxygen, and oxygen consumption stops. [2 marks]\n*   **ATP Synthesis:** Will decrease significantly. If the ETC is halted, protons are no longer pumped into the intermembrane space. The proton-motive force dissipates, and ATP synthase stops working. [2 marks]\n\n**Condition C (DNP):**\n*   **Oxygen Consumption:** Will increase. DNP provides an alternative route for protons to flow back into the matrix, bypassing ATP synthase. The proton gradient is constantly being dissipated, so the ETC works at maximum rate to try and re-establish it, consuming oxygen rapidly. [2 marks]\n*   **ATP Synthesis:** Will decrease to near zero. Although the ETC is active, the energy of the proton gradient is released as heat as protons leak through DNP channels. Since protons are not flowing through ATP synthase, ATP cannot be produced. [2 marks]\n\n*Marking points: For each condition, 1 mark for the correct prediction and 1 mark for a valid explanation linked to the mechanism of the ETC/chemiosmosis.*"
+      "type": "text",
+      "content": "When oxygen is unavailable, pyruvate cannot enter the mitochondria to be oxidised. Instead it is converted into another molecule, and the point of that conversion is to regenerate the electron carrier that glycolysis needs so that glycolysis — and its small ATP supply — can keep running. In animals (including humans), pyruvate is converted to lactate. This lets muscles keep contracting during short bursts of intense exercise when oxygen delivery cannot keep up, though lactate accumulates. In yeast and some plant tissues, pyruvate is instead converted to ethanol and carbon dioxide, a process called alcoholic fermentation. Humans exploit this directly: the ethanol in brewing and the carbon dioxide that makes bread dough rise both come from yeast respiring anaerobically. In every case the ATP yield stays at the small net 2 per glucose from glycolysis alone."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Animals (e.g. humans):** pyruvate → lactate; no oxygen used, no CO2 produced; supports short bursts of intense activity.",
+        "**Yeast:** pyruvate → ethanol + CO2 (alcoholic fermentation); the basis of brewing and bread-making.",
+        "**Purpose of the conversion:** regenerate the carrier so glycolysis can continue producing its small ATP supply.",
+        "**Yield:** unchanged from glycolysis — a net 2 ATP per glucose."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Questions involving inhibitors and uncouplers are common in Paper 2. Focus on the specific site of action. An inhibitor stops the flow (like a blockage in a pipe), whereas an uncoupler separates the flow from its purpose (like a leak in the pipe), causing the pump to work harder for no result."
+      "content": "Match the product to the organism precisely. Humans (and other animals) make LACTATE; yeast makes ETHANOL and CARBON DIOXIDE. Swapping these — or claiming animals produce ethanol — is a classic dropped mark. Also state that anaerobic respiration in animals uses no oxygen and releases no CO2."
+    },
+    {
+      "type": "heading",
+      "content": "Aerobic respiration in the mitochondria"
+    },
+    {
+      "type": "text",
+      "content": "If oxygen is present, pyruvate is transported into the mitochondria and respiration continues through three overview stages, extracting far more energy than glycolysis alone. First the LINK REACTION (in the matrix): each pyruvate is oxidised and loses a carbon as CO2, forming a 2-carbon acetyl group. Next the KREBS CYCLE (also in the matrix): the acetyl group is fully oxidised, releasing the remaining carbons as CO2, making a little ATP directly, and — most importantly — loading energised electrons onto carrier molecules. Finally the ELECTRON TRANSPORT CHAIN (on the inner mitochondrial membrane): those energised electrons are passed along a series of carriers, and the energy released as they move is used to generate the BULK of the cell's ATP. At the very end of the chain, OXYGEN acts as the final (terminal) electron acceptor, combining with the spent electrons and hydrogen ions to form water. This is why oxygen is essential: without it the chain has nowhere to offload electrons, so it backs up and stops, and the large mitochondrial ATP yield is lost. Fully oxidising one glucose aerobically yields roughly 30–38 ATP."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Link reaction (matrix):** pyruvate is oxidised and decarboxylated (loses CO2) to a 2C acetyl group.",
+        "**Krebs cycle (matrix):** the acetyl group is fully oxidised, releasing CO2 and loading energised electrons onto carriers; a little ATP is made directly.",
+        "**Electron transport chain (inner membrane):** electrons pass along carriers; the energy released drives the LARGE bulk of ATP production.",
+        "**Oxygen:** the FINAL electron acceptor, forming water with electrons and H+; without it aerobic respiration halts.",
+        "**Yield:** roughly 30–38 ATP per glucose — far more than anaerobic respiration."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Comparison at a glance"
+    },
+    {
+      "type": "text",
+      "content": "The table below draws together the features that exam questions most often ask you to compare. Notice that the two pathways are not opposites from the start — they share glycolysis — and diverge only in whether oxygen is used, where the process continues, what is produced and how much ATP results."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Oxygen required:** aerobic — yes; anaerobic — no.",
+        "**Shared first step:** both begin with glycolysis in the cytoplasm.",
+        "**Location:** aerobic — cytoplasm then mitochondria; anaerobic — cytoplasm only.",
+        "**Products:** aerobic — CO2 + H2O; anaerobic — lactate (animals) or ethanol + CO2 (yeast).",
+        "**Relative ATP yield:** aerobic — large (≈30–38); anaerobic — small (net 2).",
+        "**Extent of glucose breakdown:** aerobic — glucose fully oxidised; anaerobic — only partially broken down."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Measuring respiration: the respirometer"
+    },
+    {
+      "type": "text",
+      "content": "The rate of respiration is a direct measure of how fast an organism is releasing energy, and it can be measured with a respirometer. A living organism (such as germinating seeds or small invertebrates) is sealed in a tube together with an alkali such as potassium hydroxide (KOH), which absorbs the carbon dioxide the organism produces. As the organism consumes oxygen and its CO2 is absorbed, the total gas volume in the tube falls, lowering the pressure. This pressure drop draws a drop of coloured fluid along an attached capillary tube; the distance it moves over a set time indicates the volume of oxygen consumed, and hence the rate of respiration. A control tube containing non-respiring objects of the same volume corrects for changes in atmospheric pressure and temperature. Note that for an animal respiring purely anaerobically the respirometer reads zero, because lactate fermentation consumes no oxygen."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Volume of } O_2 \\text{ consumed} = \\pi r^2 l \\qquad \\text{Rate} = \\frac{\\text{volume of } O_2}{\\text{time} \\times \\text{mass}}"
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 1 — energy yield and ATP"
+    },
+    {
+      "type": "workedExample",
+      "question": "A muscle cell fully respires glucose aerobically, yielding about 32 ATP per glucose. During a sprint, the same cell switches to anaerobic respiration. (a) State the net ATP yield per glucose during anaerobic respiration and name the additional product formed in this human muscle cell. (b) Explain why the cell produces far less ATP anaerobically, even though it starts with the same glucose. [4]",
+      "solution": "**(a) Yield and product.**\nAnaerobic respiration yields a NET of 2 ATP per glucose. [A1]\nThe additional product in a human muscle cell is LACTATE (lactic acid). [A1]\n\n**(b) Why so much less ATP.**\nAnaerobic respiration is limited to GLYCOLYSIS in the cytoplasm, which only partially breaks down glucose, so pyruvate still holds most of the original energy. [M1]\nWithout oxygen the pyruvate cannot enter the mitochondria for the link reaction, Krebs cycle and electron transport chain, and it is the electron transport chain that makes the BULK of the ATP; so that large mitochondrial yield is never accessed and only the net 2 ATP from glycolysis remains. [A1]\n\n*Common check: the sprint gives a fast but small ATP supply (net 2) rather than the full ≈32, which is exactly why anaerobic respiration can only sustain short bursts of activity.*"
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 2 — respirometer calculation"
+    },
+    {
+      "type": "workedExample",
+      "question": "A respirometer contains 4.0 g of germinating peas at 20°C. The capillary tube has an internal radius of 0.75 mm. Over 10 minutes the coloured fluid moves 32 mm towards the organism. A control tube with glass beads shows no movement. Calculate the rate of oxygen consumption in mm³ g⁻¹ min⁻¹. [3]",
+      "solution": "**Step 1 — volume of oxygen consumed.**\nUse $V = \\pi r^2 l$ with $r = 0.75$ mm and $l = 32$ mm:\n$V = \\pi \\times (0.75)^2 \\times 32 = \\pi \\times 0.5625 \\times 32 = 18\\pi \\approx 56.5$ mm³. [M1: correct use of $\\pi r^2 l$]\n\n**Step 2 — divide by time and mass.**\nRate $= \\dfrac{V}{\\text{time} \\times \\text{mass}} = \\dfrac{56.5}{10 \\times 4.0} = \\dfrac{56.5}{40} = 1.41$ mm³ g⁻¹ min⁻¹. [M1: divides by BOTH time and mass]\n\n**Step 3 — final answer with units.**\nRate ≈ **1.4 mm³ g⁻¹ min⁻¹** (2 s.f.). [A1: value + correct units]\n\n*The control tube showing no movement confirms the change is due to respiration, not to shifts in atmospheric pressure or temperature. The KOH absorbing CO2 is what makes the falling volume equal to the oxygen consumed.*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing respiration with breathing** — cell respiration is a chemical energy-releasing process in every cell; breathing/ventilation is air moving in and out of lungs. Answers about lungs score nothing on a respiration question.",
+        "**Putting glycolysis in the mitochondria** — glycolysis is in the CYTOPLASM. Only the link reaction, Krebs cycle and electron transport chain are in the mitochondria.",
+        "**Misnaming the anaerobic products** — animals make LACTATE; yeast makes ETHANOL + CO2. Do not swap them, and do not claim animal anaerobic respiration releases CO2 or uses oxygen.",
+        "**Getting oxygen's role wrong** — oxygen is the FINAL electron acceptor at the end of the electron transport chain; it is not consumed in glycolysis and does not supply electrons.",
+        "**Underselling the yield gap** — aerobic gives a LARGE yield (≈30–38 ATP) versus a SMALL net 2 for anaerobic. Vague 'aerobic makes more' without the scale, or quoting equal yields, loses credit.",
+        "**Forgetting the shared start** — both pathways begin with glycolysis; treating them as different 'from the very first step' is wrong.",
+        "**Listing instead of comparing** — a 'compare' question wants linked comparative points (e.g. 'aerobic needs oxygen WHEREAS anaerobic does not'), not two separate paragraphs describing each pathway."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Comparison questions in C1.2 are marked ANALYTICALLY: each distinct valid comparative point is worth one mark, up to the total available. A comparison mark requires you to link the two pathways in one statement (a similarity or a difference), not to describe them separately. Answer marks (A) credit a correct point; error-carried-forward (ECF) means a genuine comparison still scores even if a related earlier value was wrong; and equivalent correct wording is accepted. Study how each mark below is tied to a specific comparative idea."
+    },
+    {
+      "type": "workedExample",
+      "question": "Compare and contrast aerobic and anaerobic respiration in humans. [4]",
+      "solution": "**Model answer.**\nBoth aerobic and anaerobic respiration begin with glycolysis in the cytoplasm and both produce ATP. However, aerobic respiration requires oxygen whereas anaerobic respiration does not. Aerobic respiration continues in the mitochondria, whereas anaerobic respiration takes place only in the cytoplasm. Aerobic respiration yields much more ATP (about 30–38 per glucose) than anaerobic respiration (a net of only 2 per glucose). In addition, anaerobic respiration in humans produces lactate, whereas aerobic respiration produces carbon dioxide and water.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid comparison scores 1 (maximum 4):\n\n- **Point 1 (A):** SIMILARITY — both start with glycolysis / both produce ATP.\n- **Point 2 (A):** aerobic requires oxygen WHEREAS anaerobic does not.\n- **Point 3 (A):** aerobic occurs in the mitochondria (as well as cytoplasm) WHEREAS anaerobic occurs only in the cytoplasm.\n- **Point 4 (A):** aerobic yields much more ATP than anaerobic (accept ≈30–38 vs net 2).\n- **Further creditable point (A):** anaerobic in humans produces lactate WHEREAS aerobic produces CO2 and water.\n\nBecause five creditable comparisons are shown for a 4-mark question, the engine caps the award at 4 — there is deliberate room to miss one and still score full marks. But each mark is for a DISTINCT comparative idea: making the same point twice in different words scores once.\n\n**What the engine requires — comparisons, not two lists.** The mark scheme wants COMPARATIVE statements linking the two pathways ('aerobic needs oxygen whereas anaerobic does not'). An answer that gives one paragraph describing aerobic respiration and a separate paragraph describing anaerobic respiration, with no linking, is credited far less generously because the comparisons are not made explicit — so always pair the two in each sentence.\n\n**ECF and equivalents.** The points are independent, so omitting the location comparison does not stop the oxygen or yield comparisons from scoring. Equivalent wording is accepted (e.g. 'anaerobic makes far less ATP' earns the yield mark), and a comparison built on an earlier stated figure still scores by ECF even if that figure was slightly off.\n\n**Bottom line:** to secure all 4 marks, give four DISTINCT linked comparisons — pick from the shared glycolysis/ATP start, the oxygen requirement, the location, the ATP yield and the products. Two separate descriptions are not a comparison."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way — point by point, crediting each distinct comparison, applying ECF and capping at the marks available. So write in linked comparative statements ('aerobic … whereas anaerobic …'), not two separate descriptions. Naming the specific difference — oxygen, location, yield, products — is what earns each mark; a vague 'they are different' earns nothing."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Cell respiration is one half of the energy story of life; photosynthesis is the other, and the two are studied together as complementary energy conversions. The ATP made here powers every active process you meet elsewhere in the course — active transport across membranes, muscle contraction, protein synthesis and DNA replication. At HL the overview stages sketched here (glycolysis, the link reaction, the Krebs cycle and oxidative phosphorylation on the electron transport chain) are developed in full molecular detail, but the framework is the same one you have built in this lesson: release energy in controlled steps, capture it as ATP, and let oxygen — when available — unlock the large mitochondrial yield."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Cell Respiration",
-      "href": "/mark?subject=ib-biology-hl&topic=C1.2"
+      "label": "Get a Paper 2 question marked: compare aerobic and anaerobic respiration, or explain the role of ATP and oxygen, with full working",
+      "href": "/mark?subject=ib-biology-hl&topic=C1.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Interactive animation of the ETC and ATP Synthase",
-          "href": "https://www.youtube.com/watch?v=LQmTKxI4Wn4"
+          "label": "IB Biology Guide (2025): C1.2 Cell respiration",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
         },
         {
-          "label": "In-depth article on mitochondrial function",
-          "href": "https://www.nature.com/scitable/topicpage/the-role-of-mitochondria-in-cellular-respiration-14232313/"
-        },
-        {
-          "label": "Khan Academy: Oxidative Phosphorylation",
-          "href": "https://www.khanacademy.org/science/biology/cellular-respiration-and-fermentation/oxidative-phosphorylation/a/oxidative-phosphorylation-electron-transport-chain"
+          "label": "SAPS: Investigating the rate of respiration",
+          "href": "https://www.saps.org.uk/saps-associates/browse-a-z-of-resources/1207-investigating-factors-affecting-the-rate-of-respiration"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

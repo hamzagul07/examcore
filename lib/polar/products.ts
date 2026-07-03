@@ -56,6 +56,22 @@ export function polarProductId(
   return process.env[def.envVar]?.trim() || null
 }
 
+/**
+ * Rank a subscription plan so checkout can tell an upgrade from a downgrade.
+ * Tier dominates (Max > Pro > Free); within a tier, yearly outranks monthly
+ * (more commitment). student/scholar are both "Pro" so they rank equally.
+ * A lower new rank than the current plan = downgrade → defer to period end.
+ */
+export function subscriptionRank(
+  product: ProductKey,
+  billingPeriod: BillingPeriod | null
+): number {
+  const tier = tierForProduct(product)
+  const tierRank = tier === 'mastery' ? 2 : tier === 'free' ? 0 : 1
+  const periodRank = billingPeriod === 'yearly' ? 1 : 0
+  return tierRank * 10 + periodRank
+}
+
 export type ResolvedPolarProduct = {
   productKey: ProductKey
   tier: SubscriptionTier

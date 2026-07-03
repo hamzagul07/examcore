@@ -8,7 +8,7 @@ import {
   isCreditProduct,
   isSubscriptionProduct,
 } from '@/lib/billing/pricing'
-import { polarProductId } from '@/lib/polar/products'
+import { polarProductId, subscriptionRank } from '@/lib/polar/products'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
 import { resolveSiteUrl } from '@/lib/site-url'
 import type { BillingPeriod } from '@/lib/database.types'
@@ -113,15 +113,28 @@ export async function POST(req: NextRequest) {
         )
       }
 
+      // Downgrades defer to the end of the current period (the user keeps the
+      // plan they paid for, no mid-cycle credit); upgrades apply immediately
+      // with a prorated charge.
+      const isDowngrade =
+        subscriptionRank(product, billingPeriod) <
+        subscriptionRank(
+          current.tier as ProductKey,
+          current.billing_period as BillingPeriod | null
+        )
+      const prorationBehavior = isDowngrade ? 'next_period' : 'invoice'
+
       try {
         await polar.subscriptions.update({
           id: current.polar_subscription_id,
-          subscriptionUpdate: { productId, prorationBehavior: 'invoice' },
+          subscriptionUpdate: { productId, prorationBehavior },
         })
-        // The subscription.updated webhook syncs the new tier. Redirect the
-        // client to the billing page so it re-fetches the summary.
+        // Upgrades: the subscription.updated webhook syncs the new tier now.
+        // Downgrades: a pending_update is scheduled; the tier flips when the
+        // webhook fires at period end. Either way redirect to billing.
+        const scheduled = isDowngrade ? '&scheduled=1' : ''
         return jsonWithAuthCookies(
-          { url: `${origin}${returnPath}?checkout=success` },
+          { url: `${origin}${returnPath}?checkout=success${scheduled}`, scheduled: isDowngrade },
           pendingCookies
         )
       } catch (err) {

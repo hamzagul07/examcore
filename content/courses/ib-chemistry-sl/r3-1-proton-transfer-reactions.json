@@ -1,182 +1,156 @@
 {
   "slug": "r3-1-proton-transfer-reactions",
   "topicCode": "R3.1",
+  "unit": { "code": "R3", "title": "What are the mechanisms of chemical change?" },
   "title": "Proton transfer reactions",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces the Brønsted-Lowry theory of acids and bases, defining them as proton donors and acceptors. You will learn to identify conjugate acid-base pairs in a reaction and understand the properties of amphiprotic species, which can act as either an acid or a base.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Proton transfer is the single idea that unifies all of acid-base chemistry. This lesson builds the whole of R3.1: the Brønsted-Lowry model of acids as proton donors and bases as proton acceptors, conjugate acid-base pairs, amphiprotic species, the logarithmic pH scale and its link to [H⁺], the difference between strong and weak acids and bases in terms of extent of dissociation, and the characteristic reactions of acids with metals, bases and carbonates. The HL extension — Ka, Kb, pKa, pKb, pH/pOH calculations and buffers — is flagged throughout. Every worked example is laid out exactly the way our marking engine awards marks, so you can see where each mark is won or lost.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define a Brønsted-Lowry acid as a proton ($H^+$) donor and a Brønsted-Lowry base as a proton ($H^+$) acceptor.",
-    "Identify the acid, base, conjugate acid, and conjugate base in a proton transfer reaction.",
-    "Deduce the two conjugate acid-base pairs for a given reaction.",
-    "Define an amphiprotic species and provide examples such as water and the hydrogen carbonate ion."
+    "Define a Brønsted-Lowry acid as a proton ($H^+$) donor and a Brønsted-Lowry base as a proton acceptor, and identify the two conjugate acid-base pairs in a reaction.",
+    "Define an amphiprotic species and write equations showing it acting as both an acid and a base.",
+    "Relate pH to hydrogen ion concentration through $\\text{pH} = -\\log_{10}[H^+]$ and describe the pH scale as logarithmic.",
+    "Distinguish strong from weak acids and bases in terms of the extent of dissociation, not concentration.",
+    "Write balanced equations for the reactions of acids with reactive metals, bases/alkalis and carbonates, and describe neutralisation.",
+    "(HL) Use $K_a$, $K_b$, $pK_a$ and $pK_b$ as measures of acid and base strength, carry out pH and pOH calculations, and explain how a buffer resists a change in pH."
   ],
+  "syllabusObjectivesCovered": ["R3.1"],
+  "levelNote": "Common to SL and HL; Ka/Kb/pKa, pH calculations and buffers are HL.",
   "simpleExplanation": {
     "title": "The Proton Passing Game",
-    "summary": "In chemistry, an acid is a substance that gives away a proton, and a base is one that accepts it. This simple act of passing a proton transforms the original acid and base into their 'conjugate' forms.",
-    "analogy": "Imagine a dance where partners are constantly swapping a single hat (the proton). One person starts with the hat (the acid) and gives it to their partner (the base). After the swap, the first person is now ready to receive a hat (becoming a conjugate base), and their partner is now ready to give the hat away (becoming a conjugate acid). The entire reaction is just this continuous exchange.",
+    "summary": "An acid is a substance that gives away a proton and a base is one that accepts it. That single act of passing a proton turns the original acid and base into their 'conjugate' forms, and it is the same event whether you are neutralising stomach acid, dissolving limestone or buffering blood.",
+    "analogy": "Picture a dance where partners keep swapping a single hat, and the hat is the proton, $H^+$. The person who starts with the hat is the acid; they hand it to their partner, the base. Once the hat has changed hands, the first person is now empty-handed and ready to receive a hat again (they have become a conjugate base), while their partner now holds the hat and could pass it on (they have become a conjugate acid). Every proton transfer reaction is just this one exchange, and it always creates two matched pairs.",
     "steps": [
-      "Identify the reactants. Look for a species that can donate a proton (the acid, e.g., HCl) and one that can accept it (the base, e.g., H₂O).",
-      "Visualise the proton transfer. The base uses a lone pair of electrons to form a new bond with the proton from the acid.",
-      "Determine the products. The acid, having lost a proton, becomes its conjugate base (e.g., Cl⁻). The base, having gained a proton, becomes its conjugate acid (e.g., H₃O⁺).",
-      "Pair them up. Connect the original acid with its conjugate base and the original base with its conjugate acid. These are the two conjugate pairs in the reaction."
+      "Spot the reactants: one species can donate a proton (the acid, e.g. HCl) and one can accept it (the base, e.g. H₂O).",
+      "Follow the proton. The base uses a lone pair of electrons to bond the incoming $H^+$.",
+      "Read off the products. The acid, having lost $H^+$, becomes its conjugate base (Cl⁻); the base, having gained $H^+$, becomes its conjugate acid (H₃O⁺).",
+      "Pair them up: acid with its conjugate base, base with its conjugate acid. Members of a pair differ by exactly one $H^+$."
     ]
   },
+  "keyConcepts": ["proton transfer", "equilibrium", "acid-base strength"],
   "flashcards": [
-    {
-      "front": "What is the definition of a Brønsted-Lowry acid?",
-      "back": "A proton ($H^+$) donor."
-    },
-    {
-      "front": "What is the definition of a Brønsted-Lowry base?",
-      "back": "A proton ($H^+$) acceptor."
-    },
-    {
-      "front": "What is a conjugate acid?",
-      "back": "The species formed when a Brønsted-Lowry base accepts a proton."
-    },
-    {
-      "front": "What is a conjugate base?",
-      "back": "The species formed when a Brønsted-Lowry acid donates a proton."
-    },
-    {
-      "front": "What is a conjugate acid-base pair?",
-      "back": "Two species that differ from each other by a single proton ($H^+$)."
-    },
-    {
-      "front": "What is an amphiprotic species?",
-      "back": "A species that can act as either a Brønsted-Lowry acid (donating a proton) or a Brønsted-Lowry base (accepting a proton)."
-    },
-    {
-      "front": "Give two common examples of amphiprotic species.",
-      "back": "Water ($H_2O$) and the hydrogen carbonate ion ($HCO_3^-$)."
-    },
-    {
-      "front": "What is the conjugate acid of the base $HPO_4^{2-}$?",
-      "back": "$H_2PO_4^-$. (Accepting a proton, $H^+$, increases the charge by +1 and adds an H)."
-    },
-    {
-      "front": "What is the conjugate base of the acid $H_2S$?",
-      "back": "$HS^-$. (Donating a proton, $H^+$, decreases the charge by 1 and removes an H)."
-    },
-    {
-      "front": "Common Trap: What is the difference between 'amphiprotic' and 'amphoteric'?",
-      "back": "Amphiprotic specifically refers to donating/accepting protons (Brønsted-Lowry). Amphoteric is a broader term for any substance acting as an acid or base (including Lewis theory). All amphiprotic species are amphoteric, but not all amphoteric species are amphiprotic."
-    },
-    {
-      "front": "Identify the Brønsted-Lowry base in the forward reaction: $CH_3COOH(aq) + H_2O(l) \\rightleftharpoons CH_3COO^-(aq) + H_3O^+(aq)$",
-      "back": "$H_2O$, because it accepts a proton from $CH_3COOH$ to form $H_3O^+$."
-    }
+    { "front": "Brønsted-Lowry acid", "back": "A proton ($H^+$) donor. It does not need to contain oxygen, and the definition is not limited to aqueous solution.", "pillLabel": "Definition" },
+    { "front": "Brønsted-Lowry base", "back": "A proton ($H^+$) acceptor. It must have a lone pair to bond the incoming proton — it does NOT need to contain OH⁻ (e.g. NH₃ is a base).", "pillLabel": "Definition" },
+    { "front": "Conjugate base", "back": "The species left after a Brønsted-Lowry acid donates its proton. It has one fewer H and a charge one unit more negative than the acid.", "pillLabel": "Definition" },
+    { "front": "Conjugate acid", "back": "The species formed when a Brønsted-Lowry base accepts a proton. It has one more H and a charge one unit more positive than the base.", "pillLabel": "Definition" },
+    { "front": "Conjugate acid-base pair", "back": "Two species that differ by a single proton ($H^+$), e.g. HCl/Cl⁻ or NH₄⁺/NH₃. Every proton transfer reaction contains exactly two pairs.", "pillLabel": "Concept" },
+    { "front": "Amphiprotic species", "back": "A species that can either donate or accept a proton, e.g. H₂O, HCO₃⁻, HSO₄⁻, H₂PO₄⁻. Compare 'amphoteric', which is the broader term (any acid or base behaviour, including Lewis).", "pillLabel": "Concept" },
+    { "front": "pH", "back": "$\\text{pH} = -\\log_{10}[H^+]$, where $[H^+]$ is in mol dm⁻³. The scale is logarithmic: one pH unit is a ten-fold change in $[H^+]$.", "pillLabel": "Formula" },
+    { "front": "$[H^+]$ from pH", "back": "$[H^+] = 10^{-\\text{pH}}$. Rearranging the pH definition; useful when the pH is given and you need the concentration.", "pillLabel": "Formula" },
+    { "front": "Strong vs weak acid", "back": "A STRONG acid dissociates essentially completely in water (HCl, HNO₃, H₂SO₄); a WEAK acid only partially dissociates and sits at equilibrium (CH₃COOH). This is about EXTENT of dissociation, not concentration.", "pillLabel": "Concept" },
+    { "front": "Strong vs weak base", "back": "A STRONG base is fully dissociated/ionised (group 1 hydroxides, e.g. NaOH); a WEAK base is only partially protonated at equilibrium (NH₃). Again, this is extent of reaction, not concentration.", "pillLabel": "Concept" },
+    { "front": "Acid + reactive metal", "back": "Produces a salt + hydrogen gas. e.g. Mg + 2HCl → MgCl₂ + H₂. Effervescence; the gas gives a squeaky pop.", "pillLabel": "Reaction" },
+    { "front": "Acid + base/alkali (neutralisation)", "back": "Produces a salt + water. The net ionic reaction is H⁺(aq) + OH⁻(aq) → H₂O(l).", "pillLabel": "Reaction" },
+    { "front": "Acid + carbonate (or hydrogencarbonate)", "back": "Produces a salt + water + carbon dioxide. e.g. 2HCl + CaCO₃ → CaCl₂ + H₂O + CO₂. CO₂ turns limewater milky.", "pillLabel": "Reaction" },
+    { "front": "HL — $K_a$ and $pK_a$", "back": "$K_a$ is the acid dissociation constant for HA ⇌ H⁺ + A⁻; larger $K_a$ = stronger acid. $pK_a = -\\log_{10}K_a$, so SMALLER $pK_a$ = stronger acid.", "pillLabel": "Trap" },
+    { "front": "HL — buffer", "back": "A solution that resists pH change on adding small amounts of acid or base. Made from a weak acid + its conjugate base (or a weak base + its conjugate acid); both partners are present to mop up added H⁺ or OH⁻.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "Concentrated ethanoic acid and dilute hydrochloric acid are compared. Which statement is correct?", "options": ["Ethanoic acid must have the lower pH because it is concentrated", "'Strong' and 'concentrated' mean the same thing", "HCl is a strong acid (fully dissociated) while ethanoic acid is weak (partially dissociated), regardless of concentration", "A concentrated acid is always a strong acid"], "answer": "HCl is a strong acid (fully dissociated) while ethanoic acid is weak (partially dissociated), regardless of concentration" },
+    { "prompt": "What is the conjugate base of the hydrogencarbonate ion, HCO₃⁻?", "options": ["H₂CO₃", "CO₃²⁻", "CO₂", "OH⁻"], "answer": "CO₃²⁻" },
+    { "prompt": "A solution changes from pH 5 to pH 2. By what factor has [H⁺] changed?", "options": ["It has increased 3 times", "It has decreased 3 times", "It has increased 1000 times", "It has decreased 1000 times"], "answer": "It has increased 1000 times" },
+    { "prompt": "Which statement best describes a weak acid such as ethanoic acid in water?", "options": ["Every molecule donates its proton to water", "Only a small fraction of molecules donate a proton, and an equilibrium is set up", "It does not react with water at all", "It produces more H⁺ than a strong acid of the same concentration"], "answer": "Only a small fraction of molecules donate a proton, and an equilibrium is set up" },
+    { "prompt": "Dilute sulfuric acid is added to calcium carbonate. Which set of products is correct?", "options": ["A salt + hydrogen only", "A salt + water only", "A salt + water + carbon dioxide", "Carbon dioxide + hydrogen"], "answer": "A salt + water + carbon dioxide" }
   ],
   "faq": [
-    {
-      "q": "In the context of Brønsted-Lowry theory, is a proton the same as a hydrogen ion?",
-      "a": "Yes. A hydrogen atom ($^1H$) consists of one proton and one electron. When it loses this electron to form the $H^+$ ion, only the proton remains. So, in acid-base chemistry, 'proton' and 'hydrogen ion' are used interchangeably."
-    },
-    {
-      "q": "Can a substance be a base if it doesn't contain hydroxide ($OH^-$)?",
-      "a": "Absolutely. This is a key advantage of the Brønsted-Lowry theory over the older Arrhenius theory. Any species that can accept a proton is a base. Ammonia ($NH_3$) is a classic example of a base that does not contain a hydroxide group in its formula."
-    },
-    {
-      "q": "How do I identify the acid and base in a reaction just by looking at the equation?",
-      "a": "Look for changes between reactants and products. Find a reactant that has lost an $H^+$ on the product side – that's your acid. The reactant that has gained that $H^+$ is your base. For example, in $HNO_2 + H_2O \\rightleftharpoons NO_2^- + H_3O^+$, $HNO_2$ becomes $NO_2^-$ (lost $H^+$), so it's the acid. $H_2O$ becomes $H_3O^+$ (gained $H^+$), so it's the base."
-    }
+    { "q": "In acid-base chemistry, is a 'proton' really the same thing as a hydrogen ion?", "a": "Yes. The most common hydrogen atom (¹H) is one proton plus one electron. Strip away the electron to make H⁺ and only the proton is left. So 'proton donor' and 'H⁺ donor' mean exactly the same thing, and in water the bare proton is actually carried by a water molecule as the hydronium ion, H₃O⁺." },
+    { "q": "Can something be a base if it contains no hydroxide?", "a": "Absolutely — this is the whole advantage of the Brønsted-Lowry model over the older Arrhenius idea. A base is anything that accepts a proton, so ammonia (NH₃) is a base even though it has no OH⁻: it accepts a proton to become NH₄⁺. What a base does need is a lone pair of electrons to bond the incoming proton." },
+    { "q": "What is the difference between a strong acid and a concentrated acid?", "a": "They measure two completely different things. 'Strong/weak' describes the EXTENT of dissociation — a strong acid ionises essentially completely, a weak acid only partially. 'Concentrated/dilute' describes the AMOUNT of acid per volume of solution. You can have dilute strong acid or concentrated weak acid; the two words are independent, and confusing them is one of the most heavily penalised errors on this topic." },
+    { "q": "Why does one pH unit matter so much?", "a": "Because pH is a logarithmic scale: pH = −log₁₀[H⁺]. Each whole pH unit is a ten-fold change in [H⁺]. Going from pH 3 to pH 1 is not 'a bit more acidic' — it is 100 times the hydrogen ion concentration. This is also why a strong and a weak acid of the same concentration can differ by several pH units." },
+    { "q": "(HL) Does a small Ka mean a weak acid, and how does that link to pKa?", "a": "Yes. Ka is the equilibrium constant for HA ⇌ H⁺ + A⁻, so a small Ka means the equilibrium lies to the left and little dissociation occurs — a weak acid. Because pKa = −log₁₀Ka, a small Ka gives a large pKa. Be careful with the direction: the STRONGER the acid, the LARGER the Ka but the SMALLER the pKa." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of proton transfer! While you may have learned that acids produce $H^+$ ions in water, this is only part of the story. The Brønsted-Lowry theory provides a more powerful and general framework for understanding acid-base chemistry. It focuses on the simple act of a proton moving from one chemical species to another, a fundamental process that occurs in countless chemical and biological systems."
-    },
-    {
-      "type": "heading",
-      "content": "The Brønsted-Lowry Theory"
-    },
-    {
-      "type": "text",
-      "content": "In 1923, Johannes Brønsted and Thomas Lowry independently proposed new definitions for acids and bases. Their theory is not restricted to aqueous solutions and provides a clearer picture of the role of the solvent. A Brønsted-Lowry acid is a species that donates a proton, and a Brønsted-Lowry base is a species that accepts a proton. A 'proton' in this context is simply a hydrogen ion, $H^+$, which is a hydrogen atom that has lost its electron."
-    },
-    {
-      "type": "formula",
-      "content": "Acid + Base \\rightleftharpoons Conjugate Base + Conjugate Acid"
-    },
-    {
-      "type": "text",
-      "content": "Consider the reaction between hydrogen chloride gas and water. The HCl molecule donates a proton to a water molecule. Therefore, HCl is the acid and $H_2O$ is the base."
-    },
-    {
-      "type": "formula",
-      "content": "HCl(g) + H_2O(l) \\rightleftharpoons Cl^-(aq) + H_3O^+(aq) \\\\ \\text{(Acid)} + \\text{(Base)} \\rightleftharpoons \\text{(Conj. Base)} + \\text{(Conj. Acid)}"
-    },
-    {
-      "type": "heading",
-      "content": "Conjugate Acid-Base Pairs"
-    },
-    {
-      "type": "text",
-      "content": "A key consequence of the Brønsted-Lowry theory is the concept of conjugate pairs. When an acid donates its proton, the species remaining is called its conjugate base. When a base accepts a proton, the new species formed is its conjugate acid. Every Brønsted-Lowry acid-base reaction involves two such pairs."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A conjugate acid-base pair consists of two species that differ by a single proton ($H^+$).",
-        "Acid $\\rightarrow$ donates $H^+$ $\\rightarrow$ Conjugate Base.",
-        "Base $\\rightarrow$ accepts $H^+$ $\\rightarrow$ Conjugate Acid.",
-        "In the reaction $HCl + H_2O$, the pairs are $HCl/Cl^-$ and $H_3O^+/H_2O$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "For the following reaction, identify the Brønsted-Lowry acid, base, conjugate acid, and conjugate base:\n\n$NH_3(aq) + H_2O(l) \\rightleftharpoons NH_4^+(aq) + OH^-(aq)$",
-      "solution": "1.  **Analyse the reactants and products:** Compare the species on both sides of the equilibrium.\n2.  **Track the proton:** The $NH_3$ molecule becomes $NH_4^+$. It has gained a hydrogen and its charge has increased by +1. Therefore, it has accepted a proton.\n3.  **Identify the base and conjugate acid:** Since $NH_3$ accepts a proton, it is the Brønsted-Lowry base. The product, $NH_4^+$, is its conjugate acid.\n4.  **Track the other species:** The $H_2O$ molecule becomes $OH^-$. It has lost a hydrogen and its charge has decreased by 1. Therefore, it has donated a proton.\n5.  **Identify the acid and conjugate base:** Since $H_2O$ donates a proton, it is the Brønsted-Lowry acid. The product, $OH^-$, is its conjugate base.\n\n**Answer according to markscheme:**\n*   Acid: $H_2O$ [1]\n*   Base: $NH_3$ [1]\n*   Conjugate Acid: $NH_4^+$ [1]\n*   Conjugate Base: $OH^-$ [1]\n\n*(Note: Often, identifying both pairs correctly, e.g., $H_2O/OH^-$ and $NH_3/NH_4^+$, would gain the marks.)*"
-    },
-    {
-      "type": "heading",
-      "content": "Amphiprotic Species"
-    },
-    {
-      "type": "text",
-      "content": "Some substances have the remarkable ability to act as either a Brønsted-Lowry acid or a Brønsted-Lowry base, depending on what they are reacting with. These are called **amphiprotic** species. To be amphiprotic, a species must have a hydrogen atom it can donate, and it must also be able to accept a proton (which usually requires a lone pair of electrons)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Water ($H_2O$) is the classic example. It can donate a proton to become $OH^-$ or accept a proton to become $H_3O^+$.",
-        "The hydrogen carbonate ion, $HCO_3^-$, is another key example. It can donate its proton to form the carbonate ion, $CO_3^{2-}$, or accept a proton to form carbonic acid, $H_2CO_3$.",
-        "Other examples include the hydrogen sulfate ion ($HSO_4^-$) and dihydrogen phosphate ion ($H_2PO_4^-$)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In exams, a common question is to write two different equations showing a species acting as an acid in one and a base in the other. Make sure you choose appropriate reaction partners. To show it as an acid, react it with a base (like $OH^-$). To show it as a base, react it with an acid (like $HCl$ or $H_3O^+$)."
-    },
-    {
-      "type": "workedExample",
-      "question": "The hydrogen sulfate ion, $HSO_4^-$, is amphiprotic. \n(i) Write an equation for its reaction with water where it acts as an acid. \n(ii) Write an equation for its reaction with hydrofluoric acid, $HF$, where it acts as a base.",
-      "solution": "**(i) Acting as an acid:**\nWhen $HSO_4^-$ acts as an acid, it donates a proton. Water will act as the base.\n\n$HSO_4^-(aq) + H_2O(l) \\rightleftharpoons SO_4^{2-}(aq) + H_3O^+(aq)$ [1]\n\n*   Here, $HSO_4^-$ is the acid and its conjugate base is $SO_4^{2-}$.\n\n**(ii) Acting as a base:**\nWhen $HSO_4^-$ acts as a base, it accepts a proton. The stronger acid, $HF$, will be the proton donor.\n\n$HSO_4^-(aq) + HF(aq) \\rightleftharpoons H_2SO_4(aq) + F^-(aq)$ [1]\n\n*   Here, $HSO_4^-$ is the base and its conjugate acid is $H_2SO_4$ (sulfuric acid)."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Proton Transfer",
-      "href": "/mark?subject=ib-chemistry-sl&topic=R3.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: Acid-Base Solutions",
-          "href": "https://phet.colorado.edu/en/simulations/acid-base-solutions"
-        },
-        {
-          "label": "Detailed explanation from Chem LibreTexts",
-          "href": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)/16%3A_Acid-Base_Equilibria/16.02%3A_Brnsted-Lowry_Acids_and_Bases"
-        }
-      ]
-    }
+    { "type": "intro", "content": "You may have met acids as substances that 'produce H⁺ in water', but that is only part of the story. The Brønsted-Lowry model gives a far more general and useful picture: an acid is anything that donates a proton and a base is anything that accepts one. That single idea — a proton moving from one species to another — runs through neutralisation, the fizzing of an acid on limestone, the sharp pH change at the end of a titration and the way blood holds its pH steady. This lesson develops the whole of R3.1 around it, and every worked example is marked the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The Brønsted-Lowry model" },
+    { "type": "text", "content": "In 1923 Johannes Brønsted and Thomas Lowry independently proposed that acid-base behaviour is really about proton transfer. A Brønsted-Lowry acid is a species that donates a proton ($H^+$); a Brønsted-Lowry base is a species that accepts a proton. A 'proton' here is a hydrogen ion — a hydrogen atom that has lost its electron. The model is not limited to water and does not require a base to contain hydroxide, which is why it explains far more than the older Arrhenius definitions." },
+    { "type": "formula", "content": "\\text{Acid} + \\text{Base} \\rightleftharpoons \\text{Conjugate base} + \\text{Conjugate acid}" },
+    { "type": "text", "content": "When hydrogen chloride dissolves in water, the HCl molecule donates a proton to a water molecule, so HCl is the acid and $H_2O$ is the base. In water the free proton is carried by a water molecule as the hydronium (oxonium) ion, $H_3O^+$." },
+    { "type": "formula", "content": "HCl(g) + H_2O(l) \\rightleftharpoons Cl^-(aq) + H_3O^+(aq) \\\\ \\text{(acid)} \\quad\\; \\text{(base)} \\quad\\; \\text{(conj. base)} \\quad \\text{(conj. acid)}" },
+
+    { "type": "heading", "content": "Conjugate acid-base pairs" },
+    { "type": "text", "content": "Because a proton is transferred, every Brønsted-Lowry reaction produces two conjugate pairs. When an acid donates its proton, what remains is its conjugate base; when a base accepts a proton, the species formed is its conjugate acid. The two members of a pair always differ by exactly one $H^+$, so their formulae differ by one H and their charges differ by one unit." },
+    { "type": "keyPoints", "items": [
+      "A conjugate acid-base pair differs by a single proton ($H^+$): one more H and a charge one unit more positive on the acid side.",
+      "Acid $\\rightarrow$ (donates $H^+$) $\\rightarrow$ conjugate base.",
+      "Base $\\rightarrow$ (accepts $H^+$) $\\rightarrow$ conjugate acid.",
+      "In $HCl + H_2O \\rightleftharpoons Cl^- + H_3O^+$ the pairs are $HCl/Cl^-$ and $H_3O^+/H_2O$."
+    ]},
+    { "type": "workedExample", "question": "For the reaction $NH_3(aq) + H_2O(l) \\rightleftharpoons NH_4^+(aq) + OH^-(aq)$, identify the Brønsted-Lowry acid, base, conjugate acid and conjugate base, and state the two conjugate pairs. [4]", "solution": "**Step 1 — follow the protons.**\n$NH_3 \\rightarrow NH_4^+$: it has gained an H and its charge has risen by +1, so it has ACCEPTED a proton.\n$H_2O \\rightarrow OH^-$: it has lost an H and its charge has fallen by 1, so it has DONATED a proton.\n\n**Step 2 — assign roles.**\nBecause $NH_3$ accepts a proton it is the **base**, and its product $NH_4^+$ is its **conjugate acid**.  [A1]\nBecause $H_2O$ donates a proton it is the **acid**, and its product $OH^-$ is its **conjugate base**.  [A1]\n\n**Step 3 — state the pairs.**\nPair 1: $NH_4^+ / NH_3$ (conjugate acid / base).  [A1]\nPair 2: $H_2O / OH^-$ (acid / conjugate base).  [A1]\n\n*Notice water acts as an acid here, but as a base towards HCl — it is amphiprotic (next section).*" },
+
+    { "type": "heading", "content": "Amphiprotic species" },
+    { "type": "text", "content": "Some species can act as either a Brønsted-Lowry acid or a base, depending on their reaction partner. These are **amphiprotic**. To behave this way a species needs both a hydrogen atom it can donate and a lone pair with which to accept a proton. Water is the classic case: it donates a proton to become $OH^-$, or accepts one to become $H_3O^+$. The hydrogencarbonate ion, $HCO_3^-$, is another key example, along with $HSO_4^-$ and $H_2PO_4^-$." },
+    { "type": "keyPoints", "items": [
+      "Water: donates $H^+$ to become $OH^-$; accepts $H^+$ to become $H_3O^+$.",
+      "Hydrogencarbonate, $HCO_3^-$: donates $H^+$ to give $CO_3^{2-}$; accepts $H^+$ to give $H_2CO_3$.",
+      "Take care with vocabulary: 'amphiprotic' specifically means donating/accepting protons (Brønsted-Lowry). 'Amphoteric' is broader — any acid or base behaviour, including Lewis. All amphiprotic species are amphoteric, but not the reverse (e.g. $Al_2O_3$ is amphoteric but not amphiprotic)."
+    ]},
+    { "type": "examTip", "content": "A favourite exam task is to write two equations showing an amphiprotic species acting as an acid in one and a base in the other. Choose the partners deliberately: to make it act as an ACID, react it with a base (e.g. $OH^-$); to make it act as a BASE, react it with an acid (e.g. $H_3O^+$ or a stronger acid). Balance charges to check you have the right conjugate." },
+
+    { "type": "heading", "content": "The pH scale and hydrogen ion concentration" },
+    { "type": "text", "content": "Hydrogen ion concentrations in solution span an enormous range, so we compress them onto a logarithmic scale: $\\text{pH} = -\\log_{10}[H^+]$, where $[H^+]$ is in mol dm⁻³. Rearranged, $[H^+] = 10^{-\\text{pH}}$. The key feature is that the scale is logarithmic, so each whole pH unit corresponds to a TEN-FOLD change in $[H^+]$: a solution of pH 2 has ten times the hydrogen ion concentration of one at pH 3, and a hundred times that of one at pH 4. A lower pH means a higher $[H^+]$ and a more acidic solution." },
+    { "type": "formula", "content": "\\text{pH} = -\\log_{10}[H^+] \\qquad\\Longleftrightarrow\\qquad [H^+] = 10^{-\\text{pH}}" },
+    { "type": "keyPoints", "items": [
+      "pH falls as $[H^+]$ rises — the minus sign in the definition flips the direction.",
+      "One pH unit = a ten-fold change in $[H^+]$; the scale is logarithmic, not linear.",
+      "At 298 K, pH < 7 is acidic, pH = 7 is neutral, pH > 7 is basic.",
+      "(HL) $pOH = -\\log_{10}[OH^-]$ and, at 298 K, $\\text{pH} + pOH = 14$."
+    ]},
+
+    { "type": "heading", "content": "Strong and weak acids and bases" },
+    { "type": "text", "content": "'Strong' and 'weak' describe the EXTENT to which an acid or base reacts with water — nothing to do with how concentrated it is. A strong acid dissociates essentially completely: in HCl(aq) virtually every molecule has donated its proton, so we write a single arrow. A weak acid only partially dissociates and reaches an equilibrium, so we write a reversible arrow and most of it remains as intact molecules. The same distinction applies to bases: a strong base such as NaOH is fully dissociated into ions, whereas a weak base such as NH₃ is only partially protonated at equilibrium." },
+    { "type": "formula", "content": "\\text{Strong acid: } HCl(aq) \\rightarrow H^+(aq) + Cl^-(aq) \\\\ \\text{Weak acid: } CH_3COOH(aq) \\rightleftharpoons H^+(aq) + CH_3COO^-(aq)" },
+    { "type": "text", "content": "This is why, at the SAME concentration, a strong acid has a higher $[H^+]$ and therefore a LOWER pH than a weak acid: the strong acid has released far more of its available protons. It is also why 'strong' and 'concentrated' must never be swapped — you can have a dilute strong acid (low concentration, fully dissociated) or a concentrated weak acid (high concentration, barely dissociated)." },
+    { "type": "examTip", "content": "If a question asks you to compare a strong and a weak acid, always anchor your answer to EXTENT of dissociation: the strong acid dissociates completely, the weak acid only partially, so the strong acid has the higher [H⁺] and lower pH at equal concentration. Never explain the difference using the word 'concentrated'." },
+
+    { "type": "heading", "content": "Characteristic reactions of acids" },
+    { "type": "text", "content": "Acids show three signature reactions you must be able to write and recognise. Each is a proton transfer, and each has an observation you can quote in the exam." },
+    { "type": "keyPoints", "items": [
+      "**Acid + reactive metal → salt + hydrogen.** e.g. $Mg + 2HCl \\rightarrow MgCl_2 + H_2$. Observation: effervescence; the gas gives a 'squeaky pop' with a lit splint.",
+      "**Acid + base or alkali → salt + water (neutralisation).** e.g. $HCl + NaOH \\rightarrow NaCl + H_2O$. The net ionic equation is simply $H^+(aq) + OH^-(aq) \\rightarrow H_2O(l)$.",
+      "**Acid + carbonate (or hydrogencarbonate) → salt + water + carbon dioxide.** e.g. $2HCl + CaCO_3 \\rightarrow CaCl_2 + H_2O + CO_2$. Observation: effervescence; the CO₂ turns limewater milky."
+    ]},
+    { "type": "text", "content": "Neutralisation is the exact cancellation of an acid by a base: hydrogen ions from the acid combine with hydroxide ions (or another base) to form water, and the remaining ions form the salt. Because the underlying reaction is always $H^+ + OH^- \\rightarrow H_2O$, neutralisation of any strong acid by any strong alkali releases the same enthalpy change per mole of water formed." },
+
+    { "type": "heading", "content": "HL extension: Ka, Kb, pKa, pKb, pH calculations and buffers" },
+    { "type": "text", "content": "At HL the strong/weak distinction is made quantitative. For a weak acid $HA \\rightleftharpoons H^+ + A^-$, the acid dissociation constant is $K_a = \\dfrac{[H^+][A^-]}{[HA]}$; a larger $K_a$ means more dissociation and a stronger acid. For a weak base the equivalent is $K_b$. Because these constants span many orders of magnitude, we usually quote $pK_a = -\\log_{10}K_a$ and $pK_b = -\\log_{10}K_b$. Watch the direction: the stronger the acid, the LARGER its $K_a$ but the SMALLER its $pK_a$. For a conjugate acid-base pair at 298 K, $pK_a + pK_b = 14$." },
+    { "type": "keyPoints", "items": [
+      "(HL) $K_a = \\dfrac{[H^+][A^-]}{[HA]}$; larger $K_a$ (smaller $pK_a$) = stronger acid.",
+      "(HL) $pK_a = -\\log_{10}K_a$ and $pK_b = -\\log_{10}K_b$; for a conjugate pair $pK_a + pK_b = 14$ at 298 K.",
+      "(HL) Strong acid pH: $[H^+]$ equals the acid concentration, so $\\text{pH} = -\\log_{10}[H^+]$ directly.",
+      "(HL) A **buffer** resists pH change and is made of a weak acid plus its conjugate base (e.g. $CH_3COOH$/$CH_3COO^-$) or a weak base plus its conjugate acid. Added $H^+$ is removed by the conjugate base and added $OH^-$ is removed by the weak acid, so the pH barely moves."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Confusing 'strong' with 'concentrated'** — strong/weak is about extent of dissociation; concentrated/dilute is about amount per volume. They are independent, and swapping them loses the mark outright.",
+      "**Writing a conjugate pair that differs by more than one H⁺** — a conjugate pair differs by exactly one proton, so $H_2SO_4$/$SO_4^{2-}$ is NOT a pair, but $H_2SO_4$/$HSO_4^-$ and $HSO_4^-$/$SO_4^{2-}$ are.",
+      "**Getting the charge wrong on a conjugate** — accepting $H^+$ raises the charge by +1, donating $H^+$ lowers it by 1. Check the charge as well as the H count.",
+      "**Treating pH as linear** — a change of 2 pH units is a factor of 100 in $[H^+]$, not 'twice as acidic'.",
+      "**Dropping the minus sign in pH = −log[H⁺]** — forgetting it gives a negative pH for an acidic solution, which should immediately look wrong.",
+      "**Saying a weak acid 'does not ionise'** — it partially ionises and sits at equilibrium; use a reversible arrow, not 'no reaction'.",
+      "**Wrong products for acid + carbonate** — it gives salt + water + CO₂ (three products), not salt + hydrogen.",
+      "**(HL) Reversing the Ka/pKa direction** — a STRONGER acid has a LARGER Ka but a SMALLER pKa."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Acid-base questions on Paper 2 mix a short calculation with a worded explanation, and the marks are analytic: each is tied to a specific line of working (a method mark, M, or an answer mark, A), while error-carried-forward (ECF) means a wrong number early on need not cost every later mark. The explanation marks are awarded for distinct, correct points — you earn them one idea at a time. Study how each mark below is won." },
+    { "type": "workedExample", "question": "A strong acid has $[H^+] = 0.010$ mol dm⁻³. (a) Calculate its pH. (b) Explain the difference between a strong and a weak acid of the same concentration. [4]", "solution": "**Model answer — full working.**\n\n**(a)** For a strong monoprotic acid the hydrogen ion concentration equals the acid concentration, so:\n$\\text{pH} = -\\log_{10}[H^+] = -\\log_{10}(0.010)$\n$\\text{pH} = 2.00$\n\n**(b)** A strong acid dissociates essentially completely in water, so almost every molecule donates its proton. A weak acid only partially dissociates and sits at an equilibrium, so at any moment most of it remains as intact molecules. At the SAME concentration the strong acid therefore has a higher $[H^+]$ (and hence a lower pH) than the weak acid.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 (part a) — correct method.** Awarded for substituting into $\\text{pH} = -\\log_{10}[H^+]$ with $[H^+] = 0.010$. This is a METHOD mark: it is credited for the correct process even if the arithmetic that follows slips.\n- **A1 (part a) — correct answer.** Awarded for $\\text{pH} = 2.00$ (accept 2.0). The engine applies ECF: a student who used a different $[H^+]$ but correctly took $-\\log_{10}$ of THEIR value still earns this mark on their figures.\n- **A1 (part b, point 1) — complete vs partial dissociation.** Awarded for stating that the strong acid dissociates (essentially) completely while the weak acid only partially dissociates / establishes an equilibrium. This is the core idea and must be present.\n- **A1 (part b, point 2) — the consequence.** Awarded for linking that to a higher $[H^+]$ (or lower pH) for the strong acid at the same concentration. The two explanation marks are DISTINCT points: the mechanism (extent of dissociation) and its consequence (higher [H⁺]/lower pH).\n\n**'Accept equivalents.'** The engine accepts equivalent wording throughout: 'fully ionised' for 'completely dissociated', 'reaches equilibrium' for 'partially dissociates', and 'lower pH' as an alternative to 'higher [H⁺]'. It does NOT award the explanation marks for answers that rely on the word 'concentrated', because that misses the point being tested.\n\n**Bottom line:** of the 4 marks, one is a method mark protected against an arithmetic slip and one answer mark is protected by ECF; the two explanation marks are awarded independently, so a student who gives only the extent-of-dissociation idea still banks one of them. A one-word answer of 'pH 2' with no reasoning risks losing 3 of the 4 marks." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF on the calculation and separate credit for each distinct explanation point. So set out the pH line in full and make BOTH explanation points explicitly: complete-vs-partial dissociation, then the higher [H⁺]/lower pH consequence. Anchoring the explanation to extent of dissociation (never 'concentrated') is what secures both worded marks." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Proton transfer is the foundation for everything that follows in acid-base chemistry. Titration curves are just pH plotted as one solution neutralises another; the sharp jump at the equivalence point is a large change in $[H^+]$ shown on the logarithmic pH scale. At HL, $K_a$ and $pK_a$ turn the strong/weak idea into calculations of pH for weak acids, and buffers apply Le Châtelier's principle to a conjugate pair. Master the two habits here — track the single proton, and reason from extent of dissociation rather than concentration — and the rest of the topic becomes variations on ideas you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 acid-base question marked: calculate a pH and explain strong vs weak with full working", "href": "/mark?subject=ib-chemistry-sl&topic=R3.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "PhET Simulation: Acid-Base Solutions", "href": "https://phet.colorado.edu/en/simulations/acid-base-solutions" },
+      { "label": "IB Chemistry Data Booklet (Sections 1 and 21)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Acid-Base Solutions",

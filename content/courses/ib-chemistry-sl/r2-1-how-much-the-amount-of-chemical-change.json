@@ -1,160 +1,137 @@
 {
   "slug": "r2-1-how-much-the-amount-of-chemical-change",
   "topicCode": "R2.1",
+  "unit": { "code": "R2", "title": "How much, how fast and how far?" },
   "title": "How much? The amount of chemical change",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces stoichiometry, the cornerstone of quantitative chemistry. It covers the mole concept, molar mass, and how to use balanced chemical equations to calculate the amounts of reactants and products. You will learn to identify limiting reactants and calculate theoretical and percentage yields.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "A balanced equation is a recipe written in moles, and R2.1 is where you learn to cook from it. This lesson builds the full stoichiometry toolkit: reading mole ratios from balanced equations, calculating reacting masses, handling gas volumes with the molar gas volume and Avogadro's law, working with solutions through n = c × V, running titration calculations, identifying limiting and excess reactants, and finishing with theoretical yield, percentage yield and atom economy. Every worked example is laid out exactly the way our marking engine awards marks — method marks, answer marks and error-carried-forward — because in this topic HOW you show your working decides how many marks you keep.",
+  "durationMin": 32,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define the mole and Avogadro's constant, and perform calculations converting between mass, moles, and number of particles.",
-    "Determine the molar mass of a substance from its chemical formula and the periodic table.",
-    "Use mole ratios from balanced chemical equations to calculate reacting masses and volumes.",
-    "Identify the limiting reactant in a chemical reaction and use it to calculate theoretical and percentage yields."
+    "Use mole ratios from a balanced equation to calculate reacting masses of reactants and products.",
+    "Apply the molar gas volume and Avogadro's law to relate volumes of reacting and product gases.",
+    "Use $n = c \\times V$ to interconvert amount, concentration and volume of solutions, and carry out titration calculations.",
+    "Identify the limiting and excess reactants and base all product calculations on the limiting reactant.",
+    "Calculate theoretical yield, percentage yield and atom economy, and present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["R2.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Chemist's Recipe Book",
-    "summary": "Stoichiometry is like following a recipe to bake a cake. Moles are the standard 'cups' or 'grams' that chemists use to measure out their ingredients (reactants) to predict exactly how much cake (product) they can make.",
-    "analogy": "Imagine you're baking. Your recipe says '2 cups of flour + 1 cup of sugar → 1 cake'. You can't just throw in random amounts and expect a perfect cake. You measure precisely. In chemistry, we can't count individual atoms, so we group them into huge packets called 'moles'. A balanced chemical equation is our recipe, telling us the exact ratio of moles of reactants needed to produce a certain amount of moles of product.",
+    "title": "Cooking from a Molecular Recipe",
+    "summary": "A balanced equation tells you the exact ratio in which substances react — but that ratio is counted in moles, not grams. Stoichiometry is the habit of always converting to moles, crossing the mole ratio, and converting back to whatever the question wants.",
+    "analogy": "A pancake recipe reads '1 egg + 2 cups flour → 6 pancakes'. If you have 3 eggs and only 2 cups of flour, you cannot make 18 pancakes — the flour runs out first. The flour is your limiting ingredient, and it alone sets how many pancakes you get. And if the recipe promises 6 pancakes but you burn one, your yield is only 5 out of 6. Chemical reactions work the same way, except the recipe ratio is counted in moles.",
     "steps": [
-      "First, write and balance the chemical equation. This is your non-negotiable recipe that gives the correct ratios.",
-      "Next, convert the known mass of any given substance into moles using the formula $n = m/M$. This is like converting your ingredients to the standard unit in the recipe.",
-      "Then, use the mole ratio from the balanced equation to find the amount in moles of the substance you want to find.",
-      "Finally, convert the moles of your target substance back into mass or any other quantity the question asks for."
+      "Write a balanced equation — its coefficients are the mole ratio, the only reliable link between substances.",
+      "Convert what you are given into moles: $n = \\dfrac{m}{M}$ for a mass, $n = c \\times V$ for a solution, or $n = \\dfrac{V}{V_m}$ for a gas.",
+      "If two reactant amounts are given, find the limiting reactant by dividing each amount by its coefficient — the smallest value limits.",
+      "Cross the mole ratio to the target substance, then convert back to a mass, a volume, a concentration or a yield."
     ]
   },
+  "keyConcepts": ["stoichiometry", "conservation of mass", "limiting reactant", "yield"],
   "flashcards": [
-    {
-      "front": "What is the mole?",
-      "back": "The unit for the amount of substance. One mole contains Avogadro's number of particles ($6.02 \\times 10^{23}$). Symbol: $n$. Unit: mol."
-    },
-    {
-      "front": "What is Avogadro's constant ($L$)?",
-      "back": "The number of particles (atoms, molecules, ions) in one mole of a substance. Its value is $6.02 \\times 10^{23} \\text{ mol}^{-1}$."
-    },
-    {
-      "front": "What is molar mass ($M$)?",
-      "back": "The mass of one mole of a substance. It is calculated from the relative atomic masses in the periodic table. Unit: g mol⁻¹."
-    },
-    {
-      "front": "What is the relationship between moles ($n$), mass ($m$), and molar mass ($M$)?",
-      "back": "Amount (mol) = Mass (g) / Molar Mass (g mol⁻¹), or $n = m/M$."
-    },
-    {
-      "front": "What is a limiting reactant (or reagent)?",
-      "back": "The reactant that is completely consumed in a chemical reaction. It determines the maximum amount of product that can be formed."
-    },
-    {
-      "front": "What is an excess reactant?",
-      "back": "A reactant present in a quantity greater than what is needed to react completely with the limiting reactant. Some of it will be left over after the reaction."
-    },
-    {
-      "front": "What is theoretical yield?",
-      "back": "The maximum amount of product that can be produced from the given amounts of reactants, as calculated from the stoichiometry of the reaction. It assumes 100% reaction efficiency."
-    },
-    {
-      "front": "What is percentage yield?",
-      "back": "The ratio of the actual yield (what was experimentally obtained) to the theoretical yield (what was calculated), expressed as a percentage. Formula: $(\\text{Actual Yield} / \\text{Theoretical Yield}) \\times 100\\%$."
-    },
-    {
-      "front": "Common Trap: How do you identify the limiting reactant?",
-      "back": "Do NOT assume it's the reactant with the smallest mass. You must calculate the moles of each reactant and compare their mole ratio to the stoichiometric ratio in the balanced equation to see which one runs out first."
-    },
-    {
-      "front": "Common Trap: Why might percentage yield be less than 100%?",
-      "back": "Reasons include incomplete reaction, side reactions forming unwanted products, and loss of product during separation and purification (e.g., during filtration or transfer between containers)."
-    }
+    { "front": "Mole ratio (stoichiometric ratio)", "back": "The ratio of coefficients in the balanced equation. It links MOLES of one substance to moles of another — it never applies directly to masses or volumes of liquids.", "pillLabel": "Framework" },
+    { "front": "$n = \\dfrac{m}{M}$", "back": "Amount = mass ÷ molar mass, for a pure solid or a mass of gas. Rearranges to $m = nM$. Note it is DIVIDE by $M$, never multiply.", "pillLabel": "Formula" },
+    { "front": "$n = c \\times V$", "back": "Amount of solute = concentration × volume, with $c$ in mol dm⁻³ and $V$ in dm³. This is the solution route into a stoichiometry problem — the backbone of titration calculations.", "pillLabel": "Formula" },
+    { "front": "Molar concentration", "back": "$c = \\dfrac{n}{V}$, in mol dm⁻³ (also written mol/L or M). Units trap: 1 dm³ = 1000 cm³, so divide a volume in cm³ by 1000 before use.", "pillLabel": "Formula" },
+    { "front": "Molar gas volume ($V_m$)", "back": "The volume of one mole of any ideal gas. At STP (0 °C, 100 kPa) $V_m = 22.7$ dm³ mol⁻¹ (Section 2 of the data booklet). So $n = \\dfrac{V}{V_m}$ for a gas.", "pillLabel": "Formula" },
+    { "front": "Avogadro's law", "back": "Equal volumes of gases at the same temperature and pressure contain equal numbers of moles. So for reacting GASES the volume ratio equals the mole ratio — you can use volumes directly without converting.", "pillLabel": "Concept" },
+    { "front": "Titration", "back": "A technique that finds an unknown concentration by reacting a measured volume of one solution with a solution of known concentration until the equivalence point. Calculation: $n = c \\times V$ on the known side, cross the mole ratio, then $c = n/V$ on the unknown side.", "pillLabel": "Concept" },
+    { "front": "Limiting reactant", "back": "The reactant that runs out first and therefore controls how much product forms. Find it by dividing the moles of each reactant by its coefficient — the smallest value is limiting.", "pillLabel": "Concept" },
+    { "front": "Excess reactant", "back": "The reactant left over when the reaction stops. All product calculations must be based on the LIMITING reactant, not the excess one.", "pillLabel": "Concept" },
+    { "front": "Theoretical yield", "back": "The maximum product predicted by stoichiometry from the limiting reactant, assuming the reaction goes to completion with no losses.", "pillLabel": "Definition" },
+    { "front": "Percentage yield", "back": "$\\%\\,\\text{yield} = \\dfrac{\\text{actual yield}}{\\text{theoretical yield}} \\times 100$. Compare like with like — both in moles, or both as mass of the same substance.", "pillLabel": "Formula" },
+    { "front": "Atom economy", "back": "$\\%\\,\\text{atom economy} = \\dfrac{M(\\text{desired product})}{M(\\text{all products})} \\times 100$. A design measure of green efficiency: how much reactant mass ends up in the wanted product. Fixed by the equation, independent of how well the reaction runs.", "pillLabel": "Formula" },
+    { "front": "Yield vs atom economy", "back": "Different things. Yield measures how well ONE reaction actually ran (losses, side reactions). Atom economy measures how much of the reactant mass the equation SENDS to the wanted product. A reaction can have high yield but low atom economy, or the reverse.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: cm³ → dm³", "back": "A concentration is in mol dm⁻³, but burette and pipette volumes are in cm³. Always divide the volume in cm³ by 1000 before using $n = c \\times V$. Forgetting this scales your answer by 1000.", "pillLabel": "Trap" },
+    { "front": "Why is percentage yield < 100%?", "back": "Incomplete or reversible reactions, competing side reactions, and physical losses during filtering, transferring or purifying the product. A yield ABOVE 100% signals impure (e.g. still-wet) product, not a real result.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "In a titration, 24.00 cm³ of 0.150 mol dm⁻³ HCl is used. The amount of HCl in moles is:", "options": ["24.00 × 0.150 = 3.60 mol", "0.150 × 24.00 ÷ 1000 = 0.00360 mol", "0.150 ÷ 24.00 = 0.00625 mol", "0.150 × 24.00 × 1000 = 3600 mol"], "answer": "0.150 × 24.00 ÷ 1000 = 0.00360 mol" },
+    { "prompt": "For the reaction 2NaOH + H₂SO₄ → Na₂SO₄ + 2H₂O, if 0.0400 mol of NaOH just reacts, the amount of H₂SO₄ needed is:", "options": ["0.0800 mol, because you multiply by 2", "0.0400 mol, a 1 : 1 ratio", "0.0200 mol, because 2 mol NaOH reacts with 1 mol H₂SO₄", "0.0100 mol"], "answer": "0.0200 mol, because 2 mol NaOH reacts with 1 mol H₂SO₄" },
+    { "prompt": "4.0 g of H₂ (M = 2.02) reacts with 4.0 g of O₂ (M = 32.00) in 2H₂ + O₂ → 2H₂O. The limiting reactant is:", "options": ["H₂, because it has the smaller molar mass", "O₂, because 0.125 mol O₂ needs 0.25 mol H₂ but ~1.98 mol is present", "Neither — the masses are equal", "H₂, because it has the larger coefficient"], "answer": "O₂, because 0.125 mol O₂ needs 0.25 mol H₂ but ~1.98 mol is present" },
+    { "prompt": "A synthesis gives an 80% yield and a 90% atom economy. Which statement is correct?", "options": ["The two figures should be equal if the equation is balanced", "Yield measures how much product this reaction actually made; atom economy measures how much reactant mass the equation directs to the wanted product", "Atom economy depends on physical losses during filtration", "An 80% yield means 20% of the atoms were wasted"], "answer": "Yield measures how much product this reaction actually made; atom economy measures how much reactant mass the equation directs to the wanted product" },
+    { "prompt": "The theoretical yield of a product is 0.250 mol but only 0.200 mol is collected. The percentage yield is:", "options": ["125%", "80.0%", "0.050%", "20.0%"], "answer": "80.0%" }
   ],
   "faq": [
-    {
-      "q": "Why do we use moles instead of just grams in calculations?",
-      "a": "Chemical reactions happen based on the number of particles, not their mass. A balanced equation tells us the ratio of particles (in moles) that react. Using mass directly would be incorrect because different substances have different molar masses; 10g of hydrogen has many more particles than 10g of lead."
-    },
-    {
-      "q": "How do I know for sure which reactant is limiting?",
-      "a": "Calculate the moles of each reactant you are given. Then, for each reactant, calculate how many moles of a specific product it could form (using the mole ratio from the balanced equation). The reactant that produces the smallest amount of product is the limiting reactant."
-    },
-    {
-      "q": "Can the percentage yield be over 100%?",
-      "a": "Theoretically, no. A percentage yield over 100% indicates an error in the experiment. The most common reason is that the product collected is not pure; it might still be wet (containing solvent, e.g., water) or contaminated with other substances, which artificially increases its measured mass."
-    }
+    { "q": "When do I use $n = m/M$, $n = c \\times V$, and $n = V/V_m$?", "a": "They are three doors into the same room — moles. Use $n = m/M$ when you are given a mass of a pure substance (a solid or a mass of gas). Use $n = c \\times V$ when you are given a solution as a concentration and a volume — this is the titration route. Use $n = V/V_m$ when you are given a VOLUME of gas at a stated temperature and pressure. Once you are in moles, every problem is the same: cross the mole ratio, then convert back." },
+    { "q": "Why can I compare gas volumes directly but not liquid volumes?", "a": "Avogadro's law says equal volumes of gases at the same temperature and pressure contain equal moles, so for gases the volume ratio equals the mole ratio — no conversion needed. Liquids and solutions do not obey this: their volumes depend on density and concentration, so you must convert them to moles first via $n = m/M$ or $n = c \\times V$." },
+    { "q": "How do I know which reactant is limiting?", "a": "Convert each reactant to moles, then divide each amount by its coefficient in the balanced equation. The reactant with the SMALLEST value is limiting — it runs out first. Do not just pick the one with the smallest mass or smallest number of moles; the coefficients matter. Once identified, base every product calculation on the limiting reactant and ignore the excess." },
+    { "q": "Can percentage yield ever be greater than 100%?", "a": "Not for a real, correctly measured result. A value above 100% means the product you weighed was impure — most often it was not fully dried and still held solvent, or it was contaminated. The extra mass is not extra product. This is different from atom economy, which is a fixed property of the balanced equation and cannot exceed 100%." },
+    { "q": "Do I have to memorise the molar gas volume or Avogadro's constant?", "a": "No. The molar gas volume at STP (22.7 dm³ mol⁻¹) and Avogadro's constant ($6.02 \\times 10^{23}$ mol⁻¹) are both in Section 2 of the IB data booklet, which you use in the exam, and relative atomic masses are in Section 6. What you must know cold is the method — which formula to reach for and how to lay the working out so the method marks are visible." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the quantitative world of chemistry! So far, you've learned about chemical reactions in a descriptive way. Stoichiometry (from the Greek 'stoicheion' meaning element and 'metron' meaning measure) adds the numbers. It allows us to answer the crucial question: 'How much?'. This topic is fundamental to all chemical calculations, from industrial manufacturing to pharmaceutical research."
-    },
-    {
-      "type": "heading",
-      "content": "The Mole and Molar Mass"
-    },
-    {
-      "type": "text",
-      "content": "Atoms and molecules are incredibly small, so we can't count them individually. Instead, chemists use a unit called the mole (mol) to count them in groups. One mole of any substance contains $6.02 \\times 10^{23}$ particles, a value known as Avogadro's constant ($L$). The mass of one mole of a substance is its molar mass ($M$), which you can calculate using the relative atomic masses from the periodic table. For example, the molar mass of water ($H_2O$) is $(2 \\times 1.01) + 16.00 = 18.02 \\text{ g mol}^{-1}$."
-    },
-    {
-      "type": "formula",
-      "content": "Amount in moles, $n = \\frac{\\text{mass (g)}, m}{\\text{Molar Mass (g mol}^{-1}), M}$"
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the amount, in moles, of sodium chloride ($NaCl$) present in a 14.6 g sample. (Relative atomic masses: Na = 22.99, Cl = 35.45)",
-      "solution": "1.  **Calculate the molar mass ($M$) of NaCl.**\n    $M(\\text{NaCl}) = A_r(\\text{Na}) + A_r(\\text{Cl})$\n    $M(\\text{NaCl}) = 22.99 + 35.45 = 58.44 \\text{ g mol}^{-1}$ [1]\n\n2.  **Use the formula $n = m/M$ to find the amount in moles.**\n    $n = \\frac{14.6 \\text{ g}}{58.44 \\text{ g mol}^{-1}}$\n    $n = 0.2498... \\text{ mol}$ [1]\n\n3.  **State the answer to the correct number of significant figures (3 s.f. from the mass given).**\n    $n = 0.250 \\text{ mol}$ [1]"
-    },
-    {
-      "type": "heading",
-      "content": "Stoichiometric Relationships and Limiting Reactants"
-    },
-    {
-      "type": "text",
-      "content": "A balanced chemical equation provides the mole ratio between reactants and products. For example, in the reaction $2H_2 + O_2 \\rightarrow 2H_2O$, the ratio is 2 moles of hydrogen react with 1 mole of oxygen to produce 2 moles of water. In reality, reactants are rarely mixed in the exact stoichiometric ratio. The reactant that gets used up first is the limiting reactant, and it dictates the maximum amount of product that can be formed (the theoretical yield)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Always start with a balanced chemical equation.",
-        "To find the limiting reactant, calculate the moles of each reactant and see which one produces the least amount of product based on the mole ratios.",
-        "All calculations for theoretical yield must be based on the initial amount of the limiting reactant.",
-        "The excess reactant is the one that is left over after the reaction is complete."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Theoretical and Percentage Yield"
-    },
-    {
-      "type": "text",
-      "content": "The theoretical yield is a calculated value representing the maximum possible product. However, in a real lab setting, the actual yield (the amount you physically collect) is often lower. The percentage yield is a measure of the reaction's efficiency."
-    },
-    {
-      "type": "formula",
-      "content": "\\text{Percentage Yield} = \\frac{\\text{Actual Yield}}{\\text{Theoretical Yield}} \\times 100\\%"
-    },
-    {
-      "type": "workedExample",
-      "question": "Iron(III) oxide reacts with carbon monoxide to produce iron and carbon dioxide: $Fe_2O_3(s) + 3CO(g) \\rightarrow 2Fe(s) + 3CO_2(g)$. In an experiment, 31.9 g of $Fe_2O_3$ is reacted with excess carbon monoxide. 19.5 g of iron was produced. Calculate the theoretical yield and the percentage yield of iron.",
-      "solution": "1.  **Calculate moles of the limiting reactant ($Fe_2O_3$).**\n    $M(Fe_2O_3) = (2 \\times 55.85) + (3 \\times 16.00) = 159.70 \\text{ g mol}^{-1}$\n    $n(Fe_2O_3) = \\frac{31.9 \\text{ g}}{159.70 \\text{ g mol}^{-1}} = 0.1997... \\text{ mol}$ [1]\n\n2.  **Use mole ratio to find theoretical moles of product (Fe).**\n    From the balanced equation, the ratio $Fe_2O_3 : Fe$ is $1:2$.\n    Theoretical $n(Fe) = 0.1997... \\text{ mol} \\times 2 = 0.3995... \\text{ mol}$ [1]\n\n3.  **Calculate theoretical mass (yield) of Fe.**\n    $M(Fe) = 55.85 \\text{ g mol}^{-1}$\n    Theoretical mass of Fe = $0.3995... \\text{ mol} \\times 55.85 \\text{ g mol}^{-1} = 22.31... \\text{ g}$\n    **Theoretical Yield = 22.3 g** (to 3 s.f.) [1]\n\n4.  **Calculate the percentage yield.**\n    Actual yield = 19.5 g (given).\n    Percentage Yield = $(\\frac{\\text{Actual Yield}}{\\text{Theoretical Yield}}) \\times 100\\%$\n    Percentage Yield = $(\\frac{19.5 \\text{ g}}{22.31... \\text{ g}}) \\times 100\\% = 87.39...\\%$\n    **Percentage Yield = 87.4%** (to 3 s.f.) [1]"
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, always show your full working for stoichiometric calculations. State the molar masses you use, show the mole calculations, state the mole ratio, and then calculate the final answer. Pay close attention to significant figures – your final answer should usually match the lowest number of significant figures given in the data. Remember to check that your equation is balanced before you begin!"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Stoichiometry Problems",
-      "href": "/mark?subject=ib-chemistry-sl&topic=R2.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-subject-data-booklets/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "So far you can balance an equation and name what reacts. R2.1 turns that qualitative picture into numbers: given a mass, a volume of gas, or the concentration of a solution, exactly how much product can form, and how efficiently? This is the most calculation-heavy skill in the course, and it rests on one habit repeated in every problem: convert what you are given into moles, cross the mole ratio from the balanced equation, then convert back to whatever the question asks for. We will build that habit through fully worked examples laid out exactly the way our engine awards marks, because in stoichiometry HOW you show your working decides how many marks you keep." },
+
+    { "type": "heading", "content": "Mole ratios and reacting masses" },
+    { "type": "text", "content": "A balanced equation is a recipe written in moles. Its coefficients give the mole ratio — the ratio in which substances react and form — and this ratio is the heart of every stoichiometry calculation. The one rule that never bends is that the ratio applies to MOLES, never directly to masses. So the reliable route is always the same three moves: convert the known mass to moles with $n = m/M$, cross the mole ratio to the substance you want, then convert back to a mass with $m = nM$." },
+    { "type": "formula", "content": "n = \\frac{m}{M} \\qquad\\text{and}\\qquad m = nM" },
+    { "type": "keyPoints", "items": [
+      "**Convert** the known mass to moles: $n = m/M$ (divide, never multiply).",
+      "**Cross the mole ratio** from the balanced equation to reach the target substance.",
+      "**Convert back** to a mass, a volume, a number of particles or a concentration.",
+      "Mass is conserved: total mass of reactants equals total mass of products — a quick sanity check."
+    ]},
+
+    { "type": "workedExample", "question": "Calcium carbonate decomposes on heating: CaCO₃(s) → CaO(s) + CO₂(g). Calculate the mass of calcium oxide, CaO, produced when 25.0 g of calcium carbonate is fully decomposed. [3]", "solution": "**Step 1 — moles of the given substance (CaCO₃).**\nFrom the data booklet: $A_r(\\text{Ca}) = 40.08$, $A_r(\\text{C}) = 12.01$, $A_r(\\text{O}) = 16.00$.\n$M(\\text{CaCO}_3) = 40.08 + 12.01 + 3(16.00) = 100.09$ g mol⁻¹.\n$n(\\text{CaCO}_3) = \\dfrac{25.0}{100.09} = 0.2498$ mol.  [M1: correct molar mass and moles]\n\n**Step 2 — cross the mole ratio.** The equation is 1 : 1 for CaCO₃ : CaO, so\n$n(\\text{CaO}) = 0.2498$ mol.  [M1: correct use of mole ratio]\n\n**Step 3 — convert moles of CaO back to mass.**\n$M(\\text{CaO}) = 40.08 + 16.00 = 56.08$ g mol⁻¹.\n$m(\\text{CaO}) = nM = 0.2498 \\times 56.08 = 14.0$ g.  [A1: correct mass, 3 s.f., units]\n\n*Check: the 25.0 g of CaCO₃ becomes 14.0 g of CaO plus 11.0 g of CO₂ lost as gas — mass is conserved.*" },
+
+    { "type": "heading", "content": "Gas volumes: the molar gas volume and Avogadro's law" },
+    { "type": "text", "content": "When a substance is a gas, you often measure its volume rather than its mass. Two ideas make this easy. First, the molar gas volume $V_m$ is the volume occupied by one mole of any ideal gas at a stated temperature and pressure; at STP (0 °C and 100 kPa) it is $22.7$ dm³ mol⁻¹, so $n = V/V_m$. Second, Avogadro's law states that equal volumes of gases at the same temperature and pressure contain equal numbers of moles. The powerful consequence is that for reacting GASES the volume ratio equals the mole ratio directly — you can work in volumes without ever converting to moles." },
+    { "type": "formula", "content": "n = \\frac{V}{V_m} \\qquad (V_m = 22.7\\ \\text{dm}^3\\,\\text{mol}^{-1}\\ \\text{at STP})" },
+    { "type": "keyPoints", "items": [
+      "For a single gas: convert between volume and moles with $n = V/V_m$.",
+      "For reacting gases (Avogadro's law): the ratio of gas volumes equals the ratio of coefficients — use volumes directly.",
+      "The molar gas volume only applies to GASES, and only at the temperature and pressure it is quoted for.",
+      "Watch units: $V_m$ is in dm³ mol⁻¹, so a volume in cm³ must be divided by 1000 first."
+    ]},
+    { "type": "text", "content": "For example, in the complete combustion of methane, CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l), 100 cm³ of methane reacts with exactly 200 cm³ of oxygen and produces 100 cm³ of carbon dioxide (all measured at the same temperature and pressure), simply because the gas coefficients are 1 : 2 : 1. The liquid water is not counted — Avogadro's law is about gases only." },
+
+    { "type": "heading", "content": "Solution stoichiometry and titrations" },
+    { "type": "text", "content": "For reactions in solution, amount is measured through concentration and volume rather than mass. Molar concentration is the amount of solute per unit volume of solution, $c = n/V$, in mol dm⁻³. Rearranged as $n = c \\times V$, it is the door into every titration calculation. A titration reacts a measured volume of one solution with a solution of known concentration until the reaction is exactly complete (the equivalence point, usually shown by an indicator). Because you know the concentration and volume on one side, you can find the moles there, cross the mole ratio, and then find the unknown concentration on the other side." },
+    { "type": "formula", "content": "c = \\frac{n}{V} \\quad\\Longleftrightarrow\\quad n = c \\times V \\qquad (c\\ \\text{in mol dm}^{-3},\\ V\\ \\text{in dm}^3)" },
+    { "type": "examTip", "content": "The single most common mark lost in titration questions is the volume unit. Concentration is per dm³, but burettes and pipettes read in cm³. Convert EVERY volume from cm³ to dm³ by dividing by 1000 before it goes into $n = c \\times V$. If your concentration comes out a factor of 1000 too big or too small, this is almost always the cause." },
+
+    { "type": "workedExample", "question": "In a titration, 25.0 cm³ of sulfuric acid is exactly neutralised by 30.0 cm³ of 0.200 mol dm⁻³ sodium hydroxide. The equation is H₂SO₄(aq) + 2NaOH(aq) → Na₂SO₄(aq) + 2H₂O(l). Calculate the concentration of the sulfuric acid. [3]", "solution": "**Step 1 — moles of the known solution (NaOH).**\nConvert the volume to dm³: $30.0\\ \\text{cm}^3 = 0.0300\\ \\text{dm}^3$.\n$n(\\text{NaOH}) = c \\times V = 0.200 \\times 0.0300 = 6.00 \\times 10^{-3}$ mol.  [M1]\n\n**Step 2 — cross the mole ratio.** From the equation, 2 mol NaOH reacts with 1 mol H₂SO₄, so\n$n(\\text{H}_2\\text{SO}_4) = \\dfrac{6.00 \\times 10^{-3}}{2} = 3.00 \\times 10^{-3}$ mol.  [M1]\n\n**Step 3 — concentration of the acid.**\nVolume of acid $= 25.0\\ \\text{cm}^3 = 0.0250\\ \\text{dm}^3$.\n$c(\\text{H}_2\\text{SO}_4) = \\dfrac{n}{V} = \\dfrac{3.00 \\times 10^{-3}}{0.0250} = 0.120$ mol dm⁻³.  [A1: correct concentration, 3 s.f., units]\n\n*A halving appears because the acid is diprotic — one H₂SO₄ supplies two H⁺, so it needs twice its own amount of NaOH.*" },
+
+    { "type": "heading", "content": "Limiting and excess reactants" },
+    { "type": "text", "content": "In real reactions the reactants are rarely mixed in the exact stoichiometric ratio. The reactant that runs out first is the limiting reactant, and it alone controls how much product forms; whatever is left over is the excess reactant and plays no further part. The reliable test is to convert each reactant to moles and divide by its coefficient in the balanced equation — the smallest value is limiting. Do not simply pick the reactant with the smallest mass or even the smallest number of moles; the coefficients decide." },
+    { "type": "keyPoints", "items": [
+      "Convert every reactant to moles.",
+      "Divide each amount by its coefficient in the balanced equation.",
+      "The smallest of those values marks the limiting reactant.",
+      "Base ALL product and yield calculations on the limiting reactant; the excess is left over and irrelevant to the amount of product."
+    ]},
+
+    { "type": "heading", "content": "Theoretical yield, percentage yield and atom economy" },
+    { "type": "text", "content": "The theoretical yield is the maximum product predicted by stoichiometry from the limiting reactant, assuming the reaction goes to completion with no losses. In a real lab the actual yield you collect is usually lower, so the percentage yield measures how well the reaction ran: $\\%\\,\\text{yield} = \\dfrac{\\text{actual}}{\\text{theoretical}} \\times 100$, comparing like with like (both in moles, or both as mass of the same substance). Atom economy is a different idea — it is a design measure of how much of the reactant mass ends up in the useful product: $\\%\\,\\text{atom economy} = \\dfrac{M(\\text{desired product})}{M(\\text{all products})} \\times 100$. A reaction can have a high yield but poor atom economy if it also produces a lot of unwanted by-product. Yield describes one particular run; atom economy is fixed by the equation itself." },
+
+    { "type": "workedExample", "question": "Ammonia is made by the Haber process: N₂(g) + 3H₂(g) → 2NH₃(g). In a reaction, 28.0 g of nitrogen is mixed with 9.00 g of hydrogen, and 20.0 g of ammonia is collected. (a) Identify the limiting reactant. (b) Calculate the theoretical yield of ammonia and the percentage yield. [5]", "solution": "**Step 1 — moles of each reactant.**\n$M(\\text{N}_2) = 2(14.01) = 28.02$ g mol⁻¹, so $n(\\text{N}_2) = \\dfrac{28.0}{28.02} = 0.999$ mol.\n$M(\\text{H}_2) = 2(1.01) = 2.02$ g mol⁻¹, so $n(\\text{H}_2) = \\dfrac{9.00}{2.02} = 4.46$ mol.  [M1: both amounts]\n\n**Step 2 — identify the limiting reactant.** Divide each by its coefficient:\nN₂: $0.999 \\div 1 = 0.999$;  H₂: $4.46 \\div 3 = 1.49$.\nN₂ gives the smaller value, so **N₂ is limiting** and H₂ is in excess.  [A1]\n\n**Step 3 — theoretical yield of NH₃.** From the equation, 1 mol N₂ → 2 mol NH₃, so\n$n(\\text{NH}_3) = 0.999 \\times 2 = 1.998$ mol.\n$M(\\text{NH}_3) = 14.01 + 3(1.01) = 17.04$ g mol⁻¹.\nTheoretical mass $= 1.998 \\times 17.04 = 34.0$ g.  [M1: mole ratio and mass]\n\n**Step 4 — percentage yield.**\n$\\%\\,\\text{yield} = \\dfrac{\\text{actual}}{\\text{theoretical}} \\times 100 = \\dfrac{20.0}{34.0} \\times 100 = 58.8\\%$.  [A1]\n\n*Because N₂ runs out first, the leftover H₂ cannot make more ammonia — the theoretical yield is set entirely by the limiting reactant.*" },
+    { "type": "text", "content": "For comparison, the atom economy of this reaction is 100%: nitrogen and hydrogen combine into a single product, ammonia, with no by-products, so $\\dfrac{M(\\text{NH}_3\\ \\text{formed})}{M(\\text{all products})} \\times 100 = 100\\%$. Yet the percentage yield above is only 58.8%, because the reaction is reversible and does not go to completion. This is exactly why both measures matter: perfect atom economy does not guarantee a high yield." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Forgetting to convert cm³ to dm³** — concentration is per dm³, so divide a volume in cm³ by 1000 before using $n = c \\times V$. This single slip scales the answer by 1000.",
+      "**Applying the mole ratio to masses or solution volumes** — coefficients relate MOLES only. Convert to moles first, then cross the ratio. (Gas volumes are the one exception, via Avogadro's law.)",
+      "**Ignoring the coefficient when finding the limiting reactant** — divide each reactant's moles by its coefficient; the smallest value limits. The reactant with the smallest mass or fewest moles is not automatically limiting.",
+      "**Basing the yield on the excess reactant** — always calculate the theoretical yield from the LIMITING reactant; the excess is left over and irrelevant.",
+      "**Multiplying instead of dividing by molar mass** — moles = mass ÷ $M$, never mass × $M$.",
+      "**Confusing percentage yield with atom economy** — yield measures how much product THIS reaction actually made; atom economy measures how much reactant mass the equation directs to the wanted product. They are not the same and are usually different numbers.",
+      "**Losing significant figures or units** — quote the final answer to the significant figures of the data (usually 3) and always give the unit; a bare number can forfeit the answer mark."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific line of working (a method mark, M, or an answer mark, A) and — crucially — the method marks and error-carried-forward (ECF) mean a wrong number early on does not cost you every mark that follows. That protection only exists if your method is written down. Study how each of these three marks is earned by a specific line." },
+    { "type": "workedExample", "question": "25.0 cm³ of sodium hydroxide solution was exactly neutralised by 20.0 cm³ of 0.100 mol dm⁻³ hydrochloric acid. The equation is NaOH(aq) + HCl(aq) → NaCl(aq) + H₂O(l). Calculate the concentration of the sodium hydroxide solution. [3]", "solution": "**Model answer — full working.**\n\n**Step 1 — moles of HCl (the known solution).**\nConvert the volume: $20.0\\ \\text{cm}^3 = 0.0200\\ \\text{dm}^3$.\n$n(\\text{HCl}) = c \\times V = 0.100 \\times 0.0200 = 2.00 \\times 10^{-3}$ mol.\n\n**Step 2 — mole ratio to NaOH.**\nThe equation is 1 : 1 for HCl : NaOH, so\n$n(\\text{NaOH}) = 2.00 \\times 10^{-3}$ mol.\n\n**Step 3 — concentration of NaOH.**\nVolume of NaOH $= 25.0\\ \\text{cm}^3 = 0.0250\\ \\text{dm}^3$.\n$c(\\text{NaOH}) = \\dfrac{n}{V} = \\dfrac{2.00 \\times 10^{-3}}{0.0250} = 0.0800\\ \\text{mol dm}^{-3}$.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — moles of HCl by $n = c \\times V$.** Awarded for $0.100 \\times (20.0/1000) = 2.00 \\times 10^{-3}$ mol, including the correct cm³ → dm³ conversion. This is a METHOD mark: it is earned for the correct process even if a later arithmetic slip changes the numbers. A candidate who forgets to divide by 1000 does NOT earn it, because the method itself is wrong.\n- **M1 — mole ratio to moles of NaOH.** Awarded for applying the 1 : 1 stoichiometry to get $n(\\text{NaOH})$ from $n(\\text{HCl})$. Here is the key protection: **error-carried-forward** — if a student found a wrong number of moles of HCl in step 1 but then correctly used the mole ratio, the engine still awards this mark on THEIR figure. The reasoning being credited is 'multiply by the correct ratio', not the specific value.\n- **A1 — final concentration.** Awarded for $c = n/V = (2.00 \\times 10^{-3}) / 0.0250 = 0.0800$ mol dm⁻³, quoted to 3 s.f. with units. ECF again applies: a right-method / wrong-number answer that correctly divides THEIR moles by 0.0250 dm³ still scores here.\n\n**'Accept answers that round correctly.'** The engine accepts 0.0800, 0.08 and $8.00 \\times 10^{-2}$ mol dm⁻³ as the same value, and does not demand a fixed number of decimal places in the intermediate lines — it credits the correct method and a correctly-rounded final answer with units.\n\n**Bottom line:** of the 3 marks, 2 are protected by method-credit and ECF. A student who writes only '0.08' with no working risks losing 2 marks if the final number is wrong; a student who shows every line keeps the method marks regardless. Show the conversion, show $n = c \\times V$, show the ratio, show $c = n/V$." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the cm³ → dm³ conversion, write $n = c \\times V$, state the mole ratio, then $c = n/V$. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Every quantitative topic ahead is a variation on these moves. Back-titrations and redox titrations reuse $n = c \\times V$ across more than one mole ratio; gas-law problems replace the molar gas volume with the ideal gas equation when conditions are non-standard; thermochemistry and rates multiply moles by an energy change or a rate constant. Master the three-move habit — convert to moles, cross the mole ratio, convert back — plus the limiting-reactant test, and the rest of the quantitative course becomes familiar ground." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: work a titration or limiting-reactant problem with full working", "href": "/mark?subject=ib-chemistry-sl&topic=R2.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (Sections 2 and 6)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

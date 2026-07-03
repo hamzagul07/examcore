@@ -1,182 +1,175 @@
 {
   "slug": "s2-2-the-covalent-model",
   "topicCode": "S2.2",
+  "unit": { "code": "S2", "title": "Models of bonding and structure" },
   "title": "The covalent model",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces the covalent bonding model, focusing on the sharing of electrons between non-metal atoms to achieve a stable electron configuration. You will learn to draw Lewis (electron dot) structures for molecules and polyatomic ions, understand the relationship between bond order, bond length, and bond strength, and be introduced to exceptions to the octet rule.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Covalent bonding is the electrostatic attraction between a shared pair of electrons and the nuclei of the two atoms that share them, and it explains almost every molecular substance in the course. This lesson builds the whole S2.2 toolkit: single, double and triple bonds and how bond order sets bond length and strength; Lewis (electron-dot) structures with lone pairs; coordinate (dative) bonds; bond polarity from electronegativity difference; VSEPR shapes and bond angles (linear, bent, trigonal planar, tetrahedral, trigonal pyramidal) and the lone-pair effect; molecular polarity; the intermolecular forces (London dispersion, dipole-dipole, hydrogen bonding) that decide boiling points and solubility; and giant covalent structures (diamond, graphite, graphene, silicon dioxide). Every worked example is laid out exactly the way our marking engine marks your own practice, point by point with ECF.",
+  "durationMin": 32,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define a covalent bond as the electrostatic attraction between a shared pair of electrons and the positively charged nuclei.",
-    "Draw Lewis (electron dot) structures for simple molecules and polyatomic ions.",
-    "Describe the relationship between the number of bonds (bond order), bond length, and bond strength.",
-    "Identify molecules that are exceptions to the octet rule."
+    "Define a covalent bond as the electrostatic attraction between a shared pair of electrons and the positively charged nuclei, and distinguish single, double and triple bonds by bond order, length and strength.",
+    "Draw Lewis (electron-dot) structures for molecules and polyatomic ions, showing bonding pairs and lone pairs, including coordinate (dative) bonds.",
+    "Predict molecular geometry and bond angles using VSEPR (linear, bent, trigonal planar, tetrahedral, trigonal pyramidal) and explain the effect of lone pairs.",
+    "Use electronegativity difference to identify bond polarity, and combine bond dipoles with molecular shape to decide whether a molecule is polar.",
+    "Explain trends in boiling point and solubility in terms of London dispersion forces, dipole-dipole forces and hydrogen bonding, and relate the properties of giant covalent structures to their bonding.",
+    "Present reasoning so that method (M) marks, answer (A) marks and error-carried-forward (ECF) protect the score in a structured Paper 2 question."
   ],
+  "syllabusObjectivesCovered": ["S2.2"],
+  "levelNote": "Common to SL and HL; expanded octets, some hybridization and sigma/pi detail are HL.",
   "simpleExplanation": {
-    "title": "Sharing is Caring: The Covalent Bond",
-    "summary": "Covalent bonding is how non-metal atoms stick together by sharing electrons to become more stable. This sharing creates a strong attraction, holding the atoms together to form molecules.",
-    "analogy": "Imagine two people who each need a complete set of eight books to win a prize, but they each only have a few. Instead of one person stealing books from the other (like in ionic bonding), they decide to pool their books together and share them. By sharing, they both get to count the full set and achieve their goal. In the same way, atoms share their outer electrons to feel like they have a full shell, making them stable.",
+    "title": "Sharing, Shaping, Sticking",
+    "summary": "Non-metal atoms bond by SHARING electron pairs — that is the covalent bond. The number of pairs shared sets how strong and short the bond is; the arrangement of pairs around an atom sets the molecule's SHAPE; and the way whole molecules attract each other sets how they behave in bulk, such as their boiling point.",
+    "analogy": "Think of two people gripping the same rope. One shared grip (a single bond) holds them together; gripping with both hands each (a triple bond) pulls them much closer and is far harder to prise apart. Now imagine several ropes tied to one central person — they naturally push as far apart as possible, and that spacing is the molecule's shape. Finally, whole groups of rope-linked people can be drawn towards other groups by weaker tugs between them; those weak tugs are the intermolecular forces that decide whether the substance is a gas, liquid or solid.",
     "steps": [
-      "First, count the total number of valence (outer shell) electrons from all atoms in the molecule. Remember to adjust for any charge if it's a polyatomic ion.",
-      "Next, arrange the atoms. Place the least electronegative atom in the centre (hydrogen and halogens are usually on the outside).",
-      "Then, draw single bonds connecting the central atom to the outer atoms. Distribute the remaining electrons as lone pairs, starting with the outer atoms until they have an octet.",
-      "Finally, check if the central atom has a full octet. If not, move a lone pair from an outer atom to form a double or triple bond until all atoms are stable."
+      "See the bond: a covalent bond is a shared pair of electrons attracted to both nuclei. Count how many pairs are shared to get the bond order.",
+      "Draw the molecule: use a Lewis structure to place every bonding pair and lone pair, so you know what surrounds the central atom.",
+      "Find the shape: count the electron domains (bonds and lone pairs) around the central atom; VSEPR says they spread out as far as possible, and lone pairs squeeze the bond angles.",
+      "Predict the bulk behaviour: decide if the molecule is polar, then rank the intermolecular forces (dispersion < dipole-dipole < hydrogen bonding) to explain boiling point and solubility."
     ]
   },
+  "keyConcepts": ["covalent bond", "molecular geometry", "intermolecular forces"],
   "flashcards": [
-    {
-      "front": "What is a covalent bond?",
-      "back": "The electrostatic attraction between a shared pair of electrons and the positively charged nuclei of the two bonded atoms."
-    },
-    {
-      "front": "What is the octet rule?",
-      "back": "The tendency of atoms to bond in such a way that they each have eight electrons in their valence shell, giving them the same electronic configuration as a noble gas."
-    },
-    {
-      "front": "What is a lone pair (or non-bonding pair)?",
-      "back": "A pair of valence electrons that are not shared with another atom in a covalent bond and belong to only one atom."
-    },
-    {
-      "front": "What is a bonding pair?",
-      "back": "A pair of electrons that are shared between two atoms, forming a covalent bond."
-    },
-    {
-      "front": "How are single, double, and triple bonds represented in Lewis structures?",
-      "back": "A single bond is one shared pair (a single line, -). A double bond is two shared pairs (a double line, =). A triple bond is three shared pairs (a triple line, ≡)."
-    },
-    {
-      "front": "What is bond length?",
-      "back": "The average distance between the nuclei of two bonded atoms in a molecule."
-    },
-    {
-      "front": "What is bond enthalpy (or bond strength)?",
-      "back": "The energy required to break one mole of a particular type of bond in the gaseous state. A stronger bond has a higher bond enthalpy."
-    },
-    {
-      "front": "How does bond order relate to bond length and bond strength?",
-      "back": "As bond order (number of shared pairs) increases, bond strength increases and bond length decreases. So, a triple bond is stronger and shorter than a double bond, which is stronger and shorter than a single bond."
-    },
-    {
-      "front": "Give an example of an atom that is a common exception to the octet rule.",
-      "back": "Boron (B) is stable with 6 valence electrons (e.g., in BF₃). Beryllium (Be) is stable with 4 valence electrons (e.g., in BeCl₂)."
-    },
-    {
-      "front": "What is a dative covalent (or coordinate) bond?",
-      "back": "A covalent bond in which both shared electrons are provided by only one of the bonded atoms. For example, the bond between NH₃ and H⁺ to form NH₄⁺."
-    },
-    {
-      "front": "How do you calculate the total valence electrons for a polyatomic ion like $CO_3^{2-}$?",
-      "back": "Sum the valence electrons of each atom and then add electrons for a negative charge or subtract for a positive charge. For $CO_3^{2-}$, it's 4 (from C) + 3*6 (from O) + 2 (from charge) = 24 valence electrons."
-    }
+    { "front": "Covalent bond", "back": "The electrostatic attraction between a shared pair of electrons and the positively charged nuclei of the two bonded atoms. It forms between non-metals.", "pillLabel": "Definition" },
+    { "front": "Bond order", "back": "The number of shared electron pairs between two atoms: 1 (single), 2 (double) or 3 (triple). It controls bond length and strength.", "pillLabel": "Definition" },
+    { "front": "Bond order vs length and strength", "back": "As bond order increases, bond length DECREASES and bond strength (bond enthalpy) INCREASES. So C≡C is shorter and stronger than C=C, which is shorter and stronger than C–C.", "pillLabel": "Concept" },
+    { "front": "Lone pair (non-bonding pair)", "back": "A pair of valence electrons held by one atom and not shared in a bond. Lone pairs count as electron domains in VSEPR and repel more strongly than bonding pairs.", "pillLabel": "Definition" },
+    { "front": "Coordinate (dative) bond", "back": "A covalent bond in which BOTH shared electrons come from the same atom. Once formed it is identical to any other covalent bond. Examples: NH₄⁺ (N→H), H₃O⁺, CO.", "pillLabel": "Definition" },
+    { "front": "Electronegativity", "back": "The relative ability of an atom to attract the shared electron pair in a covalent bond towards itself. It increases across a period and decreases down a group; F is the most electronegative element.", "pillLabel": "Definition" },
+    { "front": "Bond polarity", "back": "A bond is polar when the two atoms differ in electronegativity, creating partial charges (δ+ and δ−) and a bond dipole. Equal atoms (e.g. Cl–Cl) give a non-polar bond.", "pillLabel": "Concept" },
+    { "front": "VSEPR principle", "back": "Valence Shell Electron Pair Repulsion: electron domains (bonding pairs and lone pairs) around a central atom arrange themselves as far apart as possible to minimise repulsion, which sets the molecular shape.", "pillLabel": "Framework" },
+    { "front": "The five SL shapes", "back": "2 domains → linear (180°); 3 bonding → trigonal planar (120°); 4 bonding → tetrahedral (109.5°); 3 bonding + 1 lone pair → trigonal pyramidal (~107°); 2 bonding + 2 lone pairs → bent/V-shaped (~104.5°).", "pillLabel": "Framework" },
+    { "front": "Lone-pair effect on angle", "back": "Lone pairs repel more than bonding pairs, so each lone pair on the central atom squeezes the remaining bond angles smaller by roughly 2–2.5°. This is why NH₃ (107°) and H₂O (104.5°) fall below the tetrahedral 109.5°.", "pillLabel": "Concept" },
+    { "front": "Polar bonds vs polar molecule", "back": "A molecule can contain polar bonds yet be non-polar overall if its shape is symmetric so the bond dipoles cancel (e.g. CO₂ is linear, CCl₄ is tetrahedral). Polarity depends on BOTH bond dipoles AND shape.", "pillLabel": "Trap" },
+    { "front": "London (dispersion) forces", "back": "Weak attractions from instantaneous, temporary dipoles that arise as electrons move. Present between ALL molecules; strength increases with the number of electrons (molar mass), so they dominate for larger non-polar molecules.", "pillLabel": "Concept" },
+    { "front": "Dipole-dipole forces", "back": "Attractions between the permanent dipoles of polar molecules (δ+ of one to δ− of another). Stronger than dispersion for molecules of similar size, so polar molecules boil higher than non-polar ones of similar mass.", "pillLabel": "Concept" },
+    { "front": "Hydrogen bonding", "back": "The strongest intermolecular force in the SL course. It occurs when H is bonded to N, O or F and is attracted to a lone pair on an N, O or F of a neighbouring molecule. Explains the high boiling points of H₂O, NH₃ and HF.", "pillLabel": "Concept" },
+    { "front": "Giant covalent (network) solids", "back": "Atoms joined by a continuous 3D network of strong covalent bonds (diamond, silicon dioxide) or layers (graphite/graphene). Very high melting points because melting means breaking covalent bonds, not weak intermolecular forces.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: graphite vs diamond conductivity", "back": "Both are pure carbon, but GRAPHITE conducts electricity (each C uses only 3 of 4 outer electrons for bonding, leaving delocalised electrons between layers) while DIAMOND does NOT (all 4 electrons are localised in bonds).", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Tetrachloromethane, CCl₄, contains four polar C–Cl bonds yet the molecule is non-polar. The best explanation is that:", "options": ["The C–Cl bonds are actually non-polar because C and Cl have the same electronegativity", "The molecule is tetrahedral and symmetric, so the four bond dipoles cancel", "Chlorine atoms cannot carry a partial charge", "The lone pairs on chlorine cancel out the dipoles"], "answer": "The molecule is tetrahedral and symmetric, so the four bond dipoles cancel" },
+    { "prompt": "Ammonia, NH₃, has three N–H bonds and one lone pair on nitrogen. Its shape and bond angle are:", "options": ["Trigonal planar, 120°", "Tetrahedral, 109.5°", "Trigonal pyramidal, ~107°", "Bent, ~104.5°"], "answer": "Trigonal pyramidal, ~107°" },
+    { "prompt": "Which pure substance can form hydrogen bonds between its own molecules?", "options": ["CH₃F (fluoromethane)", "CH₃OH (methanol)", "CH₃Cl (chloromethane)", "CH₄ (methane)"], "answer": "CH₃OH (methanol)" },
+    { "prompt": "Going down the halogens, the boiling points rise: F₂ < Cl₂ < Br₂ < I₂. The reason is that:", "options": ["Hydrogen bonding gets stronger down the group", "The molecules become more polar down the group", "The number of electrons increases, so London dispersion forces get stronger", "The covalent bond within each molecule gets weaker"], "answer": "The number of electrons increases, so London dispersion forces get stronger" },
+    { "prompt": "Graphite conducts electricity but diamond does not. This is because in graphite:", "options": ["The covalent bonds are weaker than in diamond", "Each carbon bonds to only three others, leaving delocalised electrons free to move", "The carbon atoms carry a permanent ionic charge", "Hydrogen bonding between layers carries the current"], "answer": "Each carbon bonds to only three others, leaving delocalised electrons free to move" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a lone pair and a bonding pair?",
-      "a": "A bonding pair is a pair of electrons shared between two atoms, forming the 'glue' of a covalent bond. A lone pair is a pair of valence electrons that belongs entirely to one atom and is not involved in bonding."
-    },
-    {
-      "q": "Do all atoms have to obey the octet rule?",
-      "a": "No. While it's a very useful guideline, there are important exceptions. Hydrogen is stable with 2 electrons (a duet). Beryllium and Boron are often stable with 4 and 6 electrons, respectively (incomplete octets). Elements in Period 3 and below can sometimes have more than 8 electrons (an expanded octet), but this is beyond the SL syllabus."
-    },
-    {
-      "q": "How do I decide which atom goes in the centre of a Lewis structure?",
-      "a": "The central atom is usually the one that is least electronegative. A good shortcut is that it's often the atom that can form the most bonds (e.g., Carbon in CH₄, Nitrogen in NH₃). Hydrogen and halogens (F, Cl, Br, I) are almost always on the outside (terminal atoms)."
-    },
-    {
-      "q": "Why is a triple bond stronger and shorter than a single bond?",
-      "a": "A triple bond involves three pairs of shared electrons (six electrons in total) being attracted to the two positive nuclei. This greater density of negative charge between the nuclei results in a stronger electrostatic attraction, pulling the nuclei closer together (shorter bond length) and requiring more energy to break (higher bond strength)."
-    }
+    { "q": "How is a coordinate (dative) bond different from an ordinary covalent bond?", "a": "Only in where the electrons came from. In an ordinary covalent bond each atom contributes one electron to the shared pair; in a coordinate bond one atom (the donor) supplies both electrons and the other (the acceptor) supplies an empty orbital. Once the bond exists it is exactly the same as any other covalent bond — for example, all four N–H bonds in the ammonium ion NH₄⁺ are identical, even though one of them started as a dative bond from nitrogen to H⁺." },
+    { "q": "Why do lone pairs make the bond angle smaller?", "a": "A lone pair is held by only one nucleus, so its electron cloud spreads out closer to the central atom and repels neighbouring pairs more strongly than a bonding pair does. In VSEPR the repulsion order is lone-pair/lone-pair > lone-pair/bonding-pair > bonding-pair/bonding-pair. Each lone pair therefore pushes the bonding pairs closer together, shrinking the bond angle by roughly 2–2.5°: methane CH₄ is 109.5°, ammonia NH₃ (one lone pair) is about 107°, and water H₂O (two lone pairs) is about 104.5°." },
+    { "q": "How can a molecule have polar bonds but still be non-polar?", "a": "Polarity is a property of the whole molecule, and it depends on the shape as much as on the bonds. Each polar bond has a dipole (a little arrow pointing to the more electronegative atom). If the shape is symmetric, those arrows point in directions that cancel out, leaving no overall dipole. Carbon dioxide (O=C=O, linear) and tetrachloromethane (CCl₄, tetrahedral) both have polar bonds but are non-polar molecules because the dipoles cancel. Water is bent, so its two O–H dipoles do NOT cancel and the molecule is polar." },
+    { "q": "Which intermolecular force do I compare first when ranking boiling points?", "a": "Identify the strongest force each substance can use. Hydrogen bonding (needs H bonded to N, O or F) beats dipole-dipole, which beats London dispersion. If two substances use the same TYPE of force, then compare size: more electrons (larger molar mass) means stronger dispersion and a higher boiling point. A common exam pattern is a small hydrogen-bonding molecule outboiling a much larger non-polar one — the force type wins over size there." },
+    { "q": "Why do giant covalent solids like diamond and silicon dioxide have such high melting points?", "a": "Because melting them means breaking actual covalent bonds, not just overcoming weak forces between molecules. In diamond and silicon dioxide every atom is locked into a continuous 3D network of strong covalent bonds, so an enormous amount of energy is needed to pull it apart — melting points are well above 1000 °C. Contrast this with a molecular solid like ice, where melting only overcomes hydrogen bonds between separate H₂O molecules and happens at 0 °C." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of covalent bonding, the fundamental way non-metal atoms connect to form the vast majority of chemical substances around us, from the water we drink ($H_2O$) to the air we breathe ($N_2$, $O_2$). Unlike ionic bonding where electrons are transferred, covalent bonding is all about sharing. This sharing creates a stable arrangement for the atoms, holding them together in discrete units called molecules."
-    },
-    {
-      "type": "heading",
-      "content": "The Octet Rule: The Driving Force for Bonding"
-    },
-    {
-      "type": "text",
-      "content": "At the heart of covalent bonding is the octet rule. This principle states that atoms tend to bond in such a way that they achieve a full outer shell of eight valence electrons, mimicking the stable electron configuration of a noble gas. For hydrogen, the 'rule' is to achieve a duet (two electrons), like the noble gas helium. This quest for a full valence shell is the driving force that causes atoms to share electrons and form covalent bonds."
-    },
-    {
-      "type": "heading",
-      "content": "Drawing Lewis (Electron Dot) Structures"
-    },
-    {
-      "type": "text",
-      "content": "A Lewis structure is a 2D diagram that shows the bonding between atoms of a molecule and the lone pairs of electrons that may exist. It's a vital tool for visualising molecules and predicting their properties. We use dots or crosses to represent valence electrons, and lines to represent shared pairs (covalent bonds)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Step 1: Count Valence Electrons:** Sum the valence electrons for all atoms. For a polyatomic ion, add electrons for negative charge and subtract for positive charge.",
-        "**Step 2: Arrange Atoms:** Place the least electronegative atom in the centre. Hydrogen and halogens are almost always terminal (on the outside).",
-        "**Step 3: Form Single Bonds & Distribute Electrons:** Connect atoms with single bonds (one pair of electrons each). Distribute the remaining electrons as lone pairs to the terminal atoms first, until they have an octet.",
-        "**Step 4: Form Multiple Bonds:** If the central atom does not have an octet, move lone pairs from terminal atoms to form double or triple bonds until the central atom's octet is satisfied."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Draw the Lewis structure for methane, $CH_4$.",
-      "solution": "1. **Count valence electrons:** Carbon is in Group 14, so it has 4 valence electrons. Hydrogen is in Group 1, so it has 1 valence electron. Total = 4 + (4 × 1) = 8 valence electrons.\n2. **Arrange atoms:** Carbon is less electronegative than hydrogen, so it is the central atom.\n3. **Form single bonds:** Connect the central C to the four H atoms with single bonds. This uses 4 bonds × 2 electrons/bond = 8 electrons.\n4. **Check octets:** All 8 valence electrons have been used as bonding pairs. Each H atom is bonded to C and has 2 electrons (a stable duet). The central C atom has four single bonds, so it is surrounded by 4 × 2 = 8 electrons (a stable octet). The structure is complete.\n\n**Final Lewis Structure:**\n```\n      H\n      |\n  H - C - H\n      |\n      H\n```\n(Where each line represents a shared pair of electrons)."
-    },
-    {
-      "type": "heading",
-      "content": "Multiple Bonds, Bond Length, and Bond Strength"
-    },
-    {
-      "type": "text",
-      "content": "Sometimes, sharing one pair of electrons isn't enough for an atom to achieve an octet. In these cases, atoms can share two pairs (a double bond) or three pairs (a triple bond). The number of shared electron pairs between two atoms is called the bond order. There is a clear relationship between bond order, the length of the bond, and its strength."
-    },
-    {
-      "type": "formula",
-      "content": "Bond Order ↑  ⇒  Bond Strength ↑  ⇒  Bond Length ↓"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Single Bond (Bond Order 1):** Longest and weakest covalent bond (e.g., C-C).",
-        "**Double Bond (Bond Order 2):** Intermediate length and strength (e.g., C=C).",
-        "**Triple Bond (Bond Order 3):** Shortest and strongest covalent bond (e.g., C≡C)."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Draw the Lewis structure for carbon dioxide, $CO_2$, and state the bond order between carbon and oxygen.",
-      "solution": "1. **Count valence electrons:** Carbon (Group 14) has 4. Oxygen (Group 16) has 6. Total = 4 + (2 × 6) = 16 valence electrons.\n2. **Arrange atoms:** Carbon is the least electronegative, so it is the central atom: O C O.\n3. **Form single bonds & distribute electrons:** Connect with single bonds: O-C-O. This uses 4 electrons. Distribute the remaining 12 electrons to the terminal oxygen atoms (6 each) as lone pairs.\n```\n  ..    .. \n: O - C - O :\n  ¨     ¨\n```\n4. **Check octets:** The oxygen atoms have octets (2 bonding + 6 lone pair electrons). However, the central carbon only has 4 electrons (two single bonds). It needs 4 more.\n5. **Form multiple bonds:** To give carbon an octet, move one lone pair from each oxygen atom to form a double bond with carbon. \n\n**Final Lewis Structure:**\n```\n  ..      ..\n: O = C = O :\n```\nNow, each oxygen has 4 bonding electrons and 4 lone pair electrons (octet satisfied). The carbon has two double bonds, so 4 + 4 = 8 electrons (octet satisfied). All 16 valence electrons are used.\n\n**Bond Order:** The bond between carbon and each oxygen is a double bond, so the bond order is 2."
-    },
-    {
-      "type": "examTip",
-      "content": "Be prepared for exceptions! Boron and Beryllium can have incomplete octets (BF₃, BeCl₂). Also, be able to recognise and draw dative (coordinate) bonds, such as in the ammonium ion ($NH_4^+$) or carbon monoxide (CO). In a dative bond, one atom provides both electrons to the shared pair. You can represent it with an arrow pointing from the donor atom to the acceptor atom, although this is not strictly required by the IB."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-chemistry-sl&topic=S2.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Video Tutorial on Lewis Structures",
-          "href": "https://www.youtube.com/watch?v=1Zlnz_t_I24"
-        },
-        {
-          "label": "Interactive Lewis Structure Builder",
-          "href": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html"
-        },
-        {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/chemistry-data-booklet/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Most of the substances in the world around you — water, the gases in the air, sugars, plastics, DNA — are held together by covalent bonds. Where ionic bonding transfers electrons, covalent bonding SHARES them: a shared pair of electrons is attracted to the nuclei of two non-metal atoms at once, and that attraction is the bond. In this lesson we move from the single bond outward: how many pairs are shared (bond order), how we draw them (Lewis structures), how the pairs arrange in space (VSEPR shapes), whether the molecule is polar, and finally how whole molecules attract one another to set boiling points and solubility. Every worked example is laid out exactly the way our engine marks your own practice, because in a structured Paper 2 answer HOW you show your reasoning decides how many marks you keep." },
+
+    { "type": "heading", "content": "What a covalent bond is" },
+    { "type": "text", "content": "A covalent bond is the electrostatic attraction between a shared pair of electrons and the positively charged nuclei of the two atoms sharing them. Atoms share so that each reaches a stable, full outer shell — an octet of eight valence electrons for most atoms (the octet rule), or a duet of two for hydrogen, matching the nearest noble gas. Because the shared electrons sit between the two nuclei, both nuclei are attracted to the same region of negative charge, and that mutual attraction holds the atoms together." },
+    { "type": "keyPoints", "items": [
+      "A covalent bond = a shared pair of electrons attracted to two nuclei; it forms between non-metals.",
+      "Atoms share to reach a full outer shell (octet, or a duet for H).",
+      "A bonding pair is shared between two atoms; a lone pair belongs to one atom and is not shared.",
+      "Boron (e.g. BF₃, 6 electrons) and beryllium (e.g. BeCl₂, 4 electrons) are common incomplete-octet exceptions at SL."
+    ]},
+
+    { "type": "heading", "content": "Bond order: single, double and triple bonds" },
+    { "type": "text", "content": "Atoms can share one, two or three pairs of electrons, giving a single, double or triple bond respectively. The number of shared pairs is the bond order, and it directly controls two measurable properties. More shared pairs mean more negative charge concentrated between the nuclei, so the nuclei are pulled closer (shorter bond) and held more tightly (stronger bond, higher bond enthalpy)." },
+    { "type": "formula", "content": "\\text{Bond order} \\uparrow \\;\\Rightarrow\\; \\text{bond length} \\downarrow \\;\\text{and}\\; \\text{bond strength} \\uparrow" },
+    { "type": "keyPoints", "items": [
+      "**Single bond (order 1):** longest and weakest, e.g. C–C.",
+      "**Double bond (order 2):** intermediate length and strength, e.g. C=C.",
+      "**Triple bond (order 3):** shortest and strongest, e.g. C≡C and the N≡N of nitrogen gas, whose great strength makes N₂ very unreactive."
+    ]},
+
+    { "type": "heading", "content": "Drawing Lewis (electron-dot) structures" },
+    { "type": "text", "content": "A Lewis structure is a 2D map of a molecule that shows every bonding pair (as a line) and every lone pair (as a pair of dots). It is the tool you use before deducing shape and polarity, so getting it right is the foundation of the whole topic. Follow the same four steps every time." },
+    { "type": "keyPoints", "items": [
+      "**Step 1 — Count valence electrons.** Sum the valence electrons of all atoms. For a polyatomic ion, ADD one electron per negative charge and SUBTRACT one per positive charge.",
+      "**Step 2 — Arrange the atoms.** Put the least electronegative atom in the centre. Hydrogen and halogens are almost always terminal (on the outside).",
+      "**Step 3 — Single bonds, then lone pairs.** Join the central atom to the outer atoms with single bonds, then place remaining electrons as lone pairs on the outer atoms first until they have an octet.",
+      "**Step 4 — Make multiple bonds if needed.** If the central atom lacks an octet, convert outer lone pairs into double or triple bonds until it is satisfied."
+    ]},
+    { "type": "workedExample", "question": "Draw the Lewis structure of carbon dioxide, CO₂, and state the carbon–oxygen bond order. [3]", "solution": "**Step 1 — count valence electrons.** Carbon (Group 14) has 4; each oxygen (Group 16) has 6. Total $= 4 + 2(6) = 16$ electrons.  [M1: correct electron count]\n\n**Step 2 — arrange atoms.** Carbon is least electronegative, so it is central: O–C–O.\n\n**Step 3 — single bonds and lone pairs.** Two single bonds use 4 electrons; the remaining 12 go on the oxygens as lone pairs. But carbon now has only 4 electrons around it — not an octet.\n\n**Step 4 — form multiple bonds.** Move one lone pair from EACH oxygen into a bond, giving two C=O double bonds:\n```\n  ..            ..\n  O = C = O\n  ¨            ¨\n```\nNow each O has 4 bonding + 4 lone-pair electrons (octet), and C has 8 bonding electrons (octet). All 16 electrons are used.  [A1: correct structure with lone pairs]\n\n**Bond order.** Each carbon–oxygen bond is a double bond, so the bond order is **2**.  [A1]\n\n*Because the molecule is linear (O=C=O) and symmetric, the two bond dipoles cancel — we will use this later to show CO₂ is non-polar despite its polar bonds.*" },
+    { "type": "examTip", "content": "Watch for coordinate (dative) bonds, where one atom donates BOTH electrons of the shared pair. In the ammonium ion NH₄⁺, nitrogen's lone pair forms a bond to H⁺; in the oxonium ion H₃O⁺, oxygen donates a pair to H⁺; carbon monoxide CO also contains a dative bond. You may show the direction with an arrow from donor to acceptor, but once formed the bond is identical to any other covalent bond — all four N–H bonds in NH₄⁺ are the same." },
+
+    { "type": "heading", "content": "Bond polarity and electronegativity" },
+    { "type": "text", "content": "When the two atoms in a bond have different electronegativities, the more electronegative atom pulls the shared pair closer to itself, gaining a partial negative charge (δ−) while the other becomes partial positive (δ+). This separation of charge is a polar bond, and it is described by a bond dipole pointing towards the δ− atom. The larger the electronegativity difference, the more polar the bond; if the difference is zero (two identical atoms, as in Cl₂ or O₂) the bond is non-polar. A very large difference tips the bonding towards ionic — bonding is a continuum, not a set of separate boxes." },
+    { "type": "keyPoints", "items": [
+      "Electronegativity increases across a period and decreases down a group; fluorine is the most electronegative element.",
+      "Bigger electronegativity difference → more polar bond → larger δ+/δ− and a bigger bond dipole.",
+      "Equal electronegativity (identical atoms) → non-polar bond.",
+      "A polar bond is a necessary condition for a polar molecule, but as we will see it is not sufficient — the shape matters too."
+    ]},
+
+    { "type": "heading", "content": "VSEPR: predicting molecular shape and bond angle" },
+    { "type": "text", "content": "Valence Shell Electron Pair Repulsion (VSEPR) theory says that the electron domains around a central atom — each single, double or triple bond counts as ONE domain, and each lone pair counts as one domain — arrange themselves as far apart as possible, because negatively charged clouds repel. Count the domains, place them for maximum separation, then describe the shape using only the ATOM positions. Lone pairs occupy space and set the geometry, but they are invisible in the named shape." },
+    { "type": "keyPoints", "items": [
+      "**2 domains, 0 lone pairs → linear, 180°** (e.g. CO₂, BeCl₂).",
+      "**3 domains, 0 lone pairs → trigonal planar, 120°** (e.g. BF₃, CO₃²⁻).",
+      "**4 domains, 0 lone pairs → tetrahedral, 109.5°** (e.g. CH₄, CCl₄).",
+      "**4 domains, 1 lone pair → trigonal pyramidal, ~107°** (e.g. NH₃).",
+      "**4 domains, 2 lone pairs → bent / V-shaped, ~104.5°** (e.g. H₂O).",
+      "Each lone pair repels more strongly than a bonding pair, so it squeezes the remaining bond angles smaller by roughly 2–2.5°."
+    ]},
+    { "type": "workedExample", "question": "Deduce the molecular shape and the H–O–H bond angle in a water molecule, H₂O, and explain the value of the angle. [4]", "solution": "**Step 1 — electron domains on the central atom.** Oxygen (Group 16) has 6 valence electrons. Two form single bonds to the two hydrogens (2 bonding pairs); the other four are two lone pairs. Total domains $= 2 + 2 = 4$.  [M1: correct count of bonding pairs and lone pairs]\n\n**Step 2 — base geometry.** Four electron domains point to the corners of a tetrahedron (maximum separation).\n\n**Step 3 — name the shape from the atoms.** Only two of the four domains are atoms, so the shape described by the three atoms is **bent (V-shaped)**.  [A1: correct shape]\n\n**Step 4 — bond angle with reasoning.** A perfect tetrahedron gives 109.5°, but the two lone pairs repel more strongly than the bonding pairs and push the two O–H bonds closer together, so the H–O–H angle is reduced to about **104.5°**.  [M1: lone-pair repulsion reasoning] [A1: ~104.5°]\n\n*Compare the series: CH₄ 109.5° (no lone pairs), NH₃ ~107° (one lone pair), H₂O ~104.5° (two lone pairs) — each extra lone pair shrinks the angle further.*" },
+
+    { "type": "heading", "content": "From shape to molecular polarity" },
+    { "type": "text", "content": "A molecule is polar if it has an overall dipole — a net separation of charge across the whole molecule. To decide, check two things: are the bonds polar, and does the shape let the bond dipoles cancel? If the shape is symmetric (the polar bonds point in balanced, opposing directions), the dipoles cancel and the molecule is non-polar overall, even though its bonds are polar. If the shape is asymmetric, usually because of a lone pair or unlike terminal atoms, the dipoles do not cancel and the molecule is polar." },
+    { "type": "keyPoints", "items": [
+      "**Polar bonds + symmetric shape → non-polar molecule:** CO₂ (linear), BF₃ (trigonal planar), CH₄ and CCl₄ (tetrahedral) — dipoles cancel.",
+      "**Polar bonds + asymmetric shape → polar molecule:** H₂O (bent) and NH₃ (trigonal pyramidal) — dipoles reinforce because of the lone pair(s).",
+      "A polar molecule has a permanent dipole and so can attract other molecules through dipole-dipole forces.",
+      "This is the single most common trap in the topic: never conclude a molecule is polar just because it contains polar bonds — always check the shape."
+    ]},
+
+    { "type": "heading", "content": "Intermolecular forces: boiling points and solubility" },
+    { "type": "text", "content": "The covalent bonds we have discussed are the strong forces INSIDE a molecule. What decides whether a molecular substance is a gas, liquid or solid — and its boiling point and solubility — are the much weaker forces BETWEEN molecules. When a molecular substance boils you overcome these intermolecular forces, not the covalent bonds, so ranking them correctly is the key skill. There are three, in increasing strength." },
+    { "type": "keyPoints", "items": [
+      "**London (dispersion) forces:** present between ALL molecules. They arise from temporary, instantaneous dipoles as electrons move, and get stronger as the number of electrons (molar mass) increases. They are the ONLY force between non-polar molecules.",
+      "**Dipole-dipole forces:** additional attractions between the permanent dipoles of polar molecules (δ+ to δ−). Stronger than dispersion for molecules of similar size, so a polar molecule boils higher than a non-polar one of similar mass.",
+      "**Hydrogen bonding:** the strongest of the three. It requires H bonded directly to N, O or F, attracted to a lone pair on an N, O or F of a neighbouring molecule. It explains the anomalously high boiling points of H₂O, NH₃ and HF.",
+      "**Solubility:** 'like dissolves like'. Polar and hydrogen-bonding substances dissolve in water (e.g. ethanol, ammonia); non-polar substances do not, but dissolve in non-polar solvents."
+    ]},
+    { "type": "workedExample", "question": "The three substances ethane (C₂H₆, Mᵣ ≈ 30), fluoromethane (CH₃F, Mᵣ ≈ 34) and methanol (CH₃OH, Mᵣ ≈ 32) have similar molar masses but very different boiling points: −89 °C, −78 °C and +65 °C. Assign each boiling point and explain the order in terms of intermolecular forces. [4]", "solution": "**Step 1 — identify the strongest force in each.**\n- Ethane, C₂H₆: non-polar, so only **London dispersion forces**.\n- Fluoromethane, CH₃F: polar (asymmetric, polar C–F bond) but no H on N/O/F, so **dipole-dipole plus dispersion**.\n- Methanol, CH₃OH: has O–H, so **hydrogen bonding plus dipole-dipole and dispersion**.  [M1: correct force identified for each]\n\n**Step 2 — rank the forces.** Hydrogen bonding > dipole-dipole > dispersion, and the molar masses are similar so dispersion is roughly equal for all three. Therefore boiling point rises in that order.  [M1: correct reasoning that force type, not mass, dominates here]\n\n**Step 3 — assign the values.**\n- Ethane (weakest, dispersion only) → **−89 °C**.\n- Fluoromethane (dipole-dipole) → **−78 °C**.\n- Methanol (hydrogen bonding) → **+65 °C**.  [A1: correct assignment]\n\n**Step 4 — the key comparison.** Methanol boils about 150 °C higher than ethane despite almost identical molar mass, because hydrogen bonds between O–H groups are much stronger than the dispersion forces in ethane and must be overcome to boil it.  [A1: explicit link from H-bonding to the high boiling point]\n\n*Note the exam pattern: force TYPE decides the order here because the masses are matched. When comparing molecules that use the SAME force type, you would instead compare molar mass/number of electrons.*" },
+
+    { "type": "heading", "content": "Giant covalent (network) structures" },
+    { "type": "text", "content": "Not every covalent substance is made of small molecules. In giant covalent (network) solids the covalent bonds extend continuously through the whole structure, so there are no separate molecules and no weak forces to overcome on melting — you must break strong covalent bonds throughout. This gives very high melting points and distinctive properties that come straight from how the atoms are connected." },
+    { "type": "keyPoints", "items": [
+      "**Diamond:** each carbon bonds covalently to four others in a rigid 3D tetrahedral network. Extremely hard, very high melting point, and does NOT conduct electricity (all four outer electrons are localised in bonds).",
+      "**Graphite:** each carbon bonds to only three others in flat hexagonal layers; the layers are held together by weak London forces so they slide (a lubricant, soft). The fourth electron per carbon is delocalised between layers, so graphite CONDUCTS electricity.",
+      "**Graphene:** a single one-atom-thick layer of graphite — an extremely strong, flexible sheet that conducts electricity for the same delocalised-electron reason.",
+      "**Silicon dioxide (SiO₂, quartz):** each Si bonds to four O and each O bridges two Si in a giant 3D network. Very high melting point, hard, and an electrical insulator (no delocalised electrons)."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Calling a molecule polar just because its bonds are polar** — always check the shape; symmetric molecules like CO₂, CCl₄ and BF₃ have polar bonds but cancel to a non-polar molecule.",
+      "**Forgetting lone pairs when counting VSEPR domains** — a lone pair is an electron domain and changes the shape and angle; NH₃ is pyramidal (not trigonal planar) and H₂O is bent (not linear) because of their lone pairs.",
+      "**Quoting 109.5° for NH₃ or H₂O** — lone-pair repulsion shrinks the angle to ~107° and ~104.5° respectively; you must state the lone-pair reasoning, not just the number.",
+      "**Claiming hydrogen bonding without H bonded to N, O or F** — molecules like CH₃F and HCl are polar and use dipole-dipole forces, but they cannot hydrogen-bond because the H is not on N, O or F.",
+      "**Saying covalent bonds break when a molecular substance boils** — boiling overcomes the weak intermolecular forces; the covalent bonds inside each molecule stay intact.",
+      "**Ignoring dispersion forces because a molecule is non-polar** — dispersion is present in everything and is the reason non-polar substances like the halogens have rising boiling points down the group.",
+      "**Confusing diamond and graphite conductivity** — graphite conducts (delocalised electrons, 3 bonds per C); diamond does not (4 bonds per C, all electrons localised)."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for a structured Paper 2 question. The marks are analytic, not a markband: each mark is tied to a specific point of chemistry — a method/reasoning mark (M) for correct reasoning, an answer mark (A) for a correct shape, angle or conclusion — and error-carried-forward (ECF) means a wrong deduction early on can still earn the marks that follow if you use it correctly. Any chemically equivalent wording is accepted. Study how each of the four marks below is earned by one distinct point." },
+    { "type": "workedExample", "question": "Deduce the shape and bond angle of ammonia, NH₃, and explain why they differ from those of methane, CH₄. [4]", "solution": "**Model answer — full reasoning.**\n\nNitrogen in NH₃ has 5 valence electrons: three form single N–H bonds and the remaining two are a lone pair, giving **four electron domains** (3 bonding pairs + 1 lone pair). Four domains adopt a tetrahedral arrangement, but because one domain is a lone pair the shape described by the atoms is **trigonal pyramidal**, with a H–N–H bond angle of about **107°**.\n\nMethane, CH₄, also has four electron domains around carbon, but all four are BONDING pairs (no lone pair), so its shape is **tetrahedral** with the ideal bond angle of **109.5°**.\n\nThe difference arises because the lone pair on nitrogen repels the bonding pairs more strongly than the bonding pairs repel each other. This extra repulsion pushes the three N–H bonds closer together, reducing the angle from 109.5° in CH₄ to about 107° in NH₃.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **A1 — shape of NH₃.** Awarded for stating **trigonal pyramidal**. This is an answer mark: the correct shape is the credited point. 'Pyramidal' is accepted as equivalent.\n- **A1 — bond angle of NH₃.** Awarded for **~107°** (the engine accepts a stated value in the 106–108° range). ECF applies: a student who wrongly deduced a tetrahedral shape but then correctly quoted 109.5° for THAT shape can still earn an angle mark on their own reasoning.\n- **M1 — reason for the difference: the lone pair.** Awarded for identifying that NH₃ has a **lone pair on nitrogen** while CH₄ has four bonding pairs and none. This is a reasoning mark for the correct cause.\n- **M1 — repulsion argument.** Awarded for explaining that the **lone pair repels more strongly than bonding pairs, squeezing the bond angle smaller**. This reasoning mark is earned for the correct mechanism even if the exact angle quoted was slightly off — the physics of the explanation is what is credited.\n\n**'Accept equivalents.'** The engine accepts 'pyramidal' for trigonal pyramidal, any angle stated within tolerance, and any wording that conveys 'lone pair repels more than a bonding pair' (e.g. 'lone-pair–bond-pair repulsion is greater than bond-pair–bond-pair repulsion').\n\n**Bottom line:** two of the four marks reward the reasoning (M) and two reward the correct results (A). A student who writes only 'pyramidal, 107°' with no explanation earns at most the two answer marks and loses the two reasoning marks; a student who shows the domain count, names the lone pair and gives the repulsion argument secures all four — and ECF protects the angle even if the shape was misjudged." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer exactly this way — analytically, point by point, with M marks for reasoning, A marks for the correct shape/angle/conclusion, ECF between them, and equivalents accepted. So always show the chemistry: count the electron domains, name every lone pair, and state the repulsion reasoning in words. The reasoning marks and error-carried-forward only protect your score if the working is actually on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The covalent model underpins much of what follows. Organic chemistry is built on the shapes, polarities and reactivity of covalently bonded carbon; the properties of water — its solvent power, its high boiling point, its role in life — trace straight back to hydrogen bonding and molecular polarity; and energetics uses bond enthalpies, which are just the bond strengths introduced here. Master the chain — Lewis structure, then VSEPR shape and angle, then polarity, then intermolecular forces — and you can predict the physical behaviour of almost any molecular substance in the course." },
+
+    { "type": "practice", "label": "Get a Paper 2 structured question marked: deduce a shape and bond angle, or rank boiling points by intermolecular force, with full reasoning", "href": "/mark?subject=ib-chemistry-sl&topic=S2.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (Section 8: electronegativity values; Section 9: VSEPR shapes)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" },
+      { "label": "Interactive Lewis Structure Builder (PhET)", "href": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Interactive Lewis Structure Builder",

@@ -1,188 +1,164 @@
 {
   "slug": "r3-2-electron-transfer-reactions",
   "topicCode": "R3.2",
+  "unit": { "code": "R3", "title": "What are the mechanisms of chemical change?" },
   "title": "Electron transfer reactions",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces electron transfer reactions, commonly known as redox reactions. You will learn how to use oxidation states to identify which species are oxidised and reduced, and how to balance complex redox equations in neutral and acidic solutions. The roles of oxidising and reducing agents are also explored.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Redox is the chemistry of moving electrons — from the corrosion of iron to the batteries in your phone. This lesson builds the whole R3.2 toolkit: oxidation and reduction as electron transfer (OIL RIG), the hierarchical rules for assigning oxidation states, spotting oxidising and reducing agents, writing and balancing half-equations and combining them into overall redox equations, the reactivity (activity) series and displacement reactions, and disproportionation. The HL extension covers the electrochemical series, voltaic (galvanic) and electrolytic cells, standard electrode potentials and cell potential. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 28,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define oxidation and reduction in terms of electron transfer and changes in oxidation state.",
-    "Determine the oxidation state of an atom in a compound or ion using a set of hierarchical rules.",
-    "Balance redox equations in neutral and acidic solutions using the oxidation state method.",
-    "Identify the oxidising agent and reducing agent in a redox reaction."
+    "Define oxidation and reduction in terms of electron transfer and change in oxidation state (OIL RIG).",
+    "Assign oxidation states to atoms in elements, ions and compounds using the hierarchical rules, including the peroxide and hydride exceptions.",
+    "Identify the oxidising agent and reducing agent in a redox reaction, and explain why each is itself reduced or oxidised.",
+    "Write half-equations balanced for atoms and charge and combine them into a balanced overall redox equation.",
+    "Use the reactivity series to predict displacement reactions, and recognise disproportionation.",
+    "(HL) Use the electrochemical series and standard electrode potentials to calculate a cell potential and describe voltaic and electrolytic cells.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["R3.2"],
+  "levelNote": "Common to SL and HL; electrochemical cells and standard electrode potentials are HL.",
   "simpleExplanation": {
     "title": "The Great Electron Swap",
-    "summary": "Redox reactions are all about the movement of electrons from one chemical species to another. We use a concept called 'oxidation states' to keep track of this electron transfer, identifying which substance loses electrons and which one gains them.",
-    "analogy": "Imagine a marketplace where currency is electrons. A 'reducing agent' is a seller who gives away electrons and becomes 'oxidised' (loses currency). An 'oxidising agent' is a buyer who accepts electrons and becomes 'reduced' (gains currency). Every transaction requires both a buyer and a seller; you can't have one without the other, just as oxidation and reduction always occur together.",
+    "summary": "A redox reaction is a transfer of electrons from one species to another. Oxidation and reduction always happen together — electrons lost by one species are exactly the electrons gained by another — and oxidation states are the bookkeeping tool that lets you track where those electrons went.",
+    "analogy": "Picture a marketplace where the only currency is electrons. A reducing agent is a seller: it hands over electrons and is oxidised (its oxidation state rises). An oxidising agent is a buyer: it takes electrons in and is reduced (its oxidation state falls). Every sale needs a buyer and a seller, so you can never have oxidation without reduction — and the electrons the buyer gains are precisely the electrons the seller loses.",
     "steps": [
-      "First, assign an oxidation state to every atom in the reaction based on a set of rules. This tells you the 'electron-accounting' state of each atom.",
-      "Next, identify which element's oxidation state increases (oxidation) and which decreases (reduction). This reveals the core electron transfer.",
-      "Then, balance the number of electrons lost and gained. You'll multiply the species involved so that the total increase in oxidation state equals the total decrease.",
-      "Finally, balance the remaining atoms and the overall charge. For reactions in acidic solution, use H₂O to balance oxygen atoms and H⁺ ions to balance hydrogen atoms and charge."
+      "Assign an oxidation state to every atom using the rules — this is the electron-accounting position of each atom.",
+      "Find the atom whose oxidation state goes UP (oxidised) and the one whose state goes DOWN (reduced).",
+      "Write a half-equation for each process, balancing atoms first, then charge with electrons.",
+      "Scale the two half-equations so the electrons cancel, then add them to get the balanced overall equation."
     ]
   },
+  "keyConcepts": ["electron transfer", "oxidation state", "conservation of charge"],
   "flashcards": [
-    {
-      "front": "What is oxidation?",
-      "back": "Oxidation is the loss of electrons, resulting in an increase in oxidation state. Remember the mnemonic OIL: Oxidation Is Loss."
-    },
-    {
-      "front": "What is reduction?",
-      "back": "Reduction is the gain of electrons, resulting in a decrease in oxidation state. Remember the mnemonic RIG: Reduction Is Gain."
-    },
-    {
-      "front": "What is an oxidation state?",
-      "back": "A hypothetical charge an atom would have if all bonds to atoms of different elements were 100% ionic. It's a tool for tracking electron transfer."
-    },
-    {
-      "front": "What is the oxidation state of an atom in a pure element?",
-      "back": "Zero. For example, the oxidation state of each atom in Fe(s), O₂(g), and P₄(s) is 0."
-    },
-    {
-      "front": "What is the oxidation state of an atom in a monatomic ion?",
-      "back": "It is equal to the charge of the ion. For example, in Na⁺ the oxidation state of sodium is +1, and in S²⁻ the oxidation state of sulfur is -2."
-    },
-    {
-      "front": "What is a reducing agent (reductant)?",
-      "back": "A species that donates electrons and gets oxidised in a redox reaction. It causes another species to be reduced."
-    },
-    {
-      "front": "What is an oxidising agent (oxidant)?",
-      "back": "A species that accepts electrons and gets reduced in a redox reaction. It causes another species to be oxidised."
-    },
-    {
-      "front": "Common Trap: Oxidising Agent",
-      "back": "The oxidising agent is the substance that is *reduced*. Students often mistakenly think the oxidising agent is the one being oxidised. Remember, the 'agent' causes the action to happen to something else."
-    },
-    {
-      "front": "How do you determine the oxidation state of an element in a polyatomic ion like SO₄²⁻?",
-      "back": "The sum of the oxidation states of all atoms must equal the overall charge of the ion. For SO₄²⁻, let S be x. Then x + 4(-2) = -2, so x = +6. The oxidation state of sulfur is +6."
-    },
-    {
-      "front": "What does the Roman numeral in a name like 'Copper(II) sulfate' signify?",
-      "back": "The Roman numeral indicates the oxidation state of the preceding element, which is usually a transition metal. In this case, copper has an oxidation state of +2."
-    },
-    {
-      "front": "When balancing a redox equation in acidic solution, what species are used to balance oxygen and hydrogen atoms?",
-      "back": "H₂O molecules are used to balance oxygen atoms, and H⁺ ions are used to balance hydrogen atoms and the overall charge."
-    }
+    { "front": "OIL RIG", "back": "Oxidation Is Loss, Reduction Is Gain — of electrons. Oxidation raises the oxidation state; reduction lowers it. The two always occur together in a redox reaction.", "pillLabel": "Definition" },
+    { "front": "Oxidation state (oxidation number)", "back": "The hypothetical charge an atom would carry if every bond to a different element were 100% ionic. It is a bookkeeping tool for tracking electron transfer, not a real charge.", "pillLabel": "Definition" },
+    { "front": "Oxidising agent (oxidant)", "back": "The species that ACCEPTS electrons and is therefore itself REDUCED. It causes the other species to be oxidised. Classic examples: MnO₄⁻, Cr₂O₇²⁻, Cl₂.", "pillLabel": "Concept" },
+    { "front": "Reducing agent (reductant)", "back": "The species that DONATES electrons and is therefore itself OXIDISED. It causes the other species to be reduced. Classic examples: reactive metals, H₂, C, Fe²⁺.", "pillLabel": "Concept" },
+    { "front": "Exam Trap: which agent is which?", "back": "The oxidising agent is the one that gets REDUCED, and the reducing agent is the one that gets OXIDISED. The 'agent' makes the action happen to the OTHER species, not to itself. This crossover is one of the most-penalised errors.", "pillLabel": "Trap" },
+    { "front": "Oxidation state: free element", "back": "Any atom in an uncombined element has oxidation state 0 — e.g. Fe(s), O₂, P₄, Cl₂ are all 0, no matter how many atoms are in the molecule.", "pillLabel": "Rule" },
+    { "front": "Oxidation state: monatomic ion", "back": "Equal to the charge on the ion. Na⁺ is +1, Mg²⁺ is +2, S²⁻ is −2, Cl⁻ is −1.", "pillLabel": "Rule" },
+    { "front": "Oxidation state: oxygen and its exceptions", "back": "Oxygen is usually −2. Exceptions: −1 in PEROXIDES (H₂O₂, Na₂O₂), and positive (+2) in OF₂ because fluorine is more electronegative.", "pillLabel": "Rule" },
+    { "front": "Oxidation state: hydrogen and its exception", "back": "Hydrogen is usually +1. The exception is METAL HYDRIDES (NaH, CaH₂) where it is −1 because the metal is less electronegative.", "pillLabel": "Rule" },
+    { "front": "Sum rule for oxidation states", "back": "The oxidation states in a neutral compound sum to 0; in a polyatomic ion they sum to the ionic charge. This single rule lets you solve for an unknown oxidation state algebraically.", "pillLabel": "Framework" },
+    { "front": "Half-equation", "back": "An equation showing one half of a redox process on its own, with electrons written explicitly. Reduction gains electrons on the LEFT (e.g. Cu²⁺ + 2e⁻ → Cu); oxidation loses electrons on the RIGHT (e.g. Zn → Zn²⁺ + 2e⁻).", "pillLabel": "Framework" },
+    { "front": "Reactivity (activity) series", "back": "Metals ranked by how readily they are oxidised (lose electrons). A more reactive metal will displace a less reactive metal ion from solution. Order (high→low): K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Ag.", "pillLabel": "Concept" },
+    { "front": "Displacement reaction", "back": "A more reactive metal reduces the ion of a less reactive metal, taking its place. E.g. Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s): Zn is oxidised, Cu²⁺ is reduced.", "pillLabel": "Concept" },
+    { "front": "Disproportionation", "back": "A reaction in which the SAME element in a SINGLE species is simultaneously oxidised AND reduced. E.g. Cl₂ + 2NaOH → NaCl + NaClO + H₂O: Cl (0) goes to −1 and +1 at once.", "pillLabel": "Concept" },
+    { "front": "HL: Standard electrode potential (E°)", "back": "The voltage of a half-cell measured against the standard hydrogen electrode (0.00 V) under standard conditions (298 K, 100 kPa, 1 mol dm⁻³). A more positive E° means the species is a better oxidising agent (more readily reduced).", "pillLabel": "HL" },
+    { "front": "HL: Cell potential", "back": "$E°_{cell} = E°_{cathode} - E°_{anode}$ (equivalently $E°_{reduced} - E°_{oxidised}$). A positive $E°_{cell}$ means a voltaic cell reaction is spontaneous.", "pillLabel": "HL" }
+  ],
+  "quickCheck": [
+    { "prompt": "In the reaction Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s), which statement is correct?", "options": ["Zn is reduced because it gains electrons", "Zn is oxidised because it loses electrons (OIL)", "Cu²⁺ is oxidised because its oxidation state falls", "No electron transfer occurs"], "answer": "Zn is oxidised because it loses electrons (OIL)" },
+    { "prompt": "What is the oxidation state of oxygen in hydrogen peroxide, H₂O₂?", "options": ["−2, as in most compounds", "−1, because it is a peroxide", "+1", "0, because it is close to elemental oxygen"], "answer": "−1, because it is a peroxide" },
+    { "prompt": "In the reaction where MnO₄⁻ oxidises Fe²⁺, the oxidising agent is:", "options": ["Fe²⁺, because it loses electrons", "MnO₄⁻, because it is itself reduced (gains electrons)", "MnO₄⁻, because it is itself oxidised", "Fe³⁺, because it has the highest oxidation state"], "answer": "MnO₄⁻, because it is itself reduced (gains electrons)" },
+    { "prompt": "A student writes the reduction half-equation as Cu²⁺ + e⁻ → Cu. The error is:", "options": ["Copper should be on the left", "The charge is unbalanced — 2 electrons are needed: Cu²⁺ + 2e⁻ → Cu", "Electrons belong on the right for a reduction", "There is no error"], "answer": "The charge is unbalanced — 2 electrons are needed: Cu²⁺ + 2e⁻ → Cu" },
+    { "prompt": "Which reaction is a disproportionation?", "options": ["Zn + Cu²⁺ → Zn²⁺ + Cu", "2Na + Cl₂ → 2NaCl", "Cl₂ + 2NaOH → NaCl + NaClO + H₂O", "Fe²⁺ + Ag⁺ → Fe³⁺ + Ag"], "answer": "Cl₂ + 2NaOH → NaCl + NaClO + H₂O" }
   ],
   "faq": [
-    {
-      "q": "Why do we need to add H⁺ and H₂O when balancing redox equations?",
-      "a": "Many redox reactions occur in aqueous solutions, which can be acidic or neutral. The water molecules (H₂O) and hydronium ions (H⁺, in acidic solution) are present in the reaction mixture and often participate directly in the reaction. We add them to the equation to ensure that all elements, particularly oxygen and hydrogen, are conserved, reflecting what actually happens in the solution."
-    },
-    {
-      "q": "Can a substance be both an oxidising agent and a reducing agent?",
-      "a": "Yes. This occurs in a special type of redox reaction called a disproportionation reaction. In these reactions, an element in a single species is simultaneously oxidised and reduced to form two different products. For example, in the reaction of chlorine with cold, dilute sodium hydroxide, $Cl_2 + 2NaOH \\rightarrow NaCl + NaClO + H_2O$, chlorine (oxidation state 0) is reduced to -1 in NaCl and oxidised to +1 in NaClO."
-    },
-    {
-      "q": "Is the oxidation state the same as the formal charge?",
-      "a": "No, they are different concepts, although they can sometimes have the same value. Formal charge is a tool to determine the most likely Lewis structure, assuming all bonding electrons are shared equally. Oxidation state is a tool for tracking redox reactions, assuming all bonds are ionic. They are different 'bookkeeping' methods for electrons."
-    }
+    { "q": "Why do oxidation and reduction always happen together?", "a": "Electrons are not created or destroyed in a reaction — they are transferred. Every electron gained by one species (reduction) must have been lost by another (oxidation), so the two processes are two halves of a single event. That is why we split a redox reaction into two half-equations and insist the electrons cancel exactly when we recombine them: the number lost must equal the number gained." },
+    { "q": "Is the oxidation state the same as the real charge on an atom?", "a": "No. Oxidation state is a hypothetical charge that assumes every bond is fully ionic — a deliberate over-simplification chosen because it makes electron-tracking easy. In a covalent molecule like H₂O the oxygen is assigned −2 even though it does not literally carry a 2− charge. It is a bookkeeping device, not a measurement." },
+    { "q": "How do I decide which metal displaces which?", "a": "Use the reactivity (activity) series. A more reactive metal is more easily oxidised, so it will hand its electrons to the ion of a less reactive metal and take its place in solution. Zinc is above copper, so zinc metal displaces copper from Cu²⁺(aq); the reverse — copper metal displacing zinc — does not happen. At HL the same logic is quantified by standard electrode potentials." },
+    { "q": "Can one substance be both the oxidising and the reducing agent?", "a": "Yes — that is exactly what disproportionation is. The same element in a single species is oxidised in part and reduced in part. In Cl₂ + 2NaOH → NaCl + NaClO + H₂O, chlorine starts at oxidation state 0 and ends up at −1 in NaCl and +1 in NaClO simultaneously, so chlorine is both oxidised and reduced." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "From the rusting of a bicycle chain to the energy production in the batteries powering your phone, electron transfer reactions are fundamental to chemistry and our daily lives. These reactions, known as redox reactions, involve the movement of electrons between chemical species. In this lesson, we will learn a systematic method to account for these electrons and balance the equations that describe these vital processes."
-    },
-    {
-      "type": "heading",
-      "content": "Defining Oxidation and Reduction"
-    },
-    {
-      "type": "text",
-      "content": "At the heart of every redox reaction are two simultaneous processes: oxidation and reduction. You can't have one without the other. The simplest way to remember them is with the mnemonic OIL RIG: **O**xidation **I**s **L**oss (of electrons), **R**eduction **I**s **G**ain (of electrons)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Oxidation**: A species loses one or more electrons. Its oxidation state increases.",
-        "**Reduction**: A species gains one or more electrons. Its oxidation state decreases.",
-        "**Redox Reaction**: A chemical reaction where both oxidation and reduction occur."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Bookkeeping of Electrons: Oxidation States"
-    },
-    {
-      "type": "text",
-      "content": "To track electron movement in reactions with covalent bonds, where electrons are shared rather than fully transferred, chemists use the concept of oxidation states (or oxidation numbers). This is a formal system that assigns a hypothetical charge to each atom in a species. A change in oxidation state during a reaction signifies that a redox process has occurred."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Rule 1**: The oxidation state of an atom in a free element is 0 (e.g., Na, Cl₂, S₈).",
-        "**Rule 2**: The oxidation state of a monatomic ion is equal to its charge (e.g., Na⁺ is +1, O²⁻ is -2).",
-        "**Rule 3**: In compounds, fluorine is always -1. Other halogens are usually -1, except when bonded to oxygen or a more electronegative halogen.",
-        "**Rule 4**: In most compounds, oxygen is -2. Exceptions include peroxides (e.g., H₂O₂) where it is -1.",
-        "**Rule 5**: In most compounds, hydrogen is +1. The exception is in metal hydrides (e.g., NaH) where it is -1.",
-        "**Rule 6**: The sum of oxidation states in a neutral compound is 0.",
-        "**Rule 7**: The sum of oxidation states in a polyatomic ion equals the charge of the ion."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Determine the oxidation state of manganese in the permanganate ion, MnO₄⁻.",
-      "solution": "1.  Let the oxidation state of manganese be $x$. [1]\n2.  According to the rules, the oxidation state of oxygen is -2.\n3.  The overall charge of the polyatomic ion is -1. The sum of the oxidation states must equal this charge.\n4.  Set up the algebraic equation: $x + 4(-2) = -1$. [1]\n5.  Solve for $x$: $x - 8 = -1 \\implies x = +7$.\n6.  Therefore, the oxidation state of manganese in MnO₄⁻ is +7. [1]"
-    },
-    {
-      "type": "heading",
-      "content": "Balancing Redox Equations"
-    },
-    {
-      "type": "text",
-      "content": "Balancing redox equations can be tricky because you must conserve both mass (atoms) and charge (electrons). The oxidation state method provides a structured approach, especially for reactions in aqueous solutions."
-    },
-    {
-      "type": "workedExample",
-      "question": "Balance the following redox equation which takes place in an acidic solution:\n$Cr_2O_7^{2-}(aq) + Fe^{2+}(aq) \\rightarrow Cr^{3+}(aq) + Fe^{3+}(aq)$",
-      "solution": "1.  **Assign oxidation states & identify changes**:\n    - Cr in $Cr_2O_7^{2-}$: $2x + 7(-2) = -2 \\implies 2x = 12 \\implies x = +6$.\n    - Fe in $Fe^{2+}$: +2.\n    - Cr in $Cr^{3+}$: +3.\n    - Fe in $Fe^{3+}$: +3.\n    - Reduction: Cr goes from +6 to +3 (a decrease of 3 per atom).\n    - Oxidation: Fe goes from +2 to +3 (an increase of 1).\n\n2.  **Balance atoms undergoing redox & electron change**:\n    - The dichromate ion has 2 Cr atoms, so we need 2 $Cr^{3+}$ on the product side: $Cr_2O_7^{2-} \\rightarrow 2Cr^{3+}$.\n    - The total decrease in oxidation state for Cr is $2 \\times (-3) = -6$.\n    - The increase for Fe is +1.\n\n3.  **Equalise total change**:\n    - To balance the total decrease of 6, we need a total increase of 6. Since each Fe atom provides an increase of 1, we need 6 Fe atoms.\n    - $Cr_2O_7^{2-} + 6Fe^{2+} \\rightarrow 2Cr^{3+} + 6Fe^{3+}$. [1] for correct coefficients for redox species.\n\n4.  **Balance oxygen with H₂O**:\n    - There are 7 oxygen atoms on the left. Add 7 $H_2O$ to the right.\n    - $Cr_2O_7^{2-} + 6Fe^{2+} \\rightarrow 2Cr^{3+} + 6Fe^{3+} + 7H_2O$. [1]\n\n5.  **Balance hydrogen with H⁺**:\n    - There are now $7 \\times 2 = 14$ hydrogen atoms on the right. Add 14 $H^+$ to the left.\n    - $Cr_2O_7^{2-}(aq) + 6Fe^{2+}(aq) + 14H^+(aq) \\rightarrow 2Cr^{3+}(aq) + 6Fe^{3+}(aq) + 7H_2O(l)$. [1]\n\n6.  **Final Check**:\n    - Atoms: Cr(2), Fe(6), O(7), H(14) on both sides. Balanced.\n    - Charge: $(-2) + 6(+2) + 14(+1) = -2 + 12 + 14 = +24$ on the left.\n    - Charge: $2(+3) + 6(+3) = +6 + 18 = +24$ on the right. Balanced.\n    - The final balanced equation is correct."
-    },
-    {
-      "type": "examTip",
-      "content": "Always double-check your final balanced equation for both atom balance and charge balance. It’s a quick and easy way to catch any errors made during the balancing process. Marks are often awarded for the correct balancing coefficients and for showing the correct use of H⁺ and H₂O in acidic solutions."
-    },
-    {
-      "type": "heading",
-      "content": "Oxidising and Reducing Agents"
-    },
-    {
-      "type": "text",
-      "content": "In any redox reaction, the species that causes another to be oxidised is called the oxidising agent. In doing so, the oxidising agent itself gets reduced. Conversely, the species that causes another to be reduced is the reducing agent, and it gets oxidised in the process."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Oxidising Agent (Oxidant)**: Electron acceptor; is reduced.",
-        "**Reducing Agent (Reductant)**: Electron donor; is oxidised.",
-        "In the previous example, $Cr_2O_7^{2-}$ is the oxidising agent because it accepts electrons and is reduced (Cr from +6 to +3).",
-        "In the same example, $Fe^{2+}$ is the reducing agent because it donates an electron and is oxidised (Fe from +2 to +3)."
-      ]
-    },
-    {
-      "type": "practice",
-      "label": "Test your knowledge on Electron Transfer Reactions",
-      "href": "/mark?subject=ib-chemistry-sl&topic=R3.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Video tutorial on balancing redox reactions",
-          "href": "https://www.youtube.com/watch?v=v5sDNmYCaqo"
-        },
-        {
-          "label": "Interactive practice for assigning oxidation numbers",
-          "href": "https://www.chem.ucla.edu/~harding/IGOC/O/oxidation_number.html"
-        }
-      ]
-    }
+    { "type": "intro", "content": "From the rusting of a car body to the discharge of the battery in your phone, an enormous share of chemistry comes down to one idea: the transfer of electrons. Reactions in which electrons move from one species to another are called redox reactions, and they are governed by a bookkeeping system — oxidation states — that lets you follow every electron. This lesson builds that system from the ground up: how to assign oxidation states, how to name the oxidising and reducing agents, how to write and combine half-equations, and how the reactivity series predicts which reactions actually go. As always, each worked example is set out exactly the way our engine marks your own practice, because in redox the way you show your reasoning decides how many marks you keep." },
+
+    { "type": "heading", "content": "Oxidation and reduction: OIL RIG" },
+    { "type": "text", "content": "At the centre of every redox reaction are two processes that always occur together, because electrons lost by one species are the electrons gained by another. The mnemonic OIL RIG captures both: Oxidation Is Loss of electrons, Reduction Is Gain of electrons. Historically 'oxidation' meant gaining oxygen and 'reduction' meant losing it, but the modern, general definition is written purely in terms of electron transfer — and equivalently in terms of oxidation state, which rises on oxidation and falls on reduction." },
+    { "type": "keyPoints", "items": [
+      "**Oxidation**: loss of electrons; oxidation state INCREASES.",
+      "**Reduction**: gain of electrons; oxidation state DECREASES.",
+      "**Redox reaction**: one in which both oxidation and reduction occur — you cannot have one without the other.",
+      "The electrons lost in the oxidation are exactly the electrons gained in the reduction."
+    ]},
+
+    { "type": "heading", "content": "The bookkeeping of electrons: oxidation states" },
+    { "type": "text", "content": "In an ionic reaction it is obvious which species gains and loses electrons, but most redox reactions involve covalent bonds where electrons are shared, not fully transferred. To track electrons in every case, chemists assign each atom an oxidation state (or oxidation number): the hypothetical charge it would carry if all its bonds to different elements were 100% ionic. A change in an atom's oxidation state between reactants and products is the definitive signal that a redox process has taken place. The states are assigned by a short hierarchy of rules — when two rules seem to conflict, the one higher in the list wins." },
+    { "type": "keyPoints", "items": [
+      "**Rule 1** — An atom in a free element is 0 (e.g. Fe, O₂, P₄, Cl₂).",
+      "**Rule 2** — A monatomic ion equals its charge (Na⁺ is +1, S²⁻ is −2).",
+      "**Rule 3** — Fluorine is always −1 in compounds; the other halogens are −1 except when bonded to oxygen or a more electronegative halogen.",
+      "**Rule 4** — Oxygen is usually −2. Exceptions: −1 in peroxides (H₂O₂, Na₂O₂) and positive in OF₂.",
+      "**Rule 5** — Hydrogen is usually +1. Exception: −1 in metal hydrides (NaH, CaH₂).",
+      "**Rule 6** — Oxidation states sum to 0 in a neutral compound.",
+      "**Rule 7** — Oxidation states sum to the ionic charge in a polyatomic ion."
+    ]},
+
+    { "type": "workedExample", "question": "Determine the oxidation state of sulfur in the sulfate ion, SO₄²⁻. [2]", "solution": "**Step 1 — apply the fixed rules.**\nOxygen is −2 (Rule 4, no peroxide here). There are 4 oxygen atoms, contributing $4 \\times (-2) = -8$.  [M1: correct method — oxygen fixed at −2 and the sum set equal to the charge]\n\n**Step 2 — use the sum rule (Rule 7).**\nLet the oxidation state of sulfur be $x$. The sum must equal the ionic charge, −2:\n$x + 4(-2) = -2$\n$x - 8 = -2 \\implies x = +6$.\n\nThe oxidation state of sulfur in SO₄²⁻ is **+6**.  [A1]\n\n*The +6 matches the Roman numeral you would see in a name such as 'sulfate(VI)'.*" },
+
+    { "type": "heading", "content": "Oxidising and reducing agents" },
+    { "type": "text", "content": "Naming the agents is where marks are most often thrown away, so fix the logic firmly. The oxidising agent is the species that brings about oxidation in something else — it does so by accepting the electrons, which means the oxidising agent is itself REDUCED. The reducing agent brings about reduction in something else by donating electrons, so the reducing agent is itself OXIDISED. The 'agent' is the cause; the change named applies to its partner, not to itself." },
+    { "type": "keyPoints", "items": [
+      "**Oxidising agent (oxidant)** — electron acceptor; is itself reduced; its oxidation state falls.",
+      "**Reducing agent (reductant)** — electron donor; is itself oxidised; its oxidation state rises.",
+      "To identify them, first work out the oxidation-state changes, then read off which species went down (the oxidant) and which went up (the reductant)."
+    ]},
+
+    { "type": "heading", "content": "Half-equations and combining them" },
+    { "type": "text", "content": "Because a redox reaction is two processes at once, the cleanest way to build and balance it is to write each half separately as a half-equation, with the electrons shown explicitly. A reduction half-equation gains electrons on the left-hand side; an oxidation half-equation loses electrons on the right-hand side. Each half must be balanced for both atoms AND charge — the electrons are what balance the charge. Once you have both halves, you scale them so the number of electrons is identical, then add them so the electrons cancel and disappear from the overall equation. In acidic solution you balance oxygen with H₂O and hydrogen with H⁺ before adding electrons." },
+    { "type": "keyPoints", "items": [
+      "**Balance atoms** other than O and H first.",
+      "**Balance O** by adding H₂O, then **balance H** by adding H⁺ (acidic solution).",
+      "**Balance charge** by adding electrons to the more positive side.",
+      "**Scale** each half-equation so the electrons match, then **add** and cancel the electrons."
+    ]},
+
+    { "type": "workedExample", "question": "Acidified manganate(VII), MnO₄⁻, oxidises iron(II) to iron(III). The reduction half-equation for manganese is incomplete. Complete and balance it: MnO₄⁻(aq) → Mn²⁺(aq). [3]", "solution": "**Step 1 — balance atoms other than O and H.**\nThere is 1 Mn on each side already, so Mn is balanced.\n\n**Step 2 — balance oxygen with H₂O.**\nFour O atoms on the left, so add 4 H₂O on the right:\n$\\text{MnO}_4^- \\rightarrow \\text{Mn}^{2+} + 4\\text{H}_2\\text{O}$.  [M1: O balanced with water]\n\n**Step 3 — balance hydrogen with H⁺.**\nThe 4 H₂O give 8 H on the right, so add 8 H⁺ on the left:\n$\\text{MnO}_4^- + 8\\text{H}^+ \\rightarrow \\text{Mn}^{2+} + 4\\text{H}_2\\text{O}$.  [M1: H balanced with H⁺]\n\n**Step 4 — balance charge with electrons.**\nLeft charge: $(-1) + 8(+1) = +7$. Right charge: $+2$. Add 5 electrons to the LEFT to bring +7 down to +2:\n$\\text{MnO}_4^-(aq) + 8\\text{H}^+(aq) + 5e^- \\rightarrow \\text{Mn}^{2+}(aq) + 4\\text{H}_2\\text{O}(l)$.  [A1: charge balanced, 5e⁻ on the left]\n\n*Check: Mn is reduced from +7 to +2, a gain of 5 electrons — exactly the 5e⁻ we added. This is the reduction half; the oxidation half is Fe²⁺ → Fe³⁺ + e⁻.*" },
+
+    { "type": "examTip", "content": "When you combine half-equations, the electrons MUST cancel completely — if any e⁻ survives in your overall equation, it is not balanced. Here the Fe²⁺ half loses 1 electron and the MnO₄⁻ half gains 5, so multiply the iron half-equation by 5 before adding: MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺. Marks are awarded for the correct H⁺/H₂O terms and for the electrons balancing exactly." },
+
+    { "type": "heading", "content": "The reactivity series and displacement reactions" },
+    { "type": "text", "content": "Metals differ in how readily they give up electrons: the more reactive a metal, the more easily it is oxidised. Ranking metals by this tendency gives the reactivity (activity) series. Its practical payoff is displacement: a more reactive metal will reduce the ion of a less reactive metal, pushing it out of solution and taking its place. The classic demonstration is a strip of zinc in copper(II) sulfate solution — the blue colour fades as Zn²⁺ forms and a reddish deposit of copper metal appears on the zinc." },
+    { "type": "keyPoints", "items": [
+      "Reactivity (high → low): K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Ag.",
+      "A metal higher in the series displaces the ion of a metal lower down.",
+      "The metal being displaced is REDUCED (its ion gains electrons); the displacing metal is OXIDISED.",
+      "If the metals are in the 'wrong' order — e.g. copper added to Zn²⁺ — no reaction occurs."
+    ]},
+
+    { "type": "workedExample", "question": "A piece of zinc is placed in copper(II) sulfate solution and a reaction occurs: Zn(s) + CuSO₄(aq) → ZnSO₄(aq) + Cu(s). Identify the species oxidised and reduced, and state the oxidising agent and reducing agent, justifying each with oxidation-state changes. [4]", "solution": "**Step 1 — assign oxidation states to the changing species.**\nZn(s): 0 (free element). Cu in Cu²⁺: +2. Zn in Zn²⁺: +2. Cu(s): 0.\nThe sulfate ion, SO₄²⁻, is a spectator — its atoms do not change oxidation state.  [M1: oxidation states of Zn and Cu before and after]\n\n**Step 2 — identify oxidation and reduction (OIL RIG).**\nZinc goes from 0 to +2: it LOSES 2 electrons, so **zinc is oxidised**.  [A1]\nCopper goes from +2 to 0: it GAINS 2 electrons, so **Cu²⁺ is reduced**.  [A1]\n\n**Step 3 — name the agents.**\nThe reducing agent donates electrons and is itself oxidised → **Zn is the reducing agent**.\nThe oxidising agent accepts electrons and is itself reduced → **Cu²⁺ is the oxidising agent**.  [A1: both agents correct with the reduced/oxidised justification]\n\n*Half-equations: Zn → Zn²⁺ + 2e⁻ (oxidation) and Cu²⁺ + 2e⁻ → Cu (reduction). The 2 electrons cancel exactly, confirming the balance.*" },
+
+    { "type": "heading", "content": "Disproportionation" },
+    { "type": "text", "content": "Usually the species that is oxidised and the species that is reduced are different. In a disproportionation reaction they are the same element in the same starting species: one portion is oxidised while another is reduced, so a single element ends up in two different oxidation states in the products. The standard example is chlorine reacting with cold, dilute sodium hydroxide: Cl₂ + 2NaOH → NaCl + NaClO + H₂O. Chlorine starts at oxidation state 0; in NaCl it has fallen to −1 (reduction) and in NaClO it has risen to +1 (oxidation). The same element is both the oxidising and the reducing agent." },
+
+    { "type": "heading", "content": "HL: the electrochemical series and cells" },
+    { "type": "text", "content": "(HL only.) At Higher Level the qualitative reactivity series is made quantitative. Each reduction half-reaction is assigned a standard electrode potential, E°, measured in volts against the standard hydrogen electrode (defined as exactly 0.00 V) under standard conditions: 298 K, 100 kPa gas pressure and 1 mol dm⁻³ solutions. Ranking half-reactions by E° gives the electrochemical series. A more positive E° means the species is more readily reduced, i.e. a stronger oxidising agent; a more negative E° means the species is more readily oxidised, i.e. a stronger reducing agent. These values are tabulated in the data booklet — you do not memorise them." },
+    { "type": "keyPoints", "items": [
+      "**Standard hydrogen electrode (SHE)**: the 0.00 V reference against which all E° values are measured.",
+      "**More positive E°** = stronger oxidising agent (more easily reduced); **more negative E°** = stronger reducing agent (more easily oxidised).",
+      "**Voltaic (galvanic) cell**: a spontaneous redox reaction generates electricity. Oxidation occurs at the anode (negative), reduction at the cathode (positive).",
+      "**Electrolytic cell**: an external power supply forces a non-spontaneous reaction. Oxidation still occurs at the anode, reduction at the cathode, but the electrode signs are reversed (anode positive, cathode negative).",
+      "**Cell potential**: $E°_{cell} = E°_{cathode} - E°_{anode}$. A positive value means the voltaic cell reaction is spontaneous."
+    ]},
+    { "type": "formula", "content": "E°_{cell} = E°_{cathode} - E°_{anode}" },
+    { "type": "text", "content": "(HL only.) For example, a Daniell cell pairs zinc, $E° = -0.76$ V, with copper, $E° = +0.34$ V. Copper has the more positive potential, so it is reduced at the cathode and zinc is oxidised at the anode. The cell potential is $E°_{cell} = (+0.34) - (-0.76) = +1.10$ V. The positive result confirms the familiar zinc-displaces-copper reaction is spontaneous — the same conclusion the qualitative reactivity series gave, now with a number attached." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Getting OIL RIG backwards** — oxidation is LOSS of electrons (state goes up), reduction is GAIN (state goes down). Reversing this reverses everything that follows.",
+      "**Swapping the oxidising and reducing agents** — the oxidising agent is the one REDUCED; the reducing agent is the one OXIDISED. The agent causes the change in its partner, not in itself.",
+      "**Forgetting the oxygen and hydrogen exceptions** — oxygen is −1 in peroxides (H₂O₂), and hydrogen is −1 in metal hydrides (NaH). Applying the usual −2 or +1 blindly gives the wrong answer.",
+      "**Leaving a half-equation unbalanced for charge** — the electrons are what balance the charge; check that the total charge is equal on both sides after adding them (e.g. Cu²⁺ + 2e⁻ → Cu, not + e⁻).",
+      "**Not cancelling electrons when combining halves** — scale each half so the electrons are equal, then add; no electron may remain in the final overall equation.",
+      "**Calling a spectator ion a reactant** — ions like SO₄²⁻ or Na⁺ whose oxidation state does not change take no part in the redox and should be left out of the ionic/half-equation reasoning.",
+      "**(HL) Using $E°_{anode} - E°_{cathode}$** — the cell potential is cathode minus anode; getting the order wrong flips the sign and reverses your spontaneity conclusion."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "Redox questions are marked analytically: each mark is tied to a specific step — a method mark (M) for the correct approach or an answer mark (A) for the correct result — and error-carried-forward (ECF) means an early slip does not have to cost you every mark after it, PROVIDED your method is written down. Study how each mark below is earned by a specific line of working." },
+    { "type": "workedExample", "question": "Determine the oxidation state of manganese in MnO₄⁻, and deduce whether Mn is oxidised or reduced when MnO₄⁻ is converted to Mn²⁺. [3]", "solution": "**Model answer — full working.**\n\n**Oxidation state of Mn in MnO₄⁻.**\nOxygen is −2 (no peroxide). Let the oxidation state of Mn be $x$. By the sum rule, the total must equal the ionic charge, −1:\n$x + 4(-2) = -1$\n$x - 8 = -1 \\implies x = +7$.\nSo Mn is **+7** in MnO₄⁻.\n\n**Change on forming Mn²⁺.**\nIn Mn²⁺ the oxidation state of manganese is +2 (monatomic ion = its charge). Manganese therefore falls from +7 to +2, a decrease of 5. A decrease in oxidation state means a GAIN of electrons (5 electrons per Mn), so **manganese is reduced**.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct method for the oxidation state.** Awarded for setting oxygen at −2 and writing the sum equal to the charge, $x + 4(-2) = -1$. This is a METHOD mark: it is credited for the correct approach even if the final arithmetic slips.\n- **A1 — correct value, +7.** Awarded for solving to reach the oxidation state +7 for manganese.\n- **A1 — 'reduced', with electron-gain reasoning.** Awarded for stating manganese is reduced AND justifying it by the fall in oxidation state / gain of electrons (+7 → +2). Here **ECF** protects you: a student who found, say, +6 by an arithmetic slip in M1 but then correctly reasoned that going from that value to +2 is a decrease, and therefore reduction, still earns this final mark — the engine credits the correct REASONING applied to the student's own figure.\n\n**'Accept equivalents.'** The engine accepts equivalent phrasings — 'oxidation number' for 'oxidation state', 'gains electrons' or 'oxidation state decreases' as the justification for reduction — and does not demand a specific wording as long as the electron-transfer logic is present. Simply writing 'reduced' with no reason does not earn the third mark; the justification is what is being credited.\n\n**Bottom line:** of the 3 marks, 1 is a method mark that survives an arithmetic slip and the final mark is protected by ECF — but only if you write the reasoning down. 'Mn is +7, reduced' with no method risks losing the method mark and the reasoning mark if any number is off." },
+    { "type": "examTip", "content": "The Practice button marks YOUR redox working exactly this way — analytically, mark by mark, with ECF and accepted equivalents. So always show the method: write the sum equation for the oxidation state, state the value, then justify oxidised/reduced by the direction of the change and electron transfer. The method mark and ECF are what protect your score when a number slips, and you only get that protection if the reasoning is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Redox underpins much of the chemistry ahead. Reactivity trends explain why some metals corrode and others are used to protect them; electrochemistry turns these half-equations into working cells and batteries; and quantitative redox titrations combine half-equations with the mole calculations from S1.4 to measure unknown concentrations. Master the core habit here — assign oxidation states, split into half-equations, balance atoms then charge, then recombine so the electrons cancel — and every electrochemical topic becomes a variation on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 redox answer marked: assign an oxidation state and deduce oxidation or reduction with full reasoning", "href": "/mark?subject=ib-chemistry-sl&topic=R3.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (Section 24: standard electrode potentials, HL)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

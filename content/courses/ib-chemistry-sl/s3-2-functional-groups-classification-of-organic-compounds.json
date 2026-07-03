@@ -1,185 +1,158 @@
 {
   "slug": "s3-2-functional-groups-classification-of-organic-compounds",
   "topicCode": "S3.2",
+  "unit": { "code": "S3", "title": "Classification of matter" },
   "title": "Functional groups: classification of organic compounds",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces functional groups, the specific groups of atoms within molecules that are responsible for the characteristic chemical reactions of those molecules. You will learn to identify, classify, and name various homologous series including alcohols, aldehydes, ketones, carboxylic acids, and more, which forms the foundation of organic chemistry.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Organic chemistry is the chemistry of carbon compounds, and its power comes from a simple idea: molecules that share the same reactive group behave in the same way. This lesson builds the whole classification toolkit of S3.2 — homologous series and functional groups; the main classes (alkanes, alkenes, alkynes, alcohols, aldehydes, ketones, carboxylic acids, esters, ethers, amines, halogenoalkanes and arenes) with their functional groups and general formulae; the four ways to represent a molecule (empirical, molecular, structural and skeletal); IUPAC nomenclature; and structural isomerism. It closes with a Paper 2 structured question laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define the term functional group and homologous series.",
-    "Identify the characteristic functional groups in a range of organic molecules.",
-    "Classify organic compounds into their homologous series based on their functional groups.",
-    "Distinguish between primary, secondary and tertiary alcohols and amines."
+    "Define homologous series and functional group, and state the general formula of the common series.",
+    "Identify and classify the main classes of organic compound from their functional groups.",
+    "Represent organic molecules as empirical, molecular, full structural, condensed structural and skeletal formulae, and convert between them.",
+    "Apply IUPAC rules — longest chain, lowest locants, substituents — to name and draw branched molecules.",
+    "Recognise chain, position and functional-group structural isomerism, and link a functional group to characteristic reactivity and physical properties.",
+    "Present a structural-question answer so that method marks and error-carried-forward (ECF) protect the score."
   ],
+  "syllabusObjectivesCovered": ["S3.2"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Organic Chemistry's Building Blocks",
-    "summary": "Functional groups are like special attachments on a carbon chain that decide how the molecule behaves. By recognising these groups, we can predict a molecule's properties and classify it into a family, or homologous series.",
-    "analogy": "Imagine you have a basic set of LEGO bricks, which represent the carbon and hydrogen backbone of an organic molecule. A functional group is like a special, unique LEGO piece – a propeller, a wheel, or a hinged door. Adding one of these special pieces completely changes what your LEGO creation can do. Similarly, adding a functional group to a carbon chain dictates the molecule's chemical 'function' and identity.",
+    "title": "Sorting Carbon's Millions",
+    "summary": "There are tens of millions of known organic compounds, far too many to learn one by one. Instead we sort them into families. Every family is defined by a functional group — a small, reactive cluster of atoms — and every member of a family reacts in essentially the same way, so learning the family teaches you the members.",
+    "analogy": "Think of a functional group like the engine of a vehicle and the carbon chain like the chassis it is bolted to. A scooter, a car and a truck have very different chassis, but if they all share the same type of engine they start, run and stall in the same way. Swap the engine — bolt on a different functional group — and the behaviour changes completely, even if the chassis looks almost identical. Chemists predict how a molecule reacts by looking straight past the chain to the group bolted onto it.",
     "steps": [
-      "Scan the molecule for any atoms other than carbon and hydrogen (heteroatoms), like oxygen or nitrogen.",
-      "Identify the specific bonding arrangement around these heteroatoms. Is it an O-H group, a C=O group, or something else?",
-      "Consider the position of the functional group. For example, is a C=O group at the end of a chain (aldehyde) or in the middle (ketone)?",
-      "Name the class of compound based on the identified functional group, for example, a molecule with an -OH group is an alcohol."
+      "Scan the molecule for anything that is not a plain C–C or C–H single bond: a double or triple bond, or a heteroatom such as O, N or a halogen.",
+      "Identify the exact arrangement around that feature — an O–H, a C=O, a –COOH, an N–H, and so on.",
+      "Match the arrangement to a named functional group, and hence to a homologous series (family).",
+      "Use the family to predict the name pattern, the general formula, and the characteristic reactions."
     ]
   },
+  "keyConcepts": ["homologous series", "functional group", "structural isomerism"],
   "flashcards": [
-    {
-      "front": "What is a functional group?",
-      "back": "A specific group of atoms or bonds within a molecule that is responsible for the characteristic chemical reactions of that molecule."
-    },
-    {
-      "front": "What is a homologous series?",
-      "back": "A series of compounds with the same functional group and similar chemical properties, in which successive members differ by a $CH_2$ group."
-    },
-    {
-      "front": "What is the functional group of an alcohol?",
-      "back": "The hydroxyl group, -OH."
-    },
-    {
-      "front": "How do you distinguish an aldehyde from a ketone?",
-      "back": "Both have a carbonyl group (C=O). In an aldehyde, the carbonyl carbon is bonded to at least one hydrogen atom (it's at the end of a chain). In a ketone, the carbonyl carbon is bonded to two other carbon atoms (it's within the chain)."
-    },
-    {
-      "front": "What is the functional group in a carboxylic acid?",
-      "back": "The carboxyl group, -COOH, which consists of a carbonyl group (C=O) and a hydroxyl group (-OH) attached to the same carbon atom."
-    },
-    {
-      "front": "What two types of molecules react to form an ester?",
-      "back": "A carboxylic acid and an alcohol."
-    },
-    {
-      "front": "What is the functional group of an amine?",
-      "back": "The amino group, $-NH_2$, $-NHR$, or $-NR_2$, where R is a carbon-containing group."
-    },
-    {
-      "front": "What is a primary (1°) alcohol?",
-      "back": "An alcohol where the carbon atom bonded to the -OH group is attached to only one other carbon atom."
-    },
-    {
-      "front": "What is a tertiary (3°) amine?",
-      "back": "An amine where the nitrogen atom is bonded to three carbon-containing groups (alkyl or aryl groups)."
-    },
-    {
-      "front": "What is the functional group of a nitrile?",
-      "back": "The cyano group, a carbon atom triple-bonded to a nitrogen atom (-C≡N)."
-    },
-    {
-      "front": "What is the key structural feature of an arene?",
-      "back": "A benzene ring, which is a six-membered carbon ring with delocalised pi electrons."
-    },
-    {
-      "front": "What is the difference between an ether and an ester functional group?",
-      "back": "An ether has an oxygen atom single-bonded to two carbon atoms (R-O-R'). An ester has a carbonyl group next to an oxygen atom that is single-bonded to another carbon atom (R-COO-R')."
-    }
+    { "front": "Functional group", "back": "A specific atom or group of atoms within a molecule that is responsible for its characteristic chemical reactions. The rest of the molecule (the carbon–hydrogen scaffold) is comparatively unreactive.", "pillLabel": "Definition" },
+    { "front": "Homologous series", "back": "A family of compounds with the same functional group and the same general formula, in which successive members differ by a $-CH_2-$ unit. Members share chemical properties and show a gradual trend in physical properties.", "pillLabel": "Definition" },
+    { "front": "General formula", "back": "An algebraic formula for a whole homologous series: alkanes $C_nH_{2n+2}$, alkenes $C_nH_{2n}$, alkynes $C_nH_{2n-2}$, alcohols $C_nH_{2n+1}OH$. Learn these — they are quick isomer and classification checks.", "pillLabel": "Framework" },
+    { "front": "Empirical formula", "back": "The simplest whole-number ratio of atoms, e.g. $CH_2$ for ethene. It carries no information about how the atoms are joined.", "pillLabel": "Definition" },
+    { "front": "Molecular formula", "back": "The actual number of atoms of each element in one molecule, e.g. $C_2H_4$ for ethene. Still says nothing about connectivity — several molecules can share it.", "pillLabel": "Definition" },
+    { "front": "Structural formula (full vs condensed)", "back": "Shows how atoms are connected. Full structural shows every atom and bond; condensed groups atoms onto each carbon, e.g. $CH_3CH_2OH$. Both fix the connectivity.", "pillLabel": "Concept" },
+    { "front": "Skeletal formula", "back": "Carbon chain drawn as a zig-zag: each vertex and line-end is a carbon, C–H bonds are implied to fill valency, and heteroatoms plus their H are drawn explicitly. Fast to draw and read.", "pillLabel": "Concept" },
+    { "front": "Alcohol vs ether (same formula)", "back": "Both can be $C_nH_{2n+2}O$. An alcohol has $-OH$ (hydroxyl); an ether has an oxygen bridging two carbons, $R-O-R'$. Ethanol ($CH_3CH_2OH$) and methoxymethane ($CH_3OCH_3$) are functional-group isomers.", "pillLabel": "Trap" },
+    { "front": "Aldehyde vs ketone", "back": "Both contain a carbonyl (C=O). In an aldehyde the C=O carbon carries at least one H, so it sits at the END of the chain (suffix -al). In a ketone the C=O carbon is bonded to two carbons, so it sits WITHIN the chain (suffix -one).", "pillLabel": "Trap" },
+    { "front": "Carboxylic acid vs ester", "back": "A carboxylic acid is $-COOH$ (C=O plus O–H on the same carbon, suffix -oic acid). An ester is $-COO-$ with the second O joined to another carbon, $R-COO-R'$ (named alkyl alkanoate).", "pillLabel": "Concept" },
+    { "front": "Structural isomers", "back": "Compounds with the SAME molecular formula but DIFFERENT arrangements of atoms. Three SL types: chain, position and functional-group isomerism.", "pillLabel": "Definition" },
+    { "front": "Chain vs position vs functional-group isomerism", "back": "Chain: the carbon skeleton is branched differently (butane vs 2-methylpropane). Position: the same functional group sits at a different place (propan-1-ol vs propan-2-ol). Functional-group: the atoms form a different group entirely (propanal vs propanone).", "pillLabel": "Framework" },
+    { "front": "Primary / secondary / tertiary", "back": "For an alcohol, count carbons on the carbon bearing $-OH$ (1 / 2 / 3 = 1° / 2° / 3°). For an amine, count carbons on the NITROGEN itself. Different atom for each — a classic mix-up.", "pillLabel": "Trap" },
+    { "front": "IUPAC numbering rule", "back": "Number the longest chain from the end that gives the principal functional group the LOWEST locant; if there is a tie, give the set of substituents the lowest locants. List substituents alphabetically, using di-, tri- for repeats.", "pillLabel": "Framework" },
+    { "front": "Why boiling point rises down a series", "back": "Successive members gain a $-CH_2-$, increasing molar mass and surface area, so London (dispersion) forces strengthen and boiling point rises steadily. Polar groups (–OH, –COOH) add hydrogen bonding, raising it further.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "Propan-1-ol and propan-2-ol have the same molecular formula but the –OH is on a different carbon. They are examples of:", "options": ["Chain isomers", "Position isomers", "Functional-group isomers", "Not isomers — they are the same compound"], "answer": "Position isomers" },
+    { "prompt": "Which pair are functional-group isomers of one another?", "options": ["Butane and 2-methylpropane", "Propanal (CH₃CH₂CHO) and propanone (CH₃COCH₃)", "Butan-1-ol and butan-2-ol", "Ethene and propene"], "answer": "Propanal (CH₃CH₂CHO) and propanone (CH₃COCH₃)" },
+    { "prompt": "A molecule is drawn as CH₃CH₂CH(CH₃)CH₂OH. Applying the lowest-locant rule, its correct IUPAC name is:", "options": ["2-methylbutan-4-ol", "3-methylbutan-1-ol", "2-methylbutan-1-ol", "2-ethylpropan-1-ol"], "answer": "2-methylbutan-1-ol" },
+    { "prompt": "The general formula of the alkenes (one C=C double bond) is:", "options": ["$C_nH_{2n+2}$", "$C_nH_{2n}$", "$C_nH_{2n-2}$", "$C_nH_{2n+1}OH$"], "answer": "$C_nH_{2n}$" },
+    { "prompt": "In the molecule CH₃CH₂COCH₃, the C=O carbon is bonded to two other carbons. The functional group is therefore a:", "options": ["Aldehyde", "Ketone", "Carboxylic acid", "Ester"], "answer": "Ketone" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between an amide and an amine?",
-      "a": "Both contain a nitrogen atom, which can cause confusion. An amine has a nitrogen atom bonded to at least one alkyl or aryl group (e.g., $CH_3NH_2$). An amide has a nitrogen atom bonded directly to a carbonyl (C=O) group (e.g., $CH_3CONH_2$). The presence of the electron-withdrawing carbonyl group makes amides much less basic than amines."
-    },
-    {
-      "q": "Is a phenol considered an alcohol for IB SL classification?",
-      "a": "A phenol is a molecule where a hydroxyl (-OH) group is attached directly to a benzene ring. While it has its own distinct properties (it's more acidic than other alcohols), for the purpose of identifying functional groups at SL, you can identify the -OH group as an alcohol functional group and the ring as an arene. You are not required to know the specific reactions of phenols at SL."
-    }
+    { "q": "What actually makes two molecules members of the same homologous series?", "a": "Three things travel together: the same functional group, the same general formula, and a fixed $-CH_2-$ step between successive members. Because the reactive group is identical, the chemistry is essentially the same across the family; because each step adds only an unreactive $-CH_2-$, the physical properties (boiling point, density, viscosity) drift in a smooth, predictable trend. That is why learning one member's reactions effectively teaches you the whole series." },
+    { "q": "How do I choose the 'longest chain' when the molecule is drawn bent or branched?", "a": "The longest chain is the longest continuous path of carbons, and it does not have to be the horizontal one as drawn — you may have to turn a corner into a branch to find it. Count every possible path and take the longest. If two paths tie in length, choose the one with more substituents. Only once the parent chain is fixed do you number it and name the branches." },
+    { "q": "Is a phenol counted as an alcohol at SL?", "a": "A phenol has an $-OH$ group bonded directly to a benzene ring. It has its own distinctive chemistry (it is more acidic than an alcohol), but for SL classification you may identify the $-OH$ as an alcohol/hydroxyl functional group and the ring as an arene. You are not required to know phenol-specific reactions at SL." },
+    { "q": "Do skeletal and condensed formulae ever lose information I need?", "a": "They lose the individual C–H atoms, but never the connectivity, and connectivity is what defines the compound. A skeletal formula still shows every heteroatom, every multiple bond and every branch point, so you can always read the functional groups and name the molecule from it. What you cannot read from an empirical or molecular formula alone is which isomer you have — for that you must go up to a structural or skeletal representation." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the fascinating world of organic chemistry! The sheer number of organic compounds is vast, but thankfully, we can classify them into manageable families. This classification system is based on the concept of the 'functional group', which is the key to understanding the reactions and properties of organic molecules."
-    },
-    {
-      "type": "heading",
-      "content": "Functional Groups and Homologous Series"
-    },
-    {
-      "type": "text",
-      "content": "A **functional group** is the reactive part of an organic molecule. It's an atom or a group of atoms that gives a molecule its characteristic chemical properties. The rest of the molecule, typically a chain of carbon and hydrogen atoms, is often less reactive and acts as a scaffold. Molecules with the same functional group belong to the same **homologous series**. Members of a homologous series share similar chemical behaviours and have physical properties that show a gradual trend as the carbon chain length increases. For example, the boiling points of straight-chain alcohols increase as the number of carbon atoms increases due to stronger London dispersion forces."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Functional Group:** The site of chemical reactivity in a molecule.",
-        "**Homologous Series:** A family of compounds with the same functional group and general formula.",
-        "**General Formula:** An algebraic formula for a homologous series, e.g., $C_nH_{2n+2}$ for alkanes.",
-        "**Successive Members:** Differ by a $-CH_2-$ group."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Classification of Key Functional Groups"
-    },
-    {
-      "type": "text",
-      "content": "For IB Chemistry SL, you need to be able to identify several key functional groups. We can group them based on the atoms they contain. Note the suffixes used in naming, as they are a direct clue to the functional group present."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Alkane:** C-C single bonds. Suffix: '-ane'.",
-        "**Alkene:** At least one C=C double bond. Suffix: '-ene'.",
-        "**Alkyne:** At least one C≡C triple bond. Suffix: '-yne'.",
-        "**Arene:** Contains a benzene ring ($C_6H_6$).",
-        "**Alcohol:** Hydroxyl group (-OH). Suffix: '-ol'.",
-        "**Ether:** Oxygen bridge between two carbon chains (R-O-R'). Naming: 'alkoxyalkane'.",
-        "**Aldehyde:** Carbonyl group (C=O) at the end of a carbon chain. Suffix: '-al'.",
-        "**Ketone:** Carbonyl group (C=O) within a carbon chain. Suffix: '-one'.",
-        "**Carboxylic Acid:** Carboxyl group (-COOH). Suffix: '-oic acid'.",
-        "**Ester:** Carboxylate group within a chain (-COO-). Naming: 'alkyl alkanoate'.",
-        "**Amine:** Amino group (-$NH_2$, -NHR, -$NR_2$). Suffix: '-amine' or prefix 'amino-'.",
-        "**Amide:** Amide group (-$CONH_2$, -CONHR, -$CONR_2$). Suffix: '-amide'.",
-        "**Nitrile:** Cyano group (-C≡N). Suffix: '-nitrile'."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The following molecule is found in raspberries. Identify the functional groups present and classify the compound accordingly. <br> <img src='https://i.imgur.com/8QjZ4fL.png' alt='Raspberry Ketone Molecule' width='250'>",
-      "solution": "1.  **Scan the molecule:** We can see a benzene ring, a C=O group, and standard C-C and C-H bonds.\n2.  **Identify Group 1:** The six-membered ring with alternating double bonds (often shown as a circle) is a **benzene ring**. This means the molecule is an **arene**.\n3.  **Identify Group 2:** There is a hydroxyl group (-OH) attached directly to the benzene ring. This specific combination is called a **phenol**, but for SL classification, identifying it as an **alcohol** functional group is sufficient.\n4.  **Identify Group 3:** There is a carbonyl group (C=O). We must check its position. The carbon of the C=O is bonded to two other carbon atoms. Therefore, this is a **ketone** functional group.\n\n**Answer:** The molecule contains an **arene (benzene ring)**, an **alcohol (-OH)**, and a **ketone (C=O)** functional group. [3 marks]"
-    },
-    {
-      "type": "heading",
-      "content": "Primary, Secondary, and Tertiary Classification"
-    },
-    {
-      "type": "text",
-      "content": "Alcohols and amines can be further classified as primary (1°), secondary (2°), or tertiary (3°). This classification is crucial as it affects their reactivity, particularly in oxidation reactions. The classification depends on the number of carbon-containing groups (alkyl or aryl groups, represented by 'R') attached to the key atom."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**For Alcohols:** Classification is based on the carbon atom bonded to the -OH group. A **primary (1°)** alcohol has one R group attached to this carbon. A **secondary (2°)** has two R groups. A **tertiary (3°)** has three R groups.",
-        "**For Amines:** Classification is based on the nitrogen atom of the amino group. A **primary (1°)** amine has one R group attached to the nitrogen ($R-NH_2$). A **secondary (2°)** has two R groups ($R_2-NH$). A **tertiary (3°)** has three R groups ($R_3-N$)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Be very careful not to confuse the classification of alcohols and amines! For alcohols, you count the carbon groups on the *carbon atom* bearing the -OH. For amines, you count the carbon groups on the *nitrogen atom* itself. This is a very common mistake in exams."
-    },
-    {
-      "type": "workedExample",
-      "question": "Classify the following compounds as primary, secondary, or tertiary.\n(a) Propan-2-ol\n(b) N-methylethanamine\n(c) 2-methylpropan-2-ol",
-      "solution": "(a) **Propan-2-ol:** The structure is $CH_3CH(OH)CH_3$. The carbon atom bonded to the -OH group is itself bonded to two other carbon atoms (the $CH_3$ groups on either side). Therefore, it is a **secondary (2°) alcohol**. [1 mark]\n\n(b) **N-methylethanamine:** The structure is $CH_3CH_2NHCH_3$. The nitrogen atom is bonded to two carbon-containing groups (an ethyl group and a methyl group). Therefore, it is a **secondary (2°) amine**. [1 mark]\n\n(c) **2-methylpropan-2-ol:** The structure is $(CH_3)_3COH$. The carbon atom bonded to the -OH group is itself bonded to three other carbon atoms (three methyl groups). Therefore, it is a **tertiary (3°) alcohol**. [1 mark]"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Functional Groups",
-      "href": "/mark?subject=ib-chemistry-sl&topic=S3.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Chemistry Data Booklet (see sections 25, 26)",
-          "href": "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/chemistry-data-booklet-2025-en.pdf"
-        },
-        {
-          "label": "Interactive Organic Functional Group Identifier",
-          "href": "https://www.chem.ucla.edu/~harding/IGOC/F/functionalgroup01.html"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Organic chemistry is the chemistry of carbon compounds, and there are tens of millions of them. The only way to make that manageable is to classify — and the whole classification scheme rests on one idea: the functional group. A functional group is a small cluster of atoms that carries a molecule's reactivity, while the surrounding carbon–hydrogen framework mostly just holds it in place. Molecules sharing a functional group form a homologous series and behave alike, so learning families replaces memorising individuals. In this lesson we meet the main classes and their general formulae, learn the four ways to draw a molecule, apply the IUPAC naming rules, and sort out structural isomerism — finishing with a Paper 2 question marked exactly the way our engine will mark yours." },
+
+    { "type": "heading", "content": "Homologous series and functional groups" },
+    { "type": "text", "content": "A **functional group** is the reactive part of an organic molecule — the atom or group of atoms responsible for its characteristic chemical reactions. Everything attached to it, usually a chain of carbon and hydrogen, is comparatively inert and acts as a scaffold. Molecules that carry the same functional group belong to the same **homologous series**: a family in which every member has the same general formula and successive members differ by a single $-CH_2-$ unit. Because the reactive group is identical across the family, the chemistry is shared; because each step adds only an unreactive $-CH_2-$, physical properties change gradually. For example, straight-chain alcohols show a steady rise in boiling point as the chain lengthens, because each extra $-CH_2-$ increases the molar mass and surface area, strengthening London (dispersion) forces." },
+    { "type": "keyPoints", "items": [
+      "**Functional group:** the site of chemical reactivity — identify it first, and the chemistry follows.",
+      "**Homologous series:** same functional group, same general formula, successive members differing by $-CH_2-$.",
+      "**General formula:** an algebraic summary of a series, e.g. $C_nH_{2n+2}$ for alkanes.",
+      "**Trends:** chemical properties are shared across a series; physical properties (boiling point, density) change smoothly with chain length."
+    ]},
+
+    { "type": "heading", "content": "The main classes and their functional groups" },
+    { "type": "text", "content": "For IB Chemistry you must recognise the classes below, know the functional group that defines each, and — for the hydrocarbon and alcohol series — recall the general formula. The naming suffix is itself a clue to the functional group present, so learn the group and the suffix together. The letter R is used to stand for any carbon-containing (alkyl or aryl) group." },
+    { "type": "keyPoints", "items": [
+      "**Alkane** — only C–C and C–H single bonds; general formula $C_nH_{2n+2}$; suffix *-ane* (e.g. propane).",
+      "**Alkene** — at least one C=C double bond; general formula $C_nH_{2n}$; suffix *-ene* (e.g. propene).",
+      "**Alkyne** — at least one C≡C triple bond; general formula $C_nH_{2n-2}$; suffix *-yne* (e.g. propyne).",
+      "**Arene** — contains a benzene ring ($C_6H_6$, delocalised π system); named as a benzene derivative.",
+      "**Halogenoalkane** — one or more halogen atoms (–F, –Cl, –Br, –I) replacing H; prefix *fluoro-/chloro-/bromo-/iodo-* (e.g. 2-bromopropane).",
+      "**Alcohol** — hydroxyl group $-OH$; general formula $C_nH_{2n+1}OH$; suffix *-ol* (e.g. propan-1-ol).",
+      "**Ether** — oxygen bridging two carbons, $R-O-R'$; named as an *alkoxyalkane* (e.g. methoxymethane).",
+      "**Aldehyde** — carbonyl C=O at the END of the chain (the C=O carbon carries an H); suffix *-al* (e.g. propanal).",
+      "**Ketone** — carbonyl C=O WITHIN the chain (the C=O carbon is bonded to two carbons); suffix *-one* (e.g. propanone).",
+      "**Carboxylic acid** — carboxyl group $-COOH$; suffix *-oic acid* (e.g. propanoic acid).",
+      "**Ester** — $-COO-$ with the second oxygen joined to a carbon, $R-COO-R'$; named *alkyl alkanoate* (e.g. methyl propanoate).",
+      "**Amine** — amino group $-NH_2$, $-NHR$ or $-NR_2$; suffix *-amine* or prefix *amino-* (e.g. propan-1-amine)."
+    ]},
+
+    { "type": "heading", "content": "Representing organic molecules" },
+    { "type": "text", "content": "The same molecule can be written in several ways, each carrying a different amount of detail. Choosing the right one — and reading it correctly — is a genuine skill that Paper 2 tests directly. Moving up the list adds information about how the atoms are actually joined." },
+    { "type": "keyPoints", "items": [
+      "**Empirical formula** — the simplest whole-number ratio of atoms, e.g. ethene is $CH_2$. It fixes the ratio only, not the size or shape.",
+      "**Molecular formula** — the actual count of each atom in one molecule, e.g. ethene is $C_2H_4$. Still says nothing about connectivity, so several isomers can share it.",
+      "**Full structural formula** — every atom and every bond drawn out, e.g. ethanol showing all C–H, C–C, C–O and O–H bonds. Unambiguous but slow to draw.",
+      "**Condensed structural formula** — atoms grouped onto each carbon, e.g. ethanol as $CH_3CH_2OH$. Compact and unambiguous about connectivity.",
+      "**Skeletal formula** — the carbon chain as a zig-zag: each vertex and line-end is a carbon, C–H bonds are implied to complete valency, and heteroatoms (with their own H) are drawn explicitly. Fast to draw and the standard for larger molecules."
+    ]},
+    { "type": "text", "content": "A key exam habit: an empirical or molecular formula can never, by itself, tell you which compound you hold, because isomers share it. To identify or name a molecule you must have at least a structural or skeletal representation, which pins down the connectivity — and therefore the functional group." },
+
+    { "type": "heading", "content": "IUPAC nomenclature: naming step by step" },
+    { "type": "text", "content": "IUPAC names are built systematically, so a correct name can be read straight off a structure and a structure drawn straight from a name. Follow the same four steps every time and the process is reliable, even for unfamiliar molecules." },
+    { "type": "keyPoints", "items": [
+      "**1. Find the longest continuous carbon chain** — this is the parent chain and sets the stem (meth-, eth-, prop-, but-, pent-...). It need not be drawn in a straight line; turn corners if that gives a longer chain.",
+      "**2. Number the chain** from the end that gives the principal functional group the LOWEST locant. If there is no such group (e.g. an alkane), number to give the set of substituents the lowest locants.",
+      "**3. Identify substituents** (branches such as methyl, ethyl; halogens as chloro-, bromo-) and give each its locant; use di-, tri-, tetra- for repeats.",
+      "**4. Assemble the name:** substituents in alphabetical order (ignoring di-/tri- when alphabetising), then the parent stem, then the suffix with its locant, e.g. 2-methylbutan-1-ol."
+    ]},
+    { "type": "workedExample", "question": "Give the IUPAC name of the molecule with condensed structure CH₃CH(CH₃)CH₂CH₂OH. [2]", "solution": "**Step 1 — longest chain.** Trace the longest continuous carbon path. Starting from the $-OH$ carbon: HO–CH₂–CH₂–CH(CH₃)–CH₃. The longest chain is 4 carbons, so the parent is **butane**, and with an $-OH$ it becomes a butan-ol.  [M1: correct parent chain and class]\n\n**Step 2 — number for the lowest locant of the principal group.** The principal functional group is $-OH$, so number from the end that gives it the lowest number. Numbering from the $-OH$ end puts the $-OH$ on carbon 1 (vs carbon 4 from the other end), so it is a **butan-1-ol**.\n\n**Step 3 — locate substituents.** With that numbering, the methyl branch sits on carbon 3.\n\n**Step 4 — assemble.** Substituent + parent + suffix gives **3-methylbutan-1-ol**.  [A1: fully correct name]\n\n*Note the priority order: the $-OH$ locant is minimised first, and only then is the substituent located — numbering from the wrong end would wrongly give 2-methylbutan-4-ol.*" },
+    { "type": "examTip", "content": "The commonest naming error is numbering from the wrong end. Fix the principal functional group's locant FIRST (lowest possible), and only afterwards read off the substituent positions. If — and only if — there is no functional group to anchor the numbering do you instead choose the direction that gives the substituents the lowest set of locants." },
+
+    { "type": "heading", "content": "Structural isomerism" },
+    { "type": "text", "content": "Structural isomers are compounds with the same molecular formula but different arrangements of atoms — different connectivity. Because connectivity determines the functional group and the shape, isomers can have very different properties even though a molecular formula (or a mass spectrum's molar mass) cannot tell them apart. At SL there are three types to recognise." },
+    { "type": "keyPoints", "items": [
+      "**Chain isomerism** — the carbon skeleton is arranged differently (straight vs branched). Example: butane, $CH_3CH_2CH_2CH_3$, and 2-methylpropane, $(CH_3)_3CH$, both $C_4H_{10}$.",
+      "**Position isomerism** — the same functional group is attached at a different point on the chain. Example: propan-1-ol, $CH_3CH_2CH_2OH$, and propan-2-ol, $CH_3CH(OH)CH_3$, both $C_3H_8O$.",
+      "**Functional-group isomerism** — the atoms are arranged into an entirely different functional group, so the isomers belong to different homologous series. Example: propanal (an aldehyde) and propanone (a ketone), both $C_3H_6O$; or ethanol (alcohol) and methoxymethane (ether), both $C_2H_6O$."
+    ]},
+    { "type": "workedExample", "question": "Draw the skeletal or structural formulae of the three structural isomers of C₅H₁₂ and name each. State which type of isomerism relates them. [4]", "solution": "$C_5H_{12}$ fits the alkane general formula $C_nH_{2n+2}$ ($2\\times5+2 = 12$), so all isomers are saturated alkanes; they differ only in how the carbon skeleton branches — this is **chain isomerism**.\n\n**Isomer 1 — pentane** (unbranched, 5 carbons in a row):\n$CH_3CH_2CH_2CH_2CH_3$.  [structure + name]\n\n**Isomer 2 — 2-methylbutane** (4-carbon chain with a methyl on C2):\n$CH_3CH(CH_3)CH_2CH_3$, i.e. $(CH_3)_2CHCH_2CH_3$.  [structure + name]\n\n**Isomer 3 — 2,2-dimethylpropane** (3-carbon chain with two methyls on the central carbon):\n$C(CH_3)_4$, i.e. $(CH_3)_4C$.  [structure + name]\n\nType of isomerism relating them: **chain isomerism**.  [final mark]\n\n*Check: each structure must still contain exactly 5 C and 12 H. A common slip is to draw '3-methylbutane' or '2-ethylpropane' — but 3-methylbutane is just 2-methylbutane numbered from the wrong end, and 2-ethylpropane's longest chain is actually pentane. Neither is a new isomer.*" },
+
+    { "type": "heading", "content": "Linking functional group to reactivity and physical properties" },
+    { "type": "text", "content": "The point of classifying by functional group is prediction. Once you name the group you can anticipate both how the molecule reacts and roughly how it behaves physically, because the group governs bonding, polarity and intermolecular forces. A C=C double bond invites addition; an $-OH$ or $-COOH$ introduces polarity and hydrogen bonding; a $-COOH$ is acidic. The unreactive alkane framework, by contrast, contributes London forces that scale with chain length." },
+    { "type": "keyPoints", "items": [
+      "**Reactivity** — alkanes are unreactive (combustion, substitution); alkenes undergo addition across the C=C; alcohols undergo oxidation and can be dehydrated; carboxylic acids are weak acids and form esters with alcohols; halogenoalkanes undergo substitution.",
+      "**Polarity and solubility** — polar groups such as $-OH$, $-COOH$ and $-NH_2$ can hydrogen bond, making small members water-soluble; non-polar hydrocarbon chains are not, so solubility falls as the chain lengthens.",
+      "**Boiling point** — within a series, boiling point rises with chain length (stronger London forces). Between series of similar mass, molecules that hydrogen bond (alcohols, acids) boil far higher than those that cannot (alkanes, ethers)."
+    ]},
+    { "type": "workedExample", "question": "A molecule has the condensed structure HOCH₂CH₂COOH. Identify every functional group present and classify the compound. Predict, with a reason, whether it is likely to be soluble in water. [3]", "solution": "**Step 1 — scan for anything beyond C–C / C–H.** Reading the structure there are two oxygen-containing features: an $-OH$ at one end and a $-COOH$ at the other.\n\n**Step 2 — identify each group.**\n• $-OH$ bonded to a carbon that carries only H and one carbon → a **hydroxyl group (alcohol)**.  [A1]\n• $-COOH$ (a C=O and an O–H on the same carbon, at the chain end) → a **carboxyl group (carboxylic acid)**.  [A1]\n\n**Step 3 — classify and predict solubility.** The molecule contains two polar groups, both able to hydrogen bond to water, so it is predicted to be **soluble in water** — the short two-carbon chain is easily outweighed by two hydrogen-bonding groups.  [A1: correct prediction with reasoning]\n\n*This is 3-hydroxypropanoic acid; the principle — count the functional groups, then reason from their polarity and hydrogen-bonding ability — is what earns the marks.*" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Numbering the chain from the wrong end** — the principal functional group must get the LOWEST locant; fix that before locating substituents. 2-methylbutan-1-ol, not 3-methylbutan-4-ol.",
+      "**Missing the longest chain** — the parent chain can turn a corner. '2-ethylbutane' is really hexane; '3-methylbutane' is really 2-methylbutane. Always trace every path.",
+      "**Confusing aldehydes and ketones** — a carbonyl at the chain END (C=O carbon carries an H) is an aldehyde (-al); one WITHIN the chain (C=O carbon bonded to two carbons) is a ketone (-one).",
+      "**Confusing ethers with alcohols, or esters with carboxylic acids** — an ether has $R-O-R'$ with no O–H; an ester has $R-COO-R'$ with no O–H, whereas the acid keeps its O–H in $-COOH$.",
+      "**Mixing up the primary/secondary/tertiary rule** — for alcohols count carbons on the carbon bearing $-OH$; for amines count carbons on the NITROGEN itself.",
+      "**Getting the general formula wrong** — alkanes $C_nH_{2n+2}$, alkenes $C_nH_{2n}$, alkynes $C_nH_{2n-2}$. A wrong general formula leads to counting the wrong number of isomers.",
+      "**Drawing 'new' isomers that are duplicates** — a structure that is just the same molecule numbered or flipped differently scores nothing; check each candidate is genuinely distinct."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for an organic-classification topic. In Paper 2 the marks are analytic: each mark is tied to a specific correct piece of work (a method mark, M, for a valid structure; an answer mark, A, for the correct IUPAC name), and error-carried-forward (ECF) means a correct name written on a student's own drawn structure still scores even if that structure was not on the official list. Study how each mark below is earned by one specific isomer, and how equivalent representations are accepted." },
+    { "type": "workedExample", "question": "Draw the structural formulae of the FOUR structural isomers of C₄H₁₀O that are alcohols, and give the IUPAC name of each. [4]", "solution": "**Model answer — full working.**\n\n$C_4H_{10}O$ fits the alcohol general formula $C_nH_{2n+1}OH$ (here $C_4H_9OH$), so we place the $-OH$ on every distinct carbon of every distinct 4-carbon skeleton. There are two skeletons — the straight chain (butane) and the branched chain (2-methylpropane) — giving four distinct alcohols:\n\n**1. Butan-1-ol** — $-OH$ on the end carbon of the straight chain:\n$CH_3CH_2CH_2CH_2OH$.\n\n**2. Butan-2-ol** — $-OH$ on an inner carbon of the straight chain:\n$CH_3CH_2CH(OH)CH_3$.\n\n**3. 2-methylpropan-1-ol** — $-OH$ on the end carbon of the branched chain:\n$(CH_3)_2CHCH_2OH$.\n\n**4. 2-methylpropan-2-ol** — $-OH$ on the central (branch) carbon of the branched chain:\n$(CH_3)_3COH$.\n\nEach structure is a genuinely different connectivity, and each has $C_4H_{10}O$ — check by counting: 4 C, 10 H, 1 O every time.\n\n---\n**How our marking engine awards the 4 marks:**\n\nThe scheme gives **1 mark per correct isomer**, and each isomer's mark is internally a structure component and a name component:\n\n- **Isomer mark = M (structure) + A (name), awarded together.** The **M part** is earned for a valid, distinct structural formula of a $C_4H_{10}O$ alcohol; the **A part** is earned for the correct IUPAC name of that structure. A correct structure with no name — or a name with no structure — does not score that isomer's mark.\n- **Distinct-structure rule.** Four DIFFERENT isomers are required. Two drawings that are really the same molecule (for example butan-1-ol drawn left-to-right and right-to-left) count once only; a duplicate scores nothing.\n- **Error-carried-forward (ECF).** If a student draws a valid but non-alcohol $C_4H_{10}O$ isomer (say the ether methoxypropane) and names it correctly, they cannot get an *alcohol* mark for it — but if they draw a correct alcohol structure and give it a name that is correct FOR WHAT THEY DREW, the name mark is credited on their own structure. The engine marks the name against the student's drawing, not against an idealised answer.\n- **Accept equivalent representations.** The engine accepts full structural, condensed (e.g. $(CH_3)_3COH$) or skeletal formulae interchangeably, provided the connectivity is unambiguous. It does not require a particular drawing style.\n\n**'Accept the branched isomers in either order.'** No credit depends on which isomer is written first; each of the four scores independently, so a student who finds only three distinct alcohols scores 3 of 4.\n\n**Bottom line:** the marks live on the pairing of a valid distinct structure with its correct name. A student who lists four names with no structures, or four structures with no names, throws away half the paper; showing both, clearly and distinctly, is what banks all four marks." },
+    { "type": "examTip", "content": "The Practice button marks YOUR answer exactly this way — each isomer scored as a structure (M) plus its name (A), with duplicates rejected, ECF applied to your own drawings, and equivalent representations accepted. So always PAIR every structure with its name and make each one visibly distinct: that pairing, drawn unambiguously, is what protects the marks when you are unsure whether you have found them all." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Every reaction topic ahead is organised by the classes you have just met. The reactions of the halogenoalkanes, the addition reactions of the alkenes, the oxidation of alcohols to aldehydes, ketones and carboxylic acids, and esterification all start by identifying a functional group and predicting its behaviour. Master the habit built here — spot the group, name the family, read off the general formula and the likely chemistry — and the rest of organic chemistry becomes variations on a classification you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 organic question marked: name a branched molecule, or draw and name the structural isomers of a formula, with full working", "href": "/mark?subject=ib-chemistry-sl&topic=S3.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (Sections 25 and 26 — functional groups and naming)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

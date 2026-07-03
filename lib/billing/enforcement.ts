@@ -22,6 +22,7 @@ import {
   type EffectiveAccess,
 } from './access'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
+import { notifyAdminMark } from '@/lib/email/notifications'
 
 export { TIER_MONTHLY_CAPS, TIER_OMNI_CAPS }
 
@@ -533,6 +534,12 @@ export async function finalizeMarkReservation(
   eventType: MarkEventType,
   supabase: SupabaseClient = createServiceClient()
 ): Promise<void> {
+  // Admin alert on every successful mark (fire-and-forget; never blocks/throws).
+  void notifyAdminMark(supabase, userId, {
+    eventType,
+    viaCredit: reservation.via_credit,
+  })
+
   if (reservation.via_credit) {
     const { data: spent, error } = await supabase.rpc('consume_credit', {
       p_user_id: userId,

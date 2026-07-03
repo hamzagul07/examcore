@@ -74,6 +74,42 @@ export function notifyAdminNewSignup(payload: {
   })
 }
 
+/**
+ * Admin alert whenever a signed-in user marks a question — mirrors the signup
+ * alert. Best-effort and never throws (fire-and-forget from the mark path).
+ */
+export async function notifyAdminMark(
+  supabase: SupabaseClient,
+  userId: string,
+  payload: {
+    eventType: 'mark_single' | 'mark_whole_paper'
+    viaCredit?: boolean
+  }
+): Promise<void> {
+  try {
+    const { data } = await supabase.auth.admin.getUserById(userId)
+    const email = data?.user?.email ?? '(unknown email)'
+    const kind =
+      payload.eventType === 'mark_whole_paper' ? 'Whole paper' : 'Single question'
+    sendEmailAsync({
+      to: adminNotifyAddress(),
+      subject: `[${SITE_NAME}] Question marked — ${email}`,
+      preheader: `${kind} marked by ${email}`,
+      text: [
+        `${kind} marked.`,
+        '',
+        `Email: ${email}`,
+        `User ID: ${userId}`,
+        payload.viaCredit
+          ? 'Charged: 1 credit'
+          : 'Counted against monthly allowance',
+      ].join('\n'),
+    })
+  } catch (err) {
+    console.error('[notifications] notifyAdminMark failed:', err)
+  }
+}
+
 export function notifyAdminOnboardingComplete(payload: {
   email: string
   userId: string

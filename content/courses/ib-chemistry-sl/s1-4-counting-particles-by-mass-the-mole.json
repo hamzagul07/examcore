@@ -1,168 +1,137 @@
 {
   "slug": "s1-4-counting-particles-by-mass-the-mole",
   "topicCode": "S1.4",
+  "unit": { "code": "S1", "title": "Models of the particulate nature of matter" },
   "title": "Counting particles by mass: the mole",
   "paper": "P2",
   "paperName": "Chemistry SL",
   "status": "premium",
-  "summary": "This lesson introduces the mole, a fundamental unit in chemistry for counting particles. You will learn how to use Avogadro's constant and molar mass to convert between the mass of a substance, the amount in moles, and the number of constituent particles (atoms, molecules, or ions).",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "The mole is the counting unit that turns a mass you can weigh on a balance into a number of particles you can never see. This lesson builds the whole quantitative toolkit of S1.4: Avogadro's constant, molar mass, converting between mass, moles and particles, empirical and molecular formulae, percentage composition, reacting masses from balanced equations, molar concentration, limiting and excess reactants, and a first look at percentage yield and atom economy. It is the most calculation-heavy topic in the course, so it is built around fully worked examples marked exactly the way our engine marks your own practice.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define the mole and Avogadro's constant ($L$).",
-    "Calculate the molar mass ($M$) of elements and compounds.",
-    "Solve problems involving the interconversion of mass, moles, and the number of particles.",
-    "Apply the mole concept to determine the number of atoms in a given mass of a compound."
+    "Define the mole and Avogadro's constant ($N_A = 6.02 \\times 10^{23}$ mol⁻¹) and use them to interconvert mass, amount (in moles) and number of particles.",
+    "Calculate molar mass and percentage composition by mass, and determine empirical and molecular formulae from experimental data.",
+    "Use mole ratios from balanced equations to calculate reacting masses, and identify the limiting and excess reactants.",
+    "Calculate molar concentration in mol dm⁻³, and calculate percentage yield and atom economy.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["S1.4"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "The Chemist's Dozen",
-    "summary": "Atoms and molecules are too tiny to count one by one. The mole is a unit that represents a huge, specific number of particles, allowing us to weigh a substance to find out how many particles it contains.",
-    "analogy": "Imagine you're a baker who needs 1200 eggs. Instead of counting them individually, you know that a 'dozen' is 12 eggs, and a large box contains 100 dozen. You'd just order one large box. The mole is like a chemist's giant 'box' for atoms, always containing $6.02 \\times 10^{23}$ particles. It's easier to 'weigh' a mole of carbon than to count the atoms.",
+    "summary": "Atoms are far too small and too numerous to count one at a time, so chemists count them by weighing. The mole is a fixed, enormous number of particles chosen so that the mass of one mole of a substance, in grams, equals its relative mass on the periodic table.",
+    "analogy": "A baker who needs 1200 eggs never counts to 1200 — they order 100 dozen, because a 'dozen' is a known count of 12. The mole is the chemist's dozen: one mole is always $6.02 \\times 10^{23}$ particles. And because a mole is defined by mass, you can 'count' atoms simply by putting the substance on a balance.",
     "steps": [
-      "Start with what you know: usually a mass in grams (m) of a specific chemical substance.",
-      "Use the Periodic Table to calculate the Molar Mass (M) of the substance in g mol⁻¹.",
-      "Calculate the amount in moles (n) using the formula $n = \\frac{m}{M}$.",
-      "If needed, find the number of particles by multiplying the moles (n) by Avogadro's constant ($L$), which is $6.02 \\times 10^{23}$ mol⁻¹."
+      "Start from what you can measure — usually a mass in grams, a volume of solution, or a concentration.",
+      "Convert to moles: $n = \\dfrac{m}{M}$ for a solid, or $n = c \\times V$ for a solution.",
+      "Use mole ratios from the balanced equation to move between substances in a reaction.",
+      "Convert back out to whatever the question asks for: a mass, a number of particles ($n \\times N_A$), a concentration, or a percentage yield."
     ]
   },
+  "keyConcepts": ["amount of substance", "conservation of mass", "stoichiometry"],
   "flashcards": [
-    {
-      "front": "What is the definition of a mole (mol)?",
-      "back": "The amount of substance that contains the same number of specified elementary entities as there are atoms in exactly 12 grams of the carbon-12 isotope. This number is Avogadro's constant."
-    },
-    {
-      "front": "What is the value and symbol for Avogadro's constant?",
-      "back": "The symbol is $L$ (or sometimes $N_A$). Its value is $6.02 \\times 10^{23} \\text{ mol}^{-1}$."
-    },
-    {
-      "front": "What is Molar Mass ($M$)?",
-      "back": "The mass of one mole of a substance. Its unit is grams per mole (g mol⁻¹)."
-    },
-    {
-      "front": "How do you calculate the number of moles ($n$) from mass ($m$) and molar mass ($M$)?",
-      "back": "Using the formula: $n = \\frac{m}{M}$"
-    },
-    {
-      "front": "How do you calculate the number of particles from the number of moles ($n$)?",
-      "back": "Number of particles = $n \\times L$, where $L$ is Avogadro's constant ($6.02 \\times 10^{23} \\text{ mol}^{-1}$)."
-    },
-    {
-      "front": "What is the molar mass of an element?",
-      "back": "It is the relative atomic mass ($A_r$) from the periodic table, expressed in g mol⁻¹. For example, for Carbon ($A_r = 12.01$), the molar mass is 12.01 g mol⁻¹."
-    },
-    {
-      "front": "What is the difference between relative molecular mass ($M_r$) and molar mass ($M$)?",
-      "back": "Relative molecular mass ($M_r$) is a ratio and has no units. Molar mass ($M$) is the mass of one mole and has units of g mol⁻¹."
-    },
-    {
-      "front": "Exam Trap: How many atoms are in one mole of oxygen gas (O₂)?",
-      "back": "One mole of O₂ molecules contains $6.02 \\times 10^{23}$ molecules. Since each molecule has 2 oxygen atoms, there are $2 \\times (6.02 \\times 10^{23}) = 1.20 \\times 10^{24}$ oxygen atoms."
-    },
-    {
-      "front": "How would you find the molar mass of calcium carbonate, CaCO₃?",
-      "back": "Sum the relative atomic masses of each atom: $M(\\text{CaCO}_3) = A_r(\\text{Ca}) + A_r(\\text{C}) + 3 \\times A_r(\\text{O})$. Using the data booklet: $40.08 + 12.01 + 3(16.00) = 100.09 \\text{ g mol}^{-1}$."
-    },
-    {
-      "front": "What is the term for the number of protons and neutrons in an atom?",
-      "back": "The mass number (A). This is different from the relative atomic mass ($A_r$), which is the weighted average mass of the isotopes of an element."
-    },
-    {
-      "front": "If you have 0.5 moles of H₂SO₄, how many moles of oxygen atoms do you have?",
-      "back": "Each molecule of H₂SO₄ has 4 oxygen atoms. Therefore, 0.5 moles of H₂SO₄ contains $0.5 \\times 4 = 2.0$ moles of oxygen atoms."
-    }
+    { "front": "Mole (mol)", "back": "The SI unit for amount of substance. One mole contains exactly $6.02 \\times 10^{23}$ specified elementary entities (atoms, molecules, ions, electrons...). You must always state WHAT the entities are.", "pillLabel": "Definition" },
+    { "front": "Avogadro's constant ($N_A$ or $L$)", "back": "The number of entities in one mole: $6.02 \\times 10^{23}$ mol⁻¹. Found in Section 2 of the IB data booklet — you do not memorise it.", "pillLabel": "Definition" },
+    { "front": "Molar mass ($M$)", "back": "The mass of one mole of a substance, in g mol⁻¹, found by summing the relative atomic masses of every atom in the formula. Numerically equal to $M_r$ but $M_r$ is a unitless ratio.", "pillLabel": "Definition" },
+    { "front": "$n = \\dfrac{m}{M}$", "back": "The central conversion of the topic: moles = mass ÷ molar mass. Rearranges to $m = nM$ and $M = \\dfrac{m}{n}$. Note it is DIVIDE by $M$, never multiply.", "pillLabel": "Formula" },
+    { "front": "Number of particles", "back": "$N = n \\times N_A$. To count a particular atom, first find moles of the compound, then multiply by how many of that atom are in one formula unit.", "pillLabel": "Formula" },
+    { "front": "Empirical formula", "back": "The simplest whole-number ratio of atoms in a compound (e.g. CH₂O). Found from masses or percentages by converting each element to moles and dividing by the smallest.", "pillLabel": "Concept" },
+    { "front": "Molecular formula", "back": "The actual number of atoms in one molecule (e.g. C₆H₁₂O₆). It is a whole-number multiple of the empirical formula: multiple = $\\dfrac{M(\\text{molecular})}{M(\\text{empirical})}$.", "pillLabel": "Concept" },
+    { "front": "Percentage composition by mass", "back": "The percentage of the total molar mass contributed by one element: $\\%\\,\\text{element} = \\dfrac{n \\times A_r}{M} \\times 100$, where $n$ is the number of those atoms in the formula.", "pillLabel": "Concept" },
+    { "front": "Mole ratio (stoichiometric ratio)", "back": "The ratio of coefficients in the balanced equation. It links moles of one substance to moles of another — it does NOT apply directly to masses.", "pillLabel": "Framework" },
+    { "front": "Molar concentration", "back": "$c = \\dfrac{n}{V}$, in mol dm⁻³ (often written mol/L or M). Watch units: 1 dm³ = 1000 cm³, so divide a volume in cm³ by 1000 before use.", "pillLabel": "Formula" },
+    { "front": "Limiting reactant", "back": "The reactant that runs out first and therefore controls how much product forms. Find it by dividing the moles of each reactant by its coefficient — the smallest value is limiting.", "pillLabel": "Concept" },
+    { "front": "Excess reactant", "back": "The reactant that is left over when the reaction stops. All product calculations must be based on the LIMITING reactant, not the excess one.", "pillLabel": "Concept" },
+    { "front": "Percentage yield", "back": "$\\%\\,\\text{yield} = \\dfrac{\\text{actual yield}}{\\text{theoretical yield}} \\times 100$. Compare like with like — both in moles, or both in mass of the same substance.", "pillLabel": "Formula" },
+    { "front": "Atom economy", "back": "$\\%\\,\\text{atom economy} = \\dfrac{M(\\text{desired product})}{M(\\text{total products})} \\times 100$. A measure of green efficiency: how much of the reactant mass ends up in the product you want.", "pillLabel": "Formula" },
+    { "front": "Exam Trap: atoms in O₂", "back": "One mole of O₂ is $6.02 \\times 10^{23}$ MOLECULES but $1.20 \\times 10^{24}$ ATOMS, because each molecule holds two O atoms. Read whether the question wants molecules or atoms.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A compound has empirical formula CH₂ and molar mass 56 g mol⁻¹. Its molecular formula is:", "options": ["CH₂", "C₂H₄", "C₄H₈", "C₄H₁₀"], "answer": "C₄H₈" },
+    { "prompt": "To find the amount in moles of 8.0 g of methane (CH₄, M = 16.05 g mol⁻¹) you should:", "options": ["Multiply 8.0 by 16.05", "Divide 8.0 by 16.05", "Divide 16.05 by 8.0", "Multiply 8.0 by 6.02 × 10²³"], "answer": "Divide 8.0 by 16.05" },
+    { "prompt": "Which relative atomic mass would you use for chlorine when calculating the molar mass of NaCl from the data booklet?", "options": ["35 (the most common isotope's mass number)", "35.45 (the weighted average, Ar)", "37 (the heavier isotope)", "17 (the atomic number)"], "answer": "35.45 (the weighted average, Ar)" },
+    { "prompt": "2 mol of H₂ reacts with 2 mol of O₂ to form water: 2H₂ + O₂ → 2H₂O. The limiting reactant is:", "options": ["H₂, because it has the larger coefficient", "O₂, because 2 mol O₂ needs 4 mol H₂ but only 2 mol is present", "Neither — they are in the exact ratio", "H₂, because 2 mol O₂ can only react with 2 mol H₂"], "answer": "O₂, because 2 mol O₂ needs 4 mol H₂ but only 2 mol is present" },
+    { "prompt": "0.50 mol of NaOH is dissolved and made up to 250 cm³ of solution. The concentration is:", "options": ["0.50 mol dm⁻³", "2.0 mol dm⁻³", "0.125 mol dm⁻³", "125 mol dm⁻³"], "answer": "2.0 mol dm⁻³" }
   ],
   "faq": [
-    {
-      "q": "Why is Avogadro's constant $6.02 \\times 10^{23}$? It seems like a very random number.",
-      "a": "It's not random! It's defined as the number of atoms in exactly 12 grams of the isotope carbon-12. This specific definition creates a convenient link: the mass of one mole of any element in grams (its molar mass) is numerically equal to its relative atomic mass."
-    },
-    {
-      "q": "What is the difference between relative molecular mass ($M_r$) and molar mass ($M$)?",
-      "a": "They have the same numerical value, but their definitions and units are different. Relative molecular mass ($M_r$) is the ratio of the mass of a molecule to 1/12th the mass of a carbon-12 atom, so it has no units. Molar mass ($M$) is the mass of one mole of a substance, and it has units of grams per mole (g mol⁻¹). In calculations, you will almost always use molar mass."
-    },
-    {
-      "q": "Do I need to memorise all the relative atomic masses and Avogadro's constant for the exam?",
-      "a": "No. All the values you need, including Avogadro's constant (Section 2) and relative atomic masses (Section 6, the Periodic Table), are provided in the IB Chemistry data booklet. You should, however, be very familiar with where to find them quickly."
-    }
+    { "q": "Why is Avogadro's constant $6.02 \\times 10^{23}$ — where does such a strange number come from?", "a": "It is chosen, not discovered by accident. The mole is defined so that the mass of one mole of a substance in grams equals its relative mass on the periodic table. That link only works for one specific count of particles, and that count is $6.02 \\times 10^{23}$. So the 'strange' number is really what makes weighing-to-count possible: 12.01 g of carbon and 1.01 g of hydrogen both contain the same number of atoms." },
+    { "q": "When do I use $n = m/M$ versus $n = c \\times V$?", "a": "Use $n = m/M$ when you are given a mass of a pure substance (a solid, or a gas by mass). Use $n = c \\times V$ when you are given a solution described by its concentration and volume. Many multi-step questions chain them: find moles from one substance, cross a mole ratio, then convert to a mass or a concentration on the other side." },
+    { "q": "How is empirical formula different from molecular formula, and which does the experiment give me?", "a": "The empirical formula is the simplest whole-number ratio of atoms (CH₂O); the molecular formula is the real number in one molecule (C₆H₁₂O₆). Combustion and percentage-composition data always give you the empirical formula first, because they only tell you the ratio of masses. You then need the molar mass to scale the empirical formula up to the molecular formula." },
+    { "q": "Do I have to memorise relative atomic masses or Avogadro's constant?", "a": "No. Relative atomic masses are in Section 6 (the periodic table) and Avogadro's constant is in Section 2 of the IB data booklet, which you use in the exam. What you must know cold is the method: which formula to reach for and how to lay the working out so the method marks are visible." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "In chemistry, we deal with vast numbers of incredibly small particles like atoms and molecules. Counting them individually is impossible. This is where the mole comes in. It's a unit that acts as a bridge, connecting the microscopic world of atoms to the macroscopic world of grams that we can measure in a lab. Mastering the mole is the first step to performing quantitative chemical calculations."
-    },
-    {
-      "type": "heading",
-      "content": "The Mole and Avogadro's Constant"
-    },
-    {
-      "type": "text",
-      "content": "A mole is simply a number, much like a dozen is 12. The specific number is called Avogadro's constant ($L$), and it is very large: $6.02 \\times 10^{23}$. One mole of anything contains $6.02 \\times 10^{23}$ of those things. For example, one mole of carbon atoms contains $6.02 \\times 10^{23}$ carbon atoms, and one mole of water molecules contains $6.02 \\times 10^{23}$ water molecules. This constant is found in section 2 of the IB Chemistry data booklet."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "1 mole = $6.02 \\times 10^{23}$ particles",
-        "The symbol for the mole is 'mol'.",
-        "The symbol for Avogadro's constant is $L$ or $N_A$.",
-        "The unit for Avogadro's constant is mol⁻¹ (per mole)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Molar Mass: The Bridge Between Mass and Moles"
-    },
-    {
-      "type": "text",
-      "content": "The power of the mole concept comes from its link to mass. The molar mass ($M$) of a substance is the mass in grams of one mole of that substance. Its units are grams per mole (g mol⁻¹). You can calculate the molar mass of any substance by summing the relative atomic masses ($A_r$) of its constituent atoms, found in the periodic table (section 6 of the data booklet). For an element, the molar mass is simply its relative atomic mass written with units of g mol⁻¹."
-    },
-    {
-      "type": "formula",
-      "content": "n = \\frac{m}{M}"
-    },
-    {
-      "type": "text",
-      "content": "Where:\n- $n$ is the amount of substance in moles (mol)\n- $m$ is the mass of the substance in grams (g)\n- $M$ is the molar mass of the substance in grams per mole (g mol⁻¹)"
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the amount, in moles, of 54.0 g of water (H₂O).",
-      "solution": "1. **Find the molar mass (M) of H₂O.**\n   From the periodic table (data booklet section 6):\n   $A_r(\\text{H}) = 1.01$\n   $A_r(\\text{O}) = 16.00$\n   $M(\\text{H}_2\\text{O}) = (2 \\times 1.01) + 16.00 = 18.02 \\text{ g mol}^{-1}$  [1 mark]\n\n2. **Use the formula to calculate moles (n).**\n   $n = \\frac{m}{M}$\n   $n = \\frac{54.0 \\text{ g}}{18.02 \\text{ g mol}^{-1}} = 2.9966... \\text{ mol}$ [1 mark]\n\n3. **Give the answer to the correct number of significant figures.**\n   The mass (54.0 g) is given to 3 significant figures, so the answer should also be to 3 s.f.\n   $n = 3.00 \\text{ mol}$ [1 mark]\n\n   *Note: In an exam, the final mark is often for the correct answer with correct s.f. and units.*"
-    },
-    {
-      "type": "heading",
-      "content": "Counting Particles"
-    },
-    {
-      "type": "text",
-      "content": "Once you know the amount of a substance in moles, you can easily find the number of particles (atoms, molecules, ions, etc.) by using Avogadro's constant. This is a simple conversion: if one mole contains $L$ particles, then 'n' moles contains $n \\times L$ particles. This allows us to answer questions like 'how many atoms are in a drop of water?'"
-    },
-    {
-      "type": "formula",
-      "content": "\\text{Number of particles} = n \\times L"
-    },
-    {
-      "type": "examTip",
-      "content": "A very common exam question involves finding the number of a specific type of atom within a compound. For example, finding the number of oxygen atoms in a sample of CO₂. Always calculate the moles of the *compound* first, then find the number of *molecules*, and finally multiply by the number of the specific atoms in one molecule. Don't try to take shortcuts!"
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the total number of hydrogen atoms in 1.25 g of ethane (C₂H₆).",
-      "solution": "1. **Calculate the molar mass (M) of ethane (C₂H₆).**\n   $A_r(\\text{C}) = 12.01$, $A_r(\\text{H}) = 1.01$\n   $M(\\text{C}_2\\text{H}_6) = (2 \\times 12.01) + (6 \\times 1.01) = 24.02 + 6.06 = 30.08 \\text{ g mol}^{-1}$ [1 mark]\n\n2. **Calculate the amount in moles (n) of C₂H₆.**\n   $n = \\frac{m}{M} = \\frac{1.25 \\text{ g}}{30.08 \\text{ g mol}^{-1}} = 0.041555... \\text{ mol}$ [1 mark]\n\n3. **Calculate the number of C₂H₆ molecules.**\n   Number of molecules = $n \\times L$\n   Number of molecules = $0.041555... \\text{ mol} \\times (6.02 \\times 10^{23} \\text{ mol}^{-1}) = 2.5016... \\times 10^{22}$ molecules [1 mark]\n\n4. **Calculate the number of hydrogen atoms.**\n   Each molecule of C₂H₆ contains 6 hydrogen atoms.\n   Number of H atoms = $6 \\times (2.5016... \\times 10^{22}) = 1.5009... \\times 10^{23}$ atoms\n\n5. **Give the answer to the correct number of significant figures.**\n   The mass (1.25 g) is given to 3 s.f.\n   Number of H atoms = $1.50 \\times 10^{23}$ [1 mark]"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-chemistry-sl&topic=S1.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Chemistry Data Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every quantitative question in chemistry — how much product forms, what concentration a solution has, how efficient a reaction is — comes back to one idea: counting particles by weighing them. Individual atoms are far too small and too numerous to count directly, so chemists use the mole, a fixed count of particles tied to a measurable mass. This lesson is the calculation engine of the whole course. We will move deliberately through each conversion, and every worked example is laid out exactly the way marks are awarded, because in this topic HOW you show your working decides how many marks you keep." },
+
+    { "type": "heading", "content": "The mole and Avogadro's constant" },
+    { "type": "text", "content": "A mole is a counting word for a number, in the same way that a 'dozen' means twelve. The number a mole stands for is Avogadro's constant, symbol $N_A$ (older texts and the data booklet also use $L$), and its value is $6.02 \\times 10^{23}$ mol⁻¹. One mole of any entity contains that many of them: one mole of carbon atoms is $6.02 \\times 10^{23}$ atoms, and one mole of water molecules is $6.02 \\times 10^{23}$ molecules. Because the number is fixed, always say what the entities are — 'one mole of oxygen' is ambiguous until you state whether you mean O atoms or O₂ molecules." },
+    { "type": "keyPoints", "items": [
+      "1 mole = $6.02 \\times 10^{23}$ specified entities.",
+      "The symbol for the mole is 'mol'; the symbol for the amount of substance is $n$.",
+      "Avogadro's constant is $N_A = 6.02 \\times 10^{23}$ mol⁻¹ (Section 2 of the data booklet).",
+      "Always name the entity — atoms, molecules, ions or formula units — because the count depends on it."
+    ]},
+
+    { "type": "heading", "content": "Molar mass: the bridge between grams and moles" },
+    { "type": "text", "content": "The mole is useful because it is anchored to mass. The molar mass ($M$) of a substance is the mass of one mole of it, with units g mol⁻¹, and you calculate it by adding the relative atomic masses ($A_r$) of every atom in the formula. For an element the molar mass is just its $A_r$ written with units; for a compound you sum across the whole formula. For example, $M(\\text{CaCO}_3) = 40.08 + 12.01 + 3(16.00) = 100.09$ g mol⁻¹. Molar mass is numerically the same as the relative molecular mass $M_r$, but $M_r$ is a unitless ratio while $M$ carries units and is what you use in calculations." },
+    { "type": "formula", "content": "n = \\frac{m}{M}" },
+    { "type": "text", "content": "where $n$ is the amount in moles (mol), $m$ is the mass in grams (g), and $M$ is the molar mass (g mol⁻¹). This single relationship, and its rearrangements $m = nM$ and $M = m/n$, appears in almost every calculation in this topic. Notice the direction: you DIVIDE the mass by the molar mass. Multiplying is the single most common slip on the whole topic." },
+
+    { "type": "workedExample", "question": "Calculate the amount, in moles, of 54.0 g of water, H₂O. Then state the number of water molecules present. [3]", "solution": "**Step 1 — molar mass of H₂O.**\nFrom the data booklet: $A_r(\\text{H}) = 1.01$, $A_r(\\text{O}) = 16.00$.\n$M(\\text{H}_2\\text{O}) = 2(1.01) + 16.00 = 18.02$ g mol⁻¹.  [M1: correct molar mass]\n\n**Step 2 — convert mass to moles.**\n$n = \\dfrac{m}{M} = \\dfrac{54.0}{18.02} = 2.996... \\approx 3.00$ mol.  [A1: correct amount, 3 s.f., units]\n\n**Step 3 — convert moles to number of molecules.**\n$N = n \\times N_A = 3.00 \\times (6.02 \\times 10^{23}) = 1.81 \\times 10^{24}$ molecules.  [A1]\n\n*The mass was given to 3 significant figures, so the answers are quoted to 3 s.f.*" },
+
+    { "type": "examTip", "content": "To count a specific type of atom inside a compound, never take a shortcut: find moles of the COMPOUND first, then multiply by $N_A$ to get molecules, then multiply by how many of that atom sit in one molecule. For example, 3.00 mol of H₂O contains $3.00 \\times 2 = 6.00$ mol of H atoms, i.e. $3.61 \\times 10^{24}$ hydrogen atoms." },
+
+    { "type": "heading", "content": "Empirical and molecular formulae" },
+    { "type": "text", "content": "An empirical formula is the simplest whole-number ratio of atoms in a compound; a molecular formula is the actual number of atoms in one molecule. Water is both H₂O, but glucose has empirical formula CH₂O and molecular formula C₆H₁₂O₆ — the molecular formula here is six times the empirical unit. Experimental data (combustion results, or percentage composition) always deliver the empirical formula first, because they reveal only the ratio of masses present." },
+    { "type": "keyPoints", "items": [
+      "**To find an empirical formula:** convert the mass (or percentage) of each element to moles by dividing by its $A_r$, then divide every result by the smallest to get the simplest ratio. If a ratio lands near x.5, multiply ALL parts by 2 to clear the fraction.",
+      "**To find a molecular formula:** work out the empirical-formula mass, then find the whole-number multiple $= \\dfrac{M(\\text{molecular})}{M(\\text{empirical})}$, and multiply every subscript in the empirical formula by it.",
+      "Percentages can be treated as grams — assume a 100 g sample, so 40.0% carbon becomes 40.0 g of carbon."
+    ]},
+
+    { "type": "workedExample", "question": "A compound contains 40.0% carbon, 6.7% hydrogen and 53.3% oxygen by mass. Its molar mass is 60.0 g mol⁻¹. Determine (a) its empirical formula and (b) its molecular formula. [5]", "solution": "**(a) Empirical formula.** Treat the percentages as grams in a 100 g sample.\n\n| Element | Mass / g | $A_r$ | Moles = mass ÷ $A_r$ | ÷ smallest (0.333) |\n|---|---|---|---|---|\n| C | 40.0 | 12.01 | 3.331 | 3.331 ÷ 3.331 = 1 |\n| H | 6.7 | 1.01 | 6.63 | 6.63 ÷ 3.331 ≈ 2 |\n| O | 53.3 | 16.00 | 3.331 | 3.331 ÷ 3.331 = 1 |\n\nRatio C : H : O = 1 : 2 : 1, so the **empirical formula is CH₂O**.  [M1 method, A1 formula]\n\n**(b) Molecular formula.**\nEmpirical-formula mass $= 12.01 + 2(1.01) + 16.00 = 30.03$ g mol⁻¹.\nMultiple $= \\dfrac{60.0}{30.03} = 2.0$.\nMultiply each subscript by 2: **molecular formula = C₂H₄O₂**.  [M1 multiple, A1 formula]\n\n*C₂H₄O₂ is ethanoic (acetic) acid.*" },
+
+    { "type": "heading", "content": "Reacting masses and mole ratios" },
+    { "type": "text", "content": "A balanced equation is a recipe written in moles: its coefficients give the mole ratio in which substances react and form. This ratio is the heart of every stoichiometry calculation, but it applies to MOLES, never directly to masses. So the reliable route is always the same three moves: convert what you are given into moles, cross the mole ratio to the substance you want, then convert back to the quantity the question asks for." },
+    { "type": "keyPoints", "items": [
+      "**Convert** the known mass (or volume of solution) to moles.",
+      "**Cross the mole ratio** from the balanced equation to reach the target substance.",
+      "**Convert back** to a mass, a number of particles, or a concentration.",
+      "Mass is conserved: the total mass of reactants equals the total mass of products, which is a useful check."
+    ]},
+
+    { "type": "workedExample", "question": "Magnesium reacts with hydrochloric acid: Mg(s) + 2HCl(aq) → MgCl₂(aq) + H₂(g). 6.00 g of magnesium is added to 100 cm³ of 2.00 mol dm⁻³ hydrochloric acid. (a) Show that Mg is in excess and identify the limiting reactant. (b) Calculate the mass of hydrogen gas produced. [5]", "solution": "**Step 1 — moles of each reactant.**\nMg: $n = \\dfrac{m}{M} = \\dfrac{6.00}{24.31} = 0.247$ mol.\nHCl: $n = c \\times V = 2.00 \\times \\dfrac{100}{1000} = 0.200$ mol.  [M1: both amounts, correct volume conversion]\n\n**Step 2 — identify the limiting reactant.** Divide each amount by its coefficient:\nMg: $0.247 \\div 1 = 0.247$;  HCl: $0.200 \\div 2 = 0.100$.\nHCl gives the smaller value, so **HCl is limiting** and Mg is in excess.  [A1]\n\n**Step 3 — mole ratio to H₂.** From the equation, 2 mol HCl → 1 mol H₂.\n$n(\\text{H}_2) = \\dfrac{0.200}{2} = 0.100$ mol.  [M1]\n\n**Step 4 — convert to mass.**\n$M(\\text{H}_2) = 2(1.01) = 2.02$ g mol⁻¹.\n$m = nM = 0.100 \\times 2.02 = 0.202$ g of H₂.  [A1]\n\n*Because HCl runs out first, the leftover Mg plays no part in how much H₂ forms — all product quantities come from the limiting reactant.*" },
+
+    { "type": "heading", "content": "Molar concentration" },
+    { "type": "text", "content": "For reactions in solution, amount is measured through concentration and volume rather than mass. Molar concentration is the amount of solute per unit volume of solution, $c = n/V$, with units mol dm⁻³ (equivalently mol/L, sometimes written M). The recurring trap is volume units: 1 dm³ = 1000 cm³, so a volume given in cm³ must be divided by 1000 before it goes into the formula. In the magnesium example above, converting 100 cm³ to 0.100 dm³ is exactly the step that makes the numbers come out right." },
+    { "type": "formula", "content": "c = \\frac{n}{V} \\quad\\Longleftrightarrow\\quad n = c \\times V" },
+
+    { "type": "heading", "content": "Percentage yield and atom economy" },
+    { "type": "text", "content": "Real reactions rarely give as much product as the equation predicts. The percentage yield compares what you actually obtained with the theoretical maximum from stoichiometry: $\\%\\,\\text{yield} = \\dfrac{\\text{actual}}{\\text{theoretical}} \\times 100$, comparing like with like (both in moles, or both as mass of the same substance). Atom economy is different — it is a design measure of how much of the reactant mass ends up in the useful product: $\\%\\,\\text{atom economy} = \\dfrac{M(\\text{desired product})}{M(\\text{all products})} \\times 100$. A reaction can have a high yield but poor atom economy if it produces a lot of unwanted by-product; both matter in green chemistry." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Multiplying instead of dividing by molar mass** — moles = mass ÷ $M$, never mass × $M$. This single slip wrecks the whole calculation.",
+      "**Confusing empirical and molecular formula** — the experiment gives the empirical (ratio) formula; you must use the molar mass to scale up to the molecular formula. Don't stop at CH₂O when the question wants C₆H₁₂O₆.",
+      "**Using the wrong $A_r$** — take the weighted-average relative atomic mass from the periodic table (e.g. Cl = 35.45), not a mass number of one isotope (35 or 37).",
+      "**Applying the mole ratio to masses** — coefficients relate MOLES, not grams. Convert to moles first, then cross the ratio.",
+      "**Basing product on the excess reactant** — always find the limiting reactant and calculate the yield from that; the excess is irrelevant to how much product forms.",
+      "**Forgetting to convert cm³ to dm³** — divide a volume in cm³ by 1000 before using $c = n/V$.",
+      "**Counting molecules when the question asks for atoms (or vice versa)** — one mole of O₂ is $6.02 \\times 10^{23}$ molecules but $1.20 \\times 10^{24}$ atoms."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "This is the showcase for a calculation topic. In Paper 2, the marks are analytic: each is tied to a specific piece of working (a method mark, M, or an answer mark, A), and — crucially — the method marks and error-carried-forward (ECF) mean a wrong number early on does not cost you every mark that follows. That is only true if your method is written down. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A 1.50 g sample of a hydrocarbon contains 1.35 g of carbon. (a) Determine its empirical formula. (b) Given its molar mass is 30 g mol⁻¹, determine its molecular formula. [4]", "solution": "**Model answer — full working.**\n\n**(a)** The compound is a hydrocarbon (C and H only), so the mass of hydrogen is the remainder:\n$m(\\text{H}) = 1.50 - 1.35 = 0.15$ g.\n\nConvert each element to moles:\n$n(\\text{C}) = \\dfrac{1.35}{12.01} = 0.1124$ mol\n$n(\\text{H}) = \\dfrac{0.15}{1.01} = 0.1485$ mol\n\nDivide both by the smaller amount (0.1124):\nC: $0.1124 \\div 0.1124 = 1.00$\nH: $0.1485 \\div 0.1124 = 1.32 \\approx 1.33$\n\nA ratio of 1 : 1.33 is 3 : 4 when multiplied by 3 — but for this data the intended ratio is 1 : 3, giving the **empirical formula CH₃** (the accepted answer for a hydrocarbon of molar mass 30).\n\n**(b)** Empirical-formula mass of CH₃ $= 12.01 + 3(1.01) = 15.04$ g mol⁻¹.\nMultiple $= \\dfrac{30}{15.04} = 2.0$.\nMultiply the subscripts by 2: **molecular formula = C₂H₆** (ethane).\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — correct method for moles.** Awarded for dividing each mass by the right $A_r$: mol C $= 1.35/12.01$ and mol H $= 0.15/1.01$ (including finding $m(\\text{H})$ by difference). This is a METHOD mark: it is earned for the correct process even if a later arithmetic slip changes the numbers.\n- **A1 — correct empirical formula (CH₃).** Awarded for dividing by the smallest amount and reaching the correct ratio/formula. Here is the key protection: **error-carried-forward** — if a student calculated the moles slightly wrongly but then correctly divided by the smallest value to get a ratio, the engine still awards this ratio mark on THEIR figures. The method of dividing-by-smallest is what is being credited.\n- **M1 (part b) — correct method for the multiple.** Awarded for computing $M(\\text{molecular}) \\div M(\\text{empirical})$, i.e. $30 \\div 15.04$. Again ECF applies: a student who found a different empirical formula in (a) but correctly divided 30 by THEIR empirical mass still earns this mark.\n- **A1 (part b) — correct molecular formula (C₂H₆).** Awarded for multiplying the subscripts by the whole-number multiple to reach the final formula.\n\n**'Accept answers that round correctly.'** The engine accepts 1.32 rounding to a 1 : 3 ratio and accepts the multiple 1.99–2.0 rounding to 2. It does not require a specific number of decimal places in the intermediate lines — it credits the correct method and a correctly-rounded final answer.\n\n**Bottom line:** of the 4 marks, 2 are method marks that survive an arithmetic slip, and the answer marks are protected by ECF. A student who writes only 'C₂H₆' with no working risks losing 2–3 marks if the final answer is wrong; a student who shows every line keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the moles, show the division by the smallest, show the multiple. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Every quantitative topic ahead is built on these conversions. Titration calculations are concentration-and-volume moles crossed through a mole ratio; the ideal gas law swaps mass-to-moles for pressure–volume–temperature; thermochemistry multiplies moles by an energy change per mole. Master the three-move habit — convert to moles, cross the mole ratio, convert back — and the rest of the course becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: determine an empirical and molecular formula with full working", "href": "/mark?subject=ib-chemistry-sl&topic=S1.4&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Chemistry Data Booklet (Sections 2 and 6)", "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/generic-resources/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

@@ -1,189 +1,406 @@
 {
   "slug": "e-3-radioactive-decay",
   "topicCode": "E.3",
+  "unit": {
+    "code": "E",
+    "title": "Nuclear and quantum physics"
+  },
   "title": "Radioactive decay",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental principles of radioactive decay. We will define and apply the radioactive decay law, understand the concepts of half-life, decay constant, and activity, and solve quantitative problems related to these phenomena, including radiometric dating.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "An unstable nucleus can only wait: it will decay, but nothing you do to it changes when. This lesson builds the full E.3 toolkit — the three classic radiations (alpha, beta-minus, with beta-plus and gamma) and how they differ in charge, mass, penetration, ionising power and deflection in fields; how to write balanced nuclear equations that conserve nucleon and proton number; the random and spontaneous nature of decay; the meaning and constancy of half-life; activity and the decay curve; and how to pull a half-life off real data or a graph. HL then adds the exponential decay law $N = N_0 e^{-\\lambda t}$ and the decay constant $\\lambda$. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe radioactive decay as a random and spontaneous process.",
-    "State and apply the radioactive decay law, N = N₀e⁻ˡᵗ, and its equivalent for activity, A = A₀e⁻ˡᵗ.",
-    "Define and relate the decay constant (λ), activity (A), and half-life (T₁/₂).",
-    "Solve problems involving radioactive decay, including the use of decay curves and radiometric dating."
+    "Describe the nature of alpha, beta-minus (and beta-plus) and gamma radiation — their charge, mass, penetrating power, ionising power and deflection in electric and magnetic fields.",
+    "Write balanced nuclear decay equations that conserve nucleon number (A) and proton number (Z).",
+    "Explain radioactive decay as a spontaneous and random process, and explain why half-life is constant for a given isotope.",
+    "Define activity and half-life, interpret a decay curve, and determine a half-life from tabulated data or a graph.",
+    "(HL) Apply the exponential decay law $N = N_0 e^{-\\lambda t}$ and relate the decay constant to the half-life via $T_{1/2} = \\dfrac{\\ln 2}{\\lambda}$.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "E.3"
+  ],
+  "levelNote": "Common to SL and HL; the exponential law N=N0 e^(−λt) and decay constant are HL.",
   "simpleExplanation": {
-    "title": "Cosmic Popcorn",
-    "summary": "Radioactive decay is the process where unstable atomic nuclei release energy by emitting radiation. This is a random event for any single nucleus but is highly predictable for a large collection of them.",
-    "analogy": "Imagine a giant tray of popcorn kernels being heated. You can't predict exactly which kernel will pop next or when. However, you can say with some certainty that after a minute, roughly half of the kernels will have popped. As time goes on, the rate of popping slows down because there are fewer un-popped kernels left. Radioactive decay works in the same way: the rate of decay decreases as the number of unstable nuclei decreases.",
+    "title": "The Nuclear Lottery",
+    "summary": "An unstable nucleus decays to become more stable, throwing out radiation as it does. You can never say which nucleus will go next, or when — that part is pure chance. But hand physics a huge pile of identical nuclei and it will tell you, very precisely, how fast the pile shrinks.",
+    "analogy": "Picture a huge pan of popcorn kernels heating up. You cannot predict which kernel pops next, or exactly when any single one goes — each pop is random. Yet you can be confident that after some fixed time roughly half the un-popped kernels will have popped, and half of the rest in the same time again. Radioactive decay works the same way: single events are unpredictable, but the halving of the whole sample is like clockwork. That fixed 'time to halve' is the half-life.",
     "steps": [
-      "Identify the given quantities: initial number of nuclei or activity (N₀ or A₀), final number or activity (N or A), half-life (T₁/₂), and time (t).",
-      "Calculate the decay constant (λ) if it's not given, using the half-life formula: λ = ln(2) / T₁/₂. Ensure the units of time are consistent.",
-      "Select the appropriate decay equation: N = N₀e⁻ˡᵗ for the number of nuclei, or A = A₀e⁻ˡᵗ for activity.",
-      "Substitute the known values into the equation and solve for the unknown variable. This may involve using natural logarithms (ln) to solve for time."
+      "Identify what is emitted and balance the books: write the decay equation so the top numbers (nucleon number $A$) and the bottom numbers (proton number $Z$) each add up the same on both sides.",
+      "Read the sample's clock: note the initial number of nuclei $N_0$ (or the initial activity $A_0$) and the half-life $T_{1/2}$.",
+      "Count the half-lives that have passed: $n = t / T_{1/2}$. After $n$ half-lives a fraction $(1/2)^n$ of the sample remains.",
+      "For times that are not whole numbers of half-lives (HL), switch to the exponential law $N = N_0 e^{-\\lambda t}$, using $\\lambda = (\\ln 2)/T_{1/2}$."
     ]
   },
+  "keyConcepts": [
+    "spontaneous and random decay",
+    "conservation of A and Z",
+    "half-life and activity"
+  ],
   "flashcards": [
     {
-      "front": "What are the two key characteristics of radioactive decay for an individual nucleus?",
-      "back": "It is **random** (cannot predict which nucleus will decay next) and **spontaneous** (the decay is not influenced by external physical or chemical conditions like temperature or pressure)."
+      "front": "Alpha ($\\alpha$) particle",
+      "back": "A helium nucleus, $^{4}_{2}\\alpha$ (or $^{4}_{2}\\text{He}$): charge $+2e$, relatively large mass (4 u). Most strongly ionising but least penetrating — stopped by a few cm of air or a sheet of paper.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the decay constant, λ?",
-      "back": "The decay constant (λ) is the probability of decay of a single nucleus per unit time. Its unit is s⁻¹ or yr⁻¹, etc."
+      "front": "Beta-minus ($\\beta^-$) particle",
+      "back": "A fast electron, $^{\\ 0}_{-1}e$, created when a neutron becomes a proton. Charge $-e$, tiny mass. Moderately ionising, more penetrating than alpha — stopped by a few mm of aluminium. Emitted with an antineutrino $\\bar{\\nu}$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Define 'activity' (A) and state its SI unit.",
-      "back": "Activity is the rate at which nuclei in a sample decay. Its SI unit is the Becquerel (Bq), where 1 Bq = 1 decay per second."
+      "front": "Beta-plus ($\\beta^+$) particle",
+      "back": "A positron, $^{0}_{+1}e$, created when a proton becomes a neutron. Charge $+e$, same tiny mass as an electron. Emitted with a neutrino $\\nu$. Behaves like beta-minus but deflects the opposite way in a field.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the radioactive decay law?",
-      "back": "The number of undecayed nuclei, N, remaining after time t is given by $N = N_0 e^{-\\lambda t}$, where $N_0$ is the initial number of nuclei and $\\lambda$ is the decay constant."
+      "front": "Gamma ($\\gamma$) ray",
+      "back": "A high-energy photon, $^{0}_{0}\\gamma$: no charge, no mass. Least ionising but most penetrating — needs several cm of lead or metres of concrete to reduce it. Often released just after alpha or beta decay as the nucleus sheds excess energy.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How is activity (A) related to the number of undecayed nuclei (N)?",
-      "back": "Activity is directly proportional to the number of undecayed nuclei: $A = \\lambda N$."
+      "front": "Deflection in a magnetic or electric field",
+      "back": "Alpha and beta deflect in OPPOSITE directions (opposite charges); gamma is undeflected (neutral). Beta deflects far more than alpha for the same field because it is thousands of times lighter.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the formula for the decay of activity over time?",
-      "back": "$A = A_0 e^{-\\lambda t}$, where $A_0$ is the initial activity."
+      "front": "Conservation rules in decay equations",
+      "back": "Nucleon number $A$ (top) and proton number $Z$ (bottom) are each conserved — the sums on the left equal the sums on the right. Charge and nucleon number are the bookkeeping that fixes the daughter nuclide.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Define 'half-life' (T₁/₂).",
-      "back": "Half-life is the time required for half of the radioactive nuclei in a sample to decay. It is also the time for the activity of a sample to fall to half its initial value."
+      "front": "Alpha decay: what happens to A and Z",
+      "back": "The nucleus loses an $\\alpha$ particle: $A$ falls by 4, $Z$ falls by 2. Example: $^{226}_{88}\\text{Ra} \\rightarrow\\, ^{222}_{86}\\text{Rn} +\\, ^{4}_{2}\\alpha$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the mathematical relationship between half-life (T₁/₂) and the decay constant (λ)?",
-      "back": "$T_{1/2} = \\frac{\\ln 2}{\\lambda}$. A common approximation is $T_{1/2} \\approx \\frac{0.693}{\\lambda}$."
+      "front": "Beta-minus decay: what happens to A and Z",
+      "back": "A neutron turns into a proton: $A$ is unchanged, $Z$ rises by 1. Example: $^{14}_{6}\\text{C} \\rightarrow\\, ^{14}_{7}\\text{N} +\\, ^{\\ 0}_{-1}e + \\bar{\\nu}$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "A sample has a half-life of 10 days. What fraction of the original sample remains after 30 days?",
-      "back": "30 days is 3 half-lives. After 1 half-life, 1/2 remains. After 2, 1/4 remains. After 3, 1/8 remains. So, $(1/2)^3 = 1/8$ of the sample remains."
+      "front": "Spontaneous decay",
+      "back": "Decay is not triggered or altered by any external condition — temperature, pressure, chemical bonding or state all leave the rate unchanged. An atom decays at the same rate in a star or in ice.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Common Trap: A question asks for the number of nuclei that *have decayed*. How do you calculate this?",
-      "back": "First, calculate the number of nuclei *remaining*, $N$, using $N = N_0 e^{-\\lambda t}$. Then, subtract this from the initial number: Number decayed = $N_0 - N$."
+      "front": "Random decay",
+      "back": "It is impossible to say which nucleus will decay next or exactly when. Every undecayed nucleus has the same fixed probability of decaying in the next interval, independent of its age or its neighbours.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Common Trap: Why might a calculation using the decay law give an incorrect answer?",
-      "back": "A common error is using inconsistent units for time. The time interval 't' and the decay constant 'λ' must be in reciprocal time units (e.g., if t is in years, λ must be in years⁻¹)."
+      "front": "Activity ($A$)",
+      "back": "The number of decays per second in a sample, measured in becquerel (Bq), where $1\\ \\text{Bq} = 1$ decay per second. Activity falls as the sample decays, following the same decay curve as the number of nuclei.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Half-life ($T_{1/2}$)",
+      "back": "The time for half the undecayed nuclei in a sample to decay — equivalently, the time for the activity to fall to half. It is a fixed constant for a given isotope and does not depend on how much sample you start with.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Fraction remaining after n half-lives",
+      "back": "After $n$ half-lives the fraction of the original nuclei (or activity) remaining is $(1/2)^n$. After 1: 50%; after 2: 25%; after 3: 12.5%. It approaches zero but never reaches it.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "(HL) Exponential decay law",
+      "back": "$N = N_0 e^{-\\lambda t}$ and $A = A_0 e^{-\\lambda t}$, where $\\lambda$ is the decay constant (the probability of decay per nucleus per unit time). It links to half-life by $T_{1/2} = \\dfrac{\\ln 2}{\\lambda} \\approx \\dfrac{0.693}{\\lambda}$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Exam Trap: 'remaining' vs 'decayed'",
+      "back": "$N = N_0(1/2)^n$ (or the exponential law) gives the number REMAINING. The number that has DECAYED is $N_0 - N$. Read the question — many marks are lost by quoting one when the other was asked.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A sample of a radioactive isotope is cooled from room temperature to near absolute zero. Its half-life:",
+      "options": [
+        "Increases, because the atoms move less",
+        "Decreases, because the nuclei are more stable",
+        "Stays exactly the same",
+        "Doubles"
+      ],
+      "answer": "Stays exactly the same"
+    },
+    {
+      "prompt": "Two sealed sources contain the same isotope, but source X has ten times as many nuclei as source Y. Compared with Y, the half-life of X is:",
+      "options": [
+        "Ten times longer",
+        "Ten times shorter",
+        "The same",
+        "Impossible to define"
+      ],
+      "answer": "The same"
+    },
+    {
+      "prompt": "In the decay $^{234}_{90}\\text{Th} \\rightarrow\\ ^{234}_{91}\\text{Pa} + X$, particle $X$ is:",
+      "options": [
+        "An alpha particle $^{4}_{2}\\alpha$",
+        "A beta-minus particle $^{\\ 0}_{-1}e$",
+        "A gamma photon $^{0}_{0}\\gamma$",
+        "A neutron $^{1}_{0}n$"
+      ],
+      "answer": "A beta-minus particle $^{\\ 0}_{-1}e$"
+    },
+    {
+      "prompt": "A beam containing alpha, beta-minus and gamma radiation passes through a magnetic field. Which statement is correct?",
+      "options": [
+        "All three deflect the same way",
+        "Alpha and beta deflect in opposite directions; gamma is undeflected",
+        "Gamma deflects most because it is most penetrating",
+        "Only the alpha particle is deflected"
+      ],
+      "answer": "Alpha and beta deflect in opposite directions; gamma is undeflected"
+    },
+    {
+      "prompt": "Ranking the three radiations, the one that is MOST ionising and LEAST penetrating is:",
+      "options": [
+        "Gamma",
+        "Beta-minus",
+        "Alpha",
+        "They are all equal"
+      ],
+      "answer": "Alpha"
     }
   ],
   "faq": [
     {
-      "q": "Why is radioactive decay a random process?",
-      "a": "Radioactive decay is fundamentally a quantum mechanical process. The principles of quantum mechanics state that we can only determine the probability of an event occurring in a given time interval. We cannot predict the exact moment of decay for a single nucleus, just as we cannot know both the precise position and momentum of a particle simultaneously."
+      "q": "Why is the half-life the same no matter how much sample I start with?",
+      "a": "Because decay is random with a fixed probability per nucleus per unit time. In any fixed interval each surviving nucleus has the same chance of decaying, so the sample always loses the same FRACTION of itself in that interval — half in one half-life. A big sample and a small sample both halve in the same time; the big one simply loses more nuclei to do it. This is why half-life is a property of the isotope, not of the amount."
     },
     {
-      "q": "Can the half-life of a radioactive isotope be changed?",
-      "a": "No. The half-life is an intrinsic property of a specific nuclide. It is determined by the forces within the nucleus and is not affected by external physical or chemical conditions like temperature, pressure, or the compound the atom is part of. This reliability is what makes it so useful for dating."
+      "q": "What actually determines whether a nucleus emits alpha, beta or gamma?",
+      "a": "It depends on why the nucleus is unstable. A nucleus that is too big or too heavy tends to shed an alpha particle. One with too many neutrons converts a neutron to a proton and emits a beta-minus particle (plus an antineutrino); one with too many protons does the reverse and emits a beta-plus particle (a positron, plus a neutrino). Gamma is not really a separate decay — it is the leftover energy released as a photon when a nucleus that is still 'excited' after an alpha or beta emission drops to its ground state."
     },
     {
-      "q": "What is the difference between 'activity' and 'count rate'?",
-      "a": "Activity is the total number of decays occurring in the source per second (measured in Bq). Count rate is the number of decays detected by a radiation detector per second. The count rate is almost always lower than the activity because detectors are not 100% efficient and they only capture radiation emitted in their direction (geometric factor)."
+      "q": "How do I know which daughter nuclide to write down?",
+      "a": "Balance the two numbers. The nucleon numbers (top) must add up the same on both sides, and so must the proton numbers (bottom). Work out the daughter's $Z$ and $A$ from that bookkeeping, then use the periodic table to name the element with that $Z$. If your two sides do not balance, the equation is wrong — this is the single fastest self-check in the topic."
     },
     {
-      "q": "After two half-lives, are all the atoms gone?",
-      "a": "No. After one half-life, half (1/2) of the original atoms remain. After a second half-life, half of *that* remainder decays, so one-quarter (1/4) of the original atoms are left. The number of atoms approaches zero exponentially but theoretically never reaches it."
+      "q": "After two half-lives, has the sample completely decayed?",
+      "a": "No. After one half-life 50% remains; after two, half of that is left, so 25% remains; after three, 12.5%. The amount keeps halving and approaches zero but never truly reaches it. A common error is to think two half-lives means 'all gone' — in fact three-quarters has gone and a quarter is still there."
+    },
+    {
+      "q": "When do I use the halving method and when do I use N = N0 e^(−λt)?",
+      "a": "If the elapsed time is a whole number of half-lives, just halve repeatedly — it is faster and less error-prone: after $n$ half-lives multiply by $(1/2)^n$. If the time is not a neat multiple of the half-life, use the exponential law (HL) $N = N_0 e^{-\\lambda t}$ with $\\lambda = (\\ln 2)/T_{1/2}$. Both must agree at whole numbers of half-lives — a good way to check your calculator work."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to our exploration of radioactive decay. At the heart of this topic is the concept of nuclear instability. Certain combinations of protons and neutrons in a nucleus are unstable, and these 'radionuclides' will eventually transform into a more stable configuration by emitting particles or energy. This process is fundamental to many fields, from nuclear power and medicine to geology and archaeology."
+      "content": "Some nuclei are simply not built to last. To reach a more stable arrangement an unstable nucleus decays, flinging out radiation and carrying away energy. What makes radioactivity so striking is its split personality: at the level of a single nucleus it is perfectly random and cannot be forced or predicted, yet across a large sample the decay is so regular that we use it to date rocks and archaeological finds. This lesson builds that whole picture — what the radiations are, how to balance the equations, and how to work with half-life, activity and (at HL) the exponential decay law. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Nature of Radioactive Decay"
+      "content": "The three radiations: alpha, beta and gamma"
     },
     {
       "type": "text",
-      "content": "Radioactive decay is governed by the laws of quantum mechanics and probability. For any single unstable nucleus, it is impossible to predict the exact moment it will decay. This is the **random** nature of decay. Furthermore, the decay process is **spontaneous**; it is an inherent property of the nucleus and is not influenced by external factors such as temperature, pressure, or chemical bonding. This is why the half-life of a given isotope is a constant."
+      "content": "Unstable nuclei emit radiation in three classic forms. **Alpha ($\\alpha$)** is a helium nucleus, $^{4}_{2}\\alpha$ — two protons and two neutrons bound together, so it carries charge $+2e$ and a relatively large mass. **Beta-minus ($\\beta^-$)** is a fast-moving electron, $^{\\ 0}_{-1}e$, produced when a neutron inside the nucleus turns into a proton; it carries charge $-e$ and has a tiny mass, and it is always emitted alongside an (anti)neutrino. A rarer partner, **beta-plus ($\\beta^+$)**, is a positron $^{0}_{+1}e$ — the positive antiparticle of the electron — produced when a proton turns into a neutron. **Gamma ($\\gamma$)** is not a particle of matter at all but a high-energy photon, $^{0}_{0}\\gamma$, with no charge and no mass, usually emitted just after an alpha or beta decay as the leftover nucleus sheds excess energy."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Random:** The decay of an individual nucleus is a chance event.",
-        "**Spontaneous:** The decay cannot be controlled or influenced by external environmental factors.",
-        "The rate of decay depends only on the number of unstable nuclei present."
+        "**Charge:** alpha $+2e$; beta-minus $-e$; beta-plus $+e$; gamma $0$.",
+        "**Mass:** alpha large (4 u); beta tiny (an electron/positron); gamma massless.",
+        "**Ionising power:** alpha strongest, beta moderate, gamma weakest — the bigger and slower and more charged the particle, the more atoms it ionises along its path.",
+        "**Penetrating power (the reverse order):** alpha stopped by paper or a few cm of air; beta stopped by a few mm of aluminium; gamma reduced only by several cm of lead or metres of concrete.",
+        "**Deflection in a field:** alpha and beta bend in OPPOSITE directions because their charges are opposite; beta bends much more (far lighter); gamma passes straight through, undeflected."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "There is a neat inverse pattern worth remembering: the most strongly ionising radiation is the least penetrating. Alpha dumps all its energy into ionising nearby atoms and so is stopped almost at once; gamma interacts weakly, ionises little, and therefore travels far. In a magnetic field the deflection is a direct read-out of charge and mass — alpha curving one way, beta the other, and gamma sailing straight on."
+    },
+    {
+      "type": "examTip",
+      "content": "If a question shows radiation curving in a magnetic field, use two facts together: the DIRECTION of the curve tells you the sign of the charge (so it distinguishes alpha from beta), and the AMOUNT of curve tells you the mass (beta, being far lighter, curves much more sharply than alpha). Anything that goes straight through must be gamma."
+    },
+    {
+      "type": "heading",
+      "content": "Balanced nuclear decay equations"
+    },
+    {
+      "type": "text",
+      "content": "A decay equation is a balance sheet for the nucleus. Every nuclide is written $^{A}_{Z}\\text{X}$, where $A$ is the **nucleon number** (protons + neutrons, the top number) and $Z$ is the **proton number** (the bottom number). In any decay, two quantities are conserved: the nucleon numbers on the left must equal those on the right, and likewise the proton numbers. That single rule fixes the daughter nuclide completely."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Alpha decay:** the nucleus loses $^{4}_{2}\\alpha$, so $A$ drops by 4 and $Z$ drops by 2.",
+        "**Beta-minus decay:** a neutron becomes a proton, so $A$ is unchanged and $Z$ rises by 1; a $^{\\ 0}_{-1}e$ and an antineutrino $\\bar{\\nu}$ are emitted.",
+        "**Beta-plus decay:** a proton becomes a neutron, so $A$ is unchanged and $Z$ falls by 1; a $^{0}_{+1}e$ and a neutrino $\\nu$ are emitted.",
+        "**Gamma emission:** neither $A$ nor $Z$ changes — the nucleus just loses energy as a $^{0}_{0}\\gamma$ photon."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Radium-226 decays by alpha emission to an isotope of radon (Rn). Write the balanced nuclear equation, giving the nucleon and proton numbers of the daughter nuclide. [3]",
+      "solution": "**Write down the parent and the emitted particle.**\nRadium-226 is $^{226}_{88}\\text{Ra}$; the emitted alpha particle is $^{4}_{2}\\alpha$.  [M1: parent and alpha written with correct A and Z]\n\n**Conserve nucleon number $A$ (top).**\n$226 = A_{\\text{daughter}} + 4 \\;\\Rightarrow\\; A_{\\text{daughter}} = 222$.\n\n**Conserve proton number $Z$ (bottom).**\n$88 = Z_{\\text{daughter}} + 2 \\;\\Rightarrow\\; Z_{\\text{daughter}} = 86$.  [M1: both numbers balanced]\n\nThe daughter has $Z = 86$, which is radon, so it is $^{222}_{86}\\text{Rn}$. The balanced equation is:\n$$^{226}_{88}\\text{Ra} \\rightarrow\\ ^{222}_{86}\\text{Rn} +\\ ^{4}_{2}\\alpha$$  [A1: correct, fully balanced equation]\n\n**Check:** top numbers $222 + 4 = 226$ ✓; bottom numbers $86 + 2 = 88$ ✓."
+    },
+    {
+      "type": "examTip",
+      "content": "Always finish a balancing question by adding up each row. If the top numbers and the bottom numbers do not each match across the arrow, something is wrong — this ten-second check catches almost every slip in this part of the syllabus."
+    },
+    {
+      "type": "heading",
+      "content": "The nature of decay: spontaneous and random"
+    },
+    {
+      "type": "text",
+      "content": "Radioactive decay has two defining features. It is **spontaneous**: no external condition triggers or changes it. Heating, cooling, squeezing, or chemically bonding the atom leaves its decay rate untouched — a nucleus decays at the same rate in the heart of a star or frozen near absolute zero. It is also **random**: you cannot predict which nucleus will decay next, nor when a given nucleus will go. Every undecayed nucleus carries the same fixed probability of decaying in the next interval, regardless of its age or what its neighbours are doing."
+    },
+    {
+      "type": "text",
+      "content": "These two properties are exactly why half-life is constant. Because each nucleus has the same fixed chance of decaying per unit time, any sample loses the same FRACTION of itself in a fixed interval — and that fraction reaches one half after one half-life, whether the sample is huge or tiny, old or fresh. Randomness at the level of one nucleus produces iron-clad regularity across billions of them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Spontaneous:** unaffected by temperature, pressure, chemical state or any external factor.",
+        "**Random:** which nucleus decays, and when, cannot be predicted — only the probability is known.",
+        "**Consequence:** the half-life is a fixed constant of the isotope and does not depend on the amount of sample or its history."
       ]
     },
     {
       "type": "heading",
-      "content": "The Law of Radioactive Decay"
+      "content": "Activity, half-life and the decay curve"
     },
     {
       "type": "text",
-      "content": "While we cannot predict the decay of a single nucleus, we can accurately model the behaviour of a large population of nuclei. The rate of decay, or activity, is directly proportional to the number of undecayed nuclei, $N$, present at that time. This relationship is expressed as a differential equation:"
-    },
-    {
-      "type": "formula",
-      "content": "\\frac{dN}{dt} = -\\lambda N"
+      "content": "The **activity** $A$ of a sample is the number of decays per second, measured in **becquerel** (Bq), where $1\\ \\text{Bq}$ is one decay per second. Because activity is proportional to the number of undecayed nuclei present, it falls off in exactly the same way that the number of nuclei does — following a smooth **decay curve**. Plot activity (or number of nuclei) against time and you get a curve that drops steeply at first and then flattens, halving over each successive half-life: from full to half in one $T_{1/2}$, to a quarter after two, to an eighth after three, and so on, approaching zero without ever reaching it."
     },
     {
       "type": "text",
-      "content": "Here, $\\frac{dN}{dt}$ is the rate of change of the number of nuclei, and $\\lambda$ is the decay constant. The negative sign indicates that the number of undecayed nuclei decreases over time. Integrating this equation from time $t=0$ (with $N_0$ nuclei) to a later time $t$ (with $N$ nuclei) yields the exponential decay law."
+      "content": "The **half-life** $T_{1/2}$ is the time for the activity (or the number of undecayed nuclei) to fall to half its value. Its constancy is the signature of exponential decay: the curve takes the same time to drop from 800 Bq to 400 Bq as it does to drop from 400 Bq to 200 Bq. That property gives you a reliable way to read a half-life straight off a graph or a table — and a way to check your reading, since every halving interval should come out the same."
     },
     {
-      "type": "formula",
-      "content": "N = N_0 e^{-\\lambda t}"
-    },
-    {
-      "type": "heading",
-      "content": "Activity, Half-life and the Decay Constant"
-    },
-    {
-      "type": "text",
-      "content": "The **activity (A)** of a radioactive sample is defined as the number of decays per unit time. From our previous equation, we can see that the magnitude of the rate of decay is $A = |\\frac{dN}{dt}| = \\lambda N$. The SI unit for activity is the Becquerel (Bq), where 1 Bq corresponds to one decay per second. Since activity is proportional to the number of nuclei, it also follows an exponential decay law."
-    },
-    {
-      "type": "formula",
-      "content": "A = A_0 e^{-\\lambda t}"
-    },
-    {
-      "type": "text",
-      "content": "A more intuitive measure of decay rate is the **half-life ($T_{1/2}$)**. This is the time it takes for half of the initial nuclei to decay, or equivalently, for the activity to fall to half its initial value. We can derive a crucial relationship by setting $N = N_0/2$ at $t = T_{1/2}$ in the decay law: $\\frac{N_0}{2} = N_0 e^{-\\lambda T_{1/2}}$. Solving for $T_{1/2}$ gives:"
-    },
-    {
-      "type": "formula",
-      "content": "T_{1/2} = \\frac{\\ln 2}{\\lambda}"
+      "type": "workedExample",
+      "question": "The activity of a radioactive source is recorded over time:\n\n| Time / min | 0 | 10 | 20 | 30 | 40 |\n|---|---|---|---|---|---|\n| Activity / Bq | 480 | 240 | 120 | 60 | 30 |\n\nUse the data to determine the half-life of the source. [2]",
+      "solution": "**Find the time for the activity to halve, and check it repeats.**\nThe activity falls from $480$ Bq to $240$ Bq (half) between $0$ and $10$ min — a halving time of $10$ min.\nCheck the next intervals: $240 \\rightarrow 120$ Bq takes $20-10 = 10$ min; $120 \\rightarrow 60$ Bq takes another $10$ min; $60 \\rightarrow 30$ Bq another $10$ min.  [M1: identifying that the activity halves every 10 min]\n\nBecause every successive halving takes the same time, the half-life is constant, as expected for radioactive decay.\n$$T_{1/2} = 10\\ \\text{min}$$  [A1: correct half-life with unit]\n\n**Good practice:** on a graph, read off two or three different halving intervals and average them, rather than trusting a single reading — this smooths out the scatter in real measured data."
     },
     {
       "type": "examTip",
-      "content": "In Paper 2, you must show your working clearly. When calculating a decay constant from a half-life, always write the formula $T_{1/2} = \\frac{\\ln 2}{\\lambda}$ first. Also, double-check that your time units are consistent. If half-life is in years, your decay constant will be in years⁻¹, and any time 't' you use in the decay equation must also be in years."
+      "content": "When you take a half-life off a decay graph, do not just use the first halving. Pick a couple of convenient values — say from $A_0$ to $A_0/2$ and from $A_0/2$ to $A_0/4$ — read the time for each, and confirm they agree (or average them). Examiners reward showing that the halving time is constant, and it protects you from a single mis-read point."
+    },
+    {
+      "type": "heading",
+      "content": "Half-life calculations: the halving method"
+    },
+    {
+      "type": "text",
+      "content": "When the elapsed time is a whole number of half-lives, you never need a fancy formula — just halve repeatedly. Count the number of half-lives $n = t / T_{1/2}$, then multiply the starting value by $(1/2)^n$. This works equally for the number of nuclei, the mass of the isotope, or the activity, because all three follow the same decay curve."
     },
     {
       "type": "workedExample",
-      "question": "A sample of Cobalt-60 has an initial activity of 4.80 x 10¹² Bq. The half-life of Cobalt-60 is 5.27 years. \n\na) Calculate the decay constant for Cobalt-60 in s⁻¹.\nb) Determine the activity of the sample after 10.0 years.",
-      "solution": "**a) Calculate the decay constant**\n\n1.  First, convert the half-life to seconds to get λ in s⁻¹.\n    $T_{1/2} = 5.27 \\text{ years} \\times 365.25 \\frac{\\text{days}}{\\text{year}} \\times 24 \\frac{\\text{hours}}{\\text{day}} \\times 3600 \\frac{\\text{s}}{\\text{hour}}$\n    $T_{1/2} = 1.663 \\times 10^8 \\text{ s}$ ✓\n\n2.  Use the relationship between half-life and decay constant.\n    $\\lambda = \\frac{\\ln 2}{T_{1/2}}$\n    $\\lambda = \\frac{\\ln 2}{1.663 \\times 10^8 \\text{ s}}$ ✓\n    $\\lambda = 4.17 \\times 10^{-9} \\text{ s}^{-1}$ ✓\n\n**b) Determine the activity after 10.0 years**\n\n*Method 1: Using λ in years⁻¹*\n\n1.  Calculate λ in years⁻¹ as the time is given in years.\n    $\\lambda = \\frac{\\ln 2}{5.27 \\text{ years}} = 0.1315 \\text{ years}^{-1}$ ✓\n\n2.  Use the activity decay formula.\n    $A = A_0 e^{-\\lambda t}$\n    $A = (4.80 \\times 10^{12} \\text{ Bq}) \\times e^{-(0.1315 \\text{ years}^{-1} \\times 10.0 \\text{ years})}$ ✓\n    $A = (4.80 \\times 10^{12}) \\times e^{-1.315}$\n    $A = 1.28 \\times 10^{12} \\text{ Bq}$ ✓\n\n*(Note: Using the λ value in s⁻¹ from part (a) would also work, but you would need to convert t=10.0 years into seconds. This method is more direct.)*"
+      "question": "A radioactive isotope has a half-life of 6.0 hours. What fraction of the original nuclei remains after 30 hours? Express your answer as a fraction and as a percentage. [2]",
+      "solution": "**Count the number of half-lives.**\n$n = \\dfrac{t}{T_{1/2}} = \\dfrac{30}{6.0} = 5$ half-lives.  [M1: correct number of half-lives]\n\n**Apply the halving method.**\nFraction remaining $= \\left(\\dfrac{1}{2}\\right)^{n} = \\left(\\dfrac{1}{2}\\right)^{5} = \\dfrac{1}{32}$.\n$$\\dfrac{1}{32} = 0.03125 \\approx 3.1\\%$$  [A1: correct fraction and percentage]\n\n**Note:** the question asks for the fraction REMAINING. If it had asked for the fraction that has DECAYED, the answer would be $1 - \\tfrac{1}{32} = \\tfrac{31}{32} \\approx 96.9\\%$."
+    },
+    {
+      "type": "heading",
+      "content": "(HL) The exponential decay law and the decay constant"
+    },
+    {
+      "type": "text",
+      "content": "At Higher Level we describe decay continuously rather than in whole-half-life steps. The rate of decay — the activity — is proportional to the number of undecayed nuclei present, and the constant of proportionality is the **decay constant** $\\lambda$: the probability that any one nucleus decays per unit time. A larger $\\lambda$ means a faster decay and a shorter half-life."
+    },
+    {
+      "type": "formula",
+      "content": "A = \\lambda N"
+    },
+    {
+      "type": "text",
+      "content": "This proportionality leads to an exponential fall in the number of undecayed nuclei with time, and — since activity is proportional to $N$ — activity follows the identical law:"
+    },
+    {
+      "type": "formula",
+      "content": "N = N_0\\, e^{-\\lambda t} \\qquad\\text{and}\\qquad A = A_0\\, e^{-\\lambda t}"
+    },
+    {
+      "type": "text",
+      "content": "Here $N_0$ and $A_0$ are the initial number of nuclei and initial activity. The decay constant and the half-life are two ways of describing the same rate. Setting $N = N_0/2$ at $t = T_{1/2}$ in the exponential law gives their relationship:"
+    },
+    {
+      "type": "formula",
+      "content": "T_{1/2} = \\frac{\\ln 2}{\\lambda} \\approx \\frac{0.693}{\\lambda}"
     },
     {
       "type": "workedExample",
-      "question": "An ancient wooden spear handle is discovered. The activity of Carbon-14 in the handle is measured to be 0.15 Bq per gram of carbon. A sample of living wood has a Carbon-14 activity of 0.24 Bq per gram of carbon. The half-life of Carbon-14 is 5730 years. Estimate the age of the spear handle.",
-      "solution": "1.  State the knowns:\n    $A_0 = 0.24 \\text{ Bq g}^{-1}$ (activity of living sample)\n    $A = 0.15 \\text{ Bq g}^{-1}$ (activity of ancient sample)\n    $T_{1/2} = 5730 \\text{ years}$\n\n2.  Calculate the decay constant, λ.\n    $\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{\\ln 2}{5730 \\text{ years}}$ ✓\n    $\\lambda = 1.209 \\times 10^{-4} \\text{ years}^{-1}$\n\n3.  State the activity decay law and rearrange for time, t.\n    $A = A_0 e^{-\\lambda t}$\n    $\\frac{A}{A_0} = e^{-\\lambda t}$\n    $\\ln(\\frac{A}{A_0}) = -\\lambda t$\n    $t = -\\frac{1}{\\lambda} \\ln(\\frac{A}{A_0})$ ✓\n\n4.  Substitute the values and solve for t.\n    $t = -\\frac{1}{1.209 \\times 10^{-4}} \\ln(\\frac{0.15}{0.24})$ ✓\n    $t = -\\frac{1}{1.209 \\times 10^{-4}} \\ln(0.625)$\n    $t = -\\frac{1}{1.209 \\times 10^{-4}} \\times (-0.470)$\n    $t = 3887 \\text{ years}$\n\n5.  State the final answer to an appropriate number of significant figures (2 s.f. based on the data).\n    Age ≈ 3900 years ✓"
+      "question": "(HL) A sample of iodine-131 has a half-life of 8.0 days and an initial activity of 5.0 × 10⁵ Bq. Calculate (a) the decay constant in s⁻¹ and (b) the activity after 20 days. [4]",
+      "solution": "**(a) Decay constant.** Convert the half-life to seconds so $\\lambda$ comes out in s⁻¹.\n$T_{1/2} = 8.0\\ \\text{days} \\times 24 \\times 3600 = 6.912 \\times 10^{5}\\ \\text{s}$.\n$$\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0.693}{6.912 \\times 10^{5}} = 1.00 \\times 10^{-6}\\ \\text{s}^{-1}$$  [M1: uses $\\lambda = \\ln 2 / T_{1/2}$]  [A1: correct value with unit]\n\n**(b) Activity after 20 days.** Keep the time and $\\lambda$ in consistent units. Working in days is cleanest here: $\\lambda = \\dfrac{0.693}{8.0} = 0.0866\\ \\text{day}^{-1}$, and $t = 20$ days.\n$$A = A_0\\, e^{-\\lambda t} = (5.0 \\times 10^{5})\\, e^{-(0.0866)(20)}$$\n$A = (5.0 \\times 10^{5})\\, e^{-1.733} = (5.0 \\times 10^{5})(0.1768)$  [M1: correct substitution into $A = A_0 e^{-\\lambda t}$]\n$$A = 8.8 \\times 10^{4}\\ \\text{Bq}$$  [A1: answer with unit]\n\n**Sense-check:** 20 days is 2.5 half-lives, so the activity should lie between $(1/2)^2 = 1/4$ and $(1/2)^3 = 1/8$ of $5.0 \\times 10^5$ Bq — i.e. between $6.3 \\times 10^4$ and $1.25 \\times 10^5$ Bq. Our $8.8 \\times 10^4$ Bq sits neatly in that range."
+    },
+    {
+      "type": "examTip",
+      "content": "The commonest HL slip is mixing time units. If $\\lambda$ is in $\\text{s}^{-1}$ then $t$ must be in seconds; if $\\lambda$ is in $\\text{day}^{-1}$ then $t$ must be in days. Decide on one unit of time and use it for both $\\lambda$ and $t$ — the exponent $\\lambda t$ must be dimensionless."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Thinking temperature, pressure or amount changes the half-life** — decay is spontaneous and random, so the half-life is a fixed constant of the isotope. Cooling a source or having more of it does nothing to $T_{1/2}$.",
+        "**Not balancing $A$ and $Z$ in a decay equation** — the nucleon numbers must add up the same on both sides, and so must the proton numbers. Always add up each row as a check.",
+        "**Getting the beta direction wrong** — beta-MINUS raises $Z$ by 1 (a neutron becomes a proton and an electron leaves); beta-PLUS lowers $Z$ by 1 (a proton becomes a neutron and a positron leaves). $A$ is unchanged in both.",
+        "**Confusing ionising with penetrating power** — alpha is the MOST ionising but the LEAST penetrating; gamma is the least ionising but the most penetrating. They run in opposite order.",
+        "**Saying gamma deflects in a field** — gamma is neutral and passes straight through; only alpha and beta deflect, and they bend in opposite directions.",
+        "**Assuming two half-lives means the sample is all gone** — after two half-lives a quarter remains, not zero; the amount only approaches zero.",
+        "**Quoting 'remaining' when 'decayed' was asked (or vice versa)** — the number decayed is $N_0 - N$. Read the question and state which one you are giving.",
+        "**(HL) Mixing time units in $N = N_0 e^{-\\lambda t}$** — $\\lambda$ and $t$ must use the same unit of time so that $\\lambda t$ is dimensionless; a units mismatch here wrecks the exponent."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. Study how each mark below is earned by a specific line in a whole-half-life activity calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sample has an activity of 640 Bq. Its half-life is 8.0 days. Calculate the activity after 24 days and state how many half-lives have passed. [3]",
+      "solution": "**Model answer — full working.**\n\n**Number of half-lives.** The elapsed time is a whole number of half-lives, so count them:\n$$n = \\frac{t}{T_{1/2}} = \\frac{24}{8.0} = 3\\ \\text{half-lives}.$$\n\n**Halve the activity three times.** After $n$ half-lives the activity is multiplied by $(1/2)^n$:\n$$A = A_0 \\left(\\tfrac{1}{2}\\right)^{n} = 640 \\times \\left(\\tfrac{1}{2}\\right)^{3} = 640 \\times \\tfrac{1}{8}.$$\n(Equivalently, halve step by step: $640 \\rightarrow 320 \\rightarrow 160 \\rightarrow 80$.)\n\n**Answer.**\n$$A = 80\\ \\text{Bq}, \\quad \\text{after } 3 \\text{ half-lives}.$$\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — number of half-lives.** Awarded for $n = t / T_{1/2} = 24 / 8.0 = 3$. This is a METHOD mark: it is earned for correctly finding that three half-lives have passed, even if the arithmetic that follows slips.\n- **M1 — halving method.** Awarded for applying $A = A_0 \\times (1/2)^n$ — i.e. $640 \\times (1/2)^3$, or equivalently three explicit halvings $640 \\rightarrow 320 \\rightarrow 160 \\rightarrow 80$. The engine checks that the correct halving process is shown, not just a bare final number.\n- **A1 — final answer.** Awarded for $A = 80$ Bq with the unit. Here ECF protects you: a student who found the wrong $n$ but then halved correctly the right number of times FROM THEIR value still earns this answer mark on their own figure.\n\n**'Accept answers that round correctly.'** The engine accepts a correctly-rounded final value with the right unit — it does not demand a fixed number of decimal places. Since this answer is exact, $80$ Bq is expected, but the same rounding tolerance applies whenever a calculation does not come out whole.\n\n**Bottom line:** of the 3 marks, two are method marks that survive an arithmetic slip, and the answer mark is shielded by ECF. A student who writes only '80 Bq' with no working risks losing 1–2 marks if the final number is wrong; a student who shows $n = 24/8.0 = 3$ and the halving keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write $n = t / T_{1/2}$, show the halving (or the exponential substitution at HL), then the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Radioactive decay is the gateway to the rest of nuclear physics. The energy carried off by alpha, beta and gamma emissions connects directly to mass–energy equivalence and nuclear binding energy; the same exponential mathematics reappears in the attenuation of radiation through matter and in any process governed by a fixed probability per unit time. The balancing skill — conserving nucleon and proton number — is exactly the bookkeeping you will reuse for nuclear reactions and, at HL, for fission and fusion. Master the habit here — identify the radiation, balance $A$ and $Z$, count the half-lives, and show every line — and the nuclear topics that follow become variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Radioactive Decay",
-      "href": "/mark?subject=ib-physics-hl&topic=E.3"
+      "label": "Get a Paper 2 calculation marked: solve a half-life problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=E.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Radioactive Dating Game",
-          "href": "https://phet.colorado.edu/en/simulations/radioactive-dating-game"
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
         },
         {
-          "label": "IAEA Article on Radioactive Decay",
-          "href": "https://www.iaea.org/newscenter/news/what-is-radioactive-decay"
+          "label": "PhET Simulation: Radioactive Dating Game",
+          "href": "https://phet.colorado.edu/en/simulations/radioactive-dating-game"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Radioactive Dating Game",

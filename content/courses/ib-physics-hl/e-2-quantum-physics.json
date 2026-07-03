@@ -1,192 +1,150 @@
 {
   "slug": "e-2-quantum-physics",
   "topicCode": "E.2",
+  "unit": { "code": "E", "title": "Nuclear and quantum physics" },
   "title": "Quantum physics",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson delves into the foundational concepts of quantum physics, introducing the Schrödinger equation, the probabilistic nature of the wave function, and the quantisation of energy using the 'particle in a box' model. It also explores the non-classical phenomenon of quantum tunnelling.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Quantum physics is where light and matter stop behaving like the tidy waves and particles of classical physics and start doing both at once. This Higher Level lesson builds the full E.2 toolkit: the photoelectric effect and why it forced physicists to accept the photon; the work function, threshold frequency and Einstein's photoelectric equation; the electronvolt and the stopping-potential experiment; photon energy from frequency and wavelength; wave–particle duality; the de Broglie wavelength of matter and the electron-diffraction evidence for it; and, qualitatively, Heisenberg's uncertainty principle. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand the role of the Schrödinger equation and the probabilistic interpretation of the wave function, $\\Psi$.",
-    "Solve problems involving the quantised energy levels of a particle in an infinite potential well.",
-    "Describe the phenomenon of quantum tunnelling through a potential barrier.",
-    "Qualitatively analyse how tunnelling probability is affected by particle mass, barrier width, and the energy difference."
+    "Describe the photoelectric effect and explain why its features are evidence for the photon model of light rather than the classical wave model.",
+    "Define the work function and threshold frequency, and apply Einstein's photoelectric equation $E_{max}=hf-\\phi$ using the electronvolt and the stopping potential.",
+    "Calculate photon energy from $E=hf=hc/\\lambda$ and the de Broglie wavelength of matter from $\\lambda = h/p$.",
+    "Explain how electron diffraction provides evidence for the wave nature of matter, and state the Heisenberg uncertainty principle qualitatively.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["E.2"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "The Quantum Escape Artist",
-    "summary": "Quantum physics describes particles not as tiny balls, but as waves of probability governed by the Schrödinger equation. This wave-like nature allows for bizarre effects like particles 'tunnelling' through barriers they shouldn't be able to cross.",
-    "analogy": "Imagine you're in a room with high walls (a 'potential well'). Classically, you need enough energy to jump over the wall to get out. In quantum mechanics, you're more like a 'ghost' whose presence is spread throughout the room. There's a tiny, non-zero chance your 'ghostliness' extends through the wall, allowing you to appear on the other side without ever going 'over' it. This is quantum tunnelling.",
+    "title": "Light that Behaves Like Bullets",
+    "summary": "Shine light on a metal and, under the right conditions, electrons are ejected. Classical physics — light as a continuous wave — predicts the wrong behaviour completely. The results only make sense if light arrives in discrete packets of energy called photons, each delivering its energy to a single electron all at once. The same duality runs backwards too: electrons, which we think of as particles, can diffract like waves.",
+    "analogy": "Imagine trying to knock a coconut off a shelf. A classical 'wave' is like a gentle, continuous breeze — blow long enough and hard enough and surely the coconut must eventually fall. But the photoelectric effect says otherwise: it is like throwing balls. One ball below a certain size will NEVER dislodge the coconut, no matter how many you throw per second. Only a single ball above the critical size does the job — and any extra size becomes the coconut's leftover speed. Each photon is one such ball, and it must act alone.",
     "steps": [
-      "First, describe a quantum particle using its wave function, $\\Psi$, which contains all information about it.",
-      "Next, find the probability of locating the particle at a certain point by calculating the square of the wave function's amplitude, $|\\Psi|^2$.",
-      "Then, apply constraints, like confining the particle to a 'box'. This forces the wave function to fit in specific ways, leading to quantised energy levels.",
-      "Finally, consider the wave function encountering a barrier. It decays but doesn't vanish, allowing a small probability for the particle to 'tunnel' through to the other side."
+      "Treat light as a stream of photons, each carrying energy $E=hf$ set only by the frequency, not the brightness.",
+      "For a photon to eject an electron, its energy must at least equal the work function $\\phi$ — the minimum energy binding the electron to the metal.",
+      "Any energy the photon carries above $\\phi$ becomes the electron's maximum kinetic energy: $E_{max}=hf-\\phi$.",
+      "Turn the argument around: since waves carry momentum, a particle with momentum $p$ has a wavelength $\\lambda = h/p$, and firing electrons at a crystal produces a diffraction pattern that proves it."
     ]
   },
+  "keyConcepts": ["photon model", "wave–particle duality", "quantisation of energy"],
   "flashcards": [
-    {
-      "front": "What is the wave function, $\\Psi$?",
-      "back": "A mathematical function that describes the quantum state of a particle. It is a complex-valued probability amplitude, and its solution is derived from the Schrödinger equation."
-    },
-    {
-      "front": "What is the physical significance of $|\\Psi|^2$?",
-      "back": "It represents the probability density of finding the particle at a particular point in space. The probability of finding the particle in a small volume $dV$ is $|\\Psi|^2 dV$."
-    },
-    {
-      "front": "What are the units of probability density, $|\\Psi|^2$, in one dimension?",
-      "back": "Per unit length, or m⁻¹. This is a common trap; it's not a dimensionless probability."
-    },
-    {
-      "front": "What is the Schrödinger equation?",
-      "back": "A fundamental equation in quantum mechanics that describes how the quantum state (wave function) of a physical system changes over time. The time-independent version gives the allowed stationary states and their energies."
-    },
-    {
-      "front": "What is quantum tunnelling?",
-      "back": "A quantum mechanical phenomenon where a particle passes through a potential energy barrier that it classically cannot surmount because its total energy is less than the potential energy of the barrier."
-    },
-    {
-      "front": "How does barrier width affect tunnelling probability?",
-      "back": "The tunnelling probability decreases exponentially as the barrier width increases. A wider barrier means a much lower chance of tunnelling."
-    },
-    {
-      "front": "How does particle mass affect tunnelling probability?",
-      "back": "The tunnelling probability decreases as the mass of the particle increases. This is why macroscopic objects are not observed to tunnel."
-    },
-    {
-      "front": "What is the 'particle in a box' model?",
-      "back": "A model system of a single particle confined inside an infinitely deep potential well. It demonstrates the quantisation of energy."
-    },
-    {
-      "front": "What is the formula for the energy levels of a particle in a 1D infinite potential well of length $L$?",
-      "back": "$E_n = \\frac{n^2h^2}{8mL^2}$, where $n = 1, 2, 3, ...$ is the principal quantum number."
-    },
-    {
-      "front": "Why is the ground state energy ($n=1$) of a particle in a box not zero?",
-      "back": "If the energy were zero, the momentum would also be zero. This would mean the particle is stationary ($\"Delta p = 0$), so its position would be completely uncertain, violating the confinement to the box. It is a consequence of the Heisenberg Uncertainty Principle."
-    },
-    {
-      "front": "What is the relationship between the energy difference $\\Delta E = V_0 - E$ and tunnelling probability?",
-      "back": "A larger energy difference (i.e., the particle's energy is much lower than the barrier height) leads to a lower tunnelling probability. The decay of the wave function inside the barrier is more rapid."
-    }
+    { "front": "The photoelectric effect", "back": "The emission of electrons (photoelectrons) from a metal surface when electromagnetic radiation of high enough frequency is shone on it. Its features cannot be explained by the classical wave model of light.", "pillLabel": "Definition" },
+    { "front": "Photon energy, $E=hf$", "back": "Light is quantised into packets called photons, each of energy $E=hf=hc/\\lambda$, where $h=6.63\\times10^{-34}$ J s. The energy depends only on frequency (or wavelength), not on intensity.", "pillLabel": "Formula" },
+    { "front": "Work function, $\\phi$", "back": "The minimum energy needed to remove an electron from the surface of a particular metal. It is a property of the metal only.", "pillLabel": "Definition" },
+    { "front": "Threshold frequency, $f_0$", "back": "The minimum frequency of light that can eject an electron from a given metal, given by $\\phi = hf_0$. Below $f_0$, no electrons are emitted no matter how intense the light or how long it shines.", "pillLabel": "Definition" },
+    { "front": "Einstein's photoelectric equation", "back": "$E_{max}=hf-\\phi$. One photon delivers energy $hf$ to one electron; $\\phi$ is spent escaping the metal and the remainder is the electron's maximum kinetic energy.", "pillLabel": "Formula" },
+    { "front": "The electronvolt (eV)", "back": "The energy gained by an electron accelerated through a potential difference of 1 V: $1\\text{ eV}=1.60\\times10^{-19}$ J. A convenient energy unit at the quantum scale.", "pillLabel": "Definition" },
+    { "front": "Stopping potential, $V_s$", "back": "The reverse voltage that just stops the most energetic photoelectrons, so $E_{max}=eV_s$. Measuring $V_s$ gives $E_{max}$ directly, and it does not depend on light intensity.", "pillLabel": "Concept" },
+    { "front": "Why intensity fails classically", "back": "Classically, brighter light (more intensity) should give more energetic electrons. Experiment shows intensity only changes the NUMBER of electrons per second; their maximum kinetic energy depends solely on frequency — exactly what the photon model predicts.", "pillLabel": "Concept" },
+    { "front": "Wave–particle duality", "back": "Both light and matter exhibit wave properties (interference, diffraction) and particle properties (photons, discrete collisions). Which behaviour appears depends on the experiment; neither picture alone is complete.", "pillLabel": "Concept" },
+    { "front": "de Broglie wavelength, $\\lambda = h/p$", "back": "Any particle of momentum $p=mv$ has an associated wavelength $\\lambda = h/p$. Larger momentum means a shorter wavelength, which is why everyday objects show no observable wave behaviour.", "pillLabel": "Formula" },
+    { "front": "Electron diffraction", "back": "Firing electrons through a thin crystal or graphite produces concentric diffraction rings — a wave phenomenon. It is direct experimental evidence that matter has a wavelength, confirming $\\lambda = h/p$.", "pillLabel": "Concept" },
+    { "front": "Heisenberg uncertainty principle", "back": "It is impossible to know both the position and the momentum of a particle with unlimited precision at the same time: $\\Delta x \\, \\Delta p \\gtrsim \\dfrac{h}{4\\pi}$. Pinning down one makes the other more uncertain. It is a fundamental limit, not a measurement flaw.", "pillLabel": "Framework" },
+    { "front": "Exam Trap: does intensity change $E_{max}$?", "back": "No. Doubling the intensity of light of the same frequency doubles the RATE of photoelectron emission but leaves the maximum kinetic energy (and stopping potential) unchanged. Only frequency changes $E_{max}$.", "pillLabel": "Trap" },
+    { "front": "Exam Trap: photon-to-electron ratio", "back": "In the photoelectric effect, one photon interacts with one electron. An electron cannot 'save up' energy from several below-threshold photons — that is why $f_0$ is a hard cut-off.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "In the photoelectric effect, the interaction between light and electrons is best described as:", "options": ["One photon shares its energy among many electrons", "Many photons combine their energy to free one electron", "One photon delivers its energy to one electron", "Electrons absorb energy gradually from the light wave"], "answer": "One photon delivers its energy to one electron" },
+    { "prompt": "Light of frequency below the threshold frequency $f_0$ is shone very intensely on a metal for a long time. What happens?", "options": ["Electrons are emitted, but slowly", "No electrons are ever emitted, regardless of intensity or time", "Electrons are emitted once enough energy has built up", "Electrons are emitted only if the light is left on long enough"], "answer": "No electrons are ever emitted, regardless of intensity or time" },
+    { "prompt": "The de Broglie wavelength of a particle of momentum $p$ is given by:", "options": ["$\\lambda = hp$", "$\\lambda = h/p$", "$\\lambda = p/h$", "$\\lambda = hf$"], "answer": "$\\lambda = h/p$" },
+    { "prompt": "The energy of a single photon of light of frequency $f$ is:", "options": ["$E = hf$", "$E = h/f$", "$E = hf^2$", "$E = f/h$"], "answer": "$E = hf$" },
+    { "prompt": "Doubling the intensity of light (same frequency) above the threshold frequency will:", "options": ["Double the maximum kinetic energy of the photoelectrons", "Double the number of photoelectrons emitted per second", "Double the stopping potential", "Have no effect on the number of photoelectrons"], "answer": "Double the number of photoelectrons emitted per second" }
   ],
   "faq": [
-    {
-      "q": "If the wave function is a 'probability wave', what is waving?",
-      "a": "Nothing is physically waving in the same way water waves. The wave function is a complex mathematical abstraction. Its magnitude squared gives a probability, so it's a wave of information or probability amplitude. The 'waving' describes the changing probability of finding a particle at different locations in space."
-    },
-    {
-      "q": "Why don't we see quantum effects like tunnelling in our everyday macroscopic world?",
-      "a": "The probability of a macroscopic object (like a tennis ball) tunnelling through a wall is astronomically small. This is because the tunnelling probability decreases exponentially with increasing mass and barrier width. For everyday objects and barriers, the probability is so close to zero that it would likely not happen even over the age of the universe."
-    },
-    {
-      "q": "Is quantum tunnelling just a theoretical idea?",
-      "a": "No, it's a very real phenomenon with important applications. The Scanning Tunnelling Microscope (STM), which can image individual atoms, works based on electrons tunnelling from a sharp tip to a surface. Nuclear fusion in the Sun also relies on protons tunnelling through the electrostatic repulsion barrier that would otherwise keep them apart."
-    }
+    { "q": "Why did the photoelectric effect force physicists to abandon the wave model of light?", "a": "The classical wave model makes three predictions that all fail. It says a bright enough light of ANY frequency should eventually free electrons — but below the threshold frequency none ever appear. It says brighter light should give MORE energetic electrons — but intensity changes only the number, not the energy. And it predicts a time delay while energy accumulates — but emission is instantaneous. Einstein's photon model, where one quantum of energy $hf$ is delivered to one electron at once, explains all three perfectly." },
+    { "q": "What is the difference between the work function and the threshold frequency?", "a": "They describe the same thing from two angles. The work function $\\phi$ is the minimum ENERGY needed to free an electron; the threshold frequency $f_0$ is the minimum FREQUENCY of photon that supplies that energy. They are linked by $\\phi = hf_0$. Both are properties of the metal alone." },
+    { "q": "How does the stopping potential let us measure the electrons' energy?", "a": "You apply a reverse voltage that pushes emitted electrons back toward the metal. Increase it until even the fastest electrons are just turned back and the photocurrent falls to zero — that voltage is the stopping potential $V_s$. Because the work done against the field then equals the electrons' maximum kinetic energy, $E_{max}=eV_s$, so measuring a voltage gives you an energy directly." },
+    { "q": "If electrons are waves, why don't we notice matter waves in everyday life?", "a": "Because the de Broglie wavelength $\\lambda = h/p$ is fantastically small for macroscopic objects. Planck's constant is about $6.6\\times10^{-34}$ J s, so anything with everyday momentum has a wavelength trillions of times smaller than an atom — far too small to produce any observable diffraction. Only for tiny, slow particles like electrons does the wavelength grow large enough to matter." },
+    { "q": "Is the uncertainty principle just about clumsy measuring instruments?", "a": "No — it is a fundamental property of nature, not a limitation of our equipment. Even with a perfect instrument, a particle simply does not possess a precise position and a precise momentum at the same time. The more sharply one is defined, the more the other is spread out, as expressed by $\\Delta x \\, \\Delta p \\gtrsim h/4\\pi$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the strange and fascinating world of quantum physics. This option topic builds on your knowledge from Topic 7, moving beyond the introductory ideas of wave-particle duality to the mathematical framework that governs the subatomic realm. We will explore the Schrödinger equation, the probabilistic nature of reality, and phenomena that defy classical intuition, such as quantum tunnelling."
-    },
-    {
-      "type": "heading",
-      "content": "The Schrödinger Equation and the Wave Function"
-    },
-    {
-      "type": "text",
-      "content": "In classical mechanics, Newton's laws allow us to predict the exact position and momentum of a particle at any time. In quantum mechanics, this certainty is lost. Instead, we describe a particle using a wave function, denoted by the Greek letter Psi, $\\Psi$. The wave function itself is not directly observable, but it contains all the information about the particle's state. The fundamental equation that governs the behaviour of $\\Psi$ is the Schrödinger equation."
-    },
-    {
-      "type": "formula",
-      "content": "Time-Independent Schrödinger Equation (1D): $$-\\frac{\\hbar^2}{2m} \\frac{d^2\\Psi}{dx^2} + V\\Psi = E\\Psi$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "This equation is an eigenvalue equation. Solving it for a given potential $V$ yields the allowed energy levels $E$ (the eigenvalues) and the corresponding wave functions $\\Psi$ (the eigenfunctions).",
-        "$\\hbar$ is the reduced Planck constant, $\\hbar = h/(2\\pi)$.",
-        "$m$ is the mass of the particle.",
-        "$V$ is the potential energy function.",
-        "$E$ is the total energy of the particle, which is often quantised."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "The crucial step is interpreting what $\\Psi$ means. The Born interpretation states that the square of the modulus of the wave function, $|\\Psi(x)|^2$, gives the probability density of finding the particle at position $x$. This means that where $|\\Psi|^2$ is large, the particle is likely to be found, and where it is zero, the particle will never be found."
-    },
-    {
-      "type": "heading",
-      "content": "The Particle in an Infinite Potential Well"
-    },
-    {
-      "type": "text",
-      "content": "A foundational model in quantum mechanics is the 'particle in a box'. We imagine a particle of mass $m$ trapped in a one-dimensional box of length $L$. The potential energy is zero inside the box ($0 < x < L$) and infinite everywhere else. This confinement forces the wave function to be zero at the walls, leading to standing wave solutions and, most importantly, quantised energy levels."
-    },
-    {
-      "type": "formula",
-      "content": "Allowed Energy Levels: $$E_n = \\frac{n^2h^2}{8mL^2} \\quad \\text{for } n=1, 2, 3, ...$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The energy is quantised, meaning it can only take on discrete values determined by the quantum number $n$.",
-        "The lowest possible energy, the ground state ($n=1$), is greater than zero. The particle can never be at rest.",
-        "The energy levels are not equally spaced; the gap between successive levels increases as $n$ increases ($E_n \\propto n^2$).",
-        "The wave functions are sine waves, $\\Psi_n(x) = A \\sin(\\frac{n\\pi x}{L})$, with $n$ corresponding to the number of antinodes."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "An electron is confined within a one-dimensional infinite potential well of width 0.50 nm. \n\na) Calculate the energy of the ground state in joules.\nb) Calculate the energy of the first excited state ($n=2$) in electronvolts.",
-      "solution": "a) **Identify knowns and formula**\nMass of electron, $m_e = 9.11 \\times 10^{-31}$ kg\nPlanck's constant, $h = 6.63 \\times 10^{-34}$ J s\nWidth of well, $L = 0.50 \\times 10^{-9}$ m\nGround state corresponds to $n=1$.\nThe energy formula is $E_n = \\frac{n^2h^2}{8mL^2}$.\n\n**Substitute values for ground state (n=1)**\n$E_1 = \\frac{1^2 \\times (6.63 \\times 10^{-34})^2}{8 \\times (9.11 \\times 10^{-31}) \\times (0.50 \\times 10^{-9})^2}$ ✓\n$E_1 = \\frac{4.396 \\times 10^{-67}}{8 \\times (9.11 \\times 10^{-31}) \\times (2.5 \\times 10^{-19})}$\n$E_1 = \\frac{4.396 \\times 10^{-67}}{1.822 \\times 10^{-48}}$\n$E_1 = 2.41 \\times 10^{-19}$ J ✓\n\nb) **Calculate energy for first excited state (n=2)**\nWe can use the ratio method since $E_n \\propto n^2$.\n$E_2 = 2^2 \\times E_1 = 4 \\times E_1$\n$E_2 = 4 \\times (2.41 \\times 10^{-19} \\text{ J}) = 9.64 \\times 10^{-19}$ J ✓\n\n**Convert to electronvolts (eV)**\n$1 \\text{ eV} = 1.60 \\times 10^{-19}$ J\n$E_2 (\\text{eV}) = \\frac{9.64 \\times 10^{-19} \\text{ J}}{1.60 \\times 10^{-19} \\text{ J/eV}}$\n$E_2 = 6.0$ eV ✓\n\n*(Full marks for correct final answers with units. Intermediate steps show working.)*"
-    },
-    {
-      "type": "heading",
-      "content": "Quantum Tunnelling"
-    },
-    {
-      "type": "text",
-      "content": "One of the most striking predictions of quantum mechanics is tunnelling. Imagine a particle with total energy $E$ approaching a potential barrier of height $V_0$, where $V_0 > E$. Classically, the particle would always be reflected. Quantum mechanically, however, the wave function does not become zero at the barrier. It decays exponentially within the barrier, but if the barrier is thin enough, the wave function will still have a small, non-zero amplitude on the other side. This implies there is a finite probability that the particle will appear on the other side of the barrier, having 'tunnelled' through."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Tunnelling is a direct consequence of the wave nature of matter.",
-        "The transmission probability, $T$, is the probability that a particle will tunnel through the barrier.",
-        "$T$ depends strongly on: \n  - **Barrier width ($L$):** $T$ decreases exponentially as $L$ increases.\n  - **Energy difference ($V_0 - E$):** $T$ decreases as the difference between barrier height and particle energy increases.\n  - **Particle mass ($m$):** $T$ decreases as $m$ increases."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "For IB exams, you are not required to solve the Schrödinger equation for a finite barrier. However, you must be able to sketch the wave function $\\Psi$ for a tunnelling particle. Key features to show are: a sinusoidal wave before the barrier, exponential decay inside the barrier, and a sinusoidal wave of much smaller amplitude after the barrier. The wavelength after the barrier is the same as before, as the particle's kinetic energy is unchanged."
-    },
-    {
-      "type": "workedExample",
-      "question": "An electron and a proton, with the same kinetic energy, are incident on an identical potential barrier of height $V_0$ and width $L$. The kinetic energy of both particles is less than $V_0$. Compare, with a reason, the probability of tunnelling for the electron and the proton.",
-      "solution": "**1. Identify the key variable**\nThe question asks to compare the tunnelling probability for an electron and a proton. The key difference between them is their mass. ✓\n$m_{proton} \\approx 1836 \\times m_{electron}$. The proton is much more massive than the electron.\n\n**2. State the relationship**\nThe probability of tunnelling is highly dependent on the mass of the particle. It decreases exponentially as the mass increases. ✓\n\n**3. Conclusion**\nSince the proton is significantly more massive than the electron, its tunnelling probability will be significantly (many orders of magnitude) smaller. ✓\nThe electron has a much higher probability of tunnelling through the barrier compared to the proton. ✓\n\n*(This is a descriptive question. Marks are awarded for identifying mass as the key factor, stating the correct relationship, and drawing a clear conclusion.)*"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-physics-hl&topic=E.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: Quantum Tunnelling",
-          "href": "https://phet.colorado.edu/en/simulations/quantum-tunneling-and-wave-packets"
-        },
-        {
-          "label": "HyperPhysics: Particle in a Box",
-          "href": "http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/pbox.html"
-        }
-      ]
-    }
+    { "type": "intro", "content": "By 1900, light was firmly understood as a wave — Young's double slit and Maxwell's equations had settled the matter. Then a handful of stubborn experiments refused to fit, and within three decades physics had to accept that light comes in particles and that particles travel as waves. This Higher Level lesson follows that revolution through the photoelectric effect, the photon, the de Broglie wavelength and the uncertainty principle. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The photoelectric effect: evidence for the photon" },
+    { "type": "text", "content": "Shine ultraviolet light on a clean metal plate and electrons are ejected from its surface. These ejected electrons are called photoelectrons, and the phenomenon is the photoelectric effect. What made it revolutionary was not that electrons come off, but the precise WAY they come off — a way the wave model of light gets completely wrong." },
+    { "type": "keyPoints", "items": [
+      "**Existence of a threshold frequency.** Below a certain frequency $f_0$, no electrons are emitted at all — no matter how intense the light or how long it shines. The wave model predicts that any frequency should work if the light is bright enough.",
+      "**Instantaneous emission.** Above $f_0$, electrons appear the instant the light arrives, with no time delay for energy to 'build up'. The wave model predicts a measurable lag.",
+      "**Maximum kinetic energy depends on frequency, not intensity.** Increasing the frequency increases the electrons' maximum kinetic energy; increasing the intensity does not. The wave model predicts brighter light should give more energetic electrons.",
+      "**Intensity controls the number, not the energy.** Brighter light of the same frequency simply ejects more electrons per second."
+    ]},
+    { "type": "text", "content": "Einstein resolved every one of these puzzles with a single bold idea: light itself is quantised into packets — photons — each carrying an energy fixed by the frequency. A photon is absorbed by one electron in an all-or-nothing event. This is why a below-threshold photon can never free an electron even in a bright beam: each electron only ever meets one photon at a time, and if that single photon is too weak, nothing happens." },
+
+    { "type": "heading", "content": "Photon energy, the work function and Einstein's equation" },
+    { "type": "text", "content": "The energy of a single photon depends only on the frequency $f$ of the light (or equivalently its wavelength $\\lambda$, since $c = f\\lambda$)." },
+    { "type": "formula", "content": "E = hf = \\frac{hc}{\\lambda}" },
+    { "type": "text", "content": "To escape the metal, an electron must be supplied with at least a minimum amount of energy called the work function, $\\phi$ — a property of the metal alone. The lowest-frequency photon that can just supply this energy defines the threshold frequency, through $\\phi = hf_0$. When a photon of higher frequency arrives, it spends $\\phi$ freeing the electron and hands the leftover energy to the electron as kinetic energy. The most weakly bound electrons keep the most, so the maximum kinetic energy of the photoelectrons is Einstein's photoelectric equation:" },
+    { "type": "formula", "content": "E_{max} = hf - \\phi" },
+    { "type": "keyPoints", "items": [
+      "$hf$ is the energy delivered by one photon.",
+      "$\\phi = hf_0$ is the work function — the 'entry fee' to leave the metal.",
+      "$E_{max}$ is the maximum kinetic energy of the emitted photoelectrons. If $hf < \\phi$, then $E_{max}$ would be negative, which is impossible — so no emission occurs.",
+      "A graph of $E_{max}$ against $f$ is a straight line of gradient $h$, with $x$-intercept $f_0$ and $y$-intercept $-\\phi$."
+    ]},
+
+    { "type": "heading", "content": "The electronvolt and the stopping potential" },
+    { "type": "text", "content": "At the quantum scale, the joule is an awkwardly large unit, so we use the electronvolt (eV): the energy an electron gains when accelerated through a potential difference of 1 volt. Since energy transferred is charge times voltage, $1\\text{ eV} = e \\times 1\\text{ V} = 1.60\\times10^{-19}$ J. To convert an energy from joules to electronvolts, divide by $1.60\\times10^{-19}$; to go the other way, multiply." },
+    { "type": "text", "content": "How do we actually measure $E_{max}$? By making the electrons pay it back. In the experiment, a reverse potential difference is applied that pushes emitted electrons back toward the metal. As this voltage is increased, fewer electrons have enough energy to cross, until at the stopping potential $V_s$ even the fastest electron is just turned back and the current falls to zero. The work done against the field, $eV_s$, then equals the maximum kinetic energy:" },
+    { "type": "formula", "content": "E_{max} = eV_s" },
+    { "type": "examTip", "content": "The stopping potential depends only on the frequency of the light and the metal — never on the intensity. If an exam question doubles the brightness and asks what happens to the stopping potential, the answer is 'no change'. More intensity means more electrons per second, but each of the fastest ones has exactly the same maximum kinetic energy." },
+    { "type": "workedExample", "question": "Light of frequency 8.0×10¹⁴ Hz strikes a metal of work function 2.0 eV. Calculate the maximum kinetic energy of the emitted photoelectrons in eV. (h = 6.63×10⁻³⁴ J s; 1 eV = 1.6×10⁻¹⁹ J) [4]", "solution": "**Model answer — full working.**\n\n**Step 1 — Photon energy in joules.** Use $E = hf$.\n$E = (6.63\\times10^{-34})\\times(8.0\\times10^{14}) = 5.30\\times10^{-19}$ J.\n\n**Step 2 — Convert the photon energy to electronvolts** so it can be compared with the work function, which is given in eV.\n$E = \\dfrac{5.30\\times10^{-19}}{1.6\\times10^{-19}} = 3.31$ eV.\n\n**Step 3 — Apply Einstein's photoelectric equation** $E_{max}=hf-\\phi$, working in eV throughout.\n$E_{max} = 3.31 - 2.0 = 1.31$ eV.\n\n**Final answer:** the maximum kinetic energy of the photoelectrons is $E_{max} \\approx 1.3$ eV.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — method for photon energy.** Awarded for using $E = hf$ with the correct values, $E = (6.63\\times10^{-34})(8.0\\times10^{14})$. This is a METHOD mark: it is earned for the correct relationship even if the arithmetic later slips.\n- **A1 — photon energy in eV.** Awarded for $E = 5.30\\times10^{-19}$ J $= 3.31$ eV. The engine accepts the joule value and its correct conversion to electronvolts.\n- **M1 — apply $E_{max}=hf-\\phi$.** Awarded for correctly subtracting the work function from the photon energy in consistent units: $E_{max} = 3.31 - 2.0$. Mixing units here (subtracting 2.0 eV from a value left in joules) loses this mark.\n- **A1 — final answer.** Awarded for $E_{max} = 1.31$ eV (accept 1.3 eV). ECF protects you: a student who mis-keyed the photon energy but then correctly did (their $hf$) $-$ 2.0 still earns this mark on their own figure.\n\n**'Accept answers that round correctly.'** The engine accepts 1.3 eV or 1.31 eV — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** two of the four marks are method marks that survive an arithmetic slip, and the answer marks are shielded by ECF — but only if the working is shown. A student who writes just '1.31 eV' with no steps risks losing 2–3 marks if the number is wrong." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write $E = hf$, do the conversion to eV explicitly, then apply $E_{max}=hf-\\phi$ in consistent units before quoting the final answer. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "workedExample", "question": "A metal has a threshold frequency of 5.5×10¹⁴ Hz. (a) Calculate the work function of the metal in joules. (b) Light of wavelength 4.0×10⁻⁷ m is shone on the metal. Determine the maximum kinetic energy of the emitted photoelectrons in joules. (h = 6.63×10⁻³⁴ J s; c = 3.0×10⁸ m s⁻¹.) [4]", "solution": "**Model answer — full working.**\n\n**(a) Work function** from $\\phi = hf_0$.\n$\\phi = (6.63\\times10^{-34})\\times(5.5\\times10^{14}) = 3.65\\times10^{-19}$ J.\n\n**(b) Photon energy** from $E = hc/\\lambda$.\n$E = \\dfrac{(6.63\\times10^{-34})(3.0\\times10^{8})}{4.0\\times10^{-7}} = 4.97\\times10^{-19}$ J.\n\n**Apply Einstein's equation** $E_{max}=hf-\\phi = E - \\phi$.\n$E_{max} = 4.97\\times10^{-19} - 3.65\\times10^{-19} = 1.3\\times10^{-19}$ J.\n\n**Check:** the photon energy ($4.97\\times10^{-19}$ J) exceeds the work function ($3.65\\times10^{-19}$ J), so emission does occur, as expected since the incident light's frequency is above $f_0$.\n\n**Final answer:** $\\phi \\approx 3.6\\times10^{-19}$ J; $E_{max} \\approx 1.3\\times10^{-19}$ J.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — work function method.** Awarded for $\\phi = hf_0$ with correct values.\n- **A1 — work function value.** Awarded for $\\phi = 3.65\\times10^{-19}$ J (accept $3.6\\times10^{-19}$ J).\n- **M1 — photon energy and photoelectric equation.** Awarded for using $E = hc/\\lambda$ AND subtracting the work function, $E_{max} = E - \\phi$, in consistent units.\n- **A1 — final answer with unit.** Awarded for $E_{max} \\approx 1.3\\times10^{-19}$ J. ECF applies: a wrong $\\phi$ or $E$ that is then subtracted correctly still earns this mark on the student's own figures." },
+
+    { "type": "heading", "content": "Wave–particle duality and the de Broglie wavelength" },
+    { "type": "text", "content": "The photoelectric effect shows light behaving as particles, yet interference and diffraction show it behaving as a wave. Light is neither purely one nor the other — it has a dual nature, and which face it shows depends on the experiment. In 1924 Louis de Broglie made the daring proposal that this duality is symmetric: if waves can act like particles, then particles should act like waves. He assigned every particle of momentum $p = mv$ a wavelength:" },
+    { "type": "formula", "content": "\\lambda = \\frac{h}{p} = \\frac{h}{mv}" },
+    { "type": "keyPoints", "items": [
+      "The larger a particle's momentum, the shorter its de Broglie wavelength.",
+      "Everyday objects have enormous momentum compared with $h$, so their wavelengths are unimaginably small and no wave behaviour is ever observed.",
+      "For an electron, which has a tiny mass, the wavelength can be comparable to atomic spacings — small enough to be seen in diffraction.",
+      "An electron accelerated through a potential difference $V$ gains kinetic energy $eV = \\tfrac{1}{2}mv^2$, from which its momentum, and hence $\\lambda$, can be found."
+    ]},
+
+    { "type": "heading", "content": "Electron diffraction: evidence for matter waves" },
+    { "type": "text", "content": "De Broglie's idea would have stayed a curiosity without proof — and the proof is electron diffraction. When a beam of electrons is fired through a thin layer of graphite or a crystal, it does not simply make a single bright spot as particles would. Instead it produces concentric rings on a screen, exactly the diffraction pattern a wave makes when it passes through a regularly spaced lattice. Diffraction is a purely wave phenomenon, so the pattern is direct evidence that the electrons travel as waves with a definite wavelength. Measuring the ring spacing gives a wavelength that agrees precisely with $\\lambda = h/p$, confirming de Broglie's relation." },
+    { "type": "examTip", "content": "In 'evidence for' questions, name the phenomenon AND the property it demonstrates. Say that electron DIFFRACTION (or the ring pattern) is the evidence, and that diffraction is a WAVE behaviour, so it shows electrons — normally treated as particles — have a wavelength. A bare 'electrons diffract' without linking diffraction to wave behaviour rarely earns full marks." },
+    { "type": "workedExample", "question": "An electron travels at 2.0×10⁶ m s⁻¹. Calculate its de Broglie wavelength. (Mass of electron m = 9.11×10⁻³¹ kg; h = 6.63×10⁻³⁴ J s.) [3]", "solution": "**Model answer — full working.**\n\n**Step 1 — Find the momentum** of the electron, $p = mv$.\n$p = (9.11\\times10^{-31})\\times(2.0\\times10^{6}) = 1.82\\times10^{-24}$ kg m s⁻¹.\n\n**Step 2 — Apply the de Broglie relation** $\\lambda = h/p$.\n$\\lambda = \\dfrac{6.63\\times10^{-34}}{1.82\\times10^{-24}}$\n\n**Step 3 — Evaluate.**\n$\\lambda = 3.6\\times10^{-10}$ m.\n\n**Final answer:** the electron's de Broglie wavelength is $\\lambda \\approx 3.6\\times10^{-10}$ m — comparable to atomic spacings, which is why electrons diffract through crystals.\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — momentum.** Awarded for $p = mv$ with correct values, $p = (9.11\\times10^{-31})(2.0\\times10^{6})$.\n- **M1 — de Broglie substitution.** Awarded for $\\lambda = h/p$ with the momentum substituted correctly. ECF applies: if $p$ was mis-calculated but then divided into $h$ correctly, this mark still stands.\n- **A1 — final answer with unit.** Awarded for $\\lambda \\approx 3.6\\times10^{-10}$ m (accept $3.6\\times10^{-10}$ to $3.64\\times10^{-10}$ m)." },
+
+    { "type": "heading", "content": "The Heisenberg uncertainty principle (qualitative)" },
+    { "type": "text", "content": "If a particle is also a wave, it cannot be pinned to a single exact point — a wave is spread out. This intuition is captured by Werner Heisenberg's uncertainty principle: it is impossible to know both the position and the momentum of a particle with perfect precision at the same instant. The more precisely you fix one, the less precisely the other can be known. Written qualitatively, the product of the uncertainty in position $\\Delta x$ and the uncertainty in momentum $\\Delta p$ has a lower bound:" },
+    { "type": "formula", "content": "\\Delta x \\, \\Delta p \\gtrsim \\frac{h}{4\\pi}" },
+    { "type": "keyPoints", "items": [
+      "This is a fundamental feature of nature, not a shortcoming of measuring instruments — even a perfect instrument cannot beat it.",
+      "Confine a particle to a very small region (small $\\Delta x$) and its momentum becomes correspondingly uncertain (large $\\Delta p$), and vice versa.",
+      "There is a matching uncertainty relation between energy and time, $\\Delta E \\, \\Delta t \\gtrsim \\dfrac{h}{4\\pi}$.",
+      "The effect is negligible for large objects because $h$ is so small, but it dominates behaviour at the atomic scale."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Thinking intensity changes the electrons' energy** — brighter light of the same frequency ejects MORE electrons per second, but the maximum kinetic energy and the stopping potential are unchanged. Only frequency changes $E_{max}$.",
+      "**Believing below-threshold light works if it is bright or shines long enough** — it never does. One electron meets one photon, and a below-threshold photon simply lacks the energy $\\phi$; electrons cannot pool energy from several photons.",
+      "**Mixing joules and electronvolts inside $E_{max}=hf-\\phi$** — convert everything to the same unit before subtracting. Subtracting a work function in eV from a photon energy left in joules is a classic mark-losing slip.",
+      "**Confusing the work function $\\phi$ with the threshold frequency $f_0$** — they are linked by $\\phi = hf_0$ but $\\phi$ is an energy and $f_0$ is a frequency. Do not equate their numerical values.",
+      "**Inverting the de Broglie relation** — it is $\\lambda = h/p$, so LARGER momentum gives a SHORTER wavelength. Writing $\\lambda = hp$ or $\\lambda = p/h$ is wrong.",
+      "**Saying 'electrons diffract' without linking diffraction to wave behaviour** — the evidence argument needs the step that diffraction is a wave property, so the electrons must have a wavelength.",
+      "**Treating the uncertainty principle as an instrument limitation** — it is a fundamental limit; the particle does not simultaneously possess an exact position and an exact momentum.",
+      "**Dropping units or over-rounding mid-calculation** — carry extra figures through the working and round only the final answer; always attach the correct unit (J, eV, m, or Hz)."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an answer mark (A) — and error-carried-forward (ECF) means a wrong number early on does not have to cost you the marks that follow. But that protection only exists if your method is written down. The photoelectric worked example above shows this in full: $E=hf$ earns M1, the photon energy converted to eV earns A1, applying $E_{max}=hf-\\phi$ earns a second M1, and the final $1.31$ eV earns the last A1 — with ECF shielding the answer marks if an earlier number slips. Study how each mark is earned by a specific line, and write your own solutions the same way." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The photon and the matter wave are the doorway to the rest of quantum physics. Photon energy $E=hf$ reappears in atomic spectra and the emission and absorption of light by energy levels; the de Broglie wavelength underpins why atoms have quantised orbits and why electrons behave as standing waves; and the uncertainty principle sets the ground rules for the full quantum-mechanical description of confined particles. Master the habit here — identify whether the wave or the particle picture applies, keep your energy units consistent, show every line — and the quantum topics that follow become variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: solve a photoelectric problem with full working", "href": "/mark?subject=ib-physics-hl&topic=E.2&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Physics Data Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/" },
+      { "label": "PhET Simulation: Photoelectric Effect", "href": "https://phet.colorado.edu/en/simulations/photoelectric" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Quantum Tunnelling",

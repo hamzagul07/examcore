@@ -1,208 +1,141 @@
 {
   "slug": "a-5-galilean-and-special-relativity",
   "topicCode": "A.5",
+  "unit": { "code": "A", "title": "Space, time and motion" },
   "title": "Galilean and special relativity",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson contrasts classical Galilean relativity with Einstein's special relativity. We will explore the two postulates of special relativity and their profound consequences, including time dilation, length contraction, and the equivalence of mass and energy. The concepts of the Lorentz factor, relativistic momentum, and total energy will be introduced and applied to solve problems.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "This Higher Level lesson builds the full A.5 toolkit for relativity. It starts with reference frames and Galilean relativity, where velocities simply add, then confronts the conflict with the constancy of the speed of light and states Einstein's two postulates. From there it develops the Lorentz factor and its two headline consequences — time dilation with proper time, and length contraction with proper length — before covering relativistic velocity addition and the relativity of simultaneity qualitatively. Every worked example is written the way our marking engine awards marks, because in a calculation topic how you lay out the method decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Understand and apply Galilean transformations.",
-    "State and explain the two postulates of special relativity.",
-    "Apply the time dilation and length contraction formulae to solve problems.",
-    "Solve problems involving relativistic momentum, rest energy, and total energy."
+    "Describe inertial reference frames and apply Galilean transformations and classical velocity addition.",
+    "State the two postulates of special relativity and explain how they force the abandonment of absolute space and time.",
+    "Calculate and apply the Lorentz factor, and use time dilation and length contraction correctly, identifying the proper time and proper length.",
+    "Apply the relativistic velocity addition formula and explain the relativity of simultaneity qualitatively.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["A.5"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
     "title": "The Universe's Speed Limit",
-    "summary": "Our everyday intuition for adding speeds breaks down when things move close to the speed of light. Einstein's theory of special relativity provides the new rules, revealing that time and space are not absolute but relative.",
-    "analogy": "Imagine you're on a train and throw a ball forward. To someone on the platform, the ball's speed is the train's speed plus your throw's speed. This is Galilean relativity. Now, if you shine a torch, both you and the person on the platform measure the light's speed as *exactly the same*, a constant 'c'. This bizarre fact is the cornerstone of special relativity, forcing us to rethink time and space.",
+    "summary": "Our everyday rule for adding speeds works perfectly for trains and tennis balls, but it quietly breaks down as speeds approach that of light. Special relativity supplies the corrected rules, and the surprise is that time intervals and lengths are not absolute — different observers measure them differently, all so that everyone agrees on one number: the speed of light.",
+    "analogy": "Stand on a platform and watch someone on a passing train throw a ball forwards. To you the ball moves at the train's speed plus the throw — that is Galilean velocity addition, and it is almost exactly right. Now have them switch on a torch. Common sense says the light should reach you at its own speed plus the train's speed, yet every measurement ever made says you and the passenger record the very same speed, $c$. Holding that one fact fixed is what forces moving clocks to run slow and moving rulers to shrink.",
     "steps": [
-      "First, we examine Galilean relativity, the 'common sense' rules for motion. In this view, velocities simply add up, like throwing a ball on a moving train.",
-      "Next, we see the problem: James Clerk Maxwell's equations showed that light speed is a constant, 'c', for everyone. This directly contradicts the Galilean idea of adding velocities.",
-      "Then, we introduce Einstein's two postulates. He proposed that the laws of physics and the speed of light are the same for all observers in uniform motion, resolving the conflict.",
-      "Finally, we explore the mind-bending consequences. To keep the speed of light constant for everyone, time must slow down (time dilation) and lengths must shorten (length contraction) for moving objects."
+      "Start in the classical world: pick an inertial (non-accelerating) frame and use Galilean transformations, where relative velocities simply add and subtract.",
+      "Meet the problem: the speed of light comes out the same for every inertial observer, which flatly contradicts velocity addition applied to light.",
+      "Adopt Einstein's two postulates — the laws of physics are identical in all inertial frames, and the speed of light in a vacuum is invariant.",
+      "Follow the consequences: introduce the Lorentz factor $\\gamma$, then use it for time dilation, length contraction, relativistic velocity addition, and understand why simultaneity itself becomes relative."
     ]
   },
+  "keyConcepts": ["inertial reference frames", "invariance of c", "proper time and proper length"],
   "flashcards": [
-    {
-      "front": "Inertial Reference Frame",
-      "back": "A frame of reference in which Newton's First Law is valid. It is a non-accelerating frame where an object with no net force acting on it moves at a constant velocity."
-    },
-    {
-      "front": "Galilean Transformation",
-      "back": "The classical rules for converting the coordinates and velocities of an event from one inertial frame to another. For example, $u' = u - v$. It assumes time is absolute."
-    },
-    {
-      "front": "First Postulate of Special Relativity",
-      "back": "The Principle of Relativity: The laws of physics are the same in all inertial reference frames. This means there is no 'absolute' rest frame; all inertial motion is relative."
-    },
-    {
-      "front": "Second Postulate of Special Relativity",
-      "back": "The Constancy of the Speed of Light: The speed of light in a vacuum, $c$, has the same value for all observers in inertial reference frames, regardless of the motion of the source or the observer."
-    },
-    {
-      "front": "Time Dilation",
-      "back": "The phenomenon where a clock that is moving relative to an observer is measured to tick slower than a clock that is at rest with respect to the observer. $\\Delta t = \\gamma \\Delta t_0$."
-    },
-    {
-      "front": "Proper Time ($\\Delta t_0$)",
-      "back": "The time interval between two events measured by an observer for whom the events occur at the same location in space. It is the shortest possible time interval measured for those events."
-    },
-    {
-      "front": "Length Contraction",
-      "back": "The phenomenon where the length of a moving object is measured to be shorter in its direction of motion than its length when at rest. $L = L_0 / \\gamma$."
-    },
-    {
-      "front": "Proper Length ($L_0$)",
-      "back": "The length of an object as measured by an observer who is at rest with respect to the object. It is the longest possible length measured for that object."
-    },
-    {
-      "front": "Lorentz Factor ($\\gamma$)",
-      "back": "A factor that determines the extent of time dilation and length contraction. It is defined as $\\gamma = (1 - v^2/c^2)^{-1/2}$. It is always greater than or equal to 1."
-    },
-    {
-      "front": "Rest Energy ($E_0$)",
-      "back": "The energy an object has due to its mass alone, given by Einstein's famous equation $E_0 = m_0 c^2$, where $m_0$ is the rest mass."
-    },
-    {
-      "front": "Total Relativistic Energy ($E$)",
-      "back": "The sum of an object's rest energy and its kinetic energy. It is given by $E = \\gamma m_0 c^2$. This energy approaches infinity as an object's speed approaches $c$."
-    }
+    { "front": "Inertial reference frame", "back": "A frame that is not accelerating, in which Newton's first law holds: an object with no resultant force stays at rest or moves at constant velocity. Special relativity relates measurements between inertial frames.", "pillLabel": "Definition" },
+    { "front": "Galilean transformation", "back": "The classical rules for converting an event's coordinates between two inertial frames in relative motion at speed $v$: $x' = x - vt$ and $t' = t$. Time is assumed absolute — the same for everyone.", "pillLabel": "Framework" },
+    { "front": "Galilean (classical) velocity addition", "back": "$u' = u - v$: the velocity of an object in a frame moving at $v$ is its velocity in the original frame minus $v$. Accurate when speeds are small compared with $c$; wrong for light.", "pillLabel": "Formula" },
+    { "front": "First postulate", "back": "The principle of relativity: the laws of physics are the same in all inertial reference frames. There is no preferred or absolute rest frame — only relative motion between frames.", "pillLabel": "Concept" },
+    { "front": "Second postulate", "back": "The speed of light in a vacuum, $c$, is the same for all inertial observers, independent of the motion of the source or of the observer. This is the postulate that breaks classical intuition.", "pillLabel": "Concept" },
+    { "front": "Lorentz factor ($\\gamma$)", "back": "$\\gamma = \\dfrac{1}{\\sqrt{1 - v^2/c^2}}$. It sets the size of relativistic effects. Always $\\gamma \\ge 1$; it equals 1 at rest and rises without bound as $v \\to c$.", "pillLabel": "Formula" },
+    { "front": "Time dilation", "back": "A clock moving relative to an observer is measured to tick slowly: $\\Delta t = \\gamma \\Delta t_0$. Since $\\gamma \\ge 1$, the measured interval $\\Delta t$ is always longer than the proper time $\\Delta t_0$.", "pillLabel": "Formula" },
+    { "front": "Proper time ($\\Delta t_0$)", "back": "The time interval between two events measured in the frame where the two events happen at the same place (e.g. on the moving clock itself). It is the shortest measured interval for those events.", "pillLabel": "Definition" },
+    { "front": "Length contraction", "back": "An object moving relative to an observer is measured to be shorter along its direction of motion: $L = L_0/\\gamma$. Dimensions perpendicular to the motion are unchanged.", "pillLabel": "Formula" },
+    { "front": "Proper length ($L_0$)", "back": "The length of an object measured in the frame in which it is at rest. It is the longest measured length; observers moving relative to it measure a contracted $L = L_0/\\gamma$.", "pillLabel": "Definition" },
+    { "front": "Relativistic velocity addition", "back": "$u' = \\dfrac{u - v}{1 - \\dfrac{uv}{c^2}}$. Reduces to the Galilean result when $u, v \\ll c$, and never yields a speed greater than $c$: combining any speed with $c$ still gives $c$.", "pillLabel": "Formula" },
+    { "front": "Relativity of simultaneity", "back": "Two events that are simultaneous in one inertial frame are generally not simultaneous in another frame moving relative to the first. There is no universal 'now' shared by all observers.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "Two events occur at the same place in a spaceship's frame. The time interval between them measured on the ship, compared with the interval measured by an observer who sees the ship move past, is called the:", "options": ["Dilated time, and it is the longer interval", "Proper time, and it is the shorter interval", "Proper time, and it is the longer interval", "Coordinate time, equal in both frames"], "answer": "Proper time, and it is the shorter interval" },
+    { "prompt": "A muon moving at high speed is observed from the ground. In the ground frame, its internal 'clock' (its decay process) is measured to:", "options": ["Run faster than in the muon's rest frame", "Run at the same rate as in its rest frame", "Run slower than in its rest frame", "Stop entirely"], "answer": "Run slower than in its rest frame" },
+    { "prompt": "A metre-long rod moves at high speed parallel to its length. An observer at rest measures its length and its width. Compared with the rod's rest values, the observer finds:", "options": ["Length shorter, width unchanged", "Length unchanged, width shorter", "Both length and width shorter", "Both length and width unchanged"], "answer": "Length shorter, width unchanged" },
+    { "prompt": "A spaceship moving at $0.6c$ towards a star switches on its headlights. According to an observer on the star, the light from the headlights approaches at:", "options": ["$1.6c$", "$0.6c$", "$c$", "$0.4c$"], "answer": "$c$" },
+    { "prompt": "As the relative speed $v$ between two inertial frames approaches $c$, the Lorentz factor $\\gamma$:", "options": ["Approaches 1", "Approaches 0", "Increases without bound", "Stays constant at 2"], "answer": "Increases without bound" }
   ],
   "faq": [
-    {
-      "q": "What is the main difference between Galilean and Special Relativity?",
-      "a": "Galilean relativity assumes time and space are absolute, and velocities simply add up. Special relativity, driven by the constant speed of light, shows that time and space are relative and intertwined. This leads to effects like time dilation and length contraction, which are absent in the Galilean model."
-    },
-    {
-      "q": "Why can't anything with mass travel at the speed of light?",
-      "a": "According to the formula for total energy, $E = \\gamma m_0 c^2$, the energy of an object increases as its speed increases. The Lorentz factor, $\\gamma$, approaches infinity as the object's speed approaches the speed of light, $c$. Therefore, it would require an infinite amount of energy to accelerate an object with mass to the speed of light, which is physically impossible."
-    },
-    {
-      "q": "Does special relativity allow for time travel to the past?",
-      "a": "No, special relativity does not permit travel to the past. Time dilation allows for a form of 'time travel' to the future: if you travel at a high speed away from Earth and then return, less time will have passed for you than for people on Earth. You will have effectively jumped into their future. However, moving backwards in time would violate causality (the principle that a cause must precede its effect), and there is no mechanism for this within the theory of special relativity."
-    }
+    { "q": "What exactly makes a reference frame 'inertial'?", "a": "An inertial frame is one that is not accelerating, so Newton's first law holds inside it: a body with no resultant force moves at constant velocity. Special relativity in this topic relates measurements between inertial frames only. A frame fixed to an accelerating rocket or a rotating turntable is non-inertial, and the simple transformations here do not apply to it." },
+    { "q": "Why does Galilean velocity addition fail for light?", "a": "Galilean addition ($u' = u - v$) assumes time is the same for all observers, so speeds simply add. But experiment shows the speed of light is the same for every inertial observer regardless of how the source or observer moves. If light always comes out at $c$, then time and space cannot be absolute, and velocities must combine by the relativistic rule instead, which keeps $c$ invariant." },
+    { "q": "How do I know which interval is the proper time?", "a": "Ask where the two events happen. The proper time $\\Delta t_0$ is measured in the frame where both events occur at the same location — typically on the moving object itself, such as the ticking of the travelling clock or the birth-and-decay of a particle. Every other inertial observer, for whom the two events happen at different places, measures a longer, dilated interval $\\Delta t = \\gamma \\Delta t_0$." },
+    { "q": "Which length is the proper length, and does everything contract?", "a": "The proper length $L_0$ is measured in the frame where the object is at rest — its 'true' rest length and the largest value anyone measures. An observer moving relative to the object measures a shorter length $L = L_0/\\gamma$, but only along the direction of motion. Dimensions perpendicular to the motion are unchanged, so a fast-moving cube is squashed into the direction of travel, not shrunk uniformly." },
+    { "q": "What does the relativity of simultaneity actually mean?", "a": "It means that whether two separated events happen 'at the same time' depends on who is asking. Two events judged simultaneous in one inertial frame are generally not simultaneous in another frame moving relative to it — the moving observer sees one event happen before the other. There is no single universal 'now'; simultaneity is a property of a frame, not of the events themselves." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "For centuries, Newton's laws of motion and gravity described the universe with incredible accuracy. This classical view, formalised by Galilean relativity, assumed that space and time were absolute, unchanging backdrops for events. However, at the turn of the 20th century, inconsistencies between mechanics and the new theory of electromagnetism led a young Albert Einstein to propose a radical new framework: the theory of special relativity. This lesson explores the shift from our intuitive classical understanding to the counter-intuitive but experimentally verified world of relativistic physics."
-    },
-    {
-      "type": "heading",
-      "content": "Galilean Relativity and Its Limitations"
-    },
-    {
-      "type": "text",
-      "content": "An inertial frame of reference is one that is not accelerating. Imagine you are on a perfectly smooth train moving at a constant velocity. Inside, a dropped ball falls straight down, just as it would on the ground. According to the principle of Galilean relativity, the laws of mechanics are the same in all inertial frames. To relate measurements between two frames, say one on the train and one on the platform, we use Galilean transformations."
-    },
-    {
-      "type": "formula",
-      "content": "Position: $x' = x - vt$ \\\\ Velocity: $u' = u - v$"
-    },
-    {
-      "type": "text",
-      "content": "These transformations work perfectly for everyday speeds. However, they imply that velocities simply add or subtract. If you shine a torch from the front of the train, Galilean relativity predicts that an observer on the platform would measure the light's speed as $c + v_{train}$. This contradicts Maxwell's equations of electromagnetism, which predicted that the speed of light in a vacuum, $c$, is a universal constant, independent of the source's motion."
-    },
-    {
-      "type": "heading",
-      "content": "The Postulates of Special Relativity"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**The Principle of Relativity:** The laws of physics are identical in all inertial frames of reference. This extends Galileo's principle from just mechanics to all laws of physics, including electromagnetism.",
-        "**The Constancy of the Speed of Light:** The speed of light in a vacuum, $c$, is the same for all inertial observers, regardless of the motion of the light source or the observer. This is the revolutionary postulate that breaks from classical intuition."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "You must be able to state both postulates of special relativity clearly and precisely. They are the fundamental axioms from which all other results, like time dilation and length contraction, are derived. Questions often ask you to state them or use them to explain a phenomenon."
-    },
-    {
-      "type": "heading",
-      "content": "Consequences of Special Relativity: Time Dilation and Length Contraction"
-    },
-    {
-      "type": "text",
-      "content": "To reconcile the two postulates, Einstein realised that our concepts of absolute space and absolute time had to be abandoned. Instead, space and time are interwoven into a four-dimensional fabric called spacetime. One of the most startling consequences is time dilation. For a moving observer, time itself passes more slowly compared to a stationary observer."
-    },
-    {
-      "type": "formula",
-      "content": "Time Dilation: $\\Delta t = \\gamma \\Delta t_0$ \\\\ Lorentz Factor: $\\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}}$"
-    },
-    {
-      "type": "text",
-      "content": "Here, $\\Delta t_0$ is the 'proper time', which is the time interval measured in the frame where the event is stationary (e.g., the lifetime of a particle in its own rest frame). $\\Delta t$ is the dilated time measured by an observer moving relative to that frame. Since $\\gamma \\ge 1$, the moving clock always appears to run slower."
-    },
-    {
-      "type": "workedExample",
-      "question": "A muon is an unstable particle with a mean proper lifetime of $2.20 \\times 10^{-6}$ s. Muons are produced in the upper atmosphere and travel towards the Earth's surface at a speed of $0.995c$. An observer on Earth measures the lifetime of the muons. (a) Calculate the Lorentz factor, $\\gamma$. (b) Determine the mean lifetime of the muon as measured by the observer on Earth.",
-      "solution": "**(a)** The Lorentz factor is given by $\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}$. ✓\nGiven $v = 0.995c$, the ratio $v/c = 0.995$.\n$\\gamma = \\frac{1}{\\sqrt{1 - (0.995)^2}}$ ✓\n$\\gamma = \\frac{1}{\\sqrt{1 - 0.990025}} = \\frac{1}{\\sqrt{0.009975}}$\n$\\gamma \\approx 10.0$ ✓ (to 3 s.f.)\n\n**(b)** The proper lifetime is $\\Delta t_0 = 2.20 \\times 10^{-6}$ s. This is the time in the muon's own reference frame.\nThe lifetime measured on Earth, $\\Delta t$, is found using the time dilation formula: $\\Delta t = \\gamma \\Delta t_0$. ✓\n$\\Delta t = 10.0 \\times (2.20 \\times 10^{-6} \\text{ s})$ ✓\n$\\Delta t = 2.20 \\times 10^{-5}$ s (or $22.0 \\ \\mu$s) ✓\nThis result explains why we can detect muons at sea level; in our frame, their lifetime is extended, allowing them to travel much further than they would classically."
-    },
-    {
-      "type": "text",
-      "content": "Just as time is relative, so is space. Length contraction is the phenomenon where the length of an object moving relative to an observer is measured to be shorter than its proper length. The contraction only occurs in the direction of motion."
-    },
-    {
-      "type": "formula",
-      "content": "Length Contraction: $L = \\frac{L_0}{\\gamma}$"
-    },
-    {
-      "type": "text",
-      "content": "$L_0$ is the 'proper length', the length of the object in its own rest frame. $L$ is the contracted length measured by an observer moving relative to the object. As with time dilation, this effect is only significant at relativistic speeds."
-    },
-    {
-      "type": "workedExample",
-      "question": "A rocket travels from Earth to a star that is 20.0 light-years away, as measured in the Earth's reference frame. The rocket travels at a constant speed of $0.950c$. (a) Calculate the time taken for the journey as measured by an observer on Earth. (b) Calculate the distance to the star as measured by an astronaut in the rocket.",
-      "solution": "**(a)** The distance in the Earth frame is $d = 20.0$ ly and the speed is $v = 0.950c$.\nThe time taken is $t = \\frac{d}{v}$. ✓\n$t = \\frac{20.0 \\text{ ly}}{0.950c} = \\frac{20.0 \\times c \\times \\text{year}}{0.950c}$\n$t \\approx 21.1$ years ✓\n\n**(b)** The astronaut is in the moving frame, so they will measure a contracted length. The proper length $L_0$ is the distance measured in the rest frame of the two points (Earth and the star), so $L_0 = 20.0$ ly.\nFirst, calculate the Lorentz factor, $\\gamma$.\n$\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}} = \\frac{1}{\\sqrt{1 - (0.950)^2}}$ ✓\n$\\gamma = \\frac{1}{\\sqrt{1 - 0.9025}} = \\frac{1}{\\sqrt{0.0975}} \\approx 3.20$ ✓\nNow, use the length contraction formula: $L = \\frac{L_0}{\\gamma}$.\n$L = \\frac{20.0 \\text{ ly}}{3.20}$ ✓\n$L \\approx 6.25$ light-years ✓\nTo the astronaut, the journey is much shorter, which is consistent with the shorter time they experience due to time dilation."
-    },
-    {
-      "type": "heading",
-      "content": "Relativistic Mechanics"
-    },
-    {
-      "type": "text",
-      "content": "Special relativity also revolutionised our understanding of mass, momentum, and energy. Newton's second law in its classical form is no longer sufficient. Momentum and energy both depend on the Lorentz factor, $\\gamma$, and increase without bound as an object's speed approaches the speed of light."
-    },
-    {
-      "type": "formula",
-      "content": "Relativistic Momentum: $p = \\gamma m_0 v$ \\\\ Total Energy: $E = \\gamma m_0 c^2$ \\\\ Rest Energy: $E_0 = m_0 c^2$ \\\\ Kinetic Energy: $E_K = E - E_0 = (\\gamma - 1)m_0 c^2$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The rest mass, $m_0$, is an invariant quantity for a particle, the same in all reference frames. The IB syllabus avoids the confusing concept of 'relativistic mass'.",
-        "The total energy of a particle is the sum of its rest energy ($E_0$) and its kinetic energy ($E_K$). The famous equation $E=mc^2$ is more precisely the rest energy, $E_0=m_0c^2$, which represents the energy locked away in mass itself.",
-        "As $v \\to c$, $\\gamma \\to \\infty$. This means the energy required to accelerate a particle with mass to the speed of light is infinite, which is why it's impossible."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Be very careful with the different energy terms. $E_0$ is rest energy, $E_K$ is kinetic energy, and $E$ is the total energy. A common mistake is to use the classical kinetic energy formula $\\frac{1}{2}mv^2$, which is only an approximation at low speeds. At relativistic speeds, you must use $E_K = (\\gamma - 1)m_0 c^2$."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Problems",
-      "href": "/mark?subject=ib-physics-hl&topic=A.5"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "PhET Simulation: The Relativity of Simultaneity",
-          "href": "https://phet.colorado.edu/en/simulations/relativity-of-simultaneity"
-        },
-        {
-          "label": "HyperPhysics: Special Relativity",
-          "href": "http://hyperphysics.phy-astr.gsu.edu/hbase/relativ/srel.html"
-        }
-      ]
-    }
+    { "type": "intro", "content": "For over two centuries Newton's mechanics, expressed through Galilean relativity, described motion with superb accuracy while quietly assuming that space and time were fixed, absolute backdrops shared by everyone. At the start of the twentieth century this assumption collided with electromagnetism, which insisted that light travels at a single fixed speed for every observer. Einstein resolved the clash by keeping the speed of light and sacrificing absolute time and space instead. This lesson traces that shift, from the comfortable rules of Galilean relativity to the Lorentz factor and its consequences. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "Reference frames and Galilean relativity" },
+    { "type": "text", "content": "A reference frame is simply a coordinate system, together with a clock, used to record where and when events happen. An inertial frame is one that is not accelerating, so that Newton's first law holds within it. Picture a train gliding along a straight track at constant velocity: drop a ball inside and it falls straight down to your feet, exactly as it would on the platform. The principle of Galilean relativity says the laws of mechanics are identical in all such inertial frames — no mechanical experiment done inside the smoothly moving carriage can tell you whether you are moving or standing still." },
+    { "type": "text", "content": "To compare measurements between a frame on the platform and a frame on the train moving at speed $v$, classical physics uses the Galilean transformations. They assume, above all, that time is absolute — one universal clock ticks the same for every observer." },
+    { "type": "formula", "content": "\\text{Position: } x' = x - vt\n\\text{Time: } t' = t\n\\text{Velocity: } u' = u - v" },
+    { "type": "text", "content": "The velocity rule is classical (Galilean) velocity addition: to convert an object's velocity from the platform frame to the train frame, subtract the train's velocity. Throw a ball forwards at $8$ m s⁻¹ inside a train moving at $30$ m s⁻¹, and the platform sees it move at $38$ m s⁻¹. For everyday speeds this is indistinguishable from reality." },
+    { "type": "text", "content": "The trouble appears when the moving object is light itself. Applied to a torch beam on the train, Galilean addition predicts the platform should measure the light at $c + v$. Yet Maxwell's equations of electromagnetism give a single fixed speed, $c$, for light in a vacuum, with no reference to any source's motion — and every experiment has confirmed it. Galilean velocity addition and the behaviour of light cannot both be right." },
+
+    { "type": "heading", "content": "The two postulates of special relativity" },
+    { "type": "text", "content": "Rather than patch the theory, Einstein founded a new one on two deceptively simple statements. Everything that follows — the Lorentz factor, time dilation, length contraction, the relativity of simultaneity — is a logical consequence of these two postulates." },
+    { "type": "keyPoints", "items": [
+      "**First postulate (principle of relativity):** the laws of physics are the same in all inertial reference frames. This extends Galileo's principle from mechanics to every law of physics, including electromagnetism, and denies any absolute rest frame.",
+      "**Second postulate (invariance of the speed of light):** the speed of light in a vacuum, $c$, is the same for all inertial observers, regardless of the motion of the source or the observer. This is the revolutionary break from classical intuition."
+    ]},
+    { "type": "text", "content": "The second postulate is the radical one. If light comes out at $c$ for everyone no matter how they move, then two observers in relative motion cannot agree on all time intervals and all distances, because speed is distance over time. Keeping $c$ fixed forces time and space to flex. That flexing is captured by a single quantity, the Lorentz factor." },
+    { "type": "examTip", "content": "You must be able to state both postulates precisely and in the right order of ideas. A frequent exam instruction is 'state the two postulates of special relativity' for two marks — one mark each — so learn them as two clean sentences, and do not blur the first (all laws of physics) into the second (the speed of light specifically)." },
+
+    { "type": "heading", "content": "The Lorentz factor" },
+    { "type": "text", "content": "The Lorentz factor $\\gamma$ measures how strongly relativistic effects apply at a given relative speed. It depends only on the ratio $v/c$." },
+    { "type": "formula", "content": "\\gamma = \\dfrac{1}{\\sqrt{1 - \\dfrac{v^2}{c^2}}}" },
+    { "type": "text", "content": "Because $v < c$ for anything with mass, the fraction $v^2/c^2$ lies between 0 and 1, the square root is less than 1, and so $\\gamma$ is always greater than or equal to 1. At everyday speeds $v/c$ is tiny and $\\gamma$ is indistinguishable from 1, which is why we never notice relativity in daily life. As $v$ climbs towards $c$, the denominator shrinks towards zero and $\\gamma$ grows without bound. A quick feel for the numbers: at $0.10c$, $\\gamma \\approx 1.005$; at $0.60c$, $\\gamma = 1.25$; at $0.80c$, $\\gamma \\approx 1.67$; at $0.995c$, $\\gamma \\approx 10.0$." },
+    { "type": "examTip", "content": "Always compute $v/c$ first as a plain decimal, then square it. If a speed is given as a fraction of $c$ (say $0.80c$), then $v/c = 0.80$ directly — you never need to substitute the numerical value of $c$ in metres per second. Carry $\\gamma$ to at least three significant figures through the working so rounding does not distort the final answer." },
+
+    { "type": "heading", "content": "Time dilation and proper time" },
+    { "type": "text", "content": "The first great consequence is time dilation: a clock moving relative to an observer is measured to run slow. If a process takes a time $\\Delta t_0$ in the frame where it happens at a single place, then an observer who sees that frame move past measures a longer time $\\Delta t$." },
+    { "type": "formula", "content": "\\Delta t = \\gamma \\, \\Delta t_0" },
+    { "type": "text", "content": "The quantity $\\Delta t_0$ is the proper time: the interval between two events measured in the frame where those events occur at the same location — for instance, the reading on the travelling clock itself, or the lifetime of a particle in its own rest frame. Because $\\gamma \\ge 1$, the proper time is always the shortest interval; every other observer measures more. Identifying which interval is the proper time is the single most important decision in a time-dilation problem." },
+    { "type": "workedExample", "question": "Muons are created high in the atmosphere and travel towards the ground at $0.995c$. In the muon's own rest frame its mean lifetime before decay is $2.2 \\times 10^{-6}$ s. (a) Calculate the Lorentz factor. (b) Determine the mean lifetime of the muons as measured by an observer on the ground. [4]", "solution": "**List and identify.** The lifetime given is measured in the muon's own frame, where 'created' and 'decays' happen at the same place — so it is the proper time: $\\Delta t_0 = 2.2 \\times 10^{-6}$ s. Speed $v = 0.995c$, so $v/c = 0.995$.\n\n**(a) Lorentz factor.**\n$\\gamma = \\dfrac{1}{\\sqrt{1 - (0.995)^2}}$  [M1: correct substitution into $\\gamma$]\n$\\gamma = \\dfrac{1}{\\sqrt{1 - 0.990}} = \\dfrac{1}{\\sqrt{0.00998}} \\approx 10.0$  [A1]\n\n**(b) Lifetime measured on the ground.** The ground observer sees the muon move, so measures the dilated time.\n$\\Delta t = \\gamma \\, \\Delta t_0$  [M1: correct equation with $\\Delta t_0$ as the proper time]\n$\\Delta t = 10.0 \\times (2.2 \\times 10^{-6}) = 2.2 \\times 10^{-5}$ s  [A1: answer with unit]\n\n**Final answer:** $\\gamma \\approx 10.0$; the ground observer measures a lifetime of $2.2 \\times 10^{-5}$ s. This tenfold stretch is exactly why so many muons survive long enough to reach sea level." },
+
+    { "type": "heading", "content": "Length contraction and proper length" },
+    { "type": "text", "content": "Space contracts just as time dilates. An object moving relative to an observer is measured to be shorter along its direction of motion than it is in its own rest frame." },
+    { "type": "formula", "content": "L = \\dfrac{L_0}{\\gamma}" },
+    { "type": "text", "content": "Here $L_0$ is the proper length: the length measured in the frame where the object is at rest, and the largest length any observer measures. A moving observer measures the smaller $L = L_0/\\gamma$. Crucially, only the dimension along the direction of motion contracts — widths and heights perpendicular to the motion are unchanged. A rocket flying past nose-first is measured shorter from nose to tail but exactly as wide as ever." },
+    { "type": "workedExample", "question": "A spacecraft passes a space station at a constant $0.60c$. In the spacecraft's own frame its length is $120$ m. (a) Calculate the Lorentz factor. (b) Determine the length of the spacecraft as measured by an observer on the station. [3]", "solution": "**Identify the proper length.** The $120$ m is measured in the spacecraft's rest frame, so it is the proper length: $L_0 = 120$ m. Speed $v = 0.60c$, so $v/c = 0.60$.\n\n**(a) Lorentz factor.**\n$\\gamma = \\dfrac{1}{\\sqrt{1 - (0.60)^2}} = \\dfrac{1}{\\sqrt{1 - 0.36}} = \\dfrac{1}{\\sqrt{0.64}} = 1.25$  [M1: substitution]  [A1: $\\gamma = 1.25$]\n\n**(b) Contracted length measured from the station.** The station observer sees the spacecraft move, so measures the contracted length.\n$L = \\dfrac{L_0}{\\gamma} = \\dfrac{120}{1.25} = 96$ m  [A1: answer with unit]\n\n**Final answer:** $\\gamma = 1.25$ and the station measures the spacecraft to be $96$ m long — shorter than its $120$ m proper length, but only along the direction of travel." },
+
+    { "type": "heading", "content": "Relativistic velocity addition" },
+    { "type": "text", "content": "Galilean velocity addition ($u' = u - v$) cannot be right at high speeds, because it would let two velocities combine to exceed $c$. The correct relativistic rule keeps every result at or below $c$." },
+    { "type": "formula", "content": "u' = \\dfrac{u - v}{1 - \\dfrac{uv}{c^2}}" },
+    { "type": "text", "content": "In this form, $u$ is the object's velocity measured in one frame, $v$ is the velocity of a second frame relative to the first, and $u'$ is the object's velocity measured in that second frame. When $u$ and $v$ are both far smaller than $c$, the term $uv/c^2$ is negligible and the formula collapses back to the familiar Galilean $u' = u - v$. But feed in $u = c$ and the result is always exactly $c$, for any $v$ — the invariance of the speed of light is built into the algebra." },
+    { "type": "workedExample", "question": "In a laboratory frame, spaceship A moves to the right at $0.50c$ and spaceship B moves to the left (i.e. towards A) at $0.50c$. Using the relativistic velocity addition formula, calculate the velocity of spaceship B as measured by the crew of spaceship A. [3]", "solution": "**Set up.** Work in A's frame. Take rightwards as positive. The frame of A moves at $v = +0.50c$ relative to the lab. In the lab, B moves leftwards, so $u = -0.50c$. We want $u'$, B's velocity in A's frame.\n\n$u' = \\dfrac{u - v}{1 - \\dfrac{uv}{c^2}}$  [M1: correct formula]\n\n$u' = \\dfrac{(-0.50c) - (0.50c)}{1 - \\dfrac{(-0.50c)(0.50c)}{c^2}} = \\dfrac{-1.00c}{1 - (-0.25)}$  [M1: correct substitution, including signs]\n\n$u' = \\dfrac{-1.00c}{1.25} = -0.80c$  [A1]\n\n**Final answer:** A's crew measure B approaching at $0.80c$. Note the classical answer would have been $1.00c$ — impossible — whereas the relativistic rule correctly keeps the closing speed below $c$." },
+
+    { "type": "heading", "content": "The relativity of simultaneity" },
+    { "type": "text", "content": "Perhaps the strangest consequence of the two postulates is that observers in relative motion cannot even agree on whether two separated events happened at the same time. Imagine a train carriage moving fast past a platform, with a lamp exactly at its centre. The lamp flashes, and light spreads out towards the front and back walls. In the train's own frame the two walls are equal distances away and the light, travelling at $c$ in every direction, reaches both walls at the same instant — the two arrival events are simultaneous." },
+    { "type": "text", "content": "Now watch the same flash from the platform. The light still travels at $c$ (second postulate), but during its flight the rear wall rushes towards the point where the flash was emitted while the front wall races away from it. So the platform observer sees the light reach the rear wall first and the front wall later — the two events are not simultaneous. Neither observer is mistaken: simultaneity is relative, a property of the chosen inertial frame rather than of the events themselves. There is no universal 'now' shared by all observers." },
+    { "type": "keyPoints", "items": [
+      "Two events simultaneous in one inertial frame are generally not simultaneous in another frame moving relative to it.",
+      "The effect is a direct consequence of the invariance of $c$ combined with the relative motion of the frames.",
+      "It matters only for events separated in space; the disagreement grows with their separation and with the relative speed of the frames."
+    ]},
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Mis-identifying the proper time.** $\\Delta t_0$ is measured in the frame where the two events happen at the *same place* (on the moving clock or particle). Putting the ground-observer's interval in as $\\Delta t_0$, or dividing instead of multiplying by $\\gamma$, inverts the effect.",
+      "**Mis-identifying the proper length.** $L_0$ is the length in the object's *rest* frame and is the *longer* value. Using the contracted length as $L_0$, or multiplying by $\\gamma$ instead of dividing, makes the object longer when it should be shorter.",
+      "**Contracting the wrong dimension.** Only the length *along the direction of motion* contracts. Widths and heights perpendicular to the motion are unchanged — do not shrink them.",
+      "**Treating the speed of light as frame-dependent.** By the second postulate $c$ is the same for every inertial observer; you never add the source's speed to the speed of its light.",
+      "**Using Galilean velocity addition at high speed.** Simply adding or subtracting speeds can give a value above $c$. Use the relativistic formula whenever the speeds are a sizeable fraction of $c$.",
+      "**Forgetting that $\\gamma \\ge 1$ always.** If a calculation gives $\\gamma < 1$, or a dilated time shorter than the proper time, or a contracted length longer than the proper length, a slip has occurred — check the substitution.",
+      "**Over-rounding $\\gamma$ early.** Round only the final answer; a Lorentz factor rounded to one figure mid-calculation can throw the result off badly at high speeds."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and error-carried-forward (ECF) means a wrong number early on need not cost you the marks that follow. An accuracy mark is dependent on its method: it is only awarded if the method that earns it is present and correct, but through ECF it is judged against *your* earlier figure, not only the official one. That protection exists only if your method is written down. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A spacecraft travels at 0.80c relative to Earth. A clock on board measures a journey time of 6.0 years (proper time). Calculate the Lorentz factor and the journey time measured by an observer on Earth. [4]", "solution": "**Model answer — full working.**\n\nIdentify the proper time. The clock is on board the spacecraft, so the two events (start and end of the journey) happen at the same place *in the spacecraft frame*. Therefore the on-board reading is the proper time: $\\Delta t_0 = 6.0$ years. The speed gives $v/c = 0.80$.\n\n**Lorentz factor.**\n$\\gamma = \\dfrac{1}{\\sqrt{1 - (0.80)^2}} = \\dfrac{1}{\\sqrt{1 - 0.64}} = \\dfrac{1}{\\sqrt{0.36}}$\n$\\gamma = \\dfrac{1}{0.60} = 1.667 \\approx 1.67$\n\n**Journey time measured on Earth.** The Earth observer sees the spacecraft move, so measures the dilated time.\n$\\Delta t = \\gamma \\, \\Delta t_0 = 1.667 \\times 6.0 = 10$ years.\n\n**Final answer:** $\\gamma \\approx 1.67$, and the Earth observer measures the journey to take $10$ years.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — Lorentz-factor substitution.** Awarded for substituting $v/c = 0.80$ correctly into $\\gamma = 1/\\sqrt{1 - v^2/c^2}$, i.e. $\\gamma = 1/\\sqrt{1 - 0.64}$. This is a METHOD mark: it is earned for the correct approach even if the arithmetic later slips.\n- **A1 — $\\gamma = 1.67$.** Awarded for evaluating the factor correctly (accept $1.66$–$1.67$). This ACCURACY mark depends on M1: it is only given if the substitution method is present, and it is checked against *your* value from that step.\n- **M1 — $\\Delta t = \\gamma \\Delta t_0$.** Awarded for correctly applying time dilation with the on-board reading identified as the proper time $\\Delta t_0 = 6.0$ years — i.e. multiplying (not dividing) by $\\gamma$.\n- **A1 — 10 years.** Awarded for the final journey time with its unit. ECF applies: a student who found a wrong $\\gamma$ but then correctly computed $(\\text{their }\\gamma) \\times 6.0$ still earns this mark on their own figure, because the accuracy mark is judged against their method.\n\n**'Accept answers that round correctly.'** The engine accepts $\\gamma = 1.67$ or $1.666\\ldots$, and a final time of $10$ years — it does not demand a fixed number of decimal places, only a correctly-rounded value with the right unit.\n\n**Bottom line:** two of the four marks are method marks that survive an arithmetic slip, and the accuracy marks are shielded by ECF. A student who writes only '10 years' with no working risks losing 2–3 marks if the final number is wrong; a student who shows the $\\gamma$ substitution, the value of $\\gamma$, and the $\\Delta t = \\gamma \\Delta t_0$ step keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: state which interval is the proper time (or which length is the proper length), write the equation you chose, show the substitution, then the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The Lorentz factor introduced here is the gateway to the rest of relativity. The same $\\gamma$ that stretches time and shrinks length also governs relativistic momentum and total energy, and it underlies the spacetime-diagram methods used to visualise the relativity of simultaneity more precisely. Master the habits now — identify the proper time and proper length before touching a formula, compute $v/c$ first, keep $\\gamma$ to full precision, and show every line — and the relativistic mechanics that follows becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: solve a relativity problem with full working", "href": "/mark?subject=ib-physics-hl&topic=A.5&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Physics Data Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/" },
+      { "label": "PhET Simulation: The Relativity of Simultaneity", "href": "https://phet.colorado.edu/en/simulations/relativity-of-simultaneity" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "The Relativity of Simultaneity",

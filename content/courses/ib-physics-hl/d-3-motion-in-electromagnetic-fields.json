@@ -1,195 +1,357 @@
 {
   "slug": "d-3-motion-in-electromagnetic-fields",
   "topicCode": "D.3",
+  "unit": {
+    "code": "D",
+    "title": "Fields"
+  },
   "title": "Motion in electromagnetic fields",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson explores the motion of charged particles in uniform magnetic and electric fields. It covers the Lorentz force, circular and helical motion, and the principles of velocity selectors and cyclotrons. Emphasis is placed on deriving and applying key equations to solve quantitative problems.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "This lesson builds the full D.3 toolkit for how magnetic fields push on charges and currents. It starts with the force on a current-carrying conductor, $F = BIL\\sin\\theta$, and Fleming's left-hand rule, then moves to the force on a single moving charge, $F = qvB\\sin\\theta$, and shows why a charge fired perpendicular to a uniform field travels in a circle of radius $r = \\frac{mv}{qB}$. From there it explains the motor effect, the force between two parallel current-carrying wires (qualitatively), and how crossed electric and magnetic fields make a velocity selector. Every worked example is laid out exactly the way our marking engine awards marks, because in a calculation topic how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Describe the path of a charged particle in a uniform magnetic field.",
-    "Derive and apply the formula for the radius of the circular path of a charged particle in a magnetic field.",
-    "Explain the principle of a velocity selector, where electric and magnetic forces are balanced.",
-    "Solve problems involving the motion of charged particles in combined electric and magnetic fields."
+    "Calculate the magnetic force on a current-carrying conductor using $F = BIL\\sin\\theta$ and find its direction with Fleming's left-hand rule.",
+    "Calculate the magnetic force on a moving charge using $F = qvB\\sin\\theta$ and give its direction, remembering to reverse it for a negative charge.",
+    "Explain why a charge moving perpendicular to a uniform magnetic field follows a circular path and derive and apply the radius $r = \\frac{mv}{qB}$.",
+    "Describe the motor effect and explain qualitatively the force between two parallel current-carrying wires and the operation of a velocity selector.",
+    "Present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "D.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Cosmic Billiards",
-    "summary": "Charged particles moving through magnetic fields are pushed sideways, forcing them into circular or spiral paths. By adding an electric field, we can precisely steer these particles or filter them by speed.",
-    "analogy": "Imagine rolling a metal ball bearing across a table. If you hold a strong magnet just to the side of its path, the ball won't slow down, but it will curve away from its straight line. The magnetic force is always sideways, constantly turning the ball. If the magnet is strong enough and the table big enough, the ball will go in a circle. Now, if you also tilt the table (creating an electric field-like force), you can try to balance the magnetic curve with the downhill roll to make the ball go straight again, but only if it's rolling at one specific speed.",
+    "title": "The Invisible Sideways Shove",
+    "summary": "A magnetic field never pushes a charge along its direction of travel — it always shoves it sideways, at right angles to the motion. That single fact explains everything here: wires that jump in a field, electric motors that spin, and charges that curl into perfect circles.",
+    "analogy": "Think of holding your hand flat out of a moving car window. The air is the magnetic field and your forward speed is the charge's velocity. Tilt your palm and the air shoves your hand up or down — sideways to the car's motion, never forwards or backwards. A magnetic force behaves the same way: it acts perpendicular to the velocity, so it can steer a charge but can never speed it up or slow it down. Keep steering something at a constant speed and always at right angles, and it goes in a circle.",
     "steps": [
-      "A charged particle moving in a magnetic field experiences a force, called the Lorentz force. This force is always perpendicular to both the particle's velocity and the magnetic field direction.",
-      "Use the Right-Hand Rule to find the direction of the force. Point your fingers in the direction of the magnetic field (B), and your thumb in the direction of the velocity (v) of a positive charge. The force (F) pushes out from your palm.",
-      "Because the force is always perpendicular to the velocity, it acts as a centripetal force. This causes the charged particle to move in a uniform circular path (if v is perpendicular to B).",
-      "If an electric field is also present, the particle experiences both an electric force and a magnetic force. By carefully balancing these, we can create a 'velocity selector' that only allows particles of a specific speed to pass through undeflected."
+      "Decide what is moving: a whole current in a wire (use $F = BIL\\sin\\theta$) or a single charge (use $F = qvB\\sin\\theta$).",
+      "Read off the angle $\\theta$ between the current/velocity and the field $B$. The force is largest at $90^\\circ$ and zero when they are parallel.",
+      "Find the direction. For conventional current use Fleming's left-hand rule; for a positive charge treat its velocity as the current direction; for a negative charge reverse the answer.",
+      "If the charge moves perpendicular to a uniform field, set the magnetic force equal to the centripetal force $\\frac{mv^2}{r}$ and solve for the radius $r = \\frac{mv}{qB}$."
     ]
   },
+  "keyConcepts": [
+    "magnetic force",
+    "circular motion",
+    "the motor effect"
+  ],
   "flashcards": [
     {
-      "front": "What is the Lorentz force?",
-      "back": "The total force experienced by a charged particle moving in a region with both electric and magnetic fields. It is the vector sum of the electric force and the magnetic force: $\\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})$."
+      "front": "Force on a current-carrying conductor",
+      "back": "$F = BIL\\sin\\theta$, where $B$ is the field, $I$ the current, $L$ the length of conductor in the field and $\\theta$ the angle between the current and the field. Maximum when the wire is perpendicular to $B$; zero when parallel.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the formula for the magnetic force on a moving charge?",
-      "back": "The magnitude is given by $F = qvB\\sin\\theta$, where $q$ is the charge, $v$ is the velocity, $B$ is the magnetic field strength, and $\\theta$ is the angle between the velocity vector and the magnetic field vector."
+      "front": "Fleming's left-hand rule",
+      "back": "For conventional (positive) current: thumb = thruST (force), First finger = Field, seCond finger = Current. It gives the direction of the force on a current-carrying wire, always perpendicular to both $I$ and $B$.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "How do you determine the direction of the magnetic force on a positive charge?",
-      "back": "Using the Right-Hand Rule: Fingers point in the direction of the magnetic field (B), thumb points in the direction of velocity (v). The force acts out of the palm."
+      "front": "Force on a moving charge",
+      "back": "$F = qvB\\sin\\theta$, where $q$ is the charge, $v$ its speed, $B$ the field and $\\theta$ the angle between $v$ and $B$. A magnetic field exerts no force on a stationary charge or on motion parallel to the field.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the direction of the magnetic force on a negative charge?",
-      "back": "Use the Right-Hand Rule as for a positive charge, but the resulting force is in the opposite direction. Alternatively, use a Left-Hand Rule."
+      "front": "Why the magnetic force does no work",
+      "back": "The magnetic force is always perpendicular to the velocity, so $W = Fd\\cos 90^\\circ = 0$. It changes the charge's direction but never its speed or kinetic energy.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Why does a magnetic field cause a charged particle to move in a circle?",
-      "back": "The magnetic force is always perpendicular to the particle's velocity. This means it acts as a centripetal force, constantly changing the direction of the velocity without changing its speed, resulting in uniform circular motion."
+      "front": "Circular motion in a uniform field",
+      "back": "A charge moving perpendicular to a uniform $B$ feels a constant-magnitude force always at right angles to $v$ — the definition of centripetal force — so it travels in a circle at constant speed.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Does a magnetic force do work on a charged particle?",
-      "back": "No. Work is done when a force has a component parallel to the displacement ($W = Fd\\cos\\theta$). Since the magnetic force is always perpendicular to the velocity (and thus the displacement), the angle is 90°, $\\cos(90°) = 0$, and no work is done. The kinetic energy of the particle remains constant."
+      "front": "Radius of the circular path",
+      "back": "Set magnetic force = centripetal force: $qvB = \\dfrac{mv^2}{r}$, so $r = \\dfrac{mv}{qB}$. Faster or heavier particles curve in larger circles; stronger fields or larger charges tighten the circle.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the formula for the radius of the circular path of a charge in a magnetic field?",
-      "back": "By equating magnetic force to centripetal force ($qvB = mv^2/r$), we get $r = \\frac{mv}{qB}$. This shows the radius is proportional to momentum ($mv$) and inversely proportional to charge and magnetic field strength."
+      "front": "Direction of force on a negative charge",
+      "back": "Use the rule for conventional current, then reverse the result. An electron moving 'north' behaves, for the rule, like a positive current moving 'south', so its force is opposite to that on a positive charge with the same velocity.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is a velocity selector?",
-      "back": "A device with crossed (perpendicular) electric and magnetic fields. It allows only particles with a specific velocity, $v = E/B$, to pass through undeflected, as the electric and magnetic forces cancel out."
+      "front": "The motor effect",
+      "back": "A current-carrying wire placed in a magnetic field experiences a force ($F = BIL\\sin\\theta$). In a motor a coil carries current in a field, and the forces on its opposite sides act in opposite directions, producing a turning effect (torque) that spins the coil.",
+      "pillLabel": "Application"
     },
     {
-      "front": "What is cyclotron frequency?",
-      "back": "The frequency of the circular motion of a charged particle in a uniform magnetic field. It is given by $f = \\frac{qB}{2\\pi m}$ and is independent of the particle's velocity or the radius of its path."
+      "front": "Parallel current-carrying wires",
+      "back": "Each wire sits in the magnetic field of the other and feels a force. Currents in the SAME direction attract; currents in OPPOSITE directions repel.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What happens if a charged particle's velocity is NOT perpendicular to the magnetic field?",
-      "back": "The velocity component parallel to the field is unaffected, while the component perpendicular to the field causes circular motion. The combination of these two motions results in a helical (corkscrew-shaped) path."
+      "front": "Velocity selector",
+      "back": "Crossed (perpendicular) electric and magnetic fields exert opposing forces on a moving charge. Only particles with speed $v = E/B$ have $qE = qvB$ and pass straight through undeflected; all other speeds are deflected.",
+      "pillLabel": "Application"
+    },
+    {
+      "front": "Exam Trap: which rule, which hand?",
+      "back": "Fleming's LEFT hand is for the motor effect — the force on a current or moving positive charge. (The right-hand rule you meet in electromagnetic induction is a different situation.) Pick the left hand here, and reverse for negative charges.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A proton travels in a circle in a uniform magnetic field. As it goes round, its speed and kinetic energy:",
+      "options": [
+        "Both increase steadily",
+        "Stay constant, because the magnetic force does no work",
+        "Decrease because the field opposes the motion",
+        "Change only if the field is strong enough"
+      ],
+      "answer": "Stay constant, because the magnetic force does no work"
+    },
+    {
+      "prompt": "A charge moves exactly parallel to a uniform magnetic field. The magnetic force on it is:",
+      "options": [
+        "Maximum, because it is in the field",
+        "$qvB$, directed along the motion",
+        "Zero, because $\\sin 0^\\circ = 0$",
+        "Equal to its weight"
+      ],
+      "answer": "Zero, because $\\sin 0^\\circ = 0$"
+    },
+    {
+      "prompt": "To find the direction of the force on a wire carrying conventional current in a magnetic field, you use:",
+      "options": [
+        "Fleming's left-hand rule",
+        "Fleming's right-hand rule",
+        "The right-hand grip rule",
+        "Newton's third law"
+      ],
+      "answer": "Fleming's left-hand rule"
+    },
+    {
+      "prompt": "An electron and a proton enter the same field with the same velocity (perpendicular to $B$). The magnetic forces on them are:",
+      "options": [
+        "In the same direction",
+        "In opposite directions, because their charges have opposite signs",
+        "Both zero",
+        "Equal only if they have equal mass"
+      ],
+      "answer": "In opposite directions, because their charges have opposite signs"
+    },
+    {
+      "prompt": "Two long parallel wires carry current in the SAME direction. The wires will:",
+      "options": [
+        "Attract each other",
+        "Repel each other",
+        "Feel no force at all",
+        "Twist end over end"
+      ],
+      "answer": "Attract each other"
     }
   ],
   "faq": [
     {
-      "q": "What happens if the charged particle is stationary in the magnetic field?",
-      "a": "If the velocity $v=0$, then the magnetic force $F = qvB\\sin\\theta$ is also zero. A stationary charge experiences no force from a static magnetic field."
+      "q": "Why doesn't a magnetic field ever change a charge's speed?",
+      "a": "Because the magnetic force is always perpendicular to the velocity. Work done equals force times displacement in the direction of the force, $W = Fd\\cos\\theta$, and here $\\theta = 90^\\circ$, so $W = 0$. With no work done the kinetic energy — and therefore the speed — cannot change. The field only redirects the charge, which is exactly why perpendicular entry gives a circle rather than a spiral inwards or outwards."
     },
     {
-      "q": "Why doesn't the magnetic force change the speed of the particle?",
-      "a": "The magnetic force is always perpendicular to the direction of motion (the velocity). Because work done is the product of force and displacement in the direction of the force, and there is no displacement in the direction of the magnetic force, no work is done on the particle. According to the work-energy theorem, if no work is done, the kinetic energy (and therefore speed) of the particle remains constant."
+      "q": "What's the difference between $F = BIL\\sin\\theta$ and $F = qvB\\sin\\theta$?",
+      "a": "They describe the same physics at two scales. $F = BIL\\sin\\theta$ is the force on a whole current — many charges flowing through a length $L$ of wire. $F = qvB\\sin\\theta$ is the force on one moving charge. In fact the first follows from the second summed over all the moving charges in the conductor. Use the wire formula when you are given a current and a length; use the charge formula when you are given a single particle's charge and speed."
     },
     {
-      "q": "What is the difference between the Right-Hand Rule here and the one for magnetic fields from a current?",
-      "a": "They are used for different purposes. The 'Force' Right-Hand Rule (or Fleming's Left-Hand Rule) finds the direction of the force on a charge moving in a field. The 'Current' Right-Hand Rule (or Grip Rule) finds the direction of the magnetic field produced by a current-carrying wire."
+      "q": "How do I get the direction of the force on a negative charge?",
+      "a": "Fleming's left-hand rule is defined for conventional (positive) current. For a positive charge, point your second finger along the velocity. For a negative charge such as an electron, either point that finger opposite to its velocity, or apply the rule normally to its velocity and then reverse the final force direction. Both give the same answer; pick one habit and keep it."
     },
     {
-      "q": "In a velocity selector, what happens to particles that are too fast or too slow?",
-      "a": "If a particle is too fast ($v > E/B$), the magnetic force ($F_B = qvB$) will be stronger than the electric force ($F_E = qE$), and the particle will be deflected in the direction of the magnetic force. If it's too slow ($v < E/B$), the electric force will be stronger, and it will be deflected in the direction of the electric force. Only particles with the exact speed $v = E/B$ pass straight through."
+      "q": "Why do parallel wires carrying current in the same direction attract?",
+      "a": "Each wire creates a magnetic field in the region around it, and the other wire sits in that field carrying a current, so it feels a force $F = BIL$. Applying the field of one wire and Fleming's left-hand rule to the current in the other shows the force points inward when the currents are parallel (same direction) — they attract — and outward when the currents are anti-parallel — they repel. This mutual force is how the ampere was historically defined."
+    },
+    {
+      "q": "What actually makes an electric motor turn?",
+      "a": "A coil carrying current sits in a magnetic field. By $F = BIL\\sin\\theta$ the two opposite sides of the coil carry current in opposite directions, so the forces on them point in opposite directions. That pair of opposite forces on either side of the axle is a couple: it produces a turning effect (torque) that rotates the coil. A commutator reverses the current every half turn so the torque keeps driving the coil the same way round."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "When a charged particle, like an electron or a proton, moves through a magnetic field, it experiences a force that is quite different from gravitational or electric forces. This magnetic force leads to fascinating and important phenomena, from the beautiful aurora borealis to the operation of particle accelerators. In this lesson, we will dissect this interaction and learn to predict the motion of charges in electromagnetic fields."
+      "content": "A magnetic field grips anything that carries a current or moves as a charge, and it always pushes sideways — at right angles to the motion. That one idea runs through this whole topic: it lifts current-carrying wires, spins electric motors, and bends beams of charged particles into circles inside everything from old television tubes to particle accelerators. This lesson develops the two force laws you need, shows how they connect, and applies them to circular motion and to crossed fields. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Magnetic Force on a Moving Charge"
+      "content": "Force on a current-carrying conductor"
     },
     {
       "type": "text",
-      "content": "A stationary charge experiences no force from a static magnetic field. However, once the charge is in motion, a force emerges. This magnetic force, a component of the broader Lorentz force, has a unique directional property: it is always perpendicular to both the velocity of the charge and the magnetic field itself. The magnitude of this force depends on the charge, its speed, the strength of the magnetic field, and the angle between the velocity and field vectors."
+      "content": "A wire carrying a current is a stream of moving charges, so when it lies in a magnetic field it feels a force. This is the motor effect. The size of the force depends on the field strength $B$, the current $I$, the length $L$ of wire that lies in the field, and the angle $\\theta$ between the current and the field. The force is a maximum when the wire is perpendicular to the field and drops to zero when the wire runs along the field lines."
     },
     {
       "type": "formula",
-      "content": "Magnetic Force: $F_B = qvB\\sin\\theta$"
+      "content": "F = BIL\\sin\\theta"
+    },
+    {
+      "type": "text",
+      "content": "Here $B$ is in tesla (T), $I$ in amperes (A), $L$ in metres (m) and the force $F$ in newtons (N). The direction of the force is perpendicular to BOTH the current and the field, and you find it with Fleming's left-hand rule."
     },
     {
       "type": "keyPoints",
       "items": [
-        "The force is maximum when velocity $\\vec{v}$ is perpendicular to the magnetic field $\\vec{B}$ ($\\theta = 90^{\\circ}$, $\\sin\\theta = 1$).",
-        "The force is zero if the charge moves parallel or anti-parallel to the magnetic field ($\\theta = 0^{\\circ}$ or $180^{\\circ}$, $\\sin\\theta = 0$).",
-        "The direction is given by the right-hand rule for positive charges and the opposite direction for negative charges."
+        "**Magnitude:** $F = BIL\\sin\\theta$ — largest when the wire is perpendicular to $B$ ($\\theta = 90^\\circ$), zero when parallel ($\\theta = 0^\\circ$).",
+        "**Fleming's left-hand rule (for conventional current):** thumb = thruST (Force), First finger = Field, seCond finger = Current.",
+        "**Direction:** the force is always perpendicular to both the current and the field — it points out of the plane containing them.",
+        "**The motor effect** is the name for this force on a current-carrying conductor; it is what makes electric motors turn."
       ]
-    },
-    {
-      "type": "heading",
-      "content": "Circular Motion in a Uniform Magnetic Field"
-    },
-    {
-      "type": "text",
-      "content": "Consider a charge entering a uniform magnetic field with its velocity perpendicular to the field lines. The magnetic force will be constant in magnitude ($F = qvB$) and always directed at 90° to the velocity. A force that is constant in magnitude and always perpendicular to velocity is the definition of a centripetal force. Therefore, the charged particle will undergo uniform circular motion. We can find the radius of this circle by equating the magnetic force to the formula for centripetal force."
-    },
-    {
-      "type": "formula",
-      "content": "Magnetic Force = Centripetal Force \\\\ $qvB = \\frac{mv^2}{r}$ \\\\ Radius of path: $r = \\frac{mv}{qB}$"
     },
     {
       "type": "workedExample",
-      "question": "A proton (mass $1.67 \\times 10^{-27}$ kg, charge $+1.60 \\times 10^{-19}$ C) is injected with a velocity of $2.0 \\times 10^6$ m s$^{-1}$ perpendicularly into a uniform magnetic field of strength 0.50 T. \n a) Calculate the magnitude of the magnetic force on the proton. \n b) Determine the radius of the circular path it follows.",
-      "solution": "a) The velocity is perpendicular to the field, so $\\theta = 90^{\\circ}$ and $\\sin\\theta = 1$. \n Using the formula for magnetic force: \n $F = qvB\\sin\\theta$ [1] \n $F = (1.60 \\times 10^{-19} \\text{ C}) \\times (2.0 \\times 10^6 \\text{ m s}^{-1}) \\times (0.50 \\text{ T}) \\times \\sin(90^{\\circ})$ \n $F = 1.6 \\times 10^{-13}$ N [1] \n\n b) The magnetic force provides the centripetal force for the circular motion. \n $F_{magnetic} = F_{centripetal}$ \n $qvB = \\frac{mv^2}{r}$ [1] \n Rearranging for the radius, $r$: \n $r = \\frac{mv}{qB}$ [1] \n $r = \\frac{(1.67 \\times 10^{-27} \\text{ kg}) \\times (2.0 \\times 10^6 \\text{ m s}^{-1})}{(1.60 \\times 10^{-19} \\text{ C}) \\times (0.50 \\text{ T})}$ \n $r = \\frac{3.34 \\times 10^{-21}}{8.0 \\times 10^{-20}}$ \n $r = 0.04175$ m [1] \n $r \\approx 4.2$ cm (to 2 s.f.) [1]"
-    },
-    {
-      "type": "heading",
-      "content": "Motion in Crossed Electric and Magnetic Fields"
-    },
-    {
-      "type": "text",
-      "content": "When a charged particle moves through a region with both an electric field ($\"E\"$) and a magnetic field ($\"B\"$), it experiences both an electric force ($F_E = qE$) and a magnetic force ($F_B = qvB\\sin\\theta$). A particularly useful arrangement is when the E-field, B-field, and the particle's velocity are all mutually perpendicular. In this case, the electric and magnetic forces act in opposite directions. By adjusting the field strengths, we can create a situation where these two forces are perfectly balanced."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "This setup is known as a velocity selector.",
-        "For a particle to pass through undeflected, the net force must be zero: $F_E = F_B$.",
-        "This leads to the condition $qE = qvB$.",
-        "The charge $q$ cancels out, meaning the selection is independent of the particle's charge (as long as it is not zero). The selected velocity is given by $v = E/B$."
-      ]
+      "question": "A straight wire of length 0.25 m carries a current of 4.0 A. It lies perpendicular to a uniform magnetic field of flux density 0.30 T. Calculate the magnetic force on the wire. [3]",
+      "solution": "**List the quantities.**\n$B = 0.30$ T, $I = 4.0$ A, $L = 0.25$ m, $\\theta = 90^\\circ$ so $\\sin\\theta = 1$.\n\n**Choose the equation.** Force on a current-carrying conductor: $F = BIL\\sin\\theta$.  [M1: correct equation]\n\n**Substitute.**\n$F = (0.30)(4.0)(0.25)(1)$  [M1: correct substitution]\n\n**Evaluate.**\n$F = 0.30$ N.  [A1: answer with unit]\n\n**Final answer:** the force on the wire is $0.30$ N, directed perpendicular to both the current and the field (found from Fleming's left-hand rule)."
     },
     {
       "type": "examTip",
-      "content": "Always be careful with the direction of forces. For the right-hand rule, remember it is defined for a POSITIVE charge. If the particle is negative (like an electron), the force will be in the OPPOSITE direction to what the rule predicts. It's a common place to lose marks."
-    },
-    {
-      "type": "workedExample",
-      "question": "A velocity selector has a magnetic field of strength 0.10 T. A beam of ions with charge $+2e$ is fired into the selector. Only ions with a speed of $5.0 \\times 10^5$ m s$^{-1}$ pass through undeflected. The magnetic field, electric field and ion velocity are mutually perpendicular. \n a) Calculate the required strength of the electric field. \n b) Describe the direction of the electric field relative to the magnetic field and the velocity for the ions to pass undeflected.",
-      "solution": "a) For the ions to pass undeflected, the magnetic force must be equal and opposite to the electric force. \n $F_E = F_B$ \n $qE = qvB$ [1] \n The charge $q$ cancels, so we can solve for E: \n $E = vB$ [1] \n $E = (5.0 \\times 10^5 \\text{ m s}^{-1}) \\times (0.10 \\text{ T})$ \n $E = 5.0 \\times 10^4$ V m$^{-1}$ (or N C$^{-1}$) [1] \n\n b) Let's define a coordinate system. Let the velocity $\\vec{v}$ be in the $+x$ direction and the magnetic field $\\vec{B}$ be in the $+z$ direction (out of the page). \n Using the right-hand rule for the positive ions: thumb along $+x$, fingers along $+z$. The palm pushes upwards, so the magnetic force $\\vec{F}_B$ is in the $+y$ direction. [1] \n For the net force to be zero, the electric force $\\vec{F}_E$ must be in the opposite direction, i.e., the $-y$ direction. \n Since the ions are positively charged, the electric force is in the same direction as the electric field ($\"\\vec{F}_E = q\\vec{E}\"$). \n Therefore, the electric field $\\vec{E}$ must be directed in the $-y$ direction. [1] \n The electric field must be perpendicular to both the velocity and the magnetic field."
+      "content": "Watch the angle. $F = BIL\\sin\\theta$ uses the angle between the current and the field, not the angle to some surface. If a wire is angled at $30^\\circ$ to the field, use $\\sin 30^\\circ = 0.5$, not $\\sin 60^\\circ$. When the wire is described as 'perpendicular' the factor is $\\sin 90^\\circ = 1$ — but never leave it out silently, because examiners want to see you accounted for the angle."
     },
     {
       "type": "heading",
-      "content": "Helical Motion"
+      "content": "Force on a moving charge"
     },
     {
       "type": "text",
-      "content": "What if the initial velocity of the charged particle is not perpendicular to the magnetic field? We can resolve the velocity vector into two components: one parallel to the B-field ($v_\\parallel$) and one perpendicular to it ($v_\\perp$). The parallel component is unaffected by the magnetic field, so the particle continues to move along the field direction with constant velocity $v_\\parallel$. The perpendicular component, however, causes the particle to execute circular motion. The combination of uniform motion in one direction and circular motion in a plane perpendicular to it results in a helical, or corkscrew-like, path. This is the principle behind 'magnetic bottles' used in fusion research and explains why charged particles from the sun (the solar wind) spiral around the Earth's magnetic field lines, causing the aurora."
+      "content": "The force on a wire is really the combined force on all the individual charges drifting through it. Zoom in on a single charge $q$ moving with speed $v$ through a field $B$ and the force on it is $F = qvB\\sin\\theta$, where $\\theta$ is the angle between the velocity and the field. Just like the wire, a stationary charge feels no magnetic force, and a charge moving along the field lines feels none either — only the component of velocity perpendicular to the field matters."
+    },
+    {
+      "type": "formula",
+      "content": "F = qvB\\sin\\theta"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Only moving charges** feel a magnetic force; a charge at rest feels none.",
+        "**Only the perpendicular component of velocity counts** — the force is $qvB\\sin\\theta$, zero when $v$ is parallel to $B$.",
+        "**Direction:** treat a positive charge's velocity as the current direction and apply Fleming's left-hand rule; for a negative charge, reverse the result.",
+        "**No work is done:** the force is perpendicular to $v$, so the speed and kinetic energy stay constant — the field only changes direction."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An electron (charge magnitude $1.6 \\times 10^{-19}$ C) moves at $3.0 \\times 10^{7}$ m s⁻¹ perpendicular to a uniform magnetic field of flux density $0.20$ T. Calculate the magnitude of the magnetic force on the electron. [3]",
+      "solution": "**List the quantities.**\n$q = 1.6 \\times 10^{-19}$ C, $v = 3.0 \\times 10^{7}$ m s⁻¹, $B = 0.20$ T, $\\theta = 90^\\circ$ so $\\sin\\theta = 1$.\n\n**Choose the equation.** Force on a moving charge: $F = qvB\\sin\\theta$.  [M1: correct equation]\n\n**Substitute.**\n$F = (1.6 \\times 10^{-19})(3.0 \\times 10^{7})(0.20)(1)$  [M1: correct substitution]\n\n**Evaluate.**\n$F = 9.6 \\times 10^{-13}$ N.  [A1: answer with unit]\n\n**Final answer:** the force has magnitude $9.6 \\times 10^{-13}$ N. Because the electron is negative, its direction is opposite to that given by Fleming's left-hand rule applied to the velocity."
+    },
+    {
+      "type": "heading",
+      "content": "Circular motion in a uniform magnetic field"
+    },
+    {
+      "type": "text",
+      "content": "Fire a charge into a uniform magnetic field so that its velocity is perpendicular to the field, and something elegant happens. The magnetic force has a constant magnitude $qvB$ (the speed cannot change, because the force does no work) and it always points at right angles to the velocity. A constant-magnitude force that is always perpendicular to the motion is exactly the definition of a centripetal force, so the charge is pushed round a circle at constant speed. Equating the magnetic force to the centripetal force gives the radius of that circle."
+    },
+    {
+      "type": "formula",
+      "content": "qvB = \\frac{mv^2}{r} \\quad\\Longrightarrow\\quad r = \\frac{mv}{qB}"
+    },
+    {
+      "type": "text",
+      "content": "The radius grows with the particle's momentum ($mv$) and shrinks as the charge or field increases. This is why a mass spectrometer can separate ions: with the same speed, charge and field, heavier ions swing round on wider arcs. Notice the speed $v$ cancels from neither side by accident — it stays in the formula, so faster particles do trace larger circles even though the field does no work on them."
+    },
+    {
+      "type": "workedExample",
+      "question": "A proton ($q = 1.6 \\times 10^{-19}$ C, $m = 1.67 \\times 10^{-27}$ kg) enters a $0.50$ T magnetic field at $2.0 \\times 10^{6}$ m s⁻¹ perpendicular to the field. Calculate the radius of its circular path. [3]",
+      "solution": "**Model answer — full working.**\n\n**State the principle.** In a uniform field the magnetic force provides the centripetal force:\n$qvB = \\dfrac{mv^2}{r}$, which rearranges to $r = \\dfrac{mv}{qB}$.\n\n**Substitute the values.**\n$r = \\dfrac{(1.67 \\times 10^{-27})(2.0 \\times 10^{6})}{(1.6 \\times 10^{-19})(0.50)}$\n\n**Evaluate.**\n$r = \\dfrac{3.34 \\times 10^{-21}}{8.0 \\times 10^{-20}} = 0.0418$ m $\\approx 4.2 \\times 10^{-2}$ m.\n\n**Final answer:** the radius of the proton's path is about $4.2 \\times 10^{-2}$ m (4.2 cm).\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct physics and rearrangement.** Awarded for equating the magnetic force to the centripetal force, $qvB = \\dfrac{mv^2}{r}$, and rearranging to $r = \\dfrac{mv}{qB}$. This is a METHOD mark: it is earned for the correct relationship even if the arithmetic later slips.\n- **M1 — correct substitution.** Awarded for putting the right numbers in the right places: $r = \\dfrac{(1.67 \\times 10^{-27})(2.0 \\times 10^{6})}{(1.6 \\times 10^{-19})(0.50)}$. The engine checks the values, not just the final digits.\n- **A1 — answer with unit.** Awarded for $r \\approx 4.2 \\times 10^{-2}$ m. Here ECF protects you: a student who wrote the correct formula and substitution but mis-keyed the final division still keeps the two method marks, and if their number follows correctly from THEIR earlier working the answer mark is protected too.\n\n**'Accept answers that round correctly.'** The engine accepts $0.042$ m, $4.2 \\times 10^{-2}$ m or $4.18 \\times 10^{-2}$ m — it does not demand a fixed number of decimal places, only a correctly-rounded final value with the right unit.\n\n**Bottom line:** of the 3 marks, two are shielded from an arithmetic slip. A student who writes only '0.042 m' with no working risks losing 2 marks if the final number is wrong; a student who shows $qvB = mv^2/r$, the rearrangement and the substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write the physical principle ($qvB = mv^2/r$), the rearrangement, then the substitution, then the answer with its unit. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "The motor effect and forces between parallel wires"
+    },
+    {
+      "type": "text",
+      "content": "Because every current-carrying wire in a field feels a force, a coil of wire in a field feels a turning effect. In a simple d.c. motor the current runs up one side of a coil and down the other, so by Fleming's left-hand rule the two sides are pushed in opposite directions. That pair of opposite forces on either side of the axle is a couple, and it spins the coil — the motor effect turned into rotation. A commutator flips the current direction every half turn so the coil keeps rotating the same way."
+    },
+    {
+      "type": "text",
+      "content": "Two parallel wires interact through the same effect. Each wire produces a magnetic field in the space around it, and the other wire, carrying current through that field, feels a force $F = BIL$. Working through the directions with Fleming's left-hand rule gives a clean qualitative rule: currents in the same direction attract, and currents in opposite directions repel. This mutual magnetic force is how the ampere was historically defined."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Motor effect:** a current-carrying conductor in a magnetic field feels a force $F = BIL\\sin\\theta$.",
+        "**Electric motor:** opposite sides of a current-carrying coil are pushed in opposite directions, creating a torque that spins the coil.",
+        "**Parallel wires, same-direction currents:** attract.",
+        "**Parallel wires, opposite-direction currents:** repel."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "A charge in combined fields: the velocity selector"
+    },
+    {
+      "type": "text",
+      "content": "When a charge moves through a region containing both an electric field and a magnetic field, it feels an electric force $F_E = qE$ (which acts on the charge whether or not it is moving) and a magnetic force $F_B = qvB$ (which acts only because it is moving). A velocity selector arranges the two fields at right angles so that these forces point in opposite directions. The electric force $qE$ is independent of speed, but the magnetic force $qvB$ grows with speed, so the two can balance for only one particular speed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A velocity selector uses perpendicular (crossed) electric and magnetic fields.",
+        "The electric and magnetic forces on the charge are set to point in opposite directions.",
+        "They balance when $qE = qvB$; the charge cancels, giving the selected speed $v = \\dfrac{E}{B}$.",
+        "Only charges with that exact speed pass straight through undeflected. Faster charges feel a larger magnetic force and are deflected one way; slower charges feel a larger relative electric force and are deflected the other way — regardless of their charge or mass."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A velocity selector has crossed fields with magnetic flux density $0.15$ T. It is designed to let through only particles travelling at $2.0 \\times 10^{5}$ m s⁻¹. Calculate the electric field strength required. [3]",
+      "solution": "**State the principle.** A particle passes straight through only when the electric force balances the magnetic force:\n$F_E = F_B \\Rightarrow qE = qvB$.  [M1: correct condition]\n\n**Simplify.** The charge $q$ cancels, so $E = vB$.\n\n**Substitute.**\n$E = (2.0 \\times 10^{5})(0.15)$  [M1: correct substitution]\n\n**Evaluate.**\n$E = 3.0 \\times 10^{4}$ V m⁻¹ (equivalently N C⁻¹).  [A1: answer with unit]\n\n**Final answer:** the required electric field strength is $3.0 \\times 10^{4}$ V m⁻¹. Notice the selected speed depends only on the ratio $E/B$, not on the particle's charge or mass."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Claiming the magnetic force changes a charge's speed** — it never does. The force is perpendicular to the velocity, so it does no work; speed and kinetic energy stay constant and the motion is a circle at constant speed, not a spiral.",
+        "**Forgetting the $\\sin\\theta$ factor** — both $F = BIL\\sin\\theta$ and $F = qvB\\sin\\theta$ use the angle between the current/velocity and the field. Only the perpendicular component contributes; a charge moving parallel to $B$ feels zero force.",
+        "**Using the wrong hand or forgetting to reverse for a negative charge** — Fleming's LEFT hand gives the force on conventional current or a positive charge. For an electron or other negative charge, reverse the direction.",
+        "**Mixing up the two force laws** — use $F = BIL\\sin\\theta$ for a current in a length of wire and $F = qvB\\sin\\theta$ for a single moving charge. Do not put a single charge into the wire formula or vice versa.",
+        "**Getting the attract/repel rule for parallel wires backwards** — same-direction currents attract, opposite-direction currents repel.",
+        "**Thinking the velocity selector's speed depends on the charge or mass** — it does not. Because $q$ cancels, $v = E/B$ selects by speed alone.",
+        "**Dropping units or over-rounding mid-calculation** — carry extra figures through the working and round only the final answer; always attach the correct unit (N, m, T, V m⁻¹)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The magnetic force on a moving charge is the engine behind an enormous amount of physics and technology. The circular-motion result $r = mv/qB$ is the working principle of mass spectrometers and cyclotrons, and the same force that spins a motor, run in reverse, is what generates electricity in the induction topic that follows. Master the habit here — decide whether you have a current or a single charge, pick the matching force law, watch the angle, use the left hand and reverse for negatives, and set magnetic force equal to centripetal force for circular paths — and the field topics that follow become variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Practice Problems",
-      "href": "/mark?subject=ib-physics-hl&topic=D.3"
+      "label": "Get a Paper 2 calculation marked: solve a magnetic-force problem with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=D.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Video explanation of Lorentz Force",
-          "href": "https://www.youtube.com/watch?v=N8L386eBq3o"
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
         },
         {
           "label": "Interactive simulation of charges in fields",
-          "href": "https://phet.colorado.edu/en/simulations/charges-and-fields"
-        },
-        {
-          "label": "In-depth article on particle accelerators",
-          "href": "https://home.cern/science/accelerators"
+          "href": "https://phet.colorado.edu/en/simulations/motion-of-a-charged-particle-in-a-magnetic-field"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
     "title": "Interactive simulation of charges in fields",
-    "embedUrl": "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_en.html",
-    "launchUrl": "https://phet.colorado.edu/en/simulations/charges-and-fields",
+    "embedUrl": "https://phet.colorado.edu/sims/html/motion-of-a-charged-particle-in-a-magnetic-field/latest/motion-of-a-charged-particle-in-a-magnetic-field_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/motion-of-a-charged-particle-in-a-magnetic-field",
     "hint": "Explore “Interactive simulation of charges in fields” — drag sliders and watch how the model responds in real time.",
     "aspectRatio": "834 / 504",
     "attribution": {

@@ -1,213 +1,408 @@
 {
   "slug": "b-5-current-and-circuits",
   "topicCode": "B.5",
+  "unit": {
+    "code": "B",
+    "title": "The particulate nature of matter"
+  },
   "title": "Current and circuits",
   "paper": "P2",
   "paperName": "Physics HL",
   "status": "premium",
-  "summary": "This lesson extends our understanding of electric circuits from Topic 5 to include capacitors. We will explore capacitance, the energy stored in a capacitor, and the behaviour of resistor-capacitor (RC) circuits, focusing on the exponential discharge process and the concept of the time constant.",
-  "durationMin": 22,
-  "updated": "2026-06-20",
+  "summary": "Direct-current circuits are where the abstract ideas of charge and energy become something you can measure with a meter. This lesson builds the whole quantitative toolkit of B.5: electric charge and current, potential difference and electromotive force, resistance and Ohm's law, resistivity, the difference between ohmic and non-ohmic behaviour, resistors in series and parallel, electrical power, internal resistance and terminal potential difference, and Kirchhoff's two laws. It is one of the most calculation-heavy topics in the course, so it is built around fully worked examples marked exactly the way our engine marks your own practice.",
+  "durationMin": 30,
+  "updated": "2026-07-03",
   "learningObjectives": [
-    "Define capacitance and solve problems involving charge, voltage, and capacitance.",
-    "Derive and apply formulas for the energy stored in a capacitor.",
-    "Analyse the exponential discharge of a capacitor through a resistor.",
-    "Define and calculate the time constant for an RC circuit and use it to solve problems."
+    "Define electric charge and current ($I = \\Delta q / \\Delta t$), potential difference and electromotive force, and use them correctly.",
+    "Apply Ohm's law ($V = IR$) and the resistivity relation ($R = \\rho L / A$), and distinguish ohmic from non-ohmic behaviour using I–V characteristics.",
+    "Calculate the combined resistance of resistors in series and in parallel, and the current and potential difference in each.",
+    "Calculate electrical power using $P = VI = I^2R = V^2/R$, and analyse sources with internal resistance ($\\varepsilon = I(R+r)$).",
+    "Apply Kirchhoff's laws (conservation of charge and energy) and present working so that method marks and error-carried-forward (ECF) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "B.5"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Capacitors: The Circuit's Rechargeable Battery",
-    "summary": "A capacitor is a component that stores electrical charge and energy, acting like a tiny, fast-charging battery. It can then release this stored energy back into the circuit, with the voltage and current decreasing over time.",
-    "analogy": "Imagine a water tower (the capacitor) being filled with water (charge). The water pressure at the bottom (voltage) increases as it fills. If you open a tap connected to a narrow pipe (a resistor) at the bottom, water flows out (current). Initially, the flow is strong because the pressure is high, but as the water level drops, the pressure decreases, and the flow slows to a trickle. The size of the tower determines how much water it can hold for a given pressure (its capacitance), and the narrowness of the pipe determines how slowly it empties (the time constant).",
+    "title": "The Water Park of Circuits",
+    "summary": "A circuit moves charge the way a water park moves water. A pump lifts water and gives it energy; pipes and slides carry it and slow it down. Swap 'water' for 'charge' and you have a working mental model of every DC circuit.",
+    "analogy": "A pump (the battery) raises water to a height, giving each litre energy — that energy per unit of charge is the electromotive force. The litres passing a point each second are the current. Slides and narrow pipes (resistors) oppose the flow, and a long thin pipe opposes it more than a short fat one — exactly what resistivity describes. The height the water actually falls through in the external pipes is the terminal potential difference, and it is a little less than the full pump height because the pump itself wastes some energy internally (internal resistance).",
     "steps": [
-      "First, a capacitor is connected to a power source like a battery. It accumulates charge on its plates until the voltage across it equals the battery's voltage.",
-      "Next, the battery is disconnected, and the charged capacitor is connected to a resistor, forming a simple 'RC' circuit.",
-      "Charge begins to flow from the capacitor through the resistor, creating a current. This process is called 'discharging'.",
-      "The current, and the voltage across the capacitor, both decrease exponentially over time. The rate of this decrease is determined by the capacitance (C) and resistance (R)."
+      "Start from the two things you can measure directly: current $I$ (flow of charge) and potential difference $V$ (energy given up per unit charge).",
+      "Link them through resistance with Ohm's law, $V = IR$, for any component at a fixed temperature.",
+      "Combine components: resistances add in series, but in parallel the extra paths make the total resistance fall below the smallest branch.",
+      "Account for the real source: subtract the 'lost volts' $Ir$ inside the battery to get the terminal potential difference actually delivered to the circuit."
     ]
   },
+  "keyConcepts": [
+    "conservation of charge",
+    "conservation of energy",
+    "energy dissipation"
+  ],
   "flashcards": [
     {
-      "front": "What is capacitance?",
-      "back": "Capacitance (C) is the ratio of the charge (Q) stored on one plate of a capacitor to the potential difference (V) between the plates. It is a measure of a capacitor's ability to store charge. Formula: $C = Q/V$."
+      "front": "Electric current ($I$)",
+      "back": "The rate of flow of electric charge: $I = \\dfrac{\\Delta q}{\\Delta t}$. Unit: ampere (A), where $1\\ \\text{A} = 1\\ \\text{C s}^{-1}$. Conventional current is the direction positive charge would move.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the unit of capacitance?",
-      "back": "The Farad (F). One Farad is one Coulomb per Volt (1 F = 1 C V⁻¹). Practical capacitors are often measured in microfarads (μF), nanofarads (nF), or picofarads (pF)."
+      "front": "Potential difference ($V$)",
+      "back": "The energy transferred from electrical to other forms per unit charge passing through a component: $V = W/q$. Unit: volt (V), where $1\\ \\text{V} = 1\\ \\text{J C}^{-1}$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How is energy stored in a capacitor calculated?",
-      "back": "The electric potential energy (E) stored is given by three equivalent formulas: $E = \\frac{1}{2}QV$, $E = \\frac{1}{2}CV^2$, and $E = \\frac{1}{2}\\frac{Q^2}{C}$."
+      "front": "Electromotive force ($\\varepsilon$)",
+      "back": "The energy supplied per unit charge by a source (e.g. a cell), converting chemical to electrical energy. Also measured in volts. It is NOT a force despite the name.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a dielectric?",
-      "back": "A dielectric is an electrical insulator that is placed between the plates of a capacitor. It increases the capacitance by becoming polarised, which reduces the electric field between the plates."
+      "front": "Resistance ($R$)",
+      "back": "The opposition to current, defined as $R = V/I$. Unit: ohm ($\\Omega$), where $1\\ \\Omega = 1\\ \\text{V A}^{-1}$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the time constant ($\\\\tau$) of an RC circuit?",
-      "back": "The time constant is a measure of how quickly a capacitor discharges. It is the time taken for the charge, voltage, or current to decrease to $1/e$ (approximately 37%) of its initial value."
+      "front": "Ohm's law",
+      "back": "For a conductor at constant temperature, current is proportional to potential difference: $V = IR$ with $R$ constant. It is a property of ohmic conductors, not a universal law.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the formula for the time constant?",
-      "back": "The time constant ($\\\\tau$) is the product of the resistance (R) and the capacitance (C). Formula: $\\\\tau = RC$. The unit of the time constant is seconds."
+      "front": "Resistivity ($\\rho$)",
+      "back": "A material property: $R = \\dfrac{\\rho L}{A}$, so resistance rises with length and falls with cross-sectional area. Unit of $\\rho$: $\\Omega\\,\\text{m}$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What equation describes the charge $Q$ on a discharging capacitor as a function of time $t$?",
-      "back": "$Q(t) = Q_0 e^{-t/RC}$, where $Q_0$ is the initial charge at $t=0$."
+      "front": "Ohmic vs non-ohmic",
+      "back": "Ohmic: constant $R$, straight-line I–V graph through the origin (metal resistor). Non-ohmic: $R$ changes, so the I–V graph curves (filament lamp, diode).",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What equation describes the voltage $V$ across a discharging capacitor as a function of time $t$?",
-      "back": "$V(t) = V_0 e^{-t/RC}$, where $V_0$ is the initial potential difference at $t=0$."
+      "front": "Resistors in series",
+      "back": "$R_{\\text{total}} = R_1 + R_2 + \\ldots$ Same current through each; the source p.d. is shared between them.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What equation describes the current $I$ in an RC circuit during discharge as a function of time $t$?",
-      "back": "$I(t) = I_0 e^{-t/RC}$, where $I_0$ is the initial current at $t=0$. Note that $I_0 = V_0/R$."
+      "front": "Resistors in parallel",
+      "back": "$\\dfrac{1}{R_{\\text{total}}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} + \\ldots$ Same p.d. across each; the current splits between branches. The total is always LESS than the smallest branch.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How do you combine capacitors in parallel?",
-      "back": "The total capacitance is the sum of the individual capacitances: $C_{parallel} = C_1 + C_2 + ...$. This is the opposite rule to resistors in parallel."
+      "front": "Electrical power",
+      "back": "$P = VI = I^2R = \\dfrac{V^2}{R}$. Unit: watt (W). Choose the version that uses the two quantities you already know.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How do you combine capacitors in series?",
-      "back": "The reciprocal of the total capacitance is the sum of the reciprocals of the individual capacitances: $\\frac{1}{C_{series}} = \\frac{1}{C_1} + \\frac{1}{C_2} + ...$. This is the opposite rule to resistors in series."
+      "front": "Internal resistance ($r$)",
+      "back": "The resistance inside a source itself. When current flows it dissipates energy as heat inside the cell, producing 'lost volts' equal to $Ir$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Trap: A question asks for the time to discharge to half the initial voltage. Is this the time constant?",
-      "back": "No. The time constant is the time to discharge to 37% ($1/e$) of the initial value. The time to reach half the initial value is called the half-life, $t_{1/2}$, and is equal to $RC \\ln(2)$."
+      "front": "Terminal potential difference",
+      "back": "The p.d. actually delivered across the source's terminals: $V_{\\text{terminal}} = \\varepsilon - Ir$. It equals the p.d. across the external load and is always less than $\\varepsilon$ when current flows.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "EMF and internal resistance",
+      "back": "For a source driving a single external resistor: $\\varepsilon = I(R + r)$. The EMF is shared between the load ($IR$) and the internal resistance ($Ir$).",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Kirchhoff's first law (junction)",
+      "back": "The sum of currents into a junction equals the sum out — a statement of conservation of CHARGE. This is why current splits in parallel and recombines.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Kirchhoff's second law (loop)",
+      "back": "Around any closed loop, the sum of EMFs equals the sum of the p.d. drops — a statement of conservation of ENERGY.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Exam Trap: parallel reciprocal",
+      "back": "After adding the reciprocals you have $1/R_{\\text{total}}$, NOT $R_{\\text{total}}$. You must invert the answer. Sanity check: the result must be smaller than the smallest branch.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Three resistors are connected in series. Compared with the current leaving the battery, the current in the middle resistor is:",
+      "options": [
+        "Larger, because charge builds up",
+        "Smaller, because the earlier resistor uses some current up",
+        "Exactly the same — current is identical everywhere in a series loop",
+        "It depends on the resistance values"
+      ],
+      "answer": "Exactly the same — current is identical everywhere in a series loop"
+    },
+    {
+      "prompt": "A current of 1.2 A reaches a junction and splits into two parallel branches. The currents in the branches must:",
+      "options": [
+        "Each equal 1.2 A",
+        "Add up to 1.2 A",
+        "Each equal 0.6 A regardless of the resistances",
+        "Multiply to give 1.2 A"
+      ],
+      "answer": "Add up to 1.2 A"
+    },
+    {
+      "prompt": "A 6.0 Ω and a 3.0 Ω resistor are connected in parallel. The total resistance of the combination is:",
+      "options": [
+        "9.0 Ω",
+        "4.5 Ω",
+        "2.0 Ω",
+        "18 Ω"
+      ],
+      "answer": "2.0 Ω"
+    },
+    {
+      "prompt": "A real cell drives a current through a resistor. Its terminal potential difference is:",
+      "options": [
+        "Greater than its EMF, because current adds energy",
+        "Equal to its EMF, because the cell is the energy source",
+        "Less than its EMF, because of the 'lost volts' $Ir$ across the internal resistance",
+        "Zero, because all the EMF is used inside the cell"
+      ],
+      "answer": "Less than its EMF, because of the 'lost volts' $Ir$ across the internal resistance"
+    },
+    {
+      "prompt": "As the current through a filament lamp increases, the filament heats up. Its I–V graph is a curve (not a straight line) because:",
+      "options": [
+        "It obeys Ohm's law perfectly",
+        "Its resistance stays constant but the voltage changes",
+        "Its resistance increases with temperature, so it is non-ohmic",
+        "The current is proportional to the square of the voltage"
+      ],
+      "answer": "Its resistance increases with temperature, so it is non-ohmic"
     }
   ],
   "faq": [
     {
-      "q": "Why are the rules for combining capacitors the opposite of resistors?",
-      "a": "For resistors in series, the current is the same but voltage adds up. For capacitors in series, the charge $Q$ on each is the same, but the voltages add up ($V_{tot} = V_1 + V_2$). Since $V=Q/C$, this gives $Q/C_{tot} = Q/C_1 + Q/C_2$, which simplifies to the reciprocal rule. For capacitors in parallel, the voltage is the same across each, but the total charge is the sum ($Q_{tot} = Q_1 + Q_2$). Since $Q=CV$, this gives $C_{tot}V = C_1V + C_2V$, which simplifies to $C_{tot} = C_1 + C_2$."
+      "q": "What is the real difference between EMF and potential difference?",
+      "a": "EMF is about energy being SUPPLIED. It is the chemical (or other) energy converted to electrical energy per unit charge inside a source. Potential difference is about energy being USED: the electrical energy converted to heat, light or other forms per unit charge in a component. For a battery driving a circuit, the EMF always exceeds the terminal p.d., because some energy is dissipated inside the cell's own internal resistance before the charge even leaves the terminals."
     },
     {
-      "q": "This lesson focuses on discharging. What happens when a capacitor is charging?",
-      "a": "Charging also follows an exponential pattern, but in reverse. When charging a capacitor through a resistor from a supply voltage $V_s$, the voltage across the capacitor increases over time according to $V(t) = V_s(1 - e^{-t/RC})$. The current starts at a maximum ($I_0 = V_s/R$) and decays to zero exponentially, just as in discharging. The time constant $\\tau=RC$ has the same meaning."
+      "q": "Why does adding a resistor in parallel DECREASE the total resistance?",
+      "a": "Each parallel resistor is an extra route for charge to flow. Opening another checkout lane at a shop lets more customers through per minute even if that lane is slow; likewise an extra branch lets more current flow for the same p.d., which by $R = V/I$ means a smaller total resistance. That is why the parallel total is always less than the smallest individual branch — a quick way to catch a wrong answer."
     },
     {
-      "q": "How exactly does a dielectric material increase capacitance?",
-      "a": "A dielectric is an insulator. When placed in the electric field between the capacitor plates, its molecules become polarised, forming tiny electric dipoles. These dipoles align themselves to create an internal electric field that opposes the external field from the plates. This reduces the net electric field, which in turn reduces the potential difference $V$ for the same amount of charge $Q$. Since capacitance $C = Q/V$, a smaller $V$ for the same $Q$ results in a larger capacitance $C$."
+      "q": "Is a filament lamp ohmic or non-ohmic, and what does its I–V graph look like?",
+      "a": "It is non-ohmic. As current increases, the thin metal filament gets hot, and the resistance of a metal rises with temperature. So the graph of current against voltage is not a straight line — it curves and flattens as the voltage climbs, showing the resistance ($V/I$) growing. A diode is also non-ohmic: it conducts freely one way above a threshold voltage and blocks current the other way."
+    },
+    {
+      "q": "When do I use $\\varepsilon = I(R+r)$ versus $V = IR$?",
+      "a": "Use $V = IR$ for any single resistor or external combination — it relates the p.d. across that part to the current through it. Use $\\varepsilon = I(R+r)$ for the whole loop when the source has internal resistance, because the EMF must drive the current through BOTH the external load $R$ and the internal resistance $r$. The terminal p.d. you would measure with a voltmeter across the cell is $V_{\\text{terminal}} = \\varepsilon - Ir = IR$."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our previous studies of circuits, we focused on resistors, which dissipate energy. Now, we introduce a new component: the capacitor. Capacitors are unique in their ability to store electrical energy and then release it back into a circuit. This lesson delves into the principles of capacitance, energy storage, and the transient behaviour of circuits containing both resistors and capacitors (RC circuits)."
+      "content": "Almost every measurement you make in electricity comes back to two ideas: how much charge is flowing (current) and how much energy each unit of charge carries or gives up (potential difference). This lesson builds the model of the direct-current circuit from those foundations, adds resistance and Ohm's law, and then handles the situations exams love: resistors combined in series and parallel, real cells with internal resistance, and circuits analysed with Kirchhoff's laws. B.5 is heavily quantitative, so every worked example below is laid out exactly the way marks are awarded — because in this topic HOW you show your working decides how many marks you keep."
     },
     {
       "type": "heading",
-      "content": "Capacitance"
+      "content": "Charge, current and potential difference"
     },
     {
       "type": "text",
-      "content": "A capacitor typically consists of two conductive plates separated by an insulating material called a dielectric. When connected to a voltage source, charge of equal magnitude but opposite sign accumulates on each plate. The capacitance, $C$, is a measure of how much charge $Q$ the capacitor can store for a given potential difference $V$ across it."
+      "content": "Electric current is the rate at which charge flows past a point. If a charge $\\Delta q$ passes in a time $\\Delta t$, the current is $I = \\Delta q / \\Delta t$, measured in amperes (1 A = 1 C s⁻¹). By convention we take current as the direction positive charge would move, even though in a metal it is electrons that drift the other way. Potential difference is the partner idea: it measures energy, not flow. The p.d. across a component is the electrical energy converted to other forms per unit charge passing through it, $V = W/q$, measured in volts (1 V = 1 J C⁻¹)."
     },
     {
       "type": "formula",
-      "content": "C = \\frac{Q}{V}"
-    },
-    {
-      "type": "text",
-      "content": "The SI unit for capacitance is the Farad (F), named after Michael Faraday. A one-Farad capacitor is very large; in practice, we usually work with microfarads (1 μF = $10^{-6}$ F), nanofarads (1 nF = $10^{-9}$ F), or picofarads (1 pF = $10^{-12}$ F). Capacitance is a geometric property, depending on the area of the plates, the distance between them, and the dielectric material used."
-    },
-    {
-      "type": "heading",
-      "content": "Energy Stored in a Capacitor"
-    },
-    {
-      "type": "text",
-      "content": "Work must be done by an external power source to move charge from one plate to the other against the opposing electric field. This work is stored as electric potential energy in the electric field between the plates. The energy stored can be expressed in several ways, depending on which variables are known."
-    },
-    {
-      "type": "formula",
-      "content": "E = \\frac{1}{2}QV = \\frac{1}{2}CV^2 = \\frac{1}{2}\\frac{Q^2}{C}"
+      "content": "I = \\frac{\\Delta q}{\\Delta t}"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The energy is stored in the electric field between the capacitor plates.",
-        "The formula $E = \\frac{1}{2}CV^2$ is often the most useful, as capacitance and voltage are frequently known or measured.",
-        "Remember that the energy is proportional to the square of the voltage ($V^2$) or the square of the charge ($Q^2$)."
+        "Current $I$ is a flow of charge; potential difference $V$ is energy transferred per unit charge.",
+        "Electromotive force $\\varepsilon$ is energy SUPPLIED per unit charge by a source; p.d. is energy USED per unit charge in a component. Both are in volts.",
+        "Conventional current flows from + to − in the external circuit; electron flow is opposite.",
+        "Charge is conserved: it is neither created nor destroyed as it moves round a circuit."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "Resistance, Ohm's law and resistivity"
+    },
+    {
+      "type": "text",
+      "content": "Resistance measures how strongly a component opposes current, defined as $R = V/I$ and measured in ohms ($\\Omega$). For many conductors at constant temperature the current is proportional to the p.d.: this is Ohm's law, written $V = IR$ with $R$ constant. Resistance also depends on the physical shape and material of a conductor. A longer wire has more resistance and a thicker wire has less, captured by the resistivity relation $R = \\rho L / A$, where $\\rho$ is the resistivity of the material (unit $\\Omega\\,$m), $L$ its length and $A$ its cross-sectional area."
+    },
+    {
+      "type": "formula",
+      "content": "V = IR \\qquad\\text{and}\\qquad R = \\frac{\\rho L}{A}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Ohm's law applies only to ohmic conductors at constant temperature — it is not universal.",
+        "Resistance $\\propto$ length and $\\propto 1/\\text{area}$: doubling the length doubles $R$; doubling the cross-sectional area halves $R$.",
+        "Resistivity $\\rho$ is a property of the MATERIAL; resistance $R$ is a property of a particular SAMPLE of it.",
+        "Rearrange Ohm's law freely: $I = V/R$ and $R = V/I$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Ohmic and non-ohmic behaviour: I–V characteristics"
+    },
+    {
+      "type": "text",
+      "content": "An I–V characteristic is a graph of current against potential difference for a component. Its shape tells you at a glance whether the component obeys Ohm's law. A metal resistor at constant temperature gives a straight line through the origin — its resistance ($V/I$) is constant, so it is ohmic. A filament lamp gives an S-shaped curve that flattens as the voltage rises: heating the filament raises its resistance, so it is non-ohmic. A diode is strongly non-ohmic — it conducts almost nothing until a threshold forward voltage, then the current rises steeply, and it blocks current in the reverse direction. For any point on any of these graphs the resistance is still $V/I$; only for the straight ohmic line is that ratio constant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Resistor (ohmic): straight line through the origin; constant resistance.",
+        "Filament lamp (non-ohmic): curve that flattens; resistance increases as it heats up.",
+        "Diode (non-ohmic): negligible current below the threshold voltage, then a steep rise; blocks reverse current.",
+        "Resistance at any point is always $V/I$ (the reciprocal gradient of a line from the origin), not the gradient of the curve itself."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Resistors in series and parallel"
+    },
+    {
+      "type": "text",
+      "content": "In series, components form a single path, so the SAME current flows through each and the source p.d. is shared between them; resistances simply add. In parallel, components connect across the same two points, so each has the SAME p.d. across it and the current splits between the branches; here the reciprocals of the resistances add. Because extra parallel paths make it easier for charge to flow, the combined parallel resistance is always smaller than the smallest single branch — a fact worth using as a check on every parallel calculation."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Series: } R_{\\text{total}} = R_1 + R_2 + \\ldots \\qquad \\text{Parallel: } \\frac{1}{R_{\\text{total}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\ldots"
     },
     {
       "type": "workedExample",
-      "question": "A 470 μF capacitor is connected to a 12.0 V battery and is fully charged. Calculate: \n a) The charge stored on the capacitor. \n b) The energy stored in the capacitor.",
-      "solution": "a) Identify knowns: $C = 470 \\text{ μF} = 470 \\times 10^{-6} \\text{ F}$, $V = 12.0 \\text{ V}$.\nUse the definition of capacitance: $C = Q/V \\implies Q = CV$.\n$Q = (470 \\times 10^{-6} \\text{ F}) \\times (12.0 \\text{ V})$\n$Q = 5.64 \\times 10^{-3} \\text{ C}$ or $5.64 \\text{ mC}$. [1 mark]\n\nb) Use the formula for energy stored. Using $E = \\frac{1}{2}CV^2$ is direct.\n$E = \\frac{1}{2} (470 \\times 10^{-6} \\text{ F}) \\times (12.0 \\text{ V})^2$ [1 mark for substitution]\n$E = \\frac{1}{2} (470 \\times 10^{-6}) \\times 144$\n$E = 0.03384 \\text{ J}$\n$E \\approx 3.38 \\times 10^{-2} \\text{ J}$ (to 3 s.f.) [1 mark for answer and unit]"
-    },
-    {
-      "type": "heading",
-      "content": "Discharging a Capacitor through a Resistor"
-    },
-    {
-      "type": "text",
-      "content": "When a charged capacitor is connected to a resistor, it forms an RC circuit. The capacitor begins to discharge, meaning the stored charge flows through the resistor, creating a current. As charge leaves the capacitor, the potential difference across it decreases. According to Ohm's law ($I=V/R$), this means the current in the circuit also decreases. This process is not linear; the charge, voltage, and current all decrease exponentially with time."
-    },
-    {
-      "type": "formula",
-      "content": "V(t) = V_0 e^{-t/RC} \\quad Q(t) = Q_0 e^{-t/RC} \\quad I(t) = I_0 e^{-t/RC}"
-    },
-    {
-      "type": "text",
-      "content": "Here, $V_0$, $Q_0$, and $I_0$ are the initial values at time $t=0$. The term $RC$ in the exponent is crucial and is known as the time constant."
-    },
-    {
-      "type": "heading",
-      "content": "The Time Constant, $\\tau$"
-    },
-    {
-      "type": "text",
-      "content": "The time constant, represented by the Greek letter tau ($\\tau$), characterises the rate of discharge in an RC circuit. It is defined as the product of the resistance and the capacitance."
-    },
-    {
-      "type": "formula",
-      "content": "\\tau = RC"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The unit of $\\tau$ is seconds. (Since $R = V/I$ and $C = Q/V$, $RC = (V/I)(Q/V) = Q/I = Q/(Q/t) = t$).",
-        "$\\tau$ is the time it takes for the voltage (or charge, or current) to fall to $1/e$ (approximately 37%) of its initial value.",
-        "A large time constant (large R or C) means a slow discharge.",
-        "A small time constant (small R or C) means a rapid discharge.",
-        "After 5 time constants ($t=5\\tau$), a capacitor is considered to be fully discharged, as its charge has dropped to less than 1% of its initial value ($e^{-5} \\approx 0.0067$)."
-      ]
+      "question": "A 12 V battery of negligible internal resistance is connected to a 4.0 Ω resistor in series with a parallel combination of a 12 Ω resistor and a 6.0 Ω resistor. Calculate (a) the total resistance of the circuit, (b) the current drawn from the battery, and (c) the current in the 6.0 Ω resistor. [6]",
+      "solution": "**Step 1 — combine the parallel pair.**\n$\\dfrac{1}{R_p} = \\dfrac{1}{12} + \\dfrac{1}{6.0} = \\dfrac{1}{12} + \\dfrac{2}{12} = \\dfrac{3}{12}$, so $R_p = \\dfrac{12}{3} = 4.0\\ \\Omega$.  [M1 method, A1 value]\n\n*Check: 4.0 Ω is smaller than the smaller branch (6.0 Ω), as it must be.*\n\n**Step 2 — add the series resistor for the total.**\n$R_{\\text{total}} = 4.0 + R_p = 4.0 + 4.0 = 8.0\\ \\Omega$.  [A1]\n\n**Step 3 — current from the battery (Ohm's law on the whole circuit).**\n$I = \\dfrac{V}{R_{\\text{total}}} = \\dfrac{12}{8.0} = 1.5\\ \\text{A}$.  [M1, A1]\n\n**Step 4 — current in the 6.0 Ω resistor.**\nThe p.d. across the parallel section is $V_p = I R_p = 1.5 \\times 4.0 = 6.0\\ \\text{V}$.\nEach branch has this same 6.0 V across it, so $I_{6} = \\dfrac{V_p}{6.0} = \\dfrac{6.0}{6.0} = 1.0\\ \\text{A}$.  [A1]\n\n*Check with Kirchhoff's first law: the 12 Ω branch carries $6.0/12 = 0.50$ A, and $1.0 + 0.50 = 1.5$ A — exactly the current drawn from the battery.*"
     },
     {
       "type": "examTip",
-      "content": "In data analysis questions, you may be asked to determine the time constant from a graph of voltage vs. time. You can do this by finding the time at which the voltage has dropped to $V_0/e$. A more robust method is to linearise the data. Plot $\\ln(V)$ against $t$. The equation becomes $\\ln(V) = \\ln(V_0) - \\frac{t}{RC}$. This is a straight line with a gradient of $-\\frac{1}{RC}$, from which you can calculate $\\tau = RC$."
+      "content": "For a parallel combination, always sanity-check that the combined resistance is smaller than the smallest branch. Here 4.0 Ω is below the 6.0 Ω branch, so it passes. If your 'total' ever comes out larger than one of the branches, you have almost certainly forgotten to take the final reciprocal — the single most common slip in this topic."
+    },
+    {
+      "type": "heading",
+      "content": "Electrical power"
+    },
+    {
+      "type": "text",
+      "content": "Power is the rate at which electrical energy is transferred. Combining $P = VI$ (energy per charge times charge per second) with Ohm's law gives three equivalent forms. Use whichever version fits the two quantities you already know: $P = VI$ when you have p.d. and current, $P = I^2R$ when you have current and resistance, and $P = V^2/R$ when you have p.d. and resistance. All give power in watts (W)."
+    },
+    {
+      "type": "formula",
+      "content": "P = VI = I^2 R = \\frac{V^2}{R}"
     },
     {
       "type": "workedExample",
-      "question": "In an experiment, a $2200 \\text{ μF}$ capacitor is discharged through a $5.5 \\text{ kΩ}$ resistor. The capacitor is initially charged to a potential difference of 9.0 V.\n a) Calculate the time constant of the circuit.\n b) Determine the potential difference across the capacitor after 20 s.",
-      "solution": "a) Identify knowns: $C = 2200 \\text{ μF} = 2.2 \\times 10^{-3} \\text{ F}$, $R = 5.5 \\text{ kΩ} = 5.5 \\times 10^3 \\text{ Ω}$.\nUse the formula for the time constant: $\\tau = RC$.\n$\\tau = (5.5 \\times 10^3 \\text{ Ω}) \\times (2.2 \\times 10^{-3} \\text{ F})$ [1 mark]\n$\\tau = 12.1 \\text{ s}$. [1 mark]\n\nb) Identify knowns: $V_0 = 9.0 \\text{ V}$, $t = 20 \\text{ s}$, and $RC = 12.1 \\text{ s}$.\nUse the exponential decay formula for voltage: $V(t) = V_0 e^{-t/RC}$.\n$V(20) = 9.0 \\times e^{-20/12.1}$ [1 mark for substitution]\n$V(20) = 9.0 \\times e^{-1.6528...}$\n$V(20) = 9.0 \\times 0.1915...$\n$V(20) \\approx 1.72 \\text{ V}$ (to 3 s.f.) [1 mark for answer]"
+      "question": "A resistor of resistance 15 Ω carries a steady current of 0.40 A. (a) Calculate the potential difference across it. (b) Calculate the power dissipated, and confirm your answer by a second method. [4]",
+      "solution": "**Step 1 — potential difference (Ohm's law).**\n$V = IR = 0.40 \\times 15 = 6.0\\ \\text{V}$.  [M1 method, A1 value]\n\n**Step 2 — power, first method.**\n$P = VI = 6.0 \\times 0.40 = 2.4\\ \\text{W}$.  [M1]\n\n**Step 3 — confirm with a second method.**\n$P = I^2 R = (0.40)^2 \\times 15 = 0.16 \\times 15 = 2.4\\ \\text{W}$ — the same value.  [A1]\n\n*A third route, $P = V^2/R = 6.0^2/15 = 36/15 = 2.4$ W, agrees, confirming the working.*"
+    },
+    {
+      "type": "heading",
+      "content": "EMF, internal resistance and terminal potential difference"
+    },
+    {
+      "type": "text",
+      "content": "A real cell is not a perfect source. It has an internal resistance $r$ in series with an ideal EMF $\\varepsilon$. When a current $I$ flows, some energy is dissipated inside the cell, producing 'lost volts' equal to $Ir$. The voltage actually available to the external circuit — the terminal potential difference — is therefore $V_{\\text{terminal}} = \\varepsilon - Ir$, which is also just the p.d. across the external load. For a single external resistor $R$ the EMF is shared between load and internal resistance, giving $\\varepsilon = I(R + r)$."
+    },
+    {
+      "type": "formula",
+      "content": "\\varepsilon = I(R + r) \\qquad V_{\\text{terminal}} = \\varepsilon - Ir = IR"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "EMF $\\varepsilon$ is the total energy per unit charge supplied by the source.",
+        "'Lost volts' $= Ir$ is the p.d. dropped across the internal resistance.",
+        "Terminal p.d. $= \\varepsilon - Ir$: always less than $\\varepsilon$ when current flows, and equal to $\\varepsilon$ only when $I = 0$ (open circuit).",
+        "A graph of $V_{\\text{terminal}}$ against $I$ is a straight line with intercept $\\varepsilon$ and gradient $-r$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A battery of EMF 9.0 V and internal resistance 1.5 Ω is connected to an external resistor of 6.0 Ω. Calculate (a) the current in the circuit, (b) the terminal potential difference, and (c) the power dissipated inside the battery. [5]",
+      "solution": "**Step 1 — current from the loop equation.**\n$\\varepsilon = I(R + r)$, so $I = \\dfrac{\\varepsilon}{R + r} = \\dfrac{9.0}{6.0 + 1.5} = \\dfrac{9.0}{7.5} = 1.2\\ \\text{A}$.  [M1, A1]\n\n**Step 2 — terminal potential difference.**\n$V_{\\text{terminal}} = \\varepsilon - Ir = 9.0 - (1.2 \\times 1.5) = 9.0 - 1.8 = 7.2\\ \\text{V}$.  [A1]\n\n*Check: this should equal the p.d. across the load, $IR = 1.2 \\times 6.0 = 7.2$ V. It does.*\n\n**Step 3 — power dissipated inside the battery.**\n$P = I^2 r = (1.2)^2 \\times 1.5 = 1.44 \\times 1.5 = 2.16 \\approx 2.2\\ \\text{W}$.  [M1, A1]\n\n*The 1.8 V of 'lost volts' is exactly the p.d. across the internal resistance, which is why the terminal p.d. falls short of the 9.0 V EMF.*"
+    },
+    {
+      "type": "heading",
+      "content": "Kirchhoff's laws"
+    },
+    {
+      "type": "text",
+      "content": "Kirchhoff's two laws are the bookkeeping rules that let you analyse any circuit, however it is wired. The first law (the junction rule) says the total current flowing into any junction equals the total current flowing out — nothing more than conservation of charge, and the reason series current is constant while parallel current splits. The second law (the loop rule) says that around any closed loop the sum of the EMFs equals the sum of the potential-difference drops — a statement of conservation of energy, since a unit charge returning to its start must have gained exactly as much energy as it lost."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "First law (junction / charge): $\\sum I_{\\text{in}} = \\sum I_{\\text{out}}$ at every junction.",
+        "Second law (loop / energy): $\\sum \\varepsilon = \\sum IR$ around every closed loop.",
+        "The junction rule explains why current is the same all round a series loop and why branch currents add up in parallel.",
+        "The loop rule explains why the shared p.d.s across series resistors add up to the source's terminal p.d."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Thinking current is 'used up' in series** — current is identical everywhere in a single loop (conservation of charge). It is ENERGY that is transferred at each resistor, not current.",
+        "**Forgetting to invert the parallel result** — adding reciprocals gives $1/R_{\\text{total}}$, not $R_{\\text{total}}$. Always take the final reciprocal, and check the total is below the smallest branch.",
+        "**Setting terminal p.d. equal to EMF** — whenever current flows there are 'lost volts' $Ir$, so $V_{\\text{terminal}} = \\varepsilon - Ir < \\varepsilon$. They are equal only on open circuit.",
+        "**Treating a filament lamp or diode as ohmic** — these are non-ohmic; their resistance changes, so you cannot use a single fixed $R$ and their I–V graphs are curved.",
+        "**Confusing EMF with potential difference** — EMF is energy supplied per unit charge by the source; p.d. is energy dissipated per unit charge in a component.",
+        "**Mixing up the power formula** — $P = I^2R$ and $P = V^2/R$ are not interchangeable inputs: use the current with $I^2R$ and the p.d. across THAT resistor with $V^2/R$.",
+        "**Confusing resistivity and resistance** — resistivity $\\rho$ is a material property (unit $\\Omega\\,$m); resistance $R$ depends on the sample's length and area through $R = \\rho L/A$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "This is the showcase for a calculation topic. In Paper 2 the marks are analytic: each is tied to a specific piece of working — a method mark (M) or an answer mark (A) — and, crucially, the method marks and error-carried-forward (ECF) mean a wrong number early on does not cost you every mark that follows. That protection only exists if your method is written down. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cell of EMF 6.0 V and internal resistance 0.50 Ω is connected to a 2.5 Ω resistor. Calculate the current in the circuit and the terminal potential difference. [3]",
+      "solution": "**Model answer — full working.**\n\nThe EMF drives the current through both the external resistor and the internal resistance:\n$\\varepsilon = I(R + r)$.\n\nRearrange for the current:\n$I = \\dfrac{\\varepsilon}{R + r} = \\dfrac{6.0}{2.5 + 0.50} = \\dfrac{6.0}{3.0} = 2.0\\ \\text{A}$.\n\nThe terminal potential difference equals the p.d. across the external resistor:\n$V_{\\text{terminal}} = IR = 2.0 \\times 2.5 = 5.0\\ \\text{V}$.\n\n*(Check: $V_{\\text{terminal}} = \\varepsilon - Ir = 6.0 - 2.0\\times0.50 = 5.0$ V — the two routes agree.)*\n\n---\n**How our marking engine awards the 3 marks:**\n\n- **M1 — correct method with $\\varepsilon = I(R+r)$.** Awarded for adding the internal resistance to the load and forming $I = \\varepsilon/(R+r) = 6.0/(2.5+0.50)$. This is a METHOD mark: it is credited for the correct process even if the arithmetic later slips. A student who forgets $r$ and writes $6.0/2.5$ loses this mark.\n- **A1 — correct current, 2.0 A.** Awarded for the evaluated current with its unit. This answer mark is protected by **error-carried-forward**: a student who used a slightly wrong total resistance but divided the EMF by it correctly still earns the mark on THEIR figures.\n- **A1 — correct terminal p.d., 5.0 V.** Awarded for $V_{\\text{terminal}} = IR$ (or equivalently $\\varepsilon - Ir$). ECF again applies: if the current from the previous step was wrong, multiplying THAT current by 2.5 Ω still earns this mark.\n\n**'Accept answers that round correctly.'** The engine accepts 2.0 A and 5.0 V however the intermediate lines are rounded, and it accepts either route to the terminal p.d. ($IR$ or $\\varepsilon - Ir$). It does not demand a fixed number of decimal places in the working — it credits the correct method and a correctly-rounded final answer.\n\n**Bottom line:** of the 3 marks, 1 is a method mark that survives an arithmetic slip and the two answer marks are protected by ECF. A student who writes only '2.0 A, 5.0 V' with no working risks losing 1–2 marks if a number is wrong; a student who shows $\\varepsilon = I(R+r)$ and $V_{\\text{terminal}} = IR$ keeps the method credit regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with ECF. So always show the method: write down $\\varepsilon = I(R+r)$, substitute the numbers, then compute the terminal p.d. as $IR$ or $\\varepsilon - Ir$. The method marks and error-carried-forward are what protect your score when the final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The habits built here — track the current with Kirchhoff's junction rule, track the energy with the loop rule, and reach for the right form of the power equation — carry straight into the rest of electricity. Potential dividers are just series p.d.-sharing used deliberately; capacitor and RC work reuses charge, current and energy; and electromagnetic induction generates the very EMFs you have learned to handle here. Master the three-step circuit method — combine the resistances, find the current, then work out each p.d. — and the harder circuit questions become variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on Current & Circuits",
-      "href": "/mark?subject=ib-physics-hl&topic=B.5"
+      "label": "Get a Paper 2 circuit calculation marked: find the current and terminal potential difference with full working",
+      "href": "/mark?subject=ib-physics-hl&topic=B.5&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Simulation: Capacitor Lab",
-          "href": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics"
+          "label": "PhET Circuit Construction Kit (DC)",
+          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
         },
         {
-          "label": "Physics Classroom: RC Circuits",
-          "href": "https://www.physicsclassroom.com/class/circuits/Lesson-4/RC-Circuits"
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-course-specific-resources/"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "phet",
-    "title": "Capacitor Lab",
-    "embedUrl": "https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_en.html",
-    "launchUrl": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics",
-    "hint": "Explore “Capacitor Lab” — drag sliders and watch how the model responds in real time.",
+    "title": "PhET Circuit Construction Kit (DC)",
+    "embedUrl": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+    "hint": "Explore “PhET Circuit Construction Kit (DC)” — drag sliders and watch how the model responds in real time.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "PhET Interactive Simulations, University of Colorado Boulder",

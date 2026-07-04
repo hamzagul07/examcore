@@ -2,7 +2,23 @@
 
 These are **official MarkScheme Team** threads to kick off the Exam Room community. They are the platform's own voice — a welcome + open prompts that invite **real** students to reply. They are **not** fake student posts and must not be presented as peer activity.
 
-## How to post them (the honest way)
+## Automated (recommended)
+
+Run the script — it creates the official `MarkScheme_Team` account (once) and posts these threads to each configured subject room. It's idempotent and supports a dry run:
+
+```bash
+# preview only, writes nothing:
+NEXT_PUBLIC_SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... \
+  node scripts/seed-community-official-threads.mjs --dry
+
+# actually post:
+NEXT_PUBLIC_SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... \
+  node scripts/seed-community-official-threads.mjs
+```
+
+Edit the `TARGETS` array in the script to choose which rooms get the threads (defaults to the 7 flagship IB SL rooms). The account username is `MarkScheme_Team` — unmistakably the platform, not a student.
+
+## How to post them manually (the honest way)
 
 1. Sign in with a **designated official/team account** whose username is unmistakably the team (e.g. `MarkScheme_Team` / `MarkScheme` / `ExamRoom_Team`) — not a student-looking handle.
 2. Go to `/community/submit`, pick the board + subject, and paste the title/body below.

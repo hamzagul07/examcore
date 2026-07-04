@@ -5,6 +5,7 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
 import { getPost, getUserPostVotes } from '@/lib/community/posts'
+import { isOfficialUsername } from '@/lib/community/official'
 import { getCommentTree, collectCommentIds, getUserCommentVotes } from '@/lib/community/comments'
 import { signAttachments } from '@/lib/community/uploads'
 import { findCommunitySubject } from '@/lib/community/subjects'
@@ -90,6 +91,9 @@ export default async function PostDetailPage({ params }: PageProps) {
                     ) : (
                       'anonymous'
                     )}
+                    {isOfficialUsername(post.authorUsername) ? (
+                      <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
+                    ) : null}
                   </span>
                   <span className="rc-dot">·</span>
                   <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>

@@ -4,6 +4,7 @@ import type { CommunityPost } from '@/lib/community/posts'
 import { findCommunitySubject } from '@/lib/community/subjects'
 import { communityBoardMeta } from '@/lib/community/boards'
 import { timeAgo } from '@/lib/community/format'
+import { isOfficialUsername } from '@/lib/community/official'
 import { VoteBox } from './VoteBox'
 
 const KIND_LABEL: Record<string, string> = {
@@ -60,6 +61,11 @@ export function PostCard({
             ) : (
               'anonymous'
             )}
+            {isOfficialUsername(post.authorUsername) ? (
+              <span className="rc-official-badge" title="Official MarkScheme account">
+                ✓ Official
+              </span>
+            ) : null}
           </span>
           <span className="rc-dot">·</span>
           <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>

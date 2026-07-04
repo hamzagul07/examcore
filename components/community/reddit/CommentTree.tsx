@@ -6,6 +6,7 @@ import Link from 'next/link'
 import type { CommentNode } from '@/lib/community/comments'
 import { CommunityMarkdown } from '@/components/community/CommunityMarkdown'
 import { timeAgo } from '@/lib/community/format'
+import { isOfficialUsername } from '@/lib/community/official'
 import { VoteBox } from './VoteBox'
 
 type Props = {
@@ -85,6 +86,9 @@ function CommentItem({
             ) : (
               <span className="rc-meta-muted">anonymous</span>
             )}
+            {isOfficialUsername(node.authorUsername) ? (
+              <span className="rc-official-badge" title="Official MarkScheme account">✓ Official</span>
+            ) : null}
             <span className="rc-dot">·</span>
             <span className="rc-meta-muted">{timeAgo(node.createdAt)}</span>
           </div>

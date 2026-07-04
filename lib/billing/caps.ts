@@ -6,17 +6,17 @@ import type { SubscriptionTier } from '@/lib/database.types'
  */
 export const TIER_MONTHLY_CAPS: Record<SubscriptionTier, number> = {
   free: 5,
-  student: 50,
-  scholar: 150,
-  mastery: 400,
+  student: 50, // Pro
+  scholar: 120, // Scholar
+  mastery: 250, // Max
 }
 
 /** Monthly in-app study chat message caps per tier (landing demo chat is not metered). */
 export const TIER_OMNI_CAPS: Record<SubscriptionTier, number> = {
   free: 10,
-  student: 100,
-  scholar: 300,
-  mastery: 2000,
+  student: 80, // Pro
+  scholar: 150, // Scholar
+  mastery: 300, // Max
 }
 
 export function capForTier(tier: SubscriptionTier): number {
@@ -33,15 +33,15 @@ export function capLabel(tier: SubscriptionTier): string {
 }
 
 /**
- * Marketing-facing plan name for a tier. The DB enum is unchanged
- * (free/student/scholar/mastery); the brand surfaces are Free / Pro / Max.
- * `student` is a hidden legacy alias that maps to Pro.
+ * Marketing-facing plan name for a tier. The DB enum (free/student/scholar/
+ * mastery) maps to the three paid brands: Pro / Scholar / Max.
  */
 export function tierMarketingName(tier: SubscriptionTier): string {
   switch (tier) {
     case 'mastery':
       return 'Max'
     case 'scholar':
+      return 'Scholar'
     case 'student':
       return 'Pro'
     default:

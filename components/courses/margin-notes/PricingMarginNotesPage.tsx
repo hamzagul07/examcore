@@ -10,6 +10,7 @@ import { LoadingLink } from '@/components/ui/LoadingLink'
 import type { PricingDisplay, SubscriptionDisplayPrices } from '@/lib/billing/display-prices'
 import type { EffectiveAccess } from '@/lib/billing/access'
 import type { RegionChoice } from '@/lib/billing/region-cookie'
+import type { SubscriptionTier } from '@/lib/database.types'
 import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { INTERACTIVE_DIAGRAMS_FREE } from '@/lib/billing/features'
@@ -45,26 +46,40 @@ type Props = {
   display: PricingDisplay
   signedIn: boolean
   access: EffectiveAccess
+  currentTier: SubscriptionTier | null
   region: RegionChoice
 }
 
-type PlanId = 'free' | 'pro' | 'max'
+type PlanId = 'free' | 'pro' | 'scholar' | 'max'
+type PaidPlan = Exclude<PlanId, 'free'>
+type PaidProduct = 'student' | 'scholar' | 'mastery'
+
+const PLAN_PRODUCT: Record<PaidPlan, PaidProduct> = {
+  pro: 'student',
+  scholar: 'scholar',
+  max: 'mastery',
+}
+const PLAN_NAME: Record<PlanId, string> = { free: 'Free', pro: 'Pro', scholar: 'Scholar', max: 'Max' }
+const TIER_RANK: Record<string, number> = { free: 0, student: 1, scholar: 2, mastery: 3 }
 
 const FREE_Q = capForTier('free')
 const FREE_OMNI = omniCapForTier('free')
-const PRO_Q = capForTier('scholar')
-const PRO_OMNI = omniCapForTier('scholar')
+const PRO_Q = capForTier('student')
+const PRO_OMNI = omniCapForTier('student')
+const SCH_Q = capForTier('scholar')
+const SCH_OMNI = omniCapForTier('scholar')
 const MAX_Q = capForTier('mastery')
 const MAX_OMNI = omniCapForTier('mastery')
 
-export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
+export function PricingMarginNotesPage({ display, signedIn, access, currentTier }: Props) {
   const router = useRouter()
   const [period, setPeriod] = useState<Period>('yearly')
   const [busy, setBusy] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const cur = display.currency
+  const currentRank = TIER_RANK[currentTier ?? 'free'] ?? 0
 
-  async function checkout(product: 'scholar' | 'mastery') {
+  async function checkout(product: PaidProduct) {
     if (!signedIn) {
       router.push(buildSignUpHref('/pricing'))
       return
@@ -113,10 +128,11 @@ export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
     }
   }
 
-  const proPrice = priceBlock(display.scholar)
+  const proPrice = priceBlock(display.student)
+  const scholarPrice = priceBlock(display.scholar)
   const maxPrice = priceBlock(display.mastery)
 
-  // CTA wiring per plan, based on the viewer's current effective access.
+  // CTA wiring per plan, based on the viewer's current subscription tier.
   function ctaFor(plan: PlanId): {
     label: string
     onClick?: () => void
@@ -128,38 +144,38 @@ export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
     if (plan === 'free') {
       if (!signedIn)
         return { label: 'Create free account', href: buildSignUpHref('/pricing'), variant: 'ghost' }
-      if (access === 'free') return { label: 'Your current plan', variant: 'muted', disabled: true }
+      if (currentRank === 0) return { label: 'Your current plan', variant: 'muted', disabled: true }
       return { label: 'Included', variant: 'muted', disabled: true }
     }
 
-    const product = plan === 'pro' ? 'scholar' : 'mastery'
+    const product = PLAN_PRODUCT[plan]
     const loading = busy === product
-    const verb = loading ? 'Opening checkout…' : null
+    const featured = plan === 'scholar'
 
     if (!signedIn) {
       return {
-        label: verb ?? `Start free trial → ${plan === 'pro' ? 'Pro' : 'Max'}`,
+        label: loading ? 'Opening checkout…' : `Start free trial → ${PLAN_NAME[plan]}`,
         href: buildSignUpHref('/pricing'),
-        variant: plan === 'pro' ? 'primary' : 'ghost',
+        variant: featured ? 'primary' : 'ghost',
       }
     }
-    if (plan === 'pro') {
-      if (access === 'pro') return { label: 'Your current plan', variant: 'muted', disabled: true }
-      if (access === 'max') return { label: 'Included in Max', variant: 'muted', disabled: true }
-      return {
-        label: verb ?? (access === 'trial' ? 'Continue with Pro' : 'Choose Pro'),
-        onClick: () => void checkout('scholar'),
-        variant: 'primary',
-        disabled: loading,
-        loading,
-      }
+
+    if (currentTier === product) {
+      return { label: 'Your current plan', variant: 'muted', disabled: true }
     }
-    // plan === 'max'
-    if (access === 'max') return { label: 'Your current plan', variant: 'muted', disabled: true }
+
+    const planRank = TIER_RANK[product]
+    const verb =
+      currentRank === 0 || access === 'trial'
+        ? `Choose ${PLAN_NAME[plan]}`
+        : planRank > currentRank
+          ? `Upgrade to ${PLAN_NAME[plan]}`
+          : `Switch to ${PLAN_NAME[plan]}`
+
     return {
-      label: verb ?? (access === 'pro' ? 'Upgrade to Max' : 'Choose Max'),
-      onClick: () => void checkout('mastery'),
-      variant: 'ghost',
+      label: loading ? 'Opening checkout…' : verb,
+      onClick: () => void checkout(product),
+      variant: featured ? 'primary' : 'ghost',
       disabled: loading,
       loading,
     }
@@ -194,42 +210,61 @@ export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
             : 'Live interactive diagrams',
           INTERACTIVE_DIAGRAMS_FREE,
         ],
+        ['Whole-paper marking', false],
         ['Past-paper practice & flashcards', false],
-        ['Projected grades', false],
       ],
     },
     {
       id: 'pro',
       name: 'Pro',
-      tag: 'Most popular',
-      blurb: 'Everything you need through the term — diagrams, practice and real marking.',
+      tag: 'Get started',
+      blurb: 'Real marking and everyday revision for one subject at a time.',
       now: proPrice.now,
       per: proPrice.per,
       sub: proPrice.sub,
-      featured: true,
       features: [
         ['Everything in Free', true],
-        ['Live interactive diagrams', true],
-        ['Past-paper practice, flashcards & quizzes', true],
         [`Mark ${PRO_Q} questions / month`, true],
         [`${PRO_OMNI} study-chat messages / month`, true],
         ['Whole-paper marking', true],
+        ['Live interactive diagrams', true],
+        ['Past-paper practice & flashcards', true],
+      ],
+    },
+    {
+      id: 'scholar',
+      name: 'Scholar',
+      tag: 'Most popular',
+      blurb: 'The full toolkit — in-depth courses, detailed marking and your progress journey.',
+      now: scholarPrice.now,
+      per: scholarPrice.per,
+      sub: scholarPrice.sub,
+      featured: true,
+      features: [
+        ['Everything in Pro', true],
+        [`Mark ${SCH_Q} questions / month`, true],
+        [`${SCH_OMNI} study-chat messages / month`, true],
+        ['In-depth, interactive courses', true],
+        ['Examiner-style detailed marking feedback', true],
+        ['Detailed progress journey & analytics', true],
+        ['Extra revision resources & practice packs', true],
       ],
     },
     {
       id: 'max',
       name: 'Max',
       tag: 'For exam season',
-      blurb: 'Maximum headroom when you’re working through papers every day.',
+      blurb: 'Everything, with maximum headroom when you’re marking papers daily.',
       now: maxPrice.now,
       per: maxPrice.per,
       sub: maxPrice.sub,
       features: [
-        ['Everything in Pro', true],
+        ['Everything in Scholar', true],
         [`Mark ${MAX_Q} questions / month`, true],
         [`${MAX_OMNI} study-chat messages / month`, true],
         ['Projected grade estimates', true],
         ['Priority marking queue', true],
+        ['Early access to new features', true],
       ],
     },
   ]
@@ -243,8 +278,8 @@ export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
       q: 'What’s included on the free plan?',
       a: `Free gives you every lesson — notes, formulas, simple explanations and worked examples — across all fifteen Cambridge subjects, plus ${FREE_Q} marked questions and ${FREE_OMNI} study-chat messages each month.${
         INTERACTIVE_DIAGRAMS_FREE
-          ? ' Live interactive diagrams are free for everyone while we’re in beta. Past-paper practice and flashcards are part of Pro and Max.'
-          : ' Live diagrams, practice questions and flashcards are part of Pro and Max.'
+          ? ' Live interactive diagrams are free for everyone while we’re in beta. Whole-paper marking, practice questions and flashcards start on Pro; in-depth courses, detailed marking and your progress journey are on Scholar and Max.'
+          : ' Whole-paper marking, practice and flashcards start on Pro; in-depth courses and detailed marking are on Scholar and Max.'
       }`,
     },
     {
@@ -295,7 +330,7 @@ export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
                 onClick={() => setPeriod(p)}
               >
                 {p === 'monthly' ? 'Monthly' : 'Annual'}
-                {p === 'yearly' ? <span className="pricing-toggle-save">save 33%</span> : null}
+                {p === 'yearly' ? <span className="pricing-toggle-save">2 months free</span> : null}
               </button>
             ))}
           </div>
@@ -303,7 +338,7 @@ export function PricingMarginNotesPage({ display, signedIn, access }: Props) {
 
         {notice ? <p className="pricing-notice">{notice}</p> : null}
 
-        <div className="plans three">
+        <div className="plans four">
           {plans.map((p) => {
             const cta = ctaFor(p.id)
             return (

@@ -26,12 +26,14 @@ export default async function PricingPage() {
   } = await supabase.auth.getUser()
 
   let access: ReturnType<typeof effectiveAccess> = 'free'
+  let currentTier: SubscriptionTier | null = null
   if (user) {
     const { data: sub } = await supabase
       .from('user_subscriptions')
       .select('tier, status, trial_ends_at')
       .eq('user_id', user.id)
       .maybeSingle()
+    currentTier = (sub?.tier as SubscriptionTier) ?? 'free'
     access = effectiveAccess({
       tier: (sub?.tier as SubscriptionTier) ?? 'free',
       status: (sub?.status as SubscriptionStatus) ?? 'canceled',
@@ -56,6 +58,7 @@ export default async function PricingPage() {
         display={display}
         signedIn={Boolean(user)}
         access={access}
+        currentTier={currentTier}
         region={region}
       />
     </>

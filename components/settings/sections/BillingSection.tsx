@@ -17,9 +17,9 @@ import {
 
 const TIER_LABELS: Record<string, string> = {
   free: 'Free',
-  student: 'Student',
+  student: 'Pro',
   scholar: 'Scholar',
-  mastery: 'Mastery',
+  mastery: 'Max',
 }
 
 const STATUS_LABELS: Record<string, string> = {

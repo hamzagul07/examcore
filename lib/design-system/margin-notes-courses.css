@@ -1192,6 +1192,16 @@
 .plans.three { grid-template-columns: repeat(3, 1fr); max-width: 1040px; }
 .plans.three .plan { padding: 26px 24px 28px; }
 
+/* pricing — 4-up plans (Free / Pro / Scholar / Max) */
+.plans.four { grid-template-columns: repeat(4, 1fr); max-width: 1240px; gap: 16px; }
+.plans.four .plan { padding: 22px 18px 26px; }
+.plans.four .plan-name { font-size: 22px; }
+.plans.four .plan-now { font-size: 30px; }
+.plans.four .plan-feats { font-size: 13.5px; }
+@media (max-width: 1080px) {
+  .plans.four { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
+}
+
 .pricing-trialbar {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   max-width: 1040px; margin: 22px auto 0;
@@ -1273,6 +1283,9 @@
 
 @media (max-width: 880px) {
   .plans.three { grid-template-columns: 1fr; max-width: 460px; }
+}
+@media (max-width: 620px) {
+  .plans.four { grid-template-columns: 1fr; max-width: 460px; }
 }
 .subjects-title { font-size: clamp(38px, 5vw, 62px); }
 .subjects-lead { margin-top: 14px; }

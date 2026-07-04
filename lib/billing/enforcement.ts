@@ -17,7 +17,6 @@ import {
 } from './caps'
 import {
   ACTIVE_STATUSES,
-  capTierForAccess,
   effectiveAccess,
   type EffectiveAccess,
 } from './access'
@@ -101,9 +100,14 @@ async function loadBillingContext(
   const status = (sub?.status ?? 'active') as SubscriptionStatus
   const trial_ends_at = (sub?.trial_ends_at ?? null) as string | null
   const access = effectiveAccess({ tier, status, trialEndsAt: trial_ends_at })
+  // Caps come from the ACTUAL paid tier now that Pro/Scholar/Max are distinct
+  // (student=Pro, scholar=Scholar, mastery=Max). Trial gets Scholar-level caps;
+  // free gets free caps.
+  const cap_tier: SubscriptionTier =
+    access === 'free' ? 'free' : access === 'trial' ? 'scholar' : tier
   return {
     tier,
-    cap_tier: capTierForAccess(access),
+    cap_tier,
     access,
     trial_ends_at,
     status,

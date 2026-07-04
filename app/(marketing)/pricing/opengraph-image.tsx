@@ -7,6 +7,6 @@ export const contentType = 'image/png'
 export default function OgImage() {
   return createOgImage({
     title: 'Plans for every study pace',
-    subtitle: 'Free tier · Student · Scholar · Mastery',
+    subtitle: 'Free · Pro · Scholar · Max',
   })
 }

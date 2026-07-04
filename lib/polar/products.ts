@@ -67,7 +67,9 @@ export function subscriptionRank(
   billingPeriod: BillingPeriod | null
 ): number {
   const tier = tierForProduct(product)
-  const tierRank = tier === 'mastery' ? 2 : tier === 'free' ? 0 : 1
+  // Max(mastery) > Scholar(scholar) > Pro(student) > Free.
+  const tierRank =
+    tier === 'mastery' ? 3 : tier === 'scholar' ? 2 : tier === 'student' ? 1 : 0
   const periodRank = billingPeriod === 'yearly' ? 1 : 0
   return tierRank * 10 + periodRank
 }
@@ -115,9 +117,10 @@ export const DISPLAY_PRICES_USD: {
   credits_100: number
   credits_500: number
 } = {
-  student: { monthly: 3300, yearly: 25900 },
-  scholar: { monthly: 3300, yearly: 25900 },
-  mastery: { monthly: 6250, yearly: 49100 },
+  // Pro / Scholar / Max. Annual = 2 months free (×10, ~17% off).
+  student: { monthly: 1100, yearly: 11000 }, // Pro  $11 / $110
+  scholar: { monthly: 1999, yearly: 19900 }, // Scholar $19.99 / $199
+  mastery: { monthly: 3500, yearly: 35000 }, // Max  $35 / $350
   credits_25: 1000,
   credits_100: 3000,
   credits_500: 10000,

@@ -1,172 +1,116 @@
 {
   "slug": "3-1-distances-volumes-and-surface-areas-of-3d-solids",
   "topicCode": "3.1",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "title": "Distances, volumes and surface areas of 3D solids",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson covers the calculation of distances, volumes, and surface areas for various three-dimensional solids. It focuses on applying formulas from the IB formula booklet to prisms, pyramids, cylinders, spheres, cones, and composite shapes, with an emphasis on real-world problem-solving.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Three-dimensional measurement is where geometry meets the real world: the concrete in a silo, the metal in a can, the paint on a dome. This lesson builds the full 3.1 syllabus. First the mensuration formulas — volume and surface area of prisms, cylinders, pyramids, cones and spheres, drawn straight from the formula booklet and applied with the right units. Then composite solids, where you add exposed surfaces and volumes while hiding the joined faces. Finally distances and angles inside a solid, where a well-chosen right-angled triangle turns a 3D problem into ordinary Pythagoras and trigonometry — the space diagonal of a cuboid, the angle between a line and a plane. Because 3.1 is a calculator topic, the GDC does the arithmetic; the marks are for choosing the correct formula, showing the method the examiner needs, and keeping the units honest. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Calculate the volume and surface area of 3D solids including prisms, pyramids, cylinders, cones, and spheres.",
-    "Solve problems involving composite solids by combining or subtracting volumes and surface areas.",
-    "Apply Pythagoras' theorem in three dimensions to find distances between points or lengths within solids.",
-    "Interpret and use the correct formulas from the IB Mathematics: Applications and Interpretation formula booklet."
+    "Calculate the volume and surface area of prisms, cylinders, pyramids, cones and spheres, selecting the correct formula from the IB formula booklet and attaching the correct units.",
+    "Solve problems involving composite solids by adding or subtracting volumes and by summing only the exposed surfaces.",
+    "Find the distance between two points inside a 3D solid using Pythagoras' theorem, including the space diagonal of a cuboid.",
+    "Find the size of an angle in a 3D solid, including the angle between a line and a plane, by identifying and solving a right-angled triangle.",
+    "Apply 3D geometry to contextual problems with correct units, unit conversions and appropriate rounding."
   ],
+  "syllabusObjectivesCovered": ["3.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "3D Shapes: The Architect's Toolkit",
-    "summary": "This topic is about measuring the space inside and the surface around three-dimensional objects. We'll use specific formulas to find volumes and surface areas for shapes like boxes, balls, and pyramids.",
-    "analogy": "Imagine you're wrapping a present and then filling the box. Calculating the surface area is like figuring out how much wrapping paper you need to cover the outside, while calculating the volume is like determining how much stuff you can fit inside the box. For complex presents, like a toy rocket, you'd have to consider the different parts (cone, cylinder) separately.",
+    "summary": "This topic is about measuring three-dimensional objects: the space they enclose (volume) and the skin that wraps them (surface area), plus the lengths and angles hidden inside them. Two habits carry every question — pick the right formula from the booklet, and find the right-angled triangle buried in the solid.",
+    "analogy": "Think of wrapping a present and then filling the box. Surface area is the wrapping paper you need to cover the outside; volume is how much you can pack inside. For a complicated present — say a toy rocket that is a cone stacked on a cylinder — you deal with each part separately and only paper the faces that actually show. And when you need a length across the box, from one bottom corner to the opposite top corner, you slice out a flat right-angled triangle and use Pythagoras.",
     "steps": [
-      "Identify the 3D solid(s) in the problem (e.g., cylinder, cone, sphere, or a combination).",
-      "Select the correct formula(s) from the formula booklet for volume or surface area.",
-      "Substitute the given values (e.g., radius, height, slant height) into the chosen formula.",
-      "Calculate the final answer, ensuring you use the correct units and round as specified."
+      "Identify the solid, or the simple solids that a composite is built from (cylinder, cone, sphere, prism, pyramid).",
+      "Choose the correct formula from the booklet for volume or for the surface you need — curved only, or total.",
+      "Substitute the given measurements; for slant heights and diagonals, first find the missing length from a right-angled triangle.",
+      "Compute on the GDC, attach cubic units to volumes and square units to areas, and round as instructed (usually 3 s.f.)."
     ]
   },
+  "keyConcepts": ["mensuration formulas", "composite solids", "distances and angles in 3D"],
   "flashcards": [
-    {
-      "front": "What is the formula for the volume of a pyramid?",
-      "back": "$V = \\frac{1}{3} A_b h$, where $A_b$ is the area of the base and $h$ is the perpendicular height."
-    },
-    {
-      "front": "What is the formula for the volume of a cone?",
-      "back": "$V = \\frac{1}{3} \\pi r^2 h$, where $r$ is the radius of the base and $h$ is the perpendicular height."
-    },
-    {
-      "front": "What does the formula $A = \\pi r l$ in the formula booklet represent for a cone?",
-      "back": "This is the area of the curved surface ONLY. For the total surface area of a closed cone, you must add the area of the circular base: $A_{total} = \\pi r l + \\pi r^2$."
-    },
-    {
-      "front": "What is the formula for the volume of a sphere?",
-      "back": "$V = \\frac{4}{3} \\pi r^3$, where $r$ is the radius."
-    },
-    {
-      "front": "What is the formula for the surface area of a sphere?",
-      "back": "$A = 4 \\pi r^2$, where $r$ is the radius."
-    },
-    {
-      "front": "What is a composite solid?",
-      "back": "A 3D shape formed by combining two or more simpler geometric solids. For example, a cylinder with a hemisphere on top."
-    },
-    {
-      "front": "How do you calculate the surface area of a composite solid?",
-      "back": "Sum the areas of the exposed surfaces. Do NOT include the areas of the surfaces where the shapes are joined together."
-    },
-    {
-      "front": "What is the difference between perpendicular height ($h$) and slant height ($l$)?",
-      "back": "Perpendicular height ($h$) is the distance from the apex to the centre of the base. Slant height ($l$) is the distance from the apex to a point on the circumference of the base. They form a right-angled triangle with the radius $r$."
-    },
-    {
-      "front": "What are the units for volume and surface area?",
-      "back": "Volume is always measured in cubic units (e.g., cm³, m³). Surface area is always measured in square units (e.g., cm², m²)."
-    },
-    {
-      "front": "How can you find the length of the longest diagonal in a cuboid with side lengths $l, w, h$?",
-      "back": "Use the 3D version of Pythagoras' theorem: $d = \\sqrt{l^2 + w^2 + h^2}$."
-    },
-    {
-      "front": "A hemisphere is placed on a flat surface. What is its total surface area?",
-      "back": "The curved surface area ($2\\pi r^2$) plus the area of the circular base ($\"pi r^2$). Total is $3\\pi r^2$."
-    }
+    { "front": "Volume of a pyramid", "back": "$V = \\frac{1}{3} A_b h$, where $A_b$ is the area of the base and $h$ is the perpendicular (vertical) height — not the slant height.", "pillLabel": "Formula" },
+    { "front": "Volume of a cone", "back": "$V = \\frac{1}{3} \\pi r^2 h$, where $r$ is the base radius and $h$ is the perpendicular height. It is exactly one third of the cylinder with the same base and height.", "pillLabel": "Formula" },
+    { "front": "Curved surface of a cone: $A = \\pi r l$", "back": "The booklet's $A = \\pi r l$ is the CURVED surface only, using the slant height $l$. For a closed cone add the circular base: $TSA = \\pi r l + \\pi r^2$.", "pillLabel": "Trap" },
+    { "front": "Volume of a sphere", "back": "$V = \\frac{4}{3} \\pi r^3$. A hemisphere is half of this, $\\frac{2}{3}\\pi r^3$.", "pillLabel": "Formula" },
+    { "front": "Surface area of a sphere", "back": "$A = 4 \\pi r^2$. The curved surface of a hemisphere is half of it, $2\\pi r^2$; a hemisphere sitting on a table has total area $2\\pi r^2 + \\pi r^2 = 3\\pi r^2$.", "pillLabel": "Formula" },
+    { "front": "Cylinder: volume and surface", "back": "$V = \\pi r^2 h$; curved surface $= 2\\pi r h$; total surface (closed) $= 2\\pi r h + 2\\pi r^2$. For an open pipe or a bucket, drop the missing circular faces.", "pillLabel": "Formula" },
+    { "front": "Composite solid", "back": "A shape built from two or more simple solids, e.g. a cylinder capped by a hemisphere. Add the part volumes; for surface area count only the faces that show on the outside.", "pillLabel": "Definition" },
+    { "front": "Surface area of a composite solid", "back": "Sum the EXPOSED surfaces only. Where two solids are glued, both joined faces disappear — do not include them.", "pillLabel": "Framework" },
+    { "front": "Perpendicular height $h$ vs slant height $l$", "back": "$h$ runs vertically from the apex to the centre of the base; $l$ runs along the sloping face from the apex to the base edge. With the radius (or half the base side) they form a right-angled triangle: $l^2 = h^2 + r^2$.", "pillLabel": "Trap" },
+    { "front": "Space diagonal of a cuboid", "back": "For side lengths $l, w, h$ the longest diagonal is $d = \\sqrt{l^2 + w^2 + h^2}$ — Pythagoras applied twice, first across the base then up to the far corner.", "pillLabel": "Formula" },
+    { "front": "Angle between a line and a plane", "back": "Drop a perpendicular from the line's end to the plane, join the foot to the point where the line meets the plane, and measure the angle in that right-angled triangle. It is always the angle to the line's own 'shadow' on the plane, never to a random edge.", "pillLabel": "Framework" },
+    { "front": "Units for volume vs surface area", "back": "Volume is in cubic units (cm$^3$, m$^3$); surface area is in square units (cm$^2$, m$^2$). Capacity: $1000\\text{ cm}^3 = 1$ litre.", "pillLabel": "Concept" },
+    { "front": "Do I memorise these formulas?", "back": "No. Every volume and surface-area formula is in the 'Prior learning' and 'Topic 3' pages of the AI formula booklet. The marks are for choosing correctly and knowing what each letter means.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "A cone has base radius 6 cm and perpendicular height 8 cm. Its slant height $l$ is:", "options": ["$10$ cm, from $l = \\sqrt{6^2 + 8^2}$", "$8$ cm, the perpendicular height", "$14$ cm, from $6 + 8$", "$\\sqrt{8^2 - 6^2} = \\sqrt{28}$ cm"], "answer": "$10$ cm, from $l = \\sqrt{6^2 + 8^2}$" },
+    { "prompt": "To find the angle a diagonal of a cuboid makes with the base, you should measure the angle in the right-angled triangle formed by:", "options": ["The vertical height, the diagonal of the base, and the space diagonal", "The three edges meeting at one corner", "The space diagonal and a vertical edge only", "Any two edges of the cuboid"], "answer": "The vertical height, the diagonal of the base, and the space diagonal" },
+    { "prompt": "The volume of a sphere of radius $r$ is:", "options": ["$\\frac{4}{3}\\pi r^3$", "$\\frac{1}{3}\\pi r^2 h$", "$4\\pi r^2$", "$\\frac{1}{3}\\pi r^3$"], "answer": "$\\frac{4}{3}\\pi r^3$" },
+    { "prompt": "A cube has edge length 5 cm. Its total surface area is:", "options": ["$150$ cm$^2$, from $6 \\times 5^2$", "$125$ cm$^2$, from $5^3$", "$30$ cm$^2$, from $6 \\times 5$", "$25$ cm$^2$, from $5^2$"], "answer": "$150$ cm$^2$, from $6 \\times 5^2$" },
+    { "prompt": "For a closed cone, the booklet formula $A = \\pi r l$ gives:", "options": ["The curved surface only; add $\\pi r^2$ for the total surface", "The total surface area already", "The volume of the cone", "The area of the circular base only"], "answer": "The curved surface only; add $\\pi r^2$ for the total surface" }
   ],
   "faq": [
-    {
-      "q": "Do I need to memorise all these formulas for the exam?",
-      "a": "No, all the necessary formulas for volume and surface area are provided in the 'Prior learning' and 'Topic 3: Geometry and trigonometry' sections of the IB formula booklet. Your job is to know which formula to use and what the variables mean."
-    },
-    {
-      "q": "What is the difference between the slant height (l) and the perpendicular height (h) of a cone or pyramid?",
-      "a": "The perpendicular height (h) is the vertical distance from the apex (the top point) down to the centre of the base. The slant height (l) is the distance along the slanted surface, from the apex to the edge of the base. They form a right-angled triangle with the radius (or half the base side), which is useful for calculations."
-    },
-    {
-      "q": "How do I handle units in these problems?",
-      "a": "Always be consistent with your units. If lengths are given in centimetres, your surface area will be in cm² and your volume will be in cm³. Pay attention if the question asks for an answer in different units (e.g., converting cm³ to litres, where 1000 cm³ = 1 litre)."
-    },
-    {
-      "q": "What if a shape is 'open', like a bucket or a pipe?",
-      "a": "If a shape is open, you do not include the area of the open face(s) in the surface area calculation. For example, for a cylindrical bucket open at the top, the surface area would be the area of the circular base ($\"pi r^2$) plus the area of the curved side wall ($2\\pi rh$). You would not include the second circular face."
-    }
+    { "q": "Do I need to memorise all these formulas for the exam?", "a": "No. Every volume and surface-area formula you need sits in the 'Prior learning' and 'Topic 3: Geometry and trigonometry' pages of the AI formula booklet. Your job is to recognise the solid, choose the matching formula, and know what each variable means in context. Keep the booklet open the whole time." },
+    { "q": "What is the difference between the slant height $l$ and the perpendicular height $h$?", "a": "The perpendicular height $h$ runs straight down from the apex to the centre of the base; the slant height $l$ runs along the sloping surface from the apex to the edge of the base. With the radius (for a cone) or half the base side (for a pyramid) they form a right-angled triangle, so $l^2 = h^2 + r^2$. Volume formulas use $h$; the curved-surface formula for a cone uses $l$. Mixing them up is one of the most common lost marks." },
+    { "q": "How do I handle units, and what about capacity?", "a": "Stay consistent: if lengths are in centimetres, areas come out in cm$^2$ and volumes in cm$^3$. Watch for a change of unit in the question — capacity is often wanted in litres, and $1000\\text{ cm}^3 = 1$ litre, while $1\\text{ m}^3 = 1000$ litres. Convert only at the end, from your full unrounded figure." },
+    { "q": "What if the shape is 'open', like a bucket or a pipe?", "a": "Only count the faces that actually exist. An open cylindrical bucket has a base and a curved wall but no top, so its surface area is $\\pi r^2 + 2\\pi r h$. A pipe open at both ends is just the curved wall, $2\\pi r h$. Read the wording carefully — 'open', 'without a lid' and 'hollow' all change which faces you include." },
+    { "q": "How do I find an angle between a line and a plane inside a solid?", "a": "Project the line onto the plane: drop a perpendicular from the far end of the line down to the plane, then join that foot back to where the line meets the plane. The angle you want lives in the right-angled triangle made by the line, its projection and the perpendicular. Sketch that triangle, label the two sides you know, and use $\\tan$, $\\sin$ or $\\cos$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of three-dimensional geometry. From designing skyscrapers and packaging products to calculating the amount of ice cream in a cone, understanding volume and surface area is essential. In this lesson, we'll master the skills to measure the 3D world around us, using a key tool: your formula booklet."
-    },
-    {
-      "type": "heading",
-      "content": "Using the Formula Booklet"
-    },
-    {
-      "type": "text",
-      "content": "For this topic, the IB formula booklet is your most valuable resource. It contains all the necessary formulas for volumes and surface areas of common shapes. Your task is not to memorise them, but to understand what each variable in the formulas represents and how to apply them correctly. Always have your formula booklet open when tackling these problems."
-    },
-    {
-      "type": "formula",
-      "content": "Area of a cylinder surface: $A = 2\\pi rh + 2\\pi r^2 \\\\ \\text{Volume of a cylinder: } V = \\pi r^2 h$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Identify the shape in the question first.",
-        "Locate the corresponding formula in the 'Topic 3.1' section of the formula booklet.",
-        "Make sure you know what each letter ($r, h, l, A_b$) stands for in the context of the shape.",
-        "Pay close attention to what the question is asking for: volume, total surface area, or curved surface area."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Composite Solids: Combining Shapes"
-    },
-    {
-      "type": "text",
-      "content": "Many real-world objects are not simple shapes but are made up of several shapes combined. These are called composite solids. To find the volume of a composite solid, you generally add the volumes of the individual parts. For surface area, it's more complex: you must only count the surfaces that are exposed on the outside. The surfaces where the shapes are joined are hidden and should not be included in the calculation."
-    },
-    {
-      "type": "workedExample",
-      "question": "A grain silo is constructed from a cylinder with a radius of 4 m and a height of 15 m, topped by a hemisphere with the same radius. The silo rests on a flat circular base. Find:\na) The total volume of the silo in m³.\nb) The total exterior surface area of the silo (including the base).",
-      "solution": "a) Find the total volume.\\\nVolume of cylinder: $V_{cyl} = \\pi r^2 h = \\pi (4^2)(15) = 240\\pi$ m³.\\\nVolume of hemisphere: $V_{hemi} = \\frac{1}{2} \\times \\frac{4}{3} \\pi r^3 = \\frac{2}{3} \\pi (4^3) = \\frac{128}{3}\\pi$ m³.\\\nTotal Volume = $V_{cyl} + V_{hemi}$  (M1) for adding correct volumes.\\\nTotal Volume = $240\\pi + \\frac{128}{3}\\pi = \\frac{848}{3}\\pi \\approx 888.02...$ m³.\\\nTotal Volume $\\approx 888$ m³ (3 s.f.) (A1)\n\nb) Find the exterior surface area.\\\nWe need the area of the base, the curved wall of the cylinder, and the curved surface of the hemisphere.\\\nArea of base = $\\pi r^2 = \\pi (4^2) = 16\\pi$ m².\\\nArea of cylinder wall = $2\\pi rh = 2\\pi(4)(15) = 120\\pi$ m².\\\nArea of hemisphere surface = $\\frac{1}{2} \\times 4\\pi r^2 = 2\\pi r^2 = 2\\pi(4^2) = 32\\pi$ m².\\\nTotal Surface Area = $16\\pi + 120\\pi + 32\\pi$ (M1) for adding correct areas.\\\nTotal Surface Area = $168\\pi \\approx 527.78...$ m².\\\nTotal Surface Area $\\approx 528$ m² (3 s.f.) (A1)\nNote: The top of the cylinder and the base of the hemisphere are not included as they are not exterior surfaces."
-    },
-    {
-      "type": "heading",
-      "content": "Distances and Angles in 3D"
-    },
-    {
-      "type": "text",
-      "content": "Sometimes you'll need to find a length within a 3D shape that isn't immediately given, such as a slant height or a diagonal. The key is to find a right-angled triangle within the 3D shape that contains the length you need. By 'slicing' the shape and drawing this 2D triangle, you can use Pythagoras' theorem or trigonometry to find the missing value."
-    },
-    {
-      "type": "formula",
-      "content": "\\text{Pythagoras' Theorem: } a^2 + b^2 = c^2 \\\\ \\text{Space diagonal of a cuboid: } d = \\sqrt{l^2 + w^2 + h^2}"
-    },
-    {
-      "type": "examTip",
-      "content": "When a question asks for a length or angle inside a 3D shape, always sketch the 2D right-angled triangle that contains it. Label the sides you know and the side or angle you want to find. This transforms a difficult 3D problem into a much simpler 2D trigonometry problem."
-    },
-    {
-      "type": "workedExample",
-      "question": "A right pyramid has a square base with side lengths of 16 cm. The perpendicular height of the pyramid is 15 cm. \na) Calculate the volume of the pyramid.\nb) Find the slant height of the pyramid.\nc) Hence, find the total surface area of the pyramid.",
-      "solution": "a) Find the volume.\\\nArea of base $A_b = 16 \\times 16 = 256$ cm².\\\nVolume $V = \\frac{1}{3} A_b h = \\frac{1}{3} \\times 256 \\times 15$ (M1)\\\n$V = 1280$ cm³ (A1)\n\nb) Find the slant height ($l$).\\\nConsider the right-angled triangle formed by the height ($h$), half the base length (8 cm), and the slant height ($l$).\\\n$l^2 = h^2 + (\\text{half base})^2$ (M1)\\\n$l^2 = 15^2 + 8^2 = 225 + 64 = 289$\\\n$l = \\sqrt{289} = 17$ cm (A1)\n\nc) Find the total surface area.\\\nTSA = Area of base + Area of 4 triangular faces.\\\nArea of one triangular face = $\\frac{1}{2} \\times \\text{base} \\times \\text{slant height} = \\frac{1}{2} \\times 16 \\times 17 = 136$ cm².\\\nTSA = $256 + 4 \\times 136$ (M1)\\\nTSA = $256 + 544 = 800$ cm² (A1)"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Problems",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=3.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Formula Booklet",
-          "href": "https://www.ibdocuments.com/IB%20FORMULA%20BOOKLETS/Mathematics%20AI%20-%20Formula%20Booklet.pdf"
-        },
-        {
-          "label": "3D Geometry Overview",
-          "href": "https://www.mathsisfun.com/geometry/solid-geometry.html"
-        }
-      ]
-    }
+    { "type": "intro", "content": "From packing boxes and pouring concrete to designing an ice-cream cone, three-dimensional measurement is everywhere. This lesson covers the full 3.1 syllabus in three moves. First, the mensuration formulas — volume and surface area of prisms, cylinders, pyramids, cones and spheres — read from the formula booklet and applied with the right units. Second, composite solids, where you combine simple shapes and are careful to paper only the faces that show. Third, distances and angles inside a solid, where the whole trick is to uncover a right-angled triangle and fall back on Pythagoras and basic trigonometry. Because 3.1 is a calculator topic, the GDC handles the arithmetic; what earns the marks is the correct formula, the method on the page, and honest units. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Using the formula booklet" },
+    { "type": "text", "content": "For this topic the formula booklet is your most valuable tool. It lists every volume and surface-area formula you need, so nothing has to be memorised. The skill being examined is choosing the right formula and knowing what each letter stands for. Before substituting anything, decide three things: which solid you are dealing with, whether you want volume or surface area, and — for surface area — whether the question wants the curved surface only or the total surface." },
+    { "type": "formula", "content": "Cylinder: $V = \\pi r^2 h$, \\quad curved surface $= 2\\pi r h$, \\quad total surface $= 2\\pi r h + 2\\pi r^2$. \\n Cone: $V = \\frac{1}{3}\\pi r^2 h$, \\quad curved surface $= \\pi r l$, \\quad total surface $= \\pi r l + \\pi r^2$. \\n Sphere: $V = \\frac{4}{3}\\pi r^3$, \\quad surface $= 4\\pi r^2$. \\quad Pyramid: $V = \\frac{1}{3} A_b h$." },
+    { "type": "keyPoints", "items": [
+      "**Identify the solid first**, then locate the matching formula in the Topic 3 pages of the booklet.",
+      "**Know your letters:** $r$ radius, $h$ perpendicular height, $l$ slant height, $A_b$ base area.",
+      "**Curved or total?** For cones and cylinders decide whether a base (or two) is included before you write anything.",
+      "**Units follow the powers:** lengths give areas in square units and volumes in cubic units."
+    ]},
+
+    { "type": "workedExample", "question": "A cone has base radius 6 cm and vertical height 8 cm. Find its slant height, its total surface area and its volume. (Give answers to 3 s.f.) [6]", "solution": "**Model answer — full working.**\\n\\n**Slant height.** The radius, the vertical height and the slant height form a right-angled triangle, so by Pythagoras\\n$l = \\sqrt{r^2 + h^2} = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10 \\text{ cm}.$\\n\\n**Total surface area.** For a closed cone, $TSA = \\pi r^2 + \\pi r l$:\\n$TSA = \\pi(6)^2 + \\pi(6)(10) = 36\\pi + 60\\pi = 96\\pi \\approx 301.59\\ldots$\\n$TSA \\approx 302 \\text{ cm}^2 \\ (3\\text{ s.f.}).$\\n\\n**Volume.** $V = \\tfrac{1}{3}\\pi r^2 h = \\tfrac{1}{3}\\pi(6)^2(8) = \\tfrac{1}{3}\\pi(288) = 96\\pi \\approx 301.59\\ldots$\\n$V \\approx 302 \\text{ cm}^3 \\ (3\\text{ s.f.}).$\\n\\n(The surface area and volume share the value $96\\pi$ here only by coincidence — note the different units, cm$^2$ against cm$^3$.)\\n\\n---\\n**How our marking engine awards the 6 marks:**\\n\\n- **M1 — Pythagoras for the slant height.** Awarded for using $l = \\sqrt{r^2 + h^2}$ (or equivalent) with the radius and vertical height. It is the method that scores, so it survives an arithmetic slip.\\n- **A1 — $l = 10$ cm.** The accuracy mark for the correct slant height. It depends on the M1 above.\\n- **M1 — total-surface formula.** Awarded for $\\pi r^2 + \\pi r l$ with the slant height (not the vertical height) substituted. Using $\\pi r l$ alone — the curved surface only — would miss this method.\\n- **A1 — $TSA \\approx 302$ cm$^2$.** The dependent accuracy mark. Follow-through (FT) applies: a candidate whose slant height was slightly wrong but who substitutes it correctly into $\\pi r^2 + \\pi r l$ still earns this on their own figure. Correct square units are part of the mark.\\n- **M1 — volume formula.** Awarded for $\\tfrac{1}{3}\\pi r^2 h$ with the VERTICAL height 8 (not the slant height 10).\\n- **A1 — $V \\approx 302$ cm$^3$.** The dependent accuracy mark, with cubic units.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $96\\pi$, $301.6$ or $302$ for either answer, and accepts $l$ written as $\\sqrt{100}$ or $10$. Once a correct value appears, subsequent working is ignored (ISW). The two method marks are what protect your score if a number slips — but only if the working is on the page." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks (M), dependent accuracy marks (A) and follow-through (FT). So always show the method: write the Pythagoras line for the slant height, quote the surface formula with $\\pi r l$ before substituting, and use the vertical height in the volume. The method marks and follow-through are what shield your score when a single number slips — and you only get that protection when the working is visible." },
+
+    { "type": "heading", "content": "Composite solids: combining shapes" },
+    { "type": "text", "content": "Many real objects are not single solids but combinations — a silo (cylinder plus hemisphere), a pencil (cylinder plus cone), a capsule. For VOLUME you add the parts, or subtract when one solid is hollowed out of another. For SURFACE AREA the rule is subtler: count only the surfaces exposed on the outside. Wherever two solids are joined, both faces at the join vanish, so never include them. Decide face by face what a real observer would actually see." },
+    { "type": "workedExample", "question": "A grain silo is a cylinder of radius 4 m and height 15 m, topped by a hemisphere of the same radius, and standing on a flat circular base. Find (a) the total volume in m$^3$, and (b) the total exterior surface area, including the base. (3 s.f.) [6]", "solution": "**(a) Volume.**\\nCylinder: $V_{\\text{cyl}} = \\pi r^2 h = \\pi(4)^2(15) = 240\\pi$ m$^3$.\\nHemisphere: $V_{\\text{hemi}} = \\tfrac{1}{2}\\cdot\\tfrac{4}{3}\\pi r^3 = \\tfrac{2}{3}\\pi(4)^3 = \\tfrac{128}{3}\\pi$ m$^3$.\\nTotal $= 240\\pi + \\tfrac{128}{3}\\pi = \\tfrac{848}{3}\\pi \\approx 888.02\\ldots$  [M1: add the two correct volumes]\\nTotal volume $\\approx 888$ m$^3$ (3 s.f.).  [A1]\\n\\n**(b) Surface area.** The exposed faces are the circular base, the curved cylinder wall, and the curved hemisphere; the flat top of the cylinder and the flat face of the hemisphere are hidden at the join.\\nBase $= \\pi r^2 = 16\\pi$ m$^2$.\\nCylinder wall $= 2\\pi r h = 2\\pi(4)(15) = 120\\pi$ m$^2$.\\nHemisphere curved $= \\tfrac{1}{2}\\cdot 4\\pi r^2 = 2\\pi r^2 = 32\\pi$ m$^2$.\\nTotal $= 16\\pi + 120\\pi + 32\\pi = 168\\pi \\approx 527.79\\ldots$  [M1: add only the exposed areas]\\nTotal surface area $\\approx 528$ m$^2$ (3 s.f.).  [A1]\\n\\n**Marks:** M1 A1 for the volume, M1 A1 for the surface area. The M-marks reward the correct combination — adding both volumes, and adding only the three exposed areas. Including the hidden join faces would forfeit the surface-area M1." },
+
+    { "type": "heading", "content": "Distances and angles in 3D" },
+    { "type": "text", "content": "Often you must find a length or angle that is not given directly — a diagonal across a box, the slant edge of a pyramid, the angle a support wire makes with the ground. The universal method is to uncover a right-angled triangle inside the solid that contains what you want. Slice the solid, draw that 2D triangle on its own, label the sides you know, and the 3D problem collapses into ordinary Pythagoras or trigonometry." },
+    { "type": "formula", "content": "Pythagoras: $a^2 + b^2 = c^2$. \\n Space diagonal of a cuboid $l \\times w \\times h$: $d = \\sqrt{l^2 + w^2 + h^2}$. \\n Right-angled trig: $\\sin\\theta = \\dfrac{\\text{opp}}{\\text{hyp}}, \\quad \\cos\\theta = \\dfrac{\\text{adj}}{\\text{hyp}}, \\quad \\tan\\theta = \\dfrac{\\text{opp}}{\\text{adj}}.$" },
+    { "type": "text", "content": "The angle between a line and a plane needs one extra idea: the line's projection, or 'shadow', on the plane. Drop a perpendicular from the top of the line straight down to the plane, then join that foot back to where the line touches the plane. The angle between the line and its shadow is the angle you want, and it lives in a right-angled triangle. The most common error is to measure to a convenient edge instead of to the true projection." },
+    { "type": "examTip", "content": "Whenever a question asks for a length or angle inside a 3D shape, redraw the relevant right-angled triangle on its own, away from the clutter of the solid. Mark the right angle, label the known sides, and only then choose Pythagoras or a trig ratio. This single habit turns most 3D questions into routine 2D ones." },
+    { "type": "workedExample", "question": "A cuboid-shaped room is 8 m long, 6 m wide and 3 m high. A wire runs from one bottom corner to the diagonally opposite top corner. Find (a) the length of the wire, and (b) the angle the wire makes with the floor. (3 s.f.) [5]", "solution": "**(a) Length of the wire (the space diagonal).**\\nFirst the diagonal of the floor: $f = \\sqrt{8^2 + 6^2} = \\sqrt{100} = 10$ m.  [M1: Pythagoras on the base]\\nNow the space diagonal, using the floor diagonal and the height:\\n$d = \\sqrt{f^2 + 3^2} = \\sqrt{10^2 + 3^2} = \\sqrt{109} \\approx 10.44$ m.\\n(Equivalently $d = \\sqrt{8^2 + 6^2 + 3^2} = \\sqrt{109}$.)\\nWire length $\\approx 10.4$ m (3 s.f.).  [A1]\\n\\n**(b) Angle with the floor.** The wire, its shadow on the floor (the floor diagonal, 10 m) and the vertical height (3 m) form a right-angled triangle. The angle $\\theta$ at the floor satisfies\\n$\\tan\\theta = \\dfrac{\\text{opposite}}{\\text{adjacent}} = \\dfrac{3}{10}.$  [M1: correct triangle and ratio]\\n$\\theta = \\arctan\\!\\left(\\dfrac{3}{10}\\right) = 16.699\\ldots^\\circ.$  [A1]\\nAngle with the floor $\\approx 16.7^\\circ$ (3 s.f.).  [A1]\\n\\n**Marks:** M1 A1 for the diagonal, then M1 A1 A1 for the angle. Follow-through applies — a candidate who uses their own (slightly different) floor diagonal in $\\tan\\theta = 3/f$ still earns the angle marks. Note the angle uses the vertical height opposite and the floor diagonal adjacent, NOT an edge of the room." },
+
+    { "type": "workedExample", "question": "A right pyramid has a square base of side 16 cm and perpendicular height 15 cm. Find (a) its volume, (b) its slant height, and (c) its total surface area. [6]", "solution": "**(a) Volume.** Base area $A_b = 16 \\times 16 = 256$ cm$^2$.\\n$V = \\tfrac{1}{3} A_b h = \\tfrac{1}{3}(256)(15) = 1280$ cm$^3$.  [M1 A1]\\n\\n**(b) Slant height.** The slant height reaches the MIDPOINT of a base edge, so the right-angled triangle uses the perpendicular height and HALF the base side, 8 cm:\\n$l = \\sqrt{h^2 + 8^2} = \\sqrt{15^2 + 8^2} = \\sqrt{225 + 64} = \\sqrt{289} = 17$ cm.  [M1 A1]\\n\\n**(c) Total surface area.** Base plus four identical triangular faces, each of area $\\tfrac{1}{2} \\times \\text{base} \\times \\text{slant height}$:\\none triangle $= \\tfrac{1}{2}(16)(17) = 136$ cm$^2$,\\n$TSA = 256 + 4(136) = 256 + 544 = 800$ cm$^2$.  [M1 A1]\\n\\n**Marks:** M1 A1 three times. The slant-height M1 rewards using half the base side (8), not the full side (16) and not the radius idea from a cone; the surface M1 rewards adding the base to the four sloping faces." },
+
+    { "type": "heading", "content": "Applications and units" },
+    { "type": "text", "content": "Contextual questions dress these formulas in real quantities: litres of water, kilograms of metal, square metres of paint. Two disciplines protect the marks. First, keep the units consistent throughout and convert only at the very end, from the full unrounded figure — remember $1000\\text{ cm}^3 = 1$ litre and $1\\text{ m}^3 = 1000$ litres. Second, read whether the object is solid or hollow, open or closed, before deciding which faces and which volume actually count. A watering can, a concrete pipe and a solid ball are three different surface-area problems even if they share a radius." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Using the slant height where the perpendicular height belongs (or the reverse)** — volume formulas need the vertical height $h$; the cone's curved-surface formula $\\pi r l$ needs the slant height $l$. Find $l$ from $l^2 = h^2 + r^2$ and keep the two straight.",
+      "**Quoting $\\pi r l$ as the total surface of a cone** — that is the curved surface only; add $\\pi r^2$ for a closed cone. State clearly whether the question wants curved or total.",
+      "**Mixing up the sphere and cone formulas** — a sphere is $V = \\frac{4}{3}\\pi r^3$ and $A = 4\\pi r^2$; a cone is $V = \\frac{1}{3}\\pi r^2 h$. Halve the sphere formulas (correctly) for a hemisphere.",
+      "**Getting the units wrong** — areas are in square units and volumes in cubic units; a length squared is not a length. When a cube of side $a$ is asked for, its surface is $6a^2$ and its volume is $a^3$, not $a^2$ or $6a$.",
+      "**Measuring the wrong angle between a line and a plane** — project the line onto the plane and measure to that shadow, not to a nearby edge; the correct angle sits in the triangle made by the line, its projection and the perpendicular.",
+      "**Including hidden faces in a composite surface area** — the two faces at a join disappear; count only what is exposed. Equally, do not drop a real face on an 'open' solid you should have kept.",
+      "**Converting capacity incorrectly** — $1000\\text{ cm}^3 = 1$ litre and $1\\text{ m}^3 = 1000$ litres. Convert once, at the end, from the unrounded value.",
+      "**Over-rounding mid-calculation** — carry the GDC's full figures (and keep $\\pi$ exact where you can) and round only the final answer, to 3 significant figures unless told otherwise."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The right-angled-triangle habit you build here is the backbone of the rest of Topic 3: it reappears in the sine and cosine rules for non-right triangles, in bearings and navigation, and in the trigonometry of the unit circle. The mensuration formulas feed directly into optimisation and modelling questions later in the course, where you minimise the surface area of a can or maximise the volume of a box under a constraint. And the discipline this topic drills — name the solid, choose the formula, show the method, keep the units honest — is exactly what every Paper 2 geometry question rewards." },
+
+    { "type": "practice", "label": "Get a Paper 2 solid-geometry problem marked: show the formula, the right-angled triangle and the units with full working", "href": "/mark?subject=ib-maths-ai-sl&topic=3.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics: Applications and Interpretation Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Maths is Fun: Solid Geometry", "href": "https://www.mathsisfun.com/geometry/solid-geometry.html" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

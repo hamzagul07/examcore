@@ -1,194 +1,132 @@
 {
   "slug": "4-6-binomial-and-poisson-distributions",
   "topicCode": "4.6",
+  "unit": { "code": "4", "title": "Statistics and probability" },
   "title": "Binomial and Poisson distributions",
   "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson introduces two fundamental discrete probability distributions: the Binomial and the Poisson. You will learn to identify the conditions for each, calculate probabilities using your GDC, and apply these concepts to solve real-world problems involving counting successes or events.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Two discrete distributions cover an enormous slice of real modelling: the binomial, which counts successes in a fixed number of trials, and the Poisson, which counts events in a fixed interval at a constant average rate. This lesson builds the full 4.6 syllabus: the four conditions that define a binomial variable, the notation $X\\sim B(n,p)$ and its probability $P(X=x)=\\binom{n}{x}p^x(1-p)^{n-x}$, cumulative 'at least' and 'at most' probabilities read from the GDC, and the mean $np$; then the Poisson variable $X\\sim Po(m)$ with $P(X=x)=\\frac{e^{-m}m^x}{x!}$, the fact that its mean and variance are both $m$, and how to scale $m$ to a new interval. Because 4.6 lives on Paper 2, the GDC does the arithmetic — the skill being marked is recognising which distribution applies, stating its parameters, and writing the method the examiner needs to see. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Identify the conditions that define a binomial distribution and a Poisson distribution.",
-    "Calculate probabilities for binomial and Poisson distributions using a GDC.",
-    "Calculate the expected value (mean) for both distributions.",
-    "Solve practical problems by choosing the appropriate distribution and interpreting the results."
+    "State the four conditions for a binomial distribution and recognise when a situation is modelled by $X\\sim B(n,p)$.",
+    "Calculate binomial probabilities — exact, 'at most' and 'at least' — using the GDC and the complement rule, and find the mean $np$.",
+    "State the conditions for a Poisson distribution, use the notation $X\\sim Po(m)$, and calculate Poisson probabilities on the GDC.",
+    "Use the fact that a Poisson distribution has mean and variance both equal to $m$, and scale $m$ when the interval changes.",
+    "Choose the correct distribution for a context and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["4.6"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Counting Successes vs. Counting Events",
-    "summary": "The Binomial distribution counts the number of successes in a fixed number of trials, like flipping a coin 10 times. The Poisson distribution counts the number of events occurring in a fixed interval of time or space, like a shop receiving customers in an hour.",
-    "analogy": "Imagine you're playing a carnival game. If you have exactly 5 darts to throw at a balloon (and you either hit or miss), counting your hits is a Binomial problem. Now, imagine you're watching the game for 10 minutes and counting how many people hit the balloon in total. That's a Poisson problem, because you're counting events in a time interval, not successes in a fixed number of personal attempts.",
+    "summary": "The binomial distribution counts how many successes you get in a fixed number of tries, like the number of heads in 10 coin flips. The Poisson distribution counts how many events land in a fixed stretch of time or space at a steady average rate, like the number of customers a shop serves in an hour.",
+    "analogy": "Picture a carnival stall. If you have exactly 5 darts and each either pops a balloon or does not, counting your hits is a binomial problem — a fixed number of attempts, each a hit or a miss. Now stand back and watch the stall for 10 minutes, tallying how many balloons pop across all players. That is a Poisson problem: you are no longer counting successes out of a set number of throws, you are counting events arriving in an interval.",
     "steps": [
-      "Identify the distribution: Is it a fixed number of trials (Binomial) or a fixed interval of time/space (Poisson)?",
-      "Define the parameters: For Binomial, find the number of trials 'n' and probability of success 'p'. For Poisson, find the mean rate 'm' (or 'λ').",
-      "Select the correct GDC function: Use 'Pdf' for exactly a certain number of events (P(X=k)) and 'Cdf' for a range of events (P(X ≤ k)).",
-      "Calculate and interpret: Execute the calculation on your GDC and write down the final probability, ensuring it answers the specific question (e.g., 'at least', 'more than')."
+      "Decide the distribution: a fixed number of independent trials each with two outcomes (binomial), or events landing in a fixed interval at a constant rate (Poisson)?",
+      "Read off the parameters: for a binomial find the number of trials $n$ and the success probability $p$; for a Poisson find the mean rate $m$ for the interval in the question.",
+      "Choose the GDC function: a 'Pdf' for an exact count $P(X=x)$, a 'Cdf' for a range such as $P(X\\le x)$, and the complement $1-P(X\\le\\ldots)$ for 'at least'.",
+      "Calculate and interpret: run it on the GDC and check your answer matches the exact wording — 'at least', 'more than', 'fewer than' each shift the range by one."
     ]
   },
+  "keyConcepts": ["binomial distribution", "Poisson distribution", "GDC probabilities"],
   "flashcards": [
-    {
-      "front": "What are the four conditions for a Binomial distribution? (Acronym: BINS)",
-      "back": "Binary outcomes (success/failure), Independent trials, Number of trials is fixed (n), Same probability of success for each trial (p)."
-    },
-    {
-      "front": "What are the key conditions for a Poisson distribution?",
-      "back": "Events occur independently, at a constant average rate, and cannot occur simultaneously. They are counted over a fixed interval of time or space."
-    },
-    {
-      "front": "What does $X \\sim B(n, p)$ mean?",
-      "back": "The random variable X follows a Binomial distribution with 'n' trials and a probability of success 'p'."
-    },
-    {
-      "front": "What does $X \\sim Po(m)$ mean?",
-      "back": "The random variable X follows a Poisson distribution with a mean (or average rate) of 'm' events per interval."
-    },
-    {
-      "front": "When do you use `binomPdf` on your GDC?",
-      "back": "To find the probability of *exactly* a certain number of successes, i.e., $P(X=k)$."
-    },
-    {
-      "front": "When do you use `binomCdf` on your GDC?",
-      "back": "To find the cumulative probability of a range of successes, typically 'at most' a certain number, i.e., $P(X \\le k)$."
-    },
-    {
-      "front": "How do you calculate $P(X \\ge k)$ using a GDC that only has $P(X \\le k)$?",
-      "back": "Use the complement rule: $P(X \\ge k) = 1 - P(X \\le k-1)$."
-    },
-    {
-      "front": "How do you calculate $P(X > k)$?",
-      "back": "Use the complement rule: $P(X > k) = 1 - P(X \\le k)$."
-    },
-    {
-      "front": "A call centre receives 6 calls per hour on average. What is the mean number of calls in 20 minutes?",
-      "back": "The interval is 1/3 of an hour, so the mean 'm' for the new interval is $6 \\times (1/3) = 2$ calls."
-    },
-    {
-      "front": "What is the expected value (mean) of a Binomial distribution $B(n, p)$?",
-      "back": "$E(X) = np$. For example, if you flip a fair coin 20 times, you expect $20 \\times 0.5 = 10$ heads."
-    },
-    {
-      "front": "What is the expected value (mean) of a Poisson distribution $Po(m)$?",
-      "back": "$E(X) = m$. The parameter 'm' is the expected value by definition."
-    },
-    {
-      "front": "Is the number of rainy days in a week in London a Binomial or Poisson variable?",
-      "back": "Binomial. There is a fixed number of trials (n=7 days) and each day is either rainy (success) or not (failure)."
-    }
+    { "front": "The four conditions for a binomial distribution (BINS)", "back": "**B**inary — each trial has two outcomes, success or failure. **I**ndependent — one trial's outcome does not affect another. **N**umber — a fixed number of trials $n$. **S**ame probability — the success probability $p$ is constant across trials.", "pillLabel": "Framework" },
+    { "front": "Conditions for a Poisson distribution", "back": "Events occur at a constant average rate, independently of one another, and cannot occur at exactly the same instant. They are counted over a fixed interval of time, length, area or volume.", "pillLabel": "Framework" },
+    { "front": "$X \\sim B(n, p)$", "back": "The variable $X$ follows a binomial distribution with $n$ trials and success probability $p$. Then $P(X=x)=\\binom{n}{x}p^x(1-p)^{n-x}$ for $x=0,1,\\ldots,n$.", "pillLabel": "Formula" },
+    { "front": "$X \\sim Po(m)$", "back": "The variable $X$ follows a Poisson distribution with mean $m$ events per interval. Then $P(X=x)=\\dfrac{e^{-m}m^x}{x!}$ for $x=0,1,2,\\ldots$", "pillLabel": "Formula" },
+    { "front": "Mean of a binomial distribution", "back": "$E(X)=np$. Flip a fair coin 20 times and you expect $20\\times0.5=10$ heads. (The variance, not needed for calculation here, is $np(1-p)$.)", "pillLabel": "Formula" },
+    { "front": "Mean and variance of a Poisson distribution", "back": "For $X\\sim Po(m)$ the mean and the variance are BOTH equal to $m$. This is a signature of the Poisson: if a data set has roughly equal mean and variance, a Poisson model is plausible.", "pillLabel": "Formula" },
+    { "front": "'At least one' — the complement shortcut", "back": "$P(X\\ge 1)=1-P(X=0)$. For a binomial, $P(X=0)=(1-p)^n$; for a Poisson, $P(X=0)=e^{-m}$. Far quicker than summing every other outcome.", "pillLabel": "Trap" },
+    { "front": "'At least $k$' on a GDC that gives $P(X\\le x)$", "back": "$P(X\\ge k)=1-P(X\\le k-1)$. The trap is the '$-1$': $P(X\\ge5)=1-P(X\\le4)$, not $1-P(X\\le5)$. Similarly $P(X>k)=1-P(X\\le k)$.", "pillLabel": "Trap" },
+    { "front": "binomPdf vs binomCdf", "back": "`binomPdf(n,p,x)` gives the exact probability $P(X=x)$. `binomCdf(n,p,a,b)` gives the cumulative probability $P(a\\le X\\le b)$, typically used for 'at most'.", "pillLabel": "Definition" },
+    { "front": "poissonPdf vs poissonCdf", "back": "`poissonPdf(m,x)` gives $P(X=x)$; `poissonCdf(m,a,b)` gives $P(a\\le X\\le b)$. On Paper 2 these are faster and safer than the formula.", "pillLabel": "Definition" },
+    { "front": "Scaling the Poisson mean to a new interval", "back": "The mean is proportional to the interval length. If the rate is 6 per hour, then over 20 minutes ($\\tfrac13$ hour) the mean is $6\\times\\tfrac13=2$; over 2 hours it is $6\\times2=12$. Rescale $m$ before you calculate.", "pillLabel": "Trap" },
+    { "front": "Rainy days in a week: binomial or Poisson?", "back": "Binomial. There is a fixed number of trials ($n=7$ days) and each day is either rainy (success) or not (failure). Contrast with 'raindrops on a window in a minute', which is Poisson.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which of these situations does NOT satisfy the conditions for a binomial distribution?", "options": ["The number of sixes in 10 rolls of a fair die", "The number of faulty items in a batch of 50, each faulty with probability 0.03", "The number of cars passing a point on a road in one hour", "The number of heads in 8 tosses of a biased coin"], "answer": "The number of cars passing a point on a road in one hour" },
+    { "prompt": "For $X\\sim B(n,p)$, the probability of 'at least one' success is best found as:", "options": ["$1-P(X=0)=1-(1-p)^n$", "$P(X=1)$", "$1-P(X=1)$", "$n\\times p$"], "answer": "$1-P(X=0)=1-(1-p)^n$" },
+    { "prompt": "A fair coin is tossed 40 times. The expected number of heads is:", "options": ["$40\\times0.5=20$", "$40$", "$0.5$", "$\\sqrt{40\\times0.5\\times0.5}=\\sqrt{10}$"], "answer": "$40\\times0.5=20$" },
+    { "prompt": "For a Poisson distribution $X\\sim Po(m)$, the variance is equal to:", "options": ["$m$", "$m^2$", "$\\sqrt{m}$", "$m(1-m)$"], "answer": "$m$" },
+    { "prompt": "Calls arrive at a switchboard at 12 per hour. For a 15-minute period the appropriate Poisson mean is:", "options": ["$12\\times\\tfrac{15}{60}=3$", "$12$", "$12\\times15=180$", "$\\tfrac{12}{15}=0.8$"], "answer": "$12\\times\\tfrac{15}{60}=3$" }
   ],
   "faq": [
-    {
-      "q": "What is the main difference between `binomPdf` and `binomCdf`?",
-      "a": "`Pdf` (Probability Density Function) is for a single, exact value, like $P(X=5)$. `Cdf` (Cumulative Distribution Function) is for a range of values, typically from zero up to a certain point, like $P(X \\le 5)$."
-    },
-    {
-      "q": "My GDC only has `binomCdf(n, p, k)` which calculates $P(X \\le k)$. How do I find $P(X \\ge 5)$ for $n=10$?",
-      "a": "You need to use the complement rule. $P(X \\ge 5)$ means $X$ can be 5, 6, 7, 8, 9, or 10. The opposite of this is $X$ being 0, 1, 2, 3, or 4, which is $P(X \\le 4)$. So, you calculate $P(X \\ge 5) = 1 - P(X \\le 4)$. On your GDC, this would be `1 - binomCdf(10, p, 4)`."
-    },
-    {
-      "q": "For a Poisson question, what if the rate is given per hour, but the question asks about 15 minutes?",
-      "a": "You must scale the mean, $m$. Since 15 minutes is a quarter of an hour (15/60 = 0.25), you multiply the hourly rate by 0.25 to get the new mean for the 15-minute interval. For example, if the rate is 12 per hour, the new mean for 15 minutes is $m = 12 \\times 0.25 = 3$."
-    },
-    {
-      "q": "Can I just use the formulas for Binomial and Poisson instead of my GDC?",
-      "a": "Yes, the formulas are in the formula booklet and using them is valid. However, on Paper 2, using the GDC is significantly faster and reduces the risk of arithmetic errors, especially for cumulative probabilities which would require multiple formula calculations. The IB markscheme awards marks for correct GDC input."
-    }
+    { "q": "How do I decide between a binomial and a Poisson model?", "a": "Ask what is being counted. If there is a fixed number of separate trials, each a success or failure with the same probability — 15 bulbs tested, 12 dice rolled, 40 coins tossed — it is binomial. If you are counting events that land in a continuous interval of time or space at a steady average rate, with no fixed number of trials — calls in an hour, flaws per metre of cable — it is Poisson. The giveaway is whether you can point to $n$, the fixed number of trials: a binomial has one, a Poisson does not." },
+    { "q": "My GDC's binomCdf only gives $P(X\\le x)$. How do I find $P(X\\ge5)$ for $n=10$?", "a": "Use the complement. $P(X\\ge5)$ covers $X=5,6,7,8,9,10$; its opposite is $X=0,1,2,3,4$, which is $P(X\\le4)$. So $P(X\\ge5)=1-P(X\\le4)=1-\\text{binomCdf}(10,p,4)$. The single most common slip is using $P(X\\le5)$ instead of $P(X\\le4)$ — 'at least 5' excludes 4 but includes 5, so you subtract everything up to 4." },
+    { "q": "The Poisson rate is per hour but the question asks about 15 minutes — what do I do?", "a": "Scale the mean in proportion to the interval. Fifteen minutes is a quarter of an hour, so multiply the hourly rate by $0.25$. If the rate is 12 per hour, the mean for 15 minutes is $m=12\\times0.25=3$, and you work with $Po(3)$. Never plug the hourly rate straight into a sub-hour question." },
+    { "q": "Can I just use the formulas instead of the GDC?", "a": "Yes — both formulas, $\\binom{n}{x}p^x(1-p)^{n-x}$ and $\\dfrac{e^{-m}m^x}{x!}$, are in the formula booklet and give full marks if used correctly. But on Paper 2 the GDC is much faster and far less error-prone, especially for cumulative probabilities where the formula would need several separate terms added. The markscheme rewards a correct GDC calculation just as it rewards the formula." },
+    { "q": "Why are the mean and variance of a Poisson both equal to $m$?", "a": "It is a defining feature of the distribution: for $X\\sim Po(m)$ you have $E(X)=m$ and $\\text{Var}(X)=m$. You are not asked to prove it — you use it. It matters in practice because if real data has a variance much bigger than its mean, a Poisson model is a poor fit, whereas roughly equal mean and variance is evidence for one." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of discrete probability distributions! In many real-life situations, we want to model the probability of a certain number of things happening. This lesson focuses on two powerful tools for doing just that: the Binomial and Poisson distributions. As this is a Paper 2 topic, your Graphical Display Calculator (GDC) will be your best friend. Let's learn how to tell these distributions apart and use our calculators to solve problems efficiently."
-    },
-    {
-      "type": "heading",
-      "content": "The Binomial Distribution: Counting Successes"
-    },
-    {
-      "type": "text",
-      "content": "The Binomial distribution is used when we are interested in the number of 'successes' in a fixed number of trials. Think of it as repeating the same experiment over and over and counting how many times you get the outcome you want. For a situation to be modelled by a binomial distribution, it must satisfy four key conditions, which can be remembered with the acronym BINS."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**B**inary: There are only two possible outcomes for each trial, often called 'success' and 'failure'.",
-        "**I**ndependent: The outcome of one trial does not affect the outcome of any other trial.",
-        "**N**umber: There is a fixed number of trials, denoted by $n$.",
-        "**S**ame probability: The probability of success, denoted by $p$, is the same for every trial."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "If a random variable $X$ follows a binomial distribution, we write $X \\sim B(n, p)$. While there is a formula, on Paper 2 you will almost always use your GDC. The key functions are `binomPdf(n, p, k)` which calculates $P(X=k)$, and `binomCdf(n, p, lower, upper)` which calculates the probability for a range of outcomes, like $P(a \\le X \\le b)$."
-    },
-    {
-      "type": "workedExample",
-      "question": "A factory produces light bulbs, and the probability that a randomly selected bulb is defective is 0.08. A sample of 15 bulbs is taken. \n(a) What is the probability that exactly two bulbs are defective? \n(b) What is the probability that at most three bulbs are defective?",
-      "solution": "First, we identify the distribution. This is a binomial setting because we have a fixed number of trials (n=15), two outcomes (defective or not), the trials are independent, and the probability of a defect is constant (p=0.08). Let $X$ be the number of defective bulbs. Then $X \\sim B(15, 0.08)$.\n\n(a) We need to find $P(X=2)$. We use the binomial probability distribution function on the GDC.\n\n`binomPdf(n=15, p=0.08, x=2)` (M1)\n$P(X=2) = 0.21955...$\n$P(X=2) \\approx 0.220$ (A1)\n\n(b) We need to find the probability of 'at most three' defective bulbs, which means $P(X \\le 3)$. This includes 0, 1, 2, or 3 defective bulbs. We use the binomial cumulative distribution function on the GDC.\n\n`binomCdf(n=15, p=0.08, lower=0, upper=3)` (M1)\n$P(X \\le 3) = 0.9836...$\n$P(X \\le 3) \\approx 0.984$ (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "Always state the distribution and its parameters at the start of your working, for example, 'Let $X$ be the number of successes, $X \\sim B(n, p)$'. This often earns you a mark (M1) for showing understanding, even if your final calculation is incorrect."
-    },
-    {
-      "type": "heading",
-      "content": "The Poisson Distribution: Counting Events in an Interval"
-    },
-    {
-      "type": "text",
-      "content": "The Poisson distribution models the number of times an event occurs within a specified continuous interval, which could be time, distance, area, or volume. For example, we could model the number of emails you receive in an hour, or the number of flaws in a 10-metre length of fabric. The key parameter is the mean number of occurrences in that interval, denoted by $m$ (or sometimes $\\lambda$)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Events occur at a constant average rate.",
-        "Events occur independently of each other.",
-        "It is impossible for two events to occur at exactly the same instant."
-      ]
-    },
-    {
-      "type": "formula",
-      "content": "If a random variable $X$ follows a Poisson distribution, we write $X \\sim Po(m)$. Your GDC will have `poissonPdf(m, k)` for $P(X=k)$ and `poissonCdf(m, lower, upper)` for ranges like $P(a \\le X \\le b)$."
-    },
-    {
-      "type": "workedExample",
-      "question": "A customer service desk receives enquiries at an average rate of 4.5 per hour. \n(a) Find the probability that the desk receives exactly 3 enquiries in a particular hour. \n(b) Find the probability that the desk receives fewer than 10 enquiries in a two-hour period.",
-      "solution": "Let $H$ be the number of enquiries in one hour. The rate is given, so $H \\sim Po(4.5)$.\n\n(a) We need to find $P(H=3)$. We use the Poisson probability distribution function.\n\n`poissonPdf(m=4.5, x=3)` (M1)\n$P(H=3) = 0.1687...$\n$P(H=3) \\approx 0.169$ (A1)\n\n(b) The question asks about a two-hour period. We must adjust the mean rate. \nNew mean, $m' = 4.5 \\text{ enquiries/hour} \\times 2 \\text{ hours} = 9$. (M1) for scaling the mean.\nLet $T$ be the number of enquiries in two hours. So, $T \\sim Po(9)$.\nWe need to find the probability of 'fewer than 10' enquiries, which is $P(T < 10)$, or $P(T \\le 9)$.\n\n`poissonCdf(m=9, lower=0, upper=9)` (M1)\n$P(T \\le 9) = 0.5874...$\n$P(T \\le 9) \\approx 0.587$ (A1)"
-    },
-    {
-      "type": "heading",
-      "content": "Choosing the Right Tool for the Job"
-    },
-    {
-      "type": "text",
-      "content": "The most common mistake is using the wrong distribution. Always ask yourself: am I counting successes out of a fixed number of attempts, or am I counting random event occurrences in a fixed interval? The answer will point you to either Binomial or Poisson."
-    },
-    {
-      "type": "examTip",
-      "content": "A very common question involves calculating the probability of 'at least one' event. It is almost always quicker to calculate this as $1 - P(\\text{zero events})$. For a Binomial distribution, this is $1 - P(X=0)$. For a Poisson, it's $1 - P(X=0)$ too. This saves you from summing up many probabilities."
-    },
-    {
-      "type": "practice",
-      "label": "Test your understanding with exam-style questions on Binomial and Poisson distributions.",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=4.6"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra: Binomial Distribution Simulator",
-          "href": "https://www.geogebra.org/m/gwwxmyz7"
-        },
-        {
-          "label": "GeoGebra: Poisson Distribution Simulator",
-          "href": "https://www.geogebra.org/m/cnehtqzs"
-        },
-        {
-          "label": "Khan Academy: Binomial & Poisson",
-          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/binomial-random-variables/v/binomial-distribution"
-        }
-      ]
-    }
+    { "type": "intro", "content": "A great deal of real modelling comes down to counting: how many defective bulbs in a crate, how many customers through a door, how many goals in a match. Two discrete distributions handle most of it. The binomial counts successes in a fixed number of independent trials; the Poisson counts events landing in a fixed interval at a constant average rate. This lesson builds the whole of 4.6 — the conditions that define each distribution, their notation and formulas, exact and cumulative probabilities, and their means — and then shows how to choose between them. Because 4.6 is examined on Paper 2, your GDC does the arithmetic, so the marks are for recognising the distribution, stating its parameters and writing the method. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The binomial distribution: counting successes" },
+    { "type": "text", "content": "The binomial distribution models the number of 'successes' in a fixed number of repeated trials. Picture running the same simple experiment over and over — testing a bulb, rolling a die, tossing a coin — and tallying how often the outcome you care about occurs. A situation is binomial only if it meets four conditions, conveniently remembered as BINS." },
+    { "type": "keyPoints", "items": [
+      "**B**inary: each trial has just two outcomes, labelled 'success' and 'failure'.",
+      "**I**ndependent: the outcome of one trial does not affect any other.",
+      "**N**umber: the number of trials is fixed in advance, written $n$.",
+      "**S**ame probability: the success probability $p$ is identical on every trial."
+    ]},
+    { "type": "text", "content": "If a variable $X$ meets these conditions we write $X \\sim B(n, p)$, and its probability of exactly $x$ successes is given by the formula below. On Paper 2 you will almost always evaluate it on the GDC: `binomPdf(n, p, x)` returns the exact probability $P(X=x)$, and `binomCdf(n, p, a, b)` returns the cumulative probability $P(a \\le X \\le b)$ across a range." },
+    { "type": "formula", "content": "For $X \\sim B(n, p)$: \\n $P(X = x) = \\dbinom{n}{x} p^{x} (1-p)^{n-x}, \\qquad x = 0, 1, 2, \\ldots, n.$ \\n The mean (expected number of successes) is $E(X) = np$." },
+    { "type": "workedExample", "question": "A factory produces light bulbs, and the probability that a randomly chosen bulb is defective is 0.08. A sample of 15 bulbs is taken and $X$ is the number of defective bulbs. \\n (a) Explain why $X$ can be modelled by a binomial distribution and state its parameters. \\n (b) Find $P(X = 2)$. \\n (c) Find the probability that at most three bulbs are defective. [6]", "solution": "**(a) Model.** Each bulb is either defective or not (binary), the bulbs are chosen independently, there is a fixed number of trials $n=15$, and the defect probability $p=0.08$ is constant. So $X \\sim B(15, 0.08)$.  [A1: distribution stated with parameters]\\n\\n**(b) Exactly two defective.** This is $P(X=2)$, an exact count, so use the binomial Pdf:\\n`binomPdf(n=15, p=0.08, x=2)`  [M1: correct set-up]\\n$P(X=2) = 0.21955\\ldots \\approx 0.220$ (3 s.f.).  [A1]\\n\\n**(c) At most three defective.** 'At most three' means $P(X\\le3)$ — that is $X=0,1,2$ or $3$ — so use the cumulative function:\\n`binomCdf(n=15, p=0.08, lower=0, upper=3)`  [M1: cumulative set-up]\\n$P(X\\le3) = 0.98357\\ldots \\approx 0.984$ (3 s.f.).  [A1]" },
+    { "type": "examTip", "content": "Open every distribution question by naming the distribution and its parameters — 'Let $X$ be the number of successes, $X \\sim B(n, p)$'. That single line frequently earns a method mark for recognition, and it forces you to fix $n$ and $p$ before touching the calculator, which is where most errors start." },
+
+    { "type": "heading", "content": "'At least' and the complement rule" },
+    { "type": "text", "content": "Questions rarely stop at 'exactly' and 'at most'. The phrase to watch is 'at least', and above all 'at least one'. Summing $P(X=1)+P(X=2)+\\cdots$ up to $n$ is slow and error-prone; the complement is instant. Since the only alternative to 'at least one' is 'none', $P(X\\ge1)=1-P(X=0)$, and for a binomial $P(X=0)=(1-p)^n$. More generally $P(X\\ge k)=1-P(X\\le k-1)$ — mind the '$-1$', because 'at least $k$' excludes $k-1$ but includes $k$." },
+    { "type": "keyPoints", "items": [
+      "**At least one:** $P(X\\ge1)=1-P(X=0)=1-(1-p)^n$ for a binomial.",
+      "**At least $k$:** $P(X\\ge k)=1-P(X\\le k-1)$ — note the $k-1$, a classic dropped mark.",
+      "**More than $k$:** $P(X>k)=1-P(X\\le k)$.",
+      "**Fewer than $k$:** $P(X<k)=P(X\\le k-1)$."
+    ]},
+
+    { "type": "heading", "content": "The Poisson distribution: counting events in an interval" },
+    { "type": "text", "content": "The Poisson distribution models the number of times an event happens within a fixed continuous interval — of time, length, area or volume — when events arrive at a constant average rate. Think of the emails hitting your inbox in an hour, the flaws along a 10-metre roll of fabric, or the goals in a football match. There is no fixed number of trials here; the single parameter is the mean number of events in the interval, written $m$ (some books use $\\lambda$)." },
+    { "type": "keyPoints", "items": [
+      "Events occur at a constant average rate across the interval.",
+      "Events occur independently of one another.",
+      "Two events cannot occur at exactly the same instant.",
+      "There is no upper limit on the count: $X$ can be $0, 1, 2, \\ldots$ without bound."
+    ]},
+    { "type": "formula", "content": "For $X \\sim Po(m)$: \\n $P(X = x) = \\dfrac{e^{-m} m^{x}}{x!}, \\qquad x = 0, 1, 2, \\ldots$ \\n The mean and the variance are BOTH equal to $m$: $E(X) = \\text{Var}(X) = m$. \\n On the GDC use `poissonPdf(m, x)` for $P(X=x)$ and `poissonCdf(m, a, b)` for $P(a \\le X \\le b)$." },
+    { "type": "text", "content": "The equality of mean and variance is the Poisson's fingerprint. It also means that when the interval in the question is not the interval the rate was quoted for, you must scale $m$ in proportion. A rate of 6 per hour becomes a mean of 2 over 20 minutes ($6\\times\\tfrac13$) and a mean of 12 over 2 hours ($6\\times2$). Always rescale before you calculate." },
+    { "type": "workedExample", "question": "A customer service desk receives enquiries at an average rate of 4.5 per hour. \\n (a) Find the probability that the desk receives exactly 3 enquiries in a particular hour. \\n (b) Find the probability that the desk receives fewer than 10 enquiries in a two-hour period. \\n (c) State the variance of the number of enquiries in a two-hour period. [6]", "solution": "**(a) Exactly three in one hour.** Let $H$ be the number of enquiries in one hour, so $H \\sim Po(4.5)$. We need $P(H=3)$, an exact count:\\n`poissonPdf(m=4.5, x=3)`  [M1: correct set-up]\\n$P(H=3) = 0.16872\\ldots \\approx 0.169$ (3 s.f.).  [A1]\\n\\n**(b) Fewer than ten in two hours.** First scale the mean to the two-hour interval: $m' = 4.5 \\times 2 = 9$.  [M1: scaling the mean]\\nLet $T \\sim Po(9)$ be the count in two hours. 'Fewer than 10' means $P(T<10)=P(T\\le9)$:\\n`poissonCdf(m=9, lower=0, upper=9)`  [M1: cumulative set-up]\\n$P(T\\le9) = 0.58741\\ldots \\approx 0.587$ (3 s.f.).  [A1]\\n\\n**(c) Variance over two hours.** For a Poisson the variance equals the mean, so $\\text{Var}(T) = m' = 9$.  [A1]" },
+    { "type": "examTip", "content": "The 'fewer than 10' in part (b) is a boundary trap. 'Fewer than 10' does NOT include 10, so it is $P(T\\le9)$; 'no more than 10' or 'at most 10' WOULD include it, giving $P(T\\le10)$. Translate the English into the exact range before you type anything, and you will not lose a mark to a single misplaced boundary." },
+
+    { "type": "heading", "content": "Choosing the right tool for the job" },
+    { "type": "text", "content": "The most damaging error is applying the wrong distribution to a context — every subsequent mark then rests on a false footing. Before calculating, ask one question: am I counting successes out of a fixed number of attempts, or am I counting events arriving in a fixed interval? If you can point to a definite number of trials $n$, it is binomial; if events simply accumulate over time or space with no fixed number of trials, it is Poisson. 'How many of the 20 seeds germinate' is binomial; 'how many weeds sprout per square metre' is Poisson." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Choosing the wrong distribution** — a fixed number of trials with a success/failure outcome is binomial; events accumulating in an interval at a steady rate is Poisson. Ask whether an $n$ exists before you start.",
+      "**Mishandling 'at least one'** — $P(X\\ge1)=1-P(X=0)$, not $P(X=1)$. For a binomial $P(X=0)=(1-p)^n$; for a Poisson $P(X=0)=e^{-m}$.",
+      "**Dropping the $-1$ in 'at least $k$'** — $P(X\\ge k)=1-P(X\\le k-1)$. Writing $1-P(X\\le k)$ silently excludes the value $k$ you were meant to include.",
+      "**Confusing boundary words** — 'fewer than 10' is $P(X\\le9)$ while 'at most 10' is $P(X\\le10)$; 'more than 10' is $P(X>10)$ while 'at least 10' is $P(X\\ge10)$. Translate the phrase into an exact range first.",
+      "**Forgetting to scale the Poisson mean** — if the rate is per hour and the interval is 20 minutes, use $m=\\text{rate}\\times\\tfrac13$, not the hourly rate.",
+      "**Misremembering the means** — a binomial has mean $np$; a Poisson has mean $m$ AND variance $m$. Do not quote $np(1-p)$ as a Poisson variance or set a Poisson mean to $np$.",
+      "**Using Pdf where Cdf is needed (or vice versa)** — `Pdf` is for a single exact value $P(X=x)$; `Cdf` is for a range. Mixing them gives a plausible-looking but wrong probability.",
+      "**Over-rounding mid-calculation** — carry the GDC's full figures and round only the final answer, to 3 significant figures unless told otherwise."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an error made earlier need not cost you the marks that depend on it, provided the later step is carried out correctly on your own figures. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any equivalent form and any correctly rounded value. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line, and note that a GDC calculation is expected — you are not required to expand the formula, only to set it up correctly." },
+    { "type": "workedExample", "question": "A fair die is rolled 12 times. Using $X\\sim B(12,\\tfrac16)$, find the probability of exactly 3 sixes and the probability of at least one six. [5]", "solution": "**Model answer — full working.**\\n\\nEach roll is a six (success) or not (failure), the rolls are independent, there are $n=12$ trials, and $p=\\tfrac16$ is constant, so $X\\sim B\\!\\left(12,\\tfrac16\\right)$.\\n\\n**Exactly 3 sixes.** This is $P(X=3)$:\\n$P(X=3)=\\dbinom{12}{3}\\left(\\tfrac16\\right)^{3}\\left(\\tfrac56\\right)^{9}=0.19707\\ldots\\approx 0.197.$\\n(On the GDC: `binomPdf(12, 1/6, 3)`.)\\n\\n**At least one six.** Use the complement, since the opposite of 'at least one' is 'none':\\n$P(X\\ge1)=1-P(X=0)=1-\\left(\\tfrac56\\right)^{12}=1-0.11216\\ldots=0.88783\\ldots\\approx 0.888.$\\n(On the GDC: $1-$`binomPdf(12, 1/6, 0)`, or equivalently $1-$`binomCdf(12, 1/6, 0)`.)\\n\\n**Answers:** $P(X=3)\\approx 0.197$ and $P(X\\ge1)\\approx 0.888$.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — recognise the binomial.** Awarded for identifying $X\\sim B(12,\\tfrac16)$ with $n=12$ and $p=\\tfrac16$. This method mark rewards the modelling decision, so it stands even if a later number slips.\\n- **M1 — set up $P(X=3)$.** For the correct exact-probability set-up, $\\binom{12}{3}\\left(\\tfrac16\\right)^{3}\\left(\\tfrac56\\right)^{9}$ or the equivalent `binomPdf(12, 1/6, 3)`. The GDC entry is accepted in full — you need not expand the binomial coefficient.\\n- **A1 — first answer.** Awarded for $P(X=3)\\approx0.197$, correctly rounded. This accuracy mark depends on the preceding M1: it is earned once the set-up is right and evaluated correctly.\\n- **M1 — complement.** For recognising 'at least one' as $1-P(X=0)$ and forming $1-\\left(\\tfrac56\\right)^{12}$ (or $1-$`binomCdf(12, 1/6, 0)`). The engine checks that the complement of $X=0$ was taken, not $P(X=1)$.\\n- **A1 — second answer.** Awarded for $P(X\\ge1)\\approx0.888$. This is FT on the candidate's own $P(X=0)$: a student whose $P(X=0)$ differed slightly but who correctly computed $1-P(X=0)$ on their figure keeps the mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $0.197$ written as $0.1971$ or $\\tfrac{...}{...}$ exact form, and accepts the second answer whether reached via `binomPdf` or `binomCdf` for $P(X=0)$. Once a correct final probability appears, ISW means later restatements do not lose marks.\\n\\n**Bottom line:** of the 5 marks, three are method marks that survive an arithmetic slip, and the two accuracy marks are shielded by follow-through — but only if the modelling line and the complement step are written down. A student who writes just two bare numbers with no set-up risks losing 3 marks even if one answer is right." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: name the distribution and its parameters, write the probability set-up (or the GDC function you used), take the complement explicitly for 'at least', then state the rounded answer. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The binomial and Poisson are your first named probability models, and the habits they build carry straight into the rest of the course. The idea of a distribution with parameters, a mean read from those parameters, and probabilities computed on the GDC reappears with the normal distribution, where the mean and standard deviation set the shape of a continuous bell curve. The complement rule you used for 'at least one' is the same move that turns awkward 'at least' questions on the normal curve into quick subtractions. And the discipline that earns marks here — recognise the model, state the parameters, translate the English into an exact range, show the method — is exactly the discipline every Paper 2 probability question rewards." },
+
+    { "type": "practice", "label": "Get a Paper 2 calculation marked: choose the distribution, set up the probability and show the method", "href": "/mark?subject=ib-maths-ai-sl&topic=4.6&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra: Binomial Distribution Simulator", "href": "https://www.geogebra.org/m/gwwxmyz7" },
+      { "label": "GeoGebra: Poisson Distribution Simulator", "href": "https://www.geogebra.org/m/cnehtqzs" },
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Binomial Distribution Simulator",

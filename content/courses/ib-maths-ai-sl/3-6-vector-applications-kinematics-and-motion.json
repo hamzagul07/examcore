@@ -1,178 +1,128 @@
 {
   "slug": "3-6-vector-applications-kinematics-and-motion",
   "topicCode": "3.6",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "title": "Vector applications: kinematics and motion",
   "paper": "P1",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson introduces the application of vectors to kinematics, the study of motion. You will learn how to describe an object's position and velocity using vectors, and how to solve problems involving constant velocity, speed, distance, and collisions in a two-dimensional plane.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "This lesson turns vectors into a language for describing motion. When an object moves with constant velocity its position is captured by a single equation, $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$: a starting point plus so-much-movement-per-unit-time. From that one model everything else follows — the speed as the magnitude of the velocity vector, the direction the object is heading, its position at any chosen time, and the decisive question of whether two moving objects meet, collide or merely cross paths. We finish with a brief look at closest approach. Because 3.6 is examined with a calculator to hand, the marks reward setting the model up correctly and showing the method the examiner needs to see — so every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand and use the vector equation of a line in 2D, $\\vec{r} = \\vec{a} + t\\vec{b}$, in kinematic contexts.",
-    "Calculate the speed of a moving object by finding the magnitude of its velocity vector.",
-    "Determine the position of an object at a given time and calculate the distance it has travelled.",
-    "Solve problems involving the collision of two objects moving with constant velocities."
+    "Model constant-velocity motion in two dimensions with the vector equation $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$, identifying the initial position and velocity vectors.",
+    "Find the speed of a moving object as the magnitude $|\\mathbf{v}|$ of its velocity vector, and describe its direction of motion.",
+    "Determine an object's position at a given time and the distance it has travelled over an interval.",
+    "Decide whether and when two moving objects meet or collide by equating positions and solving for a single common value of $t$.",
+    "Set up the distance between two moving objects as a function of time and interpret the idea of closest approach."
   ],
+  "syllabusObjectivesCovered": ["3.6"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Vectors in Motion: Your GPS for Maths",
-    "summary": "Vectors are perfect for describing motion because they tell us both the direction and the speed of an object. We use a simple formula to track an object's position over time, starting from an initial point and adding its movement.",
-    "analogy": "Imagine you're flying a drone. Its starting position is your back garden (the origin or initial position vector). You use the controller to make it fly north-east at 10 km/h. This movement is the velocity vector. To find the drone's location after 30 minutes, you just add its total movement (velocity multiplied by time) to its starting position.",
+    "summary": "Vectors are made for motion because a single vector carries both how fast and which way. If an object moves at a steady velocity, its position at any moment is just its starting point plus its velocity multiplied by the elapsed time — one tidy equation that lets you predict where it will be, how quickly it is moving, and whether it will run into anything.",
+    "analogy": "Picture flying a drone. Its take-off point is your back garden — that is the initial position vector. You push the controller so it heads steadily north-east — that steady movement each hour is the velocity vector. To find where the drone is after two hours, you take its starting point and add two hours' worth of velocity. Nothing about the motion is mysterious once you have named those two vectors.",
     "steps": [
-      "Identify the initial position vector, $\\vec{r}_0$, and the constant velocity vector, $\\vec{v}$.",
-      "Write the general equation for the position vector at time $t$: $\\vec{r}(t) = \\vec{r}_0 + t\\vec{v}$.",
-      "Calculate the object's speed by finding the magnitude of the velocity vector: Speed $= |\\vec{v}|$.",
-      "Substitute specific values of $t$ into the position equation to find locations, or set two position equations equal to check for collisions."
+      "Name the initial position vector $\\mathbf{r}_0$ (where the object is at $t=0$) and the constant velocity vector $\\mathbf{v}$ (its movement per unit time).",
+      "Write the position at time $t$ as $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$.",
+      "Get the speed from the velocity: speed $= |\\mathbf{v}|$, using Pythagoras on the components.",
+      "Substitute a value of $t$ to locate the object, or set two objects' positions equal and solve for one common $t$ to test for a collision."
     ]
   },
+  "keyConcepts": ["position and velocity vectors", "speed and direction", "meeting and collision"],
   "flashcards": [
-    {
-      "front": "What is a position vector, $\\vec{r}$?",
-      "back": "A vector that represents the position of a point in space relative to a fixed origin, O. It's often written as $\\vec{r} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ in 2D."
-    },
-    {
-      "front": "What is a velocity vector, $\\vec{v}$?",
-      "back": "A vector that represents the rate of change of position. It has both magnitude (speed) and direction. For an object moving from A to B, it's $\\vec{AB}$ per unit of time."
-    },
-    {
-      "front": "What is the formula for the position vector $\\vec{r}(t)$ of an object at time $t$?",
-      "back": "$\\vec{r}(t) = \\vec{r}_0 + t\\vec{v}$, where $\\vec{r}_0$ is the initial position vector (at $t=0$) and $\\vec{v}$ is the constant velocity vector."
-    },
-    {
-      "front": "How do you calculate the speed of an object from its velocity vector $\\vec{v} = \\begin{pmatrix} v_x \\\\ v_y \\end{pmatrix}$?",
-      "back": "Speed is the magnitude of the velocity vector. Speed $= |\\vec{v}| = \\sqrt{v_x^2 + v_y^2}$."
-    },
-    {
-      "front": "What is the key difference between speed and velocity?",
-      "back": "Velocity is a vector (it has magnitude and direction), while speed is a scalar (it only has magnitude). Speed is always non-negative."
-    },
-    {
-      "front": "How do you calculate the distance travelled by an object moving at a constant velocity for a time $t$?",
-      "back": "Distance = Speed $\\times$ Time. First, find the speed (magnitude of the velocity vector), then multiply by the time interval."
-    },
-    {
-      "front": "What is the mathematical condition for two objects, A and B, to collide?",
-      "back": "They must be at the same position at the same time. This means we must find a single time $t > 0$ for which their position vectors are equal: $\\vec{r}_A(t) = \\vec{r}_B(t)$."
-    },
-    {
-      "front": "What does it mean if the equations for the components in a collision problem give different values of $t$?",
-      "back": "It means the objects' paths may cross, but they do not collide because they are not at the intersection point at the same time."
-    },
-    {
-      "front": "Common Trap: Confusing position and velocity vectors.",
-      "back": "A position vector like $\\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$ means the object is at the point $(5, 2)$. A velocity vector $\\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$ means it's moving 5 units in the x-direction and 2 in the y-direction per unit of time."
-    },
-    {
-      "front": "How do you find the vector $\\vec{AB}$ given points A and B?",
-      "back": "Use the formula $\\vec{AB} = \\vec{OB} - \\vec{OA}$, where $\\vec{OA}$ and $\\vec{OB}$ are the position vectors of A and B respectively. 'Head minus tail'."
-    }
+    { "front": "Position vector $\\mathbf{r}$", "back": "The position of a point relative to a fixed origin O, written $\\mathbf{r} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ in 2D. A position vector names a place; it is a snapshot, not a movement.", "pillLabel": "Definition" },
+    { "front": "Velocity vector $\\mathbf{v}$", "back": "The rate of change of position — how far and in which direction the object moves each unit of time. It has both magnitude and direction, so it is a vector, unlike speed.", "pillLabel": "Definition" },
+    { "front": "The motion model", "back": "For constant velocity, position at time $t$ is $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$, where $\\mathbf{r}_0$ is the position at $t=0$ and $\\mathbf{v}$ is the constant velocity vector. The path traced out is a straight line.", "pillLabel": "Formula" },
+    { "front": "Speed", "back": "The magnitude of the velocity vector: for $\\mathbf{v} = \\begin{pmatrix} v_x \\\\ v_y \\end{pmatrix}$, speed $= |\\mathbf{v}| = \\sqrt{v_x^2 + v_y^2}$. Speed is a non-negative scalar — it has no direction.", "pillLabel": "Formula" },
+    { "front": "Speed vs velocity", "back": "Velocity is a vector (magnitude AND direction); speed is only its magnitude. Two objects can share a speed while moving in completely different directions.", "pillLabel": "Concept" },
+    { "front": "Direction of motion", "back": "The direction is given by the velocity vector itself; its components' signs tell you which way. A bearing or angle can be found from $\\tan\\theta = \\dfrac{v_y}{v_x}$, taking care which quadrant the vector points into.", "pillLabel": "Concept" },
+    { "front": "Distance travelled", "back": "At constant speed, distance $=$ speed $\\times$ time. Alternatively it is the magnitude of the displacement $\\mathbf{r}(t_2) - \\mathbf{r}(t_1)$ between the two positions.", "pillLabel": "Formula" },
+    { "front": "Condition to meet / collide", "back": "Two objects meet when they are at the SAME position at the SAME time. Set $\\mathbf{r}_A(t) = \\mathbf{r}_B(t)$ and look for one value of $t \\ge 0$ that satisfies BOTH component equations at once.", "pillLabel": "Framework" },
+    { "front": "Paths cross but no collision", "back": "If the $x$-equation and the $y$-equation give different values of $t$, the two straight paths intersect geometrically but the objects pass through that point at different moments — so they do not collide.", "pillLabel": "Trap" },
+    { "front": "Closest approach", "back": "The distance between two moving objects is a function of time, $d(t) = |\\mathbf{r}_A(t) - \\mathbf{r}_B(t)|$. Closest approach is the value of $t$ that makes $d(t)$ smallest — found by minimising $d(t)$ (or $d(t)^2$) on the GDC.", "pillLabel": "Concept" },
+    { "front": "Vector between two points", "back": "$\\vec{AB} = \\mathbf{r}_B - \\mathbf{r}_A$ ('head minus tail'). Useful for building a velocity from where an object starts and where it is later.", "pillLabel": "Formula" },
+    { "front": "Negative time", "back": "A solution with $t < 0$ refers to before the motion started. Unless the question allows it, discard negative times and report only $t \\ge 0$.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "An object starts at position vector $\\mathbf{r}_0$ and moves with constant velocity $\\mathbf{v}$. Its position after time $t$ is:", "options": ["$\\mathbf{r}_0 + t\\mathbf{v}$", "$t\\mathbf{r}_0 + \\mathbf{v}$", "$\\mathbf{r}_0 + \\mathbf{v}$", "$\\mathbf{r}_0 \\times t\\mathbf{v}$"], "answer": "$\\mathbf{r}_0 + t\\mathbf{v}$" },
+    { "prompt": "The speed of an object with velocity vector $\\mathbf{v} = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}$ is:", "options": ["10", "14", "$\\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}$", "48"], "answer": "10" },
+    { "prompt": "Two objects collide only if, for a single value of $t \\ge 0$, they have:", "options": ["The same position AND the same time", "The same speed", "Paths that cross at some point", "The same velocity vector"], "answer": "The same position AND the same time" },
+    { "prompt": "Setting two objects' position vectors equal gives $t = 3$ from the $x$-components but $t = 5$ from the $y$-components. This means:", "options": ["The paths cross but the objects do not collide", "The objects collide at $t = 4$", "The objects collide at both $t = 3$ and $t = 5$", "The objects collide at $t = 3$"], "answer": "The paths cross but the objects do not collide" },
+    { "prompt": "For a moving object, the DIRECTION it is heading is given by:", "options": ["Its velocity vector $\\mathbf{v}$", "Its position vector $\\mathbf{r}$", "Its speed $|\\mathbf{v}|$", "Its initial position $\\mathbf{r}_0$"], "answer": "Its velocity vector $\\mathbf{v}$" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between speed and velocity?",
-      "a": "Velocity is a vector quantity, meaning it has both magnitude (size) and direction. Speed is a scalar quantity, representing only the magnitude of the velocity. For example, a car's velocity might be 60 km/h East, while its speed is just 60 km/h."
-    },
-    {
-      "q": "How can I tell if two objects collide or if their paths just cross?",
-      "a": "For a collision, the objects must be at the same position at the same time. When you set their position vectors equal, $\\vec{r}_A(t) = \\vec{r}_B(t)$, you must be able to solve for a single, positive value of $t$ that works for all components (x and y). If you get different values of $t$ for different components, their paths cross but they don't collide."
-    },
-    {
-      "q": "Can I use my GDC for these vector problems?",
-      "a": "Absolutely. Your Graphical Display Calculator is a powerful tool. You can use it to solve the system of simultaneous equations that arise in collision problems. It can also quickly calculate the magnitude of a vector to find the speed."
-    },
-    {
-      "q": "What if the time $t$ I calculate is negative?",
-      "a": "In kinematics problems, time $t$ usually starts at $t=0$ and moves forward. A negative value for $t$ means that the event (like a collision) would have happened in the past, before the 'start' of the problem. Unless the question specifies otherwise, we are only interested in solutions where $t \\ge 0$."
-    }
+    { "q": "What is the difference between speed and velocity?", "a": "Velocity is a vector: it records both how fast the object moves and in which direction. Speed is a scalar — only the magnitude of that velocity. A ship's velocity might be described as 20 km/h on a bearing of 060 degrees; its speed is simply 20 km/h. In symbols, speed $= |\\mathbf{v}|$." },
+    { "q": "How can I tell whether two objects collide or their paths just cross?", "a": "Set the two position vectors equal, $\\mathbf{r}_A(t) = \\mathbf{r}_B(t)$, and split into a component equation for $x$ and one for $y$. A collision needs a single value of $t \\ge 0$ that satisfies BOTH. If the $x$-equation and the $y$-equation give different values of $t$, the straight-line paths still intersect on paper, but the objects reach that crossing point at different times, so they miss." },
+    { "q": "What does closest approach mean, and how do I find it?", "a": "As two objects move, the distance between them $d(t) = |\\mathbf{r}_A(t) - \\mathbf{r}_B(t)|$ changes with time. Closest approach is the moment that distance is smallest. Form the displacement vector between them, write its magnitude (or the neater magnitude-squared) as a function of $t$, and minimise it — on Paper 2 the quickest route is to graph $d(t)$ on the GDC and read off the minimum." },
+    { "q": "Can I use my GDC for these problems?", "a": "Yes. The GDC solves the simultaneous equations that appear in meeting and collision problems, computes the magnitude of a vector for speed, and graphs the distance-time function so you can read off a closest approach. The marks, though, are for setting up the correct vectors and equations — show that method, then let the calculator finish the arithmetic." },
+    { "q": "What if the time I calculate is negative?", "a": "Time in these models runs forward from $t = 0$. A negative $t$ describes an event that would have happened before the motion began, so unless the question specifically allows it you discard negative solutions and report only $t \\ge 0$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "In this lesson, we'll bridge the gap between abstract vectors and the real world of motion. Kinematics is the branch of mechanics that describes the motion of objects. By using vectors, we can model the movement of anything from a particle in an experiment to a ship sailing on the ocean, allowing us to predict its location at any point in time."
-    },
-    {
-      "type": "heading",
-      "content": "The Vector Equation of a Line in Motion"
-    },
-    {
-      "type": "text",
-      "content": "When an object moves with a constant velocity, its path is a straight line. We can describe this path using a vector equation. The position of the object at any time $t$ depends on its starting position and its velocity."
-    },
-    {
-      "type": "formula",
-      "content": "$\\vec{r}(t) = \\vec{r}_0 + t\\vec{v}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$\\vec{r}(t)$ is the position vector of the object at time $t$.",
-        "$\\vec{r}_0$ is the initial position vector of the object (i.e., its position at $t=0$).",
-        "$\\vec{v}$ is the constant velocity vector.",
-        "$t$ is time, a scalar quantity."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Calculating Speed and Distance"
-    },
-    {
-      "type": "text",
-      "content": "It's vital to distinguish between velocity and speed. Velocity is a vector, describing how fast and in what direction an object is moving. Speed is the scalar magnitude of the velocity vector; it tells you how fast the object is moving, without regard to direction. To find the speed, we calculate the length (magnitude) of the velocity vector using Pythagoras' theorem."
-    },
-    {
-      "type": "formula",
-      "content": "For a velocity vector $\\vec{v} = \\begin{pmatrix} v_x \\\\ v_y \\end{pmatrix}$, the speed is $|\\vec{v}| = \\sqrt{v_x^2 + v_y^2}$."
-    },
-    {
-      "type": "text",
-      "content": "Once you know the speed, calculating the distance travelled over a period of time is straightforward, provided the speed is constant."
-    },
-    {
-      "type": "formula",
-      "content": "Distance = Speed $\\times$ Time"
-    },
-    {
-      "type": "workedExample",
-      "question": "A particle moves in a 2D plane. Its position vector at time $t$ seconds is given by $\\vec{r} = \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix} + t \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$, where distances are in metres.\n\n(a) Find the initial position of the particle.\n(b) Find the speed of the particle.\n(c) Find the position of the particle after 10 seconds.\n(d) Calculate the distance the particle travels in the first 10 seconds.",
-      "solution": "(a) The initial position occurs at $t=0$. From the equation $\\vec{r} = \\vec{r}_0 + t\\vec{v}$, the initial position vector $\\vec{r}_0$ is $\\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix}$. The initial position is the point $(2, -5)$. [A1]\n\n(b) The velocity vector is $\\vec{v} = \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$ m/s. The speed is the magnitude of this vector. \nSpeed $= |\\vec{v}| = \\sqrt{4^2 + (-3)^2}$ [M1]\n$= \\sqrt{16 + 9} = \\sqrt{25}$\n$= 5$ m/s [A1]\n\n(c) We need to find $\\vec{r}$ when $t=10$. \n$\\vec{r}(10) = \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix} + 10 \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$ [M1]\n$= \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix} + \\begin{pmatrix} 40 \\\\ -30 \\end{pmatrix}$\n$= \\begin{pmatrix} 42 \\\\ -35 \\end{pmatrix}$. The position is $(42, -35)$. [A1]\n\n(d) Distance = Speed $\\times$ Time.\nFrom part (b), the speed is 5 m/s. The time is 10 seconds.\nDistance $= 5 \\times 10$ [M1]\n$= 50$ metres. [A1]"
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, always check the units given for time and distance (e.g., hours and km, or seconds and metres). Ensure your final answers for speed and distance have the correct corresponding units. Forgetting units can lose you a mark."
-    },
-    {
-      "type": "heading",
-      "content": "Collision Problems"
-    },
-    {
-      "type": "text",
-      "content": "A common application of vector kinematics is determining if two moving objects will collide. For a collision to occur, two objects must be at the exact same position at the exact same time. To solve this, we set their position vector equations equal to each other and solve for a single time, $t$. This will create a system of simultaneous equations, one for each component of the vectors."
-    },
-    {
-      "type": "workedExample",
-      "question": "At noon ($t=0$), boat A is at the point with position vector $\\begin{pmatrix} 1 \\\\ 10 \\end{pmatrix}$ km and moves with a constant velocity of $\\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$ km/h. At the same time, boat B is at the point with position vector $\\begin{pmatrix} 11 \\\\ 2 \\end{pmatrix}$ km and moves with a constant velocity of $\\begin{pmatrix} -2 \\\\ 0 \\end{pmatrix}$ km/h.\n\n(a) Write down an expression for the position vector of each boat at time $t$ hours after noon.\n(b) Show that the boats collide and find the time of collision.\n(c) Find the position vector of the collision point.",
-      "solution": "(a) For boat A: $\\vec{r}_A(t) = \\begin{pmatrix} 1 \\\\ 10 \\end{pmatrix} + t \\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$ [A1]\nFor boat B: $\\vec{r}_B(t) = \\begin{pmatrix} 11 \\\\ 2 \\end{pmatrix} + t \\begin{pmatrix} -2 \\\\ 0 \\end{pmatrix}$ [A1]\n\n(b) For a collision, $\\vec{r}_A(t) = \\vec{r}_B(t)$ for the same time $t$.\n$\\begin{pmatrix} 1 \\\\ 10 \\end{pmatrix} + t \\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix} = \\begin{pmatrix} 11 \\\\ 2 \\end{pmatrix} + t \\begin{pmatrix} -2 \\\\ 0 \\end{pmatrix}$ [M1]\nThis gives two separate equations for the components:\n$x$-component: $1 + 3t = 11 - 2t$ [A1]\n$y$-component: $10 - 2t = 2 + 0t$\n\nSolving the $x$-component equation:\n$5t = 10 \\implies t = 2$ hours.\n\nSolving the $y$-component equation:\n$10 - 2t = 2 implies 8 = 2t \\implies t = 4$ hours. [M1]\n\nSince the value of $t$ is not the same for both components ($2 \\neq 4$), the boats are never at the same place at the same time. Therefore, the boats do not collide. The question asks to 'Show that the boats collide', which implies there might be a typo in the question's premise. Based on the calculation, they do not collide. *Correction for a collision scenario: Let's assume boat B's velocity was $\\begin{pmatrix} -2 \\\\ -4 \\end{pmatrix}$ km/h instead.*\n\n*Corrected working for a collision:*\n$y$-component: $10 - 2t = 2 - 4t implies 2t = -8 implies t = -4$. This is not a valid time.\n\n*Let's re-evaluate the original problem to be certain.* The values $t=2$ and $t=4$ are correct. The conclusion is they do not collide. The question's premise is flawed. A good exam response would state: 'The boats do not collide as the time required to match the x-coordinates is different from the time required to match the y-coordinates.' [R1]\n\n*Let's create a working collision example for clarity.* Suppose $\\vec{v}_B = \\begin{pmatrix} -1 \\\\ -3 \\end{pmatrix}$.\n$x$-comp: $1 + 3t = 11 - t implies 4t = 10 implies t = 2.5$.\n$y$-comp: $10 - 2t = 2 - 3t implies t = -8$. Still no collision.\n\n*Final attempt at a clean example:* Let $\\vec{r}_A(t) = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} + t \\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}$ and $\\vec{r}_B(t) = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix} + t \\begin{pmatrix} 1 \\\\ 4 \\end{pmatrix}$.\n$x$-comp: $3 + 2t = 4 + t implies t = 1$.\n$y$-comp: $1 + 3t = -1 + 4t implies t = 2$.\nStill no collision.\n\n*Let's force one:* $\\vec{r}_A(t) = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} + t \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix}$, $\\vec{r}_B(t) = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} + t \\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}$.\n$x$-comp: $1+4t = 3+2t implies 2t = 2 implies t=1$. [M1]\n$y$-comp: $2+t = 1+2t implies t=1$. [A1]\nSince $t=1$ for both components, the boats collide after 1 hour. [R1]\n\n(c) To find the collision point, substitute $t=1$ into either equation.\nUsing $\\vec{r}_A(1) = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} + 1 \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 3 \\end{pmatrix}$. [M1]\nThe collision occurs at the point $(5, 3)$. [A1]"
-    },
-    {
-      "type": "practice",
-      "label": "Practise Vector Kinematics",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=3.6"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra: Vector Equation of a Line",
-          "href": "https://www.geogebra.org/m/C3b4kYpr"
-        },
-        {
-          "label": "Khan Academy: Vector applications",
-          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:vectors/x9e81a4f98389efdf:vec-app/v/vector-application"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Kinematics is the description of motion, and vectors are its natural language: a single velocity vector carries both how fast an object moves and the direction it heads. In this lesson we model objects that travel with constant velocity — ships, drones, particles — using one compact equation, $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$. From it we read off speed and direction, pinpoint an object's position at any time, and answer the classic exam question of whether two moving objects collide or merely cross paths, finishing with the idea of closest approach. Because 3.6 is a calculator topic, the skill being marked is building the model and showing the method — so the worked examples below are written exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Modelling constant-velocity motion" },
+    { "type": "text", "content": "When an object moves with constant velocity, its speed and direction never change, so it travels in a straight line. Its position at time $t$ is simply where it started plus however far it has moved. 'How far it has moved' is the velocity vector multiplied by the elapsed time — so the whole motion is captured by adding two vectors." },
+    { "type": "formula", "content": "$\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$" },
+    { "type": "keyPoints", "items": [
+      "$\\mathbf{r}$ is the position vector of the object at time $t$.",
+      "$\\mathbf{r}_0$ is the initial position vector — where the object is at $t = 0$.",
+      "$\\mathbf{v}$ is the constant velocity vector, the movement per unit of time.",
+      "$t$ is time, a scalar; the term $t\\mathbf{v}$ is the displacement from the start."
+    ]},
+    { "type": "text", "content": "Reading the model the other way round is just as important. Given a position equation, the vector that is NOT multiplied by $t$ is the starting position, and the vector multiplied by $t$ is the velocity. Keeping those two roles straight is the single most useful habit in this topic." },
+
+    { "type": "heading", "content": "Speed and direction of motion" },
+    { "type": "text", "content": "Velocity and speed are not the same word for the same thing. Velocity is the vector $\\mathbf{v}$; it tells you direction as well as size. Speed is only the magnitude of that vector — how fast, with no direction attached. To find the speed you compute the length of the velocity vector with Pythagoras." },
+    { "type": "formula", "content": "For velocity $\\mathbf{v} = \\begin{pmatrix} v_x \\\\ v_y \\end{pmatrix}$, the speed is $|\\mathbf{v}| = \\sqrt{v_x^2 + v_y^2}$." },
+    { "type": "text", "content": "The direction of motion is carried by the velocity vector itself: the signs of $v_x$ and $v_y$ say which way the object heads, and if a question wants an angle or bearing you can find it from the components. Once the speed is known, the distance covered over an interval of constant motion is speed multiplied by time." },
+    { "type": "formula", "content": "Distance travelled $=$ speed $\\times$ time." },
+
+    { "type": "workedExample", "question": "A drone starts at position $\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$ km and moves with velocity $\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$ km/h. Write its position vector at time $t$ hours, find its position after 2 hours and its speed. [5]", "solution": "**Model answer — full working.**\\n\\n**Position vector at time $t$.** The initial position is $\\mathbf{r}_0 = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$ and the velocity is $\\mathbf{v} = \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$, so\\n$\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}.$\\n\\n**Position after 2 hours.** Substitute $t = 2$:\\n$\\mathbf{r}(2) = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} + 2\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} + \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ 9 \\end{pmatrix} \\text{ km}.$\\n\\n**Speed.** The speed is the magnitude of the velocity vector:\\n$\\text{speed} = |\\mathbf{v}| = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5 \\text{ km/h}.$\\n\\n**Final answer:** $\\mathbf{r} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$; after 2 hours the drone is at $\\begin{pmatrix} 8 \\\\ 9 \\end{pmatrix}$ km; its speed is $5$ km/h.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — set up the model.** A method mark for writing the position in the form $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$, correctly identifying $\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$ as the starting vector and $\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$ as the velocity vector.\\n- **A1 — the position equation.** The accuracy mark for the fully correct expression $\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$. It depends on the M1: the method must be there for this A-mark to stand.\\n- **M1 — substitute $t = 2$.** A method mark for putting $t = 2$ into the candidate's own position equation, i.e. $\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} + 2\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$. Follow-through (FT) applies — a student who wrote a slightly different equation but substitutes correctly still earns this.\\n- **A1 — the position $\\begin{pmatrix} 8 \\\\ 9 \\end{pmatrix}$.** The accuracy mark for the evaluated position, FT on the candidate's equation.\\n- **A1 — the speed $5$ km/h.** Awarded for $\\sqrt{3^2 + 4^2} = 5$ with correct units. The engine accepts $\\sqrt{25}$ or $5.0$ and any equivalent form; once the correct speed appears, ISW means later restatements do not lose the mark.\\n\\n**Bottom line:** two of the five marks are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through — but only if the model and the substitution are actually written on the page." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — mark by mark, with method marks (M), dependent accuracy marks (A) and follow-through (FT). So always show the model: write $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$ first, then substitute the time, then compute the magnitude for the speed with its units. That method and its follow-through are what protect your score when a single number slips — and you only get the protection if the working is on the page." },
+
+    { "type": "heading", "content": "Position at a given time and distance travelled" },
+    { "type": "text", "content": "Once the model is set up, finding where an object is at a particular moment is pure substitution — put the value of $t$ into the position equation. To find how far it has travelled between two times, you can either multiply the constant speed by the elapsed time, or find the displacement vector between the two positions and take its magnitude. Both give the same answer for constant velocity; showing which route you took earns the method mark." },
+    { "type": "workedExample", "question": "A particle moves so that its position vector at time $t$ seconds is $\\mathbf{r} = \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix} + t\\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$, with distances in metres. \\n (a) Write down the initial position of the particle. \\n (b) Find the speed of the particle. \\n (c) Find the position of the particle after 10 seconds. \\n (d) Find the distance the particle travels in the first 10 seconds. [6]", "solution": "**(a) Initial position.** At $t = 0$ the position is the vector not multiplied by $t$: $\\mathbf{r}_0 = \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix}$, i.e. the point $(2, -5)$.  [A1]\\n\\n**(b) Speed.** The velocity is $\\mathbf{v} = \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$ m/s.\\n$\\text{speed} = |\\mathbf{v}| = \\sqrt{4^2 + (-3)^2}$  [M1]\\n$= \\sqrt{16 + 9} = \\sqrt{25} = 5$ m/s.  [A1]\\n\\n**(c) Position after 10 s.** Substitute $t = 10$:\\n$\\mathbf{r}(10) = \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix} + 10\\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ -5 \\end{pmatrix} + \\begin{pmatrix} 40 \\\\ -30 \\end{pmatrix} = \\begin{pmatrix} 42 \\\\ -35 \\end{pmatrix}$, the point $(42, -35)$.  [M1][A1]\\n\\n**(d) Distance in the first 10 s.** Distance $=$ speed $\\times$ time $= 5 \\times 10 = 50$ m.  [A1]\\n\\nNotice the direction of motion: both components of $\\mathbf{v}$ tell the story — the particle drifts right ($+4$) and downward ($-3$) each second." },
+    { "type": "examTip", "content": "Always carry the units the question uses — seconds with metres, or hours with kilometres — and attach them to speed and distance. A correct number with the wrong or missing unit can forfeit the final accuracy mark." },
+
+    { "type": "heading", "content": "Do two objects meet or collide?" },
+    { "type": "text", "content": "The signature 3.6 exam question asks whether two objects moving with constant velocity will collide. The condition is strict: they must be at the SAME position at the SAME time. So you set the two position vectors equal, $\\mathbf{r}_A(t) = \\mathbf{r}_B(t)$, which splits into one equation for the $x$-components and one for the $y$-components. If a single value of $t \\ge 0$ satisfies BOTH equations, the objects collide at that time; if the two equations demand different values of $t$, the paths cross but the objects miss each other." },
+    { "type": "keyPoints", "items": [
+      "Write both positions in the form $\\mathbf{r}_0 + t\\mathbf{v}$, using the SAME variable $t$ (the objects share a clock).",
+      "Set $\\mathbf{r}_A(t) = \\mathbf{r}_B(t)$ and separate into an $x$-equation and a $y$-equation.",
+      "Solve one equation for $t$, then CHECK it in the other. Same $t$ in both $\\Rightarrow$ collision; different $t$ $\\Rightarrow$ no collision.",
+      "For a genuine collision, substitute the common $t$ back into either position to get the point where they meet."
+    ]},
+    { "type": "workedExample", "question": "At noon ($t = 0$, in hours) boat A has position vector $\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$ km and velocity $\\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix}$ km/h, while boat B has position vector $\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}$ km and velocity $\\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}$ km/h. \\n (a) Write down the position vector of each boat at time $t$ hours after noon. \\n (b) Show that the boats collide and state the time of the collision. \\n (c) Find the position vector of the point where they collide. [7]", "solution": "**(a) Position vectors.**\\n$\\mathbf{r}_A(t) = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} + t\\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix}$  [A1]\\n$\\mathbf{r}_B(t) = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}$  [A1]\\n\\n**(b) Test for a collision.** For a collision the positions must be equal at the same time, so set $\\mathbf{r}_A(t) = \\mathbf{r}_B(t)$:\\n$\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} + t\\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}$  [M1]\\nSeparating into components:\\n$x$: $1 + 4t = 3 + 2t \\;\\Rightarrow\\; 2t = 2 \\;\\Rightarrow\\; t = 1.$  [A1]\\n$y$: $2 + t = 1 + 2t \\;\\Rightarrow\\; t = 1.$  [A1]\\nBoth components give the same value $t = 1$, so the boats are at the same place at the same time: they collide 1 hour after noon.  [R1]\\n\\n**(c) Collision point.** Substitute $t = 1$ into either position — using boat A:\\n$\\mathbf{r}_A(1) = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} + 1\\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 3 \\end{pmatrix}$ km.  [A1]\\nThe boats collide at the point with position vector $\\begin{pmatrix} 5 \\\\ 3 \\end{pmatrix}$ km. (Checking with boat B: $\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} + \\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 3 \\end{pmatrix}$ — agreement confirms the collision.)" },
+    { "type": "workedExample", "question": "Two aircraft fly at constant velocity. Aircraft P has position $\\mathbf{r}_P(t) = \\begin{pmatrix} 0 \\\\ 5 \\end{pmatrix} + t\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}$ and aircraft Q has position $\\mathbf{r}_Q(t) = \\begin{pmatrix} 6 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$, with $t$ in minutes. Determine whether the aircraft collide. [4]", "solution": "For a collision the positions must be equal at the same time, so set $\\mathbf{r}_P(t) = \\mathbf{r}_Q(t)$:\\n$\\begin{pmatrix} 0 \\\\ 5 \\end{pmatrix} + t\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 6 \\\\ 1 \\end{pmatrix} + t\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$  [M1]\\nComponents:\\n$x$: $0 + 3t = 6 + t \\;\\Rightarrow\\; 2t = 6 \\;\\Rightarrow\\; t = 3.$  [A1]\\n$y$: $5 + t = 1 + 2t \\;\\Rightarrow\\; t = 4.$  [A1]\\nThe $x$-components agree at $t = 3$ but the $y$-components agree only at $t = 4$. There is no single time satisfying both, so although the flight paths cross, the aircraft are never at that point together: they do NOT collide.  [R1]" },
+
+    { "type": "heading", "content": "Closest approach" },
+    { "type": "text", "content": "When two objects do not collide, a natural follow-up is: how close do they get? The distance between them at time $t$ is the magnitude of the vector joining them, $d(t) = |\\mathbf{r}_A(t) - \\mathbf{r}_B(t)|$. Because $d(t)$ depends on $t$, it has a minimum — the closest approach. On Paper 2 the efficient route is to form the displacement vector $\\mathbf{r}_A(t) - \\mathbf{r}_B(t)$, write $d(t)$ (or the tidier $d(t)^2$, which is minimised at the same $t$), and use the GDC to find the minimum: read off the time of closest approach and, if asked, the least distance itself. It is enough here to recognise the set-up; the minimising is a graphing task for the calculator." },
+    { "type": "formula", "content": "Distance between the objects: $d(t) = |\\mathbf{r}_A(t) - \\mathbf{r}_B(t)|$. Closest approach is the $t$ that minimises $d(t)$." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Writing position as $\\mathbf{r}_0 + \\mathbf{v}$ instead of $\\mathbf{r}_0 + t\\mathbf{v}$** — the velocity MUST be multiplied by the time. Dropping the $t$ collapses the whole model.",
+      "**Confusing position and velocity vectors** — the vector not multiplied by $t$ is where the object starts; the vector multiplied by $t$ is its velocity. Swapping them wrecks every later step.",
+      "**Quoting the velocity vector as the speed** — speed is the MAGNITUDE $|\\mathbf{v}| = \\sqrt{v_x^2 + v_y^2}$, a single non-negative number, not a vector.",
+      "**Declaring a collision from one component** — you must check that the SAME $t$ satisfies BOTH the $x$-equation and the $y$-equation. Matching in $x$ alone (or in $y$ alone) means the paths cross, not that the objects collide.",
+      "**Confusing 'paths cross' with 'objects collide'** — two straight paths almost always intersect somewhere; a collision needs the objects to be there at the same moment.",
+      "**Using different time variables for the two objects** — in a collision test both objects share one clock, so use the SAME $t$ throughout; a separate parameter for each only finds where the lines cross.",
+      "**Keeping a negative time** — a solution with $t < 0$ happens before the motion starts; discard it unless the question says otherwise.",
+      "**Dropping or mismatching units** — attach the question's units (km with hours, m with seconds) to speeds, distances and positions; a right number with the wrong unit can lose the final mark."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The move you have practised here — turning a physical situation into $\\mathbf{r} = \\mathbf{r}_0 + t\\mathbf{v}$ and reasoning with its components — is the same modelling instinct the rest of the geometry-and-trigonometry strand rewards. Reading direction from a velocity vector prepares you for bearings and for the angle between vectors; setting position equations equal and solving simultaneously is the intersection idea that underlies lines and their meeting points; and forming a distance as a function of time is your first taste of optimisation, which returns in earnest in calculus. Get comfortable naming the two vectors, writing the model, and always checking a candidate time in BOTH components, and vector kinematics becomes one of the most dependable sources of marks on the paper." },
+
+    { "type": "practice", "label": "Get a vector kinematics question marked: set up the motion, test for a collision, show full working", "href": "/mark?subject=ib-maths-ai-sl&topic=3.6&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra: Vector Equation of a Line", "href": "https://www.geogebra.org/m/C3b4kYpr" },
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Vector Equation of a Line",

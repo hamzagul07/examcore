@@ -1,176 +1,125 @@
 {
   "slug": "2-6-modelling-with-logistic-piecewise-and-other-functions",
   "topicCode": "2.6",
+  "unit": { "code": "2", "title": "Functions" },
   "title": "Modelling with logistic, piecewise and other functions",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson explores mathematical modelling beyond simple linear and polynomial functions. It introduces piecewise functions, which use different rules for different intervals, and logistic functions, which model growth with a limiting factor. The focus is on applying these models to real-world scenarios and using a graphing display calculator (GDC) to analyse their behaviour and solve problems.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Applications and Interpretation is a modelling course, and this lesson adds two of its most useful models beyond the straight line and the parabola. The logistic model $f(x)=\\frac{L}{1+Ce^{-kx}}$ describes S-shaped growth that starts fast and then levels off at a limit called the carrying capacity $L$: this lesson shows how to read $L$, evaluate the model at a given time, and solve for the time to reach a target value on the GDC. Piecewise functions describe situations governed by different rules on different intervals — taxi fares, tax bands, tariffs — and the skill marked is evaluating the right rule on the right interval and reading the inequalities correctly. The lesson closes with the judgement call at the heart of AI: choosing an appropriate model for a data set and evaluating how well it fits. Because 2.6 is a modelling topic worked on a GDC, every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the properties and graphical representation of piecewise and logistic functions.",
-    "Model real-world scenarios using piecewise, logistic, and other functions like sinusoidal models.",
-    "Utilise a graphing display calculator (GDC) to graph functions, find key features, and solve equations involving these models.",
-    "Interpret the parameters and solutions of mathematical models in their real-world context."
+    "Interpret the logistic model $f(x)=\\frac{L}{1+Ce^{-kx}}$: identify the carrying capacity $L$, describe the S-shaped behaviour, and read the initial value and limit.",
+    "Evaluate a logistic model at a given input and use the GDC to solve for the input that produces a target output.",
+    "Evaluate and interpret a piecewise-defined function, selecting the correct sub-rule for the interval and reading the inequality signs precisely.",
+    "Choose an appropriate model (linear, quadratic, exponential, logistic, piecewise, sinusoidal) for a data set and evaluate its fit.",
+    "Use a GDC to graph these models, read key features, and solve equations, presenting working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["2.6"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Beyond Straight Lines: Modelling Life's Twists",
-    "summary": "Some real-world situations don't follow a simple straight line or a smooth curve. This lesson introduces special functions that help us model more complex scenarios, such as population growth that levels off or pricing that changes in steps.",
-    "analogy": "Imagine building with LEGOs. A linear model is like using only one type of straight brick to build a simple ramp. Piecewise functions are like using different types of bricks—ramps, flat pieces, and steps—to build a more complex structure, like a multi-level car park with different rules for each floor. A logistic function is like blowing up a balloon: it expands quickly at first, then the expansion slows as the balloon skin tightens and it reaches its maximum size.",
+    "title": "Beyond Straight Lines: Growth With a Ceiling, and Rules That Switch",
+    "summary": "Real situations rarely follow one tidy rule. Some grow quickly and then flatten out against a natural limit — that is the logistic model. Others obey one rule up to a threshold and a different rule beyond it — that is a piecewise function. This lesson is about recognising which model fits, using it on a GDC, and reading the answer back into the real situation.",
+    "analogy": "Think of filling a stadium for a concert. Word spreads slowly at first, then explosively as friends tell friends, then slowly again as almost everyone who is coming has already bought a ticket — and it can never exceed the number of seats. That ceiling is the carrying capacity $L$, and the S-shaped curve of ticket sales is a logistic model. Now think of the car park outside: free for the first 30 minutes, then a fixed rate per hour after that. The cost obeys one rule below the threshold and another above it — a piecewise function.",
     "steps": [
-      "Identify the Model Type: Read the problem to determine if the situation is best described by a logistic (S-shaped growth), piecewise (different rules for different intervals), or another function.",
-      "Define the Function: For a piecewise model, write down the separate function for each domain interval. For a logistic model, identify the key parameters from the given equation, such as the carrying capacity 'L'.",
-      "Use Your GDC: Graph the function on your calculator. Adjust the viewing window to see all important features, like intercepts, turning points, or where the pieces of a piecewise function meet.",
-      "Solve and Interpret: Use GDC tools (like 'intersect', 'max/min', 'value') to find the numerical answer. Crucially, always state your final answer in the context of the problem, including units."
+      "Identify the model. S-shaped growth toward a ceiling means logistic; different rules on different intervals means piecewise; a repeating cycle means sinusoidal. Let the shape of the data or the wording of the problem decide.",
+      "Read the parameters. For a logistic model the carrying capacity $L$ is the number on top of the fraction; the initial value is found by putting the input to zero. For a piecewise model, note which interval each rule owns and whether the endpoints are included.",
+      "Use the GDC. Graph the model, then use 'value' to evaluate it and 'intersect' to solve for the input that gives a target output. On Paper 2 the calculator does the arithmetic; you supply the method.",
+      "Interpret in context. Every final answer is a quantity in the real situation — a population, a time, a cost — so state it with units and check it is sensible against the model's limit."
     ]
   },
+  "keyConcepts": ["logistic growth and carrying capacity", "piecewise functions", "choosing and fitting a model"],
   "flashcards": [
-    {
-      "front": "What is a piecewise function?",
-      "back": "A function defined by multiple sub-functions, where each sub-function applies to a different, non-overlapping interval of the domain."
-    },
-    {
-      "front": "What is the general form of a logistic function?",
-      "back": "$f(x) = \\frac{L}{1 + Ce^{-kx}}$, where $L$ is the carrying capacity, $C$ and $k$ are positive constants."
-    },
-    {
-      "front": "What does the parameter 'L' represent in a logistic function?",
-      "back": "The carrying capacity or the upper limit of the model. It is the value the function approaches as $x \\to \\infty$, represented by a horizontal asymptote at $y=L$."
-    },
-    {
-      "front": "How do you find the value of a piecewise function at a specific point, $x=a$?",
-      "back": "First, determine which domain interval 'a' belongs to. Then, substitute 'a' into the specific sub-function that corresponds to that interval."
-    },
-    {
-      "front": "Give a real-world example of a logistic function model.",
-      "back": "Modelling population growth in an environment with limited resources, the spread of a virus in a population, or the adoption of a new technology."
-    },
-    {
-      "front": "Give a real-world example of a piecewise function model.",
-      "back": "Modelling mobile phone data plans, income tax brackets, or electricity tariffs, where the price or rate changes at specific thresholds."
-    },
-    {
-      "front": "On a GDC, how can you check if a piecewise function is continuous at a boundary point?",
-      "back": "Graph the function and observe if the pieces meet. Numerically, substitute the boundary value into both relevant sub-functions. If the results are equal, the function is continuous at that point."
-    },
-    {
-      "front": "What is the significance of the point of inflection in a logistic growth model?",
-      "back": "It represents the point where the rate of growth is at its maximum. This occurs when the population reaches half the carrying capacity, i.e., at $y = L/2$."
-    },
-    {
-      "front": "What is a common mistake when evaluating a piecewise function at a boundary point?",
-      "back": "Not paying close attention to the inequality signs. You must use the sub-function where the interval includes the boundary point (e.g., $\\le$ or $\\ge$), not the one with a strict inequality ($<$ or $>$)."
-    },
-    {
-      "front": "What is a sinusoidal function and when is it used for modelling?",
-      "back": "A function of the form $f(x) = a \\sin(b(x-c)) + d$. It is used to model periodic or cyclic phenomena, such as daily temperatures, tidal heights, or the position of a Ferris wheel."
-    },
-    {
-      "front": "What is the initial value of the logistic function $f(t) = \\frac{L}{1 + Ce^{-kt}}$?",
-      "back": "The value at $t=0$. $f(0) = \\frac{L}{1 + Ce^0} = \\frac{L}{1+C}$."
-    }
+    { "front": "Logistic model", "back": "$f(x)=\\frac{L}{1+Ce^{-kx}}$, with $L, C, k$ positive constants. It models growth that is fast at first and then slows to level off — an S-shaped (sigmoid) curve — rather than the unlimited growth of a plain exponential.", "pillLabel": "Definition" },
+    { "front": "Carrying capacity $L$", "back": "The upper limit the logistic model approaches as $x\\to\\infty$: a horizontal asymptote at $y=L$. It is read directly from the numerator of $\\frac{L}{1+Ce^{-kx}}$. The output can get arbitrarily close to $L$ but never reaches or exceeds it.", "pillLabel": "Concept" },
+    { "front": "Initial value of a logistic model", "back": "The value at $x=0$: $f(0)=\\frac{L}{1+Ce^{0}}=\\frac{L}{1+C}$, since $e^{0}=1$. This is the starting size, not the carrying capacity — a very common mix-up.", "pillLabel": "Formula" },
+    { "front": "Shape and asymptotes of $\\frac{L}{1+Ce^{-kx}}$", "back": "An increasing S-shaped curve with two horizontal asymptotes: $y=0$ as $x\\to-\\infty$ and $y=L$ as $x\\to+\\infty$. Growth is fastest at the point of inflection, which sits at half the carrying capacity, $y=\\frac{L}{2}$.", "pillLabel": "Graph" },
+    { "front": "Piecewise function", "back": "A function built from several sub-rules, each owning a different, non-overlapping interval of the domain. To use it you first decide which interval the input lies in, then apply that interval's rule — and only that rule.", "pillLabel": "Definition" },
+    { "front": "Evaluating a piecewise function at $x=a$", "back": "Find the interval that contains $a$, then substitute $a$ into that interval's sub-rule. The pitfall is at boundary points: use the rule whose interval actually includes the boundary (the one with $\\le$ or $\\ge$), not the one with a strict $<$ or $>$.", "pillLabel": "Framework" },
+    { "front": "Reading inequality signs in a domain", "back": "For a piece defined on $0<x\\le 5$, the rule applies for every value greater than $0$ up to and including $5$. The endpoint $5$ belongs to this piece; the endpoint $0$ does not. Getting the boundary wrong is the classic piecewise error.", "pillLabel": "Trap" },
+    { "front": "Continuity at a boundary", "back": "A piecewise function is continuous at a boundary $x=a$ if both neighbouring rules give the same value there. Substitute $a$ into each rule and compare; if the values match, the pieces join with no jump.", "pillLabel": "Concept" },
+    { "front": "Sinusoidal model", "back": "$f(x)=a\\sin\\!\\big(b(x-c)\\big)+d$, used for periodic phenomena — tides, monthly temperatures, a Ferris wheel. Amplitude $a$, period $\\frac{2\\pi}{b}$ (or $\\frac{360^{\\circ}}{b}$ in degrees), and $d$ is the central (principal) axis.", "pillLabel": "Definition" },
+    { "front": "Choosing a model", "back": "Match the shape and the story: straight-line change $\\to$ linear; a single peak or U $\\to$ quadratic; unlimited multiplying growth/decay $\\to$ exponential; growth toward a ceiling $\\to$ logistic; repeating cycle $\\to$ sinusoidal; different rules on different intervals $\\to$ piecewise.", "pillLabel": "Framework" },
+    { "front": "Evaluating fit", "back": "A model fits well if its graph passes close to the data points across the whole range and behaves sensibly at the ends (right asymptote, correct start value, no impossible negatives). Check the extremes, not just the middle: a curve that fits early points but shoots past a known ceiling is the wrong model.", "pillLabel": "Concept" },
+    { "front": "GDC on a modelling question", "back": "Graph the model, then use 'value'/'trace' to evaluate at a given input and 'intersect' (graph the model against the horizontal line $y=$ target) to solve for the input. On Paper 2 you are not expected to solve $e$-equations by hand — but you must show the equation you solved.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "In the logistic model $f(x)=\\frac{L}{1+Ce^{-kx}}$, the constant $L$ represents:", "options": ["The carrying capacity — the limiting value the model approaches", "The initial value at $x=0$", "The rate at which the model grows", "The value of $x$ at the point of inflection"], "answer": "The carrying capacity — the limiting value the model approaches" },
+    { "prompt": "The graph of a logistic growth model is best described as:", "options": ["An S-shaped curve that levels off at a horizontal asymptote", "A straight line with positive gradient", "A parabola with a single maximum", "An exponential curve that grows without limit"], "answer": "An S-shaped curve that levels off at a horizontal asymptote" },
+    { "prompt": "For $f(x)=\\begin{cases} 3x & 0\\le x < 4 \\\\ 2x+5 & x\\ge 4 \\end{cases}$, the value of $f(4)$ is:", "options": ["$13$, using the rule $2x+5$ because its interval includes $x=4$", "$12$, using the rule $3x$", "Undefined, because $x=4$ is a boundary", "Both $12$ and $13$"], "answer": "$13$, using the rule $2x+5$ because its interval includes $x=4$" },
+    { "prompt": "A population grows quickly at first and then flattens out toward a fixed maximum it never exceeds. The best model is:", "options": ["Logistic", "Linear", "A plain exponential $a\\,b^{x}$", "Quadratic"], "answer": "Logistic" },
+    { "prompt": "For the logistic model $N(t)=\\frac{800}{1+79e^{-0.9t}}$, the number that have 'heard the rumour' at the very start, $t=0$, is:", "options": ["$\\frac{800}{1+79}=10$", "$800$, the carrying capacity", "$79$", "$0$"], "answer": "$\\frac{800}{1+79}=10$" }
   ],
   "faq": [
-    {
-      "q": "How do I know which type of model to use for a given problem?",
-      "a": "Look for keywords and analyse the context. 'Different rates', 'thresholds', or 'steps' suggest a piecewise function. 'Growth that slows down', 'carrying capacity', or 'limited population' points to a logistic function. 'Cycles', 'repeating patterns', or 'periodic' indicates a sinusoidal function."
-    },
-    {
-      "q": "Do I need to memorise the logistic function formula for the exam?",
-      "a": "The general form $f(x) = L/(1+Ce^{-kx})$ is not in the formula booklet. However, in an exam question, the specific logistic function you need to work with will always be given to you. Your job is to interpret it and use it, not derive it."
-    },
-    {
-      "q": "What is the difference between using '<' and '≤' in a piecewise function's domain?",
-      "a": "The symbol determines whether the boundary point is included in that piece's domain. For a domain like $0 < x \\le 5$, the rule applies for all numbers greater than 0 and up to and including 5. If you need to find the function's value at $x=5$, you must use the rule for the interval that includes 5 (the one with $\\le$ or $\\ge$)."
-    },
-    {
-      "q": "How do I enter a piecewise function into my GDC?",
-      "a": "Most GDCs have a piecewise function template in the maths or symbols menu. It allows you to enter the different functions and their corresponding domain inequalities. Alternatively, you can use division and logical operators, for example: $Y_1 = (10) * (X>0 \text{ and } X\\le2) + (10+4(X-2)) * (X>2)$. Check your calculator's manual for the specific syntax."
-    }
+    { "q": "How do I decide which model a question wants?", "a": "Read for the shape and the story. 'Levels off', 'carrying capacity', 'maximum population the environment supports' means logistic. 'Different rates', 'thresholds', 'for the first ... then ...' means piecewise. 'Cycle', 'periodic', 'repeats every' means sinusoidal. 'Grows by a fixed percentage' with no ceiling means exponential. In AI the model is nearly always given to you or strongly signalled — your job is to interpret and use it, not invent it." },
+    { "q": "Do I have to memorise the logistic formula?", "a": "No. The general form $f(x)=\\frac{L}{1+Ce^{-kx}}$ is not in the formula booklet, but any specific logistic function you need will be printed in the question. What you must know is how to read it: $L$ is the carrying capacity (top of the fraction), $f(0)=\\frac{L}{1+C}$ is the start value, and the curve is S-shaped rising to the asymptote $y=L$." },
+    { "q": "What is the difference between $<$ and $\\le$ in a piecewise domain?", "a": "The sign decides whether the boundary point belongs to that piece. On $0<x\\le 5$ the rule covers every value above $0$ and up to and including $5$. So to evaluate the function at $x=5$ you use this rule, but at $x=0$ you do not. Confusing the two is the most penalised piecewise error, especially at the exact boundary." },
+    { "q": "How do I solve a logistic equation like $4000=\\frac{5000}{1+9e^{-0.4t}}$ on Paper 2?", "a": "You do not need to rearrange the exponential by hand. Graph $y_1=\\frac{5000}{1+9e^{-0.4t}}$ and the horizontal line $y_2=4000$ on your GDC, then use the intersect tool to read $t$. But write the equation $4000=\\frac{5000}{1+9e^{-0.4t}}$ on your page first — that line is the method mark; the GDC gives the accuracy mark." },
+    { "q": "How do I judge whether a model fits the data?", "a": "Plot the data and the model together and look across the whole range, not just the middle. A good fit hugs the points at the start, in the bulk, and at the extremes, and behaves sensibly at the ends — a logistic model should flatten toward its ceiling, an exponential should not turn negative. If the curve matches early points but overshoots a known limit, it is the wrong family of model however close it looks near the start." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "So far in your mathematical journey, you've likely used linear, quadratic, and exponential functions to model various situations. However, the real world is often more complex. In this lesson, we'll expand our modelling toolkit to include functions that can handle abrupt changes and growth that is limited, providing us with more accurate ways to describe and predict complex phenomena."
-    },
-    {
-      "type": "heading",
-      "content": "Piecewise Functions: Different Rules for Different Ranges"
-    },
-    {
-      "type": "text",
-      "content": "A piecewise function is exactly what it sounds like: a function built from different pieces. Each 'piece' is a different function that applies to a specific part of the domain. Think of a car park's pricing: it might be £2 for the first hour, then £1.50 for each additional hour. The pricing rule changes after the first hour, creating a piecewise model."
-    },
-    {
-      "type": "formula",
-      "content": "A piecewise function is written using a brace. For example, a function with two pieces, $g(x)$ and $h(x)$, defined on domains $D_1$ and $D_2$ respectively, is written as:\n\n$f(x) = \\begin{cases} g(x) & \\text{if } x \\in D_1 \\\\ h(x) & \\text{if } x \\in D_2 \\end{cases}$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A courier service charges for delivering a package based on its weight, $w$, in kg. The cost, $C$, in dollars ($) is given by the piecewise function:$\n$C(w) = \\begin{cases} 10 & \\text{for } 0 < w \\le 2 \\\\ 10 + 4(w-2) & \\text{for } w > 2 \\end{cases}$\n\na) Find the cost of delivering a package weighing 1.5 kg.\nb) Find the cost of delivering a package weighing 5 kg.\nc) A customer was charged $24. What was the weight of their package?$",
-      "solution": "a) The weight is $w=1.5$. Since $0 < 1.5 \\le 2$, we use the first rule. [M1]\n$C(1.5) = 10$. \nThe cost is $10. [A1]$\n\nb) The weight is $w=5$. Since $5 > 2$, we use the second rule. [M1]\n$C(5) = 10 + 4(5-2) = 10 + 4(3) = 10 + 12 = 22$. \nThe cost is $22. [A1]$\n\nc) The cost is $C=24$. This is greater than 10, so we must use the second rule. [M1]\n$24 = 10 + 4(w-2)$\n$14 = 4(w-2)$\n$3.5 = w-2$\n$w = 5.5$. \nThe weight of the package was 5.5 kg. [A1]"
-    },
-    {
-      "type": "examTip",
-      "content": "When sketching piecewise functions on your GDC or by hand, pay close attention to the endpoints of each interval. Use an open circle (o) for strict inequalities like $<$ or $>$ and a filled circle (●) for inclusive inequalities like $\\le$ or $\\ge$ to show whether the endpoint is included in that piece of the graph."
-    },
-    {
-      "type": "heading",
-      "content": "Logistic Functions: Modelling Growth with Limits"
-    },
-    {
-      "type": "text",
-      "content": "Unlike exponential growth which continues indefinitely, many real-world processes are constrained. A population of bacteria in a petri dish cannot grow forever due to limited space and nutrients. The spread of a rumour slows down as more people have already heard it. Logistic functions model this S-shaped (or sigmoid) growth, which starts fast, then slows, and finally levels off at a maximum value known as the carrying capacity."
-    },
-    {
-      "type": "formula",
-      "content": "The logistic function is given by:\n$N(t) = \\frac{L}{1 + Ce^{-kt}}$\n- $L$ is the **carrying capacity**, the maximum value the function can reach.\n- $C$ is a constant determined by the initial conditions.\n- $k$ is a positive constant that determines the steepness of the growth."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The graph of a logistic function is an 'S'-shaped curve.",
-        "It has two horizontal asymptotes: one at $y=0$ and another at $y=L$ (the carrying capacity).",
-        "The initial value (at $t=0$) is found by substituting $t=0$ into the equation.",
-        "The rate of growth is fastest at the point of inflection, which occurs at half the carrying capacity ($y = L/2$)."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The number of students in a school who have heard a rumour, $N$, after $t$ days is modelled by the logistic function $N(t) = \\frac{800}{1 + 79e^{-0.9t}}$.\n\na) How many students started the rumour (i.e., how many had heard it at $t=0$)?\nb) What is the maximum number of students who will eventually hear the rumour according to this model?\nc) Find the number of students who have heard the rumour after 2 days.\nd) Using your GDC, find the number of days it takes for 400 students to have heard the rumour.",
-      "solution": "a) At $t=0$: $N(0) = \\frac{800}{1 + 79e^{-0.9(0)}} = \\frac{800}{1 + 79(1)} = \\frac{800}{80} = 10$. [M1]\n10 students started the rumour. [A1]\n\nb) The maximum number is the carrying capacity, $L$. From the numerator of the function, $L=800$. [A1]\nMaximum number of students is 800.\n\nc) At $t=2$: $N(2) = \\frac{800}{1 + 79e^{-0.9(2)}} = \\frac{800}{1 + 79e^{-1.8}}$. [M1]\nUsing a GDC, $N(2) \\approx 61.1$. So, approximately 61 students. [A1]\n\nd) We need to solve $N(t) = 400$. This is half the carrying capacity, which corresponds to the point of maximum growth.\n$400 = \\frac{800}{1 + 79e^{-0.9t}}$. [M1]\nUsing a GDC, graph $y_1 = \\frac{800}{1 + 79e^{-0.9t}}$ and $y_2 = 400$ and find the point of intersection.\nThe intersection occurs at $t \\approx 4.85$. [A2]\nIt takes approximately 4.85 days for 400 students to have heard the rumour."
-    },
-    {
-      "type": "heading",
-      "content": "Other Useful Models"
-    },
-    {
-      "type": "text",
-      "content": "While piecewise and logistic functions are powerful, don't forget other models. Sinusoidal functions, like $f(x) = a \\sin(b(x-c)) + d$, are perfect for modelling periodic phenomena such as tidal heights, average monthly temperatures, or the motion of a Ferris wheel. Quadratic and other polynomial functions remain useful for scenarios like projectile motion or modelling profit curves. The key skill is to read the problem, identify the characteristics of the situation, and select the most appropriate model from your toolkit."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 1, you will almost always be given the equation of the model. Your task is not to create the model from scratch, but to use it. This means your GDC skills are paramount. Practice finding values, solving for the independent variable (e.g., time), and finding maximum or minimum points efficiently on your calculator."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=2.6"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Explore Piecewise and Logistic Functions on Desmos",
-          "href": "https://www.desmos.com/calculator"
-        },
-        {
-          "label": "GDC Guide: Graphing and Analysing Functions",
-          "href": "https://www.youtube.com/watch?v=FhfzTRz6b-k"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Applications and Interpretation is, at heart, a modelling course: you meet real data and real situations and describe them with functions. You have already used linear, quadratic and exponential models. This lesson adds two more that appear constantly in the real world. The logistic model captures growth that speeds up, then slows, then flattens against a natural ceiling — populations, epidemics, the uptake of a new product. The piecewise model captures situations governed by different rules on different intervals — taxi fares, tax bands, delivery charges. The lesson finishes with the judgement that defines AI: given a set of data, which model should you choose, and how well does it fit? Because 2.6 is worked on a GDC, the calculator does the arithmetic and the skill being marked is choosing the model and writing the method — so, as in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Piecewise functions: different rules for different intervals" },
+    { "type": "text", "content": "A piecewise function is built from several pieces, each a separate rule that applies to its own slice of the domain. The slices do not overlap, so at any input exactly one rule is in charge. Everyday pricing is full of them: a delivery service might charge a flat fee up to a certain weight and then a rate per extra kilogram; a car park might be free for thirty minutes and then charge by the hour. To use a piecewise function you first ask which interval the input falls in, then apply that interval's rule — and only that rule." },
+    { "type": "formula", "content": "A piecewise function with rules $g$ and $h$ on non-overlapping intervals $D_1$ and $D_2$ is written with a brace:\\n\\n$f(x)=\\begin{cases} g(x) & \\text{if } x\\in D_1 \\\\ h(x) & \\text{if } x\\in D_2 \\end{cases}$" },
+    { "type": "keyPoints", "items": [
+      "**One rule per input.** The intervals do not overlap, so every input is governed by exactly one sub-rule.",
+      "**Watch the boundary.** At an endpoint, use the rule whose interval includes it — the one written with $\\le$ or $\\ge$, not $<$ or $>$.",
+      "**Graphing convention.** Draw an open circle where an endpoint is excluded and a filled circle where it is included.",
+      "**Continuity is not automatic.** The pieces meet smoothly only if both rules give the same value at the shared boundary."
+    ]},
+    { "type": "workedExample", "question": "A courier charges a cost $C$, in dollars, to deliver a package of weight $w$ kg, given by\\n\\n$C(w)=\\begin{cases} 10 & 0<w\\le 2 \\\\ 10+4(w-2) & w>2 \\end{cases}$\\n\\n(a) Find the cost of delivering a 1.5 kg package.\\n(b) Find the cost of delivering a 5 kg package.\\n(c) A customer was charged \\$24. Find the weight of their package. [5]", "solution": "**(a)** Here $w=1.5$. Since $0<1.5\\le 2$, the first rule applies.  [M1: correct interval]\\n$C(1.5)=10$, so the cost is \\$10.  [A1]\\n\\n**(b)** Here $w=5$. Since $5>2$, the second rule applies.  [M1: correct interval]\\n$C(5)=10+4(5-2)=10+12=22$, so the cost is \\$22.  [A1]\\n\\n**(c)** A charge of \\$24 exceeds \\$10, so the package is heavier than 2 kg and the second rule applies. Solve\\n$24=10+4(w-2)\\;\\Rightarrow\\;14=4(w-2)\\;\\Rightarrow\\;w-2=3.5\\;\\Rightarrow\\;w=5.5.$\\nThe package weighed 5.5 kg.  [A1]\\n\\nThe whole skill is choosing the interval first; once the right rule is selected the arithmetic is routine." },
+    { "type": "examTip", "content": "The single most penalised piecewise error is at a boundary. If a rule is defined on $0<w\\le 2$ and the next on $w>2$, then $w=2$ belongs to the FIRST rule (it carries the $\\le$). Before you substitute, underline the inequality that contains your input so you pick the correct piece." },
+
+    { "type": "heading", "content": "Logistic functions: growth with a ceiling" },
+    { "type": "text", "content": "A plain exponential model grows without limit, which is unrealistic for anything living in a finite world. Bacteria run out of nutrients, a rumour runs out of people who have not heard it, a new phone runs out of buyers. The logistic model captures this: growth is nearly exponential at first, then slows as the quantity approaches a ceiling, and finally levels off. The result is the S-shaped (sigmoid) curve. The ceiling — the value the model approaches but never passes — is called the carrying capacity." },
+    { "type": "formula", "content": "The logistic model is\\n$f(x)=\\frac{L}{1+Ce^{-kx}},\\qquad L,\\,C,\\,k>0.$\\n- $L$ is the **carrying capacity** — the limiting value, read straight from the numerator.\\n- $C$ is fixed by the starting conditions; it sets the initial value $f(0)=\\frac{L}{1+C}$.\\n- $k$ controls how steeply the curve rises." },
+    { "type": "keyPoints", "items": [
+      "**Carrying capacity $L$:** the horizontal asymptote $y=L$; the model approaches it but never reaches or exceeds it.",
+      "**Initial value:** at $x=0$, $f(0)=\\frac{L}{1+C}$, because $e^{0}=1$ — this is the start size, not $L$.",
+      "**Shape:** an increasing S-curve between the asymptotes $y=0$ and $y=L$.",
+      "**Fastest growth:** at the point of inflection, which sits at half the carrying capacity, $y=\\frac{L}{2}$."
+    ]},
+    { "type": "workedExample", "question": "The number of students who have heard a rumour, $N$, after $t$ days is modelled by $N(t)=\\frac{800}{1+79e^{-0.9t}}$.\\n\\n(a) How many students had heard it at the start ($t=0$)?\\n(b) State the maximum number who will ever hear it according to the model.\\n(c) Find the number who have heard it after 2 days.\\n(d) Use your GDC to find how long it takes for 400 students to have heard it. [6]", "solution": "**(a)** At $t=0$: $N(0)=\\frac{800}{1+79e^{0}}=\\frac{800}{1+79}=\\frac{800}{80}=10$.  [M1: substitute $t=0$]  [A1]\\nSo 10 students started the rumour.\\n\\n**(b)** The maximum is the carrying capacity, the number on top of the fraction: $L=800$ students.  [A1]\\n\\n**(c)** At $t=2$: $N(2)=\\frac{800}{1+79e^{-0.9(2)}}=\\frac{800}{1+79e^{-1.8}}$.  [M1: substitute $t=2$]\\nBy GDC, $N(2)=61.1\\ldots$, so about 61 students.  [A1]\\n\\n**(d)** Solve $400=\\frac{800}{1+79e^{-0.9t}}$. Graph $y_1=\\frac{800}{1+79e^{-0.9t}}$ and $y_2=400$ and use the intersect tool.  [M1: correct equation set up]\\nThe intersection is at $t=4.85$ days (3 s.f.). This is when the rumour reaches half its carrying capacity — the moment of fastest spread.  [A1]" },
+    { "type": "examTip", "content": "Do not try to unpick $e^{-kt}$ by hand under exam pressure. On Paper 2, write the equation you are solving — that earns the method mark — then graph it against the horizontal target line and read the intersection. The GDC value is the accuracy mark." },
+
+    { "type": "heading", "content": "Choosing an appropriate model and evaluating its fit" },
+    { "type": "text", "content": "The signature skill of AI is not calculation but choice: faced with a set of data, which family of function should describe it? Match the shape and the story. Steady change points to a linear model; a single peak or valley to a quadratic; fixed-percentage growth or decay with no ceiling to an exponential; growth toward a ceiling to a logistic; a repeating cycle to a sinusoidal $f(x)=a\\sin\\!\\big(b(x-c)\\big)+d$; and different rules on different intervals to a piecewise model. Having chosen, you must judge the fit — and a good judgement looks across the whole range, not just the middle." },
+    { "type": "keyPoints", "items": [
+      "**Read the shape.** Plot the data first; the outline usually rules whole families in or out at a glance.",
+      "**Respect the ends.** A logistic model must flatten toward a ceiling; an exponential must not turn negative; a population must not go below zero.",
+      "**Check the extremes, not just the bulk.** A curve can hug early points and still overshoot a known limit — that reveals the wrong family.",
+      "**Interpret parameters in context.** The carrying capacity, the start value, the period must all be sensible for the real situation."
+    ]},
+    { "type": "workedExample", "question": "A biologist records the number of fish, $P$, in a newly stocked lake over several months:\\n\\n| Month, $t$ | 0 | 2 | 4 | 6 | 8 | 10 |\\n|---|---|---|---|---|---|---|\\n| Fish, $P$ | 40 | 120 | 340 | 700 | 900 | 960 |\\n\\nThe lake can support at most about 1000 fish.\\n\\n(a) Explain why a logistic model is more appropriate than an exponential model.\\n(b) The data is modelled by $P(t)=\\frac{1000}{1+24e^{-0.6t}}$. Verify the fit at $t=4$.\\n(c) Comment on the fit at $t=10$. [5]", "solution": "**(a)** The counts rise quickly at first but the growth slows as $P$ nears about 1000 — the lake's ceiling. An exponential model would keep growing without limit and would soon exceed what the lake can support, so it is unsuitable. A logistic model levels off at a carrying capacity, matching the biology.  [A1: growth slows toward a ceiling]  [A1: exponential has no limit / would overshoot]\\n\\n**(b)** At $t=4$: $P(4)=\\frac{1000}{1+24e^{-0.6(4)}}=\\frac{1000}{1+24e^{-2.4}}$.  [M1: substitute $t=4$]\\nBy GDC, $P(4)=316$ (3 s.f.), close to the recorded 340, so the model fits well here.  [A1]\\n\\n**(c)** At $t=10$: $P(10)=\\frac{1000}{1+24e^{-6}}=985$ (3 s.f.), against a recorded 960. The model sits just above the data and is approaching its carrying capacity $L=1000$, so the fit remains good and behaves sensibly at the ceiling.  [A1]\\n\\nThe model is judged by comparing it with the data across the range and confirming it respects the known limit of 1000." },
+    { "type": "examTip", "content": "When a question gives you a real-world limit (a lake that holds 1000 fish, a school of 800 students), expect the carrying capacity $L$ in the model to match it. If they disagree, either the model is wrong or you have misread $L$ — always the number on top of the fraction." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Reading $L$ as the start value** — $L$ is the carrying capacity (the ceiling), read from the numerator. The initial value is $f(0)=\\frac{L}{1+C}$, found by putting the input to zero; the two are almost never equal.",
+      "**Treating logistic growth as unlimited exponential** — the whole point of a logistic model is the ceiling. Do not extend it past $y=L$, and do not choose an exponential when the data flattens.",
+      "**Evaluating a piecewise function with the wrong rule at a boundary** — the endpoint belongs to the piece carrying $\\le$ or $\\ge$. Check the inequality before substituting.",
+      "**Solving a logistic equation without writing it down** — on Paper 2 you may use the GDC intersect tool, but you must show the equation (e.g. $4000=\\frac{5000}{1+9e^{-0.4t}}$) to earn the method mark; a bare answer risks losing it.",
+      "**Choosing a model from the middle of the data only** — a curve can fit early points and still overshoot a known ceiling. Judge the fit at the extremes too.",
+      "**Dropping units or context** — a logistic or piecewise answer is a population, a time or a cost. State it with units and check it against the model's limit.",
+      "**Over-rounding mid-calculation** — carry the GDC's full figures and round only the final answer, to 3 significant figures unless told otherwise."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means a value that is wrong earlier need not cost you the marks that depend on it, provided the later step is done correctly on your own figure. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any equivalent form and any correctly-rounded value. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line — and how using the GDC is expected, not penalised, as long as you show the equation you solved." },
+    { "type": "workedExample", "question": "A population is modelled by $P(t)=\\frac{5000}{1+9e^{-0.4t}}$, where $t$ is measured in years. State the carrying capacity, find the population at $t=0$, and find when the population reaches 4000. [5]", "solution": "**Model answer — full working.**\\n\\n**Carrying capacity.** The limiting value is the number on top of the fraction:\\n$L=5000.$ The population approaches 5000 but never exceeds it.\\n\\n**Population at $t=0$.** Substitute $t=0$, using $e^{0}=1$:\\n$P(0)=\\frac{5000}{1+9e^{0}}=\\frac{5000}{1+9}=\\frac{5000}{10}=500.$\\n\\n**Time to reach 4000.** Set $P(t)=4000$:\\n$4000=\\frac{5000}{1+9e^{-0.4t}}.$\\nGraph $y_1=\\frac{5000}{1+9e^{-0.4t}}$ and $y_2=4000$ on the GDC and use the intersect tool (or solve the equation numerically):\\n$t=8.96$ years (3 s.f.).\\n\\n**Interpretation.** The population starts at 500, climbs along an S-curve, and passes 4000 after about 8.96 years, on its way to the ceiling of 5000.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **A1 — carrying capacity.** Awarded for stating $L=5000$, read correctly from the numerator. This is a stand-alone accuracy mark.\\n- **M1 — substitute $t=0$.** A method mark for putting $t=0$ into the model, i.e. writing $P(0)=\\frac{5000}{1+9e^{0}}=\\frac{5000}{1+9}$. It is the substitution that is rewarded, so it survives an arithmetic slip in the division.\\n- **A1 — value 500.** Awarded for $P(0)=500$. This accuracy mark depends on the M1 above; FT applies, so a candidate who substitutes correctly but slips arithmetically still earns credit on their own figure if consistent.\\n- **M1 — set $P=4000$ and solve.** A method mark for forming the equation $4000=\\frac{5000}{1+9e^{-0.4t}}$ and solving it (GDC intersect is expected on Paper 2). The engine checks that the target 4000 was equated to the model, not confused with the carrying capacity.\\n- **A1 — value 8.96.** Awarded for $t=8.96$ years (3 s.f.). This is FT on the candidate's own equation: a student whose earlier value differed but who set up and solved their equation correctly keeps this mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts the carrying capacity written as $5000$ or 'the model levels off at 5000', accepts $P(0)$ as $\\frac{5000}{10}$ or $500$, and accepts the time as $8.96$, $8.959$ or a correctly-rounded equivalent. Once a correct final value appears, ISW means later restatements do not lose marks.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through — but only if the substitution and the equation are written on the page. A student who writes just '8.96' with no equation risks the final method mark; a student who shows $L$, the $t=0$ substitution, and the equation $4000=\\frac{5000}{1+9e^{-0.4t}}$ keeps the method regardless of a slip in the final number." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: read off $L$, substitute the given input, write the equation you set equal to the target, then quote the GDC value with units. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Logistic and piecewise models are the modelling core of AI, and the habits you build here carry through the course. Reading a carrying capacity, setting a model equal to a target and solving on the GDC is exactly the routine you will reuse for exponential and sinusoidal models, and later when you fit trends to bivariate data and judge them by their residuals. The discipline is always the same: choose the family that matches the shape and the story, read the parameters in context, show the equation you solve, and quote the answer with units against the model's limits. Master that and every 'modelling with functions' question — whatever family it names — becomes a variation on the method you have just practised." },
+
+    { "type": "practice", "label": "Get a Paper 2 modelling question marked: read the carrying capacity, evaluate the model and solve for the time with full working", "href": "/mark?subject=ib-maths-ai-sl&topic=2.6&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Explore piecewise and logistic functions on Desmos", "href": "https://www.desmos.com/calculator" },
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

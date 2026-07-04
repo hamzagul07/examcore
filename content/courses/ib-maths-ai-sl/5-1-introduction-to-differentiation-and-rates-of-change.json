@@ -5,161 +5,115 @@
   "paper": "P1",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concept of differentiation. You will learn to interpret the derivative as an instantaneous rate of change and as the gradient of a tangent to a curve. The focus is on conceptual understanding and using a GDC to find numerical derivatives in various real-world applications.",
-  "durationMin": 45,
-  "updated": "2026-06-23",
+  "unit": { "code": "5", "title": "Calculus" },
+  "summary": "This lesson introduces the derivative — the single idea that unlocks all of calculus. You will read the derivative two ways at once: as the gradient of a curve at a point, and as an instantaneous rate of change. You will learn the notations $f'(x)$ and $\\frac{dy}{dx}$, apply the power rule $\\frac{d}{dx}(ax^n)=anx^{n-1}$ to differentiate polynomials (including simple negative and fractional powers), evaluate the gradient at a specific point, and — the part examiners really test — interpret what the derivative means in a real context, with the right units. Every worked example is laid out exactly the way our marking engine awards marks, because on the exam how you show your working decides how many marks you keep.",
+  "durationMin": 40,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the concept of a derivative as an instantaneous rate of change.",
-    "Relate the derivative to the gradient of the tangent line to a curve at a point.",
-    "Use a GDC to find the numerical derivative of a function at a given point.",
-    "Interpret the meaning of the derivative in real-world contexts, such as speed, profit, or temperature change."
+    "Interpret the derivative in two equivalent ways: as the gradient of a curve at a point and as an instantaneous rate of change.",
+    "Use the notations $f'(x)$ and $\\frac{dy}{dx}$ correctly, and distinguish $f(a)$ (a value) from $f'(a)$ (a rate).",
+    "Apply the power rule $\\frac{d}{dx}(ax^n)=anx^{n-1}$ to differentiate polynomials, including simple negative and fractional powers.",
+    "Evaluate the gradient of a curve at a given point by substituting into the derivative.",
+    "Interpret the value of a derivative in a real context, stating whether the quantity is increasing or decreasing and giving the correct units.",
+    "Present working so that method marks (M) and accuracy marks (A) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "The Speed at an Instant",
-    "summary": "Differentiation is a tool in calculus that lets us find the rate of change at a single, precise moment. It's like looking at your car's speedometer to see your exact speed right now, rather than calculating your average speed over the whole journey.",
-    "analogy": "Imagine you're driving from London to Manchester. Your average speed for the whole trip might be 60 mph, calculated by dividing the total distance by the total time. However, at any specific moment on the M1 motorway, your speedometer might read 70 mph, 50 mph, or even 0 mph in a traffic jam. That speedometer reading is your instantaneous speed. Differentiation is the mathematical 'speedometer' for any changing quantity, telling us how fast it's changing at one specific point.",
+    "summary": "Differentiation is the tool that measures how fast something is changing at one precise moment. It is the mathematical version of glancing at a speedometer: not your average speed over a whole journey, but exactly how fast you are going right now. That same idea, the derivative, also measures the steepness of a curve at a single point.",
+    "analogy": "Picture driving from one city to another. Your average speed for the trip might be 60 km/h — total distance over total time. But at any single instant your speedometer might read 70, 50, or 0 in a jam. That live reading is your instantaneous speed. Differentiation is the speedometer for any changing quantity: it turns a formula for where you are into a formula for how fast that quantity is changing.",
     "steps": [
-      "Consider a curve representing a quantity changing over time, like the distance a car has travelled.",
-      "To find the average rate of change between two points in time, calculate the gradient of the straight line (the secant) connecting them.",
-      "Now, imagine sliding one point along the curve until it's extremely close to the other point.",
-      "The gradient of the line at this single point (the tangent) is the instantaneous rate of change, or the derivative."
+      "Draw a curve for a changing quantity — the height of a plant, the cost of production, the position of a car.",
+      "The gradient of the straight line joining two points on it gives the average rate of change over that interval.",
+      "Slide the two points together until they touch at one place: the line becomes the tangent to the curve.",
+      "The gradient of that tangent is the derivative — the instantaneous rate of change, which the power rule lets us calculate exactly."
     ]
   },
+  "keyConcepts": ["derivative as gradient", "derivative as rate of change", "the power rule", "interpreting derivatives with units"],
   "flashcards": [
-    {
-      "front": "What is a derivative?",
-      "back": "The derivative of a function at a point gives the instantaneous rate of change of the function at that point. It is also the gradient of the tangent to the function's graph at that point."
-    },
-    {
-      "front": "What is the difference between a tangent and a secant?",
-      "back": "A secant line intersects a curve at two distinct points. A tangent line touches a curve at exactly one point (in the local vicinity)."
-    },
-    {
-      "front": "How do you calculate the average rate of change of a function $f(x)$ between $x=a$ and $x=b$?",
-      "back": "It's the gradient of the secant line connecting the two points: $\\frac{\\text{change in y}}{\\text{change in x}} = \\frac{f(b) - f(a)}{b - a}$."
-    },
-    {
-      "front": "What are the two main notations for the derivative of $y = f(x)$?",
-      "back": "Leibniz's notation: $\\frac{dy}{dx}$ (read as 'dee-why by dee-ex'). Lagrange's notation: $f'(x)$ (read as 'f-prime of x')."
-    },
-    {
-      "front": "What does a positive derivative, $f'(x) > 0$, tell you about the function?",
-      "back": "The function $f(x)$ is increasing at that point. The tangent line has a positive gradient."
-    },
-    {
-      "front": "What does a negative derivative, $f'(x) < 0$, tell you about the function?",
-      "back": "The function $f(x)$ is decreasing at that point. The tangent line has a negative gradient."
-    },
-    {
-      "front": "What does a derivative of zero, $f'(x) = 0$, tell you about the function?",
-      "back": "The function has a stationary point (like a local maximum, minimum, or point of inflexion). The tangent line is horizontal."
-    },
-    {
-      "front": "If $s(t)$ is the distance (in metres) of an object after $t$ seconds, what are the units of its derivative, $s'(t)$?",
-      "back": "The units of the derivative are the units of the y-axis divided by the units of the x-axis. In this case, metres per second (m/s)."
-    },
-    {
-      "front": "How do you find the numerical derivative on a GDC?",
-      "back": "Use the calculator's built-in function, often called 'nDeriv' or found under a 'd/dx' template in the calculus menu. You will need to input the function, the variable, and the point at which to evaluate."
-    },
-    {
-      "front": "Common Trap: Confusing $f(a)$ and $f'(a)$.",
-      "back": "$f(a)$ is the value of the function at $x=a$. $f'(a)$ is the rate of change (or gradient) of the function at $x=a$. Don't mix them up!"
-    }
+    { "front": "What is a derivative?", "back": "The derivative of a function at a point gives the instantaneous rate of change of the function there, and equals the gradient of the tangent to the curve at that point.", "pillLabel": "Definition" },
+    { "front": "What are the two standard notations for the derivative of $y=f(x)$?", "back": "Lagrange's $f'(x)$ (read 'f-prime of x') and Leibniz's $\\frac{dy}{dx}$ (read 'dee-y by dee-x'). They mean the same thing.", "pillLabel": "Definition" },
+    { "front": "State the power rule.", "back": "$\\frac{d}{dx}(ax^n)=anx^{n-1}$: multiply by the old power, then subtract one from the power. It works for negative and fractional $n$ too.", "pillLabel": "Formula" },
+    { "front": "What is the derivative of a constant term?", "back": "Zero. A constant has a horizontal graph with gradient $0$, so $\\frac{d}{dx}(c)=0$. The $+4$ in $2x^3-5x^2+4$ differentiates to $0$.", "pillLabel": "Trap" },
+    { "front": "How do you differentiate a polynomial?", "back": "Differentiate each term separately with the power rule and add the results. $\\frac{d}{dx}(3x^4-x^2+7)=12x^3-2x$.", "pillLabel": "Framework" },
+    { "front": "How do you differentiate a term like $\\frac{3}{x^2}$ or $\\sqrt{x}$?", "back": "Rewrite it as a power first: $\\frac{3}{x^2}=3x^{-2}$ and $\\sqrt{x}=x^{1/2}$. Then apply the power rule: $\\frac{d}{dx}(3x^{-2})=-6x^{-3}$ and $\\frac{d}{dx}(x^{1/2})=\\tfrac12 x^{-1/2}$.", "pillLabel": "Framework" },
+    { "front": "How do you find the gradient of a curve at $x=a$?", "back": "Differentiate to get $f'(x)$, then substitute: the gradient at $x=a$ is $f'(a)$. It is a single number.", "pillLabel": "Concept" },
+    { "front": "Difference between $f(a)$ and $f'(a)$?", "back": "$f(a)$ is the value (height) of the function at $x=a$; $f'(a)$ is its gradient / rate of change at $x=a$. A common trap is to report one when the question wants the other.", "pillLabel": "Trap" },
+    { "front": "What do the units of a derivative $\\frac{dy}{dx}$ tell you?", "back": "They are (units of $y$) per (unit of $x$). If $C$ is cost in dollars and $x$ is kilograms, $\\frac{dC}{dx}$ is in dollars per kilogram — the extra cost per extra kilogram.", "pillLabel": "Concept" },
+    { "front": "What does the sign of $f'(x)$ tell you?", "back": "$f'(x)>0$: the function is increasing (tangent slopes up). $f'(x)<0$: decreasing (tangent slopes down). $f'(x)=0$: a stationary point (horizontal tangent).", "pillLabel": "Concept" },
+    { "front": "If $s(t)$ is distance in metres and $t$ is in seconds, what are the units of $s'(t)$?", "back": "Metres per second (m/s) — units of the $y$-axis divided by units of the $x$-axis. $s'(t)$ is the velocity.", "pillLabel": "Concept" },
+    { "front": "Average vs instantaneous rate of change?", "back": "Average rate of change over $[a,b]$ is the gradient of the secant, $\\frac{f(b)-f(a)}{b-a}$. Instantaneous rate of change at a point is the gradient of the tangent, $f'(a)$.", "pillLabel": "Definition" }
+  ],
+  "quickCheck": [
+    { "prompt": "Using the power rule, $\\frac{d}{dx}(x^5)$ is:", "options": ["$5x^4$", "$5x^6$", "$x^4$", "$4x^5$"], "answer": "$5x^4$" },
+    { "prompt": "What is $\\frac{d}{dx}(7)$?", "options": ["$7$", "$7x$", "$0$", "$1$"], "answer": "$0$" },
+    { "prompt": "For $f(x)=x^3$, the gradient of the curve at the point where $x=2$ is:", "options": ["$f(2)=8$", "$f'(2)=12$", "$f'(x)=3x^2$", "$6$"], "answer": "$f'(2)=12$" },
+    { "prompt": "A tank's volume is $V(t)$ litres after $t$ minutes and $V'(5)=-3$. This means that at $t=5$ minutes the volume is:", "options": ["$-3$ litres", "increasing at $3$ litres per minute", "decreasing at $3$ litres per minute", "$3$ minutes from empty"], "answer": "decreasing at $3$ litres per minute" },
+    { "prompt": "To differentiate $\\frac{4}{x}$ with the power rule you should first rewrite it as:", "options": ["$4x$", "$4x^{-1}$", "$4x^{1}$", "$x^{-4}$"], "answer": "$4x^{-1}$" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between $f(x)$ and $f'(x)$?",
-      "a": "$f(x)$ represents the value of a function (e.g., distance, temperature, profit) at a certain point $x$. $f'(x)$ represents the rate of change of that function (e.g., speed, rate of cooling, marginal profit) at the same point $x$. One is a value, the other is a rate."
-    },
-    {
-      "q": "Do I need to memorise the 'differentiation from first principles' limit formula for the AI SL exam?",
-      "a": "No. For Mathematics: Applications and Interpretation SL, you are not required to use the limit definition to find derivatives. Your focus should be on understanding the concept of the derivative as a rate of change and being able to calculate it using your GDC."
-    },
-    {
-      "q": "What do the units of a derivative mean?",
-      "a": "The units of a derivative $\\frac{dy}{dx}$ are always the (units of y) per (unit of x). For example, if $y$ is cost in dollars ($) and $x$ is weight in kilograms (kg), the units of the derivative $\\frac{dy}{dx}$ are dollars per kilogram ($/kg). This represents the additional cost for each additional kilogram."
-    }
+    { "q": "What exactly is the difference between $f(x)$ and $f'(x)$?", "a": "$f(x)$ is the value of the function — a height, a distance, a cost — at the input $x$. $f'(x)$ is its derivative: the rate at which that value is changing, equivalently the gradient of the curve, at $x$. So $f(a)$ answers 'how big is it?' and $f'(a)$ answers 'how fast is it changing?'. Reporting one when the question asks for the other is one of the most common ways to lose an easy mark." },
+    { "q": "Do I need differentiation 'from first principles' for AI SL?", "a": "No. For Mathematics: Applications and Interpretation SL you are not asked to derive results from the limit definition. You do need to understand the derivative as a gradient and a rate of change, apply the power rule to polynomials and simple powers, and interpret the result in context. A GDC can also give a numerical derivative at a point as a check, but you should be able to differentiate a polynomial by hand." },
+    { "q": "How do I differentiate things that are not written as $x^n$, like $\\frac{5}{x^2}$ or $\\sqrt{x}$?", "a": "Rewrite them as powers first, then use the power rule. $\\frac{5}{x^2}=5x^{-2}$, whose derivative is $-10x^{-3}=-\\frac{10}{x^3}$. And $\\sqrt{x}=x^{1/2}$, whose derivative is $\\frac{1}{2}x^{-1/2}=\\frac{1}{2\\sqrt{x}}$. The power rule $\\frac{d}{dx}(ax^n)=anx^{n-1}$ works for negative and fractional $n$ exactly as it does for positive whole numbers." },
+    { "q": "What do the units of a derivative mean in a real problem?", "a": "The units of $\\frac{dy}{dx}$ are always (units of $y$) per (unit of $x$). If $H$ is height in metres and $t$ is time in seconds, $\\frac{dH}{dt}$ is in metres per second — the rate the height is changing. Always quote the units and say whether the quantity is increasing (positive derivative) or decreasing (negative derivative); the interpretation mark depends on it." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "You're already familiar with the concept of gradient for a straight line – it's a constant measure of its steepness. But what about curves? Their steepness changes at every single point. In this lesson, we'll explore the powerful idea of finding the gradient at a specific point on a curve. This is the foundation of differential calculus and has wide-ranging applications, from calculating the instantaneous speed of a vehicle to modelling the rate of change of a company's profit."
-    },
-    {
-      "type": "heading",
-      "content": "Average vs. Instantaneous Rate of Change"
-    },
-    {
-      "type": "text",
-      "content": "Let's consider a quantity that changes over time, like the height of a growing sunflower. If we measure its height at the start and end of a week, we can calculate its average rate of growth for that week. This is the average rate of change. However, the sunflower might have grown faster on sunny days and slower on cloudy days. If we wanted to know its exact rate of growth at a particular moment, say midday on Wednesday, we would need its instantaneous rate of change."
-    },
-    {
-      "type": "formula",
-      "content": "Average Rate of Change = $\\frac{f(x_2) - f(x_1)}{x_2 - x_1}$"
-    },
-    {
-      "type": "text",
-      "content": "This formula gives the gradient of the secant line connecting the points $(x_1, f(x_1))$ and $(x_2, f(x_2))$. It tells us the average change across an interval."
-    },
-    {
-      "type": "heading",
-      "content": "The Derivative as the Gradient of a Tangent"
-    },
-    {
-      "type": "text",
-      "content": "To find the instantaneous rate of change, we imagine the interval between our two points getting smaller and smaller. As the two points on the curve move closer together, the secant line connecting them pivots until it just touches the curve at a single point. This new line is called the tangent. The gradient of this tangent line is the instantaneous rate of change at that point, and we call this the derivative."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The derivative of a function at a point is the instantaneous rate of change at that point.",
-        "The derivative is equal to the gradient of the tangent line to the curve at that point.",
-        "For the AI SL course, we use our GDC to find the numerical value of the derivative at a specific point."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The temperature, $T$, in degrees Celsius, of a cup of coffee left to cool is modelled by the function $T(t) = 20 + 70e^{-0.05t}$, where $t$ is the time in minutes after it was made.\n\na) Find the temperature of the coffee after 10 minutes.\nb) Find the average rate of change of the temperature during the first 10 minutes.\nc) Using your GDC, find the instantaneous rate of change of the temperature at $t=10$ minutes. Interpret your answer.",
-      "solution": "a) We need to find $T(10)$.\n$T(10) = 20 + 70e^{-0.05 \\times 10}$ (M1 for substitution)\n$T(10) = 20 + 70e^{-0.5}$\n$T(10) = 62.459... \\approx 62.5^\\circ C$ (3 s.f.) (A1)\n\nb) We need the temperature at $t=0$ first.\n$T(0) = 20 + 70e^0 = 20 + 70 = 90^\\circ C$.\nAverage rate of change = $\\frac{T(10) - T(0)}{10 - 0}$ (M1)\n$= \\frac{62.459... - 90}{10}$\n$= -2.754... \\approx -2.75^\\circ C/\\text{min}$ (3 s.f.) (A1)\n\nc) We need to find $T'(10)$.\nUsing GDC: $\\frac{d}{dt}(20 + 70e^{-0.05t})$ at $t=10$. (M1 for setup)\n$T'(10) = -2.122... \\approx -2.12^\\circ C/\\text{min}$ (3 s.f.) (A1)\nInterpretation: At exactly 10 minutes, the temperature of the coffee is decreasing at a rate of $2.12^\\circ C$ per minute. (R1 for correct interpretation including 'decreasing' and units)"
-    },
-    {
-      "type": "heading",
-      "content": "Using Your GDC for Derivatives"
-    },
-    {
-      "type": "text",
-      "content": "For Paper 1, your GDC is your most important tool for differentiation. You are not expected to calculate derivatives by hand using algebraic rules. You need to be proficient at finding the numerical derivative function on your calculator (often labelled 'nDeriv' or with the notation $\\frac{d}{dx}(\\cdot)$) and inputting the function and the specific point correctly."
-    },
-    {
-      "type": "examTip",
-      "content": "In exams, even when using a GDC, you must show your working. For finding a derivative, write down the derivative notation and the value you are finding. For example, write '$f'(3) = ...$' before writing the numerical answer from your calculator. This can earn you method marks even if your final answer is incorrect."
-    },
-    {
-      "type": "workedExample",
-      "question": "A company's profit, $P$, in thousands of pounds, from selling $x$ hundred items is given by the model $P(x) = -0.1x^3 + 1.5x^2 + 5x - 10$, for $0 \\le x \\le 20$.\n\na) Find the profit when 800 items are sold.\nb) Find the rate at which the profit is changing when 800 items are sold. Give your answer to the nearest pound.\nc) Explain the meaning of your answer to part (b).",
-      "solution": "a) Selling 800 items corresponds to $x=8$ (since $x$ is in hundreds).\n$P(8) = -0.1(8)^3 + 1.5(8)^2 + 5(8) - 10$ (M1)\n$P(8) = -51.2 + 96 + 40 - 10$\n$P(8) = 74.8$\nSince profit is in thousands of pounds, the profit is £74,800. (A1)\n\nb) We need to find the derivative $P'(x)$ at $x=8$.\nUsing GDC: Find $\\frac{d}{dx}(-0.1x^3 + 1.5x^2 + 5x - 10)$ at $x=8$. (M1 for setup)\n$P'(8) = 9.8$ (A1)\nThe units are thousands of pounds per hundred items. So the rate is £9.8 thousand per hundred items.\nTo find the rate in pounds per item, we calculate $\\frac{9.8 \\times 1000}{100} = 98$. So the rate is £98 per item. (M1 for unit conversion)\nTo the nearest pound, the rate is £98 per item. (A1)\n\nc) When the company is selling 800 items, their profit is increasing at a rate of £98 for each additional item sold. (R1 for 'increasing' and R1 for context and units)"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Finding Rates of Change",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=5.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra: Secant Line to Tangent Line",
-          "href": "https://www.geogebra.org/m/msv2a76p"
-        },
-        {
-          "label": "Khan Academy: Derivative as a concept",
-          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept"
-        }
-      ]
-    }
+    { "type": "intro", "content": "You already know the gradient of a straight line — a single number measuring its steepness. But a curve has a different steepness at every point, so how do we pin down its gradient at one place? The answer is the derivative, the central idea of differential calculus. The derivative does two jobs at once: it gives the gradient of the curve at a point, and it gives the instantaneous rate at which the quantity is changing. In this lesson you will learn to compute it with the power rule, evaluate it at a point, and read what it means in a real situation. As in every calculation topic, each worked example below is laid out the way our engine marks your own practice — method mark by method mark." },
+
+    { "type": "heading", "content": "The derivative: a gradient and a rate of change" },
+    { "type": "text", "content": "Start with a quantity that changes, say the height of a growing plant. Measuring its height at the start and end of a week gives its average rate of growth — the gradient of the straight line (the secant) joining the two points. But the plant grew faster on sunny days and slower on cloudy ones, so to know its growth rate at one exact moment we let the two points slide together until the secant becomes a tangent touching the curve at a single point. The gradient of that tangent is the derivative: the instantaneous rate of change. These are two descriptions of the same number — the derivative is simultaneously the gradient of the curve and the rate of change of the quantity." },
+    { "type": "formula", "content": "Average rate of change over $[x_1,x_2]$ (gradient of secant): $\\dfrac{f(x_2)-f(x_1)}{x_2-x_1}$\nInstantaneous rate of change at $x=a$ (gradient of tangent): $f'(a)$" },
+    { "type": "text", "content": "We write the derivative of $y=f(x)$ in two interchangeable notations. Lagrange's notation $f'(x)$ (say 'f-prime of x') is compact and good for evaluating at a point, as in $f'(2)$. Leibniz's notation $\\frac{dy}{dx}$ (say 'dee-y by dee-x') makes the units obvious, because it literally reads as a change in $y$ over a change in $x$." },
+
+    { "type": "heading", "content": "The power rule" },
+    { "type": "text", "content": "For polynomials and simple powers there is a fast, exact rule. To differentiate a single term, multiply by the current power and then reduce the power by one." },
+    { "type": "formula", "content": "The power rule: $\\dfrac{d}{dx}\\left(ax^n\\right) = a\\,n\\,x^{\\,n-1}$" },
+    { "type": "keyPoints", "items": [
+      "**Differentiate term by term.** For a polynomial, apply the power rule to each term and add: $\\frac{d}{dx}(3x^4 - x^2 + 7) = 12x^3 - 2x$.",
+      "**A constant differentiates to $0$.** A constant term has a horizontal graph (gradient $0$), so the $+7$ above simply disappears.",
+      "**A linear term $ax$ differentiates to $a$.** Since $ax = ax^1$, the power rule gives $a\\cdot 1\\cdot x^0 = a$.",
+      "**Negative and fractional powers work the same way** — just rewrite first. $\\frac{3}{x^2}=3x^{-2}\\Rightarrow -6x^{-3}$, and $\\sqrt{x}=x^{1/2}\\Rightarrow \\tfrac12 x^{-1/2}$.",
+      "**The rule multiplies THEN reduces.** $\\frac{d}{dx}(x^5)=5x^4$, not $5x^5$ and not $x^4$ — a very common slip."
+    ]},
+    { "type": "workedExample", "question": "Differentiate the following with respect to $x$.\n(a) $y = 4x^3 - 7x^2 + 2x - 9$\n(b) $f(x) = \\dfrac{6}{x^2} + \\sqrt{x}$  [6]", "solution": "**(a)** Apply the power rule to each term; the constant $-9$ differentiates to $0$.\n$\\dfrac{dy}{dx} = 4(3)x^2 - 7(2)x^1 + 2(1)x^0 - 0$  [M1: power rule on each term]\n$\\dfrac{dy}{dx} = 12x^2 - 14x + 2$.  [A1]\n\n**(b)** First rewrite each part as a power of $x$:\n$f(x) = 6x^{-2} + x^{1/2}$.  [M1: rewrite as powers before differentiating]\nNow differentiate:\n$f'(x) = 6(-2)x^{-3} + \\tfrac{1}{2}x^{-1/2}$  [M1: power rule with negative and fractional powers]\n$f'(x) = -12x^{-3} + \\tfrac{1}{2}x^{-1/2}$  [A1]\nWritten without negative or fractional powers, $f'(x) = -\\dfrac{12}{x^3} + \\dfrac{1}{2\\sqrt{x}}$.  [A1: acceptable equivalent form]" },
+    { "type": "examTip", "content": "Before differentiating, get every term into the form $ax^n$: turn fractions like $\\frac{6}{x^2}$ into $6x^{-2}$ and roots like $\\sqrt{x}$ into $x^{1/2}$. Trying to apply the power rule while the term is still a fraction or a root is where most errors on this topic happen. Equivalent forms — with negative powers or with fractions — both earn the accuracy mark, so present whichever is cleaner." },
+
+    { "type": "heading", "content": "Evaluating the gradient at a point" },
+    { "type": "text", "content": "The derivative $f'(x)$ is itself a function — a formula for the gradient at any $x$. To get the gradient at one specific point, substitute that $x$-value into $f'(x)$. The result, $f'(a)$, is a single number: the gradient of the curve, and the instantaneous rate of change, at $x=a$." },
+    { "type": "workedExample", "question": "A curve has equation $y = x^3 - 4x^2 + 5$. Find the gradient of the curve at the point where $x = 3$. [3]", "solution": "Differentiate to get the gradient function:\n$\\dfrac{dy}{dx} = 3x^2 - 8x$.  [M1: power rule, A1 implied by correct expression]\nSubstitute $x=3$:\n$\\left.\\dfrac{dy}{dx}\\right|_{x=3} = 3(3)^2 - 8(3) = 27 - 24 = 3$.  [M1: substitute $x=3$]\nThe gradient of the curve at $x=3$ is $3$.  [A1]" },
+
+    { "type": "heading", "content": "Interpreting the derivative in a real context" },
+    { "type": "text", "content": "The reason the derivative matters is that it measures a real rate of change. When a quantity is modelled by a function, its derivative tells you how fast that quantity is changing — and the units come straight from the model: (units of $y$) per (unit of $x$). A full interpretation always states three things: the value, whether the quantity is increasing (positive derivative) or decreasing (negative derivative), and the units." },
+    { "type": "workedExample", "question": "The height of a firework, $h$ metres, above the ground $t$ seconds after launch is modelled by $h(t) = 30t - 5t^2$ for $0 \\le t \\le 6$.\n(a) Find an expression for $\\frac{dh}{dt}$.\n(b) Find the rate of change of height at $t = 1$ and at $t = 4$, and interpret each value in context. [6]", "solution": "**(a)** Differentiate the model term by term:\n$\\dfrac{dh}{dt} = 30 - 10t$.  [M1: power rule; A1]\nThe units are metres per second (m/s), the rate of change of height.\n\n**(b)** At $t=1$: $\\dfrac{dh}{dt} = 30 - 10(1) = 20$.  [M1: substitute]\nAt $t=1$ second the firework is rising at $20$ m/s (positive, so height is increasing).  [A1: value, direction and units]\n\nAt $t=4$: $\\dfrac{dh}{dt} = 30 - 10(4) = -10$.  [M1: substitute]\nAt $t=4$ seconds the firework is falling at $10$ m/s (negative, so height is decreasing).  [A1: value, direction and units]" },
+    { "type": "practice", "label": "Practice finding and interpreting rates of change with full working", "href": "/mark?subject=ib-maths-ai-sl&topic=5.1&component=paper_2" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Applying the power rule the wrong way round** — it is multiply by the power THEN reduce it. $\\frac{d}{dx}(x^5)=5x^4$, not $5x^5$ (forgot to reduce) and not $x^4$ (forgot to multiply).",
+      "**Thinking the derivative of a constant is the constant** — $\\frac{d}{dx}(4)=0$. The $+4$ in $2x^3-5x^2+4$ vanishes; carrying it through is a classic error.",
+      "**Differentiating a fraction or root without rewriting it first** — turn $\\frac{6}{x^2}$ into $6x^{-2}$ and $\\sqrt{x}$ into $x^{1/2}$ BEFORE applying the power rule.",
+      "**Confusing $f(a)$ with $f'(a)$** — the gradient at a point is $f'(a)$, found by substituting into the DERIVATIVE, not the height $f(a)$ found from the original function.",
+      "**Forgetting to substitute** — leaving the answer as the derivative expression $f'(x)$ when the question asked for the gradient at a specific point. You must plug the value in and give a number.",
+      "**Interpreting a rate without units or direction** — a real-context answer needs the number, the units (units of $y$ per unit of $x$), and whether the quantity is increasing or decreasing. A bare number loses the interpretation mark."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In the exam the marks are analytic: each one is tied to a specific line of working. A method mark (M) rewards a correct approach — here, applying the power rule and substituting — even if the arithmetic later slips. An accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned first. Follow-through (FT) means that if you differentiate wrongly but then correctly substitute your own derivative, you still earn the substitution and final marks on your figure. All of that protection exists only if the method is written on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A curve is given by $y = 2x^3 - 5x^2 + 4$. Find $\\frac{dy}{dx}$ and the gradient of the curve at $x = 2$. [4]", "solution": "**Model answer — full working.**\n\n**Differentiate** term by term with the power rule (the constant $+4$ gives $0$):\n$\\dfrac{dy}{dx} = 2(3)x^2 - 5(2)x = 6x^2 - 10x$.\n\n**Substitute $x=2$** to get the gradient at that point:\n$\\left.\\dfrac{dy}{dx}\\right|_{x=2} = 6(2)^2 - 10(2) = 6(4) - 20 = 24 - 20 = 4$.\n\n**Final answer:** $\\dfrac{dy}{dx} = 6x^2 - 10x$, and the gradient of the curve at $x=2$ is $4$.\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — power rule on each term.** Awarded for applying $\\frac{d}{dx}(ax^n)=anx^{n-1}$ to each term (and taking the constant to $0$). This METHOD mark stands even if a coefficient later slips.\n- **A1 — correct derivative.** Awarded for $\\frac{dy}{dx}=6x^2-10x$. This accuracy mark depends on the M1: it is only available once a genuine differentiation has been attempted.\n- **M1 — substitute $x=2$.** Awarded for substituting $x=2$ into THEIR derivative. Because it acts on 'their $\\frac{dy}{dx}$', a student who mis-differentiated still earns this method mark for the correct approach — this is follow-through (FT).\n- **A1 — gradient $=4$.** Awarded for the correct final value $4$. Follow-through applies: a student with a wrong derivative who substitutes correctly earns this on their own figure. ISW ('ignore subsequent working') means a correct $4$ is not un-marked by an unnecessary extra line.\n\n**Accept equivalent forms.** The engine marks the mathematics, not the layout: $6x^2-10x$ may be written as $2x(3x-5)$, and the gradient may be given as $4$ or stated as 'gradient $=4$'.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the two accuracy marks are shielded by follow-through. A student who writes only '$4$' with no working risks losing 2–3 marks if a number is wrong; a student who shows the power rule, the derivative $6x^2-10x$, and the substitution $x=2$ keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write the differentiated expression $\\frac{dy}{dx}=6x^2-10x$, then the substitution $6(2)^2-10(2)$, then the value. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Everything here is one skill — differentiate with the power rule, then read the result as a gradient or a rate of change. That skill is the gateway to the rest of calculus: setting $f'(x)=0$ to find the stationary points of a curve (maxima and minima), using the derivative to build the equation of a tangent line, and later reversing the process through integration to recover a quantity from its rate of change. Master the habit — rewrite as powers, differentiate term by term, substitute, then interpret with units — and the calculus that follows becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a calculation marked: differentiate and interpret a rate of change with full working", "href": "/mark?subject=ib-maths-ai-sl&topic=5.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra: Secant Line to Tangent Line", "href": "https://www.geogebra.org/m/msv2a76p" },
+      { "label": "Khan Academy: Derivative as a concept", "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept" },
+      { "label": "Khan Academy: Power rule", "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-6/v/power-rule" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Secant Line to Tangent Line",

@@ -1,170 +1,139 @@
 {
   "slug": "4-1-sampling-techniques-and-data-collection",
   "topicCode": "4.1",
+  "unit": { "code": "4", "title": "Statistics and probability" },
   "title": "Sampling techniques and data collection",
   "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of data collection, distinguishing between populations and samples. It covers various sampling techniques, including simple random, systematic, stratified, convenience, and quota sampling, while also exploring potential sources of bias.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Every statistical study begins with a decision that quietly determines whether its conclusions are worth anything: who, or what, do we actually measure? This lesson builds the full 4.1 syllabus on data collection — the difference between a population and a sample and why we sample at all; the five sampling methods you must be able to name, apply and criticise (simple random, systematic, stratified, quota and convenience); how bias creeps in and undermines reliability; the classification of data as qualitative or quantitative, and quantitative data as discrete or continuous; and what it means for a data-collection process to be reliable and valid. Because 4.1 is examined on Paper 2, the marks reward clear method and reasoning in context — so the stratified-sampling worked example is laid out exactly the way our marking engine awards the marks, method mark by accuracy mark.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Distinguish between a population and a sample, and classify data as qualitative or quantitative (discrete/continuous).",
-    "Understand and describe different sampling techniques: simple random, systematic, stratified, convenience, and quota.",
-    "Calculate the required sample sizes for each group in stratified sampling.",
-    "Identify and explain potential sources of bias in data collection and sampling methods."
+    "Distinguish a population from a sample, explain why sampling is used instead of a census, and classify data as qualitative or quantitative (discrete or continuous).",
+    "Describe and apply the five required sampling methods — simple random, systematic, stratified, quota and convenience — and state a clear advantage and limitation of each.",
+    "Calculate the number to take from each group in a stratified sample using proportional allocation.",
+    "Identify sources of bias in a sampling design, explain in context how they threaten reliability, and comment on the reliability and validity of a data-collection method."
   ],
+  "syllabusObjectivesCovered": ["4.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Tasting the Soup",
-    "summary": "Statistics often involves studying a large group, or 'population'. Since it's impractical to check everyone, we take a smaller 'sample' and use it to make educated guesses about the whole group.",
-    "analogy": "Imagine you've made a massive pot of soup. To check if it's seasoned correctly, you don't need to eat the entire pot. You just take a spoonful. If you stir the soup well before taking the spoonful (randomising), it will represent the whole pot. If you only scoop from the top, you might get all the herbs and think it's too herby (a biased sample). Sampling in statistics is like tasting the soup – we want a small taste that accurately represents the whole dish.",
+    "summary": "We usually want to know something about a huge group — the population — but measuring every member is impossible or wasteful. So we measure a small, carefully chosen subset — a sample — and trust it to speak for the whole. The entire art is choosing the sample so that it genuinely represents the population rather than some corner of it.",
+    "analogy": "Think of a large pot of soup. To judge the seasoning you do not drink the whole pot; you stir it well and taste one spoonful. Stirring is the randomising step: it makes your single spoonful represent the whole pot. Skip the stir and scoop only from the top, and you might catch all the floating herbs and wrongly declare the soup over-seasoned. A biased sample is an unstirred spoonful — small, convenient, and quietly misleading.",
     "steps": [
-      "Define the target population you want to study and what data you need to collect.",
-      "Choose the most appropriate sampling method based on the population's characteristics and your resources.",
-      "Execute the sampling plan to collect the data from your selected sample.",
-      "Analyse the data, but also consider and state the limitations and potential biases of your chosen method."
+      "Define the population precisely and decide exactly what data you need to collect from each member.",
+      "Choose a sampling method that fits the population and your resources, and that keeps the sample representative.",
+      "Carry out the plan and record the data, using a sampling frame (a list of the population) where the method needs one.",
+      "Interpret the results, but also state the limitations and any bias your method may have introduced — a good answer criticises its own data."
     ]
   },
+  "keyConcepts": ["population and sample", "sampling methods", "bias and reliability"],
   "flashcards": [
-    {
-      "front": "What is a 'population' in statistics?",
-      "back": "The entire group of individuals, items, or data that you are interested in studying. For example, all students at a specific university."
-    },
-    {
-      "front": "What is a 'sample'?",
-      "back": "A subset of the population that is selected for investigation. It is used to make inferences about the population."
-    },
-    {
-      "front": "What is the difference between qualitative and quantitative data?",
-      "back": "Qualitative data is non-numerical and descriptive (e.g., favourite colour, car brand). Quantitative data is numerical (e.g., height, number of pets)."
-    },
-    {
-      "front": "What is the difference between discrete and continuous quantitative data?",
-      "back": "Discrete data can only take specific, countable values (e.g., number of siblings). Continuous data can take any value within a given range (e.g., weight, time)."
-    },
-    {
-      "front": "Describe Simple Random Sampling (SRS).",
-      "back": "A method where every member of the population has an equal and independent chance of being selected. Often done using random number generators."
-    },
-    {
-      "front": "Describe Systematic Sampling.",
-      "back": "A method where a starting point is randomly selected, and then every $k^{th}$ member of the population is chosen. $k = \\frac{\\text{Population size}}{\\text{Sample size}}$."
-    },
-    {
-      "front": "Describe Stratified Sampling.",
-      "back": "The population is divided into subgroups (strata) based on shared characteristics. A simple random sample is then taken from each stratum, proportional to its size in the population."
-    },
-    {
-      "front": "Describe Convenience Sampling.",
-      "back": "A non-probability method where the sample is taken from a group of people easy to contact or reach. It is fast but highly prone to bias."
-    },
-    {
-      "front": "What is sampling bias?",
-      "back": "A situation where the sample is not representative of the population, leading to systematic errors in the conclusions drawn. For example, surveying only people who leave a gym about their exercise habits."
-    },
-    {
-      "front": "What is the key difference between Stratified and Quota sampling?",
-      "back": "Stratified sampling uses random sampling within strata, making it a probability method. Quota sampling is non-random; the interviewer finds people to meet a quota, which can introduce bias."
-    },
-    {
-      "front": "What is a census?",
-      "back": "A survey that collects data from every single member of the population. It is accurate but often too expensive and time-consuming to be practical."
-    }
+    { "front": "Population vs sample", "back": "The population is the entire group you want to know about (e.g. all students in a school). A sample is a subset of that population, chosen to be studied so that conclusions can be generalised back to the whole. A study of the whole population is a census.", "pillLabel": "Definition" },
+    { "front": "Why sample instead of a census?", "back": "A census measures everyone, so it is accurate but usually too slow, too expensive, or physically impossible (you cannot weigh every fish in a lake). A well-designed sample gives a reliable estimate for a fraction of the cost and time.", "pillLabel": "Concept" },
+    { "front": "Sampling frame", "back": "A list of every member of the population, used to select the sample. Simple random and systematic sampling need one; if the frame is incomplete or out of date, bias enters before a single value is collected.", "pillLabel": "Definition" },
+    { "front": "Simple random sampling", "back": "Every member of the population has an equal, independent chance of selection — like drawing numbered names from a hat, usually via a random number generator. Unbiased in principle, but needs a full sampling frame and may under-represent small subgroups by chance.", "pillLabel": "Method" },
+    { "front": "Systematic sampling", "back": "Order the population, choose a random start, then take every $k^{\\text{th}}$ member, where $k = \\dfrac{\\text{population size}}{\\text{sample size}}$. Quick and even in coverage, but biased if the list has a repeating pattern that lines up with $k$.", "pillLabel": "Method" },
+    { "front": "Stratified sampling", "back": "Split the population into non-overlapping strata (e.g. year groups), then take a simple random sample from each stratum, with each stratum's share of the sample proportional to its share of the population. Guarantees every subgroup is represented in the right proportion.", "pillLabel": "Method" },
+    { "front": "Quota sampling", "back": "Like stratified sampling — the population is split into groups and a fixed number is required from each — but selection within a group is NON-random: the interviewer simply finds people who fit. Fast and needs no frame, but the interviewer's choices introduce selection bias.", "pillLabel": "Method" },
+    { "front": "Convenience sampling", "back": "Select whoever is easiest to reach — friends, passers-by, the first 30 people in the canteen. The fastest and cheapest method, and the most biased: the sample reflects who was convenient, not the population.", "pillLabel": "Method" },
+    { "front": "Stratified allocation formula", "back": "Number taken from a stratum $= \\dfrac{\\text{stratum size}}{\\text{population size}} \\times \\text{sample size}$. Round each to the nearest whole number and adjust so the parts add up to the required total.", "pillLabel": "Formula" },
+    { "front": "Sampling bias", "back": "A systematic tendency for a sample to over- or under-represent parts of the population, so estimates are consistently off in one direction. It cannot be fixed by taking a larger sample of the same flawed kind — a bigger biased sample is just a bigger mistake.", "pillLabel": "Trap" },
+    { "front": "Qualitative vs quantitative data", "back": "Qualitative (categorical) data describes a quality in words or categories (eye colour, nationality, brand). Quantitative data is numerical and measured or counted (height, number of siblings).", "pillLabel": "Definition" },
+    { "front": "Discrete vs continuous data", "back": "Discrete quantitative data can take only separate, countable values, usually whole numbers (number of cars, goals scored). Continuous quantitative data can take any value in a range and is measured (height, time, mass) — limited only by the precision of the instrument.", "pillLabel": "Definition" },
+    { "front": "Reliability vs validity", "back": "A method is reliable if it gives consistent results when repeated under the same conditions. It is valid if it actually measures what it claims to. A method can be reliable but not valid — a wrongly-calibrated scale gives the same wrong weight every time.", "pillLabel": "Concept" },
+    { "front": "Stratified vs quota — the key difference", "back": "Both split the population into groups with proportional targets. In stratified sampling the members of each group are chosen randomly (a probability method); in quota sampling they are chosen non-randomly by the interviewer, which is why quota sampling is prone to bias.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A town has 3000 adults and 2000 children. A stratified sample of 100 people is required. How many children should be in the sample?", "options": ["40", "50", "60", "20"], "answer": "40" },
+    { "prompt": "In systematic sampling, after a random starting point you select:", "options": ["Every $k^{\\text{th}}$ member of an ordered list", "Members entirely at random from a hat", "Whoever is most convenient to reach", "A fixed quota from each subgroup, chosen by the interviewer"], "answer": "Every $k^{\\text{th}}$ member of an ordered list" },
+    { "prompt": "A student surveys only their own friends about screen time. The main problem with this sample is that it is:", "options": ["A convenience sample and therefore likely biased and unrepresentative", "Too large to analyse", "A census of the population", "A stratified sample with equal strata"], "answer": "A convenience sample and therefore likely biased and unrepresentative" },
+    { "prompt": "Which of the following is continuous quantitative data?", "options": ["The exact time, in seconds, each runner takes to finish a race", "The number of students in each class", "The favourite sport of each student", "The number of goals scored in a match"], "answer": "The exact time, in seconds, each runner takes to finish a race" },
+    { "prompt": "The essential difference between stratified and quota sampling is that stratified sampling:", "options": ["Selects members within each group at random, whereas quota sampling does not", "Uses larger samples than quota sampling", "Does not divide the population into groups", "Is a non-probability method, unlike quota sampling"], "answer": "Selects members within each group at random, whereas quota sampling does not" }
   ],
   "faq": [
-    {
-      "q": "Is simple random sampling always the best method?",
-      "a": "Not necessarily. While it's theoretically unbiased, it can be impractical if the population is large and geographically dispersed. Also, by chance, it might not pick up on important minority subgroups. Stratified sampling is often better if you want to ensure specific groups within the population are represented."
-    },
-    {
-      "q": "What's the difference between a stratum and a quota?",
-      "a": "Both involve dividing a population into groups. The key difference is in how the sample is selected. In stratified sampling, you take a *random* sample from each group (stratum). In quota sampling, the selection is *non-random*; the interviewer just has to find people who fit the criteria for each quota, which can introduce bias."
-    },
-    {
-      "q": "If I have to round the numbers for my stratified sample, and they don't add up to the total sample size, what should I do?",
-      "a": "This is a common issue. The standard practice is to round the calculated numbers as accurately as possible (e.g., to the nearest whole number). Then, adjust one of the larger groups up or down by one to make the total correct. You should mention that you have done this. For example, if you need a sample of 100 and get 50.5 and 48.5, you'd round to 51 and 49. If you get 50.4 and 49.4 (total 99.8), you might round to 50 and 50, or 51 and 49, and just make sure your total is 100."
-    },
-    {
-      "q": "Why is 'bias' so important in this topic?",
-      "a": "Bias is critical because it undermines the entire purpose of sampling. If your sample is biased, it doesn't accurately reflect the population, and any conclusions you draw from it could be completely wrong. In real-world applications like medical trials or political polling, biased results can have serious consequences. The IB wants you to be a critical thinker who can evaluate the quality of data, not just perform calculations."
-    }
+    { "q": "Is simple random sampling always the best method?", "a": "No. It is unbiased in theory, but it needs a complete list of the population, and it can be impractical when the population is huge or spread out. By chance it may also under-represent a small but important subgroup. When you need to guarantee that specific groups appear in the right proportion, stratified sampling is usually the better choice." },
+    { "q": "What is the real difference between a stratum and a quota?", "a": "Both split the population into groups with a target number from each. The difference is how members are chosen. Stratified sampling takes a random sample within each stratum, so it is a probability method. Quota sampling lets the interviewer pick anyone who fits the quota — a non-random choice that tends to favour approachable, available people and so introduces bias." },
+    { "q": "My stratified sample sizes don't add up to the total after rounding. What do I do?", "a": "This is common. Round each stratum's figure to the nearest whole number, then check the sum. If it is one out, adjust the largest group up or down by one so the parts add to the required total, and say that you have done so. For example, if you need 100 and your rounded parts give 99, add one to the biggest stratum." },
+    { "q": "Why does the IB care so much about bias?", "a": "Because bias defeats the whole point of sampling. If the sample systematically misrepresents the population, no amount of neat calculation afterwards can rescue the conclusion — and a bigger sample of the same biased kind does not help. In polling, medical trials and market research, biased data leads to confidently wrong decisions, so the IB wants you to evaluate a data-collection method critically, not just compute from it." },
+    { "q": "What is the difference between reliability and validity?", "a": "Reliability is about consistency: repeat the method under the same conditions and you get the same result. Validity is about accuracy of purpose: the method actually measures what it claims to. They are independent. A miscalibrated scale is reliable (same reading every time) but not valid (the readings are wrong). A good data-collection method needs both." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the start of your statistics journey! In this topic, we explore the foundational skill of data collection. How do companies know what products you want? How do governments make policy decisions? It all starts with collecting data. We'll learn how to do this effectively and, just as importantly, how to spot when it's being done badly."
-    },
-    {
-      "type": "heading",
-      "content": "Populations, Samples, and Data Types"
-    },
-    {
-      "type": "text",
-      "content": "In any statistical investigation, the 'population' is the entire group we want to know something about. This could be 'all IB students worldwide' or 'all the trees in a specific forest'. Since studying the whole population (a 'census') is often impossible, we study a smaller, manageable group called a 'sample'. The conclusions we draw from the sample are then generalised to the population."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Population:** The complete set of items or individuals.",
-        "**Sample:** A subset of the population.",
-        "**Qualitative Data:** Descriptive categories (e.g., nationality, hair colour).",
-        "**Quantitative Data:** Numerical values. Can be **Discrete** (counted, e.g., number of cars) or **Continuous** (measured, e.g., length of a car in metres)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Sampling Techniques"
-    },
-    {
-      "type": "text",
-      "content": "The way we choose a sample is crucial. A good sample is representative of the population, while a bad sample can lead to misleading conclusions. We will look at five common methods."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Simple Random Sampling (SRS):** Every individual has an equal chance of selection. Like drawing names from a hat. Unbiased but can be hard to implement if you don't have a full list of the population (a sampling frame).",
-        "**Systematic Sampling:** Select a random starting point, then pick every $k^{th}$ individual. For example, picking every 10th person on a list. Efficient, but can be biased if there's an underlying pattern in the list.",
-        "**Stratified Sampling:** The population is divided into distinct groups, or 'strata' (e.g., by age, gender, or year group). A random sample is taken from each stratum in proportion to its size. This ensures all subgroups are fairly represented.",
-        "**Convenience Sampling:** Choosing individuals who are easiest to reach. For example, asking your friends or people in the school canteen. This is quick and easy but is highly likely to be biased and not representative of the whole population.",
-        "**Quota Sampling:** Similar to stratified sampling, but non-random. An interviewer is given quotas to fill (e.g., find 20 men and 30 women). This can lead to selection bias as the interviewer may choose approachable people."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A school has 1200 students. The headteacher wants to survey a sample of 80 students about a new uniform policy. The school has 550 students in Middle Years (MYP) and 650 students in the Diploma Programme (DP).\n\na) Identify the population and the sample size.\nb) The headteacher decides to use stratified sampling. Calculate the number of MYP and DP students that should be surveyed.\nc) Describe how the headteacher could select the DP students for the survey after calculating the stratified sample size.",
-      "solution": "a) The population is all 1200 students at the school. (A1)\nThe sample size is 80 students. (A1)\n\nb) First, find the proportion of each stratum.\nProportion of MYP students = $\\frac{550}{1200}$\nProportion of DP students = $\\frac{650}{1200}$\n\nNext, multiply these proportions by the sample size (80).\nNumber of MYP students to survey = $\\frac{550}{1200} \\times 80 = 36.666... \\approx 37$ students. (M1)(A1)\nNumber of DP students to survey = $\\frac{650}{1200} \\times 80 = 43.333... \\approx 43$ students. (A1)\nNote: It's important to round to the nearest whole number and ensure the total adds up to the sample size (37 + 43 = 80).\n\nc) The headteacher needs to select 43 DP students randomly. They could:\n1. Obtain a list of all 650 DP students.\n2. Assign each student a unique number from 1 to 650.\n3. Use a random number generator to select 43 unique numbers between 1 and 650. The students corresponding to these numbers are selected for the survey. (R1 for method, R1 for context) - This describes Simple Random Sampling within the stratum."
-    },
-    {
-      "type": "heading",
-      "content": "Bias in Sampling"
-    },
-    {
-      "type": "text",
-      "content": "Bias occurs when the sampling method over-represents or under-represents certain parts of the population. It's a systematic error that can invalidate your findings. A key skill is not just performing calculations, but also critically evaluating the data collection process. Convenience sampling is a major source of bias, as the sample is unlikely to be representative. For example, if you survey people about public transport use only at a train station, you're missing all the people who travel by car, bus, or bike."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2, questions often ask you to 'justify' your choice of sampling method or 'discuss' potential bias. For full marks, you must write in the context of the question. Don't just say 'convenience sampling is biased'; explain *why* it would be biased in the specific scenario given in the problem."
-    },
-    {
-      "type": "workedExample",
-      "question": "An environmental scientist wants to estimate the average number of plastic bottles found per 100m stretch of a city's riverbank, which is 5 km long.\nShe walks to the 100m stretch of riverbank nearest to her office and counts the bottles there. She uses this count to estimate the total for the entire 5 km.\n\na) Identify the sampling method used.\nb) Explain why this method may lead to a biased estimate. Suggest one improvement.",
-      "solution": "a) The scientist is choosing the stretch of riverbank that is easiest for her to access (nearest to her office). This is convenience sampling. (A1)\n\nb) This method is likely biased because the area near an office building might not be representative of the entire 5 km riverbank. (R1) For example, it might be cleaner due to regular maintenance or dirtier due to higher footfall. (R1) The sample is not random.\n\nAn improvement would be to use systematic sampling. The scientist could divide the 5 km (5000 m) riverbank into 50 non-overlapping 100m stretches. She could then randomly select a starting point (e.g., the 3rd stretch) and then sample every 5th stretch thereafter (3rd, 8th, 13th, etc.) to get a more representative sample of the entire riverbank. (M1 for method, A1 for clear description). Alternatively, simple random sampling of the 50 stretches could be used."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=4.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB AI SL Questionbank: Sampling",
-          "href": "/questionbank?subject=ib-maths-ai-sl&topic=4.1"
-        }
-      ]
-    }
+    { "type": "intro", "content": "How does a government decide policy, a company launch a product, or a scientist judge the health of a river? Each starts by collecting data — and the quality of every conclusion is capped by the quality of that first step. This lesson covers the full 4.1 syllabus on data collection: populations and samples, why we sample, the five sampling methods you must be able to name and criticise, the sources of bias that quietly wreck a study, the classification of data, and what makes a method reliable and valid. Because 4.1 is examined on Paper 2, the marks reward clear method and reasoning in context — so, as in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Populations, samples, and why we sample" },
+    { "type": "text", "content": "In any statistical investigation the population is the entire group you want to know something about — 'all students at this school', 'every apple in the orchard', 'all the fish in the lake'. Measuring the whole population is a census: perfectly accurate in principle, but usually too slow, too expensive, or physically impossible. Instead you study a sample, a subset chosen to stand in for the population, and generalise your findings back to the whole. The quantity you calculate from the population (such as its true mean) is a parameter; the quantity you calculate from the sample and use to estimate it is a statistic." },
+    { "type": "keyPoints", "items": [
+      "**Population:** the complete set of individuals or items under study.",
+      "**Sample:** a subset of the population, selected to be measured.",
+      "**Census:** a study of every member of the population — accurate but often impractical.",
+      "**Sampling frame:** a list of all members of the population, from which a sample is drawn. Some methods need one; a poor frame biases the sample before any data is collected."
+    ]},
+    { "type": "text", "content": "We sample because it is faster, cheaper, and sometimes the only option: testing every match in a factory by striking it would leave nothing to sell. A good sample is representative — its structure mirrors the population's — so the trade for that saving is small. A bad sample distorts the population, and then even flawless arithmetic afterwards yields a wrong answer." },
+
+    { "type": "heading", "content": "Types of data" },
+    { "type": "text", "content": "Before choosing how to collect data, classify what you are collecting, because it shapes every later choice of graph and statistic. Data is first split into qualitative and quantitative, and quantitative data is then split into discrete and continuous." },
+    { "type": "keyPoints", "items": [
+      "**Qualitative (categorical) data:** describes a quality in words or categories — nationality, eye colour, favourite sport. It has no numerical value you can average.",
+      "**Quantitative data:** numerical data that is counted or measured — heights, temperatures, number of pets.",
+      "**Discrete data:** quantitative data taking only separate, countable values, typically whole numbers — number of siblings, goals scored. You cannot score 2.5 goals.",
+      "**Continuous data:** quantitative data taking any value within a range, obtained by measuring — height, mass, time. Its precision is limited only by the measuring instrument."
+    ]},
+    { "type": "text", "content": "A quick test for discrete versus continuous: ask whether values between two neighbours can occur. Between 2 and 3 children there is nothing — discrete. Between 2 m and 3 m there are infinitely many heights — continuous. Money is a common grey area: strictly it comes in fixed steps (cents), so it is discrete, but with large amounts it is often treated as continuous." },
+
+    { "type": "heading", "content": "The five sampling methods" },
+    { "type": "text", "content": "The way you choose a sample decides whether it represents the population. You must be able to describe five methods, apply them, and give an advantage and a limitation of each. The first three are probability (random) methods, in which selection is governed by chance; the last two are non-probability methods, in which human choice enters — and with it, the risk of bias." },
+    { "type": "keyPoints", "items": [
+      "**Simple random sampling:** every member has an equal, independent chance of selection — numbers drawn by a random number generator. *Advantage:* unbiased and simple to justify. *Limitation:* needs a full sampling frame and can miss small subgroups by chance.",
+      "**Systematic sampling:** order the population, pick a random start, then take every $k^{\\text{th}}$ member with $k = \\frac{\\text{population size}}{\\text{sample size}}$. *Advantage:* fast and spreads the sample evenly across the list. *Limitation:* biased if the list has a repeating pattern matching $k$.",
+      "**Stratified sampling:** divide the population into strata (e.g. year groups), then randomly sample each stratum in proportion to its size. *Advantage:* guarantees every subgroup is represented in the correct proportion. *Limitation:* needs known strata sizes and more organisation.",
+      "**Quota sampling:** set a target number from each group, but let the interviewer pick who fills it, non-randomly. *Advantage:* fast, cheap, needs no sampling frame. *Limitation:* the interviewer's choices cause selection bias.",
+      "**Convenience sampling:** take whoever is easiest to reach. *Advantage:* the quickest and cheapest of all. *Limitation:* almost always biased and unrepresentative."
+    ]},
+    { "type": "examTip", "content": "Learn the two families. Simple random, systematic and stratified are random (probability) methods; quota and convenience are non-random. Stratified and quota look alike on the page — both split the population into groups with proportional targets — but stratified samples each group at random while quota does not. That single word, 'random', is what separates a defensible method from a biased one, and examiners test it constantly." },
+
+    { "type": "heading", "content": "Stratified sampling: proportional allocation" },
+    { "type": "text", "content": "Stratified sampling is the one method that reliably produces calculation marks, so it deserves a clean routine. The idea: each stratum should contribute the same fraction of the sample as it makes up of the population. The number taken from a stratum is therefore its share of the population multiplied by the total sample size." },
+    { "type": "formula", "content": "Number from a stratum $= \\dfrac{\\text{stratum size}}{\\text{population size}} \\times \\text{total sample size}$. \\n Round each result to the nearest whole number, then adjust the largest stratum if necessary so the parts sum to the required total." },
+    { "type": "workedExample", "question": "A school has 1200 students. The head wants to survey a stratified sample of 80 students about a new uniform policy. There are 550 students in the Middle Years Programme (MYP) and 650 in the Diploma Programme (DP). \\n \\n (a) State the population and the sample size. \\n (b) Calculate how many MYP and how many DP students should be surveyed. \\n (c) Describe how the DP students for the sample could then be chosen. [6]", "solution": "**(a)** The population is all 1200 students at the school; the sample size is 80.  [A1][A1]\\n\\n**(b)** Each stratum's share of the sample equals its share of the population, so multiply each stratum size by $\\dfrac{80}{1200}$ (the sampling fraction).  [M1: proportional method]\\nMYP: $\\dfrac{550}{1200} \\times 80 = 36.66\\ldots \\approx 37$ students.  [A1]\\nDP: $\\dfrac{650}{1200} \\times 80 = 43.33\\ldots \\approx 43$ students.  [A1]\\nCheck the parts add to the total: $37 + 43 = 80$. \\u2713\\n\\n**(c)** Take a simple random sample of the 43 DP students: obtain a list of all 650 DP students, number them $1$ to $650$, and use a random number generator to pick 43 distinct numbers; the corresponding students are surveyed.  [A1]\\n\\nRandom selection within the stratum is what keeps this a probability method rather than a quota." },
+
+    { "type": "heading", "content": "Bias and reliability" },
+    { "type": "text", "content": "Bias is a systematic tendency for a sampling method to over- or under-represent parts of the population, so estimates are consistently wrong in one direction. It is the central danger of data collection, and the reason the IB rewards criticism as much as calculation. Crucially, bias is not cured by a bigger sample — a larger convenience sample simply repeats the same distortion on a grander scale. It is cured by a better method." },
+    { "type": "keyPoints", "items": [
+      "**Selection bias:** the method itself favours certain members — surveying transport habits only at a train station misses everyone who drives, cycles or walks.",
+      "**Non-response bias:** those who choose not to reply differ systematically from those who do, so the responders misrepresent the whole.",
+      "**Convenience and quota methods** are especially prone to bias, because who ends up in the sample depends on who was easy or willing to include."
+    ]},
+    { "type": "text", "content": "Reliability and validity are the two lenses for judging a data-collection method. A method is reliable if repeating it under the same conditions gives consistent results, and valid if it genuinely measures what it claims to. They are independent qualities: a miscalibrated scale is reliable but not valid, giving the same wrong mass every time. Biased sampling threatens both — it makes results systematically inaccurate (a validity failure) and, if the source of bias shifts between studies, inconsistent too." },
+    { "type": "examTip", "content": "Paper 2 questions ask you to 'justify' a sampling choice or 'discuss' bias, and marks are lost by answering in the abstract. Never write only 'convenience sampling is biased'. Name the specific group that is over- or under-represented in this scenario and say which way the estimate is pushed — for example, 'sampling only gym members overstates average exercise, because the least active people are absent from the frame'. Context is where the mark lives." },
+    { "type": "workedExample", "question": "An environmental scientist wants to estimate the mean number of plastic bottles per 100 m stretch along a 5 km riverbank. She walks to the 100 m stretch nearest her office, counts the bottles there, and uses that count as her estimate for the whole 5 km. \\n \\n (a) Name the sampling method used. \\n (b) Explain, in context, why this may give a biased estimate, and suggest a better method. [4]", "solution": "**(a)** She chose the stretch that was easiest to reach, so this is convenience sampling.  [A1]\\n\\n**(b)** The stretch beside an office is unlikely to represent the whole 5 km: it might be cleaner because of regular maintenance, or dirtier because of heavy footfall, so a single count near her office systematically mis-estimates the riverbank as a whole.  [R1: bias identified in context]\\nA better approach is systematic sampling: divide the 5000 m bank into fifty 100 m stretches, choose a random starting stretch, then sample every fifth stretch (say the 3rd, 8th, 13th, ...) so the sample is spread along the entire length.  [M1: valid method]  [A1: clear description]\\nSimple random sampling of the fifty stretches would work equally well; the essential fix is that the stretches are chosen by chance, not by convenience." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Allocating a stratified sample equally instead of proportionally** — a stratum with twice the members should contribute twice as many to the sample. Use $\\frac{\\text{stratum size}}{\\text{population size}} \\times \\text{sample size}$, not the sample split evenly across groups.",
+      "**Rounded stratum sizes that do not add up to the total** — round each part, then adjust the largest stratum by one so the pieces sum to the required sample size, and say you have done so.",
+      "**Confusing stratified with quota sampling** — both use proportional groups, but stratified samples each group at random while quota does not. Only stratified is a probability method.",
+      "**Describing systematic sampling without the random start** — you must pick a random starting point and then take every $k^{\\text{th}}$ member; taking 'every $k^{\\text{th}}$' from a fixed start is incomplete.",
+      "**Criticising bias in the abstract** — 'convenience sampling is biased' earns little. Name who is over- or under-represented in the given scenario and which way the estimate is pushed.",
+      "**Thinking a bigger sample removes bias** — increasing the size of a biased sample does not make it representative; only changing the method does.",
+      "**Misclassifying data** — height and time are continuous (measured), while counts such as number of siblings or goals are discrete; favourite colour or nationality is qualitative, not quantitative.",
+      "**Confusing reliability with validity** — reliable means consistent on repetition; valid means it measures the right thing. A method can be one without the other."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost you the marks that depend on it, provided the later step is carried out correctly on your own figures. The engine also accepts any equivalent form and any correctly-rounded value. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A school has 400 Year 12 and 600 Year 13 students. A stratified sample of 50 is taken. How many should be from each year group? [3]", "solution": "**Model answer — full working.**\\n\\nThe total population is $400 + 600 = 1000$ students, and the sampling fraction is $\\dfrac{50}{1000}$. Each year group contributes this same fraction of its members:\\n\\nYear 12: $\\dfrac{400}{1000} \\times 50 = 20$ students.\\n\\nYear 13: $\\dfrac{600}{1000} \\times 50 = 30$ students.\\n\\nCheck: $20 + 30 = 50$, the required sample size. \\u2713\\n\\n**Answer:** 20 from Year 12 and 30 from Year 13.\\n\\n---\\n**How our marking engine awards the 3 marks:**\\n\\n- **M1 — correct proportion method.** A method mark for setting up the proportional allocation — multiplying a year group's share of the population by the sample size, e.g. $\\frac{400}{1000} \\times 50$ (equivalently $\\frac{50}{1000} \\times 400$). It is the method that is rewarded, so it stands even if the arithmetic that follows slips.\\n- **A1 — 20 (Year 12).** An accuracy mark for the correct Year 12 figure of 20, dependent on the M1 method above.\\n- **A1 — 30 (Year 13).** An accuracy mark for the correct Year 13 figure of 30. This is FT on the method: a candidate who found Year 12 and then used $50 - 20$, or who reapplied the proportion, earns it for a correct value on their own working.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts the proportion written as $\\frac{400}{1000}\\times 50$, as $0.4 \\times 50$, or as $\\frac{2}{5}\\times 50$, and accepts the answers whether given as '20 and 30' or 'Year 12: 20, Year 13: 30'. Once the two correct values appear, later restatement does not lose marks.\\n\\n**Bottom line:** the single method mark is the load-bearing line — a candidate who just writes '20 and 30' with no proportion shown risks the M1, and with it the follow-through that shields the accuracy marks. Show the fraction, and the method protects your score even if a number slips." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write the total population, form the sampling fraction, multiply it by each group's size, and check the parts add to the sample total. The method mark and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Data collection is the foundation the rest of the statistics course is built on. The sample you gather here becomes the raw material of descriptive statistics — the means, medians, quartiles and standard deviations of the next lesson — and the honesty of every one of those summaries is inherited from the honesty of your sampling. Later, the idea that a sample estimates a population parameter grows into confidence and hypothesis testing, where representative sampling is the assumption that makes the whole theory valid. Get the first step right — a representative sample, a clear method, and an open acknowledgement of bias — and everything that follows rests on solid ground." },
+
+    { "type": "practice", "label": "Get a Paper 2 sampling question marked: calculate a stratified sample and justify a method with full working", "href": "/mark?subject=ib-maths-ai-sl&topic=4.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB AI SL Questionbank: Sampling", "href": "/questionbank?subject=ib-maths-ai-sl&topic=4.1" },
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

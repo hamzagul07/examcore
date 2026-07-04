@@ -53,10 +53,12 @@ loadEnvFile('.env.local')
 // Mirrors the previous tier-A pricing. Single price per product; Polar (MoR)
 // presents it in the buyer's local currency at checkout.
 
+// Marketing tiers Pro / Scholar / Max map to the DB tiers student / scholar /
+// mastery. Annual = 2 months free (×10). Amounts in USD cents.
 const SUBSCRIPTIONS = [
-  { key: 'student', name: 'MarkScheme Student', monthly: 3300, yearly: 25900 },
-  { key: 'scholar', name: 'MarkScheme Scholar', monthly: 3300, yearly: 25900 },
-  { key: 'mastery', name: 'MarkScheme Mastery', monthly: 6250, yearly: 49100 },
+  { key: 'student', name: 'MarkScheme Pro', monthly: 1100, yearly: 11000 },
+  { key: 'scholar', name: 'MarkScheme Scholar', monthly: 1999, yearly: 19900 },
+  { key: 'mastery', name: 'MarkScheme Max', monthly: 3500, yearly: 35000 },
 ]
 
 const CREDITS = [
@@ -115,7 +117,21 @@ async function ensureProduct({ productKey, name, period, amountCents }, existing
   const lookupKey = `${productKey}:${period}`
   const existingId = existing.get(lookupKey)
   if (existingId) {
-    console.log(`  reuse ${lookupKey} -> ${existingId}`)
+    // Update name + price in place so re-runs apply new pricing (product id and
+    // recurring interval stay the same, so env vars remain valid). Polar
+    // archives the old price and attaches the new fixed one.
+    if (DRY_RUN) {
+      console.log(`  [DRY RUN] would update ${lookupKey} -> ${existingId} (${amountCents} usd)`)
+      return existingId
+    }
+    await polar.products.update({
+      id: existingId,
+      productUpdate: {
+        name,
+        prices: [{ amountType: 'fixed', priceAmount: amountCents, priceCurrency: 'usd' }],
+      },
+    })
+    console.log(`  update ${lookupKey} -> ${existingId} (${amountCents} usd)`)
     return existingId
   }
   if (DRY_RUN) {

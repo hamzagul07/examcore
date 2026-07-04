@@ -91,7 +91,9 @@ export default async function SubjectCommunityPage({ params, searchParams }: Pag
             posts={posts}
             userVotes={userVotes}
             signedIn={!!user}
-            emptyLabel={`No posts in s/${subject} yet. Be the first to post.`}
+            emptyLabel={`No posts in s/${subject} yet — start the first thread.`}
+            promptSubject={subject}
+            promptBoard={subjectMeta.board}
           />
         </main>
         <SubjectSidebar subjectCode={subject} subjectName={subjectMeta.name} accent={subjectMeta.accent} />

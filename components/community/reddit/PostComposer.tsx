@@ -30,6 +30,8 @@ export function PostComposer({
   initialSubject,
   initialBoard,
   initialKind,
+  initialTitle,
+  initialBody,
   signedIn,
 }: {
   subjects: SubjectOpt[]
@@ -38,6 +40,9 @@ export function PostComposer({
   initialSubject?: string
   initialBoard?: Board
   initialKind?: Kind
+  /** Prefill the title/body — used by community starter-prompt links. */
+  initialTitle?: string
+  initialBody?: string
   signedIn: boolean
 }) {
   const router = useRouter()
@@ -49,8 +54,8 @@ export function PostComposer({
   })
   const [subjectId, setSubjectId] = useState(initialSubject ?? '')
   const [subjectQuery, setSubjectQuery] = useState('')
-  const [title, setTitle] = useState('')
-  const [bodyMd, setBodyMd] = useState('')
+  const [title, setTitle] = useState(initialTitle ?? '')
+  const [bodyMd, setBodyMd] = useState(initialBody ?? '')
   const [flair, setFlair] = useState('')
   const [attachments, setAttachments] = useState<CommunityAttachment[]>([])
   const [uploading, setUploading] = useState(false)

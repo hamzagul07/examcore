@@ -15,7 +15,15 @@ export const metadata = createPageMetadata({
 
 export const dynamic = 'force-dynamic'
 
-type PageProps = { searchParams: Promise<{ subject?: string; kind?: string; board?: string }> }
+type PageProps = {
+  searchParams: Promise<{
+    subject?: string
+    kind?: string
+    board?: string
+    title?: string
+    body?: string
+  }>
+}
 
 export default async function SubmitPage({ searchParams }: PageProps) {
   if (!isCommunityEnabled()) redirect('/community')
@@ -53,6 +61,8 @@ export default async function SubmitPage({ searchParams }: PageProps) {
         initialSubject={sp.subject}
         initialBoard={initialBoard}
         initialKind={initialKind}
+        initialTitle={sp.title?.slice(0, 200)}
+        initialBody={sp.body?.slice(0, 20000)}
         signedIn={!!user}
       />
     </div>

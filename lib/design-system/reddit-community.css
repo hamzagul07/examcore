@@ -415,6 +415,44 @@
   text-align: center;
 }
 .rc-empty-glyph { font-size: 40px; }
+.rc-empty-sub {
+  max-width: 46ch;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+  margin: 2px 0 4px;
+}
+.rc-starter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+  margin: 6px 0 12px;
+}
+.rc-starter-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
+  min-height: 44px;
+  text-align: left;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: 12px;
+  color: var(--ec-text-primary);
+  font-size: 0.9rem; font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.rc-starter-card:hover {
+  border-color: var(--ec-accent);
+  background: var(--ec-surface-raised);
+  transform: translateY(-1px);
+}
+.rc-starter-emoji { font-size: 20px; line-height: 1; }
+.rc-starter-label { flex: 1; }
+@media (max-width: 480px) {
+  .rc-starter-grid { grid-template-columns: 1fr; }
+}
 
 /* ── Sidebar ───────────────────────────────────────────────────────────── */
 .rc-sidebar { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 88px; }

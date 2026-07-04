@@ -1,150 +1,246 @@
 {
   "slug": "2-5-modelling-with-sinusoidal-functions",
   "topicCode": "2.5",
+  "unit": { "code": "2", "title": "Functions" },
   "title": "Modelling with sinusoidal functions",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson explores how to use sine and cosine functions to model real-world periodic phenomena. You will learn to identify the key parameters of a sinusoidal model—amplitude, period, principal axis, and phase shift—from a given scenario or data set, construct the corresponding function, and use it to make predictions.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "A sinusoidal model uses a sine or cosine curve to describe something that repeats — tides rising and falling, temperature over a year, the height of a Ferris-wheel car, the hours of daylight through the seasons. This lesson builds the full 2.5 picture around the model $y = a\\sin(bx) + d$ (and its cosine twin): what the amplitude $|a|$, the period $\\frac{360^\\circ}{b}$ and the vertical shift, or principal axis, $d$ each mean; how to read them off a graph, from a stated maximum and minimum, or from a worded context; and how to use the finished model with a GDC to predict a value or solve for a time. Because 2.5 is examined on Paper 2, the calculator does the arithmetic — so the marks are for setting up the right model, quoting each parameter correctly, and showing the method the examiner needs. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Identify the key features of a sinusoidal model from a real-world scenario (amplitude, period, principal axis, phase shift).",
-    "Construct a sinusoidal function of the form f(x) = a sin(b(x-c)) + d or f(x) = a cos(b(x-c)) + d to model given data.",
-    "Use a sinusoidal model to make predictions and solve problems in context.",
-    "Determine the parameters of a sinusoidal model from a graph or table of values."
+    "Interpret the amplitude $|a|$, the period $\\frac{360^\\circ}{b}$ and the vertical shift (principal axis) $d$ in the model $y = a\\sin(bx) + d$ or $y = a\\cos(bx) + d$.",
+    "Determine these parameters from a graph, from a given maximum and minimum, or from a real-world context such as tides, temperature, a Ferris wheel or daylight hours.",
+    "Use a sinusoidal model to predict a value at a given input and to find when a stated value first occurs.",
+    "Use a GDC to solve equations arising from a sinusoidal model, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["2.5"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Riding the Waves of Data",
-    "summary": "Many natural patterns repeat over time, like the height of tides or the position of a Ferris wheel car. We can use sine and cosine functions, known as sinusoidal functions, to create mathematical models of these repeating patterns and predict future behaviour.",
-    "analogy": "Imagine you're on a Ferris wheel. Your height above the ground isn't constant; it goes up and down in a smooth, repeating cycle. This cycle can be perfectly described by a sinusoidal function. The wheel's centre is the 'principal axis', the radius is the 'amplitude', the time for one full turn is the 'period', and where you get on determines the 'phase shift'. By finding these four values, we can create an equation that tells us your exact height at any given moment.",
+    "summary": "Lots of things in the real world go up and down and then repeat: the tide, the temperature, the seat on a Ferris wheel. A sinusoidal function — a stretched, shifted sine or cosine curve — captures that rhythm in one equation. Pin down three numbers, the height of the swing (amplitude), how long one cycle lasts (period) and the height of the middle line (vertical shift), and you can predict the value at any moment.",
+    "analogy": "Picture yourself on a Ferris wheel. Your height above the ground never settles — it climbs to a top, sinks to a bottom, and repeats every turn. The centre of the wheel is the principal axis, the line $y = d$ that the curve wobbles around. The radius is the amplitude $|a|$, how far above and below that line you swing. The time for one full turn is the period. Once you know those three numbers you know your height at every instant, without ever getting back on the wheel.",
     "steps": [
-      "Find the Centreline (d): Calculate the vertical shift, or principal axis, by averaging the maximum and minimum values. This is your 'd' value, the middle of the wave.",
-      "Find the Amplitude (a): Calculate the amplitude by finding half the distance between the maximum and minimum values. This is your 'a' value, the height of the wave from the centreline.",
-      "Find the Period and 'b': Determine the time it takes for one full cycle (the period). Use the formula Period = 2π / b to find the value of 'b', which controls the wave's frequency.",
-      "Find the Shift (c) and Choose Sine or Cosine: Decide if a sine or cosine function is a better fit. A cosine graph starts at a maximum or minimum, while a sine graph starts on the centreline. Find the horizontal shift 'c' needed to align the graph with the start of the cycle."
+      "Find the middle line, $d$. Average the maximum and minimum values: $d = \\frac{\\text{max} + \\text{min}}{2}$. This is the principal axis, the horizontal line the curve oscillates about.",
+      "Find the amplitude, $a$. Take half the gap between the maximum and minimum: $a = \\frac{\\text{max} - \\text{min}}{2}$. It is the height of the swing above (and below) the middle line.",
+      "Find $b$ from the period. Measure the length of one complete cycle, then use $\\text{period} = \\frac{360^\\circ}{b}$, so $b = \\frac{360^\\circ}{\\text{period}}$ when working in degrees.",
+      "Use the model. Substitute a value to predict an output, or set the model equal to a target value and let the GDC find the input — reading the answer that fits the interval the question asks for."
     ]
   },
+  "keyConcepts": ["amplitude and principal axis", "period and the parameter b", "modelling and predicting from context"],
   "flashcards": [
     {
-      "front": "What is a sinusoidal function?",
-      "back": "A function that describes a smooth, repetitive oscillation. It can be represented by a sine or cosine wave, typically in the form $y = a \\sin(b(x-c)) + d$."
+      "front": "What is a sinusoidal model?",
+      "back": "A model of a repeating (periodic) quantity built from a sine or cosine curve, usually written $y = a\\sin(bx) + d$ or $y = a\\cos(bx) + d$. The three numbers $a$, $b$ and $d$ fix the size, speed and height of the oscillation.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the 'amplitude' in a sinusoidal model?",
-      "back": "The amplitude is $|a|$. It represents half the distance between the maximum and minimum values of the function. It is always a positive value and indicates the maximum displacement from the principal axis."
+      "front": "What is the amplitude?",
+      "back": "The amplitude is $|a|$ — half the distance between the maximum and minimum values: $|a| = \\frac{\\text{max} - \\text{min}}{2}$. It is a distance, so it is never negative, even if the coefficient $a$ in the equation is negative.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the 'principal axis'?",
-      "back": "The horizontal line that runs exactly halfway between the function's maximum and minimum values. Its equation is $y = d$, where $d = (\\text{max} + \\text{min}) / 2$."
+      "front": "What is the principal axis?",
+      "back": "The horizontal line halfway between the maximum and minimum, with equation $y = d$ where $d = \\frac{\\text{max} + \\text{min}}{2}$. The curve oscillates symmetrically above and below it; it is the vertical shift of the model.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How do you calculate the period from the function $y = a \\cos(b(x-c)) + d$?",
-      "back": "The period is the length of one full cycle. It is calculated as $2\\pi / |b|$ (if using radians) or $360^\\circ / |b|$ (if using degrees)."
+      "front": "How do you find the period of $y = a\\sin(bx) + d$?",
+      "back": "The period is the length of one full cycle. In degrees it is $\\frac{360^\\circ}{b}$; in radians it is $\\frac{2\\pi}{b}$. So if you know the period you can recover $b = \\frac{360^\\circ}{\\text{period}}$ (degrees).",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What does the parameter 'c' represent in $y = a \\sin(b(x-c)) + d$?",
-      "back": "'c' represents the horizontal shift, also known as the phase shift. A positive 'c' shifts the graph to the right, and a negative 'c' shifts it to the left."
+      "front": "What are the maximum and minimum values of $y = a\\sin(bx) + d$ (with $a > 0$)?",
+      "back": "Maximum $= d + a$ and minimum $= d - a$. The curve reaches $a$ above the principal axis and $a$ below it. So knowing $d$ and $a$ tells you the top and bottom without a graph.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "When is it often simpler to model with a cosine function?",
-      "back": "When the starting point of the cycle (e.g., at time $t=0$) is at a maximum or a minimum value. This often makes the horizontal shift $c=0$."
+      "front": "How do you get $a$ and $d$ from a stated maximum and minimum?",
+      "back": "Amplitude $a = \\frac{\\text{max} - \\text{min}}{2}$; vertical shift $d = \\frac{\\text{max} + \\text{min}}{2}$. Do these two first — they come straight from the top and bottom of the oscillation, whatever the context.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "When is it often simpler to model with a sine function?",
-      "back": "When the starting point of the cycle is on the principal axis and the function is increasing. This often makes the horizontal shift $c=0$."
+      "front": "How do you read the period off a graph?",
+      "back": "Measure the horizontal distance between two consecutive maximums, or two consecutive minimums, or between points one full cycle apart. That distance is the period; then $b = \\frac{360^\\circ}{\\text{period}}$ in degrees.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "How do you find the parameter 'b' if you know the period of the phenomenon?",
-      "back": "You rearrange the period formula: $b = 2\\pi / \\text{Period}$ (for radians) or $b = 360^\\circ / \\text{Period}$ (for degrees)."
+      "front": "For $y = a\\sin(bx) + d$ with $a>0$, when does the first maximum occur?",
+      "back": "A sine curve first reaches its maximum a quarter of a period after it crosses the principal axis going up. If it starts on the axis at $x = 0$, the first maximum is at $x = \\frac{1}{4} \\times \\text{period}$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What does a negative value for 'a' (e.g., $y = -3\\cos(x)$) signify?",
-      "back": "A negative 'a' value reflects the graph across the principal axis. For example, a standard cosine graph starts at a maximum; a reflected one ($a<0$) starts at a minimum. The amplitude is still $|-3| = 3$."
+      "front": "What does a negative coefficient $a$ do, e.g. $y = -3\\cos(bx) + d$?",
+      "back": "It reflects the curve in the principal axis, so a curve that would start at a maximum instead starts at a minimum. The amplitude is still $|-3| = 3$ — the sign changes the starting shape, not the size of the swing.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What are the first two parameters to calculate when building a model from max/min values?",
-      "back": "First, find the principal axis $d = (\\text{max} + \\text{min}) / 2$. Then, find the amplitude $a = (\\text{max} - \\text{min}) / 2$."
+      "front": "Degrees or radians for AI SL modelling?",
+      "back": "Either can appear, but the question tells you: if the model is written with $\\frac{360^\\circ}{b}$ or the angle looks like degrees (e.g. $30t$), set the GDC to degrees. A wrong-mode calculator is the single most common way to lose every accuracy mark.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "How can you find the period from a graph or table of data?",
-      "back": "Measure the horizontal distance between two consecutive maximum points or two consecutive minimum points."
+      "front": "How do you find WHEN a model reaches a given value?",
+      "back": "Set the model equal to the target and solve on the GDC — either graph $y = \\text{model}$ and $y = \\text{target}$ and read the intersections, or use the equation solver. Then pick the solution inside the interval the question specifies.",
+      "pillLabel": "Framework"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "For $y = 4\\sin(30x) + 7$, the amplitude is:",
+      "options": ["$4$", "$7$", "$11$", "$30$"],
+      "answer": "$4$"
+    },
+    {
+      "prompt": "For $y = 6\\cos(20x) + 5$ (degrees), the period is:",
+      "options": ["$\\frac{360^\\circ}{20} = 18^\\circ$", "$20^\\circ$", "$\\frac{20}{360^\\circ}$", "$\\frac{360^\\circ}{6} = 60^\\circ$"],
+      "answer": "$\\frac{360^\\circ}{20} = 18^\\circ$"
+    },
+    {
+      "prompt": "A model $y = a\\sin(bx) + d$ has principal axis $y = 9$ and amplitude $3$. Its maximum value is:",
+      "options": ["$9 + 3 = 12$", "$9$", "$9 - 3 = 6$", "$9 \\times 3 = 27$"],
+      "answer": "$9 + 3 = 12$"
+    },
+    {
+      "prompt": "The temperature model $T = 8\\cos(15t) + 18$ oscillates about the principal axis:",
+      "options": ["$T = 18$", "$T = 8$", "$T = 26$", "$T = 15$"],
+      "answer": "$T = 18$"
+    },
+    {
+      "prompt": "The depth model $d = 4\\sin(30t) + 7$ has maximum $11$ at a quarter period. Since the period is $12$, the first maximum occurs at:",
+      "options": ["$t = 3$", "$t = 12$", "$t = 6$", "$t = 4$"],
+      "answer": "$t = 3$"
     }
   ],
   "faq": [
     {
-      "q": "Does it matter if I use a sine or cosine function for my model?",
-      "a": "Fundamentally, no. Any sinusoidal pattern can be modelled with either function, as a sine graph is just a horizontally shifted cosine graph ($sin(x) = \\cos(x - \\pi/2)$). However, one choice is usually 'simpler' than the other. If your data starts at a maximum or minimum, using a cosine function often results in a horizontal shift of $c=0$, which is easier to work with."
+      "q": "Do I use a sine model or a cosine model?",
+      "a": "For the amplitude, period and vertical shift the choice makes no difference — a cosine curve is just a shifted sine curve, so both fit the same oscillation. In 2.5 the model is usually handed to you already in the form $y = a\\sin(bx) + d$ or $y = a\\cos(bx) + d$; your job is to read the parameters, predict values and solve. When you do get to choose, cosine is tidiest if the cycle starts at a maximum or minimum, and sine if it starts on the principal axis and is rising."
     },
     {
-      "q": "My calculation for 'b' is different from the answer key. What did I do wrong?",
-      "a": "The most common error is being in the wrong calculator mode. The formula $b = 2\\pi / \\text{Period}$ is for RADIAN mode. If you are working in degrees, the formula is $b = 360 / \\text{Period}$. The IB Maths AI course predominantly uses radians for calculus and modelling, so always check your GDC is set to radians unless the question specifies degrees."
+      "q": "My period or my substituted value is wrong — what did I miss?",
+      "a": "By far the most common cause is calculator mode. If the model uses degrees — for instance $y = 4\\sin(30t) + 7$, where the period is $\\frac{360^\\circ}{30} = 12$ — your GDC must be in degree mode. In radian mode the same keystrokes give nonsense. Always check the mode before you substitute, and read whether the question is written with $\\frac{360^\\circ}{b}$ (degrees) or $\\frac{2\\pi}{b}$ (radians)."
     },
     {
-      "q": "What if the value I find for 'a' should be negative?",
-      "a": "The amplitude, 'a', is a distance and is defined as being positive: $a = (\\text{Max} - \\text{Min})/2$. However, in the final equation $y = a \\cos(...) + d$, the coefficient of the cosine term can be negative. A negative coefficient, e.g., $y = -3.8\\cos(...)$, indicates a reflection in the principal axis. This is useful if your data starts at a minimum value, as a reflected cosine graph starts at a minimum."
+      "q": "How do I find the FIRST time something happens, not just any time?",
+      "a": "Set the model equal to the target value and solve on the GDC, but remember a sinusoidal equation has infinitely many solutions — one per cycle. Graph the model together with the horizontal target line and read the intersection points, then choose the smallest one that lies in the interval the question gives (often $t \\ge 0$). For a plain maximum or minimum you can shortcut this: the first maximum of a rising sine model is a quarter of a period after the start."
+    },
+    {
+      "q": "Why is the amplitude positive when the graph goes below the axis?",
+      "a": "Amplitude measures the size of the swing, not its direction, so it is defined as the positive distance $|a| = \\frac{\\text{max} - \\text{min}}{2}$. The curve naturally dips $|a|$ below the principal axis as well as rising $|a|$ above it. A negative coefficient in the equation only flips whether the cycle starts by rising or falling; it never makes the amplitude negative."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "From the rhythm of the tides to the oscillating sound waves from a musical instrument, our world is filled with periodic patterns. Sinusoidal functions, based on sine and cosine, are the mathematical tools we use to describe and analyse these repeating cycles. In this lesson, we'll learn how to take a real-world situation, deconstruct it into its key components, and build a powerful mathematical model to make accurate predictions."
+      "content": "From the rise and fall of the tide to the swing of a Ferris-wheel car and the slow march of daylight hours through the year, the world is full of quantities that go up, come back down and repeat. A sinusoidal model captures that rhythm in a single equation built from a sine or cosine curve. This lesson covers the full 2.5 picture: what the amplitude, period and vertical shift mean in the model $y = a\\sin(bx) + d$; how to read them off a graph, from a stated maximum and minimum, or from a worded context; and how to use the finished model with a GDC to predict a value or find when a value first occurs. Because 2.5 is examined on Paper 2, the calculator handles the arithmetic — so the skill being marked is setting up the right model and writing down the method the examiner needs. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "The Anatomy of a Sinusoidal Model"
+      "content": "The anatomy of a sinusoidal model"
     },
     {
       "type": "text",
-      "content": "Any sinusoidal model can be described by a function in one of two general forms. Understanding what each parameter does is the key to building and interpreting these models."
+      "content": "Almost every periodic quantity in this course can be written in one of two closely related forms. The parameters $a$, $b$ and $d$ do all the work: $a$ sets the size of the swing, $b$ sets how quickly the cycle repeats, and $d$ sets the height of the line the curve oscillates about. Read those three numbers correctly and the whole model is under your control."
     },
     {
       "type": "formula",
-      "content": "$$ f(x) = a \\cos(b(x - c)) + d \\quad \\text{or} \\quad f(x) = a \\sin(b(x - c)) + d $$"
+      "content": "$$ y = a\\sin(bx) + d \\qquad \\text{or} \\qquad y = a\\cos(bx) + d $$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**d (Principal Axis / Vertical Shift):** The midline of the graph. Calculated as $d = \\frac{\\text{Max Value} + \\text{Min Value}}{2}$.",
-        "**a (Amplitude):** The distance from the principal axis to a maximum or minimum point. Calculated as $a = \\frac{\\text{Max Value} - \\text{Min Value}}{2}$. The value of $a$ is always positive.",
-        "**Period and b:** The period is the length of one full cycle. The parameter $b$ is related to the period by the formula $\\text{Period} = \\frac{2\\pi}{b}$. Therefore, $b = \\frac{2\\pi}{\\text{Period}}$.",
-        "**c (Phase Shift / Horizontal Shift):** This shifts the graph horizontally. It's the value of $x$ where a cycle 'begins'. For a cosine model, this is often the x-coordinate of a maximum. For a sine model, it's the x-coordinate of a point on the principal axis where the graph is increasing."
+        "**Amplitude $|a|$:** the distance from the principal axis up to a maximum (or down to a minimum). From data, $|a| = \\frac{\\text{max} - \\text{min}}{2}$. It is always positive — it measures the size of the swing, not its direction.",
+        "**Period and $b$:** the period is the length of one full cycle. In degrees, $\\text{period} = \\frac{360^\\circ}{b}$, so $b = \\frac{360^\\circ}{\\text{period}}$; in radians replace $360^\\circ$ with $2\\pi$.",
+        "**Vertical shift / principal axis $d$:** the curve oscillates about the horizontal line $y = d$, where $d = \\frac{\\text{max} + \\text{min}}{2}$. This is the 'middle' of the wave.",
+        "**Maximum and minimum:** with $a > 0$ the model reaches a maximum of $d + a$ and a minimum of $d - a$. Knowing $d$ and $a$ hands you the top and bottom instantly."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A sign warning: if the coefficient in front of the sine or cosine is negative — say $y = -3\\cos(bx) + d$ — the curve is reflected in the principal axis, so it begins at a minimum instead of a maximum. The amplitude is still $|-3| = 3$. The sign changes the starting shape, never the size of the swing."
+    },
+    {
+      "type": "heading",
+      "content": "Reading the parameters: from a graph, from max/min, or from a context"
+    },
+    {
+      "type": "text",
+      "content": "Whichever way a question presents the oscillation, the same three questions unlock it. Where is the middle line? That is $d = \\frac{\\text{max} + \\text{min}}{2}$. How big is the swing? That is $a = \\frac{\\text{max} - \\text{min}}{2}$. How long is one cycle? That gives $b = \\frac{360^\\circ}{\\text{period}}$. From a graph, read the highest and lowest values for $a$ and $d$, and the distance between consecutive peaks for the period. From a worded context — a tide with a stated high and low, a temperature that ranges between two values, a Ferris wheel of known diameter — translate the words into a maximum, a minimum and a cycle length, then do exactly the same arithmetic."
+    },
+    {
+      "type": "workedExample",
+      "question": "The height above the ground, $H$ metres, of a seat on a Ferris wheel is modelled by $H(t) = 30\\sin(4t) + 35$, where $t$ is the time in seconds and the angle is in degrees. State the amplitude and the principal axis, find the period, and hence write down the maximum and minimum heights of the seat. [5]",
+      "solution": "Read the parameters straight from the model $H(t) = 30\\sin(4t) + 35$.\\n\\n**Amplitude.** The coefficient of the sine term is $30$, so the amplitude is $|a| = 30$ m.  [A1]\\n\\n**Principal axis.** The vertical shift is $d = 35$, so the seat oscillates about the line $H = 35$ m.  [A1]\\n\\n**Period.** Working in degrees, $\\text{period} = \\dfrac{360^\\circ}{b} = \\dfrac{360^\\circ}{4} = 90$ seconds.  [M1 for $\\frac{360}{b}$]  [A1]\\n\\n**Maximum and minimum heights.** With $a > 0$, maximum $= d + a = 35 + 30 = 65$ m and minimum $= d - a = 35 - 30 = 5$ m.  [A1]\\n\\nSo the wheel carries the seat between $5$ m and $65$ m above the ground, completing a full turn every $90$ seconds."
+    },
+    {
+      "type": "examTip",
+      "content": "When a model is given to you, do not over-think it: the amplitude is the number multiplying the sine or cosine, the vertical shift is the number added on the end, and the period comes from $\\frac{360^\\circ}{b}$ (degrees) or $\\frac{2\\pi}{b}$ (radians). Write each value on its own line — examiners award the parameter marks separately, so a bare list of numbers with no labels risks losing marks you have effectively earned."
+    },
+    {
+      "type": "heading",
+      "content": "Using the model: predicting and solving with the GDC"
+    },
+    {
+      "type": "text",
+      "content": "Once the parameters are known, the model earns its keep. To predict a value, substitute the input and evaluate on the GDC — checking first that the calculator mode matches the model. To find WHEN a quantity reaches a target, set the model equal to that target and solve: graph the model together with the horizontal target line and read the intersections, or use the equation solver, then choose the solution that lies in the interval the question asks about. A sinusoidal equation repeats every cycle, so there are always several answers — reading the right one is part of the skill."
+    },
+    {
+      "type": "workedExample",
+      "question": "The depth of water in a harbour is modelled by $d(t) = 4\\sin(30t) + 7$, where $d$ is the depth in metres, $t$ is the time in hours after midnight, and the angle is measured in degrees. State the amplitude and the period, and find the maximum depth and the first time it occurs. [5]",
+      "solution": "**Amplitude.** The coefficient of the sine term is $4$, so the amplitude is $|a| = 4$ m.  [A1]\\n\\n**Period.** In degrees, $\\text{period} = \\dfrac{360^\\circ}{b} = \\dfrac{360^\\circ}{30} = 12$ hours.  [M1 for $\\frac{360}{b}$]  [A1]\\n\\n**Maximum depth.** The principal axis is $d = 7$ and the amplitude is $4$, so the greatest depth is $d + a = 7 + 4 = 11$ m.  [A1]\\n\\n**First time it occurs.** A sine model that starts on its principal axis and rises reaches its first maximum a quarter of a period after $t = 0$. Here a quarter period is $\\frac{1}{4} \\times 12 = 3$ hours, so the depth first reaches $11$ m at $t = 3$ (i.e. 03:00). A GDC graph of $d(t) = 4\\sin(30t) + 7$ confirms the first peak at $t = 3$.  [A1]\\n\\n**Answers:** amplitude $4$ m, period $12$ h, maximum depth $11$ m first reached at $t = 3$ h."
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of hours of daylight in a northern town is modelled by $L(t) = 4\\cos(30t) + 12$, where $L$ is measured in hours, $t$ is the number of months after the longest day, and the angle is in degrees. \\n (a) State the maximum and minimum hours of daylight the model predicts. \\n (b) Use your GDC to find the first value of $t$ (for $t > 0$) at which the town has exactly $12$ hours of daylight. [5]",
+      "solution": "**(a) Maximum and minimum.** The amplitude is $|a| = 4$ and the principal axis is $d = 12$, so maximum $= d + a = 12 + 4 = 16$ hours and minimum $= d - a = 12 - 4 = 8$ hours.  [A1 max]  [A1 min]\\n\\n**(b) When is $L = 12$?** Set the model equal to $12$: $4\\cos(30t) + 12 = 12$, so $4\\cos(30t) = 0$.  [M1 setting model $=$ target]\\nGraph $Y_1 = 4\\cos(30t) + 12$ and $Y_2 = 12$ on the GDC (degree mode) and read the first intersection for $t > 0$.  [M1 GDC method]\\nThe first intersection is at $t = 3$ months.  [A1]\\n\\n(The cosine model starts at its maximum of $16$ hours at $t = 0$, the longest day, and first crosses the principal axis of $12$ hours a quarter of a cycle later — a quarter of the $\\frac{360^\\circ}{30} = 12$-month period, i.e. $t = 3$.)"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Calling $d$ the amplitude** — the amplitude is the coefficient $|a|$ that multiplies the sine or cosine, not the vertical shift $d$. In $y = 4\\sin(30x) + 7$ the amplitude is $4$, not $7$.",
+        "**Getting the period the wrong way up** — the period is $\\frac{360^\\circ}{b}$ (degrees) or $\\frac{2\\pi}{b}$ (radians), not $360^\\circ \\times b$ and not simply $b$. For $y = 6\\cos(20x) + 5$ the period is $\\frac{360^\\circ}{20} = 18^\\circ$, not $20$.",
+        "**Working in the wrong calculator mode** — a model written with $\\frac{360^\\circ}{b}$ or an angle like $30t$ is in degrees, so the GDC must be in degree mode. Radian mode gives a plausible-looking but wrong answer.",
+        "**Forgetting the maximum is $d + a$, not $a$** — with $a>0$ the maximum is principal axis plus amplitude, $d + a$, and the minimum is $d - a$. Quoting the amplitude as the maximum loses the mark.",
+        "**Putting the principal axis at $y = 0$** — the curve oscillates about $y = d$, not the $x$-axis. State the principal axis as $y = d$ using the vertical-shift value.",
+        "**Taking amplitude as negative when the graph dips below the axis** — amplitude is the positive distance $\\frac{\\text{max}-\\text{min}}{2}$. A negative coefficient only reflects the curve; the amplitude is still $|a|$.",
+        "**Reporting every solution instead of the first** — a sinusoidal equation repeats each cycle, so pick the solution inside the interval the question specifies (often the smallest $t > 0$), not just any intersection the GDC shows."
       ]
     },
     {
       "type": "heading",
-      "content": "Building the Model: A Step-by-Step Guide"
+      "content": "Model answer — marked the way our engine marks it"
     },
     {
       "type": "text",
-      "content": "When faced with a problem, systematically determining each parameter is the most reliable method. The process is the same whether you are given a description, a graph, or a table of data."
+      "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost you the marks that depend on it, provided the later step is done correctly on your own figure, and a GDC answer is expected rather than hand-computed values. Study how each mark below is earned by a specific line."
     },
     {
       "type": "workedExample",
-      "question": "A Ferris wheel has a diameter of 40 metres. The lowest point of a carriage is 2 metres above the ground. It takes 3 minutes for the wheel to complete one full revolution. A passenger gets on a carriage at its lowest point at time $t=0$.\n\na) Find a cosine function that models the passenger's height, $H$, above the ground in metres, as a function of time, $t$, in minutes.\n\nb) Find the passenger's height after 1 minute.",
-      "solution": "a) **Step 1: Find max and min heights.**\nMinimum height = 2 m (given).\nMaximum height = Lowest point + diameter = 2 + 40 = 42 m.\n\n**Step 2: Calculate d (principal axis).**\n$d = \\frac{\\text{Max} + \\text{Min}}{2} = \\frac{42 + 2}{2} = \\frac{44}{2} = 22$. (M1)\n\n**Step 3: Calculate a (amplitude).**\n$a = \\frac{\\text{Max} - \\text{Min}}{2} = \\frac{42 - 2}{2} = \\frac{40}{2} = 20$. (M1)\n\n**Step 4: Calculate b.**\nThe period is given as 3 minutes.\n$b = \\frac{2\\pi}{\\text{Period}} = \\frac{2\\pi}{3}$. (M1)\n\n**Step 5: Choose function and find c.**\nThe passenger starts at the lowest point at $t=0$. A standard cosine function, $y = \\cos(t)$, starts at a maximum. A reflected cosine function, $y = -\\cos(t)$, starts at a minimum. Since the starting point is a minimum, we should use a reflected cosine model. This means our 'a' value in the formula will be negative, i.e., -20. Because the minimum occurs at $t=0$, there is no horizontal shift, so $c=0$. (M1)\n\n**Step 6: Assemble the model.**\n$H(t) = a \\cos(b(t-c)) + d$\n$H(t) = -20 \\cos(\\frac{2\\pi}{3}(t-0)) + 22$\n$H(t) = -20 \\cos(\\frac{2\\pi}{3}t) + 22$. (A1)\n\nb) **Substitute t=1 into the model.**\n$H(1) = -20 \\cos(\\frac{2\\pi}{3}(1)) + 22$. (M1)\nMake sure your calculator is in RADIAN mode.\n$H(1) = -20 \\cos(\\frac{2\\pi}{3}) + 22$\n$H(1) = -20(-0.5) + 22$\n$H(1) = 10 + 22 = 32$.\nThe passenger's height after 1 minute is 32 metres. (A1)"
+      "question": "The depth of water is modelled by $d(t) = 4\\sin(30t) + 7$ (metres, $t$ hours, degrees). State the amplitude and period, and find the maximum depth and the first time it occurs. [5]",
+      "solution": "**Model answer — full working.**\\n\\nThe model is $d(t) = 4\\sin(30t) + 7$, with the angle in degrees, so set the GDC to degree mode.\\n\\n**Amplitude.** The coefficient of $\\sin(30t)$ is $4$, so the amplitude is $|a| = 4$ m.\\n\\n**Period.** Using $\\text{period} = \\dfrac{360^\\circ}{b}$ with $b = 30$: $\\dfrac{360^\\circ}{30} = 12$ hours.\\n\\n**Maximum depth.** The principal axis is $d = 7$ and the amplitude is $4$, so the maximum depth is $7 + 4 = 11$ m.\\n\\n**First time it occurs.** The sine model starts on the principal axis at $t = 0$ and rises, so its first maximum is a quarter of a period later: $\\frac{1}{4} \\times 12 = 3$ hours. A GDC graph of $d(t)$ confirms the first peak at $t = 3$.\\n\\n**Answers:** amplitude $4$ m, period $12$ h, maximum depth $11$ m, first reached at $t = 3$ h.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **A1 — amplitude.** Awarded for stating the amplitude is $4$, read as the coefficient of the sine term. This accuracy mark stands on correctly identifying $|a|$, not $d$.\\n- **M1 — period method.** A method mark for using $\\text{period} = \\dfrac{360^\\circ}{b}$ with $b = 30$, i.e. forming $\\frac{360}{30}$. It is the approach that is rewarded, so it survives an arithmetic slip in the division.\\n- **A1 — period.** Awarded for $\\text{period} = 12$ hours. This A-mark depends on the M1 above: it is earned once $\\frac{360^\\circ}{b}$ is set up and evaluated correctly. FT applies — a candidate who mis-copied $b$ but divided $\\frac{360^\\circ}{b}$ correctly still earns it on their own figure.\\n- **A1 — maximum depth.** Awarded for maximum $= d + a = 7 + 4 = 11$ m, combining the principal axis and amplitude. FT on the candidate's own $a$ and $d$.\\n- **A1 — first time.** Awarded for $t = 3$ h, identified as a quarter of the period (or read from the GDC graph). This is FT on the candidate's own period: a student whose period differed but who correctly took a quarter of THEIR period keeps this mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts the period written as $\\frac{360}{30}$ or $12$ or $12.0$, the maximum as $7+4$ or $11$, and the time as $t = 3$ or '03:00'. Once a correct value appears, subsequent restatements do not lose marks (ISW).\\n\\n**Bottom line:** of the 5 marks, the period method mark survives an arithmetic slip and three accuracy marks are shielded by follow-through. A student who writes only 'max $= 11$, $t = 3$' with no amplitude, no $\\frac{360^\\circ}{b}$ and no reasoning risks losing 3 marks; a student who shows the amplitude, the period formula, the sum $d + a$ and the quarter-period keeps the method regardless of a slip in one number."
     },
     {
       "type": "examTip",
-      "content": "Always check your calculator is in the correct mode (degrees or radians) before starting a calculation. Most sinusoidal modelling questions use radians. When the question asks for the model, write out the full equation with the values of $a, b, c,$ and $d$ you found. Don't just list the parameters."
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: name the amplitude as the coefficient, write $\\text{period} = \\frac{360^\\circ}{b}$ before evaluating it, form the maximum as $d + a$, and justify the first time as a quarter period or from a GDC graph. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
     },
     {
       "type": "heading",
-      "content": "Modelling from Data"
+      "content": "Where this leads"
     },
     {
       "type": "text",
-      "content": "Often, you will be given a table of data, such as tide heights or average monthly temperatures, and asked to create a model. The process remains the same: identify the maximum and minimum values from the data to find the amplitude and principal axis. Then, find the period by looking at the time difference between consecutive peaks or troughs to find 'b'. Finally, determine the horizontal shift 'c' based on the position of the first peak."
-    },
-    {
-      "type": "workedExample",
-      "question": "The depth of water, $D$ metres, in a harbour on a particular day is monitored. The first high tide occurs at 04:00 with a depth of 12.8 m. The next low tide occurs at 10:00 with a depth of 5.2 m. Assume the depth of water can be modelled by a sinusoidal function $D(t) = a \\cos(b(t-c)) + d$, where $t$ is the number of hours after midnight.\n\na) Find the period of the tides.\nb) Write down a model for the depth of water, $D(t)$.\nc) A ship requires a depth of at least 8 metres to enter the harbour. Using your GDC, find the time intervals, to the nearest minute, during which the ship can enter the harbour on this day (between $t=0$ and $t=24$).",
-      "solution": "a) The time from high tide to low tide is $10:00 - 04:00 = 6$ hours. This represents half a period.\nPeriod = $2 \\times 6 = 12$ hours. (A1)\n\nb) **Find parameters d, a, b, c.**\nMax depth = 12.8 m, Min depth = 5.2 m.\n$d = \\frac{12.8 + 5.2}{2} = 9$. (M1)\n$a = \\frac{12.8 - 5.2}{2} = 3.8$. (M1)\nPeriod = 12, so $b = \\frac{2\\pi}{12} = \\frac{\\pi}{6}$. (M1)\nThe first high tide (maximum) is at 04:00, which is $t=4$. A standard cosine function has its maximum at the start of the cycle. We can model this by shifting the cosine graph 4 units to the right. So, $c=4$. (M1)\n**Assemble the model:**\n$D(t) = 3.8 \\cos(\\frac{\\pi}{6}(t-4)) + 9$. (A1)\n\nc) We need to find when $D(t) \\ge 8$. We solve $D(t) = 8$.\nUsing a GDC, graph $Y_1 = 3.8 \\cos(\\frac{pi}{6}(x-4)) + 9$ and $Y_2 = 8$. (M1)\nFind the points of intersection in the interval $[0, 24]$.\nThe GDC gives intersections at:\n$t_1 \\approx 0.4913...$\n$t_2 \\approx 7.5086...$\n$t_3 \\approx 12.4913...$\n$t_4 \\approx 19.5086...$ (A1 for two correct intersections)\n\nLooking at the graph, the water depth is $\\ge 8$ m between the first and second intersections, and between the third and fourth intersections.\nInterval 1: $0.4913 < t < 7.5086$\nInterval 2: $12.4913 < t < 19.5086$\n\nConvert the decimal hours to hours and minutes:\n$0.4913 \\times 60 \\approx 29$ minutes $\\implies$ 00:29\n$7.5086 \\implies 7$ hours and $0.5086 \\times 60 \\approx 31$ minutes $\\implies$ 07:31\n$12.4913 \\implies 12$ hours and $0.4913 \\times 60 \\approx 29$ minutes $\\implies$ 12:29\n$19.5086 \\implies 19$ hours and $0.5086 \\times 60 \\approx 31$ minutes $\\implies$ 19:31\n\nThe ship can enter between 00:29 and 07:31, and between 12:29 and 19:31. (A1)(A1)"
+      "content": "Sinusoidal modelling is where the trigonometry of angles meets the language of functions. The amplitude, period and vertical shift you read here are the same transformations of graphs you met earlier, now attached to a repeating curve; the GDC solving you practise is exactly the technique you will reuse whenever a model has to be set equal to a target. Every context that repeats — tides, temperatures, daylight, rotating wheels, alternating signals — reduces to the same three questions: how big is the swing, how long is the cycle, and where is the middle line. Answer those and read the model with a calculator in the right mode, and periodic phenomena stop being mysterious and become just another function you can predict from."
     },
     {
       "type": "practice",
-      "label": "Practise Modelling with Sinusoidal Functions",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=2.5"
+      "label": "Get a Paper 2 sinusoidal model marked: state the amplitude and period, then predict and solve with full working",
+      "href": "/mark?subject=ib-maths-ai-sl&topic=2.5&component=paper_2"
     },
     {
       "type": "resources",
@@ -160,7 +256,7 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "GeoGebra Sinusoidal Model Explorer",

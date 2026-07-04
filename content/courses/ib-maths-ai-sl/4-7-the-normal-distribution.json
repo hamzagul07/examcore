@@ -1,187 +1,143 @@
 {
   "slug": "4-7-the-normal-distribution",
   "topicCode": "4.7",
+  "unit": { "code": "4", "title": "Statistics and probability" },
   "title": "The normal distribution",
   "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson introduces the normal distribution, a fundamental continuous probability distribution often called the 'bell curve'. You will learn its key properties, how to calculate probabilities, and how to find unknown values using your Graphical Display Calculator (GDC).",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "The normal distribution is the bell-shaped model that fits an astonishing range of natural data — heights, masses, exam scores, measurement errors — whenever many small independent effects add up. This lesson builds the full 4.7 syllabus: the properties of the curve (symmetry about the mean, the roles of $\\mu$ and $\\sigma$) and the notation $X\\sim N(\\mu,\\sigma^2)$; finding probabilities $P(X<a)$, $P(X>a)$ and $P(a<X<b)$ on the GDC; the inverse normal for turning a probability or percentile back into a value; the standardised $z$-score $z=\\frac{x-\\mu}{\\sigma}$; and the empirical 68–95–99.7 rule for quick sanity checks. Because 4.7 is examined on Paper 2, the calculator does the integration — so the marks are for setting up the right region, quoting the correct GDC function and reading the screen accurately. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the properties of the normal distribution and the roles of the mean and standard deviation.",
-    "Calculate probabilities for a normally distributed variable using a GDC.",
-    "Use the inverse normal function on a GDC to find a value given a probability.",
-    "Apply the normal distribution to solve problems in real-world contexts."
+    "State the properties of the normal distribution and interpret the roles of the mean $\\mu$ and standard deviation $\\sigma$ in the notation $X\\sim N(\\mu,\\sigma^2)$.",
+    "Find probabilities $P(X<a)$, $P(X>a)$ and $P(a<X<b)$ for a normally distributed variable using the GDC's normal cumulative distribution function.",
+    "Use the inverse normal function to find a value given a probability or percentile, converting a 'top' percentage into the correct area to the left.",
+    "Calculate and interpret the standardised $z$-score $z=\\frac{x-\\mu}{\\sigma}$ as the number of standard deviations a value lies from the mean.",
+    "Apply the empirical 68–95–99.7 rule to estimate probabilities and to check that a GDC answer is reasonable, presenting working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["4.7"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "The Bell Curve: Nature's Favourite Shape",
-    "summary": "The normal distribution describes how data for many natural things, like height or weight, tends to cluster around an average value. The graph of this distribution is a symmetrical, bell-shaped curve.",
-    "analogy": "Imagine lining up all the students in your year group by height. Most students would be around the average height, forming a large group in the middle. Far fewer students would be extremely short or extremely tall. If you were to draw a line over the tops of their heads, you would get a shape that looks like a bell – that's the normal distribution in action!",
+    "summary": "The normal distribution describes how data for many natural quantities — height, weight, measurement error — clusters around an average. Its graph is a symmetric, bell-shaped curve pinned down by just two numbers: the mean $\\mu$, which fixes the centre, and the standard deviation $\\sigma$, which fixes the width.",
+    "analogy": "Imagine lining up everyone in your year by height. Most people crowd around the average, forming a tall bulge in the middle; a few are unusually short or tall, thinning out into the tails. Trace a line over the tops of their heads and you get a bell. Move the whole line taller and the bell slides right (bigger $\\mu$); make heights more varied and the bell flattens and widens (bigger $\\sigma$). Those two dials — centre and spread — are all you ever adjust.",
     "steps": [
-      "Identify the mean ($\\mu$) and standard deviation ($\\sigma$) from the problem.",
-      "Sketch a quick bell curve. Label the mean and shade the area that represents the probability you need to find.",
-      "Use your GDC's 'Normal CDF' function. Input the lower bound, upper bound, mean ($\\mu$), and standard deviation ($\\sigma$).",
-      "Write down the full calculator display answer before rounding to three significant figures as your final answer."
+      "Read off the mean $\\mu$ and standard deviation $\\sigma$ from the question, and write the model as $X\\sim N(\\mu,\\sigma^2)$.",
+      "Sketch a quick bell curve, mark the mean, and shade the region whose probability you need. The sketch tells you which GDC function to use.",
+      "For a probability, use the normal cumulative distribution function with the lower bound, upper bound, $\\mu$ and $\\sigma$. For a value from a probability, use the inverse normal with the area to the LEFT.",
+      "Write down the GDC set-up before the answer, then round to three significant figures. A quick 68–95–99.7 check confirms the answer is sensible."
     ]
   },
+  "keyConcepts": ["properties and notation", "probabilities on the GDC", "inverse normal and z-scores"],
   "flashcards": [
-    {
-      "front": "What is the normal distribution?",
-      "back": "A continuous probability distribution that is symmetrical and bell-shaped. It is defined by its mean ($\\mu$) and standard deviation ($\\sigma$)."
-    },
-    {
-      "front": "What does the mean ($\\mu$) represent in a normal distribution?",
-      "back": "The mean is the centre of the distribution. It is the peak of the bell curve and is equal to the median and the mode."
-    },
-    {
-      "front": "What does the standard deviation ($\\sigma$) represent in a normal distribution?",
-      "back": "The standard deviation controls the spread or width of the curve. A smaller $\\sigma$ means a taller, narrower curve, while a larger $\\sigma$ means a shorter, wider curve."
-    },
-    {
-      "front": "What is the total area under any normal distribution curve?",
-      "back": "The total area under the curve is always equal to 1, representing a total probability of 100%."
-    },
-    {
-      "front": "What is the 68-95-99.7 rule (the empirical rule)?",
-      "back": "Approximately 68% of data falls within 1 standard deviation of the mean, 95% within 2, and 99.7% within 3."
-    },
-    {
-      "front": "What is the GDC function for finding a probability between two values?",
-      "back": "Normal Cumulative Distribution Function, often shown as `normalCdf` or `NormCD`. It calculates the area (probability) between a lower and an upper bound."
-    },
-    {
-      "front": "What is the GDC function for finding a data value given a probability?",
-      "back": "Inverse Normal, often shown as `invNorm`. It finds the x-value (e.g., height, weight) corresponding to a given cumulative probability (area to the left)."
-    },
-    {
-      "front": "How do you calculate $P(X > a)$ using `normalCdf`?",
-      "back": "Set the lower bound to 'a' and the upper bound to a very large number, like $10^{99}$ or $1E99$."
-    },
-    {
-      "front": "How do you calculate $P(X < b)$ using `normalCdf`?",
-      "back": "Set the upper bound to 'b' and the lower bound to a very small number, like $-10^{99}$ or $-1E99$."
-    },
-    {
-      "front": "My calculator's `invNorm` function needs an 'area'. What does this mean?",
-      "back": "This is the cumulative probability from negative infinity up to the value you are trying to find. It is the area to the LEFT of the point. If given $P(X > k) = p$, you must use an area of $1-p$."
-    },
-    {
-      "front": "What is the notation $X \\sim N(\\mu, \\sigma^2)$?",
-      "back": "This means the random variable X is normally distributed with mean $\\mu$ and variance $\\sigma^2$. Remember to use the standard deviation, $\\sigma$, in your calculator, not the variance."
-    }
+    { "front": "What is the normal distribution?", "back": "A continuous probability distribution whose graph is a symmetric, bell-shaped curve. It is completely determined by its mean $\\mu$ (the centre) and standard deviation $\\sigma$ (the spread), and the total area under the curve is exactly 1.", "pillLabel": "Definition" },
+    { "front": "What does $X \\sim N(\\mu, \\sigma^2)$ mean?", "back": "The random variable $X$ is normally distributed with mean $\\mu$ and variance $\\sigma^2$. The notation shows the variance, but you enter the standard deviation $\\sigma = \\sqrt{\\sigma^2}$ into the GDC — a classic trap when a question quotes the variance.", "pillLabel": "Notation" },
+    { "front": "Role of the mean $\\mu$", "back": "$\\mu$ locates the centre of the distribution: it is the peak of the bell and the axis of symmetry, and equals the median and the mode. Changing $\\mu$ slides the whole curve left or right without changing its shape.", "pillLabel": "Concept" },
+    { "front": "Role of the standard deviation $\\sigma$", "back": "$\\sigma$ controls the width. A small $\\sigma$ gives a tall, narrow curve (data tightly clustered); a large $\\sigma$ gives a short, wide curve (data widely scattered). It does not move the centre.", "pillLabel": "Concept" },
+    { "front": "Why is $P(X = a) = 0$ for a normal variable?", "back": "$X$ is continuous, so probability is area under the curve over an interval. A single point has zero width and hence zero area. This is why $P(X<a)$ and $P(X\\le a)$ are equal — the endpoint contributes nothing.", "pillLabel": "Concept" },
+    { "front": "GDC: finding a probability", "back": "Use the normal cumulative distribution function, shown as `normalCdf` or `NormCD`. It returns the area (probability) between a lower and an upper bound for given $\\mu$ and $\\sigma$: $P(a<X<b)$.", "pillLabel": "GDC" },
+    { "front": "GDC: computing $P(X>a)$ and $P(X<b)$", "back": "For $P(X>a)$ set lower $=a$, upper $=10^{99}$ (or $1\\text{E}99$). For $P(X<b)$ set lower $=-10^{99}$, upper $=b$. Any bound more than about 5 standard deviations out gives the same result.", "pillLabel": "GDC" },
+    { "front": "GDC: the inverse normal", "back": "`invNorm` (inverse normal) takes an area to the LEFT plus $\\mu$ and $\\sigma$, and returns the value $x$ with $P(X<x)$ equal to that area. Use it whenever you are given a probability or percentile and must find the boundary value.", "pillLabel": "GDC" },
+    { "front": "Inverse normal for a 'top' percentage", "back": "The inverse normal needs area to the LEFT. 'Top 10%' means $P(X>x)=0.10$, so the area to the left is $1-0.10=0.90$ — enter 0.90, not 0.10. Always sketch and shade to fix which area you need.", "pillLabel": "Trap" },
+    { "front": "The standardised $z$-score", "back": "$z = \\dfrac{x-\\mu}{\\sigma}$ measures how many standard deviations $x$ lies from the mean: $z>0$ above the mean, $z<0$ below. Standardising turns any normal variable into the standard normal $Z\\sim N(0,1^2)$, which lets you compare values from different distributions.", "pillLabel": "Formula" },
+    { "front": "The 68–95–99.7 (empirical) rule", "back": "For any normal distribution, about 68% of data lies within $1\\sigma$ of the mean, about 95% within $2\\sigma$, and about 99.7% within $3\\sigma$. Use it to estimate probabilities without a calculator and to sanity-check GDC answers.", "pillLabel": "Framework" },
+    { "front": "Do I need the normal density formula in AI SL?", "back": "No. In Applications and Interpretation you are never asked to integrate the density function by hand — every probability and every inverse value comes from the GDC. The marks are for the set-up and correct reading, not the calculus.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "The standardised $z$-score of a value $x$ from $X\\sim N(\\mu,\\sigma^2)$ is:", "options": ["$z = \\frac{x-\\mu}{\\sigma}$", "$z = \\frac{x-\\mu}{\\sigma^2}$", "$z = \\frac{\\mu-x}{\\sigma}$", "$z = \\frac{x-\\sigma}{\\mu}$"], "answer": "$z = \\frac{x-\\mu}{\\sigma}$" },
+    { "prompt": "For $X\\sim N(\\mu,\\sigma^2)$ you want the value exceeded by only the top 10%. On the inverse normal you should enter an area to the left of:", "options": ["0.90", "0.10", "0.80", "0.50"], "answer": "0.90" },
+    { "prompt": "Because a normal curve is symmetric about the mean, $P(X<\\mu)$ equals:", "options": ["0.5", "1", "0", "It depends on $\\sigma$"], "answer": "0.5" },
+    { "prompt": "For a normal distribution, approximately what percentage of data lies within 2 standard deviations of the mean?", "options": ["95%", "68%", "99.7%", "50%"], "answer": "95%" },
+    { "prompt": "A question states that $X\\sim N(150, 400)$. When finding a probability on the GDC you should enter a standard deviation of:", "options": ["20", "400", "160000", "150"], "answer": "20" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between Normal CDF and Inverse Normal?",
-      "a": "Use Normal CDF when you know the data values (e.g., height, weight) and want to find the probability (the area). Use Inverse Normal when you know the probability (the area) and want to find the corresponding data value."
-    },
-    {
-      "q": "What values should I use for infinity on my calculator?",
-      "a": "For a lower bound of negative infinity, use a very small number like $-10^{99}$ or $-1E99$. For an upper bound of positive infinity, use a very large number like $10^{99}$ or $1E99$. Any number more than about 5 standard deviations away from the mean will usually give the same result."
-    },
-    {
-      "q": "Do I need to memorise the formula for the normal distribution probability density function?",
-      "a": "No. For the Applications and Interpretation course, you are not required to use the formula itself. All calculations will be done using your GDC."
-    },
-    {
-      "q": "What is the 'standard normal distribution'?",
-      "a": "This is a special case of the normal distribution where the mean is 0 and the standard deviation is 1, written as $Z \\sim N(0, 1^2)$. While it's central to the theory, in AI SL you will typically work directly with the given mean and standard deviation on your GDC, rather than converting to Z-scores first."
-    }
+    { "q": "What is the difference between the normal CDF and the inverse normal?", "a": "Use the normal CDF (`normalCdf`) when you know the boundary values and want the probability — you input the interval and read out an area. Use the inverse normal (`invNorm`) when you know the probability and want the boundary value — you input an area to the left and read out an $x$. In short: CDF goes value → probability, inverse normal goes probability → value." },
+    { "q": "What numbers should I use for infinity on the calculator?", "a": "For a lower bound of $-\\infty$ use a very small number such as $-10^{99}$ or $-1\\text{E}99$; for an upper bound of $+\\infty$ use $10^{99}$ or $1\\text{E}99$. Any value more than about five standard deviations from the mean gives the same probability to 3 significant figures, so the exact 'infinity' does not matter." },
+    { "q": "The question gives a variance, not a standard deviation. What do I enter?", "a": "The GDC always wants the standard deviation $\\sigma$. If a question says the variance is $\\sigma^2 = 400$, take the square root and enter $\\sigma = 20$. Reading '$N(\\mu,\\sigma^2)$' and typing the variance straight into the calculator is one of the most common and costly slips in this topic." },
+    { "q": "When would I actually use a $z$-score in AI SL?", "a": "Mostly for comparison and reasoning: a $z$-score says how many standard deviations a value sits from the mean, so a mark with $z=2$ in one test is 'more impressive' than a mark with $z=1$ in another, even if the raw scores differ. You can also standardise to $Z\\sim N(0,1^2)$ and work with the standard normal, though on the GDC you can usually just enter the original $\\mu$ and $\\sigma$ directly." },
+    { "q": "How does the 68–95–99.7 rule help if the GDC does the work?", "a": "It is your safety net. If you compute $P(X>180)$ for $X\\sim N(150,20^2)$ and get 0.93, the rule instantly flags the error: 180 is $1.5\\sigma$ above the mean, so the tail beyond it must be small, well under 0.16. Use the rule to catch calculator slips — a mis-typed bound or a swapped $\\mu$ and $\\sigma$ — before they cost you the answer." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the normal distribution, arguably the most important distribution in statistics. From exam scores to the length of a butterfly's wings, many real-world continuous data sets follow this 'bell curve' pattern. In this topic, we will move beyond discrete distributions like the binomial and learn how to work with continuous data. Your Graphical Display Calculator (GDC) will be your most essential tool."
-    },
-    {
-      "type": "heading",
-      "content": "Properties of the Normal Distribution"
-    },
-    {
-      "type": "text",
-      "content": "A random variable $X$ that is normally distributed is described by its mean, $\\mu$, and its standard deviation, $\\sigma$. We write this as $X \\sim N(\\mu, \\sigma^2)$. Note that the notation uses the variance, $\\sigma^2$, but we almost always use the standard deviation, $\\sigma$, in our calculations. The graph of the distribution is a symmetrical bell shape, centred on the mean."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The curve is bell-shaped and symmetrical about the vertical line $x = \\mu$.",
-        "The mean, median, and mode are all equal and located at the centre of the distribution.",
-        "The total area under the curve is exactly 1.",
-        "The curve approaches, but never touches, the horizontal axis as it extends to positive and negative infinity.",
-        "The standard deviation $\\sigma$ determines the width of the curve. A larger $\\sigma$ results in a flatter, more spread-out curve."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Calculating Probabilities with Your GDC"
-    },
-    {
-      "type": "text",
-      "content": "Since the normal distribution is continuous, the probability of $X$ being exactly one value is zero. We can only find the probability that $X$ lies within a certain interval. We use our GDC's built-in functions to find these probabilities, as calculating them by hand requires complex integration. The key function is the Normal Cumulative Distribution Function (CDF)."
-    },
-    {
-      "type": "formula",
-      "content": "To find $P(a < X < b)$, use: \\\\ `normalCdf(lower: a, upper: b, μ: mean, σ: std dev)`"
-    },
-    {
-      "type": "workedExample",
-      "question": "The journey times, in minutes, for a student to travel to school are normally distributed with a mean of 32 minutes and a standard deviation of 5 minutes. Let the journey time be the random variable $T$. \\\\ a) State the distribution of $T$. \\\\ b) Find the probability that a randomly chosen journey takes between 30 and 40 minutes.",
-      "solution": "a) The distribution is normal with $\\mu = 32$ and $\\sigma = 5$. \\\\ So, $T \\sim N(32, 5^2)$. **(A1)** \\\\ \\\\ b) We need to find $P(30 < T < 40)$. \\\\ A sketch helps visualise the area: \\\\ [A simple sketch of a bell curve centred at 32, with the area between 30 and 40 shaded would be drawn here]. \\\\ Using the GDC: \\\\ `normalCdf(lower: 30, upper: 40, μ: 32, σ: 5)` **(M1)** \\\\ This gives a value of $0.60060...$ \\\\ The probability is 0.601 (to 3 s.f.). **(A1)**"
-    },
-    {
-      "type": "examTip",
-      "content": "Always write down the GDC function and the parameters you used, for example, `normalCdf(30, 40, 32, 5)`. This will often earn you a method mark (M1) even if your final answer is incorrect. Also, for probabilities like $P(X > a)$, use a very large number for the upper bound (e.g., $10^{99}$). For $P(X < b)$, use a very small number for the lower bound (e.g., $-10^{99}$)."
-    },
-    {
-      "type": "heading",
-      "content": "Finding Unknown Values: The Inverse Normal Function"
-    },
-    {
-      "type": "text",
-      "content": "Sometimes a question will give you the probability (the area under the curve) and ask you to find the corresponding boundary value. For this, we use the inverse normal function on the GDC, often labelled `invNorm` or similar. This function works 'backwards' from a probability to a value of the variable."
-    },
-    {
-      "type": "formula",
-      "content": "To find the value $k$ such that $P(X < k) = p$, use: \\\\ `invNorm(area: p, μ: mean, σ: std dev)`"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The standard `invNorm` function on most calculators requires the 'area to the left' of the value you are looking for.",
-        "If you are given a 'top percentage', for example, the top 10% ($P(X > k) = 0.10$), you must calculate the area to the left first: $1 - 0.10 = 0.90$.",
-        "Always draw a diagram to confirm which area you need. This is the most common source of error with inverse normal problems."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The weights of newborn babies in a hospital are normally distributed with a mean of 3.4 kg and a standard deviation of 0.5 kg. Babies in the lightest 8% are monitored in a special care unit. Find the maximum weight for a baby to be placed in this unit.",
-      "solution": "Let $W$ be the weight of a newborn baby. We have $W \\sim N(3.4, 0.5^2)$. **(M1)** for stating or using the correct parameters. \\\\ We need to find the value $k$ such that $P(W < k) = 0.08$. \\\\ A sketch shows we are looking for the value $k$ on the left tail of the distribution, with an area of 0.08 to its left. \\\\ We can use the inverse normal function directly as we have the area to the left. \\\\ Using the GDC: \\\\ `invNorm(area: 0.08, μ: 3.4, σ: 0.5)` **(M1)** \\\\ This gives a value of $k = 2.6980...$ \\\\ The maximum weight is 2.70 kg (to 3 s.f.). **(A1)**"
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to the wording. 'Top 5%' means $P(X > k) = 0.05$, so use an area of $0.95$ in `invNorm`. 'Bottom 10%' means $P(X < k) = 0.10$, so use an area of $0.10$. 'Middle 50%' is more complex and requires finding two values symmetrical about the mean."
-    },
-    {
-      "type": "practice",
-      "label": "Practise Normal Distribution Problems",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=4.7"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra Normal Distribution Calculator",
-          "href": "https://www.geogebra.org/m/qg5m4e5a"
-        },
-        {
-          "label": "TI-84 Normal Distribution Guide",
-          "href": "https://www.youtube.com/watch?v=NY2z_im_LgY"
-        }
-      ]
-    }
+    { "type": "intro", "content": "The normal distribution is the single most important model in statistics. Whenever a quantity is the sum of many small, independent influences — the height of a plant, the mass of a manufactured part, the error in a measurement — its values pile up into the same symmetric 'bell curve'. This lesson covers the full 4.7 syllabus: the properties of that curve and the meaning of the notation $X\\sim N(\\mu,\\sigma^2)$; finding probabilities on the GDC; using the inverse normal to turn a probability back into a value; the standardised $z$-score; and the 68–95–99.7 rule. Because 4.7 is examined on Paper 2, the calculator handles the integration — so the skill being marked is setting up the correct region, quoting the right function and reading the screen carefully. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Properties of the normal distribution" },
+    { "type": "text", "content": "A random variable $X$ is normally distributed when its values follow a symmetric bell curve. The distribution is fixed by exactly two numbers: the mean $\\mu$, which locates the centre, and the standard deviation $\\sigma$, which sets the width. We record this as $X\\sim N(\\mu,\\sigma^2)$. Read the notation carefully — the second entry is the variance $\\sigma^2$, but every calculation uses the standard deviation $\\sigma$, so if a question quotes a variance you must square-root it before touching the GDC." },
+    { "type": "keyPoints", "items": [
+      "The curve is **bell-shaped and symmetric** about the vertical line $x=\\mu$.",
+      "The **mean, median and mode are all equal** and sit at the centre, so $P(X<\\mu)=P(X>\\mu)=0.5$.",
+      "The **total area under the curve is exactly 1**, and areas represent probabilities.",
+      "The curve **approaches but never touches** the horizontal axis, extending to $\\pm\\infty$ in the tails.",
+      "**$\\mu$ shifts** the curve left or right; **$\\sigma$ stretches** it — a larger $\\sigma$ gives a flatter, wider bell, a smaller $\\sigma$ a taller, narrower one."
+    ]},
+    { "type": "text", "content": "Because $X$ is continuous, the probability of any single exact value is zero: probability is area, and a single point has no width. A useful consequence is that $P(X<a)$ and $P(X\\le a)$ are identical — you never have to worry about whether an endpoint is included." },
+
+    { "type": "heading", "content": "Finding probabilities with the GDC" },
+    { "type": "text", "content": "To find the probability that $X$ falls in an interval, you find the area under the bell over that interval. Doing this by hand needs advanced integration, so on Paper 2 you use the GDC's normal cumulative distribution function. You supply a lower bound, an upper bound, the mean and the standard deviation, and it returns the area between the bounds." },
+    { "type": "formula", "content": "To find $P(a<X<b)$, use: \\n `normalCdf(lower: a, upper: b, μ: mean, σ: std dev)`" },
+    { "type": "keyPoints", "items": [
+      "For $P(X>a)$: set lower $=a$ and upper $=10^{99}$ (a stand-in for $+\\infty$).",
+      "For $P(X<b)$: set lower $=-10^{99}$ and upper $=b$.",
+      "For $P(a<X<b)$: use $a$ and $b$ directly.",
+      "Always write down the function and its four inputs — that is what earns the method mark, even if the final number slips."
+    ]},
+    { "type": "workedExample", "question": "The journey times, in minutes, for a student to travel to school are normally distributed with a mean of 32 minutes and a standard deviation of 5 minutes. Let the journey time be the random variable $T$. \\n (a) State the distribution of $T$. \\n (b) Find the probability that a randomly chosen journey takes between 30 and 40 minutes. \\n (c) Find the probability that a journey takes more than 45 minutes. [5]", "solution": "**(a) Distribution.** Normal with $\\mu=32$ and $\\sigma=5$, so $T\\sim N(32, 5^2)$.  [A1]\\n\\n**(b) $P(30<T<40)$.** Sketch a bell centred at 32 and shade between 30 and 40. Then\\n`normalCdf(lower: 30, upper: 40, μ: 32, σ: 5)`  [M1]\\n$= 0.60060\\ldots = 0.601$ (3 s.f.).  [A1]\\n\\n**(c) $P(T>45)$.** Shade the upper tail from 45 onwards, using a large upper bound:\\n`normalCdf(lower: 45, upper: 1E99, μ: 32, σ: 5)`  [M1]\\n$= 0.00466\\ldots = 0.00466$ (3 s.f.).  [A1]\\n\\nA quick check: 45 is $\\frac{45-32}{5}=2.6$ standard deviations above the mean, so by the 68–95–99.7 rule the tail beyond it should be well under 2.5% — and 0.00466 is." },
+    { "type": "examTip", "content": "Write the GDC set-up in full — for example `normalCdf(30, 40, 32, 5)` — before the answer. It often earns the method mark (M1) even when the final figure is wrong. Carry the full calculator display and round only at the end, to 3 significant figures unless told otherwise." },
+
+    { "type": "heading", "content": "The inverse normal: finding a value from a probability" },
+    { "type": "text", "content": "Sometimes you are handed the probability — a percentage, a percentile, a 'top 10%' — and asked for the boundary value. This runs the previous idea backwards, so you use the inverse normal function. It takes an area to the LEFT of the unknown value, together with $\\mu$ and $\\sigma$, and returns the value $x$ for which $P(X<x)$ equals that area." },
+    { "type": "formula", "content": "To find the value $x$ such that $P(X<x)=p$, use: \\n `invNorm(area: p, μ: mean, σ: std dev)`" },
+    { "type": "keyPoints", "items": [
+      "The inverse normal always wants the **area to the left** of the value you seek.",
+      "'Bottom $10\\%$' means $P(X<x)=0.10$ — enter area $0.10$.",
+      "'Top $10\\%$' means $P(X>x)=0.10$, so the area to the left is $1-0.10=0.90$ — enter area $0.90$.",
+      "A percentile is already an area to the left: the 90th percentile is the $x$ with $P(X<x)=0.90$.",
+      "Sketch and shade first — misreading which tail you want is the single most common error in this topic."
+    ]},
+    { "type": "workedExample", "question": "The weights of newborn babies in a hospital are normally distributed with a mean of 3.4 kg and a standard deviation of 0.5 kg. Babies in the lightest 8% are monitored in a special care unit. Find the maximum weight for a baby to be placed in this unit. [3]", "solution": "Let $W$ be the weight of a newborn baby, so $W\\sim N(3.4, 0.5^2)$.  [M1: correct parameters]\\n\\n'Lightest 8%' is the left tail, so we need $x$ with $P(W<x)=0.08$ — the area 0.08 is already to the left, so no conversion is needed. A sketch confirms we want the low end of the curve.\\n\\n`invNorm(area: 0.08, μ: 3.4, σ: 0.5)`  [M1]\\n$= 2.6980\\ldots$\\n\\nThe maximum qualifying weight is $2.70$ kg (3 s.f.).  [A1]" },
+
+    { "type": "heading", "content": "Standardising: the z-score" },
+    { "type": "text", "content": "The standardised $z$-score rewrites a value as the number of standard deviations it lies from the mean. If $X\\sim N(\\mu,\\sigma^2)$ then a value $x$ has $z$-score $z=\\dfrac{x-\\mu}{\\sigma}$. A positive $z$ sits above the mean, a negative $z$ below, and $z=0$ is exactly at the mean. Standardising converts any normal variable into the standard normal $Z\\sim N(0,1^2)$, which is what lets you compare values that come from different distributions." },
+    { "type": "formula", "content": "Standardised score: $z = \\dfrac{x-\\mu}{\\sigma}$, so that $X\\sim N(\\mu,\\sigma^2)$ becomes $Z\\sim N(0,1^2)$." },
+    { "type": "text", "content": "For example, a student scores 70 in a test with mean 60 and standard deviation 8, giving $z=\\frac{70-60}{8}=1.25$; a friend scores 65 in a different test with mean 50 and standard deviation 10, giving $z=\\frac{65-50}{10}=1.5$. Although the raw score of 70 is higher, the friend's result is the more exceptional relative to its own distribution, because its $z$-score is larger. On Paper 2 you can usually feed the original $\\mu$ and $\\sigma$ straight into the GDC, but the $z$-score is the tool for these comparison questions and for reasoning about how unusual a value is." },
+
+    { "type": "heading", "content": "The 68–95–99.7 rule" },
+    { "type": "text", "content": "Every normal distribution shares the same proportions once you measure distance in standard deviations. This is the empirical rule, and it gives fast estimates and a way to check GDC answers without a calculator." },
+    { "type": "keyPoints", "items": [
+      "About **68%** of the data lies within **1 standard deviation** of the mean, between $\\mu-\\sigma$ and $\\mu+\\sigma$.",
+      "About **95%** lies within **2 standard deviations**, between $\\mu-2\\sigma$ and $\\mu+2\\sigma$.",
+      "About **99.7%** lies within **3 standard deviations**, between $\\mu-3\\sigma$ and $\\mu+3\\sigma$.",
+      "By symmetry, each tail beyond $\\mu+2\\sigma$ holds about $\\frac{1-0.95}{2}=2.5\\%$ of the data — a handy sanity check."
+    ]},
+    { "type": "examTip", "content": "Use the rule to catch calculator slips. If you find $P(X>a)$ where $a$ is two standard deviations above the mean, the answer must be near 0.025; anything far from that means a mis-typed bound or a swapped $\\mu$ and $\\sigma$. Estimate first, then trust the GDC only if the two agree." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Entering the variance instead of the standard deviation** — $X\\sim N(150,400)$ means $\\sigma^2=400$, so enter $\\sigma=20$, not 400. Always check whether the second parameter is a variance.",
+      "**Using the wrong area in the inverse normal** — the function wants area to the LEFT. For 'top 10%' enter 0.90, not 0.10; for a percentile enter the percentile itself as a decimal.",
+      "**Getting the $z$-score formula wrong** — it is $z=\\frac{x-\\mu}{\\sigma}$, subtracting the mean and dividing by the standard deviation, never dividing by the variance or reversing the subtraction.",
+      "**Confusing which tail you need** — 'more than', 'at least', 'fewer than' and 'top/bottom' each shade a different region. Sketch and shade before choosing bounds.",
+      "**Forgetting the large-bound trick** — $P(X>a)$ needs an upper bound like $10^{99}$; leaving it blank or using $a$ twice returns zero or an error.",
+      "**Not writing the GDC set-up** — quoting only a final number forfeits the method mark. Show `normalCdf(...)` or `invNorm(...)` with its inputs.",
+      "**Over-rounding mid-calculation** — carry the full display and round only the final answer to 3 significant figures unless told otherwise.",
+      "**Ignoring the 68–95–99.7 sanity check** — an answer that contradicts the rule (a large tail beyond $2\\sigma$, say) is almost always a set-up error."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier wrong value need not cost you the marks that depend on it, provided the later step is carried out correctly on your figure. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any equivalent form and any correctly-rounded value. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line — for the normal distribution, that means quoting the GDC function you used before the number it produced." },
+    { "type": "workedExample", "question": "The mass of apples is $X\\sim N(150, 20^2)$ grams. Find the probability an apple weighs more than 180 g, and the mass exceeded by only the heaviest 10%. [5]", "solution": "**Model answer — full working.**\\n\\nHere $\\mu=150$ and $\\sigma=20$, so $X\\sim N(150, 20^2)$.\\n\\n**Part 1 — $P(X>180)$.** Sketch the bell centred at 150 and shade the upper tail from 180. Using the normal cumulative distribution function with a large upper bound:\\n`normalCdf(lower: 180, upper: 1E99, μ: 150, σ: 20)`\\n$= 0.06680\\ldots = 0.0668$ (3 s.f.).\\n\\n(Check: $z=\\frac{180-150}{20}=1.5$, so this is the tail beyond $1.5\\sigma$ — small, as expected.)\\n\\n**Part 2 — heaviest 10%.** 'Heaviest 10%' means $P(X>x)=0.10$, so the area to the LEFT is $1-0.10=0.90$; equivalently we want the 90th percentile, $P(X<x)=0.90$. Using the inverse normal:\\n`invNorm(area: 0.90, μ: 150, σ: 20)`\\n$= 175.63\\ldots$\\n\\nThe mass exceeded by only the heaviest 10% is $175.6$ g (3 s.f.) — sometimes quoted as $176$ g.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — set up $P(X>180)$.** Awarded for a correct normal CDF set-up on the GDC — lower bound 180, an upper bound representing $+\\infty$, with $\\mu=150$ and $\\sigma=20$. It is the set-up that is rewarded, so it survives even if the final figure is mistyped.\\n- **A1 — value $\\approx 0.0668$.** Awarded for $0.0668$ (accept correctly-rounded equivalents such as $0.0668$ or $6.68\\%$). This accuracy mark depends on the M1 above.\\n- **M1 — inverse normal for the 90th percentile.** A method mark for converting 'heaviest 10%' into an area to the left of $0.90$ and using `invNorm` with $\\mu=150$, $\\sigma=20$. The engine checks that the area 0.90 (not 0.10) was used — that conversion is the crux of the mark.\\n- **A1 — value $\\approx 175.6$ g.** Awarded for $175.6$ g (accept $176$ g to 3 s.f., or the unrounded $175.63\\ldots$). FT applies — a candidate who used a slightly different but correctly-converted area and read their GDC correctly earns this on their own figure.\\n- **A1 — full method and accuracy.** The final mark rewards a complete, correctly-communicated solution: both GDC functions quoted with their inputs and both answers correctly rounded to 3 significant figures. A bare pair of numbers with no `normalCdf`/`invNorm` set-up risks losing the method marks entirely.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $0.0668$ or $6.68\\%$ for the probability, and $175.6$ g, $176$ g or $175.63\\ldots$ g for the mass. Once a correct answer appears, ISW means a later restatement does not lose marks.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic or typing slip, and the accuracy marks are shielded by follow-through — but only if the `normalCdf` and `invNorm` set-ups are written down. A student who writes just '0.0668 and 175.6' with no working risks 2–3 marks; a student who shows the shaded sketch, the GDC function and the area conversion keeps the method whatever the final number does." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: sketch and shade the region, write the `normalCdf` or `invNorm` set-up with its inputs, convert any 'top %' into an area to the left, then quote the answer to 3 significant figures. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The normal distribution is where the descriptive statistics of earlier in the course become a working model: the mean you learned to read off a GDC is now $\\mu$, the centre of the bell, and the standard deviation is now $\\sigma$, the dial that sets its width. Percentiles return as inverse-normal values, and the $z$-score you meet here is the same standardising idea that underpins confidence intervals and hypothesis tests in the wider statistics course. Master the two-dial picture — a centre and a spread — together with the discipline of sketching the region, quoting the GDC function and checking against the 68–95–99.7 rule, and every normal-distribution question on Paper 2 becomes a variation on a method you already know how to write." },
+
+    { "type": "practice", "label": "Get a Paper 2 normal-distribution question marked: set up the GDC, use the inverse normal and show full working", "href": "/mark?subject=ib-maths-ai-sl&topic=4.7&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra Normal Distribution Calculator", "href": "https://www.geogebra.org/m/qg5m4e5a" },
+      { "label": "TI-84 Normal Distribution Guide", "href": "https://www.youtube.com/watch?v=NY2z_im_LgY" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "GeoGebra Normal Distribution Calculator",

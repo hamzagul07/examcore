@@ -1,182 +1,139 @@
 {
   "slug": "1-3-financial-mathematics-compound-interest-annuities-and-amortization",
   "topicCode": "1.3",
+  "unit": { "code": "1", "title": "Number and algebra" },
   "title": "Financial mathematics: compound interest, annuities and amortization",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "Master the core concepts of financial mathematics, including compound interest, annuities for savings, and amortization for loans. Learn to use your GDC's financial solver to tackle complex real-world problems involving investments and debt.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "Financial mathematics turns the everyday questions of saving and borrowing into precise calculations. This lesson builds the full 1.3 syllabus: compound interest with the formula $FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ for annual, quarterly and monthly compounding; the difference between nominal and real value once inflation is taken into account; depreciation as a reducing-balance process; and the GDC finance (TVM) solver applied to compound interest, to annuities for regular saving or withdrawal, and to loan amortization. Because 1.3 is examined on Paper 2, the calculator does the arithmetic — the marks are for choosing the right model, entering the right values with the right signs, and writing down enough method for the examiner to follow. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Calculate future and present values in compound interest scenarios.",
-    "Solve problems involving annuities, including savings plans and investments with regular payments.",
-    "Analyse loan amortization, calculating repayments, total cost, and interest paid.",
-    "Effectively use a Graphic Display Calculator (GDC) financial solver for all calculations."
+    "Calculate future and present values using the compound interest formula for annual, quarterly and monthly compounding.",
+    "Distinguish the nominal (money) value of an investment from its real value after adjusting for inflation.",
+    "Model depreciation as a reducing-balance process and calculate the depreciated value of an asset.",
+    "Use the GDC finance (TVM) solver for compound interest, annuities and amortization, entering N, I%, PV, PMT, FV, P/Y and C/Y with the correct sign convention.",
+    "Present working so that method marks and follow-through protect the final answer on Paper 2."
   ],
+  "syllabusObjectivesCovered": ["1.3"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Your Money's Journey",
-    "summary": "Financial maths is all about how the value of money changes over time due to interest. We'll explore how investments grow and how loans are paid back.",
-    "analogy": "Imagine you're building a tower with LEGO bricks. A one-off investment (Present Value) is like starting with a big base. Compound interest is like adding new bricks not just on your original base, but on the new bricks you added yesterday, making the tower grow faster and faster. An annuity is like adding a specific number of bricks every single day, creating a steady, predictable growth.",
+    "title": "Your Money's Journey Over Time",
+    "summary": "Financial mathematics is about one idea: money changes value as time passes. Interest makes savings grow, inflation quietly eats away at what that money can buy, and loans reverse the flow so that you pay back more than you borrowed. Get comfortable with a single formula and one calculator screen, and every one of these situations becomes the same problem in a different costume.",
+    "analogy": "Think of a snowball rolling downhill. A one-off deposit is the snowball you start with; compound interest is the extra snow it picks up — and crucially, tomorrow's snow sticks to today's larger ball, not just the original. That is why growth accelerates. An annuity is you throwing an extra handful of snow onto the ball at every step, and a loan is the same snowball rolling the other way, shrinking as you chip regular payments off it.",
     "steps": [
-      "Identify the goal: Are you saving, investing a lump sum, or paying off a loan?",
-      "List your knowns: Write down all the values given in the problem (PV, I%, N, PMT, etc.).",
-      "Choose your tool: Decide whether to use the compound interest formula or your GDC's financial solver.",
-      "Solve and interpret: Calculate the missing value and write your final answer with units, explaining what it means in the context of the question."
+      "Name the situation: a lump sum growing (compound interest), a regular payment plan (annuity), or a debt being paid down (amortization).",
+      "List the knowns using the GDC solver's five labels: N, I%, PV, PMT, FV — plus P/Y and C/Y.",
+      "Fix the signs: money leaving you is negative, money coming to you is positive. This single decision causes most lost marks.",
+      "Solve for the unknown, then interpret the answer in context with correct units, and check whether the question also wants total interest, total paid, or a real (inflation-adjusted) value."
     ]
   },
+  "keyConcepts": ["compound interest", "annuities and amortization", "real value and depreciation"],
   "flashcards": [
-    {
-      "front": "What is Compound Interest?",
-      "back": "Interest calculated on the initial principal, which also includes all of the accumulated interest from previous periods. It's 'interest on interest'."
-    },
-    {
-      "front": "What does PV stand for?",
-      "back": "Present Value. The current worth of a future sum of money or stream of cash flows given a specified rate of return."
-    },
-    {
-      "front": "What does FV stand for?",
-      "back": "Future Value. The value of an asset at a specified date in the future, based on an assumed rate of growth."
-    },
-    {
-      "front": "What is an annuity?",
-      "back": "A series of fixed payments made at equal intervals over a period of time. Often used for savings plans or retirement funds."
-    },
-    {
-      "front": "What is amortization?",
-      "back": "The process of paying off a debt over time in regular instalments. A common example is a mortgage or car loan."
-    },
-    {
-      "front": "In the GDC solver, what is 'N'?",
-      "back": "The total number of payment periods (e.g., for a 5-year loan with monthly payments, N = 5 × 12 = 60)."
-    },
-    {
-      "front": "In the GDC solver, what is 'I%'?",
-      "back": "The annual interest rate, entered as a percentage (e.g., 5.5 for 5.5%)."
-    },
-    {
-      "front": "In the GDC solver, what is 'PMT'?",
-      "back": "The regular payment amount for each period."
-    },
-    {
-      "front": "What is the GDC sign convention for PV, FV, and PMT?",
-      "back": "Money you receive is positive (+). Money you pay out is negative (-). For a loan, PV is positive (you receive money), and PMT is negative (you make payments)."
-    },
-    {
-      "front": "What do P/Y and C/Y represent?",
-      "back": "P/Y is Payments per Year. C/Y is Compounding periods per Year. For most AI SL questions, P/Y = C/Y."
-    },
-    {
-      "front": "What's a common trap with the interest rate 'r' in the formula?",
-      "back": "The formula uses 'r' as a percentage, but requires division by 100 in the calculation. The GDC uses 'I%' as a percentage directly. Be careful which one you're using."
-    }
+    { "front": "Compound interest formula", "back": "$FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$, where $r$ is the nominal annual rate (as a percentage), $k$ is the number of compounding periods per year and $n$ is the number of years. The exponent $kn$ is the total number of compounding periods.", "pillLabel": "Formula" },
+    { "front": "What is $k$?", "back": "The number of compounding periods per year: annually $k = 1$, quarterly $k = 4$, monthly $k = 12$. It appears twice in the formula — dividing the rate ($\\frac{r}{100k}$) and multiplying the years ($kn$). Change $k$ and you must change both.", "pillLabel": "Definition" },
+    { "front": "Simple vs compound interest", "back": "Simple interest is always calculated on the original principal only. Compound interest is calculated on the principal PLUS all interest already earned — 'interest on interest' — so it grows faster and faster.", "pillLabel": "Concept" },
+    { "front": "Nominal vs real value", "back": "The nominal (money) value is the number of currency units. The real value adjusts for inflation — what that money can actually buy. If your savings grow 3% but prices rise 2%, your real gain is only about 1%.", "pillLabel": "Concept" },
+    { "front": "Depreciation (reducing balance)", "back": "An asset losing a fixed percentage of its CURRENT value each year: $FV = PV\\left(1 - \\frac{r}{100}\\right)^{n}$. Because the percentage applies to a shrinking balance, the loss is largest early on — like a new car.", "pillLabel": "Formula" },
+    { "front": "GDC solver: N", "back": "The total number of compounding/payment periods. For 5 years compounded monthly, $N = 5 \\times 12 = 60$. Not the number of years — a very common slip.", "pillLabel": "Definition" },
+    { "front": "GDC solver: I%", "back": "The nominal annual interest rate entered as a plain percentage (3.5 for 3.5%), NOT as a decimal and NOT divided by the number of periods. The solver handles the division internally using C/Y.", "pillLabel": "Definition" },
+    { "front": "GDC solver: PV, PMT, FV", "back": "Present Value (now), regular PayMenT each period, and Future Value (at the end). Each carries a sign: money you pay out is negative, money you receive is positive.", "pillLabel": "Definition" },
+    { "front": "The sign convention", "back": "From the person's point of view: cash IN is positive, cash OUT is negative. Investing a lump sum? PV is negative. Taking a loan? PV is positive and the repayments PMT are negative. Getting the signs wrong is the number one lost mark in this topic.", "pillLabel": "Trap" },
+    { "front": "P/Y and C/Y", "back": "Payments per Year and Compounding periods per Year. For nearly all AI SL questions they are equal (both 12 for monthly, both 4 for quarterly). Set BOTH — leaving C/Y at a stale value silently corrupts the answer.", "pillLabel": "Trap" },
+    { "front": "Annuity", "back": "A series of equal payments at regular intervals — a savings plan paying in, or a fund paying out. In the solver PMT is non-zero. Saving builds an FV; drawing down runs an FV or PV down.", "pillLabel": "Definition" },
+    { "front": "Amortization", "back": "Paying off a loan in equal instalments, each covering interest plus a slice of the principal, until the balance reaches zero (FV = 0). PV is the loan (positive, received) and PMT is the repayment (negative, paid).", "pillLabel": "Definition" },
+    { "front": "Monthly rate from an annual rate", "back": "The monthly rate is the annual rate divided by 12, i.e. use $\\frac{r}{100 \\times 12}$ in the formula. Do NOT put the full annual rate on a monthly period, and do NOT re-divide I% on the GDC — the solver already does it via C/Y.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "$\\pounds1000$ is compounded quarterly at a nominal annual rate of 4% for 3 years. Which substitution into $FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ is correct?", "options": ["$1000\\left(1 + \\frac{4}{100 \\times 4}\\right)^{4 \\times 3}$", "$1000\\left(1 + \\frac{4}{100}\\right)^{3}$", "$1000\\left(1 + \\frac{4}{100 \\times 4}\\right)^{3}$", "$1000\\left(1 + \\frac{4}{100 \\times 12}\\right)^{12 \\times 3}$"], "answer": "$1000\\left(1 + \\frac{4}{100 \\times 4}\\right)^{4 \\times 3}$" },
+    { "prompt": "You invest a lump sum and want the GDC solver to find its future value. What sign should PV have?", "options": ["Negative, because investing is money paid out", "Positive, because it is your money", "Zero, because there are no regular payments", "It does not matter as long as FV is positive"], "answer": "Negative, because investing is money paid out" },
+    { "prompt": "A machine depreciates by 15% of its value each year. Its value after $n$ years is modelled by:", "options": ["$PV\\left(1 - \\frac{15}{100}\\right)^{n}$", "$PV\\left(1 + \\frac{15}{100}\\right)^{n}$", "$PV - \\frac{15}{100}\\,n$", "$PV\\left(1 - \\frac{15}{100} \\times n\\right)$"], "answer": "$PV\\left(1 - \\frac{15}{100}\\right)^{n}$" },
+    { "prompt": "A nominal annual rate of 6% is compounded monthly. The interest rate applied in ONE month is:", "options": ["$0.5\\%$", "$6\\%$", "$0.06\\%$", "$72\\%$"], "answer": "$0.5\\%$" },
+    { "prompt": "Savings grow at a nominal 5% per year while inflation runs at 5% per year. Over the year the REAL value of the savings is approximately:", "options": ["Unchanged", "Up by 5%", "Up by 10%", "Down by 5%"], "answer": "Unchanged" }
   ],
   "faq": [
-    {
-      "q": "What's the difference between simple and compound interest?",
-      "a": "Simple interest is always calculated on the original principal amount. Compound interest is calculated on the principal *plus* any accumulated interest. This means compound interest grows much faster over time."
-    },
-    {
-      "q": "Why is PV negative when I'm saving, but positive when I take out a loan?",
-      "a": "It's all about the direction of cash flow from your perspective. When you start a savings account, you give money to the bank (an outflow), so PV is negative. When you take out a loan, the bank gives you money (an inflow), so PV is positive. Your loan repayments (PMT) will then be negative as they are outflows."
-    },
-    {
-      "q": "Do I need to memorise the compound interest formula for the exam?",
-      "a": "The formula is provided in the IB formula booklet. However, for most questions on Paper 1, using the GDC Finance Solver is much quicker and less error-prone. You should be comfortable with both methods, but prioritise mastering the GDC solver."
-    },
-    {
-      "q": "What's the difference between P/Y and C/Y in the GDC solver?",
-      "a": "P/Y stands for Payments per Year, and C/Y stands for Compounding periods per Year. For IB AI SL, in almost all cases, these two values will be the same. For example, for a loan with monthly payments and interest compounded monthly, both P/Y and C/Y would be 12."
-    }
+    { "q": "Do I have to memorise the compound interest formula?", "a": "The formula $FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ is given in the IB formula booklet, so you never memorise it. On Paper 2, though, the GDC finance solver is usually faster and less error-prone for compound interest and essential for annuities and amortization. Be fluent with both, but reach for the solver first — just write down the values you enter so you earn the method marks." },
+    { "q": "Why is PV negative when I save but positive when I borrow?", "a": "The solver tracks the direction of cash flow from your point of view. When you open a savings account you hand money to the bank — an outflow — so PV is negative and the FV comes back positive. When you take a loan the bank hands money to you — an inflow — so PV is positive, and your repayments PMT are negative because you are paying them out. Getting these signs right is the single biggest source of marks in this topic." },
+    { "q": "What is the difference between nominal and real value?", "a": "Nominal value is simply the number of pounds or dollars. Real value asks what that money can buy after inflation. If an investment grows by 4% in a year but prices rise by 3%, the nominal value is up 4% while the real value is up only about 1%. Exam questions signal this by giving both an interest rate and an inflation rate and asking for the real return or real value." },
+    { "q": "How is depreciation different from compound interest?", "a": "Depreciation is compound interest working in reverse. Instead of growing by $\\frac{r}{100}$ each period, a reducing-balance asset shrinks by $\\frac{r}{100}$ of its current value, so $FV = PV\\left(1 - \\frac{r}{100}\\right)^{n}$. On the GDC you can model it by entering the rate as a negative I%. The key idea is 'reducing balance': the percentage applies to what the asset is worth now, not to its original price, so it loses most value early." },
+    { "q": "What is the difference between P/Y and C/Y in the solver?", "a": "P/Y is Payments per Year and C/Y is Compounding periods per Year. For almost every AI SL question they are equal — both 12 for a monthly plan, both 4 for a quarterly one. Set both every time: a stale C/Y left over from a previous question silently changes the answer, and because nothing looks wrong on screen it is a trap students fall into repeatedly." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Ever wondered how banks make money, how a small saving can grow into a large sum, or what it really costs to take out a loan for a car? This lesson unlocks the mathematics behind these real-world financial situations. Mastering these skills is not just crucial for your exam, but for making informed financial decisions throughout your life."
-    },
-    {
-      "type": "heading",
-      "content": "Compound Interest: The Snowball Effect"
-    },
-    {
-      "type": "text",
-      "content": "Unlike simple interest, which is only calculated on the initial amount (the principal), compound interest is calculated on the principal *and* any interest that has already been earned. This 'interest on interest' effect can make investments grow exponentially over time, much like a snowball rolling down a hill gathers more snow and gets bigger at an ever-increasing rate."
-    },
-    {
-      "type": "formula",
-      "content": "$$FV = PV \\left(1 + \\frac{r}{100k}\\right)^{kn}$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$PV$: The initial amount of money invested or borrowed (Present Value).",
-        "$FV$: The final amount after interest has been applied (Future Value).",
-        "$r$: The nominal annual interest rate (as a percentage).",
-        "$k$: The number of compounding periods per year (e.g., annually k=1, quarterly k=4, monthly k=12).",
-        "$n$: The total number of years the money is invested or borrowed for."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Sophie invests £5000 in an account that pays a nominal annual interest rate of 3.6%, compounded quarterly. \n(a) Calculate the value of her investment after 7 years. \n(b) Calculate the amount of interest she has earned.",
-      "solution": "(a) We are finding the Future Value (FV). This is a compound interest problem without regular payments.\n\n**Method 1: Using the formula**\nIdentify the variables:\n$PV = 5000$, $r = 3.6$, $k = 4$ (quarterly), $n = 7$\nSubstitute into the formula: $FV = 5000 \\left(1 + \\frac{3.6}{100 \\times 4}\\right)^{4 \\times 7}$ (M1)\n$FV = 5000 (1.009)^{28}$\n$FV = 6425.843...$ (A1)\nThe value is £6425.84. (A1) (to 2 d.p. for currency)\n\n**Method 2: Using a GDC Finance Solver**\nList the inputs:\nN = $7 \\times 4 = 28$\nI% = 3.6\nPV = -5000 (money invested, so it's an outflow)\nPMT = 0 (no regular payments)\nP/Y = 4\nC/Y = 4\nSolving for FV gives $6425.843...$ (M1)(A1)\nThe value of the investment is £6425.84. (A1)\n\n(b) Interest earned = $FV - PV$\nInterest = $6425.84 - 5000$ (M1)\nInterest = £1425.84 (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "For Paper 1, you will have your GDC. The financial solver (often called TVM Solver) is almost always more efficient and less prone to calculation errors than using the formula. Always write down the values you input into your GDC to be eligible for method marks (M1)."
-    },
-    {
-      "type": "heading",
-      "content": "Annuities and Amortization: Managing Regular Cash Flows"
-    },
-    {
-      "type": "text",
-      "content": "While compound interest deals with a single lump sum, many financial products involve regular payments. An **annuity** is a sequence of equal payments made at regular intervals, typically used for saving for a future goal like university fees or retirement. **Amortization** is the process of paying off a loan with a series of regular payments, where each payment covers both interest and a portion of the principal. Your GDC solver is the perfect tool for these scenarios."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Annuities involve making regular payments (PMT) to build up a Future Value (FV).",
-        "Amortization involves receiving a lump sum (PV) and making regular payments (PMT) to reduce the loan balance to zero.",
-        "The PMT variable in your GDC solver is key for these problems. It will be non-zero.",
-        "Remember the sign convention: money you pay (like a loan repayment or a savings deposit) is negative. Money you receive (like the initial loan amount) is positive."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "David takes out a car loan of $20,000. The loan is to be repaid in equal monthly instalments over 4 years. The nominal annual interest rate is 6.5%, compounded monthly.$\n(a) Calculate the value of David's monthly repayment.\n(b) Calculate the total amount David pays back over the 4 years.\n(c) Hence, find the total interest paid on the loan.",
-      "solution": "This is a loan amortization problem. We must use the GDC Finance Solver.\n\n(a) Identify the variables for the solver:\nN = $4 \\times 12 = 48$ (total number of payments)\nI% = 6.5\nPV = 20000 (David receives this amount from the bank)\nFV = 0 (the loan is fully paid off at the end)\nP/Y = 12\nC/Y = 12\nWe are solving for PMT. (M1) for listing correct inputs for the solver.\n\nInputting these values into the GDC solver gives PMT = -474.296... (A1)\nThe monthly repayment is $474.30. (A1) (The value is negative as it is a payment David makes).$\n\n(b) Total amount paid = monthly repayment $\\times$ number of payments\nTotal paid = $474.296... \\times 48$ (M1) (Using the unrounded value for accuracy)\nTotal paid = $22766.24...$\nThe total amount David pays back is $22,766.24. (A1)$\n\n(c) Total interest paid = Total amount paid - Loan principal\nTotal interest = $22766.24 - 20000$ (M1)\nTotal interest = $2766.24$\nThe total interest paid is $2,766.24. (A1)$"
-    },
-    {
-      "type": "heading",
-      "content": "Mastering the GDC Finance Solver"
-    },
-    {
-      "type": "text",
-      "content": "Your Graphic Display Calculator's Time Value of Money (TVM) or Finance solver is your most powerful ally in this topic. It can solve for any of the main variables (N, I%, PV, PMT, FV) as long as you provide the others. The most common source of error is the sign convention. Always ask yourself: 'Is this money coming to me/my account, or am I paying it out?' Money in is positive, money out is negative. This is always from the perspective of the person in the question."
-    },
-    {
-      "type": "examTip",
-      "content": "When a question asks for an amount of interest paid or earned, it's often a multi-step process. First, find the FV or PMT. Then, use that result to calculate the total amount paid/received and compare it to the principal. Don't forget this second part of the question, and use unrounded values in your intermediate steps!"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Financial Maths",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=1.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "TI-84 Plus CE TVM Solver Tutorial",
-          "href": "https://www.youtube.com/watch?v=g2a9b5K-z5U"
-        },
-        {
-          "label": "Casio fx-CG50 Financial Functions Guide",
-          "href": "https://www.youtube.com/watch?v=sSgY21-1aCM"
-        }
-      ]
-    }
+    { "type": "intro", "content": "How does a modest saving swell into a substantial sum, why does a car lose value the moment you drive it away, and what does a loan really cost once all the instalments are added up? Financial mathematics answers all three with a surprisingly small toolkit: one compound-growth formula and one calculator screen. This lesson covers the full 1.3 syllabus — compound interest for annual, quarterly and monthly compounding; nominal versus real value once inflation is included; depreciation as a reducing-balance process; and the GDC finance solver applied to compound interest, annuities and loan amortization. Because 1.3 is examined on Paper 2, the calculator handles the arithmetic, so the skill being marked is modelling the situation correctly and showing the method the examiner needs. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Compound interest: the snowball effect" },
+    { "type": "text", "content": "Simple interest is calculated only on the original amount, the principal. Compound interest is calculated on the principal AND on any interest already earned, so each period's interest is a little larger than the last. That 'interest on interest' is what makes long-term saving so powerful — the balance grows exponentially, like a snowball gathering snow on snow. The only new subtlety is how often the interest is added: this is the compounding frequency, $k$." },
+    { "type": "formula", "content": "$$FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$$" },
+    { "type": "keyPoints", "items": [
+      "**$PV$** — the present value: the amount invested or borrowed now.",
+      "**$FV$** — the future value: the amount after interest has been applied.",
+      "**$r$** — the nominal annual interest rate, entered as a percentage (so $r = 3.5$ means 3.5%).",
+      "**$k$** — the number of compounding periods per year: annually $k = 1$, quarterly $k = 4$, monthly $k = 12$.",
+      "**$n$** — the number of years. The exponent $kn$ is therefore the total number of compounding periods."
+    ]},
+    { "type": "text", "content": "Notice that $k$ appears in two places. It divides the annual rate — so with monthly compounding each period gets $\\frac{r}{100 \\times 12}$ of interest — and it multiplies the years to give the total number of periods $kn$. Change the compounding frequency and you must update both. Compounding more often gives slightly more growth: the same 6% grows a little more when added monthly than when added once a year, because interest starts earning interest sooner." },
+
+    { "type": "workedExample", "question": "Sophie invests $\\pounds5000$ in an account paying a nominal annual interest rate of 3.6%, compounded quarterly. \\n (a) Find the value of her investment after 7 years. \\n (b) Find the total interest she has earned. [5]", "solution": "This is compound interest with no regular payments, so either the formula or the GDC solver works.\\n\\n**(a) Future value.**\\n*Method 1 — formula.* Identify $PV = 5000$, $r = 3.6$, $k = 4$ (quarterly), $n = 7$:\\n$FV = 5000\\left(1 + \\dfrac{3.6}{100 \\times 4}\\right)^{4 \\times 7} = 5000(1.009)^{28}$.  [M1: correct substitution]\\n$FV = 6425.84\\ldots$, so the investment is worth $\\pounds6425.84$ (2 d.p.).  [A1]\\n\\n*Method 2 — GDC finance solver.* Enter $N = 7 \\times 4 = 28$, $I\\% = 3.6$, $PV = -5000$ (invested, so an outflow), $PMT = 0$, $P/Y = 4$, $C/Y = 4$, and solve for FV. The solver returns $FV = 6425.84\\ldots$  [M1 for the correct set-up, A1 for the value.]\\nThe value after 7 years is $\\pounds6425.84$.  [A1]\\n\\n**(b) Interest earned.** Interest $= FV - PV = 6425.84 - 5000 = 1425.84$.  [M1]\\nSophie earns $\\pounds1425.84$ in interest.  [A1]" },
+    { "type": "examTip", "content": "On Paper 2 the GDC solver is almost always faster and safer than the formula, and for annuities and loans it is essential. But the method marks are only yours if the working is visible: always write down the values you enter — $N$, $I\\%$, $PV$, $PMT$, $FV$, $P/Y$, $C/Y$ — before quoting the solver's answer." },
+
+    { "type": "heading", "content": "Nominal value, real value and inflation" },
+    { "type": "text", "content": "An account that grows by 4% sounds like a gain — but if the prices of the things you buy also rise, your money buys less than the headline suggests. Economists separate two ideas. The nominal (or money) value is just the number of currency units in the account. The real value adjusts for inflation: it measures purchasing power, what the money can actually buy. When savings grow at a nominal rate while prices rise at an inflation rate, the real gain is roughly the difference between the two rates." },
+    { "type": "keyPoints", "items": [
+      "**Nominal value** — the face amount of money, before any inflation adjustment.",
+      "**Real value** — the inflation-adjusted amount, reflecting what the money can buy.",
+      "**Rule of thumb** — real return $\\approx$ nominal interest rate $-$ inflation rate. If they are equal, purchasing power is unchanged even though the balance has grown.",
+      "**Exam signal** — a question that quotes both an interest rate and an inflation rate is asking about real value; a single rate is nominal."
+    ]},
+    { "type": "workedExample", "question": "Marco invests $\\pounds8000$ for 4 years at a nominal annual interest rate of 5%, compounded annually. Over the same period the annual inflation rate is a constant 3%. \\n (a) Find the nominal value of the investment after 4 years. \\n (b) Find the real value of the investment after 4 years, giving your answer to the nearest pound. [5]", "solution": "**(a) Nominal value.** Using $k = 1$: $FV = 8000\\left(1 + \\dfrac{5}{100}\\right)^{4} = 8000(1.05)^{4}$.  [M1]\\n$FV = 9724.05\\ldots$, so the nominal value is $\\pounds9724.05$.  [A1]\\n\\n**(b) Real value.** To strip out inflation, discount the nominal value by the inflation factor $(1.03)^{4}$ — equivalently, compound at the real growth factor $\\dfrac{1.05}{1.03}$:\\n$\\text{Real value} = \\dfrac{9724.05\\ldots}{(1.03)^{4}} = 8000\\left(\\dfrac{1.05}{1.03}\\right)^{4}$.  [M1: divide by the inflation factor]\\n$= 8639.3\\ldots$  [A1]\\nThe real value is about $\\pounds8639$.  [A1]\\n\\nThe balance reads $\\pounds9724$, but in today's purchasing power it is worth only about $\\pounds8639$ — the extra roughly 2% per year of real growth is all that inflation leaves behind." },
+
+    { "type": "heading", "content": "Depreciation: reducing balance" },
+    { "type": "text", "content": "Not everything grows. Cars, machinery and equipment lose value over time — they depreciate. The IB models this as a reducing-balance process: the asset loses a fixed percentage of its CURRENT value each year, not a fixed number of pounds. This is compound interest with a minus sign. Because the percentage applies to a shrinking balance, the loss is largest in the early years, which matches reality: a new car loses far more in year one than in year five." },
+    { "type": "formula", "content": "Reducing-balance depreciation: $$FV = PV\\left(1 - \\frac{r}{100}\\right)^{n}$$ where $r$ is the annual depreciation rate (as a percentage) and $n$ is the number of years." },
+    { "type": "workedExample", "question": "A delivery van is bought for $\\pounds24\\,000$. It depreciates by 18% of its value each year (reducing balance). \\n (a) Find the value of the van after 5 years, to the nearest pound. \\n (b) The company will replace the van once its value first falls below $\\pounds8000$. Find the year in which this happens. [6]", "solution": "**(a) Value after 5 years.** Depreciation means subtracting the rate: $FV = 24000\\left(1 - \\dfrac{18}{100}\\right)^{5} = 24000(0.82)^{5}$.  [M1: uses $1 - 0.18 = 0.82$]\\n$FV = 8898.6\\ldots$, so the van is worth about $\\pounds8899$.  [A1]\\n\\n*GDC alternative:* enter $N = 5$, $I\\% = -18$, $PV = -24000$, $PMT = 0$, $P/Y = C/Y = 1$ and solve for FV.\\n\\n**(b) When does it fall below $\\pounds8000$?** Solve $24000(0.82)^{n} < 8000$.  [M1: correct inequality or trial]\\nFrom part (a), after 5 years the value is $\\pounds8899$ (still above $\\pounds8000$).\\nAfter 6 years: $24000(0.82)^{6} = 7297.\\ldots$  [M1: evaluate the next year]\\nSince $\\pounds7297 < \\pounds8000$ but the year-5 value was above it, the value first falls below $\\pounds8000$ during **year 6**.  [A1]\\n\\nThe reducing-balance model means the van keeps some value indefinitely on paper — it never reaches exactly zero — so replacement is triggered by a threshold, not by the value 'running out'." },
+
+    { "type": "heading", "content": "Annuities: regular saving and withdrawal" },
+    { "type": "text", "content": "Compound interest handles a single lump sum, but many real plans involve regular payments — a fixed amount saved every month, or a pension paying out a fixed amount each year. A sequence of equal payments at equal intervals is an annuity, and the GDC finance solver is built for it. The one new ingredient is a non-zero PMT: the regular payment. Everything else is the same five-label screen, and the sign convention still rules — deposits you make are outflows (negative), withdrawals you receive are inflows (positive)." },
+    { "type": "keyPoints", "items": [
+      "A savings annuity pays PMT IN each period (PMT negative) to build up a future value FV.",
+      "A drawdown annuity pays PMT OUT each period (PMT positive) from a starting fund (PV negative), often to FV = 0.",
+      "PMT and the same-signed lump sum must agree in direction: if you are paying money in, both PV and PMT are negative.",
+      "Keep P/Y and C/Y equal to the number of payments per year — 12 for monthly, 4 for quarterly."
+    ]},
+    { "type": "workedExample", "question": "Aisha saves for a deposit by paying $\\pounds250$ at the end of each month into an account earning a nominal annual rate of 4.2%, compounded monthly. \\n (a) Find the value of her savings after 6 years. \\n (b) Find the total amount she has paid in over the 6 years, and hence the interest earned. [6]", "solution": "This is a savings annuity, so use the GDC finance solver.\\n\\n**(a) Future value.** Enter the values:\\n$N = 6 \\times 12 = 72$ (total deposits), $I\\% = 4.2$, $PV = 0$ (she starts with nothing), $PMT = -250$ (paid in, so negative), $P/Y = 12$, $C/Y = 12$; solve for FV.  [M1: correct solver set-up with $PMT = -250$]\\nThe solver returns $FV = 20\\,455.9\\ldots$  [A1]\\nHer savings are worth $\\pounds20\\,455.94$ after 6 years.  [A1]\\n\\n**(b) Total paid in and interest.** Total deposits $= 250 \\times 72 = 18\\,000$.  [M1]\\nInterest earned $= FV - \\text{total paid in} = 20\\,455.94 - 18\\,000 = 2455.94$.  [A1]\\nAisha pays in $\\pounds18\\,000$ and earns $\\pounds2455.94$ of interest.  [A1]" },
+
+    { "type": "heading", "content": "Amortization: paying off a loan" },
+    { "type": "text", "content": "Amortization is an annuity in reverse: you receive a lump sum now (the loan) and pay it back in equal instalments, each covering the interest for that period plus a slice of the outstanding principal, until the balance reaches zero. In the solver the loan is a positive PV (money you receive) with FV = 0 (fully repaid), and you solve for the payment PMT, which comes out negative because it is money you pay. Loan questions almost always have a second part — total paid or total interest — so read to the end." },
+    { "type": "workedExample", "question": "David takes out a car loan of $\\$20\\,000$, to be repaid in equal monthly instalments over 4 years at a nominal annual rate of 6.5%, compounded monthly. \\n (a) Find his monthly repayment. \\n (b) Find the total amount repaid over the 4 years. \\n (c) Hence find the total interest paid. [6]", "solution": "This is loan amortization, so use the GDC finance solver.\\n\\n**(a) Monthly repayment.** Enter $N = 4 \\times 12 = 48$, $I\\% = 6.5$, $PV = 20000$ (David receives the loan, so positive), $FV = 0$ (fully repaid), $P/Y = 12$, $C/Y = 12$, and solve for PMT.  [M1: correct solver set-up with $PV = +20000$, $FV = 0$]\\nThe solver returns $PMT = -474.29\\ldots$  [A1]\\nThe monthly repayment is $\\$474.30$ (the negative sign shows it is money paid out).  [A1]\\n\\n**(b) Total repaid.** Total $= 474.296\\ldots \\times 48 = 22\\,766.24\\ldots$ (use the unrounded PMT).  [M1]\\nDavid repays about $\\$22\\,766.24$ in total.  [A1]\\n\\n**(c) Total interest.** Interest $= \\text{total repaid} - \\text{loan} = 22\\,766.24 - 20\\,000 = 2766.24$.  [A1]\\nThe total interest paid is about $\\$2766.24$." },
+    { "type": "text", "content": "Notice the pattern shared by the annuity and the loan: find PMT or FV with the solver, then use the UNROUNDED value to work out totals and interest by ordinary subtraction. Rounding the payment first and then multiplying by 48 introduces an error of a few dollars — enough to lose an accuracy mark." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Getting the sign of PV wrong** — investing or depositing money is an OUTFLOW, so PV (and any deposit PMT) is negative; a loan is money received, so its PV is positive and the repayments are negative. The wrong sign gives a nonsensical answer and forfeits marks.",
+      "**Changing $k$ in only one place** — in $\\left(1 + \\frac{r}{100k}\\right)^{kn}$ the compounding frequency divides the rate AND multiplies the years. For monthly compounding use $\\frac{r}{1200}$ and exponent $12n$, not one without the other.",
+      "**Re-dividing the rate on the GDC** — enter I% as the plain annual percentage (6.5, not 0.542). The solver divides by C/Y itself; dividing by 12 by hand as well applies the rate twice.",
+      "**Confusing years with periods for N** — N is the total number of compounding/payment periods. For 5 years compounded monthly, $N = 60$, not 5.",
+      "**Leaving C/Y (or P/Y) at a stale value** — a P/Y or C/Y left over from a previous question silently corrupts the answer with no visible error. Set both every time to match the compounding frequency.",
+      "**Treating depreciation as addition** — reducing-balance depreciation uses $\\left(1 - \\frac{r}{100}\\right)^{n}$, and it applies to the current value each year, not to the original price. Do not subtract a flat amount annually.",
+      "**Ignoring inflation when 'real value' is asked** — if the question gives an inflation rate, discount the nominal value by the inflation factor; quoting the nominal figure alone loses the real-value marks.",
+      "**Rounding the payment before finding totals** — carry the unrounded PMT (or FV) into 'total paid' and 'total interest' calculations; round only the final answer, and give currency to 2 decimal places.",
+      "**Dropping units or the currency symbol** — a bare number is not a complete answer; state the amount with its currency and, for money, to 2 decimal places."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is done correctly on your own figures. In AI the finance solver is the expected tool, so you must state the values you enter — that IS the method. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "$\\$2000$ is invested at 3.5% per year compounded monthly. Find the value after 5 years. [4]", "solution": "**Model answer — full working.**\\n\\n*Method A — compound interest formula.* Here $PV = 2000$, $r = 3.5$, $k = 12$ (monthly), $n = 5$:\\n$FV = 2000\\left(1 + \\dfrac{0.035}{12}\\right)^{12 \\times 5} = 2000\\left(1 + \\dfrac{3.5}{100 \\times 12}\\right)^{60}.$\\n$FV = 2381.03\\ldots$\\nThe value after 5 years is $\\$2381.03$.\\n\\n*Method B — GDC finance (TVM) solver.* Enter\\n$N = 60,\\quad I\\% = 3.5,\\quad PV = -2000,\\quad PMT = 0,\\quad FV = ?,\\quad P/Y = 12,\\quad C/Y = 12,$\\nand solve for FV. The solver returns $FV = 2381.03\\ldots$, i.e. $\\$2381.03$.\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — model.** Awarded for the correct compound interest formula OR the correct solver set-up (recognising monthly compounding: $k = 12$, or $N = 60$ with $C/Y = 12$). It is the choice of model that is rewarded, so this method mark survives an arithmetic slip later.\\n- **M1 — substitution/values.** Awarded for the correct values in the model: $\\frac{3.5}{100 \\times 12}$ with exponent $60$ in the formula, or $N = 60$, $I\\% = 3.5$, $PV = -2000$, $P/Y = C/Y = 12$ in the solver. The engine checks the monthly rate is applied over 60 periods and, on the GDC route, that PV carries the correct (negative) sign.\\n- **A1 — value.** Awarded for $FV = 2381.03\\ldots$, correctly evaluated. This accuracy mark depends on the two method marks above.\\n- **A1 — answer to 2 d.p. with units.** Awarded for stating $\\$2381.03$, rounded to 2 decimal places for currency and with the currency symbol. FT applies: a candidate whose earlier figure differed but who rounded and presented it correctly still earns this presentation mark on their own value.\\n\\n**'Accept GDC method and equivalent forms.'** The engine accepts either method fully — the solver route needs no formula — and accepts the interest factor written as $\\left(1 + \\frac{0.035}{12}\\right)$ or $\\left(1 + \\frac{3.5}{1200}\\right)$. Once the correct $\\$2381.03$ appears, ISW (ignore subsequent working) means a later restatement does not lose marks.\\n\\n**Bottom line:** two of the four marks are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through — but only if the model and the entered values are on the page. A bare '$\\$2381.03$' with no formula and no solver inputs risks losing both method marks if the number is slightly off." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through, and it accepts the GDC method. So always show the model: write the formula or list the solver inputs ($N$, $I\\%$, $PV$, $PMT$, $FV$, $P/Y$, $C/Y$) with the correct signs, then the value, then the answer to 2 decimal places with its currency. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is visible." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Financial mathematics is exponential growth and decay wearing a business suit. The compound interest factor $\\left(1 + \\frac{r}{100k}\\right)^{kn}$ is the same geometric growth you meet in sequences and series, and the reducing-balance depreciation model is its decaying twin — both are geometric sequences in disguise. The habit built here, of naming the model, fixing the signs and showing the solver inputs before quoting an answer, is exactly the discipline every Paper 2 modelling question rewards. Master the one formula and the one calculator screen, and saving, borrowing, depreciation and inflation all reduce to the same short piece of working, marked the same predictable way." },
+
+    { "type": "practice", "label": "Get a Paper 2 finance calculation marked: set up the solver, fix the signs and show full working", "href": "/mark?subject=ib-maths-ai-sl&topic=1.3&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "TI-84 Plus CE TVM (Finance) Solver Tutorial", "href": "https://www.youtube.com/watch?v=g2a9b5K-z5U" },
+      { "label": "Casio fx-CG50 Financial Functions Guide", "href": "https://www.youtube.com/watch?v=sSgY21-1aCM" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

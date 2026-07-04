@@ -1,188 +1,133 @@
 {
   "slug": "1-1-standard-form-approximation-and-percentage-error",
   "topicCode": "1.1",
+  "unit": { "code": "1", "title": "Number and algebra" },
   "title": "Standard form, approximation and percentage error",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson covers the essential skills of handling very large and small numbers using standard form, approximating values through rounding and significant figures, and quantifying the accuracy of these approximations using percentage error. These foundational concepts are crucial for both scientific and financial applications.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "This lesson builds the full 1.1 syllabus: writing very large and very small numbers in standard (scientific) form $a\\times10^{k}$ with $1\\le a<10$; operating in standard form on the GDC without losing accuracy; rounding to a given number of significant figures or decimal places; sensible approximation and estimation; upper and lower bounds of a rounded measurement; and percentage error, $\\varepsilon=\\left|\\frac{v_A-v_E}{v_E}\\right|\\times100\\%$, comparing an approximate value with an exact value. Because Applications and Interpretation allows the GDC on every paper, the marks are almost never for arithmetic — they are for choosing the right form, quoting it correctly, and writing down the method the examiner needs to see. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Express numbers in the form a × 10^k, where 1 ≤ a < 10 and k is an integer.",
-    "Round numbers to a specified number of decimal places or significant figures.",
-    "Calculate the percentage error between an approximate value and an exact value.",
-    "Apply these skills to solve practical problems, paying attention to the required degree of accuracy."
+    "Write numbers in standard form $a\\times10^{k}$, where $1\\le a<10$ and $k\\in\\mathbb{Z}$, and convert back to ordinary form.",
+    "Operate with numbers in standard form (multiply, divide, add and subtract), giving the answer in standard form to a stated accuracy.",
+    "Round a number to a specified number of significant figures or decimal places, and use estimation to check that an answer is reasonable.",
+    "State the upper and lower bounds of a value that has been rounded to a given accuracy.",
+    "Calculate the percentage error between an approximate value and an exact value, showing the method that protects the marks."
   ],
+  "syllabusObjectivesCovered": ["1.1"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Big, Small, and 'Close Enough'",
-    "summary": "This topic gives us a tidy way to write huge or tiny numbers, called standard form. We also learn how to round numbers sensibly and calculate how 'off' an estimate is using percentage error.",
-    "analogy": "Imagine guessing the number of sweets in a giant jar. You might guess 500. If the actual number is 520, your guess is an 'approximation'. Percentage error tells you exactly how close your guess was – in this case, about 3.8% off. Standard form is like a shorthand for writing a number you can't even say easily, like the number of atoms in the jar, which might be 602,200,000,000,000,000,000,000 or just $6.022 \\times 10^{23}$.",
+    "title": "Big, small, and 'close enough'",
+    "summary": "This topic gives you a tidy way to write enormous or tiny numbers (standard form), a disciplined way to shorten numbers (rounding and significant figures), and an honest way to say how far an approximation sits from the truth (percentage error).",
+    "analogy": "Picture guessing the number of sweets in a giant jar. You say 500; the real count is 520. Your guess is an approximation, and percentage error puts a number on how good it was — here about $3.85\\%$ off. Standard form is the shorthand for a number too long to say aloud, like the atoms in the jar: instead of $602\\,200\\,000\\,000\\,000\\,000\\,000\\,000$ you write $6.022\\times10^{23}$.",
     "steps": [
-      "For standard form, rewrite a number so it starts with a single digit, then a decimal point. Count how many places the decimal point moved to find the power of 10.",
-      "To approximate, find the digit you are rounding to. Look at its right-hand neighbour: if it's 5 or more, round up; if it's 4 or less, leave it as it is.",
-      "To find percentage error, first calculate the difference between the approximate value ($V_A$) and the exact value ($V_E$). Then, divide this difference by the exact value.",
-      "Finally, multiply your result by 100 and add a '%' sign. The formula is $\\text{Percentage Error} = \\left| \\frac{V_A - V_E}{V_E} \\right| \\times 100\\%$."
+      "For standard form, rewrite the number so it starts with a single non-zero digit, then a decimal point. Count how many places the point moved to find the power of $10$; moving left gives a positive power, moving right gives a negative power.",
+      "To round, find the digit you are keeping last, then look at its right-hand neighbour: $5$ or more rounds up, $4$ or less leaves it unchanged.",
+      "For percentage error, subtract the exact value $v_E$ from the approximate value $v_A$, then divide the difference by the exact value $v_E$.",
+      "Take the absolute value, multiply by $100$ and add a '$\\%$' sign: $\\varepsilon=\\left|\\frac{v_A-v_E}{v_E}\\right|\\times100\\%$."
     ]
   },
+  "keyConcepts": ["standard form", "rounding and bounds", "percentage error"],
   "flashcards": [
-    {
-      "front": "What is the format for a number in standard form?",
-      "back": "$a \\times 10^k$, where $1 \\le a < 10$ and $k$ is an integer."
-    },
-    {
-      "front": "In standard form, what does a positive value of $k$ indicate?",
-      "back": "A large number (greater than or equal to 10)."
-    },
-    {
-      "front": "In standard form, what does a negative value of $k$ indicate?",
-      "back": "A small number (between 0 and 1)."
-    },
-    {
-      "front": "What is the rule for rounding?",
-      "back": "Look at the digit to the right of the place you are rounding to. If it is 5 or greater, round up. If it is 4 or less, keep the digit the same."
-    },
-    {
-      "front": "Are leading zeros (e.g., in 0.0052) significant?",
-      "back": "No, leading zeros are not significant. They are only placeholders. 0.0052 has two significant figures (5 and 2)."
-    },
-    {
-      "front": "Are trailing zeros in a decimal (e.g., in 4.500) significant?",
-      "back": "Yes, trailing zeros after a decimal point are significant. 4.500 has four significant figures."
-    },
-    {
-      "front": "What is the formula for percentage error?",
-      "back": "$\\text{Percentage Error} = \\left| \\frac{V_A - V_E}{V_E} \\right| \\times 100\\%$, where $V_A$ is the approximate value and $V_E$ is the exact value."
-    },
-    {
-      "front": "What does $V_A$ stand for in the percentage error formula?",
-      "back": "$V_A$ stands for the Approximate Value or Experimental Value."
-    },
-    {
-      "front": "What does $V_E$ stand for in the percentage error formula?",
-      "back": "$V_E$ stands for the Exact Value or True Value."
-    },
-    {
-      "front": "Common Trap: In the percentage error formula, what value must you divide by?",
-      "back": "You must always divide by the exact value ($V_E$), not the approximate value ($V_A$)."
-    },
-    {
-      "front": "Why are there absolute value bars in the percentage error formula?",
-      "back": "To ensure the error is expressed as a positive quantity. The size of the error is what matters, not its direction (i.e. whether the estimate was too high or too low)."
-    },
-    {
-      "front": "What is the default level of accuracy for answers in IB Maths exams if not specified?",
-      "back": "Three significant figures (3 s.f.)."
-    }
+    { "front": "Standard form", "back": "A number written as $a\\times10^{k}$ with $1\\le a<10$ and $k\\in\\mathbb{Z}$. The single condition $1\\le a<10$ is what makes the form unique: $a$ has exactly one non-zero digit before the decimal point.", "pillLabel": "Definition" },
+    { "front": "Sign of the power $k$", "back": "$k>0$ means a large number ($\\ge 10$), e.g. the mass of Earth $\\approx 5.97\\times10^{24}$ kg. $k<0$ means a small number (between $0$ and $1$), e.g. the mass of an electron $\\approx 9.11\\times10^{-31}$ kg.", "pillLabel": "Concept" },
+    { "front": "Significant figures", "back": "Count from the first non-zero digit on the left. Leading zeros are never significant (placeholders only); trailing zeros after a decimal point ARE significant. So $0.0459$ has 3 s.f. and $4.500$ has 4 s.f.", "pillLabel": "Definition" },
+    { "front": "Decimal places", "back": "Count digits to the right of the decimal point. Rounding $2.3456$ to 3 d.p. gives $2.346$; to 2 d.p. gives $2.35$. Decimal places and significant figures are different instructions — read which one the question asks for.", "pillLabel": "Definition" },
+    { "front": "Rounding rule", "back": "Look at the digit immediately after the last one you keep. If it is $5$ or more, round up; if it is $4$ or less, leave the last digit unchanged. Round only ONCE, from the original number — never round in stages.", "pillLabel": "Framework" },
+    { "front": "Upper and lower bounds", "back": "A value rounded to a given accuracy could have come from anything within half a unit of that accuracy. A length given as $24$ cm to the nearest cm has lower bound $23.5$ cm and upper bound $24.5$ cm: $23.5\\le \\ell<24.5$.", "pillLabel": "Definition" },
+    { "front": "Percentage error", "back": "$\\varepsilon=\\left|\\frac{v_A-v_E}{v_E}\\right|\\times100\\%$, where $v_A$ is the approximate (measured) value and $v_E$ is the exact (true) value. It reports the size of the error relative to the truth.", "pillLabel": "Formula" },
+    { "front": "Which value goes on the bottom?", "back": "Always the EXACT value $v_E$. The error is measured as a fraction of the truth, so the denominator is $v_E$, never the approximate value $v_A$. Dividing by $v_A$ is the single most penalised slip in this topic.", "pillLabel": "Trap" },
+    { "front": "Why the absolute value bars?", "back": "Percentage error reports the magnitude of the error, not its direction. The bars force a positive answer, so an underestimate and an overestimate of the same size give the same percentage error. Percentage error is never negative.", "pillLabel": "Concept" },
+    { "front": "Default accuracy in IB exams", "back": "Unless a question states otherwise, give a final answer to 3 significant figures. An exact answer (fraction, surd or an answer that is naturally exact) is also accepted; it is intermediate rounding that costs marks.", "pillLabel": "Trap" },
+    { "front": "Standard form on the GDC", "back": "Use the dedicated 'EE' or '$\\times10^{x}$' key, not the '$\\times$', '$1$', '$0$', '$\\wedge$' keys. Typing $\\times10^{\\,\\wedge}$ by hand invites order-of-operations errors; the scientific-notation key enters the whole power in one token.", "pillLabel": "Trap" },
+    { "front": "Estimation", "back": "Round each number to 1 significant figure, compute mentally, and compare with your calculator answer. A quick estimate of $3.9\\times10^{7}\\times 2.1\\times10^{3}$ is $4\\times2\\times10^{10}=8\\times10^{10}$ — enough to catch a power-of-ten slip.", "pillLabel": "Framework" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which of these is correctly written in standard form?", "options": ["$0.63\\times10^{6}$", "$63\\times10^{4}$", "$6.3\\times10^{5}$", "$6.3\\times10^{5.5}$"], "answer": "$6.3\\times10^{5}$" },
+    { "prompt": "The number $0.004096$ rounded to 2 significant figures is:", "options": ["$0.0041$", "$0.00$", "$0.0040$", "$0.004096$"], "answer": "$0.0041$" },
+    { "prompt": "Round $3.14159$ to 3 decimal places. Which answer is correct, and why is 3 d.p. different from 3 s.f. here?", "options": ["$3.142$ — the third decimal place, deciding digit $5$ rounds up", "$3.14$ — the first three significant figures", "$3.141$ — truncated at the third decimal", "$3.1416$ — the fourth decimal place"], "answer": "$3.142$ — the third decimal place, deciding digit $5$ rounds up" },
+    { "prompt": "A measured value is $v_A=9.6$ and the exact value is $v_E=10.0$. The percentage error is:", "options": ["$\\left|\\frac{9.6-10.0}{9.6}\\right|\\times100=4.17\\%$", "$\\left|\\frac{9.6-10.0}{10.0}\\right|\\times100=4.00\\%$", "$\\frac{9.6-10.0}{10.0}\\times100=-4.00\\%$", "$|9.6-10.0|\\times100=40\\%$"], "answer": "$\\left|\\frac{9.6-10.0}{10.0}\\right|\\times100=4.00\\%$" },
+    { "prompt": "A time is calculated as $8.31106\\ldots$ minutes and is needed to 3 s.f. When should you round?", "options": ["Round each intermediate step to 3 s.f. as you go", "Round only the final answer, to $8.31$ minutes", "Truncate to $8.31$ without checking the next digit", "Round the answer to 3 decimal places instead"], "answer": "Round only the final answer, to $8.31$ minutes" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between rounding to 3 decimal places and 3 significant figures?",
-      "a": "Rounding to 3 d.p. means keeping exactly three digits after the decimal point. For example, 2.3456 becomes 2.346. Rounding to 3 s.f. means keeping the first three most important digits. For 2.3456, this is also 2.346. However, for a number like 12,345, rounding to 3 s.f. gives 12,300. For 0.0023456, rounding to 3 s.f. gives 0.00235."
-    },
-    {
-      "q": "Why do we divide by the exact value ($V_E$) for percentage error, not the approximate value ($V_A$)?",
-      "a": "The error is a measure of how far the approximation deviates from the true, correct value. Therefore, it makes logical sense to express this deviation as a fraction of that true value. Using the approximate value as the denominator would mean the 'yardstick' you're measuring against changes with every different approximation."
-    },
-    {
-      "q": "Can percentage error be negative?",
-      "a": "No. The formula for percentage error includes absolute value bars, which means the result is always positive. We are interested in the magnitude (size) of the error, not whether the approximation was an overestimate or an underestimate."
-    },
-    {
-      "q": "How do I enter a number like $3.2 \\times 10^{-5}$ on my GDC?",
-      "a": "Most calculators (like the TI-84 or TI-Nspire) have an 'EE' or 'EXP' button. To enter $3.2 \\times 10^{-5}$, you would type: `3.2` then `EE` (or `EXP`) then `(-)` then `5`. Do not type `\\times 10 ^`. Using the dedicated scientific notation button helps avoid order of operations errors."
-    }
+    { "q": "What is the difference between rounding to 3 decimal places and 3 significant figures?", "a": "Decimal places count digits after the decimal point; significant figures count from the first non-zero digit. They often agree for numbers near $1$ — $2.3456$ is $2.346$ to both 3 d.p. and 3 s.f. — but they diverge elsewhere. For $12\\,345$, three significant figures give $12\\,300$, while '3 d.p.' is meaningless (there are no decimals). For $0.0023456$, three significant figures give $0.00235$, but 3 d.p. gives $0.002$. Always read which one the question asks for." },
+    { "q": "Why do we divide by the exact value $v_E$ and not the approximate value $v_A$?", "a": "Percentage error measures how far the approximation strays from the truth, expressed as a fraction of that truth. The exact value is the fixed reference point, so it belongs in the denominator. Dividing by $v_A$ would change the yardstick every time the approximation changed, and it is the most common way students lose the accuracy mark here." },
+    { "q": "Can percentage error be negative?", "a": "No. The formula contains absolute-value bars, so the result is always positive. Percentage error reports the size of the discrepancy, not whether the estimate was too high or too low. If your calculator shows a negative number, you have forgotten the modulus — take its size." },
+    { "q": "How do I enter a number like $3.2\\times10^{-5}$ on my GDC?", "a": "Use the dedicated scientific-notation key, labelled 'EE' or 'EXP' or '$\\times10^{x}$'. Type $3.2$, then the key, then $(-)5$. Do not type $3.2\\times10\\wedge-5$: without brackets the calculator can misread the exponent, and even with them the extra keystrokes invite mistakes. The scientific-notation key enters the whole power as one object." },
+    { "q": "What does it mean to give the upper and lower bounds of a rounded value?", "a": "A rounded measurement stands for a whole interval of possible true values. If a mass is $50$ g 'to the nearest gram', the true mass is anything from $49.5$ g up to (but not including) $50.5$ g, so the lower bound is $49.5$ g and the upper bound is $50.5$ g. In general the bounds sit half a rounding-unit either side: to the nearest $10$ they would be $\\pm 5$, to 1 decimal place $\\pm 0.05$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to our lesson on the fundamental skills of standard form, approximation, and percentage error. These tools are not just for passing exams; they are essential in any field that deals with measurements and calculations, from astrophysics to finance. Mastering them will build a strong foundation for the rest of the course."
-    },
-    {
-      "type": "heading",
-      "content": "Standard Form (Scientific Notation)"
-    },
-    {
-      "type": "text",
-      "content": "Standard form is a convenient way to write very large or very small numbers. Instead of writing out long strings of zeros, we express the number as a product of a number between 1 and 10, and a power of 10."
-    },
-    {
-      "type": "formula",
-      "content": "a \\times 10^k \\quad \\text{where} \\quad 1 \\le a < 10 \\quad \\text{and} \\; k \\in \\mathbb{Z} \\; \\text{(is an integer)}"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A positive power ($k > 0$) means a large number. For example, the mass of the Earth is about $5.97 \\times 10^{24}$ kg.",
-        "A negative power ($k < 0$) means a small number. For example, the mass of an electron is about $9.11 \\times 10^{-31}$ kg.",
-        "Your GDC has a specific button for entering standard form, often labelled 'EXP', 'EE', or '$\\times 10^x$'. Using this is more reliable than typing '\\times', '1', '0', '^'."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "The distance from Earth to the Sun is approximately $1.496 \\times 10^8$ km. The speed of light is $3.00 \\times 10^5$ km/s. Calculate the time, in minutes, it takes for light to travel from the Sun to Earth.",
-      "solution": "1.  Identify the relationship between distance, speed, and time.\n    $\\text{Time} = \\frac{\\text{Distance}}{\\text{Speed}}$\n\n2.  Substitute the given values into the formula.\n    $\\text{Time} = \\frac{1.496 \\times 10^8 \\text{ km}}{3.00 \\times 10^5 \\text{ km/s}}$\n\n3.  Calculate the time in seconds. Use your GDC for this calculation.\n    $\\text{Time} = 498.666...$ s  **(M1)** for correct substitution and division.\n\n4.  Convert the time from seconds to minutes by dividing by 60.\n    $\\text{Time in minutes} = \\frac{498.666...}{60} = 8.3111...$ min  **(M1)** for conversion.\n\n5.  Round the final answer to 3 significant figures, as is standard for IB exams unless otherwise specified.\n    $\\text{Time} = 8.31$ minutes  **(A1)**"
-    },
-    {
-      "type": "heading",
-      "content": "Approximation: Rounding and Significant Figures"
-    },
-    {
-      "type": "text",
-      "content": "Approximation is the process of finding a value that is close enough to the true value for a given purpose. In IB Mathematics, the two main methods of approximation are rounding to a certain number of decimal places (d.p.) or significant figures (s.f.). It is crucial to understand the difference and apply the correct method as requested by the question."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Decimal Places (d.p.)**: Count digits to the right of the decimal point.",
-        "**Significant Figures (s.f.)**: Count digits from the first non-zero digit on the left.",
-        "Rule: To round, look at the digit immediately to the right of your desired last digit (the 'decider' digit). If it's 5 or more, round your last digit up. If it's 4 or less, leave your last digit as it is.",
-        "Example (3 s.f.): $12,851 \\approx 12,900$. $0.04592 \\approx 0.0459$. $23.97 \\approx 24.0$ (the zero is significant)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In multi-step calculations, do not round intermediate results. Use the full, unrounded value stored in your calculator's memory for the next step. Only round your final answer to the required degree of accuracy (usually 3 s.f.). Premature rounding can lead to an inaccurate final answer and loss of marks."
-    },
-    {
-      "type": "heading",
-      "content": "Percentage Error"
-    },
-    {
-      "type": "text",
-      "content": "Percentage error is a way to measure the discrepancy between an approximate or measured value and an exact or known value. It expresses the error as a percentage of the exact value, which gives a good indication of the relative size of the error."
-    },
-    {
-      "type": "formula",
-      "content": "\\text{Percentage Error} = \\left| \\frac{V_A - V_E}{V_E} \\right| \\times 100\\% \\\\ \\text{where } V_A = \\text{Approximate Value and } V_E = \\text{Exact Value}"
-    },
-    {
-      "type": "workedExample",
-      "question": "A student measures the length of a classroom to be 8.5 metres. The architect's blueprint shows the actual length is 8.42 metres.\n\n(a) State the approximate value and the exact value.\n(b) Calculate the percentage error in the student's measurement.",
-      "solution": "(a) The approximate value is the student's measurement.\n    $V_A = 8.5$ m  **(A1)**\n    The exact value is from the blueprint.\n    $V_E = 8.42$ m  **(A1)**\n\n(b) 1.  Write down the formula for percentage error.\n    $\\text{Percentage Error} = \\left| \\frac{V_A - V_E}{V_E} \\right| \\times 100\\%$\n\n2.  Substitute the values into the formula.\n    $\\text{Percentage Error} = \\left| \\frac{8.5 - 8.42}{8.42} \\right| \\times 100\\%$  **(M1)** for correct substitution.\n\n3.  Calculate the value.\n    $= \\left| \\frac{0.08}{8.42} \\right| \\times 100\\%$\n    $= 0.0095011... \\times 100\\%$\n    $= 0.95011...\\%$\n\n4.  Round the final answer to 3 significant figures.\n    $\\text{Percentage Error} = 0.950\\%$  **(A1)**"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=1.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB Formula Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-in-practice/formula-booklet-and-teacher-support-material/"
-        },
-        {
-          "label": "Khan Academy: Scientific Notation",
-          "href": "https://www.khanacademy.org/math/pre-algebra/pre-algebra-exponents-radicals/pre-algebra-scientific-notation/v/scientific-notation"
-        },
-        {
-          "label": "Khan Academy: Significant Figures",
-          "href": "https://www.khanacademy.org/math/arithmetic-home/arith-review-decimals/arithmetic-significant-figures-tutorial/v/significant-figures"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Every quantitative subject — physics, finance, biology, engineering — has to handle numbers that are awkwardly large, awkwardly small, or known only approximately. Topic 1.1 gives you three tools for exactly that: standard form to tame the size of a number, rounding and significant figures to shorten it honestly, and percentage error to say how close an approximation is to the truth. This lesson covers the full syllabus item, from writing and operating in standard form, through significant figures, decimal places, estimation and bounds, to percentage error. Because Applications and Interpretation allows the GDC on every paper, the calculator does the arithmetic — so the skill being marked is choosing the right form, quoting it to the right accuracy, and writing down the method. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Standard form (scientific notation)" },
+    { "type": "text", "content": "Standard form writes any number as a value between $1$ and $10$ multiplied by a power of $10$. It removes long strings of zeros and makes the size of a number instantly readable from its exponent. The definition rests on a single, strict condition on the coefficient." },
+    { "type": "formula", "content": "$a\\times10^{k}\\quad\\text{where}\\quad 1\\le a<10\\quad\\text{and}\\quad k\\in\\mathbb{Z}$" },
+    { "type": "keyPoints", "items": [
+      "**The condition $1\\le a<10$ is what makes the form correct.** $6.3\\times10^{5}$ is standard form; $63\\times10^{4}$ and $0.63\\times10^{6}$ are the same number but NOT in standard form because $a$ is out of range.",
+      "**A positive power means a large number.** $k>0$: e.g. the mass of Earth $\\approx 5.97\\times10^{24}$ kg. To convert to ordinary form, move the decimal point $k$ places right.",
+      "**A negative power means a small number.** $k<0$: e.g. the mass of an electron $\\approx 9.11\\times10^{-31}$ kg. Move the decimal point $|k|$ places left.",
+      "**Enter standard form with the GDC's 'EE' or '$\\times10^{x}$' key**, not by typing '$\\times$', '$1$', '$0$', '$\\wedge$', which risks order-of-operations errors."
+    ]},
+    { "type": "text", "content": "To operate in standard form on a calculator you simply enter each number with the scientific-notation key and combine as usual; the GDC returns the result, which you then present in standard form to the required accuracy. It is still worth understanding the underlying index laws: to multiply, multiply the coefficients and add the powers; to divide, divide the coefficients and subtract the powers; then adjust so that the coefficient satisfies $1\\le a<10$." },
+    { "type": "workedExample", "question": "The distance from the Earth to the Sun is approximately $1.496\\times10^{8}$ km. Light travels at $3.00\\times10^{5}$ km s$^{-1}$. Calculate the time, in minutes, for light to travel from the Sun to the Earth, giving your answer to 3 significant figures. [4]", "solution": "Use $\\text{time}=\\dfrac{\\text{distance}}{\\text{speed}}$, entering both numbers with the GDC's scientific-notation key.\\n\\n**Set up.** $\\text{time}=\\dfrac{1.496\\times10^{8}}{3.00\\times10^{5}}$ seconds.  [M1: correct quotient of distance over speed]\\n\\n**Evaluate (in seconds).** The GDC gives $\\text{time}=498.66\\ldots$ s. Dividing the coefficients gives $\\dfrac{1.496}{3.00}=0.4986\\ldots$ and subtracting the powers gives $10^{8-5}=10^{3}$, so $0.4986\\ldots\\times10^{3}=498.6\\ldots$ s — a useful check on the calculator.  [A1]\\n\\n**Convert to minutes.** Divide by $60$: $\\dfrac{498.66\\ldots}{60}=8.3111\\ldots$ minutes.  [M1: divide seconds by 60]\\n\\n**Round to 3 s.f.** $\\text{time}=8.31$ minutes.  [A1]\\n\\nCarry the full figure $498.66\\ldots$ into the division by $60$; rounding to $499$ first would still round to $8.31$ here, but in general premature rounding shifts the final digit and loses the accuracy mark." },
+    { "type": "workedExample", "question": "Evaluate $(4.0\\times10^{7})\\times(2.5\\times10^{-3})$, giving your answer in standard form. [3]", "solution": "Multiply the coefficients and add the powers.\\n\\n**Coefficients.** $4.0\\times2.5=10$.  [M1: multiply coefficients and add powers]\\n\\n**Powers.** $10^{7}\\times10^{-3}=10^{7+(-3)}=10^{4}$, so the product is $10\\times10^{4}=10\\times10^{4}$.\\n\\n**Adjust to standard form.** The coefficient $10$ breaks the rule $1\\le a<10$, so write $10=1\\times10^{1}$ and combine: $1\\times10^{1}\\times10^{4}=1.0\\times10^{5}$.  [A1: correct value]\\n\\n**Answer:** $1.0\\times10^{5}$.  [A1: presented in valid standard form]\\n\\nThe last step is where marks are lost: a coefficient of exactly $10$ (or more) is not yet standard form — bump the power up by one." },
+
+    { "type": "heading", "content": "Approximation: significant figures and decimal places" },
+    { "type": "text", "content": "Approximation replaces a number with a nearby, shorter one that is accurate enough for the purpose. The two instructions you must distinguish are 'to a number of significant figures' and 'to a number of decimal places'. They are different rules, and answering with the wrong one is a needless lost mark." },
+    { "type": "keyPoints", "items": [
+      "**Significant figures (s.f.):** count from the first non-zero digit on the left. Leading zeros are placeholders and never count; trailing zeros after a decimal point do count. So $0.0459$ has 3 s.f. and $4.500$ has 4 s.f.",
+      "**Decimal places (d.p.):** count digits to the right of the decimal point, regardless of whether they are zero.",
+      "**Rounding rule:** look at the digit just after the last one you keep — $5$ or more rounds up, $4$ or less leaves it unchanged. Round once, from the original.",
+      "**Worked instances (3 s.f.):** $12\\,851\\approx 12\\,900$; $0.045923\\approx 0.0459$; $23.97\\approx 24.0$ (the trailing zero is significant and must be written)."
+    ]},
+    { "type": "examTip", "content": "In multi-step calculations do not round intermediate results. Keep the full value in the calculator's memory (or use the 'Ans' key) and round only the final answer, to 3 significant figures unless the question says otherwise. Premature rounding is one of the most common reasons a correct method produces a final digit the mark scheme will not accept." },
+    { "type": "workedExample", "question": "A rectangular field measured $86.4$ m by $53.7$ m. \\n (a) Estimate its area by rounding each length to 1 significant figure. \\n (b) Calculate the exact area, then round it to 3 significant figures. [4]", "solution": "**(a) Estimate.** Round each length to 1 s.f.: $86.4\\approx 90$ and $53.7\\approx 50$.\\n$\\text{estimated area}=90\\times50=4500\\text{ m}^{2}$.  [M1: both lengths to 1 s.f. and multiplied]  [A1]\\n\\n**(b) Calculated area.** $86.4\\times53.7=4639.68\\text{ m}^{2}$.\\nRounded to 3 s.f.: $4640\\text{ m}^{2}$.  [A1]\\n\\nThe estimate $4500$ is the right order of magnitude, confirming the calculated $4640$ is reasonable — a quick guard against a keying error.  [A1: estimate used to check the calculation]\\n\\nEstimation is not busywork: a 1-s.f. estimate catches a slipped decimal point or a wrong power of ten before it costs you the answer." },
+
+    { "type": "heading", "content": "Upper and lower bounds" },
+    { "type": "text", "content": "A rounded value is not a single number but a shorthand for an interval. When a measurement is given to a stated accuracy, the true value could be anything within half a rounding-unit either side. The lower bound is the smallest value that would round to the stated figure; the upper bound is the smallest value that would round up to the next one." },
+    { "type": "formula", "content": "If a value $v$ is rounded to the nearest $u$, then $v-\\tfrac{u}{2}\\le v_{\\text{true}}<v+\\tfrac{u}{2}$. \\n For 'nearest cm' $u=1$; for '1 decimal place' $u=0.1$; for 'nearest $10$' $u=10$." },
+    { "type": "workedExample", "question": "The length of a metal rod is measured as $24$ cm, correct to the nearest centimetre. \\n (a) Write down the lower and upper bounds of the true length. \\n (b) The rod is cut into $5$ equal pieces. Find the upper bound for the length of one piece. [4]", "solution": "**(a) Bounds of the rod.** The rounding unit is $1$ cm, so the true length lies within $0.5$ cm of $24$ cm.\\nLower bound $=24-0.5=23.5$ cm.  [A1]\\nUpper bound $=24+0.5=24.5$ cm, so $23.5\\le \\ell<24.5$.  [A1]\\n\\n**(b) One piece.** The longest a piece can be comes from the longest possible rod, so divide the upper bound by $5$:\\n$\\dfrac{24.5}{5}=4.9$ cm.  [M1: divide the upper bound by 5]  [A1]\\n\\n**Answer:** the upper bound for one piece is $4.9$ cm. Note that the upper bound is written as $24.5$ even though the true length is strictly less than $24.5$; using $23.5$ here — the lower bound — would give the wrong extreme." },
+
+    { "type": "heading", "content": "Percentage error" },
+    { "type": "text", "content": "Percentage error measures the discrepancy between an approximate (or measured) value and an exact (or known) value, expressed as a percentage of the exact value. Dividing by the exact value makes the error relative — a $2$ cm error matters far more on a $10$ cm object than on a $10$ m one, and percentage error captures that." },
+    { "type": "formula", "content": "$\\varepsilon=\\left|\\dfrac{v_A-v_E}{v_E}\\right|\\times100\\%$ \\n where $v_A$ is the approximate (measured) value and $v_E$ is the exact (true) value." },
+    { "type": "keyPoints", "items": [
+      "**The exact value $v_E$ goes on the bottom** — always. Dividing by $v_A$ is the single most penalised error in this topic.",
+      "**The bars make the answer positive.** Percentage error reports the size of the error, not its direction, so it is never negative.",
+      "**$v_A$ vs $v_E$:** $v_A$ is what was measured, estimated or read off; $v_E$ is the true or accepted value. If you swap them the answer is wrong.",
+      "**Round only at the end**, to 3 s.f. unless told otherwise — so a percentage error of $0.8\\%$ is quoted as $0.800\\%$ to 3 s.f."
+    ]},
+    { "type": "workedExample", "question": "A student estimates the value of $\\pi$ as $\\frac{22}{7}$ and uses $\\pi=3.14159265\\ldots$ as the exact value. Calculate the percentage error in the estimate, giving your answer to 3 significant figures. [3]", "solution": "**Formula.** $\\varepsilon=\\left|\\dfrac{v_A-v_E}{v_E}\\right|\\times100\\%$ with $v_A=\\dfrac{22}{7}=3.142857\\ldots$ and $v_E=3.141592\\ldots$.  [M1: formula with correct $v_A$ and $v_E$]\\n\\n**Substitute.** $\\varepsilon=\\left|\\dfrac{3.142857\\ldots-3.141592\\ldots}{3.141592\\ldots}\\right|\\times100\\%$.  [M1: substitution, exact value in the denominator]\\n\\n**Evaluate.** $=\\left|\\dfrac{0.001264\\ldots}{3.141592\\ldots}\\right|\\times100\\%=0.04024\\ldots\\%$.\\n\\n**Round to 3 s.f.** $\\varepsilon=0.0402\\%$.  [A1]\\n\\nKeep the full decimal for $v_E$ throughout; rounding $\\pi$ to $3.14$ before subtracting would give a wrong difference and a wrong final digit." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Leaving the coefficient outside $1\\le a<10$** — $63\\times10^{4}$ and $0.63\\times10^{6}$ are not standard form. Adjust the coefficient and the power together until $1\\le a<10$.",
+      "**A coefficient of exactly $10$ after multiplying** — e.g. writing $10\\times10^{4}$; bump the power to get $1.0\\times10^{5}$.",
+      "**Confusing significant figures with decimal places** — they are different instructions. $0.0023456$ is $0.00235$ to 3 s.f. but $0.002$ to 3 d.p.",
+      "**Miscounting significant figures around zeros** — leading zeros never count ($0.0459$ has 3 s.f.); trailing zeros after a decimal point do ($4.500$ has 4 s.f.), so $23.97\\approx24.0$ must keep its zero.",
+      "**Rounding in stages** — round once, from the original number. Rounding $2.4491$ to $2.45$ and then to $2.5$ is wrong; to 1 d.p. it is $2.4$.",
+      "**Dividing by the approximate value in percentage error** — the exact value $v_E$ must be the denominator, not $v_A$.",
+      "**Dropping the modulus** — a negative percentage error means the absolute-value bars were forgotten.",
+      "**Premature rounding in multi-step work** — carry full GDC figures and round only the final answer, to 3 s.f. unless told otherwise.",
+      "**Using the wrong bound** — the upper bound is 'the stated value plus half a unit'; using the lower bound where the largest possible value is needed gives the wrong extreme."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In IB Mathematics the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means a value that is wrong earlier need not cost you the marks that depend on it, provided the later step is done correctly on your own figure. The engine accepts any equivalent form and any correctly-rounded value, and ignores subsequent working once a correct answer appears. Because Applications and Interpretation allows the GDC on every paper, you may do the arithmetic on the calculator — but that protection only exists if the method is written on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A student measures a length as $24.8$ cm; the true length is $25.0$ cm. Calculate the percentage error, giving your answer to 3 significant figures. [3]", "solution": "**Model answer — full working.**\\n\\nHere the approximate value is the measurement, $v_A=24.8$ cm, and the exact value is the true length, $v_E=25.0$ cm.\\n\\n**Formula.** $\\varepsilon=\\left|\\dfrac{v_A-v_E}{v_E}\\right|\\times100\\%$.\\n\\n**Substitute.** $\\varepsilon=\\left|\\dfrac{24.8-25.0}{25.0}\\right|\\times100\\%$.\\n\\n**Evaluate.** $=\\left|\\dfrac{-0.2}{25.0}\\right|\\times100\\%=0.008\\times100\\%=0.8\\%$.\\n\\n**Round to 3 s.f.** $\\varepsilon=0.800\\%$.\\n\\n---\\n**How our marking engine awards the 3 marks:**\\n\\n- **M1 — percentage-error formula.** A method mark for writing $\\varepsilon=\\left|\\dfrac{v_A-v_E}{v_E}\\right|\\times100\\%$ with the correct roles: the measured $24.8$ as $v_A$ and the true $25.0$ as $v_E$ in the denominator. Putting $24.8$ on the bottom does NOT earn this mark.\\n- **M1 — substitution.** A second method mark for the correct substitution $\\left|\\dfrac{24.8-25.0}{25.0}\\right|\\times100$, exact value on the bottom. The engine checks the denominator is $25.0$, not $24.8$.\\n- **A1 — accuracy.** Awarded for the final value $0.800\\%$ (equivalently $0.8\\%$ seen to the required accuracy). This A-mark depends on the two M-marks above.\\n\\n**Follow-through (FT).** A candidate who reached the correct difference but slipped in the final division still earns the A-mark on their own figure, provided the method lines are present and the answer is correctly rounded from their working.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $0.8\\%$, $0.800\\%$, or $0.80\\%$ as correctly-rounded equivalents to 3 s.f., and accepts the fraction written as $\\dfrac{0.2}{25}$ or $\\dfrac{25.0-24.8}{25.0}$ (the modulus makes the order of subtraction irrelevant). Once the correct answer appears, ISW means a later restatement will not lose the mark.\\n\\n**Bottom line:** of the 3 marks, two are method marks that survive an arithmetic slip, and the accuracy mark is shielded by follow-through — but only if the formula and substitution are on the page. A bare '$0.8\\%$' with no working risks losing both method marks." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: quote the percentage-error formula, substitute with the exact value in the denominator, then evaluate and round only at the end. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Standard form, rounding and percentage error are the number sense the rest of the course leans on. Standard form reappears whenever you handle scientific or financial magnitudes and when you interpret a GDC display that switches to scientific notation. The discipline of rounding only at the end, and to 3 significant figures, governs every calculation topic from trigonometry to finance. Percentage error returns whenever a model is compared with data — the gap between a predicted and an observed value is exactly a percentage error, and the same $\\left|\\frac{v_A-v_E}{v_E}\\right|$ idea underlies how you judge whether a model is good enough. Master these three habits — pick the right form, quote it to the right accuracy, and show the method — and the calculation-heavy topics ahead become variations on skills you already own." },
+
+    { "type": "practice", "label": "Get a calculation marked: work a percentage-error or standard-form question with full method marks and follow-through", "href": "/mark?subject=ib-maths-ai-sl&topic=1.1&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Khan Academy: Scientific Notation", "href": "https://www.khanacademy.org/math/pre-algebra/pre-algebra-exponents-radicals/pre-algebra-scientific-notation/v/scientific-notation" },
+      { "label": "Khan Academy: Significant Figures", "href": "https://www.khanacademy.org/math/arithmetic-home/arith-review-decimals/arithmetic-significant-figures-tutorial/v/significant-figures" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

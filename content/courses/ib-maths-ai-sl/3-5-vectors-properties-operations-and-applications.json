@@ -1,177 +1,127 @@
 {
   "slug": "3-5-vectors-properties-operations-and-applications",
   "topicCode": "3.5",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "title": "Vectors: properties, operations and applications",
   "paper": "P1",
   "paperName": "Mathematics: Applications and Interpretation SL",
   "status": "premium",
-  "summary": "This lesson introduces vectors, quantities possessing both magnitude and direction. It covers vector representation in column form, fundamental operations including addition, subtraction, and scalar multiplication. You will learn to calculate the magnitude of a vector and apply these concepts to solve problems involving displacement, velocity, and geometric figures.",
-  "durationMin": 22,
-  "updated": "2026-06-23",
+  "summary": "A vector carries two pieces of information at once — how much and which way — and that single idea unlocks displacement, velocity, force and geometry. This lesson builds the full 3.5 syllabus: vectors as magnitude and direction; component and column form with the base vectors $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$; position vectors and the displacement $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$; addition, subtraction and scalar multiplication seen both algebraically and geometrically; the magnitude $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 (+\\, v_3^2)}$ and the unit vector; and the scalar (dot) product $\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$, used to find the angle between two vectors and to test whether they are perpendicular. Every worked example is laid out exactly the way our marking engine awards the marks, so the working you learn here is the working that earns method, accuracy and follow-through marks in the exam.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the distinction between vectors and scalars, and represent vectors in various forms.",
-    "Perform vector operations including addition, subtraction, and scalar multiplication.",
-    "Calculate the magnitude (or modulus) of a vector in 2D and 3D.",
-    "Apply vector concepts to solve problems in geometry and real-world contexts like displacement and velocity."
+    "Represent a vector in component form, column form and base-vector form, and distinguish a position vector from a displacement vector.",
+    "Add and subtract vectors and multiply a vector by a scalar, interpreting each operation geometrically as well as algebraically.",
+    "Calculate the magnitude of a 2D or 3D vector and find the unit vector in a given direction.",
+    "Use the scalar (dot) product to compute a dot product, find the angle between two vectors, and test for perpendicularity.",
+    "Apply vectors to displacement, velocity and force problems, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["3.5"],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Vectors: Your GPS for Maths",
-    "summary": "Vectors are mathematical objects that have both a size and a direction, unlike regular numbers which only have size. We can combine and scale vectors to describe journeys, forces, or any situation where direction matters.",
-    "analogy": "Imagine you're giving a friend directions to your house. Just saying 'walk 500 metres' isn't enough – that's a scalar. You need to say 'walk 500 metres North-East'. That instruction, with both distance and direction, is a vector. A full journey with multiple turns is just a series of vectors added together.",
+    "summary": "A vector is a mathematical object that stores a size and a direction together, unlike an ordinary number, which stores only a size. Once you can add, scale and measure vectors, you can describe any situation where direction matters — a journey, a wind, a push.",
+    "analogy": "Telling a friend to 'walk 500 metres' is not enough — that is a scalar, a bare size. Telling them to 'walk 500 metres north-east' is a vector: distance plus direction. A whole route with several turns is just a chain of vectors added nose-to-tail, and the single arrow from your start to your finish is their sum, the resultant.",
     "steps": [
-      "Identify the quantities in the problem and write them as column vectors, paying attention to direction (e.g., positive/negative components).",
-      "Determine the required vector operation. Use addition for combined effects (like two legs of a journey), subtraction for finding the path between two points, or scalar multiplication for scaling.",
-      "Perform the calculation component-wise. For example, to add two vectors, add their x-components together and their y-components together separately.",
-      "Calculate the magnitude of the final vector using Pythagoras' theorem if a distance or speed is required, and state your answer clearly with units."
+      "Write each quantity as a column vector, watching the signs of the components so that direction is captured correctly.",
+      "Choose the operation the context calls for: add to combine effects, subtract to find the vector between two points ('destination minus start'), scalar-multiply to stretch or reverse.",
+      "Work component by component — add x to x and y to y — keeping the arithmetic separate in each row.",
+      "If a length, distance or speed is wanted, take the magnitude with Pythagoras; if an angle is wanted, reach for the scalar product."
     ]
   },
+  "keyConcepts": ["magnitude and direction", "vector operations", "the scalar product"],
   "flashcards": [
-    {
-      "front": "What is a vector?",
-      "back": "A quantity that has both magnitude (size) and direction. Examples: velocity, displacement, force."
-    },
-    {
-      "front": "What is a scalar?",
-      "back": "A quantity that has only magnitude (size). Examples: speed, distance, mass, temperature."
-    },
-    {
-      "front": "How is a 2D vector $\\mathbf{v}$ written in column form?",
-      "back": "$\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, where $x$ is the horizontal component (movement in x-direction) and $y$ is the vertical component (movement in y-direction)."
-    },
-    {
-      "front": "What is the formula for the magnitude of a 2D vector $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$?",
-      "back": "The magnitude, or modulus, is written as $|\\mathbf{v}|$ and calculated using Pythagoras: $|\\mathbf{v}| = \\sqrt{x^2 + y^2}$."
-    },
-    {
-      "front": "How do you add two vectors, $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}$?",
-      "back": "Add the corresponding components: $\\mathbf{a} + \\mathbf{b} = \\begin{pmatrix} a_1 + b_1 \\\\ a_2 + b_2 \\end{pmatrix}$."
-    },
-    {
-      "front": "What does scalar multiplication, $k\\mathbf{v}$, mean?",
-      "back": "The vector $\\mathbf{v}$ is scaled by a factor of $k$. Its magnitude is multiplied by $|k|$. If $k<0$, its direction is reversed."
-    },
-    {
-      "front": "What is a position vector?",
-      "back": "A vector from the origin $(0,0)$ to a point P. It is often written as $\\vec{OP}$ or simply $\\mathbf{p}$."
-    },
-    {
-      "front": "How do you find the vector $\\vec{AB}$ from point A to point B?",
-      "back": "Using their position vectors $\\mathbf{a}$ and $\\mathbf{b}$: $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$. Think 'destination minus start'."
-    },
-    {
-      "front": "What is the condition for two vectors, $\\mathbf{a}$ and $\\mathbf{b}$, to be parallel?",
-      "back": "One vector must be a scalar multiple of the other. That is, $\\mathbf{a} = k\\mathbf{b}$ for some non-zero scalar $k$."
-    },
-    {
-      "front": "What is a common mistake when finding the magnitude of a sum of vectors, $|\\mathbf{a} + \\mathbf{b}|$?",
-      "back": "A common error is to calculate $|\\mathbf{a}| + |\\mathbf{b}|$. This is incorrect. You must first find the resultant vector $\\mathbf{c} = \\mathbf{a} + \\mathbf{b}$, and then find its magnitude, $|\\mathbf{c}|$. "
-    },
-    {
-      "front": "How are vectors represented in 3D?",
-      "back": "As a column vector with three components, $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, or using base vectors $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$ as $x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}$."
-    }
+    { "front": "What is a vector?", "back": "A quantity with both magnitude (size) and direction. Examples: displacement, velocity, force.", "pillLabel": "Definition" },
+    { "front": "What is a scalar?", "back": "A quantity with magnitude only. Examples: distance, speed, mass, temperature. A magnitude such as $|\\mathbf{v}|$ is a scalar.", "pillLabel": "Definition" },
+    { "front": "Column, base-vector and component form", "back": "The same 2D vector can be written as $\\begin{pmatrix} x \\\\ y \\end{pmatrix}$, as $x\\mathbf{i} + y\\mathbf{j}$, or as the ordered pair of components $(x, y)$. In 3D add a third row $z$ and the base vector $\\mathbf{k}$.", "pillLabel": "Definition" },
+    { "front": "What are the base vectors $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$?", "back": "The unit vectors along the axes: $\\mathbf{i} = \\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix}$, $\\mathbf{j} = \\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix}$, $\\mathbf{k} = \\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix}$. Any vector is a combination of them.", "pillLabel": "Definition" },
+    { "front": "What is a position vector?", "back": "The vector from the origin $O$ to a point $P$, written $\\vec{OP}$ or $\\mathbf{p}$. Its components are just the coordinates of $P$.", "pillLabel": "Definition" },
+    { "front": "How do you find the displacement $\\vec{AB}$?", "back": "Subtract position vectors: $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$ — 'destination minus start'. Reversing the order gives $\\vec{BA} = -\\vec{AB}$.", "pillLabel": "Formula" },
+    { "front": "Magnitude of a vector", "back": "$|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2}$ in 2D, and $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$ in 3D. It is Pythagoras on the components and is always a non-negative scalar.", "pillLabel": "Formula" },
+    { "front": "What is a unit vector, and how do you find one?", "back": "A vector of magnitude 1. The unit vector in the direction of $\\mathbf{v}$ is $\\hat{\\mathbf{v}} = \\dfrac{1}{|\\mathbf{v}|}\\mathbf{v}$ — divide the vector by its own magnitude.", "pillLabel": "Formula" },
+    { "front": "Scalar (dot) product — two ways", "back": "Component form: $\\mathbf{a} \\cdot \\mathbf{b} = a_1 b_1 + a_2 b_2 (+\\, a_3 b_3)$. Geometric form: $\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$. The result is a scalar, not a vector.", "pillLabel": "Formula" },
+    { "front": "Angle between two vectors", "back": "Rearrange the geometric form: $\\cos\\theta = \\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, then $\\theta = \\arccos\\!\\left(\\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}\\right)$.", "pillLabel": "Formula" },
+    { "front": "Test for perpendicular vectors", "back": "Two non-zero vectors are perpendicular exactly when $\\mathbf{a} \\cdot \\mathbf{b} = 0$, because $\\cos 90^\\circ = 0$. A zero dot product is the whole test — no need to find the angle.", "pillLabel": "Framework" },
+    { "front": "Condition for parallel vectors", "back": "$\\mathbf{a}$ and $\\mathbf{b}$ are parallel when one is a scalar multiple of the other: $\\mathbf{a} = k\\mathbf{b}$ for some non-zero scalar $k$. If $k > 0$ they point the same way; if $k < 0$, opposite ways.", "pillLabel": "Framework" },
+    { "front": "Why is $|\\mathbf{a} + \\mathbf{b}| \\ne |\\mathbf{a}| + |\\mathbf{b}|$ in general?", "back": "Add the vectors first, then take the magnitude of the resultant. Adding the separate magnitudes ignores direction and only agrees when the vectors point the same way.", "pillLabel": "Trap" },
+    { "front": "Scalar multiplication $k\\mathbf{v}$", "back": "Multiply each component by $k$. The magnitude scales to $|k|\\,|\\mathbf{v}|$; if $k < 0$ the direction reverses. $-\\mathbf{v}$ is $\\mathbf{v}$ with the same length but opposite direction.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "The magnitude of $\\mathbf{v} = \\begin{pmatrix} 3 \\\\ -4 \\end{pmatrix}$ is:", "options": ["$\\sqrt{3^2 + (-4)^2} = 5$", "$3 + (-4) = -1$", "$3^2 + (-4)^2 = 25$", "$\\sqrt{3^2 - 4^2}$, which is not real"], "answer": "$\\sqrt{3^2 + (-4)^2} = 5$" },
+    { "prompt": "To find the angle $\\theta$ between two vectors you should use:", "options": ["$\\cos\\theta = \\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$", "$\\cos\\theta = \\mathbf{a} \\cdot \\mathbf{b}$", "$\\tan\\theta = \\dfrac{|\\mathbf{a}|}{|\\mathbf{b}|}$", "$\\cos\\theta = |\\mathbf{a}||\\mathbf{b}| - \\mathbf{a} \\cdot \\mathbf{b}$"], "answer": "$\\cos\\theta = \\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$" },
+    { "prompt": "Two non-zero vectors $\\mathbf{a}$ and $\\mathbf{b}$ are perpendicular if and only if:", "options": ["$\\mathbf{a} \\cdot \\mathbf{b} = 0$", "$\\mathbf{a} \\cdot \\mathbf{b} = 1$", "$\\mathbf{a} = k\\mathbf{b}$ for some scalar $k$", "$|\\mathbf{a}| = |\\mathbf{b}|$"], "answer": "$\\mathbf{a} \\cdot \\mathbf{b} = 0$" },
+    { "prompt": "For $\\mathbf{a} = \\begin{pmatrix} 2 \\\\ 5 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} -1 \\\\ 3 \\end{pmatrix}$, the vector $\\mathbf{a} + \\mathbf{b}$ is:", "options": ["$\\begin{pmatrix} 1 \\\\ 8 \\end{pmatrix}$", "$\\begin{pmatrix} 1 \\\\ 15 \\end{pmatrix}$", "$\\begin{pmatrix} 3 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} -2 \\\\ 15 \\end{pmatrix}$"], "answer": "$\\begin{pmatrix} 1 \\\\ 8 \\end{pmatrix}$" },
+    { "prompt": "The scalar product $\\mathbf{a} \\cdot \\mathbf{b}$ of two vectors is:", "options": ["A scalar (a single number)", "A vector perpendicular to both", "A vector parallel to $\\mathbf{a}$", "Always equal to $|\\mathbf{a}||\\mathbf{b}|$"], "answer": "A scalar (a single number)" }
   ],
   "faq": [
-    {
-      "q": "What's the difference between a position vector and a displacement vector?",
-      "a": "A position vector always starts at the origin $(0,0)$ and points to a specific location. A displacement vector describes the movement from one point to another; it's the 'path' between them and doesn't have to start at the origin. You can find a displacement vector $\\vec{AB}$ by subtracting the position vector of the start point A from the position vector of the end point B ($\"b - a\"$)."
-    },
-    {
-      "q": "How do I know whether to add or subtract vectors in a problem?",
-      "a": "Think about the context. Addition is typically used for combining movements or forces that happen one after the other or at the same time (e.g., a plane's velocity plus the wind's velocity). Subtraction is most often used to find the vector *between* two points (e.g., the vector from point A to point B is $\\mathbf{b} - \\mathbf{a}$)."
-    },
-    {
-      "q": "Can vectors be negative?",
-      "a": "Yes. The vector $-\\mathbf{v}$ is a vector with the same magnitude as $\\mathbf{v}$ but in the exact opposite direction. If $\\mathbf{v} = \\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}$, then $-\\mathbf{v} = \\begin{pmatrix} -2 \\\\ -3 \\end{pmatrix}$. This is the same as scalar multiplication by -1."
-    },
-    {
-      "q": "Is it possible to multiply two vectors?",
-      "a": "Yes, but it's more complex than scalar multiplication and is not part of the AI SL syllabus. There are two types of vector multiplication, the 'dot product' and the 'cross product', which you might encounter in higher-level mathematics or physics courses. For this course, you only need to add, subtract, and multiply vectors by scalars."
-    }
+    { "q": "What's the difference between a position vector and a displacement vector?", "a": "A position vector always starts at the origin and points to a fixed location, so its components are exactly the coordinates of that point. A displacement vector describes the movement from one point to another and can start anywhere. You get the displacement $\\vec{AB}$ by subtracting the position vector of the start from that of the end: $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$." },
+    { "q": "How do I decide whether to add or subtract vectors?", "a": "Let the context choose. Add when effects combine — a boat's velocity plus a current, one leg of a journey after another. Subtract when you want the vector between two points: the vector from $A$ to $B$ is $\\mathbf{b} - \\mathbf{a}$. If in doubt, sketch the arrows nose-to-tail; the resultant runs from the very start to the very end." },
+    { "q": "The dot product gave me a negative number — did I make a mistake?", "a": "Not necessarily. A negative scalar product simply means the angle between the vectors is obtuse (between $90^\\circ$ and $180^\\circ$), because $\\cos\\theta$ is negative there. A zero dot product means they are perpendicular, and a positive one means the angle is acute. The sign is information, not an error." },
+    { "q": "How do I turn any vector into a unit vector?", "a": "Divide the vector by its own magnitude: $\\hat{\\mathbf{v}} = \\frac{1}{|\\mathbf{v}|}\\mathbf{v}$. For example, $\\mathbf{v} = \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$ has $|\\mathbf{v}| = 5$, so $\\hat{\\mathbf{v}} = \\frac{1}{5}\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 0.6 \\\\ 0.8 \\end{pmatrix}$. Check it: $\\sqrt{0.6^2 + 0.8^2} = 1$, as a unit vector must be." },
+    { "q": "Does the scalar product work the same way in 3D?", "a": "Yes. In three dimensions $\\mathbf{a} \\cdot \\mathbf{b} = a_1 b_1 + a_2 b_2 + a_3 b_3$, and the angle formula $\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$ is identical — you just carry a third component through the magnitudes as well. Perpendicularity is still the dot product equalling zero." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of vectors! While you're familiar with numbers that represent 'how much' (scalars), vectors answer 'how much' and 'in which direction'. This powerful tool is essential in physics, engineering, computer graphics, and more. In this lesson, we'll learn how to represent vectors, perform calculations with them, and apply them to solve practical problems."
-    },
-    {
-      "type": "heading",
-      "content": "Vector Representation"
-    },
-    {
-      "type": "text",
-      "content": "A vector is often visualised as an arrow. The length of the arrow represents the vector's magnitude, and the way the arrow points shows its direction. We can describe a vector numerically using its components. In a 2D plane, a vector is defined by its change in the x-direction and its change in the y-direction."
-    },
-    {
-      "type": "formula",
-      "content": "A vector $\\mathbf{v}$ can be written in column form as: \\\\ \\\\ $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ \\\\ \\\\ Or using base vectors $\\mathbf{i}$ and $\\mathbf{j}$ (unit vectors in the x and y directions): \\\\ \\\\ $\\mathbf{v} = x\\mathbf{i} + y\\mathbf{j}$"
-    },
-    {
-      "type": "text",
-      "content": "For example, the vector $\\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$ represents a displacement of 3 units to the right and 2 units down. The same principles apply in three dimensions, where we add a z-component."
-    },
-    {
-      "type": "heading",
-      "content": "Vector Operations"
-    },
-    {
-      "type": "text",
-      "content": "We can perform arithmetic operations with vectors. Adding two vectors, $\\mathbf{a} + \\mathbf{b}$, can be thought of as following one vector, then the other. The resultant vector is the direct path from the start of the first vector to the end of the second. Multiplying a vector by a scalar changes its magnitude (length) and/or reverses its direction."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Addition**: Add corresponding components: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} + \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1+b_1 \\\\ a_2+b_2 \\end{pmatrix}$",
-        "**Subtraction**: Subtract corresponding components: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} - \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1-b_1 \\\\ a_2-b_2 \\end{pmatrix}$",
-        "**Scalar Multiplication**: Multiply each component by the scalar: $k \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} = \\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$"
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Let vectors $\\mathbf{a} = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} -2 \\\\ 5 \\end{pmatrix}$. Find the vector $\\mathbf{c} = 2\\mathbf{a} - \\mathbf{b}$.",
-      "solution": "First, we calculate the scalar multiplication $2\\mathbf{a}$. \\\\ [M1] for correct scalar multiplication \\\\ $2\\mathbf{a} = 2 \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 2 \\times 4 \\\\ 2 \\times -1 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix}$ \\\\ Now, we subtract vector $\\mathbf{b}$ from this result. \\\\ [M1] for correct vector subtraction \\\\ $\\mathbf{c} = 2\\mathbf{a} - \\mathbf{b} = \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix} - \\begin{pmatrix} -2 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 8 - (-2) \\\\ -2 - 5 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ -7 \\end{pmatrix}$ \\\\ [A1] for correct final vector \\\\ So, $\\mathbf{c} = \\begin{pmatrix} 10 \\\\ -7 \\end{pmatrix}$."
-    },
-    {
-      "type": "heading",
-      "content": "Magnitude of a Vector"
-    },
-    {
-      "type": "text",
-      "content": "The magnitude (or modulus) of a vector is its length. It's a scalar quantity and is always non-negative. We use the Pythagorean theorem on the vector's components to find its magnitude. The notation for the magnitude of a vector $\\mathbf{v}$ is $|\\mathbf{v}|$. This is a crucial calculation for finding quantities like speed (magnitude of velocity) or distance."
-    },
-    {
-      "type": "formula",
-      "content": "For a 2D vector $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, the magnitude is $|\\mathbf{v}| = \\sqrt{x^2 + y^2}$. \\\\ \\\\ For a 3D vector $\\mathbf{w} = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, the magnitude is $|\\mathbf{w}| = \\sqrt{x^2 + y^2 + z^2}$."
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, distinguish carefully between a request for a vector (e.g., 'find the displacement vector') and a scalar (e.g., 'find the distance'). The first requires a vector answer, while the second requires you to calculate the magnitude of that vector."
-    },
-    {
-      "type": "workedExample",
-      "question": "A boat's engine propels it with velocity vector $\\mathbf{v}_b = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}$ km/h. A river current has velocity vector $\\mathbf{v}_c = \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ km/h. \\\\ a) Find the resultant velocity vector of the boat. \\\\ b) Find the actual speed of the boat, correct to 3 significant figures.",
-      "solution": "a) The resultant velocity $\\mathbf{v}_r$ is the sum of the boat's velocity and the current's velocity. \\\\ $\\mathbf{v}_r = \\mathbf{v}_b + \\mathbf{v}_c = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix} + \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ \\\\ [M1] for adding vectors \\\\ $\\mathbf{v}_r = \\begin{pmatrix} 6+3 \\\\ 8-1 \\end{pmatrix} = \\begin{pmatrix} 9 \\\\ 7 \\end{pmatrix}$ km/h. \\\\ [A1] for correct resultant vector. \\\\ \\\\ b) The speed is the magnitude of the resultant velocity vector. \\\\ Speed $= |\\mathbf{v}_r| = |\\begin{pmatrix} 9 \\\\ 7 \\end{pmatrix}|$ \\\\ [M1] for applying magnitude formula to their resultant vector. \\\\ Speed $= \\sqrt{9^2 + 7^2} = \\sqrt{81 + 49} = \\sqrt{130}$ \\\\ Speed $\\approx 11.40175...$ km/h \\\\ [A1] for correct final answer. \\\\ The speed of the boat is $11.4$ km/h (3 s.f.)."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Vector Problems",
-      "href": "/mark?subject=ib-maths-ai-sl&topic=3.5"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra Vector Explorer",
-          "href": "https://www.geogebra.org/m/a9y28G7G"
-        },
-        {
-          "label": "Khan Academy: Introduction to Vectors",
-          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:vectors"
-        }
-      ]
-    }
+    { "type": "intro", "content": "You already handle numbers that answer 'how much'. Vectors answer 'how much' and 'in which direction' in a single object, and that is why they run through physics, engineering, navigation and computer graphics. This lesson covers the full 3.5 syllabus: how to write a vector, how to add, subtract and scale one, how to measure its length, and how the scalar product lets you find angles and test for right angles. Because this is Paper 1, you will often work without a calculator, so the emphasis is on clean component arithmetic and knowing which formula a question is really asking for. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Representing a vector" },
+    { "type": "text", "content": "A vector is often pictured as an arrow: its length shows the magnitude and the way it points shows the direction. Numerically we describe it by its components — the change it makes in each coordinate direction. In two dimensions that means a horizontal component and a vertical component; in three dimensions we add a component along the third axis. The same vector can be written three equivalent ways, and you should be fluent moving between them." },
+    { "type": "formula", "content": "Column form: $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$. \\n Base-vector form: $\\mathbf{v} = x\\mathbf{i} + y\\mathbf{j}$, where $\\mathbf{i}$ and $\\mathbf{j}$ are the unit vectors along the $x$- and $y$-axes. \\n In three dimensions: $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}$." },
+    { "type": "text", "content": "For instance $\\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$ means 3 units right and 2 units down, and is the same object as $3\\mathbf{i} - 2\\mathbf{j}$. A **position vector** is the special case that starts at the origin: the position vector of the point $P(3, -2)$ is $\\vec{OP} = \\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$, so its components are just the coordinates. A **displacement vector** between two points need not start at the origin, and you find it by subtracting position vectors — the single most useful move in the whole topic." },
+    { "type": "formula", "content": "Displacement from $A$ to $B$: $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$ ('destination minus start'), where $\\mathbf{a}$ and $\\mathbf{b}$ are the position vectors of $A$ and $B$." },
+
+    { "type": "heading", "content": "Vector operations" },
+    { "type": "text", "content": "Vectors are added, subtracted and scaled component by component, and each operation has a clean geometric meaning. Adding $\\mathbf{a} + \\mathbf{b}$ is following $\\mathbf{a}$ and then $\\mathbf{b}$ nose-to-tail; the resultant is the direct arrow from the start of the first to the end of the second. Subtracting $\\mathbf{a} - \\mathbf{b}$ is adding the reverse of $\\mathbf{b}$. Multiplying by a scalar $k$ stretches the vector by a factor $|k|$ and, if $k$ is negative, flips its direction." },
+    { "type": "keyPoints", "items": [
+      "**Addition:** add corresponding components — $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} + \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1 + b_1 \\\\ a_2 + b_2 \\end{pmatrix}$. Geometrically, arrows placed nose-to-tail.",
+      "**Subtraction:** subtract corresponding components — $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} - \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1 - b_1 \\\\ a_2 - b_2 \\end{pmatrix}$. Geometrically, the arrow from the tip of $\\mathbf{b}$ to the tip of $\\mathbf{a}$.",
+      "**Scalar multiplication:** multiply each component by $k$ — $k\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} = \\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$. Magnitude scales by $|k|$; a negative $k$ reverses direction."
+    ]},
+    { "type": "workedExample", "question": "Let $\\mathbf{a} = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} -2 \\\\ 5 \\end{pmatrix}$. Find the vector $\\mathbf{c} = 2\\mathbf{a} - \\mathbf{b}$. [3]", "solution": "First scale $\\mathbf{a}$ by 2, multiplying each component:\\n$2\\mathbf{a} = 2\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix}$.  [M1: correct scalar multiplication]\\n\\nThen subtract $\\mathbf{b}$ component by component, being careful with the double negative in the top row:\\n$\\mathbf{c} = \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix} - \\begin{pmatrix} -2 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 8 - (-2) \\\\ -2 - 5 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ -7 \\end{pmatrix}$.  [M1: correct subtraction]\\n\\nSo $\\mathbf{c} = \\begin{pmatrix} 10 \\\\ -7 \\end{pmatrix}$.  [A1]" },
+
+    { "type": "heading", "content": "Magnitude and unit vectors" },
+    { "type": "text", "content": "The magnitude (or modulus) of a vector is its length — a non-negative scalar written $|\\mathbf{v}|$. It comes straight from Pythagoras on the components, and it is what a question means when it asks for a distance, a speed, or 'how far'. Once you have the magnitude you can also build the **unit vector** in the same direction, a vector of length exactly 1, by dividing the vector by its own magnitude. Unit vectors are how you record a pure direction." },
+    { "type": "formula", "content": "Magnitude: $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2}$ in 2D, and $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$ in 3D. \\n Unit vector in the direction of $\\mathbf{v}$: $\\hat{\\mathbf{v}} = \\dfrac{1}{|\\mathbf{v}|}\\mathbf{v}$." },
+    { "type": "examTip", "content": "Read the demand word carefully. A request for a vector ('find the displacement', 'find the resultant velocity') needs a column-vector answer; a request for a scalar ('find the distance', 'find the speed') needs the magnitude of that vector. Giving a vector where a length is wanted — or vice versa — throws away the accuracy mark even when the arithmetic is perfect." },
+    { "type": "workedExample", "question": "A boat's engine drives it with velocity $\\mathbf{v}_b = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}$ km/h while a current flows with velocity $\\mathbf{v}_c = \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$ km/h. \\n (a) Find the resultant velocity of the boat. \\n (b) Find the boat's actual speed, correct to 3 significant figures. [4]", "solution": "**(a) Resultant velocity.** Combine the two velocities by adding components:\\n$\\mathbf{v}_r = \\mathbf{v}_b + \\mathbf{v}_c = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix} + \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 9 \\\\ 7 \\end{pmatrix}$ km/h.  [M1: adding vectors]  [A1]\\n\\n**(b) Speed.** Speed is the magnitude of the resultant velocity, applied to the vector from part (a):\\n$|\\mathbf{v}_r| = \\sqrt{9^2 + 7^2} = \\sqrt{81 + 49} = \\sqrt{130} = 11.40\\ldots$  [M1: magnitude of their resultant]\\nSo the speed is $11.4$ km/h (3 s.f.).  [A1: FT on their resultant]\\n\\nNote that $11.4 \\ne |\\mathbf{v}_b| + |\\mathbf{v}_c| = 10 + \\sqrt{10}$ — you must add the vectors before taking the magnitude." },
+
+    { "type": "heading", "content": "The scalar (dot) product" },
+    { "type": "text", "content": "The scalar product multiplies two vectors to give a single number, and it is the tool for angles. It can be computed two ways that always agree: from components, or from the two magnitudes and the angle between the vectors. Setting the two forms equal and rearranging gives a formula for the angle — and, as a special case, a one-line test for perpendicularity." },
+    { "type": "formula", "content": "Component form: $\\mathbf{a} \\cdot \\mathbf{b} = a_1 b_1 + a_2 b_2 (+\\, a_3 b_3)$. \\n Geometric form: $\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$. \\n Angle between vectors: $\\cos\\theta = \\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$. \\n Perpendicular test: $\\mathbf{a} \\perp \\mathbf{b} \\iff \\mathbf{a} \\cdot \\mathbf{b} = 0$." },
+    { "type": "text", "content": "The sign of the dot product already tells a story before you take an arccos: positive means an acute angle, zero means a right angle, and negative means an obtuse angle. That is why perpendicularity needs no angle calculation at all — if the components multiply and add to zero, the vectors meet at $90^\\circ$, because $\\cos 90^\\circ = 0$." },
+    { "type": "workedExample", "question": "The vectors $\\mathbf{a} = \\begin{pmatrix} 2 \\\\ 6 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} k \\\\ 4 \\end{pmatrix}$ are perpendicular. Find the value of $k$. [3]", "solution": "Perpendicular vectors have a zero scalar product, so set $\\mathbf{a} \\cdot \\mathbf{b} = 0$:\\n$\\mathbf{a} \\cdot \\mathbf{b} = (2)(k) + (6)(4) = 2k + 24$.  [M1: dot product in terms of $k$]\\nSet equal to zero and solve:\\n$2k + 24 = 0 \\;\\Rightarrow\\; 2k = -24$.  [M1: set dot product to 0]\\n$k = -12$.  [A1]" },
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards the correct approach — the right formula with the candidate's numbers substituted — while an accuracy mark (A) rewards a correct value and depends on the method mark it follows. Follow-through (FT) means an error made early does not have to cost you the marks that depend on it, provided each later step is carried out correctly on your own figures. But that protection only exists if the method is written down. Study how every mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "Given $\\mathbf{a} = \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} 5 \\\\ -2 \\end{pmatrix}$, find $|\\mathbf{a}|$ and the angle between $\\mathbf{a}$ and $\\mathbf{b}$. [5]", "solution": "**Model answer — full working.**\\n\\n**Magnitude of $\\mathbf{a}$.** Apply Pythagoras to the components:\\n$|\\mathbf{a}| = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5.$\\n\\n**Scalar product.** Multiply matching components and add:\\n$\\mathbf{a} \\cdot \\mathbf{b} = (3)(5) + (4)(-2) = 15 - 8 = 7.$\\n\\n**Magnitude of $\\mathbf{b}$.**\\n$|\\mathbf{b}| = \\sqrt{5^2 + (-2)^2} = \\sqrt{25 + 4} = \\sqrt{29}.$\\n\\n**Angle.** Use the angle formula:\\n$\\cos\\theta = \\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|} = \\dfrac{7}{5\\sqrt{29}}.$\\n$\\theta = \\arccos\\!\\left(\\dfrac{7}{5\\sqrt{29}}\\right) = 74.7^\\circ \\text{ (3 s.f.)}.$\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — magnitude method.** Awarded for applying $|\\mathbf{a}| = \\sqrt{3^2 + 4^2}$ — Pythagoras with the components substituted. It is the approach that scores, so it survives an arithmetic slip.\\n- **A1 — $|\\mathbf{a}| = 5$.** The accuracy mark for the correct value $5$. It depends on the M1 above.\\n- **M1 — scalar product.** Awarded for $\\mathbf{a} \\cdot \\mathbf{b} = (3)(5) + (4)(-2) = 7$, showing the component products added — including the negative one.\\n- **M1 — angle formula.** Awarded for forming $\\cos\\theta = \\dfrac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|} = \\dfrac{7}{5\\sqrt{29}}$, the dot product over the product of the magnitudes. The engine checks the structure, not just the final number.\\n- **A1 — $\\theta \\approx 74.7^\\circ$.** The final accuracy mark for the correctly rounded angle. FT applies: a candidate with a slightly different dot product or magnitude who substitutes correctly and evaluates the arccos on their own figures still earns it.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $|\\mathbf{a}|$ as $5$ or $5.0$, accepts $\\cos\\theta$ left as $\\frac{7}{5\\sqrt{29}}$ or written $0.260$, and accepts the angle as $74.7^\\circ$ or $1.30$ radians. Once a correct final answer appears, ISW (ignore subsequent working) means a later restatement does not lose the mark.\\n\\n**Bottom line:** three of the five marks are method marks that survive an arithmetic slip, and the two accuracy marks are shielded by follow-through — but only because the magnitude, the dot product and the $\\cos\\theta$ formula are all on the page. A student who writes just '$\\theta = 74.7^\\circ$' with no working risks losing 3-4 marks if a single number is off." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write the magnitude as $\\sqrt{v_1^2 + v_2^2}$, show the dot product as the sum of component products, state $\\cos\\theta = \\frac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$ before evaluating, then round at the end. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Applications: displacement and forces" },
+    { "type": "text", "content": "Vectors earn their keep in context. Displacement problems use $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$ to find the path between two positions, and the magnitude of that displacement is the straight-line distance. Velocity problems add a craft's velocity to a wind or current to get the true resultant, whose magnitude is the actual speed. Force problems add several forces acting on a body; when the resultant is the zero vector the body is in equilibrium, and a right angle between two forces is confirmed by a zero scalar product. In every case the routine is the same: model each quantity as a vector, combine with the right operation, then take a magnitude or an angle as the question demands." },
+    { "type": "workedExample", "question": "Two forces act on a point: $\\mathbf{F}_1 = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$ N and $\\mathbf{F}_2 = \\begin{pmatrix} -1 \\\\ 4 \\end{pmatrix}$ N. \\n (a) Find the resultant force $\\mathbf{R} = \\mathbf{F}_1 + \\mathbf{F}_2$. \\n (b) Find the magnitude of the resultant force, correct to 3 significant figures. [4]", "solution": "**(a) Resultant force.** Add the forces component by component:\\n$\\mathbf{R} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix} + \\begin{pmatrix} -1 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ 6 \\end{pmatrix}$ N.  [M1: adding the forces]  [A1]\\n\\n**(b) Magnitude.** Take the magnitude of the resultant from part (a):\\n$|\\mathbf{R}| = \\sqrt{4^2 + 6^2} = \\sqrt{16 + 36} = \\sqrt{52} = 7.211\\ldots$  [M1: magnitude of their resultant]\\nSo the resultant force has magnitude $7.21$ N (3 s.f.).  [A1: FT on their resultant]" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Getting the magnitude formula wrong** — the magnitude is $\\sqrt{v_1^2 + v_2^2}$, not $v_1 + v_2$ and not $v_1^2 + v_2^2$. Square the components, add, then take the square root. Signs vanish once you square, so a negative component never makes the length negative.",
+      "**Adding magnitudes instead of vectors** — $|\\mathbf{a} + \\mathbf{b}| \\ne |\\mathbf{a}| + |\\mathbf{b}|$ in general. Add the vectors first, then take the magnitude of the resultant.",
+      "**Using the wrong formula for the angle** — the angle comes from $\\cos\\theta = \\frac{\\mathbf{a}\\cdot\\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, not from the dot product alone and not from $\\tan\\theta$. Divide the scalar product by the product of the two magnitudes before taking arccos.",
+      "**Forgetting the perpendicular test is a zero dot product** — for a right angle set $\\mathbf{a}\\cdot\\mathbf{b} = 0$ and solve; do not compute an angle and hope it is $90^\\circ$. Likewise, do not confuse it with the parallel condition $\\mathbf{a} = k\\mathbf{b}$.",
+      "**Slipping on component-wise arithmetic** — add x to x and y to y, and mind double negatives: $-2 - 5 = -7$, while $8 - (-2) = 10$. Keep each row's arithmetic separate and never mix components.",
+      "**Dropping a sign in the dot product** — every component product carries its own sign, e.g. $(4)(-2) = -8$. Include the negative contributions; losing one changes both the value and the angle.",
+      "**Reversing a displacement** — $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$ is 'destination minus start'. Subtracting the wrong way gives $\\vec{BA}$, the opposite vector.",
+      "**Answering a scalar with a vector (or vice versa)** — 'distance' and 'speed' want a magnitude, a single number; 'displacement' and 'velocity' want a column vector. Match the answer type to the demand word.",
+      "**Over-rounding mid-calculation** — carry full figures such as $\\sqrt{29}$ or the calculator's value, and round only the final answer, to 3 significant figures unless told otherwise."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Everything here scales up. The addition and magnitude you practised in two dimensions work identically in three, where the same $\\mathbf{i}$, $\\mathbf{j}$, $\\mathbf{k}$ and the same dot-product angle formula describe lines and planes in space. The scalar product is the seed of the vector equation of a line and of measuring how one direction projects onto another, ideas that run through kinematics and modelling. And the discipline you have built — model each quantity as a vector, combine with the right operation, decide whether the answer is a length or an angle, and show every line so method and follow-through protect the result — is precisely what every vectors question on the exam rewards." },
+
+    { "type": "practice", "label": "Get a Paper 2 vectors calculation marked: find a magnitude and the angle between two vectors with full working", "href": "/mark?subject=ib-maths-ai-sl&topic=3.5&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra Vector Explorer", "href": "https://www.geogebra.org/m/a9y28G7G" },
+      { "label": "Khan Academy: Introduction to Vectors", "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:vectors" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "GeoGebra Vector Explorer",

@@ -5,175 +5,343 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores the application of differentiation to find the equations of tangents and normals to a curve. It then extends these concepts to solve optimisation problems, where we find the maximum or minimum values of a function, a key skill in modelling real-world scenarios.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "This lesson turns the derivative into a working tool for the geometry of curves and for real-world decision making. You will find the equation of a tangent (gradient $f'(x)$) and of a normal (gradient $-1/f'(x)$) at a point; decide where a function is increasing or decreasing; locate stationary points by solving $f'(x)=0$ and classify them as local maxima or minima; and, above all, solve optimisation problems — building a function to maximise or minimise, using a constraint to reduce it to one variable, differentiating, solving $f'=0$, and interpreting the answer in context. Every worked example is laid out exactly the way our marking engine awards marks, because on an exam how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Calculate the gradient of a curve at a given point using differentiation.",
-    "Determine the equations of the tangent and the normal to a curve at a specific point.",
-    "Find the coordinates of stationary points and determine their nature (local maximum, local minimum, or stationary point of inflection).",
-    "Model and solve practical optimisation problems by setting up a function and finding its maximum or minimum value."
+    "Find the equation of a tangent to a curve at a given point, using the gradient $f'(x)$.",
+    "Find the equation of a normal to a curve at a given point, using the gradient $-1/f'(x)$.",
+    "Determine where a function is increasing ($f'(x)>0$) or decreasing ($f'(x)<0$).",
+    "Locate stationary points by solving $f'(x)=0$ and classify them as local maxima or minima.",
+    "Solve optimisation problems: form a function, use a constraint to reduce it to one variable, differentiate, solve $f'=0$, and interpret the result in context with units.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "5.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Calculus: Finding Peaks and Slopes",
-    "summary": "Differentiation allows us to find the exact steepness (gradient) of a curve at any point. We can use this to find the highest and lowest points of a function, which is crucial for making optimal decisions.",
-    "analogy": "Imagine you're on a rollercoaster. The derivative tells you the steepness of the track at any instant. A tangent is like a short, straight plank of wood resting on the track at your position, showing the direction you're momentarily heading. The normal is like a support beam sticking straight out from the track, at a right angle to the tangent. Optimisation is like finding the exact location of the highest peak and the lowest dip on the entire ride.",
+    "title": "Calculus on a Rollercoaster",
+    "summary": "Differentiation tells us the steepness (gradient) of a curve at any point. We can use this to find the line that just touches the curve (a tangent), the line at right angles to it (a normal), and the highest or lowest points, which is exactly what optimising a real situation comes down to.",
+    "analogy": "Imagine you are on a rollercoaster. The derivative, $f'(x)$, is how steep the track is at any exact moment. A tangent is a straight ramp that matches the track's steepness at that point — the direction you'd fly off in. A normal is a support beam sticking out at a right angle. The highest peaks and lowest dips of the ride are the stationary points, where the track is momentarily flat and $f'(x)=0$.",
     "steps": [
-      "Formulate a function for the quantity you want to maximise or minimise (e.g., Area, A(x)). Identify any constraints.",
-      "Differentiate the function with respect to the variable (e.g., find dA/dx).",
-      "Set the derivative equal to zero and solve for the variable (dA/dx = 0). This gives the location of potential maximum or minimum points.",
-      "Use the second derivative test or a sign diagram of the first derivative to confirm whether the point corresponds to a maximum or a minimum."
+      "Differentiate the function $f(x)$ to find the gradient function, $f'(x)$.",
+      "For a tangent or normal, substitute the given x-coordinate into $f'(x)$ to get the tangent gradient $m_T$. The normal's gradient is the negative reciprocal, $m_N = -1/m_T$.",
+      "Use the point-gradient formula $y - y_1 = m(x - x_1)$ with the point and the correct gradient to write the line's equation.",
+      "For optimisation, model the quantity as a function of one variable (using a constraint to eliminate the others), set $f'(x)=0$, solve, then interpret in context and give units."
     ]
   },
+  "keyConcepts": [
+    "tangents and normals",
+    "increasing and decreasing functions",
+    "stationary points and classification",
+    "optimisation with a constraint"
+  ],
   "flashcards": [
     {
-      "front": "What is the gradient of the tangent to the curve $y=f(x)$ at the point $x=a$?",
-      "back": "The gradient of the tangent is the value of the derivative at that point, $m_T = f'(a)$."
+      "front": "What is a tangent to a curve?",
+      "back": "A straight line that touches a curve at a single point and has the same gradient as the curve there. Its gradient at $x=a$ is $m_T = f'(a)$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the relationship between the gradient of the tangent ($m_T$) and the gradient of the normal ($m_N$)?",
-      "back": "They are negative reciprocals of each other. $m_N = -\\frac{1}{m_T}$. Their product is -1."
+      "front": "What is a normal to a curve?",
+      "back": "A straight line perpendicular to the tangent at the point of contact. Its gradient is the negative reciprocal of the tangent's, $m_N = -\\frac{1}{f'(a)}$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "How are the gradients of a tangent ($m_T$) and a normal ($m_N$) related?",
+      "back": "They are negative reciprocals: $m_N = -\\frac{1}{m_T}$, equivalently $m_T \\times m_N = -1$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "How do you find the gradient of the tangent to $y=f(x)$ at $x=a$?",
+      "back": "Differentiate to get $f'(x)$, then substitute: $m_T = f'(a)$.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "When is a function increasing or decreasing?",
+      "back": "A function is increasing where $f'(x)>0$ and decreasing where $f'(x)<0$. The boundaries between these regions are the stationary points, where $f'(x)=0$.",
+      "pillLabel": "Concept"
     },
     {
       "front": "What is a stationary point?",
-      "back": "A point on a curve where the gradient is zero. That is, a point $(c, f(c))$ where $f'(c) = 0$."
+      "back": "A point where the gradient is zero, so the tangent is horizontal. It occurs where $f'(x)=0$ and may be a local maximum, a local minimum, or a stationary point of inflexion.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "How do you find the equation of a tangent line?",
-      "back": "1. Find the coordinates $(x_1, y_1)$ of the point. 2. Find the derivative $f'(x)$. 3. Calculate the gradient $m = f'(x_1)$. 4. Substitute into $y - y_1 = m(x - x_1)$."
+      "front": "How do you classify a stationary point in AI SL?",
+      "back": "Check the sign of $f'$ just before and just after the point, or read the shape from your GDC graph. $+\\to-$ is a local maximum; $-\\to+$ is a local minimum; no sign change is a point of inflexion. The second derivative test is NOT required in AI SL.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What are the three types of stationary points?",
-      "back": "Local maximum, local minimum, and stationary point of inflection."
+      "front": "What is a local maximum?",
+      "back": "A stationary point where the value is greater than at nearby points — a 'peak'. The gradient changes from positive, to zero, to negative.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the Second Derivative Test for a stationary point at $x=c$?",
-      "back": "If $f'(c)=0$: If $f''(c) < 0$, it's a local maximum. If $f''(c) > 0$, it's a local minimum. If $f''(c) = 0$, the test is inconclusive."
+      "front": "What is a local minimum?",
+      "back": "A stationary point where the value is less than at nearby points — a 'trough'. The gradient changes from negative, to zero, to positive.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What should you do if the second derivative test is inconclusive ($f''(c)=0$)?",
-      "back": "Use the first derivative test. Check the sign of $f'(x)$ just before and just after the stationary point $x=c$ to determine its nature."
+      "front": "What is the first step in any optimisation problem?",
+      "back": "Write the quantity to be optimised (area, volume, cost) as a function, then use any constraint to express it in terms of a single variable before differentiating.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is the first step in solving an optimisation problem?",
-      "back": "Identify the quantity to be optimised (e.g., area, volume, profit) and write it as a function of a single variable. Use any given constraints to eliminate other variables."
+      "front": "Why must you use the constraint before differentiating?",
+      "back": "The single-variable derivative you know can only be applied to a function of one variable. The constraint (a fixed perimeter, volume or length) lets you eliminate the extra variable so the objective depends on just one.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "Common Trap: In an optimisation problem on a closed interval $[a, b]$, what must you check besides the stationary points?",
-      "back": "You must also evaluate the function at the endpoints, $f(a)$ and $f(b)$, as the global maximum or minimum could occur there."
+      "front": "Common trap: finding the normal's equation.",
+      "back": "After computing the tangent gradient $m_T$, do NOT reuse $m_T$ (or $-m_T$) for the normal. The normal's gradient is the negative reciprocal $m_N = -1/m_T$.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is a point of inflection?",
-      "back": "A point where the concavity of the curve changes (from concave up to concave down, or vice versa). A stationary point of inflection is one where the gradient is also zero."
+      "front": "Common trap: what does the optimisation question actually ask?",
+      "back": "Re-read it. Are you asked for the value of $x$ that gives the maximum, or the maximum value itself (e.g. the area)? Answering the wrong one throws away the final mark.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "At the point where $x=a$ on $y=f(x)$, the gradient of the NORMAL is:",
+      "options": [
+        "$f'(a)$",
+        "$-\\dfrac{1}{f'(a)}$",
+        "$-f'(a)$",
+        "$\\dfrac{1}{f'(a)}$"
+      ],
+      "answer": "$-\\dfrac{1}{f'(a)}$"
     },
     {
-      "front": "How do you find the equation of a normal line?",
-      "back": "1. Find the gradient of the tangent, $m_T$. 2. Calculate the gradient of the normal, $m_N = -1/m_T$. 3. Substitute the point $(x_1, y_1)$ and $m_N$ into $y - y_1 = m_N(x - x_1)$."
+      "prompt": "A curve has a stationary point where:",
+      "options": [
+        "$f(x) = 0$",
+        "$f'(x) = 0$",
+        "$f''(x) = 0$",
+        "$f(x) = f'(x)$"
+      ],
+      "answer": "$f'(x) = 0$"
+    },
+    {
+      "prompt": "A rectangle of width $x$ and length $y$ has fixed perimeter $20$. To maximise the area with one-variable calculus, you should first:",
+      "options": [
+        "Differentiate $A = xy$ with respect to both $x$ and $y$",
+        "Use $2x+2y=20$ to write $y=10-x$, then $A(x)=x(10-x)$",
+        "Set $x = y$ immediately",
+        "Set the perimeter equal to zero"
+      ],
+      "answer": "Use $2x+2y=20$ to write $y=10-x$, then $A(x)=x(10-x)$"
+    },
+    {
+      "prompt": "You solved $f'(x)=0$ and found $x=50$. In AI SL, an acceptable way to show this gives a MAXIMUM is:",
+      "options": [
+        "Note that $50$ is a whole number",
+        "Check $f'$ changes from $+$ to $-$ across $x=50$ (or read a peak on the GDC)",
+        "Check that $f(50)>0$",
+        "Check that $f'(50)>0$"
+      ],
+      "answer": "Check $f'$ changes from $+$ to $-$ across $x=50$ (or read a peak on the GDC)"
+    },
+    {
+      "prompt": "A function is DECREASING on an interval when, throughout it:",
+      "options": [
+        "$f'(x) > 0$",
+        "$f'(x) < 0$",
+        "$f'(x) = 0$",
+        "$f(x) < 0$"
+      ],
+      "answer": "$f'(x) < 0$"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between a tangent and a normal?",
-      "a": "A tangent is a line that touches a curve at a single point and has the same gradient as the curve at that point. A normal is a line that is perpendicular to the tangent at that same point."
+      "q": "How do I classify a stationary point without the second derivative?",
+      "a": "In AI SL the second derivative test is not required. Use either a first-derivative sign check — evaluate $f'$ just before and just after the point: $+\\to-$ is a maximum, $-\\to+$ is a minimum, no change is a point of inflexion — or simply graph the function on your GDC and read whether it is a peak or a trough. Both are fully acceptable in an exam."
     },
     {
-      "q": "What happens if the second derivative test gives zero, i.e., $f''(c)=0$?",
-      "a": "The test is inconclusive. The stationary point at $x=c$ could be a local maximum, a local minimum, or a stationary point of inflection. You must revert to the first derivative test (using a sign diagram for $f'(x)$) to determine its nature."
+      "q": "What is the difference between a local maximum and a global maximum?",
+      "a": "A local maximum is higher than the points immediately around it, like the top of a small hill. A global maximum is the single highest value across the whole domain. For AI SL we usually find local maxima and minima unless a specific interval is given, in which case you also compare the endpoints."
     },
     {
-      "q": "For optimisation problems, do I always have to use calculus?",
-      "a": "In an exam question on this topic, you will be expected to show a calculus-based method (differentiating and setting to zero) to earn full marks. However, you can and should use your GDC's graphing function to plot the function and find its minimum/maximum value to verify your analytical answer."
+      "q": "What if I find a point where $f'(x)=0$ but it is neither a maximum nor a minimum?",
+      "a": "That is a stationary point of inflexion: the curve flattens to a horizontal tangent but then carries on in the same direction. The gradient is zero yet does not change sign (e.g. $+,0,+$). A classic example is $y=x^3$ at the origin."
     },
     {
-      "q": "How do I handle optimisation problems with a restricted domain, for example, finding the maximum profit for $x$ items where $0 \\le x \\le 100$?",
-      "a": "You must find the stationary points within the domain as usual. However, the absolute maximum or minimum value could occur at the endpoints of the interval. Therefore, you must test the value of the function at the stationary points *and* at the endpoints (in this case, at $x=0$ and $x=100$) and compare them to find the global maximum/minimum."
+      "q": "In an optimisation problem, how do I know my stationary point is the maximum or minimum I want?",
+      "a": "The quickest check is to graph the modelled function on your GDC and look at the shape — a peak is a maximum, a trough is a minimum. The context usually settles it too: if you are minimising cost, the stationary point is almost certainly the minimum. Either way, show the justification, then answer the exact quantity the question asked for."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In this lesson, we move from the abstract concept of the derivative as a rate of change to its powerful geometric and practical applications. We will learn how to find the equation of a line that just touches a curve at a point (a tangent) and the line perpendicular to it (a normal). More importantly, we will use differentiation to solve optimisation problems – a cornerstone of applied mathematics used in fields from engineering to economics to find the 'best' possible outcome."
+      "content": "In the previous topic you learned to find the derivative, the instantaneous rate of change of a function. Now you will put it to work. Tangents and normals describe the direction of a curve at a point; increasing and decreasing behaviour and stationary points describe its shape; and optimisation uses all of this to find the best possible outcome in a real situation — the maximum area, the minimum cost. Both rest on one idea: the derivative measures a rate of change, and setting it to zero locates the points that matter. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "Tangents and Normals"
+      "content": "Tangents and normals"
     },
     {
       "type": "text",
-      "content": "The derivative of a function $f(x)$ at a point $x=a$, denoted $f'(a)$, gives us the instantaneous rate of change of the function at that point. Geometrically, this is the gradient of the tangent line to the curve $y=f(x)$ at the point $(a, f(a))$. Once we have the gradient and a point, we can find the equation of the tangent line."
+      "content": "A tangent is a straight line that 'just touches' a curve at a point, sharing the curve's gradient there. The derivative $f'(x)$ gives that gradient at any value of $x$. A normal is the line perpendicular to the tangent at the same point, so its gradient is the negative reciprocal of the tangent's. To write either line you need just two things: a point on it, and its gradient."
     },
     {
       "type": "formula",
-      "content": "Equation of a line: $y - y_1 = m(x - x_1)$"
-    },
-    {
-      "type": "text",
-      "content": "The normal to a curve at a point is the line that is perpendicular to the tangent at that same point. If the tangent has a gradient of $m_T$, the normal will have a gradient of $m_N = -\\frac{1}{m_T}$. This is because the product of the gradients of two perpendicular lines (that are not horizontal/vertical) is -1."
-    },
-    {
-      "type": "workedExample",
-      "question": "Find the equation of the tangent and the normal to the curve $f(x) = 2x^3 - 4x + 1$ at the point where $x=1$.",
-      "solution": "1.  **Find the coordinates of the point.**\nWhen $x=1$, $y = f(1) = 2(1)^3 - 4(1) + 1 = 2 - 4 + 1 = -1$. \nSo the point is $(1, -1)$. **(A1)**\n\n2.  **Find the derivative of the function.**\n$f'(x) = \\frac{d}{dx}(2x^3 - 4x + 1) = 6x^2 - 4$. **(M1)**\n\n3.  **Find the gradient of the tangent.**\nThe gradient of the tangent at $x=1$ is $m_T = f'(1) = 6(1)^2 - 4 = 2$. **(A1)**\n\n4.  **Find the equation of the tangent.**\nUsing $y - y_1 = m_T(x - x_1)$ with point $(1, -1)$ and $m_T = 2$.\n$y - (-1) = 2(x - 1)$ **(M1)**\n$y + 1 = 2x - 2$\n$y = 2x - 3$. **(A1)**\n\n5.  **Find the gradient of the normal.**\n$m_N = -\\frac{1}{m_T} = -\\frac{1}{2}$. **(M1)**\n\n6.  **Find the equation of the normal.**\nUsing $y - y_1 = m_N(x - x_1)$ with point $(1, -1)$ and $m_N = -\\frac{1}{2}$.\n$y - (-1) = -\\frac{1}{2}(x - 1)$ **(M1)**\n$y + 1 = -\\frac{1}{2}x + \\frac{1}{2}$\n$y = -\\frac{1}{2}x - \\frac{1}{2}$. **(A1)**"
-    },
-    {
-      "type": "heading",
-      "content": "Stationary Points and their Nature"
-    },
-    {
-      "type": "text",
-      "content": "Stationary points are critical in analysing the behaviour of a function. They occur where the function is momentarily 'flat', meaning its gradient is zero. These points can be local maxima (peaks), local minima (troughs), or stationary points of inflection (flat steps). To find them, we set the first derivative to zero, $f'(x)=0$, and solve for $x$. To classify them, we can use either the first or second derivative test."
+      "content": "At a point $(a, f(a))$ on the curve $y=f(x)$:\n\nGradient of the tangent: $m_T = f'(a)$\n\nGradient of the normal: $m_N = -\\dfrac{1}{m_T} = -\\dfrac{1}{f'(a)}$\n\nEquation of a line through $(x_1,y_1)$: $y - y_1 = m(x - x_1)$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Finding Stationary Points:** Solve $f'(x) = 0$ for $x$.",
-        "**First Derivative Test (Sign Diagram):** Check the sign of $f'(x)$ on either side of the stationary point. A change from + to - indicates a local maximum. A change from - to + indicates a local minimum. No change indicates a stationary point of inflection.",
-        "**Second Derivative Test:** Find the second derivative, $f''(x)$. For a stationary point at $x=c$: if $f''(c) > 0$, it's a local minimum. If $f''(c) < 0$, it's a local maximum. If $f''(c) = 0$, the test is inconclusive."
+        "To write a tangent or normal you need a point $(x_1, y_1)$ and a gradient $m$.",
+        "Differentiate first to get the gradient function $f'(x)$.",
+        "Substitute the x-coordinate of the point into $f'(x)$ to get the tangent gradient $m_T$.",
+        "For a normal, take the negative reciprocal: $m_N = -1/m_T$.",
+        "Substitute the point and the chosen gradient into $y-y_1=m(x-x_1)$."
       ]
     },
     {
+      "type": "workedExample",
+      "question": "Find the equation of the tangent and the equation of the normal to the curve $f(x) = x^3 - 5x + 2$ at the point where $x=-2$. Give each answer in the form $ax+by+d=0$ where $a, b, d \\in \\mathbb{Z}$.",
+      "solution": "**Find the point.**\n$y_1 = f(-2) = (-2)^3 - 5(-2) + 2 = -8 + 10 + 2 = 4$, so the point is $(-2, 4)$.  [M1: substitute to find $y_1$]\n\n**Differentiate.**\n$f'(x) = 3x^2 - 5$.  [A1: correct derivative]\n\n**Tangent gradient at $x=-2$.**\n$m_T = f'(-2) = 3(-2)^2 - 5 = 12 - 5 = 7$.  [M1: evaluate $f'$ at the point]\n\n**Equation of the tangent.** Using $y - y_1 = m(x - x_1)$:\n$y - 4 = 7(x + 2) \\Rightarrow y - 4 = 7x + 14$\n$7x - y + 18 = 0$.  [A1: correct tangent]\n\n**Normal gradient.** The negative reciprocal:\n$m_N = -\\dfrac{1}{m_T} = -\\dfrac{1}{7}$.  [M1: negative reciprocal]\n\n**Equation of the normal.**\n$y - 4 = -\\dfrac{1}{7}(x + 2) \\Rightarrow 7(y - 4) = -(x + 2)$\n$7y - 28 = -x - 2$\n$x + 7y - 26 = 0$.  [A1: correct normal]"
+    },
+    {
       "type": "examTip",
-      "content": "In Paper 1, you must show your working for differentiation. However, you can use your GDC's equation solver to find the roots of $f'(x)=0$, which can save time and prevent algebraic errors. Always state the equation you are solving. If the second derivative test is inconclusive, you *must* use the first derivative test (a sign diagram) to classify the point."
+      "content": "Whenever you have to show analytic working, you can still use your GDC to check: graph the original curve together with your tangent and normal, then zoom in on the point. The tangent should touch the curve there and the two lines should look perpendicular. If they don't, you have probably slipped on the gradient — most often by forgetting the negative reciprocal for the normal."
     },
     {
       "type": "heading",
-      "content": "Optimisation Problems"
+      "content": "Increasing, decreasing and stationary points"
     },
     {
       "type": "text",
-      "content": "Optimisation is the process of finding the maximum or minimum value of a quantity given certain constraints. This is one of the most important applications of calculus. The method involves creating a mathematical model (a function) for the quantity to be optimised, and then using differentiation to find the stationary point that corresponds to the desired maximum or minimum value."
+      "content": "The sign of the derivative tells you which way a curve is heading. Where $f'(x)>0$ the function is increasing (sloping up); where $f'(x)<0$ it is decreasing (sloping down). The dividing lines between these regions are the stationary points, where the gradient is exactly zero and the tangent is horizontal. You find them by solving $f'(x)=0$, and you classify each one as a local maximum (a peak, $f'$ going $+\\to-$), a local minimum (a trough, $f'$ going $-\\to+$), or a point of inflexion (no sign change). In AI SL the second derivative test is not required — a first-derivative sign check or the shape of the GDC graph is enough."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Increasing where $f'(x)>0$; decreasing where $f'(x)<0$.",
+        "Stationary points occur where $f'(x) = 0$.",
+        "Local maximum: $f'$ changes from positive to negative (a peak).",
+        "Local minimum: $f'$ changes from negative to positive (a trough).",
+        "Classify by the sign of $f'$ either side, or by reading the shape on your GDC — no second derivative needed in AI SL."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "A company is producing a cylindrical can that must hold a volume of $1000\\text{ cm}^3$. The material for the top and bottom costs $0.05\\text{ pence/cm}^2$ and the material for the curved side costs $0.025\\text{ pence/cm}^2$. Find the radius of the can that minimises the production cost.",
-      "solution": "1.  **Define variables and formulas.**\nLet radius be $r$ and height be $h$. \nVolume $V = \\pi r^2 h = 1000$. **(M1)**\nArea of top/bottom = $2\\pi r^2$. Area of side = $2\\pi rh$. \nCost $C = 0.05(2\\pi r^2) + 0.025(2\\pi rh) = 0.1\\pi r^2 + 0.05\\pi rh$. **(M1)**\n\n2.  **Express Cost as a function of one variable.**\nFrom the volume constraint, $h = \\frac{1000}{\\pi r^2}$. **(M1)**\nSubstitute $h$ into the cost function:\n$C(r) = 0.1\\pi r^2 + 0.05\\pi r \\left(\\frac{1000}{\\pi r^2}\\right)$ \n$C(r) = 0.1\\pi r^2 + \\frac{50}{r} = 0.1\\pi r^2 + 50r^{-1}$. **(A1)**\n\n3.  **Differentiate and set to zero.**\nFor a minimum cost, $\\frac{dC}{dr} = 0$. \n$\\frac{dC}{dr} = 2(0.1\\pi r) - 50r^{-2} = 0.2\\pi r - \\frac{50}{r^2}$. **(M1)(A1)**\nSet $\\frac{dC}{dr} = 0$: \n$0.2\\pi r = \\frac{50}{r^2}$ \n$0.2\\pi r^3 = 50$ \n$r^3 = \\frac{50}{0.2\\pi} = \\frac{250}{\\pi}$. **(M1)**\n$r = \\sqrt[3]{\\frac{250}{\\pi}} \\approx 4.301\\text{ cm}$. **(A1)**\n\n4.  **Confirm it is a minimum (Second Derivative Test).**\n$\\frac{d^2C}{dr^2} = 0.2\\pi - (-2)50r^{-3} = 0.2\\pi + \\frac{100}{r^3}$. **(M1)**\nSince $r$ must be positive, $r^3$ is positive, so $\\frac{d^2C}{dr^2}$ is always positive. \nTherefore, the cost is minimised at this radius. **(R1)**\n\nThe radius that minimises the cost is $r = 4.30$ cm (3 s.f.). **(A1)**"
+      "question": "Consider $f(x) = x^3 - 3x^2 - 9x + 5$.\n(a) Find $f'(x)$ and the x-coordinates of the stationary points.\n(b) State the interval on which $f$ is decreasing.\n(c) Classify each stationary point as a local maximum or a local minimum. [6]",
+      "solution": "**(a)** Differentiate:\n$f'(x) = 3x^2 - 6x - 9$.  [A1]\nSet $f'(x)=0$: $3x^2 - 6x - 9 = 0 \\Rightarrow x^2 - 2x - 3 = 0 \\Rightarrow (x-3)(x+1)=0$.  [M1: set derivative to zero and solve]\nSo $x = -1$ and $x = 3$.  [A1]\n\n**(b)** Between the stationary points the parabola $f'$ is below the axis, so $f'(x)<0$ for $-1 < x < 3$. Hence $f$ is decreasing on $-1 < x < 3$.  [A1: correct interval]\n\n**(c)** Check the sign of $f'$ either side of each root.\nAt $x=-1$: $f'$ goes from $+$ (e.g. $f'(-2)=15>0$) to $-$, so $x=-1$ is a **local maximum**.  [A1]\nAt $x=3$: $f'$ goes from $-$ to $+$ (e.g. $f'(4)=15>0$), so $x=3$ is a **local minimum**.  [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "A quick way to sign-check a stationary point is to test one convenient value of $x$ on each side in $f'(x)$ — you only care about the sign, not the size. On a calculator paper you can skip this and simply graph $f$ to read off which stationary point is the peak and which is the trough."
+    },
+    {
+      "type": "heading",
+      "content": "Optimisation"
+    },
+    {
+      "type": "text",
+      "content": "Optimisation is where differentiation earns its keep: finding the largest area, the greatest volume, the least cost or material. The strategy never changes. Write the quantity you care about — the objective — as a function. If it depends on more than one variable, use the constraint (a fixed perimeter, a fixed volume, a fixed length of fencing) to eliminate all but one variable. Then differentiate, solve $f'(x)=0$ to find the stationary point, justify that it is the maximum or minimum you want, and finally answer the exact quantity the question asked for, with units. The hardest step for most candidates is reducing to one variable — get that right and the calculus is routine."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Objective function:** write the quantity to optimise as a function, e.g. $A(x)$ for area or $C(r)$ for cost.",
+        "**Constraint:** use the fixed information to express the objective in terms of a single variable — this is the step candidates most often trip on.",
+        "**Differentiate and solve:** compute the derivative and solve $f'(x)=0$ for the stationary point.",
+        "**Justify and conclude:** confirm a maximum ($f'$ changing $+\\to-$, or a peak on the GDC) or a minimum, then re-read the question and state the quantity it asked for, with units."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A rectangular garden is enclosed by a fence. One side runs along a stone wall and needs no fencing, so only three sides are fenced. The total length of fencing available is 40 metres. Find the dimensions of the garden that maximise its area, and state that maximum area. [6]",
+      "solution": "**Define variables.** Let the two sides perpendicular to the wall each have length $x$ m, and the side parallel to the wall have length $y$ m.\n\n**Constraint (fencing).** Three sides are fenced: $2x + y = 40$.  [M1: correct constraint]\n\n**Objective (area).** $A = xy$.  [M1: area expression]\n\n**Reduce to one variable.** From the constraint, $y = 40 - 2x$, so\n$A(x) = x(40 - 2x) = 40x - 2x^2$.  [A1: single-variable function]\n\n**Differentiate and solve.**\n$A'(x) = 40 - 4x$; setting $A'(x)=0$ gives $40 - 4x = 0 \\Rightarrow x = 10$ m.  [M1 for $A'=0$, A1 for $x=10$]\n\n**Justify and conclude.** $A'$ changes from $+$ (for $x<10$) to $-$ (for $x>10$), so $x=10$ gives a maximum. Then $y = 40 - 2(10) = 20$ m, and the maximum area is\n$A = 10 \\times 20 = 200\\text{ m}^2$.  [A1: dimensions $10\\text{ m}\\times 20\\text{ m}$ and $A_{\\max}=200\\text{ m}^2$]"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw and label a diagram before writing equations — it makes the constraint and the objective obvious and stops you optimising the wrong quantity. Then, before your final line, re-read the question: it may want the dimensions, the maximum value, or both. Give exactly what is asked, with units."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using the tangent gradient for the normal** — the normal's gradient is the negative reciprocal $m_N=-1/m_T$, not $m_T$ or $-m_T$.",
+        "**Thinking a stationary point needs $f(x)=0$** — it needs $f'(x)=0$. Setting the function itself to zero finds x-intercepts, a different thing entirely.",
+        "**Not reducing to one variable before differentiating** — you cannot apply the single-variable derivative to $A=xy$; substitute using the constraint first.",
+        "**Differentiating the constraint instead of the objective** — optimise the quantity the question asks about, and use the fixed information only to eliminate a variable.",
+        "**Solving $f'(x)=0$ but never checking max vs min** — show a sign change in $f'$ (or read the GDC shape). No justification risks the reasoning mark.",
+        "**Answering the wrong quantity** — giving the $x$-value when the maximum area was wanted (or vice versa). Re-read and match the answer to the question.",
+        "**Dropping units** — areas in m$^2$, volumes in cm$^3$, lengths in m. A number with no unit can lose the final accuracy mark."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In an exam the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct final step performed on your own earlier (wrong) value still scores, ISW ('ignore subsequent working') means a correct answer is not un-marked by a later fumble, and equivalent correct forms are accepted. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A farmer encloses a rectangular field against a wall using 200 m of fencing on three sides. If the width is $x$, the area is $A = x(200-2x)$. Find the value of $x$ that maximises the area, and the maximum area. [5]",
+      "solution": "**Model answer — full working.**\n\n**Expand and differentiate.**\n$A = x(200 - 2x) = 200x - 2x^2$, so\n$\\dfrac{dA}{dx} = 200 - 4x$.\n\n**Set the derivative to zero and solve.**\n$200 - 4x = 0 \\Rightarrow 4x = 200 \\Rightarrow x = 50\\text{ m}$.\n\nSince $\\dfrac{dA}{dx}=200-4x$ changes from positive to negative as $x$ passes $50$, this is a maximum.\n\n**Maximum area.**\n$A_{\\max} = 50\\,(200 - 2(50)) = 50\\,(200 - 100) = 50 \\times 100 = 5000\\text{ m}^2$.\n\n**Final answer:** the area is maximised at $x = 50$ m, giving a maximum area of $5000\\text{ m}^2$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — expand and differentiate.** Awarded for expanding to $A=200x-2x^2$ and attempting the derivative (powers reduced correctly). This is a METHOD mark: it stands even if a coefficient later slips.\n- **A1 — correct derivative.** Awarded for $\\dfrac{dA}{dx} = 200 - 4x$. This accuracy mark depends on the M1 above.\n- **M1 — set the derivative to zero and solve.** Awarded for setting THEIR $\\dfrac{dA}{dx}=0$ and solving. Because it acts on 'their derivative', a student who mis-expanded still earns this method mark for the correct approach.\n- **A1 — correct $x$.** Awarded for $x = 50$ m. Accept the value with or without the unit; ISW means a correct value is not lost to an unnecessary extra line.\n- **A1 — maximum area.** Awarded for $A_{\\max} = 5000\\text{ m}^2$. Follow-through (FT) applies: a student who found a wrong $x$ but then correctly substituted it back to get their area still earns this mark on their own figure.\n\n**Accept equivalent forms.** The engine marks the mathematics, not the formatting: it accepts $x=50$ or $x=50\\text{ m}$, accepts the area written as $5000$ or $5000\\text{ m}^2$ or $5\\times10^3\\text{ m}^2$, and does not require the sign-change justification to be phrased in any fixed way.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip and the accuracy marks are shielded by FT and ISW. A student who writes only '$x=50$, area $=5000$' with no working risks losing 3–4 marks if a number is wrong; a student who shows $A=200x-2x^2$, the differentiation, $\\frac{dA}{dx}=0$ solved, and the substitution back keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: expand and write $\\frac{dA}{dx}$, show $\\frac{dA}{dx}=0$ being solved, note the max/min check, then substitute back for the value asked, each with its unit. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Using your GDC effectively"
+    },
+    {
+      "type": "text",
+      "content": "Your GDC is indispensable for checking analytic work and for tackling harder calculator-paper problems. Graph a function to read off maxima and minima directly, or use the built-in maximum/minimum finder over a sensible interval. The numerical derivative feature (often nDeriv or d/dx) gives the gradient at a point without algebra, which is perfect for verifying a tangent gradient. And when you optimise, always check the domain: lengths, areas and volumes must be positive, so restrict your search to sensible values of the variable."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Everything here is one skill — differentiate, set the derivative to zero, interpret the result — applied to two contexts: the geometry of a curve (tangents, normals, stationary points) and the optimisation of a real quantity. That same skill returns immediately in integration, where you reverse differentiation, and in the modelling questions that dominate Paper 2. Master the habit — model the quantity, reduce to one variable, solve $f'=0$, then justify and interpret — and the rest of calculus becomes variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.2"
+      "label": "Get a Paper 2 problem marked: solve a tangent, normal or optimisation question with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GeoGebra Tangent Line Simulator",
-          "href": "https://www.geogebra.org/m/c4FBxPEV"
+          "label": "GeoGebra Tangent Line Simulation",
+          "href": "https://www.geogebra.org/m/c3vj7vsp"
         },
         {
-          "label": "Optimisation Problem Visualiser",
-          "href": "https://www.geogebra.org/m/W234yqgH"
+          "label": "Optimization Problem Examples",
+          "href": "https://www.mathsisfun.com/calculus/optimization.html"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
-    "title": "GeoGebra Tangent Line Simulator",
-    "embedUrl": "https://www.geogebra.org/classic?material=c4FBxPEV",
-    "launchUrl": "https://www.geogebra.org/classic?material=c4FBxPEV",
-    "hint": "Use “GeoGebra Tangent Line Simulator” — shift curves or drag points to see equilibrium and slopes change.",
+    "title": "GeoGebra Tangent Line Simulation",
+    "embedUrl": "https://www.geogebra.org/classic?material=c3vj7vsp",
+    "launchUrl": "https://www.geogebra.org/classic?material=c3vj7vsp",
+    "hint": "Use “GeoGebra Tangent Line Simulation” — shift curves or drag points to see equilibrium and slopes change.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "GeoGebra",

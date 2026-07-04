@@ -1,181 +1,332 @@
 {
   "slug": "4-3-correlation-and-regression-pearson-and-spearman",
   "topicCode": "4.3",
+  "unit": {
+    "code": "4",
+    "title": "Statistics and probability"
+  },
   "title": "Correlation and regression: Pearson and Spearman",
   "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces the two primary methods for quantifying the relationship between two variables: Pearson's product-moment correlation coefficient for linear relationships and Spearman's rank correlation coefficient for monotonic relationships. It focuses on using a GDC for calculation and interpreting the results in context, including hypothesis testing.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Bivariate data asks a single question: as one quantity changes, does the other move with it? This lesson builds the full 4.3 toolkit for answering that honestly. You will read a scatter diagram for the direction and strength of an association; quote Pearson's product-moment correlation coefficient $r$ from the GDC and interpret it on the $-1 \\le r \\le 1$ scale; rank raw data to find Spearman's rank correlation coefficient $r_s$ when the relationship is monotonic rather than straight-line, or when an outlier would distort $r$; find the least-squares regression line of $y$ on $x$ on the GDC and use it to predict — distinguishing safe interpolation from dangerous extrapolation; and separate correlation from causation. Because 4.3 lives on Paper 2, the calculator does the arithmetic, so the marks are for choosing the right coefficient, showing the method the examiner needs, and interpreting the number in context. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Distinguish between linear and monotonic relationships and select the appropriate correlation coefficient (Pearson's or Spearman's).",
-    "Use a GDC to calculate Pearson's (r) and Spearman's (rs) correlation coefficients from a given dataset.",
-    "Interpret the strength and direction of a correlation based on the coefficient's value.",
-    "Understand the concept of correlation vs. causation and the effect of outliers."
+    "Draw and read scatter diagrams, describing an association by its direction (positive or negative) and its strength (from very weak to strong).",
+    "Use a GDC to find Pearson's product-moment correlation coefficient $r$, and interpret it on the scale $-1 \\le r \\le 1$ as strength and direction of a linear relationship.",
+    "Rank bivariate data and use it to find Spearman's rank correlation coefficient $r_s$, recognising when a monotonic or outlier-prone data set makes $r_s$ the appropriate measure.",
+    "Find the least-squares regression line of $y$ on $x$ from the GDC and use it to predict, distinguishing reliable interpolation from unreliable extrapolation.",
+    "Explain why correlation does not imply causation, and use the fact that the mean point $(\\bar{x}, \\bar{y})$ always lies on the regression line."
   ],
+  "syllabusObjectivesCovered": [
+    "4.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Measuring Stickiness",
-    "summary": "Correlation coefficients are like a special ruler that measures how 'sticky' two sets of data are to each other. This ruler gives a precise score from -1 to +1, telling us how strongly and in what direction the variables are related.",
-    "analogy": "Imagine you're at a funfair and see a 'Test Your Strength' game. Some people hit the bell every time, others never do. You suspect that taller people might be stronger. Correlation is the tool you'd use to check this suspicion. Instead of just guessing, you could measure each person's height and their score on the game. A correlation coefficient would then give you a single number, say +0.8, telling you there's a strong tendency for taller people to get higher scores. It quantifies the relationship you've observed.",
+    "title": "Do They Move Together?",
+    "summary": "Correlation squeezes the relationship between two variables into one honest number between $-1$ and $1$: its sign tells you the direction (do they rise together or move opposite ways?) and its size tells you the strength (how tightly do the points hug a line?). Regression then draws the single best-fit line so you can make predictions from it.",
+    "analogy": "Picture an ice-cream van. On hotter days it sells more cones — temperature and sales rise together, a positive correlation. If the points on a temperature-versus-sales graph sit almost perfectly on a rising line, the correlation is strong (close to $+1$); if they scatter loosely around it, the link is weak (closer to $0$). The regression line is the trend you would draw through that cloud to guess tomorrow's sales from tomorrow's forecast — trustworthy for a warm day like the ones you have seen, but reckless for a temperature far beyond your records.",
     "steps": [
-      "First, visualise the data by creating a scatter plot to see the general pattern.",
-      "Next, choose the correct statistical tool. Use Pearson's (r) if the pattern looks like a straight line, or Spearman's (rs) if it's consistently increasing or decreasing but not necessarily in a straight line.",
-      "Then, use your GDC to calculate the chosen correlation coefficient. This will give you a value between -1 and 1.",
-      "Finally, interpret the coefficient. A value near +1 or -1 indicates a strong relationship, while a value near 0 indicates a weak one. State the direction (positive/negative) and strength (strong/moderate/weak) in the context of the problem."
+      "Plot the data on a scatter diagram first, and look: is the trend roughly a straight line, a steadily rising or falling curve (monotonic), or no pattern at all?",
+      "Enter the two variables into GDC lists. For a linear relationship run linear regression to read Pearson's $r$; if the relationship is monotonic-but-curved or has an outlier, rank each list first and run the same calculation on the ranks to get Spearman's $r_s$.",
+      "Interpret the coefficient in words: state the direction from its sign and the strength from its size, always in the context of the two variables.",
+      "If a line of best fit is given, use the regression equation to predict — but only inside the range of the data. Never claim the correlation proves that one variable causes the other."
     ]
   },
+  "keyConcepts": [
+    "scatter and correlation",
+    "Pearson vs Spearman",
+    "regression and prediction"
+  ],
   "flashcards": [
     {
-      "front": "What is Pearson's product-moment correlation coefficient ($r$)?",
-      "back": "A measure of the strength and direction of a *linear* relationship between two continuous variables. It ranges from -1 to +1."
+      "front": "Bivariate data",
+      "back": "Data with two variables recorded for each observation, such as the height and mass of each person. Correlation and regression describe how those two variables move together.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is Spearman's rank correlation coefficient ($r_s$)?",
-      "back": "A measure of the strength and direction of a *monotonic* relationship between two variables. It is calculated by applying Pearson's formula to the ranks of the data, not the raw data itself."
+      "front": "Correlation: direction",
+      "back": "Positive correlation means the variables rise together; negative means one rises as the other falls. The sign of $r$ (or $r_s$) gives the direction; it says nothing about steepness.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a monotonic relationship?",
-      "back": "A relationship where as one variable increases, the other variable consistently increases (monotonically increasing) or consistently decreases (monotonically decreasing), but not necessarily at a constant rate (i.e., not necessarily linear)."
+      "front": "Correlation: strength",
+      "back": "How tightly the points cluster around a trend. Read it from $|r|$: near $1$ is strong, near $0$ is very weak. Strength and direction are independent — $r = -0.95$ is a STRONG negative correlation.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "When should you use Spearman's ($r_s$) instead of Pearson's ($r$)?",
-      "back": "1. When the relationship is monotonic but not linear. 2. When the data is already in ranked form (e.g., judges' scores). 3. When there are significant outliers that would skew Pearson's $r$."
+      "front": "Pearson's $r$",
+      "back": "The product-moment correlation coefficient: measures the strength and direction of a LINEAR relationship between two quantitative variables. Always $-1 \\le r \\le 1$; $r = \\pm 1$ is a perfect straight line, $r = 0$ is no linear association.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Interpret $r = -0.85$.",
-      "back": "There is a strong, negative, linear correlation between the two variables."
+      "front": "Spearman's $r_s$",
+      "back": "The rank correlation coefficient: Pearson's $r$ applied to the RANKS of the data. It measures a MONOTONIC relationship (consistently increasing or decreasing, not necessarily straight) and is robust to outliers. Also $-1 \\le r_s \\le 1$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Interpret $r_s = 0.32$.",
-      "back": "There is a weak, positive, monotonic correlation between the two variables."
+      "front": "Monotonic relationship",
+      "back": "As one variable increases, the other consistently increases (or consistently decreases) — but not necessarily at a constant rate, so the graph may be a curve rather than a line. This is exactly what $r_s$ is built to measure.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the most common mistake students make with correlation?",
-      "back": "Assuming correlation implies causation. Just because two variables are strongly correlated does not mean one causes the other; there could be a hidden confounding variable."
+      "front": "How to rank data",
+      "back": "For each variable separately, give rank 1 to the smallest value, 2 to the next, and so on. If two values tie, give each the mean of the ranks they would occupy. Rank the two variables independently, then correlate the ranks.",
+      "pillLabel": "Method"
     },
     {
-      "front": "How do outliers affect Pearson's $r$?",
-      "back": "Pearson's $r$ is sensitive to outliers. A single outlier can significantly increase or decrease the value of $r$, potentially giving a misleading impression of the true underlying relationship."
+      "front": "When Spearman beats Pearson",
+      "back": "Use $r_s$ when the relationship is monotonic but curved, when the data is already ordinal (1st, 2nd, 3rd), or when an outlier would drag $r$ away from the true trend. Ranking flattens the effect of extreme values.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What does a correlation coefficient of $r=0$ mean?",
-      "back": "It means there is no *linear* correlation between the variables. However, there might still be a strong *non-linear* relationship (e.g., a perfect parabola)."
+      "front": "Least-squares regression line of $y$ on $x$",
+      "back": "The line $y = ax + b$ that minimises the sum of squared vertical distances from the points. Read $a$ and $b$ from the GDC. Use it to predict $y$ from a given $x$ — it is not designed to predict $x$ from $y$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is bivariate data?",
-      "back": "Data that has two variables for each observation. For example, for a group of students, we might record their height and weight. This is bivariate data."
+      "front": "The mean point",
+      "back": "The regression line of $y$ on $x$ ALWAYS passes through the mean point $(\\bar{x}, \\bar{y})$. Handy check: substitute $\\bar{x}$ into the equation and you should recover $\\bar{y}$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the p-value in the context of a correlation test?",
-      "back": "The p-value represents the probability of observing the given correlation (or a stronger one) if there were actually no correlation in the population. A small p-value (e.g., < 0.05) suggests the correlation is statistically significant."
+      "front": "Interpolation vs extrapolation",
+      "back": "Interpolation predicts inside the range of the observed data — usually reliable. Extrapolation predicts outside that range — unreliable, because there is no evidence the trend continues. Examiners test whether you spot which one you are doing.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Correlation is not causation",
+      "back": "A strong $r$ shows the variables move together, not that one causes the other. A hidden confounding variable may drive both. Never state a causal link from a correlation alone.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "GDC only — no formulas",
+      "back": "In AI SL you find $r$, $r_s$ and the regression line on the GDC; the by-hand formulas are not required. The marks are for entering the data correctly, quoting the value, and interpreting it, not for arithmetic.",
+      "pillLabel": "Concept"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A data set gives Pearson's $r = 0.06$. The best description is:",
+      "options": [
+        "Very weak (essentially no) linear correlation",
+        "Strong positive correlation",
+        "Perfect positive correlation",
+        "Strong negative correlation"
+      ],
+      "answer": "Very weak (essentially no) linear correlation"
+    },
+    {
+      "prompt": "The relationship between two variables is clearly monotonic but curved, and there is one large outlier. Which coefficient is most appropriate?",
+      "options": [
+        "Spearman's rank coefficient $r_s$, found from the ranks",
+        "Pearson's $r$, found from the raw values",
+        "The mean of $r$ and $r_s$",
+        "Neither — you cannot measure correlation here"
+      ],
+      "answer": "Spearman's rank coefficient $r_s$, found from the ranks"
+    },
+    {
+      "prompt": "Ice-cream sales and drowning deaths are strongly positively correlated. The correct conclusion is:",
+      "options": [
+        "Both are driven by a third variable (hot weather); correlation does not imply causation",
+        "Buying ice cream causes drownings",
+        "Drownings cause people to buy ice cream",
+        "The correlation must be a calculation error"
+      ],
+      "answer": "Both are driven by a third variable (hot weather); correlation does not imply causation"
+    },
+    {
+      "prompt": "Data on plant height was collected for $x = 2$ to $x = 12$ weeks. Using the regression line to estimate the height at $x = 30$ weeks is:",
+      "options": [
+        "Extrapolation, so the prediction is unreliable",
+        "Interpolation, so the prediction is reliable",
+        "Guaranteed accurate because $r$ is close to 1",
+        "Impossible with a regression line"
+      ],
+      "answer": "Extrapolation, so the prediction is unreliable"
+    },
+    {
+      "prompt": "The least-squares regression line of $y$ on $x$ is guaranteed to pass through:",
+      "options": [
+        "The mean point $(\\bar{x}, \\bar{y})$",
+        "The origin $(0, 0)$",
+        "The largest data point",
+        "Every data point"
+      ],
+      "answer": "The mean point $(\\bar{x}, \\bar{y})$"
     }
   ],
   "faq": [
     {
-      "q": "Do I ever need to calculate r or rs by hand using the formula?",
-      "a": "No. For the AI HL course, you are expected to use your GDC for the calculation. However, you must understand the conditions under which each coefficient is used and be able to interpret the output from your calculator."
+      "q": "What is the difference between Pearson's $r$ and Spearman's $r_s$?",
+      "a": "Pearson's $r$ measures how close the points lie to a straight line, for quantitative data. Spearman's $r_s$ measures whether the relationship is monotonic — consistently rising or falling — even if it is curved, and it works on ranked (ordinal) data. Because $r_s$ uses only the order of the values, not their exact size, it is far less disturbed by an outlier. If a scatter shows a steadily rising curve, $r_s$ can be $1$ while $r$ is noticeably below $1$."
     },
     {
-      "q": "What is the difference between a linear and a monotonic relationship?",
-      "a": "A linear relationship is a specific type of monotonic relationship. All linear relationships are monotonic, but not all monotonic relationships are linear. A linear relationship forms a perfect straight line ($y=mx+c$). A monotonic relationship is one where the variables consistently move in the same direction but the rate of change can vary (e.g., a curve that is always increasing)."
+      "q": "Do I need the formulas for $r$, $r_s$ and the regression line?",
+      "a": "No. In AI SL these are Paper 2 skills: you enter the data into GDC lists and read the values off the linear-regression screen. For $r_s$ you rank each variable first, then run the same regression on the two rank lists. The marks reward correct data entry, quoting the coefficient to 3 significant figures, and interpreting it — not by-hand arithmetic."
     },
     {
-      "q": "My calculator doesn't show the 'r' value, only 'a' and 'b'. What do I do?",
-      "a": "You need to turn on 'Stat Diagnostics' in your calculator's settings. For TI calculators, this is often found in the MODE menu or by using the 'DiagnosticOn' command from the CATALOG. Once enabled, the $r$ and $r^2$ values will appear with the regression results."
+      "q": "How exactly do I rank data for Spearman's, and what about ties?",
+      "a": "Take one variable at a time. Give rank 1 to its smallest value, 2 to the next, and so on up to the largest. If two or more values are equal, give each of them the average of the ranks they would have occupied — for example, two values tied for 3rd and 4th both get rank 3.5. Do this separately for each variable, then find Pearson's $r$ on the two lists of ranks; that is $r_s$."
     },
     {
-      "q": "If a question gives me raw data and asks for Spearman's, do I have to rank it myself?",
-      "a": "No, your GDC can do this. The most reliable method is to enter the raw data into two lists, then create two new lists containing the ranks of the first two, and then perform a linear regression on the ranked lists. However, many modern GDCs have a built-in Spearman's test that will do this for you automatically. Check your calculator's functionality."
+      "q": "Why is extrapolation dangerous even when $r$ is close to 1?",
+      "a": "A high $r$ only tells you the relationship is close to linear within the range you measured. Outside that range you have no evidence the straight-line trend continues — it may curve, level off, or reverse. Predicting a person's height at age 60 from a childhood growth line is the classic warning: the fit was excellent for ages 2 to 12, but the trend obviously does not continue."
+    },
+    {
+      "q": "If two variables are strongly correlated, doesn't one cause the other?",
+      "a": "Not necessarily. Correlation only says the variables move together. A confounding variable may drive both: shoe size and reading ability correlate strongly in children, but only because both increase with age. In an exam, describe the strength and direction of a correlation, and never assert causation unless the question provides evidence for it."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In mathematics, we often want to describe the relationship between two different things. For example, is there a relationship between the hours you study and your exam score? Or between a city's population and its air pollution level? This lesson explores how we can move beyond simply saying 'they are related' to precisely measuring the strength and direction of that relationship using correlation coefficients."
+      "content": "Collect two measurements on each of many things — the age and price of used cars, a country's income and its life expectancy, hours revised and marks scored — and a natural question follows: do the two move together, and how tightly? This lesson covers the whole of 4.3. You will read a scatter diagram for direction and strength, quote Pearson's product-moment correlation coefficient $r$ for a linear link and Spearman's rank coefficient $r_s$ for a monotonic one, fit the least-squares regression line and use it to predict, and learn where prediction becomes reckless. Because 4.3 is examined on Paper 2, the GDC does every calculation — so the skill being marked is choosing the right coefficient, writing the method the examiner needs, and interpreting the number in context. As always, the worked examples are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Visualising Data: The Scatter Diagram"
+      "content": "Scatter diagrams and describing correlation"
     },
     {
       "type": "text",
-      "content": "Before any calculation, the first step is always to visualise your bivariate data using a scatter diagram (or scatter plot). This graph plots one variable on the x-axis and the other on the y-axis. The resulting pattern of dots can give you an immediate visual clue about the nature of the relationship: its direction (positive, negative, or none) and its form (linear or non-linear)."
+      "content": "A scatter diagram plots one variable against the other, one point per observation. Before any calculation, look at the cloud of points and describe it in two words. The DIRECTION is positive if the points drift upwards from left to right (as $x$ rises, $y$ rises) and negative if they drift downwards. The STRENGTH is how tightly the points hug an imagined trend line: points strung almost perfectly along a line show a strong correlation; a loose, fuzzy cloud shows a weak one; a shapeless scatter shows none. Direction and strength are independent — a tight downward band is a strong negative correlation, not a weak one."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Positive Correlation:** As one variable increases, the other tends to increase. The points on the scatter plot trend upwards from left to right.",
-        "**Negative Correlation:** As one variable increases, the other tends to decrease. The points trend downwards from left to right.",
-        "**No Correlation:** There is no discernible pattern to the points.",
-        "**Strength:** The closer the points are to forming a clear line or curve, the stronger the relationship."
+        "**Positive correlation:** the variables rise together — the scatter drifts up to the right.",
+        "**Negative correlation:** one rises as the other falls — the scatter drifts down to the right.",
+        "**Strength** is judged by how closely the points follow the trend, and is measured by $|r|$ (or $|r_s|$):",
+        "$0 < |r| \\le 0.25$: very weak;  $\\quad 0.25 < |r| \\le 0.5$: weak;",
+        "$0.5 < |r| \\le 0.75$: moderate;  $\\quad 0.75 < |r| < 1$: strong;  $\\quad |r| = 1$: perfect."
       ]
     },
     {
+      "type": "text",
+      "content": "The scatter also tells you WHICH coefficient to reach for. If the points hug a straight line, Pearson's $r$ is the natural measure. If they follow a curve that keeps climbing (or keeps falling) — a monotonic pattern — or if one stray point sits far from the rest, then Spearman's rank coefficient $r_s$ describes the association more faithfully."
+    },
+    {
       "type": "heading",
-      "content": "Pearson's Product-Moment Correlation Coefficient (PMCC)"
+      "content": "Pearson's product-moment correlation coefficient $r$"
     },
     {
       "type": "text",
-      "content": "Pearson's correlation coefficient, denoted by $r$, is the most common measure of correlation. It specifically measures the strength and direction of a **linear** relationship. It's crucial to remember this limitation; $r$ is only appropriate if the scatter plot suggests the data follows a straight-line pattern."
+      "content": "Pearson's coefficient $r$ measures the strength and direction of a LINEAR relationship between two quantitative variables. It always satisfies $-1 \\le r \\le 1$: a value of $+1$ means the points lie exactly on a rising straight line, $-1$ means exactly on a falling straight line, and $0$ means no linear association at all. Read $r$ straight from the GDC's linear-regression output; you are never asked to compute it by hand in AI SL. Interpreting it takes two words — the sign gives the direction, the size gives the strength — and both must be tied to the context of the question."
     },
     {
-      "type": "formula",
-      "content": "The value of $r$ is always between -1 and 1, inclusive. \\[-1 \\le r \\le 1\\] You are not expected to calculate this by hand in an exam; you will always use your GDC."
+      "type": "workedExample",
+      "question": "A tutor records the number of hours, $x$, that eight students revised for a test and their percentage score, $y$: \\n \\n | Hours, $x$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | \\n |---|---|---|---|---|---|---|---|---| \\n | Score, $y$ | 54 | 60 | 58 | 66 | 70 | 72 | 79 | 84 | \\n \\n (a) Find Pearson's product-moment correlation coefficient $r$. \\n (b) Interpret $r$ in context. \\n (c) Write down the equation of the regression line of $y$ on $x$. [5]",
+      "solution": "This is a Paper 2 question, so enter the hours in one list and the scores in a second, then run linear regression.\\n\\n**(a) Pearson's $r$.** From the GDC's LinReg output:\\n$r = 0.98174\\ldots = 0.982$ (3 s.f.).  [M1 for using the GDC regression feature, A1 for the value]\\n\\n**(b) Interpretation.** The value $0.982$ is close to $+1$ and positive, so there is a **strong, positive** (linear) correlation between hours revised and test score: students who revised more tended to score higher.  [A1]\\n\\n**(c) Regression line.** The same screen gives $a = 4.17857\\ldots$ and $b = 49.0714\\ldots$, so\\n$y = 4.18x + 49.1$ (3 s.f.).  [A1]\\n\\nThe steepness ($a \\approx 4.18$ marks per extra hour) is separate from the strength: $r$ measures how tightly the points follow this line, not how steep it is."
+    },
+    {
+      "type": "heading",
+      "content": "Spearman's rank correlation coefficient $r_s$"
+    },
+    {
+      "type": "text",
+      "content": "Not every relationship is a straight line, and not every data set is free of outliers. Suppose two variables rise together steadily but along a curve, or suppose one extreme point would drag Pearson's $r$ away from the real trend. For these cases we use Spearman's rank correlation coefficient $r_s$. The idea is simple: replace each value by its RANK within its own variable — smallest is rank 1, next is rank 2, and so on — then find Pearson's $r$ on the two lists of ranks. Because ranks record only the ORDER of the values, not their exact size, a monotonic curve ranks as neatly as a straight line, and a wild outlier becomes just 'the largest', so $r_s$ resists it. Like $r$, it satisfies $-1 \\le r_s \\le 1$, and $r_s = \\pm 1$ signals a perfect monotonic (order-preserving or order-reversing) relationship."
+    },
+    {
+      "type": "workedExample",
+      "question": "An estate agent records the floor area, $x$ (m$^2$), and selling price, $y$ (thousands of \\$), of seven flats: \\n \\n | Area, $x$ | 45 | 60 | 72 | 85 | 95 | 110 | 130 | \\n |---|---|---|---|---|---|---|---| \\n | Price, $y$ | 120 | 150 | 175 | 190 | 230 | 260 | 900 | \\n \\n The largest flat is a luxury penthouse. \\n (a) Find Pearson's $r$ for the raw data. \\n (b) By ranking the data, find Spearman's rank correlation coefficient $r_s$. \\n (c) Explain which coefficient better describes the relationship. [6]",
+      "solution": "**(a) Pearson's $r$.** Entering the raw values and running linear regression:\\n$r = 0.789\\ldots = 0.789$ (3 s.f.).  [M1 GDC, A1]\\nThe penthouse price of \\$900\\,000 is an outlier that drags $r$ down to a merely 'moderate/strong' value.\\n\\n**(b) Spearman's $r_s$.** Rank each variable from smallest ($1$) to largest ($7$):\\nArea ranks: $1, 2, 3, 4, 5, 6, 7$. \\nPrice ranks: $1, 2, 3, 4, 5, 6, 7$ (the prices are already in increasing order). \\nEnter the two rank lists and run linear regression on the ranks:\\n$r_s = 1.00$ (3 s.f.).  [M1 for ranking both variables, A1 for the value]\\n\\n**(c) Which is better.** Every larger flat costs more, so the relationship is perfectly MONOTONIC even though it is not perfectly linear, and one outlier distorts $r$. Spearman's $r_s = 1$ captures the true 'bigger means dearer' pattern faithfully, so $r_s$ is the better description here.  [A1 for identifying the monotonic/outlier issue, A1 for concluding $r_s$]"
+    },
+    {
+      "type": "examTip",
+      "content": "Rank each variable INDEPENDENTLY, and rank consistently (both smallest-to-largest). A classic slip is to rank one variable low-to-high and the other high-to-low, which flips the sign of $r_s$. If two values tie, give each the mean of the ranks they would occupy — e.g. two values sharing 4th and 5th place both get rank $4.5$."
+    },
+    {
+      "type": "heading",
+      "content": "The least-squares regression line and prediction"
+    },
+    {
+      "type": "text",
+      "content": "Once a scatter looks reasonably linear, we fit the least-squares regression line of $y$ on $x$, written $y = ax + b$. 'Least squares' means the line is positioned to make the total of the squared VERTICAL gaps between the points and the line as small as possible; the GDC reports the gradient $a$ and intercept $b$. This line of $y$ on $x$ is built to predict $y$ from a value of $x$. Two facts steer its safe use: the line always passes through the mean point $(\\bar{x}, \\bar{y})$ — a quick sanity check — and a prediction is only trustworthy INSIDE the range of the data you collected."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**$r=1$**: Perfect positive linear correlation.",
-        "**$r=-1$**: Perfect negative linear correlation.",
-        "**$r=0$**: No linear correlation.",
-        "**Strength Guide:** $|r| \\ge 0.75$ is strong, $0.5 \\le |r| < 0.75$ is moderate, $0.25 \\le |r| < 0.5$ is weak, and $|r| < 0.25$ is very weak."
+        "**Regression line of $y$ on $x$:** $y = ax + b$, with gradient $a$ and $y$-intercept $b$ read from the GDC.",
+        "**Mean point:** the line always passes through $(\\bar{x}, \\bar{y})$; substituting $x = \\bar{x}$ returns $y = \\bar{y}$.",
+        "**Interpolation:** predicting for an $x$ inside the observed range — generally reliable, especially when $|r|$ is high.",
+        "**Extrapolation:** predicting for an $x$ outside the observed range — unreliable, because there is no evidence the trend continues."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A biologist studies the relationship between the daily average temperature and the number of bird calls heard per hour. The data for 8 days is recorded below. \n\n| Temp (°C), $x$ | 15 | 18 | 22 | 25 | 27 | 30 | 31 | 33 |\n|---|---|---|---|---|---|---|---|---|\n| Bird Calls, $y$ | 12 | 15 | 20 | 23 | 28 | 32 | 34 | 38 |\n\n(a) Calculate Pearson's product-moment correlation coefficient, $r$. \n(b) Interpret the result in the context of the question.",
-      "solution": "*(Note: The following steps assume use of a GDC, e.g., TI-Nspire or Casio fx-CG50)*\n\n**(a) Calculation**\n1.  Enter the temperature data into List 1 and the bird call data into List 2 on your GDC. **(M1)** for entering data.\n2.  Navigate to the statistics calculation menu and select 'Linear Regression (a+bx)' or 'LinReg(ax+b)'. Ensure the correct lists are selected for X and Y.\n3.  The GDC will output several values. We are looking for the value of $r$.\n\n$r \\approx 0.99169...$ \n\n$r = 0.992$ (to 3 s.f.) **(A1)**\n\n**(b) Interpretation**\n\nThe value $r=0.992$ is very close to 1. This indicates that there is a **strong, positive, linear correlation** between the average daily temperature and the number of bird calls heard per hour. **(R1)** for strength and direction, **(R1)** for context. As the temperature increases, the number of bird calls also tends to increase in a linear fashion."
+      "question": "The mass, $y$ grams, of a chemical produced at temperature $x\\,^{\\circ}$C was measured at six temperatures from $10^{\\circ}$C to $60^{\\circ}$C, giving the regression line $y = 1.04x + 4.33$ with $r = 0.998$, and mean temperature $\\bar{x} = 35$. \\n (a) Estimate the mass produced at $25^{\\circ}$C. \\n (b) Find $\\bar{y}$, the mean mass. \\n (c) State, with a reason, whether your estimate in (a) is reliable. [5]",
+      "solution": "**(a) Prediction at $25^{\\circ}$C.** Substitute $x = 25$ into the regression line:\\n$y = 1.04(25) + 4.33 = 26.0 + 4.33 = 30.3$ g (3 s.f.).  [M1 substitute, A1]\\n\\n**(b) Mean mass.** The line passes through the mean point $(\\bar{x}, \\bar{y})$, so substitute $x = \\bar{x} = 35$:\\n$\\bar{y} = 1.04(35) + 4.33 = 36.4 + 4.33 = 40.7$ g (3 s.f.).  [M1 use $\\bar{x}$ on the line, A1]\\n\\n**(c) Reliability.** The value $x = 25$ lies inside the data range $10 \\le x \\le 60$, so this is interpolation; with $r = 0.998$ (very strong), the estimate is reliable.  [A1]"
     },
     {
       "type": "heading",
-      "content": "Spearman's Rank Correlation Coefficient"
+      "content": "Correlation is not causation"
     },
     {
       "type": "text",
-      "content": "What if the relationship isn't linear? For example, what if a variable increases but then starts to level off? This is a **monotonic** relationship—it consistently moves in one direction but not in a straight line. For these cases, or when dealing with data that is already ranked, we use Spearman's rank correlation coefficient, $r_s$. It works by ranking the data for each variable first, and then applying the Pearson's formula to these ranks."
+      "content": "A strong correlation is easy to over-read. It tells you two variables move together — nothing more. It does NOT establish that changing one would change the other, because a hidden confounding variable may be driving both. The number of firefighters at a blaze correlates strongly with the damage done, but sending fewer firefighters would not reduce the damage; the size of the fire is the confounder that raises both. In an exam, describe a correlation by its strength and direction only, and reserve any claim of causation for questions that supply evidence of it, such as a controlled experiment."
     },
     {
-      "type": "examTip",
-      "content": "If a question asks you to 'calculate the appropriate correlation coefficient', you must first draw a scatter plot. If the plot looks linear, use Pearson's. If it looks curved but is always increasing or decreasing (monotonic), or if there are obvious outliers, state that Spearman's is more appropriate."
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing strength with direction** — $r = -0.95$ is a STRONG negative correlation, not a weak one. The sign is the direction; the size $|r|$ is the strength. Read both.",
+        "**Calling $r \\approx 0$ 'no relationship'** — it means no LINEAR relationship. The variables could still follow a strong curved (non-linear) pattern that Pearson's $r$ cannot see.",
+        "**Using Pearson's $r$ on ranked or clearly non-linear data** — when the data is ordinal, monotonic-but-curved, or outlier-driven, rank it and quote Spearman's $r_s$ instead.",
+        "**Ranking the two variables in opposite directions** — rank both smallest-to-largest (and average tied ranks), or the sign of $r_s$ will be wrong.",
+        "**Extrapolating beyond the data** — predicting for an $x$ outside the observed range is unreliable however high $r$ is; always state whether you are interpolating or extrapolating.",
+        "**Claiming causation from correlation** — a strong $r$ never proves one variable causes the other; a confounding variable may drive both.",
+        "**Quoting the regression line of $y$ on $x$ to predict $x$ from $y$** — that line is built to predict $y$; using it the other way is not what least squares optimised.",
+        "**Over-rounding** — carry the GDC's full figures and round only the final answer, to 3 significant figures unless told otherwise."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier wrong value need not cost you the marks that depend on it, provided the later step is done correctly on your figure. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any equivalent form and any correctly-rounded value. That protection exists only if the method is on the page. Study how each mark below is earned by a specific line."
     },
     {
       "type": "workedExample",
-      "question": "Two judges at a diving competition rank 7 competitors. Their ranks are shown below.\n\n| Competitor | A | B | C | D | E | F | G |\n|---|---|---|---|---|---|---|---|\n| Judge 1 Rank | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n| Judge 2 Rank | 2 | 1 | 4 | 3 | 5 | 7 | 6 |\n\n(a) Explain why Spearman's rank correlation coefficient is appropriate for this data.\n(b) Calculate Spearman's rank correlation coefficient, $r_s$.\n(c) Interpret your result.",
-      "solution": "**(a) Reason for using Spearman's**\nThe data is given in the form of ranks, not raw scores. Spearman's coefficient is specifically designed to measure the correlation between two sets of ranks. **(R1)**\n\n**(b) Calculation**\n1.  The data is already ranked. Enter Judge 1's ranks into List 1 and Judge 2's ranks into List 2 on your GDC. **(M1)**\n2.  Use the GDC's linear regression function on these two lists of ranks. The resulting Pearson's $r$ value for the ranked data is the Spearman's $r_s$ value for the original data. *Some GDCs may have a specific Spearman's function, but this method always works.*\n\n$r_s \\approx 0.82142...$\n\n$r_s = 0.821$ (to 3 s.f.) **(A1)**\n\n**(c) Interpretation**\nThe value $r_s=0.821$ indicates a **strong, positive, monotonic correlation** between the rankings of the two judges. **(R1)** This means that the two judges tend to agree on their rankings of the competitors; a competitor ranked highly by Judge 1 is also likely to be ranked highly by Judge 2. **(R1)**"
+      "question": "A GDC gives the regression line $y = 3.2x + 4.5$ with $r = 0.94$. Interpret $r$, predict $y$ when $x = 6$, and comment on predicting $y$ when $x = 30$ (the data only goes up to $x = 10$). [4]",
+      "solution": "**Model answer — full working.**\\n\\n**Interpret $r$.** $r = 0.94$ is close to $+1$ and positive, so there is a **strong, positive** (linear) correlation between $x$ and $y$.\\n\\n**Predict $y$ when $x = 6$.** Substitute into the regression line:\\n$y = 3.2(6) + 4.5 = 19.2 + 4.5 = 23.7.$\\n\\n**Comment on $x = 30$.** The data only reaches $x = 10$, so $x = 30$ lies well outside the observed range. Using the line here is EXTRAPOLATION, so the prediction is unreliable — there is no evidence the linear trend continues that far.\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **A1 — interpret $r$.** Awarded for describing $r = 0.94$ as a strong, positive correlation. Both features are needed: 'positive' (from the sign) and 'strong' (from $|r|$ near 1). 'Positive' alone, or a bare 'good correlation', does not score.\\n- **M1 — substitute $x = 6$.** A method mark for correctly substituting into the line, i.e. $y = 3.2(6) + 4.5$. It is the substitution that is rewarded, so it survives an arithmetic slip in the final number.\\n- **A1 — value.** Awarded for $y = 23.7$. This accuracy mark depends on the M1 above and is protected by follow-through: a candidate who substitutes correctly but slips in the arithmetic keeps the method, and a correct answer on a slightly different earlier value would still earn the FT mark.\\n- **A1 — extrapolation.** Awarded for identifying that $x = 30$ is beyond the data ($x \\le 10$), so the prediction is extrapolation and therefore unreliable. Naming it 'extrapolation' OR explaining 'outside the data range, so unreliable' both score.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $23.7$ written as $23.70$ or left as $19.2 + 4.5$, and accepts the final comment whether phrased as 'extrapolation' or 'outside the range of the data, so unreliable'. Once a correct statement appears, ISW means a later restatement does not lose marks.\\n\\n**Bottom line:** a student who writes only '$23.7$' scores the two prediction marks but throws away the interpretation and extrapolation marks — half the question. Showing the strength-and-direction reading, the substitution, and the range check secures all four, and follow-through then shields the arithmetic."
     },
     {
       "type": "examTip",
-      "content": "Always state which correlation coefficient you are calculating ($r$ or $r_s$). When interpreting, use the magic words: **strength**, **direction**, and **context**. For example, 'strong, negative, linear correlation between price and demand'. You will lose marks for a generic interpretation."
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: state the coefficient's strength AND direction, write the substitution into the regression line before the number, and check whether a prediction is interpolation or extrapolation before you commit to it. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Correlation and regression are how the statistics course turns description into prediction. The regression line you fit here is the simplest statistical model, and the discipline it teaches — inspect the scatter, choose the coefficient that suits the data, quote it with strength and direction, predict only where the data supports it, and never confuse association with cause — is exactly what later modelling, from exponential and quadratic fits to the reasoning behind the chi-squared test of independence, depends on. Master the two questions 'how tightly do they move together?' and 'how far can I trust a prediction?', and the rest of applied statistics becomes a set of variations on skills you already own."
     },
     {
       "type": "practice",
-      "label": "Practice Correlation Questions",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=4.3"
+      "label": "Get a Paper 2 correlation-and-regression question marked: quote $r$ or $r_s$, fit the line and predict — with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB AI HL Questionbank",
-          "href": "https://www.revisionvillage.com/ib-maths-ai-hl/questionbank/"
+          "label": "IB Mathematics Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
         },
         {
-          "label": "Statistics How To: Pearson vs Spearman",
-          "href": "https://www.statisticshowto.com/pearson-correlation-vs-spearman-rank-correlation/"
+          "label": "Khan Academy: Correlation and Regression",
+          "href": "https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

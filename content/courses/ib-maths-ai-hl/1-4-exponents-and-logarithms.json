@@ -1,188 +1,350 @@
 {
   "slug": "1-4-exponents-and-logarithms",
   "topicCode": "1.4",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
   "title": "Exponents and logarithms",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores the fundamental relationship between exponents and logarithms. You will learn their properties, master the laws of logarithms, and apply them to solve exponential and logarithmic equations, a key skill for modelling growth and decay.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Exponents and logarithms are two views of the same relationship: exponents build a number up by repeated multiplication, logarithms recover the power that did the building. This lesson develops the full 1.4 syllabus: the laws of exponents (product, quotient, power, and negative and fractional indices); the definition of a logarithm, $\\log_a x = y \\iff a^y = x$; the common logarithm ($\\log$, base 10) and natural logarithm ($\\ln$, base $e$); the laws of logarithms; and solving simple exponential equations, either by taking logs or with the GDC. Because 1.4 questions turn on getting a variable out of an exponent, the emphasis is on isolating the power, taking logs cleanly, and showing the method an examiner needs to see. The model-answer worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand and apply the laws of exponents for integer and rational exponents.",
-    "Understand the definition and properties of logarithms as the inverse of exponential functions.",
-    "Apply the laws of logarithms, including the change of base formula, to simplify expressions and solve equations.",
-    "Solve exponential and logarithmic equations using both algebraic manipulation and a graphic display calculator (GDC)."
+    "Apply the laws of exponents — product, quotient, power, and negative and fractional indices — to simplify expressions.",
+    "Convert fluently between exponential form ($a^y = x$) and logarithmic form ($y = \\log_a x$), and evaluate common ($\\log$) and natural ($\\ln$) logarithms.",
+    "Apply the laws of logarithms (product, quotient, power) to simplify expressions and rearrange equations.",
+    "Solve simple exponential equations by taking logarithms or by solving graphically on the GDC, presenting working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "1.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Unlocking Exponential Puzzles",
-    "summary": "Exponents represent repeated multiplication, showing how quickly things grow or shrink. Logarithms are the inverse tool, helping us find the 'time' or 'power' needed for that growth to happen.",
-    "analogy": "Imagine you have a single bacterium that doubles every hour. After 1 hour you have 2, after 2 hours you have 4, after 3 hours you have 8. Exponents help you quickly calculate the population after, say, 10 hours ($2^{10}$). Logarithms do the reverse: they tell you how many hours it would take to reach a population of, say, 1024 ($log_2(1024) = 10$ hours).",
+    "title": "Unlocking Unknown Powers",
+    "summary": "Exponents build a number up with repeated multiplication, so $2^5 = 32$. A logarithm runs that in reverse: it answers 'what power turns the base into this number?', so $\\log_2 32 = 5$. Whenever the unknown you are hunting for sits up in the exponent, a logarithm is the tool that brings it down to earth.",
+    "analogy": "Picture a machine that takes a base and a power and returns a result: feed it base 10 and power 3 and it hands back $10^3 = 1000$. A logarithm is the inspector who runs the machine backwards. Show the inspector the output 1000 and tell them the base was 10, and they report the original power: $\\log_{10} 1000 = 3$. Exponent and logarithm are the same fact read in opposite directions.",
     "steps": [
-      "Identify the type of equation: is the unknown in the exponent (exponential) or inside a logarithm (logarithmic)?",
-      "For exponential equations like $a^{f(x)} = b$, take logarithms of both sides (usually $\\ln$) to bring the exponent down.",
-      "For logarithmic equations like $\\log_c(f(x)) = b$, rewrite the equation in exponential form ($f(x) = c^b$) or use log laws to combine terms first.",
-      "Solve the resulting linear or polynomial equation for the unknown, and always check your solutions, especially for logarithmic equations, to ensure they are valid."
+      "Recognise the equation type. An exponential equation has the unknown in the power, usually in the form $A \\times b^x = C$.",
+      "Isolate the exponential. Rearrange to get $b^x$ alone, for example by dividing by $A$ to reach $b^x = C/A$.",
+      "Take logs of both sides (or solve on the GDC). Applying $\\ln$ or $\\log$ lets the power rule bring the exponent down as a multiplier.",
+      "Solve and round. Rearrange for the variable, evaluate on the calculator, and round to 3 significant figures unless told otherwise."
     ]
   },
+  "keyConcepts": [
+    "laws of exponents",
+    "definition of a logarithm",
+    "solving exponential equations"
+  ],
   "flashcards": [
     {
-      "front": "What is the definition of a logarithm?",
-      "back": "A logarithm answers the question: 'To what power must the base be raised to get this number?' The expression $\\log_b(y) = x$ is equivalent to $b^x = y$."
+      "front": "Product rule for exponents",
+      "back": "$a^m \\times a^n = a^{m+n}$. Multiplying powers of the same base adds the exponents, because you are simply multiplying more copies of the base together.",
+      "pillLabel": "Law"
     },
     {
-      "front": "What is the change of base formula for logarithms?",
-      "back": "$\\log_b(a) = \\frac{\\log_c(a)}{\\log_c(b)}$. This is useful for calculating logs with bases not on your calculator, typically by changing to base 10 ($\\log$) or base $e$ ($\\ln$)."
+      "front": "Quotient rule for exponents",
+      "back": "$\\dfrac{a^m}{a^n} = a^{m-n}$. Dividing powers of the same base subtracts the exponents.",
+      "pillLabel": "Law"
     },
     {
-      "front": "State the product rule for logarithms.",
-      "back": "$\\log_b(xy) = \\log_b(x) + \\log_b(y)$. The log of a product is the sum of the logs."
+      "front": "Power rule for exponents",
+      "back": "$(a^m)^n = a^{mn}$. Raising a power to a power multiplies the exponents.",
+      "pillLabel": "Law"
     },
     {
-      "front": "State the quotient rule for logarithms.",
-      "back": "$\\log_b(x/y) = \\log_b(x) - \\log_b(y)$. The log of a quotient is the difference of the logs."
+      "front": "Negative index",
+      "back": "$a^{-n} = \\dfrac{1}{a^n}$. A negative exponent means a reciprocal, not a negative number: $2^{-3} = \\frac{1}{8}$, not $-8$.",
+      "pillLabel": "Law"
     },
     {
-      "front": "State the power rule for logarithms.",
-      "back": "$\\log_b(x^p) = p \\log_b(x)$. The exponent inside a log can be brought out as a multiplier."
+      "front": "Fractional index",
+      "back": "$a^{1/n} = \\sqrt[n]{a}$ and $a^{m/n} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$. A fractional index is a root: $8^{1/3} = \\sqrt[3]{8} = 2$.",
+      "pillLabel": "Law"
     },
     {
-      "front": "What is the relationship between the natural logarithm $\\ln(x)$ and the exponential function $e^x$?",
-      "back": "They are inverse functions. $\\ln(e^x) = x$ and $e^{\\ln(x)} = x$. The natural logarithm, $\\ln(x)$, is simply a logarithm with base $e$, i.e., $\\log_e(x)$."
+      "front": "Definition of a logarithm",
+      "back": "$\\log_a x = y \\iff a^y = x$ (for $a > 0$, $a \\ne 1$, $x > 0$). The logarithm is exactly the exponent you must raise the base $a$ to in order to reach $x$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the value of $a^0$ for any non-zero number $a$?",
-      "back": "$a^0 = 1$. Any non-zero number raised to the power of zero is 1."
+      "front": "Convert $b = a^x$ to log form",
+      "back": "$x = \\log_a b$. The base of the power stays the base of the log, and the log equals the exponent.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What does a negative exponent, like $a^{-n}$, mean?",
-      "back": "It means 'take the reciprocal'. $a^{-n} = \\frac{1}{a^n}$."
+      "front": "Common vs natural log",
+      "back": "$\\log x$ is the common logarithm, base 10, so $\\log x = \\log_{10} x$. $\\ln x$ is the natural logarithm, base $e \\approx 2.718$, so $\\ln x = \\log_e x$. Both are single buttons on the GDC.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What does a fractional exponent, like $a^{m/n}$, mean?",
-      "back": "It represents a root and a power. $a^{m/n} = (\\sqrt[n]{a})^m = \\sqrt[n]{a^m}$. The denominator is the root, the numerator is the power."
+      "front": "Product rule for logs",
+      "back": "$\\log_a(xy) = \\log_a x + \\log_a y$. The log of a product is the sum of the logs. Note the sum sits on the RIGHT — $\\log_a(x+y)$ does NOT simplify.",
+      "pillLabel": "Law"
     },
     {
-      "front": "Is $\\log(a+b) = \\log(a) + \\log(b)$ a valid rule?",
-      "back": "No, this is a common mistake. The correct rule is for products: $\\log(ab) = \\log(a) + \\log(b)$. There is no simplification rule for the logarithm of a sum or difference."
+      "front": "Quotient rule for logs",
+      "back": "$\\log_a\\!\\left(\\dfrac{x}{y}\\right) = \\log_a x - \\log_a y$. The log of a quotient is the difference of the logs.",
+      "pillLabel": "Law"
     },
     {
-      "front": "What is the difference between $\\log(x^2)$ and $(\\log x)^2$?",
-      "back": "$\\log(x^2) = 2\\log(x)$ by the power rule. $(\\log x)^2 = (\\log x) \\times (\\log x)$ is the entire logarithm squared. They are not equal."
+      "front": "Power rule for logs",
+      "back": "$\\log_a(x^k) = k\\log_a x$. This is the key to solving exponential equations: taking logs lets you bring the unknown exponent down as a multiplier.",
+      "pillLabel": "Law"
+    },
+    {
+      "front": "$\\log_a 1$ and $\\log_a a$",
+      "back": "$\\log_a 1 = 0$ because $a^0 = 1$; and $\\log_a a = 1$ because $a^1 = a$. Likewise $\\ln e = 1$ and $\\log 10 = 1$.",
+      "pillLabel": "Fact"
+    },
+    {
+      "front": "Solving $a^x = b$",
+      "back": "Take logs of both sides: $\\ln(a^x) = \\ln b$, so $x\\ln a = \\ln b$ and $x = \\dfrac{\\ln b}{\\ln a}$. Either $\\ln$ or $\\log$ works — the answer is identical.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Trap: log of a sum",
+      "back": "$\\log(x+y) \\ne \\log x + \\log y$. The sum rule applies to a PRODUCT: $\\log(xy) = \\log x + \\log y$. There is no law that simplifies the log of a sum.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which statement is correct?",
+      "options": [
+        "$\\log(x+y) = \\log x + \\log y$",
+        "$\\log(xy) = \\log x + \\log y$",
+        "$\\log(xy) = \\log x \\times \\log y$",
+        "$\\log(x+y) = \\log x \\times \\log y$"
+      ],
+      "answer": "$\\log(xy) = \\log x + \\log y$"
+    },
+    {
+      "prompt": "The expression $16^{3/4}$ equals:",
+      "options": [
+        "$8$",
+        "$12$",
+        "$64$",
+        "$48$"
+      ],
+      "answer": "$8$"
+    },
+    {
+      "prompt": "For any valid base $a$, the value of $\\log_a a$ is:",
+      "options": [
+        "$0$",
+        "$1$",
+        "$a$",
+        "undefined"
+      ],
+      "answer": "$1$"
+    },
+    {
+      "prompt": "To solve $3^x = 20$ for $x$, the correct first step is to:",
+      "options": [
+        "Take logarithms of both sides",
+        "Divide both sides by 3",
+        "Take the cube root of both sides",
+        "Square both sides"
+      ],
+      "answer": "Take logarithms of both sides"
+    },
+    {
+      "prompt": "The value of $2^{-3}$ is:",
+      "options": [
+        "$-8$",
+        "$-6$",
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{6}$"
+      ],
+      "answer": "$\\frac{1}{8}$"
     }
   ],
   "faq": [
     {
-      "q": "Why do we use base 'e' (natural log) so often instead of base 10?",
-      "a": "The natural logarithm and its base $e$ appear naturally in many areas of mathematics and science, particularly in calculus and models of continuous growth or decay. The derivative of $e^x$ is simply $e^x$, and the derivative of $\\ln(x)$ is $1/x$, which makes them much easier to work with in calculus than other bases."
+      "q": "What is the difference between ln and log?",
+      "a": "Both are logarithms; they differ only in base. 'log' on its own (the common logarithm) means base 10, so $\\log x = \\log_{10} x$. 'ln' (the natural logarithm) means base $e \\approx 2.718$, so $\\ln x = \\log_e x$. When you solve an exponential equation you may use either, provided you are consistent on both sides — the final answer is the same."
     },
     {
-      "q": "What's the difference between $\\log_2(x)$ and $2\\log(x)$?",
-      "a": "They are very different. $\\log_2(x)$ is a logarithm with a base of 2. $2\\log(x)$ means $2 \\times \\log_{10}(x)$, which by the power rule is equal to $\\log_{10}(x^2)$. The base is different, and the structure is different."
+      "q": "Why can't I take the logarithm of a negative number?",
+      "a": "Consider $\\log_2(-4) = x$, which in exponential form is $2^x = -4$. No real power of a positive base can produce a negative result — $2^x$ is always positive. That is why the definition of $\\log_a x$ requires $x > 0$."
     },
     {
-      "q": "My calculator only has 'log' and 'ln' buttons. How do I calculate something like $\\log_5(100)$?",
-      "a": "You use the change of base formula: $\\log_b(a) = \\frac{\\ln(a)}{\\ln(b)}$. So, to calculate $\\log_5(100)$, you would type `ln(100) / ln(5)` into your calculator, which gives approximately 2.86. Some modern GDCs also have a dedicated log base function, often found in the math menu."
+      "q": "When do I use logarithms instead of finding a root?",
+      "a": "It depends on where the unknown sits. If the unknown is the base, take a root: $x^3 = 8$ gives $x = \\sqrt[3]{8} = 2$. If the unknown is the exponent, use a logarithm: $2^x = 8$ gives $x = \\log_2 8 = 3$. Roots undo powers; logs undo exponentials."
     },
     {
-      "q": "Can you take the log of a negative number?",
-      "a": "No. In the context of real numbers, the function $y = b^x$ (with $b>0$) always produces a positive result $y>0$. Since the logarithm $\\log_b(y)=x$ is the inverse, its input ($y$) must be positive. The domain of $\\log_b(x)$ is $x>0$."
+      "q": "Do I need to memorise the exponent and logarithm laws?",
+      "a": "The logarithm laws and the change-of-base formula are in the IB Maths AI SL formula booklet, but the exponent laws you should know cold. Either way, marks come from applying them fluently — knowing when to bring an exponent down with the power rule matters far more than reciting the list."
+    },
+    {
+      "q": "Can I just solve exponential equations on my GDC?",
+      "a": "Yes. On Paper 2 the GDC is allowed, and solving $500 \\times 1.04^t = 800$ graphically (plot both sides, find the intersection) or with an equation solver is fully acceptable and earns the marks. Taking logs by hand is the reliable Paper 1 method; on Paper 2 either route is fine, so pick whichever you trust and state what you did."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Exponents and logarithms are the language of rapid change. From calculating compound interest on a loan to modelling population growth or radioactive decay, these concepts are fundamental to understanding how quantities scale. In this lesson, we'll demystify their rules and learn how to solve equations that are crucial for many applications in science, finance, and beyond."
+      "content": "How do banks project the value of an investment decades ahead, and how do scientists date a fossil from the carbon left in it? Both questions hinge on the same pair of ideas: exponents, which describe quantities that multiply, and logarithms, their inverse, which recover an unknown power. This lesson builds the full 1.4 syllabus — the laws of exponents through negative and fractional indices, the definition of a logarithm, common and natural logs, the laws of logarithms, and solving exponential equations by taking logs or with the GDC. As in every calculation topic, the model-answer worked example at the end is laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Reviewing the Laws of Exponents"
+      "content": "The laws of exponents"
     },
     {
       "type": "text",
-      "content": "An exponent, or power, tells us how many times to multiply a base number by itself. For example, in $2^5 = 32$, the base is 2, the exponent is 5, and 32 is the result. To manipulate expressions involving exponents efficiently, we use a set of established rules."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Product Rule: $a^m \\times a^n = a^{m+n}$",
-        "Quotient Rule: $a^m \\div a^n = a^{m-n}$",
-        "Power of a Power Rule: $(a^m)^n = a^{mn}$",
-        "Zero Exponent: $a^0 = 1$ (for $a \\neq 0$)",
-        "Negative Exponent: $a^{-n} = \\frac{1}{a^n}$",
-        "Fractional Exponent (Roots): $a^{m/n} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$"
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Introducing Logarithms"
-    },
-    {
-      "type": "text",
-      "content": "A logarithm is the inverse operation of exponentiation. It answers the question: 'What exponent do I need to put on this base to get that number?' For example, we know $10^2 = 100$. The logarithm asks, 'What power do we raise 10 to, to get 100?' The answer is 2. We write this as $\\log_{10}(100) = 2$."
+      "content": "You already read an exponent as repeated multiplication: $2^5 = 2 \\times 2 \\times 2 \\times 2 \\times 2 = 32$. The laws of exponents let you combine such powers without expanding them. They all flow from that one idea — an exponent counts how many copies of the base are multiplied together — so multiplying powers adds the counts, and dividing subtracts them."
     },
     {
       "type": "formula",
-      "content": "$$y = b^x \\iff x = \\log_b(y)$$"
-    },
-    {
-      "type": "text",
-      "content": "While any positive number (except 1) can be a base, two bases are particularly common. The **common logarithm** uses base 10 and is written as $\\log(x)$. The **natural logarithm** uses the mathematical constant $e \\approx 2.718$ as its base and is written as $\\ln(x)$. Your GDC has dedicated buttons for both `log` and `ln`, and we will primarily use the natural log, $\\ln$, for solving equations."
-    },
-    {
-      "type": "heading",
-      "content": "Mastering the Laws of Logarithms"
-    },
-    {
-      "type": "text",
-      "content": "Just like exponents, logarithms have rules that allow us to simplify expressions and solve equations. These rules directly correspond to the laws of exponents."
+      "content": "Product: $a^m \\times a^n = a^{m+n}$ \\\\ Quotient: $\\dfrac{a^m}{a^n} = a^{m-n}$ \\\\ Power: $(a^m)^n = a^{mn}$ \\\\ Negative index: $a^{-n} = \\dfrac{1}{a^n}$ \\\\ Fractional index: $a^{m/n} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Product Rule: $\\log_b(MN) = \\log_b(M) + \\log_b(N)$",
-        "Quotient Rule: $\\log_b(M/N) = \\log_b(M) - \\log_b(N)$",
-        "Power Rule: $\\log_b(M^p) = p \\log_b(M)$",
-        "Change of Base Rule: $\\log_b(a) = \\frac{\\ln(a)}{\\ln(b)}$ or $\\frac{\\log(a)}{\\log(b)}$",
-        "Important Identities: $\\log_b(b) = 1$ and $\\log_b(1) = 0$"
+        "**Same base only.** The product and quotient rules combine powers of the *same* base; $2^3 \\times 5^2$ cannot be merged.",
+        "**Negative means reciprocal.** $a^{-n} = \\frac{1}{a^n}$ — a negative exponent flips the base, it does not make the result negative.",
+        "**Fractional means root.** The denominator is the root and the numerator is the power: $a^{m/n} = \\sqrt[n]{a^m}$.",
+        "**Zero exponent.** $a^0 = 1$ for any $a \\ne 0$, which is just the quotient rule with $m = n$."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A biologist is modelling a bacterial culture. The population, $P$, after $t$ hours is given by $P(t) = 500 \\times 1.4^t$. Find the time it takes for the population to reach 2000, giving your answer correct to 3 significant figures.",
-      "solution": "We need to solve the equation $2000 = 500 \\times 1.4^t$.\n\nFirst, isolate the exponential term by dividing both sides by 500.\n$$ \\frac{2000}{500} = 1.4^t $$\n$$ 4 = 1.4^t \\quad \\text{(M1 for isolating the exponential term)}$$\nNow, to solve for the exponent $t$, we take the natural logarithm of both sides.\n$$ \\ln(4) = \\ln(1.4^t) \\quad \\text{(M1 for taking logs)}$$\nUsing the power rule for logarithms, we can bring the $t$ down.\n$$ \\ln(4) = t \\ln(1.4) $$\nFinally, isolate $t$ by dividing by $\\ln(1.4)$.\n$$ t = \\frac{\\ln(4)}{\\ln(1.4)} $$\nUsing a calculator:\n$$ t \\approx 4.1274... $$\n$$ t = 4.13 \\text{ hours (to 3 s.f.)} \\quad \\text{(A1)}$$\nThe population will reach 2000 after approximately 4.13 hours."
+      "question": "Simplify, writing each answer as a single power or an exact value: (a) $\\dfrac{x^7 \\times x^2}{x^3}$, (b) $(2^3)^{-2}$, (c) $27^{2/3}$. [4]",
+      "solution": "**(a)** Combine using the product rule on top, then the quotient rule:\\\\ $\\dfrac{x^7 \\times x^2}{x^3} = \\dfrac{x^{7+2}}{x^3} = x^{9-3} = x^{6}$. (M1 for adding/subtracting indices)  (A1)\\\\ **(b)** Apply the power rule, then the negative index:\\\\ $(2^3)^{-2} = 2^{3 \\times (-2)} = 2^{-6} = \\dfrac{1}{2^6} = \\dfrac{1}{64}$.  (A1)\\\\ **(c)** A fractional index is a root then a power:\\\\ $27^{2/3} = (\\sqrt[3]{27})^2 = 3^2 = 9$.  (A1)"
     },
     {
-      "type": "examTip",
-      "content": "For equations like $a^{f(x)} = b$, taking natural logs ($\\ln$) is the standard algebraic method. On your GDC, you can also solve this graphically by finding the intersection of $y_1 = a^{f(x)}$ and $y_2 = b$, or by using the numerical solver function. Always use the algebraic method unless the question says 'write down' or allows for a GDC-only solution."
+      "type": "heading",
+      "content": "The definition of a logarithm"
+    },
+    {
+      "type": "text",
+      "content": "A logarithm does the opposite job to an exponent: it finds the power. The question 'what power do we raise 2 to, in order to reach 32?' is written $\\log_2 32$, and the answer is 5. That single relationship — power and log as two readings of the same fact — is the foundation of everything that follows."
+    },
+    {
+      "type": "formula",
+      "content": "The definition of a logarithm: $\\log_a x = y \\iff a^y = x$ \\\\ (valid for base $a > 0$, $a \\ne 1$, and $x > 0$). \\\\ Here $a$ is the base, $y$ is the exponent (the logarithm), and $x$ is the result."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The base of the power ($a$) is the base of the logarithm.",
+        "The logarithm *is* the exponent ($y$).",
+        "You can only take the log of a positive number, so $x > 0$; $\\log_a 1 = 0$ and $\\log_a a = 1$ always."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Two logarithms are common enough to have their own buttons. The common logarithm $\\log x$ has base 10 (so $\\log 1000 = 3$), and the natural logarithm $\\ln x$ has base $e \\approx 2.718$ (so $\\ln e = 1$). For a base that is neither 10 nor $e$, the change-of-base formula lets you use those buttons: $\\log_b a = \\dfrac{\\ln a}{\\ln b} = \\dfrac{\\log a}{\\log b}$."
     },
     {
       "type": "workedExample",
-      "question": "Solve the equation $\\log_3(x+1) + \\log_3(x-1) = 1$ for $x$.",
-      "solution": "First, use the product rule for logarithms to combine the two log terms.\n$$ \\log_3((x+1)(x-1)) = 1 \\quad \\text{(M1 for using the product rule)}$$\nSimplify the expression inside the logarithm.\n$$ \\log_3(x^2 - 1) = 1 $$\nNow, convert the logarithmic equation into its equivalent exponential form ($y = \\log_b(a) \\iff a = b^y$).\n$$ x^2 - 1 = 3^1 \\quad \\text{(M1 for converting to exponential form)}$$\n$$ x^2 - 1 = 3 $$\nSolve the resulting quadratic equation.\n$$ x^2 = 4 $$\n$$ x = \\pm 2 $$\nFinally, we must check both solutions in the original equation, because the argument of a logarithm must be positive.\nCheck $x=2$:\n$\\log_3(2+1) + \\log_3(2-1) = \\log_3(3) + \\log_3(1) = 1 + 0 = 1$. This solution is valid.\nCheck $x=-2$:\n$\\log_3(-2+1) = \\log_3(-1)$. The logarithm of a negative number is undefined. Therefore, $x=-2$ is not a valid solution. \\quad (R1 for rejecting the extraneous solution)\n\nThe only solution is $x=2$. \\quad (A1)"
+      "question": "A colony of bacteria is modelled by $N = 100 \\times 2^{t}$, where $N$ is the number of bacteria after $t$ hours. Find the time for the colony to reach 1600 bacteria. [3]",
+      "solution": "**1.** Set up the equation with the target value:\\\\ $1600 = 100 \\times 2^{t}$.\\\\ **2.** Isolate the exponential by dividing by 100:\\\\ $16 = 2^{t}$. (M1 for isolating the power)\\\\ **3.** Rewrite using the definition of a logarithm, $\\log_a x = y \\iff a^y = x$:\\\\ $t = \\log_2 16$. (M1 for converting to log form)\\\\ Since $2^4 = 16$, $t = 4$.\\\\ It takes 4 hours for the colony to reach 1600 bacteria.  (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "The laws of logarithms"
+    },
+    {
+      "type": "text",
+      "content": "Because logs are exponents in disguise, each exponent law has a matching log law. Multiplying inside a log becomes adding outside it; dividing becomes subtracting; and a power inside comes down as a multiplier. These are in your formula booklet, but you must apply them fluently — and, crucially, in the right direction."
+    },
+    {
+      "type": "formula",
+      "content": "Product rule: $\\log_a(xy) = \\log_a x + \\log_a y$ \\\\ Quotient rule: $\\log_a\\!\\left(\\dfrac{x}{y}\\right) = \\log_a x - \\log_a y$ \\\\ Power rule: $\\log_a(x^k) = k\\log_a x$"
     },
     {
       "type": "examTip",
-      "content": "A very common mistake is forgetting to check for extraneous solutions in logarithmic equations. The domain of $\\log_b(f(x))$ requires that $f(x) > 0$. Always substitute your final answers back into the *original* equation to ensure all log arguments are positive."
+      "content": "The power rule is your single most important tool for exponential equations. When the unknown sits in the exponent, taking logs of both sides lets the power rule 'bring it down' as a multiplier, turning an exponential equation into a linear one you can solve."
+    },
+    {
+      "type": "heading",
+      "content": "Solving simple exponential equations"
+    },
+    {
+      "type": "text",
+      "content": "Real-world models — compound interest, depreciation, radioactive decay — are exponential. To find the input (a time, a rate) that gives a required output, you solve an exponential equation. There are two accepted routes on Paper 2: take logarithms by hand, or solve it on the GDC. The by-hand method is: isolate the power, take logs of both sides, use the power rule to bring the exponent down, then rearrange."
+    },
+    {
+      "type": "workedExample",
+      "question": "A car bought for £25000 depreciates according to $V(t) = 25000 \\times (0.85)^{t}$, where $V$ is its value in pounds after $t$ years. Find, to 3 significant figures, the time for its value to fall to £10000. [4]",
+      "solution": "**1.** Set up the equation:\\\\ $10000 = 25000 \\times (0.85)^{t}$.\\\\ **2.** Isolate the exponential by dividing by 25000:\\\\ $0.4 = (0.85)^{t}$. (M1 for isolating the power)\\\\ **3.** Take the natural log of both sides:\\\\ $\\ln 0.4 = \\ln\\!\\left((0.85)^{t}\\right)$.\\\\ **4.** Apply the power rule to bring $t$ down:\\\\ $\\ln 0.4 = t \\ln 0.85$. (M1 for taking logs and using the power rule)\\\\ **5.** Rearrange and evaluate:\\\\ $t = \\dfrac{\\ln 0.4}{\\ln 0.85} = 5.6369\\ldots$ (M1 for rearranging for $t$)\\\\ So $t \\approx 5.64$ years (3 s.f.).  (A1)\\\\ On Paper 2 you could instead plot $y = 25000(0.85)^x$ and $y = 10000$ on the GDC and read the intersection, $x = 5.64$ — equally valid."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Splitting the log of a sum** — $\\log(x+y) \\ne \\log x + \\log y$. The sum rule applies to a product: $\\log(xy) = \\log x + \\log y$. There is no law for the log of a sum.",
+        "**Misreading a fractional index** — $a^{m/n}$ is a root, $\\sqrt[n]{a^m}$, not a division. So $27^{2/3} = 9$, not $18$.",
+        "**Treating a negative index as a negative number** — $2^{-3} = \\frac{1}{8}$, a reciprocal, not $-8$.",
+        "**Forgetting $\\log_a a = 1$ and $\\log_a 1 = 0$** — these follow straight from $a^1 = a$ and $a^0 = 1$, and are frequently needed to finish a simplification.",
+        "**Trying to solve for an exponent without logs** — if the unknown is in the power and the numbers are not nice, you must take logs (or use the GDC); you cannot 'divide the power away'.",
+        "**Combining powers of different bases** — $a^m \\times b^n$ does not simplify; the product and quotient rules need the *same* base.",
+        "**Over-rounding mid-calculation** — carry the GDC's full figures for $\\ln 0.4$ and $\\ln 0.85$ and round only the final answer, to 3 significant figures unless told otherwise."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "IB Mathematics marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach; an accuracy mark (A) rewards a correct value and *depends* on the method mark it follows. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is carried out correctly on your own figure. On Paper 2 the GDC is allowed, so a correct graphical solution earns full marks too. The protection only exists if the method is on the page — so study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve $500 \\times 1.04^{t} = 800$ for $t$, giving your answer to 3 significant figures. [4]",
+      "solution": "**Model answer — full working.**\\\\ \\\\ **Isolate the power.** Divide both sides by 500:\\\\ $1.04^{t} = \\dfrac{800}{500} = 1.6.$\\\\ \\\\ **Take logs of both sides.** Using the natural log:\\\\ $\\ln\\!\\left(1.04^{t}\\right) = \\ln 1.6.$\\\\ \\\\ **Bring the exponent down** with the power rule and rearrange for $t$:\\\\ $t \\ln 1.04 = \\ln 1.6 \\quad\\Rightarrow\\quad t = \\dfrac{\\ln 1.6}{\\ln 1.04} = 11.987\\ldots$\\\\ \\\\ **Round.** $t \\approx 12.0$ (3 s.f.).\\\\ \\\\ *Alternative (GDC):* plot $y = 500 \\times 1.04^{x}$ and $y = 800$ and find the intersection, or use the equation solver, giving $x = 12.0$ — fully acceptable on Paper 2.\\\\ \\\\ ---\\\\ **How our marking engine awards the 4 marks:**\\\\ \\\\ - **M1 — isolate the power.** Awarded for reaching $1.04^{t} = 1.6$ (dividing both sides by 500). This is the approach mark, so it survives an arithmetic slip further down.\\\\ - **M1 — take logs (or GDC solve).** Awarded for applying $\\ln$ (or $\\log$) to both sides, $\\ln(1.04^{t}) = \\ln 1.6$ — *or* for setting up a valid GDC solution (graph intersection or solver). The engine accepts either route.\\\\ - **M1 — rearrange for $t$.** Awarded for using the power rule and isolating the variable: $t = \\dfrac{\\ln 1.6}{\\ln 1.04}$. This depends on a valid log step above, and FT applies — a candidate who isolated a slightly different power but rearranged correctly still earns it on their own figures.\\\\ - **A1 — final value.** Awarded for $t \\approx 12.0$, correctly rounded to 3 significant figures. This accuracy mark depends on the method marks that precede it.\\\\ \\\\ **'Accept equivalent forms and correct rounding.'** The engine accepts $\\dfrac{\\ln 1.6}{\\ln 1.04}$, $\\dfrac{\\log 1.6}{\\log 1.04}$, $11.99$ carried to more figures, or the GDC value 12.0; it accepts the answer whether reached by logs or graphically. Once the correct value appears, ISW (ignore subsequent working) means a later restatement does not lose marks.\\\\ \\\\ **Bottom line:** three of the four marks are method marks that survive an arithmetic slip, and the single accuracy mark is shielded by follow-through. A student who writes only '$t = 12$' with no working risks losing the three method marks; a student who shows the isolation, the log step and the rearrangement keeps the method regardless of a slip in the final figure."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through, and it accepts a valid GDC method. So always show the method: isolate the power, take logs (or state your GDC solve), bring the exponent down, then evaluate and round. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Exponents and logarithms are the machinery behind every growth-and-decay model you will meet. The exponential equations you solve here reappear as compound-interest and depreciation problems in the finance topic, and as continuous growth $A = A_0 e^{kt}$ in modelling; the same 'isolate the power, take logs' routine unlocks them all. Master the two directions — a power built up, a logarithm to recover it — and the modelling that follows becomes variations on a technique you already own."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=1.4"
+      "label": "Get a Paper 2 exponential equation marked: isolate the power, take logs (or solve on the GDC), with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.4&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Khan Academy: Exponents & Logarithms",
-          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs"
+          "label": "GeoGebra: Exponents and Logarithms Graph",
+          "href": "https://www.geogebra.org/m/sUfB2YpX"
         },
         {
-          "label": "Revision Village: IB Maths AI HL Questionbank",
-          "href": "https://www.revisionvillage.com/ib-maths/analysis-and-approaches-hl/questionbank/"
+          "label": "Khan Academy: Intro to Logarithms",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:log-intro/v/logarithms"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Exponents and Logarithms Graph",
+    "embedUrl": "https://www.geogebra.org/classic?material=sUfB2YpX",
+    "launchUrl": "https://www.geogebra.org/classic?material=sUfB2YpX",
+    "hint": "Use “Exponents and Logarithms Graph” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

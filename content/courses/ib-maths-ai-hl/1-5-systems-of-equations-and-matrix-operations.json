@@ -1,171 +1,365 @@
 {
   "slug": "1-5-systems-of-equations-and-matrix-operations",
   "topicCode": "1.5",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
   "title": "Systems of equations and matrix operations",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores how to represent systems of linear equations in matrix form, $AX=B$. You will learn to solve these systems by finding the inverse of the coefficient matrix, $A$, and to use the determinant to understand the nature of the solutions. The focus is on using a GDC efficiently to handle systems with up to three variables.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "This lesson builds the full 1.5 toolkit: solving systems of linear equations in two unknowns, and up to three unknowns using the GDC; setting up a system from a worded context; and the SL matrix operations — addition, subtraction, scalar multiplication and matrix multiplication (with the conformability rule), the identity matrix, and the determinant and inverse of a 2x2 matrix. It ties everything together with the matrix equation $A\\mathbf{x}=\\mathbf{b}$, solved either with the inverse $\\mathbf{x}=A^{-1}\\mathbf{b}$ or straight on the GDC. Because 1.5 is examined on Paper 1 without a calculator restriction on this course, the emphasis is on setting the problem up correctly, showing the method the examiner needs, and reading the technology accurately. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Represent a system of linear equations using the matrix equation $AX=B$.",
-    "Solve systems of linear equations for up to three variables using the inverse matrix method on a GDC.",
-    "Understand the role of the determinant in identifying whether a system has a unique solution.",
-    "Interpret the solutions of a system of equations in the context of a given problem."
+    "Solve a system of two linear equations in two unknowns algebraically, and a system of up to three unknowns using the GDC.",
+    "Translate a worded context into a system of linear equations, defining variables clearly.",
+    "Add, subtract and scalar-multiply matrices, and multiply matrices, applying the conformability rule to decide when a product exists.",
+    "State the role of the identity matrix, and find the determinant and inverse of a 2x2 matrix.",
+    "Write a system as a matrix equation $A\\mathbf{x}=\\mathbf{b}$ and solve it using the inverse $\\mathbf{x}=A^{-1}\\mathbf{b}$ or the GDC, presenting working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "1.5"
+  ],
+  "levelNote": "Common to SL and HL; larger matrices/eigenvalues are HL.",
   "simpleExplanation": {
-    "title": "The Matrix Recipe Solver",
-    "summary": "Matrices provide a powerful and organised method for solving several simultaneous equations. This is like having a master key that unlocks the values of all your variables at once.",
-    "analogy": "Imagine you're a baker with three secret recipes for cakes that use different amounts of flour, sugar, and eggs. You know the total amount of each ingredient you used today and the total number of each cake you baked, but you've forgotten the recipes themselves. Setting up this problem with matrices is like using a machine to analyse your stock and sales, which then perfectly reconstructs each secret recipe for you.",
+    "title": "Many clues, one tidy grid",
+    "summary": "A system of equations is several clues about the same unknowns. A matrix is a tidy grid that packages those clues so the whole system becomes a single equation, $A\\mathbf{x}=\\mathbf{b}$, that you can undo in one move with an inverse or hand straight to your GDC.",
+    "analogy": "Imagine a ticket office that sells adult and child tickets. You are told two facts: how many tickets sold in total, and how much money came in. Each fact is a clue that mixes the two unknown numbers together. Written as a grid, the ticket prices become the matrix $A$, the unknown counts become the column $\\mathbf{x}$, and the totals become $\\mathbf{b}$. Multiplying $A$ by $A^{-1}$ is like having a master key that unlocks $\\mathbf{x}$ in a single turn — or you can just let the calculator turn the key for you.",
     "steps": [
-      "Translate the word problem or equations into the matrix form $AX = B$, identifying the coefficient matrix $A$, variable matrix $X$, and constant matrix $B$.",
-      "Use your GDC to find the determinant of the coefficient matrix, $\\det(A)$. If it's zero, there is no unique solution.",
-      "If $\\det(A) \\neq 0$, use your GDC to calculate the inverse matrix, $A^{-1}$.",
-      "Calculate the solution by multiplying the inverse matrix by the constant matrix: $X = A^{-1}B$. The resulting matrix gives the values of your variables."
+      "Translate the context into equations. Define each variable in words, then write every equation in standard form, for example $ax+by=c$, with the variables in the same order.",
+      "Choose your route. Two unknowns can be solved algebraically; three unknowns are solved on the GDC. Either way you can package the coefficients into a matrix $A$, the unknowns into a column $\\mathbf{x}$, and the constants into a column $\\mathbf{b}$.",
+      "Solve. For a 2x2 system find $\\det A$ and the inverse $A^{-1}$, then compute $\\mathbf{x}=A^{-1}\\mathbf{b}$; or type the system straight into the GDC.",
+      "Interpret and check. Read the solution back into the context, and substitute into an original equation to confirm it works."
     ]
   },
+  "keyConcepts": [
+    "systems of linear equations",
+    "matrix operations",
+    "the matrix equation Ax=b"
+  ],
   "flashcards": [
     {
-      "front": "What is the standard matrix form for a system of linear equations?",
-      "back": "$AX = B$, where $A$ is the coefficient matrix, $X$ is the variable matrix, and $B$ is the constant matrix."
+      "front": "System of linear equations",
+      "back": "Two or more linear equations sharing the same unknowns, for example $2x+3y=13$ and $x-y=1$. A solution is a set of values that satisfies every equation at once.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "In the equation $AX=B$, what does the matrix $A$ represent?",
-      "back": "$A$ is the coefficient matrix. Each entry $a_{ij}$ is the coefficient of the $j$-th variable in the $i$-th equation."
+      "front": "Solving two unknowns",
+      "back": "For two equations in two unknowns, use elimination or substitution by hand, or the GDC's simultaneous-equation solver. Always be ready to show one algebraic step for the method mark.",
+      "pillLabel": "Method"
     },
     {
-      "front": "How do you solve for the variable matrix $X$ in the equation $AX=B$?",
-      "back": "By pre-multiplying both sides by the inverse of $A$: $X = A^{-1}B$."
+      "front": "Solving three unknowns (GDC)",
+      "back": "For up to three unknowns you are expected to use technology — the GDC's system solver, or entering the coefficient matrix and constants. Write down what you entered so the method is on the page.",
+      "pillLabel": "Method"
     },
     {
-      "front": "Why is the order $X = A^{-1}B$ important?",
-      "back": "Matrix multiplication is not commutative, so $A^{-1}B$ is generally not equal to $BA^{-1}$. The correct order is essential for the correct solution."
+      "front": "Matrix addition and subtraction",
+      "back": "Add or subtract matrices of the SAME order element by element. Matrices of different orders cannot be added or subtracted.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What condition must be met for a system of equations to have a unique solution?",
-      "back": "The determinant of the coefficient matrix $A$ must be non-zero ($det(A) \\neq 0$)."
+      "front": "Scalar multiplication",
+      "back": "Multiply a matrix by a number by multiplying EVERY element by that number: $k\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=\\begin{pmatrix}ka&kb\\\\kc&kd\\end{pmatrix}$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What does it mean if $\\det(A) = 0$?",
-      "back": "The system does not have a unique solution. It will either have no solutions or infinitely many solutions."
+      "front": "Conformability for products",
+      "back": "The product $AB$ exists only when the number of COLUMNS of $A$ equals the number of ROWS of $B$. An $(m\\times n)$ times an $(n\\times p)$ gives an $(m\\times p)$ matrix — the inner numbers must match, the outer numbers give the size.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "What is a singular matrix?",
-      "back": "A square matrix whose determinant is zero. A singular matrix does not have an inverse."
+      "front": "Matrix multiplication is not commutative",
+      "back": "In general $AB\\neq BA$: order matters, and one product may exist while the other does not. Never swap the factors when multiplying matrices.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is an augmented matrix?",
-      "back": "A matrix formed by combining the coefficient matrix $A$ and the constant matrix $B$ into a single matrix, written as $[A|B]$. It's used for Gaussian elimination (rref)."
+      "front": "Identity matrix $I$",
+      "back": "The square matrix with 1s on the leading diagonal and 0s elsewhere; the 2x2 identity is $\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$. It leaves any conformable matrix unchanged: $AI=IA=A$. It is the matrix equivalent of the number 1.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Common Trap: When solving $AX=B$, a student calculates $X = BA^{-1}$. Why is this incorrect?",
-      "back": "Matrix multiplication is not commutative. The correct derivation is $A^{-1}(AX) = A^{-1}B \\implies (A^{-1}A)X = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B$."
+      "front": "Determinant of a 2x2 matrix",
+      "back": "For $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$, $\\det A=ad-bc$. It is a single number: if $\\det A\\neq0$ the inverse exists; if $\\det A=0$ the matrix is singular and has no inverse.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How can you use your GDC to solve a system of equations without finding the inverse matrix explicitly?",
-      "back": "You can use the 'rref' (Reduced Row Echelon Form) function on an augmented matrix $[A|B]$. The final column of the resulting matrix will be the solution vector."
+      "front": "Inverse of a 2x2 matrix",
+      "back": "$A^{-1}=\\dfrac{1}{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$: swap the leading diagonal, negate the other diagonal, then divide by the determinant. Only defined when $\\det A\\neq0$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "The property of an inverse",
+      "back": "The inverse undoes the matrix: $AA^{-1}=A^{-1}A=I$. This is exactly why multiplying $A\\mathbf{x}=\\mathbf{b}$ by $A^{-1}$ leaves $\\mathbf{x}$ alone on one side.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Matrix form of a system",
+      "back": "A system becomes $A\\mathbf{x}=\\mathbf{b}$, where $A$ holds the coefficients, $\\mathbf{x}$ is the column of unknowns and $\\mathbf{b}$ is the column of constants. Solve with $\\mathbf{x}=A^{-1}\\mathbf{b}$ or on the GDC.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Solve on the correct side",
+      "back": "From $A\\mathbf{x}=\\mathbf{b}$ multiply on the LEFT by $A^{-1}$ to get $\\mathbf{x}=A^{-1}\\mathbf{b}$. Because matrices do not commute, $\\mathbf{b}A^{-1}$ is wrong (and usually not even conformable).",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Singular system",
+      "back": "If $\\det A=0$ the matrix equation has no unique solution: the lines are parallel (no solution) or identical (infinitely many). No inverse exists, so $\\mathbf{x}=A^{-1}\\mathbf{b}$ cannot be used.",
+      "pillLabel": "Concept"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The product $AB$ of matrices exists only when:",
+      "options": [
+        "The number of columns of $A$ equals the number of rows of $B$",
+        "$A$ and $B$ have the same order",
+        "The number of rows of $A$ equals the number of rows of $B$",
+        "$A$ and $B$ are both square"
+      ],
+      "answer": "The number of columns of $A$ equals the number of rows of $B$"
+    },
+    {
+      "prompt": "For $2\\times2$ matrices in general, $AB$ and $BA$ are:",
+      "options": [
+        "Not necessarily equal — order matters",
+        "Always equal",
+        "Both equal to the identity",
+        "Never defined at the same time"
+      ],
+      "answer": "Not necessarily equal — order matters"
+    },
+    {
+      "prompt": "The determinant of $\\begin{pmatrix}2&3\\\\1&-1\\end{pmatrix}$ is:",
+      "options": [
+        "$-5$",
+        "$5$",
+        "$1$",
+        "$-1$"
+      ],
+      "answer": "$-5$"
+    },
+    {
+      "prompt": "To solve $A\\mathbf{x}=\\mathbf{b}$ for the column $\\mathbf{x}$, you compute:",
+      "options": [
+        "$\\mathbf{x}=A^{-1}\\mathbf{b}$",
+        "$\\mathbf{x}=\\mathbf{b}A^{-1}$",
+        "$\\mathbf{x}=A\\mathbf{b}$",
+        "$\\mathbf{x}=\\mathbf{b}A$"
+      ],
+      "answer": "$\\mathbf{x}=A^{-1}\\mathbf{b}$"
+    },
+    {
+      "prompt": "A $2\\times2$ matrix $A$ has $\\det A=0$. This means:",
+      "options": [
+        "$A$ has no inverse, so the system has no unique solution",
+        "$A$ equals the identity matrix",
+        "$A^{-1}=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$",
+        "the system always has infinitely many solutions"
+      ],
+      "answer": "$A$ has no inverse, so the system has no unique solution"
     }
   ],
   "faq": [
     {
-      "q": "What happens if I get a 'Singular Matrix' or 'Domain Error' on my GDC when finding the inverse?",
-      "a": "This error means the determinant of your coefficient matrix is zero. The system does not have a unique solution. In an exam, you should state that $\\det(A) = 0$ and therefore no unique solution exists. The system will have either no solutions or infinitely many solutions."
+      "q": "When do I solve by hand and when do I use the GDC?",
+      "a": "For two equations in two unknowns you can eliminate or substitute by hand, and you should be ready to show at least one algebraic step. For three unknowns the course expects you to use technology — the GDC's system solver or the inverse-matrix method. Either way, write down the equations (or the matrix you entered) so the method is visible to the examiner."
     },
     {
-      "q": "Can I solve these systems by hand?",
-      "a": "While it's possible to solve 2x2 systems by hand (by finding the inverse manually) and 3x3 systems (using a very long process), the AI HL syllabus expects you to use your GDC for efficiency. The marks are awarded for setting up the problem correctly and interpreting the GDC's output, not for manual matrix inversion."
+      "q": "How do I know if two matrices can be multiplied?",
+      "a": "Write their orders side by side, for example $(2\\times3)$ and $(3\\times1)$. The product exists only if the two inner numbers match — here both are 3 — and the result takes the outer numbers, giving a $(2\\times1)$ matrix. If the inner numbers differ, the product is undefined, and you should say so rather than force an answer."
     },
     {
-      "q": "Does the order of the equations matter when I set up the matrix A and B?",
-      "a": "The order of the equations (the rows) does not matter, as long as you are consistent. The first row of matrix A must correspond to the first element of matrix B, the second row of A to the second element of B, and so on. Swapping two equations is equivalent to swapping the corresponding two rows in both A and B, which will still lead to the correct answer."
+      "q": "Why is the order of multiplication so important?",
+      "a": "Matrix multiplication is not commutative: $AB$ and $BA$ are usually different, and sometimes only one of them even exists. That is why you must left-multiply $A\\mathbf{x}=\\mathbf{b}$ by $A^{-1}$ to reach $\\mathbf{x}=A^{-1}\\mathbf{b}$. Writing $\\mathbf{b}A^{-1}$ reverses the order and is both conceptually wrong and, for a column $\\mathbf{b}$, not conformable."
     },
     {
-      "q": "What's the difference between using $X=A^{-1}B$ and using 'rref' on an augmented matrix?",
-      "a": "Both are valid GDC methods to solve a system of linear equations. $X=A^{-1}B$ is a direct calculation based on the inverse matrix. Using 'rref' (Reduced Row Echelon Form) on an augmented matrix $[A|B]$ performs a process called Gaussian elimination. For systems with a unique solution, they will give the same answer. The 'rref' method is more general as it can also reveal information about systems with no or infinite solutions."
+      "q": "What does it mean when the determinant is zero?",
+      "a": "A zero determinant means the matrix is singular and has no inverse. For a $2\\times2$ system the two lines are then either parallel (no solution) or the same line (infinitely many solutions). You cannot use $\\mathbf{x}=A^{-1}\\mathbf{b}$; the GDC will report no unique solution."
+    },
+    {
+      "q": "Do I have to memorise the inverse formula, or can I just use the GDC?",
+      "a": "Both are examinable. The $2\\times2$ inverse formula $A^{-1}=\\frac{1}{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$ can be asked for directly, so know it. For solving a system quickly and accurately, the GDC's matrix or system function is usually faster and less error-prone — use it, but show the set-up."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "While you're familiar with solving two simultaneous equations using substitution or elimination, these methods become cumbersome and inefficient for systems with three or more variables. Matrix algebra provides a clean, systematic, and powerful framework for representing and solving large systems of linear equations, which are common in fields like economics, engineering, and computer science."
+      "content": "Many real problems fix several unknown quantities at once through several linked conditions: ticket sales that must match both a headcount and a takings figure, a diet that must hit targets for two or three nutrients, currents in a circuit that obey several rules together. Each condition is a linear equation, and together they form a system. This lesson shows you how to solve such systems — by hand for two unknowns, and on the GDC for up to three — and how the language of matrices packages a whole system into a single equation, $A\\mathbf{x}=\\mathbf{b}$, that you can solve with an inverse or with technology. Along the way you will master the SL matrix operations: addition, subtraction, scalar multiplication, multiplication with its conformability rule, the identity matrix, and the determinant and inverse of a 2x2 matrix. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Representing Systems of Equations with Matrices"
+      "content": "Solving systems of linear equations"
     },
     {
       "type": "text",
-      "content": "Any system of linear equations can be expressed in the compact matrix form $AX = B$. This involves organising the coefficients, variables, and constants into three distinct matrices. Consider a system with three variables $x, y, z$:"
-    },
-    {
-      "type": "formula",
-      "content": "$\\begin{cases} a_1x + b_1y + c_1z = d_1 \\\\ a_2x + b_2y + c_2z = d_2 \\\\ a_3x + b_3y + c_3z = d_3 \\end{cases} \\quad \\iff \\quad \\begin{pmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\begin{pmatrix} d_1 \\\\ d_2 \\\\ d_3 \\end{pmatrix}$"
+      "content": "A system of linear equations is a set of equations that must all hold at the same time. A solution is a set of values for the unknowns that satisfies every equation simultaneously. Geometrically, two equations in two unknowns are two straight lines: a unique solution is the point where they cross, no solution means they are parallel, and infinitely many solutions means they are the same line."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**A** is the **coefficient matrix**, containing the coefficients of the variables.",
-        "**X** is the **variable matrix** (a column vector), containing the variables.",
-        "**B** is the **constant matrix** (a column vector), containing the constants from the right-hand side of the equations."
+        "**Two unknowns:** solve by elimination or substitution by hand, or with the GDC's simultaneous-equation solver. Show at least one algebraic step for the method mark.",
+        "**Up to three unknowns:** use the GDC — the system solver, or entering the coefficients and constants as matrices. Write down what you entered.",
+        "**Standard form first:** arrange every equation as $ax+by=c$ (or $ax+by+cz=d$) with the variables in the same order before reading off coefficients.",
+        "**Interpret the outcome:** a unique solution, no solution (inconsistent) or infinitely many solutions (dependent)."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "For example, to solve $2x+3y=13$ and $x-y=1$ by elimination, rearrange the second equation to $x=y+1$ and substitute: $2(y+1)+3y=13$, so $5y+2=13$, giving $y=2.2$ and then $x=3.2$. The same pair of values is exactly what the GDC returns from its simultaneous-equation solver — the technology is doing the elimination for you."
+    },
+    {
+      "type": "heading",
+      "content": "Setting up a system from a context"
+    },
+    {
+      "type": "text",
+      "content": "Most exam marks are lost not in the solving but in the setting up. The reliable routine is: define each unknown in words, turn each sentence of the problem into one equation, and line the variables up in the same order in every equation. A missing variable is written with a coefficient of zero so the columns still align."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cinema sells adult tickets at $12 and child tickets at $8. One evening it sells 200 tickets in total and takes $2040. Let $a$ be the number of adult tickets and $c$ the number of child tickets sold. Set up and solve a system to find $a$ and $c$. [5]",
+      "solution": "Define the variables (given): $a=$ adult tickets, $c=$ child tickets.\\n\\n**Set up the system.** 'Total tickets' and 'total takings' give one equation each:\\n$a+c=200$\\n$12a+8c=2040$  [M1: two correct equations from the context]\\n\\n**Solve.** From the first equation $a=200-c$. Substitute into the second:\\n$12(200-c)+8c=2040$\\n$2400-4c=2040$\\n$-4c=-360$, so $c=90$.  [M1: a valid elimination/substitution step]  [A1: $c=90$]\\n\\nThen $a=200-90=110$.  [A1: $a=110$]\\n\\n**Interpret.** 110 adult tickets and 90 child tickets were sold. Check: $12(110)+8(90)=1320+720=2040$. Correct.  [A1: both values stated in context, with a check]"
+    },
+    {
+      "type": "examTip",
+      "content": "Always define your variables in writing, even when the question seems to name them for you, and always write down the equations you formed. On Paper 1 these lines carry method marks in their own right — a correct pair of equations can be worth as much as the final answer."
+    },
+    {
+      "type": "heading",
+      "content": "Matrix operations at SL"
+    },
+    {
+      "type": "text",
+      "content": "A matrix is a rectangular array of numbers; its order is 'rows x columns'. Matrices give you a compact language for handling many numbers at once, and four operations are examinable at SL: addition, subtraction, scalar multiplication and matrix multiplication."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Addition and subtraction:** only for matrices of the SAME order; work element by element.",
+        "**Scalar multiplication:** multiply EVERY element by the scalar.",
+        "**Matrix multiplication:** row-by-column. The product $AB$ exists only when the columns of $A$ match the rows of $B$.",
+        "**Order of a product:** an $(m\\times n)$ times an $(n\\times p)$ gives an $(m\\times p)$ matrix — inner numbers must match, outer numbers give the size."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Scalar multiple: $k\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=\\begin{pmatrix}ka&kb\\\\kc&kd\\end{pmatrix}$. \\n Product (2x2): $\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\begin{pmatrix}e&f\\\\g&h\\end{pmatrix}=\\begin{pmatrix}ae+bg&af+bh\\\\ce+dg&cf+dh\\end{pmatrix}$."
+    },
+    {
+      "type": "text",
+      "content": "Two features of multiplication trap students. First, conformability: $(2\\times3)(3\\times1)$ works and gives a $(2\\times1)$ matrix, but $(2\\times3)(2\\times3)$ is undefined because the inner numbers, 3 and 2, disagree. Second, multiplication is not commutative: even when both $AB$ and $BA$ exist, they are usually different matrices, so you must never swap the order."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $A=\\begin{pmatrix}1&2\\\\3&0\\end{pmatrix}$ and $B=\\begin{pmatrix}4&-1\\\\2&5\\end{pmatrix}$. Find (a) $2A-B$, and (b) the product $AB$, and (c) state whether $BA$ equals $AB$. [5]",
+      "solution": "**(a) $2A-B$.** Scalar-multiply first, then subtract element by element:\\n$2A=\\begin{pmatrix}2&4\\\\6&0\\end{pmatrix}$, so $2A-B=\\begin{pmatrix}2-4&4-(-1)\\\\6-2&0-5\\end{pmatrix}=\\begin{pmatrix}-2&5\\\\4&-5\\end{pmatrix}$.  [M1: scalar multiple and subtraction of like elements]  [A1]\\n\\n**(b) $AB$.** Both are $2\\times2$, so the product is $2\\times2$. Multiply row by column:\\n$AB=\\begin{pmatrix}1(4)+2(2)&1(-1)+2(5)\\\\3(4)+0(2)&3(-1)+0(5)\\end{pmatrix}=\\begin{pmatrix}8&9\\\\12&-3\\end{pmatrix}$.  [M1: row-by-column method]  [A1]\\n\\n**(c) Does $BA=AB$?** Computing $BA=\\begin{pmatrix}4(1)+(-1)(3)&4(2)+(-1)(0)\\\\2(1)+5(3)&2(2)+5(0)\\end{pmatrix}=\\begin{pmatrix}1&8\\\\17&4\\end{pmatrix}$, which is different from $AB$. So $BA\\neq AB$: matrix multiplication is not commutative.  [A1: correct comparison and conclusion]"
+    },
+    {
+      "type": "heading",
+      "content": "The identity, determinant and inverse of a 2x2 matrix"
+    },
+    {
+      "type": "text",
+      "content": "Among square matrices, the identity matrix $I$ plays the role of the number 1: for the 2x2 case $I=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$, and $AI=IA=A$ for every 2x2 matrix $A$. The inverse of $A$, written $A^{-1}$, plays the role of a reciprocal: it satisfies $AA^{-1}=A^{-1}A=I$, so multiplying by it undoes $A$."
+    },
+    {
+      "type": "formula",
+      "content": "For $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$: determinant $\\det A=ad-bc$, and inverse $A^{-1}=\\dfrac{1}{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$, defined only when $\\det A\\neq0$."
+    },
+    {
+      "type": "text",
+      "content": "To build the inverse: swap the two entries on the leading diagonal, put a minus sign on the other two, and divide the whole matrix by the determinant. If $\\det A=0$ the matrix is singular — it has no inverse, and the associated system has no unique solution. The determinant is therefore a quick test: compute $ad-bc$ before attempting an inverse."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $A=\\begin{pmatrix}4&3\\\\2&1\\end{pmatrix}$. (a) Find $\\det A$. (b) Hence find $A^{-1}$. (c) Verify that $AA^{-1}=I$. [5]",
+      "solution": "**(a) Determinant.** $\\det A=ad-bc=(4)(1)-(3)(2)=4-6=-2$.  [A1]\\n\\n**(b) Inverse.** Since $\\det A=-2\\neq0$, the inverse exists. Swap the leading diagonal, negate the other diagonal, and divide by $-2$:\\n$A^{-1}=\\dfrac{1}{-2}\\begin{pmatrix}1&-3\\\\-2&4\\end{pmatrix}=\\begin{pmatrix}-0.5&1.5\\\\1&-2\\end{pmatrix}$.  [M1: correct inverse structure]  [A1]\\n\\n**(c) Verify.** $AA^{-1}=\\begin{pmatrix}4&3\\\\2&1\\end{pmatrix}\\begin{pmatrix}-0.5&1.5\\\\1&-2\\end{pmatrix}=\\begin{pmatrix}4(-0.5)+3(1)&4(1.5)+3(-2)\\\\2(-0.5)+1(1)&2(1.5)+1(-2)\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I$.  [M1: product attempted]  [A1: shown equal to $I$]"
+    },
+    {
+      "type": "heading",
+      "content": "The matrix equation $A\\mathbf{x}=\\mathbf{b}$"
+    },
+    {
+      "type": "text",
+      "content": "Any linear system can be packaged as a single matrix equation. Collect the coefficients into a matrix $A$, the unknowns into a column $\\mathbf{x}$, and the constants into a column $\\mathbf{b}$. Then the whole system reads $A\\mathbf{x}=\\mathbf{b}$. To solve, left-multiply both sides by $A^{-1}$: since $A^{-1}A=I$, the left side collapses to $\\mathbf{x}$, giving $\\mathbf{x}=A^{-1}\\mathbf{b}$. The order is essential — because matrices do not commute, you must multiply on the left, and $\\mathbf{b}A^{-1}$ is both wrong and, for a column $\\mathbf{b}$, not even conformable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Package it:** $A$ = coefficients, $\\mathbf{x}$ = unknowns (a column), $\\mathbf{b}$ = constants (a column).",
+        "**Left-multiply by $A^{-1}$:** $A^{-1}A\\mathbf{x}=A^{-1}\\mathbf{b}$ gives $\\mathbf{x}=A^{-1}\\mathbf{b}$.",
+        "**Order matters:** it is $A^{-1}\\mathbf{b}$, never $\\mathbf{b}A^{-1}$.",
+        "**Or use the GDC:** enter $A$ and $\\mathbf{b}$ and compute $A^{-1}\\mathbf{b}$, or use the system solver directly. Both are accepted; show the set-up."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On this course you may solve $A\\mathbf{x}=\\mathbf{b}$ entirely on the GDC, but you still write down the matrix equation you set up. That single line — $A$, $\\mathbf{x}$ and $\\mathbf{b}$ correctly identified — is where the method marks live, and it is also your evidence if a keying slip spoils the final numbers."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Adding or subtracting matrices of different orders** — these operations only exist for matrices of the SAME order; check the orders before you start.",
+        "**Forcing a product that is not conformable** — $AB$ exists only if the columns of $A$ equal the rows of $B$. If the inner numbers disagree, write 'not defined' rather than inventing entries.",
+        "**Swapping the order of a product** — $AB\\neq BA$ in general. Copy the factors down in the order the question gives them and never reverse them.",
+        "**Mis-signing the determinant** — $\\det A=ad-bc$, so watch the subtraction and the signs of $b$ and $c$; a sign slip here corrupts the whole inverse.",
+        "**Forgetting to divide by the determinant** — the inverse is $\\frac{1}{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$; writing only the adjusted matrix without the $\\frac{1}{\\det A}$ factor is a classic lost accuracy mark.",
+        "**Solving as $\\mathbf{b}A^{-1}$ instead of $A^{-1}\\mathbf{b}$** — you must left-multiply; the reversed product is wrong and usually not conformable.",
+        "**Trying to invert a singular matrix** — if $\\det A=0$ there is no inverse and no unique solution; say so instead of dividing by zero.",
+        "**Setting up equations with misaligned variables** — line up $x$, $y$, $z$ in the same order in every equation and use a coefficient of 0 for any missing variable before reading them into $A$."
       ]
     },
     {
       "type": "heading",
-      "content": "Solving Systems using the Inverse Matrix"
+      "content": "Model answer — marked the way our engine marks it"
     },
     {
       "type": "text",
-      "content": "If we can represent our system as $AX = B$, we can solve for the variables in matrix $X$ by using the inverse of matrix $A$. By pre-multiplying both sides of the equation by $A^{-1}$, we isolate $X$. Remember that $A^{-1}A$ results in the identity matrix, $I$, and $IX = X$."
-    },
-    {
-      "type": "formula",
-      "content": "AX = B \\implies A^{-1}(AX) = A^{-1}B \\implies (A^{-1}A)X = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B"
-    },
-    {
-      "type": "examTip",
-      "content": "The order of multiplication is critical. The solution is $X = A^{-1}B$, not $BA^{-1}$. On your GDC, you will define matrix A and matrix B, then compute $A^{-1} \\times B$. Make sure the dimensions are compatible for multiplication."
+      "content": "On Paper 1 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach; an accuracy mark (A) rewards a correct result and depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is carried out correctly on your own figures. The engine also accepts any equivalent form and any correctly-rounded value, and it accepts a valid GDC route in place of by-hand working — but only if the set-up is written down. Study how each mark below is earned by a specific line."
     },
     {
       "type": "workedExample",
-      "question": "A cinema sells adult tickets and child tickets. On Friday, it sold 120 adult tickets and 85 child tickets, with total takings of £1,940. On Saturday, it sold 210 adult tickets and 150 child tickets, with total takings of £3,450. Let £$a$ be the price of an adult ticket and £$c$ be the price of a child ticket. Find the price of each type of ticket.",
-      "solution": "First, set up the system of linear equations:\n$120a + 85c = 1940$ (Friday)\n$210a + 150c = 3450$ (Saturday)\n\n[M1] - For correctly formulating at least one equation.\n\nNext, write this in matrix form $AX=B$:\n$A = \\begin{pmatrix} 120 & 85 \\\\ 210 & 150 \\end{pmatrix}$, $X = \\begin{pmatrix} a \\\\ c \\end{pmatrix}$, $B = \\begin{pmatrix} 1940 \\\\ 3450 \\end{pmatrix}$\n\n[M1] - For correctly identifying matrices A, X, and B.\n\nNow, we solve for $X$ using $X = A^{-1}B$. We use a GDC for this.\nEnter matrix $A$ and matrix $B$ into your calculator.\nFirst, check the determinant of A:\n$\\det(A) = (120)(150) - (85)(210) = 18000 - 17850 = 150$.\nSince $\\det(A) \\neq 0$, a unique solution exists.\n\nNow, calculate $A^{-1}B$ on the GDC:\n$X = \\begin{pmatrix} 120 & 85 \\\\ 210 & 150 \\end{pmatrix}^{-1} \\begin{pmatrix} 1940 \\\\ 3450 \\end{pmatrix} = \\begin{pmatrix} 11 \\\\ 7.5 \\end{pmatrix}$\n\n[M1] - For the correct setup $X = A^{-1}B$.\n\nSo, $a = 11$ and $c = 7.5$.\nThe price of an adult ticket is £11.00 and the price of a child ticket is £7.50.\n\n[A2] - For both correct values. Award [A1] for one correct value."
+      "question": "Solve the system $2x+3y=13$, $x-y=1$ using matrices. [5]",
+      "solution": "**Model answer — full working.**\\n\\n**Write the system as a matrix equation.** Collect the coefficients, unknowns and constants:\\n$A=\\begin{pmatrix}2&3\\\\1&-1\\end{pmatrix},\\quad \\mathbf{x}=\\begin{pmatrix}x\\\\y\\end{pmatrix},\\quad \\mathbf{b}=\\begin{pmatrix}13\\\\1\\end{pmatrix},\\qquad A\\mathbf{x}=\\mathbf{b}.$\\n\\n**Determinant and inverse.** $\\det A=(2)(-1)-(3)(1)=-2-3=-5\\neq0$, so $A^{-1}$ exists:\\n$A^{-1}=\\dfrac{1}{-5}\\begin{pmatrix}-1&-3\\\\-1&2\\end{pmatrix}.$\\n\\n**Solve.** Left-multiply by $A^{-1}$: $\\mathbf{x}=A^{-1}\\mathbf{b}=\\dfrac{1}{-5}\\begin{pmatrix}-1&-3\\\\-1&2\\end{pmatrix}\\begin{pmatrix}13\\\\1\\end{pmatrix}=\\dfrac{1}{-5}\\begin{pmatrix}-16\\\\-11\\end{pmatrix}=\\begin{pmatrix}3.2\\\\2.2\\end{pmatrix}.$\\n\\n**Conclusion:** $x=3.2,\\ y=2.2$. (Equivalently, entering the two equations in the GDC's simultaneous-equation solver returns $x=3.2$, $y=2.2$ directly.) Check: $2(3.2)+3(2.2)=6.4+6.6=13$. Correct.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — set up the matrix equation.** Awarded for correctly packaging the system as $A\\mathbf{x}=\\mathbf{b}$ with $A=\\begin{pmatrix}2&3\\\\1&-1\\end{pmatrix}$ and $\\mathbf{b}=\\begin{pmatrix}13\\\\1\\end{pmatrix}$. It is the correct set-up that is rewarded, so it survives an arithmetic slip further down.\\n- **M1 — determinant/inverse or GDC solve.** A method mark for finding $\\det A=-5$ and forming $A^{-1}$, or equivalently for entering the system into the GDC's solver. A valid technology route earns this mark just as the by-hand inverse does.\\n- **A1 — value of $x$.** Awarded for $x=3.2$. This accuracy mark depends on the two method marks above and is protected by follow-through: a candidate whose inverse differed but who multiplied correctly still earns it on their own figures.\\n- **A1 — value of $y$.** Awarded for $y=2.2$, again dependent and FT-protected.\\n- **A1 — method/answer presentation.** Awarded for showing the solution reached through $\\mathbf{x}=A^{-1}\\mathbf{b}$ (or a clearly evidenced GDC solve) and stating both values; the engine checks the inverse was applied on the LEFT, not as $\\mathbf{b}A^{-1}$.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $x=3.2$ written as $\\frac{16}{5}$ and $y=2.2$ as $\\frac{11}{5}$, and accepts the answer whether reached by the inverse or by the GDC solver. Once the correct pair appears, subsequent working is ignored (ISW).\\n\\n**Bottom line:** two of the five marks are method marks that survive an arithmetic slip, and the accuracy marks for $x$ and $y$ are shielded by follow-through — but only because the matrix equation and the inverse (or GDC set-up) are on the page. A student who writes only '$x=3.2$, $y=2.2$' with no set-up risks losing the three method-bearing marks."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write the system as $A\\mathbf{x}=\\mathbf{b}$, find the determinant and inverse (or record the GDC set-up), apply $\\mathbf{x}=A^{-1}\\mathbf{b}$ on the left, then state and check both values. That set-up is what protects your score when a number slips — and you only get that protection if the working is on the page."
     },
     {
       "type": "heading",
-      "content": "The Role of the Determinant"
+      "content": "Where this leads"
     },
     {
       "type": "text",
-      "content": "The inverse of a matrix $A$ only exists if its determinant, $\\det(A)$, is non-zero. This has a direct implication for systems of equations. If $\\det(A) \\neq 0$, the system has a single, unique solution. If $\\det(A) = 0$, the matrix is called 'singular', and the system does not have a unique solution. Geometrically, for a 2x2 system, this means the lines are either parallel (no solution) or the exact same line (infinitely many solutions). For a 3x3 system, it represents planes that intersect in a line, are coincident, or are parallel."
-    },
-    {
-      "type": "workedExample",
-      "question": "A company produces three products, P1, P2, and P3, using three raw materials, M1, M2, and M3. The requirements are given below:\n- To produce one unit of P1 requires 1 kg of M1, 3 kg of M2, and 2 kg of M3.\n- To produce one unit of P2 requires 2 kg of M1, 2 kg of M2, and 4 kg of M3.\n- To produce one unit of P3 requires 3 kg of M1, 1 kg of M2, and 1 kg of M3.\nThe company has 140 kg of M1, 200 kg of M2, and 190 kg of M3 available. Let $x, y, z$ be the number of units of P1, P2, and P3 produced, respectively. Find the number of units of each product the company can produce to use up all the raw materials.",
-      "solution": "First, set up the system of equations based on the usage of each material:\n$x + 2y + 3z = 140$ (Material M1)\n$3x + 2y + z = 200$ (Material M2)\n$2x + 4y + z = 190$ (Material M3)\n\n[M1] - For correctly formulating the system of equations.\n\nWrite this in matrix form $AX=B$:\n$A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 3 & 2 & 1 \\\\ 2 & 4 & 1 \\end{pmatrix}$, $X = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, $B = \\begin{pmatrix} 140 \\\\ 200 \\\\ 190 \\end{pmatrix}$\n\n[M1] - For setting up the correct matrix equation.\n\nUsing a GDC, find the determinant of A:\n$\\det(A) = 20$. Since this is not zero, a unique solution exists.\n\n[R1] - For stating that a unique solution exists because the determinant is non-zero.\n\nNow solve for $X$ using $X = A^{-1}B$ on the GDC:\n$X = \\begin{pmatrix} 1 & 2 & 3 \\\\ 3 & 2 & 1 \\\\ 2 & 4 & 1 \\end{pmatrix}^{-1} \\begin{pmatrix} 140 \\\\ 200 \\\\ 190 \\end{pmatrix} = \\begin{pmatrix} 50 \\\\ 15 \\\\ 20 \\end{pmatrix}$\n\n[M1] - For evidence of using the GDC to solve (e.g., showing $A^{-1}B$).\n\nThe solution is $x=50, y=15, z=20$.\nThe company can produce 50 units of P1, 15 units of P2, and 20 units of P3.\n\n[A2] - For all three correct values. Award [A1] for one or two correct values."
-    },
-    {
-      "type": "examTip",
-      "content": "For questions involving setting up your own equations from a word problem, read very carefully. It's easy to mix up rows and columns. A good habit is to label your equations (like 'Material M1', 'Material M2') to ensure your matrix rows are consistent."
+      "content": "The matrix machinery you have built here is the entry point to the wider linear-algebra strand of the course. The same idea of collecting coefficients into a matrix underlies solving three-variable systems on the GDC, and $A\\mathbf{x}=\\mathbf{b}$ reappears whenever a model has several unknowns tied together. In HL, determinants and inverses extend to larger matrices, and the determinant becomes the gateway to eigenvalues and eigenvectors used in modelling change over time. Master the SL essentials — define your variables, keep the order straight, test the determinant before inverting, and solve on the correct side — and every later system, however large, becomes a variation on the equation $A\\mathbf{x}=\\mathbf{b}$ you already know how to unlock."
     },
     {
       "type": "practice",
-      "label": "Practice Solving Systems with Matrices",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=1.5"
+      "label": "Get a Paper 1 system marked: set up $A\\mathbf{x}=\\mathbf{b}$, find the inverse and solve with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.5&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GDC Tutorial: Solving Systems with Matrices (TI-Nspire)",
-          "href": "https://www.youtube.com/watch?v=guL9f2tI-3k"
+          "label": "IB Mathematics Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
         },
         {
-          "label": "Khan Academy: Matrix Equations",
-          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:solving-systems-of-linear-equations-with-matrices/v/matrix-equations-systems"
+          "label": "Khan Academy: Matrices",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

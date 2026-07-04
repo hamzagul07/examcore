@@ -5,177 +5,332 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces the concept of integration as a tool for finding the area under a curve. It focuses on setting up definite integrals and using a GDC to solve them, exploring the practical applications of integration in various contexts like calculating total change from a rate of change.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "This lesson introduces integration as the reverse of differentiation and then puts it to work finding the area under a curve. You will learn to reverse the power rule to write down an indefinite integral, remember the constant of integration $+C$, and recover a function from its derivative by using a known condition to pin down $C$. You then meet the definite integral $\\int_a^b f(x)\\,dx$, read it as the area between the curve and the x-axis, evaluate it either by the antiderivative or on your GDC, and interpret what that area means in context. Every worked example is laid out exactly the way our marking engine awards marks, because on an IB paper how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand integration as the reverse process of differentiation and as a method for finding the area under a curve.",
-    "Set up a definite integral to represent the area between a curve and the x-axis over a given interval.",
-    "Use a GDC to calculate the value of a definite integral.",
-    "Interpret the meaning of a definite integral in the context of a real-world problem, such as finding total displacement from velocity."
+    "Recognise integration as the reverse process of differentiation and write the indefinite integral of a function.",
+    "Apply the power rule $\\int ax^n\\,dx = \\frac{ax^{n+1}}{n+1}+C$ for $n\\ne -1$, remembering the constant of integration.",
+    "Find a specific function from its derivative by using a boundary condition to determine $C$.",
+    "Interpret the definite integral $\\int_a^b f(x)\\,dx$ as the area between the curve $y=f(x)$, the x-axis and the lines $x=a$ and $x=b$.",
+    "Evaluate a definite integral or area either by the antiderivative or with the GDC, and present working so method (M), accuracy (A) and follow-through (FT) marks protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "5.3"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Summing Up Infinite Slices",
-    "summary": "Integration is a powerful mathematical tool for finding the total amount of something when its rate of change is known. It's most easily visualised as a way to calculate the exact area of an irregular shape bounded by a curve.",
-    "analogy": "Imagine you want to find the area of a sand dune's shadow. You can't use a simple length × width formula. Instead, you could slice the shadow into thousands of incredibly thin vertical strips, each so narrow it's almost a perfect rectangle. By calculating the area of each tiny rectangle (height × tiny width) and adding them all up, you get a very accurate estimate of the total area. Integration is the mathematical process of doing this with infinitely many, infinitely thin slices to get the exact area.",
+    "title": "Reverse the Slope, Add Up the Area",
+    "summary": "Integration is differentiation run backwards, plus a twist. Reversing a derivative recovers a whole family of functions that differ only by a constant, which is why every indefinite integral ends in $+C$. When you attach limits and evaluate, that same idea measures the area trapped between a curve and the x-axis.",
+    "analogy": "Differentiation is like reading a car's speedometer from its position, moment by moment. Integration runs the film backwards: from the speed at every instant it rebuilds how far the car has travelled. But knowing only the speed does not tell you where the car started — that missing starting position is the constant $+C$. Give one fact about the journey (say, where it was at the start) and you can pin the constant down exactly. Geometrically, the distance covered is the area under the speed-time graph, and that is precisely what a definite integral computes.",
     "steps": [
-      "Identify the function f(x) that defines the curve and the interval [a, b] on the x-axis.",
-      "Visualise the area required. It is the region enclosed by the curve, the x-axis, and the vertical lines x=a and x=b.",
-      "Set up the definite integral expression: ∫ from a to b of f(x) dx.",
-      "Use your GDC's numerical integration function (e.g., fnInt or ∫dx) to compute the value, which represents the area."
+      "To integrate, reverse the power rule: add one to the power and divide by the new power, then write $+C$.",
+      "If you know one point the function passes through, substitute it to find the value of $C$ and get the specific function.",
+      "For an area or total, set up a definite integral $\\int_a^b f(x)\\,dx$ with the correct limits $a$ and $b$.",
+      "Evaluate it — either by the antiderivative $[F(x)]_a^b = F(b)-F(a)$, or with the numerical integration function on your GDC."
     ]
   },
+  "keyConcepts": [
+    "antiderivatives and the constant $+C$",
+    "the power rule for integration",
+    "the definite integral as area"
+  ],
   "flashcards": [
     {
       "front": "What is integration?",
-      "back": "Integration is the mathematical process used to find the antiderivative of a function. Geometrically, it can be used to find the area under a curve."
+      "back": "Integration is the reverse process of differentiation. Given a rate of change (a derivative), integrating recovers the original function; given a curve, a definite integral measures the area beneath it.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "What is an indefinite integral, and why does it need $+C$?",
+      "back": "$\\int f(x)\\,dx$ is the family of all functions whose derivative is $f(x)$. Because the derivative of a constant is zero, infinitely many functions share the same derivative, differing only by a constant — so every indefinite integral ends in the constant of integration $+C$.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "State the power rule for integration.",
+      "back": "$\\int ax^n\\,dx = \\dfrac{ax^{n+1}}{n+1} + C$, valid for $n\\ne -1$. Add one to the power, divide by the new power, and add $+C$.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "How do you check an integration result?",
+      "back": "Differentiate your answer. If you get back the original integrand, the integration is correct — differentiation and integration are inverse operations.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "How do you find a function from its derivative?",
+      "back": "Integrate the derivative to get the general form with $+C$, then substitute a known point (a boundary condition) to solve for $C$. Only then do you have the specific function.",
+      "pillLabel": "Framework"
     },
     {
       "front": "What is a definite integral?",
-      "back": "A definite integral, written as $\\int_a^b f(x) \\, dx$, calculates a specific numerical value, which represents the net area between the curve $f(x)$ and the x-axis from $x=a$ to $x=b$."
+      "back": "A definite integral $\\int_a^b f(x)\\,dx$ has a lower limit $a$ and an upper limit $b$ and evaluates to a single number. For a curve above the x-axis it equals the area between the curve, the x-axis, and the lines $x=a$ and $x=b$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What are the 'limits of integration'?",
-      "back": "In the definite integral $\\int_a^b f(x) \\, dx$, the values 'a' and 'b' are the limits of integration. 'a' is the lower limit and 'b' is the upper limit."
+      "front": "How do you evaluate $\\int_a^b f(x)\\,dx$ using an antiderivative?",
+      "back": "Find an antiderivative $F(x)$, then compute $[F(x)]_a^b = F(b) - F(a)$. The constant $+C$ cancels, so it is omitted in definite integrals.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the 'integrand'?",
-      "back": "In the definite integral $\\int_a^b f(x) \\, dx$, the function $f(x)$ that is being integrated is called the integrand."
+      "front": "What is the geometric meaning of $\\int_a^b f(x)\\,dx$?",
+      "back": "It is the signed area between the curve $y=f(x)$ and the x-axis from $x=a$ to $x=b$. Regions above the axis count as positive, regions below as negative.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What does the '$dx$' in an integral signify?",
-      "back": "The '$dx$' indicates that the integration is being performed 'with respect to x'. It relates to the infinitely small width of the 'slices' being summed up along the x-axis."
+      "front": "What happens to the integral when the curve is below the x-axis?",
+      "back": "The definite integral is negative there. If a question asks for a genuine area (which must be positive), integrate the region separately and take the magnitude, or use $\\int |f(x)|\\,dx$.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What happens if you integrate a function that is below the x-axis?",
-      "back": "The definite integral will yield a negative value. If you are asked for the 'area', you must take the absolute value (positive value) of the result, as area cannot be negative."
+      "front": "When can you use the GDC for a definite integral?",
+      "back": "Whenever a numerical value of a definite integral or area is required — which on Paper 2 is essentially always. Enter the integrand and the limits into the numerical integration function; the GDC returns the value directly.",
+      "pillLabel": "Concept"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "Which of these is the correct indefinite integral $\\int 6x^2\\,dx$?",
+      "options": [
+        "$12x + C$",
+        "$2x^3 + C$",
+        "$2x^3$",
+        "$6x^3 + C$"
+      ],
+      "answer": "$2x^3 + C$"
     },
     {
-      "front": "How do you find the total area if a function is both above and below the x-axis in the interval?",
-      "back": "You must split the integral into parts. Calculate the integral for the section(s) above the axis, and separately calculate the integral for the section(s) below. Take the absolute value of the negative results and add them all together."
+      "prompt": "A student writes $\\int 4x^3\\,dx = x^4$. What is missing or wrong?",
+      "options": [
+        "The power should have been reduced, not raised",
+        "Nothing — it is fully correct",
+        "The constant of integration $+C$ is missing",
+        "It should be $12x^2$"
+      ],
+      "answer": "The constant of integration $+C$ is missing"
     },
     {
-      "front": "If $v(t)$ is the velocity of an object in m/s, what does $\\int_{t_1}^{t_2} v(t) \\, dt$ represent?",
-      "back": "It represents the net displacement (change in position) of the object in metres between time $t_1$ and $t_2$. It is not necessarily the total distance travelled."
+      "prompt": "Using the power rule, $\\int x^n\\,dx$ equals:",
+      "options": [
+        "$\\frac{x^{n+1}}{n+1} + C$ for $n \\ne -1$",
+        "$n x^{n-1} + C$",
+        "$\\frac{x^{n-1}}{n-1} + C$",
+        "$x^{n+1} + C$"
+      ],
+      "answer": "$\\frac{x^{n+1}}{n+1} + C$ for $n \\ne -1$"
     },
     {
-      "front": "Do I need to know how to integrate by hand (analytically) for Paper 1?",
-      "back": "No. For Maths AI HL, you are expected to use your GDC to evaluate all definite integrals. Your skill is in setting up the correct integral and interpreting the result."
+      "prompt": "For a curve $y=f(x)$ lying entirely above the x-axis between $x=a$ and $x=b$, the area between the curve and the x-axis is:",
+      "options": [
+        "$f(b) - f(a)$",
+        "$\\int_a^b f(x)\\,dx$",
+        "$f'(x)$ evaluated at $b$",
+        "the gradient of the curve at $x=a$"
+      ],
+      "answer": "$\\int_a^b f(x)\\,dx$"
     },
     {
-      "front": "What are the units of the result of a definite integral $\\int_a^b y \\, dx$?",
-      "back": "The units of the result are the (units of y) multiplied by the (units of x). For example, if y is in metres per second and x is in seconds, the integral's result is in metres."
+      "prompt": "On the GDC you compute a definite integral and get $-5$ for a region that lies below the x-axis. The question asks for the AREA of that region. The area is:",
+      "options": [
+        "$-5$",
+        "$5$",
+        "$0$",
+        "cannot be found without the antiderivative"
+      ],
+      "answer": "$5$"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between a definite integral and an indefinite integral?",
-      "a": "A definite integral, $\\int_a^b f(x) \\, dx$, has limits of integration and evaluates to a single number (representing net area). An indefinite integral, $\\int f(x) \\, dx$, has no limits and gives a family of functions (the antiderivative, plus a constant of integration 'C'). In AI HL, you will primarily focus on definite integrals calculated with your GDC."
+      "q": "Why does every indefinite integral end in $+C$?",
+      "a": "Because differentiating a constant gives zero, any two functions that differ only by a constant have exactly the same derivative. So when you reverse a derivative you cannot know which constant was there originally — the answer is a whole family of functions, and the $+C$ records that unknown constant. Leaving it out is one of the most heavily penalised slips in the topic. The constant only disappears when the integral is definite, because it cancels in $F(b)-F(a)$."
     },
     {
-      "q": "What happens if the area I need to find is below the x-axis?",
-      "a": "The definite integral will give a negative value for any area below the x-axis. Since 'area' is a physical quantity that must be positive, you should take the absolute value of the integral's result. For example, if $\\int_2^5 f(x) \\, dx = -8$, the area is 8 square units."
+      "q": "How do I find the specific value of the constant $C$?",
+      "a": "You need one extra fact — a boundary condition — such as a point the curve passes through or an initial value. First integrate to get the general function with $+C$ in it. Then substitute the known values of $x$ and $y$ (or $t$ and $s$, etc.) and solve the resulting equation for $C$. Put that value back to state the specific function."
     },
     {
-      "q": "How do I find the total area if the curve crosses the x-axis within my interval?",
-      "a": "You must first find the x-intercepts (the roots) of the function within the interval. Then, you split the integral at each root. For example, to find the area from $x=a$ to $x=c$ where the function crosses the axis at $x=b$, you would calculate Area = $|\\int_a^b f(x) \\, dx| + |\\int_b^c f(x) \\, dx|$. You add the absolute values of the separate parts."
+      "q": "Is a definite integral the same thing as an area?",
+      "a": "Not quite. A definite integral is a signed area: parts of the region above the x-axis add, parts below subtract. If the curve stays above the axis over the interval, the integral equals the area. If it dips below, the integral can be smaller than the true area or even negative, so for a genuine 'area' you split at the x-intercepts and add the magnitudes of the pieces."
     },
     {
-      "q": "My calculator gives a different answer to the mark scheme. What could be wrong?",
-      "a": "First, double-check that you have typed the function and the limits of integration correctly. A very common error, especially with trigonometric functions, is having your calculator in the wrong mode (degrees vs. radians). For calculus, your GDC should almost always be in Radian mode."
+      "q": "Do I have to integrate by hand, or can I use the GDC?",
+      "a": "Both are allowed in this course. For a definite integral or an area you may go straight to the numerical integration function on your GDC — this is expected on Paper 2 and fully acceptable on Paper 1 where a calculator is permitted for AI. The by-hand power rule is still worth knowing because it makes indefinite integrals and 'find the function from its derivative' questions quick, and it lets you show the method that earns method marks."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the world of integration! While differentiation is about finding rates of change (the gradient of a curve), integration is its inverse. We use it to 'add up' an infinite number of tiny pieces to find a whole. Its most famous application, and our starting point, is calculating the exact area of complex shapes defined by functions."
+      "content": "So far in calculus you have differentiated: given a function, you found its rate of change. This lesson runs that process backwards. Integration asks the reverse question — if you know the rate of change, what was the original function, and how much has accumulated? Answering it unlocks two things at once: a way to recover a function from its derivative, and a way to measure the exact area trapped under a curve. As in every calculation topic, each worked example below is laid out the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Definite Integral and Area"
+      "content": "Integration as the reverse of differentiation"
     },
     {
       "type": "text",
-      "content": "Imagine we want to find the area under the curve of a function $y = f(x)$ between two points, $x=a$ and $x=b$. We can't use simple geometric formulas. The core idea of integration is to slice this area into an infinite number of infinitesimally thin vertical rectangles. The sum of the areas of all these rectangles gives us the total area under the curve. This process of 'summing up' is what we call integration."
+      "content": "Differentiation turns $x^3$ into $3x^2$. Integration undoes this: starting from $3x^2$ it should recover $x^3$. The catch is that $x^3+1$, $x^3-7$ and $x^3$ all have the same derivative $3x^2$, because the derivative of a constant is zero. Reversing a derivative therefore cannot tell you which constant was originally present, so the result is a whole family of functions written with a constant of integration $+C$. This reversed process, with no limits attached, is called the indefinite integral, written $\\int f(x)\\,dx$."
     },
     {
       "type": "formula",
-      "content": "Area $= \\int_a^b f(x) \\, dx$"
+      "content": "$\\displaystyle\\int f(x)\\,dx = F(x) + C \\quad\\text{where}\\quad F'(x) = f(x)$"
+    },
+    {
+      "type": "text",
+      "content": "You can always check an integral by differentiating the answer: if you get the integrand back, you were right."
+    },
+    {
+      "type": "heading",
+      "content": "The power rule for integration"
+    },
+    {
+      "type": "text",
+      "content": "Reversing the rule 'multiply by the power, then reduce the power by one' gives the rule for integrating a power of $x$: add one to the power, then divide by the new power."
+    },
+    {
+      "type": "formula",
+      "content": "$\\displaystyle\\int ax^n\\,dx = \\frac{a x^{\\,n+1}}{n+1} + C, \\qquad n \\neq -1$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The symbol $\\int$ is the integral sign, derived from a stylised 'S' for 'sum'.",
-        "$a$ is the lower limit and $b$ is the upper limit of integration, defining the interval on the x-axis.",
-        "$f(x)$ is the integrand, the function whose curve forms the top boundary of the area.",
-        "$dx$ indicates that we are integrating with respect to the variable $x$."
+        "**Add one to the power, divide by the new power.** For $\\int 6x^2\\,dx$ the new power is $3$, giving $\\frac{6x^3}{3}+C = 2x^3+C$.",
+        "**Integrate term by term.** A sum is integrated one term at a time, e.g. $\\int (x^2+1)\\,dx = \\frac{x^3}{3} + x + C$ (note that $1 = x^0$ integrates to $x$).",
+        "**The condition $n\\ne -1$ matters** — the rule would divide by zero when $n=-1$, so $\\int x^{-1}\\,dx$ needs a different result outside this lesson's scope.",
+        "**Never drop the $+C$** on an indefinite integral — it is the single most common mark lost in this topic."
       ]
     },
     {
-      "type": "heading",
-      "content": "Calculating Definite Integrals with a GDC"
-    },
-    {
-      "type": "text",
-      "content": "For the Applications and Interpretation course, you are not required to perform integration by hand (analytical integration). Your key skill is correctly setting up the definite integral and then using your Graphical Display Calculator (GDC) to find its numerical value. You must be proficient with your calculator's integration function."
+      "type": "examTip",
+      "content": "Two mirror-image traps sit either side of the power rule. Differentiation reduces the power; integration raises it — so if your power went the wrong way you have applied the wrong operation. And every indefinite integral needs $+C$: writing $\\int 4x^3\\,dx = x^4$ with no constant is marked wrong even though $x^4$ is an antiderivative."
     },
     {
       "type": "workedExample",
-      "question": "A garden designer is creating a curved flowerbed. The edge of the flowerbed is modelled by the function $f(x) = -0.5x^2 + 2x + 3$, where $x$ is the horizontal distance in metres from a wall. Find the area of the flowerbed between $x=1$ and $x=4$ metres.",
-      "solution": "1. **Identify the function and limits.**\nThe function is $f(x) = -0.5x^2 + 2x + 3$. The limits of integration are from $a=1$ to $b=4$.\n\n2. **Set up the definite integral.**\nThe area is given by the integral of the function between the limits.\nArea $= \\int_1^4 (-0.5x^2 + 2x + 3) \\, dx$  (M1 for correct integral setup, including limits and dx)\n\n3. **Use the GDC to evaluate.**\nEnter the expression into your calculator's numerical integration tool.\nFor TI-Nspire: In a calculator page, press the template key and select the definite integral template $\\int_{a}^{b} f(x) \\, dx$. Fill in the limits and the function.\nFor Casio: Go to RUN-MATRIX, then MATH (F4), then $\\int dx$ (F4). Enter the function, lower limit, and upper limit.\n\n4. **State the answer.**\n$\\int_1^4 (-0.5x^2 + 2x + 3) \\, dx = 13.5$ (A1)\n\nThe area of the flowerbed is 13.5 square metres. (A1 for correct units and context)\n\n**Total: 3 marks**"
-    },
-    {
-      "type": "examTip",
-      "content": "Always write down the integral you are about to calculate on your exam paper before you type it into your GDC. This will almost always be worth a method mark (M1), even if your final answer is incorrect. Don't just write down the number from your calculator screen."
+      "question": "Find $\\displaystyle\\int (3x^2 - 4x + 5)\\,dx$.",
+      "solution": "**Integrate term by term using the power rule.**  [M1: raise each power by one and divide]\n\n$\\int 3x^2\\,dx = \\dfrac{3x^3}{3} = x^3$\n\n$\\int -4x\\,dx = \\dfrac{-4x^2}{2} = -2x^2$\n\n$\\int 5\\,dx = 5x \\quad(\\text{since } 5 = 5x^0)$\n\n**Combine and add the constant of integration.**\n$\\displaystyle\\int (3x^2 - 4x + 5)\\,dx = x^3 - 2x^2 + 5x + C$  [A1: correct terms, **A1**: $+C$ present]\n\n**Check by differentiating:** $\\frac{d}{dx}(x^3 - 2x^2 + 5x + C) = 3x^2 - 4x + 5$, the original integrand — so the answer is correct."
     },
     {
       "type": "heading",
-      "content": "Interpreting the Meaning of Integration"
+      "content": "Finding a function from its derivative"
     },
     {
       "type": "text",
-      "content": "Integration is not just about geometric area. It's a powerful tool for accumulating a quantity when you know its rate of change. If a function $f(x)$ represents a rate (e.g., metres per second, litres per minute, dollars per item), then its integral represents the total accumulated quantity over an interval (e.g., total metres, total litres, total dollars)."
+      "content": "Integration on its own leaves the unknown constant $+C$. If a question gives you one extra fact — a point the curve passes through, or an initial value — you can pin the constant down and recover the exact function. The routine is always the same: integrate to get the general form, substitute the known values, solve for $C$, then write the specific function."
+    },
+    {
+      "type": "workedExample",
+      "question": "A curve has gradient function $\\dfrac{dy}{dx} = 6x - 4$ and passes through the point $(2,\\,5)$. Find the equation of the curve. [4]",
+      "solution": "**Integrate the gradient function to get the general curve.**  [M1: attempt to integrate $\\frac{dy}{dx}$]\n$y = \\int (6x - 4)\\,dx = \\dfrac{6x^2}{2} - 4x + C = 3x^2 - 4x + C$  [A1: correct antiderivative including $+C$]\n\n**Use the condition to find $C$.** The curve passes through $(2,5)$, so substitute $x=2$, $y=5$:  [M1: substitute the point into their expression]\n$5 = 3(2)^2 - 4(2) + C = 12 - 8 + C = 4 + C$\n$\\Rightarrow C = 1$\n\n**State the specific equation.**\n$y = 3x^2 - 4x + 1$  [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "The whole point of a boundary condition is to remove the $+C$. If you forget the constant when you integrate, there is nothing for the point to fix and you cannot find the curve — so the $+C$ is not optional bookkeeping here, it is what makes the question solvable."
+    },
+    {
+      "type": "heading",
+      "content": "The definite integral and area under a curve"
+    },
+    {
+      "type": "text",
+      "content": "Attach a lower limit $a$ and an upper limit $b$ to the integral and it becomes a definite integral, $\\int_a^b f(x)\\,dx$, which evaluates to a single number rather than a family of functions. Its meaning is geometric: for a curve lying above the x-axis, it equals the area of the region bounded by the curve $y=f(x)$, the x-axis, and the vertical lines $x=a$ and $x=b$. You can picture that area as a stack of infinitely thin rectangles of height $f(x)$ and tiny width, summed across the interval."
+    },
+    {
+      "type": "formula",
+      "content": "$\\displaystyle\\text{Area} = \\int_a^b f(x)\\,dx = \\big[F(x)\\big]_a^b = F(b) - F(a)$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Integrating a velocity function, $v(t)$, gives the total displacement (change in position).",
-        "Integrating an acceleration function, $a(t)$, gives the total change in velocity.",
-        "Integrating a marginal cost function, $C'(q)$, gives the total change in cost to produce a certain range of items.",
-        "Integrating a flow rate function, $R(t)$, gives the total volume that has flowed."
+        "The $\\int$ sign means 'sum up'; $f(x)$ is the integrand and $dx$ shows we integrate with respect to $x$.",
+        "$a$ is the lower limit and $b$ the upper limit — the area runs from the line $x=a$ to the line $x=b$.",
+        "To evaluate by hand, find an antiderivative $F(x)$ and compute $F(b)-F(a)$; the constant $+C$ cancels, so it is dropped for definite integrals.",
+        "A definite integral is a **signed** area: regions below the x-axis contribute negative values. For a genuine area, split at the x-intercepts and add the magnitudes."
       ]
     },
     {
+      "type": "examTip",
+      "content": "On Paper 2 (calculator) evaluate definite integrals and areas straight from the GDC's numerical integration function — enter the integrand and the two limits and read off the value. Set the antiderivative up on paper first so the examiner sees the correct integral, then quote the GDC value. Watch the sign: a negative result usually signals a region below the x-axis, where 'area' needs the magnitude."
+    },
+    {
       "type": "workedExample",
-      "question": "The rate at which water flows out of a tank is modelled by the function $R(t) = 200e^{-0.1t}$, where $R$ is in litres per minute and $t$ is the time in minutes since the tap was opened. Calculate the total amount of water that has flowed out of the tank in the first 10 minutes.",
-      "solution": "1. **Recognise that the total amount is the integral of the rate.**\nWe are given the rate of flow, $R(t)$, and we need to find the total volume over an interval. This requires integration.\n\n2. **Identify the limits of integration.**\n'The first 10 minutes' means the interval is from $t=0$ to $t=10$.\n\n3. **Set up the definite integral.**\nTotal Volume $= \\int_0^{10} 200e^{-0.1t} \\, dt$ (M1 for correct integral, A1 for correct limits and function)\n\n4. **Use the GDC to evaluate.**\nUsing the numerical integration function on the GDC:\n$\\int_0^{10} 200e^{-0.1t} \\, dt \\approx 1264.241...$\n\n5. **State the final answer to 3 significant figures.**\nThe total amount of water that has flowed out is 1260 litres. (A1)\n\n**Total: 3 marks**"
+      "question": "The rate at which water flows into a tank is modelled by $r(t) = 3t^2 + 2$ litres per minute, where $t$ is the time in minutes. Find the total volume of water that flows into the tank during the first 4 minutes. [4]",
+      "solution": "**Recognise this as a definite integral.** The total volume is the accumulated flow, so integrate the rate from $t=0$ to $t=4$.  [M1: set up the definite integral with correct limits]\n$V = \\displaystyle\\int_0^4 (3t^2 + 2)\\,dt$\n\n**Integrate.**  [M1: integrate the rate]\n$V = \\big[\\, t^3 + 2t \\,\\big]_0^4$  [A1: correct antiderivative]\n\n**Evaluate at the limits.**\n$V = \\big(4^3 + 2(4)\\big) - \\big(0 + 0\\big) = (64 + 8) - 0 = 72$\n\n**State the answer with units.** $V = 72$ litres.  [A1]\n\n*(On Paper 2 you could go straight to the GDC: $\\int_0^4 (3t^2+2)\\,dt = 72$.)*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Forgetting $+C$ on an indefinite integral** — $\\int f(x)\\,dx$ is a family of functions; omitting the constant of integration loses the accuracy mark even when the antiderivative is right.",
+        "**Applying the power rule the wrong way** — integration ADDS one to the power and DIVIDES by the new power; reducing the power instead is differentiation in disguise.",
+        "**Dividing by the wrong number** — after raising the power to $n+1$, divide by $n+1$, not by the original $n$ (e.g. $\\int x^2\\,dx = \\frac{x^3}{3}+C$, not $\\frac{x^3}{2}$).",
+        "**Treating a signed integral as an area** — a definite integral counts area below the x-axis as negative; for a true area, split at the x-intercepts and add the magnitudes.",
+        "**Substituting the limits the wrong way round** — evaluate as $F(b)-F(a)$ (upper minus lower); swapping them flips the sign of the answer.",
+        "**Ignoring a boundary condition** — 'find the function' questions need you to use the given point to find $C$; leaving the answer with $+C$ in it is incomplete.",
+        "**Dropping units or context** — a volume, distance or area needs its units, and an accumulation question should be answered in the quantity it asked about."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "IB awards marks analytically: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct final step carried out on your own earlier (wrong) value still scores, and equivalent correct forms — including a value read straight from the GDC — are accepted. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the area enclosed between the curve $y = x^2 + 1$, the x-axis, and the lines $x = 0$ and $x = 3$. [4]",
+      "solution": "**Model answer — full working.**\n\n**Set up the definite integral.** The curve $y=x^2+1$ lies above the x-axis for all $x$, so the area is\n$\\text{Area} = \\displaystyle\\int_0^3 (x^2 + 1)\\,dx.$\n\n**Integrate using the power rule.**\n$\\displaystyle\\int (x^2 + 1)\\,dx = \\frac{x^3}{3} + x.$\n\n**Evaluate between the limits.**\n$\\text{Area} = \\left[\\frac{x^3}{3} + x\\right]_0^3 = \\left(\\frac{3^3}{3} + 3\\right) - (0 + 0) = (9 + 3) - 0 = 12.$\n\n**Final answer:** the enclosed area is $12$ square units.\n\n*(By GDC: entering $\\int_0^3 (x^2+1)\\,dx$ into the numerical integration function returns $12$ directly.)*\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — set up the definite integral.** Awarded for writing the area as $\\int_0^3 (x^2+1)\\,dx$ with the correct integrand and limits. This is a METHOD mark: it stands even if the evaluation later slips.\n- **M1 — integrate.** Awarded for attempting to integrate the integrand by the power rule (each power raised by one and divided). Because it rewards the method, a student who makes a later arithmetic slip still earns it.\n- **A1 — correct antiderivative.** Awarded for $\\left[\\frac{x^3}{3} + x\\right]$. This accuracy mark depends on the integration method mark: it is only available once a genuine integration has been attempted.\n- **A1 — area = 12.** Awarded for the final value $12$ (square units). Follow-through (FT) applies: a student who set up a slightly wrong integral but then integrated and evaluated it correctly on their own figures still earns this final mark. A value of $12$ read straight from the GDC is also accepted.\n\n**Accept equivalent forms.** The engine accepts the answer written as $12$, $12$ square units, or $12\\text{ units}^2$, and accepts the GDC route — it marks the mathematics, not the formatting. It also accepts the antiderivative written with or without an explicit $+C$ inside the bracket, since the constant cancels on evaluation.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the final accuracy mark is shielded by follow-through. A student who writes only 'the answer is 12' with no integral set up risks losing 2–3 marks if a number is wrong; a student who shows the integral, the antiderivative, and the substitution of the limits keeps the method marks regardless."
     },
     {
       "type": "examTip",
-      "content": "Pay close attention to the units. If you integrate a rate in 'litres per minute' with respect to time in 'minutes', the units of your answer will be (litres/minute) × (minutes) = litres. This is a great way to check if your interpretation of the question is correct."
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through, and it accepts a GDC value. So always show the method: write the definite integral $\\int_a^b f(x)\\,dx$ with its limits, show the antiderivative in square brackets, then substitute upper-minus-lower. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Everything here is one idea seen from two sides: integration reverses differentiation, and evaluated between limits it measures area. That single tool carries straight into applications — integrating a velocity to recover displacement (remembering $+C$ and an initial condition), integrating a rate to find a total accumulation, and finding the area between two curves by integrating the top curve minus the bottom. Master the habit — reverse the power rule, fix the constant from a condition, set up the definite integral with the right limits, then evaluate by hand or on the GDC — and the rest of integral calculus becomes variations on a method you already own."
     },
     {
       "type": "practice",
-      "label": "Test your understanding",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.3"
+      "label": "Get a Paper 2 integration problem marked: set up an integral or an area with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.3&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GDC Guide: TI-Nspire Integration",
-          "href": "https://www.youtube.com/watch?v=yso6_3-s_yE"
-        },
-        {
-          "label": "GDC Guide: Casio fx-CG50 Integration",
-          "href": "https://www.youtube.com/watch?v=yso6_3-s_yE"
-        },
-        {
-          "label": "Conceptual Introduction to Integrals",
+          "label": "Khan Academy: Introduction to integrals",
           "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-1/v/introduction-to-integrals"
+        },
+        {
+          "label": "GeoGebra: Area under a curve",
+          "href": "https://www.geogebra.org/m/w9gSgU9r"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Area under a curve",
+    "embedUrl": "https://www.geogebra.org/classic?material=w9gSgU9r",
+    "launchUrl": "https://www.geogebra.org/classic?material=w9gSgU9r",
+    "hint": "Use “Area under a curve” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

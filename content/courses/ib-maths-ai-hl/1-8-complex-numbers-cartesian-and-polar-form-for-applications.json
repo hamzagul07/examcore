@@ -1,182 +1,129 @@
 {
   "slug": "1-8-complex-numbers-cartesian-and-polar-form-for-applications",
   "topicCode": "1.8",
+  "unit": { "code": "1", "title": "Number and algebra" },
   "title": "Complex numbers: Cartesian and polar form for applications",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces complex numbers, exploring their representation in both Cartesian form (a + bi) and polar form (r(cosθ + isinθ)). It covers the techniques for converting between these forms and visualising them on an Argand diagram, with a focus on applications relevant to the AI HL course.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A complex number carries two pieces of information at once, so it is the natural language for anything that has both a size and a direction, an amplitude and a phase. This lesson builds the full 1.8 syllabus for AI HL: the imaginary unit $i$ with $i^2 = -1$; Cartesian form $z = a + bi$ with its real part, imaginary part and conjugate; the modulus $|z|$ and argument $\\arg z$; the Argand diagram; the polar form $z = r(\\cos\\theta + i\\sin\\theta)$ and the equivalent Euler form $z = re^{i\\theta}$; converting fluently between all three; and multiplication and division in polar form, where moduli multiply and arguments add. It closes on the reason this topic sits in an applied course at all: complex numbers model sinusoidal quantities, so an AC voltage or a phasor is just a rotating complex number, and dividing them gives a current in one line. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand and represent complex numbers in Cartesian form (a + bi) on an Argand diagram.",
-    "Define and calculate the modulus and argument of a complex number.",
-    "Convert complex numbers between Cartesian and polar forms (r(cosθ + isinθ)).",
-    "Apply complex number forms to solve contextual problems."
+    "Use the imaginary unit $i$ with $i^2 = -1$, and write complex numbers in Cartesian form $z = a + bi$, identifying the real part, imaginary part and conjugate.",
+    "Represent a complex number on an Argand diagram and calculate its modulus $|z|$ and argument $\\arg z$, taking care over the quadrant.",
+    "Convert a complex number between Cartesian, polar $r(\\cos\\theta + i\\sin\\theta)$ and Euler $re^{i\\theta}$ forms.",
+    "Multiply and divide complex numbers in polar or Euler form by multiplying or dividing the moduli and adding or subtracting the arguments.",
+    "Apply complex numbers to model sinusoidal quantities such as AC voltages, currents and phasors, presenting working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["1.8"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Two Ways to Pinpoint a Number",
-    "summary": "Complex numbers have a real and an imaginary part, which can be plotted on a 2D plane. We can find this point using grid-like 'along and up' coordinates (Cartesian form) or by stating its distance and direction from the centre (polar form).",
-    "analogy": "Imagine you're giving a friend directions to a treasure in a large field. You could say, 'Start at the centre, walk 40 metres East, then 30 metres North'. That's the Cartesian method. Alternatively, you could say, 'Start at the centre and walk 50 metres at an angle of 37 degrees from East'. That's the polar method. Both sets of instructions lead to the exact same spot, but they describe the path differently.",
+    "title": "One Number, Two Pieces of Information",
+    "summary": "A complex number packages two numbers into one, so it can describe a point on a plane rather than a spot on a line. You can name that point with grid coordinates (Cartesian form, an along-and-up description) or with a distance and a direction (polar and Euler form). The two descriptions are the same point; you pick whichever makes the job in front of you easier.",
+    "analogy": "Think of directing a friend to a landmark from the town square. You could say 'walk 4 blocks east and 3 blocks north', which is the Cartesian recipe $4 + 3i$. Or you could say 'walk 5 blocks in the direction 37 degrees north of east', which is the polar recipe: distance 5, angle 37 degrees. Same landmark, two ways to name it. Cartesian is convenient when you want to add two trips together; polar is convenient when you want to scale a trip up and swing it round, because then you just stretch the distance and turn the angle.",
     "steps": [
-      "For a complex number z = a + bi, identify the real part 'a' and the imaginary part 'b'. Plot this as a coordinate (a, b) on the Argand diagram.",
-      "Calculate the modulus 'r', which is the distance from the origin to the point (a, b). Use the formula r = |z| = √(a² + b²).",
-      "Calculate the argument 'θ', the angle from the positive real axis. Use θ = arctan(b/a), but always check the quadrant of (a, b) to ensure the angle is correct.",
-      "Combine the modulus and argument to write the number in polar form: z = r(cosθ + i sinθ), or the shorthand z = r cis(θ)."
+      "For $z = a + bi$, read off the real part $a$ and the imaginary part $b$, and plot the point $(a, b)$ on the Argand diagram.",
+      "Find the modulus $r = |z| = \\sqrt{a^2 + b^2}$, the distance from the origin to $(a, b)$.",
+      "Find the argument $\\theta = \\arg z$, the angle from the positive real axis. Start from $\\arctan(b/a)$, then check which quadrant $(a, b)$ is in and adjust so the angle points the right way.",
+      "Assemble the polar form $z = r(\\cos\\theta + i\\sin\\theta)$, or the identical Euler form $z = re^{i\\theta}$. To go back to Cartesian, use $a = r\\cos\\theta$ and $b = r\\sin\\theta$."
     ]
   },
+  "keyConcepts": ["Cartesian form and the Argand diagram", "modulus and argument", "polar and Euler form"],
   "flashcards": [
-    {
-      "front": "What is the imaginary unit, $i$?",
-      "back": "$i$ is defined as the square root of negative one, $i = \\sqrt{-1}$. This means $i^2 = -1$."
-    },
-    {
-      "front": "What is the Cartesian form of a complex number?",
-      "back": "$z = a + bi$, where $a$ is the real part, $\\text{Re}(z)$, and $b$ is the imaginary part, $\\text{Im}(z)$."
-    },
-    {
-      "front": "What is an Argand diagram?",
-      "back": "A 2D plane where the horizontal axis represents the real part and the vertical axis represents the imaginary part of a complex number."
-    },
-    {
-      "front": "How do you calculate the modulus of $z = a + bi$?",
-      "back": "The modulus, $|z|$ or $r$, is the magnitude of the complex number. It is calculated using $|z| = \\sqrt{a^2 + b^2}$."
-    },
-    {
-      "front": "How do you find the argument of $z = a + bi$?",
-      "back": "The argument, $\\arg(z)$ or $\\theta$, is the angle with the positive real axis. Use $\\theta = \\arctan(b/a)$ and adjust for the correct quadrant."
-    },
-    {
-      "front": "What is the polar form of a complex number?",
-      "back": "$z = r(\\cos\\theta + i\\sin\\theta)$, where $r$ is the modulus and $\\theta$ is the argument."
-    },
-    {
-      "front": "What does the notation $r\\text{cis}\\theta$ mean?",
-      "back": "It is a shorthand for the polar form $r(\\cos\\theta + i\\sin\\theta)$."
-    },
-    {
-      "front": "What is the principal argument of a complex number?",
-      "back": "The unique value of the argument $\\theta$ that lies within the interval $(-\\pi, \\pi]$. Your GDC often defaults to this range."
-    },
-    {
-      "front": "Common Trap: Calculating the argument for $z = -2 - 2i$.",
-      "back": "$\\arctan(-2/-2) = \\arctan(1) = \\pi/4$. This is incorrect. The point $(-2, -2)$ is in the third quadrant. The correct argument is $\\theta = -3\\pi/4$ or $5\\pi/4$."
-    },
-    {
-      "front": "How do you convert from polar form $z = r\\text{cis}\\theta$ back to Cartesian form $a+bi$?",
-      "back": "Use the relationships $a = r\\cos\\theta$ and $b = r\\sin\\theta$."
-    },
-    {
-      "front": "What is the complex conjugate of $z = a+bi$?",
-      "back": "The complex conjugate is $\\bar{z} = a-bi$. On an Argand diagram, it is the reflection of $z$ in the real axis."
-    }
+    { "front": "The imaginary unit $i$", "back": "$i$ is defined by $i^2 = -1$, equivalently $i = \\sqrt{-1}$. It lets equations such as $x^2 = -1$ have solutions. Powers cycle: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$, then repeat.", "pillLabel": "Definition" },
+    { "front": "Cartesian form $z = a + bi$", "back": "$a = \\operatorname{Re}(z)$ is the real part and $b = \\operatorname{Im}(z)$ is the imaginary part; both $a$ and $b$ are real numbers. This is the form to use for addition and subtraction, which act componentwise.", "pillLabel": "Definition" },
+    { "front": "Complex conjugate $\\bar{z}$", "back": "For $z = a + bi$ the conjugate is $\\bar{z} = a - bi$: flip the sign of the imaginary part. On the Argand diagram it is the reflection of $z$ in the real axis. Usefully, $z\\bar{z} = a^2 + b^2 = |z|^2$.", "pillLabel": "Definition" },
+    { "front": "Argand diagram", "back": "A plane on which $z = a + bi$ is plotted as the point $(a, b)$: the horizontal axis is the real axis, the vertical axis is the imaginary axis. It turns algebra with complex numbers into geometry with points and rotations.", "pillLabel": "Graph" },
+    { "front": "Modulus $|z|$", "back": "$|z| = r = \\sqrt{a^2 + b^2}$, the distance from the origin to $(a, b)$. It is always non-negative, and $|z| = 0$ only for $z = 0$.", "pillLabel": "Formula" },
+    { "front": "Argument $\\arg z$", "back": "$\\theta = \\arg z$ is the angle from the positive real axis to the line joining the origin to $(a, b)$, measured anticlockwise. Start from $\\arctan(b/a)$ but adjust for the quadrant. The principal argument is taken in $(-\\pi, \\pi]$.", "pillLabel": "Definition" },
+    { "front": "Polar (modulus-argument) form", "back": "$z = r(\\cos\\theta + i\\sin\\theta)$, sometimes abbreviated $r\\,\\text{cis}\\,\\theta$, where $r = |z|$ and $\\theta = \\arg z$. This is the form to use for multiplication, division, powers and roots.", "pillLabel": "Formula" },
+    { "front": "Euler form $z = re^{i\\theta}$", "back": "Euler's relation $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ means $z = re^{i\\theta}$ is exactly the polar form written more compactly. Here $\\theta$ must be in radians.", "pillLabel": "Formula" },
+    { "front": "Cartesian to polar", "back": "Compute $r = \\sqrt{a^2 + b^2}$ and $\\theta$ from $\\arctan(b/a)$ adjusted for the quadrant. Then $z = r(\\cos\\theta + i\\sin\\theta) = re^{i\\theta}$.", "pillLabel": "Method" },
+    { "front": "Polar to Cartesian", "back": "From $z = r(\\cos\\theta + i\\sin\\theta)$ read $a = r\\cos\\theta$ and $b = r\\sin\\theta$, giving $z = a + bi$. Keep $\\theta$ in radians when it came from Euler form.", "pillLabel": "Method" },
+    { "front": "Multiplication in polar form", "back": "$r_1 e^{i\\theta_1} \\times r_2 e^{i\\theta_2} = r_1 r_2\\, e^{i(\\theta_1 + \\theta_2)}$: moduli MULTIPLY and arguments ADD. Geometrically, multiplying scales by $r_2$ and rotates by $\\theta_2$.", "pillLabel": "Rule" },
+    { "front": "Division in polar form", "back": "$\\dfrac{r_1 e^{i\\theta_1}}{r_2 e^{i\\theta_2}} = \\dfrac{r_1}{r_2}\\, e^{i(\\theta_1 - \\theta_2)}$: moduli DIVIDE and arguments SUBTRACT. This is why dividing a voltage phasor by an impedance phasor gives the current in one step.", "pillLabel": "Rule" },
+    { "front": "Quadrant trap for the argument", "back": "$\\arctan(b/a)$ alone cannot tell $2 + 2i$ from $-2 - 2i$: both give $\\arctan(1) = \\frac{\\pi}{4}$. The point $(-2, -2)$ is in the third quadrant, so its argument is $\\frac{\\pi}{4} - \\pi = -\\frac{3\\pi}{4}$. Always plot or check the quadrant.", "pillLabel": "Trap" },
+    { "front": "Phasor", "back": "A phasor is a complex number $re^{i\\theta}$ representing a sinusoid $r\\cos(\\omega t + \\theta)$: $r$ is the amplitude and $\\theta$ the phase. Because a common $e^{i\\omega t}$ factor cancels, adding or dividing sinusoids of the same frequency becomes ordinary complex arithmetic.", "pillLabel": "Application" }
+  ],
+  "quickCheck": [
+    { "prompt": "The imaginary unit satisfies:", "options": ["$i^2 = -1$", "$i^2 = 1$", "$i = -1$", "$i^2 = i$"], "answer": "$i^2 = -1$" },
+    { "prompt": "The modulus of $z = a + bi$ is:", "options": ["$\\sqrt{a^2 + b^2}$", "$a^2 + b^2$", "$a + b$", "$\\sqrt{a^2 - b^2}$"], "answer": "$\\sqrt{a^2 + b^2}$" },
+    { "prompt": "The point $z = -3 - 3i$ lies in the third quadrant. Its principal argument is:", "options": ["$-\\frac{3\\pi}{4}$", "$\\frac{\\pi}{4}$", "$\\frac{3\\pi}{4}$", "$-\\frac{\\pi}{4}$"], "answer": "$-\\frac{3\\pi}{4}$" },
+    { "prompt": "When two complex numbers are multiplied in polar form, the moduli multiply and the arguments:", "options": ["Add", "Subtract", "Multiply", "Stay the same"], "answer": "Add" },
+    { "prompt": "The Euler form of $z = r(\\cos\\theta + i\\sin\\theta)$ is:", "options": ["$re^{i\\theta}$", "$re^{-i\\theta}$", "$e^{ir\\theta}$", "$r + e^{i\\theta}$"], "answer": "$re^{i\\theta}$" }
   ],
   "faq": [
-    {
-      "q": "Why do we need two different forms for complex numbers?",
-      "a": "Different mathematical operations are easier in one form than the other. Addition and subtraction are straightforward in Cartesian form ($a+bi$). Multiplication, division, and finding powers or roots are much simpler in polar form ($r\\text{cis}\\theta$)."
-    },
-    {
-      "q": "What is the 'principal argument' and why is it important?",
-      "a": "The argument of a complex number can have infinitely many values (e.g., $\\pi/2$, $5\\pi/2$, $-3\\pi/2$ all point 'up'). The principal argument is the specific angle value chosen to be in a standard interval, usually $(-\\pi, \\pi]$. This ensures a unique answer, which is what your calculator will typically provide."
-    },
-    {
-      "q": "Can the modulus of a complex number be negative?",
-      "a": "No. The modulus represents the distance from the origin on the Argand diagram. Since distance cannot be negative, the modulus $r$ is always greater than or equal to zero."
-    },
-    {
-      "q": "Is the argument of $z=0$ defined?",
-      "a": "The modulus of $z=0$ is clearly 0. However, its argument is undefined. The point is at the origin, so there is no line segment to form an angle with the positive real axis."
-    }
+    { "q": "When should I use Cartesian form and when polar or Euler form?", "a": "Match the form to the operation. Addition and subtraction are trivial in Cartesian form, $a + bi$, because you just combine real and imaginary parts. Multiplication, division, powers and roots are far easier in polar or Euler form, because you only multiply or divide the moduli and add or subtract the arguments. A common exam strategy is to add in Cartesian, then convert to polar for a multiplication or division." },
+    { "q": "Is Euler form really the same as polar form?", "a": "Yes. Euler's relation $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ says the two are literally equal, so $re^{i\\theta}$ and $r(\\cos\\theta + i\\sin\\theta)$ are the same number written two ways. Euler form is just more compact and makes the multiplication and division rules obvious, since you add exponents. The one requirement is that $\\theta$ is measured in radians." },
+    { "q": "What exactly is the 'principal argument'?", "a": "A complex number's argument is only fixed up to whole turns: $\\frac{\\pi}{2}$, $\\frac{\\pi}{2} + 2\\pi$ and $\\frac{\\pi}{2} - 2\\pi$ all point the same way. The principal argument is the single value chosen in the standard interval $(-\\pi, \\pi]$, which is what your GDC returns. Quoting an argument outside that range is not wrong mathematically, but the principal value is the expected answer." },
+    { "q": "Why do complex numbers turn up in an applied maths course about AC circuits?", "a": "A sinusoidal quantity such as $V\\cos(\\omega t + \\phi)$ has an amplitude $V$ and a phase $\\phi$, which are exactly the modulus and argument of a complex number $Ve^{i\\phi}$. Because every quantity in a circuit oscillates at the same frequency, the common time factor cancels, and adding voltages or dividing a voltage by an impedance to get a current becomes ordinary complex arithmetic instead of trigonometry. That is the whole reason the topic sits in AI HL." },
+    { "q": "Can the modulus be negative, and does $z = 0$ have an argument?", "a": "The modulus is a distance, so it is never negative; $|z| \\ge 0$, with equality only for $z = 0$. The number $z = 0$ has modulus $0$ but no defined argument, because there is no direction from the origin to itself." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of complex numbers. While they might sound abstract, they are a powerful extension of the real number system we are used to. Complex numbers provide solutions to equations that have no real solutions, like $x^2 = -1$, and are fundamental in many real-world applications, including electrical engineering, signal processing, and fluid dynamics. In this lesson, we'll learn the two main ways to describe them: Cartesian and polar form."
-    },
-    {
-      "type": "heading",
-      "content": "The Cartesian Form and the Argand Diagram"
-    },
-    {
-      "type": "text",
-      "content": "A complex number, $z$, is written in Cartesian form as $z = a + bi$. Here, $a$ is the 'real part' and $b$ is the 'imaginary part'. The letter $i$ is the imaginary unit, defined by the property $i^2 = -1$. We can think of a complex number not as a single point on a number line, but as a point on a two-dimensional plane."
-    },
-    {
-      "type": "text",
-      "content": "This plane is called the Argand diagram. The horizontal axis is the real axis (for the $a$ part) and the vertical axis is the imaginary axis (for the $b$ part). So, the complex number $z = 3 + 2i$ can be visualised as the coordinate $(3, 2)$ on the Argand diagram. This provides a powerful geometric interpretation of complex numbers."
-    },
-    {
-      "type": "heading",
-      "content": "Modulus and Argument: The Polar Building Blocks"
-    },
-    {
-      "type": "text",
-      "content": "Instead of using Cartesian coordinates $(a, b)$, we can describe the position of a complex number using a distance and an angle. This is the basis of the polar form. The distance from the origin $(0,0)$ to the point $(a,b)$ on the Argand diagram is called the modulus. The angle that the line segment from the origin to $(a,b)$ makes with the positive real axis is called the argument."
-    },
-    {
-      "type": "formula",
-      "content": "Modulus: $|z| = r = \\sqrt{a^2 + b^2}$"
-    },
-    {
-      "type": "formula",
-      "content": "Argument: $\\theta = \\arg(z)$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The modulus is always non-negative, as it represents a distance.",
-        "The argument $\\theta$ is measured anti-clockwise from the positive real axis.",
-        "A common convention is to use the principal argument, which is in the range $-\\pi < \\theta \\le \\pi$.",
-        "Be careful when using $\\arctan(b/a)$ to find $\\theta$. Always consider which of the four quadrants the complex number lies in to find the correct angle."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A complex number is given by $z = -\\sqrt{3} + i$. \n\na) Find the modulus of $z$. \n\nb) Find the argument of $z$ in radians. \n\nc) Hence, express $z$ in polar form $z = r(\\cos\\theta + i\\sin\\theta)$.",
-      "solution": "Here, $a = -\\sqrt{3}$ and $b = 1$. The point $(-\\sqrt{3}, 1)$ is in the second quadrant.\n\na) To find the modulus, we use the formula $|z| = \\sqrt{a^2 + b^2}$.\n$|z| = \\sqrt{(-\\sqrt{3})^2 + 1^2}$ (M1)\n$|z| = \\sqrt{3 + 1} = \\sqrt{4} = 2$ (A1)\n\nb) To find the argument, we first find the related acute angle $\\alpha = \\arctan\\left|\\frac{b}{a}\\right|$.\n$\\alpha = \\arctan\\left|\\frac{1}{-\\sqrt{3}}\\right| = \\arctan\\left(\\frac{1}{\\sqrt{3}}\\right) = \\frac{\\pi}{6}$ (M1)\nSince $z$ is in the second quadrant (negative real part, positive imaginary part), the argument is $\\theta = \\pi - \\alpha$.\n$\\theta = \\pi - \\frac{pi}{6} = \\frac{5\\pi}{6}$ (M1)(A1)\n\nc) Using the values $r=2$ and $\\theta = \\frac{5\\pi}{6}$:\n$z = 2\\left(\\cos\\left(\\frac{5\\pi}{6}\\right) + i\\sin\\left(\\frac{5\\pi}{6}\\right)\\right)$ (A1)\nThis can also be written as $z = 2\\text{cis}\\left(\\frac{5\\pi}{6}\\right)$."
-    },
-    {
-      "type": "heading",
-      "content": "The Polar Form and Its Applications"
-    },
-    {
-      "type": "text",
-      "content": "The polar form of a complex number is written as $z = r(\\cos\\theta + i\\sin\\theta)$, or more compactly as $z = r\\text{cis}\\theta$. This form is incredibly useful for certain operations, especially multiplication and division of complex numbers, and for finding powers and roots (which you will see in De Moivre's Theorem)."
-    },
-    {
-      "type": "text",
-      "content": "To convert from polar form back to Cartesian form, we simply expand the expression using trigonometry. Given $z = r(\\cos\\theta + i\\sin\\theta)$, we can find the real part $a$ and imaginary part $b$ using the relations: $a = r\\cos\\theta$ and $b = r\\sin\\theta$. This allows us to switch between the two forms flexibly, depending on which is more convenient for the problem at hand."
-    },
-    {
-      "type": "examTip",
-      "content": "Your GDC is a powerful tool for complex number calculations and conversions. Familiarise yourself with the complex number modes and functions on your specific calculator model. It can quickly find the modulus, argument, and convert between forms. However, you must still understand the underlying principles to show working and earn method marks in an exam."
-    },
-    {
-      "type": "workedExample",
-      "question": "The voltage in an AC circuit is represented by the complex number $V = 120\\text{cis}(0.8)$ volts, and the impedance is $Z = 6\\text{cis}(-0.3)$ ohms. The current $I$ is given by the formula $I = \\frac{V}{Z}$.\n\na) Express $V$ and $Z$ in Cartesian form, $a+bi$, with values correct to 3 significant figures.\n\nb) In polar form, the division $I = \\frac{V}{Z}$ is performed by dividing the moduli and subtracting the arguments. Find $I$ in polar form.\n\nc) Using your answer from part (b), find the current $I$ in Cartesian form.",
-      "solution": "a) For Voltage $V = 120\\text{cis}(0.8) = 120(\\cos(0.8) + i\\sin(0.8))$:\n$a = 120\\cos(0.8) \\approx 83.6$ (M1)\n$b = 120\\sin(0.8) \\approx 86.1$\n$V \\approx 83.6 + 86.1i$ volts (A1)\nFor Impedance $Z = 6\\text{cis}(-0.3) = 6(\\cos(-0.3) + i\\sin(-0.3))$:\n$a = 6\\cos(-0.3) \\approx 5.73$ (M1)\n$b = 6\\sin(-0.3) \\approx -1.78$\n$Z \\approx 5.73 - 1.78i$ ohms (A1)\n\nb) To find $I = \\frac{V}{Z}$ in polar form:\nModulus: $|I| = \\frac{|V|}{|Z|} = \\frac{120}{6} = 20$ (M1)\nArgument: $\\arg(I) = \\arg(V) - \\arg(Z) = 0.8 - (-0.3) = 1.1$ (M1)\nSo, $I = 20\\text{cis}(1.1)$ amps. (A1)\n\nc) To convert $I = 20\\text{cis}(1.1)$ to Cartesian form:\n$a = 20\\cos(1.1) \\approx 9.07$ (M1)\n$b = 20\\sin(1.1) \\approx 17.8$\n$I \\approx 9.07 + 17.8i$ amps. (A1)"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Complex Number Conversions",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=1.8"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra: Argand Diagram Explorer",
-          "href": "https://www.geogebra.org/m/c9b8v5v3"
-        },
-        {
-          "label": "Khan Academy: Polar & Cartesian Forms",
-          "href": "https://www.khanacademy.org/math/algebra-home/alg-complex-numbers/alg-complex-numbers-in-polar-form/v/polar-form-of-a-complex-number"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Some equations, like $x^2 = -1$, have no real solution, and for centuries that looked like the end of the story. Complex numbers extend the number system so that such equations do have solutions, and in doing so they hand us something an applied course cares about deeply: a single number that carries both a size and a direction. This lesson covers the full 1.8 syllabus for AI HL, from the imaginary unit $i$ and Cartesian form $z = a + bi$, through the modulus, argument and Argand diagram, to polar form $r(\\cos\\theta + i\\sin\\theta)$ and Euler form $re^{i\\theta}$, converting between them, and multiplying and dividing in polar form. It ends where AI HL is really aiming: modelling sinusoidal quantities, so that an AC voltage or a phasor becomes a rotating complex number. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The imaginary unit and Cartesian form" },
+    { "type": "text", "content": "The imaginary unit $i$ is defined by the single rule $i^2 = -1$. From it we build a complex number in Cartesian form, $z = a + bi$, where $a$ and $b$ are ordinary real numbers. We call $a = \\operatorname{Re}(z)$ the real part and $b = \\operatorname{Im}(z)$ the imaginary part; note that the imaginary part is the real number $b$, not $bi$. When $b = 0$ the number is purely real, and when $a = 0$ it is purely imaginary." },
+    { "type": "text", "content": "Because $i^2 = -1$, the powers of $i$ cycle in fours: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$, and then the pattern repeats. Addition and subtraction of complex numbers work componentwise, exactly like vectors: $(3 + 2i) + (1 - 5i) = 4 - 3i$. Multiplication expands like any bracket, using $i^2 = -1$ to simplify: $(2 + i)(1 + 3i) = 2 + 6i + i + 3i^2 = 2 + 7i - 3 = -1 + 7i$." },
+    { "type": "text", "content": "The complex conjugate of $z = a + bi$ is $\\bar{z} = a - bi$: same real part, opposite imaginary part. Conjugates matter because their product is real: $z\\bar{z} = (a + bi)(a - bi) = a^2 + b^2$, which is $|z|^2$. That is the trick for dividing in Cartesian form: multiply top and bottom by the conjugate of the denominator to make the denominator real." },
+    { "type": "keyPoints", "items": [
+      "**Imaginary unit:** $i^2 = -1$; powers cycle $i, -1, -i, 1, \\ldots$",
+      "**Cartesian form:** $z = a + bi$ with $a = \\operatorname{Re}(z)$, $b = \\operatorname{Im}(z)$ both real.",
+      "**Conjugate:** $\\bar{z} = a - bi$, the reflection of $z$ in the real axis, with $z\\bar{z} = a^2 + b^2 = |z|^2$.",
+      "**Add/subtract in Cartesian; multiply/divide more easily in polar.**"
+    ]},
+
+    { "type": "heading", "content": "The Argand diagram, modulus and argument" },
+    { "type": "text", "content": "The Argand diagram plots $z = a + bi$ as the point $(a, b)$, with the real part on the horizontal axis and the imaginary part on the vertical axis. This turns a complex number into a point, and turns algebra into geometry. From the picture, two natural measurements appear: how far the point is from the origin, and in what direction it lies." },
+    { "type": "text", "content": "The distance from the origin to $(a, b)$ is the modulus, $|z| = r = \\sqrt{a^2 + b^2}$; it is always non-negative. The direction, the angle the line from the origin makes with the positive real axis measured anticlockwise, is the argument, $\\theta = \\arg z$. Together $r$ and $\\theta$ are the polar coordinates of the point, and they are the ingredients of the polar form." },
+    { "type": "formula", "content": "Modulus: $|z| = r = \\sqrt{a^2 + b^2}$. \\n Argument: $\\theta = \\arg z$, found from $\\arctan\\!\\left(\\dfrac{b}{a}\\right)$ adjusted for the quadrant of $(a, b)$." },
+    { "type": "keyPoints", "items": [
+      "The modulus is a distance, so $r \\ge 0$ always.",
+      "The argument is measured anticlockwise from the positive real axis.",
+      "The principal argument lies in $(-\\pi, \\pi]$; this is what a GDC returns.",
+      "$\\arctan(b/a)$ cannot tell opposite quadrants apart, so always check which quadrant $(a, b)$ is in and adjust the angle by $\\pm\\pi$ if the real part is negative."
+    ]},
+    { "type": "workedExample", "question": "A complex number is $z = -\\sqrt{3} + i$. \\n (a) Find the modulus of $z$. \\n (b) Find the argument of $z$ in radians. \\n (c) Hence write $z$ in polar form $r(\\cos\\theta + i\\sin\\theta)$ and in Euler form $re^{i\\theta}$. [5]", "solution": "Here $a = -\\sqrt{3}$ and $b = 1$, so the point $(-\\sqrt{3}, 1)$ lies in the second quadrant.\\n\\n**(a) Modulus.**\\n$|z| = \\sqrt{(-\\sqrt{3})^2 + 1^2} = \\sqrt{3 + 1} = \\sqrt{4} = 2.$  [M1 for the formula, A1 for $2$]\\n\\n**(b) Argument.** The related acute angle is $\\alpha = \\arctan\\!\\left|\\dfrac{1}{\\sqrt{3}}\\right| = \\dfrac{\\pi}{6}.$  [M1]\\nBecause $z$ is in the second quadrant (real part negative, imaginary part positive), the argument is $\\theta = \\pi - \\alpha = \\pi - \\dfrac{\\pi}{6} = \\dfrac{5\\pi}{6}.$  [A1]\\n\\n**(c) Polar and Euler form.** With $r = 2$ and $\\theta = \\dfrac{5\\pi}{6}$:\\n$z = 2\\left(\\cos\\dfrac{5\\pi}{6} + i\\sin\\dfrac{5\\pi}{6}\\right) = 2e^{i5\\pi/6}.$  [A1]\\n\\nThe quadrant check is the whole game in part (b): a bare $\\arctan(1/(-\\sqrt{3})) = -\\frac{\\pi}{6}$ from the calculator points into the fourth quadrant, the wrong place for this number." },
+
+    { "type": "heading", "content": "Polar form and Euler form" },
+    { "type": "text", "content": "Substituting $a = r\\cos\\theta$ and $b = r\\sin\\theta$ into $z = a + bi$ gives the polar, or modulus-argument, form $z = r(\\cos\\theta + i\\sin\\theta)$, often abbreviated $r\\,\\text{cis}\\,\\theta$. Euler's relation $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ then lets us write the same number even more compactly as the Euler form $z = re^{i\\theta}$. These are not three different numbers; they are three notations for one point on the Argand diagram, and you convert freely between them." },
+    { "type": "text", "content": "To go from Cartesian to polar or Euler, find $r$ and $\\theta$ as above. To go the other way, expand: $a = r\\cos\\theta$ and $b = r\\sin\\theta$. Keep $\\theta$ in radians whenever Euler form is involved, since $e^{i\\theta}$ is only meaningful in radians." },
+    { "type": "workedExample", "question": "Express $z = 3 + 3i$ in modulus-argument form and in Euler form. [4]", "solution": "**Model answer — full working.**\\n\\nHere $a = 3$ and $b = 3$, so the point $(3, 3)$ lies in the first quadrant.\\n\\n**Modulus.**\\n$r = |z| = \\sqrt{3^2 + 3^2} = \\sqrt{9 + 9} = \\sqrt{18} = 3\\sqrt{2}.$\\n\\n**Argument.** Since $(3, 3)$ is in the first quadrant, no adjustment is needed:\\n$\\theta = \\arctan\\!\\left(\\dfrac{3}{3}\\right) = \\arctan(1) = \\dfrac{\\pi}{4}.$\\n\\n**Modulus-argument (polar) form.**\\n$z = 3\\sqrt{2}\\left(\\cos\\dfrac{\\pi}{4} + i\\sin\\dfrac{\\pi}{4}\\right).$\\n\\n**Euler form.**\\n$z = 3\\sqrt{2}\\,e^{i\\pi/4}.$\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — modulus method.** Awarded for forming $\\sqrt{3^2 + 3^2}$, i.e. applying $|z| = \\sqrt{a^2 + b^2}$ with the correct components. This method mark is about the approach, so it survives an arithmetic slip in the surd.\\n- **A1 — modulus value.** Awarded for $r = 3\\sqrt{2}$. The engine accepts any correct equivalent form: $\\sqrt{18}$, $3\\sqrt{2}$, or the decimal $4.24$ (3 s.f.). This accuracy mark depends on the M1 above.\\n- **M1 — argument method.** Awarded for forming $\\arctan(3/3)$ (or otherwise identifying the first-quadrant angle). Again it is the method that is rewarded.\\n- **A1 — argument value and forms.** Awarded for $\\theta = \\dfrac{\\pi}{4}$ together with the correctly assembled polar and Euler forms. The engine accepts $\\dfrac{\\pi}{4}$, $45^\\circ$, or $0.785$ (3 s.f.), and accepts the answer written as $3\\sqrt{2}\\,\\text{cis}\\,\\dfrac{\\pi}{4}$, $3\\sqrt{2}(\\cos\\frac{\\pi}{4} + i\\sin\\frac{\\pi}{4})$ or $3\\sqrt{2}\\,e^{i\\pi/4}$.\\n\\n**'Accept equivalent forms and correct rounding.'** Because $r$ and $\\theta$ are each earned by a method mark and a dependent accuracy mark, a candidate who writes $\\sqrt{18}$ for the modulus, or gives the argument in degrees, keeps full marks. Follow-through applies: a student whose modulus was slightly wrong but who then builds a correct polar and Euler form on their own value still earns the final A1. A bare answer of $3\\sqrt{2}\\,e^{i\\pi/4}$ with no modulus or argument working risks the two method marks if any number is off." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through, and it accepts every equivalent form, exact or correctly rounded, degrees or radians. So show the method: write the modulus as $\\sqrt{a^2 + b^2}$, evaluate it, form $\\arctan(b/a)$, adjust for the quadrant, then assemble the polar and Euler forms. That is what lets the engine protect your score when a single number slips." },
+
+    { "type": "heading", "content": "Multiplication and division in polar form" },
+    { "type": "text", "content": "The reason polar and Euler forms are worth the conversion effort is how simply they multiply and divide. Because exponents add, $r_1 e^{i\\theta_1} \\times r_2 e^{i\\theta_2} = r_1 r_2\\, e^{i(\\theta_1 + \\theta_2)}$: the moduli multiply and the arguments add. Dividing reverses this, $\\dfrac{r_1 e^{i\\theta_1}}{r_2 e^{i\\theta_2}} = \\dfrac{r_1}{r_2}\\, e^{i(\\theta_1 - \\theta_2)}$: the moduli divide and the arguments subtract. Geometrically, multiplying by a complex number scales the Argand diagram by its modulus and rotates it by its argument." },
+    { "type": "formula", "content": "Multiplication: $r_1 e^{i\\theta_1} \\cdot r_2 e^{i\\theta_2} = r_1 r_2\\, e^{i(\\theta_1 + \\theta_2)}$. \\n Division: $\\dfrac{r_1 e^{i\\theta_1}}{r_2 e^{i\\theta_2}} = \\dfrac{r_1}{r_2}\\, e^{i(\\theta_1 - \\theta_2)}$. \\n Moduli multiply/divide; arguments add/subtract." },
+    { "type": "examTip", "content": "When a question mixes forms, a reliable plan is: add or subtract in Cartesian, multiply or divide in polar. If two numbers are given in polar or Euler form and you are asked for a product or quotient, do NOT convert to Cartesian first, that throws away the whole advantage. Combine moduli and arguments directly, and convert back to Cartesian only if the final answer is required in that form." },
+
+    { "type": "heading", "content": "Applications: sinusoidal quantities, AC circuits and phasors" },
+    { "type": "text", "content": "This is why complex numbers live in an applied course. A sinusoidal quantity such as a voltage $V\\cos(\\omega t + \\phi)$ has two features that matter: its amplitude $V$ and its phase $\\phi$. Those are precisely the modulus and argument of a complex number $Ve^{i\\phi}$, called a phasor. Every quantity in an AC circuit oscillates at the same frequency $\\omega$, so the shared time factor $e^{i\\omega t}$ cancels out of any ratio, and questions about amplitudes and phases become questions about moduli and arguments." },
+    { "type": "text", "content": "The payoff is Ohm's law for AC circuits, $I = \\dfrac{V}{Z}$, where the voltage $V$, the impedance $Z$ and the current $I$ are all complex. In polar form the division is a single line: divide the moduli to get the current's amplitude, subtract the arguments to get its phase. What would be an awkward trigonometric identity becomes one modulus division and one argument subtraction." },
+    { "type": "workedExample", "question": "In an AC circuit the voltage is $V = 120\\,e^{i(0.8)}$ volts and the impedance is $Z = 6\\,e^{i(-0.3)}$ ohms. The current is $I = \\dfrac{V}{Z}$. \\n (a) Find $I$ in Euler form. \\n (b) Hence find $I$ in Cartesian form $a + bi$, with values to 3 significant figures. \\n (c) State the amplitude and phase of the current. [6]", "solution": "This is a Paper 1 division in Euler form, so combine moduli and arguments directly; do not convert to Cartesian first.\\n\\n**(a) Current in Euler form.**\\nModulus: $|I| = \\dfrac{|V|}{|Z|} = \\dfrac{120}{6} = 20.$  [M1]\\nArgument: $\\arg I = \\arg V - \\arg Z = 0.8 - (-0.3) = 1.1.$  [M1]\\nSo $I = 20\\,e^{i(1.1)}$ amps.  [A1]\\n\\n**(b) Cartesian form.** Using $a = r\\cos\\theta$, $b = r\\sin\\theta$ with $\\theta$ in radians:\\n$a = 20\\cos(1.1) = 9.07,\\qquad b = 20\\sin(1.1) = 17.8.$  [M1]\\n$I = 9.07 + 17.8i$ amps (3 s.f.).  [A1]\\n\\n**(c) Amplitude and phase.** From the Euler form, the amplitude is the modulus $20$ amps and the phase is the argument $1.1$ radians.  [A1]\\n\\nNotice that the whole of part (a), the physically important amplitude and phase, came from one division and one subtraction, with no trigonometry at all." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Forgetting $i^2 = -1$ when expanding** — in $(2+i)(1+3i)$ the $3i^2$ term becomes $-3$, not $+3$; treating $i^2$ as $+1$ (or leaving it as $i^2$) is the single most common algebra slip.",
+      "**Ignoring the quadrant when finding the argument** — $\\arctan(b/a)$ cannot distinguish opposite quadrants. If the real part is negative, adjust by $\\pm\\pi$; always check by plotting the point. For $-\\sqrt{3}+i$ the argument is $\\frac{5\\pi}{6}$, not the calculator's $-\\frac{\\pi}{6}$.",
+      "**Misusing the modulus formula** — the modulus is $\\sqrt{a^2 + b^2}$, not $a^2 + b^2$ and not $a + b$; and it can never be negative.",
+      "**Confusing the imaginary part with $bi$** — the imaginary part of $z = a + bi$ is the real number $b$, not $bi$.",
+      "**Multiplying or dividing arguments instead of adding or subtracting** — in polar form the moduli multiply/divide but the arguments ADD (for a product) or SUBTRACT (for a quotient). Doing arithmetic to the arguments the same way as the moduli is a classic error.",
+      "**Mixing degrees and radians in Euler form** — $e^{i\\theta}$ requires $\\theta$ in radians; feeding degrees into $\\cos$ and $\\sin$ from a radian-mode Euler expression gives nonsense.",
+      "**Converting to Cartesian before a polar multiplication or division** — this discards the whole advantage of polar form; combine moduli and arguments directly and only convert at the end if asked.",
+      "**Quoting a non-principal argument** — give the principal value in $(-\\pi, \\pi]$ unless the question says otherwise; an angle like $\\frac{9\\pi}{4}$ should be reduced to $\\frac{\\pi}{4}$."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "The two-part idea at the heart of this lesson, that a complex number is a modulus and an argument, is the foundation for everything the topic goes on to do. Repeated multiplication in polar form, where the argument keeps adding, is exactly De Moivre's theorem, the engine for powers and roots of complex numbers. The phasor picture you met for a single AC division extends to whole networks of impedances, and the same modulus-and-argument reasoning underlies the way sinusoids of the same frequency are added in signal processing. Master converting between Cartesian, polar and Euler form, and multiplying and dividing by combining moduli and arguments, and the rest of the complex-number course becomes variations on a move you already own." },
+
+    { "type": "practice", "label": "Get a Paper 1 complex-numbers question marked: convert forms and divide in polar with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=1.8&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "GeoGebra: Argand Diagram Explorer", "href": "https://www.geogebra.org/classic?material=c9b8v5v3" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Argand Diagram Explorer",

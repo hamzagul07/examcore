@@ -1,183 +1,145 @@
 {
   "slug": "1-7-eigenvalues-and-eigenvectors",
   "topicCode": "1.7",
+  "unit": { "code": "1", "title": "Number and algebra" },
   "title": "Eigenvalues and eigenvectors",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces eigenvalues and eigenvectors, fundamental concepts in linear algebra. We explore their geometric interpretation as vectors that are only scaled by a transformation, and learn how to calculate them for 2x2 matrices and find them for larger matrices using a GDC. Applications in dynamic systems, such as population modelling, are highlighted.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Eigenvalues and eigenvectors reveal the hidden skeleton of a matrix: the directions a transformation leaves alone and the factors by which it stretches them. This HL lesson builds the full 1.7 story for a 2x2 matrix. We start from the defining relation $A\\mathbf{v}=\\lambda\\mathbf{v}$, derive the characteristic equation $\\det(A-\\lambda I)=0$, and solve it for the eigenvalues; for each eigenvalue we solve $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ for the corresponding eigenvector, keeping in mind that an eigenvector is only defined up to a non-zero scalar. From there we assemble the diagonalization $A=PDP^{-1}$, with the eigenvectors as the columns of $P$ and the eigenvalues down the diagonal of $D$, and use it to compute matrix powers cheaply through $A^n=PD^nP^{-1}$. Finally we read the long-term meaning: the dominant eigenvalue governs the fate of a system, which is exactly why eigenvalues drive Markov chains and coupled differential equations. Every worked example is laid out the way our marking engine awards the marks, using the IB method (M) and accuracy (A) conventions with follow-through.",
+  "durationMin": 28,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the definition of eigenvalues and eigenvectors and their relationship through the equation Av = λv.",
-    "Calculate eigenvalues and eigenvectors for a 2x2 matrix using the characteristic equation.",
-    "Use a Graphic Display Calculator (GDC) to find eigenvalues and eigenvectors for n x n matrices.",
-    "Interpret the meaning of eigenvalues and eigenvectors in the context of transformations and dynamic systems."
+    "State and use the defining relation $A\\mathbf{v}=\\lambda\\mathbf{v}$ and explain what makes a vector an eigenvector and a scalar an eigenvalue.",
+    "Form the characteristic equation $\\det(A-\\lambda I)=0$ for a 2x2 matrix and solve it to find the eigenvalues.",
+    "Solve $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ to find a corresponding eigenvector for each eigenvalue, giving a representative of the family up to scale.",
+    "Diagonalize a 2x2 matrix as $A=PDP^{-1}$ and use $A^n=PD^nP^{-1}$ to compute matrix powers.",
+    "Interpret the dominant eigenvalue and its eigenvector as the driver of long-term behaviour, linking to Markov chains and coupled differential equations."
   ],
+  "syllabusObjectivesCovered": ["1.7"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "The Unchanging Direction",
-    "summary": "Imagine a transformation that squashes, stretches, or rotates things. Eigenvectors are special vectors that don't change their direction under this transformation; they only get scaled by a factor called the eigenvalue.",
-    "analogy": "Think of a funhouse mirror that only stretches you vertically. If you stand perfectly upright, your reflection is taller but still upright. Your 'upright' direction is an eigenvector because its direction hasn't changed, only its length. The amount you were stretched by is the eigenvalue. Any other pose would be distorted in a more complex way, changing both its shape and direction.",
+    "title": "The Directions a Transformation Leaves Alone",
+    "summary": "Most vectors get knocked off course when you multiply them by a matrix: they change both length and direction. An eigenvector is a rare vector that keeps its direction, so the matrix only stretches or flips it. The stretch factor is the eigenvalue. Find those special directions and you understand what the whole transformation really does.",
+    "analogy": "Picture a spinning globe. Almost every point on the surface sweeps out a circle as the globe turns, so its direction from the centre keeps changing. But the two points on the axis, the poles, never move: their direction is fixed. Those poles are the eigenvectors of the rotation, and because they are not moved at all, their eigenvalue is 1. Every transformation has its own private axes like this, and once you know them you know how the transformation behaves on everything else.",
     "steps": [
-      "Define the transformation with a square matrix A.",
-      "Set up the core equation Av = λv, where v is the eigenvector and λ is the eigenvalue.",
-      "For a 2x2 matrix, solve the characteristic equation det(A - λI) = 0 to find the eigenvalues λ.",
-      "For each eigenvalue, solve the system (A - λI)v = 0 to find the corresponding eigenvectors v."
+      "Write the transformation as a square matrix $A$ and the target relation as $A\\mathbf{v}=\\lambda\\mathbf{v}$: a matrix times a special vector equals a number times the same vector.",
+      "Rearrange to $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and demand a non-zero $\\mathbf{v}$, which forces $\\det(A-\\lambda I)=0$. Solve this characteristic equation for the eigenvalues $\\lambda$.",
+      "For each eigenvalue, substitute back into $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and solve the resulting equations for the eigenvector, choosing the simplest representative of its scale family.",
+      "Assemble $P$ from the eigenvectors and $D$ from the eigenvalues to get $A=PDP^{-1}$, then read off powers and long-term behaviour from $A^n=PD^nP^{-1}$."
     ]
   },
+  "keyConcepts": ["invariant directions", "characteristic equation", "diagonalization and long-term behaviour"],
   "flashcards": [
-    {
-      "front": "What is an eigenvector of a matrix A?",
-      "back": "A non-zero vector $\\mathbf{v}$ that, when multiplied by matrix A, results in a vector that is a scalar multiple of $\\mathbf{v}$. Its direction remains unchanged (or is flipped 180 degrees)."
-    },
-    {
-      "front": "What is an eigenvalue of a matrix A?",
-      "back": "A scalar, denoted by $\\lambda$, that represents the factor by which an eigenvector is stretched or shrunk when multiplied by matrix A. $A\\mathbf{v} = \\lambda\\mathbf{v}$."
-    },
-    {
-      "front": "What is the characteristic equation used to find eigenvalues?",
-      "back": "$\\det(A - \\lambda I) = 0$, where A is the square matrix, $\\lambda$ is the eigenvalue, and I is the identity matrix of the same size as A."
-    },
-    {
-      "front": "What does it mean if an eigenvalue is negative?",
-      "back": "The corresponding eigenvector's direction is reversed (flipped 180°) by the transformation."
-    },
-    {
-      "front": "What does it mean if an eigenvalue is 1?",
-      "back": "The corresponding eigenvector is unchanged by the transformation. It is a 'fixed' vector."
-    },
-    {
-      "front": "What does it mean if an eigenvalue is 0?",
-      "back": "The corresponding eigenvector is transformed into the zero vector. The transformation collapses space along that vector's direction."
-    },
-    {
-      "front": "Is an eigenvector unique?",
-      "back": "No. Any non-zero scalar multiple of an eigenvector is also an eigenvector for the same eigenvalue. For example, if $\\mathbf{v}$ is an eigenvector, so is $2\\mathbf{v}$ and $-0.5\\mathbf{v}$."
-    },
-    {
-      "front": "What is the 'dominant eigenvalue'?",
-      "back": "The eigenvalue with the largest absolute value (magnitude). In many applications, like population models, it determines the long-term behaviour of the system."
-    },
-    {
-      "front": "How do you find eigenvectors once you have an eigenvalue $\\lambda$?",
-      "back": "Solve the system of linear equations given by $(A - \\lambda I)\\mathbf{v} = \\mathbf{0}$ for the vector $\\mathbf{v}$."
-    },
-    {
-      "front": "Can a matrix have complex eigenvalues?",
-      "back": "Yes. If a real matrix has complex eigenvalues, they will always appear in conjugate pairs. Geometrically, this often corresponds to a rotation."
-    },
-    {
-      "front": "What is the relationship between the determinant of a matrix and its eigenvalues?",
-      "back": "The determinant of a matrix is the product of its eigenvalues. $\\det(A) = \\lambda_1 \\times \\lambda_2 \\times ... \\times \\lambda_n$."
-    }
+    { "front": "Eigenvector", "back": "A non-zero vector $\\mathbf{v}$ whose direction is unchanged by the matrix $A$: $A\\mathbf{v}=\\lambda\\mathbf{v}$ for some scalar $\\lambda$. The matrix only scales it (and may flip it), never rotates it off its line.", "pillLabel": "Definition" },
+    { "front": "Eigenvalue ($\\lambda$)", "back": "The scalar factor by which its eigenvector is stretched: $A\\mathbf{v}=\\lambda\\mathbf{v}$. $|\\lambda|>1$ stretches, $|\\lambda|<1$ shrinks, $\\lambda<0$ flips direction, $\\lambda=1$ leaves the vector fixed.", "pillLabel": "Definition" },
+    { "front": "Characteristic equation", "back": "$\\det(A-\\lambda I)=0$. For a 2x2 matrix this is a quadratic in $\\lambda$; its roots are the eigenvalues. The equation comes from requiring $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ to have a non-zero solution.", "pillLabel": "Formula" },
+    { "front": "Finding an eigenvector", "back": "Substitute a known eigenvalue $\\lambda$ into $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and solve for $\\mathbf{v}$. The two rows are proportional, so you get one relation between the components; pick a convenient value to get a representative vector.", "pillLabel": "Framework" },
+    { "front": "Eigenvectors are non-unique", "back": "If $\\mathbf{v}$ is an eigenvector for $\\lambda$, so is $k\\mathbf{v}$ for any non-zero scalar $k$, because $A(k\\mathbf{v})=k(A\\mathbf{v})=k(\\lambda\\mathbf{v})=\\lambda(k\\mathbf{v})$. An eigenvector fixes a direction, not a length.", "pillLabel": "Concept" },
+    { "front": "Diagonalization $A=PDP^{-1}$", "back": "Put the eigenvectors as the columns of $P$ and the matching eigenvalues on the diagonal of $D$ (in the same order). Then $A=PDP^{-1}$. It works whenever the eigenvectors are independent, which for a 2x2 happens when the eigenvalues are distinct.", "pillLabel": "Formula" },
+    { "front": "Powers via diagonalization", "back": "$A^n=PD^nP^{-1}$, and $D^n$ is just each diagonal eigenvalue raised to the power $n$. This turns an expensive repeated matrix multiplication into raising numbers to a power.", "pillLabel": "Formula" },
+    { "front": "Dominant eigenvalue", "back": "The eigenvalue of largest magnitude. In a system that evolves by repeated multiplication ($\\mathbf{x}_{n+1}=A\\mathbf{x}_n$), it sets the long-term growth: $|\\lambda|>1$ grows, $|\\lambda|<1$ decays, $|\\lambda|=1$ stabilises. Its eigenvector gives the limiting ratio of the components.", "pillLabel": "Concept" },
+    { "front": "Order matters in $P$ and $D$", "back": "The $k$th column of $P$ must be the eigenvector belonging to the $k$th diagonal entry of $D$. Swap one without the other and $A=PDP^{-1}$ fails. You may reorder both together freely.", "pillLabel": "Trap" },
+    { "front": "Trace and determinant check", "back": "For a 2x2 matrix, $\\lambda_1+\\lambda_2=\\operatorname{tr}(A)$ (sum of the diagonal) and $\\lambda_1\\lambda_2=\\det(A)$. A fast sanity check on your eigenvalues before you go looking for eigenvectors.", "pillLabel": "Check" },
+    { "front": "Markov / coupled DE link", "back": "For a Markov chain the transition matrix always has $\\lambda=1$, whose eigenvector (normalised) is the steady state. For coupled linear differential equations $\\dot{\\mathbf{x}}=A\\mathbf{x}$, the solutions are combinations of $e^{\\lambda t}$ along the eigenvectors, so the eigenvalues decide growth, decay or oscillation.", "pillLabel": "Application" }
+  ],
+  "quickCheck": [
+    { "prompt": "The eigenvalues of a 2x2 matrix $A$ are found by solving:", "options": ["$\\det(A-\\lambda I)=0$", "$\\det(A)-\\lambda=0$", "$A-\\lambda I=0$", "$\\det(A-\\lambda I)=1$"], "answer": "$\\det(A-\\lambda I)=0$" },
+    { "prompt": "Once an eigenvalue $\\lambda$ is known, a corresponding eigenvector is found by solving:", "options": ["$(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ for a non-zero $\\mathbf{v}$", "$A\\mathbf{v}=\\mathbf{0}$", "$(A-\\lambda I)\\mathbf{v}=\\mathbf{v}$", "$\\det(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$"], "answer": "$(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ for a non-zero $\\mathbf{v}$" },
+    { "prompt": "If $\\mathbf{v}=\\begin{pmatrix}1\\\\2\\end{pmatrix}$ is an eigenvector of $A$, which of the following is also an eigenvector for the same eigenvalue?", "options": ["$\\begin{pmatrix}3\\\\6\\end{pmatrix}$", "$\\begin{pmatrix}2\\\\1\\end{pmatrix}$", "$\\begin{pmatrix}1\\\\-2\\end{pmatrix}$", "$\\begin{pmatrix}0\\\\0\\end{pmatrix}$"], "answer": "$\\begin{pmatrix}3\\\\6\\end{pmatrix}$" },
+    { "prompt": "For a diagonalizable 2x2 matrix with $A=PDP^{-1}$, the power $A^n$ equals:", "options": ["$PD^nP^{-1}$", "$P^nDP^{-1}$", "$PD^nP$", "$P^{-1}D^nP$"], "answer": "$PD^nP^{-1}$" },
+    { "prompt": "In $A=PDP^{-1}$, the columns of $P$ and the diagonal entries of $D$ are:", "options": ["The eigenvectors, paired in the same order with their eigenvalues", "The eigenvalues in $P$ and the eigenvectors in $D$", "The eigenvectors in any order, unrelated to the order of the eigenvalues in $D$", "The rows of $A$ and the entries of $A$"], "answer": "The eigenvectors, paired in the same order with their eigenvalues" }
   ],
   "faq": [
-    {
-      "q": "Do I need to calculate eigenvalues and eigenvectors of a 3x3 matrix by hand?",
-      "a": "No. For the AI HL course, calculating eigenvalues for matrices larger than 2x2 is a task for your GDC. You should, however, understand the concept of the characteristic equation, $\\det(A - \\lambda I) = 0$, as you may be asked to set it up."
-    },
-    {
-      "q": "Why is the eigenvector not unique?",
-      "a": "An eigenvector defines a direction. Any vector pointing in that same direction (or the exact opposite direction) is also an eigenvector for the same eigenvalue. If $\\mathbf{v}$ is an eigenvector, then $k\\mathbf{v}$ (for any non-zero scalar $k$) is also an eigenvector because $A(k\\mathbf{v}) = k(A\\mathbf{v}) = k(\\lambda\\mathbf{v}) = \\lambda(k\\mathbf{v})$."
-    },
-    {
-      "q": "What is the use of the 'dominant' eigenvalue?",
-      "a": "In systems that evolve over time (like population models or Markov chains), the dominant eigenvalue (the one with the largest magnitude) dictates the long-term behaviour. If its magnitude is greater than 1, the system grows; if less than 1, it shrinks; if equal to 1, it stabilises."
-    },
-    {
-      "q": "What if my GDC gives me complex eigenvalues?",
-      "a": "For real matrices, complex eigenvalues always come in conjugate pairs (e.g., $a+bi$ and $a-bi$). They typically represent a rotational component in the transformation. In the context of AI HL, you are more likely to deal with real eigenvalues, but you should be aware that complex ones can exist and your GDC can find them."
-    }
+    { "q": "Why does requiring a non-zero eigenvector force the determinant to be zero?", "a": "The equation $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ always has the trivial solution $\\mathbf{v}=\\mathbf{0}$. We want a non-zero solution, and a square linear system has non-zero solutions only when its matrix is singular, that is, when its determinant is zero. So demanding a genuine eigenvector is exactly the condition $\\det(A-\\lambda I)=0$, which is why that becomes the equation for $\\lambda$." },
+    { "q": "My eigenvector looks different from the answer key. Am I wrong?", "a": "Probably not. An eigenvector is only defined up to a non-zero scalar, so $\\begin{pmatrix}1\\\\1\\end{pmatrix}$, $\\begin{pmatrix}2\\\\2\\end{pmatrix}$ and $\\begin{pmatrix}-1\\\\-1\\end{pmatrix}$ all describe the same eigen-direction. Check whether your vector is a scalar multiple of the expected one; if it is, it is correct. IB mark schemes and our engine accept any non-zero scalar multiple." },
+    { "q": "When can a 2x2 matrix actually be diagonalized?", "a": "Whenever it has two linearly independent eigenvectors. If the two eigenvalues are distinct (the usual case in AI HL), their eigenvectors are automatically independent, so $A=PDP^{-1}$ works. Trouble only arises with a repeated eigenvalue that supplies just one independent eigenvector; such a matrix is not diagonalizable, but you will rarely meet one at this level." },
+    { "q": "Why is $A^n=PD^nP^{-1}$ so much easier than multiplying $A$ by itself $n$ times?", "a": "Because $A^n=(PDP^{-1})(PDP^{-1})\\cdots(PDP^{-1})$, and each interior $P^{-1}P$ collapses to the identity, leaving $PD^nP^{-1}$. Raising the diagonal matrix $D$ to the power $n$ just means raising each eigenvalue to that power, which is trivial. So one diagonalization replaces $n$ full matrix multiplications, and it even lets you write a closed formula for any $n$." },
+    { "q": "How do eigenvalues connect to Markov chains and coupled differential equations?", "a": "Both are systems driven by a matrix. In a Markov chain the state updates as $\\mathbf{x}_{n+1}=A\\mathbf{x}_n$, so $\\mathbf{x}_n=A^n\\mathbf{x}_0$; the dominant eigenvalue (always 1 for a Markov transition matrix) and its eigenvector give the steady state the chain settles into. For coupled linear differential equations $\\dot{\\mathbf{x}}=A\\mathbf{x}$, the solution is built from $e^{\\lambda t}$ terms along the eigenvectors, so the signs and sizes of the eigenvalues decide whether the system grows, decays or oscillates. In both cases the eigenvalues are the DNA of the long-term behaviour." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the study of eigenvalues and eigenvectors, a topic that unlocks the deeper properties of matrices and their transformations. While the name might sound complex, the core idea is surprisingly elegant. We are looking for special vectors that hold their direction when a matrix transformation is applied. This concept is not just an abstract mathematical curiosity; it is the engine behind Google's PageRank algorithm, facial recognition software, and models that predict population changes over time. In this course, we will focus on understanding the concept and using our GDC to apply it to real-world scenarios."
-    },
-    {
-      "type": "heading",
-      "content": "The Fundamental Relationship"
-    },
-    {
-      "type": "text",
-      "content": "A matrix transformation, represented by multiplying a vector by a matrix $A$, can stretch, shrink, rotate, or shear the vector. An eigenvector is a special, non-zero vector $\\mathbf{v}$ that does not change its direction under the transformation. It is only scaled (stretched or shrunk) by a certain factor. This scaling factor is the eigenvalue, $\\lambda$."
-    },
-    {
-      "type": "formula",
-      "content": "A\\mathbf{v} = \\lambda\\mathbf{v}"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$\\mathbf{A}$ is an $n \\times n$ square matrix.",
-        "$\\mathbf{v}$ is a non-zero $n \\times 1$ column vector (the eigenvector).",
-        "$\\lambda$ is a scalar (the eigenvalue)."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Finding Eigenvalues and Eigenvectors (By Hand for 2x2)"
-    },
-    {
-      "type": "text",
-      "content": "To find these special pairs, we rearrange the fundamental equation. The goal is to find values of $\\lambda$ for which the equation has a non-zero solution for $\\mathbf{v}$. This leads us to the 'characteristic equation'."
-    },
-    {
-      "type": "formula",
-      "content": "$$A\\mathbf{v} = \\lambda\\mathbf{v} \\implies A\\mathbf{v} - \\lambda\\mathbf{v} = \\mathbf{0} \\implies A\\mathbf{v} - \\lambda I\\mathbf{v} = \\mathbf{0} \\implies (A - \\lambda I)\\mathbf{v} = \\mathbf{0}$$"
-    },
-    {
-      "type": "text",
-      "content": "For this equation to have a non-zero solution for $\\mathbf{v}$, the matrix $(A - \\lambda I)$ must be 'singular', which means its determinant must be zero. This gives us the characteristic equation, which we can solve for $\\lambda$."
-    },
-    {
-      "type": "formula",
-      "content": "\\det(A - \\lambda I) = 0"
-    },
-    {
-      "type": "text",
-      "content": "Once we find the eigenvalues, we substitute each one back into $(A - \\lambda I)\\mathbf{v} = \\mathbf{0}$ to find the corresponding eigenvectors."
-    },
-    {
-      "type": "workedExample",
-      "question": "Let $A = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix}$.\n\na) Find the eigenvalues of A.\nb) For each eigenvalue, find a corresponding eigenvector.",
-      "solution": "a) First, set up the characteristic equation $\\det(A - \\lambda I) = 0$.\n$A - \\lambda I = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix} - \\lambda \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 4-\\lambda & -2 \\\\ 1 & 1-\\lambda \\end{pmatrix}$ (M1)\n\nNow, find the determinant:\n$\\det(A - \\lambda I) = (4-\\lambda)(1-\\lambda) - (-2)(1) = 0$\n$4 - 4\\lambda - \\lambda + \\lambda^2 + 2 = 0$\n$\\lambda^2 - 5\\lambda + 6 = 0$ (A1)\n\nFactorise the quadratic equation:\n$(\\lambda - 2)(\\lambda - 3) = 0$ (M1)\nSo, the eigenvalues are $\\lambda_1 = 2$ and $\\lambda_2 = 3$. (A1)\n\nb) Now find the eigenvector for each eigenvalue.\n\nFor $\\lambda_1 = 2$:\nSolve $(A - 2I)\\mathbf{v} = \\mathbf{0}$.\n$\\begin{pmatrix} 4-2 & -2 \\\\ 1 & 1-2 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} \\implies \\begin{pmatrix} 2 & -2 \\\\ 1 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ (M1)\nThis gives the equation $2x - 2y = 0$ (and $x - y = 0$, which is the same).\nSo, $x = y$. Any vector where the two components are equal is an eigenvector. A simple choice is $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$. (A1)\n\nFor $\\lambda_2 = 3$:\nSolve $(A - 3I)\\mathbf{v} = \\mathbf{0}$.\n$\\begin{pmatrix} 4-3 & -2 \\\\ 1 & 1-3 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} \\implies \\begin{pmatrix} 1 & -2 \\\\ 1 & -2 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ (M1)\nThis gives the equation $x - 2y = 0$, so $x = 2y$.\nLet $y=1$, then $x=2$. A simple choice is $\\mathbf{v}_2 = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$. (A1)"
-    },
-    {
-      "type": "heading",
-      "content": "Using Your GDC"
-    },
-    {
-      "type": "text",
-      "content": "While it's important to understand the underlying theory, for matrices larger than 2x2, or in any time-pressured exam situation, you will use your GDC. The specific steps vary between calculator models (e.g., TI-Nspire, Casio), but the general process involves entering the matrix and then using a built-in function like 'Eigenvalues' or 'EigVl' and 'Eigenvectors' or 'EigVc'."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 1, you will almost certainly use your GDC to find eigenvalues and eigenvectors. Make sure you are fluent with the process on your specific calculator model. For a 2x2 matrix, they might ask for the characteristic equation, but for a 3x3, it's a GDC task. Always write down the matrix you entered and the function you used."
-    },
-    {
-      "type": "workedExample",
-      "question": "The population of a species of birds is modelled by the matrix equation $\\mathbf{p}_{n+1} = L \\mathbf{p}_n$, where $\\mathbf{p}_n$ is a vector representing the number of juvenile and adult birds in year $n$, and $L = \\begin{pmatrix} 0 & 1.5 \\\\ 0.6 & 0.8 \\end{pmatrix}$.\n\na) Find the eigenvalues and corresponding eigenvectors of the matrix $L$ using your GDC.\nb) The dominant eigenvalue determines the long-term growth rate of the population. What is the annual percentage growth rate of the bird population in the long run?\nc) What is the long-term ratio of juvenile to adult birds?",
-      "solution": "a) Using a GDC, we find the eigenvalues and eigenvectors of $L = \\begin{pmatrix} 0 & 1.5 \\\\ 0.6 & 0.8 \\end{pmatrix}$.\nEnter the matrix $L$ into the calculator.\nUse the eigenvalue/eigenvector function (e.g., `eigVl(L)` and `eigVc(L)`).\n(M1) for evidence of GDC use.\n\nThe eigenvalues are $\\lambda_1 = 1.5$ and $\\lambda_2 = -0.4$. (A1)\n\nThe corresponding eigenvectors are (or are scalar multiples of):\nFor $\\lambda_1 = 1.5$: $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$ (or $\\begin{pmatrix} 1.5 \\\\ 1.5 \\end{pmatrix}$ depending on GDC).\nFor $\\lambda_2 = -0.4$: $\\mathbf{v}_2 = \\begin{pmatrix} -1.875 \\\\ 0.75 \\end{pmatrix}$ or $\\begin{pmatrix} -2.5 \\\\ 1 \\end{pmatrix}$. (A2) - A1 for each vector.\n\nb) The dominant eigenvalue is the one with the largest magnitude, which is $\\lambda_1 = 1.5$. (A1)\nThis means the population is multiplied by a factor of 1.5 each year in the long term.\nGrowth rate = $1.5 - 1 = 0.5$.\nPercentage growth rate = $0.5 \\times 100\\% = 50\\%$. (A1)\n\nc) The long-term ratio of the population is given by the eigenvector corresponding to the dominant eigenvalue. \n$\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} \\text{juvenile} \\\\ \\text{adult} \\end{pmatrix}$. (M1)\nThe long-term ratio of juvenile to adult birds is 1:1. (A1)"
-    },
-    {
-      "type": "practice",
-      "label": "Eigenvalues & Eigenvectors",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=1.7"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "3Blue1Brown on Eigenvectors",
-          "href": "https://www.youtube.com/watch?v=PFDu9o5coao"
-        },
-        {
-          "label": "Paul's Online Math Notes",
-          "href": "https://tutorial.math.lamar.edu/classes/de/eigenvalues.aspx"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Multiply a random vector by a matrix and, in general, two things change at once: its length and its direction. That double change is what makes matrices hard to reason about over many steps. Eigenvalues and eigenvectors cut through it. An eigenvector is a direction the matrix refuses to twist, so along it the transformation reduces to a single number, the eigenvalue, that simply scales. Find those invariant directions and a complicated matrix falls apart into a few clean stretches. This HL lesson takes 1.7 in full for the 2x2 case: the defining relation $A\\mathbf{v}=\\lambda\\mathbf{v}$, the characteristic equation that delivers the eigenvalues, the eigenvectors that go with them, the diagonalization $A=PDP^{-1}$ that repackages the matrix, the power formula $A^n=PD^nP^{-1}$, and the pay-off, reading the long-term fate of a system straight from its dominant eigenvalue. As in every calculation topic, the worked examples are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The defining relation" },
+    { "type": "text", "content": "Everything starts from one equation. A square matrix $A$ acts on a column vector $\\mathbf{v}$; usually $A\\mathbf{v}$ points somewhere new. But for certain special non-zero vectors the output points along the same line as the input, so it is just a scalar multiple of $\\mathbf{v}$. Those vectors are the eigenvectors, and the scalar is the eigenvalue." },
+    { "type": "formula", "content": "A\\mathbf{v} = \\lambda\\mathbf{v}, \\qquad \\mathbf{v}\\neq\\mathbf{0}" },
+    { "type": "keyPoints", "items": [
+      "**$A$** is an $n\\times n$ square matrix; in this lesson $2\\times 2$.",
+      "**$\\mathbf{v}$** is a non-zero column vector, the eigenvector, giving an invariant direction.",
+      "**$\\lambda$** is a scalar, the eigenvalue, giving the stretch/flip factor along that direction.",
+      "The zero vector is excluded on purpose: $A\\mathbf{0}=\\lambda\\mathbf{0}$ holds for every $\\lambda$, so it would tell us nothing."
+    ]},
+    { "type": "text", "content": "Reading the equation geometrically: if $\\lambda>1$ the eigenvector is stretched, if $0<\\lambda<1$ it is shrunk, if $\\lambda<0$ it is flipped to the opposite direction (and scaled), if $\\lambda=1$ it is left exactly where it was, and if $\\lambda=0$ it is collapsed onto the origin. The whole behaviour of $A$ is encoded in these few numbers and directions." },
+
+    { "type": "heading", "content": "The characteristic equation" },
+    { "type": "text", "content": "To find the eigenvalues we turn $A\\mathbf{v}=\\lambda\\mathbf{v}$ into a condition on $\\lambda$ alone. Move everything to one side, insert the identity so the vector can be factored out, and gather terms." },
+    { "type": "formula", "content": "A\\mathbf{v}=\\lambda\\mathbf{v} \\;\\Longrightarrow\\; A\\mathbf{v}-\\lambda\\mathbf{v}=\\mathbf{0} \\;\\Longrightarrow\\; A\\mathbf{v}-\\lambda I\\mathbf{v}=\\mathbf{0} \\;\\Longrightarrow\\; (A-\\lambda I)\\mathbf{v}=\\mathbf{0}" },
+    { "type": "text", "content": "This is a homogeneous linear system. It always has the useless solution $\\mathbf{v}=\\mathbf{0}$; we want a genuine, non-zero eigenvector. A square system has non-zero solutions only when its matrix is singular, so we require the determinant of $(A-\\lambda I)$ to vanish. That single condition is the characteristic equation." },
+    { "type": "formula", "content": "\\det(A-\\lambda I)=0" },
+    { "type": "text", "content": "For a $2\\times 2$ matrix $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ this expands to $(a-\\lambda)(d-\\lambda)-bc=0$, a quadratic in $\\lambda$. Written out, $\\lambda^2-(a+d)\\lambda+(ad-bc)=0$, i.e. $\\lambda^2-\\operatorname{tr}(A)\\,\\lambda+\\det(A)=0$. So the two eigenvalues sum to the trace and multiply to the determinant, a check worth remembering." },
+    { "type": "examTip", "content": "The command term matters. On Paper 1 a 2x2 eigenvalue question expects you to actually form and solve $\\det(A-\\lambda I)=0$ by hand; writing the characteristic equation is itself a marked line. Reserve the GDC's eigenvalue function for checking your answer or for anything larger than 2x2." },
+
+    { "type": "heading", "content": "Finding the eigenvectors" },
+    { "type": "text", "content": "Each eigenvalue opens a door back to its eigenvectors. Substitute the value of $\\lambda$ into $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and solve the resulting equations for $\\mathbf{v}=\\begin{pmatrix}x\\\\y\\end{pmatrix}$. Because $\\lambda$ was chosen to make the matrix singular, the two rows are always proportional, so they collapse to a single relation between $x$ and $y$. That relation defines a whole line of eigenvectors; you quote one convenient representative." },
+    { "type": "keyPoints", "items": [
+      "Set up $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ with the specific eigenvalue substituted in.",
+      "The two rows give the same relation; take either one, e.g. $px+qy=0$.",
+      "Choose a simple non-zero solution, such as setting $y=1$ (or clearing fractions) to get whole-number components.",
+      "Any non-zero scalar multiple of your answer is equally correct: the eigenvector is a direction, not a fixed arrow."
+    ]},
+
+    { "type": "workedExample", "question": "Let $A=\\begin{pmatrix}4&-2\\\\1&1\\end{pmatrix}$. \\n (a) Find the eigenvalues of $A$. \\n (b) For each eigenvalue, find a corresponding eigenvector. [6]", "solution": "**(a) Eigenvalues.** Form $A-\\lambda I$ and set its determinant to zero.\\n$A-\\lambda I=\\begin{pmatrix}4-\\lambda&-2\\\\1&1-\\lambda\\end{pmatrix}$, so $\\det(A-\\lambda I)=(4-\\lambda)(1-\\lambda)-(-2)(1)=0$.  [M1]\\nExpanding: $4-4\\lambda-\\lambda+\\lambda^2+2=0\\Rightarrow \\lambda^2-5\\lambda+6=0$.  [A1]\\nFactorising: $(\\lambda-2)(\\lambda-3)=0$, so $\\lambda_1=2$ and $\\lambda_2=3$.  [A1]\\n(Check: $\\lambda_1+\\lambda_2=5=\\operatorname{tr}(A)$ and $\\lambda_1\\lambda_2=6=\\det(A)$.)\\n\\n**(b) Eigenvectors.**\\nFor $\\lambda_1=2$: solve $(A-2I)\\mathbf{v}=\\mathbf{0}$, i.e. $\\begin{pmatrix}2&-2\\\\1&-1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$.  [M1]\\nBoth rows give $x=y$, so a representative eigenvector is $\\mathbf{v}_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}$.  [A1]\\n\\nFor $\\lambda_2=3$: solve $(A-3I)\\mathbf{v}=\\mathbf{0}$, i.e. $\\begin{pmatrix}1&-2\\\\1&-2\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$.\\nBoth rows give $x=2y$, so a representative eigenvector is $\\mathbf{v}_2=\\begin{pmatrix}2\\\\1\\end{pmatrix}$.  [A1]\\n\\nAny non-zero scalar multiples, such as $\\begin{pmatrix}-1\\\\-1\\end{pmatrix}$ or $\\begin{pmatrix}4\\\\2\\end{pmatrix}$, are equally acceptable." },
+
+    { "type": "heading", "content": "Diagonalization: $A=PDP^{-1}$" },
+    { "type": "text", "content": "Once you have the eigenpairs you can rebuild $A$ in a form that exposes its stretches directly. Place the eigenvectors as the columns of a matrix $P$, and the matching eigenvalues on the diagonal of a matrix $D$ in the same order. Then, provided the eigenvectors are linearly independent (guaranteed here whenever the eigenvalues are distinct), $A=PDP^{-1}$." },
+    { "type": "formula", "content": "A=PDP^{-1}, \\qquad P=\\big(\\;\\mathbf{v}_1\\;\\;\\mathbf{v}_2\\;\\big), \\qquad D=\\begin{pmatrix}\\lambda_1&0\\\\0&\\lambda_2\\end{pmatrix}" },
+    { "type": "text", "content": "The order is the whole game: the first column of $P$ must be the eigenvector for the first diagonal entry $\\lambda_1$, and the second column for $\\lambda_2$. You may swap both together, but never one without the other. Geometrically, $P^{-1}$ rewrites a vector in the eigenvector basis, $D$ scales along each eigen-direction, and $P$ translates back; the messy mixing that $A$ seemed to do is really just independent stretching in disguise." },
+
+    { "type": "workedExample", "question": "For the matrix $A=\\begin{pmatrix}4&-2\\\\1&1\\end{pmatrix}$ from the previous example, whose eigenvalues are $2$ and $3$ with eigenvectors $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ and $\\begin{pmatrix}2\\\\1\\end{pmatrix}$, write down matrices $P$ and $D$ such that $A=PDP^{-1}$, and verify the inverse used. [4]", "solution": "Take the eigenvectors as the columns of $P$ and the matching eigenvalues on the diagonal of $D$, keeping the same order (column 1 with $\\lambda=2$, column 2 with $\\lambda=3$):\\n$P=\\begin{pmatrix}1&2\\\\1&1\\end{pmatrix}, \\qquad D=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$.  [A1 for $P$]  [A1 for $D$ in matching order]\\n\\n**Inverse of $P$.** $\\det(P)=(1)(1)-(2)(1)=-1$, so\\n$P^{-1}=\\dfrac{1}{-1}\\begin{pmatrix}1&-2\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}-1&2\\\\1&-1\\end{pmatrix}$.  [M1]\\n\\n**Verify.** $PD=\\begin{pmatrix}1&2\\\\1&1\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}=\\begin{pmatrix}2&6\\\\2&3\\end{pmatrix}$, and $PDP^{-1}=\\begin{pmatrix}2&6\\\\2&3\\end{pmatrix}\\begin{pmatrix}-1&2\\\\1&-1\\end{pmatrix}=\\begin{pmatrix}4&-2\\\\1&1\\end{pmatrix}=A$.  [A1]\\n\\nThe reconstruction returns $A$ exactly, confirming the factorisation." },
+
+    { "type": "heading", "content": "Powers of a matrix: $A^n=PD^nP^{-1}$" },
+    { "type": "text", "content": "Diagonalization pays off spectacularly for powers. Because the interior factors cancel, $A^n=(PDP^{-1})^n=PD^nP^{-1}$, and raising a diagonal matrix to a power just raises each diagonal entry to that power. A repeated matrix multiplication becomes a couple of exponentiations of numbers." },
+    { "type": "formula", "content": "A^n=PD^nP^{-1}, \\qquad D^n=\\begin{pmatrix}\\lambda_1^n&0\\\\0&\\lambda_2^n\\end{pmatrix}" },
+
+    { "type": "workedExample", "question": "A system evolves by $\\mathbf{x}_{n}=M^{n}\\mathbf{x}_0$, where $M=\\begin{pmatrix}3&0\\\\1&2\\end{pmatrix}$. \\n (a) Find the eigenvalues and corresponding eigenvectors of $M$. \\n (b) Hence find a formula for $M^n$ in the form $PD^nP^{-1}$, and use it to evaluate $M^{3}$. [7]", "solution": "**(a) Eigenpairs.** $\\det(M-\\lambda I)=(3-\\lambda)(2-\\lambda)-0=0$ (the matrix is lower-triangular).  [M1]\\nSo $(3-\\lambda)(2-\\lambda)=0$, giving $\\lambda_1=3$, $\\lambda_2=2$.  [A1]\\nFor $\\lambda_1=3$: $(M-3I)\\mathbf{v}=\\begin{pmatrix}0&0\\\\1&-1\\end{pmatrix}\\mathbf{v}=\\mathbf{0}\\Rightarrow x=y$, so $\\mathbf{v}_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}$.  [A1]\\nFor $\\lambda_2=2$: $(M-2I)\\mathbf{v}=\\begin{pmatrix}1&0\\\\1&0\\end{pmatrix}\\mathbf{v}=\\mathbf{0}\\Rightarrow x=0$, so $\\mathbf{v}_2=\\begin{pmatrix}0\\\\1\\end{pmatrix}$.  [A1]\\n\\n**(b) Power formula.** With $P=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$ and $D=\\begin{pmatrix}3&0\\\\0&2\\end{pmatrix}$, we have $\\det(P)=1$ and $P^{-1}=\\begin{pmatrix}1&0\\\\-1&1\\end{pmatrix}$.  [M1]\\n$M^n=PD^nP^{-1}=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}\\begin{pmatrix}3^n&0\\\\0&2^n\\end{pmatrix}\\begin{pmatrix}1&0\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}3^n&0\\\\3^n-2^n&2^n\\end{pmatrix}$.  [A1]\\n\\n**Evaluate $M^3$.** Put $n=3$: $3^3=27$, $2^3=8$, so $M^3=\\begin{pmatrix}27&0\\\\27-8&8\\end{pmatrix}=\\begin{pmatrix}27&0\\\\19&8\\end{pmatrix}$.  [A1]\\n(You can confirm by multiplying $M\\cdot M\\cdot M$ directly.)" },
+
+    { "type": "heading", "content": "Long-term behaviour: the dominant eigenvalue" },
+    { "type": "text", "content": "The power formula also tells you the destiny of a system. Write the starting state in the eigenvector basis, $\\mathbf{x}_0=c_1\\mathbf{v}_1+c_2\\mathbf{v}_2$. Then $\\mathbf{x}_n=A^n\\mathbf{x}_0=c_1\\lambda_1^n\\mathbf{v}_1+c_2\\lambda_2^n\\mathbf{v}_2$. As $n$ grows, the term with the eigenvalue of largest magnitude, the dominant eigenvalue, swamps the other. The system lines up along that eigenvector, and its size is governed by that eigenvalue." },
+    { "type": "keyPoints", "items": [
+      "**Dominant eigenvalue** = the one with the largest $|\\lambda|$. It dictates the long-term growth rate.",
+      "$|\\lambda_{\\text{dom}}|>1$: the system grows without bound; $|\\lambda_{\\text{dom}}|<1$: it decays to zero; $|\\lambda_{\\text{dom}}|=1$: it settles to a steady state.",
+      "The eigenvector of the dominant eigenvalue gives the limiting ratio of the components (e.g. the stable age structure of a population).",
+      "A percentage growth rate follows from the dominant eigenvalue: a factor of $\\lambda$ per step means a $(\\lambda-1)\\times 100\\%$ change per step."
+    ]},
+    { "type": "text", "content": "This is why eigenvalues are the natural language of two headline HL applications. In a **Markov chain** the state updates as $\\mathbf{x}_{n+1}=A\\mathbf{x}_n$ with a transition matrix whose columns are probabilities; such a matrix always has $\\lambda=1$ as its dominant eigenvalue, and the corresponding eigenvector, scaled so its entries sum to 1, is the steady-state distribution the chain converges to. In **coupled linear differential equations** $\\dot{\\mathbf{x}}=A\\mathbf{x}$, the solution is a combination of $e^{\\lambda t}$ terms directed along the eigenvectors, so real positive eigenvalues give growth, real negative ones give decay, and complex eigenvalues give oscillation. In every case the eigenvalues decide the long-run story before you compute a single trajectory." },
+
+    { "type": "workedExample", "question": "A population of juveniles and adults is modelled by $\\mathbf{p}_{n+1}=L\\mathbf{p}_n$ with $L=\\begin{pmatrix}0&1.5\\\\0.6&0.8\\end{pmatrix}$. Using your GDC where appropriate: \\n (a) find the eigenvalues of $L$; \\n (b) state the long-term annual percentage growth rate of the population; \\n (c) find the long-term ratio of juveniles to adults. [6]", "solution": "**(a) Eigenvalues.** The characteristic equation is $\\det(L-\\lambda I)=(0-\\lambda)(0.8-\\lambda)-(1.5)(0.6)=0$.  [M1]\\nSo $\\lambda^2-0.8\\lambda-0.9=0$, and solving (GDC or formula) gives $\\lambda_1=1.5$, $\\lambda_2=-0.6$.  [A1]\\n\\n**(b) Growth rate.** The dominant eigenvalue is the one of largest magnitude, $\\lambda_1=1.5$.  [A1]\\nIn the long run the population is multiplied by $1.5$ each year, a growth of $1.5-1=0.5$, i.e. $50\\%$ per year.  [A1]\\n\\n**(c) Long-term ratio.** The limiting ratio is the eigenvector for the dominant eigenvalue. Solve $(L-1.5I)\\mathbf{v}=\\mathbf{0}$: $\\begin{pmatrix}-1.5&1.5\\\\0.6&-0.7\\end{pmatrix}\\mathbf{v}=\\mathbf{0}$. The top row gives $-1.5x+1.5y=0\\Rightarrow x=y$.  [M1]\\nSo the long-term ratio of juveniles to adults is $1:1$.  [A1]\\n(A negative eigenvalue like $-0.6$ contributes a fading, alternating term that dies away, leaving the dominant eigenvector to set the stable structure.)" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Writing the characteristic equation as $\\det(A)-\\lambda I=0$ or $\\det(A)-\\lambda=0$** — it is $\\det(A-\\lambda I)=0$: subtract $\\lambda$ from the diagonal FIRST, then take the determinant.",
+      "**Solving $A\\mathbf{v}=\\mathbf{0}$ instead of $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$** — the eigenvector satisfies $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ for the specific eigenvalue, not $A\\mathbf{v}=\\mathbf{0}$.",
+      "**Giving $\\mathbf{v}=\\mathbf{0}$ as an eigenvector** — the zero vector is excluded by definition; you must supply a non-zero representative.",
+      "**Marking a scalar multiple 'wrong'** — eigenvectors are non-unique up to scale, so $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ and $\\begin{pmatrix}3\\\\3\\end{pmatrix}$ describe the same eigenvector; do not discard a correct multiple.",
+      "**Mismatching the order of $P$ and $D$** — the $k$th column of $P$ must belong to the $k$th diagonal entry of $D$; a mismatched pairing breaks $A=PDP^{-1}$.",
+      "**Writing $A^n=P^nD^nP^{-1}$ or $PDP^{-n}$** — the correct power formula is $A^n=PD^nP^{-1}$; only the diagonal matrix is raised to the power.",
+      "**Reaching for the GDC on a 2x2 by-hand question** — Paper 1 expects the characteristic equation shown and solved; missing that method line forfeits the M and A marks even if the eigenvalues are right.",
+      "**Picking the wrong dominant eigenvalue** — dominance is by MAGNITUDE $|\\lambda|$, so $-0.6$ does not beat $1.5$, but $-2$ would beat $1.5$."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 1 the marks are analytic: each is pinned to a specific line of working, a method mark (M) or an accuracy mark (A), where an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is done correctly on your own figures. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any correct equivalent, including any non-zero scalar multiple of an eigenvector. That protection exists only if the method is on the page, so study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "Find the eigenvalues and corresponding eigenvectors of $A=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$. [5]", "solution": "**Model answer — full working.**\\n\\n**Characteristic equation.** Form $A-\\lambda I=\\begin{pmatrix}2-\\lambda&1\\\\1&2-\\lambda\\end{pmatrix}$ and set its determinant to zero:\\n$\\det(A-\\lambda I)=(2-\\lambda)^2-(1)(1)=0.$\\nExpanding, $(2-\\lambda)^2-1=0\\Rightarrow \\lambda^2-4\\lambda+3=0\\Rightarrow(\\lambda-1)(\\lambda-3)=0.$\\nSo the eigenvalues are $\\lambda_1=1$ and $\\lambda_2=3$.\\n(Check: sum $=4=\\operatorname{tr}(A)$, product $=3=\\det(A)$.)\\n\\n**Eigenvector for $\\lambda=3$.** Solve $(A-3I)\\mathbf{v}=\\mathbf{0}$: $\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$. Both rows give $x=y$, so $\\mathbf{v}=\\begin{pmatrix}1\\\\1\\end{pmatrix}$.\\n\\n**Eigenvector for $\\lambda=1$.** Solve $(A-I)\\mathbf{v}=\\mathbf{0}$: $\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$. Both rows give $x=-y$, so $\\mathbf{v}=\\begin{pmatrix}1\\\\-1\\end{pmatrix}$.\\n\\n**Answer:** $\\lambda=1$ with $\\begin{pmatrix}1\\\\-1\\end{pmatrix}$, and $\\lambda=3$ with $\\begin{pmatrix}1\\\\1\\end{pmatrix}$.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — set up the characteristic equation.** Awarded for forming $\\det(A-\\lambda I)=0$, i.e. $(2-\\lambda)^2-1=0$, subtracting $\\lambda$ from the diagonal before taking the determinant. It is the method that is rewarded, so it survives an arithmetic slip further down.\\n- **A1 — characteristic equation.** Awarded for the correct quadratic $\\lambda^2-4\\lambda+3=0$ (or the equivalent factored form). This accuracy mark stands on the M1 above.\\n- **A1 — eigenvalues.** Awarded for $\\lambda=1$ and $\\lambda=3$. FT applies: a candidate who reaches a slightly different quadratic but solves it correctly earns this on their own equation.\\n- **M1 — solve for the eigenvectors.** A method mark for substituting an eigenvalue into $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and reducing to a relation between the components. The engine checks that $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ is used, not $A\\mathbf{v}=\\mathbf{0}$.\\n- **A1 — both eigenvectors.** Awarded for a correct non-zero eigenvector for each eigenvalue, paired correctly. Any non-zero scalar multiple is accepted, so $\\begin{pmatrix}2\\\\2\\end{pmatrix}$ for $\\lambda=3$ or $\\begin{pmatrix}-1\\\\1\\end{pmatrix}$ for $\\lambda=1$ scores. This A-mark depends on the M1 and is FT on the candidate's own eigenvalues.\\n\\n**'Accept equivalent forms and any scalar multiple.'** The engine accepts the characteristic equation as $(2-\\lambda)^2-1=0$, $\\lambda^2-4\\lambda+3=0$ or $(\\lambda-1)(\\lambda-3)=0$, and accepts each eigenvector up to a non-zero scalar. Once correct eigenpairs appear, ISW means later restatements do not lose marks.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through, but only if the characteristic equation and the $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ step are actually written down. A student who jumps to '$\\lambda=1,3$' with no equation, or who leaves the eigenvectors out, risks losing 2-3 marks that the method would have protected." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write $\\det(A-\\lambda I)=0$, expand to the characteristic quadratic, solve for the eigenvalues, then substitute each into $(A-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and give a non-zero eigenvector. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Eigen-thinking is the bridge from static matrices to systems that move. The diagonalization you built here is exactly what makes Markov chains solvable: raise the transition matrix to a power with $A^n=PD^nP^{-1}$ and the steady state falls out of the $\\lambda=1$ eigenvector. The same eigenvalues reappear when you solve coupled differential equations $\\dot{\\mathbf{x}}=A\\mathbf{x}$, where their signs decide growth, decay or oscillation, and their eigenvectors trace the natural axes of the flow. Even phase-portrait sketching and stability analysis are, at heart, reading off the dominant eigenvalue. Master the 2x2 machinery, characteristic equation, eigenvectors, $A=PDP^{-1}$ and its powers, and the dynamic-systems topics that follow become variations on a calculation you already control." },
+
+    { "type": "practice", "label": "Get a Paper 2 eigenvalue question marked: form the characteristic equation, solve for the eigenvalues and give the eigenvectors with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=1.7&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "3Blue1Brown: Eigenvectors and eigenvalues", "href": "https://www.youtube.com/watch?v=PFDu9o5coao" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

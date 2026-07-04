@@ -1,187 +1,131 @@
 {
   "slug": "3-7-graph-theory-adjacency-matrices-and-walks",
   "topicCode": "3.7",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "title": "Graph theory: adjacency matrices and walks",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces adjacency matrices as a way to represent graphs numerically. It explores the powerful connection between the powers of an adjacency matrix and the number of walks of a specific length between vertices, a key concept in network analysis.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Graph theory turns any network of connections, road maps, flight routes, computer links, food webs, into an object you can compute with. This Higher Level lesson builds the full 3.7 toolkit: the language of graphs (vertices, edges, degree, directed, weighted, simple, connected, subgraphs and trees); the adjacency matrix that stores a graph as a grid of numbers; and the central result that the number of walks of length $n$ from one vertex to another is a single entry of the $n$th power of that matrix. It also covers weighted (cost) matrices and how to drive the GDC to raise a matrix to a power reliably. Because 3.7 is examined on Paper 2, the calculator does the multiplication, so the marks reward setting up the right matrix, reading the right entry and showing the method, and every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Construct an adjacency matrix for a given simple graph.",
-    "Interpret the entries of an adjacency matrix in the context of a problem.",
-    "Calculate powers of an adjacency matrix using a GDC.",
-    "Determine the number of walks of a given length between vertices by interpreting the entries of a powered adjacency matrix."
+    "Use the language of graph theory: vertices, edges, degree of a vertex, directed and weighted graphs, simple graphs, connected graphs, subgraphs and trees.",
+    "Construct the adjacency matrix of a graph, and read a graph's structure back from its matrix, including symmetry, loops and degrees.",
+    "Apply the key result that the number of walks of length $n$ from vertex $i$ to vertex $j$ is the $(i,j)$ entry of $A^n$.",
+    "Construct a weighted (cost) matrix, and distinguish when to add weights along a route from when to take a power of an adjacency matrix.",
+    "Use a GDC to compute powers of a matrix efficiently, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["3.7"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "From Maps to Matrices",
-    "summary": "Adjacency matrices turn a picture of a network into a table of numbers that a calculator can understand. By performing a special calculation on this table (matrix exponentiation), we can uncover hidden information about all the possible routes within the network.",
-    "analogy": "Imagine a simple social media network where lines connect friends. An adjacency matrix is just a spreadsheet listing who is friends with whom (a '1' for friendship, '0' for not). If you want to find the number of ways person A can be connected to person C via a 'friend of a friend' (a 2-step connection), you don't have to trace it by hand. A specific calculation on the spreadsheet, finding its 'second power', will instantly give you this number, and for everyone in the network at once!",
+    "title": "From Networks to Numbers",
+    "summary": "A graph is just dots joined by lines: dots (vertices) are the things, lines (edges) are the connections. An adjacency matrix is a grid that records who connects to whom with a 1 or a 0. The magic is that multiplying that grid by itself counts routes: the entries of $A^n$ tell you how many ways there are to travel between any two dots in exactly $n$ steps.",
+    "analogy": "Picture the direct-flight map of an airline. Writing '1' whenever there is a direct flight and '0' otherwise builds a grid. If a passenger wants a two-leg trip, one connection, you could trace every possibility by hand, but that is slow and error-prone. Instead, squaring the grid instantly reports, for every pair of cities at once, how many two-leg routes exist. Cube it and you get every three-leg route. The calculator turns a counting puzzle into a single multiplication.",
     "steps": [
-      "Represent the graph: Convert a network diagram (vertices and edges) into a grid called an adjacency matrix, A. An entry A_ij is 1 if vertex i is connected to vertex j, and 0 otherwise.",
-      "Understand the matrix: The matrix A shows direct, one-step connections (walks of length 1). The sum of a row (or column) gives the number of edges connected to that vertex.",
-      "Calculate powers: Use your GDC to find powers of the matrix, such as A², A³, etc. These calculations are almost always too complex to do reliably by hand in an exam.",
-      "Interpret the powers: The entry in row i, column j of the matrix A^k tells you the exact number of different walks of length k from vertex i to vertex j."
+      "Draw or read the graph: identify the vertices and the edges, and whether the edges have a direction (one-way) or a weight (a cost or distance).",
+      "Build the adjacency matrix $A$: for an $n$-vertex graph make an $n \\times n$ grid, putting the number of edges from vertex $i$ to vertex $j$ in position $(i,j)$. For a simple graph every entry is 0 or 1.",
+      "Raise it to a power on the GDC: entering $A$ and computing $A^2$, $A^3$, $\\ldots$ is a calculator skill, far too slip-prone to do by hand under exam pressure.",
+      "Read the right entry: the number in row $i$, column $j$ of $A^n$ is the number of walks of length $n$ from vertex $i$ to vertex $j$. A diagonal entry counts closed walks that return home."
     ]
   },
+  "keyConcepts": ["graphs and their language", "the adjacency matrix", "walks and powers of the matrix"],
   "flashcards": [
-    {
-      "front": "What is a graph in the context of graph theory?",
-      "back": "A mathematical structure consisting of a set of vertices (or nodes) and a set of edges that establish connections between pairs of vertices."
-    },
-    {
-      "front": "What is an adjacency matrix, A?",
-      "back": "A square matrix used to represent a finite graph. The entry A_ij is 1 if there is an edge from vertex i to vertex j, and 0 otherwise."
-    },
-    {
-      "front": "What is a walk?",
-      "back": "A sequence of vertices and edges, starting at one vertex and finishing at another. Vertices and edges can be repeated."
-    },
-    {
-      "front": "What is the key property of the adjacency matrix for an undirected graph?",
-      "back": "It is symmetric about the main diagonal. That is, A_ij = A_ji for all i, j."
-    },
-    {
-      "front": "How do you find the number of walks of length k from vertex i to vertex j?",
-      "back": "Calculate A^k, the k-th power of the adjacency matrix. The desired number is the entry in the i-th row and j-th column of A^k."
-    },
-    {
-      "front": "What does the entry (A^k)_ii on the main diagonal represent?",
-      "back": "The number of walks of length k that start and end at the same vertex, i."
-    },
-    {
-      "front": "What is the difference between a walk and a path?",
-      "back": "A walk can repeat vertices and edges. A path is a walk that does not repeat any vertices (and therefore no edges, except in a cycle)."
-    },
-    {
-      "front": "How is a loop (an edge from a vertex to itself) represented in an adjacency matrix?",
-      "back": "With a '1' on the main diagonal. For example, a loop at vertex v_i would mean the entry A_ii = 1."
-    },
-    {
-      "front": "What is a simple graph?",
-      "back": "An unweighted, undirected graph containing no loops and no multiple edges between the same two vertices. This is the most common type of graph in IB AI HL questions."
-    },
-    {
-      "front": "What does a zero in the (i, j) position of A^k mean?",
-      "back": "It is impossible to get from vertex i to vertex j in exactly k steps."
-    },
-    {
-      "front": "What is the degree of a vertex in an unweighted, undirected graph?",
-      "back": "The number of edges connected to it. It can be found by summing the entries in the corresponding row (or column) of the adjacency matrix."
-    }
+    { "front": "Vertex and edge", "back": "A graph is a set of vertices (nodes) joined by edges. An edge connects a pair of vertices; it models a relationship or a link. The whole of graph theory is built from these two objects.", "pillLabel": "Definition" },
+    { "front": "Degree of a vertex", "back": "The number of edge-ends meeting at that vertex. In a simple undirected graph it is the number of edges attached to the vertex, found by summing that vertex's row of the adjacency matrix. A loop contributes 2 to a degree.", "pillLabel": "Definition" },
+    { "front": "Directed graph (digraph)", "back": "A graph whose edges have a direction, like one-way streets. An edge from $i$ to $j$ does not imply an edge from $j$ to $i$, so its adjacency matrix is generally NOT symmetric.", "pillLabel": "Definition" },
+    { "front": "Weighted graph", "back": "A graph whose edges carry a number, a weight, such as a distance, time or cost. It is stored in a weighted (cost) matrix rather than a 0/1 adjacency matrix.", "pillLabel": "Definition" },
+    { "front": "Simple graph", "back": "An undirected, unweighted graph with no loops and no multiple edges between the same pair of vertices. Its adjacency matrix contains only 0s and 1s with a zero diagonal, and is the commonest case in AI HL.", "pillLabel": "Definition" },
+    { "front": "Connected graph", "back": "A graph in which there is a walk between every pair of vertices, so the network is all in one piece with no isolated parts.", "pillLabel": "Definition" },
+    { "front": "Subgraph and tree", "back": "A subgraph is a graph formed from some of the vertices and edges of a larger one. A tree is a connected graph with no cycles; a graph with $n$ vertices that is a tree has exactly $n-1$ edges.", "pillLabel": "Definition" },
+    { "front": "Adjacency matrix $A$", "back": "For an $n$-vertex graph, the $n \\times n$ matrix whose $(i,j)$ entry is the number of edges from vertex $i$ to vertex $j$. For a simple graph every entry is 0 or 1.", "pillLabel": "Definition" },
+    { "front": "Symmetry of $A$", "back": "For an undirected graph $A_{ij} = A_{ji}$, so the matrix is symmetric about its main diagonal. Losing this symmetry is a sign the graph is directed.", "pillLabel": "Concept" },
+    { "front": "Loops and the diagonal", "back": "A loop is an edge joining a vertex to itself. It shows up as a non-zero entry $A_{ii}$ on the main diagonal. A simple graph has no loops, so its diagonal is all zeros.", "pillLabel": "Concept" },
+    { "front": "Walk", "back": "A sequence of edges joining a start vertex to an end vertex, where vertices and edges may be repeated. Its length is the number of edges traversed. Contrast a path, which repeats no vertices.", "pillLabel": "Definition" },
+    { "front": "The walks result", "back": "The number of walks of length $n$ from vertex $i$ to vertex $j$ is the $(i,j)$ entry of $A^n$. Powers of the adjacency matrix count multi-step routes.", "pillLabel": "Formula" },
+    { "front": "Diagonal of $A^n$", "back": "The entry $(A^n)_{ii}$ counts the walks of length $n$ that start and end at vertex $i$: the closed walks that return home in exactly $n$ steps.", "pillLabel": "Concept" },
+    { "front": "Weighted (cost) matrix trap", "back": "For a weighted graph you ADD weights along a route to get its total cost; you do NOT take powers of the cost matrix to count walks. Powers count walks only for a 0/1 adjacency matrix.", "pillLabel": "Trap" },
+    { "front": "GDC habit for matrix powers", "back": "Enter the matrix once, store it, then compute $A^2$, $A^3$, $\\ldots$ directly. You are not expected to multiply matrices by hand in the exam; show the set-up, the powered matrix and the entry you read.", "pillLabel": "GDC" }
+  ],
+  "quickCheck": [
+    { "prompt": "The number of walks of length $n$ from vertex $i$ to vertex $j$ in a graph with adjacency matrix $A$ is:", "options": ["The $(i,j)$ entry of $A^n$", "The $(i,j)$ entry of $nA$", "The $(i,j)$ entry of $A$ multiplied by $n$", "$n$ times the degree of vertex $i$"], "answer": "The $(i,j)$ entry of $A^n$" },
+    { "prompt": "In a simple undirected graph, the degree of a vertex is equal to:", "options": ["The sum of the entries in its row of the adjacency matrix", "The number of vertices in the graph", "The corresponding entry on the main diagonal of $A$", "The sum of every entry in the matrix"], "answer": "The sum of the entries in its row of the adjacency matrix" },
+    { "prompt": "The adjacency matrix of a simple undirected graph is always:", "options": ["Symmetric, with $A_{ij} = A_{ji}$", "Upper triangular", "Equal to its own inverse", "Non-symmetric because directions matter"], "answer": "Symmetric, with $A_{ij} = A_{ji}$" },
+    { "prompt": "A non-zero entry on the main diagonal of an adjacency matrix ($A_{ii} \\neq 0$) indicates:", "options": ["A loop at vertex $i$", "That vertex $i$ has the highest degree", "That the graph must be directed", "A walk of length 2 from $i$ to $i$"], "answer": "A loop at vertex $i$" },
+    { "prompt": "To count the walks of length at most 3 between two vertices, you read the relevant entry of:", "options": ["$A + A^2 + A^3$", "$A^3$", "$3A$", "$A^2$ only"], "answer": "$A + A^2 + A^3$" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a walk, a path, and a cycle?",
-      "a": "They are all sequences of vertices and edges, but with different rules. A **walk** is the most general; it can repeat vertices and edges freely. A **path** is a walk that does not repeat any vertices. A **cycle** is a walk that starts and ends at the same vertex, but does not repeat any other vertices."
-    },
-    {
-      "q": "Can I calculate matrix powers like M³ by hand in an exam?",
-      "a": "You can, but it is strongly discouraged. Matrix multiplication is time-consuming and very prone to arithmetic errors. The IB expects you to use your GDC for these calculations. You should only show the setup, the powered matrix from your calculator, and the final answer."
-    },
-    {
-      "q": "What happens if the graph is directed (has one-way streets)?",
-      "a": "If a graph is directed, its adjacency matrix is usually not symmetric. An edge from vertex $i$ to vertex $j$ means $A_{ij} = 1$, but it does not imply that $A_{ji} = 1$. All the rules about powers of the matrix still apply perfectly, but you lose the symmetry."
-    },
-    {
-      "q": "What if the question asks for the shortest walk? Is that just A¹?",
-      "a": "Not necessarily. The matrix $A^k$ tells you about walks of a *specific* length $k$. Finding the shortest walk or path between two vertices is a different problem, often solved with algorithms like Breadth-First Search or Dijkstra's algorithm, which are also part of the AI HL syllabus under a different topic (3.8)."
-    }
+    { "q": "What is the difference between a walk, a path and a cycle?", "a": "All three are journeys through a graph following edges, but the rules differ. A **walk** is the most general: it may reuse vertices and edges as often as it likes. A **path** is a walk that visits no vertex more than once. A **cycle** is a closed path: it returns to its start but repeats no other vertex. Powers of the adjacency matrix count walks, not paths, which is why a length-2 count can include journeys that double back." },
+    { "q": "Can I compute $A^3$ by hand in the exam?", "a": "You can, but it is strongly discouraged. Matrix multiplication is slow and a rich source of arithmetic slips, and 3.7 sits on Paper 2 where the GDC is expected to do it. Show the matrix you entered, the powered matrix your calculator returns, and the entry you read; that is what earns the marks." },
+    { "q": "How does the matrix change if the graph is directed?", "a": "For a directed graph an edge from $i$ to $j$ gives $A_{ij} = 1$ but says nothing about $A_{ji}$, so the matrix is generally not symmetric. Every result about powers still holds exactly: $(A^n)_{ij}$ counts directed walks of length $n$ from $i$ to $j$, respecting the arrows." },
+    { "q": "Why can't I just take powers of a weighted (cost) matrix to count routes?", "a": "Because the walks result relies on the entries being 0s and 1s: each term in the matrix-multiplication sum then counts one way of stepping through an intermediate vertex. With weights, multiplying entries multiplies costs, which is meaningless for counting. For a weighted graph you add weights along a chosen route to get its total cost, and use the adjacency (0/1) matrix separately if you also need to count walks." },
+    { "q": "What does a zero in $A^n$ tell me?", "a": "If $(A^n)_{ij} = 0$ there is no walk of length exactly $n$ from vertex $i$ to vertex $j$. It does not mean the vertices are unreachable, only that they cannot be joined in that precise number of steps; a different power may well be non-zero." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Graph theory is a fundamental part of discrete mathematics that models relationships between objects. From analysing flight routes and computer networks to modelling social interactions, graphs are everywhere. Adjacency matrices provide a computational bridge, allowing us to use the power of matrix algebra to analyse these complex networks."
-    },
-    {
-      "type": "heading",
-      "content": "Constructing an Adjacency Matrix"
-    },
-    {
-      "type": "text",
-      "content": "An adjacency matrix, often denoted by $A$, is a square matrix that represents the connections in a graph. For a graph with $n$ vertices, the adjacency matrix will be an $n \\times n$ matrix. We label the rows and columns with the vertex names. The entry in row $i$ and column $j$, written as $A_{ij}$, tells us if there is a direct edge between vertex $i$ and vertex $j$."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "For a simple, unweighted graph, the entry $A_{ij} = 1$ if an edge exists between vertex $i$ and vertex $j$.",
-        "If no edge exists between vertex $i$ and vertex $j$, then $A_{ij} = 0$.",
-        "For simple graphs (no loops), the main diagonal entries $A_{ii}$ are all 0.",
-        "For undirected graphs, the matrix is symmetric ($A_{ij} = A_{ji}$). The connection from $i$ to $j$ is the same as from $j$ to $i$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A local park has four key locations: Entrance (E), Playground (P), Lake (L), and Cafe (C). The paths between them are shown in the graph below. Construct the adjacency matrix $M$ for this network of paths.",
-      "solution": "The graph has 4 vertices: E, P, L, C. We will create a 4x4 matrix with rows and columns labelled in that order.\n\n[M1] Setting up a 4x4 matrix with correct labels.\n\n$M = \\begin{pmatrix} & E & P & L & C \\\\ E & 0 & 1 & 1 & 0 \\\\ P & 1 & 0 & 1 & 1 \\\\ L & 1 & 1 & 0 & 0 \\\\ C & 0 & 1 & 0 & 0 \\end{pmatrix}$\n\n**Working:**\n- Row E: The Entrance is connected to the Playground (P) and the Lake (L). So, $M_{EP}=1$ and $M_{EL}=1$. It is not connected to itself or the Cafe (C). So, $M_{EE}=0$ and $M_{EC}=0$. Row is [0 1 1 0].\n- Row P: The Playground is connected to E, L, and C. Row is [1 0 1 1].\n- Row L: The Lake is connected to E and P. Row is [1 1 0 0].\n- Row C: The Cafe is only connected to P. Row is [0 1 0 0].\n\n[A2] For the final correct matrix. Note that the matrix is not symmetric because the graph provided in the question (implicitly) has some one-way paths for the sake of the example. For instance, you can go from P to C, but not C to P directly. If the graph were undirected, the matrix would be symmetric. Let's assume the graph is directed as implied by the connections described. If the question intended an undirected graph based on a visual, the matrix would be:\n$M_{undirected} = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 1 & 1 & 0 \\end{pmatrix}$. Let's proceed with this more common undirected case for the next example."
-    },
-    {
-      "type": "heading",
-      "content": "Walks and Powers of the Adjacency Matrix"
-    },
-    {
-      "type": "text",
-      "content": "A 'walk' is simply a journey through the graph following the edges, where you are allowed to revisit vertices and edges. The length of a walk is the number of edges you traverse. The adjacency matrix $A$ itself tells us the number of walks of length 1. The incredible link is that the matrix $A^k$ (A raised to the power of k) tells us the number of walks of length $k$."
-    },
-    {
-      "type": "formula",
-      "content": "The number of walks of length $k$ from vertex $v_i$ to vertex $v_j$ is the entry in the $i$-th row and $j$-th column of the matrix $A^k$."
-    },
-    {
-      "type": "examTip",
-      "content": "You will never be expected to calculate matrix powers like $A^3$ or higher by hand in an exam. This is a GDC-based skill. Know how to enter a matrix into your calculator and how to calculate its powers efficiently."
-    },
-    {
-      "type": "workedExample",
-      "question": "Using the undirected graph of the park from the previous example, with adjacency matrix $M = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 1 & 1 & 0 \\end{pmatrix}$, find the number of different walks of length 4 from the Playground (P) to the Lake (L).",
-      "solution": "Let the vertices be ordered E, P, L, C. We need to find the number of walks of length 4 from P (vertex 2) to L (vertex 3). This corresponds to the entry in the 2nd row, 3rd column of the matrix $M^4$.\n\nFirst, we define the matrix $M$ in our GDC:\n$M = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 1 & 1 & 0 \\end{pmatrix}$\n\nNext, we use the GDC to compute $M^4$.\n[M1] For attempting to find $M^4$.\n\n$M^2 = M \\times M = \\begin{pmatrix} 2 & 1 & 1 & 2 \\\\ 1 & 3 & 2 & 1 \\\\ 1 & 2 & 3 & 1 \\\\ 2 & 1 & 1 & 2 \\end{pmatrix}}$\n\n$M^4 = M^2 \\times M^2 = \\begin{pmatrix} 2 & 1 & 1 & 2 \\\\ 1 & 3 & 2 & 1 \\\\ 1 & 2 & 3 & 1 \\\\ 2 & 1 & 1 & 2 \\end{pmatrix}} \\begin{pmatrix} 2 & 1 & 1 & 2 \\\\ 1 & 3 & 2 & 1 \\\\ 1 & 2 & 3 & 1 \\\\ 2 & 1 & 1 & 2 \\end{pmatrix}} = \\begin{pmatrix} 10 & 9 & 9 & 10 \\\\ 9 & 18 & 16 & 9 \\\\ 9 & 16 & 18 & 9 \\\\ 10 & 9 & 9 & 10 \\end{pmatrix}}$\n\nThe resulting matrix is $M^4 = \\begin{pmatrix} & E & P & L & C \\\\ E & 10 & 9 & 9 & 10 \\\\ P & 9 & 18 & 16 & 9 \\\\ L & 9 & 16 & 18 & 9 \\\\ C & 10 & 9 & 9 & 10 \\end{pmatrix}}$\n\n[A1] For the correct $M^4$ matrix.\n\nThe entry in the 2nd row (P) and 3rd column (L) is 16.\n\nTherefore, there are 16 different walks of length 4 from the Playground to the Lake.\n\n[A1] For the correct final answer."
-    },
-    {
-      "type": "heading",
-      "content": "Interpreting the Results"
-    },
-    {
-      "type": "text",
-      "content": "Analysing the powered matrix $A^k$ provides deep insights into the connectivity of the network. The diagonal entries show how many ways a vertex can 'return home' in a certain number of steps, which is crucial for analysing cycles and recurring states. Off-diagonal entries reveal the accessibility between different vertices over a specific number of steps."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The entry $(A^k)_{ij}$ is the number of distinct walks of length $k$ from vertex $i$ to vertex $j$.",
-        "The diagonal entry $(A^k)_{ii}$ is the number of walks of length $k$ starting and ending at vertex $i$.",
-        "The sum of all entries in $A^k$ gives the total number of walks of length $k$ in the entire graph.",
-        "If $(A^k)_{ij} = 0$, there are no walks of length exactly $k$ from vertex $i$ to vertex $j$."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to the wording. 'Find the number of walks of length 3' requires you to calculate $A^3$. 'Find the number of walks of length at most 3' requires you to calculate $A + A^2 + A^3$. Always identify the exact power required."
-    },
-    {
-      "type": "practice",
-      "label": "Adjacency Matrices & Walks",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=3.7"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Graph Theory Tool",
-          "href": "https://www.geogebra.org/m/j93zwprq"
-        },
-        {
-          "label": "Matrix Calculator",
-          "href": "https://www.desmos.com/matrix"
-        },
-        {
-          "label": "IB AI HL Questionbank",
-          "href": "/questionbank?subject=ib-maths-ai-hl"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Almost anything made of things and the links between them, cities and roads, people and friendships, web pages and hyperlinks, is a network, and graph theory is the mathematics of networks. Its power for Higher Level students is that a picture of dots and lines can be stored as a grid of numbers, the adjacency matrix, and then interrogated with ordinary matrix algebra. This lesson builds the full 3.7 syllabus: the vocabulary of graphs, the construction and reading of adjacency matrices, the central result that links powers of the matrix to the number of walks between vertices, weighted (cost) matrices, and the GDC technique that makes it all practical. Because 3.7 is examined on Paper 2, the calculator does the multiplication, so the skill being marked is setting up the right matrix and reading the right entry, and the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The language of graph theory" },
+    { "type": "text", "content": "A **graph** is a set of **vertices** (also called nodes) together with a set of **edges**, each edge joining a pair of vertices. That is all a graph is; everything else is vocabulary for describing shapes and behaviour. The **degree** of a vertex is the number of edge-ends meeting there, which for a simple graph is just the number of edges attached to it. Edges may carry extra information: in a **directed graph** each edge has a direction, like a one-way street, so travel is only permitted along the arrow; in a **weighted graph** each edge carries a number such as a distance, time or cost." },
+    { "type": "text", "content": "A **simple graph** is undirected and unweighted, with no loops (an edge from a vertex to itself) and no repeated edges between the same pair of vertices; this is the commonest case in AI HL. A graph is **connected** when there is a walk between every pair of vertices, so the whole network hangs together in one piece. A **subgraph** is any graph you obtain by keeping some of the vertices and some of the edges of a larger graph. A **tree** is a connected graph with no cycles; a tree on $n$ vertices has exactly $n-1$ edges, which is why trees are the leanest way to keep a network connected." },
+    { "type": "keyPoints", "items": [
+      "**Vertices and edges** are the two ingredients of every graph; the **degree** of a vertex counts the edges meeting it (a loop counts twice).",
+      "**Directed** edges have arrows; **weighted** edges carry a number. A **simple** graph is undirected, unweighted, loop-free and has no repeated edges.",
+      "**Connected** means every pair of vertices is joined by a walk; a **subgraph** uses part of a graph; a **tree** is a connected, cycle-free graph with $n-1$ edges on $n$ vertices."
+    ]},
+
+    { "type": "heading", "content": "The adjacency matrix" },
+    { "type": "text", "content": "The **adjacency matrix** $A$ of a graph with $n$ vertices is the $n \\times n$ matrix whose entry $A_{ij}$ records the number of edges from vertex $i$ to vertex $j$. Label the rows and the columns with the vertices in the same order, then fill each cell. For a simple graph every entry is 0 or 1: a 1 where an edge exists and a 0 where it does not. The matrix is a complete, machine-readable copy of the graph, and its shape reveals the graph's nature at a glance." },
+    { "type": "keyPoints", "items": [
+      "$A_{ij} = 1$ (or the number of edges) when vertices $i$ and $j$ are joined; $A_{ij} = 0$ when they are not.",
+      "For an **undirected** graph $A$ is **symmetric**: $A_{ij} = A_{ji}$, because an edge between $i$ and $j$ is also an edge between $j$ and $i$.",
+      "The **main diagonal** records loops: $A_{ii} \\neq 0$ means a loop at vertex $i$, so a simple graph has a zero diagonal.",
+      "The **degree** of a vertex in a simple undirected graph is the sum of its row (equivalently its column)."
+    ]},
+    { "type": "formula", "content": "For a graph with adjacency matrix $A$, the entry $A_{ij}$ is the number of edges directly joining vertex $i$ to vertex $j$, i.e. the number of walks of length 1 from $i$ to $j$." },
+    { "type": "workedExample", "question": "A simple undirected graph has vertices $A, B, C, D, E$ and edges $AB$, $AC$, $BC$, $BD$, $CD$ and $DE$. \\n (a) Construct the adjacency matrix $M$, ordering the vertices $A, B, C, D, E$. \\n (b) Write down the degree of vertex $B$. \\n (c) State, with a reason, whether the graph is connected. [6]", "solution": "**(a) Adjacency matrix.** Build a $5 \\times 5$ grid, rows and columns in the order $A, B, C, D, E$, and place a 1 wherever an edge is listed.  [M1: correct size, labelled, 0/1 entries]\\n\\n$M = \\\\begin{pmatrix} 0 & 1 & 1 & 0 & 0 \\\\\\\\ 1 & 0 & 1 & 1 & 0 \\\\\\\\ 1 & 1 & 0 & 1 & 0 \\\\\\\\ 0 & 1 & 1 & 0 & 1 \\\\\\\\ 0 & 0 & 0 & 1 & 0 \\\\end{pmatrix}$  [A1]\\n\\nNotice the matrix is symmetric (the graph is undirected) and its diagonal is all zeros (no loops), two quick self-checks.\\n\\n**(b) Degree of $B$.** Sum row $B$: $1 + 0 + 1 + 1 + 0 = 3$. Vertex $B$ has degree $3$.  [A1]\\n\\n**(c) Connected?** Starting from $A$ you can reach $B$ and $C$ directly, then $D$ from either $B$ or $C$, and finally $E$ from $D$. Every vertex is reachable, so the graph is **connected**.  [M1 for a valid reachability argument][A1]\\n\\nA fast structural check: no row of $M$ is entirely zero, so no vertex is isolated, consistent with a connected graph." },
+
+    { "type": "heading", "content": "Walks and powers of the adjacency matrix" },
+    { "type": "text", "content": "A **walk** is a journey along the edges of a graph in which vertices and edges may be repeated; its **length** is the number of edges it uses. The adjacency matrix $A$ already counts walks of length 1, since $A_{ij}$ is the number of direct edges from $i$ to $j$. The central result of the topic extends this to any length: raising $A$ to the power $n$ counts walks of length $n$. The reason is exactly how matrix multiplication works. The $(i,j)$ entry of $A^2$ is $\\sum_k A_{ik}A_{kj}$, a sum over every possible middle vertex $k$; each term counts the ways to step from $i$ to $k$ and then from $k$ to $j$, so the total is the number of two-step routes from $i$ to $j$. Repeating the argument gives every higher power." },
+    { "type": "formula", "content": "The number of walks of length $n$ from vertex $i$ to vertex $j$ is the $(i,j)$ entry of $A^n$: $\\text{(number of walks of length } n \\text{ from } i \\text{ to } j) = (A^n)_{ij}.$" },
+    { "type": "text", "content": "Two consequences are worth stating outright. A **diagonal** entry $(A^n)_{ii}$ counts the closed walks of length $n$ that start and finish at vertex $i$. And to count walks of length **at most** $n$ you sum the powers: the relevant entry of $A + A^2 + \\cdots + A^n$. Reading the wording of the question, an exact length or an at-most length, decides which matrix you need." },
+    { "type": "examTip", "content": "You are never expected to compute $A^3$ or higher by hand in the exam; it is a GDC skill. But you must show the set-up: state which matrix you entered, quote the powered matrix from your calculator, and point to the exact entry you read, row $i$, column $j$. That written trail is what the method marks are attached to." },
+    { "type": "workedExample", "question": "A directed graph on vertices $1, 2, 3, 4$ has adjacency matrix \\n $A = \\\\begin{pmatrix} 0 & 1 & 0 & 0 \\\\\\\\ 0 & 0 & 1 & 0 \\\\\\\\ 1 & 0 & 0 & 1 \\\\\\\\ 0 & 1 & 0 & 0 \\\\end{pmatrix}$. \\n Find the number of walks of length 3 that start and end at vertex 2. [4]", "solution": "A closed walk of length 3 from vertex 2 to itself is counted by the diagonal entry $(A^3)_{22}$.\\n\\n**Set up.** Enter $A$ into the GDC exactly as given (note it is not symmetric, so the graph is directed).  [M1: identify that the answer is $(A^3)_{22}$]\\n\\n**Compute $A^3$.** The calculator returns  [M1: attempt $A^3$]\\n\\n$A^3 = \\\\begin{pmatrix} 1 & 0 & 0 & 1 \\\\\\\\ 0 & 2 & 0 & 0 \\\\\\\\ 0 & 0 & 2 & 0 \\\\\\\\ 1 & 0 & 0 & 1 \\\\end{pmatrix}$  [A1: correct $A^3$]\\n\\n**Read the entry.** The $(2,2)$ entry is $2$, so there are **2 walks of length 3** from vertex 2 back to vertex 2.  [A1]\\n\\nBoth walks are genuine three-step loops that respect the arrows; listing them ($2\\to3\\to1\\to2$ using the two ways the middle steps combine) is a good check but is not required for the marks." },
+
+    { "type": "heading", "content": "Weighted (cost) matrices" },
+    { "type": "text", "content": "When edges carry numbers, a distance, a time, a price, the graph is stored in a **weighted matrix**, also called a **cost matrix**. Its $(i,j)$ entry is the weight of the edge from $i$ to $j$; where there is no direct edge the cell is left blank or marked with a dash (sometimes $\\infty$), and the diagonal is usually 0. The crucial distinction from the adjacency matrix is this: to find the cost of a route you **add** the weights of the edges along it; you do **not** take powers of the cost matrix. Powers count walks only when the entries are 0s and 1s." },
+    { "type": "workedExample", "question": "Four towns $A, B, C, D$ are joined by roads with the following lengths (in km): $AB = 4$, $AC = 6$, $BC = 2$, $CD = 5$. There is no direct road $AD$ or $BD$. \\n (a) Write down the cost matrix, ordering the towns $A, B, C, D$ and using a dash for a missing road. \\n (b) Find the length of the route $A \\to C \\to D$, and state why powering this matrix would not count that route. [5]", "solution": "**(a) Cost matrix.** Place each road length symmetrically (the roads are two-way), 0 on the diagonal and a dash where no road exists.  [M1: symmetric set-up with weights]\\n\\n$C = \\\\begin{pmatrix} 0 & 4 & 6 & - \\\\\\\\ 4 & 0 & 2 & - \\\\\\\\ 6 & 2 & 0 & 5 \\\\\\\\ - & - & 5 & 0 \\\\end{pmatrix}$  [A1]\\n\\n**(b) Route length.** Add the weights of the edges used: $A \\to C$ is $6$ km and $C \\to D$ is $5$ km, so the route $A \\to C \\to D$ is $6 + 5 = 11$ km.  [M1: add edge weights][A1]\\n\\n**Why not power the matrix?** Squaring $C$ would multiply and add weights (for example $6 \\times 5 = 30$), which has no meaning as a distance or a count. Powers of a matrix count walks only for a 0/1 adjacency matrix; for a weighted graph you add weights along a chosen route instead.  [A1]" },
+
+    { "type": "heading", "content": "Using the GDC for matrix powers" },
+    { "type": "text", "content": "Every power in this topic should come from your calculator. Enter the matrix once into the matrix editor, giving it a name such as $A$, then compute $A^2$, $A^3$ and so on directly from the home screen, or form sums like $A + A^2 + A^3$ in one expression for an at-most-length question. Type the entries carefully, keep the vertex order identical to the one you are reading answers against, and copy the powered matrix onto your script before extracting the single entry you need. Because the arithmetic is exact (the entries are whole numbers), there is no rounding to worry about, only accurate entry and the right choice of entry to read." },
+    { "type": "examTip", "content": "Two GDC habits save marks. First, re-check the matrix you typed against the graph before powering, since one mis-typed edge corrupts every entry of $A^n$. Second, keep the same vertex ordering throughout; reading the $(2,3)$ entry only means 'vertex 2 to vertex 3' if your rows and columns are in that order." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Using $nA$ instead of $A^n$** — the number of walks of length $n$ is the $(i,j)$ entry of the matrix POWER $A^n$, not of $nA$ or $n$ times an entry. Multiplying a matrix by $n$ is not the same as raising it to the power $n$.",
+      "**Confusing degree with a diagonal entry** — the degree of a vertex is the sum of its row (the edges meeting it), not the number sitting on the diagonal. In a simple graph the diagonal is all zeros.",
+      "**Forgetting a directed graph is not symmetric** — for a digraph an edge $i \\to j$ does not give an edge $j \\to i$, so do not 'symmetrise' the matrix by reflecting entries. Copy the arrows exactly.",
+      "**Misreading loops** — a non-zero diagonal entry $A_{ii}$ is a loop at vertex $i$, and it adds 2 to that vertex's degree. Do not treat it as an ordinary edge to another vertex.",
+      "**Powering a weighted matrix to count walks** — powers count walks only for a 0/1 adjacency matrix. For a weighted graph, add weights along the route; do not raise the cost matrix to a power.",
+      "**Answering the wrong length** — 'walks of length exactly 3' needs $A^3$, while 'walks of length at most 3' needs $A + A^2 + A^3$. Read the wording and pick the matrix to match.",
+      "**Reading the wrong entry** — keep a fixed vertex order; the $(i,j)$ entry means 'from vertex $i$ to vertex $j$' only if rows and columns follow that order, and swapping them silently loses the mark."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working, a method mark (M) for the right approach or an accuracy mark (A) for a correct result, and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost you the marks that build on it, provided the later step is carried out correctly on your own figures, so a candidate who computes $A^2$ with one wrong entry but then reads the correct position still earns the reading mark. The engine also accepts any equivalent correct form. That protection exists only if the method is written down. Study how each of the four marks below is earned by a specific line." },
+    { "type": "workedExample", "question": "A graph has adjacency matrix $A = \\\\begin{pmatrix} 0 & 1 & 1 \\\\\\\\ 1 & 0 & 1 \\\\\\\\ 1 & 1 & 0 \\\\end{pmatrix}$. Find the number of walks of length 2 from vertex 1 to vertex 2. [4]", "solution": "**Model answer — full working.**\\n\\nThe number of walks of length 2 from vertex 1 to vertex 2 is the $(1,2)$ entry of $A^2$.\\n\\n**Set up.** Enter $A$ into the GDC and compute its square.\\n\\n$A^2 = A \\\\times A = \\\\begin{pmatrix} 0 & 1 & 1 \\\\\\\\ 1 & 0 & 1 \\\\\\\\ 1 & 1 & 0 \\\\end{pmatrix}\\\\begin{pmatrix} 0 & 1 & 1 \\\\\\\\ 1 & 0 & 1 \\\\\\\\ 1 & 1 & 0 \\\\end{pmatrix} = \\\\begin{pmatrix} 2 & 1 & 1 \\\\\\\\ 1 & 2 & 1 \\\\\\\\ 1 & 1 & 2 \\\\end{pmatrix}.$\\n\\n**Read the entry.** The entry in row 1, column 2 of $A^2$ is $1$.\\n\\n**Conclusion:** there is **1 walk of length 2** from vertex 1 to vertex 2 (namely $1 \\\\to 3 \\\\to 2$).\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — right method.** Awarded for recognising that walks of length 2 are counted by the square of the adjacency matrix, i.e. that the answer is $(A^2)_{12}$. This is the modelling insight, and it is rewarded even before any arithmetic.\\n- **M1 — form the power.** A method mark for setting up and computing $A^2$ (by GDC or shown multiplication). It is the act of squaring the correct matrix that is credited, so it survives a slip in one entry.\\n- **A1 — correct $A^2$.** Awarded for the correct squared matrix $\\\\begin{pmatrix} 2 & 1 & 1 \\\\\\\\ 1 & 2 & 1 \\\\\\\\ 1 & 1 & 2 \\\\end{pmatrix}$. This accuracy mark depends on the second M1: it is earned once the power has actually been formed correctly.\\n- **A1 — final answer.** Awarded for reading the $(1,2)$ entry and stating there is $1$ walk of length 2. This mark is FT on the candidate's own $A^2$: a student whose square differed slightly but who correctly read the $(1,2)$ position and quoted THAT value still earns it.\\n\\n**'Accept equivalent forms.'** The engine accepts the answer written as '$1$', 'one walk', or '$1$ walk ($1 \\\\to 3 \\\\to 2$)', and does not require the walk to be listed. Once the correct value appears, later restatements do not lose marks.\\n\\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip and the second accuracy mark is shielded by follow-through. A student who writes only '1' with no matrix risks losing up to 3 marks; a student who names the method, shows $A^2$ and points to the $(1,2)$ entry keeps the method regardless of a slip in a single number." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: state that the answer is $(A^n)_{ij}$, quote the powered matrix from your GDC, then point to the exact entry and conclude. The method marks and follow-through are what protect your score when a single entry slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Adjacency matrices are the gateway to the rest of the graph-theory topic. The same 0/1 matrix, weighted with distances, feeds the shortest-path and minimum-spanning-tree algorithms of 3.8, where trees reappear as the cheapest way to connect a network. The idea that a matrix can be multiplied to advance a system by one step returns in transition matrices and Markov chains, where powers of a matrix push a probability distribution forward in time. Master the two moves here, translating a graph into a matrix and reading walks off its powers, and you have the core technique that the more advanced network mathematics is built upon." },
+
+    { "type": "practice", "label": "Get a Paper 2 graph-theory question marked: build the adjacency matrix, power it and read the walks with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=3.7&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Graph Theory Tool (GeoGebra)", "href": "https://www.geogebra.org/m/j93zwprq" },
+      { "label": "IB AI HL Questionbank", "href": "/questionbank?subject=ib-maths-ai-hl" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Graph Theory Tool",

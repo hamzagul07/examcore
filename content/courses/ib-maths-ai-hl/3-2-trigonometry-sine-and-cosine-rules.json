@@ -1,175 +1,362 @@
 {
   "slug": "3-2-trigonometry-sine-and-cosine-rules",
   "topicCode": "3.2",
+  "unit": {
+    "code": "3",
+    "title": "Geometry and trigonometry"
+  },
   "title": "Trigonometry: sine and cosine rules",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores the sine and cosine rules, essential tools for solving problems involving non-right-angled triangles. It covers when and how to apply each rule, including the ambiguous case of the sine rule, to find unknown sides and angles.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Right-angled trigonometry handles only the tidiest triangles; the ones you meet in modelling, surveying and navigation usually have no right angle at all. This lesson assembles the full non-right-angled toolkit: a quick SOH-CAH-TOA recap, the sine rule and precisely when it applies, the ambiguous (SSA) case, the cosine rule and its rearrangement for an angle, the area formula $\\frac{1}{2}ab\\sin C$, and applications to bearings and angles of elevation and depression. Applications and Interpretation is a calculator-active course, so the challenge is rarely the arithmetic — it is choosing the right rule and showing the working. Every worked example here is laid out exactly the way our marking engine awards marks, because in a calculation topic how you present your method decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Identify the appropriate trigonometric rule (sine or cosine) based on the given information in a non-right-angled triangle.",
-    "Apply the sine rule to find unknown sides and angles, including handling the ambiguous case (SSA).",
-    "Apply the cosine rule to find unknown sides (SAS) and angles (SSS).",
-    "Solve multi-step contextual problems using a combination of the sine rule, cosine rule, and the formula for the area of a triangle."
+    "Recall right-angled trigonometry (SOH-CAH-TOA) and Pythagoras, and recognise when a triangle is not right-angled.",
+    "Choose correctly between the sine rule and the cosine rule from the given information (AAS, ASA, SSA, SAS, SSS).",
+    "Apply the sine rule to find sides and angles, and detect and resolve the ambiguous (SSA) case.",
+    "Apply the cosine rule to find a side (SAS) and, rearranged, to find an angle (SSS), and use the area formula $\\frac{1}{2}ab\\sin C$.",
+    "Model problems involving bearings and angles of elevation and depression, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "3.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Your Triangle Detective Toolkit",
-    "summary": "The sine and cosine rules are your advanced tools for solving any triangle, not just right-angled ones. They allow you to find missing sides and angles using specific combinations of known information.",
-    "analogy": "Imagine you're a ship's navigator trying to determine your position. If you know your distance to two different lighthouses and the angle between the lines of sight (Side-Angle-Side), you can calculate your distance to a third point. If you know the distances to three lighthouses (Side-Side-Side), you can calculate all the angles between them. The sine and cosine rules are the mathematical formulas that perform these calculations for any triangle.",
+    "title": "Triangle Toolkit: Beyond 90 Degrees",
+    "summary": "The sine and cosine rules are your instruments for solving ANY triangle, not only right-angled ones. Given a handful of measurements, they let you recover every remaining side and angle. The whole art is deciding which rule the given information calls for.",
+    "analogy": "Picture yourself surveying a triangular plot of land. You cannot pace out every edge or stand at every corner with a protractor, but you can measure a couple of lengths and one angle. The sine and cosine rules are the instruments that turn those few readings into the complete map — provided you aim the right instrument at the right measurements.",
     "steps": [
-      "Analyse the triangle: Identify all known sides and angles given in the problem.",
-      "Choose your rule: Use the Sine Rule if you have a side-angle pair. Use the Cosine Rule if you have Side-Angle-Side (SAS) or Side-Side-Side (SSS).",
-      "Substitute and calculate: Carefully substitute the known values into the chosen formula. Use your GDC to perform the calculation, paying attention to the order of operations.",
-      "Interpret the result: Solve for the unknown side or angle. If using the Sine Rule to find an angle, check for the ambiguous case (a second possible solution)."
+      "Sketch the triangle. Label the vertices with capitals ($A$, $B$, $C$) and each opposite side with the matching lowercase letter ($a$, $b$, $c$).",
+      "Read the given information. Do you have a side together with its opposite angle (a matching pair)? Then the sine rule works. If not, reach for the cosine rule.",
+      "Substitute the known values into the correct formula from the booklet, keeping angles in degrees unless told otherwise.",
+      "Solve, and if you used the sine rule to find an angle, check for the ambiguous case (a second, obtuse solution). Round only at the very end."
     ]
   },
+  "keyConcepts": [
+    "choosing the rule",
+    "the ambiguous case",
+    "modelling with bearings"
+  ],
   "flashcards": [
     {
-      "front": "What is the Sine Rule for finding a side 'a'?",
-      "back": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$. You need the angle opposite 'a' (A) and another side-angle pair (e.g., b and B)."
+      "front": "SOH-CAH-TOA (right-angled only)",
+      "back": "$\\sin\\theta=\\frac{\\text{opp}}{\\text{hyp}}$, $\\cos\\theta=\\frac{\\text{adj}}{\\text{hyp}}$, $\\tan\\theta=\\frac{\\text{opp}}{\\text{adj}}$. Valid ONLY in a right-angled triangle. For any other triangle use the sine or cosine rule.",
+      "pillLabel": "Recap"
     },
     {
-      "front": "What is the Sine Rule for finding an angle 'A'?",
-      "back": "$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$. It's often easier to use this inverted form when the unknown is an angle."
+      "front": "Sine rule (finding a side)",
+      "back": "$\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}$. Keep the unknown side on top. Needs at least one complete side-and-opposite-angle pair.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the Cosine Rule for finding a side 'a'?",
-      "back": "$a^2 = b^2 + c^2 - 2bc \\cos A$. You need two sides (b, c) and the included angle (A)."
+      "front": "Sine rule (finding an angle)",
+      "back": "$\\frac{\\sin A}{a}=\\frac{\\sin B}{b}=\\frac{\\sin C}{c}$. Flip it so the unknown $\\sin$ is on top. Then watch for the ambiguous case.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "How do you rearrange the Cosine Rule to find an angle A?",
-      "back": "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Remember to use $\\arccos$ at the end to find the angle A."
+      "front": "When do I use the sine rule?",
+      "back": "When you have a matching pair — a side and its opposite angle — plus one more fact. This covers AAS and ASA, and the SSA (ambiguous) case.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "When should you use the Sine Rule?",
-      "back": "When you know a side and its opposite angle (a pair), plus one other piece of information. This corresponds to Angle-Angle-Side (AAS) or Angle-Side-Angle (ASA) cases. It can also be used for Side-Side-Angle (SSA), but this may lead to the ambiguous case."
+      "front": "Cosine rule (finding a side)",
+      "back": "$a^2=b^2+c^2-2bc\\cos A$. Use it for two sides and the INCLUDED angle (SAS). The angle in the formula sits opposite the side you are finding.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "When should you use the Cosine Rule?",
-      "back": "When you know two sides and the angle between them (SAS) to find the third side, OR when you know all three sides (SSS) to find an angle. The Cosine Rule does not have an ambiguous case."
+      "front": "Cosine rule (finding an angle)",
+      "back": "$\\cos A=\\frac{b^2+c^2-a^2}{2bc}$. Rearranged form. Use it when you know all three sides (SSS); $\\arccos$ returns the correct angle even when it is obtuse.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the 'ambiguous case' of the Sine Rule?",
-      "back": "When using the Sine Rule with Side-Side-Angle (SSA) information to find an angle, there might be two possible solutions for the angle: an acute angle $\\theta$ and an obtuse angle $180^\\circ - \\theta$. You must check if the second solution is valid."
+      "front": "When do I use the cosine rule?",
+      "back": "When there is NO matching pair to start from: two sides and the included angle (SAS) to find the third side, or all three sides (SSS) to find any angle.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "How do you check if the second solution in the ambiguous case is valid?",
-      "back": "Let the given angle be A and the calculated second angle be $B_2$. If $A + B_2 < 180^\\circ$, then the second solution is valid and two different triangles can be formed."
+      "front": "Area of a triangle",
+      "back": "Area $=\\frac{1}{2}ab\\sin C$ — half the product of two sides and the sine of the angle BETWEEN them. The angle must be the included angle, or the formula is invalid.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is a common calculator error in trigonometry?",
-      "back": "Being in the wrong mode. Always check if the question requires degrees ($^\\circ$) or radians and set your GDC accordingly before any calculation."
+      "front": "The ambiguous (SSA) case",
+      "back": "Given two sides and a non-included angle, the sine rule can give two valid triangles. If $\\sin B=k$ then $B_1=\\arcsin k$ and $B_2=180^\\circ-B_1$; keep $B_2$ whenever $A+B_2<180^\\circ$.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the formula for the area of a non-right-angled triangle?",
-      "back": "Area $= \\frac{1}{2}ab\\sin C$. You need to know two sides and the angle included between them."
+      "front": "Opposite side and angle",
+      "back": "In triangle $ABC$, side $a$ is opposite angle $A$, side $b$ opposite $B$, side $c$ opposite $C$ — each lies across the triangle from its partner. Mislabelling this is the most common source of lost marks.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Finding the largest angle",
+      "back": "Use the cosine rule. $\\arcsin$ only returns acute angles, so the sine rule can miss an obtuse angle; $\\arccos$ returns a unique value between $0^\\circ$ and $180^\\circ$ and cannot be fooled.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Bearings",
+      "back": "A bearing is measured clockwise from north as a three-figure angle (e.g. $070^\\circ$, $250^\\circ$). Sketch north lines at each point; alternate angles between the parallel north lines usually unlock the triangle's interior angle.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Angles of elevation and depression",
+      "back": "The angle of elevation is measured UP from the horizontal to an object; the angle of depression is measured DOWN. They are equal (alternate angles), which lets you transfer an angle from observer to object.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Calculator mode",
+      "back": "Work in DEGREES unless the question states radians. A common silent error is leaving the GDC in radian mode, which makes every sine and cosine wrong.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In triangle $ABC$ you are given sides $a$ and $b$ and the included angle $C$, and asked for side $c$. Which rule applies?",
+      "options": [
+        "The sine rule",
+        "The cosine rule",
+        "Either — they always give the same work",
+        "Neither; you need another angle first"
+      ],
+      "answer": "The cosine rule"
+    },
+    {
+      "prompt": "You know all three side lengths of a triangle and want the largest angle. Which is the correct and safest tool?",
+      "options": [
+        "The sine rule, finding the angle",
+        "The cosine rule, rearranged for the angle",
+        "SOH-CAH-TOA",
+        "Pythagoras' theorem"
+      ],
+      "answer": "The cosine rule, rearranged for the angle"
+    },
+    {
+      "prompt": "To use Area $=\\frac{1}{2}ab\\sin C$ correctly, the angle $C$ must be:",
+      "options": [
+        "Any angle in the triangle",
+        "The angle INCLUDED between sides $a$ and $b$",
+        "The largest angle",
+        "The angle opposite the longest side"
+      ],
+      "answer": "The angle INCLUDED between sides $a$ and $b$"
+    },
+    {
+      "prompt": "Using the sine rule you find $\\sin B = 0.84$ from an SSA setup, giving $B \\approx 57^\\circ$. What must you also check?",
+      "options": [
+        "Whether $B = 180^\\circ - 57^\\circ = 123^\\circ$ also gives a valid triangle",
+        "Whether your calculator is in radians",
+        "Whether $b$ is the longest side",
+        "Nothing — the acute answer is always the only one"
+      ],
+      "answer": "Whether $B = 180^\\circ - 57^\\circ = 123^\\circ$ also gives a valid triangle"
+    },
+    {
+      "prompt": "Your GDC displays a side as $8.2877\\ldots$ cm, which you need again in the next part. What keeps you accurate?",
+      "options": [
+        "Round to 8.29 cm now and reuse 8.29",
+        "Carry the full unrounded value (store it on the GDC) and round only the final answer",
+        "Round to 8 cm to keep it simple",
+        "Round to 8.3 cm because that is 2 significant figures"
+      ],
+      "answer": "Carry the full unrounded value (store it on the GDC) and round only the final answer"
     }
   ],
   "faq": [
     {
-      "q": "How do I decide whether to use the Sine Rule or the Cosine Rule?",
-      "a": "It depends on the information you are given. \n1. Check if you have a side and its opposite angle (a 'pair'). If yes, you can use the Sine Rule. This covers AAS, ASA, and SSA cases.\n2. If you do not have a known pair, you will likely need the Cosine Rule. This applies when you have two sides and the angle between them (SAS), or all three sides (SSS)."
+      "q": "Can I use SOH-CAH-TOA or Pythagoras on any triangle?",
+      "a": "No. They are special cases that hold only for right-angled triangles. For any oblique (non-right-angled) triangle you must use the sine or cosine rule. If you spot a right angle, by all means use the quicker right-angled tools — but never force them onto a triangle that has no $90^\\circ$ angle."
     },
     {
-      "q": "Do I always need to check for the ambiguous case?",
-      "a": "No. The ambiguous case only occurs under specific conditions: when you are using the Sine Rule to find an angle, and the information you were given was Side-Side-Angle (SSA). If you are finding a side, or if you are using the Cosine Rule, or if you were given AAS or ASA information, there is no ambiguity."
+      "q": "How do I decide between the sine rule and the cosine rule?",
+      "a": "Look for a matching pair — a side and its opposite angle. If you have one (plus one more fact), the sine rule works: this is the AAS, ASA and SSA situations. If you have no pair to start from — two sides and the included angle (SAS), or all three sides (SSS) — use the cosine rule. A quick sketch with everything labelled makes the choice obvious."
     },
     {
-      "q": "My calculator gave me an error when I tried to find an angle using the Cosine Rule. What went wrong?",
-      "a": "This usually happens if the value you are trying to take the arccos of is outside the valid range of [-1, 1]. For $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$, this error means the sides a, b, and c cannot form a triangle. This could be due to a calculation mistake or because the triangle described is impossible (e.g., two shorter sides don't add up to more than the longest side)."
+      "q": "The formulae are in the booklet, so do I still need to learn them?",
+      "a": "Both rules and the area formula are in the formula booklet, so you need not memorise them letter-perfect. What the booklet cannot do is choose the rule for you, substitute correctly, or spot the ambiguous case — that judgement is exactly what earns the method marks, and it is what this lesson trains."
+    },
+    {
+      "q": "Why is the cosine rule better for finding an obtuse angle?",
+      "a": "The inverse sine on your calculator only returns angles between $-90^\\circ$ and $90^\\circ$, so it can never hand you an obtuse angle directly — you would have to remember to compute $180^\\circ$ minus its answer. The inverse cosine returns a unique angle between $0^\\circ$ and $180^\\circ$, so the rearranged cosine rule gives the correct obtuse angle automatically, with no ambiguity."
+    },
+    {
+      "q": "How do bearings turn into a triangle problem?",
+      "a": "Draw a north line at each point and mark the clockwise bearings. Because the north lines are parallel, alternate and co-interior angle facts convert the bearings into the interior angles of the triangle formed by the points. Once you have an interior angle plus some sides, it becomes an ordinary sine- or cosine-rule problem."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In previous studies, your work with trigonometry likely focused on right-angled triangles using SOH CAH TOA and Pythagoras' theorem. However, most triangles in the real world are not right-angled. This lesson introduces the sine and cosine rules, powerful formulae that unlock the ability to solve for any missing side or angle in any triangle, forming a cornerstone of trigonometry."
+      "content": "You have already met right-angled triangles — Pythagoras' theorem and SOH-CAH-TOA. But most triangles in exams, in navigation, in surveying and in mechanics have no right angle at all. This lesson gives you the two rules that solve ANY triangle: the sine rule and the cosine rule, together with the area formula and the modelling contexts (bearings, elevation and depression) where they earn their keep. Applications and Interpretation is calculator-active throughout, so the marks come from choosing the right rule and showing the method — and the worked examples here are laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Sine Rule"
+      "content": "Recap: right-angled trigonometry"
     },
     {
       "type": "text",
-      "content": "The Sine Rule establishes a relationship between the sides of a triangle and the sines of their opposite angles. It is the perfect tool when you already know a side and the angle opposite it (a 'pair'), plus one other piece of information (another side or angle)."
+      "content": "Before reaching for the new rules, always check whether the triangle already has a right angle — if it does, the faster tools still work. In a right-angled triangle, label the sides relative to the angle $\\theta$ you care about: the hypotenuse (opposite the right angle), the opposite (across from $\\theta$) and the adjacent (next to $\\theta$). Then SOH-CAH-TOA applies, and Pythagoras relates the three sides."
     },
     {
       "type": "formula",
-      "content": "For any triangle with angles A, B, C and opposite sides a, b, c:\n\nTo find a side: $$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$$\n\nTo find an angle: $$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$$"
+      "content": "$\\sin\\theta=\\dfrac{\\text{opp}}{\\text{hyp}}, \\quad \\cos\\theta=\\dfrac{\\text{adj}}{\\text{hyp}}, \\quad \\tan\\theta=\\dfrac{\\text{opp}}{\\text{adj}}$\n$\\text{and} \\quad \\text{hyp}^2=\\text{opp}^2+\\text{adj}^2 \\quad (\\text{Pythagoras}).$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The key to using the Sine Rule is having a known 'opposite pair' (e.g., side 'a' and angle 'A').",
-        "It is used for cases Angle-Angle-Side (AAS), Angle-Side-Angle (ASA), and Side-Side-Angle (SSA).",
-        "The SSA case is known as the 'ambiguous case' and requires special attention."
+        "These three ratios and Pythagoras hold ONLY when the triangle has a $90^\\circ$ angle.",
+        "To find an unknown angle, use the inverse function, e.g. $\\theta=\\arctan\\left(\\frac{\\text{opp}}{\\text{adj}}\\right)$.",
+        "If there is no right angle, do not force these — switch to the sine or cosine rule."
       ]
     },
     {
       "type": "heading",
-      "content": "The Ambiguous Case of the Sine Rule (SSA)"
+      "content": "The sine rule"
     },
     {
       "type": "text",
-      "content": "When you are given two sides and a non-included angle (SSA), using the sine rule to find an angle can yield two possible results. This is because $\\sin \\theta = \\sin(180^\\circ - \\theta)$. For example, $\\sin(30^\\circ) = 0.5$ and $\\sin(150^\\circ) = 0.5$. When you calculate an angle $B = \\arcsin(x)$, your calculator will give you the acute angle, but an obtuse angle may also be a valid solution. You must check if this second possibility can form a valid triangle."
-    },
-    {
-      "type": "workedExample",
-      "question": "In triangle PQR, angle $P = 35^\\circ$, side $p = 8$ cm, and side $q = 11$ cm. Find all possible values for angle Q and the corresponding values for angle R.",
-      "solution": "This is the Side-Side-Angle (SSA) case, so we must check for ambiguity.\n\n1.  **Use the Sine Rule to find angle Q:**\n    $\\frac{\\sin Q}{q} = \\frac{\\sin P}{p}$\n    $\\frac{\\sin Q}{11} = \\frac{\\sin 35^\\circ}{8}$ (M1)\n\n2.  **Solve for $\\sin Q$:**\n    $\\sin Q = \\frac{11 \\sin 35^\\circ}{8} \\approx 0.7885...$\n\n3.  **Find the first possible angle for Q:**\n    $Q_1 = \\arcsin(0.7885...) \\approx 52.05...^\\circ$\n    $Q_1 = 52.1^\\circ$ (to 3 s.f.) (A1)\n\n4.  **Find the second possible angle for Q:**\n    $Q_2 = 180^\\circ - Q_1 = 180^\\circ - 52.05...^\\circ \\approx 127.94...^\\circ$\n    $Q_2 = 128^\\circ$ (to 3 s.f.) (M1)\n\n5.  **Check validity and find corresponding angle R:**\n    **Case 1:** If $Q_1 = 52.1^\\circ$\n    $P + Q_1 = 35^\\circ + 52.1^\\circ = 87.1^\\circ < 180^\\circ$. This is a valid triangle.\n    $R_1 = 180^\\circ - (35^\\circ + 52.1^\\circ) = 92.9^\\circ$ (A1)\n\n    **Case 2:** If $Q_2 = 128^\\circ$\n    $P + Q_2 = 35^\\circ + 128^\\circ = 163^\\circ < 180^\\circ$. This is also a valid triangle. (R1)\n    $R_2 = 180^\\circ - (35^\\circ + 128^\\circ) = 17.0^\\circ$ (A1)\n\n**Final Answer:** Two triangles are possible.\nSolution 1: $Q = 52.1^\\circ, R = 92.9^\\circ$\nSolution 2: $Q = 128^\\circ, R = 17.0^\\circ$"
-    },
-    {
-      "type": "heading",
-      "content": "The Cosine Rule"
-    },
-    {
-      "type": "text",
-      "content": "The Cosine Rule is your go-to formula when the Sine Rule cannot be used. This typically happens when you don't have a known side-angle pair. It's used in two main scenarios: when you know two sides and the angle between them (SAS) and want to find the third side, or when you know all three sides (SSS) and want to find an angle."
+      "content": "The sine rule links each side to the sine of its opposite angle: across a whole triangle the ratio of a side to the sine of the angle facing it is constant. So a single complete pair — one side with its opposite angle — is the 'key' that unlocks the rest, provided you have one further piece of information."
     },
     {
       "type": "formula",
-      "content": "For any triangle with angles A, B, C and opposite sides a, b, c:\n\nTo find a side: $$a^2 = b^2 + c^2 - 2bc \\cos A$$\n\nTo find an angle: $$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$$"
+      "content": "For a triangle with angles $A$, $B$, $C$ and opposite sides $a$, $b$, $c$:\nfinding a side: $\\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B}=\\dfrac{c}{\\sin C}$\nfinding an angle: $\\dfrac{\\sin A}{a}=\\dfrac{\\sin B}{b}=\\dfrac{\\sin C}{c}$"
     },
     {
-      "type": "examTip",
-      "content": "When finding an angle with the Cosine Rule, calculate the numerator and denominator separately before dividing. This helps avoid calculator entry errors. A negative value for $\\cos A$ simply means that angle A is obtuse (between 90° and 180°)."
+      "type": "keyPoints",
+      "items": [
+        "Use the sine rule when you have two angles and any side (AAS or ASA).",
+        "You can also use it for two sides and a non-included angle (SSA) — but then check the ambiguous case.",
+        "Put the unknown on top: side-on-top form to find a side, sine-on-top form to find an angle."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Two ships, A and B, leave a port P at the same time. Ship A sails on a bearing of $075^\\circ$ at 15 km/h. Ship B sails on a bearing of $140^\\circ$ at 20 km/h. Calculate the distance between the two ships after 2 hours.",
-      "solution": "1.  **Visualise and find distances/angles:**\n    After 2 hours:\n    Distance PA = $15 \\text{ km/h} \\times 2 \\text{ h} = 30$ km.\n    Distance PB = $20 \\text{ km/h} \\times 2 \\text{ h} = 40$ km. (M1 for both)\n    The angle between their paths at the port P is the difference in their bearings:\n    Angle APB = $140^\\circ - 75^\\circ = 65^\\circ$. (M1)\n\n2.  **Identify the situation:**\n    We have a triangle PAB with two sides (PA=30, PB=40) and the included angle (P=65°). This is a Side-Angle-Side (SAS) case, so we use the Cosine Rule to find the distance AB.\n\n3.  **Apply the Cosine Rule:**\n    Let the distance AB be $p$. Then $p^2 = a^2 + b^2 - 2ab \\cos P$.\n    $AB^2 = 30^2 + 40^2 - 2(30)(40)\\cos(65^\\circ)$ (M1)(A1)\n\n4.  **Calculate:**\n    $AB^2 = 900 + 1600 - 2400\\cos(65^\\circ)$\n    $AB^2 = 2500 - 2400(0.4226...)$\n    $AB^2 = 2500 - 1014.28...$\n    $AB^2 = 1485.71...$ (M1 for calculation)\n\n5.  **Find the final distance:**\n    $AB = \\sqrt{1485.71...} \\approx 38.54...$ km.\n\n**Final Answer:** The distance between the ships after 2 hours is 38.5 km (to 3 s.f.). (A1)"
+      "question": "In triangle $DEF$, angle $D = 48^\\circ$, angle $E = 67^\\circ$, and side $EF = d = 14$ cm. Find side $DF = e$, correct to 3 significant figures. [3]",
+      "solution": "Sketch and label: we know the pair ($D$, $d$) and want side $e$, whose opposite angle $E$ is given. That is a matching pair plus one more fact — the sine rule fits.\n\n**Select the rule (side-on-top form):**\n$\\dfrac{e}{\\sin E}=\\dfrac{d}{\\sin D}$  [M1: sine rule chosen]\n\n**Substitute:**\n$\\dfrac{e}{\\sin 67^\\circ}=\\dfrac{14}{\\sin 48^\\circ}$  [A1: correct substitution]\n\n**Solve:**\n$e=\\dfrac{14\\sin 67^\\circ}{\\sin 48^\\circ}=17.34\\ldots$ cm\n\n**Round at the end:** $e \\approx 17.3$ cm.  [A1: answer]\n\n**Final answer:** $e \\approx 17.3$ cm."
+    },
+    {
+      "type": "heading",
+      "content": "The ambiguous (SSA) case"
+    },
+    {
+      "type": "text",
+      "content": "The sine rule carries one famous trap. When you are given two sides and a non-included angle (SSA) and use the sine rule to find an angle, there may be TWO triangles that fit the data. This happens because $\\sin\\theta=\\sin(180^\\circ-\\theta)$: your calculator's $\\arcsin$ hands you the acute angle, but the obtuse partner can be equally valid. Always test it."
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle $ABC$, angle $A = 36^\\circ$, $a = 7$ cm and $b = 10$ cm. Find the possible sizes of angle $B$. [4]",
+      "solution": "We have the pair ($A$, $a$) and a second side $b$ with no angle — this is SSA, so use the sine rule and be alert for two answers.\n\n**Sine rule, angle-on-top form:**\n$\\dfrac{\\sin B}{b}=\\dfrac{\\sin A}{a}$  [M1]\n\n**Substitute and solve for $\\sin B$:**\n$\\sin B=\\dfrac{10\\sin 36^\\circ}{7}=0.8397\\ldots$  [A1]\n\n**First (acute) solution:**\n$B_1=\\arcsin(0.8397\\ldots)=57.1^\\circ$ (3 s.f.).  [A1]\n\n**Test the obtuse partner:**\n$B_2=180^\\circ-57.1^\\circ=122.9^\\circ$. Check it fits: $A+B_2=36^\\circ+122.9^\\circ=158.9^\\circ<180^\\circ$, leaving a positive angle $C$, so the second triangle is valid.  [A1]\n\n**Final answer:** $B \\approx 57.1^\\circ$ or $B \\approx 122.9^\\circ$ — both are genuine solutions."
+    },
+    {
+      "type": "examTip",
+      "content": "Whenever the sine rule gives you an angle, immediately write $180^\\circ$ minus that angle and test it: if it still leaves room for the other known angle (their sum is under $180^\\circ$), a second triangle exists and both answers score. Examiners routinely reserve a mark for spotting the second case. Note the contrast with the cosine rule, which returns a single unambiguous angle."
+    },
+    {
+      "type": "heading",
+      "content": "The cosine rule"
+    },
+    {
+      "type": "text",
+      "content": "The cosine rule is Pythagoras' theorem with a correction term for triangles that are not right-angled — indeed if $A=90^\\circ$ then $\\cos A=0$ and it collapses back to $a^2=b^2+c^2$. Use it when there is no starting pair: a side sandwiched between two known sides (SAS), or all three sides known (SSS)."
+    },
+    {
+      "type": "formula",
+      "content": "For a triangle with angles $A$, $B$, $C$ and opposite sides $a$, $b$, $c$:\nfinding a side: $a^2=b^2+c^2-2bc\\cos A$\nfinding an angle (rearranged): $\\cos A=\\dfrac{b^2+c^2-a^2}{2bc}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use the cosine rule for two sides and the included angle (SAS) to find the third side.",
+        "Use the rearranged form for three sides (SSS) to find any angle — it handles obtuse angles cleanly.",
+        "The angle $A$ in the formula must be opposite the side $a$ you are finding (or relating)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A triangular plot has two sides of 8 m and 11 m meeting at an angle of $62^\\circ$. (a) Find the length of the third side. (b) Hence find the smallest angle of the plot. [5]",
+      "solution": "Let $b=8$, $c=11$ and the included angle $A=62^\\circ$; call the unknown third side $a$. This is SAS, so use the cosine rule.\n\n**(a) Third side.**\n$a^2=b^2+c^2-2bc\\cos A$  [M1: cosine rule chosen]\n$a^2=8^2+11^2-2(8)(11)\\cos 62^\\circ$  [A1: correct substitution]\n$a^2=64+121-176\\cos 62^\\circ=102.37\\ldots$\n$a=\\sqrt{102.37\\ldots}=10.1$ m (3 s.f.).  [A1: answer]\n\n**(b) Smallest angle.** The smallest angle faces the shortest side, which is $8$ m — that is angle $B$, opposite $b=8$. With all three sides now known (SSS), use the rearranged cosine rule so there is no ambiguity. Carry the unrounded $a=10.117\\ldots$\n$\\cos B=\\dfrac{a^2+c^2-b^2}{2ac}=\\dfrac{102.37\\ldots+121-64}{2(10.117\\ldots)(11)}$  [M1: rearranged cosine rule with substitution]\n$\\cos B=0.7160\\ldots \\;\\Rightarrow\\; B=\\arccos(0.7160\\ldots)=44.3^\\circ$ (3 s.f.).  [A1: answer]\n\n**Final answer:** third side $\\approx 10.1$ m; smallest angle $\\approx 44.3^\\circ$."
+    },
+    {
+      "type": "heading",
+      "content": "Area of a triangle, and applications"
+    },
+    {
+      "type": "text",
+      "content": "When you know two sides and the angle between them, you do not need the base-and-height picture at all: the area is half the product of the two sides and the sine of their included angle. The word 'included' is doing all the work — the angle must sit between the two sides you use, or the formula is wrong."
+    },
+    {
+      "type": "formula",
+      "content": "Area $=\\dfrac{1}{2}ab\\sin C$, where $C$ is the angle INCLUDED between sides $a$ and $b$."
+    },
+    {
+      "type": "text",
+      "content": "These rules come alive in navigation and surveying. A bearing is an angle measured clockwise from north, always written with three figures (for example $070^\\circ$ or $250^\\circ$). By drawing a north line at each point and using alternate angles between the parallel north lines, bearings convert into the interior angles of a triangle. Similarly, the angle of elevation is measured up from the horizontal to an object, and the angle of depression down from the horizontal; the two are equal alternate angles, which lets you carry an angle from an observer to a distant point."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ship sails 10 km from port $A$ on a bearing of $040^\\circ$ to point $B$, then 14 km on a bearing of $100^\\circ$ to point $C$. Find the distance $AC$. [4]",
+      "solution": "**Find the interior angle at $B$.** Draw north lines at $A$ and $B$. The bearing of $B$ from $A$ is $040^\\circ$, so the back-bearing of $A$ from $B$ is $040^\\circ+180^\\circ=220^\\circ$. The bearing of $C$ from $B$ is $100^\\circ$. The interior angle $ABC$ is the turn between these directions at $B$:\n$\\angle ABC=220^\\circ-100^\\circ=120^\\circ$.  [M1: correct interior angle]\n\n**Now it is SAS:** sides $AB=10$ and $BC=14$ with the included angle $B=120^\\circ$, and we want $AC=b$. Use the cosine rule.\n$AC^2=10^2+14^2-2(10)(14)\\cos 120^\\circ$  [M1: cosine rule with substitution]\n$AC^2=100+196-280(-0.5)=296+140=436$\n$AC=\\sqrt{436}=20.9$ km (3 s.f.).  [A1: value]\n\n**Final answer:** $AC \\approx 20.9$ km.  [A1: units and rounding]"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Choosing the wrong rule** — reaching for the sine rule on an SAS problem (two sides and the included angle) where there is no matching pair. No side-and-opposite-angle pair means the cosine rule.",
+        "**Missing the ambiguous case** — finding one acute angle from the sine rule in an SSA problem and stopping. Always test $180^\\circ$ minus your angle; if it still fits, both answers score.",
+        "**Using a non-included angle in the area formula** — $\\frac{1}{2}ab\\sin C$ needs the angle BETWEEN sides $a$ and $b$. Any other angle gives the wrong area.",
+        "**Rounding too early** — quoting an intermediate side as, say, $8.29$ cm and then feeding $8.29$ into the next part. Carry the full unrounded value (store it on the GDC) and round only the final answer, or accuracy marks slip away.",
+        "**Mislabelling side and opposite angle** — putting an angle over the wrong side in the sine rule. Sketch the triangle and match each capital to its lowercase partner.",
+        "**Finding an obtuse angle with the sine rule** — $\\arcsin$ only returns acute angles, so use the rearranged cosine rule for the largest angle to get the obtuse value directly.",
+        "**Radian mode** — leaving the GDC in radians silently corrupts every sine and cosine. Work in degrees unless the question says otherwise."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "The marks in this topic are analytic: each is tied to a specific line of working — a method mark ($M$) for the correct approach, or an accuracy mark ($A$) for the right value, where an $A$ mark is dependent on the $M$ mark before it. Follow-through (FT) means that a right method carried out on a wrong earlier number still earns the marks that depend on it, and 'ISW' (ignore subsequent working) means a correct answer is not un-awarded if a student then writes something clumsy. But this protection only exists if the method is on the page — a bare answer from the GDC with no working risks everything on a single keystroke. Study how each of the five marks below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle $ABC$, $AB = 10$ cm, $AC = 7$ cm and angle $BAC = 55^\\circ$. Find $BC$ and the area of the triangle. [5]",
+      "solution": "**Model answer — full working.**\n\nSides $AB$ and $AC$ meet at the given angle $BAC=55^\\circ$, so $BC$ is the side opposite that included angle. Two sides and the included angle is SAS — use the cosine rule for $BC$, then the area formula.\n\n**Find $BC$.**\n$BC^2=AB^2+AC^2-2(AB)(AC)\\cos(BAC)$\n$BC^2=10^2+7^2-2(10)(7)\\cos 55^\\circ$\n$BC^2=100+49-140\\cos 55^\\circ=68.70\\ldots$\n$BC=\\sqrt{68.70\\ldots}=8.29$ cm (3 s.f.).\n\n**Find the area.** The angle $55^\\circ$ is included between $AB$ and $AC$, so it feeds the area formula directly:\nArea $=\\tfrac{1}{2}(AB)(AC)\\sin(BAC)=\\tfrac{1}{2}(10)(7)\\sin 55^\\circ$\nArea $=35\\sin 55^\\circ=28.67\\ldots=28.7$ cm$^2$ (3 s.f.).\n\n**Final answer:** $BC \\approx 8.29$ cm; area $\\approx 28.7$ cm$^2$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — cosine rule with substitution.** Awarded for writing $BC^2=10^2+7^2-2(10)(7)\\cos 55^\\circ$ — the right rule with the right numbers in the right places. This is a METHOD mark: it stands even if the arithmetic later slips.\n- **A1 — value of $BC$.** Awarded for $BC \\approx 8.29$ cm. The engine 'accepts answers that round correctly', so it does not insist on a fixed number of decimals, only a correctly-rounded value.\n- **M1 — area formula with substitution.** Awarded for $\\tfrac{1}{2}(10)(7)\\sin 55^\\circ$, using the INCLUDED angle. Because the area here uses the original data ($10$, $7$, $55^\\circ$) rather than $BC$, it is independent — a slip in $BC$ cannot infect it.\n- **A1 — value of the area.** Awarded for $\\approx 28.7$ cm$^2$. Equivalent exact forms such as $35\\sin 55^\\circ$ are accepted, and ISW means a correct value is not lost if the student then adds an unnecessary line.\n- **FT protection.** Suppose a student states the cosine rule correctly but mis-keys the calculator and gets, say, $BC=8.51$ cm. They keep the first M1 (correct method). Any later step that correctly uses THEIR figure earns its mark on follow-through — a right method on a wrong number is not punished twice.\n\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, the accuracy marks accept any correctly-rounded value, and follow-through shields a right-method / wrong-number answer. A student who writes only '$28.7$' with no working risks 3-4 marks if a number is off; a student who shows the cosine rule, the substitution, the area formula and its substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: name the rule, write the substitution, then the value with its unit. State the ambiguous-case check when you use the sine rule for an angle. The method marks and follow-through are what protect your score when the final number slips, and you only get that protection if the working is on the page."
     },
     {
       "type": "practice",
-      "label": "Practice Sine & Cosine Rule Problems",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=3.2"
+      "label": "Get a Paper 2 question marked: solve a full sine- or cosine-rule problem with working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB AI HL Questionbank: Trigonometry",
-          "href": "https://www.ibtaskmaker.com/maker.php?subject=math_ai&topic=3"
+          "label": "GeoGebra: Sine and Cosine Rule Explorer",
+          "href": "https://www.geogebra.org/m/cNEtsbvC"
         },
         {
-          "label": "Video tutorial on Sine and Cosine Rules",
-          "href": "https://www.youtube.com/watch?v=eS_s1p_i2HA"
-        },
-        {
-          "label": "Geogebra: Sine Rule Ambiguous Case",
-          "href": "https://www.geogebra.org/m/C3aA9NfV"
+          "label": "Khan Academy: Law of Sines and Cosines review",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:trig/x9e81a4f98389efdf:law-of-sines-and-cosines/a/laws-of-sines-and-cosines-review"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
-    "title": "Sine Rule Ambiguous Case",
-    "embedUrl": "https://www.geogebra.org/classic?material=C3aA9NfV",
-    "launchUrl": "https://www.geogebra.org/classic?material=C3aA9NfV",
-    "hint": "Use “Sine Rule Ambiguous Case” — shift curves or drag points to see equilibrium and slopes change.",
+    "title": "Sine and Cosine Rule Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=cNEtsbvC",
+    "launchUrl": "https://www.geogebra.org/classic?material=cNEtsbvC",
+    "hint": "Use “Sine and Cosine Rule Explorer” — shift curves or drag points to see equilibrium and slopes change.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "GeoGebra",

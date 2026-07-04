@@ -1,171 +1,366 @@
 {
   "slug": "2-2-functions-domain-range-inverse-and-graphs",
   "topicCode": "2.2",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
   "title": "Functions: domain, range, inverse and graphs",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores the core concepts of functions, including their domain and range. It covers the process of finding and interpreting inverse functions, and the graphical relationship between a function and its inverse, with a focus on using a GDC for analysis.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A function is a rule that turns each input into exactly one output, and almost everything else in the course is built on getting that idea precise. This lesson develops the full 2.2 syllabus: function notation and what makes a rule a function; the domain (the allowed inputs) and the range (the outputs the rule can actually produce), read from an equation, from a graph, or chosen sensibly for a real-world model; the inverse function $f^{-1}$ as the process run in reverse, its reflection in the line $y=x$, and how to find it algebraically for simple functions; and sketching and interpreting graphs, including using the GDC to find intercepts, maxima, minima and intersections. Because 2.2 sits at the heart of both papers, the emphasis is on writing domain and range correctly, reversing a process cleanly, and reading a GDC screen the way the examiner expects. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 45,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand and determine the domain and range of various functions.",
-    "Find the inverse of a function, $f^{-1}(x)$, both algebraically and graphically.",
-    "Analyse the graphs of functions to identify key features like intercepts, asymptotes, and turning points using a GDC.",
-    "Understand the relationship between the domain and range of a function and its inverse."
+    "Use function notation confidently and decide whether a rule or graph represents a function using the vertical line test.",
+    "Determine the domain and range of a function from its equation or graph, and choose a sensible domain for a real-world model.",
+    "Find the inverse of a linear or simple non-linear function algebraically, and link the domain and range of $f$ to those of $f^{-1}$.",
+    "Describe and use the reflection of $y=f(x)$ in the line $y=x$ to sketch and interpret the graph of the inverse.",
+    "Use a GDC to graph a function, and to find intercepts, maxima, minima and points of intersection, showing working the way the marks are awarded."
   ],
+  "syllabusObjectivesCovered": [
+    "2.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Functions: The Ultimate Rulebook",
-    "summary": "A function is a mathematical rule that takes an input and produces exactly one output. The domain is the set of all possible inputs, and the range is the set of all possible outputs.",
-    "analogy": "Think of a function like a vending machine. You input a specific code (the domain), the machine follows a rule to process it, and it gives you one specific snack (the range). You can't get two different snacks for one code, and some codes might not work at all. The inverse function would be like a machine that tells you which code to press to get a specific snack.",
+    "title": "Functions: the machine that only ever gives one answer",
+    "summary": "A function is a rule that takes an input, does one predictable thing to it, and returns exactly one output. Master three ideas — which inputs are allowed (domain), which outputs come out (range), and how to run the rule backwards (inverse) — and you can describe, sketch and reverse almost any function on the course.",
+    "analogy": "Picture a coffee machine with buttons. You press a button (the input $x$) and one specific drink comes out (the output $y$). It is a proper function because one button never pours two different drinks. The domain is the set of buttons that actually do something; the range is the collection of drinks you can end up holding. The inverse is the barista working backwards: shown the drink on the counter, they tell you which single button must have been pressed to make it.",
     "steps": [
-      "Identify the function and its rule. Determine the domain by looking for restrictions, such as division by zero or square roots of negative numbers.",
-      "Determine the range by considering the set of all possible output values the function can produce for the given domain.",
-      "To find the inverse function, swap the $x$ and $y$ variables in the equation and rearrange to make $y$ the subject again.",
-      "Analyse the graph of the function and its inverse. The inverse's graph is a reflection of the original in the line $y=x$."
+      "Write the rule and check it is a function. In $f(x) = 2x + 3$ each input gives exactly one output, so it passes the vertical line test.",
+      "Fix the domain — the inputs you are allowed to use. Sometimes it is all real numbers; sometimes the equation forbids values (no dividing by zero, no square-rooting a negative); sometimes a real context restricts it (a length cannot be negative).",
+      "Read off the range — every output the rule can produce over that domain. A sketch or the GDC makes the smallest and largest outputs visible.",
+      "Reverse the rule to get the inverse: write $y=f(x)$, swap $x$ and $y$, solve for $y$. Its graph is the mirror image of the original in the line $y=x$."
     ]
   },
+  "keyConcepts": [
+    "function, domain and range",
+    "inverse functions",
+    "graphing with the GDC"
+  ],
   "flashcards": [
     {
-      "front": "What is the 'domain' of a function?",
-      "back": "The set of all possible input values (often $x$-values) for which the function is defined."
+      "front": "Function",
+      "back": "A rule that assigns to each input in the domain exactly one output. 'Exactly one' is the whole point: an input that could give two outputs is not a function.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the 'range' of a function?",
-      "back": "The set of all possible output values (often $y$-values or $f(x)$-values) that result from using the domain's input values."
+      "front": "Function notation $f(x)$",
+      "back": "$f$ is the name of the rule and $x$ is the input; $f(x)$ is the output for that input. $f(2)$ means 'apply the rule to $2$'. Do not read $f(x)$ as '$f$ times $x$'.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the Vertical Line Test?",
-      "back": "A graphical test to determine if a curve is a function. If any vertical line intersects the graph more than once, it is not a function."
+      "front": "Domain",
+      "back": "The complete set of allowed input values ($x$-values). Restricted by the algebra (no division by zero, no square root of a negative) and, in a model, by context (a time or length cannot be negative).",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the relationship between the domain of $f(x)$ and the range of its inverse, $f^{-1}(x)$?",
-      "back": "The range of the inverse function $f^{-1}(x)$ is the same as the domain of the original function $f(x)$."
+      "front": "Range",
+      "back": "The complete set of output values ($y$-values) the function actually produces over its domain. Read it from the graph: the lowest and highest heights the curve reaches.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the relationship between the range of $f(x)$ and the domain of its inverse, $f^{-1}(x)$?",
-      "back": "The domain of the inverse function $f^{-1}(x)$ is the same as the range of the original function $f(x)$."
+      "front": "Vertical line test",
+      "back": "A graph represents a function if and only if every vertical line meets it at most once. Two intersections would mean one input with two outputs, which a function cannot have.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "How do you find the inverse of a function $y=f(x)$ algebraically?",
-      "back": "1. Swap $x$ and $y$ in the equation to get $x=f(y)$. 2. Rearrange the equation to make $y$ the subject. The new expression for $y$ is $f^{-1}(x)$."
+      "front": "Inverse function $f^{-1}(x)$",
+      "back": "The rule that reverses $f$: if $f(a)=b$ then $f^{-1}(b)=a$. It undoes each step of $f$ in reverse order. It is NOT the reciprocal $\\frac{1}{f(x)}$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the graphical relationship between a function and its inverse?",
-      "back": "The graph of $y=f^{-1}(x)$ is a reflection of the graph of $y=f(x)$ in the line $y=x$."
+      "front": "Common trap: $f^{-1}$ is not a reciprocal",
+      "back": "$f^{-1}(x)$ means the inverse function, never $\\frac{1}{f(x)}$. If $f(x)=x+2$ then $f^{-1}(x)=x-2$, whereas $\\frac{1}{f(x)}=\\frac{1}{x+2}$ — a completely different rule.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What condition must a function satisfy to have an inverse function?",
-      "back": "The function must be one-to-one. This means that for every output $y$, there is only one unique input $x$. This can be checked with the Horizontal Line Test."
+      "front": "Finding an inverse algebraically",
+      "back": "1. Write $y=f(x)$. 2. Swap $x$ and $y$. 3. Solve the new equation for $y$. 4. Rename $y$ as $f^{-1}(x)$. The swap step is where the method mark lives.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Common Trap: What is the difference between $f^{-1}(x)$ and $(f(x))^{-1}$?",
-      "back": "$f^{-1}(x)$ is the inverse function. $(f(x))^{-1}$ is the reciprocal of the function, which is $1/f(x)$. They are not the same."
+      "front": "Reflection in $y=x$",
+      "back": "The graph of $y=f^{-1}(x)$ is the reflection of $y=f(x)$ in the line $y=x$. Every point $(a,b)$ on $f$ becomes $(b,a)$ on $f^{-1}$ — swapping coordinates is exactly what that reflection does.",
+      "pillLabel": "Graph"
     },
     {
-      "front": "What are two common situations that restrict the domain of a function?",
-      "back": "1. The denominator of a fraction cannot be zero. 2. The expression inside a square root (or any even root) cannot be negative."
+      "front": "Domain and range swap",
+      "back": "The domain of $f^{-1}$ is the range of $f$, and the range of $f^{-1}$ is the domain of $f$. Reversing the process trades inputs for outputs.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is a self-inverse function?",
-      "back": "A function for which the inverse is the same as the original function, i.e., $f(x) = f^{-1}(x)$. An example is $f(x) = 1/x$."
+      "front": "One-to-one and the horizontal line test",
+      "back": "A function has an inverse function only if it is one-to-one: every output comes from just one input. Test it graphically — if a horizontal line ever meets the graph twice, restrict the domain first.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Sensible domain for a model",
+      "back": "In a real-world function the domain is limited by meaning, not just algebra: a number of people is a whole number $\\ge 0$; an elapsed time satisfies $t \\ge 0$; a length is positive. State the restriction that fits the context.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "GDC: what it finds",
+      "back": "On Paper 2 the calculator graphs a function and locates $x$- and $y$-intercepts (zeros), local maxima and minima, and points of intersection of two graphs. Quote the coordinates it returns to the required accuracy.",
+      "pillLabel": "GDC"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "For $f(x)=2x+1$, the inverse function $f^{-1}(x)$ is:",
+      "options": [
+        "$\\frac{1}{2x+1}$",
+        "$\\frac{x-1}{2}$",
+        "$2x-1$",
+        "$\\frac{x+1}{2}$"
+      ],
+      "answer": "$\\frac{x-1}{2}$"
+    },
+    {
+      "prompt": "A ball's height is modelled by $h(t)=20t-5t^2$ metres, where $t$ is the time in seconds after it is thrown and it lands when $h=0$. The most sensible domain for the model is:",
+      "options": [
+        "$t \\in \\mathbb{R}$",
+        "$0 \\le t \\le 4$",
+        "$t \\ge 0$ with no upper limit",
+        "$-4 \\le t \\le 4$"
+      ],
+      "answer": "$0 \\le t \\le 4$"
+    },
+    {
+      "prompt": "The graph of $y=f(x)$ has its lowest point at $(2,-3)$ and rises without bound on both sides. Its range is:",
+      "options": [
+        "$x \\ge 2$",
+        "$y \\ge -3$",
+        "$y \\le -3$",
+        "all real numbers"
+      ],
+      "answer": "$y \\ge -3$"
+    },
+    {
+      "prompt": "The graph of $y=f^{-1}(x)$ is obtained from the graph of $y=f(x)$ by:",
+      "options": [
+        "Reflecting in the $x$-axis",
+        "Reflecting in the $y$-axis",
+        "Reflecting in the line $y=x$",
+        "Rotating $90^\\circ$ about the origin"
+      ],
+      "answer": "Reflecting in the line $y=x$"
+    },
+    {
+      "prompt": "To find where $y=3x-2$ and $y=x^2$ meet using a GDC, you should:",
+      "options": [
+        "Read the $y$-intercept of each graph",
+        "Graph both and use the intersect feature",
+        "Find the maximum of $y=x^2$",
+        "Solve $3x-2=0$"
+      ],
+      "answer": "Graph both and use the intersect feature"
     }
   ],
   "faq": [
     {
       "q": "Does every function have an inverse function?",
-      "a": "No. A function must be 'one-to-one' to have an inverse function. This means that every output value in the range comes from exactly one input value in the domain. You can test this graphically with the Horizontal Line Test: if any horizontal line intersects the graph more than once, the function is not one-to-one and does not have a unique inverse."
+      "a": "No. A function has an inverse that is itself a function only if it is one-to-one — every output comes from exactly one input. Test it with the horizontal line test: if a horizontal line can cross the graph more than once, there is no inverse function over the full domain. $f(x)=x^2$ is the classic example; restricting it to $x \\ge 0$ makes it one-to-one and gives it an inverse, $f^{-1}(x)=\\sqrt{x}$."
     },
     {
-      "q": "What is the difference between finding $f^{-1}(2)$ and $(f(2))^{-1}$?",
-      "a": "$f^{-1}(2)$ means you are finding the output of the inverse function when the input is 2. This is equivalent to finding the value of $x$ for which $f(x)=2$. In contrast, $(f(2))^{-1}$ means you first calculate the output of the original function at $x=2$ to get $f(2)$, and then you find the reciprocal of that result, i.e., $1/f(2)$."
+      "q": "How should I write domain and range in an exam?",
+      "a": "Several formats are accepted. A plain inequality such as $x \\ge 0$ or $y > 5$ is usually the clearest. Interval notation like $[0,\\infty)$ is fine, and set notation such as $\\{x \\mid x \\ge 0\\}$ is the most precise. Be consistent, use $x$ for domain and $y$ (or $f(x)$) for range, and read any format the question specifies."
     },
     {
-      "q": "How can I use my GDC to find the domain and range?",
-      "a": "Graph the function on your GDC. For the domain, look at the graph from left to right. Identify any vertical asymptotes or points where the graph starts or stops. For the range, look at the graph from bottom to top. Identify any horizontal asymptotes or minimum/maximum values, which will define the boundaries of your range."
+      "q": "What if I cannot solve for $y$ when finding the inverse?",
+      "a": "In AI SL you are only asked to invert functions you can rearrange — linear functions $ax+b$ and simple rational functions $\\frac{a}{x-b}$. If you are stuck, check the swap step first: you must interchange $x$ and $y$ before isolating the new $y$. If the algebra still will not come out, you have probably made a rearranging slip rather than met an impossible function."
+    },
+    {
+      "q": "When does the GDC do the work and when must I show algebra?",
+      "a": "On Paper 1 (no calculator) you sketch, reason and invert by hand. On Paper 2 the GDC is expected: graph the function and use its built-in tools to find intercepts, maxima, minima and intersections, then quote the coordinates. Even on Paper 2, an instruction to 'find $f^{-1}(x)$' means show the algebraic swap-and-solve — the calculator will not produce the formula for you."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of functions, the building blocks of many mathematical models. A function describes a relationship between an input and an output. In this lesson, we will dissect this relationship by exploring the concepts of domain and range, learning how to 'undo' functions by finding their inverse, and using our GDC to visualise and analyse their behaviour."
+      "content": "Functions are the language the rest of the course is written in. A function is simply a rule that takes an input and returns exactly one output, but that small demand — exactly one — is what makes functions dependable enough to model the real world, from the height of a thrown ball to the cost of running a business. This lesson builds the full 2.2 syllabus: function notation and the idea of a function; the domain and range and how to read them from an equation, a graph or a real context; the inverse function as the process run in reverse, found algebraically and pictured as a reflection in $y=x$; and sketching and interpreting graphs, using the GDC to pin down intercepts, maxima, minima and intersections. As in every topic, the worked examples are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Understanding Domain and Range"
+      "content": "Function notation and the idea of a function"
     },
     {
       "type": "text",
-      "content": "The **domain** of a function is the complete set of possible input values. Think of it as the 'allowed' $x$-values. The **range** is the complete set of possible output values that the function can produce. It's the set of all resulting $y$-values. When defining a function, we must be mindful of mathematical rules that limit the domain. For example, we cannot divide by zero, and we cannot take the square root of a negative number (in the real number system)."
+      "content": "A function is a rule that assigns to each input exactly one output. We write $f(x)$, read as '$f$ of $x$', where $f$ names the rule and $x$ is the input; the whole symbol $f(x)$ is the output. So $f(2)$ means 'put $2$ into the rule' — for $f(x)=3x-2$ it gives $f(2)=3(2)-2=4$. The one rule that must never be broken is that a single input cannot lead to two different outputs. Graphically this is the vertical line test: if any vertical line meets the graph more than once, that $x$ would have two $y$-values, so the graph is not a function."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Domain:** All possible inputs ($x$-values). Look for denominators ($ $\neq 0$) and even roots ($ ge 0$).$",
-        "**Range:** All possible outputs ($y$-values). Consider the function's behaviour, such as minimum/maximum values and asymptotes.",
-        "**Notation:** Domain and range can be expressed using inequalities (e.g., $x > 3$), set notation (e.g., ${x in mathbb{R} | x $\neq 2}$), or interval notation (e.g., $[0, infty)$).$"
+        "**$f(x)$ is an output, not a product.** $f(3)$ means apply the rule to $3$; it does not mean $f \\times 3$.",
+        "**Vertical line test:** a graph is a function exactly when every vertical line crosses it at most once.",
+        "**Substitution is everywhere:** evaluating $f(a)$, solving $f(x)=0$ for intercepts, and finding intersections all start from careful substitution into the notation."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "Consider the function $f(x) = sqrt{x-5} + 2$.\n(a) State the domain of $f(x)$.\n(b) Find the range of $f(x)$.",
-      "solution": "(a) To find the domain, we must ensure the expression inside the square root is non-negative.\n$x-5 ge 0$ (M1)\n$x ge 5$\nThe domain is $[5, infty)$ or $x ge 5$. (A1)\n\n(b) The square root term, $sqrt{x-5}$, has a minimum value of 0, which occurs when $x=5$. \nTherefore, the minimum value of the entire function is $f(5) = sqrt{5-5} + 2 = 0 + 2 = 2$. (M1)\nAs $x$ increases, $sqrt{x-5}$ increases, so $f(x)$ increases without bound. \nThe range is $[2, infty)$ or $f(x) ge 2$. (A1)"
-    },
-    {
       "type": "heading",
-      "content": "Inverse Functions"
+      "content": "Domain and range"
     },
     {
       "type": "text",
-      "content": "An inverse function, denoted $f^{-1}(x)$, essentially reverses the action of the original function $f(x)$. If $f$ maps $a$ to $b$, then $f^{-1}$ maps $b$ back to $a$. For a function to have a unique inverse, it must be 'one-to-one', meaning each output corresponds to exactly one input. We can find the inverse algebraically by swapping the roles of $x$ and $y$ in the function's equation and then solving for the new $y$."
+      "content": "The **domain** is the set of allowed inputs — every $x$ you may feed the rule. The **range** is the set of outputs — every $y$ the rule actually produces over that domain. For $f(x)=x^2$ the domain can be all real numbers, $x \\in \\mathbb{R}$, but the range is only $y \\ge 0$, because squaring never gives a negative. Two things can limit a domain. The algebra forbids some inputs — you cannot divide by zero, so $\\frac{1}{x-4}$ excludes $x=4$, and you cannot square-root a negative, so $\\sqrt{x-1}$ needs $x \\ge 1$. A real context forbids others — a length, a time after an event or a number of items cannot be negative."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Read the range from the graph:** the lowest and highest heights the curve reaches are the ends of the range. The GDC is ideal for seeing them.",
+        "**Watch for forbidden inputs:** division by zero and square roots of negatives are the usual reasons a domain is not all of $\\mathbb{R}$.",
+        "**Choose a sensible domain for a model:** let the context set the limits — for example $t \\ge 0$ for time, and an upper limit if the model only makes sense until the ball lands or the tank empties."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Reading the range from a graph is a genuine exam skill, not a formula. Find the turning points and the behaviour at the ends. A parabola with a minimum at $(2,-3)$ that opens upward reaches every height at or above $-3$, so its range is $y \\ge -3$. If the domain is restricted, the range shrinks with it: the same parabola on $x \\ge 2$ (its right half only) still has range $y \\ge -3$, but on $0 \\le x \\le 2$ it runs from the minimum up to $f(0)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A function is defined by $f(x) = (x-3)^2 + 5$ for the domain $x \\ge 3$. (a) State the range of $f$. (b) Write down the coordinates of the vertex. [4]",
+      "solution": "**(a) Range.** The rule is a quadratic in vertex form $(x-h)^2+k$, so its vertex is at $(h,k)=(3,5)$ and, because the coefficient of $(x-3)^2$ is positive, the parabola opens upward. The domain $x \\ge 3$ is exactly the right-hand half of the parabola starting at the vertex, so the smallest output is the vertex value $5$ and outputs increase without bound from there.  [M1: identify the minimum/vertex value]\\nRange: $f(x) \\ge 5$ (equivalently $y \\ge 5$).  [A1]\\n\\n**(b) Vertex.** Comparing $f(x)=(x-3)^2+5$ with $(x-h)^2+k$ gives $h=3$, $k=5$.  [M1: compare with vertex form]\\nVertex: $(3,5)$.  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "The inverse function"
+    },
+    {
+      "type": "text",
+      "content": "The inverse of $f$, written $f^{-1}$, runs the process backwards. If $f$ takes $a$ to $b$ — that is $f(a)=b$ — then $f^{-1}$ takes $b$ back to $a$, so $f^{-1}(b)=a$. Because inputs and outputs trade places, the domain of $f^{-1}$ is the range of $f$ and the range of $f^{-1}$ is the domain of $f$. Not every function can be reversed cleanly: it must be one-to-one, meaning each output comes from a single input, which you can check with the horizontal line test. To build the inverse algebraically, undo the rule step by step by swapping $x$ and $y$ and solving."
     },
     {
       "type": "formula",
-      "content": "If $f^{-1}$ is the inverse of $f$, then: \n$f(f^{-1}(x)) = x$ and $f^{-1}(f(x)) = x$"
-    },
-    {
-      "type": "examTip",
-      "content": "A very common exam question involves stating the domain and range of an inverse function. Remember this simple rule: The domain of $f^{-1}(x)$ is the range of $f(x)$, and the range of $f^{-1}(x)$ is the domain of $f(x)$. You don't need to analyse the inverse function itself if you've already found the domain and range of the original!"
-    },
-    {
-      "type": "workedExample",
-      "question": "Let $g(x) = \frac{3x+2}{x-4}$, where $x in mathbb{R}, x $\neq 4$.$\n(a) Find an expression for the inverse function, $g^{-1}(x)$.\n(b) State the domain of $g^{-1}(x)$.",
-      "solution": "(a) Let $y = g(x)$.\n$y = \frac{3x+2}{x-4}$\nTo find the inverse, swap $x$ and $y$: \n$x = \frac{3y+2}{y-4}$ (M1)\nNow, rearrange to make $y$ the subject.\n$x(y-4) = 3y+2$\n$xy - 4x = 3y+2$\n$xy - 3y = 4x+2$\n$y(x-3) = 4x+2$ (M1)\n$y = \frac{4x+2}{x-3}$\nSo, $g^{-1}(x) = \frac{4x+2}{x-3}$. (A1)\n\n(b) The domain of $g^{-1}(x)$ is the range of $g(x)$. The function $g(x)$ is a rational function with a horizontal asymptote. As $x \to infty$, $g(x) \to \frac{3x}{x} = 3$. So the horizontal asymptote is at $y=3$. This means the function $g(x)$ can never equal 3. \nThe range of $g(x)$ is $y in mathbb{R}, y $\neq 3$. (M1)$\nTherefore, the domain of $g^{-1}(x)$ is $x in mathbb{R}, x $\neq 3$. (A1)(ft)$\nNote: We can also see this from the expression for $g^{-1}(x)$, where the denominator $x-3$ cannot be zero."
-    },
-    {
-      "type": "heading",
-      "content": "Graphs of Functions and Their Inverses"
-    },
-    {
-      "type": "text",
-      "content": "Your GDC is an essential tool for investigating functions. You should be proficient at graphing a function and using the calculator's features to find key properties. These include $x$- and $y$-intercepts, local maximum and minimum points, and vertical or horizontal asymptotes. The graph of an inverse function, $y=f^{-1}(x)$, is always a reflection of the original function's graph, $y=f(x)$, in the line $y=x$. This means that if the point $(a, b)$ is on the graph of $f$, the point $(b, a)$ will be on the graph of $f^{-1}$."
+      "content": "To find the inverse of $f(x)$ algebraically: \\n 1. Write the function as $y = f(x)$. \\n 2. Swap the variables $x$ and $y$. \\n 3. Rearrange to make $y$ the subject. \\n 4. Replace $y$ with $f^{-1}(x)$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Reflection:** The graph of $f^{-1}(x)$ is the reflection of the graph of $f(x)$ in the line $y=x$.",
-        "**GDC Skills:** Use your calculator to plot the function, the line $y=x$, and the inverse to visually confirm the relationship.",
-        "**Key Features:** Intercepts, asymptotes, and turning points of $f(x)$ have corresponding features on the graph of $f^{-1}(x)$. For example, an $x$-intercept at $(a, 0)$ on $f(x)$ becomes a $y$-intercept at $(0, a)$ on $f^{-1}(x)$."
+        "The domain of $f^{-1}(x)$ is the range of $f(x)$; the range of $f^{-1}(x)$ is the domain of $f(x)$.",
+        "A function has an inverse function only if it is one-to-one (passes the horizontal line test).",
+        "**The swap is the method:** interchanging $x$ and $y$ is the step the marker looks for. Solving before swapping is the usual error."
       ]
     },
     {
+      "type": "examTip",
+      "content": "The single most common error in this topic is confusing the inverse $f^{-1}(x)$ with the reciprocal $\\frac{1}{f(x)}$. They are different rules. For $f(x)=2x$ the inverse is $f^{-1}(x)=\\frac{x}{2}$, but the reciprocal is $\\frac{1}{2x}$ — check by composing: $f^{-1}(f(x))$ must return $x$, and $\\frac{1}{2x}$ does not."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $g(x) = 4x - 5$. (a) Find the inverse function $g^{-1}(x)$. (b) The domain of $g$ is $\\{x \\in \\mathbb{R} \\mid 0 \\le x \\le 10\\}$. Find the range of $g^{-1}(x)$. [5]",
+      "solution": "**(a) Inverse.** Write the rule as $y = 4x - 5$.\\nSwap $x$ and $y$:  $x = 4y - 5$.  [M1: swap $x$ and $y$]\\nSolve for $y$:\\n$x + 5 = 4y$\\n$y = \\dfrac{x+5}{4}$.  [A1]\\nSo $g^{-1}(x) = \\dfrac{x+5}{4}$.  [A1]\\n\\n**(b) Range of the inverse.** The range of $g^{-1}$ equals the domain of $g$.  [M1: use the domain–range swap]\\nThe domain of $g$ is $0 \\le x \\le 10$, so the range of $g^{-1}$ is $0 \\le y \\le 10$.  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Graphs of functions and their inverses"
+    },
+    {
+      "type": "text",
+      "content": "There is a clean geometric picture behind all of this: the graph of $y=f^{-1}(x)$ is the reflection of $y=f(x)$ in the line $y=x$. It follows directly from the coordinate swap — every point $(a,b)$ on the original becomes $(b,a)$ on the inverse, and reflecting in $y=x$ is precisely the transformation that interchanges the two coordinates. That is why the two graphs always meet the line $y=x$ symmetrically, and it gives you a quick way to sketch an inverse without any algebra."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To sketch an inverse, first draw the line $y=x$ as a mirror.",
+        "Take a few clear points on $y=f(x)$, such as $(a,b)$, and plot the swapped points $(b,a)$.",
+        "Join the swapped points into a curve that is the mirror image of the original in $y=x$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1 you may be asked to sketch the inverse: rule in the line $y=x$ and plot reflected points carefully. On Paper 2, graph both $y=f(x)$ and its inverse on the GDC, add $y=x$, and confirm the reflection — a fast, reliable check on your algebra."
+    },
+    {
+      "type": "heading",
+      "content": "Using the GDC to graph and find key features"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 2 the calculator is the tool of choice for graphs. Enter a function to see its shape, then use the built-in features to read off what a question asks for. The 'zero' (or root) feature gives the $x$-intercepts — where $f(x)=0$; evaluating $f(0)$ gives the $y$-intercept. The 'maximum' and 'minimum' features locate turning points, which is exactly how you find the ends of a range. And the 'intersect' feature finds where two graphs meet — the graphical way to solve $f(x)=g(x)$. In each case, quote the coordinates the GDC returns to the accuracy the question requires, usually 3 significant figures."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Intercepts:** use 'zero' for $x$-intercepts and evaluate $f(0)$ for the $y$-intercept.",
+        "**Maxima and minima:** the turning-point features give the highest and lowest outputs — the range endpoints for many functions.",
+        "**Intersections:** graph both curves and use 'intersect' to solve $f(x)=g(x)$; there may be more than one solution, so scan the whole window.",
+        "**Accuracy:** write down what the screen shows to 3 s.f. unless told otherwise, and keep full figures for any later step."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Writing $f^{-1}(x)$ as $\\frac{1}{f(x)}$** — the inverse is not the reciprocal. Find it by swapping $x$ and $y$ and solving, then check that $f^{-1}(f(x))=x$.",
+        "**Solving before swapping** — the method mark for an inverse is the interchange of $x$ and $y$. Rearranging first and swapping the labels at the end usually loses it.",
+        "**Giving domain and range with the wrong variable** — use $x$ for the domain (inputs) and $y$ or $f(x)$ for the range (outputs); do not report a range as an $x$-inequality.",
+        "**Reading the range as the domain from a graph** — the range is a set of heights ($y$-values). Look at how high and low the curve reaches, not how far left and right it goes.",
+        "**Ignoring the context of a model** — a real-world domain is limited by meaning: time satisfies $t \\ge 0$, and often an upper limit too (until the ball lands). Do not default to all real numbers.",
+        "**Forgetting the domain–range swap for inverses** — the domain of $f^{-1}$ is the range of $f$, and the range of $f^{-1}$ is the domain of $f$; do not just reuse the original set.",
+        "**Assuming every function has an inverse** — a many-to-one function (like $x^2$ on all of $\\mathbb{R}$) needs its domain restricted first; check the horizontal line test.",
+        "**Reporting only one GDC intersection** — $f(x)=g(x)$ can have several solutions. Look across the whole graph and give every intersection the question asks for, to 3 s.f."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In IB Mathematics the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach; an accuracy mark (A) rewards a correct result and depends on the method mark it follows, so an A-mark cannot be earned without its M-mark. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is carried out correctly on your own figures. On Paper 2, GDC graphing is expected, but an instruction to find $f^{-1}(x)$ still requires the algebraic swap-and-solve. Study how each mark below is earned by a specific line — that is exactly how the Practice button will mark your own attempt."
+    },
+    {
+      "type": "workedExample",
+      "question": "For $f(x)=3x-2$, find $f^{-1}(x)$, and use your GDC to find where $f(x)=g(x)$ if $g(x)=x^2$. [5]",
+      "solution": "**Model answer — full working.**\\n\\n**Inverse of $f$.** Write the rule as $y = 3x - 2$.\\nSwap $x$ and $y$:  $x = 3y - 2$.\\nSolve for $y$:\\n$x + 2 = 3y$\\n$y = \\dfrac{x+2}{3}.$\\nSo $f^{-1}(x) = \\dfrac{x+2}{3}.$\\n\\n**Intersection of $f$ and $g$.** Graph $y = 3x - 2$ and $y = x^2$ on the GDC and use the intersect feature. Solving $3x-2 = x^2$, i.e. $x^2 - 3x + 2 = 0$, the two graphs meet at\\n$x \\approx 0.697 \\quad \\text{and} \\quad x \\approx 2.30 \\; (3 \\text{ s.f.}).$\\n(The corresponding points are approximately $(0.697,\\,0.0917)$ and $(2.30,\\,4.90)$.)\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — swap.** A method mark for interchanging $x$ and $y$: writing $x = 3y - 2$ from $y = 3x - 2$. This is the defining step of finding an inverse, so it is rewarded even if the rearrangement that follows slips.\\n- **A1 — inverse.** Awarded for $f^{-1}(x) = \\dfrac{x+2}{3}$, correctly solved for $y$. This accuracy mark depends on the M1 above and accepts any equivalent form, such as $\\dfrac{1}{3}x + \\dfrac{2}{3}$.\\n- **M1 — use the GDC intersect.** A method mark for setting up the intersection — graphing both $y=3x-2$ and $y=x^2$ and using intersect (or equivalently solving $x^2-3x+2=0$). It is the approach that earns the mark, so it survives a rounding slip in the values.\\n- **A1 — first value.** Awarded for $x \\approx 0.697$ (3 s.f.).\\n- **A1 — second value.** Awarded for $x \\approx 2.30$ (3 s.f.). The two A-marks are independent, so a candidate who finds one root correctly still banks its mark; both are FT on the candidate's own correctly-read GDC screen.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts the inverse in any equivalent algebraic form, and accepts the intersection values as coordinates or as $x$-values, provided they are correctly rounded (e.g. $0.697$ or $0.698$ depending on the GDC, and $2.30$). Once the correct answers appear, ignore subsequent working (ISW) means a later restatement does not lose marks.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic or rounding slip, and the accuracy marks are shielded by follow-through — but only if the swap step and the GDC set-up are written down. A candidate who jumps straight to $f^{-1}(x)=\\frac{x+2}{3}$ and a single intersection risks losing the method mark and one of the two answer marks."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write $y=f(x)$, swap $x$ and $y$ before solving, and for intersections state that you used the GDC and give every solution to 3 s.f. The method marks and follow-through are what protect your score when a number slips — and you only get that protection when the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Domain, range and inverse are the grammar of every function you will meet next. Reading a range from a graph is exactly the skill you reuse for the outputs of exponential, logarithmic and trigonometric models; the reflection in $y=x$ reappears when the logarithm is introduced as the inverse of the exponential; and the discipline of choosing a sensible domain is what makes a real-world model trustworthy. Above all, the habit of showing method — write the rule, swap, solve, and quote the GDC to the stated accuracy — is the discipline every function question on both papers rewards. Get the three headlines right — allowed inputs, produced outputs, and the process reversed — and the rest of the functions strand becomes variations on ideas you already control."
+    },
+    {
       "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=2.2"
+      "label": "Get a Paper 2 functions question marked: find an inverse and use the GDC to find intersections, with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GeoGebra Function Grapher",
-          "href": "https://www.geogebra.org/graphing"
+          "label": "Interactive Function Grapher - GeoGebra",
+          "href": "https://www.geogebra.org/m/W7d52Y49"
         },
         {
-          "label": "Khan Academy: Inverse functions",
-          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:functions/x2f8bb11595b61c86:inverse-functions/v/introduction-to-inverse-functions"
+          "label": "Khan Academy: Inverse Functions",
+          "href": "https://www.khanacademy.org/math/algebra-2/manipulating-functions/finding-inverse-functions/v/introduction-to-inverse-functions"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Interactive Function Grapher - GeoGebra",
+    "embedUrl": "https://www.geogebra.org/classic?material=W7d52Y49",
+    "launchUrl": "https://www.geogebra.org/classic?material=W7d52Y49",
+    "hint": "Use “Interactive Function Grapher - GeoGebra” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
 }

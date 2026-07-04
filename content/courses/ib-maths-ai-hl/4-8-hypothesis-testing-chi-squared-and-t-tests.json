@@ -1,239 +1,123 @@
 {
   "slug": "4-8-hypothesis-testing-chi-squared-and-t-tests",
   "topicCode": "4.8",
+  "unit": { "code": "4", "title": "Statistics and probability" },
   "title": "Hypothesis testing: chi-squared and t-tests",
   "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces the fundamental concepts of hypothesis testing, a core statistical method for making decisions based on data. We will explore two key types of tests: chi-squared tests for analysing categorical data (testing for independence and goodness of fit) and t-tests for comparing means of one or two samples.",
-  "durationMin": 110,
-  "updated": "2026-06-21",
+  "summary": "Hypothesis testing is the formal machinery that turns a hunch about data into a defensible decision. This lesson builds the full 4.8 Higher Level syllabus: the logic of a statistical test (null hypothesis $H_0$, alternative hypothesis $H_1$, significance level, test statistic, p-value, and the decision rule reject $H_0$ when $p <$ significance level); the $\\chi^2$ test for independence on a contingency table, where the expected frequency of a cell is (row total $\\times$ column total) $\\div$ grand total and the degrees of freedom are $(r-1)(c-1)$; how to compute $\\chi^2_{calc}$ and either compare it with a critical value or read the p-value from the GDC; the $\\chi^2$ goodness-of-fit test in brief; and the t-test for comparing two means, one-tailed or two-tailed, driven from the GDC. Because 4.8 lives on Paper 2, the calculator does the arithmetic, so the marks reward setting up the hypotheses, quoting the statistic and p-value, and stating a conclusion in context. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 32,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Formulate null and alternative hypotheses for chi-squared and t-tests.",
-    "Perform chi-squared tests for independence and goodness of fit using a GDC.",
-    "Conduct one-sample, two-sample, and paired t-tests using a GDC.",
-    "Interpret p-values and test statistics to draw statistically sound conclusions in the context of a given problem."
+    "State the null and alternative hypotheses for a $\\chi^2$ or t-test, choose a significance level, and apply the decision rule: reject $H_0$ when the p-value is below the significance level.",
+    "Carry out a $\\chi^2$ test for independence on a contingency table: compute expected frequencies as (row total $\\times$ column total) $\\div$ grand total, find the degrees of freedom $(r-1)(c-1)$, and compare $\\chi^2_{calc}$ with the critical value or use the p-value from the GDC.",
+    "Perform a $\\chi^2$ goodness-of-fit test to decide whether observed frequencies are consistent with a hypothesised distribution.",
+    "Use a GDC to run a two-sample t-test, choosing correctly between a one-tailed and a two-tailed alternative, and interpret the result.",
+    "Write every conclusion in the context of the problem, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["4.8"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Data on Trial: Guilty or Not Guilty?",
-    "summary": "Hypothesis testing is like a legal trial for a claim about data. We start by assuming the claim is true (the 'null hypothesis') and then use statistical evidence to decide if it should be rejected.",
-    "analogy": "Imagine a courtroom. A suspect is 'innocent until proven guilty'. In statistics, the 'null hypothesis' (e.g., a coin is fair) is our 'innocent' assumption. We then collect data (e.g., flip the coin 100 times) which is our 'evidence'. The statistical test is the 'trial'. If the evidence is strong enough (a very unlikely result, like 95 heads), we reject the 'innocent' assumption and declare the coin is likely not fair. If the evidence is weak (e.g., 53 heads), we don't have enough to convict, so we 'fail to reject' the innocent assumption.",
+    "title": "Data on Trial",
+    "summary": "A hypothesis test is a trial for a claim about data. You start by assuming nothing interesting is going on (the null hypothesis), then ask how surprising your data would be if that assumption were true. If the data is surprising enough, you reject the assumption.",
+    "analogy": "Think of a courtroom. The accused is presumed innocent, and it is the evidence that must overturn that presumption. In a test the null hypothesis $H_0$ plays the innocent party: 'the two variables are independent', or 'the two means are equal'. The p-value measures how easily the evidence could have arisen by pure chance if $H_0$ were true. A tiny p-value is damning evidence, so you convict, that is, you reject $H_0$. A large p-value leaves reasonable doubt, so you do not reject. Crucially, 'not guilty' is not the same as 'innocent': failing to reject $H_0$ never proves it true.",
     "steps": [
-      "State Hypotheses: Clearly define the null hypothesis ($H_0$, the 'no effect' or 'status quo' claim) and the alternative hypothesis ($H_A$, what you're trying to prove).",
-      "Choose Test & Significance Level: Select the correct statistical test (e.g., $\\chi^2$ test, t-test) based on your data type and question. Set the significance level ($\\alpha$), usually 5% (0.05), which is your threshold for 'reasonable doubt'.",
-      "Calculate Test Statistic & p-value: Use your GDC to run the chosen test on your data. The calculator will provide a test statistic (like $\\chi^2$ or $t$) and, most importantly, a p-value.",
-      "Conclude in Context: Compare your p-value to $\\alpha$. If the p-value is less than $\\alpha$, you have strong evidence to reject $H_0$. If it's greater, you do not. Always state your final conclusion in the context of the original problem."
+      "State the hypotheses. $H_0$ is the 'no effect / no association' claim; $H_1$ is what you are trying to detect. Fix a significance level, usually 5% (0.05), before you look at the result.",
+      "Choose the test. Categorical counts in a table point to a $\\chi^2$ test; numerical averages point to a t-test. Identify which one before touching the calculator.",
+      "Read the statistic and p-value from the GDC. The calculator returns the test statistic ($\\chi^2_{calc}$ or $t$), the degrees of freedom where relevant, and the p-value.",
+      "Decide and conclude in context. If $p <$ significance level, reject $H_0$; otherwise do not. Then translate that into a sentence about the actual situation, never leave it as bare symbols."
     ]
   },
+  "keyConcepts": ["the logic of a test", "chi-squared for independence", "t-test for two means"],
   "flashcards": [
-    {
-      "front": "What is a Null Hypothesis ($H_0$)?",
-      "back": "The null hypothesis is a statement of 'no effect' or 'no difference'. It's the default assumption that any observed variation is due to chance. E.g., $H_0$: There is no association between gender and voting preference."
-    },
-    {
-      "front": "What is an Alternative Hypothesis ($H_A$ or $H_1$)?",
-      "back": "The alternative hypothesis is the claim the researcher is trying to prove. It contradicts the null hypothesis. E.g., $H_A$: There is an association between gender and voting preference."
-    },
-    {
-      "front": "What is a p-value?",
-      "back": "The p-value is the probability of observing data as extreme as, or more extreme than, the collected sample, assuming the null hypothesis is true. A small p-value suggests the observed data is unlikely under the null hypothesis."
-    },
-    {
-      "front": "What is the Significance Level ($\\alpha$)?",
-      "back": "The significance level, $\\alpha$, is a pre-determined threshold for statistical significance. It's the probability of rejecting the null hypothesis when it is actually true (a Type I error). Common values are 0.10, 0.05, and 0.01."
-    },
-    {
-      "front": "What is the decision rule for hypothesis testing using a p-value?",
-      "back": "If p-value < $\\alpha$, reject $H_0$. If p-value $\\ge \\alpha$, do not reject $H_0$. A helpful rhyme: 'If p is low, the null must go.'"
-    },
-    {
-      "front": "When do you use a Chi-Squared ($\\chi^2$) Test for Independence?",
-      "back": "Use it to determine if there is a statistically significant association between two categorical variables. Data is presented in a contingency table. E.g., Is there a relationship between a person's age group and their preferred social media platform?"
-    },
-    {
-      "front": "When do you use a Chi-Squared ($\\chi^2$) Goodness of Fit Test?",
-      "back": "Use it to determine if the observed frequencies of a single categorical variable match the expected frequencies of a hypothesised distribution. E.g., Do the colours in a bag of sweets follow the distribution claimed by the manufacturer?"
-    },
-    {
-      "front": "When do you use a t-test?",
-      "back": "Use a t-test to compare means. A one-sample t-test compares a sample mean to a known value. A two-sample t-test compares the means of two independent groups. A paired t-test compares means from the same group at different times (e.g., before and after)."
-    },
-    {
-      "front": "What is a Type I error?",
-      "back": "A Type I error occurs when you incorrectly reject a true null hypothesis. It's a 'false positive'. The probability of a Type I error is equal to the significance level, $\\alpha$."
-    },
-    {
-      "front": "What is a Type II error?",
-      "back": "A Type II error occurs when you fail to reject a false null hypothesis. It's a 'false negative' - you miss a real effect. The probability is denoted by $\\beta$."
-    },
-    {
-      "front": "What is a critical value?",
-      "back": "A critical value is a point on the scale of the test statistic beyond which we reject the null hypothesis. If your calculated test statistic is more extreme than the critical value, you reject $H_0$. This is an alternative to the p-value method."
-    },
-    {
-      "front": "What are the degrees of freedom for a $\\chi^2$ test of independence?",
-      "back": "The degrees of freedom (df) are calculated as: df = (number of rows - 1) $\\times$ (number of columns - 1). Your GDC calculates this for you."
-    }
+    { "front": "Null hypothesis $H_0$", "back": "The default 'no effect' or 'no difference' claim, assumed true until the evidence overturns it. For independence: '$H_0$: the two variables are independent'. For two means: '$H_0$: $\\mu_1 = \\mu_2$'.", "pillLabel": "Definition" },
+    { "front": "Alternative hypothesis $H_1$", "back": "The claim you are testing for, which contradicts $H_0$. For independence: '$H_1$: the two variables are not independent (they are associated)'. For means it can be two-tailed ($\\mu_1 \\neq \\mu_2$) or one-tailed ($\\mu_1 > \\mu_2$ or $\\mu_1 < \\mu_2$).", "pillLabel": "Definition" },
+    { "front": "Significance level", "back": "The threshold, fixed before the test, at which you are prepared to reject $H_0$. Common values are 10% (0.10), 5% (0.05) and 1% (0.01). It is also the risk of rejecting a true $H_0$.", "pillLabel": "Definition" },
+    { "front": "p-value", "back": "The probability of obtaining data as extreme as, or more extreme than, that observed, assuming $H_0$ is true. A small p-value means the data would be surprising under $H_0$, so it counts as evidence against $H_0$.", "pillLabel": "Definition" },
+    { "front": "Decision rule", "back": "If p-value $<$ significance level, reject $H_0$. If p-value $\\ge$ significance level, do not reject $H_0$. Memory hook: 'if p is low, the null must go'.", "pillLabel": "Framework" },
+    { "front": "Expected frequency (contingency table)", "back": "Under independence the expected count in a cell is $\\dfrac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}$. The $\\chi^2$ statistic measures how far the observed counts stray from these expected counts.", "pillLabel": "Formula" },
+    { "front": "Degrees of freedom ($\\chi^2$ independence)", "back": "For an $r \\times c$ contingency table, $\\text{df} = (r-1)(c-1)$. Count only the categories, never the totals row or column. The GDC also reports it, but you should be able to state it.", "pillLabel": "Formula" },
+    { "front": "Critical value vs p-value method", "back": "Two equivalent decisions. Critical-value method: reject $H_0$ if $\\chi^2_{calc} >$ critical value. p-value method: reject $H_0$ if p-value $<$ significance level. They always agree; use whichever the question supplies.", "pillLabel": "Framework" },
+    { "front": "$\\chi^2$ goodness-of-fit test", "back": "Tests whether observed frequencies of one categorical variable fit a hypothesised distribution. $H_0$: the data fits the distribution. Here $\\text{df} = (\\text{number of categories}) - 1$ (minus a further 1 for each parameter estimated).", "pillLabel": "Definition" },
+    { "front": "Two-sample t-test", "back": "Compares the means of two independent groups. $H_0$: $\\mu_1 = \\mu_2$. Run it from the GDC with the two data lists; choose the one-tailed or two-tailed alternative to match the question and read off $t$ and the p-value.", "pillLabel": "GDC" },
+    { "front": "One-tailed vs two-tailed", "back": "Two-tailed tests for a difference in either direction ($\\mu_1 \\neq \\mu_2$); use it for words like 'different' or 'changed'. One-tailed tests a specific direction ($\\mu_1 > \\mu_2$); use it for 'greater', 'increased', 'improved' or 'reduced'. The tail must be set correctly on the GDC.", "pillLabel": "Trap" },
+    { "front": "Why 'do not reject', not 'accept'", "back": "A test can only gather evidence against $H_0$; it can never prove $H_0$ true. When p-value $\\ge$ significance level you say 'there is insufficient evidence to reject $H_0$', not 'we accept $H_0$'.", "pillLabel": "Trap" },
+    { "front": "Expected frequency below 5", "back": "The $\\chi^2$ test assumes every expected frequency exceeds 5. If one is smaller the result may be unreliable; the standard fix is to combine adjacent rows or columns and reduce the degrees of freedom accordingly.", "pillLabel": "Condition" },
+    { "front": "Conclusion in context", "back": "Never stop at 'reject $H_0$'. Translate it: 'there is significant evidence of an association between age group and preferred transport'. The final accuracy mark is for the sentence about the real situation, not the symbols.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A $\\chi^2$ test for independence uses a $4 \\times 3$ contingency table. The degrees of freedom are:", "options": ["$(4-1)(3-1) = 6$", "$4 \\times 3 = 12$", "$(4+3) - 1 = 6$", "$4 + 3 = 7$"], "answer": "$(4-1)(3-1) = 6$" },
+    { "prompt": "In a $\\chi^2$ test at the 5% level, $\\chi^2_{calc} = 9.21$ and the critical value is 7.815. You should:", "options": ["Reject $H_0$, because $\\chi^2_{calc} >$ critical value", "Not reject $H_0$, because $\\chi^2_{calc} >$ critical value", "Reject $H_0$, because $\\chi^2_{calc} <$ critical value", "Not reject $H_0$, because 9.21 is close to 7.815"], "answer": "Reject $H_0$, because $\\chi^2_{calc} >$ critical value" },
+    { "prompt": "Using the p-value method at a 1% significance level, you reject $H_0$ when:", "options": ["p-value $< 0.01$", "p-value $> 0.01$", "p-value $< 0.05$", "p-value $= 0.01$ exactly"], "answer": "p-value $< 0.01$" },
+    { "prompt": "In a contingency table with row total 40, column total 30 and grand total 200, the expected frequency of that cell is:", "options": ["$\\dfrac{40 \\times 30}{200} = 6$", "$\\dfrac{40 + 30}{200} = 0.35$", "$\\dfrac{200}{40 \\times 30} \\approx 0.17$", "$40 \\times 30 = 1200$"], "answer": "$\\dfrac{40 \\times 30}{200} = 6$" },
+    { "prompt": "A test gives p-value $= 0.12$ at the 5% level. The best conclusion is:", "options": ["There is insufficient evidence to reject $H_0$", "Accept $H_0$ as proven true", "Reject $H_0$; the result is significant", "The test is invalid and must be repeated"], "answer": "There is insufficient evidence to reject $H_0$" }
   ],
   "faq": [
-    {
-      "q": "What's the difference between a one-tailed and a two-tailed test?",
-      "a": "A two-tailed test checks for a difference in any direction (e.g., $H_A: \\mu \\neq 50$). A one-tailed test is more specific, checking for a difference in one particular direction (e.g., $H_A: \\mu > 50$ or $H_A: \\mu < 50$). You choose based on the research question. If the question asks if a value has 'changed' or is 'different', use a two-tailed test. If it asks if a value has 'increased', 'decreased', 'improved', or 'worsened', use a one-tailed test."
-    },
-    {
-      "q": "Why can't I say 'accept the null hypothesis'?",
-      "a": "In science and statistics, we can never prove something is true with 100% certainty; we can only gather evidence against it. Failing to reject $H_0$ doesn't mean it's true, it just means our sample didn't provide strong enough evidence to prove it's false. It's like a 'not guilty' verdict in court – it doesn't mean the person is definitively innocent, just that the prosecution didn't prove their guilt beyond a reasonable doubt."
-    },
-    {
-      "q": "What do I do if an expected frequency in a chi-squared test is less than 5?",
-      "a": "The chi-squared test relies on an assumption that the expected frequencies are not too small, typically greater than 5. If you have an expected frequency below 5, the test result may be inaccurate. The standard procedure is to combine that row or column with an adjacent one, so the new combined expected frequency is above 5. You must then adjust the degrees of freedom accordingly. In an IB exam, you would be expected to state that the test's validity is compromised or follow instructions to combine categories."
-    },
-    {
-      "q": "How do I know which test to use on the exam?",
-      "a": "First, identify the type of data. Is it categorical (counts, frequencies, percentages)? If so, it's a chi-squared test. If it's numerical data (measurements, means, averages), it's a t-test. Then, for chi-squared, are you comparing one variable to a known distribution (Goodness of Fit) or checking for a relationship between two variables (Independence)? For t-tests, are you comparing one sample's mean to a specific number (One-Sample), comparing the means of two completely separate groups (Two-Sample), or comparing 'before and after' data for the same group (Paired)?"
-    }
+    { "q": "How do I know whether to use a $\\chi^2$ test or a t-test?", "a": "Look at the data type. Categorical data, that is counts or frequencies arranged in a table, calls for a $\\chi^2$ test. Numerical data where you are comparing averages calls for a t-test. Within $\\chi^2$, a two-way contingency table testing a relationship between two variables is a test of independence, while a single row of counts compared with a claimed distribution is a goodness-of-fit test. For a t-test in AI HL you are comparing the means of two independent samples." },
+    { "q": "What is the difference between the critical-value method and the p-value method?", "a": "They are two routes to the same decision. In the p-value method you reject $H_0$ when the p-value is below the significance level. In the critical-value method you reject $H_0$ when $\\chi^2_{calc}$ exceeds the critical value for that significance level and degrees of freedom. The two always agree, because a $\\chi^2_{calc}$ larger than the critical value corresponds exactly to a p-value smaller than the significance level. Use whichever the question hands you: if it quotes a critical value, compare; if it expects the GDC, use the p-value." },
+    { "q": "Why can I not write 'accept $H_0$'?", "a": "A hypothesis test only ever weighs evidence against $H_0$. Failing to find that evidence does not prove $H_0$ true, it just means the data was not surprising enough to overturn it, exactly as a 'not guilty' verdict does not prove innocence. So when the p-value is at or above the significance level, write 'there is insufficient evidence to reject $H_0$', never 'we accept $H_0$'." },
+    { "q": "What happens if an expected frequency is less than 5?", "a": "The $\\chi^2$ test assumes the expected frequencies are not too small, conventionally all greater than 5. If one falls below 5 the approximation behind the test weakens and the result may be unreliable. The usual remedy is to combine that row or column with a neighbouring one so the pooled expected frequency clears 5, then recompute the degrees of freedom for the smaller table. In an exam you would state that the validity is affected, or follow any instruction to combine categories." },
+    { "q": "How do I decide between a one-tailed and a two-tailed t-test?", "a": "Read the wording. If the question asks whether two means are simply 'different' or whether something has 'changed', the direction is unspecified and you use a two-tailed test ($\\mu_1 \\neq \\mu_2$). If it asks whether a mean has 'increased', 'decreased', 'improved' or been 'reduced', the direction is specified and you use a one-tailed test ($\\mu_1 > \\mu_2$ or $\\mu_1 < \\mu_2$). On the GDC you must set the alternative to match, because the tail choice changes the p-value." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Have you ever wondered if a new teaching method really improves exam scores, or if a company's claim about its product is true? Hypothesis testing is the formal process statisticians use to answer such questions. It provides a structured framework for using sample data to make inferences about an entire population. In this lesson, we'll master the essential tools for this process: the chi-squared test for categorical data and the t-test for numerical averages."
-    },
-    {
-      "type": "heading",
-      "content": "The Core Principles of Hypothesis Testing"
-    },
-    {
-      "type": "text",
-      "content": "Every hypothesis test follows the same fundamental logic. We begin with two competing hypotheses: the null hypothesis ($H_0$) and the alternative hypothesis ($H_A$). The null hypothesis represents the status quo or a statement of no effect, while the alternative represents the change or effect we wish to detect. We then collect data and calculate a p-value, which measures the strength of our evidence against the null hypothesis. The final step is to compare this p-value to a pre-defined significance level, $\\alpha$, to make a decision."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Null Hypothesis ($H_0$):** A statement of no difference or no relationship. Assumed to be true until evidence suggests otherwise.",
-        "**Alternative Hypothesis ($H_A$):** The claim you are testing. It can be one-tailed (e.g., $\\mu > 10$) or two-tailed (e.g., $\\mu \\neq 10$).",
-        "**Significance Level ($\\alpha$):** The threshold for rejecting $H_0$. Typically 5% (0.05), 1% (0.01), or 10% (0.10). It's the risk of making a Type I error.",
-        "**p-value:** The probability of getting your observed data (or more extreme) if $H_0$ were true.",
-        "**Decision Rule:** If p-value < $\\alpha$, reject $H_0$. If p-value $\\ge \\alpha$, do not reject $H_0$."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Chi-Squared ($\\chi^2$) Test for Independence"
-    },
-    {
-      "type": "text",
-      "content": "This test is used when you have data for two categorical variables and you want to see if there is a relationship or association between them. For example, is there an association between a student's year group and their preferred method of transport to school? The test works by comparing the observed frequencies in your data (what you actually found) with the expected frequencies that you would anticipate if there were no relationship between the variables."
-    },
-    {
-      "type": "formula",
-      "content": "Hypotheses for Test of Independence:\\\\$H_0$: The two variables are independent.\\\\$H_A$: The two variables are not independent (they are associated)."
-    },
-    {
-      "type": "workedExample",
-      "question": "A survey asked 200 people about their preferred holiday type (Beach, City Break, Adventure) and their employment status (Employed, Unemployed, Student). The results are shown in the table. Perform a chi-squared test at the 5% significance level to determine if there is an association between employment status and preferred holiday type. \\n\\n| | Beach | City Break | Adventure | Total |\\n|---|---|---|---|---|\\n| Employed | 35 | 40 | 25 | 100 |\\n| Unemployed | 15 | 5 | 5 | 25 |\\n| Student | 20 | 35 | 20 | 75 |\\n| Total | 70 | 80 | 50 | 200 |",
-      "solution": "1. **State the hypotheses:**\n   $H_0$: Employment status and preferred holiday type are independent.\n   $H_A$: Employment status and preferred holiday type are not independent. (M1)\n\n2. **State the test and significance level:**\n   A chi-squared test for independence will be used at a 5% significance level ($\\alpha = 0.05$).\n\n3. **Enter data and find p-value from GDC:**\n   Enter the observed frequencies into a 3x3 matrix in your calculator.\n   Run the $\\chi^2$ 2-Way Test.\n   GDC output:\n   $\\chi^2 = 13.345... \\approx 13.3$ (A1)\n   p-value = $0.00972... \\approx 0.00972$ (A1)\n   Degrees of freedom = $(3-1)(3-1) = 4$\n\n4. **Compare p-value with $\\alpha$:**\n   $0.00972 < 0.05$ (R1)\n\n5. **State the conclusion:**\n   Since the p-value is less than the significance level, we reject the null hypothesis. There is sufficient evidence to suggest that there is an association between a person's employment status and their preferred holiday type. (A1)"
-    },
-    {
-      "type": "heading",
-      "content": "Chi-Squared ($\\chi^2$) Goodness of Fit Test"
-    },
-    {
-      "type": "text",
-      "content": "This test is used when you have one categorical variable and you want to see if its frequency distribution fits a specific, hypothesised pattern. For example, a company claims that the M&Ms in its bags are distributed as 20% red, 30% blue, and 50% green. You could take a sample of M&Ms and use a goodness of fit test to see if your observed counts are consistent with their claim."
-    },
-    {
-      "type": "formula",
-      "content": "Hypotheses for Goodness of Fit Test:\\\\$H_0$: The data fits the specified distribution.\\\\$H_A$: The data does not fit the specified distribution."
-    },
-    {
-      "type": "workedExample",
-      "question": "A dice is rolled 120 times to see if it is fair. The results are shown below. Test, at the 1% significance level, whether the dice is fair.\\n\\n| Score | 1 | 2 | 3 | 4 | 5 | 6 |\\n|---|---|---|---|---|---|---|\\n| Frequency | 15 | 24 | 18 | 13 | 27 | 23 |",
-      "solution": "1. **State the hypotheses:**\n   $H_0$: The dice is fair (the distribution of scores is uniform).\n   $H_A$: The dice is not fair (the distribution of scores is not uniform). (M1)\n\n2. **Calculate Expected Frequencies:**\n   If the dice is fair, each outcome is equally likely. The total number of rolls is 120. \n   Expected frequency for each score = $120 / 6 = 20$. (M1)\n\n3. **State the test and significance level:**\n   A chi-squared goodness of fit test will be used at a 1% significance level ($\\alpha = 0.01$).\n\n4. **Enter data and find p-value from GDC:**\n   Enter the observed frequencies (15, 24, 18, 13, 27, 23) into one list and the expected frequencies (20, 20, 20, 20, 20, 20) into another.\n   Run the $\\chi^2$ GOF Test.\n   GDC output:\n   $\\chi^2 = 8.6$ (A1)\n   p-value = $0.1260... \\approx 0.126$ (A1)\n   Degrees of freedom = $6-1 = 5$\n\n5. **Compare p-value with $\\alpha$:**\n   $0.126 > 0.01$ (R1)\n\n6. **State the conclusion:**\n   Since the p-value is greater than the significance level, we do not reject the null hypothesis. There is insufficient evidence to suggest that the dice is not fair. (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "For chi-squared tests, a key condition is that all *expected* frequencies should be greater than 5. If you calculate expected frequencies and find one is less than 5, you should state that the test may not be valid. In an exam, you may be asked to combine rows or columns to meet this condition before proceeding."
-    },
-    {
-      "type": "heading",
-      "content": "The t-Test Family: Testing Means"
-    },
-    {
-      "type": "text",
-      "content": "When your data is numerical and you want to test a hypothesis about its mean (average), you'll likely use a t-test. These tests are robust and widely used. The key is to identify which type of t-test is appropriate for your situation: comparing one sample to a known value, comparing two separate groups, or comparing two related measurements."
-    },
-    {
-      "type": "heading",
-      "content": "One-Sample t-Test"
-    },
-    {
-      "type": "text",
-      "content": "This test compares the mean of a single sample to a known or hypothesised population mean, $\\mu_0$. For example, a manufacturer claims its batteries last for 500 hours. You could test a sample of batteries and use a one-sample t-test to see if your sample's mean lifespan is significantly different from 500."
-    },
-    {
-      "type": "formula",
-      "content": "Hypotheses for One-Sample t-Test (two-tailed):\\\\$H_0: \\mu = \\mu_0$\\\\$H_A: \\mu \\neq \\mu_0$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A coffee shop claims that the average volume of a 'large' latte is 450 ml. A trading standards officer measures the volume of 16 randomly selected large lattes and finds a sample mean of 445 ml with a sample standard deviation of 8 ml. Is there evidence, at the 5% significance level, that the average volume is not 450 ml?",
-      "solution": "1. **State the hypotheses:**\n   $H_0: \\mu = 450$ (The average volume is 450 ml).\n   $H_A: \\mu \\neq 450$ (The average volume is not 450 ml). (M1)\n\n2. **State the test and significance level:**\n   A one-sample t-test will be used at a 5% significance level ($\\alpha = 0.05$).\n\n3. **Enter data and find p-value from GDC:**\n   Use the T-Test function with 'Stats' input.\n   $\\mu_0: 450$\n   $\\bar{x}: 445$\n   $s_x: 8$\n   $n: 16$\n   Alternative: $\\neq \\mu_0$\n   GDC output:\n   $t = -2.5$ (A1)\n   p-value = $0.0243... \\approx 0.0243$ (A1)\n\n4. **Compare p-value with $\\alpha$:**\n   $0.0243 < 0.05$ (R1)\n\n5. **State the conclusion:**\n   Since the p-value is less than the significance level, we reject the null hypothesis. There is sufficient evidence to suggest that the average volume of a large latte is not 450 ml. (A1)"
-    },
-    {
-      "type": "heading",
-      "content": "Two-Sample t-Test (Independent)"
-    },
-    {
-      "type": "text",
-      "content": "This test is used to compare the means of two independent groups. The term 'independent' is crucial; it means the selection of individuals in one group has no bearing on the selection in the other. For example, comparing the exam scores of a group of students who used a new revision app with a different group who did not."
-    },
-    {
-      "type": "formula",
-      "content": "Hypotheses for Two-Sample t-Test:\\\\$H_0: \\mu_1 = \\mu_2$ (The means of the two populations are equal.)\\\\$H_A: \\mu_1 \\neq \\mu_2$ (or $\\mu_1 > \\mu_2$, or $\\mu_1 < \\mu_2$)"
-    },
-    {
-      "type": "heading",
-      "content": "Paired t-Test"
-    },
-    {
-      "type": "text",
-      "content": "Use a paired t-test when you have two sets of measurements that are not independent. This typically occurs when you measure the same subjects twice, for example, 'before' and 'after' a treatment or intervention. The test works by first calculating the difference for each pair and then performing a one-sample t-test on these differences, testing if the mean difference is zero."
-    },
-    {
-      "type": "formula",
-      "content": "Hypotheses for Paired t-Test:\\\\$H_0: \\mu_d = 0$ (The mean of the differences is zero.)\\\\$H_A: \\mu_d \\neq 0$ (or $\\mu_d > 0$, or $\\mu_d < 0$)"
-    },
-    {
-      "type": "workedExample",
-      "question": "A new training programme is designed to improve the 100m sprint times of athletes. The times for 8 athletes were recorded before and after the programme. Test, at the 5% significance level, whether the programme was effective in reducing sprint times.\\n\\n| Athlete | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\\n|---|---|---|---|---|---|---|---|---|\\n| Time Before (s) | 12.5 | 13.1 | 12.8 | 13.5 | 12.9 | 13.3 | 12.7 | 13.0 |\\n| Time After (s) | 12.3 | 12.9 | 12.9 | 13.2 | 12.6 | 13.2 | 12.4 | 12.8 |",
-      "solution": "1. **State the hypotheses:**\n   Let $\\mu_d$ be the mean of the differences (Before - After).\n   $H_0: \\mu_d = 0$ (The programme has no effect on sprint times).\n   $H_A: \\mu_d > 0$ (The programme reduces sprint times, so 'Before' times are greater than 'After' times). (M1) *Note: This is a one-tailed test.*\n\n2. **State the test and significance level:**\n   A paired t-test will be used at a 5% significance level ($\\alpha = 0.05$).\n\n3. **Enter data and find p-value from GDC:**\n   Enter the 'Before' times into List 1 and 'After' times into List 2.\n   Create List 3 = List 1 - List 2. The differences are: 0.2, 0.2, -0.1, 0.3, 0.3, 0.1, 0.3, 0.2.\n   Run a T-Test on List 3.\n   $\\mu_0: 0$\n   List: L3\n   Freq: 1\n   Alternative: $> \\mu_0$\n   GDC output:\n   $t = 3.674... \\approx 3.67$ (A1)\n   p-value = $0.00396... \\approx 0.00396$ (A1)\n\n4. **Compare p-value with $\\alpha$:**\n   $0.00396 < 0.05$ (R1)\n\n5. **State the conclusion:**\n   Since the p-value is less than the significance level, we reject the null hypothesis. There is sufficient evidence to suggest that the training programme is effective in reducing athletes' 100m sprint times. (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "Choosing the correct test is a common exam challenge. Use this flowchart: Is the data in categories/counts? -> Chi-Squared Test. Is the data numerical/averages? -> t-Test. For t-tests: one sample vs a number? -> 1-Sample. Two separate groups? -> 2-Sample. One group measured twice? -> Paired."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=4.8"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GDC Tutorial: Hypothesis Testing on the TI-84",
-          "href": "https://www.youtube.com/watch?v=zJ8e_w5g_sE"
-        },
-        {
-          "label": "Stat Trek: Explanations of Statistical Concepts",
-          "href": "https://stattrek.com/hypothesis-test/hypothesis-testing"
-        },
-        {
-          "label": "Interactive p-value Visualiser",
-          "href": "https://rpsychologist.com/d3/p-value/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Does a new revision app really raise exam marks? Is there a genuine link between a shopper's age and the store they prefer, or could the pattern in the data be pure chance? Hypothesis testing is the formal process that answers such questions honestly. It sets up a cautious default, the null hypothesis, and asks how surprising the observed data would be if that default held; only genuinely surprising data earns the right to overturn it. This lesson covers the full Higher Level 4.8 syllabus: the logic shared by every test, the $\\chi^2$ test for independence on a contingency table, the $\\chi^2$ goodness-of-fit test in brief, and the two-sample t-test. Because 4.8 sits on Paper 2, the GDC does the arithmetic, so the marks reward stating hypotheses, quoting the statistic and p-value, and concluding in context. As ever, the worked examples are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The logic of a statistical test" },
+    { "type": "text", "content": "Every hypothesis test, whatever its name, runs on the same five-step logic. You state a null hypothesis $H_0$, the cautious 'nothing is going on' claim, and an alternative hypothesis $H_1$, the effect you hope to detect. You fix a significance level, the bar the evidence must clear, before you look at the data. You compute a test statistic from the data, which the GDC converts into a p-value: the probability of data at least this extreme if $H_0$ were true. Finally you apply the decision rule and state the outcome in context." },
+    { "type": "keyPoints", "items": [
+      "**Null hypothesis ($H_0$):** the 'no effect / no association / no difference' claim, assumed true until the evidence overturns it.",
+      "**Alternative hypothesis ($H_1$):** the claim you are testing for. It may be two-tailed ($\\neq$) or one-tailed ($>$ or $<$).",
+      "**Significance level:** the threshold for rejecting $H_0$, chosen in advance, typically 0.05. It is also the risk of rejecting a true $H_0$.",
+      "**Test statistic and p-value:** the GDC returns the statistic ($\\chi^2_{calc}$ or $t$) and the p-value, the strength of evidence against $H_0$.",
+      "**Decision rule:** reject $H_0$ if p-value $<$ significance level; otherwise do not reject $H_0$. Then say what that means about the real situation."
+    ]},
+    { "type": "text", "content": "The critical-value method is an exactly equivalent route to the same decision, used when a question quotes a critical value instead of expecting you to read a p-value. Each test statistic has a distribution under $H_0$, and the critical value marks the point beyond which results are counted as surprising. If $\\chi^2_{calc}$ lands beyond the critical value you reject $H_0$; this is precisely the same as the p-value falling below the significance level. Keep both methods to hand, because IB questions use either." },
+
+    { "type": "heading", "content": "The $\\chi^2$ test for independence" },
+    { "type": "text", "content": "Use the $\\chi^2$ test for independence when you have two categorical variables cross-tabulated in a contingency table and want to know whether they are related. For example: is a shopper's age group associated with their preferred payment method? The test compares the observed counts with the expected counts, that is, the counts you would predict if the two variables were completely independent. The bigger the gap between observed and expected, the larger $\\chi^2_{calc}$, and the stronger the evidence of an association." },
+    { "type": "formula", "content": "Hypotheses for a test of independence: \\n $H_0$: the two variables are independent. \\n $H_1$: the two variables are not independent (they are associated)." },
+    { "type": "text", "content": "The expected frequency of any cell comes from its margins. Under independence the proportion in a column should be the same in every row, which gives the compact rule below. The degrees of freedom count how many cells are free to vary once the totals are fixed, which for an $r \\times c$ table is $(r-1)(c-1)$. You then either compare $\\chi^2_{calc}$ with the critical value or read the p-value from the GDC." },
+    { "type": "formula", "content": "Expected frequency of a cell: $E = \\dfrac{(\\text{row total}) \\times (\\text{column total})}{\\text{grand total}}$. \\n Degrees of freedom: $\\text{df} = (r-1)(c-1)$ for an $r \\times c$ table. \\n Decision: reject $H_0$ if $\\chi^2_{calc} >$ critical value, equivalently if p-value $<$ significance level." },
+
+    { "type": "workedExample", "question": "A store surveyed 200 customers, recording each customer's age group (Under 30, 30 or over) and preferred payment method (Cash, Card, Mobile). The observed frequencies are shown below. \\n \\n | | Cash | Card | Mobile | Total | \\n |---|---|---|---|---| \\n | Under 30 | 20 | 40 | 40 | 100 | \\n | 30 or over | 30 | 50 | 20 | 100 | \\n | Total | 50 | 90 | 60 | 200 | \\n \\n (a) Find the expected frequency of customers under 30 who prefer cash. \\n (b) Write down the degrees of freedom. \\n (c) Perform a $\\chi^2$ test for independence at the 5% significance level, stating $\\chi^2_{calc}$, the p-value and your conclusion in context. [7]", "solution": "**(a) Expected frequency.** Using $E = \\dfrac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}$ for the (Under 30, Cash) cell:\\n$E = \\dfrac{100 \\times 50}{200} = 25.$  [M1 for the formula]  [A1]\\n\\n**(b) Degrees of freedom.** The table has $r = 2$ rows and $c = 3$ columns of data, so\\n$\\text{df} = (2-1)(3-1) = 2.$  [A1]\\n\\n**(c) The test.**\\nHypotheses: $H_0$: age group and preferred payment method are independent; $H_1$: they are not independent.  [M1]\\nA $\\chi^2$ test for independence is used at the 5% significance level.\\nEnter the $2 \\times 3$ matrix of observed frequencies into the GDC and run the $\\chi^2$ 2-way test:\\n$\\chi^2_{calc} = 11.9$ (3 s.f.), p-value $= 0.00257$ (3 s.f.).  [A1 for $\\chi^2_{calc}$]  [A1 for p-value]\\nDecision: since p-value $0.00257 < 0.05$, reject $H_0$.  [R1]\\nConclusion in context: there is significant evidence of an association between a customer's age group and their preferred payment method.  [A1]\\n\\nThe test statistic and p-value come straight from the calculator; the marks are for the hypotheses, the correct read-off, the comparison and the contextual sentence." },
+
+    { "type": "text", "content": "Notice the two ways the decision could have been reached. The p-value method used above compares $0.00257$ with $0.05$. The critical-value method would instead compare $\\chi^2_{calc} = 11.9$ with the critical value for 2 degrees of freedom at 5%, which is $5.991$; since $11.9 > 5.991$ we reject $H_0$, the same conclusion. IB questions supply one or the other, so be fluent in both." },
+
+    { "type": "heading", "content": "The $\\chi^2$ goodness-of-fit test" },
+    { "type": "text", "content": "The goodness-of-fit test handles a single categorical variable rather than a relationship between two. You have observed frequencies across several categories and a hypothesised distribution, and you ask whether the data is consistent with it. For instance, a manufacturer claims its sweets come in equal numbers of four colours; a sample lets you test that claim. The mechanics mirror the independence test: expected frequencies come from the claimed distribution, the GDC returns $\\chi^2_{calc}$ and a p-value, and the same decision rule applies. Here the degrees of freedom are (number of categories) $- 1$, reduced by a further 1 for each parameter you had to estimate from the data." },
+    { "type": "workedExample", "question": "A die is rolled 120 times to test whether it is fair. The observed frequencies of the six faces are 15, 24, 18, 13, 27, 23. Test at the 5% significance level whether the die is fair. [5]", "solution": "**Hypotheses.** $H_0$: the die is fair (each face equally likely); $H_1$: the die is not fair.  [M1]\\n\\n**Expected frequencies.** If the die is fair each face is expected $\\dfrac{120}{6} = 20$ times, so the expected list is $20, 20, 20, 20, 20, 20$.  [A1]\\n\\n**Run the test.** A $\\chi^2$ goodness-of-fit test at the 5% level. Enter the observed frequencies in one list and the expected frequencies in another, then run the GDC goodness-of-fit test with $\\text{df} = 6 - 1 = 5$:\\n$\\chi^2_{calc} = 8.60$ (3 s.f.), p-value $= 0.126$ (3 s.f.).  [A1]\\n\\n**Decision and conclusion.** Since p-value $0.126 > 0.05$, do not reject $H_0$.  [R1]\\nThere is insufficient evidence to conclude that the die is unfair.  [A1]\\n\\nA large p-value like $0.126$ means results this uneven arise easily from a fair die, so the data does not convict it." },
+    { "type": "examTip", "content": "For any $\\chi^2$ test the expected frequencies should all exceed 5. If one is smaller, state that the test's validity is affected; you may be asked to combine adjacent categories and reduce the degrees of freedom before continuing. Check this before quoting the result, because examiners award a mark for spotting it." },
+
+    { "type": "heading", "content": "The t-test for comparing two means" },
+    { "type": "text", "content": "When the data is numerical and you want to compare the averages of two independent groups, use a two-sample t-test. 'Independent' means membership of one group has no bearing on the other, for example the exam marks of a class taught with a new method versus a separate class taught traditionally. The null hypothesis is that the two population means are equal; the alternative is that they differ, in either direction for a two-tailed test or in a stated direction for a one-tailed test. As always on Paper 2 the GDC carries the load: enter the two data lists, set the alternative, and read off $t$ and the p-value." },
+    { "type": "formula", "content": "Hypotheses for a two-sample t-test: \\n $H_0$: $\\mu_1 = \\mu_2$ (the two population means are equal). \\n $H_1$: $\\mu_1 \\neq \\mu_2$ (two-tailed), or $\\mu_1 > \\mu_2$ / $\\mu_1 < \\mu_2$ (one-tailed)." },
+    { "type": "workedExample", "question": "Two brands of battery are tested. A sample of brand A lasts, in hours: 8.1, 8.4, 7.9, 8.6, 8.2, 8.0, 8.5. A sample of brand B lasts, in hours: 7.6, 7.9, 8.1, 7.4, 7.8, 8.0. Test, at the 5% significance level, whether brand A lasts longer on average than brand B. [6]", "solution": "**Hypotheses.** Let $\\mu_A$ and $\\mu_B$ be the mean lifetimes. The phrase 'lasts longer' fixes a direction, so this is one-tailed:\\n$H_0$: $\\mu_A = \\mu_B$;  $H_1$: $\\mu_A > \\mu_B$.  [M1]\\n\\n**Test and setup.** A two-sample t-test at the 5% level. Enter brand A in List 1 and brand B in List 2, select the two-sample t-test, and set the alternative to $\\mu_1 > \\mu_2$.  [M1 for correct one-tailed setup]\\n\\n**GDC output.**\\n$t = 2.81$ (3 s.f.), p-value $= 0.00834$ (3 s.f.).  [A1 for $t$]  [A1 for p-value]\\n\\n**Decision and conclusion.** Since p-value $0.00834 < 0.05$, reject $H_0$.  [R1]\\nThere is significant evidence that brand A batteries last longer on average than brand B batteries.  [A1]\\n\\nHad the question merely asked whether the two brands 'differ', the alternative would be $\\mu_A \\neq \\mu_B$ (two-tailed) and the p-value would roughly double, so the tail choice genuinely matters." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Miscounting degrees of freedom** — for an $r \\times c$ table it is $(r-1)(c-1)$, using only the category rows and columns, never the totals. A $3 \\times 2$ table has $\\text{df} = 2$, not 6.",
+      "**Reversing the $\\chi^2$ decision** — reject $H_0$ when $\\chi^2_{calc} >$ critical value (equivalently p-value $<$ significance level), not the other way round. A large $\\chi^2_{calc}$ means strong evidence of association.",
+      "**Getting the expected-frequency formula wrong** — it is $\\dfrac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}$, a product over the grand total, not a sum and not the grand total over the product.",
+      "**Stopping at 'reject $H_0$'** — the final accuracy mark is for a conclusion in context, e.g. 'significant evidence of an association between the variables', not bare symbols.",
+      "**Writing 'accept $H_0$'** — when the p-value is at or above the significance level, say 'insufficient evidence to reject $H_0$'; a test never proves $H_0$ true.",
+      "**Choosing the wrong tail** — 'different / changed' is two-tailed; 'increased / decreased / reduced / longer' is one-tailed. The wrong tail gives the wrong p-value and can flip the decision.",
+      "**Ignoring expected frequencies below 5** — state that this affects the test's validity, and combine categories with adjusted degrees of freedom if instructed."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach; an accuracy mark (A) rewards a correct value and, where it follows an M, depends on that method being present. Follow-through (FT) means an earlier slip need not cost the later marks that depend on it, provided the later step is done correctly on your own figure. A reasoning mark (R) rewards a correct comparison or decision. The engine also accepts any equivalent form and any correctly rounded value. All of that protection exists only if the method is written down. The example below shows every mark earned by a specific line." },
+    { "type": "workedExample", "question": "A $\\chi^2$ test for independence on a $3 \\times 2$ contingency table gives $\\chi^2_{calc} = 7.85$ at the 5% level. State the degrees of freedom, and given the critical value is 5.991, state the conclusion. [4]", "solution": "**Model answer — full working.**\\n\\n**Degrees of freedom.** The table has $r = 3$ rows and $c = 2$ columns, so\\n$\\text{df} = (r-1)(c-1) = (3-1)(2-1) = 2.$\\n\\n**Compare with the critical value.** At the 5% level the critical value is $5.991$, and\\n$\\chi^2_{calc} = 7.85 > 5.991.$\\n\\n**Conclusion.** Since $\\chi^2_{calc}$ exceeds the critical value, reject $H_0$. There is significant evidence of an association between the two variables, that is, the variables are not independent.\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — method for df.** Awarded for using $\\text{df} = (r-1)(c-1)$, shown as $(3-1)(2-1)$. It is the formula, applied to the categories rather than the totals, that earns this mark.\\n- **A1 — value of df.** Awarded for $\\text{df} = 2$. This accuracy mark follows the M1 and is FT: a candidate who wrote the formula and simplified their own bracket correctly keeps it.\\n- **M1 — compare calc with critical.** Awarded for the comparison $7.85 > 5.991$, i.e. testing $\\chi^2_{calc}$ against the critical value. The engine checks the correct direction of the inequality is being used to decide.\\n- **A1 — conclusion in context.** Awarded for 'reject $H_0$: there is significant evidence of an association / the variables are not independent'. This is FT on the candidate's own comparison: a student who compared correctly and drew the matching conclusion keeps it even after an earlier slip.\\n\\n**'Accept equivalent forms.'** The engine accepts the conclusion whether phrased as 'the variables are associated', 'they are not independent', or 'there is significant evidence of an association', and accepts 'since $7.85 > 5.991$' or 'since $\\chi^2_{calc} >$ critical value' as the comparison. Once a correct conclusion appears, later restatements do not lose marks.\\n\\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A student who writes only 'reject $H_0$' with no df and no comparison risks losing 3 of the 4 marks; a student who shows the df formula, the comparison and a contextual conclusion keeps the method regardless of a slip." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks, reasoning marks and follow-through. So always show the method: state $H_0$ and $H_1$, quote the degrees of freedom from $(r-1)(c-1)$, write the comparison (either $\\chi^2_{calc}$ against the critical value or the p-value against the significance level), then conclude in context. The method and follow-through marks are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Hypothesis testing is the decision-making layer that sits on top of the rest of the statistics course. The contingency tables and p-values here build directly on the probability and distributions you have already met, and the same logic, a cautious null, a test statistic, a p-value, a decision in context, reappears whenever you judge whether a correlation, a regression slope or a difference of means is real or just noise. Master the shared five-step logic, keep the two decision methods and the two tail choices straight, and every hypothesis-test question on Paper 2 becomes a variation on a routine you already know how to write." },
+
+    { "type": "practice", "label": "Get a Paper 2 hypothesis test marked: state the hypotheses, quote the statistic and p-value, and conclude in context with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=4.8&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Khan Academy: Chi-square tests", "href": "https://www.khanacademy.org/math/statistics-probability/inference-categorical-data-chi-square-tests" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

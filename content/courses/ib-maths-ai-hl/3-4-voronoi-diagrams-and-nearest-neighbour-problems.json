@@ -1,156 +1,118 @@
 {
   "slug": "3-4-voronoi-diagrams-and-nearest-neighbour-problems",
   "topicCode": "3.4",
+  "unit": { "code": "3", "title": "Geometry and trigonometry" },
   "title": "Voronoi diagrams and nearest-neighbour problems",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces Voronoi diagrams as a powerful tool for solving nearest-neighbour problems. You will learn to construct these diagrams, identify their key features, and apply them to practical scenarios such as facility location and spatial analysis.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A Voronoi diagram takes a scatter of fixed points, called sites, and carves the whole plane into territories, one per site, so that every location belongs to the site it is closest to. This lesson builds the full 3.4 picture: the three ingredients of the diagram (cells, edges and vertices) and exactly what each one means in terms of distance; how to construct a simple diagram by drawing perpendicular bisectors; how to find the equation of a single edge from coordinate geometry; nearest-neighbour interpolation, where an unknown value is estimated by copying the value of the closest site; and the toxic-waste or largest-empty-circle problem, whose optimal point always sits at a Voronoi vertex. Applications run from the nearest hospital or school to signal coverage. Every worked example is laid out exactly the way our marking engine awards the marks, with method marks, dependent accuracy marks and follow-through.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the definition and components of a Voronoi diagram: sites, cells, edges, and vertices.",
-    "Construct a Voronoi diagram for a given set of sites by finding perpendicular bisectors.",
-    "Solve nearest-neighbour problems, including identifying the closest site to a given point.",
-    "Apply Voronoi diagrams to solve problems, such as finding the location for a new facility (the largest empty circle problem)."
+    "State precisely what a cell, an edge and a vertex of a Voronoi diagram represent in terms of distance to the sites.",
+    "Construct a simple Voronoi diagram by finding perpendicular bisectors, and find the equation of a single edge from the coordinates of two sites.",
+    "Use nearest-neighbour interpolation to assign an unknown location the value of its closest site.",
+    "Solve the toxic-waste / largest-empty-circle problem, recognising that the optimal point is a Voronoi vertex and finding the radius as the distance from that vertex to a nearby site.",
+    "Apply Voronoi diagrams to real contexts (nearest hospital or school, signal coverage) and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["3.4"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Mapping Your Territory",
-    "summary": "A Voronoi diagram carves up a map into territories based on proximity to specific points. Each territory contains all the locations that are closer to its designated point than to any other.",
-    "analogy": "Imagine several ice cream vans park in different spots in a large park. The Voronoi diagram would show each van's 'delivery zone'. If you are standing in a particular zone, the van for that zone is the closest one to you. The lines between the zones are the places where you are exactly the same distance from two vans.",
+    "title": "Dividing a Map by Who Is Closest",
+    "summary": "A Voronoi diagram starts with a handful of fixed points, called sites, and paints the map so that every location is coloured by the site nearest to it. Each colour is a cell; the borders between colours are edges; the corners where three colours meet are vertices. That single idea, closest site wins, answers a surprising range of questions.",
+    "analogy": "Picture several fire stations in a city. If a fire breaks out, the nearest station responds. Draw the region each station covers and you have partitioned the whole city into response zones, one per station. Stand anywhere inside a zone and its station is your closest. Stand on a border and two stations are tied for nearest. Stand on a corner where three zones meet and three stations are all exactly the same distance away. That map of zones is a Voronoi diagram.",
     "steps": [
-      "Start with a set of points, called 'sites', on a plane.",
-      "For each pair of neighbouring sites, construct the perpendicular bisector. This line represents all points equidistant from the two sites.",
-      "The intersections of these perpendicular bisectors form the 'vertices' of the diagram.",
-      "The regions, or 'cells', that are formed around each site contain all points in the plane that are closer to that site than any other."
+      "Start with the fixed points, the sites (fire stations, hospitals, phone masts).",
+      "For each pair of neighbouring sites draw the perpendicular bisector of the segment joining them; the part that forms a real border is an edge, and every point on it is equidistant from those two sites.",
+      "Where edges meet you get a vertex, a point equidistant from three sites at once.",
+      "The region enclosed around a single site is its cell: every point inside is closer to that site than to any other."
     ]
   },
+  "keyConcepts": ["cells, edges and vertices", "perpendicular-bisector edges", "largest empty circle"],
   "flashcards": [
-    {
-      "front": "What is a Voronoi diagram?",
-      "back": "A partition of a plane into regions (cells) based on distance to points in a specific subset of the plane (the sites). For each site, there is a corresponding region consisting of all points closer to that site than to any other."
-    },
-    {
-      "front": "What is a 'site' in a Voronoi diagram?",
-      "back": "A site is one of the initial, fixed points in the plane used to generate the Voronoi diagram. For example, the locations of hospitals or schools."
-    },
-    {
-      "front": "What is a 'cell' in a Voronoi diagram?",
-      "back": "A cell is the region around a site that contains all points in the plane that are closer to that site than to any other site. It is also known as a Voronoi polygon."
-    },
-    {
-      "front": "What is an 'edge' in a Voronoi diagram?",
-      "back": "An edge is a line segment that forms part of the boundary of a Voronoi cell. Any point on an edge is equidistant from the two sites whose cells the edge separates."
-    },
-    {
-      "front": "What is a 'vertex' in a Voronoi diagram?",
-      "back": "A vertex is a point where three or more Voronoi edges meet. A vertex is equidistant from the three (or more) sites whose cells meet at that point."
-    },
-    {
-      "front": "What is the geometric relationship between a Voronoi edge and the two sites it separates?",
-      "back": "The Voronoi edge is a segment of the perpendicular bisector of the line segment connecting the two sites."
-    },
-    {
-      "front": "What is the 'largest empty circle' problem?",
-      "back": "This problem seeks to find the largest possible circle within a boundary that does not contain any of the sites. Its centre is often a vertex of the Voronoi diagram."
-    },
-    {
-      "front": "How do you find the equation of a perpendicular bisector between two sites A and B?",
-      "back": "1. Find the midpoint M of AB. 2. Find the gradient of the line segment AB. 3. The gradient of the perpendicular bisector is the negative reciprocal. 4. Use the point-slope form y - y₁ = m(x - x₁) with midpoint M and the perpendicular gradient."
-    },
-    {
-      "front": "Common Trap: Confusing sites and vertices.",
-      "back": "Sites are the initial given points (e.g., hospitals). Vertices are calculated points where the boundary lines of the cells meet. A vertex is a potential location for a new facility equidistant from three sites."
-    },
-    {
-      "front": "What is nearest-neighbour interpolation?",
-      "back": "A method of estimating the value of a function at a specific point by taking the value of the function at the nearest site (data point). The Voronoi diagram determines the 'nearest site' for any given point."
-    }
+    { "front": "Site", "back": "One of the fixed starting points that generates the diagram, for example a hospital, a school or a phone mast. Sites are given data; you do not calculate them. Every cell belongs to exactly one site.", "pillLabel": "Definition" },
+    { "front": "Cell (Voronoi polygon)", "back": "The region belonging to one site: every point inside it is closer to that site than to any other site. A point on the plane belongs to the cell of its nearest site.", "pillLabel": "Definition" },
+    { "front": "Edge", "back": "A boundary segment between two neighbouring cells. Every point on an edge is equidistant from the two sites whose cells it separates, so an edge is part of the perpendicular bisector of the segment joining those two sites.", "pillLabel": "Definition" },
+    { "front": "Vertex", "back": "A point where three (or more) edges meet. A vertex is equidistant from the three sites whose cells surround it, so it is the same distance from three sites at once.", "pillLabel": "Definition" },
+    { "front": "Why edges are perpendicular bisectors", "back": "The set of all points equidistant from two fixed points A and B is exactly the perpendicular bisector of segment [AB]. The border between A's cell and B's cell is where distances tie, so it lies on that perpendicular bisector.", "pillLabel": "Concept" },
+    { "front": "Equation of an edge between A and B", "back": "1) Midpoint M of [AB]. 2) Gradient $m_{AB}$ of [AB]. 3) Perpendicular gradient $m_\\perp = -\\dfrac{1}{m_{AB}}$. 4) Line through M with gradient $m_\\perp$: $y - y_M = m_\\perp(x - x_M)$.", "pillLabel": "Formula" },
+    { "front": "Nearest-neighbour interpolation", "back": "To estimate an unknown value at a location, give it the value of the site whose cell it falls in, its nearest site. Constant within each cell, it jumps at the edges. Simple and fast, but ignores how far away that nearest site is.", "pillLabel": "Method" },
+    { "front": "Largest empty circle / toxic-waste problem", "back": "To place a new point as far as possible from all existing sites inside the region, use a Voronoi vertex: it is a local farthest point because it is equidistant from three sites. The radius of the largest empty circle is the distance from that vertex to any one of its three sites.", "pillLabel": "Application" },
+    { "front": "Radius of the largest empty circle", "back": "Once the optimal vertex V is found, the radius is the distance from V to any one of the three equidistant sites, using $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$. All three give the same value, which is a useful check.", "pillLabel": "Formula" },
+    { "front": "Trap: site versus vertex", "back": "Sites are the given points (hospitals, masts); vertices are calculated corners where three cells meet. A vertex is equidistant from three sites and is the candidate location for the toxic-waste or largest-empty-circle problem, whereas a site is just a starting location.", "pillLabel": "Trap" },
+    { "front": "Trap: edge is not the whole perpendicular bisector", "back": "An edge lies ON the perpendicular bisector of two sites, but only the portion that actually separates the two cells is the edge; the rest of the infinite line is not part of the diagram. In coordinate questions you still quote the full line equation unless asked for the segment.", "pillLabel": "Trap" },
+    { "front": "Trap: nearest by straight-line distance", "back": "Voronoi cells use straight-line (Euclidean) distance. 'Nearest hospital' on a Voronoi diagram means nearest as the crow flies, which need not be the nearest by road. Note this whenever a real context could involve travel routes.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "An edge of a Voronoi diagram between two sites A and B is:", "options": ["The perpendicular bisector of the segment [AB]", "The line segment [AB] itself", "The line through A and B", "A circle centred on the midpoint of [AB]"], "answer": "The perpendicular bisector of the segment [AB]" },
+    { "prompt": "The cell belonging to a site P consists of all points that are:", "options": ["Closer to P than to any other site", "Exactly equidistant from P and one other site", "Further from P than from any other site", "At a fixed distance from P"], "answer": "Closer to P than to any other site" },
+    { "prompt": "A vertex of a Voronoi diagram is a point that is:", "options": ["Equidistant from three sites", "Equidistant from exactly two sites", "One of the original sites", "The midpoint of two sites"], "answer": "Equidistant from three sites" },
+    { "prompt": "A toxic-waste dump must be placed as far as possible from every town, where the towns are the sites. Its optimal location (inside the region) is:", "options": ["At a Voronoi vertex", "At a site", "On the midpoint of the two closest towns", "Anywhere on an edge"], "answer": "At a Voronoi vertex" },
+    { "prompt": "Using nearest-neighbour interpolation, the estimated value at a point is:", "options": ["The value of the site whose cell contains the point", "The average of all the site values", "The value of the site at the nearest vertex", "The distance-weighted mean of the three closest sites"], "answer": "The value of the site whose cell contains the point" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between a site and a vertex in a Voronoi diagram?",
-      "a": "A 'site' is one of the original data points you start with, like the location of a hospital or a post office. A 'vertex' is a calculated point where the boundary lines (edges) of the Voronoi cells meet. A vertex is special because it is equidistant from the three (or more) sites whose cells meet at that point, whereas a site is just a starting location."
-    },
-    {
-      "q": "Do I need to draw the diagrams to scale in an exam?",
-      "a": "No, you are not usually required to draw a perfectly scaled diagram. A clear, well-labelled sketch is sufficient. The key is to show you understand the relationships between sites, edges, and vertices. The marks are awarded for the calculations (finding midpoints, gradients, equations of lines, and intersection points), not for artistic accuracy."
-    }
+    { "q": "What is the difference between a site and a vertex?", "a": "A site is one of the original data points you are given, such as a hospital or a phone mast. A vertex is a calculated point where three edges (and therefore three cells) meet. The vertex is special because it is equidistant from those three sites, which makes it the natural candidate for the largest-empty-circle or toxic-waste problem. Sites are inputs; vertices are outputs you compute." },
+    { "q": "Why is an edge always a perpendicular bisector?", "a": "An edge separates the cell of site A from the cell of site B, so it is made of points that are equally close to A and to B. The set of all points equidistant from two fixed points is, by definition, the perpendicular bisector of the segment joining them. So the edge must lie on that perpendicular bisector. Only the part that genuinely borders the two cells is drawn, but its equation is the perpendicular bisector's equation." },
+    { "q": "Do I need to draw the diagram perfectly to scale in the exam?", "a": "No. A clear, well-labelled sketch is enough. The marks come from the calculations, finding midpoints, gradients, equations of edges, intersection points for vertices and distances, not from artistic accuracy. Show the method for each of these and the sketch simply supports your reasoning." },
+    { "q": "Why is the best toxic-waste location a vertex and not somewhere on an edge?", "a": "Moving along an edge, you stay equidistant from two sites but your distance to a third site keeps changing, so you can usually keep getting further from the whole set by sliding towards a vertex. A vertex is where three edges meet and you are equidistant from three sites at once; you can no longer increase the distance to all of them by a small move. That local balance is why the optimal point inside the region is a vertex." },
+    { "q": "Is 'nearest' always straight-line distance?", "a": "On a standard Voronoi diagram, yes, distance is straight-line (Euclidean). That matters in real contexts: the nearest hospital as the crow flies may not be the nearest by road if a river or motorway is in the way. In the exam, work with straight-line distance unless told otherwise, but be ready to comment that real travel distance can differ." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the fascinating world of Voronoi diagrams! This topic combines geometry, algebra, and real-world problem-solving. We'll explore how to divide a space into regions based on proximity to certain points, a concept with applications ranging from epidemiology and urban planning to computer graphics and biology."
-    },
-    {
-      "type": "heading",
-      "content": "The Building Blocks of a Voronoi Diagram"
-    },
-    {
-      "type": "text",
-      "content": "A Voronoi diagram is constructed from a set of points called **sites**. The diagram partitions the plane into **cells**, where each cell corresponds to one site. The cell for site P contains all points in the plane that are closer to P than to any other site. The boundaries of these cells are called **edges**, and the points where edges intersect are called **vertices**. Understanding these components is the first step to mastering Voronoi diagrams."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Sites:** The initial points given in the problem (e.g., locations of shops).",
-        "**Cells:** The region of influence around each site.",
-        "**Edges:** Lines of equidistance between two sites. They are always segments of perpendicular bisectors.",
-        "**Vertices:** Points of equidistance between three or more sites. They are the intersection points of the edges."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Constructing the Diagram: Perpendicular Bisectors"
-    },
-    {
-      "type": "text",
-      "content": "The core of constructing a Voronoi diagram by hand lies in coordinate geometry. The edge separating two sites, say $A(x_A, y_A)$ and $B(x_B, y_B)$, is part of the perpendicular bisector of the line segment $[AB]$. To find the equation of this edge, you need two things: the midpoint of $[AB]$ and the gradient of the perpendicular line."
-    },
-    {
-      "type": "formula",
-      "content": "Midpoint of $[AB]$: $M = \\left( \\frac{x_A+x_B}{2}, \\frac{y_A+y_B}{2} \\right)$ \\\\ Gradient of $[AB]$: $m_{AB} = \\frac{y_B-y_A}{x_B-x_A}$ \\\\ Gradient of perpendicular bisector: $m_{\\perp} = -\\frac{1}{m_{AB}}$ \\\\ Equation of perpendicular bisector: $y - y_M = m_{\\perp}(x - x_M)$"
-    },
-    {
-      "type": "workedExample",
-      "question": "Three mobile phone masts are located at points A(1, 5), B(7, 7), and C(9, 1). A Voronoi diagram is to be constructed. \\n a) Find the equation of the perpendicular bisector of the line segment [AB]. \\n b) The equation of the perpendicular bisector of [BC] is $y = x - 2$. Find the coordinates of the Voronoi vertex.",
-      "solution": "a) First, find the midpoint of [AB]. \\n $M_{AB} = \\left( \\frac{1+7}{2}, \\frac{5+7}{2} \\right) = (4, 6)$ (M1) \\n Next, find the gradient of the line segment [AB]. \\n $m_{AB} = \\frac{7-5}{7-1} = \\frac{2}{6} = \\frac{1}{3}$ (A1) \\n The gradient of the perpendicular bisector is the negative reciprocal. \\n $m_{\\perp} = -\\frac{1}{1/3} = -3$ (M1) \\n Now use the point-slope form with the midpoint (4, 6) and gradient -3. \\n $y - 6 = -3(x - 4)$ \\n $y - 6 = -3x + 12$ \\n $y = -3x + 18$ (A1) \\n\\n b) The Voronoi vertex is the intersection of the two perpendicular bisectors. We need to solve the system of equations: \\n 1) $y = -3x + 18$ \\n 2) $y = x - 2$ \\n Set the expressions for y equal to each other: \\n $-3x + 18 = x - 2$ (M1) \\n $20 = 4x$ \\n $x = 5$ (A1) \\n Substitute $x=5$ into either equation to find y. Using equation 2: \\n $y = 5 - 2 = 3$ \\n The coordinates of the Voronoi vertex are (5, 3). (A1) This point is equidistant from sites A, B, and C."
-    },
-    {
-      "type": "heading",
-      "content": "Application: The Largest Empty Circle Problem"
-    },
-    {
-      "type": "text",
-      "content": "A classic application of Voronoi diagrams is finding the optimal location for a new facility that needs to be as far as possible from existing sites. This could be a hazardous waste dump that must be distant from towns, or a new park's quiet zone away from noisy playgrounds. The centre of the largest circle that can be drawn on the diagram without containing any sites is called the 'largest empty circle'. Its centre will be one of the Voronoi vertices, and its radius will be the distance from that vertex to any of the three equidistant sites."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 1, you will have your GDC. Use it to your advantage! You can use the simultaneous equation solver to find the intersection of perpendicular bisectors (the vertex). Always write down the equations you are solving to get method marks, even if you use the GDC to find the final answer."
-    },
-    {
-      "type": "workedExample",
-      "question": "Following on from the previous example with phone masts at A(1, 5), B(7, 7), and C(9, 1), a new emergency services antenna needs to be placed as far as possible from all three masts. \\n a) State the optimal location for the new antenna. \\n b) Calculate the distance from this optimal location to any of the three masts, giving your answer to 3 significant figures.",
-      "solution": "a) The optimal location to be as far as possible from all three sites is the Voronoi vertex, which is equidistant from sites A, B, and C. \\n From the previous example, the Voronoi vertex is at (5, 3). (A1) \\n So, the optimal location is (5, 3). \\n\\n b) To find the radius of the 'largest empty circle', we calculate the distance from the vertex V(5, 3) to any of the sites, for example, site A(1, 5). \\n Using the distance formula: $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$ (M1) \\n $d_{VA} = \\sqrt{(5-1)^2 + (3-5)^2}$ \\n $d_{VA} = \\sqrt{4^2 + (-2)^2}$ \\n $d_{VA} = \\sqrt{16 + 4} = \\sqrt{20}$ (A1) \\n $d_{VA} \\approx 4.4721...$ \\n The distance is 4.47 (to 3 s.f.). (A1) \\n (Check with another site, e.g., B(7,7)): \\n $d_{VB} = \\sqrt{(5-7)^2 + (3-7)^2} = \\sqrt{(-2)^2 + (-4)^2} = \\sqrt{4+16} = \\sqrt{20}$. The distance is the same, as expected. (R1)"
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=3.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Interactive Voronoi Diagram Generator",
-          "href": "https://www.jasondavies.com/voronoi/"
-        },
-        {
-          "label": "Khan Academy: Voronoi Diagrams",
-          "href": "https://www.khanacademy.org/computing/computer-science/algorithms/voronoi-diagrams/a/voronoi-diagrams"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Give a delivery company a list of depots and it will want to know, for any address, which depot is closest. Give a health authority a list of hospitals and it will want to map which neighbourhoods each hospital serves. Both questions have the same answer: a Voronoi diagram, which partitions the whole plane into territories so that every point belongs to its nearest site. This lesson covers the full 3.4 picture, the meaning of cells, edges and vertices, constructing a simple diagram, finding the equation of an edge, nearest-neighbour interpolation, and the toxic-waste / largest-empty-circle problem whose answer is always a vertex. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The three ingredients: cells, edges and vertices" },
+    { "type": "text", "content": "A Voronoi diagram begins with a set of fixed points called **sites**, for example the locations of hospitals, schools or phone masts. From them the plane is split into **cells**, one per site. The cell of a site $P$ contains every point that is closer to $P$ than to any other site, so if you are standing somewhere in $P$'s cell then $P$ is your nearest site. The borders between cells are **edges**, and the corners where edges meet are **vertices**. Everything about the diagram flows from one idea: each feature is defined by distance to the sites." },
+    { "type": "keyPoints", "items": [
+      "**Site:** a fixed given point (a hospital, a mast). You do not calculate sites; they are the input.",
+      "**Cell:** the region around a site containing every point closer to that site than to any other. One cell per site.",
+      "**Edge:** a boundary between two cells. Every point on it is equidistant from the two sites it separates, so it lies on their perpendicular bisector.",
+      "**Vertex:** a corner where three (or more) edges meet. It is equidistant from the three sites whose cells meet there."
+    ]},
+    { "type": "text", "content": "It is worth pausing on why an edge is a perpendicular bisector. An edge separates the cell of $A$ from the cell of $B$, so it is made of exactly those points that are equally close to $A$ and to $B$. The set of all points equidistant from two fixed points is precisely the perpendicular bisector of the segment joining them. That single fact, equidistant from two points equals perpendicular bisector, is the engine behind every construction in this topic." },
+
+    { "type": "heading", "content": "Constructing a simple diagram" },
+    { "type": "text", "content": "To construct a Voronoi diagram by hand you draw the perpendicular bisector of each pair of neighbouring sites and keep only the parts that genuinely form borders. For two sites there is a single dividing line. For three sites you draw three perpendicular bisectors; they meet at one vertex, and the three edges radiating from it split the plane into three cells. Adding more sites simply repeats the idea: bisect neighbouring pairs, find where the bisectors cross, and rub out the pieces of each bisector that lie inside a cell where a different site is actually closest." },
+    { "type": "text", "content": "The algebra you need is just coordinate geometry. The edge between two sites $A(x_A, y_A)$ and $B(x_B, y_B)$ is the perpendicular bisector of $[AB]$, so you need its midpoint and the perpendicular gradient." },
+    { "type": "formula", "content": "Midpoint of $[AB]$: $M = \\left( \\dfrac{x_A + x_B}{2}, \\dfrac{y_A + y_B}{2} \\right)$ \\n Gradient of $[AB]$: $m_{AB} = \\dfrac{y_B - y_A}{x_B - x_A}$ \\n Perpendicular gradient: $m_\\perp = -\\dfrac{1}{m_{AB}}$ \\n Equation of the edge: $y - y_M = m_\\perp (x - x_M)$" },
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In Paper 1 the marks are analytic: each is tied to a specific line of working, either a method mark (M) or an accuracy mark (A), and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost you the marks that depend on it, provided the later step is done correctly on your own figures. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "Two sites are at A(2, 1) and B(6, 5). Find the equation of the Voronoi edge between their cells. [4]", "solution": "**Model answer — full working.**\\n\\nThe edge between the cells of $A$ and $B$ is the perpendicular bisector of $[AB]$, the set of points equidistant from $A$ and $B$.\\n\\n**Midpoint of [AB].**\\n$M = \\left( \\dfrac{2 + 6}{2}, \\dfrac{1 + 5}{2} \\right) = (4, 3).$\\n\\n**Gradient of [AB] and the perpendicular gradient.**\\n$m_{AB} = \\dfrac{5 - 1}{6 - 2} = \\dfrac{4}{4} = 1,$ so the perpendicular gradient is $m_\\perp = -\\dfrac{1}{1} = -1.$\\n\\n**Equation of the edge.** Through $M(4, 3)$ with gradient $-1$:\\n$y - 3 = -1(x - 4).$\\n\\n**Simplify.**\\n$y - 3 = -x + 4 \\;\\Rightarrow\\; y = -x + 7.$\\n\\n**Edge:** $y = -x + 7$ (equivalently $x + y = 7$).\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — midpoint.** A method mark for correctly forming the midpoint $M = (4, 3)$ of $[AB]$. It is the approach that is rewarded, so it survives an arithmetic slip further down.\\n- **M1 — perpendicular gradient.** A method mark for finding $m_{AB} = 1$ and taking the negative reciprocal to get $m_\\perp = -1$. The engine checks that you took the perpendicular (negative reciprocal) gradient, not the gradient of $[AB]$ itself.\\n- **A1 — equation.** An accuracy mark for a correct equation of the line through the midpoint with the perpendicular gradient, e.g. $y - 3 = -1(x - 4)$. This A-mark depends on both M-marks above and is earned once the correct point and gradient are combined. FT applies: a candidate whose midpoint or gradient differed but who substituted their own values correctly still earns it.\\n- **A1 — simplified form.** An accuracy mark for the tidy final form $y = -x + 7$ (or any equivalent, such as $x + y = 7$).\\n\\n**'Accept equivalent forms.'** The engine accepts $y = -x + 7$, $y = 7 - x$ and $x + y = 7$ as the same edge. Once a correct final equation appears, subsequent restatements do not lose marks (ISW).\\n\\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the two accuracy marks are shielded by follow-through, but only if the midpoint, the perpendicular gradient and the substitution are all written down." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: state the midpoint, compute the gradient of $[AB]$, take the negative reciprocal for the perpendicular gradient, substitute into the line equation, then simplify. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Finding a vertex and the largest empty circle" },
+    { "type": "text", "content": "A vertex is where two edges cross, so you find it by solving the two edge equations simultaneously. Because a vertex is equidistant from three sites, it answers the classic optimisation question: where should a new facility go so that it is as far as possible from every existing site? This is the **largest-empty-circle** or **toxic-waste** problem, place a hazardous dump as far as possible from all towns, or a new mast as far as possible from all existing masts to avoid interference. Inside the region, the optimal point is always a Voronoi vertex, and the radius of the largest empty circle is the distance from that vertex to any one of its three equidistant sites." },
+    { "type": "examTip", "content": "In Paper 1 you have your GDC. Use the simultaneous-equation solver to find the intersection of two edges (the vertex), but always write down the two equations you are solving so the method mark is on the page, even when the GDC produces the final coordinates." },
+    { "type": "workedExample", "question": "Three phone masts stand at A(1, 5), B(7, 7) and C(9, 1). \\n (a) Find the equation of the Voronoi edge between the cells of A and B. \\n (b) The edge between the cells of B and C is $y = x - 2$. Find the coordinates of the Voronoi vertex. \\n (c) A new emergency antenna must be placed as far as possible from all three masts. State its optimal location and, to 3 significant figures, find its distance from the masts. [8]", "solution": "**(a) Edge between A and B.** This is the perpendicular bisector of $[AB]$.\\n$M_{AB} = \\left( \\dfrac{1+7}{2}, \\dfrac{5+7}{2} \\right) = (4, 6).$  [M1: midpoint]\\n$m_{AB} = \\dfrac{7-5}{7-1} = \\dfrac{2}{6} = \\dfrac{1}{3}, \\qquad m_\\perp = -3.$  [M1: perpendicular gradient]\\nThrough $(4, 6)$ with gradient $-3$: $y - 6 = -3(x - 4)$, so $y = -3x + 18.$  [A1: equation]\\n\\n**(b) Vertex.** The vertex is where the A|B edge meets the B|C edge, so solve simultaneously:\\n$y = -3x + 18 \\quad \\text{and} \\quad y = x - 2.$  [M1: set up simultaneous equations]\\n$-3x + 18 = x - 2 \\;\\Rightarrow\\; 20 = 4x \\;\\Rightarrow\\; x = 5,$ then $y = 5 - 2 = 3.$\\nVertex at $(5, 3)$, equidistant from A, B and C.  [A1]\\n\\n**(c) Optimal antenna.** To be as far as possible from all three masts, place the antenna at the Voronoi vertex $(5, 3)$.  [A1: location]\\nThe distance is the radius of the largest empty circle, from $V(5, 3)$ to any site, say $A(1, 5)$:\\n$d = \\sqrt{(5-1)^2 + (3-5)^2} = \\sqrt{16 + 4} = \\sqrt{20}.$  [M1: distance from vertex to a site]\\n$d = 4.4721\\ldots = 4.47$ (3 s.f.).  [A1]\\nCheck with $B(7, 7)$: $\\sqrt{(5-7)^2 + (3-7)^2} = \\sqrt{4 + 16} = \\sqrt{20}$, the same, as expected for a vertex." },
+
+    { "type": "heading", "content": "Nearest-neighbour interpolation" },
+    { "type": "text", "content": "Sometimes each site carries a value, a weather station records a temperature, a sensor records a pollution level, and you want to estimate the value at a location with no station. **Nearest-neighbour interpolation** does the simplest possible thing: it gives the location the value of its nearest site, that is, the value of the site whose Voronoi cell contains it. So the Voronoi diagram is exactly the map of which value applies where. The estimate is constant across each cell and jumps at the edges. It is quick and needs no weighting, but it ignores how far the nearest site actually is and takes no account of the second-nearest site, so it can be crude near the borders." },
+    { "type": "workedExample", "question": "Three weather stations record midday temperatures: P(0, 0) reads 18 °C, Q(10, 0) reads 22 °C and R(5, 8) reads 15 °C. Using nearest-neighbour interpolation, estimate the temperature at the point T(4, 1). [4]", "solution": "Nearest-neighbour interpolation gives $T$ the temperature of its nearest station, so compare the distances from $T(4,1)$ to each station. (Comparing squared distances is enough and avoids surds.)\\n\\n$PT^2 = (4-0)^2 + (1-0)^2 = 16 + 1 = 17.$  [M1: distances to each site]\\n$QT^2 = (4-10)^2 + (1-0)^2 = 36 + 1 = 37.$\\n$RT^2 = (4-5)^2 + (1-8)^2 = 1 + 49 = 50.$  [A1: all three correct]\\n\\nThe smallest is $PT^2 = 17$, so $P(0,0)$ is the nearest station.  [M1: identify nearest]\\n\\nTherefore the estimated temperature at $T$ is that of station $P$: $18\\ ^\\circ\\text{C}$.  [A1]\\n\\nBecause the method copies the nearest station's reading, the estimate is $18\\ ^\\circ\\text{C}$ everywhere inside P's cell, and would jump the instant $T$ crossed an edge into another station's cell." },
+
+    { "type": "heading", "content": "Applications: nearest facility and coverage" },
+    { "type": "text", "content": "The everyday power of Voronoi diagrams is answering 'which one is nearest?' at a glance. Overlay the diagram for a set of hospitals on a map and every neighbourhood is instantly colour-coded by the hospital that serves it; the same works for schools, fire stations or supermarket depots. Signal coverage is the mirror image: if each mast reaches a fixed radius, the cells tell you which mast a phone should connect to, and comparing a cell's size to that radius reveals gaps where no mast reaches, a coverage hole. Two cautions carry real marks. First, Voronoi 'nearest' is straight-line distance, which can differ from travel distance by road. Second, the diagram assumes the sites are the only thing that matters; a real decision might also weigh capacity or opening hours." },
+    { "type": "examTip", "content": "When a context question asks for the 'nearest hospital' to a point, you usually do not need the whole diagram, just decide which cell the point is in. Compare the distance from the point to each candidate site (squared distances are enough) and pick the smallest. Show those distance comparisons: that is where the method marks live." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Using the segment [AB] or the line through A and B as the edge** — the edge is the PERPENDICULAR BISECTOR of [AB]. Find the midpoint and the negative-reciprocal gradient; do not quote the gradient of [AB] itself.",
+      "**Forgetting the negative reciprocal** — the edge's gradient is $-1/m_{AB}$, not $m_{AB}$. A perpendicular-gradient slip loses the accuracy marks that depend on it.",
+      "**Confusing a site with a vertex** — the toxic-waste / largest-empty-circle answer is a VERTEX (equidistant from three sites), never a site. Solve two edge equations simultaneously to find it.",
+      "**Measuring the radius from the wrong point** — the largest empty circle is centred at the vertex; its radius is the distance from that VERTEX to a site, not the distance between two sites or from a midpoint.",
+      "**Weighting or averaging in nearest-neighbour interpolation** — nearest-neighbour copies the single nearest site's value; it does not average the neighbours or weight by distance. Compare distances and take the closest.",
+      "**Not showing the simultaneous equations for a vertex** — even when the GDC finds the intersection, write down the two edge equations you solved, or the method mark is lost.",
+      "**Assuming 'nearest' means nearest by road** — Voronoi cells use straight-line distance; note the distinction whenever a real route could differ."
+    ]},
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Voronoi diagrams tie the coordinate geometry of 3.1 to 3.3, midpoints, gradients, perpendicular lines and the distance formula, into a single tool for reasoning about proximity. The habit they build, define a feature by distance and then compute it, is exactly the discipline every applied geometry question rewards: state what is equidistant, form the perpendicular bisector, solve for the vertex, measure the radius. Master that chain and the optimisation flavour of the toxic-waste problem generalises far beyond masts and hospitals, to any situation where the best location is the one that balances the distances to a set of fixed points." },
+
+    { "type": "practice", "label": "Get a Paper 2 question marked: find a Voronoi edge, a vertex and the largest empty circle with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=3.4&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Interactive Voronoi diagram explorer", "href": "https://www.jasondavies.com/voronoi/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

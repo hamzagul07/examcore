@@ -415,6 +415,18 @@
   text-align: center;
 }
 .rc-empty-glyph { font-size: 40px; }
+.rc-official-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin-left: 6px;
+  padding: 1px 7px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--ec-accent);
+  background: color-mix(in srgb, var(--ec-accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ec-accent) 35%, transparent);
+  border-radius: 999px;
+  vertical-align: middle;
+}
 .rc-empty-sub {
   max-width: 46ch;
   font-size: 0.9rem;

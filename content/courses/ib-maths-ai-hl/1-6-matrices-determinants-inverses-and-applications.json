@@ -1,189 +1,141 @@
 {
   "slug": "1-6-matrices-determinants-inverses-and-applications",
   "topicCode": "1.6",
+  "unit": { "code": "1", "title": "Number and algebra" },
   "title": "Matrices: determinants, inverses and applications",
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores matrix determinants and inverses. It covers calculating the determinant for 2x2 and 3x3 matrices, finding the inverse of a matrix, and applying these concepts to solve systems of linear equations, a key skill for Paper 1.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A matrix is a rectangular array of numbers that behaves like a single object you can add, scale and multiply, and this lesson builds the full HL 1.6 toolkit around it. It covers the matrix operations you must be fluent in, addition, scalar multiplication and multiplication, together with the conformability rule that decides when a product even exists; the identity matrix and its role; the determinant of a 2x2 matrix (by hand) and of a 3x3 matrix (by GDC); the inverse of a 2x2 matrix from the formula-booklet formula and of a 3x3 from the GDC; the central application of writing a linear system as $A\\mathbf{x}=\\mathbf{b}$ and solving it as $\\mathbf{x}=A^{-1}\\mathbf{b}$; and further applications such as encoding messages and representing geometric transformations as matrices. Because matrices sit on Paper 1 as well as Paper 2, the emphasis is on getting the order of multiplication right, knowing when a matrix is singular, and showing the method our marking engine rewards. Every worked example is laid out exactly the way that engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Calculate the determinant of 2x2 and 3x3 matrices.",
-    "Find the inverse of a 2x2 matrix by hand and a 3x3 matrix using technology.",
-    "Represent a system of linear equations in matrix form (AX = B).",
-    "Solve systems of linear equations using the inverse matrix method (X = A⁻¹B)."
+    "Add, scalar-multiply and multiply matrices, and use the conformability rule to decide when a product is defined and what its order will be.",
+    "State the role of the identity matrix and calculate the determinant of a 2x2 matrix by hand and of a 3x3 matrix using the GDC.",
+    "Find the inverse of a 2x2 matrix using the formula and of a 3x3 matrix using the GDC, and recognise a singular matrix from a zero determinant.",
+    "Represent a system of linear equations as $A\\mathbf{x}=\\mathbf{b}$ and solve it as $\\mathbf{x}=A^{-1}\\mathbf{b}$, using the GDC for 3x3 systems.",
+    "Apply matrices to real contexts such as encoding messages and geometric transformations, and present working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["1.6"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
     "title": "The Matrix Master Key",
-    "summary": "The inverse of a matrix acts like a 'master key' to unlock systems of equations. By finding this key, we can efficiently solve for multiple unknown variables at once.",
-    "analogy": "Imagine you have a secret message written as a list of numbers. To encode it, you multiply it by a secret 'key' matrix, scrambling the numbers. To decode the message, your friend needs the 'inverse key' matrix. Multiplying the scrambled message by this inverse matrix reveals the original message. The determinant is a special number that tells you if an inverse key even exists; if it's zero, the code is unbreakable because there's no unique inverse.",
+    "summary": "A matrix packages a whole block of numbers into one object you can add, scale and multiply. Its determinant is a single number that tells you whether the matrix can be 'undone', and its inverse is the master key that unlocks a whole system of equations in one step.",
+    "analogy": "Think of a secret message written as a column of numbers. To encode it you multiply by a secret 'key' matrix, scrambling the numbers into nonsense. Your friend decodes it by multiplying the scramble by the inverse key, which puts the original numbers back. The determinant is a quick health-check on the key: if it is zero, no inverse exists, so the code can never be undone uniquely. Solving $A\\mathbf{x}=\\mathbf{b}$ works the same way, the inverse of the coefficient matrix is the key that reveals the unknowns.",
     "steps": [
-      "Calculate the determinant of the coefficient matrix. This single number determines if a unique solution exists.",
-      "For a 2x2 matrix, use the formula to find its inverse. For 3x3 or larger, use your GDC.",
-      "Represent the system of linear equations in the matrix form AX = B, where A is the coefficient matrix, X is the variable matrix, and B is the constant matrix.",
-      "Solve for the variables by calculating X = A⁻¹B. This involves multiplying the inverse matrix by the constant matrix, which your GDC can do in one step."
+      "Check the shapes. Before multiplying two matrices, confirm they are conformable, the number of columns of the first must equal the number of rows of the second, and the product inherits the outer dimensions.",
+      "Find the determinant. For a 2x2 matrix use $ad-bc$ by hand; for a 3x3 use the GDC. If it is zero the matrix is singular and has no inverse.",
+      "Find the inverse. For a 2x2 use the formula-booklet formula; for a 3x3 go straight to the GDC. Multiplying a matrix by its inverse gives the identity.",
+      "Solve the system. Write the equations as $A\\mathbf{x}=\\mathbf{b}$, then compute $\\mathbf{x}=A^{-1}\\mathbf{b}$ (order matters), reading the answer straight off the GDC for a 3x3 system."
     ]
   },
+  "keyConcepts": ["matrix operations", "determinants and inverses", "solving linear systems"],
   "flashcards": [
-    {
-      "front": "What is the determinant of a 2x2 matrix, $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$?",
-      "back": "The determinant is the scalar value $det(A) = ad - bc$."
-    },
-    {
-      "front": "What is a singular matrix?",
-      "back": "A square matrix whose determinant is zero. A singular matrix does not have an inverse."
-    },
-    {
-      "front": "What is a non-singular matrix?",
-      "back": "A square matrix whose determinant is not zero. A non-singular matrix always has an inverse."
-    },
-    {
-      "front": "What is the identity matrix, $I$?",
-      "back": "A square matrix with 1s on the main diagonal and 0s elsewhere. For any matrix A, $AI = IA = A$."
-    },
-    {
-      "front": "What is the inverse of a matrix A?",
-      "back": "A matrix $A^{-1}$ such that the product $AA^{-1} = A^{-1}A = I$, where $I$ is the identity matrix."
-    },
-    {
-      "front": "What is the formula for the inverse of a 2x2 matrix, $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$?",
-      "back": "$A^{-1} = \\frac{1}{ad-bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. This is in the formula booklet."
-    },
-    {
-      "front": "How do you represent a system of linear equations in matrix form?",
-      "back": "As the equation $AX = B$, where A is the matrix of coefficients, X is the column matrix of variables, and B is the column matrix of constants."
-    },
-    {
-      "front": "How do you solve the matrix equation $AX = B$ for $X$?",
-      "back": "Pre-multiply both sides by the inverse of A: $X = A^{-1}B$. The order of multiplication is crucial."
-    },
-    {
-      "front": "When does a system of linear equations represented by $AX=B$ have a unique solution?",
-      "back": "When the coefficient matrix A is non-singular, meaning its determinant is non-zero ($det(A) \\neq 0$)."
-    },
-    {
-      "front": "What is a common mistake when finding a 2x2 inverse by hand?",
-      "back": "Forgetting to multiply the rearranged matrix by the scalar fraction $1/det(A)$. This is a frequent cause of lost marks."
-    },
-    {
-      "front": "How should you find the inverse of a 3x3 matrix in an exam?",
-      "back": "Always use your Graphical Display Calculator (GDC). The exam is testing your ability to set up the problem and use your tool efficiently, not perform lengthy manual calculations."
-    }
+    { "front": "Conformability for multiplication", "back": "To form $AB$ the number of columns of $A$ must equal the number of rows of $B$. An $(m \\times n)$ matrix times an $(n \\times p)$ matrix gives an $(m \\times p)$ matrix. If the inner dimensions disagree, the product is undefined.", "pillLabel": "Rule" },
+    { "front": "Is matrix multiplication commutative?", "back": "No. In general $AB \\neq BA$; sometimes only one of the two products is even defined. Always preserve the order in which matrices are written, this is why we pre-multiply to solve $A\\mathbf{x}=\\mathbf{b}$.", "pillLabel": "Trap" },
+    { "front": "Identity matrix $I$", "back": "A square matrix with 1s on the leading diagonal and 0s elsewhere. It is the 'do nothing' matrix: $AI = IA = A$ for any conformable $A$. The $2 \\times 2$ identity is $\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.", "pillLabel": "Definition" },
+    { "front": "Determinant of a 2x2 matrix", "back": "For $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, $\\det A = ad - bc$. It is a scalar (a single number), not a matrix, and it decides whether $A$ has an inverse.", "pillLabel": "Formula" },
+    { "front": "Determinant of a 3x3 matrix", "back": "In AI HL you evaluate a $3 \\times 3$ determinant with the GDC, not by hand. You still need to know what it tells you: $\\det A = 0$ means singular (no inverse, no unique solution).", "pillLabel": "GDC" },
+    { "front": "Singular vs non-singular", "back": "Singular: $\\det A = 0$, so $A$ has NO inverse. Non-singular: $\\det A \\neq 0$, so $A^{-1}$ exists and is unique. Only non-singular coefficient matrices give a unique solution to $A\\mathbf{x}=\\mathbf{b}$.", "pillLabel": "Concept" },
+    { "front": "Inverse of a 2x2 matrix", "back": "$A^{-1} = \\dfrac{1}{ad-bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$: swap the leading diagonal, negate the other diagonal, divide by the determinant. This formula is in the formula booklet.", "pillLabel": "Formula" },
+    { "front": "Inverse of a 3x3 matrix", "back": "Use the GDC. Enter the matrix and apply the inverse (x^{-1}) key. You are never expected to invert a $3 \\times 3$ by hand in AI HL; the marks are for setting up and interpreting, not for grinding.", "pillLabel": "GDC" },
+    { "front": "Defining property of an inverse", "back": "$A^{-1}$ is the matrix with $AA^{-1} = A^{-1}A = I$. Multiplying by the inverse 'undoes' the matrix, exactly as dividing undoes multiplying for ordinary numbers.", "pillLabel": "Definition" },
+    { "front": "Matrix form of a linear system", "back": "A system of linear equations is written $A\\mathbf{x} = \\mathbf{b}$, where $A$ holds the coefficients, $\\mathbf{x}$ is the column of unknowns and $\\mathbf{b}$ is the column of constants. Line up the variables in the same order in every equation before reading off $A$.", "pillLabel": "Framework" },
+    { "front": "Solving $A\\mathbf{x}=\\mathbf{b}$", "back": "Pre-multiply by $A^{-1}$: $A^{-1}A\\mathbf{x} = A^{-1}\\mathbf{b}$, so $\\mathbf{x} = A^{-1}\\mathbf{b}$. The inverse must go on the LEFT of $\\mathbf{b}$, and a unique solution exists only when $\\det A \\neq 0$.", "pillLabel": "Formula" },
+    { "front": "Order trap: $A^{-1}\\mathbf{b}$ not $\\mathbf{b}A^{-1}$", "back": "Because multiplication is not commutative, $\\mathbf{x} = A^{-1}\\mathbf{b}$, never $\\mathbf{b}A^{-1}$. In fact $\\mathbf{b}A^{-1}$ is not even conformable when $\\mathbf{b}$ is a column, so the wrong order is a genuine error, not a stylistic choice.", "pillLabel": "Trap" },
+    { "front": "Common 2x2 inverse slip", "back": "Forgetting the scalar $\\frac{1}{ad-bc}$: candidates swap and negate the entries but leave out the division by the determinant. No division means the answer is not an inverse, an easy mark to lose.", "pillLabel": "Trap" },
+    { "front": "Matrices as transformations", "back": "Multiplying a position vector by a matrix maps it to a new point, so matrices encode geometric transformations (rotations, reflections, enlargements, shears). Combining transformations corresponds to multiplying their matrices, in reverse order of application.", "pillLabel": "Application" }
+  ],
+  "quickCheck": [
+    { "prompt": "For two matrices $A$ and $B$ for which both products exist, which statement is always true?", "options": ["$AB = BA$", "In general $AB \\neq BA$", "$AB$ and $BA$ always have the same dimensions", "Matrix multiplication is commutative"], "answer": "In general $AB \\neq BA$" },
+    { "prompt": "The product $AB$ of an $(2 \\times 3)$ matrix $A$ and a $(3 \\times 4)$ matrix $B$ is:", "options": ["A $2 \\times 4$ matrix", "A $3 \\times 3$ matrix", "Undefined", "A $4 \\times 2$ matrix"], "answer": "A $2 \\times 4$ matrix" },
+    { "prompt": "The determinant of $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ is:", "options": ["$ad - bc$", "$ab - cd$", "$ad + bc$", "$ac - bd$"], "answer": "$ad - bc$" },
+    { "prompt": "To solve $A\\mathbf{x} = \\mathbf{b}$ for the column vector $\\mathbf{x}$, you compute:", "options": ["$\\mathbf{x} = A^{-1}\\mathbf{b}$", "$\\mathbf{x} = \\mathbf{b}A^{-1}$", "$\\mathbf{x} = A\\mathbf{b}$", "$\\mathbf{x} = \\mathbf{b}A$"], "answer": "$\\mathbf{x} = A^{-1}\\mathbf{b}$" },
+    { "prompt": "A square matrix $A$ has $\\det A = 0$. This means:", "options": ["$A$ is singular and has no inverse", "$A$ has a unique inverse", "$A$ is the identity matrix", "$A\\mathbf{x} = \\mathbf{b}$ always has a unique solution"], "answer": "$A$ is singular and has no inverse" }
   ],
   "faq": [
-    {
-      "q": "What does it mean if the determinant of a matrix is zero?",
-      "a": "If $det(A) = 0$, the matrix A is called 'singular'. This means it does not have an inverse. In the context of solving a system of linear equations $AX=B$, this implies that the system does not have a unique solution. It will either have no solutions at all or an infinite number of solutions."
-    },
-    {
-      "q": "Do I need to memorise the formula for the inverse of a 3x3 matrix?",
-      "a": "Absolutely not. For the Mathematics: Applications and Interpretation HL course, you are only expected to calculate the inverse of a 2x2 matrix by hand using the formula in the booklet. For any matrix of size 3x3 or larger, you should always use your GDC. The skill being tested is your ability to set up the problem and use technology to find the solution."
-    },
-    {
-      "q": "Why is the solution $X = A^{-1}B$ and not $X = BA^{-1}$?",
-      "a": "This is because matrix multiplication is not commutative, which means the order of multiplication matters ($AB \\neq BA$ in general). To solve $AX=B$, we must 'pre-multiply' both sides by $A^{-1}$ to maintain the order. This gives $A^{-1}(AX) = A^{-1}B$. Since $A^{-1}A = I$ (the identity matrix) and $IX = X$, the equation simplifies to $X = A^{-1}B$. Multiplying in the wrong order ($BA^{-1}$) would be mathematically incorrect and would give the wrong answer."
-    }
+    { "q": "When is a matrix product actually defined?", "a": "Only when the matrices are conformable: the number of columns of the first must equal the number of rows of the second. An $(m \\times n)$ times an $(n \\times p)$ gives an $(m \\times p)$ result; if the two inner numbers disagree the product simply does not exist. This is why checking shapes first saves you from writing down a product that cannot be formed." },
+    { "q": "Why is the solution $\\mathbf{x} = A^{-1}\\mathbf{b}$ and not $\\mathbf{x} = \\mathbf{b}A^{-1}$?", "a": "Matrix multiplication is not commutative, so order matters. Starting from $A\\mathbf{x} = \\mathbf{b}$, pre-multiplying both sides by $A^{-1}$ gives $A^{-1}A\\mathbf{x} = A^{-1}\\mathbf{b}$, and since $A^{-1}A = I$ and $I\\mathbf{x} = \\mathbf{x}$ this simplifies to $\\mathbf{x} = A^{-1}\\mathbf{b}$. Writing $\\mathbf{b}A^{-1}$ reverses the order and, with $\\mathbf{b}$ a column vector, is not even conformable, so it is wrong, not just unconventional." },
+    { "q": "Do I need to invert a 3x3 matrix by hand?", "a": "No. In AI HL you invert a $2 \\times 2$ matrix using the formula-booklet formula, and you use the GDC for anything larger, including every $3 \\times 3$. The skill being examined is setting the problem up as $A\\mathbf{x}=\\mathbf{b}$ and driving the calculator, not performing lengthy cofactor arithmetic by hand." },
+    { "q": "What does a zero determinant mean for a system of equations?", "a": "If $\\det A = 0$ the coefficient matrix is singular and has no inverse, so $A\\mathbf{x}=\\mathbf{b}$ has no unique solution, it either has no solutions or infinitely many. Geometrically the equations describe planes (or lines) that fail to meet in a single point. On the GDC this shows up as an error when you try to compute $A^{-1}$ or $A^{-1}\\mathbf{b}$." },
+    { "q": "How are matrices used for encoding and transformations?", "a": "For encoding, letters are turned into numbers, arranged in a matrix, and multiplied by a non-singular 'key' matrix to scramble them; the receiver multiplies by the inverse key to decode. For geometry, multiplying a point's position vector by a suitable matrix rotates, reflects, enlarges or shears it, and multiplying the transformation matrices together composes several transformations into one." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Matrices are more than just grids of numbers; they are powerful tools used in diverse fields like computer graphics to rotate and scale images, in economics to model complex market systems, and in cryptography to secure information. In this lesson, we will unlock one of the most powerful applications of matrices: solving systems of linear equations by exploring determinants and inverses."
-    },
-    {
-      "type": "heading",
-      "content": "The Determinant: A Matrix's 'Magic Number'"
-    },
-    {
-      "type": "text",
-      "content": "Every square matrix has a special number associated with it, called its determinant. This single value, denoted as $det(A)$ or $|A|$, tells us crucial information about the matrix, most importantly whether an inverse of the matrix exists. For the AI HL course, you need to calculate the determinant of a 2x2 matrix by hand and use your GDC for any larger matrix, such as a 3x3."
-    },
-    {
-      "type": "formula",
-      "content": "For a 2x2 matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, the determinant is calculated as: \n$det(A) = ad - bc$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The determinant is a scalar (a single number), not a matrix.",
-        "If $det(A) = 0$, the matrix is called **singular**. It has no inverse.",
-        "If $det(A) \\neq 0$, the matrix is called **non-singular**. It has an inverse."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Finding the Inverse of a Matrix"
-    },
-    {
-      "type": "text",
-      "content": "The inverse of a matrix $A$, denoted $A^{-1}$, is the matrix that 'undoes' the effect of $A$. When a matrix is multiplied by its inverse, the result is the identity matrix $I$. This property is the key to solving matrix equations. You are expected to find the inverse of a 2x2 matrix using a formula, and the inverse of a 3x3 matrix using your GDC."
-    },
-    {
-      "type": "formula",
-      "content": "The inverse of a 2x2 matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ is given by:\n$A^{-1} = \\frac{1}{det(A)} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$"
-    },
-    {
-      "type": "examTip",
-      "content": "The formula for the 2x2 inverse is in your formula booklet. However, you must remember the condition for its existence: $det(A) \\neq 0$. For any matrix of size 3x3 or larger, go straight to your GDC. The marks are for setting up the problem correctly and interpreting the calculator's output."
-    },
-    {
-      "type": "workedExample",
-      "question": "Let the matrix $P = \\begin{pmatrix} 4 & -2 \\\\ 5 & -3 \\end{pmatrix}$.\n(a) Find $det(P)$.\n(b) Hence, find $P^{-1}$.",
-      "solution": "(a) Using the formula $det(P) = ad - bc$.\n$det(P) = (4)(-3) - (-2)(5)$ (M1 for correct substitution)\n$det(P) = -12 - (-10)$\n$det(P) = -2$ (A1)\n\n(b) Since $det(P) \\neq 0$, an inverse exists. Using the formula $P^{-1} = \\frac{1}{det(P)} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$.\n$P^{-1} = \\frac{1}{-2} \\begin{pmatrix} -3 & 2 \\\\ -5 & 4 \\end{pmatrix}$ (M1 for correct substitution into formula)\n$P^{-1} = \\begin{pmatrix} 1.5 & -1 \\\\ 2.5 & -2 \\end{pmatrix}$ (A1)\nIt is acceptable to leave the answer with the scalar multiple outside or to multiply it in."
-    },
-    {
-      "type": "heading",
-      "content": "Application: Solving Systems of Linear Equations"
-    },
-    {
-      "type": "text",
-      "content": "The primary application of matrix inverses in this course is solving systems of linear equations. A system of equations can be elegantly represented by a single matrix equation, $AX = B$."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**A** is the square matrix of the coefficients of the variables.",
-        "**X** is a column matrix of the variables (e.g., $x, y, z$).",
-        "**B** is a column matrix of the constants on the right-hand side of the equations."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "To solve for the variables in matrix X, we can't 'divide' by matrix A. Instead, we pre-multiply both sides of the equation by the inverse matrix, $A^{-1}$."
-    },
-    {
-      "type": "formula",
-      "content": "$A X = B \\implies A^{-1}(AX) = A^{-1}B \\implies (A^{-1}A)X = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A bakery sells three types of cakes: Chocolate, Vanilla, and Red Velvet. On Monday, they sell 10 Chocolate, 5 Vanilla, and 8 Red Velvet cakes for a total revenue of £350. On Tuesday, they sell 12 Chocolate, 7 Vanilla, and 6 Red Velvet cakes for £390. On Wednesday, they sell 8 Chocolate, 10 Vanilla, and 5 Red Velvet cakes for £395. Let $c, v, r$ be the prices in £ for one Chocolate, Vanilla, and Red Velvet cake, respectively. Find the price of each type of cake.",
-      "solution": "First, set up the system of linear equations:\n$10c + 5v + 8r = 350$\n$12c + 7v + 6r = 390$\n$8c + 10v + 5r = 395$ (M1 for setting up all three equations correctly)\n\nNext, write this system in matrix form $AX = B$:\n$A = \\begin{pmatrix} 10 & 5 & 8 \\\\ 12 & 7 & 6 \\\\ 8 & 10 & 5 \\end{pmatrix}$, $X = \\begin{pmatrix} c \\\\ v \\\\ r \\end{pmatrix}$, $B = \\begin{pmatrix} 350 \\\\ 390 \\\\ 395 \\end{pmatrix}$ (A1 for correct matrices A, X and B)\n\nWe solve for X by calculating $X = A^{-1}B$. This is done on the GDC.\nEnter matrix A and matrix B into your calculator. Then compute $A^{-1}B$. (M1 for the intent to solve using $X=A^{-1}B$)\n\nThe calculator gives:\n$X = \\begin{pmatrix} 15 \\\\ 20 \\\\ 12.5 \\end{pmatrix}$ (A2 for all correct values)\n\nTherefore, the prices are: Chocolate cake = £15, Vanilla cake = £20, and Red Velvet cake = £12.50. (A1 for correct interpretation in context)"
-    },
-    {
-      "type": "examTip",
-      "content": "For questions involving solving systems of equations, you MUST show the initial setup. Writing down the system of equations (if not given) and then the matrix equation $AX=B$ will earn you method marks, even if you make a mistake entering the numbers into your calculator. Simply writing the final answer from your GDC will not earn full marks."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Solving Matrix Equations",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=1.6"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra: Matrix Inverse Visualizer",
-          "href": "https://www.geogebra.org/m/C3b4bN9Z"
-        },
-        {
-          "label": "Khan Academy: Solving systems with matrix inverses",
-          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:solving-equations-with-matrix-inverses/a/solving-systems-of-equations-with-matrix-inverses"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Matrices are more than grids of numbers, they are single objects you can add, scale and multiply, and that packaging makes them the natural language for anything organised in rows and columns. Computer graphics rotate and scale images with them, cryptographers scramble messages with them, and economists model interlocking markets with them. This lesson builds the full HL 1.6 toolkit: the matrix operations and the conformability rule that governs multiplication, the identity matrix, determinants of 2x2 and 3x3 matrices, the inverse of a 2x2 by formula and a 3x3 by GDC, and the central application, solving a linear system as $A\\mathbf{x}=\\mathbf{b} \\Rightarrow \\mathbf{x}=A^{-1}\\mathbf{b}$, before finishing with encoding and geometric transformations. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "Matrix operations and conformability" },
+    { "type": "text", "content": "A matrix is described by its order, rows by columns. You add or subtract two matrices only when they have the same order, combining entries in matching positions. Scalar multiplication multiplies every entry by the same number. Multiplication is the operation that surprises people: to multiply $A$ by $B$ you take rows of $A$ against columns of $B$, so the inner dimensions must match. The rule for this is called conformability." },
+    { "type": "keyPoints", "items": [
+      "**Addition / subtraction:** only for matrices of the SAME order; add entry by entry.",
+      "**Scalar multiplication:** multiply every entry by the scalar; the order is unchanged.",
+      "**Multiplication:** $AB$ exists only if the number of columns of $A$ equals the number of rows of $B$. An $(m \\times n)$ times an $(n \\times p)$ gives an $(m \\times p)$ matrix.",
+      "**Not commutative:** in general $AB \\neq BA$; sometimes only one order is even defined."
+    ]},
+    { "type": "formula", "content": "Conformability: $(m \\times n) \\times (n \\times p) \\rightarrow (m \\times p)$. \\n The two INNER numbers must agree ($n = n$); the OUTER numbers give the order of the product." },
+    { "type": "text", "content": "Because order matters, keep the sequence of any product exactly as written. This single fact, that $AB \\neq BA$, is the reason we must be careful when we later 'pre-multiply' both sides of a matrix equation by an inverse." },
+
+    { "type": "heading", "content": "The identity matrix" },
+    { "type": "text", "content": "Among square matrices, one plays the role that 1 plays for numbers: the identity matrix $I$, with 1s on the leading diagonal and 0s everywhere else. Multiplying any conformable matrix by $I$ leaves it unchanged, $AI = IA = A$. The identity is what an inverse produces: $A^{-1}$ is precisely the matrix for which $AA^{-1} = A^{-1}A = I$, so the identity is the target every inverse aims at." },
+    { "type": "formula", "content": "The $2 \\times 2$ identity: $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$, with $AI = IA = A$. \\n An inverse satisfies $AA^{-1} = A^{-1}A = I$." },
+
+    { "type": "heading", "content": "The determinant" },
+    { "type": "text", "content": "Every square matrix carries a single number called its determinant, written $\\det A$ or $|A|$, that decides whether the matrix can be inverted. For a $2 \\times 2$ matrix you compute it by hand; for a $3 \\times 3$ you use the GDC. Whatever the size, the meaning is the same: a non-zero determinant means an inverse exists, a zero determinant means it does not." },
+    { "type": "formula", "content": "For a 2x2 matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$: \\n $\\det A = ad - bc$ (a scalar, not a matrix)." },
+    { "type": "keyPoints", "items": [
+      "The determinant is a single number, not a matrix.",
+      "If $\\det A = 0$ the matrix is **singular** and has NO inverse.",
+      "If $\\det A \\neq 0$ the matrix is **non-singular** and has a unique inverse.",
+      "For a $3 \\times 3$ matrix, evaluate the determinant on the GDC."
+    ]},
+
+    { "type": "heading", "content": "The inverse of a matrix" },
+    { "type": "text", "content": "The inverse $A^{-1}$ undoes the effect of $A$: multiply them together, in either order, and you get the identity. For a $2 \\times 2$ matrix there is a compact formula in the booklet; for a $3 \\times 3$ you use the GDC. In both cases the inverse exists only when $\\det A \\neq 0$." },
+    { "type": "formula", "content": "Inverse of a 2x2 matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$: \\n $A^{-1} = \\dfrac{1}{ad - bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$, provided $ad - bc \\neq 0$." },
+    { "type": "examTip", "content": "The 2x2 inverse formula is in your formula booklet, but the condition $\\det A \\neq 0$ is not written beside the answer, you must supply it. Swap the leading diagonal, negate the off-diagonal, then divide the WHOLE matrix by the determinant. For anything $3 \\times 3$ or larger, go straight to the GDC: the marks are for the correct set-up and interpretation, not manual arithmetic." },
+    { "type": "workedExample", "question": "Let the matrix $P = \\begin{pmatrix} 4 & -2 \\\\ 5 & -3 \\end{pmatrix}$. \\n (a) Find $\\det P$. \\n (b) Hence find $P^{-1}$. [4]", "solution": "**(a) Determinant.** Using $\\det P = ad - bc$:\\n$\\det P = (4)(-3) - (-2)(5) = -12 - (-10) = -2.$  [M1 substitution]  [A1]\\n\\n**(b) Inverse.** Since $\\det P = -2 \\neq 0$, an inverse exists. Using $P^{-1} = \\dfrac{1}{\\det P}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$:\\n$P^{-1} = \\dfrac{1}{-2}\\begin{pmatrix} -3 & 2 \\\\ -5 & 4 \\end{pmatrix}$  [M1 substitution into formula]\\n$P^{-1} = \\begin{pmatrix} 1.5 & -1 \\\\ 2.5 & -2 \\end{pmatrix}.$  [A1]\\n\\nEither form, with the scalar left outside or multiplied in, is accepted." },
+
+    { "type": "heading", "content": "Application: solving systems of linear equations" },
+    { "type": "text", "content": "The headline application of inverses is solving simultaneous linear equations. Line the variables up in the same order in each equation and the whole system collapses into one matrix equation $A\\mathbf{x} = \\mathbf{b}$, with $A$ the coefficients, $\\mathbf{x}$ the unknowns and $\\mathbf{b}$ the constants." },
+    { "type": "keyPoints", "items": [
+      "**$A$** is the square matrix of coefficients (variables in a fixed order).",
+      "**$\\mathbf{x}$** is the column of unknowns, e.g. $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$.",
+      "**$\\mathbf{b}$** is the column of constants from the right-hand sides."
+    ]},
+    { "type": "text", "content": "You cannot divide by a matrix, so instead pre-multiply both sides by $A^{-1}$. Because $A^{-1}A = I$, this isolates $\\mathbf{x}$." },
+    { "type": "formula", "content": "$A\\mathbf{x} = \\mathbf{b} \\ \\Rightarrow\\ A^{-1}(A\\mathbf{x}) = A^{-1}\\mathbf{b} \\ \\Rightarrow\\ (A^{-1}A)\\mathbf{x} = A^{-1}\\mathbf{b} \\ \\Rightarrow\\ I\\mathbf{x} = A^{-1}\\mathbf{b} \\ \\Rightarrow\\ \\mathbf{x} = A^{-1}\\mathbf{b}.$" },
+    { "type": "workedExample", "question": "A bakery sells Chocolate, Vanilla and Red Velvet cakes at prices $c$, $v$, $r$ pounds each. Over three days the sales and takings were: \\n Day 1: $10c + 5v + 8r = 350$; \\n Day 2: $12c + 7v + 6r = 390$; \\n Day 3: $8c + 10v + 5r = 395$. \\n Find the price of each cake. [6]", "solution": "Write the system as $A\\mathbf{x} = \\mathbf{b}$ with the variables in the order $c, v, r$:\\n$A = \\begin{pmatrix} 10 & 5 & 8 \\\\ 12 & 7 & 6 \\\\ 8 & 10 & 5 \\end{pmatrix}, \\quad \\mathbf{x} = \\begin{pmatrix} c \\\\ v \\\\ r \\end{pmatrix}, \\quad \\mathbf{b} = \\begin{pmatrix} 350 \\\\ 390 \\\\ 395 \\end{pmatrix}.$  [M1 correct $A\\mathbf{x}=\\mathbf{b}$ set-up]  [A1 correct $A$, $\\mathbf{x}$, $\\mathbf{b}$]\\n\\nSolve by $\\mathbf{x} = A^{-1}\\mathbf{b}$. Enter $A$ and $\\mathbf{b}$ on the GDC and compute $A^{-1}\\mathbf{b}$.  [M1 intent to use $\\mathbf{x}=A^{-1}\\mathbf{b}$]\\n\\nThe GDC returns:\\n$\\mathbf{x} = \\begin{pmatrix} 15 \\\\ 20 \\\\ 12.5 \\end{pmatrix}.$  [A2 all three values correct]\\n\\nSo a Chocolate cake costs £15, a Vanilla cake £20 and a Red Velvet cake £12.50.  [A1 interpretation in context]" },
+    { "type": "examTip", "content": "For a system-of-equations question you MUST show the set-up: write the matrix equation $A\\mathbf{x}=\\mathbf{b}$ (and the equations themselves if they are not given). Those lines earn the method marks even if you mistype a number into the GDC. A bare final answer copied off the calculator will not score full marks." },
+
+    { "type": "heading", "content": "Further applications: encoding and transformations" },
+    { "type": "text", "content": "Encoding a message uses the inverse as a decoding key. Letters are converted to numbers and arranged in a matrix, then multiplied by a non-singular key matrix to scramble them; the recipient multiplies the scrambled matrix by the inverse key to recover the original. The determinant must be non-zero, otherwise the scramble cannot be undone. Geometric transformations use matrices differently: multiplying a point's position vector by a suitable matrix maps it to a new point, so rotations, reflections, enlargements and shears each have a matrix, and composing transformations corresponds to multiplying their matrices (in reverse order of application). The determinant of a transformation matrix even carries meaning, its magnitude is the area scale factor of the transformation." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Assuming $AB = BA$** — matrix multiplication is not commutative. Keep every product in the order written; reversing it usually changes the answer or makes the product undefined.",
+      "**Ignoring conformability** — before multiplying, check the inner dimensions match. An $(m \\times n)$ can only multiply an $(n \\times p)$; mismatched inner numbers mean no product exists.",
+      "**Mis-stating the determinant** — for a $2 \\times 2$ it is $ad - bc$, not $ab - cd$ or $ad + bc$. A sign or pairing slip here poisons the inverse and everything after it.",
+      "**Dropping the $\\frac{1}{\\det A}$ factor** — in the 2x2 inverse you must divide the swapped-and-negated matrix by the determinant; forgetting it leaves you with a matrix that is not the inverse.",
+      "**Solving in the wrong order** — $\\mathbf{x} = A^{-1}\\mathbf{b}$, never $\\mathbf{b}A^{-1}$. The inverse goes on the LEFT of the constants; the reversed product is not even conformable for a column $\\mathbf{b}$.",
+      "**Inverting a singular matrix** — if $\\det A = 0$ there is no inverse, so $A\\mathbf{x}=\\mathbf{b}$ has no unique solution. Do not report a 'solution'; state that the matrix is singular.",
+      "**Writing only the GDC answer** — for a system you must show the $A\\mathbf{x}=\\mathbf{b}$ set-up to earn the method marks; a lone final answer risks most of them."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 1 and Paper 2 alike the marks are analytic: each is tied to a specific line of working, a method mark (M) or an accuracy mark (A), and an accuracy mark depends on the method mark it follows. Follow-through (FT) means a value that is wrong earlier does not have to cost you the marks that depend on it, provided the later step is done correctly on your own figure. The engine also ignores subsequent working (ISW) once a correct answer appears, and accepts any equivalent form and any correctly-rounded value, but only if the method is on the page. The GDC is expected for a $3 \\times 3$; a $2 \\times 2$ inverse should be shown by formula. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "Given $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}$, find $\\det A$ and $A^{-1}$, then solve $A\\mathbf{x} = \\begin{pmatrix} 5 \\\\ 10 \\end{pmatrix}$. [5]", "solution": "**Model answer — full working.**\\n\\n**Determinant.** Using $\\det A = ad - bc$:\\n$\\det A = (2)(4) - (1)(3) = 8 - 3 = 5.$\\n\\n**Inverse.** Since $\\det A = 5 \\neq 0$, an inverse exists. Using the 2x2 formula:\\n$A^{-1} = \\dfrac{1}{5}\\begin{pmatrix} 4 & -1 \\\\ -3 & 2 \\end{pmatrix}.$\\n\\n**Solve.** With $\\mathbf{b} = \\begin{pmatrix} 5 \\\\ 10 \\end{pmatrix}$, compute $\\mathbf{x} = A^{-1}\\mathbf{b}$:\\n$\\mathbf{x} = \\dfrac{1}{5}\\begin{pmatrix} 4 & -1 \\\\ -3 & 2 \\end{pmatrix}\\begin{pmatrix} 5 \\\\ 10 \\end{pmatrix} = \\dfrac{1}{5}\\begin{pmatrix} 4(5) + (-1)(10) \\\\ (-3)(5) + 2(10) \\end{pmatrix} = \\dfrac{1}{5}\\begin{pmatrix} 10 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}.$\\n\\n**Conclusion:** $\\det A = 5$, $A^{-1} = \\dfrac{1}{5}\\begin{pmatrix} 4 & -1 \\\\ -3 & 2 \\end{pmatrix}$, and $\\mathbf{x} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$, i.e. $x = 2$, $y = 1$.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — determinant method.** Awarded for correctly applying $ad - bc$, i.e. writing $(2)(4) - (1)(3)$. It is the method that is rewarded, so it survives an arithmetic slip in the next line.\\n- **A1 — determinant value.** Awarded for $\\det A = 5$. This accuracy mark depends on the M1 above.\\n- **M1 — inverse method.** Awarded for correct use of the 2x2 inverse formula: swapping the leading diagonal, negating the off-diagonal and dividing by the determinant, i.e. $\\frac{1}{5}\\begin{pmatrix} 4 & -1 \\\\ -3 & 2 \\end{pmatrix}$ in structure.\\n- **A1 — inverse.** Awarded for the correct $A^{-1} = \\frac{1}{5}\\begin{pmatrix} 4 & -1 \\\\ -3 & 2 \\end{pmatrix}$ (or the equivalent with the scalar multiplied in). FT applies from the determinant: a candidate with a wrong $\\det A$ who forms the inverse correctly on their own value still earns this.\\n- **A1 — solution.** Awarded for $\\mathbf{x} = A^{-1}\\mathbf{b} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$, computed in the correct order. This is FT on the candidate's own inverse: a student whose inverse differed but who multiplied $A^{-1}\\mathbf{b}$ correctly keeps the mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $A^{-1}$ with the $\\frac{1}{5}$ left outside or multiplied in, and accepts the answer written as a column $\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$ or as $x = 2$, $y = 1$. Once the correct $\\mathbf{x}$ appears, ISW means later restatements do not lose marks.\\n\\n**Bottom line:** two of the five marks are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through, so a student who writes only $\\mathbf{x} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$ with no determinant, inverse or order shown risks losing 3-4 marks, while one who shows every line keeps the method even when a number slips." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write $\\det A = ad - bc$ and its value, quote the 2x2 inverse formula (or state you used the GDC for a $3 \\times 3$), set the problem up as $A\\mathbf{x}=\\mathbf{b}$, and compute $\\mathbf{x}=A^{-1}\\mathbf{b}$ in the correct order. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Matrices are the backbone of the rest of the HL number-and-algebra strand and beyond. The eigenvalues and eigenvectors you meet later are built directly on determinants and the equation $A\\mathbf{x}=\\lambda\\mathbf{x}$; the transition matrices of Markov chains multiply exactly as here, with the long-run state read from a special vector; and systems of differential equations are solved by diagonalising a coefficient matrix. Even the geometric transformations touched on above return when you model repeated processes or graphics. Master the three moves of this lesson, check conformability, test the determinant, and solve $A\\mathbf{x}=\\mathbf{b}$ with the inverse in the correct order, and the more advanced matrix topics become variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a matrix question marked: find the determinant and inverse, then solve $A\\mathbf{x}=\\mathbf{b}$ with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=1.6&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "GeoGebra: Matrix Inverse Visualizer", "href": "https://www.geogebra.org/m/C3b4bN9Z" },
+      { "label": "Khan Academy: Solving systems with matrix inverses", "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:solving-equations-with-matrix-inverses/a/solving-systems-of-equations-with-matrix-inverses" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Matrix Inverse Visualizer",

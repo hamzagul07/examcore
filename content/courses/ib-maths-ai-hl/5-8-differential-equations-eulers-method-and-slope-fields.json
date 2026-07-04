@@ -5,170 +5,144 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces differential equations through two key techniques: slope fields for visualising solutions and Euler's method for numerical approximation. Students will learn to sketch and interpret slope fields and apply the iterative process of Euler's method to estimate solutions to first-order differential equations, understanding the impact of step size on accuracy.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": { "code": "5", "title": "Calculus" },
+  "summary": "This lesson makes a first-order differential equation $\\frac{dy}{dx}=f(x,y)$ into a working tool. You will set up and interpret such an equation as a statement about a rate of change; read and sketch solution curves on a slope (direction) field; run Euler's method to get a numerical estimate, $y_{n+1}=y_n+h\\,f(x_n,y_n)$ with $x_{n+1}=x_n+h$; solve separable equations by writing $\\int\\frac{1}{g(y)}\\,dy=\\int h(x)\\,dx$; and apply all of this to growth, decay and cooling. Every worked example is laid out exactly the way our marking engine awards marks, because on an exam how you show your working decides how many marks you keep.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
+  "levelNote": "HL only — Higher Level content.",
   "learningObjectives": [
-    "Sketch and interpret slope fields for a given first-order differential equation.",
-    "Use Euler's method to find an approximate solution to a differential equation with an initial condition.",
-    "Understand the relationship between step size ($h$) and the accuracy of the approximation in Euler's method.",
-    "Apply these techniques to solve problems in a real-world context."
+    "Set up and interpret a first-order differential equation $\\frac{dy}{dx}=f(x,y)$ from a description of a rate of change.",
+    "Read a slope (direction) field and sketch the solution curve through a given initial condition.",
+    "Apply Euler's method $y_{n+1}=y_n+h\\,f(x_n,y_n)$, $x_{n+1}=x_n+h$, to estimate a solution numerically, updating both coordinates each step.",
+    "Solve separable differential equations by writing $\\int\\frac{1}{g(y)}\\,dy=\\int h(x)\\,dx$ and using an initial condition to fix the constant.",
+    "Model growth, decay and Newton's cooling with differential equations and interpret the solution in context.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.8"],
   "simpleExplanation": {
     "title": "Navigating with Tiny Steps",
-    "summary": "Slope fields provide a map of gradients for a differential equation, showing the direction of travel at any point. Euler's method is like taking a series of small, straight steps on this map to approximate a path.",
-    "analogy": "Imagine you're in a dense fog on a hilly landscape, and your only tool is a special compass that always points in the steepest downhill direction at your current location. You don't have a full map of the terrain. To find your way down, you check your compass, take a small, straight step in that direction, then stop. You check your compass again at your new spot and repeat the process. This sequence of short, straight steps creates an approximate path down the hill. This is exactly how Euler's method works: it uses the gradient (the compass direction) at a point to take a small step and approximate the solution curve (your path).",
+    "summary": "A differential equation gives you the gradient at every point. A slope field draws those gradients as a map of little arrows; Euler's method walks across that map in short straight steps; and if the equation separates, you can integrate to get an exact formula instead.",
+    "analogy": "Imagine you are in fog on a hillside with a compass that only ever points along the slope at your exact spot. You cannot see the whole path. So you read the compass, take one small straight step, stop, read it again, and step again. Each step is slightly wrong because the real ground curves, but string enough short steps together and you trace an approximate route down. That is Euler's method. The slope field is the same idea drawn everywhere at once — a whole field of tiny compass arrows — and the true solution curve is the smooth path that always runs along them.",
     "steps": [
-      "A differential equation $\\frac{dy}{dx} = f(x, y)$ gives the gradient of a solution curve at any point $(x, y)$. A slope field is a plot of these gradients as short line segments.",
-      "Begin at a known initial condition $(x_0, y_0)$. This is your starting point on the solution curve.",
-      "Use the Euler's method formula, $y_{n+1} = y_n + h \\cdot f(x_n, y_n)$, where $h$ is the step size. This calculates the next approximate $y$-value by moving a small distance in the direction of the gradient at the current point.",
-      "Update your position to $(x_{n+1}, y_{n+1})$, where $x_{n+1} = x_n + h$. Repeat the process for the required number of steps to trace out an approximate solution."
+      "A differential equation $\\frac{dy}{dx}=f(x,y)$ gives the gradient of a solution curve at any point $(x,y)$; a slope field plots those gradients as short segments.",
+      "Start at the initial condition $(x_0,y_0)$ — this anchors one particular solution curve out of the whole family.",
+      "Euler's method takes a straight step in the current gradient direction: $y_{n+1}=y_n+h\\,f(x_n,y_n)$, then moves along by $x_{n+1}=x_n+h$, and repeats.",
+      "If the equation separates as $\\frac{dy}{dx}=g(y)\\,h(x)$, you can instead integrate $\\int\\frac{1}{g(y)}\\,dy=\\int h(x)\\,dx$ for an exact solution and fix the constant with the initial condition."
     ]
   },
+  "keyConcepts": ["first-order differential equations", "slope (direction) fields", "Euler's method", "separable equations", "growth, decay and cooling models"],
   "flashcards": [
-    {
-      "front": "What is a differential equation?",
-      "back": "An equation that relates a function with one or more of its derivatives. For example, $\\frac{dy}{dx} = 2y - x$."
-    },
-    {
-      "front": "What is a slope field (or direction field)?",
-      "back": "A graphical representation of a first-order differential equation, showing the gradient of the solution curve at a grid of points in the $xy$-plane."
-    },
-    {
-      "front": "What does each line segment in a slope field represent?",
-      "back": "The slope (gradient) of the tangent to the solution curve that passes through the midpoint of that segment."
-    },
-    {
-      "front": "What is an initial condition for a differential equation?",
-      "back": "A specific point, $(x_0, y_0)$, that a particular solution to a differential equation must pass through. It 'anchors' the solution curve."
-    },
-    {
-      "front": "What is Euler's method used for?",
-      "back": "To find a numerical approximation of the solution to a first-order ordinary differential equation with a given initial value."
-    },
-    {
-      "front": "State the formula for Euler's method.",
-      "back": "$y_{n+1} = y_n + h \\cdot f(x_n, y_n)$, where $\\frac{dy}{dx} = f(x, y)$ and $h$ is the step size."
-    },
-    {
-      "front": "In Euler's method, what does the step size, $h$, represent?",
-      "back": "The change in the independent variable, usually $x$, for each iteration. It is often written as $h = \\Delta x$."
-    },
-    {
-      "front": "How does the step size $h$ affect the accuracy of Euler's method?",
-      "back": "A smaller step size $h$ generally leads to a more accurate approximation of the true solution, but requires more computational steps."
-    },
-    {
-      "front": "Common Trap: Forgetting to update both coordinates in Euler's method.",
-      "back": "Remember to update both $x$ and $y$ at each step. The new x-value is $x_{n+1} = x_n + h$. This new $x_{n+1}$ and the calculated $y_{n+1}$ form the next point."
-    },
-    {
-      "front": "Common Trap: Calculating the gradient using the wrong point.",
-      "back": "The gradient for the step from $n$ to $n+1$ is calculated at the *current* point $(x_n, y_n)$. That is, you must use $f(x_n, y_n)$."
-    },
-    {
-      "front": "Can Euler's method give an exact solution?",
-      "back": "No, it provides an approximation. The error generally decreases as the step size $h$ approaches zero, but it only becomes exact in the limit, or for the trivial case of a linear function."
-    }
+    { "front": "What is a first-order differential equation?", "back": "An equation relating a function to its first derivative, in the form $\\frac{dy}{dx}=f(x,y)$. It states the gradient of the solution curve at every point $(x,y)$.", "pillLabel": "Definition" },
+    { "front": "What is a slope (direction) field?", "back": "A graphical representation of $\\frac{dy}{dx}=f(x,y)$: at a grid of points $(x,y)$ a short segment is drawn with gradient $f(x,y)$, showing the direction of the solution curves.", "pillLabel": "Definition" },
+    { "front": "What does each segment in a slope field represent?", "back": "The gradient of the tangent to the solution curve passing through that point, computed from $f(x,y)$. Solution curves flow along the segments.", "pillLabel": "Concept" },
+    { "front": "What is an initial condition, and why does it matter?", "back": "A specific point $(x_0,y_0)$ the solution must pass through. It picks out one particular curve from the whole family and fixes the constant of integration.", "pillLabel": "Definition" },
+    { "front": "State Euler's method.", "back": "For $\\frac{dy}{dx}=f(x,y)$ with step length $h$: $y_{n+1}=y_n+h\\,f(x_n,y_n)$ and $x_{n+1}=x_n+h$. Both coordinates update every step.", "pillLabel": "Formula" },
+    { "front": "In Euler's method, at which point is the gradient evaluated?", "back": "At the CURRENT point $(x_n,y_n)$ — you use $f(x_n,y_n)$ to make the step to $(x_{n+1},y_{n+1})$, never the new point.", "pillLabel": "Framework" },
+    { "front": "How does step length $h$ affect Euler's method?", "back": "A smaller $h$ generally gives a more accurate estimate, because each straight step stays closer to the curve — but it needs more steps. Euler is only approximate.", "pillLabel": "Concept" },
+    { "front": "When is a differential equation separable, and how do you solve it?", "back": "When it can be written $\\frac{dy}{dx}=g(y)\\,h(x)$. Separate the variables and integrate: $\\int\\frac{1}{g(y)}\\,dy=\\int h(x)\\,dx$, then use the initial condition to find the constant.", "pillLabel": "Framework" },
+    { "front": "What differential equation models exponential growth or decay?", "back": "$\\frac{dy}{dt}=ky$: the rate of change is proportional to the amount present. Its solution is $y=y_0e^{kt}$ — growth if $k>0$, decay if $k<0$.", "pillLabel": "Model" },
+    { "front": "What is Newton's law of cooling?", "back": "$\\frac{d\\theta}{dt}=-k(\\theta-\\theta_s)$: an object cools at a rate proportional to how far its temperature $\\theta$ is above the surroundings $\\theta_s$. The temperature approaches $\\theta_s$ but never quite reaches it.", "pillLabel": "Model" },
+    { "front": "Common trap: forgetting to update $x$.", "back": "Each Euler step advances $x$ too: $x_{n+1}=x_n+h$. If $f$ depends on $x$, using the old $x$ in the next step corrupts every value after it.", "pillLabel": "Trap" },
+    { "front": "Common trap: integrating before separating.", "back": "You cannot integrate $\\frac{dy}{dx}=xy$ directly. First separate to $\\frac{1}{y}\\,dy=x\\,dx$, THEN integrate each side. And add just one constant, then fix it with the initial condition.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "Euler's method updates $y$ using which formula?", "options": ["$y_{n+1}=y_n+h\\,f(x_{n+1},y_{n+1})$", "$y_{n+1}=y_n+h\\,f(x_n,y_n)$", "$y_{n+1}=y_n+f(x_n,y_n)$", "$y_{n+1}=y_n\\cdot h\\,f(x_n,y_n)$"], "answer": "$y_{n+1}=y_n+h\\,f(x_n,y_n)$" },
+    { "prompt": "After computing $y_{n+1}$ in Euler's method, the new $x$-value is:", "options": ["$x_{n+1}=x_n$ (it stays fixed)", "$x_{n+1}=x_n+h$", "$x_{n+1}=x_n+y_{n+1}$", "$x_{n+1}=x_n\\cdot h$"], "answer": "$x_{n+1}=x_n+h$" },
+    { "prompt": "To solve the separable equation $\\frac{dy}{dx}=xy$, the correct first step is:", "options": ["Integrate both sides directly with respect to $x$", "Separate to $\\frac{1}{y}\\,dy=x\\,dx$, then integrate each side", "Differentiate both sides again", "Set $\\frac{dy}{dx}=0$ and solve for $x$"], "answer": "Separate to $\\frac{1}{y}\\,dy=x\\,dx$, then integrate each side" },
+    { "prompt": "On a slope field for $\\frac{dy}{dx}=f(x,y)$, a solution curve through a point should be sketched so that it:", "options": ["Crosses the segments at right angles", "Stays horizontal everywhere", "Is always tangent to the segments it passes through", "Passes through the origin regardless of the initial condition"], "answer": "Is always tangent to the segments it passes through" },
+    { "prompt": "Which situation is modelled by $\\frac{d\\theta}{dt}=-k(\\theta-\\theta_s)$ with $k>0$?", "options": ["A population growing without limit", "A hot drink cooling towards room temperature $\\theta_s$", "A quantity that stays constant forever", "An investment doubling at a fixed rate"], "answer": "A hot drink cooling towards room temperature $\\theta_s$" }
   ],
   "faq": [
-    {
-      "q": "Why do we need Euler's method if we can solve some differential equations analytically?",
-      "a": "Many differential equations, especially those that arise from complex real-world models, do not have a simple 'closed-form' or analytical solution. Euler's method provides a robust way to find an approximate solution numerically, which is often sufficient for practical applications in fields like physics, biology, and finance."
-    },
-    {
-      "q": "Is Euler's method a Paper 1 or Paper 2 topic?",
-      "a": "It is primarily a Paper 1 topic, where you'll be expected to perform the calculations by hand for a small number of steps. However, the underlying concepts are crucial for modelling, so they could appear on Paper 2 in a context where you might use your GDC to perform a larger number of iterations or analyse a given slope field."
-    },
-    {
-      "q": "If I use a smaller step size, will my answer always be better?",
-      "a": "Generally, yes. For the functions and problems you'll encounter in this course, a smaller step size leads to a more accurate approximation because the tangent line segments stay closer to the true curve. However, in advanced numerical analysis, there's a trade-off, as extremely small step sizes can lead to an accumulation of computer rounding errors, but this is beyond the scope of the IB syllabus."
-    }
+    { "q": "When should I use Euler's method instead of solving the equation exactly?", "a": "Use an exact (analytic) method when the equation separates cleanly — you get a formula that works for every value. Use Euler's method when the equation does not separate or when the question explicitly asks for a numerical estimate with a given step length. In an exam, do exactly what the command term tells you: 'use Euler's method' means show the iteration; 'solve' usually means separate and integrate." },
+    { "q": "Will a smaller step length always give a better answer?", "a": "For the problems in this course, yes: shrinking $h$ keeps each straight step closer to the true curve, so the estimate improves. The cost is more iterations. (In professional numerical work, extremely tiny steps can accumulate rounding error, but that trade-off is beyond the IB syllabus.)" },
+    { "q": "How do I fix the constant of integration when solving a separable equation?", "a": "After integrating both sides you get one arbitrary constant $C$. Substitute the initial condition $(x_0,y_0)$ into your general solution and solve for $C$. Only then do you have the particular solution the question wants — leaving $C$ in loses the final accuracy mark." },
+    { "q": "Is this a Paper 1 or Paper 2 topic?", "a": "Both. On Paper 1 you may run a few Euler steps by hand or interpret a slope field without a calculator. On Paper 2 the same ideas appear inside modelling questions, where you might use technology for many iterations or analyse a given field. Our Practice button marks a Paper 2 style question with full analytic marking." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Many real-world systems, from population growth to cooling objects, are described by rates of change. These relationships are formalised as differential equations. While you have learned to solve some simple differential equations analytically, many are too complex. This lesson introduces two powerful techniques for tackling them: slope fields, which provide a visual understanding, and Euler's method, a numerical approach to approximate solutions. These are essential tools for modelling in science and engineering."
-    },
-    {
-      "type": "heading",
-      "content": "Visualising Solutions with Slope Fields"
-    },
-    {
-      "type": "text",
-      "content": "A differential equation like $\\frac{dy}{dx} = f(x, y)$ defines a gradient for every point in the plane. A slope field, or direction field, is a plot that illustrates this. At various points $(x, y)$ on a grid, a small line segment is drawn with the gradient calculated from $f(x, y)$. By looking at the 'flow' of these segments, you can visualise the shape of the entire family of solution curves without solving the equation. An initial condition, like $(x_0, y_0)$, specifies a starting point, allowing you to trace a unique solution curve that follows the directions indicated by the field."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A slope field is a graphical representation of the gradients of a differential equation.",
-        "Solution curves are paths that are always tangent to the line segments of the slope field.",
-        "Different initial conditions will produce different solution curves on the same slope field, representing the family of solutions."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Consider the differential equation $\\frac{dy}{dx} = \\frac{x}{y}$.\n\n(a) A slope field for this equation is shown below. Sketch the solution curve that passes through the point $(1, 2)$.\n\n(b) Find the equation of the isocline where the gradient is equal to 1.",
-      "solution": "(a) To sketch the solution curve, start at the point $(1, 2)$. Draw a smooth curve that follows the direction of the line segments in the slope field. The curve should move upwards and to the right, becoming steeper as $x$ increases and less steep as $y$ increases. It should also be symmetrical about the y-axis, reflecting the nature of the solution. [A1] for a curve starting at (1,2) and reasonably following the field lines.\n\n(b) An isocline is a curve along which the gradient is constant. We are looking for where the gradient, $\\frac{dy}{dx}$, is equal to 1. [M1]\nSet the differential equation equal to 1:\n$\\frac{x}{y} = 1$ \nThis simplifies to:\n$y = x$ (for $y \\neq 0$) [A1]\nThis is the equation of the isocline where the slope of the solution curves is 1."
-    },
-    {
-      "type": "heading",
-      "content": "Euler's Method: A Numerical Approach"
-    },
-    {
-      "type": "text",
-      "content": "Euler's method is an iterative procedure to approximate the solution of a first-order differential equation with a given initial value. It uses the tangent line at a known point to estimate the next point on the solution curve. By repeating this process over small intervals (steps), we can build a sequence of points that approximates the true solution curve."
-    },
-    {
-      "type": "formula",
-      "content": "Given $\\frac{dy}{dx} = f(x, y)$ with initial condition $(x_0, y_0)$ and step size $h$:\n\nNew x-value: $x_{n+1} = x_n + h$\nNew y-value: $y_{n+1} = y_n + h \\cdot f(x_n, y_n)$"
-    },
-    {
-      "type": "workedExample",
-      "question": "The rate of growth of a plant's height, $H$ in cm, is modelled by the differential equation $\\frac{dH}{dt} = 0.2(10 - H)$, where $t$ is the time in weeks. Initially, at $t=0$, the plant has a height of 2 cm.\n\nUse Euler's method with a step size of $h=0.5$ weeks to estimate the height of the plant at $t=1$ week.",
-      "solution": "We are given $\\frac{dH}{dt} = f(t, H) = 0.2(10 - H)$.\nThe initial condition is $(t_0, H_0) = (0, 2)$.\nThe step size is $h=0.5$. We need to find $H(1)$, which requires two steps.\n\n**Step 1: Find H(0.5)**\n$t_0 = 0$, $H_0 = 2$.\nCalculate the gradient at this point:\n$f(0, 2) = 0.2(10 - 2) = 0.2(8) = 1.6$ [M1]\nNow use Euler's formula to find $H_1$:\n$H_1 = H_0 + h \\cdot f(t_0, H_0) = 2 + 0.5 \\cdot (1.6) = 2 + 0.8 = 2.8$ [A1]\nSo, at $t_1 = 0.5$, the estimated height is $H_1 = 2.8$ cm.\n\n**Step 2: Find H(1.0)**\n$t_1 = 0.5$, $H_1 = 2.8$.\nCalculate the new gradient:\n$f(0.5, 2.8) = 0.2(10 - 2.8) = 0.2(7.2) = 1.44$ [M1]\nUse Euler's formula to find $H_2$:\n$H_2 = H_1 + h \\cdot f(t_1, H_1) = 2.8 + 0.5 \\cdot (1.44) = 2.8 + 0.72 = 3.52$ [A1]\n\nThe estimated height of the plant at $t=1$ week is 3.52 cm. [R1]"
-    },
-    {
-      "type": "heading",
-      "content": "Accuracy and Step Size"
-    },
-    {
-      "type": "text",
-      "content": "Euler's method is fundamentally an approximation. The error at each step is the difference between the linear estimate and the true curved path of the solution. This error can accumulate over many steps. The primary way to improve the accuracy of Euler's method is to decrease the step size, $h$. A smaller $h$ means the tangent line approximation is used over a shorter distance, so it stays closer to the actual curve. However, this comes at the cost of increased computation, as more steps are needed to cover the same interval."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Euler's method provides an approximate, not exact, solution.",
-        "The accuracy is dependent on the step size $h$. Smaller $h$ values generally yield more accurate results.",
-        "The total error is a cumulative effect of the local error at each step.",
-        "For many problems, halving the step size will roughly halve the total error."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "On Paper 1, you must show your working for Euler's method clearly. A table with columns for $n$, $x_n$, $y_n$, $\\frac{dy}{dx}$, and $y_{n+1}$ is highly recommended to keep your calculations organised and to ensure you get method marks, even if you make a small arithmetic error. Always calculate the gradient $f(x_n, y_n)$ *before* calculating the next y-value, $y_{n+1}$."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge on Euler's Method & Slope Fields",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.8"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GeoGebra Slope Field Plotter",
-          "href": "https://www.geogebra.org/m/W7d52Ysy"
-        },
-        {
-          "label": "Paul's Online Math Notes - Euler's Method",
-          "href": "https://tutorial.math.lamar.edu/classes/de/eulersmethod.aspx"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Rates of change are everywhere: populations grow, radioactive samples decay, hot drinks cool. Each is naturally described not by a formula for the quantity itself but by an equation for its rate of change — a differential equation. This lesson gives you three ways to handle a first-order equation $\\frac{dy}{dx}=f(x,y)$: read its slope field to see the shape of the solutions, run Euler's method to get a numerical estimate, and — when the equation separates — integrate for an exact answer. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "Setting up and reading a differential equation" },
+    { "type": "text", "content": "A first-order differential equation $\\frac{dy}{dx}=f(x,y)$ is a statement about a gradient: it tells you how fast $y$ changes at every point. Setting one up is a translation exercise. 'The rate of growth is proportional to the population' becomes $\\frac{dP}{dt}=kP$. 'A body cools at a rate proportional to how far it is above room temperature' becomes $\\frac{d\\theta}{dt}=-k(\\theta-\\theta_s)$. The skill is turning words about a rate into an equation — and then, later, turning the solution back into words with units." },
+    { "type": "keyPoints", "items": [
+      "$\\frac{dy}{dx}=f(x,y)$ gives the gradient of the solution curve at every point.",
+      "'Rate of change of $y$' means $\\frac{dy}{dt}$ (or $\\frac{dy}{dx}$); 'proportional to' introduces a constant $k$.",
+      "An initial condition $(x_0,y_0)$ selects one particular solution from the whole family.",
+      "The same equation can be tackled by slope field (shape), Euler's method (numerical estimate) or separation (exact formula)."
+    ]},
+
+    { "type": "heading", "content": "Slope (direction) fields" },
+    { "type": "text", "content": "A slope field draws the equation as a map. At a grid of points $(x,y)$ a short segment is drawn with gradient $f(x,y)$; together these segments show the direction every solution curve must follow. To sketch a particular solution, place your pencil at the initial condition and draw a smooth curve that stays tangent to the segments it passes through — never cutting across them. An isocline is a curve where the gradient is constant: setting $f(x,y)=m$ gives all points where solution curves have slope $m$, which helps you read the field." },
+    { "type": "keyPoints", "items": [
+      "Each segment shows the gradient $f(x,y)$ at that point.",
+      "A solution curve is always tangent to the segments; it flows along them, never across.",
+      "Different initial conditions give different curves — the whole family of solutions.",
+      "An isocline $f(x,y)=m$ is the set of points where all curves share the same slope $m$."
+    ]},
+    { "type": "workedExample", "question": "Consider the differential equation $\\frac{dy}{dx}=x-y$.\n(a) A slope field for the equation is shown. Sketch the solution curve that passes through the point $(0,2)$.\n(b) Find the equation of the isocline on which the solution curves have gradient $0$, and describe what happens to a curve as it meets this line. [4]", "solution": "**(a)** Start your pencil at $(0,2)$ and draw a smooth curve that stays tangent to the segments around it. At $(0,2)$ the gradient is $\\frac{dy}{dx}=0-2=-2$, so the curve starts falling steeply; as it moves right the segments flatten and then turn upward, so the curve dips to a minimum and then rises, running parallel to the segments throughout. [M1: curve started at $(0,2)$] [A1: smooth curve tangent to the field, dipping then rising] \n\n**(b)** The gradient is $0$ where $\\frac{dy}{dx}=0$:\n$x-y=0 \\Rightarrow y=x$. [M1: set $f(x,y)=0$]\nAlong the line $y=x$ every solution curve is momentarily flat (horizontal tangent): a curve reaching this line has a turning point there — falling curves bottom out, rising curves peak. [A1: $y=x$ with correct interpretation]" },
+    { "type": "examTip", "content": "When you sketch on a slope field, your curve must be tangent to the segments, not crossing them, and it must pass through the given point. Examiners look for the right overall shape and the correct behaviour near key lines (isoclines, equilibria), not pixel-perfect accuracy. Lightly extend the segments near your curve as a guide before committing the ink." },
+
+    { "type": "heading", "content": "Euler's method: a numerical estimate" },
+    { "type": "text", "content": "Euler's method approximates a solution by taking short straight steps in the current gradient direction. From a known point it uses the tangent to jump a small distance $h$ along $x$, lands at a new point, recomputes the gradient there, and repeats. Each step is slightly off because the real solution curves, but with a small enough step length the chain of straight segments tracks the true curve closely." },
+    { "type": "formula", "content": "Given $\\frac{dy}{dx}=f(x,y)$ with initial condition $(x_0,y_0)$ and step length $h$:\n\n$y_{n+1}=y_n+h\\,f(x_n,y_n)$\n\n$x_{n+1}=x_n+h$\n\nEvaluate the gradient at the CURRENT point $(x_n,y_n)$, then update BOTH coordinates." },
+    { "type": "keyPoints", "items": [
+      "Evaluate the gradient $f(x_n,y_n)$ at the current point before stepping.",
+      "Update both: $y_{n+1}=y_n+h\\,f(x_n,y_n)$ and $x_{n+1}=x_n+h$.",
+      "A table with columns $n$, $x_n$, $y_n$, $f(x_n,y_n)$, $y_{n+1}$ keeps the iteration organised.",
+      "Smaller $h$ generally means more accuracy but more steps; the result is always an approximation."
+    ]},
+    { "type": "workedExample", "question": "The rate of growth of a plant's height, $H$ cm, is modelled by $\\frac{dH}{dt}=0.2(10-H)$, where $t$ is in weeks. At $t=0$ the height is $H=2$ cm. Use Euler's method with step length $h=0.5$ weeks to estimate the height at $t=1$ week. [4]", "solution": "Here $f(t,H)=0.2(10-H)$, with $(t_0,H_0)=(0,2)$ and $h=0.5$; reaching $t=1$ needs two steps.\n\n**Step 1 — to $t=0.5$.**\nGradient at $(0,2)$: $f(0,2)=0.2(10-2)=1.6$. [M1: Euler step, gradient at current point]\n$H_1=H_0+h\\,f(0,2)=2+0.5(1.6)=2.8$ at $t_1=0.5$. [A1: $H_1=2.8$]\n\n**Step 2 — to $t=1$.**\nGradient at $(0.5,2.8)$: $f(0.5,2.8)=0.2(10-2.8)=1.44$.\n$H_2=H_1+h\\,f(0.5,2.8)=2.8+0.5(1.44)=3.52$ at $t_2=1$. [M1: second step from updated point]\n\nThe estimated height at $t=1$ week is $H\\approx 3.52$ cm. [A1: $H\\approx 3.52$]" },
+
+    { "type": "heading", "content": "Solving separable differential equations" },
+    { "type": "text", "content": "Some equations can be solved exactly. A first-order equation is separable if it can be written $\\frac{dy}{dx}=g(y)\\,h(x)$ — the $x$-part and the $y$-part multiply. Then you gather all the $y$'s on one side and all the $x$'s on the other and integrate: $\\int\\frac{1}{g(y)}\\,dy=\\int h(x)\\,dx$. Integrating produces a single constant $C$; substitute the initial condition to pin it down and get the particular solution." },
+    { "type": "formula", "content": "If $\\frac{dy}{dx}=g(y)\\,h(x)$, then\n\n$\\displaystyle\\int \\frac{1}{g(y)}\\,dy=\\int h(x)\\,dx + C.$\n\nIntegrate both sides, then substitute the initial condition $(x_0,y_0)$ to find $C$." },
+    { "type": "keyPoints", "items": [
+      "Separable means it factorises as $\\frac{dy}{dx}=g(y)\\,h(x)$.",
+      "Move every $y$ (and $dy$) to one side, every $x$ (and $dx$) to the other, THEN integrate.",
+      "Include one constant of integration and fix it with the initial condition.",
+      "Growth/decay $\\frac{dy}{dt}=ky$ separates to give $y=y_0e^{kt}$."
+    ]},
+    { "type": "workedExample", "question": "A population $P$ (thousands) satisfies $\\frac{dP}{dt}=0.3P$, where $t$ is in years, with $P=5$ when $t=0$.\n(a) Solve the differential equation to find $P$ as a function of $t$.\n(b) Estimate the population after 4 years. [6]", "solution": "**(a) Separate the variables.** The equation factorises as $\\frac{dP}{dt}=0.3P$, so\n$\\dfrac{1}{P}\\,dP=0.3\\,dt$. [M1: separate before integrating]\nIntegrate both sides:\n$\\displaystyle\\int\\frac{1}{P}\\,dP=\\int 0.3\\,dt \\Rightarrow \\ln P = 0.3t + C$. [A1: correct integration]\nApply the initial condition $P=5$ at $t=0$: $\\ln 5 = 0 + C$, so $C=\\ln 5$. [M1: use initial condition for $C$]\nThus $\\ln P = 0.3t+\\ln 5 \\Rightarrow \\ln\\frac{P}{5}=0.3t$, giving\n$P = 5e^{0.3t}$. [A1: particular solution]\n\n**(b)** At $t=4$: $P=5e^{0.3(4)}=5e^{1.2}=16.6$ (3 s.f.). [M1: substitute $t=4$] [A1: $P\\approx 16.6$ thousand]" },
+
+    { "type": "heading", "content": "Applications: growth, decay and cooling" },
+    { "type": "text", "content": "The models you meet are all first-order equations solved the same way. Unlimited growth or decay uses $\\frac{dy}{dt}=ky$, whose separable solution $y=y_0e^{kt}$ grows when $k>0$ and decays when $k<0$. Newton's law of cooling, $\\frac{d\\theta}{dt}=-k(\\theta-\\theta_s)$, says a body's temperature $\\theta$ falls at a rate proportional to how far it sits above the surroundings $\\theta_s$; the solution approaches $\\theta_s$ without ever quite reaching it. In every case, set up the equation from the words, solve it (separation, or Euler if asked), and interpret the answer with units." },
+    { "type": "keyPoints", "items": [
+      "Growth/decay: $\\frac{dy}{dt}=ky \\Rightarrow y=y_0e^{kt}$ ($k>0$ growth, $k<0$ decay).",
+      "Cooling: $\\frac{d\\theta}{dt}=-k(\\theta-\\theta_s)$; the temperature tends to $\\theta_s$ over time.",
+      "Always fix the constant with the initial condition before quoting a value.",
+      "Interpret the final answer in context, with the correct units."
+    ]},
+    { "type": "examTip", "content": "Read the command term. 'Solve the differential equation' means separate and integrate for an exact formula; 'use Euler's method' means show the iteration for the stated step length; 'sketch on the slope field' means draw a tangent-following curve through the given point. Doing the right technique for the marks on offer is half the battle — many candidates lose marks by solving exactly when a numerical estimate was demanded, or vice versa." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Mis-stating Euler's formula** — it is $y_{n+1}=y_n+h\\,f(x_n,y_n)$. Dropping the $h$, or multiplying instead of adding, breaks every subsequent value.",
+      "**Evaluating the gradient at the new point** — use $f(x_n,y_n)$ at the CURRENT point to make the step, not $f(x_{n+1},y_{n+1})$.",
+      "**Forgetting to update $x$** — each step also advances $x_{n+1}=x_n+h$. If $f$ depends on $x$, an unchanged $x$ corrupts the rest of the table.",
+      "**Integrating before separating** — you cannot integrate $\\frac{dy}{dx}=xy$ as it stands; separate to $\\frac{1}{y}\\,dy=x\\,dx$ first, then integrate each side.",
+      "**Omitting or never fixing the constant $C$** — add one constant on integrating, then use the initial condition to find it. Leaving $C$ unknown loses the final mark.",
+      "**Cutting across a slope field** — a solution curve must stay tangent to the segments and pass through the given point, not slice through them.",
+      "**Sign slip in cooling** — $\\frac{d\\theta}{dt}=-k(\\theta-\\theta_s)$ has a minus sign so the object cools; forgetting it makes the temperature run away instead of settling to $\\theta_s$.",
+      "**Not interpreting or dropping units** — turn the final number back into words with units (cm, °C, thousands), matching what the question asked."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In an exam the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct step performed on your own earlier (wrong) value still scores, and equivalent correct forms are accepted. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "Given $\\frac{dy}{dx}=x+y$ with $y=1$ when $x=0$, use Euler's method with step length $h=0.1$ to estimate $y$ when $x=0.2$. [5]", "solution": "**Model answer — full working.**\n\nHere $f(x,y)=x+y$, with $(x_0,y_0)=(0,1)$ and $h=0.1$. Reaching $x=0.2$ takes two steps, using $y_{n+1}=y_n+h\\,f(x_n,y_n)$ and $x_{n+1}=x_n+h$.\n\n**Step 1 — to $x=0.1$.**\nGradient at $(0,1)$: $f(0,1)=0+1=1$.\n$y_1=y_0+h\\,f(x_0,y_0)=1+0.1(0+1)=1+0.1=1.1$, at $x_1=0.1$.\n\n**Step 2 — to $x=0.2$.**\nGradient at $(0.1,1.1)$: $f(0.1,1.1)=0.1+1.1=1.2$.\n$y_2=y_1+h\\,f(x_1,y_1)=1.1+0.1(0.1+1.1)=1.1+0.12=1.22$, at $x_2=0.2$.\n\n**Final answer:** $y\\approx 1.22$ when $x=0.2$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — Euler's formula.** Awarded for a correct use of $y_{n+1}=y_n+h\\,f(x_n,y_n)$ with $f(x,y)=x+y$. This is a METHOD mark: it stands even if a number is later mis-added.\n- **M1 — first step.** Awarded for carrying out the first iteration, $y_1=1+0.1(0+1)$, evaluating the gradient at the current point $(0,1)$.\n- **A1 — first value correct.** Awarded for $y_1=1.1$ at $x_1=0.1$. This accuracy mark depends on the method marks above.\n- **M1 — second step.** Awarded for the second iteration from the UPDATED point, $y_2=1.1+0.1(0.1+1.1)$. Because it acts on 'their $y_1$', a student who slipped earlier still earns this method mark (FT) for the correct approach.\n- **A1 — final value.** Awarded for $y\\approx 1.22$ at $x=0.2$. Follow-through applies: a student who found a wrong $y_1$ but then stepped correctly earns this mark on their own figure.\n\n**Accept equivalent forms.** The engine marks the mathematics, not the layout: it accepts the work shown as a table or as lines, accepts $1.22$ written as $1.220$, and does not require any fixed wording. What it needs to see is the formula used, the gradient taken at the current point, and both coordinates updated each step.\n\n**Bottom line:** of the 5 marks, three are method marks that survive an arithmetic slip and the accuracy marks are shielded by follow-through. A student who writes only '$y=1.22$' with no iteration risks losing 3–4 marks if a number is wrong; a student who shows the formula, both gradient evaluations and both updated points keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: quote $y_{n+1}=y_n+h\\,f(x_n,y_n)$, evaluate the gradient at the current point, and update both $x$ and $y$ each step (a small table is ideal). The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Using your GDC effectively" },
+    { "type": "text", "content": "Your GDC turns Euler's method into a recursion you can iterate quickly: store the step length, then repeatedly apply $y \\to y+h\\,f(x,y)$ and $x \\to x+h$, reading off the value after the required number of steps — ideal for checking a hand table or for the many steps a Paper 2 question may need. For separable equations, use the graphing or solver features to confirm your particular solution passes through the initial condition and has the right shape. When you interpret a slope field, sanity-check by evaluating $f(x,y)$ at a couple of grid points and comparing with the drawn segments." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Everything here is one idea — a differential equation is a statement about a gradient — approached three ways: see the shape (slope field), estimate numerically (Euler), or solve exactly (separation). That toolkit powers the modelling questions that dominate Paper 2, where growth, decay and cooling recur constantly, and it connects straight back to integration, since solving a separable equation is just integration in disguise. Master the habit — set up the equation from the words, pick the technique the marks ask for, then interpret with units — and differential equations become routine." },
+
+    { "type": "practice", "label": "Get a Paper 2 problem marked: solve an Euler's method, slope field or separable differential equation with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=5.8&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra Slope Field Plotter", "href": "https://www.geogebra.org/m/W7d52Ysy" },
+      { "label": "Paul's Online Math Notes - Euler's Method", "href": "https://tutorial.math.lamar.edu/classes/de/eulersmethod.aspx" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "GeoGebra Slope Field Plotter",

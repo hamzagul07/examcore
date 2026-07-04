@@ -5,178 +5,125 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores the application of definite integrals to calculate areas and volumes. You will learn how to find the area under a curve, the area between two curves, and the volume of solids formed by revolving a function around an axis, with a strong focus on using your GDC for calculations.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": { "code": "5", "title": "Calculus" },
+  "summary": "This lesson turns the definite integral into a tool for measuring space: the area under a curve, the area trapped between two curves, and the volume of a solid formed by spinning a region about the x-axis. You will read the definite integral as a signed area, compute the area between two curves as $\\int_a^b(f-g)\\,dx$ (upper minus lower), find a volume of revolution about the x-axis with $V=\\pi\\int_a^b y^2\\,dx$, meet integration by substitution for the reversal step, and use the GDC to evaluate any of these numerically. Every worked example is laid out exactly the way our marking engine awards marks, using IB Mathematics method (M) and accuracy (A) conventions — because in an exam, how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Calculate the area between a curve and the x-axis using a definite integral.",
-    "Determine the area enclosed between two curves by integrating the difference of the functions.",
-    "Find the volume of a solid of revolution formed by rotating a function around the x-axis or y-axis.",
-    "Apply these techniques to solve problems in context, such as finding capacities or material volumes."
+    "Interpret $\\int_a^b f(x)\\,dx$ as the signed area between the curve, the x-axis and the lines $x=a$, $x=b$, and find total area with $\\int_a^b|f(x)|\\,dx$.",
+    "Find the area enclosed between two curves as $\\int_a^b(\\text{upper}-\\text{lower})\\,dx = \\int_a^b(f(x)-g(x))\\,dx$.",
+    "Find the volume of a solid of revolution about the x-axis using $V=\\pi\\int_a^b y^2\\,dx$.",
+    "Reverse a composite function using integration by substitution in basic cases.",
+    "Use the GDC to evaluate definite integrals, areas and volumes, storing intersection points to preserve accuracy.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.6"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Slicing Up Shapes with Calculus",
-    "summary": "Definite integrals let us find the exact area of curvy shapes by adding up an infinite number of tiny rectangular slices. We can also spin these shapes to find the volume of 3D objects, like a vase or a bowl.",
-    "analogy": "Imagine you need to find the area of a strangely shaped garden plot. You could divide it into many thin rectangular strips, find the area of each strip (length × width), and add them all up. Integration is like doing this with infinitely many, infinitesimally thin strips to get a perfectly accurate area. To find the volume of a clay pot on a potter's wheel, you'd consider its 2D profile and spin it; integration does the same by adding up an infinite number of infinitesimally thin discs to find the total volume.",
+    "title": "Adding Up Infinitely Thin Slices",
+    "summary": "A definite integral adds up an infinite number of infinitely thin slices. Line the slices up under a curve and you get an area; spin each slice into a thin disc and stack them, and you get a volume.",
+    "analogy": "Picture a loaf of bread cut into extremely thin slices. To find the area of the loaf's side profile, add up the heights of all the slices. Now imagine each slice is actually a thin circular disc — spin the profile around a skewer through the middle (the x-axis) and every slice becomes a coin of radius $y$ and area $\\pi y^2$. Stacking all those coins gives the volume of the solid. Integration is the machine that adds up infinitely many of these slices exactly.",
     "steps": [
-      "Identify the Region: Sketch the functions to visualise the enclosed area. Find the points of intersection, which will be your limits of integration, a and b.",
-      "Set Up the Integral: Determine the 'upper' curve (f(x)) and 'lower' curve (g(x)). The integral for area is ∫(f(x) - g(x)) dx. For volume, it's π∫(f(x))² dx.",
-      "Integrate with GDC: Use your Graphical Display Calculator's function to evaluate the definite integral you have set up. This is the standard method for AI HL.",
-      "State the Answer: Write down the final answer from your calculator, rounded to 3 significant figures unless specified otherwise. Include units if provided."
+      "Sketch the region on your GDC and identify the limits $a$ and $b$ — often the x-values where curves meet.",
+      "Choose the right integral: area under a curve $\\int_a^b y\\,dx$; area between curves $\\int_a^b(\\text{upper}-\\text{lower})\\,dx$; volume about the x-axis $\\pi\\int_a^b y^2\\,dx$ (remember to square $y$).",
+      "Evaluate — by hand for a simple power, or with the GDC's numerical integrator for anything harder. Store exact intersection values, don't retype rounded ones.",
+      "State the answer to 3 significant figures unless told otherwise, and include units (area in units$^2$, volume in units$^3$)."
     ]
   },
+  "keyConcepts": ["definite integral as signed area", "area between two curves (upper minus lower)", "volume of revolution about the x-axis", "integration by substitution", "GDC numerical integration"],
   "flashcards": [
-    {
-      "front": "What does $\\int_{a}^{b} f(x) \\,dx$ represent geometrically?",
-      "back": "The signed area between the curve $y=f(x)$, the x-axis, and the vertical lines $x=a$ and $x=b$. Areas below the x-axis are counted as negative."
-    },
-    {
-      "front": "How do you find the total geometric area if a curve $f(x)$ is partly above and partly below the x-axis between $a$ and $b$?",
-      "back": "Calculate $\\int_{a}^{b} |f(x)| \\,dx$ using your GDC. This automatically handles the negative parts by making them positive before summing."
-    },
-    {
-      "front": "What is the formula for the area between two curves, $f(x)$ and $g(x)$, from $x=a$ to $x=b$, where $f(x) \\ge g(x)$?",
-      "back": "Area = $\\int_{a}^{b} (f(x) - g(x)) \\,dx$. This is often remembered as 'integral of the upper function minus the lower function'."
-    },
-    {
-      "front": "What is the first step when finding the area between two curves if the limits of integration are not given?",
-      "back": "Find the points of intersection by setting the functions equal to each other ($f(x) = g(x)$) and solving for $x$ using your GDC's solver or graphing tool. These x-values are your limits."
-    },
-    {
-      "front": "What is a solid of revolution?",
-      "back": "A 3D shape generated by rotating a 2D region, defined by a function, around an axis (usually the x-axis or y-axis)."
-    },
-    {
-      "front": "What is the formula for the volume of revolution when rotating $y=f(x)$ around the x-axis from $x=a$ to $x=b$?",
-      "back": "Volume = $\\pi \\int_{a}^{b} (f(x))^2 \\,dx$ or $\\pi \\int_{a}^{b} y^2 \\,dx$."
-    },
-    {
-      "front": "What is the formula for the volume of revolution when rotating $x=g(y)$ around the y-axis from $y=c$ to $y=d$?",
-      "back": "Volume = $\\pi \\int_{c}^{d} (g(y))^2 \\,dy$ or $\\pi \\int_{c}^{d} x^2 \\,dy$."
-    },
-    {
-      "front": "What is a common mistake when finding the volume of revolution for the region between two curves, $f(x)$ and $g(x)$?",
-      "back": "Incorrectly calculating $\\pi \\int_{a}^{b} (f(x) - g(x))^2 \\,dx$. The correct formula is $\\pi \\int_{a}^{b} ((f(x))^2 - (g(x))^2) \\,dx$, representing the volume of the outer shape minus the volume of the inner hole (the 'washer method')."
-    },
-    {
-      "front": "What units would the result have if you calculate the area between two curves where x and y are in metres?",
-      "back": "The area would be in square metres (m²). Always check for units in context-based problems."
-    },
-    {
-      "front": "What happens if you mix up the upper and lower functions when finding the area between two curves?",
-      "back": "You will get a negative answer. Since area must be positive, you should take the absolute value of your result. This is a good indication that you may have swapped the functions."
-    }
+    { "front": "What does $\\int_a^b f(x)\\,dx$ represent geometrically?", "back": "The signed area between $y=f(x)$, the x-axis and the lines $x=a$ and $x=b$. Regions below the x-axis count as negative.", "pillLabel": "Definition" },
+    { "front": "How do you find the TOTAL (physical) area when a curve is partly below the x-axis?", "back": "Integrate the absolute value: $\\int_a^b|f(x)|\\,dx$. On the GDC this makes the parts below the axis count positively before summing.", "pillLabel": "Framework" },
+    { "front": "What is the area between two curves $f$ and $g$ on $[a,b]$ where $f\\ge g$?", "back": "$A=\\int_a^b(f(x)-g(x))\\,dx$ — the integral of the upper curve minus the lower curve.", "pillLabel": "Formula" },
+    { "front": "First step for the area between two curves when limits are not given?", "back": "Solve $f(x)=g(x)$ (GDC solver or intersection tool) to find the x-values where the curves meet. These become your limits $a$ and $b$.", "pillLabel": "Framework" },
+    { "front": "What is the volume of revolution about the x-axis for $y=f(x)$ on $[a,b]$?", "back": "$V=\\pi\\int_a^b y^2\\,dx = \\pi\\int_a^b [f(x)]^2\\,dx$. Each disc has radius $y$ and area $\\pi y^2$.", "pillLabel": "Formula" },
+    { "front": "Common trap: what gets squared in the volume formula?", "back": "You square $y$, then integrate, then multiply by $\\pi$: $V=\\pi\\int y^2\\,dx$. It is NOT $\\pi\\int y\\,dx$ and NOT $\\left(\\pi\\int y\\,dx\\right)^2$.", "pillLabel": "Trap" },
+    { "front": "What is integration by substitution used for?", "back": "Reversing the chain rule. Let $u$ be the 'inside' function; replace $\\mathrm{d}x$ using $\\mathrm{d}u=\\frac{du}{dx}\\,dx$, integrate in $u$, then convert limits or substitute back.", "pillLabel": "Framework" },
+    { "front": "When you substitute in a DEFINITE integral, what happens to the limits?", "back": "Change them to the corresponding $u$-values (evaluate $u$ at each x-limit). Then you never need to convert back to $x$.", "pillLabel": "Trap" },
+    { "front": "Why store intersection points in the GDC instead of writing them down rounded?", "back": "Retyping a rounded value (e.g. $1.63$ instead of $1.6308\\ldots$) introduces error that can cost the final accuracy mark. Store and recall the full-precision value.", "pillLabel": "Trap" },
+    { "front": "What units does a volume of revolution have if $x$ and $y$ are in centimetres?", "back": "Cubic centimetres, cm$^3$. Areas are units$^2$; volumes are units$^3$. Always check for units in context problems.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "The volume when $y=f(x)$ on $[a,b]$ is rotated $360^\\circ$ about the x-axis is:", "options": ["$\\pi\\int_a^b y\\,dx$", "$\\pi\\int_a^b y^2\\,dx$", "$2\\pi\\int_a^b y\\,dx$", "$\\left(\\pi\\int_a^b y\\,dx\\right)^2$"], "answer": "$\\pi\\int_a^b y^2\\,dx$" },
+    { "prompt": "The area enclosed between two curves on $[a,b]$ is found by integrating:", "options": ["lower curve $-$ upper curve", "upper curve $-$ lower curve", "upper curve $+$ lower curve", "$(\\text{upper}-\\text{lower})^2$"], "answer": "upper curve $-$ lower curve" },
+    { "prompt": "A student writes $V=\\int_0^3 x^2\\,dx$ for a volume of revolution about the x-axis where $y=x$. What have they forgotten?", "options": ["To subtract the lower curve", "The factor of $\\pi$", "To square the limits", "To divide by $2$"], "answer": "The factor of $\\pi$" },
+    { "prompt": "To evaluate $\\int_1^4 \\dfrac{\\ln x}{x^2+1}\\,dx$ on an AI HL calculator paper, the best approach is to:", "options": ["Integrate by hand using substitution", "Use the GDC's numerical (definite) integration feature", "Differentiate the integrand first", "Estimate the answer by eye from a sketch"], "answer": "Use the GDC's numerical (definite) integration feature" },
+    { "prompt": "In the substitution $\\int_0^2 2x\\,e^{x^2}\\,dx$ with $u=x^2$, the new limits become:", "options": ["$u=0$ to $u=2$", "$u=0$ to $u=4$", "$u=1$ to $u=4$", "$u=0$ to $u=e^4$"], "answer": "$u=0$ to $u=4$" }
   ],
   "faq": [
-    {
-      "q": "What if the area is split into multiple sections by the curves crossing over?",
-      "a": "You need to find all intersection points and calculate the area for each section separately. For example, if curves cross at $x=c$ between your limits $a$ and $b$, you would calculate $\\int_{a}^{c} (\\text{upper} - \\text{lower}) \\,dx + \\int_{c}^{b} (\\text{new upper} - \\text{new lower}) \\,dx$. The easiest method is to use your GDC to calculate $\\int_{a}^{b} |f(x) - g(x)| \\,dx$, which handles this automatically."
-    },
-    {
-      "q": "Do I need to know how to integrate by hand for Paper 1?",
-      "a": "For AI HL, Paper 1 is a technology-enabled paper. You are expected to use your GDC to solve definite integrals. Marks are awarded for setting up the correct integral and interpreting the result, not for manual calculation skills which are tested in other IB maths courses."
-    },
-    {
-      "q": "How do I handle rotation around the y-axis?",
-      "a": "You must first rearrange your function to make $x$ the subject, in the form $x = g(y)$. Then, you find the corresponding y-limits for your region. Finally, you use the formula $V = \\pi \\int_{c}^{d} [g(y)]^2 \\,dy$ and evaluate it with your GDC."
-    },
-    {
-      "q": "What is the 'washer method' for volumes?",
-      "a": "The 'washer method' is used to find the volume of a solid of revolution with a hole in the middle. This occurs when you rotate the region between two curves, $f(x)$ and $g(x)$, around an axis. The formula is $V = \\pi \\int_{a}^{b} ((\\text{outer radius})^2 - (\\text{inner radius})^2) \\,dx$. For rotation about the x-axis, this is $V = \\pi \\int_{a}^{b} ((f(x))^2 - (g(x))^2) \\,dx$, assuming $f(x)$ is the outer curve."
-    }
+    { "q": "Do I have to integrate by hand on Paper 1?", "a": "AI HL papers are technology-active: your GDC is expected throughout. For a simple power like $\\int_0^4 x\\,dx$ you may integrate by hand and it is fast to do so, but for anything awkward you set up the correct definite integral and evaluate it numerically on the GDC. Marks are awarded for the correct set-up and the correct value, not for hand-computation." },
+    { "q": "What if the two curves cross inside my interval?", "a": "Then 'upper' and 'lower' swap partway along. Either split the region at the crossing point and add the separate areas, or — much simpler on a GDC — integrate the absolute value of the difference: $A=\\int_a^b|f(x)-g(x)|\\,dx$. This handles the swap automatically and always returns a positive total area." },
+    { "q": "When do I actually need integration by substitution?", "a": "When the integrand is a composite times (a multiple of) the derivative of its inside — for example $\\int 2x\\,e^{x^2}\\,dx$, where the $2x$ is the derivative of the inside $x^2$. Substituting $u=x^2$ turns it into $\\int e^u\\,du$. On a calculator paper you can often skip it and integrate numerically, but recognising the structure is examinable HL content." },
+    { "q": "How do I get the volume when I rotate the region between two curves about the x-axis?", "a": "Use the washer idea: subtract the inner solid from the outer, $V=\\pi\\int_a^b\\big([f(x)]^2-[g(x)]^2\\big)\\,dx$, where $f$ is the outer (larger) radius and $g$ the inner. Note you square each function separately before subtracting — it is NOT $\\pi\\int(f-g)^2\\,dx$." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome! So far, you've seen integration as the reverse process of differentiation. Now, we'll unlock its true power by applying it to geometry. Definite integrals allow us to calculate the exact area of complex shapes and the volume of 3D objects, skills essential in fields like engineering, architecture, and computer graphics. In this technology-focused course, your GDC will be your most powerful tool."
-    },
-    {
-      "type": "heading",
-      "content": "Area Under a Curve"
-    },
-    {
-      "type": "text",
-      "content": "The most fundamental application of a definite integral is finding the area of the region bounded by a function's graph, the x-axis, and two vertical lines. The integral $\\int_{a}^{b} f(x) \\,dx$ represents the 'signed area' from $x=a$ to $x=b$. 'Signed' means that any area below the x-axis will contribute a negative value to the integral's result."
-    },
-    {
-      "type": "formula",
-      "content": "Area with respect to x-axis: $A = \\int_{a}^{b} f(x) \\,dx$"
-    },
-    {
-      "type": "text",
-      "content": "If you need to find the total physical area, you must ensure any regions below the x-axis are counted positively. The most reliable method on your GDC is to integrate the absolute value of the function, $\\int_{a}^{b} |f(x)| \\,dx$. This automatically accounts for any parts of the function that dip below the axis."
-    },
-    {
-      "type": "heading",
-      "content": "Area Between Two Curves"
-    },
-    {
-      "type": "text",
-      "content": "To find the area of a region enclosed between two curves, $y=f(x)$ and $y=g(x)$, we integrate the difference between the 'upper' function and the 'lower' function over the interval defined by their intersection points. This works because subtracting the lower function effectively removes the unwanted area under it, leaving only the area between the curves."
-    },
-    {
-      "type": "formula",
-      "content": "Area between curves: $A = \\int_{a}^{b} (\\text{upper curve} - \\text{lower curve}) \\,dx = \\int_{a}^{b} (f(x) - g(x)) \\,dx$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "First, use your GDC to graph the functions and find their points of intersection. These x-values will be your limits of integration, $a$ and $b$.",
-        "The graph will clearly show which function is the 'upper' curve and which is the 'lower' curve within the enclosed region.",
-        "Set up the integral as the upper function minus the lower function, and evaluate using your GDC's numerical integration feature.",
-        "If the curves cross over within the interval, you must split the integral or simply integrate the absolute value of the difference: $A = \\int_{a}^{b} |f(x) - g(x)| \\,dx$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Let $f(x) = x+1$ and $g(x) = 0.5e^x$. \n\na) Find the x-coordinates of the points of intersection of the graphs of $f$ and $g$. \n\nb) Find the area of the region enclosed by the graphs of $f$ and $g$.",
-      "solution": "a) To find the points of intersection, we set $f(x) = g(x)$ and solve for $x$. \n$x+1 = 0.5e^x$ \nUsing a GDC (graphing $y_1=x+1$ and $y_2=0.5e^x$ and finding intersections): \n(M1) for attempting to solve the equation. \nThe intersection points are at $x \\approx -0.826$ and $x \\approx 1.63$. \n(A1)(A1) for both correct values. Let's store these as A and B in the calculator for accuracy. $A = -0.8262...$, $B = 1.6308...$\n\nb) From the graph on the GDC, between the intersection points, the line $f(x)=x+1$ is above the curve $g(x)=0.5e^x$. \nTherefore, the area is given by the integral of the upper function minus the lower function. \nArea = $\\int_{A}^{B} ((x+1) - 0.5e^x) \\,dx$ \n(M1) for setting up the correct definite integral with their limits and correct subtraction. \nUsing the GDC's numerical integration feature: \nArea $\\approx 1.0965...$ \n(A1) for the correct value. \nArea $\\approx 1.10$ (to 3 s.f.) \n(A1) for correct rounding."
-    },
-    {
-      "type": "examTip",
-      "content": "When finding the area between curves, always sketch the graphs on your GDC first. This helps you find intersection points (your limits) and correctly identify the upper and lower functions, preventing a common error of subtracting them in the wrong order. Store intersection points in your calculator's memory to avoid rounding errors in the final calculation."
-    },
-    {
-      "type": "heading",
-      "content": "Volumes of Revolution"
-    },
-    {
-      "type": "text",
-      "content": "A solid of revolution is a 3D shape created by rotating a 2D area around an axis. Imagine a curve $y=f(x)$. If we rotate the area under this curve around the x-axis, we create a solid. We can find its volume by integrating the area of an infinitesimally thin circular disc across the length of the solid. The radius of each disc is the function's value, $y$, so its area is $\\pi y^2$. Integrating this gives the total volume."
-    },
-    {
-      "type": "formula",
-      "content": "Volume of revolution about the x-axis: $V = \\pi \\int_{a}^{b} [f(x)]^2 \\,dx = \\pi \\int_{a}^{b} y^2 \\,dx$"
-    },
-    {
-      "type": "text",
-      "content": "A similar principle applies for rotation around the y-axis. For this, you must first rearrange the function to express $x$ in terms of $y$, i.e., $x=g(y)$. The limits of integration, $c$ and $d$, will be y-values. The formula becomes $V = \\pi \\int_{c}^{d} [g(y)]^2 \\,dy$."
-    },
-    {
-      "type": "workedExample",
-      "question": "A decorative bowl is formed by rotating the curve $y = 0.2x^2 + 1$ between $x=0$ and $x=5$ by $360^\\circ$ about the y-axis. The units are in centimetres. Find the volume of material needed to make the bowl, assuming it's a solid shape.",
-      "solution": "The rotation is about the y-axis, so we need to express $x$ in terms of $y$. \n$y = 0.2x^2 + 1$ \n$y - 1 = 0.2x^2$ \n$5(y-1) = x^2$ \n$x = \\sqrt{5(y-1)}$ (we take the positive root as $x \\ge 0$) (M1) for rearranging for $x^2$ or $x$. \n\nNext, we need the limits of integration in terms of $y$. \nWhen $x=0$, $y = 0.2(0)^2 + 1 = 1$. \nWhen $x=5$, $y = 0.2(5)^2 + 1 = 0.2(25) + 1 = 5 + 1 = 6$. \nSo, the limits are $c=1$ and $d=6$. (A1) for correct limits. \n\nThe volume formula for rotation about the y-axis is $V = \\pi \\int_{c}^{d} x^2 \\,dy$. \n$V = \\pi \\int_{1}^{6} 5(y-1) \\,dy$ (M1) for correct integral setup. \n\nUsing the GDC to evaluate: \n$V = \\pi [\\frac{5y^2}{2} - 5y]_{1}^{6}$ (This step is for understanding; GDC is used for the calculation) \n$V = 5\\pi \\int_{1}^{6} (y-1) \\,dy$ \n$V = 5\\pi [\\frac{y^2}{2} - y]_{1}^{6}$ \n$V = 5\\pi [(\\frac{36}{2} - 6) - (\\frac{1}{2} - 1)] = 5\\pi [12 - (-0.5)] = 5\\pi(12.5) = 62.5\\pi$ \n$V \\approx 196.349...$ cm³ \n\n(A1) for the correct value. \nThe volume of material needed is $196$ cm³ (to 3 s.f.). (A1) for correct rounding and units."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Problems",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.6"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Khan Academy: Volumes of Revolution",
-          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-applications-of-integration/ab-disk-method/v/disk-method-introduction"
-        },
-        {
-          "label": "GeoGebra: Visualising Solids of Revolution",
-          "href": "https://www.geogebra.org/m/pT25A62G"
-        }
-      ]
-    }
+    { "type": "intro", "content": "So far you have treated integration as the reverse of differentiation. Now you will put it to geometric work. The definite integral $\\int_a^b f(x)\\,dx$ measures a signed area, and from that one idea everything in this lesson follows: the area under a curve, the area trapped between two curves, and — by spinning a region into a solid — a volume of revolution. In this technology-active course the GDC does the heavy arithmetic, so your marks come from setting up the right integral and reading the result correctly. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The definite integral and the area under a curve" },
+    { "type": "text", "content": "The definite integral $\\int_a^b f(x)\\,dx$ gives the signed area of the region bounded by $y=f(x)$, the x-axis and the vertical lines $x=a$ and $x=b$. 'Signed' means any part of the region lying below the x-axis contributes a negative amount. When the curve stays above the axis on $[a,b]$, the definite integral is exactly the geometric area. When it dips below, and you want the total physical area, integrate the absolute value of the function instead." },
+    { "type": "formula", "content": "Signed area: $A=\\int_a^b f(x)\\,dx$\n\nTotal (physical) area, allowing for parts below the axis: $A=\\int_a^b |f(x)|\\,dx$" },
+    { "type": "text", "content": "On the GDC, both are one-line calculations: the numerical integration feature evaluates $\\int_a^b f(x)\\,dx$ directly, and wrapping the integrand in an absolute value handles a curve that changes sign. This is the standard method in AI HL — you rarely need to find where the curve crosses the axis by hand." },
+
+    { "type": "heading", "content": "The area between two curves" },
+    { "type": "text", "content": "To find the area enclosed between two curves $y=f(x)$ and $y=g(x)$, integrate the difference between the upper curve and the lower curve across the interval where they enclose the region. Subtracting the lower function strips away the area beneath it, leaving precisely the area trapped between the two. The limits are usually the x-coordinates where the curves intersect." },
+    { "type": "formula", "content": "Area between curves (with $f\\ge g$ on $[a,b]$):\n\n$A=\\int_a^b\\big(\\text{upper}-\\text{lower}\\big)\\,dx = \\int_a^b\\big(f(x)-g(x)\\big)\\,dx$" },
+    { "type": "keyPoints", "items": [
+      "Graph both functions on the GDC and find the intersection points — these x-values are your limits $a$ and $b$.",
+      "The graph shows at a glance which curve is 'upper' and which is 'lower' inside the region.",
+      "Set up the integral as upper minus lower, then evaluate with the GDC's numerical integrator.",
+      "If the curves cross within the interval, split the integral at the crossing point or integrate $|f(x)-g(x)|$ to keep the total positive.",
+      "Store the intersection values in the calculator's memory; do not retype rounded versions."
+    ]},
+    { "type": "workedExample", "question": "Let $f(x)=x+1$ and $g(x)=0.5e^{x}$.\n(a) Find the x-coordinates of the points where the graphs of $f$ and $g$ meet.\n(b) Hence find the area of the region enclosed by the two graphs. [6]", "solution": "**(a) Find the intersections.** Set $f(x)=g(x)$:\n$x+1=0.5e^{x}$.  [M1: equate the functions]\nGraphing $y_1=x+1$ and $y_2=0.5e^{x}$ on the GDC and using the intersection tool gives\n$x\\approx-0.826$ and $x\\approx1.63$.  [A1][A1: both x-values]\nStore these as $A=-0.8262\\ldots$ and $B=1.6308\\ldots$ to keep full accuracy.\n\n**(b) Set up and evaluate the area.** Between the intersections the line $f(x)=x+1$ lies above the curve $g(x)=0.5e^{x}$, so\n$A=\\displaystyle\\int_{A}^{B}\\big((x+1)-0.5e^{x}\\big)\\,dx$.  [M1: upper minus lower, with their limits]\nEvaluating with the GDC's numerical integrator (using the stored $A$ and $B$):\n$A\\approx1.0965\\ldots$  [A1: correct value]\n$A\\approx1.10$ (3 s.f.).  [A1: correct rounding]" },
+    { "type": "examTip", "content": "Always sketch both curves on the GDC before integrating. The sketch hands you the limits (the intersections) and shows which curve is on top, killing the most common error — subtracting in the wrong order and getting a negative 'area'. If your area comes out negative, you have swapped upper and lower; take the positive value and note the swap." },
+
+    { "type": "heading", "content": "Volume of revolution about the x-axis" },
+    { "type": "text", "content": "A solid of revolution is formed by rotating a region through $360^\\circ$ about an axis. Rotate the region under $y=f(x)$ about the x-axis and each vertical slice sweeps out a thin disc: its radius is the height of the curve, $y$, so its area is $\\pi y^2$ and its volume is $\\pi y^2\\,dx$. Adding up all the discs — that is, integrating — gives the total volume. The single most important habit here is to square $y$ before integrating." },
+    { "type": "formula", "content": "Volume of revolution about the x-axis, $x=a$ to $x=b$:\n\n$V=\\pi\\int_a^b y^2\\,dx = \\pi\\int_a^b \\big[f(x)\\big]^2\\,dx$" },
+    { "type": "keyPoints", "items": [
+      "Square the function first, then integrate, then multiply by $\\pi$: $V=\\pi\\int_a^b y^2\\,dx$.",
+      "The radius of each disc is the height $y=f(x)$; that is why the integrand is $y^2$, not $y$.",
+      "For a region between two curves rotated about the x-axis, use the washer form $V=\\pi\\int_a^b\\big([f(x)]^2-[g(x)]^2\\big)\\,dx$ — square each separately.",
+      "The GDC evaluates $\\int_a^b y^2\\,dx$ numerically; just remember to multiply the result by $\\pi$."
+    ]},
+    { "type": "workedExample", "question": "The region bounded by the curve $y=x^{2}+1$, the x-axis and the lines $x=0$ and $x=2$ is rotated $360^\\circ$ about the x-axis. Find the exact volume of the solid formed. [4]", "solution": "**Set up the volume integral.** Rotating about the x-axis:\n$V=\\pi\\displaystyle\\int_0^2 y^2\\,dx=\\pi\\int_0^2 (x^2+1)^2\\,dx$.  [M1: $V=\\pi\\int y^2\\,dx$ with the correct $y$]\n\n**Expand and integrate.** $(x^2+1)^2=x^4+2x^2+1$, so\n$V=\\pi\\displaystyle\\int_0^2\\big(x^4+2x^2+1\\big)\\,dx=\\pi\\left[\\frac{x^5}{5}+\\frac{2x^3}{3}+x\\right]_0^2$.  [M1: expand the square and integrate]\n\n**Evaluate the limits.**\n$V=\\pi\\left(\\frac{32}{5}+\\frac{16}{3}+2\\right)=\\pi\\left(\\frac{96+80+30}{15}\\right)=\\frac{206\\pi}{15}$.  [A1: correct exact expression]\n$V=\\dfrac{206\\pi}{15}\\approx43.1$.  [A1: correct value, 3 s.f.]" },
+    { "type": "examTip", "content": "The single biggest volume-of-revolution error is forgetting to square $y$, or dropping the $\\pi$. Read the formula as three actions in order — square, integrate, times $\\pi$ — and check both are present in your working before you press ENTER. On a calculator paper you can compute $\\int_a^b y^2\\,dx$ numerically and then multiply by $\\pi$ at the very end." },
+
+    { "type": "heading", "content": "Integration by substitution" },
+    { "type": "text", "content": "Substitution reverses the chain rule. When the integrand is a composite function multiplied by (a constant times) the derivative of its inside, let $u$ be that inside function. Replacing $\\mathrm{d}x$ using $\\mathrm{d}u=\\frac{du}{dx}\\,dx$ turns the integral into a simpler one in $u$. For a definite integral, the cleanest approach is to convert the limits to $u$-values as you go — then you never have to substitute back." },
+    { "type": "formula", "content": "If $u=g(x)$ then $\\mathrm{d}u=g'(x)\\,dx$, and\n\n$\\displaystyle\\int_a^b f\\big(g(x)\\big)\\,g'(x)\\,dx=\\int_{g(a)}^{g(b)} f(u)\\,du$" },
+    { "type": "workedExample", "question": "Find $\\displaystyle\\int_0^2 2x\\,e^{x^{2}}\\,dx$ using the substitution $u=x^{2}$. Give your answer in exact form. [4]", "solution": "**Choose the substitution.** Let $u=x^{2}$, so $\\dfrac{du}{dx}=2x$, giving $\\mathrm{d}u=2x\\,dx$.  [M1: substitution with $du=2x\\,dx$]\n\n**Change the limits.** When $x=0$, $u=0^2=0$; when $x=2$, $u=2^2=4$.  [A1: new limits $0$ and $4$]\n\n**Rewrite and integrate.** The $2x\\,dx$ becomes $\\mathrm{d}u$, so\n$\\displaystyle\\int_0^2 2x\\,e^{x^{2}}\\,dx=\\int_0^4 e^{u}\\,du=\\big[e^{u}\\big]_0^4$.  [M1: integral transformed correctly in $u$]\n\n**Evaluate.** $=e^{4}-e^{0}=e^{4}-1\\approx53.6$.  [A1: exact value $e^4-1$]" },
+    { "type": "examTip", "content": "Two habits save marks with substitution. First, once you change to $u$, change the LIMITS to $u$-values immediately — that is why the $0$ and $2$ became $0$ and $4$ above. Second, if you keep the original x-limits by mistake, you must substitute back to $x$ before evaluating; mixing $u$-limits with an answer in $x$ is a classic slip. On a calculator paper, you can always confirm the exact answer numerically with the GDC's definite integrator." },
+
+    { "type": "heading", "content": "Using the GDC to evaluate definite integrals and volumes" },
+    { "type": "text", "content": "Your GDC is the workhorse of this topic. Its numerical (definite) integration feature evaluates $\\int_a^b f(x)\\,dx$ for any function you can type — no algebra required — which is exactly what areas and volumes reduce to. For an area between curves, integrate the difference (or its absolute value). For a volume about the x-axis, integrate $y^2$ and multiply the result by $\\pi$. Two accuracy habits matter: find intersection limits with the graph or solver and STORE them at full precision rather than retyping rounded values, and restrict any search to a sensible domain, since lengths, areas and volumes must be positive." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Forgetting to square $y$ in a volume** — the disc area is $\\pi y^2$, so the integrand is $y^2$. Writing $\\pi\\int y\\,dx$ finds an area times $\\pi$, not a volume.",
+      "**Dropping the factor of $\\pi$** in a volume of revolution — the formula is $V=\\pi\\int_a^b y^2\\,dx$; leaving out the $\\pi$ loses the final accuracy mark.",
+      "**Subtracting the curves the wrong way round** — area between curves is upper minus lower. Getting a negative answer signals a swap; take the positive value.",
+      "**Using $\\pi\\int(f-g)^2\\,dx$ for a washer** — you must square each function separately: $\\pi\\int([f]^2-[g]^2)\\,dx$. These are not equal.",
+      "**Retyping rounded intersection points** — using $1.63$ instead of the stored $1.6308\\ldots$ corrupts the final answer. Store and recall full precision.",
+      "**Keeping x-limits after substituting to $u$** — either convert the limits to $u$-values, or substitute back to $x$ before evaluating. Never mix the two.",
+      "**Dropping units** — areas in units$^2$, volumes in units$^3$. A bare number in a context problem can cost the final accuracy mark."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In an exam the marks are analytic: each is tied to a specific line of working, using the IB Mathematics conventions. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is normally dependent on the method mark being earned. Follow-through (FT) means a correct final step carried out on your own earlier (even wrong) value still scores, and equivalent correct forms — including an exact answer such as $8\\pi$ or its decimal $25.1$ — are accepted. On this technology-active paper the GDC is allowed throughout. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "The region bounded by $y=\\sqrt{x}$, the x-axis, and $x=4$ is rotated $360^\\circ$ about the x-axis. Find the volume of the solid formed. [4]", "solution": "**Model answer — full working.**\n\n**Set up the volume integral.** Rotating about the x-axis, $V=\\pi\\displaystyle\\int_0^4 y^2\\,dx$, with limits $x=0$ (where $y=\\sqrt{x}$ meets the x-axis) and $x=4$:\n$V=\\pi\\displaystyle\\int_0^4 (\\sqrt{x})^2\\,dx$.\n\n**Simplify and integrate.** Since $(\\sqrt{x})^2=x$,\n$V=\\pi\\displaystyle\\int_0^4 x\\,dx=\\pi\\left[\\frac{x^2}{2}\\right]_0^4$.\n\n**Evaluate.**\n$V=\\pi\\left(\\frac{4^2}{2}-0\\right)=\\pi(8)=8\\pi\\approx25.1$.\n\n**Final answer:** the volume of the solid is $8\\pi\\approx25.1$ (cubic units).\n\n---\n**How our marking engine awards the 4 marks:**\n\n- **M1 — volume set-up.** Awarded for using $V=\\pi\\int y^2\\,dx$ about the x-axis with the correct limits $0$ and $4$. This is a METHOD mark: it stands even if the integration later slips.\n- **M1 — square and integrate.** Awarded for using $y^2=(\\sqrt{x})^2=x$ and integrating to $\\pi\\int_0^4 x\\,dx$. A second method mark for correctly simplifying the integrand and setting up the integration.\n- **A1 — correct antiderivative.** Awarded for $\\pi\\left[\\dfrac{x^2}{2}\\right]_0^4$. This accuracy mark depends on the method marks above.\n- **A1 — final value.** Awarded for $8\\pi\\approx25.1$. Follow-through (FT) applies: a student who mis-simplified $y^2$ but then integrated and evaluated correctly on their own expression still earns this mark. Exact form $8\\pi$ and the decimal $25.1$ are both accepted.\n\n**Accept equivalent forms.** The engine marks the mathematics, not the formatting: it accepts $8\\pi$, $25.1$, or $25.1$ cubic units, and does not require the $\\pi$ to be evaluated. A GDC-only computation of $\\pi\\int_0^4 x\\,dx=25.1\\ldots$ scores full marks provided the set-up $\\pi\\int y^2\\,dx$ is shown.\n\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the final accuracy mark is shielded by follow-through. A student who writes only '$25.1$' with no set-up risks losing the two method marks if a number is wrong; a student who shows $\\pi\\int_0^4(\\sqrt{x})^2\\,dx$, the simplification to $\\pi\\int_0^4 x\\,dx$, and the evaluation keeps those marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the set-up $V=\\pi\\int y^2\\,dx$ with its limits, the squaring of $y$, the integration, and the substitution of the limits, ending with units. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Every calculation here is one idea — the definite integral adds up infinitely many thin slices — dressed for three jobs: area under a curve, area between curves, and volume of revolution. Substitution simply lets you reverse composite functions so those integrals can be evaluated exactly, while the GDC handles anything too awkward for hand-integration. The same set-up-then-evaluate discipline carries straight into the modelling and kinematics questions that dominate Paper 2, where an integral of velocity gives distance and an integral of a rate gives a total. Master the habit — sketch, choose the right integral, square where a volume needs it, evaluate, and state units — and the rest of integral calculus becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 problem marked: solve an area or volume-of-revolution question with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=5.6&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "Khan Academy: Volumes of Revolution (Disc Method)", "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-applications-of-integration/ab-disk-method/v/disk-method-introduction" },
+      { "label": "GeoGebra: Visualising Solids of Revolution", "href": "https://www.geogebra.org/m/pT25A62G" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Visualising Solids of Revolution",

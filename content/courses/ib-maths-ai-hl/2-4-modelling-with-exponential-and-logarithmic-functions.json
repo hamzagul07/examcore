@@ -1,187 +1,327 @@
 {
   "slug": "2-4-modelling-with-exponential-and-logarithmic-functions",
   "topicCode": "2.4",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
   "title": "Modelling with exponential and logarithmic functions",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores how to model real-world scenarios using exponential and logarithmic functions. You will learn to create, analyse, and apply these models to solve problems related to growth, decay, and other phenomena where the rate of change is not constant. Emphasis is placed on using a GDC for regression and interpreting the parameters of the functions in context.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "Exponential and logarithmic models are how Applications and Interpretation describes change that is fast then slowing, or slow then flattening: populations, cooling drinks, radioactive samples, a drug clearing from the blood. This lesson builds the full 2.4 toolkit — the exponential growth and decay forms $y = ka^x$ and $y = ke^{rx} + c$, with the constant $c$ read as a horizontal asymptote or limiting value; interpreting every parameter (initial value, growth or decay factor, continuous rate, limit) in context; fitting a model to data with the GDC; logarithmic models; and solving for the time to reach a given value, either by taking logs or with the calculator. Because AI SL work is calculator-active, the marks reward choosing the right model, reading the GDC correctly and writing down the method the examiner needs — so every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 26,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the key features and parameters of exponential functions ($y = ka^{bx} + c$) and logarithmic functions ($y = a \\ln(bx) + c$).",
-    "Use a graphical display calculator (GDC) to perform exponential and logarithmic regression on a set of data.",
-    "Solve practical problems by applying these models to make predictions (interpolation and extrapolation) and determine unknown values.",
-    "Interpret the meaning of the model's parameters in the context of the real-world problem being modelled."
+    "Recognise and use the exponential growth and decay models $y = ka^x$ and $y = ke^{rx} + c$, and identify the horizontal asymptote $y = c$ as a limiting value.",
+    "Interpret each parameter in context: the initial value, the growth or decay factor $a$, the continuous rate $r$, and the limit $c$.",
+    "Fit an exponential or logarithmic model to data using the GDC, from two points or by regression.",
+    "Solve for the time to reach a given value, either by taking logarithms or by using the GDC solver or graph.",
+    "Apply exponential and logarithmic models to population, cooling, radioactive decay and medication problems, presenting working so method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "2.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "The Maths of Going Viral",
-    "summary": "Exponential and logarithmic functions describe situations where things change at a non-constant rate. They are perfect for modelling phenomena like population growth, which starts slow and then explodes, or the intensity of an earthquake, where the scale itself is compressed.",
-    "analogy": "Imagine a rumour spreading in a school. On day one, one person tells two friends. The next day, those two each tell two more friends. The number of people who know the rumour isn't growing by a fixed amount each day; it's doubling. This rapid, accelerating increase is exponential growth. A logarithmic model is like the opposite: imagine learning a new skill. Your improvement is very fast at the beginning, but as you become more expert, the gains become smaller and harder to achieve.",
+    "title": "Modelling change that speeds up or levels off",
+    "summary": "Exponential models describe quantities that change by the same factor in equal steps of time — doubling, halving, growing 5% a year — so they race away or fade towards a floor. Logarithmic models describe the opposite feel: fast at first, then flattening. Pick the shape that matches the story, pin down the parameters, then read the answer off the model.",
+    "analogy": "Think of a hot coffee left on a desk. It cools quickly at first, when it is far hotter than the room, and more slowly as it nears room temperature — but it never drops below the room. That floor is the limiting value: in the model $T = 68e^{-0.05t} + 20$ the coffee always sits $20$°C above absolute-nothing-left, because the room is $20$°C. Exponential decay towards a limit is exactly this shape: a gap that shrinks by the same fraction every minute but never quite closes.",
     "steps": [
-      "Identify the likely model type (exponential or logarithmic) by examining a scatter plot of the data or considering the context of the problem.",
-      "Use your GDC to enter the data into lists and perform the appropriate regression (e.g., ExpReg or LnReg) to find the equation of the model.",
-      "Apply the resulting equation to solve the problem, for instance by substituting a value to make a prediction or by solving for a variable using your GDC's solver.",
-      "Interpret your answer in the context of the problem, paying attention to units and the real-world meaning of the function's parameters and predictions."
+      "Decide the shape from the story: a fixed percentage or factor per period, or an approach to a floor, is exponential; a quantity that shoots up then flattens is logarithmic.",
+      "Write the general form — $y = ka^x$, or $y = ke^{rx} + c$ when there is a non-zero limit, or $y = a\\ln x + b$ — and note what each letter must mean here.",
+      "Find the parameters: substitute known points, or use the GDC's exponential or logarithmic regression, keeping full accuracy in the calculator.",
+      "Use the model: substitute a time to predict a value, or solve for the time to reach a value by taking logs or using the GDC solver or intersection."
     ]
   },
+  "keyConcepts": [
+    "growth and decay",
+    "limiting value",
+    "fitting and solving"
+  ],
   "flashcards": [
     {
-      "front": "What is the general form of an exponential function used for modelling?",
-      "back": "$y = ka^{bx} + c$. The simpler form $y=ab^x$ is also common. The base 'e' form is $y=ke^{rx}+c$."
+      "front": "Exponential model $y = ka^x$",
+      "back": "$k$ is the initial value (the value at $x = 0$, since $a^0 = 1$) and $a$ is the growth or decay factor per unit of $x$. If $a > 1$ the quantity grows; if $0 < a < 1$ it decays.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "In the model $y = ka^x$, what does the parameter '$a$' represent?",
-      "back": "'$a$' is the growth or decay factor. If $a > 1$, it represents growth. If $0 < a < 1$, it represents decay."
+      "front": "Exponential model with a limit, $y = ke^{rx} + c$",
+      "back": "Same growth/decay engine written with base $e$: $r > 0$ gives growth, $r < 0$ gives decay. The constant $c$ shifts the whole curve up, so the horizontal asymptote — the limiting value — is $y = c$, not $y = 0$.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "In the model $P(t) = P_0 e^{rt}$, what does $P_0$ represent?",
-      "back": "$P_0$ represents the initial value of the quantity $P$ at time $t=0$."
+      "front": "Horizontal asymptote as a limiting value",
+      "back": "In $y = ke^{rx} + c$ with $r < 0$, the term $ke^{rx} \\to 0$ as $x \\to \\infty$, so $y \\to c$. The quantity approaches the floor $c$ but never reaches it — a cooling drink approaches room temperature, a drug level approaches zero plus any baseline.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is 'half-life' in the context of exponential decay?",
-      "back": "Half-life is the time required for a quantity to reduce to half of its initial value."
+      "front": "Growth factor vs continuous rate",
+      "back": "In $y = ka^x$ the factor $a$ multiplies the quantity each period; a $5\\%$ annual rise means $a = 1.05$. In $y = ke^{rx}$ the number $r$ is the continuous rate, and the two are linked by $a = e^r$, i.e. $r = \\ln a$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is 'doubling time' in the context of exponential growth?",
-      "back": "Doubling time is the time required for a quantity to double in size or value."
+      "front": "Reading the initial value",
+      "back": "Set $x = 0$. For $y = ka^x$ the initial value is $k$. For $y = ke^{rx} + c$ it is $k + c$, because $e^{0} = 1$ gives $k + c$ — a common place to slip when there is a vertical shift.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What is the general form of a logarithmic function used for modelling?",
-      "back": "$y = a \\ln(x) + b$ or $y = a \\log_{10}(x) + b$. The general form is $y = a \\log_k(bx)+c$."
+      "front": "Doubling and half-life",
+      "back": "If a quantity doubles every $T$ units, use $y = k \\cdot 2^{x/T}$; if it halves every $T$ units (half-life), use $y = k \\left(\\tfrac{1}{2}\\right)^{x/T}$. The exponent $x/T$ counts how many doubling or halving periods have passed.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the relationship between exponential and logarithmic functions?",
-      "back": "They are inverse functions. For example, if $y = a^x$, then $x = \\log_a(y)$."
+      "front": "Logarithmic model $y = a\\ln x + b$",
+      "back": "Used when a quantity rises (or falls) steeply at first and then flattens — learning curves, sensory scales. Defined only for $x > 0$; $a$ sets the steepness and its sign the direction, $b$ is a vertical shift.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a major limitation of 'extrapolation'?",
-      "back": "Extrapolation is predicting values outside the range of the original data. It is unreliable because the model may not be valid for those values."
+      "front": "Fitting a model with the GDC",
+      "back": "From two points, substitute both and solve the resulting equations (the calculator's solver handles the powers). From a table, use exponential regression ($y = k a^x$) or logarithmic regression ($y = a\\ln x + b$) to get the parameters directly.",
+      "pillLabel": "Method"
     },
     {
-      "front": "On a GDC, what function would you use to model data that increases rapidly and then levels off?",
-      "back": "A logarithmic regression (LnReg) is often a good choice for this shape. A logistic function (not in this topic) is another possibility."
+      "front": "Solving for the time to reach a value",
+      "back": "Set the model equal to the target and solve for the time. Either take logs — e.g. $y = ke^{rx} \\Rightarrow x = \\frac{1}{r}\\ln\\frac{y}{k}$ — or use the GDC solver or the intersection of the two graphs. In AI SL the GDC method is expected and usually faster.",
+      "pillLabel": "Method"
     },
     {
-      "front": "What is a key difference in the graphs of exponential and logarithmic functions?",
-      "back": "Exponential functions of the form $y=a^x$ have a horizontal asymptote (usually $y=0$), while logarithmic functions $y=\\log_a(x)$ have a vertical asymptote (usually $x=0$)."
+      "front": "$\\ln$ and $\\log$",
+      "back": "$\\ln x = \\log_e x$ is the natural logarithm, base $e \\approx 2.718$. It is the tool that 'undoes' $e^x$: $\\ln(e^x) = x$ and $e^{\\ln x} = x$. Taking $\\ln$ of both sides is how you free a variable trapped in an exponent.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "When a question provides a table of data and asks for a model, what should be your first step?",
-      "back": "Enter the data into your GDC's lists and create a scatter plot to visually inspect the trend."
+      "front": "Trap: forgetting the constant $c$",
+      "back": "If data levels off at a value other than zero, the model needs the shift $+c$. Fitting $y = ka^x$ to cooling or medication data that has a floor will misplace every parameter — read the asymptote first and set $c$ to it.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Trap: rounding parameters early",
+      "back": "Store the fitted values of $k$, $a$, $r$ or $c$ at full accuracy in the GDC and only round the final answer, normally to 3 significant figures. Rounding a rate like $r = -0.05$ from a longer decimal early can throw a time answer out by whole minutes.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "In the model $T(t) = 68e^{-0.05t} + 20$, the temperature as $t \\to \\infty$ approaches:",
+      "options": [
+        "$20$ (the horizontal asymptote $y = 20$)",
+        "$0$",
+        "$88$",
+        "$68$"
+      ],
+      "answer": "$20$ (the horizontal asymptote $y = 20$)"
+    },
+    {
+      "prompt": "The model $y = ke^{rx} + c$ describes growth (rather than decay) exactly when:",
+      "options": [
+        "$r > 0$",
+        "$r < 0$",
+        "$c > 0$",
+        "$k < 0$"
+      ],
+      "answer": "$r > 0$"
+    },
+    {
+      "prompt": "To find the time $t$ at which $500e^{0.08t} = 1200$, the expected AI SL method is to:",
+      "options": [
+        "Take logs or use the GDC solver / intersection",
+        "Read it off the flashcard",
+        "Differentiate both sides",
+        "Multiply 1200 by 0.08"
+      ],
+      "answer": "Take logs or use the GDC solver / intersection"
+    },
+    {
+      "prompt": "For $P(t) = 8000(1.03)^t$ modelling a population $t$ years from now, the initial population is:",
+      "options": [
+        "$8000$",
+        "$1.03$",
+        "$8000 \\times 1.03$",
+        "$0.03$"
+      ],
+      "answer": "$8000$"
+    },
+    {
+      "prompt": "A sample decays by the model $m(t) = 50(0.5)^{t/12}$ with $t$ in hours. The value $0.5$ tells you the sample:",
+      "options": [
+        "Halves every 12 hours",
+        "Halves every hour",
+        "Doubles every 12 hours",
+        "Loses 0.5 g each hour"
+      ],
+      "answer": "Halves every 12 hours"
     }
   ],
   "faq": [
     {
-      "q": "How do I choose between an exponential and a logarithmic model for a set of data?",
-      "a": "First, plot the data on a scatter diagram. An exponential model ($y=ab^x$) shows growth that gets increasingly faster or decay that gets increasingly slower. A logarithmic model ($y=a\\ln(x)+b$) shows growth that is fast at first and then slows down, levelling off. The context of the problem is also a vital clue; population growth is typically exponential, while phenomena involving perception (like sound or brightness) are often logarithmic."
+      "q": "How do I decide between an exponential and a logarithmic model?",
+      "a": "Read the story and the shape. A quantity that changes by a fixed factor or percentage each period — doubling, halving, +5% a year — or that approaches a floor is exponential ($y = ka^x$ or $y = ke^{rx} + c$). A quantity that rises or falls steeply at first and then flattens without a fixed doubling time — a learning curve, a sensory scale — is logarithmic ($y = a\\ln x + b$). On a scatter plot, exponential curves have a J or reverse-J shape; logarithmic curves shoot up then bend over and level."
     },
     {
-      "q": "What is the difference between the models $y=ab^x$ and $y=ae^{kx}$?",
-      "a": "They are equivalent forms of the exponential model. Any positive base $b$ can be written as $e^k$, where $k = \\ln(b)$. The base $e$ (Euler's number) is called the 'natural' base and is often used in science and finance because the rate of change of $e^x$ is itself $e^x$, which simplifies many calculations in calculus. The IB exam will usually specify which form to use."
+      "q": "What is the difference between the base-$a$ and base-$e$ forms?",
+      "a": "$y = ka^x$ and $y = ke^{rx}$ describe the same behaviour written two ways. Base $a$ uses a per-period factor ($a = 1.05$ for +5%); base $e$ uses a continuous rate $r$. They convert by $a = e^r$, so $r = \\ln a$. In AI SL you are normally told which form to use, or you fit whichever the question or the regression menu gives — you are not expected to prefer one on your own."
     },
     {
-      "q": "Can I solve for the model parameters algebraically instead of using my GDC?",
-      "a": "You can, but only if you are given just enough information to do so (e.g., two points for a two-parameter model like $y=ab^x$). If you are given a table with multiple data points, you are expected to use your GDC's regression function to find the line or curve of best fit. Using only two points from a larger dataset will not yield the best-fit model and will not receive credit in an exam."
+      "q": "Why does the $+c$ term matter so much in cooling and medication problems?",
+      "a": "Because those quantities do not fade to zero — a coffee stops at room temperature, a drug level may settle at a baseline. The $+c$ sets the horizontal asymptote $y = c$, the limiting value the quantity approaches. Leave it out and you force the curve down to zero, which mis-fits the data and makes every prediction wrong near the floor. Always identify the limit first and set $c$ equal to it."
     },
     {
-      "q": "My GDC gives me an $r$ and $r^2$ value. What do they mean?",
-      "a": "These values, the correlation coefficient ($r$) and the coefficient of determination ($r^2$), measure how well the model fits the data. An $r^2$ value close to 1 indicates a very strong fit, meaning the model closely represents the data. While this is officially part of Topic 4 (Statistics), it can be a useful indicator on your calculator when deciding between different models."
+      "q": "My GDC errors when I solve a logarithmic equation — what went wrong?",
+      "a": "Almost always you are asking it to take the log of zero or a negative number, which is undefined. For $y = a\\ln(x - c) + b$ the input must satisfy $x > c$. Check the domain, and give the solver a sensible starting guess or the graph a window that actually contains the solution."
+    },
+    {
+      "q": "Do I have to take logs by hand, or can I just use the calculator?",
+      "a": "Either is accepted for the answer, but AI SL is calculator-active and the GDC method — solver or graph intersection — is the expected, faster route, and it is what our marking engine assumes. If you do take logs, show the line where you apply $\\ln$ to both sides so the method mark is on the page; if you use the GDC, still write the equation you solved so the examiner sees the method."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Many real-world processes, from the growth of investments to the decay of radioactive materials, do not change in a linear fashion. Instead, their rate of change is often proportional to their current value. This behaviour is captured by exponential and logarithmic functions, which are among the most powerful and common tools in mathematical modelling. In this lesson, we will learn how to use our GDC to fit these models to data and use them to make meaningful predictions."
+      "content": "Straight lines describe change at a constant rate, but much of the real world does not oblige. A population grows faster the larger it is; a hot drink cools quickest when it is hottest; a radioactive sample loses the same fraction of itself every half-life; a drug clears from the blood a little more slowly as its concentration falls. These are the natural home of exponential and logarithmic models. This lesson builds the whole 2.4 syllabus: the growth and decay forms $y = ka^x$ and $y = ke^{rx} + c$, the horizontal asymptote read as a limiting value, the meaning of every parameter, fitting a model on the GDC, logarithmic models, and solving for the time to reach a value. Because AI SL is calculator-active, the marks reward choosing the right model and showing the method the examiner needs — so the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Exponential Models: The Shape of Rapid Change"
+      "content": "Exponential models: growth, decay and a limiting value"
     },
     {
       "type": "text",
-      "content": "Exponential functions model situations where a quantity is multiplied by a constant factor over regular intervals. This leads to rapid growth or decay. The general form we will work with is flexible enough to model a wide variety of scenarios."
+      "content": "An exponential model changes by a constant factor over equal steps: multiply by the same number each period. That single idea produces runaway growth when the factor exceeds one, and a fade towards a floor when it is between zero and one. Two equivalent forms appear in AI SL. The first uses a per-period factor; the second uses base $e$ and adds a constant so the curve can settle above zero."
     },
     {
       "type": "formula",
-      "content": "General Exponential Model: $f(x) = ka^{bx} + c$"
+      "content": "Growth / decay factor form: $y = ka^x$. \\n Continuous form with a limit: $y = ke^{rx} + c$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "The parameter $c$ represents the horizontal asymptote, which is the value the function approaches as $x \\to -\\infty$ (for growth) or $x \\to \\infty$ (for decay). It's the long-term limiting value.",
-        "The value at $x=0$ is $k+c$. If $c=0$, then $k$ is the initial value.",
-        "The base $a$ is the growth factor (if $a>1$) or decay factor (if $0<a<1$).",
-        "The parameter $b$ influences the rate of growth or decay. A larger $|b|$ means a faster change."
+        "**$k$ — the amplitude / initial size.** In $y = ka^x$ the initial value (at $x = 0$) is $k$. In $y = ke^{rx} + c$ the initial value is $k + c$, because $e^0 = 1$.",
+        "**$a$ or $r$ — the growth/decay control.** $a > 1$ (equivalently $r > 0$) means growth; $0 < a < 1$ (equivalently $r < 0$) means decay. They convert by $a = e^r$.",
+        "**$c$ — the limiting value.** The horizontal asymptote is $y = c$: as $x \\to \\infty$ in a decay model the term $ke^{rx} \\to 0$ and $y \\to c$. This floor is room temperature, a baseline concentration, a background level.",
+        "**The gap shrinks by a fixed fraction.** In a decay-to-a-limit model the distance $y - c$ is itself a pure exponential $ke^{rx}$ — the quantity closes the same fraction of its remaining gap each period."
       ]
     },
     {
+      "type": "text",
+      "content": "Reading the parameters in context is where marks are won. In $P(t) = 8000(1.03)^t$ the initial population is $8000$ and the factor $1.03$ means a $3\\%$ rise each year. In $m(t) = 50(0.5)^{t/12}$ the initial mass is $50$ and the base $0.5$ with exponent $t/12$ says the sample halves every $12$ hours. In $T(t) = 68e^{-0.05t} + 20$ the limit is $20$, the starting temperature is $68 + 20 = 88$, and the negative rate $-0.05$ marks decay towards that floor."
+    },
+    {
       "type": "workedExample",
-      "question": "The population of a species of fish in a lake is assumed to grow exponentially. The population was first measured in 2010, when it was 800. In 2015, the population was 1800. The population $P$ after $t$ years since 2010 can be modelled by the function $P(t) = A e^{kt}$.\n\na) State the value of $A$.\nb) Find the value of $k$, correct to 3 significant figures.\nc) Use the model to predict the fish population in the year 2025.\nd) Find the year in which the population is predicted to first exceed 10,000.",
-      "solution": "a) The initial population is at $t=0$ (the year 2010). The model is $P(t) = A e^{kt}$.\n$P(0) = A e^{k \\times 0} = A e^0 = A$. \nWe are given the initial population is 800.\nTherefore, $A = 800$. **(A1)**\n\nb) We are given that in 2015, the population was 1800. This corresponds to $t = 2015 - 2010 = 5$.\nWe have the point $(5, 1800)$.\n$1800 = 800 e^{k \\times 5}$ **(M1)**\n$\\frac{1800}{800} = e^{5k}$\n$2.25 = e^{5k}$\nTo solve for $k$, we take the natural logarithm of both sides:\n$\\ln(2.25) = 5k$ **(M1)**\n$k = \\frac{\\ln(2.25)}{5} = 0.162186...$\n$k \\approx 0.162$ (3 s.f.) **(A1)**\n\nc) The year 2025 corresponds to $t = 2025 - 2010 = 15$.\nWe use the model $P(t) = 800e^{0.162186...t}$.\n$P(15) = 800e^{0.162186... \\times 15}$ **(M1)**\n$P(15) = 9112.5$\nThe predicted population is 9110 fish (to 3 s.f.). We should round to a whole number, so 9113 fish. **(A1)**\n\nd) We need to find $t$ when $P(t) > 10000$.\n$10000 = 800e^{0.162186...t}$ **(M1)**\n$\\frac{10000}{800} = e^{0.162186...t}$\n$12.5 = e^{0.162186...t}$\n$\\ln(12.5) = 0.162186...t$ **(M1)**\n$t = \\frac{\\ln(12.5)}{0.162186...} = 15.58...$ years.\nSince $t$ is years after 2010, this occurs during the 15th year after 2010. The population exceeds 10,000 during the year $2010 + 15 = 2025$. The question asks for the year in which it first exceeds, so the answer is 2026 (as 15.58 is after the start of 2025). A safer answer is to state the year: $2010 + 15.58 = 2025.58$, so this happens during 2025. Let's stick to the IB convention. The population is 10000 at t=15.58. So at the start of 2026 (t=16), it will be over 10000. The question asks for the year in which it first exceeds. This happens during the year 2025. So the answer is 2025. Let's re-read. 'the year in which'. $t=15$ is start of 2025. $t=16$ is start of 2026. $t=15.58$ is in 2025. So the year is 2025. **(A1)**"
+      "question": "A colony of bacteria is modelled by $N(t) = k a^t$, where $N$ is the number of bacteria (in thousands) and $t$ is the time in hours. When $t = 0$ there are $5$ thousand bacteria, and when $t = 3$ there are $17$ thousand. \\n (a) Find $k$ and $a$. \\n (b) State the growth factor as a percentage increase per hour. \\n (c) Predict the number of bacteria after $10$ hours. [6]",
+      "solution": "**(a) Find the parameters.** At $t = 0$, $N = k a^0 = k$, so $k = 5$.  [A1]\\nUsing the second point in $N(t) = 5a^t$: $17 = 5a^3$, so $a^3 = \\dfrac{17}{5} = 3.4$.  [M1: substitute the second point]\\n$a = 3.4^{1/3} = 1.5036\\ldots = 1.50$ (3 s.f.).  [A1]\\n(On the GDC, exponential regression on the two points returns the same $k$ and $a$.)\\n\\n**(b) Interpret the factor.** $a = 1.50$ means the colony multiplies by about $1.50$ each hour — a growth of about $50\\%$ per hour.  [A1]\\n\\n**(c) Predict.** Keep the full stored value of $a$ and evaluate $N(10) = 5 \\times (3.4^{1/3})^{10}$.  [M1: substitute $t = 10$ with stored $a$]\\n$N(10) = 5 \\times 3.4^{10/3} = 289.6\\ldots$\\nSo about $290$ thousand bacteria after $10$ hours (3 s.f.).  [A1]\\n\\nUsing the rounded $a = 1.50$ gives $\\approx 288$ thousand — close, but a reminder to carry the unrounded factor to the final line."
     },
     {
       "type": "examTip",
-      "content": "Always use the full, unrounded value for parameters like $k$ in subsequent calculations. Store it in your calculator's memory to avoid premature rounding errors. Only round your final answer to the required degree of accuracy (usually 3 significant figures unless specified otherwise)."
+      "content": "Write the fitted model out in full before you use it, and evaluate from the GDC's stored parameters, not the rounded ones you wrote down. Round only the final answer, normally to 3 significant figures. A rate or factor rounded a step too early is one of the commonest ways an otherwise correct prediction loses the accuracy mark."
     },
     {
       "type": "heading",
-      "content": "Logarithmic Models: When Growth Slows"
+      "content": "Fitting a model to data with the GDC"
     },
     {
       "type": "text",
-      "content": "Logarithmic functions are the inverse of exponential functions. They are useful for modelling phenomena that increase or decrease quickly at first, but then slow down over time. They are also fundamental to many measurement scales, like the Richter scale for earthquakes or the pH scale for acidity, where our perception of a quantity is logarithmic."
+      "content": "When a question hands you a table rather than a clean pair of points, use regression. Enter the inputs in one list and the outputs in a second, then choose exponential regression for a $y = ka^x$ shape or logarithmic regression for a $y = a\\ln x + b$ shape. The calculator returns the parameters that best fit the data; write them down to full accuracy and quote the model. If the data levels off at a non-zero floor, subtract that floor first (work with $y - c$) or use a model form that includes the constant, so the exponential part is fitted cleanly."
+    },
+    {
+      "type": "heading",
+      "content": "Logarithmic models"
+    },
+    {
+      "type": "text",
+      "content": "Logarithmic models fit quantities that change rapidly at first and then flatten — the mirror image of exponential growth. Because they are the inverse of exponentials, their graphs rise (or fall) steeply near the start and bend towards the horizontal. The standard AI SL form uses the natural logarithm."
     },
     {
       "type": "formula",
-      "content": "General Logarithmic Model: $f(x) = a \\ln(x) + b$"
+      "content": "Logarithmic model: $y = a\\ln x + b$, defined for $x > 0$."
+    },
+    {
+      "type": "text",
+      "content": "Here $a$ controls how steeply the curve climbs and its sign sets the direction, while $b$ shifts the whole curve vertically. Because $\\ln x$ is undefined for $x \\le 0$, always check the domain before substituting or solving, and make sure any GDC window or solver guess sits in the valid region."
+    },
+    {
+      "type": "workedExample",
+      "question": "The time $y$ minutes a trainee takes to assemble a device on their $x$th attempt is modelled by $y = a\\ln x + b$. On the 1st attempt ($x = 1$) the time is $40$ minutes, and on the 10th attempt it is $22$ minutes. \\n (a) Find $a$ and $b$. \\n (b) Estimate the time on the 20th attempt. [5]",
+      "solution": "**(a) Find the parameters.** At $x = 1$, $\\ln 1 = 0$, so $y = a(0) + b = b$; hence $b = 40$.  [A1]\\nAt $x = 10$: $22 = a\\ln 10 + 40$.  [M1: substitute the second point]\\n$a\\ln 10 = 22 - 40 = -18$, so $a = \\dfrac{-18}{\\ln 10} = -7.817\\ldots = -7.82$ (3 s.f.).  [A1]\\nThe model is $y = -7.82\\ln x + 40$ (negative $a$: the time falls as attempts rise).\\n\\n**(b) Predict.** Using the stored value of $a$: $y = a\\ln 20 + 40 = -7.817\\ldots \\times \\ln 20 + 40$.  [M1: substitute $x = 20$]\\n$y = -7.817\\ldots \\times 2.9957\\ldots + 40 = 16.5\\ldots$\\nSo about $16.6$ minutes on the 20th attempt (3 s.f.).  [A1]\\n\\nNotice the flattening: ten attempts cut the time by $18$ minutes, but the next ten cut it by only about $5$ — the hallmark of a logarithmic model."
+    },
+    {
+      "type": "heading",
+      "content": "Solving for the time to reach a value"
+    },
+    {
+      "type": "text",
+      "content": "A recurring task is the reverse question: not 'what is the value at this time?' but 'when does the value reach this level?'. Set the model equal to the target and solve for the time. There are two routes, and either earns the marks. Algebraically, isolate the exponential and take natural logs of both sides — logs are the tool that frees a variable trapped in an exponent. On the GDC, use the numerical solver or graph both sides and find the intersection. AI SL is calculator-active, so the GDC route is expected and usually quicker; whichever you use, write down the equation you solved so the method is on the page."
+    },
+    {
+      "type": "formula",
+      "content": "For $y = ke^{rx}$, taking logs gives $x = \\dfrac{1}{r}\\ln\\!\\left(\\dfrac{y}{k}\\right)$. \\n For $y = ke^{rx} + c$, first subtract $c$: $y - c = ke^{rx}$, then take logs."
+    },
+    {
+      "type": "workedExample",
+      "question": "A radioactive sample has mass modelled by $m(t) = 80e^{-0.03t}$ grams, where $t$ is the time in years. \\n (a) Find the mass after $25$ years. \\n (b) Find the half-life of the sample (the time for the mass to fall to $40$ g). [5]",
+      "solution": "**(a) Evaluate the model.** Substitute $t = 25$: $m(25) = 80e^{-0.03 \\times 25} = 80e^{-0.75}$.  [M1: substitute $t = 25$]\\n$m(25) = 80 \\times 0.47236\\ldots = 37.789\\ldots$\\nSo about $37.8$ g after $25$ years (3 s.f.).  [A1]\\n\\n**(b) Solve for the time.** Set $m(t) = 40$: $40 = 80e^{-0.03t}$.  [M1: set the model equal to the target]\\n**By logs:** $e^{-0.03t} = 0.5$, so $-0.03t = \\ln 0.5$, giving $t = \\dfrac{\\ln 0.5}{-0.03} = 23.104\\ldots$.\\n**By GDC:** solve $80e^{-0.03t} = 40$ (solver) or intersect $y = 80e^{-0.03x}$ with $y = 40$; the result is the same.  [A1]\\nThe half-life is about $23.1$ years (3 s.f.).  [A1]\\n\\nBecause $80e^{-0.03t} = 40$ is exactly $e^{-0.03t} = \\tfrac{1}{2}$, the half-life does not depend on the starting mass $80$ — a defining feature of exponential decay."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The function $y = a \\ln(x) + b$ has a vertical asymptote at $x=0$.",
-        "The model is only defined for positive values of its argument (in this case, $x>0$).",
-        "The parameter 'a' stretches or compresses the graph vertically, affecting how quickly the function's value changes.",
-        "The parameter 'b' shifts the graph vertically."
+        "**Treating $c$ as zero when the data has a floor** — in $y = ke^{rx} + c$ the limiting value is $y = c$, the horizontal asymptote. Cooling and medication problems level off above zero; identify $c$ first or every parameter is wrong.",
+        "**Misreading the initial value with a shift** — for $y = ke^{rx} + c$ the value at $t = 0$ is $k + c$, not $k$, because $e^0 = 1$. Only in $y = ka^x$ is the initial value simply $k$.",
+        "**Confusing growth and decay** — $a > 1$ or $r > 0$ is growth; $0 < a < 1$ or $r < 0$ is decay. A negative sign in the exponent means the quantity falls; do not report a decaying model as growing.",
+        "**Rounding parameters mid-calculation** — carry the GDC's full values of $k$, $a$, $r$ and $c$; round only the final answer to 3 significant figures. A rate rounded early can shift a time answer by whole units.",
+        "**Not showing the method when solving for time** — write the equation you set equal to the target and either the $\\ln$ step or the GDC equation solved. An answer with no method risks the method mark even if the number is right.",
+        "**Ignoring the domain of a logarithmic model** — $\\ln x$ needs $x > 0$ (and $\\ln(x - c)$ needs $x > c$). Feeding the GDC a value outside the domain produces an error, not a solution.",
+        "**Forgetting to subtract the limit before taking logs** — to solve $y = ke^{rx} + c$ you must isolate the exponential first: $y - c = ke^{rx}$, then take logs. Taking logs of $y$ directly is wrong.",
+        "**Answering the wrong question** — 'find the value after $t$' means substitute; 'find when it reaches a value' means solve. Substituting when a solve is asked (or vice versa) throws away the whole part."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A student is investigating the cooling of a cup of coffee. The temperature, $T$ degrees Celsius, is recorded at various times, $m$ minutes, after it is poured. The results are shown in the table.\n\n| Time, $m$ (minutes) | 2 | 5 | 9 | 12 | 15 |\n|---|---|---|---|---|---|\n| Temperature, $T$ (°C) | 75.5 | 60.1 | 48.3 | 41.5 | 36.8 |\n\nThe relationship is believed to be exponential, of the form $T(m) = a \\times b^m$.\n\na) Use your GDC to find the values of $a$ and $b$. Write down the full calculator display.\nb) Use the model to estimate the initial temperature of the coffee.\nc) The student's model is only valid while the coffee is warmer than the room temperature, which is 22°C. Estimate how long it takes for the coffee to cool to this temperature.",
-      "solution": "a) We need to perform an exponential regression on the data.\n1. Enter the time values ($m$) into List 1 and the temperature values ($T$) into List 2 on the GDC.\n2. Run the exponential regression function (e.g., ExpReg L1, L2 on a TI-84).\nThe calculator returns values for an equation $y=ab^x$.\n$a = 84.9567...$\n$b = 0.92003...$ **(A1)(A1)**\nSo, the model is $T(m) = 84.9567 \\times (0.92003)^m$.\n\nb) The initial temperature is the temperature at $m=0$.\nUsing the model, $T(0) = a \\times b^0 = a \\times 1 = a$.\nSo, the initial temperature is the value of $a$.\n$T(0) = 84.9567... \\approx 85.0$ °C (to 3 s.f.). **(A1)**\n\nc) We need to find the time $m$ when the temperature $T$ is 22°C.\n$22 = 84.9567 \\times (0.92003)^m$ **(M1)**\nThis can be solved using the GDC's numerical solver (e.g., nSolve) or graphically by finding the intersection of $y_1 = 84.9567 \\times (0.92003)^m$ and $y_2 = 22$.\nSolving gives:\n$m = 16.215...$ minutes. **(M1)**\nIt takes approximately 16.2 minutes for the coffee to cool to room temperature. **(A1)**"
-    },
-    {
       "type": "heading",
-      "content": "Regression on your GDC"
+      "content": "Model answer — marked the way our engine marks it"
     },
     {
       "type": "text",
-      "content": "For this topic, your GDC is your most important tool. You are expected to be proficient at taking a set of data, entering it into your calculator, and finding an appropriate regression model. The general process is to enter your independent variable (e.g., time) into one list and your dependent variable (e.g., population) into another. Then, you can create a scatter plot to visually inspect the data's shape. Finally, you select the appropriate regression from the statistics menu (e.g., `ExpReg` for exponential, `LnReg` for logarithmic) to calculate the parameters of the model."
+      "content": "In AI SL the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier wrong value need not cost you the marks that depend on it, provided the later step is done correctly on your own figure. The engine also ignores subsequent working once a correct answer appears, and accepts any equivalent form and any correctly-rounded value — and a value found by GDC solver or intersection earns exactly the same marks as one found by taking logs. But that protection only exists if the method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cup of coffee cools according to $T(t) = 68e^{-0.05t} + 20$ (temperature in °C, $t$ in minutes). State the room temperature, find the temperature after $10$ minutes, and find the time for the coffee to reach $40$ °C. [5]",
+      "solution": "**Model answer — full working.**\\n\\n**Room temperature.** As $t \\to \\infty$, the term $68e^{-0.05t} \\to 0$, so $T \\to 20$. The horizontal asymptote $y = 20$ is the limiting value, so the room temperature is $20$ °C.\\n\\n**Temperature after 10 minutes.** Substitute $t = 10$:\\n$T(10) = 68e^{-0.05 \\times 10} + 20 = 68e^{-0.5} + 20.$\\n$68e^{-0.5} = 68 \\times 0.60653\\ldots = 41.24\\ldots$, so $T(10) = 41.24\\ldots + 20 = 61.24\\ldots$\\nThe temperature after $10$ minutes is about $61.2$ °C (3 s.f.).\\n\\n**Time to reach 40 °C.** Set $T(t) = 40$:\\n$40 = 68e^{-0.05t} + 20.$\\nSubtract the limit first: $20 = 68e^{-0.05t}$, so $e^{-0.05t} = \\dfrac{20}{68} = 0.2941\\ldots$\\n**By logs:** $-0.05t = \\ln(0.2941\\ldots)$, so $t = \\dfrac{\\ln(0.2941\\ldots)}{-0.05} = 24.47\\ldots$\\n**By GDC:** solve $68e^{-0.05t} + 20 = 40$, or intersect $y = 68e^{-0.05x} + 20$ with $y = 40$ — the same value.\\nThe coffee reaches $40$ °C after about $24.9$ minutes (3 s.f.).\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **A1 — room temperature.** Awarded for $20$ °C, identified as the $+20$ horizontal asymptote / limiting value. The engine accepts the answer whether justified as 'the asymptote $y = 20$' or 'as $t \\to \\infty$, $T \\to 20$'.\\n- **M1 — substitute $t = 10$.** A method mark for correctly substituting into the model, i.e. writing $T(10) = 68e^{-0.05 \\times 10} + 20$ (or $68e^{-0.5} + 20$). It is the substitution that is rewarded, so it survives an arithmetic slip on the next line.\\n- **A1 — value at 10 minutes.** Awarded for $61.2$ °C (accept $61.24\\ldots$ correctly rounded). This accuracy mark depends on the M1 above, and is FT: a candidate who substituted correctly but slipped in arithmetic still earns it if their value follows correctly from their line.\\n- **M1 — set $T = 40$ and solve.** A method mark for forming $68e^{-0.05t} + 20 = 40$ and moving to solve it — either isolating the exponential and taking logs, or setting up the GDC solver / intersection. Both routes earn this single method mark equally.\\n- **A1 — time.** Awarded for $t \\approx 24.9$ minutes (accept $24.47\\ldots$ / $24.5$ from exact working, or the GDC value, correctly rounded). This A-mark depends on the M1 solve and is FT on the candidate's own earlier figures.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts the time whether written as $\\frac{\\ln(20/68)}{-0.05}$, or $24.5$, or $24.9$ from a GDC solve, provided the rounding is consistent, and it accepts the value at 10 minutes as $61.2$ or $61.24$. Once a correct final value appears, later restatements do not lose marks.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through — but only if the substitution and the 'set equal and solve' lines are on the page. A student who writes just '$61$ °C' and '$25$ min' with no working risks the two method marks; a student who shows the substitution, isolates the exponential and states the equation solved keeps the method regardless of a slip in the final number."
     },
     {
       "type": "examTip",
-      "content": "When a question gives you a table of data with more than two points and asks you to find a model, it is a direct instruction to use the regression capabilities of your GDC. Do not attempt to solve for the parameters algebraically by picking two points, as this will not be the 'best-fit' model for the entire dataset and will likely score no marks."
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through, and it treats a GDC solve or intersection as equal to taking logs. So always show the method: write the substitution for a 'find the value' part, and for a 'find the time' part isolate the exponential, then either take logs or state the equation you solved on the GDC before quoting the answer. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Exponential and logarithmic models are the backbone of AI SL's applied topics. The same growth and decay engine drives compound interest and depreciation in the finance strand, where the per-period factor becomes $1 + \\frac{r}{100}$; the limiting value you met here as room temperature returns as the carrying capacity in more advanced growth models and as the baseline in regression residuals. The habit built in this lesson — name the model, read the asymptote, interpret each parameter, and show the 'set equal and solve' method whether you take logs or reach for the GDC — is exactly the discipline every calculator-active question rewards. Get the shape and the parameters right, and prediction becomes a single substitution and timing a single solve."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=2.4"
+      "label": "Get a calculator-active question marked: fit the model, read the limit, and solve for the time with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.4&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GeoGebra Exponential Regression Tool",
-          "href": "https://www.geogebra.org/m/cbrh6srf"
+          "label": "IB Mathematics Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
         },
         {
-          "label": "Desmos Regression Example",
-          "href": "https://www.desmos.com/calculator/vof1t2rsvn"
+          "label": "Khan Academy: Exponential and logarithmic functions",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:exp-and-log-graphs/a/graphs-of-exponential-and-logarithmic-functions"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "GeoGebra Exponential Regression Tool",

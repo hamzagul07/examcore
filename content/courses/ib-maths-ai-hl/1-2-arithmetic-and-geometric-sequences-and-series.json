@@ -1,190 +1,338 @@
 {
   "slug": "1-2-arithmetic-and-geometric-sequences-and-series",
   "topicCode": "1.2",
+  "unit": {
+    "code": "1",
+    "title": "Number and algebra"
+  },
   "title": "Arithmetic and geometric sequences and series",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores arithmetic and geometric sequences and series. You will learn to identify these patterns, use formulas to find specific terms and sums, and apply these concepts to real-world scenarios, particularly in financial mathematics such as calculating interest and depreciation.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A sequence is an ordered list of numbers built from a rule; a series is what you get when you add those numbers up. This lesson builds the full 1.2 syllabus for AI SL: arithmetic sequences that grow by a fixed step $d$ and their sums, geometric sequences that grow by a fixed ratio $r$ and their sums, sigma notation as shorthand for a series, and the applied contexts examiners love — salaries, savings, loan repayments, population growth and depreciation. Because every AI paper allows a GDC, the arithmetic is rarely the hard part; the marks are for choosing the right model, identifying $u_1$, $d$ or $r$ and $n$ correctly, and writing down the method the examiner needs to see. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 32,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Distinguish between arithmetic and geometric sequences and series.",
-    "Use the formulas for the nth term and the sum of the first n terms of arithmetic and geometric sequences.",
-    "Apply sequences and series to model and solve real-world problems, including financial applications like interest and depreciation.",
-    "Understand and apply the condition for convergence of an infinite geometric series and calculate its sum."
+    "Distinguish arithmetic sequences (constant difference $d$) from geometric sequences (constant ratio $r$), and find $u_1$, $d$ and $r$ from the terms of a sequence.",
+    "Use $u_n = u_1 + (n-1)d$ and $S_n = \\frac{n}{2}(2u_1+(n-1)d)$ for arithmetic sequences and series, and $u_n = u_1 r^{n-1}$ and $S_n = \\frac{u_1(r^n-1)}{r-1}$ for geometric sequences and series.",
+    "Read, expand and evaluate a finite series written in sigma notation, and convert between a series and its sigma form.",
+    "Model applied situations — salaries, savings plans, loan balances, growth and depreciation — as arithmetic or geometric, choosing the right formula and interpreting the answer in context.",
+    "Use a GDC efficiently (nth-term rules, tables and the finance solver) while still presenting the method so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "1.2"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Unlocking Number Patterns",
-    "summary": "A sequence is an ordered list of numbers following a specific rule, like a conga line where each person's move is related to the person in front. A series is simply the sum of the numbers in that sequence.",
-    "analogy": "Imagine you're saving money. If you add £5 to your piggy bank every week, your total savings form an 'arithmetic' sequence. If, instead, a magical piggy bank increases your total savings by 10% each month, your savings grow in a 'geometric' sequence. This lesson gives you the tools to predict how much you'll have at any point in the future.",
+    "title": "Two Ways a Pattern Can Grow",
+    "summary": "Almost every pattern in this topic grows in one of two ways: by adding the same amount each step, or by multiplying by the same amount each step. Spot which one you are looking at, pull out the starting value and the step (or the ratio), and a single formula from the booklet does the rest — for one term or for a whole running total.",
+    "analogy": "Picture two savers. The first tucks exactly $50 under the mattress every month: the pile climbs in equal steps — that is arithmetic. The second puts money in an account that grows by 3% each month, so each month's growth is bigger than the last: the balance climbs by multiplication — that is geometric. Adding a fixed amount is a straight-line climb; multiplying by a fixed factor is a curve that bends upward (or, if the factor is less than one, decays towards zero).",
     "steps": [
-      "Identify the type of sequence: Is there a common difference (arithmetic) or a common ratio (geometric)?",
-      "List the knowns and unknowns: Write down the values you are given, such as the first term ($u_1$), difference ($d$), ratio ($r$), or number of terms ($n$). Identify what you need to find.",
-      "Select the correct formula: Choose the appropriate equation from the IB formula booklet for the nth term ($u_n$) or the sum of terms ($S_n$).",
-      "Solve and interpret: Substitute your known values into the formula, calculate the result, and ensure your final answer is presented clearly in the context of the problem, including units."
+      "Decide the type. Look at consecutive terms. If you SUBTRACT and always get the same number, it is arithmetic with common difference $d$. If you DIVIDE and always get the same number, it is geometric with common ratio $r$.",
+      "Pull out the parameters. Write down the first term $u_1$, the step $d$ or ratio $r$, and the term number $n$ the question asks about. Read percentage changes carefully: a 4% rise means $r = 1.04$, a 4% fall means $r = 0.96$.",
+      "Pick the formula. One term uses the $u_n$ formula; a running total uses the $S_n$ formula. All four are in your formula booklet — the skill is choosing, not memorising.",
+      "Substitute, compute, interpret. Let the GDC do the arithmetic, then round sensibly and check the answer makes sense for the context — money to 2 decimal places, people to a whole number."
     ]
   },
+  "keyConcepts": [
+    "arithmetic sequences and series",
+    "geometric sequences and series",
+    "sigma notation and applications"
+  ],
   "flashcards": [
     {
-      "front": "What is an arithmetic sequence?",
-      "back": "A sequence of numbers where the difference between consecutive terms is constant. This constant difference is called the common difference, $d$."
+      "front": "Sequence vs series",
+      "back": "A sequence is an ordered list of terms ($3, 7, 11, 15, \\ldots$). A series is the sum of those terms ($3+7+11+15$). A sequence is a list; a series is a total.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is a geometric sequence?",
-      "back": "A sequence of numbers where each term after the first is found by multiplying the previous one by a fixed, non-zero number called the common ratio, $r$."
+      "front": "Arithmetic sequence",
+      "back": "Consecutive terms differ by a constant, the common difference $d = u_{n+1} - u_n$. You find any term by SUBTRACTING to get $d$, then adding it on repeatedly.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the difference between a sequence and a series?",
-      "back": "A sequence is an ordered list of numbers ($u_1, u_2, ...$). A series is the sum of the terms in a sequence ($u_1 + u_2 + ...$)."
+      "front": "Geometric sequence",
+      "back": "Consecutive terms have a constant ratio, the common ratio $r = \\dfrac{u_{n+1}}{u_n}$. You find $r$ by DIVIDING a term by the one before it, never by subtracting.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Formula for the nth term of an arithmetic sequence.",
-      "back": "$u_n = u_1 + (n-1)d$"
+      "front": "nth term of an arithmetic sequence",
+      "back": "$u_n = u_1 + (n-1)d$. Note the $(n-1)$: the first term has taken zero steps, the $n$th term has taken $n-1$ steps. This is where off-by-one errors creep in.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Formula for the sum of a finite arithmetic series.",
-      "back": "$S_n = \\frac{n}{2}(2u_1 + (n-1)d)$ or $S_n = \\frac{n}{2}(u_1 + u_n)$"
+      "front": "Sum of an arithmetic series",
+      "back": "$S_n = \\dfrac{n}{2}\\bigl(2u_1 + (n-1)d\\bigr)$, or $S_n = \\dfrac{n}{2}(u_1 + u_n)$ when you already know the last term $u_n$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Formula for the nth term of a geometric sequence.",
-      "back": "$u_n = u_1 r^{n-1}$"
+      "front": "nth term of a geometric sequence",
+      "back": "$u_n = u_1 r^{\\,n-1}$. Again the exponent is $n-1$, not $n$ — the first term has been multiplied by $r$ zero times.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "Formula for the sum of a finite geometric series.",
-      "back": "$S_n = \\frac{u_1(r^n - 1)}{r-1}$ or $S_n = \\frac{u_1(1 - r^n)}{1-r}$"
+      "front": "Sum of a geometric series",
+      "back": "$S_n = \\dfrac{u_1(r^n - 1)}{r - 1} = \\dfrac{u_1(1 - r^n)}{1 - r}$. The two forms are identical; use whichever keeps the denominator positive to reduce sign slips.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the condition for an infinite geometric series to converge?",
-      "back": "The series converges (has a finite sum) if and only if the absolute value of the common ratio is less than 1. In symbols: $|r| < 1$."
+      "front": "Sigma notation",
+      "back": "$\\sum_{k=1}^{n} u_k$ means 'add the terms $u_k$ from $k = 1$ up to $k = n$'. The letter below is the counter's start, the number above is where it stops. It is just compact shorthand for a series.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Formula for the sum of a convergent infinite geometric series.",
-      "back": "$S_\\infty = \\frac{u_1}{1-r}$, provided $|r| < 1$."
+      "front": "Common ratio for a percentage change",
+      "back": "A rise of $p\\%$ gives $r = 1 + \\dfrac{p}{100}$ (so $+12\\% \\Rightarrow r = 1.12$); a fall of $p\\%$ gives $r = 1 - \\dfrac{p}{100}$ (so $-20\\% \\Rightarrow r = 0.80$). You multiply by $r$ to move one step on.",
+      "pillLabel": "Skill"
     },
     {
-      "front": "Common Trap: In a question about value 'after 5 years', what value of $n$ should you use to find the term?",
-      "back": "If $u_1$ is the initial value (at year 1 or time 0), the value 'after 5 years' corresponds to the start of the 6th year, so you would calculate the 6th term, $u_6$ (using $n=6$). Always be careful with how 'time' is defined."
+      "front": "'After $n$ years' vs 'in the $n$th year'",
+      "back": "'In the 5th year' means $n = 5$. 'The value after 5 years', starting from an initial value $u_1$, is often the 6th term $u_6$, because the initial value is the 1st term. Read the wording before choosing $n$.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "How do you find the common ratio, $r$, from two consecutive terms?",
-      "back": "Divide any term by the previous term. For example, $r = \\frac{u_3}{u_2}$."
+      "front": "Arithmetic or geometric — which is it?",
+      "back": "Test consecutive terms both ways. If the DIFFERENCES are constant it is arithmetic; if the RATIOS are constant it is geometric. Using an arithmetic formula on a geometric sequence (or vice versa) is the single most common error in this topic.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What happens if you try to find the sum of an infinite geometric series where $|r| \\ge 1$?",
-      "back": "The series diverges, meaning the sum does not approach a finite value. It either tends to infinity (or negative infinity) or oscillates. You cannot use the $S_\\infty$ formula."
+      "front": "GDC on AI papers",
+      "back": "Every AI SL paper allows a GDC, so you may compute $u_n$ and $S_n$ with a table or the finance solver. You still write the formula and substitution down: the method mark is for the model, not the button press.",
+      "pillLabel": "Skill"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "The sequence $3, 6, 12, 24, \\ldots$ is:",
+      "options": [
+        "Arithmetic with common difference 3",
+        "Geometric with common ratio 2",
+        "Arithmetic with common difference 2",
+        "Geometric with common ratio 3"
+      ],
+      "answer": "Geometric with common ratio 2"
+    },
+    {
+      "prompt": "An arithmetic sequence has $u_1 = 4$ and $d = 5$. The 10th term $u_{10}$ is:",
+      "options": [
+        "$4 + 10 \\times 5 = 54$",
+        "$4 + 9 \\times 5 = 49$",
+        "$4 + 11 \\times 5 = 59$",
+        "$10 \\times 5 = 50$"
+      ],
+      "answer": "$4 + 9 \\times 5 = 49$"
+    },
+    {
+      "prompt": "For the geometric sequence $8, 12, 18, \\ldots$ the common ratio $r$ is found by:",
+      "options": [
+        "Subtracting: $12 - 8 = 4$",
+        "Dividing: $\\frac{12}{8} = 1.5$",
+        "Adding: $8 + 12 = 20$",
+        "Dividing the first by the second: $\\frac{8}{12}$"
+      ],
+      "answer": "Dividing: $\\frac{12}{8} = 1.5$"
+    },
+    {
+      "prompt": "A question asks for the TOTAL of the first 20 terms of a sequence. You should use:",
+      "options": [
+        "The nth-term formula $u_n$",
+        "The sum formula $S_n$",
+        "The common difference $d$ only",
+        "The common ratio $r$ only"
+      ],
+      "answer": "The sum formula $S_n$"
+    },
+    {
+      "prompt": "A machine worth $12\\,000 loses 15% of its value each year. The common ratio for its value is:",
+      "options": [
+        "$r = 0.15$",
+        "$r = 1.15$",
+        "$r = 0.85$",
+        "$r = -0.15$"
+      ],
+      "answer": "$r = 0.85$"
     }
   ],
   "faq": [
     {
-      "q": "What's the main difference between an arithmetic and a geometric sequence?",
-      "a": "An arithmetic sequence has a constant *difference* between terms (you add or subtract the same number each time). A geometric sequence has a constant *ratio* between terms (you multiply or divide by the same number each time)."
+      "q": "How do I tell quickly whether a sequence is arithmetic or geometric?",
+      "a": "Test the first few terms both ways. Subtract each term from the next: if you always get the same number, the sequence is arithmetic and that number is $d$. Then divide each term by the one before: if you always get the same number, it is geometric and that number is $r$. A sequence like $2, 6, 10, 14$ has constant differences (arithmetic, $d = 4$); a sequence like $2, 6, 18, 54$ has constant ratios (geometric, $r = 3$). Choosing the wrong type is the most common way to lose every mark on an otherwise easy question."
     },
     {
-      "q": "How do I know from the question whether to use an arithmetic or geometric formula?",
-      "a": "Look for keywords. 'Constant increase/decrease by a fixed amount', 'annual salary rise', or 'simple interest' suggest an arithmetic sequence. 'Percentage increase/decrease', 'compounding interest', 'depreciation by a percentage', or 'half-life' suggest a geometric sequence."
+      "q": "Why is the exponent $n-1$ and not $n$?",
+      "a": "Because the first term has not yet had the step or ratio applied to it. In $u_n = u_1 + (n-1)d$, the 1st term ($n=1$) has taken $0$ steps of $d$, the 2nd term $1$ step, and so on, so the $n$th term has taken $n-1$ steps. The same logic gives $u_n = u_1 r^{n-1}$: the first term has been multiplied by $r$ zero times. Forgetting the $-1$ is the classic off-by-one slip."
     },
     {
-      "q": "Can the common difference ($d$) or common ratio ($r$) be negative?",
-      "a": "Yes. A negative common difference means the terms are decreasing (e.g., 10, 7, 4, ... where $d=-3$). A negative common ratio means the terms alternate in sign (e.g., 3, -6, 12, -24, ... where $r=-2$)."
+      "q": "How do I turn a percentage increase or decrease into a common ratio $r$?",
+      "a": "Work with the multiplier that takes you from 100% to the new percentage. A 7% increase leaves you with 107%, so $r = 1.07$. A 7% decrease leaves you with 93%, so $r = 0.93$. In general, a $p\\%$ increase gives $r = 1 + p/100$ and a $p\\%$ decrease gives $r = 1 - p/100$. You then multiply by $r$ once for each time period."
     },
     {
-      "q": "Why is the condition $|r| < 1$ so important for infinite geometric series?",
-      "a": "If $|r| < 1$, each successive term is smaller than the previous one, so the additions become progressively smaller and the sum approaches a finite value. If $|r| \\ge 1$, the terms either stay the same size, get larger, or oscillate without getting smaller, so the sum does not settle on a single finite value (it diverges)."
+      "q": "A question asks when a term first exceeds some value. How do I solve it on AI SL?",
+      "a": "The cleanest AI SL method is the GDC table. Enter the nth-term rule (for example $u_n = 10 \\times 1.1^{\\,n-1}$), view the table of values, and scroll down to the first integer $n$ whose value passes the target. Write the rule, state the inequality you are solving (such as $10 \\times 1.1^{\\,n-1} > 100$), then quote the $n$ your table gives — that way the method is on the page even though the GDC found the answer."
     },
     {
-      "q": "My GDC has a finance solver. Can I use that for these problems?",
-      "a": "Yes! The finance solver (like TVM Solver) is an excellent tool for many sequence and series problems, especially those involving compound interest, loans, and annuities. It's essentially applying the same geometric series formulas in a financial context. It's a great way to check your work or solve complex financial questions quickly in Paper 2 and 3, but you must still understand the underlying sequence formulas for Paper 1."
+      "q": "When should I reach for the finance solver instead of a series formula?",
+      "a": "Use the finance solver (TVM) for compound-interest, loan and annuity questions where money is added or withdrawn regularly, or when you are given a rate and asked for a future balance or a repayment. For a plain 'find the 8th term' or 'sum the first 8 terms' question, the sequence formulas are quicker and make your method visible. When you do use the solver, state the values you entered ($N$, $I\\%$, $PV$, $PMT$, $FV$) so the examiner can follow your reasoning."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the study of sequences and series, the mathematical language of patterns. From the spiral of a seashell to the growth of your savings account, predictable patterns are everywhere. In this lesson, we'll focus on two fundamental types: arithmetic and geometric. Mastering these will provide you with powerful tools for modelling change and making predictions, skills that are essential in fields like finance, computer science, and biology."
+      "content": "From the seats fanning out in a theatre to the balance ticking up in a savings account, huge numbers of real situations are just a starting value plus a rule repeated over and over. Sequences and series are the mathematics of exactly that. This lesson covers the full 1.2 syllabus for AI SL: arithmetic sequences that climb by a fixed step and their sums, geometric sequences that climb (or decay) by a fixed ratio and their sums, sigma notation as shorthand for adding a series up, and the applied contexts — salaries, savings, loans, growth and depreciation — where these models earn their keep. Every AI paper allows a GDC, so the arithmetic is rarely the challenge; the marks are for recognising the model, extracting $u_1$, $d$ or $r$ and $n$, and showing the method. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Arithmetic Sequences and Series"
+      "content": "Arithmetic sequences: adding a constant step"
     },
     {
       "type": "text",
-      "content": "An arithmetic sequence is a list of numbers where you get from one term to the next by adding a fixed amount. This fixed amount is called the common difference, denoted by $d$. For example, the sequence 5, 8, 11, 14, ... is an arithmetic sequence with a first term $u_1 = 5$ and a common difference $d = 3$. The sum of the terms of an arithmetic sequence is called an arithmetic series."
+      "content": "An arithmetic sequence adds (or subtracts) the same amount to move from one term to the next. That fixed amount is the common difference $d$, and you find it by subtracting any term from the one after it: $d = u_{n+1} - u_n$. If $d > 0$ the sequence rises steadily; if $d < 0$ it falls. Because the step never changes, an arithmetic sequence plotted against term number lies on a straight line — its terms are a linear pattern."
     },
     {
       "type": "formula",
-      "content": "nth term: $u_n = u_1 + (n-1)d$ \\n Sum of first n terms: $S_n = \\frac{n}{2}(2u_1 + (n-1)d) = \\frac{n}{2}(u_1 + u_n)$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A new employee starts on an annual salary of £32,000. The company gives a guaranteed annual pay rise of £1,250. \n(a) Calculate the employee's salary in their 8th year of employment. \n(b) Calculate the total amount the employee will have earned after completing 10 years of employment.",
-      "solution": "This scenario describes an arithmetic sequence where the salary increases by a constant amount each year.\n\n**Part (a): Salary in the 8th year**\nFirst, identify the components of the arithmetic sequence:\nFirst term, $u_1 = 32000$\nCommon difference, $d = 1250$\nWe need to find the salary in the 8th year, so we are looking for $u_8$ ($n=8$).\n\nUsing the formula for the nth term, $u_n = u_1 + (n-1)d$: \n$u_8 = 32000 + (8-1) \\times 1250$  **(M1)** for substituting into the correct formula.\n$u_8 = 32000 + 7 \\times 1250$\n$u_8 = 32000 + 8750$\n$u_8 = 40750$\n\nThe employee's salary in their 8th year will be £40,750. **(A1)**\n\n**Part (b): Total earnings after 10 years**\nNow we need to find the sum of the salaries for the first 10 years, which is $S_{10}$ ($n=10$).\n\nUsing the formula for the sum of an arithmetic series, $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$:\n$S_{10} = \\frac{10}{2}(2 \\times 32000 + (10-1) \\times 1250)$ **(M1)** for substituting into the correct sum formula.\n$S_{10} = 5(64000 + 9 \\times 1250)$\n$S_{10} = 5(64000 + 11250)$\n$S_{10} = 5(75250)$\n$S_{10} = 376250$\n\nThe total amount earned after 10 years is £376,250. **(A1)**"
-    },
-    {
-      "type": "heading",
-      "content": "Geometric Sequences and Series"
+      "content": "$n$th term of an arithmetic sequence: $u_n = u_1 + (n-1)d$, \\n where $u_1$ is the first term, $n$ is the term number, and $d$ is the common difference. The step is applied $n-1$ times to reach the $n$th term."
     },
     {
       "type": "text",
-      "content": "A geometric sequence is a list of numbers where you get from one term to the next by multiplying by a fixed, non-zero amount. This fixed multiplier is called the common ratio, denoted by $r$. For instance, the sequence 2, 6, 18, 54, ... is a geometric sequence with a first term $u_1 = 2$ and a common ratio $r = 3$. The sum of the terms is a geometric series."
+      "content": "Adding the terms of an arithmetic sequence gives an arithmetic series. Rather than adding term by term, use the sum formula. There are two equivalent versions: reach for the first when you know the difference, and the second when you already know the last term $u_n$."
     },
     {
       "type": "formula",
-      "content": "nth term: $u_n = u_1 r^{n-1}$ \\n Sum of first n terms: $S_n = \\frac{u_1(r^n - 1)}{r-1} = \\frac{u_1(1 - r^n)}{1-r}$"
-    },
-    {
-      "type": "examTip",
-      "content": "When dealing with percentage increases or decreases, you are almost always working with a geometric sequence. A 15% decrease corresponds to a common ratio of $r = 1 - 0.15 = 0.85$. A 5% increase corresponds to $r = 1 + 0.05 = 1.05$. This is a crucial link for financial maths problems."
-    },
-    {
-      "type": "workedExample",
-      "question": "A new car is bought for $28,000. Its value depreciates by 18% each year. $\n(a) Find the value of the car after 5 years. \n(b) Find the first year in which the car's value will be less than $10,000.$",
-      "solution": "This is a geometric sequence as the value is multiplied by a constant factor each year.\n\n**Part (a): Value after 5 years**\nFirst term, $u_1 = 28000$. This is the value at the start (year 1).\nThe value depreciates by 18%, so the common ratio is $r = 1 - 0.18 = 0.82$. **(M1)** for finding the correct ratio.\n'After 5 years' means we are at the start of the 6th year. So we need to find $u_6$ ($n=6$).\n\nUsing the formula $u_n = u_1 r^{n-1}$:\n$u_6 = 28000 \\times (0.82)^{6-1}$ **(M1)** for correct substitution.\n$u_6 = 28000 \\times (0.82)^5$\n$u_6 = 10375.58...$\n\nThe value of the car after 5 years is $10,376 (to the nearest dollar). **(A1)**$\n\n**Part (b): Value less than $10,000**$\nWe need to find the smallest integer $n$ for which $u_n < 10000$.\nSet up the inequality: $28000 \\times (0.82)^{n-1} < 10000$ **(M1)** for setting up the inequality.\n\nThis can be solved using a GDC (graphing $y_1 = 28000(0.82)^{x-1}$ and $y_2 = 10000$ and finding the intersection) or algebraically with logarithms.\n\nAlgebraic method:\n$(0.82)^{n-1} < \\frac{10000}{28000}$\n$(0.82)^{n-1} < \\frac{5}{14}$\nTake logarithms of both sides:\n$(n-1) \\ln(0.82) < \\ln(\\frac{5}{14})$ **(M1)** for using logarithms.\n$n-1 > \\frac{\\ln(5/14)}{\\ln(0.82)}$ (Note: inequality sign flips because $\\ln(0.82)$ is negative).\n$n-1 > 5.19...$\n$n > 6.19...$\n\nSince $n$ must be an integer, the smallest value for $n$ is 7. This means the value drops below $10,000 during the 6th year, and is below this value at the start of the 7th year. $\nSo, the first year is the 7th year. **(A1)**"
-    },
-    {
-      "type": "heading",
-      "content": "Infinite Geometric Series"
-    },
-    {
-      "type": "text",
-      "content": "What happens if you keep adding the terms of a geometric sequence forever? Sometimes, the sum gets bigger and bigger, heading towards infinity. However, if the common ratio $r$ is 'small enough' (specifically, if its absolute value is less than 1), the terms get progressively smaller and the sum approaches a finite limit. This is called a convergent series."
-    },
-    {
-      "type": "formula",
-      "content": "Sum to infinity: $S_\\infty = \\frac{u_1}{1-r}$, valid only when $|r| < 1$."
+      "content": "Sum of the first $n$ terms: $S_n = \\dfrac{n}{2}\\bigl(2u_1 + (n-1)d\\bigr)$, \\n or, when the last term $u_n$ is known, $S_n = \\dfrac{n}{2}(u_1 + u_n)$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Arithmetic:** Constant difference ($d$), linear growth.",
-        "**Geometric:** Constant ratio ($r$), exponential growth or decay.",
-        "**Series vs Sequence:** A series is a SUM ($S_n$), a sequence is a LIST of terms ($u_n$).",
-        "**Convergence:** Only geometric series can converge to an infinite sum, and only if $|r| < 1$."
+        "**Common difference $d$:** subtract consecutive terms, $d = u_{n+1} - u_n$. A constant difference is what makes a sequence arithmetic.",
+        "**nth term:** $u_n = u_1 + (n-1)d$ — one term of the sequence.",
+        "**Sum:** $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$ — the running total of a series. Use $\\frac{n}{2}(u_1 + u_n)$ if the last term is known."
       ]
     },
     {
+      "type": "workedExample",
+      "question": "A graduate starts a job on an annual salary of 28 000 dollars. Each year the salary rises by 750 dollars. \\n (a) Find the salary in the 10th year. \\n (b) Find the total salary earned over the first 10 years. [5]",
+      "solution": "The salary rises by a fixed amount each year, so this is arithmetic with $u_1 = 28000$ and $d = 750$.\\n\\n**(a) Salary in the 10th year ($n = 10$).**\\nUse the nth-term formula:\\n$u_{10} = u_1 + (10-1)d = 28000 + 9 \\times 750$  [M1: nth-term formula with $n-1 = 9$]\\n$u_{10} = 28000 + 6750 = 34750.$\\nThe salary in the 10th year is 34 750 dollars.  [A1]\\n\\n**(b) Total over the first 10 years.**\\nThis is a sum, so use the series formula:\\n$S_{10} = \\dfrac{10}{2}\\bigl(2 \\times 28000 + (10-1) \\times 750\\bigr)$  [M1: sum formula]\\n$S_{10} = 5\\,(56000 + 6750) = 5 \\times 62750 = 313750.$  [A1]\\nThe total earned over the first 10 years is 313 750 dollars.  [A1]\\n\\nNotice part (b) uses the SUM formula, not the term formula — a total always calls for $S_n$."
+    },
+    {
+      "type": "heading",
+      "content": "Geometric sequences: multiplying by a constant ratio"
+    },
+    {
+      "type": "text",
+      "content": "A geometric sequence multiplies by the same amount to move from one term to the next. That fixed multiplier is the common ratio $r$, found by dividing any term by the one before it: $r = \\frac{u_{n+1}}{u_n}$. This is the crucial difference from arithmetic — you DIVIDE to find $r$, you do not subtract. When $|r| > 1$ the terms grow ever faster; when $0 < |r| < 1$ they decay towards zero, which is exactly how depreciation works."
+    },
+    {
+      "type": "formula",
+      "content": "$n$th term of a geometric sequence: $u_n = u_1 r^{\\,n-1}$, \\n where $u_1$ is the first term, $n$ is the term number, and $r$ is the common ratio. The first term is multiplied by $r$ a total of $n-1$ times."
+    },
+    {
+      "type": "text",
+      "content": "Applied questions usually hand you $r$ as a percentage change. Convert it to a multiplier: a growth of $p\\%$ gives $r = 1 + p/100$, and a decay of $p\\%$ gives $r = 1 - p/100$. So a population growing 3% a year has $r = 1.03$; a car losing 18% a year retains 82% of its value, so $r = 0.82$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A car is bought for 25 000 dollars and depreciates by 18% each year. \\n Find its value, to the nearest dollar, after 5 years. [4]",
+      "solution": "The value is multiplied by the same factor each year, so this is geometric.\\n\\n**Identify the parameters.** $u_1 = 25000$. Losing 18% leaves 82%, so $r = 0.82$. 'After 5 years', with the purchase price as the 1st term, is the 6th term, so $n = 6$.  [M1: correct $r$ and $n$]\\n\\n**Apply the nth-term formula.**\\n$u_6 = u_1 r^{\\,6-1} = 25000 \\times 0.82^{5}$  [M1: geometric nth-term formula]\\n$u_6 = 25000 \\times 0.3707\\ldots = 9265.58\\ldots$  [A1]\\n\\n**Round for the context.** Money to the nearest dollar:\\n$u_6 \\approx 9266$ dollars.  [A1]\\n\\nThe '$0.82$' (not $-0.18$) captures the decay, and the '$n = 6$' reflects that the initial value is the first term."
+    },
+    {
+      "type": "heading",
+      "content": "Sum of a geometric series"
+    },
+    {
+      "type": "text",
+      "content": "Adding the terms of a geometric sequence gives a geometric series, which models the total of a repeatedly-scaling quantity — money paid into a growing savings plan, or the total distance a bouncing ball travels. Because each term is bigger (or smaller) than the last by the factor $r$, the sum has its own compact formula."
+    },
+    {
+      "type": "formula",
+      "content": "Sum of the first $n$ terms of a geometric series: \\n $S_n = \\dfrac{u_1(r^n - 1)}{r - 1} = \\dfrac{u_1(1 - r^n)}{1 - r}, \\quad r \\neq 1.$ \\n The two forms are equal; pick the one that keeps the denominator positive to avoid a sign slip."
+    },
+    {
+      "type": "workedExample",
+      "question": "A saver deposits 20 dollars in the first month and increases each monthly deposit by 5%. \\n Find the total amount deposited after 2 years, to the nearest cent. [4]",
+      "solution": "Each deposit is 5% larger than the last, so the deposits form a geometric sequence and their total is a geometric series.\\n\\n**Identify the parameters.** $u_1 = 20$; a 5% increase gives $r = 1.05$; 2 years is $2 \\times 12 = 24$ months, so $n = 24$.  [M1: correct $r$ and $n$]\\n\\n**Apply the sum formula.**\\n$S_{24} = \\dfrac{u_1(r^{n} - 1)}{r - 1} = \\dfrac{20\\,(1.05^{24} - 1)}{1.05 - 1}$  [M1: geometric sum formula]\\n$S_{24} = \\dfrac{20\\,(3.2251\\ldots - 1)}{0.05} = \\dfrac{20 \\times 2.2251\\ldots}{0.05} = 890.03\\ldots$  [A1]\\n\\n**Round for money.**\\n$S_{24} \\approx 890.04$ dollars.  [A1]\\n\\nThis is a SUM, so the series formula is right; using the nth-term formula here would give only the size of the last deposit, not the total."
+    },
+    {
+      "type": "heading",
+      "content": "Sigma notation"
+    },
+    {
+      "type": "text",
+      "content": "Sigma notation is compact shorthand for a series. The Greek capital sigma $\\sum$ means 'add up', the letter and number below give where the counter starts, and the number above gives where it stops. So $\\sum_{k=1}^{4}(2k+1)$ says: substitute $k = 1, 2, 3, 4$ into $2k+1$ and add the results — that is $3 + 5 + 7 + 9 = 24$. You will meet arithmetic and geometric series wrapped in this notation, and the skill is simply to expand a few terms, decide the type, and reach for the matching sum formula."
+    },
+    {
+      "type": "formula",
+      "content": "$\\displaystyle \\sum_{k=1}^{n} u_k = u_1 + u_2 + \\cdots + u_n.$ \\n The counter $k$ runs from the lower value to the upper value; each value is substituted into $u_k$ and the results are added."
+    },
+    {
+      "type": "workedExample",
+      "question": "Evaluate $\\displaystyle \\sum_{k=1}^{10} 3(2)^{\\,k-1}$. [3]",
+      "solution": "**Recognise the series.** Writing out the first few terms, $k = 1$ gives $3(2)^0 = 3$, $k = 2$ gives $3(2)^1 = 6$, $k = 3$ gives $3(2)^2 = 12$. The terms $3, 6, 12, \\ldots$ have a constant ratio, so this is a geometric series with $u_1 = 3$, $r = 2$ and $n = 10$.  [M1: identify $u_1$, $r$, $n$]\\n\\n**Apply the geometric sum formula.**\\n$S_{10} = \\dfrac{u_1(r^{n} - 1)}{r - 1} = \\dfrac{3(2^{10} - 1)}{2 - 1}$  [M1: sum formula]\\n$S_{10} = \\dfrac{3(1024 - 1)}{1} = 3 \\times 1023 = 3069.$  [A1]\\n\\nExpanding two or three terms first is the safe way to tell an arithmetic sigma sum from a geometric one before choosing a formula."
+    },
+    {
+      "type": "examTip",
+      "content": "On AI papers the GDC will happily evaluate a sigma sum directly, and will find any $u_n$ or $S_n$ from a table. Use it to check your answer — but still write the formula and the substitution, because that is where the method marks live. A bare final number with no working is fragile: one mis-key and there is nothing on the page to earn part-marks."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mixing up arithmetic and geometric** — always test consecutive terms both ways first. Constant DIFFERENCE means arithmetic ($d$); constant RATIO means geometric ($r$). Using the wrong family of formula loses the whole question.",
+        "**The off-by-one on $n$** — the exponent and bracket are $n-1$, not $n$. The 10th term uses $(10-1) = 9$ steps. And 'after $n$ years' from a starting value is often the $(n+1)$th term, because the starting value is the 1st term.",
+        "**Finding $r$ by subtracting** — the common ratio is $u_{n+1} \\div u_n$, not $u_{n+1} - u_n$. Dividing consecutive terms is the only correct way; subtracting gives the difference, which is meaningless for a geometric sequence.",
+        "**Confusing a term with a total** — 'find the 8th term' needs the $u_n$ formula; 'find the total of the first 8 terms' needs the $S_n$ formula. Read whether the question wants one value or a running sum.",
+        "**Wrong ratio from a percentage** — a 15% decrease is $r = 0.85$, not $0.15$ or $-0.15$; a 15% increase is $r = 1.15$. Convert the percentage to the multiplier that takes 100% to the new value.",
+        "**Over-rounding mid-calculation** — carry the GDC's full figures and round only the final answer, sensibly for the context (money to 2 d.p., people to a whole number, otherwise 3 s.f.).",
+        "**Writing no method with a GDC answer** — a GDC is allowed on every AI paper, but a lone number earns no method mark. Show the formula, the substitution, or the finance-solver inputs so the working is on the page."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "IB marks are analytic: each mark is tied to a specific line of working. A method mark (M) rewards a correct approach — quoting a formula, substituting correctly, setting up the finance solver — even if a later number is wrong. An accuracy mark (A) rewards a correct value, and it DEPENDS on the method mark it follows: no method, no accuracy. Follow-through (FT) means an early slip need not cost the marks that build on it, as long as the later step is done correctly on your own figures. A GDC is allowed on every AI paper, so the accuracy is expected to be exact — but that protection only exists if the method is written down. Study how each of the 5 marks below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "The first term of a geometric sequence is 5 and the common ratio is 1.2. \\n Find the 8th term and the sum of the first 8 terms. [5]",
+      "solution": "**Model answer — full working.**\\n\\nThe sequence is geometric with $u_1 = 5$, $r = 1.2$.\\n\\n**8th term.** Use the nth-term formula with $n = 8$:\\n$u_8 = u_1 r^{\\,n-1} = 5 \\times 1.2^{\\,7}.$\\n$u_8 = 5 \\times 3.5831\\ldots = 17.9159\\ldots \\approx 17.9$  (3 s.f.).\\n\\n**Sum of the first 8 terms.** Use the geometric sum formula with $n = 8$:\\n$S_8 = \\dfrac{u_1(r^{n} - 1)}{r - 1} = \\dfrac{5\\,(1.2^{8} - 1)}{1.2 - 1}.$\\n$S_8 = \\dfrac{5\\,(4.2998\\ldots - 1)}{0.2} = \\dfrac{5 \\times 3.2998\\ldots}{0.2} = 82.4954\\ldots \\approx 82.5$  (3 s.f.).\\n\\n**Answers:** $u_8 \\approx 17.9$ and $S_8 \\approx 82.5$.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — nth-term formula.** Awarded for quoting and using $u_n = u_1 r^{\\,n-1}$ with $n = 8$, i.e. writing $5 \\times 1.2^{7}$. It is the method that is rewarded, so this mark survives an arithmetic slip in the value.\\n- **A1 — value of $u_8$.** Awarded for $u_8 \\approx 17.9$ (accepting $17.9159\\ldots$ or any correct rounding such as $17.92$). This accuracy mark depends on the M1 above.\\n- **M1 — sum formula.** Awarded for quoting the geometric sum formula $S_n = \\dfrac{u_1(r^n - 1)}{r - 1}$. Recognising that a 'sum of the first 8 terms' needs $S_n$, not $u_n$, is exactly what this mark checks.\\n- **M1 — substitution.** Awarded for correctly substituting $u_1 = 5$, $r = 1.2$, $n = 8$ into that formula: $\\dfrac{5(1.2^{8} - 1)}{1.2 - 1}$. A candidate who writes this line correctly earns the mark even if the final division slips.\\n- **A1 — value of $S_8$.** Awarded for $S_8 \\approx 82.5$ (accepting the unrounded $82.4954\\ldots$ or any correct rounding). FT applies: a candidate whose $u_8$ was slightly off but who substitutes and evaluates the sum correctly on their own figures still earns this final mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $S_8$ written via the $\\dfrac{u_1(1 - r^n)}{1 - r}$ form, and accepts $17.9$, $17.92$ or the full $17.9159\\ldots$ for $u_8$. Once a correct final value appears, later restatements do not lose marks (ISW).\\n\\n**Bottom line:** three of the five marks are method marks that survive an arithmetic slip, and the two accuracy marks are shielded by follow-through — but only if the formula and substitution are on the page. A bare '$u_8 = 17.9$, $S_8 = 82.5$' from the GDC with no working risks all three method marks if a single value is mistyped."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So even though your GDC can find $u_n$ and $S_n$ in one keystroke, always write the formula, then the substitution, then the value. That is what earns the method marks and lets follow-through protect your score when a number slips."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Sequences and series are the backbone of the whole 'Number and algebra' unit. The geometric model you built here powers compound interest, depreciation, loan and annuity calculations, where the same $r^n$ growth is dressed up in financial language and solved with the finance solver. The habit of reading a percentage change as a multiplier reappears throughout financial mathematics, and the discipline of naming $u_1$, $d$ or $r$ and $n$ before touching a formula is exactly what every applied modelling question rewards. Master the two ways a pattern can grow — add a step, or multiply by a ratio — and a large slice of AI SL becomes variations on a pattern you already know how to describe."
+    },
+    {
       "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=1.2"
+      "label": "Get a Paper 2 calculation marked: identify the sequence, find the term and the sum with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.2&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "IB Formula Booklet",
-          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/formula-booklet/"
+          "label": "IB Mathematics: Applications and Interpretation Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
         },
         {
-          "label": "Khan Academy: Sequences",
+          "label": "Khan Academy: Sequences and Series",
           "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:sequences"
-        },
-        {
-          "label": "GeoGebra: Visualising Sequences",
-          "href": "https://www.geogebra.org/m/jTq5b2bJ"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Visualising Sequences",

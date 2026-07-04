@@ -2,200 +2,332 @@
   "slug": "2-7-linearizing-data-log-log-and-semi-log-graphs",
   "topicCode": "2.7",
   "title": "Linearizing data: log-log and semi-log graphs",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "Learn how to transform non-linear data sets into straight lines using logarithms. This lesson covers log-log and semi-log transformations to model power law and exponential relationships, a key skill for analysing real-world data.",
-  "durationMin": 50,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
+  "summary": "Real data often curves rather than following a straight line, and a plain linear regression cannot capture it. Linearizing solves this: by taking logarithms you bend a curved model into a straight line, fit that line by regression on a GDC, then read the original parameters straight off the gradient and intercept. This lesson builds the full 2.7 toolkit for the two models the syllabus expects. A semi-log graph — $\\ln y$ against $x$ — straightens an exponential model $y = ke^{ax}$, so the gradient is $a$ and the intercept is $\\ln k$. A log-log graph — $\\ln y$ against $\\ln x$ — straightens a power model $y = kx^n$, so the gradient is $n$ and the intercept is $\\ln k$. You will learn to derive both, to read the parameters back from the linear fit, and to decide which transform a data set actually needs. Because 2.7 sits on Paper 2, the GDC does the regression — so the marks are for choosing the right transform, showing the comparison, and recovering $k$ from the intercept correctly. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 45,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the purpose of linearizing data and identify when it is appropriate.",
-    "Apply logarithmic transformations to data to model power law ($y=ax^n$) and exponential ($y=ab^x$) relationships.",
-    "Determine the parameters of a non-linear model by analysing the gradient and y-intercept of the corresponding linear graph.",
-    "Use a GDC to perform linear regression on transformed data and interpret the results in the context of the original problem."
+    "Explain why a curved data set must be transformed before linear regression can be used, and identify whether an exponential or a power model is appropriate.",
+    "Derive the semi-log form of an exponential model $y = ke^{ax}$ and the log-log form of a power model $y = kx^n$.",
+    "Read the parameters of the original model from the gradient and intercept of a linear regression line, recovering $k$ as $e^{\\text{intercept}}$.",
+    "Choose the correct transform by comparing correlation coefficients, and apply linearizing to real-world data on a GDC.",
+    "Present working so that method marks, dependent accuracy marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "2.7"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Straightening Out the Curves",
-    "summary": "Many real-world relationships aren't straight lines, making them tricky to analyse. By applying logarithms, we can transform these curved relationships into straight lines, allowing us to use familiar linear analysis tools.",
-    "analogy": "Imagine trying to measure the length of a winding country road on a flat map. It's difficult. But if you could magically straighten the road out on the map, measuring it would be simple. Linearization is like that magic trick for data; we use logarithms as our 'straightening tool' to make curved data linear and easy to model.",
+    "title": "Straightening Out Curves",
+    "summary": "Some data looks curved but secretly follows a simple rule. We use logarithms as a special tool to 'straighten out' the curve, making the underlying relationship a straight line that is much easier to analyse — and once it is straight, the calculator's linear regression does the rest.",
+    "analogy": "Imagine you have a coiled spring. It is a complex, loopy shape. But if you stretch it out, it becomes a simple, straight wire. Linearizing data is like stretching that spring: we apply a logarithmic transformation to turn a complicated curve on a graph into a straight line, revealing the simple relationship hidden inside. The gradient and intercept of that straight wire then tell us everything about the original curve.",
     "steps": [
-      "Plot the original data $(x, y)$ and observe the non-linear pattern.",
-      "Choose a transformation: for a suspected power law ($y=ax^b$), plot $\\log y$ vs $\\log x$; for an exponential relationship ($y=ab^x$), plot $\\log y$ vs $x$.",
-      "Use your GDC to find the linear regression equation, $Y = mX + c$, for the transformed data.",
-      "Use the gradient ($m$) and intercept ($c$) to find the original parameters ($a$ and $b$) by reversing the transformation."
+      "Examine the scatter plot of the original data to guess the relationship: exponential ($y = ke^{ax}$) or power ($y = kx^n$).",
+      "Choose the correct transformation. For exponential, plot $\\ln y$ against $x$ (semi-log). For power, plot $\\ln y$ against $\\ln x$ (log-log).",
+      "Use your GDC to find the linear regression line for the transformed data, in the form $Y = mX + c$.",
+      "Read the gradient ($m$) and intercept ($c$) and work backwards: the gradient gives $a$ or $n$ directly, and $k = e^{c}$."
     ]
   },
+  "keyConcepts": [
+    "linearizing",
+    "semi-log and exponential models",
+    "log-log and power models"
+  ],
   "flashcards": [
     {
-      "front": "What is linearization of data?",
-      "back": "The process of transforming a non-linear relationship between variables into a linear one, usually by applying a function like a logarithm to one or both variables."
+      "front": "What is data linearization?",
+      "back": "Applying a logarithmic transformation to non-linear data so that it lies on a straight line. A straight line can be fitted by linear regression, and the original model recovered from the gradient and intercept.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "Why do we linearize data?",
-      "back": "To use the methods of linear regression (like finding a line of best fit and the correlation coefficient, $r$) on data that is not inherently linear. This allows us to model more complex relationships."
+      "front": "Which graph and model go together: semi-log?",
+      "back": "A semi-log graph plots $\\ln y$ against $x$ and straightens the exponential model $y = ke^{ax}$. Only the $y$-axis is logged, hence 'semi'.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What non-linear model is associated with a **log-log** transformation?",
-      "back": "A power law model of the form $y = ax^n$."
+      "front": "Which graph and model go together: log-log?",
+      "back": "A log-log graph plots $\\ln y$ against $\\ln x$ and straightens the power model $y = kx^n$. Both axes are logged, hence 'log-log'.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What non-linear model is associated with a **semi-log** transformation?",
-      "back": "An exponential model of the form $y = ab^x$."
+      "front": "Semi-log: what are the gradient and intercept for $y = ke^{ax}$?",
+      "back": "Taking logs gives $\\ln y = ax + \\ln k$. Comparing with $Y = mX + c$ (where $Y = \\ln y$, $X = x$): the gradient is $m = a$ and the intercept is $c = \\ln k$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "For a power law $y = ax^n$, what do you plot to get a straight line?",
-      "back": "Plot $\\log(y)$ against $\\log(x)$. The resulting graph will be linear."
+      "front": "Log-log: what are the gradient and intercept for $y = kx^n$?",
+      "back": "Taking logs gives $\\ln y = n\\ln x + \\ln k$. Comparing with $Y = mX + c$ (where $Y = \\ln y$, $X = \\ln x$): the gradient is $m = n$ and the intercept is $c = \\ln k$.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "For an exponential model $y = ab^x$, what do you plot to get a straight line?",
-      "back": "Plot $\\log(y)$ against $x$. The resulting graph will be linear."
+      "front": "How do you recover $k$ from the intercept?",
+      "back": "In both models the intercept is $c = \\ln k$, so $k = e^{c}$. The intercept is NEVER $k$ itself — you must exponentiate. This is the single most common lost mark in the topic.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "On a log-log plot of $\\log(y)$ vs $\\log(x)$ for $y=ax^n$, what is the gradient?",
-      "back": "The gradient is the power, $n$."
+      "front": "How do you recover $a$ (exponential) or $n$ (power)?",
+      "back": "Directly from the gradient. For the semi-log fit of $y = ke^{ax}$, the gradient is $a$. For the log-log fit of $y = kx^n$, the gradient is $n$. No exponentiating needed for these.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "On a log-log plot of $\\log(y)$ vs $\\log(x)$ for $y=ax^n$, what is the y-intercept?",
-      "back": "The y-intercept is $\\log(a)$. To find $a$, you must calculate $10^{\\text{intercept}}$ (for log base 10) or $e^{\\text{intercept}}$ (for ln)."
+      "front": "Which axis do you transform for an exponential model?",
+      "back": "Only the $y$-values: plot $\\ln y$ against the untouched $x$. Logging $x$ as well would be the log-log transform and would NOT straighten an exponential.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "On a semi-log plot of $\\log(y)$ vs $x$ for $y=ab^x$, what is the gradient?",
-      "back": "The gradient is $\\log(b)$. To find $b$, you must calculate $10^{\\text{gradient}}$ or $e^{\\text{gradient}}$."
+      "front": "How do you decide between an exponential and a power model?",
+      "back": "Try both transforms and compare correlation coefficients. Whichever fit (semi-log or log-log) gives $|r|$ closer to 1 identifies the better model. Sometimes the question simply tells you which.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "On a semi-log plot of $\\log(y)$ vs $x$ for $y=ab^x$, what is the y-intercept?",
-      "back": "The y-intercept is $\\log(a)$. To find $a$, you must calculate $10^{\\text{intercept}}$ or $e^{\\text{intercept}}$."
+      "front": "Does using $\\ln$ instead of $\\log_{10}$ change the answer?",
+      "back": "No, provided you are consistent. With $\\ln$ the inverse is $e^{x}$; with $\\log_{10}$ it is $10^{x}$. The recovered $k$, $a$ and $n$ come out the same. IB works in $\\ln$ for these models, so we use $\\ln$ throughout.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What's a common mistake when finding the parameter 'a' from the intercept 'c'?",
-      "back": "Forgetting to reverse the logarithm. If the intercept $c = \\log(a)$, then $a = 10^c$ or $a = e^c$. Simply stating $a=c$ is incorrect."
+      "front": "How can you check your $k$, $a$ or $n$ quickly?",
+      "back": "Run the GDC's built-in exponential or power regression on the ORIGINAL data. The parameters should match the ones you recovered by hand. It is a check, not a substitute — exam marks are for the linearizing method.",
+      "pillLabel": "GDC"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A data set is straightened by plotting $\\ln y$ against $x$ (a semi-log graph). Which model does this identify?",
+      "options": [
+        "An exponential model $y = ke^{ax}$",
+        "A power model $y = kx^n$",
+        "A linear model $y = mx + c$",
+        "A quadratic model $y = ax^2 + bx + c$"
+      ],
+      "answer": "An exponential model $y = ke^{ax}$"
     },
     {
-      "front": "What is the key difference in the variables plotted for log-log vs semi-log graphs?",
-      "back": "Log-log plots use the logarithm of **both** variables (e.g., $\\ln y$ vs $\\ln x$). Semi-log plots use the logarithm of only **one** variable (e.g., $\\ln y$ vs $x$)."
+      "prompt": "A log-log graph of $\\ln y$ against $\\ln x$ gives a straight line for the power model $y = kx^n$. The gradient of that line equals:",
+      "options": [
+        "$n$",
+        "$\\ln n$",
+        "$k$",
+        "$e^{n}$"
+      ],
+      "answer": "$n$"
+    },
+    {
+      "prompt": "A linearized fit has intercept $c = 1.6$. For both the semi-log and log-log models, the parameter $k$ is:",
+      "options": [
+        "$k = e^{1.6} \\approx 4.95$",
+        "$k = 1.6$",
+        "$k = \\ln 1.6 \\approx 0.470$",
+        "$k = 10^{1.6} \\approx 39.8$"
+      ],
+      "answer": "$k = e^{1.6} \\approx 4.95$"
+    },
+    {
+      "prompt": "You suspect a data set follows the EXPONENTIAL model $y = ke^{ax}$. To straighten it you should plot:",
+      "options": [
+        "$\\ln y$ against $x$",
+        "$\\ln y$ against $\\ln x$",
+        "$y$ against $\\ln x$",
+        "$\\ln x$ against $\\ln y$"
+      ],
+      "answer": "$\\ln y$ against $x$"
+    },
+    {
+      "prompt": "For a power model, the semi-log fit gives $r = 0.982$ and the log-log fit gives $r = 0.9997$. Which conclusion is correct?",
+      "options": [
+        "The log-log fit is better, confirming a power model",
+        "The semi-log fit is better, confirming an exponential model",
+        "Both fits are equally valid, so either model works",
+        "Neither fit is acceptable because $r$ must equal exactly 1"
+      ],
+      "answer": "The log-log fit is better, confirming a power model"
     }
   ],
   "faq": [
     {
-      "q": "Does it matter if I use natural log (ln) or base-10 log (log)?",
-      "a": "Generally, no, as long as you are consistent throughout your calculation. The values of the gradient and intercept will be different, but the final parameters ($a, n, b$) of your model will be the same (or very close due to rounding). If an exam question provides partially transformed data, you must use the same log base they have used. Natural log ($\\ln$) is often preferred in science and for models involving the constant $e$."
+      "q": "How do I know which model to use, exponential ($y = ke^{ax}$) or power ($y = kx^n$)?",
+      "a": "Sometimes the question tells you. If not, linearize both ways: run the semi-log regression ($\\ln y$ on $x$) and the log-log regression ($\\ln y$ on $\\ln x$), and compare the correlation coefficients $r$. The transformation whose $|r|$ is closer to 1 is the better-fitting model, and that tells you whether the data is really exponential or power."
     },
     {
-      "q": "How do I know whether to use a log-log or a semi-log transformation?",
-      "a": "It depends on the underlying model you suspect or are told to test. If you are testing for a power law ($y=ax^n$), use a log-log plot ($\\log y$ vs $\\log x$). If you are testing for an exponential model ($y=ab^x$), use a semi-log plot ($\\log y$ vs $x$). Sometimes, you may need to plot both and see which one produces a straighter line (i.e., has a Pearson's correlation coefficient, $r$, closer to 1 or -1)."
+      "q": "Why must I take $k = e^{c}$ instead of just reading $k$ off the graph?",
+      "a": "Because logarithms move the parameters. When you log $y = ke^{ax}$ you get $\\ln y = ax + \\ln k$, so the intercept of the straight line is $\\ln k$, not $k$. To undo the logarithm you exponentiate: $k = e^{c}$. Forgetting this and quoting the intercept as $k$ is the single most penalised slip in 2.7."
     },
     {
-      "q": "My calculator can fit exponential and power models directly. Why do I need to learn this?",
-      "a": "This is a great question! While your GDC is a powerful tool, exam questions are specifically designed to test your understanding of the linearization process itself. You might be given a pre-linearized graph and asked to find the original parameters, or be asked to explain the meaning of the gradient on a log-log plot. Understanding the transformation is crucial for these types of questions, which test deeper conceptual knowledge beyond just pressing calculator buttons."
+      "q": "Does it matter if I use natural log ($\\ln$) or base-10 log ($\\log$)?",
+      "a": "Mathematically no, as long as you are consistent. With $\\ln$ the inverse operation is $e^{x}$; with $\\log_{10}$ it is $10^{x}$. The recovered values of $k$, $a$ and $n$ are identical either way. IB writes the exponential and power models with base $e$, so working in $\\ln$ is cleanest — the gradient reads off as $a$ or $n$ with no conversion."
+    },
+    {
+      "q": "My GDC has exponential and power regression built in. Why linearize at all?",
+      "a": "The built-in regressions are a superb check, and you should use them to verify your answer. But exam questions test the linearizing process itself: they ask for the regression line of $\\ln y$ on $x$ (or on $\\ln x$), which forces you to transform and then recover the parameters. The marks live in that method, so learn to do it by hand and use the built-in regression only to confirm."
+    },
+    {
+      "q": "Which variable goes on which axis?",
+      "a": "For an exponential model plot $\\ln y$ (vertical) against $x$ (horizontal) — only $y$ is logged. For a power model plot $\\ln y$ (vertical) against $\\ln x$ (horizontal) — both are logged. Getting the axes the wrong way round, or logging the wrong variable, is a classic error that produces a nonsense gradient."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In our study of statistics, we've seen how powerful linear regression is for modelling relationships between two variables. However, the world is not always linear. Many relationships in science, economics, and biology follow curved patterns. This lesson introduces a powerful technique called linearization, which allows us to transform these non-linear relationships into straight lines, so we can apply the familiar tools of linear regression."
+      "content": "In earlier work on regression you fitted straight lines to data that already looked straight. But a great deal of real data curves — populations grow exponentially, physical quantities scale as powers of one another — and fitting a straight line to a curve is simply wrong. Linearizing is the fix. By taking logarithms you bend the curved model into a straight line, let the GDC's linear regression find that line, then read the original parameters back off the gradient and intercept. This lesson covers the two models 2.7 expects: the exponential $y = ke^{ax}$, straightened by a semi-log graph, and the power $y = kx^n$, straightened by a log-log graph. Because 2.7 is examined on Paper 2, the calculator does the regression — so the marks are for choosing the right transform, showing the comparison with $Y = mX + c$, and recovering $k$ correctly. As always, the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "Recognising Non-Linear Relationships"
+      "content": "Recognising the need for linearizing"
     },
     {
       "type": "text",
-      "content": "When you first plot a scatter diagram of your data, you might notice that the points do not form a straight line. Instead, they might follow a curve that gets steeper and steeper, characteristic of exponential growth, or a curve that resembles a parabola, which could be a power law relationship. Our goal is to identify the likely type of relationship and then apply a transformation that 'straightens' the data."
-    },
-    {
-      "type": "heading",
-      "content": "Linearizing Power Law Models: The Log-Log Transformation"
-    },
-    {
-      "type": "text",
-      "content": "A power law relationship is described by an equation of the form $y = ax^n$, where $a$ and $n$ are constants. This type of model is common in physics and biology, for example in describing the relationship between the metabolic rate and mass of an animal. To linearize this, we take the logarithm of both sides of the equation. It is common to use the natural logarithm (ln), but base-10 log also works perfectly well."
-    },
-    {
-      "type": "formula",
-      "content": "$$ \\begin{align*} y &= ax^n \\\\ \\ln(y) &= \\ln(ax^n) \\\\ \\ln(y) &= \\ln(a) + \\ln(x^n) \\\\ \\ln(y) &= \\ln(a) + n\\ln(x) \\\\ \\ln(y) &= n\\ln(x) + \\ln(a) \\end{align*} $$"
-    },
-    {
-      "type": "text",
-      "content": "This equation is now in the form of a straight line, $Y = mX + c$. By letting $Y = \\ln(y)$ and $X = \\ln(x)$, we can see that the gradient of the line is $m = n$ and the y-intercept is $c = \\ln(a)$. This is called a log-log transformation because we take the log of both variables."
+      "content": "When you plot data and see a distinct curve, a linear model is inappropriate. Two curved relationships dominate applied mathematics: the exponential model, which describes growth and decay, and the power model, which describes scaling laws. The strategy for both is identical — take logarithms to straighten the curve, fit a line, then transform back — but the transform itself differs, and choosing the wrong one gives a poor fit and wrong parameters."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Model:** Power Law, $y = ax^n$",
-        "**Transformation:** Plot $\\ln(y)$ against $\\ln(x)$ (or $\\log(y)$ vs $\\log(x)$).",
-        "**New Variables:** $Y = \\ln(y)$, $X = \\ln(x)$",
-        "**Linear Equation:** $Y = nX + \\ln(a)$",
-        "**Gradient:** $m = n$ (the power)",
-        "**Y-intercept:** $c = \\ln(a)$, so $a = e^c$"
+        "**Exponential model: $y = ke^{ax}$.** Describes growth ($a > 0$) or decay ($a < 0$): populations, radioactive decay, cooling, compound interest. The curve steepens or flattens towards a horizontal asymptote.",
+        "**Power model: $y = kx^n$.** Describes scaling laws: the period of a pendulum against its length, area against radius, allometric relationships in biology. Its shape depends on the exponent $n$.",
+        "The plan is always the same: **log to straighten, regress to fit, transform back to recover** $k$ and the exponent."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "The orbital period, $T$ (in Earth years), and the average distance from the Sun, $R$ (in astronomical units, AU), for several planets in our solar system are recorded in the table. \n\n| Planet | Distance, R (AU) | Period, T (years) |\n| :--- | :---: | :---: |\n| Mercury | 0.39 | 0.24 |\n| Venus | 0.72 | 0.62 |\n| Earth | 1.00 | 1.00 |\n| Mars | 1.52 | 1.88 |\n| Jupiter | 5.20 | 11.9 |\n\nIt is believed that this data follows a power law model of the form $T = aR^n$. \n\n(a) By linearizing the data, find the values of $n$ and $a$. \n(b) Write down the equation for $T$ in terms of $R$.",
-      "solution": "(a) The model is $T = aR^n$. We linearize this by taking natural logs:\n\n$\\ln(T) = \\ln(aR^n) = \\ln(a) + n\\ln(R)$\n\nThis means a plot of $\\ln(T)$ against $\\ln(R)$ will be a straight line with gradient $n$ and y-intercept $\\ln(a)$.\n\nFirst, we transform the data:\n\n| $\\ln(R)$ | $\\ln(T)$ |\n| :---: | :---: |\n| -0.942 | -1.427 |\n| -0.329 | -0.478 |\n| 0.000 | 0.000 |\n| 0.419 | 0.631 |\n| 1.649 | 2.477 |\n\n(M1) for transforming at least one column correctly.\n\nUsing a GDC, we perform a linear regression on the transformed data ($\\ln(T)$ vs $\\ln(R)$).\n\nThis gives the regression line equation: $\\ln(T) = 1.50\\ln(R) - 0.000514$. (A2)\n\nComparing this to $\\ln(T) = n\\ln(R) + \\ln(a)$:\n\nThe gradient is $n$. So, $n = 1.50$ (to 3 s.f.). (A1)\n\nThe y-intercept is $\\ln(a)$. So, $\\ln(a) = -0.000514$. (M1)\n\nTo find $a$, we calculate $a = e^{-0.000514} \\approx 0.999$. So, $a = 1.00$ (to 3 s.f.). (A1)\n\n(b) Substituting the values of $a$ and $n$ back into the original model:\n\n$T = 1.00R^{1.50}$ (or simply $T = R^{1.5}$) (A1)"
-    },
-    {
       "type": "heading",
-      "content": "Linearizing Exponential Models: The Semi-Log Transformation"
+      "content": "The exponential model: the semi-log transform"
     },
     {
       "type": "text",
-      "content": "An exponential relationship is described by an equation of the form $y = ab^x$, where $a$ and $b$ are constants. These models are fundamental in describing phenomena like population growth, compound interest, and radioactive decay. To linearize this model, we again take the logarithm of both sides."
+      "content": "Suppose the data follows $y = ke^{ax}$. Take natural logs of both sides and simplify with the log laws. The result is a straight line in $\\ln y$ and $x$ — only $y$ is logged, which is why this is called a *semi-log* graph."
     },
     {
       "type": "formula",
-      "content": "$$ \\begin{align*} y &= ab^x \\\\ \\log(y) &= \\log(ab^x) \\\\ \\log(y) &= \\log(a) + \\log(b^x) \\\\ \\log(y) &= \\log(a) + x\\log(b) \\\\ \\log(y) &= (\\log(b))x + \\log(a) \\end{align*} $$"
-    },
-    {
-      "type": "text",
-      "content": "This equation is also in the form of a straight line, $Y = mX + c$. Here, we let $Y = \\log(y)$ but we keep $X = x$. The gradient of the line is $m = \\log(b)$ and the y-intercept is $c = \\log(a)$. This is called a semi-log transformation because we only take the log of one variable (the y-variable)."
+      "content": "Start with the model: $y = ke^{ax}$ \\\\ Take natural logs of both sides: $\\ln y = \\ln\\!\\left(ke^{ax}\\right)$ \\\\ Use $\\ln(pq) = \\ln p + \\ln q$: $\\ln y = \\ln k + \\ln\\!\\left(e^{ax}\\right)$ \\\\ Use $\\ln(e^{u}) = u$: $\\ln y = \\ln k + ax$ \\\\ Rearrange into $Y = mX + c$ form: $\\ln y = a\\,x + \\ln k$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Model:** Exponential, $y = ab^x$",
-        "**Transformation:** Plot $\\log(y)$ against $x$.",
-        "**New Variables:** $Y = \\log(y)$, $X = x$",
-        "**Linear Equation:** $Y = (\\log(b))X + \\log(a)$",
-        "**Gradient:** $m = \\log(b)$, so $b = 10^m$ (or $e^m$ if using ln)",
-        "**Y-intercept:** $c = \\log(a)$, so $a = 10^c$ (or $e^c$ if using ln)"
+        "The equation is a straight line $Y = mX + c$ with $Y = \\ln y$ and $X = x$.",
+        "The gradient is $m = a$ — the exponential rate comes straight off the gradient.",
+        "The intercept is $c = \\ln k$, so the starting value is $k = e^{c}$.",
+        "Only the $y$-variable is logged: plot $\\ln y$ against $x$. This is the **semi-log** graph."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A biologist is studying a bacterial culture. The population, $P$, of the bacteria is recorded every hour, $t$. The results are shown in the table.\n\n| Time, t (hours) | Population, P |\n| :---: | :---: |\n| 0 | 50 |\n| 1 | 75 |\n| 2 | 110 |\n| 3 | 168 |\n| 4 | 250 |\n\nThe relationship is modelled by the equation $P = ab^t$. By linearizing the data, determine the values of the constants $a$ and $b$.",
-      "solution": "The model is $P = ab^t$. We linearize this by taking base-10 logarithms:\n\n$\\log(P) = \\log(ab^t) = \\log(a) + t\\log(b)$\n\nA plot of $\\log(P)$ against $t$ will be a straight line with gradient $\\log(b)$ and y-intercept $\\log(a)$.\n\nFirst, we transform the P-values:\n\n| t | $\\log(P)$ |\n| :---: | :---: |\n| 0 | 1.699 |\n| 1 | 1.875 |\n| 2 | 2.041 |\n| 3 | 2.225 |\n| 4 | 2.398 |\n\n(M1) for transforming the P-values.\n\nUsing a GDC, perform a linear regression on $\\log(P)$ vs $t$.\n\nThe regression line equation is: $\\log(P) = 0.176t + 1.70$. (A2)\n\nComparing this to $\\log(P) = (\\log(b))t + \\log(a)$:\n\nThe gradient is $\\log(b)$. So, $\\log(b) = 0.176$. (M1)\n$b = 10^{0.176} \\approx 1.4996...$ So, $b \\approx 1.50$ (to 3 s.f.). (A1)\n\nThe y-intercept is $\\log(a)$. So, $\\log(a) = 1.70$. (M1)\n$a = 10^{1.70} \\approx 50.118...$ So, $a \\approx 50.1$ (to 3 s.f.). (A1)\n\nThe values are $a \\approx 50.1$ and $b \\approx 1.50$."
+      "question": "A colony of bacteria is counted each hour. The population $P$ (thousands) at time $t$ (hours) is believed to follow an exponential model $P = ke^{at}$. \\n \\n | Time, $t$ (h) | Population, $P$ | \\n |---|---| \\n | 0 | 20 | \\n | 1 | 30 | \\n | 2 | 45 | \\n | 3 | 66 | \\n | 4 | 99 | \\n \\n (a) By plotting $\\ln P$ against $t$, explain why a semi-log graph is appropriate. \\n (b) Find the equation of the regression line of $\\ln P$ on $t$. \\n (c) Hence find the values of $k$ and $a$, giving each to 3 significant figures. [7]",
+      "solution": "This is a Paper 2 question, so the GDC does the regression; the marks are for the transform and the recovery of $k$ and $a$.\\n\\n**(a) Why semi-log.** Taking logs of $P = ke^{at}$ gives $\\ln P = at + \\ln k$, a straight line in $\\ln P$ and $t$. Form the transformed table:\\n\\n| $t$ | $\\ln P$ | \\n |---|---| \\n | 0 | $\\ln 20 \\approx 3.00$ | \\n | 1 | $\\ln 30 \\approx 3.40$ | \\n | 2 | $\\ln 45 \\approx 3.81$ | \\n | 3 | $\\ln 66 \\approx 4.19$ | \\n | 4 | $\\ln 99 \\approx 4.60$ |\\n\\nThe points $(t, \\ln P)$ lie very close to a straight line, so the exponential model — and the semi-log graph — is appropriate.  [M1: log the $P$-values]  [A1: correct transformed values]\\n\\n**(b) Regression line.** Enter $t$ in one list and $\\ln P$ in a second, and run linear regression:\\n$\\ln P = 0.400\\,t + 3.00$ (3 s.f.).  [A1][A1]\\n\\n**(c) Recover the parameters.** Compare $\\ln P = 0.400\\,t + 3.00$ with the theoretical $\\ln P = a\\,t + \\ln k$.\\nGradient: $a = 0.400$.  [A1]\\nIntercept: $\\ln k = 3.00$, so $k = e^{3.00} = 20.0$ (3 s.f.).  [M1: $k = e^{\\text{intercept}}$]  [A1]\\n\\n**Model:** $P = 20.0\\,e^{0.400\\,t}$. A quick check with the GDC's built-in exponential regression gives the same figures."
+    },
+    {
+      "type": "heading",
+      "content": "The power model: the log-log transform"
+    },
+    {
+      "type": "text",
+      "content": "Now suppose the data follows $y = kx^n$. Take natural logs of both sides again, but this time the $x$ on the right is also inside a logarithm, so *both* variables get logged — a *log-log* graph."
+    },
+    {
+      "type": "formula",
+      "content": "Start with the model: $y = kx^n$ \\\\ Take natural logs of both sides: $\\ln y = \\ln\\!\\left(kx^n\\right)$ \\\\ Use $\\ln(pq) = \\ln p + \\ln q$: $\\ln y = \\ln k + \\ln\\!\\left(x^n\\right)$ \\\\ Use $\\ln(p^r) = r\\ln p$: $\\ln y = \\ln k + n\\ln x$ \\\\ Rearrange into $Y = mX + c$ form: $\\ln y = n\\,(\\ln x) + \\ln k$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The equation is a straight line $Y = mX + c$ with $Y = \\ln y$ and $X = \\ln x$.",
+        "The gradient is $m = n$ — the power comes straight off the gradient.",
+        "The intercept is $c = \\ln k$, so $k = e^{c}$ (exactly as for the exponential model).",
+        "Both variables are logged: plot $\\ln y$ against $\\ln x$. This is the **log-log** graph."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The period $T$ (seconds) of a pendulum is measured for several lengths $L$ (metres). A power model $T = kL^n$ is proposed. \\n \\n | Length, $L$ (m) | Period, $T$ (s) | \\n |---|---| \\n | 1 | 2.0 | \\n | 2 | 5.7 | \\n | 3 | 10.4 | \\n | 4 | 16.0 | \\n | 5 | 22.4 | \\n \\n (a) Find the equation of the regression line of $\\ln T$ on $\\ln L$. \\n (b) Hence find $k$ and $n$, each to 3 significant figures, and state the model. [6]",
+      "solution": "**(a) Log-log regression.** For a power model log BOTH variables: $\\ln T = n\\ln L + \\ln k$. Build the transformed table:\\n\\n| $\\ln L$ | $\\ln T$ | \\n |---|---| \\n | $\\ln 1 = 0$ | $\\ln 2.0 \\approx 0.693$ | \\n | $\\ln 2 \\approx 0.693$ | $\\ln 5.7 \\approx 1.74$ | \\n | $\\ln 3 \\approx 1.10$ | $\\ln 10.4 \\approx 2.34$ | \\n | $\\ln 4 \\approx 1.39$ | $\\ln 16.0 \\approx 2.77$ | \\n | $\\ln 5 \\approx 1.61$ | $\\ln 22.4 \\approx 3.11$ |\\n\\nEnter $\\ln L$ in one list and $\\ln T$ in a second and run linear regression:\\n$\\ln T = 1.50\\,\\ln L + 0.693$ (3 s.f.).  [M1: log both variables]  [A1][A1]\\n\\n**(b) Recover the parameters.** Compare with $\\ln T = n\\ln L + \\ln k$.\\nGradient: $n = 1.50$.  [A1]\\nIntercept: $\\ln k = 0.693$, so $k = e^{0.693} = 2.00$ (3 s.f.).  [M1: $k = e^{\\text{intercept}}$]  [A1]\\n\\n**Model:** $T = 2.00\\,L^{1.50}$ — the period grows as the three-halves power of the length, matching the physics."
+    },
+    {
+      "type": "heading",
+      "content": "Choosing the transform: which model fits?"
+    },
+    {
+      "type": "text",
+      "content": "When the question does not name the model, you must decide between exponential and power. Run both linearizations and compare their correlation coefficients: the transform whose $|r|$ is closer to 1 straightens the data best, and that identifies the model. Never pick the model by eye alone — the numbers decide."
+    },
+    {
+      "type": "workedExample",
+      "question": "A researcher is unsure whether a data set follows an exponential model $y = ke^{ax}$ or a power model $y = kx^n$. She runs two linear regressions: \\n \\n - $\\ln y$ on $x$ (semi-log) gives $r = 0.918$. \\n - $\\ln y$ on $\\ln x$ (log-log) gives $r = 0.9993$, with line $\\ln y = 2.10\\,\\ln x + 0.916$. \\n \\n (a) State, with a reason, which model is more appropriate. \\n (b) Find the equation of that model, giving $k$ and the exponent to 3 significant figures. [5]",
+      "solution": "**(a) Choose the model.** The log-log correlation $r = 0.9993$ is closer to 1 than the semi-log $r = 0.918$, so the log-log transform straightens the data best. Therefore the **power model** $y = kx^n$ is more appropriate.  [A1: compare $r$-values]  [A1: correct conclusion]\\n\\n**(b) Build the model.** The log-log line is $\\ln y = 2.10\\,\\ln x + 0.916$. Compare with $\\ln y = n\\ln x + \\ln k$.\\nGradient: $n = 2.10$.  [A1]\\nIntercept: $\\ln k = 0.916$, so $k = e^{0.916} = 2.50$ (3 s.f.).  [M1: $k = e^{\\text{intercept}}$]  [A1]\\n\\n**Model:** $y = 2.50\\,x^{2.10}$."
     },
     {
       "type": "examTip",
-      "content": "In an exam, always state the transformation you are using and define your new variables (e.g., 'Let $Y = \\ln(y)$ and $X = \\ln(x)$'). When you find the gradient and intercept from your GDC, write them down before calculating the final parameters. Be very careful with the final step: if your intercept $c = \\ln(a)$, then $a = e^c$, not $a=c$. This is a very common place to lose marks. Unless specified, using either `log` (base 10) or `ln` (base e) is fine, as long as you are consistent."
+      "content": "On Paper 2 you always have the GDC. Get fast at the routine: 1. Enter the original data in L1 and L2. 2. Create L3 = $\\ln$(L1) and L4 = $\\ln$(L2). 3. For a semi-log fit regress L4 on L1; for a log-log fit regress L4 on L3. 4. Write down the linear equation from the screen BEFORE recovering $k$ and the exponent — that written line is what earns the method marks. Then recover $k = e^{\\text{intercept}}$ and read the gradient as $a$ or $n$."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reading the intercept as $k$** — the intercept is $\\ln k$, so you must write $k = e^{\\text{intercept}}$. This is the single most penalised slip in 2.7; quoting the intercept as $k$ throws away the accuracy mark.",
+        "**Confusing the two transforms** — a semi-log graph ($\\ln y$ vs $x$) means an EXPONENTIAL model $y = ke^{ax}$; a log-log graph ($\\ln y$ vs $\\ln x$) means a POWER model $y = kx^n$. Matching the wrong model to the graph loses the whole question.",
+        "**Logging the wrong variable** — for an exponential model log only $y$ (leave $x$ alone); for a power model log both. Logging $x$ when you should not, or forgetting to log it, gives a meaningless gradient.",
+        "**Over-thinking the exponent** — for the semi-log fit the gradient IS $a$, and for the log-log fit the gradient IS $n$. Do not exponentiate the gradient; only the intercept gets exponentiated.",
+        "**Not writing down the regression line** — jumping straight to $k$ and $a$ with no line on the page forfeits the method marks even if the final answer is right.",
+        "**Choosing the model by eye** — when the model is not given, compare the two correlation coefficients and pick the transform with $|r|$ closer to 1; a guess unsupported by $r$ earns no reasoning mark.",
+        "**Mixing log bases** — pick $\\ln$ (IB's choice for these models) and invert with $e^{x}$; do not recover $k$ with $10^{c}$ after fitting with $\\ln$.",
+        "**Over-rounding mid-calculation** — carry the GDC's full figures and round only the final $k$, $a$ or $n$, to 3 significant figures unless told otherwise."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier wrong value need not cost you the marks that depend on it, provided the later step is done correctly on your figure. GDC regression is expected, and the engine accepts any equivalent form and any correctly-rounded value — but only if the method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Plotting $\\ln y$ against $x$ gives a straight line $\\ln y = 0.25x + 1.6$. Find the exponential model $y = ke^{ax}$. [4]",
+      "solution": "**Model answer — full working.**\\n\\nBecause $\\ln y$ is plotted against $x$, this is a semi-log graph and identifies an exponential model $y = ke^{ax}$.\\n\\n**Set up the comparison.** Taking logs of $y = ke^{ax}$ gives\\n$\\ln y = ax + \\ln k,$\\nwhich is a straight line in $\\ln y$ and $x$. Compare it term by term with the given line $\\ln y = 0.25x + 1.6$.\\n\\n**Gradient gives $a$.** Matching the coefficients of $x$:\\n$a = 0.25.$\\n\\n**Intercept gives $k$.** Matching the constant terms, $\\ln k = 1.6$, so exponentiate:\\n$k = e^{1.6} = 4.953\\ldots \\approx 4.95.$\\n\\n**Model:** $y = 4.95\\,e^{0.25x}.$\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — recognise the transform.** A method mark for identifying the semi-log plot as an exponential model and setting up the comparison $\\ln y = ax + \\ln k$ against the given line. It is the approach that is rewarded, so it survives an arithmetic slip further down.\\n- **A1 — the rate $a$.** Awarded for $a = 0.25$, read directly as the gradient. This accuracy mark stands on the M1 comparison above.\\n- **M1 — recover $k$ from the intercept.** A method mark for forming $k = e^{\\text{intercept}} = e^{1.6}$ — the crucial step that undoes the logarithm. The engine checks you exponentiated the intercept rather than quoting $1.6$ as $k$.\\n- **A1 — the value of $k$ and the model.** Awarded for $k \\approx 4.95$ and the assembled model $y = 4.95\\,e^{0.25x}$. This A-mark depends on the M1 above and carries FT: a candidate whose intercept differed but who correctly computed $e^{\\text{their intercept}}$ and wrote the matching model keeps this mark.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $k$ written as $e^{1.6}$, $4.95$ or $4.953$, and accepts the model with $a$ shown as $0.25$ or $\\tfrac14$. Once a correct model appears, ISW (ignore subsequent working) means later restatements do not lose marks.\\n\\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through — but only if the comparison and the $k = e^{\\text{intercept}}$ step are written down. A candidate who writes just '$y = 4.95e^{0.25x}$' with no comparison risks 2 method marks; a candidate who shows the transform, reads $a$ from the gradient, and exponentiates the intercept keeps the method even if the final number slips."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: name the transform, write $\\ln y = ax + \\ln k$ (or $\\ln y = n\\ln x + \\ln k$), read the gradient as $a$ or $n$, then form $k = e^{\\text{intercept}}$ and state the model. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Linearizing is where the regression tools of Topic 2 meet the exponential and power functions of the wider course. The same log laws that straighten $y = ke^{ax}$ and $y = kx^n$ reappear whenever you solve exponential equations or handle logarithmic scales such as decibels and pH. The discipline is transferable too: transform a hard problem into a familiar one, solve it there, then transform back — exactly the move behind so much of applied mathematics. Master the two graphs, remember that the gradient gives the exponent and the intercept gives $\\ln k$, and any exponential or power data set becomes a straight line you already know how to read."
     },
     {
       "type": "practice",
-      "label": "Practice Linearization Problems",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=2.7"
+      "label": "Get a Paper 2 calculation marked: linearize the data, find the regression line and recover the model with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.7&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Khan Academy: Linearizing data",
-          "href": "https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/transforming-nonlinear-data/v/linearizing-exponential-growth"
+          "label": "GeoGebra: Data Linearization",
+          "href": "https://www.geogebra.org/m/cbrv7kpr"
         },
         {
-          "label": "GeoGebra: Log-Log and Semi-Log Transformations",
-          "href": "https://www.geogebra.org/m/mcejk2a5"
+          "label": "Video explanation of log-log and semi-log plots",
+          "href": "https://www.youtube.com/watch?v=cQ85I6pW-Lw"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
-    "title": "Log-Log and Semi-Log Transformations",
-    "embedUrl": "https://www.geogebra.org/classic?material=mcejk2a5",
-    "launchUrl": "https://www.geogebra.org/classic?material=mcejk2a5",
-    "hint": "Use “Log-Log and Semi-Log Transformations” — shift curves or drag points to see equilibrium and slopes change.",
+    "title": "Data Linearization",
+    "embedUrl": "https://www.geogebra.org/classic?material=cbrv7kpr",
+    "launchUrl": "https://www.geogebra.org/classic?material=cbrv7kpr",
+    "hint": "Use “Data Linearization” — shift curves or drag points to see equilibrium and slopes change.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "GeoGebra",

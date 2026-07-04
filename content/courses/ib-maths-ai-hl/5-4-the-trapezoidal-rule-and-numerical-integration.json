@@ -5,181 +5,312 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces the trapezoidal rule as a method for numerical integration. It covers how to approximate the area under a curve, both from a given function and from a set of discrete data points. The lesson also explores the accuracy of the approximation and how the concavity of a function determines whether the result is an overestimate or an underestimate.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": {
+    "code": "5",
+    "title": "Calculus"
+  },
+  "summary": "This lesson turns the definite integral into something you can estimate even when you cannot integrate. The trapezoidal rule approximates the area under a curve by slicing the region into strips, replacing each slice with a trapezoid, and summing. You will learn to find the strip width $h=\\frac{b-a}{n}$, read or calculate the ordinates, substitute into $\\int_a^b y\\,dx \\approx \\frac{h}{2}\\left(y_0+y_n+2(y_1+\\dots+y_{n-1})\\right)$, and decide from the concavity of the curve whether the estimate is an over- or under-estimate. Every worked example is laid out exactly the way our marking engine awards marks on Paper 2, because how you show the working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand the concept of numerical integration for approximating definite integrals.",
-    "Apply the trapezoidal rule to estimate the area under a curve from a function or a set of data points.",
-    "Analyse the accuracy of the trapezoidal rule approximation in relation to the number of sub-intervals and the concavity of the function.",
-    "Determine whether an approximation is an overestimate or an underestimate by considering the shape of the curve."
+    "Understand numerical integration as a way to approximate a definite integral (the area under a curve) when it cannot be found exactly.",
+    "Apply the trapezoidal rule $\\int_a^b y\\,dx \\approx \\frac{h}{2}(y_0+y_n+2(y_1+\\dots+y_{n-1}))$ with $h=\\frac{b-a}{n}$ to a function or a table of data.",
+    "Decide whether the trapezoidal rule over- or under-estimates the true area from the concavity of the curve.",
+    "Explain why increasing the number of strips generally improves the accuracy of the estimate.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "5.4"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Slicing Area into Trapezoids",
-    "summary": "The trapezoidal rule helps us find the area under a curve by chopping it into many small trapezoids and adding up their areas. It's a powerful tool when we can't integrate a function directly or only have experimental data.",
-    "analogy": "Imagine you need to find the area of a hilly field. You can't just multiply length by width. Instead, you could place stakes at regular intervals, measure the 'height' of the land at each stake, and treat the sections between stakes as trapezoids. Adding up the areas of these simple shapes gives a very good estimate of the total area of the complex, hilly field. The trapezoidal rule does exactly this for mathematical curves.",
+    "title": "Slicing Up Curves",
+    "summary": "The trapezoidal rule is a technique to estimate the area under a tricky curve. We slice the area into a series of thin strips, treat the top of each strip as a straight line so it becomes a trapezoid, work out the area of every trapezoid, and add them up. When we cannot integrate the function exactly — or when we only have a table of measurements — this gives a very usable estimate.",
+    "analogy": "Imagine you want to find the area of an irregularly shaped garden plot. It is hard to measure directly. Instead, you place stakes at regular intervals along one edge and measure the width of the plot at each stake. By connecting the tops of the stakes with straight lines you create a series of trapezoids. Calculating the area of each simple trapezoid and adding them all up gives you a very good estimate of the total garden area. The more stakes you use, the more accurate your estimate becomes.",
     "steps": [
-      "Identify the function or data, the interval of integration $[a, b]$, and the number of sub-intervals, $n$.",
-      "Calculate the width of each trapezoid using the formula $h = (b-a)/n$.",
-      "List the $y$-values (ordinates) at each interval boundary, from $y_0$ to $y_n$.",
-      "Substitute $h$ and the $y$-values into the trapezoidal rule formula to find the approximate area."
+      "Identify the interval $[a, b]$ and the number of strips, $n$.",
+      "Calculate the width of each strip, $h = \\frac{b-a}{n}$.",
+      "Find the required $y$-values (ordinates) by substituting $x$-values into the function or reading them from the table — there are $n+1$ of them.",
+      "Substitute $h$ and the ordinates into the trapezoidal rule, adding the two end ordinates once and the interior ones twice."
     ]
   },
+  "keyConcepts": [
+    "numerical integration",
+    "strip width and ordinates",
+    "over- and under-estimation from concavity"
+  ],
   "flashcards": [
     {
       "front": "What is numerical integration?",
-      "back": "A set of techniques for approximating the value of a definite integral. It's used when an analytical solution (finding the antiderivative) is impossible or impractical."
+      "back": "A method for approximating the value of a definite integral. It is used when an analytical antiderivative is difficult or impossible to find, or when we only have discrete data points.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What is the primary use of the trapezoidal rule?",
-      "back": "To approximate the definite integral $\\int_{a}^{b} f(x) \\, dx$, which represents the area under the curve $y=f(x)$ from $x=a$ to $x=b$."
+      "front": "State the trapezoidal rule.",
+      "back": "$\\int_a^b y\\,dx \\approx \\frac{h}{2}\\left(y_0 + y_n + 2(y_1 + y_2 + \\dots + y_{n-1})\\right)$, where $h=\\frac{b-a}{n}$. It is in the formula booklet.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the formula for the area of a single trapezoid with parallel sides $y_1, y_2$ and height $h$?",
-      "back": "Area = $\\frac{1}{2}(y_1 + y_2)h$. In the context of the rule, the 'height' is the width of the sub-interval on the x-axis."
+      "front": "In the trapezoidal rule, what is $h$ and how do you find it?",
+      "back": "$h$ is the constant width of each strip (the height of each trapezoid). It is $h = \\frac{b-a}{n}$, where $[a,b]$ is the interval and $n$ is the number of strips.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the trapezoidal rule formula from the IB formula booklet?",
-      "back": "$\\int_{a}^{b} y \\, dx \\approx \\frac{1}{2}h[(y_0 + y_n) + 2(y_1 + y_2 + ... + y_{n-1})]$"
+      "front": "What does $n$ represent, and how many ordinates does it need?",
+      "back": "$n$ is the number of strips (trapezoids). For $n$ strips you need $n+1$ ordinates, from $y_0$ to $y_n$. Mixing these up is the classic slip.",
+      "pillLabel": "Trap"
     },
     {
-      "front": "What does $h$ represent in the trapezoidal rule formula?",
-      "back": "$h$ is the constant width of each sub-interval (trapezoid). It is calculated as $h = \\frac{b-a}{n}$."
+      "front": "What are 'ordinates'?",
+      "back": "The $y$-values (function values $f(x)$) at the edges of the strips: $y_0, y_1, \\dots, y_n$. There are $n+1$ of them for $n$ strips.",
+      "pillLabel": "Definition"
     },
     {
-      "front": "What do $y_0, y_1, ..., y_n$ represent?",
-      "back": "They are the 'ordinates', which are the y-values of the function evaluated at the boundaries of each sub-interval: $y_i = f(x_i)$. There are $n+1$ ordinates for $n$ sub-intervals."
+      "front": "Which ordinates are doubled in the formula?",
+      "back": "Only the interior ordinates $y_1, y_2, \\dots, y_{n-1}$ are multiplied by 2. The two end ordinates $y_0$ and $y_n$ are counted once each.",
+      "pillLabel": "Framework"
     },
     {
-      "front": "Why are the middle y-values ($y_1$ to $y_{n-1}$) multiplied by 2 in the formula?",
-      "back": "Because each of these middle ordinates serves as a side for two adjacent trapezoids. The first ($y_0$) and last ($y_n$) ordinates are only used for one trapezoid each."
+      "front": "When does the trapezoidal rule OVER-estimate the true area?",
+      "back": "When the curve is concave up (a $\\cup$-shape, $f''>0$). The straight tops of the trapezoids lie above the curve, so the estimate is too large.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "When does the trapezoidal rule produce an overestimate?",
-      "back": "When the function is concave up on the interval. The straight top of each trapezoid lies above the curve. This can be checked if $f''(x) > 0$."
+      "front": "When does the trapezoidal rule UNDER-estimate the true area?",
+      "back": "When the curve is concave down (an $\\cap$-shape, $f''<0$). The straight tops of the trapezoids lie below the curve, so the estimate is too small.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "When does the trapezoidal rule produce an underestimate?",
-      "back": "When the function is concave down on the interval. The straight top of each trapezoid lies below the curve. This can be checked if $f''(x) < 0$."
+      "front": "How can you make the estimate more accurate?",
+      "back": "Use more strips (a larger $n$, hence a smaller $h$). The straight tops then follow the curve more closely and the error shrinks.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the effect of increasing $n$, the number of sub-intervals?",
-      "back": "Increasing $n$ makes the trapezoids narrower, which generally leads to a more accurate approximation of the area under the curve."
+      "front": "Do you need to memorise the trapezoidal rule?",
+      "back": "No — it is in the Applications and Interpretation formula booklet. But you must be able to identify $h$, $n$ and the ordinates and substitute correctly, which is where the marks are won or lost.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "You are using the trapezoidal rule on $[2, 10]$ with $6$ strips. The strip width $h$ is:",
+      "options": [
+        "$h = \\frac{10-2}{6} = \\frac{4}{3}$",
+        "$h = \\frac{10-2}{7} = \\frac{8}{7}$",
+        "$h = 6$",
+        "$h = \\frac{10+2}{6} = 2$"
+      ],
+      "answer": "$h = \\frac{10-2}{6} = \\frac{4}{3}$"
     },
     {
-      "front": "Common Trap: Forgetting a part of the formula.",
-      "back": "A frequent mistake is forgetting the $\\frac{1}{2}h$ factor at the beginning of the calculation. Always write the full formula first."
+      "prompt": "In $\\int_a^b y\\,dx \\approx \\frac{h}{2}(y_0 + y_n + 2(y_1+\\dots+y_{n-1}))$, which ordinates are multiplied by 2?",
+      "options": [
+        "Every ordinate",
+        "Only the two end ordinates $y_0$ and $y_n$",
+        "Only the interior ordinates $y_1,\\dots,y_{n-1}$",
+        "None of them"
+      ],
+      "answer": "Only the interior ordinates $y_1,\\dots,y_{n-1}$"
     },
     {
-      "front": "Common Trap: Incorrectly applying the '2x' multiplier.",
-      "back": "Remember that only the *intermediate* y-values are doubled. The first ($y_0$) and the last ($y_n$) are not. A table of values helps to keep this organised."
+      "prompt": "You are asked to apply the trapezoidal rule with $5$ strips. How many ordinates ($y$-values) do you need?",
+      "options": [
+        "$5$",
+        "$6$",
+        "$4$",
+        "$10$"
+      ],
+      "answer": "$6$"
+    },
+    {
+      "prompt": "The curve $y=x^2$ is concave up on $[0,2]$. The trapezoidal rule estimate of $\\int_0^2 x^2\\,dx$ will:",
+      "options": [
+        "Over-estimate the true area",
+        "Under-estimate the true area",
+        "Give the exact area",
+        "Give a negative area"
+      ],
+      "answer": "Over-estimate the true area"
+    },
+    {
+      "prompt": "A student compares a trapezoidal estimate using $4$ strips with one using $8$ strips for the same integral. In general, the $8$-strip estimate is:",
+      "options": [
+        "Less accurate, because there are more calculations",
+        "About the same, because the rule always gives the exact answer",
+        "More accurate, because the strips are narrower and hug the curve more closely",
+        "Exactly double the $4$-strip estimate"
+      ],
+      "answer": "More accurate, because the strips are narrower and hug the curve more closely"
     }
   ],
   "faq": [
     {
-      "q": "Is the trapezoidal rule formula provided in the IB Maths AI HL formula booklet?",
-      "a": "Yes, the formula $\\int_{a}^{b} y \\, dx \\approx \\frac{1}{2}h[(y_0 + y_n) + 2(y_1 + y_2 + ... + y_{n-1})]$ is given in Topic 5.4 of the formula booklet."
+      "q": "Is the trapezoidal rule always accurate?",
+      "a": "No — it is an approximation. Its accuracy depends on the shape of the curve and the number of strips used. Using more strips (a smaller $h$) generally gives a more accurate result, because the straight tops of the trapezoids can follow the curve more closely. The rule is only exact when the curve is itself a straight line over each strip."
     },
     {
-      "q": "What is the difference between 'n' (number of sub-intervals) and the number of data points?",
-      "a": "'n' is the number of trapezoids. To define 'n' trapezoids, you need 'n+1' vertical lines or data points (ordinates). For example, 4 sub-intervals require 5 data points."
+      "q": "How do I know whether my estimate is too big or too small?",
+      "a": "Look at the concavity. If the curve is concave up ($\\cup$-shaped, $f''>0$) the straight trapezoid tops sit above the curve and you OVER-estimate. If the curve is concave down ($\\cap$-shaped, $f''<0$) the tops sit below the curve and you UNDER-estimate. If the concavity changes across the interval, the effects can partly cancel and you cannot decide from concavity alone."
     },
     {
-      "q": "Do the sub-intervals always have to be of equal width?",
-      "a": "For applying the standard formula provided in the IB course, yes, the sub-interval width 'h' must be constant. If a problem gives you data with unequal intervals, you cannot use the formula directly. Instead, you would calculate the area of each individual trapezoid using Area = $\\frac{1}{2}(y_a+y_b)h_{trap}$ and sum them up."
+      "q": "Do I need to memorise the trapezoidal rule formula?",
+      "a": "No — it is provided in the IB Mathematics: Applications and Interpretation formula booklet. But you must understand what each part means ($h$, $n$, $y_i$) and how to substitute correctly. Marks are awarded for the method of finding $h$ and the ordinates and for correct substitution, not for reciting the formula."
     },
     {
-      "q": "How do I know how many sub-intervals to use if it's not stated?",
-      "a": "The question will always provide the necessary information. It will either explicitly state the number of sub-intervals (or strips/trapezoids) to use, or it will provide a table of data from which the number of sub-intervals is implied by the number of data points."
+      "q": "What if the $x$-intervals in a data table are not equal?",
+      "a": "The standard formula assumes equal strip widths $h$. If the widths are unequal you cannot use the general formula directly; instead calculate the area of each trapezoid individually as $\\frac{1}{2}(y_a+y_b)(x_b-x_a)$ and sum them. This is less common in exams but is a possible variation."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to our lesson on the trapezoidal rule. In calculus, we often find the exact area under a curve by finding a definite integral. However, what happens when a function is too difficult to integrate, like $f(x) = e^{-x^2}$, or when we don't even have a function, just a set of data points from an experiment? This is where numerical integration comes in. The trapezoidal rule is a straightforward and powerful method to find a very good approximation of this area."
+      "content": "In calculus we usually find the exact area under a curve by definite integration. But what happens when the function is too awkward to integrate — like $f(x)=\\sqrt{x^2+1}$ or $f(x)=e^{-x^2}$ — or when we have no function at all, just a set of measurements? This lesson introduces the trapezoidal rule, a numerical method that estimates the area in exactly those situations. As in every calculation topic, each worked example below is laid out the way our engine marks your own practice: the method is on the page, mark by mark."
     },
     {
       "type": "heading",
-      "content": "The Core Idea: Approximating with Trapezoids"
+      "content": "The need for approximation"
     },
     {
       "type": "text",
-      "content": "To find the area represented by $\\int_a^b f(x) \\, dx$, we can slice the area into a number of vertical strips. While we could use rectangles, their flat tops don't follow the curve very well. A trapezoid, with its sloped top edge, provides a much better fit to a small section of a curve. The trapezoidal rule works by dividing the total area into $n$ vertical strips of equal width, treating each strip as a trapezoid, and summing their areas."
+      "content": "Finding an antiderivative is the standard way to evaluate a definite integral, but for many functions no elementary antiderivative exists. Moreover, in science and engineering we often collect data at discrete points without knowing the function that links them — we might record a car's speed every second without ever having an equation for it. In these cases we approximate the value of the integral numerically, and the trapezoidal rule is the tool Applications and Interpretation asks you to use."
     },
     {
       "type": "heading",
-      "content": "The Trapezoidal Rule Formula"
+      "content": "From strips to trapezoids"
     },
     {
       "type": "text",
-      "content": "Let's formalise this. We divide the interval $[a, b]$ into $n$ sub-intervals, each of width $h = \\frac{b-a}{n}$. This gives us $n+1$ x-coordinates: $x_0=a, x_1=a+h, \\dots, x_n=b$. The corresponding y-coordinates (ordinates) are $y_0=f(x_0), y_1=f(x_1), \\dots, y_n=f(x_n)$. The area of the first trapezoid is $\\frac{1}{2}(y_0+y_1)h$, the second is $\\frac{1}{2}(y_1+y_2)h$, and so on. When we sum all these areas and factor out common terms, we arrive at the general formula."
+      "content": "Divide the interval $[a,b]$ into $n$ vertical strips of equal width $h$. Over each strip we replace the curve with the straight line joining the two points on it, turning each strip into a trapezoid. A trapezoid with parallel vertical sides $y_0$ and $y_1$ and width $h$ has area:"
     },
     {
       "type": "formula",
-      "content": "\\int_{a}^{b} y \\, dx \\approx \\frac{1}{2}h[(y_0 + y_n) + 2(y_1 + y_2 + ... + y_{n-1})] \\\\ \\text{where } h = \\frac{b-a}{n}"
+      "content": "A_{\\text{single}} = \\frac{1}{2}(y_0 + y_1)h"
+    },
+    {
+      "type": "text",
+      "content": "Adding the areas of all $n$ trapezoids and collecting terms — each interior ordinate is shared by two adjacent trapezoids, so it appears twice — gives the trapezoidal rule in the formula booklet."
+    },
+    {
+      "type": "formula",
+      "content": "\\int_a^b y\\,dx \\approx \\frac{h}{2}\\left(y_0 + y_n + 2(y_1 + y_2 + \\dots + y_{n-1})\\right), \\qquad h = \\frac{b-a}{n}"
     },
     {
       "type": "keyPoints",
       "items": [
-        "$n$ is the number of sub-intervals or trapezoids.",
-        "There are $n+1$ ordinates (y-values) needed to define $n$ trapezoids.",
-        "$h$ is the constant width of each sub-interval.",
-        "The first and last y-values ($y_0$ and $y_n$) are added together.",
-        "All intermediate y-values are summed and then multiplied by 2."
+        "$h = \\frac{b-a}{n}$ is the width of each strip, where $[a,b]$ is the interval and $n$ is the number of strips.",
+        "$y_0, y_1, \\dots, y_n$ are the ordinates ($y$-values) at the strip edges — there are $n+1$ of them for $n$ strips.",
+        "The two END ordinates $y_0$ and $y_n$ are counted ONCE; every INTERIOR ordinate is counted TWICE.",
+        "More strips (larger $n$, smaller $h$) generally means a more accurate estimate."
       ]
     },
     {
       "type": "workedExample",
-      "question": "a) Use the trapezoidal rule with 4 sub-intervals to estimate the value of $\\int_{2}^{4} \\ln(x^3) \\, dx$. Give your answer to 3 significant figures. \nb) The function $f(x) = \\ln(x^3)$ is concave down on the interval $[2, 4]$. State whether your answer in part (a) is an overestimate or an underestimate. Justify your answer.",
-      "solution": "a) First, identify the parameters. We are integrating $f(x) = \\ln(x^3)$ from $a=2$ to $b=4$ with $n=4$ sub-intervals.\n\nCalculate the sub-interval width, $h$: \n$h = \\frac{b-a}{n} = \\frac{4-2}{4} = 0.5$ (M1 for correct h)\n\nNext, create a table of $x$ and $y$ values. $x_i$ starts at $a=2$ and increases by $h=0.5$. $y_i = f(x_i) = \\ln(x_i^3)$.\n$x_0 = 2.0 \\implies y_0 = \\ln(2^3) = \\ln(8) \\approx 2.0794$\n$x_1 = 2.5 \\implies y_1 = \\ln(2.5^3) = \\ln(15.625) \\approx 2.7489$\n$x_2 = 3.0 \\implies y_2 = \\ln(3^3) = \\ln(27) \\approx 3.2958$\n$x_3 = 3.5 \\implies y_3 = \\ln(3.5^3) = \\ln(42.875) \\approx 3.7583$\n$x_4 = 4.0 \\implies y_4 = \\ln(4^3) = \\ln(64) \\approx 4.1589$\n(M1 for correct y-values)\n\nNow apply the trapezoidal rule formula:\nArea $\\approx \\frac{1}{2}h[(y_0 + y_4) + 2(y_1 + y_2 + y_3)]$\nArea $\\approx \\frac{1}{2}(0.5)[(2.0794... + 4.1589...) + 2(2.7489... + 3.2958... + 3.7583...)]$ (M1 for correct substitution)\nArea $\\approx 0.25[6.2383... + 2(9.8030...)]$\nArea $\\approx 0.25[6.2383... + 19.6060...]$\nArea $\\approx 0.25[25.8443...]$\nArea $\\approx 6.4610...$ (A1)\nArea $\\approx 6.46$ (3 s.f.) (A1)\n\nb) The approximation is an **underestimate**. (A1)\n**Justification:** The function is concave down. This means the curve between any two points lies above the straight line connecting them. The tops of the trapezoids are straight lines, so they will lie *below* the curve, resulting in an estimated area that is smaller than the true area. (R1 for correct reasoning)"
+      "question": "Use the trapezoidal rule with 4 sub-intervals to estimate $I = \\int_{1}^{3} \\frac{1}{x}\\,dx$. Give your answer to 3 significant figures. [5]",
+      "solution": "**Identify the parameters.** Interval $[a,b]=[1,3]$, number of strips $n=4$, function $f(x)=\\frac{1}{x}$.\n\n**Strip width.** $h = \\dfrac{b-a}{n} = \\dfrac{3-1}{4} = 0.5$.  [M1: correct $h$]\n\n**Ordinates.** Five ordinates ($y_0$ to $y_4$) at $x = 1, 1.5, 2, 2.5, 3$:\n$y_0=f(1)=1,\\quad y_1=f(1.5)=\\tfrac{2}{3},\\quad y_2=f(2)=0.5,\\quad y_3=f(2.5)=0.4,\\quad y_4=f(3)=\\tfrac{1}{3}$.  [A1: all ordinates correct]\n\n**Apply the rule.** $I \\approx \\dfrac{h}{2}\\left(y_0+y_4+2(y_1+y_2+y_3)\\right)$  [M1: end ordinates once, interior doubled]\n$I \\approx \\dfrac{0.5}{2}\\left(\\left(1+\\tfrac{1}{3}\\right) + 2\\left(\\tfrac{2}{3}+0.5+0.4\\right)\\right)$  [M1: correct substitution]\n$I \\approx 0.25\\left(1.3333\\ldots + 2(1.5666\\ldots)\\right) = 0.25(4.4666\\ldots) = 1.1166\\ldots$\n\n**Answer.** $I \\approx 1.12$ (3 s.f.).  [A1]"
     },
     {
       "type": "examTip",
-      "content": "For Paper 1, you must show your working clearly. Always write down the formula you are using, the value of $h$, and the values you are substituting. Creating a table for your $x_i$ and $y_i$ values is an excellent way to keep your work organised and minimise errors. Use your GDC's memory to store unrounded intermediate values for maximum accuracy."
+      "content": "The formula is in your booklet, so the marks are for using it, not reciting it. Identify $h$, $n$ and all $n+1$ ordinates, and lay the substitution out in full — the interior ordinates gathered inside the doubled bracket. A common error is confusing $n$ (strips) with the number of ordinates ($n+1$); always check you have one more $y$-value than the number of strips."
     },
     {
       "type": "heading",
-      "content": "Application to Real-World Data"
+      "content": "Over- or under-estimate? Read the concavity"
     },
     {
       "type": "text",
-      "content": "The trapezoidal rule is extremely practical for estimating integrals from empirical data. Scientists and engineers often collect data at discrete intervals, for example, the cross-sectional profile of a riverbed to calculate flow rate, or the velocity of a rocket at different points in time to find the total distance travelled. In these cases, you are given the $y_i$ values directly in a table, and you simply need to identify $h$ and apply the rule."
+      "content": "Because each trapezoid replaces the curve with a straight chord, whether the estimate is too big or too small depends only on which side of the chord the curve sits — that is, on the concavity. Where the curve is concave up ($\\cup$-shaped, $f''>0$) the chord lies above the curve, so the trapezoids include extra area and the rule OVER-estimates. Where the curve is concave down ($\\cap$-shaped, $f''<0$) the chord lies below the curve, so the trapezoids miss some area and the rule UNDER-estimates. If the concavity changes across the interval you cannot decide from concavity alone."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Concave up** ($\\cup$, $f''>0$): chords above the curve $\\Rightarrow$ **over-estimate**.",
+        "**Concave down** ($\\cap$, $f''<0$): chords below the curve $\\Rightarrow$ **under-estimate**.",
+        "Justify by naming the concavity of the curve on the interval — a claim with no reason earns no reasoning mark."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Application to real-world data"
+    },
+    {
+      "type": "text",
+      "content": "The trapezoidal rule is especially useful for data from experiments or observations, where there is no formula at all. Measure the cross-sectional profile of a river and you can estimate its area to find the flow rate; record the velocity of a runner at intervals and you can estimate the distance travelled as the area under the velocity–time graph."
     },
     {
       "type": "workedExample",
-      "question": "The diagram shows the shape of a lake. The width of the lake is measured at 20-metre intervals. The measurements are 0 m, 48 m, 55 m, 72 m, 61 m, 45 m, and 0 m. Use the trapezoidal rule to estimate the surface area of the lake.",
-      "solution": "The problem is to find the area of the shape described by the width measurements.\n\nLet the y-values be the widths of the lake. The measurements are taken at regular intervals along the length of the lake. The interval width, $h$, is given as 20 metres. (A1 for identifying h)\n\nWe have 7 measurements, which means we have $n=6$ sub-intervals (trapezoids).\nThe ordinates (widths) are:\n$y_0 = 0$\n$y_1 = 48$\n$y_2 = 55$\n$y_3 = 72$\n$y_4 = 61$\n$y_5 = 45$\n$y_6 = 0$\n\nApply the trapezoidal rule formula:\nArea $\\approx \\frac{1}{2}h[(y_0 + y_6) + 2(y_1 + y_2 + y_3 + y_4 + y_5)]$\nArea $\\approx \\frac{1}{2}(20)[(0 + 0) + 2(48 + 55 + 72 + 61 + 45)]$ (M1 for correct substitution)\nArea $\\approx 10[0 + 2(281)]$\nArea $\\approx 10[562]$\nArea $\\approx 5620$ (A1)\n\nThe estimated surface area of the lake is 5620 m$^2$. (A1 for correct answer with units)"
+      "question": "The speed of a runner, $v$ (m/s), was recorded at 5-second intervals for 20 seconds.\n\n| Time, $t$ (s) | 0 | 5 | 10 | 15 | 20 |\n|---|---|---|---|---|---|\n| Speed, $v$ (m/s) | 0 | 4.2 | 5.8 | 6.5 | 6.1 |\n\nUse the trapezoidal rule to estimate the total distance travelled in these 20 seconds. [4]",
+      "solution": "**Set up.** Distance is the area under the velocity–time graph, from $t=0$ to $t=20$. The readings are equally spaced, so the strip width is the time interval, $h=5$ s, and there are $n=4$ strips.  [M1: identify $h$ and $n$ from the table]\n\n**Ordinates.** $y_0=0,\\; y_1=4.2,\\; y_2=5.8,\\; y_3=6.5,\\; y_4=6.1$.\n\n**Apply the rule.** Distance $\\approx \\dfrac{h}{2}\\left(y_0+y_4+2(y_1+y_2+y_3)\\right)$\nDistance $\\approx \\dfrac{5}{2}\\left((0+6.1)+2(4.2+5.8+6.5)\\right)$  [M1: correct substitution, interior doubled]\nDistance $\\approx 2.5\\left(6.1 + 2(16.5)\\right) = 2.5(39.1) = 97.75$.  [A1: correct value]\n\n**Answer with units.** The estimated distance is $97.8$ m (3 s.f.).  [A1: answer and units]"
     },
     {
       "type": "examTip",
-      "content": "When a question asks whether an estimate is an over- or underestimate, you must provide a reason. For a function, this reason is its concavity. If you are not given the concavity, you may need to find the second derivative, $f''(x)$, and check its sign over the interval. If $f''(x) > 0$, it's concave up (overestimate). If $f''(x) < 0$, it's concave down (underestimate)."
+      "content": "In a real-world context always give units and state what the area represents (here, distance). Show the substitution into the formula clearly — that is where the method marks live, so they survive even if a later arithmetic step slips."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using $h=\\frac{b-a}{n+1}$ or reading $h$ as the number of strips** — the strip width is $h=\\frac{b-a}{n}$, where $n$ is the number of strips. Get $h$ wrong and every term is wrong.",
+        "**Wrong ordinate count** — $n$ strips need $n+1$ ordinates, from $y_0$ to $y_n$. Using $n$ ordinates (or doubling one too many) is the classic slip.",
+        "**Doubling the end ordinates, or forgetting to double the interior ones** — $y_0$ and $y_n$ are counted once; every $y_1,\\dots,y_{n-1}$ is counted twice. Only the interior values go inside the $2(\\dots)$ bracket.",
+        "**Forgetting the factor $\\frac{h}{2}$** — the whole bracket is multiplied by $\\frac{h}{2}$, not by $h$ and not by $\\frac{1}{2}$ alone.",
+        "**Guessing over/under-estimate without reasoning** — justify it from the concavity: concave up over-estimates, concave down under-estimates. A bare claim earns no reasoning mark.",
+        "**Dropping units or over-rounding mid-calculation** — keep full accuracy in the working and round only the final answer, and quote units in a real-world context."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct final step performed on your own earlier (wrong) value still scores, and equivalent correct forms are accepted. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Use the trapezoidal rule with 4 strips to estimate $\\int_0^4 \\sqrt{x^2+1}\\,dx$. [5]",
+      "solution": "**Model answer — full working.**\n\n**Strip width.** $h = \\dfrac{b-a}{n} = \\dfrac{4-0}{4} = 1$.\n\n**Ordinates.** Five ordinates ($y_0$ to $y_4$) at $x = 0, 1, 2, 3, 4$, with $y=\\sqrt{x^2+1}$:\n$y_0=\\sqrt{0^2+1}=1$\n$y_1=\\sqrt{1^2+1}=\\sqrt{2}\\approx 1.414$\n$y_2=\\sqrt{2^2+1}=\\sqrt{5}\\approx 2.236$\n$y_3=\\sqrt{3^2+1}=\\sqrt{10}\\approx 3.162$\n$y_4=\\sqrt{4^2+1}=\\sqrt{17}\\approx 4.123$\n\n**Apply the rule.** $\\displaystyle\\int_0^4 \\sqrt{x^2+1}\\,dx \\approx \\frac{h}{2}\\left(y_0+y_4+2(y_1+y_2+y_3)\\right)$\n$\\approx \\dfrac{1}{2}\\left((1+4.123)+2(1.414+2.236+3.162)\\right)$\n$\\approx \\dfrac{1}{2}\\left(5.123 + 2(6.812)\\right) = \\dfrac{1}{2}(18.747) = 9.3735\\ldots$\n\n**Final answer:** $\\displaystyle\\int_0^4 \\sqrt{x^2+1}\\,dx \\approx 9.37$ (3 s.f.).\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — find $h$ and set up the ordinates.** Awarded for $h=\\frac{4-0}{4}=1$ and a correct attempt at the five $x$-values $0,1,2,3,4$. This is a METHOD mark: it stands even if a $y$-value is later miscomputed.\n- **A1 — correct ordinates.** Awarded for the correct $y$-values $1,\\;1.414,\\;2.236,\\;3.162,\\;4.123$ (equivalent surd forms $\\sqrt2,\\sqrt5,\\sqrt{10},\\sqrt{17}$ accepted). This accuracy mark depends on the M1.\n- **M1 — apply the formula.** Awarded for using the structure $\\frac{h}{2}(y_0+y_n+2(\\text{interior}))$ with the two end ordinates counted once and the interior ordinates doubled — even if done on their own (possibly wrong) ordinates.\n- **M1 — substitute their values.** Awarded for a complete, correct substitution of THEIR $h$ and ordinates into that formula. Because it acts on 'their' values, a student who mis-read one ordinate still earns this method mark for a correct substitution.\n- **A1 — final value.** Awarded for $\\approx 9.37$. Follow-through (FT) applies: a student who carried a slightly wrong ordinate but substituted and evaluated correctly still earns this mark on their own figure.\n\n**Accept equivalent forms.** The engine accepts the ordinates as decimals or surds, accepts the unrounded $9.3735\\ldots$ or the rounded $9.37$, and marks the mathematics rather than the layout.\n\n**Bottom line:** of the 5 marks, three are method marks that survive an arithmetic slip and the final accuracy mark is shielded by follow-through. A student who writes only '$\\approx 9.37$' with no working risks losing 3–4 marks if a number is off; a student who shows $h$, the five ordinates, and the full substitution keeps the method marks regardless."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write $h=\\frac{b-a}{n}$, list every ordinate, then substitute into $\\frac{h}{2}(y_0+y_n+2(\\dots))$ before evaluating. The method marks and follow-through are what protect your score when a final number slips, and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The trapezoidal rule is your fallback whenever an exact integral is out of reach — a genuinely useful skill for modelling with real data, where formulas rarely exist. Keep the habit: find $h$, list the $n+1$ ordinates, double only the interior ones, multiply by $\\frac{h}{2}$, and check the concavity to say whether the estimate is high or low. The same area-under-a-curve thinking underpins the definite integrals and modelling problems that follow."
     },
     {
       "type": "practice",
-      "label": "Test Your Knowledge on the Trapezoidal Rule",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.4"
+      "label": "Get a Paper 2 calculation marked: estimate an integral with the trapezoidal rule, full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.4&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GeoGebra: Trapezoidal Rule Visualisation",
-          "href": "https://www.geogebra.org/m/w9g2yv9g"
+          "label": "GeoGebra: Trapezoidal Rule Visualiser",
+          "href": "https://www.geogebra.org/m/wgw83zrd"
         },
         {
-          "label": "Khan Academy: Trapezoidal Rule Explained",
-          "href": "https://www.khanacademy.org/math/ap-calculus-bc/bc-integration-new/bc-6-6/v/trapezoidal-approximation"
+          "label": "Khan Academy: Trapezoidal Rule Introduction",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-2/v/trapezoidal-approximation"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
-    "title": "Trapezoidal Rule Visualisation",
-    "embedUrl": "https://www.geogebra.org/classic?material=w9g2yv9g",
-    "launchUrl": "https://www.geogebra.org/classic?material=w9g2yv9g",
-    "hint": "Use “Trapezoidal Rule Visualisation” — shift curves or drag points to see equilibrium and slopes change.",
+    "title": "Trapezoidal Rule Visualiser",
+    "embedUrl": "https://www.geogebra.org/classic?material=wgw83zrd",
+    "launchUrl": "https://www.geogebra.org/classic?material=wgw83zrd",
+    "hint": "Use “Trapezoidal Rule Visualiser” — shift curves or drag points to see equilibrium and slopes change.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "GeoGebra",

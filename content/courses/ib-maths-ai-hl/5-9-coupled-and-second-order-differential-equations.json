@@ -5,199 +5,135 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores advanced differential equations. You will learn to model and solve systems of coupled first-order linear differential equations using the eigenvalue method with your GDC, and solve second-order homogeneous linear differential equations by finding the roots of the auxiliary equation. These techniques are crucial for modelling real-world phenomena like predator-prey dynamics and damped oscillations.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": { "code": "5", "title": "Calculus" },
+  "summary": "This Higher Level lesson solves systems of coupled linear differential equations $\\dot{\\mathbf{x}}=M\\mathbf{x}$ using the eigenvalues and eigenvectors of the matrix $M$. You will build the general solution $\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$ for real distinct eigenvalues, read the nature of the equilibrium (stable node, unstable node, saddle, or spiral) straight off the eigenvalues, convert a second-order linear equation into a coupled first-order system, and step a system forward with Euler's method. Applications run through predator-prey models, coupled tanks and simple harmonic motion. Every worked example is laid out exactly the way our marking engine awards marks, because on an exam how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Model interacting systems using coupled first-order linear differential equations.",
-    "Solve systems of coupled differential equations and second-order homogeneous differential equations using analytical and technological methods.",
-    "Use eigenvalues and eigenvectors to find the general solution for a system of coupled linear differential equations.",
-    "Interpret the solutions in the context of a given problem, including long-term behaviour."
+    "Write a system of coupled first-order linear differential equations in matrix form $\\dot{\\mathbf{x}}=M\\mathbf{x}$.",
+    "Find the eigenvalues and eigenvectors of $M$ and write the general solution $\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$ for real distinct eigenvalues.",
+    "Determine the nature of the equilibrium point (stable/unstable node, saddle, or spiral) from the eigenvalues, qualitatively.",
+    "Convert a second-order linear differential equation into a coupled first-order system.",
+    "Use Euler's method to approximate the solution of a system of coupled equations.",
+    "Interpret solutions in context — predator-prey, coupled tanks, simple harmonic motion — and present working so that method (M), accuracy (A) and follow-through (FT) marks protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.9"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Dynamic Duos: Solving Interconnected Change",
-    "summary": "Many real-world systems involve quantities that change and influence each other simultaneously. We use coupled or second-order differential equations to model these intricate relationships and predict their future states.",
-    "analogy": "Imagine the populations of rabbits and foxes in a forest. The number of rabbits affects the food supply for foxes, so it influences the fox population. In turn, the number of foxes affects how many rabbits get eaten, influencing the rabbit population. Their populations are 'coupled' – you can't predict one without knowing about the other. These equations let us model this interconnected dance of survival.",
+    "title": "When two things change together",
+    "summary": "Some quantities cannot change on their own — each one's rate of change depends on the other. Eigenvalues and eigenvectors of the coefficient matrix unlock the whole system at once, and their signs tell you what happens in the long run without solving anything.",
+    "analogy": "Picture rabbits and foxes sharing a valley. More rabbits feed more foxes, but more foxes eat more rabbits, so neither population can be predicted alone — they are 'coupled'. The eigenvectors point along the special directions in which the system grows or shrinks cleanly, and the eigenvalues say how fast: a positive one means run-away growth, a negative one means decay to the equilibrium, and a complex pair means the populations circle around it. Read the eigenvalues and you already know the story before drawing a single curve.",
     "steps": [
-      "Represent the system of equations in matrix form, $\\mathbf{x}' = A\\mathbf{x}$, or identify the coefficients of the second-order equation $ay'' + by' + cy = 0$.",
-      "Use your GDC to find the eigenvalues ($\\lambda$) and eigenvectors ($\\mathbf{v}$) of matrix $A$, or solve the auxiliary equation $am^2 + bm + c = 0$ for its roots.",
-      "Construct the general solution. For coupled systems, it's $\\mathbf{x}(t) = c_1 e^{\\lambda_1 t} \\mathbf{v}_1 + c_2 e^{\\lambda_2 t} \\mathbf{v}_2$. For second-order, the form depends on the type of roots found.",
-      "Substitute the given initial conditions (e.g., values at $t=0$) into the general solution to solve for the constants and find the unique particular solution."
+      "Write the system as $\\dot{\\mathbf{x}}=M\\mathbf{x}$, reading the matrix $M$ off the coefficients.",
+      "Find the eigenvalues from $\\det(M-\\lambda I)=0$ and an eigenvector for each from $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$.",
+      "For real distinct eigenvalues, combine into the general solution $\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$.",
+      "Use the signs (or complex nature) of the eigenvalues to name the equilibrium, and apply initial conditions to pin down $A$ and $B$."
     ]
   },
+  "keyConcepts": ["coupled systems and matrix form", "eigenvalues and eigenvectors", "phase portraits and stability", "second-order to first-order conversion", "Euler's method for systems"],
   "flashcards": [
-    {
-      "front": "What are coupled differential equations?",
-      "back": "A system of two or more differential equations where the rate of change of each variable depends on the values of the other variables. For example, $x' = ax + by$ and $y' = cx + dy$."
-    },
-    {
-      "front": "What is the matrix form of a system of two coupled linear first-order differential equations?",
-      "back": "$\\mathbf{x}' = A\\mathbf{x}$, which is $\\begin{pmatrix} x' \\\\ y' \\end{pmatrix} = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix}$."
-    },
-    {
-      "front": "What is a second-order homogeneous linear differential equation?",
-      "back": "An equation of the form $ay'' + by' + cy = 0$, where $a, b, c$ are constants. 'Homogeneous' means the right-hand side is zero."
-    },
-    {
-      "front": "What is the auxiliary equation for $ay'' + by' + cy = 0$?",
-      "back": "The quadratic equation $am^2 + bm + c = 0$. Its roots determine the form of the general solution."
-    },
-    {
-      "front": "What is the general solution to $ay''+by'+cy=0$ if the auxiliary equation has two distinct real roots, $m_1$ and $m_2$?",
-      "back": "$y(t) = Ae^{m_1 t} + Be^{m_2 t}$."
-    },
-    {
-      "front": "What is the general solution to $ay''+by'+cy=0$ if the auxiliary equation has one repeated real root, $m$?",
-      "back": "$y(t) = (At + B)e^{mt}$. Don't forget the extra factor of $t$!"
-    },
-    {
-      "front": "What is the general solution to $ay''+by'+cy=0$ if the auxiliary equation has complex roots, $\\alpha \\pm i\\beta$?",
-      "back": "$y(t) = e^{\\alpha t}(A\\cos(\\beta t) + B\\sin(\\beta t))$."
-    },
-    {
-      "front": "What is the general solution for a coupled system $\\mathbf{x}' = A\\mathbf{x}$ with distinct real eigenvalues $\\lambda_1, \\lambda_2$ and corresponding eigenvectors $\\mathbf{v}_1, \\mathbf{v}_2$?",
-      "back": "$\\mathbf{x}(t) = c_1 e^{\\lambda_1 t} \\mathbf{v}_1 + c_2 e^{\\lambda_2 t} \\mathbf{v}_2$."
-    },
-    {
-      "front": "What is the difference between a general solution and a particular solution?",
-      "back": "A general solution includes arbitrary constants (like $A$ and $B$) and represents a family of functions. A particular solution is found by using initial conditions to determine specific values for these constants."
-    },
-    {
-      "front": "What physical phenomenon is described by $y''+by'+cy=0$ where the roots of the auxiliary equation are complex?",
-      "back": "Underdamped oscillation. The solution contains sine and cosine terms, indicating oscillation, and the $e^{\\alpha t}$ term (with $\\alpha < 0$) causes the amplitude to decay over time."
-    },
-    {
-      "front": "What is a common mistake when finding a particular solution for a second-order DE?",
-      "back": "Forgetting to differentiate the general solution $y(t)$ to get $y'(t)$ before substituting the initial condition for the derivative, $y'(0)$."
-    }
+    { "front": "What is a coupled system of linear differential equations?", "back": "A pair (or more) of equations in which each variable's rate of change depends on the others, e.g. $\\dot{x}=ax+by$, $\\dot{y}=cx+dy$. In matrix form: $\\dot{\\mathbf{x}}=M\\mathbf{x}$.", "pillLabel": "Definition" },
+    { "front": "How do you find the eigenvalues of $M=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$?", "back": "Solve the characteristic equation $\\det(M-\\lambda I)=0$, i.e. $(a-\\lambda)(d-\\lambda)-bc=0$. A GDC can also return them directly.", "pillLabel": "Formula" },
+    { "front": "How do you find an eigenvector for an eigenvalue $\\lambda$?", "back": "Solve $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$ for a non-zero $\\mathbf{v}$. Any non-zero scalar multiple of it is an equally valid eigenvector.", "pillLabel": "Framework" },
+    { "front": "General solution of $\\dot{\\mathbf{x}}=M\\mathbf{x}$ with real distinct eigenvalues $\\lambda_1,\\lambda_2$ and eigenvectors $\\mathbf{v}_1,\\mathbf{v}_2$?", "back": "$\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$, where $A$ and $B$ are constants fixed by the initial conditions.", "pillLabel": "Formula" },
+    { "front": "Two negative eigenvalues — what is the equilibrium?", "back": "A stable node: both exponential terms decay, so every trajectory is drawn into the origin as $t\\to\\infty$.", "pillLabel": "Concept" },
+    { "front": "Two positive eigenvalues — what is the equilibrium?", "back": "An unstable node: both terms grow, so trajectories move away from the origin.", "pillLabel": "Concept" },
+    { "front": "Eigenvalues of opposite sign — what is the equilibrium?", "back": "A saddle point: one direction is drawn in and the other pushed out, so the equilibrium is unstable overall.", "pillLabel": "Concept" },
+    { "front": "Complex eigenvalues $\\alpha\\pm\\beta i$ — what does the trajectory do?", "back": "It spirals: a stable (inward) spiral if $\\alpha<0$, an unstable (outward) spiral if $\\alpha>0$, and a closed centre if $\\alpha=0$.", "pillLabel": "Concept" },
+    { "front": "How do you turn $\\ddot{x}+p\\dot{x}+qx=0$ into a coupled first-order system?", "back": "Let $y=\\dot{x}$. Then $\\dot{x}=y$ and $\\dot{y}=-qx-p y$, i.e. $\\dot{\\mathbf{x}}=\\begin{pmatrix}0&1\\\\-q&-p\\end{pmatrix}\\mathbf{x}$.", "pillLabel": "Framework" },
+    { "front": "What is Euler's method for a system $\\dot{\\mathbf{x}}=\\mathbf{f}(\\mathbf{x})$?", "back": "Step forward by $\\mathbf{x}_{n+1}=\\mathbf{x}_n+h\\,\\mathbf{f}(\\mathbf{x}_n)$, updating every component together using the SAME old values on the right.", "pillLabel": "Formula" },
+    { "front": "Common trap: how many arbitrary constants should a 2-variable system's general solution have?", "back": "Exactly two ($A$ and $B$) — one per eigenvalue. Two initial conditions are then needed to determine both.", "pillLabel": "Trap" },
+    { "front": "Common trap: are $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ and $\\begin{pmatrix}2\\\\2\\end{pmatrix}$ different eigenvectors?", "back": "No — they are scalar multiples, so they represent the SAME eigendirection. A GDC's scaled or decimal eigenvector is still correct.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "To solve the coupled system $\\dot{\\mathbf{x}}=M\\mathbf{x}$, you first find the:", "options": ["determinant and inverse of $M$", "eigenvalues and eigenvectors of $M$", "row-reduced form of $M$", "transpose of $M$"], "answer": "eigenvalues and eigenvectors of $M$" },
+    { "prompt": "With real distinct eigenvalues $\\lambda_1,\\lambda_2$ and eigenvectors $\\mathbf{v}_1,\\mathbf{v}_2$, the general solution of $\\dot{\\mathbf{x}}=M\\mathbf{x}$ is:", "options": ["$\\mathbf{x}=A\\mathbf{v}_1+B\\mathbf{v}_2$", "$\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$", "$\\mathbf{x}=Ae^{\\lambda_1 t}+Be^{\\lambda_2 t}$", "$\\mathbf{x}=(At+B)e^{\\lambda_1 t}\\mathbf{v}_1$"], "answer": "$\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$" },
+    { "prompt": "If the eigenvalues of $M$ are the complex pair $-1\\pm 2i$, the equilibrium at the origin is a:", "options": ["stable node", "saddle point", "stable (inward) spiral", "unstable node"], "answer": "stable (inward) spiral" },
+    { "prompt": "The second-order equation $\\ddot{x}+5\\dot{x}+6x=0$ is converted to a first-order system by setting $y=\\dot{x}$, giving:", "options": ["$\\dot{x}=y,\\ \\dot{y}=-6x-5y$", "$\\dot{x}=y,\\ \\dot{y}=6x+5y$", "$\\dot{x}=-y,\\ \\dot{y}=6x-5y$", "$\\dot{x}=y,\\ \\dot{y}=-5x-6y$"], "answer": "$\\dot{x}=y,\\ \\dot{y}=-6x-5y$" },
+    { "prompt": "A system has eigenvalues $\\lambda_1=4$ and $\\lambda_2=-2$ (opposite signs). The equilibrium at the origin is a:", "options": ["stable node", "saddle point (unstable)", "centre", "stable spiral"], "answer": "saddle point (unstable)" }
   ],
   "faq": [
-    {
-      "q": "How do I know whether to use the eigenvalue method or the auxiliary equation method?",
-      "a": "It depends on the structure of the problem. If you are given a system of first-order equations (e.g., equations for $x'$ and $y'$), use the eigenvalue method. If you are given a single second-order equation (involving $y''$), use the auxiliary equation method."
-    },
-    {
-      "q": "What is the physical meaning of the different cases for second-order equations?",
-      "a": "They describe different types of damping. **Distinct real roots (overdamped):** The system returns to equilibrium slowly without oscillating. **Repeated real root (critically damped):** The system returns to equilibrium as quickly as possible without oscillating. **Complex roots (underdamped):** The system oscillates back and forth with decreasing amplitude until it reaches equilibrium."
-    },
-    {
-      "q": "My GDC gives eigenvectors that look different from the answer key. Is it wrong?",
-      "a": "Not necessarily. An eigenvector can be multiplied by any non-zero constant and it is still a valid eigenvector for the same eigenvalue. For example, if your GDC gives $\\begin{pmatrix} 0.5 \\\\ 0.5 \\end{pmatrix}$ but the answer is $\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$, your answer is correct. They represent the same direction."
-    }
+    { "q": "When do I use eigenvalues and when do I use a second-order method?", "a": "If you are handed a system of first-order equations (for $\\dot{x}$ and $\\dot{y}$), go straight to the eigenvalues and eigenvectors of the matrix. If you are handed a single second-order equation (involving $\\ddot{x}$), you can either recognise it as simple harmonic / damped motion, or convert it to a coupled first-order system with $y=\\dot{x}$ and use the eigenvalue method — both are valid at HL." },
+    { "q": "My GDC's eigenvector doesn't match the answer key. Is it wrong?", "a": "Probably not. An eigenvector is only defined up to a non-zero scalar multiple, so $\\begin{pmatrix}1\\\\1\\end{pmatrix}$, $\\begin{pmatrix}2\\\\2\\end{pmatrix}$ and a normalised $\\begin{pmatrix}0.707\\\\0.707\\end{pmatrix}$ all describe the same eigendirection. As long as the ratio of components matches, your answer is accepted." },
+    { "q": "How do the eigenvalues tell me the shape of the phase portrait?", "a": "Read the signs. Two negative real eigenvalues give a stable node (everything flows in); two positive give an unstable node (everything flows out); opposite signs give a saddle (in along one eigendirection, out along the other). A complex pair $\\alpha\\pm\\beta i$ gives a spiral — inward if $\\alpha<0$, outward if $\\alpha>0$, and a closed centre if $\\alpha=0$." },
+    { "q": "Why convert a second-order equation into two first-order ones?", "a": "Because Euler's method and the eigenvalue machinery are built for first-order systems. Writing $y=\\dot{x}$ turns one second-order equation into two coupled first-order equations, so the same tools — matrix form, eigenvalues, step-by-step numerical solving — apply directly." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "In previous topics, you've modelled situations where the rate of change of a single quantity depends on the quantity itself, using equations like $\\frac{dy}{dt} = ky$. However, many real-world systems are more complex. Think of two competing species, the flow of chemicals between connected tanks, or the voltage and current in an electrical circuit. In these cases, multiple quantities are changing over time, and their rates of change are interconnected. This lesson introduces the mathematical tools to analyse such systems: coupled and second-order differential equations."
-    },
-    {
-      "type": "heading",
-      "content": "Coupled First-Order Linear Differential Equations"
-    },
-    {
-      "type": "text",
-      "content": "A system of coupled differential equations describes the evolution of two or more variables that influence each other's rate of change. We will focus on linear systems, where the rates of change are linear combinations of the variables. A classic example is a predator-prey model. Let $x(t)$ be the prey population and $y(t)$ be the predator population. A simple model could be:\n$\\frac{dx}{dt} = 2x - 0.5y$ (Prey population grows on its own but decreases when predators are present)\n$\\frac{dy}{dt} = 0.1x - y$ (Predator population grows with more prey but decreases due to natural death)"
-    },
-    {
-      "type": "text",
-      "content": "To solve such systems efficiently, we express them in matrix form. This consolidates the system into a single equation involving vectors and a matrix, which is ideal for analysis using a GDC."
-    },
-    {
-      "type": "formula",
-      "content": "The general form of a two-variable coupled linear system is:\n$\\frac{dx}{dt} = ax + by$\n$\\frac{dy}{dt} = cx + dy$\nIn matrix form, this is $\\mathbf{x}'(t) = A\\mathbf{x}(t)$, where:\n$\\mathbf{x}'(t) = \\begin{pmatrix} \\frac{dx}{dt} \\\\ \\frac{dy}{dt} \\end{pmatrix}$, $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, and $\\mathbf{x}(t) = \\begin{pmatrix} x(t) \\\\ y(t) \\end{pmatrix}$."
-    },
-    {
-      "type": "heading",
-      "content": "Solving Coupled Systems: The Eigenvalue Method"
-    },
-    {
-      "type": "text",
-      "content": "The solution to $\\mathbf{x}' = A\\mathbf{x}$ is built from the eigenvalues and eigenvectors of the coefficient matrix $A$. An eigenvector $\\mathbf{v}$ of a matrix $A$ is a special vector that, when multiplied by $A$, results in a scaled version of itself: $A\\mathbf{v} = \\lambda\\mathbf{v}$. The scaling factor $\\lambda$ is the corresponding eigenvalue. For a system with two distinct real eigenvalues $\\lambda_1, \\lambda_2$ and their corresponding eigenvectors $\\mathbf{v}_1, \\mathbf{v}_2$, the general solution is a linear combination of 'straight-line' solutions associated with each eigenvector."
-    },
-    {
-      "type": "formula",
-      "content": "General Solution: $\\mathbf{x}(t) = c_1 e^{\\lambda_1 t} \\mathbf{v}_1 + c_2 e^{\\lambda_2 t} \\mathbf{v}_2$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Step 1:** Write the system of differential equations in the matrix form $\\mathbf{x}' = A\\mathbf{x}$.",
-        "**Step 2:** Use your GDC to find the eigenvalues ($\\lambda_1, \\lambda_2$) and corresponding eigenvectors ($\\mathbf{v}_1, \\mathbf{v}_2$) of the matrix $A$.",
-        "**Step 3:** Substitute these into the general solution formula: $\\mathbf{x}(t) = c_1 e^{\\lambda_1 t} \\mathbf{v}_1 + c_2 e^{\\lambda_2 t} \\mathbf{v}_2$.",
-        "**Step 4:** If initial conditions are given (e.g., $\\mathbf{x}(0)$), substitute $t=0$ to create a system of linear equations to solve for the constants $c_1$ and $c_2$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Two species, A and B, live in a closed environment. Their populations, $x(t)$ and $y(t)$ respectively (in thousands), are modelled by the system of differential equations:\n$\\frac{dx}{dt} = 0.5x + 0.25y$\n$\\frac{dy}{dt} = x - 0.25y$\nInitially, at $t=0$, there are 6 thousand of species A and 4 thousand of species B. Find the particular solution for the populations at time $t$ years.",
-      "solution": "First, write the system in matrix form $\\mathbf{x}' = A\\mathbf{x}$.\n$\\begin{pmatrix} x' \\\\ y' \\end{pmatrix} = \\begin{pmatrix} 0.5 & 0.25 \\\\ 1 & -0.25 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ (M1)\nThe coefficient matrix is $A = \\begin{pmatrix} 0.5 & 0.25 \\\\ 1 & -0.25 \\end{pmatrix}$.\nNext, we use a GDC to find the eigenvalues and eigenvectors of $A$.\nEigenvalues: $\\lambda_1 = 0.75$, $\\lambda_2 = -0.5$. (A1)\nCorresponding eigenvectors: $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$, $\\mathbf{v}_2 = \\begin{pmatrix} -1 \\\\ 4 \\end{pmatrix}$. (A1)\n(Note: Any non-zero scalar multiple of these eigenvectors is also valid).\nThe general solution is $\\mathbf{x}(t) = c_1 e^{0.75t} \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} + c_2 e^{-0.5t} \\begin{pmatrix} -1 \\\\ 4 \\end{pmatrix}$. (M1)\nThis can be written as two separate equations:\n$x(t) = c_1 e^{0.75t} - c_2 e^{-0.5t}$\n$y(t) = c_1 e^{0.75t} + 4c_2 e^{-0.5t}$\nNow, apply the initial conditions $x(0)=6$ and $y(0)=4$. At $t=0$, $e^0 = 1$.\n$6 = c_1(1) - c_2(1) \\implies c_1 - c_2 = 6$\n$4 = c_1(1) + 4c_2(1) \\implies c_1 + 4c_2 = 4$ (M1)\nSolving this system of simultaneous equations (e.g., using a GDC or substitution/elimination):\nSubtracting the first from the second: $5c_2 = -2 \\implies c_2 = -0.4$.\nSubstituting back: $c_1 - (-0.4) = 6 \\implies c_1 = 5.6$. (A1)\nThe particular solution is:\n$\\mathbf{x}(t) = 5.6 e^{0.75t} \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} - 0.4 e^{-0.5t} \\begin{pmatrix} -1 \\\\ 4 \\end{pmatrix}$\nOr written as separate equations:\n$x(t) = 5.6e^{0.75t} + 0.4e^{-0.5t}$\n$y(t) = 5.6e^{0.75t} - 1.6e^{-0.5t}$ (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "The signs of the eigenvalues tell you about the long-term behaviour of the system. A positive eigenvalue (like $\\lambda_1 = 0.75$) corresponds to a term that grows exponentially, leading to instability or population explosion. A negative eigenvalue (like $\\lambda_2 = -0.5$) corresponds to a term that decays to zero. In an exam, you might be asked to describe what happens as $t \\to \\infty$. Here, both populations would grow infinitely large, dominated by the $e^{0.75t}$ term."
-    },
-    {
-      "type": "heading",
-      "content": "Second-Order Homogeneous Linear Differential Equations"
-    },
-    {
-      "type": "text",
-      "content": "A second-order differential equation involves the second derivative of a function, like $y''$. We will study homogeneous linear equations with constant coefficients, which have the form $ay'' + by' + cy = 0$. These are fundamental in physics and engineering, modelling phenomena such as mechanical vibrations, oscillations of springs, and RLC electrical circuits. The goal is to find the function $y(t)$ that satisfies the equation."
-    },
-    {
-      "type": "formula",
-      "content": "$ay''(t) + by'(t) + cy(t) = 0$"
-    },
-    {
-      "type": "text",
-      "content": "To solve this, we make an educated guess that the solution might be an exponential function, $y = e^{mt}$. Substituting this into the equation gives $am^2e^{mt} + bme^{mt} + ce^{mt} = 0$. Since $e^{mt}$ is never zero, we can divide by it, leaving a simple quadratic equation in $m$."
-    },
-    {
-      "type": "formula",
-      "content": "Auxiliary Equation: $am^2 + bm + c = 0$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The general solution depends on the nature of the roots of the auxiliary equation:",
-        "**Case 1: Two distinct real roots ($m_1, m_2$)**. The solution is $y(t) = Ae^{m_1 t} + Be^{m_2 t}$. This models overdamped systems.",
-        "**Case 2: One repeated real root ($m$)**. The solution is $y(t) = (At + B)e^{mt}$. This models critically damped systems.",
-        "**Case 3: Complex conjugate roots ($\\alpha \\pm i\\beta$)**. The solution is $y(t) = e^{\\alpha t}(A\\cos(\\beta t) + B\\sin(\\beta t))$. This models underdamped (oscillatory) systems."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A mechanical system's displacement, $x(t)$ metres, from its equilibrium position at time $t$ seconds is modelled by the differential equation $2x'' + 8x' + 8x = 0$. At $t=0$, the system is displaced by 3 metres ($x(0)=3$) and has an initial velocity of -5 m/s ($x'(0)=-5$). Find an expression for $x(t)$.",
-      "solution": "The differential equation is $2x'' + 8x' + 8x = 0$.\nFirst, form the auxiliary equation: $2m^2 + 8m + 8 = 0$. (M1)\nWe can simplify this by dividing by 2: $m^2 + 4m + 4 = 0$.\nFactoring the quadratic: $(m+2)^2 = 0$.\nThis gives a repeated real root: $m = -2$. (A1)\nThis is Case 2, so the general solution has the form $x(t) = (At + B)e^{-2t}$. (M1)\nNow we use the initial conditions to find $A$ and $B$.\nFirst condition: $x(0) = 3$.\n$3 = (A(0) + B)e^{-2(0)} = (B)(1) \\implies B = 3$. (A1)\nSo, $x(t) = (At + 3)e^{-2t}$.\nSecond condition: $x'(0) = -5$. We need to find the derivative, $x'(t)$, using the product rule.\nLet $u = At+3$ and $v = e^{-2t}$. Then $u' = A$ and $v' = -2e^{-2t}$.\n$x'(t) = u'v + uv' = A e^{-2t} + (At+3)(-2e^{-2t})$. (M1)\n$x'(t) = e^{-2t}(A - 2(At+3)) = e^{-2t}(A - 2At - 6)$.\nNow substitute $t=0$ and $x'(0)=-5$.\n$-5 = e^0(A - 2A(0) - 6) = 1(A - 6)$.\n$-5 = A - 6 \\implies A = 1$. (A1)\nSubstituting $A=1$ and $B=3$ back into the general solution gives the particular solution:\n$x(t) = (t + 3)e^{-2t}$. (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "When solving for the constants in a second-order equation, you will almost always need to find the derivative of your general solution. Be careful with the chain rule or product rule, especially in the repeated root and complex root cases. It's a very common place to make a mistake."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.9"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Paul's Online Math Notes - Systems of DEs",
-          "href": "https://tutorial.math.lamar.edu/classes/de/systemsofdes.aspx"
-        },
-        {
-          "label": "Paul's Online Math Notes - Second Order DEs",
-          "href": "https://tutorial.math.lamar.edu/classes/de/secondorder.aspx"
-        },
-        {
-          "label": "GeoGebra: Phase Plane Plotter",
-          "href": "https://www.geogebra.org/m/W7d52Yqr"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Most change in the real world is not solitary. Predator and prey feed back on each other; salt drifts between two connected tanks; a mass on a spring trades position for velocity and back again. In each case two quantities evolve together, and the rate of change of each depends on both. This Higher Level lesson handles exactly those situations. The key idea is that a coupled linear system $\\dot{\\mathbf{x}}=M\\mathbf{x}$ is unlocked by the eigenvalues and eigenvectors of the matrix $M$: the eigenvectors give the special directions along which the system behaves simply, and the eigenvalues say how fast — and in which sense — it moves. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "Coupled systems in matrix form" },
+    { "type": "text", "content": "A coupled first-order linear system pairs two rates of change, each depending on both variables. Writing it in matrix form is the first move: it packages the whole system into a single equation and makes the coefficient matrix — the object we will analyse — stand out clearly." },
+    { "type": "formula", "content": "For\n$\\dot{x}=ax+by$\n$\\dot{y}=cx+dy$\nthe matrix form is $\\dot{\\mathbf{x}}=M\\mathbf{x}$, where\n$\\dot{\\mathbf{x}}=\\begin{pmatrix}\\dot{x}\\\\\\dot{y}\\end{pmatrix}$, $M=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$, $\\mathbf{x}=\\begin{pmatrix}x\\\\y\\end{pmatrix}$." },
+    { "type": "text", "content": "The point $\\mathbf{x}=\\mathbf{0}$ (both variables zero) is an equilibrium: if you start there, nothing changes. Everything in this lesson is really a description of how the system behaves near that equilibrium — whether it is drawn in, pushed out, or circles around." },
+
+    { "type": "heading", "content": "The eigenvalue method" },
+    { "type": "text", "content": "An eigenvector $\\mathbf{v}$ of $M$ is a direction that $M$ merely stretches: $M\\mathbf{v}=\\lambda\\mathbf{v}$, with the stretch factor $\\lambda$ the eigenvalue. Along such a direction the coupled system decouples into a single exponential, $e^{\\lambda t}\\mathbf{v}$, because differentiating gives $\\lambda e^{\\lambda t}\\mathbf{v}=M(e^{\\lambda t}\\mathbf{v})$. For two real distinct eigenvalues the general solution is a linear combination of these two clean exponential solutions." },
+    { "type": "formula", "content": "Eigenvalues: solve $\\det(M-\\lambda I)=0$.\n\nEigenvectors: for each $\\lambda$, solve $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$.\n\nGeneral solution (real distinct eigenvalues): $\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$." },
+    { "type": "keyPoints", "items": [
+      "**Step 1:** write the system as $\\dot{\\mathbf{x}}=M\\mathbf{x}$ and read off $M$.",
+      "**Step 2:** solve $\\det(M-\\lambda I)=0$ for the eigenvalues $\\lambda_1,\\lambda_2$ (by hand or GDC).",
+      "**Step 3:** for each eigenvalue solve $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$ for an eigenvector.",
+      "**Step 4:** combine into $\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$.",
+      "**Step 5:** if initial conditions are given, substitute $t=0$ and solve for $A$ and $B$."
+    ]},
+
+    { "type": "workedExample", "question": "A coupled system is $\\dot{x}=x+2y$, $\\dot{y}=2x+y$, i.e. $\\dot{\\mathbf{x}}=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}\\mathbf{x}$. Find the eigenvalues of the matrix and hence the general solution. [6]", "solution": "**Model answer — full working.**\n\n**Set up the characteristic equation.** With $M=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$,\n$\\det(M-\\lambda I)=\\det\\begin{pmatrix}1-\\lambda&2\\\\2&1-\\lambda\\end{pmatrix}=(1-\\lambda)^2-4=0$.  [M1: form $\\det(M-\\lambda I)=0$]\n\n**Solve for the eigenvalues.**\n$(1-\\lambda)^2=4\\Rightarrow 1-\\lambda=\\pm 2\\Rightarrow \\lambda=-1\\text{ or }\\lambda=3$.  [A1: $\\lambda=3,\\,-1$]\n\n**Find an eigenvector for $\\lambda=3$.** Solve $(M-3I)\\mathbf{v}=\\mathbf{0}$:\n$\\begin{pmatrix}-2&2\\\\2&-2\\end{pmatrix}\\begin{pmatrix}p\\\\q\\end{pmatrix}=\\mathbf{0}\\Rightarrow -2p+2q=0\\Rightarrow p=q$, so $\\mathbf{v}_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}$.  [M1: attempt $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$]\n\n**Find an eigenvector for $\\lambda=-1$.** Solve $(M+I)\\mathbf{v}=\\mathbf{0}$:\n$\\begin{pmatrix}2&2\\\\2&2\\end{pmatrix}\\begin{pmatrix}p\\\\q\\end{pmatrix}=\\mathbf{0}\\Rightarrow 2p+2q=0\\Rightarrow p=-q$, so $\\mathbf{v}_2=\\begin{pmatrix}1\\\\-1\\end{pmatrix}$.  [A1: both eigenvectors correct]\n\n**Form the general solution.** Combine the two exponential solutions:  [M1: assemble $Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$]\n$\\mathbf{x}=Ae^{3t}\\begin{pmatrix}1\\\\1\\end{pmatrix}+Be^{-t}\\begin{pmatrix}1\\\\-1\\end{pmatrix}$.  [A1: correct general solution]\n\nEquivalently, $x=Ae^{3t}+Be^{-t}$ and $y=Ae^{3t}-Be^{-t}$.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — characteristic equation.** Awarded for writing $\\det(M-\\lambda I)=0$, i.e. $(1-\\lambda)^2-4=0$. A METHOD mark: it stands even if the arithmetic later slips.\n- **A1 — eigenvalues.** Awarded for $\\lambda=3$ and $\\lambda=-1$. This accuracy mark depends on the M1 above.\n- **M1 — find the eigenvectors.** Awarded for substituting an eigenvalue into $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$ and attempting to solve. Because it acts on 'their $\\lambda$', a student with one wrong eigenvalue still earns this method mark for the correct approach.\n- **A1 — both eigenvectors.** Awarded for $\\mathbf{v}_1=\\begin{pmatrix}1\\\\1\\end{pmatrix}$ and $\\mathbf{v}_2=\\begin{pmatrix}1\\\\-1\\end{pmatrix}$; any non-zero scalar multiples are accepted.\n- **M1 — form the solution.** Awarded for assembling the general solution in the form $Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$ — even on their own (possibly wrong) eigenvalues/eigenvectors.\n- **A1 — correct general solution.** Awarded for $\\mathbf{x}=Ae^{3t}\\begin{pmatrix}1\\\\1\\end{pmatrix}+Be^{-t}\\begin{pmatrix}1\\\\-1\\end{pmatrix}$, or the equivalent pair of scalar equations.\n\n**Follow-through (FT) and equivalent forms.** The last two marks follow through on a student's own eigenvalues and eigenvectors, so a single early slip costs at most one mark rather than all six. The engine also accepts scaled eigenvectors, the constants named differently (e.g. $c_1,c_2$), and the answer written as a vector or as two separate equations — it marks the mathematics, not the layout." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always put the method on the page: write $\\det(M-\\lambda I)=0$, show the eigenvalues, show each $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$ solved for its eigenvector, then assemble $Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$. The method marks and follow-through are what shield your score when one eigenvalue comes out wrong — and you only get that protection if the working is visible." },
+
+    { "type": "heading", "content": "The nature of the equilibrium — reading the phase portrait" },
+    { "type": "text", "content": "You often do not need the full solution to describe long-term behaviour: the eigenvalues alone fix the shape of the phase portrait — the picture of trajectories in the $xy$-plane. In the mandated example above the eigenvalues $3$ and $-1$ have opposite signs, so the origin is a saddle: trajectories are drawn in along the $\\mathbf{v}_2$ direction (the decaying $e^{-t}$ term) but flung out along the $\\mathbf{v}_1$ direction (the growing $e^{3t}$ term), making it unstable overall." },
+    { "type": "keyPoints", "items": [
+      "**Both eigenvalues real and negative:** stable node — every trajectory flows into the equilibrium.",
+      "**Both eigenvalues real and positive:** unstable node — trajectories flow away from the equilibrium.",
+      "**Real eigenvalues of opposite sign:** saddle point — attracting along one eigendirection, repelling along the other; unstable overall.",
+      "**Complex eigenvalues $\\alpha\\pm\\beta i$:** a spiral — stable (inward) if $\\alpha<0$, unstable (outward) if $\\alpha>0$, and a closed centre if $\\alpha=0$.",
+      "This description is qualitative: name the equilibrium and say whether it is stable or unstable — you are not expected to solve complex cases in closed form."
+    ]},
+    { "type": "workedExample", "question": "A pond's prey population $x$ and predator population $y$ (both measured as deviations from equilibrium) satisfy $\\dot{x}=-y$, $\\dot{y}=x$, so $\\dot{\\mathbf{x}}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\mathbf{x}$. Find the eigenvalues and describe the behaviour of the populations. [4]", "solution": "**Characteristic equation.** With $M=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$,\n$\\det(M-\\lambda I)=\\det\\begin{pmatrix}-\\lambda&-1\\\\1&-\\lambda\\end{pmatrix}=\\lambda^2+1=0$.  [M1: form $\\det(M-\\lambda I)=0$]\n\n**Eigenvalues.**\n$\\lambda^2=-1\\Rightarrow \\lambda=\\pm i$.  [A1: $\\lambda=\\pm i$]\n\n**Interpret.** The eigenvalues are purely imaginary ($\\alpha=0$, $\\beta=1$).  [M1: identify complex eigenvalues with zero real part]\nSo the origin is a centre: the trajectories are closed loops and the populations oscillate periodically about equilibrium, neither growing nor decaying — the classic cyclical rise and fall of predator and prey.  [A1: correct qualitative description]" },
+    { "type": "examTip", "content": "Whenever a question says 'describe' or 'state the nature of', the marks are for naming the equilibrium (node / saddle / spiral / centre) and its stability, not for a formula. Get the eigenvalues, check their signs or whether they are complex, and answer in words. The GDC phase-plane plotter below is ideal for confirming the picture before you commit." },
+
+    { "type": "heading", "content": "Second-order equations as coupled systems" },
+    { "type": "text", "content": "A single second-order linear equation can always be recast as a coupled first-order system, which lets you use the eigenvalue method and Euler's method on it. The trick is to name the first derivative as a new variable. For $\\ddot{x}+p\\dot{x}+qx=0$, set $y=\\dot{x}$; then $\\dot{y}=\\ddot{x}=-p\\dot{x}-qx=-qx-py$. Two first-order equations replace one second-order equation." },
+    { "type": "formula", "content": "$\\ddot{x}+p\\dot{x}+qx=0$, with $y=\\dot{x}$, becomes\n$\\dot{x}=y$\n$\\dot{y}=-qx-py$\ni.e. $\\dot{\\mathbf{x}}=\\begin{pmatrix}0&1\\\\-q&-p\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}$." },
+    { "type": "workedExample", "question": "A damped oscillator satisfies $\\ddot{x}+3\\dot{x}+2x=0$.\n(a) Write it as a coupled first-order system $\\dot{\\mathbf{x}}=M\\mathbf{x}$ using $y=\\dot{x}$.\n(b) Find the eigenvalues of $M$ and state the nature of the equilibrium. [6]", "solution": "**(a) Convert.** Let $y=\\dot{x}$. Then $\\dot{x}=y$ and $\\dot{y}=\\ddot{x}=-2x-3y$.  [M1: introduce $y=\\dot{x}$ and rearrange]\nIn matrix form,\n$\\dot{\\mathbf{x}}=\\begin{pmatrix}0&1\\\\-2&-3\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}$.  [A1: correct matrix $M$]\n\n**(b) Eigenvalues.** Solve $\\det(M-\\lambda I)=0$:\n$\\det\\begin{pmatrix}-\\lambda&1\\\\-2&-3-\\lambda\\end{pmatrix}=(-\\lambda)(-3-\\lambda)-(1)(-2)=\\lambda^2+3\\lambda+2=0$.  [M1: form the characteristic equation]\n$(\\lambda+1)(\\lambda+2)=0\\Rightarrow \\lambda=-1\\text{ or }\\lambda=-2$.  [A1: eigenvalues]\n\n**Nature.** Both eigenvalues are real, distinct and negative.  [M1: consider the signs of the eigenvalues]\nSo the origin is a stable node: the displacement decays to zero without oscillating — the oscillator is overdamped.  [A1: correct qualitative description]\n\nNote that $\\lambda^2+3\\lambda+2=0$ is exactly the auxiliary equation of the original second-order equation — converting to a system reproduces it, which is a handy self-check." },
+    { "type": "examTip", "content": "The bottom row of $M$ carries the signs: $\\ddot{x}=-qx-p\\dot{x}$ means the row is $(-q,\\ -p)$, not $(q,\\ p)$. Dropping those minus signs flips stable into unstable and is one of the most common conversion errors — write $\\dot{y}=\\ddot{x}$ out explicitly before reading off the matrix." },
+
+    { "type": "heading", "content": "Euler's method for systems" },
+    { "type": "text", "content": "When a system has no neat closed form — or you simply want a numerical trajectory — Euler's method steps it forward in small increments. It is the single-variable method run on every component at once, with one golden rule: use the OLD values on the right-hand side to update ALL components before moving on." },
+    { "type": "formula", "content": "For $\\dot{x}=f(x,y)$, $\\dot{y}=g(x,y)$ with step $h$:\n$x_{n+1}=x_n+h\\,f(x_n,y_n)$\n$y_{n+1}=y_n+h\\,g(x_n,y_n)$\n(both use $x_n,y_n$ — the values before this step)." },
+    { "type": "workedExample", "question": "For the coupled system $\\dot{x}=x+2y$, $\\dot{y}=2x+y$ with $x(0)=1$, $y(0)=0$, use Euler's method with step $h=0.1$ to estimate $x$ and $y$ at $t=0.2$. [5]", "solution": "**Set up.** $x_0=1$, $y_0=0$, $h=0.1$, with $f=x+2y$ and $g=2x+y$.\n\n**Step 1 ($t=0\\to0.1$).** Using the values at $t=0$:  [M1: apply the update using current values in both equations]\n$x_1=x_0+h(x_0+2y_0)=1+0.1(1+0)=1.1$.\n$y_1=y_0+h(2x_0+y_0)=0+0.1(2+0)=0.2$.  [A1: $x_1=1.1,\\ y_1=0.2$]\n\n**Step 2 ($t=0.1\\to0.2$).** Now use the values at $t=0.1$:  [M1: second step uses the NEW pair $x_1,y_1$]\n$x_2=x_1+h(x_1+2y_1)=1.1+0.1(1.1+0.4)=1.1+0.15=1.25$.\n$y_2=y_1+h(2x_1+y_1)=0.2+0.1(2.2+0.2)=0.2+0.24=0.44$.  [A1: $x_2=1.25,\\ y_2=0.44$]\n\n**Conclude.** At $t=0.2$, $x\\approx1.25$ and $y\\approx0.44$.  [A1: final estimates stated]" },
+    { "type": "examTip", "content": "The classic slip is to update $x$ first and then feed the fresh $x_1$ into the $y$-update in the same step. Don't — within one step both formulas read the same old $x_n,y_n$. Write the current pair at the top of each step and only overwrite once both new values are computed." },
+
+    { "type": "heading", "content": "Applications" },
+    { "type": "text", "content": "The same machinery models very different situations. In a predator-prey model, $\\dot{x}=ax-by$, $\\dot{y}=cx-dy$ couples prey $x$ and predator $y$; complex eigenvalues then predict the oscillating boom-and-bust cycle of the two populations. In coupled tanks, salt concentrations $x$ and $y$ flow between two connected tanks, and negative eigenvalues show both settling to a shared equilibrium. In simple harmonic motion, $\\ddot{x}=-\\omega^2 x$ becomes $\\dot{x}=y$, $\\dot{y}=-\\omega^2 x$, whose eigenvalues $\\pm\\omega i$ are purely imaginary — a centre, matching undamped oscillation forever. Reading the eigenvalues tells you which of these stories a given matrix is telling before you compute a single trajectory." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Not going via the eigenvalues** — a coupled linear system $\\dot{\\mathbf{x}}=M\\mathbf{x}$ is solved through the eigenvalues and eigenvectors of $M$, not by trying to integrate each equation separately.",
+      "**Wrong solution form** — the general solution is $\\mathbf{x}=Ae^{\\lambda_1 t}\\mathbf{v}_1+Be^{\\lambda_2 t}\\mathbf{v}_2$; the eigenvectors must be attached to their exponentials, and there must be exactly two constants for a 2-variable system.",
+      "**Forgetting eigenvectors are scalable** — marking a GDC's decimal or scaled eigenvector as 'wrong' when it is a multiple of the key's answer; only the ratio of components matters.",
+      "**Misreading complex eigenvalues** — a complex pair means a spiral (or a centre if the real part is zero), NOT a node; check the sign of the real part for stability.",
+      "**Sign errors converting a second-order equation** — for $\\ddot{x}+p\\dot{x}+qx=0$ the system is $\\dot{y}=-qx-py$, so the matrix row is $(-q,-p)$; dropping the minus signs inverts the stability.",
+      "**Breaking the Euler rule** — updating one variable and then using its new value for the other within the same step; both components must be updated from the same old pair $x_n,y_n$.",
+      "**Naming stability without justification** — 'stable node' earns marks only when tied to the eigenvalues being real, distinct and negative; always state the eigenvalue reasoning."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In an exam the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if a number later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct final step performed on your own earlier (wrong) eigenvalue still scores; equivalent correct forms — scaled eigenvectors, differently named constants, vector or component layout — are accepted. All of that protection exists only if your method is on the page. Re-read the mandated worked example above: six marks, each earned by one specific line, three of them method marks that survive an arithmetic slip and two accuracy marks shielded by follow-through onto your own eigenvalues and eigenvectors. A student who writes only the final vector with no characteristic equation, no eigenvectors shown, risks losing four or five marks if a single number is off; a student who shows $\\det(M-\\lambda I)=0$, the eigenvalues, each $(M-\\lambda I)\\mathbf{v}=\\mathbf{0}$ solved, and the assembled solution keeps the method marks regardless." },
+
+    { "type": "heading", "content": "Using your GDC effectively" },
+    { "type": "text", "content": "Your GDC returns eigenvalues and eigenvectors of a matrix directly — enter $M$ and read them off, remembering that the machine's eigenvectors are often normalised or scaled, so match them to a tidy form by the ratio of components. Use the phase-plane plotter to confirm the nature of an equilibrium: a node has trajectories flowing straight in or out, a saddle has the tell-tale in-one-way-out-the-other pattern, and a spiral winds around the origin. For numerical work, Euler's method is quick to tabulate, but a smaller step $h$ gives a better estimate — halve it if you need more accuracy." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "One idea runs through the whole lesson: the eigenvalues and eigenvectors of $M$ decode the coupled system $\\dot{\\mathbf{x}}=M\\mathbf{x}$ — the eigenvectors give the clean directions, the eigenvalues give the growth, decay or rotation, and their signs alone name the equilibrium. Converting a second-order equation to a system, and stepping a system forward with Euler's method, are the same idea reached from two other directions. These tools power the modelling questions that dominate Paper 2 — populations, mixing, oscillation — so master the habit: write $\\dot{\\mathbf{x}}=M\\mathbf{x}$, find the eigenvalues, assemble the solution, and read off the long-term story." },
+
+    { "type": "practice", "label": "Get a Paper 2 problem marked: solve a coupled system or a second-order conversion with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=5.9&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "GeoGebra: Phase Plane Plotter", "href": "https://www.geogebra.org/m/W7d52Yqr" },
+      { "label": "Paul's Online Math Notes - Systems of DEs", "href": "https://tutorial.math.lamar.edu/classes/de/systemsofdes.aspx" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Phase Plane Plotter",

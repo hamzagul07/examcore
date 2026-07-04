@@ -1,175 +1,345 @@
 {
   "slug": "2-1-linear-models-and-equations-of-straight-lines",
   "topicCode": "2.1",
+  "unit": {
+    "code": "2",
+    "title": "Functions"
+  },
   "title": "Linear models and equations of straight lines",
-  "paper": "P1",
+  "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces linear models, focusing on the equation of a straight line. It covers calculating and interpreting the gradient and y-intercept, finding the equation of a line from given information, and understanding the relationships between parallel and perpendicular lines. These foundational skills are crucial for modelling real-world scenarios.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "The straight line is the first and most useful model in Applications and Interpretation: a constant rate of change bolted onto a starting value. This lesson builds the full 2.1 syllabus — the gradient and intercept and what they mean; the three forms of a line ($y = mx + c$, $y - y_1 = m(x - x_1)$ and $ax + by + d = 0$); finding a line from two points or from a point and a gradient; the parallel and perpendicular gradient conditions ($m_1 = m_2$ and $m_1 m_2 = -1$); and, above all, reading a real-world linear model — turning the gradient into a rate of change with units, the intercept into a starting value, and the equation into a prediction. Because AI rewards interpretation as heavily as calculation, every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand and use the gradient-intercept form of a straight line equation, $y = mx + c$.",
-    "Calculate the equation of a straight line given two points or one point and the gradient.",
-    "Interpret the gradient and intercepts of a linear model in a real-world context.",
-    "Apply the conditions for parallel and perpendicular lines to solve geometric and modelling problems."
+    "Calculate the gradient and intercept of a straight line, and move fluently between the forms $y = mx + c$, $y - y_1 = m(x - x_1)$ and $ax + by + d = 0$.",
+    "Find the equation of a line from two points, or from a single point and a gradient.",
+    "Apply the parallel condition $m_1 = m_2$ and the perpendicular condition $m_1 m_2 = -1$ to find related lines.",
+    "Interpret the gradient of a real-world linear model as a rate of change and the intercept as a starting value, each with correct units.",
+    "Use a linear model to predict a value, and present working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": [
+    "2.1"
+  ],
+  "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
-    "title": "Decoding Straight Lines",
-    "summary": "Linear models use straight lines to represent a consistent relationship between two variables. Understanding their equations allows us to make predictions and analyse trends in data.",
-    "analogy": "Think of a mobile phone contract. You pay a fixed monthly fee (the y-intercept) even if you use no data. Then, for every gigabyte of data you use, the bill increases by a set amount (the gradient). Your total monthly bill can be perfectly predicted using a linear equation based on your data usage.",
+    "title": "Straight Lines Made Simple",
+    "summary": "A linear model describes any situation that changes at a constant rate. It has just two ingredients: where you start (the intercept) and how fast you change (the gradient). Nail those two numbers, with their units, and you can describe the relationship in one sentence and predict any value you like.",
+    "analogy": "Think of a taxi meter. The moment you sit down the meter already reads a fixed fee — that is the intercept, the value when distance is zero. Then for every kilometre the meter ticks up by the same amount — that is the gradient, the cost per kilometre. Your total fare is the fixed fee plus the per-kilometre cost times the distance. Because the rate never changes, the fare grows in a perfectly straight line.",
     "steps": [
-      "Identify what you know: Are you given two points, or a gradient and one point? What form should the final equation be in?",
-      "Calculate the gradient (m): If you have two points $(x_1, y_1)$ and $(x_2, y_2)$, use the formula $m = \\frac{y_2 - y_1}{x_2 - x_1}$.",
-      "Find the y-intercept (c): Substitute the gradient and the coordinates of one known point into $y = mx + c$ and solve for $c$.",
-      "Write and interpret the final equation: State the full equation, e.g., $y = 2x + 5$. In context, explain what the gradient and y-intercept represent."
+      "Identify what changes at a constant rate. That constant rate is the gradient $m$; the value when the input is zero is the intercept $c$.",
+      "If you are given two points $(x_1, y_1)$ and $(x_2, y_2)$, find the gradient with $m = \\frac{y_2 - y_1}{x_2 - x_1}$; if you are given a point and a gradient, you already have $m$.",
+      "Substitute the gradient and one point into $y = mx + c$ (or use $y - y_1 = m(x - x_1)$) to find the intercept, then write the full equation.",
+      "Interpret and predict: state what the gradient and intercept mean in context WITH units, then substitute to forecast a value."
     ]
   },
+  "keyConcepts": [
+    "gradient and intercept",
+    "forms of a line",
+    "linear modelling and prediction"
+  ],
   "flashcards": [
     {
-      "front": "What is the gradient of a line?",
-      "back": "The gradient, $m$, measures the steepness of a line. It is the change in the vertical direction for every one-unit change in the horizontal direction."
+      "front": "Gradient-intercept form",
+      "back": "$y = mx + c$, where $m$ is the gradient and $c$ is the $y$-intercept. This is the form you use to read off a rate of change and a starting value at a glance.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the formula for the gradient, $m$, between two points $(x_1, y_1)$ and $(x_2, y_2)$?",
-      "back": "$m = \\frac{\\text{rise}}{\\text{run}} = \\frac{y_2 - y_1}{x_2 - x_1}$"
+      "front": "Point-gradient form",
+      "back": "$y - y_1 = m(x - x_1)$. The quickest way to write a line when you know its gradient $m$ and one point $(x_1, y_1)$ — no need to solve for $c$ first.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the y-intercept of a line?",
-      "back": "The y-intercept, $c$, is the point where the line crosses the y-axis. Its coordinates are $(0, c)$. In modelling, it often represents an initial or fixed value."
+      "front": "General form",
+      "back": "$ax + by + d = 0$, with $a$, $b$, $d$ constants. Every straight line can be written this way, including vertical lines. Rearrange to $y = mx + c$ to read the gradient and intercept.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the gradient-intercept form of a linear equation?",
-      "back": "$y = mx + c$, where $m$ is the gradient and $c$ is the y-intercept."
+      "front": "Gradient from two points",
+      "back": "$m = \\frac{y_2 - y_1}{x_2 - x_1}$ — the change in $y$ divided by the change in $x$. Keep the points in the SAME order top and bottom or the sign flips.",
+      "pillLabel": "Formula"
     },
     {
-      "front": "What is the general form of a linear equation?",
-      "back": "$ax + by + d = 0$, where $a$, $b$, and $d$ are constants. Note that the IB syllabus sometimes uses $ax+by+c=0$ or other variations."
+      "front": "What the gradient means in a model",
+      "back": "The rate of change: how much the output changes per one-unit increase in the input. In context it always carries units — cost per km, litres per minute, degrees per hour.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the condition for two lines to be parallel?",
-      "back": "Their gradients must be equal. For two lines with gradients $m_1$ and $m_2$, they are parallel if $m_1 = m_2$."
+      "front": "What the intercept means in a model",
+      "back": "The starting value: the output when the input is zero — a fixed fee, an initial amount, a value at time zero. It too carries units.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "What is the condition for two lines to be perpendicular?",
-      "back": "The product of their gradients must be -1. For two lines with gradients $m_1$ and $m_2$, they are perpendicular if $m_1 \\times m_2 = -1$. This means $m_2 = -\\frac{1}{m_1}$."
+      "front": "Parallel lines",
+      "back": "Two lines are parallel exactly when their gradients are equal: $m_1 = m_2$. They never meet.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "What is the gradient of a horizontal line?",
-      "back": "The gradient is 0. The equation is of the form $y = k$, where $k$ is a constant."
+      "front": "Perpendicular lines",
+      "back": "Two lines meet at a right angle exactly when $m_1 m_2 = -1$, i.e. each gradient is the negative reciprocal of the other: $m_2 = -\\frac{1}{m_1}$.",
+      "pillLabel": "Rule"
     },
     {
-      "front": "What is the gradient of a vertical line?",
-      "back": "The gradient is undefined. The equation is of the form $x = h$, where $h$ is a constant."
+      "front": "Positive vs negative gradient",
+      "back": "$m > 0$: the line rises left to right (output increases with input). $m < 0$: the line falls (output decreases). $m = 0$: a horizontal line, $y = c$.",
+      "pillLabel": "Concept"
     },
     {
-      "front": "Exam Trap: How do you find the gradient from the general form $ax + by + d = 0$?",
-      "back": "You must first rearrange the equation into the form $y = mx + c$. Solving for $y$ gives $y = -\\frac{a}{b}x - \\frac{d}{b}$. So, the gradient is $m = -\\frac{a}{b}$. Do not assume the gradient is $a$."
+      "front": "Interpolation vs extrapolation",
+      "back": "Interpolation predicts WITHIN the range of the data and is reasonably reliable; extrapolation predicts OUTSIDE the range and is risky, because the linear trend may not continue.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Finding an intercept from the equation",
+      "back": "$y$-intercept: set $x = 0$, so $y = c$. $x$-intercept: set $y = 0$ and solve $0 = mx + c$, giving $x = -\\frac{c}{m}$.",
+      "pillLabel": "Method"
+    },
+    {
+      "front": "Reading a gradient off a real graph",
+      "back": "Pick two clear points, form $\\frac{\\text{change in }y}{\\text{change in }x}$, and attach the units of the axes. The gradient of a distance-time graph is a speed; of a cost-quantity graph, a unit price.",
+      "pillLabel": "Trap"
+    }
+  ],
+  "quickCheck": [
+    {
+      "prompt": "A water tank is modelled by $V = 4t + 30$, where $V$ is the volume in litres after $t$ minutes. The gradient 4 represents:",
+      "options": [
+        "The tank fills at 4 litres per minute",
+        "The tank starts with 4 litres",
+        "The tank holds 4 litres in total",
+        "It takes 4 minutes to fill the tank"
+      ],
+      "answer": "The tank fills at 4 litres per minute"
+    },
+    {
+      "prompt": "In the model $V = 4t + 30$ (volume in litres, time in minutes), the intercept 30 represents:",
+      "options": [
+        "The tank already holds 30 litres when $t = 0$",
+        "The tank fills by 30 litres each minute",
+        "The tank is full after 30 minutes",
+        "The tank empties at 30 litres per minute"
+      ],
+      "answer": "The tank already holds 30 litres when $t = 0$"
+    },
+    {
+      "prompt": "Line $L_1$ has gradient $\\frac{2}{3}$. A line PARALLEL to $L_1$ has gradient:",
+      "options": [
+        "$\\frac{2}{3}$",
+        "$-\\frac{3}{2}$",
+        "$-\\frac{2}{3}$",
+        "$\\frac{3}{2}$"
+      ],
+      "answer": "$\\frac{2}{3}$"
+    },
+    {
+      "prompt": "Line $L_1$ has gradient $\\frac{2}{3}$. A line PERPENDICULAR to $L_1$ has gradient:",
+      "options": [
+        "$-\\frac{3}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{2}$",
+        "$-\\frac{2}{3}$"
+      ],
+      "answer": "$-\\frac{3}{2}$"
+    },
+    {
+      "prompt": "A phone plan costs \\$15 per month plus \\$0.05 per minute of calls. Which is the fully correct interpretation of the gradient?",
+      "options": [
+        "\\$0.05 per minute — the cost rises by 5 cents for each extra minute of calls",
+        "0.05 — the cost rises by 5 each minute",
+        "\\$15 per minute",
+        "0.05, the starting cost of the plan"
+      ],
+      "answer": "\\$0.05 per minute — the cost rises by 5 cents for each extra minute of calls"
     }
   ],
   "faq": [
     {
-      "q": "What is the difference between the forms $y=mx+c$ and $ax+by+d=0$?",
-      "a": "$y=mx+c$ is the gradient-intercept form, which is useful because it directly tells you the gradient ($m$) and y-intercept ($c$). $ax+by+d=0$ is the general form. It's less intuitive but can be useful for certain calculations, and you must be able to convert between the two forms. To find the gradient from the general form, always rearrange it to make $y$ the subject."
+      "q": "How do I switch between the three forms of a line?",
+      "a": "They describe the same line, so you just rearrange. From $y = mx + c$ you read the gradient and intercept directly. Given a gradient and a point, start from $y - y_1 = m(x - x_1)$ and expand to reach $y = mx + c$. To go from general form $ax + by + d = 0$, make $y$ the subject: for $3x + 2y - 6 = 0$ you get $2y = -3x + 6$, so $y = -\\frac{3}{2}x + 3$ — gradient $-\\frac{3}{2}$, intercept $3$."
     },
     {
-      "q": "How do I find the equation of a vertical line?",
-      "a": "A vertical line has an undefined gradient because the 'run' ($x_2 - x_1$) is zero, leading to division by zero. All points on a vertical line have the same x-coordinate. Therefore, its equation is always of the form $x = k$, where $k$ is the constant x-coordinate."
+      "q": "When I interpret a gradient, do I really need the units?",
+      "a": "Yes — and it is the single most common place AI candidates drop a mark. A gradient is a rate of change, and a rate is meaningless without units. 'The cost rises by 1.20' is incomplete; 'the cost rises by \\$1.20 per kilometre' is the answer the marking engine is looking for. Always attach the units of the output per one unit of the input."
     },
     {
-      "q": "In a real-world problem, what does the y-intercept represent if it's negative?",
-      "a": "A negative y-intercept represents a starting debt or a loss at time/quantity zero. For example, if a company's profit is modelled by $P = 50x - 2000$, the y-intercept of -2000 represents the initial setup costs or fixed costs that must be overcome before a profit is made."
+      "q": "What's the difference between interpolation and extrapolation?",
+      "a": "Interpolation predicts a value inside the range of your data — if a model was built from journeys between 5 km and 12 km, estimating the cost of an 8 km trip is interpolation and is reasonably safe. Extrapolation predicts outside that range, say a 40 km trip, and is far less reliable because the straight-line trend may break down (a long-distance discount, a tank running dry, a promotion ending)."
+    },
+    {
+      "q": "Can the intercept be negative, and what would that mean?",
+      "a": "Yes. In a model a negative intercept is a starting deficit. If a small business's profit is $P = 50n - 1000$ (dollars, for $n$ items sold), the intercept $-1000$ means a fixed cost of \\$1000 before a single item is sold — profit is $-\\$1000$ when $n = 0$."
+    },
+    {
+      "q": "What do horizontal and vertical lines look like?",
+      "a": "A horizontal line has gradient $0$; its equation is $y = c$ (the output never changes). A vertical line has an undefined gradient — you cannot divide by a zero change in $x$ — and its equation is $x = k$. Vertical lines cannot be written as $y = mx + c$, which is one reason the general form $ax + by + d = 0$ exists."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "From predicting business profits to modelling climate change, linear relationships are the simplest and one of the most powerful tools in mathematics. This lesson will equip you with the skills to describe these relationships using equations, a fundamental concept for the entire Applications and Interpretation course."
+      "content": "Many real situations change at a steady rate: a taxi fare climbing with distance, a tank filling with time, a phone bill growing with minutes used. Each is captured by the simplest and most useful model in mathematics — the straight line. This lesson covers the full 2.1 syllabus: the gradient and intercept and their meaning, the three forms of a line, finding a line from two points or from a point and a gradient, and the parallel and perpendicular gradient conditions. But the heart of Applications and Interpretation is the last skill: reading a linear model — turning the gradient into a rate of change with units, the intercept into a starting value, and the equation into a prediction. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
-      "content": "The Anatomy of a Straight Line: Gradient and Intercept"
+      "content": "The anatomy of a straight line"
     },
     {
       "type": "text",
-      "content": "Every straight line can be described by its steepness (gradient) and where it crosses the vertical axis (y-intercept). The most common form of a linear equation brings these two properties together."
+      "content": "A straight line is completely described by two numbers: how steep it is and where it crosses the vertical axis. The gradient-intercept form makes both visible at once."
     },
     {
       "type": "formula",
-      "content": "Gradient-Intercept Form: $y = mx + c$"
+      "content": "$$y = mx + c$$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "**m (Gradient):** Represents the rate of change. For every 1 unit increase in $x$, the value of $y$ increases by $m$. A positive gradient slopes upwards from left to right, while a negative gradient slopes downwards.",
-        "**c (y-intercept):** Represents the value of $y$ when $x=0$. In applied problems, this is often a starting value, a fixed cost, or an initial condition."
+        "**$x$ and $y$** are the variables. In a model they are renamed for context — $d$ for distance, $t$ for time, $C$ for cost — but the structure is identical.",
+        "**$m$ is the gradient:** the rate of change. For every one-unit increase in $x$, $y$ changes by $m$ units. A positive $m$ rises, a negative $m$ falls.",
+        "**$c$ is the $y$-intercept:** the value of $y$ when $x = 0$. In a model this is the starting value — a fixed fee, an initial amount, a value at time zero."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "You will meet three equivalent forms. Use whichever the information hands you, then rearrange if the question wants another."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Gradient-intercept form** $y = mx + c$ — best for reading off, or writing down, a rate and a starting value.",
+        "**Point-gradient form** $y - y_1 = m(x - x_1)$ — best when you know the gradient and one point; no need to solve for $c$ separately.",
+        "**General form** $ax + by + d = 0$ — a tidy way to present a final answer with integer coefficients, and the only form that also covers vertical lines."
       ]
     },
     {
       "type": "heading",
-      "content": "Finding the Equation of a Line"
+      "content": "Finding the gradient, and a line from two points"
     },
     {
       "type": "text",
-      "content": "To define a unique straight line, you need two pieces of information. This is typically either two points on the line, or one point and the gradient. The first step is always to determine the gradient."
+      "content": "Given two points on a line, the gradient is the change in $y$ divided by the change in $x$. Once you have the gradient, one point fixes the intercept."
     },
     {
       "type": "formula",
-      "content": "Gradient Formula: $m = \\frac{y_2 - y_1}{x_2 - x_1}$"
-    },
-    {
-      "type": "text",
-      "content": "Once the gradient $m$ is known, you can use the coordinates of a point $(x_1, y_1)$ that lies on the line and substitute these values into $y = mx + c$ to solve for the y-intercept, $c$. An alternative method is to use the point-gradient form $y - y_1 = m(x - x_1)$, which your formula booklet provides."
+      "content": "$$m = \\frac{\\text{change in } y}{\\text{change in } x} = \\frac{y_2 - y_1}{x_2 - x_1}$$"
     },
     {
       "type": "workedExample",
-      "question": "A local gym offers a membership plan. The total cost, $C$ (in USD), is linearly related to the number of months, $n$, of membership. After 3 months, the total cost is $200. After 8 months, the total cost is $425.\n\na) Find the equation for the total cost, $C$, in terms of the number of months, $n$.\nb) Interpret the meaning of the gradient and the C-intercept in this context.\nc) Find the cost of a 2-year membership.",
-      "solution": "a) We have two points $(n_1, C_1) = (3, 200)$ and $(n_2, C_2) = (8, 425)$.\nFirst, find the gradient, which represents the monthly cost.\n$m = \\frac{C_2 - C_1}{n_2 - n_1} = \\frac{425 - 200}{8 - 3}$ (M1 for substitution into gradient formula)\n$m = \\frac{225}{5} = 45$\nSo the monthly cost is $45. (A1)$\nNow use the form $C = mn + k$ (using $k$ for the intercept to avoid confusion with cost $C$).\n$C = 45n + k$\nSubstitute one of the points, e.g., (3, 200), to find the intercept $k$.\n$200 = 45(3) + k$ (M1 for substitution)\n$200 = 135 + k$\n$k = 200 - 135 = 65$\nThe equation is $C = 45n + 65$. (A1)\n\nb) The gradient ($m=45$) is the monthly fee for the gym, i.e., the cost increases by $45 USD each month. (R1)$\nThe C-intercept ($k=65$) is the initial sign-up or administration fee, the cost at month zero. (R1)\n\nc) A 2-year membership is $n = 2 \\times 12 = 24$ months.\n$C = 45(24) + 65$ (M1 for correct substitution)\n$C = 1080 + 65 = 1145$\nThe cost for 2 years is $1145 USD. (A1)$"
-    },
-    {
-      "type": "heading",
-      "content": "Parallel and Perpendicular Lines"
-    },
-    {
-      "type": "text",
-      "content": "The relationship between two lines can be determined entirely by their gradients. Parallel lines have the same steepness, while perpendicular lines meet at a right angle (90°), and their gradients have a special relationship."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Parallel Lines:** Two lines are parallel if and only if their gradients are equal. $m_1 = m_2$.",
-        "**Perpendicular Lines:** Two lines are perpendicular if and only if the product of their gradients is -1. $m_1 \\times m_2 = -1$. This means the gradient of one is the negative reciprocal of the other, e.g., if $m_1 = 2$, then $m_2 = -\\frac{1}{2}$."
-      ]
+      "question": "A straight line passes through the points $A(2, 3)$ and $B(6, 11)$. \\n (a) Find the gradient of the line. \\n (b) Find its equation in the form $y = mx + c$. \\n (c) Hence write the equation in the general form $ax + by + d = 0$ with integer coefficients. [5]",
+      "solution": "**(a) Gradient.** Take $(x_1, y_1) = (2, 3)$ and $(x_2, y_2) = (6, 11)$:\\n$m = \\dfrac{11 - 3}{6 - 2} = \\dfrac{8}{4} = 2.$  [M1 substitution, A1 value]\\n\\n**(b) Equation.** Use point-gradient form with $A(2, 3)$: $y - 3 = 2(x - 2)$, so $y - 3 = 2x - 4$, giving\\n$y = 2x - 1.$  [M1 substitute point and gradient, A1]\\n\\n**(c) General form.** Rearrange $y = 2x - 1$ to $2x - y - 1 = 0.$  [A1]"
     },
     {
       "type": "examTip",
-      "content": "A common exam question asks for the equation of a perpendicular bisector of a line segment. This requires three steps: 1. Find the midpoint of the segment. 2. Find the gradient of the segment. 3. Calculate the perpendicular gradient. Then use the midpoint and perpendicular gradient to find the new line's equation."
+      "content": "Keep the two points in the same order top and bottom of the gradient fraction. Mixing them — $y_2 - y_1$ over $x_1 - x_2$ — flips the sign and is one of the most common careless errors examiners see."
+    },
+    {
+      "type": "heading",
+      "content": "A line from a point and a gradient"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes you are handed the gradient directly — often through a parallel or perpendicular condition — together with a single point. Point-gradient form is then the fastest route."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Parallel lines** have equal gradients: $m_1 = m_2$. A line parallel to $y = 3x + 7$ also has gradient $3$.",
+        "**Perpendicular lines** satisfy $m_1 m_2 = -1$, so each gradient is the negative reciprocal of the other: $m_2 = -\\dfrac{1}{m_1}$. A line perpendicular to a line of gradient $3$ has gradient $-\\dfrac{1}{3}$."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Line $L_1$ has the equation $3x + 2y - 6 = 0$. Line $L_2$ is perpendicular to $L_1$ and passes through the point P(6, -1).\n\na) Find the gradient of line $L_1$.\nb) Find the equation of line $L_2$, giving your answer in the form $y=mx+c$.",
-      "solution": "a) First, rearrange the equation of $L_1$ into the form $y=mx+c$ to find its gradient.\n$3x + 2y - 6 = 0$\n$2y = -3x + 6$ (M1 for attempt to isolate y)\n$y = -\\frac{3}{2}x + 3$\nThe gradient of $L_1$ is $m_1 = -\\frac{3}{2}$. (A1)\n\nb) Line $L_2$ is perpendicular to $L_1$. Let the gradient of $L_2$ be $m_2$.\nThe condition for perpendicular lines is $m_1 \\times m_2 = -1$.\n$-\\frac{3}{2} \\times m_2 = -1$ (M1 for using perpendicular condition)\n$m_2 = (-1) \\times (-\\frac{2}{3}) = \\frac{2}{3}$. (A1)\nNow we have the gradient of $L_2$ ($m_2 = \\frac{2}{3}$) and a point it passes through, P(6, -1).\nUsing $y = mx + c$:\n$-1 = \\frac{2}{3}(6) + c$ (M1 for substituting point and gradient)\n$-1 = 4 + c$\n$c = -5$\nTherefore, the equation of $L_2$ is $y = \\frac{2}{3}x - 5$. (A1)"
+      "question": "Line $L_1$ has equation $y = 2x + 5$. Line $L_2$ is perpendicular to $L_1$ and passes through $P(4, -1)$. Find the equation of $L_2$, giving your answer in the form $y = mx + c$. [4]",
+      "solution": "**Gradient of $L_1$.** From $y = 2x + 5$, $m_1 = 2$.\\n\\n**Gradient of $L_2$.** Perpendicular means $m_1 m_2 = -1$:\\n$2 m_2 = -1 \\;\\Rightarrow\\; m_2 = -\\tfrac{1}{2}.$  [M1 perpendicular condition, A1]\\n\\n**Intercept.** $L_2$ has the form $y = -\\tfrac{1}{2}x + c$ and passes through $(4, -1)$:\\n$-1 = -\\tfrac{1}{2}(4) + c \\;\\Rightarrow\\; -1 = -2 + c \\;\\Rightarrow\\; c = 1.$  [M1 substitute point]\\n\\n**Equation.** $y = -\\tfrac{1}{2}x + 1.$  [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "The negative reciprocal has TWO steps: flip the fraction and change the sign. The perpendicular gradient to $\\frac{2}{3}$ is $-\\frac{3}{2}$, not $-\\frac{2}{3}$ (sign only) and not $\\frac{3}{2}$ (flip only). Doing just one of the two steps is a classic dropped mark."
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting a real-world linear model"
+    },
+    {
+      "type": "text",
+      "content": "This is where Applications and Interpretation earns its name. Once a situation is written as $y = mx + c$, the two parameters carry real meaning — and stating that meaning WITH UNITS is a marked skill in its own right."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**The gradient is a rate of change.** It answers 'how much does the output change for each extra unit of input?' Its units are (units of $y$) per (unit of $x$): dollars per km, litres per minute, degrees per hour.",
+        "**The intercept is a starting value.** It answers 'what is the output when the input is zero?' — a fixed fee, an initial amount, a value at time zero — again with units.",
+        "**The equation is a prediction machine.** Substitute a value of the input to forecast the output. Predicting inside the data range (interpolation) is reasonably safe; outside it (extrapolation) is risky."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A taxi fare, $F$ euros, for a journey of $d$ km is modelled by two recorded trips: a 5 km journey costs €12 and a 12 km journey costs €22.50. \\n (a) Find the fare model in the form $F = md + c$. \\n (b) Interpret the gradient and the intercept in context, with units. \\n (c) Predict the cost of a 20 km journey, and comment on the reliability of your prediction. [6]",
+      "solution": "**(a) Model.** Use the points $(5, 12)$ and $(12, 22.50)$:\\n$m = \\dfrac{22.50 - 12}{12 - 5} = \\dfrac{10.5}{7} = 1.5.$  [M1 gradient, A1]\\nSubstitute $(5, 12)$: $12 = 1.5(5) + c \\Rightarrow 12 = 7.5 + c \\Rightarrow c = 4.5.$ So $F = 1.5d + 4.5.$  [A1]\\n\\n**(b) Interpretation.** The gradient $1.5$ is the cost per kilometre: the fare rises by €1.50 for each extra kilometre travelled. The intercept $4.5$ is the fixed starting charge: €4.50 is paid before any distance is covered (when $d = 0$).  [A1 gradient with units, A1 intercept with units]\\n\\n**(c) Prediction.** $F = 1.5(20) + 4.5 = 30 + 4.5 = 34.5$, so a 20 km journey costs €34.50. This is an extrapolation — 20 km lies beyond the 5-12 km data used to build the model — so it is less reliable if the fare structure changes for longer trips.  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "In AI, method marks (M) reward the correct approach, accuracy marks (A) reward correct values and DEPEND on the method mark they follow, and follow-through (FT) means an earlier slip need not cost the later marks that build on it, provided each later step is done correctly on your own figures. Interpretation marks are only awarded when the units are present. The marks below are shielded by all of this — but only if the working is on the page. Study how each mark is tied to a specific line."
+    },
+    {
+      "type": "workedExample",
+      "question": "A taxi charges a \\$3.50 fixed fee plus \\$1.20 per km. Write a linear model for the cost $C$ of a journey of $d$ km, interpret the gradient, and find the cost of a 9 km journey. [5]",
+      "solution": "**Model answer — full working.**\\n\\n**Set up the model.** The cost is the fixed fee plus the per-kilometre charge times the distance:\\n$C = 1.20d + 3.50.$\\n\\n**Interpret the gradient.** The gradient is $1.20$, the cost per kilometre: the fare increases by \\$1.20 for each additional kilometre travelled. (The intercept $3.50$ is the fixed starting fee, the cost when $d = 0$.)\\n\\n**Predict the 9 km fare.** Substitute $d = 9$:\\n$C(9) = 1.20(9) + 3.50 = 10.80 + 3.50 = \\$14.30.$\\n\\n**Answer:** the model is $C = 1.20d + 3.50$, the gradient \\$1.20 is the cost per km, and a 9 km journey costs \\$14.30.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — correct model form.** A method mark for a linear model of the shape $C = (\\text{rate})\\,d + (\\text{fixed fee})$, i.e. recognising cost = per-km charge $\\times$ distance $+$ fixed fee. The structure earns the mark even before the numbers are checked.\\n- **A1 — correct model.** Awarded for $C = 1.20d + 3.50$ with both constants correct. This accuracy mark depends on the M1 above. The engine accepts equivalent forms such as $C = 3.50 + 1.20d$.\\n- **A1 — interpret the gradient with units.** Awarded for stating the gradient is the cost per kilometre, \\$1.20 per km. Crucially, this mark requires the UNITS: 'the cost goes up by 1.20' without 'per km' (or without the dollars) does not score.\\n- **M1 — substitute $d = 9$.** A method mark for correctly substituting the distance into your model: $1.20(9) + 3.50$. This is FT — a candidate whose model was slightly wrong still earns it by substituting correctly into THEIR model.\\n- **A1 — final value.** Awarded for $\\$14.30$, correctly evaluated. It depends on the substitution M1 and follows through on the candidate's own model.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $C = 3.50 + 1.20d$, accepts the gradient interpretation whether phrased as 'cost per km' or '\\$1.20 for each extra km', and accepts \\$14.30 written as $14.30$ or $14.3$ dollars. Once the correct final cost appears, ignore-subsequent-working (ISW) means a later restatement does not lose the mark.\\n\\n**Bottom line:** of the 5 marks, two are method marks that survive an arithmetic slip and the accuracy marks are shielded by follow-through — but the interpretation mark is lost outright if the units are missing. A student who writes only '\\$14.30' with no model and no interpretation risks losing 3-4 marks; a student who writes the model, interprets the gradient with units, shows the substitution and evaluates keeps the method regardless of a slip in the final number."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write the model in $C = md + c$ form, interpret the gradient WITH UNITS, show the substitution, then evaluate. The method marks and follow-through are what protect your score when a number slips — and you only get that protection if the working is on the page."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Interpreting the gradient without units** — a rate of change is meaningless bare. Write 'the cost rises by \\$1.20 per km', not 'the cost rises by 1.20'. This is the single most common lost mark in AI interpretation questions.",
+        "**Confusing the gradient with the intercept** — the gradient is the RATE of change (per unit), the intercept is the STARTING value (when the input is zero). Calling the fixed fee the 'rate', or the per-km charge the 'starting cost', reverses the meaning.",
+        "**Flipping the gradient fraction** — use $\\frac{y_2 - y_1}{x_2 - x_1}$ with the points in the SAME order top and bottom; swapping one but not the other changes the sign.",
+        "**Muddling the parallel and perpendicular conditions** — parallel means EQUAL gradients ($m_1 = m_2$); perpendicular means the product is $-1$ ($m_1 m_2 = -1$). Using $m_1 = m_2$ for a perpendicular line (or vice versa) throws away the question.",
+        "**Doing only half the negative reciprocal** — the perpendicular gradient both flips AND changes sign: perpendicular to $\\frac{2}{3}$ is $-\\frac{3}{2}$, not $-\\frac{2}{3}$ or $\\frac{3}{2}$.",
+        "**Not reading the general form correctly** — rearrange $ax + by + d = 0$ fully to $y = mx + c$ before quoting the gradient; the gradient of $3x + 2y - 6 = 0$ is $-\\frac{3}{2}$, not $3$.",
+        "**Trusting an extrapolation blindly** — predicting far outside the data range assumes the straight-line trend continues; say when a prediction is an extrapolation and therefore less reliable.",
+        "**Over-rounding mid-calculation** — carry full figures and round only the final answer, to 3 significant figures unless the context (like money) dictates otherwise."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The straight line is the template for every model that follows. The gradient reappears as the slope of a regression line in 4.2, where 'rate of change with units' becomes the interpretation of a real trend; the same interpret-with-units discipline carries into exponential and other non-linear models in 2.5, where a gradient becomes an instantaneous rate. Master the two headlines here — a starting value and a constant rate, each stated with its units — and you have the grammar that the whole modelling strand of Applications and Interpretation is written in."
     },
     {
       "type": "practice",
-      "label": "Test Your Understanding",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=2.1"
+      "label": "Get a linear-model question marked: write the model, interpret the gradient with units, and predict — with full working",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.1&component=paper_2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "GeoGebra: Equation of a Line",
-          "href": "https://www.geogebra.org/m/s9b35a2p"
+          "label": "IB Mathematics Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/"
         },
         {
-          "label": "IB AI HL Formula Booklet",
-          "href": "https://www.ibdocuments.com/IB-Formula-Booklets.html"
+          "label": "IB AI SL Questionbank",
+          "href": "/questionbank?subject=ib-maths-ai-hl"
         }
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Equation of a Line",

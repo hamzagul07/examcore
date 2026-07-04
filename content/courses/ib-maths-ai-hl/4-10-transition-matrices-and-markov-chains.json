@@ -1,163 +1,112 @@
 {
   "slug": "4-10-transition-matrices-and-markov-chains",
   "topicCode": "4.10",
+  "unit": { "code": "4", "title": "Statistics and probability" },
   "title": "Transition matrices and Markov chains",
   "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson introduces Markov chains as a tool for modelling dynamic systems. You will learn to construct and use transition matrices to predict future states and determine the long-term equilibrium or steady state of a system, with applications in areas like market analysis and population dynamics.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "A Markov chain is a model for a system that hops between a fixed set of states one step at a time, where the next step depends only on where you are now, not on the path that got you there. This lesson builds the full 4.10 toolkit: writing the transition matrix $T$ so that each COLUMN is a probability distribution summing to $1$; setting up the initial state vector $\\mathbf{s}_0$; finding the state after $n$ steps with $\\mathbf{s}_n = T^n \\mathbf{s}_0$ using the GDC's matrix powers; and locating the long-run STEADY STATE $\\mathbf{s}$ that satisfies $T\\mathbf{s} = \\mathbf{s}$, either as the eigenvector for eigenvalue $1$ or by reading off the columns of a high power of $T$. Because 4.10 is a Higher Level Paper 2 topic, the calculator does the matrix arithmetic, so the marks reward setting the problem up correctly and reading the answer in context. Applications run through weather, brand-switching and populations, and every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Construct a transition matrix from a description of a system with discrete states.",
-    "Use a transition matrix and an initial state vector to predict the state of the system after a given number of time periods.",
-    "Calculate and interpret the long-term steady state or equilibrium vector of a Markov chain.",
-    "Apply Markov chain concepts to solve problems in real-world contexts."
+    "Construct a transition matrix $T$ from a described system, checking that each column is a probability distribution summing to 1.",
+    "Set up the initial state vector $\\mathbf{s}_0$ and use $\\mathbf{s}_n = T^n \\mathbf{s}_0$ on the GDC to find the state after $n$ steps.",
+    "Find and interpret the long-run steady state $\\mathbf{s}$ satisfying $T\\mathbf{s} = \\mathbf{s}$, as the eigenvector for eigenvalue 1 or from a high power of $T$.",
+    "Apply Markov chains to contexts such as weather, brand-switching and population movement, interpreting the numbers in words.",
+    "Present working so that method marks and follow-through protect the final answer under our Paper 2 marking engine."
   ],
+  "syllabusObjectivesCovered": ["4.10"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
     "title": "Predicting the Future, One Step at a Time",
-    "summary": "Markov chains use matrices to model how things move between different states over time, like customers switching phone brands. The key idea is that the next state depends only on the current state, not the entire history of how it got there.",
-    "analogy": "Imagine you only ever use one of three streaming services: Netflax, Hooloo, or Dizzy+. Each month, your choice depends only on what you used last month. If you used Netflax, there's a 60% chance you'll stick with it, a 30% chance you'll switch to Hooloo, and a 10% chance to Dizzy+. A Markov chain maps out all these switching probabilities. The 'transition matrix' is a grid containing all these percentages. We can use this matrix to predict the market share of each service six months from now, or even what it will be in the very long run.",
+    "summary": "A Markov chain tracks a system that moves between a few fixed states at each time step, where the only thing that matters for the next step is the current state. A single matrix $T$ stores all the switching probabilities, and multiplying by it walks the system forward in time. Push it far enough and many systems settle into an unchanging steady state.",
+    "analogy": "Suppose you only ever use one of two streaming services, StreamOne or FlixTwo, and each month your choice depends only on last month. If you were on StreamOne, there is an 80% chance you stay and a 20% chance you switch; if you were on FlixTwo, a 30% chance you jump to StreamOne and a 70% chance you stay. Those four numbers are the transition matrix. Knowing today's market split, the matrix predicts next month, the month after, and, if you keep pushing, the long-run split that stops changing no matter how many more months pass.",
     "steps": [
-      "Identify the distinct 'states' of the system (e.g., locations, brands, weather conditions).",
-      "Construct the transition matrix, T, where each column represents 'from' a state and each row represents 'to' a state. The entries are probabilities, and each column must sum to 1.",
-      "Define the initial state vector, S₀, as a column vector showing the initial distribution of the population or system across the states.",
-      "Calculate future states using the formula Sₙ = TⁿS₀. For the long-term 'steady state', calculate a high power of T (e.g., T⁵⁰) and observe the resulting equilibrium distribution."
+      "Name the states of the system (weather types, brands, locations) and fix their order once, for good.",
+      "Build the transition matrix $T$ so each COLUMN lists the probabilities of where you go FROM one state; every column must sum to 1.",
+      "Write the initial state vector $\\mathbf{s}_0$ as a column showing the starting split across the states.",
+      "Step forward with $\\mathbf{s}_n = T^n \\mathbf{s}_0$ on the GDC; for the long run, raise $T$ to a high power or solve $T\\mathbf{s} = \\mathbf{s}$ to read off the steady state."
     ]
   },
+  "keyConcepts": ["transition matrix", "state vector and powers", "steady state"],
   "flashcards": [
-    {
-      "front": "What is a Markov chain?",
-      "back": "A mathematical model describing a sequence of events where the probability of each event depends only on the state attained in the previous event. It has no 'memory' of past states."
-    },
-    {
-      "front": "What is a transition matrix, T?",
-      "back": "A square matrix where each element $T_{ij}$ is the probability of transitioning from state $j$ to state $i$. In the IB AI HL course, columns represent the 'FROM' state and rows represent the 'TO' state."
-    },
-    {
-      "front": "What is a key property of any transition matrix?",
-      "back": "All entries must be between 0 and 1, inclusive. The sum of the probabilities in each column must be exactly 1."
-    },
-    {
-      "front": "What is a state vector, Sₙ?",
-      "back": "A column vector that represents the distribution of the system across all states at a specific time, $n$. The sum of its elements is often 1 (for probabilities/proportions) or the total population."
-    },
-    {
-      "front": "How do you calculate the state of the system after $n$ steps?",
-      "back": "Using the formula $S_n = T^n S_0$, where $S_0$ is the initial state vector and $T$ is the transition matrix."
-    },
-    {
-      "front": "What is the steady state (or equilibrium state) of a Markov chain?",
-      "back": "The long-term state vector where the probabilities of being in each state no longer change with further transitions. It is the vector $S$ such that $TS = S$."
-    },
-    {
-      "front": "How do you find the steady state vector using a GDC?",
-      "back": "Raise the transition matrix $T$ to a large power (e.g., $T^{50}$ or $T^{100}$). For a regular Markov chain, all columns of the resulting matrix will be identical. This column vector is the steady state vector."
-    },
-    {
-      "front": "What is a common mistake when constructing a transition matrix?",
-      "back": "Confusing the 'from' and 'to' directions. Remember: columns are 'FROM', rows are 'TO'. For example, the entry in row 2, column 1 is the probability of moving FROM state 1 TO state 2."
-    },
-    {
-      "front": "What does an initial state vector $S_0 = \\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix}$ signify?",
-      "back": "It signifies that at the beginning (time $n=0$), 100% of the system or population is in the first state."
-    },
-    {
-      "front": "What is an absorbing state?",
-      "back": "A state that, once entered, cannot be left. In the transition matrix, the column for an absorbing state will have a 1 on the diagonal and 0s everywhere else."
-    }
+    { "front": "Markov chain", "back": "A model of a system that moves between a fixed set of states at discrete time steps, where the probability of the next state depends ONLY on the current state, not on the earlier history. This 'memoryless' property is what lets a single matrix describe the whole process.", "pillLabel": "Definition" },
+    { "front": "Transition matrix $T$", "back": "A square matrix holding all one-step probabilities. In this course each COLUMN corresponds to the current ('from') state and each ROW to the next ('to') state, so the entry in row $i$, column $j$ is $P(\\text{go to } i \\mid \\text{now in } j)$.", "pillLabel": "Definition" },
+    { "front": "Column-sum property", "back": "Every column of $T$ is a probability distribution: all entries lie in $[0,1]$ and each column sums to exactly $1$. From any state the system must land somewhere next step, so the probabilities leaving that state total $1$.", "pillLabel": "Property" },
+    { "front": "State vector $\\mathbf{s}_n$", "back": "A column vector giving the distribution of the system across the states at time $n$. Its entries are proportions summing to $1$, or actual counts summing to the total population.", "pillLabel": "Definition" },
+    { "front": "State after $n$ steps", "back": "$\\mathbf{s}_n = T^n \\mathbf{s}_0$. Raise the transition matrix to the power $n$ (on the GDC) and multiply by the initial state vector. Order matters: it is $T^n$ TIMES $\\mathbf{s}_0$, matrix on the left.", "pillLabel": "Formula" },
+    { "front": "Steady (long-run) state $\\mathbf{s}$", "back": "The limiting distribution that stops changing: the vector $\\mathbf{s}$ with $T\\mathbf{s} = \\mathbf{s}$ and entries summing to $1$. Applying $T$ once more leaves it unchanged, so inflow balances outflow for every state.", "pillLabel": "Definition" },
+    { "front": "Steady state as an eigenvector", "back": "$T\\mathbf{s} = \\mathbf{s}$ is the same as $T\\mathbf{s} = 1\\cdot\\mathbf{s}$, so the steady state is an eigenvector of $T$ for eigenvalue $1$, scaled so its entries sum to $1$. Every valid transition matrix has $1$ as an eigenvalue.", "pillLabel": "Concept" },
+    { "front": "Steady state from powers of $T$", "back": "For a regular chain, $T^n$ tends to a matrix whose columns are all identical; that common column is the steady state $\\mathbf{s}$. On the GDC, compute $T^{50}$ (or higher) and read off a column.", "pillLabel": "GDC" },
+    { "front": "Regular Markov chain", "back": "A chain is regular if some power $T^k$ has all entries strictly positive. Regular chains have a unique steady state that the system approaches from ANY starting distribution, which is why the high-power method works.", "pillLabel": "Concept" },
+    { "front": "Absorbing state", "back": "A state that can never be left: once entered, the system stays. Its column in $T$ has a $1$ on the diagonal and $0$s elsewhere. Chains with absorbing states behave differently from regular ones and need not tend to a single interior steady state.", "pillLabel": "Concept" }
+  ],
+  "quickCheck": [
+    { "prompt": "Which of these must be true of every column of a transition matrix $T$?", "options": ["The entries sum to 1", "The entries sum to 0", "The entries multiply to 1", "The largest entry is on the diagonal"], "answer": "The entries sum to 1" },
+    { "prompt": "The state of a Markov chain after $n$ steps is given by:", "options": ["$\\mathbf{s}_n = T^n \\mathbf{s}_0$", "$\\mathbf{s}_n = nT\\mathbf{s}_0$", "$\\mathbf{s}_n = \\mathbf{s}_0 T^n$", "$\\mathbf{s}_n = T\\mathbf{s}_0^n$"], "answer": "$\\mathbf{s}_n = T^n \\mathbf{s}_0$" },
+    { "prompt": "The steady state vector $\\mathbf{s}$ of a Markov chain satisfies:", "options": ["$T\\mathbf{s} = \\mathbf{s}$", "$T\\mathbf{s} = \\mathbf{0}$", "$T\\mathbf{s} = 2\\mathbf{s}$", "$\\mathbf{s} = T^{-1}\\mathbf{s}$"], "answer": "$T\\mathbf{s} = \\mathbf{s}$" },
+    { "prompt": "The steady state of a regular chain is the eigenvector of $T$ corresponding to which eigenvalue?", "options": ["1", "0", "$-1$", "the largest entry of $T$"], "answer": "1" },
+    { "prompt": "To advance one step with matrix $T$ and state vector $\\mathbf{s}$, you compute:", "options": ["$T\\mathbf{s}$ (matrix on the left, vector on the right)", "$\\mathbf{s}T$ (vector on the left, matrix on the right)", "$T + \\mathbf{s}$", "$T \\cdot \\mathbf{s}^{-1}$"], "answer": "$T\\mathbf{s}$ (matrix on the left, vector on the right)" }
   ],
   "faq": [
-    {
-      "q": "Why must the columns of a transition matrix sum to 1?",
-      "a": "Each column represents the probabilities of moving FROM a particular state. Since the system must end up in one of the possible states (including staying where it is), the sum of all probabilities for leaving that state must be 1, representing 100% certainty."
-    },
-    {
-      "q": "What's the difference between using $S_n = T S_{n-1}$ and $S_n = T^n S_0$?",
-      "a": "$S_n = T S_{n-1}$ is an iterative formula. It finds the next state from the immediately preceding state. $S_n = T^n S_0$ is a direct formula that calculates the state after $n$ steps directly from the initial state. The direct formula is usually more efficient for finding a state many steps in the future."
-    },
-    {
-      "q": "How 'high' does the power need to be to find the steady state?",
-      "a": "There's no single magic number, but for most IB problems, a power between 50 and 100 is more than sufficient. You can test this on your GDC: calculate $T^{50}$ and then $T^{51}$. If the resulting matrices are identical to several decimal places, you have found the steady state."
-    },
-    {
-      "q": "Can I find the steady state by solving the equation $TS = S$ algebraically?",
-      "a": "Yes, this is the formal algebraic method. It leads to a system of linear equations, along with the constraint that the elements of S must sum to 1. For example, for a 2x2 matrix, if $T=\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ and $S=\\begin{pmatrix} x \\\\ y \\end{pmatrix}$, you would solve the system $ax+by=x$, $cx+dy=y$, and $x+y=1$. However, on Paper 2, using the high-power method on your GDC is almost always faster and less prone to error."
-    }
+    { "q": "Why must each column of the transition matrix sum to 1, not each row?", "a": "It depends on the convention, and this course uses columns as the 'from' state. Each column collects every place the system could go next FROM a given state; since it must go somewhere, those probabilities total $1$. If instead you laid the matrix out with rows as 'from', the rows would sum to $1$ and you would multiply as $\\mathbf{s}_n = \\mathbf{s}_0 T^n$ with a row vector. Pick one convention and stay consistent; in this course we keep columns summing to $1$ and multiply $T\\mathbf{s}$." },
+    { "q": "What is the difference between $\\mathbf{s}_n = T\\mathbf{s}_{n-1}$ and $\\mathbf{s}_n = T^n \\mathbf{s}_0$?", "a": "They give the same answer. $\\mathbf{s}_n = T\\mathbf{s}_{n-1}$ is the one-step recurrence: it advances the chain a single step from the previous state. $\\mathbf{s}_n = T^n \\mathbf{s}_0$ is the closed form: it jumps straight to step $n$ from the start. For anything beyond a couple of steps, raise $T$ to the power on the GDC rather than multiplying repeatedly." },
+    { "q": "How high a power do I need for the steady state?", "a": "There is no magic number, but for typical exam matrices a power of $50$ to $100$ is plenty. A good check is to compute $T^{50}$ and $T^{51}$: if the columns agree to several decimal places and are identical to each other, you have reached the steady state and any column is $\\mathbf{s}$." },
+    { "q": "Should I solve $T\\mathbf{s} = \\mathbf{s}$ algebraically or use powers of $T$?", "a": "Both are valid on Paper 2. The algebraic route turns $T\\mathbf{s} = \\mathbf{s}$ into a small system of linear equations together with the constraint that the entries of $\\mathbf{s}$ sum to $1$, which you can solve on the GDC. The high-power route is usually faster: compute $T^{50}$ and read off a column. Use whichever your calculator makes easier, but know that the steady state is precisely the eigenvector of $T$ for eigenvalue $1$." },
+    { "q": "Does every Markov chain settle into a single steady state?", "a": "No. Regular chains, those for which some power $T^k$ is all-positive, have a unique steady state reached from any start. Chains with absorbing states or with cyclic behaviour need not: an absorbing chain ends up trapped, and a strictly cyclic chain oscillates forever without converging. In AI HL the contexts are usually regular, but read the problem before assuming convergence." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the world of Markov chains, a powerful concept from the field of probability and linear algebra. We use them to model systems that change over time in a probabilistic way. Imagine tracking customer loyalty, predicting weather patterns, or modelling population movements between cities. Markov chains provide a framework for understanding and forecasting the behaviour of these complex systems, and the transition matrix is our primary tool."
-    },
-    {
-      "type": "heading",
-      "content": "The Core Components: States and Transitions"
-    },
-    {
-      "type": "text",
-      "content": "A Markov chain model consists of two main parts. First, we have a finite number of 'states', which are the distinct conditions the system can be in. For example, if we're modelling a car rental company, the states could be the different cities its cars are located in. Second, we have 'transitions', which are the movements between these states over discrete time steps (e.g., every day, week, or month). The core assumption, known as the Markov property, is that the probability of moving to the next state depends *only* on the current state, not on any of the states that came before it."
-    },
-    {
-      "type": "heading",
-      "content": "Constructing the Transition Matrix (T)"
-    },
-    {
-      "type": "text",
-      "content": "The transition matrix, denoted by $T$, neatly organises all the transition probabilities. It's a square matrix where the number of rows and columns equals the number of states. The convention for this course is crucial: columns represent the 'FROM' state, and rows represent the 'TO' state. So, the entry in row $i$ and column $j$, written as $T_{ij}$, is the probability of moving FROM state $j$ TO state $i$ in one time step."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The matrix must be square.",
-        "All entries must be probabilities, so their values are between 0 and 1.",
-        "Each column must sum to 1. This is because from any given state, the system *must* transition to one of the available states (including possibly staying in the same state)."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A survey tracks the loyalty of customers to two coffee shops, 'Bean Scene' (B) and 'Daily Grind' (D). Each month, 80% of Bean Scene's customers return, while 20% switch to Daily Grind. Of Daily Grind's customers, 30% switch to Bean Scene, and the rest remain loyal. \n\na) Construct the transition matrix $T$ for this system. \n\nb) Initially, Bean Scene has 60% of the market share and Daily Grind has 40%. Find the market share after 2 months.",
-      "solution": "a) First, define the states. State 1: Bean Scene (B), State 2: Daily Grind (D). We will set up the matrix with columns as 'FROM' and rows as 'TO'.\n\n$T = \\begin{pmatrix} \\text{To B} & \\text{To D} \\end{pmatrix} \\begin{matrix} \\text{From B} \\\\ \\text{From D} \\end{matrix}$\n\nFrom B to B: 80% = 0.8\nFrom B to D: 20% = 0.2\nThis is our first column: $\\begin{pmatrix} 0.8 \\\\ 0.2 \\end{pmatrix}$.\n\nFrom D to B: 30% = 0.3\nFrom D to D: 100% - 30% = 70% = 0.7\nThis is our second column: $\\begin{pmatrix} 0.3 \\\\ 0.7 \\end{pmatrix}$.\n\nCombining these gives the transition matrix $T$. (A2)\n$T = \\begin{pmatrix} 0.8 & 0.3 \\\\ 0.2 & 0.7 \\end{pmatrix}$\n\nb) The initial state vector $S_0$ represents the initial market share.\n$S_0 = \\begin{pmatrix} 0.6 \\\\ 0.4 \\end{pmatrix}$ (for B and D respectively).\n\nWe need to find the state after 2 months, which is $S_2$. The formula is $S_2 = T^2 S_0$. (M1)\n\nFirst, enter $T$ and $S_0$ into your GDC.\nThen, calculate $T^2 S_0$.\n$T^2 = \\begin{pmatrix} 0.8 & 0.3 \\\\ 0.2 & 0.7 \\end{pmatrix}^2 = \\begin{pmatrix} 0.70 & 0.45 \\\\ 0.30 & 0.55 \\end{pmatrix}$\n\n$S_2 = \\begin{pmatrix} 0.70 & 0.45 \\\\ 0.30 & 0.55 \\end{pmatrix} \\begin{pmatrix} 0.6 \\\\ 0.4 \\end{pmatrix} = \\begin{pmatrix} 0.70(0.6) + 0.45(0.4) \\\\ 0.30(0.6) + 0.55(0.4) \\end{pmatrix}$ (M1)\n\n$S_2 = \\begin{pmatrix} 0.42 + 0.18 \\\\ 0.18 + 0.22 \\end{pmatrix} = \\begin{pmatrix} 0.6 \\\\ 0.4 \\end{pmatrix}$\n\nAfter 2 months, the market share is 60% for Bean Scene and 40% for Daily Grind. (A1)\n*Note: It seems the market share has returned to the initial state. This can happen, but it's not the steady state yet.*"
-    },
-    {
-      "type": "heading",
-      "content": "Predicting the Future and Finding the Steady State"
-    },
-    {
-      "type": "text",
-      "content": "The real power of Markov chains lies in prediction. To find the state of the system after $n$ time steps, we use the elegant formula below. This involves raising the transition matrix to the power of $n$ and multiplying it by the initial state vector. As $n$ becomes very large, many Markov chains approach a 'steady state' or 'equilibrium'. This is a state vector that no longer changes, no matter how many more transitions occur. In this state, the number of individuals leaving each state is perfectly balanced by the number entering."
-    },
-    {
-      "type": "formula",
-      "content": "State after $n$ steps: $S_n = T^n S_0$ \n\nSteady State Equation: $TS = S$"
-    },
-    {
-      "type": "examTip",
-      "content": "On Paper 2, you will always have your GDC. For finding future states or the steady state, matrix calculations should be done on your calculator to save time and avoid arithmetic errors. Be sure you know how to enter matrices, perform multiplication, and raise a matrix to a power efficiently."
-    },
-    {
-      "type": "workedExample",
-      "question": "A city has three main internet providers: ConnectFast (C), StreamEasy (S), and PingKing (P). Market research provides the following monthly transition probabilities:\n- ConnectFast retains 85% of its customers. 10% switch to StreamEasy, and 5% to PingKing.\n- StreamEasy retains 75% of its customers. 15% switch to ConnectFast, and 10% to PingKing.\n- PingKing retains 80% of its customers. 10% switch to ConnectFast, and 10% to StreamEasy.\n\nInitially, ConnectFast has 20,000 customers, StreamEasy has 50,000, and PingKing has 30,000.\n\na) Write down the transition matrix $T$.\nb) Calculate the number of customers for each provider after 6 months.\nc) Find the long-term number of customers for each provider, assuming the total number of customers remains constant.",
-      "solution": "a) Let the states be C, S, P. The transition matrix $T$ is:\n\nFROM\n       C      S      P\n$T = \\begin{pmatrix} 0.85 & 0.15 & 0.10 \\\\ 0.10 & 0.75 & 0.10 \\\\ 0.05 & 0.10 & 0.80 \\end{pmatrix}$   TO C\n                                TO S\n                                TO P\n(A2) [Award A2 for a fully correct matrix, A1 for one error.]\n\nb) The total number of customers is $20000 + 50000 + 30000 = 100000$. The initial state vector $S_0$ is:\n$S_0 = \\begin{pmatrix} 20000 \\\\ 50000 \\\\ 30000 \\end{pmatrix}$\n\nWe need to find $S_6 = T^6 S_0$. (M1)\nEnter $T$ and $S_0$ into the GDC and compute $T^6 S_0$.\n\n$S_6 \\approx \\begin{pmatrix} 42085 \\\\ 36193 \\\\ 21722 \\end{pmatrix}$ (A2)\nAfter 6 months, ConnectFast will have approximately 42,085 customers, StreamEasy will have 36,193, and PingKing will have 21,722. (Numbers should be rounded to the nearest whole number as we are dealing with people).\n\nc) To find the long-term distribution, we need to find the steady state. We can do this by calculating $T^n$ for a large $n$, e.g., $n=50$. (M1)\n\nUsing a GDC, $T^{50} \\approx \\begin{pmatrix} 0.4651 & 0.4651 & 0.4651 \\\\ 0.3488 & 0.3488 & 0.3488 \\\\ 0.1860 & 0.1860 & 0.1860 \\end{pmatrix}$\n\nThe steady state probability vector is $S_{steady} = \\begin{pmatrix} 0.4651... \\\\ 0.3488... \\\\ 0.1860... \\end{pmatrix}$. (A1)\n\nTo find the long-term number of customers, we multiply this vector by the total number of customers, 100,000.\nLong-term customers = $100000 \\times S_{steady}$\n\nConnectFast: $100000 \\times 0.4651 = 46510$\nStreamEasy: $100000 \\times 0.3488 = 34880$\nPingKing: $100000 \\times 0.1860 = 18610$\n(A1)\nIn the long term, ConnectFast will have approximately 46,510 customers, StreamEasy 34,880, and PingKing 18,610."
-    },
-    {
-      "type": "practice",
-      "label": "Practise Markov Chain Problems",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=4.10"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Khan Academy: Introduction to Markov Chains",
-          "href": "https://www.khanacademy.org/computing/computer-science/informationtheory/moderninfotheory/v/markov-chains"
-        },
-        {
-          "label": "Interactive Visualisation of Markov Chains",
-          "href": "http://setosa.io/ev/markov-chains/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Some systems evolve in clean, predictable jumps: today's weather nudges tomorrow's, this month's phone brand shapes next month's, a car sitting in one depot is likely to be returned to another. A Markov chain models exactly this kind of step-by-step, probability-driven change, on one deliberately simple assumption: the future depends only on the present, never on the full history of how you arrived. That assumption lets a single transition matrix $T$ carry the whole model. This lesson covers the full 4.10 syllabus, building $T$ correctly, stepping the system forward with $\\mathbf{s}_n = T^n \\mathbf{s}_0$, and finding the long-run steady state $\\mathbf{s}$ where the distribution stops changing. Because 4.10 is a Higher Level Paper 2 topic, the GDC handles every matrix power, so the marks reward setting up the model and reading it in context. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "States, transitions and the Markov property" },
+    { "type": "text", "content": "A Markov chain has two ingredients. First, a finite list of STATES, the distinct conditions the system can occupy, such as 'sunny' and 'rainy', or the brands a customer might buy. Second, TRANSITIONS between those states over discrete time steps: a day, a month, a generation. The defining rule, the Markov property, is that the probability of the next state depends only on the current state. The chain has no memory: a run of ten sunny days changes nothing about tomorrow if today is sunny. That single simplification is what makes the whole model fit into one matrix." },
+
+    { "type": "heading", "content": "Building the transition matrix $T$" },
+    { "type": "text", "content": "The transition matrix $T$ stores every one-step probability. It is square, with one row and one column per state. In this course the convention is that each COLUMN is the current ('from') state and each ROW is the next ('to') state, so the entry in row $i$, column $j$ is the probability of moving to state $i$ given you are now in state $j$. Read a column top to bottom and you are reading a full probability distribution: all the places the system might go next, starting from that column's state." },
+    { "type": "keyPoints", "items": [
+      "**Square:** one row and one column per state, in a fixed order you choose once.",
+      "**Columns are 'from', rows are 'to':** the entry in row $i$, column $j$ is $P(\\text{go to } i \\mid \\text{now in } j)$.",
+      "**Every column sums to 1:** each column is a probability distribution, because from any state the system must transition somewhere (possibly staying put)."
+    ]},
+    { "type": "formula", "content": "For states ordered $1, 2, \\ldots$, the transition matrix is $T = \\begin{pmatrix} p_{11} & p_{12} & \\cdots \\\\ p_{21} & p_{22} & \\cdots \\\\ \\vdots & \\vdots & \\ddots \\end{pmatrix}$, where $p_{ij} = P(\\text{to } i \\mid \\text{from } j)$ and each column satisfies $\\sum_i p_{ij} = 1$." },
+    { "type": "workedExample", "question": "A survey tracks customer loyalty between two coffee shops, Bean Scene (B) and Daily Grind (D). Each month, 80% of Bean Scene's customers return and 20% switch to Daily Grind; of Daily Grind's customers, 30% switch to Bean Scene and the rest stay. Initially Bean Scene holds 60% of the market and Daily Grind 40%. \\n (a) Write down the transition matrix $T$. \\n (b) Find the market share after 2 months. [6]", "solution": "Fix the state order as B then D, and set columns as 'from', rows as 'to'.\\n\\n**(a) Transition matrix.** From B: stay $0.8$, switch to D $0.2$, giving the first column $\\begin{pmatrix} 0.8 \\\\ 0.2 \\end{pmatrix}$. From D: switch to B $0.3$, stay $0.7$, giving the second column $\\begin{pmatrix} 0.3 \\\\ 0.7 \\end{pmatrix}$.\\n$$T = \\begin{pmatrix} 0.8 & 0.3 \\\\ 0.2 & 0.7 \\end{pmatrix}.$$\\nEach column sums to $1$, as required.  [A2: fully correct matrix; A1 for one error]\\n\\n**(b) After 2 months.** The initial state vector is $\\mathbf{s}_0 = \\begin{pmatrix} 0.6 \\\\ 0.4 \\end{pmatrix}$, and $\\mathbf{s}_2 = T^2 \\mathbf{s}_0$.  [M1: correct set-up]\\nOn the GDC, $T^2 = \\begin{pmatrix} 0.70 & 0.45 \\\\ 0.30 & 0.55 \\end{pmatrix}$, so\\n$$\\mathbf{s}_2 = \\begin{pmatrix} 0.70 & 0.45 \\\\ 0.30 & 0.55 \\end{pmatrix}\\begin{pmatrix} 0.6 \\\\ 0.4 \\end{pmatrix} = \\begin{pmatrix} 0.6 \\\\ 0.4 \\end{pmatrix}.$$  [M1: compute $T^2 \\mathbf{s}_0$]\\nAfter 2 months Bean Scene holds $60\\%$ and Daily Grind $40\\%$.  [A1]\\n\\nThe share happens to return to the start here; that is a coincidence of these numbers, not yet the steady state." },
+
+    { "type": "heading", "content": "The state vector and stepping forward in time" },
+    { "type": "text", "content": "The distribution of the system at time $n$ is stored in the state vector $\\mathbf{s}_n$, a column whose entries are the proportions (or counts) in each state, listed in the same order as the matrix. To advance one step you multiply on the left by $T$: $\\mathbf{s}_1 = T\\mathbf{s}_0$. Advancing again gives $\\mathbf{s}_2 = T\\mathbf{s}_1 = T^2\\mathbf{s}_0$, and repeating the pattern produces the closed form for any number of steps. On Paper 2 you never chain the multiplications by hand; you raise $T$ to the power directly." },
+    { "type": "formula", "content": "State after $n$ steps: $\\mathbf{s}_n = T^n \\mathbf{s}_0$. \\n The matrix sits on the LEFT and the state vector on the RIGHT; the product is again a column vector." },
+    { "type": "examTip", "content": "On Paper 2 you always have your GDC, so learn to enter a matrix, raise it to a power, and multiply it by a vector fluently. Store $T$ and $\\mathbf{s}_0$ in named variables, then evaluate $T^{n}\\mathbf{s}_0$ in one line. Doing the arithmetic on the calculator both saves time and removes the multiplication slips that cost accuracy marks." },
+    { "type": "workedExample", "question": "A city has three internet providers: ConnectFast (C), StreamEasy (S) and PingKing (P). Monthly, ConnectFast keeps 85% of its customers, losing 10% to StreamEasy and 5% to PingKing; StreamEasy keeps 75%, losing 15% to ConnectFast and 10% to PingKing; PingKing keeps 80%, losing 10% to ConnectFast and 10% to StreamEasy. Initially C has 20 000 customers, S has 50 000 and P has 30 000. \\n (a) Write down the transition matrix $T$. \\n (b) Find the number of customers with each provider after 6 months. \\n (c) Find the long-term number of customers with each provider, assuming the total stays constant. [8]", "solution": "Order the states C, S, P, with columns 'from' and rows 'to'.\\n\\n**(a) Transition matrix.**\\n$$T = \\begin{pmatrix} 0.85 & 0.15 & 0.10 \\\\ 0.10 & 0.75 & 0.10 \\\\ 0.05 & 0.10 & 0.80 \\end{pmatrix}.$$\\nEach column sums to $1$.  [A2: fully correct; A1 for one error]\\n\\n**(b) After 6 months.** The total is $20\\,000 + 50\\,000 + 30\\,000 = 100\\,000$, and $\\mathbf{s}_0 = \\begin{pmatrix} 20000 \\\\ 50000 \\\\ 30000 \\end{pmatrix}$. Compute $\\mathbf{s}_6 = T^6 \\mathbf{s}_0$ on the GDC.  [M1]\\n$$\\mathbf{s}_6 \\approx \\begin{pmatrix} 42085 \\\\ 36193 \\\\ 21722 \\end{pmatrix}.$$\\nAfter 6 months, approximately $42\\,085$ with ConnectFast, $36\\,193$ with StreamEasy and $21\\,722$ with PingKing (rounded to whole customers).  [A2: A1 for one slip]\\n\\n**(c) Long term.** Raise $T$ to a high power, e.g. $T^{50}$, whose columns become identical.  [M1]\\n$$T^{50} \\approx \\begin{pmatrix} 0.4651 & 0.4651 & 0.4651 \\\\ 0.3488 & 0.3488 & 0.3488 \\\\ 0.1860 & 0.1860 & 0.1860 \\end{pmatrix},$$\\nso the steady-state proportions are $\\mathbf{s} \\approx \\begin{pmatrix} 0.4651 \\\\ 0.3488 \\\\ 0.1860 \\end{pmatrix}$. Multiplying by the constant total $100\\,000$:  [M1]\\nConnectFast $\\approx 46\\,510$, StreamEasy $\\approx 34\\,880$, PingKing $\\approx 18\\,610$.  [A1]\\n\\nIn the long run ConnectFast dominates the market, even though it started with the fewest customers." },
+
+    { "type": "heading", "content": "The long-run steady state" },
+    { "type": "text", "content": "Push a regular Markov chain far enough and the state vector stops changing: it reaches a STEADY STATE (or equilibrium) $\\mathbf{s}$, where applying $T$ once more returns the same vector. That is the defining equation $T\\mathbf{s} = \\mathbf{s}$: the flow into each state exactly balances the flow out. Written as $T\\mathbf{s} = 1\\cdot\\mathbf{s}$, it says $\\mathbf{s}$ is an eigenvector of $T$ for eigenvalue $1$, and every transition matrix has $1$ as an eigenvalue. Two routes find it: solve $T\\mathbf{s} = \\mathbf{s}$ as linear equations with the entries constrained to sum to $1$, or raise $T$ to a high power and read off a column, since for a regular chain the columns of $T^n$ all converge to $\\mathbf{s}$." },
+    { "type": "formula", "content": "Steady state: solve $T\\mathbf{s} = \\mathbf{s}$ with $\\sum \\text{entries of } \\mathbf{s} = 1$. \\n Equivalently, $\\mathbf{s}$ is the eigenvector of $T$ for eigenvalue $1$, normalised so its entries sum to 1; or read a column of $T^{n}$ for large $n$." },
+    { "type": "workedExample", "question": "A predator population is modelled as a Markov chain over two states, 'high' (H) and 'low' (L), from year to year with transition matrix $T = \\begin{pmatrix} 0.7 & 0.4 \\\\ 0.3 & 0.6 \\end{pmatrix}$ (states in order H, L). Find the long-run proportion of years in which the population is high, giving your answer as a fraction. [5]", "solution": "Let the steady state be $\\mathbf{s} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ with $x + y = 1$. It satisfies $T\\mathbf{s} = \\mathbf{s}$.  [M1: set up $T\\mathbf{s} = \\mathbf{s}$]\\n\\nThe top row gives\\n$$0.7x + 0.4y = x \\;\\Rightarrow\\; -0.3x + 0.4y = 0 \\;\\Rightarrow\\; 0.3x = 0.4y.$$  [M1: form a usable equation]\\nSo $x = \\dfrac{0.4}{0.3}\\,y = \\dfrac{4}{3}\\,y$. Substituting into $x + y = 1$:  [M1: use $x+y=1$]\\n$$\\tfrac{4}{3}y + y = 1 \\;\\Rightarrow\\; \\tfrac{7}{3}y = 1 \\;\\Rightarrow\\; y = \\tfrac{3}{7}, \\quad x = \\tfrac{4}{7}.$$  [A1]\\n\\nSo $\\mathbf{s} = \\begin{pmatrix} 4/7 \\\\ 3/7 \\end{pmatrix}$, and the population is high in the long run for $\\dfrac{4}{7}$ of years (about $57.1\\%$).  [A1]\\n\\nCheck on the GDC: $T^{50}$ has both columns equal to $\\begin{pmatrix} 0.5714\\ldots \\\\ 0.4286\\ldots \\end{pmatrix} = \\begin{pmatrix} 4/7 \\\\ 3/7 \\end{pmatrix}$, confirming the algebra." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Rows that sum to 1 instead of columns** — in this course columns are the 'from' state and each COLUMN must sum to $1$. Writing $T$ so the rows sum to $1$ transposes the matrix and every later answer is wrong.",
+      "**Multiplying in the wrong order** — the step is $T\\mathbf{s}$, matrix on the left and column vector on the right. Writing $\\mathbf{s}T$ with a column vector is undefined, and swapping to a row vector silently changes the convention.",
+      "**Using $nT\\mathbf{s}_0$ instead of $T^n\\mathbf{s}_0$** — you raise the matrix to the power $n$, you do not multiply the matrix by $n$. $\\mathbf{s}_n = T^n\\mathbf{s}_0$.",
+      "**Solving $T\\mathbf{s}=\\mathbf{s}$ without the constraint** — the equation $T\\mathbf{s}=\\mathbf{s}$ alone has infinitely many solutions (any multiple of $\\mathbf{s}$). You must add $\\sum \\text{entries} = 1$ (or the population total) to pin down the unique steady state.",
+      "**Confusing eigenvalue $1$ with eigenvalue $0$** — the steady state is the eigenvector for eigenvalue $1$ (since $T\\mathbf{s}=1\\cdot\\mathbf{s}$), not the null space.",
+      "**Assuming every chain converges** — the high-power method needs a regular chain. Absorbing or cyclic chains need not settle to a single interior steady state, so check the context before quoting one.",
+      "**Rounding populations too early or leaving fractions of people** — carry the GDC's full figures, and round headcounts to whole numbers only at the final step."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working, a method mark (M) or an accuracy mark (A), and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier wrong value need not cost you the marks that depend on it, provided the later step is done correctly on your own figure. For matrix work the engine expects to see the set-up $\\mathbf{s}_n = T^n\\mathbf{s}_0$, the matrix power computed (GDC allowed), and the answer read in context. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "The weather is modelled by a Markov chain with transition matrix $T=\\begin{pmatrix}0.8&0.4\\\\0.2&0.6\\end{pmatrix}$ (states: sunny, rainy). If today is sunny ($\\mathbf{s}_0=\\begin{pmatrix}1\\\\0\\end{pmatrix}$), find the probability it is sunny in 2 days. [4]", "solution": "**Model answer — full working.**\\n\\nThe states are ordered sunny then rainy, and each column of $T$ sums to $1$. Starting sunny, $\\mathbf{s}_0 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$, and the state after 2 days is\\n$$\\mathbf{s}_2 = T^2\\mathbf{s}_0.$$\\n\\nCompute $T^2$ on the GDC:\\n$$T^2 = \\begin{pmatrix} 0.8 & 0.4 \\\\ 0.2 & 0.6 \\end{pmatrix}^2 = \\begin{pmatrix} 0.72 & 0.56 \\\\ 0.28 & 0.44 \\end{pmatrix}.$$\\n\\nThen\\n$$\\mathbf{s}_2 = \\begin{pmatrix} 0.72 & 0.56 \\\\ 0.28 & 0.44 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0.72 \\\\ 0.28 \\end{pmatrix}.$$\\n\\nThe first entry is the probability of sunny, so $P(\\text{sunny in 2 days}) = 0.72$.\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — set-up.** Awarded for using $\\mathbf{s}_2 = T^2\\mathbf{s}_0$ (matrix raised to the power, on the left of the initial vector). This is the method mark; it stands even if a later arithmetic value slips.\\n- **M1 — compute $T^2$.** A method mark for correctly squaring the matrix (GDC allowed), $T^2 = \\begin{pmatrix} 0.72 & 0.56 \\\\ 0.28 & 0.44 \\end{pmatrix}$. The engine checks the power was formed, not that it was done by hand.\\n- **A1 — state vector.** Awarded for $\\mathbf{s}_2 = \\begin{pmatrix} 0.72 \\\\ 0.28 \\end{pmatrix}$, the product read off correctly. This accuracy mark depends on the M1s above, and FT applies: a candidate with a slightly different but correctly-multiplied $T^2$ still earns it on their own figures.\\n- **A1 — final probability.** Awarded for identifying the sunny probability as the first entry, $0.72$. Because $\\mathbf{s}_0 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$ simply selects the first column of $T^2$, a candidate who quotes $0.72$ directly from that column also earns full marks; ISW means later restatements do not lose it.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $0.72$ written as $\\frac{18}{25}$ or $72\\%$, and accepts the answer whether reached via $T^2\\mathbf{s}_0$ or by reading the first column of $T^2$.\\n\\n**Bottom line:** of the 4 marks, two are method marks that survive an arithmetic slip, and the accuracy marks are shielded by follow-through. A student who writes only '$0.72$' with no matrix set-up risks losing the two method marks; a student who shows $\\mathbf{s}_2 = T^2\\mathbf{s}_0$, the squared matrix and the product keeps the method regardless of a slip in the final number." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the model: write $\\mathbf{s}_n = T^n\\mathbf{s}_0$, compute the matrix power on the GDC, read off the state vector, then pick out the entry the question asks for. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Markov chains tie the probability you met earlier to the matrices and eigenvectors of the HL algebra strand: the steady state IS an eigenvector, so the eigenvalue-eigenvector machinery you use elsewhere pays off directly here. The same modelling instinct, list the states, capture the one-step rule, then iterate, underlies coupled systems of differential equations later in the course, where matrices again drive a system forward in time and the long-run behaviour is read from eigenvalues. Master the two moves of this topic, stepping forward with $\\mathbf{s}_n = T^n\\mathbf{s}_0$ and settling down with $T\\mathbf{s} = \\mathbf{s}$, and a wide family of dynamic models becomes a single, familiar calculation." },
+
+    { "type": "practice", "label": "Get a Paper 2 Markov-chain question marked: set up $T$, compute $\\mathbf{s}_n = T^n\\mathbf{s}_0$ and find the steady state with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=4.10&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Setosa: Interactive visualisation of Markov chains", "href": "https://setosa.io/ev/markov-chains/" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

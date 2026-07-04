@@ -1,228 +1,134 @@
 {
   "slug": "4-9-confidence-intervals-and-further-hypothesis-testing",
   "topicCode": "4.9",
+  "unit": { "code": "4", "title": "Statistics and probability" },
   "title": "Confidence intervals and further hypothesis testing",
   "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson covers the construction and interpretation of confidence intervals for a population mean. It then delves into three crucial hypothesis tests: the t-test for the difference of two means, the chi-squared goodness of fit test, and the chi-squared test for independence. The focus is on using a GDC to perform calculations and interpreting the results in context.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "summary": "This Higher Level lesson turns a single sample into a defensible statement about a whole population. It builds the full 4.9 core on means: the confidence interval for a population mean $\\mu$ computed from a sample mean, standard deviation and size $n$ on the GDC, and its careful interpretation; how the confidence level and the sample size push the interval wider or narrower; the one-sample $t$-test for a mean and the two-sample $t$-test for the difference of two means, from stating $H_0$ and $H_1$ and deciding one- versus two-tailed, through reading the $p$-value off the GDC and comparing it with the significance level, to writing the conclusion in context; and what a $p$-value actually means. Because 4.9 lives on Paper 2, the calculator does the arithmetic, so the marks are for choosing the right procedure and writing down the method the examiner needs to see. Every worked example is laid out exactly the way our marking engine awards the marks.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Calculate and interpret confidence intervals for a population mean, $\\mu$.",
-    "Perform a t-test for the difference between the means of two independent samples.",
-    "Conduct and interpret a chi-squared goodness of fit test to determine if sample data fits a theoretical distribution.",
-    "Conduct and interpret a chi-squared test for independence to assess the association between two categorical variables."
+    "Compute a confidence interval for a population mean $\\mu$ from a sample mean, standard deviation and size $n$ using the GDC, and interpret it in context.",
+    "Explain and predict the effect of the confidence level and the sample size on the width of a confidence interval.",
+    "Carry out a one-sample $t$-test for a population mean: state $H_0$ and $H_1$, decide one- or two-tailed, find the $p$-value on the GDC, compare with the significance level and conclude in context.",
+    "Carry out a two-sample $t$-test for the difference of two population means, choosing the correct alternative hypothesis and reading the $p$-value from the GDC.",
+    "State precisely what a $p$-value means and use the decision rule $p < \\alpha \\Rightarrow$ reject $H_0$ correctly, presenting working so that method marks and follow-through protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["4.9"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
-    "title": "Guessing with Confidence",
-    "summary": "This lesson teaches you how to make educated guesses about a whole population from a small sample, and how to test if your theories about data are likely to be true. It's about moving from sample data to making wider claims with a known level of certainty.",
-    "analogy": "Imagine trying to guess the average height of all 17-year-olds in the UK. You can't measure everyone. Instead, you measure a sample of 100 students. A confidence interval is like saying, \"I'm 95% sure the true average height for everyone is between 170 cm and 175 cm.\" It's a range, not a single number, and it comes with a level of confidence. Hypothesis testing is like a courtroom drama for data: you have a claim (the null hypothesis), you gather evidence (your sample data), and you decide if there's enough evidence to reject the claim.",
+    "title": "From one sample to the whole population",
+    "summary": "You almost never get to measure a whole population, so you measure a sample and reason back to the population. A confidence interval reports a range of plausible values for the true mean together with how sure you are; a hypothesis test decides whether the sample is surprising enough to overturn a claim. Both are point-and-read on the GDC once you have entered the sample mean, standard deviation and size, so the skill being marked is setting the test up correctly and reading the result honestly.",
+    "analogy": "Think of a food company claiming its cereal boxes hold 500 g. You cannot weigh every box, so you weigh a sample and get an average close to, but not exactly, 500 g. A confidence interval is you saying, 'based on my sample I am 95% confident the true average box weight is between 494 g and 502 g.' A hypothesis test is the sharper question, 'is my sample far enough below 500 g that the company's claim looks wrong, or could this just be sampling luck?' The p-value measures exactly that luck: how easily a sample this extreme could appear if the claim were actually true.",
     "steps": [
-      "State the Hypotheses: Clearly define the null hypothesis ($H_0$) and the alternative hypothesis ($H_1$). For example, $H_0$: 'There is no difference in mean exam scores between two teaching methods.'",
-      "Calculate the Test Statistic: Use your GDC to find the key value from your sample data. This could be a t-value or a chi-squared ($\\chi^2$) value, along with the degrees of freedom.",
-      "Find the p-value: The p-value is the probability of observing your data (or more extreme data) if the null hypothesis were true. Your GDC will calculate this for you.",
-      "Make a Conclusion: Compare the p-value to the significance level ($\\alpha$). If $p < \\alpha$, reject $H_0$. If $p \\ge \\alpha$, do not reject $H_0$. Always state your conclusion in the context of the original problem."
+      "Read the sample summary. You are given, or you read from a list on the GDC, the sample mean $\\bar{x}$, the sample standard deviation $s_x$ and the sample size $n$.",
+      "Choose the procedure. To estimate a range for $\\mu$, run the confidence interval (t-interval). To test a claim about one mean, run a one-sample $t$-test; to compare two means, run a two-sample $t$-test.",
+      "State hypotheses and read the output. Write $H_0$ and $H_1$, decide one- or two-tailed, then read the interval, or the $p$-value, straight off the GDC screen.",
+      "Interpret in context. For an interval, say what range the true mean plausibly lies in and how confident you are. For a test, compare $p$ with $\\alpha$, decide, and translate the decision back into the language of the question."
     ]
   },
+  "keyConcepts": ["confidence intervals", "t-tests for means", "p-values and decisions"],
   "flashcards": [
-    {
-      "front": "What is a confidence interval?",
-      "back": "An interval estimate for an unknown population parameter, calculated from sample data. For example, a 95% confidence interval for the mean, $\\mu$, gives a range of plausible values for the true population mean."
-    },
-    {
-      "front": "What does a 95% confidence level mean?",
-      "back": "It means that if we were to take many random samples and construct a confidence interval from each one, we would expect 95% of these intervals to contain the true, unknown population parameter."
-    },
-    {
-      "front": "What is a p-value?",
-      "back": "The probability of obtaining a result at least as extreme as the one observed in the sample data, assuming the null hypothesis ($H_0$) is true."
-    },
-    {
-      "front": "What is the significance level, $\\alpha$?",
-      "back": "A pre-determined threshold for the p-value. If the p-value is less than $\\alpha$, the result is deemed statistically significant, and we reject the null hypothesis. Common values are 0.01, 0.05, and 0.10."
-    },
-    {
-      "front": "What is the null hypothesis, $H_0$?",
-      "back": "A statement of 'no effect', 'no difference', or 'no association'. It is the default assumption that we seek to find evidence against. E.g., $H_0: \\mu_1 = \\mu_2$."
-    },
-    {
-      "front": "What is the alternative hypothesis, $H_1$?",
-      "back": "The statement that contradicts the null hypothesis. It represents the effect we are looking for. E.g., $H_1: \\mu_1 \\neq \\mu_2$ (two-tailed) or $H_1: \\mu_1 > \\mu_2$ (one-tailed)."
-    },
-    {
-      "front": "When is a 2-sample t-test used?",
-      "back": "To compare the means of two independent groups when the population standard deviations are unknown. For example, comparing the effectiveness of two different drugs."
-    },
-    {
-      "front": "What is a $\\chi^2$ goodness of fit test used for?",
-      "back": "To test whether the observed frequency distribution of a single categorical variable fits a certain theoretical or expected distribution. E.g., testing if a die is fair."
-    },
-    {
-      "front": "What is a $\\chi^2$ test for independence used for?",
-      "back": "To determine if there is a significant association between two categorical variables. The data is typically presented in a contingency table. E.g., testing if there is a relationship between gender and voting preference."
-    },
-    {
-      "front": "What are the degrees of freedom (df) for a $\\chi^2$ test for independence?",
-      "back": "df = (number of rows - 1) $\\times$ (number of columns - 1). Your GDC calculates this, but you should know the formula."
-    },
-    {
-      "front": "Common Trap: What is wrong with the conclusion \"We accept the null hypothesis\"?",
-      "back": "We never 'accept' $H_0$. We either 'reject $H_0$' or 'fail to reject $H_0$'. Failing to reject $H_0$ simply means we did not find sufficient evidence to discard it, not that we have proven it to be true."
-    },
-    {
-      "front": "How are confidence intervals and two-tailed hypothesis tests related?",
-      "back": "A C% confidence interval for a parameter corresponds to a two-tailed hypothesis test at a $(100-C)\\%$ significance level. If the value specified in $H_0$ falls outside the confidence interval, we would reject $H_0$."
-    }
+    { "front": "Confidence interval for $\\mu$", "back": "A range of plausible values for the unknown population mean, built from a sample. On the GDC you supply $\\bar{x}$, $s_x$, $n$ and the confidence level $C$, and it returns the interval. It is centred on $\\bar{x}$.", "pillLabel": "Definition" },
+    { "front": "Interpreting a 95% CI", "back": "'We are 95% confident that the true population mean $\\mu$ lies in this interval.' More precisely, if you repeated the sampling many times, about 95% of the intervals produced would contain $\\mu$. The interval is about the mean, never about a single individual value.", "pillLabel": "Concept" },
+    { "front": "Effect of confidence level on width", "back": "Raising the confidence level (say 95% to 99%) makes the interval WIDER: to be more certain of catching $\\mu$ you must cast a bigger net. Lowering it makes the interval narrower but less certain.", "pillLabel": "Concept" },
+    { "front": "Effect of sample size on width", "back": "Increasing the sample size $n$ makes the interval NARROWER, because the standard error $s_x/\\sqrt{n}$ shrinks. More data buys more precision. Roughly, to halve the width you need about four times the data.", "pillLabel": "Concept" },
+    { "front": "p-value", "back": "The probability of obtaining a sample result at least as extreme as the one observed, assuming $H_0$ is true. A small $p$ means the data would be surprising if $H_0$ held, which is evidence against $H_0$.", "pillLabel": "Definition" },
+    { "front": "Decision rule", "back": "Compare $p$ with the significance level $\\alpha$. If $p < \\alpha$, reject $H_0$. If $p \\ge \\alpha$, do not reject $H_0$. Never 'accept' $H_0$; failing to reject only means the evidence was not strong enough.", "pillLabel": "Framework" },
+    { "front": "One- vs two-tailed", "back": "Two-tailed tests a difference in either direction ($H_1: \\mu \\ne \\mu_0$). One-tailed tests a specific direction ($H_1: \\mu > \\mu_0$ or $\\mu < \\mu_0$). The wording, 'greater', 'less', 'increased', versus 'different', 'changed', tells you which.", "pillLabel": "Definition" },
+    { "front": "One-sample t-test", "back": "Tests whether a single population mean equals a claimed value $\\mu_0$. Enter $\\mu_0$, $\\bar{x}$, $s_x$, $n$ and the tail on the GDC; read the $p$-value. Used because the population standard deviation is unknown and estimated from the sample.", "pillLabel": "Definition" },
+    { "front": "Two-sample t-test", "back": "Tests whether two population means are equal using two independent samples. Enter each sample's $\\bar{x}$, $s_x$, $n$ and the tail; read the $p$-value. In AI HL choose 'Pooled: No' unless told the population variances are equal.", "pillLabel": "Definition" },
+    { "front": "CI and two-tailed test link", "back": "A $C\\%$ confidence interval mirrors a two-tailed test at the $(100-C)\\%$ level: if the value in $H_0$ lies OUTSIDE the interval, you would reject $H_0$; if it lies inside, you would not.", "pillLabel": "Concept" },
+    { "front": "GDC trap: which standard deviation to enter", "back": "A $t$ procedure uses the SAMPLE standard deviation $s_x$ (divide by $n-1$), not the population $\\sigma_x$. If you compute from a raw list, quote $s_x$; if the question gives 'standard deviation' of a sample, use it directly.", "pillLabel": "Trap" },
+    { "front": "What rejecting $H_0$ does and does not show", "back": "Rejecting $H_0$ says the data is inconsistent with $H_0$ at the chosen level; it does not prove $H_1$ true or measure how big the effect is. Statistical significance is not the same as practical importance.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "A 95% confidence interval for the mean mass of apples is (146 g, 154 g). Which statement is correct?", "options": ["We are 95% confident the true mean mass of all apples lies between 146 g and 154 g", "95% of individual apples have a mass between 146 g and 154 g", "There is a 95% probability that the next apple weighs between 146 g and 154 g", "95% of samples weigh between 146 g and 154 g"], "answer": "We are 95% confident the true mean mass of all apples lies between 146 g and 154 g" },
+    { "prompt": "Keeping the same sample, a 99% confidence interval compared with a 95% interval for the same mean is:", "options": ["Wider", "Narrower", "The same width", "Impossible to compare"], "answer": "Wider" },
+    { "prompt": "A larger sample size, with everything else unchanged, makes a confidence interval for the mean:", "options": ["Narrower", "Wider", "Unchanged", "Centred on a different value guaranteed to be correct"], "answer": "Narrower" },
+    { "prompt": "In a hypothesis test at the 5% significance level, the GDC returns $p = 0.032$. The correct decision is to:", "options": ["Reject $H_0$, since $0.032 < 0.05$", "Do not reject $H_0$, since $0.032 < 0.05$", "Accept $H_0$, since $p$ is small", "Reject $H_0$ only if the test is two-tailed"], "answer": "Reject $H_0$, since $0.032 < 0.05$" },
+    { "prompt": "Which statement best describes a $p$-value?", "options": ["The probability of a result at least as extreme as the one observed, assuming $H_0$ is true", "The probability that $H_0$ is true", "The probability that $H_1$ is true", "The probability of making a correct decision"], "answer": "The probability of a result at least as extreme as the one observed, assuming $H_0$ is true" }
   ],
   "faq": [
-    {
-      "q": "What's the difference between a one-tailed and a two-tailed test?",
-      "a": "A two-tailed test checks for a difference in any direction (e.g., $H_1: \\mu_1 \\neq \\mu_2$). It's used when you want to know if two groups are simply different. A one-tailed test checks for a difference in a specific direction (e.g., $H_1: \\mu_1 > \\mu_2$ or $H_1: \\mu_1 < \\mu_2$). This is used when you have a specific hypothesis about the direction of the effect, such as whether a new drug *improves* a condition."
-    },
-    {
-      "q": "How do I know which hypothesis test to use?",
-      "a": "Follow this guide:\n- **To estimate a range for a population mean:** Use a Confidence Interval (T-Interval on GDC).\n- **To compare the means of two independent groups:** Use a 2-Sample t-test.\n- **To see if observed counts for one variable fit a model:** Use a $\\chi^2$ Goodness of Fit test.\n- **To see if two categorical variables are related:** Use a $\\chi^2$ Test for Independence."
-    },
-    {
-      "q": "My GDC gives me a $\\chi^2$ value and a p-value. Which one do I use to make my conclusion?",
-      "a": "Always use the p-value. The standard method in IB is to compare the p-value with the significance level ($\\alpha$). The $\\chi^2$ value is the test statistic that the p-value is derived from, but the p-value is what you use for the final decision."
-    }
+    { "q": "When do I use a confidence interval and when do I use a hypothesis test?", "a": "They answer different questions from the same data. A confidence interval estimates a range of plausible values for the population mean, so you use it when the question asks you to 'estimate' or 'find an interval for' the mean. A hypothesis test decides whether a specific claim about the mean (or the difference of two means) is contradicted by the data, so you use it when the question asks whether the data 'supports', 'provides evidence for', or 'is consistent with' a claim. The two are linked: for a two-tailed test, checking whether the claimed value falls inside a matching confidence interval reaches the same decision." },
+    { "q": "Should I choose 'Pooled: Yes' or 'Pooled: No' in a two-sample t-test?", "a": "Choose 'Pooled: No' unless the question explicitly tells you the two populations have equal variances (or equal standard deviations). Pooling assumes a common variance, which you are rarely given grounds to assume in AI HL, so the safe default is the unpooled (Welch) version. Both give the same style of answer, a p-value you compare with $\\alpha$; only the arithmetic differs." },
+    { "q": "How do I decide between a one-tailed and a two-tailed test?", "a": "Read the alternative claim carefully. If it names a direction, 'greater than', 'less than', 'increased', 'reduced', 'faster', it is one-tailed and $H_1$ uses $>$ or $<$. If it only asserts a difference, 'different from', 'changed', 'not equal to', it is two-tailed and $H_1$ uses $\\ne$. Fix the tail before you touch the GDC, because choosing the wrong tail roughly doubles or halves the p-value and can flip your conclusion." },
+    { "q": "The p-value is just above 0.05, say 0.058. Do I reject?", "a": "No. The rule is mechanical: reject $H_0$ only when $p < \\alpha$. Since $0.058 > 0.05$ you do not reject $H_0$ at the 5% level. Do not round the p-value down to sneak under the threshold, and do not describe a borderline result as 'almost significant' in place of a decision. State the comparison and commit to the conclusion the rule gives." },
+    { "q": "Does a small p-value prove the null hypothesis is false?", "a": "No. A small p-value means the observed data would be unlikely if $H_0$ were true, which is evidence against $H_0$, not proof. You reject $H_0$ at a chosen risk level $\\alpha$, accepting a known chance of being wrong. Equally, a large p-value does not prove $H_0$ true; it only means you did not find enough evidence to reject it, which is why we say 'do not reject' rather than 'accept'." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to one of the most powerful topics in statistics: statistical inference. So far, we've mostly described data we have (descriptive statistics). Now, we will learn how to use sample data to make reasoned conclusions about the wider population. We'll explore how to state our confidence in an estimate and how to formally test claims about data using a structured, logical process."
-    },
-    {
-      "type": "heading",
-      "content": "Confidence Intervals for a Population Mean"
-    },
-    {
-      "type": "text",
-      "content": "Often, we want to estimate a population mean, $\\mu$, but we only have data from a sample. A 'point estimate' (like the sample mean, $\\bar{x}$) is our best single guess, but it's almost certainly not exactly right. A confidence interval provides a range of plausible values for the true population mean, $\\mu$, along with a level of confidence that the range contains $\\mu$. For this course, we will always use our GDC to calculate confidence intervals."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A confidence interval gives a range of values for an unknown population parameter.",
-        "The confidence level (e.g., 90%, 95%, 99%) indicates the long-run success rate of the method used to construct the interval.",
-        "A 95% confidence interval for $\\mu$ means that we are 95% confident that the true population mean $\\mu$ lies within the calculated interval.",
-        "Wider intervals imply more uncertainty, while narrower intervals imply more precision. Increasing the sample size or decreasing the confidence level will narrow the interval."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A quality control manager at a bottling plant wants to estimate the mean volume of juice in 1-litre bottles. She takes a random sample of 40 bottles and finds the sample mean volume is 998.5 ml with a sample standard deviation of 4.2 ml. Calculate a 95% confidence interval for the true mean volume of all bottles. State your interpretation of the interval.",
-      "solution": "We are given: $n=40$, $\\bar{x}=998.5$, $s_x = 4.2$. We need to find a 95% confidence interval for the population mean, $\\mu$.\nWe use the T-Interval function on the GDC because the population standard deviation is unknown.\n\n**GDC Input:**\nIn: Stats\n$\\bar{x}$: 998.5\n$S_x$: 4.2\n$n$: 40\nC-Level: 0.95\n\n**Calculation:**\nThe GDC output gives the interval [997.16, 999.84]. (M1) for using the correct GDC function and inputs.\n\nSo, the 95% confidence interval is (997 ml, 999 ml) to 3 s.f. (A1)\n\n**Interpretation:**\nWe are 95% confident that the true mean volume of juice in all bottles produced is between 997.16 ml and 999.84 ml. (R1) for correct interpretation in context.\n\nSince the interval is entirely below 1000 ml, there is strong evidence to suggest the bottles are, on average, being under-filled."
-    },
-    {
-      "type": "heading",
-      "content": "Hypothesis Testing: The Core Logic"
-    },
-    {
-      "type": "text",
-      "content": "Hypothesis testing is a formal procedure for investigating our ideas about the world using statistics. It's a structured way to test a claim or hypothesis about a population parameter using sample data. The process always involves setting up two competing hypotheses, collecting data, and then using the data to decide which hypothesis is more likely to be true."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Null Hypothesis ($H_0$)**: The 'default' or 'no effect' position. We assume this is true unless our data provides strong evidence against it.",
-        "**Alternative Hypothesis ($H_1$)**: The claim we are trying to find evidence for. It can be one-tailed ($>$, $<$) or two-tailed ($\\neq$).",
-        "**Significance Level ($\\alpha$)**: The probability of rejecting $H_0$ when it is actually true. This is our threshold for 'strong evidence'. It is set before the test, typically at 5% (0.05).",
-        "**p-value**: The probability of getting our sample result (or something more extreme) if $H_0$ were true. A small p-value suggests our result is unlikely under $H_0$.",
-        "**Conclusion**: If p-value $< \\alpha$, we reject $H_0$. If p-value $\\ge \\alpha$, we fail to reject $H_0$. The conclusion must always be stated in the context of the problem."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The t-test for the Difference of Two Means"
-    },
-    {
-      "type": "text",
-      "content": "This test is used when you want to compare the means of two independent groups. For example, do students taught with Method A have different test scores from students taught with Method B? Or does a particular drug lower blood pressure more than a placebo? We assume the two populations from which the samples are drawn are normally distributed, but we do not need to know their standard deviations. Your GDC will perform a '2-Sample T-Test'."
-    },
-    {
-      "type": "formula",
-      "content": "Null Hypothesis: $H_0: \\mu_1 = \\mu_2$ (The means of the two populations are equal)\nAlternative Hypothesis: \n$H_1: \\mu_1 \\neq \\mu_2$ (two-tailed)\n$H_1: \\mu_1 > \\mu_2$ (one-tailed)\n$H_1: \\mu_1 < \\mu_2$ (one-tailed)"
-    },
-    {
-      "type": "workedExample",
-      "question": "A researcher wants to know if a new energy drink improves sprint times. A group of 25 athletes is randomly divided into two groups. Group 1 (12 athletes) is given the energy drink and has a mean 100m sprint time of 12.4 seconds with a standard deviation of 0.3 seconds. Group 2 (13 athletes) is given a placebo and has a mean time of 12.7 seconds with a standard deviation of 0.4 seconds. Assuming sprint times are normally distributed, conduct a test at the 1% significance level to determine if the energy drink reduces sprint times.",
-      "solution": "Let $\\mu_1$ be the mean sprint time for athletes who take the energy drink, and $\\mu_2$ be the mean time for those who take the placebo.\n\n**1. State Hypotheses:**\n$H_0: \\mu_1 = \\mu_2$ (The energy drink has no effect on mean sprint time).\n$H_1: \\mu_1 < \\mu_2$ (The energy drink reduces mean sprint time). This is a one-tailed test. (A1)\n\n**2. State Significance Level:**\n$\\alpha = 0.01$ (A1)\n\n**3. Perform Test on GDC:**\nUse the 2-Sample T-Test function.\nGroup 1 (Drink): $\\bar{x}_1 = 12.4, s_1 = 0.3, n_1 = 12$\nGroup 2 (Placebo): $\\bar{x}_2 = 12.7, s_2 = 0.4, n_2 = 13$\nSelect the alternative hypothesis $< \\mu_2$.\nSelect Pooled: No (as we are not told population variances are equal). (M1)\n\n**4. Find p-value:**\nThe GDC gives a p-value of 0.0175. (A1)\n\n**5. Make Conclusion:**\nWe compare the p-value to the significance level.\nIs $0.0175 < 0.01$? No. (R1)\nSince the p-value (0.0175) is greater than the significance level (0.01), we fail to reject the null hypothesis. (R1)\n\n**Conclusion in context:**\nThere is insufficient evidence at the 1% significance level to conclude that the energy drink reduces the mean sprint time of athletes. (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "Always explicitly state your hypotheses ($H_0$ and $H_1$) and your significance level ($\\alpha$). Then, clearly state the calculated p-value from your GDC. Finally, write a sentence comparing the p-value to $\\alpha$ before giving your final conclusion in the context of the problem. These steps are often worth separate marks."
-    },
-    {
-      "type": "heading",
-      "content": "Chi-Squared ($\\chi^2$) Tests"
-    },
-    {
-      "type": "text",
-      "content": "Chi-squared tests are used for categorical data (data that can be sorted into categories, like favourite colour or grade level). They work by comparing the frequencies you observe in your sample ($O$) with the frequencies you would expect to see if the null hypothesis were true ($E$). A large difference between observed and expected values results in a large $\\chi^2$ statistic and a small p-value, leading to the rejection of $H_0$. There are two main types we use."
-    },
-    {
-      "type": "heading",
-      "content": "$\\chi^2$ Goodness of Fit Test"
-    },
-    {
-      "type": "text",
-      "content": "This test determines if the distribution of a single categorical variable in a sample matches a hypothesised distribution for the population. For example, a company claims its bags of mixed sweets contain 30% red, 30% green, and 40% yellow sweets. You could take a sample and use a goodness of fit test to see if your sample counts are consistent with their claim."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$H_0$: The data fits the specified distribution.",
-        "$H_1$: The data does not fit the specified distribution.",
-        "You must calculate the expected frequencies for each category based on the total sample size and the hypothesised proportions.",
-        "Degrees of freedom (df) = (number of categories) - 1.",
-        "Use the $\\chi^2$ GOF-Test function on your GDC, entering the observed frequencies into one list and the expected frequencies into another."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "$\\chi^2$ Test for Independence"
-    },
-    {
-      "type": "text",
-      "content": "This is one of the most common statistical tests. It assesses whether there is a significant association between two categorical variables. The data is organised in a contingency table. For example, you could survey students to see if their choice of favourite subject (Maths, English, Science) is independent of their year group (Year 12, Year 13)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$H_0$: The two variables are independent (i.e., there is no association).",
-        "$H_1$: The two variables are not independent (i.e., there is an association).",
-        "Data is entered into a matrix (the observed frequency table) on your GDC.",
-        "Use the $\\chi^2$ 2-Way Test function. The GDC calculates the expected frequencies, the $\\chi^2$ statistic, the p-value, and the degrees of freedom.",
-        "Degrees of freedom (df) = (number of rows - 1) $\\times$ (number of columns - 1)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "For $\\chi^2$ tests, a condition for the test to be valid is that all expected frequencies should be greater than 5. Your GDC will calculate an expected frequency matrix. It's good practice to quickly check this. If an exam question asks if the test is valid, you need to find the expected frequencies and check if any are less than 5."
-    },
-    {
-      "type": "practice",
-      "label": "Test Your Knowledge",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=4.9"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "GDC Guide: TI-Nspire for Hypothesis Testing",
-          "href": "https://www.youtube.com/watch?v=s_h2o1y3a5o"
-        },
-        {
-          "label": "Chi-Squared Test Simulator",
-          "href": "https://www.geogebra.org/m/sV2AnYtC"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Everything so far has described data you actually hold. Statistical inference does something bolder: it uses a sample to make a defensible statement about a population you could never measure in full. This Higher Level lesson builds the core of 4.9 on means. You will construct a confidence interval for a population mean and say exactly what it means; predict how the confidence level and the sample size stretch or tighten it; and run the one-sample and two-sample $t$-tests for means from first line to final sentence, stating hypotheses, choosing a tail, reading the p-value off the GDC, comparing it with the significance level and concluding in context. Because 4.9 is examined on Paper 2, the calculator does the arithmetic, so what earns marks is choosing the right procedure and writing the method the examiner needs. As always, the worked examples below are laid out exactly the way our engine marks your own practice." },
+
+    { "type": "heading", "content": "The confidence interval for a population mean" },
+    { "type": "text", "content": "You want the population mean $\\mu$ but you only have a sample. The sample mean $\\bar{x}$ is your single best guess, a point estimate, but it is almost never exactly $\\mu$. A confidence interval upgrades that single guess to an honest range: a lower and an upper bound, centred on $\\bar{x}$, together with a confidence level such as 90%, 95% or 99% that reports how reliable the method is. In AI HL you never build the interval by hand; you give the GDC the sample mean, the sample standard deviation and the sample size, choose the confidence level, and read the interval off." },
+    { "type": "keyPoints", "items": [
+      "A confidence interval for $\\mu$ is a range of plausible values for the true population mean, computed from a sample.",
+      "It needs three inputs: the sample mean $\\bar{x}$, the sample standard deviation $s_x$ and the sample size $n$, plus a chosen confidence level $C$.",
+      "The interval is centred on $\\bar{x}$; its half-width (the margin of error) is the standard error $s_x/\\sqrt{n}$ scaled by a factor that grows with the confidence level.",
+      "Because $\\mu$ is unknown but fixed, the confidence is a statement about the method, not about a single interval: over many samples, about $C\\%$ of the intervals produced would contain $\\mu$."
+    ]},
+    { "type": "formula", "content": "GDC: use the t-interval (interval for a mean, population standard deviation unknown). \\n Enter: $\\bar{x}$ (sample mean), $s_x$ (sample standard deviation), $n$ (sample size), C-Level (e.g. 0.95). \\n Structure: interval $= \\bar{x} \\pm (\\text{margin of error})$, where the margin of error $= t \\times \\dfrac{s_x}{\\sqrt{n}}$ and the GDC supplies the factor $t$." },
+    { "type": "text", "content": "The interpretation must be worded with care. A 95% confidence interval of $(494, 502)$ grams means 'we are 95% confident that the true mean box weight $\\mu$ lies between 494 g and 502 g.' It does NOT say that 95% of individual boxes weigh between those values, nor that a particular box has a 95% chance of doing so; the interval is about the mean of the whole population, not about any single member of it. The honest long-run meaning is that if you repeated the sampling many times and built an interval each time, roughly 95% of those intervals would capture the true $\\mu$." },
+
+    { "type": "heading", "content": "What makes the interval wider or narrower" },
+    { "type": "text", "content": "Two levers control the width of a confidence interval, and examiners test whether you know which way each one pushes. The confidence level sets how big a net you cast, and the sample size sets how sharp your estimate is. A third factor, how variable the data is, you usually cannot change, but it matters too." },
+    { "type": "keyPoints", "items": [
+      "**Higher confidence level $\\Rightarrow$ wider interval.** To be more sure of trapping $\\mu$ (95% to 99%), the interval must reach further, so it widens. Lower confidence gives a narrower but riskier interval.",
+      "**Larger sample size $\\Rightarrow$ narrower interval.** The standard error $s_x/\\sqrt{n}$ shrinks as $n$ grows, so more data sharpens the estimate. Because of the $\\sqrt{n}$, quartering the width needs roughly sixteen times the data; halving it needs about four times.",
+      "**Greater variability ($s_x$) $\\Rightarrow$ wider interval.** Noisier data gives a less precise estimate. You rarely control this, but it explains why two samples of the same size can give intervals of different widths."
+    ]},
+    { "type": "workedExample", "question": "A biologist measures the wingspan of a random sample of 40 butterflies of one species. The sample has mean wingspan 52.4 mm and standard deviation 6.0 mm. \\n (a) Find a 95% confidence interval for the mean wingspan $\\mu$ of the species. \\n (b) Find a 99% confidence interval for $\\mu$. \\n (c) Explain, with reference to your answers, the effect of raising the confidence level. [6]", "solution": "This is a Paper 2 question, so use the t-interval on the GDC with $\\bar{x} = 52.4$, $s_x = 6.0$, $n = 40$.\\n\\n**(a) 95% interval.** Enter the summary statistics and C-Level $= 0.95$.  [M1: correct GDC procedure with the three inputs]\\nThe GDC returns $(50.5, 54.3)$ mm (3 s.f.).  [A1]\\n\\n**(b) 99% interval.** Keep the same inputs and change C-Level to $0.99$.\\nThe GDC returns $(49.8, 55.0)$ mm (3 s.f.).  [A1]\\n\\n**(c) Effect of the confidence level.** The 99% interval, of width about $5.2$ mm, is wider than the 95% interval, of width about $3.8$ mm.  [A1: correct comparison of widths]\\nRaising the confidence level forces the interval to reach further so that it is more likely to contain the true mean, so greater confidence is bought at the price of a less precise (wider) interval.  [R1: correct explanation]\\n\\nNotice both intervals are centred on the same sample mean $52.4$ mm; only the margin of error changes." },
+
+    { "type": "heading", "content": "Hypothesis testing: the logic" },
+    { "type": "text", "content": "A hypothesis test is a disciplined way to decide whether a claim about a population is contradicted by sample evidence. You set up two competing hypotheses, assume the 'no effect' one is true, and then ask how surprising your sample would be under that assumption. If it would be very surprising, you take that as evidence against the assumption. The whole procedure is built to keep the risk of a false alarm at a level you choose in advance." },
+    { "type": "keyPoints", "items": [
+      "**Null hypothesis $H_0$:** the default 'no effect / no difference' claim, e.g. $\\mu = \\mu_0$ or $\\mu_1 = \\mu_2$. You assume it until the data forces you to abandon it.",
+      "**Alternative hypothesis $H_1$:** the claim you are testing for. Two-tailed uses $\\ne$; one-tailed uses $>$ or $<$, chosen from the wording.",
+      "**Significance level $\\alpha$:** the risk of rejecting $H_0$ when it is actually true. Fixed before the test, usually 0.05, sometimes 0.01 or 0.10.",
+      "**p-value:** the probability, computed by the GDC, of a sample at least as extreme as yours if $H_0$ were true.",
+      "**Decision:** if $p < \\alpha$ reject $H_0$; if $p \\ge \\alpha$ do not reject $H_0$. Always translate the decision into the context of the question."
+    ]},
+    { "type": "text", "content": "The p-value is the single most misread number in the topic, so pin down its meaning: it is the probability of getting a result as extreme as, or more extreme than, the one observed, ASSUMING the null hypothesis is true. It is not the probability that $H_0$ is true, and not the probability that you have made a mistake. A small p-value simply says 'a sample like this would rarely happen if $H_0$ held', which is why a small p-value counts as evidence against $H_0$." },
+
+    { "type": "heading", "content": "The one-sample t-test for a mean" },
+    { "type": "text", "content": "Use a one-sample $t$-test when you want to test whether a single population mean equals some claimed value $\\mu_0$, using one sample, when the population standard deviation is unknown and so is estimated from the sample. The GDC does the work: you enter the claimed mean $\\mu_0$, the sample mean, the sample standard deviation, the sample size and the tail, and it returns the p-value. Your job is to frame the hypotheses, pick the tail, and interpret." },
+    { "type": "formula", "content": "One-sample test of a mean against a claimed value $\\mu_0$: \\n $H_0: \\mu = \\mu_0$ \\n $H_1: \\mu \\ne \\mu_0$ (two-tailed), or $H_1: \\mu > \\mu_0$ or $H_1: \\mu < \\mu_0$ (one-tailed). \\n GDC inputs: $\\mu_0$, $\\bar{x}$, $s_x$, $n$, and the chosen tail; output: the $p$-value." },
+    { "type": "workedExample", "question": "A machine is set to fill bags with a mean mass of 500 g. A quality inspector suspects the setting has drifted. She weighs a random sample of 25 bags and finds a sample mean of 496 g with standard deviation 8 g. Test, at the 5% significance level, whether the mean mass differs from 500 g. [6]", "solution": "Let $\\mu$ be the true mean mass of all bags filled by the machine.\\n\\n**1. Hypotheses.** The word 'differs' signals a two-tailed test:\\n$H_0: \\mu = 500$\\n$H_1: \\mu \\ne 500$  [A1]\\n\\n**2. Significance level.** $\\alpha = 0.05$.  [A1]\\n\\n**3. Test on the GDC.** Run a one-sample $t$-test with $\\mu_0 = 500$, $\\bar{x} = 496$, $s_x = 8$, $n = 25$, alternative $\\ne \\mu_0$.  [M1: correct procedure and inputs]\\n\\n**4. p-value.** The GDC returns $p = 0.0198$ (3 s.f.).  [A1]\\n\\n**5. Compare and decide.** Since $p = 0.0198 < 0.05 = \\alpha$, reject $H_0$.  [R1: correct comparison and decision]\\n\\n**6. Conclusion in context.** There is sufficient evidence at the 5% significance level to conclude that the mean mass of the bags differs from 500 g, so the inspector's suspicion that the setting has drifted is supported.  [A1]" },
+    { "type": "examTip", "content": "Show the four load-bearing lines every time: the hypotheses (with the tail matching the wording), the significance level, the p-value from the GDC, and the explicit comparison '$p < \\alpha$' or '$p \\ge \\alpha$' before the conclusion. These are separate marks. A bare 'reject $H_0$' with no p-value and no comparison throws away the method marks even when the final decision is right." },
+
+    { "type": "heading", "content": "The two-sample t-test for the difference of two means" },
+    { "type": "text", "content": "Use a two-sample $t$-test to compare the means of two independent groups, for example two fertilisers, two teaching methods, or a treatment against a placebo. You have two samples, each with its own mean, standard deviation and size, and you want to know whether the underlying population means differ. The populations are assumed to be normally distributed; you do not need to know their standard deviations. Unless the question tells you the two populations have equal variances, choose the unpooled option ('Pooled: No') on the GDC." },
+    { "type": "formula", "content": "Comparing two population means $\\mu_1$ and $\\mu_2$: \\n $H_0: \\mu_1 = \\mu_2$ \\n $H_1: \\mu_1 \\ne \\mu_2$ (two-tailed), or $H_1: \\mu_1 > \\mu_2$ or $H_1: \\mu_1 < \\mu_2$ (one-tailed). \\n GDC inputs: each sample's $\\bar{x}$, $s_x$, $n$; the chosen tail; Pooled: No (default). Output: the $p$-value." },
+    { "type": "workedExample", "question": "A gardener compares two fertilisers on a plant species. With fertiliser A, a sample of 15 plants has mean height 48.2 cm and standard deviation 5.1 cm. With fertiliser B, a sample of 18 plants has mean height 52.9 cm and standard deviation 4.6 cm. Assuming heights are normally distributed, test at the 5% significance level whether fertiliser B produces a greater mean height than fertiliser A. [6]", "solution": "Let $\\mu_A$ and $\\mu_B$ be the true mean heights with fertilisers A and B.\\n\\n**1. Hypotheses.** 'Greater' is directional, so this is one-tailed:\\n$H_0: \\mu_A = \\mu_B$\\n$H_1: \\mu_A < \\mu_B$ (fertiliser B gives the greater mean).  [A1]\\n\\n**2. Significance level.** $\\alpha = 0.05$.  [A1]\\n\\n**3. Test on the GDC.** Run a two-sample $t$-test.\\nSample A: $\\bar{x}_A = 48.2$, $s_A = 5.1$, $n_A = 15$.\\nSample B: $\\bar{x}_B = 52.9$, $s_B = 4.6$, $n_B = 18$.\\nAlternative: $\\mu_A < \\mu_B$; Pooled: No.  [M1: correct procedure, inputs and tail]\\n\\n**4. p-value.** The GDC returns $p = 0.00537$ (3 s.f.).  [A1]\\n\\n**5. Compare and decide.** Since $p = 0.00537 < 0.05 = \\alpha$, reject $H_0$.  [R1]\\n\\n**6. Conclusion in context.** There is sufficient evidence at the 5% significance level to conclude that fertiliser B produces a greater mean plant height than fertiliser A.  [A1]" },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Interpreting a confidence interval as being about individuals** — a 95% CI for the mean is about the population MEAN $\\mu$, not the spread of individual values, and not the probability for the next single item.",
+      "**Getting the width effects backwards** — a HIGHER confidence level widens the interval and a LARGER sample size narrows it. Saying more confidence makes it narrower, or more data makes it wider, loses the mark.",
+      "**Choosing the wrong tail** — 'different / changed' is two-tailed ($\\ne$); 'greater / less / increased / reduced' is one-tailed ($>$ or $<$). The wrong tail mis-states $H_1$ and usually changes the p-value.",
+      "**Not stating $\\alpha$ or the comparison** — you must state the significance level and write the explicit comparison $p < \\alpha$ (or $p \\ge \\alpha$) before deciding. A conclusion with no p-value and no comparison forfeits method marks.",
+      "**Writing 'accept $H_0$'** — we never accept $H_0$. When $p \\ge \\alpha$ we 'do not reject $H_0$', meaning the evidence was insufficient, not that $H_0$ is proven.",
+      "**Misdescribing the p-value** — it is the probability of data this extreme GIVEN $H_0$, not the probability that $H_0$ is true and not the probability of an error.",
+      "**Stopping at 'reject $H_0$'** — the final mark needs a sentence in context (about box masses, plant heights, and so on), not just the statistical verdict."
+    ]},
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards the correct approach; an accuracy mark (A) rewards a correct result and depends on the method mark it follows; follow-through (FT) means an error made earlier does not have to cost the marks that depend on it, provided the later step is carried out correctly on your own figures. The engine also ignores subsequent working once a correct answer appears, and accepts any equivalent wording. That protection only exists if the reasoning is on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A sample of 30 batteries has a mean life of 42.0 hours with standard deviation 3.5 hours. A 95% confidence interval for the mean life is (40.7, 43.3) hours. Interpret this interval, and state whether it supports a claim that the mean life is 45 hours. [4]", "solution": "**Model answer — full working.**\\n\\n**Interpretation.** We are 95% confident that the true mean life $\\mu$ of the batteries lies between 40.7 hours and 43.3 hours.\\n\\n**Testing the claim.** The claimed mean of 45 hours does not lie in the interval $(40.7, 43.3)$, since $45 > 43.3$.\\n\\n**Conclusion.** Because 45 is outside the 95% confidence interval, the claim that the mean life is 45 hours is not supported at the 5% level.\\n\\n---\\n**How our marking engine awards the 4 marks:**\\n\\n- **M1 — interpretation of the interval.** A method mark for correctly reading the interval as a confidence statement about the population MEAN (not individual batteries), framed as 'we are 95% confident the true mean lies in the interval'.\\n- **A1 — the interpretation stated precisely.** Awarded for the completed statement 'we are 95% confident the true mean life lies in $(40.7, 43.3)$ hours', with the correct bounds and the correct object (the mean). This accuracy mark depends on the M1 above.\\n- **M1 — checking the claimed value.** A method mark for testing whether 45 lies inside the interval, i.e. comparing 45 with the bounds and observing $45 > 43.3$, so 45 is outside.\\n- **A1 — conclusion, with follow-through.** Awarded for the reasoned conclusion that, since 45 is outside the interval, the 45-hour claim is not supported at the 5% level. This is FT on the candidate's own interval: a student who read slightly different bounds but correctly checked 45 against THEIR interval and drew the matching conclusion still earns it.\\n\\n**'Accept equivalent forms.'** The engine accepts 'we can be 95% confident', 'the plausible range for the mean is 40.7 to 43.3 hours', and a conclusion phrased either as 'the claim is not supported' or 'there is evidence the mean is not 45 hours'. Once a correct conclusion appears, ISW means a later restatement does not lose marks.\\n\\n**Bottom line:** of the 4 marks, two are method marks that survive a small numerical slip, and the accuracy marks are shielded by follow-through, but only if you actually write the interpretation and the comparison. A bare 'no, 45 is wrong' with no confidence statement and no comparison risks losing 3 of the 4 marks." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way, analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: for a confidence interval, state the confidence and the range in words and, if a claim is involved, compare the claimed value with the bounds and conclude. For a test, write $H_0$ and $H_1$, the significance level, the p-value and the comparison $p < \\alpha$ before the contextual conclusion. The method marks and follow-through are what protect your score when a number slips, and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Confidence intervals and $t$-tests are the working core of inference, and the rest of the statistics course leans on the same habits. The standard error $s_x/\\sqrt{n}$ that sets an interval's width is the same quantity that drives every test statistic you meet; the p-value-versus-$\\alpha$ decision rule reappears unchanged in the chi-squared tests for goodness of fit and independence; and the discipline of stating hypotheses, choosing a tail, reading the GDC and concluding in context is exactly what regression significance and further HL inference reward. Master the two moves here, estimate a mean with an honest interval, and test a claim with an honest p-value, and the inference that follows is variation on a routine you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 inference question marked: state the hypotheses, read the p-value and conclude with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=4.9&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB Mathematics Formula Booklet", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/" },
+      { "label": "Khan Academy: Confidence intervals", "href": "https://www.khanacademy.org/math/statistics-probability/confidence-intervals-one-sample" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1",
+  "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
     "provider": "geogebra",
     "title": "Chi-Squared Test Simulator",

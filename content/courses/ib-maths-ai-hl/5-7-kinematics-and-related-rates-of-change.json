@@ -5,193 +5,125 @@
   "paper": "P1",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "This lesson explores kinematics, the mathematical study of motion. It connects the concepts of displacement, velocity, and acceleration using calculus. You will learn to apply differentiation to find rates of change and integration to determine total change, as well as solving problems involving related rates.",
-  "durationMin": 22,
-  "updated": "2026-06-21",
+  "unit": { "code": "5", "title": "Calculus" },
+  "summary": "This lesson is the calculus of motion. Differentiate a displacement function to get velocity ($v=\\frac{ds}{dt}$) and again to get acceleration ($a=\\frac{dv}{dt}=\\frac{d^2s}{dt^2}$); integrate to go back the other way ($v=\\int a\\,dt$, $s=\\int v\\,dt$), pinning down each constant with an initial condition. You will read motion off these functions — a particle is at rest when $v=0$, and total distance ($\\int|v|\\,dt$) is not the same as displacement ($\\int v\\,dt$). Then you will meet related rates: two quantities linked by an equation, whose rates of change are joined by the chain rule with respect to time. Every worked example is laid out exactly the way our marking engine awards marks, because on an exam how you show your working decides how many marks you keep.",
+  "durationMin": 24,
+  "updated": "2026-07-04",
   "learningObjectives": [
-    "Understand and apply the relationships between displacement, velocity, and acceleration.",
-    "Use differentiation to solve problems in kinematics and related rates.",
-    "Use integration with initial conditions to solve problems in kinematics.",
-    "Distinguish between displacement/distance and velocity/speed in kinematic problems."
+    "Differentiate displacement to find velocity ($v=\\frac{ds}{dt}$) and acceleration ($a=\\frac{dv}{dt}=\\frac{d^2s}{dt^2}$).",
+    "Integrate acceleration to find velocity and integrate velocity to find displacement, using initial conditions to determine the constant of integration.",
+    "Interpret motion: locate when a particle is at rest ($v=0$), and distinguish displacement ($\\int v\\,dt$) from total distance travelled ($\\int|v|\\,dt$).",
+    "Solve related-rates problems by differentiating a linking equation with respect to time and applying the chain rule.",
+    "Present working so that method marks (M), accuracy marks (A) and follow-through (FT) protect the final answer."
   ],
+  "syllabusObjectivesCovered": ["5.7"],
+  "levelNote": "HL only — Higher Level content.",
   "simpleExplanation": {
     "title": "Calculus in Motion",
-    "summary": "Kinematics uses the tools of calculus to precisely describe how objects move. By understanding derivatives and integrals, we can switch between describing an object's position, its speed, and its acceleration.",
-    "analogy": "Imagine you're driving a car. Your position on a long, straight road is your displacement. The reading on your speedometer is your velocity (speed in a specific direction). How hard you press the accelerator or brake determines your acceleration. Calculus provides the mathematical engine to connect these three ideas: pressing the accelerator (acceleration) changes your speed (velocity), which in turn changes your position (displacement) over time.",
+    "summary": "Kinematics uses calculus to describe how something moves. Differentiating takes you forward — position to velocity to acceleration; integrating takes you back. Related rates use the chain rule to connect the speeds at which two linked quantities change.",
+    "analogy": "Picture driving on a long straight road. Your position is displacement, your speedometer reading is velocity, and the pedal you press is acceleration. Differentiation runs the chain one way — pressing the pedal (acceleration) changes your speed (velocity), which changes your position (displacement). Integration runs it back the other way. Related rates are a different picture: think of a balloon being inflated — the volume and the radius are tied together, so the rate the volume grows fixes the rate the radius grows.",
     "steps": [
-      "First, identify the key variables in the problem, such as displacement ($s$), velocity ($v$), acceleration ($a$), and time ($t$). Note down any given initial conditions.",
-      "To find velocity from displacement, or acceleration from velocity, differentiate the relevant function with respect to time ($v = \\frac{ds}{dt}$, $a = \\frac{dv}{dt}$).",
-      "To find velocity from acceleration, or displacement from velocity, integrate the relevant function with respect to time ($v = \\int a(t) \\, dt$, $s = \\int v(t) \\, dt$).",
-      "Always include the constant of integration, $C$, after integrating. Use the given initial conditions (e.g., 'starts from rest' or 'initial position is 5m') to solve for $C$ and find the specific solution."
+      "Identify the variables — displacement $s$, velocity $v$, acceleration $a$, time $t$ — and write down any initial conditions.",
+      "To go forward (position to velocity to acceleration), differentiate with respect to time: $v=\\frac{ds}{dt}$, $a=\\frac{dv}{dt}$.",
+      "To go back (acceleration to velocity to displacement), integrate with respect to time and add a constant: $v=\\int a\\,dt+C$, $s=\\int v\\,dt+C$; use an initial condition to find each $C$.",
+      "For related rates, write the equation linking the quantities, differentiate both sides with respect to $t$ (chain rule), then substitute the instant's values and solve for the unknown rate."
     ]
   },
+  "keyConcepts": ["velocity as ds/dt", "acceleration as dv/dt", "integration with initial conditions", "displacement vs total distance", "related rates via the chain rule"],
   "flashcards": [
-    {
-      "front": "What is Kinematics?",
-      "back": "The branch of mechanics concerned with the motion of objects without reference to the forces which cause the motion."
-    },
-    {
-      "front": "Define Displacement ($s$).",
-      "back": "The position of an object relative to a fixed origin. It is a vector quantity, so it can be positive or negative."
-    },
-    {
-      "front": "Define Velocity ($v$).",
-      "back": "The rate of change of displacement with respect to time. It is a vector quantity, measured in units like m/s."
-    },
-    {
-      "front": "Define Acceleration ($a$).",
-      "back": "The rate of change of velocity with respect to time. It is a vector quantity, measured in units like m/s²."
-    },
-    {
-      "front": "How do you find velocity from a displacement function $s(t)$?",
-      "back": "Differentiate with respect to time: $v(t) = s'(t) = \\frac{ds}{dt}$."
-    },
-    {
-      "front": "How do you find acceleration from a velocity function $v(t)$?",
-      "back": "Differentiate with respect to time: $a(t) = v'(t) = \\frac{dv}{dt}$."
-    },
-    {
-      "front": "How do you find displacement from a velocity function $v(t)$?",
-      "back": "Integrate with respect to time: $s(t) = \\int v(t) \\, dt$. Don't forget the constant of integration, $C$."
-    },
-    {
-      "front": "How do you find velocity from an acceleration function $a(t)$?",
-      "back": "Integrate with respect to time: $v(t) = \\int a(t) \\, dt$. Don't forget the constant of integration, $C$."
-    },
-    {
-      "front": "What is the difference between speed and velocity?",
-      "back": "Velocity is a vector (has direction), while speed is a scalar (magnitude only). Speed is the magnitude of velocity, speed = $|v|$. If velocity is -5 m/s, the speed is 5 m/s."
-    },
-    {
-      "front": "What is the difference between total distance and displacement?",
-      "back": "Displacement is the net change in position from start to finish. Total distance is the sum of all movements, regardless of direction. To find total distance, you must integrate the speed, $|v(t)|$."
-    },
-    {
-      "front": "What does 'at rest' mean in a kinematics problem?",
-      "back": "The object's velocity is zero. $v(t) = 0$."
-    },
-    {
-      "front": "What does 'initially' mean in a kinematics problem?",
-      "back": "This refers to the state at time $t=0$."
-    },
-    {
-      "front": "What is the core idea of 'Related Rates of Change'?",
-      "back": "Using the chain rule (e.g., $\\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt}$) to find the rate of change of one quantity by relating it to other quantities whose rates of change are known."
-    }
+    { "front": "How do you find velocity from a displacement function $s(t)$?", "back": "Differentiate with respect to time: $v(t) = \\frac{ds}{dt} = s'(t)$.", "pillLabel": "Formula" },
+    { "front": "How do you find acceleration from displacement or velocity?", "back": "Differentiate velocity, or differentiate displacement twice: $a(t) = \\frac{dv}{dt} = \\frac{d^2s}{dt^2}$.", "pillLabel": "Formula" },
+    { "front": "How do you find velocity from acceleration, and displacement from velocity?", "back": "Integrate with respect to time: $v = \\int a\\,dt + C$ and $s = \\int v\\,dt + C$. Never forget the constant.", "pillLabel": "Formula" },
+    { "front": "What does it mean for a particle to be 'at rest'?", "back": "Its velocity is zero: solve $v(t)=0$. It does NOT mean the acceleration is zero.", "pillLabel": "Concept" },
+    { "front": "What does 'initially' mean?", "back": "The state at $t=0$. 'Starts from rest' means $v=0$ at $t=0$; 'starts at the origin' means $s=0$ at $t=0$.", "pillLabel": "Concept" },
+    { "front": "Speed versus velocity?", "back": "Velocity is a vector (has direction and sign); speed is its magnitude, $|v|$, always non-negative. A velocity of $-5$ m/s is a speed of $5$ m/s.", "pillLabel": "Definition" },
+    { "front": "Displacement versus total distance travelled?", "back": "Displacement is the net change in position, $\\int_{t_1}^{t_2} v\\,dt$. Total distance is $\\int_{t_1}^{t_2} |v|\\,dt$ — you must account for the direction changes where $v$ switches sign.", "pillLabel": "Trap" },
+    { "front": "How do you find the constant of integration?", "back": "Substitute an initial condition (e.g. $v=8$ when $t=0$) into your integrated expression and solve for $C$.", "pillLabel": "Framework" },
+    { "front": "What is the core idea of related rates of change?", "back": "Two quantities are linked by an equation; differentiating that equation with respect to time joins their rates via the chain rule, e.g. $\\frac{dV}{dt} = \\frac{dV}{dr}\\times\\frac{dr}{dt}$.", "pillLabel": "Concept" },
+    { "front": "The chain rule for related rates.", "back": "If $y$ depends on $x$ and $x$ depends on $t$, then $\\frac{dy}{dt} = \\frac{dy}{dx}\\times\\frac{dx}{dt}$. Rearrange to make the unknown rate the subject.", "pillLabel": "Formula" },
+    { "front": "Common trap: at rest means acceleration is zero.", "back": "No. 'At rest' means $v=0$. The acceleration at that instant is usually NOT zero — that is exactly what makes the particle start moving again.", "pillLabel": "Trap" },
+    { "front": "Common trap: forgetting to change direction for total distance.", "back": "If $v$ changes sign in the interval, integrating $v$ directly gives displacement, not distance. Split at the times where $v=0$, or integrate $|v|$.", "pillLabel": "Trap" }
+  ],
+  "quickCheck": [
+    { "prompt": "For a particle with displacement $s(t)$, the velocity is:", "options": ["$\\dfrac{ds}{dt}$", "$\\displaystyle\\int s\\,dt$", "$\\dfrac{d^2s}{dt^2}$", "$s(t)$ itself"], "answer": "$\\dfrac{ds}{dt}$" },
+    { "prompt": "Given a velocity function $v(t)$, the acceleration is:", "options": ["$\\displaystyle\\int v\\,dt$", "$\\dfrac{dv}{dt}$", "$\\dfrac{1}{v}$", "$|v|$"], "answer": "$\\dfrac{dv}{dt}$" },
+    { "prompt": "A particle is instantaneously 'at rest' at time $t$. This means:", "options": ["$a(t)=0$", "$v(t)=0$", "$s(t)=0$", "$s(t)=v(t)$"], "answer": "$v(t)=0$" },
+    { "prompt": "The volume $V$ and radius $r$ of a balloon are linked. To connect $\\frac{dV}{dt}$ and $\\frac{dr}{dt}$ you use:", "options": ["The product rule on $V$ and $r$", "The chain rule: $\\frac{dV}{dt}=\\frac{dV}{dr}\\times\\frac{dr}{dt}$", "Simply divide $V$ by $r$", "Integration by parts"], "answer": "The chain rule: $\\frac{dV}{dt}=\\frac{dV}{dr}\\times\\frac{dr}{dt}$" },
+    { "prompt": "A particle's velocity changes sign during $0\\le t\\le 5$. The TOTAL distance travelled is:", "options": ["$\\displaystyle\\int_0^5 v\\,dt$", "$\\displaystyle\\int_0^5 |v|\\,dt$", "$s(5)-s(0)$", "$\\displaystyle\\int_0^5 a\\,dt$"], "answer": "$\\displaystyle\\int_0^5 |v|\\,dt$" }
   ],
   "faq": [
-    {
-      "q": "What is the difference between speed and velocity again?",
-      "a": "Velocity is a vector, meaning it has both magnitude and direction. A velocity of -10 m/s means moving at 10 m/s in the negative direction. Speed is the scalar magnitude of velocity, so it's always non-negative. In this case, the speed would be $|-10| = 10$ m/s."
-    },
-    {
-      "q": "And what about displacement versus total distance?",
-      "a": "Displacement is the straight-line distance and direction from the starting point to the ending point. If you walk 5m east and then 5m west, your displacement is 0m, but the total distance you travelled is 10m. In calculus terms, displacement is $\\int v(t) dt$, while total distance is $\\int |v(t)| dt$."
-    },
-    {
-      "q": "I'm confused about the constant of integration, C. How do I always find it?",
-      "a": "The constant $C$ arises from indefinite integration. To find it, you need a piece of information that 'pins down' the function. This is usually an 'initial condition' given in the problem, like 'The particle starts from rest' (meaning $v=0$ at $t=0$) or 'The initial displacement is 5 metres' (meaning $s=5$ at $t=0$). You substitute these values into your integrated equation and solve for $C$."
-    },
-    {
-      "q": "When can I use my GDC in these questions?",
-      "a": "You can use your GDC extensively, but you must show your method. For differentiation and integration, write down the derivative or integral you are about to calculate before using the GDC's numerical functions (nDeriv/fnInt). For solving equations like $v(t)=0$, write the equation first, then use the GDC's solver and state that you did. Your GDC is a tool to speed up calculation, not to skip showing your mathematical understanding."
-    }
+    { "q": "What is the difference between speed and velocity?", "a": "Velocity is a vector: it has magnitude and direction (a sign). A velocity of $-10$ m/s means moving at $10$ m/s in the negative direction. Speed is the scalar magnitude, $|v|$, so it is never negative — here the speed is $10$ m/s." },
+    { "q": "And displacement versus total distance?", "a": "Displacement is the net change in position from start to finish. If you walk 5 m east then 5 m west, your displacement is 0 m but the total distance is 10 m. In calculus, displacement over $[t_1,t_2]$ is $\\int_{t_1}^{t_2} v\\,dt$ while total distance is $\\int_{t_1}^{t_2} |v|\\,dt$. If $v$ changes sign, these differ — split the integral at the times where $v=0$." },
+    { "q": "How do I always find the constant of integration, $C$?", "a": "Integrate first, keeping $+C$, then use a piece of information that pins the function down — an initial condition. 'Starts from rest' gives $v=0$ at $t=0$; 'initial displacement is 5 m' gives $s=5$ at $t=0$. Substitute and solve for $C$. When you integrate a second time, use a new letter for the new constant." },
+    { "q": "How is a related-rates question different from ordinary differentiation?", "a": "In a related-rates problem two quantities both change with time and are joined by an equation. You differentiate that equation with respect to $t$ — treating every variable as a function of time, so the chain rule appears — which links their rates. Then you substitute the values for the particular instant. The trap is substituting the instant's numbers too early, before differentiating." },
+    { "q": "When can I use my GDC in these questions?", "a": "Freely, but show your method. Write the derivative or integral you intend to compute before using the GDC's numerical tools; write the equation $v(t)=0$ before using the solver, and state that you used it. For total distance, enter $\\int |v|\\,dt$ using the absolute-value function. The GDC speeds up the arithmetic; it does not replace the line of working that earns the method mark." }
   ],
   "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the study of kinematics, where calculus meets the real world of motion. This topic is fundamental in physics and engineering, allowing us to model everything from a thrown ball to a planet's orbit. We will see how the simple acts of differentiating and integrating provide a powerful framework for describing and predicting movement."
-    },
-    {
-      "type": "heading",
-      "content": "The Language of Motion: Displacement, Velocity, and Acceleration"
-    },
-    {
-      "type": "text",
-      "content": "To analyse motion, we need a precise vocabulary. We consider motion along a straight line. \n\n*   **Displacement ($s$)**: This is the object's position relative to a fixed point, called the origin. It's measured in units of length (e.g., metres). A positive displacement might mean 'right of the origin', while a negative displacement means 'left of the origin'.\n*   **Velocity ($v$)**: This is how fast the displacement is changing. It's the rate of change of displacement with respect to time. It's measured in units like metres per second (m/s). A positive velocity means moving away from the origin in the positive direction, while a negative velocity means moving towards or past the origin in the negative direction.\n*   **Acceleration ($a$)**: This is how fast the velocity is changing. It's the rate of change of velocity with respect to time, measured in units like metres per second squared (m/s²). Positive acceleration means the velocity is increasing; negative acceleration (or deceleration) means the velocity is decreasing."
-    },
-    {
-      "type": "heading",
-      "content": "From Position to Acceleration: Differentiation"
-    },
-    {
-      "type": "text",
-      "content": "Since velocity is the rate of change of displacement, and acceleration is the rate of change of velocity, we can use differentiation to find one from the other. This is the core link between these kinematic quantities."
-    },
-    {
-      "type": "formula",
-      "content": "Velocity: $v(t) = \\frac{ds}{dt} = s'(t)$ \n\nAcceleration: $a(t) = \\frac{dv}{dt} = v'(t) = \\frac{d^2s}{dt^2} = s''(t)$"
-    },
-    {
-      "type": "workedExample",
-      "question": "A particle moves along a straight line. Its displacement, $s$ metres from a point O, at time $t$ seconds ($t \\ge 0$) is given by $s(t) = 2t^3 - 15t^2 + 24t + 10$.\n\na) Find the velocity of the particle at time $t$.\nb) Find the value of $t$ when the particle is at rest.\nc) Find the acceleration of the particle at the times when it is at rest.",
-      "solution": "a) Velocity is the derivative of displacement.\n$v(t) = s'(t) = \\frac{d}{dt}(2t^3 - 15t^2 + 24t + 10)$ \n$v(t) = 6t^2 - 30t + 24$ (m/s)  (A2)\n\n_Award (A2) for all terms correct, (A1) for two terms correct._\n\nb) The particle is at rest when its velocity is zero, so $v(t) = 0$.\n$6t^2 - 30t + 24 = 0$  (M1)\n_This is a quadratic equation. We can solve it using the GDC's polynomial solver or by factoring._\nDividing by 6: $t^2 - 5t + 4 = 0$\nFactoring: $(t-1)(t-4) = 0$  (M1)\nSo, $t=1$ second and $t=4$ seconds.  (A1)\n\n_Award (M1) for setting their v(t) to 0, (M1) for attempting to solve the quadratic, (A1) for both correct answers._\n\nc) First, find the acceleration function by differentiating velocity.\n$a(t) = v'(t) = \\frac{d}{dt}(6t^2 - 30t + 24)$\n$a(t) = 12t - 30$ (m/s²)  (A1)\n\nNow, substitute the times when the particle is at rest ($t=1$ and $t=4$).\nAt $t=1$: $a(1) = 12(1) - 30 = -18$ m/s²  (A1)\nAt $t=4$: $a(4) = 12(4) - 30 = 48 - 30 = 18$ m/s²  (A1)\n\n_Award (A1) for the correct acceleration function, and (A1) for each correct acceleration value._"
-    },
-    {
-      "type": "heading",
-      "content": "From Acceleration to Position: Integration"
-    },
-    {
-      "type": "text",
-      "content": "Just as we can differentiate to move from displacement to velocity to acceleration, we can integrate to go in the opposite direction. When we integrate, we must always include a constant of integration, $C$. This constant is determined by the 'initial conditions' of the problem, such as the object's starting position or starting velocity."
-    },
-    {
-      "type": "formula",
-      "content": "Velocity from acceleration: $v(t) = \\int a(t) \\, dt + C_1$\n\nDisplacement from velocity: $s(t) = \\int v(t) \\, dt + C_2$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The constant of integration, $C$, is essential and represents an initial value.",
-        "An object 'starting from rest' means its initial velocity is zero ($v=0$ at $t=0$).",
-        "An object 'starting from the origin' means its initial displacement is zero ($s=0$ at $t=0$).",
-        "Always read the question carefully to find the initial conditions needed to solve for $C$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A particle P starts from a point O and moves in a straight line. The acceleration of P at time $t$ seconds ($t \\ge 0$) is given by $a(t) = 12 - 4t$ m/s². The initial velocity of P is 8 m/s.\n\na) Find an expression for the velocity of P at time $t$.\nb) Find the displacement of P from O after 3 seconds.",
-      "solution": "a) To find velocity, we integrate acceleration.\n$v(t) = \\int a(t) \\, dt = \\int (12 - 4t) \\, dt$  (M1)\n$v(t) = 12t - \\frac{4t^2}{2} + C = 12t - 2t^2 + C$  (A1)\n\nWe are given that the initial velocity is 8 m/s. This means $v=8$ when $t=0$.\n$v(0) = 8 = 12(0) - 2(0)^2 + C$  (M1)\n$C = 8$\n\nSo, the velocity expression is $v(t) = -2t^2 + 12t + 8$ m/s.  (A1)\n\n_Award (M1) for attempting to integrate a(t), (A1) for the correct integration, (M1) for using initial conditions, (A1) for the final correct expression._\n\nb) To find displacement, we integrate velocity. The particle starts from O, so its initial displacement is 0.\n$s(t) = \\int v(t) \\, dt = \\int (-2t^2 + 12t + 8) \\, dt$  (M1)\n$s(t) = -\\frac{2t^3}{3} + \\frac{12t^2}{2} + 8t + K$ (Note: use a different letter, K, for the new constant)\n$s(t) = -\\frac{2}{3}t^3 + 6t^2 + 8t + K$  (A1)\n\nSince the particle starts from O, $s=0$ when $t=0$.\n$s(0) = 0 = -\\frac{2}{3}(0)^3 + 6(0)^2 + 8(0) + K implies K=0$.\nSo, $s(t) = -\\frac{2}{3}t^3 + 6t^2 + 8t$.\n\nWe need the displacement after 3 seconds, so we substitute $t=3$.\n$s(3) = -\\frac{2}{3}(3)^3 + 6(3)^2 + 8(3)$  (M1)\n$s(3) = -\\frac{2}{3}(27) + 6(9) + 24$\n$s(3) = -18 + 54 + 24 = 60$\n\nThe displacement of P from O after 3 seconds is 60 metres.  (A1)"
-    },
-    {
-      "type": "heading",
-      "content": "Related Rates of Change"
-    },
-    {
-      "type": "text",
-      "content": "Sometimes, two or more quantities that change over time are linked by an equation. For example, the volume, radius, and height of a cylinder. If we know the rate at which one quantity is changing (e.g., the radius is increasing), we can find the rate at which another is changing (e.g., the volume is increasing). The key is to use the chain rule with respect to time, $t$."
-    },
-    {
-      "type": "formula",
-      "content": "The Chain Rule for Related Rates: $\\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt}$"
-    },
-    {
-      "type": "workedExample",
-      "question": "Air is being pumped into a spherical balloon at a rate of 160 cm³/s. Find the rate at which the radius of the balloon is increasing when its radius is 5 cm. The volume of a sphere is given by $V = \\frac{4}{3}\\pi r^3$.",
-      "solution": "1. **Identify knowns and unknowns.**\nWe are given the rate of change of volume: $\\frac{dV}{dt} = 160$ cm³/s.\nWe are given the radius at a specific instant: $r = 5$ cm.\nWe want to find the rate of change of the radius: $\\frac{dr}{dt}$. (M1)\n\n2. **Find the equation linking the variables.**\nThe equation is given: $V = \\frac{4}{3}\\pi r^3$.\n\n3. **Differentiate the equation with respect to time, $t$.**\nWe need to differentiate both sides of $V = \\frac{4}{3}\\pi r^3$ with respect to $t$. We use the chain rule for the right side, since $r$ is a function of $t$.\n$\\frac{dV}{dt} = \\frac{d}{dt} \\left(\\frac{4}{3}\\pi r^3\\right)$\n$\\frac{dV}{dt} = \\frac{d}{dr} \\left(\\frac{4}{3}\\pi r^3\\right) \\times \\frac{dr}{dt}$  (M1)\n$\\frac{dV}{dt} = \\left(3 \\times \\frac{4}{3}\\pi r^2\\right) \\times \\frac{dr}{dt}$\n$\\frac{dV}{dt} = 4\\pi r^2 \\frac{dr}{dt}$  (A1)\n\n4. **Substitute known values and solve for the unknown.**\nSubstitute $\\frac{dV}{dt} = 160$ and $r=5$ into the differentiated equation.\n$160 = 4\\pi (5)^2 \\frac{dr}{dt}$  (M1)\n$160 = 4\\pi (25) \\frac{dr}{dt}$\n$160 = 100\\pi \\frac{dr}{dt}$\n\nNow, rearrange to solve for $\\frac{dr}{dt}$.\n$\\frac{dr}{dt} = \\frac{160}{100\\pi} = \\frac{1.6}{\\pi}$  (A1)\n\nCalculating the value:\n$\\frac{dr}{dt} \\approx 0.50929...$\n\nThe radius is increasing at a rate of approximately 0.509 cm/s (to 3 s.f.).  (A1)"
-    },
-    {
-      "type": "examTip",
-      "content": "In kinematics questions, a common trap is the difference between 'displacement' and 'total distance travelled'. Displacement is $\\int_{t_1}^{t_2} v(t) \\, dt$. Total distance travelled is $\\int_{t_1}^{t_2} |v(t)| \\, dt$. On your GDC, this means using the absolute value of the velocity function. Always sketch the velocity graph to see if it crosses the t-axis (goes from positive to negative or vice-versa) in the interval you are considering."
-    },
-    {
-      "type": "practice",
-      "label": "Practice Kinematics & Related Rates",
-      "href": "/mark?subject=ib-maths-ai-hl&topic=5.7"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "IB AI HL Questionbank",
-          "href": "https://www.ibtaskmaker.com/home.php"
-        },
-        {
-          "label": "Revision Village - Kinematics",
-          "href": "https://www.revisionvillage.com/ib-math-ai-hl/calculus/kinematics/"
-        }
-      ]
-    }
+    { "type": "intro", "content": "Kinematics is where calculus meets motion. A single displacement function carries everything about how a particle moves along a line — you just have to ask the right calculus question. Differentiate and you step forward: position becomes velocity, velocity becomes acceleration. Integrate and you step back, provided you supply an initial condition to fix the constant. The same derivative idea then powers related rates, where two changing quantities are tied together and the chain rule converts one known rate into the one you want. As in every calculation topic, each worked example below is laid out exactly the way our engine marks your own practice: the method is on the page, mark by mark." },
+
+    { "type": "heading", "content": "The language of motion" },
+    { "type": "text", "content": "We work with motion along a straight line, measured from a fixed origin O. Displacement $s$ is the position relative to O — a signed quantity, positive on one side and negative on the other. Velocity $v$ is the rate of change of displacement: how fast, and in which direction, the position is changing. Acceleration $a$ is the rate of change of velocity. Two words matter for the exam: velocity is a vector (it carries a sign), while speed is its magnitude $|v|$; and displacement (net change of position) is not the same as the total distance travelled (the length of the whole journey)." },
+    { "type": "formula", "content": "Going forward, differentiate with respect to time:\n\nVelocity: $v(t) = \\dfrac{ds}{dt} = s'(t)$\n\nAcceleration: $a(t) = \\dfrac{dv}{dt} = v'(t) = \\dfrac{d^2s}{dt^2} = s''(t)$" },
+    { "type": "keyPoints", "items": [
+      "Velocity is the first derivative of displacement; acceleration is the derivative of velocity (the second derivative of displacement).",
+      "A particle is at rest when $v(t)=0$ — solve this equation to find those times.",
+      "Speed is $|v|$; it is never negative even when the velocity is.",
+      "Displacement is the net change of position; total distance is the length of the whole path."
+    ]},
+    { "type": "workedExample", "question": "A particle moves along a straight line. Its displacement, $s$ metres from a point O, at time $t$ seconds ($t \\ge 0$) is $s(t) = 2t^3 - 15t^2 + 24t + 10$.\n(a) Find the velocity of the particle at time $t$.\n(b) Find the times when the particle is at rest.\n(c) Find the acceleration at each of those times. [7]", "solution": "**(a)** Velocity is the derivative of displacement.\n$v(t) = s'(t) = 6t^2 - 30t + 24$ (m/s).  [A1]\n\n**(b)** The particle is at rest when $v(t)=0$.\n$6t^2 - 30t + 24 = 0$  [M1: set their $v(t)=0$]\nDivide by 6: $t^2 - 5t + 4 = 0 \\Rightarrow (t-1)(t-4)=0$.  [M1: solve the quadratic]\nSo $t=1$ s and $t=4$ s.  [A1]\n\n**(c)** Differentiate velocity to get acceleration:\n$a(t) = v'(t) = 12t - 30$ (m/s$^2$).  [A1]\nAt $t=1$: $a(1) = 12(1) - 30 = -18$ m/s$^2$.  [A1]\nAt $t=4$: $a(4) = 12(4) - 30 = 18$ m/s$^2$.  [A1]\n\nNotice the acceleration is non-zero at both instants the particle is momentarily at rest — being at rest does not mean the acceleration is zero." },
+    { "type": "examTip", "content": "When a question says 'at rest', translate it immediately to $v=0$ and solve. A frequent slip is to set the displacement or the acceleration to zero instead. Solving $s=0$ finds when the particle is at the origin; solving $a=0$ finds when the acceleration changes — both are different questions." },
+
+    { "type": "heading", "content": "Going back with integration" },
+    { "type": "text", "content": "Differentiation runs displacement to velocity to acceleration. Integration runs the chain in reverse: velocity is the integral of acceleration, and displacement is the integral of velocity. Each integration introduces a constant, and each constant is fixed by an initial condition given in the problem — 'starts from rest', 'initial velocity 8 m/s', 'starts at the origin'. Integrate twice and you need two conditions, so use a fresh letter for the second constant." },
+    { "type": "formula", "content": "Going back, integrate with respect to time:\n\nVelocity from acceleration: $v(t) = \\displaystyle\\int a(t)\\,dt + C$\n\nDisplacement from velocity: $s(t) = \\displaystyle\\int v(t)\\,dt + K$" },
+    { "type": "keyPoints", "items": [
+      "Every indefinite integration needs a constant — write $+C$ (and a fresh $+K$ the second time).",
+      "'Starts from rest' means $v=0$ at $t=0$; 'starts at the origin' means $s=0$ at $t=0$.",
+      "Substitute the initial condition, solve for the constant, then write the specific function.",
+      "For total distance over an interval, use $\\int|v|\\,dt$, splitting at the times where $v=0$."
+    ]},
+    { "type": "workedExample", "question": "A particle P starts from the point O and moves in a straight line. Its acceleration at time $t$ seconds ($t\\ge 0$) is $a(t) = 12 - 4t$ m/s$^2$, and its initial velocity is 8 m/s.\n(a) Find an expression for the velocity of P at time $t$.\n(b) Find the displacement of P from O after 3 seconds. [7]", "solution": "**(a)** Integrate acceleration to get velocity.\n$v(t) = \\displaystyle\\int (12 - 4t)\\,dt = 12t - 2t^2 + C$.  [M1 for integrating, A1 for correct integral]\nInitial velocity is 8 m/s, so $v=8$ when $t=0$: $8 = 0 - 0 + C \\Rightarrow C = 8$.  [M1: use initial condition]\nHence $v(t) = -2t^2 + 12t + 8$ m/s.  [A1]\n\n**(b)** Integrate velocity to get displacement; P starts at O so $s=0$ when $t=0$.\n$s(t) = \\displaystyle\\int (-2t^2 + 12t + 8)\\,dt = -\\tfrac{2}{3}t^3 + 6t^2 + 8t + K$.  [M1: integrate their $v$]\n$s=0$ at $t=0$ gives $K=0$, so $s(t) = -\\tfrac{2}{3}t^3 + 6t^2 + 8t$.\nAt $t=3$: $s(3) = -\\tfrac{2}{3}(27) + 6(9) + 8(3) = -18 + 54 + 24 = 60$.  [M1: substitute $t=3$]\nThe displacement after 3 seconds is 60 metres.  [A1]" },
+    { "type": "examTip", "content": "If a question asks for total distance rather than displacement, first find where $v=0$ inside the interval. If the velocity changes sign there, the particle turns round, so integrating $v$ straight through would cancel out part of the journey. Either integrate $|v|$ or split the interval at the turning time and add the magnitudes." },
+
+    { "type": "heading", "content": "Related rates of change" },
+    { "type": "text", "content": "Sometimes two quantities that both change over time are tied together by an equation — the volume and radius of a balloon, the area and radius of a spreading circle, the height and volume of liquid in a cone. If you know the rate at which one is changing, you can find the rate of the other. The tool is the chain rule: differentiate the linking equation with respect to time, treating every variable as a function of $t$. The order of operations matters — differentiate first, substitute the instant's numbers last." },
+    { "type": "formula", "content": "The chain rule for related rates: $\\dfrac{dy}{dt} = \\dfrac{dy}{dx} \\times \\dfrac{dx}{dt}$\n\nEquivalently, to make an unknown rate the subject: $\\dfrac{dx}{dt} = \\dfrac{dy/dt}{dy/dx}$" },
+    { "type": "keyPoints", "items": [
+      "Write down which rate you know and which rate you want, using $\\frac{d(\\cdot)}{dt}$ notation.",
+      "State the equation linking the two quantities.",
+      "Differentiate that equation with respect to time — the chain rule brings in the second rate.",
+      "Substitute the values for the given instant ONLY after differentiating, then solve for the unknown rate.",
+      "Keep units: a rate of change carries units like cm/s or cm$^3$/s."
+    ]},
+    { "type": "workedExample", "question": "The radius of a circular oil slick is increasing at a constant rate of 2 cm/s. Find the rate at which its area is increasing at the instant when the radius is 20 cm. The area of a circle is $A = \\pi r^2$. [5]", "solution": "**Identify the rates.** Known: $\\dfrac{dr}{dt} = 2$ cm/s. Want: $\\dfrac{dA}{dt}$ when $r=20$ cm.\n\n**Linking equation.** $A = \\pi r^2$.\n\n**Differentiate with respect to $t$** (chain rule, since $r$ depends on $t$):\n$\\dfrac{dA}{dt} = \\dfrac{dA}{dr}\\times\\dfrac{dr}{dt} = 2\\pi r \\times \\dfrac{dr}{dt}$.  [M1 for chain rule, A1 for $\\frac{dA}{dr}=2\\pi r$]\n\n**Substitute the instant's values** $r=20$, $\\frac{dr}{dt}=2$:\n$\\dfrac{dA}{dt} = 2\\pi(20)(2) = 80\\pi$.  [M1: substitute]\n\n$\\dfrac{dA}{dt} = 80\\pi \\approx 251$ cm$^2$/s (3 s.f.).  [A1]\n\nThe area is increasing at about $251$ cm$^2$ per second at that instant." },
+
+    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
+    { "type": "text", "content": "In an exam the marks are analytic: each is tied to a specific line of working. A method mark (M) rewards a correct approach even if the arithmetic later slips; an accuracy mark (A) rewards a correct result and is usually dependent on the method mark being earned. Follow-through (FT) means a correct final step performed on your own earlier (wrong) value still scores, ISW ('ignore subsequent working') means a correct answer is not un-marked by a later fumble, and equivalent correct forms are accepted. All of that protection exists only if your method is on the page. Study how each mark below is earned by a specific line." },
+    { "type": "workedExample", "question": "A spherical balloon is inflated so that its volume increases at 40 cm³/s. Find the rate at which the radius is increasing when $r = 5$ cm. ($V=\\frac{4}{3}\\pi r^3$) [5]", "solution": "**Model answer — full working.**\n\n**Identify the rates.** Known: $\\dfrac{dV}{dt} = 40$ cm$^3$/s. Want: $\\dfrac{dr}{dt}$ when $r=5$ cm.\n\n**Differentiate the volume with respect to $r$.**\n$V = \\tfrac{4}{3}\\pi r^3 \\Rightarrow \\dfrac{dV}{dr} = 4\\pi r^2$.\n\n**Apply the chain rule and make $\\frac{dr}{dt}$ the subject.**\n$\\dfrac{dV}{dt} = \\dfrac{dV}{dr}\\times\\dfrac{dr}{dt} \\Rightarrow \\dfrac{dr}{dt} = \\dfrac{dV/dt}{dV/dr} = \\dfrac{40}{4\\pi r^2}$.\n\n**Substitute $r=5$.**\n$\\dfrac{dr}{dt} = \\dfrac{40}{4\\pi(25)} = \\dfrac{40}{100\\pi} = \\dfrac{2}{5\\pi}$.\n\n**Evaluate.**\n$\\dfrac{dr}{dt} = \\dfrac{2}{5\\pi} \\approx 0.127$ cm/s (3 s.f.).\n\n**Final answer:** the radius is increasing at about $0.127$ cm/s when $r=5$ cm.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 — differentiate the volume.** Awarded for differentiating $V=\\frac{4}{3}\\pi r^3$ with respect to $r$ (power reduced correctly). This is a METHOD mark: it stands even if the coefficient later slips.\n- **A1 — correct derivative.** Awarded for $\\dfrac{dV}{dr} = 4\\pi r^2$. This accuracy mark depends on the M1 above.\n- **M1 — apply the chain rule.** Awarded for writing $\\dfrac{dr}{dt} = \\dfrac{dV/dt}{dV/dr}$ (or the equivalent $\\frac{dV}{dt}=\\frac{dV}{dr}\\frac{dr}{dt}$ rearranged). It rewards the correct link between the rates on THEIR derivative, so it survives an earlier slip.\n- **M1 — substitute $r=5$.** Awarded for putting $r=5$ (and $\\frac{dV}{dt}=40$) into their expression: $\\dfrac{40}{4\\pi(25)}$.\n- **A1 — final value.** Awarded for $\\dfrac{2}{5\\pi} \\approx 0.127$ cm/s. Follow-through (FT) applies: a student who reached a wrong $\\frac{dV}{dr}$ but then substituted and evaluated correctly still earns this mark on their own figure.\n\n**Accept equivalent forms.** The engine marks the mathematics, not the formatting: it accepts $\\dfrac{2}{5\\pi}$, $\\dfrac{40}{100\\pi}$, $0.127$, or $0.1273...$ cm/s, with or without the unit, and does not require the intermediate fraction to be simplified.\n\n**Bottom line:** three of the five marks are method marks that survive an arithmetic slip, and the final accuracy mark is shielded by FT. A student who writes only '$0.127$' with no working risks losing 3–4 marks if a number is off; a student who shows $\\frac{dV}{dr}=4\\pi r^2$, the chain rule rearranged, and the substitution keeps the method marks regardless." },
+    { "type": "examTip", "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with follow-through. So always show the method: write the derivative of the linking equation, state the chain rule with your unknown rate made the subject, substitute the instant's values, then evaluate with units. The method marks and follow-through are what protect your score when a final number slips — and you only get that protection if the working is on the page." },
+
+    { "type": "heading", "content": "Common mistakes examiners penalise" },
+    { "type": "keyPoints", "items": [
+      "**Confusing which operation goes which way** — velocity is $\\frac{ds}{dt}$ and acceleration is $\\frac{dv}{dt}$ (differentiate to go forward); integrate to go back. Mixing these up inverts the whole problem.",
+      "**Thinking 'at rest' means $a=0$** — at rest means $v=0$. The acceleration at that instant is usually non-zero; that is what restarts the motion.",
+      "**Dropping the constant of integration** — every indefinite integral needs $+C$, fixed by an initial condition. No constant, no specific function.",
+      "**Confusing displacement with total distance** — displacement is $\\int v\\,dt$; total distance is $\\int|v|\\,dt$. If $v$ changes sign you must split at $v=0$ or the journey partly cancels.",
+      "**Substituting the instant's values too early in related rates** — differentiate the linking equation first, THEN put in the numbers for that instant. Substituting first freezes the variable and destroys the rate.",
+      "**Not using the chain rule in related rates** — the second rate only appears because each variable is a function of $t$; differentiating $V=\\frac{4}{3}\\pi r^3$ as if $r$ were constant loses $\\frac{dr}{dt}$ entirely.",
+      "**Dropping units on a rate** — a rate of change carries units such as cm/s or cm$^3$/s. A bare number can lose the final accuracy mark."
+    ]},
+
+    { "type": "heading", "content": "Using your GDC effectively" },
+    { "type": "text", "content": "Your GDC is indispensable here. Use its numerical derivative to check a velocity or acceleration at a point, and its equation solver to find where $v(t)=0$ — write the equation down first, then state that you solved it. For total distance travelled, enter the definite integral of $|v(t)|$ directly using the absolute-value function, which handles the sign changes for you. For related rates, the GDC only helps with the final arithmetic: the differentiation of the linking equation must be shown by hand, because that is where the method marks live." },
+
+    { "type": "heading", "content": "Where this leads" },
+    { "type": "text", "content": "Everything here is one pair of reversible ideas — differentiate to step forward through position, velocity and acceleration; integrate (with an initial condition) to step back — plus the chain rule that ties two changing quantities together. That same toolkit powers the modelling and optimisation questions across Paper 2, where a quantity changing in time is exactly the situation you now know how to analyse. Master the habit — read the calculus question the words are really asking, show the derivative or integral, then interpret with units — and the rest of the calculus of change becomes variations on a method you already own." },
+
+    { "type": "practice", "label": "Get a Paper 2 problem marked: solve a kinematics or related-rates question with full working", "href": "/mark?subject=ib-maths-ai-hl&topic=5.7&component=paper_2" },
+    { "type": "resources", "items": [
+      { "label": "IB AI HL Questionbank", "href": "https://www.ibtaskmaker.com/home.php" },
+      { "label": "Related Rates — worked examples", "href": "https://www.mathsisfun.com/calculus/derivatives-rules.html" }
+    ]}
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "ib-course-authored-1"
 }

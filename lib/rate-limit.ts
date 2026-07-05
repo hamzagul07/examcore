@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 export const ANON_DAILY_MARK_LIMIT = 10
+export const ANON_DAILY_OMNI_LIMIT = 60
 const ANON_DAILY_CONTACT_LIMIT = 5
 const AUTH_DAILY_CONTACT_LIMIT = 20
 const DAILY_SIGNUP_LIMIT = 3
@@ -71,6 +72,69 @@ export async function incrementAnonymousMarkRateLimit(
       ip,
       date: today,
       mark_count: currentCount + 1,
+      contact_count: existing?.contact_count ?? 0,
+      signup_count: existing?.signup_count ?? 0,
+    },
+    { onConflict: 'ip,date' }
+  )
+}
+
+/**
+ * Guest Omni-chat daily cap — persisted in the same IP/day bucket as guest
+ * marks, so it survives deploys and is shared across serverless instances
+ * (unlike the in-memory hourly burst guard in the route). Signed-in users are
+ * metered by their account quota instead.
+ */
+export async function checkAnonymousOmniRateLimit(
+  supabase: SupabaseClient,
+  ip: string,
+  userId: string | null
+): Promise<{ allowed: true; count: number } | { allowed: false; message: string }> {
+  if (userId) {
+    return { allowed: true, count: 0 }
+  }
+
+  const today = todayUtc()
+  const { data: existingLimit } = await supabase
+    .from('rate_limits')
+    .select('omni_count')
+    .eq('ip', ip)
+    .eq('date', today)
+    .maybeSingle()
+
+  const count = existingLimit?.omni_count ?? 0
+  if (count >= ANON_DAILY_OMNI_LIMIT) {
+    return {
+      allowed: false,
+      message:
+        'Daily chat limit reached for guests. Create a free account for your own quota, or try again tomorrow.',
+    }
+  }
+
+  return { allowed: true, count }
+}
+
+export async function incrementAnonymousOmniRateLimit(
+  supabase: SupabaseClient,
+  ip: string,
+  userId: string | null,
+  currentCount: number
+): Promise<void> {
+  if (userId) return
+  const today = todayUtc()
+  const { data: existing } = await supabase
+    .from('rate_limits')
+    .select('mark_count, contact_count, signup_count')
+    .eq('ip', ip)
+    .eq('date', today)
+    .maybeSingle()
+
+  await supabase.from('rate_limits').upsert(
+    {
+      ip,
+      date: today,
+      omni_count: currentCount + 1,
+      mark_count: existing?.mark_count ?? 0,
       contact_count: existing?.contact_count ?? 0,
       signup_count: existing?.signup_count ?? 0,
     },

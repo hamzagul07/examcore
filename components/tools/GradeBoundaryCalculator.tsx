@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import {
@@ -10,6 +10,7 @@ import {
   type GradeThreshold,
   type OfficialBoundaries,
 } from '@/lib/seo/grade-boundaries'
+import { readUrlParams, writeUrlParams } from '@/lib/url-state'
 
 function initialRows(grades: readonly string[]): GradeThreshold[] {
   return grades.map((grade) => ({ grade, mark: '' }))
@@ -30,6 +31,47 @@ export function GradeBoundaryCalculator({
   const [rows, setRows] = useState<GradeThreshold[]>(
     initialRows(defaultLevel === 'AS-Level' ? AS_LEVEL_GRADES : A_LEVEL_GRADES)
   )
+  const [urlRestored, setUrlRestored] = useState(false)
+
+  // Restore a shared / refreshed calculation from the URL, then keep the URL
+  // in sync so the state survives refresh and can be shared.
+  useEffect(() => {
+    const q = readUrlParams()
+    const lvlParam = q.get('lvl')
+    const nextLevel: 'A-Level' | 'AS-Level' | null =
+      lvlParam === 'as' ? 'AS-Level' : lvlParam === 'a' ? 'A-Level' : null
+    if (nextLevel) setLevel(nextLevel)
+    const rawParam = q.get('raw')
+    if (rawParam) setRaw(rawParam.replace(/[^\d.]/g, ''))
+    const totalParam = q.get('total')
+    if (totalParam) setTotal(totalParam.replace(/[^\d.]/g, ''))
+    const grades =
+      (nextLevel ?? defaultLevel) === 'AS-Level' ? AS_LEVEL_GRADES : A_LEVEL_GRADES
+    const bParam = q.get('b')
+    if (nextLevel || bParam) {
+      const parts = (bParam ?? '').split(',')
+      setRows(
+        grades.map((grade, i) => {
+          const n = Number(parts[i])
+          return { grade, mark: parts[i] !== '' && Number.isFinite(n) ? n : '' }
+        })
+      )
+    }
+    setUrlRestored(true)
+    // Mount-only: defaultLevel is stable for the page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (!urlRestored) return
+    const hasInput = raw !== '' || rows.some((r) => r.mark !== '')
+    writeUrlParams({
+      lvl: hasInput ? (level === 'AS-Level' ? 'as' : 'a') : null,
+      raw: hasInput ? raw : null,
+      total: hasInput ? total : null,
+      b: hasInput ? rows.map((r) => (r.mark === '' ? '' : String(r.mark))).join(',') : null,
+    })
+  }, [urlRestored, level, raw, total, rows])
 
   function switchLevel(next: 'A-Level' | 'AS-Level') {
     setLevel(next)

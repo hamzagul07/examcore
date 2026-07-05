@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Check, X } from 'lucide-react'
 import {
@@ -12,6 +12,7 @@ import {
   type SubjectGrade,
   type SubjectLevel,
 } from '@/lib/ib/points'
+import { readUrlParams, writeUrlParams } from '@/lib/url-state'
 
 const DEFAULT_SUBJECTS: DiplomaSubject[] = [
   { grade: 6, level: 'HL' },
@@ -22,10 +23,54 @@ const DEFAULT_SUBJECTS: DiplomaSubject[] = [
   { grade: 6, level: 'SL' },
 ]
 
+// Serialized as "6H,6H,6H,6S,6S,6S" in the shareable URL.
+function parseSubjectsParam(value: string): DiplomaSubject[] | null {
+  const parts = value.split(',')
+  if (parts.length !== DEFAULT_SUBJECTS.length) return null
+  const parsed: DiplomaSubject[] = []
+  for (const part of parts) {
+    const grade = Number(part.slice(0, 1)) as SubjectGrade
+    const level = part.slice(1).toUpperCase() as SubjectLevel
+    if (!SUBJECT_GRADES.includes(grade) || (level !== 'HL' && level !== 'SL')) return null
+    parsed.push({ grade, level })
+  }
+  return parsed
+}
+
 export function IbPointsCalculator() {
   const [subjects, setSubjects] = useState<DiplomaSubject[]>(DEFAULT_SUBJECTS)
   const [tok, setTok] = useState<CoreGrade>('B')
   const [ee, setEe] = useState<CoreGrade>('B')
+  const [urlRestored, setUrlRestored] = useState(false)
+
+  // Restore a shared / refreshed calculation from the URL, then keep the URL
+  // in sync so inputs survive refresh and can be shared.
+  useEffect(() => {
+    const q = readUrlParams()
+    const s = q.get('s')
+    const restored = s ? parseSubjectsParam(s) : null
+    if (restored) setSubjects(restored)
+    const tokParam = q.get('tok')?.toUpperCase() as CoreGrade | undefined
+    if (tokParam && CORE_GRADES.includes(tokParam)) setTok(tokParam)
+    const eeParam = q.get('ee')?.toUpperCase() as CoreGrade | undefined
+    if (eeParam && CORE_GRADES.includes(eeParam)) setEe(eeParam)
+    setUrlRestored(true)
+  }, [])
+
+  useEffect(() => {
+    if (!urlRestored) return
+    const isDefault =
+      tok === 'B' &&
+      ee === 'B' &&
+      subjects.every(
+        (s, i) => s.grade === DEFAULT_SUBJECTS[i].grade && s.level === DEFAULT_SUBJECTS[i].level
+      )
+    writeUrlParams({
+      s: isDefault ? null : subjects.map((s) => `${s.grade}${s.level}`).join(','),
+      tok: isDefault ? null : tok,
+      ee: isDefault ? null : ee,
+    })
+  }, [urlRestored, subjects, tok, ee])
 
   function setGrade(i: number, grade: SubjectGrade) {
     setSubjects((prev) => prev.map((s, idx) => (idx === i ? { ...s, grade } : s)))

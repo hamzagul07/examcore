@@ -4,16 +4,40 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { buildCountdown } from '@/lib/seo/revision-countdown'
+import { readUrlParams, writeUrlParams } from '@/lib/url-state'
 
 export function ExamCountdown() {
   const [examDate, setExamDate] = useState('')
   const [subjects, setSubjects] = useState('3')
   const [papersEach, setPapersEach] = useState('8')
+  const [urlRestored, setUrlRestored] = useState(false)
   // Resolve "now" on the client only, so SSR/CSR markup matches.
   const [nowMs, setNowMs] = useState<number | null>(null)
   useEffect(() => {
     setNowMs(Date.now())
   }, [])
+
+  // Restore a shared / refreshed countdown from the URL, then keep the URL in
+  // sync so the plan survives refresh and can be shared.
+  useEffect(() => {
+    const q = readUrlParams()
+    const date = q.get('date')
+    if (date && /^\d{4}-\d{2}-\d{2}$/.test(date)) setExamDate(date)
+    const s = q.get('subjects')
+    if (s && /^\d+$/.test(s)) setSubjects(s)
+    const p = q.get('papers')
+    if (p && /^\d+$/.test(p)) setPapersEach(p)
+    setUrlRestored(true)
+  }, [])
+
+  useEffect(() => {
+    if (!urlRestored) return
+    writeUrlParams({
+      date: examDate || null,
+      subjects: examDate ? subjects : null,
+      papers: examDate ? papersEach : null,
+    })
+  }, [urlRestored, examDate, subjects, papersEach])
 
   const target = useMemo(() => {
     const s = Number(subjects)

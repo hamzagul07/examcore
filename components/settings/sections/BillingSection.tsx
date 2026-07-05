@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
@@ -37,13 +37,23 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
     returnUrl: '/account/billing',
   })
 
-  useEffect(() => {
-    if (!billing.hasCustomer) {
-      void fetch('/api/billing/sync-customer', { method: 'POST' }).catch((err) =>
-        console.error('BillingSection: billing sync-customer failed', err)
-      )
+  const [syncFailed, setSyncFailed] = useState(false)
+
+  const syncCustomer = useCallback(async () => {
+    setSyncFailed(false)
+    try {
+      const res = await fetch('/api/billing/sync-customer', { method: 'POST' })
+      if (!res.ok) throw new Error(`sync-customer ${res.status}`)
+    } catch (err) {
+      console.error('BillingSection: billing sync-customer failed', err)
+      // Surface it — checkout/portal will fail later with no obvious cause.
+      setSyncFailed(true)
     }
-  }, [billing.hasCustomer])
+  }, [])
+
+  useEffect(() => {
+    if (!billing.hasCustomer) void syncCustomer()
+  }, [billing.hasCustomer, syncCustomer])
 
   const tierLabel = TIER_LABELS[billing.tier] ?? billing.tier
   const statusLabel = STATUS_LABELS[billing.status] ?? billing.status
@@ -222,6 +232,21 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {syncFailed && (
+          <div className="text-body mt-4 rounded-2xl border ec-highlight-warning-panel px-4 py-3">
+            <p className="ec-score-mid">
+              Billing setup didn&apos;t finish — checkout and the billing portal may not work yet.
+            </p>
+            <button
+              type="button"
+              className="ec-link mt-1 text-sm underline"
+              onClick={() => void syncCustomer()}
+            >
+              Retry billing setup
+            </button>
           </div>
         )}
 

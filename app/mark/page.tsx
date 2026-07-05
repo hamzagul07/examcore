@@ -150,6 +150,7 @@ export default function MarkPage() {
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
   const [showFreeNudge, setShowFreeNudge] = useState(false)
   const [billingSummary, setBillingSummary] = useState<BillingSummaryClient | null>(null)
+  const [billingSummaryError, setBillingSummaryError] = useState(false)
   // Set when the user arrived via a "Drill this" link from the insights
   // dashboard. Drives the practice banner and the return-to-insights CTA.
   const [practiceContext, setPracticeContext] = useState<{
@@ -230,10 +231,18 @@ export default function MarkPage() {
     async function loadBilling() {
       try {
         const res = await fetch('/api/billing/summary', { cache: 'no-store' })
-        if (!res.ok || cancelled) return
+        if (cancelled) return
+        if (!res.ok) {
+          setBillingSummaryError(true)
+          return
+        }
         setBillingSummary((await res.json()) as BillingSummaryClient)
+        setBillingSummaryError(false)
       } catch {
-        if (!cancelled) setBillingSummary(null)
+        if (!cancelled) {
+          setBillingSummary(null)
+          setBillingSummaryError(true)
+        }
       }
     }
     void loadBilling()
@@ -1889,6 +1898,19 @@ export default function MarkPage() {
               </div>
               )}
 
+                  {billingSummaryError && (
+                    <p className="mb-3 rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-xs">
+                      Couldn&apos;t check your remaining allowance — marking may be declined if
+                      you&apos;re at your cap.{' '}
+                      <button
+                        type="button"
+                        className="ec-link underline"
+                        onClick={() => window.dispatchEvent(new Event('ec:billing-refresh'))}
+                      >
+                        Retry
+                      </button>
+                    </p>
+                  )}
                   <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
                   <Button
                     type="submit"

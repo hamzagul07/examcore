@@ -165,9 +165,10 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     }
 
     const planRank = TIER_RANK[product]
+    // First paid subscription starts with a 7-day free trial (see checkout API).
     const verb =
       currentRank === 0 || access === 'trial'
-        ? `Choose ${PLAN_NAME[plan]}`
+        ? `Try ${PLAN_NAME[plan]} free for 7 days`
         : planRank > currentRank
           ? `Upgrade to ${PLAN_NAME[plan]}`
           : `Switch to ${PLAN_NAME[plan]}`
@@ -272,7 +273,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
   const faqs = [
     {
       q: 'How does the free trial work?',
-      a: `Every new account gets 7 days of full access — live diagrams, past-paper practice and higher marking limits — with no card required. When it ends you keep the free plan automatically; nothing is charged unless you choose to upgrade.`,
+      a: `Every new account gets 7 days of full access — live diagrams, past-paper practice and higher marking limits — with no card required. When it ends you keep the free plan automatically. And when you do pick a paid plan, your first subscription starts with its own 7-day free trial: you add a card but aren't charged until the trial ends, and you can cancel anytime before then.`,
     },
     {
       q: 'What’s included on the free plan?',

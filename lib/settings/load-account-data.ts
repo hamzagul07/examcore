@@ -38,7 +38,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       supabase
         .from('user_subscriptions')
         .select(
-          'tier, status, billing_period, current_period_end, cancel_at_period_end, stripe_customer_id, founding_member'
+          'tier, status, billing_period, current_period_end, cancel_at_period_end, polar_customer_id'
         )
         .eq('user_id', user.id)
         .maybeSingle(),
@@ -72,9 +72,8 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       billingPeriod: subscription?.billing_period ?? null,
       currentPeriodEnd: subscription?.current_period_end ?? null,
       cancelAtPeriodEnd: subscription?.cancel_at_period_end ?? false,
-      hasCustomer: Boolean(subscription?.stripe_customer_id),
+      hasCustomer: Boolean(subscription?.polar_customer_id),
       credits: credits?.balance ?? 0,
-      foundingMember: Boolean(subscription?.founding_member),
       marksUsed: billing.questions.used,
       markCap: billing.questions.cap,
       omniUsed: billing.omni.used,

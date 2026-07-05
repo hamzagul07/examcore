@@ -25,7 +25,6 @@ export async function GET() {
     access: summary.access,
     trial_ends_at: summary.trial_ends_at ?? null,
     status: summary.status,
-    founding_member: summary.founding_member,
     credit_balance: summary.credit_balance,
     period_resets_at: summary.period_resets_at ?? null,
     enforcement_mode: summary.enforcement_mode,

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Zap, Loader2, ExternalLink } from 'lucide-react'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
 import { tierMarketingName } from '@/lib/billing/caps'
-import { stripePortalButtonLabel, useStripePortal } from '@/lib/hooks/useStripePortal'
+import { billingPortalButtonLabel, useBillingPortal } from '@/lib/hooks/useBillingPortal'
 
 type Summary = BillingSummaryClient
 
@@ -14,7 +14,7 @@ export function CreditChip() {
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  const { state: portalState, openPortal } = useStripePortal({
+  const { state: portalState, openPortal } = useBillingPortal({
     returnUrl: '/account/billing',
   })
 
@@ -111,11 +111,6 @@ export function CreditChip() {
                 {summary.credit_balance} credits (questions or study chat)
               </p>
             )}
-          {summary.founding_member && (
-            <p className="mt-2 inline-block rounded-full bg-[var(--ec-brand-muted)] px-2 py-0.5 text-[11px] font-semibold text-[var(--ec-brand)]">
-              Founding member · 50% off
-            </p>
-          )}
           {summary.enforcement_mode === 'enforce' &&
             summary.questions.blocked &&
             summary.credit_balance <= 0 && (
@@ -145,7 +140,7 @@ export function CreditChip() {
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 ) : (
                   <>
-                    {stripePortalButtonLabel(portalState, 'Manage plan')}
+                    {billingPortalButtonLabel(portalState, 'Manage plan')}
                     <ExternalLink className="h-3.5 w-3.5" aria-hidden />
                   </>
                 )}

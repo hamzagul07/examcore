@@ -155,6 +155,17 @@ export async function POST(req: NextRequest) {
         }
       )
     }
+    // Meter at the gate, not after the stream: recording only on completion
+    // left a stream-length window where parallel requests near the cap all
+    // passed the check before any usage row existed. Recording up front
+    // shrinks that to milliseconds. Trade-off: a message that fails
+    // mid-stream still counts — rare, and far cheaper than an open cap.
+    try {
+      await recordOmniUsage(user.id)
+    } catch (err) {
+      // Fail open: never block chat on our own metering error.
+      console.error('[omni-ai] recordOmniUsage failed:', err)
+    }
   }
 
   const systemPrompt = buildSystemPrompt(context, {
@@ -285,14 +296,6 @@ export async function POST(req: NextRequest) {
             sse({ type: 'done', cleanText: finalDisplay, action })
           )
         )
-
-        if (user && context.type !== 'landing') {
-          try {
-            await recordOmniUsage(user.id)
-          } catch (err) {
-            console.error('[omni-ai] recordOmniUsage failed:', err)
-          }
-        }
 
         controller.close()
       } catch (error) {

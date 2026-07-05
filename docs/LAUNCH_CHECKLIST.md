@@ -15,12 +15,15 @@ Production: **https://markscheme.app**
 
 ## You should do next
 
-### Stripe (production billing)
+### Polar (production billing)
 
-1. Stripe Dashboard → **Webhooks** → endpoint  
-   `https://markscheme.app/api/billing/webhook`
-2. Copy signing secret → Vercel `STRIPE_WEBHOOK_SECRET` (currently missing in health check)
-3. Redeploy
+1. Create a **production** Polar org at polar.sh (sandbox values don't carry over) and an Organization Access Token
+2. Create production products: `POLAR_SERVER=production POLAR_ACCESS_TOKEN=… node scripts/setup-polar-products.mjs` → copy the 9 `POLAR_PRODUCT_*` IDs
+3. Polar → Settings → **Webhooks** → endpoint  
+   `https://markscheme.app/api/billing/polar-webhook`  
+   Subscribe to: `order.paid`, `order.refunded`, `subscription.created`, `.active`, `.updated`, `.canceled`, `.uncanceled`, `.past_due`, `.revoked`
+4. Vercel env: `POLAR_SERVER=production`, `POLAR_ACCESS_TOKEN`, `POLAR_WEBHOOK_SECRET`, all 9 `POLAR_PRODUCT_*`, `ENFORCEMENT_MODE=enforce`
+5. Redeploy, then test with a real card: subscribe (7-day trial applies to first subscription) → check webhook deliveries + `user_subscriptions.tier`; buy a credit pack → balance bumps; refund both from Polar → revoke + clawback
 
 ### Supabase + Google sign-in
 

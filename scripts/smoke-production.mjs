@@ -439,10 +439,16 @@ async function main() {
   }
 
   try {
-    const res = await fetch(`${base}/api/billing/webhook`, { method: 'POST', body: '' })
-    record(res.status === 400, 'POST /api/billing/webhook (no sig → 400)', `status ${res.status}`)
+    // Unsigned request must be rejected: 403 (bad signature), 400 (bad
+    // payload), or 500 (secret not configured yet) — never 2xx.
+    const res = await fetch(`${base}/api/billing/polar-webhook`, { method: 'POST', body: '' })
+    record(
+      [400, 403, 500].includes(res.status),
+      'POST /api/billing/polar-webhook (no sig → rejected)',
+      `status ${res.status}`
+    )
   } catch (err) {
-    record(false, 'POST /api/billing/webhook', err instanceof Error ? err.message : String(err))
+    record(false, 'POST /api/billing/polar-webhook', err instanceof Error ? err.message : String(err))
   }
 
   try {
@@ -522,7 +528,7 @@ Launch checklist (MarkScheme rebrand + passes 15–97):
   • ENFORCEMENT_MODE=warn → smoke caps → enforce
   • ADMIN_EMAILS set for /admin access
   • RESEND_API_KEY for contact form admin alerts (optional)
-  • Stripe live keys + webhook pointing at /api/billing/webhook
+  • Polar production token + products + webhook pointing at /api/billing/polar-webhook
 
   SUPABASE (Dashboard)
   • Redirect URLs: production + localhost + Vercel preview /auth/callback

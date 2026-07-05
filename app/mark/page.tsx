@@ -64,7 +64,7 @@ import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { GuestMarkNotice } from '@/components/billing/GuestMarkNotice'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
 import { capForTier } from '@/lib/billing/caps'
-import { isPaidTier, FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
+import { FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
 import {
   questionUsageMessage,
   type BillingSummaryClient,
@@ -1503,7 +1503,7 @@ export default function MarkPage() {
                   </div>
                 ) : (
                   <>
-                    {billingSummary?.signedIn && !isPaidTier(billingSummary.tier) && (
+                    {billingSummary?.signedIn && billingSummary.access === 'free' && (
                       <div className="ec-banner-warning-inline rounded-xl px-4 py-3 text-sm">
                         <span className="font-semibold">Free preview:</span>{' '}
                         we mark up to {FREE_WHOLE_PAPER_QUESTION_LIMIT} questions per

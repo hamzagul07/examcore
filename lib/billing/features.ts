@@ -1,7 +1,17 @@
 import type { SubscriptionTier } from '@/lib/database.types'
+import type { EffectiveAccess } from './access'
 
 export function isPaidTier(tier: SubscriptionTier): boolean {
   return tier !== 'free'
+}
+
+/**
+ * Trial-aware paid check. Use this (not isPaidTier) for feature gating: the
+ * 7-day reverse trial promises full access, and trial users still have
+ * tier='free' in the DB.
+ */
+export function hasPaidAccess(access: EffectiveAccess): boolean {
+  return access !== 'free'
 }
 
 /**
@@ -20,8 +30,10 @@ export const WHOLE_PAPER_QUESTION_LIMIT = 15
 
 export type PaidFeature = 'whole_paper' | 'mastery_dashboard'
 
-export function wholePaperQuestionLimit(tier: SubscriptionTier): number {
-  return isPaidTier(tier) ? WHOLE_PAPER_QUESTION_LIMIT : FREE_WHOLE_PAPER_QUESTION_LIMIT
+export function wholePaperQuestionLimit(access: EffectiveAccess): number {
+  return hasPaidAccess(access)
+    ? WHOLE_PAPER_QUESTION_LIMIT
+    : FREE_WHOLE_PAPER_QUESTION_LIMIT
 }
 
 export function paidFeatureRequiredBody(feature: PaidFeature) {

@@ -6,9 +6,9 @@ import { ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ErrorBox } from '@/components/AuthFormBits'
 import {
-  stripePortalButtonLabel,
-  useStripePortal,
-} from '@/lib/hooks/useStripePortal'
+  billingPortalButtonLabel,
+  useBillingPortal,
+} from '@/lib/hooks/useBillingPortal'
 import type { SettingsBilling } from '@/lib/settings/types'
 import {
   SettingsSectionCard,
@@ -33,7 +33,7 @@ const STATUS_LABELS: Record<string, string> = {
 }
 
 export function BillingSection({ billing }: { billing: SettingsBilling }) {
-  const { state, errorMessage, openPortal } = useStripePortal({
+  const { state, errorMessage, openPortal } = useBillingPortal({
     returnUrl: '/account/billing',
   })
 
@@ -111,18 +111,6 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           >
             {enforcementLabel}
           </p>
-        )}
-
-        {billing.foundingMember && (
-          <span
-            className="mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-caption font-semibold"
-            style={{
-              background: 'var(--ec-chip-success-bg)',
-              color: 'var(--ec-chip-success-text)',
-            }}
-          >
-            Founding member · 50% off forever
-          </span>
         )}
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -277,7 +265,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
             loadingText="Opening your billing portal…"
             disabled={state === 'loading'}
           >
-            {stripePortalButtonLabel(state, 'Manage payment & cancellation')}
+            {billingPortalButtonLabel(state, 'Manage payment & cancellation')}
             {state !== 'loading' && <ExternalLink className="h-4 w-4" aria-hidden />}
           </Button>
           <Button

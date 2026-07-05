@@ -9,7 +9,6 @@ export type BillingSummaryClient = {
   access: EffectiveAccess
   trial_ends_at: string | null
   status: string
-  founding_member: boolean
   credit_balance: number
   period_resets_at: string | null
   enforcement_mode: 'off' | 'warn' | 'enforce'

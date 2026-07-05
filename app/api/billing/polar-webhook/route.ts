@@ -203,7 +203,7 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
         void notifyPurchaseEmails(supabase, userId, {
           kind: 'subscription',
           detail: `Your ${tier} plan is now active.`,
-          stripeSessionId: sub.id,
+          providerRef: sub.id,
         })
       }
       break
@@ -289,7 +289,7 @@ async function handlePolarEvent(event: PolarEvent, supabase: SupabaseClient) {
       void notifyPurchaseEmails(supabase, userId, {
         kind: 'credits',
         detail: `${resolved.credits} marking credit${resolved.credits === 1 ? '' : 's'} have been added to your account.`,
-        stripeSessionId: order.id,
+        providerRef: order.id,
       })
       break
     }

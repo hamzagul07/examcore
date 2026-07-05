@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ChevronRight, Clock } from 'lucide-react'
+import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 
 interface Review {
   id: string
@@ -57,7 +58,10 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
       </div>
 
       {loading && (
-        <p className="text-[var(--ec-text-secondary)]">Loading submissions...</p>
+        <div className="space-y-3" aria-hidden>
+          <SkeletonBlock className="h-[88px] w-full rounded-xl" />
+          <SkeletonBlock className="h-[88px] w-full rounded-xl" />
+        </div>
       )}
 
       {!loading && error && (

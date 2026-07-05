@@ -101,11 +101,33 @@
   min-width: 0;
 }
 
+.ms-ob-progress {
+  margin-bottom: 34px;
+}
+
+.ms-ob-progress-label {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-ob-progress-label b {
+  color: var(--ec-brand);
+  font-weight: 700;
+}
+
 .ms-ob-dots {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 34px;
   padding: 0;
   list-style: none;
 }
@@ -115,14 +137,20 @@
 }
 
 .ms-ob-dots span {
-  width: 34px;
-  height: 4px;
-  border-radius: 2px;
+  width: 40px;
+  height: 5px;
+  border-radius: 3px;
   background: var(--ec-border);
+  transition: background 300ms ease, box-shadow 300ms ease;
 }
 
 .ms-ob-dots span.on {
   background: var(--ec-brand);
+}
+
+.ms-ob-dots span.now {
+  background: var(--ec-brand);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--ec-brand) 55%, transparent);
 }
 
 .ms-ob-choices {
@@ -134,32 +162,71 @@
 }
 
 .ms-ob-choice {
-  padding: 20px 22px;
+  position: relative;
+  padding: 20px 48px 20px 22px;
   cursor: pointer;
   border: 1.5px solid var(--ec-border);
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--ec-surface);
   font-family: var(--font-sans);
   text-align: left;
   transition:
     border-color 150ms ease,
     background 150ms ease,
-    box-shadow 150ms ease;
+    box-shadow 150ms ease,
+    transform 150ms ease;
 }
 
 .ms-ob-choice:hover:not(:disabled) {
   border-color: var(--ec-brand-border, var(--ec-brand));
+  transform: translateY(-1px);
+  box-shadow: var(--ec-shadow-card, 0 4px 14px rgba(18, 22, 30, 0.07));
 }
 
 .ms-ob-choice.on {
   border-color: var(--ec-brand);
-  background: var(--ec-brand-muted);
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+  background:
+    radial-gradient(
+      120% 120% at 100% 0%,
+      color-mix(in srgb, var(--ec-brand) 10%, transparent),
+      transparent 55%
+    ),
+    var(--ec-brand-muted);
+  box-shadow:
+    0 0 0 1px var(--ec-brand),
+    var(--ec-shadow-card, 0 4px 14px rgba(18, 22, 30, 0.07));
 }
 
 .ms-ob-choice:disabled {
   opacity: 0.55;
   cursor: default;
+}
+
+/* Selection indicator — hollow ring that fills with a check when chosen. */
+.ms-ob-choice .ms-ob-tick {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ec-border);
+  color: transparent;
+  background: transparent;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.ms-ob-choice.on .ms-ob-tick {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #fff);
+  transform: scale(1.05);
 }
 
 .ms-ob-choice b {
@@ -185,6 +252,9 @@
 }
 
 .ms-ob-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 13px;
   padding: 10px 17px;
@@ -196,7 +266,13 @@
   transition:
     border-color 150ms ease,
     color 150ms ease,
-    background 150ms ease;
+    background 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ms-ob-chip:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--ec-brand) 55%, var(--ec-border));
+  color: var(--ec-text-primary);
 }
 
 .ms-ob-chip.on {
@@ -204,6 +280,103 @@
   color: var(--ec-brand);
   background: var(--ec-brand-muted);
   font-weight: 600;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ec-brand) 45%, transparent);
+}
+
+.ms-ob-chip .ms-ob-chip-check {
+  display: inline-flex;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* ---- Welcome hero: a miniature marked answer, not abstract squares ---- */
+.ms-ob-hero {
+  position: relative;
+  width: min(320px, 84vw);
+  margin: 0 auto;
+}
+
+.ms-ob-hero-glow {
+  position: absolute;
+  inset: -18%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ec-brand) 20%, transparent);
+  filter: blur(46px);
+  pointer-events: none;
+}
+
+.ms-ob-hero-paper {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 26%, var(--ec-border));
+  border-radius: 18px;
+  background: var(--ec-surface);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 40%, transparent),
+    0 18px 44px -20px color-mix(in srgb, var(--ec-brand) 30%, rgba(18, 22, 30, 0.35));
+  padding: 18px 20px 16px;
+  text-align: left;
+  transform: rotate(-1.2deg);
+}
+
+.ms-ob-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+}
+
+.ms-ob-hero-row + .ms-ob-hero-row {
+  border-top: 1px dashed color-mix(in srgb, var(--ec-border) 80%, transparent);
+}
+
+.ms-ob-hero-line {
+  height: 7px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ec-text-secondary) 22%, transparent);
+  flex: 1;
+}
+
+.ms-ob-hero-line.short {
+  flex: 0 0 58%;
+}
+
+.ms-ob-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.ms-ob-hero-badge.good {
+  color: var(--ec-chip-success-text);
+  background: var(--ec-chip-success-bg);
+}
+
+.ms-ob-hero-badge.part {
+  color: var(--ec-chip-warning-text);
+  background: var(--ec-chip-warning-bg);
+}
+
+.ms-ob-hero-score {
+  position: absolute;
+  right: -14px;
+  top: -16px;
+  transform: rotate(3deg);
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  font-size: 21px;
+  line-height: 1;
+  color: var(--ec-on-brand-text, #fff);
+  background: var(--ec-brand);
+  padding: 7px 13px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--ec-brand) 70%, transparent);
 }
 
 .ms-ob-nav {

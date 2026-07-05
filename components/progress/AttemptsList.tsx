@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FileText, NotebookPen, ChevronRight } from 'lucide-react'
 import { SyllabusTopicBadgeList } from '@/components/SyllabusTopicBadge'
-import { LoadingLink } from '@/components/ui/LoadingLink'
+import { AppEmptyState } from '@/components/ui/AppEmptyState'
 import type { SyllabusCode } from '@/lib/syllabus'
 
 export type AttemptListRow = {
@@ -32,18 +32,13 @@ function scheme(row: AttemptListRow) {
 export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
   if (attempts.length === 0) {
     return (
-      <div className="ms-progress-hint p-8 text-center">
-        <p className="text-sm text-[var(--ec-text-secondary)]">
-          No attempts for this subject yet. Mark a question and it will show up here.
-        </p>
-        <LoadingLink
-          href="/mark"
-          loadingText="Opening…"
-          className="ec-btn-primary ec-btn-primary--sm mt-5 inline-flex min-h-[44px]"
-        >
-          Mark a question
-        </LoadingLink>
-      </div>
+      <AppEmptyState
+        title="No attempts yet"
+        body="Mark a question for this subject and every attempt will be tracked here with its score and topics."
+        ctaLabel="Mark a question"
+        ctaHref="/mark"
+        variant="no-attempts"
+      />
     )
   }
 

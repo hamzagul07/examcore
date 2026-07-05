@@ -1,6 +1,7 @@
 'use client'
 
 import { Label } from '@/components/ui/label'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { QuestionPreviewPanel } from '@/components/mark/QuestionPreviewPanel'
 import { getSubjectByCode } from '@/lib/profile-options'
 import { resolveSubjectLabel } from '@/lib/ib/marking-config'
@@ -95,7 +96,16 @@ export function PastPaperSelectorFields({
       </p>
 
       {papersLoading && (
-        <p className="text-sm text-[var(--ec-text-secondary)]">Loading available papers…</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2" aria-busy aria-label="Loading available papers">
+          <div>
+            <SkeletonLine className="mb-2 h-3 w-16" />
+            <SkeletonBlock className="h-11 w-full" />
+          </div>
+          <div>
+            <SkeletonLine className="mb-2 h-3 w-16" />
+            <SkeletonBlock className="h-11 w-full" />
+          </div>
+        </div>
       )}
 
       {!papersLoading && profileSelectableSubjects.length === 0 && (

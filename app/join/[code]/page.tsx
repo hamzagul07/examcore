@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { BookOpen, Users, Check, AlertCircle } from 'lucide-react'
 import { buildSignInHref, buildSignUpHref } from '@/lib/auth-redirect'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 
 interface ClassroomPreview {
   name: string
@@ -83,9 +84,12 @@ export default function JoinClassroomPage() {
 
   if (loading) {
     return (
-      <p className="text-center text-[var(--ec-text-secondary)]">
-        Loading invitation...
-      </p>
+      <div className="ms-join-card ec-card p-6 text-center sm:p-8" aria-busy aria-label="Loading invitation">
+        <SkeletonBlock className="mx-auto mb-4 h-16 w-16 rounded-2xl" />
+        <SkeletonBlock className="mx-auto mb-3 h-8 w-56 max-w-full" />
+        <SkeletonLine className="mx-auto mb-6 h-4 w-72 max-w-full" />
+        <SkeletonBlock className="mx-auto h-12 w-full max-w-xs" />
+      </div>
     )
   }
 

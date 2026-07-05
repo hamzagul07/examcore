@@ -31,19 +31,6 @@ export function effectiveAccess(opts: {
   return 'free'
 }
 
-/** The subscription tier whose caps apply to an access level. */
-export function capTierForAccess(access: EffectiveAccess): SubscriptionTier {
-  switch (access) {
-    case 'max':
-      return 'mastery'
-    case 'pro':
-    case 'trial':
-      return 'scholar'
-    default:
-      return 'free'
-  }
-}
-
 /** Whole days remaining in the reverse trial (0 if none / expired). */
 export function trialDaysLeft(trialEndsAt?: string | null, now: Date = new Date()): number {
   if (!trialEndsAt) return 0

@@ -29,6 +29,10 @@ import {
   recordOmniUsage,
 } from '@/lib/billing/enforcement'
 import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
+import {
+  checkAnonymousOmniRateLimit,
+  incrementAnonymousOmniRateLimit,
+} from '@/lib/rate-limit'
 
 export const maxDuration = 60
 
@@ -127,6 +131,24 @@ export async function POST(req: NextRequest) {
   }
 
   const markingAwareness = !!user && context.type !== 'teacher_dashboard'
+
+  // Guests get a persisted daily cap (survives deploys, shared across
+  // instances) on top of the in-memory hourly burst guard above.
+  if (!user) {
+    const guestCheck = await checkAnonymousOmniRateLimit(supabaseService, ip, null)
+    if (!guestCheck.allowed) {
+      return new Response(sse({ type: 'error', error: guestCheck.message }), {
+        status: 429,
+        headers: {
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache',
+          Connection: 'keep-alive',
+        },
+      })
+    }
+    // Consume up front — same reasoning as signed-in metering below.
+    await incrementAnonymousOmniRateLimit(supabaseService, ip, null, guestCheck.count)
+  }
 
   // Landing demo chat stays unrestricted; in-app Omni is metered for signed-in users.
   if (user && context.type !== 'landing') {

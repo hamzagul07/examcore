@@ -28,29 +28,39 @@ export function RouteError({
 
   return (
     <div className="app-shell flex min-h-[60vh] items-center justify-center px-4">
-      <div className="mx-auto max-w-lg text-center" role="alert">
-        <p className="ec-label-tech ec-score-low mb-4 justify-center">{eyebrow}</p>
-        <h1 className="text-headline mb-3">{title}</h1>
-        <p className="text-body mb-8">{description}</p>
-        <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-          <button type="button" onClick={reset} className="ec-btn-primary justify-center px-7 py-3.5">
-            Try again
-          </button>
-          <LoadingLink
-            href="/"
-            loadingText="Opening…"
-            className="ec-btn-ghost justify-center px-7 py-3.5"
-          >
-            Go home
-          </LoadingLink>
+      <div
+        className="ec-card relative mx-auto w-full max-w-lg overflow-hidden p-8 text-center sm:p-12"
+        role="alert"
+      >
+        <div
+          className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full blur-[80px] opacity-70"
+          style={{ background: 'var(--ec-chip-critical-bg)' }}
+          aria-hidden
+        />
+        <div className="relative">
+          <p className="ec-label-tech ec-score-low mb-4 justify-center">{eyebrow}</p>
+          <h1 className="text-headline mb-3">{title}</h1>
+          <p className="text-body mb-8">{description}</p>
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <button type="button" onClick={reset} className="ec-btn-primary justify-center px-7 py-3.5">
+              Try again
+            </button>
+            <LoadingLink
+              href="/"
+              loadingText="Opening…"
+              className="ec-btn-ghost justify-center px-7 py-3.5"
+            >
+              Go home
+            </LoadingLink>
+          </div>
+          <p className="ec-not-found-hint">
+            Still stuck?{' '}
+            <Link href="/contact" className="ec-link">
+              contact us
+            </Link>
+            .
+          </p>
         </div>
-        <p className="ec-not-found-hint">
-          Still stuck?{' '}
-          <Link href="/contact" className="ec-link">
-            contact us
-          </Link>
-          .
-        </p>
       </div>
     </div>
   )

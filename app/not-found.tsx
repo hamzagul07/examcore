@@ -4,9 +4,25 @@ import { LoadingLink } from '@/components/ui/LoadingLink'
 export default function NotFound() {
   return (
     <main className="app-shell flex min-h-[60vh] items-center justify-center px-4">
-      <div className="mx-auto max-w-lg text-center">
-        <p className="ec-eyebrow mb-4 text-center">404</p>
-        <h1 className="text-headline mb-3">Page not found</h1>
+      <div className="ec-card relative mx-auto w-full max-w-lg overflow-hidden p-8 text-center sm:p-12">
+        <div
+          className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full ec-glow-orb blur-[80px] opacity-60"
+          aria-hidden
+        />
+        <p
+          className="relative mb-2 font-mono text-[64px] font-bold leading-none tracking-tight"
+          style={{
+            background:
+              'linear-gradient(180deg, var(--ec-brand), color-mix(in srgb, var(--ec-brand) 35%, transparent))',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+          }}
+          aria-hidden
+        >
+          404
+        </p>
+        <h1 className="text-headline relative mb-3">Page not found</h1>
         <p className="text-body mb-8">
           That link may be broken, or the page may have moved. Try one of these
           instead — or search the site with{' '}

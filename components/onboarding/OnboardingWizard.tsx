@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { ButtonLoadingState } from '@/components/ui/ButtonLoadingState'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
@@ -353,10 +353,10 @@ export function OnboardingWizard({
           <motion.div
             key={step}
             className="ms-ob-step"
-            initial={{ y: 12 }}
-            animate={{ y: 0 }}
-            exit={{ y: -8 }}
-            transition={{ duration: 0.2 }}
+            initial={{ y: 14, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
           >
             {step === 1 && (
               <StepWelcome
@@ -427,24 +427,34 @@ export function OnboardingWizard({
   )
 }
 
+const STEP_LABELS = ['Welcome', 'Subjects', 'Your year', 'Your goal', 'Finish']
+
 function ProgressSteps({ current, total }: { current: number; total: number }) {
   return (
-    <ol className="ms-ob-dots" aria-label="Onboarding progress">
-      {Array.from({ length: total }, (_, i) => {
-        const stepNum = i + 1
-        const done = stepNum < current
-        const active = stepNum === current
-        return (
-          <li
-            key={i}
-            aria-current={active ? 'step' : undefined}
-            aria-label={`Step ${stepNum} of ${total}${done ? ', completed' : active ? ', current' : ''}`}
-          >
-            <span className={active || done ? 'on' : undefined} aria-hidden />
-          </li>
-        )
-      })}
-    </ol>
+    <div className="ms-ob-progress">
+      <p className="ms-ob-progress-label" aria-hidden>
+        Step <b>{current}</b> of {total} — {STEP_LABELS[current - 1]}
+      </p>
+      <ol className="ms-ob-dots" aria-label="Onboarding progress">
+        {Array.from({ length: total }, (_, i) => {
+          const stepNum = i + 1
+          const done = stepNum < current
+          const active = stepNum === current
+          return (
+            <li
+              key={i}
+              aria-current={active ? 'step' : undefined}
+              aria-label={`Step ${stepNum} of ${total}${done ? ', completed' : active ? ', current' : ''}`}
+            >
+              <span
+                className={active ? 'on now' : done ? 'on' : undefined}
+                aria-hidden
+              />
+            </li>
+          )
+        })}
+      </ol>
+    </div>
   )
 }
 
@@ -461,29 +471,27 @@ function StepWelcome({
 }) {
   return (
     <div>
-      <div className="mb-8 flex justify-center">
-        <div className="relative h-32 w-32">
-          <div
-            className="absolute inset-0 rounded-full blur-2xl"
-            style={{ background: 'color-mix(in srgb, var(--ec-brand) 25%, transparent)' }}
-          />
-          <div
-            className="relative flex h-full w-full items-center justify-center rounded-3xl border"
-            style={{
-              borderColor: 'color-mix(in srgb, var(--ec-brand) 35%, transparent)',
-              background: 'var(--ec-surface-raised)',
-            }}
-          >
-            <div className="grid grid-cols-2 gap-2 p-4">
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="h-8 w-8 rounded-lg"
-                  style={{
-                    background: `color-mix(in srgb, var(--ec-brand) ${20 + i * 12}%, transparent)`,
-                  }}
-                />
-              ))}
+      {/* Miniature marked answer — a preview of what the product does. */}
+      <div className="mb-10 mt-2 flex justify-center" aria-hidden>
+        <div className="ms-ob-hero">
+          <div className="ms-ob-hero-glow" />
+          <div className="ms-ob-hero-paper">
+            <span className="ms-ob-hero-score">7/8</span>
+            <div className="ms-ob-hero-row">
+              <span className="ms-ob-hero-line" />
+              <span className="ms-ob-hero-badge good">
+                <Check className="h-3 w-3" /> M1
+              </span>
+            </div>
+            <div className="ms-ob-hero-row">
+              <span className="ms-ob-hero-line short" />
+              <span className="ms-ob-hero-badge good">
+                <Check className="h-3 w-3" /> A1
+              </span>
+            </div>
+            <div className="ms-ob-hero-row">
+              <span className="ms-ob-hero-line" />
+              <span className="ms-ob-hero-badge part">±1 B1</span>
             </div>
           </div>
         </div>
@@ -570,6 +578,9 @@ function StepSubjects({
             onClick={() => onBoardChange(opt.id)}
             className={`ms-ob-choice${board === opt.id ? ' on' : ''}`}
           >
+            <span className="ms-ob-tick" aria-hidden>
+              <Check className="h-3.5 w-3.5" />
+            </span>
             <b>{opt.label}</b>
             <span>{opt.id === IB_BOARD_ID ? 'HL, SL & Core' : 'A-Level, AS & O-Level'}</span>
           </button>
@@ -589,6 +600,9 @@ function StepSubjects({
                 onClick={() => onLevelChange(opt.id)}
                 className={`ms-ob-choice${level === opt.id ? ' on' : ''}`}
               >
+                <span className="ms-ob-tick" aria-hidden>
+                  <Check className="h-3.5 w-3.5" />
+                </span>
                 <b>{opt.label}</b>
               </button>
             ))}
@@ -624,6 +638,9 @@ function StepSubjects({
                       className={`ms-ob-chip${active ? ' on' : ''}${atLimit ? ' opacity-50' : ''}`}
                       aria-pressed={active}
                     >
+                      {active && (
+                        <Check className="ms-ob-chip-check" aria-hidden />
+                      )}
                       {ib ? subject.label : `${subject.label} · ${subject.code}`}
                     </button>
                   )
@@ -692,6 +709,9 @@ function StepStage({
             onClick={() => onSelect(opt.id)}
             className={`ms-ob-choice${selected === opt.id ? ' on' : ''}`}
           >
+            <span className="ms-ob-tick" aria-hidden>
+              <Check className="h-3.5 w-3.5" />
+            </span>
             <b>{opt.title}</b>
             <span>{opt.subtitle}</span>
           </button>
@@ -768,6 +788,9 @@ function StepGoal({
             onClick={() => onSelect(opt.id)}
             className={`ms-ob-choice${selected === opt.id ? ' on' : ''}`}
           >
+            <span className="ms-ob-tick" aria-hidden>
+              <Check className="h-3.5 w-3.5" />
+            </span>
             <b>{opt.title}</b>
             <span>{opt.subtitle}</span>
           </button>

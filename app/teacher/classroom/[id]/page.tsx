@@ -10,6 +10,7 @@ import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
 import { InviteCard } from '@/components/teacher/InviteCard'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
@@ -78,7 +79,17 @@ export default function ClassroomPage() {
 
   if (!data) {
     return (
-      <div className="text-[var(--ec-text-secondary)]">Loading classroom analytics...</div>
+      <TeacherPageContainer className="ms-teacher-classroom">
+        <div aria-busy aria-label="Loading classroom analytics">
+          <SkeletonLine className="mb-3 h-3 w-40" />
+          <SkeletonBlock className="mb-8 h-10 w-72 max-w-full" />
+          <SkeletonBlock className="mb-8 h-32 w-full" />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <SkeletonBlock className="h-64 w-full" />
+            <SkeletonBlock className="h-64 w-full" />
+          </div>
+        </div>
+      </TeacherPageContainer>
     )
   }
 

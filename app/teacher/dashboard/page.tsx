@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Users, BookOpen, Plus, Sparkles, TrendingUp } from 'lucide-react'
 import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
+import { SkeletonBlock } from '@/components/ui/PageSkeleton'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 
 interface Classroom {
@@ -75,7 +76,11 @@ export default function TeacherDashboard() {
       )}
 
       {loading && (
-        <p className="text-[var(--ec-text-secondary)]">Loading classrooms...</p>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" aria-hidden>
+          <SkeletonBlock className="h-48 w-full" />
+          <SkeletonBlock className="h-48 w-full" />
+          <SkeletonBlock className="h-48 w-full" />
+        </div>
       )}
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

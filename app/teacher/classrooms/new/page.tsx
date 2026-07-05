@@ -7,6 +7,7 @@ import {
   TeacherPageContainer,
   TeacherPageHeader,
 } from '@/components/teacher/TeacherPageChrome'
+import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 
 export default function NewClassroomPage() {
   const router = useRouter()
@@ -65,7 +66,7 @@ export default function NewClassroomPage() {
             rows={3}
           />
         </div>
-        {error && <p className="text-sm ec-score-low">{error}</p>}
+        {error && <FormErrorAlert message={error} />}
         <button type="submit" disabled={loading} className="ec-btn-primary min-h-[48px] w-full">
           {loading ? 'Creating...' : 'Create classroom'}
         </button>

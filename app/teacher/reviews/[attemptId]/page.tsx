@@ -14,6 +14,7 @@ import {
   TeacherPageHeader,
 } from '@/components/teacher/TeacherPageChrome'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
@@ -44,7 +45,14 @@ export default function ReviewDetailPage() {
   if (!attempt) {
     return (
       <TeacherPageContainer className="ms-teacher-review-detail max-w-7xl">
-        <p className="p-6 text-[var(--ec-text-secondary)] sm:p-0">Loading submission...</p>
+        <div aria-busy aria-label="Loading submission">
+          <SkeletonLine className="mb-6 h-4 w-32" />
+          <SkeletonBlock className="mb-8 h-14 w-80 max-w-full" />
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <SkeletonBlock className="h-96 w-full" />
+            <SkeletonBlock className="h-96 w-full" />
+          </div>
+        </div>
       </TeacherPageContainer>
     )
   }

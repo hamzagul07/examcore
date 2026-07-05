@@ -7,6 +7,7 @@ import {
   TeacherPageContainer,
   TeacherPageHeader,
 } from '@/components/teacher/TeacherPageChrome'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 export default function StudentDetailPage() {
@@ -30,7 +31,15 @@ export default function StudentDetailPage() {
   if (loading) {
     return (
       <TeacherPageContainer className="ms-teacher-student max-w-4xl">
-        <p className="text-[var(--ec-text-secondary)]">Loading student profile...</p>
+        <div aria-busy aria-label="Loading student profile">
+          <SkeletonLine className="mb-6 h-4 w-32" />
+          <SkeletonBlock className="mb-8 h-16 w-72 max-w-full" />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <SkeletonBlock className="h-24 w-full" />
+            <SkeletonBlock className="h-24 w-full" />
+            <SkeletonBlock className="h-24 w-full" />
+          </div>
+        </div>
       </TeacherPageContainer>
     )
   }

@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
+import { SkeletonBlock, SkeletonLine } from '@/components/ui/PageSkeleton'
 import { createClient } from '@/lib/supabase-server'
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard'
 import { createOnboardingSaveToken } from '@/lib/onboarding/save-token'
@@ -11,8 +12,14 @@ type SearchParams = Promise<{ rerun?: string; next?: string }>
 
 function OnboardingFallback() {
   return (
-    <div className="flex min-h-[40vh] items-center justify-center">
-      <p className="text-body text-[var(--ec-text-secondary)]">Loading...</p>
+    <div className="ms-ob-shell">
+      <div className="mx-auto w-full max-w-lg pt-10 text-left">
+        <SkeletonLine className="mx-auto mb-8 h-3 w-32" />
+        <SkeletonBlock className="mx-auto mb-6 h-10 w-3/4" />
+        <SkeletonBlock className="mb-4 h-16 w-full" />
+        <SkeletonBlock className="mb-4 h-16 w-full" />
+        <SkeletonBlock className="h-16 w-full" />
+      </div>
     </div>
   )
 }

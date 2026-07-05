@@ -294,20 +294,20 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       />
     </div>
   ) : (
-    <div className="card card-pad">
-      <p className="body-2">
+    <div className="ec-card p-6 sm:p-7">
+      <p className="text-body text-[var(--ec-text-secondary)]">
         {isIbSubject ? (
           <>
             Topic mastery matrix is syllabus-based for Cambridge subjects today. For{' '}
-            <strong className="text-main">{subjectLabel}</strong>, your criterion marks
-            are tracked in Insights, Journey, and Attempts below — topic-level mastery
-            for IB is coming soon.
+            <strong className="text-[var(--ec-text-primary)]">{subjectLabel}</strong>, your
+            criterion marks are tracked in Insights, Journey, and Attempts below —
+            topic-level mastery for IB is coming soon.
           </>
         ) : (
           <>
             Detailed topic analytics are coming soon for{' '}
-            <strong className="text-main">{subjectLabel}</strong>. Keep marking — your
-            insights, journey, and attempt history are tracked below.
+            <strong className="text-[var(--ec-text-primary)]">{subjectLabel}</strong>. Keep
+            marking — your insights, journey, and attempt history are tracked below.
           </>
         )}
       </p>

@@ -127,11 +127,11 @@ export default function TermsPage() {
           <section>
             <h2 className="ms-h3">Pricing changes</h2>
             <p>
-              New accounts include a 7-day free trial with full access, no card
-              required, after which a free plan continues automatically. Paid
-              plans and current prices are described on our{' '}
-              <Link href="/pricing">pricing page</Link>. We may change prices for
-              new subscriptions with advance notice.
+              New accounts start on the free plan with no card required. Scholar and
+              Max include a 7-day free trial when you subscribe from the{' '}
+              <Link href="/pricing">pricing page</Link>. Paid plans and current prices
+              are described there. We may change prices for new subscriptions with
+              advance notice.
             </p>
           </section>
 

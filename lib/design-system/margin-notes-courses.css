@@ -1202,8 +1202,196 @@
 .cmap-detail-kicker { color: var(--ink); margin: 0; }
 .qc.focus { border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink-soft); }
 .pricing-title { font-size: clamp(38px, 5vw, 64px); }
-.pricing-lead { margin-top: 16px; }
+.pricing-lead { margin-top: 16px; max-width: 58ch; margin-left: auto; margin-right: auto; }
 .pricing-footnote { text-align: center; margin-top: 30px; }
+
+/* pricing — value proposition strip */
+.pricing-value-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 1040px;
+  margin: 32px auto 0;
+}
+.pricing-value-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: left;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.pricing-value-item:hover {
+  border-color: var(--ink-border);
+  box-shadow: var(--shadow-card);
+}
+.pricing-value-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--ink-soft);
+  color: var(--ink);
+}
+.pricing-value-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+.pricing-value-body {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .pricing-value-strip { grid-template-columns: 1fr; }
+}
+
+/* pricing — plan card enhancements */
+.plan-trial-pill {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 12%, var(--surface));
+  border: 1px solid var(--ink-border);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.plan-bestfor {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  margin: -8px 0 14px;
+  text-align: left;
+}
+.plan-killer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background: var(--ink-soft);
+  border: 1px solid var(--ink-border);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  text-align: left;
+}
+.plan.featured .plan-killer {
+  background: color-mix(in srgb, var(--ink) 8%, var(--ec-surface-warm, var(--surface)));
+  border-color: color-mix(in srgb, var(--ink) 28%, var(--border));
+}
+.plan-killer-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: var(--ink);
+}
+.plan-feats li.yes .feat-mark {
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+}
+.plan-feats li.no .feat-mark {
+  font-weight: 400;
+}
+
+/* pricing — "Why Scholar" persuasion section */
+.pricing-why {
+  max-width: 1040px;
+  margin: 64px auto 0;
+  text-align: center;
+}
+.pricing-why-kicker { margin-bottom: 10px; }
+.pricing-why-title { margin-bottom: 10px; }
+.pricing-why-lead {
+  max-width: 52ch;
+  margin: 0 auto 32px;
+  font-size: 17px;
+}
+.pricing-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  text-align: left;
+}
+.pricing-why-card {
+  padding: 24px 22px 26px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.pricing-why-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pop);
+}
+.pricing-why-card-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--ink-soft);
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.pricing-why-card-title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.pricing-why-card-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+.pricing-why-cta {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+.pricing-why-cta .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 28px;
+}
+@media (max-width: 880px) {
+  .pricing-why-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+}
+
+/* pricing — trust strip with icons */
+.pricing-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+.pricing-trust-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--ink);
+}
 
 /* pricing — 3-up plans, period toggle, currency, trial bar, trust strip */
 .plans.three { grid-template-columns: repeat(3, 1fr); max-width: 1040px; }
@@ -1211,10 +1399,12 @@
 
 /* pricing — 4-up plans (Free / Pro / Scholar / Max) */
 .plans.four { grid-template-columns: repeat(4, 1fr); max-width: 1240px; gap: 16px; }
-.plans.four .plan { padding: 22px 18px 26px; }
+.plans.four .plan { padding: 22px 18px 26px; display: flex; flex-direction: column; }
+.plans.four .plan .plan-cta { margin-top: auto; }
 .plans.four .plan-name { font-size: 22px; }
 .plans.four .plan-now { font-size: 30px; }
-.plans.four .plan-feats { font-size: 13.5px; }
+.plans.four .plan-feats { font-size: 13.5px; padding-top: 18px; }
+.plans.four .plan-blurb { min-height: auto; }
 @media (max-width: 1080px) {
   .plans.four { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
 }

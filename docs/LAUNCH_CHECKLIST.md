@@ -23,7 +23,7 @@ Production: **https://markscheme.app**
    `https://markscheme.app/api/billing/polar-webhook`  
    Subscribe to: `order.paid`, `order.refunded`, `subscription.created`, `.active`, `.updated`, `.canceled`, `.uncanceled`, `.past_due`, `.revoked`
 4. Vercel env: `POLAR_SERVER=production`, `POLAR_ACCESS_TOKEN`, `POLAR_WEBHOOK_SECRET`, all 9 `POLAR_PRODUCT_*`, `ENFORCEMENT_MODE=enforce`
-5. Redeploy, then test with a real card: subscribe (7-day trial applies to first subscription) → check webhook deliveries + `user_subscriptions.tier`; buy a credit pack → balance bumps; refund both from Polar → revoke + clawback
+5. Redeploy, then test with a real card: subscribe (7-day trial on the first Scholar/Max subscription; Pro bills immediately) → check webhook deliveries + `user_subscriptions.tier`; buy a credit pack → balance bumps; refund both from Polar → revoke + clawback
 
 ### Supabase + Google sign-in
 

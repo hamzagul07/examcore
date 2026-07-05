@@ -165,10 +165,14 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     }
 
     const planRank = TIER_RANK[product]
-    // First paid subscription starts with a 7-day free trial (see checkout API).
+    // First Scholar/Max subscription starts with a 7-day free trial (see
+    // checkout API). Pro checkouts charge immediately.
+    const hasCheckoutTrial = plan === 'scholar' || plan === 'max'
     const verb =
       currentRank === 0 || access === 'trial'
-        ? `Try ${PLAN_NAME[plan]} free for 7 days`
+        ? hasCheckoutTrial
+          ? `Try ${PLAN_NAME[plan]} free for 7 days`
+          : `Choose ${PLAN_NAME[plan]}`
         : planRank > currentRank
           ? `Upgrade to ${PLAN_NAME[plan]}`
           : `Switch to ${PLAN_NAME[plan]}`
@@ -273,7 +277,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
   const faqs = [
     {
       q: 'How does the free trial work?',
-      a: `Every new account gets 7 days of full access — live diagrams, past-paper practice and higher marking limits — with no card required. When it ends you keep the free plan automatically. And when you do pick a paid plan, your first subscription starts with its own 7-day free trial: you add a card but aren't charged until the trial ends, and you can cancel anytime before then.`,
+      a: `Every new account gets 7 days of full access — live diagrams, past-paper practice and higher marking limits — with no card required. When it ends you keep the free plan automatically. Scholar and Max also start with their own 7-day free trial on your first subscription: you add a card but aren't charged until the trial ends, and you can cancel anytime before then. Pro is billed from day one.`,
     },
     {
       q: 'What’s included on the free plan?',

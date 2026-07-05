@@ -3,6 +3,10 @@ import { extractJSON } from '@/lib/marking/json'
 import { summarizeKatexValidation } from '@/lib/extraction/katex-validate'
 import type { LessonEvidence } from '@/lib/courses/content-source.schema'
 import type { GeneratedLesson } from './lesson-schema'
+import {
+  getQualityTargets,
+  paperStyleHints,
+} from './quality-targets'
 
 export type ValidationIssue = {
   code: string
@@ -149,8 +153,6 @@ function validateKatex(lesson: GeneratedLesson): ValidationIssue[] {
   }))
 }
 
-const ABSTRACT_STEM_SUBJECTS = new Set(['9701', '9702', '9700', '9709', '9231', '9618'])
-
 function countHeadingTextPairs(lesson: GeneratedLesson): number {
   const sections = lesson.sections
   let pairs = 0
@@ -173,41 +175,40 @@ function countHeadingTextPairs(lesson: GeneratedLesson): number {
 }
 
 function validateTeachingDepth(lesson: GeneratedLesson, subjectCode: string): ValidationIssue[] {
+  const targets = getQualityTargets(subjectCode, 'premium')
   const issues: ValidationIssue[] = []
   const worked = lesson.sections.filter((s) => s.type === 'workedExample')
 
-  if (worked.length < 2) {
+  if (worked.length < targets.minWorkedExamples) {
     issues.push({
       code: 'min_worked_examples',
-      message: `Need ≥2 workedExample sections (found ${worked.length})`,
+      message: `Need ≥${targets.minWorkedExamples} workedExample sections (found ${worked.length})`,
       severity: 'error',
     })
   }
 
   const flashcardCount = lesson.flashcards?.length ?? 0
-  if (flashcardCount < 8) {
+  if (flashcardCount < targets.minFlashcards) {
     issues.push({
       code: 'min_flashcards',
-      message: `Need ≥8 flashcards (found ${flashcardCount})`,
+      message: `Need ≥${targets.minFlashcards} flashcards (found ${flashcardCount})`,
       severity: 'error',
     })
   }
 
-  if (ABSTRACT_STEM_SUBJECTS.has(subjectCode)) {
-    if (!lesson.simpleExplanation?.analogy?.trim()) {
-      issues.push({
-        code: 'missing_analogy',
-        message: 'STEM abstract topics require simpleExplanation.analogy',
-        severity: 'error',
-      })
-    }
+  if (targets.requireStemAnalogy && !lesson.simpleExplanation?.analogy?.trim()) {
+    issues.push({
+      code: 'missing_analogy',
+      message: 'STEM abstract topics require simpleExplanation.analogy',
+      severity: 'error',
+    })
   }
 
   const headingPairs = countHeadingTextPairs(lesson)
-  if (headingPairs < 3) {
+  if (headingPairs < targets.minHeadingGroups) {
     issues.push({
       code: 'min_heading_groups',
-      message: `Need ≥3 heading groups with substantive body text (found ${headingPairs})`,
+      message: `Need ≥${targets.minHeadingGroups} heading groups with substantive body text (found ${headingPairs})`,
       severity: 'error',
     })
   }
@@ -215,17 +216,18 @@ function validateTeachingDepth(lesson: GeneratedLesson, subjectCode: string): Va
   return issues
 }
 
-function validateSingleVisual(lesson: GeneratedLesson): ValidationIssue[] {
+function validateSingleVisual(lesson: GeneratedLesson, subjectCode: string): ValidationIssue[] {
+  const targets = getQualityTargets(subjectCode, 'premium')
   const visualCount =
     (lesson.interactiveEmbed ? 1 : 0) +
     (lesson.diagramSpec ? 1 : 0) +
     (lesson.diagram ? 1 : 0)
 
-  if (visualCount > 1) {
+  if (visualCount > targets.maxPrimaryVisuals) {
     return [
       {
         code: 'multiple_visuals',
-        message: `At most one primary visual allowed (found ${visualCount})`,
+        message: `At most ${targets.maxPrimaryVisuals} primary visual allowed (found ${visualCount})`,
         severity: 'error',
       },
     ]
@@ -234,9 +236,10 @@ function validateSingleVisual(lesson: GeneratedLesson): ValidationIssue[] {
 }
 
 function validatePaperStyle(lesson: GeneratedLesson): ValidationIssue[] {
+  const hints = paperStyleHints(lesson.paperType)
   const issues: ValidationIssue[] = []
 
-  if (lesson.paperType === 'mcq') {
+  if (hints.requireMcqCheck) {
     const hasMcqCheck =
       (lesson.quickCheck?.some((q) => (q.options?.length ?? 0) >= 2) ?? false) ||
       (lesson.flashcards?.length ?? 0) >= 4
@@ -249,7 +252,7 @@ function validatePaperStyle(lesson: GeneratedLesson): ValidationIssue[] {
     }
   }
 
-  if (lesson.paperType === 'practical') {
+  if (hints.requirePracticalVocab) {
     const text = collectLessonText(lesson).toLowerCase()
     if (!/uncertaint|error|significant figure|gradient|graph/.test(text)) {
       issues.push({
@@ -342,7 +345,7 @@ export async function validateGeneratedLesson(
     ...validatePaperScope(lesson, evidence.paperNumber, evidence.topicCode),
     ...validateWorkedExampleTraceability(lesson, evidence),
     ...validateTeachingDepth(lesson, evidence.subjectCode),
-    ...validateSingleVisual(lesson),
+    ...validateSingleVisual(lesson, evidence.subjectCode),
     ...validateKatex(lesson),
     ...validatePaperStyle(lesson),
   ]
@@ -353,10 +356,11 @@ export async function validateGeneratedLesson(
   )
   issues.push(...coverageIssues)
 
-  if (coverageScore < 0.8 && evidence.objectives.length > 0) {
+  const qualityTargets = getQualityTargets(evidence.subjectCode, 'premium')
+  if (coverageScore < qualityTargets.minCoverageScore && evidence.objectives.length > 0) {
     issues.push({
       code: 'low_coverage',
-      message: `Coverage score ${coverageScore.toFixed(2)} below 0.8`,
+      message: `Coverage score ${coverageScore.toFixed(2)} below ${qualityTargets.minCoverageScore}`,
       severity: 'error',
     })
   }

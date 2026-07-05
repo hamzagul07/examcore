@@ -35,6 +35,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Verify changed course lessons
+        run: pnpm course:verify-changed -- --base origin/main
+
       - name: Build
         run: pnpm build
         env:

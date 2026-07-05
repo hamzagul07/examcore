@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import type { CourseLesson } from '@/lib/courses/types'
 
-const LessonSectionSchema = z.discriminatedUnion('type', [
+export const LessonSectionSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('intro'), content: z.string().min(1) }),
   z.object({ type: z.literal('heading'), content: z.string().min(1) }),
   z.object({ type: z.literal('text'), content: z.string().min(1) }),

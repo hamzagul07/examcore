@@ -135,6 +135,9 @@ function SignInForm() {
     const destination = await fetchPostAuthDestination(nextParam)
     router.push(destination)
     router.refresh()
+    // Keep the spinner while navigating, but recover if navigation stalls so
+    // the user isn't stuck on a dead "Signing in…" button.
+    setTimeout(() => setLoading(false), 8000)
   }
 
   const signupHref = buildSignUpHref(nextParam)

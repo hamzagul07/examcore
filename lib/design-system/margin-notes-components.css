@@ -663,8 +663,9 @@
   .ec-nav-burger {
     display: none;
     place-items: center;
-    width: 40px;
-    height: 40px;
+    /* 44px = the design system's own touch-target minimum */
+    width: 44px;
+    height: 44px;
     border: 1px solid var(--ec-border);
     border-radius: 10px;
     background: none;
@@ -1381,7 +1382,9 @@
     display: none;
   }
 
-  @media (max-width: 1023px) {
+  /* 900px matches the header's mobile switch — no tablet zone showing both
+     desktop tabs and a bottom bar. */
+  @media (max-width: 900px) {
     .ec-tabbar {
       display: grid;
       /* auto-fit keeps tabs evenly sized regardless of tab count */

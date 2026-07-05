@@ -343,6 +343,9 @@ export function OnboardingWizard({
         showBetaBadge={false}
         backLabel={backLabel}
         backHref={backHref}
+        confirmBackMessage={
+          rerun ? undefined : 'Sign out? Your setup progress is saved and will be here when you return.'
+        }
       >
         <ProgressSteps current={step} total={TOTAL_STEPS} />
 
@@ -616,6 +619,7 @@ function StepSubjects({
                       key={subject.code}
                       type="button"
                       disabled={atLimit}
+                      title={atLimit ? 'Deselect one to add another (max 4)' : undefined}
                       onClick={() => onToggle(subject.id)}
                       className={`ms-ob-chip${active ? ' on' : ''}${atLimit ? ' opacity-50' : ''}`}
                       aria-pressed={active}

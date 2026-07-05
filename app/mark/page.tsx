@@ -172,6 +172,8 @@ export default function MarkPage() {
     null
   )
   const [papersLoading, setPapersLoading] = useState(true)
+  const [papersError, setPapersError] = useState(false)
+  const [papersReloadKey, setPapersReloadKey] = useState(0)
   const [showManualPaper, setShowManualPaper] = useState(false)
   const [selectedSubject, setSelectedSubject] = useState('')
   const [selectedYear, setSelectedYear] = useState<number | ''>('')
@@ -324,6 +326,8 @@ export default function MarkPage() {
 
   useEffect(() => {
     let cancelled = false
+    setPapersLoading(true)
+    setPapersError(false)
     fetch('/api/papers/available')
       .then((r) => r.json())
       .then((d) => {
@@ -331,7 +335,10 @@ export default function MarkPage() {
       })
       .catch((err) => {
         console.error('Failed to load papers:', err)
-        if (!cancelled) setAvailablePapers({})
+        if (!cancelled) {
+          setAvailablePapers({})
+          setPapersError(true)
+        }
       })
       .finally(() => {
         if (!cancelled) setPapersLoading(false)
@@ -339,7 +346,7 @@ export default function MarkPage() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [papersReloadKey])
 
   // Restore last manual selection from localStorage after profile load.
   useEffect(() => {
@@ -788,6 +795,20 @@ export default function MarkPage() {
 
   const hasPracticeQuestion =
     questionTextInput.trim().length >= 10 || !!questionPhoto
+
+  // Why the submit button is disabled, in words — shown under the button so a
+  // greyed-out CTA never leaves the user guessing.
+  const submitDisabledReason = !answerPages.length
+    ? 'Add a photo of your answer to get started.'
+    : hasCompressingPages(answerPages) || questionPhotoCompressing
+      ? 'Preparing your images — just a moment…'
+      : submitBlocked
+        ? 'You\u2019ve used today\u2019s marking allowance — upgrade or come back tomorrow.'
+        : isPracticeMode && !selectedSubject
+          ? 'Pick a subject above so we mark with the right criteria.'
+          : isPracticeMode && !hasPracticeQuestion
+            ? 'Add the question (photo or text) so we know what to mark against.'
+            : null
 
   const isManualFilled = !!(
     selectedSubject &&
@@ -1725,6 +1746,23 @@ export default function MarkPage() {
                 <MarkingModeHint mode="practice" markBoard={selectedMarkBoard} />
               ) : null}
 
+              {!isPracticeMode && papersError && (
+                <div className="ec-banner ec-banner-info" role="alert">
+                  <p className="ec-banner__title">Couldn&apos;t load the paper catalog</p>
+                  <p className="ec-banner__meta mt-1">
+                    The paper dropdowns may look empty. Check your connection, then{' '}
+                    <button
+                      type="button"
+                      className="ec-link underline"
+                      onClick={() => setPapersReloadKey((k) => k + 1)}
+                    >
+                      retry loading papers
+                    </button>
+                    .
+                  </p>
+                </div>
+              )}
+
               {!isPracticeMode && (
                 <PastPaperSelectorFields
                   markBoard={selectedMarkBoard}
@@ -1879,6 +1917,14 @@ export default function MarkPage() {
                   >
                     {isPracticeMode ? 'Mark my question' : 'Mark my answer →'}
                   </Button>
+                  {!loading && submitDisabledReason && (
+                    <p
+                      className="mt-2.5 text-center text-xs text-[var(--ec-text-secondary)]"
+                      role="status"
+                    >
+                      {submitDisabledReason}
+                    </p>
+                  )}
                   {!isPracticeMode && isManualFilled && (
                     <p className="ms-micro text-center" style={{ marginTop: 10 }}>
                       USES THE OFFICIAL {selectedSubject}/{selectedComponent} MARK SCHEME

@@ -10,6 +10,8 @@ type Props = {
   showBetaBadge?: boolean
   backLabel?: string
   backHref?: string
+  /** Ask before following the back link (e.g. "Sign out?" mid-onboarding). */
+  confirmBackMessage?: string
   /** Onboarding uses centered ob-shell without auth card chrome. */
   layout?: 'card' | 'onboarding'
 }
@@ -20,8 +22,15 @@ export function AuthShell({
   showBetaBadge = true,
   backLabel = 'Back to home',
   backHref = '/',
+  confirmBackMessage,
   layout = 'card',
 }: Props) {
+  const handleBackClick = confirmBackMessage
+    ? (e: React.MouseEvent) => {
+        if (!window.confirm(confirmBackMessage)) e.preventDefault()
+      }
+    : undefined
+
   if (layout === 'onboarding') {
     return (
       <main className="ms-ob-shell">
@@ -30,7 +39,7 @@ export function AuthShell({
         </div>
         {children}
         <p className="ms-micro" style={{ marginTop: 32 }}>
-          <Link href={backHref} className="ec-btn-underline">
+          <Link href={backHref} className="ec-btn-underline" onClick={handleBackClick}>
             {backLabel}
           </Link>
         </p>
@@ -71,6 +80,7 @@ export function AuthShell({
         <div className="mt-6 text-center">
           <Link
             href={backHref}
+            onClick={handleBackClick}
             className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
           >
             <ArrowLeft className="h-3.5 w-3.5" />

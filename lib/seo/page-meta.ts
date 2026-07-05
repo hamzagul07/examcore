@@ -13,7 +13,9 @@ export type PageSeoEntry = {
  */
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Cambridge past paper marking, courses & community',
+    // Keep ≤47 chars — formatSerpTitle truncates anything longer once the
+    // " — MarkScheme" suffix is added, shipping a literal "…" in the tag.
+    title: 'Cambridge & IB past paper marking, free courses',
     description:
       'Mark Cambridge & IB past papers mark-by-mark, learn in free syllabus courses, and discuss in Exam Room subject communities. Upload handwriting — B1/M1/A1 feedback. Free tier.',
   },

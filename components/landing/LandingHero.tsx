@@ -1,6 +1,5 @@
 ﻿'use client'
 
-import Link from 'next/link'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 import {
   ExamSheet,
@@ -66,11 +65,13 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           >
             Mark your first question — free
           </LoadingLink>
-          <LoadingLink href="/courses" className="ec-btn-warm" loadingText="Loading courses…">
-            Free courses
+          {/* One dominant CTA — the other paths are quiet text links so the
+              primary action doesn't compete with two more buttons. */}
+          <LoadingLink href="/courses" className="ec-btn-underline" loadingText="Loading courses…">
+            Browse free courses
           </LoadingLink>
-          <LoadingLink href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
-            Exam Room
+          <LoadingLink href="/community" className="ec-btn-underline">
+            Visit Exam Room
           </LoadingLink>
         </div>
         <p className="ms-micro ms-hero-micro">

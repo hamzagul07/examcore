@@ -1,8 +1,9 @@
 'use client'
 
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 import { buildContentGateSignUpHref } from '@/lib/auth-redirect'
 import { setGuestBrowseCookie } from '@/lib/guest-browse'
 import { useContentReturnPath } from '@/lib/hooks/useContentReturnPath'
@@ -10,14 +11,7 @@ import { useContentReturnPath } from '@/lib/hooks/useContentReturnPath'
 function GuestSignupRedirectInner() {
   const router = useRouter()
   const returnPath = useContentReturnPath()
-
-  useEffect(() => {
-    const href = buildContentGateSignUpHref(returnPath)
-    const timer = window.setTimeout(() => {
-      router.replace(href)
-    }, 450)
-    return () => window.clearTimeout(timer)
-  }, [returnPath, router])
+  const signUpHref = buildContentGateSignUpHref(returnPath)
 
   function skipToContent() {
     setGuestBrowseCookie()
@@ -30,9 +24,9 @@ function GuestSignupRedirectInner() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-      role="status"
-      aria-live="polite"
-      aria-label="Redirecting to sign up"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Create a free account to unlock this topic"
     >
       <motion.div
         className="ec-guest-signup-redirect__panel"
@@ -41,10 +35,18 @@ function GuestSignupRedirectInner() {
         transition={{ duration: 0.4, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
       >
         <p className="ec-guest-signup-redirect__eyebrow">Free account</p>
-        <p className="ec-guest-signup-redirect__title">Taking you to sign up…</p>
+        <p className="ec-guest-signup-redirect__title">Save your progress on this topic</p>
         <p className="ec-guest-signup-redirect__lead">
-          Unlock this topic and save progress — or continue without an account.
+          Create a free account to unlock this topic and keep your progress — or keep browsing
+          without one.
         </p>
+        <LoadingLink
+          href={signUpHref}
+          className="ec-btn-primary ec-guest-signup-redirect__cta"
+          loadingText="Opening sign up…"
+        >
+          Create free account
+        </LoadingLink>
         <button type="button" className="ec-guest-signup-redirect__skip" onClick={skipToContent}>
           Just browsing? Skip to content
         </button>
@@ -53,7 +55,7 @@ function GuestSignupRedirectInner() {
   )
 }
 
-/** Brief fade overlay, then redirect to signup with return path preserved. */
+/** Content gate: offers signup (with return path preserved) or a guest skip. */
 export function GuestSignupRedirect() {
   return (
     <Suspense fallback={null}>

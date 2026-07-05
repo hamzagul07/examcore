@@ -14,6 +14,7 @@ import {
 } from '@/components/AuthFormBits'
 import { FormErrorAlert } from '@/components/ui/FormErrorAlert'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
+import { formatAuthError } from '@/lib/auth-errors'
 import { GoogleAuthSection } from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
 import { UsernameField, type UsernameState } from '@/components/auth/UsernameField'
@@ -85,7 +86,7 @@ export function SignUpForm({
 
     setLoading(false)
     if (error) {
-      setErrorMsg(error.message)
+      setErrorMsg(formatAuthError(error))
       return
     }
     setSent(true)
@@ -129,7 +130,7 @@ export function SignUpForm({
 
     setLoading(false)
     if (error) {
-      setErrorMsg(error.message)
+      setErrorMsg(formatAuthError(error))
       return
     }
 
@@ -178,10 +179,7 @@ export function SignUpForm({
           Did not get it? Check your spam folder, or{' '}
           <button
             type="button"
-            onClick={() => {
-              setSent(false)
-              setEmail('')
-            }}
+            onClick={() => setSent(false)}
             className="ec-link ec-auth-link underline"
           >
             try again

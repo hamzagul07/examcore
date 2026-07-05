@@ -9,6 +9,7 @@ import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton, SuccessBox } from '@/components/AuthFormBits'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
+import { formatAuthError } from '@/lib/auth-errors'
 
 const CODE_LENGTH = 6
 
@@ -139,7 +140,7 @@ function VerifyEmailForm() {
 
     setResending(false)
     if (error) {
-      setErrorMsg(error.message)
+      setErrorMsg(formatAuthError(error))
       return
     }
     setResent(true)

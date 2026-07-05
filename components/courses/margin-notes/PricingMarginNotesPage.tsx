@@ -338,7 +338,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
 
         {notice ? <p className="pricing-notice">{notice}</p> : null}
 
-        <div className="plans four">
+        <div className="plans four" id="plans">
           {plans.map((p) => {
             const cta = ctaFor(p.id)
             return (

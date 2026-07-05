@@ -263,6 +263,19 @@ export default function MarkPage() {
     }
   }, [cinematicActive])
 
+  // Uploaded photos only live in memory — warn before a refresh/close discards
+  // them. Skipped once results are in (nothing left to lose).
+  const hasUnsavedUploads = answerPages.length > 0 && !result
+  useEffect(() => {
+    if (!hasUnsavedUploads || typeof window === 'undefined') return
+    const warn = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', warn)
+    return () => window.removeEventListener('beforeunload', warn)
+  }, [hasUnsavedUploads])
+
   useEffect(() => {
     let cancelled = false
     async function loadProfile() {
@@ -1137,7 +1150,8 @@ export default function MarkPage() {
         setMarkProgress(null)
         setMarkContext(null)
         setMarkStreamError(null)
-        setErrorMsg('Marking finished without a result. Please try again.')
+        setErrorMsg('Marking finished without a result. Your photos are still here.')
+        setErrorRetryable(true)
       }
     } catch (err) {
       setLoading(false)
@@ -1511,7 +1525,7 @@ export default function MarkPage() {
                   onPagesChange={setAnswerPages}
                   disabled={loading}
                   emptyLabel="Drop your working here"
-                  emptyHint="photos · camera · PDF — multi-page is fine"
+                  emptyHint="photos or camera — multi-page is fine"
                 />
               </div>
               <div className="ms-mark-form-card">

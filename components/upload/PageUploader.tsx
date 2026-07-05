@@ -88,6 +88,7 @@ export function PageUploader({
 }: PageUploaderProps) {
   const [dragIndex, setDragIndex] = useState<number | null>(null)
   const [pdfError, setPdfError] = useState<string | null>(null)
+  const [rejectedMsg, setRejectedMsg] = useState<string | null>(null)
   const [selectedPageId, setSelectedPageId] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const pdfInputRef = useRef<HTMLInputElement>(null)
@@ -150,11 +151,22 @@ export function PageUploader({
           f.name.toLowerCase().endsWith('.pdf')
       )
       if (allowPdf && pdf && list.length === 1 && onPdfChange) {
+        setRejectedMsg(null)
         setPdf(pdf)
         onPagesChange(() => [])
         return
       }
       const images = list.filter((f) => f.type.startsWith('image/'))
+      const skipped = list.length - images.length
+      if (skipped > 0) {
+        setRejectedMsg(
+          pdf && !allowPdf
+            ? 'PDFs aren’t supported here — take photos of your pages instead (JPEG, PNG, or WebP).'
+            : `${skipped} file${skipped === 1 ? ' was' : 's were'} skipped — only JPEG, PNG, or WebP images work here.`
+        )
+      } else {
+        setRejectedMsg(null)
+      }
       if (images.length) ingestImages(images)
     },
     [allowPdf, onPdfChange, ingestImages, onPagesChange, setPdf]
@@ -325,6 +337,12 @@ export function PageUploader({
           />
         </div>
       </div>
+
+      {rejectedMsg && (
+        <p className="rounded-xl border ec-tint-critical-chip px-4 py-3 text-sm" role="alert">
+          {rejectedMsg}
+        </p>
+      )}
 
       {pdfError && (
         <p className="rounded-xl border ec-tint-critical-chip px-4 py-3 text-sm">

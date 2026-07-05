@@ -59,6 +59,8 @@
 .notif-dropdown-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ec-text-secondary); }
 .notif-dropdown-prefs { font-size: 12px; font-weight: 600; color: var(--ec-brand); text-decoration: none; }
 .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13.5px; color: var(--ec-text-primary); text-decoration: none; }
+/* Destination-less notifications render as buttons — normalize to the link look. */
+button.notif-item { width: 100%; background: none; border: none; text-align: left; cursor: pointer; font: inherit; }
 .notif-item:hover { background: color-mix(in srgb, var(--ec-brand) 7%, transparent); }
 .notif-item.unread { background: color-mix(in srgb, var(--ec-brand) 5%, transparent); }
 .notif-item-icon { width: 28px; height: 28px; flex: none; display: grid; place-items: center; border-radius: 8px; background: var(--ec-surface-raised); font-size: 14px; }

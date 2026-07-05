@@ -13,6 +13,7 @@ import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton } from '@/components/AuthFormBits'
+import { formatAuthError } from '@/lib/auth-errors'
 
 export default function ForgotPasswordPage() {
   return (
@@ -61,7 +62,7 @@ function ForgotPasswordForm() {
 
     setLoading(false)
     if (error) {
-      setErrorMsg(error.message)
+      setErrorMsg(formatAuthError(error))
       return
     }
     setSent(true)

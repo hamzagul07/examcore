@@ -1384,7 +1384,9 @@
   @media (max-width: 1023px) {
     .ec-tabbar {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      /* auto-fit keeps tabs evenly sized regardless of tab count */
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
       position: fixed;
       left: 0;
       right: 0;

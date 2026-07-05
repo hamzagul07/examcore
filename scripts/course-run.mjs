@@ -173,14 +173,96 @@ async function main() {
   }
 
   if (opts.type === 'lesson_generate') {
-    console.error(
-      'lesson_generate is not available until the gated generation commit is deployed.'
+    process.env.COURSE_AUTONOMY = '1'
+
+    const { auditSubjectCoverage } = await import(
+      '../lib/courses/run/syllabus-coverage.ts'
     )
-    process.exit(1)
+    const { createGuardedWriter } = await import('../lib/courses/run/guardrail.ts')
+    const { generateLesson } = await import(
+      '../lib/courses/generator/generate-lesson.ts'
+    )
+    const { getSyllabusByCode } = await import('../lib/syllabi/index.ts')
+    const { topicToLessonSlug } = await import('../lib/courses/slug.ts')
+    const { pilotLessonPath } = await import('../lib/courses/paths.ts')
+
+    if (!opts.code) {
+      console.error('lesson_generate requires --code SUBJECT')
+      process.exit(1)
+    }
+
+    const coverage = auditSubjectCoverage(opts.code)
+    if (!coverage) {
+      console.error(`No syllabus for ${opts.code}`)
+      process.exit(1)
+    }
+
+    console.log(
+      `Coverage before generate: ${coverage.complete}/${coverage.totalTopics} complete (${coverage.coveragePct}%)`
+    )
+
+    let targets = opts.missingOnly
+      ? coverage.missingTopics
+      : coverage.rows.filter((r) => r.status !== 'complete')
+
+    if (opts.topic) {
+      targets = targets.filter((t) => t.topicCode === opts.topic)
+    }
+    if (opts.limit != null) {
+      targets = targets.slice(0, opts.limit)
+    }
+
+    if (!targets.length) {
+      console.log('Nothing to generate.')
+      process.exit(0)
+    }
+
+    const topics = getSyllabusByCode(opts.code) ?? []
+    const writer = createGuardedWriter()
+    let ok = 0
+    let fail = 0
+
+    for (const row of targets) {
+      const topic = topics.find((t) => t.code === row.topicCode)
+      if (!topic) continue
+      const paperNumber = String(topic.paper).match(/P(\d+)/i)?.[1] ?? '1'
+      const slug = topicToLessonSlug(topic.code, topic.name)
+
+      if (opts.dryRun) {
+        console.log(`[dry-run] would generate ${opts.code} ${topic.code} ${slug}`)
+        continue
+      }
+
+      try {
+        const result = await generateLesson({
+          subjectCode: opts.code,
+          paperNumber,
+          topicCode: topic.code,
+          persist: false,
+          skipAnswerabilityLlm: true,
+        })
+        const outRel = path
+          .relative(PROJECT, pilotLessonPath(opts.code, paperNumber, slug))
+          .split(path.sep)
+          .join('/')
+        writer.writeFile(outRel, `${JSON.stringify(result.lesson, null, 2)}\n`)
+        console.log(`OK  ${topic.code}  ${slug}  (${result.attempts} attempt(s))`)
+        ok += 1
+      } catch (err) {
+        console.error(
+          `FAIL ${topic.code} ${slug}: ${err instanceof Error ? err.message : String(err)}`
+        )
+        fail += 1
+      }
+    }
+
+    if (fail > 0) process.exit(1)
+    console.log(`Generated ${ok} lesson(s).`)
+    process.exit(0)
   }
 
   console.error(`Unknown run type: ${opts.type}`)
-  console.error('Types: coverage_audit | lesson_verify')
+  console.error('Types: coverage_audit | lesson_verify | lesson_generate')
   process.exit(1)
 }
 

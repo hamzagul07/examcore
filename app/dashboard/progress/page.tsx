@@ -86,7 +86,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/auth/signin')
+    redirect('/auth/signin?next=%2Fdashboard%2Fprogress')
   }
 
   const { data: profile } = await supabase
@@ -274,7 +274,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
         totalTopics={totalTopics}
       />
       {!isIbSubject && (
-        <GradeTrajectory attempts={attempts} prediction={prediction} />
+        <GradeTrajectory attempts={attempts} prediction={prediction} ibMode={isIbSubject} />
       )}
       <MasteryMatrix
         parentMasteries={parentMasteries}

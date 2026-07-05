@@ -83,11 +83,21 @@ export function NavDropdown({
   const rootRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
+  // Which end of the menu should receive focus once it renders (keyboard open).
+  const pendingFocusRef = useRef<'first' | 'last' | null>(null)
   const anyActive = items.some((i) => isActive(i.href))
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  const menuItems = () =>
+    Array.from(menuRef.current?.querySelectorAll<HTMLAnchorElement>('[role="menuitem"]') ?? [])
+
+  const closeAndRefocus = () => {
+    setOpen(false)
+    triggerRef.current?.focus()
+  }
 
   const reposition = () => {
     const trigger = triggerRef.current
@@ -113,6 +123,12 @@ export function NavDropdown({
   useLayoutEffect(() => {
     if (!open) return
     reposition()
+    if (pendingFocusRef.current) {
+      const list = menuItems()
+      const target = pendingFocusRef.current === 'last' ? list[list.length - 1] : list[0]
+      target?.focus()
+      pendingFocusRef.current = null
+    }
   }, [open, items.length])
 
   useEffect(() => {
@@ -126,7 +142,10 @@ export function NavDropdown({
       setOpen(false)
     }
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false)
+      if (e.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
     }
     function onScroll() {
       setOpen(false)
@@ -151,12 +170,56 @@ export function NavDropdown({
 
   if (!items.length) return null
 
+  // WAI-ARIA menu keyboard pattern: arrows move between items, Home/End jump,
+  // Escape/Tab close (Escape restores focus to the trigger).
+  const onMenuKeyDown = (e: React.KeyboardEvent) => {
+    const list = menuItems()
+    if (!list.length) return
+    const current = list.indexOf(document.activeElement as HTMLAnchorElement)
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault()
+        list[(current + 1) % list.length]?.focus()
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        list[(current - 1 + list.length) % list.length]?.focus()
+        break
+      case 'Home':
+        e.preventDefault()
+        list[0]?.focus()
+        break
+      case 'End':
+        e.preventDefault()
+        list[list.length - 1]?.focus()
+        break
+      case 'Tab':
+        setOpen(false)
+        break
+    }
+  }
+
+  const onTriggerKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault()
+      pendingFocusRef.current = e.key === 'ArrowUp' ? 'last' : 'first'
+      if (open) {
+        const list = menuItems()
+        ;(e.key === 'ArrowUp' ? list[list.length - 1] : list[0])?.focus()
+        pendingFocusRef.current = null
+      } else {
+        setOpen(true)
+      }
+    }
+  }
+
   const menu = open ? (
     <div
       ref={menuRef}
       className={`nav-dd-menu nav-dd-menu--portal nav-dd-menu--${placement}`}
       style={menuStyle}
       role="menu"
+      onKeyDown={onMenuKeyDown}
     >
       {items.map((it) => (
         <Link
@@ -166,6 +229,12 @@ export function NavDropdown({
           className={`nav-dd-item${isActive(it.href) ? ' nav-dd-item--active' : ''}`}
           aria-current={isActive(it.href) ? 'page' : undefined}
           onClick={() => setOpen(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              e.stopPropagation()
+              closeAndRefocus()
+            }
+          }}
         >
           <span className="nav-dd-item-label">{it.label}</span>
           {it.sublabel ? <span className="nav-dd-item-sub">{it.sublabel}</span> : null}
@@ -183,6 +252,7 @@ export function NavDropdown({
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((v) => !v)}
+        onKeyDown={onTriggerKeyDown}
       >
         {lowercase ? label.toLowerCase() : label}
         <ChevronDown className={`nav-dd-caret${open ? ' nav-dd-caret--open' : ''}`} aria-hidden />

@@ -10,13 +10,16 @@ export function PrivacySection() {
   const [exportLoading, setExportLoading] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
   const [deleteLoading, setDeleteLoading] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
-  const [successMsg, setSuccessMsg] = useState('')
+  // Errors render inside the card they belong to — a failed delete shown at
+  // the page bottom is too easy to miss.
+  const [exportError, setExportError] = useState('')
+  const [exportSuccess, setExportSuccess] = useState('')
+  const [deleteError, setDeleteError] = useState('')
 
   async function handleExport() {
     setExportLoading(true)
-    setErrorMsg('')
-    setSuccessMsg('')
+    setExportError('')
+    setExportSuccess('')
     try {
       const res = await fetch('/api/account/export')
       if (!res.ok) {
@@ -33,9 +36,9 @@ export function PrivacySection() {
       a.download = filename
       a.click()
       URL.revokeObjectURL(url)
-      setSuccessMsg('Your data export has downloaded.')
+      setExportSuccess('Your data export has downloaded.')
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : 'Export failed')
+      setExportError(err instanceof Error ? err.message : 'Export failed')
     } finally {
       setExportLoading(false)
     }
@@ -43,12 +46,11 @@ export function PrivacySection() {
 
   async function handleDelete() {
     if (deleteConfirm !== 'DELETE') {
-      setErrorMsg('Type DELETE in the box to confirm.')
+      setDeleteError('Type DELETE in the box to confirm.')
       return
     }
     setDeleteLoading(true)
-    setErrorMsg('')
-    setSuccessMsg('')
+    setDeleteError('')
     try {
       const res = await fetch('/api/account/delete', {
         method: 'POST',
@@ -61,7 +63,7 @@ export function PrivacySection() {
       }
       window.location.href = '/'
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : 'Delete failed')
+      setDeleteError(err instanceof Error ? err.message : 'Delete failed')
       setDeleteLoading(false)
     }
   }
@@ -87,6 +89,16 @@ export function PrivacySection() {
         >
           Download my data
         </Button>
+        {exportError && (
+          <div className="mt-4">
+            <ErrorBox message={exportError} />
+          </div>
+        )}
+        {exportSuccess && (
+          <div className="mt-4">
+            <SuccessBox message={exportSuccess} />
+          </div>
+        )}
       </SettingsSectionCard>
 
       <SettingsSectionCard title="Delete account">
@@ -118,6 +130,11 @@ export function PrivacySection() {
         >
           Delete my account
         </Button>
+        {deleteError && (
+          <div className="mt-4">
+            <ErrorBox message={deleteError} />
+          </div>
+        )}
       </SettingsSectionCard>
 
       <SettingsSectionCard title="Legal">
@@ -140,9 +157,6 @@ export function PrivacySection() {
           </li>
         </ul>
       </SettingsSectionCard>
-
-      {errorMsg && <ErrorBox message={errorMsg} />}
-      {successMsg && <SuccessBox message={successMsg} />}
     </div>
   )
 }

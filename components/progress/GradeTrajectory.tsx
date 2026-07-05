@@ -11,6 +11,8 @@ import { TiltCard } from '@/components/effects/TiltCard'
 type Props = {
   attempts: AttemptLite[]
   prediction: GradePrediction
+  /** IB subjects are graded 1–7 — the Cambridge letter estimate doesn't apply. */
+  ibMode?: boolean
 }
 
 /**
@@ -18,7 +20,7 @@ type Props = {
  * Recharts isn't in our bundle and a dedicated chart library would be
  * overkill for one line + six horizontal reference lines.
  */
-export function GradeTrajectory({ attempts, prediction }: Props) {
+export function GradeTrajectory({ attempts, prediction, ibMode = false }: Props) {
   // Last 10 attempts, oldest-first so the line reads left-to-right.
   const series = useMemo(() => {
     const recent = attempts.slice(0, 10).reverse()
@@ -46,7 +48,9 @@ export function GradeTrajectory({ attempts, prediction }: Props) {
             {series.length === 1 ? '' : 's'}
           </h2>
           <p className="ms-body-2 mt-1">
-            Percentages charted against Cambridge 9709 grade boundaries.
+            {ibMode
+              ? 'Percentages across your recent attempts.'
+              : 'Percentages charted against Cambridge 9709 grade boundaries.'}
           </p>
 
           <div className="mt-6">
@@ -56,7 +60,7 @@ export function GradeTrajectory({ attempts, prediction }: Props) {
       </TiltCard>
 
       <TiltCard intensity={5} className="rounded-3xl lg:col-span-2">
-        <PredictiveGradeCard prediction={prediction} />
+        <PredictiveGradeCard prediction={prediction} ibMode={ibMode} />
       </TiltCard>
     </section>
   )
@@ -269,7 +273,13 @@ function GradeBoundaryLines({
 
 // ----------------------------- prediction card -----------------------------
 
-function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
+function PredictiveGradeCard({
+  prediction,
+  ibMode,
+}: {
+  prediction: GradePrediction
+  ibMode: boolean
+}) {
   const isPlaceholder = prediction.predictedGrade === '\u2014'
 
   return (
@@ -302,7 +312,7 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
             className="ms-overline"
             style={{ marginBottom: 0, color: prediction.color }}
           >
-            Grade estimate
+            {ibMode ? 'IB grade (1–7)' : 'Grade estimate'}
           </p>
         </div>
 
@@ -311,19 +321,27 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
         )}
 
         <div className="flex items-baseline gap-3">
-          <span
-            className="ms-big-grade"
-            style={{
-              color: isPlaceholder ? 'var(--ec-text-secondary)' : prediction.color,
-              fontSize: 'clamp(64px, 12vw, 84px)',
-            }}
-          >
-            {prediction.predictedGrade}
-          </span>
-          {!isPlaceholder && (
-            <span className="text-sm text-[var(--ec-text-secondary)]">
-              {prediction.confidence}% confidence
+          {ibMode ? (
+            <span className="mt-2 inline-flex items-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-1.5 text-sm font-semibold text-[var(--ec-text-secondary)]">
+              1–7 estimate coming soon
             </span>
+          ) : (
+            <>
+              <span
+                className="ms-big-grade"
+                style={{
+                  color: isPlaceholder ? 'var(--ec-text-secondary)' : prediction.color,
+                  fontSize: 'clamp(64px, 12vw, 84px)',
+                }}
+              >
+                {prediction.predictedGrade}
+              </span>
+              {!isPlaceholder && (
+                <span className="text-sm text-[var(--ec-text-secondary)]">
+                  {prediction.confidence}% confidence
+                </span>
+              )}
+            </>
           )}
         </div>
 

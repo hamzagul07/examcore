@@ -1,7 +1,7 @@
 /**
  * Lightweight URL query-param sync for client-side tools (calculators,
  * countdowns). Uses history.replaceState so typing never triggers a
- * navigation or server roundtrip — the URL simply stays shareable.
+ * navigation or server roundtrip â€” the URL simply stays shareable.
  */
 
 export function readUrlParams(): URLSearchParams {

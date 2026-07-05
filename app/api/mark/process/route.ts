@@ -127,6 +127,7 @@ export async function POST(request: NextRequest) {
     if (pageFiles.length === 0 && answerPhoto?.size) {
       pageFiles.push(answerPhoto)
     }
+    const answerPdf = formData.get('answer_pdf') as File | null
     const questionPhoto = formData.get('question_photo') as File | null
     const questionTextInput = formData.get('question_text') as string | null
     const manualPaperCode = formData.get('manual_paper_code') as string | null
@@ -137,7 +138,11 @@ export async function POST(request: NextRequest) {
       uploadModeRaw === 'whole_paper' ? 'whole_paper' : 'single_question'
     const markIntentRaw = formData.get('mark_intent') as string | null
     const markIntent: MarkIntent =
-      markIntentRaw === 'practice_question' ? 'practice_question' : 'past_paper'
+      markIntentRaw === 'practice_question'
+        ? 'practice_question'
+        : markIntentRaw === 'combined_script'
+          ? 'combined_script'
+          : 'past_paper'
     const practiceSubjectCode = (
       formData.get('practice_subject_code') as string | null
     )?.trim() || null
@@ -154,7 +159,7 @@ export async function POST(request: NextRequest) {
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
-    if (pageFiles.length === 0) {
+    if (pageFiles.length === 0 && !answerPdf?.size) {
       return NextResponse.json({ error: 'Answer photo is required' }, { status: 400 })
     }
 
@@ -171,20 +176,38 @@ export async function POST(request: NextRequest) {
     if (uploadMode === 'single_question') {
       const pipelineInput = {
         pageFiles,
+        answerPdf: answerPdf?.size ? answerPdf : null,
         questionPhoto: questionPhoto?.size ? questionPhoto : null,
         questionTextInput: questionTextInput?.trim() || '',
-        manualPaperCode: markIntent === 'practice_question' ? null : manualPaperCode,
+        manualPaperCode:
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? null
+            : manualPaperCode,
         manualPaperSession:
-          markIntent === 'practice_question' ? null : manualPaperSession,
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? null
+            : manualPaperSession,
         manualQuestionNumber:
-          markIntent === 'practice_question' ? null : manualQuestionNumber,
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? null
+            : manualQuestionNumber,
         markIntent,
         practiceSubjectCode:
-          markIntent === 'practice_question' ? practiceSubjectCode : null,
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? practiceSubjectCode
+            : null,
         ibComponentKey:
-          markIntent === 'practice_question' ? ibComponentKey : null,
-        ibLevel: markIntent === 'practice_question' ? ibLevel : null,
-        questionMarks: markIntent === 'practice_question' ? ibMarksAvailable : null,
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? ibComponentKey
+            : null,
+        ibLevel:
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? ibLevel
+            : null,
+        questionMarks:
+          markIntent === 'practice_question' || markIntent === 'combined_script'
+            ? ibMarksAvailable
+            : null,
         userId,
         startedAt: startTime,
       }

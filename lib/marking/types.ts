@@ -7,8 +7,8 @@ export type MarkingMode =
   /** User chose practice/homework — not a past paper; same Cambridge conventions. */
   | 'general_criteria_practice'
 
-/** How the user intended single-question marking (past paper vs own question). */
-export type MarkIntent = 'past_paper' | 'practice_question'
+/** How the user intended single-question marking. */
+export type MarkIntent = 'past_paper' | 'practice_question' | 'combined_script'
 
 export type UploadMode = 'single_question' | 'whole_paper'
 

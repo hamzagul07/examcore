@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import Link from 'next/link'
-import { UploadCloud, ChevronRight, Sparkles } from 'lucide-react'
+import { ChevronRight, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/label'
@@ -18,12 +18,11 @@ import {
   PageUploader,
   type UploadPage,
 } from '@/components/upload/PageUploader'
-import { compressImage } from '@/lib/upload/compress-image'
+import { QuestionUploadField } from '@/components/mark/QuestionUploadField'
 import {
   hasCompressingPages,
-  prepareImageFilesForSubmit,
+  prepareSingleQuestionUpload,
 } from '@/lib/upload/prepare-upload'
-import { formatFileSize } from '@/lib/upload/upload-limits'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import {
   readClientStorage,
@@ -123,6 +122,8 @@ type UpgradeModalState = {
 
 export default function MarkPage() {
   const [answerPages, setAnswerPages] = useState<UploadPage[]>([])
+  const [answerPdf, setAnswerPdf] = useState<File | null>(null)
+  const [answerPdfError, setAnswerPdfError] = useState<string | null>(null)
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
   const [questionPhotoCompressing, setQuestionPhotoCompressing] = useState(false)
   const [questionTextInput, setQuestionTextInput] = useState('')
@@ -184,9 +185,9 @@ export default function MarkPage() {
   const [uploadMode, setUploadMode] = useState<'single_question' | 'whole_paper'>(
     'single_question'
   )
-  const [markIntent, setMarkIntent] = useState<'past_paper' | 'practice_question'>(
-    'past_paper'
-  )
+  const [markIntent, setMarkIntent] = useState<
+    'past_paper' | 'practice_question' | 'combined_script'
+  >('past_paper')
   const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
   const [wholePaperKey, setWholePaperKey] = useState(0)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
@@ -276,7 +277,8 @@ export default function MarkPage() {
 
   // Uploaded photos only live in memory — warn before a refresh/close discards
   // them. Skipped once results are in (nothing left to lose).
-  const hasUnsavedUploads = answerPages.length > 0 && !result
+  const hasUnsavedUploads =
+    (answerPages.length > 0 || !!answerPdf) && !result
   useEffect(() => {
     if (!hasUnsavedUploads || typeof window === 'undefined') return
     const warn = (e: BeforeUnloadEvent) => {
@@ -767,7 +769,8 @@ export default function MarkPage() {
       profileLoading ||
       papersLoading ||
       selectedSubject ||
-      markIntent === 'practice_question'
+      markIntent === 'practice_question' ||
+      markIntent === 'combined_script'
     ) {
       return
     }
@@ -796,9 +799,39 @@ export default function MarkPage() {
 
   const isPracticeMode =
     uploadMode === 'single_question' && markIntent === 'practice_question'
+  const isCombinedMode =
+    uploadMode === 'single_question' && markIntent === 'combined_script'
+  const hasAnswerUpload = answerPages.length > 0 || !!answerPdf
+
+  const markModeCallout = useMemo(() => {
+    if (uploadMode === 'whole_paper') {
+      return 'Upload your full answer paper — we segment and mark each question against the official scheme.'
+    }
+    if (isCombinedMode) {
+      return selectedMarkBoard === 'ib'
+        ? 'One PDF or photo with the IB question and your answer together. We split them and mark band-by-band.'
+        : 'One scan with question and answer together — worksheets, homework sheets, or textbook pages.'
+    }
+    if (isPracticeMode) {
+      return selectedMarkBoard === 'ib'
+        ? 'Homework or textbook practice — upload answer and question separately, or use Scanned script.'
+        : 'Homework or textbook questions — photos or PDFs, marked with Cambridge conventions.'
+    }
+    if (selectedMarkBoard === 'ib') {
+      return 'Pick My question or Scanned script. PDF drops welcome — past-paper lookup is Cambridge only.'
+    }
+    return 'Select a past paper question or add your own — photos and PDFs supported throughout.'
+  }, [uploadMode, isCombinedMode, isPracticeMode, selectedMarkBoard])
+
+  const markLearnMoreHref =
+    selectedMarkBoard === 'ib' ? '/blog/ib-markbands-explained' : '/tools/command-words'
+  const markLearnMoreLabel =
+    selectedMarkBoard === 'ib' ? 'How IB markbands work' : 'What the command words mean'
 
   const ibManualCriteriaSummary =
-    isPracticeMode && selectedSubject && isIbSubjectCode(selectedSubject)
+    (isPracticeMode || isCombinedMode) &&
+    selectedSubject &&
+    isIbSubjectCode(selectedSubject)
       ? ibPracticeCriteriaSummary(selectedSubject)
       : null
 
@@ -807,17 +840,21 @@ export default function MarkPage() {
 
   // Why the submit button is disabled, in words — shown under the button so a
   // greyed-out CTA never leaves the user guessing.
-  const submitDisabledReason = !answerPages.length
-    ? 'Add a photo of your answer to get started.'
+  const submitDisabledReason = !hasAnswerUpload
+    ? 'Add a photo or PDF of your answer to get started.'
     : hasCompressingPages(answerPages) || questionPhotoCompressing
-      ? 'Preparing your images — just a moment…'
-      : submitBlocked
-        ? 'You\u2019ve used today\u2019s marking allowance — upgrade or come back tomorrow.'
-        : isPracticeMode && !selectedSubject
-          ? 'Pick a subject above so we mark with the right criteria.'
-          : isPracticeMode && !hasPracticeQuestion
-            ? 'Add the question (photo or text) so we know what to mark against.'
-            : null
+      ? 'Preparing your files — just a moment…'
+      : answerPdfError
+        ? answerPdfError
+        : submitBlocked
+          ? 'You\u2019ve used today\u2019s marking allowance — upgrade or come back tomorrow.'
+          : isCombinedMode && !selectedSubject
+            ? 'Pick a subject above so we mark with the right criteria.'
+            : isPracticeMode && !selectedSubject
+              ? 'Pick a subject above so we mark with the right criteria.'
+              : isPracticeMode && !hasPracticeQuestion
+                ? 'Add the question (photo, PDF, or text) so we know what to mark against.'
+                : null
 
   const isManualFilled = !!(
     selectedSubject &&
@@ -914,7 +951,9 @@ export default function MarkPage() {
       }
       if (uploadMode === 'whole_paper') {
         setUploadMode('single_question')
-        setMarkIntent('practice_question')
+        setMarkIntent(
+          markIntent === 'combined_script' ? 'combined_script' : 'practice_question'
+        )
         setShowManualPaper(false)
       }
     }
@@ -963,10 +1002,10 @@ export default function MarkPage() {
     }
 
     try {
-      if (answerPages.length === 0) {
+      if (!hasAnswerUpload) {
         setLoading(false)
         releaseSubmit()
-        setErrorMsg('Upload at least one page of your answer.')
+        setErrorMsg('Upload at least one page or a PDF of your answer.')
         return
       }
       if (hasCompressingPages(answerPages)) {
@@ -999,8 +1038,17 @@ export default function MarkPage() {
           setLoading(false)
           releaseSubmit()
           setErrorMsg(
-            'Add your question — type it or upload a photo — before marking.'
+            'Add your question — type it or upload a photo or PDF — before marking.'
           )
+          return
+        }
+      }
+
+      if (isCombinedMode) {
+        if (!selectedSubject) {
+          setLoading(false)
+          releaseSubmit()
+          setErrorMsg('Select a subject so we can apply the right mark scheme style.')
           return
         }
       }
@@ -1014,11 +1062,12 @@ export default function MarkPage() {
       setPendingResult(null)
       pendingResultRef.current = null
 
-      const { pageFiles, extras, error: payloadError } =
-        await prepareImageFilesForSubmit(
-          answerPages.map((p) => p.file),
-          [questionPhoto]
-        )
+      const { pageFiles, answerPdf: preparedPdf, questionFile, error: payloadError } =
+        await prepareSingleQuestionUpload(answerPages, {
+          answerPdf,
+          questionFile: questionPhoto,
+          questionCompressing: questionPhotoCompressing,
+        })
       if (payloadError) {
         setLoading(false)
         releaseSubmit()
@@ -1027,8 +1076,6 @@ export default function MarkPage() {
         return
       }
 
-      const compressedQuestion = extras[0] ?? null
-
       const formData = new FormData()
       pageFiles.forEach((file, i) => {
         formData.append(`pages[${i}]`, file)
@@ -1036,11 +1083,14 @@ export default function MarkPage() {
       if (pageFiles.length === 1) {
         formData.append('photo', pageFiles[0])
       }
+      if (preparedPdf) {
+        formData.append('answer_pdf', preparedPdf)
+      }
       formData.append('upload_mode', uploadMode)
       formData.append('mark_intent', markIntent)
       formData.append('stream', '1')
-      if (compressedQuestion) {
-        formData.append('question_photo', compressedQuestion)
+      if (questionFile) {
+        formData.append('question_photo', questionFile)
       }
       if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
 
@@ -1048,6 +1098,17 @@ export default function MarkPage() {
         formData.append('practice_subject_code', selectedSubject)
         // M1: IB catalogued subject → send level + component so marking routes
         // through the catalog points/criteria path.
+        if (catalogSubject && ibComponentKey) {
+          formData.append('ib_level', effectiveIbLevel)
+          formData.append('ib_component_key', ibComponentKey)
+          if (ibMarksAvailable.trim()) {
+            formData.append('ib_marks_available', ibMarksAvailable.trim())
+          }
+        }
+      }
+
+      if (isCombinedMode && selectedSubject) {
+        formData.append('practice_subject_code', selectedSubject)
         if (catalogSubject && ibComponentKey) {
           formData.append('ib_level', effectiveIbLevel)
           formData.append('ib_component_key', ibComponentKey)
@@ -1272,18 +1333,23 @@ export default function MarkPage() {
         className={`ms-mark-pg min-w-0 ${result && !result.whole_paper ? '' : 'ms-mark-pg--narrow'}`}
       >
         {!result && (
-          <p className="ms-overline" style={{ marginBottom: 6 }}>
-            Mark a question
-          </p>
+          <header className="ms-mark-hero ms-fade-in">
+            <p className="ms-overline ms-mark-hero-eyebrow">Mark a question</p>
+            <h1 className="ms-mark-hero-title">
+              {selectedMarkBoard === 'ib' ? 'IB examiner-style feedback' : 'Cambridge examiner-style feedback'}
+            </h1>
+            <p className="ms-mark-hero-lead">
+              Upload photos or PDFs — marked in about a minute with{' '}
+              {selectedMarkBoard === 'ib' ? 'criterion bands' : 'official mark scheme logic'}.
+            </p>
+          </header>
         )}
         <MarkStepsBar stage={markStage} />
 
         {!result && <PageHelpStrip className="mb-6" />}
 
         {!result && practiceContext && (
-          <div
-            className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0"
-          >
+          <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
             <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
@@ -1299,7 +1365,7 @@ export default function MarkPage() {
         )}
 
         {!result && !practiceContext && courseTopicContext && (
-          <div className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
+          <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
             <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
@@ -1334,15 +1400,16 @@ export default function MarkPage() {
         )}
 
         {!result && !practiceContext && !courseTopicContext && ibManualCriteriaSummary && (
-          <div className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
+          <div className="ms-mark-context-card ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
             <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                 IB criterion practice — {resolveSubjectLabel(selectedSubject)}
               </p>
               <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                Upload your answer below. We mark band-by-band against the official assessment
-                criteria.
+                {isCombinedMode
+                  ? 'Upload one PDF or photo with the question and your answer — we split them and mark band-by-band.'
+                  : 'Upload your answer (and question separately, or use Scanned script). We mark band-by-band against IB assessment criteria.'}
               </p>
               <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
                 {ibManualCriteriaSummary}
@@ -1358,19 +1425,21 @@ export default function MarkPage() {
         {!result && !loading && <GuestMarkNotice className="mb-5" />}
 
         {!result && !loading && (
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="ms-mark-form-shell space-y-8">
+            <section className="ms-mark-setup-panel ms-fade-in ms-stag-1">
             <MarkBoardPicker
               value={selectedMarkBoard}
               onChange={handleMarkBoardChange}
               disabled={profileLoading}
             />
 
+            <div className="ms-mark-mode-panel">
             <div className="ms-lvl-tabs-scroll">
             <div
               className="ms-lvl-tabs"
               role="tablist"
               aria-label="Mark mode"
-              aria-describedby={selectedMarkBoard === 'ib' ? 'mark-mode-ib-hint' : undefined}
+              aria-describedby="mark-mode-callout"
             >
               <button
                 type="button"
@@ -1403,6 +1472,19 @@ export default function MarkPage() {
               <button
                 type="button"
                 role="tab"
+                aria-selected={isCombinedMode}
+                onClick={() => {
+                  setUploadMode('single_question')
+                  setMarkIntent('combined_script')
+                  setShowManualPaper(false)
+                }}
+                className={`ms-lvl-tab ${isCombinedMode ? 'on' : ''}`}
+              >
+                Scanned script
+              </button>
+              <button
+                type="button"
+                role="tab"
                 aria-selected={uploadMode === 'whole_paper'}
                 aria-disabled={selectedMarkBoard === 'ib'}
                 tabIndex={selectedMarkBoard === 'ib' ? -1 : 0}
@@ -1416,31 +1498,17 @@ export default function MarkPage() {
               </button>
             </div>
             </div>
-            {selectedMarkBoard === 'ib' ? (
-              <p
-                id="mark-mode-ib-hint"
-                className="-mt-4 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]"
-              >
-                IB uses <strong className="text-[var(--ec-text-primary)]">My question</strong> — paste
-                or photograph your prompt for criterion-band marking. Past-paper lookup is Cambridge
-                only.
-              </p>
-            ) : null}
-            {isPracticeMode && (
-              <p className="-mt-4 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                {selectedMarkBoard === 'ib'
-                  ? 'Homework, textbook, or course practice — marked band-by-band against IB assessment criteria.'
-                  : 'Homework or textbook questions — marked with Cambridge conventions (B1, M1, A1, bands) without needing a past paper in our database.'}
-              </p>
-            )}
-
-            <p className="text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-              Upload a clear photo or PDF of your written or typed answer — we mark it against
-              the official scheme in about a minute.{' '}
-              <Link href="/tools/command-words" className="ec-link">
-                What the command words mean
+            <p
+              id="mark-mode-callout"
+              className="ms-mark-mode-callout"
+            >
+              {markModeCallout}{' '}
+              <Link href={markLearnMoreHref} className="ec-link">
+                {markLearnMoreLabel}
               </Link>
             </p>
+            </div>
+            </section>
 
             {uploadMode === 'whole_paper' && (
             <section>
@@ -1548,24 +1616,50 @@ export default function MarkPage() {
                 )}
               </section>
             ) : (
-            <div className="ms-upload-grid">
+            <div className="ms-upload-grid ms-fade-in ms-stag-2">
               <div className="ms-mark-upload-zone ec-section-tint ec-section-tint--learn">
+                <StepLabel
+                  number={1}
+                  label={
+                    isCombinedMode
+                      ? 'Upload your worksheet or script'
+                      : 'Upload your answer'
+                  }
+                  hint={isCombinedMode ? 'question + working on same file' : 'photos or PDF'}
+                />
                 <PageUploader
                   pages={answerPages}
                   onPagesChange={setAnswerPages}
+                  allowPdf
+                  pdfFile={answerPdf}
+                  onPdfChange={setAnswerPdf}
+                  onPdfError={setAnswerPdfError}
                   disabled={loading}
-                  emptyLabel="Drop your working here"
-                  emptyHint="photos or camera — multi-page is fine"
+                  emptyLabel={
+                    isCombinedMode
+                      ? 'Drop your script here'
+                      : 'Drop your working here'
+                  }
+                  emptyHint={
+                    isCombinedMode
+                      ? 'photos or PDF — question and answer together'
+                      : 'photos, camera, or PDF — multi-page is fine'
+                  }
                 />
               </div>
               <div className="ms-mark-form-card">
-                <h3>
-                  {isPracticeMode
-                    ? 'Your question & subject'
-                    : 'Which paper is this?'}
-                </h3>
-                <div className="space-y-4">
-                  {isPracticeMode && (
+                <StepLabel
+                  number={2}
+                  label={
+                    isCombinedMode
+                      ? 'Subject'
+                      : isPracticeMode
+                        ? 'Your question & subject'
+                        : 'Which paper is this?'
+                  }
+                />
+                <div className="ms-mark-form-body space-y-4">
+                  {(isPracticeMode || isCombinedMode) && (
                 <>
                   <div>
                     <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
@@ -1614,125 +1708,98 @@ export default function MarkPage() {
                 </>
               )}
 
-              {isPracticeMode && (
-                <div className="space-y-4">
-                  {catalogSubject && (
-                    <div className="space-y-3 rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
-                      <p className="label-overline">IB assessment</p>
-                      {catalogLevels.length > 1 && (
-                        <div>
-                          <Label htmlFor="ib-level" className="label-overline mb-2 inline-block">
-                            Level
-                          </Label>
-                          <select
-                            id="ib-level"
-                            value={effectiveIbLevel}
-                            onChange={(e) => {
-                              setIbLevel(e.target.value as 'HL' | 'SL')
-                              setIbComponentKey('')
-                            }}
-                            className="ec-input select-chevron appearance-none"
-                          >
-                            {catalogLevels.map((lv) => (
-                              <option key={lv} value={lv}>
-                                {lv}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      )}
-                      <div>
-                        <Label htmlFor="ib-component" className="label-overline mb-2 inline-block">
-                          Component
-                        </Label>
-                        <select
-                          id="ib-component"
-                          value={ibComponentKey}
-                          onChange={(e) => {
-                            setIbComponentKey(e.target.value)
-                            setIbMarksAvailable('')
-                          }}
-                          className="ec-input select-chevron appearance-none"
-                        >
-                          <option value="">Select component…</option>
-                          {catalogComponents.map((c) => (
-                            <option key={`${c.component_key}-${c.level}`} value={c.component_key}>
-                              {c.label}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      {ibComponentKey && selectedCatalogComponent?.assessment_model === 'points' && (
-                        <div>
-                          <Label htmlFor="ib-marks" className="label-overline mb-2 inline-block">
-                            Marks available (optional)
-                          </Label>
-                          <input
-                            id="ib-marks"
-                            type="number"
-                            min={1}
-                            max={100}
-                            inputMode="numeric"
-                            value={ibMarksAvailable}
-                            onChange={(e) => setIbMarksAvailable(e.target.value)}
-                            placeholder="e.g. 7"
-                            className="ec-input"
-                          />
-                          <p className="mt-1 text-xs ec-text-secondary">
-                            If your question states a mark total, enter it so we mark out of the
-                            right number. Leave blank and we&apos;ll read it from the question.
-                          </p>
-                        </div>
-                      )}
+              {(isPracticeMode || isCombinedMode) && catalogSubject && (
+                <div className="space-y-3 rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
+                  <p className="label-overline">IB assessment</p>
+                  {catalogLevels.length > 1 && (
+                    <div>
+                      <Label htmlFor="ib-level" className="label-overline mb-2 inline-block">
+                        Level
+                      </Label>
+                      <select
+                        id="ib-level"
+                        value={effectiveIbLevel}
+                        onChange={(e) => {
+                          setIbLevel(e.target.value as 'HL' | 'SL')
+                          setIbComponentKey('')
+                        }}
+                        className="ec-input select-chevron appearance-none"
+                      >
+                        {catalogLevels.map((lv) => (
+                          <option key={lv} value={lv}>
+                            {lv}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   )}
+                  <div>
+                    <Label htmlFor="ib-component" className="label-overline mb-2 inline-block">
+                      Component
+                    </Label>
+                    <select
+                      id="ib-component"
+                      value={ibComponentKey}
+                      onChange={(e) => {
+                        setIbComponentKey(e.target.value)
+                        setIbMarksAvailable('')
+                      }}
+                      className="ec-input select-chevron appearance-none"
+                    >
+                      <option value="">Select component…</option>
+                      {catalogComponents.map((c) => (
+                        <option key={`${c.component_key}-${c.level}`} value={c.component_key}>
+                          {c.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  {ibComponentKey && selectedCatalogComponent?.assessment_model === 'points' && (
+                    <div>
+                      <Label htmlFor="ib-marks" className="label-overline mb-2 inline-block">
+                        Marks available (optional)
+                      </Label>
+                      <input
+                        id="ib-marks"
+                        type="number"
+                        min={1}
+                        max={100}
+                        inputMode="numeric"
+                        value={ibMarksAvailable}
+                        onChange={(e) => setIbMarksAvailable(e.target.value)}
+                        placeholder="e.g. 7"
+                        className="ec-input"
+                      />
+                      <p className="mt-1 text-xs ec-text-secondary">
+                        If your question states a mark total, enter it so we mark out of the
+                        right number. Leave blank and we&apos;ll read it from the script.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {isPracticeMode && (
+                <div className="space-y-4">
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                    Paste or photograph the question from your textbook, worksheet, or
-                    notes. Add <strong className="text-[var(--ec-text-primary)]">one</strong> —
-                    photo <em>or</em> typed text, not both. We need the exact wording to mark
-                    your answer accurately.
+                    Paste or upload the question from your textbook, worksheet, or notes. Add{' '}
+                    <strong className="text-[var(--ec-text-primary)]">one</strong> — photo, PDF,{' '}
+                    <em>or</em> typed text. We need the exact wording to mark your answer
+                    accurately.
                   </p>
 
-                  <div>
-                    <Label htmlFor="practice-question-photo" className="label-overline mb-2 inline-block">
-                      Photo of the question
-                    </Label>
-                    <label
-                      htmlFor="practice-question-photo"
-                      className="group block w-full cursor-pointer rounded-2xl border-2 border-dashed ec-border-color ec-bg-surface-raised p-5 text-center text-sm transition-all duration-200 hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] hover:bg-[var(--ec-brand-muted)]"
-                    >
-                      <UploadCloud className="mx-auto mb-2 h-5 w-5 ec-text-secondary transition-colors group-hover:text-[var(--ec-brand)]" />
-                      <div className="font-medium text-[var(--ec-text-primary)]">
-                        {questionPhotoCompressing
-                          ? 'Preparing image…'
-                          : questionPhoto
-                            ? `${questionPhoto.name} · ${formatFileSize(questionPhoto.size)}`
-                            : 'Click to upload'}
-                      </div>
-                      <input
-                        id="practice-question-photo"
-                        type="file"
-                        accept="image/jpeg,image/png,image/webp"
-                        onChange={(e) => {
-                          const raw = e.target.files?.[0]
-                          if (!raw) {
-                            setQuestionPhoto(null)
-                            return
-                          }
-                          setQuestionPhotoCompressing(true)
-                          void compressImage(raw)
-                            .then((compressed) => setQuestionPhoto(compressed))
-                            .finally(() => setQuestionPhotoCompressing(false))
-                        }}
-                        className="hidden"
-                      />
-                    </label>
-                  </div>
+                  <QuestionUploadField
+                    id="practice-question-photo"
+                    label="Photo or PDF of the question"
+                    file={questionPhoto}
+                    onChange={setQuestionPhoto}
+                    disabled={loading}
+                    compressing={questionPhotoCompressing}
+                    onCompressingChange={setQuestionPhotoCompressing}
+                  />
 
-                  <div className="flex items-center gap-3 font-mono text-xs font-medium ec-text-secondary">
-                    <div className="h-px flex-1 bg-[var(--ec-border)]" />
-                    <span>OR</span>
-                    <div className="h-px flex-1 bg-[var(--ec-border)]" />
+                  <div className="ms-mark-or-divider" aria-hidden="true">
+                    <span>or type it</span>
                   </div>
 
                   <div>
@@ -1753,6 +1820,8 @@ export default function MarkPage() {
 
               {isPracticeMode ? (
                 <MarkingModeHint mode="practice" markBoard={selectedMarkBoard} />
+              ) : isCombinedMode ? (
+                <MarkingModeHint mode="combined" markBoard={selectedMarkBoard} />
               ) : null}
 
               {!isPracticeMode && papersError && (
@@ -1835,49 +1904,21 @@ export default function MarkPage() {
                   <div className="ec-card mt-4 space-y-4 p-5 sm:p-6">
                     <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                       If your handwritten work doesn&apos;t show the question or paper
-                      header, add it here so we can mark more accurately.
+                      header, add it here so we can mark more accurately — photo or PDF.
                     </p>
 
-                    <div>
-                      <Label htmlFor="question-photo" className="label-overline mb-2 inline-block">
-                        Photo of the question
-                      </Label>
-                      <label
-                        htmlFor="question-photo"
-                        className="group block w-full cursor-pointer rounded-2xl border-2 border-dashed ec-border-color ec-bg-surface-raised p-5 text-center text-sm transition-all duration-200 hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] hover:bg-[var(--ec-brand-muted)]"
-                      >
-                        <UploadCloud className="mx-auto mb-2 h-5 w-5 ec-text-secondary transition-colors group-hover:text-[var(--ec-brand)]" />
-                        <div className="font-medium text-[var(--ec-text-primary)]">
-                          {questionPhotoCompressing
-                            ? 'Preparing image…'
-                            : questionPhoto
-                              ? `${questionPhoto.name} · ${formatFileSize(questionPhoto.size)}`
-                              : 'Click to upload'}
-                        </div>
-                        <input
-                          id="question-photo"
-                          type="file"
-                          accept="image/jpeg,image/png,image/webp"
-                          onChange={(e) => {
-                            const raw = e.target.files?.[0]
-                            if (!raw) {
-                              setQuestionPhoto(null)
-                              return
-                            }
-                            setQuestionPhotoCompressing(true)
-                            void compressImage(raw)
-                              .then((compressed) => setQuestionPhoto(compressed))
-                              .finally(() => setQuestionPhotoCompressing(false))
-                          }}
-                          className="hidden"
-                        />
-                      </label>
-                    </div>
+                    <QuestionUploadField
+                      id="question-photo"
+                      label="Photo or PDF of the question"
+                      file={questionPhoto}
+                      onChange={setQuestionPhoto}
+                      disabled={loading}
+                      compressing={questionPhotoCompressing}
+                      onCompressingChange={setQuestionPhotoCompressing}
+                    />
 
-                    <div className="flex items-center gap-3 font-mono text-xs font-medium ec-text-secondary">
-                      <div className="h-px flex-1 bg-[var(--ec-border)]" />
-                      <span>OR</span>
-                      <div className="h-px flex-1 bg-[var(--ec-border)]" />
+                    <div className="ms-mark-or-divider" aria-hidden="true">
+                      <span>or type it</span>
                     </div>
 
                     <div>
@@ -1911,6 +1952,7 @@ export default function MarkPage() {
                       </button>
                     </p>
                   )}
+                  <div className="ms-mark-submit-panel">
                   <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
                   <Button
                     type="submit"
@@ -1921,23 +1963,31 @@ export default function MarkPage() {
                     loadingMode="progress"
                     loadingText="Marking your answer…"
                     disabled={
-                      !answerPages.length ||
+                      !hasAnswerUpload ||
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing ||
+                      !!answerPdfError ||
                       submitBlocked ||
                       (isPracticeMode &&
-                        (!selectedSubject || !hasPracticeQuestion))
+                        (!selectedSubject || !hasPracticeQuestion)) ||
+                      (isCombinedMode && !selectedSubject)
                     }
                     pulse={
-                      answerPages.length > 0 &&
+                      hasAnswerUpload &&
                       !loading &&
-                      (!isPracticeMode ||
-                        (!!selectedSubject && hasPracticeQuestion))
+                      (isCombinedMode
+                        ? !!selectedSubject
+                        : !isPracticeMode ||
+                          (!!selectedSubject && hasPracticeQuestion))
                     }
                     leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
                     className="mark-submit-btn justify-center text-base"
                   >
-                    {isPracticeMode ? 'Mark my question' : 'Mark my answer →'}
+                    {isCombinedMode
+                      ? 'Mark my script'
+                      : isPracticeMode
+                        ? 'Mark my question'
+                        : 'Mark my answer →'}
                   </Button>
                   {!loading && submitDisabledReason && (
                     <p
@@ -1952,6 +2002,7 @@ export default function MarkPage() {
                       USES THE OFFICIAL {selectedSubject}/{selectedComponent} MARK SCHEME
                     </p>
                   )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1974,9 +2025,10 @@ export default function MarkPage() {
                     }}
                     disabled={
                       loading ||
-                      !answerPages.length ||
+                      !hasAnswerUpload ||
                       hasCompressingPages(answerPages) ||
-                      questionPhotoCompressing
+                      questionPhotoCompressing ||
+                      !!answerPdfError
                     }
                     className="mt-3 rounded-xl border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
@@ -2028,9 +2080,10 @@ export default function MarkPage() {
                 }}
                 retryDisabled={
                   loading ||
-                  !answerPages.length ||
+                  !hasAnswerUpload ||
                   hasCompressingPages(answerPages) ||
-                  questionPhotoCompressing
+                  questionPhotoCompressing ||
+                  !!answerPdfError
                 }
               />
             </motion.div>
@@ -2152,16 +2205,14 @@ function StepLabel({
   hint?: string
 }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full ec-mark-badge--earned font-mono text-xs font-bold">
+    <div className="ms-mark-step-label">
+      <span className="ms-mark-step-label-num" aria-hidden="true">
         {number}
       </span>
-      <span className="text-base font-bold tracking-tight text-[var(--ec-text-primary)]">
-        {label}
-      </span>
-      {hint && (
-        <span className="font-mono text-xs font-medium text-[var(--ec-text-secondary)]">· {hint}</span>
-      )}
+      <div className="ms-mark-step-label-copy">
+        <span className="ms-mark-step-label-title">{label}</span>
+        {hint ? <span className="ms-mark-step-label-hint">{hint}</span> : null}
+      </div>
     </div>
   )
 }

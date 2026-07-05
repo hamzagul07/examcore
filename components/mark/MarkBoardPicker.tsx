@@ -10,12 +10,12 @@ const OPTIONS: {
   {
     id: 'cambridge',
     label: 'Cambridge International',
-    hint: 'Past papers & B1/M1/A1 marking',
+    hint: 'Past papers, PDF uploads & B1/M1/A1 marking',
   },
   {
     id: 'ib',
     label: 'IB Diploma',
-    hint: 'Criterion bands · HL, SL & Core',
+    hint: 'Criterion bands, scanned scripts & PDF drops',
   },
 ]
 
@@ -30,7 +30,7 @@ export function MarkBoardPicker({ value, onChange, disabled }: Props) {
     <fieldset className="ms-mark-board-picker" disabled={disabled}>
       <legend className="label-overline mb-2.5 block">Exam board</legend>
       <p className="ms-mark-board-hint mb-3 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-        Pick the board your question belongs to — we apply the right mark scheme style.
+        Pick your board — Cambridge and IB both support photos, PDFs, and scanned worksheets.
       </p>
       <div className="ms-mark-board-grid">
         {OPTIONS.map((opt) => {

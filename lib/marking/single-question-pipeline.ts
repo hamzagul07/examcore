@@ -14,7 +14,9 @@ import {
   uploadAnswerPhoto,
   ocrImage,
   questionPhotoOcrPrompt,
+  getMarkingGenAI,
 } from '@/lib/marking/mark-runner'
+import { ocrPdfToPages, ocrPdfToPlainText } from '@/lib/marking/pdf-pages'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
 import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
@@ -39,8 +41,27 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+function isPdfFile(file: File) {
+  return file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
+}
+
+async function ocrQuestionFile(
+  file: File,
+  subjectHint?: string
+): Promise<string> {
+  if (isPdfFile(file)) {
+    return ocrPdfToPlainText(
+      await file.arrayBuffer(),
+      getMarkingGenAI(),
+      questionPhotoOcrPrompt(subjectHint)
+    )
+  }
+  return ocrImage(file, questionPhotoOcrPrompt(subjectHint))
+}
+
 export type SingleQuestionMarkInput = {
   pageFiles: File[]
+  answerPdf: File | null
   questionPhoto: File | null
   questionTextInput: string
   manualPaperCode: string | null
@@ -95,6 +116,7 @@ export async function runSingleQuestionMark(
 ): Promise<Record<string, unknown>> {
   const {
     pageFiles,
+    answerPdf,
     questionPhoto,
     questionTextInput,
     manualPaperCode,
@@ -110,7 +132,9 @@ export async function runSingleQuestionMark(
     onProgress,
   } = input
 
-  const isPracticeQuestion = markIntent === 'practice_question'
+  const isCombinedScript = markIntent === 'combined_script'
+  const isPracticeQuestion =
+    markIntent === 'practice_question' || isCombinedScript
   const practiceCode = practiceSubjectCode?.trim() || null
   let resolvedIb: ResolvedIbComponent | null = null
 
@@ -149,13 +173,29 @@ export async function runSingleQuestionMark(
       ? SUBJECT_CODE_MAP[isPracticeQuestion ? practiceCode! : manualSubjectCode!]
       : undefined
 
-  const first = await ocrOnePage(pageFiles[0])
-  pageOcrResults.push(first)
-
-  if (pageFiles.length > 1) {
-    for (const file of pageFiles.slice(1)) {
-      pageOcrResults.push(await ocrOnePage(file))
+  if (answerPdf?.size) {
+    const pdfPages = await ocrPdfToPages(
+      await answerPdf.arrayBuffer(),
+      getMarkingGenAI()
+    )
+    for (const p of pdfPages) {
+      pageOcrResults.push({
+        full_text: p.full_text,
+        lines: p.lines,
+        photo_url: null,
+      })
     }
+  } else if (pageFiles.length > 0) {
+    const first = await ocrOnePage(pageFiles[0])
+    pageOcrResults.push(first)
+
+    if (pageFiles.length > 1) {
+      for (const file of pageFiles.slice(1)) {
+        pageOcrResults.push(await ocrOnePage(file))
+      }
+    }
+  } else {
+    throw new Error('Upload at least one page of your answer.')
   }
 
   emit(onProgress, 'reading_work', 20)
@@ -177,10 +217,7 @@ export async function runSingleQuestionMark(
 
   let questionText = questionTextInput.trim()
   if (questionPhoto && !questionText) {
-    questionText = await ocrImage(
-      questionPhoto,
-      questionPhotoOcrPrompt(subjectHint)
-    )
+    questionText = await ocrQuestionFile(questionPhoto, subjectHint)
   }
 
   emit(onProgress, 'finding_scheme', 30)
@@ -195,10 +232,12 @@ export async function runSingleQuestionMark(
       throw new Error('Please select a subject for your question.')
     }
 
-    if (!questionText || questionText.trim().length < 10) {
-      throw new Error(
-        'Add your question — type it or upload a photo — before we can mark your answer.'
-      )
+    if (!isCombinedScript) {
+      if (!questionText || questionText.trim().length < 10) {
+        throw new Error(
+          'Add your question — type it or upload a photo — before we can mark your answer.'
+        )
+      }
     }
 
     emit(onProgress, 'finding_scheme', 40)
@@ -206,6 +245,13 @@ export async function runSingleQuestionMark(
       ocrText,
       practiceCode
     )
+    if (extracted.question_text.trim().length >= 10) {
+      questionText = extracted.question_text
+    } else if (isCombinedScript) {
+      throw new Error(
+        "We couldn't find a question in your upload. Try a clearer scan, or use My question mode to add the question separately."
+      )
+    }
     if (extracted.answer_text.trim().length >= 5) {
       ocrTextForMarking = extracted.answer_text
     }

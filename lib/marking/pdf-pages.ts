@@ -75,3 +75,29 @@ export async function ocrPdfToPages(
     },
   ]
 }
+
+/** Flatten a PDF into plain text (e.g. question sheet OCR). */
+export async function ocrPdfToPlainText(
+  pdfBytes: ArrayBuffer,
+  genAI: GoogleGenAI,
+  prompt: string
+): Promise<string> {
+  const base64 = Buffer.from(pdfBytes).toString('base64')
+  const response = await withGeminiRetry(
+    () =>
+      genAI.models.generateContent({
+        model: GEMINI_FLASH_MODEL,
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              { inlineData: { mimeType: 'application/pdf', data: base64 } },
+              { text: prompt },
+            ],
+          },
+        ],
+      }),
+    { label: 'pdf-plain-ocr' }
+  )
+  return (response.text || '').trim()
+}

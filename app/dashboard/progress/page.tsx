@@ -43,8 +43,9 @@ import { AttemptsList, type AttemptListRow } from '@/components/progress/Attempt
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
-import { isPaidTier } from '@/lib/billing/features'
-import type { SubscriptionTier } from '@/lib/database.types'
+import { hasPaidAccess } from '@/lib/billing/features'
+import { effectiveAccess } from '@/lib/billing/access'
+import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { ProgressDashboardPage } from '@/components/courses/margin-notes/ProgressDashboardPage'
 
 import {
@@ -97,12 +98,19 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const { data: subscription } = await supabase
     .from('user_subscriptions')
-    .select('tier')
+    .select('tier, status, trial_ends_at')
     .eq('user_id', user.id)
     .maybeSingle()
 
-  const userTier = (subscription?.tier ?? 'free') as SubscriptionTier
-  const masteryUnlocked = isPaidTier(userTier)
+  // Trial-aware: reverse-trial users (tier still 'free') get the mastery
+  // dashboard too — the trial promises full access.
+  const masteryUnlocked = hasPaidAccess(
+    effectiveAccess({
+      tier: (subscription?.tier ?? 'free') as SubscriptionTier,
+      status: (subscription?.status ?? 'canceled') as SubscriptionStatus,
+      trialEndsAt: subscription?.trial_ends_at as string | null | undefined,
+    })
+  )
 
   const firstName = (profile?.full_name || '').trim().split(/\s+/)[0]
   const profileLevel = profile?.level ?? 'A-Level'

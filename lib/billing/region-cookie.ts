@@ -15,7 +15,7 @@ export type RegionChoice = {
   override: boolean
 }
 
-/** Currencies offered per region tier (must match setup-stripe-products.mjs). */
+/** Currencies offered per region tier (display only — Polar charges in USD). */
 export const CURRENCIES_BY_TIER: Record<RegionTier, readonly SupportedCurrency[]> = {
   A: ['usd', 'gbp', 'eur', 'aud'],
   B: ['usd', 'eur'],

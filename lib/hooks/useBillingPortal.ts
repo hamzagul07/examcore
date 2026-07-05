@@ -2,21 +2,22 @@
 
 import { useCallback, useRef, useState } from 'react'
 
-export type StripePortalState = 'idle' | 'loading' | 'opened' | 'error'
+export type BillingPortalState = 'idle' | 'loading' | 'opened' | 'error'
 
 type Options = {
   returnUrl?: string
 }
 
 type Result = {
-  state: StripePortalState
+  state: BillingPortalState
   errorMessage: string
   openPortal: () => Promise<void>
   reset: () => void
 }
 
-export function useStripePortal({ returnUrl = '/account/billing' }: Options = {}): Result {
-  const [state, setState] = useState<StripePortalState>('idle')
+/** Opens the Polar customer portal via /api/billing/portal. */
+export function useBillingPortal({ returnUrl = '/account/billing' }: Options = {}): Result {
+  const [state, setState] = useState<BillingPortalState>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
@@ -65,7 +66,7 @@ export function useStripePortal({ returnUrl = '/account/billing' }: Options = {}
   return { state, errorMessage, openPortal, reset }
 }
 
-export function stripePortalButtonLabel(state: StripePortalState, idleLabel: string): string {
+export function billingPortalButtonLabel(state: BillingPortalState, idleLabel: string): string {
   switch (state) {
     case 'loading':
       return 'Opening your billing portal…'

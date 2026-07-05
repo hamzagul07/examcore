@@ -35,7 +35,7 @@ Redeploy after adding.
 | Onboarding completed (first time) | Welcome email | “User ready” alert (subjects, level, goal) |
 | Contact form | Auto-reply confirmation | Contact alert (reply-to set to sender) |
 | Waitlist signup (`/api/signup`) | — | Waitlist alert |
-| Stripe credit purchase (test or live) | Receipt | Purchase alert |
+| Polar credit purchase (sandbox or production) | Receipt | Purchase alert |
 | New subscription (checkout completed) | Plan confirmation | Purchase alert |
 
 Marketing blasts are **not** sent automatically. Students opt in under **Account → Preferences** (`email_product_updates`, `email_exam_reminders`). Use `sendProductUpdateEmail()` from code or a future script when you run a campaign.
@@ -74,9 +74,9 @@ This sets Resend SMTP (`hello@markscheme.app`), sender name **MarkScheme**, and 
 
 Works for testing; often lands in spam. Use SMTP for production.
 
-## 5. Stripe test mode
+## 5. Polar sandbox mode
 
-Purchase emails fire on **test** checkouts too once `STRIPE_WEBHOOK_SECRET` (test `whsec_…`) is set and the webhook runs.
+Purchase emails fire on **sandbox** checkouts too once `POLAR_WEBHOOK_SECRET` is set and the webhook at `/api/billing/polar-webhook` runs.
 
 ## 6. Manual marketing send (developers)
 
@@ -101,7 +101,7 @@ Exam reminders (`email_exam_reminders`) are stored for a future cron; not wired 
 |---------|-----|
 | No emails at all | Check `RESEND_API_KEY` on Vercel; domain verified |
 | Admin gets mail, users don’t | Check `RESEND_FROM` uses `@markscheme.app` |
-| Purchase mail missing | Stripe webhook + `STRIPE_WEBHOOK_SECRET`; check Vercel logs |
+| Purchase mail missing | Polar webhook + `POLAR_WEBHOOK_SECRET`; check Vercel logs |
 | Welcome never arrives | Welcome sends after **onboarding complete**, not at sign-in; check Resend logs |
 | Welcome twice | Should not happen — only first onboarding save triggers welcome |
 | Auth mail missing | Configure Supabase SMTP, not only Resend API key |

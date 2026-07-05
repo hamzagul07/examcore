@@ -10,10 +10,20 @@ import type { StoredPageOcr } from '@/lib/marking/whole-paper-pages'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { requireTeacher } from '@/lib/teacher-auth'
-import { checkAnonymousMarkRateLimit, clientIp } from '@/lib/rate-limit'
+import {
+  checkAnonymousMarkRateLimit,
+  clientIp,
+  incrementAnonymousMarkRateLimit,
+} from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { computeAllowance, quotaExceededBody } from '@/lib/billing/enforcement'
 
 export const maxDuration = 120
+
+// Retries don't consume a quota slot (the paper already used one at run time),
+// but they do cost an AI call — cap them per attempt so the endpoint can't be
+// scripted into free unlimited marking.
+const MAX_RETRIES_PER_ATTEMPT = 15
 
 export async function POST(request: NextRequest) {
   try {
@@ -47,6 +57,13 @@ export async function POST(request: NextRequest) {
           status: 401,
         })
       }
+      // Users blocked at their cap don't get free re-marking either.
+      if (attempt.user_id === user.id) {
+        const allowance = await computeAllowance(user.id)
+        if (allowance.blocked_by_mode) {
+          return NextResponse.json(quotaExceededBody(allowance), { status: 402 })
+        }
+      }
       if (attempt.user_id !== user.id) {
         const teacherCheck = await requireTeacher(supabaseAuth, user.id)
         if (!teacherCheck.ok) {
@@ -70,11 +87,24 @@ export async function POST(request: NextRequest) {
       if (!rateCheck.allowed) {
         return rateLimitJson(rateCheck.message)
       }
+      // Guest retries spend the same daily budget as guest marks.
+      await incrementAnonymousMarkRateLimit(supabaseAdmin, ip, null, rateCheck.count)
     }
 
     const existing = attempt.ai_marking as WholePaperResult
     if (existing.upload_mode !== 'whole_paper') {
       return NextResponse.json({ error: 'Not a whole-paper result' }, { status: 400 })
+    }
+
+    const retryCount = existing.retry_count ?? 0
+    if (retryCount >= MAX_RETRIES_PER_ATTEMPT) {
+      return NextResponse.json(
+        {
+          error:
+            'Retry limit reached for this paper. Upload the paper again to re-mark it from scratch.',
+        },
+        { status: 429 }
+      )
     }
 
     const paperCode = existing.paper_code
@@ -131,6 +161,7 @@ export async function POST(request: NextRequest) {
       paperQuestions
     )
     wholePaper.pages_ocr = storedPages
+    wholePaper.retry_count = retryCount + 1
 
     await supabaseAdmin
       .from('attempts')

@@ -47,7 +47,6 @@ export type QuotaAllowance = {
   tier: SubscriptionTier
   status: SubscriptionStatus
   period_resets_at?: string
-  founding_member: boolean
   warning: boolean
   enforcement_mode: EnforcementMode
 }
@@ -60,7 +59,6 @@ export type BillingSummary = {
   access: EffectiveAccess
   trial_ends_at?: string | null
   status: SubscriptionStatus
-  founding_member: boolean
   credit_balance: number
   period_resets_at?: string
   enforcement_mode: EnforcementMode
@@ -75,7 +73,6 @@ type BillingContext = {
   access: EffectiveAccess
   trial_ends_at: string | null
   status: SubscriptionStatus
-  founding_member: boolean
   credit_balance: number
   window: ReturnType<typeof currentPeriodWindow>
   enforcement_mode: EnforcementMode
@@ -89,7 +86,7 @@ async function loadBillingContext(
     supabase
       .from('user_subscriptions')
       .select(
-        'tier, status, current_period_start, current_period_end, founding_member, trial_ends_at'
+        'tier, status, current_period_start, current_period_end, trial_ends_at'
       )
       .eq('user_id', userId)
       .maybeSingle(),
@@ -111,7 +108,6 @@ async function loadBillingContext(
     access,
     trial_ends_at,
     status,
-    founding_member: Boolean(sub?.founding_member),
     credit_balance: credits?.balance ?? 0,
     window: currentPeriodWindow({
       tier,
@@ -150,7 +146,7 @@ function buildQuotaAllowance(
     omni?: boolean
   }
 ): QuotaAllowance {
-  const { tier, status, founding_member, credit_balance, window, enforcement_mode } = ctx
+  const { tier, status, credit_balance, window, enforcement_mode } = ctx
   const remaining = Math.max(0, opts.cap - opts.used)
   const subscriptionInactive = tier !== 'free' && !ACTIVE_STATUSES.includes(status)
   const atCap = opts.used >= opts.cap
@@ -180,7 +176,6 @@ function buildQuotaAllowance(
     tier,
     status,
     period_resets_at: window.end ?? undefined,
-    founding_member,
     warning,
     enforcement_mode,
   }
@@ -257,7 +252,6 @@ export async function computeBillingSummary(
     access: ctx.access,
     trial_ends_at: ctx.trial_ends_at,
     status: ctx.status,
-    founding_member: ctx.founding_member,
     credit_balance: ctx.credit_balance,
     period_resets_at: ctx.window.end ?? undefined,
     enforcement_mode: ctx.enforcement_mode,
@@ -422,7 +416,6 @@ function reservationAllowance(
     tier: ctx.tier,
     status: ctx.status,
     period_resets_at: ctx.window.end ?? undefined,
-    founding_member: ctx.founding_member,
     warning,
     enforcement_mode: ctx.enforcement_mode,
   })
@@ -484,8 +477,18 @@ export async function reserveMarkUsage(
     })
 
     if (error) {
-      // Fail OPEN: meter best-effort, never block on our infra error.
+      // Fail OPEN: meter best-effort, never block on our infra error. But make
+      // the failure loud — a silently broken meter means unmetered usage.
       console.error('[enforcement] reserve_mark_usage failed (failing open):', error.message)
+      try {
+        const Sentry = await import('@sentry/nextjs')
+        Sentry.captureMessage(
+          `reserve_mark_usage RPC failed (failing open): ${error.message}`,
+          { level: 'error', tags: { area: 'billing-enforcement' } }
+        )
+      } catch {
+        // Sentry unavailable — console.error above is the fallback.
+      }
       eventId = await insertUsageRow(supabase, userId, eventType, ctx.window.source, {
         reserved: true,
         fallback: true,

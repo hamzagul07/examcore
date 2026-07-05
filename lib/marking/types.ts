@@ -182,6 +182,8 @@ export type WholePaperResult = {
   summary: string
   paper_code?: string
   paper_session?: string
+  /** Total per-question retries used on this attempt (abuse guard, capped). */
+  retry_count?: number
   /** Retained for per-question retry with ink (not shown in UI) */
   pages_ocr?: Array<{
     photo_url: string

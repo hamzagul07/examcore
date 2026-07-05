@@ -26,7 +26,8 @@ import {
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { createServiceClient } from '@/lib/supabase/service'
 import { wholePaperQuestionLimit } from '@/lib/billing/features'
-import type { SubscriptionTier } from '@/lib/database.types'
+import { effectiveAccess, type EffectiveAccess } from '@/lib/billing/access'
+import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
 import { getMarkingGenAI } from '@/lib/marking/mark-runner'
 import { detectQuestionFromPageText } from '@/lib/marking/page-detection'
@@ -55,15 +56,21 @@ export async function POST(request: NextRequest) {
     }
 
     let allowance: Awaited<ReturnType<typeof computeAllowance>> | null = null
-    let tier: SubscriptionTier = 'free'
+    // Trial-aware: reverse-trial users keep tier='free' in the DB but are
+    // promised full access, so gate on effectiveAccess, not the raw tier.
+    let access: EffectiveAccess = 'free'
     if (userId) {
       const service = createServiceClient()
       const { data: subRow } = await service
         .from('user_subscriptions')
-        .select('tier')
+        .select('tier, status, trial_ends_at')
         .eq('user_id', userId)
         .maybeSingle()
-      tier = (subRow?.tier ?? 'free') as SubscriptionTier
+      access = effectiveAccess({
+        tier: (subRow?.tier ?? 'free') as SubscriptionTier,
+        status: (subRow?.status ?? 'canceled') as SubscriptionStatus,
+        trialEndsAt: subRow?.trial_ends_at as string | null | undefined,
+      })
 
       allowance = await computeAllowance(userId)
       if (allowance.blocked_by_mode) {
@@ -71,7 +78,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const questionLimit = wholePaperQuestionLimit(tier)
+    const questionLimit = wholePaperQuestionLimit(access)
 
     const formData = await request.formData()
     const manualPaperCode = formData.get('manual_paper_code') as string | null
@@ -248,7 +255,7 @@ export async function POST(request: NextRequest) {
       question_count: questionCount,
       questions_in_paper: segments.questions.length,
       question_limit: questionLimit,
-      preview_mode: tier === 'free',
+      preview_mode: access === 'free',
       detected_labels: detectedLabels,
       estimated_time: formatEstimatedTime(estSeconds),
       estimated_seconds: estSeconds,

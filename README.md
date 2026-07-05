@@ -7,7 +7,7 @@ AI marking for Cambridge International A-Level and O-Level past papers. Students
 - **Next.js** (App Router) + TypeScript
 - **Supabase** — auth, Postgres, storage (`paper-pdfs`, `answer-photos`)
 - **Google Gemini** — OCR, marking, study chat, and course generation
-- **Stripe** — subscriptions and credits
+- **Polar** — subscriptions and credits (merchant of record)
 - **Sentry** (optional) — errors and performance in production
 
 ## CI
@@ -32,12 +32,13 @@ Copy `.env.example` to `.env.local` and fill in:
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Client-side Supabase key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server/admin operations |
 | `GEMINI_API_KEY` | Marking, OCR, study chat (`gemini-2.5-flash`) |
-| `STRIPE_SECRET_KEY` | Billing (optional locally) |
-| `STRIPE_WEBHOOK_SECRET` | Webhook verification |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Checkout |
+| `POLAR_ACCESS_TOKEN` | Billing (optional locally) |
+| `POLAR_WEBHOOK_SECRET` | Webhook verification |
+| `POLAR_SERVER` | `sandbox` (default) or `production` |
+| `POLAR_PRODUCT_*` | Product IDs from `scripts/setup-polar-products.mjs` |
 | `NEXT_PUBLIC_SENTRY_DSN` | Error monitoring (optional; see [docs/GITHUB_STUDENT_PACK.md](docs/GITHUB_STUDENT_PACK.md)) |
 
-Student Pack benefits (Stripe fee waiver, Sentry, domains, etc.) are summarized in [docs/GITHUB_STUDENT_PACK.md](docs/GITHUB_STUDENT_PACK.md).
+Student Pack benefits (Sentry, domains, etc.) are summarized in [docs/GITHUB_STUDENT_PACK.md](docs/GITHUB_STUDENT_PACK.md).
 
 ### 3. Database
 
@@ -68,7 +69,7 @@ Open [http://localhost:3000](http://localhost:3000). Marking works for guests (I
 1. Import the repo on [Vercel](https://vercel.com) and add env vars from `.env.example` (at minimum the three Supabase keys + AI keys).
 2. **Before custom domain:** the app uses `https://<your-project>.vercel.app` via `VERCEL_URL` for sitemap/OG when `NEXT_PUBLIC_SITE_URL` is unset.
 3. **Supabase → Authentication → URL configuration:** add your Vercel URL(s) to **Redirect URLs**, e.g. `https://your-app.vercel.app/auth/callback` and `http://localhost:3000/auth/callback`.
-4. After **markscheme.app** DNS is live, set `NEXT_PUBLIC_SITE_URL=https://markscheme.app`, redeploy, and update Supabase redirect URLs + Stripe webhook endpoint.
+4. After **markscheme.app** DNS is live, set `NEXT_PUBLIC_SITE_URL=https://markscheme.app`, redeploy, and update Supabase redirect URLs + the Polar webhook endpoint (`/api/billing/polar-webhook`).
 5. **Google sign-in** (optional): enable in Supabase + Google Cloud after the domain is ready — UI is already on `/auth/signin` and `/auth/signup`.
 
 Production checks:
@@ -89,7 +90,7 @@ Point uptime monitoring at `GET /api/health`.
 | `/mark` | Upload and mark answers |
 | `/dashboard` | Home + progress |
 | `/account/*` | Settings (profile, study setup, billing, privacy) |
-| `/pricing` | Plans — founding members get 50% off forever |
+| `/pricing` | Plans — every paid plan starts with a 7-day free trial |
 
 ## Scripts
 

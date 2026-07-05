@@ -152,7 +152,8 @@ export function notifyAdminPurchase(payload: {
   userId: string
   kind: 'credits' | 'subscription'
   detail: string
-  stripeSessionId?: string | null
+  /** Polar subscription or order ID, for cross-referencing in the dashboard. */
+  providerRef?: string | null
 }): void {
   sendEmailAsync({
     to: adminNotifyAddress(),
@@ -164,7 +165,7 @@ export function notifyAdminPurchase(payload: {
       `Email: ${payload.email}`,
       `User ID: ${payload.userId}`,
       `Detail: ${payload.detail}`,
-      payload.stripeSessionId ? `Stripe session: ${payload.stripeSessionId}` : '',
+      payload.providerRef ? `Polar ref: ${payload.providerRef}` : '',
     ]
       .filter(Boolean)
       .join('\n'),
@@ -379,7 +380,8 @@ export async function notifyPurchaseEmails(
   payload: {
     kind: 'credits' | 'subscription'
     detail: string
-    stripeSessionId?: string | null
+    /** Polar subscription or order ID. */
+    providerRef?: string | null
   }
 ): Promise<void> {
   const { data: authData } = await supabase.auth.admin.getUserById(userId)
@@ -397,6 +399,6 @@ export async function notifyPurchaseEmails(
     userId,
     kind: payload.kind,
     detail: payload.detail,
-    stripeSessionId: payload.stripeSessionId,
+    providerRef: payload.providerRef,
   })
 }

@@ -29,7 +29,6 @@ export type SettingsBilling = {
   cancelAtPeriodEnd: boolean
   hasCustomer: boolean
   credits: number
-  foundingMember: boolean
   marksUsed: number
   markCap: number
   omniUsed: number

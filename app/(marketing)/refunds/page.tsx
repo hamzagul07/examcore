@@ -24,8 +24,11 @@ export default function RefundsPage() {
               <strong className="text-[var(--ec-text-primary)]">7-day free trial with full access and no card required</strong>.
               You will not be charged during the trial. If you do nothing, your account
               simply moves to the free plan — there is no automatic charge to refund.
-              We recommend using the trial to decide whether MarkScheme is right for you
-              before subscribing.
+              In addition, your{' '}
+              <strong className="text-[var(--ec-text-primary)]">first paid subscription starts with its own 7-day free trial</strong>:
+              a card is collected at checkout but nothing is charged until the trial
+              ends, and cancelling before then costs nothing. We recommend using these
+              trials to decide whether MarkScheme is right for you before paying.
             </p>
           </section>
 
@@ -33,8 +36,10 @@ export default function RefundsPage() {
             <h2 className="ms-h3">Subscriptions and billing</h2>
             <p>
               Paid plans are billed through{' '}
-              <strong className="text-[var(--ec-text-primary)]">Stripe</strong>, our payment
-              processor, on a monthly or yearly basis depending on the plan you choose.
+              <strong className="text-[var(--ec-text-primary)]">Polar</strong>, our payment
+              provider and merchant of record, on a monthly or yearly basis depending on
+              the plan you choose. Polar handles card processing, receipts and any
+              applicable sales tax or VAT.
               Subscriptions renew automatically at the end of each billing period until
               you cancel. Current prices are shown on our{' '}
               <Link href="/pricing">pricing page</Link>.
@@ -112,7 +117,7 @@ export default function RefundsPage() {
               <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> from the address on
               your account, with the date of the charge and a short reason. We aim to
               respond within a few business days. Approved refunds are returned to your
-              original payment method via Stripe and typically appear within 5–10 business
+              original payment method via Polar and typically appear within 5–10 business
               days, depending on your bank.
             </p>
             <p>

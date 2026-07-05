@@ -1,6 +1,6 @@
 # GitHub Student Developer Pack — MarkScheme stack
 
-MarkScheme runs on **Vercel**, **Supabase**, **Stripe**, and **Google Gemini**. The [GitHub Student Developer Pack](https://education.github.com/pack) does not cover AI inference, but it can materially reduce hosting, observability, and tooling costs while you grow.
+MarkScheme runs on **Vercel**, **Supabase**, **Polar**, and **Google Gemini**. The [GitHub Student Developer Pack](https://education.github.com/pack) does not cover AI inference, but it can materially reduce hosting, observability, and tooling costs while you grow.
 
 ## Claim checklist
 
@@ -12,7 +12,6 @@ MarkScheme runs on **Vercel**, **Supabase**, **Stripe**, and **Google Gemini**. 
 
 | Benefit | What it helps | Env / setup |
 |---------|----------------|-------------|
-| **Stripe** | Payment processing fee waiver (up to ~$1k in waived fees while eligible) | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` |
 | **Sentry** | Production errors, performance traces, session replay on errors | `NEXT_PUBLIC_SENTRY_DSN`, optional `SENTRY_AUTH_TOKEN` + `SENTRY_ORG` + `SENTRY_PROJECT` for source maps |
 | **GitHub Pro** | Private repos, more Actions minutes | CI in `.github/workflows/ci.yml` |
 | **GitHub Copilot** | Faster iteration (not runtime) | Editor extension |
@@ -51,8 +50,8 @@ Enable **branch protection** on `main`: require the **CI** check to pass before 
 ## Cost mental model
 
 - **Fixed-ish:** Vercel, Supabase base, domain, Sentry (within free/pack limits).
-- **Variable:** Gemini tokens per mark, chat message, and OCR page; Stripe per successful charge (fees may be waived under pack).
-- **Best lever early:** Stripe pack + Sentry pack + strict guest/account quotas (already in app) + monitor Sentry for OCR/mark API failures.
+- **Variable:** Gemini tokens per mark, chat message, and OCR page; Polar's merchant-of-record fee per successful charge.
+- **Best lever early:** Sentry pack + strict guest/account quotas (already in app) + monitor Sentry for OCR/mark API failures.
 
 ## Related docs
 

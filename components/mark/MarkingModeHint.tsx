@@ -3,7 +3,7 @@
 import type { MarkExamBoard } from '@/components/mark/MarkBoardPicker'
 
 type Props = {
-  mode: 'official' | 'general' | 'practice' | 'missing_paper'
+  mode: 'official' | 'general' | 'practice' | 'missing_paper' | 'combined'
   markBoard?: MarkExamBoard
 }
 
@@ -22,8 +22,8 @@ export function MarkingModeHint({ mode, markBoard = 'cambridge' }: Props) {
         ? {
             title: 'Paper not in database',
             body: ib
-              ? 'This session is not cached yet — we mark with IB criterion conventions. Add a question photo for better accuracy.'
-              : 'This session is not cached yet — we mark with general Cambridge conventions. Add a question photo for better accuracy.',
+              ? 'This session is not cached yet — we mark with IB criterion conventions. Add a question photo or PDF for better accuracy.'
+              : 'This session is not cached yet — we mark with general Cambridge conventions. Add a question photo or PDF for better accuracy.',
           }
         : mode === 'practice'
           ? {
@@ -32,10 +32,17 @@ export function MarkingModeHint({ mode, markBoard = 'cambridge' }: Props) {
                 ? 'Marked band-by-band against IB assessment criteria for your subject — not an official past-paper lookup.'
                 : 'Marked with Cambridge-style conventions for your subject — not an official past-paper scheme.',
             }
-          : {
+          : mode === 'combined'
+            ? {
+                title: 'Question + answer on one scan',
+                body: ib
+                  ? 'We read the question and your working from the same upload, then mark band-by-band against IB criteria.'
+                  : 'We split the question from your working on the same page or PDF, then mark with Cambridge conventions.',
+              }
+            : {
               title: 'Auto-detect mode',
               body: ib
-                ? 'Select your IB subject and add the question text or photo — we mark against criterion bands.'
+                ? 'Select your IB subject and add the question text, photo, or PDF — we mark against criterion bands.'
                 : 'Select the paper above for official marking, or add the question text — we will detect the paper from your script if possible.',
             }
 

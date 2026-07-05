@@ -1,14 +1,82 @@
 /* /mark flow — Margin Notes (maps prototype pages.css mark section) */
 
 .ms-mark-shell {
-  padding-top: 48px;
-  /* Faint brand glow up top — gives the upload page a calmer, premium focus */
-  background-image: radial-gradient(
-    760px circle at 50% -160px,
-    var(--ec-brand-muted) 0%,
-    transparent 62%
-  );
+  padding-top: 40px;
+  padding-bottom: 64px;
+  background-image:
+    radial-gradient(820px circle at 50% -180px, var(--ec-brand-muted) 0%, transparent 58%),
+    radial-gradient(520px circle at 12% 24%, color-mix(in srgb, var(--ec-accent-warm) 10%, transparent) 0%, transparent 55%),
+    radial-gradient(480px circle at 88% 32%, color-mix(in srgb, var(--ec-acc-violet) 8%, transparent) 0%, transparent 52%);
   background-repeat: no-repeat;
+}
+
+.ms-mark-hero {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.ms-mark-hero-eyebrow {
+  margin-bottom: 10px !important;
+  color: var(--ec-brand);
+}
+
+.ms-mark-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-hero-lead {
+  margin: 0 auto;
+  max-width: 36rem;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ec-text-secondary);
+}
+
+.ms-mark-form-shell {
+  margin-top: 4px;
+}
+
+.ms-mark-setup-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ms-mark-mode-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.ms-mark-mode-panel .ms-lvl-tabs-scroll {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ms-mark-mode-callout {
+  margin: 0;
+  max-width: 40rem;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-surface) 88%, var(--ec-brand-muted));
+}
+
+.ms-mark-context-card {
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--ec-brand) 8%, transparent);
 }
 
 .ms-mark-pg {
@@ -26,7 +94,8 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  margin: 18px 0 40px;
+  justify-content: center;
+  margin: 22px 0 32px;
   padding: 0;
   list-style: none;
   font-family: var(--font-mono);
@@ -81,7 +150,8 @@
   border: 1px solid var(--ec-border);
   border-radius: 999px;
   padding: 4px;
-  margin-bottom: 26px;
+  margin-bottom: 0;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ec-surface) 65%, transparent);
 }
 
 .ms-lvl-tab {
@@ -128,9 +198,107 @@
 
 .ms-upload-grid {
   display: grid;
-  grid-template-columns: 1fr 0.85fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 28px;
   align-items: start;
+}
+
+.ms-mark-upload-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 18px 22px;
+  border-radius: var(--ec-radius-lg, 16px);
+  border: 1px solid var(--ec-border);
+  min-width: 0;
+}
+
+.ms-mark-step-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ms-mark-step-label-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  border: 1.5px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+}
+
+.ms-mark-step-label-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.ms-mark-step-label-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ms-mark-step-label-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ec-text-secondary);
+}
+
+.ms-mark-or-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ec-text-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ms-mark-or-divider::before,
+.ms-mark-or-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ec-border);
+}
+
+.ms-q-upload-drop:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}
+
+.ms-q-upload-file-icon {
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-q-upload-drop {
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-q-upload-file {
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 20%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand-muted) 35%, var(--ec-surface));
 }
 
 .ms-upload-preview-wrap {
@@ -201,11 +369,38 @@
 }
 
 .ms-mark-form-card {
+  position: relative;
   background: var(--ec-surface);
   border: 1px solid var(--ec-border);
   border-radius: var(--ec-radius-lg, 16px);
-  padding: 24px 26px;
+  padding: 22px 22px 20px;
   box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  overflow: hidden;
+  min-width: 0;
+}
+
+.ms-mark-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand) 0%,
+    color-mix(in srgb, var(--ec-accent-warm) 70%, var(--ec-brand)) 100%
+  );
+}
+
+.ms-mark-form-body {
+  margin-top: 18px;
+}
+
+.ms-mark-submit-panel {
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--ec-border);
 }
 
 .ms-mark-form-card h3 {
@@ -607,10 +802,10 @@
 }
 
 .ms-marking-mode-hint {
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid var(--ec-border);
-  background: var(--ec-bg-soft);
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 22%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand-muted) 55%, var(--ec-bg-soft));
 }
 
 .ms-marking-mode-hint-title {
@@ -882,7 +1077,7 @@
 
 /* Exam board picker — Cambridge vs IB before subject selection */
 .ms-mark-board-picker {
-  margin: 0 0 28px;
+  margin: 0;
   padding: 0;
   border: none;
 }
@@ -935,7 +1130,9 @@
   border-color: color-mix(in srgb, var(--ec-brand) 55%, var(--ec-border));
   background: var(--ec-brand-muted);
   color: var(--ec-text-primary);
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--ec-brand) 12%, transparent);
+  box-shadow:
+    0 4px 16px color-mix(in srgb, var(--ec-brand) 12%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--ec-surface) 70%, transparent);
 }
 
 .ms-mark-board-option-label {

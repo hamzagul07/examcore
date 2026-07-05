@@ -22,6 +22,80 @@ export async function prepareImageFilesForSubmit(
   return { pageFiles: compressedPages, extras, error }
 }
 
+function isPdfFile(file: File) {
+  return file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
+}
+
+/** Single-question submit: image pages and/or one answer PDF; optional question file. */
+export async function prepareSingleQuestionUpload(
+  pages: UploadPage[],
+  options: {
+    answerPdf: File | null
+    questionFile: File | null
+    questionCompressing?: boolean
+  }
+): Promise<{
+  pageFiles: File[]
+  answerPdf: File | null
+  questionFile: File | null
+  error: string | null
+}> {
+  if (options.questionCompressing) {
+    return {
+      pageFiles: [],
+      answerPdf: null,
+      questionFile: null,
+      error: 'Still preparing your question file — wait a moment, then try again.',
+    }
+  }
+
+  if (options.answerPdf) {
+    const pdfErr = getPdfSizeError(options.answerPdf)
+    if (pdfErr) {
+      return { pageFiles: [], answerPdf: null, questionFile: null, error: pdfErr }
+    }
+    const extras = options.questionFile ? [options.questionFile] : []
+    const payloadErr = getPayloadTooLargeError([options.answerPdf, ...extras])
+    if (payloadErr) {
+      return { pageFiles: [], answerPdf: null, questionFile: null, error: payloadErr }
+    }
+    return {
+      pageFiles: [],
+      answerPdf: options.answerPdf,
+      questionFile: options.questionFile,
+      error: null,
+    }
+  }
+
+  if (hasCompressingPages(pages)) {
+    return {
+      pageFiles: [],
+      answerPdf: null,
+      questionFile: null,
+      error: 'Still optimizing images — wait a moment, then try again.',
+    }
+  }
+
+  const compressedPages = await compressImages(pages.map((p) => p.file))
+  let questionFile = options.questionFile
+  if (questionFile && !isPdfFile(questionFile)) {
+    questionFile = await compressImage(questionFile)
+  }
+  const payloadErr = getPayloadTooLargeError([
+    ...compressedPages,
+    ...(questionFile ? [questionFile] : []),
+  ])
+  if (payloadErr) {
+    return { pageFiles: [], answerPdf: null, questionFile: null, error: payloadErr }
+  }
+  return {
+    pageFiles: compressedPages,
+    answerPdf: null,
+    questionFile,
+    error: null,
+  }
+}
+
 export async function prepareWholePaperUpload(
   pages: UploadPage[],
   pdf: File | null

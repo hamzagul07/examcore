@@ -25,10 +25,11 @@ export default function RefundsPage() {
               You will not be charged during the trial. If you do nothing, your account
               simply moves to the free plan — there is no automatic charge to refund.
               In addition, your{' '}
-              <strong className="text-[var(--ec-text-primary)]">first paid subscription starts with its own 7-day free trial</strong>:
+              <strong className="text-[var(--ec-text-primary)]">first Scholar or Max subscription starts with its own 7-day free trial</strong>:
               a card is collected at checkout but nothing is charged until the trial
-              ends, and cancelling before then costs nothing. We recommend using these
-              trials to decide whether MarkScheme is right for you before paying.
+              ends, and cancelling before then costs nothing. Pro subscriptions are
+              billed from day one. We recommend using these trials to decide whether
+              MarkScheme is right for you before paying.
             </p>
           </section>
 

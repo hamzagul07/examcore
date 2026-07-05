@@ -278,7 +278,7 @@ export default function BlogIndexPage() {
           <ul className="ms-blog-cta__perks" aria-label="Included with a free account">
             <li>Your subjects matched</li>
             <li>Community rooms</li>
-            <li>7-day Pro trial</li>
+            <li>7-day full-access trial</li>
           </ul>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href={buildSignUpHref('/blog')} className="ec-btn-primary min-h-[48px] px-8">

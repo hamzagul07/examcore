@@ -85,9 +85,10 @@ export async function POST(req: NextRequest) {
   const returnPath = sanitizeNextPath(body.return_url, '/account')
   const successUrl = `${origin}${returnPath}?checkout=success`
 
-  // First-time subscribers get a 7-day free trial at checkout. Anyone with a
-  // polar_subscription_id (even a canceled one) has subscribed before, so no
-  // second trial via cancel-and-resubscribe.
+  // First-time subscribers get a 7-day free trial at checkout — on Scholar and
+  // Max only, not Pro. Anyone with a polar_subscription_id (even a canceled
+  // one) has subscribed before, so no second trial via cancel-and-resubscribe.
+  const TRIAL_PRODUCTS = new Set<ProductKey>(['scholar', 'mastery'])
   let firstSubscription = false
 
   // Plan switch: if the user already has a live Polar subscription, update it in
@@ -161,9 +162,9 @@ export async function POST(req: NextRequest) {
       externalCustomerId: user.id,
       customerEmail: user.email ?? undefined,
       successUrl,
-      // 7-day free trial on the first paid subscription only (card collected,
-      // charged when the trial ends). Credit packs are one-time — no trial.
-      ...(firstSubscription
+      // 7-day free trial on the first Scholar/Max subscription only (card
+      // collected, charged when the trial ends). Pro and credit packs: no trial.
+      ...(firstSubscription && TRIAL_PRODUCTS.has(product)
         ? { trialInterval: 'day' as const, trialIntervalCount: 7 }
         : {}),
       // Carry the link on the checkout so the webhook can credit reliably.

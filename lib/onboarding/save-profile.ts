@@ -164,9 +164,8 @@ export async function saveOnboardingProfile(
       }
     }
 
-    // The subscription row (with its 7-day reverse-trial default) is created by
-    // the handle_new_user_billing() trigger on signup — no upsert needed here.
-    // (Founding-member granting was removed in the pricing overhaul.)
+    // The subscription row is created by handle_new_user_billing() on signup —
+    // free tier, no automatic trial.
 
     if (role === 'teacher') {
       const classroomName = (body.classroom_name || '').trim()

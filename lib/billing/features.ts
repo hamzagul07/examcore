@@ -1,8 +1,8 @@
 import type { EffectiveAccess } from './access'
 
 /**
- * Trial-aware paid check — use for feature gating: the 7-day reverse trial
- * promises full access, and trial users still have tier='free' in the DB.
+ * Trial-aware paid check — use for feature gating: Polar checkout trials
+ * (status trialing) still have a paid tier in the DB.
  */
 export function hasPaidAccess(access: EffectiveAccess): boolean {
   return access !== 'free'

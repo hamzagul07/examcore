@@ -56,8 +56,7 @@ export async function POST(request: NextRequest) {
     }
 
     let allowance: Awaited<ReturnType<typeof computeAllowance>> | null = null
-    // Trial-aware: reverse-trial users keep tier='free' in the DB but are
-    // promised full access, so gate on effectiveAccess, not the raw tier.
+    // Gate on effectiveAccess (paid tiers + legacy reverse trial if any).
     let access: EffectiveAccess = 'free'
     if (userId) {
       const service = createServiceClient()

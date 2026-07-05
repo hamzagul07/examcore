@@ -2,6 +2,18 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import {
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  CheckCircle2,
+  FileCheck,
+  GraduationCap,
+  MessageSquare,
+  Sparkles,
+  Target,
+  Zap,
+} from 'lucide-react'
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { InkScribble } from '@/components/courses/margin-notes/HandAnnotations'
 import { CourseRichText } from '@/components/courses/CourseRichText'
@@ -190,7 +202,10 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     id: PlanId
     name: string
     tag: string
+    bestFor: string
     blurb: string
+    killer: string
+    trialPill?: string
     now: string
     per: string
     sub: string | null
@@ -201,13 +216,15 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
       id: 'free',
       name: 'Free',
       tag: 'No card required',
-      blurb: 'Read every lesson — notes, formulas and worked examples — forever.',
+      bestFor: 'Browsing courses & trying marking',
+      blurb: 'Every lesson, formula and worked example — forever. Enough marking to see if it clicks.',
+      killer: `${FREE_Q} marked questions every month — no card, no expiry`,
       now: formatMoney(0, cur),
       per: 'forever',
       sub: null,
       features: [
-        ['Notes, formulas & worked examples', true],
-        [`Mark ${FREE_Q} questions / month`, true],
+        ['All lessons, notes & worked examples', true],
+        [`${FREE_Q} marked questions / month`, true],
         [`${FREE_OMNI} study-chat messages / month`, true],
         [
           INTERACTIVE_DIAGRAMS_FREE
@@ -222,50 +239,59 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     {
       id: 'pro',
       name: 'Pro',
-      tag: 'Get started',
-      blurb: 'Real marking and everyday revision for one subject at a time.',
+      tag: 'Start marking seriously',
+      bestFor: 'One subject, regular practice',
+      blurb: 'Real examiner-style marking on past papers — whole papers, flashcards, and enough headroom for weekly practice.',
+      killer: `${PRO_Q} questions / month — 10× the free tier`,
       now: proPrice.now,
       per: proPrice.per,
       sub: proPrice.sub,
       features: [
         ['Everything in Free', true],
-        [`Mark ${PRO_Q} questions / month`, true],
+        [`${PRO_Q} marked questions / month`, true],
         [`${PRO_OMNI} study-chat messages / month`, true],
-        ['Whole-paper marking', true],
+        ['Whole-paper marking — up to 15 questions', true],
+        ['Past-paper practice, flashcards & quizzes', true],
         ['Live interactive diagrams', true],
-        ['Past-paper practice & flashcards', true],
+        ['In-depth courses & progress journey', false],
       ],
     },
     {
       id: 'scholar',
       name: 'Scholar',
       tag: 'Most popular',
-      blurb: 'The full toolkit — in-depth courses, detailed marking and your progress journey.',
+      bestFor: 'Full exam prep across subjects',
+      blurb: 'The complete toolkit — detailed marking feedback, topic mastery tracking, and in-depth courses that actually teach the syllabus.',
+      killer: `${SCH_Q} questions + mastery matrix & grade journey`,
+      trialPill: '7-day free trial',
       now: scholarPrice.now,
       per: scholarPrice.per,
       sub: scholarPrice.sub,
       featured: true,
       features: [
         ['Everything in Pro', true],
-        [`Mark ${SCH_Q} questions / month`, true],
+        [`${SCH_Q} marked questions / month`, true],
         [`${SCH_OMNI} study-chat messages / month`, true],
         ['In-depth, interactive courses', true],
         ['Examiner-style detailed marking feedback', true],
-        ['Detailed progress journey & analytics', true],
+        ['Topic mastery matrix & progress journey', true],
         ['Extra revision resources & practice packs', true],
       ],
     },
     {
       id: 'max',
       name: 'Max',
-      tag: 'For exam season',
-      blurb: 'Everything, with maximum headroom when you’re marking papers daily.',
+      tag: 'Exam season',
+      bestFor: 'Daily paper marking before exams',
+      blurb: 'Maximum marking headroom when you\'re sitting papers every day — plus projected grades and priority queue.',
+      killer: `${MAX_Q} questions / month + projected grades`,
+      trialPill: '7-day free trial',
       now: maxPrice.now,
       per: maxPrice.per,
       sub: maxPrice.sub,
       features: [
         ['Everything in Scholar', true],
-        [`Mark ${MAX_Q} questions / month`, true],
+        [`${MAX_Q} marked questions / month`, true],
         [`${MAX_OMNI} study-chat messages / month`, true],
         ['Projected grade estimates', true],
         ['Priority marking queue', true],
@@ -274,26 +300,63 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     },
   ]
 
-  const faqs = [
+  const valueProps = [
     {
-      q: 'How does the free trial work?',
-      a: `Every new account gets 7 days of full access — live diagrams, past-paper practice and higher marking limits — with no card required. When it ends you keep the free plan automatically. Scholar and Max also start with their own 7-day free trial on your first subscription: you add a card but aren't charged until the trial ends, and you can cancel anytime before then. Pro is billed from day one.`,
+      icon: FileCheck,
+      title: 'Official mark schemes',
+      body: 'B1, M1, A1 — marked against the real Cambridge or IB scheme for that exact question, not a generic AI guess.',
     },
     {
-      q: 'What’s included on the free plan?',
-      a: `Free gives you every lesson — notes, formulas, simple explanations and worked examples — across all fifteen Cambridge subjects, plus ${FREE_Q} marked questions and ${FREE_OMNI} study-chat messages each month.${
-        INTERACTIVE_DIAGRAMS_FREE
-          ? ' Live interactive diagrams are free for everyone while we’re in beta. Whole-paper marking, practice questions and flashcards start on Pro; in-depth courses, detailed marking and your progress journey are on Scholar and Max.'
-          : ' Whole-paper marking, practice and flashcards start on Pro; in-depth courses and detailed marking are on Scholar and Max.'
-      }`,
+      icon: Target,
+      title: 'Whole-paper marking',
+      body: 'Upload a full past paper and get every question marked in one go — up to 15 questions per paper on paid plans.',
+    },
+    {
+      icon: BarChart3,
+      title: 'Progress that matters',
+      body: 'Topic mastery matrix, grade trajectory, and weak-spot radar — see exactly where marks are being lost.',
+    },
+    {
+      icon: MessageSquare,
+      title: 'Ask MarkScheme',
+      body: 'Study chat that knows your subjects, your attempts, and the syllabus — not a generic homework bot.',
+    },
+  ]
+
+  const scholarReasons = [
+    {
+      icon: GraduationCap,
+      title: 'Courses that teach the syllabus',
+      body: 'Interactive lessons with diagrams, worked examples, and topic-by-topic coverage — not just marking.',
+    },
+    {
+      icon: Sparkles,
+      title: 'Feedback an examiner would write',
+      body: 'Detailed mark-by-mark breakdowns with margin notes on your handwriting — the same style as our landing demo.',
+    },
+    {
+      icon: BookOpen,
+      title: 'Know your weak topics',
+      body: 'Mastery matrix maps every syllabus topic to your score. Revision time goes where it actually helps.',
+    },
+  ]
+
+  const faqs = [
+    {
+      q: 'Which plan should I pick?',
+      a: `Pro is ideal if you're focusing on one subject and want whole-paper marking plus past-paper practice — ${PRO_Q} questions a month is enough for weekly papers. Scholar is our most popular pick: you get ${SCH_Q} questions, in-depth courses, detailed examiner feedback, and the full progress journey — plus a 7-day free trial on your first subscription. Max is for exam season when you're marking daily — ${MAX_Q} questions, projected grades, and priority queue.`,
+    },
+    {
+      q: 'How does the free trial work?',
+      a: `There is no automatic trial when you sign up — you start on the free plan (${FREE_Q} questions and ${FREE_OMNI} study-chat messages per month). When you're ready, go to this pricing page and start Scholar or Max: your first subscription includes a 7-day free trial (card required, nothing charged until day 8). Cancel anytime before then. Pro is billed from day one with no trial.`,
+    },
+    {
+      q: 'What makes the marking different from ChatGPT?',
+      a: 'We mark against the real Cambridge or IB mark scheme for that exact past-paper question — B1/M1/A1 method marks, MCQ keys, essay bands. You get point-by-point feedback on your handwriting with Examiner\'s Ink, not a generic "good effort" paragraph.',
     },
     {
       q: 'Can I cancel anytime?',
-      a: 'Yes. Cancel in a couple of clicks from your account and you keep access until the end of the period you’ve paid for. No lock-in, no cancellation fees.',
-    },
-    {
-      q: 'Is the marking really the official scheme?',
-      a: 'We mark against the real Cambridge mark scheme for that exact question — B1/M1/A1, MCQ keys, essay bands — not a generic AI guess.',
+      a: 'Yes. Cancel in a couple of clicks from your account and you keep access until the end of the period you\'ve paid for. No lock-in, no cancellation fees.',
     },
   ]
 
@@ -301,27 +364,35 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
     <main className="pricing-page ec-page-mesh" data-screen-label="Pricing">
       <div className="pg">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Pricing' }]} />
+
         <header className="pricing-hero">
           <p className="overline">Pricing · honest &amp; student-first</p>
           <h1 className="h-display pricing-title">
-            Try everything <em>free</em> for 7 days.
+            Mark like it&apos;s <em>exam day.</em>
+            <br />
+            Starting today.
           </h1>
           <p className="lead pricing-lead">
-            Full access to live diagrams, past-paper practice and real marking —{' '}
-            <InkScribble>no card required</InkScribble>. Keep the free plan forever
-            after, or upgrade only if it’s worth it.
+            Official Cambridge &amp; IB mark schemes, point by point on your handwriting —{' '}
+            <InkScribble>not a generic AI paragraph</InkScribble>. Start free, upgrade
+            only when you need more.
           </p>
         </header>
 
-        {access === 'trial' ? (
-          <div className="pricing-trialbar" role="status">
-            <span className="pricing-trialbar-tag mono">TRIAL</span>
-            <span>
-              You’re on your free trial with full access. Pick a plan below to keep
-              diagrams, practice &amp; marking when it ends.
-            </span>
-          </div>
-        ) : null}
+        <div className="pricing-value-strip" role="list" aria-label="Key benefits">
+          {valueProps.map((v) => (
+            <div key={v.title} className="pricing-value-item" role="listitem">
+              <span className="pricing-value-icon" aria-hidden>
+                <v.icon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="pricing-value-title">{v.title}</p>
+                <p className="pricing-value-body">{v.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
 
         <div className="pricing-controls">
           <div className="pricing-toggle" role="tablist" aria-label="Billing period">
@@ -353,14 +424,22 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
                 data-screen-label={`Pricing — ${p.name}`}
               >
                 {p.featured ? <span className="plan-ribbon mono">MOST POPULAR</span> : null}
+                {p.trialPill ? (
+                  <span className="plan-trial-pill mono">{p.trialPill}</span>
+                ) : null}
                 <p className="plan-tag mono">{p.tag}</p>
                 <h3 className="plan-name serif">{p.name}</h3>
                 <div className="plan-price">
                   <span className="plan-now serif">{p.now}</span>
                   <span className="plan-per">{p.per}</span>
                 </div>
-                <p className="plan-eq">{p.sub ?? ' '}</p>
+                <p className="plan-eq">{p.sub ?? '\u00a0'}</p>
                 <p className="body-2 plan-blurb">{p.blurb}</p>
+                <p className="plan-bestfor mono">Best for: {p.bestFor}</p>
+                <div className="plan-killer">
+                  <Zap className="plan-killer-icon" aria-hidden />
+                  <span>{p.killer}</span>
+                </div>
                 {cta.href ? (
                   <LoadingLink
                     className={`plan-cta btn-${cta.variant === 'primary' ? 'primary' : 'ghost'}${cta.variant === 'muted' ? ' is-muted' : ''}`}
@@ -390,7 +469,9 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
                 <ul className="plan-feats">
                   {p.features.map((f, i) => (
                     <li key={i} className={f[1] ? 'yes' : 'no'}>
-                      <span className="feat-mark">{f[1] ? '✓' : '—'}</span>
+                      <span className="feat-mark" aria-hidden>
+                        {f[1] ? <CheckCircle2 className="h-4 w-4" /> : '—'}
+                      </span>
                       <span>{f[0]}</span>
                     </li>
                   ))}
@@ -400,14 +481,60 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
           })}
         </div>
 
+        <section className="pricing-why" aria-labelledby="pricing-why-heading">
+          <p className="overline pricing-why-kicker">Why Scholar wins</p>
+          <h2 id="pricing-why-heading" className="h3 section-title pricing-why-title">
+            Most students pick Scholar — here&apos;s why
+          </h2>
+          <p className="lead pricing-why-lead">
+            Pro gets you marking. Scholar gets you <em>exam-ready</em> — courses,
+            detailed feedback, and a progress journey that shows exactly where to revise.
+          </p>
+          <div className="pricing-why-grid">
+            {scholarReasons.map((r) => (
+              <div key={r.title} className="pricing-why-card card">
+                <span className="pricing-why-card-icon" aria-hidden>
+                  <r.icon className="h-6 w-6" />
+                </span>
+                <h3 className="pricing-why-card-title">{r.title}</h3>
+                <p className="body-2 pricing-why-card-body">{r.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="pricing-why-cta">
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => {
+                const cta = ctaFor('scholar')
+                if (cta.href) router.push(cta.href)
+                else if (cta.onClick) cta.onClick()
+              }}
+              disabled={ctaFor('scholar').disabled}
+            >
+              {ctaFor('scholar').label} <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </section>
+
         <PlanComparisonMatrix />
 
         <div className="pricing-trust">
-          <span className="pricing-trust-item">✓ Cancel anytime — no lock-in</span>
-          <span className="pricing-trust-item">✓ 15 Cambridge subjects, AS &amp; A Level</span>
-          <span className="pricing-trust-item">✓ Marked against official schemes</span>
           <span className="pricing-trust-item">
-            ✓ Billed in {cur.toUpperCase()} · shown in your local currency at checkout
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            Cancel anytime — no lock-in
+          </span>
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            15 Cambridge subjects + IB Diploma
+          </span>
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            Marked against official schemes
+          </span>
+          <span className="pricing-trust-item">
+            <CheckCircle2 className="pricing-trust-icon" aria-hidden />
+            Billed in {cur.toUpperCase()} · local currency at checkout
           </span>
         </div>
 
@@ -419,8 +546,8 @@ export function PricingMarginNotesPage({ display, signedIn, access, currentTier 
         </div>
 
         <p className="micro pricing-footnote">
-          7-DAY FREE TRIAL · NO CARD · FREE PLAN FOREVER · NOT ENDORSED BY CAMBRIDGE
-          INTERNATIONAL
+          7-DAY FREE TRIAL ON SCHOLAR &amp; MAX (VIA PRICING) · FREE PLAN FOREVER ·
+          NOT ENDORSED BY CAMBRIDGE INTERNATIONAL
         </p>
 
         <PageHelpStrip className="mt-10" />

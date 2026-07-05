@@ -73,9 +73,15 @@ function CellContent({ value }: { value: Cell }) {
 export function PlanComparisonMatrix() {
   return (
     <section className="ms-plan-matrix-wrap" aria-labelledby="plan-matrix-heading">
-      <h2 id="plan-matrix-heading" className="h3 section-title">
+      <p className="overline" style={{ textAlign: 'center', marginBottom: 10 }}>
+        Full breakdown
+      </p>
+      <h2 id="plan-matrix-heading" className="h3 section-title" style={{ textAlign: 'center' }}>
         Compare every feature
       </h2>
+      <p className="body-2" style={{ textAlign: 'center', maxWidth: '48ch', margin: '0 auto 24px', color: 'var(--text-2)' }}>
+        Every cap and feature side by side — Scholar highlighted as the sweet spot for exam prep.
+      </p>
       <div className="ms-plan-matrix-scroll">
         <table className="ms-plan-matrix">
           <thead>

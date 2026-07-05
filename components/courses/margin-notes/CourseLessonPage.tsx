@@ -319,7 +319,7 @@ export function CourseLessonPage({
             {locked ? (
               <Link className="btn-primary btn-block" href="/pricing">
                 {signedIn === false
-                  ? 'Start your 7-day free trial →'
+                  ? 'Create free account →'
                   : 'Unlock practice & diagrams →'}
               </Link>
             ) : (

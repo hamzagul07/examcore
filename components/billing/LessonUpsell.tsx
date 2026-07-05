@@ -22,7 +22,7 @@ const COPY: Record<Feature, { title: string; body: string }> = {
 
 /**
  * Inline upsell shown in place of a gated lesson section for free-tier users.
- * Signed-out users are nudged into the 7-day no-card trial; free users to upgrade.
+ * Signed-out users are nudged to sign up; free users to upgrade via pricing.
  */
 export function LessonUpsell({
   feature,
@@ -32,7 +32,7 @@ export function LessonUpsell({
   signedIn?: boolean
 }) {
   const { title, body } = COPY[feature]
-  const cta = signedIn ? 'See plans →' : 'Start your 7-day free trial →'
+  const cta = signedIn ? 'See plans →' : 'Create free account →'
   return (
     <div className="lesson-upsell card" data-screen-label="Lesson — upgrade">
       <span className="lesson-upsell-icon" aria-hidden>

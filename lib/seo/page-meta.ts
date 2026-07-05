@@ -37,7 +37,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/pricing': {
     title: 'Pricing — free & paid marking plans',
     description:
-      'Start with a 7-day free trial — no card. Free plan forever with notes & formulas, then Pro & Max for live diagrams, practice and full Cambridge marking.',
+      'Free plan forever with notes & formulas. Scholar & Max include a 7-day free trial when you subscribe from pricing.',
   },
   '/faq': {
     title: 'FAQ — marking, privacy & accuracy',
@@ -107,7 +107,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/refunds': {
     title: 'Refund & cancellation policy',
     description:
-      'How refunds, cancellations, and the 7-day free trial work on MarkScheme — including your 14-day cooling-off rights and our goodwill refund promise.',
+      'How refunds, cancellations, and the Scholar/Max free trial work on MarkScheme — including your 14-day cooling-off rights and our goodwill refund promise.',
   },
   '/cookies': {
     title: 'Cookie policy',

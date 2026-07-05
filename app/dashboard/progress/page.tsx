@@ -102,8 +102,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     .eq('user_id', user.id)
     .maybeSingle()
 
-  // Trial-aware: reverse-trial users (tier still 'free') get the mastery
-  // dashboard too — the trial promises full access.
+  // Trial-aware: paid checkout trials use status trialing + a paid tier.
   const masteryUnlocked = hasPaidAccess(
     effectiveAccess({
       tier: (subscription?.tier ?? 'free') as SubscriptionTier,

@@ -106,7 +106,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Is there a free trial?',
-        a: 'Yes. Every new account gets 7 days of full access — live diagrams, past-paper practice, and higher marking limits — with no card required. When the trial ends you keep the free plan automatically; nothing is charged unless you choose to upgrade.',
+        a: 'Scholar and Max include a 7-day free trial when you subscribe from the pricing page — a card is collected but you are not charged until the trial ends. There is no automatic trial on signup; new accounts start on the free plan. Pro is billed from day one.',
       },
       {
         q: 'What counts as one question?',

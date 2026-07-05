@@ -403,6 +403,14 @@ export function CourseLessonPage({
 
       {mode === 'learn' ? (
         <nav className="lesson-mobile-jump pg" aria-label="On this page">
+          {/* Compact stand-in for the sidebar progress ring, which is hidden
+              on mobile — readers still get completion feedback. */}
+          <span
+            className={`lesson-mobile-jump-progress mono${isDone ? ' done' : ''}`}
+            aria-label={isDone ? 'Topic complete' : `Lesson progress: ${tocPct}%`}
+          >
+            {isDone ? '✓ done' : `${tocPct}%`}
+          </span>
           {toc.map((tt) => (
             <button
               key={tt.id}

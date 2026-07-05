@@ -997,6 +997,23 @@
   border-bottom: 1px solid var(--border);
 }
 .lesson-mobile-jump::-webkit-scrollbar { display: none; }
+.lesson-mobile-jump-progress {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--acc-lesson, var(--ink)) 40%, var(--border));
+  background: color-mix(in srgb, var(--acc-lesson, var(--ink)) 8%, var(--surface));
+  color: var(--acc-lesson, var(--ink));
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.lesson-mobile-jump-progress.done {
+  border-color: color-mix(in srgb, var(--acc-lesson, var(--ink)) 70%, var(--border));
+}
+
 .lesson-mobile-jump-link {
   flex-shrink: 0;
   border: 1px solid var(--border);

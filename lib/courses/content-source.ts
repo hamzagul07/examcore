@@ -1,7 +1,10 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { randomUUID } from 'crypto'
 import { createAdminClient } from '@/lib/supabase-admin'
 import { detectPaperKind, type PaperKind } from '@/lib/extraction/paper-meta'
 import { topicTagReviewThreshold } from '@/lib/extraction/review-threshold'
+import { SYLLABUS_OUTCOMES } from '@/lib/courses/syllabus-objectives'
+import { getSyllabusByCode } from '@/lib/syllabi'
 import {
   LessonEvidenceSchema,
   type LessonEvidence,
@@ -34,6 +37,17 @@ function typicalComponent(paperNumber: string): string {
   return `${paperNumber}2`
 }
 
+/** Cambridge subjects where paper number ≠ paper kind (e.g. 9706 P3 is financial, not practical). */
+const SUBJECT_PAPER_KIND: Record<string, Record<string, PaperKind>> = {
+  '9706': { '1': 'mcq', '2': 'structured', '3': 'structured', '4': 'structured' },
+}
+
+function resolvePaperKind(subjectCode: string, paperNumber: string): PaperKind {
+  const override = SUBJECT_PAPER_KIND[subjectCode]?.[paperNumber]
+  if (override) return override
+  return detectPaperKind(typicalComponent(paperNumber)) as PaperKind
+}
+
 export function resolvePaperMeta(
   subjectCode: string,
   paperNumber: string
@@ -42,11 +56,104 @@ export function resolvePaperMeta(
   return {
     subjectCode,
     paperNumber,
-    paperKind: detectPaperKind(component) as PaperKind,
+    paperKind: resolvePaperKind(subjectCode, paperNumber),
     displayName: PAPER_DISPLAY_NAMES[paperNumber] ?? `Paper ${paperNumber}`,
     typicalComponent: component,
     level: 'A-Level',
   }
+}
+
+function isFetchFailure(err: unknown): boolean {
+  const msg = err instanceof Error ? err.message : String(err)
+  return (
+    msg.includes('fetch failed') ||
+    msg.includes('ENOTFOUND') ||
+    msg.includes('ECONNRESET') ||
+    msg.includes('ETIMEDOUT')
+  )
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function buildLocalEvidenceFallback(
+  subjectCode: string,
+  paperNumber: string,
+  topicCode: string
+): LessonEvidence {
+  const topics = getSyllabusByCode(subjectCode) ?? []
+  const topic = topics.find((t) => t.code === topicCode)
+  const topicTitle = topic?.name ?? topicCode
+  const outcomes = SYLLABUS_OUTCOMES[subjectCode] ?? []
+  const matched = outcomes.filter((o) => o.topic === topicCode)
+
+  const objectives: SyllabusObjectiveEvidence[] = matched.map((o) => ({
+    id: randomUUID(),
+    subject_code: subjectCode,
+    topic_code: topicCode,
+    topic_title: topicTitle,
+    objective_number: o.code,
+    objective_text: o.text,
+    command_words: null,
+    examined_in_papers: [paperNumber],
+    syllabus_year: 2026,
+  }))
+
+  const paper = resolvePaperMeta(subjectCode, paperNumber)
+  if (topic?.paperName) {
+    paper.displayName = topic.paperName
+  }
+
+  return LessonEvidenceSchema.parse({
+    subjectCode,
+    paperNumber,
+    topicCode,
+    paper,
+    objectives,
+    questions: [],
+    markSchemes: [],
+  })
+}
+
+async function loadSyllabusObjectives(
+  supabase: SupabaseClient,
+  subjectCode: string,
+  topicCode: string
+): Promise<Record<string, unknown>[] | null> {
+  const maxAttempts = 3
+  let lastErr: unknown
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const { data, error } = await supabase
+        .from('syllabus_objectives')
+        .select('*')
+        .eq('subject_code', subjectCode)
+        .eq('topic_code', topicCode)
+        .order('objective_number')
+
+      if (error) {
+        throw new Error(`Failed to load syllabus_objectives: ${error.message}`)
+      }
+      return data ?? []
+    } catch (err) {
+      lastErr = err
+      if (isFetchFailure(err) && attempt < maxAttempts) {
+        await sleep(1500 * attempt)
+        continue
+      }
+      if (isFetchFailure(err) && SYLLABUS_OUTCOMES[subjectCode]) {
+        return null
+      }
+      throw err
+    }
+  }
+
+  if (isFetchFailure(lastErr) && SYLLABUS_OUTCOMES[subjectCode]) {
+    return null
+  }
+  throw lastErr instanceof Error ? lastErr : new Error(String(lastErr))
 }
 
 function isLeafRow(raw: Record<string, unknown> | null): boolean {
@@ -66,33 +173,34 @@ export async function getLessonEvidence(
 ): Promise<LessonEvidence> {
   const supabase = opts.supabase ?? createAdminClient()
 
-  const { data: objectiveRows, error: objErr } = await supabase
-    .from('syllabus_objectives')
-    .select('*')
-    .eq('subject_code', subjectCode)
-    .eq('topic_code', topicCode)
-    .order('objective_number')
-
-  if (objErr) {
-    throw new Error(`Failed to load syllabus_objectives: ${objErr.message}`)
+  const objectiveRows = await loadSyllabusObjectives(supabase, subjectCode, topicCode)
+  if (objectiveRows === null) {
+    console.warn(
+      `[content-source] Using local syllabus outcomes for ${subjectCode} topic ${topicCode} (Supabase unavailable).`
+    )
+    return buildLocalEvidenceFallback(subjectCode, paperNumber, topicCode)
   }
 
-  const objectives: SyllabusObjectiveEvidence[] = (objectiveRows ?? [])
+  const objectives: SyllabusObjectiveEvidence[] = objectiveRows
     .filter((o) => {
-      const papers = o.examined_in_papers as string[] | null
+      const row = o as Record<string, unknown>
+      const papers = row.examined_in_papers as string[] | null
       return papers?.includes(paperNumber) ?? false
     })
-    .map((o) => ({
-      id: o.id,
-      subject_code: o.subject_code,
-      topic_code: o.topic_code,
-      topic_title: o.topic_title,
-      objective_number: o.objective_number,
-      objective_text: o.objective_text,
-      command_words: o.command_words,
-      examined_in_papers: o.examined_in_papers,
-      syllabus_year: o.syllabus_year,
-    }))
+    .map((o) => {
+      const row = o as Record<string, unknown>
+      return {
+      id: row.id as string,
+      subject_code: row.subject_code as string,
+      topic_code: row.topic_code as string,
+      topic_title: row.topic_title as string,
+      objective_number: row.objective_number as string,
+      objective_text: row.objective_text as string,
+      command_words: row.command_words as string[] | null,
+      examined_in_papers: row.examined_in_papers as string[] | null,
+      syllabus_year: row.syllabus_year as number,
+    }
+    })
 
   if (objectives.length === 0) {
     return LessonEvidenceSchema.parse({

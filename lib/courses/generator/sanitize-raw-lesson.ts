@@ -1,5 +1,12 @@
 import { stripImgTags } from '@/lib/courses/worked-example-text'
 
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+function validSourceQuestionId(id: string): boolean {
+  return UUID_RE.test(id)
+}
+
 const SECTION_TYPES = new Set([
   'intro',
   'heading',
@@ -86,7 +93,9 @@ function sanitizeSections(raw: unknown): Record<string, unknown>[] {
             type,
             question,
             solution,
-            ...(sourceQuestionId ? { sourceQuestionId } : {}),
+            ...(sourceQuestionId && validSourceQuestionId(sourceQuestionId)
+              ? { sourceQuestionId }
+              : {}),
           })
         }
         break
@@ -163,9 +172,16 @@ function sanitizeSimpleExplanation(
 function sanitizeQuickCheck(
   raw: unknown
 ): { prompt: string; answer: string; options?: string[] }[] | undefined {
-  if (!Array.isArray(raw)) return undefined
+  const items = Array.isArray(raw)
+    ? raw
+    : raw && typeof raw === 'object' && Array.isArray((raw as Record<string, unknown>).items)
+      ? ((raw as Record<string, unknown>).items as unknown[])
+      : raw && typeof raw === 'object' && Array.isArray((raw as Record<string, unknown>).questions)
+        ? ((raw as Record<string, unknown>).questions as unknown[])
+        : null
+  if (!items) return undefined
   const out: { prompt: string; answer: string; options?: string[] }[] = []
-  for (const item of raw) {
+  for (const item of items) {
     if (!item || typeof item !== 'object') continue
     const rec = item as Record<string, unknown>
     const prompt = asString(rec.prompt ?? rec.question)
@@ -197,7 +213,9 @@ function mergeWorkedExamplesIntoSections(
           type: 'workedExample',
           question: stripImgTags(question),
           solution,
-          ...(sourceQuestionId ? { sourceQuestionId } : {}),
+          ...(sourceQuestionId && validSourceQuestionId(sourceQuestionId)
+            ? { sourceQuestionId }
+            : {}),
         })
       }
     }
@@ -222,26 +240,41 @@ function sanitizeFaq(
 
 /** Normalize messy LLM lesson JSON before Zod validation. */
 export function sanitizeRawLesson(raw: Record<string, unknown>): Record<string, unknown> {
-  let sections = sanitizeSections(raw.sections)
-  sections = mergeWorkedExamplesIntoSections(sections, raw)
-  const flashcards = sanitizeFlashcards(raw.flashcards)
-  const simpleExplanation = sanitizeSimpleExplanation(raw.simpleExplanation)
-  const quickCheck = sanitizeQuickCheck(raw.quickCheck)
-  const faq = sanitizeFaq(raw.faq)
+  const {
+    sections: _sections,
+    flashcards: _flashcards,
+    simpleExplanation: _simpleExplanation,
+    quickCheck: _quickCheck,
+    faq: _faq,
+    learningObjectives: _learningObjectives,
+    syllabusObjectivesCovered: _syllabusObjectivesCovered,
+    workedExamples: _workedExamples,
+    worked_examples: _worked_examples,
+    examples: _examples,
+    pastPaperReferences: _pastPaperReferences,
+    ...rest
+  } = raw
 
-  const learningObjectives = Array.isArray(raw.learningObjectives)
-    ? raw.learningObjectives.map((o) => asString(o)).filter(Boolean)
+  let sections = sanitizeSections(_sections)
+  sections = mergeWorkedExamplesIntoSections(sections, raw)
+  const flashcards = sanitizeFlashcards(_flashcards)
+  const simpleExplanation = sanitizeSimpleExplanation(_simpleExplanation)
+  const quickCheck = sanitizeQuickCheck(_quickCheck)
+  const faq = sanitizeFaq(_faq)
+
+  const learningObjectives = Array.isArray(_learningObjectives)
+    ? _learningObjectives.map((o) => asString(o)).filter(Boolean)
     : undefined
 
-  const syllabusObjectivesCovered = Array.isArray(raw.syllabusObjectivesCovered)
-    ? raw.syllabusObjectivesCovered.map((o) => asString(o)).filter(Boolean)
+  const syllabusObjectivesCovered = Array.isArray(_syllabusObjectivesCovered)
+    ? _syllabusObjectivesCovered.map((o) => asString(o)).filter(Boolean)
     : undefined
 
   const paperNumber =
     raw.paperNumber != null ? String(raw.paperNumber) : undefined
 
   return {
-    ...raw,
+    ...rest,
     ...(paperNumber ? { paperNumber } : {}),
     sections,
     ...(flashcards.length ? { flashcards } : {}),

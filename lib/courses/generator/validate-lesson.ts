@@ -6,6 +6,7 @@ import type { GeneratedLesson } from './lesson-schema'
 import {
   getQualityTargets,
   paperStyleHints,
+  qualityTierForStatus,
 } from './quality-targets'
 
 export type ValidationIssue = {
@@ -78,6 +79,7 @@ function validateWorkedExampleTraceability(
   const issues: ValidationIssue[] = []
   const validIds = new Set(evidence.questions.map((q) => q.id))
   const worked = lesson.sections.filter((s) => s.type === 'workedExample')
+  const requireDbTraceability = evidence.questions.length > 0
 
   if (!worked.length) {
     issues.push({
@@ -89,12 +91,14 @@ function validateWorkedExampleTraceability(
 
   for (const [i, ex] of worked.entries()) {
     if (!ex.sourceQuestionId) {
-      issues.push({
-        code: 'missing_source_question_id',
-        message: `workedExample ${i + 1} missing sourceQuestionId`,
-        severity: 'error',
-      })
-    } else if (!validIds.has(ex.sourceQuestionId)) {
+      if (requireDbTraceability) {
+        issues.push({
+          code: 'missing_source_question_id',
+          message: `workedExample ${i + 1} missing sourceQuestionId`,
+          severity: 'error',
+        })
+      }
+    } else if (requireDbTraceability && !validIds.has(ex.sourceQuestionId)) {
       issues.push({
         code: 'unknown_source_question_id',
         message: `workedExample ${i + 1} sourceQuestionId not in evidence`,
@@ -175,7 +179,7 @@ function countHeadingTextPairs(lesson: GeneratedLesson): number {
 }
 
 function validateTeachingDepth(lesson: GeneratedLesson, subjectCode: string): ValidationIssue[] {
-  const targets = getQualityTargets(subjectCode, 'premium')
+  const targets = getQualityTargets(subjectCode, qualityTierForStatus(lesson.status))
   const issues: ValidationIssue[] = []
   const worked = lesson.sections.filter((s) => s.type === 'workedExample')
 
@@ -217,7 +221,7 @@ function validateTeachingDepth(lesson: GeneratedLesson, subjectCode: string): Va
 }
 
 function validateSingleVisual(lesson: GeneratedLesson, subjectCode: string): ValidationIssue[] {
-  const targets = getQualityTargets(subjectCode, 'premium')
+  const targets = getQualityTargets(subjectCode, qualityTierForStatus(lesson.status))
   const visualCount =
     (lesson.interactiveEmbed ? 1 : 0) +
     (lesson.diagramSpec ? 1 : 0) +
@@ -356,7 +360,8 @@ export async function validateGeneratedLesson(
   )
   issues.push(...coverageIssues)
 
-  const qualityTargets = getQualityTargets(evidence.subjectCode, 'premium')
+  const tier = qualityTierForStatus(lesson.status)
+  const qualityTargets = getQualityTargets(evidence.subjectCode, tier)
   if (coverageScore < qualityTargets.minCoverageScore && evidence.objectives.length > 0) {
     issues.push({
       code: 'low_coverage',

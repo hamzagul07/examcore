@@ -84,6 +84,36 @@ function synthesizeWorkedExamples(
   }
 }
 
+function objectiveLead(text: string): string {
+  return text.split('\n')[0].replace(/^[-•]\s*/, '').trim()
+}
+
+/** When no tagged past-paper questions exist, add author-style worked examples (matches legacy 9706 lessons). */
+function ensureAuthorWorkedExamples(
+  lesson: GeneratedLesson,
+  ctx: LessonPromptContext,
+  evidence: Awaited<ReturnType<typeof getLessonEvidence>>
+): GeneratedLesson {
+  const existing = lesson.sections.filter((s) => s.type === 'workedExample')
+  if (existing.length > 0 || evidence.questions.length > 0) return lesson
+  if (!evidence.objectives.length) return lesson
+
+  const bullets = evidence.objectives
+    .slice(0, 4)
+    .map((o) => `• ${objectiveLead(o.objective_text)}`)
+
+  const workedExample = {
+    type: 'workedExample' as const,
+    question: `A ${ctx.subjectCode} Paper ${ctx.paperNumber} question on ${ctx.topicTitle} (${ctx.topicCode}): apply the key accounting techniques examiners expect.`,
+    solution: `**Syllabus points for ${ctx.topicCode}:**\n${bullets.join('\n')}\n\n**Method:**\n1. State the business type and which accounts/statements are affected.\n2. Set out double-entry or statement format clearly — show workings.\n3. Apply the relevant accounting standard or partnership rule step by step.\n4. Conclude with the final figure or account balance and a brief interpretation.`,
+  }
+
+  return {
+    ...lesson,
+    sections: [...lesson.sections, workedExample],
+  }
+}
+
 function buildPastPaperRefs(
   lesson: GeneratedLesson,
   evidence: Awaited<ReturnType<typeof getLessonEvidence>>
@@ -117,7 +147,7 @@ function enrichGeneratedLesson(
 ): GeneratedLesson {
   const now = new Date().toISOString()
 
-  const enriched = synthesizeWorkedExamples(
+  const withEvidenceExamples = synthesizeWorkedExamples(
     {
       ...raw,
       slug: ctx.slug,
@@ -145,6 +175,8 @@ function enrichGeneratedLesson(
     },
     evidence
   )
+
+  const enriched = ensureAuthorWorkedExamples(withEvidenceExamples, ctx, evidence)
 
   const refs = buildPastPaperRefs(enriched, evidence)
 
@@ -188,6 +220,7 @@ export async function generateLesson(
     evidence.objectives[0]?.topic_title ?? topicCode
   )
   const slug = topicToLessonSlug(topicCode, topicTitle)
+  const syllabusTopic = getSyllabusByCode(subjectCode)?.find((t) => t.code === topicCode)
 
   const ctx: LessonPromptContext = {
     subjectCode,
@@ -196,7 +229,7 @@ export async function generateLesson(
     topicTitle,
     slug,
     paperKind: evidence.paper.paperKind,
-    paperDisplayName: evidence.paper.displayName,
+    paperDisplayName: syllabusTopic?.paperName ?? evidence.paper.displayName,
   }
 
   const system = buildLessonSystemPrompt(ctx)

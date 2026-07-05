@@ -55,7 +55,6 @@ export function CreditChip() {
     summary.access === 'trial' ? 'Trial' : tierMarketingName(summary.tier)
   const qLeft = Math.max(0, summary.questions.remaining)
   const oLeft = Math.max(0, summary.omni.remaining)
-  const chipLabel = `${qLeft} questions · ${oLeft} chat`
   const resetDate = summary.period_resets_at
     ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
         month: 'short',
@@ -64,14 +63,14 @@ export function CreditChip() {
     : null
 
   return (
-    <div className="relative shrink-0" ref={ref}>
+    <div className="relative min-w-0" ref={ref}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-label={`${tierLabel} plan — ${chipLabel}`}
-        className="flex min-h-[44px] items-center gap-1 rounded-full border px-2.5 py-2 text-xs font-semibold transition-colors sm:max-w-[min(100vw-8rem,20rem)] sm:gap-1.5 sm:px-3"
+        aria-label={`${tierLabel} plan — ${qLeft} questions and ${oLeft} chat messages left`}
+        className="flex min-h-[44px] max-w-full items-center gap-1 rounded-full border px-2.5 py-2 text-xs font-semibold transition-colors sm:gap-1.5 sm:px-3"
         style={{
           borderColor: 'var(--ec-border)',
           color: 'var(--ec-text-secondary)',
@@ -79,9 +78,16 @@ export function CreditChip() {
         }}
       >
         <Zap className="h-3.5 w-3.5 shrink-0 text-[var(--ec-brand)]" />
+        {/* Phones: bare count. */}
         <span className="whitespace-nowrap sm:hidden">{qLeft}Q</span>
-        <span className="hidden truncate sm:inline">
-          {tierLabel} · {chipLabel}
+        {/* Tablets (no centered nav) and wide desktops: full detail. */}
+        <span className="hidden truncate sm:max-[900px]:inline min-[1280px]:inline">
+          {tierLabel} · {qLeft} questions · {oLeft} chat
+        </span>
+        {/* Laptops (901–1279px): the centered nav tabs share this row, so keep
+            the chip compact — full detail lives in the popover. */}
+        <span className="hidden truncate min-[901px]:max-[1279px]:inline">
+          {tierLabel} · {qLeft} left
         </span>
       </button>
 

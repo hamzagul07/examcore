@@ -19,7 +19,7 @@ export function formatAuthError(error: SupabaseAuthError): string {
     return 'Email or password is incorrect. Double-check them, or reset your password below.'
   }
   if (code === 'email_not_confirmed' || lower.includes('email not confirmed')) {
-    return 'Confirm your email first — check your inbox (and spam) for the verification link.'
+    return 'Confirm your email first â€” check your inbox (and spam) for the verification link.'
   }
   if (code === 'user_already_exists' || lower.includes('already registered')) {
     return 'An account with this email already exists. Sign in instead, or reset your password.'

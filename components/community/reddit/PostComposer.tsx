@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { CSSProperties } from 'react'
 import type { Board } from '@/lib/community/posts'
@@ -22,6 +22,38 @@ const KINDS: { id: Kind; label: string; hint: string; icon: string }[] = [
 function boardFromSubject(subjects: SubjectOpt[], subjectId?: string): Board | '' {
   if (!subjectId) return ''
   return subjects.find((s) => s.id === subjectId)?.board ?? ''
+}
+
+/** sessionStorage key for the in-progress post draft. */
+const DRAFT_KEY = 'ms-community-post-draft'
+
+type ComposerDraft = {
+  kind: Kind
+  board: Board | ''
+  subjectId: string
+  title: string
+  bodyMd: string
+  flair: string
+}
+
+function readComposerDraft(): ComposerDraft | null {
+  try {
+    const raw = sessionStorage.getItem(DRAFT_KEY)
+    if (!raw) return null
+    const draft = JSON.parse(raw) as ComposerDraft
+    if (typeof draft.title !== 'string' || typeof draft.bodyMd !== 'string') return null
+    return draft
+  } catch {
+    return null
+  }
+}
+
+function clearComposerDraft() {
+  try {
+    sessionStorage.removeItem(DRAFT_KEY)
+  } catch {
+    // storage unavailable — nothing to clear
+  }
 }
 
 export function PostComposer({
@@ -63,6 +95,42 @@ export function PostComposer({
   const [username, setUsername] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [draftRestored, setDraftRestored] = useState(false)
+
+  // Restore a draft lost to accidental navigation. Starter-prompt links
+  // (initialTitle/initialBody) take precedence over any stored draft.
+  useEffect(() => {
+    if (!initialTitle && !initialBody) {
+      const draft = readComposerDraft()
+      if (draft && (draft.title.trim() || draft.bodyMd.trim())) {
+        setKind(draft.kind)
+        setBoard(draft.board)
+        setSubjectId(draft.subjectId)
+        setTitle(draft.title)
+        setBodyMd(draft.bodyMd)
+        setFlair(draft.flair)
+      }
+    }
+    setDraftRestored(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Keep the draft in sync while the user writes.
+  useEffect(() => {
+    if (!draftRestored) return
+    try {
+      if (!title.trim() && !bodyMd.trim()) {
+        sessionStorage.removeItem(DRAFT_KEY)
+        return
+      }
+      sessionStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({ kind, board, subjectId, title, bodyMd, flair } satisfies ComposerDraft)
+      )
+    } catch {
+      // storage unavailable (private mode / quota) — draft just won't persist
+    }
+  }, [draftRestored, kind, board, subjectId, title, bodyMd, flair])
 
   const selectedBoard = COMMUNITY_BOARDS.find((b) => b.id === board) ?? null
   const boardSubjects = useMemo(
@@ -187,6 +255,7 @@ export function PostComposer({
         setSubmitting(false)
         return
       }
+      clearComposerDraft()
       router.push(`/community/posts/${data.id}`)
       router.refresh()
     } catch {
@@ -427,7 +496,7 @@ export function PostComposer({
         {error ? <FormErrorAlert message={error} className="rc-error-alert" /> : null}
 
         <div className="rc-composer-actions">
-          <button type="button" className="rc-btn rc-btn-ghost" onClick={() => router.back()}>Cancel</button>
+          <button type="button" className="rc-btn rc-btn-ghost" onClick={() => router.push('/community')}>Cancel</button>
           <button type="button" className="rc-btn rc-btn-primary" onClick={submit} disabled={submitting || uploading || !board || !selectedSubject}>
             {submitting ? (
               <ButtonLoadingState mode="exam" loadingText="Posting…" />

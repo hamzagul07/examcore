@@ -1,7 +1,15 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { BookOpen, Home, LibraryBig, PenLine, User, type LucideIcon } from 'lucide-react'
+import {
+  BookOpen,
+  Home,
+  LibraryBig,
+  MessagesSquare,
+  PenLine,
+  User,
+  type LucideIcon,
+} from 'lucide-react'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type TabItem = {
@@ -38,6 +46,12 @@ const TABS: TabItem[] = [
       p === '/ib/subjects' ||
       p.startsWith('/ib/subjects/') ||
       p === '/ib',
+  },
+  {
+    href: '/community',
+    label: 'Discuss',
+    Icon: MessagesSquare,
+    match: (p) => p === '/community' || p.startsWith('/community/') || p.startsWith('/u/'),
   },
   {
     href: '/dashboard',

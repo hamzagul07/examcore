@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -15,7 +15,6 @@ import {
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
   DEFAULT_LEVEL,
-  LEVELS,
   BOARDS,
   IB_DIPLOMA_LEVEL,
   IB_BOARD_ID,
@@ -36,6 +35,39 @@ import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 
 const TOTAL_STEPS = 5
+
+/** sessionStorage key for the in-progress wizard draft (first-run only). */
+const DRAFT_KEY = 'ms-onboarding-draft'
+
+type WizardDraft = {
+  step: number
+  board: string
+  level: string
+  subjects: string[]
+  stage: UserStage | null
+  primaryGoal: PrimaryGoal | null
+  examDate: string | null
+}
+
+function readDraft(): WizardDraft | null {
+  try {
+    const raw = sessionStorage.getItem(DRAFT_KEY)
+    if (!raw) return null
+    const draft = JSON.parse(raw) as WizardDraft
+    if (typeof draft.step !== 'number' || !Array.isArray(draft.subjects)) return null
+    return draft
+  } catch {
+    return null
+  }
+}
+
+function clearDraft() {
+  try {
+    sessionStorage.removeItem(DRAFT_KEY)
+  } catch {
+    // storage unavailable — nothing to clear
+  }
+}
 
 const STAGE_OPTIONS: { id: UserStage; title: string; subtitle: string }[] = [
   { id: 'as_level', title: 'AS Level', subtitle: 'Year 12' },
@@ -107,6 +139,48 @@ export function OnboardingWizard({
   const [errorMsg, setErrorMsg] = useState('')
   const [showCelebration, setShowCelebration] = useState(false)
   const [pendingHref, setPendingHref] = useState('/mark')
+  const [draftRestored, setDraftRestored] = useState(false)
+
+  // Restore an in-progress draft after a refresh (first run only — reruns are
+  // pre-filled from the saved profile).
+  useEffect(() => {
+    if (rerun) {
+      setDraftRestored(true)
+      return
+    }
+    const draft = readDraft()
+    if (draft) {
+      setStep(Math.min(Math.max(draft.step, 1), TOTAL_STEPS))
+      setBoard(draft.board)
+      setLevel(draft.level)
+      setSubjects(draft.subjects)
+      setStage(draft.stage)
+      setPrimaryGoal(draft.primaryGoal)
+      setExamDate(draft.examDate)
+    }
+    setDraftRestored(true)
+  }, [rerun])
+
+  // Keep the draft in sync so a refresh mid-wizard doesn't lose progress.
+  useEffect(() => {
+    if (!draftRestored || rerun) return
+    try {
+      sessionStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({
+          step,
+          board,
+          level,
+          subjects,
+          stage,
+          primaryGoal,
+          examDate,
+        } satisfies WizardDraft)
+      )
+    } catch {
+      // storage unavailable (private mode / quota) — draft just won't persist
+    }
+  }, [draftRestored, rerun, step, board, level, subjects, stage, primaryGoal, examDate])
 
   function toggleSubject(id: string) {
     setSubjects((prev) => {
@@ -156,6 +230,7 @@ export function OnboardingWizard({
         setErrorMsg(result.error || 'Could not save your profile. Try again.')
         return
       }
+      clearDraft()
       await navigateAfterOnboarding(postOnboardingHref(nextParam, nextParam))
     } catch (err) {
       console.error('[onboarding wizard] browse skip failed:', err)
@@ -193,6 +268,7 @@ export function OnboardingWizard({
         return
       }
 
+      clearDraft()
       setPendingHref(redirectHref)
       if (rerun) {
         void navigateAfterOnboarding(redirectHref)

@@ -15,6 +15,7 @@ import { AuthShell } from '@/components/AuthShell'
 import { PasswordInput } from '@/components/PasswordInput'
 import { ErrorBox, SubmitButton } from '@/components/AuthFormBits'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
+import { formatAuthError } from '@/lib/auth-errors'
 
 export default function ResetPasswordPage() {
   return (
@@ -92,7 +93,7 @@ function ResetPasswordForm() {
       setErrorMsg(
         error.message.toLowerCase().includes('session')
           ? 'Your reset link expired. Request a new one from the sign-in page.'
-          : error.message
+          : formatAuthError(error)
       )
       return
     }

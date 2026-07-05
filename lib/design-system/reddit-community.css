@@ -395,6 +395,8 @@
 }
 .rc-vote-btn:hover { background: var(--ec-surface); }
 .rc-vote-btn:active { transform: scale(.88); }
+/* Signed-out: arrows stay tappable (tap shows the sign-in hint) but read as inactive. */
+.rc-vote-btn-locked { opacity: 0.55; }
 .rc-vote-up-on { color: #ff4500; background: color-mix(in srgb, #ff4500 14%, transparent); }
 .rc-vote-down-on { color: #6b8cff; background: color-mix(in srgb, #6b8cff 16%, transparent); }
 .rc-vote-score {

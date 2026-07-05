@@ -2,7 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { compactCount } from '@/lib/community/format'
+import { buildSignInHref } from '@/lib/auth-redirect'
 
 type Props = {
   targetType: 'post' | 'comment'
@@ -14,10 +16,12 @@ type Props = {
 }
 
 export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedIn, layout = 'vertical' }: Props) {
+  const pathname = usePathname()
   const [score, setScore] = useState(initialScore)
   const [vote, setVote] = useState(initialVote)
   const [busy, setBusy] = useState(false)
   const [signInHint, setSignInHint] = useState(false)
+  const lockedTitle = signedIn ? undefined : 'Sign in to vote'
 
   async function cast(value: 1 | -1) {
     if (busy) return
@@ -57,10 +61,11 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
     <div className={`rc-votebox rc-votebox-${layout}`}>
       <button
         type="button"
-        aria-label="Upvote"
+        aria-label={signedIn ? 'Upvote' : 'Upvote (sign in required)'}
         aria-pressed={vote === 1}
         disabled={busy}
-        className={`rc-vote-btn${vote === 1 ? ' rc-vote-up-on' : ''}`}
+        title={lockedTitle}
+        className={`rc-vote-btn${vote === 1 ? ' rc-vote-up-on' : ''}${signedIn ? '' : ' rc-vote-btn-locked'}`}
         onClick={() => cast(1)}
       >
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden>
@@ -76,10 +81,11 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
       </span>
       <button
         type="button"
-        aria-label="Downvote"
+        aria-label={signedIn ? 'Downvote' : 'Downvote (sign in required)'}
         aria-pressed={vote === -1}
         disabled={busy}
-        className={`rc-vote-btn${vote === -1 ? ' rc-vote-down-on' : ''}`}
+        title={lockedTitle}
+        className={`rc-vote-btn${vote === -1 ? ' rc-vote-down-on' : ''}${signedIn ? '' : ' rc-vote-btn-locked'}`}
         onClick={() => cast(-1)}
       >
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden>
@@ -88,7 +94,7 @@ export function VoteBox({ targetType, id, initialScore, initialVote = 0, signedI
       </button>
       {signInHint && !signedIn ? (
         <p className="rc-vote-signin-hint">
-          <Link href="/auth/signin?next=/community">Sign in</Link> to vote
+          <Link href={buildSignInHref(pathname)}>Sign in</Link> to vote
         </p>
       ) : null}
     </div>

@@ -64,6 +64,7 @@ export function WholePaperFlow({
   const [attemptId, setAttemptId] = useState<string | null>(null)
   const [answerPhotoUrl, setAnswerPhotoUrl] = useState<string | null>(null)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const pollFailuresRef = useRef(0)
 
   const stopPolling = useCallback(() => {
     if (pollRef.current) {
@@ -74,16 +75,40 @@ export function WholePaperFlow({
 
   useEffect(() => () => stopPolling(), [stopPolling])
 
+  // ~24s of consecutive status failures (12 polls × 2s) before we give up.
+  const MAX_POLL_FAILURES = 12
+
   const pollStatus = useCallback(
     (id: string) => {
       stopPolling()
+      pollFailuresRef.current = 0
       pollRef.current = setInterval(async () => {
+        const registerFailure = () => {
+          pollFailuresRef.current += 1
+          if (pollFailuresRef.current >= MAX_POLL_FAILURES) {
+            stopPolling()
+            setMarkingError(
+              'We lost the connection while checking on your marking. It may still be running — retry to reconnect.'
+            )
+            setJobStatus((prev) => ({
+              phase: 'failed',
+              message: 'Connection lost',
+              questions_total: prev?.questions_total ?? 0,
+              questions_completed: prev?.questions_completed ?? 0,
+              loading_context: prev?.loading_context,
+            }))
+          }
+        }
         try {
           const res = await fetch(
             `/api/mark/whole-paper/status?attempt_id=${encodeURIComponent(id)}`
           )
           const data = await res.json()
-          if (!res.ok) return
+          if (!res.ok) {
+            registerFailure()
+            return
+          }
+          pollFailuresRef.current = 0
           setJobStatus({
             phase: data.phase,
             message: data.message,
@@ -112,7 +137,7 @@ export function WholePaperFlow({
             }))
           }
         } catch {
-          // keep polling
+          registerFailure()
         }
       }, 2000)
     },
@@ -152,6 +177,17 @@ export function WholePaperFlow({
           setRetrying(false)
         })
         .catch(() => {
+          stopPolling()
+          setMarkingError(
+            'Network problem while marking. Your pages are still uploaded — retry to continue.'
+          )
+          setJobStatus((prev) => ({
+            phase: 'failed',
+            message: 'Connection lost',
+            questions_total: prev?.questions_total ?? 0,
+            questions_completed: prev?.questions_completed ?? 0,
+            loading_context: prev?.loading_context,
+          }))
           setRetrying(false)
         })
     },

@@ -111,23 +111,37 @@ export function NotificationBell({ dismiss = false }: { dismiss?: boolean }) {
             </Link>
           </div>
           {items.length ? (
-            items.map((n) => (
-              <Link
-                key={n.id}
-                href={n.href || '#'}
-                className={`notif-item${n.read ? '' : ' unread'}`}
-                onClick={() => openItem(n)}
-              >
-                <span className="notif-item-icon" aria-hidden>
-                  {notifIcon(n.type)}
-                </span>
-                <span className="notif-item-main">
-                  <span className="notif-item-title">{n.title}</span>
-                  {n.body ? <span className="notif-item-body">{n.body}</span> : null}
-                  <span className="notif-item-time">{timeAgo(n.created_at)}</span>
-                </span>
-              </Link>
-            ))
+            items.map((n) => {
+              const content = (
+                <>
+                  <span className="notif-item-icon" aria-hidden>
+                    {notifIcon(n.type)}
+                  </span>
+                  <span className="notif-item-main">
+                    <span className="notif-item-title">{n.title}</span>
+                    {n.body ? <span className="notif-item-body">{n.body}</span> : null}
+                    <span className="notif-item-time">{timeAgo(n.created_at)}</span>
+                  </span>
+                </>
+              )
+              const className = `notif-item${n.read ? '' : ' unread'}`
+              // Notifications without a destination mark as read on tap
+              // instead of navigating to a dead "#" link.
+              return n.href ? (
+                <Link key={n.id} href={n.href} className={className} onClick={() => openItem(n)}>
+                  {content}
+                </Link>
+              ) : (
+                <button
+                  key={n.id}
+                  type="button"
+                  className={className}
+                  onClick={() => openItem(n)}
+                >
+                  {content}
+                </button>
+              )
+            })
           ) : (
             <p className="notif-empty">No notifications yet — comment in Exam Room to get started.</p>
           )}

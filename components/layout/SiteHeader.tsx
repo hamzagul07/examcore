@@ -177,8 +177,7 @@ export function SiteHeader({ variant }: Props) {
       </LoadingLink>
     )
 
-  const signInHref =
-    variant === 'marketing' ? '/auth/signin' : buildSignInHref(signInNext)
+  const signInHref = buildSignInHref(signInNext)
 
   const renderDesktopAuth = () => {
     if (loading) {
@@ -413,7 +412,7 @@ export function SiteHeader({ variant }: Props) {
                   {variant === 'marketing' || variant === 'reading' ? (
                     isGuest ? (
                       <div className="ec-nav-mobile-auth">
-                        <Link href="/auth/signin" onClick={navigateFromMenu}>
+                        <Link href={signInHref} onClick={navigateFromMenu}>
                           Sign in
                         </Link>
                         <Link href={buildMarketingSignUpHref()} onClick={navigateFromMenu}>

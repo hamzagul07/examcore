@@ -15,6 +15,7 @@ import {
   SubmitButton,
 } from '@/components/AuthFormBits'
 import { buildSignUpHref, buildForgotPasswordHref } from '@/lib/auth-redirect'
+import { formatAuthError } from '@/lib/auth-errors'
 import { isContentGateReturnPath } from '@/lib/content-gate'
 import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
@@ -103,7 +104,7 @@ function SignInForm() {
 
     setLoading(false)
     if (error) {
-      setErrorMsg(error.message)
+      setErrorMsg(formatAuthError(error))
       return
     }
     setSent(true)
@@ -127,7 +128,7 @@ function SignInForm() {
 
     if (error) {
       setLoading(false)
-      setErrorMsg(error.message)
+      setErrorMsg(formatAuthError(error))
       return
     }
 
@@ -275,10 +276,7 @@ function SignInForm() {
             Did not get it? Check your spam folder, or{' '}
             <button
               type="button"
-              onClick={() => {
-                setSent(false)
-                setEmail('')
-              }}
+              onClick={() => setSent(false)}
               className="ec-link underline"
             >
               try again

@@ -239,6 +239,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-9700-biology-grade-boundaries-2026',
     },
     {
+      question: 'Where are O-Level science grade boundaries for 2026?',
+      answer:
+        '5090/5070/5054 grades release 18 August; threshold PDFs ~13 August — mark MCQ and theory to scheme wording, then use the subject calculator.',
+      href: '/blog/cambridge-5090-biology-grade-boundaries-2026',
+    },
+    {
       question: 'Where are 9699 Sociology grade boundaries for 2026?',
       answer:
         'Grades release 11 August; threshold tables ~13 August — use the calculator with recent sessions until the official PDF loads.',

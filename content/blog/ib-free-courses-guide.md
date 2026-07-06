@@ -42,7 +42,7 @@ Yes — 100% free, no paywall. MarkScheme is built for students who cannot affor
 ### Do you host official IB past papers?
 No. We link to legitimate sources (IBO specimens, RevisionDojo, ibresources.cc) and author **original** lesson content. We never redistribute pirated papers.
 
-### How is marking different from Cambridge on MarkScheme?
+### How is IB marking different from A-Level marking on MarkScheme?
 IB uses **markbands and assessment criteria**, not B1/M1/A1 codes. Our IB practice mode scores criterion-by-criterion. See [IB markbands explained](/blog/ib-markbands-explained).
 
 ## Bottom line

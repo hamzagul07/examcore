@@ -9,7 +9,7 @@ informationGain: synthesis
 author: hassan
 ---
 
-While Cambridge leak headlines dominated May 2026, another major shift is underway for **International Baccalaureate** students: the IB is rolling out **digital Diploma Programme exams** starting in the **May 2026 session**. Selected schools will offer on-screen papers for certain subjects — with more subjects and regions joining through 2029.
+Exam delivery and integrity are shifting in 2026. For **International Baccalaureate** students, the IB is rolling out **digital Diploma Programme exams** starting in the **May 2026 session**. Selected schools will offer on-screen papers for certain subjects — with more subjects and regions joining through 2029.
 
 If your school is in the first wave, you need a clear picture of what changes, what stays identical, and how to revise so markbands still reward the same thinking.
 
@@ -113,18 +113,11 @@ Online delivery does not reduce malpractice scrutiny. The IB and schools monitor
 - Identity and seating compliance
 - Collusion patterns
 
-The same principle applies as with [Cambridge leaks](/blog/cambridge-exam-paper-leaks-2026-what-students-should-know): **no live material, no shortcuts**.
+The same principle applies everywhere: **no live material, no shortcuts**.
 
-## IB digital vs Cambridge digital (2026)
+## What stays the same on screen
 
-Both boards are moving online — but on different timelines:
-
-| Board | June 2026 reality |
-|-------|-------------------|
-| **Cambridge** | Early Adopter MCQ / selected AS papers in some regions — see [Cambridge digital guide](/blog/cambridge-digital-exams-june-2026-student-guide) |
-| **IB** | Selected-school IBDP digital pilot; most students still on paper |
-
-If you take **both** qualifications, follow each coordinator's instructions separately.
+Digital delivery does not change what examiners reward — the same markbands, the same command terms, and the same IA weighting apply whether you type on a laptop or write on paper. Schools in the first wave should confirm device policies and keyboard setup with your coordinator early.
 
 ## FAQ
 

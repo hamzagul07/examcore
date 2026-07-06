@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <BlogShareButtons url={`${SITE_URL}/blog/${slug}`} title={post.title} />
 
-        <BlogSourcesBlock />
+        <BlogSourcesBlock slug={slug} />
         <BlogFollowUpChain slug={slug} />
         <BlogPostCta
           variant={ctaVariant}

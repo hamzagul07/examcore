@@ -37,8 +37,8 @@ In the IB subject guides — terms are consistent across many subjects but check
 ### Command terms in IAs?
 Yes — research questions and reflections use the same skills. Practise in coursework too.
 
-### Cambridge vs IB terms?
-Similar words, different mark schemes — if you sit both boards, keep separate technique notes.
+### How do IB command terms differ from A-Level terms?
+Similar words, different mark schemes — if you sit both qualifications, keep separate technique notes.
 
 ## Bottom line
 Treat past papers and portfolio criteria as training for examiner thinking — not a trivia test. Cycle timed practice, honest band marking, and focused drills on your weakest criteria; that is how top candidates make a 7 predictable rather than lucky.

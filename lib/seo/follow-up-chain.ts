@@ -199,7 +199,7 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
     {
       question: 'How is IB marking different from A-Level?',
       answer:
-        'IB uses markbands and assessment criteria rather than B1/M1/A1 codes — examiners place your answer in a level band against descriptors.',
+        'IB uses markbands and assessment criteria rather than point-based A-Level marking — examiners place your answer in a level band against descriptors.',
       href: '/ib',
     },
     {

@@ -10,16 +10,13 @@ export type SiteAuthor = {
   image?: string
 }
 
-/** Default E-E-A-T author — first-hand Cambridge A-Level experience. */
+/** Default E-E-A-T author — founder voice for blog guides. */
 export const DEFAULT_BLOG_AUTHOR: SiteAuthor = {
   id: 'hamza-gul',
   name: 'Hamza Gul',
-  role: 'Founder & A-Level student',
-  bio: 'Built MarkScheme after marking hundreds of Cambridge past papers by hand. Writes guides from real revision sessions — not generic AI filler.',
-  credentials: [
-    'Cambridge International A-Level student',
-    'Hands-on past-paper marking workflow',
-  ],
+  role: 'Founder',
+  bio: 'Built MarkScheme. Writes guides from real revision sessions — not generic AI filler.',
+  credentials: ['Hands-on past-paper marking workflow'],
   url: `${SITE_URL}/about`,
   // To add a headshot: drop the file in /public and set e.g.
   // image: `${SITE_URL}/authors/hamza-gul.jpg`,

@@ -177,7 +177,7 @@ export default function IbPastPapersHubPage() {
               <Link href="/ib/subjects">IB subjects</Link>
             </Chip>
             <Chip variant="dim">
-              <Link href="/past-papers">Cambridge past papers</Link>
+              <Link href="/ib/courses">Free IB courses</Link>
             </Chip>
           </div>
         </nav>

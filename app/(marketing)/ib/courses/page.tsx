@@ -104,7 +104,6 @@ export default function IbCoursesIndexPage() {
               { href: '/ib', label: 'IB past papers hub', variant: 'muted' },
               { href: '/ib/past-papers/biology-hl', label: 'Topic practice example', variant: 'muted' },
               { href: '/blog/ib-free-courses-guide', label: 'Free courses guide', variant: 'muted' },
-              { href: '/courses', label: 'Cambridge courses', variant: 'muted' },
               { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
               { href: '/blog/browse/ib', label: 'IB guides by subject', variant: 'muted' },
               { href: '/mark', label: 'Criterion practice →', variant: 'primary' },
@@ -140,8 +139,8 @@ export default function IbCoursesIndexPage() {
               <Link href="/ib/past-papers" className="ec-btn-ghost sm">
                 IB past papers →
               </Link>
-              <Link href="/courses" className="ec-btn-ghost sm">
-                Cambridge courses →
+              <Link href="/blog/ib-free-courses-guide" className="ec-btn-ghost sm">
+                Free courses guide →
               </Link>
             </div>
           </nav>

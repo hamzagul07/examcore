@@ -63,7 +63,7 @@ export default async function IbSubjectPage({ params }: Props) {
     },
     {
       q: `How is IB ${subject.name} marked?`,
-      a: `IB uses markbands and assessment criteria rather than Cambridge-style B1/M1/A1 codes — examiners place your response in a level band against descriptors. Our guides show what separates the top band from the middle on each paper.`,
+      a: `IB uses markbands and assessment criteria rather than point-based A-Level marking codes — examiners place your response in a level band against descriptors. Our guides show what separates the top band from the middle on each paper.`,
     },
     {
       q: `Where can I find IB ${short} ${subject.level} past papers?`,
@@ -261,7 +261,7 @@ export default async function IbSubjectPage({ params }: Props) {
                 How IB marking differs
               </p>
               <p className="ms-body-2">
-                Unlike Cambridge (B1/M1/A1), IB uses <strong>markbands</strong> — examiners place your
+                Unlike point-based A-Level mark schemes, IB uses <strong>markbands</strong> — examiners place your
                 answer in a level band against descriptors. Knowing the band wording is how you turn a
                 5 into a 7.
               </p>

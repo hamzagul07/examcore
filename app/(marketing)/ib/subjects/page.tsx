@@ -83,7 +83,6 @@ export default function IbSubjectsPage() {
           links={[
             { href: '/ib/courses', label: 'Free IB courses →', variant: 'primary' },
             { href: '/ib/past-papers', label: 'IB past papers', variant: 'muted' },
-            { href: '/courses', label: 'Cambridge courses', variant: 'muted' },
             { href: '/guides/ib', label: 'IB study guide', variant: 'muted' },
           ]}
         />

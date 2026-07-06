@@ -3,11 +3,18 @@ import remarkGfm from 'remark-gfm'
 import type { Components } from 'react-markdown'
 import { blogMarkdownComponents } from '@/components/blog/blogMarkdownComponents'
 
-function imageAltFromSrc(src: string | undefined, alt: string | undefined): string {
+import { isIbGuideSlug } from '@/lib/seo/subject-guides'
+
+function imageAltFromSrc(
+  src: string | undefined,
+  alt: string | undefined,
+  slug?: string
+): string {
   if (alt?.trim()) return alt.trim()
-  if (!src) return 'Illustration'
+  const board = slug && isIbGuideSlug(slug) ? 'IB Diploma' : 'Cambridge'
+  if (!src) return `${board} revision illustration`
   const name = src.split('/').pop()?.replace(/\.[a-z]+$/i, '').replace(/[-_]/g, ' ')
-  return name ? `Cambridge revision — ${name}` : 'Cambridge past paper revision illustration'
+  return name ? `${board} revision — ${name}` : `${board} past paper revision illustration`
 }
 
 const components: Components = {
@@ -16,7 +23,7 @@ const components: Components = {
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={typeof src === 'string' ? src : undefined}
-      alt={imageAltFromSrc(typeof src === 'string' ? src : undefined, alt)}
+      alt={imageAltFromSrc(typeof src === 'string' ? src : undefined, alt, slug)}
       loading="lazy"
       decoding="async"
       className="my-6 w-full rounded-lg border border-[var(--ec-border)]"

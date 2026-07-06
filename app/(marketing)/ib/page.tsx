@@ -49,7 +49,7 @@ const FAQ = [
   },
   {
     q: 'How does IB marking work?',
-    a: 'IB does not use Cambridge-style B1/M1/A1 codes — it uses markbands and assessment criteria, where examiners place your answer in a level band against descriptors. Our guides explain how to hit the top band on each paper.',
+    a: 'IB uses markbands and assessment criteria rather than point-based A-Level marking codes — examiners place your answer in a level band against descriptors. Our guides explain how to hit the top band on each paper.',
   },
   {
     q: 'Are there free IB courses on MarkScheme?',
@@ -270,7 +270,10 @@ export default function IbHubPage() {
               <Link href="/ib/subjects">IB subjects</Link>
             </Chip>
             <Chip variant="dim">
-              <Link href="/subjects">Cambridge subjects</Link>
+              <Link href="/ib/courses">Free IB courses</Link>
+            </Chip>
+            <Chip variant="dim">
+              <Link href="/blog/browse/ib">IB revision guides</Link>
             </Chip>
           </div>
         </nav>

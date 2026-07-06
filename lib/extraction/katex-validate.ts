@@ -7,7 +7,8 @@ export type KatexFragmentResult = {
   error: string | null
 }
 
-const INLINE_MATH_RE = /(?<!\$)\$(?!\$)([^$\n]+?)\$(?!\$)/g
+/** Inline math delimiters; `\$` is escaped currency and must not open a math span. */
+const INLINE_MATH_RE = /(?<!\$)(?<!\\)\$(?!\$)([^$\n]+?)(?<!\\)\$(?!\$)/g
 const DISPLAY_MATH_RE = /\$\$([\s\S]+?)\$\$/g
 
 /** Extract inline and display LaTeX fragments from question text. */

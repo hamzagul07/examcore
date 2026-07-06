@@ -5,128 +5,329 @@
   "paper": "P2",
   "paperName": "Biology SL",
   "status": "premium",
-  "unit": { "code": "D", "title": "Continuity and change" },
-  "summary": "Protein synthesis is how the information written in a gene becomes a working polypeptide. This lesson walks the whole gene → polypeptide pathway: transcription, in which RNA polymerase copies the DNA template strand into messenger RNA by complementary base pairing (with uracil in place of thymine) inside the nucleus; the genetic code, read as non-overlapping triplet codons that are degenerate and near-universal; and translation, in which ribosomes read the mRNA codons while transfer RNA molecules deliver the matching amino acids through anticodon–codon pairing, joining them with peptide bonds from a start codon to a stop codon. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks — point by point, with error-carried-forward — so you can see how showing each step protects your score.",
+  "unit": {
+    "code": "D",
+    "title": "Continuity and change"
+  },
+  "summary": "Protein synthesis is how the information written in a gene becomes a working polypeptide. This lesson walks the whole gene → polypeptide pathway: transcription, in which RNA polymerase copies the DNA template strand into messenger RNA by complementary base pairing (with uracil in place of thymine) inside the nucleus; the genetic code, read as non-overlapping triplet codons that are degenerate and near-universal; and translation, in which ribosomes read the mRNA codons while transfer RNA molecules deliver the matching amino acids through anticodon-codon pairing, joining them with peptide bonds from a start codon to a stop codon. Every worked example is laid out exactly the way our marking engine awards Paper 2 marks - point by point, with error-carried-forward - so you can see how showing each step protects your score.",
   "durationMin": 24,
   "updated": "2026-07-03",
   "learningObjectives": [
     "Explain transcription: how RNA polymerase synthesises mRNA from the DNA template strand by complementary base pairing (U replacing T) in the nucleus.",
-    "State the properties of the genetic code — triplet codons that are non-overlapping, degenerate (redundant) and near-universal — and explain what each property means.",
+    "State the properties of the genetic code - triplet codons that are non-overlapping, degenerate (redundant) and near-universal - and explain what each property means.",
     "Describe translation: how ribosomes read mRNA codons and tRNA anticodons deliver specific amino acids that are joined by peptide bonds from a start codon to a stop codon.",
     "Deduce complementary mRNA sequences from a DNA template and translate a short mRNA sequence into an amino acid sequence using a codon table.",
     "Present answers so that each distinct valid point earns its mark and error-carried-forward protects the steps that follow."
   ],
-  "syllabusObjectivesCovered": ["D1.2"],
+  "syllabusObjectivesCovered": [
+    "D1.2"
+  ],
   "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "From DNA Blueprint to Protein Machine",
     "summary": "Your DNA holds the instructions for building every protein in your cells, but the DNA itself stays in the nucleus. Protein synthesis copies one instruction (a gene) into a portable message (mRNA), then reads that message to assemble amino acids into a polypeptide in the correct order.",
-    "analogy": "Picture your DNA as a priceless reference book of recipes locked in a library (the nucleus). To cook a dish (a protein) you cannot remove the book, so a librarian (RNA polymerase) photocopies just one recipe — that is transcription, and the photocopy is the mRNA. The copy is carried to the kitchen (a ribosome in the cytoplasm), where the chef reads it three words at a time (codons). Kitchen assistants (tRNA) each fetch one exact ingredient (an amino acid) whose label (the anticodon) matches the recipe word, and the chef links the ingredients in order until the recipe says stop.",
+    "analogy": "Picture your DNA as a priceless reference book of recipes locked in a library (the nucleus). To cook a dish (a protein) you cannot remove the book, so a librarian (RNA polymerase) photocopies just one recipe - that is transcription, and the photocopy is the mRNA. The copy is carried to the kitchen (a ribosome in the cytoplasm), where the chef reads it three words at a time (codons). Kitchen assistants (tRNA) each fetch one exact ingredient (an amino acid) whose label (the anticodon) matches the recipe word, and the chef links the ingredients in order until the recipe says stop.",
     "steps": [
-      "In the nucleus, RNA polymerase unwinds a gene and builds a complementary mRNA strand from one DNA strand — the template strand — pairing A with U, T with A, C with G and G with C.",
+      "In the nucleus, RNA polymerase unwinds a gene and builds a complementary mRNA strand from one DNA strand - the template strand - pairing A with U, T with A, C with G and G with C.",
       "The finished mRNA leaves the nucleus and travels to a ribosome in the cytoplasm.",
       "The ribosome reads the mRNA in non-overlapping groups of three bases (codons), starting at the start codon.",
       "For each codon a tRNA with the complementary anticodon delivers a specific amino acid; the amino acids are joined by peptide bonds in order until a stop codon ends the chain."
     ]
   },
-  "keyConcepts": ["gene expression", "genetic code", "complementary base pairing"],
+  "keyConcepts": [
+    "gene expression",
+    "genetic code",
+    "complementary base pairing"
+  ],
   "flashcards": [
-    { "front": "Transcription", "back": "Synthesis of a messenger RNA (mRNA) molecule from a DNA template strand by RNA polymerase, using complementary base pairing. Occurs in the nucleus of eukaryotic cells.", "pillLabel": "Definition" },
-    { "front": "Translation", "back": "Assembly of a polypeptide at a ribosome using the codon sequence of an mRNA molecule to order the amino acids. Occurs in the cytoplasm.", "pillLabel": "Definition" },
-    { "front": "Template strand", "back": "The single DNA strand that RNA polymerase reads to build the complementary mRNA. Because pairing is complementary and antiparallel, the mRNA base sequence matches the OTHER (coding) strand, but with U instead of T.", "pillLabel": "Definition" },
-    { "front": "Codon", "back": "A sequence of three consecutive bases on mRNA that specifies one amino acid or a stop signal. The code is read in non-overlapping triplets.", "pillLabel": "Definition" },
-    { "front": "Anticodon", "back": "A sequence of three bases on a tRNA molecule that is complementary to an mRNA codon. Anticodon–codon pairing ensures the correct amino acid is delivered.", "pillLabel": "Definition" },
-    { "front": "U replaces T in RNA", "back": "RNA contains uracil (U) instead of thymine (T). So where the DNA template has adenine (A), the mRNA base is uracil (U), not thymine.", "pillLabel": "Trap" },
-    { "front": "The code is degenerate (redundant)", "back": "There are 64 codons but only about 20 amino acids, so most amino acids are specified by more than one codon (e.g. GCU, GCC, GCA and GCG all code for alanine). This gives some protection against point mutations in the third base.", "pillLabel": "Concept" },
-    { "front": "The code is universal", "back": "Almost all organisms use the same codons for the same amino acids. This is evidence for common ancestry and is why a gene from one species can be expressed in another.", "pillLabel": "Concept" },
-    { "front": "The code is non-overlapping", "back": "Each base belongs to only one codon; the ribosome reads bases in fixed groups of three from the start codon. This sets the reading frame.", "pillLabel": "Concept" },
-    { "front": "Start and stop codons", "back": "AUG (methionine) is the start codon that sets the reading frame and begins translation. UAA, UAG and UGA are stop codons — they code for no amino acid and end translation.", "pillLabel": "Concept" },
-    { "front": "Peptide bond", "back": "The covalent bond formed at the ribosome between the amino acids delivered by successive tRNAs, linking them into a polypeptide chain.", "pillLabel": "Definition" },
-    { "front": "Direction and outcome", "back": "mRNA is read 5' to 3', so a polypeptide is built from its first (N-terminal) amino acid onward. The base sequence of the gene therefore fixes the amino acid sequence of the polypeptide.", "pillLabel": "Concept" },
-    { "front": "Exam Trap: transcription vs translation", "back": "Transcription = DNA → mRNA in the nucleus, catalysed by RNA polymerase. Translation = mRNA → polypeptide at a ribosome. Naming the wrong stage or the wrong location loses marks.", "pillLabel": "Trap" }
+    {
+      "front": "Transcription",
+      "back": "Synthesis of a messenger RNA (mRNA) molecule from a DNA template strand by RNA polymerase, using complementary base pairing. Occurs in the nucleus of eukaryotic cells.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Translation",
+      "back": "Assembly of a polypeptide at a ribosome using the codon sequence of an mRNA molecule to order the amino acids. Occurs in the cytoplasm.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Template strand",
+      "back": "The single DNA strand that RNA polymerase reads to build the complementary mRNA. Because pairing is complementary and antiparallel, the mRNA base sequence matches the OTHER (coding) strand, but with U instead of T.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Codon",
+      "back": "A sequence of three consecutive bases on mRNA that specifies one amino acid or a stop signal. The code is read in non-overlapping triplets.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Anticodon",
+      "back": "A sequence of three bases on a tRNA molecule that is complementary to an mRNA codon. Anticodon-codon pairing ensures the correct amino acid is delivered.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "U replaces T in RNA",
+      "back": "RNA contains uracil (U) instead of thymine (T). So where the DNA template has adenine (A), the mRNA base is uracil (U), not thymine.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "The code is degenerate (redundant)",
+      "back": "There are 64 codons but only about 20 amino acids, so most amino acids are specified by more than one codon (e.g. GCU, GCC, GCA and GCG all code for alanine). This gives some protection against point mutations in the third base.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The code is universal",
+      "back": "Almost all organisms use the same codons for the same amino acids. This is evidence for common ancestry and is why a gene from one species can be expressed in another.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "The code is non-overlapping",
+      "back": "Each base belongs to only one codon; the ribosome reads bases in fixed groups of three from the start codon. This sets the reading frame.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Start and stop codons",
+      "back": "AUG (methionine) is the start codon that sets the reading frame and begins translation. UAA, UAG and UGA are stop codons - they code for no amino acid and end translation.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Peptide bond",
+      "back": "The covalent bond formed at the ribosome between the amino acids delivered by successive tRNAs, linking them into a polypeptide chain.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Direction and outcome",
+      "back": "mRNA is read 5' to 3', so a polypeptide is built from its first (N-terminal) amino acid onward. The base sequence of the gene therefore fixes the amino acid sequence of the polypeptide.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Exam Trap: transcription vs translation",
+      "back": "Transcription = DNA → mRNA in the nucleus, catalysed by RNA polymerase. Translation = mRNA → polypeptide at a ribosome. Naming the wrong stage or the wrong location loses marks.",
+      "pillLabel": "Trap"
+    }
   ],
   "quickCheck": [
-    { "prompt": "Which process makes an mRNA copy of a gene, and where does it occur?", "options": ["Translation, at the ribosome", "Transcription, in the nucleus", "Translation, in the nucleus", "Transcription, at the ribosome"], "answer": "Transcription, in the nucleus" },
-    { "prompt": "During transcription, a DNA template base of adenine (A) pairs with which mRNA base?", "options": ["Thymine (T)", "Adenine (A)", "Uracil (U)", "Guanine (G)"], "answer": "Uracil (U)" },
-    { "prompt": "A three-base sequence on a tRNA molecule that pairs with mRNA is called a:", "options": ["Codon", "Anticodon", "Gene", "Triplet on DNA"], "answer": "Anticodon" },
-    { "prompt": "The genetic code is described as 'degenerate' because:", "options": ["Some codons are read in the wrong frame", "One codon can code for several different amino acids", "Most amino acids are coded for by more than one codon", "The code differs between species"], "answer": "Most amino acids are coded for by more than one codon" },
-    { "prompt": "The mRNA codon is GCA. What is the complementary tRNA anticodon?", "options": ["CGT", "CGU", "GCA", "GCU"], "answer": "CGU" }
+    {
+      "prompt": "Which process makes an mRNA copy of a gene, and where does it occur?",
+      "options": [
+        "Translation, at the ribosome",
+        "Transcription, in the nucleus",
+        "Translation, in the nucleus",
+        "Transcription, at the ribosome"
+      ],
+      "answer": "Transcription, in the nucleus"
+    },
+    {
+      "prompt": "During transcription, a DNA template base of adenine (A) pairs with which mRNA base?",
+      "options": [
+        "Thymine (T)",
+        "Adenine (A)",
+        "Uracil (U)",
+        "Guanine (G)"
+      ],
+      "answer": "Uracil (U)"
+    },
+    {
+      "prompt": "A three-base sequence on a tRNA molecule that pairs with mRNA is called a:",
+      "options": [
+        "Codon",
+        "Anticodon",
+        "Gene",
+        "Triplet on DNA"
+      ],
+      "answer": "Anticodon"
+    },
+    {
+      "prompt": "The genetic code is described as 'degenerate' because:",
+      "options": [
+        "Some codons are read in the wrong frame",
+        "One codon can code for several different amino acids",
+        "Most amino acids are coded for by more than one codon",
+        "The code differs between species"
+      ],
+      "answer": "Most amino acids are coded for by more than one codon"
+    },
+    {
+      "prompt": "The mRNA codon is GCA. What is the complementary tRNA anticodon?",
+      "options": [
+        "CGT",
+        "CGU",
+        "GCA",
+        "GCU"
+      ],
+      "answer": "CGU"
+    }
   ],
   "faq": [
-    { "q": "What is the difference between a codon and an anticodon?", "a": "A codon is a three-base sequence on the mRNA; an anticodon is the complementary three-base sequence on a tRNA. During translation the tRNA anticodon pairs with the mRNA codon at the ribosome, which is what guarantees that the correct amino acid is added to the polypeptide. So both are triplets, but the codon carries the message and the anticodon reads it." },
-    { "q": "Why is the genetic code described as 'degenerate' or 'redundant'?", "a": "There are 64 possible codons (4 bases in groups of 3) but only about 20 amino acids, so several codons can specify the same amino acid — for example GCU, GCC, GCA and GCG all code for alanine. This redundancy gives some protection against mutation: a change in the third base of a codon often still codes for the same amino acid, so the polypeptide is unchanged." },
-    { "q": "How does the base sequence of a gene end up controlling the amino acid sequence?", "a": "The gene's base sequence is copied into mRNA codons by complementary base pairing during transcription. Each codon then specifies one amino acid during translation, and tRNA anticodons pair with the codons in order at the ribosome. Because the codons are read as non-overlapping triplets from the start codon in the 5' to 3' direction, the order of bases in the gene fixes the order of amino acids in the polypeptide." },
-    { "q": "Why does the same gene give the same protein in a bacterium and a human?", "a": "Because the genetic code is near-universal — the same codons specify the same amino acids in almost all organisms. This shared code is strong evidence for common ancestry, and it is the reason a gene transferred between species can still be transcribed and translated correctly by the recipient's own ribosomes." }
+    {
+      "q": "What is the difference between a codon and an anticodon?",
+      "a": "A codon is a three-base sequence on the mRNA; an anticodon is the complementary three-base sequence on a tRNA. During translation the tRNA anticodon pairs with the mRNA codon at the ribosome, which is what guarantees that the correct amino acid is added to the polypeptide. So both are triplets, but the codon carries the message and the anticodon reads it."
+    },
+    {
+      "q": "Why is the genetic code described as 'degenerate' or 'redundant'?",
+      "a": "There are 64 possible codons (4 bases in groups of 3) but only about 20 amino acids, so several codons can specify the same amino acid - for example GCU, GCC, GCA and GCG all code for alanine. This redundancy gives some protection against mutation: a change in the third base of a codon often still codes for the same amino acid, so the polypeptide is unchanged."
+    },
+    {
+      "q": "How does the base sequence of a gene end up controlling the amino acid sequence?",
+      "a": "The gene's base sequence is copied into mRNA codons by complementary base pairing during transcription. Each codon then specifies one amino acid during translation, and tRNA anticodons pair with the codons in order at the ribosome. Because the codons are read as non-overlapping triplets from the start codon in the 5' to 3' direction, the order of bases in the gene fixes the order of amino acids in the polypeptide."
+    },
+    {
+      "q": "Why does the same gene give the same protein in a bacterium and a human?",
+      "a": "Because the genetic code is near-universal - the same codons specify the same amino acids in almost all organisms. This shared code is strong evidence for common ancestry, and it is the reason a gene transferred between species can still be transcribed and translated correctly by the recipient's own ribosomes."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "Every function in a living organism — digesting food, carrying oxygen, fighting infection — depends on proteins, and the instructions for building them are written in DNA. But DNA never leaves the nucleus, and it is not read directly by the machinery that assembles proteins. Protein synthesis bridges that gap in two stages: transcription copies a gene into messenger RNA, and translation reads that message to string amino acids into a polypeptide. This lesson follows the whole gene → polypeptide pathway, and because Paper 2 rewards precise, step-by-step reasoning, every worked example is set out the way marks are actually awarded." },
-
-    { "type": "heading", "content": "The gene to polypeptide pathway" },
-    { "type": "text", "content": "Genetic information flows in one main direction: from DNA, to RNA, to protein. A gene is a length of DNA whose base sequence specifies the amino acid sequence of one polypeptide. Turning that sequence into a protein takes two steps. First, transcription copies the gene into a messenger RNA (mRNA) molecule. Second, translation uses the mRNA as a set of instructions to join amino acids in the correct order. Think of it as reading a master blueprint (DNA), making a working copy (mRNA), then using the copy to build the final product (the polypeptide)." },
-
-    { "type": "heading", "content": "Transcription — copying the gene into mRNA" },
-    { "type": "text", "content": "Transcription takes place in the nucleus. The enzyme RNA polymerase binds near the start of a gene, unwinds the DNA double helix, and uses just one of the two strands — the template strand — as a guide to build a complementary mRNA molecule. Free RNA nucleotides are added by complementary base pairing: a template cytosine (C) pairs with guanine (G) and vice versa, a template thymine (T) pairs with adenine (A), and a template adenine (A) pairs with uracil (U). That last rule is the key difference from DNA replication: RNA contains uracil instead of thymine, so wherever the template reads A, the new mRNA carries U, never T. RNA polymerase adds nucleotides to the growing mRNA in the 5' to 3' direction; when it reaches the end of the gene the completed mRNA is released, leaves the nucleus, and travels to a ribosome in the cytoplasm." },
-    { "type": "keyPoints", "items": [
-      "**Location:** nucleus (of a eukaryotic cell).",
-      "**Enzyme:** RNA polymerase.",
-      "**Template:** one DNA strand — the template strand — is read; the mRNA is complementary to it.",
-      "**Base pairing:** C–G and G–C, template T–A, and template **A pairs with U** (uracil replaces thymine in RNA).",
-      "**Product:** a single-stranded mRNA molecule that carries the coded message out to a ribosome."
-    ]},
-
-    { "type": "heading", "content": "The genetic code" },
-    { "type": "text", "content": "The mRNA message is read as a genetic code with four defining properties. It is a triplet code: the bases are read in groups of three called codons, and each codon specifies one amino acid (or a stop signal). It is non-overlapping: each base belongs to only one codon, so once the reading frame is set at the start codon the triplets do not share bases. It is degenerate (also called redundant): there are 64 possible codons but only about 20 amino acids, so most amino acids are specified by more than one codon, which offers some protection against mutations in the third base. And it is near-universal: the same codons specify the same amino acids in almost every organism, which is powerful evidence for common ancestry and the reason genes can be transferred between species and still be read correctly." },
-    { "type": "keyPoints", "items": [
-      "**Triplet:** codons are read in threes; each codon = one amino acid or a stop signal.",
-      "**Non-overlapping:** each base is part of only one codon; the start codon sets the reading frame.",
-      "**Degenerate / redundant:** 64 codons for about 20 amino acids, so most amino acids have more than one codon.",
-      "**Near-universal:** the same codons mean the same amino acids in almost all life — evidence for common ancestry.",
-      "**Start and stop:** AUG starts translation (and codes for methionine); UAA, UAG and UGA are stop codons and code for no amino acid."
-    ]},
-
-    { "type": "heading", "content": "Translation — reading the message to build the polypeptide" },
-    { "type": "text", "content": "Translation happens at a ribosome in the cytoplasm. The ribosome binds the mRNA and reads it from the 5' end in successive codons, beginning at the start codon (AUG). For each codon, a transfer RNA (tRNA) carrying a specific amino acid arrives; each tRNA has an anticodon — three bases complementary to the codon — and only the tRNA whose anticodon pairs with the exposed codon can bind. This anticodon–codon pairing is what matches each codon to the right amino acid. As successive tRNAs bind, the ribosome catalyses the formation of a peptide bond between neighbouring amino acids, linking them into a growing polypeptide chain. The ribosome then moves one codon along, the used tRNA is released to collect another amino acid, and the cycle repeats. When the ribosome reaches a stop codon, no tRNA pairs with it, translation ends, and the finished polypeptide is released to fold into a functional protein." },
-    { "type": "keyPoints", "items": [
-      "**Location:** cytoplasm, at a ribosome.",
-      "**Reading:** mRNA is read 5' to 3', one codon at a time, starting at the AUG start codon.",
-      "**tRNA:** each carries a specific amino acid and has an anticodon that pairs with the mRNA codon.",
-      "**Bond formed:** the ribosome joins successive amino acids with peptide bonds.",
-      "**End:** a stop codon (UAA, UAG or UGA) terminates translation; the polypeptide is released."
-    ]},
-    { "type": "text", "content": "The direction and the outcome are the point of the whole pathway. Because the codons are read in order, in a fixed frame, in the 5' to 3' direction, the sequence of bases in the gene determines the sequence of codons in the mRNA, which determines the sequence of amino acids in the polypeptide. Change the base sequence of the gene and you can change the polypeptide." },
-
-    { "type": "callout", "variant": "hl", "title": "Going further (HL detail)", "content": "At Higher Level the picture is filled in with more molecular detail. Transcription proceeds only in the 5' to 3' direction as RNA polymerase reads the template 3' to 5', and in eukaryotes the initial (pre-)mRNA is modified before it is translated. The genetic code, though degenerate, is not ambiguous — each codon specifies only one amino acid, so translation is unambiguous even though most amino acids have several codons. During translation the ribosome has distinct binding sites for the tRNAs, and it moves along the mRNA one codon at a time (translocation) as peptide bonds form between the amino acids held in adjacent sites. You are not expected to reproduce all of this at SL, but recognising that 'degenerate but unambiguous' and 'read in one direction, one codon at a time' underlie the simple account here will make the mechanism easier to reason about." },
-
-    { "type": "heading", "content": "Worked example 1 — deducing complementary sequences" },
-    { "type": "workedExample", "question": "Part of the template strand of a gene reads 3'-TAC GGT CAT-5'.\n\n(a) Deduce the base sequence of the mRNA transcribed from this template.\n(b) Write the base sequence of the coding (non-template) strand of this gene. [4]", "solution": "**(a) mRNA sequence.**\nTranscription uses complementary base pairing, and in RNA uracil (U) replaces thymine (T). Pair each template base and read the mRNA 5' to 3':\n- template T → A\n- template A → U\n- template C → G\n- template G → C\n\nSo 3'-T A C  G G T  C A T-5' gives mRNA **5'-AUG CCA GUA-3'**.  [M1: correct complementary pairing; A1: U used for template A, giving AUG CCA GUA]\n\nNotice the template A became U (not T) — that is the single rule that separates this from DNA replication.\n\n**(b) Coding (non-template) strand.**\nThe coding strand is complementary to the template strand and therefore has the SAME sequence as the mRNA, but with thymine in place of uracil:\ncoding strand **5'-ATG CCA GTA-3'**.  [M1: recognises coding strand = mRNA with T for U; A1: ATG CCA GTA]\n\n*This is why the mRNA 'reads like' the coding strand: both are complementary to the same template, so the template is copied once into mRNA and the coding strand simply carries T where the mRNA carries U.*" },
-
-    { "type": "heading", "content": "Worked example 2 — translating mRNA into a polypeptide" },
-    { "type": "workedExample", "question": "A short mRNA molecule has the sequence 5'-AUG GCA CGU UAA-3'. Using the codon table below, determine the amino acid sequence of the polypeptide produced, and explain what happens at the final codon. [4]\n\nCodon table: AUG = Met (start), GCA = Ala, CGU = Arg, UAA = Stop.", "solution": "**Step 1 — set the reading frame at the start codon.**\nThe ribosome reads the mRNA 5' to 3' in non-overlapping triplets, beginning at AUG.\n\n**Step 2 — read each codon in turn.**\n- Codon 1: **AUG → Met** (methionine, the start codon).  [M1: reads in correct 5'→3' frame]\n- Codon 2: **GCA → Ala** (alanine).\n- Codon 3: **CGU → Arg** (arginine).\n- Codon 4: **UAA → stop** (no amino acid).\n\n**Step 3 — write the polypeptide.**\nPolypeptide sequence: **Met–Ala–Arg**.  [A1: correct order Met–Ala–Arg]\n\n**Step 4 — explain the final codon.**\nUAA is a stop codon. No tRNA anticodon pairs with it, so no amino acid is added; translation ends and the completed polypeptide is released from the ribosome.  [A1: stop codon adds no amino acid and terminates translation]\n\n*Each amino acid arrived on a tRNA whose anticodon paired with the codon — for example the codon CGU pairs with the anticodon GCA — and the amino acids were joined by peptide bonds in the order the codons were read.*" },
-
-    { "type": "heading", "content": "Common mistakes examiners penalise" },
-    { "type": "keyPoints", "items": [
-      "**Confusing transcription and translation** — transcription makes mRNA from DNA in the nucleus (RNA polymerase); translation makes a polypeptide from mRNA at a ribosome. Naming the wrong stage, enzyme or location loses marks.",
-      "**Writing T instead of U in RNA** — RNA contains uracil, so a template adenine pairs with U, never T. Putting thymine in an mRNA sequence is a guaranteed lost mark.",
-      "**Swapping codon and anticodon** — the codon is on mRNA, the anticodon is on tRNA. Saying the ribosome reads anticodons, or that tRNA carries codons, is penalised.",
-      "**Saying the code is degenerate means one codon codes for several amino acids** — it is the reverse: several codons can code for the SAME amino acid. Each codon still specifies only one amino acid.",
-      "**Reading the mRNA in the wrong direction or the wrong frame** — codons are read 5' to 3' in non-overlapping triplets from the start codon; shifting the frame changes every amino acid.",
-      "**Forgetting that a stop codon adds no amino acid** — it terminates the chain; do not translate UAA/UAG/UGA into an amino acid.",
-      "**Vague phrases like 'DNA turns into protein'** — name the intermediate (mRNA), the mechanism (complementary base pairing, codon–anticodon pairing) and the bond (peptide bond)."
-    ]},
-
-    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
-    { "type": "text", "content": "Explain questions in D1.2 are marked analytically: each distinct valid point is worth one mark. The engine credits correct, named steps rather than loose phrasing, applies error-carried-forward (ECF) so a slip early on does not automatically cost the marks that follow, and accepts equivalent wording where it means the same biology. Study how each mark below is tied to a specific idea." },
-    { "type": "workedExample", "question": "Explain how the base sequence of a gene determines the sequence of amino acids in a polypeptide. [4]", "solution": "**Model answer.**\nDuring transcription the base sequence of the gene is copied into a complementary mRNA molecule by complementary base pairing (with uracil pairing to the template adenine). The mRNA carries this information as a sequence of codons, each codon being three consecutive bases. Each codon specifies one particular amino acid. During translation at the ribosome, tRNA molecules with anticodons complementary to the codons pair with them in order, bringing the correct amino acids in the sequence set by the mRNA; these amino acids are then joined by peptide bonds. Because the codons are read in a fixed, non-overlapping order, the base sequence of the gene therefore fixes the order of amino acids in the polypeptide.\n\n---\n**How our marking engine awards the 4 marks** — each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** transcription copies the gene's base sequence into mRNA by complementary base pairing.\n- **Point 2 (M):** the mRNA carries the information as codons (triplets of three bases).\n- **Point 3 (M):** each codon specifies one (particular) amino acid.\n- **Point 4 (M):** tRNA anticodons pair with the codons at the ribosome, bringing the correct amino acids IN ORDER (A — the conclusion of the reasoning chain), which are joined by peptide bonds.\n\nBecause several creditable points are available for a 4-mark question, there is room to miss one and still reach full marks — but the marks are for DISTINCT ideas. Repeating 'the bases pair up' in two forms scores once. Marks are awarded for correct steps, with **ECF** — a candidate who mis-states the pairing rule but then correctly explains that each codon specifies an amino acid and that tRNA anticodons order them still earns those later points. **Equivalent wording is accepted**: 'triplet' for codon, 'complementary tRNA' for anticodon pairing, 'linked by peptide bonds' for joined, all score.\n\n**What the engine rejects.** An answer that says only 'the DNA turns into the protein' or 'the gene codes for the amino acids' scores ZERO, because it names none of the steps — no transcription, no codons, no codon–anticodon pairing. The mark scheme wants the mechanism, not a restatement of the question." },
-    { "type": "examTip", "content": "The Practice button marks YOUR answer this same way — point by point, with ECF, accepting equivalents, and capped at the marks available. So write in distinct, creditable statements: name transcription and complementary base pairing, name codons, say each codon specifies one amino acid, then say tRNA anticodons pair with the codons at the ribosome to bring the amino acids in order (joined by peptide bonds). Four separate ideas, four marks — vague 'DNA becomes protein' phrasing earns nothing." },
-
-    { "type": "heading", "content": "Where this leads" },
-    { "type": "text", "content": "The gene → polypeptide pathway underpins much of the rest of biology. The universality of the code is why human genes can be expressed in bacteria — the basis of producing medicines such as insulin — and why the code is used as evidence for common ancestry. Mutations make sense only against this pathway: a change in a gene's bases can change a codon, and the degeneracy of the code explains why some changes alter the polypeptide while others do not. Master the habit of tracing information from base sequence, to codon, to amino acid, and you have a template that explains gene expression, mutation and genetic engineering alike." },
-
-    { "type": "practice", "label": "Get a Paper 2 answer marked: explain how a gene's base sequence determines a polypeptide, and translate an mRNA sequence with full working", "href": "/mark?subject=ib-biology-sl&topic=D1.2&component=paper_2" },
-    { "type": "resources", "items": [
-      { "label": "PhET Simulation: Gene Expression Essentials", "href": "https://phet.colorado.edu/en/simulations/gene-expression-essentials" },
-      { "label": "IB Biology subject page (IBO)", "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/" }
-    ]}
+    {
+      "type": "intro",
+      "content": "Every function in a living organism - digesting food, carrying oxygen, fighting infection - depends on proteins, and the instructions for building them are written in DNA. But DNA never leaves the nucleus, and it is not read directly by the machinery that assembles proteins. Protein synthesis bridges that gap in two stages: transcription copies a gene into messenger RNA, and translation reads that message to string amino acids into a polypeptide. This lesson follows the whole gene → polypeptide pathway, and because Paper 2 rewards precise, step-by-step reasoning, every worked example is set out the way marks are actually awarded."
+    },
+    {
+      "type": "heading",
+      "content": "The gene to polypeptide pathway"
+    },
+    {
+      "type": "text",
+      "content": "Genetic information flows in one main direction: from DNA, to RNA, to protein. A gene is a length of DNA whose base sequence specifies the amino acid sequence of one polypeptide. Turning that sequence into a protein takes two steps. First, transcription copies the gene into a messenger RNA (mRNA) molecule. Second, translation uses the mRNA as a set of instructions to join amino acids in the correct order. Think of it as reading a master blueprint (DNA), making a working copy (mRNA), then using the copy to build the final product (the polypeptide)."
+    },
+    {
+      "type": "heading",
+      "content": "Transcription - copying the gene into mRNA"
+    },
+    {
+      "type": "text",
+      "content": "Transcription takes place in the nucleus. The enzyme RNA polymerase binds near the start of a gene, unwinds the DNA double helix, and uses just one of the two strands - the template strand - as a guide to build a complementary mRNA molecule. Free RNA nucleotides are added by complementary base pairing: a template cytosine (C) pairs with guanine (G) and vice versa, a template thymine (T) pairs with adenine (A), and a template adenine (A) pairs with uracil (U). That last rule is the key difference from DNA replication: RNA contains uracil instead of thymine, so wherever the template reads A, the new mRNA carries U, never T. RNA polymerase adds nucleotides to the growing mRNA in the 5' to 3' direction; when it reaches the end of the gene the completed mRNA is released, leaves the nucleus, and travels to a ribosome in the cytoplasm."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Location:** nucleus (of a eukaryotic cell).",
+        "**Enzyme:** RNA polymerase.",
+        "**Template:** one DNA strand - the template strand - is read; the mRNA is complementary to it.",
+        "**Base pairing:** C-G and G-C, template T-A, and template **A pairs with U** (uracil replaces thymine in RNA).",
+        "**Product:** a single-stranded mRNA molecule that carries the coded message out to a ribosome."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The genetic code"
+    },
+    {
+      "type": "text",
+      "content": "The mRNA message is read as a genetic code with four defining properties. It is a triplet code: the bases are read in groups of three called codons, and each codon specifies one amino acid (or a stop signal). It is non-overlapping: each base belongs to only one codon, so once the reading frame is set at the start codon the triplets do not share bases. It is degenerate (also called redundant): there are 64 possible codons but only about 20 amino acids, so most amino acids are specified by more than one codon, which offers some protection against mutations in the third base. And it is near-universal: the same codons specify the same amino acids in almost every organism, which is powerful evidence for common ancestry and the reason genes can be transferred between species and still be read correctly."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Triplet:** codons are read in threes; each codon = one amino acid or a stop signal.",
+        "**Non-overlapping:** each base is part of only one codon; the start codon sets the reading frame.",
+        "**Degenerate / redundant:** 64 codons for about 20 amino acids, so most amino acids have more than one codon.",
+        "**Near-universal:** the same codons mean the same amino acids in almost all life - evidence for common ancestry.",
+        "**Start and stop:** AUG starts translation (and codes for methionine); UAA, UAG and UGA are stop codons and code for no amino acid."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Translation - reading the message to build the polypeptide"
+    },
+    {
+      "type": "text",
+      "content": "Translation happens at a ribosome in the cytoplasm. The ribosome binds the mRNA and reads it from the 5' end in successive codons, beginning at the start codon (AUG). For each codon, a transfer RNA (tRNA) carrying a specific amino acid arrives; each tRNA has an anticodon - three bases complementary to the codon - and only the tRNA whose anticodon pairs with the exposed codon can bind. This anticodon-codon pairing is what matches each codon to the right amino acid. As successive tRNAs bind, the ribosome catalyses the formation of a peptide bond between neighbouring amino acids, linking them into a growing polypeptide chain. The ribosome then moves one codon along, the used tRNA is released to collect another amino acid, and the cycle repeats. When the ribosome reaches a stop codon, no tRNA pairs with it, translation ends, and the finished polypeptide is released to fold into a functional protein."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Location:** cytoplasm, at a ribosome.",
+        "**Reading:** mRNA is read 5' to 3', one codon at a time, starting at the AUG start codon.",
+        "**tRNA:** each carries a specific amino acid and has an anticodon that pairs with the mRNA codon.",
+        "**Bond formed:** the ribosome joins successive amino acids with peptide bonds.",
+        "**End:** a stop codon (UAA, UAG or UGA) terminates translation; the polypeptide is released."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The direction and the outcome are the point of the whole pathway. Because the codons are read in order, in a fixed frame, in the 5' to 3' direction, the sequence of bases in the gene determines the sequence of codons in the mRNA, which determines the sequence of amino acids in the polypeptide. Change the base sequence of the gene and you can change the polypeptide."
+    },
+    {
+      "type": "examTip",
+      "content": "**Going further (HL detail)**\n\nAt Higher Level the picture is filled in with more molecular detail. Transcription proceeds only in the 5' to 3' direction as RNA polymerase reads the template 3' to 5', and in eukaryotes the initial (pre-)mRNA is modified before it is translated. The genetic code, though degenerate, is not ambiguous — each codon specifies only one amino acid, so translation is unambiguous even though most amino acids have several codons. During translation the ribosome has distinct binding sites for the tRNAs, and it moves along the mRNA one codon at a time (translocation) as peptide bonds form between the amino acids held in adjacent sites. You are not expected to reproduce all of this at SL, but recognising that 'degenerate but unambiguous' and 'read in one direction, one codon at a time' underlie the simple account here will make the mechanism easier to reason about."
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 1 - deducing complementary sequences"
+    },
+    {
+      "type": "workedExample",
+      "question": "Part of the template strand of a gene reads 3'-TAC GGT CAT-5'.\n\n(a) Deduce the base sequence of the mRNA transcribed from this template.\n(b) Write the base sequence of the coding (non-template) strand of this gene. [4]",
+      "solution": "**(a) mRNA sequence.**\nTranscription uses complementary base pairing, and in RNA uracil (U) replaces thymine (T). Pair each template base and read the mRNA 5' to 3':\n- template T → A\n- template A → U\n- template C → G\n- template G → C\n\nSo 3'-T A C  G G T  C A T-5' gives mRNA **5'-AUG CCA GUA-3'**.  [M1: correct complementary pairing; A1: U used for template A, giving AUG CCA GUA]\n\nNotice the template A became U (not T) - that is the single rule that separates this from DNA replication.\n\n**(b) Coding (non-template) strand.**\nThe coding strand is complementary to the template strand and therefore has the SAME sequence as the mRNA, but with thymine in place of uracil:\ncoding strand **5'-ATG CCA GTA-3'**.  [M1: recognises coding strand = mRNA with T for U; A1: ATG CCA GTA]\n\n*This is why the mRNA 'reads like' the coding strand: both are complementary to the same template, so the template is copied once into mRNA and the coding strand simply carries T where the mRNA carries U.*"
+    },
+    {
+      "type": "heading",
+      "content": "Worked example 2 - translating mRNA into a polypeptide"
+    },
+    {
+      "type": "workedExample",
+      "question": "A short mRNA molecule has the sequence 5'-AUG GCA CGU UAA-3'. Using the codon table below, determine the amino acid sequence of the polypeptide produced, and explain what happens at the final codon. [4]\n\nCodon table: AUG = Met (start), GCA = Ala, CGU = Arg, UAA = Stop.",
+      "solution": "**Step 1 - set the reading frame at the start codon.**\nThe ribosome reads the mRNA 5' to 3' in non-overlapping triplets, beginning at AUG.\n\n**Step 2 - read each codon in turn.**\n- Codon 1: **AUG → Met** (methionine, the start codon).  [M1: reads in correct 5'→3' frame]\n- Codon 2: **GCA → Ala** (alanine).\n- Codon 3: **CGU → Arg** (arginine).\n- Codon 4: **UAA → stop** (no amino acid).\n\n**Step 3 - write the polypeptide.**\nPolypeptide sequence: **Met-Ala-Arg**.  [A1: correct order Met-Ala-Arg]\n\n**Step 4 - explain the final codon.**\nUAA is a stop codon. No tRNA anticodon pairs with it, so no amino acid is added; translation ends and the completed polypeptide is released from the ribosome.  [A1: stop codon adds no amino acid and terminates translation]\n\n*Each amino acid arrived on a tRNA whose anticodon paired with the codon - for example the codon CGU pairs with the anticodon GCA - and the amino acids were joined by peptide bonds in the order the codons were read.*"
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Confusing transcription and translation** - transcription makes mRNA from DNA in the nucleus (RNA polymerase); translation makes a polypeptide from mRNA at a ribosome. Naming the wrong stage, enzyme or location loses marks.",
+        "**Writing T instead of U in RNA** - RNA contains uracil, so a template adenine pairs with U, never T. Putting thymine in an mRNA sequence is a guaranteed lost mark.",
+        "**Swapping codon and anticodon** - the codon is on mRNA, the anticodon is on tRNA. Saying the ribosome reads anticodons, or that tRNA carries codons, is penalised.",
+        "**Saying the code is degenerate means one codon codes for several amino acids** - it is the reverse: several codons can code for the SAME amino acid. Each codon still specifies only one amino acid.",
+        "**Reading the mRNA in the wrong direction or the wrong frame** - codons are read 5' to 3' in non-overlapping triplets from the start codon; shifting the frame changes every amino acid.",
+        "**Forgetting that a stop codon adds no amino acid** - it terminates the chain; do not translate UAA/UAG/UGA into an amino acid.",
+        "**Vague phrases like 'DNA turns into protein'** - name the intermediate (mRNA), the mechanism (complementary base pairing, codon-anticodon pairing) and the bond (peptide bond)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer - marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Explain questions in D1.2 are marked analytically: each distinct valid point is worth one mark. The engine credits correct, named steps rather than loose phrasing, applies error-carried-forward (ECF) so a slip early on does not automatically cost the marks that follow, and accepts equivalent wording where it means the same biology. Study how each mark below is tied to a specific idea."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain how the base sequence of a gene determines the sequence of amino acids in a polypeptide. [4]",
+      "solution": "**Model answer.**\nDuring transcription the base sequence of the gene is copied into a complementary mRNA molecule by complementary base pairing (with uracil pairing to the template adenine). The mRNA carries this information as a sequence of codons, each codon being three consecutive bases. Each codon specifies one particular amino acid. During translation at the ribosome, tRNA molecules with anticodons complementary to the codons pair with them in order, bringing the correct amino acids in the sequence set by the mRNA; these amino acids are then joined by peptide bonds. Because the codons are read in a fixed, non-overlapping order, the base sequence of the gene therefore fixes the order of amino acids in the polypeptide.\n\n---\n**How our marking engine awards the 4 marks** - each distinct valid point scores 1 (maximum 4):\n\n- **Point 1 (M):** transcription copies the gene's base sequence into mRNA by complementary base pairing.\n- **Point 2 (M):** the mRNA carries the information as codons (triplets of three bases).\n- **Point 3 (M):** each codon specifies one (particular) amino acid.\n- **Point 4 (M):** tRNA anticodons pair with the codons at the ribosome, bringing the correct amino acids IN ORDER (A - the conclusion of the reasoning chain), which are joined by peptide bonds.\n\nBecause several creditable points are available for a 4-mark question, there is room to miss one and still reach full marks - but the marks are for DISTINCT ideas. Repeating 'the bases pair up' in two forms scores once. Marks are awarded for correct steps, with **ECF** - a candidate who mis-states the pairing rule but then correctly explains that each codon specifies an amino acid and that tRNA anticodons order them still earns those later points. **Equivalent wording is accepted**: 'triplet' for codon, 'complementary tRNA' for anticodon pairing, 'linked by peptide bonds' for joined, all score.\n\n**What the engine rejects.** An answer that says only 'the DNA turns into the protein' or 'the gene codes for the amino acids' scores ZERO, because it names none of the steps - no transcription, no codons, no codon-anticodon pairing. The mark scheme wants the mechanism, not a restatement of the question."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR answer this same way - point by point, with ECF, accepting equivalents, and capped at the marks available. So write in distinct, creditable statements: name transcription and complementary base pairing, name codons, say each codon specifies one amino acid, then say tRNA anticodons pair with the codons at the ribosome to bring the amino acids in order (joined by peptide bonds). Four separate ideas, four marks - vague 'DNA becomes protein' phrasing earns nothing."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "The gene → polypeptide pathway underpins much of the rest of biology. The universality of the code is why human genes can be expressed in bacteria - the basis of producing medicines such as insulin - and why the code is used as evidence for common ancestry. Mutations make sense only against this pathway: a change in a gene's bases can change a codon, and the degeneracy of the code explains why some changes alter the polypeptide while others do not. Master the habit of tracing information from base sequence, to codon, to amino acid, and you have a template that explains gene expression, mutation and genetic engineering alike."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 answer marked: explain how a gene's base sequence determines a polypeptide, and translate an mRNA sequence with full working",
+      "href": "/mark?subject=ib-biology-sl&topic=D1.2&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gene Expression Essentials",
+          "href": "https://phet.colorado.edu/en/simulations/gene-expression-essentials"
+        },
+        {
+          "label": "IB Biology subject page (IBO)",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/biology/"
+        }
+      ]
+    }
   ],
   "generatorVersion": "ib-course-authored-1",
   "interactiveEmbed": {
@@ -134,7 +335,7 @@
     "title": "Gene Expression",
     "embedUrl": "https://phet.colorado.edu/sims/html/gene-expression-essentials/latest/gene-expression-essentials_en.html",
     "launchUrl": "https://phet.colorado.edu/en/simulations/gene-expression-essentials",
-    "hint": "Explore “Gene Expression” — drag sliders and watch how the model responds in real time.",
+    "hint": "Explore “Gene Expression” - drag sliders and watch how the model responds in real time.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "PhET Interactive Simulations, University of Colorado Boulder",

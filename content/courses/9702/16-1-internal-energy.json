@@ -5,66 +5,12 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 4 — Internal energy (16.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define internal energy as the sum of random kinetic and potential energies of particles.",
-    "Explain the relationship between internal energy, temperature, and phase changes.",
-    "Apply the First Law of Thermodynamics (\\Delta U = Q + W) with correct sign conventions."
-  ],
-  "simpleExplanation": {
-    "title": "What is Internal Energy?",
-    "summary": "Imagine all the tiny particles inside a substance jigging about and pulling on each other. Internal energy is the grand total of all that motion and interaction energy. It's what makes things hot or cold, and it dictates how substances behave when you add heat or do work.",
-    "analogy": "Think of a busy beehive. Each bee (particle) is flying around (kinetic energy) and also interacting with other bees (potential energy due to forces between them). The total energy of all the bees flying and interacting within the hive is like its internal energy. If the bees fly faster (hotter), or rearrange their positions, the hive's total energy changes.",
-    "steps": [
-      "**Particle Power**: Every atom and molecule has kinetic (movement) and potential (interaction) energy.",
-      "**Total Sum**: Internal energy is the sum of ALL these microscopic energies for ALL particles.",
-      "**Temperature Link**: Higher temperature means particles move faster, increasing internal energy.",
-      "**Energy Exchange**: You can change internal energy by heating it up or doing work on it."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What makes up a system's internal energy?",
-      "back": "The total random kinetic and potential energies of all its constituent particles."
-    },
-    {
-      "front": "How does temperature affect a system's internal energy?",
-      "back": "Higher temperature means higher average kinetic energy of particles, thereby increasing internal energy."
-    },
-    {
-      "front": "State the First Law of Thermodynamics.",
-      "back": "\\Delta U = Q + W (Change in internal energy = Heat added to system + Work done on system)."
-    },
-    {
-      "front": "What does a negative 'Q' value mean in \\Delta U = Q + W?",
-      "back": "Heat energy is transferred *out of* the system (e.g., the system cools down)."
-    },
-    {
-      "front": "When is 'W' (work done) negative in the First Law?",
-      "back": "When work is done *by* the system (e.g., an expanding gas pushes a piston)."
-    },
-    {
-      "front": "Is internal energy considered a 'state function'?",
-      "back": "Yes, it depends only on the system's current physical state (e.g., temperature, pressure, volume), not how it got there."
-    },
-    {
-      "front": "Name two ways to increase a system's internal energy.",
-      "back": "By doing work *on* the system or by transferring energy *to* it via heating."
-    },
-    {
-      "front": "What does a positive \\Delta U signify?",
-      "back": "An increase in the system's total internal energy."
-    },
-    {
-      "front": "Why is internal energy considered to involve 'random' energies?",
-      "back": "Because the motion and positions of individual particles are unpredictable, disordered, and chaotic."
-    }
-  ],
+  "summary": "Cambridge 9702 Paper 4 - Internal energy (16.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered why a hot cup of tea feels warm, or why pumping up a bicycle tyre makes the pump warm? These everyday events are all linked to **internal energy**, a fundamental concept in physics. It's the hidden energy within a system, dictating how matter responds to heat and work. Get ready to uncover the microscopic world of particles and the powerful First Law of Thermodynamics! This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **16.1**."
+      "content": "Ever wondered why a hot cup of tea feels warm, or why pumping up a bicycle tyre makes the pump warm? These everyday events are all linked to **internal energy**, a fundamental concept in physics. It's the hidden energy within a system, dictating how matter responds to heat and work. Get ready to uncover the microscopic world of particles and the powerful First Law of Thermodynamics! This pilot aligns with **Senpai Corner** A Level notes (2025-2027) for topic **16.1**."
     },
     {
       "type": "heading",
@@ -77,13 +23,31 @@
     {
       "type": "keyPoints",
       "items": [
-        "16.1 Internal energy.",
-        "The internal energy of a substance (U) is defined as the sum of the random distribution of kinetic and potential energies within a system of molecules.",
-        "The internal energy of an object is intrinsically related to its temperature.",
-        "For e.g., when gas is heated up in a container, the gas molecules begin to move faster increasing its KE.",
-        "For solid objects, when you heat them up, the molecules begin to vibrate faster.",
-        "Both solid and liquid objects molecules are bound by intermolecular forces."
+        "**Definition**: Internal energy (U) is the sum of the random kinetic and potential energies of a system's molecules.",
+        "**Kinetic Energy (KE)**: Related to the motion of particles. An increase in temperature leads to an increase in the average KE of the particles.",
+        "**Potential Energy (PE)**: Related to the intermolecular forces between particles and their separation. PE changes significantly during a phase change (e.g., melting or boiling).",
+        "**Temperature Link**: For any substance, increasing its temperature increases the random kinetic energy of its particles, thus increasing its internal energy."
       ]
+    },
+    {
+      "type": "text",
+      "content": "The balance between kinetic and potential energy differs by state. In solids, particles vibrate in a fixed lattice, possessing both vibrational KE and significant PE from strong bonds. In liquids, particles have translational and vibrational KE, with PE from forces that are weaker than in solids but still significant. In gases, particles move freely with high KE, and the PE from intermolecular forces is negligible, especially in an ideal gas."
+    },
+    {
+      "type": "heading",
+      "content": "Internal Energy of an Ideal Gas"
+    },
+    {
+      "type": "text",
+      "content": "For the special case of an **ideal gas**, the model assumes there are no intermolecular forces between particles. This means the potential energy component of the internal energy is zero. Therefore, the internal energy of an ideal gas consists entirely of the sum of the random kinetic energies of its molecules. This leads to a crucial conclusion: the internal energy of a fixed mass of an ideal gas is directly proportional to its absolute temperature (in Kelvin)."
+    },
+    {
+      "type": "formula",
+      "content": "$$ U \\propto T $$"
+    },
+    {
+      "type": "text",
+      "content": "For a monatomic ideal gas, this relationship can be expressed quantitatively as $U = \\frac{3}{2}nRT$, where $n$ is the number of moles, $R$ is the ideal gas constant, and $T$ is the absolute temperature. This shows that if the temperature of an ideal gas is constant, its internal energy does not change."
     },
     {
       "type": "heading",
@@ -91,7 +55,7 @@
     },
     {
       "type": "text",
-      "content": "The **First Law of Thermodynamics** is a cornerstone of physics, essentially a statement of the conservation of energy applied to thermodynamic systems. It explains how energy can be transferred into or out of a system, changing its internal energy, through two primary mechanisms: heating or doing work."
+      "content": "The **First Law of Thermodynamics** is a cornerstone of physics, essentially a statement of the conservation of energy applied to thermodynamic systems. It explains how energy can be transferred into or out of a system, changing its internal energy, through two primary mechanisms: heating or doing work. The law provides a mathematical relationship between the change in internal energy ($\\Delta U$), the heat added to the system ($Q$), and the work done on the system ($W$)."
     },
     {
       "type": "formula",
@@ -100,15 +64,20 @@
     {
       "type": "keyPoints",
       "items": [
-        "**\\Delta U**: Change in internal energy. A positive value means an increase, a negative value means a decrease.",
-        "**Q**: Energy transferred as heat. Positive when heat *enters* the system. Negative when heat *leaves* the system.",
-        "**W**: Work done. Positive when work is done *on* the system (e.g., compressing a gas). Negative when work is done *by* the system (e.g., an expanding gas pushes a piston)."
+        "**$\\Delta U$**: Change in internal energy. A positive value means an increase, a negative value means a decrease.",
+        "**$Q$**: Energy transferred as heat. Positive when heat *enters* the system. Negative when heat *leaves* the system.",
+        "**$W$**: Work done. Positive when work is done *on* the system (e.g., compressing a gas). Negative when work is done *by* the system (e.g., an expanding gas pushes a piston)."
       ]
     },
     {
       "type": "workedExample",
       "question": "A gas in a cylinder absorbs 300 J of heat from its surroundings. At the same time, the gas expands, doing 120 J of work on the piston. Calculate the change in the internal energy of the gas.",
-      "solution": "1.  **Identify given values with correct signs:**\n    *   Heat absorbed by the gas (enters system), so Q is positive: Q = +300 J.\n    *   Work done *by* the gas (expansion), so W is negative: W = -120 J.\n2.  **Apply the First Law of Thermodynamics:**\n    *   \\Delta U = Q + W\n3.  **Substitute the values:**\n    *   \\Delta U = (+300 J) + (-120 J)\n    *   \\Delta U = 300 J - 120 J\n    *   \\Delta U = +180 J\n4.  **State the conclusion:**\n    *   The internal energy of the gas increases by 180 J."
+      "solution": "1.  **Identify given values with correct signs:**\n    *   Heat absorbed by the gas (enters system), so Q is positive: Q = +300 J.\n    *   Work done *by* the gas (expansion), so W is negative: W = -120 J.\n2.  **Apply the First Law of Thermodynamics:**\n    *   $\\Delta U = Q + W$\n3.  **Substitute the values:**\n    *   $\\Delta U = (+300 \\text{ J}) + (-120 \\text{ J})$\n    *   $\\Delta U = 300 \\text{ J} - 120 \\text{ J}$\n    *   $\\Delta U = +180 \\text{ J}$\n4.  **State the conclusion:**\n    *   The internal energy of the gas increases by 180 J."
+    },
+    {
+      "type": "workedExample",
+      "question": "A piston compresses a gas in an insulated cylinder, doing 500 J of work on the gas. During the compression, the gas loses 200 J of heat to the surroundings. Calculate the change in the internal energy of the gas.",
+      "solution": "1.  **Identify given values with correct signs:**\n    *   Work is done *on* the gas (compression), so W is positive: W = +500 J.\n    *   Heat is lost *by* the gas (leaves system), so Q is negative: Q = -200 J.\n2.  **Apply the First Law of Thermodynamics:**\n    *   $\\Delta U = Q + W$\n3.  **Substitute the values:**\n    *   $\\Delta U = (-200 \\text{ J}) + (+500 \\text{ J})$\n    *   $\\Delta U = 300 \\text{ J}$\n4.  **State the conclusion:**\n    *   The internal energy of the gas increases by 300 J."
     },
     {
       "type": "examTip",
@@ -137,6 +106,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define internal energy as the sum of the random distribution of kinetic and potential energies of the particles in a system.",
+    "Explain that the internal energy of an ideal gas is directly proportional to its absolute temperature.",
+    "Relate a change in internal energy to the changes in kinetic and potential energy of the molecules.",
+    "Apply the First Law of Thermodynamics, $\\Delta U = Q + W$, to thermodynamic systems, using the correct sign conventions."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of a busy beehive. Each bee (particle) is flying around (kinetic energy) and also interacting with other bees (potential energy due to forces between them). The total energy of all the bees flying and interacting within the hive is like its internal energy. If the bees fly faster (hotter), or rearrange their positions, the hive's total energy changes."
+  },
   "faq": [
     {
       "q": "What is the primary difference between heat and internal energy?",
@@ -144,20 +122,70 @@
     },
     {
       "q": "Can a system's internal energy change if its temperature remains constant?",
-      "a": "Yes, this occurs during phase changes (e.g., melting ice or boiling water). Energy added as latent heat increases the potential energy between particles (breaking bonds), even though the average kinetic energy and thus temperature remain constant."
+      "a": "Yes, this occurs during phase changes (e.g., melting ice or boiling water). Energy added as latent heat increases the potential energy between particles (breaking bonds), even though the average kinetic energy and thus temperature remain constant. This means $\\Delta U$ is positive even if $\\Delta T$ is zero."
     },
     {
       "q": "Why are 'random' kinetic and potential energies important in the definition of internal energy?",
       "a": "'Random' emphasises that we're considering the microscopic, disordered motion and interactions of individual particles, not the macroscopic kinetic energy of the system as a whole (e.g., a moving car) or its overall gravitational potential energy."
+    },
+    {
+      "q": "If the internal energy of an ideal gas depends only on temperature, what happens during an isothermal (constant temperature) process?",
+      "a": "For an ideal gas undergoing an isothermal process, the change in internal energy ($\\Delta U$) is zero. According to the First Law of Thermodynamics ($\\Delta U = Q + W$), this means \\$0 = Q + W$, or $Q = -W$. Any heat added to the system must be completely converted into work done by the system, and vice versa."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What makes up a system's internal energy?",
+      "back": "The total random kinetic and potential energies of all its constituent particles."
+    },
+    {
+      "front": "How does temperature affect a system's internal energy?",
+      "back": "Higher temperature means higher average kinetic energy of particles, thereby increasing internal energy."
+    },
+    {
+      "front": "State the First Law of Thermodynamics.",
+      "back": "$\\Delta U = Q + W$ (Change in internal energy = Heat added to system + Work done on system)."
+    },
+    {
+      "front": "What does a negative 'Q' value mean in $\\Delta U = Q + W$?",
+      "back": "Heat energy is transferred *out of* the system (e.g., the system cools down)."
+    },
+    {
+      "front": "When is 'W' (work done) negative in the First Law?",
+      "back": "When work is done *by* the system (e.g., an expanding gas pushes a piston)."
+    },
+    {
+      "front": "Is internal energy considered a 'state function'?",
+      "back": "Yes, it depends only on the system's current physical state (e.g., temperature, pressure, volume), not how it got there."
+    },
+    {
+      "front": "Name two ways to increase a system's internal energy.",
+      "back": "By doing work *on* the system or by transferring energy *to* it via heating."
+    },
+    {
+      "front": "What does a positive $\\Delta U$ signify?",
+      "back": "An increase in the system's total internal energy."
+    },
+    {
+      "front": "Why is internal energy considered to involve 'random' energies?",
+      "back": "Because the motion and positions of individual particles are unpredictable, disordered, and chaotic."
+    },
+    {
+      "front": "For an ideal gas, what is the internal energy solely dependent on?",
+      "back": "Its absolute temperature. Since there are no intermolecular forces, potential energy is zero, so internal energy is just the total random kinetic energy of the molecules."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "16.1.1",
+    "16.1.2"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/16-1-internal-energy.png",
     "alt": "Senpai Corner reference diagram for 16.1 Internal energy"
-  }
+  },
+  "updated": "2026-06-26"
 }

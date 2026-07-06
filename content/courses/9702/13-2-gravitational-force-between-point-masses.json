@@ -5,24 +5,112 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 4 — Gravitational force between point masses (13.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
+  "summary": "Cambridge 9702 Paper 4 - Gravitational force between point masses (13.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 25,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered what keeps the Moon orbiting Earth or why you stay firmly on the ground? It's all thanks to **gravitation**, a fundamental **attractive, non-contact force** between any two objects with mass. In this lesson, we'll dive into Newton's Law of Gravitation, a powerful tool for calculating this invisible pull between **point masses**. This pilot aligns with **Senpai Corner** A Level notes (2025-2027) for topic **13.2**."
+    },
+    {
+      "type": "heading",
+      "content": "Unpacking Newton's Law of Gravitation"
+    },
+    {
+      "type": "text",
+      "content": "Sir Isaac Newton's groundbreaking law provides a precise way to determine the strength of the attractive force between any two objects possessing mass. It states that the force is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres. This 'inverse square' relationship is a key feature of many physical laws."
+    },
+    {
+      "type": "formula",
+      "content": "$F = G \\frac{m_1 m_2}{r^2}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "13.2 Gravitational force between point masses.",
+        "For a point outside a uniform sphere, the mass of the sphere may be considered to be a point mass at its centre.",
+        "A uniform sphere is one where its mass is distributed evenly .",
+        "The gravitational field lines around a uniform sphere are therefore identical to those around a point mass.",
+        "An object can be regarded as point mass when a body covers a very large distance as compared to its size .",
+        "Radial fields are considered non-uniform fields."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Concept of a Point Mass and Uniform Spheres"
+    },
+    {
+      "type": "text",
+      "content": "Newton's law is defined for 'point masses' - objects with mass but considered to have zero volume. While no real object is a true point mass, this is an excellent approximation when the distance between objects is much larger than their individual sizes, such as in astronomy. A crucial extension of this concept, also proven by Newton, is that a uniform spherical body (one with evenly distributed mass) exerts a gravitational force on an external object as if its entire mass were concentrated at its geometric centre. This allows us to treat planets, stars, and moons as point masses for calculating the forces between them, greatly simplifying cosmic mechanics."
+    },
+    {
+      "type": "heading",
+      "content": "The Universal Gravitational Constant (G)"
+    },
+    {
+      "type": "text",
+      "content": "The constant 'G' in the equation is the Universal Gravitational Constant. It is a fundamental constant of nature, meaning it is believed to be the same everywhere in the universe. Its extremely small value (\\$6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$) explains why gravitational forces are only noticeable when massive objects are involved. The value of G was first measured with reasonable accuracy by Henry Cavendish in 1798 using a sensitive torsion balance, an experiment often called 'weighing the Earth' because it allowed for the calculation of Earth's mass for the first time."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the gravitational force between Earth (mass \\$5.97 \\times 10^{24}$ kg) and the Moon (mass \\$7.35 \\times 10^{22}$ kg) if their average centre-to-centre distance is \\$3.84 \\times 10^8$ m. Use $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$.",
+      "solution": "1.  Identify given values:\n    $m_1 = 5.97 \\times 10^{24}$ kg (Earth's mass)\n    $m_2 = 7.35 \\times 10^{22}$ kg (Moon's mass)\n    $r = 3.84 \\times 10^8$ m (centre-to-centre distance)\n    $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$ (universal gravitational constant)\n2.  Write down the formula: $F = G \\frac{m_1 m_2}{r^2}$\n3.  Substitute the values into the formula:\n    $F = (6.67 \\times 10^{-11}) \\frac{(5.97 \\times 10^{24})(7.35 \\times 10^{22})}{(3.84 \\times 10^8)^2}$\n4.  Calculate the product of masses:\n    $(5.97 \\times 10^{24}) \\times (7.35 \\times 10^{22}) = 4.38795 \\times 10^{47}$\n5.  Calculate the square of the distance:\n    $(3.84 \\times 10^8)^2 = 1.47456 \\times 10^{17}$\n6.  Perform the division:\n    $\\frac{4.38795 \\times 10^{47}}{1.47456 \\times 10^{17}} \\approx 2.9758 \\times 10^{30}$\n7.  Multiply by G:\n    $F = (6.67 \\times 10^{-11}) \\times (2.9758 \\times 10^{30}) \\approx 1.9848 \\times 10^{20}$ N\n8.  State the final answer (to 3 significant figures):\n    The gravitational force between Earth and the Moon is approximately \\$1.98 \\times 10^{20}$ N."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two large spheres with masses $M_A = 200$ kg and $M_B = 500$ kg are placed with their centres 4.0 m apart. A smaller object with mass $m = 10$ kg is placed on the line connecting their centres, at a distance of 1.0 m from the 200 kg sphere. Calculate the net gravitational force on the 10 kg object. Use $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$.",
+      "solution": "1.  **Identify forces and distances:** The 10 kg mass (m) is attracted by both $M_A$ and $M_B$. Let $F_A$ be the force from $M_A$ and $F_B$ be the force from $M_B$. These forces act in opposite directions along the line connecting the centres.\n    - Distance to $M_A$, $r_A = 1.0$ m.\n    - Distance to $M_B$, $r_B = 4.0 \\text{ m} - 1.0 \\text{ m} = 3.0$ m.\n2.  **Calculate the force from $M_A$ ($F_A$):**\n    $F_A = G \\frac{M_A m}{r_A^2} = (6.67 \\times 10^{-11}) \\frac{(200)(10)}{(1.0)^2}$\n    $F_A = (6.67 \\times 10^{-11}) \\times 2000 = 1.334 \\times 10^{-7}$ N (directed towards $M_A$).\n3.  **Calculate the force from $M_B$ ($F_B$):**\n    $F_B = G \\frac{M_B m}{r_B^2} = (6.67 \\times 10^{-11}) \\frac{(500)(10)}{(3.0)^2}$\n    $F_B = (6.67 \\times 10^{-11}) \\frac{5000}{9} = 3.7056 \\times 10^{-8}$ N (directed towards $M_B$).\n4.  **Calculate the net force ($F_{net}$):**\n    Since the forces are in opposite directions, we find the net force by subtracting the smaller force from the larger one. Let's define the direction towards $M_A$ as positive.\n    $F_{net} = F_A - F_B$\n    $F_{net} = (1.334 \\times 10^{-7}) - (3.7056 \\times 10^{-8})$\n    To subtract, we can express $F_B$ as \\$0.37056 \\times 10^{-7}$ N.\n    $F_{net} = (1.334 - 0.37056) \\times 10^{-7} = 0.96344 \\times 10^{-7}$ N.\n    $F_{net} = 9.6344 \\times 10^{-8}$ N.\n5.  **State the final answer:**\n    The net gravitational force on the 10 kg object is \\$9.6 \\times 10^{-8}$ N (to 2 s.f.), directed towards the 200 kg sphere (since $F_A$ is larger)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always remember that the distance 'r' must be measured from the *centre* of one object to the *centre* of the other. For uniform spheres, their mass can be considered at their geometric centre. A common error in exams is using surface-to-surface distance instead of centre-to-centre! When calculating net force, draw a diagram and consider the vector nature of the forces."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=13.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "State and apply Newton's Law of Gravitation, including its formula.",
     "Understand the concept of point masses and how uniform spheres are treated.",
-    "Recall the value and units of the universal gravitational constant (G)."
+    "Recall the value and units of the universal gravitational constant (G).",
+    "Calculate the net gravitational force on a mass due to two or more other masses."
   ],
   "simpleExplanation": {
-    "title": "Gravity's Grip: Point Masses",
-    "summary": "Gravity is the invisible, attractive pull between anything that has mass. Newton's Law helps us calculate exactly how strong this force is, especially when we simplify objects to tiny 'point' masses, making calculations much easier.",
-    "analogy": "Imagine two magnets pulling each other. The stronger the magnets (more mass) and the closer they are, the harder they pull. Gravity is similar, but it works for ALL mass, not just special materials, and it's always pulling things together!",
-    "steps": [
-      "Identify the two masses ($m_1, m_2$) involved in the interaction.",
-      "Measure the exact centre-to-centre distance ($r$) between them.",
-      "Apply Newton's formula using the universal gravitational constant ($G$).",
-      "Calculate the resulting attractive force ($F$) acting on each mass."
-    ]
+    "analogy": "Imagine two magnets pulling each other. The stronger the magnets (more mass) and the closer they are, the harder they pull. Gravity is similar, but it works for ALL mass, not just special materials, and it's always pulling things together!"
   },
+  "faq": [
+    {
+      "q": "Why is 'G' such a small value and what does it mean for gravity?",
+      "a": "The extremely small value of 'G' (universal gravitational constant) means that gravitational forces are only significant and easily observable when at least one of the interacting masses is astronomically large, like planets or stars. For everyday objects, the gravitational force is usually negligible."
+    },
+    {
+      "q": "Can gravitational force ever be repulsive, pushing objects apart?",
+      "a": "No, gravitational forces are exclusively attractive. They always pull masses together and never exhibit repulsive behaviour. This is a fundamental characteristic of gravity."
+    },
+    {
+      "q": "What does 'inverse square law' mean in the context of gravitational force?",
+      "a": "An inverse square law means the gravitational force decreases very rapidly as the distance between two masses increases. Specifically, if you double the distance, the force becomes four times weaker (\\$1/2^2 = 1/4$). If you triple the distance, it becomes nine times weaker (\\$1/3^2 = 1/9$). "
+    }
+  ],
   "flashcards": [
     {
       "front": "What is the fundamental nature of gravitational force?",
@@ -50,7 +138,7 @@
     },
     {
       "front": "What is the approximate numerical value for G?",
-      "back": "$6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$"
+      "back": "\\$6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$"
     },
     {
       "front": "What are the units for the universal gravitational constant G?",
@@ -73,87 +161,19 @@
       "back": "Because the universal gravitational constant (G) has an extremely small value, making the force negligible for everyday objects."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Ever wondered what keeps the Moon orbiting Earth or why you stay firmly on the ground? It's all thanks to **gravitation**, a fundamental **attractive, non-contact force** between any two objects with mass. In this lesson, we'll dive into Newton's Law of Gravitation, a powerful tool for calculating this invisible pull between **point masses**. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **13.2**."
-    },
-    {
-      "type": "heading",
-      "content": "Unpacking Newton's Law of Gravitation"
-    },
-    {
-      "type": "text",
-      "content": "Sir Isaac Newton's groundbreaking law provides a precise way to determine the strength of the attractive force between any two objects possessing mass. It's especially useful when we simplify objects to 'point masses', assuming all their mass is concentrated at a single, infinitesimal point for easier calculations. This simplification is key for understanding cosmic interactions."
-    },
-    {
-      "type": "formula",
-      "content": "$F = G \\frac{m_1 m_2}{r^2}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "13.2 Gravitational force between point masses.",
-        "For a point outside a uniform sphere, the mass of the sphere may be considered to be a point mass at its centre.",
-        "A uniform sphere is one where its mass is distributed evenly .",
-        "The gravitational field lines around a uniform sphere are therefore identical to those around a point mass.",
-        "An object can be regarded as point mass when a body covers a very large distance as compared to its size .",
-        "Radial fields are considered non-uniform fields."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the gravitational force between Earth (mass $5.97 \\times 10^{24}$ kg) and the Moon (mass $7.35 \\times 10^{22}$ kg) if their average centre-to-centre distance is $3.84 \\times 10^8$ m. Use $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$.",
-      "solution": "1.  Identify given values:\n    $m_1 = 5.97 \\times 10^{24}$ kg (Earth's mass)\n    $m_2 = 7.35 \\times 10^{22}$ kg (Moon's mass)\n    $r = 3.84 \\times 10^8$ m (centre-to-centre distance)\n    $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}$ (universal gravitational constant)\n2.  Write down the formula: $F = G \\frac{m_1 m_2}{r^2}$\n3.  Substitute the values into the formula:\n    $F = (6.67 \\times 10^{-11}) \\frac{(5.97 \\times 10^{24})(7.35 \\times 10^{22})}{(3.84 \\times 10^8)^2}$\n4.  Calculate the product of masses:\n    $(5.97 \\times 10^{24}) \\times (7.35 \\times 10^{22}) = 4.38795 \\times 10^{47}$\n5.  Calculate the square of the distance:\n    $(3.84 \\times 10^8)^2 = 1.47456 \\times 10^{17}$\n6.  Perform the division:\n    $\\frac{4.38795 \\times 10^{47}}{1.47456 \\times 10^{17}} \\approx 2.9758 \\times 10^{30}$\n7.  Multiply by G:\n    $F = (6.67 \\times 10^{-11}) \\times (2.9758 \\times 10^{30}) \\approx 1.9848 \\times 10^{20}$ N\n8.  State the final answer (to 3 significant figures):\n    The gravitational force between Earth and the Moon is approximately $1.98 \\times 10^{20}$ N."
-    },
-    {
-      "type": "examTip",
-      "content": "Always remember that the distance 'r' must be measured from the *centre* of one object to the *centre* of the other. For uniform spheres, their mass can be considered at their geometric centre. A common error in exams is using surface-to-surface distance instead of centre-to-centre!"
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9702&topic=13.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why is 'G' such a small value and what does it mean for gravity?",
-      "a": "The extremely small value of 'G' (universal gravitational constant) means that gravitational forces are only significant and easily observable when at least one of the interacting masses is astronomically large, like planets or stars. For everyday objects, the gravitational force is usually negligible."
-    },
-    {
-      "q": "Can gravitational force ever be repulsive, pushing objects apart?",
-      "a": "No, gravitational forces are exclusively attractive. They always pull masses together and never exhibit repulsive behaviour. This is a fundamental characteristic of gravity."
-    },
-    {
-      "q": "What does 'inverse square law' mean in the context of gravitational force?",
-      "a": "An inverse square law means the gravitational force decreases very rapidly as the distance between two masses increases. Specifically, if you double the distance, the force becomes four times weaker ($1/2^2 = 1/4$). If you triple the distance, it becomes nine times weaker ($1/3^2 = 1/9$). "
-    }
-  ],
-  "updated": "2026-06-26",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "13.2.1",
+    "13.2.2",
+    "13.2.3",
+    "13.2.4"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/13-2-gravitational-force-between-point-masses.png",
     "alt": "Senpai Corner reference diagram for 13.2 Gravitational force between point masses"
-  }
+  },
+  "updated": "2026-06-26"
 }

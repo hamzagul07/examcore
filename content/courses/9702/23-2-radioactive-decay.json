@@ -6,23 +6,171 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 - Radioactive decay (23.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
+  "durationMin": 25,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Unstable atomic nuclei are constantly transforming into more stable configurations, a fundamental process known as **radioactive decay**. This fascinating phenomenon involves the emission of particles or electromagnetic radiation, shaping everything from medical treatments to determining the age of ancient artefacts. Let's delve into its core characteristics and how we quantify it. This pilot aligns with **Senpai Corner** A Level notes (2025-2027) for topic **23.2**."
+    },
+    {
+      "type": "heading",
+      "content": "The Nature of Radioactive Decay"
+    },
+    {
+      "type": "text",
+      "content": "Radioactive decay isn't something we can control or predict for a single nucleus. It possesses two crucial characteristics: it's **spontaneous** and **random**. This means it occurs without any external influence, such as changes in temperature or pressure, and we can't tell when a specific nucleus will decay. Evidence for this randomness comes from observing the count rate of a radioactive source with a Geiger-Muller tube; the readings fluctuate unpredictably around an average value, confirming that the decays are individual, random events."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "23.2 Radioactive decay.",
+        "Radioactive decay is the spontaneous disintegration of a nucleus to form a more stable nucleus, resulting in the emission of an alpha, beta or gamma particles .",
+        "Evidence for the random nature of radioactive decay can be seen from the fluctuations in the count rate of a Geiger-Muller counter.",
+        "This proves that radioactive decay is both spontaneous and random .",
+        "The average decay rate (A) is the average number of nuclei which are expected to decay per unit overtime .",
+        "The decay constant is the probability that the nucleus will decay per unit time."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Decay Constant (\\lambda)"
+    },
+    {
+      "type": "text",
+      "content": "While individual decays are random, for a large sample, the overall rate of decay can be statistically predicted. The **decay constant** (symbol \\lambda, pronounced 'lambda') helps us quantify this. It represents the probability that any single nucleus will decay per unit of time. A larger \\lambda means a higher probability of decay and thus a less stable nucleus, leading to a shorter half-life. Conversely, a very small decay constant indicates a very stable isotope that decays slowly over a long period."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Definition**: Probability of a single nucleus decaying per unit time.",
+        "**Unit**: Typically s^{-1} (per second) or year^{-1} (per year).",
+        "Higher \\lambda means a shorter lifetime for the isotope."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Activity (A)"
+    },
+    {
+      "type": "text",
+      "content": "The **activity** of a radioactive sample measures how many nuclei are decaying per second. It's essentially the 'strength' of the radiation from a source. Since it's directly related to the decay constant and the number of undecayed nuclei, activity also decreases as the sample decays. While the SI unit is the Becquerel (Bq), an older, non-SI unit, the Curie (Ci), is sometimes encountered, where 1 Ci = 3.7 x 10¹⁰ Bq."
+    },
+    {
+      "type": "formula",
+      "content": "Activity, $A = \\lambda N$\nWhere:\n$A$ = activity (Bq)\n$\\lambda$ = decay constant (s^{-1})\n$N$ = number of undecayed nuclei"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Definition**: The rate at which nuclei decay in a radioactive sample.",
+        "**SI Unit**: The Becquerel (Bq), where 1 Bq = 1 decay per second (s^{-1}).",
+        "Activity is directly proportional to the number of undecayed nuclei present."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Exponential Decay and Decay Curves"
+    },
+    {
+      "type": "text",
+      "content": "The number of undecayed nuclei, and consequently the activity, in a radioactive sample decreases exponentially over time. This means that in equal time intervals, the same *fraction* of remaining nuclei will decay, not the same absolute number. When plotted on a graph of N or A against time, this relationship produces a characteristic exponential decay curve that starts at N₀ (or A₀) and asymptotically approaches zero but never quite reaches it. These exponential relationships are critical for calculations."
+    },
+    {
+      "type": "formula",
+      "content": "Number of undecayed nuclei: $N = N_0 e^{-\\lambda t}$\nActivity: $A = A_0 e^{-\\lambda t}$\nWhere:\n$N_0$ = initial number of nuclei\n$A_0$ = initial activity\n$N$ = number of nuclei at time $t$\n$A$ = activity at time $t$\n$e$ = Euler's number (approx. 2.718)"
+    },
+    {
+      "type": "heading",
+      "content": "Half-Life ($t_{1/2}$)"
+    },
+    {
+      "type": "text",
+      "content": "The **half-life** is a unique characteristic for each radioactive isotope. It's the time it takes for exactly half of the radioactive nuclei in a sample to decay. After one half-life, 50\\% of the original sample remains. After two half-lives, 25\\% (half of 50\\%) remains, and so on. Importantly, the half-life remains constant, regardless of the initial amount of the substance or its physical conditions."
+    },
+    {
+      "type": "formula",
+      "content": "Half-life and decay constant: $t_{1/2} = \\frac{\\ln 2}{\\lambda}$\nWhere:\n$t_{1/2}$ = half-life (s, min, hr, etc.)\n$\\lambda$ = decay constant (s^{-1}, min^{-1}, hr^{-1}, etc.)\n$\\ln 2 \\approx 0.693$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Definition**: Time for half of the nuclei in a sample to decay.",
+        "**Constant**: Unique for each isotope, independent of initial quantity.",
+        "After 'n' half-lives, the remaining fraction of nuclei (or activity) is $(1/2)^n$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Derivation of the Half-Life Formula"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between half-life and the decay constant can be derived directly from the exponential decay equation. By definition, at the moment the time elapsed equals one half-life ($t = t_{1/2}$), the number of remaining nuclei ($N$) will be exactly half of the initial number ($N = N_0 / 2$). By substituting these conditions into the decay equation, we can isolate and solve for $t_{1/2}$."
+    },
+    {
+      "type": "formula",
+      "content": "Start with the decay equation: $N = N_0 e^{-\\lambda t}$\nSubstitute $N = N_0/2$ and $t = t_{1/2}$:\n$\\frac{N_0}{2} = N_0 e^{-\\lambda t_{1/2}}$\nDivide by $N_0$:\n$\\frac{1}{2} = e^{-\\lambda t_{1/2}}$\nTake the natural logarithm (ln) of both sides:\n$\\ln(\\frac{1}{2}) = \\ln(e^{-\\lambda t_{1/2}})$\nUsing logarithm rules, $\\ln(1/x) = -\\ln(x)$ and $\\ln(e^y) = y$:\n$-\\ln(2) = -\\lambda t_{1/2}$\nFinally, rearrange for $t_{1/2}$:\n$t_{1/2} = \\frac{\\ln 2}{\\lambda}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A radioactive isotope has a decay constant of \\$2.5 \\times 10^{-3}$ s^{-1}. Calculate its half-life in seconds. Then, if a sample initially has an activity of 480 Bq, what will its activity be after 5.0 minutes?",
+      "solution": "1. **Calculate the half-life ($t_{1/2}$):**\n   Using the formula $t_{1/2} = \\frac{\\ln 2}{\\lambda}$\n   $t_{1/2} = \\frac{0.693}{2.5 \\times 10^{-3} \\text{ s}^{-1}}$\n   $t_{1/2} = 277.2$ s\n   So, the half-life is approximately **277 s** (to 3 s.f.).\n\n2. **Convert time to seconds:**\n   Time $t = 5.0 \\text{ minutes} = 5.0 \\times 60 \\text{ s} = 300 \\text{ s}$\n\n3. **Calculate the activity (A) after 300 s:**\n   Using the exponential decay formula for activity: $A = A_0 e^{-\\lambda t}$\n   $A = 480 \\text{ Bq} \\times e^{(-2.5 \\times 10^{-3} \\mathrm{s}^{-1} \\times 300 \\text{ s})}$\n   $A = 480 \\times e^{(-0.75)}$\n   $A = 480 \\times 0.47236...$\n   $A = 226.73 \\text{ Bq}$\n   Therefore, the activity after 5.0 minutes will be approximately **227 Bq** (to 3 s.f.)."
+    },
+    {
+      "type": "workedExample",
+      "question": "An ancient wooden artifact is found to have a carbon-14 activity of 0.180 Bq per gram of carbon. A modern, living sample of wood has an activity of 0.250 Bq per gram of carbon. Given that the half-life of carbon-14 is 5730 years, calculate the age of the artifact.",
+      "solution": "1. **Calculate the decay constant (\\lambda):**\n   The half-life is given in years, so we should calculate \\lambda in units of year^{-1}.\n   $t_{1/2} = \\frac{\\ln 2}{\\lambda} \\implies \\lambda = \\frac{\\ln 2}{t_{1/2}}$\n   $\\lambda = \\frac{0.693}{5730 \\text{ years}} = 1.2096 \\times 10^{-4} \\text{ year}^{-1}$\n\n2. **Use the exponential decay formula for activity:**\n   The formula is $A = A_0 e^{-\\lambda t}$, where $A$ is the current activity and $A_0$ is the initial activity.\n   $A = 0.180$ Bq\n   $A_0 = 0.250$ Bq\n   \\$0.180 = 0.250 \\times e^{(-1.2096 \\times 10^{-4} \\times t)}$\n\n3. **Solve for time (t):**\n   First, isolate the exponential term.\n   $\\frac{0.180}{0.250} = e^{(-1.2096 \\times 10^{-4} \\times t)}$\n   \\$0.72 = e^{(-1.2096 \\times 10^{-4} \\times t)}$\n   Take the natural logarithm of both sides to remove the exponential.\n   $\\ln(0.72) = -1.2096 \\times 10^{-4} \\times t$\n   $-0.3285 = -1.2096 \\times 10^{-4} \\times t$\n   Now, solve for t.\n   $t = \\frac{-0.3285}{-1.2096 \\times 10^{-4}} = 2715.8 \\text{ years}$\n\n4. **Final Answer:**\n   The age of the artifact is approximately **2720 years** (to 3 significant figures)."
+    },
+    {
+      "type": "examTip",
+      "content": "Remember to always check your units! The decay constant (\\lambda) and time (t) in exponential decay equations ($e^{-\\lambda t}$) must always be in consistent units (e.g., s^{-1} and s, or year^{-1} and years). Mixing them up is a common error in exams."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=23.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Describe the spontaneous and random nature of radioactive decay.",
     "Define and apply the terms decay constant, activity, and half-life.",
-    "Use exponential decay equations and relationships to solve problems."
+    "Use exponential decay equations and relationships to solve problems.",
+    "Derive the relationship between half-life and decay constant."
   ],
   "simpleExplanation": {
-    "title": "Unpacking Radioactive Decay",
-    "summary": "Radioactive decay is when unstable atoms transform into more stable forms by emitting particles or energy. We can't predict exactly when an individual atom will decay, but we can accurately measure the overall rate of decay for a large collection of them.",
-    "analogy": "Imagine popcorn kernels heating up in a pan. You can't predict *which* kernel will pop next, or *exactly when* a specific one will pop - it's spontaneous and random. However, you know that over time, more and more will pop until they're mostly gone. The collective popping rate gives you an idea of the 'activity', even if individual events are unpredictable.",
-    "steps": [
-      "An unstable atomic nucleus releases energy or particles to become more stable.",
-      "This process is **spontaneous** (unaffected by external factors) and **random** (unpredictable for single nuclei).",
-      "The **activity** measures how many nuclei decay per second in a sample.",
-      "The **half-life** is the characteristic time taken for half of the original radioactive nuclei in any given sample to decay."
-    ]
+    "analogy": "Imagine popcorn kernels heating up in a pan. You can't predict *which* kernel will pop next, or *exactly when* a specific one will pop - it's spontaneous and random. However, you know that over time, more and more will pop until they're mostly gone. The collective popping rate gives you an idea of the 'activity', even if individual events are unpredictable."
   },
+  "faq": [
+    {
+      "q": "Why is radioactive decay considered both spontaneous and random?",
+      "a": "It's spontaneous because external conditions like temperature or pressure don't affect when a nucleus decays. It's random because we cannot predict *when* a specific nucleus will decay, only the probability over time for a large sample."
+    },
+    {
+      "q": "What is the practical significance of half-life in real-world applications?",
+      "a": "Half-life is crucial for applications such as carbon dating (determining the age of ancient artefacts), medical diagnostics (using isotopes with short half-lives that quickly decay), and nuclear waste management (planning for safe storage of long-lived radioactive materials)."
+    },
+    {
+      "q": "Can radioactive decay be sped up or slowed down?",
+      "a": "No, radioactive decay is an intrinsic property of the unstable nucleus. It is not influenced by external physical or chemical conditions, meaning its rate cannot be altered by heating, cooling, pressurising, or chemical reactions. The decay constant and half-life are fixed for each isotope."
+    }
+  ],
   "flashcards": [
     {
       "front": "What are the two fundamental characteristics of radioactive decay?",
@@ -58,158 +206,28 @@
     },
     {
       "front": "If a sample undergoes 3 half-lives, what fraction of its initial activity remains?",
-      "back": "$(1/2)^3 = 1/8$ or 12.5% remains."
+      "back": "$(1/2)^3 = 1/8$ or 12.5\\% remains."
     },
     {
       "front": "What are the typical units for the decay constant (\\lambda)?",
       "back": "Per second (s^{-1}) or per year (year^{-1}) depending on the half-life duration."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Unstable atomic nuclei are constantly transforming into more stable configurations, a fundamental process known as **radioactive decay**. This fascinating phenomenon involves the emission of particles or electromagnetic radiation, shaping everything from medical treatments to determining the age of ancient artefacts. Let's delve into its core characteristics and how we quantify it. This pilot aligns with **Senpai Corner** A Level notes (2025-2027) for topic **23.2**."
-    },
-    {
-      "type": "heading",
-      "content": "The Nature of Radioactive Decay"
-    },
-    {
-      "type": "text",
-      "content": "Radioactive decay isn't something we can control or predict for a single nucleus. It possesses two crucial characteristics: it's **spontaneous** and **random**. This means it occurs without any external influence, such as changes in temperature or pressure, and we can't tell when a specific nucleus will decay."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "23.2 Radioactive decay.",
-        "Radioactive decay is the spontaneous disintegration of a nucleus to form a more stable nucleus, resulting in the emission of an alpha, beta or gamma particles .",
-        "Evidence for the random nature of radioactive decay can be seen from the fluctuations in the count rate of a Geiger-Muller counter.",
-        "This proves that radioactive decay is both spontaneous and random .",
-        "The average decay rate (A) is the average number of nuclei which are expected to decay per unit overtime .",
-        "The decay constant is the probability that the nucleus will decay per unit time."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "The Decay Constant (\\lambda)"
-    },
-    {
-      "type": "text",
-      "content": "While individual decays are random, for a large sample, the overall rate of decay can be statistically predicted. The **decay constant** (symbol \\lambda, pronounced 'lambda') helps us quantify this. It represents the probability that any single nucleus will decay per unit of time. A larger \\lambda means a higher probability of decay."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Definition**: Probability of a single nucleus decaying per unit time.",
-        "**Unit**: Typically s^{-1} (per second).",
-        "Higher \\lambda means a shorter lifetime for the isotope."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Activity (A)"
-    },
-    {
-      "type": "text",
-      "content": "The **activity** of a radioactive sample measures how many nuclei are decaying per second. It's essentially the 'strength' of the radiation from a source. Since it's directly related to the decay constant and the number of undecayed nuclei, activity also decreases as the sample decays."
-    },
-    {
-      "type": "formula",
-      "content": "Activity, $A = \\lambda N$\nWhere:\n$A$ = activity (Bq)\n$\\lambda$ = decay constant (s^{-1})\n$N$ = number of undecayed nuclei"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Definition**: The rate at which nuclei decay in a radioactive sample.",
-        "**SI Unit**: The Becquerel (Bq), where 1 Bq = 1 decay per second (s^{-1}).",
-        "Activity is directly proportional to the number of undecayed nuclei present."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Exponential Decay"
-    },
-    {
-      "type": "text",
-      "content": "The number of undecayed nuclei, and consequently the activity, in a radioactive sample decreases exponentially over time. This means that in equal time intervals, the same *fraction* of remaining nuclei will decay, not the same absolute number. These exponential relationships are critical for calculations."
-    },
-    {
-      "type": "formula",
-      "content": "Number of undecayed nuclei: $N = N_0 e^{-\\lambda t}$\nActivity: $A = A_0 e^{-\\lambda t}$\nWhere:\n$N_0$ = initial number of nuclei\n$A_0$ = initial activity\n$N$ = number of nuclei at time $t$\n$A$ = activity at time $t$\n$e$ = Euler's number (approx. 2.718)"
-    },
-    {
-      "type": "heading",
-      "content": "Half-Life ($t_{1/2}$)"
-    },
-    {
-      "type": "text",
-      "content": "The **half-life** is a unique characteristic for each radioactive isotope. It's the time it takes for exactly half of the radioactive nuclei in a sample to decay. Importantly, the half-life remains constant, regardless of the initial amount of the substance or its physical conditions."
-    },
-    {
-      "type": "formula",
-      "content": "Half-life and decay constant: $t_{1/2} = \\frac{\\ln 2}{\\lambda}$\nWhere:\n$t_{1/2}$ = half-life (s, min, hr, etc.)\n$\\lambda$ = decay constant (s^{-1}, min^{-1}, hr^{-1}, etc.)\n$\\ln 2 \\approx 0.693$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Definition**: Time for half of the nuclei in a sample to decay.",
-        "**Constant**: Unique for each isotope, independent of initial quantity.",
-        "After 'n' half-lives, the remaining fraction of nuclei (or activity) is $(1/2)^n$."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A radioactive isotope has a decay constant of $2.5 \\times 10^{-3}$ s^{-1}. Calculate its half-life in seconds. Then, if a sample initially has an activity of 480 Bq, what will its activity be after 5.0 minutes?",
-      "solution": "1. **Calculate the half-life ($t_{1/2}$):**\n   Using the formula $t_{1/2} = \\frac{\\ln 2}{\\lambda}$\n   $t_{1/2} = \\frac{0.693}{2.5 \\times 10^{-3}}$ s^{-1}\n   $t_{1/2} = 277.2$ s\n   So, the half-life is approximately **277 s** (to 3 s.f.).\n\n2. **Convert time to seconds:**\n   Time $t = 5.0 \\text{ minutes} = 5.0 \\times 60 \\text{ s} = 300 \\text{ s}$\n\n3. **Calculate the activity (A) after 300 s:**\n   Using the exponential decay formula for activity: $A = A_0 e^{-\\lambda t}$\n   $A = 480 \\text{ Bq} \\times e^{(-2.5 \\times 10^{-3} \\mathrm{s}^{-1} \\times 300 \\text{ s})}$\n   $A = 480 \\times e^{(-0.75)}$\n   $A = 480 \\times 0.47236...$\n   $A = 226.73 \\text{ Bq}$\n   Therefore, the activity after 5.0 minutes will be approximately **227 Bq** (to 3 s.f.)."
-    },
-    {
-      "type": "examTip",
-      "content": "Remember to always check your units! The decay constant (\\lambda) and time (t) in exponential decay equations ($e^{-\\lambda t}$) must always be in consistent units (e.g., s^{-1} and s, or min^{-1} and min). Mixing them up is a common error in exams."
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9702&topic=23.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why is radioactive decay considered both spontaneous and random?",
-      "a": "It's spontaneous because external conditions like temperature or pressure don't affect when a nucleus decays. It's random because we cannot predict *when* a specific nucleus will decay, only the probability over time for a large sample."
-    },
-    {
-      "q": "What is the practical significance of half-life in real-world applications?",
-      "a": "Half-life is crucial for applications such as carbon dating (determining the age of ancient artefacts), medical diagnostics (using isotopes with short half-lives that quickly decay), and nuclear waste management (planning for safe storage of long-lived radioactive materials)."
-    },
-    {
-      "q": "Can radioactive decay be sped up or slowed down?",
-      "a": "No, radioactive decay is an intrinsic property of the unstable nucleus. It is not influenced by external physical or chemical conditions, meaning its rate cannot be altered by heating, cooling, pressurising, or chemical reactions. The decay constant and half-life are fixed for each isotope."
-    }
-  ],
-  "updated": "2026-06-26",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "23.2.1",
+    "23.2.2",
+    "23.2.3",
+    "23.2.4",
+    "23.2.5",
+    "23.2.6"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/23-2-radioactive-decay.png",
     "alt": "Senpai Corner reference diagram for 23.2 Radioactive decay"
-  }
+  },
+  "updated": "2026-06-26"
 }

@@ -1,16 +1,16 @@
 ---
-title: Cambridge 0990 First Language English Grade Boundaries 2026 — June Thresholds Explained
-description: 0990 IGCSE First Language English (9–1) grade boundaries 2026 — IGCSE grades 18 August, threshold tables ~13 August. Estimate reading and writing papers with the calculator.
+title: Cambridge 0990 First Language English Grade Boundaries 2026 ï¿½ June Thresholds Explained
+description: 0990 IGCSE First Language English (9ï¿½1) grade boundaries 2026 ï¿½ IGCSE grades 18 August, threshold tables ~13 August. Estimate reading and writing papers with the calculator.
 date: 2026-06-19
 keywords: 0990 grade boundaries, 0990 grade boundaries 2026, Cambridge IGCSE English grade boundaries, 0990 English thresholds, 0990 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
 
-Official **0990 First Language English (9–1)** grade boundaries for **June 2026** publish in August — **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [grade calculator](/tools/grade-boundary-calculator) using thresholds from recent sessions below.
+Official **0990 First Language English (9ï¿½1)** grade boundaries for **June 2026** publish in August ï¿½ **IGCSE grades 18 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [0990 calculator](/tools/grade-boundary-calculator/0990).
 
 ## Quick answer
 
@@ -18,20 +18,20 @@ Official **0990 First Language English (9–1)** grade boundaries for **June 2026*
 |----------|--------|
 | When are June 2026 **IGCSE grades** released? | **18 August 2026** (06:00 GMT) |
 | When are **threshold tables** published? | **~13 August 2026** |
-| Grading scale? | **9–1** (not A*–G) |
+| Grading scale? | **9ï¿½1** (not A*ï¿½G) |
 | Papers? | Reading (P1) + Directed writing / composition (P2); coursework route optional |
-| Marking style? | **Band descriptors** on extended responses — quote and analyse |
-| Estimate tool | [Grade calculator](/tools/grade-boundary-calculator) (enter official thresholds) |
+| Marking style? | **Band descriptors** on extended responses ï¿½ quote and analyse |
+| Estimate tool | [0990 calculator](/tools/grade-boundary-calculator/0990) (enter official thresholds) |
 
-[Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) · [Results day guide](/blog/cambridge-results-day-august-2026-guide)
+[Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) ï¿½ [Results day guide](/blog/cambridge-results-day-august-2026-guide)
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per component and overall — not fixed percentages. **Grade 9** is awarded on the **aggregate**, not per paper alone.
+Grade boundaries are minimum **raw marks** for each **9ï¿½1** grade on each **0990** component ï¿½ Reading, Directed Writing & Composition, and coursework where entered. They are session-specific raw marks, not classroom percentages. **Grade 9** on your statement reflects the **aggregate** across components, not a single paper marked in isolation.
 
 ## 0990 vs 0500
 
-Many centres still sit **0500** (A*–G). **0990** is the **9–1** parallel syllabus. Confirm your **statement of entry** — do not mix past papers from the wrong code.
+Many centres still sit **0500** (A*ï¿½G). **0990** is the **9ï¿½1** parallel syllabus with different component codes, grade labels, and threshold PDFs. Confirm your **statement of entry** with your exams officer ï¿½ do not mix past papers, mark schemes, or calculator sessions between the two codes. Schools migrating to 9ï¿½1 grading should retire **0500** folders once entry is confirmed.
 
 ## How to estimate your grade
 
@@ -39,7 +39,7 @@ Many centres still sit **0500** (A*–G). **0990** is the **9–1** parallel syllabu
 2. Log marks lost on summary word limits vs writer's effect questions  
 3. Compare raw marks to **June 2024/2023** component thresholds (official PDF)  
 
-Revision: [0500/0990 most-tested skills](/blog/most-repeated-cambridge-english-past-paper-topics-2026) · [0500 past papers guide](/blog/cambridge-0500-igcse-first-language-english-past-papers-guide) · [mark a paper](/mark)
+Revision: [0500/0990 most-tested skills](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ï¿½ [0500 past papers guide](/blog/cambridge-0500-igcse-first-language-english-past-papers-guide) ï¿½ [mark a paper](/mark)
 
 ## Frequently asked questions
 
@@ -49,13 +49,15 @@ Threshold PDFs **~13 August**; grades **18 August**.
 
 ### Is 70% always a grade 9?
 
-No — raw thresholds change every session.
+No ï¿½ raw thresholds change every session.
 
-### Does the calculator show 9–1 grades?
+### Does the calculator show 9ï¿½1 grades?
 
-Enter the official **9–1** thresholds from the Cambridge PDF. Our reference tables map component grades **9?A column, 8?B, … 5?E** for side-by-side comparison with other syllabuses.
+Enter the official **9ï¿½1** thresholds from the Cambridge PDF. Our reference tables map component grades **9?A column, 8?B, ï¿½ 5?E** for side-by-side comparison with other syllabuses.
 
 ## Related subjects
+
+English pathways split by syllabus code â€” confirm **0990** on your statement before following any guide. Do not mix **0500** past papers, thresholds, or calculators with **0990** entries. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
 
 - [9695 A-Level Literature](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026)
 - [0580 IGCSE Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026)
@@ -63,4 +65,4 @@ Enter the official **9–1** thresholds from the Cambridge PDF. Our reference tabl
 
 ## Bottom line
 
-**0990 grade boundaries 2026** land in August — **marked past papers to band descriptors** beat rumour spreadsheets.
+**0990 grade boundaries 2026** arrive **18 August** (grades) with thresholds **~13 August**. Mark reading and writing papers to **band descriptors**, then use the [0990 calculator](/tools/grade-boundary-calculator/0990) with June 2024/2023 ï¿½ official component rows beat any shared Google Sheet or Telegram leak. Your exams officer confirms component codes on the statement of entry.

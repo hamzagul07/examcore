@@ -20,6 +20,7 @@ const IB_EDITORIAL_SLUGS = new Set([
   'ib-cas-complete-guide',
   'ib-how-to-build-a-grade-7-buffer-2026',
   'ib-results-day-2026-what-to-expect',
+  'ib-post-exam-results-prep-2026',
   'ib-grade-boundaries-explained',
   'cambridge-9709-mathematics-grade-boundaries-2026',
   'cambridge-9700-biology-grade-boundaries-2026',
@@ -44,13 +45,17 @@ const IB_EDITORIAL_SLUGS = new Set([
   'cambridge-4037-additional-mathematics-grade-boundaries-2026',
   'cambridge-7707-accounting-grade-boundaries-2026',
   'cambridge-9488-islamic-studies-grade-boundaries-2026',
+  'cambridge-9696-geography-grade-boundaries-2026',
+  'cambridge-0460-geography-grade-boundaries-2026',
   'most-repeated-cambridge-sociology-past-paper-topics-2026',
   'most-repeated-cambridge-geography-past-paper-topics-2026',
   'most-repeated-cambridge-accounting-past-paper-topics-2026',
   'most-repeated-cambridge-law-past-paper-topics-2026',
   'most-repeated-cambridge-media-studies-past-paper-topics-2026',
+  'most-repeated-cambridge-islamic-studies-past-paper-topics-2026',
   'cambridge-post-exam-results-prep-2026',
   'cambridge-may-june-2026-grade-thresholds-what-to-expect',
+  'cambridge-results-day-august-2026-guide',
 ])
 
 export function blogSitemapPriority(slug: string): number {

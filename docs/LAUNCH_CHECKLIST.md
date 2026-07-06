@@ -55,6 +55,7 @@ Production: **https://markscheme.app**
 4. Run `pnpm seo:audit` after content changes; track queries in [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md)
 5. Advanced stack: [SEO_ADVANCED_THIRTEEN.md](./SEO_ADVANCED_THIRTEEN.md) — entity env vars, `pnpm seo:ssr-check` on prod
 6. Information gain / AI retrieval: [SEO_INFORMATION_GAIN_TWELVE.md](./SEO_INFORMATION_GAIN_TWELVE.md) — `/insights`, `pnpm seo:fan-out-lint`, `pnpm seo:ai-visibility`
+7. Results season distribution: [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) — Reddit templates, UTM links, Jul/Aug calendar
 
 ### Optional
 - Uptime monitor on `GET https://markscheme.app/api/health`

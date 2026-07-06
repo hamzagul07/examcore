@@ -26,6 +26,10 @@ import { BoardSubjectFilter } from '@/components/content/BoardSubjectFilter'
 import { FeaturedGuideBlock } from '@/components/content/FeaturedGuideBlock'
 import { GuideArticleCard } from '@/components/content/GuideArticleCard'
 import { TopicHubStrip } from '@/components/content/TopicHubStrip'
+import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
+import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
+import { getResultsDayPhase } from '@/lib/seo/results-day'
+import { isIbResultsSeason } from '@/lib/seo/ib-results-season'
 import { getFeaturedHubPost, getGuideGridPosts } from '@/lib/content/hub-display'
 
 export const metadata = getPageMetadata('/blog', {
@@ -97,6 +101,18 @@ export default function BlogIndexPage() {
         <ContentHubNav />
         <BoardSubjectFilter activeBoard={null} activeSubject={null} />
       </MarketingHero>
+
+      {isIbResultsSeason() && (
+        <MarketingSection className="!pt-0">
+          <IbResultsSpotlight />
+        </MarketingSection>
+      )}
+
+      {!isIbResultsSeason() && getResultsDayPhase() === 'pre-alevel' && (
+        <MarketingSection className="!pt-0">
+          <ResultsDayBanner />
+        </MarketingSection>
+      )}
 
       {featuredPost && (
         <MarketingSection className="!pt-0">

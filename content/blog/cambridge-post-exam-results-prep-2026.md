@@ -39,6 +39,7 @@ Estimate with recent sessions until official tables publish:
 | Economics | 9708 | [9708 boundaries](/blog/cambridge-9708-economics-grade-boundaries-2026) |
 | Business | 9609 | [9609 boundaries](/blog/cambridge-9609-business-grade-boundaries-2026) |
 | History | 9489 | [9489 boundaries](/blog/cambridge-9489-history-grade-boundaries-2026) |
+| Geography | 9696 | [9696 boundaries](/blog/cambridge-9696-geography-grade-boundaries-2026) |
 | Psychology | 9990 | [9990 boundaries](/blog/cambridge-9990-psychology-grade-boundaries-2026) |
 | Sociology | 9699 | [9699 boundaries](/blog/cambridge-9699-sociology-grade-boundaries-2026) |
 | Accounting | 9706 | [9706 boundaries](/blog/cambridge-9706-accounting-grade-boundaries-2026) |
@@ -61,6 +62,7 @@ Estimate with recent sessions until official tables publish:
 | Physics | 5054 | [5054 boundaries](/blog/cambridge-5054-physics-grade-boundaries-2026) |
 | Additional Maths | 4037 | [4037 boundaries](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) |
 | Accounting | 7707 | [7707 boundaries](/blog/cambridge-7707-accounting-grade-boundaries-2026) |
+| Geography | 0460 | [0460 boundaries](/blog/cambridge-0460-geography-grade-boundaries-2026) |
 
 All subjects: [grade boundaries hub](/guides/grade-boundaries) ? [calculator](/tools/grade-boundary-calculator)
 
@@ -138,7 +140,7 @@ Remark rules: [EAR guide](/blog/cambridge-enquiry-about-results-ear-guide-2026).
 
 ## IB students in the same window
 
-IB May results release **early July** ? different calendar. See [IB results day 2026](/blog/ib-results-day-2026-what-to-expect) and [grade 7 buffer strategy](/blog/ib-how-to-build-a-grade-7-buffer-2026).
+IB May results release **early July** ? different calendar. See [IB post-exam prep](/blog/ib-post-exam-results-prep-2026), [IB results day 2026](/blog/ib-results-day-2026-what-to-expect), and [grade 7 buffer strategy](/blog/ib-how-to-build-a-grade-7-buffer-2026).
 
 ## Frequently asked questions
 

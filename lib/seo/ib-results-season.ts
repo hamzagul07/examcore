@@ -1,11 +1,13 @@
 /**
- * IB May 2026 results season ó peak search demand early July.
+ * IB May 2026 results season ù peak search demand early July.
  * May session results typically release the first week of July (often 6 July).
  */
 
 export const IB_MAY_2026_RESULTS_SLUG = 'ib-results-day-2026-what-to-expect'
 
-/** Typical student portal release ó confirm with your IB Coordinator. */
+export const IB_POST_EXAM_PREP_SLUG = 'ib-post-exam-results-prep-2026'
+
+/** Typical student portal release ù confirm with your IB Coordinator. */
 export const IB_MAY_2026_RESULTS_UTC = Date.parse('2026-07-06T12:00:00.000Z')
 
 /** Active window for homepage / hub spotlight and featured hub pick. */
@@ -47,18 +49,18 @@ export function getIbResultsSpotlightCopy(now = new Date()): IbResultsSpotlightC
 
   if (phase === 'pre-results') {
     return {
-      overline: `May 2026 session ∑ ${days} days`,
+      overline: `May 2026 session ù ${days} days`,
       title: 'IB results release in early July',
       body: 'Get your candidate PIN from your IB Coordinator, know the 24-point pass rules, and plan EUR or retakes before results land.',
       primaryHref: `/blog/${IB_MAY_2026_RESULTS_SLUG}`,
       primaryLabel: 'Results day guide',
-      secondaryHref: '/blog/ib-grade-boundaries-explained',
-      secondaryLabel: 'Grade boundaries',
+      secondaryHref: `/blog/${IB_POST_EXAM_PREP_SLUG}`,
+      secondaryLabel: 'Pre-results checklist',
     }
   }
 
   return {
-    overline: 'May 2026 ∑ results week',
+    overline: 'May 2026 ó results week',
     title: 'IB results are out ó read your score and plan next steps',
     body: 'Log in at candidates.ibo.org, check your /45 total and subject grades, then use our guides for remarks, retakes, or university calls.',
     primaryHref: `/blog/${IB_MAY_2026_RESULTS_SLUG}`,

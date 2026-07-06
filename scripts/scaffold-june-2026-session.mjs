@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url'
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const DATA_DIR = path.join(ROOT, 'content', 'data', 'grade-boundaries')
 const INCOMING_DIR = path.join(DATA_DIR, 'incoming')
-const PRIORITY_CODES = ['9709', '9700', '9702', '9708', '9701', '4024', '9609', '9990', '9489']
+const PRIORITY_CODES = ['9709', '9700', '9702', '9708', '9701', '4024', '9609', '9990', '9489', '9696', '0460']
 
 function parseArgs(argv) {
   const args = { all: false, code: null }
@@ -28,7 +28,7 @@ function parseArgs(argv) {
 function scaffold(code) {
   const srcFile = path.join(DATA_DIR, `${code}.json`)
   if (!fs.existsSync(srcFile)) {
-    console.error(`No data file for ${code} ˇ create content/data/grade-boundaries/${code}.json first.`)
+    console.error(`No data file for ${code} ù create content/data/grade-boundaries/${code}.json first.`)
     return false
   }
 
@@ -54,7 +54,7 @@ function scaffold(code) {
   fs.mkdirSync(INCOMING_DIR, { recursive: true })
   const out = path.join(INCOMING_DIR, `${code}-june-2026.json`)
   fs.writeFileSync(out, JSON.stringify(session, null, 2) + '\n')
-  console.log(`  wrote ${path.relative(ROOT, out)} (${session.components.length} components ˇ verify thresholds from PDF)`)
+  console.log(`  wrote ${path.relative(ROOT, out)} (${session.components.length} components ù verify thresholds from PDF)`)
   return true
 }
 

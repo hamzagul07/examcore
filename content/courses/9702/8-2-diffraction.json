@@ -5,24 +5,137 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 2 — Diffraction (8.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
+  "summary": "Cambridge 9702 Paper 2 - Diffraction (8.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 25,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Imagine sound bending around a corner or light spreading after passing through a tiny gap. This fascinating wave phenomenon is called **diffraction**. It's how waves, from light to sound, spread out when they encounter an obstacle or an opening, revealing their wave nature. Understanding diffraction is key to explaining everything from crystal structures to the vivid colours in a CD. This pilot aligns with **Senpai Corner** AS notes (2025-2027) for topic **8.2**."
+    },
+    {
+      "type": "heading",
+      "content": "What is Diffraction?"
+    },
+    {
+      "type": "text",
+      "content": "Diffraction is fundamentally the **spreading of a wave** as it passes through an aperture (a gap) or moves around an obstacle. This bending effect is a characteristic property of all waves. The most significant diffraction occurs when the size of the gap or obstacle is roughly the same as the wave's wavelength ($λ$). If the gap is much larger than the wavelength, the waves mostly continue in a straight line, and diffraction is barely noticeable. This phenomenon can be explained by Huygens' principle, which states that every point on a wavefront can be considered a source of secondary spherical wavelets."
+    },
+    {
+      "type": "heading",
+      "content": "Single-Slit Diffraction"
+    },
+    {
+      "type": "text",
+      "content": "When monochromatic (single colour) light passes through a narrow single slit, it doesn't just create a single bright line. Instead, it forms a distinctive **diffraction pattern** on a screen. This pattern consists of a very bright and wide central fringe (or maximum), flanked by alternating dimmer bright and dark fringes (minima). The intensity of these secondary bright fringes rapidly decreases as you move further from the central maximum. The width of the central maximum is inversely proportional to the width of the slit; a narrower slit causes the light to spread out more, resulting in a wider central fringe."
+    },
+    {
+      "type": "heading",
+      "content": "Diffraction Gratings"
+    },
+    {
+      "type": "text",
+      "content": "A **diffraction grating** is an optical component featuring a large number of very narrow, parallel slits, all spaced equally apart. Common gratings might have hundreds or thousands of lines per millimetre. When light passes through a grating, the wavelets from each slit interfere. Unlike a single or double slit, the large number of slits in a grating causes the bright maxima to become exceptionally **sharp, bright, and well-separated**. This is because destructive interference is almost perfect in all directions except for the precise angles of the maxima, cancelling out the light between them. This enhanced clarity makes gratings incredibly useful for precise measurements."
+    },
+    {
+      "type": "heading",
+      "content": "The Diffraction Grating Formula"
+    },
+    {
+      "type": "formula",
+      "content": "$d \\sin \\theta = n\\lambda$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$d$: The slit spacing (distance between adjacent slits). Often calculated from the number of lines per unit length (e.g., $d = 1 / N$, where $N$ is lines per metre).",
+        "$\\theta$: The angle of the $n$-th order maximum relative to the central ($n=0$) maximum.",
+        "$\\lambda$: The wavelength of the incident light.",
+        "$n$: The order of the maximum (an integer: \\$0, 1, 2, ...$)."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "This formula describes the conditions for **constructive interference** (bright maxima) when light passes through a diffraction grating. A key implication is that for a larger wavelength ($\\lambda$), the diffraction angle ($\\theta$) will also be larger for a given order, meaning the pattern spreads out more. This is why gratings can separate white light into its constituent colours, forming a spectrum. Remember that $\\sin \\theta$ cannot exceed 1, which limits the maximum possible order ($n_{max}$) you can observe. If $n\\lambda/d$ calculates to more than 1, that order simply won't be visible."
+    },
+    {
+      "type": "heading",
+      "content": "Worked Examples"
+    },
+    {
+      "type": "workedExample",
+      "question": "Monochromatic light of wavelength 550 nm is incident normally on a diffraction grating that has 400 lines per mm. Calculate the angle of the second-order maximum.",
+      "solution": "The angle of the second-order maximum is \\$26.1^{\\circ}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A beam of red light with a wavelength of 680 nm is directed at a diffraction grating. The first-order maximum is observed at an angle of \\$19.5^{\\circ}$.\n(a) Calculate the slit spacing of the grating.\n(b) Determine the total number of maxima that can be observed.",
+      "solution": "(a) The slit spacing is \\$2.04 \\times 10^{-6}$ m.\n(b) The highest order is $n=2$. The total number of maxima that can be observed is 5."
+    },
+    {
+      "type": "heading",
+      "content": "Applications of Diffraction Gratings"
+    },
+    {
+      "type": "text",
+      "content": "Diffraction gratings are powerful tools in science and technology due to their ability to separate light into its constituent wavelengths with high precision. This makes them fundamental components in spectroscopy. For example, in astronomy, light from a distant star can be passed through a grating to produce a spectrum. By analysing the dark absorption lines in this spectrum, scientists can identify the chemical elements present in the star's atmosphere. Similarly, in X-ray crystallography, the regular, repeating arrangement of atoms in a crystal acts as a natural three-dimensional diffraction grating for X-rays, allowing scientists to determine the crystal's atomic structure."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Spectroscopy:** Used to analyse light from stars and other sources to identify the chemical elements present through their unique absorption or emission spectra.",
+        "**X-ray Crystallography:** Essential for determining the precise arrangement of atoms and molecules within crystal structures.",
+        "**Optical Devices:** Found in spectrometers, monochromators, and used to create the iridescent colours on CDs and DVDs."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always check units! Ensure 'd' and '$\\lambda$' are in the same units (e.g., metres). Remember that 'n' must be an integer; if your calculation for $n_{max}$ isn't a whole number, round *down* to the nearest integer, as partial orders are not observable bright maxima. When asked for the total number of maxima, don't forget to count the central maximum ($n=0$) and the maxima on both sides."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=8.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Define diffraction and identify conditions for significant diffraction.",
     "Describe single-slit and diffraction grating patterns, noting their key characteristics.",
     "Apply the diffraction grating formula ($d \\sin \\theta = n\\lambda$) to solve problems involving wavelength, angle, and slit spacing."
   ],
   "simpleExplanation": {
-    "title": "Understanding Diffraction",
-    "summary": "Diffraction describes how waves bend and spread out when they encounter an opening or an obstruction. It's a fundamental wave property that explains why you can hear sounds around corners and see complex light patterns.",
-    "analogy": "Imagine ripples in a pond reaching a small opening in a barrier. Instead of just going straight through, the ripples spread out in a curved pattern on the other side. That's diffraction in action!",
-    "steps": [
-      "1. Wave approaches an obstacle or gap.",
-      "2. Wavefronts bend and spread.",
-      "3. New wavelets appear to originate from the edges.",
-      "4. A characteristic pattern forms beyond the barrier."
-    ]
+    "analogy": "Imagine ripples in a pond reaching a small opening in a barrier. Instead of just going straight through, the ripples spread out in a curved pattern on the other side. That's diffraction in action!"
   },
+  "faq": [
+    {
+      "q": "What is the main difference between diffraction and interference?",
+      "a": "Diffraction describes the spreading of a single wavefront when it passes through a gap or around an obstacle, essentially causing the wave to bend. Interference, on the other hand, occurs when two or more coherent waves superpose, leading to a resultant wave with varying amplitude (bright and dark fringes). Diffraction through multiple slits (like a grating) creates the conditions for interference to become observable as a distinct pattern."
+    },
+    {
+      "q": "Why is the central bright fringe in single-slit diffraction wider?",
+      "a": "The central maximum is formed by light waves from all parts of the slit arriving at the screen with very little path difference, leading to constructive interference across a broader angular range. For higher-order maxima, the conditions for constructive interference are much more specific and involve cancellation from different parts of the slit, resulting in narrower and dimmer bright fringes."
+    },
+    {
+      "q": "Can diffraction occur with sound waves?",
+      "a": "Yes, absolutely! Diffraction is a property of all waves. Sound waves have much larger wavelengths than visible light (typically centimetres to metres), so they diffract much more noticeably around everyday objects like doorways and corners. This is why you can hear someone speaking in another room even if you cannot see them."
+    }
+  ],
   "flashcards": [
     {
       "front": "Define diffraction.",
@@ -73,127 +186,17 @@
       "back": "The intensity decreases rapidly with increasing distance from the central maximum."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Imagine sound bending around a corner or light spreading after passing through a tiny gap. This fascinating wave phenomenon is called **diffraction**. It's how waves, from light to sound, spread out when they encounter an obstacle or an opening, revealing their wave nature. Understanding diffraction is key to explaining everything from crystal structures to the vivid colours in a CD. This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **8.2**."
-    },
-    {
-      "type": "heading",
-      "content": "What is Diffraction?"
-    },
-    {
-      "type": "text",
-      "content": "Diffraction is fundamentally the **spreading of a wave** as it passes through an aperture (a gap) or moves around an obstacle. This bending effect is a characteristic property of all waves. The most significant diffraction occurs when the size of the gap or obstacle is roughly the same as the wave's wavelength. If the obstacle or gap is much larger than the wavelength, the waves mostly continue in a straight line, and diffraction is barely noticeable."
-    },
-    {
-      "type": "heading",
-      "content": "Single-Slit Diffraction"
-    },
-    {
-      "type": "text",
-      "content": "When monochromatic (single colour) light passes through a narrow single slit, it doesn't just create a single bright line. Instead, it forms a distinctive **diffraction pattern** on a screen. This pattern consists of a very bright and wide central fringe, flanked by alternating dimmer bright and dark fringes. The intensity of these bright fringes rapidly decreases as you move further from the central maximum."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "8.2 Diffraction.",
-        "Waves spread out when it passes through an opening or an edge.",
-        "This phenomenon is called diffraction .",
-        "Diffraction results in the waves having reduced amplitude .",
-        "The extent of diffraction depends on the width of the gap compared with the wavelength of the waves.",
-        "Ripple tanks is a common experiment to demonstrate diffraction of water waves."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Diffraction Gratings"
-    },
-    {
-      "type": "text",
-      "content": "A **diffraction grating** is an optical component featuring a large number of very narrow, parallel slits, all spaced equally apart. Unlike a single slit, or even a double slit, diffraction gratings produce exceptionally **sharp and bright interference patterns**. This enhanced clarity makes them incredibly useful for precise measurements and analysis in experiments, particularly when splitting light into its constituent wavelengths."
-    },
-    {
-      "type": "heading",
-      "content": "The Diffraction Grating Formula"
-    },
-    {
-      "type": "formula",
-      "content": "$d \\sin \\theta = n\\lambda$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "$d$: The spacing between adjacent slits on the grating.",
-        "$\\theta$: The angle of the $n$-th order maximum relative to the central normal.",
-        "$\\lambda$: The wavelength of the incident light.",
-        "$n$: The order of the maximum (an integer, e.g., $n=0$ for central, $n=1$ for first order)."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "This formula describes the conditions for **constructive interference** (bright maxima) when light passes through a diffraction grating. A key implication is that for a larger wavelength ($\\lambda$), the diffraction angle ($\\theta$) will also be larger for a given order, meaning the pattern spreads out more. Remember that $\\sin \\theta$ cannot exceed 1, which limits the maximum possible order ($n_{max}$) you can observe. If $n\\lambda/d$ calculates to more than 1, that order simply won't be visible."
-    },
-    {
-      "type": "heading",
-      "content": "Applications of Diffraction Gratings"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Spectroscopy:** Used to analyse light from stars and other sources to identify the chemical elements present through their unique absorption or emission spectra.",
-        "**X-ray Crystallography:** Essential for determining the precise arrangement of atoms and molecules within crystal structures.",
-        "**Optical Devices:** Found in some spectrometers, monochromators, and even the iridescent surfaces of CDs, DVDs, and Blu-ray discs."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Always check units! Ensure 'd' and '$\\lambda$' are in the same units (e.g., metres). Remember that 'n' must be an integer; if your calculation for $n_{max}$ isn't a whole number, round *down* to the nearest integer, as partial orders are not observable bright maxima."
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9702&topic=8.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Senpai Corner AS Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the main difference between diffraction and interference?",
-      "a": "Diffraction describes the spreading of a single wavefront when it passes through a gap or around an obstacle, essentially causing the wave to bend. Interference, on the other hand, occurs when two or more coherent waves superpose, leading to a resultant wave with varying amplitude (bright and dark fringes). Diffraction often creates the conditions for interference to become observable."
-    },
-    {
-      "q": "Why is the central bright fringe in single-slit diffraction wider?",
-      "a": "The central maximum is formed by light waves from all parts of the slit arriving at the screen with very little path difference, leading to constructive interference across a broader angular range. For higher-order maxima, the conditions for constructive interference are much more specific, resulting in narrower bright fringes."
-    },
-    {
-      "q": "Can diffraction occur with sound waves?",
-      "a": "Yes, absolutely! Diffraction is a property of all waves. Sound waves have much larger wavelengths than visible light, so they diffract much more noticeably around everyday objects like doorways and corners. This is why you can hear someone speaking in another room even if you cannot see them."
-    }
-  ],
-  "updated": "2026-06-26",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "8.2.1",
+    "8.2.2"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/8-2-diffraction.png",
     "alt": "Senpai Corner reference diagram for 8.2 Diffraction"
-  }
+  },
+  "updated": "2026-06-26"
 }

@@ -4,7 +4,7 @@ import { getIbSubject } from '@/lib/ib/catalog'
 import { ibSubjectForSlug } from '@/lib/ib/slug-resolve'
 import {
   getSiteHeaderTone,
-  useTransparentHeaderShell,
+  shouldUseTransparentHeaderShell,
   type SiteHeaderTone,
 } from '@/lib/site-header-tone'
 
@@ -137,7 +137,7 @@ export function getSiteHeaderConfig(
   variant: SiteHeaderVariant
 ): SiteHeaderConfig {
   const tone = getSiteHeaderTone(pathname)
-  const transparentShell = useTransparentHeaderShell(variant, tone)
+  const transparentShell = shouldUseTransparentHeaderShell(variant, tone)
 
   if (variant === 'app') {
     if (tone === 'mark') {

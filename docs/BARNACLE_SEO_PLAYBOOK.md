@@ -157,7 +157,7 @@ Use with [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md) GSC tiers and templates **4�
 | **18 Aug** | IGCSE/O-Level grades — stress **18 Aug** not 11 Aug | r/igcse template **4** (O-Level row) |
 | **19–31 Aug** | November resit planning links | Template **6** + retakes guide |
 
-**Priority ingest order:** 9709 → 9700 → 9702 → 9701 → 9708 → 0580 → 0610 → 0620 → 0625 → 5090 → 5070 → 5054 → 4024 → 9609 → 9990 → 9489 → 9696 → 0460 (see `PRIORITY_CODES` in `scripts/scaffold-june-2026-session.mjs`).
+**Priority ingest order:** 9709 → 9700 → 9702 → 9701 → 9708 → 0580 → 0610 → 0620 → 0625 → 5090 → 5070 → 5054 → 9695 → 0990 → 2281 → 7115 → 7707 → 4037 → 2210 → 4024 → … (see `PRIORITY_CODES`)
 
 ---
 

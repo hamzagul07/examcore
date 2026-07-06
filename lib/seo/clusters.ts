@@ -99,6 +99,9 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-igcse-most-tested/,
       /^cambridge-results-day/,
       /^cambridge-enquiry-about-results/,
+      /^cambridge-post-exam/,
+      /^cambridge-final-exam-week/,
+      /^why-generic-ai-gets-cambridge/,
       /^how-to-revise-cambridge-\d{4}/,
       /^how-to-get-an-a-star-in-cambridge-/,
       /^how-to-revise-with-/,
@@ -170,6 +173,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
     slugPatterns: [
       /^cambridge-exam-paper-leaks/,
       /^cambridge-assessed-marks/,
+      /^why-generic-ai-gets-cambridge/,
       /^cambridge-9709-maths-resit/,
       /^chatgpt-and-ai-cambridge-exams/,
       /^cambridge-may-june-2026/,
@@ -190,7 +194,12 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
     format: 'comparison',
     pillarBlogSlug: 'best-cambridge-past-paper-revision-resources-2026',
     moneyPath: '/mark',
-    slugPatterns: [/^best-cambridge-past-paper/, /^free-cambridge-a-level-courses/],
+    slugPatterns: [
+      /^best-cambridge-past-paper/,
+      /^free-cambridge-a-level-courses/,
+      /^why-generic-ai-gets-cambridge/,
+      /^ai-marking-cambridge/,
+    ],
   },
   {
     id: 'grade-boundaries',
@@ -207,6 +216,8 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-grade-boundaries/,
       /^how-to-read-cambridge-grade-boundaries/,
       /-grade-boundaries-2026$/,
+      /^cambridge-component-marks/,
+      /^cambridge-may-june-.*-grade-thresholds/,
     ],
   },
   {

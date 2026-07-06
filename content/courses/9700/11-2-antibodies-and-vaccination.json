@@ -5,12 +5,18 @@
   "paper": "P1_P2",
   "paperName": "Paper 1 Multiple Choice & Paper 2 AS Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9700 Paper 2 — Antibodies and vaccination (11.2). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
+  "summary": "Cambridge 9700 Paper 2 — Antibodies and vaccination (11.2). A-Level Notes diagram-backed lesson with premium structure and live visuals. Syllabus coverage: relate the molecular structure of antibodies to their functions outline the hybridoma method for the production of monoclonal antibodies outline the principles of using monoclonal antibodies in the diagnosis of disease and in the treatment of disease describe the differences between active immunity and passive immunity and between natural immunity and artificial immunity explain that vaccines contain antigens that stimulate immune responses to provide long-term immunity explain how vaccination programmes can help to control the spread of infectious diseases",
   "durationMin": 20,
   "learningObjectives": [
     "Describe the structure of antibodies, identifying constant and variable regions, and explain how their specific binding site interacts with antigens.",
     "Differentiate between active and passive immunity, providing examples of each.",
-    "Explain the principle of vaccination, how it confers active immunity, and its role in disease control and herd immunity."
+    "Explain the principle of vaccination, how it confers active immunity, and its role in disease control and herd immunity.",
+    "11.2.1: relate the molecular structure of antibodies to their functions",
+    "11.2.2: outline the hybridoma method for the production of monoclonal antibodies",
+    "11.2.3: outline the principles of using monoclonal antibodies in the diagnosis of disease and in the treatment of disease",
+    "11.2.4: describe the differences between active immunity and passive immunity and between natural immunity and artificial immunity",
+    "11.2.5: explain that vaccines contain antigens that stimulate immune responses to provide long-term immunity",
+    "11.2.6: explain how vaccination programmes can help to control the spread of infectious diseases"
   ],
   "simpleExplanation": {
     "title": "Antibodies & Vaccines Made Simple",
@@ -98,11 +104,6 @@
       ]
     },
     {
-      "type": "workedExample",
-      "question": "Which statement correctly describes a feature of antibodies?",
-      "solution": "The correct answer is **B**. \n*   **A** is incorrect because antibodies are proteins and do not directly break down pathogens; they mark them for destruction or neutralise them. \n*   **C** is incorrect; antibodies are glycoproteins (proteins with carbohydrate chains), not primarily lipids. \n*   **D** is incorrect; antibodies can provide immediate passive immunity (if transferred), but this is short-term, and active immunity is long-term. Also, antibodies *don't* provide active immunity themselves; they are the *product* of active immunity. \n*   **B** is correct: The variable region of an antibody contains the antigen-binding site, which is highly specific to a particular antigen."
-    },
-    {
       "type": "heading",
       "content": "Active vs. Passive Immunity"
     },
@@ -142,6 +143,16 @@
         "Upon subsequent exposure to the actual pathogen, these memory cells trigger a much faster, stronger, and more prolonged **secondary immune response**, rapidly producing a high concentration of specific antibodies to neutralise the threat before symptoms develop.",
         "Vaccination not only protects individuals but also contributes to **'herd immunity'** within a population. This occurs when a sufficiently large proportion of the community is immune, making it difficult for the disease to spread, thereby protecting those who cannot be vaccinated (e.g., infants, immunocompromised individuals)."
       ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In a community of 8,000 people, 92% are vaccinated against a disease. The vaccine is 90% effective. Calculate the maximum number of people who could still contract the disease if exposed. [4 marks]",
+      "solution": "1. Vaccinated population: $0.92 \\times 8000 = 7360$ people.\n2. Vaccine failures: $10\\%$ of vaccinated may still be susceptible: $0.10 \\times 7360 = 736$ people.\n3. Unvaccinated: $8000 - 7360 = 640$ people (fully susceptible).\n4. Maximum susceptible if all exposed: $736 + 640 = 1376$ people.\n\nThis illustrates why high vaccination coverage is needed for herd immunity."
+    },
+    {
+      "type": "workedExample",
+      "question": "Distinguish between active and passive immunity, giving one natural and one artificial example of each. [6 marks]",
+      "solution": "**Active immunity** � the body produces its own antibodies and memory cells after antigen exposure.\n- Natural: recovery from measles infection.\n- Artificial: MMR vaccination.\n\n**Passive immunity** � pre-formed antibodies are received; protection is immediate but short-lived with no memory cells.\n- Natural: IgG crossing the placenta to the fetus.\n- Artificial: injection of antiserum containing monoclonal antibodies."
     },
     {
       "type": "practice",
@@ -204,6 +215,48 @@
       "src": "/courses/diagrams/9700/alnotes/11-2-antibodies-and-vaccination/page-03.png",
       "alt": "A-Level Notes page 3 for 11.2 Antibodies and vaccination",
       "order": 3
+    }
+  ],
+  "syllabusObjectivesCovered": [
+    "11.2.1",
+    "11.2.2",
+    "11.2.3",
+    "11.2.4",
+    "11.2.5",
+    "11.2.6"
+  ],
+  "flashcards": [
+    {
+      "front": "What are the four polypeptide chains in an antibody?",
+      "back": "Two identical heavy chains and two identical light chains, linked by disulfide bonds into a Y-shape."
+    },
+    {
+      "front": "Where is the antigen-binding site located?",
+      "back": "On the variable regions at the tips of the two arms of the Y-shaped antibody molecule."
+    },
+    {
+      "front": "Define active immunity.",
+      "back": "Immunity produced when the body makes its own antibodies and memory cells after exposure to an antigen; long-lasting."
+    },
+    {
+      "front": "Define passive immunity.",
+      "back": "Immunity from receiving pre-formed antibodies; immediate but short-term with no memory cell formation."
+    },
+    {
+      "front": "What is a vaccine?",
+      "back": "A preparation containing antigens (live attenuated, killed, toxoid, or subunit) used to stimulate artificial active immunity safely."
+    },
+    {
+      "front": "How does vaccination lead to memory cells?",
+      "back": "APCs present antigen to T helper cells, which activate B cells; clonal selection and expansion produce plasma cells and memory B cells."
+    },
+    {
+      "front": "What is herd immunity?",
+      "back": "When a high proportion of a population is immune, reducing pathogen spread and protecting non-immune individuals."
+    },
+    {
+      "front": "Name two functions of antibodies.",
+      "back": "Agglutination of pathogens, neutralisation of toxins, opsonisation for phagocytosis, or precipitation of antigens."
     }
   ]
 }

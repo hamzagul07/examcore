@@ -5,12 +5,16 @@
   "paper": "P4",
   "paperName": "Paper 4 A Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9700 Paper 4 — Variation (17.1). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
+  "summary": "Cambridge 9700 Paper 4 — Variation (17.1). A-Level Notes diagram-backed lesson with premium structure and live visuals. Syllabus coverage: explain, with examples, that phenotypic variation is due to genetic factors or environmental factors or a combination of genetic and environmental factors explain what is meant by discontinuous variation and continuous variation explain the genetic basis of discontinuous variation and continuous variation use the t-test to compare the means of two different samples (the formula for the t-test will be provided, as shown in the Mathematical requirements)",
   "durationMin": 20,
   "learningObjectives": [
     "Explain the causes of phenotypic variation, distinguishing between genetic and environmental factors.",
     "Discuss the genetic basis of continuous and discontinuous variation, providing examples.",
-    "Describe how meiosis (crossing over, independent assortment) and random fertilisation contribute to genetic variation."
+    "Describe how meiosis (crossing over, independent assortment) and random fertilisation contribute to genetic variation.",
+    "17.1.1: explain, with examples, that phenotypic variation is due to genetic factors or environmental factors or a combination of genetic and environmental factors",
+    "17.1.2: explain what is meant by discontinuous variation and continuous variation",
+    "17.1.3: explain the genetic basis of discontinuous variation and continuous variation",
+    "17.1.4: use the t-test to compare the means of two different samples (the formula for the t-test will be provided, as shown in the Mathematical requirements)"
   ],
   "simpleExplanation": {
     "title": "Why are we all different?",
@@ -122,6 +126,19 @@
     {
       "type": "examTip",
       "content": "When discussing variation, always distinguish clearly between *causes* (genetic and environmental) and *mechanisms* (e.g., crossing over, independent assortment, mutation). For continuous vs. discontinuous variation, remember the number of genes involved and the extent of environmental impact. Use specific biological terms accurately to score full marks in Paper 4 explanations."
+    },
+    {
+      "type": "heading",
+      "content": "Hardy-Weinberg and allele frequencies"
+    },
+    {
+      "type": "text",
+      "content": "The Hardy-Weinberg equation $p^2 + 2pq + q^2 = 1$ models genotype frequencies when no evolutionary forces act. Here $p$ and $q$ are allele frequencies for a gene with two alleles. Chi-squared tests compare observed phenotype counts with expected ratios to test whether variation fits a predicted genetic model."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a population, allele $A$ has frequency $p = 0.6$. Calculate $q$ and the expected frequency of heterozygotes $Aa$. [3 marks]",
+      "solution": "1. $q = 1 - p = 1 - 0.6 = 0.4$.\n2. Heterozygote frequency $= 2pq = 2 \\times 0.6 \\times 0.4 = 0.48$.\n3. So 48% of the population are expected heterozygotes under Hardy-Weinberg equilibrium."
     },
     {
       "type": "practice",
@@ -239,6 +256,46 @@
       "src": "/courses/diagrams/9700/alnotes/17-1-variation/page-14.png",
       "alt": "A-Level Notes page 14 for 17.1 Variation",
       "order": 14
+    }
+  ],
+  "syllabusObjectivesCovered": [
+    "17.1.1",
+    "17.1.2",
+    "17.1.3",
+    "17.1.4"
+  ],
+  "flashcards": [
+    {
+      "front": "Genetic vs environmental variation?",
+      "back": "Genetic: inherited allele differences. Environmental: non-inherited effects of external factors during lifetime."
+    },
+    {
+      "front": "Continuous variation example?",
+      "back": "Human height � polygenic, many alleles with additive effects, influenced by nutrition; shows normal distribution."
+    },
+    {
+      "front": "Discontinuous variation example?",
+      "back": "ABO blood groups � distinct categories, few genes, largely unaffected by environment."
+    },
+    {
+      "front": "What is crossing over?",
+      "back": "Exchange of DNA between non-sister chromatids of homologous chromosomes in prophase I of meiosis."
+    },
+    {
+      "front": "What is independent assortment?",
+      "back": "Random alignment and separation of homologous chromosome pairs in meiosis I, creating diverse gametes."
+    },
+    {
+      "front": "What is the gene pool?",
+      "back": "All alleles of all genes present in a population at a given time."
+    },
+    {
+      "front": "Why is variation important for evolution?",
+      "back": "Provides phenotypic diversity on which natural selection acts when environments change."
+    },
+    {
+      "front": "What is a mutation?",
+      "back": "A spontaneous change in DNA sequence; ultimate source of new alleles and genetic variation."
     }
   ]
 }

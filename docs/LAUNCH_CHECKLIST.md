@@ -11,7 +11,7 @@ Production: **https://markscheme.app**
 - [x] GitHub Actions CI (typecheck, lint, build)
 - [x] Supabase `contact_notifications` migration
 - [x] Sentry DSN in Vercel (optional monitoring)
-- [x] Smoke: 55/58 core routes (auth SSR + redirect checks fixed in repo — redeploy to get 58/58)
+- [x] Smoke: 63/63 core routes (post-deploy Jul 2026 — calculators, signup redirect SSR, insights)
 
 ## You should do next
 

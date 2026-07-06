@@ -88,7 +88,7 @@ function objectiveLead(text: string): string {
   return text.split('\n')[0].replace(/^[-•]\s*/, '').trim()
 }
 
-/** When no tagged past-paper questions exist, add author-style worked examples (matches legacy 9706 lessons). */
+/** When no tagged past-paper questions exist, add exam-style numeric worked examples. */
 function ensureAuthorWorkedExamples(
   lesson: GeneratedLesson,
   ctx: LessonPromptContext,
@@ -98,14 +98,46 @@ function ensureAuthorWorkedExamples(
   if (existing.length > 0 || evidence.questions.length > 0) return lesson
   if (!evidence.objectives.length) return lesson
 
-  const bullets = evidence.objectives
-    .slice(0, 4)
-    .map((o) => `• ${objectiveLead(o.objective_text)}`)
+  let workedExample: {
+    type: 'workedExample'
+    question: string
+    solution: string
+  }
 
-  const workedExample = {
-    type: 'workedExample' as const,
-    question: `A ${ctx.subjectCode} Paper ${ctx.paperNumber} question on ${ctx.topicTitle} (${ctx.topicCode}): apply the key accounting techniques examiners expect.`,
-    solution: `**Syllabus points for ${ctx.topicCode}:**\n${bullets.join('\n')}\n\n**Method:**\n1. State the business type and which accounts/statements are affected.\n2. Set out double-entry or statement format clearly — show workings.\n3. Apply the relevant accounting standard or partnership rule step by step.\n4. Conclude with the final figure or account balance and a brief interpretation.`,
+  if (ctx.subjectCode === '9706') {
+    if (ctx.topicCode.startsWith('3.1.2')) {
+      workedExample = {
+        type: 'workedExample',
+        question:
+          'A and B are partners sharing profits 3:2. Goodwill is valued at $60,000 on the admission of C, who receives a 1/5 share. C introduces capital of $40,000 cash.\n\n**Prepare** the journal entries for goodwill and capital.',
+        solution:
+          '**Goodwill (memorandum revaluation):**\nDr Goodwill $60,000\nCr A Capital $36,000 (3/5)\nCr B Capital $24,000 (2/5)\n\nDr A Capital $36,000, B Capital $24,000, C Capital $12,000\nCr Goodwill $72,000 (written off in new ratio 3:2:1 after admission)\n\n**Capital introduced:**\nDr Bank $40,000\nCr C Capital $40,000\n\n**Net effect:** A gains $0 on goodwill write-off (36k cr − 36k dr); B gains $0; C charged $12,000 for goodwill share.',
+      }
+    } else if (ctx.topicCode.startsWith('3.1.3')) {
+      workedExample = {
+        type: 'workedExample',
+        question:
+          'A sports club had subscriptions of $24,000 received during the year. At 1 Jan, $800 was owed by members; at 31 Dec, $1,200 was owed. Subscriptions of $600 related to the next year were received in advance.\n\n**Calculate** the subscriptions figure for the Income and Expenditure Account.',
+        solution:
+          '**Accrual basis adjustment:**\nCash received $24,000\nAdd: opening accrual (owed at start) $800\nLess: closing accrual (still owed) ($1,200)\nLess: income in advance ($600)\n\n**Subscriptions for I&E Account = $23,000**',
+      }
+    } else {
+      workedExample = {
+        type: 'workedExample',
+        question:
+          'The directors of Z plc review the Statement of Cash Flows for the year. Net cash from operating activities was $420,000; investing outflows $180,000; dividends paid $95,000.\n\n**Explain** why the Statement of Cash Flows is essential for assessing liquidity.',
+        solution:
+          'Profit per the SoPL can include non-cash items (depreciation, accruals). The SoCF shows **actual cash** generated ($420,000 from operations), whether the firm can fund investments ($180,000) and dividends ($95,000) without external borrowing, and highlights liquidity risk even when reported profit is higher.',
+      }
+    }
+  } else {
+    const lead = objectiveLead(evidence.objectives[0]?.objective_text ?? ctx.topicTitle)
+    workedExample = {
+      type: 'workedExample',
+      question: `${ctx.topicTitle} (${ctx.topicCode}): a typical ${ctx.subjectCode} Paper ${ctx.paperNumber} calculation on ${lead.slice(0, 80)}.`,
+      solution:
+        '**Method:**\n1. State known values and the formula.\n2. Substitute and show working with units.\n3. State the final answer clearly.\n\n*(Replace with paper-specific figures when past-paper evidence is linked.)*',
+    }
   }
 
   return {

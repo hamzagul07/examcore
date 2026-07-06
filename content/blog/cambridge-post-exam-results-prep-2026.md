@@ -48,6 +48,7 @@ Estimate with recent sessions until official tables publish:
 | Media Studies | 9607 | [9607 boundaries](/blog/cambridge-9607-media-studies-grade-boundaries-2026) |
 | Further Maths | 9231 | [9231 boundaries](/blog/cambridge-9231-further-mathematics-grade-boundaries-2026) |
 | Islamic Studies | 9488 | [9488 boundaries](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026) |
+| Literature in English | 9695 | [9695 boundaries](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026) |
 
 **O-Level / IGCSE (grades 18 August 2026):**
 
@@ -67,6 +68,7 @@ Estimate with recent sessions until official tables publish:
 | Biology | 0610 | [0610 boundaries](/blog/cambridge-0610-biology-grade-boundaries-2026) |
 | Chemistry | 0620 | [0620 boundaries](/blog/cambridge-0620-chemistry-grade-boundaries-2026) |
 | Physics | 0625 | [0625 boundaries](/blog/cambridge-0625-physics-grade-boundaries-2026) |
+| First Language English (9?1) | 0990 | [0990 boundaries](/blog/cambridge-0990-first-language-english-grade-boundaries-2026) |
 
 All subjects: [grade boundaries hub](/guides/grade-boundaries) ? [calculator](/tools/grade-boundary-calculator)
 

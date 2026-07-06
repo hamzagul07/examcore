@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge English past paper topics for 2026 (Literature & Language)
-description: High-frequency skills and question types in 9695 A-Level Literature and 0500 IGCSE First Language English ó passage analysis, essay structures, and marking-first revision.
+description: High-frequency skills and question types in 9695 A-Level Literature and 0500 IGCSE First Language English ù passage analysis, essay structures, and marking-first revision.
 date: 2026-07-06
 category: revision
 keywords: Cambridge English revision 2026, 9695 essay topics, 0500 past papers, literature close analysis, most repeated exam topics
@@ -8,9 +8,9 @@ informationGain: dataset
 author: founder
 ---
 
-English revision can feel subjective until you study **what examiners repeat**: passage-based analysis, informed personal response, summary and directed writing formats, and the same **band descriptors** every series. This guide ranks high-frequency **skills and question types** for **9695** (A-Level Literature) and **0500** (IGCSE First Language English) from **2019ñ2025**.
+English revision can feel subjective until you study **what examiners repeat**: passage-based analysis, informed personal response, summary and directed writing formats, and the same **band descriptors** every series. This guide ranks high-frequency **skills and question types** for **9695** (A-Level Literature) and **0500** (IGCSE First Language English) from **2019ù2025**.
 
-> **Key takeaway:** English marks come from **textual evidence quoted and analysed** ó not plot summary or generic commentary.
+> **Key takeaway:** English marks come from **textual evidence quoted and analysed** ù not plot summary or generic commentary.
 
 ## How this list was built
 
@@ -21,7 +21,7 @@ We weighted:
 - **Mark-band / level descriptors** that separate mid from top bands  
 - **Paper component structure** per syllabus  
 
-Your **set texts** differ by centre ó this guide focuses on **repeatable skills**.
+Your **set texts** differ by centre ù this guide focuses on **repeatable skills**.
 
 ## A-Level Literature in English (9695)
 
@@ -29,31 +29,31 @@ Your **set texts** differ by centre ó this guide focuses on **repeatable skills*
 |----------|----------------------|----------------|
 | 1 | **Passage-based close analysis** | Word-level effects linked to whole-text themes |
 | 2 | **Informed personal response essays** | Judgement in opening paragraph, sustained argument |
-| 3 | **Shakespeare ó extract + whole play** | Dual focus: micro language + macro structure |
+| 3 | **Shakespeare ù extract + whole play** | Dual focus: micro language + macro structure |
 | 4 | **Comparative poetry** | Thematic link, not two mini-essays stapled together |
-| 5 | **Drama ó stagecraft & character** | How dialogue, staging, and structure create meaning |
-| 6 | **Prose ó narrative voice & structure** | Not plot recap ó writerís methods |
+| 5 | **Drama ù stagecraft & character** | How dialogue, staging, and structure create meaning |
+| 6 | **Prose ù narrative voice & structure** | Not plot recap ù writerùs methods |
 | 7 | **Context used selectively** | Relevant context woven in, not bolted paragraphs |
 | 8 | **Conclusion that answers the question** | Many scripts drift from the exact wording |
 
-**Practise:** One timed paragraph per week ó **quote, technique, effect** in that order.
+**Practise:** One timed paragraph per week ù **quote, technique, effect** in that order.
 
-Full guide: [9695 past papers](/blog/cambridge-9695-a-level-english-literature-past-papers-guide). Essay help: [A-Level essay planning](/blog/a-level-essay-planning-past-papers).
+Full guide: [9695 past papers](/blog/cambridge-9695-a-level-english-literature-past-papers-guide) ù [9695 boundaries 2026](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026). Essay help: [A-Level essay planning](/blog/a-level-essay-planning-past-papers).
 
 ## IGCSE First Language English (0500)
 
 | Priority | Skill / question type | Notes |
 |----------|----------------------|-------|
-| 1 | **Reading comprehension ó inference** | Evidence from lines cited, not guesswork |
+| 1 | **Reading comprehension ù inference** | Evidence from lines cited, not guesswork |
 | 2 | **Summary writing** | Own words, point selection, word limit discipline |
-| 3 | **Directed writing** | Audience, purpose, register ó mark scheme lists features |
-| 4 | **Writerís effect questions** | Image, sound, sentence structure ó not ìmakes it interestingî |
+| 3 | **Directed writing** | Audience, purpose, register ù mark scheme lists features |
+| 4 | **Writerùs effect questions** | Image, sound, sentence structure ù not ùmakes it interestingù |
 | 5 | **Comparison questions** | Explicit similarity/difference with quotes both sides |
 | 6 | **Narrative / descriptive composition** | Structure + vocabulary range under time |
 | 7 | **Language analysis (Paper 1)** | Precise terminology tied to effect |
 | 8 | **Editing and accuracy** | SPaG costs marks on extended responses |
 
-Guide: [0500 past papers](/blog/cambridge-0500-igcse-first-language-english-past-papers-guide).
+Guide: [0500 past papers](/blog/cambridge-0500-igcse-first-language-english-past-papers-guide) ∑ [0990 boundaries (9ñ1)](/blog/cambridge-0990-first-language-english-grade-boundaries-2026).
 
 ## Band habits that move grades
 
@@ -61,21 +61,21 @@ Guide: [0500 past papers](/blog/cambridge-0500-igcse-first-language-english-past
 |------------|-----|
 | Plot summary | Every paragraph starts with **method or judgement** |
 | Floating quotes | Embed short quotes; analyse immediately |
-| Generic ìeffectiveî | Name device + explain effect on reader/meaning |
+| Generic ùeffectiveù | Name device + explain effect on reader/meaning |
 | Ignoring the question | Underline key words; check conclusion mirrors them |
 
 Cross-links: [command words](/blog/cambridge-command-words-past-papers-guide), [examiner reports](/blog/cambridge-examiner-report-how-to-use).
 
 ## 4-week high-yield rotation
 
-| Week | MonñWed | ThuñFri | Weekend |
+| Week | MonùWed | ThuùFri | Weekend |
 |------|---------|---------|---------|
-| 1 | Passage paragraphs ™3 | Timed essay plan | Mark to band descriptors |
+| 1 | Passage paragraphs ù3 | Timed essay plan | Mark to band descriptors |
 | 2 | Summary + directed writing | Half reading paper | Rewrite weakest paragraph |
 | 3 | Comparative / drama focus | Full timed paper | Examiner report notes |
 | 4 | Mixed synoptic | Full timed paper | Upload to [MarkScheme](/mark) |
 
-## Other subjects ó most repeated topics
+## Other subjects ù most repeated topics
 
 - [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
 - [Mathematics](/blog/most-repeated-cambridge-maths-past-paper-topics-2026)
@@ -87,11 +87,11 @@ Cross-links: [command words](/blog/cambridge-command-words-past-papers-guide), [
 
 ### Should I only practise these skills?
 
-No ó you still need knowledge of **your set texts**. Use this list to prioritise **marked** practice formats.
+No ù you still need knowledge of **your set texts**. Use this list to prioritise **marked** practice formats.
 
 ### How much context is enough for 9695?
 
-One well-integrated contextual point beats a paragraph of background ó must link to the argument.
+One well-integrated contextual point beats a paragraph of background ù must link to the argument.
 
 ### 0500 vs 0990 / other English codes?
 
@@ -99,4 +99,4 @@ This guide targets **0500** First Language English; check your entry code with y
 
 ## Bottom line
 
-**9695** rewards **close analysis with judgement**; **0500** rewards **format discipline and writerís-effect precision**. The skills above appear on almost every series ó anchor your **marked** weeks there, then use [MarkScheme](/mark) to see which band evidence you still miss.
+**9695** rewards **close analysis with judgement**; **0500** rewards **format discipline and writerùs-effect precision**. The skills above appear on almost every series ù anchor your **marked** weeks there, then use [MarkScheme](/mark) to see which band evidence you still miss.

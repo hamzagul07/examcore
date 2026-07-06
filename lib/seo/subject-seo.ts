@@ -319,6 +319,20 @@ const PROFILES: SubjectSeoProfile[] = [
     topics: ['Islamic texts', 'Thematic study', 'Evaluative essays', 'Cambridge 9488'],
   },
   {
+    code: '9695',
+    name: 'Literature in English',
+    level: 'A-Level',
+    markingTitle: 'Mark Cambridge 9695 Literature in English past papers',
+    markingDescription:
+      'Upload A-Level Literature (9695) answers. Essay band marking on close analysis, informed personal response & Shakespeare — real Cambridge schemes. Free to try.',
+    courseTitle: 'Free Cambridge 9695 Literature in English course',
+    courseDescription:
+      'Free Cambridge A-Level Literature (9695) course with {count} topics. Passage analysis, essays & set texts with past-paper marking.',
+    tagline: '9695 · Close analysis · Informed personal response',
+    keywords: ['9695 past papers', 'A-Level literature marking', '9695 mark scheme', 'Cambridge English literature', '9695 revision'],
+    topics: ['Passage analysis', 'Shakespeare', 'Comparative essays', 'Cambridge 9695'],
+  },
+  {
     code: '9618',
     name: 'Computer Science',
     level: 'A-Level',

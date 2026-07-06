@@ -5,6 +5,7 @@
  *   node scripts/gsc-indexing-urls.mjs           # all tiers
  *   node scripts/gsc-indexing-urls.mjs --tier 1  # Tier 1 only (~7 URLs)
  *   node scripts/gsc-indexing-urls.mjs --tier 2  # A-Level boundary guides
+ *   node scripts/gsc-indexing-urls.mjs --tier courses-9706  # Paper 3/4 lesson URLs
  *   node scripts/gsc-indexing-urls.mjs --day 1   # first 15 URLs across tiers
  *
  * Paste each URL into GSC ? URL Inspection ? Request indexing (~10ÿ15/day).
@@ -82,6 +83,24 @@ const TIERS = {
     '/blog/ib-how-to-build-a-grade-7-buffer-2026',
     '/tools/ib-points-calculator',
   ],
+  'courses-9706': [
+    '/courses/9706',
+    '/courses/9706/3-1-1-financial-statements',
+    '/courses/9706/3-1-2-partnerships',
+    '/courses/9706/3-1-3-clubs-and-societies',
+    '/courses/9706/3-1-4-manufacturing-businesses',
+    '/courses/9706/3-1-5-limited-companies',
+    '/courses/9706/3-2-1-international-accounting-standards',
+    '/courses/9706/3-2-2-ethical-considerations',
+    '/courses/9706/3-2-3-auditing-and-stewardship-of-limited-companies',
+    '/courses/9706/3-3-1-business-acquisition-and-merger',
+    '/courses/9706/3-4-1-computerised-accounting-systems',
+    '/courses/9706/3-5-1-analysis-and-communication-of-accounting-information',
+    '/courses/9706/4-1-1-activity-based-costing',
+    '/courses/9706/4-2-1-standard-costing',
+    '/courses/9706/4-3-1-budgeting-and-budgetary-control',
+    '/courses/9706/4-4-1-investment-appraisal',
+  ],
 }
 
 function getArg(name) {
@@ -100,7 +119,7 @@ const perDay = 15
 
 let urls = []
 if (tierArg) {
-  const key = tierArg === 'ib' ? 'ib' : Number(tierArg)
+  const key = tierArg in TIERS ? tierArg : Number(tierArg)
   urls = (TIERS[key] ?? []).map((p) => `${BASE}${p}`)
 } else {
   for (const paths of Object.values(TIERS)) {

@@ -69,6 +69,10 @@ Boundary guides + per-code calculators (request both after deploy):
 
 `/blog/most-repeated-cambridge-science-past-paper-topics-2026` and each sibling (economics, history, maths, English, business, psychology, sociology, geography, accounting, law, media studies, Islamic studies).
 
+### Tier courses-9706 — new Paper 3/4 lessons (Jul 2026)
+
+`pnpm seo:gsc-urls -- --tier courses-9706` — hub + 15 pilot lessons (`/courses/9706/3-1-2-partnerships`, etc.). Request after deploy; batch ~10–15/day in GSC.
+
 ### After ~13 August
 
 Re-request Tier 2 + calculator hub when June 2026 threshold PDFs are ingested (`pnpm grade:thresholds:ingest`).

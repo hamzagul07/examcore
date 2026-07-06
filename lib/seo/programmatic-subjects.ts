@@ -21,7 +21,99 @@ export function isValidMarkingSubjectCode(code: string): boolean {
   return getMarkingSubjectCodes().includes(code)
 }
 
+/**
+ * Syllabuses with verified grade-threshold JSON and boundary guides but no live
+ * marking yet — still need per-code calculator pages linked from blog posts.
+ */
+const GRADE_BOUNDARY_ONLY_SUBJECTS: SubjectOption[] = [
+  {
+    id: 'Mathematics',
+    label: 'Mathematics',
+    code: '0580',
+    group: 'Mathematics',
+    levels: ['IGCSE'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'point_based',
+  },
+  {
+    id: 'First Language English',
+    label: 'First Language English',
+    code: '0990',
+    group: 'Humanities & Social Sciences',
+    levels: ['IGCSE'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
+  {
+    id: 'Biology',
+    label: 'Biology',
+    code: '0610',
+    group: 'Sciences',
+    levels: ['IGCSE'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Chemistry',
+    label: 'Chemistry',
+    code: '0620',
+    group: 'Sciences',
+    levels: ['IGCSE'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Physics',
+    label: 'Physics',
+    code: '0625',
+    group: 'Sciences',
+    levels: ['IGCSE'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Geography',
+    label: 'Geography',
+    code: '0460',
+    group: 'Humanities & Social Sciences',
+    levels: ['IGCSE'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
+  {
+    id: 'Geography',
+    label: 'Geography',
+    code: '9696',
+    group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'level_of_response',
+  },
+]
+
+/** All syllabuses with a per-code grade boundary calculator page. */
+export function getGradeBoundaryCalculatorPages(): SubjectOption[] {
+  const seen = new Set<string>()
+  return [...getMarkingSubjectPages(), ...GRADE_BOUNDARY_ONLY_SUBJECTS].filter((s) => {
+    if (seen.has(s.code)) return false
+    seen.add(s.code)
+    return true
+  })
+}
+
+export function getGradeBoundaryCalculatorCodes(): string[] {
+  return getGradeBoundaryCalculatorPages().map((s) => s.code)
+}
+
 function levelPhrase(levels: string[]): string {
+  if (levels.includes('IGCSE')) return 'IGCSE'
   if (levels.includes('O-Level') && !levels.includes('A-Level')) return 'O-Level'
   if (levels.includes('A-Level')) return 'A-Level'
   return levels[0] ?? 'Cambridge'

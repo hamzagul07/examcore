@@ -136,6 +136,11 @@ async function main() {
     '/sitemap.xml',
     '/feed.xml',
     '/manifest.webmanifest',
+    '/guides/grade-boundaries',
+    '/tools/grade-boundary-calculator',
+    '/tools/grade-boundary-calculator/0580',
+    '/tools/grade-boundary-calculator/0610',
+    '/tools/grade-boundary-calculator/9696',
   ]
   for (const path of publicRoutes) {
     try {

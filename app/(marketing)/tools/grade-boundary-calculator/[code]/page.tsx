@@ -9,9 +9,10 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 import {
-  getMarkingSubjectCodes,
-  getMarkingSubjectPages,
+  getGradeBoundaryCalculatorCodes,
+  getGradeBoundaryCalculatorPages,
   buildSubjectPageCopy,
+  isValidMarkingSubjectCode,
 } from '@/lib/seo/programmatic-subjects'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
@@ -19,11 +20,11 @@ import { getOfficialBoundaries } from '@/lib/seo/grade-boundaries-data'
 type Props = { params: Promise<{ code: string }> }
 
 export function generateStaticParams() {
-  return getMarkingSubjectCodes().map((code) => ({ code }))
+  return getGradeBoundaryCalculatorCodes().map((code) => ({ code }))
 }
 
 function getSubject(code: string) {
-  return getMarkingSubjectPages().find((s) => s.code === code)
+  return getGradeBoundaryCalculatorPages().find((s) => s.code === code)
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -51,6 +52,7 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
   const path = `/tools/grade-boundary-calculator/${code}`
   const guideSlug = getSubjectGuideSlugForCode(code)
   const isAS = copy.level === 'AS-Level'
+  const hasMarking = isValidMarkingSubjectCode(code)
   const official = getOfficialBoundaries(code)
   const officialSession = official?.sessions[0]
 
@@ -179,11 +181,13 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
           </p>
           <div className="mt-3 flex flex-wrap justify-center gap-3">
             <Link href="/mark" className="ec-btn-primary inline-flex min-h-[48px]">
-              Mark {code} free <ArrowRight className="h-5 w-5" />
+              Mark {hasMarking ? `${code} ` : ''}free <ArrowRight className="h-5 w-5" />
             </Link>
-            <Link href={`/subjects/${code}`} className="ec-btn-ghost ec-btn-ghost--sm">
-              {code} on MarkScheme
-            </Link>
+            {hasMarking ? (
+              <Link href={`/subjects/${code}`} className="ec-btn-ghost ec-btn-ghost--sm">
+                {code} on MarkScheme
+              </Link>
+            ) : null}
           </div>
         </div>
       </MarketingSection>

@@ -3,7 +3,8 @@ import 'server-only'
 import { getBlogPosts } from '@/lib/blog'
 import {
   buildSubjectPageCopy,
-  getMarkingSubjectPages,
+  getGradeBoundaryCalculatorPages,
+  isValidMarkingSubjectCode,
 } from '@/lib/seo/programmatic-subjects'
 import {
   getOfficialBoundaries,
@@ -32,7 +33,7 @@ export function getGradeBoundaryGuideSlug(code: string): string | null {
 export function getGradeBoundaryHubEntries(): GradeBoundaryHubEntry[] {
   const officialCodes = new Set(getSubjectsWithOfficialData())
 
-  return getMarkingSubjectPages().map((subject) => {
+  return getGradeBoundaryCalculatorPages().map((subject) => {
     const copy = buildSubjectPageCopy(subject)
     const guideSlug = getGradeBoundaryGuideSlug(subject.code)
     const guide = guideSlug
@@ -41,13 +42,14 @@ export function getGradeBoundaryHubEntries(): GradeBoundaryHubEntry[] {
     const official = officialCodes.has(subject.code)
       ? getOfficialBoundaries(subject.code)
       : null
+    const hasMarking = isValidMarkingSubjectCode(subject.code)
 
     return {
       code: subject.code,
       label: subject.label,
       level: copy.level,
       calculatorPath: `/tools/grade-boundary-calculator/${subject.code}`,
-      subjectPath: `/subjects/${subject.code}`,
+      subjectPath: hasMarking ? `/subjects/${subject.code}` : '/mark',
       guideSlug,
       guideTitle: guide?.title ?? null,
       hasOfficialData: officialCodes.has(subject.code),

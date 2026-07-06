@@ -53,7 +53,7 @@ Full guide: [9709 past papers](/blog/cambridge-9709-a-level-mathematics-past-pap
 | 7 | **Number & bounds** | Upper/lower bounds, standard form |
 | 8 | **Functions & sequences** | nth term, inverse functions |
 
-Guide: [0580 past papers](/blog/cambridge-0580-igcse-mathematics-past-papers-guide).
+Guide: [0580 past papers](/blog/cambridge-0580-igcse-mathematics-past-papers-guide) ∑ [0580 boundaries 2026](/blog/cambridge-0580-mathematics-grade-boundaries-2026)
 
 ## A-Level Further Mathematics (9231)
 
@@ -112,8 +112,8 @@ Match your **entered components**. Most students overweight Pure and under-pract
 
 ### Further Maths (9231)?
 
-See the **9231 section above** ó build on 9709 Pure drills, then add matrices, induction and your specialist paper (Mechanics or Statistics).
+See the **9231 section above** ù build on 9709 Pure drills, then add matrices, induction and your specialist paper (Mechanics or Statistics).
 
 ## Bottom line
 
-**9709** and **9231** reward **shown method**, **0580** rewards **accurate multi-step working**. The topics above appear often enough to anchor your **marked** weeks ó then use [MarkScheme](/mark) to catch the M marks you still skip.
+**9709** and **9231** reward **shown method**, **0580** rewards **accurate multi-step working**. The topics above appear often enough to anchor your **marked** weeks ù then use [MarkScheme](/mark) to catch the M marks you still skip.

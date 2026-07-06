@@ -47,6 +47,7 @@ const IB_EDITORIAL_SLUGS = new Set([
   'cambridge-9488-islamic-studies-grade-boundaries-2026',
   'cambridge-9696-geography-grade-boundaries-2026',
   'cambridge-0460-geography-grade-boundaries-2026',
+  'cambridge-0580-mathematics-grade-boundaries-2026',
   'most-repeated-cambridge-sociology-past-paper-topics-2026',
   'most-repeated-cambridge-geography-past-paper-topics-2026',
   'most-repeated-cambridge-accounting-past-paper-topics-2026',

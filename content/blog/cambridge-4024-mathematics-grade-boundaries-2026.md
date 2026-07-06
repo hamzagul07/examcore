@@ -38,7 +38,7 @@ Comparable outcomes after marking — harder papers usually mean lower threshold
 2. Mark strictly — **working for every M mark**  
 3. [4024 calculator](/tools/grade-boundary-calculator/4024) with recent sessions  
 
-Revision: [4024 past papers](/blog/cambridge-4024-o-level-mathematics-past-papers-guide) · [0580/9709 maths most repeated](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) · [mark a paper](/mark)
+Revision: [4024 past papers](/blog/cambridge-4024-o-level-mathematics-past-papers-guide) · [0580/9709 maths most repeated](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) · [0580 IGCSE boundaries](/blog/cambridge-0580-mathematics-grade-boundaries-2026) · [mark a paper](/mark)
 
 ## Frequently asked questions
 

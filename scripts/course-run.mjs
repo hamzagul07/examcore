@@ -54,6 +54,9 @@ function parseArgs(argv) {
     job3RetryRejects: args.includes('--job3-retry-rejects'),
     job3RetryFrom: get('job3-retry-from'),
     job3Limit: get('job3-limit') ? parseInt(get('job3-limit'), 10) : null,
+    excludeSubjectCodes: get('exclude-code')
+      ? get('exclude-code').split(',').map((s) => s.trim()).filter(Boolean)
+      : [],
   }
 }
 
@@ -356,6 +359,7 @@ async function main() {
       job3RetryFrom: opts.job3RetryFrom ?? undefined,
       job3Limit: opts.job3Limit ?? undefined,
       subjectCode: opts.code ?? undefined,
+      excludeSubjectCodes: opts.excludeSubjectCodes?.length ? opts.excludeSubjectCodes : undefined,
     })
     console.log(formatPipelineSummary(report))
     process.exit(0)

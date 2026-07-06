@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9084 grade boundaries, 9084 grade boundaries 2026, Cambridge Law grade boundaries, 9084 law thresholds, 9084 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,19 +26,17 @@ Official **9084 Law** grade boundaries for **June 2026** publish in August — *
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per grade. Law grades reflect **application of rules to facts** and **balanced essay argument** — not law notes alone.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9084 Law**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9084 boundaries
 
-Examiners benchmark scripts against level descriptors after full marking. Paper difficulty varies — thresholds adjust so an A stays a consistent standard.
+Cambridge sets **9084** thresholds **after** all scripts are marked so each grade means the same standard every year. Level-of-response scripts need **case authority + application** on every essay � description alone caps the band. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9084** sessions ([wrong-session estimates](/insights)).
 
 ## How to estimate your grade
 
-1. Timed problem + essay papers  
-2. Mark to **band descriptors** — quote your own IRAC lines  
-3. [9084 calculator](/tools/grade-boundary-calculator/9084) with last 2–3 sessions  
-
-Revision: [9084 past papers guide](/blog/cambridge-9084-a-level-law-past-papers-guide) · [most repeated law topics](/blog/most-repeated-cambridge-law-past-paper-topics-2026) · [mark a paper](/mark)
+1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [9084 calculator](/tools/grade-boundary-calculator/9084) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -56,10 +54,13 @@ Practise **IRAC under time** — [9084 command words](/blog/cambridge-9084-law-c
 
 ## Related subjects
 
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+
 - [9489 History](/blog/cambridge-9489-history-grade-boundaries-2026)
 - [9699 Sociology](/blog/cambridge-9699-sociology-grade-boundaries-2026)
 - [9609 Business](/blog/cambridge-9609-business-grade-boundaries-2026)
 
 ## Bottom line
 
-**9084 grade boundaries 2026** land in August — sustained **IRAC and authority** beat boundary guessing.
+**9084 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9084 calculator](/tools/grade-boundary-calculator/9084) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

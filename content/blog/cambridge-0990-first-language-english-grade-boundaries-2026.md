@@ -57,7 +57,7 @@ Enter the official **9�1** thresholds from the Cambridge PDF. Our reference ta
 
 ## Related subjects
 
-English pathways split by syllabus code — confirm **0990** on your statement before following any guide. Do not mix **0500** past papers, thresholds, or calculators with **0990** entries. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+English pathways split by syllabus code — confirm **0990** on your statement before following any guide. Do not mix **0500** past papers, thresholds, or calculators with **0990** entries. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9695 A-Level Literature](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026)
 - [0580 IGCSE Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026)

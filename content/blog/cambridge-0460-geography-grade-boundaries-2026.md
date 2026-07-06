@@ -56,7 +56,7 @@ No � raw thresholds change every session.
 
 ## Related subjects
 
-Geography spans IGCSE and A-Level codes — each has separate threshold tables, results dates, and calculators. Cross-link for revision planning only; never copy numbers between **0460**, **9696**, or other syllabuses. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+Geography spans IGCSE and A-Level codes — each has separate threshold tables, results dates, and calculators. Cross-link for revision planning only; never copy numbers between **0460**, **9696**, or other syllabuses. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9696 A-Level Geography](/blog/cambridge-9696-geography-grade-boundaries-2026)
 - [5090 Biology](/blog/cambridge-5090-biology-grade-boundaries-2026)

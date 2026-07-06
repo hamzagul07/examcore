@@ -63,7 +63,7 @@ Confirm your **0625** code on your statement of entry � papers differ from 505
 
 ## Related subjects
 
-Stack IGCSE science revision with the matching boundary guide and calculator for each code you sit. Threshold rows are never interchangeable between Biology, Chemistry, and Physics codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+Stack IGCSE science revision with the matching boundary guide and calculator for each code you sit. Threshold rows are never interchangeable between Biology, Chemistry, and Physics codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026)
 - [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026)

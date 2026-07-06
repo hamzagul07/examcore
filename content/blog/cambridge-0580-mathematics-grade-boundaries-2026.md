@@ -65,7 +65,7 @@ No � raw thresholds change every session.
 
 ## Related subjects
 
-IGCSE and A-Level maths boundaries move independently each session — compare **0580** only to past **0580** tables. Nearby syllabuses help with route choice and resits; never copy threshold numbers between codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+IGCSE and A-Level maths boundaries move independently each session — compare **0580** only to past **0580** tables. Nearby syllabuses help with route choice and resits; never copy threshold numbers between codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9709 A-Level Maths](/blog/cambridge-9709-mathematics-grade-boundaries-2026)
 - [4024 O-Level Maths](/blog/cambridge-4024-mathematics-grade-boundaries-2026)

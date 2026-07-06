@@ -38,7 +38,7 @@ Your **option codes** matter — confirm entries with your centre.
 
 **Practise:** One source question per week marked to **levels of response** — quote your own lines when assigning bands.
 
-Full guide: [9489 past papers](/blog/cambridge-9489-a-level-history-past-papers-guide).
+Full guide: [9489 past papers](/blog/cambridge-9489-a-level-history-past-papers-guide) · [9489 boundaries 2026](/blog/cambridge-9489-history-grade-boundaries-2026)
 
 ## Depth-study themes that cross papers
 
@@ -74,7 +74,7 @@ Command-word drill: [9489 command words](/blog/cambridge-9489-history-command-wo
 
 See [essay planning template](/blog/a-level-essay-planning-past-papers) and [A* plan for 9489](/blog/how-to-get-an-a-star-in-cambridge-9489-history).
 
-**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) · [CS](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026) · [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) · [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
 
 ## What "most repeated" does not mean
 

@@ -163,6 +163,8 @@ See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topi
 - [Computer Science (9618, 0478, 2210)](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026)
 - [Mathematics (9709, 0580)](/blog/most-repeated-cambridge-maths-past-paper-topics-2026)
 - [English (9695, 0500)](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+- [Business (9609, 7115)](/blog/most-repeated-cambridge-business-past-paper-topics-2026)
+- [Psychology (9990)](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026)
 
 ## Bottom line
 

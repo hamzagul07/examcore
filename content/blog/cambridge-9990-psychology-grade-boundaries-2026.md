@@ -1,44 +1,65 @@
 ---
-title: Cambridge 9990 Psychology grade boundaries 2026 explained
-description: How 9990 Psychology (A-Level) grade boundaries work, where to find the official thresholds, and how to estimate your grade from recent sessions.
+title: Cambridge 9990 Psychology Grade Boundaries 2026 — June Thresholds Explained
+description: 9990 Psychology A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate across Papers 1–4 with the calculator.
 date: 2026-06-19
 keywords: 9990 grade boundaries, 9990 grade boundaries 2026, Cambridge Psychology grade boundaries, 9990 psychology thresholds, 9990 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-06-19
+updated: 2026-07-06
+featured: true
 informationGain: synthesis
 ---
 
-The official grade boundaries for the Cambridge International 9990 Psychology A-Level in 2026 have not been published and will not be available until results day. Cambridge sets these thresholds *after* all exam papers have been marked to ensure that standards are consistent from one year to the next. This means the raw mark required for an A, B, or C can change with every exam session to reflect the specific difficulty of that year's papers.
+Official **9990 Psychology** grade boundaries for **June 2026** publish in August — **grades 11 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [9990 calculator](/tools/grade-boundary-calculator/9990).
+
+## Quick answer
+
+| Question | Answer |
+|----------|--------|
+| When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
+| When are **threshold tables** published? | **~13 August 2026** |
+| Papers? | P1–P4 (core studies, approaches, specialist options) |
+| A-Level weighting? | Each paper typically **25%** of final total |
+| Estimate tool | [9990 grade calculator](/tools/grade-boundary-calculator/9990) |
+
+[Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) · [Results day guide](/blog/cambridge-results-day-august-2026-guide)
 
 ## What are grade boundaries?
-Grade boundaries, which Cambridge officially calls 'grade thresholds', are the minimum raw marks a student must achieve on a paper (component) and in their overall qualification to be awarded a particular grade. For example, there will be a specific raw mark for Paper 1, Paper 2, Paper 3, and Paper 4 that corresponds to the minimum needed for a grade A, B, C, and so on. These component marks are then combined, considering their respective weightings, to determine your overall qualification grade against a final set of aggregate boundaries. It is crucial to remember these are not fixed percentages; they are raw scores determined by expert analysis each year.
 
-## How Cambridge sets the 9990 Psychology boundaries
-Setting grade boundaries is a rigorous, professional process designed to ensure fairness. After all 9990 Psychology scripts from the 2026 session are marked, senior examiners review a wide range of student work at different levels of performance. They compare this work to samples from previous years to identify the raw mark that represents the same level of achievement as, for instance, a grade A or a grade C in a past session. This process, known as 'comparable outcomes', ensures that a student's final grade reflects their understanding of psychology, not whether they sat a slightly harder or easier paper than the year before.
+Minimum **raw marks** for each grade on each component and overall. Psychology mixes **recall**, **application**, and **evaluation** — mark schemes are precise on study names and methodology.
 
-## Why do grade boundaries change each year?
-The primary reason grade boundaries fluctuate between exam sessions is to compensate for variations in the difficulty of the examination papers. If senior examiners determine that a particular paper was more challenging than in the previous year, the grade boundaries for that paper will likely be lowered. Conversely, if a paper is deemed less demanding, the boundaries will be raised. This system ensures that you are not disadvantaged by a particularly tricky set of questions on core studies or a complex application scenario in the applied papers. The movement of boundaries is a sign that the system is working to maintain a consistent and fair standard over time.
+## How Cambridge sets 9990 boundaries
 
-## Understanding your 9990 Psychology marks
-Your final raw mark in A-Level Psychology is a composite of your performance across the different papers, each testing distinct skills. You will earn marks for accurately describing the aims, procedures, and findings of named studies, applying psychological knowledge to novel scenarios, and critically evaluating research in terms of methodology, ethics, and debates. To get a clear picture of how your skills translate into marks, it is invaluable to practise with past papers and understand the assessment objectives. You can even get an expert to assess your work by using a service to [mark a paper](/mark), giving you precise feedback on where you are gaining and losing marks.
+Comparable outcomes after full marking — harder papers usually mean lower thresholds. Do not assume fixed percentages for an A*.
 
-## How to estimate your 2026 grade
-While you cannot know the exact 2026 boundaries in advance, you can create a reliable estimate to gauge your progress. The best method is to complete recent past papers under timed, exam-like conditions. Once you have marked your papers, compare your raw scores for each component against the published grade boundaries from the two or three most recent exam sessions (e.g., June 2025, November 2025). This will give you a realistic range of potential grades. To simplify this process, our [9990 grade calculator](/tools/grade-boundary-calculator) can help you combine your component scores and compare them against historical data to see where you stand.
+## How to estimate your grade
+
+1. Full timed paper per component type  
+2. Strict scheme mark — especially **named studies** and **evaluation**  
+3. [9990 calculator](/tools/grade-boundary-calculator/9990) with recent sessions  
+
+Guide: [9990 past papers](/blog/cambridge-9990-a-level-psychology-past-papers-guide) · [most repeated psychology topics](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026)
 
 ## Frequently asked questions
 
-### When will the official 2026 grade boundaries be released?
-Cambridge will publish the official grade boundaries for the June 2026 exam session on results day, which is scheduled for **13 August 2026**. They are released on the Cambridge International public website at the same time that schools and exam centres receive student results, ensuring complete transparency.
+### When are official 2026 boundaries released?
 
-### Is there a fixed percentage for an A* in Psychology?
-No, there is no fixed percentage for an A* or any other grade in Cambridge A-Levels. The grade is awarded based on achieving a specific raw mark threshold that is determined after marking. This mark can correspond to a different percentage each year depending on the difficulty of the papers.
+Grades **11 August**; tables **~13 August** on Cambridge International — [9990 subject page](/subjects/9990).
 
-### Where can I find past grade boundaries for 9990 Psychology?
-Cambridge International publishes 'Grade Threshold' documents for all past exam sessions on its main website. For a more organised view, you can visit the MarkScheme [9990 Psychology subject page](/subjects/9990), where we collate past papers, mark schemes, and grade boundary documents to make your revision and comparison process more efficient.
+### Where are past boundaries?
 
-### Does the weighting of each paper affect the overall grade?
-Yes, absolutely. For the A-Level qualification, Paper 1 and Paper 2 are each weighted at 25%, while Paper 3 and Paper 4 are also each weighted at 25%. Understanding these weightings is vital when estimating your overall grade, as strong performance in all papers is necessary for a high final result.
+Cambridge Grade Threshold documents per session — hub: [/guides/grade-boundaries](/guides/grade-boundaries).
+
+### Can one weak paper be compensated?
+
+Yes — strong papers elsewhere can lift your **weighted** total if overall raw mark is high enough.
+
+## Related subjects
+
+- [9699 Sociology](/blog/cambridge-9699-sociology-grade-boundaries-2026)
+- [9708 Economics](/blog/cambridge-9708-economics-grade-boundaries-2026)
+- [9489 History](/blog/cambridge-9489-history-grade-boundaries-2026)
 
 ## Bottom line
-The 2026 grade boundaries for 9990 Psychology remain unknown until results day, as they are set after marking to ensure fairness and consistency. Your focus should be on mastering the syllabus content, from core studies to applied options, and honing your exam technique through consistent practice. Ultimately, understanding the mark scheme and applying your knowledge effectively is the most dependable strategy for achieving the grade you deserve.
+
+**9990 grade boundaries 2026** are unknown until August — drill **studies + evaluation** with marked past papers, not rumoured percentages.

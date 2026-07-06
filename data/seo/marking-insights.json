@@ -2,7 +2,7 @@
   "name": "Cambridge self-marking gap patterns (MarkScheme rubric analysis)",
   "description": "First-hand patterns observed when students self-mark Cambridge past papers versus a strict second pass aligned to official mark schemes. Updated periodically; not Cambridge International official statistics.",
   "datePublished": "2026-04-01",
-  "dateModified": "2026-07-06",
+  "dateModified": "2026-07-07",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": "MarkScheme",
   "variables": [
@@ -49,11 +49,11 @@
       "notes": "Biology and chemistry Paper 2/4; students paraphrase instead of using mark-scheme vocabulary."
     },
     {
-      "id": "ecf_not_applied",
-      "label": "Calculation chains where ECF was available but not taken",
-      "value": 23,
+      "id": "wrong_session_boundary",
+      "label": "Grade estimates using the wrong session or component set",
+      "value": 61,
       "unit": "percent_of_sessions",
-      "notes": "Students abandon entire questions after one algebra slip; scheme often allows follow-through."
+      "notes": "Results-season spikes: students compare raw marks to last year's aggregate or a different paper variant — component codes must match."
     }
   ],
   "dimensions": ["subject_code", "marking_type", "paper_component"],

@@ -111,6 +111,9 @@ export function GradeBoundaryHubPanel() {
           <Link href="/blog/how-to-read-cambridge-grade-boundaries" className="ec-btn-ghost ec-btn-ghost--sm">
             How boundaries work
           </Link>
+          <Link href="/insights" className="ec-btn-ghost ec-btn-ghost--sm">
+            Self-marking gap data
+          </Link>
           <Link href="/tools/grade-boundary-calculator" className="ec-btn-primary ec-btn-primary--sm">
             Open calculator <ArrowRight className="h-4 w-4" />
           </Link>

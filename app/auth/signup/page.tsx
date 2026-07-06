@@ -1,12 +1,17 @@
-'use client'
+import { Suspense } from 'react'
+import {
+  buildSignInHref,
+  isSafeNextPath,
+  readPostAuthNextParam,
+} from '@/lib/auth-redirect'
+import { SignUpFormSkeleton, SignUpPageClient } from './SignUpPageClient'
 
-import { Suspense, useMemo } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { AuthShell } from '@/components/AuthShell'
-import { GoogleAuthSectionSkeleton } from '@/components/auth/GoogleAuthSection'
-import { buildSignInHref, isSafeNextPath, readPostAuthNextParam } from '@/lib/auth-redirect'
-import { isContentGateReturnPath } from '@/lib/content-gate'
-import { SignUpForm, signUpSubheadForRedirect } from '@/components/auth/SignUpForm'
+type SearchParams = Record<string, string | string[] | undefined>
+
+function firstParam(value: string | string[] | undefined): string | null {
+  if (Array.isArray(value)) return value[0] ?? null
+  return value ?? null
+}
 
 function destinationForIntent(
   intent: string | null,
@@ -30,64 +35,30 @@ function destinationForIntent(
   }
 }
 
-export default function SignUpPage() {
-  return (
-    <Suspense fallback={<SignUpFormSkeleton />}>
-      <SignUpPageInner />
-    </Suspense>
-  )
-}
-
-function SignUpFormSkeleton() {
-  return (
-    <AuthShell backLabel="Back to sign in" backHref="/auth/signin">
-      <p className="ec-eyebrow mb-3">Get started</p>
-      <h1 className="text-hero mb-3">
-        Create your <span className="ec-text-gradient">account</span>
-      </h1>
-      <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-        Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.
-      </p>
-      <GoogleAuthSectionSkeleton label="Sign up with Google" />
-    </AuthShell>
-  )
-}
-
-function SignUpPageInner() {
-  const searchParams = useSearchParams()
-  const intent = searchParams.get('intent')
-  const topic = searchParams.get('topic')
-  const paper = searchParams.get('paper')
+function resolveSignUpProps(searchParams: SearchParams) {
+  const intent = firstParam(searchParams.intent)
+  const topic = firstParam(searchParams.topic)
+  const paper = firstParam(searchParams.paper)
   const redirect = readPostAuthNextParam(
-    searchParams.get('next'),
-    searchParams.get('redirect')
+    firstParam(searchParams.next),
+    firstParam(searchParams.redirect)
   )
-
-  const intentDestination = useMemo(
-    () => destinationForIntent(intent, topic, paper, redirect),
-    [intent, topic, paper, redirect]
+  const intentDestination = destinationForIntent(intent, topic, paper, redirect)
+  const signInHref = buildSignInHref(
+    intentDestination !== '/onboarding' ? intentDestination : null
   )
+  return { intentDestination, signInHref, redirect }
+}
 
-  const signInHref = useMemo(
-    () =>
-      buildSignInHref(
-        intentDestination !== '/onboarding' ? intentDestination : null
-      ),
-    [intentDestination]
-  )
+type Props = { searchParams: Promise<SearchParams> }
 
-  const contentGateRedirect = isContentGateReturnPath(redirect) ? redirect : null
+export default async function SignUpPage({ searchParams }: Props) {
+  const sp = await searchParams
+  const props = resolveSignUpProps(sp)
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref={signInHref}>
-      <SignUpForm
-        redirectPath={intentDestination}
-        signInHref={signInHref}
-        signupSubhead={signUpSubheadForRedirect(redirect)}
-        showBlogReturnHint={Boolean(redirect?.startsWith('/blog/'))}
-        showContentReturnHint={Boolean(contentGateRedirect)}
-        guestBrowseSkipPath={contentGateRedirect}
-      />
-    </AuthShell>
+    <Suspense fallback={<SignUpFormSkeleton signInHref={props.signInHref} />}>
+      <SignUpPageClient {...props} />
+    </Suspense>
   )
 }

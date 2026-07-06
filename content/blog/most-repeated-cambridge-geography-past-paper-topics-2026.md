@@ -44,7 +44,7 @@ Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-gui
 | 7 | **Paper 2 skills** | Grid refs, relief, graph reading |
 | 8 | **Paper 4 fieldwork logic** | Method, presentation, evaluation |
 
-Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide) ? [0460 boundaries 2026](/blog/cambridge-0460-geography-grade-boundaries-2026)
+Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide) · [0460 boundaries 2026](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 ## Skills that repeat on every series
 

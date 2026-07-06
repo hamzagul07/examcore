@@ -29,7 +29,7 @@ We weighted problem-question themes per paper, essay command-word frequency, and
 | 7 | **Other torts & defences (P4)** | Nuisance, vicarious liability, consent |
 | 8 | **Essay balance & authority** | Named cases/statutes used to **test** the argument |
 
-Guide: [9084 past papers](/blog/cambridge-9084-a-level-law-past-papers-guide) ? [9084 boundaries 2026](/blog/cambridge-9084-law-grade-boundaries-2026) ? [command words](/blog/cambridge-9084-law-command-words-guide)
+Guide: [9084 past papers](/blog/cambridge-9084-a-level-law-past-papers-guide) · [9084 boundaries 2026](/blog/cambridge-9084-law-grade-boundaries-2026) · [command words](/blog/cambridge-9084-law-command-words-guide)
 
 ## IRAC habits that repeat
 
@@ -40,7 +40,7 @@ Guide: [9084 past papers](/blog/cambridge-9084-a-level-law-past-papers-guide) ? 
 | One-sided essay | Dedicated **counter** paragraph with rebuttal |
 | Precedent lists | Use hierarchy — **which court binds whom** |
 
-Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) ? [History most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
+Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) · [History most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
 
 ## 4-week rotation
 
@@ -51,7 +51,7 @@ Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambrid
 | 3 | Mixed problem paper | Full timed section | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Weak offence/topic retries | Full timed paper | [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ? [Accounting](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [Accounting](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026)
 
 ## Bottom line
 

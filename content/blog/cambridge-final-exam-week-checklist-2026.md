@@ -33,7 +33,7 @@ The final week before Cambridge exams is not for learning new content — it is 
 | Mark with official scheme | Same day | Log only top 3 error patterns |
 | Stop leak/scrape channels | 5 min | Integrity risk + anxiety |
 
-High-yield topic lists: [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ? subject guides e.g. [9709 Maths](/blog/cambridge-9709-a-level-mathematics-past-papers-guide).
+High-yield topic lists: [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) — subject guides e.g. [9709 Maths](/blog/cambridge-9709-a-level-mathematics-past-papers-guide).
 
 ## 5–6 days out — command words and format
 
@@ -44,7 +44,7 @@ High-yield topic lists: [most repeated science topics](/blog/most-repeated-cambr
 | Essays (History, Econ) | Plan boxes, evaluation paragraphs, time splits |
 | MCQ papers | Elimination, no blank guessing strategy unless penalised |
 
-Refresh: [command words explained](/blog/cambridge-command-words-explained) ? [how to read mark schemes](/blog/how-to-read-a-cambridge-mark-scheme).
+Refresh: [command words explained](/blog/cambridge-command-words-explained) · [how to read mark schemes](/blog/how-to-read-a-cambridge-mark-scheme).
 
 ## 3–4 days out — light timed practice
 

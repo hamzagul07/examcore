@@ -35,7 +35,7 @@ Many centres still sit **0500** (A*�G). **0990** is the **9�1** parallel syl
 
 ## How to estimate your grade
 
-1. Timed Paper 1 + Paper 2 ? mark to **band descriptors**  
+1. Timed Paper 1 + Paper 2 — mark to **band descriptors**  
 2. Log marks lost on summary word limits vs writer's effect questions  
 3. Compare raw marks to **June 2024/2023** component thresholds (official PDF)  
 

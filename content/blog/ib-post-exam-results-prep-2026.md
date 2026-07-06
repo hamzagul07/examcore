@@ -47,7 +47,7 @@ You are not predicting boundaries; you are predicting **your performance band**.
 
 Tool: [criterion marking](/mark) on one weak script per subject — band descriptors beat gut feel.
 
-Boundary context: [IB grade boundaries explained](/blog/ib-grade-boundaries-explained) ? [grade 7 buffer strategy](/blog/ib-how-to-build-a-grade-7-buffer-2026).
+Boundary context: [IB grade boundaries explained](/blog/ib-grade-boundaries-explained) · [grade 7 buffer strategy](/blog/ib-how-to-build-a-grade-7-buffer-2026).
 
 ## Save this evidence file
 

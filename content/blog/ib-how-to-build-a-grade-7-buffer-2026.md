@@ -46,7 +46,7 @@ Roughly **20–30%** of final marks in many subjects. Strong IA:
 - Is **teacher-supported** during drafting (within integrity rules)  
 - Rewards criteria language examiners expect  
 
-Guides: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) ? subject IA guides (e.g. [Biology IA](/blog/ib-biology-ia-guide)).
+Guides: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) — subject IA guides (e.g. [Biology IA](/blog/ib-biology-ia-guide)).
 
 **Target:** Score in the **top band** of each criterion — not “good enough.”
 
@@ -94,7 +94,7 @@ Track **technique losses** separately — they are the cheapest buffer to buy ba
 
 One band often equals **3–5 marks** on an essay. Misreading **evaluate** vs **discuss** costs more than forgetting one fact.
 
-Drill: [IB command terms explained](/blog/ib-command-terms-explained) ? highlight the command word before every past-paper question.
+Drill: [IB command terms explained](/blog/ib-command-terms-explained) — highlight the command word before every past-paper question.
 
 ## Digital vs paper exams
 
@@ -120,7 +120,7 @@ Predicted grades are for university apps; they do not change exam boundaries. Se
 
 ### Best free practice stack?
 
-[IB courses](/ib/courses) for content ? [past papers hub](/blog/ib-diploma-past-papers-guide) for format ? [MarkScheme marking](/mark) for band feedback.
+[IB courses](/ib/courses) for content · [past papers hub](/blog/ib-diploma-past-papers-guide) for format · [MarkScheme marking](/mark) for band feedback.
 
 ## Bottom line
 

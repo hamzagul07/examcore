@@ -51,7 +51,7 @@ Cross-links: [Economics most repeated](/blog/most-repeated-cambridge-economics-p
 | 3 | Costing & variances pack | Full timed paper |
 | 4 | Mixed synoptic | [MarkScheme](/mark) |
 
-**Sibling guides:** [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ? [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ? [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ? [Law](/blog/most-repeated-cambridge-law-past-paper-topics-2026)
+**Sibling guides:** [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) · [Law](/blog/most-repeated-cambridge-law-past-paper-topics-2026)
 
 ## Bottom line
 

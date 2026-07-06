@@ -45,10 +45,11 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Media Studies | 9607 | [9607 boundaries](/blog/cambridge-9607-media-studies-grade-boundaries-2026) |
 | Further Maths | 9231 | [9231 boundaries](/blog/cambridge-9231-further-mathematics-grade-boundaries-2026) |
 | Islamic Studies | 9488 | [9488 boundaries](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026) |
+| Literature in English | 9695 | [9695 boundaries](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026) |
 
-**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) ∑ [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) ∑ [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) ∑ [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) ∑ [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) ∑ [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) ∑ [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) ∑ [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) ∑ [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
+**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) ù [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) ù [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) ù [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) ù [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) ù [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) ù [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) ù [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) ù [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
 
-**IGCSE (grades 18 August; thresholds ~13 August):** [0580 Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026) ∑ [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026) ∑ [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026) ∑ [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026) ∑ [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
+**IGCSE (grades 18 August; thresholds ~13 August):** [0580 Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026) ù [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026) ù [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026) ù [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026) ù [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 

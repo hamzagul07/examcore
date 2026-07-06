@@ -48,6 +48,8 @@ const IB_EDITORIAL_SLUGS = new Set([
   'cambridge-9696-geography-grade-boundaries-2026',
   'cambridge-0460-geography-grade-boundaries-2026',
   'cambridge-0580-mathematics-grade-boundaries-2026',
+  'cambridge-0990-first-language-english-grade-boundaries-2026',
+  'cambridge-9695-literature-in-english-grade-boundaries-2026',
   'cambridge-0610-biology-grade-boundaries-2026',
   'cambridge-0620-chemistry-grade-boundaries-2026',
   'cambridge-0625-physics-grade-boundaries-2026',

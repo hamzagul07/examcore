@@ -251,6 +251,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-9699-sociology-grade-boundaries-2026',
     },
     {
+      question: 'Where are 9695 Literature grade boundaries for 2026?',
+      answer:
+        'A-Level grades release 11 August; threshold PDFs ~13 August — mark essays to band descriptors, then use the 9695 calculator with recent sessions.',
+      href: '/blog/cambridge-9695-literature-in-english-grade-boundaries-2026',
+    },
+    {
+      question: 'Where are 0990 IGCSE English grade boundaries for 2026?',
+      answer:
+        'IGCSE grades release 18 August; 0990 uses 9–1 grading — compare marked reading and writing papers to recent component thresholds, not social media.',
+      href: '/blog/cambridge-0990-first-language-english-grade-boundaries-2026',
+    },
+    {
       question: 'Where are 9696 Geography grade boundaries for 2026?',
       answer:
         'Grades release 11 August; threshold PDFs ~13 August — mark case-study essays to band descriptors, then use the calculator with recent sessions.',

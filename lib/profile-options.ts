@@ -259,6 +259,16 @@ export const SUBJECTS: SubjectOption[] = [
     markingType: 'level_of_response',
   },
   {
+    id: 'Literature in English',
+    label: 'Literature in English',
+    code: '9695',
+    group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
+    enabled: true,
+    markingEnabled: true,
+    markingType: 'level_of_response',
+  },
+  {
     id: 'Computer Science',
     label: 'Computer Science',
     code: '9618',

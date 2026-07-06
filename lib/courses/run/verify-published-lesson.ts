@@ -6,6 +6,13 @@ import {
   qualityTierForStatus,
   type QualityTier,
 } from '@/lib/courses/generator/quality-targets'
+import {
+  hasNumericWorkedExample,
+  hasSubstantiveWorkedExample,
+  isHollowWorkedExample,
+  requiresNumericWorkedExample,
+} from '@/lib/courses/generator/worked-example-quality'
+import { estimateLessonCoverageScore } from '@/lib/courses/run/lesson-coverage-score'
 import { summarizeKatexValidation } from '@/lib/extraction/katex-validate'
 import type { ValidationIssue } from '@/lib/courses/generator/validate-lesson'
 
@@ -17,7 +24,7 @@ export type PublishedLessonValidationResult = {
   topicCode: string | null
 }
 
-/** Published on-disk lessons ÿ generator-only fields optional (legacy content). */
+/** Published on-disk lessons — generator-only fields optional (legacy content). */
 export const PublishedLessonVerifySchema = z
   .object({
     slug: z.string().min(1),
@@ -56,7 +63,7 @@ export const PublishedLessonVerifySchema = z
   })
   .passthrough()
 
-function collectLessonText(lesson: CourseLesson): string {
+function collectLessonTextChunks(lesson: CourseLesson): string[] {
   const parts: string[] = [lesson.summary, lesson.title]
   for (const s of lesson.sections) {
     if ('content' in s) parts.push(s.content)
@@ -69,7 +76,11 @@ function collectLessonText(lesson: CourseLesson): string {
   if (lesson.flashcards) {
     for (const fc of lesson.flashcards) parts.push(fc.front, fc.back)
   }
-  return parts.join('\n')
+  return parts.filter((p): p is string => typeof p === 'string' && p.length > 0)
+}
+
+function collectLessonText(lesson: CourseLesson): string {
+  return collectLessonTextChunks(lesson).join('\n')
 }
 
 function countHeadingTextPairs(lesson: CourseLesson): number {
@@ -94,14 +105,19 @@ function countHeadingTextPairs(lesson: CourseLesson): number {
 }
 
 function validateKatex(lesson: CourseLesson): ValidationIssue[] {
-  const text = collectLessonText(lesson)
-  const summary = summarizeKatexValidation(text)
-  if (summary.allParseable) return []
-  return summary.failedFragments.map((f) => ({
-    code: 'katex_parse_error',
-    message: `Unparseable KaTeX: ${f.fragment.slice(0, 60)} ÿ ${f.error}`,
-    severity: 'error' as const,
-  }))
+  const issues: ValidationIssue[] = []
+  for (const text of collectLessonTextChunks(lesson)) {
+    const summary = summarizeKatexValidation(text)
+    if (summary.allParseable) continue
+    for (const f of summary.failedFragments) {
+      issues.push({
+        code: 'katex_parse_error',
+        message: `Unparseable KaTeX: ${f.fragment.slice(0, 60)} — ${f.error}`,
+        severity: 'error' as const,
+      })
+    }
+  }
+  return issues
 }
 
 function validateWorkedExamples(lesson: CourseLesson): ValidationIssue[] {
@@ -127,6 +143,64 @@ function validateWorkedExamples(lesson: CourseLesson): ValidationIssue[] {
       })
     }
   }
+  return issues
+}
+
+function validateAuditStrictQuality(
+  lesson: CourseLesson,
+  subjectCode: string,
+  tier: QualityTier
+): ValidationIssue[] {
+  const issues: ValidationIssue[] = []
+  const targets = getQualityTargets(subjectCode, tier)
+  const worked = lesson.sections.filter((s) => s.type === 'workedExample')
+
+  for (const [i, ex] of worked.entries()) {
+    if (ex.type !== 'workedExample') continue
+    if (isHollowWorkedExample(ex.question, ex.solution)) {
+      issues.push({
+        code: 'hollow_worked_example',
+        message: `workedExample ${i + 1} is a template/syllabus stub, not an exam-style problem`,
+        severity: 'error',
+      })
+    }
+  }
+
+  if (worked.length > 0 && !hasSubstantiveWorkedExample(lesson.sections)) {
+    issues.push({
+      code: 'no_substantive_worked_example',
+      message: 'No worked example with substantive question + solution depth',
+      severity: 'error',
+    })
+  }
+
+  if (
+    requiresNumericWorkedExample(subjectCode) &&
+    worked.length > 0 &&
+    !hasNumericWorkedExample(lesson.sections)
+  ) {
+    issues.push({
+      code: 'missing_numeric_worked_example',
+      message: 'Technical subject requires at least one worked example with figures/calculation',
+      severity: 'error',
+    })
+  }
+
+  if (lesson.topicCode) {
+    const { score, objectiveCount } = estimateLessonCoverageScore(
+      lesson,
+      subjectCode,
+      lesson.topicCode
+    )
+    if (objectiveCount > 0 && score < targets.minCoverageScore) {
+      issues.push({
+        code: 'low_coverage_score',
+        message: `Estimated syllabus coverage ${score.toFixed(2)} below ${targets.minCoverageScore}`,
+        severity: 'error',
+      })
+    }
+  }
+
   return issues
 }
 
@@ -193,7 +267,7 @@ export function verifyPublishedLessonJson(
   lesson: unknown,
   filePath: string,
   subjectCode: string,
-  opts: { strict?: boolean } = {}
+  opts: { strict?: boolean; auditStrict?: boolean } = {}
 ): PublishedLessonValidationResult {
   const issues: ValidationIssue[] = []
 
@@ -228,8 +302,12 @@ export function verifyPublishedLessonJson(
   issues.push(...validateWorkedExamples(parsed))
 
   const tier = qualityTierForStatus(parsed.status)
-  if (opts.strict) {
+  const runStrict = opts.auditStrict || opts.strict
+  if (runStrict) {
     issues.push(...validateQualityTargets(parsed, subjectCode, tier))
+  }
+  if (opts.auditStrict) {
+    issues.push(...validateAuditStrictQuality(parsed, subjectCode, tier))
   }
 
   const hasErrors = issues.some((i) => i.severity === 'error')

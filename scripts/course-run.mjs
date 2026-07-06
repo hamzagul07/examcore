@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Autonomous course build runner ÿ Phase 1.
+ * Autonomous course build runner  Phase 1.
  *
  *   pnpm course:run -- --type coverage_audit --code 9702
  *   pnpm course:run -- --type coverage_audit --all
@@ -49,6 +49,11 @@ function parseArgs(argv) {
     limit: get('limit') ? parseInt(get('limit'), 10) : null,
     topic: get('topic'),
     dryRun: args.includes('--dry-run'),
+    skipJob3: args.includes('--skip-job3'),
+    job3Only: args.includes('--job3-only'),
+    job3RetryRejects: args.includes('--job3-retry-rejects'),
+    job3RetryFrom: get('job3-retry-from'),
+    job3Limit: get('job3-limit') ? parseInt(get('job3-limit'), 10) : null,
   }
 }
 
@@ -279,8 +284,87 @@ async function main() {
     process.exit(0)
   }
 
+  if (opts.type === 'weak_lesson_audit') {
+    const { auditWeakLessons, formatWeakLessonReportText, writeWeakLessonAuditReport } =
+      await import('../lib/courses/run/weak-lesson-audit.ts')
+
+    if (!opts.code && !opts.all) {
+      console.error('weak_lesson_audit requires --code SUBJECT or --all')
+      process.exit(1)
+    }
+
+    const report = auditWeakLessons({
+      subjectCode: opts.code ?? undefined,
+      all: opts.all,
+      projectRoot: PROJECT,
+    })
+
+    console.log(formatWeakLessonReportText(report))
+    const logPath = writeWeakLessonAuditReport(report, PROJECT)
+    console.error(`\nFull report: ${logPath}`)
+    process.exit(report.totalFailed > 0 ? 1 : 0)
+  }
+
+  if (opts.type === 'metadata_backfill') {
+    const { runMetadataBackfill } = await import('../lib/courses/run/metadata-backfill.ts')
+    const { auditWeakLessons } = await import('../lib/courses/run/weak-lesson-audit.ts')
+    const report = runMetadataBackfill({ projectRoot: PROJECT })
+    const audit = auditWeakLessons({ all: true, projectRoot: PROJECT })
+    console.log(
+      `Metadata backfill: ${report.updated} updated / ${report.scanned} scanned`
+    )
+    console.log(
+      `Post-backfill audit: ${audit.totalPassed}/${audit.totalChecked} pass (${audit.overallFailPct}% fail)`
+    )
+    process.exit(0)
+  }
+
+  if (opts.type === 'mechanical_fix') {
+    const { runMechanicalFixes } = await import('../lib/courses/run/mechanical-fixes.ts')
+    const { auditWeakLessons } = await import('../lib/courses/run/weak-lesson-audit.ts')
+    const report = runMechanicalFixes({ projectRoot: PROJECT })
+    const audit = auditWeakLessons({ all: true, projectRoot: PROJECT })
+    console.log(
+      `Mechanical fixes: ${report.updated} updated (${report.katexFixed} KaTeX, ${report.schemaFixed} schema) / ${report.scanned} scanned`
+    )
+    console.log(
+      `Post-fix audit: ${audit.totalPassed}/${audit.totalChecked} pass (${audit.overallFailPct}% fail)`
+    )
+    process.exit(0)
+  }
+
+  if (opts.type === 'structural_backlog') {
+    const { writeStructuralBacklog } = await import('../lib/courses/run/structural-backlog.ts')
+    const rel = writeStructuralBacklog(PROJECT)
+    const { buildStructuralBacklog } = await import('../lib/courses/run/structural-backlog.ts')
+    const report = buildStructuralBacklog({ projectRoot: PROJECT })
+    console.log(`Structural backlog: ${report.manualKatex} manual KaTeX + ${report.other} other = ${report.lessons.length} lessons`)
+    console.log(`Written: ${rel}`)
+    process.exit(0)
+  }
+
+  if (opts.type === 'improve_pipeline') {
+    loadEnvLocal()
+    const { runImprovePipeline, formatPipelineSummary } = await import(
+      '../lib/courses/run/improve-batch.ts'
+    )
+    const report = await runImprovePipeline({
+      projectRoot: PROJECT,
+      skipJob3: opts.skipJob3,
+      job3Only: opts.job3Only,
+      job3RetryRejects: opts.job3RetryRejects,
+      job3RetryFrom: opts.job3RetryFrom ?? undefined,
+      job3Limit: opts.job3Limit ?? undefined,
+      subjectCode: opts.code ?? undefined,
+    })
+    console.log(formatPipelineSummary(report))
+    process.exit(0)
+  }
+
   console.error(`Unknown run type: ${opts.type}`)
-  console.error('Types: coverage_audit | lesson_verify | lesson_generate')
+  console.error(
+    'Types: coverage_audit | lesson_verify | lesson_generate | weak_lesson_audit | metadata_backfill | mechanical_fix | improve_pipeline | structural_backlog'
+  )
   process.exit(1)
 }
 

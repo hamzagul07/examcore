@@ -9,7 +9,7 @@
   "paper": "P2",
   "paperName": "Maths AI HL",
   "status": "premium",
-  "summary": "A discrete random variable attaches a number to each outcome of a random experiment, and its probability distribution — a table pairing every value $x$ with its probability $P(X=x)$ — is the object the whole of 4.5 is built on. This lesson develops that table in full: why the probabilities must satisfy $\\sum P(X=x)=1$ and how that single condition lets you solve for an unknown probability; how the expected value $E(X)=\\sum x\\,P(X=x)$ is a probability-weighted average that predicts the long-run mean; and how expected value decides whether a game of chance is fair — a game is fair exactly when the expected gain is $0$. Because 4.5 sits on Paper 2 the GDC handles the arithmetic, so the marks reward setting up the distribution, showing the weighted sum, and interpreting the answer in context. Every worked example is laid out the way our marking engine actually awards the marks.",
+  "summary": "A discrete random variable attaches a number to each outcome of a random experiment, and its probability distribution - a table pairing every value $x$ with its probability $P(X=x)$ - is the object the whole of 4.5 is built on. This lesson develops that table in full: why the probabilities must satisfy $\\sum P(X=x)=1$ and how that single condition lets you solve for an unknown probability; how the expected value $E(X)=\\sum x\\,P(X=x)$ is a probability-weighted average that predicts the long-run mean; and how expected value decides whether a game of chance is fair - a game is fair exactly when the expected gain is $0$. Because 4.5 sits on Paper 2 the GDC handles the arithmetic, so the marks reward setting up the distribution, showing the weighted sum, and interpreting the answer in context. Every worked example is laid out the way our marking engine actually awards the marks.",
   "durationMin": 24,
   "updated": "2026-07-04",
   "learningObjectives": [
@@ -25,13 +25,13 @@
   "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Putting a number on chance, then averaging it",
-    "summary": "A discrete random variable turns countable chance outcomes into numbers, and its probability distribution is just a table listing each number beside how likely it is. The expected value is the probability-weighted average of that table — the result you would settle towards if you repeated the experiment thousands of times.",
-    "analogy": "Picture a spinner at a fair with slices worth 1, 2, 5 and 10 points, but the slices are different sizes. You cannot land 'half a slice' — the score is discrete. Because the slices differ in size, a plain average of 1, 2, 5, 10 would be dishonest; the big-money slice might be tiny. Expected value fixes this by weighting each score by the fraction of the wheel it occupies. Spin once and you get one score; spin all afternoon and your average score homes in on the expected value — even if that number, say 3.4, is a score you can never actually land.",
+    "summary": "A discrete random variable turns countable chance outcomes into numbers, and its probability distribution is just a table listing each number beside how likely it is. The expected value is the probability-weighted average of that table - the result you would settle towards if you repeated the experiment thousands of times.",
+    "analogy": "Picture a spinner at a fair with slices worth 1, 2, 5 and 10 points, but the slices are different sizes. You cannot land 'half a slice' - the score is discrete. Because the slices differ in size, a plain average of 1, 2, 5, 10 would be dishonest; the big-money slice might be tiny. Expected value fixes this by weighting each score by the fraction of the wheel it occupies. Spin once and you get one score; spin all afternoon and your average score homes in on the expected value - even if that number, say 3.4, is a score you can never actually land.",
     "steps": [
       "Identify the discrete random variable $X$ and list every value $x$ it can take.",
-      "Write the probability $P(X=x)$ beside each value to build the distribution table, and check the probabilities add to 1 — if one is unknown, that condition finds it.",
+      "Write the probability $P(X=x)$ beside each value to build the distribution table, and check the probabilities add to 1 - if one is unknown, that condition finds it.",
       "Form the expected value $E(X)=\\sum x\\,P(X=x)$: multiply each value by its probability and add the products.",
-      "Read the answer in context — as a long-run mean, or, for a game, as the expected gain that decides whether the game is fair."
+      "Read the answer in context - as a long-run mean, or, for a game, as the expected gain that decides whether the game is fair."
     ]
   },
   "keyConcepts": [
@@ -47,12 +47,12 @@
     },
     {
       "front": "Probability distribution",
-      "back": "A complete list — usually a table — pairing every possible value $x$ of a discrete random variable with its probability $P(X=x)$. It must account for all outcomes.",
+      "back": "A complete list - usually a table - pairing every possible value $x$ of a discrete random variable with its probability $P(X=x)$. It must account for all outcomes.",
       "pillLabel": "Definition"
     },
     {
       "front": "The total-probability condition",
-      "back": "For any discrete random variable, $\\sum P(X=x) = 1$. Every probability also satisfies $0 \\le P(X=x) \\le 1$. This is the check that a distribution is valid — and the equation you solve when a probability is unknown.",
+      "back": "For any discrete random variable, $\\sum P(X=x) = 1$. Every probability also satisfies $0 \\le P(X=x) \\le 1$. This is the check that a distribution is valid - and the equation you solve when a probability is unknown.",
       "pillLabel": "Formula"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "front": "Expected value $E(X)$",
-      "back": "$E(X) = \\sum x\\,P(X=x)$: multiply each value by its probability and add the products. It is the mean of the distribution, also written $\\mu$, and is a probability-weighted average — not a plain average of the values.",
+      "back": "$E(X) = \\sum x\\,P(X=x)$: multiply each value by its probability and add the products. It is the mean of the distribution, also written $\\mu$, and is a probability-weighted average - not a plain average of the values.",
       "pillLabel": "Formula"
     },
     {
@@ -77,12 +77,12 @@
     },
     {
       "front": "Fair game",
-      "back": "A game is fair when the player's expected gain (or expected profit) is $0$ — on average the player breaks even. Expected gain $= E(\\text{winnings}) - \\text{cost to play}$.",
+      "back": "A game is fair when the player's expected gain (or expected profit) is $0$ - on average the player breaks even. Expected gain $= E(\\text{winnings}) - \\text{cost to play}$.",
       "pillLabel": "Definition"
     },
     {
       "front": "Expected gain vs expected winnings",
-      "back": "Expected winnings is $E(W)$ from the prize distribution. Expected gain subtracts the stake: $E(W) - \\text{cost}$. Judge fairness on the gain, not the winnings — forgetting the stake is a classic error.",
+      "back": "Expected winnings is $E(W)$ from the prize distribution. Expected gain subtracts the stake: $E(W) - \\text{cost}$. Judge fairness on the gain, not the winnings - forgetting the stake is a classic error.",
       "pillLabel": "Trap"
     },
     {
@@ -151,15 +151,15 @@
   "faq": [
     {
       "q": "How is expected value different from a plain average of the outcomes?",
-      "a": "A plain average gives every outcome equal weight. Expected value weights each outcome by its probability, so likely values pull the answer towards themselves and rare values barely move it. The two agree only when all outcomes are equally likely — for a fair die the plain average of 1 to 6 and the expected value both give 3.5. As soon as the probabilities differ, you must use $E(X)=\\sum x\\,P(X=x)$."
+      "a": "A plain average gives every outcome equal weight. Expected value weights each outcome by its probability, so likely values pull the answer towards themselves and rare values barely move it. The two agree only when all outcomes are equally likely - for a fair die the plain average of 1 to 6 and the expected value both give 3.5. As soon as the probabilities differ, you must use $E(X)=\\sum x\\,P(X=x)$."
     },
     {
       "q": "My probabilities do not add up to 1. What went wrong?",
-      "a": "One of two things: you have either miscalculated a probability, or you have missed a possible value of the variable. The condition $\\sum P(X=x)=1$ is your built-in check — if the total is off, go back and account for every outcome. This same condition is what you solve when a question leaves one probability as an unknown."
+      "a": "One of two things: you have either miscalculated a probability, or you have missed a possible value of the variable. The condition $\\sum P(X=x)=1$ is your built-in check - if the total is off, go back and account for every outcome. This same condition is what you solve when a question leaves one probability as an unknown."
     },
     {
       "q": "Can the expected value really be a value the variable can never take?",
-      "a": "Yes, and that is normal. $E(X)$ is a long-run average, not a prediction of a single trial. A fair die has $E(X)=3.5$ even though no face is 3.5; a household might have $E(X)=1.8$ children. Never 'round' the expected value to the nearest possible outcome — the exact weighted sum is the answer."
+      "a": "Yes, and that is normal. $E(X)$ is a long-run average, not a prediction of a single trial. A fair die has $E(X)=3.5$ even though no face is 3.5; a household might have $E(X)=1.8$ children. Never 'round' the expected value to the nearest possible outcome - the exact weighted sum is the answer."
     },
     {
       "q": "For a game, do I test fairness on the winnings or the gain?",
@@ -173,7 +173,7 @@
   "sections": [
     {
       "type": "intro",
-      "content": "We cannot predict the next roll of a die, but we can describe the pattern that emerges over thousands of rolls — and that pattern is exactly what a discrete random variable captures. This lesson builds the full 4.5 syllabus: the probability distribution as a table of values $x$ and probabilities $P(X=x)$; the condition $\\sum P(X=x)=1$ and how it pins down an unknown probability; the expected value $E(X)=\\sum x\\,P(X=x)$ and its meaning as a long-run mean; and the payoff application — using expected value to decide whether a game is fair. Because 4.5 is examined on Paper 2, the GDC does the arithmetic, so the marks reward building the distribution, showing the weighted sum and interpreting the result. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
+      "content": "We cannot predict the next roll of a die, but we can describe the pattern that emerges over thousands of rolls - and that pattern is exactly what a discrete random variable captures. This lesson builds the full 4.5 syllabus: the probability distribution as a table of values $x$ and probabilities $P(X=x)$; the condition $\\sum P(X=x)=1$ and how it pins down an unknown probability; the expected value $E(X)=\\sum x\\,P(X=x)$ and its meaning as a long-run mean; and the payoff application - using expected value to decide whether a game is fair. Because 4.5 is examined on Paper 2, the GDC does the arithmetic, so the marks reward building the distribution, showing the weighted sum and interpreting the result. As in every calculation topic, the worked examples below are laid out exactly the way our engine marks your own practice."
     },
     {
       "type": "heading",
@@ -181,28 +181,28 @@
     },
     {
       "type": "text",
-      "content": "A **discrete random variable** assigns a number to each outcome of a random experiment, and takes only separate, countable values — for example the number of heads in four coin flips, which can be $0,1,2,3$ or $4$ but never $2.5$. We write the variable with a capital letter, $X$, and a particular value with a lowercase $x$. This is the difference from a continuous variable such as height, which can take any value in a range."
+      "content": "A **discrete random variable** assigns a number to each outcome of a random experiment, and takes only separate, countable values - for example the number of heads in four coin flips, which can be $0,1,2,3$ or $4$ but never $2.5$. We write the variable with a capital letter, $X$, and a particular value with a lowercase $x$. This is the difference from a continuous variable such as height, which can take any value in a range."
     },
     {
       "type": "text",
-      "content": "A **probability distribution** lists every value the variable can take alongside its probability $P(X=x)$, almost always as a table. The table is the object every 4.5 question works from, so building it correctly — and completely — is the first skill to master."
+      "content": "A **probability distribution** lists every value the variable can take alongside its probability $P(X=x)$, almost always as a table. The table is the object every 4.5 question works from, so building it correctly - and completely - is the first skill to master."
     },
     {
       "type": "keyPoints",
       "items": [
         "Each probability lies between 0 and 1 inclusive: $0 \\le P(X=x) \\le 1$.",
         "The probabilities of all possible outcomes sum to exactly 1: $\\sum P(X=x) = 1$.",
-        "The table must list every possible value of $X$ — a missing outcome is the usual reason a distribution fails to sum to 1."
+        "The table must list every possible value of $X$ - a missing outcome is the usual reason a distribution fails to sum to 1."
       ]
     },
     {
       "type": "text",
-      "content": "The condition $\\sum P(X=x)=1$ is more than a check: when a distribution contains an unknown probability — often written in terms of a constant $k$ — you find it by setting the total equal to 1 and solving."
+      "content": "The condition $\\sum P(X=x)=1$ is more than a check: when a distribution contains an unknown probability - often written in terms of a constant $k$ - you find it by setting the total equal to 1 and solving."
     },
     {
       "type": "workedExample",
-      "question": "The discrete random variable $X$ has the probability distribution below, where $c$ is a constant. \\n \\n | $x$ | 1 | 2 | 3 | 4 | \\n |---|---|---|---|---| \\n | $P(X=x)$ | $0.1$ | $c$ | $0.3$ | $0.25$ | \\n \\n (a) Find the value of $c$. \\n (b) Find $P(X \\ge 3)$. [4]",
-      "solution": "**(a) Use the total-probability condition.** All the probabilities must sum to 1:\\n$0.1 + c + 0.3 + 0.25 = 1.$  [M1: set the sum of probabilities equal to 1]\\n$0.65 + c = 1 \\;\\Rightarrow\\; c = 0.35.$  [A1]\\n\\n**(b) Add the relevant entries.** $P(X \\ge 3)$ means $X = 3$ or $X = 4$:\\n$P(X \\ge 3) = P(X=3) + P(X=4) = 0.3 + 0.25 = 0.55.$  [M1][A1]\\n\\nThe check $0.1 + 0.35 + 0.3 + 0.25 = 1$ confirms the completed distribution is valid."
+      "question": "The discrete random variable $X$ has the probability distribution below, where $c$ is a constant. \n \n | $x$ | 1 | 2 | 3 | 4 | \n |---|---|---|---|---| \n | $P(X=x)$ | $0.1$ | $c$ | $0.3$ | $0.25$ | \n \n (a) Find the value of $c$. \n (b) Find $P(X \\ge 3)$. [4]",
+      "solution": "**(a) Use the total-probability condition.** All the probabilities must sum to 1:\n$0.1 + c + 0.3 + 0.25 = 1.$  [M1: set the sum of probabilities equal to 1]\n$0.65 + c = 1 \\;\\Rightarrow\\; c = 0.35.$  [A1]\n\n**(b) Add the relevant entries.** $P(X \\ge 3)$ means $X = 3$ or $X = 4$:\n$P(X \\ge 3) = P(X=3) + P(X=4) = 0.3 + 0.25 = 0.55.$  [M1][A1]\n\\nThe check $0.1 + 0.35 + 0.3 + 0.25 = 1$ confirms the completed distribution is valid."
     },
     {
       "type": "heading",
@@ -210,7 +210,7 @@
     },
     {
       "type": "text",
-      "content": "The expected value of a discrete random variable is its theoretical long-run average — the mean you would approach if you repeated the experiment a very large number of times. It is a **probability-weighted average**: each value is weighted by how likely it is, so common outcomes count for more than rare ones. It is also called the mean and written $E(X)$ or $\\mu$."
+      "content": "The expected value of a discrete random variable is its theoretical long-run average - the mean you would approach if you repeated the experiment a very large number of times. It is a **probability-weighted average**: each value is weighted by how likely it is, so common outcomes count for more than rare ones. It is also called the mean and written $E(X)$ or $\\mu$."
     },
     {
       "type": "formula",
@@ -218,16 +218,16 @@
     },
     {
       "type": "text",
-      "content": "To compute it, multiply each value $x$ by its probability $P(X=x)$ and add the products. Two ideas trip students up. First, this is a *weighted* average — averaging the values without their probabilities is only correct when every outcome is equally likely. Second, the expected value need not be a value the variable can actually take: a fair die has $E(X)=3.5$, and you never round that to a real face."
+      "content": "To compute it, multiply each value $x$ by its probability $P(X=x)$ and add the products. Two ideas trip students up. First, this is a *weighted* average - averaging the values without their probabilities is only correct when every outcome is equally likely. Second, the expected value need not be a value the variable can actually take: a fair die has $E(X)=3.5$, and you never round that to a real face."
     },
     {
       "type": "examTip",
-      "content": "On Paper 2, let the GDC do the sum: enter the values $x$ in one list and the probabilities $P(X=x)$ in a second, then run one-variable statistics with the second list set as the frequencies. The reported mean $\\bar{x}$ is $E(X)$. But still write the substituted line $E(X)=\\sum x\\,P(X=x)$ on the page — that written method is where the method mark lives."
+      "content": "On Paper 2, let the GDC do the sum: enter the values $x$ in one list and the probabilities $P(X=x)$ in a second, then run one-variable statistics with the second list set as the frequencies. The reported mean $\\bar{x}$ is $E(X)$. But still write the substituted line $E(X)=\\sum x\\,P(X=x)$ on the page - that written method is where the method mark lives."
     },
     {
       "type": "workedExample",
-      "question": "A spinner is divided into unequal sectors scoring 0, 1, 3 and 5. The score $X$ has the distribution \\n \\n | $x$ | 0 | 1 | 3 | 5 | \\n |---|---|---|---|---| \\n | $P(X=x)$ | $0.4$ | $0.3$ | $0.2$ | $0.1$ | \\n \\n (a) Find the expected score $E(X)$. \\n (b) Interpret this value. [4]",
-      "solution": "**(a) Apply the formula** $E(X)=\\sum x\\,P(X=x)$:\\n$E(X) = (0)(0.4) + (1)(0.3) + (3)(0.2) + (5)(0.1).$  [M1: substitute values and probabilities into the weighted sum]\\n$E(X) = 0 + 0.3 + 0.6 + 0.5 = 1.4.$  [A1]\\n\\n**(b) Interpret.** Over many spins, the mean score per spin approaches $1.4$.  [A1] It is a long-run average, not the result of any single spin — indeed $1.4$ is not even a possible score, which is perfectly normal for an expected value.  [R1]\\n\\nNotice that a plain average of $0,1,3,5$ would give $2.25$; the correct weighted value $1.4$ is lower because the low scores are the most probable."
+      "question": "A spinner is divided into unequal sectors scoring 0, 1, 3 and 5. The score $X$ has the distribution \n \n | $x$ | 0 | 1 | 3 | 5 | \n |---|---|---|---|---| \n | $P(X=x)$ | $0.4$ | $0.3$ | $0.2$ | $0.1$ | \n \n (a) Find the expected score $E(X)$. \n (b) Interpret this value. [4]",
+      "solution": "**(a) Apply the formula** $E(X)=\\sum x\\,P(X=x)$:\n$E(X) = (0)(0.4) + (1)(0.3) + (3)(0.2) + (5)(0.1).$  [M1: substitute values and probabilities into the weighted sum]\n$E(X) = 0 + 0.3 + 0.6 + 0.5 = 1.4.$  [A1]\n\n**(b) Interpret.** Over many spins, the mean score per spin approaches $1.4$.  [A1] It is a long-run average, not the result of any single spin - indeed $1.4$ is not even a possible score, which is perfectly normal for an expected value.  [R1]\n\\nNotice that a plain average of $0,1,3,5$ would give $2.25$; the correct weighted value $1.4$ is lower because the low scores are the most probable."
     },
     {
       "type": "heading",
@@ -235,29 +235,29 @@
     },
     {
       "type": "text",
-      "content": "Expected value is the tool for judging games of chance. A game is **fair** when the player's expected gain is $0$ — on average the player neither wins nor loses. The expected gain is the expected winnings minus the cost to play: $E(\\text{gain}) = E(W) - \\text{stake}$. If the expected gain is positive the game favours the player; if negative it favours the organiser (which is how casinos make money). The single most common error here is comparing the expected winnings with zero and forgetting to subtract the stake."
+      "content": "Expected value is the tool for judging games of chance. A game is **fair** when the player's expected gain is $0$ - on average the player neither wins nor loses. The expected gain is the expected winnings minus the cost to play: $E(\\text{gain}) = E(W) - \\text{stake}$. If the expected gain is positive the game favours the player; if negative it favours the organiser (which is how casinos make money). The single most common error here is comparing the expected winnings with zero and forgetting to subtract the stake."
     },
     {
       "type": "workedExample",
-      "question": "A player pays \\$5 to roll a fair eight-sided die (faces 1 to 8). If the number is even they win \\$4; if it is 1 or 3 they win \\$10; if it is 5 or 7 they win nothing. \\n \\n (a) Find the expected winnings $E(W)$. \\n (b) Find the player's expected gain per game. \\n (c) State, with a reason, whether the game is fair. [5]",
-      "solution": "**(a) Build the prize distribution.** The die is fair, so each face has probability $\\frac{1}{8}$.\\n$P(W=4) = P(\\text{2, 4, 6 or 8}) = \\tfrac{4}{8} = 0.5,$\\n$P(W=10) = P(\\text{1 or 3}) = \\tfrac{2}{8} = 0.25,$\\n$P(W=0) = P(\\text{5 or 7}) = \\tfrac{2}{8} = 0.25.$  [A1: correct prize probabilities]\\nThen apply $E(W)=\\sum w\\,P(W=w)$:\\n$E(W) = (4)(0.5) + (10)(0.25) + (0)(0.25)$  [M1: substitute into weighted sum]\\n$E(W) = 2 + 2.5 + 0 = \\$4.50.$  [A1]\\n\\n**(b) Subtract the stake.** Expected gain $= E(W) - \\text{cost} = 4.50 - 5 = -\\$0.50.$  [A1]\\n\\n**(c) Judge fairness on the gain.** A fair game needs an expected gain of $0$. Here the expected gain is $-\\$0.50 \\ne 0$, so the game is **not fair**; on average a player loses 50 cents per game, so it favours the organiser.  [A1: reasoned conclusion]"
+      "question": "A player pays \\$5 to roll a fair eight-sided die (faces 1 to 8). If the number is even they win \\$4; if it is 1 or 3 they win \\$10; if it is 5 or 7 they win nothing. \n \n (a) Find the expected winnings $E(W)$. \n (b) Find the player's expected gain per game. \n (c) State, with a reason, whether the game is fair. [5]",
+      "solution": "**(a) Build the prize distribution.** The die is fair, so each face has probability $\\frac{1}{8}$.\n$P(W=4) = P(\\text{2, 4, 6 or 8}) = \\tfrac{4}{8} = 0.5,$\n$P(W=10) = P(\\text{1 or 3}) = \\tfrac{2}{8} = 0.25,$\n$P(W=0) = P(\\text{5 or 7}) = \\tfrac{2}{8} = 0.25.$  [A1: correct prize probabilities]\\nThen apply $E(W)=\\sum w\\,P(W=w)$:\n$E(W) = (4)(0.5) + (10)(0.25) + (0)(0.25)$  [M1: substitute into weighted sum]\n$E(W) = 2 + 2.5 + 0 = \\$4.50.$  [A1]\n\n**(b) Subtract the stake.** Expected gain $= E(W) - \\text{cost} = 4.50 - 5 = -\\$0.50.$  [A1]\n\n**(c) Judge fairness on the gain.** A fair game needs an expected gain of $0$. Here the expected gain is $-\\$0.50 \\ne 0$, so the game is **not fair**; on average a player loses 50 cents per game, so it favours the organiser.  [A1: reasoned conclusion]"
     },
     {
       "type": "heading",
-      "content": "Model answer — marked the way our engine marks it"
+      "content": "Model answer - marked the way our engine marks it"
     },
     {
       "type": "text",
-      "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working — a method mark (M) or an accuracy mark (A) — and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is carried out correctly on your own figures. The engine also ignores subsequent working (ISW) once a correct answer appears and accepts any equivalent form or correctly-rounded value — but only if the method is on the page. Study how each mark below is earned by a specific line."
+      "content": "On Paper 2 the marks are analytic: each is tied to a specific line of working - a method mark (M) or an accuracy mark (A) - and an accuracy mark depends on the method mark it follows. Follow-through (FT) means an earlier slip need not cost the marks that depend on it, provided the later step is carried out correctly on your own figures. The engine also ignores subsequent working (ISW) once a correct answer appears and accepts any equivalent form or correctly-rounded value - but only if the method is on the page. Study how each mark below is earned by a specific line."
     },
     {
       "type": "workedExample",
       "question": "A discrete random variable $X$ has $P(X=x)=kx$ for $x = 1, 2, 3, 4$. Find $k$, then find $E(X)$. [5]",
-      "solution": "**Model answer — full working.**\\n\\nThe distribution is $P(X=1)=k$, $P(X=2)=2k$, $P(X=3)=3k$, $P(X=4)=4k$.\\n\\n**Find $k$ from the total-probability condition.** All probabilities must sum to 1:\\n$\\sum P(X=x) = 1 \\;\\Rightarrow\\; k(1+2+3+4) = 1.$\\n$10k = 1 \\;\\Rightarrow\\; k = \\dfrac{1}{10}.$\\n\\n**Find $E(X)$ using the weighted sum.** With $P(X=x)=\\tfrac{1}{10}x$,\\n$E(X) = \\sum x\\,P(X=x) = \\sum x\\cdot\\tfrac{1}{10}x = \\tfrac{1}{10}\\big(1^2 + 2^2 + 3^2 + 4^2\\big).$\\n$E(X) = \\tfrac{1}{10}(1 + 4 + 9 + 16) = \\dfrac{30}{10} = 3.$\\n\\n**Answers:** $k = \\dfrac{1}{10}$ and $E(X) = 3$.\\n\\n---\\n**How our marking engine awards the 5 marks:**\\n\\n- **M1 — set up the total.** Awarded for using $\\sum P(X=x)=1$, i.e. writing $k(1+2+3+4)=1$ (or the equivalent $k+2k+3k+4k=1$). It is the equation that earns the mark, so it survives an arithmetic slip in solving it.\\n- **A1 — value of $k$.** Awarded for $k = \\dfrac{1}{10}$ (accept $0.1$). This accuracy mark depends on the M1 above.\\n- **M1 — set up $E(X)$.** Awarded for forming $E(X)=\\sum x\\,P(X=x)$ with the candidate's probabilities substituted — the weighted sum, not a plain average of $1,2,3,4$.\\n- **M1 — substitute.** Awarded for the substituted line $\\tfrac{1}{10}(1+4+9+16)$ (or $\\tfrac{1}{10}(1)+\\tfrac{2}{10}(2)+\\tfrac{3}{10}(3)+\\tfrac{4}{10}(4)$). This shows each value multiplied by its own probability.\\n- **A1 — final value.** Awarded for $E(X) = 3$. This is FT on the candidate's $k$: a student who found a different $k$ but substituted it correctly into $E(X)=\\sum x\\,P(X=x)$ earns this accuracy mark on their own figure.\\n\\n**'Accept equivalent forms and correct rounding.'** The engine accepts $k$ as $\\tfrac{1}{10}$ or $0.1$, and $E(X)$ as $\\tfrac{30}{10}$ or $3$ or $3.0$. Once $E(X)=3$ appears, ISW means a later restatement does not lose marks.\\n\\n**Bottom line:** two of the five marks are method marks that survive an arithmetic slip, and the final accuracy mark is shielded by follow-through — but only because the method ($\\sum P=1$, then the substituted weighted sum) is written on the page. A student who writes only '$E(X)=3$' with no working risks losing up to 3 marks if any number is off."
+      "solution": "**Model answer - full working.**\n\\nThe distribution is $P(X=1)=k$, $P(X=2)=2k$, $P(X=3)=3k$, $P(X=4)=4k$.\n\n**Find $k$ from the total-probability condition.** All probabilities must sum to 1:\n$\\sum P(X=x) = 1 \\;\\Rightarrow\\; k(1+2+3+4) = 1.$\n$10k = 1 \\;\\Rightarrow\\; k = \\dfrac{1}{10}.$\n\n**Find $E(X)$ using the weighted sum.** With $P(X=x)=\\tfrac{1}{10}x$,\n$E(X) = \\sum x\\,P(X=x) = \\sum x\\cdot\\tfrac{1}{10}x = \\tfrac{1}{10}\\big(1^2 + 2^2 + 3^2 + 4^2\\big).$\n$E(X) = \\tfrac{1}{10}(1 + 4 + 9 + 16) = \\dfrac{30}{10} = 3.$\n\n**Answers:** $k = \\dfrac{1}{10}$ and $E(X) = 3$.\n\n---\n**How our marking engine awards the 5 marks:**\n\n- **M1 - set up the total.** Awarded for using $\\sum P(X=x)=1$, i.e. writing $k(1+2+3+4)=1$ (or the equivalent $k+2k+3k+4k=1$). It is the equation that earns the mark, so it survives an arithmetic slip in solving it.\n- **A1 - value of $k$.** Awarded for $k = \\dfrac{1}{10}$ (accept $0.1$). This accuracy mark depends on the M1 above.\n- **M1 - set up $E(X)$.** Awarded for forming $E(X)=\\sum x\\,P(X=x)$ with the candidate's probabilities substituted - the weighted sum, not a plain average of $1,2,3,4$.\n- **M1 - substitute.** Awarded for the substituted line $\\tfrac{1}{10}(1+4+9+16)$ (or $\\tfrac{1}{10}(1)+\\tfrac{2}{10}(2)+\\tfrac{3}{10}(3)+\\tfrac{4}{10}(4)$). This shows each value multiplied by its own probability.\n- **A1 - final value.** Awarded for $E(X) = 3$. This is FT on the candidate's $k$: a student who found a different $k$ but substituted it correctly into $E(X)=\\sum x\\,P(X=x)$ earns this accuracy mark on their own figure.\n\n**'Accept equivalent forms and correct rounding.'** The engine accepts $k$ as $\\tfrac{1}{10}$ or $0.1$, and $E(X)$ as $\\tfrac{30}{10}$ or $3$ or $3.0$. Once $E(X)=3$ appears, ISW means a later restatement does not lose marks.\n\n**Bottom line:** two of the five marks are method marks that survive an arithmetic slip, and the final accuracy mark is shielded by follow-through - but only because the method ($\\sum P=1$, then the substituted weighted sum) is written on the page. A student who writes only '$E(X)=3$' with no working risks losing up to 3 marks if any number is off."
     },
     {
       "type": "examTip",
-      "content": "The Practice button marks YOUR working exactly this way — analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write $\\sum P(X=x)=1$ to find an unknown, then write the substituted weighted sum $\\sum x\\,P(X=x)$ before quoting $E(X)$. Those written lines are what let follow-through protect your score when a single number slips — and you only get that protection if the working is on the page."
+      "content": "The Practice button marks YOUR working exactly this way - analytically, mark by mark, with method marks, dependent accuracy marks and follow-through. So always show the method: write $\\sum P(X=x)=1$ to find an unknown, then write the substituted weighted sum $\\sum x\\,P(X=x)$ before quoting $E(X)$. Those written lines are what let follow-through protect your score when a single number slips - and you only get that protection if the working is on the page."
     },
     {
       "type": "heading",
@@ -266,14 +266,14 @@
     {
       "type": "keyPoints",
       "items": [
-        "**Probabilities that do not sum to 1** — every valid distribution needs $\\sum P(X=x)=1$. If the total is off you have miscounted a probability or, more often, missed a possible value of $X$. Use the sum as a routine check.",
-        "**Averaging the outcomes instead of weighting them** — $E(X)=\\sum x\\,P(X=x)$, not the plain mean of the $x$-values. Taking a straight average is only correct when every outcome is equally likely.",
-        "**Rounding $E(X)$ to a 'possible' outcome** — the expected value can be a number the variable never takes (a fair die gives $3.5$). Leave it as the exact weighted sum; do not force it to a real value.",
-        "**Judging a game on winnings, not gain** — a game is fair when the expected *gain* is 0. You must subtract the stake: $E(\\text{gain})=E(W)-\\text{cost}$. Comparing $E(W)$ alone with zero is the classic fair-game error.",
-        "**Dropping a zero-value or zero-probability term** — a value of $x=0$, or an outcome with a small probability, still belongs in the table and the sum. Omitting it changes both the total and $E(X)$.",
-        "**Multiplying probabilities by the wrong values** — each $P(X=x)$ multiplies its own $x$. Lining the table up carelessly (pairing a probability with the wrong outcome) is an easy, avoidable slip.",
-        "**No method for an unknown probability** — to find an unknown $k$, write $\\sum P(X=x)=1$ explicitly and solve. A bare answer with no equation forfeits the method mark and any follow-through.",
-        "**Over-rounding mid-calculation** — carry full figures through the weighted sum and round only the final answer, to 3 significant figures unless told otherwise."
+        "**Probabilities that do not sum to 1** - every valid distribution needs $\\sum P(X=x)=1$. If the total is off you have miscounted a probability or, more often, missed a possible value of $X$. Use the sum as a routine check.",
+        "**Averaging the outcomes instead of weighting them** - $E(X)=\\sum x\\,P(X=x)$, not the plain mean of the $x$-values. Taking a straight average is only correct when every outcome is equally likely.",
+        "**Rounding $E(X)$ to a 'possible' outcome** - the expected value can be a number the variable never takes (a fair die gives $3.5$). Leave it as the exact weighted sum; do not force it to a real value.",
+        "**Judging a game on winnings, not gain** - a game is fair when the expected *gain* is 0. You must subtract the stake: $E(\\text{gain})=E(W)-\\text{cost}$. Comparing $E(W)$ alone with zero is the classic fair-game error.",
+        "**Dropping a zero-value or zero-probability term** - a value of $x=0$, or an outcome with a small probability, still belongs in the table and the sum. Omitting it changes both the total and $E(X)$.",
+        "**Multiplying probabilities by the wrong values** - each $P(X=x)$ multiplies its own $x$. Lining the table up carelessly (pairing a probability with the wrong outcome) is an easy, avoidable slip.",
+        "**No method for an unknown probability** - to find an unknown $k$, write $\\sum P(X=x)=1$ explicitly and solve. A bare answer with no equation forfeits the method mark and any follow-through.",
+        "**Over-rounding mid-calculation** - carry full figures through the weighted sum and round only the final answer, to 3 significant figures unless told otherwise."
       ]
     },
     {
@@ -282,7 +282,7 @@
     },
     {
       "type": "text",
-      "content": "The distribution table and the weighted sum you have built here are the template for every named distribution in the course. The binomial and, later, other models are just probability distributions with a formula for $P(X=x)$ instead of a hand-filled table, and their means are the same expected value $E(X)=\\sum x\\,P(X=x)$ specialised to that formula. The fair-game idea generalises to expected profit in any decision under uncertainty — insurance premiums, expected returns, risk. Master the two moves in this lesson — make the probabilities sum to 1, then form the probability-weighted average — and the rest of the probability course is variations on a calculation you already know how to lay out."
+      "content": "The distribution table and the weighted sum you have built here are the template for every named distribution in the course. The binomial and, later, other models are just probability distributions with a formula for $P(X=x)$ instead of a hand-filled table, and their means are the same expected value $E(X)=\\sum x\\,P(X=x)$ specialised to that formula. The fair-game idea generalises to expected profit in any decision under uncertainty - insurance premiums, expected returns, risk. Master the two moves in this lesson - make the probabilities sum to 1, then form the probability-weighted average - and the rest of the probability course is variations on a calculation you already know how to lay out."
     },
     {
       "type": "practice",
@@ -309,7 +309,7 @@
     "title": "GeoGebra Simulation: Expected Value of a Dice Roll",
     "embedUrl": "https://www.geogebra.org/classic?material=c55ytrg2",
     "launchUrl": "https://www.geogebra.org/classic?material=c55ytrg2",
-    "hint": "Use “GeoGebra Simulation: Expected Value of a Dice Roll” — shift curves or drag points to see equilibrium and slopes change.",
+    "hint": "Use “GeoGebra Simulation: Expected Value of a Dice Roll” - shift curves or drag points to see equilibrium and slopes change.",
     "aspectRatio": "834 / 504",
     "attribution": {
       "source": "GeoGebra",

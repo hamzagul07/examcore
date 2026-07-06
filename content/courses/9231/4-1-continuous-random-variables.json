@@ -17,7 +17,7 @@
   "simpleExplanation": {
     "title": "From Histograms to Curves",
     "summary": "A continuous random variable can take any value in a given range, like height or time. We use a function called a Probability Density Function (PDF) to describe the likelihood of the variable falling within a particular interval, where probability is found by calculating the area under the curve.",
-    "analogy": "Imagine you have a very fine, smooth pile of sand representing all possible outcomes. The height of the sand pile at any point is the PDF – it tells you where values are more likely to occur. To find the probability of a value falling in a certain range, you don't pick a single grain of sand (which has zero width and zero probability); instead, you scoop up a section of sand and measure its volume (the area under the curve). The total volume of sand is always 1.",
+    "analogy": "Imagine you have a very fine, smooth pile of sand representing all possible outcomes. The height of the sand pile at any point is the PDF - it tells you where values are more likely to occur. To find the probability of a value falling in a certain range, you don't pick a single grain of sand (which has zero width and zero probability); instead, you scoop up a section of sand and measure its volume (the area under the curve). The total volume of sand is always 1.",
     "steps": [
       "Define the Probability Density Function (PDF), $f(x)$, and verify its two key properties: $f(x) \\ge 0$ and the total area $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$.",
       "To find the probability $P(a < X < b)$, calculate the definite integral of the PDF between the limits $a$ and $b$: $\\int_{a}^{b} f(x) \\, dx$.",
@@ -245,9 +245,8 @@
       "solution": "First, we find the expectation, $E(T)$.\n$E(T) = \\int_{0}^{\\infty} t f(t) \\, dt = \\int_{0}^{\\infty} t \\cdot \\frac{1}{4}e^{-\\frac{t}{4}} \\, dt$\nThis requires integration by parts: $\\int u \\frac{dv}{dt} dt = uv - \\int v \\frac{du}{dt} dt$.\nLet $u=t \\implies \\frac{du}{dt}=1$. Let $\\frac{dv}{dt}=\\frac{1}{4}e^{-\\frac{t}{4}} \\implies v = -e^{-\\frac{t}{4}}$. [M1 for setting up correct integral and identifying integration by parts]\n$E(T) = \\left[ -t e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} - \\int_{0}^{\\infty} (-e^{-\\frac{t}{4}}) \\, dt$\n$= \\left[ -t e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} + \\int_{0}^{\\infty} e^{-\\frac{t}{4}} \\, dt$\nAs $t \\to \\infty$, $t e^{-\\frac{t}{4}} \\to 0$. At $t=0$, the term is 0. So the first part is 0.\n$E(T) = \\left[ -4e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} = (0) - (-4e^0) = 4$. The mean lifetime is 4 years. [A1 for E(T)]\n\nNext, we find $E(T^2)$ to calculate the variance.\n$E(T^2) = \\int_{0}^{\\infty} t^2 f(t) \\, dt = \\int_{0}^{\\infty} \\frac{1}{4}t^2 e^{-\\frac{t}{4}} \\, dt$\nAgain, use integration by parts. Let $u=t^2 \\implies \\frac{du}{dt}=2t$. Let $\\frac{dv}{dt}=\\frac{1}{4}e^{-\\frac{t}{4}} \\implies v = -e^{-\\frac{t}{4}}$. [M1 for setting up E(T^2) integral]\n$E(T^2) = \\left[ -t^2 e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} - \\int_{0}^{\\infty} (-e^{-\\frac{t}{4}})(2t) \\, dt$\nThe first term is 0. \n$E(T^2) = 2 \\int_{0}^{\\infty} t e^{-\\frac{t}{4}} \\, dt = 8 \\int_{0}^{\\infty} \\frac{1}{4} t e^{-\\frac{t}{4}} \\, dt$\nWe recognise the integral as $E(T)$, which we found to be 4.\n$E(T^2) = 8 \\times E(T) = 8 \\times 4 = 32$. [A1 for E(T^2)]\n\nFinally, calculate the variance.\n$Var(T) = E(T^2) - [E(T)]^2 = 32 - 4^2 = 32 - 16 = 16$. [M1 A1 for Var(T)]\nThe variance of the lifetime is 16 years$^2$."
     },
     {
-      "type": "faq",
-      "q": "Why is the probability of a continuous random variable taking an exact value zero?",
-      "a": "Think of probability as the area under the PDF curve. An exact value, like $X=3$, corresponds to a line segment on the x-axis. This line has a width of zero. The area of a rectangle with zero width is zero. Therefore, the integral from a point 'a' to 'a' is always zero, meaning $P(X=a)=0$. We can only talk about the probability of a variable falling within a range of values, which corresponds to an area with a non-zero width."
+      "type": "text",
+      "content": "**Q:** Why is the probability of a continuous random variable taking an exact value zero?\n\n**A:** Think of probability as the area under the PDF curve. An exact value, like $X=3$, corresponds to a line segment on the x-axis. This line has a width of zero. The area of a rectangle with zero width is zero. Therefore, the integral from a point 'a' to 'a' is always zero, meaning $P(X=a)=0$. We can only talk about the probability of a variable falling within a range of values, which corresponds to an area with a non-zero width."
     },
     {
       "type": "practice",
@@ -275,14 +274,14 @@
         "focus": [
           "step-1"
         ],
-        "caption": "Discrete X: list x with P(X = x) — probabilities sum to 1.",
+        "caption": "Discrete X: list x with P(X = x) - probabilities sum to 1.",
         "embedHint": "Table format for distribution."
       },
       {
         "focus": [
           "step-2"
         ],
-        "caption": "E(X) = Σx P(X = x) — weighted mean.",
+        "caption": "E(X) = Σx P(X = x) - weighted mean.",
         "embedHint": "Fair die: E = 3.5."
       },
       {

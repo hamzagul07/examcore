@@ -1,6 +1,6 @@
 import type { PaperKind } from '@/lib/courses/types'
 
-/** Objective depth thresholds — "complete enough" for published/premium lessons. */
+/** Objective depth thresholds â€” "complete enough" for published/premium lessons. */
 export type QualityTier = 'pilot' | 'published' | 'premium'
 
 export type QualityTargets = {

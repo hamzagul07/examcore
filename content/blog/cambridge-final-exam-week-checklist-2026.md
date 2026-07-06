@@ -1,6 +1,6 @@
 ---
 title: Cambridge final exam week checklist (2026)
-description: The last 7 days before Cambridge exams ó sleep, timing, what to revise, what to stop doing, and a day-by-day plan that protects marks.
+description: The last 7 days before Cambridge exams ‚Äî sleep, timing, what to revise, what to stop doing, and a day-by-day plan that protects marks.
 date: 2026-07-06
 updated: 2026-07-06
 category: revision
@@ -10,21 +10,21 @@ informationGain: synthesis
 author: founder
 ---
 
-The final week before Cambridge exams is not for learning new content ó it is for **protecting marks** you already earned in revision. Students who cram new topics in the last 72 hours often lose more on Paper 1 than they gain, because sleep, timing, and calm execution matter more than one extra chapter.
+The final week before Cambridge exams is not for learning new content ‚Äî it is for **protecting marks** you already earned in revision. Students who cram new topics in the last 72 hours often lose more on Paper 1 than they gain, because sleep, timing, and calm execution matter more than one extra chapter.
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
-| Should I learn new topics in exam week? | **No** ó consolidate high-frequency topics only |
-| How many past papers? | **One timed paper per subject** max in the last 3 days ó then light review |
-| Sleep target? | **7ñ9 hours** ó all-nighters measurably hurt recall |
-| What to bring? | Candidate slip, ID, allowed calculators, pens, water ó centre rules win |
+| Should I learn new topics in exam week? | **No** ‚Äî consolidate high-frequency topics only |
+| How many past papers? | **One timed paper per subject** max in the last 3 days ‚Äî then light review |
+| Sleep target? | **7‚Äì9 hours** ‚Äî all-nighters measurably hurt recall |
+| What to bring? | Candidate slip, ID, allowed calculators, pens, water ‚Äî centre rules win |
 | Biggest mark saver? | **Reading command words** and planning before writing |
 
 > **Key takeaway:** Exam week is performance week. Treat it like an athlete tapering before a race.
 
-## 7 days out ó audit, donít expand
+## 7 days out ‚Äî audit, don‚Äôt expand
 
 | Task | Time | Why |
 |------|------|-----|
@@ -33,44 +33,44 @@ The final week before Cambridge exams is not for learning new content ó it is fo
 | Mark with official scheme | Same day | Log only top 3 error patterns |
 | Stop leak/scrape channels | 5 min | Integrity risk + anxiety |
 
-High-yield topic lists: [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ∑ subject guides e.g. [9709 Maths](/blog/cambridge-9709-a-level-mathematics-past-papers-guide).
+High-yield topic lists: [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ? subject guides e.g. [9709 Maths](/blog/cambridge-9709-a-level-mathematics-past-papers-guide).
 
-## 5ñ6 days out ó command words and format
+## 5‚Äì6 days out ‚Äî command words and format
 
 | Subject style | Exam-week focus |
 |---------------|-----------------|
-| Sciences | Units, sig figs, labelled diagrams, ìdefineî vs ìexplainî |
+| Sciences | Units, sig figs, labelled diagrams, ‚Äúdefine‚Äù vs ‚Äúexplain‚Äù |
 | Maths | Calculator mode, radians/degrees, showing method for M marks |
 | Essays (History, Econ) | Plan boxes, evaluation paragraphs, time splits |
 | MCQ papers | Elimination, no blank guessing strategy unless penalised |
 
-Refresh: [command words explained](/blog/cambridge-command-words-explained) ∑ [how to read mark schemes](/blog/how-to-read-a-cambridge-mark-scheme).
+Refresh: [command words explained](/blog/cambridge-command-words-explained) ? [how to read mark schemes](/blog/how-to-read-a-cambridge-mark-scheme).
 
-## 3ñ4 days out ó light timed practice
+## 3‚Äì4 days out ‚Äî light timed practice
 
-- **One** half-paper or single long question per day ó not full papers back-to-back  
+- **One** half-paper or single long question per day ‚Äî not full papers back-to-back  
 - Review **examiner reports** for your syllabus (common errors only)  
-- Sleep on a consistent schedule ó shift bedtime earlier if you are a night owl  
+- Sleep on a consistent schedule ‚Äî shift bedtime earlier if you are a night owl  
 
-Use [MarkScheme](/mark) on one handwritten answer if you have no teacher ó compare wording to the scheme, not ChatGPT paraphrase.
+Use [MarkScheme](/mark) on one handwritten answer if you have no teacher ‚Äî compare wording to the scheme, not ChatGPT paraphrase.
 
 ## 48 hours before each paper
 
-| Do | Donít |
+| Do | Don‚Äôt |
 |----|-------|
 | Pack bag night before | Cram new organic mechanisms / history periods |
 | Short walk or stretch | Energy drinks + 3am study |
-| 20-min formula / definition skim | Full untimed past paper ìfor confidenceî |
-| Confirm exam room rules | Share ìleakedî material in group chats |
+| 20-min formula / definition skim | Full untimed past paper ‚Äúfor confidence‚Äù |
+| Confirm exam room rules | Share ‚Äúleaked‚Äù material in group chats |
 
-See [exam integrity and leaks](/blog/cambridge-exam-paper-leaks-2026-what-students-should-know) ó even looking hurts you.
+See [exam integrity and leaks](/blog/cambridge-exam-paper-leaks-2026-what-students-should-know) ‚Äî even looking hurts you.
 
 ## Night before
 
 - Lay out clothes, ID, stationery, calculator (batteries fresh)  
 - Set two alarms; tell someone your start time  
-- **Stop studying by 9ñ10pm** unless you truly focus better late (most donít)  
-- No new content ó flashcards or one-page summaries only  
+- **Stop studying by 9‚Äì10pm** unless you truly focus better late (most don‚Äôt)  
+- No new content ‚Äî flashcards or one-page summaries only  
 
 ## Exam morning
 
@@ -92,13 +92,13 @@ During the exam: **plan before long answers**. Two minutes planning often buys t
 | 1 day | One light review session; early sleep |
 | 2+ days | One timed section + mark; keep routine |
 
-Do not let Paper 1 mood ruin Paper 2 preparation ó each component is a fresh mark budget.
+Do not let Paper 1 mood ruin Paper 2 preparation ‚Äî each component is a fresh mark budget.
 
 ## After each exam (before results)
 
 - Note which question types felt tight on time  
 - Save **no** live paper content online  
-- One line in a journal: ìLost marks to ___î for post-results planning  
+- One line in a journal: ‚ÄúLost marks to ___‚Äù for post-results planning  
 
 If the series is done, switch to [post-exam results prep](/blog/cambridge-post-exam-results-prep-2026).
 
@@ -110,7 +110,7 @@ Only for **micro-facts** you already half-know (definitions, formulas). Not whol
 
 ### Should I pull an all-nighter?
 
-Almost never. Recall and calculation accuracy drop sharply ó especially on morning papers.
+Almost never. Recall and calculation accuracy drop sharply ‚Äî especially on morning papers.
 
 ### How do I handle exam anxiety?
 
@@ -118,7 +118,7 @@ Controlled breathing, prepared timetable, and **evidence** from marked past pape
 
 ### Can I use AI the night before?
 
-For **explaining** a concept you already studied ó yes, closed book afterward. Not for generating answers you have not practised writing by hand.
+For **explaining** a concept you already studied ‚Äî yes, closed book afterward. Not for generating answers you have not practised writing by hand.
 
 ### What if I have two exams same day?
 
@@ -126,5 +126,5 @@ Prioritise sleep two nights before; minimise social media; eat during the gap; t
 
 ## Bottom line
 
-Cambridge **exam week 2026** rewards students who taper: protect sleep, rehearse format, mark honestly in the days before, and execute command words on the day. The syllabus was won in months ó the certificate is won in hours.
+Cambridge **exam week 2026** rewards students who taper: protect sleep, rehearse format, mark honestly in the days before, and execute command words on the day. The syllabus was won in months ‚Äî the certificate is won in hours.
 

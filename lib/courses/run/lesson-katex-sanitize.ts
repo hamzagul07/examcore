@@ -21,7 +21,7 @@ function collectLessonText(lesson: CourseLesson): string {
 export function lessonKatexErrors(lesson: CourseLesson): string[] {
   const summary = summarizeKatexValidation(collectLessonText(lesson))
   return summary.failedFragments.map(
-    (f) => `${f.fragment.slice(0, 80)} — ${f.error ?? 'parse error'}`
+    (f) => `${f.fragment.slice(0, 80)} â€” ${f.error ?? 'parse error'}`
   )
 }
 

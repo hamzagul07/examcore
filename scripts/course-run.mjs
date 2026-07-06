@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Autonomous course build runner  Phase 1.
+ * Autonomous course build runner â€” Phase 1.
  *
  *   pnpm course:run -- --type coverage_audit --code 9702
  *   pnpm course:run -- --type coverage_audit --all

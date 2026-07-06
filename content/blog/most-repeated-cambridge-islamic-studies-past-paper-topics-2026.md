@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge Islamic Studies past paper topics for 2026 (A-Level)
-description: High-frequency 9488 A-Level Islamic Studies topics from past papers 2019–2025 — set-text skills, thematic essays, and evaluation habits that repeat every series.
+description: High-frequency 9488 A-Level Islamic Studies topics from past papers 2019â€“2025 â€” set-text skills, thematic essays, and evaluation habits that repeat every series.
 date: 2026-07-06
 category: revision
 keywords: Cambridge Islamic Studies revision 2026, 9488 topics, Qur'an essay topics, Islamic Studies past papers, most repeated exam topics
@@ -8,7 +8,7 @@ informationGain: dataset
 author: founder
 ---
 
-Islamic Studies revision stops feeling random when you separate **textual skills** from **thematic content**. Across Cambridge **9488** papers **2019–2025**, certain question shapes and syllabus angles return regardless of which set texts your centre entered. This guide ranks the **patterns** that move marks — then maps them to marked practice.
+Islamic Studies revision stops feeling random when you separate **textual skills** from **thematic content**. Across Cambridge **9488** papers **2019â€“2025**, certain question shapes and syllabus angles return regardless of which set texts your centre entered. This guide ranks the **patterns** that move marks â€” then maps them to marked practice.
 
 > **Key takeaway:** Papers repeat **structures** (set-text explanation, thematic essays, scholar evaluation) more than identical questions. Train citation + evaluation with marked scripts.
 
@@ -21,24 +21,24 @@ We weighted:
 - **Mark-band language** that separates mid from top levels  
 - **Cross-topic themes** that appear in multiple papers  
 
-Your **set-text list** and **paper entries** matter — confirm with your centre.
+Your **set-text list** and **paper entries** matter â€” confirm with your centre.
 
-## A-Level Islamic Studies (9488) — recurring skills
+## A-Level Islamic Studies (9488) â€” recurring skills
 
 | Priority | Skill / theme | Why it repeats |
 |----------|---------------|----------------|
-| 1 | **Set-text explanation (P1)** | Accurate reference + meaning in context — not paraphrase alone |
-| 2 | **Qur'an themes linked to syllabus** | Revelation, guidance, ethics — applied to the question stem |
+| 1 | **Set-text explanation (P1)** | Accurate reference + meaning in context â€” not paraphrase alone |
+| 2 | **Qur'an themes linked to syllabus** | Revelation, guidance, ethics â€” applied to the question stem |
 | 3 | **Sunnah / Prophetic example** | Hadith use with attribution; significance for practice |
-| 4 | **Early community & leadership** | Treaty periods, succession, unity — causation not narrative |
+| 4 | **Early community & leadership** | Treaty periods, succession, unity â€” causation not narrative |
 | 5 | **Schools of thought & diversity** | Compare views with named tradition; avoid caricature |
-| 6 | **'Akhirah & eschatology** | Belief linked to moral obligation — not list answers |
-| 7 | **Islam in the modern world** | Pluralism, gender, science, politics — balanced evaluation |
+| 6 | **'Akhirah & eschatology** | Belief linked to moral obligation â€” not list answers |
+| 7 | **Islam in the modern world** | Pluralism, gender, science, politics â€” balanced evaluation |
 | 8 | **Scholarly contribution essays** | Assess a figure's impact with **supported judgement** |
 
-**Practise:** One set-text answer per week marked to **levels of response** — quote your own lines when assigning bands.
+**Practise:** One set-text answer per week marked to **levels of response** â€” quote your own lines when assigning bands.
 
-Full guide: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) · [9488 boundaries 2026](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026)
+Full guide: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) ? [9488 boundaries 2026](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026)
 
 ## Thematic angles that cross papers
 
@@ -65,30 +65,30 @@ Command-word drill: [9488 command words](/blog/cambridge-9488-islamic-studies-co
 | Generic "Islam says" | Name **source, school, or scholar** you rely on |
 | Weak conclusion | Answer the **exact** question in final lines |
 
-Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) · [History most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
+Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) ? [History most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
 
 ## The 4-week high-yield rotation
 
-| Week | Mon–Wed | Thu–Fri | Weekend |
+| Week | Monâ€“Wed | Thuâ€“Fri | Weekend |
 |------|---------|---------|---------|
-| 1 | Set-text explain ª2 | Timed essay plan | Mark plans to band descriptors |
+| 1 | Set-text explain ?2 | Timed essay plan | Mark plans to band descriptors |
 | 2 | Thematic essay (modern world) | Half paper | Rewrite intro + conclusion |
 | 3 | Scholar evaluation paragraph | Full timed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Mixed synoptic | Full timed paper | Upload to [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Law](/blog/most-repeated-cambridge-law-past-paper-topics-2026) · [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) · [Sciences hub](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Law](/blog/most-repeated-cambridge-law-past-paper-topics-2026) ? [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) ? [Sciences hub](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
 
 ## What "most repeated" does not mean
 
-- Your **set-text selection** is centre-specific — still cover all entered components  
-- Factual recall without textual support caps marks — bands reward **analysis**  
+- Your **set-text selection** is centre-specific â€” still cover all entered components  
+- Factual recall without textual support caps marks â€” bands reward **analysis**  
 - Memorising model paragraphs fails when the question angle shifts  
 
 ## FAQ
 
 ### Should I only practise these themes?
 
-No — syllabus breadth still matters. Use this list to **prioritise marked practice** in the final month.
+No â€” syllabus breadth still matters. Use this list to **prioritise marked practice** in the final month.
 
 ### How much citation is enough?
 
@@ -96,8 +96,8 @@ One precise reference per paragraph beats five vague mentions. Examiners reward 
 
 ### How does 9488 compare to History (9489)?
 
-Both use **LoR bands**; 9488 emphasises **Islamic sources and themes** — see [9489 most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026) for source-question habits.
+Both use **LoR bands**; 9488 emphasises **Islamic sources and themes** â€” see [9489 most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026) for source-question habits.
 
 ## Bottom line
 
-**9488** rewards set-text answers with **accurate reference and context**, and essays with **balanced evaluation** backed by sources and scholarly debate. The skills above appear on almost every series — anchor your **marked** weeks there, then use [MarkScheme](/mark) to see which band descriptors you still miss.
+**9488** rewards set-text answers with **accurate reference and context**, and essays with **balanced evaluation** backed by sources and scholarly debate. The skills above appear on almost every series â€” anchor your **marked** weeks there, then use [MarkScheme](/mark) to see which band descriptors you still miss.

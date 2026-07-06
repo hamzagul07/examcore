@@ -11,7 +11,7 @@ export class GuardrailViolation extends Error {
 }
 
 /**
- * Paths the autonomous course runner may NEVER write to — enforced in code, not docs.
+ * Paths the autonomous course runner may NEVER write to â€” enforced in code, not docs.
  * Read access is unrestricted; only writes are blocked.
  */
 export const DENY_WRITE_PREFIXES = [
@@ -91,7 +91,7 @@ export function assertWritablePath(
   return rel
 }
 
-/** Phase 3 improvement loop — disabled until marking performance data exists. */
+/** Phase 3 improvement loop â€” disabled until marking performance data exists. */
 export function assertImprovementLoopEnabled(): void {
   if (process.env.COURSE_IMPROVEMENT_LOOP !== '1') {
     throw new GuardrailViolation(
@@ -104,7 +104,7 @@ export function isImprovementLoopEnabled(): boolean {
   return process.env.COURSE_IMPROVEMENT_LOOP === '1'
 }
 
-/** Guarded filesystem — the only write API autonomous runners should use. */
+/** Guarded filesystem â€” the only write API autonomous runners should use. */
 export class GuardedWriter {
   writeFile(targetPath: string, data: string | Buffer, encoding?: BufferEncoding): void {
     const rel = assertWritablePath(targetPath)

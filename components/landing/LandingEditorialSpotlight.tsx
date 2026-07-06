@@ -11,7 +11,7 @@ import {
   getResultsDayPhase,
 } from '@/lib/seo/results-day'
 
-/** Homepage strip ù IB results week first, then Cambridge pre-results spotlight. */
+/** Homepage strip ‚Äî IB results week first, then Cambridge pre-results spotlight. */
 export function LandingEditorialSpotlight() {
   if (isIbResultsSeason()) {
     return (
@@ -36,7 +36,7 @@ export function LandingEditorialSpotlight() {
         </div>
         <div className="ms-results-day-banner__body">
           <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 6 }}>
-            June 2026 ó {days} days to results
+            June 2026 ‚Äî {days} days to results
           </p>
           <h2 className="ms-h3" style={{ fontSize: '1.25rem', margin: 0 }}>
             <Link href={`/blog/${post.slug}`} className="hover:text-[var(--ec-brand)]">

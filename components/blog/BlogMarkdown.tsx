@@ -17,24 +17,24 @@ function imageAltFromSrc(
   return name ? `${board} revision — ${name}` : `${board} past paper revision illustration`
 }
 
-const components: Components = {
-  ...blogMarkdownComponents,
-  img: ({ src, alt }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={typeof src === 'string' ? src : undefined}
-      alt={imageAltFromSrc(typeof src === 'string' ? src : undefined, alt, slug)}
-      loading="lazy"
-      decoding="async"
-      className="my-6 w-full rounded-lg border border-[var(--ec-border)]"
-    />
-  ),
-  hr: () => (
-    <hr className="my-10 border-0 h-px bg-gradient-to-r from-transparent via-[var(--ec-border)] to-transparent" />
-  ),
-}
+export function BlogMarkdown({ content, slug }: { content: string; slug?: string }) {
+  const components: Components = {
+    ...blogMarkdownComponents,
+    img: ({ src, alt }) => (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={typeof src === 'string' ? src : undefined}
+        alt={imageAltFromSrc(typeof src === 'string' ? src : undefined, alt, slug)}
+        loading="lazy"
+        decoding="async"
+        className="my-6 w-full rounded-lg border border-[var(--ec-border)]"
+      />
+    ),
+    hr: () => (
+      <hr className="my-10 border-0 h-px bg-gradient-to-r from-transparent via-[var(--ec-border)] to-transparent" />
+    ),
+  }
 
-export function BlogMarkdown({ content }: { content: string; slug?: string }) {
   return (
     <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
       {content}

@@ -1,6 +1,6 @@
 ---
-title: Cambridge May/June 2026 grade thresholds ù what to expect after a disrupted series
-description: Honest guide to June 2026 Cambridge grade thresholds ù when they publish, how leaks and assessed marks affect grading, and why prediction posts mislead students.
+title: Cambridge May/June 2026 grade thresholds ‚Äî what to expect after a disrupted series
+description: Honest guide to June 2026 Cambridge grade thresholds ‚Äî when they publish, how leaks and assessed marks affect grading, and why prediction posts mislead students.
 date: 2026-07-06
 updated: 2026-07-06
 category: editorial
@@ -10,7 +10,7 @@ informationGain: synthesis
 author: founder
 ---
 
-Search traffic spikes every June for **"Cambridge grade thresholds 2026 predictions."** Most posts guess numbers to capture clicks. Cambridge does not publish final thresholds until **after** marking ù and in disrupted years the process may include **statistical moderation** students never see. Here is what actually determines your grade, and what to do instead of refreshing Telegram.
+Search traffic spikes every June for **"Cambridge grade thresholds 2026 predictions."** Most posts guess numbers to capture clicks. Cambridge does not publish final thresholds until **after** marking ‚Äî and in disrupted years the process may include **statistical moderation** students never see. Here is what actually determines your grade, and what to do instead of refreshing Telegram.
 
 ## Quick answer
 
@@ -18,8 +18,8 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 |----------|--------|
 | When are June 2026 **grades** released? | AS/A-Level **11 August** 2026 (06:00 GMT) |
 | When are **threshold tables** published? | **~13 August** 2026 (component PDFs) |
-| Can anyone predict them accurately beforehand? | **No** ù depends on global cohort performance |
-| Do paper leaks lower thresholds? | **Not guaranteed** ù voids and assessed marks change the picture |
+| Can anyone predict them accurately beforehand? | **No** ‚Äî depends on global cohort performance |
+| Do paper leaks lower thresholds? | **Not guaranteed** ‚Äî voids and assessed marks change the picture |
 | Where are official tables? | Cambridge PDFs + our [calculator](/tools/grade-boundary-calculator) |
 | What should students do? | Mark past papers; ignore fake spreadsheets |
 
@@ -47,9 +47,9 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Islamic Studies | 9488 | [9488 boundaries](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026) |
 | Literature in English | 9695 | [9695 boundaries](/blog/cambridge-9695-literature-in-english-grade-boundaries-2026) |
 
-**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) ù [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) ù [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) ù [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) ù [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) ù [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) ù [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) ù [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) ù [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
+**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) ‚Äî [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) ‚Äî [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) ‚Äî [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) ‚Äî [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) ‚Äî [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) ‚Äî [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) ‚Äî [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) ‚Äî [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
 
-**IGCSE (grades 18 August; thresholds ~13 August):** [0580 Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026) ù [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026) ù [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026) ù [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026) ù [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
+**IGCSE (grades 18 August; thresholds ~13 August):** [0580 Maths](/blog/cambridge-0580-mathematics-grade-boundaries-2026) ‚Äî [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026) ‚Äî [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026) ‚Äî [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026) ‚Äî [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 
@@ -60,11 +60,11 @@ Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 3. **Grade thresholds** are set so standards stay comparable year to year  
 4. Schools receive results + threshold tables  
 
-This is why a harder paper often has **lower** thresholds ù the adjustment is cohort-relative, not absolute difficulty trivia.
+This is why a harder paper often has **lower** thresholds ‚Äî the adjustment is cohort-relative, not absolute difficulty trivia.
 
 Read deeper: [how to read grade boundaries](/blog/how-to-read-cambridge-grade-boundaries).
 
-## May/June 2026 ù why rumours are louder
+## May/June 2026 ‚Äî why rumours are louder
 
 Reported security incidents and social media "leaks" increase anxiety. Cambridge responses may include:
 
@@ -73,9 +73,9 @@ Reported security incidents and social media "leaks" increase anxiety. Cambridge
 | Variant papers | Leaked content may not match what you sat |
 | Statistical review | Unusual score patterns investigated |
 | [Assessed marks](/blog/cambridge-assessed-marks-2026-explained) | Grades from statistical models when scripts are voided |
-| Integrity sanctions | Malpractice findings ù unrelated to thresholds |
+| Integrity sanctions | Malpractice findings ‚Äî unrelated to thresholds |
 
-**Studying leaked material does not secure a lower threshold** ù it risks disqualification.
+**Studying leaked material does not secure a lower threshold** ‚Äî it risks disqualification.
 
 ## What "predictions" online usually get wrong
 
@@ -95,7 +95,7 @@ Use historical tables as **context**, not prophecy.
 | Maths 9709 | High marks on P1; M/S papers differentiate |
 | Sciences | Long structured questions punish vague wording |
 | Essay subjects | Band jumps matter more than one fact |
-| O Level 4ù5 mark papers | Small slips move whole grades |
+| O Level 4‚Äî5 mark papers | Small slips move whole grades |
 
 Topic focus: [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026).
 
@@ -112,13 +112,13 @@ Topic focus: [most repeated science topics](/blog/most-repeated-cambridge-scienc
 
 1. Download the PDF for your **exact syllabus + entry option**  
 2. Compare component marks report to the matching row  
-3. Decide remark / resit with evidence ù [EAR guide](/blog/cambridge-enquiry-about-results-ear-guide-2026)  
+3. Decide remark / resit with evidence ‚Äî [EAR guide](/blog/cambridge-enquiry-about-results-ear-guide-2026)  
 
 [Component marks report explained](/blog/cambridge-component-marks-report-explained-2026) walks through the school document.
 
-## IB students ù different system
+## IB students ‚Äî different system
 
-IB uses 1ù7 per subject with boundary setting after marking. Do not apply Cambridge leak lore to IB. See [IB grade boundaries](/blog/ib-grade-boundaries-explained) and [grade 7 buffer](/blog/ib-how-to-build-a-grade-7-buffer-2026).
+IB uses 1‚Äî7 per subject with boundary setting after marking. Do not apply Cambridge leak lore to IB. See [IB grade boundaries](/blog/ib-grade-boundaries-explained) and [grade 7 buffer](/blog/ib-how-to-build-a-grade-7-buffer-2026).
 
 ## Frequently asked questions
 
@@ -128,15 +128,15 @@ Nobody credible knows until marking completes. Prepare by **maximising raw marks
 
 ### Do assessed marks mean free A grades?
 
-No ù they are statistical estimates when normal marking cannot proceed fairly. See official communications via your centre.
+No ‚Äî they are statistical estimates when normal marking cannot proceed fairly. See official communications via your centre.
 
 ### Where is MarkScheme's data from?
 
-Verified threshold PDFs loaded into [grade boundary tools](/tools/grade-boundary-calculator) after release ù not pre-exam guesses.
+Verified threshold PDFs loaded into [grade boundary tools](/tools/grade-boundary-calculator) after release ‚Äî not pre-exam guesses.
 
 ### Should I remark if I am one mark below a threshold?
 
-Only with exams officer advice and component-level evidence ù remarks can go down.
+Only with exams officer advice and component-level evidence ‚Äî remarks can go down.
 
 ### How do PUM and thresholds relate?
 
@@ -144,4 +144,4 @@ PUM shows position in a grade band on statements; thresholds set the band edges 
 
 ## Bottom line
 
-**Cambridge May/June 2026 grade thresholds** will be whatever keeps standards stable after a complex series. Ignore prediction content; control what you can ù honest past-paper marking, clean integrity, and a results-day plan built on evidence.
+**Cambridge May/June 2026 grade thresholds** will be whatever keeps standards stable after a complex series. Ignore prediction content; control what you can ‚Äî honest past-paper marking, clean integrity, and a results-day plan built on evidence.

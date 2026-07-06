@@ -36,7 +36,7 @@ export function SignUpFormSkeleton({ signInHref = '/auth/signin' }: { signInHref
         Create your <span className="ec-text-gradient">account</span>
       </h1>
       <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-        Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.
+        Free tier included â€” Cambridge or IB Diploma, pick your subjects in onboarding.
       </p>
       <GoogleAuthSectionSkeleton label="Sign up with Google" />
     </AuthShell>

@@ -1,6 +1,6 @@
 ---
 title: Why generic AI gets Cambridge past paper marking wrong
-description: ChatGPT and general AI often mis-mark Cambridge answers ó missing B1/M1/A1 logic, allow/reject wording, and band descriptors. What to use instead.
+description: ChatGPT and general AI often mis-mark Cambridge answers ‚Äî missing B1/M1/A1 logic, allow/reject wording, and band descriptors. What to use instead.
 date: 2026-07-06
 updated: 2026-07-06
 category: editorial
@@ -10,17 +10,17 @@ informationGain: synthesis
 author: founder
 ---
 
-Students paste past-paper answers into ChatGPT and get confident feedback ó then lose marks in the real exam because **generic AI is not calibrated to Cambridge mark schemes**. The gap is not ìAI is uselessî; it is that **marking is a specialist task** general models were never trained to do at syllabus level.
+Students paste past-paper answers into ChatGPT and get confident feedback ‚Äî then lose marks in the real exam because **generic AI is not calibrated to Cambridge mark schemes**. The gap is not ‚ÄúAI is useless‚Äù; it is that **marking is a specialist task** general models were never trained to do at syllabus level.
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
-| Can ChatGPT mark my past paper? | It can **comment** ó rarely **mark** accurately to the scheme |
+| Can ChatGPT mark my past paper? | It can **comment** ‚Äî rarely **mark** accurately to the scheme |
 | Main failure modes? | Wrong keywords, invented mark points, harsh/lenient inconsistency |
 | Safer workflow? | Timed attempt ? **official scheme** ? AI only to explain gaps |
-| Better tool? | Marking tied to **real schemes** ó e.g. [MarkScheme](/mark) |
-| Is AI allowed in exams? | **No** ó revision aid only; see [2026 AI rules](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) |
+| Better tool? | Marking tied to **real schemes** ‚Äî e.g. [MarkScheme](/mark) |
+| Is AI allowed in exams? | **No** ‚Äî revision aid only; see [2026 AI rules](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) |
 
 > **Key takeaway:** If feedback does not quote **scheme wording**, treat the grade as fiction.
 
@@ -32,22 +32,22 @@ Biology and humanities schemes often require **exact phrases** or clearly define
 
 | Real scheme | AI tendency |
 |-------------|-------------|
-| ìAward 1 mark for mention of semi-conservative replicationî | ìGood explanation of DNA copyingî ? (false positive) |
-| ìReject ëstrong nuclear forceí in this contextî | Accepts plausible-sounding physics |
+| ‚ÄúAward 1 mark for mention of semi-conservative replication‚Äù | ‚ÄúGood explanation of DNA copying‚Äù ? (false positive) |
+| ‚ÄúReject ‚Äòstrong nuclear force‚Äô in this context‚Äù | Accepts plausible-sounding physics |
 
 ### 2. Invented B1 / M1 / A1 splits
 
-Maths and science schemes use **dependent marks**. AI assigns arbitrary partial credit without following the published allocation ó especially for **ECF** (error carried forward) chains.
+Maths and science schemes use **dependent marks**. AI assigns arbitrary partial credit without following the published allocation ‚Äî especially for **ECF** (error carried forward) chains.
 
 Read: [B1 M1 A1 guide](/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1).
 
 ### 3. Essay bands treated like bullet points
 
-History, Economics, and Business use **levels of response**. AI lists ìgood pointsî without judging **structure, evaluation, and balance** ó the actual band differentiators.
+History, Economics, and Business use **levels of response**. AI lists ‚Äúgood points‚Äù without judging **structure, evaluation, and balance** ‚Äî the actual band differentiators.
 
-### 4. Hallucinated ìexaminerî comments
+### 4. Hallucinated ‚Äúexaminer‚Äù comments
 
-Models generate plausible but **false** references (ìCambridge often awardsÖî) with no syllabus anchor. Dangerous when you memorize them.
+Models generate plausible but **false** references (‚ÄúCambridge often awards‚Ä¶‚Äù) with no syllabus anchor. Dangerous when you memorize them.
 
 ### 5. No handwriting / diagram context
 
@@ -55,9 +55,9 @@ Photos of working are misread; diagrams are described generically. Real marking 
 
 ## What research and competitors show
 
-Save My Exams reported specialist marking tools outperform generic ChatGPT prompts on scheme alignment ó the core issue is **calibration to a board**, not raw intelligence. Teachers report the same: general chat feels helpful but **does not match** departmental moderation.
+Save My Exams reported specialist marking tools outperform generic ChatGPT prompts on scheme alignment ‚Äî the core issue is **calibration to a board**, not raw intelligence. Teachers report the same: general chat feels helpful but **does not match** departmental moderation.
 
-That matches what we see when students [self-mark](/blog/how-to-mark-cambridge-past-papers-yourself) first ó the scheme is the authority.
+That matches what we see when students [self-mark](/blog/how-to-mark-cambridge-past-papers-yourself) first ‚Äî the scheme is the authority.
 
 ## A safe AI-assisted workflow
 
@@ -67,7 +67,7 @@ That matches what we see when students [self-mark](/blog/how-to-mark-cambridge-p
 | 2 | Timed past paper | Exam conditions |
 | 3 | Official mark scheme | Primary mark |
 | 4 | [MarkScheme](/mark) or teacher | Second opinion on scheme wording |
-| 5 | AI chat **only** for ìexplain why step 2 lost M1î | Understanding |
+| 5 | AI chat **only** for ‚Äúexplain why step 2 lost M1‚Äù | Understanding |
 
 Never skip step 3.
 
@@ -75,23 +75,23 @@ Never skip step 3.
 
 | Good use | Bad use |
 |----------|---------|
-| Explain a concept you missed | ìMark this whole paperî untimed |
+| Explain a concept you missed | ‚ÄúMark this whole paper‚Äù untimed |
 | Mnemonic for a list | Generating coursework paragraphs |
 | Clarify a scheme footnote | Pasting live exam questions |
 | Translate examiner report jargon | Replacing past-paper practice |
 
-Full policy context: [ChatGPT and Cambridge exams 2026](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) ∑ [AI marking guide](/blog/ai-marking-cambridge-past-papers-guide).
+Full policy context: [ChatGPT and Cambridge exams 2026](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) ? [AI marking guide](/blog/ai-marking-cambridge-past-papers-guide).
 
-## IB Diploma ó same principle, different rubric
+## IB Diploma ‚Äî same principle, different rubric
 
-IB needs **markband descriptors**, not point codes. Generic AI struggles with ìsufficient relevant detailî vs ìdeveloped explanation.î Use [IB markbands guide](/blog/ib-markbands-explained) and [criterion marking](/mark) for IB subjects.
+IB needs **markband descriptors**, not point codes. Generic AI struggles with ‚Äúsufficient relevant detail‚Äù vs ‚Äúdeveloped explanation.‚Äù Use [IB markbands guide](/blog/ib-markbands-explained) and [criterion marking](/mark) for IB subjects.
 
 ## Red flags in AI feedback
 
 Stop trusting the grade if:
 
 - No reference to **specific mark points** or bands  
-- Every answer scored ì8/10î regardless of quality  
+- Every answer scored ‚Äú8/10‚Äù regardless of quality  
 - Biology accepts vague synonyms for technical terms  
 - Maths gives A marks without method shown  
 - It contradicts the PDF scheme you are holding  
@@ -100,7 +100,7 @@ Stop trusting the grade if:
 
 ### Is MarkScheme just ChatGPT underneath?
 
-No ó product marking is built around **scheme structure** and syllabus-aware checks, not generic chat scoring. Try [one question](/mark) and compare to a chat paste.
+No ‚Äî product marking is built around **scheme structure** and syllabus-aware checks, not generic chat scoring. Try [one question](/mark) and compare to a chat paste.
 
 ### Can schools use AI to mark class tests?
 
@@ -108,11 +108,11 @@ Some tools exist for UK boards with scanned scripts; calibration matters. For Ca
 
 ### Will AI replace examiners?
 
-Not for high-stakes grading ó integrity, nuance, and liability block that. AI is a **revision mirror**, not a certificate authority.
+Not for high-stakes grading ‚Äî integrity, nuance, and liability block that. AI is a **revision mirror**, not a certificate authority.
 
-### Should I pay for ìAI predicted papersî?
+### Should I pay for ‚ÄúAI predicted papers‚Äù?
 
-No ó see [predicted papers 2026](/blog/cambridge-predicted-papers-2026-what-to-know). Official past papers are free via schools.
+No ‚Äî see [predicted papers 2026](/blog/cambridge-predicted-papers-2026-what-to-know). Official past papers are free via schools.
 
 ### Best free stack?
 
@@ -120,5 +120,5 @@ Official PDFs + [free courses](/courses) + honest self-marking + targeted AI exp
 
 ## Bottom line
 
-**Generic AI marking** feels fast and fails quietly. Cambridge rewards **scheme literacy** ó the words, marks, and bands examiners actually apply. Mark to the PDF first; use AI to understand gaps, not to invent grades.
+**Generic AI marking** feels fast and fails quietly. Cambridge rewards **scheme literacy** ‚Äî the words, marks, and bands examiners actually apply. Mark to the PDF first; use AI to understand gaps, not to invent grades.
 

@@ -245,7 +245,7 @@ export function formatWeakLessonReportText(report: WeakLessonAuditReport): strin
   const lines: string[] = []
   lines.push('WEAK-LESSON AUDIT (read-only, auditStrict)')
   lines.push(
-    `Checked ${report.totalChecked} existing premium/published lessons — ${report.totalPassed} pass, ${report.totalFailed} fail (${report.overallFailPct}%)`
+    `Checked ${report.totalChecked} existing premium/published lessons â€” ${report.totalPassed} pass, ${report.totalFailed} fail (${report.overallFailPct}%)`
   )
   lines.push('')
 
@@ -253,9 +253,9 @@ export function formatWeakLessonReportText(report: WeakLessonAuditReport): strin
   for (const row of report.rankedByNeed) {
     const label = row.dominantWeakness
       ? ISSUE_LABELS[row.dominantWeakness] ?? row.dominantWeakness
-      : '—'
+      : 'â€”'
     lines.push(
-      `${row.subjectCode}: ${row.failed}/${row.checked} fail (${row.failPct}%) — dominant: ${label}`
+      `${row.subjectCode}: ${row.failed}/${row.checked} fail (${row.failPct}%) â€” dominant: ${label}`
     )
   }
   lines.push('')
@@ -263,7 +263,7 @@ export function formatWeakLessonReportText(report: WeakLessonAuditReport): strin
   for (const subj of report.subjects) {
     if (!subj.failed) continue
     lines.push(
-      `=== ${subj.subjectCode} ${subj.subjectName} — ${subj.failed}/${subj.checked} fail (${subj.failPct}%) ===`
+      `=== ${subj.subjectCode} ${subj.subjectName} â€” ${subj.failed}/${subj.checked} fail (${subj.failPct}%) ===`
     )
     const counts = Object.entries(subj.weaknessCounts)
       .sort((a, b) => b[1] - a[1])
@@ -274,7 +274,7 @@ export function formatWeakLessonReportText(report: WeakLessonAuditReport): strin
     for (const f of subj.failures) {
       lines.push(`${f.filePath}  [${f.topicCode ?? '?'}] ${f.title ?? ''}`)
       for (const code of f.issueCodes) {
-        lines.push(`  • ${ISSUE_LABELS[code] ?? code}`)
+        lines.push(`  â€¢ ${ISSUE_LABELS[code] ?? code}`)
       }
     }
     lines.push('')

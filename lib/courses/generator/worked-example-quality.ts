@@ -8,7 +8,7 @@ const HOLLOW_QUESTION_PATTERNS = [
 const HOLLOW_SOLUTION_PATTERNS = [
   /\*\*Syllabus points for/i,
   /\*\*Method:\*\*\s*\n1\. State the business type/i,
-  /^Key applications:\s*\n•/i,
+  /^Key applications:\s*\nâ€¢/i,
 ]
 
 export function isHollowWorkedExample(question: string, solution: string): boolean {
@@ -19,7 +19,7 @@ export function isHollowWorkedExample(question: string, solution: string): boole
   if (HOLLOW_QUESTION_PATTERNS.some((p) => p.test(q))) return true
   if (HOLLOW_SOLUTION_PATTERNS.some((p) => p.test(s))) return true
 
-  const bulletLines = s.split('\n').filter((line) => /^[\s•\-*]/.test(line)).length
+  const bulletLines = s.split('\n').filter((line) => /^[\sâ€¢\-*]/.test(line)).length
   const hasDigit = /\d/.test(q) || /\d/.test(s)
   if (!hasDigit && bulletLines >= 3 && s.length < 900) return true
 
@@ -29,7 +29,7 @@ export function isHollowWorkedExample(question: string, solution: string): boole
 export function solutionHasNumericContent(text: string): boolean {
   return (
     /\d/.test(text) ||
-    /[$£€]/.test(text) ||
+    /[$??]/.test(text) ||
     /\\frac|\\times|\\approx|=/.test(text)
   )
 }

@@ -28,7 +28,7 @@ function parseArgs(argv) {
 function scaffold(code) {
   const srcFile = path.join(DATA_DIR, `${code}.json`)
   if (!fs.existsSync(srcFile)) {
-    console.error(`No data file for ${code} ù create content/data/grade-boundaries/${code}.json first.`)
+    console.error(`No data file for ${code} ‚Äî create content/data/grade-boundaries/${code}.json first.`)
     return false
   }
 
@@ -54,7 +54,7 @@ function scaffold(code) {
   fs.mkdirSync(INCOMING_DIR, { recursive: true })
   const out = path.join(INCOMING_DIR, `${code}-june-2026.json`)
   fs.writeFileSync(out, JSON.stringify(session, null, 2) + '\n')
-  console.log(`  wrote ${path.relative(ROOT, out)} (${session.components.length} components ù verify thresholds from PDF)`)
+  console.log(`  wrote ${path.relative(ROOT, out)} (${session.components.length} components ‚Äî verify thresholds from PDF)`)
   return true
 }
 

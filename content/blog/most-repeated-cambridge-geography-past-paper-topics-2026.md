@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge geography past paper topics for 2026 (A-Level & IGCSE)
-description: High-frequency 9696 and 0460 topics from past papers 2019ÿ2025 ÿ case studies, skills papers, and essay bands that move marks every series.
+description: High-frequency 9696 and 0460 topics from past papers 2019â€”2025 â€” case studies, skills papers, and essay bands that move marks every series.
 date: 2026-07-06
 category: revision
 keywords: Cambridge geography revision 2026, 9696 topics, 0460 past papers, geography case studies, most repeated exam topics
@@ -8,9 +8,9 @@ informationGain: dataset
 author: founder
 ---
 
-Geography revision stabilises when you split **skills** (maps, graphs, fieldwork) from **themes** (population, hazards, development). This guide ranks what Cambridge returns to on **9696** (A-Level) and **0460** (IGCSE) from **2019ÿ2025**.
+Geography revision stabilises when you split **skills** (maps, graphs, fieldwork) from **themes** (population, hazards, development). This guide ranks what Cambridge returns to on **9696** (A-Level) and **0460** (IGCSE) from **2019â€”2025**.
 
-> **Key takeaway:** Geography marks need **named case-study detail** ÿ vague ÿa country in Africaÿ answers stay in Level 1.
+> **Key takeaway:** Geography marks need **named case-study detail** â€” vague â€”a country in Africaâ€” answers stay in Level 1.
 
 ## How this list was built
 
@@ -25,11 +25,11 @@ We weighted theme frequency on Paper 1-style questions, skills-paper mark scheme
 | 3 | **Coastal / fluvial processes** | Landforms linked to named processes |
 | 4 | **Atmosphere & climate change** | Causes, impacts, mitigation vs adaptation |
 | 5 | **Urbanisation & settlement** | CBD models, squatter settlements, planning |
-| 6 | **Hazardous environments** | Earthquake/volcano prep ÿ human vs physical |
+| 6 | **Hazardous environments** | Earthquake/volcano prep â€” human vs physical |
 | 7 | **Global interdependence** | Trade, TNCs, development indicators |
-| 8 | **Essay evaluation (AO3)** | ÿTo what extentÿ with **weighed** judgement |
+| 8 | **Essay evaluation (AO3)** | â€”To what extentâ€” with **weighed** judgement |
 
-Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-guide) ÿ [9696 boundaries 2026](/blog/cambridge-9696-geography-grade-boundaries-2026)
+Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-guide) â€” [9696 boundaries 2026](/blog/cambridge-9696-geography-grade-boundaries-2026)
 
 ## IGCSE Geography (0460)
 
@@ -44,7 +44,7 @@ Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-gui
 | 7 | **Paper 2 skills** | Grid refs, relief, graph reading |
 | 8 | **Paper 4 fieldwork logic** | Method, presentation, evaluation |
 
-Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide) · [0460 boundaries 2026](/blog/cambridge-0460-geography-grade-boundaries-2026)
+Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide) ? [0460 boundaries 2026](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 ## Skills that repeat on every series
 
@@ -55,18 +55,18 @@ Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide
 | Case-study essays | P1 themes | Generic place names |
 | Fieldwork evaluation | 0460 P4 | Lists method without **validity/limitation** |
 
-Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) ÿ [Sciences most repeated](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
+Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) â€” [Sciences most repeated](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
 
 ## 4-week rotation
 
 | Week | Focus | Weekend |
 |------|-------|---------|
-| 1 | One core theme + case-study drill | Mark one 7ÿ8 mark Q |
+| 1 | One core theme + case-study drill | Mark one 7â€”8 mark Q |
 | 2 | Skills paper section (maps/graphs) | Timed P2 extract |
 | 3 | Full themed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Weak case studies + eval rewrite | [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ÿ [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ÿ [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ÿ [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ÿ [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) â€” [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) â€” [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) â€” [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) â€” [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
 
 ## Bottom line
 

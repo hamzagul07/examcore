@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * CI gate: verify changed course lesson JSON under content/courses/**.
- * Alert-on-fail-only ÿ exits 0 when nothing changed or all checks pass.
+ * Alert-on-fail-only â€” exits 0 when nothing changed or all checks pass.
  *
  *   pnpm course:verify-changed
  *   pnpm course:verify-changed -- --base origin/main

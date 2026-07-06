@@ -24,7 +24,7 @@ export type PublishedLessonValidationResult = {
   topicCode: string | null
 }
 
-/** Published on-disk lessons — generator-only fields optional (legacy content). */
+/** Published on-disk lessons â€” generator-only fields optional (legacy content). */
 export const PublishedLessonVerifySchema = z
   .object({
     slug: z.string().min(1),
@@ -112,7 +112,7 @@ function validateKatex(lesson: CourseLesson): ValidationIssue[] {
     for (const f of summary.failedFragments) {
       issues.push({
         code: 'katex_parse_error',
-        message: `Unparseable KaTeX: ${f.fragment.slice(0, 60)} — ${f.error}`,
+        message: `Unparseable KaTeX: ${f.fragment.slice(0, 60)} â€” ${f.error}`,
         severity: 'error' as const,
       })
     }

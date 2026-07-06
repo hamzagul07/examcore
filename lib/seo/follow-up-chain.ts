@@ -184,6 +184,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
         'Mark a recent past paper to raw marks, then compare to the last two sessions in the subject calculator — not social media predictions.',
       href: '/blog/cambridge-9700-biology-grade-boundaries-2026',
     },
+    {
+      question: 'When will June 2026 threshold tables be published?',
+      answer:
+        'Grades land 11 August; component threshold PDFs typically publish around 13 August — see our May/June 2026 expectations guide.',
+      href: '/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect',
+    },
   ],
   'command-words': [
     {

@@ -37,6 +37,8 @@
     "seo:ai-visibility": "node scripts/seo-ai-visibility.mjs",
     "seo:sitewide-quality": "node scripts/seo-sitewide-quality.mjs",
     "grade:thresholds:status": "node scripts/ingest-grade-threshold-session.mjs --status",
+    "grade:thresholds:scaffold": "node scripts/scaffold-june-2026-session.mjs --all",
+    "grade:thresholds:ingest": "node scripts/ingest-grade-threshold-session.mjs",
     "course:generate": "node scripts/batch-generate-course.mjs",
     "course:from-notes": "node scripts/enrich-course-from-notes.mjs",
     "course:from-pmt": "node scripts/ingest-pmt-for-school.mjs",

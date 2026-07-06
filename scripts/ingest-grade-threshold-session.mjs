@@ -65,8 +65,14 @@ function printStatus() {
 }
 
 function validateSession(session) {
+  if (session.draft) {
+    throw new Error('Session is marked draft — verify thresholds from the official PDF and remove "draft" before ingesting.')
+  }
   if (!session.session || !session.sourceUrl || !Array.isArray(session.components)) {
     throw new Error('Session must include session, sourceUrl, and components[]')
+  }
+  if (session.sourceUrl.includes('PASTE_')) {
+    throw new Error('Replace sourceUrl with the official Cambridge grade threshold PDF URL.')
   }
   if (!session.components.length) throw new Error('components[] is empty')
   for (const c of session.components) {

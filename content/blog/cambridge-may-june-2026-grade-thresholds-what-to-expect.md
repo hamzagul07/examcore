@@ -10,19 +10,33 @@ informationGain: synthesis
 author: founder
 ---
 
-Search traffic spikes every June for **“Cambridge grade thresholds 2026 predictions.”** Most posts guess numbers to capture clicks. Cambridge does not publish final thresholds until **after** marking — and in disrupted years the process may include **statistical moderation** students never see. Here is what actually determines your grade, and what to do instead of refreshing Telegram.
+Search traffic spikes every June for **"Cambridge grade thresholds 2026 predictions."** Most posts guess numbers to capture clicks. Cambridge does not publish final thresholds until **after** marking — and in disrupted years the process may include **statistical moderation** students never see. Here is what actually determines your grade, and what to do instead of refreshing Telegram.
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
-| When are June 2026 thresholds published? | Around **results day** — AS/A-Level **11 Aug**, IGCSE/O Level **18 Aug** 2026 |
+| When are June 2026 **grades** released? | AS/A-Level **11 August** 2026 (06:00 GMT) |
+| When are **threshold tables** published? | **~13 August** 2026 (component PDFs) |
 | Can anyone predict them accurately beforehand? | **No** — depends on global cohort performance |
-| Do paper leaks lower thresholds? | **Not guaranteed** — high scores from leaks can **raise** cut-offs or trigger voids |
-| Where are official tables? | Cambridge grade threshold PDFs + our [calculator](/tools/grade-boundary-calculator) |
+| Do paper leaks lower thresholds? | **Not guaranteed** — voids and assessed marks change the picture |
+| Where are official tables? | Cambridge PDFs + our [calculator](/tools/grade-boundary-calculator) |
 | What should students do? | Mark past papers; ignore fake spreadsheets |
 
 > **Key takeaway:** Thresholds **follow** performance; they do not reward students who gambled on predictions.
+
+## Per-subject boundary guides (2026)
+
+| Subject | Code | Guide |
+|---------|------|--------|
+| Mathematics | 9709 | [9709 boundaries](/blog/cambridge-9709-mathematics-grade-boundaries-2026) |
+| Biology | 9700 | [9700 boundaries](/blog/cambridge-9700-biology-grade-boundaries-2026) |
+| Chemistry | 9701 | [9701 boundaries](/blog/cambridge-9701-chemistry-grade-boundaries-2026) |
+| Physics | 9702 | [9702 boundaries](/blog/cambridge-9702-physics-grade-boundaries-2026) |
+| Economics | 9708 | [9708 boundaries](/blog/cambridge-9708-economics-grade-boundaries-2026) |
+| Business | 9609 | [9609 boundaries](/blog/cambridge-9609-business-grade-boundaries-2026) |
+
+Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 
 ## How Cambridge sets thresholds (simplified)
 
@@ -37,7 +51,7 @@ Read deeper: [how to read grade boundaries](/blog/how-to-read-cambridge-grade-bo
 
 ## May/June 2026 — why rumours are louder
 
-Reported security incidents and social media “leaks” increase anxiety. Cambridge responses may include:
+Reported security incidents and social media "leaks" increase anxiety. Cambridge responses may include:
 
 | Response | Effect on candidates |
 |----------|---------------------|
@@ -48,20 +62,18 @@ Reported security incidents and social media “leaks” increase anxiety. Cambridge
 
 **Studying leaked material does not secure a lower threshold** — it risks disqualification.
 
-## What “predictions” online usually get wrong
+## What "predictions" online usually get wrong
 
 | Claim | Reality |
 |-------|---------|
-| “Thresholds always drop after leaks” | Cambridge prioritises **fairness**, not sympathy |
-| “My teacher said B starts at 62%” | Last year’s row ? your entry option this year |
-| “India zone has easier thresholds” | Zones exist; students cannot shop them |
+| "Thresholds always drop after leaks" | Cambridge prioritises **fairness**, not sympathy |
+| "My teacher said B starts at 62%" | Last year's row ? your entry option this year |
+| "India zone has easier thresholds" | Zones exist; students cannot shop them |
 | Viral Google Sheets | Often fabricated or copied from old sessions |
 
 Use historical tables as **context**, not prophecy.
 
 ## Subject-level patterns (historical, not a forecast)
-
-These are **multi-year tendencies** — not June 2026 promises:
 
 | Area | Pattern |
 |------|---------|
@@ -103,7 +115,7 @@ Nobody credible knows until marking completes. Prepare by **maximising raw marks
 
 No — they are statistical estimates when normal marking cannot proceed fairly. See official communications via your centre.
 
-### Where is MarkScheme’s data from?
+### Where is MarkScheme's data from?
 
 Verified threshold PDFs loaded into [grade boundary tools](/tools/grade-boundary-calculator) after release — not pre-exam guesses.
 
@@ -118,4 +130,3 @@ PUM shows position in a grade band on statements; thresholds set the band edges 
 ## Bottom line
 
 **Cambridge May/June 2026 grade thresholds** will be whatever keeps standards stable after a complex series. Ignore prediction content; control what you can — honest past-paper marking, clean integrity, and a results-day plan built on evidence.
-

@@ -28,6 +28,7 @@ const IB_EDITORIAL_SLUGS = new Set([
   'cambridge-9609-business-grade-boundaries-2026',
   'cambridge-9990-psychology-grade-boundaries-2026',
   'cambridge-9489-history-grade-boundaries-2026',
+  'cambridge-may-june-2026-grade-thresholds-what-to-expect',
 ])
 
 export function blogSitemapPriority(slug: string): number {

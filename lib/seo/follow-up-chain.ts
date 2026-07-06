@@ -71,6 +71,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/most-repeated-cambridge-science-past-paper-topics-2026',
     },
     {
+      question: 'Which calculation-heavy topics repeat on accounting papers?',
+      answer:
+        'Financial statements, adjustments, ratios and costing variances dominate 9706 — mark every label and working against the scheme.',
+      href: '/blog/most-repeated-cambridge-accounting-past-paper-topics-2026',
+    },
+    {
+      question: 'Which humanities topics repeat most?',
+      answer:
+        'Family/education debates in sociology, case-study depth in geography, and source/essay structures in history — rank practice by skill pattern, not random chapters.',
+      href: '/blog/most-repeated-cambridge-sociology-past-paper-topics-2026',
+    },
+    {
       question: 'What should I do after exams before results day?',
       answer:
         'Build an evidence file: marked mocks, component codes, and honest grade estimates — not leak rumours.',
@@ -173,6 +185,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-component-marks-report-explained-2026',
     },
     {
+      question: 'Where are 9231 Further Maths grade boundaries for 2026?',
+      answer:
+        'Same August window as 9709 — grades 11 August, threshold PDFs ~13 August. Mark B/M/A separately on long proofs.',
+      href: '/blog/cambridge-9231-further-mathematics-grade-boundaries-2026',
+    },
+    {
+      question: 'When are O-Level and IGCSE June 2026 results?',
+      answer:
+        'IGCSE and O Level grades release 18 August 2026 (06:00 GMT) — component threshold PDFs still publish around 13 August.',
+      href: '/blog/cambridge-4024-mathematics-grade-boundaries-2026',
+    },
+    {
       question: 'Where are 9709 maths grade boundaries for 2026?',
       answer:
         'Grades release 11 August; threshold tables ~13 August — use the calculator with recent sessions until the official PDF loads.',
@@ -183,6 +207,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       answer:
         'Mark a recent past paper to raw marks, then compare to the last two sessions in the subject calculator — not social media predictions.',
       href: '/blog/cambridge-9700-biology-grade-boundaries-2026',
+    },
+    {
+      question: 'Where are 9699 Sociology grade boundaries for 2026?',
+      answer:
+        'Grades release 11 August; threshold tables ~13 August — use the calculator with recent sessions until the official PDF loads.',
+      href: '/blog/cambridge-9699-sociology-grade-boundaries-2026',
     },
     {
       question: 'When will June 2026 threshold tables be published?',

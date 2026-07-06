@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge economics past paper topics for 2026 (A-Level & O-Level)
-description: High-frequency topics in 9708 and 2281 ó ranked from past papers 2019ñ2025 with essay and calculation drills that move marks.
+description: High-frequency topics in 9708 and 2281 ù ranked from past papers 2019ù2025 with essay and calculation drills that move marks.
 date: 2026-07-06
 category: revision
 keywords: Cambridge economics revision 2026, 9708 topics, 2281 past papers, economics essay topics, most repeated exam topics
@@ -8,7 +8,7 @@ informationGain: dataset
 author: founder
 ---
 
-Economics revision can feel like endless theory until you **count** what examiners actually reward. Across Cambridge A-Level **9708** and O-Level **2281** papers from **2019ñ2025**, certain topics dominate structured questions and essays every series. This guide ranks them ó then shows how to practise with mark-scheme discipline.
+Economics revision can feel like endless theory until you **count** what examiners actually reward. Across Cambridge A-Level **9708** and O-Level **2281** papers from **2019ù2025**, certain topics dominate structured questions and essays every series. This guide ranks them ù then shows how to practise with mark-scheme discipline.
 
 > **Key takeaway:** High-frequency topics are where **marked past-paper hours** pay off fastest. Band essays and multi-step calculations need different drills.
 
@@ -17,7 +17,7 @@ Economics revision can feel like endless theory until you **count** what examine
 We weighted:
 
 - **Frequency** across June and November sessions  
-- **Mark allocation** on Papers 2ñ4 (not just MCQ)  
+- **Mark allocation** on Papers 2ù4 (not just MCQ)  
 - **Examiner report** "candidates found difficult" flags  
 - **Syllabus weighting** where published  
 
@@ -32,11 +32,11 @@ Confirm your **exact syllabus code and year** with your centre.
 | 3 | **AD/AS & macro equilibrium** | Multiplier, inflation/unemployment trade-offs |
 | 4 | **Fiscal & monetary policy** | Policy mix evaluation; data response staples |
 | 5 | **International trade & exchange rates** | Comparative advantage, depreciation effects |
-| 6 | **Market structures** | Perfect competition vs monopoly ó efficiency comparisons |
+| 6 | **Market structures** | Perfect competition vs monopoly ù efficiency comparisons |
 | 7 | **Labour markets** | Wage determination, minimum wage, union power |
 | 8 | **Development economics** | HDI, poverty traps, growth constraints |
 
-**Practise:** One 25-mark essay outline per week with **explicit band evidence** quoted from your script ó see [marking economics essays](/blog/marking-a-level-economics-essays-at-home).
+**Practise:** One 25-mark essay outline per week with **explicit band evidence** quoted from your script ù see [marking economics essays](/blog/marking-a-level-economics-essays-at-home).
 
 Full guide: [9708 past papers](/blog/cambridge-9708-a-level-economics-past-papers-guide).
 
@@ -46,7 +46,7 @@ Full guide: [9708 past papers](/blog/cambridge-9708-a-level-economics-past-paper
 |----------|-------|-------|
 | 1 | **Basic economic problem & PPC** | Opportunity cost reasoning every series |
 | 2 | **Demand & supply** | Shifts, equilibrium, simple elasticity |
-| 3 | **Market failure** | Externalities, public goods ó diagram + explain |
+| 3 | **Market failure** | Externalities, public goods ù diagram + explain |
 | 4 | **Money, banking & inflation** | Functions of money; causes of inflation |
 | 5 | **Government macro aims** | Unemployment, growth, balance of payments lite |
 | 6 | **International trade** | Tariffs, quotas, exchange rate basics |
@@ -61,43 +61,43 @@ Guide: [2281 past papers](/blog/cambridge-2281-o-level-economics-past-papers-gui
 
 | Skill | Weekly habit | Mark-scheme focus |
 |-------|--------------|-------------------|
-| Essays | 1 timed plan + 1 paragraph rewrite | Band descriptors ó [command words](/blog/cambridge-9708-economics-command-words-guide) |
+| Essays | 1 timed plan + 1 paragraph rewrite | Band descriptors ù [command words](/blog/cambridge-9708-economics-command-words-guide) |
 | Calculations | 3 multi-step questions | M marks for setup; don't skip working |
 | Data response | 1 full section | Define ? apply ? evaluate in that order |
 
 Cross-links: [ECF in calculations](/blog/understanding-error-carried-forward-ecf), [essay planning template](/blog/a-level-essay-planning-past-papers).
 
-**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ∑ [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ∑ [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ∑ [CS](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026) ∑ [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ∑ [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ∑ [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ∑ [Accounting](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026) ∑ [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ∑ [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
 
 ## 4-week high-yield rotation
 
-| Week | MonñWed | ThuñFri | Weekend |
+| Week | MonùWed | ThuùFri | Weekend |
 |------|---------|---------|---------|
-| 1 | Topics 1ñ2 drills | Half Paper 2 | Mark + band audit |
-| 2 | Topics 3ñ4 + macro data | Essay under time | Rewrite weakest paragraph |
-| 3 | Topics 5ñ6 | Full timed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
+| 1 | Topics 1ù2 drills | Half Paper 2 | Mark + band audit |
+| 2 | Topics 3ù4 + macro data | Essay under time | Rewrite weakest paragraph |
+| 3 | Topics 5ù6 | Full timed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Mixed synoptic | Full timed paper | Upload to [MarkScheme](/mark) |
 
 ## What "most repeated" does not mean
 
 - Examiners can still surprise you on **low-frequency** topics  
-- **Evaluation** depth separates bands ó description alone caps at mid-band  
+- **Evaluation** depth separates bands ù description alone caps at mid-band  
 - Reading without **marking** builds false confidence  
 
 ## FAQ
 
 ### Should I only revise this table?
 
-No ó cover the full syllabus once, then **weight** past papers toward these topics in the final month.
+No ù cover the full syllabus once, then **weight** past papers toward these topics in the final month.
 
-### AS vs A2 ó same topics?
+### AS vs A2 ù same topics?
 
-AS emphasises micro foundations and basic macro. A2 adds deeper evaluation and synoptic links ó see [AS vs A2 strategy](/blog/cambridge-as-level-vs-a2-past-paper-strategy).
+AS emphasises micro foundations and basic macro. A2 adds deeper evaluation and synoptic links ù see [AS vs A2 strategy](/blog/cambridge-as-level-vs-a2-past-paper-strategy).
 
 ### How do I stop "one band too high" self-marks?
 
-Quote evidence from your script for each band claim ó pattern in our [marking insights](/insights).
+Quote evidence from your script for each band claim ù pattern in our [marking insights](/insights).
 
 ## Bottom line
 
-Economics rewards **diagrams with shifts labelled**, **essays with explicit evaluation**, and **calculations with method marks shown**. The topics above appear often enough to anchor your **marked** past-paper weeks ó then let [MarkScheme](/mark) show which band evidence you still miss.
+Economics rewards **diagrams with shifts labelled**, **essays with explicit evaluation**, and **calculations with method marks shown**. The topics above appear often enough to anchor your **marked** past-paper weeks ù then let [MarkScheme](/mark) show which band evidence you still miss.

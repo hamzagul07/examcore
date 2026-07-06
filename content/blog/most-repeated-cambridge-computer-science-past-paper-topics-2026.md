@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge computer science past paper topics for 2026
-description: High-frequency topics in 9618, 0478 and 2210 ó algorithms, logic, databases and programming questions ranked from 2019ñ2025 papers.
+description: High-frequency topics in 9618, 0478 and 2210 ù algorithms, logic, databases and programming questions ranked from 2019ù2025 papers.
 date: 2026-07-06
 category: revision
 keywords: Cambridge computer science revision 2026, 9618 topics, 0478 past papers, 2210 algorithms, most repeated exam topics
@@ -8,9 +8,9 @@ informationGain: dataset
 author: founder
 ---
 
-Computer Science papers look unpredictable until you notice the **same mark patterns**: trace tables, complexity justification, SQL, logic gates, and pseudocode that must match the scheme **word for word**. This guide ranks high-frequency topics across **9618** (A-Level), **0478** (IGCSE), and **2210** (O-Level) from **2019ñ2025** sessions.
+Computer Science papers look unpredictable until you notice the **same mark patterns**: trace tables, complexity justification, SQL, logic gates, and pseudocode that must match the scheme **word for word**. This guide ranks high-frequency topics across **9618** (A-Level), **0478** (IGCSE), and **2210** (O-Level) from **2019ù2025** sessions.
 
-> **Key takeaway:** CS marks come from **precise terminology and trace accuracy** ó not "almost right" algorithms.
+> **Key takeaway:** CS marks come from **precise terminology and trace accuracy** ù not "almost right" algorithms.
 
 ## How this list was built
 
@@ -27,18 +27,18 @@ Confirm your **syllabus code** with your centre.
 
 | Priority | Topic | Why it repeats |
 |----------|-------|----------------|
-| 1 | **Algorithm tracing & dry runs** | Stacks, queues, lists ó state tables every series |
+| 1 | **Algorithm tracing & dry runs** | Stacks, queues, lists ù state tables every series |
 | 2 | **Big O / time complexity** | Justify with operations counted, not intuition |
 | 3 | **Recursion & iteration** | Base case, call stack, rewrite between forms |
 | 4 | **Trees, graphs & traversals** | BST operations, Dijkstra-style steps |
 | 5 | **Object-oriented design** | Classes, inheritance, encapsulation scenarios |
-| 6 | **Database normalisation & SQL** | 1NFñ3NF, SELECT/JOIN queries |
+| 6 | **Database normalisation & SQL** | 1NFù3NF, SELECT/JOIN queries |
 | 7 | **Boolean algebra & logic circuits** | Karnaugh-style simplification |
 | 8 | **Networks & protocols** | TCP/IP layers, packet switching comparisons |
 
-**Practise:** One trace table per day without looking at the mark scheme first ó then mark **line by line**.
+**Practise:** One trace table per day without looking at the mark scheme first ù then mark **line by line**.
 
-Full guide: [9618 past papers](/blog/cambridge-9618-a-level-computer-science-past-papers-guide).
+Full guide: [9618 past papers](/blog/cambridge-9618-a-level-computer-science-past-papers-guide) ∑ [9618 boundaries 2026](/blog/cambridge-9618-computer-science-grade-boundaries-2026)
 
 ## IGCSE Computer Science (0478)
 
@@ -72,37 +72,37 @@ Guide: [2210 past papers](/blog/cambridge-2210-o-level-computer-science-past-pap
 
 ## The 4-week high-yield rotation
 
-| Week | MonñWed | ThuñFri | Weekend |
+| Week | MonùWed | ThuùFri | Weekend |
 |------|---------|---------|---------|
-| 1 | Trace tables ◊5 | Half theory paper | Mark every lost line |
+| 1 | Trace tables ù5 | Half theory paper | Mark every lost line |
 | 2 | SQL + normalisation | Programming Q | Rewrite worst trace |
 | 3 | Logic + complexity | Full timed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Mixed synoptic | Full timed paper | Upload to [MarkScheme](/mark) |
 
 Cross-links: [command words](/blog/cambridge-command-words-past-papers-guide), [fixing silly mistakes](/blog/fixing-silly-mistakes-cambridge-past-papers).
 
-**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ∑ [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ∑ [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ∑ [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ∑ [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ù [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ù [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ù [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ù [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ù [Media Studies](/blog/most-repeated-cambridge-media-studies-past-paper-topics-2026)
 
 ## What "most repeated" does not mean
 
-- Pseudocode **syntax** must match what your syllabus expects ó check the learner guide  
-- Programming questions punish **edge cases** ó test empty input, bounds  
+- Pseudocode **syntax** must match what your syllabus expects ù check the learner guide  
+- Programming questions punish **edge cases** ù test empty input, bounds  
 - Theory recall without **application** scores low on problem-solving papers  
 
 ## FAQ
 
 ### Should I only revise this table?
 
-No ó cover the full syllabus once, then **weight** traces and SQL in the final month.
+No ù cover the full syllabus once, then **weight** traces and SQL in the final month.
 
 ### How do I practise programming for theory papers?
 
-Write pseudocode on paper under time ó exams rarely reward IDE autocomplete habits.
+Write pseudocode on paper under time ù exams rarely reward IDE autocomplete habits.
 
 ### Is AI useful for CS revision?
 
-For **explaining** a missed trace step ó yes. For generating answers to memorise ó risky; schemes want **specific** steps.
+For **explaining** a missed trace step ù yes. For generating answers to memorise ù risky; schemes want **specific** steps.
 
 ## Bottom line
 
-Cambridge CS rewards **accurate traces**, **justified complexity**, and **scheme-aligned wording**. The topics above appear often enough to anchor your **marked** weeks ó then use [MarkScheme](/mark) to catch the mark points you still skip.
+Cambridge CS rewards **accurate traces**, **justified complexity**, and **scheme-aligned wording**. The topics above appear often enough to anchor your **marked** weeks ù then use [MarkScheme](/mark) to catch the mark points you still skip.

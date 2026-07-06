@@ -87,7 +87,7 @@ Full guide: [9702 past papers](/blog/cambridge-9702-a-level-physics-past-papers-
 | 7 | **Coordination & hormones** | Reflex arc, homeostasis lite |
 | 8 | **Practical skills (Paper 6)** | Variables, fair test, graph plotting |
 
-Guide: [5090 past papers](/blog/cambridge-5090-o-level-biology-past-papers-guide).
+Guide: [5090 past papers](/blog/cambridge-5090-o-level-biology-past-papers-guide) · [5090 boundaries 2026](/blog/cambridge-5090-biology-grade-boundaries-2026).
 
 ## O-Level Chemistry (5070)
 
@@ -102,7 +102,7 @@ Guide: [5090 past papers](/blog/cambridge-5090-o-level-biology-past-papers-guide
 | 7 | **Metals & reactivity** | Displacement series |
 | 8 | **Tests for ions & gases** | Practical recognition |
 
-Guide: [5070 past papers](/blog/cambridge-5070-o-level-chemistry-past-papers-guide).
+Guide: [5070 past papers](/blog/cambridge-5070-o-level-chemistry-past-papers-guide) · [5070 boundaries 2026](/blog/cambridge-5070-chemistry-grade-boundaries-2026).
 
 ## O-Level Physics (5054)
 
@@ -117,7 +117,7 @@ Guide: [5070 past papers](/blog/cambridge-5070-o-level-chemistry-past-papers-gui
 | 7 | **Radioactivity** | Half-life calculations |
 | 8 | **Pressure & moments** | Lever, liquid pressure |
 
-Guide: [5054 past papers](/blog/cambridge-5054-o-level-physics-past-papers-guide).
+Guide: [5054 past papers](/blog/cambridge-5054-o-level-physics-past-papers-guide) · [5054 boundaries 2026](/blog/cambridge-5054-physics-grade-boundaries-2026).
 
 ## The 4-week high-yield rotation (any science)
 
@@ -165,6 +165,11 @@ See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topi
 - [English (9695, 0500)](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
 - [Business (9609, 7115)](/blog/most-repeated-cambridge-business-past-paper-topics-2026)
 - [Psychology (9990)](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026)
+- [Sociology (9699)](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026)
+- [Geography (9696, 0460)](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
+- [Accounting (9706)](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026)
+- [Law (9084)](/blog/most-repeated-cambridge-law-past-paper-topics-2026)
+- [Media Studies (9607)](/blog/most-repeated-cambridge-media-studies-past-paper-topics-2026)
 
 ## Bottom line
 

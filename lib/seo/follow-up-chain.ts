@@ -172,6 +172,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
         'A per-paper breakdown on your results statement — use it to decide remarks and resits with your exams officer.',
       href: '/blog/cambridge-component-marks-report-explained-2026',
     },
+    {
+      question: 'Where are 9709 maths grade boundaries for 2026?',
+      answer:
+        'Grades release 11 August; threshold tables ~13 August — use the calculator with recent sessions until the official PDF loads.',
+      href: '/blog/cambridge-9709-mathematics-grade-boundaries-2026',
+    },
+    {
+      question: 'How do I estimate Biology or Physics boundaries?',
+      answer:
+        'Mark a recent past paper to raw marks, then compare to the last two sessions in the subject calculator — not social media predictions.',
+      href: '/blog/cambridge-9700-biology-grade-boundaries-2026',
+    },
   ],
   'command-words': [
     {

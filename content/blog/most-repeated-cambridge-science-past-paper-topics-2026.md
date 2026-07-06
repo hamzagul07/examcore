@@ -150,6 +150,12 @@ AS papers emphasise foundations (cells, mechanics, stoichiometry). A2 adds synop
 
 See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topics-2026) for 0610/0620/0625.
 
+### Grade boundaries 2026 (A-Level sciences)
+
+- [9700 Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
+- [9701 Chemistry](/blog/cambridge-9701-chemistry-grade-boundaries-2026)
+- [9702 Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
+
 ### Other subjects — most repeated topics
 
 - [Economics (9708, 2281)](/blog/most-repeated-cambridge-economics-past-paper-topics-2026)

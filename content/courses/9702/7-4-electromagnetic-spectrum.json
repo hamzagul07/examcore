@@ -6,61 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 - Electromagnetic spectrum (7.4). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the key properties common to all electromagnetic waves.",
-    "Recall the order of the electromagnetic spectrum in terms of wavelength and frequency.",
-    "Apply the wave equation to calculate unknown quantities for electromagnetic waves."
-  ],
-  "simpleExplanation": {
-    "title": "Understanding EM Waves",
-    "summary": "Imagine a huge, invisible 'rainbow' of energy waves around us. This is the electromagnetic (EM) spectrum, a family of waves that all travel at the speed of light but have different wavelengths and frequencies, giving them unique properties.",
-    "analogy": "Think of the EM spectrum like a giant piano keyboard. Each key (Gamma, X-Ray, Radio, etc.) plays a different 'note' (has a different wavelength/frequency), but they're all made of the same fundamental 'sound' (electromagnetic energy) and travel at the same incredible speed.",
-    "steps": [
-      "All EM waves are transverse and travel at `c`.",
-      "The spectrum ranges from long radio waves to short gamma rays.",
-      "Wavelength and frequency are inversely related (`c = fλ`).",
-      "Polarisation proves EM waves are transverse."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "List the components of the electromagnetic spectrum from longest to shortest wavelength.",
-      "back": "Radiowaves, Microwaves, Infrared, Visible Light, Ultraviolet, X-Rays, Gamma Rays."
-    },
-    {
-      "front": "What is the speed of all electromagnetic waves in a vacuum, and what symbol represents it?",
-      "back": "Approximately `3 x 10^8 m s^{-1}`, represented by 'c'."
-    },
-    {
-      "front": "What fundamental type of wave are all electromagnetic waves, and how does this relate to polarisation?",
-      "back": "They are transverse waves, which means their oscillations can be restricted to a single plane, demonstrating polarisation."
-    },
-    {
-      "front": "What is the approximate wavelength range for visible light within the electromagnetic spectrum?",
-      "back": "Approximately 400 nm to 700 nm (or `4 x 10⁻⁷ m` to `7 x 10⁻⁷ m`)."
-    },
-    {
-      "front": "State the formula that links the speed, frequency, and wavelength of an electromagnetic wave in a vacuum.",
-      "back": "$c = f\\lambda$"
-    },
-    {
-      "front": "What does 'transverse wave' mean in the context of EM waves?",
-      "back": "The oscillations (electric and magnetic fields) are perpendicular to the direction of energy transfer (wave propagation)."
-    },
-    {
-      "front": "How does frequency change as you move from radio waves to gamma rays?",
-      "back": "Frequency increases (from very low for radio waves to very high for gamma rays)."
-    },
-    {
-      "front": "What is polarisation, and why is it important for understanding EM waves?",
-      "back": "Polarisation is the restriction of a wave's oscillations to a single plane. It's crucial evidence that EM waves are transverse."
-    },
-    {
-      "front": "If an electromagnetic wave has a long wavelength, what can be said about its frequency?",
-      "back": "It will have a low frequency, because their product ($fλ$) must always equal the constant speed of light ($c$). "
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -88,7 +34,19 @@
     },
     {
       "type": "text",
-      "content": "The electromagnetic spectrum is an ordered arrangement of these waves by their wavelength and frequency. Moving from the longest wavelengths (and lowest frequencies) to the shortest (and highest frequencies), the order is: **Radiowaves, Microwaves, Infrared, Visible Light, Ultraviolet, X-Rays, and Gamma Rays.** Each region has unique uses and properties due to its energy level."
+      "content": "The electromagnetic spectrum is an ordered arrangement of these waves by their wavelength and frequency. Moving from the longest wavelengths (and lowest frequencies) to the shortest (and highest frequencies), the order is: **Radiowaves, Microwaves, Infrared, Visible Light, Ultraviolet, X-Rays, and Gamma Rays.** Each region has unique uses and properties due to its energy level, which is directly proportional to its frequency."
+    },
+    {
+      "type": "heading",
+      "content": "Components of the EM Spectrum in Detail"
+    },
+    {
+      "type": "text",
+      "content": "Each part of the electromagnetic spectrum is defined by a specific range of wavelengths and frequencies, which in turn dictates its properties and applications. Understanding these distinctions is crucial for applying physics concepts to real-world technology and interpreting astronomical observations."
+    },
+    {
+      "type": "text",
+      "content": "Here is a breakdown of the principal components, their approximate wavelengths, and common uses:\n\n*   **Radiowaves:** Wavelengths > 10 cm. They have the lowest energy and are used for broadcasting radio and television signals, as well as in radio astronomy.\n*   **Microwaves:** Wavelengths from 1 mm to 30 cm. These are used in microwave ovens to heat food, for satellite communication, mobile phone networks, and radar systems.\n*   **Infrared (IR):** Wavelengths from 700 nm to 1 mm. Emitted by all objects with thermal energy, it is used in thermal imaging cameras, remote controls, and for data transmission in optical fibres.\n*   **Visible Light:** A narrow band with wavelengths from approximately 400 nm (violet) to 700 nm (red). This is the only portion of the spectrum that the human eye can detect.\n*   **Ultraviolet (UV):** Wavelengths from 10 nm to 400 nm. It has enough energy to cause chemical reactions, such as tanning and sunburn, and is used for sterilising equipment and in security marking.\n*   **X-rays:** Wavelengths from 0.01 nm to 10 nm. Their high energy and penetrating ability make them ideal for medical imaging (radiographs) and airport security scanners.\n*   **Gamma Rays:** Wavelengths < 0.01 nm. These are the most energetic and penetrating waves, produced by nuclear reactions. They are used in radiotherapy to destroy cancer cells and to sterilise medical instruments."
     },
     {
       "type": "keyPoints",
@@ -97,7 +55,7 @@
         "Electromagnetic waves are transverse waves.",
         "It consists of electric field and magnetic field components.",
         "It can propagate without the need of a medium to carry them unlike mechanical waves.",
-        "The speed that electromagnetic waves travel at is 3x10 8 ms -1.",
+        "The speed that electromagnetic waves travel at is 3.00 x 10⁸ m s^{-1}.",
         "If this number seems familiar it’s because that’s the speed of light. Light is a wave or more specifically an electromagnetic wave."
       ]
     },
@@ -112,7 +70,12 @@
     {
       "type": "workedExample",
       "question": "A certain radio wave has a frequency of `1.5 x 10⁷ Hz`. Calculate its wavelength in a vacuum.",
-      "solution": "1. Recall the wave equation for EM waves in a vacuum: $c = f\\lambda$\n2. Identify known values: `c = 3.00 x 10⁸ m s^{-1}` (speed of light), `f = 1.5 x 10⁷ Hz` (frequency).\n3. Rearrange the formula to solve for wavelength: $\\lambda = \\frac{c}{f}$\n4. Substitute the values: $\\lambda = \\frac{3.00 \\times 10^8 \\text{m s}^{-1}}{1.5 \\times 10^7 \\text{ Hz}}$\n5. Calculate the wavelength: $\\lambda = 20 \\text{ m}$\n6. State the answer with units: The wavelength of the radio wave is `20 m`."
+      "solution": "1. Recall the wave equation for EM waves in a vacuum: $c = f\\lambda$\n2. Identify known values: `c = 3.00 x 10⁸ m s^{-1}` (speed of light), `f = 1.5 x 10⁷ Hz` (frequency).\n3. Rearrange the formula to solve for wavelength: $\\lambda = \\frac{c}{f}$\n4. Substitute the values: $\\lambda = \\frac{3.00 \\times 10^8 \\text{ m s}^{-1}}{1.5 \\times 10^7 \\text{ Hz}}$\n5. Calculate the wavelength: $\\lambda = 20 \\text{ m}$\n6. State the answer with units: The wavelength of the radio wave is `20 m`."
+    },
+    {
+      "type": "workedExample",
+      "question": "Green light has a typical wavelength of 550 nm. Calculate its frequency.",
+      "solution": "1. Start with the wave equation for electromagnetic waves: $c = f\\lambda$.\n2. Identify the known values. The speed of light in a vacuum is $c = 3.00 \\times 10^8 \\text{ m s}^{-1}$. The wavelength is given as $\\lambda = 550 \\text{ nm}$.\n3. Convert the wavelength to the SI unit of metres. Since 1 nm = \\$10^{-9}$ m, we have: $\\lambda = 550 \\times 10^{-9} \\text{ m}$.\n4. Rearrange the wave equation to solve for frequency, $f$: $f = \\frac{c}{\\lambda}$.\n5. Substitute the known values into the rearranged formula: $f = \\frac{3.00 \\times 10^8 \\text{ m s}^{-1}}{550 \\times 10^{-9} \\text{ m}}$.\n6. Calculate the result: $f = 5.4545... \\times 10^{14} \\text{ Hz}$.\n7. State the final answer to an appropriate number of significant figures (3 s.f. to match the data) and with the correct unit: The frequency of the green light is \\$5.45 \\times 10^{14} \\text{ Hz}$."
     },
     {
       "type": "examTip",
@@ -141,6 +104,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe the key properties common to all electromagnetic waves.",
+    "Recall the order of the electromagnetic spectrum in terms of wavelength and frequency.",
+    "State the approximate wavelengths of the principal components of the electromagnetic spectrum.",
+    "Apply the wave equation to calculate unknown quantities for electromagnetic waves."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of the EM spectrum like a giant piano keyboard. Each key (Gamma, X-Ray, Radio, etc.) plays a different 'note' (has a different wavelength/frequency), but they're all made of the same fundamental 'sound' (electromagnetic energy) and travel at the same incredible speed."
+  },
   "faq": [
     {
       "q": "What makes electromagnetic waves different from sound waves?",
@@ -152,16 +124,59 @@
     },
     {
       "q": "How is the energy of an electromagnetic wave related to its position in the spectrum?",
-      "a": "The energy of an EM wave is directly proportional to its frequency and inversely proportional to its wavelength. So, gamma rays (highest frequency, shortest wavelength) carry the most energy, while radio waves (lowest frequency, longest wavelength) carry the least."
+      "a": "The energy of an EM wave is directly proportional to its frequency and inversely proportional to its wavelength, as described by the Planck-Einstein relation $E = hf$. So, gamma rays (highest frequency, shortest wavelength) carry the most energy, while radio waves (lowest frequency, longest wavelength) carry the least."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "List the components of the electromagnetic spectrum from longest to shortest wavelength.",
+      "back": "Radiowaves, Microwaves, Infrared, Visible Light, Ultraviolet, X-Rays, Gamma Rays."
+    },
+    {
+      "front": "What is the speed of all electromagnetic waves in a vacuum, and what symbol represents it?",
+      "back": "Approximately `3.00 x 10^8 m s^{-1}`, represented by 'c'."
+    },
+    {
+      "front": "What fundamental type of wave are all electromagnetic waves, and how does this relate to polarisation?",
+      "back": "They are transverse waves, which means their oscillations can be restricted to a single plane, demonstrating polarisation."
+    },
+    {
+      "front": "What is the approximate wavelength range for visible light within the electromagnetic spectrum?",
+      "back": "Approximately 400 nm to 700 nm (or `4 x 10⁻⁷ m` to `7 x 10⁻⁷ m`)."
+    },
+    {
+      "front": "State the formula that links the speed, frequency, and wavelength of an electromagnetic wave in a vacuum.",
+      "back": "$c = f\\lambda$"
+    },
+    {
+      "front": "What does 'transverse wave' mean in the context of EM waves?",
+      "back": "The oscillations (electric and magnetic fields) are perpendicular to the direction of energy transfer (wave propagation)."
+    },
+    {
+      "front": "How does frequency change as you move from radio waves to gamma rays?",
+      "back": "Frequency increases (from very low for radio waves to very high for gamma rays)."
+    },
+    {
+      "front": "What is polarisation, and why is it important for understanding EM waves?",
+      "back": "Polarisation is the restriction of a wave's oscillations to a single plane. It's crucial evidence that EM waves are transverse."
+    },
+    {
+      "front": "If an electromagnetic wave has a long wavelength, what can be said about its frequency?",
+      "back": "It will have a low frequency, because their product ($f\\lambda$) must always equal the constant speed of light ($c$). "
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "7.4.1",
+    "7.4.2",
+    "7.4.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/7-4-electromagnetic-spectrum.png",
     "alt": "Senpai Corner reference diagram for 7.4 Electromagnetic spectrum"
-  }
+  },
+  "updated": "2026-06-26"
 }

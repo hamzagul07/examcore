@@ -5,56 +5,20 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — break-even, margin of safety, target profit, CVP charts, and assumptions for Paper 2.",
-  "durationMin": 28,
-  "updated": "2026-06-15",
-  "learningObjectives": [
-    "Calculate break-even point in units and revenue.",
-    "Determine margin of safety in units and percentage.",
-    "Calculate sales volume for a target profit.",
-    "Interpret CVP charts and state assumptions."
-  ],
-  "simpleExplanation": {
-    "title": "How much must we sell?",
-    "summary": "CVP analysis uses contribution to find break-even — where total contribution equals fixed costs — and how far sales can fall before the business makes a loss.",
-    "analogy": "A food truck must pay $200 daily site fee (fixed) plus $3 ingredients per meal (variable). Each $10 meal contributes $7 toward the fee. Break-even is about 29 meals — after that, every sale is profit until the day ends.",
-    "steps": [
-      "Contribution per unit = SP − VC per unit.",
-      "BEP (units) = fixed costs ÷ contribution per unit.",
-      "Margin of safety = budgeted sales − BEP.",
-      "Target profit: (FC + target profit) ÷ contribution per unit."
-    ]
-  },
-  "flashcards": [
-    { "front": "CVP break-even (units)?", "back": "Fixed costs ÷ Contribution per unit." },
-    { "front": "Break-even revenue?", "back": "Fixed costs ÷ (Contribution per unit ÷ Selling price), i.e. FC ÷ C/S ratio." },
-    { "front": "Margin of safety (units)?", "back": "Budgeted or actual sales units − Break-even units." },
-    { "front": "Target profit output?", "back": "(Fixed costs + Target profit) ÷ Contribution per unit." },
-    { "front": "What does a CVP chart show?", "back": "FC line (horizontal), TC line (sloping), TR line (from origin) — intersection = break-even." },
-    { "front": "9706 vs 9609 emphasis?", "back": "9706 Paper 2 expects full accounting working, charts, and clear labels; same core formulas as business studies." },
-    { "front": "Assumption: constant SP?", "back": "Selling price per unit does not change with volume." },
-    { "front": "Assumption: linear VC?", "back": "Variable cost per unit stays constant as output changes." },
-    { "front": "Why CVP for decisions?", "back": "Shows risk (margin of safety), required sales for profit targets, and effect of cost/price changes." },
-    { "front": "Multi-product limitation?", "back": "Need constant sales mix or weighted average contribution per unit." }
-  ],
-  "faq": [
-    {
-      "q": "Is CVP the same as break-even analysis in 9609?",
-      "a": "The core maths is identical. 9706 Paper 2 may require more formal accounting presentation, journal awareness, and chart drawing; 9609 adds more evaluation of business context."
-    },
-    {
-      "q": "When is CVP analysis unreliable?",
-      "a": "When assumptions break down: discounts change SP, step costs increase FC, product mix shifts, or output is far outside the relevant range."
-    }
-  ],
+  "summary": "9706 - break-even, margin of safety, target profit, CVP charts, multi-product scenarios, and key assumptions for Paper 2.",
+  "durationMin": 38,
   "sections": [
     {
       "type": "intro",
-      "content": "**Cost-volume-profit (CVP) analysis** (2.2.4) is a core **9706 Paper 2** topic. Examiners expect **neat calculations**, **labelled CVP charts**, and **written assumptions**. Use the interactive chart alongside this lesson — the same relationships apply as in **9609 break-even (5.4.4)**."
+      "content": "**Cost-volume-profit (CVP) analysis** (2.2.4) is a core **9706 Paper 2** topic. Examiners expect **neat calculations**, **labelled CVP charts**, and **written assumptions**. Use the interactive chart alongside this lesson - the same relationships apply as in **9609 break-even (5.4.4)**."
     },
     {
       "type": "heading",
-      "content": "Contribution and break-even"
+      "content": "Contribution and Break-Even Point"
+    },
+    {
+      "type": "text",
+      "content": "Contribution is a crucial concept in marginal costing and CVP analysis. It represents the amount of revenue from each unit sold that is available to cover fixed costs and then to generate profit. Unlike profit, contribution ignores fixed costs, making it ideal for short-term decision-making where fixed costs are often unavoidable. The break-even point (BEP) is the level of activity (in units or sales revenue) at which a business makes neither a profit nor a loss. At this point, total revenue exactly equals total costs, which also means total contribution equals total fixed costs. Any sales beyond the BEP will generate profit."
     },
     {
       "type": "formula",
@@ -62,37 +26,66 @@
     },
     {
       "type": "text",
-      "content": "At break-even, **total contribution = fixed costs** and profit is zero. All fixed costs must be covered by contribution from units sold before profit is earned."
+      "content": "The Contribution to Sales (C/S) ratio is a vital tool, expressing contribution as a percentage of sales revenue. A C/S ratio of 0.40 or 40\\% means that for every \\$1 of sales, \\$0.40 is generated as contribution. This ratio is particularly useful for calculating the break-even point in revenue terms and for analysing the profitability of different products or departments. It is calculated as: (Contribution per unit / Selling price per unit) or (Total Contribution / Total Sales Revenue)."
     },
     {
       "type": "heading",
-      "content": "Margin of safety and target profit"
+      "content": "Margin of Safety and Target Profit"
+    },
+    {
+      "type": "text",
+      "content": "The Margin of Safety (MoS) is a measure of risk. It quantifies the cushion between the current or budgeted sales level and the break-even point. A high margin of safety indicates that sales can fall by a significant amount before the business starts making a loss, suggesting a lower level of risk. Conversely, a low margin of safety signals higher risk. The target profit calculation is a simple extension of the break-even formula. To find the sales required to achieve a certain profit, the target profit amount is added to the fixed costs in the numerator. This treats the desired profit as an additional 'cost' that must be covered by the total contribution earned."
     },
     {
       "type": "formula",
-      "content": "Margin of safety (units) = Budgeted sales − Break-even sales\n\nMargin of safety (%) = $\\frac{\\text{MoS units}}{\\text{Budgeted sales}} \\times 100$\n\nSales for target profit = $\\frac{\\text{FC} + \\text{Target profit}}{\\text{Contribution per unit}}$"
+      "content": "Margin of safety (units) = Budgeted sales − Break-even sales\n\nMargin of safety (\\%) = $\\frac{\\text{MoS units}}{\\text{Budgeted sales}} \\times 100$\n\nSales for target profit = $\\frac{\\text{FC} + \\text{Target profit}}{\\text{Contribution per unit}}$"
     },
     {
       "type": "workedExample",
-      "question": "The following information relates to a single product:\n\nSelling price $25 per unit\nVariable cost $10 per unit\nFixed costs $18 000 per month\nBudgeted sales 1 500 units\n\nCalculate (a) break-even in units, (b) margin of safety in units and %, (c) units required for $12 000 profit.",
-      "solution": "(a) Contribution = $25 − $10 = $15\nBEP = $18 000 ÷ $15 = **1 200 units**\n\n(b) MoS = 1 500 − 1 200 = **300 units**\nMoS% = (300 ÷ 1 500) × 100 = **20%**\n\n(c) Required contribution = $18 000 + $12 000 = $30 000\nUnits = $30 000 ÷ $15 = **2 000 units**"
+      "question": "The following information relates to a single product:\n\nSelling price \\$25 per unit\nVariable cost \\$10 per unit\nFixed costs \\$18 000 per month\nBudgeted sales 1 500 units\n\nCalculate (a) break-even in units, (b) margin of safety in units and %, (c) units required for \\$12 000 profit.",
+      "solution": "(a) Contribution = \\$25 − \\$10 = \\$15\nBEP = \\$18 000 ÷ \\$15 = **1 200 units**\n\n(b) MoS = 1 500 − 1 200 = **300 units**\nMoS% = (300 ÷ 1 500) × 100 = **20%**\n\n(c) Required contribution = \\$18 000 + \\$12 000 = \\$30 000\nUnits = \\$30 000 ÷ \\$15 = **2 000 units**"
     },
     {
       "type": "workedExample",
       "question": "Using the same data, calculate break-even **revenue**.",
-      "solution": "C/S ratio = $15 ÷ $25 = 0.60 (or 60%)\n\nBreak-even revenue = $18 000 ÷ 0.60 = **$30 000**\n\nCheck: $30 000 ÷ $25 = 1 200 units ✓"
+      "solution": "C/S ratio = \\$15 ÷ \\$25 = 0.60 (or 60%)\n\nBreak-even revenue = \\$18 000 ÷ 0.60 = **\\$30 000**\n\nCheck: \\$30 000 ÷ \\$25 = 1 200 units ✓"
     },
     {
       "type": "heading",
-      "content": "CVP chart and assumptions"
+      "content": "CVP Charts"
     },
     {
       "type": "text",
-      "content": "Draw **fixed costs** horizontal, **total cost** from FC upward with slope = variable cost per unit, **total revenue** from origin with slope = selling price. Mark break-even and shade profit/loss regions.\n\n**Assumptions:** single product or constant mix; constant SP and VC per unit; fixed costs unchanged; production = sales (no inventory change) unless stated."
+      "content": "A CVP chart, or break-even chart, provides a visual representation of the relationship between costs, volume, and profit. To construct one, you draw two axes: the horizontal axis for activity level (units) and the vertical axis for costs and revenue ($). You then plot three key lines: \n1) The **Fixed Cost (FC) line**, which is horizontal as it remains constant regardless of output. \n2) The **Total Cost (TC) line**, which starts from the fixed cost point on the vertical axis and slopes upwards. \n3) The **Total Revenue (TR) line**, which starts from the origin (0,0) and slopes upwards. \nThe point where the TR and TC lines intersect is the break-even point. The area between the TR and TC lines to the right of the BEP represents profit, while the area to the left represents loss."
+    },
+    {
+      "type": "heading",
+      "content": "Key Assumptions of CVP Analysis"
+    },
+    {
+      "type": "text",
+      "content": "CVP analysis relies on several key assumptions to simplify the model. It's important to be aware of these as they define the limitations of the analysis. The main assumptions are:\n1. All costs can be clearly classified into fixed and variable components.\n2. The selling price per unit is constant and does not change with the level of sales (e.g., no bulk discounts).\n3. The variable cost per unit is constant (e.g., no economies of scale).\n4. Total fixed costs remain constant over the relevant range of activity.\n5. For multi-product companies, the sales mix is assumed to be constant.\n6. It is assumed that everything produced is sold, meaning there are no changes in inventory levels."
+    },
+    {
+      "type": "heading",
+      "content": "Multi-Product CVP Analysis"
+    },
+    {
+      "type": "text",
+      "content": "Most businesses sell more than one product. Standard CVP analysis, which focuses on a single product, is not directly applicable. To perform CVP analysis for a multi-product firm, we must calculate a weighted average contribution per unit, based on a constant sales mix. The sales mix is the relative proportion in which a company's products are sold. By calculating a weighted average contribution, we can treat the 'mix' of products as a single composite unit and apply the standard break-even formula."
+    },
+    {
+      "type": "formula",
+      "content": "Weighted Average Contribution per unit = $\\sum (\\text{Contribution per unit}_i \\times \\text{Sales mix ratio}_i)$\n\nMulti-product BEP (units) = $\\frac{\\text{Total Fixed Costs}}{\\text{Weighted Average Contribution per unit}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A company sells two products, X and Y, in a sales mix of 3:2. Fixed costs are \\$96,000. \nProduct X: Selling Price \\$50, Variable Cost \\$20. \nProduct Y: Selling Price \\$80, Variable Cost \\$40. \nCalculate the number of units of each product that must be sold to break even.",
+      "solution": "**Step 1: Calculate contribution per unit for each product.**\nProduct X Contribution = \\$50 - \\$20 = \\$30\nProduct Y Contribution = \\$80 - \\$40 = \\$40\n\n**Step 2: Calculate the weighted average contribution per unit.**\nThe sales mix is 3:2, meaning for every 5 units sold, 3 are X and 2 are Y.\nSales mix ratio for X = 3/5 = 0.6\nSales mix ratio for Y = 2/5 = 0.4\nWeighted Average Contribution = (\\$30 \\times 0.6) + (\\$40 \\times 0.4) = \\$18 + \\$16 = \\$34\n\n**Step 3: Calculate the total break-even point in units (of the mix).**\nTotal BEP (units) = Total Fixed Costs / Weighted Average Contribution\nTotal BEP (units) = \\$96,000 / \\$34 ≈ 2,823.53 units. We round up to 2,824 units as we cannot sell a fraction of a unit to fully cover costs.\n\n**Step 4: Apportion the total units to each product based on the sales mix.**\nUnits of Product X = 2,824 \\times (3/5) = 1,694.4 ≈ **1,695 units**\nUnits of Product Y = 2,824 \\times (2/5) = 1,129.6 ≈ **1,130 units**\n\n*(Note: Rounding up is standard practice to ensure fixed costs are fully covered. Selling 1694 units of X and 1129 units of Y would result in a small loss.)*"
     },
     {
       "type": "examTip",
-      "content": "Paper 2 marking often splits marks between **calculation**, **chart**, and **comment**. Always state formulas before substituting numbers and label axes on any graph."
+      "content": "Paper 2 marking often splits marks between **calculation**, **chart**, and **comment**. Always state formulas before substituting numbers and label axes on any graph. When dealing with multi-product CVP, clearly state the sales mix and show your working for the weighted average contribution."
     },
     {
       "type": "practice",
@@ -102,9 +95,100 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9609 Break-even analysis (parallel topic)", "href": "/courses/9609/5-4-4-break-even-analysis" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "9609 Break-even analysis (parallel topic)",
+          "href": "/courses/9609/5-4-4-break-even-analysis"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "learningObjectives": [
+    "Calculate break-even point in units and revenue.",
+    "Determine margin of safety in units and percentage.",
+    "Calculate sales volume for a target profit.",
+    "Construct and interpret CVP charts.",
+    "State the assumptions of CVP analysis.",
+    "Calculate break-even for a multi-product business."
+  ],
+  "simpleExplanation": {
+    "analogy": "A food truck must pay \\$200 daily site fee (fixed) plus \\$3 ingredients per meal (variable). Each \\$10 meal contributes \\$7 toward the fee. Break-even is about 29 meals - after that, every sale is profit until the day ends."
+  },
+  "faq": [
+    {
+      "q": "Is CVP the same as break-even analysis in 9609?",
+      "a": "The core maths is identical. 9706 Paper 2 may require more formal accounting presentation, journal awareness, and chart drawing; 9609 adds more evaluation of business context."
+    },
+    {
+      "q": "When is CVP analysis unreliable?",
+      "a": "When its core assumptions break down: e.g., if discounts change the selling price, step costs increase fixed costs, the product mix shifts, or output is far outside the relevant range."
+    },
+    {
+      "q": "How do you calculate break-even for a business selling multiple products?",
+      "a": "You must first assume a constant sales mix (e.g., for every 2 units of A, you sell 3 of B). Then, you calculate a weighted average contribution per unit based on this mix. Finally, you divide the total fixed costs by this weighted average contribution to find the total number of units to break even, which you then apportion back to the individual products."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "CVP break-even (units)?",
+      "back": "Fixed costs ÷ Contribution per unit."
+    },
+    {
+      "front": "Break-even revenue?",
+      "back": "Fixed costs ÷ (Contribution per unit ÷ Selling price), i.e. FC ÷ C/S ratio."
+    },
+    {
+      "front": "Margin of safety (units)?",
+      "back": "Budgeted or actual sales units − Break-even units."
+    },
+    {
+      "front": "Target profit output?",
+      "back": "(Fixed costs + Target profit) ÷ Contribution per unit."
+    },
+    {
+      "front": "What does a CVP chart show?",
+      "back": "FC line (horizontal), TC line (sloping), TR line (from origin) - intersection = break-even."
+    },
+    {
+      "front": "What is the C/S Ratio?",
+      "back": "Contribution to Sales ratio. It's `Contribution per unit ÷ Selling price per unit`. It shows the percentage of each sales dollar that contributes to fixed costs and profit."
+    },
+    {
+      "front": "Assumption: constant SP?",
+      "back": "Selling price per unit does not change with volume."
+    },
+    {
+      "front": "Assumption: linear VC?",
+      "back": "Variable cost per unit stays constant as output changes."
+    },
+    {
+      "front": "Why CVP for decisions?",
+      "back": "Shows risk (margin of safety), required sales for profit targets, and effect of cost/price changes."
+    },
+    {
+      "front": "How is break-even calculated for multiple products?",
+      "back": "Calculate a weighted average contribution per unit based on a constant sales mix. Then, divide total fixed costs by this weighted average contribution."
+    },
+    {
+      "front": "What does the Margin of Safety indicate?",
+      "back": "It's a measure of risk, showing how much sales can decrease before the company starts making a loss. A higher margin of safety is better."
+    },
+    {
+      "front": "What is contribution?",
+      "back": "Selling Price per unit minus Variable Cost per unit. It's the amount each unit sold contributes towards covering fixed costs and then generating profit."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.2.4.1",
+    "2.2.4.2",
+    "2.2.4.3",
+    "2.2.4.4"
+  ],
+  "updated": "2026-06-15"
 }

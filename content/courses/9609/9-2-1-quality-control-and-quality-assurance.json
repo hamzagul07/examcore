@@ -5,83 +5,12 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — QC vs QA, TQM, ISO standards, and zero-defect philosophy.",
+  "summary": "9609 A Level - QC vs QA, TQM, ISO standards, and zero-defect philosophy.",
   "durationMin": 26,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish quality control and quality assurance.",
-    "Explain inspection vs prevention approaches.",
-    "Outline TQM principles.",
-    "Evaluate quality systems for case organisations."
-  ],
-  "simpleExplanation": {
-    "title": "Getting it right",
-    "summary": "Quality control inspects output after production to catch defects. Quality assurance designs processes so defects are prevented. TQM makes quality everyone's responsibility with continuous improvement.",
-    "steps": [
-      "QC: testing finished goods, sampling, rejection of faulty units.",
-      "QA: process standards, ISO certification, prevention focus.",
-      "TQM: all staff responsible, customer focus, continuous improvement.",
-      "Zero defects: aim to prevent errors, not just find them."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Quality control (QC)?",
-      "back": "Inspection at end of process — detective approach."
-    },
-    {
-      "front": "Quality assurance (QA)?",
-      "back": "Systems ensure quality built in — preventive approach."
-    },
-    {
-      "front": "TQM?",
-      "back": "Total Quality Management — organisation-wide culture of quality."
-    },
-    {
-      "front": "ISO 9001?",
-      "back": "International QA standard — auditable processes."
-    },
-    {
-      "front": "Cost of poor quality?",
-      "back": "Rework, returns, recalls, brand damage."
-    },
-    {
-      "front": "QC limitation?",
-      "back": "Does not stop defects being made — waste of resources."
-    },
-    {
-      "front": "Link to lean?",
-      "back": "TQM + lean reduce waste (9.3.4)."
-    },
-    {
-      "front": "Link to marketing?",
-      "back": "Quality supports brand and customer retention (3.3.2)."
-    },
-    {
-      "front": "What is the core principle of Total Quality Management (TQM)?",
-      "back": "A management philosophy where all employees are involved in continuously improving processes, products, services, and the culture in which they work, with a primary focus on customer satisfaction."
-    },
-    {
-      "front": "Define 'Kaizen'.",
-      "back": "A Japanese term meaning 'continuous improvement'. It is a long-term approach that seeks to achieve small, incremental changes in processes in order to improve efficiency and quality, involving all employees."
-    },
-    {
-      "front": "What does ISO 9001 certification signify?",
-      "back": "It signifies that a company's quality management system meets internationally recognised standards. It is awarded by an external body and demonstrates a commitment to process consistency, documentation, and customer satisfaction."
-    },
-    {
-      "front": "Explain the 'zero defects' philosophy.",
-      "back": "A management mindset that aims for perfection by 'getting it right the first time'. It argues that the cost of preventing defects is lower than the cost of correcting them, rejecting the idea of an 'acceptable' level of errors."
-    },
-    {
-      "front": "What is a Quality Circle?",
-      "back": "A small group of employees who perform similar work and meet voluntarily and regularly to identify, analyse, and solve work-related problems, especially those concerning quality, productivity, and safety."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**QC vs QA** (9.2.1) — core **distinction** for Paper 3/4. Link defects to **brand damage**, **recall costs**, and **legal liability** in evaluation."
+      "content": "**QC vs QA** (9.2.1) - core **distinction** for Paper 3/4. Link defects to **brand damage**, **recall costs**, and **legal liability** in evaluation."
     },
     {
       "type": "heading",
@@ -177,7 +106,12 @@
     {
       "type": "workedExample",
       "question": "Toy manufacturer relies on final inspection rejecting 5% of dolls before shipping. Defects still reach customers via sampling gaps. Recommend a quality approach.",
-      "solution": "**Current QC problem:** **5% scrap cost**, **customer defects** when sample misses faults — **reactive**.\n\n**QA shift:** **Supplier quality standards**, **in-line checks** at moulding stage, **staff training** — prevent defects at source.\n\n**TQM elements:** **Team quality circles**, **customer complaint analysis**, **Kaizen** (9.3.4).\n\n**Cost–benefit:** Upfront **training/ISO** cost vs **lower scrap**, **fewer returns**, **protected brand** — usually net positive for consumer goods."
+      "solution": "**Current QC problem:** **5% scrap cost**, **customer defects** when sample misses faults - **reactive**.\n\n**QA shift:** **Supplier quality standards**, **in-line checks** at moulding stage, **staff training** - prevent defects at source.\n\n**TQM elements:** **Team quality circles**, **customer complaint analysis**, **Kaizen** (9.3.4).\n\n**Cost-benefit:** Upfront **training/ISO** cost vs **lower scrap**, **fewer returns**, **protected brand** - usually net positive for consumer goods."
+    },
+    {
+      "type": "workedExample",
+      "question": "Precision Parts Ltd. produces 100,000 components per month. Its current Quality Control system identifies a 4% defect rate, costing \\$15 per unit to rework. A further 1\\% of units have defects missed by QC and reach customers, costing \\$50 per unit in warranty and return costs. The company is considering a new Quality Assurance system costing \\$25,000 per month, which it believes will reduce the internal defect rate to 0.5% and the external defect rate to 0.1%. Calculate the net monthly financial benefit of implementing the QA system.",
+      "solution": "### Step 1: Calculate the current monthly Cost of Poor Quality (CoPQ) with QC only.\n\n*   **Internal Failure Cost (Rework):** This is the cost of fixing defects found before they reach the customer.\n    $$ \\text{Units produced} \\times \\text{Internal defect rate} \\times \\text{Rework cost per unit} $$\n    $$ 100,000 \\times 4\\% \\times \\$15 = 4,000 \\times \\$15 = \\$60,000 $$\n\n*   **External Failure Cost (Warranty/Returns):** This is the cost of defects found by the customer.\n    $$ \\text{Units produced} \\times \\text{External defect rate} \\times \\text{Return cost per unit} $$\n    $$ 100,000 \\times 1\\% \\times \\$50 = 1,000 \\times \\$50 = \\$50,000 $$\n\n*   **Total Current CoPQ:**\n    $$ \\$60,000 + \\$50,000 = \\$110,000 \\text{ per month} $$\n\n### Step 2: Calculate the new monthly Cost of Quality with the QA system.\n\nThis includes the investment in QA (prevention cost) plus the reduced failure costs.\n\n*   **Prevention Cost (QA System):**\n    $$ \\$25,000 \\text{ per month} $$\n\n*   **New Internal Failure Cost:**\n    $$ 100,000 \\times 0.5\\% \\times \\$15 = 500 \\times \\$15 = \\$7,500 $$\n\n*   **New External Failure Cost:**\n    $$ 100,000 \\times 0.1\\% \\times \\$50 = 100 \\times \\$50 = \\$5,000 $$\n\n*   **Total New Cost of Quality:**\n    $$ \\text{Prevention Cost} + \\text{Internal Failure} + \\text{External Failure} $$\n    $$ \\$25,000 + \\$7,500 + \\$5,000 = \\$37,500 \\text{ per month} $$\n\n### Step 3: Calculate the net monthly financial benefit.\n\n*   **Net Benefit:** This is the difference between the old total cost and the new total cost.\n    $$ \\text{Total Current CoPQ} - \\text{Total New Cost of Quality} $$\n    $$ \\$110,000 - \\$37,500 = \\$72,500 $$\n\n**Final Answer:** The net monthly financial benefit of implementing the new Quality Assurance system is **\\$72,500**."
     },
     {
       "type": "practice",
@@ -202,6 +136,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Distinguish quality control and quality assurance.",
+    "Explain inspection vs prevention approaches.",
+    "Outline TQM principles.",
+    "Evaluate quality systems for case organisations."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is TQM just a more intense version of Quality Control?",
@@ -216,6 +157,67 @@
       "a": "As a literal, absolute target, achieving zero defects forever is extremely difficult. However, its value is as a *philosophy* or mindset. By aiming for perfection, a business can significantly reduce waste, rework, and customer complaints. It drives continuous improvement and challenges the complacency that an 'acceptable' level of defects can create. The pursuit of zero defects is often more important than its absolute attainment."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Quality control (QC)?",
+      "back": "Inspection at end of process - detective approach."
+    },
+    {
+      "front": "Quality assurance (QA)?",
+      "back": "Systems ensure quality built in - preventive approach."
+    },
+    {
+      "front": "TQM?",
+      "back": "Total Quality Management - organisation-wide culture of quality."
+    },
+    {
+      "front": "ISO 9001?",
+      "back": "International QA standard - auditable processes."
+    },
+    {
+      "front": "Cost of poor quality?",
+      "back": "Rework, returns, recalls, brand damage."
+    },
+    {
+      "front": "QC limitation?",
+      "back": "Does not stop defects being made - waste of resources."
+    },
+    {
+      "front": "Link to lean?",
+      "back": "TQM + lean reduce waste (9.3.4)."
+    },
+    {
+      "front": "Link to marketing?",
+      "back": "Quality supports brand and customer retention (3.3.2)."
+    },
+    {
+      "front": "What is the core principle of Total Quality Management (TQM)?",
+      "back": "A management philosophy where all employees are involved in continuously improving processes, products, services, and the culture in which they work, with a primary focus on customer satisfaction."
+    },
+    {
+      "front": "Define 'Kaizen'.",
+      "back": "A Japanese term meaning 'continuous improvement'. It is a long-term approach that seeks to achieve small, incremental changes in processes in order to improve efficiency and quality, involving all employees."
+    },
+    {
+      "front": "What does ISO 9001 certification signify?",
+      "back": "It signifies that a company's quality management system meets internationally recognised standards. It is awarded by an external body and demonstrates a commitment to process consistency, documentation, and customer satisfaction."
+    },
+    {
+      "front": "Explain the 'zero defects' philosophy.",
+      "back": "A management mindset that aims for perfection by 'getting it right the first time'. It argues that the cost of preventing defects is lower than the cost of correcting them, rejecting the idea of an 'acceptable' level of errors."
+    },
+    {
+      "front": "What is a Quality Circle?",
+      "back": "A small group of employees who perform similar work and meet voluntarily and regularly to identify, analyse, and solve work-related problems, especially those concerning quality, productivity, and safety."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.2.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Quality Control and Quality Assurance",
     "columns": [

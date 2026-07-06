@@ -7,7 +7,141 @@
   "status": "premium",
   "summary": "This lesson introduces primary amines, organic derivatives of ammonia. We will explore their structure, explaining their basicity through the nitrogen lone pair and inductive effects. Key preparation methods, such as the reduction of nitriles and nitroarenes, are covered, alongside characteristic reactions with acids, acyl chlorides, and nitrous acid.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Amines are a vital class of organic compounds, derived from ammonia ($NH_3$) by replacing one or more hydrogen atoms with alkyl or aryl groups. As primary amines have one such group ($R-NH_2$), they retain the nitrogen's lone pair of electrons, which dictates their chemistry. This makes them act as bases and nucleophiles, participating in a wide range of important synthetic reactions, from forming salts to creating amides and azo dyes."
+    },
+    {
+      "type": "heading",
+      "content": "Structure and Basicity of Primary Amines"
+    },
+    {
+      "type": "text",
+      "content": "A primary amine has the general formula $R-NH_2$, where R is an alkyl or aryl group. The nitrogen atom has three bonding pairs and one lone pair of electrons, resulting in a trigonal pyramidal geometry around the nitrogen, similar to ammonia. This lone pair is the centre of the amine's reactivity."
+    },
+    {
+      "type": "text",
+      "content": "Amines are weak bases because the lone pair on the nitrogen can accept a proton ($H^+$) from an acid or water. The strength of the base depends on the availability of this lone pair. Primary aliphatic amines, like ethylamine, are stronger bases than ammonia. This is because the alkyl group has a positive inductive effect, pushing electron density towards the nitrogen atom, making the lone pair more available. In contrast, primary aromatic amines, like phenylamine, are weaker bases than ammonia because the nitrogen's lone pair is delocalised into the benzene ring's pi system, making it less available to accept a proton."
+    },
+    {
+      "type": "formula",
+      "content": "Basicity equilibrium: $RNH_2(aq) + H_2O(l) \\rightleftharpoons RNH_3^+(aq) + OH^-(aq)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Basicity is determined by the availability of the nitrogen lone pair.",
+        "Alkyl groups are electron-donating (+I effect), increasing basicity.",
+        "Aryl groups are electron-withdrawing (delocalisation), decreasing basicity.",
+        "General order of basicity: secondary aliphatic amine > primary aliphatic amine > ammonia > primary aromatic amine."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Preparation of Primary Amines"
+    },
+    {
+      "type": "text",
+      "content": "There are two principal methods for synthesising primary amines that you need to know for your A-Level examination. Both are reduction reactions, meaning the nitrogen-containing functional group gains hydrogen atoms or loses oxygen atoms."
+    },
+    {
+      "type": "text",
+      "content": "**1. Reduction of Nitriles (R-C≡N):** Nitriles can be reduced to form primary amines. This is a useful way to increase the carbon chain length by one carbon atom. The reduction can be achieved using a strong reducing agent like lithium tetrahydridoaluminate ($LiAlH_4$) in dry ether, or by catalytic hydrogenation with hydrogen gas and a nickel catalyst."
+    },
+    {
+      "type": "formula",
+      "content": "General equation: $R-C\\equiv N + 4[H] \\rightarrow R-CH_2NH_2$"
+    },
+    {
+      "type": "text",
+      "content": "**2. Reduction of Nitroarenes (Ar-NO₂):** Aromatic amines, such as phenylamine, are prepared by reducing the corresponding nitro compound. A typical laboratory method involves heating the nitroarene (e.g., nitrobenzene) under reflux with tin metal and concentrated hydrochloric acid. The resulting ammonium salt is then treated with a strong base, like sodium hydroxide, to liberate the free amine."
+    },
+    {
+      "type": "formula",
+      "content": "General equation: $Ar-NO_2 + 6[H] \\rightarrow Ar-NH_2 + 2H_2O$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Outline a two-step synthesis to prepare propylamine ($CH_3CH_2CH_2NH_2$) starting from bromoethane ($CH_3CH_2Br$). Include all reagents and conditions.",
+      "solution": "**Step 1: Formation of the nitrile**\nReact bromoethane with potassium cyanide (KCN) in ethanol. This is a nucleophilic substitution reaction.\nEquation: $CH_3CH_2Br + KCN \\xrightarrow{ethanol, reflux} CH_3CH_2CN + KBr$\nProduct: Propanenitrile.\n\n**Step 2: Reduction of the nitrile**\nReduce the propanenitrile to form propylamine. Use a suitable reducing agent like $LiAlH_4$ in dry ether.\nEquation: $CH_3CH_2CN + 4[H] \\xrightarrow{1. LiAlH_4 \\text{ in dry ether}} \\xrightarrow{2. H_2O} CH_3CH_2CH_2NH_2$\nFinal Product: Propylamine."
+    },
+    {
+      "type": "heading",
+      "content": "Reactions as Bases and Nucleophiles"
+    },
+    {
+      "type": "text",
+      "content": "The lone pair of electrons on the nitrogen atom dictates the chemistry of primary amines, allowing them to function as both bases and nucleophiles. Their basicity is shown by their reaction with acids to form salts, while their nucleophilicity is demonstrated in reactions with electron-deficient species like acyl chlorides."
+    },
+    {
+      "type": "text",
+      "content": "**Reaction with Acids:** As bases, amines readily accept a proton from an acid in a neutralization reaction to form an ammonium salt. For example, ethylamine reacts with hydrochloric acid to form ethylammonium chloride, an ionic solid which is soluble in water."
+    },
+    {
+      "type": "formula",
+      "content": "$CH_3CH_2NH_2(aq) + HCl(aq) \\rightarrow CH_3CH_2NH_3^+Cl^-(aq)$"
+    },
+    {
+      "type": "text",
+      "content": "**Reaction with Acyl Chlorides:** As nucleophiles, primary amines attack the electron-deficient carbonyl carbon of an acyl chloride in a vigorous nucleophilic addition-elimination reaction. This reaction forms an N-substituted amide and produces misty fumes of hydrogen chloride."
+    },
+    {
+      "type": "formula",
+      "content": "$R'COCl + RNH_2 \\rightarrow R'CONHR + HCl$"
+    },
+    {
+      "type": "examTip",
+      "content": "When naming the product of a reaction between an amine and an acyl chloride, remember it is an N-substituted amide. The 'N-' indicates that the substituent is attached to the nitrogen atom. For example, the reaction of ethylamine with propanoyl chloride gives N-ethylpropanamide."
+    },
+    {
+      "type": "workedExample",
+      "question": "1.20 g of butan-1-amine ($CH_3CH_2CH_2CH_2NH_2$) reacts completely with an excess of ethanoyl chloride. Calculate the mass of the N-substituted amide formed. [Ar values: C=12.0, H=1.0, N=14.0, O=16.0]",
+      "solution": "**Step 1: Write the balanced equation.**\n$CH_3CH_2CH_2CH_2NH_2 + CH_3COCl \\rightarrow CH_3CONHCH_2CH_2CH_2CH_3 + HCl$\n\n**Step 2: Calculate the molar mass of butan-1-amine.**\nMr(butan-1-amine) = (4 × 12.0) + (11 × 1.0) + 14.0 = 48.0 + 11.0 + 14.0 = 73.0 g mol^{-1}\n\n**Step 3: Calculate the moles of butan-1-amine.**\nMoles = mass / Mr = 1.20 g / 73.0 g mol^{-1} = 0.01644 mol\n\n**Step 4: Use stoichiometry.**\nThe molar ratio of butan-1-amine to the amide product (N-butylethanamide) is 1:1. Therefore, moles of amide = 0.01644 mol.\n\n**Step 5: Calculate the molar mass of the amide product.**\nProduct is N-butylethanamide, $CH_3CONH(CH_2)_3CH_3$. Formula: $C_6H_{13}NO$\nMr(amide) = (6 × 12.0) + (13 × 1.0) + 14.0 + 16.0 = 72.0 + 13.0 + 14.0 + 16.0 = 115.0 g mol^{-1}\n\n**Step 6: Calculate the mass of the amide product.**\nMass = moles × Mr = 0.01644 mol × 115.0 g mol^{-1} = 1.89 g (to 3 s.f.)\n\n**Answer:** 1.89 g"
+    },
+    {
+      "type": "heading",
+      "content": "Distinguishing Test: Reaction with Nitrous Acid"
+    },
+    {
+      "type": "text",
+      "content": "The reaction with nitrous acid ($HNO_2$) is a crucial test used to distinguish between different types of amines. Since nitrous acid is unstable, it is generated in situ by reacting sodium nitrite ($NaNO_2$) with a cold (below 10 °C), dilute strong acid like HCl."
+    },
+    {
+      "type": "text",
+      "content": "With **primary aliphatic amines**, the reaction is characterized by the evolution of nitrogen gas (effervescence) as an alcohol is formed. The intermediate diazonium salt is highly unstable and decomposes immediately."
+    },
+    {
+      "type": "formula",
+      "content": "$RNH_2 + HNO_2 \\xrightarrow{<10^\\circ C} ROH + N_2(g) + H_2O(l)$"
+    },
+    {
+      "type": "text",
+      "content": "In contrast, **primary aromatic amines** such as phenylamine react under the same cold conditions to form a relatively stable diazonium salt, like benzenediazonium chloride. This diazonium salt is a vital intermediate in the synthesis of azo dyes and remains in solution without decomposing as long as the temperature is kept low."
+    },
+    {
+      "type": "formula",
+      "content": "$ArNH_2 + HNO_2 + HCl \\xrightarrow{<10^\\circ C} ArN_2^+Cl^-(aq) + 2H_2O(l)$"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Primary Amines",
+      "href": "/mark?subject=9701&topic=19.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide: Introduction to Amines",
+          "href": "https://www.chemguide.co.uk/organicprops/amines/background.html"
+        },
+        {
+          "label": "Khan Academy: Basicity of Amines",
+          "href": "https://www.khanacademy.org/science/organic-chemistry/amines-topic/properties-of-amines/v/basicity-of-amines"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Describe the structure of primary amines and explain their basicity in comparison to ammonia.",
     "Explain the relative basicities of primary aliphatic amines, ammonia, and primary aromatic amines in terms of structure and bonding.",
@@ -15,16 +149,22 @@
     "Describe the reactions of primary amines acting as bases and as nucleophiles, including their reactions with acids, acyl chlorides, and nitrous acid."
   ],
   "simpleExplanation": {
-    "title": "Amines: Nitrogen's Nucleophilic Nature",
-    "summary": "Amines are organic relatives of ammonia, featuring a lone pair on the nitrogen that makes them basic and nucleophilic. Their reactivity is tuned by the electron-donating or withdrawing nature of the groups attached to the nitrogen.",
-    "analogy": "Imagine the nitrogen's lone pair is a 'helping hand' ready to grab a proton (H⁺). In ammonia, this hand is available. In a primary amine, an attached alkyl group is like a friend 'pushing' the hand forward (the positive inductive effect), making it even more eager to grab a proton, and thus making the amine more basic.",
-    "steps": [
-      "Primary amine R–NH₂ — one alkyl group on nitrogen. | Sim hint: Build methylamine — lone pair on N for nucleophilic attack.",
-      "Basicity: accept H⁺ forming R–NH₃⁺ — stronger than ammonia if +I alkyl. | Sim hint: Compare electron donation to lone pair availability.",
-      "Preparation: reduction of nitriles or amides; Gabriel synthesis. | Sim hint: Track N oxidation state through reduction steps.",
-      "Reactions: with acids (salts), acyl chlorides (amides), HNO₂ (alcohols from 1°). | Sim hint: Distinguish 1° vs 2° amine products with nitrous acid."
-    ]
+    "analogy": "Imagine the nitrogen's lone pair is a 'helping hand' ready to grab a proton (H⁺). In ammonia, this hand is available. In a primary amine, an attached alkyl group is like a friend 'pushing' the hand forward (the positive inductive effect), making it even more eager to grab a proton, and thus making the amine more basic."
   },
+  "faq": [
+    {
+      "q": "Why does the reaction of aromatic amines with nitrous acid need to be kept cold?",
+      "a": "The product, a diazonium salt ($ArN_2^+$), is unstable. At temperatures above 10 °C, it decomposes rapidly to form a phenol, nitrogen gas, and HCl. Keeping the reaction mixture cold allows the diazonium salt to persist in solution long enough to be used in subsequent reactions, such as azo coupling."
+    },
+    {
+      "q": "Is an amine the same as an amide?",
+      "a": "No, this is a common point of confusion. An amine has a nitrogen atom bonded to at least one alkyl or aryl group (e.g., $R-NH_2$). An amide has a nitrogen atom bonded directly to a carbonyl group ($C=O$), with the general structure $R-CO-NR'_2$. Their chemical properties are very different; for example, amides are neutral, not basic."
+    },
+    {
+      "q": "Why is LiAlH₄ used in 'dry ether'?",
+      "a": "Lithium tetrahydridoaluminate ($LiAlH_4$) is an extremely powerful reducing agent that reacts violently and exothermically with water and other protic solvents (like alcohols). Dry ether is used as an inert (unreactive) solvent to prevent this dangerous side reaction and ensure the $LiAlH_4$ is available to reduce the intended functional group."
+    }
+  ],
   "flashcards": [
     {
       "front": "What is a primary amine?",
@@ -71,138 +211,11 @@
       "back": "Instead of forming an alcohol, primary aromatic amines (like phenylamine) form a relatively stable diazonium salt, e.g., benzenediazonium chloride ($C_6H_5N_2^+Cl^-$). This reaction is the basis for forming azo dyes."
     }
   ],
-  "faq": [
-    {
-      "q": "Why does the reaction of aromatic amines with nitrous acid need to be kept cold?",
-      "a": "The product, a diazonium salt ($ArN_2^+$), is unstable. At temperatures above 10 °C, it decomposes rapidly to form a phenol, nitrogen gas, and HCl. Keeping the reaction mixture cold allows the diazonium salt to persist in solution long enough to be used in subsequent reactions, such as azo coupling."
-    },
-    {
-      "q": "Is an amine the same as an amide?",
-      "a": "No, this is a common point of confusion. An amine has a nitrogen atom bonded to at least one alkyl or aryl group (e.g., $R-NH_2$). An amide has a nitrogen atom bonded directly to a carbonyl group ($C=O$), with the general structure $R-CO-NR'_2$. Their chemical properties are very different; for example, amides are neutral, not basic."
-    },
-    {
-      "q": "Why is LiAlH₄ used in 'dry ether'?",
-      "a": "Lithium tetrahydridoaluminate ($LiAlH_4$) is an extremely powerful reducing agent that reacts violently and exothermically with water and other protic solvents (like alcohols). Dry ether is used as an inert (unreactive) solvent to prevent this dangerous side reaction and ensure the $LiAlH_4$ is available to reduce the intended functional group."
-    }
-  ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Amines are a vital class of organic compounds, derived from ammonia ($NH_3$) by replacing one or more hydrogen atoms with alkyl or aryl groups. As primary amines have one such group ($R-NH_2$), they retain the nitrogen's lone pair of electrons, which dictates their chemistry. This makes them act as bases and nucleophiles, participating in a wide range of important synthetic reactions, from forming salts to creating amides and azo dyes."
-    },
-    {
-      "type": "heading",
-      "content": "Structure and Basicity of Primary Amines"
-    },
-    {
-      "type": "text",
-      "content": "A primary amine has the general formula $R-NH_2$, where R is an alkyl or aryl group. The nitrogen atom has three bonding pairs and one lone pair of electrons, resulting in a trigonal pyramidal geometry around the nitrogen, similar to ammonia. This lone pair is the centre of the amine's reactivity."
-    },
-    {
-      "type": "text",
-      "content": "Amines are weak bases because the lone pair on the nitrogen can accept a proton ($H^+$) from an acid or water. The strength of the base depends on the availability of this lone pair. Primary aliphatic amines, like ethylamine, are stronger bases than ammonia. This is because the alkyl group has a positive inductive effect, pushing electron density towards the nitrogen atom, making the lone pair more available. In contrast, primary aromatic amines, like phenylamine, are weaker bases than ammonia because the nitrogen's lone pair is delocalised into the benzene ring's pi system, making it less available to accept a proton."
-    },
-    {
-      "type": "formula",
-      "content": "Basicity equilibrium: $RNH_2(aq) + H_2O(l) \\rightleftharpoons RNH_3^+(aq) + OH^-(aq)$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Basicity is determined by the availability of the nitrogen lone pair.",
-        "Alkyl groups are electron-donating (+I effect), increasing basicity.",
-        "Aryl groups are electron-withdrawing (delocalisation), decreasing basicity.",
-        "General order of basicity: secondary aliphatic amine > primary aliphatic amine > ammonia > primary aromatic amine."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Preparation of Primary Amines"
-    },
-    {
-      "type": "text",
-      "content": "There are two principal methods for synthesising primary amines that you need to know for your A-Level examination. Both are reduction reactions, meaning the nitrogen-containing functional group gains hydrogen atoms or loses oxygen atoms."
-    },
-    {
-      "type": "text",
-      "content": "1. **Reduction of Nitriles (R-C≡N):** Nitriles can be reduced to form primary amines. This is a useful way to increase the carbon chain length by one carbon atom. The reduction can be achieved using a strong reducing agent like lithium tetrahydridoaluminate ($LiAlH_4$) in dry ether, or by catalytic hydrogenation with hydrogen gas and a nickel catalyst."
-    },
-    {
-      "type": "formula",
-      "content": "General equation: $R-C\\equiv N + 4[H] \\rightarrow R-CH_2NH_2$"
-    },
-    {
-      "type": "text",
-      "content": "2. **Reduction of Nitroarenes (Ar-NO₂):** Aromatic amines, such as phenylamine, are prepared by reducing the corresponding nitro compound. A typical laboratory method involves heating the nitroarene (e.g., nitrobenzene) under reflux with tin metal and concentrated hydrochloric acid. The resulting ammonium salt is then treated with a strong base, like sodium hydroxide, to liberate the free amine."
-    },
-    {
-      "type": "formula",
-      "content": "General equation: $Ar-NO_2 + 6[H] \\rightarrow Ar-NH_2 + 2H_2O$"
-    },
-    {
-      "type": "workedExample",
-      "question": "Outline a two-step synthesis to prepare propylamine ($CH_3CH_2CH_2NH_2$) starting from bromoethane ($CH_3CH_2Br$). Include all reagents and conditions.",
-      "solution": "**Step 1: Formation of the nitrile**\nReact bromoethane with potassium cyanide (KCN) in ethanol. This is a nucleophilic substitution reaction.\nEquation: $CH_3CH_2Br + KCN \\xrightarrow{ethanol, reflux} CH_3CH_2CN + KBr$\nProduct: Propanenitrile.\n\n**Step 2: Reduction of the nitrile**\nReduce the propanenitrile to form propylamine. Use a suitable reducing agent like $LiAlH_4$ in dry ether.\nEquation: $CH_3CH_2CN + 4[H] \\xrightarrow{1. LiAlH_4 \\text{ in dry ether}} \\xrightarrow{2. H_2O} CH_3CH_2CH_2NH_2$\nFinal Product: Propylamine."
-    },
-    {
-      "type": "heading",
-      "content": "Reactions of Primary Amines"
-    },
-    {
-      "type": "text",
-      "content": "The reactivity of primary amines stems from the lone pair on the nitrogen, allowing them to act as both bases and nucleophiles."
-    },
-    {
-      "type": "text",
-      "content": "**1. As Bases:** Amines react with acids in a simple neutralisation reaction to form ammonium salts. These salts are ionic, crystalline solids at room temperature and are generally soluble in water."
-    },
-    {
-      "type": "formula",
-      "content": "$CH_3CH_2NH_2(aq) + HCl(aq) \\rightarrow CH_3CH_2NH_3^+Cl^-(aq)$ \n(Ethylamine + Hydrochloric acid → Ethylammonium chloride)"
-    },
-    {
-      "type": "text",
-      "content": "**2. As Nucleophiles:** Amines react with electron-deficient species like acyl chlorides in a nucleophilic addition-elimination reaction. The amine attacks the carbonyl carbon, leading to the formation of an N-substituted amide and misty fumes of hydrogen chloride gas."
-    },
-    {
-      "type": "formula",
-      "content": "$R'COCl + RNH_2 \\rightarrow R'CONHR + HCl$"
-    },
-    {
-      "type": "examTip",
-      "content": "When naming the product of a reaction between an amine and an acyl chloride, remember it is an N-substituted amide. The 'N-' indicates that the substituent is attached to the nitrogen atom. For example, the reaction of ethylamine with propanoyl chloride gives N-ethylpropanamide."
-    },
-    {
-      "type": "text",
-      "content": "**3. Reaction with Nitrous Acid ($HNO_2$):** This reaction is used to distinguish between different classes of amines. Nitrous acid is unstable and must be prepared in situ by reacting sodium nitrite with cold hydrochloric acid (below 10 °C). With primary aliphatic amines, an alcohol is formed and nitrogen gas is evolved. With primary aromatic amines, a diazonium salt is formed, which is a crucial intermediate in dye synthesis."
-    },
-    {
-      "type": "formula",
-      "content": "Aliphatic: $RNH_2 + HNO_2 \\xrightarrow{<10^\\circ C} ROH + N_2(g) + H_2O(l)$ \nAromatic: $ArNH_2 + HNO_2 + HCl \\xrightarrow{<10^\\circ C} ArN_2^+Cl^-(aq) + 2H_2O(l)$"
-    },
-    {
-      "type": "workedExample",
-      "question": "1.20 g of butan-1-amine ($CH_3CH_2CH_2CH_2NH_2$) reacts completely with an excess of ethanoyl chloride. Calculate the mass of the N-substituted amide formed. [Ar values: C=12.0, H=1.0, N=14.0, O=16.0]",
-      "solution": "**Step 1: Write the balanced equation.**\n$CH_3CH_2CH_2CH_2NH_2 + CH_3COCl \\rightarrow CH_3CONHCH_2CH_2CH_2CH_3 + HCl$\n\n**Step 2: Calculate the molar mass of butan-1-amine.**\nMr(butan-1-amine) = (4 × 12.0) + (11 × 1.0) + 14.0 = 48.0 + 11.0 + 14.0 = 73.0 g mol⁻¹\n\n**Step 3: Calculate the moles of butan-1-amine.**\nMoles = mass / Mr = 1.20 g / 73.0 g mol⁻¹ = 0.01644 mol\n\n**Step 4: Use stoichiometry.**\nThe molar ratio of butan-1-amine to the amide product (N-butylethanamide) is 1:1. Therefore, moles of amide = 0.01644 mol.\n\n**Step 5: Calculate the molar mass of the amide product.**\nProduct is N-butylethanamide, $CH_3CONH(CH_2)_3CH_3$. Formula: $C_6H_{13}NO$\nMr(amide) = (6 × 12.0) + (13 × 1.0) + 14.0 + 16.0 = 72.0 + 13.0 + 14.0 + 16.0 = 115.0 g mol⁻¹\n\n**Step 6: Calculate the mass of the amide product.**\nMass = moles × Mr = 0.01644 mol × 115.0 g mol⁻¹ = 1.89 g (to 3 s.f.)\n\n**Answer:** 1.89 g"
-    },
-    {
-      "type": "practice",
-      "label": "Practice Questions: Primary Amines",
-      "href": "/mark?subject=9701&topic=19.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Chemguide: Introduction to Amines",
-          "href": "https://www.chemguide.co.uk/organicprops/amines/background.html"
-        },
-        {
-          "label": "Khan Academy: Basicity of Amines",
-          "href": "https://www.khanacademy.org/science/organic-chemistry/amines-topic/properties-of-amines/v/basicity-of-amines"
-        }
-      ]
-    }
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "19.1"
   ],
   "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
@@ -211,14 +224,14 @@
         "focus": [
           "step-1"
         ],
-        "caption": "Primary amine R–NH₂ — one alkyl group on nitrogen.",
-        "embedHint": "Build methylamine — lone pair on N for nucleophilic attack."
+        "caption": "Primary amine R-NH₂ - one alkyl group on nitrogen.",
+        "embedHint": "Build methylamine - lone pair on N for nucleophilic attack."
       },
       {
         "focus": [
           "step-2"
         ],
-        "caption": "Basicity: accept H⁺ forming R–NH₃⁺ — stronger than ammonia if +I alkyl.",
+        "caption": "Basicity: accept H⁺ forming R-NH₃⁺ - stronger than ammonia if +I alkyl.",
         "embedHint": "Compare electron donation to lone pair availability."
       },
       {
@@ -236,5 +249,6 @@
         "embedHint": "Distinguish 1° vs 2° amine products with nitrous acid."
       }
     ]
-  }
+  },
+  "updated": "2026-06-15"
 }

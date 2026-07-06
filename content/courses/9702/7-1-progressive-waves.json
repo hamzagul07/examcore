@@ -6,69 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 - Progressive waves (7.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define and describe progressive waves, distinguishing between transverse and longitudinal types.",
-    "Recall and apply fundamental wave equations to calculate speed, frequency, and wavelength.",
-    "Explain key wave phenomena like intensity, phase difference, polarisation, and the Doppler effect."
-  ],
-  "simpleExplanation": {
-    "title": "Unpacking Progressive Waves",
-    "summary": "Progressive waves are nature's way of moving energy without moving matter. Imagine a ripple expanding across water; the water itself doesn't travel far, but the energy of the ripple does. We'll explore how they carry energy and their fundamental properties.",
-    "analogy": "Think of a 'Mexican wave' in a stadium. People stand up and sit down (oscillate), but they don't move around the stadium. The 'wave' of standing and sitting, carrying energy and excitement, moves through the crowd. That's a progressive wave!",
-    "steps": [
-      "Energy Moves, Matter Stays: Progressive waves carry energy, not the material they travel through.",
-      "Know Your Terms: Understand amplitude, wavelength, period, frequency, and wave speed.",
-      "Two Main Types: Distinguish between transverse (perpendicular oscillations) and longitudinal (parallel oscillations) waves.",
-      "Special Behaviours: Learn about polarisation (transverse only) and the Doppler effect (frequency changes with motion)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is a progressive wave's primary role?",
-      "back": "To transmit energy from one point to another without transferring matter."
-    },
-    {
-      "front": "Define Amplitude.",
-      "back": "The maximum displacement of an oscillating particle from its equilibrium position."
-    },
-    {
-      "front": "How are frequency and period related?",
-      "back": "Frequency ($f$) is the inverse of the period ($T$), so $f = 1/T$."
-    },
-    {
-      "front": "What is the fundamental wave equation?",
-      "back": "Wave speed ($v$) = frequency ($f$) \\times wavelength ($\\lambda$), or $v = f\\lambda$."
-    },
-    {
-      "front": "What distinguishes a transverse wave?",
-      "back": "Particle oscillations are perpendicular to the direction of energy transfer."
-    },
-    {
-      "front": "Give an example of a longitudinal wave.",
-      "back": "Sound waves are a common example, involving compressions and rarefactions."
-    },
-    {
-      "front": "What is phase difference?",
-      "back": "It describes the difference in oscillatory state between two points on a wave, often measured in radians."
-    },
-    {
-      "front": "How does wave intensity relate to amplitude?",
-      "back": "Wave intensity ($I$) is directly proportional to the square of its amplitude ($A$), so $I \\propto A^2$."
-    },
-    {
-      "front": "What phenomenon proves a wave is transverse?",
-      "back": "Polarisation, which restricts wave oscillations to a single plane, can only occur with transverse waves."
-    },
-    {
-      "front": "What is the Doppler effect?",
-      "back": "The perceived change in frequency of a wave due to relative motion between its source and the observer."
-    },
-    {
-      "front": "Can EM waves travel through a vacuum?",
-      "back": "Yes, all electromagnetic waves are transverse and can travel through a vacuum at the speed of light ($c = 3 \\times 10^8 \\text{ ms}^{-1}$)."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -84,26 +22,52 @@
     },
     {
       "type": "heading",
-      "content": "Key Characteristics and Definitions"
+      "content": "Key Wave Characteristics"
     },
     {
       "type": "text",
-      "content": "To describe waves precisely, we use several fundamental terms. Imagine a point on a wave moving up and down; its displacement is its distance from the rest position. The maximum displacement it achieves is called its amplitude. These concepts help us quantify the wave's characteristics."
+      "content": "To describe waves precisely, we use several fundamental terms. These quantities are interconnected and allow us to mathematically model wave behaviour. They can be determined from graphical representations of the wave."
     },
     {
       "type": "keyPoints",
       "items": [
-        "7.1 Progressive waves.",
-        "Waves are created when particles oscillate or vibrate.",
-        "Energy is transferred through these moving oscillations.",
-        "You can represent waves on two types of plots: 1) Displacement-distance plot 2) Displacement-time plot.",
-        "Below are some terminology for waves:.",
-        "Amplitude , A : The maximum displacement from the original position. The SI unit for amplitude is in meters."
+        "**Amplitude (A)**: The maximum displacement of an oscillating particle from its equilibrium (rest) position. Measured in meters (m).",
+        "**Wavelength (λ)**: The shortest distance between two points on a wave that are in phase (e.g., from one crest to the next). Measured in meters (m).",
+        "**Period (T)**: The time taken for one complete oscillation of a particle in the medium. Measured in seconds (s).",
+        "**Frequency (f)**: The number of complete oscillations per unit time. Measured in Hertz (Hz), where 1 Hz = 1 oscillation per second. It is the reciprocal of the period: $f = 1/T$.",
+        "**Wave Speed (v)**: The speed at which energy is transferred by the wave. It is related to frequency and wavelength by the fundamental wave equation."
       ]
     },
     {
       "type": "formula",
-      "content": "Wave Speed: $v = f\\lambda$"
+      "content": "The Wave Equation: $$v = f\\lambda$$"
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Representation of Waves"
+    },
+    {
+      "type": "text",
+      "content": "We can visualize waves using two types of graphs. A displacement-distance graph is a snapshot of the wave at a single moment in time, showing the displacement of all particles along the wave's path. A displacement-time graph shows the oscillation of a single particle over a period of time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement-Distance Graph**: Shows displacement (y-axis) vs. distance from source (x-axis). From this graph, you can directly measure the **amplitude (A)** and the **wavelength (λ)**.",
+        "**Displacement-Time Graph**: Shows displacement (y-axis) vs. time (x-axis) for a single point. From this graph, you can directly measure the **amplitude (A)** and the **period (T)**. The frequency can then be calculated using $f = 1/T$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Phase and Phase Difference"
+    },
+    {
+      "type": "text",
+      "content": "The phase of a point on a wave describes its position and direction of motion within its oscillation cycle. The phase difference between two points compares their positions in the cycle. Points that are moving together are 'in phase' (phase difference of 0 or \\$2\\pi$ radians), while points moving in exact opposition are 'in antiphase' (phase difference of $\\pi$ radians)."
+    },
+    {
+      "type": "formula",
+      "content": "Phase difference $\\phi$ (in radians) for two points separated by a distance $x$ is given by: $$\\phi = \\frac{x}{\\lambda} \\times 2\\pi$$"
     },
     {
       "type": "heading",
@@ -111,11 +75,11 @@
     },
     {
       "type": "text",
-      "content": "The intensity of a wave ($I$) tells us how much power it transfers per unit area ($P/A_{area}$). Think of how loud a sound is or how bright a light appears - that relates to its intensity. A key relationship is how intensity scales with the wave's amplitude."
+      "content": "The intensity of a wave ($I$) is defined as the power ($P$) it transfers per unit area ($A$) perpendicular to the direction of energy transfer. A key relationship is that intensity is directly proportional to the square of the wave's amplitude."
     },
     {
       "type": "formula",
-      "content": "Intensity: $I = P/A_{area}$ and $I \\propto A^2$"
+      "content": "Intensity: $I = \\frac{P}{A}$ and $I \\propto A^2$"
     },
     {
       "type": "heading",
@@ -128,11 +92,11 @@
     {
       "type": "keyPoints",
       "items": [
-        "**Transverse Waves**: Particle oscillations are perpendicular to the direction of energy transfer.",
+        "**Transverse Waves**: Particle oscillations are perpendicular to the direction of energy transfer. They have crests and troughs.",
         "Examples: All electromagnetic (EM) waves (light, radio waves, X-rays), ripples on water.",
-        "EM waves travel through a vacuum at the speed of light, $c = 3 \\times 10^8 \\text{ ms}^{-1}$.",
-        "**Longitudinal Waves**: Particle oscillations are parallel to the direction of energy transfer.",
-        "Examples: Sound waves, seismic P-waves. They consist of compressions and rarefactions.",
+        "EM waves travel through a vacuum at the speed of light, $c \\approx 3.00 \\times 10^8 \\text{ ms}^{-1}$.",
+        "**Longitudinal Waves**: Particle oscillations are parallel to the direction of energy transfer. They consist of compressions (regions of high pressure) and rarefactions (regions of low pressure).",
+        "Examples: Sound waves, seismic P-waves.",
         "Require a medium to propagate; they cannot travel in a vacuum."
       ]
     },
@@ -142,7 +106,7 @@
     },
     {
       "type": "text",
-      "content": "Polarisation is a unique property of transverse waves. It involves restricting the oscillations of the wave to a single plane. This phenomenon provides definitive evidence that waves like light are transverse, as longitudinal waves cannot be polarised."
+      "content": "Polarisation is a unique property of transverse waves. It involves restricting the oscillations of the wave to a single plane. This phenomenon provides definitive evidence that waves like light are transverse, as longitudinal waves, with oscillations parallel to the direction of travel, cannot be polarised."
     },
     {
       "type": "formula",
@@ -150,8 +114,8 @@
     },
     {
       "type": "workedExample",
-      "question": "An unpolarised light wave with an initial intensity of $80 \\text{ W m}^{-2}$ passes through a polarising filter. If the filter's transmission axis is at an angle of $30^{\\circ}$ to the original plane of oscillation, calculate the intensity of the transmitted light.",
-      "solution": "1.  **Recall Malus' Law**: The formula is $I = I_0\\cos^2\\theta$.\n2.  **Identify Given Values**: Initial intensity $I_0 = 80 \\text{ W m}^{-2}$. Angle $\\theta = 30^{\\circ}$.\n3.  **Calculate $\\cos(30^{\\circ})$**: $\\cos(30^{\\circ}) \\approx 0.866$.\n4.  **Calculate $(\\cos(30^{\\circ}))^2$**: $(0.866)^2 \\approx 0.75$.\n5.  **Substitute into Malus' Law**: $I = 80 \\text{ W m}^{-2} \\times 0.75$.\n6.  **Calculate Final Intensity**: $I = 60 \\text{ W m}^{-2}$.\n7.  **State the Answer**: The intensity of the transmitted light is $60 \\text{ W m}^{-2}$."
+      "question": "Unpolarised light of intensity \\$8.0 \\text{ W m}^{-2}$ is incident on a polarising filter. The light that passes through this filter then passes through a second polarising filter. The axis of the second filter is at an angle of \\$60^{\\circ}$ to the axis of the first. Calculate the intensity of the light emerging from the second filter.",
+      "solution": "1.  **First Filter**: When unpolarised light passes through the first polariser, its intensity is halved. The intensity after the first filter, $I_1$, is $I_1 = \\frac{1}{2} \\times 8.0 = 4.0 \\text{ W m}^{-2}$. This light is now polarised.\n2.  **Recall Malus' Law**: For the second filter, the formula is $I_2 = I_1\\cos^2\\theta$.\n3.  **Identify Given Values**: Intensity incident on the second filter $I_1 = 4.0 \\text{ W m}^{-2}$. Angle between filter axes $\\theta = 60^{\\circ}$.\n4.  **Calculate $\\cos(60^{\\circ})$**: $\\cos(60^{\\circ}) = 0.5$.\n5.  **Calculate $(\\cos(60^{\\circ}))^2$**: $(0.5)^2 = 0.25$.\n6.  **Substitute into Malus' Law**: $I_2 = 4.0 \\text{ W m}^{-2} \\times 0.25$.\n7.  **Calculate Final Intensity**: $I_2 = 1.0 \\text{ W m}^{-2}$.\n8.  **State the Answer**: The intensity of the transmitted light is \\$1.0 \\text{ W m}^{-2}$."
     },
     {
       "type": "heading",
@@ -159,15 +123,16 @@
     },
     {
       "type": "text",
-      "content": "Ever noticed how the pitch of an ambulance siren changes as it approaches and then moves away? That's the Doppler effect in action! It's the apparent shift in a wave's frequency due to the relative motion between the source of the wave and the observer."
+      "content": "Ever noticed how the pitch of an ambulance siren changes as it approaches and then moves away? That's the Doppler effect in action! It's the apparent shift in a wave's frequency and wavelength due to the relative motion between the source of the wave and the observer."
     },
     {
-      "type": "formula",
-      "content": "Doppler Effect (Sound): $f_o = (f_s \\cdot v) / (v \\pm v_s)$ \n(Use '+' when source moves away, '-' when source moves towards observer)"
+      "type": "workedExample",
+      "question": "An ambulance emits a siren with a frequency of 550 Hz. It travels towards a stationary observer at a speed of 30 m/s. If the speed of sound in the air is 340 m/s, what is the frequency heard by the observer?",
+      "solution": "1.  **Identify the formula**: For a source moving towards a stationary observer, the Doppler effect formula for sound is $f_o = f_s \\left( \\frac{v}{v - v_s} \\right)$, where $f_o$ is the observed frequency, $f_s$ is the source frequency, $v$ is the wave speed, and $v_s$ is the source speed.\n2.  **List the known values**:\n    - Source frequency, $f_s = 550 \\text{ Hz}$\n    - Speed of the source, $v_s = 30 \\text{ m s}^{-1}$\n    - Speed of sound, $v = 340 \\text{ m s}^{-1}$\n3.  **Substitute the values into the formula**:\n    $$f_o = 550 \\times \\left( \\frac{340}{340 - 30} \\right)$$\n4.  **Calculate the denominator**:\n    $\\$340 - 30 = 310 \\text{ m s}^{-1}$$\n5.  **Calculate the fraction**:\n    $$\\frac{340}{310} \\approx 1.0968$$\n6.  **Calculate the observed frequency**:\n    $$f_o = 550 \\times 1.0968 \\approx 603.24 \\text{ Hz}$$\n7.  **State the final answer**: The frequency heard by the observer is approximately 603 Hz (to 3 significant figures)."
     },
     {
       "type": "examTip",
-      "content": "Pay close attention to the direction of motion for Doppler Effect calculations! A source moving *towards* an observer causes a *higher* observed frequency (use '-' in the denominator), while a source moving *away* causes a *lower* observed frequency (use '+' in the denominator)."
+      "content": "Pay close attention to the direction of motion for Doppler Effect calculations! A source moving *towards* an observer causes a *higher* observed frequency (use '-' in the denominator for sound), while a source moving *away* causes a *lower* observed frequency (use '+' in the denominator)."
     },
     {
       "type": "practice",
@@ -192,6 +157,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and describe progressive waves, distinguishing between transverse and longitudinal types.",
+    "Recall and apply fundamental wave equations to calculate speed, frequency, and wavelength.",
+    "Interpret displacement-distance and displacement-time graphs for waves.",
+    "Explain key wave phenomena like intensity, phase difference, polarisation, and the Doppler effect."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of a 'Mexican wave' in a stadium. People stand up and sit down (oscillate), but they don't move around the stadium. The 'wave' of standing and sitting, carrying energy and excitement, moves through the crowd. That's a progressive wave!"
+  },
   "faq": [
     {
       "q": "What makes a wave \"progressive\"?",
@@ -203,16 +177,87 @@
     },
     {
       "q": "How can a Cathode-Ray Oscilloscope (CRO) be used to measure wave properties?",
-      "a": "A CRO displays a voltage-time graph, allowing you to measure the period (T) of a wave directly from the screen's time-base settings. From the period, you can calculate the frequency ($f = 1/T$) and, if wave speed is known, the wavelength ($\\lambda = v/f$). The amplitude of the wave can also be determined from the voltage scale."
+      "a": "A CRO displays a voltage-time graph of a signal. By connecting a microphone, you can view a sound wave. From the screen's time-base setting, you can measure the period (T) of the wave. From the period, you can calculate the frequency ($f = 1/T$). The amplitude of the wave can also be determined from the voltage scale (Y-gain)."
+    },
+    {
+      "q": "What is the difference between a displacement-distance and a displacement-time graph?",
+      "a": "A displacement-distance graph is like a photograph of the wave at one instant, showing the position of all particles. From it, you can find the wavelength. A displacement-time graph is like a video of a single particle, showing how its position changes over time. From it, you can find the period."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is a progressive wave's primary role?",
+      "back": "To transmit energy from one point to another without transferring matter."
+    },
+    {
+      "front": "Define Amplitude (A).",
+      "back": "The maximum displacement or distance moved by a point on a vibrating body or wave measured from its equilibrium position."
+    },
+    {
+      "front": "How are frequency and period related?",
+      "back": "Frequency ($f$) is the inverse of the period ($T$), so $f = 1/T$."
+    },
+    {
+      "front": "What is the fundamental wave equation?",
+      "back": "Wave speed ($v$) = frequency ($f$) \\times wavelength ($\\lambda$), or $v = f\\lambda$."
+    },
+    {
+      "front": "What distinguishes a transverse wave?",
+      "back": "Particle oscillations are perpendicular to the direction of energy transfer."
+    },
+    {
+      "front": "Give an example of a longitudinal wave.",
+      "back": "Sound waves are a common example, involving compressions and rarefactions."
+    },
+    {
+      "front": "What is phase difference?",
+      "back": "It describes the difference in oscillatory state between two points on a wave, measured in degrees or radians. It is the fraction of a cycle by which one oscillation leads or lags another."
+    },
+    {
+      "front": "How does wave intensity relate to amplitude?",
+      "back": "Wave intensity ($I$) is directly proportional to the square of its amplitude ($A$), so $I \\propto A^2$."
+    },
+    {
+      "front": "What phenomenon proves a wave is transverse?",
+      "back": "Polarisation, which restricts wave oscillations to a single plane, can only occur with transverse waves."
+    },
+    {
+      "front": "What is the Doppler effect?",
+      "back": "The perceived change in frequency and wavelength of a wave due to relative motion between its source and the observer."
+    },
+    {
+      "front": "Can EM waves travel through a vacuum?",
+      "back": "Yes, all electromagnetic waves are transverse and can travel through a vacuum at the speed of light ($c \\approx 3.00 \\times 10^8 \\text{ ms}^{-1}$)."
+    },
+    {
+      "front": "What can be determined from a displacement-distance graph of a wave?",
+      "back": "The wave's amplitude (A) and its wavelength (λ)."
+    },
+    {
+      "front": "What can be determined from a displacement-time graph of a wave?",
+      "back": "The wave's amplitude (A) and its period (T), from which frequency can be calculated ($f=1/T$)."
+    },
+    {
+      "front": "What does it mean for two points on a wave to be 'in antiphase'?",
+      "back": "They have a phase difference of $\\pi$ radians (or 180°). They are at equal and opposite displacements from equilibrium and moving in opposite directions."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "7.1.1",
+    "7.1.2",
+    "7.1.3",
+    "7.1.4",
+    "7.1.5",
+    "7.1.6",
+    "7.1.7"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/7-1-progressive-waves.png",
     "alt": "Senpai Corner reference diagram for 7.1 Progressive waves"
-  }
+  },
+  "updated": "2026-06-26"
 }

@@ -6,65 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 - Density and pressure (4.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define and apply density and pressure, including their units and formulas.",
-    "Calculate hydrostatic pressure and explain its dependence on depth.",
-    "Describe upthrust and apply Archimedes' Principle to solve problems."
-  ],
-  "simpleExplanation": {
-    "title": "Fluid Mechanics Unpacked",
-    "summary": "Density tells us how much 'stuff' is packed into a space. Pressure is about force spread over an area. In fluids, these ideas explain why things float, why deep-sea divers need special gear, and how hydraulic systems work.",
-    "analogy": "Imagine a crowded bus. The **density** is how many people are squashed into it. Now imagine those people all pushing against the door - that's like **pressure**. The more people (denser), or the harder they push, the greater the pressure on the door.",
-    "steps": [
-      "Understand how mass and volume determine **density**.",
-      "See how force spread over an area creates **pressure**.",
-      "Explore how **fluid depth** affects the pressure experienced.",
-      "Grasp **upthrust** and Archimedes' Principle to explain floating."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "How is density defined, and what is its formula?",
-      "back": "Density ($\rho$) is the mass per unit volume of a material. $\\rho = \\frac{m}{V}$."
-    },
-    {
-      "front": "What is the standard SI unit for pressure?",
-      "back": "The standard SI unit for pressure is the Pascal (Pa)."
-    },
-    {
-      "front": "State the formula for hydrostatic pressure and identify its variables.",
-      "back": "$$\\Delta p = \\rho g \\Delta h$$ where $\\Delta p$ is pressure difference, $\\rho$ is fluid density, $g$ is acceleration of free fall, and $\\Delta h$ is vertical height difference."
-    },
-    {
-      "front": "Explain the cause of upthrust in a fluid.",
-      "back": "Upthrust occurs because fluid pressure increases with depth, leading to a greater upward force on the lower surface of an object compared to the downward force on its upper surface."
-    },
-    {
-      "front": "What does Archimedes' Principle state about buoyant force?",
-      "back": "Archimedes' Principle states that the buoyant force (upthrust) on an object immersed in a fluid is equal to the weight of the fluid it displaces."
-    },
-    {
-      "front": "What is the relationship between force, pressure, and area?",
-      "back": "Pressure is the force acting perpendicularly per unit area: $P = \\frac{F}{A}$."
-    },
-    {
-      "front": "How does pressure change as you go deeper into a fluid?",
-      "back": "Pressure increases proportionally with depth in a fluid."
-    },
-    {
-      "front": "What is the total pressure experienced by a submerged object?",
-      "back": "The total pressure is the sum of the fluid's hydrostatic pressure and the atmospheric pressure above it."
-    },
-    {
-      "front": "What is the formula for calculating buoyant force?",
-      "back": "The buoyant force is $F_B = \\rho g V$, where $\\rho$ is fluid density, $g$ is gravitational acceleration, and $V$ is volume of fluid displaced."
-    },
-    {
-      "front": "What does the 'g' represent in the hydrostatic pressure formula?",
-      "back": "'g' represents the acceleration due to free fall (gravitational acceleration)."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -76,7 +18,7 @@
     },
     {
       "type": "text",
-      "content": "Density is a measure of how much 'stuff' (mass) is squeezed into a certain amount of space (volume). Imagine two boxes of the same size; one filled with feathers and the other with rocks. The box of rocks has a much higher density because there's more mass in the same volume."
+      "content": "Density is a measure of how much 'stuff' (mass) is squeezed into a certain amount of space (volume). Imagine two boxes of the same size; one filled with feathers and the other with rocks. The box of rocks has a much higher density because there's more mass in the same volume. To measure the density of a regular solid, you can measure its dimensions to calculate volume and use a balance for its mass. For an irregular solid, you can find its volume by submerging it in a measuring cylinder with water and observing the volume of water displaced."
     },
     {
       "type": "formula",
@@ -85,12 +27,10 @@
     {
       "type": "keyPoints",
       "items": [
-        "4.3 Density and pressure.",
-        "Density is the mass per unit volume of an object 𝜌 = 𝑚 𝑣.",
-        "The SI unit for density is kg/m 3.",
-        "Pressure is defined as force per unit area 𝑃 = 𝐹 𝐴.",
-        "The SI unit for pressure is N/m 2 or Pa.",
-        "Hydrostatic pressure is the pressure exerted by a fluid at equilibrium at a given point within the fluid, due to the force of gravity."
+        "Density ($\\rho$) is the mass ($m$) per unit volume ($V$) of a substance.",
+        "The formula for density is $\\rho = \\frac{m}{V}$.",
+        "The standard SI unit for density is kilograms per cubic meter (kg m^{-3}).",
+        "Density is an intrinsic property of a material."
       ]
     },
     {
@@ -99,7 +39,7 @@
     },
     {
       "type": "text",
-      "content": "Pressure describes how a force is spread out over an area. If you push on a wall with your flat hand, the force is distributed over a large area, resulting in low pressure. If you push with just your fingertip, the same force concentrated on a tiny area creates much higher pressure."
+      "content": "Pressure describes how a force is spread out over an area. If you push on a wall with your flat hand, the force is distributed over a large area, resulting in low pressure. If you push with just your fingertip, the same force concentrated on a tiny area creates much higher pressure. It's important to note that while force is a vector, pressure is a scalar quantity; it has magnitude but no direction. At any point within a fluid, pressure is exerted equally in all directions."
     },
     {
       "type": "formula",
@@ -108,10 +48,10 @@
     {
       "type": "keyPoints",
       "items": [
-        "Pressure ($P$) is perpendicular force ($F$) per unit area ($A$).",
-        "The SI unit for pressure is the Pascal (Pa), which is 1 N m^{-2}.",
-        "Greater force or smaller area leads to higher pressure.",
-        "Pressure is also a scalar quantity."
+        "Pressure ($P$) is the perpendicular force ($F$) exerted per unit area ($A$).",
+        "The formula for pressure is $P = \\frac{F}{A}$.",
+        "The SI unit for pressure is the Pascal (Pa), which is equivalent to 1 N m^{-2}.",
+        "Pressure is a scalar quantity, meaning it has magnitude but no direction."
       ]
     },
     {
@@ -120,7 +60,7 @@
     },
     {
       "type": "text",
-      "content": "When you dive into a swimming pool, you feel the pressure increase as you go deeper. This is because the fluid above you is exerting a weight. The deeper you go, the more fluid is above you, and thus, the greater the pressure."
+      "content": "When you dive into a swimming pool, you feel the pressure increase as you go deeper. This is because the fluid above you is exerting a weight. The deeper you go, the more fluid is above you, and thus, the greater the pressure. This hydrostatic pressure can be derived by considering a vertical column of fluid of height $\\Delta h$ and cross-sectional area $A$. The volume of this column is $V = A \\Delta h$, and its mass is $m = \\rho V = \\rho A \\Delta h$. The weight of the column is $W = mg = \\rho A \\Delta h g$. The pressure exerted by this weight is $p = \\frac{W}{A} = \\frac{\\rho A \\Delta h g}{A} = \\rho g \\Delta h$. The total pressure at a depth is this gauge pressure plus the atmospheric pressure at the surface."
     },
     {
       "type": "formula",
@@ -129,11 +69,16 @@
     {
       "type": "keyPoints",
       "items": [
-        "Fluid pressure increases directly with depth.",
-        "Hydrostatic pressure ($\\Delta p$) depends on fluid density ($\\rho$), gravitational acceleration ($g$), and vertical height difference ($\\Delta h$).",
-        "The total pressure at a depth in a fluid includes atmospheric pressure.",
-        "Pressure acts equally in all directions at a given depth within a fluid."
+        "Fluid pressure increases linearly with depth.",
+        "The formula for the change in pressure (gauge pressure) is $\\Delta p = \\rho g \\Delta h$.",
+        "Total (absolute) pressure at a depth is the sum of gauge pressure and atmospheric pressure: $p_{total} = p_{atm} + \\rho g h$.",
+        "At any given depth, pressure in a static fluid acts equally in all directions."
       ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A submarine is at a depth of 250 m in seawater. The density of seawater is 1030 kg m^{-3}. The submarine has a circular viewing window with a radius of 0.20 m. Calculate (a) the gauge pressure on the outside of the window, and (b) the total force exerted on the window by the water. (Use $g = 9.81 \\text{ m s}^{-2}$). Give your answers to two significant figures.",
+      "solution": "1.  **(a) Calculate the gauge pressure:**\nThe gauge pressure at a certain depth in a fluid is given by the formula $p = \\rho g h$.\n- $\\rho = 1030 \\text{ kg m}^{-3}$\n- $g = 9.81 \\text{ m s}^{-2}$\n- $h = 250 \\text{ m}$\n$p = (1030) \\times (9.81) \\times (250) = 2,526,275 \\text{ Pa}$.\nRounding to two significant figures, $p = 2.5 \\times 10^6 \\text{ Pa}$ or 2.5 MPa.\n\n2.  **(b) Calculate the force on the window:**\nFirst, calculate the area of the circular window using $A = \\pi r^2$.\n- $r = 0.20 \\text{ m}$\n$A = \\pi \\times (0.20)^2 = 0.12566... \\text{ m}^2$.\n\nNext, calculate the force using the formula $F = pA$. We use the unrounded pressure value for better accuracy.\n$F = (2,526,275 \\text{ Pa}) \\times (0.12566... \\text{ m}^2) = 317,468... \\text{ N}$.\nRounding to two significant figures, $F = 3.2 \\times 10^5 \\text{ N}$."
     },
     {
       "type": "heading",
@@ -141,29 +86,29 @@
     },
     {
       "type": "text",
-      "content": "Have you ever tried to push a ball underwater? It feels like something is pushing it back up - that's upthrust! This buoyant force arises because the pressure at the bottom of a submerged object is greater than at its top, creating an overall upward push."
+      "content": "Have you ever tried to push a ball underwater? It feels like something is pushing it back up - that's upthrust! This buoyant force arises because the pressure at the bottom of a submerged object is greater than at its top, creating an overall upward push. According to Archimedes' principle, this upthrust is equal to the weight of the fluid the object displaces. An object's fate in a fluid is determined by the balance between its weight and the upthrust. If the object's density is less than the fluid's density, it will float. If its density is greater, it will sink. If the densities are equal, it will remain suspended at any depth it's placed."
     },
     {
       "type": "formula",
-      "content": "$$F_B = \\rho g V$$"
+      "content": "$$F_B = \\rho_{fluid} g V_{displaced}$$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Upthrust is the upward buoyant force exerted by a fluid.",
-        "It's caused by the pressure difference between the top and bottom of an object.",
-        "Archimedes' Principle: Upthrust equals the weight of fluid displaced.",
-        "An object floats if upthrust equals its weight; it sinks if its weight is greater."
+        "Upthrust, or buoyant force ($F_B$), is the upward force exerted by a fluid on a submerged or floating object.",
+        "It is caused by the pressure difference between the bottom and top surfaces of the object.",
+        "Archimedes' Principle: Upthrust is equal to the weight of the fluid displaced by the object.",
+        "An object floats if its average density is less than the fluid's density. It sinks if its average density is greater."
       ]
     },
     {
       "type": "workedExample",
       "question": "A block of wood with dimensions 0.10 m x 0.10 m x 0.10 m has a mass of 0.80 kg. It is fully submerged in water (density 1000 kg m^{-3}). Calculate: (a) the density of the wood, (b) the upthrust acting on the wood, and (c) the net force acting on the wood (take $g = 9.81 \\text{m s}^{-2}$).",
-      "solution": "1.  **Calculate the volume of the wood:** \n    $V = 0.10 \\text{ m} \\times 0.10 \\text{ m} \\times 0.10 \\text{ m} = 0.0010 \\text{ m}^3$.\n2.  **(a) Calculate the density of the wood:** \n    $\\rho_{wood} = \\frac{m}{V} = \\frac{0.80 \\text{ kg}}{0.0010 \\text{ m}^3} = 800 \\text{ kg m}^{-3}$.\n3.  **(b) Calculate the upthrust (buoyant force):** Using Archimedes' Principle, $F_B = \\rho_{fluid} g V_{displaced}$. Since the wood is fully submerged, $V_{displaced} = V_{wood}$. \n    $F_B = 1000 \\text{ kg m}^{-3} \\times 9.81 \\text{ m s}^{-2} \\times 0.0010 \\text{ m}^3 = 9.81 \\text{ N}$.\n4.  **(c) Calculate the weight of the wood:** \n    $W_{wood} = m g = 0.80 \\text{ kg} \\times 9.81 \\text{ m s}^{-2} = 7.848 \\text{ N}$.\n5.  **Calculate the net force:** \n    Net force = Upthrust - Weight = $9.81 \\text{ N} - 7.848 \\text{ N} = 1.962 \\text{ N}$ (upwards)."
+      "solution": "1.  **Calculate the volume of the wood:** \n    $V = 0.10 \\text{ m} \\times 0.10 \\text{ m} \\times 0.10 \\text{ m} = 0.0010 \\text{ m}^3$.\n2.  **(a) Calculate the density of the wood:** \n    $\\rho_{wood} = \\frac{m}{V} = \\frac{0.80 \\text{ kg}}{0.0010 \\text{ m}^3} = 800 \\text{ kg m}^{-3}$.\n3.  **(b) Calculate the upthrust (buoyant force):** Using Archimedes' Principle, $F_B = \\rho_{fluid} g V_{displaced}$. Since the wood is fully submerged, $V_{displaced} = V_{wood}$. \n    $F_B = 1000 \\text{ kg m}^{-3} \\times 9.81 \\text{ m s}^{-2} \\times 0.0010 \\text{ m}^3 = 9.81 \\text{ N}$.\n4.  **(c) Calculate the weight of the wood:** \n    $W_{wood} = m g = 0.80 \\text{ kg} \\times 9.81 \\text{ m s}^{-2} = 7.848 \\text{ N}$.\n5.  **Calculate the net force:** \n    The net force is the difference between the upward force (upthrust) and the downward force (weight).\n    Net force = Upthrust - Weight = \\$9.81 \\text{ N} - 7.848 \\text{ N} = 1.962 \\text{ N}$ (upwards). Since the net force is upwards, the block will accelerate towards the surface when released."
     },
     {
       "type": "examTip",
-      "content": "Remember the difference between density of the object and density of the fluid when calculating upthrust. Upthrust always depends on the density of the *fluid displaced*, not the object itself!"
+      "content": "Remember the difference between density of the object and density of the fluid when calculating upthrust. Upthrust always depends on the density of the *fluid displaced*, not the object itself! Also, be careful to distinguish between gauge pressure ($\\rho g h$) and absolute pressure ($p_{atm} + \\rho g h$) in questions."
     },
     {
       "type": "practice",
@@ -188,6 +133,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and apply density and pressure, including their units and formulas.",
+    "Calculate hydrostatic pressure and explain its dependence on depth.",
+    "Describe upthrust and apply Archimedes' Principle to solve problems."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a crowded bus. The **density** is how many people are squashed into it. Now imagine those people all pushing against the door - that's like **pressure**. The more people (denser), or the harder they push, the greater the pressure on the door."
+  },
   "faq": [
     {
       "q": "Why does pressure increase with depth in a fluid?",
@@ -199,16 +152,66 @@
     },
     {
       "q": "How does Archimedes' Principle explain why objects float or sink?",
-      "a": "Archimedes' Principle states that an object immersed in a fluid experiences an upward buoyant force equal to the weight of the fluid it displaces. If this buoyant force is greater than or equal to the object's own weight, the object will float. If its weight is greater than the maximum possible buoyant force (when fully submerged), the object will sink."
+      "a": "Archimedes' Principle states that an object immersed in a fluid experiences an upward buoyant force equal to the weight of the fluid it displaces. If this buoyant force is greater than or equal to the object's own weight, the object will float. If its weight is greater than the maximum possible buoyant force (when fully submerged), the object will sink. This is equivalent to comparing densities: an object floats if its average density is less than the fluid's density."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "How is density defined, and what is its formula?",
+      "back": "Density ($\\rho$) is the mass per unit volume of a material. $\\rho = \\frac{m}{V}$."
+    },
+    {
+      "front": "What is the standard SI unit for pressure?",
+      "back": "The standard SI unit for pressure is the Pascal (Pa), which is equivalent to one Newton per square meter (N m^{-2})."
+    },
+    {
+      "front": "State the formula for hydrostatic pressure and identify its variables.",
+      "back": "$$\\Delta p = \\rho g \\Delta h$$ where $\\Delta p$ is pressure difference, $\\rho$ is fluid density, $g$ is acceleration of free fall, and $\\Delta h$ is vertical height difference."
+    },
+    {
+      "front": "Explain the cause of upthrust in a fluid.",
+      "back": "Upthrust occurs because fluid pressure increases with depth, leading to a greater upward force on the lower surface of an object compared to the downward force on its upper surface."
+    },
+    {
+      "front": "What does Archimedes' Principle state about buoyant force?",
+      "back": "Archimedes' Principle states that the buoyant force (upthrust) on an object immersed in a fluid is equal to the weight of the fluid it displaces."
+    },
+    {
+      "front": "What is the relationship between force, pressure, and area?",
+      "back": "Pressure is the force acting perpendicularly per unit area: $P = \\frac{F}{A}$."
+    },
+    {
+      "front": "How does pressure change as you go deeper into a fluid?",
+      "back": "Pressure increases proportionally with depth in a fluid."
+    },
+    {
+      "front": "What is the total pressure experienced by a submerged object?",
+      "back": "The total pressure (or absolute pressure) is the sum of the fluid's hydrostatic pressure (gauge pressure) and the atmospheric pressure above it: $p_{total} = p_{atm} + \\rho g h$."
+    },
+    {
+      "front": "What is the formula for calculating buoyant force?",
+      "back": "The buoyant force is $F_B = \\rho_{fluid} g V_{displaced}$, where $\\rho_{fluid}$ is fluid density, $g$ is gravitational acceleration, and $V_{displaced}$ is the volume of fluid displaced."
+    },
+    {
+      "front": "What does the 'g' represent in the hydrostatic pressure formula?",
+      "back": "'g' represents the acceleration of free fall (gravitational acceleration), approximately \\$9.81 \\text{ m s}^{-2}$ on Earth."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.3.1",
+    "4.3.2",
+    "4.3.3",
+    "4.3.4",
+    "4.3.5",
+    "4.3.6"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/4-3-density-and-pressure.png",
     "alt": "Senpai Corner reference diagram for 4.3 Density and pressure"
-  }
+  },
+  "updated": "2026-06-26"
 }

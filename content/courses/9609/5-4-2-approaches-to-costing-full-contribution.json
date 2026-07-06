@@ -5,66 +5,28 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — full (absorption) costing vs contribution (marginal) costing, when to use each, and contribution per unit.",
+  "summary": "9609 AS - full (absorption) costing vs contribution (marginal) costing, when to use each, and contribution per unit.",
   "durationMin": 26,
-  "updated": "2026-06-15",
-  "learningObjectives": [
-    "Explain full absorption costing.",
-    "Explain contribution (marginal) costing.",
-    "Calculate contribution per unit and total contribution.",
-    "Compare appropriate uses of each costing method."
-  ],
-  "simpleExplanation": {
-    "title": "Two ways to allocate costs",
-    "summary": "Full costing spreads all production overheads into the unit cost. Contribution costing only deducts variable costs from selling price — the remainder contributes to fixed costs and profit.",
-    "analogy": "Full costing is like splitting the entire household bill equally among flatmates regardless of who used what — fair for long-term sharing. Contribution costing is like each person paying only for what they consumed tonight — better for deciding whether to order another takeaway right now.",
-    "steps": [
-      "Full (absorption) cost = variable cost + share of fixed overheads per unit.",
-      "Contribution per unit = selling price − variable cost per unit.",
-      "Use contribution for short-run decisions (break-even, special orders).",
-      "Use full cost for long-run pricing and financial reporting."
-    ]
-  },
-  "flashcards": [
-    { "front": "What is full (absorption) costing?", "back": "All production costs, including a share of fixed overheads, are allocated to each unit of output." },
-    { "front": "What is contribution costing?", "back": "Only variable costs are deducted from selling price; the remainder is contribution toward fixed costs and profit." },
-    { "front": "Contribution per unit formula?", "back": "Selling price − Variable cost per unit." },
-    { "front": "When is contribution costing used?", "back": "Short-run decisions: break-even, accept/reject special orders, make-or-buy, limiting factors." },
-    { "front": "When is full costing used?", "back": "Long-run pricing, inventory valuation, published accounts, full-cost-plus pricing." },
-    { "front": "Total contribution formula?", "back": "Total contribution = (SP − VC) × units sold, or total revenue − total variable costs." },
-    { "front": "Profit under contribution costing?", "back": "Profit = Total contribution − Fixed costs." },
-    { "front": "Risk of using full cost for a one-off order?", "back": "May reject profitable orders if price covers variable costs and contribution but not full allocated overhead." }
-  ],
-  "faq": [
-    {
-      "q": "Why does break-even use contribution costing?",
-      "a": "Break-even asks how many units cover fixed costs. Only contribution (not full unit cost) goes toward fixed costs each period. Full costing mixes fixed overheads into unit cost and gives the wrong break-even output."
-    },
-    {
-      "q": "Can inventory valuation differ between methods?",
-      "a": "Yes. Under absorption costing, closing inventory includes a share of fixed overheads; under marginal costing it does not. This can change reported profit when inventory levels change."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Full vs contribution costing** (5.4.2) is essential before **break-even (5.4.4)**. Cambridge questions often test whether you know **which method applies** — not just the formula. Contribution for short-run; full cost for long-run and accounts."
+      "content": "**Full vs contribution costing** (5.4.2) is a foundational topic for management accounting, essential before tackling **break-even analysis (5.4.4)**. Cambridge questions frequently test your ability to identify **which method applies** to a given scenario, not just your ability to perform the calculation. The key distinction is: contribution costing for short-run decisions, and full costing for long-run strategy and financial reporting."
     },
     {
       "type": "heading",
-      "content": "Full (absorption) costing"
+      "content": "Full (Absorption) Costing"
     },
     {
       "type": "text",
-      "content": "Under **full costing**, each unit produced absorbs a **fair share of fixed production overheads** (rent, factory supervision, depreciation) as well as direct materials and direct labour.\n\n**Full unit cost = Direct materials + Direct labour + Share of overheads**\n\nUsed for **inventory valuation**, **published financial statements**, and **long-run pricing** where all costs must be recovered over time."
+      "content": "Under **full costing**, also known as absorption costing, each unit produced absorbs a **fair share of all production costs**, including fixed production overheads like factory rent and supervisor salaries. This 'fair share' is typically calculated using a predetermined overhead absorption rate (OAR), for instance, based on machine hours or labour hours. The full unit cost is therefore calculated as: **Direct Materials + Direct Labour + Variable Overheads + Absorbed Fixed Overheads**. This method is required for inventory valuation in published financial statements and is used for long-run pricing strategies to ensure all costs are recovered."
     },
     {
       "type": "heading",
-      "content": "Contribution (marginal) costing"
+      "content": "Contribution (Marginal) Costing"
     },
     {
       "type": "text",
-      "content": "Under **contribution costing**, only **variable costs** are charged to each unit. Fixed costs are treated as a **period cost** — deducted in total from contribution, not allocated per unit.\n\n**Contribution per unit = Selling price − Variable cost per unit**\n\n**Profit = Total contribution − Fixed costs**"
+      "content": "Under **contribution costing**, only **variable costs** are considered product costs. Fixed costs are treated as a **period cost** and are written off in the income statement in the period they are incurred, rather than being allocated to units. This approach is also known as marginal costing, as the cost of producing one extra unit is simply its marginal (variable) cost. The contribution is the amount each unit 'contributes' towards covering fixed costs and then generating profit."
     },
     {
       "type": "formula",
@@ -73,24 +35,32 @@
     {
       "type": "keyPoints",
       "items": [
-        "**Special order:** Accept if price > variable cost and contributes to fixed costs (unless capacity is full and better use exists).",
-        "**Limiting factor:** Rank products by **contribution per unit of scarce resource** (e.g. per kg of material, per machine hour).",
-        "**Do not** use full unit cost to reject an order that still earns positive contribution."
+        "**Special order:** Accept if the order price exceeds the variable cost, as it will generate a positive contribution towards fixed costs (assuming spare capacity exists).",
+        "**Limiting factor:** When a resource is scarce, rank products by **contribution per unit of the scarce resource** (e.g., contribution per machine hour) to maximise profit.",
+        "**Decision Rule:** Do not use the full unit cost to reject a special order that earns a positive contribution. The allocated fixed costs are irrelevant for this short-term decision."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A firm makes one product. Selling price $40, variable cost $22, fixed costs $36 000 per month, output 3 000 units.\n\n(a) Calculate contribution per unit.\n(b) Calculate total contribution and profit.",
-      "solution": "(a) Contribution per unit = $40 − $22 = **$18**\n\n(b) Total contribution = $18 × 3 000 = **$54 000**\nProfit = $54 000 − $36 000 = **$18 000**"
+      "type": "heading",
+      "content": "Choosing the Right Costing Method"
+    },
+    {
+      "type": "text",
+      "content": "The choice between full and contribution costing depends entirely on the purpose of the cost information. For **long-term strategic decisions**, such as setting a product's standard selling price or valuing inventory for the balance sheet, **full costing** is essential. It ensures that all costs of production are eventually covered, leading to sustainable profitability, and its use is often mandated by financial reporting standards for external accounts.\n\nFor **short-term, tactical decisions**, **contribution costing** provides clearer insights. It is the preferred method for deciding whether to accept a one-off special order, make a component in-house or buy it, or determine the optimal product mix with a limiting factor. By separating fixed costs, it clearly shows the direct financial impact of a decision on profit, without the distortion of arbitrarily allocated overheads."
     },
     {
       "type": "workedExample",
-      "question": "A customer offers a one-off order of 500 units at $28 each. Normal SP is $40; VC is $22; the firm has spare capacity. Full unit cost (with overheads) is $35. Should the firm accept?",
-      "solution": "**Use contribution costing** (short-run, spare capacity).\n\nContribution per unit on order = $28 − $22 = **$6**\nTotal extra contribution = 500 × $6 = **$3 000**\n\nFixed costs unchanged in short run → **accept** the order.\n\nRejecting because $28 < full cost ($35) would be **wrong** — the order still covers variable costs and adds $3 000 toward fixed costs and profit."
+      "question": "A firm makes one product. Selling price \\$40, variable cost \\$22, fixed costs \\$36,000 per month, output 3,000 units.\n\n(a) Calculate contribution per unit.\n(b) Calculate total contribution and profit for the month.",
+      "solution": "(a) Contribution per unit = Selling Price - Variable Cost\nContribution per unit = \\$40 − \\$22 = **\\$18**\n\n(b) Total Contribution = Contribution per unit × Output\nTotal Contribution = \\$18 × 3,000 = **\\$54,000**\n\nProfit = Total Contribution - Fixed Costs\nProfit = \\$54,000 − \\$36,000 = **\\$18,000**"
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the data from the previous example, a customer offers a one-off order for 500 units at \\$28 each. The firm has spare capacity. The full unit cost (including allocated fixed overheads of \\$36,000 / 3,000 = \\$12) is \\$22 + \\$12 = \\$34. Should the firm accept the order?",
+      "solution": "**Analysis using contribution costing** (correct for a short-run, special order decision with spare capacity).\n\n1.  **Calculate contribution per unit on the special order:**\n    Offered Price - Variable Cost = \\$28 - \\$22 = **\\$6**\n\n2.  **Calculate total contribution from the order:**\n    Total Extra Contribution = \\$6 × 500 units = **\\$3,000**\n\n3.  **Decision:** Since the fixed costs of \\$36,000 will be incurred regardless of this order, accepting it will increase the firm's total profit by \\$3,000. Therefore, the firm **should accept** the order.\n\n*Note: Rejecting the order because the price (\\$28) is less than the full cost (\\$34) would be an incorrect decision, as it ignores the fact that the order makes a positive contribution to covering fixed costs.*"
     },
     {
       "type": "examTip",
-      "content": "In **recommend** questions, state the costing approach first: \"Using contribution costing because this is a short-run decision…\" then show the calculation."
+      "content": "In questions asking for a recommendation (e.g., 'Advise the business whether to accept the order'), always justify your choice of costing method first. For example: \"Using contribution costing is appropriate here because this is a short-run special order decision and the business has spare capacity.\" Then, show your calculations clearly to support your final recommendation."
     },
     {
       "type": "practice",
@@ -100,10 +70,79 @@
     {
       "type": "resources",
       "items": [
-        { "label": "5.4.1 Cost information", "href": "/courses/9609/5-4-1-cost-information" },
-        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "5.4.1 Cost information",
+          "href": "/courses/9609/5-4-1-cost-information"
+        },
+        {
+          "label": "5.4.4 Break-even analysis",
+          "href": "/courses/9609/5-4-4-break-even-analysis"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "learningObjectives": [
+    "Explain full absorption costing.",
+    "Explain contribution (marginal) costing.",
+    "Calculate contribution per unit and total contribution.",
+    "Compare appropriate uses of each costing method."
+  ],
+  "simpleExplanation": {
+    "analogy": "Full costing is like splitting the entire household bill equally among flatmates regardless of who used what - fair for long-term sharing. Contribution costing is like each person paying only for what they consumed tonight - better for deciding whether to order another takeaway right now."
+  },
+  "faq": [
+    {
+      "q": "Why does break-even analysis use contribution costing?",
+      "a": "Break-even analysis focuses on determining the sales volume needed to cover all fixed costs. Contribution per unit represents the exact amount each sale contributes towards covering these fixed costs. Using full cost would be inappropriate as it includes an allocated portion of fixed costs, which would distort the calculation."
+    },
+    {
+      "q": "Can inventory valuation differ between the two methods? Why does it matter?",
+      "a": "Yes, significantly. Under absorption costing, closing inventory is valued at its full production cost, including a share of fixed overheads. Under marginal costing, it's valued only at its variable production cost. This difference affects the cost of goods sold and, consequently, the reported profit for a period, especially when inventory levels change."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is full (absorption) costing?",
+      "back": "A costing method where all production costs, including a share of fixed overheads, are allocated to each unit of output."
+    },
+    {
+      "front": "What is contribution (marginal) costing?",
+      "back": "A costing method where only variable costs are included in the unit cost. Fixed costs are treated as a period cost."
+    },
+    {
+      "front": "What is the formula for contribution per unit?",
+      "back": "Selling price per unit − Variable cost per unit."
+    },
+    {
+      "front": "When is contribution costing most useful?",
+      "back": "For short-run decisions like break-even analysis, accepting/rejecting special orders, make-or-buy decisions, and managing limiting factors."
+    },
+    {
+      "front": "When is full costing most useful?",
+      "back": "For long-run pricing decisions, inventory valuation for financial accounts, and preparing published financial statements."
+    },
+    {
+      "front": "What is the formula for total contribution?",
+      "back": "Total contribution = (Selling Price per unit − Variable Cost per unit) × Number of units sold. Alternatively, Total Revenue − Total Variable Costs."
+    },
+    {
+      "front": "How is profit calculated using contribution costing?",
+      "back": "Profit = Total Contribution − Total Fixed Costs."
+    },
+    {
+      "front": "What is the risk of using full cost for a one-off special order decision?",
+      "back": "A firm might reject a profitable order if the offered price is below the full cost per unit but above the variable cost per unit. This means losing out on positive contribution."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "5.4.2"
+  ],
+  "updated": "2026-06-15"
 }

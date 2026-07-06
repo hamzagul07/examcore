@@ -15,7 +15,7 @@ export type StructuralBacklogReport = {
   lessons: Array<{
     filePath: string
     subjectCode: string
-    topicCode: string
+    topicCode: string | null
     issueCodes: string[]
     route: FailureRoute
   }>

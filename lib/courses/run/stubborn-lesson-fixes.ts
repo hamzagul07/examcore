@@ -322,6 +322,11 @@ function applyLessonSpecificFixes(
   }
 
   if (slug === '7-1-structure-of-transport-tissues') {
+    ensureHeadingTextGroup(
+      lesson,
+      'Distribution in stems, roots and leaves',
+      'In a transverse section of a dicot stem, vascular bundles are arranged in a ring: xylem lies towards the centre and phloem towards the outside, with cambium between them in many species. In roots, a central stele contains xylem in a star-shaped pattern with phloem between the arms. In leaves, veins branch through mesophyll with xylem on the upper side and phloem on the lower side in most dicots — exam questions often ask you to label these from micrographs.'
+    )
     ensureWorkedExamples(lesson, [
       {
         type: 'workedExample',
@@ -576,16 +581,18 @@ export function runStubbornLessonFixes(opts: { projectRoot?: string } = {}) {
     backfillCoverageFields(raw, subjectCode)
     applyLessonSpecificFixes(raw, rel)
 
+    const beforeJson = fs.readFileSync(abs, 'utf8')
     const before = verifyPublishedLessonJson(
-      JSON.parse(fs.readFileSync(abs, 'utf8')),
+      JSON.parse(beforeJson),
       rel,
       subjectCode,
       { auditStrict: true }
     )
     const after = verifyPublishedLessonJson(raw, rel, subjectCode, { auditStrict: true })
+    const afterJson = `${JSON.stringify(raw, null, 2)}\n`
 
-    if (after.ok || after.issues.length < before.issues.length) {
-      writer.writeFile(rel, `${JSON.stringify(raw, null, 2)}\n`)
+    if (afterJson !== beforeJson && (after.ok || after.issues.length <= before.issues.length)) {
+      writer.writeFile(rel, afterJson)
     }
 
     results.push({

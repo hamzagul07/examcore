@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9701 grade boundaries, 9701 grade boundaries 2026, Cambridge Chemistry grade boundaries, 9701 chemistry thresholds, 9701 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,15 +26,15 @@ Official **9701 Chemistry** grade boundaries for **June 2026** publish in August
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per grade per component. Chemistry marks depend on **working and units** — check the scheme line by line.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9701 Chemistry**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9701 boundaries
 
-Set after marking to keep each grade's standard stable when paper difficulty shifts. Use recent sessions as a bracket only.
+Cambridge sets **9701** thresholds **after** all scripts are marked so each grade means the same standard every year. State symbols, mole ratios, and balanced equations must match the mark scheme wording on every calculation chain. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9701** sessions ([wrong-session estimates](/insights)).
 
 ## Revision links
 
-[9701 past papers guide](/blog/cambridge-9701-a-level-chemistry-past-papers-guide) · [most repeated chemistry topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [mark a paper](/mark)
+[9701 past papers guide](/blog/cambridge-9701-a-level-chemistry-past-papers-guide) walks every syllabus paper with mark-scheme tips. Pair it with [most repeated chemistry topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) for targeted retries, then [mark a paper](/mark) on MarkScheme for a strict second pass against the real Cambridge scheme wording on every question.
 
 ## Frequently asked questions
 
@@ -44,9 +44,15 @@ Grades **11 August**; threshold PDFs **~13 August** — [grade boundaries hub](/
 
 ### Do practical papers have separate boundaries?
 
-Yes — P3 and P5 thresholds are set independently from theory papers.
+Yes — P3 and P5 thresholds are set independently from theory papers; check the row for your exact component code in the official PDF.
+
+### Can I estimate my grade before results?
+
+Mark a recent paper to raw marks and compare to June 2024/2023 in the [9701 calculator](/tools/grade-boundary-calculator/9701) — not social media spreadsheets.
 
 ## Related subjects
+
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9700 Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
 - [9702 Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
@@ -54,4 +60,5 @@ Yes — P3 and P5 thresholds are set independently from theory papers.
 
 ## Bottom line
 
-**9701 grade boundaries 2026** land in August — mole discipline and marked past papers beat boundary guessing.
+**9701 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9701 calculator](/tools/grade-boundary-calculator/9701) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

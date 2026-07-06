@@ -63,7 +63,7 @@ Confirm your **0620** code on your statement of entry � papers differ from 507
 
 ## Related subjects
 
-Each science code has its own threshold PDF — use these guides for revision links and calculator paths. Never copy threshold numbers between syllabuses, sessions, or paper variants. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+Each science code has its own threshold PDF — use these guides for revision links and calculator paths. Never copy threshold numbers between syllabuses, sessions, or paper variants. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [0610 Biology](/blog/cambridge-0610-biology-grade-boundaries-2026)
 - [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026)

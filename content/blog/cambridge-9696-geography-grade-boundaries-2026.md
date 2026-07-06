@@ -54,7 +54,7 @@ Practise **map/graph skills** and **evaluative essays** with named places � se
 
 ## Related subjects
 
-Humanities boundaries are code-specific — use these for cross-subject revision planning and calculator links. A-Level **9696** grades release **11 August**, unlike IGCSE **18 August**. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+Humanities boundaries are code-specific — use these for cross-subject revision planning and calculator links. A-Level **9696** grades release **11 August**, unlike IGCSE **18 August**. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9489 History](/blog/cambridge-9489-history-grade-boundaries-2026)
 - [9708 Economics](/blog/cambridge-9708-economics-grade-boundaries-2026)

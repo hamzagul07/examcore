@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9618 grade boundaries, 9618 grade boundaries 2026, Cambridge Computer Science grade boundaries, 9618 computer-science thresholds, 9618 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,19 +26,17 @@ Official **9618 Computer Science** grade boundaries for **June 2026** publish in
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per grade per component. CS rewards **exact trace accuracy and scheme-aligned wording** — "almost right" algorithms lose marks.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9618 Computer Science**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9618 boundaries
 
-Set after full marking. Thresholds move with paper difficulty so an A means the same standard each year.
+Cambridge sets **9618** thresholds **after** all scripts are marked so each grade means the same standard every year. Trace tables, logic diagrams, and precise pseudocode wording must match the scheme � partial algorithms rarely earn full marks. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9618** sessions ([wrong-session estimates](/insights)).
 
 ## How to estimate your grade
 
-1. Timed paper → mark **line by line** on traces and SQL  
-2. Log lost marks by topic (complexity, DB, logic)  
-3. [9618 calculator](/tools/grade-boundary-calculator/9618) with last 2–3 sessions  
-
-Revision: [9618 past papers](/blog/cambridge-9618-a-level-computer-science-past-papers-guide) · [most repeated CS topics](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026) · [mark a paper](/mark)
+1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [9618 calculator](/tools/grade-boundary-calculator/9618) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -56,10 +54,13 @@ Cambridge PDFs + [9618 on MarkScheme](/subjects/9618).
 
 ## Related subjects
 
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+
 - [9709 Mathematics](/blog/cambridge-9709-mathematics-grade-boundaries-2026)
 - [2210 O-Level CS](/blog/cambridge-2210-computer-science-grade-boundaries-2026)
 - [9702 Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
 
 ## Bottom line
 
-**9618 grade boundaries 2026** land in August — **trace discipline and precise terminology** beat boundary rumours.
+**9618 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9618 calculator](/tools/grade-boundary-calculator/9618) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

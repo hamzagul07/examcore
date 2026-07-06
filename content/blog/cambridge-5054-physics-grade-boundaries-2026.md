@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 5054 grade boundaries, 5054 grade boundaries 2026, Cambridge Physics grade boundaries, 5054 physics thresholds, 5054 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,19 +26,17 @@ Official **5054 Physics** grade boundaries for **June 2026** publish in August �
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per component and overall — standards-referenced, not norm-referenced.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **5054 Physics**. They are not fixed percentages � your **overall** O-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 5054 boundaries
 
-Examiners review cohort performance after marking; thresholds adjust for paper difficulty.
+Cambridge sets **5054** thresholds **after** all scripts are marked so each grade means the same standard every year. Award marks only when **units and working** are present on every calculation and graph question. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **5054** sessions ([wrong-session estimates](/insights)).
 
 ## How to estimate your grade
 
-1. Timed paper → sketch **diagrams before equations**  
-2. Mark M marks separately from final answers  
-3. [5054 calculator](/tools/grade-boundary-calculator/5054) with recent sessions  
-
-Revision: [5054 past papers](/blog/cambridge-5054-o-level-physics-past-papers-guide) · [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [9702 A-Level boundaries](/blog/cambridge-9702-physics-grade-boundaries-2026)
+1. Complete a recent O-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [5054 calculator](/tools/grade-boundary-calculator/5054) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -56,6 +54,8 @@ Confirm your syllabus code — this guide is for **5054 O-Level**.
 
 ## Related subjects
 
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+
 - [5090 Biology](/blog/cambridge-5090-biology-grade-boundaries-2026)
 - [5070 Chemistry](/blog/cambridge-5070-chemistry-grade-boundaries-2026)
 - [0625 IGCSE Physics](/blog/cambridge-0625-physics-grade-boundaries-2026)
@@ -63,4 +63,5 @@ Confirm your syllabus code — this guide is for **5054 O-Level**.
 
 ## Bottom line
 
-**5054 grade boundaries 2026** land in August — **shown working on calculations** beats rumour spreadsheets.
+**5054 grade boundaries 2026** publish in August � **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [5054 calculator](/tools/grade-boundary-calculator/5054) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

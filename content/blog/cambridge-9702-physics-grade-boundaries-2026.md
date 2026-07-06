@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9702 grade boundaries, 9702 grade boundaries 2026, Cambridge Physics grade boundaries, 9702 physics thresholds, 9702 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,21 +26,21 @@ Official **9702 Physics** grade boundaries for **June 2026** publish in August �
 
 ## What are grade boundaries?
 
-Minimum **raw marks** for each grade per component and overall. Physics rewards **working shown** for M marks — final answers alone often miss method credit.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9702 Physics**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9702 boundaries
 
-Determined after marking by senior examiners using cohort performance. Paper difficulty varies each session — boundaries adjust so grades stay comparable across years.
+Cambridge sets **9702** thresholds **after** all scripts are marked so each grade means the same standard every year. Units, significant figures, and shown working on graph and calculation questions determine most lost marks. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9702** sessions ([wrong-session estimates](/insights)).
 
 ## 9702 components
 
-Structured papers test theory; practical papers (P3 AS, P5 A2) have **separate** boundaries. Guide: [9702 past papers](/blog/cambridge-9702-a-level-physics-past-papers-guide) · [most repeated physics topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026).
+Structured papers (P1 MCQ, P2 AS theory, P4 A2 theory) test content and calculation skills under separate component thresholds. Practical papers **P3 (AS)** and **P5 (A2)** assess experimental technique with their own boundary rows — never assume one paper's percentages apply to another. Deep revision: [9702 past papers](/blog/cambridge-9702-a-level-physics-past-papers-guide) · [most repeated physics topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026).
 
 ## How to estimate your grade
 
-1. Full timed paper  
-2. Mark with scheme — diagrams before algebra ([ECF rules](/blog/understanding-error-carried-forward-ecf))  
-3. [9702 calculator](/tools/grade-boundary-calculator/9702) with last 2–3 sessions  
+1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [9702 calculator](/tools/grade-boundary-calculator/9702) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -58,10 +58,13 @@ Cambridge Grade Threshold PDFs on results week — also [9702 subject page](/sub
 
 ## Related subjects
 
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+
 - [9700 Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
 - [9701 Chemistry](/blog/cambridge-9701-chemistry-grade-boundaries-2026)
 - [9709 Mathematics](/blog/cambridge-9709-mathematics-grade-boundaries-2026)
 
 ## Bottom line
 
-**9702 grade boundaries 2026** are unknown until August — control what you can: **method marks, units, and marked past papers**.
+**9702 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9702 calculator](/tools/grade-boundary-calculator/9702) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

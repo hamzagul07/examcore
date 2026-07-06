@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9488 grade boundaries, 9488 grade boundaries 2026, Cambridge Islamic Studies grade boundaries, 9488 islamic-studies thresholds, 9488 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,19 +26,17 @@ Official **9488 Islamic Studies** grade boundaries for **June 2026** publish in 
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per grade. Islamic Studies rewards **precise reference to sources** and balanced argument — not generic notes.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9488 Islamic Studies**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9488 boundaries
 
-Set after marking; essay bands mirror other humanities subjects.
+Cambridge sets **9488** thresholds **after** all scripts are marked so each grade means the same standard every year. Set-text answers need citation, schools-of-thought comparison, and modern-world evaluation against band descriptors. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9488** sessions ([wrong-session estimates](/insights)).
 
 ## How to estimate your grade
 
-1. Timed essay + source question  
-2. Mark to **band descriptors** — quote your own evidence  
-3. [9488 calculator](/tools/grade-boundary-calculator/9488) with recent sessions  
-
-Revision: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) · [most repeated topics](/blog/most-repeated-cambridge-islamic-studies-past-paper-topics-2026) · [command words](/blog/cambridge-9488-islamic-studies-command-words-guide) · [9489 History boundaries](/blog/cambridge-9489-history-grade-boundaries-2026)
+1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [9488 calculator](/tools/grade-boundary-calculator/9488) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -56,10 +54,13 @@ Both use **LoR bands**; 9488 emphasises **Islamic sources and themes** — mark 
 
 ## Related subjects
 
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+
 - [9489 History](/blog/cambridge-9489-history-grade-boundaries-2026)
 - [9699 Sociology](/blog/cambridge-9699-sociology-grade-boundaries-2026)
 - [9084 Law](/blog/cambridge-9084-law-grade-boundaries-2026)
 
 ## Bottom line
 
-**9488 grade boundaries 2026** land in August — **source-based argument** beats boundary rumours.
+**9488 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9488 calculator](/tools/grade-boundary-calculator/9488) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

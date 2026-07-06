@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 5090 grade boundaries, 5090 grade boundaries 2026, Cambridge Biology grade boundaries, 5090 biology thresholds, 5090 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,19 +26,17 @@ Official **5090 Biology** grade boundaries for **June 2026** publish in August �
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per component and overall — not fixed percentages.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **5090 Biology**. They are not fixed percentages � your **overall** O-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 5090 boundaries
 
-Comparable outcomes after marking — harder papers usually mean lower thresholds.
+Cambridge sets **5090** thresholds **after** all scripts are marked so each grade means the same standard every year. Use exact mark-scheme vocabulary on structured answers � paraphrased definitions often score zero. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **5090** sessions ([wrong-session estimates](/insights)).
 
 ## How to estimate your grade
 
-1. Timed paper → mark with **exact mark-scheme wording**  
-2. Log definition marks lost vs application marks  
-3. [5090 calculator](/tools/grade-boundary-calculator/5090) with recent sessions  
-
-Revision: [5090 past papers](/blog/cambridge-5090-o-level-biology-past-papers-guide) · [most repeated science topics](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [9700 A-Level boundaries](/blog/cambridge-9700-biology-grade-boundaries-2026)
+1. Complete a recent O-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [5090 calculator](/tools/grade-boundary-calculator/5090) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -56,6 +54,8 @@ Confirm your **5090** code on your statement of entry — papers differ from 061
 
 ## Related subjects
 
+O-Level and IGCSE grades release **18 August**; component thresholds usually drop **~13 August**. Never copy numbers between syllabus codes. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Use each calculator only for its matching entry code on the statement of entry.
+
 - [5070 Chemistry](/blog/cambridge-5070-chemistry-grade-boundaries-2026)
 - [5054 Physics](/blog/cambridge-5054-physics-grade-boundaries-2026)
 - [0610 IGCSE Biology](/blog/cambridge-0610-biology-grade-boundaries-2026)
@@ -63,4 +63,5 @@ Confirm your **5090** code on your statement of entry — papers differ from 061
 
 ## Bottom line
 
-**5090 grade boundaries 2026** land in August — **precise bio vocabulary** beats boundary rumours.
+**5090 grade boundaries 2026** publish in August � **18 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [5090 calculator](/tools/grade-boundary-calculator/5090) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

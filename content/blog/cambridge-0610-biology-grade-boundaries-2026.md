@@ -63,7 +63,7 @@ Confirm your **0610** code on your statement of entry � papers differ from 509
 
 ## Related subjects
 
-IGCSE sciences share the August results window (**18 August** grades, **~13 August** thresholds) but each syllabus code has its own PDF — cross-link for revision planning, not for copying numbers. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
+IGCSE sciences share the August results window (**18 August** grades, **~13 August** thresholds) but each syllabus code has its own PDF — cross-link for revision planning, not for copying numbers. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [0620 Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026)
 - [0625 Physics](/blog/cambridge-0625-physics-grade-boundaries-2026)

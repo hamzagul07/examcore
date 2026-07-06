@@ -5,7 +5,7 @@ date: 2026-06-19
 keywords: 9708 grade boundaries, 9708 grade boundaries 2026, Cambridge Economics grade boundaries, 9708 economics thresholds, 9708 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
@@ -26,24 +26,17 @@ Official **9708 Economics** grade boundaries for **June 2026** publish in August
 
 ## What are grade boundaries?
 
-Minimum raw marks for each grade. Economics essays use **level-of-response** bands — your total still converts to a raw mark compared against session thresholds.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9708 Economics**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How 9708 papers are marked
 
-| Paper | Style |
-|-------|--------|
-| P1, P3 | Objective MCQ |
-| P2, P4 | Data response + essays (K, A, Analysis, Evaluation) |
-
-Essay help: [marking economics essays](/blog/marking-a-level-economics-essays-at-home) · [command words](/blog/cambridge-9708-economics-command-words-guide).
+**9708** mixes objective and essay assessment. Papers **P1 and P3** are multiple choice with point marks per correct option. Papers **P2 and P4** combine data-response and essay questions marked to **Knowledge, Application, Analysis, and Evaluation** bands — quote diagrams and data from the stimulus. Essay help: [marking economics essays](/blog/marking-a-level-economics-essays-at-home) · [command words](/blog/cambridge-9708-economics-command-words-guide).
 
 ## How to estimate your grade
 
-1. Timed paper → mark MCQ strictly  
-2. Essay bands — quote evidence from your script ([insights data](/insights))  
-3. [9708 calculator](/tools/grade-boundary-calculator/9708) with recent sessions  
-
-Revision: [9708 past papers guide](/blog/cambridge-9708-a-level-economics-past-papers-guide) · [most repeated econ topics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026).
+1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
+2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+3. Compare component raw marks to June 2024/2023 in the [9708 calculator](/tools/grade-boundary-calculator/9708) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
 
@@ -61,10 +54,13 @@ Cambridge site **~13 August**; we load verified tables into the [calculator](/to
 
 ## Related subjects
 
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+
 - [9700 Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
 - [9702 Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
 - [9709 Mathematics](/blog/cambridge-9709-mathematics-grade-boundaries-2026)
 
 ## Bottom line
 
-**9708 grade boundaries 2026** arrive in August — focus on **evaluation depth** and honest band marking on past papers, not rumoured percentages.
+**9708 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9708 calculator](/tools/grade-boundary-calculator/9708) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+

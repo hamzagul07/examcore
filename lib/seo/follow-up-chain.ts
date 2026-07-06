@@ -215,6 +215,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-0580-mathematics-grade-boundaries-2026',
     },
     {
+      question: 'Where are 0610 IGCSE Biology grade boundaries for 2026?',
+      answer:
+        'IGCSE grades release 18 August; threshold PDFs ~13 August — mark MCQ and structured answers to scheme wording, then use the calculator.',
+      href: '/blog/cambridge-0610-biology-grade-boundaries-2026',
+    },
+    {
+      question: 'Where are 0620/0625 IGCSE science grade boundaries for 2026?',
+      answer:
+        'Same August window as 0610 — grades 18 August, component thresholds ~13 August. Mark moles and working strictly before estimating.',
+      href: '/blog/cambridge-0620-chemistry-grade-boundaries-2026',
+    },
+    {
       question: 'Where are 9709 maths grade boundaries for 2026?',
       answer:
         'Grades release 11 August; threshold tables ~13 August — use the calculator with recent sessions until the official PDF loads.',

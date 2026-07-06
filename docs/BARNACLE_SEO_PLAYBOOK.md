@@ -152,12 +152,12 @@ Use with [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md) GSC tiers and templates **4�
 | **1–10 Aug** | Results-day guide + boundary hub; request GSC Tier 1–2 | Template **4** (dates), **5** (fake thresholds) |
 | **11 Aug** | A-Level grades live — hub features results-day guide | Template **4** + subject **7** on boundary threads |
 | **12 Aug** | EAR deadline reminders in results-day guide | Template **6** (remark vs resit context) |
-| **~13 Aug** | Run `pnpm grade:thresholds:ingest` per priority code; re-request GSC | Template **5** + link calculator; **0580** on r/igcse |
+| **~13 Aug** | Run `pnpm grade:thresholds:ingest` per priority code; re-request GSC | Template **5** + link calculator; **0580/0610/0620/0625** on r/igcse |
 | **14–17 Aug** | Threshold-week banners on calculator + boundary posts | Template **7** per subject code |
 | **18 Aug** | IGCSE/O-Level grades — stress **18 Aug** not 11 Aug | r/igcse template **4** (O-Level row) |
 | **19–31 Aug** | November resit planning links | Template **6** + retakes guide |
 
-**Priority ingest order:** 9709 → 9700 → 9702 → 9701 → 9708 → 0580 → 4024 → 9609 → 9990 → 9489 → 9696 → 0460 (see `PRIORITY_CODES` in `scripts/scaffold-june-2026-session.mjs`).
+**Priority ingest order:** 9709 → 9700 → 9702 → 9701 → 9708 → 0580 → 0610 → 0620 → 0625 → 4024 → 9609 → 9990 → 9489 → 9696 → 0460 (see `PRIORITY_CODES` in `scripts/scaffold-june-2026-session.mjs`).
 
 ---
 

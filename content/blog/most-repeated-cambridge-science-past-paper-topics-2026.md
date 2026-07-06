@@ -148,7 +148,7 @@ AS papers emphasise foundations (cells, mechanics, stoichiometry). A2 adds synop
 
 ### IGCSE sciences instead?
 
-See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topics-2026) for 0610/0620/0625.
+See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topics-2026) for 0610/0620/0625 — with [0610](/blog/cambridge-0610-biology-grade-boundaries-2026), [0620](/blog/cambridge-0620-chemistry-grade-boundaries-2026), and [0625](/blog/cambridge-0625-physics-grade-boundaries-2026) boundary guides.
 
 ### Grade boundaries 2026 (A-Level sciences)
 

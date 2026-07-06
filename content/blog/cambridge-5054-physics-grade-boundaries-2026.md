@@ -58,6 +58,7 @@ Confirm your syllabus code — this guide is for **5054 O-Level**.
 
 - [5090 Biology](/blog/cambridge-5090-biology-grade-boundaries-2026)
 - [5070 Chemistry](/blog/cambridge-5070-chemistry-grade-boundaries-2026)
+- [0625 IGCSE Physics](/blog/cambridge-0625-physics-grade-boundaries-2026)
 - [9702 A-Level Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
 
 ## Bottom line

@@ -21,6 +21,10 @@ const IB_EDITORIAL_SLUGS = new Set([
   'ib-how-to-build-a-grade-7-buffer-2026',
   'ib-results-day-2026-what-to-expect',
   'ib-grade-boundaries-explained',
+  'cambridge-9709-mathematics-grade-boundaries-2026',
+  'cambridge-9700-biology-grade-boundaries-2026',
+  'cambridge-9702-physics-grade-boundaries-2026',
+  'cambridge-9708-economics-grade-boundaries-2026',
 ])
 
 export function blogSitemapPriority(slug: string): number {

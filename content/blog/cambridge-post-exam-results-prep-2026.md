@@ -18,12 +18,27 @@ The weeks **after** your last Cambridge paper are dangerous: either you forget e
 | Question | Answer |
 |----------|--------|
 | When are June 2026 results? | AS/A-Level **11 August**; IGCSE/O Level **18 August** (06:00 GMT) |
+| When are threshold tables? | **~13 August** (A-Level components) |
 | Can I predict my grade now? | **Estimate** from marked mocks — not from TikTok thresholds |
 | Should I revise for retakes already? | Light **technique** review only; rest first |
 | What to save? | Mock scripts, marked past papers, candidate details |
 | What to ignore? | "Leaked" papers, fake threshold spreadsheets |
 
 > **Key takeaway:** Use the gap to build a **file** your exams officer can act on if grades surprise you.
+
+## Grade boundaries by subject (2026 guides)
+
+Estimate with recent sessions until official tables publish:
+
+| Subject | Code | Guide |
+|---------|------|--------|
+| Mathematics | 9709 | [9709 boundaries](/blog/cambridge-9709-mathematics-grade-boundaries-2026) |
+| Biology | 9700 | [9700 boundaries](/blog/cambridge-9700-biology-grade-boundaries-2026) |
+| Chemistry | 9701 | [9701 boundaries](/blog/cambridge-9701-chemistry-grade-boundaries-2026) |
+| Physics | 9702 | [9702 boundaries](/blog/cambridge-9702-physics-grade-boundaries-2026) |
+| Economics | 9708 | [9708 boundaries](/blog/cambridge-9708-economics-grade-boundaries-2026) |
+
+All subjects: [grade boundaries hub](/guides/grade-boundaries) · [calculator](/tools/grade-boundary-calculator)
 
 ## Week 1 after exams — decompress with structure
 

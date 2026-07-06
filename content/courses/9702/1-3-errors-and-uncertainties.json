@@ -5,7 +5,7 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master errors and uncertainties for Cambridge A-Level Physics Paper 5. Learn to distinguish systematic and random errors, calculate uncertainties in derived quantities, and apply these skills to graphical analysis and experimental planning.",
+  "summary": "Master errors and uncertainties for Cambridge A-Level Physics Paper 5. Learn to distinguish systematic and random errors, calculate uncertainties in derived quantities, and apply these skills to graphical analysis and experimental planning. Syllabus coverage: understand and explain the effects of systematic errors (including zero errors) and random errors in measurements understand the distinction between precision and accuracy assess the uncertainty in a derived quantity by simple addition of absolute or percentage uncertainties",
   "durationMin": 30,
   "sections": [
     {
@@ -285,7 +285,10 @@
     "Explain the difference between accuracy and precision.",
     "Calculate absolute and percentage uncertainties in derived quantities.",
     "Determine the uncertainty in the gradient and y-intercept of a line of best fit.",
-    "Incorporate uncertainty analysis into an experimental plan."
+    "Incorporate uncertainty analysis into an experimental plan.",
+    "1.3.1: understand and explain the effects of systematic errors (including zero errors) and random errors in measurements",
+    "1.3.2: understand the distinction between precision and accuracy",
+    "1.3.3: assess the uncertainty in a derived quantity by simple addition of absolute or percentage uncertainties"
   ],
   "paperNumber": "5",
   "paperType": "structured",
@@ -325,5 +328,43 @@
     }
   ],
   "generatorVersion": "senpai-published-1",
-  "updated": "2026-06-26"
+  "updated": "2026-06-26",
+  "simpleExplanation": {
+    "analogy": "Think of measurements like arrows on a target. A systematic error is a misaligned sight � every shot misses the bullseye the same way (poor accuracy). Random error is shaky hands � arrows scatter but their average may still hit the centre (precision vs accuracy).",
+    "keyTakeaway": "Paper 5 rewards quantifying both error types and propagating uncertainties through every derived quantity."
+  },
+  "flashcards": [
+    {
+      "front": "Systematic error?",
+      "back": "Consistent, repeatable error in the same direction � affects accuracy, not fixed by averaging."
+    },
+    {
+      "front": "Random error?",
+      "back": "Unpredictable scatter between readings � affects precision; reduced by repeating and averaging."
+    },
+    {
+      "front": "Accuracy vs precision?",
+      "back": "Accuracy = closeness to true value; precision = closeness of repeated readings to each other."
+    },
+    {
+      "front": "Adding absolute uncertainties?",
+      "back": "When adding or subtracting quantities, add absolute uncertainties: $\\Delta z = \\Delta x + \\Delta y$."
+    },
+    {
+      "front": "Multiplying percentage uncertainties?",
+      "back": "When multiplying/dividing, add fractional uncertainties: $\\frac{\\Delta z}{z} = \\frac{\\Delta x}{x} + \\frac{\\Delta y}{y}$."
+    },
+    {
+      "front": "Uncertainty in gradient?",
+      "back": "Gradient uncertainty = |gradient of best fit ? gradient of worst acceptable line|."
+    },
+    {
+      "front": "Worst acceptable line (WAL)?",
+      "back": "Steepest or shallowest straight line still passing through all error bars on the graph."
+    },
+    {
+      "front": "Zero error example?",
+      "back": "A voltmeter not zeroed � every reading shifted by the same amount (systematic)."
+    }
+  ]
 }

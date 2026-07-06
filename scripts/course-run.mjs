@@ -346,6 +346,20 @@ async function main() {
     process.exit(0)
   }
 
+  if (opts.type === 'stubborn_fix') {
+    const { runStubbornLessonFixes } = await import('../lib/courses/run/stubborn-lesson-fixes.ts')
+    const { auditWeakLessons } = await import('../lib/courses/run/weak-lesson-audit.ts')
+    const results = runStubbornLessonFixes({ projectRoot: PROJECT })
+    const audit = auditWeakLessons({ all: true, projectRoot: PROJECT })
+    const passed = results.filter((r) => r.ok).length
+    console.log(`Stubborn fixes: ${passed}/${results.length} now pass audit`)
+    for (const r of results) {
+      if (!r.ok) console.log(`  FAIL ${r.path}: ${r.issues.join(', ')}`)
+    }
+    console.log(`Post-fix audit: ${audit.totalPassed}/${audit.totalChecked} pass (${audit.overallFailPct}% fail)`)
+    process.exit(passed === results.length ? 0 : 1)
+  }
+
   if (opts.type === 'improve_pipeline') {
     loadEnvLocal()
     const { runImprovePipeline, formatPipelineSummary } = await import(
@@ -367,7 +381,7 @@ async function main() {
 
   console.error(`Unknown run type: ${opts.type}`)
   console.error(
-    'Types: coverage_audit | lesson_verify | lesson_generate | weak_lesson_audit | metadata_backfill | mechanical_fix | improve_pipeline | structural_backlog'
+    'Types: coverage_audit | lesson_verify | lesson_generate | weak_lesson_audit | metadata_backfill | mechanical_fix | improve_pipeline | structural_backlog | stubborn_fix'
   )
   process.exit(1)
 }

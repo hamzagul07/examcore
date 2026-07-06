@@ -6,75 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Momentum and Newton's laws of motion (3.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define momentum as a vector quantity and apply the formula p = mv.",
-    "Explain and apply Newton's three laws of motion, including F = Δp/Δt.",
-    "Distinguish between elastic and inelastic collisions and explain the concept of terminal velocity."
-  ],
-  "simpleExplanation": {
-    "title": "Understanding Forces and Motion",
-    "summary": "This topic explores how objects move, focusing on their 'quantity of motion' – momentum – and the fundamental rules that govern forces, known as Newton's Laws. You'll learn why things speed up, slow down, or stay still.",
-    "analogy": "Imagine a bowling ball and a tennis ball. Even if both are moving at the same speed, the bowling ball is much harder to stop. That 'difficulty to stop' is like momentum. Newton's Laws explain why you need to push harder to stop the bowling ball.",
-    "steps": [
-      "Define momentum and its calculation.",
-      "Explore Newton's Three Laws of Motion.",
-      "Analyse different types of collisions.",
-      "Understand terminal velocity and balanced forces."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the fundamental definition and formula for momentum?",
-      "pillLabel": "Momentum formula",
-      "back": "Momentum ($p$) is the product of an object's mass ($m$) and its velocity ($v$); $p = mv$."
-    },
-    {
-      "front": "State Newton's Third Law of Motion.",
-      "pillLabel": "Newton's Third Law",
-      "back": "For every action, there is an equal and opposite reaction force, with these forces always acting on *different* objects."
-    },
-    {
-      "front": "What is the key difference between elastic and inelastic collisions regarding energy?",
-      "pillLabel": "Elastic vs inelastic",
-      "back": "In elastic collisions, kinetic energy is conserved; in inelastic collisions, it is not (some is converted to other forms)."
-    },
-    {
-      "front": "How does Newton's Second Law relate force to the change in momentum?",
-      "pillLabel": "Force & momentum",
-      "back": "The net force is equal to the rate of change of momentum ($F_{net} = \\frac{\\Delta p}{\\Delta t}$)."
-    },
-    {
-      "front": "What condition must be met for an object to reach terminal velocity?",
-      "pillLabel": "Terminal velocity",
-      "back": "The net force acting on the object must be zero, meaning all downward driving forces are balanced by upward resistive forces."
-    },
-    {
-      "front": "What is another name for Newton's First Law?",
-      "pillLabel": "Newton's First Law",
-      "back": "The Law of Inertia."
-    },
-    {
-      "front": "What are the standard units of momentum?",
-      "pillLabel": "Momentum units",
-      "back": "Kilogram-metre per second (kg m/s) or Newton-second (Ns)."
-    },
-    {
-      "front": "What does the principle of conservation of momentum state?",
-      "pillLabel": "Conservation principle",
-      "back": "For a closed system, the total momentum before an interaction equals the total momentum after, if no external resultant force acts."
-    },
-    {
-      "front": "How does mass differ from weight?",
-      "pillLabel": "Mass vs weight",
-      "back": "Mass is a scalar measure of inertia; weight is the gravitational force (W=mg), a vector, acting on an object."
-    },
-    {
-      "front": "What characterises relative speed in a perfectly elastic collision?",
-      "pillLabel": "Elastic collision",
-      "back": "The relative speed of approach before impact equals the relative speed of separation after impact."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -95,12 +27,9 @@
     {
       "type": "keyPoints",
       "items": [
-        "3.1 Momentum and Newton’s laws of motion.",
-        "Mass is a physical quantity that measures the amount of matter in an object.",
-        "The SI unit for mass is kilograms (kg).",
-        "Weight is a force.",
-        "Since it is a force, the SI unit for weight is Newtons (N).",
-        "Free fall is falling solely under the influence of gravity."
+        "Momentum ($p$) is a vector quantity with units kg m/s or Ns.",
+        "The direction of momentum is the same as the direction of velocity.",
+        "An object at rest has zero momentum."
       ]
     },
     {
@@ -144,8 +73,33 @@
       "items": [
         "Net force ($F_{net}$) causes acceleration ($a$) in the same direction.",
         "Acceleration is proportional to the net force and inversely proportional to mass ($m$).",
-        "This law also states that net force is the rate of change of momentum."
+        "The general form, $F_{net} = \\frac{\\Delta p}{\\Delta t}$, is always true, even if mass changes."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "Impulse"
+    },
+    {
+      "type": "text",
+      "content": "Impulse is a concept directly derived from Newton's Second Law. It is defined as the product of the average net force and the time interval over which it acts. Impulse is also equal to the change in momentum of the object. This relationship is particularly useful for analysing situations involving large forces acting over short times, like collisions or impacts."
+    },
+    {
+      "type": "formula",
+      "content": "$$Impulse = F_{avg} \\Delta t = \\Delta p$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Impulse is a vector quantity, with the same direction as the average force.",
+        "The unit of impulse is the Newton-second (Ns), which is equivalent to the unit of momentum (kg m/s).",
+        "The area under a force-time graph represents the impulse, or the change in momentum."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A football of mass 0.45 kg is moving horizontally towards a player at 20 m/s. The player kicks the ball, causing it to move in the opposite direction with a speed of 30 m/s. If the player's boot is in contact with the ball for 0.050 s, what is the average force exerted on the ball by the player?",
+      "solution": "1. Define a positive direction and list knowns. Let the final direction of the ball be positive.\n   Mass (m) = 0.45 kg\n   Initial velocity (u) = -20 m/s (since it's opposite to the final direction)\n   Final velocity (v) = +30 m/s\n   Time interval (Δt) = 0.050 s\n\n2. Calculate the change in momentum (Δp).\n   Δp = p_final - p_initial = mv - mu\n   Δp = (0.45 kg)(+30 m/s) - (0.45 kg)(-20 m/s)\n   Δp = 13.5 - (-9.0)\n   Δp = 22.5 kg m/s (or 22.5 Ns)\n\n3. Use the impulse-momentum theorem (Newton's Second Law) to find the average force.\n   F_avg = Δp / Δt\n\n4. Substitute the values and calculate the force:\n   F_avg = 22.5 Ns / 0.050 s\n   F_avg = 450 N\n\n5. State the final answer with direction:\n   The average force exerted on the ball is 450 N in the direction of its final velocity."
     },
     {
       "type": "heading",
@@ -200,6 +154,11 @@
       ]
     },
     {
+      "type": "workedExample",
+      "question": "A 2.0 kg trolley moving at 3.0 m/s collides head-on with a stationary 1.0 kg trolley. After the collision, the 2.0 kg trolley continues in its original direction at 1.0 m/s. Calculate the velocity of the 1.0 kg trolley after the collision.",
+      "solution": "1. Identify knowns:\n   Mass of trolley 1 (m1) = 2.0 kg\n   Initial velocity of trolley 1 (u1) = +3.0 m/s (let's define original direction as positive)\n   Mass of trolley 2 (m2) = 1.0 kg\n   Initial velocity of trolley 2 (u2) = 0 m/s\n   Final velocity of trolley 1 (v1) = +1.0 m/s\n   Final velocity of trolley 2 (v2) = ?\n\n2. Apply the principle of conservation of momentum:\n   Total momentum before = Total momentum after\n   m1u1 + m2u2 = m1v1 + m2v2\n\n3. Substitute the values into the equation:\n   (2.0 kg)(+3.0 m/s) + (1.0 kg)(0 m/s) = (2.0 kg)(+1.0 m/s) + (1.0 kg)(v2)\n\n4. Calculate the unknown velocity:\n   6.0 kg m/s + 0 = 2.0 kg m/s + (1.0 kg)v2\n   6.0 = 2.0 + v2\n   v2 = 6.0 - 2.0\n   v2 = +4.0 m/s\n\n5. State the final answer with direction:\n   The 1.0 kg trolley moves at 4.0 m/s in the original direction of the 2.0 kg trolley."
+    },
+    {
       "type": "heading",
       "content": "Types of Collisions"
     },
@@ -229,13 +188,8 @@
       "items": [
         "Maximum constant speed achieved by an object falling through a fluid.",
         "Occurs when resistive forces (drag) balance driving forces (weight).",
-        "At terminal velocity, the net force on the object is zero."
+        "At terminal velocity, the net force on the object is zero, and acceleration is zero."
       ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A 2.0 kg trolley moving at 3.0 m/s collides head-on with a stationary 1.0 kg trolley. After the collision, the 2.0 kg trolley continues in its original direction at 1.0 m/s. Calculate the velocity of the 1.0 kg trolley after the collision.",
-      "solution": "1. Identify knowns:\n   Mass of trolley 1 (m1) = 2.0 kg\n   Initial velocity of trolley 1 (u1) = +3.0 m/s (let's define original direction as positive)\n   Mass of trolley 2 (m2) = 1.0 kg\n   Initial velocity of trolley 2 (u2) = 0 m/s\n   Final velocity of trolley 1 (v1) = +1.0 m/s\n   Final velocity of trolley 2 (v2) = ?\n\n2. Apply the principle of conservation of momentum:\n   Total momentum before = Total momentum after\n   m1u1 + m2u2 = m1v1 + m2v2\n\n3. Substitute the values into the equation:\n   (2.0 kg)(+3.0 m/s) + (1.0 kg)(0 m/s) = (2.0 kg)(+1.0 m/s) + (1.0 kg)(v2)\n\n4. Calculate the unknown velocity:\n   6.0 kg m/s + 0 = 2.0 kg m/s + (1.0 kg)v2\n   6.0 = 2.0 + v2\n   v2 = 6.0 - 2.0\n   v2 = +4.0 m/s\n\n5. State the final answer with direction:\n   The 1.0 kg trolley moves at 4.0 m/s in the original direction of the 2.0 kg trolley."
     },
     {
       "type": "examTip",
@@ -264,6 +218,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define momentum as a vector quantity and apply the formula p = mv.",
+    "Explain and apply Newton's three laws of motion, including F = Δp/Δt.",
+    "Define and apply the concept of impulse (FΔt = Δp).",
+    "Distinguish between elastic and inelastic collisions and explain the concept of terminal velocity."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a bowling ball and a tennis ball. Even if both are moving at the same speed, the bowling ball is much harder to stop. That 'difficulty to stop' is like momentum. Newton's Laws explain why you need to push harder to stop the bowling ball."
+  },
   "faq": [
     {
       "q": "What are the applications of Newton's laws in real life?",
@@ -276,15 +239,81 @@
     {
       "q": "How do you identify action-reaction pairs according to Newton's Third Law?",
       "a": "An action-reaction pair always involves two different objects and two forces that are equal in magnitude and opposite in direction. For instance, when you push a wall, the wall pushes back on you with an equal and opposite force. These forces never act on the same object, so they cannot cancel each other out on one body."
+    },
+    {
+      "q": "What does the area under a force-time graph represent?",
+      "a": "The area under a force-time graph represents the impulse. Since impulse is equal to the change in momentum (Δp), the area also represents the change in momentum of the object over that time interval."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the fundamental definition and formula for momentum?",
+      "back": "Momentum ($p$) is the product of an object's mass ($m$) and its velocity ($v$); $p = mv$."
+    },
+    {
+      "front": "State Newton's Third Law of Motion.",
+      "back": "For every action, there is an equal and opposite reaction force, with these forces always acting on *different* objects."
+    },
+    {
+      "front": "What is the key difference between elastic and inelastic collisions regarding energy?",
+      "back": "In elastic collisions, kinetic energy is conserved; in inelastic collisions, it is not (some is converted to other forms)."
+    },
+    {
+      "front": "How does Newton's Second Law relate force to the change in momentum?",
+      "back": "The net force is equal to the rate of change of momentum ($F_{net} = \\frac{\\Delta p}{\\Delta t}$)."
+    },
+    {
+      "front": "What condition must be met for an object to reach terminal velocity?",
+      "back": "The net force acting on the object must be zero, meaning all downward driving forces are balanced by upward resistive forces."
+    },
+    {
+      "front": "What is another name for Newton's First Law?",
+      "back": "The Law of Inertia."
+    },
+    {
+      "front": "What are the standard units of momentum?",
+      "back": "Kilogram-metre per second (kg m/s) or Newton-second (Ns)."
+    },
+    {
+      "front": "What does the principle of conservation of momentum state?",
+      "back": "For a closed system, the total momentum before an interaction equals the total momentum after, if no external resultant force acts."
+    },
+    {
+      "front": "How does mass differ from weight?",
+      "back": "Mass is a scalar measure of inertia; weight is the gravitational force (W=mg), a vector, acting on an object."
+    },
+    {
+      "front": "What characterises relative speed in a perfectly elastic collision?",
+      "back": "The relative speed of approach before impact equals the relative speed of separation after impact."
+    },
+    {
+      "front": "What is impulse and how is it calculated?",
+      "back": "Impulse is the change in momentum of an object. It is also the product of the average net force acting on the object and the time interval over which the force acts. Formula: Impulse = FΔt = Δp."
+    },
+    {
+      "front": "In the context of momentum, what is a 'closed system'?",
+      "back": "A closed system is one where no matter is exchanged with the surroundings and no external resultant force acts upon it. This is the condition required for the total momentum of the system to be conserved."
+    },
+    {
+      "front": "When is F=ma an incomplete form of Newton's Second Law?",
+      "back": "F=ma is a special case that applies only when the mass of the object is constant. The more general form, F = Δp/Δt, is always true and accounts for systems where mass can change, such as a rocket expelling fuel."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.1.1",
+    "3.1.2",
+    "3.1.3",
+    "3.1.4",
+    "3.1.5",
+    "3.1.6"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/3-1-momentum-and-newtons-laws-of-motion.png",
     "alt": "Senpai Corner reference diagram for 3.1 Momentum and Newton's laws of motion"
-  }
+  },
+  "updated": "2026-06-26"
 }

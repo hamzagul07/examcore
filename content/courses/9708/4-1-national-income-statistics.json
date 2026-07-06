@@ -7,70 +7,6 @@
   "status": "premium",
   "summary": "9708 AS — GDP, GNI, nominal vs real, and per capita measures.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Define GDP and GNI.",
-    "Explain three approaches to measuring GDP.",
-    "Distinguish nominal and real national income.",
-    "Evaluate limitations of national income data."
-  ],
-  "simpleExplanation": {
-    "title": "Measuring a country's output",
-    "summary": "National income statistics estimate total economic activity. GDP counts production within borders; GNI includes net income from abroad.",
-    "analogy": "GDP is like measuring everything produced inside a factory building. GNI also counts profits sent home by workers and firms operating outside the building.",
-    "steps": [
-      "Expenditure: C + I + G + (X − M).",
-      "Income: wages + profits + rent.",
-      "Output: value added at each stage.",
-      "Real GDP adjusts for inflation."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is GDP?",
-      "back": "Gross Domestic Product — total market value of all final goods and services produced within a country's borders in a given period."
-    },
-    {
-      "front": "What is GNI?",
-      "back": "Gross National Income = GDP + net property income from abroad (income earned by residents minus income paid to non-residents)."
-    },
-    {
-      "front": "Three approaches to measuring GDP?",
-      "back": "Expenditure (C + I + G + X − M), income (wages + rent + interest + profit), and output (sum of value added at each production stage)."
-    },
-    {
-      "front": "Nominal vs real GDP?",
-      "back": "Nominal GDP uses current prices; real GDP uses constant (base-year) prices to remove inflation and show actual volume of output."
-    },
-    {
-      "front": "Real GDP growth rate formula?",
-      "back": "((Real GDP₁ − Real GDP₀) ÷ Real GDP₀) × 100 — measures change in output volume, not price changes."
-    },
-    {
-      "front": "Key limitation of GDP as a welfare measure?",
-      "back": "GDP ignores distribution, non-market activity, environmental damage, and leisure — higher GDP does not always mean higher living standards."
-    },
-    {
-      "front": "What is Gross Domestic Product (GDP)?",
-      "back": "The total market value of all final goods and services produced within a country's geographical borders in a specific time period, typically one year."
-    },
-    {
-      "front": "How is Gross National Income (GNI) calculated from GDP?",
-      "back": "GNI = GDP + Net Property Income from Abroad. This accounts for income earned by residents from overseas assets minus income paid to non-residents for assets held domestically."
-    },
-    {
-      "front": "Why is Real GDP considered a more accurate measure of economic growth than Nominal GDP?",
-      "back": "Because Real GDP is adjusted for inflation, it measures the actual change in the volume of goods and services produced, whereas Nominal GDP can be distorted by price level changes."
-    },
-    {
-      "front": "What is GDP per capita and what is its main purpose?",
-      "back": "GDP per capita is the total GDP of a country divided by its population. Its main purpose is to provide a measure of the average income per person, often used for international comparisons of living standards."
-    },
-    {
-      "front": "State two significant limitations of using national income statistics to measure living standards.",
-      "back": "1. They ignore the distribution of income, so a high per capita figure can mask significant inequality. 2. They exclude non-marketed output, such as unpaid household labour and activity in the informal economy."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -183,6 +119,11 @@
       "solution": "(a) **Nominal growth rate**\n= ((540 − 500) ÷ 500) × 100 = **8.0%**\n\n(b) **Real GDP 2024** (2023 base)\nReal GDP = (Nominal GDP ÷ Deflator) × 100\n2023 real GDP = (500 ÷ 125) × 100 = **$400 bn**\n2024 real GDP = (540 ÷ 135) × 100 = **$400 bn**\n\n(c) **Real growth rate**\n= ((400 − 400) ÷ 400) × 100 = **0%**\n\nDespite 8% nominal growth, **all** of the increase was inflation — real output was unchanged."
     },
     {
+      "type": "workedExample",
+      "question": "The following data is for the fictional country of Econland in 2025:\n- Consumer spending (C): $600 billion\n- Gross investment (I): $200 billion\n- Government spending (G): $250 billion\n- Exports (X): $150 billion\n- Imports (M): $180 billion\n- Net Property Income from Abroad (NPIA): -$20 billion\n- Population: 25 million\n\nCalculate:\n(a) Gross Domestic Product (GDP)\n(b) Gross National Income (GNI)\n(c) GDP per capita",
+      "solution": "(a) **Gross Domestic Product (GDP)**\nUsing the expenditure approach:\nGDP = C + I + G + (X - M)\nGDP = $600bn + $200bn + $250bn + ($150bn - $180bn)\nGDP = $1050bn + (-$30bn)\n**GDP = $1020 billion**\n\n(b) **Gross National Income (GNI)**\nUsing the formula GNI = GDP + NPIA:\nGNI = $1020bn + (-$20bn)\n**GNI = $1000 billion**\n*GNI is lower than GDP because there is a net outflow of income to foreign countries (e.g., profits repatriated by foreign firms).* \n\n(c) **GDP per capita**\nUsing the formula GDP per capita = Total GDP / Population:\nGDP per capita = $1,020,000,000,000 / 25,000,000\n**GDP per capita = $40,800**"
+    },
+    {
       "type": "heading",
       "content": "Limitations of national income data"
     },
@@ -227,6 +168,81 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define GDP and GNI.",
+    "Explain three approaches to measuring GDP.",
+    "Distinguish nominal and real national income.",
+    "Evaluate limitations of national income data."
+  ],
+  "simpleExplanation": {
+    "analogy": "GDP is like measuring everything produced inside a factory building. GNI also counts profits sent home by workers and firms operating outside the building."
+  },
+  "faq": [
+    {
+      "q": "Does a higher GDP always mean a country's citizens are better off?",
+      "a": "Not necessarily. A higher GDP indicates greater economic output, but it is not a direct measure of welfare. It fails to account for factors such as income inequality, the value of leisure, environmental degradation, and unpaid work. A country could have a high GDP but poor living standards for the majority of its population if income is highly concentrated."
+    },
+    {
+      "q": "If all prices in an economy double, but output remains the same, what happens to nominal and real GDP?",
+      "a": "In this scenario, nominal GDP would double because it is calculated using current prices. However, real GDP would remain unchanged. This is because real GDP is adjusted for price changes to reflect the actual volume of output, which, in this case, has not changed. This illustrates why real GDP is the crucial measure for assessing economic growth."
+    },
+    {
+      "q": "Is GNI always higher than GDP for a developed country?",
+      "a": "No, this is a common misconception. Whether GNI is higher than GDP depends on the balance of international income flows, not the level of development. Some developed countries, like Switzerland, have large net inflows of property income, making GNI > GDP. Others, like Ireland, host many multinational corporations that repatriate profits, leading to large net outflows and causing GNI to be significantly lower than GDP."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is GDP?",
+      "back": "Gross Domestic Product — total market value of all final goods and services produced within a country's borders in a given period."
+    },
+    {
+      "front": "What is GNI?",
+      "back": "Gross National Income = GDP + net property income from abroad (income earned by residents minus income paid to non-residents)."
+    },
+    {
+      "front": "Three approaches to measuring GDP?",
+      "back": "Expenditure (C + I + G + X − M), income (wages + rent + interest + profit), and output (sum of value added at each production stage)."
+    },
+    {
+      "front": "Nominal vs real GDP?",
+      "back": "Nominal GDP uses current prices; real GDP uses constant (base-year) prices to remove inflation and show actual volume of output."
+    },
+    {
+      "front": "Real GDP growth rate formula?",
+      "back": "((Real GDP₁ − Real GDP₀) ÷ Real GDP₀) × 100 — measures change in output volume, not price changes."
+    },
+    {
+      "front": "Key limitation of GDP as a welfare measure?",
+      "back": "GDP ignores distribution, non-market activity, environmental damage, and leisure — higher GDP does not always mean higher living standards."
+    },
+    {
+      "front": "What is Gross Domestic Product (GDP)?",
+      "back": "The total market value of all final goods and services produced within a country's geographical borders in a specific time period, typically one year."
+    },
+    {
+      "front": "How is Gross National Income (GNI) calculated from GDP?",
+      "back": "GNI = GDP + Net Property Income from Abroad. This accounts for income earned by residents from overseas assets minus income paid to non-residents for assets held domestically."
+    },
+    {
+      "front": "Why is Real GDP considered a more accurate measure of economic growth than Nominal GDP?",
+      "back": "Because Real GDP is adjusted for inflation, it measures the actual change in the volume of goods and services produced, whereas Nominal GDP can be distorted by price level changes."
+    },
+    {
+      "front": "What is GDP per capita and what is its main purpose?",
+      "back": "GDP per capita is the total GDP of a country divided by its population. Its main purpose is to provide a measure of the average income per person, often used for international comparisons of living standards."
+    },
+    {
+      "front": "State two significant limitations of using national income statistics to measure living standards.",
+      "back": "1. They ignore the distribution of income, so a high per capita figure can mask significant inequality. 2. They exclude non-marketed output, such as unpaid household labour and activity in the informal economy."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.1"
+  ],
   "diagramSpec": {
     "steps": [
       {
@@ -259,20 +275,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "Does a higher GDP always mean a country's citizens are better off?",
-      "a": "Not necessarily. A higher GDP indicates greater economic output, but it is not a direct measure of welfare. It fails to account for factors such as income inequality, the value of leisure, environmental degradation, and unpaid work. A country could have a high GDP but poor living standards for the majority of its population if income is highly concentrated."
-    },
-    {
-      "q": "If all prices in an economy double, but output remains the same, what happens to nominal and real GDP?",
-      "a": "In this scenario, nominal GDP would double because it is calculated using current prices. However, real GDP would remain unchanged. This is because real GDP is adjusted for price changes to reflect the actual volume of output, which, in this case, has not changed. This illustrates why real GDP is the crucial measure for assessing economic growth."
-    },
-    {
-      "q": "Is GNI always higher than GDP for a developed country?",
-      "a": "No, this is a common misconception. Whether GNI is higher than GDP depends on the balance of international income flows, not the level of development. Some developed countries, like Switzerland, have large net inflows of property income, making GNI > GDP. Others, like Ireland, host many multinational corporations that repatriate profits, leading to large net outflows and causing GNI to be significantly lower than GDP."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Nominal GDP and Real GDP",
     "columns": [

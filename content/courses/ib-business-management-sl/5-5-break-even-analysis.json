@@ -2,7 +2,10 @@
   "slug": "5-5-break-even-analysis",
   "topicCode": "5.5",
   "title": "Break-even analysis",
-  "unit": { "code": "5", "title": "Operations management" },
+  "unit": {
+    "code": "5",
+    "title": "Operations management"
+  },
   "paper": "P2",
   "paperName": "Business Management SL",
   "status": "premium",
@@ -16,12 +19,14 @@
     "Calculate the margin of safety and the output required for a target profit, and interpret each in context.",
     "Evaluate the benefits and limitations of break-even analysis for business decision-making."
   ],
-  "syllabusObjectivesCovered": ["5.5"],
+  "syllabusObjectivesCovered": [
+    "5.5"
+  ],
   "levelNote": "Common to SL and HL at this level.",
   "simpleExplanation": {
     "title": "Finding the point where you stop losing money",
     "summary": "Break-even analysis finds the exact number of units a business must sell just to cover all its costs — no profit, no loss. Every unit sold after that point starts building profit, and every unit short of it means a loss. It is the first survival target any new product or venture has to clear.",
-    "analogy": "Imagine renting a stall at a market for $100 for the day (a fixed cost you pay whether you sell nothing or sell out). Each smoothie you make costs you $2 in fruit and cups (a variable cost) and you sell it for $6. Every smoothie therefore puts $4 towards paying off that $100 stall fee — that $4 is the contribution. You need 25 smoothies just to cover the stall (100 divided by 4), so 25 is your break-even quantity. Smoothie number 26 onwards is where the profit finally begins, and how far your real sales sit above 25 is your safety cushion.",
+    "analogy": "Imagine renting a stall at a market for $100 for the day (a fixed cost you pay whether you sell nothing or sell out). Each smoothie you make costs you $2 in fruit and cups (a variable cost) and you sell it for $6. Every smoothie therefore puts $4 towards paying off that $100 stall fee - that $4 is the contribution. You need 25 smoothies just to cover the stall (100 divided by 4), so 25 is your break-even quantity. Smoothie number 26 onwards is where the profit finally begins, and how far your real sales sit above 25 is your safety cushion.",
     "steps": [
       "Split every cost into fixed costs (the stall fee, rent, salaries) and variable cost per unit (fruit, materials, direct labour).",
       "Work out the contribution per unit: selling price per unit minus variable cost per unit.",
@@ -29,114 +34,335 @@
       "Use the same figures to find the margin of safety (how far current sales sit above break-even) or the output needed to hit a target profit."
     ]
   },
-  "keyConcepts": ["contribution", "break-even quantity", "margin of safety"],
+  "keyConcepts": [
+    "contribution",
+    "break-even quantity",
+    "margin of safety"
+  ],
   "flashcards": [
-    { "front": "Break-even point (BEP)", "back": "The level of output or sales at which total revenue exactly equals total cost. At this point the business makes neither a profit nor a loss.", "pillLabel": "Definition" },
-    { "front": "Fixed costs (FC)", "back": "Costs that do not change with the level of output in the short run — for example rent, salaries, insurance and loan interest. They must be paid even if output is zero.", "pillLabel": "Definition" },
-    { "front": "Variable costs (VC)", "back": "Costs that change in direct proportion to output — for example raw materials and direct labour. Variable cost per unit is the variable cost of making one unit.", "pillLabel": "Definition" },
-    { "front": "Contribution per unit", "back": "Selling price per unit minus variable cost per unit. It is the amount each unit sold contributes first to paying off fixed costs and then, once break-even is passed, to profit.", "pillLabel": "Formula" },
-    { "front": "Total contribution", "back": "Contribution per unit multiplied by the number of units sold. It also equals total revenue minus total variable costs. Profit = total contribution minus fixed costs.", "pillLabel": "Formula" },
-    { "front": "Break-even quantity", "back": "Fixed costs divided by contribution per unit. It gives the number of units that must be sold so that total contribution exactly covers total fixed costs.", "pillLabel": "Formula" },
-    { "front": "Break-even revenue", "back": "The sales revenue earned at the break-even quantity: break-even quantity multiplied by selling price per unit. It is the revenue needed to cover total costs.", "pillLabel": "Formula" },
-    { "front": "Margin of safety (MoS)", "back": "Actual (or budgeted) output minus break-even output. It shows how far sales can fall before the business drops into a loss — a larger margin means lower risk.", "pillLabel": "Formula" },
-    { "front": "Target-profit output", "back": "(Fixed costs + target profit) divided by contribution per unit. It gives the output needed to earn a specific amount of profit, not just to break even.", "pillLabel": "Formula" },
-    { "front": "Break-even chart axes", "back": "The vertical (y) axis shows costs and revenues in currency; the horizontal (x) axis shows the level of output in units. The break-even point is where the total-revenue and total-cost lines cross.", "pillLabel": "Concept" },
-    { "front": "Trap: contribution vs profit", "back": "Contribution per unit (price minus variable cost) is NOT profit per unit. Contribution still has to pay off fixed costs first; only after break-even does further contribution become profit.", "pillLabel": "Trap" },
-    { "front": "Trap: which cost goes in the formula", "back": "The break-even formula uses contribution per unit (price minus VARIABLE cost per unit) as the denominator — never total cost, and never price minus fixed cost.", "pillLabel": "Trap" }
+    {
+      "front": "Break-even point (BEP)",
+      "back": "The level of output or sales at which total revenue exactly equals total cost. At this point the business makes neither a profit nor a loss.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Fixed costs (FC)",
+      "back": "Costs that do not change with the level of output in the short run — for example rent, salaries, insurance and loan interest. They must be paid even if output is zero.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Variable costs (VC)",
+      "back": "Costs that change in direct proportion to output — for example raw materials and direct labour. Variable cost per unit is the variable cost of making one unit.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Contribution per unit",
+      "back": "Selling price per unit minus variable cost per unit. It is the amount each unit sold contributes first to paying off fixed costs and then, once break-even is passed, to profit.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Total contribution",
+      "back": "Contribution per unit multiplied by the number of units sold. It also equals total revenue minus total variable costs. Profit = total contribution minus fixed costs.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Break-even quantity",
+      "back": "Fixed costs divided by contribution per unit. It gives the number of units that must be sold so that total contribution exactly covers total fixed costs.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Break-even revenue",
+      "back": "The sales revenue earned at the break-even quantity: break-even quantity multiplied by selling price per unit. It is the revenue needed to cover total costs.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Margin of safety (MoS)",
+      "back": "Actual (or budgeted) output minus break-even output. It shows how far sales can fall before the business drops into a loss — a larger margin means lower risk.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Target-profit output",
+      "back": "(Fixed costs + target profit) divided by contribution per unit. It gives the output needed to earn a specific amount of profit, not just to break even.",
+      "pillLabel": "Formula"
+    },
+    {
+      "front": "Break-even chart axes",
+      "back": "The vertical (y) axis shows costs and revenues in currency; the horizontal (x) axis shows the level of output in units. The break-even point is where the total-revenue and total-cost lines cross.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Trap: contribution vs profit",
+      "back": "Contribution per unit (price minus variable cost) is NOT profit per unit. Contribution still has to pay off fixed costs first; only after break-even does further contribution become profit.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Trap: which cost goes in the formula",
+      "back": "The break-even formula uses contribution per unit (price minus VARIABLE cost per unit) as the denominator — never total cost, and never price minus fixed cost.",
+      "pillLabel": "Trap"
+    }
   ],
   "quickCheck": [
-    { "prompt": "A product sells for $30 and has a variable cost per unit of $18. What is the contribution per unit?", "options": ["$48, because you add the two figures", "$12, because contribution = selling price − variable cost per unit", "$30, because contribution equals the selling price", "It cannot be found without knowing the fixed costs"], "answer": "$12, because contribution = selling price − variable cost per unit" },
-    { "prompt": "Fixed costs are $24,000 and the contribution per unit is $6. What is the break-even quantity?", "options": ["144,000 units, because you multiply the two figures", "4,000 units, because break-even = fixed costs ÷ contribution per unit", "$4,000, because break-even is measured in currency", "It cannot be found without the selling price"], "answer": "4,000 units, because break-even = fixed costs ÷ contribution per unit" },
-    { "prompt": "A firm breaks even at 5,000 units and currently sells 7,000 units. What is its margin of safety?", "options": ["12,000 units, because you add current sales and break-even", "2,000 units, because margin of safety = actual output − break-even output", "5,000 units, because that is the break-even point", "35,000 units, because you multiply the two figures"], "answer": "2,000 units, because margin of safety = actual output − break-even output" },
-    { "prompt": "Contribution per unit is $5, fixed costs are $30,000, and the business wants a target profit of $10,000. What output is required?", "options": ["6,000 units, because you ignore the target profit for break-even", "8,000 units, because output = (fixed costs + target profit) ÷ contribution per unit", "2,000 units, because you divide target profit by contribution", "40,000 units, because you add all the dollar figures"], "answer": "8,000 units, because output = (fixed costs + target profit) ÷ contribution per unit" },
-    { "prompt": "On a break-even chart, which statement is correct?", "options": ["The fixed-cost line slopes upward from the origin", "The total-revenue line starts above zero on the vertical axis", "The break-even point is where the total-revenue and total-cost lines intersect", "The total-cost line starts at the origin (0,0)"], "answer": "The break-even point is where the total-revenue and total-cost lines intersect" }
+    {
+      "prompt": "A product sells for $30 and has a variable cost per unit of $18. What is the contribution per unit?",
+      "options": [
+        "$48, because you add the two figures",
+        "$12, because contribution = selling price − variable cost per unit",
+        "$30, because contribution equals the selling price",
+        "It cannot be found without knowing the fixed costs"
+      ],
+      "answer": "$12, because contribution = selling price − variable cost per unit"
+    },
+    {
+      "prompt": "Fixed costs are $24,000 and the contribution per unit is $6. What is the break-even quantity?",
+      "options": [
+        "144,000 units, because you multiply the two figures",
+        "4,000 units, because break-even = fixed costs ÷ contribution per unit",
+        "$4,000, because break-even is measured in currency",
+        "It cannot be found without the selling price"
+      ],
+      "answer": "4,000 units, because break-even = fixed costs ÷ contribution per unit"
+    },
+    {
+      "prompt": "A firm breaks even at 5,000 units and currently sells 7,000 units. What is its margin of safety?",
+      "options": [
+        "12,000 units, because you add current sales and break-even",
+        "2,000 units, because margin of safety = actual output − break-even output",
+        "5,000 units, because that is the break-even point",
+        "35,000 units, because you multiply the two figures"
+      ],
+      "answer": "2,000 units, because margin of safety = actual output − break-even output"
+    },
+    {
+      "prompt": "Contribution per unit is $5, fixed costs are $30,000, and the business wants a target profit of $10,000. What output is required?",
+      "options": [
+        "6,000 units, because you ignore the target profit for break-even",
+        "8,000 units, because output = (fixed costs + target profit) ÷ contribution per unit",
+        "2,000 units, because you divide target profit by contribution",
+        "40,000 units, because you add all the dollar figures"
+      ],
+      "answer": "8,000 units, because output = (fixed costs + target profit) ÷ contribution per unit"
+    },
+    {
+      "prompt": "On a break-even chart, which statement is correct?",
+      "options": [
+        "The fixed-cost line slopes upward from the origin",
+        "The total-revenue line starts above zero on the vertical axis",
+        "The break-even point is where the total-revenue and total-cost lines intersect",
+        "The total-cost line starts at the origin (0,0)"
+      ],
+      "answer": "The break-even point is where the total-revenue and total-cost lines intersect"
+    }
   ],
   "faq": [
-    { "q": "What is the difference between contribution and profit?", "a": "Contribution per unit is selling price minus variable cost per unit — the money each sale frees up to help pay off fixed costs. It is not profit. Profit only appears once total contribution has fully covered fixed costs: Profit = total contribution − fixed costs. Below break-even you are still making positive contribution per unit yet still making an overall loss, because fixed costs are not yet covered. Confusing the two is one of the most common errors in this topic." },
-    { "q": "Why is contribution per unit — not total cost — the denominator in the break-even formula?", "a": "Because break-even asks how many units of contribution you need to wipe out the fixed costs. Each unit sold generates one lot of contribution (price − variable cost), and fixed costs are paid off one contribution at a time. Dividing fixed costs by contribution per unit therefore gives the number of units needed. Dividing by total cost or by price would answer a different question and is a guaranteed lost mark." },
-    { "q": "Can the break-even quantity be a decimal like 152.5 units?", "a": "Mathematically yes, but a business cannot sell half a unit. If a question produces a decimal, round the break-even quantity UP to the next whole number, because selling 152 units would still leave a small loss — you need 153 to be safely at or beyond break-even. Always state the units in your final answer." },
-    { "q": "How do I find the output needed for a target profit rather than just to break even?", "a": "Add the target profit to the fixed costs, then divide by the contribution per unit: output = (fixed costs + target profit) ÷ contribution per unit. The logic is that now every unit's contribution has to cover the fixed costs AND build up the desired profit, so you treat the target profit as if it were an extra block of fixed cost to be paid off." },
-    { "q": "What are the main limitations examiners expect me to know?", "a": "Break-even is a static model: it assumes selling price and costs stay constant at every level of output, which ignores discounts, economies of scale and price changes. It assumes every unit produced is sold, so it ignores unsold inventory. It works cleanly only for a single product, so it is hard to apply to multi-product firms. And it is only as accurate as the cost and price estimates fed into it. Strong evaluation answers weigh these limits against the tool's genuine usefulness for planning rather than just listing them." }
+    {
+      "q": "What is the difference between contribution and profit?",
+      "a": "Contribution per unit is selling price minus variable cost per unit — the money each sale frees up to help pay off fixed costs. It is not profit. Profit only appears once total contribution has fully covered fixed costs: Profit = total contribution − fixed costs. Below break-even you are still making positive contribution per unit yet still making an overall loss, because fixed costs are not yet covered. Confusing the two is one of the most common errors in this topic."
+    },
+    {
+      "q": "Why is contribution per unit — not total cost — the denominator in the break-even formula?",
+      "a": "Because break-even asks how many units of contribution you need to wipe out the fixed costs. Each unit sold generates one lot of contribution (price − variable cost), and fixed costs are paid off one contribution at a time. Dividing fixed costs by contribution per unit therefore gives the number of units needed. Dividing by total cost or by price would answer a different question and is a guaranteed lost mark."
+    },
+    {
+      "q": "Can the break-even quantity be a decimal like 152.5 units?",
+      "a": "Mathematically yes, but a business cannot sell half a unit. If a question produces a decimal, round the break-even quantity UP to the next whole number, because selling 152 units would still leave a small loss — you need 153 to be safely at or beyond break-even. Always state the units in your final answer."
+    },
+    {
+      "q": "How do I find the output needed for a target profit rather than just to break even?",
+      "a": "Add the target profit to the fixed costs, then divide by the contribution per unit: output = (fixed costs + target profit) ÷ contribution per unit. The logic is that now every unit's contribution has to cover the fixed costs AND build up the desired profit, so you treat the target profit as if it were an extra block of fixed cost to be paid off."
+    },
+    {
+      "q": "What are the main limitations examiners expect me to know?",
+      "a": "Break-even is a static model: it assumes selling price and costs stay constant at every level of output, which ignores discounts, economies of scale and price changes. It assumes every unit produced is sold, so it ignores unsold inventory. It works cleanly only for a single product, so it is hard to apply to multi-product firms. And it is only as accurate as the cost and price estimates fed into it. Strong evaluation answers weigh these limits against the tool's genuine usefulness for planning rather than just listing them."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "Break-even analysis is one of the most widely used planning tools in business, applied by everyone from a market-stall start-up to a multinational launching a new product. It turns the relationship between costs, price and volume into a single, concrete target: the level of output at which the business finally covers its costs. From that one calculation managers can judge how risky a plan is, how far sales can fall before losses begin, and how much they must sell to hit a profit goal. Because 5.5 is a quantitative topic, the worked examples below are set out the way our marking engine actually awards marks — a method (M) mark for the correct formula and an accuracy (A) mark for the correct value with units — so you can see exactly where the marks are won and lost." },
-
-    { "type": "heading", "content": "Contribution: the engine of break-even analysis" },
-    { "type": "text", "content": "Everything in this topic rests on one idea: contribution. The contribution per unit is the selling price of one unit minus its variable cost. It is the slice of each sale left over once the direct cost of making that unit has been paid — money that is free to 'contribute' first towards the fixed costs and, once those are covered, towards profit. Total contribution is simply the contribution per unit multiplied by the number of units sold, and it also equals total revenue minus total variable costs. The single most important warning in this whole topic is that contribution is not profit: below break-even a firm can have healthy positive contribution on every unit and still be making an overall loss, because the fixed costs have not yet been paid off." },
-    { "type": "formula", "content": "\\text{Contribution per unit} = \\text{Selling price per unit} - \\text{Variable cost per unit}" },
-    { "type": "formula", "content": "\\text{Total contribution} = \\text{Contribution per unit} \\times \\text{Units sold} = \\text{Profit} + \\text{Fixed costs}" },
-    { "type": "keyPoints", "items": [
-      "**Contribution per unit** = selling price per unit − variable cost per unit.",
-      "**Total contribution** = contribution per unit × quantity sold (also total revenue − total variable costs).",
-      "At the break-even point, total contribution exactly equals total fixed costs, so profit is zero.",
-      "Beyond break-even, **Profit = total contribution − total fixed costs**; contribution is NOT the same as profit."
-    ]},
-
-    { "type": "heading", "content": "The break-even quantity and break-even revenue" },
-    { "type": "text", "content": "The break-even quantity is the number of units a business must sell so that total contribution exactly covers total fixed costs. Because each unit sold delivers one lot of contribution, and fixed costs are paid off one contribution at a time, you find the break-even quantity by dividing total fixed costs by the contribution per unit. The break-even revenue is then the sales income earned at that quantity — the break-even quantity multiplied by the selling price. Notice that the denominator is contribution per unit, not total cost and not price: using the wrong denominator is the classic way to throw away the method mark." },
-    { "type": "formula", "content": "\\text{Break-even quantity (units)} = \\frac{\\text{Total fixed costs}}{\\text{Contribution per unit}}" },
-    { "type": "formula", "content": "\\text{Break-even revenue} = \\text{Break-even quantity} \\times \\text{Selling price per unit}" },
-    { "type": "workedExample", "question": "'Artisan Mugs Ltd' has fixed costs of $20,000 per month. Each mug costs $3 in materials and labour (variable cost) and sells for $8. Calculate (a) the monthly break-even quantity and (b) the break-even revenue.", "solution": "**(a) Break-even quantity**\n1.  Contribution per unit = selling price − variable cost per unit = $8 − $3 = $5 per mug.\n2.  Break-even quantity = total fixed costs ÷ contribution per unit = $20,000 ÷ $5 = **4,000 mugs**.\n\n**(b) Break-even revenue**\n3.  Break-even revenue = break-even quantity × selling price = 4,000 × $8 = **$32,000**.\n\n**Interpretation:** Artisan Mugs Ltd must sell 4,000 mugs, generating $32,000 of revenue each month, just to cover all its costs. Every mug sold beyond 4,000 then adds $5 of profit." },
-
-    { "type": "heading", "content": "The margin of safety" },
-    { "type": "text", "content": "The margin of safety measures the cushion between a firm's actual (or budgeted) output and its break-even output. It answers a manager's key risk question: how far can sales fall before we start losing money? A large margin of safety signals a lower-risk position, because demand can drop a long way before the firm slips below break-even; a small margin is a warning that even a modest fall in sales would tip the business into loss. It is found by subtracting the break-even output from the actual output, and it can also be expressed as a percentage of actual sales." },
-    { "type": "formula", "content": "\\text{Margin of safety (units)} = \\text{Actual output} - \\text{Break-even output}" },
-    { "type": "examTip", "content": "A question may ask for the margin of safety in units, as a revenue figure, or as a percentage of current sales — the percentage is $\\frac{\\text{margin of safety (units)}}{\\text{actual output}} \\times 100$. Read the command carefully and always attach the correct unit ($, units or %) to your answer, because in our marking engine the accuracy (A) mark requires the correct value WITH its unit." },
-    { "type": "workedExample", "question": "A bakery has fixed costs of $5,000 per month. The variable cost per loaf is $1.50 and the selling price is $4.00. It currently sells 3,000 loaves per month. Calculate (a) the break-even quantity, (b) the profit at the current sales level and (c) the margin of safety in units.", "solution": "**(a) Break-even quantity**\n1.  Contribution per loaf = $4.00 − $1.50 = $2.50.\n2.  Break-even quantity = $5,000 ÷ $2.50 = **2,000 loaves**.\n\n**(b) Profit at 3,000 loaves**\n3.  Total contribution = $2.50 × 3,000 = $7,500.\n4.  Profit = total contribution − fixed costs = $7,500 − $5,000 = **$2,500**.\n    *(Check: (actual output − break-even) × contribution = (3,000 − 2,000) × $2.50 = $2,500.)*\n\n**(c) Margin of safety**\n5.  Margin of safety = actual output − break-even output = 3,000 − 2,000 = **1,000 loaves**.\n\n**Interpretation:** sales could fall by 1,000 loaves (a third of current sales) before the bakery would drop into a loss, so it is currently in a fairly comfortable, lower-risk position." },
-
-    { "type": "heading", "content": "Using break-even to hit a target profit" },
-    { "type": "text", "content": "Break-even analysis does more than find the survival point — it can also tell a business how much it must sell to earn a specific amount of profit. The logic is a small extension of the break-even formula: now each unit's contribution must cover the fixed costs AND build up the desired profit, so you treat the target profit as an extra block of cost to be paid off. Add the target profit to the fixed costs and divide by contribution per unit." },
-    { "type": "formula", "content": "\\text{Target-profit output} = \\frac{\\text{Fixed costs} + \\text{Target profit}}{\\text{Contribution per unit}}" },
-    { "type": "workedExample", "question": "A furniture maker has fixed costs of $60,000. Each table sells for $250 and has a variable cost of $150. The owner wants to make a profit of $30,000. Calculate (a) the break-even quantity and (b) the output needed to achieve the target profit.", "solution": "**(a) Break-even quantity**\n1.  Contribution per table = $250 − $150 = $100.\n2.  Break-even quantity = $60,000 ÷ $100 = **600 tables**.\n\n**(b) Output for the target profit**\n3.  Target-profit output = (fixed costs + target profit) ÷ contribution per unit = ($60,000 + $30,000) ÷ $100 = $90,000 ÷ $100 = **900 tables**.\n\n**Interpretation:** the maker must sell 600 tables to break even and 900 tables to earn the $30,000 target profit — the extra 300 tables each add $100 of contribution, which is exactly the $30,000 profit wanted." },
-
-    { "type": "heading", "content": "The break-even chart" },
-    { "type": "text", "content": "A break-even chart shows the same information graphically. Output in units runs along the horizontal (x) axis and costs and revenues in currency run up the vertical (y) axis. Three lines are plotted: the fixed-cost line, the total-cost line and the total-revenue line. The point where total revenue and total cost cross is the break-even point; to its left the total-cost line lies above total revenue, showing a loss, and to its right total revenue lies above total cost, showing a profit. The horizontal gap between the break-even output and the firm's actual output is the margin of safety." },
-    { "type": "keyPoints", "items": [
-      "**X-axis:** level of output (units). **Y-axis:** costs and revenues (currency).",
-      "**Fixed-cost line:** horizontal, because fixed costs do not change with output.",
-      "**Total-cost line:** starts at the fixed-cost level on the y-axis (output zero still incurs fixed costs) and slopes upward as variable costs are added.",
-      "**Total-revenue line:** starts at the origin (0,0) — zero output earns zero revenue — and slopes upward more steeply than total cost.",
-      "**Break-even point:** where the total-revenue and total-cost lines intersect.",
-      "**Loss area** lies to the left of the break-even point (total cost above total revenue); the **profit area** lies to the right (total revenue above total cost).",
-      "**Margin of safety:** the horizontal distance from the break-even output to the actual output."
-    ]},
-
-    { "type": "heading", "content": "Benefits and limitations of break-even analysis" },
-    { "type": "text", "content": "Break-even analysis is popular because it is quick, cheap and easy to understand, and it converts a jumble of cost and price data into a single clear target. But it rests on simplifying assumptions, and strong evaluation answers weigh its usefulness against those limits rather than simply listing one side." },
-    { "type": "keyPoints", "items": [
-      "**Benefit — planning and targets:** gives a precise output and revenue target for survival, useful when writing a business plan or seeking a loan.",
-      "**Benefit — decision support:** lets managers test how changes in price, costs or fixed overheads would move the break-even point before committing.",
-      "**Benefit — risk assessment:** the margin of safety shows how much sales can fall before losses begin.",
-      "**Limitation — static model:** it assumes price and costs are constant at every output, ignoring discounts, price changes and economies of scale that lower unit costs.",
-      "**Limitation — assumes all output is sold:** it treats every unit produced as sold, ignoring unsold inventory.",
-      "**Limitation — single product:** simple break-even is hard to apply to firms selling many products with different prices and costs.",
-      "**Limitation — data quality:** the answer is only as reliable as the cost and price estimates fed in; poor estimates give a misleading break-even point."
-    ]},
-
-    { "type": "heading", "content": "Common mistakes examiners penalise" },
-    { "type": "keyPoints", "items": [
-      "**Using the wrong denominator** — the break-even formula divides fixed costs by CONTRIBUTION per unit (price − variable cost), never by total cost and never by price alone. Wrong denominator loses the method mark.",
-      "**Confusing contribution with profit** — contribution per unit is price minus variable cost; it still has to pay off fixed costs first. Only total contribution minus fixed costs is profit.",
-      "**Subtracting fixed cost instead of variable cost** — contribution is selling price minus VARIABLE cost per unit; using fixed cost per unit here is a classic error.",
-      "**Forgetting the target profit in the target-output formula** — output for a target profit is (fixed costs + target profit) ÷ contribution, not fixed costs ÷ contribution.",
-      "**Reversing the margin of safety** — it is ACTUAL output minus BREAK-EVEN output; doing it the other way round or adding the two is wrong.",
-      "**Dropping the units** — a bare number with no $, units or % attached forfeits the accuracy mark even when the arithmetic is right.",
-      "**Rounding the break-even quantity down** — round UP to the next whole unit, because rounding down still leaves the firm below break-even."
-    ]},
-
-    { "type": "heading", "content": "Model answer — marked the way our engine marks it" },
-    { "type": "text", "content": "Business Management quantitative questions are marked with method (M) and accuracy (A) marks. An M mark rewards showing the correct method — the right formula, with the right figures substituted in — even if the final number is wrong. An A mark rewards the correct final value WITH its unit. Crucially, our engine applies the own-figure rule (follow-through): if you make an error early but then use YOUR figure correctly in the next step, the later method marks are still awarded. Watch how the marks below attach to each formula and each accurate value, and how a slip in one step need not cost the marks in the steps that follow." },
-    { "type": "workedExample", "question": "A business sells a product for $20. Variable cost per unit is $12 and fixed costs are $40,000. Calculate the contribution per unit, the break-even quantity, and the margin of safety if the business currently sells 6,000 units. [6]", "solution": "**Model answer.**\n\n**Step 1 — Contribution per unit**\nContribution per unit = selling price − variable cost per unit = $20 − $12 = **$8 per unit**.\n\n**Step 2 — Break-even quantity**\nBreak-even quantity = fixed costs ÷ contribution per unit = $40,000 ÷ $8 = **5,000 units**.\n\n**Step 3 — Margin of safety**\nMargin of safety = actual output − break-even output = 6,000 − 5,000 = **1,000 units**.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — contribution method:** awarded for the correct method, selling price − variable cost per unit ($20 − $12).\n- **A1 — contribution accuracy:** awarded for the correct value with unit, **$8 per unit**.\n- **M1 — break-even method:** awarded for dividing fixed costs by the contribution per unit ($40,000 ÷ contribution). Under the own-figure rule this method mark is given for correctly using YOUR contribution figure, even if Step 1 was wrong.\n- **A1 — break-even accuracy:** awarded for the correct value with unit, **5,000 units**.\n- **M1 — margin-of-safety method:** awarded for actual output − break-even output (6,000 − your break-even figure) — again followed through from your own figure.\n- **A1 — margin-of-safety accuracy:** awarded for the correct value with unit, **1,000 units**.\n\n**Follow-through in action:** suppose a candidate wrongly wrote contribution as $20 + $12 = $32. They would lose A1 in Step 1, but if they then correctly did $40,000 ÷ $32 = 1,250 units and 6,000 − 1,250 = 4,750 units, they would still earn the two later M marks (correct methods) — losing only the accuracy marks tied to the wrong figures. That is why setting out the formula and every step matters: it protects most of the marks even after a slip.\n\n**What the engine rejects:** a final number with no working (no M marks can be seen), and a correct number stripped of its unit (the A mark is withheld)." },
-    { "type": "examTip", "content": "The Practice button marks YOUR calculation this same way — an M mark for showing the correct formula and substitution, and an A mark for the correct value with its unit, with follow-through on your own figures. So never write the answer alone: state the formula, substitute the numbers, and label every result with $ or 'units'. Showing your method is what lets the engine award most of the marks even if one number slips." },
-
-    { "type": "heading", "content": "Where this leads" },
-    { "type": "text", "content": "Break-even analysis connects directly to the rest of the finance and operations material. The split between fixed and variable costs comes straight from cost and revenue analysis; contribution and break-even feed into production planning, pricing decisions and investment appraisal, where managers test whether a new product or capacity change can clear its break-even point. Master the discipline built here — identify the contribution, apply the right formula, follow through your own figures and always label the units — and you have the method that earns full marks on every quantitative question in Business Management." },
-
-    { "type": "practice", "label": "Get a Paper 2 question marked: calculate contribution, break-even, margin of safety or target-profit output and show your method the way the engine credits it", "href": "/mark?subject=ib-business-management-sl&topic=5.5&component=paper_2" },
-    { "type": "resources", "items": [
-      { "label": "Investopedia: Break-even point", "href": "https://www.investopedia.com/terms/b/breakevenpoint.asp" },
-      { "label": "BBC Bitesize: Break-even", "href": "https://www.bbc.co.uk/bitesize/guides/zc96y4j/revision/1" }
-    ]}
+    {
+      "type": "intro",
+      "content": "Break-even analysis is one of the most widely used planning tools in business, applied by everyone from a market-stall start-up to a multinational launching a new product. It turns the relationship between costs, price and volume into a single, concrete target: the level of output at which the business finally covers its costs. From that one calculation managers can judge how risky a plan is, how far sales can fall before losses begin, and how much they must sell to hit a profit goal. Because 5.5 is a quantitative topic, the worked examples below are set out the way our marking engine actually awards marks — a method (M) mark for the correct formula and an accuracy (A) mark for the correct value with units — so you can see exactly where the marks are won and lost."
+    },
+    {
+      "type": "heading",
+      "content": "Contribution: the engine of break-even analysis"
+    },
+    {
+      "type": "text",
+      "content": "Everything in this topic rests on one idea: contribution. The contribution per unit is the selling price of one unit minus its variable cost. It is the slice of each sale left over once the direct cost of making that unit has been paid — money that is free to 'contribute' first towards the fixed costs and, once those are covered, towards profit. Total contribution is simply the contribution per unit multiplied by the number of units sold, and it also equals total revenue minus total variable costs. The single most important warning in this whole topic is that contribution is not profit: below break-even a firm can have healthy positive contribution on every unit and still be making an overall loss, because the fixed costs have not yet been paid off."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Contribution per unit} = \\text{Selling price per unit} - \\text{Variable cost per unit}"
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Total contribution} = \\text{Contribution per unit} \\times \\text{Units sold} = \\text{Profit} + \\text{Fixed costs}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Contribution per unit** = selling price per unit − variable cost per unit.",
+        "**Total contribution** = contribution per unit × quantity sold (also total revenue − total variable costs).",
+        "At the break-even point, total contribution exactly equals total fixed costs, so profit is zero.",
+        "Beyond break-even, **Profit = total contribution − total fixed costs**; contribution is NOT the same as profit."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The break-even quantity and break-even revenue"
+    },
+    {
+      "type": "text",
+      "content": "The break-even quantity is the number of units a business must sell so that total contribution exactly covers total fixed costs. Because each unit sold delivers one lot of contribution, and fixed costs are paid off one contribution at a time, you find the break-even quantity by dividing total fixed costs by the contribution per unit. The break-even revenue is then the sales income earned at that quantity — the break-even quantity multiplied by the selling price. Notice that the denominator is contribution per unit, not total cost and not price: using the wrong denominator is the classic way to throw away the method mark."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Break-even quantity (units)} = \\frac{\\text{Total fixed costs}}{\\text{Contribution per unit}}"
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Break-even revenue} = \\text{Break-even quantity} \\times \\text{Selling price per unit}"
+    },
+    {
+      "type": "workedExample",
+      "question": "'Artisan Mugs Ltd' has fixed costs of $20,000 per month. Each mug costs $3 in materials and labour (variable cost) and sells for $8. Calculate (a) the monthly break-even quantity and (b) the break-even revenue.",
+      "solution": "**(a) Break-even quantity**\n1.  Contribution per unit = selling price − variable cost per unit = $8 − $3 = $5 per mug.\n2.  Break-even quantity = total fixed costs ÷ contribution per unit = $20,000 ÷ $5 = **4,000 mugs**.\n\n**(b) Break-even revenue**\n3.  Break-even revenue = break-even quantity × selling price = 4,000 × $8 = **$32,000**.\n\n**Interpretation:** Artisan Mugs Ltd must sell 4,000 mugs, generating $32,000 of revenue each month, just to cover all its costs. Every mug sold beyond 4,000 then adds $5 of profit."
+    },
+    {
+      "type": "heading",
+      "content": "The margin of safety"
+    },
+    {
+      "type": "text",
+      "content": "The margin of safety measures the cushion between a firm's actual (or budgeted) output and its break-even output. It answers a manager's key risk question: how far can sales fall before we start losing money? A large margin of safety signals a lower-risk position, because demand can drop a long way before the firm slips below break-even; a small margin is a warning that even a modest fall in sales would tip the business into loss. It is found by subtracting the break-even output from the actual output, and it can also be expressed as a percentage of actual sales."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Margin of safety (units)} = \\text{Actual output} - \\text{Break-even output}"
+    },
+    {
+      "type": "examTip",
+      "content": "A question may ask for the margin of safety in units, as a revenue figure, or as a percentage of current sales — the percentage is $\\frac{\\text{margin of safety (units)}}{\\text{actual output}} \\times 100$. Read the command carefully and always attach the correct unit ($, units or %) to your answer, because in our marking engine the accuracy (A) mark requires the correct value WITH its unit."
+    },
+    {
+      "type": "workedExample",
+      "question": "A bakery has fixed costs of $5,000 per month. The variable cost per loaf is $1.50 and the selling price is $4.00. It currently sells 3,000 loaves per month. Calculate (a) the break-even quantity, (b) the profit at the current sales level and (c) the margin of safety in units.",
+      "solution": "**(a) Break-even quantity**\n1.  Contribution per loaf = $4.00 − $1.50 = $2.50.\n2.  Break-even quantity = $5,000 ÷ $2.50 = **2,000 loaves**.\n\n**(b) Profit at 3,000 loaves**\n3.  Total contribution = $2.50 × 3,000 = $7,500.\n4.  Profit = total contribution − fixed costs = $7,500 − $5,000 = **$2,500**.\n    *(Check: (actual output − break-even) × contribution = (3,000 − 2,000) × $2.50 = $2,500.)*\n\n**(c) Margin of safety**\n5.  Margin of safety = actual output − break-even output = 3,000 − 2,000 = **1,000 loaves**.\n\n**Interpretation:** sales could fall by 1,000 loaves (a third of current sales) before the bakery would drop into a loss, so it is currently in a fairly comfortable, lower-risk position."
+    },
+    {
+      "type": "heading",
+      "content": "Using break-even to hit a target profit"
+    },
+    {
+      "type": "text",
+      "content": "Break-even analysis does more than find the survival point — it can also tell a business how much it must sell to earn a specific amount of profit. The logic is a small extension of the break-even formula: now each unit's contribution must cover the fixed costs AND build up the desired profit, so you treat the target profit as an extra block of cost to be paid off. Add the target profit to the fixed costs and divide by contribution per unit."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Target-profit output} = \\frac{\\text{Fixed costs} + \\text{Target profit}}{\\text{Contribution per unit}}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A furniture maker has fixed costs of $60,000. Each table sells for $250 and has a variable cost of $150. The owner wants to make a profit of $30,000. Calculate (a) the break-even quantity and (b) the output needed to achieve the target profit.",
+      "solution": "**(a) Break-even quantity**\n1.  Contribution per table = $250 − $150 = $100.\n2.  Break-even quantity = $60,000 ÷ $100 = **600 tables**.\n\n**(b) Output for the target profit**\n3.  Target-profit output = (fixed costs + target profit) ÷ contribution per unit = ($60,000 + $30,000) ÷ $100 = $90,000 ÷ $100 = **900 tables**.\n\n**Interpretation:** the maker must sell 600 tables to break even and 900 tables to earn the $30,000 target profit - the extra 300 tables each add $100 of contribution, which is exactly the $30,000 profit wanted."
+    },
+    {
+      "type": "heading",
+      "content": "The break-even chart"
+    },
+    {
+      "type": "text",
+      "content": "A break-even chart shows the same information graphically. Output in units runs along the horizontal (x) axis and costs and revenues in currency run up the vertical (y) axis. Three lines are plotted: the fixed-cost line, the total-cost line and the total-revenue line. The point where total revenue and total cost cross is the break-even point; to its left the total-cost line lies above total revenue, showing a loss, and to its right total revenue lies above total cost, showing a profit. The horizontal gap between the break-even output and the firm's actual output is the margin of safety."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**X-axis:** level of output (units). **Y-axis:** costs and revenues (currency).",
+        "**Fixed-cost line:** horizontal, because fixed costs do not change with output.",
+        "**Total-cost line:** starts at the fixed-cost level on the y-axis (output zero still incurs fixed costs) and slopes upward as variable costs are added.",
+        "**Total-revenue line:** starts at the origin (0,0) — zero output earns zero revenue — and slopes upward more steeply than total cost.",
+        "**Break-even point:** where the total-revenue and total-cost lines intersect.",
+        "**Loss area** lies to the left of the break-even point (total cost above total revenue); the **profit area** lies to the right (total revenue above total cost).",
+        "**Margin of safety:** the horizontal distance from the break-even output to the actual output."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Benefits and limitations of break-even analysis"
+    },
+    {
+      "type": "text",
+      "content": "Break-even analysis is popular because it is quick, cheap and easy to understand, and it converts a jumble of cost and price data into a single clear target. But it rests on simplifying assumptions, and strong evaluation answers weigh its usefulness against those limits rather than simply listing one side."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Benefit — planning and targets:** gives a precise output and revenue target for survival, useful when writing a business plan or seeking a loan.",
+        "**Benefit — decision support:** lets managers test how changes in price, costs or fixed overheads would move the break-even point before committing.",
+        "**Benefit — risk assessment:** the margin of safety shows how much sales can fall before losses begin.",
+        "**Limitation — static model:** it assumes price and costs are constant at every output, ignoring discounts, price changes and economies of scale that lower unit costs.",
+        "**Limitation — assumes all output is sold:** it treats every unit produced as sold, ignoring unsold inventory.",
+        "**Limitation — single product:** simple break-even is hard to apply to firms selling many products with different prices and costs.",
+        "**Limitation — data quality:** the answer is only as reliable as the cost and price estimates fed in; poor estimates give a misleading break-even point."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Using the wrong denominator** — the break-even formula divides fixed costs by CONTRIBUTION per unit (price − variable cost), never by total cost and never by price alone. Wrong denominator loses the method mark.",
+        "**Confusing contribution with profit** — contribution per unit is price minus variable cost; it still has to pay off fixed costs first. Only total contribution minus fixed costs is profit.",
+        "**Subtracting fixed cost instead of variable cost** — contribution is selling price minus VARIABLE cost per unit; using fixed cost per unit here is a classic error.",
+        "**Forgetting the target profit in the target-output formula** — output for a target profit is (fixed costs + target profit) ÷ contribution, not fixed costs ÷ contribution.",
+        "**Reversing the margin of safety** — it is ACTUAL output minus BREAK-EVEN output; doing it the other way round or adding the two is wrong.",
+        "**Dropping the units** — a bare number with no $, units or % attached forfeits the accuracy mark even when the arithmetic is right.",
+        "**Rounding the break-even quantity down** — round UP to the next whole unit, because rounding down still leaves the firm below break-even."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked the way our engine marks it"
+    },
+    {
+      "type": "text",
+      "content": "Business Management quantitative questions are marked with method (M) and accuracy (A) marks. An M mark rewards showing the correct method — the right formula, with the right figures substituted in — even if the final number is wrong. An A mark rewards the correct final value WITH its unit. Crucially, our engine applies the own-figure rule (follow-through): if you make an error early but then use YOUR figure correctly in the next step, the later method marks are still awarded. Watch how the marks below attach to each formula and each accurate value, and how a slip in one step need not cost the marks in the steps that follow."
+    },
+    {
+      "type": "workedExample",
+      "question": "A business sells a product for $20. Variable cost per unit is $12 and fixed costs are $40,000. Calculate the contribution per unit, the break-even quantity, and the margin of safety if the business currently sells 6,000 units. [6]",
+      "solution": "**Model answer.**\n\n**Step 1 — Contribution per unit**\nContribution per unit = selling price − variable cost per unit = $20 − $12 = **$8 per unit**.\n\n**Step 2 — Break-even quantity**\nBreak-even quantity = fixed costs ÷ contribution per unit = $40,000 ÷ $8 = **5,000 units**.\n\n**Step 3 — Margin of safety**\nMargin of safety = actual output − break-even output = 6,000 − 5,000 = **1,000 units**.\n\n---\n**How our marking engine awards the 6 marks:**\n\n- **M1 — contribution method:** awarded for the correct method, selling price − variable cost per unit ($20 − $12).\n- **A1 — contribution accuracy:** awarded for the correct value with unit, **$8 per unit**.\n- **M1 — break-even method:** awarded for dividing fixed costs by the contribution per unit ($40,000 ÷ contribution). Under the own-figure rule this method mark is given for correctly using YOUR contribution figure, even if Step 1 was wrong.\n- **A1 — break-even accuracy:** awarded for the correct value with unit, **5,000 units**.\n- **M1 — margin-of-safety method:** awarded for actual output − break-even output (6,000 − your break-even figure) — again followed through from your own figure.\n- **A1 — margin-of-safety accuracy:** awarded for the correct value with unit, **1,000 units**.\n\n**Follow-through in action:** suppose a candidate wrongly wrote contribution as $20 + $12 = $32. They would lose A1 in Step 1, but if they then correctly did $40,000 ÷ $32 = 1,250 units and 6,000 − 1,250 = 4,750 units, they would still earn the two later M marks (correct methods) — losing only the accuracy marks tied to the wrong figures. That is why setting out the formula and every step matters: it protects most of the marks even after a slip.\n\n**What the engine rejects:** a final number with no working (no M marks can be seen), and a correct number stripped of its unit (the A mark is withheld)."
+    },
+    {
+      "type": "examTip",
+      "content": "The Practice button marks YOUR calculation this same way — an M mark for showing the correct formula and substitution, and an A mark for the correct value with its unit, with follow-through on your own figures. So never write the answer alone: state the formula, substitute the numbers, and label every result with $ or 'units'. Showing your method is what lets the engine award most of the marks even if one number slips."
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Break-even analysis connects directly to the rest of the finance and operations material. The split between fixed and variable costs comes straight from cost and revenue analysis; contribution and break-even feed into production planning, pricing decisions and investment appraisal, where managers test whether a new product or capacity change can clear its break-even point. Master the discipline built here — identify the contribution, apply the right formula, follow through your own figures and always label the units — and you have the method that earns full marks on every quantitative question in Business Management."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 2 question marked: calculate contribution, break-even, margin of safety or target-profit output and show your method the way the engine credits it",
+      "href": "/mark?subject=ib-business-management-sl&topic=5.5&component=paper_2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Investopedia: Break-even point",
+          "href": "https://www.investopedia.com/terms/b/breakevenpoint.asp"
+        },
+        {
+          "label": "BBC Bitesize: Break-even",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zc96y4j/revision/1"
+        }
+      ]
+    }
   ],
   "generatorVersion": "ib-course-authored-1"
 }

@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 A Level macro — circular flow, injections, withdrawals, and AD with GeoGebra.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Draw the circular flow for open economy.",
-    "Define injections and withdrawals.",
-    "Explain equilibrium national income.",
-    "Link flow to AD components."
-  ],
-  "simpleExplanation": {
-    "title": "Money flows round the economy",
-    "summary": "Households and firms exchange goods and factor services. Savings, tax, and imports leak; investment, government spending, exports inject.",
-    "steps": [
-      "Withdrawals: S + T + M.",
-      "Injections: I + G + X.",
-      "Equilibrium: injections = withdrawals.",
-      "AD = C + I + G + (X − M)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Withdrawals (leakages) from circular flow?",
-      "back": "Savings (S) + Taxation (T) + Imports (M) — income leaving the domestic flow."
-    },
-    {
-      "front": "Injections into circular flow?",
-      "back": "Investment (I) + Government spending (G) + Exports (X) — spending entering the domestic flow."
-    },
-    {
-      "front": "Equilibrium national income condition?",
-      "back": "Injections = Withdrawals (I + G + X = S + T + M) — no tendency for Y to change."
-    },
-    {
-      "front": "Link circular flow to AD?",
-      "back": "AD = C + I + G + (X − M) — components are injections minus import leakage."
-    },
-    {
-      "front": "What happens if injections > withdrawals?",
-      "back": "National income rises — multiplier process until withdrawals increase enough to match injections."
-    },
-    {
-      "front": "Open economy vs closed?",
-      "back": "Open adds foreign sector — exports inject, imports withdraw; trade balance (X − M) affects equilibrium Y."
-    },
-    {
-      "front": "What is the 'circular flow of income'?",
-      "back": "A model of the economy showing the flow of money, goods, and services between key economic agents, primarily households and firms."
-    },
-    {
-      "front": "Define a 'withdrawal' in the context of the circular flow.",
-      "back": "Any income that is not passed on in the circular flow of income. It is a leakage of spending from the domestic economy. The three withdrawals are Savings (S), Taxation (T), and Imports (M)."
-    },
-    {
-      "front": "Define an 'injection' in the context of the circular flow.",
-      "back": "An addition of spending into the circular flow of income that does not come from households' current income. The three injections are Investment (I), Government Spending (G), and Exports (X)."
-    },
-    {
-      "front": "What is the condition for equilibrium in the circular flow of income?",
-      "back": "The economy is in equilibrium when planned injections equal planned withdrawals. (J = W or I + G + X = S + T + M)."
-    },
-    {
-      "front": "What happens to national income if injections are greater than withdrawals?",
-      "back": "National income, output, and employment will rise. The economy will expand until a new, higher level of equilibrium income is reached."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -182,6 +119,11 @@
       "solution": "(a) **MPW** = MPS + MPT + MPM = 0.20 + 0.25 + 0.15 = **0.60**\n\n(b) If S is **$30bn below** equilibrium S, then **injections exceed withdrawals by $30bn** (or equivalently, withdrawals need to rise by $30bn).\n\n**Multiplier** = 1/MPW = 1/0.60 = **1.67**\n\n**ΔY** = excess injection × multiplier = $30bn × 1.67 = **$50bn increase** in national income.\n\nAt higher Y, savings, tax, and imports all rise until I + G + X = S + T + M again.\n\n**Check logic:** Rising Y increases withdrawals via the 60% MPW until the $30bn gap in S is closed."
     },
     {
+      "type": "workedExample",
+      "question": "An economy is described by the following data (in $ billions):\n- Investment (I) = 200\n- Government Spending (G) = 300\n- Exports (X) = 150\n- Savings (S) = -50 + 0.1Y\n- Taxation (T) = 0.2Y\n- Imports (M) = 0.15Y\nWhere Y is the national income.\n\nCalculate the equilibrium level of national income (Y). [6 marks]",
+      "solution": "Step 1: State the equilibrium condition.\nThe economy is in equilibrium when total injections equal total withdrawals.\nJ = W\nI + G + X = S + T + M\n\nStep 2: Substitute the given values and functions into the equation.\n200 + 300 + 150 = (-50 + 0.1Y) + (0.2Y) + (0.15Y)\n\nStep 3: Simplify both sides of the equation.\nTotal Injections (J) = 650\nTotal Withdrawals (W) = -50 + (0.1 + 0.2 + 0.15)Y = -50 + 0.45Y\nSo, the equation becomes:\n650 = -50 + 0.45Y\n\nStep 4: Solve for Y.\nAdd 50 to both sides:\n650 + 50 = 0.45Y\n700 = 0.45Y\n\nDivide by 0.45:\nY = 700 / 0.45\nY ≈ 1555.56\n\nStep 5: State the final answer.\nThe equilibrium level of national income is approximately **$1555.56 billion**."
+    },
+    {
       "type": "practice",
       "label": "Mark a circular flow question",
       "href": "/mark?subject=9708&topic=9.1"
@@ -211,6 +153,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Draw the circular flow for open economy.",
+    "Define injections and withdrawals.",
+    "Explain equilibrium national income.",
+    "Link flow to AD components."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "In the circular flow model, is saving the same as investment?",
+      "a": "No, this is a common misconception. While they are both financial flows, they are distinct activities performed by different groups for different reasons. Saving is primarily done by households to postpone consumption. Investment is spending by firms on capital goods to increase productive capacity. In equilibrium, the value of planned saving may equal the value of planned investment (in a simple model), but the acts themselves are different."
+    },
+    {
+      "q": "If injections must equal withdrawals for equilibrium, does this mean the economy cannot grow?",
+      "a": "Not at all. The condition J=W means the level of national income is stable or in equilibrium at a particular point in time. Economic growth occurs when this equilibrium level of national income increases over time. For example, if firms become more optimistic and increase investment (an injection), national income will rise to a new, higher equilibrium level. This change from one equilibrium point to a higher one constitutes economic growth."
+    },
+    {
+      "q": "Does the government budget have to be balanced for the circular flow to be in equilibrium?",
+      "a": "No. The overall circular flow can be in equilibrium (J=W) even if the government's budget is not balanced. For example, a government budget deficit (G > T) can be offset by a trade surplus (X > M) or an excess of private savings over investment (S > I). The key is that the sum of all injections (I+G+X) must equal the sum of all withdrawals (S+T+M), not that each individual injection must equal its corresponding withdrawal."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "Withdrawals (leakages) from circular flow?",
+      "back": "Savings (S) + Taxation (T) + Imports (M) — income leaving the domestic flow."
+    },
+    {
+      "front": "Injections into circular flow?",
+      "back": "Investment (I) + Government spending (G) + Exports (X) — spending entering the domestic flow."
+    },
+    {
+      "front": "Equilibrium national income condition?",
+      "back": "Injections = Withdrawals (I + G + X = S + T + M) — no tendency for Y to change."
+    },
+    {
+      "front": "Link circular flow to AD?",
+      "back": "AD = C + I + G + (X − M) — components are injections minus import leakage."
+    },
+    {
+      "front": "What happens if injections > withdrawals?",
+      "back": "National income rises — multiplier process until withdrawals increase enough to match injections."
+    },
+    {
+      "front": "Open economy vs closed?",
+      "back": "Open adds foreign sector — exports inject, imports withdraw; trade balance (X − M) affects equilibrium Y."
+    },
+    {
+      "front": "What is the 'circular flow of income'?",
+      "back": "A model of the economy showing the flow of money, goods, and services between key economic agents, primarily households and firms."
+    },
+    {
+      "front": "Define a 'withdrawal' in the context of the circular flow.",
+      "back": "Any income that is not passed on in the circular flow of income. It is a leakage of spending from the domestic economy. The three withdrawals are Savings (S), Taxation (T), and Imports (M)."
+    },
+    {
+      "front": "Define an 'injection' in the context of the circular flow.",
+      "back": "An addition of spending into the circular flow of income that does not come from households' current income. The three injections are Investment (I), Government Spending (G), and Exports (X)."
+    },
+    {
+      "front": "What is the condition for equilibrium in the circular flow of income?",
+      "back": "The economy is in equilibrium when planned injections equal planned withdrawals. (J = W or I + G + X = S + T + M)."
+    },
+    {
+      "front": "What happens to national income if injections are greater than withdrawals?",
+      "back": "National income, output, and employment will rise. The economy will expand until a new, higher level of equilibrium income is reached."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.1"
   ],
   "diagramSpec": {
     "steps": [
@@ -244,20 +259,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "In the circular flow model, is saving the same as investment?",
-      "a": "No, this is a common misconception. While they are both financial flows, they are distinct activities performed by different groups for different reasons. Saving is primarily done by households to postpone consumption. Investment is spending by firms on capital goods to increase productive capacity. In equilibrium, the value of planned saving may equal the value of planned investment (in a simple model), but the acts themselves are different."
-    },
-    {
-      "q": "If injections must equal withdrawals for equilibrium, does this mean the economy cannot grow?",
-      "a": "Not at all. The condition J=W means the level of national income is stable or in equilibrium at a particular point in time. Economic growth occurs when this equilibrium level of national income increases over time. For example, if firms become more optimistic and increase investment (an injection), national income will rise to a new, higher equilibrium level. This change from one equilibrium point to a higher one constitutes economic growth."
-    },
-    {
-      "q": "Does the government budget have to be balanced for the circular flow to be in equilibrium?",
-      "a": "No. The overall circular flow can be in equilibrium (J=W) even if the government's budget is not balanced. For example, a government budget deficit (G > T) can be offset by a trade surplus (X > M) or an excess of private savings over investment (S > I). The key is that the sum of all injections (I+G+X) must equal the sum of all withdrawals (S+T+M), not that each individual injection must equal its corresponding withdrawal."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Injections and Withdrawals",
     "columns": [

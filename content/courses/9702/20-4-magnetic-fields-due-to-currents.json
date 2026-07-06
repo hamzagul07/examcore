@@ -6,65 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Magnetic fields due to currents (20.4). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the magnetic field patterns produced by currents in straight wires and solenoids.",
-    "Apply the Right-Hand Grip Rule to determine magnetic field direction.",
-    "Calculate magnetic field strengths and forces between parallel wires using relevant formulae."
-  ],
-  "simpleExplanation": {
-    "title": "Currents: Magnets on the Move",
-    "summary": "It might seem surprising, but any moving electric charge, like an electric current flowing through a wire, naturally creates a magnetic field around it. This lesson explores how these magnetic fields look, how strong they are, and how they can even exert forces on other current-carrying wires.",
-    "analogy": "Imagine a fast-flowing river. The main current is like the electric current in a wire. The ripples and eddies that spread outwards and influence everything near the riverbanks are like the magnetic field created by the current, invisibly affecting its surroundings.",
-    "steps": [
-      "Visualise electric current as the fundamental source of a magnetic field.",
-      "Use the Right-Hand Grip Rule to determine the direction of the magnetic field around a straight current-carrying wire.",
-      "Understand how the direction of current affects the attractive or repulsive forces between parallel wires.",
-      "Recognise the characteristics of the strong, uniform magnetic field found inside a current-carrying solenoid."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "How do electric currents create magnetic fields?",
-      "back": "Electric currents, which are moving electric charges, inherently generate magnetic fields around them."
-    },
-    {
-      "front": "What rule determines the direction of the magnetic field around a straight current-carrying wire?",
-      "back": "The Right-Hand Grip Rule (or Right-Hand Rule)."
-    },
-    {
-      "front": "What is the formula for the force per unit length between two parallel wires carrying currents $I_1$ and $I_2$ separated by distance $r$?",
-      "back": "$$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$"
-    },
-    {
-      "front": "How does inserting an iron core affect a solenoid's magnetic field?",
-      "back": "The magnetic field strength inside the solenoid significantly increases."
-    },
-    {
-      "front": "Describe the magnetic field inside a current-carrying solenoid.",
-      "back": "It is strong, uniform, and its pattern closely resembles that of a bar magnet."
-    },
-    {
-      "front": "What does $\\mu_0$ represent in magnetic field formulae?",
-      "back": "It's the permeability of free space, a constant that quantifies how easily a magnetic field can pass through a vacuum."
-    },
-    {
-      "front": "What is the magnetic field pattern around a straight current-carrying wire?",
-      "back": "It consists of concentric circles centred on the wire, with the field strength decreasing with distance."
-    },
-    {
-      "front": "Under what condition do two parallel current-carrying wires attract each other?",
-      "back": "When they carry electric currents flowing in the same direction."
-    },
-    {
-      "front": "How do you determine the North pole of a solenoid?",
-      "back": "If, when viewed from an end, the current appears to flow anti-clockwise, that end is the North pole."
-    },
-    {
-      "front": "What is the formula for the magnetic field strength $B$ at distance $r$ from a long straight wire?",
-      "back": "$$B = \\frac{\\mu_0 I}{2\\pi r}$$"
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -81,11 +23,10 @@
     {
       "type": "keyPoints",
       "items": [
-        "20.4 Magnetic fields due to currents.",
-        "Magnetic field patterns are formed wherever a current is flowing.",
-        "An electromagnet is a temporary magnet made by winding an insulated wire around a soft iron core, forming a coil known as a solenoid.",
-        "When current passes through the solenoid it produces a magnetic field.",
-        "The solenoid is said to magnetised and becomes an electromagnet."
+        "A current-carrying wire produces a magnetic field consisting of concentric circles.",
+        "The direction of the field is given by the Right-Hand Grip Rule.",
+        "Field strength is directly proportional to the current ($B \\propto I$).",
+        "Field strength is inversely proportional to the perpendicular distance from the wire ($B \\propto 1/r$)."
       ]
     },
     {
@@ -94,7 +35,12 @@
     },
     {
       "type": "formula",
-      "content": "The strength of this magnetic field (B) at a distance 'r' from a long straight wire is given by: $$B = \\frac{\\mu_0 I}{2\\pi r}$$ Here, I is the current, and $\\mu_0$ is the **permeability of free space** ($4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$), a constant describing how magnetic fields interact with a vacuum."
+      "content": "The strength of this magnetic field (B), also known as magnetic flux density, at a perpendicular distance 'r' from a long straight wire is given by: $$B = \\frac{\\mu_0 I}{2\\pi r}$$ Here, I is the current, and $\\mu_0$ is the **permeability of free space** ($4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$), a constant describing how magnetic fields interact with a vacuum."
+    },
+    {
+      "type": "workedExample",
+      "question": "A long, straight electrical cable carries a steady current of 12.0 A. Calculate the magnetic flux density at a point 4.0 cm from the centre of the cable. (Use $\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$)",
+      "solution": "1.  **Identify known values and convert units:**\n    Current $I = 12.0 \\text{ A}$\n    Distance $r = 4.0 \\text{ cm} = 0.040 \\text{ m}$\n    Permeability of free space $\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$\n2.  **Choose the correct formula:**\n    The formula for magnetic flux density near a long straight wire is: $$B = \\frac{\\mu_0 I}{2\\pi r}$$ \n3.  **Substitute the values into the formula:**\n    $$B = \\frac{(4\\pi \\times 10^{-7}) \\times (12.0)}{2\\pi \\times (0.040)}$$\n4.  **Simplify and perform the calculation:**\n    Notice that $4\\pi$ in the numerator and $2\\pi$ in the denominator simplify to 2.\n    $$B = \\frac{2 \\times 10^{-7} \\times 12.0}{0.040}$$\n    $$B = \\frac{24.0 \\times 10^{-7}}{0.040} = 600 \\times 10^{-7} = 6.0 \\times 10^{-5} \\text{ T}$$\n\n    **Answer:** The magnetic flux density at 4.0 cm from the cable is $6.0 \\times 10^{-5} \\text{ T}$."
     },
     {
       "type": "heading",
@@ -102,14 +48,14 @@
     },
     {
       "type": "text",
-      "content": "Because each current-carrying wire produces its own magnetic field, two parallel wires carrying currents will exert magnetic forces on each other. This interaction is a direct consequence of one wire's current experiencing a force from the other wire's magnetic field. The direction of this force depends entirely on the relative directions of the currents."
+      "content": "Because each current-carrying wire produces its own magnetic field, two parallel wires carrying currents will exert magnetic forces on each other. This interaction is a direct consequence of one wire's current experiencing a force from the other wire's magnetic field (as per $F=BIL$). The direction of this force depends entirely on the relative directions of the currents."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Two parallel current-carrying wires exert forces on each other.",
-        "If currents are in the same direction, the wires attract.",
-        "If currents are in opposite directions, the wires repel."
+        "Two parallel current-carrying wires exert equal and opposite forces on each other.",
+        "If currents flow in the **same direction**, the wires **attract**.",
+        "If currents flow in **opposite directions**, the wires **repel**."
       ]
     },
     {
@@ -117,29 +63,36 @@
       "content": "The force per unit length ($\\frac{F}{L}$) between two long, parallel current-carrying wires separated by a distance 'r' is: $$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$ Where $I_1$ and $I_2$ are the currents in the two wires."
     },
     {
+      "type": "workedExample",
+      "question": "Two long, parallel wires are separated by a distance of 0.15 m. Wire 1 carries a current of 3.0 A, and Wire 2 carries a current of 5.0 A in the same direction. Calculate the force per unit length between the wires. ($\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$)",
+      "solution": "1.  **Identify known values:**\n    Current $I_1 = 3.0 \\text{ A}$\n    Current $I_2 = 5.0 \\text{ A}$\n    Separation $r = 0.15 \\text{ m}$\n    Permeability of free space $\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$\n2.  **Choose the correct formula:**\n    The formula for force per unit length between parallel wires is: $$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$ \n3.  **Substitute the values into the formula:**\n    $$\\frac{F}{L} = \\frac{(4\\pi \\times 10^{-7}) \\times (3.0) \\times (5.0)}{2\\pi \\times (0.15)}$$\n4.  **Perform the calculation:**\n    $$\\frac{F}{L} = \\frac{2 \\times 10^{-7} \\times 15}{0.15} = \\frac{30 \\times 10^{-7}}{0.15} = 200 \\times 10^{-7} = 2.0 \\times 10^{-5} \\text{ N m}^{-1}$$\n5.  **State the direction of the force:**\n    Since the currents are in the same direction, the force between the wires is **attractive**.\n\n    **Answer:** The force per unit length between the wires is $2.0 \\times 10^{-5} \\text{ N m}^{-1}$ (attractive)."
+    },
+    {
       "type": "heading",
       "content": "Magnetic Fields from Coils and Solenoids"
     },
     {
       "type": "text",
-      "content": "A single loop of current-carrying wire also generates a magnetic field, most intense at its centre. However, for a powerful and controlled magnetic field, we turn to **solenoids**. A solenoid is essentially a long coil of wire, tightly wound, which produces a remarkably strong and uniform magnetic field within its interior when current flows through it."
+      "content": "A single loop of current-carrying wire also generates a magnetic field, most intense at its centre. However, for a powerful and controlled magnetic field, we turn to **solenoids**. A solenoid is essentially a long coil of wire, tightly wound, which produces a remarkably strong and uniform magnetic field within its interior when current flows through it. This makes them powerful and controllable electromagnets."
     },
     {
       "type": "keyPoints",
       "items": [
-        "A single current loop creates a field strongest at its centre.",
-        "A solenoid produces a strong, uniform magnetic field inside.",
-        "The solenoid's field pattern resembles a bar magnet's.",
-        "Solenoid polarity (N/S) depends on current direction view.",
-        "Clockwise current (from an end) means that end is a South pole.",
-        "Anti-clockwise current (from an end) means that end is a North pole.",
-        "Adding a soft iron core greatly increases a solenoid's field strength."
+        "A solenoid is a coil of wire that produces a strong, uniform magnetic field inside when current flows.",
+        "The external field pattern of a solenoid resembles that of a bar magnet.",
+        "The polarity (N/S poles) is found using the Right-Hand Grip Rule: fingers follow the current, thumb points to North.",
+        "Clockwise current (viewed from an end) means that end is a South pole.",
+        "Anti-clockwise current (viewed from an end) means that end is a North pole.",
+        "Adding a soft iron core (making an electromagnet) greatly increases the field strength."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "Two long, parallel wires are separated by a distance of 0.15 m. Wire 1 carries a current of 3.0 A, and Wire 2 carries a current of 5.0 A in the same direction. Calculate the force per unit length between the wires. ($\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$)",
-      "solution": "1.  **Identify known values:**\n    Current $I_1 = 3.0 \\text{ A}$\n    Current $I_2 = 5.0 \\text{ A}$\n    Separation $r = 0.15 \\text{ m}$\n    Permeability of free space $\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$\n2.  **Choose the correct formula:**\n    The formula for force per unit length between parallel wires is: $$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$ \n3.  **Substitute the values into the formula:**\n    $$\\frac{F}{L} = \\frac{(4\\pi \\times 10^{-7}) \\times (3.0) \\times (5.0)}{2\\pi \\times (0.15)}$$\n4.  **Perform the calculation:**\n    $$\\frac{F}{L} = \\frac{60\\pi \\times 10^{-7}}{0.3\\pi} = \\frac{60 \\times 10^{-7}}{0.3} = 200 \\times 10^{-7} = 2.0 \\times 10^{-5} \\text{ N m}^{-1}$$\n5.  **State the direction of the force:**\n    Since the currents are in the same direction, the force between the wires is **attractive**.\n\n    **Answer:** The force per unit length between the wires is $2.0 \\times 10^{-5} \\text{ N m}^{-1}$ (attractive)."
+      "type": "formula",
+      "content": "The magnetic flux density B inside a long solenoid (far from its ends) is given by: $$B = \\mu_0 n I$$ where $I$ is the current and $n$ is the number of turns per unit length ($n = N/L$, where N is total turns and L is length)."
+    },
+    {
+      "type": "text",
+      "content": "The ability to create a strong, uniform magnetic field that can be switched on and off makes solenoids incredibly useful. They are the core component of **electromagnets**, which are used in a vast range of applications, including electric relays, circuit breakers, MRI machines, and particle accelerators."
     },
     {
       "type": "examTip",
@@ -168,27 +121,111 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe the magnetic field patterns produced by currents in straight wires and solenoids.",
+    "Apply the Right-Hand Grip Rule to determine magnetic field direction.",
+    "Calculate magnetic field strengths for straight wires and solenoids.",
+    "Calculate magnetic forces between parallel wires using relevant formulae."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a fast-flowing river. The main current is like the electric current in a wire. The ripples and eddies that spread outwards and influence everything near the riverbanks are like the magnetic field created by the current, invisibly affecting its surroundings."
+  },
   "faq": [
     {
       "q": "How does a current-carrying wire produce a magnetic field?",
-      "a": "A current-carrying wire produces a magnetic field because electric current is a flow of charged particles (electrons). These moving charges inherently generate a magnetic field in the space surrounding their path, as described by the fundamental principles of electromagnetism."
+      "a": "A current-carrying wire produces a magnetic field because electric current is a flow of charged particles (electrons). According to the principles of electromagnetism, any moving charge generates a magnetic field in the space surrounding its path."
     },
     {
       "q": "Why is a solenoid's magnetic field uniform inside?",
-      "a": "Inside a long solenoid, the magnetic fields from each individual turn of the coil add up, effectively cancelling out any transverse components and reinforcing the longitudinal components. This results in nearly parallel, equally spaced magnetic field lines, indicating a strong and remarkably uniform magnetic field within its core."
+      "a": "Inside a long solenoid, the magnetic fields from each individual turn of the coil add up constructively. The components of the field perpendicular to the axis largely cancel out, while the components parallel to the axis reinforce each other. This results in nearly parallel, equally spaced magnetic field lines, indicating a strong and remarkably uniform magnetic field within its core."
     },
     {
       "q": "What is the significance of the permeability of free space ($\\mu_0$)?",
-      "a": "The permeability of free space ($\\mu_0$) is a fundamental physical constant that quantifies the ability of a vacuum to permit the formation of a magnetic field within it. It acts as a proportionality constant in equations relating magnetic fields to electric currents, indicating how readily a magnetic field can 'pass through' or be established in empty space."
+      "a": "The permeability of free space ($\\mu_0$) is a fundamental physical constant that quantifies the ability of a vacuum to support the formation of a magnetic field. It acts as a proportionality constant in equations relating magnetic fields to electric currents, essentially defining the strength of the magnetic field produced by a given current in a vacuum."
+    },
+    {
+      "q": "How is the formula for the force between two wires derived?",
+      "a": "The formula is derived by considering one wire creating a magnetic field, and the second wire experiencing a force due to that field. The field from wire 1 is $B_1 = (\\mu_0 I_1)/(2\\pi r)$. The force on a length L of wire 2 in this field is $F_2 = B_1 I_2 L$. Substituting $B_1$ gives $F_2 = ((\\mu_0 I_1)/(2\\pi r)) I_2 L$. Rearranging for force per unit length gives $F/L = (\\mu_0 I_1 I_2)/(2\\pi r)$."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "How do electric currents create magnetic fields?",
+      "back": "Electric currents, which are moving electric charges, inherently generate magnetic fields around them."
+    },
+    {
+      "front": "What rule determines the direction of the magnetic field around a straight current-carrying wire?",
+      "back": "The Right-Hand Grip Rule (or Right-Hand Rule)."
+    },
+    {
+      "front": "What is the formula for the force per unit length between two parallel wires carrying currents $I_1$ and $I_2$ separated by distance $r$?",
+      "back": "$$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$"
+    },
+    {
+      "front": "How does inserting an iron core affect a solenoid's magnetic field?",
+      "back": "The magnetic field strength inside the solenoid significantly increases because iron is a ferromagnetic material with high magnetic permeability."
+    },
+    {
+      "front": "Describe the magnetic field inside a long current-carrying solenoid.",
+      "back": "It is strong, uniform (parallel field lines), and directed along the axis of the solenoid. Its pattern closely resembles that of a bar magnet."
+    },
+    {
+      "front": "What does $\\mu_0$ represent in magnetic field formulae?",
+      "back": "It's the permeability of free space, a constant ($4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$) that quantifies how easily a magnetic field can pass through a vacuum."
+    },
+    {
+      "front": "What is the magnetic field pattern around a straight current-carrying wire?",
+      "back": "It consists of concentric circles centred on the wire, with the field strength decreasing with distance."
+    },
+    {
+      "front": "Under what condition do two parallel current-carrying wires attract each other?",
+      "back": "When they carry electric currents flowing in the same direction."
+    },
+    {
+      "front": "How do you determine the North pole of a solenoid?",
+      "back": "Using the Right-Hand Grip Rule: curl your fingers in the direction of the current around the coil; your thumb will point towards the North pole. Alternatively, if viewed from an end, an anti-clockwise current indicates a North pole."
+    },
+    {
+      "front": "What is the formula for the magnetic field strength $B$ at distance $r$ from a long straight wire?",
+      "back": "$$B = \\frac{\\mu_0 I}{2\\pi r}$$"
+    },
+    {
+      "front": "What is the formula for the magnetic field strength B inside a long solenoid?",
+      "back": "$$B = \\mu_0 n I$$, where n is the number of turns per unit length and I is the current."
+    },
+    {
+      "front": "In the solenoid formula $B = \\mu_0 n I$, what does 'n' represent?",
+      "back": "'n' is the number of turns per unit length of the solenoid, calculated as N/L where N is the total number of turns and L is the length."
+    },
+    {
+      "front": "How does the magnetic field strength B vary with distance r from a long straight wire?",
+      "back": "It is inversely proportional to the distance ($B \\propto 1/r$)."
+    },
+    {
+      "front": "Under what condition do two parallel current-carrying wires repel each other?",
+      "back": "When they carry electric currents flowing in opposite directions."
+    },
+    {
+      "front": "Name one practical application of a solenoid.",
+      "back": "Solenoids are used as electromagnets in devices like electric bells, relays, and circuit breakers."
+    },
+    {
+      "front": "What is the relationship between the magnetic field strength B and the current I in a long straight wire?",
+      "back": "The magnetic field strength is directly proportional to the current ($B \\propto I$)."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "20.4.1",
+    "20.4.2",
+    "20.4.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/20-4-magnetic-fields-due-to-currents.png",
     "alt": "Senpai Corner reference diagram for 20.4 Magnetic fields due to currents"
-  }
+  },
+  "updated": "2026-06-26"
 }

@@ -6,75 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Linear momentum and its conservation (3.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define linear momentum and calculate it using appropriate formulae.",
-    "Apply the Principle of Conservation of Momentum to solve problems.",
-    "Distinguish between elastic and inelastic collisions based on kinetic energy."
-  ],
-  "simpleExplanation": {
-    "title": "The 'Oomph' of Moving Things",
-    "summary": "Linear momentum tells us how much 'oomph' an object has due to its motion. It's a key concept for understanding how objects interact, especially during collisions or explosions.",
-    "analogy": "Imagine two bumper cars. When they collide, their individual speeds and directions change, but the total 'push' or 'oomph' of the system (both cars together) remains the same, as long as no external force like friction from the floor or a wall acts on them.",
-    "steps": [
-      "**1. Define Momentum:** Understand it's mass x velocity ($p = mv$).",
-      "**2. Vector Direction:** Remember momentum always points the same way as velocity.",
-      "**3. Conservation:** Learn that total momentum stays constant in a closed system.",
-      "**4. Collisions:** Distinguish between elastic (KE conserved) and inelastic (KE not conserved)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the formula for calculating linear momentum?",
-      "back": "Linear momentum ($p$) is calculated as the product of mass ($m$) and velocity ($v$), so $p = mv$.",
-      "pillLabel": "Momentum formula"
-    },
-    {
-      "front": "Is linear momentum a scalar or vector quantity?",
-      "back": "Linear momentum is a vector quantity, meaning it has both magnitude and direction.",
-      "pillLabel": "Scalar or vector?"
-    },
-    {
-      "front": "How is the direction of momentum determined?",
-      "back": "The direction of an object's momentum is always the same as the direction of its velocity.",
-      "pillLabel": "Momentum direction"
-    },
-    {
-      "front": "How does force relate to an object's momentum?",
-      "back": "Force is defined as the rate of change of an object's linear momentum ($F = \\frac{\\Delta p}{\\Delta t}$).",
-      "pillLabel": "Force & momentum"
-    },
-    {
-      "front": "When is the total momentum of a system conserved?",
-      "back": "The total momentum of a closed system is conserved if no net external forces act upon it.",
-      "pillLabel": "Conservation conditions"
-    },
-    {
-      "front": "What is the primary difference between an elastic and an inelastic collision regarding energy?",
-      "back": "In an elastic collision, total kinetic energy is conserved, while in an inelastic collision, total kinetic energy is not conserved.",
-      "pillLabel": "Elastic vs inelastic"
-    },
-    {
-      "front": "What happens to the kinetic energy that is 'lost' in an inelastic collision?",
-      "back": "The 'lost' kinetic energy is converted into other forms, such as heat, sound, or energy for deformation.",
-      "pillLabel": "KE in inelastic"
-    },
-    {
-      "front": "In a perfectly elastic collision, what happens to the relative speed of approach and separation?",
-      "back": "The relative speed at which objects approach each other before impact equals their relative speed of separation after impact.",
-      "pillLabel": "Elastic collision speed"
-    },
-    {
-      "front": "What does a 'closed system' imply in the context of momentum conservation?",
-      "back": "A closed system means no mass or energy enters or leaves, and importantly, no net external forces act on the system.",
-      "pillLabel": "Closed system"
-    },
-    {
-      "front": "Which quantity is always conserved in both elastic and inelastic collisions (in a closed system)?",
-      "back": "Linear momentum is always conserved in both elastic and inelastic collisions, provided the system is closed.",
-      "pillLabel": "Always conserved"
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -95,29 +27,36 @@
     {
       "type": "keyPoints",
       "items": [
-        "3.3 Linear momentum and its conservation.",
-        "The principal of conservation of momentum states that the total momentum of a system remains constant provided no external force acts to it.",
-        "Or as I would like to say mom before = mom after.",
-        "You cannot change your mom.",
-        "External forces are forces that act on a body on the outside.",
-        "E.g. friction, weight, reaction, etc."
+        "Momentum (p) is the product of mass (m) and velocity (v).",
+        "The unit of momentum is the kilogram-metre per second (kg m/s).",
+        "As a vector, momentum's direction is the same as the velocity's direction.",
+        "It is a measure of an object's 'quantity of motion'."
       ]
     },
     {
       "type": "heading",
-      "content": "Momentum and Force"
+      "content": "Momentum, Force, and Impulse"
     },
     {
       "type": "text",
-      "content": "Newton's Second Law can actually be expressed in terms of momentum. Force isn't just mass times acceleration; it's also the rate at which an object's linear momentum changes over time. This definition is particularly useful when mass itself might change, or for understanding impulsive forces during impacts."
+      "content": "Newton's Second Law can be expressed more fundamentally in terms of momentum. Force is the rate at which an object's linear momentum changes over time. This leads to the concept of **impulse**, which is the change in momentum itself. Impulse is also the product of the average force and the time over which it acts, a crucial idea for understanding impacts."
     },
     {
       "type": "formula",
-      "content": "$F = \\frac{\\Delta p}{\\Delta t}$ or $F = \\frac{\\Delta(mv)}{\\Delta t}$"
+      "content": "$F = \\frac{\\Delta p}{\\Delta t} \\quad \\text{and} \\quad J = F_{avg} \\Delta t = \\Delta p$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Impulse (J) is the change in momentum (Δp).",
+        "It is calculated as the product of average force and time duration (FΔt).",
+        "The unit of impulse is the Newton-second (Ns), which is equivalent to kg m/s.",
+        "The area under a force-time graph represents the impulse delivered."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Remember that $\\Delta$ (delta) signifies 'change in'. So, $\\Delta p$ means final momentum minus initial momentum ($p_f - p_i$). This formula highlights that a larger force causes a faster change in momentum."
+      "content": "Remember that $\\Delta$ (delta) signifies 'change in'. So, $\\Delta p$ means final momentum minus initial momentum ($p_f - p_i$). This formula highlights that a larger force causes a faster change in momentum, and a force applied for a longer time causes a larger change in momentum."
     },
     {
       "type": "heading",
@@ -142,6 +81,11 @@
       "solution": "1.  **Identify initial conditions:**\n    *   Trolley 1: $m_1 = 2.0 \\text{ kg}$, $u_1 = +3.0 \\text{ m/s}$ (take initial direction as positive)\n    *   Trolley 2: $m_2 = 4.0 \\text{ kg}$, $u_2 = 0 \\text{ m/s}$ (stationary)\n\n2.  **State the Principle of Conservation of Momentum:**\n    *   Total momentum before = Total momentum after\n    *   $m_1u_1 + m_2u_2 = (m_1+m_2)V_f$ (since they stick together, they have a common final velocity $V_f$)\n\n3.  **Substitute values into the equation:**\n    *   $(2.0 \\text{ kg})(3.0 \\text{ m/s}) + (4.0 \\text{ kg})(0 \\text{ m/s}) = (2.0 \\text{ kg} + 4.0 \\text{ kg})V_f$\n    *   $6.0 \\text{ kg m/s} + 0 = (6.0 \\text{ kg})V_f$\n\n4.  **Solve for $V_f$:**\n    *   $6.0 = 6.0 V_f$\n    *   $V_f = \\frac{6.0}{6.0} = +1.0 \\text{ m/s}$\n\n    *The common final velocity of the trolleys is 1.0 m/s in the initial direction of the 2.0 kg trolley.*"
     },
     {
+      "type": "workedExample",
+      "question": "A ball of mass 0.50 kg moving at 4.0 m/s collides head-on with a stationary ball of mass 0.30 kg. The collision is perfectly elastic. Calculate the final velocities of both balls.",
+      "solution": "1.  **Define variables & initial conditions:**\n    *   Ball 1: $m_1 = 0.50 \\text{ kg}$, $u_1 = +4.0 \\text{ m/s}$\n    *   Ball 2: $m_2 = 0.30 \\text{ kg}$, $u_2 = 0 \\text{ m/s}$\n    *   Let the final velocities be $v_1$ and $v_2$.\n\n2.  **Apply Conservation of Momentum:**\n    *   $m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2$\n    *   $(0.50)(4.0) + (0.30)(0) = 0.50v_1 + 0.30v_2$\n    *   $2.0 = 0.50v_1 + 0.30v_2$  (Equation 1)\n\n3.  **Apply property of elastic collisions (Relative Speeds):**\n    *   For elastic collisions, the relative speed of approach equals the relative speed of separation.\n    *   $u_1 - u_2 = -(v_1 - v_2) = v_2 - v_1$\n    *   $4.0 - 0 = v_2 - v_1 \\implies v_2 = 4.0 + v_1$ (Equation 2)\n\n4.  **Solve the simultaneous equations:**\n    *   Substitute $v_2$ from Equation 2 into Equation 1:\n    *   $2.0 = 0.50v_1 + 0.30(4.0 + v_1)$\n    *   $2.0 = 0.50v_1 + 1.2 + 0.30v_1$\n    *   $2.0 - 1.2 = 0.80v_1$\n    *   $0.8 = 0.80v_1$\n    *   $v_1 = +1.0 \\text{ m/s}$\n\n5.  **Find $v_2$:**\n    *   Substitute $v_1 = 1.0$ m/s into Equation 2:\n    *   $v_2 = 4.0 + 1.0 = +5.0 \\text{ m/s}$\n\n    *Final Answer: The 0.50 kg ball moves at 1.0 m/s and the 0.30 kg ball moves at 5.0 m/s, both in the original direction of the first ball.*"
+    },
+    {
       "type": "heading",
       "content": "Elastic vs. Inelastic Collisions"
     },
@@ -155,13 +99,29 @@
         "**Elastic Collision:** Total kinetic energy (KE) of the system IS conserved.",
         "**Elastic Collision:** Relative speed of approach equals relative speed of separation.",
         "**Inelastic Collision:** Total kinetic energy (KE) of the system is NOT conserved.",
-        "**Inelastic Collision:** Some KE is converted into heat, sound, or deformation energy.",
-        "**Momentum:** Is always conserved in BOTH types of collisions (closed system)."
+        "**Perfectly Inelastic Collision:** A specific type where objects stick together after impact, resulting in the maximum possible loss of KE.",
+        "**Momentum:** Is always conserved in BOTH types of collisions (in a closed system)."
       ]
     },
     {
       "type": "examTip",
-      "content": "A common misconception is that kinetic energy is always conserved if momentum is. Remember, only in *elastic* collisions is kinetic energy conserved. In *inelastic* collisions, momentum is conserved, but kinetic energy is not."
+      "content": "A common misconception is that kinetic energy is always conserved if momentum is. Remember, only in *perfectly elastic* collisions is kinetic energy conserved. In *all inelastic* collisions, momentum is conserved, but kinetic energy is not."
+    },
+    {
+      "type": "heading",
+      "content": "Explosions and Recoil"
+    },
+    {
+      "type": "text",
+      "content": "The principle of conservation of momentum is also perfectly demonstrated in explosions or recoil scenarios. Here, an object initially at rest breaks apart into two or more pieces. Since the initial momentum of the system is zero, the vector sum of the momenta of all the pieces after the explosion must also be zero. This means the pieces will fly off in opposite directions (in a two-body explosion) to keep the total momentum conserved."
+    },
+    {
+      "type": "formula",
+      "content": "Initial Momentum = 0 \n Final Momentum = $m_1v_1 + m_2v_2 + ... = 0$"
+    },
+    {
+      "type": "examTip",
+      "content": "For a two-body explosion from rest, $m_1v_1 + m_2v_2 = 0$, which means $m_1v_1 = -m_2v_2$. The negative sign indicates that the velocities are in opposite directions. This is the principle behind rocket propulsion and the recoil of a gun."
     },
     {
       "type": "practice",
@@ -186,6 +146,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define linear momentum and calculate it using appropriate formulae.",
+    "Define impulse as the change in momentum.",
+    "Apply the Principle of Conservation of Momentum to solve problems involving collisions and explosions.",
+    "Distinguish between elastic and inelastic collisions based on kinetic energy conservation."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine two bumper cars. When they collide, their individual speeds and directions change, but the total 'push' or 'oomph' of the system (both cars together) remains the same, as long as no external force like friction from the floor or a wall acts on them."
+  },
   "faq": [
     {
       "q": "What is linear momentum and why is it important in physics?",
@@ -198,15 +167,83 @@
     {
       "q": "How can you tell if a collision is elastic or inelastic?",
       "a": "You can distinguish between elastic and inelastic collisions by examining the total kinetic energy of the system. In an *elastic* collision, the total kinetic energy before the impact is equal to the total kinetic energy after. In an *inelastic* collision, the total kinetic energy is not conserved; some of it is transformed into other forms like heat, sound, or energy used for deformation, making the final kinetic energy less than the initial."
+    },
+    {
+      "q": "What is the relationship between force and impulse?",
+      "a": "Force is the rate of change of momentum ($F = \\Delta p / \\Delta t$). Impulse is the total change in momentum ($J = \\Delta p$). Therefore, impulse is also equal to the average force multiplied by the time it acts ($J = F \\Delta t$). A large impulse can be delivered by a large force over a short time, or a smaller force over a long time."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the formula for calculating linear momentum?",
+      "back": "Linear momentum ($p$) is calculated as the product of mass ($m$) and velocity ($v$), so $p = mv$."
+    },
+    {
+      "front": "Is linear momentum a scalar or vector quantity?",
+      "back": "Linear momentum is a vector quantity, meaning it has both magnitude and direction."
+    },
+    {
+      "front": "How is the direction of momentum determined?",
+      "back": "The direction of an object's momentum is always the same as the direction of its velocity."
+    },
+    {
+      "front": "How does force relate to an object's momentum?",
+      "back": "Force is defined as the rate of change of an object's linear momentum ($F = \\frac{\\Delta p}{\\Delta t}$)."
+    },
+    {
+      "front": "When is the total momentum of a system conserved?",
+      "back": "The total momentum of a closed system is conserved if no net external forces act upon it."
+    },
+    {
+      "front": "What is the primary difference between an elastic and an inelastic collision regarding energy?",
+      "back": "In an elastic collision, total kinetic energy is conserved, while in an inelastic collision, total kinetic energy is not conserved."
+    },
+    {
+      "front": "What happens to the kinetic energy that is 'lost' in an inelastic collision?",
+      "back": "The 'lost' kinetic energy is converted into other forms, such as heat, sound, or energy for deformation."
+    },
+    {
+      "front": "In a perfectly elastic collision, what happens to the relative speed of approach and separation?",
+      "back": "The relative speed at which objects approach each other before impact equals their relative speed of separation after impact."
+    },
+    {
+      "front": "What does a 'closed system' imply in the context of momentum conservation?",
+      "back": "A closed system means no mass or energy enters or leaves, and importantly, no net external forces act on the system."
+    },
+    {
+      "front": "Which quantity is always conserved in both elastic and inelastic collisions (in a closed system)?",
+      "back": "Linear momentum is always conserved in both elastic and inelastic collisions, provided the system is closed."
+    },
+    {
+      "front": "What is impulse, and what are its two main formulas?",
+      "back": "Impulse is the change in momentum of an object. It can be calculated as the product of the average force and the time duration ($J = F \\Delta t$) or as the change in momentum ($J = \\Delta p = mv - mu$)."
+    },
+    {
+      "front": "What are the units of impulse?",
+      "back": "The units of impulse are Newton-seconds (N s), which are equivalent to the units of momentum, kilogram-metres per second (kg m/s)."
+    },
+    {
+      "front": "An object at rest explodes into two fragments. What can be said about their total momentum after the explosion?",
+      "back": "The total momentum of the fragments must be zero, the same as the initial momentum. This means the momenta of the two fragments are equal in magnitude and opposite in direction ($p_1 = -p_2$)."
+    },
+    {
+      "front": "How do you calculate the kinetic energy lost in a perfectly inelastic collision where two objects stick together?",
+      "back": "First, calculate the initial total KE: $KE_i = \\frac{1}{2}m_1u_1^2 + \\frac{1}{2}m_2u_2^2$. Then, find the final velocity V using momentum conservation and calculate the final KE: $KE_f = \\frac{1}{2}(m_1+m_2)V^2$. The loss is $KE_{lost} = KE_i - KE_f$."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.3.1",
+    "3.3.2",
+    "3.3.3",
+    "3.3.4"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/3-3-linear-momentum-and-its-conservation.png",
     "alt": "Senpai Corner reference diagram for 3.3 Linear momentum and its conservation"
-  }
+  },
+  "updated": "2026-06-26"
 }

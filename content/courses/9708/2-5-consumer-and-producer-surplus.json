@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 AS — surplus areas on D/S diagrams and welfare effects of policy.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Define consumer and producer surplus.",
-    "Shade surplus areas on diagrams.",
-    "Explain welfare loss from taxes and controls.",
-    "Analyse who gains and loses from price changes."
-  ],
-  "simpleExplanation": {
-    "title": "Gains from trade in a market",
-    "summary": "Surplus measures the benefit to buyers and sellers above what they pay or receive at equilibrium.",
-    "steps": [
-      "Consumer surplus: below demand, above price.",
-      "Producer surplus: above supply, below price.",
-      "Tax reduces both surpluses.",
-      "Deadweight loss = lost surplus triangle."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is consumer surplus?",
-      "back": "The difference between what consumers are willing to pay and what they actually pay — area below demand, above market price."
-    },
-    {
-      "front": "What is producer surplus?",
-      "back": "The difference between the market price and the minimum price producers would accept — area above supply, below market price."
-    },
-    {
-      "front": "What is total economic surplus?",
-      "back": "Consumer surplus + producer surplus — maximised at free-market equilibrium with no distortion."
-    },
-    {
-      "front": "What is deadweight loss?",
-      "back": "Lost surplus from market distortion (tax, price control) — the triangle between supply and demand over the lost trade."
-    },
-    {
-      "front": "How does an indirect tax affect surplus?",
-      "back": "Reduces both consumer and producer surplus; creates deadweight loss; government gains tax revenue."
-    },
-    {
-      "front": "How does a price ceiling below equilibrium affect surplus?",
-      "back": "Creates shortage; reduces producer surplus; some consumers gain (lower price) but others lose (cannot buy) — net welfare loss."
-    },
-    {
-      "front": "Define consumer surplus.",
-      "back": "The difference between the maximum price a consumer is willing to pay for a good and the actual price they pay. It is the area below the demand curve and above the market price."
-    },
-    {
-      "front": "Define producer surplus.",
-      "back": "The difference between the market price a producer receives for a good and the minimum price they are willing to accept. It is the area above the supply curve and below the market price."
-    },
-    {
-      "front": "What is meant by 'economic welfare' in the context of surplus?",
-      "back": "Economic welfare (or community surplus) is the total benefit to society from a market. It is calculated as the sum of consumer surplus and producer surplus."
-    },
-    {
-      "front": "What is a deadweight loss?",
-      "back": "A deadweight loss is the loss of economic welfare that occurs when the market is not at its allocatively efficient equilibrium. It represents the value of trades that no longer occur due to a market distortion like a tax or price control."
-    },
-    {
-      "front": "How does a price ceiling (maximum price) affect producer surplus?",
-      "back": "A price ceiling set below the equilibrium price will always reduce producer surplus. Producers receive a lower price and sell a smaller quantity, shrinking the area of producer surplus."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -159,6 +96,11 @@
       "solution": "(a) **Equilibrium:** 20 − Q = 4 + Q → 2Q = 16 → **Q = 8**, **P = £12**.\n\n(b) **Consumer surplus**\nMaximum willingness to pay at Q = 0 is £20.\nCS = ½ × base × height = ½ × 8 × (20 − 12) = ½ × 8 × 8 = **£32**.\n\n**Producer surplus**\nMinimum supply price at Q = 0 is £4.\nPS = ½ × 8 × (12 − 4) = ½ × 8 × 8 = **£32**.\n\n**Total surplus = £64** — this is maximised at free-market equilibrium.\n\nOn a diagram: shade CS as triangle below demand above P = 12; PS as triangle above supply below P = 12."
     },
     {
+      "type": "workedExample",
+      "question": "Following on from the previous example (Demand: P = 20 − Q, Supply: P = 4 + Q), the government imposes a specific tax of £4 per unit on producers.\n\n(a) Find the new price paid by consumers and the new quantity traded.\n(b) Calculate the new consumer surplus, producer surplus, government revenue, and the deadweight loss.",
+      "solution": "(a) **New Equilibrium with Tax:**\nThe tax shifts the supply curve vertically upwards by £4. New supply equation: P = (4 + Q) + 4 → **P = 8 + Q**.\nTo find the new equilibrium, set new supply equal to demand:\n8 + Q = 20 − Q\n2Q = 12\n**Q_tax = 6 units**\n\nSubstitute Q=6 into the demand curve to find the price consumers pay (Pc):\nPc = 20 - 6 = **£14**\n\nThe price producers receive (Pp) is Pc minus the tax: Pp = £14 - £4 = **£10**.\n\n(b) **Welfare Analysis:**\n**New Consumer Surplus (CS):**\nArea of the triangle below demand, above the new price Pc = £14.\nCS = ½ × base × height = ½ × Q_tax × (Max Price - Pc)\nCS = ½ × 6 × (20 - 14) = ½ × 6 × 6 = **£18**.\n\n**New Producer Surplus (PS):**\nArea of the triangle above original supply, below the new price Pp = £10.\nPS = ½ × base × height = ½ × Q_tax × (Pp - Min Price)\nPS = ½ × 6 × (10 - 4) = ½ × 6 × 6 = **£18**.\n\n**Government Revenue:**\nArea of the rectangle representing the tax.\nRevenue = Tax per unit × Quantity = £4 × 6 = **£24**.\n\n**Deadweight Loss (DWL):**\nThe loss in total surplus. Original total surplus was £32 + £32 = £64.\nNew total surplus = New CS + New PS + Gov Revenue = £18 + £18 + £24 = £60.\nDWL = Original Surplus - New Surplus = £64 - £60 = **£4**.\nAlternatively, calculate the area of the DWL triangle:\nDWL = ½ × (Change in Q) × (Tax) = ½ × (8 - 6) × £4 = ½ × 2 × 4 = **£4**."
+    },
+    {
       "type": "practice",
       "label": "Mark a surplus question",
       "href": "/mark?subject=9708&topic=2.5"
@@ -184,6 +126,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Define consumer and producer surplus.",
+    "Shade surplus areas on diagrams.",
+    "Explain welfare loss from taxes and controls.",
+    "Analyse who gains and loses from price changes."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Can consumer surplus be negative?",
+      "a": "For a single, voluntary transaction, no. A rational consumer will not purchase a good if the price is higher than their willingness to pay. However, if a consumer misjudges their utility or is forced to buy, it's theoretically possible. In aggregate market analysis, consumer surplus is always considered as a non-negative value, representing the total benefit to all consumers who do purchase the good."
+    },
+    {
+      "q": "Why does a price ceiling, designed to help consumers, sometimes reduce total consumer surplus?",
+      "a": "This is a common point of confusion. A price ceiling creates a shortage (quantity demanded exceeds quantity supplied). The consumers who are still able to buy the good benefit from the lower price, increasing their individual surplus. However, many other consumers are now unable to buy the good at all and lose their entire potential surplus. If this loss of surplus from consumers being pushed out of the market is greater than the gain for those who still buy, the total consumer surplus can decrease."
+    },
+    {
+      "q": "Is maximising producer surplus the same as maximising profit?",
+      "a": "Not exactly, although they are closely related. Producer surplus is the total revenue minus the total variable costs (as the supply curve represents marginal cost). Profit, on the other hand, is total revenue minus total costs (both variable and fixed). In the short run, where fixed costs exist, profit will be lower than producer surplus. A firm's primary goal is to maximise profit, not producer surplus, but actions that increase producer surplus often lead to higher profits."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is consumer surplus?",
+      "back": "The difference between what consumers are willing to pay and what they actually pay — area below demand, above market price."
+    },
+    {
+      "front": "What is producer surplus?",
+      "back": "The difference between the market price and the minimum price producers would accept — area above supply, below market price."
+    },
+    {
+      "front": "What is total economic surplus?",
+      "back": "Consumer surplus + producer surplus — maximised at free-market equilibrium with no distortion."
+    },
+    {
+      "front": "What is deadweight loss?",
+      "back": "Lost surplus from market distortion (tax, price control) — the triangle between supply and demand over the lost trade."
+    },
+    {
+      "front": "How does an indirect tax affect surplus?",
+      "back": "Reduces both consumer and producer surplus; creates deadweight loss; government gains tax revenue."
+    },
+    {
+      "front": "How does a price ceiling below equilibrium affect surplus?",
+      "back": "Creates shortage; reduces producer surplus; some consumers gain (lower price) but others lose (cannot buy) — net welfare loss."
+    },
+    {
+      "front": "Define consumer surplus.",
+      "back": "The difference between the maximum price a consumer is willing to pay for a good and the actual price they pay. It is the area below the demand curve and above the market price."
+    },
+    {
+      "front": "Define producer surplus.",
+      "back": "The difference between the market price a producer receives for a good and the minimum price they are willing to accept. It is the area above the supply curve and below the market price."
+    },
+    {
+      "front": "What is meant by 'economic welfare' in the context of surplus?",
+      "back": "Economic welfare (or community surplus) is the total benefit to society from a market. It is calculated as the sum of consumer surplus and producer surplus."
+    },
+    {
+      "front": "What is a deadweight loss?",
+      "back": "A deadweight loss is the loss of economic welfare that occurs when the market is not at its allocatively efficient equilibrium. It represents the value of trades that no longer occur due to a market distortion like a tax or price control."
+    },
+    {
+      "front": "How does a price ceiling (maximum price) affect producer surplus?",
+      "back": "A price ceiling set below the equilibrium price will always reduce producer surplus. Producers receive a lower price and sell a smaller quantity, shrinking the area of producer surplus."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.5"
   ],
   "diagramSpec": {
     "steps": [
@@ -217,20 +232,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "Can consumer surplus be negative?",
-      "a": "For a single, voluntary transaction, no. A rational consumer will not purchase a good if the price is higher than their willingness to pay. However, if a consumer misjudges their utility or is forced to buy, it's theoretically possible. In aggregate market analysis, consumer surplus is always considered as a non-negative value, representing the total benefit to all consumers who do purchase the good."
-    },
-    {
-      "q": "Why does a price ceiling, designed to help consumers, sometimes reduce total consumer surplus?",
-      "a": "This is a common point of confusion. A price ceiling creates a shortage (quantity demanded exceeds quantity supplied). The consumers who are still able to buy the good benefit from the lower price, increasing their individual surplus. However, many other consumers are now unable to buy the good at all and lose their entire potential surplus. If this loss of surplus from consumers being pushed out of the market is greater than the gain for those who still buy, the total consumer surplus can decrease."
-    },
-    {
-      "q": "Is maximising producer surplus the same as maximising profit?",
-      "a": "Not exactly, although they are closely related. Producer surplus is the total revenue minus the total variable costs (as the supply curve represents marginal cost). Profit, on the other hand, is total revenue minus total costs (both variable and fixed). In the short run, where fixed costs exist, profit will be lower than producer surplus. A firm's primary goal is to maximise profit, not producer surplus, but actions that increase producer surplus often lead to higher profits."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Consumer and Producer Surplus",
     "columns": [

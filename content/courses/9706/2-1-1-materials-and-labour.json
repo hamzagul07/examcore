@@ -6,74 +6,11 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — material costs, FIFO/AVCO, labour costing, and inventory valuation.",
-  "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Calculate material costs including carriage and discounts.",
-    "Apply FIFO and AVCO inventory valuation.",
-    "Explain labour cost components: basic, overtime, bonuses.",
-    "Prepare material and labour cost statements."
-  ],
-  "simpleExplanation": {
-    "title": "Costing inputs",
-    "summary": "Material costs include purchase price plus carriage in; labour costs cover wages and related employer costs — both feed into product costing.",
-    "steps": [
-      "Material — purchase + carriage − discounts.",
-      "FIFO — first in, first out issue price.",
-      "AVCO — weighted average after each receipt.",
-      "Labour — basic pay + overtime + employer NI."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "FIFO issue price?",
-      "back": "Oldest batch cost used first for issues."
-    },
-    {
-      "front": "AVCO after receipt?",
-      "back": "New average = (Old value + Receipt value) ÷ Total units."
-    },
-    {
-      "front": "Direct labour?",
-      "back": "Wages of workers directly making the product."
-    },
-    {
-      "front": "Indirect labour?",
-      "back": "Supervisors, stores — treated as overhead."
-    },
-    {
-      "front": "Carriage in?",
-      "back": "Added to purchase cost of materials."
-    },
-    {
-      "front": "Trade discount?",
-      "back": "Deducted from list price — not recorded separately."
-    },
-    {
-      "front": "What is the formula for calculating the weighted average cost per unit in the AVCO method?",
-      "back": "(Cost of inventory on hand + Cost of new purchase) / (Units of inventory on hand + Units of new purchase). This is calculated after each new purchase."
-    },
-    {
-      "front": "How does FIFO value closing inventory during a period of rising prices (inflation)?",
-      "back": "FIFO values closing inventory at the most recent, higher prices. This results in a higher closing inventory valuation on the statement of financial position compared to AVCO."
-    },
-    {
-      "front": "Distinguish between direct labour and indirect labour.",
-      "back": "Direct labour is the cost of workers directly making the product (e.g., assembly line worker) and is part of the prime cost. Indirect labour is the cost of workers supporting production (e.g., factory supervisor) and is a production overhead."
-    },
-    {
-      "front": "What is the accounting treatment for a trade discount received on raw materials?",
-      "back": "A trade discount is deducted directly from the purchase price of the materials at the point of purchase. It reduces the cost of the inventory recorded in the accounts."
-    },
-    {
-      "front": "What is the 'piecework' system of labour remuneration?",
-      "back": "A system where employees are paid a fixed rate for each unit of output they produce. It is an output-based payment method that directly links wages to individual productivity."
-    }
-  ],
+  "durationMin": 30,
   "sections": [
     {
       "type": "intro",
-      "content": "**Materials and labour** (2.1.1) opens costing. Master **FIFO vs AVCO** column workings — Paper 2 often tests **perpetual inventory** records."
+      "content": "**Materials and labour** (2.1.1) opens costing. Master **FIFO vs AVCO** column workings — Paper 2 often tests **perpetual inventory** records on a stores ledger card."
     },
     {
       "type": "heading",
@@ -81,7 +18,7 @@
     },
     {
       "type": "text",
-      "content": "Material costs are a fundamental component of manufacturing accounts. They are classified as either direct or indirect. Direct materials are raw materials that can be physically and directly traced to each unit of a finished product, such as the wood used to make a chair. Indirect materials are necessary for the production process but are not directly traceable to a specific unit, like glue or sandpaper. The cost of materials recorded in the accounts should include all expenses incurred to bring them to their present location and condition. This includes the purchase price, delivery charges (carriage inwards), and any non-refundable taxes or import duties. Crucially, trade discounts are deducted from the purchase price, whereas settlement (cash) discounts for prompt payment are treated as financial income, not a reduction in material cost."
+      "content": "Material costs are a fundamental component of manufacturing accounts. They are classified as either direct or indirect. Direct materials are raw materials that can be physically and directly traced to each unit of a finished product, such as the wood used to make a chair. Indirect materials are necessary for the production process but are not directly traceable to a specific unit, like glue or sandpaper. The cost of materials recorded in the accounts should include all expenses incurred to bring them to their present location and condition. This includes the purchase price, delivery charges (carriage inwards), and any non-refundable taxes or import duties. Crucially, trade discounts are deducted from the purchase price, whereas settlement (cash) discounts for prompt payment are treated as financial income, not a reduction in material cost. These movements of materials are meticulously tracked in a **stores ledger card**, which forms the basis of a **perpetual inventory system**."
     },
     {
       "type": "keyPoints",
@@ -95,6 +32,18 @@
     {
       "type": "examTip",
       "content": "In an exam question, always deduct trade discounts from the list price to find the cost of materials. Settlement (cash) discounts should be ignored when calculating the cost of inventory; they are a financing item recorded in the income statement."
+    },
+    {
+      "type": "heading",
+      "content": "The Stores Ledger Card"
+    },
+    {
+      "type": "text",
+      "content": "A stores ledger card is a crucial document in a perpetual inventory system. It provides a detailed, continuous record of the quantity and value of inventory on hand. For each type of material, the card has columns for 'Receipts' (purchases), 'Issues' (to production), and 'Balance'. Each entry records the date, quantity, unit price, and total value. This allows for tight control over inventory levels and provides the data needed to value both issues (cost of materials used) and closing inventory using either the FIFO or AVCO method. Mastery of preparing a stores ledger card is essential for exam success."
+    },
+    {
+      "type": "examTip",
+      "content": "Practice creating stores ledger cards with columns for Receipts, Issues, and Balance. For each transaction, update the balance immediately. For AVCO, remember to calculate a new average price *only* after a receipt, and use that price for all subsequent issues until the next receipt."
     },
     {
       "type": "heading",
@@ -144,7 +93,7 @@
     },
     {
       "type": "text",
-      "content": "Labour costs, like material costs, are categorised as either direct or indirect. Direct labour refers to the wages of employees directly involved in the manufacturing process, whose time can be traced to specific units of production (e.g., a factory machine operator). This cost is a component of the prime cost. Indirect labour is the cost of employees who support the production process but are not directly involved in making the product (e.g., factory supervisors, maintenance staff, cleaners). This is treated as a production overhead. Remuneration can be time-based (e.g., hourly wage), which is simple but may not incentivise efficiency, or output-based (piecework), which links pay to productivity but can compromise quality. Bonus schemes are often used to motivate workers by offering extra pay for achieving specific targets."
+      "content": "Labour costs, like material costs, are categorised as either direct or indirect. Direct labour refers to the wages of employees directly involved in the manufacturing process, whose time can be traced to specific units of production (e.g., a factory machine operator). This cost is a component of the prime cost. Indirect labour is the cost of employees who support the production process but are not directly involved in making the product (e.g., factory supervisors, maintenance staff, cleaners). This is treated as a production overhead. Remuneration can be time-based (e.g., hourly wage), which is simple but may not incentivise efficiency, or output-based (piecework), which links pay to productivity but can compromise quality. Bonus schemes are often used to motivate workers by offering extra pay for achieving specific targets. A key component of labour cost is **overtime**, which is work done outside normal working hours. The extra amount paid above the basic rate is known as the **overtime premium**. Unless overtime is worked for a specific customer's job, the basic pay element is treated as a direct cost, while the premium element is treated as an indirect production overhead. Another consideration is **idle time**, which is non-productive paid time due to issues like machine breakdowns. The cost of normal idle time is also typically charged as a production overhead."
     },
     {
       "type": "keyPoints",
@@ -153,17 +102,23 @@
         "Indirect labour costs (e.g., supervisor's salary) are part of production overheads.",
         "Time-based pay guarantees a wage but does not directly reward productivity.",
         "Piecework pays employees per unit produced, directly linking pay to output.",
-        "Overtime premium is usually treated as an indirect cost unless worked for a specific job at a customer's request."
+        "Overtime premium is usually treated as an indirect cost unless worked for a specific job at a customer's request.",
+        "Idle time cost is typically treated as an indirect production overhead."
       ]
     },
     {
       "type": "examTip",
-      "content": "Carefully read the question to determine if labour costs are direct or indirect. This distinction is crucial for correctly calculating the prime cost and total production cost. For overtime, the basic pay element is usually direct, while the premium element is usually indirect."
+      "content": "Carefully read the question to determine if labour costs are direct or indirect. This distinction is crucial for correctly calculating the prime cost and total production cost. For overtime, the basic pay element for all hours worked is usually direct, while the premium element is usually indirect."
     },
     {
       "type": "workedExample",
-      "question": "Opening 100 units @ $4. Receipt 150 @ $5. Issue 180 units. Calculate closing inventory value under (a) FIFO and (b) AVCO.",
-      "solution": "**Units closing** = 100 + 150 − 180 = **70 units**\n\n**(a) FIFO issues:** 100 @ $4 + 80 @ $5 = 400 + 400 = $800\nClosing = 70 @ $5 = **$350**\n\n**(b) AVCO after receipt:** (400 + 750) ÷ 250 = **$4.60/unit**\nIssue value = 180 × 4.60 = $828\nClosing = 70 × 4.60 = **$322** (or 1150 − 828)"
+      "question": "A business has the following inventory transactions for Material X in March:\n- Mar 1: Opening inventory of 100 units @ $4.00 each.\n- Mar 10: Purchase of 150 units @ $5.00 each.\n- Mar 22: Issue of 180 units to production.\n\nCalculate the value of the closing inventory at March 31 using (a) FIFO and (b) AVCO.",
+      "solution": "**1. Calculate Closing Inventory Units:**\nClosing Units = Opening Units + Purchases - Issues\nClosing Units = 100 + 150 - 180 = **70 units**\n\n**(a) FIFO Method:**\n*First-In, First-Out means we issue the oldest stock first.*\n- The issue of 180 units is made up of:\n  - 100 units @ $4.00 (from opening inventory) = $400\n  - 80 units @ $5.00 (from Mar 10 purchase) = $400\n- Closing inventory consists of the remaining units from the latest purchase:\n  - Remaining units = 150 - 80 = 70 units\n  - Value of Closing Inventory = 70 units * $5.00 = **$350**\n\n**(b) AVCO (Weighted Average Cost) Method:**\n*Recalculate the average cost after each purchase.*\n- After the purchase on Mar 10, calculate the new weighted average cost:\n  - Total Value = (100 units * $4.00) + (150 units * $5.00) = $400 + $750 = $1,150\n  - Total Units = 100 + 150 = 250 units\n  - New AVCO per unit = $1,150 / 250 units = **$4.60 per unit**\n- Value the issue on Mar 22 using this new average cost:\n  - Value of Issue = 180 units * $4.60 = $828\n- Value the closing inventory of 70 units:\n  - Value of Closing Inventory = 70 units * $4.60 = **$322**\n  - (Alternatively: Total Value $1,150 - Issue Value $828 = $322)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A factory worker, John, is paid a basic rate of $12 per hour for a 40-hour week. Overtime is paid at time-and-a-half (150% of basic rate). In the first week of May, John worked 45 hours. The company treats overtime premium as an indirect cost. Calculate: (a) John's total gross wage for the week. (b) The amount to be treated as direct labour cost. (c) The amount to be treated as indirect labour cost.",
+      "solution": "**Step 1: Calculate Basic Pay**\nBasic pay for a standard week is for the first 40 hours.\n- Basic Pay = 40 hours × $12/hour = **$480**\n\n**Step 2: Calculate Overtime Pay**\nOvertime hours are hours worked above the standard 40 hours.\n- Overtime hours = 45 hours - 40 hours = 5 hours\n- Overtime rate = $12/hour × 1.5 = $18/hour\n- Total Overtime Pay = 5 hours × $18/hour = **$90**\n\n**Step 3: Calculate Total Gross Wage (a)**\nThis is the sum of basic pay and total overtime pay.\n- Total Gross Wage = $480 + $90 = **$570**\n\n**Step 4: Allocate to Direct and Indirect Labour Costs**\n- **Direct Labour Cost (b):** This is the cost of all hours worked at the basic rate.\n  - Direct Labour Cost = 45 hours × $12/hour = **$540**\n\n- **Indirect Labour Cost (c):** This is the overtime premium, which is the extra amount paid for overtime hours.\n  - Overtime Premium = Overtime hours × (Overtime rate - Basic rate)\n  - Overtime Premium = 5 hours × ($18 - $12) = 5 hours × $6/hour = **$30**\n\n**Summary of Allocation:**\n- (a) Total Gross Wage: **$570**\n- (b) Direct Labour Cost: **$540**\n- (c) Indirect Labour Cost: **$30**\n- (Check: $540 Direct + $30 Indirect = $570 Total)"
     },
     {
       "type": "practice",
@@ -188,6 +143,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Calculate material costs including carriage and discounts.",
+    "Apply FIFO and AVCO inventory valuation using a stores ledger card.",
+    "Explain and calculate labour cost components: basic pay, overtime, bonuses, and idle time.",
+    "Distinguish between direct and indirect costs for both materials and labour.",
+    "Prepare material and labour cost statements."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Do I recalculate the average cost after every transaction (purchases and issues) when using AVCO?",
@@ -202,6 +165,79 @@
       "a": "Not always, although it is the most common treatment. If overtime is worked to meet a general increase in production demand, the premium (the extra amount paid above the basic rate) is treated as an indirect cost/production overhead. However, if the overtime is worked specifically to complete an urgent job for a particular customer at their request, the entire overtime cost can be treated as a direct labour cost for that specific job."
     }
   ],
+  "flashcards": [
+    {
+      "front": "FIFO issue price?",
+      "back": "Oldest batch cost used first for issues."
+    },
+    {
+      "front": "AVCO after receipt?",
+      "back": "New average = (Old value + Receipt value) ÷ Total units."
+    },
+    {
+      "front": "Direct labour?",
+      "back": "Wages of workers directly making the product."
+    },
+    {
+      "front": "Indirect labour?",
+      "back": "Supervisors, stores — treated as overhead."
+    },
+    {
+      "front": "Carriage in?",
+      "back": "Added to purchase cost of materials."
+    },
+    {
+      "front": "Trade discount?",
+      "back": "Deducted from list price — not recorded separately."
+    },
+    {
+      "front": "What is the formula for calculating the weighted average cost per unit in the AVCO method?",
+      "back": "(Cost of inventory on hand + Cost of new purchase) / (Units of inventory on hand + Units of new purchase). This is calculated after each new purchase."
+    },
+    {
+      "front": "How does FIFO value closing inventory during a period of rising prices (inflation)?",
+      "back": "FIFO values closing inventory at the most recent, higher prices. This results in a higher closing inventory valuation on the statement of financial position compared to AVCO."
+    },
+    {
+      "front": "Distinguish between direct labour and indirect labour.",
+      "back": "Direct labour is the cost of workers directly making the product (e.g., assembly line worker) and is part of the prime cost. Indirect labour is the cost of workers supporting production (e.g., factory supervisor) and is a production overhead."
+    },
+    {
+      "front": "What is the accounting treatment for a trade discount received on raw materials?",
+      "back": "A trade discount is deducted directly from the purchase price of the materials at the point of purchase. It reduces the cost of the inventory recorded in the accounts."
+    },
+    {
+      "front": "What is the 'piecework' system of labour remuneration?",
+      "back": "A system where employees are paid a fixed rate for each unit of output they produce. It is an output-based payment method that directly links wages to individual productivity."
+    },
+    {
+      "front": "What is the overtime premium?",
+      "back": "The extra amount paid to an employee for working beyond their normal hours, calculated as the difference between the overtime rate and the basic rate of pay."
+    },
+    {
+      "front": "How is the overtime premium typically treated in cost accounting?",
+      "back": "It is usually treated as an indirect labour cost (a production overhead), unless the overtime was worked at the specific request of a customer to complete their job."
+    },
+    {
+      "front": "What is a stores ledger card?",
+      "back": "A perpetual inventory record that tracks the movement of each item of inventory, showing receipts, issues, and the running balance in terms of quantity, unit cost, and total value."
+    },
+    {
+      "front": "What is idle time?",
+      "back": "Time during which an employee is paid but is not productive, due to reasons like machine breakdown or lack of materials. The cost of normal idle time is usually treated as a production overhead."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.1.1.1",
+    "2.1.1.2",
+    "2.1.1.3",
+    "2.1.1.4",
+    "2.1.1.5"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of FIFO and AVCO Inventory Valuation Methods",
     "columns": [

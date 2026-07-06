@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 A Level externalities — MPC, MSC, MPB, MSB, and welfare analysis with GeoGebra.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish private and social costs and benefits.",
-    "Analyse negative and positive externalities on diagrams.",
-    "Explain overproduction and underproduction.",
-    "Evaluate taxes, subsidies, and regulation."
-  ],
-  "simpleExplanation": {
-    "title": "Spillover costs and benefits",
-    "summary": "Externalities cause a wedge between private and social curves. Negative externalities lead to overproduction relative to the social optimum.",
-    "steps": [
-      "MSC = MPC + external cost.",
-      "MSB = MPB + external benefit.",
-      "Negative externality: Q_market > Q_social.",
-      "Pigouvian tax = external cost per unit at optimum."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "MPC vs MSC?",
-      "back": "MPC = private marginal cost to the producer. MSC = MPC + marginal external cost. MSC is the true cost to society."
-    },
-    {
-      "front": "MPB vs MSB?",
-      "back": "MPB = private marginal benefit to the consumer. MSB = MPB + marginal external benefit. MSB is the true benefit to society."
-    },
-    {
-      "front": "Negative externality of production?",
-      "back": "MSC > MPC — e.g. pollution. Market overproduces: Q_market > Q_social where MSB = MSC."
-    },
-    {
-      "front": "Positive externality of consumption?",
-      "back": "MSB > MPB — e.g. vaccinations. Market underproduces: Q_market < Q_social."
-    },
-    {
-      "front": "What is a Pigouvian tax?",
-      "back": "A per-unit tax equal to the marginal external cost at the social optimum — internalises the externality and moves Q_market toward Q_social."
-    },
-    {
-      "front": "What is a Pigouvian subsidy?",
-      "back": "A per-unit subsidy equal to the marginal external benefit at the social optimum — encourages more consumption/production of goods with positive externalities."
-    },
-    {
-      "front": "What is an externality?",
-      "back": "A spillover effect of production or consumption on a third party not directly involved in the transaction. It can be positive (a benefit) or negative (a cost)."
-    },
-    {
-      "front": "Define Marginal Social Cost (MSC).",
-      "back": "The total cost to society of producing one extra unit of a good. It is calculated as the sum of the Marginal Private Cost (MPC) and any external costs. Formula: MSC = MPC + External Cost."
-    },
-    {
-      "front": "Define Marginal Social Benefit (MSB).",
-      "back": "The total benefit to society of consuming one extra unit of a good. It is calculated as the sum of the Marginal Private Benefit (MPB) and any external benefits. Formula: MSB = MPB + External Benefit."
-    },
-    {
-      "front": "What is meant by 'deadweight welfare loss' in the context of externalities?",
-      "back": "The loss of economic welfare to society that occurs when the market is not at the socially optimal level of output (where MSB=MSC). It represents the value of the welfare that is lost due to overproduction or under-consumption."
-    },
-    {
-      "front": "When does market failure occur due to externalities?",
-      "back": "Market failure occurs because the price mechanism only accounts for private costs and benefits (MPC and MPB), ignoring external costs and benefits. This leads to an equilibrium output that is not allocatively efficient (where MSB ≠ MSC)."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -181,6 +118,11 @@
       "solution": "(a) **Q_market:** MPC = MPB\n10 + 0.5Q = 30 − 0.5Q\nQ = **20 units**, P = £20\n\n**Q_social:** MSC = MSB, where MSC = MPC + 4 = 14 + 0.5Q\n14 + 0.5Q = 30 − 0.5Q\nQ = **16 units**, P = £22\n\nMarket **overproduces** by 4 units (20 − 16).\n\n(b) **Pigouvian tax** = marginal external cost = **£4 per unit** (constant in this case).\n\nWith tax, effective MPC = 10 + 0.5Q + 4 = 14 + 0.5Q = MSC → Q falls to 16.\n\n(c) **DWL:** Triangle between MSC and MSB from Q_social (16) to Q_market (20).\n\nAt Q = 20: MSC = 14 + 10 = £24, MSB = £20 → gap = £4.\nAt Q = 16: MSC = MSB = £22 → gap = £0.\n\nDWL = ½ × (20 − 16) × £4 = **£8** — welfare lost from the 4 extra units."
     },
     {
+      "type": "workedExample",
+      "question": "The market for university education exhibits positive externalities. Assume the market can be described by the following equations, where Q is the number of students in thousands and P is the annual tuition fee in thousands of pounds (£'000).\n\n- Marginal Private Benefit (MPB): P = 60 - Q\n- Marginal Private Cost (MPC): P = 15 + 0.5Q\n- Marginal External Benefit (MEB) is constant at £15,000 per student.\n\n(a) Calculate the free market equilibrium quantity of students and the tuition fee.\n(b) Determine the socially optimal quantity of students.\n(c) What is the value of the per-unit subsidy required to achieve the social optimum?\n(d) Calculate the value of the deadweight welfare loss at the market equilibrium.",
+      "solution": "(a) **Market Equilibrium (MPB = MPC):**\nSet the private benefit equal to the private cost:\n60 - Q = 15 + 0.5Q\n45 = 1.5Q\nQ = 45 / 1.5 = 30\nSo, **Q_market = 30,000 students**.\nSubstitute Q=30 into either equation to find the price:\nP = 60 - 30 = 30\nSo, **P_market = £30,000**.\n\n(b) **Socially Optimal Equilibrium (MSB = MSC):**\nFirst, find the Marginal Social Benefit (MSB). Assume no external costs, so MPC = MSC.\nMSB = MPB + MEB\nMSB = (60 - Q) + 15 = 75 - Q\nNow, set MSB = MSC:\n75 - Q = 15 + 0.5Q\n60 = 1.5Q\nQ = 60 / 1.5 = 40\nSo, **Q_social = 40,000 students**.\nThe market under-provides education by 10,000 students.\n\n(c) **Optimal Subsidy:**\nThe optimal per-unit subsidy is equal to the Marginal External Benefit (MEB) at the socially optimal quantity. Since MEB is constant:\nSubsidy = MEB = **£15,000 per student**.\n\n(d) **Deadweight Welfare Loss (DWL):**\nThe DWL is the area of the triangle between the MSB and MSC curves, from Q_market to Q_social.\nArea = 0.5 * (Q_social - Q_market) * (Vertical gap at Q_market)\nThe vertical gap at Q_market (30) is MSB(30) - MSC(30).\nMSB(30) = 75 - 30 = 45 (£45,000)\nMSC(30) = 15 + 0.5(30) = 15 + 15 = 30 (£30,000)\nGap = 45 - 30 = £15,000.\nDWL = 0.5 * (40 - 30) * 15\nDWL = 0.5 * 10 * 15 = 75\nSince Q is in thousands and P is in thousands, the DWL is in millions of pounds.\nDWL = **£75 million**."
+    },
+    {
       "type": "examTip",
       "content": "Label curves **MPC, MSC, MPB, MSB** — never just S and D in externality questions. Show **Q_market** at MPC = MPB and **Q_social** at MSC = MSB. State whether the good is over- or under-produced."
     },
@@ -210,6 +152,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Distinguish private and social costs and benefits.",
+    "Analyse negative and positive externalities on diagrams.",
+    "Explain overproduction and underproduction.",
+    "Evaluate taxes, subsidies, and regulation."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Does the socially optimal outcome mean there should be zero pollution?",
+      "a": "No, this is a common misconception. The socially optimal outcome (where MSC = MSB) usually involves some level of production and therefore some level of pollution. The goal is not to eliminate all pollution, which would likely mean halting all production, but to ensure that the level of production is reduced to the point where the marginal social cost of the last unit produced equals its marginal social benefit. It's about balancing the benefits of production with the costs of pollution."
+    },
+    {
+      "q": "If a positive externality exists, why doesn't the market just produce more?",
+      "a": "The market doesn't 'know' about the external benefit. Individual consumers make decisions based on their private benefit (MPB) and the market price. Since they do not receive the external benefits themselves, they are unwilling to pay a higher price to reflect them. Similarly, producers respond to this lower market demand. As a result, the quantity demanded and supplied (Q_mkt) is less than the socially optimal quantity (Q_soc) where the full social benefit is recognised. This under-consumption is the core of the market failure."
+    },
+    {
+      "q": "Is the welfare loss triangle just lost profit for firms?",
+      "a": "No, the deadweight welfare loss is a loss to society as a whole, not just to firms. For a negative externality, it represents the excess of social costs over social benefits for the units produced beyond the social optimum (between Q_soc and Q_mkt). This loss is borne by the third parties suffering the externality. For a positive externality, it represents the potential net benefit to society (excess of MSB over MSC) that is not realised because too little of the good is consumed. It is a loss of total social surplus, which includes consumer surplus, producer surplus, and the welfare of third parties."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "MPC vs MSC?",
+      "back": "MPC = private marginal cost to the producer. MSC = MPC + marginal external cost. MSC is the true cost to society."
+    },
+    {
+      "front": "MPB vs MSB?",
+      "back": "MPB = private marginal benefit to the consumer. MSB = MPB + marginal external benefit. MSB is the true benefit to society."
+    },
+    {
+      "front": "Negative externality of production?",
+      "back": "MSC > MPC — e.g. pollution. Market overproduces: Q_market > Q_social where MSB = MSC."
+    },
+    {
+      "front": "Positive externality of consumption?",
+      "back": "MSB > MPB — e.g. vaccinations. Market underproduces: Q_market < Q_social."
+    },
+    {
+      "front": "What is a Pigouvian tax?",
+      "back": "A per-unit tax equal to the marginal external cost at the social optimum — internalises the externality and moves Q_market toward Q_social."
+    },
+    {
+      "front": "What is a Pigouvian subsidy?",
+      "back": "A per-unit subsidy equal to the marginal external benefit at the social optimum — encourages more consumption/production of goods with positive externalities."
+    },
+    {
+      "front": "What is an externality?",
+      "back": "A spillover effect of production or consumption on a third party not directly involved in the transaction. It can be positive (a benefit) or negative (a cost)."
+    },
+    {
+      "front": "Define Marginal Social Cost (MSC).",
+      "back": "The total cost to society of producing one extra unit of a good. It is calculated as the sum of the Marginal Private Cost (MPC) and any external costs. Formula: MSC = MPC + External Cost."
+    },
+    {
+      "front": "Define Marginal Social Benefit (MSB).",
+      "back": "The total benefit to society of consuming one extra unit of a good. It is calculated as the sum of the Marginal Private Benefit (MPB) and any external benefits. Formula: MSB = MPB + External Benefit."
+    },
+    {
+      "front": "What is meant by 'deadweight welfare loss' in the context of externalities?",
+      "back": "The loss of economic welfare to society that occurs when the market is not at the socially optimal level of output (where MSB=MSC). It represents the value of the welfare that is lost due to overproduction or under-consumption."
+    },
+    {
+      "front": "When does market failure occur due to externalities?",
+      "back": "Market failure occurs because the price mechanism only accounts for private costs and benefits (MPC and MPB), ignoring external costs and benefits. This leads to an equilibrium output that is not allocatively efficient (where MSB ≠ MSC)."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "7.4"
   ],
   "diagramSpec": {
     "steps": [
@@ -243,20 +258,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "Does the socially optimal outcome mean there should be zero pollution?",
-      "a": "No, this is a common misconception. The socially optimal outcome (where MSC = MSB) usually involves some level of production and therefore some level of pollution. The goal is not to eliminate all pollution, which would likely mean halting all production, but to ensure that the level of production is reduced to the point where the marginal social cost of the last unit produced equals its marginal social benefit. It's about balancing the benefits of production with the costs of pollution."
-    },
-    {
-      "q": "If a positive externality exists, why doesn't the market just produce more?",
-      "a": "The market doesn't 'know' about the external benefit. Individual consumers make decisions based on their private benefit (MPB) and the market price. Since they do not receive the external benefits themselves, they are unwilling to pay a higher price to reflect them. Similarly, producers respond to this lower market demand. As a result, the quantity demanded and supplied (Q_mkt) is less than the socially optimal quantity (Q_soc) where the full social benefit is recognised. This under-consumption is the core of the market failure."
-    },
-    {
-      "q": "Is the welfare loss triangle just lost profit for firms?",
-      "a": "No, the deadweight welfare loss is a loss to society as a whole, not just to firms. For a negative externality, it represents the excess of social costs over social benefits for the units produced beyond the social optimum (between Q_soc and Q_mkt). This loss is borne by the third parties suffering the externality. For a positive externality, it represents the potential net benefit to society (excess of MSB over MSC) that is not realised because too little of the good is consumed. It is a loss of total social surplus, which includes consumer surplus, producer surplus, and the welfare of third parties."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Negative and Positive Externalities",
     "columns": [

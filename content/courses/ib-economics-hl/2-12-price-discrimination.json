@@ -1,7 +1,10 @@
 {
   "slug": "2-12-price-discrimination",
   "topicCode": "2.12",
-  "unit": { "code": "2", "title": "Microeconomics" },
+  "unit": {
+    "code": "2",
+    "title": "Microeconomics"
+  },
   "title": "Price discrimination",
   "paper": "P3",
   "paperName": "Economics HL",
@@ -16,8 +19,14 @@
     "Explain the effect on the firm (higher revenue/profit through capturing consumer surplus) and the mixed effect on consumers.",
     "Draw and explain the third-degree price-discrimination diagram with two separate markets that have different price elasticities of demand."
   ],
-  "syllabusObjectivesCovered": ["2.12"],
-  "keyConcepts": ["choice", "efficiency", "intervention"],
+  "syllabusObjectivesCovered": [
+    "2.12"
+  ],
+  "keyConcepts": [
+    "choice",
+    "efficiency",
+    "intervention"
+  ],
   "levelNote": "HL only — Higher Level content assessed on Paper 3.",
   "simpleExplanation": {
     "title": "Same Product, Different Prices",
@@ -31,98 +40,284 @@
     ]
   },
   "flashcards": [
-    { "front": "Price discrimination", "back": "Charging different prices to different consumers for the same product, where the price difference is NOT based on any difference in cost of supply.", "pillLabel": "Definition" },
-    { "front": "The three necessary conditions", "back": "1) The firm has market power (it is a price maker). 2) It can separate consumers into groups with different price elasticities of demand. 3) It can prevent resale (arbitrage) between the groups.", "pillLabel": "Framework" },
-    { "front": "Why market power is required", "back": "A price taker in perfect competition faces one market price it cannot influence, so it has no ability to set different prices. Price discrimination needs a price maker — a monopoly, oligopoly or monopolistically competitive firm.", "pillLabel": "Analysis" },
-    { "front": "First-degree (perfect) price discrimination", "back": "The firm charges every consumer the maximum price they are willing to pay for each unit. It captures ALL consumer surplus as producer surplus. Example: an individually negotiated price at an auction or a bespoke consultancy quote.", "pillLabel": "Concept" },
-    { "front": "Second-degree price discrimination", "back": "The firm charges different prices for different quantities or blocks consumed by the same buyer — e.g. bulk discounts, or a utility tariff where later units cost a different amount from the first block.", "pillLabel": "Concept" },
-    { "front": "Third-degree price discrimination", "back": "The firm splits consumers into identifiable groups and charges each group a different price — same price within a group, different price between groups. Example: adult vs. student cinema tickets, peak vs. off-peak rail fares.", "pillLabel": "Concept" },
-    { "front": "Which group pays MORE under third-degree discrimination?", "back": "The group with the more price-INELASTIC demand (PED closer to 0). They are less responsive to a price rise, so the firm can charge them a higher price.", "pillLabel": "Analysis" },
-    { "front": "Effect on the firm", "back": "Total revenue and profit rise relative to a single price, because the firm converts consumer surplus it would otherwise have left on the table into extra producer surplus/profit.", "pillLabel": "Analysis" },
-    { "front": "Effect on consumers", "back": "Mixed. Inelastic-group consumers pay more and lose surplus. Some elastic-group consumers gain by paying a lower price, and some may be served who would have been priced out under a single price. Overall consumer surplus usually falls.", "pillLabel": "Analysis" },
-    { "front": "Arbitrage (resale)", "back": "Buying at the low price in one segment and reselling at a higher price in another. If it cannot be prevented, the two prices collapse toward one and discrimination breaks down — which is why services are easier to discriminate on than physical goods.", "pillLabel": "Definition" },
-    { "front": "Cost-based price difference — is it discrimination?", "back": "No. If two buyers are charged different prices because it genuinely costs more to serve one of them (e.g. remote delivery), that is a cost difference, not price discrimination. Discrimination requires the price gap to be unrelated to cost.", "pillLabel": "Trap" },
-    { "front": "Different PED vs. different cost", "back": "The engine of price discrimination is different price elasticity of demand between groups, NOT different production cost. Confusing the two is a classic Paper 3 error.", "pillLabel": "Trap" }
+    {
+      "front": "Price discrimination",
+      "back": "Charging different prices to different consumers for the same product, where the price difference is NOT based on any difference in cost of supply.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "The three necessary conditions",
+      "back": "1) The firm has market power (it is a price maker). 2) It can separate consumers into groups with different price elasticities of demand. 3) It can prevent resale (arbitrage) between the groups.",
+      "pillLabel": "Framework"
+    },
+    {
+      "front": "Why market power is required",
+      "back": "A price taker in perfect competition faces one market price it cannot influence, so it has no ability to set different prices. Price discrimination needs a price maker — a monopoly, oligopoly or monopolistically competitive firm.",
+      "pillLabel": "Analysis"
+    },
+    {
+      "front": "First-degree (perfect) price discrimination",
+      "back": "The firm charges every consumer the maximum price they are willing to pay for each unit. It captures ALL consumer surplus as producer surplus. Example: an individually negotiated price at an auction or a bespoke consultancy quote.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Second-degree price discrimination",
+      "back": "The firm charges different prices for different quantities or blocks consumed by the same buyer — e.g. bulk discounts, or a utility tariff where later units cost a different amount from the first block.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Third-degree price discrimination",
+      "back": "The firm splits consumers into identifiable groups and charges each group a different price — same price within a group, different price between groups. Example: adult vs. student cinema tickets, peak vs. off-peak rail fares.",
+      "pillLabel": "Concept"
+    },
+    {
+      "front": "Which group pays MORE under third-degree discrimination?",
+      "back": "The group with the more price-INELASTIC demand (PED closer to 0). They are less responsive to a price rise, so the firm can charge them a higher price.",
+      "pillLabel": "Analysis"
+    },
+    {
+      "front": "Effect on the firm",
+      "back": "Total revenue and profit rise relative to a single price, because the firm converts consumer surplus it would otherwise have left on the table into extra producer surplus/profit.",
+      "pillLabel": "Analysis"
+    },
+    {
+      "front": "Effect on consumers",
+      "back": "Mixed. Inelastic-group consumers pay more and lose surplus. Some elastic-group consumers gain by paying a lower price, and some may be served who would have been priced out under a single price. Overall consumer surplus usually falls.",
+      "pillLabel": "Analysis"
+    },
+    {
+      "front": "Arbitrage (resale)",
+      "back": "Buying at the low price in one segment and reselling at a higher price in another. If it cannot be prevented, the two prices collapse toward one and discrimination breaks down — which is why services are easier to discriminate on than physical goods.",
+      "pillLabel": "Definition"
+    },
+    {
+      "front": "Cost-based price difference — is it discrimination?",
+      "back": "No. If two buyers are charged different prices because it genuinely costs more to serve one of them (e.g. remote delivery), that is a cost difference, not price discrimination. Discrimination requires the price gap to be unrelated to cost.",
+      "pillLabel": "Trap"
+    },
+    {
+      "front": "Different PED vs. different cost",
+      "back": "The engine of price discrimination is different price elasticity of demand between groups, NOT different production cost. Confusing the two is a classic Paper 3 error.",
+      "pillLabel": "Trap"
+    }
   ],
   "quickCheck": [
-    { "prompt": "Which set correctly lists the three NECESSARY conditions for price discrimination?", "options": ["Market power, different PED between groups, ability to prevent resale", "Perfect competition, identical PED, free resale", "High fixed costs, government approval, advertising", "Falling average cost, a patent, and identical consumers"], "answer": "Market power, different PED between groups, ability to prevent resale" },
-    { "prompt": "A firm charges group A more than group B for the identical product. For this to count as price discrimination, the price difference must be based on:", "options": ["A difference in the cost of serving each group", "A difference in the price elasticity of demand between the groups", "A difference in product quality", "A difference in the firms' marginal cost curves"], "answer": "A difference in the price elasticity of demand between the groups" },
-    { "prompt": "Charging each individual the maximum price they are willing to pay, capturing all consumer surplus, is:", "options": ["Second-degree price discrimination", "Third-degree price discrimination", "First-degree (perfect) price discrimination", "Product versioning"], "answer": "First-degree (perfect) price discrimination" },
-    { "prompt": "Under third-degree price discrimination, the HIGHER price is charged in the market with the:", "options": ["More elastic demand", "More inelastic demand", "Lower marginal cost", "Larger number of consumers"], "answer": "More inelastic demand" },
-    { "prompt": "Compared with charging a single price, the MOST reliable effect of price discrimination on the firm is that it:", "options": ["Lowers its marginal cost", "Increases its total revenue and profit", "Always increases total consumer surplus", "Eliminates its market power"], "answer": "Increases its total revenue and profit" }
+    {
+      "prompt": "Which set correctly lists the three NECESSARY conditions for price discrimination?",
+      "options": [
+        "Market power, different PED between groups, ability to prevent resale",
+        "Perfect competition, identical PED, free resale",
+        "High fixed costs, government approval, advertising",
+        "Falling average cost, a patent, and identical consumers"
+      ],
+      "answer": "Market power, different PED between groups, ability to prevent resale"
+    },
+    {
+      "prompt": "A firm charges group A more than group B for the identical product. For this to count as price discrimination, the price difference must be based on:",
+      "options": [
+        "A difference in the cost of serving each group",
+        "A difference in the price elasticity of demand between the groups",
+        "A difference in product quality",
+        "A difference in the firms' marginal cost curves"
+      ],
+      "answer": "A difference in the price elasticity of demand between the groups"
+    },
+    {
+      "prompt": "Charging each individual the maximum price they are willing to pay, capturing all consumer surplus, is:",
+      "options": [
+        "Second-degree price discrimination",
+        "Third-degree price discrimination",
+        "First-degree (perfect) price discrimination",
+        "Product versioning"
+      ],
+      "answer": "First-degree (perfect) price discrimination"
+    },
+    {
+      "prompt": "Under third-degree price discrimination, the HIGHER price is charged in the market with the:",
+      "options": [
+        "More elastic demand",
+        "More inelastic demand",
+        "Lower marginal cost",
+        "Larger number of consumers"
+      ],
+      "answer": "More inelastic demand"
+    },
+    {
+      "prompt": "Compared with charging a single price, the MOST reliable effect of price discrimination on the firm is that it:",
+      "options": [
+        "Lowers its marginal cost",
+        "Increases its total revenue and profit",
+        "Always increases total consumer surplus",
+        "Eliminates its market power"
+      ],
+      "answer": "Increases its total revenue and profit"
+    }
   ],
   "faq": [
-    { "q": "Is price discrimination the same as an unfair or illegal practice?", "a": "Usually not. Charging students less than adults, or off-peak travellers less than peak travellers, is a legal and everyday pricing strategy. It can become a legal problem only when it is used anti-competitively (for example predatory pricing designed to force rivals out) or when it discriminates on legally protected grounds such as race or gender — but that falls under anti-discrimination law, not the economics of price discrimination in your syllabus." },
-    { "q": "How is price discrimination different from selling different-quality versions at different prices?", "a": "Price discrimination is different prices for the SAME product, where serving each buyer costs the same. Selling a standard seat and a premium seat, or a basic and a deluxe subscription, is product versioning: the price gap is at least partly explained by a real difference in the product and its cost, so it is not, strictly, price discrimination." },
-    { "q": "Why do firms give discounts to students, children and senior citizens?", "a": "These groups are easy to identify (with an ID or ticket type) and tend, on average, to be more price-sensitive — their demand is more elastic. Offering them a lower price attracts buyers who might otherwise not purchase at all, raising the firm's total sales and revenue, while adults with more inelastic demand continue to pay the higher price." }
+    {
+      "q": "Is price discrimination the same as an unfair or illegal practice?",
+      "a": "Usually not. Charging students less than adults, or off-peak travellers less than peak travellers, is a legal and everyday pricing strategy. It can become a legal problem only when it is used anti-competitively (for example predatory pricing designed to force rivals out) or when it discriminates on legally protected grounds such as race or gender — but that falls under anti-discrimination law, not the economics of price discrimination in your syllabus."
+    },
+    {
+      "q": "How is price discrimination different from selling different-quality versions at different prices?",
+      "a": "Price discrimination is different prices for the SAME product, where serving each buyer costs the same. Selling a standard seat and a premium seat, or a basic and a deluxe subscription, is product versioning: the price gap is at least partly explained by a real difference in the product and its cost, so it is not, strictly, price discrimination."
+    },
+    {
+      "q": "Why do firms give discounts to students, children and senior citizens?",
+      "a": "These groups are easy to identify (with an ID or ticket type) and tend, on average, to be more price-sensitive — their demand is more elastic. Offering them a lower price attracts buyers who might otherwise not purchase at all, raising the firm's total sales and revenue, while adults with more inelastic demand continue to pay the higher price."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "You and a stranger sit in identical cinema seats watching the identical film at the identical time — and you paid a student rate while they paid full price. No cost difference explains the gap: the seat, the screen and the projector cost the cinema the same for both of you. This is price discrimination, and it is one of the most powerful tools a firm with market power possesses. In this HL lesson we build it up carefully: the exact conditions a firm needs, the three degrees of discrimination, the effect on firms and consumers, and the side-by-side diagram examiners want you to draw. Because this topic is assessed on Paper 3, we finish by mapping a worked answer straight onto how our marking engine awards each point and each calculation step." },
-
-    { "type": "heading", "content": "What price discrimination is — and is not" },
-    { "type": "text", "content": "Price discrimination means charging different prices to different consumers for the same product, where the price difference is not based on differences in cost. That final clause is the whole point. If an online retailer charges a customer in a remote area more because delivery genuinely costs more, that is a cost difference, not discrimination. Price discrimination only exists when the cost of supplying each buyer is (roughly) the same, yet the prices differ — because the buyers differ in their willingness to pay." },
-    { "type": "keyPoints", "items": [
-      "**Same product** — the good or service supplied to each buyer is essentially identical.",
-      "**Different prices** — buyers are charged different amounts.",
-      "**Not cost-based** — the price gap is explained by differences in demand (willingness to pay / PED), not by differences in the cost of supply."
-    ]},
-
-    { "type": "heading", "content": "The three necessary conditions" },
-    { "type": "text", "content": "A firm cannot simply decide to price discriminate. Three conditions must all hold at once; remove any one and the strategy collapses. Learn them as a checklist, because Paper 3 'explain the conditions' questions award a mark for each condition correctly identified and explained." },
-    { "type": "keyPoints", "items": [
-      "**1. Market power.** The firm must be a price maker with the ability to set its own price, so it must operate in a monopoly, oligopoly or monopolistically competitive market. A perfectly competitive firm is a price taker facing a single market price and simply cannot charge different buyers differently.",
-      "**2. Ability to separate consumers by PED.** The firm must be able to sort buyers into groups whose price elasticities of demand differ, using an observable signal such as age, student or senior status, time of purchase, or geographic location. Without different PEDs there is no gain from charging different prices.",
-      "**3. Ability to prevent resale (no arbitrage).** The firm must stop buyers who pay the low price from reselling to those who would pay the high price. If resale is easy, the low price leaks into the high-price segment and the two prices converge. This is why services (a haircut, a cinema seat, a doctor's appointment) are far easier to discriminate on than storable physical goods."
-    ]},
-    { "type": "examTip", "content": "In a Paper 3 'explain the conditions' question, do not just list the three words. For each condition, add the reason it matters — e.g. 'market power, BECAUSE a price taker cannot set its own price.' Our marking engine awards a separate point for each condition that is both identified and briefly justified." },
-
-    { "type": "heading", "content": "The three degrees of price discrimination" },
-    { "type": "text", "content": "Economists classify price discrimination by how finely the firm can distinguish and charge buyers, from the near-impossible ideal (first degree) to the everyday reality (third degree)." },
-    { "type": "keyPoints", "items": [
-      "**First-degree (perfect) price discrimination.** The firm charges each buyer the maximum they are willing to pay for each unit, extracting all consumer surplus and turning it into producer surplus. It is largely theoretical because it requires perfect knowledge of every buyer's willingness to pay; the closest real examples are individually haggled prices, bespoke professional quotes, or some auctions.",
-      "**Second-degree price discrimination.** The firm charges different prices for different quantities or 'blocks' bought by the same consumer — bulk discounts, 'buy more, pay less per unit', or a utility bill where a first block of units is priced differently from later units. Here the buyer effectively self-selects the price by choosing how much to buy.",
-      "**Third-degree price discrimination.** The most common form. The firm divides consumers into distinct, identifiable groups and charges each group a different price — the same price for everyone within a group, a different price between groups. Examples: adult vs. student cinema tickets, peak vs. off-peak rail fares, and academic vs. commercial software licences. This is the form you must be able to draw."
-    ]},
-
-    { "type": "heading", "content": "The effect on the firm and on consumers" },
-    { "type": "text", "content": "Price discrimination redistributes surplus. Evaluating who gains and who loses — and being precise about consumer surplus — is exactly what higher marks reward." },
-    { "type": "keyPoints", "items": [
-      "**The firm gains.** Total revenue and profit rise relative to a single price, because the firm captures consumer surplus it would otherwise have left with buyers. Every buyer who was willing to pay more than the single price is now charged closer to their maximum.",
-      "**Inelastic-group consumers lose.** They face a higher price and their consumer surplus shrinks.",
-      "**Some elastic-group consumers gain.** They pay a lower price, and crucially some who would have been priced out entirely under a single monopoly price can now afford the product and are served.",
-      "**Overall consumer surplus usually falls**, transferred to the firm as extra profit; under first-degree discrimination consumer surplus falls to zero.",
-      "**Efficiency is ambiguous.** Output can rise because extra buyers are served, moving output nearer the competitive level — and a firm that would have made a loss at a single price might survive and supply the market at all. But the price still exceeds marginal cost for most buyers, so allocative inefficiency is reduced, not removed."
-    ]},
-
-    { "type": "heading", "content": "Diagram: third-degree price discrimination with two markets" },
-    { "type": "text", "content": "The standard HL diagram places two sub-markets side by side. Both are supplied by the same firm at the same marginal cost, but each has its own demand and marginal revenue curves reflecting its own elasticity. The firm maximises profit by setting MR = MC separately in each market." },
-    { "type": "workedExample", "question": "Using a diagram, explain how a firm practising third-degree price discrimination sets its price and quantity in two markets, A and B, where demand in market A is more inelastic than in market B, and marginal cost is constant and the same for both.", "solution": "**The diagram (two panels side by side, sharing the same horizontal MC line):**\n\n*Market A (inelastic):* draw a STEEP demand curve D_A and its steeper marginal revenue curve MR_A. Draw the horizontal MC line. The profit-maximising output Q_A is where MR_A = MC; read the price P_A UP on the demand curve D_A above Q_A.\n\n*Market B (elastic):* draw a FLATTER demand curve D_B and its flatter marginal revenue curve MR_B, with the SAME horizontal MC line. The profit-maximising output Q_B is where MR_B = MC; read the price P_B UP on demand curve D_B above Q_B.\n\n**The explanation:**\n1. The firm is a price maker (market power) and can separate the two markets and prevent resale, so it can treat A and B independently.\n2. To maximise profit it applies the same rule in each market: produce where marginal revenue equals marginal cost. Because MC is the same but the MR curves differ, this gives a different quantity — and a different price — in each market.\n3. Since demand in A is more inelastic, the price line P_A read off D_A sits ABOVE P_B: **P_A > P_B**. The firm charges the higher price in the inelastic market and the lower price in the elastic market.\n4. Compared with a single price across both markets, the firm earns higher total revenue and profit, capturing consumer surplus — especially from the inelastic market A, whose buyers are least able to respond to the higher price." },
-    { "type": "examTip", "content": "The single most common diagram error is reading the price off the MR curve instead of the demand curve. Always find quantity where MR = MC, then travel VERTICALLY up to the DEMAND curve to read the price. Label both prices and show clearly that P_inelastic > P_elastic." },
-
-    { "type": "heading", "content": "Model answer — marked against the real Paper 3 marking engine" },
-    { "type": "text", "content": "Paper 3 is marked on a POINTS basis: each distinct valid point or step earns a mark. For a quantitative part, a mark is available for the correct METHOD (M) and a mark for the correct ANSWER with accuracy (A), working must be shown, and follow-through applies — a correct method built on an earlier slip can still earn the method mark. The worked example below shows exactly how the marks are allocated." },
-    { "type": "workedExample", "question": "Paper 3: Explain the conditions necessary for a firm to practise price discrimination, and calculate the total revenue if it sells 200 units at $8 in market A and 150 units at $12 in market B. [5]", "solution": "**Model answer:**\n\nFor a firm to practise price discrimination, three conditions must be met.\n\n1. **Market power** — the firm must be a price maker (e.g. a monopoly or other imperfectly competitive firm), because a perfectly competitive price taker cannot set different prices.\n\n2. **Ability to separate consumers by price elasticity of demand** — the firm must be able to divide buyers into groups with different PEDs (for example by age, time or location), so that a higher price can be charged to the group with more inelastic demand.\n\n3. **Ability to prevent resale (arbitrage)** — the firm must stop buyers in the low-price market reselling to buyers in the high-price market, otherwise the two prices would converge and discrimination would break down.\n\n**Calculation of total revenue:**\n\nTotal revenue = (price × quantity) in market A + (price × quantity) in market B\n\nTR = (200 × $8) + (150 × $12)\n\nTR = $1,600 + $1,800\n\n**TR = $3,400**\n\n---\n**How our marking engine awards the marks (out of 5):**\n- ✅ **Condition 1 — market power** correctly identified and justified = **1 mark**.\n- ✅ **Condition 2 — separable markets with different PED** correctly identified and justified = **1 mark**.\n- ✅ **Condition 3 — ability to prevent resale** correctly identified and justified = **1 mark**.\n- ✅ **M1 — method:** multiplying each price by its quantity and summing the two markets, i.e. (200 × 8) + (150 × 12), with working shown = **1 mark**.\n- ✅ **A1 — accuracy:** the correct final figure **$3,400** with the dollar sign = **1 mark**.\n\n**Follow-through:** if a student wrote the correct method (200 × 8) + (150 × 12) but slipped in the arithmetic to reach, say, $3,300, the M1 method mark is still awarded — only the A1 accuracy mark is lost. Marks are given for each valid step, so ALWAYS show your working: an unsupported '$3,400' with no method risks losing M1 if the answer were wrong, and a wrong answer with no working earns nothing." },
-    { "type": "examTip", "content": "This is exactly what the Practice button does. Write your own answer to this Paper 3 question, submit it, and our marking engine grades it point by point — checking each of the three conditions and awarding M1 for your method and A1 for your accurate final figure, with follow-through on your working. The habit that earns full marks on Paper 3: show every calculation step, never just the final number." },
-
-    { "type": "heading", "content": "Common mistakes examiners penalise" },
-    { "type": "keyPoints", "items": [
-      "**Saying discrimination is driven by different COSTS.** It is driven by different price elasticities of demand. A cost-based price gap is not price discrimination at all.",
-      "**Claiming a perfectly competitive firm can price discriminate.** It cannot — it is a price taker with no market power; condition 1 fails.",
-      "**Forgetting the resale condition.** Many answers give only market power and different PED and stop. Preventing arbitrage is a full third condition and a full third mark.",
-      "**Charging the higher price to the ELASTIC group.** It is the INELASTIC group (less responsive to price) that pays more; reversing this loses marks.",
-      "**Reading price off the MR curve on the diagram.** Find quantity where MR = MC, then go up to the DEMAND curve for the price.",
-      "**Not showing working in the calculation.** Paper 3 awards a method mark (M1) separately from the accuracy mark (A1); an answer with no working forfeits the method mark and blocks follow-through.",
-      "**Asserting consumers always lose.** Overall consumer surplus usually falls, but some elastic-group buyers gain a lower price and some are served who would otherwise be priced out — a nuanced answer scores higher."
-    ]},
-
-    { "type": "heading", "content": "Where this leads" },
-    { "type": "text", "content": "Price discrimination is a direct application of two ideas you already know: market power (from the theory of the firm) and price elasticity of demand (from Unit 2). Recognising that a firm's pricing depends on how elastic each buyer group is will resurface whenever you analyse monopoly, revenue maximisation, or the welfare effects of market power — and, on Paper 3, wherever a question asks you to calculate revenue across segmented markets." },
-
-    { "type": "practice", "label": "Get a Paper 3 answer marked: explain the conditions for price discrimination and calculate total revenue across two markets", "href": "/mark?subject=ib-economics-hl&topic=2.12&component=paper_3" },
-    { "type": "resources", "items": [
-      { "label": "The Economist explains: Price discrimination", "href": "https://www.economist.com/economics-a-to-z" },
-      { "label": "Investopedia: Price Discrimination", "href": "https://www.investopedia.com/terms/p/price_discrimination.asp" }
-    ]}
+    {
+      "type": "intro",
+      "content": "You and a stranger sit in identical cinema seats watching the identical film at the identical time — and you paid a student rate while they paid full price. No cost difference explains the gap: the seat, the screen and the projector cost the cinema the same for both of you. This is price discrimination, and it is one of the most powerful tools a firm with market power possesses. In this HL lesson we build it up carefully: the exact conditions a firm needs, the three degrees of discrimination, the effect on firms and consumers, and the side-by-side diagram examiners want you to draw. Because this topic is assessed on Paper 3, we finish by mapping a worked answer straight onto how our marking engine awards each point and each calculation step."
+    },
+    {
+      "type": "heading",
+      "content": "What price discrimination is — and is not"
+    },
+    {
+      "type": "text",
+      "content": "Price discrimination means charging different prices to different consumers for the same product, where the price difference is not based on differences in cost. That final clause is the whole point. If an online retailer charges a customer in a remote area more because delivery genuinely costs more, that is a cost difference, not discrimination. Price discrimination only exists when the cost of supplying each buyer is (roughly) the same, yet the prices differ — because the buyers differ in their willingness to pay."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Same product** — the good or service supplied to each buyer is essentially identical.",
+        "**Different prices** — buyers are charged different amounts.",
+        "**Not cost-based** — the price gap is explained by differences in demand (willingness to pay / PED), not by differences in the cost of supply."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The three necessary conditions"
+    },
+    {
+      "type": "text",
+      "content": "A firm cannot simply decide to price discriminate. Three conditions must all hold at once; remove any one and the strategy collapses. Learn them as a checklist, because Paper 3 'explain the conditions' questions award a mark for each condition correctly identified and explained."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**1. Market power.** The firm must be a price maker with the ability to set its own price, so it must operate in a monopoly, oligopoly or monopolistically competitive market. A perfectly competitive firm is a price taker facing a single market price and simply cannot charge different buyers differently.",
+        "**2. Ability to separate consumers by PED.** The firm must be able to sort buyers into groups whose price elasticities of demand differ, using an observable signal such as age, student or senior status, time of purchase, or geographic location. Without different PEDs there is no gain from charging different prices.",
+        "**3. Ability to prevent resale (no arbitrage).** The firm must stop buyers who pay the low price from reselling to those who would pay the high price. If resale is easy, the low price leaks into the high-price segment and the two prices converge. This is why services (a haircut, a cinema seat, a doctor's appointment) are far easier to discriminate on than storable physical goods."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In a Paper 3 'explain the conditions' question, do not just list the three words. For each condition, add the reason it matters — e.g. 'market power, BECAUSE a price taker cannot set its own price.' Our marking engine awards a separate point for each condition that is both identified and briefly justified."
+    },
+    {
+      "type": "heading",
+      "content": "The three degrees of price discrimination"
+    },
+    {
+      "type": "text",
+      "content": "Economists classify price discrimination by how finely the firm can distinguish and charge buyers, from the near-impossible ideal (first degree) to the everyday reality (third degree)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**First-degree (perfect) price discrimination.** The firm charges each buyer the maximum they are willing to pay for each unit, extracting all consumer surplus and turning it into producer surplus. It is largely theoretical because it requires perfect knowledge of every buyer's willingness to pay; the closest real examples are individually haggled prices, bespoke professional quotes, or some auctions.",
+        "**Second-degree price discrimination.** The firm charges different prices for different quantities or 'blocks' bought by the same consumer — bulk discounts, 'buy more, pay less per unit', or a utility bill where a first block of units is priced differently from later units. Here the buyer effectively self-selects the price by choosing how much to buy.",
+        "**Third-degree price discrimination.** The most common form. The firm divides consumers into distinct, identifiable groups and charges each group a different price — the same price for everyone within a group, a different price between groups. Examples: adult vs. student cinema tickets, peak vs. off-peak rail fares, and academic vs. commercial software licences. This is the form you must be able to draw."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The effect on the firm and on consumers"
+    },
+    {
+      "type": "text",
+      "content": "Price discrimination redistributes surplus. Evaluating who gains and who loses — and being precise about consumer surplus — is exactly what higher marks reward."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**The firm gains.** Total revenue and profit rise relative to a single price, because the firm captures consumer surplus it would otherwise have left with buyers. Every buyer who was willing to pay more than the single price is now charged closer to their maximum.",
+        "**Inelastic-group consumers lose.** They face a higher price and their consumer surplus shrinks.",
+        "**Some elastic-group consumers gain.** They pay a lower price, and crucially some who would have been priced out entirely under a single monopoly price can now afford the product and are served.",
+        "**Overall consumer surplus usually falls**, transferred to the firm as extra profit; under first-degree discrimination consumer surplus falls to zero.",
+        "**Efficiency is ambiguous.** Output can rise because extra buyers are served, moving output nearer the competitive level — and a firm that would have made a loss at a single price might survive and supply the market at all. But the price still exceeds marginal cost for most buyers, so allocative inefficiency is reduced, not removed."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Diagram: third-degree price discrimination with two markets"
+    },
+    {
+      "type": "text",
+      "content": "The standard HL diagram places two sub-markets side by side. Both are supplied by the same firm at the same marginal cost, but each has its own demand and marginal revenue curves reflecting its own elasticity. The firm maximises profit by setting MR = MC separately in each market."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using a diagram, explain how a firm practising third-degree price discrimination sets its price and quantity in two markets, A and B, where demand in market A is more inelastic than in market B, and marginal cost is constant and the same for both.",
+      "solution": "**The diagram (two panels side by side, sharing the same horizontal MC line):**\n\n*Market A (inelastic):* draw a STEEP demand curve D_A and its steeper marginal revenue curve MR_A. Draw the horizontal MC line. The profit-maximising output Q_A is where MR_A = MC; read the price P_A UP on the demand curve D_A above Q_A.\n\n*Market B (elastic):* draw a FLATTER demand curve D_B and its flatter marginal revenue curve MR_B, with the SAME horizontal MC line. The profit-maximising output Q_B is where MR_B = MC; read the price P_B UP on demand curve D_B above Q_B.\n\n**The explanation:**\n1. The firm is a price maker (market power) and can separate the two markets and prevent resale, so it can treat A and B independently.\n2. To maximise profit it applies the same rule in each market: produce where marginal revenue equals marginal cost. Because MC is the same but the MR curves differ, this gives a different quantity — and a different price — in each market.\n3. Since demand in A is more inelastic, the price line P_A read off D_A sits ABOVE P_B: **P_A > P_B**. The firm charges the higher price in the inelastic market and the lower price in the elastic market.\n4. Compared with a single price across both markets, the firm earns higher total revenue and profit, capturing consumer surplus — especially from the inelastic market A, whose buyers are least able to respond to the higher price."
+    },
+    {
+      "type": "examTip",
+      "content": "The single most common diagram error is reading the price off the MR curve instead of the demand curve. Always find quantity where MR = MC, then travel VERTICALLY up to the DEMAND curve to read the price. Label both prices and show clearly that P_inelastic > P_elastic."
+    },
+    {
+      "type": "heading",
+      "content": "Model answer — marked against the real Paper 3 marking engine"
+    },
+    {
+      "type": "text",
+      "content": "Paper 3 is marked on a POINTS basis: each distinct valid point or step earns a mark. For a quantitative part, a mark is available for the correct METHOD (M) and a mark for the correct ANSWER with accuracy (A), working must be shown, and follow-through applies — a correct method built on an earlier slip can still earn the method mark. The worked example below shows exactly how the marks are allocated."
+    },
+    {
+      "type": "workedExample",
+      "question": "Paper 3: Explain the conditions necessary for a firm to practise price discrimination, and calculate the total revenue if it sells 200 units at $8 in market A and 150 units at $12 in market B. [5]",
+      "solution": "**Model answer:**\n\nFor a firm to practise price discrimination, three conditions must be met.\n\n1. **Market power** — the firm must be a price maker (e.g. a monopoly or other imperfectly competitive firm), because a perfectly competitive price taker cannot set different prices.\n\n2. **Ability to separate consumers by price elasticity of demand** — the firm must be able to divide buyers into groups with different PEDs (for example by age, time or location), so that a higher price can be charged to the group with more inelastic demand.\n\n3. **Ability to prevent resale (arbitrage)** — the firm must stop buyers in the low-price market reselling to buyers in the high-price market, otherwise the two prices would converge and discrimination would break down.\n\n**Calculation of total revenue:**\n\nTotal revenue = (price × quantity) in market A + (price × quantity) in market B\n\nTR = (200 × $8) + (150 × $12)\n\nTR = $1,600 + $1,800\n\n**TR = $3,400**\n\n---\n**How our marking engine awards the marks (out of 5):**\n- ✅ **Condition 1 — market power** correctly identified and justified = **1 mark**.\n- ✅ **Condition 2 — separable markets with different PED** correctly identified and justified = **1 mark**.\n- ✅ **Condition 3 — ability to prevent resale** correctly identified and justified = **1 mark**.\n- ✅ **M1 — method:** multiplying each price by its quantity and summing the two markets, i.e. (200 × 8) + (150 × 12), with working shown = **1 mark**.\n- ✅ **A1 — accuracy:** the correct final figure **$3,400** with the dollar sign = **1 mark**.\n\n**Follow-through:** if a student wrote the correct method (200 × 8) + (150 × 12) but slipped in the arithmetic to reach, say, $3,300, the M1 method mark is still awarded - only the A1 accuracy mark is lost. Marks are given for each valid step, so ALWAYS show your working: an unsupported '$3,400' with no method risks losing M1 if the answer were wrong, and a wrong answer with no working earns nothing."
+    },
+    {
+      "type": "examTip",
+      "content": "This is exactly what the Practice button does. Write your own answer to this Paper 3 question, submit it, and our marking engine grades it point by point — checking each of the three conditions and awarding M1 for your method and A1 for your accurate final figure, with follow-through on your working. The habit that earns full marks on Paper 3: show every calculation step, never just the final number."
+    },
+    {
+      "type": "heading",
+      "content": "Common mistakes examiners penalise"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Saying discrimination is driven by different COSTS.** It is driven by different price elasticities of demand. A cost-based price gap is not price discrimination at all.",
+        "**Claiming a perfectly competitive firm can price discriminate.** It cannot — it is a price taker with no market power; condition 1 fails.",
+        "**Forgetting the resale condition.** Many answers give only market power and different PED and stop. Preventing arbitrage is a full third condition and a full third mark.",
+        "**Charging the higher price to the ELASTIC group.** It is the INELASTIC group (less responsive to price) that pays more; reversing this loses marks.",
+        "**Reading price off the MR curve on the diagram.** Find quantity where MR = MC, then go up to the DEMAND curve for the price.",
+        "**Not showing working in the calculation.** Paper 3 awards a method mark (M1) separately from the accuracy mark (A1); an answer with no working forfeits the method mark and blocks follow-through.",
+        "**Asserting consumers always lose.** Overall consumer surplus usually falls, but some elastic-group buyers gain a lower price and some are served who would otherwise be priced out — a nuanced answer scores higher."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Where this leads"
+    },
+    {
+      "type": "text",
+      "content": "Price discrimination is a direct application of two ideas you already know: market power (from the theory of the firm) and price elasticity of demand (from Unit 2). Recognising that a firm's pricing depends on how elastic each buyer group is will resurface whenever you analyse monopoly, revenue maximisation, or the welfare effects of market power — and, on Paper 3, wherever a question asks you to calculate revenue across segmented markets."
+    },
+    {
+      "type": "practice",
+      "label": "Get a Paper 3 answer marked: explain the conditions for price discrimination and calculate total revenue across two markets",
+      "href": "/mark?subject=ib-economics-hl&topic=2.12&component=paper_3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "The Economist explains: Price discrimination",
+          "href": "https://www.economist.com/economics-a-to-z"
+        },
+        {
+          "label": "Investopedia: Price Discrimination",
+          "href": "https://www.investopedia.com/terms/p/price_discrimination.asp"
+        }
+      ]
+    }
   ],
   "generatorVersion": "ib-course-authored-1"
 }

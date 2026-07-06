@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Temperature scales (14.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
   "durationMin": 20,
-  "learningObjectives": [
-    "Define and differentiate between the Celsius and Kelvin temperature scales.",
-    "Explain the concept of absolute zero and its significance in physics.",
-    "Apply the conversion formula between Celsius and Kelvin for calculations."
-  ],
-  "simpleExplanation": {
-    "title": "Understanding Temperature Scales",
-    "summary": "Temperature scales provide a standard way to measure how hot or cold something is. The Kelvin scale is absolute, starting from theoretical absolute zero, while Celsius uses water's freezing and boiling points. Knowing both is vital for A-Level Physics.",
-    "analogy": "Imagine two rulers. One starts at zero (like Kelvin, absolute zero) and measures upwards. The other ruler starts marking from a specific point (like Celsius, where water freezes at 0°C), but its markings for 'change' are the same size as the first ruler's.",
-    "steps": [
-      "**Meet the Scales:** Understand Kelvin (absolute, K) and Celsius (relative, °C).",
-      "**Absolute Zero:** Grasp 0 K as the lowest possible energy state (-273.15 °C).",
-      "**Convert & Calculate:** Learn the K = C + 273.15 formula.",
-      "**Why Kelvin?** Realise its importance for thermal physics formulas."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the SI unit for absolute temperature?",
-      "pillLabel": "Kelvin scale",
-      "back": "Kelvin (K)"
-    },
-    {
-      "front": "How do you convert a temperature from Celsius to Kelvin?",
-      "pillLabel": "K = C + 273.15",
-      "back": "Add 273.15 to the Celsius value ($K = C + 273.15$)."
-    },
-    {
-      "front": "What is absolute zero in degrees Celsius?",
-      "pillLabel": "Absolute zero",
-      "back": "-273.15 °C"
-    },
-    {
-      "front": "What defines the Kelvin scale as an 'absolute' temperature scale?",
-      "pillLabel": "Absolute scale",
-      "back": "It is independent of any substance's specific properties and starts from absolute zero, where particles theoretically have zero kinetic energy."
-    },
-    {
-      "front": "Why is the Kelvin scale often preferred for calculations in thermal physics?",
-      "pillLabel": "Why Kelvin?",
-      "back": "Thermal physics equations are based on absolute temperatures, requiring values relative to absolute zero, which the Kelvin scale provides."
-    },
-    {
-      "front": "What are the two fixed points of the Celsius scale?",
-      "pillLabel": "Celsius scale",
-      "back": "The melting point of pure ice (0°C) and the boiling point of pure water (100°C), both at standard atmospheric pressure."
-    },
-    {
-      "front": "How does a change of 1 Kelvin relate to a change of 1 degree Celsius?",
-      "pillLabel": "ΔK = Δ°C",
-      "back": "A change of 1 Kelvin is exactly equal to a change of 1 degree Celsius (ΔK = Δ°C)."
-    },
-    {
-      "front": "Name two physical properties that change with temperature and can be used for thermometry.",
-      "pillLabel": "Thermometry",
-      "back": "Electrical resistance, volume of a liquid, pressure of a gas, or generated voltage (e.g., in a thermocouple)."
-    },
-    {
-      "front": "What is the theoretical state of particles at absolute zero?",
-      "pillLabel": "At absolute zero",
-      "back": "Particles possess their lowest possible energy state, theoretically having zero kinetic energy."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -117,7 +54,7 @@
     },
     {
       "type": "text",
-      "content": "You'll frequently need to convert between Celsius and Kelvin, especially when working with thermal physics equations. Remember, these equations almost always require absolute temperatures. The conversion is straightforward, simply adding or subtracting a constant value, reflecting the difference in their zero points."
+      "content": "You'll frequently need to convert between Celsius and Kelvin, especially when working with thermal physics equations. Remember, fundamental laws like the **Ideal Gas Law (pV=nRT)** and those governing thermal radiation almost always require absolute temperatures in Kelvin. The conversion is straightforward, simply adding or subtracting a constant value, reflecting the difference in their zero points."
     },
     {
       "type": "formula",
@@ -127,6 +64,11 @@
       "type": "workedExample",
       "question": "A gas is cooled from 27 °C to -10 °C. Calculate this temperature change in Kelvin.",
       "solution": "1. First, find the temperature change in Celsius: $\\Delta C = \\text{Initial Temp} - \\text{Final Temp} = 27 °C - (-10 °C) = 37 °C$.\n2. Since a change of 1 Kelvin is equal to a change of 1 degree Celsius ($\\Delta K = \\Delta °C$), the temperature change in Kelvin is $\\Delta K = 37 \\text{ K}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sealed container holds 0.50 moles of an ideal gas at a pressure of 1.5 x 10^5 Pa. The volume of the container is 0.012 m³. Calculate the temperature of the gas in degrees Celsius (°C). (The ideal gas constant, R, is 8.31 J K⁻¹ mol⁻¹).",
+      "solution": "1. **State the Ideal Gas Law:** The relationship between pressure (p), volume (V), number of moles (n), and temperature (T) is given by the ideal gas law: $pV = nRT$. We need to find the temperature, T.\n2. **Rearrange the formula for Temperature (T):** $T = \\frac{pV}{nR}$.\n3. **Substitute the given values:**\n   - $p = 1.5 \\times 10^5 \\text{ Pa}$\n   - $V = 0.012 \\text{ m}^3$\n   - $n = 0.50 \\text{ mol}$\n   - $R = 8.31 \\text{ J K}^{-1} \\text{ mol}^{-1}$\n   $T = \\frac{(1.5 \\times 10^5 \\text{ Pa}) \\times (0.012 \\text{ m}^3)}{(0.50 \\text{ mol}) \\times (8.31 \\text{ J K}^{-1} \\text{ mol}^{-1})}$.\n4. **Calculate the temperature in Kelvin:**\n   $T = \\frac{1800}{4.155} \\approx 433.2 \\text{ K}$.\n   *Note: The temperature calculated from the ideal gas law is always in Kelvin.*\n5. **Convert the temperature from Kelvin to Celsius:** The question asks for the temperature in degrees Celsius. We use the conversion formula $C = K - 273.15$.\n   $C = 433.2 - 273.15 = 160.05 °C$.\n6. **Final Answer:** The temperature of the gas is approximately **160 °C** (to 3 significant figures)."
     },
     {
       "type": "examTip",
@@ -155,6 +97,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and differentiate between the Celsius and Kelvin temperature scales.",
+    "Explain the concept of absolute zero and its significance in physics.",
+    "Apply the conversion formula between Celsius and Kelvin for calculations."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine two rulers. One starts at zero (like Kelvin, absolute zero) and measures upwards. The other ruler starts marking from a specific point (like Celsius, where water freezes at 0°C), but its markings for 'change' are the same size as the first ruler's."
+  },
   "faq": [
     {
       "q": "Why is Kelvin called an 'absolute' temperature scale?",
@@ -169,13 +119,61 @@
       "a": "Common properties include the change in electrical resistance of a material, the expansion of a liquid (like mercury or alcohol), the pressure change of a gas, or the voltage generated in a thermocouple."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the SI unit for absolute temperature?",
+      "back": "Kelvin (K)"
+    },
+    {
+      "front": "How do you convert a temperature from Celsius to Kelvin?",
+      "back": "Add 273.15 to the Celsius value ($K = C + 273.15$)."
+    },
+    {
+      "front": "What is absolute zero in degrees Celsius?",
+      "back": "-273.15 °C"
+    },
+    {
+      "front": "What defines the Kelvin scale as an 'absolute' temperature scale?",
+      "back": "It is independent of any substance's specific properties and starts from absolute zero, where particles theoretically have zero kinetic energy."
+    },
+    {
+      "front": "Why is the Kelvin scale often preferred for calculations in thermal physics?",
+      "back": "Thermal physics equations are based on absolute temperatures, requiring values relative to absolute zero, which the Kelvin scale provides."
+    },
+    {
+      "front": "What are the two fixed points of the Celsius scale?",
+      "back": "The melting point of pure ice (0°C) and the boiling point of pure water (100°C), both at standard atmospheric pressure."
+    },
+    {
+      "front": "How does a change of 1 Kelvin relate to a change of 1 degree Celsius?",
+      "back": "A change of 1 Kelvin is exactly equal to a change of 1 degree Celsius (ΔK = Δ°C)."
+    },
+    {
+      "front": "Name two physical properties that change with temperature and can be used for thermometry.",
+      "back": "Electrical resistance, volume of a liquid, pressure of a gas, or generated voltage (e.g., in a thermocouple)."
+    },
+    {
+      "front": "What is the theoretical state of particles at absolute zero?",
+      "back": "Particles possess their lowest possible energy state, theoretically having zero kinetic energy."
+    },
+    {
+      "front": "Give an example of a physical law that requires temperature to be in Kelvin.",
+      "back": "The Ideal Gas Law (pV = nRT), Stefan-Boltzmann Law (P = σAT⁴), and Wien's Displacement Law (λ_max T = constant) all require absolute temperature in Kelvin for correct calculations."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "14.2.1",
+    "14.2.2",
+    "14.2.3",
+    "14.2.4"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/14-2-temperature-scales.png",
     "alt": "Senpai Corner reference diagram for 14.2 Temperature scales"
-  }
+  },
+  "updated": "2026-06-26"
 }

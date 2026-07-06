@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 AS costs and revenue — fixed/variable, SR/LR curves, and profit maximisation.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Calculate TC, TFC, TVC, AFC, AVC, AC, MC.",
-    "Draw SR cost curves and explain their shapes.",
-    "Explain economies and diseconomies of scale.",
-    "Identify profit-max output where MC = MR."
-  ],
-  "simpleExplanation": {
-    "title": "From costs to profit",
-    "summary": "Firms choose output where marginal revenue equals marginal cost. Short-run includes fixed costs; long-run all inputs vary.",
-    "steps": [
-      "Fixed costs do not vary with output.",
-      "MC cuts AVC and AC at their minima.",
-      "MR = P in perfect competition.",
-      "LRAC shows minimum efficient scale."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Fixed vs variable costs?",
-      "back": "Fixed costs (FC) do not change with output (e.g. rent). Variable costs (VC) change with output (e.g. raw materials). TC = TFC + TVC."
-    },
-    {
-      "front": "How to calculate AC and MC?",
-      "back": "AC = TC/Q. MC = ΔTC/ΔQ — the cost of producing one more unit."
-    },
-    {
-      "front": "Why is MC U-shaped?",
-      "back": "Initially falls due to increasing returns/diminishing MC; eventually rises due to diminishing marginal returns in the short run."
-    },
-    {
-      "front": "Profit-maximising rule?",
-      "back": "Produce where MC = MR. If MR > MC, producing more adds to profit; if MR < MC, producing less raises profit."
-    },
-    {
-      "front": "MR in perfect competition?",
-      "back": "MR = AR = P — the firm is a price taker and can sell any quantity at the market price."
-    },
-    {
-      "front": "Economies vs diseconomies of scale?",
-      "back": "Economies: LRAC falls as output rises (bulk buying, specialisation). Diseconomies: LRAC rises (management inefficiency, communication problems)."
-    },
-    {
-      "front": "What is the Law of Diminishing Marginal Returns?",
-      "back": "A short-run concept stating that as successive units of a variable factor are added to a fixed factor, the marginal product of the variable factor will eventually decrease. This leads to an increase in marginal cost."
-    },
-    {
-      "front": "What is the profit-maximising rule for a firm?",
-      "back": "A firm maximises profit by producing at the level of output where Marginal Cost (MC) equals Marginal Revenue (MR). This is because for every unit produced up to this point, MR > MC, adding to total profit."
-    },
-    {
-      "front": "Define 'Normal Profit'.",
-      "back": "Normal profit is the minimum level of profit required to keep the factors of production in their current use in the long run. It occurs when Total Revenue equals Total Cost (TR = TC), or Average Revenue equals Average Cost (AR = AC). It is considered a cost of production."
-    },
-    {
-      "front": "What is the short-run shut-down condition?",
-      "back": "A firm should cease production in the short run if the price (Average Revenue) it receives is less than its Average Variable Cost (P < AVC). At this point, it cannot even cover its variable costs per unit, and losses are minimised by shutting down."
-    },
-    {
-      "front": "What are 'Economies of Scale'?",
-      "back": "These occur in the long run when an increase in the scale of production leads to a fall in long-run average costs (LRAC). Examples include technical, financial, and bulk-buying economies."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -172,9 +109,22 @@
       "content": "**Short run:** at least one factor is fixed (usually capital). Diminishing marginal returns cause MC and AVC to rise eventually.\n\n**Long run:** all factors variable. The **LRAC curve** is a planning curve showing the lowest AC for each output level. It is U-shaped due to **economies of scale** (falling LRAC) then **diseconomies of scale** (rising LRAC).\n\n**Minimum efficient scale (MES):** output at the bottom of the LRAC — lowest unit cost."
     },
     {
+      "type": "heading",
+      "content": "Worked Example 1: Profit Maximisation"
+    },
+    {
       "type": "workedExample",
       "question": "A firm in a perfectly competitive market faces P = MR = £12. Its costs are:\n\n| Q | TC (£) |\n|---|--------|\n| 0 | 20 |\n| 1 | 28 |\n| 2 | 34 |\n| 3 | 42 |\n| 4 | 54 |\n| 5 | 70 |\n\n(a) Calculate MC at each output level.\n(b) Find profit-maximising output and total profit.",
       "solution": "(a) **MC = ΔTC/ΔQ:**\n\n| Q | TC | MC |\n|---|-----|-----|\n| 1 | 28 | 8 |\n| 2 | 34 | 6 |\n| 3 | 42 | 8 |\n| 4 | 54 | 12 |\n| 5 | 70 | 16 |\n\n(b) **Profit max where MC = MR = £12:**\nAt Q = 4, MC = **£12** = MR ✓\n\n**TR** = 12 × 4 = **£48**\n**TC** = **£54**\n\nWait — at Q = 4, TC > TR. Check Q = 3: MC = 8 < MR → should expand. At Q = 4: MC = 12 = MR → **optimal output = 4 units**.\n\n**Profit** = TR − TC = 48 − 54 = **−£6** (loss).\n\nThe firm maximises profit (minimises loss) at Q = 4. In the short run, it continues if TR ≥ TVC. TFC = £20, TVC at Q=4 = £34, TR = £48 > TVC → **covers variable costs**, so it should stay open short run."
+    },
+    {
+      "type": "heading",
+      "content": "Worked Example 2: Calculating Cost Curves"
+    },
+    {
+      "type": "workedExample",
+      "question": "A small bakery has total fixed costs (TFC) of $60 per day. Its total variable costs (TVC) for different quantities of cakes are given in the table below.\n\n| Quantity (Q) | TVC ($) |\n|--------------|---------|\n| 0            | 0       |\n| 1            | 30      |\n| 2            | 50      |\n| 3            | 60      |\n| 4            | 80      |\n| 5            | 110     |\n| 6            | 150     |\n\nCalculate the Total Cost (TC), Average Fixed Cost (AFC), Average Variable Cost (AVC), Average Total Cost (AC), and Marginal Cost (MC) for each level of output from 1 to 6 cakes. Identify the output level where AC is at its minimum.",
+      "solution": "First, we set up a table to calculate each cost component. Remember:\n- TFC = $60 (constant)\n- TC = TFC + TVC\n- AFC = TFC / Q\n- AVC = TVC / Q\n- AC = TC / Q (or AFC + AVC)\n- MC = ΔTC / ΔQ\n\n**Step-by-step calculation table:**\n\n| Q | TFC ($) | TVC ($) | TC ($) | AFC ($) | AVC ($) | AC ($) | MC ($) |\n|---|---|---|---|---|---|---|---|\n| 0 | 60 | 0 | 60 | - | - | - | - |\n| 1 | 60 | 30 | 90 | 60.00 | 30.00 | 90.00 | 30 |\n| 2 | 60 | 50 | 110 | 30.00 | 25.00 | 55.00 | 20 |\n| 3 | 60 | 60 | 120 | 20.00 | 20.00 | 40.00 | 10 |\n| 4 | 60 | 80 | 140 | 15.00 | 20.00 | 35.00 | 20 |\n| 5 | 60 | 110 | 170 | 12.00 | 22.00 | 34.00 | 30 |\n| 6 | 60 | 150 | 210 | 10.00 | 25.00 | 35.00 | 40 |\n\n**Explanation of calculations:**\n- **TC for Q=2:** $60 (TFC) + $50 (TVC) = $110\n- **AFC for Q=3:** $60 (TFC) / 3 = $20.00\n- **AVC for Q=4:** $80 (TVC) / 4 = $20.00\n- **AC for Q=5:** $170 (TC) / 5 = $34.00\n- **MC for Q=6:** ($210 - $170) / (6 - 5) = $40\n\n**Conclusion:**\nThe Average Total Cost (AC) is at its minimum at an output of **5 units**, where AC is $34.00. Notice that as MC rises and crosses the AC curve, the AC begins to increase. At Q=5, MC ($30) is below AC ($34), so AC is still falling. At Q=6, MC ($40) is above AC ($35), causing AC to rise. The minimum AC for this discrete data set is at Q=5."
     },
     {
       "type": "examTip",
@@ -206,6 +156,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Calculate TC, TFC, TVC, AFC, AVC, AC, MC.",
+    "Draw SR cost curves and explain their shapes.",
+    "Explain economies and diseconomies of scale.",
+    "Identify profit-max output where MC = MR."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "What is the difference between 'diminishing returns' and 'diseconomies of scale'?",
+      "a": "This is a common point of confusion. 'Diminishing returns' is a short-run concept where at least one factor is fixed. It explains why short-run marginal costs eventually rise. 'Diseconomies of scale' is a long-run concept where all factors are variable. It explains why the long-run average cost curve might eventually rise due to problems associated with being too large, such as poor communication or coordination."
+    },
+    {
+      "q": "Why does the Marginal Cost (MC) curve cut the Average Total Cost (ATC) curve at its lowest point?",
+      "a": "Think of your average test score (ATC) and the score on your next test (MC). If your next test score (marginal) is lower than your average, your average will fall. If your next score is higher than your average, your average will rise. Therefore, the average can only be at its minimum point when the marginal score is exactly equal to the average. The same logic applies to cost curves."
+    },
+    {
+      "q": "Is profit maximisation (MC=MR) the only objective of a firm?",
+      "a": "While profit maximisation is the central assumption in traditional neoclassical theory and the one you should use for most exam questions, it is not the only possible objective. Other goals may include revenue maximisation (MR=0), sales maximisation (producing as much as possible without making a loss, where AC=AR), or 'satisficing' – making just enough profit to satisfy shareholders while pursuing other objectives. However, unless the question specifies otherwise, assume profit maximisation."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "Fixed vs variable costs?",
+      "back": "Fixed costs (FC) do not change with output (e.g. rent). Variable costs (VC) change with output (e.g. raw materials). TC = TFC + TVC."
+    },
+    {
+      "front": "How to calculate AC and MC?",
+      "back": "AC = TC/Q. MC = ΔTC/ΔQ — the cost of producing one more unit."
+    },
+    {
+      "front": "Why is MC U-shaped?",
+      "back": "Initially falls due to increasing returns/diminishing MC; eventually rises due to diminishing marginal returns in the short run."
+    },
+    {
+      "front": "Profit-maximising rule?",
+      "back": "Produce where MC = MR. If MR > MC, producing more adds to profit; if MR < MC, producing less raises profit."
+    },
+    {
+      "front": "MR in perfect competition?",
+      "back": "MR = AR = P — the firm is a price taker and can sell any quantity at the market price."
+    },
+    {
+      "front": "Economies vs diseconomies of scale?",
+      "back": "Economies: LRAC falls as output rises (bulk buying, specialisation). Diseconomies: LRAC rises (management inefficiency, communication problems)."
+    },
+    {
+      "front": "What is the Law of Diminishing Marginal Returns?",
+      "back": "A short-run concept stating that as successive units of a variable factor are added to a fixed factor, the marginal product of the variable factor will eventually decrease. This leads to an increase in marginal cost."
+    },
+    {
+      "front": "What is the profit-maximising rule for a firm?",
+      "back": "A firm maximises profit by producing at the level of output where Marginal Cost (MC) equals Marginal Revenue (MR). This is because for every unit produced up to this point, MR > MC, adding to total profit."
+    },
+    {
+      "front": "Define 'Normal Profit'.",
+      "back": "Normal profit is the minimum level of profit required to keep the factors of production in their current use in the long run. It occurs when Total Revenue equals Total Cost (TR = TC), or Average Revenue equals Average Cost (AR = AC). It is considered a cost of production."
+    },
+    {
+      "front": "What is the short-run shut-down condition?",
+      "back": "A firm should cease production in the short run if the price (Average Revenue) it receives is less than its Average Variable Cost (P < AVC). At this point, it cannot even cover its variable costs per unit, and losses are minimised by shutting down."
+    },
+    {
+      "front": "What are 'Economies of Scale'?",
+      "back": "These occur in the long run when an increase in the scale of production leads to a fall in long-run average costs (LRAC). Examples include technical, financial, and bulk-buying economies."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "7.5"
   ],
   "diagramSpec": {
     "steps": [
@@ -239,20 +262,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "What is the difference between 'diminishing returns' and 'diseconomies of scale'?",
-      "a": "This is a common point of confusion. 'Diminishing returns' is a short-run concept where at least one factor is fixed. It explains why short-run marginal costs eventually rise. 'Diseconomies of scale' is a long-run concept where all factors are variable. It explains why the long-run average cost curve might eventually rise due to problems associated with being too large, such as poor communication or coordination."
-    },
-    {
-      "q": "Why does the Marginal Cost (MC) curve cut the Average Total Cost (ATC) curve at its lowest point?",
-      "a": "Think of your average test score (ATC) and the score on your next test (MC). If your next test score (marginal) is lower than your average, your average will fall. If your next score is higher than your average, your average will rise. Therefore, the average can only be at its minimum point when the marginal score is exactly equal to the average. The same logic applies to cost curves."
-    },
-    {
-      "q": "Is profit maximisation (MC=MR) the only objective of a firm?",
-      "a": "While profit maximisation is the central assumption in traditional neoclassical theory and the one you should use for most exam questions, it is not the only possible objective. Other goals may include revenue maximisation (MR=0), sales maximisation (producing as much as possible without making a loss, where AC=AR), or 'satisficing' – making just enough profit to satisfy shareholders while pursuing other objectives. However, unless the question specifies otherwise, assume profit maximisation."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Short Run and Long Run Production Periods",
     "columns": [

@@ -6,70 +6,7 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — unit, job, and batch costing for different production types.",
-  "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish unit, job, and batch costing.",
-    "Calculate cost per unit/job/batch.",
-    "Allocate overheads to cost units.",
-    "Apply to pricing and quotation decisions."
-  ],
-  "simpleExplanation": {
-    "title": "Different ways to cost products",
-    "summary": "Unit costing suits identical products; job costing tracks each custom order; batch costing groups similar small runs.",
-    "steps": [
-      "Unit — continuous identical output.",
-      "Job — unique customer order.",
-      "Batch — group of similar jobs.",
-      "Cost sheet — materials + labour + overheads."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Unit costing used when?",
-      "back": "Mass production of identical items (e.g. chemicals, bricks)."
-    },
-    {
-      "front": "Job costing used when?",
-      "back": "Custom/bespoke orders — furniture, printing."
-    },
-    {
-      "front": "Batch costing?",
-      "back": "Group similar jobs; cost per batch ÷ units = unit cost."
-    },
-    {
-      "front": "Cost unit?",
-      "back": "Unit of output to which cost is assigned (litre, job no., batch)."
-    },
-    {
-      "front": "Quotation uses?",
-      "back": "Estimated cost + profit mark-up."
-    },
-    {
-      "front": "Job cost sheet?",
-      "back": "Record of materials, labour, overheads for one job."
-    },
-    {
-      "front": "What is the primary purpose of a job cost sheet?",
-      "back": "To accumulate all the costs (direct materials, direct labour, direct expenses, and absorbed production overheads) associated with a specific job, in order to determine its total cost and profitability."
-    },
-    {
-      "front": "How is the cost per unit calculated in batch costing?",
-      "back": "The total cost of the entire batch is calculated first. This total cost is then divided by the number of finished units produced in that batch."
-    },
-    {
-      "front": "What is 'Specific Order Costing'?",
-      "back": "A costing principle used for work that consists of separately identifiable jobs or batches, each authorised by a specific customer order. It includes both job costing and batch costing."
-    },
-    {
-      "front": "Give two examples of industries that would use job costing.",
-      "back": "Construction (e.g., building a specific house), shipbuilding, bespoke tailoring, audit firms, or advertising agencies."
-    },
-    {
-      "front": "How are production overheads assigned to a specific job?",
-      "back": "They are absorbed into the job cost using a predetermined overhead absorption rate (OAR). The OAR is multiplied by the actual amount of the absorption base (e.g., direct labour hours) used by the job."
-    }
-  ],
+  "durationMin": 28,
   "sections": [
     {
       "type": "intro",
@@ -128,6 +65,14 @@
     },
     {
       "type": "heading",
+      "content": "Overhead Absorption in Specific Order Costing"
+    },
+    {
+      "type": "text",
+      "content": "Indirect costs, or overheads (like factory rent, supervisor salaries), cannot be directly traced to a single job or batch. Therefore, they must be shared out on a fair basis. This process is called overhead absorption. Businesses calculate a **predetermined overhead absorption rate (OAR)** at the start of a period.\n\n**Formula: OAR = Budgeted Production Overheads / Budgeted Activity Level**\n\nThe activity level can be direct labour hours, machine hours, or another suitable base. This OAR is then used to charge overheads to each job or batch based on how much of the activity it consumed.\n\nFor example, if the OAR is $15 per machine hour, and a job uses 10 machine hours, it will be charged (absorb) $150 of overheads (10 hours × $15/hour)."
+    },
+    {
+      "type": "heading",
       "content": "Calculating Unit Costs and Profit"
     },
     {
@@ -149,8 +94,13 @@
     },
     {
       "type": "workedExample",
-      "question": "Batch 47: materials $2,400; direct labour 120 hours @ $15; overheads absorbed at $8 per labour hour. Batch size 600 units. Calculate total cost and cost per unit.",
-      "solution": "**Direct labour** = 120 × $15 = **$1,800**\n**Overheads** = 120 × $8 = **$960**\n\n**Total batch cost** = 2,400 + 1,800 + 960 = **$5,160**\n**Cost per unit** = 5,160 ÷ 600 = **$8.60**\n\n**If 25% mark-up:** Selling price ≈ 8.60 × 1.25 = **$10.75** per unit."
+      "question": "A bakery produces a batch (Batch 47) of 600 specialty cakes. The costs incurred were: direct materials $2,400; direct labour 120 hours at a rate of $15 per hour. Production overheads are absorbed at a rate of $8 per direct labour hour. Calculate the total cost of the batch and the cost per cake.",
+      "solution": "**1. Calculate Direct Labour Cost:**\nDirect Labour = 120 hours × $15/hour = **$1,800**\n\n**2. Calculate Absorbed Production Overheads:**\nOverheads = 120 hours × $8/hour = **$960**\n\n**3. Calculate Total Batch Cost:**\nTotal Cost = Direct Materials + Direct Labour + Overheads\nTotal Cost = $2,400 + $1,800 + $960 = **$5,160**\n\n**4. Calculate Cost Per Unit (Cake):**\nCost per Unit = Total Batch Cost / Number of Units\nCost per Unit = $5,160 / 600 cakes = **$8.60 per cake**\n\n*If the bakery wanted to achieve a 25% mark-up on cost, the selling price would be $8.60 × 1.25 = $10.75 per cake.*"
+    },
+    {
+      "type": "workedExample",
+      "question": "PrintPro has been asked to quote for Job #121, which involves printing 500 brochures. The company's annual budgeted production overheads are $120,000, based on 6,000 budgeted direct labour hours. The estimated costs for Job #121 are:\n- Direct Materials: $1,100\n- Direct Labour: 20 hours at $25 per hour\nPrintPro adds a 40% mark-up on total cost to determine the selling price.\n\nCalculate the quotation price for Job #121.",
+      "solution": "**Step 1: Calculate the Predetermined Overhead Absorption Rate (OAR)**\nOAR = Budgeted Production Overheads / Budgeted Direct Labour Hours\nOAR = $120,000 / 6,000 hours = **$20 per direct labour hour**\n\n**Step 2: Calculate the Total Cost for Job #121**\nWe need to find the cost of direct materials, direct labour, and absorbed overheads.\n- **Direct Materials:** **$1,100** (given)\n- **Direct Labour:** 20 hours × $25/hour = **$500**\n- **Absorbed Overheads:** 20 direct labour hours × $20/hour (OAR) = **$400**\n\n**Total Job Cost** = $1,100 + $500 + $400 = **$2,000**\n\n**Step 3: Calculate the Quotation Price**\nThe company uses a 40% mark-up on cost.\n- **Profit Mark-up:** 40% of $2,000 = 0.40 × $2,000 = **$800**\n- **Quotation Price:** Total Cost + Profit Mark-up\n- **Quotation Price:** $2,000 + $800 = **$2,800**\n\nThe price quoted to the customer for Job #121 would be $2,800."
     },
     {
       "type": "practice",
@@ -175,6 +125,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Distinguish unit, job, and batch costing.",
+    "Calculate cost per unit/job/batch.",
+    "Allocate overheads to cost units using a predetermined overhead absorption rate (OAR).",
+    "Apply costing principles to pricing and quotation decisions."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is batch costing just a more complicated version of job costing?",
@@ -189,6 +146,75 @@
       "a": "For the purposes of the AS Level syllabus, 'unit costing' often refers to the simple calculation of cost per unit in a single-product environment (Total Costs / Total Units). 'Process costing' is a more detailed method, typically covered later, used when products pass through multiple, distinct processes to be completed (e.g., mixing, then bottling, then packaging). While both aim to find an average cost per unit, process costing involves tracking costs for each process separately and dealing with concepts like work-in-progress, which is more complex than simple unit costing."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Unit costing used when?",
+      "back": "Mass production of identical items in a continuous process (e.g. chemicals, bricks, flour)."
+    },
+    {
+      "front": "Job costing used when?",
+      "back": "For unique, custom, or bespoke orders where each job is different (e.g., furniture, printing, construction)."
+    },
+    {
+      "front": "What is batch costing?",
+      "back": "A costing method for a group (batch) of similar jobs. The total cost of the batch is found, then divided by the number of units to get a cost per unit."
+    },
+    {
+      "front": "What is a cost unit?",
+      "back": "A unit of product or service to which costs can be assigned (e.g., a litre of paint, Job No. 123, Batch B78)."
+    },
+    {
+      "front": "How is a quotation price calculated?",
+      "back": "By adding a desired profit to the total estimated cost of a job. The profit can be a fixed amount, a percentage mark-up on cost, or a percentage margin on the selling price."
+    },
+    {
+      "front": "What is a job cost sheet?",
+      "back": "A primary document used in job costing to record and accumulate all the direct materials, direct labour, and absorbed overheads for a specific job."
+    },
+    {
+      "front": "What is the primary purpose of a job cost sheet?",
+      "back": "To accumulate all the costs (direct materials, direct labour, direct expenses, and absorbed production overheads) associated with a specific job, in order to determine its total cost and profitability."
+    },
+    {
+      "front": "How is the cost per unit calculated in batch costing?",
+      "back": "The total cost of the entire batch is calculated first. This total cost is then divided by the number of finished units produced in that batch."
+    },
+    {
+      "front": "What is 'Specific Order Costing'?",
+      "back": "A costing principle used for work that consists of separately identifiable jobs or batches, each authorised by a specific customer order. It includes both job costing and batch costing."
+    },
+    {
+      "front": "Give two examples of industries that would use job costing.",
+      "back": "Construction (e.g., building a specific house), shipbuilding, bespoke tailoring, audit firms, or advertising agencies."
+    },
+    {
+      "front": "How are production overheads assigned to a specific job?",
+      "back": "They are absorbed into the job cost using a predetermined overhead absorption rate (OAR). The OAR is multiplied by the actual amount of the absorption base (e.g., direct labour hours) used by the job."
+    },
+    {
+      "front": "What is the formula for a predetermined overhead absorption rate (OAR)?",
+      "back": "OAR = Budgeted Total Production Overheads / Budgeted Level of Activity (e.g., labour hours, machine hours)."
+    },
+    {
+      "front": "What is the difference between a profit mark-up and a profit margin?",
+      "back": "Mark-up is profit as a percentage of cost (Profit / Cost). Margin is profit as a percentage of selling price (Profit / Selling Price)."
+    },
+    {
+      "front": "Give an example of a direct expense that might be included on a job cost sheet.",
+      "back": "The hire of special equipment specifically for one job, or the cost of a specific design patent purchased for a single customer order."
+    },
+    {
+      "front": "Why is a predetermined OAR used instead of actual overheads?",
+      "back": "To allow job costs to be calculated as soon as the job is finished, rather than waiting until the end of the accounting period when actual overheads are known. It also smooths out fluctuations in monthly overhead costs."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.2.1.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Costing Methods",
     "columns": [

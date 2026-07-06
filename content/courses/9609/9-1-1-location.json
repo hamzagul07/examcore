@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — location factors, domestic vs overseas, cost–market trade-offs.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Identify factors in location decisions.",
-    "Compare domestic vs overseas location.",
-    "Analyse cost vs market proximity trade-offs.",
-    "Evaluate location recommendations for case firms."
-  ],
-  "simpleExplanation": {
-    "title": "Where to operate",
-    "summary": "Location decisions balance labour costs and skills, access to materials and transport, government incentives, and whether to sit near customers or near resources.",
-    "steps": [
-      "Labour costs, availability, and skill levels.",
-      "Raw material supply and transport infrastructure.",
-      "Government grants, tax breaks, and regulations.",
-      "Near market (demand) vs near resources (supply)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Labour factor?",
-      "back": "Wage rates, productivity, unions, training pools — links to 4.1.3."
-    },
-    {
-      "front": "Material factor?",
-      "back": "Heavy/bulky inputs favour location near suppliers."
-    },
-    {
-      "front": "Market factor?",
-      "back": "Perishable or bulky products favour location near customers."
-    },
-    {
-      "front": "Government incentives?",
-      "back": "Free trade zones, subsidies — PESTLE political/economic (6.1)."
-    },
-    {
-      "front": "Offshore location risk?",
-      "back": "Supply chain disruption, quality control, exchange rates."
-    },
-    {
-      "front": "Agglomeration?",
-      "back": "Firms cluster in same area — shared skills and suppliers."
-    },
-    {
-      "front": "Link to sustainability?",
-      "back": "Long transport routes increase carbon footprint (4.1.2)."
-    },
-    {
-      "front": "Service location?",
-      "back": "Retail/hotels need footfall and accessibility not raw materials."
-    },
-    {
-      "front": "What is meant by 'offshoring'?",
-      "back": "Offshoring is the business practice of relocating a business process or entire operation from one country to another, typically to take advantage of lower costs, access skilled labour, or enter new markets."
-    },
-    {
-      "front": "Define 'quantitative location factors'.",
-      "back": "These are factors that can be measured in numerical or financial terms, such as labour costs, site costs, transport distances, government grants, and exchange rates. They allow for objective financial comparison between locations."
-    },
-    {
-      "front": "Define 'qualitative location factors'.",
-      "back": "These are non-measurable factors that affect the quality of business operations, such as the skill level of the workforce, quality of infrastructure, political stability, brand image, and ethical considerations."
-    },
-    {
-      "front": "What is a 'footloose' business?",
-      "back": "A footloose business is one whose location choice is not tied to a specific raw material source or market, often because its products have low transport costs. Examples include software development or financial services, which can locate wherever telecommunications and skilled labour are available."
-    },
-    {
-      "front": "What is 'industrial inertia'?",
-      "back": "Industrial inertia is the tendency for a business to remain in its original location even after the factors that initially made it optimal (e.g., raw material source) have disappeared. This can be due to the high cost of relocation or ties to the local skilled workforce."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -178,6 +107,11 @@
       "solution": "**Germany (near market):** **Lower transport cost** to OEMs, **skilled engineering labour**, **strong IP protection** — but **high wages** and **energy costs**.\n\n**Eastern Europe:** **Lower labour**, **grants**, growing **supplier cluster** — but **longer delivery** to some plants, **training investment** needed.\n\n**Decision drivers:** **Just-in-time contracts** (4.2.2) favour **proximity**; **grant size** and **labour cost gap** favour **East**.\n\n**Recommendation:** **Eastern Europe** if logistics reliable; keep **R&D in Germany** — split functions."
     },
     {
+      "type": "workedExample",
+      "question": "Artisan Designs, a furniture manufacturer, plans to produce 6,000 units annually. It is choosing between two potential workshop locations. Using the data below, calculate the total annual cost for each site and recommend the most cost-effective location based on quantitative factors.\n\n| Cost Element | Site A (Urban) | Site B (Rural) |\n| :--- | :--- | :--- |\n| Annual Rent & Utilities | $120,000 | $70,000 |\n| Labour Cost per unit | $50 | $45 |\n| Material Cost per unit | $80 | $80 |\n| Transport Cost per unit | $10 | $25 |",
+      "solution": "**Step 1: Identify the Total Cost Formula**\nThe formula to calculate the total annual cost for each location is:\nTotal Cost (TC) = Annual Fixed Costs (FC) + (Total Variable Cost per unit (VC) × Quantity (Q))\n\n**Step 2: Calculate Total Variable Cost (VC) per unit for each site.**\n*   **Site A VC:** $50 (Labour) + $80 (Material) + $10 (Transport) = **$140 per unit**\n*   **Site B VC:** $45 (Labour) + $80 (Material) + $25 (Transport) = **$150 per unit**\n\n**Step 3: Calculate Total Annual Cost (TC) for Site A.**\n*   FC = $120,000\n*   VC = $140\n*   Q = 6,000 units\n*   TC (Site A) = $120,000 + ($140 × 6,000) = $120,000 + $840,000 = **$960,000**\n\n**Step 4: Calculate Total Annual Cost (TC) for Site B.**\n*   FC = $70,000\n*   VC = $150\n*   Q = 6,000 units\n*   TC (Site B) = $70,000 + ($150 × 6,000) = $70,000 + $900,000 = **$970,000**\n\n**Step 5: Recommendation**\nBased on the quantitative analysis, **Site A** has a lower total annual cost ($960,000) compared to Site B ($970,000) at the forecast production level of 6,000 units. Therefore, Site A is the more cost-effective option.\n\n**Further Analysis (Evaluation):**\nIt's also useful to find the break-even output level between the two sites:\n$120,000 + 140Q = $70,000 + 150Q\n$50,000 = 10Q\nQ = 5,000 units.\nThis means if output is expected to be above 5,000 units, Site A is cheaper. If it falls below 5,000, Site B becomes the cheaper option due to its lower fixed costs. The decision depends on the confidence in the sales forecast."
+    },
+    {
       "type": "practice",
       "label": "Mark a location question",
       "href": "/mark?subject=9609&topic=9.1.1"
@@ -200,6 +134,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Identify factors in location decisions.",
+    "Compare domestic vs overseas location.",
+    "Analyse cost vs market proximity trade-offs.",
+    "Evaluate location recommendations for case firms."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Isn't the cheapest location always the best one to choose?",
@@ -214,6 +155,67 @@
       "a": "While reducing labour costs is a major driver for offshoring, it is not the only one. Businesses also move overseas to gain access to large and growing markets, bypassing import tariffs and reducing distribution costs. Other reasons include accessing specific skills (e.g., tech talent in Silicon Valley or engineering expertise in Germany), benefiting from more favourable government regulations or tax incentives, and operating in different time zones to provide 24-hour customer service. The decision is a multi-faceted one, not just a simple search for the lowest wage."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Labour factor?",
+      "back": "Wage rates, productivity, unions, training pools — links to 4.1.3."
+    },
+    {
+      "front": "Material factor?",
+      "back": "Heavy/bulky inputs favour location near suppliers."
+    },
+    {
+      "front": "Market factor?",
+      "back": "Perishable or bulky products favour location near customers."
+    },
+    {
+      "front": "Government incentives?",
+      "back": "Free trade zones, subsidies — PESTLE political/economic (6.1)."
+    },
+    {
+      "front": "Offshore location risk?",
+      "back": "Supply chain disruption, quality control, exchange rates."
+    },
+    {
+      "front": "Agglomeration?",
+      "back": "Firms cluster in same area — shared skills and suppliers."
+    },
+    {
+      "front": "Link to sustainability?",
+      "back": "Long transport routes increase carbon footprint (4.1.2)."
+    },
+    {
+      "front": "Service location?",
+      "back": "Retail/hotels need footfall and accessibility not raw materials."
+    },
+    {
+      "front": "What is meant by 'offshoring'?",
+      "back": "Offshoring is the business practice of relocating a business process or entire operation from one country to another, typically to take advantage of lower costs, access skilled labour, or enter new markets."
+    },
+    {
+      "front": "Define 'quantitative location factors'.",
+      "back": "These are factors that can be measured in numerical or financial terms, such as labour costs, site costs, transport distances, government grants, and exchange rates. They allow for objective financial comparison between locations."
+    },
+    {
+      "front": "Define 'qualitative location factors'.",
+      "back": "These are non-measurable factors that affect the quality of business operations, such as the skill level of the workforce, quality of infrastructure, political stability, brand image, and ethical considerations."
+    },
+    {
+      "front": "What is a 'footloose' business?",
+      "back": "A footloose business is one whose location choice is not tied to a specific raw material source or market, often because its products have low transport costs. Examples include software development or financial services, which can locate wherever telecommunications and skilled labour are available."
+    },
+    {
+      "front": "What is 'industrial inertia'?",
+      "back": "Industrial inertia is the tendency for a business to remain in its original location even after the factors that initially made it optimal (e.g., raw material source) have disappeared. This can be due to the high cost of relocation or ties to the local skilled workforce."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.1.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparing Domestic and Overseas Business Locations",
     "columns": [

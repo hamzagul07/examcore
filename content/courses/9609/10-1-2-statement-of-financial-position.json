@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — assets, liabilities, equity, accounting equation, and financial position analysis.",
   "durationMin": 26,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Interpret the statement of financial position.",
-    "Classify current and non-current assets and liabilities.",
-    "Apply the accounting equation.",
-    "Analyse financial position from case data."
-  ],
-  "simpleExplanation": {
-    "title": "Snapshot of worth",
-    "summary": "The statement of financial position (balance sheet) lists what the business owns and owes at a specific date. Assets = liabilities + equity.",
-    "steps": [
-      "Non-current assets: long-term use (property, equipment).",
-      "Current assets: converted to cash within one year.",
-      "Current liabilities: due within one year.",
-      "Equity: share capital + retained earnings."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Accounting equation?",
-      "back": "Assets = Liabilities + Equity."
-    },
-    {
-      "front": "Non-current asset examples?",
-      "back": "Property, plant, equipment, intangible assets, long-term investments."
-    },
-    {
-      "front": "Current asset examples?",
-      "back": "Inventory, trade receivables, cash, prepayments."
-    },
-    {
-      "front": "Current liability examples?",
-      "back": "Trade payables, overdraft, short-term loans, accruals."
-    },
-    {
-      "front": "Equity components?",
-      "back": "Share capital + retained earnings (accumulated profits)."
-    },
-    {
-      "front": "Net assets?",
-      "back": "Total assets − Total liabilities (= equity)."
-    },
-    {
-      "front": "Working capital?",
-      "back": "Current assets − Current liabilities."
-    },
-    {
-      "front": "Link to liquidity ratios?",
-      "back": "10.2.1 uses current assets and current liabilities from this statement."
-    },
-    {
-      "front": "What is the fundamental accounting equation?",
-      "back": "Assets = Liabilities + Equity. It states that a company's assets are financed by either debt (liabilities) or the owners' investment (equity)."
-    },
-    {
-      "front": "Define 'Non-Current Asset'.",
-      "back": "An asset owned by a business for more than one year, used to generate revenue, and not intended for resale in the short term. Examples include property, machinery, and vehicles."
-    },
-    {
-      "front": "What is the difference between 'Trade Receivables' and 'Trade Payables'?",
-      "back": "Trade Receivables are a current asset, representing money owed TO the business by its customers. Trade Payables are a current liability, representing money the business owes TO its suppliers."
-    },
-    {
-      "front": "What does 'Equity' or 'Shareholders' Funds' represent?",
-      "back": "It represents the owners' stake in the company. It is the residual value of assets after deducting all liabilities and is composed of Share Capital and Retained Earnings."
-    },
-    {
-      "front": "Define 'Working Capital'.",
-      "back": "Working Capital = Current Assets - Current Liabilities. It is a measure of a company's short-term liquidity and its ability to meet its immediate financial obligations."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -173,8 +102,13 @@
     },
     {
       "type": "workedExample",
-      "question": "Total assets $500 000; current liabilities $80 000; non-current liabilities $150 000.\n\nCalculate equity and working capital.",
-      "solution": "**Equity** = Assets − Total liabilities\n= 500 000 − (80 000 + 150 000) = **$270 000**\n\nIf current assets are $200 000:\n**Working capital** = 200 000 − 80 000 = **$120 000**"
+      "question": "Total assets $500,000; current liabilities $80,000; non-current liabilities $150,000.\n\nCalculate equity and working capital, assuming current assets are $200,000.",
+      "solution": "**1. Calculate Equity**\nEquity = Total Assets − Total Liabilities\nEquity = $500,000 − ($80,000 + $150,000)\nEquity = $500,000 - $230,000 = **$270,000**\n\n**2. Calculate Working Capital**\nWorking Capital = Current Assets − Current Liabilities\nWorking Capital = $200,000 − $80,000 = **$120,000**"
+    },
+    {
+      "type": "workedExample",
+      "question": "A limited company provides the following financial data as at 31 December 2023:\n\n- Non-current assets: $350,000\n- Inventory: $60,000\n- Trade receivables: $45,000\n- Cash at bank: $15,000\n- Share capital: $200,000\n- Retained earnings: $125,000\n- Non-current liabilities: $90,000\n\nCalculate:\n(a) Total Assets\n(b) Total Equity\n(c) Current Liabilities",
+      "solution": "**Step 1: Calculate Current Assets**\nCurrent Assets = Inventory + Trade receivables + Cash at bank\n= $60,000 + $45,000 + $15,000 = $120,000\n\n**Step 2: Calculate Total Assets (a)**\nTotal Assets = Non-current assets + Current Assets\n= $350,000 + $120,000 = **$470,000**\n\n**Step 3: Calculate Total Equity (b)**\nTotal Equity = Share capital + Retained earnings\n= $200,000 + $125,000 = **$325,000**\n\n**Step 4: Use the Accounting Equation to find Total Liabilities**\nAssets = Liabilities + Equity\n$470,000 = Total Liabilities + $325,000\nTotal Liabilities = $470,000 - $325,000 = $145,000\n\n**Step 5: Calculate Current Liabilities (c)**\nCurrent Liabilities = Total Liabilities - Non-current liabilities\n= $145,000 - $90,000 = **$55,000**\n\n*Check: The statement balances as Total Assets ($470,000) = Total Liabilities ($145,000) + Total Equity ($325,000).*"
     },
     {
       "type": "examTip",
@@ -203,6 +137,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Interpret the statement of financial position.",
+    "Classify current and non-current assets and liabilities.",
+    "Apply the accounting equation.",
+    "Analyse financial position from case data."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is a profitable company always financially healthy?",
@@ -217,6 +158,67 @@
       "a": "Yes. This occurs when total liabilities are greater than total assets. This is a very serious financial situation, sometimes referred to as insolvency. It means that even if the business sold all its assets, it could not pay off all its debts, leaving nothing for the owners. Such a business is at a very high risk of failure."
     }
   ],
+  "flashcards": [
+    {
+      "front": "What is the fundamental accounting equation?",
+      "back": "Assets = Liabilities + Equity. It states that a company's assets are financed by either debt (liabilities) or the owners' investment (equity)."
+    },
+    {
+      "front": "Define 'Non-Current Asset'.",
+      "back": "An asset owned by a business for more than one year, used to generate revenue, and not intended for resale in the short term. Examples include property, machinery, and vehicles."
+    },
+    {
+      "front": "What is the difference between 'Trade Receivables' and 'Trade Payables'?",
+      "back": "Trade Receivables are a current asset, representing money owed TO the business by its customers. Trade Payables are a current liability, representing money the business owes TO its suppliers."
+    },
+    {
+      "front": "What does 'Equity' or 'Shareholders' Funds' represent?",
+      "back": "It represents the owners' stake in the company. It is the residual value of assets after deducting all liabilities and is composed of Share Capital and Retained Earnings."
+    },
+    {
+      "front": "Define 'Working Capital'.",
+      "back": "Working Capital = Current Assets - Current Liabilities. It is a measure of a company's short-term liquidity and its ability to meet its immediate financial obligations."
+    },
+    {
+      "front": "What are the main components of equity?",
+      "back": "Share capital (funds from issuing shares) and Retained earnings (accumulated profits not paid out as dividends)."
+    },
+    {
+      "front": "Give two examples of non-current liabilities.",
+      "back": "Long-term bank loans and debentures."
+    },
+    {
+      "front": "What is another name for the Statement of Financial Position?",
+      "back": "The Balance Sheet."
+    },
+    {
+      "front": "How are assets on the Statement of Financial Position ordered?",
+      "back": "They are typically listed in order of reverse liquidity, with non-current assets first, followed by current assets."
+    },
+    {
+      "front": "What does 'Net Assets' represent?",
+      "back": "Net Assets = Total Assets - Total Liabilities. It is mathematically equal to Equity."
+    },
+    {
+      "front": "What is the purpose of the Statement of Financial Position?",
+      "back": "To provide a snapshot of a company's financial health at a specific point in time by listing its assets, liabilities, and equity."
+    },
+    {
+      "front": "Can a profitable company go bankrupt?",
+      "back": "Yes. Profitability (from the Statement of Profit or Loss) is different from liquidity. A company can be profitable but lack the cash (as shown on the SoFP) to pay its short-term debts, leading to insolvency."
+    },
+    {
+      "front": "What are intangible assets?",
+      "back": "Non-physical assets with value, such as patents, copyrights, trademarks, and goodwill. They are a type of non-current asset."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "10.1.2"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Non-Current Assets and Current Assets",
     "columns": [

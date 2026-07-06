@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — lean philosophy, waste (muda), JIT, pull systems, Kaizen, and 5S.",
   "durationMin": 28,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain lean production philosophy.",
-    "Identify the seven wastes (muda).",
-    "Describe Kaizen, 5S, and pull production.",
-    "Compare lean with traditional mass production."
-  ],
-  "simpleExplanation": {
-    "title": "Do more with less waste",
-    "summary": "Lean production eliminates activities that do not add value — using JIT supplies, pull systems driven by customer demand, Kaizen continuous improvement, and multiskilled teams.",
-    "steps": [
-      "Just-in-time delivery of materials.",
-      "Pull production — make only what customer orders.",
-      "Kaizen — continuous small improvements.",
-      "Multiskilled teams flex across tasks."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Lean goal?",
-      "back": "Maximise value, minimise waste (muda)."
-    },
-    {
-      "front": "Seven wastes (examples)?",
-      "back": "Overproduction, waiting, transport, inventory, motion, over-processing, defects."
-    },
-    {
-      "front": "Pull vs push?",
-      "back": "Pull = produce to order; push = produce to forecast/stock."
-    },
-    {
-      "front": "Kaizen?",
-      "back": "Continuous improvement — all staff suggest changes."
-    },
-    {
-      "front": "5S?",
-      "back": "Sort, set, shine, standardise, sustain — workplace organisation."
-    },
-    {
-      "front": "Toyota Production System?",
-      "back": "Reference model for lean + JIT + respect for people."
-    },
-    {
-      "front": "Lean requirement?",
-      "back": "Reliable suppliers, quality at source, flexible workforce."
-    },
-    {
-      "front": "vs mass production?",
-      "back": "Mass = high stock, economies of scale; lean = low waste, responsiveness."
-    },
-    {
-      "front": "What is 'muda' in the context of lean production?",
-      "back": "Muda is the Japanese term for waste. It refers to any activity that consumes resources but adds no value for the customer. The seven wastes are: Transport, Inventory, Motion, Waiting, Overproduction, Over-processing, and Defects."
-    },
-    {
-      "front": "What is a 'pull system' of production?",
-      "back": "A system where production is triggered by actual customer demand. An order from a customer 'pulls' the product through the manufacturing process. This is a core component of JIT and contrasts with a 'push system' based on forecasts."
-    },
-    {
-      "front": "What is the core principle of Kaizen?",
-      "back": "The core principle of Kaizen is continuous, incremental improvement involving all employees in an organisation, from senior management to the shop floor, to collectively identify and eliminate waste."
-    },
-    {
-      "front": "What is the primary purpose of the 5S framework?",
-      "back": "To create and maintain a clean, organised, safe, and efficient workplace. It is a foundational lean tool that makes waste and process abnormalities more visible and easier to address."
-    },
-    {
-      "front": "What is the main disadvantage or risk of implementing a Just-in-Time (JIT) system?",
-      "back": "The main risk is the lack of buffer stock, which makes the production process highly vulnerable to disruptions in the supply chain. Any delay or quality issue from a supplier can halt the entire production line."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -179,6 +108,11 @@
       "solution": "**Inventory waste:** **14-day stock** — move toward **JIT** with key suppliers (4.2.2).\n\n**Overproduction waste:** **Forecast push** builds cars not yet sold — switch to **order-driven pull** where feasible.\n\n**Defect waste:** Busy **rework area** — **quality at source**, **stop the line** authority for workers (TQM 9.2.1).\n\n**Waiting waste:** Rework causes **line stoppages** — fix root cause not symptoms.\n\n**People:** **Kaizen teams** + **5S** on tool cribs — multiskill for **flexibility** (9.3.2)."
     },
     {
+      "type": "workedExample",
+      "question": "FlexiWidgets Ltd is considering a switch from traditional batch production to a lean production system incorporating JIT. Analyse the financial and productivity impact of this change using the data below.\n\n**Data Before Lean (per month):**\n- Average component inventory: 5,000 units\n- Cost per component: $10\n- Annual inventory holding cost: 20% of inventory value\n- Production output: 10,000 widgets\n- Production workers: 25\n\n**Data After Lean (projected, per month):**\n- Average component inventory: 500 units\n- Cost per component: $10\n- Production output: 11,000 widgets\n- Production workers: 25\n\nCalculate:\n1. The annual saving in inventory holding costs.\n2. The percentage increase in labour productivity.",
+      "solution": "**Step 1: Calculate annual inventory holding cost BEFORE lean.**\n- Average inventory value = 5,000 units × $10/unit = $50,000\n- Annual holding cost = 20% of $50,000 = 0.20 × $50,000 = **$10,000**\n\n**Step 2: Calculate annual inventory holding cost AFTER lean.**\n- Average inventory value = 500 units × $10/unit = $5,000\n- Annual holding cost = 20% of $5,000 = 0.20 × $5,000 = **$1,000**\n\n**Step 3: Calculate the annual saving in inventory holding costs.**\n- Annual saving = Cost before - Cost after\n- Annual saving = $10,000 - $1,000 = **$9,000**\n\n**Step 4: Calculate labour productivity BEFORE lean.**\n- Labour productivity = Total output / Number of workers\n- Labour productivity = 10,000 widgets / 25 workers = **400 widgets per worker per month**\n\n**Step 5: Calculate labour productivity AFTER lean.**\n- Labour productivity = 11,000 widgets / 25 workers = **440 widgets per worker per month**\n\n**Step 6: Calculate the percentage increase in labour productivity.**\n- Increase in productivity = 440 - 400 = 40 widgets per worker\n- Percentage increase = (Increase / Original productivity) × 100\n- Percentage increase = (40 / 400) × 100 = **10%**\n\n**Conclusion:**\nBy implementing lean production, FlexiWidgets Ltd can expect to save **$9,000 annually** in inventory holding costs and increase labour productivity by **10%**. This demonstrates how reducing the waste of 'inventory' and improving process flow can lead to significant financial and operational benefits."
+    },
+    {
       "type": "practice",
       "label": "Mark a lean production question",
       "href": "/mark?subject=9609&topic=9.3.4"
@@ -201,6 +135,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain lean production philosophy.",
+    "Identify the seven wastes (muda).",
+    "Describe Kaizen, 5S, and pull production.",
+    "Compare lean with traditional mass production."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is lean production just another term for cutting costs by firing employees?",
@@ -215,6 +156,67 @@
       "a": "Not necessarily. The goal of JIT is to minimise inventory to the lowest possible level, not always to eliminate it entirely. Businesses may still hold very small amounts of 'safety' or 'buffer' stock to guard against minor variations in demand or supply. However, the principle is to move away from large stockpiles and rely on a highly efficient, responsive supply chain. The ideal is a seamless flow, but a pragmatic implementation accepts minimal, strategic inventory."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Lean goal?",
+      "back": "Maximise value, minimise waste (muda)."
+    },
+    {
+      "front": "Seven wastes (examples)?",
+      "back": "Overproduction, waiting, transport, inventory, motion, over-processing, defects."
+    },
+    {
+      "front": "Pull vs push?",
+      "back": "Pull = produce to order; push = produce to forecast/stock."
+    },
+    {
+      "front": "Kaizen?",
+      "back": "Continuous improvement — all staff suggest changes."
+    },
+    {
+      "front": "5S?",
+      "back": "Sort, set, shine, standardise, sustain — workplace organisation."
+    },
+    {
+      "front": "Toyota Production System?",
+      "back": "Reference model for lean + JIT + respect for people."
+    },
+    {
+      "front": "Lean requirement?",
+      "back": "Reliable suppliers, quality at source, flexible workforce."
+    },
+    {
+      "front": "vs mass production?",
+      "back": "Mass = high stock, economies of scale; lean = low waste, responsiveness."
+    },
+    {
+      "front": "What is 'muda' in the context of lean production?",
+      "back": "Muda is the Japanese term for waste. It refers to any activity that consumes resources but adds no value for the customer. The seven wastes are: Transport, Inventory, Motion, Waiting, Overproduction, Over-processing, and Defects."
+    },
+    {
+      "front": "What is a 'pull system' of production?",
+      "back": "A system where production is triggered by actual customer demand. An order from a customer 'pulls' the product through the manufacturing process. This is a core component of JIT and contrasts with a 'push system' based on forecasts."
+    },
+    {
+      "front": "What is the core principle of Kaizen?",
+      "back": "The core principle of Kaizen is continuous, incremental improvement involving all employees in an organisation, from senior management to the shop floor, to collectively identify and eliminate waste."
+    },
+    {
+      "front": "What is the primary purpose of the 5S framework?",
+      "back": "To create and maintain a clean, organised, safe, and efficient workplace. It is a foundational lean tool that makes waste and process abnormalities more visible and easier to address."
+    },
+    {
+      "front": "What is the main disadvantage or risk of implementing a Just-in-Time (JIT) system?",
+      "back": "The main risk is the lack of buffer stock, which makes the production process highly vulnerable to disruptions in the supply chain. Any delay or quality issue from a supplier can halt the entire production line."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.3.4"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Push and Pull Production Systems",
     "columns": [

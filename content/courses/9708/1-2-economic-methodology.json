@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 AS — positive vs normative, ceteris paribus, and economic models.",
   "durationMin": 18,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish positive and normative statements.",
-    "Explain ceteris paribus.",
-    "Describe the role of economic models.",
-    "Evaluate limitations of economic analysis."
-  ],
-  "simpleExplanation": {
-    "title": "How economists think",
-    "summary": "Economics uses simplified models to explain behaviour. Statements must be classified as testable facts or value judgements.",
-    "steps": [
-      "Positive: can be tested with data.",
-      "Normative: involves ought/should.",
-      "Ceteris paribus isolates one change.",
-      "Models assume rational agents."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is a positive statement?",
-      "back": "A testable statement about what is — can be verified with evidence (e.g. \"Unemployment is 5%\")."
-    },
-    {
-      "front": "What is a normative statement?",
-      "back": "A value judgement about what ought to be — contains words like should, ought, fair (e.g. \"Tax should be cut\")."
-    },
-    {
-      "front": "What does ceteris paribus mean?",
-      "back": "All other things being equal — isolates the effect of one variable by holding others constant."
-    },
-    {
-      "front": "Why do economists use models?",
-      "back": "To simplify reality, explain behaviour, and make predictions — assumptions must be stated clearly."
-    },
-    {
-      "front": "Give one limitation of economic models.",
-      "back": "Assumptions may not hold (e.g. rational behaviour); models omit variables and cannot capture all real-world complexity."
-    },
-    {
-      "front": "Can normative statements be proved true or false?",
-      "back": "No — they depend on values and opinions, not data alone."
-    },
-    {
-      "front": "What is a positive statement in economics?",
-      "back": "An objective statement that can be tested and verified or refuted by referring to factual evidence. It describes 'what is, was, or will be'."
-    },
-    {
-      "front": "What is a normative statement in economics?",
-      "back": "A subjective statement based on a value judgement that expresses an opinion about what 'ought to be'. It cannot be proven or disproven by facts alone."
-    },
-    {
-      "front": "What does 'ceteris paribus' mean?",
-      "back": "A Latin phrase meaning 'all other things being equal'. It is an assumption used in economic models to isolate the relationship between two variables by holding other factors constant."
-    },
-    {
-      "front": "What is the purpose of an economic model?",
-      "back": "To simplify complex economic reality in order to explain economic behaviour, analyse relationships between variables, and make predictions about future outcomes."
-    },
-    {
-      "front": "Why is the distinction between positive and normative statements important for policy-making?",
-      "back": "It separates the objective analysis of a policy's likely consequences (positive) from the subjective debate about whether those consequences are desirable (normative). Effective policy requires both."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -153,6 +90,11 @@
       "solution": "(a) **Positive** — a testable hypothesis about cause and effect; can be checked with employment data.\n\n(b) **Normative** — \"ought to\" expresses a value judgement about desirable policy.\n\n(c) **Positive** — a factual claim verifiable from official statistics.\n\n**Exam tip:** In evaluation essays, use positive analysis first (what happens), then normative judgement (whether it is desirable)."
     },
     {
+      "type": "workedExample",
+      "question": "An economist models the demand for a product using the equation: Qd = 800 - 20P + 0.5Y, where Qd is quantity demanded, P is price in dollars, and Y is average income in dollars.\nCurrently, P = $15 and Y = $600.\n(a) Calculate the current quantity demanded.\n(b) The price increases to $18. Assuming ceteris paribus, calculate the new quantity demanded and the change in quantity demanded.",
+      "solution": "**(a) Calculate Current Quantity Demanded:**\n\n1.  **Start with the demand equation:**\n    `Qd = 800 - 20P + 0.5Y`\n\n2.  **Substitute the current values** (P = $15, Y = $600):\n    `Qd = 800 - 20(15) + 0.5(600)`\n\n3.  **Calculate the components:**\n    *   Price component: `20 * 15 = 300`\n    *   Income component: `0.5 * 600 = 300`\n\n4.  **Solve for Qd:**\n    `Qd = 800 - 300 + 300`\n    `Qd = 800` units.\n\n**The current quantity demanded is 800 units.**\n\n**(b) Calculate New Quantity Demanded (Ceteris Paribus):**\n\n1.  **Apply the ceteris paribus assumption:** This means only the price (P) changes. Income (Y) is held constant at $600.\n\n2.  **Use the new price** (P = $18) in the equation:\n    `Qd' = 800 - 20(18) + 0.5(600)`\n\n3.  **Calculate the new components:**\n    *   New price component: `20 * 18 = 360`\n    *   Income component (unchanged): `0.5 * 600 = 300`\n\n4.  **Solve for the new Qd (Qd'):**\n    `Qd' = 800 - 360 + 300`\n    `Qd' = 740` units.\n\n**The new quantity demanded is 740 units.**\n\n5.  **Calculate the change in quantity demanded:**\n    `Change = New Qd - Old Qd = 740 - 800 = -60` units.\n\n**Conclusion:** With the price increase from $15 to $18, and holding income constant (*ceteris paribus*), the quantity demanded decreases by 60 units. This calculation demonstrates how economists use models and assumptions to isolate the effect of a single variable."
+    },
+    {
       "type": "practice",
       "label": "Mark a methodology question",
       "href": "/mark?subject=9708&topic=1.2"
@@ -178,6 +120,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Distinguish positive and normative statements.",
+    "Explain ceteris paribus.",
+    "Describe the role of economic models.",
+    "Evaluate limitations of economic analysis."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "If a positive statement is proven to be false, does it become a normative statement?",
+      "a": "No. A positive statement is defined by its testability, not its truthfulness. A statement like 'The moon is made of cheese' is a false positive statement; it is objective and can be (and has been) refuted by evidence. It does not become a normative statement, which is a subjective value judgement that cannot be tested in the same way."
+    },
+    {
+      "q": "Is the ceteris paribus assumption realistic? If not, why do economists use it?",
+      "a": "The ceteris paribus assumption is deliberately unrealistic. In the real world, multiple factors change simultaneously. However, economists use it as a scientific tool to build manageable models. By isolating the impact of a single variable (e.g., price) on another (e.g., quantity demanded), they can understand fundamental relationships. Without this simplification, economic analysis would be impossibly complex."
+    },
+    {
+      "q": "Can economics ever be a completely positive science, free of normative judgements?",
+      "a": "This is a subject of ongoing debate. While economists strive for objectivity (positive analysis), normative judgements can creep in. The choice of which economic issues to study, which variables to include in a model, and how to interpret the results of an analysis can all be influenced by the economist's own values. For example, deciding whether to focus on inflation or unemployment as a primary policy concern involves a value judgement about which problem is more harmful to society."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is a positive statement?",
+      "back": "A testable statement about what is — can be verified with evidence (e.g. \"Unemployment is 5%\")."
+    },
+    {
+      "front": "What is a normative statement?",
+      "back": "A value judgement about what ought to be — contains words like should, ought, fair (e.g. \"Tax should be cut\")."
+    },
+    {
+      "front": "What does ceteris paribus mean?",
+      "back": "All other things being equal — isolates the effect of one variable by holding others constant."
+    },
+    {
+      "front": "Why do economists use models?",
+      "back": "To simplify reality, explain behaviour, and make predictions — assumptions must be stated clearly."
+    },
+    {
+      "front": "Give one limitation of economic models.",
+      "back": "Assumptions may not hold (e.g. rational behaviour); models omit variables and cannot capture all real-world complexity."
+    },
+    {
+      "front": "Can normative statements be proved true or false?",
+      "back": "No — they depend on values and opinions, not data alone."
+    },
+    {
+      "front": "What is a positive statement in economics?",
+      "back": "An objective statement that can be tested and verified or refuted by referring to factual evidence. It describes 'what is, was, or will be'."
+    },
+    {
+      "front": "What is a normative statement in economics?",
+      "back": "A subjective statement based on a value judgement that expresses an opinion about what 'ought to be'. It cannot be proven or disproven by facts alone."
+    },
+    {
+      "front": "What does 'ceteris paribus' mean?",
+      "back": "A Latin phrase meaning 'all other things being equal'. It is an assumption used in economic models to isolate the relationship between two variables by holding other factors constant."
+    },
+    {
+      "front": "What is the purpose of an economic model?",
+      "back": "To simplify complex economic reality in order to explain economic behaviour, analyse relationships between variables, and make predictions about future outcomes."
+    },
+    {
+      "front": "Why is the distinction between positive and normative statements important for policy-making?",
+      "back": "It separates the objective analysis of a policy's likely consequences (positive) from the subjective debate about whether those consequences are desirable (normative). Effective policy requires both."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.2"
   ],
   "diagramSpec": {
     "steps": [
@@ -211,20 +226,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "If a positive statement is proven to be false, does it become a normative statement?",
-      "a": "No. A positive statement is defined by its testability, not its truthfulness. A statement like 'The moon is made of cheese' is a false positive statement; it is objective and can be (and has been) refuted by evidence. It does not become a normative statement, which is a subjective value judgement that cannot be tested in the same way."
-    },
-    {
-      "q": "Is the ceteris paribus assumption realistic? If not, why do economists use it?",
-      "a": "The ceteris paribus assumption is deliberately unrealistic. In the real world, multiple factors change simultaneously. However, economists use it as a scientific tool to build manageable models. By isolating the impact of a single variable (e.g., price) on another (e.g., quantity demanded), they can understand fundamental relationships. Without this simplification, economic analysis would be impossibly complex."
-    },
-    {
-      "q": "Can economics ever be a completely positive science, free of normative judgements?",
-      "a": "This is a subject of ongoing debate. While economists strive for objectivity (positive analysis), normative judgements can creep in. The choice of which economic issues to study, which variables to include in a model, and how to interpret the results of an analysis can all be influenced by the economist's own values. For example, deciding whether to focus on inflation or unemployment as a primary policy concern involves a value judgement about which problem is more harmful to society."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Positive and Normative Statements",
     "columns": [

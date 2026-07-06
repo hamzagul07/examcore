@@ -7,43 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — how cost data supports pricing, profit analysis, cost control, and strategic decisions.",
   "durationMin": 22,
-  "updated": "2026-06-15",
-  "learningObjectives": [
-    "Explain uses of cost data in business decisions.",
-    "Link cost information to pricing strategies.",
-    "Describe cost control and variance awareness.",
-    "Evaluate limitations of cost information."
-  ],
-  "simpleExplanation": {
-    "title": "Costs drive decisions",
-    "summary": "Accurate costs support minimum pricing, show which products earn profit, highlight waste through budget comparison, and inform make-or-buy and closure decisions.",
-    "steps": [
-      "Set floor price — must cover at least variable cost (contribution) short run.",
-      "Compare actual vs budget to control spending.",
-      "Identify unprofitable products or departments.",
-      "Support make-or-buy and capacity decisions."
-    ]
-  },
-  "flashcards": [
-    { "front": "How does cost data help pricing?", "back": "Sets minimum price (cover VC or full cost depending on horizon); supports cost-plus and contribution-based pricing." },
-    { "front": "Cost control use?", "back": "Compare actual costs to budget; investigate variances; hold managers accountable." },
-    { "front": "Product profitability use?", "back": "Identify which products/lines cover their costs and contribute most to profit." },
-    { "front": "Make-or-buy decision?", "back": "Compare internal cost (including opportunity cost) with supplier quote — often using relevant costs only." },
-    { "front": "Limitation: historical costs?", "back": "Past costs may not predict future — inflation, technology, and volume changes make data outdated." },
-    { "front": "Limitation: allocation of overheads?", "back": "Arbitrary overhead allocation can make a product look unprofitable when it is not." },
-    { "front": "Benchmarking link?", "back": "Compare unit costs with industry best practice to find efficiency gaps." },
-    { "front": "Link to marketing?", "back": "Cost floor interacts with demand and positioning — price must cover costs AND match market willingness to pay." }
-  ],
-  "faq": [
-    {
-      "q": "Should price always cover full unit cost?",
-      "a": "Long run: yes, or the business cannot survive. Short run: a promotional or special order may cover only variable costs if it contributes to fixed costs and does not displace better sales."
-    },
-    {
-      "q": "How does this topic link to 5.4.4 break-even?",
-      "a": "Break-even is one specific use of contribution-based cost information — finding the output where total contribution equals fixed costs."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -87,8 +50,21 @@
     },
     {
       "type": "workedExample",
-      "question": "A café sells coffee for $4. Variable cost per cup is $1.20. Fixed costs are $3 600/month. Budgeted sales 4 000 cups; actual sales 3 200 cups. Actual variable costs total $4 000.\n\nExplain two uses of this cost information for the manager.",
-      "solution": "**1. Pricing / break-even**\nContribution per cup = $4 − $1.20 = $2.80. Break-even = $3 600 ÷ $2.80 ≈ 1 286 cups. Manager knows minimum sales needed and can judge whether $4 price is viable.\n\n**2. Cost control (variance)**\nBudgeted VC for 3 200 cups = 3 200 × $1.20 = $3 840. Actual VC = $4 000 → **adverse variance of $160**. Manager should investigate (waste, supplier prices, portion sizes).\n\nAlso: actual sales below budget → lower total contribution; may need marketing or cost review."
+      "question": "A café sells coffee for $4. Variable cost per cup is $1.20. Fixed costs are $3,600/month. Budgeted sales 4,000 cups; actual sales 3,200 cups. Actual variable costs total $4,000.\n\nExplain two uses of this cost information for the manager.",
+      "solution": "**1. Pricing / break-even**\nContribution per cup = $4 − $1.20 = $2.80. Break-even = $3,600 ÷ $2.80 ≈ 1,286 cups. The manager knows the minimum sales needed and can judge whether the $4 price is viable.\n\n**2. Cost control (variance)**\nBudgeted VC for 3,200 cups = 3,200 × $1.20 = $3,840. Actual VC = $4,000 → **adverse variance of $160**. The manager should investigate the cause (e.g., waste, supplier price increases, incorrect portion sizes).\n\nAlso: actual sales were below budget, leading to lower total contribution. This may prompt a review of marketing or cost structures."
+    },
+    {
+      "type": "heading",
+      "content": "Make-or-Buy Decisions"
+    },
+    {
+      "type": "text",
+      "content": "Another critical use of cost data is in outsourcing decisions. A business must compare the **relevant costs** of producing a component in-house against the price quoted by an external supplier. Relevant costs are future costs that differ between the alternatives. Sunk costs and unavoidable fixed costs are ignored."
+    },
+    {
+      "type": "workedExample",
+      "question": "ComponentCo needs 10,000 units of 'Part X' annually for its production line. The internal cost to produce one unit is: Direct Materials $5, Direct Labour $8, Variable Overheads $2, Allocated Fixed Overheads $4. An external supplier offers to provide the 10,000 units for $16 per unit. If ComponentCo stops making Part X, $15,000 of its total fixed overheads can be avoided. Should ComponentCo make or buy Part X?",
+      "solution": "To make this decision, we must compare the relevant cost of making the part with the cost of buying it.\n\n**Step 1: Calculate the total relevant cost to MAKE**\nRelevant costs are those that will be incurred only if the company continues to make the part. Unavoidable fixed costs are ignored.\n- Direct Materials: 10,000 units × $5 = $50,000\n- Direct Labour: 10,000 units × $8 = $80,000\n- Variable Overheads: 10,000 units × $2 = $20,000\n- Avoidable Fixed Overheads: $15,000\n- **Total Relevant Cost to Make:** $50,000 + $80,000 + $20,000 + $15,000 = **$165,000**\n\n**Step 2: Calculate the total cost to BUY**\n- Purchase Price: 10,000 units × $16 = **$160,000**\n\n**Step 3: Compare and Decide**\n- Cost to Make: $165,000\n- Cost to Buy: $160,000\n\n**Conclusion:** The cost to buy ($160,000) is $5,000 less than the relevant cost to make ($165,000). Based on this financial analysis, ComponentCo should **buy** Part X from the external supplier.\n\n**Evaluation:** The decision should also consider non-financial factors: supplier quality and reliability, loss of control over production, impact on employee morale due to potential redundancies, and the opportunity cost of the freed-up capacity (i.e., could the factory space be used for something more profitable?)."
     },
     {
       "type": "heading",
@@ -106,10 +82,81 @@
     {
       "type": "resources",
       "items": [
-        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
-        { "label": "3.3.4 Pricing methods", "href": "/courses/9609/3-3-4-pricing-methods" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "5.4.4 Break-even analysis",
+          "href": "/courses/9609/5-4-4-break-even-analysis"
+        },
+        {
+          "label": "3.3.4 Pricing methods",
+          "href": "/courses/9609/3-3-4-pricing-methods"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "learningObjectives": [
+    "Explain uses of cost data in business decisions.",
+    "Link cost information to pricing strategies.",
+    "Describe cost control and variance awareness.",
+    "Evaluate limitations of cost information."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Should price always cover full unit cost?",
+      "a": "Long run: yes, or the business cannot survive. Short run: a promotional or special order may cover only variable costs if it contributes to fixed costs and does not displace better sales."
+    },
+    {
+      "q": "How does this topic link to 5.4.4 break-even?",
+      "a": "Break-even is one specific use of contribution-based cost information — finding the output where total contribution equals fixed costs."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "How does cost data help pricing?",
+      "back": "Sets minimum price (cover VC or full cost depending on horizon); supports cost-plus and contribution-based pricing."
+    },
+    {
+      "front": "Cost control use?",
+      "back": "Compare actual costs to budget; investigate variances; hold managers accountable."
+    },
+    {
+      "front": "Product profitability use?",
+      "back": "Identify which products/lines cover their costs and contribute most to profit."
+    },
+    {
+      "front": "Make-or-buy decision?",
+      "back": "Compare internal cost (including opportunity cost) with supplier quote — often using relevant costs only."
+    },
+    {
+      "front": "Limitation: historical costs?",
+      "back": "Past costs may not predict future — inflation, technology, and volume changes make data outdated."
+    },
+    {
+      "front": "Limitation: allocation of overheads?",
+      "back": "Arbitrary overhead allocation can make a product look unprofitable when it is not."
+    },
+    {
+      "front": "Benchmarking link?",
+      "back": "Compare unit costs with industry best practice to find efficiency gaps."
+    },
+    {
+      "front": "Link to marketing?",
+      "back": "Cost floor interacts with demand and positioning — price must cover costs AND match market willingness to pay."
+    },
+    {
+      "front": "What is 'contribution per limiting factor'?",
+      "back": "A method to decide production priorities when a resource (e.g., machine hours, skilled labour) is scarce. It's calculated as (Contribution per unit) / (Amount of limiting factor per unit). Products with the highest result should be prioritised."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "5.4.3"
+  ],
+  "updated": "2026-06-15"
 }

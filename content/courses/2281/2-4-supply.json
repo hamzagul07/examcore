@@ -6,24 +6,7 @@
   "paperName": "Paper 1 (Multiple Choice) & Paper 2 (Structured Questions)",
   "status": "premium",
   "summary": "2281 O-Level Economics — demand, supply, market equilibrium, and curve shifts with GeoGebra supply and demand simulation.",
-  "durationMin": 20,
-  "updated": "2026-06-26",
-  "learningObjectives": [
-    "Explain the laws of demand and supply.",
-    "Draw and interpret demand and supply curves.",
-    "Identify equilibrium price and quantity.",
-    "Analyse effects of curve shifts on equilibrium."
-  ],
-  "simpleExplanation": {
-    "title": "Buyers meet sellers",
-    "summary": "Demand shows how much consumers will buy at each price; supply shows how much firms will sell. Where they cross, the market clears.",
-    "steps": [
-      "Demand curve slopes down — higher price, lower quantity demanded (ceteris paribus).",
-      "Supply curve slopes up — higher price, higher quantity supplied.",
-      "Equilibrium: no tendency for price to change — Qd = Qs.",
-      "Shift demand or supply — find new equilibrium P and Q."
-    ]
-  },
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -121,6 +104,11 @@
       "solution": "Normal good → **demand shifts right** (at each price, Qd higher).\n\nNew equilibrium: **higher P** and **higher Q**.\n\nSupply unchanged in short run."
     },
     {
+      "type": "workedExample",
+      "question": "The market for coffee beans has the following demand and supply functions: Quantity Demanded (Qd) = 200 - 10P and Quantity Supplied (Qs) = 50 + 5P, where P is the price in dollars per kg and Q is the quantity in thousands of kgs. If the government sets a minimum price of $12 per kg, calculate the resulting surplus or shortage.",
+      "solution": "A minimum price is a price floor. To be effective, it must be set above the equilibrium price. We need to calculate Qd and Qs at this new price to determine the market outcome.\n\n**Step 1: Calculate Quantity Demanded at P = $12**\nQd = 200 - 10P\nQd = 200 - 10(12)\nQd = 200 - 120\nQd = 80 (i.e., 80,000 kgs)\n\n**Step 2: Calculate Quantity Supplied at P = $12**\nQs = 50 + 5P\nQs = 50 + 5(12)\nQs = 50 + 60\nQs = 110 (i.e., 110,000 kgs)\n\n**Step 3: Determine Surplus or Shortage**\nSince Quantity Supplied (110,000 kgs) is greater than Quantity Demanded (80,000 kgs), there is a surplus.\n\n**Step 4: Calculate the size of the surplus**\nSurplus = Qs - Qd\nSurplus = 110,000 kgs - 80,000 kgs\nSurplus = 30,000 kgs\n\n**Final Answer:** The minimum price of $12 creates a surplus of 30,000 kgs of coffee beans."
+    },
+    {
       "type": "examTip",
       "content": "Draw **two equilibria** (E₁ and E₂) with arrows showing curve shifts. Cambridge awards diagram marks separately from written explanation."
     },
@@ -142,6 +130,67 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Explain the laws of demand and supply.",
+    "Draw and interpret demand and supply curves.",
+    "Identify equilibrium price and quantity.",
+    "Analyse effects of curve shifts on equilibrium."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Does a rise in income always cause demand to increase?",
+      "a": "Not necessarily. For 'normal goods', a rise in income leads to an increase in demand (a rightward shift of the demand curve). However, for 'inferior goods' (e.g., budget supermarket brands, bus travel), a rise in income causes demand to fall (a leftward shift) as consumers can now afford and switch to higher-quality alternatives. It is crucial to distinguish between these two types of goods."
+    },
+    {
+      "q": "If demand for a product increases, won't producers just shift their supply curve to meet it?",
+      "a": "This is a common misconception. A shift in the demand curve (e.g., due to a successful advertising campaign) does not cause the supply curve itself to shift. Instead, the increase in demand creates a shortage at the original price. This shortage causes the price to be bid up. The higher price then signals to producers to offer more for sale, resulting in an upward *movement along* the existing supply curve to a new, higher equilibrium quantity. The supply curve only shifts if a non-price determinant of supply, like production costs, changes."
+    },
+    {
+      "q": "Why is the supply curve upward sloping? Don't businesses want to sell as much as possible at any price?",
+      "a": "While businesses want to maximise profit, the upward-sloping supply curve reflects the reality of production costs. To increase output, a firm often faces higher marginal costs (the cost of producing one more unit), perhaps due to needing to pay workers overtime or using less efficient machinery more intensively. Therefore, a higher price is required to justify and cover these higher costs. Furthermore, a higher market price can attract new, less efficient firms into the market, whose costs are only covered at that higher price, thus increasing the overall quantity supplied."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is the 'ceteris paribus' assumption in the context of demand and supply?",
+      "back": "It is a Latin phrase meaning 'all other things being equal'. When analysing the effect of a price change on quantity demanded or supplied, we assume that all other non-price factors (like income or production costs) remain constant."
+    },
+    {
+      "front": "What is the difference between a 'change in quantity demanded' and a 'change in demand'?",
+      "back": "A 'change in quantity demanded' is a movement along the demand curve caused by a change in the good's own price. A 'change in demand' is a shift of the entire curve (left or right) caused by a change in a non-price determinant (e.g., income, tastes)."
+    },
+    {
+      "front": "Define market equilibrium.",
+      "back": "A state of balance where quantity demanded equals quantity supplied. At this point, the market clears, and there is no tendency for the price or quantity to change unless an external factor changes."
+    },
+    {
+      "front": "What is a 'shortage' and what causes it?",
+      "back": "A shortage, or excess demand, is a situation where quantity demanded exceeds quantity supplied. It is caused by the market price being set below the equilibrium price, leading to upward pressure on the price."
+    },
+    {
+      "front": "List three non-price determinants that would cause the supply curve for cars to shift to the left.",
+      "back": "1. An increase in the cost of production (e.g., higher steel prices or wages for car workers). 2. A new indirect tax placed on car manufacturers by the government. 3. A disruption in technology or a natural disaster affecting production facilities."
+    },
+    {
+      "front": "What is a 'surplus' and what causes it?",
+      "back": "A surplus, or excess supply, is a situation where quantity supplied exceeds quantity demanded. It is caused by the market price being set above the equilibrium price, leading to downward pressure on the price."
+    },
+    {
+      "front": "State the Law of Supply.",
+      "back": "Ceteris paribus, as the price of a good or service rises, the quantity supplied will also rise. This is because producers are more willing and able to sell at higher prices due to the potential for greater profit."
+    },
+    {
+      "front": "How do you mathematically find the equilibrium price (P*) given demand and supply equations?",
+      "back": "Set the quantity demanded (Qd) equation equal to the quantity supplied (Qs) equation (Qd = Qs) and solve for the price (P)."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.4"
   ],
   "diagramSpec": {
     "steps": [
@@ -175,42 +224,7 @@
       }
     ]
   },
-  "flashcards": [
-    {
-      "front": "What is the 'ceteris paribus' assumption in the context of demand and supply?",
-      "back": "It is a Latin phrase meaning 'all other things being equal'. When analysing the effect of a price change on quantity demanded or supplied, we assume that all other non-price factors (like income or production costs) remain constant."
-    },
-    {
-      "front": "What is the difference between a 'change in quantity demanded' and a 'change in demand'?",
-      "back": "A 'change in quantity demanded' is a movement along the demand curve caused by a change in the good's own price. A 'change in demand' is a shift of the entire curve (left or right) caused by a change in a non-price determinant (e.g., income, tastes)."
-    },
-    {
-      "front": "Define market equilibrium.",
-      "back": "A state of balance where quantity demanded equals quantity supplied. At this point, the market clears, and there is no tendency for the price or quantity to change unless an external factor changes."
-    },
-    {
-      "front": "What is a 'shortage' and what causes it?",
-      "back": "A shortage, or excess demand, is a situation where quantity demanded exceeds quantity supplied. It is caused by the market price being set below the equilibrium price, leading to upward pressure on the price."
-    },
-    {
-      "front": "List three non-price determinants that would cause the supply curve for cars to shift to the left.",
-      "back": "1. An increase in the cost of production (e.g., higher steel prices or wages for car workers). 2. A new indirect tax placed on car manufacturers by the government. 3. A disruption in technology or a natural disaster affecting production facilities."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Does a rise in income always cause demand to increase?",
-      "a": "Not necessarily. For 'normal goods', a rise in income leads to an increase in demand (a rightward shift of the demand curve). However, for 'inferior goods' (e.g., budget supermarket brands, bus travel), a rise in income causes demand to fall (a leftward shift) as consumers can now afford and switch to higher-quality alternatives. It is crucial to distinguish between these two types of goods."
-    },
-    {
-      "q": "If demand for a product increases, won't producers just shift their supply curve to meet it?",
-      "a": "This is a common misconception. A shift in the demand curve (e.g., due to a successful advertising campaign) does not cause the supply curve itself to shift. Instead, the increase in demand creates a shortage at the original price. This shortage causes the price to be bid up. The higher price then signals to producers to offer more for sale, resulting in an upward *movement along* the existing supply curve to a new, higher equilibrium quantity. The supply curve only shifts if a non-price determinant of supply, like production costs, changes."
-    },
-    {
-      "q": "Why is the supply curve upward sloping? Don't businesses want to sell as much as possible at any price?",
-      "a": "While businesses want to maximise profit, the upward-sloping supply curve reflects the reality of production costs. To increase output, a firm often faces higher marginal costs (the cost of producing one more unit), perhaps due to needing to pay workers overtime or using less efficient machinery more intensively. Therefore, a higher price is required to justify and cover these higher costs. Furthermore, a higher market price can attract new, less efficient firms into the market, whose costs are only covered at that higher price, thus increasing the overall quantity supplied."
-    }
-  ],
+  "updated": "2026-06-26",
   "comparisonTable": {
     "caption": "Movement Along a Curve vs. A Shift of the Curve",
     "columns": [
@@ -254,18 +268,5 @@
     "subjectCode": "9708",
     "slug": "2-1-demand-and-supply-curves",
     "level": "A-Level"
-  },
-  "interactiveEmbed": {
-    "provider": "geogebra",
-    "title": "Supply and demand introduction",
-    "embedUrl": "https://www.geogebra.org/classic?material=VGWtkPU5",
-    "launchUrl": "https://www.geogebra.org/classic?material=VGWtkPU5",
-    "hint": "Shift curves — read equilibrium price and quantity (9708 2.1).",
-    "aspectRatio": "834 / 504",
-    "attribution": {
-      "source": "GeoGebra",
-      "license": "GeoGebra Terms of Service",
-      "sourceUrl": "https://www.geogebra.org"
-    }
   }
 }

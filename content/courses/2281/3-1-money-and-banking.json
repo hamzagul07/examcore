@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "2281 O-Level — functions of money, commercial banking, credit creation, and central bank role.",
   "durationMin": 22,
-  "updated": "2026-06-26",
-  "learningObjectives": [
-    "Describe functions of money.",
-    "Explain how commercial banks create credit.",
-    "Analyse central bank policy tools.",
-    "Evaluate quantitative easing."
-  ],
-  "simpleExplanation": {
-    "title": "Money in the economy",
-    "summary": "Banks lend deposits, expanding money supply. Central banks set interest rates and act as lender of last resort.",
-    "steps": [
-      "Money: exchange, store of value, unit of account.",
-      "Fractional reserve — loans create deposits.",
-      "Central bank: base rate, open market operations.",
-      "QE: asset purchases when rates near zero."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Three functions of money?",
-      "back": "Medium of exchange, store of value, unit of account (measure of value)."
-    },
-    {
-      "front": "How do banks create credit?",
-      "back": "Fractional reserve banking — new loans create new deposits, expanding broad money supply (subject to reserve requirements)."
-    },
-    {
-      "front": "Central bank role?",
-      "back": "Lender of last resort, sets base interest rate, controls base money, supervises banking system, inflation target."
-    },
-    {
-      "front": "Open market operations?",
-      "back": "Central bank buys/sells government securities to change reserves and influence interbank interest rates."
-    },
-    {
-      "front": "What is quantitative easing (QE)?",
-      "back": "Central bank creates money to buy financial assets (usually bonds) when conventional rate cuts are exhausted — lowers long-term rates, boosts asset prices."
-    },
-    {
-      "front": "Monetary policy transmission to AD?",
-      "back": "Rate cut → cheaper borrowing → ↑ C and I → AD rises; also exchange rate channel (lower rates → currency depreciates → ↑ X)."
-    },
-    {
-      "front": "What is the 'lender of last resort' function?",
-      "back": "The role of the central bank to provide funds to commercial banks facing short-term liquidity shortages. This prevents bank failures and systemic financial crises, maintaining confidence in the banking system."
-    },
-    {
-      "front": "Define 'credit creation'.",
-      "back": "The process by which commercial banks increase the money supply by making loans. When a bank lends money, it creates a new deposit, effectively creating 'new' money (in the form of bank deposits) in the economy."
-    },
-    {
-      "front": "What is the money multiplier formula and what does it show?",
-      "back": "The formula is 1 / liquidity ratio (or reserve ratio). It shows the maximum potential increase in the total money supply resulting from an initial new deposit into the banking system."
-    },
-    {
-      "front": "Distinguish between a 'store of value' and a 'standard for deferred payment'.",
-      "back": "'Store of value' means money can be saved and used for future purchases, retaining its value over time. 'Standard for deferred payment' means money is an accepted way to settle a debt in the future, making borrowing and lending possible."
-    },
-    {
-      "front": "What is Quantitative Easing (QE)?",
-      "back": "A monetary policy tool where the central bank purchases assets, typically government bonds, from commercial banks. This increases the money supply and the liquidity of banks, aiming to lower long-term interest rates and stimulate lending and economic activity."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -136,6 +73,11 @@
     {
       "type": "examTip",
       "content": "When explaining credit creation, be clear that it is bank deposits (a component of the broad money supply) that are being created, not physical cash. Also, remember that the money multiplier represents the *maximum* possible expansion; in reality, the effect is smaller as some cash may not be re-deposited and banks may not lend out all excess reserves."
+    },
+    {
+      "type": "workedExample",
+      "question": "A customer deposits $10,000 of new cash into the banking system. The required liquidity ratio (reserve ratio) is 20%. Assuming all loans are re-deposited and banks lend out all excess reserves, calculate the maximum potential increase in the total money supply.",
+      "solution": "**Step 1: Identify the initial deposit and the liquidity ratio.**\n- Initial New Deposit = $10,000\n- Liquidity Ratio (LR) = 20% or 0.20\n\n**Step 2: Calculate the money multiplier.**\n- The money multiplier determines the maximum expansion of the money supply from a new deposit.\n- Formula: Money Multiplier = 1 / Liquidity Ratio\n- Calculation: Money Multiplier = 1 / 0.20 = 5\n\n**Step 3: Calculate the total increase in the money supply (deposits).**\n- The total increase is the initial deposit multiplied by the money multiplier.\n- Formula: Total Increase in Money Supply = Initial New Deposit × Money Multiplier\n- Calculation: $10,000 × 5 = $50,000\n\n**Final Answer:** The maximum potential increase in the total money supply (in the form of bank deposits) resulting from the initial cash deposit is **$50,000**."
     },
     {
       "type": "heading",
@@ -218,6 +160,79 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe functions of money.",
+    "Explain how commercial banks create credit.",
+    "Analyse central bank policy tools.",
+    "Evaluate quantitative easing."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "If banks create money through lending, can they create an infinite amount?",
+      "a": "No, they cannot. Credit creation is limited by several factors. The most important is the liquidity ratio (or reserve requirement), which forces banks to hold a certain percentage of deposits as liquid assets. Other limitations include the demand for loans from creditworthy borrowers, the willingness of banks to lend, and the central bank's monetary policy actions, such as changing the policy interest rate to influence the cost of borrowing."
+    },
+    {
+      "q": "Is a credit card 'money'?",
+      "a": "Strictly speaking, a credit card is not money. It is a tool for accessing a pre-approved, short-term loan from the bank that issued the card. The actual 'money' is the bank deposit that is electronically transferred to the seller's account to settle the transaction. Therefore, a credit card is a means of payment that relies on deferring the use of actual money (bank deposits), which functions as the medium of exchange."
+    },
+    {
+      "q": "Does the central bank control the government?",
+      "a": "No, the central bank acts as the government's banker but does not control it. In most developed economies, the central bank has operational independence from the government, particularly in setting monetary policy. This independence is designed to prevent short-term political pressures from influencing decisions about interest rates, thereby helping to maintain long-term price stability. The central bank advises the government, but fiscal policy (taxation and government spending) remains under the government's control."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "Three functions of money?",
+      "back": "Medium of exchange, store of value, unit of account (measure of value)."
+    },
+    {
+      "front": "How do banks create credit?",
+      "back": "Fractional reserve banking — new loans create new deposits, expanding broad money supply (subject to reserve requirements)."
+    },
+    {
+      "front": "Central bank role?",
+      "back": "Lender of last resort, sets base interest rate, controls base money, supervises banking system, inflation target."
+    },
+    {
+      "front": "Open market operations?",
+      "back": "Central bank buys/sells government securities to change reserves and influence interbank interest rates."
+    },
+    {
+      "front": "What is quantitative easing (QE)?",
+      "back": "Central bank creates money to buy financial assets (usually bonds) when conventional rate cuts are exhausted — lowers long-term rates, boosts asset prices."
+    },
+    {
+      "front": "Monetary policy transmission to AD?",
+      "back": "Rate cut → cheaper borrowing → ↑ C and I → AD rises; also exchange rate channel (lower rates → currency depreciates → ↑ X)."
+    },
+    {
+      "front": "What is the 'lender of last resort' function?",
+      "back": "The role of the central bank to provide funds to commercial banks facing short-term liquidity shortages. This prevents bank failures and systemic financial crises, maintaining confidence in the banking system."
+    },
+    {
+      "front": "Define 'credit creation'.",
+      "back": "The process by which commercial banks increase the money supply by making loans. When a bank lends money, it creates a new deposit, effectively creating 'new' money (in the form of bank deposits) in the economy."
+    },
+    {
+      "front": "What is the money multiplier formula and what does it show?",
+      "back": "The formula is 1 / liquidity ratio (or reserve ratio). It shows the maximum potential increase in the total money supply resulting from an initial new deposit into the banking system."
+    },
+    {
+      "front": "Distinguish between a 'store of value' and a 'standard for deferred payment'.",
+      "back": "'Store of value' means money can be saved and used for future purchases, retaining its value over time. 'Standard for deferred payment' means money is an accepted way to settle a debt in the future, making borrowing and lending possible."
+    },
+    {
+      "front": "What is Quantitative Easing (QE)?",
+      "back": "A monetary policy tool where the central bank purchases assets, typically government bonds, from commercial banks. This increases the money supply and the liquidity of banks, aiming to lower long-term interest rates and stimulate lending and economic activity."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.1"
+  ],
   "diagramSpec": {
     "steps": [
       {
@@ -250,20 +265,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "If banks create money through lending, can they create an infinite amount?",
-      "a": "No, they cannot. Credit creation is limited by several factors. The most important is the liquidity ratio (or reserve requirement), which forces banks to hold a certain percentage of deposits as liquid assets. Other limitations include the demand for loans from creditworthy borrowers, the willingness of banks to lend, and the central bank's monetary policy actions, such as changing the policy interest rate to influence the cost of borrowing."
-    },
-    {
-      "q": "Is a credit card 'money'?",
-      "a": "Strictly speaking, a credit card is not money. It is a tool for accessing a pre-approved, short-term loan from the bank that issued the card. The actual 'money' is the bank deposit that is electronically transferred to the seller's account to settle the transaction. Therefore, a credit card is a means of payment that relies on deferring the use of actual money (bank deposits), which functions as the medium of exchange."
-    },
-    {
-      "q": "Does the central bank control the government?",
-      "a": "No, the central bank acts as the government's banker but does not control it. In most developed economies, the central bank has operational independence from the government, particularly in setting monetary policy. This independence is designed to prevent short-term political pressures from influencing decisions about interest rates, thereby helping to maintain long-term price stability. The central bank advises the government, but fiscal policy (taxation and government spending) remains under the government's control."
-    }
-  ],
+  "updated": "2026-06-26",
   "comparisonTable": {
     "caption": "Comparing Commercial Banks and Central Banks",
     "columns": [
@@ -314,18 +316,5 @@
     "subjectCode": "9708",
     "slug": "9-4-money-and-banking",
     "level": "A-Level"
-  },
-  "interactiveEmbed": {
-    "provider": "geogebra",
-    "title": "Money and AD",
-    "embedUrl": "https://www.geogebra.org/classic?material=gvkgx8ga",
-    "launchUrl": "https://www.geogebra.org/classic?material=gvkgx8ga",
-    "hint": "Credit creation and interest rate transmission (9708 9.4).",
-    "aspectRatio": "834 / 504",
-    "attribution": {
-      "source": "GeoGebra",
-      "license": "GeoGebra Terms of Service",
-      "sourceUrl": "https://www.geogebra.org"
-    }
   }
 }

@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — FIFO inventory valuation, impact on profit, and stock control.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain FIFO method of inventory valuation.",
-    "Calculate cost of sales and closing inventory using FIFO.",
-    "Analyse impact on reported profit.",
-    "Evaluate stock control procedures."
-  ],
-  "simpleExplanation": {
-    "title": "Which units were sold?",
-    "summary": "FIFO (first in, first out) assumes the oldest inventory is sold first. Closing inventory is valued at the most recent purchase prices.",
-    "steps": [
-      "FIFO: oldest stock cost goes to cost of sales first.",
-      "Closing inventory at latest purchase costs.",
-      "Rising prices → higher closing stock → higher profit under FIFO.",
-      "Physical stock checks reconcile records with actual inventory."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is FIFO?",
-      "back": "First In, First Out — earliest purchases are treated as sold first."
-    },
-    {
-      "front": "Closing inventory under FIFO when prices rise?",
-      "back": "Valued at newer (higher) costs → higher closing inventory value."
-    },
-    {
-      "front": "Effect on profit when prices rising?",
-      "back": "Lower COGS (older cheaper units sold) → higher gross profit vs LIFO/other methods."
-    },
-    {
-      "front": "Cost of sales formula?",
-      "back": "Opening inventory + Purchases − Closing inventory."
-    },
-    {
-      "front": "Why physical stocktake?",
-      "back": "Detect theft, damage, errors; adjust records to actual quantities."
-    },
-    {
-      "front": "Inventory on SOFP?",
-      "back": "Current asset at valuation (FIFO cost)."
-    },
-    {
-      "front": "Risk of obsolete inventory?",
-      "back": "Overstated asset and profit if not written down."
-    },
-    {
-      "front": "Link to efficiency ratios?",
-      "back": "Inventory days (10.2.3) uses closing inventory and COGS."
-    },
-    {
-      "front": "What is inventory valuation?",
-      "back": "The process of assigning a monetary value to a company's unsold inventory at the end of an accounting period. This value is used to calculate Cost of Goods Sold (COGS) and is reported as a current asset on the Statement of Financial Position."
-    },
-    {
-      "front": "What is the core principle of the FIFO inventory valuation method?",
-      "back": "First-In, First-Out. It assumes that the first inventory items purchased are the first ones to be sold. Closing inventory is therefore valued at the cost of the most recently purchased items."
-    },
-    {
-      "front": "How does FIFO affect gross profit during a period of rising prices (inflation)?",
-      "back": "It leads to a higher gross profit. This is because the Cost of Goods Sold (COGS) is based on the older, lower-cost inventory, while revenue reflects current, higher selling prices."
-    },
-    {
-      "front": "How does FIFO affect the value of closing inventory on the Statement of Financial Position during inflation?",
-      "back": "It results in a higher valuation of closing inventory. This is because the remaining stock is valued at the most recent, higher purchase prices, giving a more realistic current asset value."
-    },
-    {
-      "front": "What is the main practical advantage of using a FIFO system for physical stock control?",
-      "back": "It helps to minimise waste and obsolescence by ensuring that older stock is used or sold before newer stock. This is particularly important for perishable goods or products with a short life cycle."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -166,7 +95,12 @@
     {
       "type": "workedExample",
       "question": "Opening inventory: 100 units @ $4.\nPurchases: 200 units @ $5, then 100 units @ $6.\nSales: 250 units.\n\nCalculate closing inventory (units and value) and cost of sales using FIFO.",
-      "solution": "**Units remaining:** 100 + 200 + 100 − 250 = **150 units**\n\n**Cost of sales (FIFO — oldest sold first):**\n100 units @ $4 = $400\n150 units @ $5 = $750\n**Cost of sales = $1 150**\n\n**Closing inventory (newest layers left):**\n50 units @ $5 = $250\n100 units @ $6 = $600\n**Closing inventory = $850**\n\nCheck: Opening $400 + Purchases $1 600 − Closing $850 = **$1 150** ✓"
+      "solution": "**Units remaining:** 100 + 200 + 100 − 250 = **150 units**\n\n**Cost of sales (FIFO — oldest sold first):**\n100 units @ $4 = $400\n150 units @ $5 = $750\n**Cost of sales = $1,150**\n\n**Closing inventory (newest layers left):**\n50 units @ $5 = $250\n100 units @ $6 = $600\n**Closing inventory = $850**\n\nCheck: Opening $400 + Purchases $1,600 − Closing $850 = **$1,150** ✓"
+    },
+    {
+      "type": "workedExample",
+      "question": "TechGadgets Ltd had the following inventory transactions for its 'ProSound' headphones in April:\n- Apr 1: Opening inventory of 50 units at a cost of $80 each.\n- Apr 8: Purchased 100 units at $85 each.\n- Apr 15: Sold 120 units.\n- Apr 22: Purchased 80 units at $90 each.\n- Apr 28: Sold 70 units.\n\nCalculate the value of closing inventory and the cost of goods sold for April using the FIFO method.",
+      "solution": "**1. Calculate Cost of Goods Sold (COGS)**\n\n*First Sale (120 units on Apr 15):*\n- The first 50 units sold are from opening inventory: 50 units × $80 = $4,000\n- The next 70 units are from the Apr 8 purchase: 70 units × $85 = $5,950\n- COGS for first sale = $4,000 + $5,950 = $9,950\n\n*Second Sale (70 units on Apr 28):*\n- After the first sale, 30 units remain from the Apr 8 purchase (100 - 70).\n- The first 30 units sold are these remaining units: 30 units × $85 = $2,550\n- The next 40 units are from the Apr 22 purchase: 40 units × $90 = $3,600\n- COGS for second sale = $2,550 + $3,600 = $6,150\n\n*Total COGS for April:*\n- Total COGS = $9,950 + $6,150 = **$16,100**\n\n**2. Calculate Closing Inventory**\n\n*Units available:* 50 (opening) + 100 (Apr 8) + 80 (Apr 22) = 230 units\n*Units sold:* 120 + 70 = 190 units\n*Closing units:* 230 - 190 = 40 units\n\n*Value of Closing Inventory (FIFO - newest stock remains):*\n- The remaining 40 units are from the latest purchase (Apr 22).\n- Value = 40 units × $90 = **$3,600**\n\n**Check:**\nOpening Inventory ($4,000) + Purchases (($8,500)+($7,200)) - Closing Inventory ($3,600) = COGS\n$4,000 + $15,700 - $3,600 = **$16,100** ✓"
     },
     {
       "type": "examTip",
@@ -195,6 +129,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain FIFO method of inventory valuation.",
+    "Calculate cost of sales and closing inventory using FIFO.",
+    "Analyse impact on reported profit.",
+    "Evaluate stock control procedures."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Does a business have to physically sell its oldest stock first to use the FIFO accounting method?",
@@ -209,6 +150,67 @@
       "a": "No, it is one of several methods. Other common methods include AVCO (Average Cost). LIFO (Last-In, First-Out) is another method, but it is not permitted under International Financial Reporting Standards (IFRS), which the Cambridge A-Level syllabus follows. For the 9609 syllabus, a deep understanding of FIFO and its implications is the primary focus, with awareness of AVCO also being useful."
     }
   ],
+  "flashcards": [
+    {
+      "front": "What is FIFO?",
+      "back": "First In, First Out — earliest purchases are treated as sold first."
+    },
+    {
+      "front": "Closing inventory under FIFO when prices rise?",
+      "back": "Valued at newer (higher) costs → higher closing inventory value."
+    },
+    {
+      "front": "Effect on profit when prices rising?",
+      "back": "Lower COGS (older cheaper units sold) → higher gross profit vs LIFO/other methods."
+    },
+    {
+      "front": "Cost of sales formula?",
+      "back": "Opening inventory + Purchases − Closing inventory."
+    },
+    {
+      "front": "Why physical stocktake?",
+      "back": "Detect theft, damage, errors; adjust records to actual quantities."
+    },
+    {
+      "front": "Inventory on SOFP?",
+      "back": "Current asset at valuation (FIFO cost)."
+    },
+    {
+      "front": "Risk of obsolete inventory?",
+      "back": "Overstated asset and profit if not written down."
+    },
+    {
+      "front": "Link to efficiency ratios?",
+      "back": "Inventory days (10.2.3) uses closing inventory and COGS."
+    },
+    {
+      "front": "What is inventory valuation?",
+      "back": "The process of assigning a monetary value to a company's unsold inventory at the end of an accounting period. This value is used to calculate Cost of Goods Sold (COGS) and is reported as a current asset on the Statement of Financial Position."
+    },
+    {
+      "front": "What is the core principle of the FIFO inventory valuation method?",
+      "back": "First-In, First-Out. It assumes that the first inventory items purchased are the first ones to be sold. Closing inventory is therefore valued at the cost of the most recently purchased items."
+    },
+    {
+      "front": "How does FIFO affect gross profit during a period of rising prices (inflation)?",
+      "back": "It leads to a higher gross profit. This is because the Cost of Goods Sold (COGS) is based on the older, lower-cost inventory, while revenue reflects current, higher selling prices."
+    },
+    {
+      "front": "How does FIFO affect the value of closing inventory on the Statement of Financial Position during inflation?",
+      "back": "It results in a higher valuation of closing inventory. This is because the remaining stock is valued at the most recent, higher purchase prices, giving a more realistic current asset value."
+    },
+    {
+      "front": "What is the main practical advantage of using a FIFO system for physical stock control?",
+      "back": "It helps to minimise waste and obsolescence by ensuring that older stock is used or sold before newer stock. This is particularly important for perishable goods or products with a short life cycle."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "10.1.3"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Impact of FIFO in Different Economic Conditions",
     "columns": [

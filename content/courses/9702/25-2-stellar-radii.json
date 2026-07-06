@@ -6,73 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Stellar radii (25.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define and apply concepts of stellar luminosity and radiant flux.",
-    "Use Wien's Displacement Law to determine a star's surface temperature from its peak emission wavelength.",
-    "Apply the Stefan-Boltzmann Law to calculate a star's radius using its luminosity and temperature."
-  ],
-  "simpleExplanation": {
-    "title": "Measuring the Giants in the Sky",
-    "summary": "Imagine trying to figure out the actual size of a distant campfire just by looking at how bright it appears and what colour its flames are. That's essentially what we do with stars! By measuring how much light we receive from them and analysing their colour, physicists can use clever laws to work out their true brightness and even their physical size.",
-    "analogy": "Think of estimating the wattage and physical size of a light bulb across a vast football stadium. You can see how bright it looks (flux) and its colour (temperature), but you need to know how far away it is (distance) to work out its true power output (luminosity) and then its size.",
-    "steps": [
-      "Measure the **apparent brightness** (flux) and **distance** to the star.",
-      "Calculate the star's **total power output** (luminosity).",
-      "Observe the star's **colour** to estimate its surface temperature.",
-      "Use **fundamental physics laws** to combine these values and find the star's radius."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is stellar luminosity (L)?",
-      "back": "The total power of electromagnetic radiation emitted by a star, measured in Watts (W)."
-    },
-    {
-      "front": "What is radiant flux (F)?",
-      "back": "The power of radiation received per unit area at a specific distance from an astronomical object, measured in W m⁻²."
-    },
-    {
-      "front": "State the inverse square law for radiant flux.",
-      "back": "$F = \\frac{L}{4\\pi d^2}$, where L is luminosity, d is distance, and F is flux."
-    },
-    {
-      "front": "What are 'standard candles' in astronomy?",
-      "back": "Celestial objects with a known intrinsic luminosity, used to determine distances to other objects by measuring their apparent flux."
-    },
-    {
-      "front": "What does Wien's Displacement Law describe?",
-      "back": "The relationship between a star's peak emission wavelength (λ_max) and its absolute surface temperature (T)."
-    },
-    {
-      "front": "State Wien's Displacement Law formula.",
-      "back": "$λ_{max} T = \\text{constant}$ (approximately $2.9 \\times 10^{-3} \\text{ m K}$)."
-    },
-    {
-      "front": "How does a star's temperature relate to its colour?",
-      "back": "Hotter stars have shorter peak wavelengths, appearing bluer; cooler stars have longer peak wavelengths, appearing redder."
-    },
-    {
-      "front": "What does the Stefan-Boltzmann Law relate?",
-      "back": "A star's total luminosity (L) to its radius (r), absolute surface temperature (T), and the Stefan-Boltzmann constant (σ)."
-    },
-    {
-      "front": "State the Stefan-Boltzmann Law formula.",
-      "back": "$L = 4\\pi r^2 \\sigma T^4$."
-    },
-    {
-      "front": "What is the value of the Stefan-Boltzmann constant (σ)?",
-      "back": "$5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}$."
-    },
-    {
-      "front": "How can a star's radius be calculated from its observable properties?",
-      "back": "First, find luminosity from flux and distance, and temperature from peak wavelength. Then, use the Stefan-Boltzmann Law to solve for radius."
-    },
-    {
-      "front": "Why are stars often modelled as 'blackbodies'?",
-      "back": "This theoretical ideal allows us to use laws like Wien's and Stefan-Boltzmann's, as blackbodies perfectly absorb and emit all wavelengths of electromagnetic radiation."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -92,13 +26,15 @@
     },
     {
       "type": "text",
-      "content": "This formula is the inverse square law for flux. It tells us that flux decreases with the square of the distance (d) from the star. The $4\\pi d^2$ term represents the surface area of a sphere, assuming the star's energy spreads out uniformly in all directions. If we know the star's true luminosity (L) and measure the flux (F), we can calculate its distance (d)."
+      "content": "This formula is the inverse square law for flux. It tells us that flux decreases with the square of the distance (d) from the star. The $4\\pi d^2$ term represents the surface area of a sphere, assuming the star's energy spreads out uniformly in all directions. If we can determine the distance (d) by other means (like parallax) and measure the flux (F), we can find the star's luminosity. Conversely, this is how we use 'standard candles' – objects of known luminosity, such as Cepheid variable stars or Type Ia supernovae. By finding these objects in distant galaxies and measuring their flux, we can calculate the distance to those galaxies."
     },
     {
       "type": "keyPoints",
       "items": [
-        "25.2 Stellar radii.",
-        "Wien’s Law states that the black body radiation curve for different temperatures peaks at a wavelength λ max which is inversely proportional to the temperature (T)."
+        "Luminosity (L) is the total power a star emits (W).",
+        "Radiant Flux (F) is the power received per unit area (W m⁻²).",
+        "The inverse square law, F = L / (4πd²), links these quantities with distance (d).",
+        "Standard candles are objects of known luminosity used to measure cosmic distances."
       ]
     },
     {
@@ -107,7 +43,7 @@
     },
     {
       "type": "text",
-      "content": "Stars are often modelled as **blackbodies**, which are ideal objects that perfectly absorb and emit all electromagnetic radiation. This model allows us to link a star's surface temperature to the spectrum of light it emits. Specifically, hotter stars emit more blue light (shorter wavelengths), while cooler stars appear redder (longer wavelengths)."
+      "content": "Stars are often modelled as **blackbodies**, which are ideal objects that perfectly absorb and emit all electromagnetic radiation. The spectrum of a blackbody is a continuous curve of radiation intensity versus wavelength, known as the blackbody radiation curve. The shape of this curve and its peak wavelength (λ_max) depend only on the object's temperature. Hotter objects not only have their peak shift to shorter wavelengths (Wien's Law) but also emit more energy at all wavelengths, resulting in a higher and broader curve. This model allows us to link a star's surface temperature to the spectrum of light it emits. Specifically, hotter stars emit more blue light (shorter wavelengths), while cooler stars appear redder (longer wavelengths)."
     },
     {
       "type": "formula",
@@ -120,10 +56,9 @@
     {
       "type": "keyPoints",
       "items": [
-        "Stars are approximated as blackbodies.",
-        "Wien's Law links peak wavelength to temperature.",
-        "Hotter stars peak at shorter wavelengths (bluer).",
-        "Cooler stars peak at longer wavelengths (redder)."
+        "Stars are approximated as blackbodies, which have a characteristic radiation curve.",
+        "Wien's Displacement Law (λ_max T = constant) links the peak emission wavelength (λ_max) to surface temperature (T).",
+        "Hotter stars have a shorter λ_max (appearing blue/white), while cooler stars have a longer λ_max (appearing red/orange)."
       ]
     },
     {
@@ -152,13 +87,34 @@
       ]
     },
     {
+      "type": "heading",
+      "content": "Context: The Hertzsprung-Russell (H-R) Diagram"
+    },
+    {
+      "type": "text",
+      "content": "The properties we've discussed – luminosity, temperature, and radius – are not independent. They are famously related on the Hertzsprung-Russell (H-R) diagram, which plots luminosity versus temperature for stars. Most stars, including our Sun, lie on the 'main sequence'. Stars in the upper right (cool but very luminous) are giants or supergiants, like Betelgeuse. They must be enormous to be so bright despite being cool. Stars in the lower left (hot but dim) are white dwarfs; they must be very small. The Stefan-Boltzmann law is the key to understanding these relationships: for a given temperature, a higher luminosity implies a much larger radius."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The H-R diagram plots luminosity vs. temperature.",
+        "It reveals patterns in stellar evolution and types (main sequence, giants, dwarfs).",
+        "A star's position on the diagram is linked to its radius via the Stefan-Boltzmann law."
+      ]
+    },
+    {
       "type": "workedExample",
       "question": "A star is observed to have a radiant flux of $1.50 \\times 10^{-9} \\text{ W m}^{-2}$ at Earth and is $100$ light-years away. Its peak emission wavelength is $450 \\text{ nm}$. Estimate the star's radius. \n\n(Given: 1 light-year = $9.46 \\times 10^{15} \\text{ m}$, Wien's constant = $2.9 \\times 10^{-3} \\text{ m K}$, Stefan-Boltzmann constant = $5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}$)",
       "solution": "1.  **Convert distance to metres:**\n    $d = 100 \\text{ ly} \\times 9.46 \\times 10^{15} \\text{ m/ly} = 9.46 \\times 10^{17} \\text{ m}$\n\n2.  **Calculate Luminosity (L) using the inverse square law for flux:**\n    $L = F \\times 4\\pi d^2$\n    $L = (1.50 \\times 10^{-9} \\text{ W m}^{-2}) \\times 4\\pi (9.46 \\times 10^{17} \\text{ m})^2$\n    $L = 1.68 \\times 10^{28} \\text{ W}$\n\n3.  **Convert peak wavelength to metres and calculate Temperature (T) using Wien's Law:**\n    $λ_{max} = 450 \\text{ nm} = 450 \\times 10^{-9} \\text{ m}$\n    $T = \\frac{\\text{constant}}{λ_{max}} = \\frac{2.9 \\times 10^{-3} \\text{ m K}}{450 \\times 10^{-9} \\text{ m}}$\n    $T = 6444 \\text{ K}$ (approx $6400 \\text{ K}$)\n\n4.  **Calculate Radius (r) using the Stefan-Boltzmann Law:**\n    Rearrange $L = 4\\pi r^2 \\sigma T^4$ to solve for r:\n    $r = \\sqrt{\\frac{L}{4\\pi \\sigma T^4}}$\n    $r = \\sqrt{\\frac{1.68 \\times 10^{28} \\text{ W}}{4\\pi (5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}) (6444 \\text{ K})^4}}$\n    $r = \\sqrt{\\frac{1.68 \\times 10^{28}}{4\\pi (5.67 \\times 10^{-8}) (1.73 \\times 10^{15})}}$\n    $r = \\sqrt{\\frac{1.68 \\times 10^{28}}{1.23 \\times 10^9}}$\n    $r = \\sqrt{1.37 \\times 10^{19}}$\n    $r = 3.70 \\times 10^9 \\text{ m}$\n\nThe star's radius is approximately $3.70 \\times 10^9 \\text{ m}$ (or $3.7 \\times 10^6 \\text{ km}$)."
     },
     {
+      "type": "workedExample",
+      "question": "The red giant star Betelgeuse has a surface temperature of approximately 3500 K and a luminosity of $5.0 \\times 10^{31}$ W. The Sun has a surface temperature of 5800 K and a luminosity of $3.8 \\times 10^{26}$ W. Calculate the ratio of Betelgeuse's radius to the Sun's radius ($r_B / r_S$).",
+      "solution": "1. **State the Stefan-Boltzmann Law for both stars:**\n   For Betelgeuse (B): $L_B = 4\\pi r_B^2 \\sigma T_B^4$\n   For the Sun (S): $L_S = 4\\pi r_S^2 \\sigma T_S^4$\n\n2. **Create a ratio of the two equations to eliminate constants:**\n   Divide the equation for Betelgeuse by the equation for the Sun:\n   $\\frac{L_B}{L_S} = \\frac{4\\pi r_B^2 \\sigma T_B^4}{4\\pi r_S^2 \\sigma T_S^4}$\n   The constants $4\\pi$ and $\\sigma$ cancel out:\n   $\\frac{L_B}{L_S} = \\frac{r_B^2 T_B^4}{r_S^2 T_S^4} = (\\frac{r_B}{r_S})^2 (\\frac{T_B}{T_S})^4$\n\n3. **Rearrange the formula to solve for the radius ratio ($r_B/r_S$):**\n   $(\\frac{r_B}{r_S})^2 = \\frac{L_B}{L_S} \\times (\\frac{T_S}{T_B})^4$\n   $\\frac{r_B}{r_S} = \\sqrt{\\frac{L_B}{L_S} \\times (\\frac{T_S}{T_B})^4}$\n\n4. **Substitute the given values and calculate:**\n   Luminosity ratio: $\\frac{L_B}{L_S} = \\frac{5.0 \\times 10^{31} \\text{ W}}{3.8 \\times 10^{26} \\text{ W}} = 1.316 \\times 10^5$\n   Temperature ratio: $\\frac{T_S}{T_B} = \\frac{5800 \\text{ K}}{3500 \\text{ K}} = 1.657$\n\n   Now substitute these into the rearranged formula:\n   $\\frac{r_B}{r_S} = \\sqrt{(1.316 \\times 10^5) \\times (1.657)^4}$\n   $\\frac{r_B}{r_S} = \\sqrt{(1.316 \\times 10^5) \\times 7.553}$\n   $\\frac{r_B}{r_S} = \\sqrt{9.936 \\times 10^5}$\n   $\\frac{r_B}{r_S} = 996.8$\n\nBetelgeuse's radius is approximately 997 times larger than the Sun's radius. This demonstrates why it is classified as a supergiant: it is extremely large to be so luminous despite its relatively cool surface temperature."
+    },
+    {
       "type": "examTip",
-      "content": "Pay close attention to units! Ensure all distances are in metres, temperatures in Kelvin, and wavelengths in metres. Mistakes in unit conversion are a common pitfall in these calculations. Remember to use the correct constants for Wien's and Stefan-Boltzmann's laws."
+      "content": "Pay close attention to units! Ensure all distances are in metres, temperatures in Kelvin, and wavelengths in metres. Mistakes in unit conversion are a common pitfall in these calculations. Remember to use the correct constants for Wien's and Stefan-Boltzmann's laws. Ratio questions, like the second worked example, are common as they test your ability to manipulate formulas and cancel constants."
     },
     {
       "type": "practice",
@@ -183,6 +139,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and apply concepts of stellar luminosity and radiant flux.",
+    "Use Wien's Displacement Law to determine a star's surface temperature from its peak emission wavelength.",
+    "Apply the Stefan-Boltzmann Law to calculate a star's radius using its luminosity and temperature."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of estimating the wattage and physical size of a light bulb across a vast football stadium. You can see how bright it looks (flux) and its colour (temperature), but you need to know how far away it is (distance) to work out its true power output (luminosity) and then its size."
+  },
   "faq": [
     {
       "q": "Why do we model stars as blackbodies if they aren't perfectly black?",
@@ -194,16 +158,87 @@
     },
     {
       "q": "How does stellar temperature affect its luminosity and radius?",
-      "a": "A star's temperature has a huge impact on its luminosity, as L is proportional to T⁴. So, even a slightly hotter star is significantly more luminous. For a given luminosity, a hotter star must have a smaller radius, and a cooler star must have a larger radius to emit the same total power."
+      "a": "A star's temperature has a huge impact on its luminosity, as L is proportional to T⁴. So, even a slightly hotter star is significantly more luminous. For a given luminosity, a hotter star must have a smaller radius, and a cooler star must have a larger radius to emit the same total power. This relationship is visualized on the H-R diagram."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is stellar luminosity (L)?",
+      "back": "The total power of electromagnetic radiation emitted by a star, measured in Watts (W)."
+    },
+    {
+      "front": "What is radiant flux (F)?",
+      "back": "The power of radiation received per unit area at a specific distance from an astronomical object, measured in W m⁻²."
+    },
+    {
+      "front": "State the inverse square law for radiant flux.",
+      "back": "$F = \\frac{L}{4\\pi d^2}$, where L is luminosity, d is distance, and F is flux."
+    },
+    {
+      "front": "What are 'standard candles' in astronomy?",
+      "back": "Celestial objects with a known intrinsic luminosity, used to determine distances to other objects by measuring their apparent flux."
+    },
+    {
+      "front": "What does Wien's Displacement Law describe?",
+      "back": "The relationship between a star's peak emission wavelength (λ_max) and its absolute surface temperature (T)."
+    },
+    {
+      "front": "State Wien's Displacement Law formula.",
+      "back": "$λ_{max} T = \\text{constant}$ (approximately $2.9 \\times 10^{-3} \\text{ m K}$)."
+    },
+    {
+      "front": "What is a blackbody radiation curve?",
+      "back": "A graph showing the intensity of radiation emitted by a blackbody at different wavelengths for a given temperature. The peak of the curve shifts to shorter wavelengths as temperature increases."
+    },
+    {
+      "front": "How does a star's temperature relate to its colour?",
+      "back": "Hotter stars have shorter peak wavelengths, appearing bluer; cooler stars have longer peak wavelengths, appearing redder."
+    },
+    {
+      "front": "What does the Stefan-Boltzmann Law relate?",
+      "back": "A star's total luminosity (L) to its radius (r), absolute surface temperature (T), and the Stefan-Boltzmann constant (σ)."
+    },
+    {
+      "front": "State the Stefan-Boltzmann Law formula.",
+      "back": "$L = 4\\pi r^2 \\sigma T^4$."
+    },
+    {
+      "front": "Why is temperature raised to the fourth power in the Stefan-Boltzmann law?",
+      "back": "This T⁴ dependence is a fundamental result from thermodynamics and statistical mechanics for blackbody radiation. It means a star's energy output is extremely sensitive to its surface temperature."
+    },
+    {
+      "front": "What is the value of the Stefan-Boltzmann constant (σ)?",
+      "back": "$5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}$."
+    },
+    {
+      "front": "Why are stars often modelled as 'blackbodies'?",
+      "back": "This theoretical ideal allows us to use laws like Wien's and Stefan-Boltzmann's, as blackbodies perfectly absorb and emit all wavelengths of electromagnetic radiation."
+    },
+    {
+      "front": "How can a star's radius be calculated from its observable properties?",
+      "back": "First, find luminosity from flux and distance, and temperature from peak wavelength. Then, use the Stefan-Boltzmann Law, rearranged as $r = \\sqrt{\\frac{L}{4\\pi \\sigma T^4}}$, to solve for radius."
+    },
+    {
+      "front": "How can you compare the radii of two stars if you know their luminosities and temperatures?",
+      "back": "Use the ratio method with the Stefan-Boltzmann law: $(r_1/r_2)^2 = (L_1/L_2) \\times (T_2/T_1)^4$. This allows you to find the ratio of their radii."
+    },
+    {
+      "front": "What is the relationship between a star's properties on the Hertzsprung-Russell (H-R) diagram?",
+      "back": "The H-R diagram plots luminosity against temperature. Stars are not randomly scattered but fall into groups like the main sequence, giants, and dwarfs. A star's position is determined by its mass, age, and composition, which in turn dictate its radius and temperature."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "25.2.1",
+    "25.2.2",
+    "25.2.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/25-2-stellar-radii.png",
     "alt": "Senpai Corner reference diagram for 25.2 Stellar radii"
-  }
+  },
+  "updated": "2026-06-26"
 }

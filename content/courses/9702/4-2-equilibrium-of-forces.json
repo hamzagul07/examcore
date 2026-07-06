@@ -4,64 +4,9 @@
   "title": "Equilibrium of Forces",
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
-  "paperNumber": "2",
-  "paperType": "structured",
-  "level": "A-Level",
   "status": "premium",
   "summary": "Master equilibrium for Cambridge 9702 Paper 2: zero resultant force, zero resultant torque, principle of moments, couples, and the triangle of forces — with Senpai Corner diagrams and live animations.",
   "durationMin": 22,
-  "learningObjectives": [
-    "State and apply the principle of moments for a body in rotational equilibrium.",
-    "Explain that equilibrium requires zero resultant force and zero resultant torque.",
-    "Represent three coplanar forces in equilibrium using a closed vector triangle."
-  ],
-  "simpleExplanation": {
-    "title": "Balance in every direction",
-    "summary": "Equilibrium means nothing changes: no acceleration and no spin. Every push is cancelled, and every turning effect is cancelled too.",
-    "analogy": "A level seesaw with children placed so it sits perfectly horizontal — forces up equal forces down, and clockwise turning equals anticlockwise turning.",
-    "steps": [
-      "Check **translational equilibrium**: add all forces as vectors → resultant must be **zero**.",
-      "Check **rotational equilibrium**: take moments about a pivot → clockwise total = anticlockwise total.",
-      "For three coplanar forces, draw vectors tip-to-tail — a **closed triangle** proves ΣF = 0.",
-      "Pick a pivot through an unknown force to simplify moment equations in exam questions."
-    ]
-  },
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/4-2-equilibrium-vector-triangle.png",
-    "alt": "Senpai Corner reference: three coplanar forces forming a closed vector triangle when in equilibrium"
-  },
-  "flashcards": [
-    {
-      "front": "What two conditions define complete equilibrium?",
-      "back": "Resultant force is zero and resultant moment (torque) about any point is zero.",
-      "pillLabel": "Two conditions"
-    },
-    {
-      "front": "State the principle of moments.",
-      "back": "For rotational equilibrium, sum of clockwise moments = sum of anticlockwise moments about the same pivot.",
-      "pillLabel": "Moments"
-    },
-    {
-      "front": "How is moment calculated?",
-      "back": "M = F × perpendicular distance from pivot to the line of action of F (unit: N m).",
-      "pillLabel": "M = Fd⊥"
-    },
-    {
-      "front": "When do three coplanar forces show equilibrium graphically?",
-      "back": "Their vector diagram drawn tip-to-tail forms a closed triangle (resultant = 0).",
-      "pillLabel": "Closed triangle"
-    },
-    {
-      "front": "What is a couple?",
-      "back": "A pair of equal, parallel, opposite forces on different lines — produces rotation only, no translation.",
-      "pillLabel": "Couple"
-    },
-    {
-      "front": "Torque of a couple?",
-      "back": "τ = F × perpendicular distance between the two lines of action.",
-      "pillLabel": "Couple torque"
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -153,6 +98,11 @@
       "solution": "1. **Forces:** Let left support = $R_L$, right support = $R_R$. Up = down: $R_L + R_R = 80 + 120 = 200$ N.\n2. **Pivot at left support** (eliminates $R_L$ from moments).\n3. **Clockwise moments:** load $120 \\times 1.5 = 180$ N m; beam weight $80 \\times 2.0 = 160$ N m. Total CW = **340 N m**.\n4. **Anticlockwise moment:** $R_R \\times 4.0$.\n5. **Principle of moments:** $4.0\\,R_R = 340$ → $R_R = 85$ N.\n6. **Substitute:** $R_L = 200 - 85 = 115$ N."
     },
     {
+      "type": "workedExample",
+      "question": "A uniform ladder of length 5.0 m and weight 200 N leans against a smooth vertical wall at an angle of 60° to the rough horizontal ground. Find the reaction forces from the wall and ground, and the frictional force.",
+      "solution": "1. **Diagram & Forces:** Draw the ladder. Forces are: Weight (W=200 N) acting down from the centre (2.5 m), ground normal reaction ($R_g$) up, ground friction ($F_f$) horizontally inwards, wall normal reaction ($R_w$) horizontally outwards.\n2. **Vertical Equilibrium (ΣF_y = 0):** The only upward force is $R_g$ and the only downward force is W. Thus, $R_g = W = 200$ N.\n3. **Horizontal Equilibrium (ΣF_x = 0):** The only inward force is $F_f$ and the only outward force is $R_w$. Thus, $F_f = R_w$.\n4. **Rotational Equilibrium (ΣM = 0):** Take moments about the base of the ladder to eliminate $R_g$ and $F_f$. \n   - **Clockwise moment (from weight):** $M_{cw} = W \\times (\\text{perpendicular distance}) = 200 \\times (2.5 \\cos 60°) = 200 \\times 1.25 = 250$ N m.\n   - **Anticlockwise moment (from wall reaction):** $M_{acw} = R_w \\times (\\text{perpendicular distance}) = R_w \\times (5.0 \\sin 60°) = R_w \\times (5.0 \\times 0.866) = 4.33 R_w$.\n5. **Apply Principle of Moments:** $M_{cw} = M_{acw}$ → $250 = 4.33 R_w$. \n   - Solving for $R_w$: $R_w = 250 / 4.33 = 57.7$ N.\n6. **Find Friction:** From step 3, $F_f = R_w$. Therefore, $F_f = 57.7$ N.\n**Answer:** Ground reaction $R_g = 200$ N, Wall reaction $R_w = 57.7$ N, Frictional force $F_f = 57.7$ N."
+    },
+    {
       "type": "examTip",
       "content": "Paper 2 equilibrium questions reward a **clear diagram** first: mark distances, forces, and pivot. Then write ΣF = 0 and ΣM = 0 separately — do not mix them in one line."
     },
@@ -175,6 +125,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "State and apply the principle of moments for a body in rotational equilibrium.",
+    "Explain that equilibrium requires zero resultant force and zero resultant torque.",
+    "Represent three coplanar forces in equilibrium using a closed vector triangle."
+  ],
+  "simpleExplanation": {
+    "analogy": "A level seesaw with children placed so it sits perfectly horizontal — forces up equal forces down, and clockwise turning equals anticlockwise turning."
+  },
   "faq": [
     {
       "q": "Why must I use perpendicular distance for moments?",
@@ -189,11 +147,52 @@
       "a": "For three coplanar forces on a rigid body in translational equilibrium. It is a graphical check that the vector sum is zero."
     }
   ],
+  "flashcards": [
+    {
+      "front": "What two conditions define complete equilibrium?",
+      "back": "Resultant force is zero and resultant moment (torque) about any point is zero."
+    },
+    {
+      "front": "State the principle of moments.",
+      "back": "For rotational equilibrium, sum of clockwise moments = sum of anticlockwise moments about the same pivot."
+    },
+    {
+      "front": "How is moment calculated?",
+      "back": "M = F × perpendicular distance from pivot to the line of action of F (unit: N m)."
+    },
+    {
+      "front": "When do three coplanar forces show equilibrium graphically?",
+      "back": "Their vector diagram drawn tip-to-tail forms a closed triangle (resultant = 0)."
+    },
+    {
+      "front": "What is a couple?",
+      "back": "A pair of equal, parallel, opposite forces on different lines — produces rotation only, no translation."
+    },
+    {
+      "front": "Torque of a couple?",
+      "back": "τ = F × perpendicular distance between the two lines of action."
+    },
+    {
+      "front": "What is the centre of gravity?",
+      "back": "The single point through which the entire weight of an object can be considered to act. For a uniform object, it's at its geometric centre."
+    },
+    {
+      "front": "What is a strategic choice for the pivot point when solving equilibrium problems?",
+      "back": "Choose a point through which one or more unknown forces act. This makes their moment about that pivot zero, simplifying the moment equation."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
   "syllabusObjectivesCovered": [
     "4.2.1",
     "4.2.2",
     "4.2.3"
   ],
   "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/4-2-equilibrium-vector-triangle.png",
+    "alt": "Senpai Corner reference: three coplanar forces forming a closed vector triangle when in equilibrium"
+  },
   "updated": "2026-06-26"
 }

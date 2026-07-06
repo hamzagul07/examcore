@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — job, batch, flow, and mass customisation production methods with examples and evaluation.",
   "durationMin": 26,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Describe job, batch, flow, and mass customisation methods.",
-    "Compare unit costs, flexibility, and setup times.",
-    "Select appropriate method for case products.",
-    "Evaluate mass customisation as a hybrid approach."
-  ],
-  "simpleExplanation": {
-    "title": "How production is organised",
-    "summary": "Job production makes one-off items; batch makes groups; flow is continuous high volume; mass customisation uses flexible tech to offer variety at near-mass-production cost.",
-    "steps": [
-      "Job: unique products, skilled labour, high unit cost.",
-      "Batch: groups between changeovers, moderate cost.",
-      "Flow: assembly line, standardised, lowest unit cost.",
-      "Mass customisation: flexible automation (e.g. Dell PCs)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Job production example?",
-      "back": "Bespoke wedding cake, custom bridge engineering."
-    },
-    {
-      "front": "Batch production example?",
-      "back": "Bakery making 500 loaves then 200 croissants."
-    },
-    {
-      "front": "Flow production example?",
-      "back": "Car assembly line, soft drinks bottling."
-    },
-    {
-      "front": "Mass customisation?",
-      "back": "Customer chooses options; flexible manufacturing builds to order."
-    },
-    {
-      "front": "Setup costs highest?",
-      "back": "Job — each order reconfigured; flow has low per-unit setup."
-    },
-    {
-      "front": "Flexibility highest?",
-      "back": "Job, then batch; flow least flexible."
-    },
-    {
-      "front": "Link to stock?",
-      "back": "Flow often needs high finished goods stock; job = made to order."
-    },
-    {
-      "front": "Marketing link?",
-      "back": "Mass customisation supports differentiation (3.3.4 product)."
-    },
-    {
-      "front": "What is job production?",
-      "back": "A production method where a business produces a single, unique product tailored to a customer's specific requirements from start to finish before starting the next. E.g., a bespoke suit, a bridge."
-    },
-    {
-      "front": "What is batch production?",
-      "back": "A production method where a limited number of identical items (a 'batch') are produced together. The equipment is then reconfigured to produce a different batch. E.g., a bakery making a batch of wholemeal loaves, then a batch of white."
-    },
-    {
-      "front": "What is flow production?",
-      "back": "A production method involving a continuous movement of items through a series of stages on an assembly line to produce large quantities of a standardised product. E.g., bottling Coca-Cola."
-    },
-    {
-      "front": "What is mass customisation?",
-      "back": "A production method using flexible, computer-aided systems to produce custom-designed items at a cost and speed close to that of mass production. E.g., customising a new car's features online."
-    },
-    {
-      "front": "What is a key disadvantage of batch production?",
-      "back": "The downtime required between producing different batches when machinery must be cleaned, reset, or reconfigured. This period is unproductive and adds to costs."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -182,6 +111,11 @@
       "solution": "**Standard chairs:** **Flow or batch** — predictable demand, **low unit cost** competes on price; inventory of popular models.\n\n**Custom fit-outs:** **Job production** — unique specs, **site measurement**, skilled joiners; quote per project.\n\n**Optional hybrid:** **Mass customisation** for chair fabrics/colours online while frame is batch-built — links **3.3.4 product** variety with **efficient** base production."
     },
     {
+      "type": "workedExample",
+      "question": "Artisan Bakes plans to produce 100,000 packs of a new organic cookie line annually. They are evaluating two production methods. Using the data below, calculate the total annual cost and cost per unit for each method and recommend the most cost-effective option.\n\n**Option A: Batch Production**\n- Fixed Costs (annual): $50,000\n- Variable Cost per pack: $0.80\n- Batch Size: 1,000 packs\n- Setup Cost per batch: $200\n\n**Option B: Flow Production**\n- Fixed Costs (annual, excluding machinery): $80,000\n- Variable Cost per pack: $0.30\n- Machinery Investment: $250,000 (with a 5-year life, use straight-line depreciation to find the annual cost)",
+      "solution": "**Step 1: Calculate Total Cost for Batch Production**\n\n1.  **Number of batches:**\n    100,000 packs / 1,000 packs per batch = 100 batches\n2.  **Total setup costs:**\n    100 batches * $200/batch = $20,000\n3.  **Total variable costs:**\n    100,000 packs * $0.80/pack = $80,000\n4.  **Total Annual Cost (Batch):**\n    Fixed Costs + Total Setup Costs + Total Variable Costs\n    $50,000 + $20,000 + $80,000 = **$150,000**\n\n**Step 2: Calculate Cost per Unit for Batch Production**\n\n- **Unit Cost (Batch):**\n  Total Annual Cost / Total Packs\n  $150,000 / 100,000 packs = **$1.50 per pack**\n\n**Step 3: Calculate Total Cost for Flow Production**\n\n1.  **Annual machinery cost (depreciation):**\n    $250,000 / 5 years = $50,000 per year\n2.  **Total fixed costs:**\n    Annual Fixed Costs + Annual Machinery Cost\n    $80,000 + $50,000 = $130,000\n3.  **Total variable costs:**\n    100,000 packs * $0.30/pack = $30,000\n4.  **Total Annual Cost (Flow):**\n    Total Fixed Costs + Total Variable Costs\n    $130,000 + $30,000 = **$160,000**\n\n**Step 4: Calculate Cost per Unit for Flow Production**\n\n- **Unit Cost (Flow):**\n  Total Annual Cost / Total Packs\n  $160,000 / 100,000 packs = **$1.60 per pack**\n\n**Step 5: Recommendation**\n\nBased on these calculations, **Batch Production** is the more cost-effective method at an annual output of 100,000 units. It has a lower total annual cost ($150,000 vs $160,000) and a lower cost per unit ($1.50 vs $1.60). The high initial investment and fixed costs of flow production are not justified at this production volume."
+    },
+    {
       "type": "practice",
       "label": "Mark an operations methods question",
       "href": "/mark?subject=9609&topic=4.1.4"
@@ -204,6 +138,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe job, batch, flow, and mass customisation methods.",
+    "Compare unit costs, flexibility, and setup times.",
+    "Select appropriate method for case products.",
+    "Evaluate mass customisation as a hybrid approach."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Can a business use more than one production method at the same time?",
@@ -218,6 +159,67 @@
       "a": "Not quite. While both offer customisation, their core principles differ. Job production creates a truly unique 'one-off' item, often with high-skilled craft labour and high costs. Mass customisation operates on a larger scale, offering choice from a pre-set (though often large) menu of options and components. It uses automation to assemble these options efficiently, keeping costs much lower than traditional job production."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Job production example?",
+      "back": "Bespoke wedding cake, custom bridge engineering."
+    },
+    {
+      "front": "Batch production example?",
+      "back": "Bakery making 500 loaves then 200 croissants."
+    },
+    {
+      "front": "Flow production example?",
+      "back": "Car assembly line, soft drinks bottling."
+    },
+    {
+      "front": "Mass customisation?",
+      "back": "Customer chooses options; flexible manufacturing builds to order."
+    },
+    {
+      "front": "Setup costs highest?",
+      "back": "Job — each order reconfigured; flow has low per-unit setup."
+    },
+    {
+      "front": "Flexibility highest?",
+      "back": "Job, then batch; flow least flexible."
+    },
+    {
+      "front": "Link to stock?",
+      "back": "Flow often needs high finished goods stock; job = made to order."
+    },
+    {
+      "front": "Marketing link?",
+      "back": "Mass customisation supports differentiation (3.3.4 product)."
+    },
+    {
+      "front": "What is job production?",
+      "back": "A production method where a business produces a single, unique product tailored to a customer's specific requirements from start to finish before starting the next. E.g., a bespoke suit, a bridge."
+    },
+    {
+      "front": "What is batch production?",
+      "back": "A production method where a limited number of identical items (a 'batch') are produced together. The equipment is then reconfigured to produce a different batch. E.g., a bakery making a batch of wholemeal loaves, then a batch of white."
+    },
+    {
+      "front": "What is flow production?",
+      "back": "A production method involving a continuous movement of items through a series of stages on an assembly line to produce large quantities of a standardised product. E.g., bottling Coca-Cola."
+    },
+    {
+      "front": "What is mass customisation?",
+      "back": "A production method using flexible, computer-aided systems to produce custom-designed items at a cost and speed close to that of mass production. E.g., customising a new car's features online."
+    },
+    {
+      "front": "What is a key disadvantage of batch production?",
+      "back": "The downtime required between producing different batches when machinery must be cleaned, reset, or reconfigured. This period is unproductive and adds to costs."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.1.4"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparing Job and Flow Production",
     "columns": [

@@ -6,23 +6,205 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Equation of state (15.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
+  "durationMin": 25,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Imagine trying to predict how a balloon behaves when you heat it up or squeeze it. Physics gives us powerful tools, like the **equation of state**, to do just that. This lesson dives into the theoretical model of an **ideal gas** and the fundamental laws that govern its **pressure**, **volume**, and **temperature**. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **15.2**."
+    },
+    {
+      "type": "heading",
+      "content": "The Ideal Gas Model"
+    },
+    {
+      "type": "text",
+      "content": "An ideal gas is a theoretical model that simplifies the complex behaviour of real gases by making several key assumptions. This model allows us to create a simple relationship between pressure, volume, and temperature. A gas that perfectly follows the relationship pV ∝ T is defined as an ideal gas."
+    },
+    {
+      "type": "heading",
+      "content": "Assumptions of the Ideal Gas Model"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The gas consists of a large number of identical molecules in continuous, random motion.",
+        "The volume of the molecules themselves is negligible compared to the volume of the container they occupy.",
+        "There are no intermolecular forces of attraction or repulsion between molecules; their potential energy is zero.",
+        "All collisions between molecules and with the walls of the container are perfectly elastic (no kinetic energy is lost).",
+        "The duration of a collision is negligible compared to the time between collisions."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always remember to convert temperatures into **Kelvin (K)** for all gas law calculations. Failing to do so is a very common mistake in exams!"
+    },
+    {
+      "type": "formula",
+      "content": "$$T_K = T_C + 273.15 \\quad (\\text{use 273 for most exam questions})$$"
+    },
+    {
+      "type": "heading",
+      "content": "The Building Blocks: Individual Gas Laws"
+    },
+    {
+      "type": "text",
+      "content": "Before reaching the universal ideal gas equation, physicists discovered three experimental laws describing how pressure, volume, and temperature interact when one variable is kept constant for a fixed mass of gas. These laws form the foundation for understanding ideal gas behaviour."
+    },
+    {
+      "type": "heading",
+      "content": "Boyle's Law: Pressure & Volume"
+    },
+    {
+      "type": "text",
+      "content": "If you squeeze a gas (decrease its volume) while keeping its temperature constant, the pressure it exerts will increase. This inverse relationship is Boyle's Law."
+    },
+    {
+      "type": "formula",
+      "content": "$$P \\propto \\frac{1}{V} \\quad \\text{or} \\quad PV = \\text{constant} \\quad (\\text{for constant T and n})$$"
+    },
+    {
+      "type": "heading",
+      "content": "Charles' Law: Volume & Temperature"
+    },
+    {
+      "type": "text",
+      "content": "When a gas is heated (increasing its absolute temperature) at a constant pressure, its volume expands. This direct proportionality is Charles' Law."
+    },
+    {
+      "type": "formula",
+      "content": "$$V \\propto T \\quad \\text{or} \\quad \\frac{V}{T} = \\text{constant} \\quad (\\text{for constant P and n})$$"
+    },
+    {
+      "type": "heading",
+      "content": "Pressure Law (Gay-Lussac's Law): Pressure & Temperature"
+    },
+    {
+      "type": "text",
+      "content": "If you heat a gas in a sealed, rigid container (constant volume), the pressure inside will rise. This direct relationship between pressure and absolute temperature is the Pressure Law."
+    },
+    {
+      "type": "formula",
+      "content": "$$P \\propto T \\quad \\text{or} \\quad \\frac{P}{T} = \\text{constant} \\quad (\\text{for constant V and n})$$"
+    },
+    {
+      "type": "heading",
+      "content": "The Combined Gas Law"
+    },
+    {
+      "type": "text",
+      "content": "The three individual laws can be merged into a single, more versatile equation called the Combined Gas Law. It is extremely useful for problems where a fixed mass of gas undergoes changes in pressure, volume, and temperature simultaneously."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}$$"
+    },
+    {
+      "type": "heading",
+      "content": "The Universal Equation: Ideal Gas Law (Macroscopic Form)"
+    },
+    {
+      "type": "text",
+      "content": "These gas laws culminate in the Ideal Gas Equation. It relates pressure, volume, and absolute temperature to the *amount of substance* (number of moles) of the gas, not just for changing states but for a single state."
+    },
+    {
+      "type": "formula",
+      "content": "$$PV = nRT$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "P: Pressure in Pascals (Pa)",
+        "V: Volume in cubic metres (m³)",
+        "n: Number of moles (mol)",
+        "R: Molar gas constant (8.31 J mol⁻¹ K⁻¹)",
+        "T: Absolute temperature in Kelvin (K)"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Connecting to Individual Molecules: Ideal Gas Law (Microscopic Form)"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes you might deal with the total number of molecules (N) instead of moles (n). For this, we use the Boltzmann constant (k), which links the average kinetic energy of gas particles to temperature. The Ideal Gas Equation can then be expressed in terms of individual molecules."
+    },
+    {
+      "type": "formula",
+      "content": "$$PV = NkT$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "N: Total number of molecules (N = n × N_A)",
+        "k: Boltzmann constant (k = R/N_A ≈ 1.38 × 10⁻²³ J K⁻¹)",
+        "N_A: Avogadro constant (6.02 × 10²³ mol⁻¹)"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cylinder contains 0.50 mol of an ideal gas at a pressure of 2.0 × 10⁵ Pa and a temperature of 27 °C. Calculate the volume of the gas.",
+      "solution": "1. **Identify knowns and unknowns:**\n   n = 0.50 mol\n   P = 2.0 × 10⁵ Pa\n   T_C = 27 °C\n   R = 8.31 J mol⁻¹ K⁻¹\n   V = ?\n\n2. **Convert temperature to Kelvin:**\n   T_K = T_C + 273 = 27 + 273 = 300 K\n\n3. **Select and rearrange the Ideal Gas Equation (PV = nRT) to solve for V:**\n   V = \\frac{nRT}{P}\n\n4. **Substitute values and calculate:**\n   V = \\frac{(0.50 \\text{ mol}) \\times (8.31 \\text{ J mol⁻¹ K⁻¹}) \\times (300 \\text{ K})}{2.0 \\times 10⁵ \\text{ Pa}}\n   V = \\frac{1246.5}{2.0 \\times 10⁵}\n   V = 0.0062325 \\text{ m³}\n\n5. **State the final answer with appropriate significant figures:**\n   V = 6.2 × 10⁻³ \\text{ m³}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A sealed container of volume 1.5 × 10⁻² m³ contains an ideal gas at a pressure of 3.0 × 10⁵ Pa and a temperature of 350 K. Calculate the number of gas molecules in the container. (Boltzmann constant, k = 1.38 × 10⁻²³ J K⁻¹)",
+      "solution": "1. **Identify knowns and unknowns:**\n   V = 1.5 × 10⁻² m³\n   P = 3.0 × 10⁵ Pa\n   T = 350 K\n   k = 1.38 × 10⁻²³ J K⁻¹\n   N = ?\n\n2. **Select the appropriate form of the Ideal Gas Equation:**\n   Since the question asks for the number of molecules (N) and provides the Boltzmann constant (k), we use the microscopic form: PV = NkT.\n\n3. **Rearrange the equation to solve for N:**\n   N = \\frac{PV}{kT}\n\n4. **Substitute the given values into the equation:**\n   N = \\frac{(3.0 \\times 10⁵ \\text{ Pa}) \\times (1.5 \\times 10⁻² \\text{ m³})}{(1.38 \\times 10⁻²³ \\text{ J K⁻¹}) \\times (350 \\text{ K})}\n\n5. **Calculate the result:**\n   N = \\frac{4500}{4.83 \\times 10⁻²¹}\n   N = 9.3167... \\times 10²³\n\n6. **State the final answer with appropriate significant figures (2 s.f. from the input values):**\n   N = 9.3 × 10²³ molecules"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to units! Ensure pressure is in Pascals, volume in cubic metres, and temperature in Kelvin. Incorrect units are a common source of error in calculations."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=15.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Define an ideal gas and recall the assumptions associated with it.",
     "State and apply the individual gas laws (Boyle's, Charles', Pressure) and the Ideal Gas Equation.",
-    "Perform calculations involving the Ideal Gas Equation using appropriate constants and units."
+    "Perform calculations involving the Ideal Gas Equation using appropriate constants and units.",
+    "Understand and apply the combined gas law for a fixed mass of gas.",
+    "Distinguish between the macroscopic (PV=nRT) and microscopic (PV=NkT) forms of the ideal gas equation."
   ],
   "simpleExplanation": {
-    "title": "Understanding Ideal Gases",
-    "summary": "The 'equation of state' for an ideal gas helps us predict how gases behave under different conditions. It links pressure, volume, temperature, and the amount of gas present, providing a fundamental model in physics.",
-    "analogy": "Imagine a room full of bouncy, perfectly elastic 'ghost' billiard balls that never lose energy, have no size, and don't attract each other. This is an ideal gas: theoretical particles moving randomly, colliding without interaction except during brief impacts with walls or other particles.",
-    "steps": [
-      "1. Grasp the Ideal Gas: Understand its theoretical assumptions.",
-      "2. Master the Gas Laws: Learn Boyle's, Charles', and the Pressure Law.",
-      "3. Apply the Ideal Gas Equation: Know the macroscopic (PV=nRT) and microscopic (PV=NkT) forms.",
-      "4. Convert Temperatures: Always use Kelvin (K) for gas law calculations."
-    ]
+    "analogy": "Imagine a room full of bouncy, perfectly elastic 'ghost' billiard balls that never lose energy, have no size, and don't attract each other. This is an ideal gas: theoretical particles moving randomly, colliding without interaction except during brief impacts with walls or other particles."
   },
+  "faq": [
+    {
+      "q": "Why do real gases behave ideally at high temperatures and low pressures?",
+      "a": "At high temperatures, molecules have high kinetic energy, making the potential energy from intermolecular forces insignificant in comparison. At low pressures, molecules are far apart, so their individual volume is negligible compared to the container's volume. These conditions make the ideal gas assumptions more valid."
+    },
+    {
+      "q": "What is the difference between the molar gas constant (R) and the Boltzmann constant (k)?",
+      "a": "The molar gas constant (R) is used in the macroscopic equation (PV=nRT) and relates to energy on a 'per mole' basis. The Boltzmann constant (k) is used in the microscopic equation (PV=NkT) and relates to energy on a 'per molecule' basis. They are connected by Avogadro's constant: R = k × N_A."
+    },
+    {
+      "q": "Can I use Celsius for calculations if I'm just looking at a change in temperature?",
+      "a": "No, absolutely not. The gas laws are based on proportionality to absolute temperature (Kelvin), which has a true zero point. A change from 10°C to 20°C is not a doubling of temperature in the context of gas laws. You must always convert all temperatures to Kelvin before using them in any gas law formula."
+    },
+    {
+      "q": "When should I use the Combined Gas Law versus the Ideal Gas Law?",
+      "a": "Use the Combined Gas Law (P₁V₁/T₁ = P₂V₂/T₂) when you have a fixed amount of gas changing from an initial state (1) to a final state (2). Use the Ideal Gas Law (PV=nRT or PV=NkT) when you need to find a property (P, V, n, T, N) of a gas in a single, specific state, or if the amount of gas changes."
+    }
+  ],
   "flashcards": [
     {
       "front": "What are the two fundamental assumptions for an ideal gas?",
@@ -58,185 +240,41 @@
     },
     {
       "front": "How do you convert Celsius (°C) to Kelvin (K)?",
-      "back": "Add 273 (T_K = T_C + 273)."
+      "back": "Add 273.15 (or 273 for A-Level calculations) to the Celsius value. T(K) = T(°C) + 273.15."
     },
     {
       "front": "What is the value and unit of the molar gas constant (R)?",
       "back": "R = 8.31 J mol⁻¹ K⁻¹"
+    },
+    {
+      "front": "State the Combined Gas Law for a fixed mass of gas.",
+      "back": "For a fixed amount of gas, the ratio of the product of pressure and volume to the absolute temperature is constant. (P₁V₁)/T₁ = (P₂V₂)/T₂."
+    },
+    {
+      "front": "Under what conditions does a real gas most closely approximate an ideal gas?",
+      "back": "At low pressure and high temperature."
+    },
+    {
+      "front": "What does the Boltzmann constant (k) represent?",
+      "back": "It is a proportionality factor that relates the average kinetic energy of particles in a gas with the thermodynamic temperature. It is effectively the gas constant per molecule."
+    },
+    {
+      "front": "What is Avogadro's constant (N_A) and what is its value?",
+      "back": "It is the number of constituent particles (e.g., atoms or molecules) per mole of a substance. Its value is 6.02 × 10²³ mol⁻¹."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Imagine trying to predict how a balloon behaves when you heat it up or squeeze it. Physics gives us powerful tools, like the **equation of state**, to do just that. This lesson dives into the theoretical model of an **ideal gas** and the fundamental laws that govern its **pressure**, **volume**, and **temperature**. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **15.2**."
-    },
-    {
-      "type": "heading",
-      "content": "What is an Ideal Gas?"
-    },
-    {
-      "type": "text",
-      "content": "An ideal gas is a theoretical model that helps us simplify the complex behaviour of real gases. It's built upon two key assumptions about its molecules: they have negligible volume compared to the container, and there are no intermolecular forces between them, meaning they don't attract or repel each other."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "15.2 Equation of state.",
-        "Any gas that follows the relationship pV ∝ 𝑇 is an ideal gas .",
-        "Here p is pressure in Pa, V is the volume of the gas in m 3 and T is temperature in Kelvin.",
-        "Recall that Boyle’s Law states that pressure (p) is inversely proportional to volume (V) assuming temperature is constant.",
-        "The equation given is P 1 V 1 = P 2 V 2.",
-        "Charles’ Law states that volume (V) is directly proportional to temperature (T)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Always remember to convert temperatures into **Kelvin (K)** for all gas law calculations. Failing to do so is a very common mistake in exams!"
-    },
-    {
-      "type": "formula",
-      "content": "$$T_K = T_C + 273$$"
-    },
-    {
-      "type": "heading",
-      "content": "The Building Blocks: Individual Gas Laws"
-    },
-    {
-      "type": "text",
-      "content": "Before reaching the universal ideal gas equation, physicists discovered three experimental laws describing how pressure, volume, and temperature interact when one variable is kept constant for a fixed mass of gas. These laws form the foundation for understanding ideal gas behaviour."
-    },
-    {
-      "type": "heading",
-      "content": "Boyle's Law: Pressure & Volume"
-    },
-    {
-      "type": "text",
-      "content": "If you squeeze a gas (decrease its volume) while keeping its temperature constant, the pressure it exerts will increase. This inverse relationship is Boyle's Law."
-    },
-    {
-      "type": "formula",
-      "content": "$$P \\propto \\frac{1}{V} \\quad \\text{or} \\quad PV = \\text{constant}$$"
-    },
-    {
-      "type": "heading",
-      "content": "Charles' Law: Volume & Temperature"
-    },
-    {
-      "type": "text",
-      "content": "When a gas is heated (increasing its absolute temperature) at a constant pressure, its volume expands. This direct proportionality is Charles' Law."
-    },
-    {
-      "type": "formula",
-      "content": "$$V \\propto T \\quad \\text{or} \\quad \\frac{V}{T} = \\text{constant}$$"
-    },
-    {
-      "type": "heading",
-      "content": "Pressure Law (Gay-Lussac's Law): Pressure & Temperature"
-    },
-    {
-      "type": "text",
-      "content": "If you heat a gas in a sealed, rigid container (constant volume), the pressure inside will rise. This direct relationship between pressure and absolute temperature is the Pressure Law."
-    },
-    {
-      "type": "formula",
-      "content": "$$P \\propto T \\quad \\text{or} \\quad \\frac{P}{T} = \\text{constant}$$"
-    },
-    {
-      "type": "heading",
-      "content": "The Universal Equation: Ideal Gas Law (Macroscopic Form)"
-    },
-    {
-      "type": "text",
-      "content": "These three individual gas laws can be combined into a single, powerful equation known as the Ideal Gas Equation. It relates pressure, volume, and absolute temperature to the *amount of substance* (number of moles) of the gas."
-    },
-    {
-      "type": "formula",
-      "content": "$$PV = nRT$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "P: Pressure in Pascals (Pa)",
-        "V: Volume in cubic metres (m³)",
-        "n: Number of moles (mol)",
-        "R: Molar gas constant (8.31 J mol⁻¹ K⁻¹)",
-        "T: Absolute temperature in Kelvin (K)"
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Connecting to Individual Molecules: Ideal Gas Law (Microscopic Form)"
-    },
-    {
-      "type": "text",
-      "content": "Sometimes you might deal with the total number of molecules (N) instead of moles (n). For this, we use the Boltzmann constant (k), which links the average kinetic energy of gas particles to temperature. The Ideal Gas Equation can then be expressed in terms of individual molecules."
-    },
-    {
-      "type": "formula",
-      "content": "$$PV = NkT$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "N: Total number of molecules",
-        "k: Boltzmann constant (defined as R/N_A)",
-        "N_A: Avogadro constant (6.02 \\times 10^{23} mol⁻¹)",
-        "The Boltzmann constant (k) is approximately 1.38 \\times 10^{−23} J K⁻¹"
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A cylinder contains 0.50 mol of an ideal gas at a pressure of 2.0 \\times 10⁵ Pa and a temperature of 27 °C. Calculate the volume of the gas.",
-      "solution": "1. **Identify knowns and unknowns:**\n   n = 0.50 mol\n   P = 2.0 \\times 10⁵ Pa\n   T_C = 27 °C\n   R = 8.31 J mol⁻¹ K⁻¹\n   V = ?\n\n2. **Convert temperature to Kelvin:**\n   T_K = T_C + 273 = 27 + 273 = 300 K\n\n3. **Rearrange the Ideal Gas Equation (PV = nRT) to solve for V:**\n   V = \\frac{nRT}{P}\n\n4. **Substitute values and calculate:**\n   V = \\frac{(0.50 \\text{ mol}) \\times (8.31 \\text{ J mol⁻¹ K⁻¹}) \\times (300 \\text{ K})}{2.0 \\times 10⁵ \\text{ Pa}}\n   V = \\frac{1246.5}{2.0 \\times 10⁵}\n   V = 0.0062325 \\text{ m³}\n\n5. **State the final answer with appropriate significant figures:**\n   V = 6.2 \\times 10⁻³ \\text{ m³}"
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to units! Ensure pressure is in Pascals, volume in cubic metres, and temperature in Kelvin. Incorrect units are a common source of error in calculations."
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9702&topic=15.2"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "Why do real gases behave ideally at high temperatures and low pressures?",
-      "a": "At high temperatures, molecules move faster, reducing the relative importance of intermolecular forces. At low pressures, molecules are further apart, making their individual volume and interactions negligible, aligning with ideal gas assumptions."
-    },
-    {
-      "q": "What is the difference between the molar gas constant (R) and the Boltzmann constant (k)?",
-      "a": "The molar gas constant (R) relates to the energy per *mole* of gas, used when working with the number of moles (n). The Boltzmann constant (k) relates to the energy per *individual molecule* of gas, used when working with the total number of molecules (N). They are connected by Avogadro's constant: R = k * N_A."
-    },
-    {
-      "q": "Can I use Celsius for calculations if I'm just looking at a change in temperature?",
-      "a": "No, absolutely not. The gas laws are derived based on absolute temperature (Kelvin), which has a true zero point. Using Celsius, even for temperature changes, will lead to incorrect proportionalities and absolute values in your calculations. Always convert to Kelvin."
-    }
-  ],
-  "updated": "2026-06-26",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "15.2.1",
+    "15.2.2",
+    "15.2.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/15-2-equation-of-state.png",
     "alt": "Senpai Corner reference diagram for 15.2 Equation of state"
-  }
+  },
+  "updated": "2026-06-26"
 }

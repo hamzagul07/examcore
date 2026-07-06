@@ -7,72 +7,6 @@
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Standard candles (25.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
   "durationMin": 20,
-  "learningObjectives": [
-    "Explain the concepts of luminosity and flux and apply the inverse square law of radiation.",
-    "Describe what a standard candle is and how it is used to determine astronomical distances.",
-    "Apply Wien's Displacement Law and the Stefan-Boltzmann Law to characterise stars and understand their role in calibrating standard candles."
-  ],
-  "simpleExplanation": {
-    "title": "Cosmic Rulers: Measuring the Universe",
-    "summary": "Imagine trying to guess how far away a distant lighthouse is just by how bright it appears. Standard candles are like lighthouses in space: we know their true brightness, so by seeing how dim they look, we can calculate their immense distances.",
-    "analogy": "Think of a car's headlights at night. If you know how bright the headlights *really* are (their intrinsic luminosity), you can estimate how far away the car is by how bright they *appear* to you (their observed flux). Closer cars look brighter, further cars look dimmer. Standard candles work on this principle across vast cosmic scales.",
-    "steps": [
-      "Identify a celestial object with a known intrinsic brightness (luminosity).",
-      "Measure how bright it appears from Earth (observed flux).",
-      "Use the inverse square law of radiation to calculate its distance.",
-      "Apply blackbody laws (Wien's, Stefan-Boltzmann) to understand and calibrate these cosmic objects."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Define 'luminosity' (L) in astronomy.",
-      "back": "Luminosity is the total power of electromagnetic radiation emitted by an astronomical object."
-    },
-    {
-      "front": "Define 'flux' (F) in astronomy.",
-      "back": "Flux is the power of radiation received per unit area at a specific distance from the source."
-    },
-    {
-      "front": "What does the inverse square law for radiation assume about the radiation spread?",
-      "back": "It assumes that the radiation spreads uniformly in all directions over a spherical surface from the source."
-    },
-    {
-      "front": "What characteristic defines an astronomical object as a 'standard candle'?",
-      "back": "A standard candle is an object with a precisely known intrinsic luminosity (total power emitted)."
-    },
-    {
-      "front": "How is the distance to a standard candle determined using its known luminosity (L) and observed flux (F)?",
-      "back": "The distance (d) is calculated using the formula $d = \\sqrt{\\frac{L}{4\\pi F}}$."
-    },
-    {
-      "front": "What is a 'blackbody' in the context of stars?",
-      "back": "A blackbody is a theoretical object that perfectly absorbs and emits all wavelengths of electromagnetic radiation. Stars are often approximated as blackbodies."
-    },
-    {
-      "front": "State Wien's Displacement Law in terms of peak wavelength and temperature.",
-      "back": "Wien's Displacement Law states that the peak emission wavelength ($\\lambda_{max}$) of a blackbody is inversely proportional to its absolute temperature (T), given by $\\lambda_{max} T = \\text{constant}$."
-    },
-    {
-      "front": "How does the temperature of a star relate to its peak emission wavelength according to Wien's Law?",
-      "back": "Hotter objects emit radiation with a shorter peak wavelength ($\\lambda_{max}$), appearing bluer."
-    },
-    {
-      "front": "Which physical quantities does the Stefan-Boltzmann Law relate to a star's luminosity (L)?",
-      "back": "It relates luminosity (L) to the star's surface area (proportional to $r^2$) and its absolute temperature (T) to the fourth power, as $L = 4\\pi r^2 \\sigma T^4$."
-    },
-    {
-      "front": "Why are laws like Wien's and Stefan-Boltzmann important for the concept of standard candles?",
-      "back": "These laws help astronomers characterize and calibrate the intrinsic luminosity and temperature of celestial objects, essential for identifying them as reliable standard candles."
-    },
-    {
-      "front": "What is the primary role of standard candles in the 'cosmic distance ladder'?",
-      "back": "They provide accurate distance measurements for objects far beyond our solar system, forming a crucial rung in the cosmic distance ladder."
-    },
-    {
-      "front": "How do standard candles contribute to validating Hubble's Law?",
-      "back": "Their accurate distance measurements are fundamental for determining the expansion rate of the universe and verifying Hubble's Law."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -188,6 +122,11 @@
       "solution": "1.  Start with the inverse square law rearranged for distance: $d = \\sqrt{\\frac{L}{4\\pi F}}$.\n2.  Substitute the given values: $d = \\sqrt{\\frac{3.8 \\times 10^{26} \\text{ W}}{4\\pi (2.5 \\times 10^{-10} \\text{ W m}^{-2})}}$.\n3.  Calculate the distance in meters: $d = \\sqrt{\\frac{3.8 \\times 10^{26}}{3.14159 \\times 10^{-9}}} = \\sqrt{1.21 \\times 10^{35}} \\approx 3.48 \\times 10^{17} \\text{ m}$.\n4.  Convert the distance from meters to light-years: $d_{\\text{ly}} = \\frac{3.48 \\times 10^{17} \\text{ m}}{9.46 \\times 10^{15} \\text{ m/light-year}}$.\n5.  Final answer: $d_{\\text{ly}} \\approx 36.8 \\text{ light-years}$."
     },
     {
+      "type": "workedExample",
+      "question": "A supergiant star has a surface temperature of 3600 K and a radius of 6.0 x 10¹¹ m. The radiant flux received at Earth from this star is measured to be 1.1 x 10⁻⁷ W m⁻². Calculate the distance of the star from Earth. (The Stefan-Boltzmann constant σ is 5.67 x 10⁻⁸ W m⁻² K⁻⁴).",
+      "solution": "1.  **Calculate the star's luminosity (L) using the Stefan-Boltzmann Law:**\n    $L = 4\\pi r^2 \\sigma T^4$\n    Substitute the given values:\n    $L = 4\\pi (6.0 \\times 10^{11})^2 (5.67 \\times 10^{-8}) (3600)^4$\n    $L = 4\\pi (3.6 \\times 10^{23}) (5.67 \\times 10^{-8}) (1.6796 \\times 10^{14})$\n    $L \\approx 4.30 \\times 10^{31} \\text{ W}$\n\n2.  **Calculate the distance (d) using the inverse square law:**\n    The formula relating flux, luminosity, and distance is $F = \\frac{L}{4\\pi d^2}$.\n    Rearrange for distance: $d = \\sqrt{\\frac{L}{4\\pi F}}$\n    Substitute the calculated luminosity and given flux:\n    $d = \\sqrt{\\frac{4.30 \\times 10^{31}}{4\\pi (1.1 \\times 10^{-7})}}$\n    $d = \\sqrt{\\frac{4.30 \\times 10^{31}}{1.382 \\times 10^{-6}}}$\n    $d = \\sqrt{3.11 \\times 10^{37}} \\approx 5.58 \\times 10^{18} \\text{ m}$\n\n3.  **Final Answer:** The distance to the star is approximately $5.6 \\times 10^{18} \\text{ m}$ (to 2 significant figures)."
+    },
+    {
       "type": "practice",
       "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=25.1"
@@ -210,6 +149,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain the concepts of luminosity and flux and apply the inverse square law of radiation.",
+    "Describe what a standard candle is and how it is used to determine astronomical distances.",
+    "Apply Wien's Displacement Law and the Stefan-Boltzmann Law to characterise stars and understand their role in calibrating standard candles."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of a car's headlights at night. If you know how bright the headlights *really* are (their intrinsic luminosity), you can estimate how far away the car is by how bright they *appear* to you (their observed flux). Closer cars look brighter, further cars look dimmer. Standard candles work on this principle across vast cosmic scales."
+  },
   "faq": [
     {
       "q": "How do astronomers *know* the intrinsic luminosity of a standard candle?",
@@ -224,13 +171,85 @@
       "a": "Stars are often approximated as blackbodies. Wien's Displacement Law links their temperature to their peak emission wavelength (colour), while the Stefan-Boltzmann Law links their luminosity to their temperature and radius. These laws help astronomers characterise stars, understand their energy output, and thus accurately determine their intrinsic luminosity to use them as standard candles."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "Define 'luminosity' (L) in astronomy.",
+      "back": "Luminosity is the total power of electromagnetic radiation emitted by an astronomical object."
+    },
+    {
+      "front": "Define 'flux' (F) in astronomy.",
+      "back": "Flux is the power of radiation received per unit area at a specific distance from the source."
+    },
+    {
+      "front": "What does the inverse square law for radiation assume about the radiation spread?",
+      "back": "It assumes that the radiation spreads uniformly in all directions over a spherical surface from the source."
+    },
+    {
+      "front": "What characteristic defines an astronomical object as a 'standard candle'?",
+      "back": "A standard candle is an object with a precisely known intrinsic luminosity (total power emitted)."
+    },
+    {
+      "front": "How is the distance to a standard candle determined using its known luminosity (L) and observed flux (F)?",
+      "back": "The distance (d) is calculated using the formula $d = \\sqrt{\\frac{L}{4\\pi F}}$."
+    },
+    {
+      "front": "What is a 'blackbody' in the context of stars?",
+      "back": "A blackbody is a theoretical object that perfectly absorbs and emits all wavelengths of electromagnetic radiation. Stars are often approximated as blackbodies."
+    },
+    {
+      "front": "State Wien's Displacement Law in terms of peak wavelength and temperature.",
+      "back": "Wien's Displacement Law states that the peak emission wavelength ($\\lambda_{max}$) of a blackbody is inversely proportional to its absolute temperature (T), given by $\\lambda_{max} T = \\text{constant}$."
+    },
+    {
+      "front": "How does the temperature of a star relate to its peak emission wavelength according to Wien's Law?",
+      "back": "Hotter objects emit radiation with a shorter peak wavelength ($\\lambda_{max}$), appearing bluer."
+    },
+    {
+      "front": "Which physical quantities does the Stefan-Boltzmann Law relate to a star's luminosity (L)?",
+      "back": "It relates luminosity (L) to the star's surface area (proportional to $r^2$) and its absolute temperature (T) to the fourth power, as $L = 4\\pi r^2 \\sigma T^4$."
+    },
+    {
+      "front": "Why are laws like Wien's and Stefan-Boltzmann important for the concept of standard candles?",
+      "back": "These laws help astronomers characterize and calibrate the intrinsic luminosity and temperature of celestial objects, essential for identifying them as reliable standard candles."
+    },
+    {
+      "front": "What is the primary role of standard candles in the 'cosmic distance ladder'?",
+      "back": "They provide accurate distance measurements for objects far beyond our solar system, forming a crucial rung in the cosmic distance ladder."
+    },
+    {
+      "front": "How do standard candles contribute to validating Hubble's Law?",
+      "back": "Their accurate distance measurements are fundamental for determining the expansion rate of the universe and verifying Hubble's Law."
+    },
+    {
+      "front": "State the Stefan-Boltzmann Law as a formula.",
+      "back": "$L = 4\\pi r^2 \\sigma T^4$, where L is luminosity, r is radius, T is absolute temperature, and σ is the Stefan-Boltzmann constant."
+    },
+    {
+      "front": "State Wien's Displacement Law as a formula.",
+      "back": "$\\lambda_{max} T = b$, where $\\lambda_{max}$ is the peak wavelength, T is the absolute temperature, and b is Wien's displacement constant (approx. $2.9 \\times 10^{-3} \\text{ m K}$)."
+    },
+    {
+      "front": "What are two main types of standard candles used for measuring large cosmic distances?",
+      "back": "Cepheid variable stars and Type Ia supernovae."
+    },
+    {
+      "front": "How does the luminosity of a Cepheid variable relate to its pulsation period?",
+      "back": "The period-luminosity relationship states that the longer the pulsation period of a Cepheid variable, the greater its intrinsic luminosity."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "25.1.1",
+    "25.1.2",
+    "25.1.3",
+    "25.1.4"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/25-1-standard-candles.png",
     "alt": "Senpai Corner reference diagram for 25.1 Standard candles"
-  }
+  },
+  "updated": "2026-06-26"
 }

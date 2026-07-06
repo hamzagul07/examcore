@@ -5,24 +5,197 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 2 — Turning effects of forces (4.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
+  "summary": "Cambridge 9702 Paper 2 — Turning effects of forces (4.1). This lesson covers the concepts of moments, centre of gravity, couples, torque, and the conditions for equilibrium, supported by worked examples and key definitions.",
+  "durationMin": 25,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Have you ever wondered how a seesaw balances or why it's easier to loosen a nut with a longer spanner? It's all about the **turning effects of forces**, also known as **moments**. This fundamental concept in physics explains how forces cause rotation around a **pivot**, laying the groundwork for understanding stability and equilibrium in structures. This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **4.1**."
+    },
+    {
+      "type": "heading",
+      "content": "Centre of Gravity (CoG) and Centre of Mass (CoM)"
+    },
+    {
+      "type": "text",
+      "content": "Every object has a special point where its entire weight seems to act – this is its **Centre of Gravity (CoG)**. Imagine balancing an object; the CoG is the point you'd try to support. For uniform objects (like a perfectly symmetrical ruler), the CoG is usually at its geometric centre."
+    },
+    {
+      "type": "text",
+      "content": "Closely related is the **Centre of Mass (CoM)**, which is the average position of all the mass in an object. While distinct in theory, in typical Cambridge Physics scenarios (where the gravitational field is considered uniform), the CoG and CoM are located at the exact same point. So, for most calculations, you can treat them as identical."
+    },
+    {
+      "type": "text",
+      "content": "For an irregular shape, like a piece of cardboard, the CoG can be found experimentally. By suspending the object from a point and hanging a plumb line from the same point, you can trace the vertical line where the CoG must lie. Repeating this from a different suspension point gives a second line. The CoG is where these two lines intersect."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "4.1 Turning effects of forces.",
+        "The centre of gravity of an object is the point at which the weight of the object may be considered to act.",
+        "For uniform objects, the CoG is at the geometric centre.",
+        "In a uniform gravitational field, CoG and CoM are at the same point."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Moment of a Force"
+    },
+    {
+      "type": "text",
+      "content": "The **moment of a force** quantifies its ability to cause rotation about a specific point, called the **pivot**. Think of it as the turning power. A larger force or a greater distance from the pivot will create a larger moment, making it easier to rotate the object."
+    },
+    {
+      "type": "formula",
+      "content": "$M = F \\times d_{\\perp}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "M represents the moment of the force.",
+        "F is the magnitude of the force.",
+        "$d_{\\perp}$ is the perpendicular distance from the pivot to the line of action of the force.",
+        "The unit for moment is Newton-metre (Nm).",
+        "Moments are vector quantities; they have a direction (clockwise or anticlockwise)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always remember that 'd' must be the *perpendicular* distance from the pivot to the *line of action* of the force. If the force isn't perpendicular, you'll need to use trigonometry to find the correct perpendicular component of the distance or the perpendicular component of the force."
+    },
+    {
+      "type": "heading",
+      "content": "Principle of Moments"
+    },
+    {
+      "type": "text",
+      "content": "For an object to be in **rotational equilibrium** – meaning it's either stationary or rotating at a constant angular velocity (not accelerating angularly) – the turning effects in one direction must perfectly balance the turning effects in the opposite direction. This is the **Principle of Moments**."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For rotational equilibrium, the resultant moment is zero.",
+        "Sum of clockwise moments = Sum of anticlockwise moments.",
+        "This principle is vital for analysing balanced systems like levers, seesaws, and bridges."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A uniform beam, 3.0 m long and weighing 50 N, is pivoted at its centre. A 20 N weight is placed 1.0 m from the left end. Where should a 30 N weight be placed to balance the beam?",
+      "solution": "1. **Identify pivot and forces:** The pivot is at the centre of the beam (1.5 m from either end). The beam's own weight acts at the pivot, so it creates no moment.\n2. **Calculate anticlockwise moment:** The 20 N weight is 1.0 m from the left end, which is 1.5 m - 1.0 m = 0.5 m from the pivot. This creates an anticlockwise moment.\nM_ACW = Force × Distance = 20 N × 0.5 m = 10 Nm.\n3. **Apply Principle of Moments:** For the beam to balance, the clockwise moment must equal the anticlockwise moment. Let the 30 N weight be placed at a distance 'd' from the pivot on the other side.\nM_CW = 30 N × d.\n4. **Set moments equal:** M_CW = M_ACW, so 30 N × d = 10 Nm.\n5. **Solve for d:** d = 10 Nm / 30 N = 0.333... m ≈ 0.33 m.\n6. **Final Answer:** The 30 N weight should be placed 0.33 m to the right of the pivot."
+    },
+    {
+      "type": "workedExample",
+      "question": "A uniform 4.0 m long rod with a weight of 120 N is hinged to a vertical wall. It is held horizontally by a cable attached to the end of the rod and to a point on the wall. The cable makes an angle of 30° with the rod. Calculate the tension (T) in the cable.",
+      "solution": "1. **Identify the pivot and forces:** The pivot is the hinge. The forces creating moments are the weight of the rod (acting downwards at its centre) and the tension in the cable (acting upwards at an angle).\n2. **Calculate the clockwise moment (from the rod's weight):** The rod is uniform, so its weight acts at its centre, which is 4.0 m / 2 = 2.0 m from the hinge. This creates a clockwise moment.\nMoment_cw = Force × Perpendicular Distance = 120 N × 2.0 m = 240 Nm.\n3. **Calculate the anticlockwise moment (from the cable's tension):** The tension T acts at an angle. We need the component of the tension that is perpendicular to the rod. This component creates the anticlockwise moment.\nT_perpendicular = T × sin(30°).\nThis force acts at the end of the rod, 4.0 m from the pivot.\nMoment_acw = T_perpendicular × Distance = (T × sin(30°)) × 4.0 m.\n4. **Apply the Principle of Moments:** For the rod to be in equilibrium, the sum of clockwise moments must equal the sum of anticlockwise moments.\nSum of clockwise moments = Sum of anticlockwise moments\n240 Nm = (T × sin(30°)) × 4.0 m.\n5. **Solve for Tension (T):** We know sin(30°) = 0.5.\n240 = (T × 0.5) × 4.0\n240 = T × 2.0\nT = 240 / 2.0\nT = 120 N.\n6. **Final Answer:** The tension in the cable is 120 N."
+    },
+    {
+      "type": "heading",
+      "content": "Couples and Torque"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, two specific forces combine to produce a pure turning effect without any linear movement. This arrangement is called a **couple**. A couple consists of two forces that are equal in magnitude, opposite in direction, parallel to each other, but act along different lines. Examples include turning a steering wheel with both hands or using a key to open a lock."
+    },
+    {
+      "type": "text",
+      "content": "The turning effect produced by a couple is called **torque** (often represented by $\\tau$). Unlike the moment of a single force, the torque of a couple is the same regardless of where you choose your pivot point. It causes rotation only."
+    },
+    {
+      "type": "formula",
+      "content": "$\\tau = F \\times d$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "F is the magnitude of one of the forces in the couple.",
+        "d is the perpendicular distance between the lines of action of the two forces.",
+        "The unit for torque is also Newton-metre (Nm).",
+        "A couple produces pure rotation, with no resultant linear force."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "For an object to be in **complete equilibrium**, it must satisfy two conditions simultaneously: it must not be accelerating linearly, and it must not be accelerating rotationally. This means no overall push/pull and no overall turning effect."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Condition 1: Zero resultant force.** The vector sum of all forces is zero. This means the sum of forces in any direction is zero (e.g., sum of upward forces = sum of downward forces, and sum of leftward forces = sum of rightward forces).",
+        "**Condition 2: Zero resultant moment.** The sum of clockwise moments about any point equals the sum of anticlockwise moments about that same point.",
+        "Both conditions must be met for an object to be truly 'in equilibrium'."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Stability of an Object"
+    },
+    {
+      "type": "text",
+      "content": "The stability of an object is its ability to return to its original position after being slightly displaced. It is determined by the position of its Centre of Gravity (CoG). An object is most stable when its CoG is as low as possible and its base area is as wide as possible. There are three types of equilibrium:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Stable Equilibrium:** If displaced, the object's CoG is raised. When released, its weight creates a restoring moment that returns it to its original position (e.g., a cone resting on its base).",
+        "**Unstable Equilibrium:** If displaced, the object's CoG is lowered. Its weight creates a moment that causes it to topple over and find a more stable position (e.g., a cone balanced on its tip).",
+        "**Neutral Equilibrium:** If displaced, the object's CoG remains at the same height. It stays in the new position without tending to move back or topple further (e.g., a ball on a horizontal surface)."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Define and distinguish between Centre of Gravity (CoG) and Centre of Mass (CoM).",
     "Calculate the moment of a force and apply the Principle of Moments to solve equilibrium problems.",
-    "Explain the concept of a couple and calculate the torque it produces."
+    "Explain the concept of a couple and calculate the torque it produces.",
+    "Describe the conditions for equilibrium and analyse the stability of an object."
   ],
   "simpleExplanation": {
-    "title": "Making Things Spin: The Basics",
-    "summary": "Forces don't just push or pull; they can also make objects rotate! This topic explores how to calculate these turning effects and understand when an object is perfectly balanced.",
-    "analogy": "Imagine opening a heavy door. You push near the handle (far from the hinges) because it's easier. Pushing near the hinges (the pivot) is much harder. This demonstrates the 'turning effect' or moment of your force.",
-    "steps": [
-      "Identify the 'pivot' – the point an object rotates around.",
-      "Spot the 'forces' trying to cause rotation.",
-      "Measure the 'perpendicular distance' from each force to the pivot.",
-      "Calculate the 'turning effect' (moment) for each force: Force \\times Perpendicular Distance."
-    ]
+    "analogy": "Imagine opening a heavy door. You push near the handle (far from the hinges) because it's easier. Pushing near the hinges (the pivot) is much harder. This demonstrates the 'turning effect' or moment of your force."
   },
+  "faq": [
+    {
+      "q": "What is the difference between Centre of Gravity and Centre of Mass?",
+      "a": "The Centre of Mass (CoM) is the point where an object's entire mass is considered to be concentrated, while the Centre of Gravity (CoG) is the point where its entire weight acts. In a uniform gravitational field (like on Earth), these two points coincide and are often used interchangeably in A-Level Physics."
+    },
+    {
+      "q": "How do I know which direction a moment acts?",
+      "a": "Moments are typically classified as either clockwise or anticlockwise, depending on the rotation they would cause about the pivot point. It's crucial to consistently define one direction as positive (e.g., clockwise) and the other as negative (anticlockwise) when solving problems."
+    },
+    {
+      "q": "Can a single force create a couple?",
+      "a": "No, a single force cannot create a couple. A couple specifically requires *two* forces that are equal in magnitude, opposite in direction, parallel, and act along different lines of action. A single force creates a moment, but not a pure couple."
+    },
+    {
+      "q": "How does an object's stability relate to its Centre of Gravity?",
+      "a": "An object is more stable if its Centre of Gravity (CoG) is lower and its base of support is wider. When an object is tilted, its stability depends on whether the vertical line passing through its CoG falls inside or outside its base of support. If it falls inside, it is stable and will return to its original position. If it falls outside, it is unstable and will topple."
+    }
+  ],
   "flashcards": [
     {
       "front": "What is the Centre of Gravity (CoG)?",
@@ -59,167 +232,37 @@
     {
       "front": "Why is perpendicular distance crucial for moments?",
       "back": "Only the component of the force perpendicular to the distance from the pivot contributes to the turning effect. Using the perpendicular distance ensures the maximum effect is considered directly."
+    },
+    {
+      "front": "How can the stability of an object be increased?",
+      "back": "By lowering its centre of gravity and/or increasing the area of its base."
+    },
+    {
+      "front": "What is the difference between moment and torque?",
+      "back": "A moment is the turning effect of a single force about a pivot. Torque is the turning effect of a couple and is independent of any pivot point."
+    },
+    {
+      "front": "A force is applied at an angle to a lever. How do you calculate the moment?",
+      "back": "Use the component of the force that is perpendicular to the lever, or multiply the full force by the perpendicular distance from the pivot to the line of action of the force."
+    },
+    {
+      "front": "What are the three types of equilibrium?",
+      "back": "Stable, unstable, and neutral equilibrium."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Have you ever wondered how a seesaw balances or why it's easier to loosen a nut with a longer spanner? It's all about the **turning effects of forces**, also known as **moments**. This fundamental concept in physics explains how forces cause rotation around a **pivot**, laying the groundwork for understanding stability and equilibrium in structures. This pilot aligns with **Senpai Corner** AS notes (2025–2027) for topic **4.1**."
-    },
-    {
-      "type": "heading",
-      "content": "Centre of Gravity (CoG) and Centre of Mass (CoM)"
-    },
-    {
-      "type": "text",
-      "content": "Every object has a special point where its entire weight seems to act – this is its **Centre of Gravity (CoG)**. Imagine balancing an object; the CoG is the point you'd try to support. For uniform objects (like a perfectly symmetrical ruler), the CoG is usually at its geometric centre."
-    },
-    {
-      "type": "text",
-      "content": "Closely related is the **Centre of Mass (CoM)**, which is the average position of all the mass in an object. While distinct in theory, in typical Cambridge Physics scenarios (where the gravitational field is considered uniform), the CoG and CoM are located at the exact same point. So, for most calculations, you can treat them as identical."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "4.1 Turning effects of forces.",
-        "The centre of gravity of an object is the point at which the weight of the object may be considered to act.",
-        "A moment is the turning effect of a force.",
-        "Think of moments as a force that causes an object to rotate instead of moving in a straight line.",
-        "The equation for moment is Moment = Force x perpendicular distance from the pivot.",
-        "The SI unit for moment is Nm."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Moment of a Force"
-    },
-    {
-      "type": "text",
-      "content": "The **moment of a force** quantifies its ability to cause rotation about a specific point, called the **pivot**. Think of it as the turning power. A larger force or a greater distance from the pivot will create a larger moment, making it easier to rotate the object."
-    },
-    {
-      "type": "formula",
-      "content": "$M = F \\times d_{\\perp}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "M represents the moment of the force.",
-        "F is the magnitude of the force.",
-        "$d_{\\perp}$ is the perpendicular distance from the pivot to the line of action of the force.",
-        "The unit for moment is Newton-metre (Nm)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Always remember that 'd' must be the *perpendicular* distance from the pivot to the *line of action* of the force. If the force isn't perpendicular, you'll need to use trigonometry to find the correct perpendicular component of the distance or the perpendicular component of the force."
-    },
-    {
-      "type": "heading",
-      "content": "Principle of Moments"
-    },
-    {
-      "type": "text",
-      "content": "For an object to be in **rotational equilibrium** – meaning it's either stationary or rotating at a constant angular velocity (not accelerating angularly) – the turning effects in one direction must perfectly balance the turning effects in the opposite direction. This is the **Principle of Moments**."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "For rotational equilibrium, the resultant moment is zero.",
-        "Sum of clockwise moments = Sum of anticlockwise moments.",
-        "This principle is vital for analysing balanced systems like levers."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "A uniform beam, 3.0 m long and weighing 50 N, is pivoted at its centre. A 20 N weight is placed 1.0 m from the left end. Where should a 30 N weight be placed to balance the beam?",
-      "solution": "1. Identify pivot: Centre of the beam. Weight of beam acts at pivot, so no moment.\\n2. Calculate anticlockwise moment: M_ACW = 20 N \\times (1.5 m - 1.0 m) = 20 N \\times 0.5 m = 10 Nm.\\n3. Apply Principle of Moments: Clockwise moment = Anticlockwise moment.\\n4. So, 30 N \\times d = 10 Nm.\\n5. Solve for d: d = 10 Nm / 30 N = 0.33 m.\\n6. The 30 N weight should be placed 0.33 m to the right of the pivot."
-    },
-    {
-      "type": "heading",
-      "content": "Couples and Torque"
-    },
-    {
-      "type": "text",
-      "content": "Sometimes, two specific forces combine to produce a pure turning effect without any linear movement. This arrangement is called a **couple**. A couple consists of two forces that are equal in magnitude, opposite in direction, parallel to each other, but act along different lines."
-    },
-    {
-      "type": "text",
-      "content": "The turning effect produced by a couple is called **torque** (often represented by $\\tau$). Unlike the moment of a single force, the torque of a couple is the same regardless of where you choose your pivot point. It causes rotation only."
-    },
-    {
-      "type": "formula",
-      "content": "$\\tau = F \\times d$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "F is the magnitude of one of the forces in the couple.",
-        "d is the perpendicular distance between the lines of action of the two forces.",
-        "The unit for torque is also Newton-metre (Nm).",
-        "A couple produces pure rotation, with no resultant linear force."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Equilibrium"
-    },
-    {
-      "type": "text",
-      "content": "For an object to be in **complete equilibrium**, it must satisfy two conditions simultaneously: it must not be accelerating linearly, and it must not be accelerating rotationally. This means no overall push/pull and no overall turning effect."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Condition 1: Zero resultant force (no linear acceleration).",
-        "Condition 2: Zero resultant moment (no angular acceleration).",
-        "Both conditions must be met for an object to be truly 'in equilibrium'."
-      ]
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9702&topic=4.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Senpai Corner AS Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the difference between Centre of Gravity and Centre of Mass?",
-      "a": "The Centre of Mass (CoM) is the point where an object's entire mass is considered to be concentrated, while the Centre of Gravity (CoG) is the point where its entire weight acts. In a uniform gravitational field (like on Earth), these two points coincide and are often used interchangeably in A-Level Physics."
-    },
-    {
-      "q": "How do I know which direction a moment acts?",
-      "a": "Moments are typically classified as either clockwise or anticlockwise, depending on the rotation they would cause about the pivot point. It's crucial to consistently define one direction as positive (e.g., clockwise) and the other as negative (anticlockwise) when solving problems."
-    },
-    {
-      "q": "Can a single force create a couple?",
-      "a": "No, a single force cannot create a couple. A couple specifically requires *two* forces that are equal in magnitude, opposite in direction, parallel, and act along different lines of action. A single force creates a moment, but not a pure couple."
-    }
-  ],
-  "updated": "2026-06-26",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.1.1",
+    "4.1.2",
+    "4.1.3",
+    "4.1.4"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/4-1-turning-effects-of-forces.png",
     "alt": "Senpai Corner reference diagram for 4.1 Turning effects of forces"
-  }
+  },
+  "updated": "2026-06-26"
 }

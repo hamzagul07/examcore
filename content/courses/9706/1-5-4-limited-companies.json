@@ -6,74 +6,11 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — share capital, reserves, and basic company financial statements.",
-  "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish ordinary and preference share capital.",
-    "Explain share premium and retained earnings.",
-    "Prepare basic company SPL and SOFP.",
-    "Outline dividends and their accounting treatment."
-  ],
-  "simpleExplanation": {
-    "title": "Company accounts basics",
-    "summary": "Limited companies show equity as share capital plus reserves — profit after tax increases retained earnings; dividends reduce them.",
-    "steps": [
-      "Share capital — nominal value of shares issued.",
-      "Share premium — excess over nominal on issue.",
-      "Retained earnings — accumulated profits − dividends.",
-      "SOFP — equity section separates reserves."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Ordinary shares?",
-      "back": "Variable dividend; voting rights; residual claim."
-    },
-    {
-      "front": "Preference shares?",
-      "back": "Fixed dividend priority; usually non-voting."
-    },
-    {
-      "front": "Share premium account?",
-      "back": "Credit balance — amount above nominal on share issue."
-    },
-    {
-      "front": "Proposed dividend?",
-      "back": "Disclose in notes; not a liability until approved/paid (syllabus treatment)."
-    },
-    {
-      "front": "Retained earnings movement?",
-      "back": "Opening + Profit − Dividends = Closing."
-    },
-    {
-      "front": "Limited liability?",
-      "back": "Shareholders lose at most amount invested."
-    },
-    {
-      "front": "What is the double entry to record the issue of 50,000 $1 ordinary shares at $1.80 each?",
-      "back": "Dr Bank $90,000; Cr Ordinary Share Capital $50,000; Cr Share Premium $40,000."
-    },
-    {
-      "front": "Define 'retained earnings'.",
-      "back": "The cumulative profit of a company after corporation tax and dividends have been deducted. It is a revenue reserve available for future reinvestment or distribution to shareholders."
-    },
-    {
-      "front": "What is the difference between an interim dividend and a final dividend?",
-      "back": "An interim dividend is paid part-way through the financial year based on estimated profits. A final dividend is proposed at the end of the year based on actual profits and is paid after shareholder approval."
-    },
-    {
-      "front": "Name two types of capital reserve.",
-      "back": "Share Premium and Revaluation Reserve."
-    },
-    {
-      "front": "What is the purpose of the Statement of Changes in Equity?",
-      "back": "To show the movement in each component of shareholders' equity (share capital, reserves, retained earnings) from the beginning to the end of the accounting period, detailing the effects of profit, dividends, and share issues."
-    }
-  ],
+  "durationMin": 35,
   "sections": [
     {
       "type": "intro",
-      "content": "**Limited companies** (1.5.4) completes Section 1.5. Know **equity section layout**: share capital, share premium, retained earnings."
+      "content": "**Limited companies** (1.5.4) completes Section 1.5. Mastering the **equity section** is crucial: share capital, share premium, revaluation reserve, and retained earnings. You must also be able to prepare a Statement of Changes in Equity (SOCIE)."
     },
     {
       "type": "heading",
@@ -81,20 +18,24 @@
     },
     {
       "type": "text",
-      "content": "A limited company is a distinct legal entity, separate from its owners (shareholders). This core principle grants the company the ability to own assets and incur liabilities in its own name. The primary advantage for shareholders is limited liability, meaning their personal assets are protected; their financial risk is restricted to the amount invested or agreed to be invested in the company's shares. Capital is raised by issuing shares. The two main classifications are authorised share capital, the maximum value of shares a company can issue as stated in its formation documents, and issued share capital, the nominal value of shares that have actually been sold to shareholders. This structure allows for a wider pool of investment compared to unincorporated businesses."
+      "content": "A limited company is a distinct legal entity, separate from its owners (shareholders). This grants the company the ability to own assets and incur liabilities in its own name. The primary advantage for shareholders is limited liability, meaning their personal assets are protected; their financial risk is restricted to the amount invested in the company's shares. Capital is raised by issuing shares. The two main classifications are authorised share capital, the maximum value of shares a company can issue, and issued share capital, the nominal value of shares that have actually been sold to shareholders."
+    },
+    {
+      "type": "text",
+      "content": "Shares are primarily divided into **Ordinary Shares** and **Preference Shares**. Ordinary shareholders are the true owners, bearing the highest risk and reward. They have voting rights and receive a variable dividend, which is paid only after all other claims (like preference dividends) are settled. **Preference Shares** offer a lower-risk investment. They typically carry a right to a fixed-rate dividend (e.g., 5% Preference Shares) that must be paid before any ordinary dividend. They usually do not have voting rights. Preference shares can be **cumulative**, meaning any unpaid dividends from a poor profit year are carried forward and must be paid in future years before ordinary shareholders get anything."
     },
     {
       "type": "keyPoints",
       "items": [
         "A company has a separate legal personality from its owners.",
         "Shareholders have limited liability, protecting their personal wealth.",
-        "Authorised share capital is the maximum potential share issue.",
-        "Issued share capital represents the shares actually held by investors."
+        "Ordinary shares carry voting rights and variable dividends.",
+        "Preference shares offer fixed dividends with priority but usually no voting rights."
       ]
     },
     {
       "type": "examTip",
-      "content": "In the Statement of Financial Position, always show the breakdown of share capital. For example, 'Ordinary Share Capital (X shares of $Y each)'. This demonstrates a clear understanding of the capital structure."
+      "content": "In the Statement of Financial Position, always show the full description of share capital. For example, '500,000 Ordinary Shares of $1 each'. This demonstrates a clear understanding of the capital structure."
     },
     {
       "type": "heading",
@@ -118,12 +59,17 @@
       "content": "Be precise with the double-entry for a share issue. A common error is to credit the entire cash proceeds to the Share Capital account. Remember to split the amount between Share Capital (nominal) and Share Premium."
     },
     {
+      "type": "workedExample",
+      "question": "Company issued 200,000 ordinary shares of $0.50 at $1.20 each. Retained earnings opening $40,000. Profit for year $55,000. Dividend paid $15,000. Show the closing equity section of the Statement of Financial Position.",
+      "solution": "### Calculations:\n**1. Ordinary Share Capital:**\n200,000 shares × $0.50 (nominal value) = **$100,000**\n\n**2. Share Premium:**\nPremium per share = $1.20 (issue price) - $0.50 (nominal value) = $0.70\nTotal Share Premium = 200,000 shares × $0.70 = **$140,000**\n\n**3. Closing Retained Earnings:**\nOpening Balance: $40,000\nAdd: Profit for the year: $55,000\nLess: Dividends paid: ($15,000)\nClosing Balance = **$80,000**\n\n### Equity Section of the Statement of Financial Position:\n**Equity**\nOrdinary Share Capital (200,000 shares of $0.50 each) ..... $100,000\nShare Premium ..... $140,000\nRetained Earnings ..... $80,000\n**Total Equity ..... $320,000**"
+    },
+    {
       "type": "heading",
       "content": "Understanding Company Reserves"
     },
     {
       "type": "text",
-      "content": "Company reserves are broadly categorised into capital reserves and revenue reserves. Capital reserves arise from non-trading, capital transactions. Key examples include the Share Premium account (from issuing shares above par) and the Revaluation Reserve (from upwardly revaluing non-current assets). These are generally non-distributable as cash dividends. In contrast, revenue reserves are generated from trading profits. The main revenue reserve is Retained Earnings, which represents the accumulated net profits after tax and dividends have been accounted for. A company may also create a General Reserve by voluntarily transferring an amount from retained earnings to set aside profits for future expansion or contingencies. Revenue reserves are distributable to shareholders as dividends."
+      "content": "Company reserves are broadly categorised into capital reserves and revenue reserves. **Capital reserves** arise from non-trading, capital transactions. Key examples include the **Share Premium** account (from issuing shares above par) and the **Revaluation Reserve**. This is created when a non-current asset's fair value is deemed to be materially higher than its carrying amount; the double entry is Dr Asset and Cr Revaluation Reserve. Capital reserves are generally non-distributable as cash dividends. In contrast, **revenue reserves** are generated from trading profits. The main revenue reserve is **Retained Earnings**, which represents the accumulated net profits after tax and dividends. A company may also create a **General Reserve** by voluntarily transferring an amount from retained earnings to set aside profits for future expansion. The accounting entry is Dr Retained Earnings, Cr General Reserve. Revenue reserves are distributable to shareholders as dividends."
     },
     {
       "type": "keyPoints",
@@ -133,10 +79,6 @@
         "Retained earnings are the primary source for the payment of dividends.",
         "The equity section of the Statement of Financial Position is comprised of Share Capital and all Reserves."
       ]
-    },
-    {
-      "type": "examTip",
-      "content": "When preparing the equity section of the Statement of Financial Position, list share capital first, followed by capital reserves (Share Premium, Revaluation Reserve), and then revenue reserves (General Reserve, Retained Earnings)."
     },
     {
       "type": "heading",
@@ -157,12 +99,12 @@
     },
     {
       "type": "examTip",
-      "content": "Remember that only paid and declared dividends affect the financial statements. A proposed final dividend is disclosed in the notes to the accounts but is not recorded as a liability or a reduction in retained earnings until it is formally approved by shareholders."
+      "content": "Remember that only paid dividends (interim) and declared final dividends affect the Statement of Changes in Equity. A *proposed* final dividend is only disclosed in the notes to the accounts and does not reduce retained earnings for the current period."
     },
     {
       "type": "workedExample",
-      "question": "Company issued 200,000 ordinary shares of $0.50 at $1.20 each. Retained earnings opening $40,000. Profit for year $55,000. Dividend paid $15,000. Show equity section extracts.",
-      "solution": "**Share capital** = 200,000 × $0.50 = **$100,000**\n**Share premium** = 200,000 × ($1.20 − $0.50) = **$140,000**\n\n**Retained earnings:**\nOpening **40,000**\n+ Profit **55,000**\n− Dividend **(15,000)**\nClosing **$80,000**\n\n**Total equity** = 100,000 + 140,000 + 80,000 = **$320,000**"
+      "question": "Beta PLC had the following equity balances at 1 Jan 2023:\n- Ordinary Share Capital ($1 shares): $400,000\n- Share Premium: $80,000\n- Retained Earnings: $115,000\n\nDuring the year ended 31 Dec 2023:\n1. Profit for the year was $95,000.\n2. On 1 May, the company issued 100,000 new $1 ordinary shares for $1.60 each.\n3. An interim dividend of $0.04 per share was paid on 1 September on all shares in issue at that date.\n\nPrepare the Statement of Changes in Equity for the year ended 31 December 2023.",
+      "solution": "### Workings:\n\n**1. Share Issue (1 May):**\n- Proceeds to Ordinary Share Capital (nominal): 100,000 shares × $1.00 = **$100,000**\n- Proceeds to Share Premium: 100,000 shares × ($1.60 - $1.00) = **$60,000**\n\n**2. Interim Dividend (1 Sep):**\n- Total shares in issue at 1 Sep = 400,000 (opening) + 100,000 (new issue) = 500,000 shares.\n- Dividend paid = 500,000 shares × $0.04 = **$20,000**. This reduces Retained Earnings.\n\n### Statement of Changes in Equity for the year ended 31 December 2023\n\n| | Ordinary Share Capital ($) | Share Premium ($) | Retained Earnings ($) | Total Equity ($) |\n| :--- | :---: | :---: | :---: | :---: |\n| **Balance at 1 Jan 2023** | **400,000** | **80,000** | **115,000** | **595,000** |\n| Profit for the year | | | 95,000 | 95,000 |\n| Issue of share capital | 100,000 | 60,000 | | 160,000 |\n| Interim dividend paid | | | (20,000) | (20,000) |\n| **Balance at 31 Dec 2023** | **500,000** | **140,000** | **190,000** | **830,000** |"
     },
     {
       "type": "practice",
@@ -191,6 +133,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Distinguish ordinary and preference share capital.",
+    "Explain share premium, revaluation reserve and retained earnings.",
+    "Prepare a basic Statement of Changes in Equity.",
+    "Prepare the equity section of a Statement of Financial Position.",
+    "Outline dividends and their accounting treatment."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Are dividends an expense for the business, like wages?",
@@ -203,8 +153,83 @@
     {
       "q": "If a company has authorised share capital of $1,000,000, does this mean it has $1,000,000 in the bank?",
       "a": "Not at all. Authorised share capital is simply the maximum nominal value of shares the company is legally permitted to issue. The actual capital raised is the 'issued and paid-up' capital. A company may have authorised capital of $1,000,000 but may have only issued $200,000 of shares, raising cash only for that specific issue."
+    },
+    {
+      "q": "What is the difference between a capital reserve and a revenue reserve?",
+      "a": "A capital reserve (like Share Premium or Revaluation Reserve) arises from non-trading activities, such as issuing shares or revaluing assets. It is generally not distributable as cash dividends. A revenue reserve (like Retained Earnings) is created from accumulated trading profits and is legally available for distribution as dividends."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Ordinary shares?",
+      "back": "Variable dividend; voting rights; residual claim. They are the main risk-bearing shares of a company."
+    },
+    {
+      "front": "Preference shares?",
+      "back": "Carry a right to a fixed-rate dividend which has priority over ordinary dividends. Usually non-voting."
+    },
+    {
+      "front": "Share premium account?",
+      "back": "A capital reserve showing the amount received from shareholders above the nominal value of shares issued. It is not distributable as cash dividends."
+    },
+    {
+      "front": "How is a proposed final dividend treated in the accounts?",
+      "back": "It is disclosed in the notes to the financial statements. It is not recorded as a liability or a reduction in retained earnings until approved by shareholders."
+    },
+    {
+      "front": "What is the formula for the movement in Retained Earnings?",
+      "back": "Opening Balance + Profit for the year − Dividends paid/declared − Transfers to other reserves = Closing Balance."
+    },
+    {
+      "front": "Limited liability?",
+      "back": "A legal protection for shareholders where their maximum loss is limited to the amount invested in the company's shares."
+    },
+    {
+      "front": "What is the double entry to record the issue of 50,000 $1 ordinary shares at $1.80 each?",
+      "back": "Dr Bank $90,000; Cr Ordinary Share Capital $50,000; Cr Share Premium $40,000."
+    },
+    {
+      "front": "Define 'retained earnings'.",
+      "back": "The cumulative profit of a company after corporation tax and dividends have been deducted. It is a revenue reserve available for future reinvestment or distribution."
+    },
+    {
+      "front": "What is the difference between an interim dividend and a final dividend?",
+      "back": "An interim dividend is paid part-way through the financial year. A final dividend is proposed at the end of the year and paid after shareholder approval."
+    },
+    {
+      "front": "Name two types of capital reserve.",
+      "back": "Share Premium and Revaluation Reserve."
+    },
+    {
+      "front": "What is the purpose of the Statement of Changes in Equity?",
+      "back": "To show the movement in each component of shareholders' equity (share capital, reserves, retained earnings) from the beginning to the end of the accounting period."
+    },
+    {
+      "front": "What is a Revaluation Reserve?",
+      "back": "A non-distributable capital reserve created when a non-current asset is revalued to a value higher than its carrying amount."
+    },
+    {
+      "front": "What are cumulative preference shares?",
+      "back": "Preference shares where any unpaid fixed dividends from previous years must be paid in full before any dividend can be paid to ordinary shareholders."
+    },
+    {
+      "front": "What is the double entry to create a General Reserve of $20,000 from profits?",
+      "back": "Dr Retained Earnings $20,000; Cr General Reserve $20,000. This is an appropriation of profit."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.5.4.1",
+    "1.5.4.2",
+    "1.5.4.3",
+    "1.5.4.4",
+    "1.5.4.5",
+    "1.5.4.6",
+    "1.5.4.7"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Business Structures",
     "columns": [
@@ -245,7 +270,7 @@
         "property": "Key Financial Statements",
         "cells": [
           "Statement of Profit or Loss, Statement of Financial Position.",
-          "Statement of Profit or Loss and OCI, Statement of Financial Position, Statement of Changes in Equity."
+          "Statement of Profit or Loss, Statement of Financial Position, Statement of Changes in Equity."
         ]
       },
       {

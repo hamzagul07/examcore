@@ -6,24 +6,148 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — sales and purchases ledger control accounts, entries, and reconciliation.",
-  "durationMin": 26,
-  "updated": "2026-06-18",
+  "durationMin": 35,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Control accounts** (1.4.4) — learn **standard layout** for sales and purchases control; exams often give **missing figure** problems."
+    },
+    {
+      "type": "heading",
+      "content": "The Purpose of Control Accounts"
+    },
+    {
+      "type": "text",
+      "content": "Control accounts are memorandum accounts, meaning they are not part of the main double-entry bookkeeping system. Their primary function is to verify the arithmetical accuracy of the subsidiary ledgers they summarise: the sales ledger and the purchases ledger. The Sales Ledger Control Account (SLCA) shows the total amount owed by all trade receivables, while the Purchases Ledger Control Account (PLCA) shows the total amount owed to all trade payables. By comparing the closing balance of a control account with the sum of the individual balances in its corresponding subsidiary ledger (a 'schedule of balances'), a business can quickly identify discrepancies. This makes them a vital tool for internal control, helping to detect errors and deter fraud by segregating duties."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Summarises the total of numerous individual accounts in a subsidiary ledger.",
+        "Acts as an independent check on the arithmetical accuracy of the sales and purchases ledgers.",
+        "Provides total figures for trade receivables and trade payables for the statement of financial position.",
+        "Assists in fraud detection and internal control by segregating record-keeping duties."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Constructing the Sales Ledger Control Account (SLCA)"
+    },
+    {
+      "type": "text",
+      "content": "The Sales Ledger Control Account is an asset account, normally holding a debit balance. The opening balance represents the total amount owed by customers at the start of the period. The account is debited with items that increase the total amount owed by customers, such as credit sales (from the sales day book total) and interest charged on overdue accounts. Dishonoured cheques are also debited, as they reverse a previous payment and reinstate the debt. The account is credited with items that decrease the total amount owed. These include receipts from customers (from the cash book), sales returns (from the sales returns day book), discounts allowed to customers, irrecoverable debts written off, and contra entries where a customer is also a supplier."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Normal Balance: Debit.",
+        "Debit Entries (Increase debt): Opening balance, Credit Sales, Dishonoured Cheques, Interest Charged.",
+        "Credit Entries (Decrease debt): Receipts from Customers, Sales Returns, Discounts Allowed, Irrecoverable Debts, Contra Entries."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to balances. A debit balance b/d is normal for an SLCA. However, a credit balance c/d can exist, representing customers who have overpaid or paid in advance. This credit balance must be shown as a current liability in the statement of financial position."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sales ledger control opening balance $12,000 DR. Credit sales $45,000; receipts $38,000; credit notes $2,000. Calculate closing balance.",
+      "solution": "**Sales ledger control account:**\nOpening balance b/d **12,000** DR\nCredit sales **45,000** DR\nReceipts **38,000** CR\nCredit notes **2,000** CR\n\n**Closing balance c/d** = 12,000 + 45,000 − 38,000 − 2,000 = **$17,000 DR**\n\n**Meaning:** Total **trade receivables** at year-end **$17,000** — should equal sum of individual customer balances."
+    },
+    {
+      "type": "heading",
+      "content": "Constructing the Purchases Ledger Control Account (PLCA)"
+    },
+    {
+      "type": "text",
+      "content": "The Purchases Ledger Control Account is a liability account and therefore normally carries a credit balance. This opening balance is the total amount owed to suppliers at the period's start. The account is credited with items that increase the total amount owed to suppliers, primarily credit purchases (from the purchases day book total) and any interest charged by suppliers on late payments. Conversely, the account is debited with items that decrease the total amount owed. These include payments made to suppliers (from the cash book), returns of goods to suppliers (from the purchases returns day book), discounts received from suppliers, and contra entries. The final closing balance represents the total trade payables at the end of the period."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Normal Balance: Credit.",
+        "Credit Entries (Increase liability): Opening balance, Credit Purchases, Interest Charged by Suppliers.",
+        "Debit Entries (Decrease liability): Payments to Suppliers, Purchases Returns, Discounts Received, Contra Entries."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Using Control Accounts to Find Missing Figures"
+    },
+    {
+      "type": "text",
+      "content": "A common application of control accounts in examinations is to calculate a missing figure, such as total credit sales or total credit purchases for a period. By constructing the control account as a T-account and inserting all the known information (opening/closing balances, payments, returns, etc.), the missing figure can be deduced as it will be the amount required to make the debit and credit sides balance. This technique is a crucial part of preparing final accounts when primary records are incomplete."
+    },
+    {
+      "type": "workedExample",
+      "question": "A business provides the following information for its Purchases Ledger Control Account for the year ended 31 December 2023:\n- Balance at 1 Jan 2023: $25,400 (Credit)\n- Payments to suppliers: $155,600\n- Discounts received: $3,100\n- Returns outwards: $4,800\n- Contra entry (set-off against sales ledger): $1,200\n- Balance at 31 Dec 2023: $28,900 (Credit)\n\nCalculate the value of credit purchases for the year.",
+      "solution": "**1. Set up the Purchases Ledger Control Account (PLCA):**\nThe PLCA is a liability account, so increases (purchases) are credits, and decreases (payments, returns, discounts) are debits.\n\n**Purchases Ledger Control Account**\n| Details | $ | Details | $\n| :--- | ---: | :--- | ---: |\n| Payments to suppliers | 155,600 | Balance b/d | 25,400 |\n| Discounts received | 3,100 | **Credit Purchases (balancing figure)** | **168,200** |\n| Returns outwards | 4,800 | | |\n| Contra entry | 1,200 | | |\n| Balance c/d | 28,900 | | |\n| **Total** | **193,600** | **Total** | **193,600** |\n\n**2. Calculate the missing figure:**\n- Total the debit side (items that decrease the amount owed): 155,600 (Payments) + 3,100 (Discounts) + 4,800 (Returns) + 1,200 (Contra) + 28,900 (Closing Balance) = $193,600.\n- The total of the credit side must also be $193,600.\n- The credit side consists of the opening balance and the credit purchases.\n- Credit Purchases = Total Credits - Opening Balance\n- Credit Purchases = $193,600 - $25,400 = **$168,200**.\n\n**Answer:** The credit purchases for the year were **$168,200**."
+    },
+    {
+      "type": "heading",
+      "content": "Reconciliation, Errors, and Special Entries"
+    },
+    {
+      "type": "text",
+      "content": "A key procedure is the reconciliation of the control account balance with the schedule of individual balances from the subsidiary ledger. If they do not agree, errors must be found and corrected. It's crucial to determine whether an error affects the control account, the subsidiary ledger, or both.\n\n**Common Errors:**\n*   **Affecting Control Account only:** Incorrect total from a day book (e.g., sales day book undercast by $100).\n*   **Affecting Subsidiary Ledger only:** An invoice posted to the wrong customer's account, or an amount misposted in an individual account.\n*   **Affecting Both:** A transaction completely omitted from the books of prime entry.\n\nA **contra entry** or 'set-off' is a special transaction that must be recorded in both control accounts. This occurs when a business buys from and sells to the same organisation. Instead of separate payments, the smaller balance is 'set-off' against the larger one. This is recorded as a debit in the PLCA and a credit in the SLCA, reducing both total payables and total receivables."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reconciliation involves comparing the control account balance to the total of the schedule of balances from the subsidiary ledger.",
+        "Discrepancies arise from errors that must be identified and corrected.",
+        "A contra entry reduces both trade receivables and trade payables.",
+        "The double entry for a contra is: Dr Purchases Ledger Control Account, Cr Sales Ledger Control Account."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, you will often be given a draft control account and a list of errors. You must prepare a corrected control account and/or a statement to reconcile the schedule of balances to the corrected control account balance. Read carefully to determine if an error affects the control account, the individual ledgers, or both."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a control accounts question",
+      "href": "/mark?subject=9706&topic=1.4.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "1.2.1 Accounting system",
+          "href": "/courses/9706/1-2-1-the-accounting-system"
+        },
+        {
+          "label": "9609 10.1.3 Inventory valuation",
+          "href": "/courses/9609/10-1-3-inventory-valuation"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Explain purpose of control accounts.",
     "Prepare sales and purchases ledger control accounts.",
     "Reconcile control accounts to subsidiary ledgers.",
     "Use control accounts to find missing figures."
   ],
-  "simpleExplanation": {
-    "title": "One account for many customers",
-    "summary": "Control accounts summarise all receivables or payables in the general ledger. They are posted from books of prime entry and should equal the total of individual customer/supplier balances.",
-    "steps": [
-      "Sales ledger control — total owed by trade receivables.",
-      "Purchases ledger control — total owed to trade payables.",
-      "Entries from sales/purchase day books, cash book, journal.",
-      "Reconcile control balance to sum of personal ledger accounts."
-    ]
-  },
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Are control accounts part of the double-entry system?",
+      "a": "No, they are memorandum accounts prepared outside of the double-entry system. Their purpose is to act as an independent check on the subsidiary ledgers. While the totals used to prepare them (e.g., total credit sales) come from the double-entry system, the control accounts themselves are a separate reconciliation tool."
+    },
+    {
+      "q": "If the control account balance agrees with the schedule of balances, does this guarantee there are no errors?",
+      "a": "Not necessarily. It only confirms arithmetical accuracy between the two sets of records. It would not reveal errors of omission (a transaction missed from both), errors of original entry (the same wrong amount posted to both), compensating errors, or errors of principle. It is a check, not a complete proof of accuracy."
+    },
+    {
+      "q": "Why is 'discounts allowed' a credit in the Sales Ledger Control Account? I thought it was an expense.",
+      "a": "Discounts allowed is an expense for the business, which is recorded with a debit in the Discounts Allowed account in the general ledger. However, within the Sales Ledger Control Account, its function is to reduce the total amount owed by customers. Since the SLCA is an asset account with a normal debit balance, any reduction (like a payment, return, or discount) must be a credit entry."
+    }
+  ],
   "flashcards": [
     {
       "front": "Sales ledger control — debit items?",
@@ -68,129 +192,35 @@
     {
       "front": "What are the primary source documents for the main totals posted to control accounts?",
       "back": "Sales Day Book (for credit sales), Purchases Day Book (for credit purchases), Sales Returns Day Book, Purchases Returns Day Book, and the totals of the bank/discount columns in the Cash Book."
+    },
+    {
+      "front": "What is a 'schedule of balances'?",
+      "back": "A list of all the individual balances from a subsidiary ledger (e.g., sales ledger or purchases ledger). The total of this schedule should equal the closing balance of the corresponding control account."
+    },
+    {
+      "front": "How are irrecoverable debts (bad debts) recorded in the Sales Ledger Control Account?",
+      "back": "As a credit entry. This reduces the total amount owed by trade receivables, as the debt is no longer expected to be collected."
+    },
+    {
+      "front": "What are the two main sources of error when a control account and its subsidiary ledger do not agree?",
+      "back": "1. Errors in the control account itself (e.g., incorrect totals from books of prime entry). 2. Errors in the subsidiary ledger (e.g., an invoice posted to the wrong customer account, or omitted entirely)."
+    },
+    {
+      "front": "What does a credit balance on a Sales Ledger Control Account signify?",
+      "back": "It means a customer has overpaid, paid in advance, or has a credit note that exceeds their outstanding balance. It represents a liability (amount owed to the customer) and should be reported as such."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "**Control accounts** (1.4.4) — learn **standard layout** for sales and purchases control; exams often give **missing figure** problems."
-    },
-    {
-      "type": "heading",
-      "content": "The Purpose of Control Accounts"
-    },
-    {
-      "type": "text",
-      "content": "Control accounts are memorandum accounts, meaning they are not part of the main double-entry bookkeeping system. Their primary function is to verify the arithmetical accuracy of the subsidiary ledgers they summarise: the sales ledger and the purchases ledger. The Sales Ledger Control Account (SLCA) shows the total amount owed by all trade receivables, while the Purchases Ledger Control Account (PLCA) shows the total amount owed to all trade payables. By comparing the closing balance of a control account with the sum of the individual balances in its corresponding subsidiary ledger (a 'schedule of balances'), a business can quickly identify discrepancies. This makes them a vital tool for internal control, helping to detect errors and deter fraud by segregating duties."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Summarises the total of numerous individual accounts in a subsidiary ledger.",
-        "Acts as an independent check on the arithmetical accuracy of the sales and purchases ledgers.",
-        "Provides total figures for trade receivables and trade payables for the statement of financial position.",
-        "Assists in fraud detection and internal control by segregating record-keeping duties."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Constructing the Sales Ledger Control Account (SLCA)"
-    },
-    {
-      "type": "text",
-      "content": "The Sales Ledger Control Account is an asset account, normally holding a debit balance. The opening balance represents the total amount owed by customers at the start of the period. The account is debited with items that increase the total amount owed by customers, such as credit sales (from the sales day book total) and interest charged on overdue accounts. Dishonoured cheques are also debited, as they reverse a previous payment and reinstate the debt. The account is credited with items that decrease the total amount owed. These include receipts from customers (from the cash book), sales returns (from the sales returns day book), discounts allowed to customers, irrecoverable debts written off, and contra entries where a customer is also a supplier."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Normal Balance: Debit.",
-        "Debit Entries (Increase debt): Opening balance, Credit Sales, Dishonoured Cheques, Interest Charged.",
-        "Credit Entries (Decrease debt): Receipts from Customers, Sales Returns, Discounts Allowed, Irrecoverable Debts, Contra Entries."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to balances. A debit balance b/d is normal for an SLCA. However, a credit balance c/d can exist, representing customers who have overpaid or paid in advance. This credit balance must be shown as a current liability in the statement of financial position."
-    },
-    {
-      "type": "heading",
-      "content": "Constructing the Purchases Ledger Control Account (PLCA)"
-    },
-    {
-      "type": "text",
-      "content": "The Purchases Ledger Control Account is a liability account and therefore normally carries a credit balance. This opening balance is the total amount owed to suppliers at the period's start. The account is credited with items that increase the total amount owed to suppliers, primarily credit purchases (from the purchases day book total) and any interest charged by suppliers on late payments. Conversely, the account is debited with items that decrease the total amount owed. These include payments made to suppliers (from the cash book), returns of goods to suppliers (from the purchases returns day book), discounts received from suppliers, and contra entries. The final closing balance represents the total trade payables at the end of the period."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Normal Balance: Credit.",
-        "Credit Entries (Increase liability): Opening balance, Credit Purchases, Interest Charged by Suppliers.",
-        "Debit Entries (Decrease liability): Payments to Suppliers, Purchases Returns, Discounts Received, Contra Entries."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Reconciliation and Special Entries"
-    },
-    {
-      "type": "text",
-      "content": "A key procedure is the reconciliation of the control account balance with the schedule of individual balances from the subsidiary ledger. If they do not agree, errors must be found. Errors can affect the control account only (e.g., incorrect total from a day book), the subsidiary ledger only (e.g., an invoice posted to the wrong individual account), or both (e.g., a transaction completely omitted). A common special entry is the 'contra' or 'set-off'. This occurs when a business buys from and sells to the same organisation. Instead of separate payments, the smaller balance is 'set-off' against the larger one. This is recorded as a debit in the PLCA and a credit in the SLCA, reducing both receivables and payables."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Reconciliation involves comparing the control account balance to the total of the schedule of balances from the subsidiary ledger.",
-        "Discrepancies arise from errors that must be identified and corrected.",
-        "A contra entry reduces both trade receivables and trade payables.",
-        "The double entry for a contra is: Dr Purchases Ledger Control Account, Cr Sales Ledger Control Account."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, you will often be given a draft control account and a list of errors. You must prepare a corrected control account and/or a statement to reconcile the schedule of balances to the corrected control account balance. Read carefully to determine if an error affects the control account, the individual ledgers, or both."
-    },
-    {
-      "type": "workedExample",
-      "question": "Sales ledger control opening balance $12,000 DR. Credit sales $45,000; receipts $38,000; credit notes $2,000. Calculate closing balance.",
-      "solution": "**Sales ledger control account:**\nOpening balance b/d **12,000** DR\nCredit sales **45,000** DR\nReceipts **38,000** CR\nCredit notes **2,000** CR\n\n**Closing balance c/d** = 12,000 + 45,000 − 38,000 − 2,000 = **$17,000 DR**\n\n**Meaning:** Total **trade receivables** at year-end **$17,000** — should equal sum of individual customer balances."
-    },
-    {
-      "type": "practice",
-      "label": "Mark a control accounts question",
-      "href": "/mark?subject=9706&topic=1.4.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "1.2.1 Accounting system",
-          "href": "/courses/9706/1-2-1-the-accounting-system"
-        },
-        {
-          "label": "9609 10.1.3 Inventory valuation",
-          "href": "/courses/9609/10-1-3-inventory-valuation"
-        },
-        {
-          "label": "9706 course index",
-          "href": "/courses/9706"
-        }
-      ]
-    }
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.4.4.1",
+    "1.4.4.2",
+    "1.4.4.3",
+    "1.4.4.4",
+    "1.4.4.5"
   ],
-  "faq": [
-    {
-      "q": "Are control accounts part of the double-entry system?",
-      "a": "No, they are memorandum accounts prepared outside of the double-entry system. Their purpose is to act as an independent check on the subsidiary ledgers. While the totals used to prepare them (e.g., total credit sales) come from the double-entry system, the control accounts themselves are a separate reconciliation tool."
-    },
-    {
-      "q": "If the control account balance agrees with the schedule of balances, does this guarantee there are no errors?",
-      "a": "Not necessarily. It only confirms arithmetical accuracy between the two sets of records. It would not reveal errors of omission (a transaction missed from both), errors of original entry (the same wrong amount posted to both), compensating errors, or errors of principle. It is a check, not a complete proof of accuracy."
-    },
-    {
-      "q": "Why is 'discounts allowed' a credit in the Sales Ledger Control Account? I thought it was an expense.",
-      "a": "Discounts allowed is an expense for the business, which is recorded with a debit in the Discounts Allowed account in the general ledger. However, within the Sales Ledger Control Account, its function is to reduce the total amount owed by customers. Since the SLCA is an asset account with a normal debit balance, any reduction (like a payment, return, or discount) must be a credit entry."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison: Sales Ledger vs. Purchases Ledger Control Accounts",
     "columns": [

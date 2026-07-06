@@ -6,23 +6,7 @@
   "paperName": "Paper 4 A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9700 Paper 4 — Natural and artificial selection (17.2). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Explain the process of natural selection, including the role of variation and selection pressures.",
-    "Describe the process of artificial selection and its application in agriculture and animal breeding.",
-    "Compare and contrast natural and artificial selection, outlining their respective impacts on genetic diversity."
-  ],
-  "simpleExplanation": {
-    "title": "Nature's Filter vs. Human Choice",
-    "summary": "This topic explores how desirable traits become more common in populations over generations. Natural selection is when the environment 'chooses' which individuals survive and reproduce, while artificial selection is when humans deliberately 'choose' traits to perpetuate. Both processes drive evolutionary change, but with different selective agents and goals.",
-    "analogy": "Imagine you're picking ingredients for a meal. Natural selection is like finding ingredients that happen to grow well in your garden's specific soil and climate. Artificial selection is like purposefully cultivating a specific type of tomato because you prefer its flavour, even if it needs special care.",
-    "steps": [
-      "Understand the sources and importance of variation within a population.",
-      "Grasp the mechanisms by which environmental pressures drive natural selection.",
-      "Learn how human intervention directs artificial selection for specific traits.",
-      "Compare and contrast the two processes, paying close attention to their outcomes for genetic diversity."
-    ]
-  },
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -48,8 +32,24 @@
       ]
     },
     {
+      "type": "heading",
+      "content": "Types of Natural Selection"
+    },
+    {
       "type": "text",
-      "content": "A classic example is the evolution of **antibiotic resistance** in bacteria. When antibiotics are used, susceptible bacteria are killed, but resistant mutants survive and reproduce, quickly dominating the population. The antibiotic acts as the **selection pressure**."
+      "content": "Natural selection can act on populations in different ways, depending on the selection pressures. This leads to three main modes of selection:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Stabilising Selection:** This is the most common type. It favours intermediate phenotypes and selects against extreme variations. For example, human birth weight. Babies that are too small are less likely to survive, and babies that are too large can cause complications during birth. The result is a population where most individuals have a birth weight in a narrow, intermediate range.",
+        "**Directional Selection:** This occurs when environmental conditions change, favouring individuals with phenotypes at one extreme of the existing range. A classic example is antibiotic resistance in bacteria. The presence of an antibiotic selects for resistant bacteria, shifting the population's average phenotype towards higher resistance.",
+        "**Disruptive (or Diversifying) Selection:** This type of selection favours individuals at both extremes of the phenotypic range, while selecting against intermediate phenotypes. This is less common but can lead to the formation of two distinct subpopulations. For example, in a habitat with two distinct food sources (e.g., large and small seeds), birds with very large or very small beaks might be favoured over birds with medium-sized beaks."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A classic example of directional selection is the evolution of **antibiotic resistance** in bacteria. When antibiotics are used, susceptible bacteria are killed, but resistant mutants survive and reproduce, quickly dominating the population. The antibiotic acts as the **selection pressure**."
     },
     {
       "type": "heading",
@@ -66,7 +66,7 @@
         "**Desired Traits:** Selection is based on traits that are beneficial or appealing to humans (e.g., high yield, specific appearance, disease resistance, docility).",
         "**Selective Breeding:** Individuals showing the desired traits are interbred over successive generations.",
         "**Faster Change:** Artificial selection can often produce significant changes in a shorter timeframe compared to natural selection, as the selection pressure is intense and directional.",
-        "**Applications:** Widely used in agriculture (e.g., high-yielding crops like wheat, disease-resistant livestock), horticulture (e.g., ornamental plants), and pet breeding (e.g., various dog breeds from wolves)."
+        "**Applications:** Widely used in agriculture (e.g., modern wheat varieties bred for high yield, short stalks (dwarfism) to prevent lodging; maize from teosinte), livestock (e.g., Belgian Blue cattle for increased muscle mass), and pet breeding (e.g., various dog breeds from wolves)."
       ]
     },
     {
@@ -106,6 +106,11 @@
       "solution": "1.  **Selection for specific traits:** Farmers identify cows with high milk yield and bulls from high-yielding lineages. Only these individuals are chosen for breeding, discarding those with lower yields.\n2.  **Narrowing the gene pool:** Over generations, alleles associated with high milk production become more frequent. However, alleles for other traits (e.g., disease resistance, fertility, longevity) that are not directly selected for, or are negatively correlated with high yield, may be lost or significantly reduced.\n3.  **Reduced genetic diversity:** This continuous selection pressure reduces the overall genetic variation within the dairy cattle population. Many different alleles present in the original wild cattle populations are eliminated.\n4.  **Increased susceptibility to disease:** A uniform genetic background means if one animal is susceptible to a particular disease, all individuals in the population are likely to be susceptible, making outbreaks more devastating.\n5.  **Inbreeding depression:** To maintain specific desirable traits, closely related individuals may be bred. This increases homozygosity, raising the probability of expressing harmful recessive alleles, leading to issues like reduced fertility, lower immune response, and physical deformities.\n6.  **Ethical considerations:** The relentless pursuit of extreme milk yields can also lead to welfare issues, such as lameness, mastitis, and metabolic disorders in the cows themselves, which are unintended consequences of the selection process."
     },
     {
+      "type": "workedExample",
+      "question": "A bacterial population of 2,000,000 cells is found on a hospital surface. A mutation for antibiotic resistance is present in 0.05% of the population. The surface is treated with an antibiotic that kills 99.9% of susceptible bacteria but has no effect on resistant bacteria. Calculate the frequency of the resistance allele in the population after one round of selection and reproduction.",
+      "solution": "### Step 1: Calculate initial numbers of susceptible and resistant bacteria.\nTotal population = 2,000,000\nResistant percentage = 0.05\\%\n\nNumber of resistant bacteria = $2,000,000 \\times \\frac{0.05}{100} = 1,000$ cells\nNumber of susceptible bacteria = $2,000,000 - 1,000 = 1,999,000$ cells\n\n### Step 2: Calculate the number of survivors after antibiotic treatment.\nSusceptible bacteria killed = 99.9\\%\nResistant bacteria killed = 0\\%\n\nSusceptible survivors = $1,999,000 \\times (1 - 0.999) = 1,999,000 \\times 0.001 = 1,999$ cells\nResistant survivors = $1,000 \\times (1 - 0) = 1,000$ cells\n\n### Step 3: Calculate the total number of surviving bacteria.\nTotal survivors = Susceptible survivors + Resistant survivors\nTotal survivors = $1,999 + 1,000 = 2,999$ cells\n\n### Step 4: Calculate the frequency of resistant bacteria in the surviving population.\nThis frequency will be the frequency in the next generation, assuming the population size recovers.\n\nFrequency of resistant bacteria = $\\frac{\\text{Number of resistant survivors}}{\\text{Total number of survivors}}$\nFrequency of resistant bacteria = $\\frac{1,000}{2,999} \\approx 0.333$\n\n### Final Answer:\nThe frequency of the resistance allele (and resistant bacteria) in the population after one generation of selection increases from an initial 0.0005 (0.05\\%) to approximately **0.333** (or 33.3\\%). This demonstrates the rapid effect of directional selection."
+    },
+    {
       "type": "examTip",
       "content": "For Paper 4, always be precise with your terminology. When discussing natural selection, ensure you mention 'selection pressure', 'differential survival and reproduction', and 'change in allele frequency'. For artificial selection, highlight 'human intervention', 'desired traits', and the crucial consequence of 'reduced genetic diversity' and its implications (e.g., inbreeding depression, susceptibility to disease)."
     },
@@ -132,6 +137,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain the process of natural selection, including the role of variation and selection pressures.",
+    "Describe the process of artificial selection and its application in agriculture and animal breeding.",
+    "Compare and contrast natural and artificial selection, outlining their respective impacts on genetic diversity."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine you're picking ingredients for a meal. Natural selection is like finding ingredients that happen to grow well in your garden's specific soil and climate. Artificial selection is like purposefully cultivating a specific type of tomato because you prefer its flavour, even if it needs special care."
+  },
   "faq": [
     {
       "q": "What's the main difference between natural and artificial selection in Cambridge Biology 9700?",
@@ -144,17 +157,64 @@
     {
       "q": "Can natural selection lead to entirely new species?",
       "a": "Yes, over extended periods, natural selection is a key driver of speciation. If populations become geographically or reproductively isolated and experience different selection pressures, they can diverge genetically to the point where they can no longer interbreed successfully, thus forming new species. Find more detailed explanations in our premium lessons and past paper solutions."
+    },
+    {
+      "q": "What are the different types of natural selection?",
+      "a": "There are three main types: 1. **Stabilising selection**, which favours intermediate phenotypes (e.g., human birth weight). 2. **Directional selection**, which favours one extreme phenotype (e.g., antibiotic resistance). 3. **Disruptive selection**, which favours both extreme phenotypes over the intermediate one."
     }
   ],
-  "updated": "2026-06-05",
+  "flashcards": [
+    {
+      "front": "What is natural selection?",
+      "back": "The process where organisms better adapted to their environment tend to survive and reproduce more successfully, leading to an increase in the frequency of advantageous alleles in a population over generations. The environment is the selective agent."
+    },
+    {
+      "front": "What is artificial selection (selective breeding)?",
+      "back": "The process where humans intentionally select and breed organisms with desirable traits to enhance those traits in subsequent generations. Humans are the selective agent."
+    },
+    {
+      "front": "What is a 'selection pressure' in the context of evolution?",
+      "back": "An environmental factor that affects an organism's ability to survive and reproduce. It 'drives' natural selection. Examples include predation, disease, competition for resources, climate change, and antibiotic presence."
+    },
+    {
+      "front": "State the primary difference between the selective agents in natural and artificial selection.",
+      "back": "In natural selection, the selective agent is the environment (biotic and abiotic factors). In artificial selection, the selective agent is humans, based on their preferences or needs."
+    },
+    {
+      "front": "What is the main impact of artificial selection on a population's genetic diversity?",
+      "back": "Artificial selection significantly reduces genetic diversity by selecting for a narrow range of alleles associated with desired traits and eliminating others from the gene pool."
+    },
+    {
+      "front": "Define 'inbreeding depression'.",
+      "back": "The reduced biological fitness in a population resulting from the breeding of related individuals. It increases the likelihood of offspring being homozygous for deleterious recessive alleles."
+    },
+    {
+      "front": "Name the four key components of Darwin's theory of natural selection.",
+      "back": "1. **Variation:** Individuals in a population vary. 2. **Overproduction:** More offspring are produced than can survive. 3. **Struggle for Existence:** Competition for limited resources. 4. **Differential Survival & Reproduction:** Individuals with advantageous traits are more likely to survive and pass them on."
+    },
+    {
+      "front": "Give a modern example of rapid natural selection.",
+      "back": "The evolution of antibiotic resistance in bacteria. When an antibiotic is applied, it acts as a strong selection pressure, killing susceptible bacteria and allowing resistant mutants to survive, reproduce, and dominate the population."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "17.2.1",
+    "17.2.2",
+    "17.2.3",
+    "17.2.4",
+    "17.2.5",
+    "17.2.6",
+    "17.2.7"
+  ],
   "generatorVersion": "alnotes-published-2",
   "diagram": {
     "src": "/courses/diagrams/9700/alnotes/17-2-natural-and-artificial-selection/page-01.png",
     "alt": "A-Level Notes reference diagram for 17.2 Natural and artificial selection"
   },
+  "updated": "2026-06-05",
   "referenceDiagrams": [
     {
       "src": "/courses/diagrams/9700/alnotes/17-2-natural-and-artificial-selection/page-01.png",

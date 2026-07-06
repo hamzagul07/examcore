@@ -6,73 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Energy in simple harmonic motion (17.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the continuous interconversion between kinetic and potential energy in SHM.",
-    "Apply formulas to calculate kinetic, potential, and total energy in an SHM system.",
-    "Explain the effects of damping and resonance on energy transfer and amplitude in oscillations."
-  ],
-  "simpleExplanation": {
-    "title": "SHM Energy Explained",
-    "summary": "In Simple Harmonic Motion, energy constantly switches between kinetic and potential forms. While the object moves, its total mechanical energy stays constant, unless external forces like damping or a driver are involved.",
-    "analogy": "Imagine a child on a swing. At the highest points, they momentarily stop, meaning maximum potential energy and zero kinetic energy. As they swing through the lowest point, their speed is greatest (max KE), and their height is lowest (min PE). The total 'swing energy' stays the same, continuously swapping between height energy and movement energy.",
-    "steps": [
-      "Identify equilibrium (max KE, min PE) and extreme positions (min KE, max PE).",
-      "Calculate total energy using maximum amplitude: $E = \\frac{1}{2} m \\omega^2 x_0^2$.",
-      "Understand that damping removes energy, reducing amplitude over time.",
-      "Recognise resonance as efficient energy transfer at natural frequency, causing large amplitudes."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "At what point in SHM is potential energy maximized?",
-      "back": "Potential energy is maximized when the object is at its maximum displacement (amplitude) from the equilibrium position."
-    },
-    {
-      "front": "When is kinetic energy maximum in SHM?",
-      "back": "Kinetic energy is maximum when the object passes through the equilibrium position ($x=0$)."
-    },
-    {
-      "front": "What is the formula for the total mechanical energy of an object in SHM?",
-      "back": "$E = \\frac{1}{2} m \\omega^2 x_0^2$"
-    },
-    {
-      "front": "How does damping affect the amplitude of an oscillating system?",
-      "back": "Damping dissipates energy from the system, causing the amplitude of oscillations to gradually decrease."
-    },
-    {
-      "front": "What is the primary cause of the large amplitude observed during resonance?",
-      "back": "Resonance causes a large amplitude due to highly efficient energy transfer from the external driving force to the oscillating system."
-    },
-    {
-      "front": "How do kinetic and potential energy change as an object in SHM moves from equilibrium to maximum displacement?",
-      "back": "As the object moves from equilibrium to maximum displacement, kinetic energy decreases while potential energy increases, with their sum (total energy) remaining constant."
-    },
-    {
-      "front": "What happens to total mechanical energy in an ideal SHM system?",
-      "back": "In an ideal system without damping, the total mechanical energy remains constant."
-    },
-    {
-      "front": "Give the formula for kinetic energy in SHM at displacement $x$.",
-      "back": "$KE = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$"
-    },
-    {
-      "front": "Give the formula for potential energy in SHM at displacement $x$.",
-      "back": "$PE = \\frac{1}{2} m \\omega^2 x^2$"
-    },
-    {
-      "front": "What is critical damping?",
-      "back": "Critical damping is the most efficient form of damping, allowing a system to return to equilibrium in the shortest time without oscillating."
-    },
-    {
-      "front": "What condition leads to resonance?",
-      "back": "Resonance occurs when the frequency of the external driving force matches the natural frequency of the oscillating system."
-    },
-    {
-      "front": "How does increased damping affect a resonance curve?",
-      "back": "Increased damping reduces the maximum amplitude at resonance and broadens the resonance curve."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -126,9 +60,22 @@
       "content": "Remember that total energy is constant in ideal SHM. If you know the amplitude, you can calculate the total energy, which simplifies finding KE or PE at any point!"
     },
     {
+      "type": "heading",
+      "content": "Graphical Representation of Energy in SHM"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between energy and displacement in SHM can be visualized with a graph. The potential energy ($PE = \\frac{1}{2} m \\omega^2 x^2$) is a parabola opening upwards, zero at equilibrium ($x=0$) and maximum at the amplitudes ($\\pm x_0$). The kinetic energy ($KE = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$) is an inverted parabola, maximum at equilibrium and zero at the amplitudes. The total energy ($E = KE + PE$) is a constant horizontal line, representing the conservation of energy. The points where the KE and PE graphs intersect are where the energy is split equally between kinetic and potential."
+    },
+    {
       "type": "workedExample",
       "question": "A 0.2 kg mass oscillates with SHM on a spring. Its angular frequency is 5 rad s\\text{-1} and its amplitude is 0.05 m. Calculate the kinetic energy when the displacement from equilibrium is 0.03 m.",
       "solution": "1.  Identify given values: $m = 0.2 \\text{ kg}$, $\\omega = 5 \\text{ rad s\\text{-1}}$, $x_0 = 0.05 \\text{ m}$, $x = 0.03 \\text{ m}$.\n2.  First, calculate the total energy (E) of the system using the amplitude: $E = \\frac{1}{2} m \\omega^2 x_0^2$\n    $E = \\frac{1}{2} (0.2) (5^2) (0.05^2) = \\frac{1}{2} (0.2) (25) (0.0025) = 0.00625 \\text{ J}$.\n3.  Next, calculate the potential energy (PE) at the given displacement: $PE = \\frac{1}{2} m \\omega^2 x^2$\n    $PE = \\frac{1}{2} (0.2) (5^2) (0.03^2) = \\frac{1}{2} (0.2) (25) (0.0009) = 0.00225 \\text{ J}$.\n4.  Finally, use $E = KE + PE$ to find kinetic energy: $KE = E - PE$\n    $KE = 0.00625 \\text{ J} - 0.00225 \\text{ J} = 0.00400 \\text{ J}$.\n5.  Alternatively, use the KE formula directly: $KE = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$\n    $KE = \\frac{1}{2} (0.2) (5^2) (0.05^2 - 0.03^2) = \\frac{1}{2} (0.2) (25) (0.0025 - 0.0009)$\n    $KE = (2.5) (0.0016) = 0.00400 \\text{ J}$.\n    "
+    },
+    {
+      "type": "workedExample",
+      "question": "A simple pendulum has a bob of mass 0.50 kg and oscillates with a period of 2.0 s. The amplitude of the oscillation is 8.0 cm. Calculate: (a) the total energy of the oscillation, and (b) the displacement at which the kinetic energy is equal to the potential energy.",
+      "solution": "1.  Identify given values and convert units: $m = 0.50 \\text{ kg}$, $T = 2.0 \\text{ s}$, $x_0 = 8.0 \\text{ cm} = 0.080 \\text{ m}$.\n2.  Calculate the angular frequency ($\\omega$): $\\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{2.0} = \\pi \\text{ rad s}^{-1}$.\n3.  **(a) Calculate the total energy (E):**\n    Use the formula $E = \\frac{1}{2} m \\omega^2 x_0^2$.\n    $E = \\frac{1}{2} (0.50) (\\pi^2) (0.080^2)$\n    $E = (0.25) (9.8696) (0.0064) \\approx 0.01579 \\text{ J}$.\n    Total Energy $E \\approx 0.016 \\text{ J}$ (to 2 s.f.).\n4.  **(b) Find the displacement (x) where KE = PE:**\n    The total energy is the sum $E = KE + PE$. If $KE = PE$, then we can substitute to get $E = PE + PE = 2 \\times PE$.\n    So, $\\frac{1}{2} m \\omega^2 x_0^2 = 2 \\times (\\frac{1}{2} m \\omega^2 x^2)$.\n5.  Simplify the equation by cancelling common terms ($\\frac{1}{2} m \\omega^2$):\n    $x_0^2 = 2x^2$\n    $x^2 = \\frac{x_0^2}{2}$\n    $x = \\pm \\frac{x_0}{\\sqrt{2}}$.\n6.  Calculate the numerical value for x:\n    $x = \\frac{0.080}{\\sqrt{2}} \\approx 0.05657 \\text{ m}$.\n    The displacement is $x \\approx 0.057 \\text{ m}$ (to 2 s.f.). This occurs on both sides of the equilibrium position."
     },
     {
       "type": "heading",
@@ -149,6 +96,10 @@
       ]
     },
     {
+      "type": "text",
+      "content": "The physical cause of damping is any force that opposes motion and is non-conservative, such as air resistance or friction within the material of a spring. In a car's suspension system, shock absorbers are designed to provide critical damping, preventing the car from bouncing excessively after hitting a bump. This ensures a smooth ride and maintains tyre contact with the road."
+    },
+    {
       "type": "heading",
       "content": "Resonance: Energy Gain"
     },
@@ -165,6 +116,10 @@
         "Damping limits the maximum amplitude at resonance.",
         "Increased damping makes the resonance curve broader and lower."
       ]
+    },
+    {
+      "type": "text",
+      "content": "Resonance has many important applications. In radio receivers, tuning circuits are adjusted to resonate at the frequency of a specific radio station, amplifying its signal while ignoring others. Magnetic Resonance Imaging (MRI) uses resonance of atomic nuclei in a magnetic field to create detailed images of body tissues. However, resonance can also be destructive, as famously demonstrated by the collapse of the Tacoma Narrows Bridge in 1940, where wind-induced oscillations matched the bridge's natural frequency."
     },
     {
       "type": "examTip",
@@ -193,6 +148,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe the continuous interconversion between kinetic and potential energy in SHM.",
+    "Apply formulas to calculate kinetic, potential, and total energy in an SHM system.",
+    "Explain the effects of damping and resonance on energy transfer and amplitude in oscillations."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a child on a swing. At the highest points, they momentarily stop, meaning maximum potential energy and zero kinetic energy. As they swing through the lowest point, their speed is greatest (max KE), and their height is lowest (min PE). The total 'swing energy' stays the same, continuously swapping between height energy and movement energy."
+  },
   "faq": [
     {
       "q": "Why is total energy constant in ideal SHM?",
@@ -207,13 +170,67 @@
       "a": "Damping and resonance are opposing forces in an oscillating system. Resonance causes an amplitude increase by adding energy, while damping reduces amplitude by removing energy. Higher damping levels will significantly reduce the peak amplitude achieved at resonance and make the resonance curve broader."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "At what point in SHM is potential energy maximized?",
+      "back": "Potential energy is maximized when the object is at its maximum displacement (amplitude) from the equilibrium position."
+    },
+    {
+      "front": "When is kinetic energy maximum in SHM?",
+      "back": "Kinetic energy is maximum when the object passes through the equilibrium position ($x=0$)."
+    },
+    {
+      "front": "What is the formula for the total mechanical energy of an object in SHM?",
+      "back": "$E = \\frac{1}{2} m \\omega^2 x_0^2$"
+    },
+    {
+      "front": "How does damping affect the amplitude of an oscillating system?",
+      "back": "Damping dissipates energy from the system, causing the amplitude of oscillations to gradually decrease."
+    },
+    {
+      "front": "What is the primary cause of the large amplitude observed during resonance?",
+      "back": "Resonance causes a large amplitude due to highly efficient energy transfer from the external driving force to the oscillating system."
+    },
+    {
+      "front": "How do kinetic and potential energy change as an object in SHM moves from equilibrium to maximum displacement?",
+      "back": "As the object moves from equilibrium to maximum displacement, kinetic energy decreases while potential energy increases, with their sum (total energy) remaining constant."
+    },
+    {
+      "front": "What happens to total mechanical energy in an ideal SHM system?",
+      "back": "In an ideal system without damping, the total mechanical energy remains constant."
+    },
+    {
+      "front": "Give the formula for kinetic energy in SHM at displacement $x$.",
+      "back": "$KE = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$"
+    },
+    {
+      "front": "Give the formula for potential energy in SHM at displacement $x$.",
+      "back": "$PE = \\frac{1}{2} m \\omega^2 x^2$"
+    },
+    {
+      "front": "What is critical damping?",
+      "back": "Critical damping is the most efficient form of damping, allowing a system to return to equilibrium in the shortest time without oscillating."
+    },
+    {
+      "front": "What condition leads to resonance?",
+      "back": "Resonance occurs when the frequency of the external driving force matches the natural frequency of the oscillating system."
+    },
+    {
+      "front": "How does increased damping affect a resonance curve?",
+      "back": "Increased damping reduces the maximum amplitude at resonance and broadens the resonance curve."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "17.2.1",
+    "17.2.2"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/17-2-energy-in-simple-harmonic-motion.png",
     "alt": "Senpai Corner reference diagram for 17.2 Energy in simple harmonic motion"
-  }
+  },
+  "updated": "2026-06-26"
 }

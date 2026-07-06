@@ -6,69 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Energy conservation (5.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Apply the principle of energy conservation to solve problems.",
-    "Calculate kinetic and gravitational potential energy changes using relevant formulas.",
-    "Understand and calculate work done, power, and efficiency in various physical systems."
-  ],
-  "simpleExplanation": {
-    "title": "Energy: The Ultimate Shape-Shifter!",
-    "summary": "Energy is never truly gone; it just changes its form. Imagine your phone battery losing charge – that energy doesn't disappear; it powers the screen, creates sound, and generates some heat, all different forms of energy.",
-    "analogy": "Think of a playground slide. When you're at the top, you have lots of 'slide potential energy'. As you slide down, that potential energy turns into 'sliding motion energy' (kinetic energy). Even if your bottom gets a bit warm due to friction, the total energy involved in your slide is conserved, just transformed.",
-    "steps": [
-      "Identify all forms of energy present at the start and end (e.g., kinetic, potential, internal).",
-      "Account for energy transformations between these forms (e.g., GPE converting to KE).",
-      "Consider any energy 'losses' to unwanted forms, like heat from friction or air resistance.",
-      "Apply the fundamental principle: total energy before = total energy after, in a closed system."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the fundamental principle of energy conservation in a closed system?",
-      "back": "Energy cannot be created or destroyed, only transformed, so the total energy remains constant."
-    },
-    {
-      "front": "How is kinetic energy dependent on an object's mass and velocity?",
-      "back": "It is directly proportional to mass and the square of velocity ($KE = \\frac{1}{2}mv^2$)."
-    },
-    {
-      "front": "Under what condition is work done on an object?",
-      "back": "Work is done only if a force causes displacement in the direction of the applied force."
-    },
-    {
-      "front": "What does an efficiency less than 1 (or 100%) imply for a real system?",
-      "back": "It implies some input energy is inevitably lost, typically as heat or sound, rather than being converted into useful output."
-    },
-    {
-      "front": "Can the reference point for calculating gravitational potential energy be changed?",
-      "back": "Yes, the reference point can be chosen arbitrarily, as only the change in vertical height ($\\Delta h$) is significant."
-    },
-    {
-      "front": "What is the formula for work done when force and displacement are in the same direction?",
-      "back": "$W = F \\times d$"
-    },
-    {
-      "front": "Define power in terms of energy and time.",
-      "back": "Power is the rate at which energy is transferred or work is performed ($P = \\frac{\\Delta E}{\\Delta t}$)."
-    },
-    {
-      "front": "How can power be calculated if you know the force and velocity?",
-      "back": "$P = Fv$"
-    },
-    {
-      "front": "What is meant by a 'closed system' in the context of energy conservation?",
-      "back": "A system where no matter or energy can enter or leave from its surroundings."
-    },
-    {
-      "front": "What happens to energy 'lost' due to air resistance?",
-      "back": "It is converted into internal energy (heat and sound) of the object and the surroundings."
-    },
-    {
-      "front": "What is the formula for Gravitational Potential Energy (GPE)?",
-      "back": "$GPE = mgh$"
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -133,11 +71,23 @@
     },
     {
       "type": "text",
-      "content": "When energy is transferred, we call it **work done**. Work is done when a force causes an object to move a certain distance in the direction of that force. Think of pushing a box across a floor – you're doing work on it."
+      "content": "When energy is transferred, we call it **work done**. Work is done when a force causes an object to move a certain distance. Think of pushing a box across a floor – you're doing work on it. If the force and displacement are in the same direction, the calculation is simple:"
     },
     {
       "type": "formula",
-      "content": "$W = Fd$ (where force $F$ and displacement $d$ are in the same direction)"
+      "content": "$W = Fd$"
+    },
+    {
+      "type": "text",
+      "content": "What if the force is not in the same direction as the displacement? For example, pulling a suitcase with a handle at an angle. In this case, only the component of the force that acts in the direction of motion does work. We use the formula:"
+    },
+    {
+      "type": "formula",
+      "content": "$W = Fd \\cos \\theta$"
+    },
+    {
+      "type": "text",
+      "content": "Here, $\\theta$ is the angle between the force vector and the displacement vector. If the force is perpendicular to the displacement ($\\theta = 90°$), then $\\cos(90°) = 0$, and no work is done. This is why the gravitational force does no work on an object moving horizontally."
     },
     {
       "type": "text",
@@ -149,19 +99,24 @@
     },
     {
       "type": "text",
-      "content": "Finally, **efficiency** tells us how effectively a system converts input energy into useful output energy. No real system is 100% efficient because some energy is always 'lost' to unwanted forms, typically heat or sound."
+      "content": "The formula $P = Fv$ is particularly useful for objects moving at a constant velocity $v$ against a constant force $F$. It's derived from $P = W/t = (Fd)/t$ and knowing that $v = d/t$ for constant velocity."
+    },
+    {
+      "type": "text",
+      "content": "Finally, **efficiency** tells us how effectively a system converts input energy into useful output energy. No real system is 100% efficient because some energy is always 'lost' to unwanted forms, typically heat or sound. For example, an electric motor lifting a mass gains useful GPE, but some input electrical energy is wasted as heat in the motor's coils and sound from its operation."
     },
     {
       "type": "formula",
-      "content": "$Efficiency = \\frac{\\text{Useful Energy Output}}{\\text{Total Energy Input}}$"
+      "content": "$Efficiency = \\frac{\\text{Useful Energy Output}}{\\text{Total Energy Input}} = \\frac{\\text{Useful Power Output}}{\\text{Total Power Input}}$"
     },
     {
       "type": "keyPoints",
       "items": [
         "Work done is energy transferred by a force causing displacement.",
-        "Work requires displacement *in the direction of* the force.",
+        "Use $W = Fd \\cos \\theta$ when force and displacement are at an angle $\\theta$.",
         "Power measures the rate of energy transfer or work done.",
-        "Efficiency compares useful output energy to total input energy.",
+        "For constant velocity, power can be calculated as $P = Fv$.",
+        "Efficiency compares useful output energy/power to total input energy/power.",
         "Real systems always have efficiency less than 100% due to energy losses."
       ]
     },
@@ -171,8 +126,13 @@
       "solution": "1.  (a) Initial GPE: $GPE = mgh = 2.0 \\text{ kg} \\times 9.81 \\text{ m/s}^2 \\times 5.0 \\text{ m} = 98.1 \\text{ J}$.\n2.  (b) By conservation of energy (no air resistance): Initial GPE = Final KE.\n    $98.1 \\text{ J} = \\frac{1}{2}mv^2 = \\frac{1}{2}(2.0 \\text{ kg})v^2$\n    $98.1 = v^2$\n    $v = \\sqrt{98.1} \\approx 9.90 \\text{ m/s}$.\n3.  (c) With air resistance: Initial GPE = Final KE + Work done against air resistance.\n    Initial GPE = $98.1 \\text{ J}$.\n    Actual Final KE = $\\frac{1}{2}mv_{actual}^2 = \\frac{1}{2}(2.0 \\text{ kg})(8.5 \\text{ m/s})^2 = 1.0 \\times 72.25 = 72.25 \\text{ J}$.\n    Work done against air resistance = Initial GPE - Actual Final KE\n    Work done against air resistance = $98.1 \\text{ J} - 72.25 \\text{ J} = 25.85 \\text{ J}$."
     },
     {
+      "type": "workedExample",
+      "question": "A car of mass 1200 kg travels at a constant speed of 18 m/s up a road inclined at 6.0° to the horizontal. The car's engine works at a constant rate of 45 kW.\n(a) Calculate the work done against the gravitational force in 10 seconds.\n(b) Calculate the total work done by the engine in 10 seconds.\n(c) Determine the magnitude of the total resistive force acting on the car. (Take $g = 9.81 \\text{ m/s}^2$).",
+      "solution": "1.  (a) First, find the vertical height gained in 10 seconds. \n    Distance along the slope, $d = v \\times t = 18 \\text{ m/s} \\times 10 \\text{ s} = 180 \\text{ m}$.\n    Vertical height gained, $h = d \\sin(\\theta) = 180 \\text{ m} \\times \\sin(6.0°) = 18.81 \\text{ m}$.\n    Work done against gravity (Gain in GPE) = $mgh = 1200 \\text{ kg} \\times 9.81 \\text{ m/s}^2 \\times 18.81 \\text{ m} = 221449 \\text{ J} \\approx 2.2 \\times 10^5 \\text{ J}$.\n\n2.  (b) The engine's power is the rate at which it does work. \n    Total work done by engine, $W_{engine} = P \\times t = 45000 \\text{ W} \\times 10 \\text{ s} = 450000 \\text{ J} = 4.5 \\times 10^5 \\text{ J}$.\n\n3.  (c) By the principle of energy conservation, the work done by the engine is converted into GPE and work done against resistive forces (since KE is constant).\n    $W_{engine} = \\Delta GPE + W_{resistive}$\n    $450000 \\text{ J} = 221449 \\text{ J} + W_{resistive}$\n    Work done against resistive force, $W_{resistive} = 450000 - 221449 = 228551 \\text{ J}$.\n    Since $W_{resistive} = F_{resistive} \\times d$, we can find the force:\n    $F_{resistive} = \\frac{W_{resistive}}{d} = \\frac{228551 \\text{ J}}{180 \\text{ m}} = 1269.7 \\text{ N} \\approx 1300 \\text{ N}$ (to 2 s.f.).\n\n    Alternatively, using forces: \n    Driving force from engine, $F_{driving} = \\frac{P}{v} = \\frac{45000 \\text{ W}}{18 \\text{ m/s}} = 2500 \\text{ N}$.\n    At constant velocity, driving force equals opposing forces.\n    $F_{driving} = F_{resistive} + mg\\sin(\\theta)$\n    $2500 \\text{ N} = F_{resistive} + (1200 \\text{ kg} \\times 9.81 \\text{ m/s}^2 \\times \\sin(6.0°))$\n    $2500 \\text{ N} = F_{resistive} + 1230 \\text{ N}$\n    $F_{resistive} = 2500 - 1230 = 1270 \\text{ N} \\approx 1300 \\text{ N}$ (to 2 s.f.)."
+    },
+    {
       "type": "examTip",
-      "content": "Always state the principle of energy conservation clearly in problem-solving. Remember to account for all forms of energy, especially energy losses due to resistive forces like air resistance or friction, as these are common pitfalls that examiners look for."
+      "content": "Always state the principle of energy conservation clearly in problem-solving. Remember to account for all forms of energy, especially energy losses due to resistive forces like air resistance or friction, as these are common pitfalls that examiners look for. When a question mentions 'constant speed', it's a big clue that the net force is zero and the change in kinetic energy is zero."
     },
     {
       "type": "practice",
@@ -197,6 +157,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Apply the principle of energy conservation to solve problems.",
+    "Calculate kinetic and gravitational potential energy changes using relevant formulas.",
+    "Understand and calculate work done (including when force is at an angle to displacement), power, and efficiency in various physical systems."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of a playground slide. When you're at the top, you have lots of 'slide potential energy'. As you slide down, that potential energy turns into 'sliding motion energy' (kinetic energy). Even if your bottom gets a bit warm due to friction, the total energy involved in your slide is conserved, just transformed."
+  },
   "faq": [
     {
       "q": "Why is it impossible for a machine to be 100% efficient?",
@@ -204,20 +172,91 @@
     },
     {
       "q": "When should I use $W = Fd$ versus $W = Fd \\cos \\theta$ for work done?",
-      "a": "You use $W = Fd$ when the force applied is exactly in the same direction as the displacement. You use $W = Fd \\cos \\theta$ when the force and displacement are at an angle $\\theta$ to each other, as it correctly accounts for only the component of the force acting along the direction of motion. For Cambridge AS Physics, $W=Fd$ is usually sufficient if the context implies collinear force and displacement."
+      "a": "You use $W = Fd$ when the force applied is exactly in the same direction as the displacement. You use $W = Fd \\cos \\theta$ when the force and displacement are at an angle $\\theta$ to each other, as it correctly accounts for only the component of the force acting along the direction of motion. For Cambridge AS Physics, you must be prepared to use both depending on the problem."
     },
     {
       "q": "Can gravitational potential energy ever be negative?",
       "a": "Yes, GPE can be negative if your chosen reference point for zero potential energy is *above* the object's current position. Since only the *change* in GPE is physically significant, the absolute value doesn't matter as long as your reference point is consistent throughout the problem."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the fundamental principle of energy conservation in a closed system?",
+      "back": "Energy cannot be created or destroyed, only transformed, so the total energy remains constant."
+    },
+    {
+      "front": "How is kinetic energy dependent on an object's mass and velocity?",
+      "back": "It is directly proportional to mass and the square of velocity ($KE = \\frac{1}{2}mv^2$)."
+    },
+    {
+      "front": "Under what condition is work done on an object?",
+      "back": "Work is done only if a force causes displacement in the direction of the applied force."
+    },
+    {
+      "front": "What does an efficiency less than 1 (or 100%) imply for a real system?",
+      "back": "It implies some input energy is inevitably lost, typically as heat or sound, rather than being converted into useful output."
+    },
+    {
+      "front": "Can the reference point for calculating gravitational potential energy be changed?",
+      "back": "Yes, the reference point can be chosen arbitrarily, as only the change in vertical height ($\\Delta h$) is significant."
+    },
+    {
+      "front": "What is the formula for work done when force and displacement are in the same direction?",
+      "back": "$W = F \\times d$"
+    },
+    {
+      "front": "Define power in terms of energy and time.",
+      "back": "Power is the rate at which energy is transferred or work is performed ($P = \\frac{\\Delta E}{\\Delta t}$)."
+    },
+    {
+      "front": "How can power be calculated if you know the force and velocity?",
+      "back": "$P = Fv$, this is especially useful when an object moves at a constant velocity against a force."
+    },
+    {
+      "front": "What is meant by a 'closed system' in the context of energy conservation?",
+      "back": "A system where no matter or energy can enter or leave from its surroundings."
+    },
+    {
+      "front": "What happens to energy 'lost' due to air resistance?",
+      "back": "It is converted into internal energy (heat and sound) of the object and the surroundings."
+    },
+    {
+      "front": "What is the formula for Gravitational Potential Energy (GPE)?",
+      "back": "$GPE = mgh$"
+    },
+    {
+      "front": "When is the formula $W = Fd \\cos \\theta$ used to calculate work done?",
+      "back": "When the applied force $F$ and the displacement $d$ are not in the same direction. $\\theta$ is the angle between the force and displacement vectors."
+    },
+    {
+      "front": "Why does the gravitational force do no work on a satellite in a perfectly circular orbit?",
+      "back": "Because the gravitational force is always perpendicular to the satellite's velocity (displacement direction). The angle $\\theta$ is 90°, and $\\cos(90°) = 0$, so no work is done."
+    },
+    {
+      "front": "How can efficiency be expressed in terms of power?",
+      "back": "Efficiency can be calculated as the ratio of useful power output to total power input: $Efficiency = \\frac{\\text{Useful Power Output}}{\\text{Total Power Input}}$."
+    },
+    {
+      "front": "What is the relationship between the work done by the driving force of a car and the resistive forces when it moves at a constant velocity?",
+      "back": "At constant velocity, the rate of work done by the driving force is equal to the rate at which energy is dissipated by resistive forces (like air resistance and friction). The driving force itself equals the total resistive force."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "5.1.1",
+    "5.1.2",
+    "5.1.3",
+    "5.1.4",
+    "5.1.5",
+    "5.1.6",
+    "5.1.7"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/5-1-energy-conservation.png",
     "alt": "Senpai Corner reference diagram for 5.1 Energy conservation"
-  }
+  },
+  "updated": "2026-06-26"
 }

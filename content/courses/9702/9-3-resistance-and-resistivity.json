@@ -7,64 +7,6 @@
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Resistance and resistivity (9.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
   "durationMin": 20,
-  "learningObjectives": [
-    "Define and distinguish between resistance and resistivity, including their formulas and units.",
-    "Explain Ohm's Law and differentiate between ohmic and non-ohmic components based on their I-V characteristics.",
-    "Describe the working principles and applications of thermistors, LDRs, and superconductors."
-  ],
-  "simpleExplanation": {
-    "title": "Understanding Electrical Resistance",
-    "summary": "Imagine electricity as water flowing through a pipe. Resistance is like friction slowing the water down, while resistivity is an inherent property of the pipe material itself – some materials are naturally 'stickier' than others.",
-    "analogy": "Think of electrons as people trying to run through a crowd. Resistance is how hard it is to push through the crowd. Resistivity is about how dense and obstructive the people *themselves* are, regardless of the size or shape of the room.",
-    "steps": [
-      "**Resistance (R)**: The total opposition a component offers to current flow.",
-      "**Ohm's Law**: For certain materials, R is constant if temperature doesn't change.",
-      "**Resistivity (ρ)**: An intrinsic property of the material, not the component's shape.",
-      "**Special Components**: Thermistors, LDRs, and superconductors have unique resistance behaviours."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the formula for resistance in terms of potential difference and current?",
-      "back": "Resistance ($R$) is defined as the ratio of potential difference ($V$) across a component to the current ($I$) flowing through it: $R = V/I$."
-    },
-    {
-      "front": "How does the resistance of a metal conductor change with increasing temperature, and why?",
-      "back": "It increases. Higher temperatures cause metal atoms to vibrate more, leading to more frequent collisions with charge carriers (electrons), impeding their flow."
-    },
-    {
-      "front": "Define resistivity ($\rho$) and state its formula.",
-      "back": "Resistivity ($\rho$) is an intrinsic material property that quantifies its inherent ability to resist charge flow, independent of its physical dimensions. Formula: $\\rho = \\frac{RA}{L}$."
-    },
-    {
-      "front": "Describe the resistance behaviour of a thermistor and an LDR.",
-      "back": "A thermistor's resistance *decreases* as temperature *increases*. An LDR's resistance *decreases* as light intensity *increases*."
-    },
-    {
-      "front": "What is a superconductor, and what is a key application?",
-      "back": "A superconductor is a material that exhibits zero electrical resistivity when cooled below a specific critical temperature. A key application is in powerful electromagnets (e.g., for MRI scanners or maglev trains)."
-    },
-    {
-      "front": "What is Ohm's Law and for which type of conductor does it apply?",
-      "back": "Ohm's Law states that for an **ohmic conductor**, current is directly proportional to potential difference, provided its temperature remains constant."
-    },
-    {
-      "front": "How does a filament lamp demonstrate non-ohmic behaviour?",
-      "back": "Its resistance increases as the current (and thus temperature) rises. This is due to increased atomic vibrations impeding electron flow, making its I-V graph non-linear."
-    },
-    {
-      "front": "What is the key difference in resistance behaviour between an ideal ammeter and an ideal voltmeter?",
-      "back": "An ideal ammeter has **zero resistance** to not affect the circuit current, while an ideal voltmeter has **infinite resistance** to prevent current from flowing through it, ensuring accurate voltage measurement."
-    },
-    {
-      "front": "Explain why semiconductor diodes are considered non-ohmic components.",
-      "back": "Their resistance is not constant; it's very low in forward bias (above a threshold voltage) and extremely high in reverse bias, leading to a non-linear I-V graph."
-    },
-    {
-      "front": "What are the units for resistance and resistivity?",
-      "back": "The unit for resistance ($R$) is the Ohm ($\\Omega$). The unit for resistivity ($\\rho$) is the Ohm-metre ($\\Omega$m)."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -91,6 +33,22 @@
         "Resistance is measured in ohms, Ω.",
         "Ohm’s Law states that the potential difference (V) is directly proportional to the Current (I) that flows through a conductor. 𝑅 = 𝑉 𝐼.",
         "This law is only obeyed provided that the temperature and other physical properties remain constant and that the conductor is ohmic."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "A Microscopic Look at Resistance"
+    },
+    {
+      "type": "text",
+      "content": "On a microscopic level, resistance in a metal conductor arises from collisions between the free-moving charge carriers (electrons) and the fixed positive ions that make up the crystal lattice. When a potential difference is applied, electrons are accelerated by the electric field, but these collisions hinder their overall progress, causing them to move with an average 'drift velocity'. The energy transferred during these collisions is dissipated as heat."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Resistance is caused by collisions between electrons and lattice ions.",
+        "These collisions convert electrical energy into thermal energy (Joule heating).",
+        "Increased temperature causes ions to vibrate with greater amplitude, increasing the frequency of collisions and thus increasing resistance."
       ]
     },
     {
@@ -187,6 +145,11 @@
       "type": "workedExample",
       "question": "A copper wire has a resistivity of $1.68 \\times 10^{-8} \\Omega \\text{m}$. If the wire is 2.5 metres long and has a diameter of 0.5 mm, calculate its resistance.",
       "solution": "1. **Convert diameter to radius and metres:**\n   Diameter = 0.5 mm = $0.5 \\times 10^{-3} \\text{ m}$\n   Radius ($r$) = Diameter / 2 = $0.25 \\times 10^{-3} \\text{ m}$\n\n2. **Calculate cross-sectional area ($A$):**\n   $A = \\pi r^2 = \\pi (0.25 \\times 10^{-3})^2 \\text{ m}^2$\n   $A \\approx 1.963 \\times 10^{-7} \\text{ m}^2$\n\n3. **Use the formula $R = \\frac{\\rho L}{A}$:**\n   $R = \\frac{(1.68 \\times 10^{-8} \\Omega \\text{m}) \\times (2.5 \\text{ m})}{1.963 \\times 10^{-7} \\text{ m}^2}$\n\n4. **Calculate the resistance:**\n   $R \\approx 0.214 \\Omega$\n\n   The resistance of the copper wire is approximately **$0.21 \\Omega$** (to 2 significant figures)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 50.0 cm length of nichrome wire has a diameter of 0.80 mm. When a potential difference of 2.0 V is applied across its ends, a current of 1.83 A is measured. Calculate the resistivity of the nichrome.",
+      "solution": "This problem requires combining Ohm's Law with the resistivity formula.\n\n1. **Calculate the wire's resistance ($R$) using Ohm's Law:**\n   $R = V / I$\n   $R = 2.0 \\text{ V} / 1.83 \\text{ A} \\approx 1.093 \\text{ } \\Omega$\n\n2. **Calculate the wire's cross-sectional area ($A$):**\n   First, find the radius in metres:\n   Diameter = 0.80 mm = $0.80 \\times 10^{-3} \\text{ m}$\n   Radius ($r$) = Diameter / 2 = $0.40 \\times 10^{-3} \\text{ m}$\n   Now, calculate the area:\n   $A = \\pi r^2 = \\pi (0.40 \\times 10^{-3})^2 \\approx 5.027 \\times 10^{-7} \\text{ m}^2$\n\n3. **Calculate the resistivity ($\\rho$) using the resistivity formula:**\n   Rearrange $R = \\frac{\\rho L}{A}$ to solve for $\\rho$: $\\rho = \\frac{RA}{L}$\n   Convert length to metres: $L = 50.0 \\text{ cm} = 0.500 \\text{ m}$\n   Substitute the values:\n   $\\rho = \\frac{(1.093 \\text{ } \\Omega) \\times (5.027 \\times 10^{-7} \\text{ m}^2)}{0.500 \\text{ m}}$\n   $\\rho \\approx 1.099 \\times 10^{-6} \\text{ } \\Omega \\text{m}$\n\n4. **Final Answer:**\n   The input values have 2 or 3 significant figures. Rounding to 2 significant figures gives:\n   $\\rho = 1.1 \\times 10^{-6} \\text{ } \\Omega \\text{m}$"
     },
     {
       "type": "heading",
@@ -287,6 +250,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and distinguish between resistance and resistivity, including their formulas and units.",
+    "Explain Ohm's Law and differentiate between ohmic and non-ohmic components based on their I-V characteristics.",
+    "Describe the working principles and applications of thermistors, LDRs, and superconductors."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of electrons as people trying to run through a crowd. Resistance is how hard it is to push through the crowd. Resistivity is about how dense and obstructive the people *themselves* are, regardless of the size or shape of the room."
+  },
   "faq": [
     {
       "q": "What is the key difference between resistance and resistivity?",
@@ -301,13 +272,81 @@
       "a": "Despite requiring very low temperatures, superconductors are crucial for applications needing powerful, stable magnetic fields without energy loss. Examples include MRI scanners for medical imaging, maglev (magnetic levitation) trains, and potentially for highly efficient power transmission grids in the future."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the formula for resistance in terms of potential difference and current?",
+      "back": "Resistance ($R$) is defined as the ratio of potential difference ($V$) across a component to the current ($I$) flowing through it: $R = V/I$."
+    },
+    {
+      "front": "How does the resistance of a metal conductor change with increasing temperature, and why?",
+      "back": "It increases. Higher temperatures cause metal atoms to vibrate more, leading to more frequent collisions with charge carriers (electrons), impeding their flow."
+    },
+    {
+      "front": "Define resistivity ($\rho$) and state its formula.",
+      "back": "Resistivity ($\rho$) is an intrinsic material property that quantifies its inherent ability to resist charge flow, independent of its physical dimensions. Formula: $\\rho = \\frac{RA}{L}$."
+    },
+    {
+      "front": "Describe the resistance behaviour of a thermistor and an LDR.",
+      "back": "A thermistor's resistance *decreases* as temperature *increases*. An LDR's resistance *decreases* as light intensity *increases*."
+    },
+    {
+      "front": "What is a superconductor, and what is a key application?",
+      "back": "A superconductor is a material that exhibits zero electrical resistivity when cooled below a specific critical temperature. A key application is in powerful electromagnets (e.g., for MRI scanners or maglev trains)."
+    },
+    {
+      "front": "What is Ohm's Law and for which type of conductor does it apply?",
+      "back": "Ohm's Law states that for an **ohmic conductor**, current is directly proportional to potential difference, provided its temperature remains constant."
+    },
+    {
+      "front": "How does a filament lamp demonstrate non-ohmic behaviour?",
+      "back": "Its resistance increases as the current (and thus temperature) rises. This is due to increased atomic vibrations impeding electron flow, making its I-V graph non-linear."
+    },
+    {
+      "front": "What is the key difference in resistance behaviour between an ideal ammeter and an ideal voltmeter?",
+      "back": "An ideal ammeter has **zero resistance** to not affect the circuit current, while an ideal voltmeter has **infinite resistance** to prevent current from flowing through it, ensuring accurate voltage measurement."
+    },
+    {
+      "front": "Explain why semiconductor diodes are considered non-ohmic components.",
+      "back": "Their resistance is not constant; it's very low in forward bias (above a threshold voltage) and extremely high in reverse bias, leading to a non-linear I-V graph."
+    },
+    {
+      "front": "What are the units for resistance and resistivity?",
+      "back": "The unit for resistance ($R$) is the Ohm ($\\Omega$). The unit for resistivity ($\\rho$) is the Ohm-metre ($\\Omega$m)."
+    },
+    {
+      "front": "Sketch the I-V graph for a filament lamp. How does resistance change along the curve?",
+      "back": "The graph is a curve that starts at the origin and bends towards the voltage axis. As voltage (and current) increases, the gradient (I/V) decreases, meaning resistance (V/I) increases. This is due to the filament heating up."
+    },
+    {
+      "front": "Sketch the I-V graph for a semiconductor diode.",
+      "back": "The graph shows almost zero current in reverse bias (negative V). In forward bias (positive V), current is negligible until a threshold voltage (≈0.7V for silicon), after which it increases exponentially. This shows very high resistance in reverse and low resistance in forward bias."
+    },
+    {
+      "front": "How does the cross-sectional area of a wire affect its resistance?",
+      "back": "Resistance is inversely proportional to the cross-sectional area ($R \\propto 1/A$). A thicker wire (larger A) has lower resistance because there are more pathways for the charge carriers to flow."
+    },
+    {
+      "front": "Why does the resistance of an NTC thermistor decrease as temperature increases?",
+      "back": "In a semiconductor like a thermistor, increasing temperature provides energy to release more charge carriers (electrons and holes) from the atomic lattice, increasing the number density of charge carriers ($n$). This effect outweighs the increased lattice vibrations, leading to a decrease in resistance."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.3.1",
+    "9.3.2",
+    "9.3.3",
+    "9.3.4",
+    "9.3.5",
+    "9.3.6",
+    "9.3.7",
+    "9.3.8"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/9-3-resistance-and-resistivity.png",
     "alt": "Senpai Corner reference diagram for 9.3 Resistance and resistivity"
-  }
+  },
+  "updated": "2026-06-26"
 }

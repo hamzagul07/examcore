@@ -6,70 +6,7 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — income statements and statements of financial position for sole traders.",
-  "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Prepare statement of profit or loss for sole trader.",
-    "Prepare statement of financial position.",
-    "Calculate gross profit and profit for the year.",
-    "Explain drawings and capital account."
-  ],
-  "simpleExplanation": {
-    "title": "Accounts for one owner",
-    "summary": "Sole trader accounts show trading profit, expenses, and net profit — the SOFP lists assets, liabilities, and owner's capital minus drawings.",
-    "steps": [
-      "Trading account — sales − COGS = gross profit.",
-      "SPL — gross profit − expenses = net profit.",
-      "SOFP — assets = capital + liabilities.",
-      "Drawings — reduce capital, not an expense."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "COGS formula?",
-      "back": "Opening inventory + Purchases − Closing inventory."
-    },
-    {
-      "front": "Drawings treatment?",
-      "back": "Reduce capital on SOFP — never an expense on SPL."
-    },
-    {
-      "front": "Closing capital?",
-      "back": "Opening capital + Net profit − Drawings."
-    },
-    {
-      "front": "Vertical SPL order?",
-      "back": "Revenue → COGS → Gross profit → Expenses → Net profit."
-    },
-    {
-      "front": "Current assets examples?",
-      "back": "Inventory, trade receivables, bank, prepayments."
-    },
-    {
-      "front": "Why no appropriation?",
-      "back": "Single owner — all profit belongs to them."
-    },
-    {
-      "front": "What is the 'business entity concept' in the context of a sole trader?",
-      "back": "The principle that the business is treated as separate from its owner for accounting purposes, even though there is no legal separation. This means personal transactions are kept separate from business records."
-    },
-    {
-      "front": "How are 'drawings' treated in the final accounts of a sole trader?",
-      "back": "Drawings are not an expense in the Income Statement. They are deducted from capital in the 'Financed by' section of the Statement of Financial Position."
-    },
-    {
-      "front": "What is the formula for calculating closing capital for a sole trader?",
-      "back": "Opening Capital + Additional Capital Introduced + Profit for the Year – Drawings = Closing Capital."
-    },
-    {
-      "front": "An owner pays their personal car insurance from the business bank account. What is the double entry?",
-      "back": "Dr Drawings account, Cr Bank account. This is not a business expense and does not affect the Income Statement."
-    },
-    {
-      "front": "Where is the 'profit for the year' figure used after being calculated in the Income Statement?",
-      "back": "It is added to the opening capital balance in the Statement of Financial Position as part of the calculation for closing capital."
-    }
-  ],
+  "durationMin": 35,
   "sections": [
     {
       "type": "intro",
@@ -131,6 +68,38 @@
       ]
     },
     {
+      "type": "heading",
+      "content": "Key Adjustments in Final Accounts"
+    },
+    {
+      "type": "text",
+      "content": "To ensure the financial statements present a true and fair view and adhere to the accruals concept, several adjustments are often needed at the end of the accounting period. These adjustments correct the initial trial balance figures for items like depreciation, accruals, and prepayments."
+    },
+    {
+      "type": "text",
+      "content": "1. Depreciation"
+    },
+    {
+      "type": "text",
+      "content": "Depreciation is the systematic allocation of the cost of a non-current asset over its useful life. It is a non-cash expense that reflects the asset's wear and tear or obsolescence. The double entry is: **Debit Depreciation Expense** (in the Income Statement) and **Credit Accumulated Depreciation** (in the Statement of Financial Position, where it is deducted from the asset's cost)."
+    },
+    {
+      "type": "text",
+      "content": "2. Accruals (Accrued Expenses)"
+    },
+    {
+      "type": "text",
+      "content": "Accruals are expenses that have been incurred by the business during the accounting period but have not yet been paid for by the year-end. To match costs with revenues, these must be included. The double entry is: **Debit the relevant Expense account** (increasing the expense in the Income Statement) and **Credit Accruals/Accrued Expenses** (creating a current liability in the Statement of Financial Position)."
+    },
+    {
+      "type": "text",
+      "content": "3. Prepayments (Prepaid Expenses)"
+    },
+    {
+      "type": "text",
+      "content": "Prepayments are expenses that have been paid for in advance, where the benefit extends into the next accounting period. The portion of the payment that relates to the future period must be removed from the current year's expenses. The double entry is: **Debit Prepayments** (creating a current asset in the Statement of Financial Position) and **Credit the relevant Expense account** (reducing the expense in the Income Statement)."
+    },
+    {
       "type": "examTip",
       "content": "The calculation of closing capital is a multi-step process that carries significant marks. Memorise the formula and ensure you can identify all its components from a trial balance and additional information. A common error is to treat drawings as an expense; remember they only affect the Statement of Financial Position."
     },
@@ -155,6 +124,11 @@
       "type": "workedExample",
       "question": "Extract: Sales $120,000; opening inventory $8,000; purchases $62,000; closing inventory $10,000; expenses $28,000; capital opening $45,000; drawings $12,000. Calculate gross profit, net profit, and closing capital.",
       "solution": "**COGS** = 8,000 + 62,000 − 10,000 = **$60,000**\n**Gross profit** = 120,000 − 60,000 = **$60,000**\n**Net profit** = 60,000 − 28,000 = **$32,000**\n\n**Closing capital** = 45,000 + 32,000 − 12,000 = **$65,000**\n\n**SOFP check:** Total assets = **Capital $65,000 + Liabilities**."
+    },
+    {
+      "type": "workedExample",
+      "question": "The following trial balance was extracted from the books of Ben's Bikes, a sole trader, on 31 March 2024.\n\n| Account | Dr ($) | Cr ($) |\n| :--- | ---: | ---: |\n| Revenue | | 150,000 |\n| Purchases | 85,000 | |\n| Inventory (1 Apr 23) | 12,000 | |\n| Rent & Rates | 18,000 | |\n| Wages & Salaries | 25,000 | |\n| Van at cost | 20,000 | |\n| Van Acc. Dep. (1 Apr 23) | | 4,000 |\n| Trade Receivables | 9,000 | |\n| Trade Payables | | 6,000 |\n| Bank | 11,000 | |\n| Drawings | 10,000 | |\n| Capital (1 Apr 23) | | 30,000 |\n| **Total** | **190,000** | **190,000** |\n\n**Additional Information:**\n1. Closing inventory at 31 March 2024 was valued at $14,000.\n2. Rent of $1,500 was prepaid for the next financial year.\n3. Wages of $2,000 are owing at the year-end.\n4. Depreciation on the van is to be charged at 25% per annum using the straight-line method.\n\n**Required:** Prepare the Income Statement for the year ended 31 March 2024 and a Statement of Financial Position as at that date.",
+      "solution": "**Step 1: Calculate adjusted expense figures**\n*   **Rent Expense:** $18,000 (per TB) - $1,500 (prepaid) = **$16,500**\n*   **Wages Expense:** $25,000 (per TB) + $2,000 (accrued) = **$27,000**\n*   **Depreciation Expense:** 25% x $20,000 (cost) = **$5,000**\n\n**Step 2: Prepare the Income Statement**\n\n**Ben's Bikes**\n**Income Statement for the year ended 31 March 2024**\n\n| | $ | $ |\n| :--- | ---: | ---: |\n| Revenue | | 150,000 |\n| **Less: Cost of Sales** | | |\n| Opening Inventory | 12,000 | |\n| Add: Purchases | 85,000 | |\n| | 97,000 | |\n| Less: Closing Inventory | (14,000) | (83,000) |\n| **Gross Profit** | | **67,000** |\n| **Less: Expenses** | | |\n| Rent & Rates | 16,500 | |\n| Wages & Salaries | 27,000 | |\n| Depreciation - Van | 5,000 | (48,500) |\n| **Profit for the year** | | **18,500** |\n\n**Step 3: Prepare the Statement of Financial Position**\n\n**Ben's Bikes**\n**Statement of Financial Position as at 31 March 2024**\n\n| | $ | $ | $ |\n| :--- | :--- | ---: | ---: |\n| **Non-Current Assets** | **Cost** | **Acc. Dep.** | **NBV** |\n| Van | 20,000 | (9,000) | 11,000 |\n| **Current Assets** | | | |\n| Inventory | | 14,000 | |\n| Trade Receivables | | 9,000 | |\n| Prepayments (Rent) | | 1,500 | |\n| Bank | | 11,000 | 35,500 |\n| **Total Assets** | | | **46,500** |\n| | | | |\n| **Capital** | | | |\n| Opening Capital | | 30,000 | |\n| Add: Profit for the year | | 18,500 | |\n| | | 48,500 | |\n| Less: Drawings | | (10,000) | |\n| Closing Capital | | | 38,500 |\n| **Current Liabilities** | | | |\n| Trade Payables | | 6,000 | |\n| Accruals (Wages) | | 2,000 | 8,000 |\n| **Total Capital and Liabilities** | | | **46,500** |"
     },
     {
       "type": "practice",
@@ -183,6 +157,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Prepare statement of profit or loss for sole trader.",
+    "Prepare statement of financial position.",
+    "Calculate gross profit and profit for the year.",
+    "Explain drawings and capital account.",
+    "Understand and apply year-end adjustments for accruals, prepayments, and depreciation."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Why isn't the owner's salary shown as an expense in the income statement?",
@@ -197,6 +179,75 @@
       "a": "This is treated as an injection of capital by the owner. The double entry would be to Debit the relevant expense account (e.g., Dr Stationery) and Credit the Capital account. This correctly records the business expense and shows that the owner has contributed more funds to the business."
     }
   ],
+  "flashcards": [
+    {
+      "front": "COGS formula?",
+      "back": "Opening inventory + Purchases − Closing inventory."
+    },
+    {
+      "front": "Drawings treatment?",
+      "back": "Reduce capital on SOFP — never an expense on SPL."
+    },
+    {
+      "front": "Closing capital?",
+      "back": "Opening capital + Net profit − Drawings."
+    },
+    {
+      "front": "Vertical SPL order?",
+      "back": "Revenue → COGS → Gross profit → Expenses → Net profit."
+    },
+    {
+      "front": "Current assets examples?",
+      "back": "Inventory, trade receivables, bank, prepayments."
+    },
+    {
+      "front": "Why no appropriation?",
+      "back": "Single owner — all profit belongs to them."
+    },
+    {
+      "front": "What is the 'business entity concept' in the context of a sole trader?",
+      "back": "The principle that the business is treated as separate from its owner for accounting purposes, even though there is no legal separation. This means personal transactions are kept separate from business records."
+    },
+    {
+      "front": "How are 'drawings' treated in the final accounts of a sole trader?",
+      "back": "Drawings are not an expense in the Income Statement. They are deducted from capital in the 'Financed by' section of the Statement of Financial Position."
+    },
+    {
+      "front": "What is the formula for calculating closing capital for a sole trader?",
+      "back": "Opening Capital + Additional Capital Introduced + Profit for the Year – Drawings = Closing Capital."
+    },
+    {
+      "front": "An owner pays their personal car insurance from the business bank account. What is the double entry?",
+      "back": "Dr Drawings account, Cr Bank account. This is not a business expense and does not affect the Income Statement."
+    },
+    {
+      "front": "Where is the 'profit for the year' figure used after being calculated in the Income Statement?",
+      "back": "It is added to the opening capital balance in the Statement of Financial Position as part of the calculation for closing capital."
+    },
+    {
+      "front": "What is the accounting equation?",
+      "back": "Assets = Capital + Liabilities. The Statement of Financial Position is a detailed expression of this equation."
+    },
+    {
+      "front": "How is depreciation of a non-current asset treated in the final accounts?",
+      "back": "It is recorded as an expense in the Income Statement and as accumulated depreciation (a deduction from the asset's cost) in the Statement of Financial Position."
+    },
+    {
+      "front": "What is an accrued expense and where is it shown?",
+      "back": "An expense incurred but not yet paid. The amount is added to the relevant expense in the Income Statement and shown as a current liability in the Statement of Financial Position."
+    },
+    {
+      "front": "What is a prepaid expense and where is it shown?",
+      "back": "An expense paid in advance. The prepaid amount is deducted from the relevant expense in the Income Statement and shown as a current asset in the Statement of Financial Position."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.5.2.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of the Statement of Financial Position: Sole Trader vs. Limited Company",
     "columns": [

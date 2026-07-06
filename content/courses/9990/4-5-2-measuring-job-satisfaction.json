@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9990 Organisational — Job Descriptive Index, Minnesota Satisfaction Questionnaire, and survey methods.",
   "durationMin": 20,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Outline standardised job satisfaction scales.",
-    "Compare global vs facet measurement approaches.",
-    "Evaluate validity of self-report satisfaction surveys.",
-    "Assess practical use in HR and organisational research."
-  ],
-  "simpleExplanation": {
-    "title": "Measuring workplace happiness",
-    "summary": "Researchers use validated questionnaires like the JDI and MSQ to quantify satisfaction — global scores or facet-by-facet breakdowns.",
-    "steps": [
-      "Global measure — overall satisfaction rating.",
-      "Facet scales — pay, promotion, supervision, co-workers.",
-      "JDI — adjective checklist method.",
-      "Limitations — social desirability, momentary mood."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Global vs facet measurement?",
-      "back": "Global = one overall rating; facet = separate scores for pay, supervision, work, etc. — facet pinpoints actionable issues."
-    },
-    {
-      "front": "Job Descriptive Index (JDI)?",
-      "back": "Facet scale using adjective checklists for work, pay, promotion, supervision, co-workers — widely validated."
-    },
-    {
-      "front": "Minnesota Satisfaction Questionnaire (MSQ)?",
-      "back": "Available in short (global) and long (facet) forms — measures intrinsic and extrinsic satisfaction."
-    },
-    {
-      "front": "Self-report limitation: social desirability?",
-      "back": "Employees may over-report satisfaction when they fear identification or want to appear grateful."
-    },
-    {
-      "front": "Self-report limitation: mood?",
-      "back": "Temporary mood on survey day can distort scores — repeated measurement improves reliability."
-    },
-    {
-      "front": "Why HR uses facet surveys?",
-      "back": "Identifies which policies to fix (e.g. low supervision scores → management training) rather than vague dissatisfaction."
-    },
-    {
-      "front": "What are the five facets measured by the Job Descriptive Index (JDI)?",
-      "back": "1. The work itself\n2. Pay\n3. Opportunities for promotion\n4. Supervision\n5. Co-workers"
-    },
-    {
-      "front": "What is the key difference in the response format between the JDI and the MSQ?",
-      "back": "The JDI uses a simple 'Yes/No/?' format. The MSQ uses a 5-point Likert scale to measure the intensity of feeling (e.g., from 'Very Dissatisfied' to 'Very Satisfied')."
-    },
-    {
-      "front": "Define 'intrinsic satisfaction' as measured by the MSQ.",
-      "back": "Satisfaction derived from the nature of the work itself. It relates to internal factors such as feeling a sense of achievement, using one's abilities, autonomy, and creativity."
-    },
-    {
-      "front": "Define 'extrinsic satisfaction' as measured by the MSQ.",
-      "back": "Satisfaction derived from factors external to the work itself. It relates to the context or environment, such as pay, working conditions, company policies, and job security."
-    },
-    {
-      "front": "What is a major methodological weakness of using self-report surveys to measure job satisfaction?",
-      "back": "Social desirability bias, where respondents may provide answers that are socially acceptable or that they think their employer wants to hear, rather than their true feelings."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -165,6 +102,11 @@
       "solution": "**Global measure problem:** Single item **masks facet patterns** — staff may rate **5/7 overall** because **co-workers** are friendly while **pay** and **promotion** facets score poorly (facet model, 4.5.1).\n\n**JDI advantage:** Separate **pay, promotion, supervision, work, co-workers** scores reveal **promotion stagnation** and **supervision issues** driving **turnover** (4.5.3) despite moderate global satisfaction.\n\n**Validity concerns:** Even JDI is **self-report** — **social desirability** if not anonymous; **common method bias** if same mood affects all facet ratings.\n\n**Improvement:** **Anonymous** administration, **longitudinal** repeats, combine with **objective data** (absence, exit interviews).\n\n**Evaluation:** Standardised scales allow **cross-company comparison** but may not capture **organisation-specific concerns**. **Discrepancy theory** suggests measuring **expectations vs reality**, not just current satisfaction."
     },
     {
+      "type": "workedExample",
+      "question": "An employee completes the 'Work Itself' facet of the Job Descriptive Index (JDI), which has 18 items. Their responses are: \n- 10 'Yes' to favorable items (e.g., 'Fascinating')\n- 4 'No' to unfavorable items (e.g., 'Boring')\n- 2 'No' to favorable items\n- 2 'Yes' to unfavorable items\nCalculate their score for this facet and interpret it against the maximum possible score.",
+      "solution": "The JDI scoring gives 3 points for a 'satisfying' answer, 0 for a 'dissatisfying' answer, and 1 for '?'.\n\n**Step 1: Score the 'satisfying' responses.**\n- 'Yes' to a favorable item is satisfying. Score: 10 items * 3 points = 30 points.\n- 'No' to an unfavorable item is satisfying. Score: 4 items * 3 points = 12 points.\n- Total from satisfying responses = 30 + 12 = 42 points.\n\n**Step 2: Score the 'dissatisfying' responses.**\n- 'No' to a favorable item is dissatisfying. Score: 2 items * 0 points = 0 points.\n- 'Yes' to an unfavorable item is dissatisfying. Score: 2 items * 0 points = 0 points.\n- Total from dissatisfying responses = 0 + 0 = 0 points.\n\n**Step 3: Calculate the total facet score.**\n- Total Score = 42 + 0 = 42 points.\n\n**Step 4: Interpret the score.**\n- The maximum possible score for an 18-item facet is 18 * 3 = 54 points.\n- The employee's score is 42 out of 54.\n- **Conclusion:** This score (42/54 ≈ 78%) indicates a high level of satisfaction with the work itself. The HR department can be confident that the nature of the tasks is not a primary source of dissatisfaction for this employee."
+    },
+    {
       "type": "practice",
       "label": "Mark a measuring job satisfaction question",
       "href": "/mark?subject=9990&topic=4.5.2"
@@ -191,6 +133,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Outline standardised job satisfaction scales.",
+    "Compare global vs facet measurement approaches.",
+    "Evaluate validity of self-report satisfaction surveys.",
+    "Assess practical use in HR and organisational research."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Aren't all job satisfaction surveys basically the same? Why learn about specific ones like the JDI and MSQ?",
@@ -205,6 +154,59 @@
       "a": "Not necessarily. The scores are not directly comparable because the scales and what they measure are different. A high score on the JDI indicates positive feelings about its five core facets. A high score on the MSQ provides a more nuanced picture, showing the intensity of satisfaction across many more items and distinguishing between intrinsic and extrinsic factors. An organisation might find the detailed intrinsic/extrinsic data from the MSQ more useful for designing job roles, while another might prefer the JDI's quick, simple snapshot to track general trends over time. The 'better' tool depends entirely on the organisation's specific objectives."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Global vs facet measurement?",
+      "back": "Global = one overall rating; facet = separate scores for pay, supervision, work, etc. — facet pinpoints actionable issues."
+    },
+    {
+      "front": "Job Descriptive Index (JDI)?",
+      "back": "Facet scale using adjective checklists for work, pay, promotion, supervision, co-workers — widely validated."
+    },
+    {
+      "front": "Minnesota Satisfaction Questionnaire (MSQ)?",
+      "back": "Available in short (global) and long (facet) forms — measures intrinsic and extrinsic satisfaction."
+    },
+    {
+      "front": "Self-report limitation: social desirability?",
+      "back": "Employees may over-report satisfaction when they fear identification or want to appear grateful."
+    },
+    {
+      "front": "Self-report limitation: mood?",
+      "back": "Temporary mood on survey day can distort scores — repeated measurement improves reliability."
+    },
+    {
+      "front": "Why HR uses facet surveys?",
+      "back": "Identifies which policies to fix (e.g. low supervision scores → management training) rather than vague dissatisfaction."
+    },
+    {
+      "front": "What are the five facets measured by the Job Descriptive Index (JDI)?",
+      "back": "1. The work itself\n2. Pay\n3. Opportunities for promotion\n4. Supervision\n5. Co-workers"
+    },
+    {
+      "front": "What is the key difference in the response format between the JDI and the MSQ?",
+      "back": "The JDI uses a simple 'Yes/No/?' format. The MSQ uses a 5-point Likert scale to measure the intensity of feeling (e.g., from 'Very Dissatisfied' to 'Very Satisfied')."
+    },
+    {
+      "front": "Define 'intrinsic satisfaction' as measured by the MSQ.",
+      "back": "Satisfaction derived from the nature of the work itself. It relates to internal factors such as feeling a sense of achievement, using one's abilities, autonomy, and creativity."
+    },
+    {
+      "front": "Define 'extrinsic satisfaction' as measured by the MSQ.",
+      "back": "Satisfaction derived from factors external to the work itself. It relates to the context or environment, such as pay, working conditions, company policies, and job security."
+    },
+    {
+      "front": "What is a major methodological weakness of using self-report surveys to measure job satisfaction?",
+      "back": "Social desirability bias, where respondents may provide answers that are socially acceptable or that they think their employer wants to hear, rather than their true feelings."
+    }
+  ],
+  "paperNumber": "3",
+  "paperType": "practical",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.5.2"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of the Job Descriptive Index (JDI) and the Minnesota Satisfaction Questionnaire (MSQ)",
     "columns": [

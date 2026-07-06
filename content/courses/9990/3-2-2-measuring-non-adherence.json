@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9990 Health — self-report, pill counts, biochemical markers, and adherence measurement challenges.",
   "durationMin": 20,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Outline methods: self-report, observation, biochemical tests.",
-    "Compare direct vs indirect measurement approaches.",
-    "Evaluate validity and reliability of each method.",
-    "Assess ethical issues in monitoring adherence."
-  ],
-  "simpleExplanation": {
-    "title": "How do we know they took it?",
-    "summary": "Measuring adherence is tricky — patients overreport compliance, pill counts can be faked, and blood tests are costly but more objective.",
-    "steps": [
-      "Self-report — cheap but socially desirable answers.",
-      "Pill count — objective but patients may discard pills.",
-      "Biochemical — detect drug metabolites in blood/urine.",
-      "Electronic monitors — MEMS caps track openings."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Self-report adherence?",
-      "back": "Patient questionnaire or interview — **cheap and easy** but vulnerable to **social desirability bias** (overreporting)."
-    },
-    {
-      "front": "Pill count method?",
-      "back": "Compare pills dispensed vs pills remaining — more **objective** but patients may **dump pills** to appear adherent."
-    },
-    {
-      "front": "Biochemical marker example?",
-      "back": "Blood/urine test for drug metabolites — e.g. HbA1c for long-term glucose control in diabetes; **high validity** but invasive and costly."
-    },
-    {
-      "front": "MEMS cap?",
-      "back": "Electronic Medication Event Monitoring System — records bottle opening times; detects **timing** of doses but not whether pill was swallowed."
-    },
-    {
-      "front": "Direct vs indirect measures?",
-      "back": "Direct — observe ingestion or detect drug in body; indirect — pill count, pharmacy refill records, self-report."
-    },
-    {
-      "front": "Ethical issue in adherence monitoring?",
-      "back": "**Privacy** — covert monitoring undermines trust; patients must **consent** to biochemical testing and electronic tracking."
-    },
-    {
-      "front": "What is the main limitation of using self-report measures (e.g., questionnaires) to assess adherence?",
-      "back": "They are highly susceptible to bias, particularly social desirability bias (patients wanting to please the practitioner) and recall bias (inaccurate memory), often leading to an overestimation of adherence."
-    },
-    {
-      "front": "Define 'pill dumping' in the context of measuring adherence.",
-      "back": "This is when a patient deliberately discards medication before a pill count to create the false impression of being adherent. It is a key weakness of using pill counts as a measure."
-    },
-    {
-      "front": "Why are biochemical tests considered a highly objective measure of adherence?",
-      "back": "Because they directly detect the presence of a drug or its metabolites in a patient's bodily fluids (e.g., blood or urine), providing physical proof of recent ingestion."
-    },
-    {
-      "front": "What is 'white-coat adherence'?",
-      "back": "A phenomenon where a patient improves their adherence behaviour (e.g., takes their medication) just before a medical appointment. This can make them appear adherent on a biochemical test, masking their typical non-adherence."
-    },
-    {
-      "front": "What is a major practical disadvantage of using biochemical markers to measure adherence?",
-      "back": "They are expensive, invasive (require blood/urine samples), and require specialised laboratory analysis, making them impractical for routine, large-scale monitoring."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -153,6 +90,11 @@
       "solution": "(a) **Alternative methods:**\n- **Pill count:** Pharmacist counts remaining pills vs prescribed amount — semi-objective, low cost.\n- **Biochemical assay:** Blood test for drug metabolite levels — e.g. serum drug concentration confirms ingestion.\n- **MEMS cap:** Electronic monitor records each bottle opening with timestamp.\n- **Pharmacy refill records (MPR):** Medication Possession Ratio from prescription database.\n\n(b) **Evaluation of self-report validity:**\n- **Strengths:** Low cost, non-invasive, captures **patient perspective** and reasons for non-adherence; practical in large trials.\n- **Limitations:**\n  - **Social desirability bias** — patients report what they think doctors want to hear; 92% likely **inflated** (actual adherence often ~50%).\n  - **Recall bias** — difficulty remembering missed doses over weeks.\n  - **Lack of objectivity** — cannot distinguish intentional from unintentional non-adherence without follow-up questions.\n  - **Poor concurrent validity** — self-report correlates weakly with biochemical measures (r ≈ 0.3–0.5 in meta-analyses).\n- **Comparison:** Pill counts improve objectivity but can be **gamed**; biochemical tests are gold standard but **expensive** and impractical for routine care.\n\n**Judgement:** Self-report is useful as a **screening tool** but should be triangulated with at least one objective measure in research. In clinical practice, non-judgemental questioning combined with pill count is most feasible."
     },
     {
+      "type": "workedExample",
+      "question": "A patient with hypertension is prescribed one tablet of amlodipine daily for a 30-day period. The pharmacy dispenses a bottle containing 30 tablets. At their follow-up appointment on day 30, the patient returns the bottle, and the clinician counts 9 tablets remaining.\n\n(a) Calculate the patient's adherence rate (%) using the pill count method. Show your working. [3 marks]\n(b) Explain one limitation of concluding the patient was 70% adherent based on this method. [2 marks]",
+      "solution": "(a) **Calculation of Adherence Rate:**\n\n1.  **Pills expected to be taken:** 1 tablet/day × 30 days = 30 tablets.\n2.  **Pills actually taken (inferred):** Initial tablets - Remaining tablets = 30 - 9 = 21 tablets.\n3.  **Adherence Rate Formula:** (Pills taken / Pills expected) × 100\n4.  **Calculation:** (21 / 30) × 100 = 0.7 × 100 = 70%.\n\n**The patient's adherence rate is calculated to be 70%.**\n\n(b) **Limitation of the Pill Count Method:**\n\nThe primary limitation is that this method **does not confirm ingestion**. The calculation assumes that the 21 missing tablets were taken by the patient as prescribed. However, the patient could have removed the tablets from the bottle and discarded them (a practice known as 'pill dumping') to create the appearance of adherence. Therefore, the true adherence rate could be lower than the calculated 70%. The method measures medication removal from the container, not consumption."
+    },
+    {
       "type": "practice",
       "label": "Mark a measuring adherence question",
       "href": "/mark?subject=9990&topic=3.2.2"
@@ -183,6 +125,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Outline methods: self-report, observation, biochemical tests.",
+    "Compare direct vs indirect measurement approaches.",
+    "Evaluate validity and reliability of each method.",
+    "Assess ethical issues in monitoring adherence."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "If biochemical tests are the most objective, why aren't they used all the time?",
@@ -197,6 +146,59 @@
       "a": "Simply asking the patient is a form of self-report, and while it is a necessary part of the doctor-patient conversation, it is not a reliable method for *measuring* adherence. The relationship dynamic can lead patients to give socially desirable answers—they want to be seen as a 'good patient' and may not admit to non-adherence. They may also genuinely forget or misremember how often they have missed doses (recall bias). Therefore, more objective methods are needed for accurate clinical assessment and research."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Self-report adherence?",
+      "back": "Patient questionnaire or interview — **cheap and easy** but vulnerable to **social desirability bias** (overreporting)."
+    },
+    {
+      "front": "Pill count method?",
+      "back": "Compare pills dispensed vs pills remaining — more **objective** but patients may **dump pills** to appear adherent."
+    },
+    {
+      "front": "Biochemical marker example?",
+      "back": "Blood/urine test for drug metabolites — e.g. HbA1c for long-term glucose control in diabetes; **high validity** but invasive and costly."
+    },
+    {
+      "front": "MEMS cap?",
+      "back": "Electronic Medication Event Monitoring System — records bottle opening times; detects **timing** of doses but not whether pill was swallowed."
+    },
+    {
+      "front": "Direct vs indirect measures?",
+      "back": "Direct — observe ingestion or detect drug in body; indirect — pill count, pharmacy refill records, self-report."
+    },
+    {
+      "front": "Ethical issue in adherence monitoring?",
+      "back": "**Privacy** — covert monitoring undermines trust; patients must **consent** to biochemical testing and electronic tracking."
+    },
+    {
+      "front": "What is the main limitation of using self-report measures (e.g., questionnaires) to assess adherence?",
+      "back": "They are highly susceptible to bias, particularly social desirability bias (patients wanting to please the practitioner) and recall bias (inaccurate memory), often leading to an overestimation of adherence."
+    },
+    {
+      "front": "Define 'pill dumping' in the context of measuring adherence.",
+      "back": "This is when a patient deliberately discards medication before a pill count to create the false impression of being adherent. It is a key weakness of using pill counts as a measure."
+    },
+    {
+      "front": "Why are biochemical tests considered a highly objective measure of adherence?",
+      "back": "Because they directly detect the presence of a drug or its metabolites in a patient's bodily fluids (e.g., blood or urine), providing physical proof of recent ingestion."
+    },
+    {
+      "front": "What is 'white-coat adherence'?",
+      "back": "A phenomenon where a patient improves their adherence behaviour (e.g., takes their medication) just before a medical appointment. This can make them appear adherent on a biochemical test, masking their typical non-adherence."
+    },
+    {
+      "front": "What is a major practical disadvantage of using biochemical markers to measure adherence?",
+      "back": "They are expensive, invasive (require blood/urine samples), and require specialised laboratory analysis, making them impractical for routine, large-scale monitoring."
+    }
+  ],
+  "paperNumber": "3",
+  "paperType": "practical",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.2.2"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Methods for Measuring Adherence",
     "columns": [

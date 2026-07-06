@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — capacity, outsourcing, inventory, and maintenance operational decisions.",
   "durationMin": 26,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Identify key operational decisions managers face.",
-    "Analyse capacity scheduling choices.",
-    "Evaluate outsource vs in-house decisions.",
-    "Apply operational decision framework to cases."
-  ],
-  "simpleExplanation": {
-    "title": "Day-to-day ops choices",
-    "summary": "Operations managers constantly decide how to schedule capacity, whether to outsource, what stock levels to hold, and how much preventive maintenance to fund versus risking breakdowns.",
-    "steps": [
-      "Capacity scheduling — shifts, overtime, subcontracting.",
-      "Outsource or keep in-house — core vs non-core.",
-      "Stock level adjustments — buffer vs JIT.",
-      "Preventive maintenance vs breakdown repair costs."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Capacity scheduling?",
-      "back": "Matching production to demand — shifts, temps, overtime."
-    },
-    {
-      "front": "Subcontract peak demand?",
-      "back": "Use external capacity without permanent fixed cost increase."
-    },
-    {
-      "front": "Outsource decision?",
-      "back": "Cost, quality, control, strategic importance (4.3.2)."
-    },
-    {
-      "front": "Stock decision trade-off?",
-      "back": "Holding cost vs stock-out cost (4.2.1)."
-    },
-    {
-      "front": "Preventive maintenance?",
-      "back": "Scheduled servicing to avoid costly unplanned downtime."
-    },
-    {
-      "front": "Breakdown cost?",
-      "back": "Lost output, rush repairs, missed customer deadlines."
-    },
-    {
-      "front": "Link to utilisation?",
-      "back": "4.3.1 — schedule to improve capacity use."
-    },
-    {
-      "front": "Short-term vs strategic?",
-      "back": "Ops decisions tactical; location/ERP more strategic."
-    },
-    {
-      "front": "What is the formula for Capacity Utilisation?",
-      "back": "(Current output level / Maximum possible output level) x 100. It measures the percentage of total capacity that is being used."
-    },
-    {
-      "front": "Define 'Outsourcing' in a business context.",
-      "back": "The business practice of contracting out non-core business activities or functions to third-party providers, rather than performing them in-house."
-    },
-    {
-      "front": "What is 'Buffer Inventory'?",
-      "back": "A quantity of inventory held in reserve to protect against unforeseen shortages or surges in demand. It helps to prevent stock-outs caused by delays in supply or unexpected customer orders."
-    },
-    {
-      "front": "Explain 'Preventative Maintenance'.",
-      "back": "A proactive maintenance strategy involving regular, scheduled servicing and inspection of equipment to detect and correct potential failures before they occur, minimising unexpected downtime."
-    },
-    {
-      "front": "What is 'Lead Time' in inventory management?",
-      "back": "The time that elapses between a new order for inventory being placed and the goods being delivered and ready for use."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -178,6 +107,11 @@
       "solution": "**Capacity:** **Overtime shifts**, **temporary staff** (2.1.3), **subcontract** bulk blending to approved partner.\n\n**Stock:** Build **finished goods buffer** in Q3 if **perishable allows** — or **increase raw material orders** with JIT supplier agreement.\n\n**Maintenance:** **Defer non-critical maintenance** risky at 95% utilisation — **prioritise line reliability**.\n\n**Outsource:** **Non-core packaging** to free line capacity for **high-margin SKUs**.\n\n**Evaluation:** **Subcontract + overtime** likely cheapest vs **new capital** (10.3) for one-season spike."
     },
     {
+      "type": "workedExample",
+      "question": "AeroComponents Ltd needs 50,000 units of a specific aircraft-grade bolt annually. They can purchase it from an external supplier for $12 per unit. Alternatively, they can produce it in-house. The in-house production would incur variable costs of $8 per unit and additional fixed costs of $250,000 per year. Using quantitative analysis, advise AeroComponents on whether to make or buy the bolts.",
+      "solution": "**Step 1: Calculate the total annual cost of buying (outsourcing).**\nThis is the cost if all 50,000 units are purchased from the supplier.\n*   Formula: Cost to Buy = Annual Demand × Price per unit\n*   Calculation: 50,000 units × $12/unit = **$600,000**\n\n**Step 2: Calculate the total annual cost of making in-house.**\nThis is the sum of the variable and fixed costs for producing 50,000 units internally.\n*   Formula: Cost to Make = (Variable Cost per unit × Annual Demand) + Fixed Costs\n*   Calculation: ($8/unit × 50,000 units) + $250,000\n*   Calculation: $400,000 + $250,000 = **$650,000**\n\n**Step 3: Compare costs and provide a quantitative recommendation.**\n*   Total Cost to Buy: $600,000\n*   Total Cost to Make: $650,000\n*   Comparison: The cost to buy is $50,000 less than the cost to make for an annual demand of 50,000 units.\n*   Recommendation: Based purely on financial grounds, AeroComponents should **buy** the bolts from the external supplier.\n\n**Step 4: Further Analysis (Break-Even Point).**\nTo find the output level where the decision changes, we calculate the break-even quantity.\n*   Formula: Break-Even Quantity = Fixed Costs / (Price to Buy - Variable Cost to Make)\n*   Calculation: $250,000 / ($12 - $8) = $250,000 / $4 = **62,500 units**.\n*   Interpretation: If annual demand were to rise above 62,500 units, making the bolts in-house would become the cheaper option. Since current demand (50,000) is below this break-even point, buying remains the more cost-effective choice.\n\n**Step 5: Qualitative Evaluation.**\nWhile buying is cheaper, AeroComponents must also consider qualitative factors. For aircraft-grade bolts, quality and reliability are paramount. In-house production offers greater control over quality assurance and production schedules. The final decision involves a trade-off between the lower cost of outsourcing and the greater control offered by in-house production."
+    },
+    {
       "type": "practice",
       "label": "Mark an operational decisions question",
       "href": "/mark?subject=9609&topic=9.3.1"
@@ -200,6 +134,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Identify key operational decisions managers face.",
+    "Analyse capacity scheduling choices.",
+    "Evaluate outsource vs in-house decisions.",
+    "Apply operational decision framework to cases."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is achieving 100% capacity utilisation always the primary operational goal?",
@@ -214,6 +155,67 @@
       "a": "This is an oversimplification. JIT aims to minimise inventory to the lowest possible level, not necessarily eliminate it entirely. The goal is for materials to arrive 'just in time' for them to be used in production, and for finished goods to be produced 'just in time' to be dispatched to customers. There may still be very small amounts of buffer stock or work-in-progress within the system. The core principle is the relentless pursuit of waste reduction, which includes the waste of holding excessive inventory."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Capacity scheduling?",
+      "back": "Matching production to demand — shifts, temps, overtime."
+    },
+    {
+      "front": "Subcontract peak demand?",
+      "back": "Use external capacity without permanent fixed cost increase."
+    },
+    {
+      "front": "Outsource decision?",
+      "back": "Cost, quality, control, strategic importance (4.3.2)."
+    },
+    {
+      "front": "Stock decision trade-off?",
+      "back": "Holding cost vs stock-out cost (4.2.1)."
+    },
+    {
+      "front": "Preventive maintenance?",
+      "back": "Scheduled servicing to avoid costly unplanned downtime."
+    },
+    {
+      "front": "Breakdown cost?",
+      "back": "Lost output, rush repairs, missed customer deadlines."
+    },
+    {
+      "front": "Link to utilisation?",
+      "back": "4.3.1 — schedule to improve capacity use."
+    },
+    {
+      "front": "Short-term vs strategic?",
+      "back": "Ops decisions tactical; location/ERP more strategic."
+    },
+    {
+      "front": "What is the formula for Capacity Utilisation?",
+      "back": "(Current output level / Maximum possible output level) x 100. It measures the percentage of total capacity that is being used."
+    },
+    {
+      "front": "Define 'Outsourcing' in a business context.",
+      "back": "The business practice of contracting out non-core business activities or functions to third-party providers, rather than performing them in-house."
+    },
+    {
+      "front": "What is 'Buffer Inventory'?",
+      "back": "A quantity of inventory held in reserve to protect against unforeseen shortages or surges in demand. It helps to prevent stock-outs caused by delays in supply or unexpected customer orders."
+    },
+    {
+      "front": "Explain 'Preventative Maintenance'.",
+      "back": "A proactive maintenance strategy involving regular, scheduled servicing and inspection of equipment to detect and correct potential failures before they occur, minimising unexpected downtime."
+    },
+    {
+      "front": "What is 'Lead Time' in inventory management?",
+      "back": "The time that elapses between a new order for inventory being placed and the goods being delivered and ready for use."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.3.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "In-house Production vs. Outsourcing",
     "columns": [

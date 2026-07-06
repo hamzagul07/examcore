@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — ERP systems, integration benefits, costs, and implementation challenges.",
   "durationMin": 26,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Define ERP and its main modules.",
-    "Explain benefits of integrated information systems.",
-    "Analyse costs and risks of ERP implementation.",
-    "Evaluate ERP suitability for case organisations."
-  ],
-  "simpleExplanation": {
-    "title": "One system for the whole business",
-    "summary": "ERP integrates finance, HR, inventory, production, and sales on a single database with real-time data — but implementation is expensive, needs training, and often requires process redesign.",
-    "steps": [
-      "Single database links finance, ops, HR, sales.",
-      "Real-time stock levels, orders, and capacity visibility.",
-      "High licence, hardware, and training costs.",
-      "Success requires business process redesign and change management."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "ERP?",
-      "back": "Software integrating core business processes on one database."
-    },
-    {
-      "front": "Main modules?",
-      "back": "Finance, HR/payroll, inventory, production planning, CRM."
-    },
-    {
-      "front": "Key benefit?",
-      "back": "Real-time data — fewer silos, better decisions (7.2.3)."
-    },
-    {
-      "front": "Implementation cost?",
-      "back": "Licences, consultants, hardware, training, downtime."
-    },
-    {
-      "front": "Common failure reason?",
-      "back": "Staff resist change; processes not redesigned to fit system."
-    },
-    {
-      "front": "Link to JIT?",
-      "back": "Accurate live data essential for JIT scheduling (4.2.2)."
-    },
-    {
-      "front": "SME suitability?",
-      "back": "Cloud ERP cheaper; may be overkill for very small firms."
-    },
-    {
-      "front": "Vendor examples?",
-      "back": "SAP, Oracle, Microsoft Dynamics — case may name one."
-    },
-    {
-      "front": "What is Enterprise Resource Planning (ERP)?",
-      "back": "A business management software that integrates all core functions of a company, such as finance, HR, manufacturing, and supply chain, into a single system with a central database."
-    },
-    {
-      "front": "What is meant by 'data integration' in the context of ERP?",
-      "back": "The process of combining data from different business functions into a single, unified view. An ERP's central database ensures that when data is updated in one module (e.g., Sales), it is instantly and accurately reflected across all other relevant modules (e.g., Inventory, Finance)."
-    },
-    {
-      "front": "Define a 'legacy system'.",
-      "back": "An old method, technology, computer system, or application program that continues to be used, typically because it still functions for the users' needs, even though newer systems are available. ERP systems are implemented to replace multiple, often incompatible, legacy systems."
-    },
-    {
-      "front": "What is 'change management' during an ERP implementation?",
-      "back": "The structured approach to managing the people-side of a new system implementation. It involves communication, training, and support to help employees transition from their old ways of working to the new ERP system, minimising resistance and disruption."
-    },
-    {
-      "front": "What is a 'business process re-engineering' (BPR) in relation to ERP?",
-      "back": "The fundamental rethinking and radical redesign of business processes to achieve dramatic improvements. Often, a business must change its processes to align with the 'best practice' workflows built into an ERP system, rather than customising the software to fit old, inefficient processes."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -161,6 +90,11 @@
       "solution": "**Diagnosis:** **Information silos** — production doesn't see **sales forecast**; finance doesn't see **WIP** — classic **horizontal communication failure** (7.2.3).\n\n**ERP benefits:** **Single truth** for **inventory**, **MRP** auto-orders materials (9.3.5), **finance accruals** updated live.\n\n**Costs/risks:** **$500k+ implementation**, **12-month disruption**, **staff retraining** — need **change manager**.\n\n**Verdict:** **Yes if growth continues** — cheaper than lost sales; **pilot one site** first; **clean data migration** critical."
     },
     {
+      "type": "workedExample",
+      "question": "A manufacturing firm is considering an ERP system. The initial investment (licensing, hardware, consultants) is $1,200,000. Annual maintenance will be $150,000. The firm predicts the ERP will generate annual savings of $250,000 from reduced inventory holding, $300,000 from automating administrative tasks, and an additional $200,000 in annual profit from fewer lost sales. Calculate the payback period for this investment.",
+      "solution": "**Step 1: Calculate Total Annual Savings (Gross Benefit)**\nThis is the sum of all financial benefits the ERP is expected to generate each year.\n- Inventory Savings: $250,000\n- Administrative Savings: $300,000\n- Additional Profit: $200,000\n- **Total Annual Savings = $250,000 + $300,000 + $200,000 = $750,000**\n\n**Step 2: Calculate Annual Net Cash Flow**\nThis is the annual saving minus the ongoing annual costs of the system.\n- Total Annual Savings: $750,000\n- Annual Maintenance Cost: $150,000\n- **Annual Net Cash Flow = $750,000 - $150,000 = $600,000**\n\n**Step 3: Calculate the Payback Period**\nThe payback period is the time it takes for the net cash flow to repay the initial investment.\n- Formula: Payback Period = Initial Investment / Annual Net Cash Flow\n- Initial Investment: $1,200,000\n- Annual Net Cash Flow: $600,000\n- **Payback Period = $1,200,000 / $600,000 = 2 years**\n\n**Conclusion:**\nThe payback period for the ERP implementation is exactly 2 years. This is a relatively short payback period for such a large-scale IT project, suggesting it is a financially attractive investment. The board should, however, also consider the significant non-financial risks, such as implementation disruption and the need for effective change management, before approving the project."
+    },
+    {
       "type": "practice",
       "label": "Mark an ERP question",
       "href": "/mark?subject=9609&topic=9.3.3"
@@ -183,6 +117,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define ERP and its main modules.",
+    "Explain benefits of integrated information systems.",
+    "Analyse costs and risks of ERP implementation.",
+    "Evaluate ERP suitability for case organisations."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is ERP software only for large manufacturing businesses?",
@@ -197,6 +138,67 @@
       "a": "This is known as a 'Best-of-Breed' (BoB) approach. While it allows departments to use highly specialised software, it creates significant challenges in getting the different systems to communicate. This often requires expensive and complex custom integrations that are difficult to maintain. An integrated ERP provides a single vendor and seamless data flow 'out of the box', which is often a more stable and cost-effective long-term solution, despite potential compromises on specific departmental features."
     }
   ],
+  "flashcards": [
+    {
+      "front": "ERP?",
+      "back": "Software integrating core business processes on one database."
+    },
+    {
+      "front": "Main modules?",
+      "back": "Finance, HR/payroll, inventory, production planning, CRM."
+    },
+    {
+      "front": "Key benefit?",
+      "back": "Real-time data — fewer silos, better decisions (7.2.3)."
+    },
+    {
+      "front": "Implementation cost?",
+      "back": "Licences, consultants, hardware, training, downtime."
+    },
+    {
+      "front": "Common failure reason?",
+      "back": "Staff resist change; processes not redesigned to fit system."
+    },
+    {
+      "front": "Link to JIT?",
+      "back": "Accurate live data essential for JIT scheduling (4.2.2)."
+    },
+    {
+      "front": "SME suitability?",
+      "back": "Cloud ERP cheaper; may be overkill for very small firms."
+    },
+    {
+      "front": "Vendor examples?",
+      "back": "SAP, Oracle, Microsoft Dynamics — case may name one."
+    },
+    {
+      "front": "What is Enterprise Resource Planning (ERP)?",
+      "back": "A business management software that integrates all core functions of a company, such as finance, HR, manufacturing, and supply chain, into a single system with a central database."
+    },
+    {
+      "front": "What is meant by 'data integration' in the context of ERP?",
+      "back": "The process of combining data from different business functions into a single, unified view. An ERP's central database ensures that when data is updated in one module (e.g., Sales), it is instantly and accurately reflected across all other relevant modules (e.g., Inventory, Finance)."
+    },
+    {
+      "front": "Define a 'legacy system'.",
+      "back": "An old method, technology, computer system, or application program that continues to be used, typically because it still functions for the users' needs, even though newer systems are available. ERP systems are implemented to replace multiple, often incompatible, legacy systems."
+    },
+    {
+      "front": "What is 'change management' during an ERP implementation?",
+      "back": "The structured approach to managing the people-side of a new system implementation. It involves communication, training, and support to help employees transition from their old ways of working to the new ERP system, minimising resistance and disruption."
+    },
+    {
+      "front": "What is a 'business process re-engineering' (BPR) in relation to ERP?",
+      "back": "The fundamental rethinking and radical redesign of business processes to achieve dramatic improvements. Often, a business must change its processes to align with the 'best practice' workflows built into an ERP system, rather than customising the software to fit old, inefficient processes."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.3.3"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison: Integrated ERP vs. Best-of-Breed (BoB) Approach",
     "columns": [

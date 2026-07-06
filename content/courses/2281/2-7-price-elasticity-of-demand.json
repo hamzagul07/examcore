@@ -7,23 +7,6 @@
   "status": "premium",
   "summary": "2281 O-Level — PED, YED, XED, revenue and elasticity with GeoGebra supply-demand shift model.",
   "durationMin": 22,
-  "updated": "2026-06-26",
-  "learningObjectives": [
-    "Calculate and interpret price elasticity of demand (PED).",
-    "Explain income elasticity (YED) and cross elasticity (XED).",
-    "Relate PED to total revenue changes.",
-    "Identify elastic, inelastic, and unit elastic demand."
-  ],
-  "simpleExplanation": {
-    "title": "How responsive is demand?",
-    "summary": "Elasticity measures percentage response to a percentage change. PED tells firms whether cutting price raises or lowers total revenue.",
-    "steps": [
-      "PED = (% ΔQd)/(% ΔP) — usually negative; report |PED| for magnitude.",
-      "|PED| > 1 elastic; |PED| < 1 inelastic; |PED| = 1 unit elastic.",
-      "Elastic + price fall → revenue rises; inelastic + price fall → revenue falls.",
-      "YED: normal good > 0; inferior < 0. XED: substitutes > 0; complements < 0."
-    ]
-  },
   "sections": [
     {
       "type": "intro",
@@ -114,6 +97,11 @@
       "solution": "ΔP = +25%, ΔQ = −20%\n\nPED = (−20%)/(+25%) = **−0.8** (inelastic)\n\nTR before = £800; after = £800 — unchanged direction confirms inelastic range near unit."
     },
     {
+      "type": "workedExample",
+      "question": "A cinema reduces its ticket price from $15 to $12. Consequently, the number of tickets sold per screening rises from 80 to 120. Calculate the PED and advise the cinema on its pricing decision.",
+      "solution": "Step 1: Calculate the percentage change in price.\n%ΔP = [(New Price - Old Price) / Old Price] × 100\n%ΔP = [($12 - $15) / $15] × 100 = -20%\n\nStep 2: Calculate the percentage change in quantity demanded.\n%ΔQd = [(New Qd - Old Qd) / Old Qd] × 100\n%ΔQd = [(120 - 80) / 80] × 100 = +50%\n\nStep 3: Calculate PED.\nPED = %ΔQd / %ΔP = 50% / -20% = **-2.5**\n\nStep 4: Interpret the result and advise.\nThe absolute value of PED is 2.5, which is greater than 1, so demand is **price elastic**. The price reduction was a good decision. Total revenue before was $15 × 80 = $1200. Total revenue after is $12 × 120 = $1440. The price cut led to a $240 increase in revenue because the percentage increase in quantity demanded was much larger than the percentage decrease in price."
+    },
+    {
       "type": "examTip",
       "content": "Use **midpoint formula** if the question specifies arc elasticity. State whether demand is elastic or inelastic **and** explain the revenue implication."
     },
@@ -131,6 +119,67 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Calculate and interpret price elasticity of demand (PED).",
+    "Explain income elasticity (YED) and cross elasticity (XED).",
+    "Relate PED to total revenue changes.",
+    "Identify elastic, inelastic, and unit elastic demand."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Is the gradient of the demand curve the same as its elasticity?",
+      "a": "No. This is a common misconception. While a steeper curve is generally more inelastic than a flatter one, elasticity is not constant along a straight-line demand curve, whereas the gradient is. Gradient measures absolute change (rise/run), while elasticity measures percentage change (%ΔQd / %ΔP). The percentage change calculation depends on the starting price and quantity, which is why PED varies at different points on the curve."
+    },
+    {
+      "q": "Why do economists ignore the minus sign when interpreting PED values?",
+      "a": "The negative sign is a natural consequence of the law of demand (price and quantity demanded are inversely related). By convention, economists use the absolute (positive) value to avoid confusion when comparing elasticities. It is more intuitive to say a PED of 2 is 'more elastic' than a PED of 0.5, rather than comparing -2 and -0.5, where -0.5 is mathematically the larger number."
+    },
+    {
+      "q": "Can a single product have just one PED value?",
+      "a": "Not usually in the real world. A single PED value given in a textbook or exam is an estimate for a specific price range at a particular point in time. In reality, the PED for a product changes at different price points (as shown by the straight-line demand curve model). Furthermore, it can change over time as new substitutes emerge, consumer incomes change, or tastes and preferences evolve. Therefore, PED is a dynamic, not a static, measure."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is the formula for Price Elasticity of Demand (PED)?",
+      "back": "Percentage Change in Quantity Demanded / Percentage Change in Price."
+    },
+    {
+      "front": "If a product has a PED of -0.4, what does this signify for pricing strategy?",
+      "back": "Demand is price inelastic. To increase total revenue, the firm should increase the price, as the fall in quantity demanded will be proportionally smaller than the rise in price."
+    },
+    {
+      "front": "Name three key determinants of PED.",
+      "back": "1. Availability of close substitutes. 2. Proportion of income spent on the good. 3. Whether the good is a luxury or a necessity. (Also: addictiveness, time period)."
+    },
+    {
+      "front": "What does a perfectly elastic demand curve look like and what is its PED value?",
+      "back": "It is a horizontal line, indicating that any price increase will cause quantity demanded to fall to zero. Its PED value is infinity (∞)."
+    },
+    {
+      "front": "Explain why PED changes along a straight-line demand curve.",
+      "back": "PED is calculated using percentage changes. At high prices (top of the curve), a price change is a small percentage, but the quantity change is a large percentage of a small base, making demand elastic. At low prices (bottom of the curve), the opposite is true, making demand inelastic."
+    },
+    {
+      "front": "What does a PED of 1 (or -1) signify, and what is the effect of a price change on total revenue?",
+      "back": "This is called unitary elastic demand. It means the percentage change in quantity demanded is exactly equal to the percentage change in price. A price change will have no effect on total revenue."
+    },
+    {
+      "front": "What does a positive value for Cross Elasticity of Demand (XED) indicate about the relationship between two goods?",
+      "back": "A positive XED indicates that the two goods are substitutes. An increase in the price of one good leads to an increase in the quantity demanded of the other good (e.g., Coca-Cola and Pepsi)."
+    },
+    {
+      "front": "What is the difference between a normal good and an inferior good in terms of Income Elasticity of Demand (YED)?",
+      "back": "A normal good has a positive YED (demand increases as income rises). An inferior good has a negative YED (demand falls as income rises)."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.7"
   ],
   "diagramSpec": {
     "steps": [
@@ -164,42 +213,7 @@
       }
     ]
   },
-  "flashcards": [
-    {
-      "front": "What is the formula for Price Elasticity of Demand (PED)?",
-      "back": "Percentage Change in Quantity Demanded / Percentage Change in Price."
-    },
-    {
-      "front": "If a product has a PED of -0.4, what does this signify for pricing strategy?",
-      "back": "Demand is price inelastic. To increase total revenue, the firm should increase the price, as the fall in quantity demanded will be proportionally smaller than the rise in price."
-    },
-    {
-      "front": "Name three key determinants of PED.",
-      "back": "1. Availability of close substitutes. 2. Proportion of income spent on the good. 3. Whether the good is a luxury or a necessity. (Also: addictiveness, time period)."
-    },
-    {
-      "front": "What does a perfectly elastic demand curve look like and what is its PED value?",
-      "back": "It is a horizontal line, indicating that any price increase will cause quantity demanded to fall to zero. Its PED value is infinity (∞)."
-    },
-    {
-      "front": "Explain why PED changes along a straight-line demand curve.",
-      "back": "PED is calculated using percentage changes. At high prices (top of the curve), a price change is a small percentage, but the quantity change is a large percentage of a small base, making demand elastic. At low prices (bottom of the curve), the opposite is true, making demand inelastic."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Is the gradient of the demand curve the same as its elasticity?",
-      "a": "No. This is a common misconception. While a steeper curve is generally more inelastic than a flatter one, elasticity is not constant along a straight-line demand curve, whereas the gradient is. Gradient measures absolute change (rise/run), while elasticity measures percentage change (%ΔQd / %ΔP). The percentage change calculation depends on the starting price and quantity, which is why PED varies at different points on the curve."
-    },
-    {
-      "q": "Why do economists ignore the minus sign when interpreting PED values?",
-      "a": "The negative sign is a natural consequence of the law of demand (price and quantity demanded are inversely related). By convention, economists use the absolute (positive) value to avoid confusion when comparing elasticities. It is more intuitive to say a PED of 2 is 'more elastic' than a PED of 0.5, rather than comparing -2 and -0.5, where -0.5 is mathematically the larger number."
-    },
-    {
-      "q": "Can a single product have just one PED value?",
-      "a": "Not usually in the real world. A single PED value given in a textbook or exam is an estimate for a specific price range at a particular point in time. In reality, the PED for a product changes at different price points (as shown by the straight-line demand curve model). Furthermore, it can change over time as new substitutes emerge, consumer incomes change, or tastes and preferences evolve. Therefore, PED is a dynamic, not a static, measure."
-    }
-  ],
+  "updated": "2026-06-26",
   "comparisonTable": {
     "caption": "Comparison of Price Elastic and Price Inelastic Demand",
     "columns": [
@@ -257,18 +271,5 @@
     "subjectCode": "9708",
     "slug": "2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand",
     "level": "A-Level"
-  },
-  "interactiveEmbed": {
-    "provider": "geogebra",
-    "title": "Elasticity and equilibrium",
-    "embedUrl": "https://www.geogebra.org/classic?material=SnqQmKsq",
-    "launchUrl": "https://www.geogebra.org/classic?material=SnqQmKsq",
-    "hint": "Steep vs flat demand — relate elasticity to price responsiveness (9708 2.2).",
-    "aspectRatio": "834 / 504",
-    "attribution": {
-      "source": "GeoGebra",
-      "license": "GeoGebra Terms of Service",
-      "sourceUrl": "https://www.geogebra.org"
-    }
   }
 }

@@ -6,70 +6,7 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — depreciation methods, disposals, and revaluation of non-current assets.",
-  "durationMin": 28,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Calculate depreciation using straight-line and reducing balance.",
-    "Account for disposal of non-current assets.",
-    "Explain revaluation of assets.",
-    "Show journal entries for each scenario."
-  ],
-  "simpleExplanation": {
-    "title": "Assets lose value over time",
-    "summary": "Depreciation allocates the cost of non-current assets over their useful life. Disposals remove cost and accumulated depreciation; revaluation adjusts carrying amount to fair value.",
-    "steps": [
-      "Straight-line: (cost − residual value) ÷ useful life.",
-      "Reducing balance: fixed % on net book value each year.",
-      "Disposal: clear asset and acc dep; profit/loss on disposal to SPL.",
-      "Revaluation: DR asset, CR revaluation surplus (SOFP equity)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Straight-line formula?",
-      "back": "(Cost − Residual value) ÷ Expected life in years."
-    },
-    {
-      "front": "Reducing balance?",
-      "back": "NBV × % each year — higher charge early years."
-    },
-    {
-      "front": "Accumulated depreciation?",
-      "back": "Contra-asset — total depreciation to date."
-    },
-    {
-      "front": "Net book value?",
-      "back": "Cost − Accumulated depreciation."
-    },
-    {
-      "front": "Disposal gain?",
-      "back": "Proceeds > NBV — credit to SPL (or loss if reverse)."
-    },
-    {
-      "front": "Revaluation surplus?",
-      "back": "Equity reserve — not income through SPL (under revaluation model)."
-    },
-    {
-      "front": "What is the double entry to record annual depreciation?",
-      "back": "Debit: Depreciation Expense (in the Income Statement). Credit: Provision for Depreciation (in the Statement of Financial Position, deducted from the asset's cost)."
-    },
-    {
-      "front": "Define 'Net Book Value' (NBV) or 'Carrying Amount'.",
-      "back": "The value of a non-current asset recorded in the financial statements. It is calculated as the asset's original cost less its total accumulated depreciation to date."
-    },
-    {
-      "front": "What is the purpose of a Revaluation Surplus?",
-      "back": "It is an equity reserve used to record the increase in the value of a non-current asset following an upward revaluation. It represents an unrealised gain and is not distributable as dividends."
-    },
-    {
-      "front": "State the formula for the Straight-Line method of depreciation.",
-      "back": "Annual Depreciation = (Cost of Asset – Estimated Residual Value) / Estimated Useful Life of Asset (in years)."
-    },
-    {
-      "front": "How is the profit or loss on the disposal of a non-current asset calculated?",
-      "back": "It is the difference between the Net Book Value (NBV) of the asset at the time of disposal and the net disposal proceeds (cash received)."
-    }
-  ],
+  "durationMin": 35,
   "sections": [
     {
       "type": "intro",
@@ -120,7 +57,7 @@
     },
     {
       "type": "text",
-      "content": "Instead of the cost model, entities may choose the revaluation model under IAS 16 Property, Plant and Equipment. This involves revaluing an asset to its fair value. When an asset is revalued upwards, the increase in its carrying amount is credited to a 'Revaluation Surplus' account, which is a component of equity shown on the statement of financial position. Depreciation is then calculated on the new revalued amount. If a subsequent downward revaluation occurs, it is first debited against any existing revaluation surplus for that asset. Any excess decrease beyond the surplus is recognised as an expense in the income statement. A downward revaluation on an asset with no prior surplus is always treated as an expense."
+      "content": "Instead of the cost model, entities may choose the revaluation model under IAS 16 Property, Plant and Equipment. This involves revaluing an asset to its fair value. When an asset is revalued upwards, the increase in its carrying amount is credited to a 'Revaluation Surplus' account, which is a component of equity shown on the statement of financial position. Depreciation is then calculated on the new revalued amount. If a subsequent downward revaluation occurs, it is first debited against any existing revaluation surplus for that asset. Any excess decrease beyond the surplus is recognised as an expense in the income statement. A downward revaluation on an asset with no prior surplus is always treated as an expense. Furthermore, an entity may choose to make an annual transfer from the revaluation surplus to retained earnings. This transfer represents the 'excess depreciation' charged on the revalued amount compared to the depreciation that would have been charged on the historical cost. The amount transferred is the difference between the two depreciation calculations. This is permitted but not required by IAS 16."
     },
     {
       "type": "keyPoints",
@@ -129,6 +66,23 @@
         "The Revaluation Surplus is an equity reserve, not a profit.",
         "Downward revaluation: Debit Revaluation Surplus (if any), Debit Income Statement (for the excess), Credit Asset.",
         "Depreciation after revaluation is based on the revalued amount over the remaining useful life."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Journal Entries and Ledger Accounts"
+    },
+    {
+      "type": "text",
+      "content": "Understanding the double entry is crucial for recording these transactions accurately. Here are the standard journal entries:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**To record annual depreciation:** Debit (Dr) Depreciation Expense (Income Statement), Credit (Cr) Accumulated Depreciation (Statement of Financial Position).",
+        "**To record the disposal of an asset (3 steps):** 1. Dr Disposal, Cr Non-Current Asset (at cost). 2. Dr Accumulated Depreciation, Cr Disposal. 3. Dr Bank/Cash, Cr Disposal.",
+        "**To record the profit/loss on disposal:** For a profit: Dr Disposal, Cr Profit on Disposal (Income Statement). For a loss: Dr Loss on Disposal (Income Statement), Cr Disposal.",
+        "**To record an upward revaluation:** 1. Dr Accumulated Depreciation, Cr Non-Current Asset (to remove existing depreciation). 2. Dr Non-Current Asset, Cr Revaluation Surplus (to record the uplift to fair value)."
       ]
     },
     {
@@ -145,7 +99,7 @@
         "Straight-line formula: (Cost - Residual Value) / Useful Life.",
         "Reducing balance formula: (Cost - Accumulated Depreciation) x Rate %.",
         "Residual value is ignored in the reducing balance calculation but is a 'floor' for the NBV.",
-        "A full year's depreciation is typically charged in the year of purchase, and none in the year of disposal, unless the policy states otherwise (e.g., pro-rata)."
+        "A full year's depreciation is often charged in the year of purchase and none in the year of disposal, but policies can vary. Some businesses use a pro-rata basis, charging depreciation for the number of months the asset was owned in the year."
       ]
     },
     {
@@ -154,8 +108,13 @@
     },
     {
       "type": "workedExample",
-      "question": "Machine cost $20,000, residual $2,000, life 5 years, straight-line. After 3 years sold for $9,500. Calculate annual depreciation and profit/loss on disposal.",
-      "solution": "**Annual depreciation** = (20,000 − 2,000) ÷ 5 = **$3,600**\n\n**After 3 years acc dep** = 3 × 3,600 = **$10,800**\n\n**NBV at disposal** = 20,000 − 10,800 = **$9,200**\n\n**Proceeds** = **$9,500**\n\n**Profit on disposal** = 9,500 − 9,200 = **$300** (credit SPL)"
+      "question": "A machine cost $20,000, has a residual value of $2,000, and a useful life of 5 years. Depreciation is on a straight-line basis. After 3 years, it was sold for $9,500. Calculate the annual depreciation and the profit or loss on disposal.",
+      "solution": "**Step 1: Calculate annual depreciation**\nAnnual Depreciation = (Cost - Residual Value) / Useful Life\nAnnual Depreciation = ($20,000 − $2,000) ÷ 5 = **$3,600**\n\n**Step 2: Calculate accumulated depreciation after 3 years**\nAccumulated Depreciation = Annual Depreciation × 3 years\nAccumulated Depreciation = $3,600 × 3 = **$10,800**\n\n**Step 3: Calculate Net Book Value (NBV) at disposal**\nNBV = Cost - Accumulated Depreciation\nNBV = $20,000 − $10,800 = **$9,200**\n\n**Step 4: Calculate profit or loss on disposal**\nProfit/Loss = Disposal Proceeds - NBV\nProfit/Loss = $9,500 − $9,200 = **$300**\n\n**Final Answer:** A **profit on disposal of $300** is made, which is credited to the Statement of Profit or Loss."
+    },
+    {
+      "type": "workedExample",
+      "question": "A business buys a vehicle for $40,000 on 1 Jan 20X1. It is depreciated at 25\\% per annum using the reducing balance method. A full year's depreciation is charged in the year of purchase, and none in the year of sale. The vehicle is sold for $18,000 on 10 Jan 20X4. Calculate the profit or loss on disposal.",
+      "solution": "**Step 1: Calculate annual depreciation and Net Book Value (NBV).**\n*   Cost (1 Jan 20X1): $40,000\n*   Depreciation for 20X1: $40,000 × 25\\% = $10,000. NBV at 31 Dec 20X1 = $30,000.\n*   Depreciation for 20X2: $30,000 × 25\\% = $7,500. NBV at 31 Dec 20X2 = $22,500.\n*   Depreciation for 20X3: $22,500 × 25\\% = $5,625. NBV at 31 Dec 20X3 = $16,875.\n\n**Step 2: Calculate total accumulated depreciation at the date of disposal.**\n*   The asset is sold early in 20X4, so no depreciation is charged for 20X4.\n*   Total Accumulated Depreciation = $10,000 (20X1) + $7,500 (20X2) + $5,625 (20X3) = **$23,125**.\n\n**Step 3: Calculate the Net Book Value at disposal.**\n*   NBV = Cost - Accumulated Depreciation\n*   NBV = $40,000 - $23,125 = **$16,875**.\n\n**Step 4: Calculate the profit or loss on disposal.**\n*   Profit/Loss = Disposal Proceeds - NBV at disposal\n*   Profit/Loss = $18,000 - $16,875 = **$1,125**\n\n**Final Answer:** The business made a **profit on disposal of $1,125**. This will be credited to the Statement of Profit or Loss."
     },
     {
       "type": "practice",
@@ -180,6 +139,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Calculate depreciation using straight-line and reducing balance.",
+    "Account for disposal of non-current assets.",
+    "Explain revaluation of assets.",
+    "Show journal entries for each scenario."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Why don't businesses just record the full cost of a large machine as an expense in the year they buy it?",
@@ -194,6 +160,66 @@
       "a": "No. The increase is an 'unrealised' gain because the asset has not been sold. It is credited to the Revaluation Surplus, which is a capital reserve within equity, not to the income statement. Therefore, it does not increase distributable profits and cannot be paid out as dividends. It simply reflects the asset's current fair value on the statement of financial position."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Straight-line formula?",
+      "back": "(Cost − Residual value) ÷ Expected life in years."
+    },
+    {
+      "front": "Reducing balance?",
+      "back": "NBV × % each year — higher charge early years."
+    },
+    {
+      "front": "Accumulated depreciation?",
+      "back": "Contra-asset — total depreciation to date."
+    },
+    {
+      "front": "Net book value?",
+      "back": "Cost − Accumulated depreciation."
+    },
+    {
+      "front": "Disposal gain?",
+      "back": "Proceeds > NBV — credit to SPL (or loss if reverse)."
+    },
+    {
+      "front": "Revaluation surplus?",
+      "back": "Equity reserve — not income through SPL (under revaluation model)."
+    },
+    {
+      "front": "What is the double entry to record annual depreciation?",
+      "back": "Debit: Depreciation Expense (in the Income Statement). Credit: Provision for Depreciation (in the Statement of Financial Position, deducted from the asset's cost)."
+    },
+    {
+      "front": "Define 'Net Book Value' (NBV) or 'Carrying Amount'.",
+      "back": "The value of a non-current asset recorded in the financial statements. It is calculated as the asset's original cost less its total accumulated depreciation to date."
+    },
+    {
+      "front": "What is the purpose of a Revaluation Surplus?",
+      "back": "It is an equity reserve used to record the increase in the value of a non-current asset following an upward revaluation. It represents an unrealised gain and is not distributable as dividends."
+    },
+    {
+      "front": "State the formula for the Straight-Line method of depreciation.",
+      "back": "Annual Depreciation = (Cost of Asset – Estimated Residual Value) / Estimated Useful Life of Asset (in years)."
+    },
+    {
+      "front": "How is the profit or loss on the disposal of a non-current asset calculated?",
+      "back": "It is the difference between the Net Book Value (NBV) of the asset at the time of disposal and the net disposal proceeds (cash received)."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.3.2.1",
+    "1.3.2.2",
+    "1.3.2.3",
+    "1.3.2.4",
+    "1.3.2.5",
+    "1.3.2.6",
+    "1.3.2.7",
+    "1.3.2.8"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Depreciation Methods",
     "columns": [

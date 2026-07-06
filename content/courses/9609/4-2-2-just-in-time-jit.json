@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — JIT principles, prerequisites, benefits, risks, and when to recommend it.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Define Just in Time inventory.",
-    "Explain prerequisites for successful JIT.",
-    "Compare JIT with traditional stockholding.",
-    "Evaluate JIT for given businesses."
-  ],
-  "simpleExplanation": {
-    "title": "Materials arrive exactly when needed",
-    "summary": "JIT delivers components to the production line only as they are required. It frees working capital and cuts storage but needs flawless suppliers and internal discipline.",
-    "steps": [
-      "Parts delivered as required — minimal warehouse stock.",
-      "Lower holding and handling costs.",
-      "Requires dependable suppliers and quality at source.",
-      "Vulnerable to transport strikes, disasters, demand shocks."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "JIT definition?",
-      "back": "Inventory system where materials arrive just when needed for production."
-    },
-    {
-      "front": "Main benefit?",
-      "back": "Reduced holding costs and working capital tied up in stock."
-    },
-    {
-      "front": "Toyota link?",
-      "back": "Pioneer of JIT + kaizen; classic case reference."
-    },
-    {
-      "front": "Prerequisites?",
-      "back": "Reliable suppliers, quality control, flexible workforce, good IT."
-    },
-    {
-      "front": "Main risk?",
-      "back": "Supply disruption stops production immediately — no buffer."
-    },
-    {
-      "front": "vs buffer stock?",
-      "back": "JIT minimises buffer; traditional holds safety stock (4.2.1)."
-    },
-    {
-      "front": "Link to lean?",
-      "back": "JIT is core to lean production (9.3.4)."
-    },
-    {
-      "front": "Unsuitable when?",
-      "back": "Unreliable suppliers, volatile demand, long lead times from abroad."
-    },
-    {
-      "front": "What is the core principle of a 'pull' system in JIT?",
-      "back": "A 'pull' system means production is triggered by actual customer orders, not by forecasts. Goods are 'pulled' through the production process by demand, which minimises overproduction and waste."
-    },
-    {
-      "front": "Name three essential prerequisites for successful JIT implementation.",
-      "back": "1. Highly reliable and flexible suppliers. 2. A multi-skilled and adaptable workforce. 3. A culture of Total Quality Management (TQM) or 'zero defects'."
-    },
-    {
-      "front": "What is a major financial benefit of JIT, apart from lower storage costs?",
-      "back": "Improved cash flow and liquidity. Less money is tied up as working capital in the form of inventory (raw materials, work-in-progress, finished goods), freeing up cash for other business needs."
-    },
-    {
-      "front": "What is the main risk associated with the lack of buffer stocks in a JIT system?",
-      "back": "Vulnerability to supply chain disruptions. Any delay from a supplier (e.g., due to transport issues, strikes, or quality problems) can halt the entire production line, leading to lost sales and a damaged reputation."
-    },
-    {
-      "front": "How does JIT impact a firm's relationship with its suppliers?",
-      "back": "It necessitates a very close, collaborative partnership. Suppliers become integral to the production process, requiring excellent communication, mutual trust, and a shared commitment to quality and punctuality."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -168,6 +97,11 @@
       "solution": "**Pros:** Seats are **bulky** — warehouse savings significant; **cash** freed (5.1.2).\n\n**Prerequisites check:**\n- Supplier must guarantee **on-time, defect-free** delivery — **quality at source**.\n- **IT integration** for production schedule sharing.\n- **Backup supplier** or contingency if road blocked.\n\n**Risk:** Single supplier, 200 km — **strike or weather** halts line (costly).\n\n**Recommendation:** **Pilot JIT** on one model line if supplier agrees **penalty clauses**; keep **minimal safety stock** initially — hybrid until proven."
     },
     {
+      "type": "workedExample",
+      "question": "CircuitCo manufactures smart home devices. It is considering switching from a traditional inventory system to JIT for its main processor chip. Analyse the financial implications using the following data and advise the company.\n\n**Current System (JIC):**\n- Average inventory: 4,000 chips\n- Cost per chip: $20\n- Annual holding cost: 25% of inventory value\n- Annual warehousing cost for chips: $30,000\n\n**Proposed System (JIT):**\n- Average inventory: 200 chips\n- Cost per chip: $21 (due to smaller, more frequent orders)\n- Annual holding cost: 25% of inventory value\n- Annual warehousing cost for chips: $4,000 (shared, smaller space)\n- Additional annual delivery costs: $18,000",
+      "solution": "**Step 1: Calculate Total Annual Cost of the Current (JIC) System**\n- Value of average inventory = 4,000 chips × $20/chip = $80,000\n- Annual holding cost = 25% of $80,000 = $20,000\n- **Total JIC Cost** = Holding Cost + Warehousing Cost = $20,000 + $30,000 = **$50,000**\n\n**Step 2: Calculate Total Annual Cost of the Proposed (JIT) System**\n- Value of average inventory = 200 chips × $21/chip = $4,200\n- Annual holding cost = 25% of $4,200 = $1,050\n- **Total JIT Cost** = Holding Cost + Warehousing Cost + Additional Delivery Costs = $1,050 + $4,000 + $18,000 = **$23,050**\n\n**Step 3: Compare Costs and Calculate Savings**\n- Annual saving with JIT = Total JIC Cost - Total JIT Cost\n- Annual saving = $50,000 - $23,050 = **$26,950**\n\n**Step 4: Advice and Conclusion**\nBased on the financial data, switching to JIT would result in an estimated annual cost saving of $26,950. The savings primarily come from drastically reduced inventory holding and warehousing costs, which more than offset the higher unit cost per chip and increased delivery charges.\n\n**Recommendation:** CircuitCo should proceed with the switch to JIT. The financial benefits are significant. However, this advice is conditional on the company having secured a highly reliable supplier and possessing robust internal processes to manage the increased operational risk from potential supply chain disruptions."
+    },
+    {
       "type": "practice",
       "label": "Mark a JIT question",
       "href": "/mark?subject=9609&topic=4.2.2"
@@ -190,6 +124,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define Just in Time inventory.",
+    "Explain prerequisites for successful JIT.",
+    "Compare JIT with traditional stockholding.",
+    "Evaluate JIT for given businesses."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Does JIT mean having absolutely zero inventory?",
@@ -204,6 +145,67 @@
       "a": "Generally, no. JIT involves frequent, small orders, which prevents a business from meeting the minimum order quantities often required for bulk-buy discounts. However, the cost savings from eliminating inventory holding costs frequently outweigh the loss of these discounts. Some firms mitigate this by negotiating long-term supply contracts to secure favourable pricing."
     }
   ],
+  "flashcards": [
+    {
+      "front": "JIT definition?",
+      "back": "Inventory system where materials arrive just when needed for production."
+    },
+    {
+      "front": "Main benefit?",
+      "back": "Reduced holding costs and working capital tied up in stock."
+    },
+    {
+      "front": "Toyota link?",
+      "back": "Pioneer of JIT + kaizen; classic case reference."
+    },
+    {
+      "front": "Prerequisites?",
+      "back": "Reliable suppliers, quality control, flexible workforce, good IT."
+    },
+    {
+      "front": "Main risk?",
+      "back": "Supply disruption stops production immediately — no buffer."
+    },
+    {
+      "front": "vs buffer stock?",
+      "back": "JIT minimises buffer; traditional holds safety stock (4.2.1)."
+    },
+    {
+      "front": "Link to lean?",
+      "back": "JIT is core to lean production (9.3.4)."
+    },
+    {
+      "front": "Unsuitable when?",
+      "back": "Unreliable suppliers, volatile demand, long lead times from abroad."
+    },
+    {
+      "front": "What is the core principle of a 'pull' system in JIT?",
+      "back": "A 'pull' system means production is triggered by actual customer orders, not by forecasts. Goods are 'pulled' through the production process by demand, which minimises overproduction and waste."
+    },
+    {
+      "front": "Name three essential prerequisites for successful JIT implementation.",
+      "back": "1. Highly reliable and flexible suppliers. 2. A multi-skilled and adaptable workforce. 3. A culture of Total Quality Management (TQM) or 'zero defects'."
+    },
+    {
+      "front": "What is a major financial benefit of JIT, apart from lower storage costs?",
+      "back": "Improved cash flow and liquidity. Less money is tied up as working capital in the form of inventory (raw materials, work-in-progress, finished goods), freeing up cash for other business needs."
+    },
+    {
+      "front": "What is the main risk associated with the lack of buffer stocks in a JIT system?",
+      "back": "Vulnerability to supply chain disruptions. Any delay from a supplier (e.g., due to transport issues, strikes, or quality problems) can halt the entire production line, leading to lost sales and a damaged reputation."
+    },
+    {
+      "front": "How does JIT impact a firm's relationship with its suppliers?",
+      "back": "It necessitates a very close, collaborative partnership. Suppliers become integral to the production process, requiring excellent communication, mutual trust, and a shared commitment to quality and punctuality."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.2.2"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Just-in-Time (JIT) and Just-in-Case (JIC) Inventory Management",
     "columns": [

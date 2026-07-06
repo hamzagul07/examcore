@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — demand forecasts, master production schedule, MRP, and plan monitoring.",
   "durationMin": 28,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain the operations planning process.",
-    "Describe master production schedule (MPS).",
-    "Outline materials requirement planning (MRP).",
-    "Evaluate planning systems using case data."
-  ],
-  "simpleExplanation": {
-    "title": "Planning what to make and when",
-    "summary": "Operations planning starts with demand forecasts, sets a master production schedule for what to make each period, uses MRP to calculate materials needed, then monitors and revises as actual demand unfolds.",
-    "steps": [
-      "Demand forecast feeds the planning process.",
-      "Master production schedule (MPS) sets output by period.",
-      "Materials requirement planning (MRP) calculates component orders.",
-      "Monitor actual vs plan and revise schedules."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Operations planning chain?",
-      "back": "Forecast → MPS → MRP → purchase/production orders."
-    },
-    {
-      "front": "Master production schedule?",
-      "back": "States what finished products to make and when."
-    },
-    {
-      "front": "MRP?",
-      "back": "Uses BOM + MPS to calculate raw material/component needs."
-    },
-    {
-      "front": "Bill of materials (BOM)?",
-      "back": "List of components per finished product — MRP input."
-    },
-    {
-      "front": "Forecast error impact?",
-      "back": "Over-forecast → excess stock; under → stock-outs (8.1.3)."
-    },
-    {
-      "front": "ERP link?",
-      "back": "ERP automates MPS/MRP with live inventory (9.3.3)."
-    },
-    {
-      "front": "Rolling schedule?",
-      "back": "Plan updated regularly as new demand data arrives."
-    },
-    {
-      "front": "Capacity check?",
-      "back": "MPS must fit available capacity — link 4.3.1."
-    },
-    {
-      "front": "What is a Master Production Schedule (MPS)?",
-      "back": "A detailed plan that states which end products are required, how many are needed, and when they need to be produced. It links demand forecasts to specific production activities, considering capacity and inventory."
-    },
-    {
-      "front": "What are the three key inputs for an MRP I system?",
-      "back": "1. The Master Production Schedule (MPS). 2. The Bill of Materials (BOM). 3. The Inventory Records File (IRF)."
-    },
-    {
-      "front": "Define 'Bill of Materials' (BOM).",
-      "back": "A comprehensive, structured list of all the raw materials, components, and sub-assemblies required to produce one unit of a finished product. It is essential for MRP calculations."
-    },
-    {
-      "front": "What is the primary purpose of demand forecasting in operations?",
-      "back": "To predict future customer demand for products, enabling a business to plan production levels, manage inventory, and allocate resources effectively to meet that demand without excessive waste or stock-outs."
-    },
-    {
-      "front": "How does MRP II (Manufacturing Resource Planning) differ from MRP I?",
-      "back": "MRP II expands on MRP I by integrating all manufacturing resources, including finance (budgets), marketing (sales data), and HR (labour planning), into the planning process. It is a business-wide system, not just a materials control tool."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -161,6 +90,11 @@
       "solution": "**Over-forecast 30%:** **150 excess tables** if produced — **inventory waste** (9.3.4), **cash tied up** (5.1.2).\n\n**MRP consequence:** **600 excess legs** ordered if production started — **supplier penalties** or **storage costs**.\n\n**Fixes:** **Rolling 4-week MPS** updated from **actual orders** not annual average; **ERP** for **real-time** sales feed (9.3.3).\n\n**Capacity:** Before locking MPS, check **labour hours** vs **4.3.1 utilisation** — don't plan beyond **max capacity**."
     },
     {
+      "type": "workedExample",
+      "question": "A-Star Electronics forecasts demand for 120 units of its 'Galaxy Tablet' for Week 8. The company has 20 tablets in finished goods inventory and wants to maintain a safety stock of 10 units. The Bill of Materials (BOM) for one tablet requires 1 Screen Assembly (SA) and 2 Battery Packs (BP). Current component inventory is 30 Screen Assemblies and 50 Battery Packs. Lead times are 2 weeks for SA and 1 week for BP. Production of a batch of tablets takes 1 week. Calculate the required production run for the MPS and the net requirements and order timing for each component.",
+      "solution": "This example demonstrates the full operations planning process from forecast to component ordering.\n\n**Step 1: Determine the Master Production Schedule (MPS) Quantity**\nThe MPS defines how many finished goods to produce. This is based on the forecast, existing stock, and safety stock targets.\n*   **Formula:** MPS Quantity = (Forecast Demand + Safety Stock) - On-Hand Inventory\n*   **Calculation:** (120 units + 10 units) - 20 units = **110 tablets**\n*   The MPS will schedule the production of 110 tablets, to be completed by Week 8.\n\n**Step 2: Calculate Gross Component Requirements**\nThis is the total number of components needed to produce the 110 tablets from the MPS.\n*   **Screen Assembly (SA):** 110 tablets × 1 SA/tablet = 110 Screen Assemblies\n*   **Battery Pack (BP):** 110 tablets × 2 BPs/tablet = 220 Battery Packs\n\n**Step 3: Calculate Net Component Requirements**\nThis is the quantity to order after using existing component stock.\n*   **Formula:** Net Requirement = Gross Requirement - On-Hand Inventory\n*   **Screen Assembly (SA):** 110 (Gross) - 30 (On-Hand) = **80 units**\n*   **Battery Pack (BP):** 220 (Gross) - 50 (On-Hand) = **170 units**\n\n**Step 4: Plan Order Placement (Time-Phasing)**\nOrders must be placed so components arrive before production begins. Since production takes 1 week and must finish by Week 8, it must start in Week 7. Therefore, components are needed by the start of Week 7.\n*   **Formula:** Order Week = Required Week - Lead Time\n*   **Screen Assembly (SA):** Required by Week 7. Lead Time is 2 weeks. Order must be placed in **Week 5** (Week 7 - 2).\n*   **Battery Pack (BP):** Required by Week 7. Lead Time is 1 week. Order must be placed in **Week 6** (Week 7 - 1).\n\n**Conclusion:** A-Star must order 80 Screen Assemblies in Week 5 and 170 Battery Packs in Week 6 to meet its production plan."
+    },
+    {
       "type": "practice",
       "label": "Mark an operations planning question",
       "href": "/mark?subject=9609&topic=9.3.5"
@@ -183,6 +117,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain the operations planning process.",
+    "Describe master production schedule (MPS).",
+    "Outline materials requirement planning (MRP).",
+    "Evaluate planning systems using case data."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is a demand forecast the same as a sales target?",
@@ -197,6 +138,67 @@
       "a": "Yes, the MPS is a dynamic, rolling plan, often reviewed weekly or monthly. It must be updated to reflect changes in customer orders, revised demand forecasts, supplier issues, or production capacity problems. This flexibility is crucial for a business to remain responsive. A 'frozen' period may exist where changes are not permitted close to the production date to ensure stability."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Operations planning chain?",
+      "back": "Forecast → MPS → MRP → purchase/production orders."
+    },
+    {
+      "front": "Master production schedule?",
+      "back": "States what finished products to make and when."
+    },
+    {
+      "front": "MRP?",
+      "back": "Uses BOM + MPS to calculate raw material/component needs."
+    },
+    {
+      "front": "Bill of materials (BOM)?",
+      "back": "List of components per finished product — MRP input."
+    },
+    {
+      "front": "Forecast error impact?",
+      "back": "Over-forecast → excess stock; under → stock-outs (8.1.3)."
+    },
+    {
+      "front": "ERP link?",
+      "back": "ERP automates MPS/MRP with live inventory (9.3.3)."
+    },
+    {
+      "front": "Rolling schedule?",
+      "back": "Plan updated regularly as new demand data arrives."
+    },
+    {
+      "front": "Capacity check?",
+      "back": "MPS must fit available capacity — link 4.3.1."
+    },
+    {
+      "front": "What is a Master Production Schedule (MPS)?",
+      "back": "A detailed plan that states which end products are required, how many are needed, and when they need to be produced. It links demand forecasts to specific production activities, considering capacity and inventory."
+    },
+    {
+      "front": "What are the three key inputs for an MRP I system?",
+      "back": "1. The Master Production Schedule (MPS). 2. The Bill of Materials (BOM). 3. The Inventory Records File (IRF)."
+    },
+    {
+      "front": "Define 'Bill of Materials' (BOM).",
+      "back": "A comprehensive, structured list of all the raw materials, components, and sub-assemblies required to produce one unit of a finished product. It is essential for MRP calculations."
+    },
+    {
+      "front": "What is the primary purpose of demand forecasting in operations?",
+      "back": "To predict future customer demand for products, enabling a business to plan production levels, manage inventory, and allocate resources effectively to meet that demand without excessive waste or stock-outs."
+    },
+    {
+      "front": "How does MRP II (Manufacturing Resource Planning) differ from MRP I?",
+      "back": "MRP II expands on MRP I by integrating all manufacturing resources, including finance (budgets), marketing (sales data), and HR (labour planning), into the planning process. It is a business-wide system, not just a materials control tool."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "9.3.5"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of MRP I and MRP II Systems",
     "columns": [

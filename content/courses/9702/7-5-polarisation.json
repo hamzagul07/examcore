@@ -6,73 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Polarisation (7.5). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define polarisation and identify which types of waves can be polarised.",
-    "Explain the function of a polarising filter and its effect on wave intensity.",
-    "Apply Malus' Law to calculate the intensity of plane-polarised waves after passing through a filter."
-  ],
-  "simpleExplanation": {
-    "title": "Wave Vibrations in a Single Direction",
-    "summary": "Polarisation is when a wave's vibrations are restricted to just one plane. This fascinating phenomenon only occurs with transverse waves, like light, and confirms their fundamental nature.",
-    "analogy": "Imagine wiggling a rope through a picket fence. If you wiggle the rope horizontally, it passes. If you wiggle it vertically, it's blocked. The fence acts like a polarising filter, only letting specific orientations of your rope 'wave' pass through.",
-    "steps": [
-      "Start with an unpolarised transverse wave vibrating in many directions.",
-      "Pass this wave through a special 'polariser' filter, which has a specific 'transmission axis'.",
-      "The filter acts like a vertical slit, allowing only wave components oscillating parallel to its axis to pass.",
-      "The result is a plane-polarised wave, vibrating in only one specific direction, while all other components are absorbed or blocked."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What fundamental characteristic must a wave possess to be polarisable?",
-      "back": "It must be a transverse wave."
-    },
-    {
-      "front": "How does the phenomenon of polarisation provide evidence about the nature of a wave?",
-      "back": "It confirms that the wave is transverse, as only transverse waves can be polarised."
-    },
-    {
-      "front": "State Malus' Law for calculating the intensity of a polarised wave after passing through a filter.",
-      "back": "$I = I₀\\cos²θ$"
-    },
-    {
-      "front": "In Malus' Law ($I = I₀\\cos²θ$), what does the variable $θ$ represent?",
-      "back": "The angle between the plane of oscillation of the incident polarised wave and the transmission axis of the polarising filter."
-    },
-    {
-      "front": "What general effect does a polarising filter have on the intensity of any wave passing through it?",
-      "back": "It reduces the wave's intensity."
-    },
-    {
-      "front": "Define polarisation.",
-      "back": "The restriction of a wave's oscillations to a single plane."
-    },
-    {
-      "front": "Why can't longitudinal waves be polarised?",
-      "back": "Their oscillations are inherently parallel to their direction of energy transfer, so they already vibrate in only one plane."
-    },
-    {
-      "front": "What is an unpolarised transverse wave?",
-      "back": "A transverse wave oscillating in various planes perpendicular to its direction of energy transfer."
-    },
-    {
-      "front": "What is the 'transmission axis' of a polarising filter?",
-      "back": "The specific direction/plane that the filter allows wave oscillations to pass through."
-    },
-    {
-      "front": "In Malus' Law, what happens to intensity when $θ = 90°$?",
-      "back": "Intensity $I = 0$, meaning no light passes through (perfectly blocked)."
-    },
-    {
-      "front": "In Malus' Law, what happens to intensity when $θ = 0°$?",
-      "back": "Intensity $I = I₀$, meaning maximum light passes through (fully transmitted)."
-    },
-    {
-      "front": "Are electromagnetic waves (like light) polarisable? Why?",
-      "back": "Yes, because they are transverse waves."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -150,6 +84,29 @@
       "content": "Be careful when applying Malus' Law! It specifically applies to *plane-polarised* light passing through a filter. If the initial light source is *unpolarised* and passes through the *first* polarising filter, its intensity is typically halved before Malus' Law is used for any subsequent filters."
     },
     {
+      "type": "workedExample",
+      "question": "Unpolarised light of intensity 50 W m⁻² is incident on a polarising filter (Polariser A). The transmitted light then passes through a second filter (Analyser B), whose transmission axis is at an angle of 60° to the axis of Polariser A. Calculate the final intensity of the light emerging from Analyser B.",
+      "solution": "1.  **Intensity after Polariser A:**\n    When unpolarised light passes through the first polariser, its intensity is halved.\n    Initial unpolarised intensity, $I_{un} = 50 \\text{ W m}^{-2}$\n    Intensity after A, $I_A = I_{un} / 2 = 50 / 2 = 25 \\text{ W m}^{-2}$\n    This light is now plane-polarised parallel to the axis of A.\n\n2.  **Apply Malus' Law for Analyser B:**\n    The light incident on B has intensity $I_A = 25 \\text{ W m}^{-2}$. This will be our $I_0$ for Malus' Law.\n    The angle $θ$ between the axis of A and B is $60°$.\n    The final intensity, $I_B$, is given by: $I_B = I_A \\cos²θ$\n\n3.  **Substitute and calculate:**\n    $I_B = 25 \\times \\cos²(60°)$\n    We know that $\\cos(60°) = 0.5$.\n    $I_B = 25 \\times (0.5)²$\n    $I_B = 25 \\times 0.25$\n    $I_B = 6.25 \\text{ W m}^{-2}$\n\n    Therefore, the final intensity of the light emerging from Analyser B is $6.25 \\text{ W m}^{-2}$."
+    },
+    {
+      "type": "heading",
+      "content": "Real-World Applications of Polarisation"
+    },
+    {
+      "type": "text",
+      "content": "Polarisation is not just a lab curiosity; it is the principle behind many technologies we use daily. Understanding how it's applied helps to solidify the concept."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Polaroid Sunglasses:** Reduce glare from horizontal surfaces (like water or roads) by using vertically aligned polarising filters. This blocks the horizontally polarised light that makes up most of the reflected glare.",
+        "**LCD Screens:** Liquid Crystal Displays (in TVs, monitors, calculators) use two polarising filters, usually at 90° to each other ('crossed'). A liquid crystal layer between them can rotate the plane of polarisation of light when a voltage is applied, thus controlling whether light passes through the second filter to light up a pixel.",
+        "**3D Cinema:** Some 3D movie systems use glasses with differently polarised lenses (e.g., clockwise and anti-clockwise circular polarisation). Two projectors superimpose images with different polarisations onto the screen. Each lens only allows one image to pass to each eye, which the brain then combines to create a perception of depth.",
+        "**Stress Analysis:** Engineers view transparent plastic models of structures (like bridges or machine parts) between two crossed polarisers. When the model is stressed, it alters the polarisation of light passing through it, revealing stress concentration points as coloured fringes.",
+        "**Photography:** Photographers use polarising filters on camera lenses to reduce unwanted reflections, darken blue skies for better contrast, and saturate colours by filtering out polarised scattered light."
+      ]
+    },
+    {
       "type": "practice",
       "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=7.5"
@@ -172,6 +129,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define polarisation and identify which types of waves can be polarised.",
+    "Explain the function of a polarising filter and its effect on wave intensity.",
+    "Apply Malus' Law to calculate the intensity of plane-polarised waves after passing through a filter.",
+    "Describe practical applications of polarisation such as in sunglasses and LCD displays."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine wiggling a rope through a picket fence. If you wiggle the rope horizontally, it passes. If you wiggle it vertically, it's blocked. The fence acts like a polarising filter, only letting specific orientations of your rope 'wave' pass through."
+  },
   "faq": [
     {
       "q": "How do polarised sunglasses reduce glare?",
@@ -186,13 +152,83 @@
       "a": "No, sound waves cannot be polarised. This is because sound waves are longitudinal waves, meaning their oscillations are inherently parallel to their direction of energy transfer. There is no 'plane' of oscillation perpendicular to their travel to restrict, unlike transverse waves."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What fundamental characteristic must a wave possess to be polarisable?",
+      "back": "It must be a transverse wave."
+    },
+    {
+      "front": "How does the phenomenon of polarisation provide evidence about the nature of a wave?",
+      "back": "It confirms that the wave is transverse, as only transverse waves can be polarised."
+    },
+    {
+      "front": "State Malus' Law for calculating the intensity of a polarised wave after passing through a filter.",
+      "back": "$I = I₀\\cos²θ$"
+    },
+    {
+      "front": "In Malus' Law ($I = I₀\\cos²θ$), what does the variable $θ$ represent?",
+      "back": "The angle between the plane of oscillation of the incident polarised wave and the transmission axis of the polarising filter."
+    },
+    {
+      "front": "What general effect does a polarising filter have on the intensity of any wave passing through it?",
+      "back": "It reduces the wave's intensity."
+    },
+    {
+      "front": "Define polarisation.",
+      "back": "The restriction of a wave's oscillations to a single plane."
+    },
+    {
+      "front": "Why can't longitudinal waves be polarised?",
+      "back": "Their oscillations are inherently parallel to their direction of energy transfer, so they already vibrate in only one plane."
+    },
+    {
+      "front": "What is an unpolarised transverse wave?",
+      "back": "A transverse wave oscillating in various planes perpendicular to its direction of energy transfer."
+    },
+    {
+      "front": "What is the 'transmission axis' of a polarising filter?",
+      "back": "The specific direction/plane that the filter allows wave oscillations to pass through."
+    },
+    {
+      "front": "In Malus' Law, what happens to intensity when $θ = 90°$?",
+      "back": "Intensity $I = 0$, meaning no light passes through (perfectly blocked)."
+    },
+    {
+      "front": "In Malus' Law, what happens to intensity when $θ = 0°$?",
+      "back": "Intensity $I = I₀$, meaning maximum light passes through (fully transmitted)."
+    },
+    {
+      "front": "Are electromagnetic waves (like light) polarisable? Why?",
+      "back": "Yes, because they are transverse waves."
+    },
+    {
+      "front": "An unpolarised light beam of intensity $I_{un}$ passes through an ideal polarising filter. What is the intensity of the transmitted light?",
+      "back": "The intensity is halved, becoming $I_{un}/2$."
+    },
+    {
+      "front": "What is an 'analyser' in the context of polarisation?",
+      "back": "It is a second polarising filter placed after a first one, used to 'analyse' the properties (like plane of polarisation and intensity) of the already polarised light."
+    },
+    {
+      "front": "Why do photographers use polarising filters?",
+      "back": "To reduce glare and reflections from surfaces like water and glass, and to enhance the colour and contrast of skies by filtering scattered, polarised light."
+    },
+    {
+      "front": "What is the role of the two polarising filters in a standard LCD screen?",
+      "back": "They are typically crossed (at 90°). The liquid crystal layer in between rotates the plane of polarisation to control whether light passes through the second filter, creating a pixel."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "7.5.1",
+    "7.5.2"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/7-5-polarisation.png",
     "alt": "Senpai Corner reference diagram for 7.5 Polarisation"
-  }
+  },
+  "updated": "2026-06-26"
 }

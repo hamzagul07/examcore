@@ -1,6 +1,6 @@
 ---
 title: IB vs A-Level: which is harder and how marking differs
-description: IB Diploma vs A-Levels — breadth vs depth, the 45-point system vs A*–E, and how IB markbands differ from Cambridge mark schemes.
+description: IB Diploma vs A-Levels — breadth vs depth, the 45-point system vs A*–E, and how IB markbands differ from A-Level mark schemes.
 date: 2026-06-19
 keywords: IB vs A-Level, IB or A-Levels, is IB harder than A-Levels, IB vs A-Level grading, IB Diploma vs A-Level
 category: revision
@@ -24,7 +24,7 @@ The two qualifications use entirely different grading scales. Each of the six IB
 The IB uses a criteria-based assessment model. Instead of awarding a point for every correct piece of information, examiners use **markbands** to place a piece of work into a level of achievement. Each markband contains a set of descriptors explaining the characteristics of work at that level, from 'limited' to 'excellent'. For example, an essay will be judged against criteria like 'Knowledge and Understanding' or 'Critical Thinking'. The examiner's job is to find the 'best fit' descriptor for the student's work. This holistic approach focuses on the overall quality of the response rather than a checklist of points. When you use a service to [mark your answers](/mark), understanding these different philosophies is key to interpreting your feedback. IB students can also use [free syllabus lessons](/ib/courses) and [topic practice](/ib/past-papers/biology-hl#ib-topic-practice) to rehearse those descriptors subject by subject.
 
 ## How Marking Works: A-Level Points and Levels
-Cambridge A-Levels employ a more granular marking system, particularly for structured questions. Mark schemes often feature itemised points, where specific marks (e.g., M1 for method, A1 for accuracy, B1 for an independent point) are awarded for clearly defined parts of an answer. This makes the marking process highly transparent and objective. For longer, essay-style questions, A-Levels use levels-of-response mark schemes, which are similar in principle to IB markbands. However, the day-to-day experience of an A-Level student often involves chasing these specific points, especially in science and maths, a different mindset from the IB's holistic criteria.
+A-Levels employ a more granular marking system, particularly for structured questions. Mark schemes often feature itemised points, where specific marks (e.g., M1 for method, A1 for accuracy, B1 for an independent point) are awarded for clearly defined parts of an answer. This makes the marking process highly transparent and objective. For longer, essay-style questions, A-Levels use levels-of-response mark schemes, which are similar in principle to IB markbands. However, the day-to-day experience of an A-Level student often involves chasing these specific points, especially in science and maths, a different mindset from the IB's holistic criteria.
 
 | Resource | Best for | Cost |
 | :--- | :--- | :--- |

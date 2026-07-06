@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 A Level — inequality, progressive tax, transfers, and equity vs efficiency with GeoGebra.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish equity and equality.",
-    "Explain progressive taxation and transfer payments.",
-    "Analyse trade-offs with efficiency.",
-    "Evaluate redistribution policies."
-  ],
-  "simpleExplanation": {
-    "title": "Fairness in the economy",
-    "summary": "Progressive taxes take a higher proportion from high earners. Benefits redistribute income to vulnerable groups.",
-    "steps": [
-      "Gini coefficient measures inequality (0 = equal, 1 = unequal).",
-      "Progressive tax: average rate rises with income.",
-      "Equity vs efficiency: high tax may reduce incentives.",
-      "Minimum wage and welfare reform debates."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Equity vs equality?",
-      "back": "Equity = fairness (may allow unequal outcomes if deserved); equality = same outcomes — not always identical in policy debate."
-    },
-    {
-      "front": "Progressive vs regressive tax?",
-      "back": "Progressive: average rate rises with income (e.g. income tax bands). Regressive: poor pay higher proportion (e.g. flat VAT on necessities)."
-    },
-    {
-      "front": "What is the Gini coefficient?",
-      "back": "Measure of income inequality from 0 (perfect equality) to 1 (one person has all income) — derived from the Lorenz curve."
-    },
-    {
-      "front": "Transfer payments?",
-      "back": "Government payments redistributing income — pensions, unemployment benefit, housing support — not payment for G&S."
-    },
-    {
-      "front": "Equity–efficiency trade-off?",
-      "back": "Higher redistribution may reduce work incentives and investment (efficiency cost) while improving living standards for low earners (equity gain)."
-    },
-    {
-      "front": "Wealth vs income inequality?",
-      "back": "Income is flow (wages, profits); wealth is stock (assets minus debts) — wealth often more unequally distributed than income."
-    },
-    {
-      "front": "Lorenz Curve",
-      "back": "A graph showing the cumulative percentage of total national income or wealth against the cumulative percentage of the population. The greater the curve's deviation from the 45-degree line of perfect equality, the greater the inequality."
-    },
-    {
-      "front": "Vertical Equity",
-      "back": "The principle that those with a greater ability to pay should contribute a larger proportion of their income or wealth in tax. It is the core justification for progressive taxation."
-    },
-    {
-      "front": "Transfer Payments",
-      "back": "Payments made by the government to individuals, for which no good or service is provided in return. Examples include unemployment benefits, state pensions, and child benefit."
-    },
-    {
-      "front": "Gini Coefficient",
-      "back": "A statistical measure of inequality, ranging from 0 (perfect equality) to 1 (perfect inequality). It is calculated as the ratio of the area between the Lorenz curve and the line of equality to the total area under the line of equality (Area A / (Area A + B))."
-    },
-    {
-      "front": "The 'Leaky Bucket' Analogy",
-      "back": "An analogy illustrating the equity-efficiency trade-off. When redistributing income from the rich to the poor, some economic value is 'lost' due to administrative costs and the disincentive effects of taxes and benefits, reducing overall economic output."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -179,6 +116,11 @@
       "solution": "**Equity effects:**\n- **Progressive tax rise** increases **vertical equity** — high earners contribute a larger share, narrowing post-tax income gap.\n- **Higher benefits** raise disposable income for unemployed/low-income households — **reduces poverty** and likely lowers Gini.\n\n**Efficiency / incentive effects:**\n- Top earners may **reduce labour supply** or relocate (tax avoidance) — **efficiency loss** and possible **Laffer curve** concern if revenue falls.\n- Higher benefits may **reduce job-search intensity** (unemployment trap) — structural unemployment risk.\n- **Deadweight loss** from higher marginal tax rates on middle/high earners.\n\n**Judgement:** Short-run equity gains are likely; long-run effectiveness depends on **behavioural responses** and whether revenue funds productive spending (education, health) that raises **human capital** — potentially improving both equity and efficiency over time."
     },
     {
+      "type": "workedExample",
+      "question": "An economist is analysing the progressive tax system in a country. An individual earns a gross annual income of $80,000. The income tax bands are as follows:\n- Personal Allowance (0% tax): $0 - $15,000\n- Basic Rate (20% tax): $15,001 - $50,000\n- Higher Rate (40% tax): Above $50,000\n\nCalculate:\na) The total income tax paid by the individual.\nb) The individual's disposable income.\nc) The individual's average rate of tax.",
+      "solution": "**Step 1: Calculate tax for each band**\n- **Personal Allowance band:** The first $15,000 is taxed at 0%.\n  Tax = $15,000 * 0.00 = $0\n- **Basic Rate band:** Income between $15,001 and $50,000. The amount of income in this band is $50,000 - $15,000 = $35,000.\n  Tax = $35,000 * 0.20 = $7,000\n- **Higher Rate band:** Income above $50,000. The amount of income in this band is $80,000 - $50,000 = $30,000.\n  Tax = $30,000 * 0.40 = $12,000\n\n**Step 2: Calculate total income tax paid (a)**\nTotal Tax = Tax from all bands\nTotal Tax = $0 + $7,000 + $12,000 = $19,000\n\n**Step 3: Calculate disposable income (b)**\nDisposable Income = Gross Income - Total Tax\nDisposable Income = $80,000 - $19,000 = $61,000\n\n**Step 4: Calculate the average rate of tax (c)**\nAverage Tax Rate = (Total Tax / Gross Income) * 100\nAverage Tax Rate = ($19,000 / $80,000) * 100 = 23.75%\n\n**Conclusion:**\nThe individual pays a total of **$19,000** in income tax, resulting in a disposable income of **$61,000**. Their average tax rate is **23.75%**, which is lower than their marginal tax rate of 40%, demonstrating the nature of a progressive system."
+    },
+    {
       "type": "practice",
       "label": "Mark an equity question",
       "href": "/mark?subject=9708&topic=8.2"
@@ -208,6 +150,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Distinguish equity and equality.",
+    "Explain progressive taxation and transfer payments.",
+    "Analyse trade-offs with efficiency.",
+    "Evaluate redistribution policies."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Does equity mean everyone should have the same income?",
+      "a": "No, this is a common misconception confusing equity with equality. Equity refers to fairness, not sameness. Vertical equity, a key principle, suggests it is fair for higher earners to pay a higher percentage in tax to fund services and support for the less well-off. The goal is to reduce excessive inequality to a level society considers fair, not to achieve perfect income equality."
+    },
+    {
+      "q": "Are all taxes used for redistribution?",
+      "a": "Not all taxes are equally effective for redistribution. Progressive taxes, where the tax rate increases with income, are the primary tool. In contrast, regressive taxes, such as VAT on many goods, can worsen relative inequality as they take a larger percentage of income from the poor than from the rich. Proportional (flat) taxes have a neutral effect on the percentage distribution of income."
+    },
+    {
+      "q": "If the government redistributes income, does that automatically make the country better off?",
+      "a": "Not necessarily, as there is a potential trade-off. While redistribution can reduce poverty, increase social cohesion, and improve opportunities for the poor, it can also create a conflict with economic efficiency. High taxes may discourage work and investment, and generous benefits might reduce the incentive to find a job. The overall impact depends on the specific design of the policies and finding a balance between equity and efficiency."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "Equity vs equality?",
+      "back": "Equity = fairness (may allow unequal outcomes if deserved); equality = same outcomes — not always identical in policy debate."
+    },
+    {
+      "front": "Progressive vs regressive tax?",
+      "back": "Progressive: average rate rises with income (e.g. income tax bands). Regressive: poor pay higher proportion (e.g. flat VAT on necessities)."
+    },
+    {
+      "front": "What is the Gini coefficient?",
+      "back": "Measure of income inequality from 0 (perfect equality) to 1 (one person has all income) — derived from the Lorenz curve."
+    },
+    {
+      "front": "Transfer payments?",
+      "back": "Government payments redistributing income — pensions, unemployment benefit, housing support — not payment for G&S."
+    },
+    {
+      "front": "Equity–efficiency trade-off?",
+      "back": "Higher redistribution may reduce work incentives and investment (efficiency cost) while improving living standards for low earners (equity gain)."
+    },
+    {
+      "front": "Wealth vs income inequality?",
+      "back": "Income is flow (wages, profits); wealth is stock (assets minus debts) — wealth often more unequally distributed than income."
+    },
+    {
+      "front": "Lorenz Curve",
+      "back": "A graph showing the cumulative percentage of total national income or wealth against the cumulative percentage of the population. The greater the curve's deviation from the 45-degree line of perfect equality, the greater the inequality."
+    },
+    {
+      "front": "Vertical Equity",
+      "back": "The principle that those with a greater ability to pay should contribute a larger proportion of their income or wealth in tax. It is the core justification for progressive taxation."
+    },
+    {
+      "front": "Transfer Payments",
+      "back": "Payments made by the government to individuals, for which no good or service is provided in return. Examples include unemployment benefits, state pensions, and child benefit."
+    },
+    {
+      "front": "Gini Coefficient",
+      "back": "A statistical measure of inequality, ranging from 0 (perfect equality) to 1 (perfect inequality). It is calculated as the ratio of the area between the Lorenz curve and the line of equality to the total area under the line of equality (Area A / (Area A + B))."
+    },
+    {
+      "front": "The 'Leaky Bucket' Analogy",
+      "back": "An analogy illustrating the equity-efficiency trade-off. When redistributing income from the rich to the poor, some economic value is 'lost' due to administrative costs and the disincentive effects of taxes and benefits, reducing overall economic output."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "8.2"
   ],
   "diagramSpec": {
     "steps": [
@@ -241,20 +256,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "Does equity mean everyone should have the same income?",
-      "a": "No, this is a common misconception confusing equity with equality. Equity refers to fairness, not sameness. Vertical equity, a key principle, suggests it is fair for higher earners to pay a higher percentage in tax to fund services and support for the less well-off. The goal is to reduce excessive inequality to a level society considers fair, not to achieve perfect income equality."
-    },
-    {
-      "q": "Are all taxes used for redistribution?",
-      "a": "Not all taxes are equally effective for redistribution. Progressive taxes, where the tax rate increases with income, are the primary tool. In contrast, regressive taxes, such as VAT on many goods, can worsen relative inequality as they take a larger percentage of income from the poor than from the rich. Proportional (flat) taxes have a neutral effect on the percentage distribution of income."
-    },
-    {
-      "q": "If the government redistributes income, does that automatically make the country better off?",
-      "a": "Not necessarily, as there is a potential trade-off. While redistribution can reduce poverty, increase social cohesion, and improve opportunities for the poor, it can also create a conflict with economic efficiency. High taxes may discourage work and investment, and generous benefits might reduce the incentive to find a job. The overall impact depends on the specific design of the policies and finding a balance between equity and efficiency."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Equity vs. Efficiency in Economic Policy",
     "columns": [

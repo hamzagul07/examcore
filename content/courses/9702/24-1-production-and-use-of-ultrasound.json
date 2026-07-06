@@ -6,65 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Production and use of ultrasound (24.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the production and detection of ultrasound waves using the piezoelectric effect.",
-    "Explain the concepts of acoustic impedance, reflection coefficient, and attenuation.",
-    "Apply ultrasound principles to solve problems involving intensity and half-value thickness."
-  ],
-  "simpleExplanation": {
-    "title": "Ultrasound Explained",
-    "summary": "Ultrasound uses super-high frequency sound waves, beyond human hearing, to 'see' inside objects, like a doctor looking inside your body. It relies on special crystals that vibrate to make sound and pick up echoes, mapping out different materials and structures.",
-    "analogy": "Imagine shouting into a dark cave and listening carefully to the echoes. The time it takes for the echo to return, and how loud it is, can tell you about the cave's size, shape, and what's inside. Ultrasound does this with sound waves too fast for us to hear, creating a detailed 'map' of internal body structures.",
-    "steps": [
-      "**Generate Pulse:** An electrical signal makes a special crystal vibrate rapidly, sending out a short burst of high-frequency sound (ultrasound).",
-      "**Travel & Reflect:** This sound travels through the body, and some of it bounces back when it hits a boundary between different tissues.",
-      "**Detect Echo:** The returning echo hits the same crystal, causing it to vibrate and generate an electrical signal.",
-      "**Image Formation:** A computer measures the time it takes for echoes to return and their strength, using this data to construct a detailed image of the internal structures."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What defines ultrasound?",
-      "back": "Sound waves with frequencies above 20 kHz, beyond the range of human hearing, typically 1–20 MHz for medical uses."
-    },
-    {
-      "front": "Explain the piezoelectric effect.",
-      "back": "Certain crystals (e.g., quartz) deform mechanically when an alternating p.d. is applied, and conversely, generate a p.d. when mechanically deformed."
-    },
-    {
-      "front": "How does a transducer generate and detect ultrasound?",
-      "back": "It generates ultrasound by applying an alternating p.d. to a piezoelectric crystal, causing it to vibrate. It detects echoes by sensing the p.d. generated when returning waves deform the crystal."
-    },
-    {
-      "front": "What is acoustic impedance (Z) and its formula?",
-      "back": "A measure of a medium's resistance to sound wave propagation, calculated as $Z = \\rho c$ (density × speed of sound)."
-    },
-    {
-      "front": "When does significant reflection occur at a boundary?",
-      "back": "When there is a large difference in the acoustic impedances ($Z_1$ and $Z_2$) of the two media."
-    },
-    {
-      "front": "What is the purpose of a coupling gel in ultrasound?",
-      "back": "To eliminate air between the transducer and skin. Air has a vastly different acoustic impedance from tissue, which would reflect almost all the ultrasound, preventing it from entering the body."
-    },
-    {
-      "front": "What is ultrasound attenuation?",
-      "back": "The decrease in ultrasound intensity and amplitude as it travels through a medium, caused by absorption (conversion to heat) and scattering."
-    },
-    {
-      "front": "How is ultrasound intensity affected by distance due to attenuation?",
-      "back": "It decreases exponentially with distance ($x$): $I = I_0 e^{-\\mu x}$, where $\\mu$ is the linear attenuation coefficient."
-    },
-    {
-      "front": "Define half-value thickness ($x_{1/2}$).",
-      "back": "The distance an ultrasound wave travels through a medium for its intensity to be reduced to half its initial value."
-    },
-    {
-      "front": "What does 'damping' achieve in an ultrasound transducer?",
-      "back": "It rapidly stops the crystal's vibrations, producing short ultrasound pulses essential for high axial resolution (distinguishing closely spaced objects)."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -183,6 +125,11 @@
       "solution": "1.  **Identify the given values:**\n    Acoustic impedance of muscle ($Z_1$) = 1.70 × 10$^6$ kg m$^{-2}$ s$^{-1}$\n    Acoustic impedance of bone ($Z_2$) = 6.00 × 10$^6$ kg m$^{-2}$ s$^{-1}$\n\n2.  **Recall the intensity reflection coefficient formula:**\n    $I_r / I_i = \\left(\\frac{Z_2 - Z_1}{Z_2 + Z_1}\\right)^2$\n\n3.  **Substitute the values into the formula:**\n    $I_r / I_i = \\left(\\frac{6.00 \\times 10^6 - 1.70 \\times 10^6}{6.00 \\times 10^6 + 1.70 \\times 10^6}\\right)^2$\n\n4.  **Calculate the numerator and denominator:**\n    Numerator: $(6.00 - 1.70) \\times 10^6 = 4.30 \\times 10^6$\n    Denominator: $(6.00 + 1.70) \\times 10^6 = 7.70 \\times 10^6$\n\n5.  **Perform the division and square the result:**\n    $I_r / I_i = \\left(\\frac{4.30 \\times 10^6}{7.70 \\times 10^6}\\right)^2 = \\left(\\frac{4.30}{7.70}\\right)^2$\n    $I_r / I_i = (0.55844...)^2 \\approx 0.31186$\n\n6.  **State the final answer:**\n    The intensity reflection coefficient is approximately **0.312** (to 3 significant figures)."
     },
     {
+      "type": "workedExample",
+      "question": "An ultrasound beam with an initial intensity of 5.0 W cm⁻² enters a tissue with a linear attenuation coefficient (μ) of 0.23 cm⁻¹. Calculate the intensity of the beam after it has travelled a distance of 4.0 cm through the tissue. Also, determine the half-value thickness for this tissue.",
+      "solution": "This problem has two parts: calculating the final intensity using the attenuation formula, and finding the half-value thickness.\n\n**Part 1: Calculate the final intensity**\n\n1.  **Identify the given values:**\n    Initial intensity ($I_0$) = 5.0 W cm⁻²\n    Linear attenuation coefficient ($\\mu$) = 0.23 cm⁻¹\n    Distance travelled ($x$) = 4.0 cm\n\n2.  **Recall the attenuation formula:**\n    $I = I_0 e^{-\\mu x}$\n\n3.  **Substitute the values into the formula:**\n    $I = 5.0 \\times e^{-(0.23 \\times 4.0)}$\n\n4.  **Calculate the exponent:**\n    Exponent = $-(0.23 \\times 4.0) = -0.92$\n\n5.  **Calculate the final intensity:**\n    $I = 5.0 \\times e^{-0.92}$\n    $I = 5.0 \\times 0.3985...$\n    $I \\approx 1.9926$ W cm⁻²\n\n6.  **State the final answer for Part 1:**\n    The intensity of the beam after 4.0 cm is approximately **2.0 W cm⁻²** (to 2 significant figures).\n\n**Part 2: Determine the half-value thickness**\n\n1.  **Recall the formula for half-value thickness:**\n    $x_{1/2} = \\frac{\\ln(2)}{\\mu}$\n\n2.  **Substitute the value of μ:**\n    $x_{1/2} = \\frac{\\ln(2)}{0.23 \\text{ cm}^{-1}}$\n\n3.  **Calculate the result:**\n    $x_{1/2} = \\frac{0.6931...}{0.23} \\approx 3.013$ cm\n\n4.  **State the final answer for Part 2:**\n    The half-value thickness for this tissue is approximately **3.0 cm** (to 2 significant figures)."
+    },
+    {
       "type": "practice",
       "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=24.1"
@@ -205,6 +152,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe the production and detection of ultrasound waves using the piezoelectric effect.",
+    "Explain the concepts of acoustic impedance, reflection coefficient, and attenuation.",
+    "Apply ultrasound principles to solve problems involving intensity and half-value thickness."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine shouting into a dark cave and listening carefully to the echoes. The time it takes for the echo to return, and how loud it is, can tell you about the cave's size, shape, and what's inside. Ultrasound does this with sound waves too fast for us to hear, creating a detailed 'map' of internal body structures."
+  },
   "faq": [
     {
       "q": "Why can't doctors use audible sound for medical imaging instead of ultrasound?",
@@ -219,13 +174,79 @@
       "a": "Medical ultrasound is generally considered very safe, as it uses non-ionizing radiation (unlike X-rays) and doesn't significantly heat tissues when used diagnostically. The energy levels are low, and the technique has been widely used for decades without known long-term harmful effects, making it a preferred imaging method for sensitive applications like pregnancy scans."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What defines ultrasound?",
+      "back": "Sound waves with frequencies above 20 kHz, beyond the range of human hearing, typically 1–20 MHz for medical uses."
+    },
+    {
+      "front": "Explain the piezoelectric effect.",
+      "back": "Certain crystals (e.g., quartz) deform mechanically when an alternating p.d. is applied, and conversely, generate a p.d. when mechanically deformed."
+    },
+    {
+      "front": "How does a transducer generate and detect ultrasound?",
+      "back": "It generates ultrasound by applying an alternating p.d. to a piezoelectric crystal, causing it to vibrate. It detects echoes by sensing the p.d. generated when returning waves deform the crystal."
+    },
+    {
+      "front": "What is acoustic impedance (Z) and its formula?",
+      "back": "A measure of a medium's resistance to sound wave propagation, calculated as $Z = \\rho c$ (density × speed of sound)."
+    },
+    {
+      "front": "When does significant reflection occur at a boundary?",
+      "back": "When there is a large difference in the acoustic impedances ($Z_1$ and $Z_2$) of the two media."
+    },
+    {
+      "front": "What is the purpose of a coupling gel in ultrasound?",
+      "back": "To eliminate air between the transducer and skin. Air has a vastly different acoustic impedance from tissue, which would reflect almost all the ultrasound, preventing it from entering the body."
+    },
+    {
+      "front": "What is ultrasound attenuation?",
+      "back": "The decrease in ultrasound intensity and amplitude as it travels through a medium, caused by absorption (conversion to heat) and scattering."
+    },
+    {
+      "front": "How is ultrasound intensity affected by distance due to attenuation?",
+      "back": "It decreases exponentially with distance ($x$): $I = I_0 e^{-\\mu x}$, where $\\mu$ is the linear attenuation coefficient."
+    },
+    {
+      "front": "Define half-value thickness ($x_{1/2}$).",
+      "back": "The distance an ultrasound wave travels through a medium for its intensity to be reduced to half its initial value."
+    },
+    {
+      "front": "What does 'damping' achieve in an ultrasound transducer?",
+      "back": "It rapidly stops the crystal's vibrations, producing short ultrasound pulses essential for high axial resolution (distinguishing closely spaced objects)."
+    },
+    {
+      "front": "What is the relationship between half-value thickness ($x_{1/2}$) and the linear attenuation coefficient ($\\mu$)?",
+      "back": "$x_{1/2} = \\frac{\\ln(2)}{\\mu}$. A larger attenuation coefficient means a smaller half-value thickness, as the intensity decreases more rapidly."
+    },
+    {
+      "front": "Why are short ultrasound pulses necessary for good image resolution?",
+      "back": "Short pulses improve axial resolution, which is the ability to distinguish between two structures that are close together along the beam's axis. Long pulses would cause the echoes from these structures to overlap, blurring the image."
+    },
+    {
+      "front": "What are the two main causes of ultrasound attenuation in tissue?",
+      "back": "1. **Absorption:** The energy of the ultrasound wave is converted into thermal energy (heat) in the tissue. 2. **Scattering:** The wave is reflected and refracted in many directions by small structures within the tissue."
+    },
+    {
+      "front": "Calculate the acoustic impedance of water if its density is 1000 kg m⁻³ and the speed of sound in it is 1500 m s⁻¹.",
+      "back": "$Z = \\rho c = 1000 \\text{ kg m}^{-3} \\times 1500 \\text{ m s}^{-1} = 1.5 \\times 10^6 \\text{ kg m}^{-2} \\text{s}^{-1}$ (or 1.5 MRayl)."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "24.1.1",
+    "24.1.2",
+    "24.1.3",
+    "24.1.4",
+    "24.1.5",
+    "24.1.6"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/24-1-production-and-use-of-ultrasound.png",
     "alt": "Senpai Corner reference diagram for 24.1 Production and use of ultrasound"
-  }
+  },
+  "updated": "2026-06-26"
 }

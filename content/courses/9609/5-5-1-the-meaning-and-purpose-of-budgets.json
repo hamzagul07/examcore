@@ -7,78 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — budget types, purposes, master budget flow, and benefits/limitations of budgeting.",
   "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Define a budget and explain its purposes.",
-    "Describe types of budgets: sales, production, cash, etc.",
-    "Explain how budgets link in a master budget.",
-    "Evaluate benefits and drawbacks of budgeting."
-  ],
-  "simpleExplanation": {
-    "title": "Financial plans for departments",
-    "summary": "A budget is a quantitative plan for a future period — it coordinates departments, authorises spending, and provides a benchmark for control.",
-    "analogy": "A budget is like a family's monthly spending plan: you estimate income, allocate to rent, food, and savings, then check the bank statement later to see if you overspent. Businesses do the same at scale across sales, production, and cash.",
-    "steps": [
-      "Budget = forward financial plan (usually 12 months).",
-      "Sales budget usually prepared first — drives production.",
-      "Cash budget ensures the firm can pay bills.",
-      "Actual results compared to budget → variances (5.5.2)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is a budget?",
-      "back": "A financial plan showing expected income and expenditure over a future period."
-    },
-    {
-      "front": "Four purposes of budgeting?",
-      "back": "Planning, coordination, control (monitoring), motivation/communication."
-    },
-    {
-      "front": "Sales budget role?",
-      "back": "Usually the starting point — forecast units/revenue drives production and purchases."
-    },
-    {
-      "front": "Production budget?",
-      "back": "Units to produce = budgeted sales + desired closing inventory − opening inventory."
-    },
-    {
-      "front": "Cash budget purpose?",
-      "back": "Forecasts cash inflows and outflows to avoid liquidity problems."
-    },
-    {
-      "front": "Master budget?",
-      "back": "The complete set of interlinked budgets for the whole organisation."
-    },
-    {
-      "front": "Benefit of budgeting?",
-      "back": "Sets targets, allocates resources, identifies problems early."
-    },
-    {
-      "front": "Drawback of budgeting?",
-      "back": "Time-consuming; may demotivate if unrealistic; rapid change makes plans outdated."
-    },
-    {
-      "front": "What is a Master Budget?",
-      "back": "A summary of all of a company's individual budgets, consisting of operating budgets (like sales and production) and financial budgets (like the cash budget and budgeted balance sheet). It represents the overall financial plan."
-    },
-    {
-      "front": "Define Zero-Based Budgeting (ZBB).",
-      "back": "A budgeting method where all expenses must be justified for each new period. Every function is analysed for its needs and costs, starting from a 'zero base', rather than using the previous year's budget as a starting point."
-    },
-    {
-      "front": "What is Variance Analysis?",
-      "back": "The process of comparing actual results against budgeted figures to identify differences, known as variances. These can be 'favourable' (better than budget) or 'adverse' (worse than budget) and are used for management control."
-    },
-    {
-      "front": "What is meant by Delegated Budgeting?",
-      "back": "A process where the authority and responsibility for setting and managing a budget are passed down to junior or middle managers. This can increase motivation and accountability but requires effective monitoring."
-    },
-    {
-      "front": "What is an Adverse Variance?",
-      "back": "A variance that occurs when actual results are worse than the budgeted figure. For example, when actual costs are higher than budgeted costs, or actual revenue is lower than budgeted revenue."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -169,8 +97,13 @@
     },
     {
       "type": "workedExample",
-      "question": "A retailer expects to sell 10 000 units next quarter. Opening inventory 1 200 units; desired closing inventory 1 800 units. Calculate budgeted production.",
-      "solution": "Production = Sales + Closing inventory − Opening inventory\n\n= 10 000 + 1 800 − 1 200 = **10 600 units**\n\nThe firm must produce **600 more** than it sells to build stock for the following period."
+      "question": "A retailer expects to sell 10,000 units next quarter. Opening inventory is 1,200 units; desired closing inventory is 1,800 units. Calculate the budgeted production.",
+      "solution": "Production = Sales + Closing inventory − Opening inventory\n\n= 10,000 + 1,800 − 1,200 = **10,600 units**\n\nThe firm must produce **600 more** units than it sells to build up its stock for the following period."
+    },
+    {
+      "type": "workedExample",
+      "question": "Crafty Creations is preparing its cash budget for the first quarter. The opening cash balance on Jan 1st is $5,000. Budgeted cash flows are:\n- Cash Sales: Jan $10,000; Feb $12,000; Mar $15,000.\n- Credit Sales (collected one month later): Dec $4,000; Jan $5,000; Feb $6,000.\n- Cash Payments (Materials & Wages): Jan $8,000; Feb $9,000; Mar $11,000.\n- Rent (paid in Jan): $3,000 for the quarter.\nCalculate the closing cash balance for March.",
+      "solution": "Step 1: Calculate total cash inflows for each month.\n- Jan Inflows = $10,000 (cash sales) + $4,000 (Dec credit sales) = $14,000\n- Feb Inflows = $12,000 (cash sales) + $5,000 (Jan credit sales) = $17,000\n- Mar Inflows = $15,000 (cash sales) + $6,000 (Feb credit sales) = $21,000\n\nStep 2: Calculate total cash outflows for each month.\n- Jan Outflows = $8,000 (payments) + $3,000 (rent) = $11,000\n- Feb Outflows = $9,000 (payments) = $9,000\n- Mar Outflows = $11,000 (payments) = $11,000\n\nStep 3: Calculate monthly net cash flow and closing balance.\n- **January:**\n  - Net Cash Flow = $14,000 - $11,000 = $3,000\n  - Closing Balance = $5,000 (opening) + $3,000 = $8,000\n- **February:**\n  - Net Cash Flow = $17,000 - $9,000 = $8,000\n  - Closing Balance = $8,000 (opening) + $8,000 = $16,000\n- **March:**\n  - Net Cash Flow = $21,000 - $11,000 = $10,000\n  - Closing Balance = $16,000 (opening) + $10,000 = **$26,000**\n\nThe closing cash balance for March is **$26,000**."
     },
     {
       "type": "heading",
@@ -207,6 +140,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define a budget and explain its purposes.",
+    "Describe types of budgets: sales, production, cash, etc.",
+    "Explain how budgets link in a master budget.",
+    "Evaluate benefits and drawbacks of budgeting."
+  ],
+  "simpleExplanation": {
+    "analogy": "A budget is like a family's monthly spending plan: you estimate income, allocate to rent, food, and savings, then check the bank statement later to see if you overspent. Businesses do the same at scale across sales, production, and cash."
+  },
   "faq": [
     {
       "q": "Are budgets only about restricting spending and cutting costs?",
@@ -221,6 +163,67 @@
       "a": "No. While ZBB is a powerful tool for cost control, it is extremely time-consuming and requires significant management effort. For many stable businesses, the benefits may not outweigh these costs. It is often more practical to use ZBB periodically (e.g., every 3-5 years) or for specific departments undergoing restructuring, rather than applying it across the entire organisation every single year. Incremental budgeting is often sufficient for day-to-day operations."
     }
   ],
+  "flashcards": [
+    {
+      "front": "What is a budget?",
+      "back": "A financial plan showing expected income and expenditure over a future period."
+    },
+    {
+      "front": "Four purposes of budgeting?",
+      "back": "Planning, coordination, control (monitoring), motivation/communication."
+    },
+    {
+      "front": "Sales budget role?",
+      "back": "Usually the starting point — forecast units/revenue drives production and purchases."
+    },
+    {
+      "front": "Production budget?",
+      "back": "Units to produce = budgeted sales + desired closing inventory − opening inventory."
+    },
+    {
+      "front": "Cash budget purpose?",
+      "back": "Forecasts cash inflows and outflows to avoid liquidity problems."
+    },
+    {
+      "front": "Master budget?",
+      "back": "The complete set of interlinked budgets for the whole organisation."
+    },
+    {
+      "front": "Benefit of budgeting?",
+      "back": "Sets targets, allocates resources, identifies problems early."
+    },
+    {
+      "front": "Drawback of budgeting?",
+      "back": "Time-consuming; may demotivate if unrealistic; rapid change makes plans outdated."
+    },
+    {
+      "front": "What is a Master Budget?",
+      "back": "A summary of all of a company's individual budgets, consisting of operating budgets (like sales and production) and financial budgets (like the cash budget and budgeted balance sheet). It represents the overall financial plan."
+    },
+    {
+      "front": "Define Zero-Based Budgeting (ZBB).",
+      "back": "A budgeting method where all expenses must be justified for each new period. Every function is analysed for its needs and costs, starting from a 'zero base', rather than using the previous year's budget as a starting point."
+    },
+    {
+      "front": "What is Variance Analysis?",
+      "back": "The process of comparing actual results against budgeted figures to identify differences, known as variances. These can be 'favourable' (better than budget) or 'adverse' (worse than budget) and are used for management control."
+    },
+    {
+      "front": "What is meant by Delegated Budgeting?",
+      "back": "A process where the authority and responsibility for setting and managing a budget are passed down to junior or middle managers. This can increase motivation and accountability but requires effective monitoring."
+    },
+    {
+      "front": "What is an Adverse Variance?",
+      "back": "A variance that occurs when actual results are worse than the budgeted figure. For example, when actual costs are higher than budgeted costs, or actual revenue is lower than budgeted revenue."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "5.5.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Incremental and Zero-Based Budgeting",
     "columns": [

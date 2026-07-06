@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9990 Organisational — ergonomics, noise, lighting, and physical environment effects on workers.",
   "durationMin": 20,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain ergonomics and workplace design principles.",
-    "Analyse effects of noise, temperature, and lighting.",
-    "Evaluate open-plan vs private office environments.",
-    "Apply environmental psychology to productivity."
-  ],
-  "simpleExplanation": {
-    "title": "The workspace matters",
-    "summary": "Poor lighting, noise, and uncomfortable furniture reduce productivity and wellbeing — good physical design supports focus and health.",
-    "steps": [
-      "Ergonomics — fit work to the worker.",
-      "Noise — distraction vs masking privacy.",
-      "Lighting — natural light boosts mood.",
-      "Open-plan — collaboration vs concentration trade-off."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Ergonomics?",
-      "back": "Designing work, equipment, and environment to fit human physical and cognitive capabilities — reduces strain and error."
-    },
-    {
-      "front": "Effect of workplace noise?",
-      "back": "Impairs concentration and increases stress; moderate masking noise can help privacy in open offices but hurts complex tasks."
-    },
-    {
-      "front": "Lighting and performance?",
-      "back": "Natural light improves mood and alertness; poor lighting causes eye strain, fatigue, and errors."
-    },
-    {
-      "front": "Open-plan advantages?",
-      "back": "Easier communication, lower cost, flexible layout."
-    },
-    {
-      "front": "Open-plan disadvantages?",
-      "back": "Distraction, reduced privacy, illness spread, lower satisfaction for focus-heavy work."
-    },
-    {
-      "front": "Temperature effects?",
-      "back": "Extremes reduce productivity — too hot causes fatigue; too cold increases discomfort and error rates."
-    },
-    {
-      "front": "What is the primary goal of physical ergonomics?",
-      "back": "To design workplaces, products, and systems to fit the people who use them, optimising human well-being and overall system performance by reducing physical strain and risk of injury."
-    },
-    {
-      "front": "According to research, what type of noise is most disruptive to cognitive performance?",
-      "back": "Unpredictable, uncontrollable, and intermittent noise is more disruptive than continuous, predictable noise, especially for complex tasks requiring high levels of concentration."
-    },
-    {
-      "front": "What is 'lux'?",
-      "back": "A unit of illuminance, measuring the amount of light falling on a surface. Different tasks require different lux levels for optimal performance and safety (e.g., detailed technical drawing requires more lux than a corridor)."
-    },
-    {
-      "front": "Define 'Sick Building Syndrome' (SBS).",
-      "back": "A condition where building occupants experience acute health effects that appear linked to time spent in a building, but no specific illness or cause can be identified. It is often related to poor ventilation and indoor air quality."
-    },
-    {
-      "front": "What is the 'Hawthorne Effect' and how might it relate to studies on physical work conditions?",
-      "back": "The alteration of behaviour by the subjects of a study due to their awareness of being observed. In studies on lighting or temperature, productivity might improve simply because workers know they are being studied, not because of the environmental change itself."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -152,6 +89,11 @@
       "solution": "**Noise/distraction:** Open-plan increases **irrelevant speech effect** — background conversation disrupts **complex creative work** (unlike simple repetitive tasks where social facilitation may help).\n\n**Lighting:** Harsh **LED without daylight** can cause **eye strain and headaches**; lack of **natural light** lowers mood and **circadian alignment** (links to 4.4.2).\n\n**Ergonomics:** **Hot-desking** may prevent adjusted chairs/monitors → **musculoskeletal strain**.\n\n**Herzberg:** Physical conditions are **hygiene factors** — poor environment creates **dissatisfaction** even if it cannot alone motivate.\n\n**Improvements:** Quiet **focus pods**, **adjustable lighting**, **assigned desks** with ergonomic kit, **noise zoning**.\n\n**Evaluation:** Open-plan suits **collaborative** phases (Tuckman **performing** teams) but not all tasks — **activity-based working** balances both. Individual **noise sensitivity** varies."
     },
     {
+      "type": "workedExample",
+      "question": "An office manager measures the noise levels in a new open-plan office. The average background noise is 65 dB. During a study, they find that for tasks requiring high concentration, error rates increase by 5% for every 3 dB increase above a 50 dB threshold. Calculate the estimated increase in error rate for these tasks due to the current background noise and suggest two evidence-based solutions.",
+      "solution": "**Step 1: Identify the noise excess.**\nThe recommended threshold for concentration-heavy work is 50 dB. The current average noise level is 65 dB.\nExcess noise = Current level - Threshold\nExcess noise = 65 dB - 50 dB = 15 dB.\n\n**Step 2: Calculate the number of 3 dB increments.**\nThe problem states that error rates increase for every 3 dB increment above the threshold.\nNumber of increments = Total excess noise / Increment size\nNumber of increments = 15 dB / 3 dB = 5 increments.\n\n**Step 3: Calculate the total estimated increase in error rate.**\nThe error rate increases by 5% for each increment.\nTotal error rate increase = Number of increments × Percentage increase per increment\nTotal error rate increase = 5 × 5% = 25%.\n\n**Final Answer & Solutions:**\nThe estimated increase in error rate for high-concentration tasks is 25%. This is a significant performance decrement.\n\n**Evidence-based solutions:**\n1.  **Acoustic Treatment:** Install sound-absorbing materials like acoustic panels on walls and ceilings, or use high-partition cubicles. This directly reduces the ambient noise level (the 65 dB measurement).\n2.  **Noise Masking/Soundscaping:** Introduce a constant, low-level background sound, like a white noise generator or specifically designed soundscapes. This can make distracting, intermittent sounds (like conversations) less intelligible and therefore less disruptive to cognitive tasks, as shown in studies by researchers like Banbury and Berry."
+    },
+    {
       "type": "practice",
       "label": "Mark a physical work conditions question",
       "href": "/mark?subject=9990&topic=4.4.1"
@@ -178,6 +120,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain ergonomics and workplace design principles.",
+    "Analyse effects of noise, temperature, and lighting.",
+    "Evaluate open-plan vs private office environments.",
+    "Apply environmental psychology to productivity."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is an open-plan office always better for collaboration and productivity?",
@@ -192,6 +141,59 @@
       "a": "No, this is a misconception. The goal is 'appropriate' illumination. Over-illumination can be as problematic as under-illumination, causing glare, eye strain, and energy wastage. The optimal lighting level (lux) depends on the task's visual demands. Furthermore, the quality of light, such as its colour temperature and the avoidance of flicker, is just as important as its brightness."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Ergonomics?",
+      "back": "Designing work, equipment, and environment to fit human physical and cognitive capabilities — reduces strain and error."
+    },
+    {
+      "front": "Effect of workplace noise?",
+      "back": "Impairs concentration and increases stress; moderate masking noise can help privacy in open offices but hurts complex tasks."
+    },
+    {
+      "front": "Lighting and performance?",
+      "back": "Natural light improves mood and alertness; poor lighting causes eye strain, fatigue, and errors."
+    },
+    {
+      "front": "Open-plan advantages?",
+      "back": "Easier communication, lower cost, flexible layout."
+    },
+    {
+      "front": "Open-plan disadvantages?",
+      "back": "Distraction, reduced privacy, illness spread, lower satisfaction for focus-heavy work."
+    },
+    {
+      "front": "Temperature effects?",
+      "back": "Extremes reduce productivity — too hot causes fatigue; too cold increases discomfort and error rates."
+    },
+    {
+      "front": "What is the primary goal of physical ergonomics?",
+      "back": "To design workplaces, products, and systems to fit the people who use them, optimising human well-being and overall system performance by reducing physical strain and risk of injury."
+    },
+    {
+      "front": "According to research, what type of noise is most disruptive to cognitive performance?",
+      "back": "Unpredictable, uncontrollable, and intermittent noise is more disruptive than continuous, predictable noise, especially for complex tasks requiring high levels of concentration."
+    },
+    {
+      "front": "What is 'lux'?",
+      "back": "A unit of illuminance, measuring the amount of light falling on a surface. Different tasks require different lux levels for optimal performance and safety (e.g., detailed technical drawing requires more lux than a corridor)."
+    },
+    {
+      "front": "Define 'Sick Building Syndrome' (SBS).",
+      "back": "A condition where building occupants experience acute health effects that appear linked to time spent in a building, but no specific illness or cause can be identified. It is often related to poor ventilation and indoor air quality."
+    },
+    {
+      "front": "What is the 'Hawthorne Effect' and how might it relate to studies on physical work conditions?",
+      "back": "The alteration of behaviour by the subjects of a study due to their awareness of being observed. In studies on lighting or temperature, productivity might improve simply because workers know they are being studied, not because of the environmental change itself."
+    }
+  ],
+  "paperNumber": "3",
+  "paperType": "practical",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.4.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Noise and Lighting as Factors in the Physical Work Environment",
     "columns": [

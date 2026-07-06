@@ -6,70 +6,7 @@
   "paperName": "Paper 3 - Law of Contract",
   "status": "premium",
   "summary": "9084 Contract — conditions, warranties, innominate terms, and remedies for breach.",
-  "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Classify terms by status and importance.",
-    "Explain effect of breaching each type.",
-    "Analyse Hong Kong Fir approach to innominate terms.",
-    "Apply remedies: termination vs damages only."
-  ],
-  "simpleExplanation": {
-    "title": "Not all promises are equal",
-    "summary": "Breaching a condition lets the innocent party end the contract; breaching a warranty only allows damages — innominate terms depend on consequences.",
-    "steps": [
-      "Condition — Poussard v Spiers; repudiatory breach.",
-      "Warranty — Bettini v Gye; damages only.",
-      "Innominate — Hong Kong Fir; look at breach effect.",
-      "Anticipatory breach — Hochster v De La Tour."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Remedy for breach of condition?",
-      "back": "Innocent party may **terminate** contract and claim **damages** — repudiatory breach."
-    },
-    {
-      "front": "Remedy for breach of warranty?",
-      "back": "**Damages only** — contract continues; no right to terminate (*Bettini v Gye*)."
-    },
-    {
-      "front": "Hong Kong Fir approach?",
-      "back": "Ask whether breach **deprives innocent party of substantially whole benefit** — if yes, treat as repudiatory (innominate term)."
-    },
-    {
-      "front": "How to classify a term?",
-      "back": "Look at **parties' intention**, **consequences of breach**, and **statutory labels** — not just the word 'condition' in contract."
-    },
-    {
-      "front": "Anticipatory breach?",
-      "back": "Clear refusal before due date — innocent party may **terminate immediately** or wait (*Hochster v De La Tour*)."
-    },
-    {
-      "front": "Wrongful termination?",
-      "back": "If breach not repudiatory but party terminates anyway — **they** breach; liable in damages."
-    },
-    {
-      "front": "What is a condition in contract law?",
-      "back": "A major term that is fundamental to the contract, going to its very root. A breach gives the innocent party the right to repudiate the contract (end it) and claim damages. Key case: *Poussard v Spiers and Pond*."
-    },
-    {
-      "front": "What is a warranty in contract law?",
-      "back": "A minor, subsidiary term of the contract. A breach only entitles the innocent party to claim damages for their loss; the contract itself remains in force. Key case: *Bettini v Gye*."
-    },
-    {
-      "front": "Define an innominate (or intermediate) term.",
-      "back": "A term not classified as a condition or warranty at the outset. The legal remedy for its breach is determined by the seriousness of the breach's consequences. Key case: *Hong Kong Fir Shipping*."
-    },
-    {
-      "front": "What is the 'Hong Kong Fir test' for an innominate term?",
-      "back": "The court asks whether the breach has deprived the innocent party of 'substantially the whole benefit' of the contract. If yes, it is treated like a breach of condition (repudiation + damages). If no, it is treated like a breach of warranty (damages only)."
-    },
-    {
-      "front": "Can parties decide for themselves if a term is a condition?",
-      "back": "Parties can label a term a 'condition', which shows their intention. However, the courts are not bound by this label and may overrule it if it produces an unreasonable result, as seen in *Schuler AG v Wickman Machine Tool Sales Ltd*."
-    }
-  ],
+  "durationMin": 28,
   "sections": [
     {
       "type": "intro",
@@ -84,12 +21,19 @@
       "content": "Not all terms within a contract carry the same weight. The law classifies terms based on their importance to distinguish between major and minor promises. This classification is crucial because it dictates the remedies available to the innocent party when a term is breached. The traditional categories are 'conditions' (the most important terms) and 'warranties' (lesser, subsidiary terms). A breach of a condition allows the contract to be repudiated, whereas a breach of warranty only gives rise to a claim for damages. Over time, the courts developed a third, more flexible category known as 'innominate' or 'intermediate' terms, where the remedy depends on the severity of the breach's consequences. Understanding this hierarchy is fundamental to analysing contractual disputes."
     },
     {
+      "type": "heading",
+      "content": "How Terms are Classified"
+    },
+    {
+      "type": "text",
+      "content": "The status of a term can be determined in three main ways:"
+    },
+    {
       "type": "keyPoints",
       "items": [
-        "Contractual terms are classified by their importance.",
-        "The classification determines the remedies available for breach.",
-        "The three main types are conditions, warranties, and innominate terms.",
-        "The distinction is essential for determining whether the innocent party can terminate the contract."
+        "**By Statute:** Parliament may specify that a term is a condition. For example, under the Sale of Goods Act 1979, s.12 (seller's right to sell) is a condition. However, statute can also moderate this; s.15A of the same Act states that for non-consumer contracts, if a breach of an implied condition (e.g., quality or fitness) is so slight that rejection would be unreasonable, it is treated as a breach of warranty.",
+        "**By the Courts (Judicial Precedent):** The courts may have already decided in previous cases that a particular type of term is a condition or warranty. For instance, obligations as to the time of performance in a commercial contract are often held to be conditions ('time is of the essence').",
+        "**By the Parties:** The parties may label a term as a 'condition'. This indicates their intention and is a strong factor, as seen in *Lombard North Central plc v Butterworth*, where timely payment was expressly made a condition. However, the courts are not bound by the label if it leads to an unreasonable result, as demonstrated in *Schuler AG v Wickman Machine Tool Sales Ltd*, where the House of Lords treated a 'condition' as a warranty to avoid allowing termination for a trivial breach."
       ]
     },
     {
@@ -104,8 +48,8 @@
       "type": "keyPoints",
       "items": [
         "A condition is a major term that goes to the 'root of the contract'.",
-        "Breach of a condition allows the innocent party to repudiate the contract and claim damages.",
-        "The innocent party can choose to affirm the contract instead, and just claim damages.",
+        "Breach of a condition is a 'repudiatory breach'.",
+        "It allows the innocent party to choose between repudiating the contract and claiming damages, or affirming the contract and just claiming damages.",
         "Key case: *Poussard v Spiers and Pond (1876)*."
       ]
     },
@@ -149,8 +93,13 @@
     },
     {
       "type": "workedExample",
-      "question": "Shipowners charter a ship for 24 months. Engine breakdown causes 20 weeks off hire in first year. Charterers terminate. Shipowners claim wrongful termination. Advise using Hong Kong Fir.",
-      "solution": "**Term breached:** **Seaworthiness** obligation — express term in charterparty.\n\n**Classification:** Not automatically condition or warranty — apply **innominate term** approach (*Hong Kong Fir Shipping Co v Kawasaki Kisen Kaisha*).\n\n**Effect of breach:** 20 weeks off hire in year one is **serious** but ship was repaired and remaining 18 months available. Court held breach did **not deprive** charterers of **substantially whole benefit**.\n\n**Charterers' termination:** **Wrongful** — breach was not repudiatory; charterers themselves **repudiated** by terminating.\n\n**Remedy:** Shipowners claim **damages** for wrongful termination; charterers limited to **damages** for off-hire period, not termination.\n\n**Conclusion:** Term is **innominate**; charterers **cannot terminate** — only damages for loss of use."
+      "question": "Shipowners charter a ship for 24 months. A term requires the ship to be 'in every way fitted for ordinary cargo service'. Engine breakdown causes 20 weeks of repairs in the first year. The charterers terminate the contract. The shipowners claim this termination was wrongful. Advise the shipowners.",
+      "solution": "**1. Identify the Term and Breach:** The term is the seaworthiness clause ('in every way fitted...'). The breach is the engine breakdown making the ship unseaworthy for 20 weeks.\n\n**2. Classify the Term:** The seaworthiness term is a classic example of an **innominate term**, as established in *Hong Kong Fir Shipping Co v Kawasaki Kisen Kaisha*. Its status is not fixed; the remedy depends on the effect of the breach.\n\n**3. Apply the Hong Kong Fir Test:** Did the breach deprive the charterers of 'substantially the whole benefit' of the 24-month charter? \n*   The ship was unavailable for 20 weeks (approx. 5 months) out of a total 24-month period.\n*   However, the ship was repaired and available for the remaining 19 months of the charter.\n*   The court in *Hong Kong Fir* held that while the breach was serious, it was not so serious as to frustrate the entire commercial purpose of the contract. The charterers still had access to the ship for the great majority of the charter period.\n\n**4. Determine the Remedy and Conclusion:** Since the breach did not deprive the charterers of substantially the whole benefit, it is treated as a breach of warranty. The charterers' only remedy was to claim damages for the 20 weeks the ship was unavailable. By terminating the contract, the charterers themselves committed a repudiatory breach.\n\n**Advice:** The shipowners should be advised that the charterers' termination was wrongful. The shipowners are entitled to sue the charterers for damages for loss of the contract for the remaining 19 months."
+    },
+    {
+      "type": "workedExample",
+      "question": "A bakery, 'The Daily Bread', buys a new oven for £20,000 from 'ProBake Ltd'. The contract specifies the oven must be capable of baking 500 loaves per hour. On delivery, the oven only bakes 400 loaves per hour. The Daily Bread makes £0.50 profit per loaf and operates 8 hours a day. They want to reject the oven and terminate the contract. Advise The Daily Bread.",
+      "solution": "**1. Identify the Term and Breach:** The term is the oven's capacity of '500 loaves per hour'. This is an express term. The breach is the oven's failure to meet this specification, only producing 400 loaves per hour.\n\n**2. Classify the Term:** The term could be classified as a **condition**. The specific output capacity is likely fundamental to the bakery's business model and profitability, going to the 'root of the contract'. Alternatively, we can use the **innominate term** approach.\n\n**3. Analyse the Effect of the Breach (Calculation):** We must assess if the breach deprives the bakery of 'substantially the whole benefit' of the contract.\n*   **Shortfall in output:** 500 loaves (promised) - 400 loaves (actual) = 100 loaves per hour.\n*   **Hourly profit loss:** 100 loaves/hour * £0.50 profit/loaf = **£50 per hour**.\n*   **Daily profit loss:** £50/hour * 8 hours/day = **£400 per day**.\nThis is a significant and ongoing financial loss that directly undermines the commercial purpose for which the oven was purchased. The 20% reduction in capacity is not a minor issue.\n\n**4. Determine the Remedy and Conclusion:** Given the substantial impact on the bakery's operations and profitability, the breach is severe. It is highly likely to be considered a breach of condition (or a repudiatory breach of an innominate term). Therefore, The Daily Bread is entitled to repudiate the contract.\n\n**Advice:** The Daily Bread should be advised that they have the right to:\n*   **Reject the oven** and terminate the contract.\n*   **Claim a full refund** of the £20,000 purchase price.\n*   **Claim damages** for the losses incurred, such as lost profits, until a suitable replacement oven can be found."
     },
     {
       "type": "practice",
@@ -179,6 +128,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Classify terms by status and importance.",
+    "Explain the effect of breaching each type of term.",
+    "Analyse the Hong Kong Fir approach to innominate terms.",
+    "Apply the appropriate remedies for breach, such as termination versus damages only.",
+    "Distinguish how terms are classified by statute, courts, and the parties themselves."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "If a contract calls a term a 'condition', does that automatically give the right to terminate for any breach?",
@@ -193,6 +150,71 @@
       "a": "Many key terms implied by statute are classified as conditions, for example, s.12 (title) and s.13 (description) of the Sale of Goods Act 1979. However, statute itself has recognised the potential harshness of this. For example, s.15A of the Act was introduced to prevent a non-consumer buyer from rejecting goods for a breach of the implied terms on quality or fitness for purpose (s.14) if the breach is so slight that it would be unreasonable to reject them. In such cases, the breach is treated as a breach of warranty, reflecting the innominate term approach."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Remedy for breach of condition?",
+      "back": "Innocent party may **terminate** the contract (repudiate) and claim **damages** for any loss suffered. This is a repudiatory breach."
+    },
+    {
+      "front": "Remedy for breach of warranty?",
+      "back": "**Damages only**. The contract continues, and the innocent party has no right to terminate. Key case: *Bettini v Gye*."
+    },
+    {
+      "front": "What is the 'Hong Kong Fir test' for an innominate term?",
+      "back": "The court asks whether the breach has deprived the innocent party of 'substantially the whole benefit' of the contract. If yes, it is treated like a breach of condition (repudiation + damages). If no, it is treated like a breach of warranty (damages only)."
+    },
+    {
+      "front": "How are contractual terms classified?",
+      "back": "Terms can be classified by **statute** (e.g., Sale of Goods Act 1979), by the **courts** through precedent, or by the **parties** themselves in the contract. However, the courts are not always bound by the parties' labels."
+    },
+    {
+      "front": "What is an anticipatory breach?",
+      "back": "When one party makes it clear, before the performance date, that they will not perform their contractual obligations. The innocent party may **terminate immediately** and sue for damages, or wait until the performance date. Key case: *Hochster v De La Tour*."
+    },
+    {
+      "front": "What happens if a party wrongfully terminates a contract?",
+      "back": "If a party terminates the contract for a breach that is not repudiatory (e.g., a breach of warranty), they themselves are in repudiatory breach of contract and can be sued for damages by the other party."
+    },
+    {
+      "front": "What is a condition in contract law?",
+      "back": "A major term that is fundamental to the contract, going to its very root. A breach gives the innocent party the right to repudiate the contract (end it) and claim damages. Key case: *Poussard v Spiers and Pond*."
+    },
+    {
+      "front": "What is a warranty in contract law?",
+      "back": "A minor, subsidiary term of the contract. A breach only entitles the innocent party to claim damages for their loss; the contract itself remains in force. Key case: *Bettini v Gye*."
+    },
+    {
+      "front": "Define an innominate (or intermediate) term.",
+      "back": "A term not classified as a condition or warranty at the outset. The legal remedy for its breach is determined by the seriousness of the breach's consequences. Key case: *Hong Kong Fir Shipping*."
+    },
+    {
+      "front": "Can parties decide for themselves if a term is a condition?",
+      "back": "Parties can label a term a 'condition', which shows their intention. However, the courts are not bound by this label and may overrule it if it produces an unreasonable result, as seen in *Schuler AG v Wickman Machine Tool Sales Ltd*."
+    },
+    {
+      "front": "What was the key principle in *Lombard North Central v Butterworth*?",
+      "back": "That making timely payment 'of the essence' of a hire-purchase contract successfully made it a condition, so any late payment was a repudiatory breach. This shows courts can uphold the parties' classification when it reflects the commercial importance of the term."
+    },
+    {
+      "front": "What is the effect of s.15A of the Sale of Goods Act 1979?",
+      "back": "For non-consumer sales, if a breach of an implied condition (from ss 13-15) is so slight that it would be unreasonable for the buyer to reject the goods, the breach is treated as a breach of warranty (damages only)."
+    },
+    {
+      "front": "Give an example of a term classified as a condition by statute.",
+      "back": "Section 12 of the Sale of Goods Act 1979 implies a condition that the seller has the right to sell the goods. A breach of this always allows the buyer to repudiate the contract and recover the full price."
+    },
+    {
+      "front": "What is the difference in outcome between Poussard v Spiers and Bettini v Gye?",
+      "back": "In *Poussard*, the singer's failure to appear on opening night was a breach of condition, allowing termination. In *Bettini*, the singer's late arrival for rehearsals was a breach of warranty, allowing only damages. This highlights the difference between a term going to the 'root' of the contract versus a subsidiary term."
+    }
+  ],
+  "paperNumber": "3",
+  "paperType": "practical",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.2.3.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Contractual Terms",
     "columns": [

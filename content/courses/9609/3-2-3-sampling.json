@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — sampling methods, sample size, representativeness, and bias.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain why sampling is used in market research.",
-    "Describe random, stratified, and quota sampling.",
-    "Evaluate representativeness and bias.",
-    "Recommend sampling approach for case scenarios."
-  ],
-  "simpleExplanation": {
-    "title": "Asking the right people",
-    "summary": "Sampling selects a subset of the population to survey — faster and cheaper than a census, but only valid if the sample represents the target market.",
-    "steps": [
-      "Random: every member has equal selection chance.",
-      "Stratified: proportional samples from sub-groups.",
-      "Quota: fill categories to match population profile.",
-      "Unrepresentative samples produce biased results."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Why sample?",
-      "back": "Cheaper and faster than surveying entire population; feasible for primary research."
-    },
-    {
-      "front": "Random sampling?",
-      "back": "Every member of population has equal chance of selection — reduces selection bias."
-    },
-    {
-      "front": "Stratified sampling?",
-      "back": "Population divided into strata (e.g. age groups); random sample from each in proportion."
-    },
-    {
-      "front": "Quota sampling?",
-      "back": "Interviewers fill quotas (e.g. 50 male, 50 female) to match profile — not random within quota."
-    },
-    {
-      "front": "Sample bias?",
-      "back": "Sample does not reflect population — results cannot be generalised."
-    },
-    {
-      "front": "Larger sample?",
-      "back": "Usually more reliable (lower sampling error) but higher cost."
-    },
-    {
-      "front": "What is meant by the 'population' in market research?",
-      "back": "The entire group of people from which a sample is drawn, and about whom a business wants to make conclusions (e.g., all university students in London)."
-    },
-    {
-      "front": "Define 'Stratified Sampling'.",
-      "back": "A probability sampling method where the population is divided into distinct subgroups (strata) based on shared characteristics. A random sample is then taken from each stratum, often in proportion to its size in the overall population."
-    },
-    {
-      "front": "What is 'Quota Sampling'?",
-      "back": "A non-probability method where the researcher identifies subgroups in the population and sets a target number (a quota) of individuals to be sampled from each. The researcher then selects participants non-randomly until the quotas are filled."
-    },
-    {
-      "front": "Explain 'Sampling Bias'.",
-      "back": "A systematic error in the sampling process that causes the selected sample to be unrepresentative of its population. This leads to inaccurate results and flawed conclusions."
-    },
-    {
-      "front": "What is the key difference between probability and non-probability sampling?",
-      "back": "In probability sampling, every member of the population has a known, non-zero chance of being selected, typically through a random process. In non-probability sampling, selection is subjective and not based on random chance."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -173,6 +110,11 @@
       "solution": "**Highly biased / unrepresentative.**\n\n**Problems:** Wrong **age profile** (likely 16–18); **geographic** cluster (one school); **convenience sample** not random or stratified.\n\n**Improvement:** **Stratified random sample** of women 25–40 across regions; online panel or random phone/email from customer database; minimum **200+** for basic reliability.\n\nInvalid sample → **wrong product/pricing decisions** — wasted marketing spend."
     },
     {
+      "type": "workedExample",
+      "question": "A streaming service has a total of 80,000 subscribers in a country. They want to conduct a survey on a new pricing plan using a sample of 1,500 subscribers. The subscriber base is segmented as follows:\n- Under 25: 24,000 subscribers\n- 25-44: 40,000 subscribers\n- 45 and over: 16,000 subscribers\n\nCalculate the number of subscribers that should be surveyed from each age group using a stratified sampling method.",
+      "solution": "The goal is to create a sample where the proportion of each age group matches the proportion in the total subscriber population.\n\n**Formula:**\nSample for stratum = (Size of stratum / Total population) × Total sample size\n\n**Step 1: Calculate the sample size for the 'Under 25' stratum.**\nProportion = 24,000 / 80,000 = 0.30 (or 30%)\nSample size = 0.30 × 1,500 = 450 subscribers\n\n**Step 2: Calculate the sample size for the '25-44' stratum.**\nProportion = 40,000 / 80,000 = 0.50 (or 50%)\nSample size = 0.50 × 1,500 = 750 subscribers\n\n**Step 3: Calculate the sample size for the '45 and over' stratum.**\nProportion = 16,000 / 80,000 = 0.20 (or 20%)\nSample size = 0.20 × 1,500 = 300 subscribers\n\n**Final Answer & Verification:**\nThe research team should survey:\n- **450** subscribers from the 'Under 25' group\n- **750** subscribers from the '25-44' group\n- **300** subscribers from the '45 and over' group\n\nTotal sample = 450 + 750 + 300 = 1,500. This matches the required total sample size."
+    },
+    {
       "type": "examTip",
       "content": "Always name the **bias** (age, location, income, self-selection) when criticising case research."
     },
@@ -199,6 +141,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain why sampling is used in market research.",
+    "Describe random, stratified, and quota sampling.",
+    "Evaluate representativeness and bias.",
+    "Recommend sampling approach for case scenarios."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is a bigger sample always more representative?",
@@ -213,6 +162,71 @@
       "a": "Both methods involve dividing the population into subgroups. The key difference is how participants are selected from these subgroups. In stratified sampling (a probability method), participants are chosen randomly from each subgroup. In quota sampling (a non-probability method), the researcher selects participants non-randomly until a pre-set quota for each subgroup is filled, often based on convenience. This makes stratified sampling more statistically robust but also more complex and expensive."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Why sample?",
+      "back": "Cheaper and faster than surveying entire population; feasible for primary research."
+    },
+    {
+      "front": "Random sampling?",
+      "back": "Every member of population has equal chance of selection — reduces selection bias."
+    },
+    {
+      "front": "Stratified sampling?",
+      "back": "Population divided into strata (e.g. age groups); random sample from each in proportion."
+    },
+    {
+      "front": "Quota sampling?",
+      "back": "Interviewers fill quotas (e.g. 50 male, 50 female) to match profile — not random within quota."
+    },
+    {
+      "front": "Sample bias?",
+      "back": "Sample does not reflect population — results cannot be generalised."
+    },
+    {
+      "front": "Larger sample?",
+      "back": "Usually more reliable (lower sampling error) but higher cost."
+    },
+    {
+      "front": "What is meant by the 'population' in market research?",
+      "back": "The entire group of people from which a sample is drawn, and about whom a business wants to make conclusions (e.g., all university students in London)."
+    },
+    {
+      "front": "Define 'Stratified Sampling'.",
+      "back": "A probability sampling method where the population is divided into distinct subgroups (strata) based on shared characteristics. A random sample is then taken from each stratum, often in proportion to its size in the overall population."
+    },
+    {
+      "front": "What is 'Quota Sampling'?",
+      "back": "A non-probability method where the researcher identifies subgroups in the population and sets a target number (a quota) of individuals to be sampled from each. The researcher then selects participants non-randomly until the quotas are filled."
+    },
+    {
+      "front": "Explain 'Sampling Bias'.",
+      "back": "A systematic error in the sampling process that causes the selected sample to be unrepresentative of its population. This leads to inaccurate results and flawed conclusions."
+    },
+    {
+      "front": "What is the key difference between probability and non-probability sampling?",
+      "back": "In probability sampling, every member of the population has a known, non-zero chance of being selected, typically through a random process. In non-probability sampling, selection is subjective and not based on random chance."
+    },
+    {
+      "front": "What is a 'sampling frame'?",
+      "back": "A list of all the items or people forming a population from which a sample is taken (e.g., a customer database, an electoral register, or a school's student list)."
+    },
+    {
+      "front": "What is convenience sampling?",
+      "back": "A non-probability sampling method where participants are selected based on their easy availability and proximity to the researcher. It is quick and cheap but prone to significant bias."
+    },
+    {
+      "front": "What is systematic sampling?",
+      "back": "A probability sampling method where a random starting point is selected and then every 'nth' member of the population is chosen from a sampling frame. For example, picking every 100th person from a list."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.2.3"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Probability and Non-Probability Sampling",
     "columns": [

@@ -5,25 +5,219 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 P2 — accruals, prepayments, depreciation, irrecoverable debts, and inventory.",
-  "durationMin": 26,
-  "updated": "2026-06-18",
+  "summary": "9706 P2 — accruals, prepayments, depreciation, irrecoverable debts, inventory, and error correction.",
+  "durationMin": 40,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Adjustments** (1.5.1) — list **each adjustment with journal** before drafting SPL/SOFP. Examiners award method marks for clear accrual/prepayment logic."
+    },
+    {
+      "type": "heading",
+      "content": "The Accruals (Matching) Concept: The Foundation of Adjustments"
+    },
+    {
+      "type": "text",
+      "content": "The accruals concept, also known as the matching principle, is a fundamental accounting principle which dictates that revenues earned and the expenses incurred to generate those revenues must be recorded in the same accounting period. This ensures the Statement of Profit or Loss provides a true and fair view of the period's performance. Adjustments are necessary because the timing of cash payments or receipts often does not align with when the economic activity occurs. For example, electricity used in December might not be paid for until January. The accruals concept requires us to 'match' the December electricity cost against December's revenues, regardless of the payment date. This principle underpins adjustments for accruals, prepayments, depreciation, and irrecoverable debts."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The accruals concept matches expenses incurred with revenues earned in the same period.",
+        "It focuses on when an economic event occurs, not when cash is exchanged.",
+        "Adjustments are required to correct the draft accounts to comply with this principle.",
+        "This concept directly leads to the creation of accrued expenses (liabilities) and prepaid expenses (assets)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In any question requiring adjustments, always start by considering the accruals concept. Ask yourself: 'In which period was this expense incurred or this revenue earned?' This will guide you to the correct adjustment."
+    },
+    {
+      "type": "heading",
+      "content": "Adjusting for Accruals and Prepayments"
+    },
+    {
+      "type": "text",
+      "content": "Accrued expenses (or accruals) are costs the business has incurred during the period but has not yet paid for. They are recorded as a current liability on the Statement of Financial Position (SOFP) and added to the relevant expense in the Statement of Profit or Loss (SPL). Conversely, prepaid expenses (or prepayments) are costs paid in advance for a benefit to be received in a future period. These are recorded as a current asset on the SOFP, as they represent a future economic benefit. The prepaid portion is deducted from the total amount paid to determine the correct expense for the current period in the SPL. Both adjustments are crucial for accurately reporting profit and the financial position. Opening balances for accruals and prepayments are typically reversed at the start of the new financial period to ensure correct accounting treatment of cash paid during that period."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Accrued Expense: Dr Expense (SPL), Cr Accrued Expense (SOFP Current Liability).",
+        "Prepaid Expense: Dr Prepaid Expense (SOFP Current Asset), Cr Expense (SPL).",
+        "The adjustment ensures the expense in the SPL reflects only what was consumed in the period.",
+        "The opening balance for an accrual or prepayment from the previous year must be reversed at the start of the current year."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to dates. If a business pays rent of £12,000 for the year to 31 March 2025, but its year-end is 31 December 2024, then 3 months (£3,000) is a prepayment. Always draw a timeline if you are unsure."
+    },
+    {
+      "type": "heading",
+      "content": "Depreciation of Non-Current Assets"
+    },
+    {
+      "type": "text",
+      "content": "Depreciation is the systematic allocation of the cost of a tangible non-current asset over its useful economic life. It is an application of the accruals concept, matching the asset's cost against the revenue it helps to generate over several periods. It is not a process of valuation. The two main methods are straight-line (allocating an equal amount each year) and reducing (diminishing) balance (applying a fixed percentage to the net book value). The annual depreciation charge is an expense in the SPL. The cumulative total, known as accumulated depreciation, is shown on the SOFP as a deduction from the asset's cost to arrive at its net book value (NBV)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Depreciation is an expense, not a cash flow.",
+        "Double entry: Dr Depreciation Expense (SPL), Cr Accumulated Depreciation (SOFP).",
+        "Straight-line method: (Cost - Residual Value) / Useful Life.",
+        "Reducing balance method: (Cost - Accumulated Depreciation) x Depreciation Rate %.",
+        "The method chosen should reflect the pattern of the asset's consumption."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Disposal of Non-Current Assets"
+    },
+    {
+      "type": "text",
+      "content": "When a non-current asset is sold or scrapped, it must be removed from the accounts. This involves calculating the profit or loss on disposal. This is a key adjustment. The process involves:\n1.  Removing the asset's original cost from the non-current asset account.\n2.  Removing all accumulated depreciation for that asset from the accumulated depreciation account.\n3.  Recording the cash or other proceeds received from the sale.\n4.  Calculating the difference between the asset's Net Book Value (NBV) at the time of disposal and the disposal proceeds. A profit on disposal (income) occurs if proceeds exceed NBV; a loss (expense) occurs if proceeds are less than NBV. This profit or loss is reported in the Statement of Profit or Loss."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A disposal account is used to gather the cost, accumulated depreciation, and proceeds.",
+        "Dr Disposal, Cr Non-Current Asset (Cost): To remove the asset's cost.",
+        "Dr Accumulated Depreciation, Cr Disposal: To remove the asset's accumulated depreciation.",
+        "Dr Bank/Cash, Cr Disposal: To record the proceeds.",
+        "The balancing figure on the disposal account is the profit or loss, transferred to the SPL."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When calculating reducing balance depreciation, always use the Net Book Value (NBV) at the start of the year. For an asset purchased part-way through the year, you must pro-rate the depreciation charge for that first year unless the question specifies a full year's charge is applied in the year of purchase."
+    },
+    {
+      "type": "heading",
+      "content": "Irrecoverable Debts and the Allowance for Irrecoverable Debts"
+    },
+    {
+      "type": "text",
+      "content": "Businesses that sell on credit face the risk that some customers will not pay. When a specific debt is confirmed as uncollectable, it is written off as an irrecoverable debt. This is an expense in the SPL. Additionally, the principle of prudence requires businesses to anticipate future losses by creating an allowance for irrecoverable debts. This is an estimate of debts that are currently doubtful, but not yet confirmed as irrecoverable. The creation of, or increase in, this allowance is also an expense in the SPL. The allowance is then deducted from trade receivables in the SOFP to show a more realistic value of the amount likely to be collected. Occasionally, a debt previously written off may be paid. This is recorded as income (Irrecoverable Debts Recovered) in the SPL."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Writing off a specific debt: Dr Irrecoverable Debts (SPL), Cr Trade Receivables (SOFP).",
+        "Creating/increasing an allowance: Dr Irrecoverable Debts (SPL), Cr Allowance for Irrecoverable Debts (SOFP).",
+        "A decrease in the allowance is treated as other income in the SPL.",
+        "The allowance is deducted from the gross trade receivables figure on the SOFP.",
+        "Recovery of a written-off debt: Dr Bank, Cr Irrecoverable Debts Recovered (SPL income)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always write off specific irrecoverable debts *before* calculating the closing allowance for irrecoverable debts. The allowance is calculated as a percentage of the remaining, net trade receivables."
+    },
+    {
+      "type": "heading",
+      "content": "Inventory Valuation"
+    },
+    {
+      "type": "text",
+      "content": "According to IAS 2 'Inventories', closing inventory must be valued at the lower of cost and net realisable value (NRV). Cost includes all costs of purchase (purchase price, import duties, transport inwards) and conversion to bring the inventory to its present location and condition. It excludes selling and administrative overheads. NRV is the estimated selling price in the ordinary course of business, less the estimated costs of completion and the estimated costs necessary to make the sale. This principle prevents businesses from overstating assets and profit. If NRV is lower than cost, an adjustment is made to write down the inventory value. This write-down is treated as an expense and included within 'cost of sales' in the SPL, thereby reducing the gross profit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Valuation rule: Lower of Cost and Net Realisable Value (NRV).",
+        "NRV = Estimated Selling Price - Estimated Costs to Complete - Estimated Selling Costs.",
+        "This is an application of the prudence concept.",
+        "An inventory write-down increases cost of sales and reduces gross profit.",
+        "The final inventory value is shown as a current asset on the SOFP."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, you may be given a list of inventory items with both cost and NRV. You must assess each item or group of items individually and select the lower value for each, then sum these lower values to find the total closing inventory figure."
+    },
+    {
+      "type": "heading",
+      "content": "Correction of Errors"
+    },
+    {
+      "type": "text",
+      "content": "Despite a balanced trial balance, errors may still exist in the draft accounts. These must be corrected via journal entries before the final financial statements are prepared. Errors can be classified as those that do not affect the trial balance agreement (e.g., error of original entry, error of principle) and those that do. Errors that cause an imbalance in the trial balance are temporarily posted to a Suspense Account, which is then cleared as the errors are identified and corrected. Correcting errors often affects the reported profit for the period and asset/liability values on the SOFP."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A journal entry is required to correct each error.",
+        "Error of Principle: An item is posted to the wrong class of account, e.g., purchasing a non-current asset (van) but debiting motor expenses. Correction: Dr Van, Cr Motor Expenses.",
+        "Error of Commission: An item is posted to the correct class of account but the wrong account, e.g., a payment from customer A is credited to customer B's account. Correction: Dr B, Cr A.",
+        "Suspense Account: A temporary account to hold the difference in a trial balance. The correction journal will involve the suspense account if the error was one-sided.",
+        "Each correction must be analysed to see its effect on the draft profit. For example, correcting an overstated expense will increase profit."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Draft rent expense in trial balance $12,000. Rent of $1,200 for January next year was paid in December. Electricity $800 owed at year-end. Depreciation on equipment $3,500. Calculate adjusted rent, electricity, and total expense increase.",
+      "solution": "**Rent prepayment:** $1,200 paid for next period → **reduce** rent expense.\nAdjusted rent = 12,000 − 1,200 = **$10,800**\n\n**Electricity accrual:** $800 owed → **increase** expense.\nAdjusted electricity = **$800** (if nil in TB) or add to existing balance.\n\n**Depreciation:** **$3,500** charge to SPL.\n\n**Journals:**\nDR Prepayments 1,200 / CR Rent 1,200\nDR Electricity 800 / CR Accruals 800\nDR Depreciation 3,500 / CR Acc. dep. 3,500\n\n**Total extra expense** (net of prepayment) = 800 + 3,500 − 1,200 = **$3,100** (plus any electricity already in TB)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A business's draft accounts for the year ended 31 December 2023 show trade receivables of $52,000. The allowance for irrecoverable debts at 1 January 2023 was $2,500. The following adjustments are required:\n1. A debt of $2,000 from a customer who was declared bankrupt is to be written off.\n2. The allowance for irrecoverable debts is to be adjusted to 5% of the remaining trade receivables.\n\nCalculate the total charge for irrecoverable debts in the Statement of Profit or Loss and the net trade receivables figure for the Statement of Financial Position.",
+      "solution": "**Step 1: Write off the specific irrecoverable debt.**\nThe receivables balance is reduced by the amount confirmed as irrecoverable.\nJournal: Dr Irrecoverable Debts Expense $2,000, Cr Trade Receivables $2,000.\n\n**Step 2: Calculate the adjusted trade receivables balance.**\nThis is the balance upon which the new allowance will be calculated.\nAdjusted Receivables = $52,000 - $2,000 = **$50,000**\n\n**Step 3: Calculate the required closing allowance.**\nThe policy is 5% of closing receivables.\nClosing Allowance = 5% x $50,000 = **$2,500**\n\n**Step 4: Calculate the increase or decrease in the allowance.**\nCompare the closing allowance with the opening allowance.\nOpening Allowance = $2,500\nClosing Allowance = $2,500\nIncrease/(Decrease) in allowance = $2,500 - $2,500 = **$0**\n\n**Step 5: Calculate the total charge for the Statement of Profit or Loss (SPL).**\nTotal Charge = Specific Debt Written Off + Increase in Allowance\nTotal Charge = $2,000 + $0 = **$2,000**\n\n**Step 6: Calculate the net trade receivables for the Statement of Financial Position (SOFP).**\nNet Receivables = Adjusted Receivables - Closing Allowance\nNet Receivables = $50,000 - $2,500 = **$47,500**\n\n**Final Answer:**\n- **SPL Charge for Irrecoverable Debts:** $2,000\n- **SOFP Net Trade Receivables:** $47,500"
+    },
+    {
+      "type": "practice",
+      "label": "Mark an adjustments question",
+      "href": "/mark?subject=9706&topic=1.5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "1.3.2 Changing asset values",
+          "href": "/courses/9706/1-3-2-changing-asset-values"
+        },
+        {
+          "label": "1.5.2 Sole traders",
+          "href": "/courses/9706/1-5-2-sole-traders"
+        },
+        {
+          "label": "9609 10.1.4 Depreciation",
+          "href": "/courses/9609/10-1-4-depreciation"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Adjust for accruals and prepayments.",
     "Record depreciation and disposal adjustments.",
     "Provide for irrecoverable debts and allowances.",
     "Value closing inventory and correct errors."
   ],
-  "simpleExplanation": {
-    "title": "Fine-tuning the draft accounts",
-    "summary": "Year-end adjustments match costs and income to the correct period — accruals, prepayments, depreciation, and bad debts before final statements.",
-    "steps": [
-      "Accrual — expense owed, not yet paid.",
-      "Prepayment — paid, benefit next period.",
-      "Depreciation — charge for the year.",
-      "Irrecoverable debts — write off and allowance."
-    ]
-  },
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Is an allowance for irrecoverable debts the same as writing off a specific debt?",
+      "a": "No, they are different. Writing off an irrecoverable debt removes a specific, known, uncollectable amount from trade receivables. An allowance for irrecoverable debts is a general provision made against all remaining receivables for estimated, but not yet identified, future bad debts. It is an application of prudence, anticipating future losses."
+    },
+    {
+      "q": "Why do we add accrued expenses to the expense account in the Statement of Profit or Loss, even though the cash has not been paid?",
+      "a": "This is due to the accruals (or matching) concept. The Statement of Profit or Loss must show the full cost incurred in generating the period's revenue, regardless of when the cash is paid. If a business used electricity in December, that cost helped generate December's sales. Therefore, the cost must be included in December's accounts, even if the bill is paid in January."
+    },
+    {
+      "q": "Does depreciation represent the fall in a non-current asset's market value?",
+      "a": "No, this is a common misconception. Depreciation is not a process of valuation. It is the systematic allocation of an asset's cost over its useful life. The net book value (Cost - Accumulated Depreciation) shown on the Statement of Financial Position is the unallocated cost, not the asset's market value, which could be higher or lower."
+    },
+    {
+      "q": "What is the difference between an error of principle and an error of commission?",
+      "a": "An error of principle is when a transaction is posted to the wrong *type* of account, violating an accounting principle (e.g., treating a capital expenditure like a non-current asset purchase as a revenue expenditure like repairs). An error of commission is when the correct *type* of account is used, but the wrong specific account (e.g., posting a sale to customer John Smith to the account of customer Jane Smith)."
+    }
+  ],
   "flashcards": [
     {
       "front": "Accrual (expense)?",
@@ -68,166 +262,31 @@
     {
       "front": "Where are 'prepayments' and 'accruals' shown in the Statement of Financial Position?",
       "back": "Prepayments (prepaid expenses) are shown under Current Assets. Accruals (accrued expenses) are shown under Current Liabilities."
+    },
+    {
+      "front": "How is the profit or loss on the disposal of a non-current asset calculated?",
+      "back": "It is the difference between the net disposal proceeds and the Net Book Value (NBV) of the asset at the date of disposal. Profit if proceeds > NBV; Loss if proceeds < NBV."
+    },
+    {
+      "front": "What is the double entry to correct an error where motor expenses of $500 were debited instead of the motor vehicles (non-current asset) account?",
+      "back": "Debit: Motor Vehicles (NCA) $500\nCredit: Motor Expenses (SPL) $500. This increases assets and increases profit (by reducing expenses)."
+    },
+    {
+      "front": "What is a suspense account used for?",
+      "back": "A temporary account used to make the trial balance agree when the total debits do not equal the total credits. The balance in the suspense account is cleared by correcting the errors that caused the imbalance."
+    },
+    {
+      "front": "What is the double entry for the recovery of a debt that was previously written off?",
+      "back": "Debit: Cash/Bank (with the amount received)\nCredit: Irrecoverable Debts Recovered (an income account in the SPL). This increases profit."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "**Adjustments** (1.5.1) — list **each adjustment with journal** before drafting SPL/SOFP. Examiners award method marks for clear accrual/prepayment logic."
-    },
-    {
-      "type": "heading",
-      "content": "The Accruals (Matching) Concept: The Foundation of Adjustments"
-    },
-    {
-      "type": "text",
-      "content": "The accruals concept, also known as the matching principle, is a fundamental accounting principle which dictates that revenues earned and the expenses incurred to generate those revenues must be recorded in the same accounting period. This ensures the Statement of Profit or Loss provides a true and fair view of the period's performance. Adjustments are necessary because the timing of cash payments or receipts often does not align with when the economic activity occurs. For example, electricity used in December might not be paid for until January. The accruals concept requires us to 'match' the December electricity cost against December's revenues, regardless of the payment date. This principle underpins adjustments for accruals, prepayments, depreciation, and irrecoverable debts."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The accruals concept matches expenses incurred with revenues earned in the same period.",
-        "It focuses on when an economic event occurs, not when cash is exchanged.",
-        "Adjustments are required to correct the draft accounts to comply with this principle.",
-        "This concept directly leads to the creation of accrued expenses (liabilities) and prepaid expenses (assets)."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In any question requiring adjustments, always start by considering the accruals concept. Ask yourself: 'In which period was this expense incurred or this revenue earned?' This will guide you to the correct adjustment."
-    },
-    {
-      "type": "heading",
-      "content": "Adjusting for Accruals and Prepayments"
-    },
-    {
-      "type": "text",
-      "content": "Accrued expenses (or accruals) are costs the business has incurred during the period but has not yet paid for. They are recorded as a current liability on the Statement of Financial Position (SOFP) and added to the relevant expense in the Statement of Profit or Loss (SPL). Conversely, prepaid expenses (or prepayments) are costs paid in advance for a benefit to be received in a future period. These are recorded as a current asset on the SOFP, as they represent a future economic benefit. The prepaid portion is deducted from the total amount paid to determine the correct expense for the current period in the SPL. Both adjustments are crucial for accurately reporting profit and the financial position."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Accrued Expense: Dr Expense (SPL), Cr Accrued Expense (SOFP Current Liability).",
-        "Prepaid Expense: Dr Prepaid Expense (SOFP Current Asset), Cr Expense (SPL).",
-        "The adjustment ensures the expense in the SPL reflects only what was consumed in the period.",
-        "The opening balance for an accrual or prepayment from the previous year must be reversed at the start of the current year."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Pay close attention to dates. If a business pays rent of £12,000 for the year to 31 March 2025, but its year-end is 31 December 2024, then 3 months (£3,000) is a prepayment. Always draw a timeline if you are unsure."
-    },
-    {
-      "type": "heading",
-      "content": "Depreciation of Non-Current Assets"
-    },
-    {
-      "type": "text",
-      "content": "Depreciation is the systematic allocation of the cost of a tangible non-current asset over its useful economic life. It is an application of the accruals concept, matching the asset's cost against the revenue it helps to generate over several periods. It is not a process of valuation. The two main methods are straight-line (allocating an equal amount each year) and reducing (diminishing) balance (applying a fixed percentage to the net book value). The annual depreciation charge is an expense in the SPL. The cumulative total, known as accumulated depreciation, is shown on the SOFP as a deduction from the asset's cost to arrive at its net book value (NBV)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Depreciation is an expense, not a cash flow.",
-        "Double entry: Dr Depreciation Expense (SPL), Cr Accumulated Depreciation (SOFP).",
-        "Straight-line method: (Cost - Residual Value) / Useful Life.",
-        "Reducing balance method: (Cost - Accumulated Depreciation) x Depreciation Rate %.",
-        "The method chosen should reflect the pattern of the asset's consumption."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "When calculating reducing balance depreciation, always use the Net Book Value (NBV) at the start of the year. For an asset purchased part-way through the year, you must pro-rate the depreciation charge for that first year unless the question specifies a full year's charge is applied in the year of purchase."
-    },
-    {
-      "type": "heading",
-      "content": "Irrecoverable Debts and the Allowance for Irrecoverable Debts"
-    },
-    {
-      "type": "text",
-      "content": "Businesses that sell on credit face the risk that some customers will not pay. When a specific debt is confirmed as uncollectable, it is written off as an irrecoverable debt. This is an expense in the SPL. Additionally, the principle of prudence requires businesses to anticipate future losses by creating an allowance for irrecoverable debts. This is an estimate of debts that are currently doubtful, but not yet confirmed as irrecoverable. The creation of, or increase in, this allowance is also an expense in the SPL. The allowance is then deducted from trade receivables in the SOFP to show a more realistic value of the amount likely to be collected."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Writing off a specific debt: Dr Irrecoverable Debts (SPL), Cr Trade Receivables (SOFP).",
-        "Creating/increasing an allowance: Dr Irrecoverable Debts (SPL), Cr Allowance for Irrecoverable Debts (SOFP).",
-        "A decrease in the allowance is treated as other income in the SPL.",
-        "The allowance is deducted from the gross trade receivables figure on the SOFP."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "Always write off specific irrecoverable debts *before* calculating the closing allowance for irrecoverable debts. The allowance is calculated as a percentage of the remaining, net trade receivables."
-    },
-    {
-      "type": "heading",
-      "content": "Inventory Valuation"
-    },
-    {
-      "type": "text",
-      "content": "According to IAS 2 'Inventories', closing inventory must be valued at the lower of cost and net realisable value (NRV). Cost includes all costs of purchase and conversion to bring the inventory to its present location and condition. NRV is the estimated selling price in the ordinary course of business, less the estimated costs of completion and the estimated costs necessary to make the sale. This principle prevents businesses from overstating assets and profit. If NRV is lower than cost, an adjustment is made to write down the inventory value. This write-down is treated as an expense and included within 'cost of sales' in the SPL, thereby reducing the gross profit."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Valuation rule: Lower of Cost and Net Realisable Value (NRV).",
-        "NRV = Estimated Selling Price - Estimated Costs to Complete - Estimated Selling Costs.",
-        "This is an application of the prudence concept.",
-        "An inventory write-down increases cost of sales and reduces gross profit.",
-        "The final inventory value is shown as a current asset on the SOFP."
-      ]
-    },
-    {
-      "type": "examTip",
-      "content": "In exam questions, you may be given a list of inventory items with both cost and NRV. You must assess each item or group of items individually and select the lower value for each, then sum these lower values to find the total closing inventory figure."
-    },
-    {
-      "type": "workedExample",
-      "question": "Draft rent expense in trial balance $12,000. Rent of $1,200 for January next year was paid in December. Electricity $800 owed at year-end. Depreciation on equipment $3,500. Calculate adjusted rent, electricity, and total expense increase.",
-      "solution": "**Rent prepayment:** $1,200 paid for next period → **reduce** rent expense.\nAdjusted rent = 12,000 − 1,200 = **$10,800**\n\n**Electricity accrual:** $800 owed → **increase** expense.\nAdjusted electricity = **$800** (if nil in TB) or add to existing balance.\n\n**Depreciation:** **$3,500** charge to SPL.\n\n**Journals:**\nDR Prepayments 1,200 / CR Rent 1,200\nDR Electricity 800 / CR Accruals 800\nDR Depreciation 3,500 / CR Acc. dep. 3,500\n\n**Total extra expense** (net of prepayment) = 800 + 3,500 − 1,200 = **$3,100** (plus any electricity already in TB)."
-    },
-    {
-      "type": "practice",
-      "label": "Mark an adjustments question",
-      "href": "/mark?subject=9706&topic=1.5.1"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "1.3.2 Changing asset values",
-          "href": "/courses/9706/1-3-2-changing-asset-values"
-        },
-        {
-          "label": "1.5.2 Sole traders",
-          "href": "/courses/9706/1-5-2-sole-traders"
-        },
-        {
-          "label": "9609 10.1.4 Depreciation",
-          "href": "/courses/9609/10-1-4-depreciation"
-        },
-        {
-          "label": "9706 course index",
-          "href": "/courses/9706"
-        }
-      ]
-    }
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.5.1.1"
   ],
-  "faq": [
-    {
-      "q": "Is an allowance for irrecoverable debts the same as writing off a specific debt?",
-      "a": "No, they are different. Writing off an irrecoverable debt removes a specific, known, uncollectable amount from trade receivables. An allowance for irrecoverable debts is a general provision made against all remaining receivables for estimated, but not yet identified, future bad debts. It is an application of prudence, anticipating future losses."
-    },
-    {
-      "q": "Why do we add accrued expenses to the expense account in the Statement of Profit or Loss, even though the cash has not been paid?",
-      "a": "This is due to the accruals (or matching) concept. The Statement of Profit or Loss must show the full cost incurred in generating the period's revenue, regardless of when the cash is paid. If a business used electricity in December, that cost helped generate December's sales. Therefore, the cost must be included in December's accounts, even if the bill is paid in January."
-    },
-    {
-      "q": "Does depreciation represent the fall in a non-current asset's market value?",
-      "a": "No, this is a common misconception. Depreciation is not a process of valuation. It is the systematic allocation of an asset's cost over its useful life. The net book value (Cost - Accumulated Depreciation) shown on the Statement of Financial Position is the unallocated cost, not the asset's market value, which could be higher or lower."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Accrued Expenses and Prepaid Expenses",
     "columns": [

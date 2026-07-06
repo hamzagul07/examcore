@@ -5,66 +5,8 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 2 — SI units (1.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Identify the seven SI base quantities and their corresponding units.",
-    "Explain how derived units are formed from base units and perform dimensional analysis.",
-    "Utilise SI prefixes to convert between multiples and submultiples of units, and apply key energy conversions (eV to J, kWh to J)."
-  ],
-  "simpleExplanation": {
-    "title": "The Universal Language of Physics",
-    "summary": "Imagine building a house without a standard ruler or measuring tape! In physics, **SI units** provide a universal 'ruler' so scientists worldwide can understand each other's measurements. They ensure consistency, making calculations and experiments reliable, from tiny atoms to distant galaxies.",
-    "analogy": "Think of SI units as the 'currency' of physics. Just as money allows you to exchange goods and services anywhere, SI units allow physicists to exchange data and ideas universally, ensuring everyone is speaking the same measurement 'language'.",
-    "steps": [
-      "**Understand Physical Quantities**: Recognise that every measurement needs a number AND a unit.",
-      "**Master the Base Units**: Memorise the seven fundamental building blocks of all other units.",
-      "**Decode Derived Units**: Learn how base units combine to form complex units for quantities like force or energy.",
-      "**Navigate Prefixes & Conversions**: Practice using prefixes (kilo, milli, micro) and essential energy unit swaps (eV, kWh)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What are the two essential components of a physical quantity?",
-      "back": "A numerical value (magnitude) and an associated unit."
-    },
-    {
-      "front": "List three of the SI base quantities and their corresponding units.",
-      "back": "Mass (kilogram, kg), Length (metre, m), Time (second, s)."
-    },
-    {
-      "front": "Explain what a derived unit is and provide an example.",
-      "back": "A derived unit is formed by combining SI base units. For example, the Newton (N) for force is equivalent to kg m s$^{-2}$."
-    },
-    {
-      "front": "What is the multiplier for the SI prefix 'nano' (n)?",
-      "back": "10$^{-9}$."
-    },
-    {
-      "front": "What is the conversion factor for 1 electronvolt (eV) to Joules (J)?",
-      "back": "1 eV = 1.6 \\times 10$^{-19}$ J."
-    },
-    {
-      "front": "What is the SI base unit for electric current?",
-      "back": "Ampere (A)."
-    },
-    {
-      "front": "What does it mean for an equation to be 'dimensionally homogeneous'?",
-      "back": "The units on both sides of the equation must be consistent (the same)."
-    },
-    {
-      "front": "Convert 1 kilowatt-hour (kWh) to Joules (J).",
-      "back": "1 kWh = 3.6 \\times 10$^6$ J."
-    },
-    {
-      "front": "What is the SI prefix and multiplier for $10^9$?",
-      "back": "Giga (G)."
-    },
-    {
-      "front": "If speed is measured in m/s, what would be the derived unit for acceleration?",
-      "back": "m/s$^2$ (or m s$^{-2}$)."
-    }
-  ],
+  "summary": "This lesson covers the fundamental SI base and derived units, the use of prefixes for scaling, and the crucial skill of dimensional analysis for verifying equations. Learn the universal language of physics measurements, essential for Cambridge 9702 Paper 2.",
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -84,38 +26,50 @@
     },
     {
       "type": "text",
-      "content": "The SI system is built upon a foundation of seven fundamental **Base Quantities**, each with its own independent **Base Unit**. These units cannot be broken down further into simpler units and form the core from which all other units are derived. You'll need to know all of them for your exams!"
+      "content": "The SI system is built upon a foundation of seven fundamental **Base Quantities**, each with its own independent **Base Unit**. These units cannot be broken down further into simpler units and form the core from which all other units are derived. You must memorise these for your exams."
     },
     {
       "type": "keyPoints",
       "items": [
-        "1.2 SI units.",
-        "Note that the units used in the example above is not in SI . If we were to convert both the magnitude and units to SI, the speed would then be 33.3 m/s.",
-        "SI unit is a system of measurement that is used and recognized in most countries (except US…).",
-        "SI units can be categorized into two types; based and derived .",
-        "There are seven base units:.",
-        "Derived units are derived from the seven based units (think of base units as Lego TM blocks and derived units as the castle/ ship/ car/ phone holder you are trying to make)."
+        "**Length** (Unit: metre, Symbol: m)",
+        "**Mass** (Unit: kilogram, Symbol: kg)",
+        "**Time** (Unit: second, Symbol: s)",
+        "**Electric Current** (Unit: ampere, Symbol: A)",
+        "**Thermodynamic Temperature** (Unit: kelvin, Symbol: K)",
+        "**Amount of Substance** (Unit: mole, Symbol: mol)",
+        "**Luminous Intensity** (Unit: candela, Symbol: cd)"
       ]
     },
     {
       "type": "heading",
-      "content": "Building Blocks: Derived Units"
+      "content": "Building Blocks: Derived Units & Dimensional Analysis"
     },
     {
       "type": "text",
-      "content": "While base units are fundamental, most quantities we encounter in physics use **derived units**. These are units created by combining two or more base units through multiplication or division. For example, to find speed, you divide distance (length) by time, so its derived unit is metres per second (m/s)."
+      "content": "While base units are fundamental, most quantities we encounter in physics use **derived units**. These are units created by combining two or more base units through multiplication or division. For example, to find speed, you divide distance (length) by time, so its derived unit is metres per second (m s⁻¹)."
     },
     {
-      "type": "formula",
-      "content": "For example, Force (Newton, N) $= Mass \\times Acceleration$. $N = kg \\times (m/s^2)$. $N = kg m s^{-2}$"
+      "type": "keyPoints",
+      "items": [
+        "**Force (newton, N):** kg m s⁻²",
+        "**Energy (joule, J):** kg m² s⁻²",
+        "**Power (watt, W):** kg m² s⁻³",
+        "**Pressure (pascal, Pa):** kg m⁻¹ s⁻²",
+        "**Electric Charge (coulomb, C):** A s"
+      ]
     },
     {
       "type": "text",
-      "content": "Understanding derived units is crucial for checking the consistency of equations. An equation is said to be **dimensionally homogeneous** if the units on both sides of the equation are identical. This is a powerful tool to spot potential errors in your calculations!"
+      "content": "Understanding derived units is crucial for **dimensional analysis**. This is the process of checking if an equation is physically plausible by comparing the units on both sides. An equation is said to be **dimensionally homogeneous** (or consistent) if the base units on both sides of the equation are identical. This is a powerful tool to spot potential errors in your formulae!"
     },
     {
       "type": "examTip",
       "content": "Always check for dimensional homogeneity! If the units on both sides of your equation don't match, you've made a mistake in your formula or calculation. This is a common check in Paper 2 questions."
+    },
+    {
+      "type": "workedExample",
+      "question": "The period *T* of a simple pendulum is thought to depend on its length *l* and the acceleration of free fall *g*. The proposed equation is *T* = 2π√(*l*/g). Use dimensional analysis to show that this equation is homogeneous.",
+      "solution": "1. **Identify the base units for each side of the equation.**\n   - **LHS (Left Hand Side):** The quantity is period *T*, which is a time. Its SI base unit is seconds (s).\n   - **RHS (Right Hand Side):** The equation involves length *l* (unit: m) and acceleration *g* (unit: m s⁻²). The term 2π is a dimensionless constant and has no units.\n\n2. **Analyse the units of the LHS.**\n   - [LHS] = [T] = s\n\n3. **Analyse the units of the RHS.**\n   - [RHS] = [√(*l*/g)]\n   - Substitute the units: [RHS] = √(m / (m s⁻²))\n\n4. **Simplify the units on the RHS.**\n   - [RHS] = √(m × s² / m)\n   - The 'm' units cancel out: [RHS] = √(s²)\n   - [RHS] = s\n\n5. **Compare LHS and RHS.**\n   - [LHS] = s and [RHS] = s.\n   - Since the base units on both sides are identical, the equation is dimensionally homogeneous."
     },
     {
       "type": "heading",
@@ -128,21 +82,22 @@
     {
       "type": "keyPoints",
       "items": [
-        "Tera (T): $10^{12}$",
-        "Giga (G): $10^9$",
-        "Mega (M): $10^6$",
-        "Kilo (k): $10^3$",
-        "Centi (c): $10^{-2}$",
-        "Milli (m): $10^{-3}$",
-        "Micro (\\textmu): $10^{-6}$",
-        "Nano (n): $10^{-9}$",
-        "Pico (p): $10^{-12}$"
+        "Tera (T): 10¹²",
+        "Giga (G): 10⁹",
+        "Mega (M): 10⁶",
+        "Kilo (k): 10³",
+        "Centi (c): 10⁻²",
+        "Milli (m): 10⁻³",
+        "Micro (μ): 10⁻⁶",
+        "Nano (n): 10⁻⁹",
+        "Pico (p): 10⁻¹²",
+        "Femto (f): 10⁻¹⁵"
       ]
     },
     {
       "type": "workedExample",
-      "question": "Convert 2.5 \\textmu s to seconds (s) and 0.045 km to metres (m).",
-      "solution": "1. **For 2.5 \\textmu s to s:**\\n    The prefix 'micro' (\\textmu) means $10^{-6}$.\\n    So, 2.5 \\textmu s = 2.5 \\times 10^{-6} s.\\n\\n2. **For 0.045 km to m:**\\n    The prefix 'kilo' (k) means $10^3$ (or 1000).\\n    So, 0.045 km = 0.045 \\times 1000 m = 45 m."
+      "question": "A radio station broadcasts at a frequency of 98.4 MHz. Convert this frequency to hertz (Hz). A capacitor has a capacitance of 250 pF. Convert this to farads (F).",
+      "solution": "1. **For 98.4 MHz to Hz:**\n    The prefix 'Mega' (M) means 10⁶.\n    So, 98.4 MHz = 98.4 × 10⁶ Hz = 98,400,000 Hz.\n\n2. **For 250 pF to F:**\n    The prefix 'pico' (p) means 10⁻¹².\n    So, 250 pF = 250 × 10⁻¹² F = 2.5 × 10⁻¹⁰ F."
     },
     {
       "type": "heading",
@@ -154,11 +109,11 @@
     },
     {
       "type": "formula",
-      "content": "$1\\text{ electronvolt (eV)} = 1.6 \\times 10^{-19}\\text{ J}$. $1\\text{ kilowatt-hour (kWh)} = 3.6 \\times 10^6\\text{ J}$"
+      "content": "1 electronvolt (eV) = 1.60 × 10⁻¹⁹ J\n1 kilowatt-hour (kWh) = 3.6 × 10⁶ J"
     },
     {
       "type": "examTip",
-      "content": "Be careful with case sensitivity for prefixes! 'm' for milli ($10^{-3}$) is very different from 'M' for Mega ($10^6$). Pay close attention to these details in exams."
+      "content": "Be careful with case sensitivity for prefixes! 'm' for milli (10⁻³) is very different from 'M' for Mega (10⁶). Pay close attention to these details in exams."
     },
     {
       "type": "practice",
@@ -183,6 +138,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Identify the seven SI base quantities and their corresponding units.",
+    "Explain how derived units are formed from base units and perform dimensional analysis to check the homogeneity of equations.",
+    "Utilise SI prefixes to convert between multiples and submultiples of units, and apply key energy conversions (eV to J, kWh to J)."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of SI units as the 'currency' of physics. Just as money allows you to exchange goods and services anywhere, SI units allow physicists to exchange data and ideas universally, ensuring everyone is speaking the same measurement 'language'."
+  },
   "faq": [
     {
       "q": "What are SI units and why are they important in physics?",
@@ -190,20 +153,92 @@
     },
     {
       "q": "How do you convert between SI prefixes like kilo, milli, and micro?",
-      "a": "To convert using SI prefixes, you multiply the numerical value by the prefix's corresponding power of 10. For instance, to convert 1 kilometre (kilo = $10^3$) to metres, you multiply by $10^3$ (1 km = $1 \\times 10^3$ m). To convert 1 millimetre (milli = $10^{-3}$) to metres, you multiply by $10^{-3}$ (1 mm = $1 \\times 10^{-3}$ m)."
+      "a": "To convert using SI prefixes, you multiply the numerical value by the prefix's corresponding power of 10. For instance, to convert 1 kilometre (kilo = 10³) to metres, you multiply by 10³ (1 km = 1 × 10³ m). To convert 1 millimetre (milli = 10⁻³) to metres, you multiply by 10⁻³ (1 mm = 1 × 10⁻³ m)."
     },
     {
       "q": "What is the key difference between SI base units and derived units?",
-      "a": "SI base units are fundamental, independent units (like metre for length or kilogram for mass) that cannot be expressed in terms of other units. Derived units, on the other hand, are formed by mathematically combining two or more base units through multiplication or division, such as the Newton (force = mass \\times acceleration = kg m s$^{-2}$) or the Joule (energy)."
+      "a": "SI base units are the seven fundamental, independent units (like metre for length or kilogram for mass) that cannot be expressed in terms of other units. Derived units, on the other hand, are formed by mathematically combining two or more base units through multiplication or division, such as the Newton for force (kg m s⁻²) or the Joule for energy (kg m² s⁻²)."
+    },
+    {
+      "q": "How is dimensional analysis used in physics?",
+      "a": "Dimensional analysis is used to check the validity of an equation or a derived formula. By ensuring that the SI base units are the same on both sides of the equation (a property called homogeneity), physicists can confirm that the relationship is physically plausible. It's a powerful error-checking tool."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What are the two essential components of a physical quantity?",
+      "back": "A numerical value (magnitude) and an associated unit."
+    },
+    {
+      "front": "List three of the SI base quantities and their corresponding units.",
+      "back": "Mass (kilogram, kg), Length (metre, m), Time (second, s)."
+    },
+    {
+      "front": "Explain what a derived unit is and provide an example.",
+      "back": "A derived unit is formed by combining SI base units. For example, the Newton (N) for force is equivalent to kg m s⁻²."
+    },
+    {
+      "front": "What is the multiplier for the SI prefix 'nano' (n)?",
+      "back": "10⁻⁹."
+    },
+    {
+      "front": "What is the conversion factor for 1 electronvolt (eV) to Joules (J)?",
+      "back": "1 eV = 1.6 × 10⁻¹⁹ J."
+    },
+    {
+      "front": "What is the SI base unit for electric current?",
+      "back": "Ampere (A)."
+    },
+    {
+      "front": "What does it mean for an equation to be 'dimensionally homogeneous'?",
+      "back": "The units on both sides of the equation must be consistent (the same) when expressed in terms of base units."
+    },
+    {
+      "front": "Convert 1 kilowatt-hour (kWh) to Joules (J).",
+      "back": "1 kWh = 3.6 × 10⁶ J."
+    },
+    {
+      "front": "What is the SI prefix and multiplier for 10⁹?",
+      "back": "Giga (G)."
+    },
+    {
+      "front": "If speed is measured in m/s, what would be the derived unit for acceleration?",
+      "back": "m/s² (or m s⁻²)."
+    },
+    {
+      "front": "What are the seven SI base quantities?",
+      "back": "Length, mass, time, electric current, thermodynamic temperature, amount of substance, and luminous intensity."
+    },
+    {
+      "front": "What is the derived SI unit for Pressure (Pascal, Pa) in terms of base units?",
+      "back": "kg m⁻¹ s⁻²"
+    },
+    {
+      "front": "What is the primary purpose of using dimensional analysis on an equation?",
+      "back": "To check for homogeneity, ensuring that the units on both sides of the equation are consistent and the equation is physically plausible."
+    },
+    {
+      "front": "What is the SI base unit for thermodynamic temperature?",
+      "back": "Kelvin (K)."
+    },
+    {
+      "front": "Express the derived unit for Power, the watt (W), in terms of SI base units.",
+      "back": "kg m² s⁻³"
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
+  "syllabusObjectivesCovered": [
+    "1.2.1",
+    "1.2.2",
+    "1.2.3",
+    "1.2.4"
+  ],
+  "generatorVersion": "senpai-improved-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/1-2-si-units.png",
     "alt": "Senpai Corner reference diagram for 1.2 SI units"
-  }
+  },
+  "updated": "2024-07-23"
 }

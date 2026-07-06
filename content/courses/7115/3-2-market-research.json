@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "7115 O-Level — why businesses conduct market research and how findings support marketing decisions.",
   "durationMin": 20,
-  "updated": "2026-06-26",
-  "learningObjectives": [
-    "Explain the main purposes of market research.",
-    "Link research to segmentation and marketing mix decisions.",
-    "Distinguish research needs at different business stages.",
-    "Evaluate cost of research vs cost of wrong decisions."
-  ],
-  "simpleExplanation": {
-    "title": "Reduce guesswork",
-    "summary": "Market research collects data about customers, competitors, and markets so managers make informed marketing decisions instead of relying on assumptions.",
-    "steps": [
-      "Measure market size and growth potential.",
-      "Test new product concepts before launch.",
-      "Monitor brand perception and satisfaction.",
-      "Track competitor moves and market trends."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Main purpose of market research?",
-      "back": "Reduce risk by providing data for marketing decisions — who to target, what to offer, how to promote."
-    },
-    {
-      "front": "Research before product launch?",
-      "back": "Test concept appeal, price sensitivity, packaging — avoid costly failure."
-    },
-    {
-      "front": "Research for existing products?",
-      "back": "Track brand awareness, customer satisfaction, market share trends."
-    },
-    {
-      "front": "Link to 3.1.6 segmentation?",
-      "back": "Research identifies segment sizes, needs, and responsiveness."
-    },
-    {
-      "front": "Cost-benefit of research?",
-      "back": "Research costs money/time but cheaper than launching wrong product or wrong price."
-    },
-    {
-      "front": "Research vs market intelligence?",
-      "back": "Research is planned data collection; intelligence includes ongoing competitor/market monitoring."
-    },
-    {
-      "front": "What is the primary purpose of market research in relation to business risk?",
-      "back": "To reduce the risk of business decisions (e.g., new product development, market entry) by replacing intuition with data-driven insights, thereby minimising potential financial and reputational losses."
-    },
-    {
-      "front": "How does market research support the development of the marketing mix?",
-      "back": "It provides data on consumer needs and preferences, which informs decisions on Product (features, design), Price (what customers are willing to pay), Place (where customers shop), and Promotion (which media they consume)."
-    },
-    {
-      "front": "Define 'Market Orientation'.",
-      "back": "An outward-looking business approach that bases product and marketing decisions on consumer needs and wants, which are identified through market research."
-    },
-    {
-      "front": "Explain the 'forecasting' purpose of market research.",
-      "back": "It involves analysing data to predict future trends, such as changes in consumer demand, competitor actions, or technological shifts, allowing a business to plan proactively."
-    },
-    {
-      "front": "Why is market research used *after* a marketing campaign has been launched?",
-      "back": "To assess its effectiveness by measuring key metrics like changes in brand awareness, customer attitudes, and sales figures. This evaluates the return on investment and informs future campaigns."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -167,6 +104,11 @@
       "solution": "**1. Segment sizing:** How many teenagers buy energy drinks? Is the segment **growing** (3.1.3)?\n\n**2. Concept & taste testing:** Do target customers like flavour, branding, can design? **Focus groups** (3.2.2).\n\n**3. Price sensitivity:** What price maximises volume vs margin? Links to **penetration vs skimming** (3.3.4).\n\nWithout research, firm risks **wrong mix** and wasted **promotion spend**."
     },
     {
+      "type": "workedExample",
+      "question": "A tech firm is considering launching a new smartwatch. The launch will cost $2,000,000. Without research, managers estimate a 40\\% chance of success, which would generate $3,000,000 in profit. A market research study costing $50,000 is proposed. The marketing director believes this research could increase the probability of a successful launch to 75% by refining the product features. Evaluate whether the firm should undertake the market research.",
+      "solution": "This problem can be solved by comparing the Expected Monetary Value (EMV) of the two options: launching with research vs. launching without research.\n\n**Step 1: Calculate the EMV of launching WITHOUT research.**\n\nThe potential outcomes are success (profit) or failure (loss of launch cost).\n*   Value of Success = +$3,000,000\n*   Value of Failure = -$2,000,000\n*   Probability of Success = 40% or 0.4\n*   Probability of Failure = 100% - 40% = 60% or 0.6\n\nEMV = (Value of Success × P(Success)) + (Value of Failure × P(Failure))\nEMV = ($3,000,000 × 0.4) + (-$2,000,000 × 0.6)\nEMV = $1,200,000 - $1,200,000\n**EMV without research = $0**\n\n**Step 2: Calculate the EMV of launching WITH research.**\n\nFirst, account for the definite cost of the research. Then, calculate the EMV of the launch decision with the improved probabilities.\n*   Cost of Research = -$50,000\n*   Value of Success = +$3,000,000\n*   Value of Failure = -$2,000,000\n*   New Probability of Success = 75% or 0.75\n*   New Probability of Failure = 100% - 75% = 25% or 0.25\n\nEMV of launch decision = ($3,000,000 × 0.75) + (-$2,000,000 × 0.25)\nEMV of launch decision = $2,250,000 - $500,000 = $1,750,000\n\nNow, subtract the cost of the research to find the total EMV for this option:\nTotal EMV = $1,750,000 - $50,000\n**Total EMV with research = $1,650,000**\n\n**Step 3: Conclusion & Evaluation.**\n\n*   EMV without research = $0\n*   EMV with research = $1,650,000\n\nComparing the two expected values, undertaking the market research leads to a much higher expected financial outcome ($1,650,000 vs $0). The $50,000 investment in research is justified because it significantly reduces the risk of failure and increases the potential financial return by $1,650,000. Therefore, the firm should conduct the market research."
+    },
+    {
       "type": "practice",
       "label": "Mark a market research purposes question",
       "href": "/mark?subject=7115&topic=3.2"
@@ -189,6 +131,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain the main purposes of market research.",
+    "Link research to segmentation and marketing mix decisions.",
+    "Distinguish research needs at different business stages.",
+    "Evaluate cost of research vs cost of wrong decisions."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Does conducting thorough market research guarantee a product will be successful?",
@@ -203,6 +152,91 @@
       "a": "No, that is only one aspect (primary research). A comprehensive market research plan also includes secondary research, which involves analysing existing data. This can include government statistics, trade journal reports, competitor websites, and a firm's own sales data. The purpose is to gain a holistic view of the entire market, not just direct customer opinions."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Main purpose of market research?",
+      "back": "Reduce risk by providing data for marketing decisions — who to target, what to offer, how to promote."
+    },
+    {
+      "front": "Research before product launch?",
+      "back": "Test concept appeal, price sensitivity, packaging — avoid costly failure."
+    },
+    {
+      "front": "Research for existing products?",
+      "back": "Track brand awareness, customer satisfaction, market share trends."
+    },
+    {
+      "front": "Link to 3.1.6 segmentation?",
+      "back": "Research identifies segment sizes, needs, and responsiveness."
+    },
+    {
+      "front": "Cost-benefit of research?",
+      "back": "Research costs money/time but cheaper than launching wrong product or wrong price."
+    },
+    {
+      "front": "Research vs market intelligence?",
+      "back": "Research is planned data collection; intelligence includes ongoing competitor/market monitoring."
+    },
+    {
+      "front": "What is the primary purpose of market research in relation to business risk?",
+      "back": "To reduce the risk of business decisions (e.g., new product development, market entry) by replacing intuition with data-driven insights, thereby minimising potential financial and reputational losses."
+    },
+    {
+      "front": "How does market research support the development of the marketing mix?",
+      "back": "It provides data on consumer needs and preferences, which informs decisions on Product (features, design), Price (what customers are willing to pay), Place (where customers shop), and Promotion (which media they consume)."
+    },
+    {
+      "front": "Define 'Market Orientation'.",
+      "back": "An outward-looking business approach that bases product and marketing decisions on consumer needs and wants, which are identified through market research."
+    },
+    {
+      "front": "Explain the 'forecasting' purpose of market research.",
+      "back": "It involves analysing data to predict future trends, such as changes in consumer demand, competitor actions, or technological shifts, allowing a business to plan proactively."
+    },
+    {
+      "front": "Why is market research used *after* a marketing campaign has been launched?",
+      "back": "To assess its effectiveness by measuring key metrics like changes in brand awareness, customer attitudes, and sales figures. This evaluates the return on investment and informs future campaigns."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.2"
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Identify market size and growth.",
+        "embedHint": "Step 1: Identify market size and growth."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Test concepts before launch.",
+        "embedHint": "Step 2: Test concepts before launch."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Monitor brand perception.",
+        "embedHint": "Step 3: Monitor brand perception."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Spot competitor moves early.",
+        "embedHint": "Step 4: Spot competitor moves early."
+      }
+    ]
+  },
+  "updated": "2026-06-26",
   "comparisonTable": {
     "caption": "Comparison of Business Approaches and the Role of Market Research",
     "columns": [
@@ -253,37 +287,5 @@
     "subjectCode": "9609",
     "slug": "3-2-1-the-purposes-of-market-research",
     "level": "A-Level"
-  },
-  "diagramSpec": {
-    "steps": [
-      {
-        "focus": [
-          "step-1"
-        ],
-        "caption": "Identify market size and growth.",
-        "embedHint": "Step 1: Identify market size and growth."
-      },
-      {
-        "focus": [
-          "step-2"
-        ],
-        "caption": "Test concepts before launch.",
-        "embedHint": "Step 2: Test concepts before launch."
-      },
-      {
-        "focus": [
-          "step-3"
-        ],
-        "caption": "Monitor brand perception.",
-        "embedHint": "Step 3: Monitor brand perception."
-      },
-      {
-        "focus": [
-          "step-4"
-        ],
-        "caption": "Spot competitor moves early.",
-        "embedHint": "Step 4: Spot competitor moves early."
-      }
-    ]
   }
 }

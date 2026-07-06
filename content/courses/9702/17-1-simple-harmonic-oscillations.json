@@ -6,61 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Simple harmonic oscillations (17.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define and apply the conditions for Simple Harmonic Motion (SHM).",
-    "Calculate displacement, velocity, and acceleration using SHM equations.",
-    "Explain energy transformations and the effects of damping on oscillating systems."
-  ],
-  "simpleExplanation": {
-    "title": "Understanding SHM: The Rhythm of Physics",
-    "summary": "Simple Harmonic Motion (SHM) describes a special type of back-and-forth movement where an object's acceleration is always trying to pull it back to a central point. Think of a pendulum swinging or a spring bobbing up and down – it's all about rhythmic, predictable oscillation.",
-    "analogy": "Imagine a super bouncy trampoline. When you jump, the force trying to pull you back to the flat surface is strongest when you're highest, making you accelerate downwards. As you get closer, this force reduces, but you overshoot and go below the surface, where the force then pushes you back up. This constant 'restoring' force, getting stronger the further you move, is the heart of SHM.",
-    "steps": [
-      "**1. The Defining Rule:** Acceleration is proportional to displacement from equilibrium and acts oppositely.",
-      "**2. Key Players:** Understand terms like amplitude, period, frequency, and angular frequency.",
-      "**3. Motion Equations:** Use formulas for displacement, velocity, and acceleration as functions of time or position.",
-      "**4. Energy & Damping:** See how kinetic and potential energy swap, and how damping reduces oscillations."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the defining relationship for Simple Harmonic Motion (SHM)?",
-      "back": "Acceleration is directly proportional to displacement from equilibrium and acts in the opposite direction ($a \\propto -x$).}"
-    },
-    {
-      "front": "How is angular frequency (\\omega) related to the period (T) of an oscillation?",
-      "back": "\\omega = 2\\pi/T."
-    },
-    {
-      "front": "At which point in an SHM cycle is potential energy at its maximum?",
-      "back": "Potential energy is maximum at the amplitude (maximum displacement) positions, $x = \\pm x_0$.}"
-    },
-    {
-      "front": "What is the phase difference between velocity and displacement in SHM?",
-      "back": "Velocity is $90^\\circ$ (or $\\pi/2$ radians) out of phase with displacement."
-    },
-    {
-      "front": "Describe the characteristic behaviour of a critically damped system.",
-      "back": "A critically damped system returns to its equilibrium position in the quickest possible time without undergoing any oscillations."
-    },
-    {
-      "front": "What does the amplitude of an oscillation represent?",
-      "back": "The amplitude is the maximum displacement achieved by the oscillating object from its equilibrium position."
-    },
-    {
-      "front": "Where does maximum kinetic energy occur during SHM?",
-      "back": "Maximum kinetic energy occurs when the object passes through its equilibrium position ($x=0$).}"
-    },
-    {
-      "front": "State the defining equation for Simple Harmonic Motion.",
-      "back": "$a = -\\omega^2 x$, where $a$ is acceleration, $x$ is displacement, and $\\omega$ is angular frequency."
-    },
-    {
-      "front": "What defines 'free oscillations'?",
-      "back": "Free oscillations occur when an oscillating system is not subjected to any external driving force, moving at its natural frequency."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -150,21 +96,26 @@
       ]
     },
     {
+      "type": "heading",
+      "content": "Graphical Representation of SHM"
+    },
+    {
+      "type": "text",
+      "content": "The sinusoidal nature of SHM is best visualized through graphs of displacement, velocity, and acceleration against time. These graphs clearly show the amplitude, period, and phase relationships between the different quantities."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement-time (x-t) graph:** A sine or cosine curve. The peak value is the amplitude ($x_0$), and the time for one full wave is the period (T).",
+        "**Velocity-time (v-t) graph:** Also a sinusoidal curve, representing the gradient of the x-t graph. It leads the displacement by $90^\\circ$ ($\\pi/2$ radians). When displacement is zero, velocity is maximum or minimum.",
+        "**Acceleration-time (a-t) graph:** Another sinusoidal curve, representing the gradient of the v-t graph. It is $180^\\circ$ ($\\pi$ radians) out of phase with displacement, meaning it's an inverted version of the x-t graph (scaled by $\\omega^2$).",
+        "**Energy-displacement graph:** A graph of energy vs. displacement shows a constant total energy line, a parabola for potential energy ($E_P \\propto x^2$), and an inverted parabola for kinetic energy."
+      ]
+    },
+    {
       "type": "workedExample",
       "question": "A mass oscillating with SHM has an amplitude of 5.0 cm and a period of 1.2 s. Calculate its angular frequency, maximum velocity, and acceleration when its displacement is 3.0 cm.",
-      "solution": [
-        "**Step 1: Calculate angular frequency (\\omega).**",
-        "The formula is $\\omega = 2\\pi / T$.",
-        "$\\omega = 2\\pi / 1.2 \\text{ s} \\approx 5.236 \\text{ rad/s}$.",
-        "**Step 2: Calculate maximum velocity ($v_0$).**",
-        "The formula is $v_0 = \\omega x_0$. Remember to convert amplitude to metres!",
-        "$x_0 = 5.0 \\text{ cm} = 0.050 \\text{ m}$.",
-        "$v_0 = 5.236 \\text{ rad/s} \\times 0.050 \\text{ m} \\approx 0.2618 \\text{ m/s}$.",
-        "**Step 3: Calculate acceleration (a) at $x = 3.0 \\text{ cm}$.**",
-        "The formula is $a = -\\omega^2 x$. Convert displacement to metres.",
-        "$x = 3.0 \\text{ cm} = 0.030 \\text{ m}$.",
-        "$a = -(5.236 \\text{ rad/s})^2 \\times 0.030 \\text{ m} \\approx -0.822 \\text{ m/s}^2$."
-      ]
+      "solution": "**Step 1: Calculate angular frequency (\\omega).**\nThe formula is $\\omega = 2\\pi / T$.\n$\\omega = 2\\pi / 1.2 \\text{ s} \\approx 5.236 \\text{ rad/s}$.\n**Step 2: Calculate maximum velocity ($v_0$).**\nThe formula is $v_0 = \\omega x_0$. Remember to convert amplitude to metres!\n$x_0 = 5.0 \\text{ cm} = 0.050 \\text{ m}$.\n$v_0 = 5.236 \\text{ rad/s} \\times 0.050 \\text{ m} \\approx 0.2618 \\text{ m/s}$.\n**Step 3: Calculate acceleration (a) at $x = 3.0 \\text{ cm}$.**\nThe formula is $a = -\\omega^2 x$. Convert displacement to metres.\n$x = 3.0 \\text{ cm} = 0.030 \\text{ m}$.\n$a = -(5.236 \\text{ rad/s})^2 \\times 0.030 \\text{ m} \\approx -0.822 \\text{ m/s}^2$."
     },
     {
       "type": "heading",
@@ -177,11 +128,16 @@
     {
       "type": "keyPoints",
       "items": [
-        "**Kinetic Energy (KE):** Maximal at the equilibrium position ($x=0$, where speed is maximum).",
-        "**Potential Energy (PE):** Maximal at the amplitude positions ($x=\\pm x_0$, where displacement is maximum).",
-        "As KE decreases, PE increases, and vice-versa, ensuring total energy is constant.",
-        "Total mechanical energy $E = \\frac{1}{2} m \\omega^2 x_0^2$ for any point in the cycle."
+        "**Kinetic Energy (KE):** Energy of motion, maximal at the equilibrium position ($x=0$). Given by $E_K = \\frac{1}{2} m \\omega^2 (x_0^2 - x^2)$.",
+        "**Potential Energy (PE):** Stored energy, maximal at the amplitude positions ($x=\\pm x_0$). Given by $E_P = \\frac{1}{2} m \\omega^2 x^2$.",
+        "**Energy Conservation:** As the oscillator moves, energy continuously transforms between KE and PE, but their sum, the total energy, remains constant.",
+        "**Total Energy ($E_{total}$):** The sum $E_K + E_P$ is always constant and equals the maximum potential or kinetic energy: $E_{total} = \\frac{1}{2} m \\omega^2 x_0^2$."
       ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 0.50 kg mass is attached to a spring and oscillates with SHM. The amplitude of the oscillation is 10 cm, and the period is 0.80 s. Calculate:\na) The total energy of the system.\nb) The kinetic energy of the mass when its displacement is 6.0 cm from the equilibrium position.",
+      "solution": "**Step 1: Calculate angular frequency (\\omega).**\nThe relationship between period T and angular frequency \\omega is $\\omega = 2\\pi / T$.\n$\\omega = 2\\pi / 0.80 \\text{ s} = 7.854 \\text{ rad/s}$.\n\n**Step 2: Calculate the total energy of the system ($E_{total}$).**\nThe total energy in SHM is constant and can be calculated at the point of maximum displacement (amplitude), where all energy is potential. The formula is $E_{total} = \\frac{1}{2} m \\omega^2 x_0^2$. Remember to convert amplitude to metres: $x_0 = 10 \\text{ cm} = 0.10 \\text{ m}$.\n$E_{total} = \\frac{1}{2} \\times 0.50 \\text{ kg} \\times (7.854 \\text{ rad/s})^2 \\times (0.10 \\text{ m})^2$\n$E_{total} = 0.25 \\times 61.685 \\times 0.01 \\approx 0.1542 \\text{ J}$.\nRounding to two significant figures, $E_{total} = 0.15 \\text{ J}$.\n\n**Step 3: Calculate the kinetic energy (KE) at $x = 6.0 \\text{ cm}$.**\nFirst, convert displacement to metres: $x = 6.0 \\text{ cm} = 0.060 \\text{ m}$.\nWe know that total energy is the sum of kinetic and potential energy: $E_{total} = KE + PE$. Therefore, $KE = E_{total} - PE$. The potential energy at displacement x is $PE = \\frac{1}{2} m \\omega^2 x^2$.\n$PE = \\frac{1}{2} \\times 0.50 \\text{ kg} \\times (7.854 \\text{ rad/s})^2 \\times (0.060 \\text{ m})^2$\n$PE = 0.25 \\times 61.685 \\times 0.0036 \\approx 0.0555 \\text{ J}$.\nNow, calculate KE:\n$KE = 0.1542 \\text{ J} - 0.0555 \\text{ J} \\approx 0.0987 \\text{ J}$.\nRounding to two significant figures, $KE = 0.099 \\text{ J}$."
     },
     {
       "type": "heading",
@@ -227,6 +183,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and apply the conditions for Simple Harmonic Motion (SHM).",
+    "Calculate displacement, velocity, and acceleration using SHM equations.",
+    "Represent SHM graphically and interpret displacement-time, velocity-time, and acceleration-time graphs.",
+    "Explain energy transformations and the effects of damping on oscillating systems."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a super bouncy trampoline. When you jump, the force trying to pull you back to the flat surface is strongest when you're highest, making you accelerate downwards. As you get closer, this force reduces, but you overshoot and go below the surface, where the force then pushes you back up. This constant 'restoring' force, getting stronger the further you move, is the heart of SHM."
+  },
   "faq": [
     {
       "q": "What makes an oscillation 'simple harmonic'?",
@@ -241,13 +206,62 @@
       "a": "These terms describe how quickly oscillations die out due to energy loss. Underdamping allows oscillations to decay gradually over many cycles. Critical damping brings the system back to equilibrium in the shortest time without any oscillation. Overdamping is when damping is too strong, causing a slower return to equilibrium than critical damping, also without oscillation."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the defining relationship for Simple Harmonic Motion (SHM)?",
+      "back": "Acceleration is directly proportional to displacement from equilibrium and acts in the opposite direction ($a \\propto -x$).}"
+    },
+    {
+      "front": "How is angular frequency (\\omega) related to the period (T) of an oscillation?",
+      "back": "\\omega = 2\\pi/T."
+    },
+    {
+      "front": "At which point in an SHM cycle is potential energy at its maximum?",
+      "back": "Potential energy is maximum at the amplitude (maximum displacement) positions, $x = \\pm x_0$.}"
+    },
+    {
+      "front": "What is the phase difference between velocity and displacement in SHM?",
+      "back": "Velocity is $90^\\circ$ (or $\\pi/2$ radians) out of phase with displacement."
+    },
+    {
+      "front": "Describe the characteristic behaviour of a critically damped system.",
+      "back": "A critically damped system returns to its equilibrium position in the quickest possible time without undergoing any oscillations."
+    },
+    {
+      "front": "What does the amplitude of an oscillation represent?",
+      "back": "The amplitude is the maximum displacement achieved by the oscillating object from its equilibrium position."
+    },
+    {
+      "front": "Where does maximum kinetic energy occur during SHM?",
+      "back": "Maximum kinetic energy occurs when the object passes through its equilibrium position ($x=0$).}"
+    },
+    {
+      "front": "State the defining equation for Simple Harmonic Motion.",
+      "back": "$a = -\\omega^2 x$, where $a$ is acceleration, $x$ is displacement, and $\\omega$ is angular frequency."
+    },
+    {
+      "front": "What defines 'free oscillations'?",
+      "back": "Free oscillations occur when an oscillating system is not subjected to any external driving force, moving at its natural frequency."
+    },
+    {
+      "front": "How do kinetic and potential energy vary with displacement in SHM?",
+      "back": "Potential energy is proportional to the square of displacement ($E_P \\propto x^2$), forming a parabola on an energy-displacement graph. Kinetic energy is maximum at zero displacement and zero at maximum displacement, forming an inverted parabola. Total energy remains constant."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "17.1.1",
+    "17.1.2",
+    "17.1.3",
+    "17.1.4",
+    "17.1.5"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/17-1-simple-harmonic-oscillations.png",
     "alt": "Senpai Corner reference diagram for 17.1 Simple harmonic oscillations"
-  }
+  },
+  "updated": "2026-06-26"
 }

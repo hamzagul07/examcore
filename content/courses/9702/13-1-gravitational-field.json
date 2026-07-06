@@ -6,65 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Gravitational field (13.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define and describe gravitational fields, including their visual representation with field lines.",
-    "Apply Newton's Law of Gravitation to calculate forces and derive formulas for gravitational field strength.",
-    "Explain gravitational potential and gravitational potential energy, including why they are typically negative values."
-  ],
-  "simpleExplanation": {
-    "title": "Gravity's Invisible Hand",
-    "summary": "Gravity isn't just a force that pulls things down; it's an invisible influence that fills space around any object with mass. Think of it as the universe's way of attracting everything to everything else, creating fields where this attraction is felt. We'll explore how to measure and understand this fundamental force.",
-    "analogy": "Imagine a stretched trampoline. When you place a bowling ball in the centre, it creates a dip. A smaller marble rolled nearby will curve towards the bowling ball because of this dip. The dip is like a gravitational field, created by the bowling ball's mass, influencing other objects around it.",
-    "steps": [
-      "Understand what a gravitational field is and how it's visualised.",
-      "Learn Newton's Law of Gravitation to calculate attractive forces.",
-      "Grasp the concept of gravitational field strength and its calculation.",
-      "Explore gravitational potential and potential energy, understanding their significance."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "How is gravitational field strength (g) defined?",
-      "back": "The gravitational force acting per unit mass at a given point."
-    },
-    {
-      "front": "What two factors does Newton's Law of Gravitation state the attractive force depends on?",
-      "back": "Directly proportional to the product of the masses; inversely proportional to the square of the distance between their centres."
-    },
-    {
-      "front": "Why is gravitational potential considered negative?",
-      "back": "Because work is done *by* the field (energy is released) when a mass moves from infinity (where potential is zero) into the field."
-    },
-    {
-      "front": "What do closer gravitational field lines indicate about the field?",
-      "back": "They indicate a stronger gravitational field in that region."
-    },
-    {
-      "front": "For calculations involving objects *outside* a uniform sphere, how can its mass be considered?",
-      "back": "As if it's concentrated entirely at its centre, acting as a point mass."
-    },
-    {
-      "front": "What is the universal gravitational constant G?",
-      "back": "A fundamental constant ($6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$) that quantifies the strength of the gravitational force."
-    },
-    {
-      "front": "What does gravitational field strength (g) also represent?",
-      "back": "The acceleration an object would experience if allowed to fall freely in that field."
-    },
-    {
-      "front": "What is gravitational potential ($\\phi$)?",
-      "back": "The work done per unit mass to bring a unit mass from infinity to a specific point in the field."
-    },
-    {
-      "front": "What is the conventional value for gravitational potential at an infinite distance from a mass?",
-      "back": "Zero."
-    },
-    {
-      "front": "How does gravitational field strength vary with distance in a radial field?",
-      "back": "It follows an inverse square law (g \\propto 1/r^2)."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -76,18 +18,7 @@
     },
     {
       "type": "text",
-      "content": "A gravitational field is a specific region in space where any object possessing mass will experience an attractive gravitational force. These fields are inherently created by masses, and they're always attractive, never repulsive. To visualise this invisible influence, we use gravitational field lines. The closer these lines are to one another, the stronger the field's intensity in that particular area."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "13.1 Gravitational field.",
-        "When two or more masses are in proximity with each other there is an attractive force between them.",
-        "This force is called gravity.",
-        "A gravitational field is defined as a region of space where a mass experience a force due to the gravitational attraction of another mass.",
-        "The SI unit for gravitational field strength is N kg -1 or ms -2.",
-        "The gravitational field strength (g) at a point is the force due to gravity or weight (F g ) per unit mass (m) of an object at that point: g = Fg m."
-      ]
+      "content": "A gravitational field is a region of space where any object possessing mass will experience an attractive gravitational force due to another mass. These fields are inherently created by masses, and they're always attractive, never repulsive. To visualise this invisible influence, we use gravitational field lines. These lines have specific properties: they point in the direction of the force on a test mass, their density (how close they are) represents the field's strength, and they never cross. For a single point mass, the field lines are radial, pointing inwards."
     },
     {
       "type": "heading",
@@ -95,7 +26,7 @@
     },
     {
       "type": "text",
-      "content": "Gravitational field strength, denoted by 'g', is defined as the gravitational force experienced per unit mass at a particular point within the field. Its units are Newtons per kilogram (N kg\\textsuperscript{-1}). Crucially, 'g' also represents the acceleration an object would undergo if it were to fall freely within that field. Near Earth's surface, 'g' is approximately uniform, but further away from large masses, fields become radial, with strength varying significantly with distance."
+      "content": "Gravitational field strength, denoted by 'g', is defined as the gravitational force experienced per unit mass at a particular point within the field. Its SI units are Newtons per kilogram (N kg⁻¹), which is equivalent to metres per second squared (m s⁻²). This equivalence highlights that 'g' also represents the acceleration a body would undergo if it were to fall freely within that field. Near Earth's surface, 'g' is approximately uniform, but further away from large masses, fields become radial, with strength varying significantly with distance."
     },
     {
       "type": "formula",
@@ -142,6 +73,10 @@
       "content": "Gravitational potential ($\\phi$) at a point is defined as the work done per unit mass required to bring a unit mass from infinity to that specific point within the field. Conventionally, the gravitational potential at an infinite distance from a mass is set to zero. As energy is released (work is done *by* the field) when a mass moves from infinity into the field, gravitational potential is always a negative value. Think of it as 'energy debt' – the deeper into the field, the more negative the potential."
     },
     {
+      "type": "formula",
+      "content": "$\\phi = -\\frac{GM}{r}$"
+    },
+    {
       "type": "keyPoints",
       "items": [
         "Work done per unit mass from infinity to a point.",
@@ -163,9 +98,30 @@
       "content": "$E_p = -\\frac{GMm}{r}$"
     },
     {
+      "type": "heading",
+      "content": "Graphical Representation of g and $\\phi$"
+    },
+    {
+      "type": "text",
+      "content": "Understanding how gravitational field strength (g) and gravitational potential ($\\phi$) vary with distance (r) from a central mass M is crucial. Their graphical representations reveal key aspects of the inverse square law. For a spherical mass, we consider the distance r from its centre."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Graph of g vs. r:** The field strength `g` is proportional to `1/r^2`. This graph starts at a maximum value on the surface of the mass (if it's a planet) and curves downwards, approaching the r-axis asymptotically. It is always positive as strength is a magnitude.",
+        "**Graph of $\\phi$ vs. r:** The potential `$\\phi$` is proportional to `-1/r`. This graph lies entirely in the fourth quadrant (negative y-axis). It starts at its most negative value on the surface and curves upwards, approaching the r-axis (where `$\\phi$` = 0) asymptotically as r approaches infinity.",
+        "**Relationship:** The gravitational field strength `g` is the negative of the gradient of the gravitational potential graph (`g = -d$\\phi$/dr`). This means the steepness of the potential graph at any point tells you the strength of the field at that point."
+      ]
+    },
+    {
       "type": "workedExample",
       "question": "Calculate the gravitational force between a 70 kg student and a 1200 kg car, if their centres are 3.0 m apart. ($G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$)",
       "solution": "1.  Identify known values: $m_1 = 70 \\text{ kg}$, $m_2 = 1200 \\text{ kg}$, $r = 3.0 \\text{ m}$, $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$.\n2.  Recall Newton's Law of Gravitation formula: $F = G \\frac{m_1 m_2}{r^2}$.\n3.  Substitute the values into the formula:\n    $F = (6.67 \\times 10^{-11}) \\times \\frac{(70)(1200)}{(3.0)^2}$\n4.  Calculate the product of masses and square of distance:\n    $F = (6.67 \\times 10^{-11}) \\times \\frac{84000}{9.0}$\n5.  Perform the final calculation:\n    $F = (6.67 \\times 10^{-11}) \\times 9333.33 \\dots$\n    $F \\approx 6.22 \\times 10^{-7} \\text{ N}$\n\n    The gravitational force between the student and the car is approximately $6.22 \\times 10^{-7} \\text{ N}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Mars has a mass of $6.42 \\times 10^{23} \\text{ kg}$ and a mean radius of $3390 \\text{ km}$. Calculate the gravitational field strength on the surface of Mars. (Use $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$)",
+      "solution": "1.  State the formula for gravitational field strength for a radial field: $g = \\frac{GM}{r^2}$.\n2.  Identify the given values:\n    $M = 6.42 \\times 10^{23} \\text{ kg}$\n    $r = 3390 \\text{ km}$\n    $G = 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$\n3.  Convert the radius from kilometres to metres, as the unit of G uses metres:\n    $r = 3390 \\text{ km} = 3390 \\times 1000 \\text{ m} = 3.39 \\times 10^6 \\text{ m}$.\n4.  Substitute the values into the formula:\n    $g = \\frac{(6.67 \\times 10^{-11}) \\times (6.42 \\times 10^{23})}{(3.39 \\times 10^6)^2}$\n5.  Calculate the numerator and the denominator:\n    Numerator: $(6.67 \\times 10^{-11}) \\times (6.42 \\times 10^{23}) = 4.28214 \\times 10^{13}$\n    Denominator: $(3.39 \\times 10^6)^2 = 11.4921 \\times 10^{12}$\n6.  Perform the final division:\n    $g = \\frac{4.28214 \\times 10^{13}}{11.4921 \\times 10^{12}} \\approx 3.726 \\text{ N kg}^{-1}$\n\n    The gravitational field strength on the surface of Mars is approximately $3.73 \\text{ N kg}^{-1}$ (or $3.73 \\text{ m s}^{-2}$)."
     },
     {
       "type": "examTip",
@@ -194,6 +150,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and describe gravitational fields, including their visual representation with field lines.",
+    "Apply Newton's Law of Gravitation to calculate forces and derive formulas for gravitational field strength.",
+    "Explain gravitational potential and gravitational potential energy, including why they are typically negative values.",
+    "Sketch and interpret graphs of gravitational field strength and potential against distance."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a stretched trampoline. When you place a bowling ball in the centre, it creates a dip. A smaller marble rolled nearby will curve towards the bowling ball because of this dip. The dip is like a gravitational field, created by the bowling ball's mass, influencing other objects around it."
+  },
   "faq": [
     {
       "q": "What is the key difference between gravitational field strength and gravitational potential?",
@@ -208,13 +173,75 @@
       "a": "Both follow an inverse square law (proportional to $1/r^2$) and are proportional to the product of the interacting properties (masses for gravity, charges for electrostatics). However, gravity is always attractive, while electrostatic forces can be either attractive or repulsive. Also, gravity is significantly weaker than the electrostatic force."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "How is gravitational field strength (g) defined?",
+      "back": "The gravitational force acting per unit mass at a given point."
+    },
+    {
+      "front": "What two factors does Newton's Law of Gravitation state the attractive force depends on?",
+      "back": "Directly proportional to the product of the masses; inversely proportional to the square of the distance between their centres."
+    },
+    {
+      "front": "Why is gravitational potential considered negative?",
+      "back": "Because work is done *by* the field (energy is released) when a mass moves from infinity (where potential is zero) into the field."
+    },
+    {
+      "front": "What do closer gravitational field lines indicate about the field?",
+      "back": "They indicate a stronger gravitational field in that region."
+    },
+    {
+      "front": "For calculations involving objects *outside* a uniform sphere, how can its mass be considered?",
+      "back": "As if it's concentrated entirely at its centre, acting as a point mass."
+    },
+    {
+      "front": "What is the universal gravitational constant G?",
+      "back": "A fundamental constant ($6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$) that quantifies the strength of the gravitational force."
+    },
+    {
+      "front": "What does gravitational field strength (g) also represent?",
+      "back": "The acceleration an object would experience if allowed to fall freely in that field."
+    },
+    {
+      "front": "What is gravitational potential ($\\phi$)?",
+      "back": "The work done per unit mass to bring a unit mass from infinity to a specific point in the field."
+    },
+    {
+      "front": "What is the conventional value for gravitational potential at an infinite distance from a mass?",
+      "back": "Zero."
+    },
+    {
+      "front": "How does gravitational field strength vary with distance in a radial field?",
+      "back": "It follows an inverse square law (g \\propto 1/r^2)."
+    },
+    {
+      "front": "What is the formula for gravitational potential ($\\phi$) at a distance r from a mass M?",
+      "back": "$\\phi = -\\frac{GM}{r}$"
+    },
+    {
+      "front": "How does the graph of gravitational field strength (g) against distance (r) from a point mass look?",
+      "back": "It's a curve in the first quadrant, starting high and decreasing rapidly towards zero, following an inverse square law ($g \\propto 1/r^2$). It is always positive."
+    },
+    {
+      "front": "How does the graph of gravitational potential ($\\phi$) against distance (r) look?",
+      "back": "It's a curve in the fourth quadrant (negative values), starting at its most negative value and increasing towards zero as r increases, following an inverse law ($\\phi \\propto -1/r$)."
+    },
+    {
+      "front": "What is the relationship between gravitational field strength (g) and the gradient of the gravitational potential ($\\phi$) graph?",
+      "back": "The field strength is the negative of the potential gradient: $g = -\\frac{d\\phi}{dr}$."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "13.1.1",
+    "13.1.2"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/13-1-gravitational-field.png",
     "alt": "Senpai Corner reference diagram for 13.1 Gravitational field"
-  }
+  },
+  "updated": "2026-06-26"
 }

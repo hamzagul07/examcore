@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — quantitative vs qualitative data, presentation, analysis, and triangulation.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Distinguish quantitative and qualitative data.",
-    "Explain advantages and limitations of each.",
-    "Interpret charts and tables from research.",
-    "Evaluate using both data types together."
-  ],
-  "simpleExplanation": {
-    "title": "Numbers and reasons",
-    "summary": "Quantitative data is numerical and measurable; qualitative data captures opinions and motivations. Best decisions often use both.",
-    "steps": [
-      "Quantitative: percentages, scores, sales trends.",
-      "Qualitative: quotes, themes from interviews.",
-      "Charts reveal patterns in numeric data.",
-      "Triangulation: combine both for confidence."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "Quantitative data?",
-      "back": "Numerical — can be statistically analysed (%, averages, charts)."
-    },
-    {
-      "front": "Qualitative data?",
-      "back": "Non-numerical — opinions, reasons, descriptions from interviews/focus groups."
-    },
-    {
-      "front": "Quant advantage?",
-      "back": "Objective comparisons, large-sample trends, easy to graph."
-    },
-    {
-      "front": "Qual advantage?",
-      "back": "Explains 'why' behind numbers; uncovers unexpected insights."
-    },
-    {
-      "front": "Triangulation?",
-      "back": "Using multiple methods/data sources to cross-check findings."
-    },
-    {
-      "front": "Misleading charts?",
-      "back": "Truncated axes, small samples, leading questions distort conclusions."
-    },
-    {
-      "front": "What is quantitative data?",
-      "back": "Numerical data that can be measured and statistically analysed. It answers 'what', 'how many', or 'how much'. Examples include sales figures and survey results with closed questions."
-    },
-    {
-      "front": "What is qualitative data?",
-      "back": "Non-numerical, descriptive data that provides insights into opinions, attitudes, and motivations. It answers 'why'. Examples include focus group transcripts and in-depth interview notes."
-    },
-    {
-      "front": "Define triangulation in market research.",
-      "back": "The use of two or more research methods or data sources to study a single problem. It is used to increase the validity and reliability of the findings by cross-verifying them."
-    },
-    {
-      "front": "What is the key difference between validity and reliability in research?",
-      "back": "Validity refers to how well the research measures what it set out to measure (accuracy). Reliability refers to the consistency of the results; if the research were repeated, would it produce similar findings?"
-    },
-    {
-      "front": "Name three methods of presenting quantitative data.",
-      "back": "Bar charts (for comparing categories), pie charts (for showing proportions of a whole), and line graphs (for showing trends over time)."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -173,8 +110,13 @@
     },
     {
       "type": "workedExample",
-      "question": "Survey: 70% of 120 respondents rate new app 4/5 or above (quantitative). Focus group says navigation is \"confusing\" (qualitative). What should the firm do?",
-      "solution": "**Quant:** Strong **overall satisfaction** — launch viable; majority positive.\n\n**Qual:** **Navigation issue** risks **retention** and bad reviews — fix before wide promotion.\n\n**Action:** **Triangulate** — run usability test (qual + quant task completion times); delay mass advertising until UI updated. Do not ignore qual because quant looks good."
+      "question": "Survey: 70% of 120 respondents rate a new app 4/5 or above (quantitative). A focus group says the navigation is \"confusing\" (qualitative). What should the firm do?",
+      "solution": "**Quant:** Strong **overall satisfaction** — 84 out of 120 customers (70% of 120) gave a high rating, so the launch is viable.\n\n**Qual:** The **navigation issue** risks **user retention** and bad reviews — this must be fixed before a wide promotion.\n\n**Action:** **Triangulate** the findings. The quantitative data shows a good product concept, but the qualitative data reveals a critical flaw. The firm should run usability tests (combining qualitative feedback with quantitative task completion times) and delay mass advertising until the UI is updated. Do not ignore qualitative feedback just because the quantitative data looks good."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cafe owner wants to set a price for a new specialty latte. She surveys 10 customers on the price they'd be willing to pay. The results are: $4.50, $5.00, $5.00, $4.75, $6.00, $5.50, $5.00, $4.75, $5.25, $7.00. Calculate the mean, median, and mode, and advise the owner on a pricing strategy.",
+      "solution": "To advise the owner, we must first calculate the three measures of central tendency.\n\n**Step 1: Calculate the Mode**\nThe mode is the most frequently occurring value.\n- $5.00 appears 3 times.\n- $4.75 appears 2 times.\n- Other values appear once.\n**Mode = $5.00**\n\n**Step 2: Calculate the Median**\nThe median is the middle value in a sorted list. First, order the data:\n$4.50, $4.75, $4.75, $5.00, **$5.00**, **$5.00**, $5.25, $5.50, $6.00, $7.00\nWith 10 data points, the median is the average of the 5th and 6th values.\nMedian = ($5.00 + $5.00) / 2\n**Median = $5.00**\n\n**Step 3: Calculate the Mean**\nThe mean is the sum of all values divided by the count of values.\nSum = $4.50 + $5.00 + $5.00 + $4.75 + $6.00 + $5.50 + $5.00 + $4.75 + $5.25 + $7.00 = $52.75\nMean = $52.75 / 10\n**Mean = $5.275 (or $5.28)**\n\n**Advice to the Owner:**\n- The **mode** and **median** are both $5.00, suggesting this is a strong central price point that many customers find acceptable.\n- The **mean** is higher at $5.28, because it is influenced by the outlier value of $7.00.\n- **Recommendation:** Pricing at **$5.00** would be the safest option, aligning with the most common preference. A price of **$5.25** could also be tested, as it's close to the mean and captures more revenue without being significantly higher than the median."
     },
     {
       "type": "practice",
@@ -199,6 +141,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Distinguish quantitative and qualitative data.",
+    "Explain advantages and limitations of each.",
+    "Interpret charts and tables from research.",
+    "Evaluate using both data types together."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is quantitative data always better than qualitative data because it uses numbers?",
@@ -213,6 +162,75 @@
       "a": "It would be very risky. A focus group provides rich qualitative insights but from a very small, non-representative group of people. The opinions expressed may not reflect the wider market. While the findings are valuable for understanding potential issues or generating ideas, they should not be the sole basis for a major decision. The findings should ideally be tested or verified using quantitative research or triangulated with other data sources."
     }
   ],
+  "flashcards": [
+    {
+      "front": "Quantitative data?",
+      "back": "Numerical — can be statistically analysed (%, averages, charts)."
+    },
+    {
+      "front": "Qualitative data?",
+      "back": "Non-numerical — opinions, reasons, descriptions from interviews/focus groups."
+    },
+    {
+      "front": "Quant advantage?",
+      "back": "Objective comparisons, large-sample trends, easy to graph."
+    },
+    {
+      "front": "Qual advantage?",
+      "back": "Explains 'why' behind numbers; uncovers unexpected insights."
+    },
+    {
+      "front": "Triangulation?",
+      "back": "Using multiple methods/data sources to cross-check findings."
+    },
+    {
+      "front": "Misleading charts?",
+      "back": "Truncated axes, small samples, leading questions distort conclusions."
+    },
+    {
+      "front": "What is quantitative data?",
+      "back": "Numerical data that can be measured and statistically analysed. It answers 'what', 'how many', or 'how much'. Examples include sales figures and survey results with closed questions."
+    },
+    {
+      "front": "What is qualitative data?",
+      "back": "Non-numerical, descriptive data that provides insights into opinions, attitudes, and motivations. It answers 'why'. Examples include focus group transcripts and in-depth interview notes."
+    },
+    {
+      "front": "Define triangulation in market research.",
+      "back": "The use of two or more research methods or data sources to study a single problem. It is used to increase the validity and reliability of the findings by cross-verifying them."
+    },
+    {
+      "front": "What is the key difference between validity and reliability in research?",
+      "back": "Validity refers to how well the research measures what it set out to measure (accuracy). Reliability refers to the consistency of the results; if the research were repeated, would it produce similar findings?"
+    },
+    {
+      "front": "Name three methods of presenting quantitative data.",
+      "back": "Bar charts (for comparing categories), pie charts (for showing proportions of a whole), and line graphs (for showing trends over time)."
+    },
+    {
+      "front": "What is the mean in data analysis?",
+      "back": "The average value, calculated by summing all values and dividing by the number of values. It can be skewed by outliers."
+    },
+    {
+      "front": "What is the median in data analysis?",
+      "back": "The middle value in a sorted dataset. It is less affected by outliers than the mean and is a good measure of central tendency."
+    },
+    {
+      "front": "What is the mode in data analysis?",
+      "back": "The most frequently occurring value in a dataset. It is useful for identifying the most popular option or category."
+    },
+    {
+      "front": "What is a key limitation of using only quantitative data?",
+      "back": "It shows 'what' is happening (e.g., sales are down) but not 'why' (e.g., poor customer service, new competitor). It lacks context and emotional depth."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.2.4"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Quantitative and Qualitative Data",
     "columns": [

@@ -7,23 +7,6 @@
   "status": "premium",
   "summary": "9708 AS — PPC diagrams, opportunity cost, efficiency, and economic growth with GeoGebra production possibility frontier.",
   "durationMin": 18,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Draw and interpret production possibility curves.",
-    "Explain opportunity cost using PPC slope.",
-    "Distinguish productive and allocative efficiency.",
-    "Show economic growth and specialisation on PPC diagrams."
-  ],
-  "simpleExplanation": {
-    "title": "Choosing what to produce",
-    "summary": "A PPC shows maximum combinations of two goods with fixed resources. The slope is the opportunity cost of one good in terms of the other.",
-    "steps": [
-      "Points on the curve — productive efficiency (full employment of resources).",
-      "Inside the curve — unemployed resources or inefficiency.",
-      "Outside — unattainable with current technology.",
-      "Outward shift — economic growth (more resources or better technology)."
-    ]
-  },
   "sections": [
     {
       "type": "intro",
@@ -107,6 +90,11 @@
       "solution": "**Productive efficiency improved** — previously unemployed resources are now used.\n\nOutput of at least one good increases without reducing the other (or both increase)."
     },
     {
+      "type": "workedExample",
+      "question": "An economy can produce two types of goods: Capital Goods and Consumer Goods. The table below shows five possible combinations of production (in thousands of units) on its PPC.\n\n| Combination | Capital Goods (thousands) | Consumer Goods (thousands) |\n|---|---|---|\n| A | 0 | 100 |\n| B | 10 | 95 |\n| C | 20 | 85 |\n| D | 30 | 65 |\n| E | 40 | 0 |\n\nCalculate the opportunity cost of increasing the production of Capital Goods from 20,000 to 30,000 units.",
+      "solution": "**Step 1: Identify the relevant production points.**\nMoving from 20,000 to 30,000 Capital Goods corresponds to moving from Combination C to Combination D on the PPC.\n\n**Step 2: Calculate the gain in Capital Goods.**\nGain = Final Capital Goods - Initial Capital Goods\nGain = 30,000 units - 20,000 units = 10,000 units\n\n**Step 3: Calculate the loss in Consumer Goods.**\nAt Combination C (20,000 Capital Goods), production of Consumer Goods is 85,000 units.\nAt Combination D (30,000 Capital Goods), production of Consumer Goods is 65,000 units.\nLoss = Initial Consumer Goods - Final Consumer Goods\nLoss = 85,000 units - 65,000 units = 20,000 units\n\n**Step 4: State the opportunity cost.**\nThe opportunity cost is the value of the next best alternative foregone. To gain 10,000 Capital Goods, the economy must give up 20,000 Consumer Goods.\n\n**Final Answer:** The opportunity cost of increasing the production of Capital Goods by 10,000 units is **20,000 units of Consumer Goods**."
+    },
+    {
       "type": "examTip",
       "content": "When OC rises along a bowed PPC, explain **specialisation** — resources are not equally suited to producing both goods."
     },
@@ -124,6 +112,67 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Draw and interpret production possibility curves.",
+    "Explain opportunity cost using PPC slope.",
+    "Distinguish productive and allocative efficiency.",
+    "Show economic growth and specialisation on PPC diagrams."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "Does moving from an inefficient point inside the PPC to an efficient point on the PPC involve an opportunity cost?",
+      "a": "No, not in the traditional sense. When an economy moves from an inefficient point (e.g., high unemployment) to a point on the curve, it can increase the output of both goods. This is sometimes called a 'free lunch' because output increases without sacrificing another good. The real opportunity cost was the potential output lost while the economy was operating inefficiently."
+    },
+    {
+      "q": "Can an economy ever produce at a point outside its PPC?",
+      "a": "No, not with its current resources and technology. Points outside the curve are defined as unattainable. To reach such a point, the economy must first experience economic growth, which involves shifting the entire PPC outwards. A point outside the current PPC can be a future goal, but it is not a current possibility."
+    },
+    {
+      "q": "Is every point on the PPC equally good for an economy?",
+      "a": "Not necessarily. While all points on the PPC are productively efficient (maximum output), they are not all allocatively efficient. Allocative efficiency is achieved at the single point on the PPC that represents the combination of goods and services most desired by society. The choice of which point to produce at depends on a society's priorities and values, for example, the choice between producing more capital goods for future growth versus more consumer goods for current satisfaction."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is a Production Possibility Curve (PPC)?",
+      "back": "A curve showing the maximum possible combinations of two goods or services that can be produced in an economy, given the available resources and technology are fully and efficiently employed."
+    },
+    {
+      "front": "What does a point inside the PPC represent?",
+      "back": "Productive inefficiency. It indicates that resources are not being fully utilised (e.g., unemployment) or are being used inefficiently. More of at least one good, and possibly both, could be produced."
+    },
+    {
+      "front": "Why is a realistic PPC typically drawn as a curve concave to the origin?",
+      "back": "This illustrates the law of increasing opportunity cost. As you produce more of one good, you must use resources that are less suited for its production, meaning you have to sacrifice increasingly larger amounts of the other good for each additional unit."
+    },
+    {
+      "front": "What causes an outward, parallel shift of the PPC?",
+      "back": "Long-run economic growth. This is caused by an increase in the quantity (e.g., more labour or capital) or an improvement in the quality (e.g., better technology or education) of factors of production that benefits both goods."
+    },
+    {
+      "front": "Distinguish between a movement along the PPC and a shift of the PPC.",
+      "back": "A movement along the PPC shows a change in the combination of goods produced (a choice), incurring an opportunity cost. A shift of the entire PPC shows a change in the economy's total productive capacity (e.g., economic growth)."
+    },
+    {
+      "front": "What does a point outside the PPC signify?",
+      "back": "An unattainable combination of goods with the current level of resources and technology. It can only be reached through economic growth, which shifts the PPC outwards."
+    },
+    {
+      "front": "What is the difference between productive and allocative efficiency in the context of a PPC?",
+      "back": "Productive efficiency is achieved at any point ON the PPC (maximum output from given inputs). Allocative efficiency is the specific point on the PPC that represents the combination of goods most desired by society."
+    },
+    {
+      "front": "What could cause a pivotal (or biased) outward shift of the PPC?",
+      "back": "A technological improvement or an increase in resources that only affects the production of one of the two goods. For example, a new fertilizer would shift the PPC further out on the 'agricultural goods' axis but not on the 'manufactured goods' axis."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.5"
   ],
   "diagramSpec": {
     "steps": [
@@ -157,42 +206,7 @@
       }
     ]
   },
-  "flashcards": [
-    {
-      "front": "What is a Production Possibility Curve (PPC)?",
-      "back": "A curve showing the maximum possible combinations of two goods or services that can be produced in an economy, given the available resources and technology are fully and efficiently employed."
-    },
-    {
-      "front": "What does a point inside the PPC represent?",
-      "back": "Productive inefficiency. It indicates that resources are not being fully utilised (e.g., unemployment) or are being used inefficiently. More of at least one good, and possibly both, could be produced."
-    },
-    {
-      "front": "Why is a realistic PPC typically drawn as a curve concave to the origin?",
-      "back": "This illustrates the law of increasing opportunity cost. As you produce more of one good, you must use resources that are less suited for its production, meaning you have to sacrifice increasingly larger amounts of the other good for each additional unit."
-    },
-    {
-      "front": "What causes an outward, parallel shift of the PPC?",
-      "back": "Long-run economic growth. This is caused by an increase in the quantity (e.g., more labour or capital) or an improvement in the quality (e.g., better technology or education) of factors of production that benefits both goods."
-    },
-    {
-      "front": "Distinguish between a movement along the PPC and a shift of the PPC.",
-      "back": "A movement along the PPC shows a change in the combination of goods produced (a choice), incurring an opportunity cost. A shift of the entire PPC shows a change in the economy's total productive capacity (e.g., economic growth)."
-    }
-  ],
-  "faq": [
-    {
-      "q": "Does moving from an inefficient point inside the PPC to an efficient point on the PPC involve an opportunity cost?",
-      "a": "No, not in the traditional sense. When an economy moves from an inefficient point (e.g., high unemployment) to a point on the curve, it can increase the output of both goods. This is sometimes called a 'free lunch' because output increases without sacrificing another good. The real opportunity cost was the potential output lost while the economy was operating inefficiently."
-    },
-    {
-      "q": "Can an economy ever produce at a point outside its PPC?",
-      "a": "No, not with its current resources and technology. Points outside the curve are defined as unattainable. To reach such a point, the economy must first experience economic growth, which involves shifting the entire PPC outwards. A point outside the current PPC can be a future goal, but it is not a current possibility."
-    },
-    {
-      "q": "Is every point on the PPC equally good for an economy?",
-      "a": "Not necessarily. While all points on the PPC are productively efficient (maximum output), they are not all allocatively efficient. Allocative efficiency is achieved at the single point on the PPC that represents the combination of goods and services most desired by society. The choice of which point to produce at depends on a society's priorities and values, for example, the choice between producing more capital goods for future growth versus more consumer goods for current satisfaction."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparing PPC Shapes: Constant vs. Increasing Opportunity Cost",
     "columns": [

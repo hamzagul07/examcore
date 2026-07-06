@@ -7,78 +7,6 @@
   "status": "premium",
   "summary": "9609 A Level — income statement layout, gross and operating profit, and performance interpretation.",
   "durationMin": 26,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Interpret a statement of profit or loss.",
-    "Distinguish gross profit, operating profit, and profit for the year.",
-    "Explain the role of the income statement in analysis.",
-    "Calculate missing figures from case data."
-  ],
-  "simpleExplanation": {
-    "title": "The income story",
-    "summary": "The statement of profit or loss (income statement) shows revenue, costs, and profit over a period — revealing how well the business traded.",
-    "analogy": "Think of it as a film of the year, not a photograph. The balance sheet is a snapshot on one day; the profit or loss statement plays through every sale and expense from January to December.",
-    "steps": [
-      "Revenue minus cost of sales = gross profit.",
-      "Deduct overheads for operating profit.",
-      "Finance costs and tax to profit for the year.",
-      "Compare year-on-year trends."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What does the statement of profit or loss show?",
-      "back": "Income and expenses over a period, leading to profit or loss for the year."
-    },
-    {
-      "front": "Gross profit formula?",
-      "back": "Revenue − Cost of sales."
-    },
-    {
-      "front": "Operating profit?",
-      "back": "Gross profit minus operating expenses (overheads such as admin, marketing, wages not in COGS)."
-    },
-    {
-      "front": "Profit for the year?",
-      "back": "Operating profit ± finance items − tax (final bottom line for shareholders)."
-    },
-    {
-      "front": "Cost of sales includes?",
-      "back": "Direct costs of producing goods sold: materials, direct labour, production overheads tied to output."
-    },
-    {
-      "front": "Why compare year-on-year?",
-      "back": "Identifies growth, margin pressure, cost control, and trends for ratio analysis (10.2)."
-    },
-    {
-      "front": "Revenue vs cash received?",
-      "back": "Revenue recognised when earned (accruals); may differ from cash if credit sales used."
-    },
-    {
-      "front": "Link to 10.2 ratios?",
-      "back": "Profitability ratios (GPM, OPM, ROCE) use figures from this statement."
-    },
-    {
-      "front": "What is the formula for Gross Profit?",
-      "back": "Revenue - Cost of Sales"
-    },
-    {
-      "front": "Define 'Cost of Sales'.",
-      "back": "The direct costs attributable to the production or purchase of the goods sold by a company. Examples include raw materials and inventory purchase costs."
-    },
-    {
-      "front": "What is the formula for Operating Profit?",
-      "back": "Gross Profit - Operating Expenses (Overheads)"
-    },
-    {
-      "front": "What does Operating Profit measure?",
-      "back": "The profitability of a business's core, day-to-day operations before accounting for interest and tax. It shows how efficiently the business is run."
-    },
-    {
-      "front": "What are the two main destinations for 'Profit for the Year'?",
-      "back": "1. Distributed to shareholders as dividends. 2. Reinvested into the business as retained profit."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -178,6 +106,11 @@
       "solution": "**Gross profit** = 820 000 − 492 000 = **$328 000**\n\n**Operating profit** = 328 000 − 218 000 = **$110 000**\n\n**Profit for the year** = 110 000 − 12 000 − 24 000 = **$74 000**"
     },
     {
+      "type": "workedExample",
+      "question": "Fusion Ltd provides the following data for the year ended 31 December 2023:\n- Gross Profit: $450,000\n- Gross Profit Margin: 40%\n- Administrative expenses: $120,000\n- Distribution costs: $85,000\n- Finance costs (net): $22,000\n\nCalculate Fusion Ltd's: \n1. Revenue\n2. Operating Profit\n3. Profit before tax",
+      "solution": "This question requires working backwards to find Revenue and then proceeding down the statement.\n\n**1. Calculate Revenue**\n\nThe Gross Profit Margin is given by the formula:\nGross Profit Margin = (Gross Profit / Revenue) x 100\n\nWe can rearrange this to find Revenue:\nRevenue = Gross Profit / (Gross Profit Margin / 100)\n\n*Calculation:*\nRevenue = $450,000 / 0.40\n**Revenue = $1,125,000**\n\n**2. Calculate Operating Profit**\n\nFirst, find total operating expenses:\nOperating Expenses = Administrative expenses + Distribution costs\nOperating Expenses = $120,000 + $85,000 = $205,000\n\nNow, calculate Operating Profit:\nOperating Profit = Gross Profit - Operating Expenses\n\n*Calculation:*\nOperating Profit = $450,000 - $205,000\n**Operating Profit = $245,000**\n\n**3. Calculate Profit before tax**\n\nProfit before tax is found by deducting net finance costs from operating profit.\nProfit before tax = Operating Profit - Finance costs\n\n*Calculation:*\nProfit before tax = $245,000 - $22,000\n**Profit before tax = $223,000**"
+    },
+    {
       "type": "examTip",
       "content": "Show **each line** in calculations even if the question only asks for one figure — method marks are common. Use $ and thousands consistently with the case."
     },
@@ -204,6 +137,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Interpret a statement of profit or loss.",
+    "Distinguish gross profit, operating profit, and profit for the year.",
+    "Explain the role of the income statement in analysis.",
+    "Calculate missing figures from case data."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of it as a film of the year, not a photograph. The balance sheet is a snapshot on one day; the profit or loss statement plays through every sale and expense from January to December."
+  },
   "faq": [
     {
       "q": "Is profit the same as cash? A business with high profit must have lots of cash, right?",
@@ -218,6 +160,67 @@
       "a": "Not necessarily. Increasing revenue is a positive sign, but it's only one part of the story. You must look further down the Statement of Profit or Loss. For example, did the Cost of Sales increase at a faster rate, causing the Gross Profit margin to shrink? Did the business spend heavily on marketing to achieve that revenue growth, causing Operating Profit to fall? A full analysis requires looking at the relationship between revenue, gross profit, and operating profit to judge overall performance."
     }
   ],
+  "flashcards": [
+    {
+      "front": "What does the statement of profit or loss show?",
+      "back": "Income and expenses over a period, leading to profit or loss for the year."
+    },
+    {
+      "front": "Gross profit formula?",
+      "back": "Revenue − Cost of sales."
+    },
+    {
+      "front": "Operating profit?",
+      "back": "Gross profit minus operating expenses (overheads such as admin, marketing, wages not in COGS)."
+    },
+    {
+      "front": "Profit for the year?",
+      "back": "Operating profit ± finance items − tax (final bottom line for shareholders)."
+    },
+    {
+      "front": "Cost of sales includes?",
+      "back": "Direct costs of producing goods sold: materials, direct labour, production overheads tied to output."
+    },
+    {
+      "front": "Why compare year-on-year?",
+      "back": "Identifies growth, margin pressure, cost control, and trends for ratio analysis (10.2)."
+    },
+    {
+      "front": "Revenue vs cash received?",
+      "back": "Revenue recognised when earned (accruals); may differ from cash if credit sales used."
+    },
+    {
+      "front": "Link to 10.2 ratios?",
+      "back": "Profitability ratios (GPM, OPM, ROCE) use figures from this statement."
+    },
+    {
+      "front": "What is the formula for Gross Profit?",
+      "back": "Revenue - Cost of Sales"
+    },
+    {
+      "front": "Define 'Cost of Sales'.",
+      "back": "The direct costs attributable to the production or purchase of the goods sold by a company. Examples include raw materials and inventory purchase costs."
+    },
+    {
+      "front": "What is the formula for Operating Profit?",
+      "back": "Gross Profit - Operating Expenses (Overheads)"
+    },
+    {
+      "front": "What does Operating Profit measure?",
+      "back": "The profitability of a business's core, day-to-day operations before accounting for interest and tax. It shows how efficiently the business is run."
+    },
+    {
+      "front": "What are the two main destinations for 'Profit for the Year'?",
+      "back": "1. Distributed to shareholders as dividends. 2. Reinvested into the business as retained profit."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "10.1.1"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Gross Profit and Operating Profit",
     "columns": [

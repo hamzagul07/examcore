@@ -6,73 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Stress and strain (6.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define and calculate stress, strain, and Young Modulus, including their units.",
-    "Explain Hooke's Law, interpret force-extension graphs, and distinguish between elastic and plastic deformation.",
-    "Differentiate between ductile and brittle materials based on their mechanical properties and stress-strain curves."
-  ],
-  "simpleExplanation": {
-    "title": "Stretching & Squashing: The Forces Within Materials",
-    "summary": "When you pull or push on an object, it changes shape. Physics helps us quantify this change using concepts like stress (how much force is spread over an area) and strain (how much it stretches relative to its original size).",
-    "analogy": "Imagine pulling a rubber band. The harder you pull, the longer it gets. Stress is like how hard you're pulling per unit width of the band, and strain is how much it's stretched compared to its original length.",
-    "steps": [
-      "Identify the **Force** applied to an object.",
-      "Measure the **Area** the force acts on and the **Original Length** of the object.",
-      "Observe the **Change in Length** (extension) due to the applied force.",
-      "Calculate **Stress** (Force/Area) and **Strain** (Extension/Original Length) to understand the material's response."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is **deformation**?",
-      "back": "Any change in an object's shape or size caused by applied forces."
-    },
-    {
-      "front": "Define **tensile** and **compressive** forces.",
-      "back": "Tensile forces stretch an object, while compressive forces push it inwards, reducing its length."
-    },
-    {
-      "front": "What is **stress ($\\\\sigma$)**?",
-      "back": "Force applied per unit cross-sectional area (\\\\sigma = F/A), measured in Pascals (Pa)."
-    },
-    {
-      "front": "What is **strain ($\\\\epsilon$)**?",
-      "back": "The ratio of extension to original length (\\\\epsilon = \\\\Delta L / L_0), a dimensionless quantity."
-    },
-    {
-      "front": "State **Hooke's Law**.",
-      "back": "The extension of an elastic object is directly proportional to the applied force, up to the limit of proportionality, provided temperature is constant."
-    },
-    {
-      "front": "What is the **spring constant ($k$)**?",
-      "back": "A measure of an object's stiffness, representing the force needed per unit extension. Its unit is N m$^{-1}$."
-    },
-    {
-      "front": "How is **elastic potential energy (EPE)** calculated for linear deformation?",
-      "back": "It's the area under a force-extension graph, or EPE = \\\\frac{1}{2}F\\\\Delta L or EPE = \\\\frac{1}{2}k(\\\\Delta L)^2."
-    },
-    {
-      "front": "Define **Young Modulus (E)**.",
-      "back": "The ratio of stress to strain (E = \\\\sigma / \\\\epsilon), a material's inherent stiffness, measured in Pascals (Pa)."
-    },
-    {
-      "front": "What is the key difference between **elastic** and **plastic deformation**?",
-      "back": "Elastic deformation is reversible (object returns to original shape), while plastic deformation is permanent (object does not fully return)."
-    },
-    {
-      "front": "Describe **ductile materials**.",
-      "back": "Materials that undergo significant plastic deformation before fracturing, e.g., copper."
-    },
-    {
-      "front": "What is the **limit of proportionality**?",
-      "back": "The point on a force-extension or stress-strain graph where Hooke's Law no longer applies."
-    },
-    {
-      "front": "What does the gradient of a **stress-strain graph** represent in its linear region?",
-      "back": "The Young Modulus (E) of the material."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -109,12 +43,10 @@
     {
       "type": "keyPoints",
       "items": [
-        "6.1 Stress and strains.",
-        "Forces can deform an object.",
-        "When an object is stretched by the force we say it is under a tensile load.",
-        "When an object is compressed it is under compressive load.",
-        "Recall when a tensile load is applied onto a spring, the spring will extend by x amount.",
-        "Below is a revision of the terminology used in IGCSE/ SPM for the force- extension graph above."
+        "Stress is symbolised by $\\sigma$ (sigma).",
+        "It measures the internal force acting on a material per unit cross-sectional area.",
+        "The SI unit for stress is the Pascal (Pa), where 1 Pa = 1 N m⁻².",
+        "High stress can be achieved with a large force or a very small area, explaining why sharp objects cut easily."
       ]
     },
     {
@@ -258,6 +190,11 @@
       "solution": "1.  Recall the formula for Young Modulus: $E = \\\\frac{F L_0}{A \\\\Delta L}$.\n2.  Rearrange the formula to solve for extension $\\\\Delta L$: $\\\\Delta L = \\\\frac{F L_0}{A E}$.\n3.  Substitute the given values into the rearranged formula:\n    *   Force ($F$) = 45 N\n    *   Original Length ($L_0$) = 2.0 m\n    *   Cross-sectional Area ($A$) = 1.5 x 10$^{-7}$ m$^2$\n    *   Young Modulus ($E$) = 1.1 x 10$^{11}$ Pa\n4.  Perform the calculation:\n    $\\\\Delta L = \\\\frac{(45 \\text{ N})(2.0 \\text{ m})}{(1.5 \\times 10^{-7} \\text{ m}^2)(1.1 \\times 10^{11} \\text{ Pa})}$\n    $\\\\Delta L = \\\\frac{90}{16500} \\\\approx 0.00545 \\text{ m}$\n5.  The extension of the wire is approximately 5.5 x 10$^{-3}$ m (or 5.5 mm)."
     },
     {
+      "type": "workedExample",
+      "question": "A steel rod of length 2.5 m and cross-sectional area 8.0 x 10⁻⁵ m² is subjected to a tensile force that causes it to extend by 1.2 mm. The Young Modulus of steel is 2.0 x 10¹¹ Pa. Calculate the elastic potential energy (EPE) stored in the rod.",
+      "solution": "1.  Identify the goal: Calculate Elastic Potential Energy (EPE). The formula is EPE = ½ * F * ΔL.\n2.  Identify the missing variable: The tensile force (F) is not given. We must calculate it first.\n3.  Use the Young Modulus formula to find F: E = (F * L₀) / (A * ΔL). Rearrange for F: F = (E * A * ΔL) / L₀.\n4.  Ensure all units are SI. Convert extension ΔL from mm to m: ΔL = 1.2 mm = 1.2 x 10⁻³ m.\n5.  Substitute the values to calculate F:\n    *   E = 2.0 x 10¹¹ Pa\n    *   A = 8.0 x 10⁻⁵ m²\n    *   ΔL = 1.2 x 10⁻³ m\n    *   L₀ = 2.5 m\n    F = ( (2.0 x 10¹¹) * (8.0 x 10⁻⁵) * (1.2 x 10⁻³) ) / 2.5\n    F = (19.2 x 10³) / 2.5 = 7680 N\n6.  Now calculate the EPE using the calculated force:\n    EPE = ½ * F * ΔL\n    EPE = 0.5 * 7680 N * (1.2 x 10⁻³ m)\n    EPE = 4.608 J\n7.  The elastic potential energy stored in the rod is 4.6 J (to 2 significant figures)."
+    },
+    {
       "type": "examTip",
       "content": "Always ensure you are using the correct SI units for all quantities (force in N, area in m$^2$, length in m). Pay close attention to distinguishing between force-extension graphs and stress-strain graphs, as their gradients represent different physical quantities ($k$ for force-extension and $E$ for stress-strain in the linear region)."
     },
@@ -284,6 +221,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define and calculate stress, strain, and Young Modulus, including their units.",
+    "Explain Hooke's Law, interpret force-extension graphs, and distinguish between elastic and plastic deformation.",
+    "Differentiate between ductile and brittle materials based on their mechanical properties and stress-strain curves."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine pulling a rubber band. The harder you pull, the longer it gets. Stress is like how hard you're pulling per unit width of the band, and strain is how much it's stretched compared to its original length."
+  },
   "faq": [
     {
       "q": "Why is strain a dimensionless quantity?",
@@ -298,13 +243,87 @@
       "a": "No, Hooke's Law states that force is directly proportional to extension and is only valid up to the limit of proportionality, which typically occurs before or at the elastic limit. Beyond this point, the material no longer behaves elastically, and the relationship between force and extension becomes non-linear."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is **deformation**?",
+      "back": "Any change in an object's shape or size caused by applied forces."
+    },
+    {
+      "front": "Define **tensile** and **compressive** forces.",
+      "back": "Tensile forces stretch an object, while compressive forces push it inwards, reducing its length."
+    },
+    {
+      "front": "What is **stress ($\\\\sigma$)**?",
+      "back": "Force applied per unit cross-sectional area (\\\\sigma = F/A), measured in Pascals (Pa)."
+    },
+    {
+      "front": "What is **strain ($\\\\epsilon$)**?",
+      "back": "The ratio of extension to original length (\\\\epsilon = \\\\Delta L / L_0), a dimensionless quantity."
+    },
+    {
+      "front": "State **Hooke's Law**.",
+      "back": "The extension of an elastic object is directly proportional to the applied force, up to the limit of proportionality, provided temperature is constant."
+    },
+    {
+      "front": "What is the **spring constant ($k$)**?",
+      "back": "A measure of an object's stiffness, representing the force needed per unit extension. Its unit is N m$^{-1}$."
+    },
+    {
+      "front": "How is **elastic potential energy (EPE)** calculated for linear deformation?",
+      "back": "It's the area under a force-extension graph, or EPE = \\\\frac{1}{2}F\\\\Delta L or EPE = \\\\frac{1}{2}k(\\\\Delta L)^2."
+    },
+    {
+      "front": "Define **Young Modulus (E)**.",
+      "back": "The ratio of stress to strain (E = \\\\sigma / \\\\epsilon), a material's inherent stiffness, measured in Pascals (Pa)."
+    },
+    {
+      "front": "What is the key difference between **elastic** and **plastic deformation**?",
+      "back": "Elastic deformation is reversible (object returns to original shape), while plastic deformation is permanent (object does not fully return)."
+    },
+    {
+      "front": "Describe **ductile materials**.",
+      "back": "Materials that undergo significant plastic deformation before fracturing, e.g., copper."
+    },
+    {
+      "front": "What is the **limit of proportionality**?",
+      "back": "The point on a force-extension or stress-strain graph where Hooke's Law no longer applies."
+    },
+    {
+      "front": "What does the gradient of a **stress-strain graph** represent in its linear region?",
+      "back": "The Young Modulus (E) of the material."
+    },
+    {
+      "front": "What is the **elastic limit**?",
+      "back": "The maximum stress or force that can be applied to an object without causing permanent (plastic) deformation. If the force is removed, the object will return to its original shape."
+    },
+    {
+      "front": "What is the **ultimate tensile strength (UTS)**?",
+      "back": "The maximum stress a material can withstand while being stretched before it starts to neck down and weaken. It is the highest point on the engineering stress-strain curve."
+    },
+    {
+      "front": "Describe **brittle materials**.",
+      "back": "Materials that fracture with little or no plastic deformation, often suddenly. They typically have a high Young Modulus. Examples include glass and ceramics."
+    },
+    {
+      "front": "What does the area between the loading and unloading curves on a force-extension graph represent?",
+      "back": "The work done to permanently deform the material, which is dissipated as thermal energy (heat). This only occurs when the material is stretched beyond its elastic limit."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "6.1.1",
+    "6.1.2",
+    "6.1.3",
+    "6.1.4",
+    "6.1.5",
+    "6.1.6"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/6-1-stress-and-strain.png",
     "alt": "Senpai Corner reference diagram for 6.1 Stress and strain"
-  }
+  },
+  "updated": "2024-07-15"
 }

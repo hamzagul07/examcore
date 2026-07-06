@@ -6,69 +6,7 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Damped and forced oscillations, resonance (17.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Define damping and describe its effect on the amplitude of oscillating systems.",
-    "Distinguish between free, forced oscillations, and explain the phenomenon of resonance.",
-    "Analyse how varying levels of damping influence the peak amplitude and sharpness of a resonance curve."
-  ],
-  "simpleExplanation": {
-    "title": "Oscillations: Damped, Forced, and Resonant",
-    "summary": "Oscillations don't last forever without energy. We'll explore how energy loss changes their motion, how external forces can make them vibrate, and what happens when those forces perfectly match a system's natural rhythm.",
-    "analogy": "Imagine a child on a swing. If you stop pushing, the swing gradually slows down due to friction (damping). If you push it periodically, that's a forced oscillation. If you push it at just the right time, matching its natural sway, it goes really high – that's resonance!",
-    "steps": [
-      "Understand Damping: Why oscillations fade.",
-      "Distinguish Free & Forced Motion: Oscillating alone vs. being pushed.",
-      "Discover Natural Frequency: A system's preferred oscillation rate.",
-      "Explore Resonance: The powerful outcome of matching frequencies."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the fundamental definition of damping in an oscillating system?",
-      "back": "Damping is the process where energy is gradually lost from an oscillating system, causing the amplitude of its oscillations to decrease over time."
-    },
-    {
-      "front": "How does critical damping differ from overdamping in terms of returning to equilibrium?",
-      "back": "Critical damping allows a system to return to its equilibrium position in the fastest possible time without any oscillation. Overdamping also prevents oscillation but takes a longer time to return to equilibrium."
-    },
-    {
-      "front": "What specific condition must be met for resonance to occur in a forced oscillation?",
-      "back": "Resonance occurs when the driving frequency of the external periodic force precisely matches the natural frequency of the oscillating system."
-    },
-    {
-      "front": "What is the primary consequence of resonance on the amplitude of an oscillating system?",
-      "back": "Resonance leads to a significant and often dramatic increase in the amplitude of oscillations, due to highly efficient energy transfer from the driving force."
-    },
-    {
-      "front": "How does increased damping affect the peak amplitude and sharpness of a resonance curve?",
-      "back": "Increased damping reduces the maximum amplitude achieved at resonance and broadens the resonance curve, making the peak less sharp."
-    },
-    {
-      "front": "What are free oscillations?",
-      "back": "Free oscillations occur when a system oscillates at its natural frequency without any external driving force acting upon it."
-    },
-    {
-      "front": "What are forced oscillations?",
-      "back": "Forced oscillations happen when an external periodic force continually drives a system to oscillate at the driving frequency of that external force."
-    },
-    {
-      "front": "Provide an example of a useful application of resonance.",
-      "back": "Useful applications include tuning radio circuits to receive specific stations or the production of sound in musical instruments like a guitar string or flute."
-    },
-    {
-      "front": "Provide an example of an undesirable effect of resonance.",
-      "back": "Undesirable effects can include structural damage to bridges from strong winds or excessive vibrations in machinery operating near its natural frequency."
-    },
-    {
-      "front": "How does underdamping (light damping) appear graphically on an amplitude-time graph?",
-      "back": "Underdamping results in oscillations with an amplitude that progressively decreases, often showing an exponential decay, before the system eventually comes to rest."
-    },
-    {
-      "front": "What is the 'natural frequency' of an oscillating system?",
-      "back": "The natural frequency is the specific frequency at which a system will oscillate if it is displaced from equilibrium and then allowed to oscillate freely, without any external driving forces or damping."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -143,15 +81,16 @@
     {
       "type": "workedExample",
       "question": "An oscillating system experiences resonance. Describe how its amplitude-driving frequency graph would change if the damping in the system was increased significantly.",
-      "solution": [
-        "1.  **Reduced Peak Amplitude:** The most noticeable change would be a substantial decrease in the maximum amplitude achieved at the resonant frequency. The peak of the curve would be much lower.",
-        "2.  **Broader Resonance Curve:** The curve would become wider and less sharp. This means the system would still oscillate with a relatively large amplitude over a wider range of driving frequencies around the natural frequency, not just a very narrow band.",
-        "3.  **Slight Frequency Shift (Optional but accurate):** In cases of heavy damping, the frequency at which the maximum amplitude occurs might shift slightly to a lower value compared to the original natural frequency, though this effect is often less prominent than amplitude reduction and broadening."
-      ]
+      "solution": "1.  **Reduced Peak Amplitude:** The most noticeable change would be a substantial decrease in the maximum amplitude achieved at the resonant frequency. The peak of the curve would be much lower.\n2.  **Broader Resonance Curve:** The curve would become wider and less sharp. This means the system would still oscillate with a relatively large amplitude over a wider range of driving frequencies around the natural frequency, not just a very narrow band.\n3.  **Slight Frequency Shift (Optional but accurate):** In cases of heavy damping, the frequency at which the maximum amplitude occurs might shift slightly to a lower value compared to the original natural frequency, though this effect is often less prominent than amplitude reduction and broadening."
+    },
+    {
+      "type": "workedExample",
+      "question": "A mechanical oscillator of mass 0.50 kg is attached to a spring, giving it a natural frequency of 2.0 Hz. The system is lightly damped and is driven by a periodic force at its resonant frequency. The system reaches a steady-state amplitude of 5.0 cm. The damping force is given by F_d = -0.8v, where v is the velocity in m/s. Calculate the average power that must be supplied by the driving force to maintain this constant amplitude.",
+      "solution": "1.  **Identify knowns and the goal:**\n    *   Natural frequency (f₀) = 2.0 Hz.\n    *   Amplitude at resonance (A) = 5.0 cm = 0.050 m.\n    *   Damping coefficient (b) = 0.8 Ns/m (from the relation F_d = -0.8v).\n    *   Goal: Calculate the average power supplied (<P_supplied>).\n\n2.  **State the principle:** For the amplitude to remain constant, the average power supplied by the driver must equal the average power dissipated by damping.\n    *   <P_supplied> = <P_dissipated>\n\n3.  **Calculate the angular frequency (ω):** Resonance occurs when the driving frequency equals the natural frequency.\n    *   ω = 2πf₀\n    *   ω = 2π × 2.0 Hz = 4.0π rad/s ≈ 12.57 rad/s.\n\n4.  **Use the formula for average power dissipated:** The average power dissipated by a damping force F_d = -bv in simple harmonic motion is given by:\n    *   <P_dissipated> = ½ * b * (Aω)²\n\n5.  **Substitute values and calculate:**\n    *   <P_dissipated> = ½ × (0.8 Ns/m) × (0.050 m × 12.57 rad/s)²\n    *   <P_dissipated> = 0.4 × (0.6285)²\n    *   <P_dissipated> = 0.4 × 0.3950\n    *   <P_dissipated> ≈ 0.158 W\n\n6.  **Final Answer:** The average power that must be supplied by the driving force is **0.16 W** (to 2 significant figures)."
     },
     {
       "type": "examTip",
-      "content": "Examiners love questions that test your understanding of the resonance curve. Be ready to sketch or interpret graphs showing amplitude against driving frequency, especially how different levels of damping modify the peak amplitude and the sharpness of the curve."
+      "content": "Examiners love questions that test your understanding of the resonance curve. Be ready to sketch or interpret graphs showing amplitude against driving frequency, especially how different levels of damping modify the peak amplitude and the sharpness of the curve. Also, be prepared for calculations involving energy and power dissipation in forced oscillations."
     },
     {
       "type": "practice",
@@ -176,6 +115,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Define damping and describe its effect on the amplitude of oscillating systems.",
+    "Distinguish between free, forced oscillations, and explain the phenomenon of resonance.",
+    "Analyse how varying levels of damping influence the peak amplitude and sharpness of a resonance curve.",
+    "Calculate the power required to maintain a forced oscillation at a constant amplitude."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a child on a swing. If you stop pushing, the swing gradually slows down due to friction (damping). If you push it periodically, that's a forced oscillation. If you push it at just the right time, matching its natural sway, it goes really high – that's resonance!"
+  },
   "faq": [
     {
       "q": "Why is damping crucial in real-world oscillating systems?",
@@ -188,15 +136,74 @@
     {
       "q": "How can engineers prevent destructive resonance in structures?",
       "a": "Engineers prevent destructive resonance by designing structures with natural frequencies far away from any expected driving frequencies (e.g., wind, seismic activity). They also incorporate damping mechanisms, such as shock absorbers or tuned mass dampers, to reduce amplitude peaks if resonance is unavoidable."
+    },
+    {
+      "q": "What is the formula for power dissipated by damping in SHM?",
+      "a": "The average power dissipated by a damping force F = -bv (where b is the damping coefficient and v is velocity) in simple harmonic motion is given by <P> = ½ * b * (Aω)², where A is the amplitude and ω is the angular frequency."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the fundamental definition of damping in an oscillating system?",
+      "back": "Damping is the process where energy is gradually lost from an oscillating system, causing the amplitude of its oscillations to decrease over time."
+    },
+    {
+      "front": "How does critical damping differ from overdamping in terms of returning to equilibrium?",
+      "back": "Critical damping allows a system to return to its equilibrium position in the fastest possible time without any oscillation. Overdamping also prevents oscillation but takes a longer time to return to equilibrium."
+    },
+    {
+      "front": "What specific condition must be met for resonance to occur in a forced oscillation?",
+      "back": "Resonance occurs when the driving frequency of the external periodic force precisely matches the natural frequency of the oscillating system."
+    },
+    {
+      "front": "What is the primary consequence of resonance on the amplitude of an oscillating system?",
+      "back": "Resonance leads to a significant and often dramatic increase in the amplitude of oscillations, due to highly efficient energy transfer from the driving force."
+    },
+    {
+      "front": "How does increased damping affect the peak amplitude and sharpness of a resonance curve?",
+      "back": "Increased damping reduces the maximum amplitude achieved at resonance and broadens the resonance curve, making the peak less sharp."
+    },
+    {
+      "front": "What are free oscillations?",
+      "back": "Free oscillations occur when a system oscillates at its natural frequency without any external driving force acting upon it."
+    },
+    {
+      "front": "What are forced oscillations?",
+      "back": "Forced oscillations happen when an external periodic force continually drives a system to oscillate at the driving frequency of that external force."
+    },
+    {
+      "front": "Provide an example of a useful application of resonance.",
+      "back": "Useful applications include tuning radio circuits to receive specific stations or the production of sound in musical instruments like a guitar string or flute."
+    },
+    {
+      "front": "Provide an example of an undesirable effect of resonance.",
+      "back": "Undesirable effects can include structural damage to bridges from strong winds or excessive vibrations in machinery operating near its natural frequency."
+    },
+    {
+      "front": "How does underdamping (light damping) appear graphically on an amplitude-time graph?",
+      "back": "Underdamping results in oscillations with an amplitude that progressively decreases, often showing an exponential decay, before the system eventually comes to rest."
+    },
+    {
+      "front": "What is the 'natural frequency' of an oscillating system?",
+      "back": "The natural frequency is the specific frequency at which a system will oscillate if it is displaced from equilibrium and then allowed to oscillate freely, without any external driving forces or damping."
+    },
+    {
+      "front": "What is the relationship between power supplied and power dissipated in a forced oscillation at constant amplitude?",
+      "back": "For a forced oscillation to maintain a constant amplitude, the average power supplied by the driving force must be equal to the average power dissipated by the damping forces."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "17.3.1",
+    "17.3.2",
+    "17.3.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/17-3-damped-and-forced-oscillations-resonance.png",
     "alt": "Senpai Corner reference diagram for 17.3 Damped and forced oscillations, resonance"
-  }
+  },
+  "updated": "2026-06-26"
 }

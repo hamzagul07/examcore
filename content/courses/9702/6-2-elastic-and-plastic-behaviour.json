@@ -6,73 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Elastic and plastic behaviour (6.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Differentiate between elastic and plastic deformation, applying Hooke's Law.",
-    "Calculate stress, strain, and Young Modulus from given data.",
-    "Interpret force-extension and stress-strain graphs for different materials."
-  ],
-  "simpleExplanation": {
-    "title": "Stretching and Snapping",
-    "summary": "Imagine pulling on a rubber band or bending a paperclip. Materials react differently to forces: some bounce back (elastic), others stay bent (plastic). This lesson explores how physicists quantify these changes using key concepts like Hooke's Law and Young Modulus.",
-    "analogy": "Think of a bungee cord (elastic) versus a chewing gum (plastic). The bungee cord stretches and returns to its original length, ready for the next jump. The chewing gum stretches and stays stretched, permanently altered.",
-    "steps": [
-      "**Identify the Force**: Is it stretching (tensile) or squashing (compressive)?",
-      "**Observe the Change**: Does the object return to its original shape (elastic) or stay deformed (plastic)?",
-      "**Calculate the Response**: Quantify the change using Hooke's Law, stress, and strain.",
-      "**Characterise the Material**: Determine its stiffness with the Young Modulus and predict its behaviour."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is 'deformation' in physics?",
-      "back": "Any change in an object's shape or size due to an applied force."
-    },
-    {
-      "front": "Distinguish between 'tensile' and 'compressive' deformation.",
-      "back": "Tensile deformation involves stretching by outward forces (tension), while compressive deformation is squeezing by inward forces (compression)."
-    },
-    {
-      "front": "What defines 'elastic deformation'?",
-      "back": "A temporary change in shape; the object fully recovers its original form once the deforming forces are removed."
-    },
-    {
-      "front": "What is 'plastic deformation'?",
-      "back": "A permanent change in shape; the object does not return to its original form after forces are removed."
-    },
-    {
-      "front": "State Hooke's Law.",
-      "back": "The extension of an elastic object is directly proportional to the applied force, provided the limit of proportionality is not exceeded."
-    },
-    {
-      "front": "Formula for Hooke's Law & what 'k' represents?",
-      "back": "$$F = k\\Delta L$$ where $F$ is force, $\\Delta L$ is extension, and $k$ is the spring constant (a measure of stiffness)."
-    },
-    {
-      "front": "What is the 'limit of proportionality'?",
-      "back": "The point on a force-extension graph beyond which Hooke's Law is no longer valid (the graph ceases to be a straight line)."
-    },
-    {
-      "front": "Define 'elastic limit'.",
-      "back": "The maximum force a material can withstand and still return to its original shape after the force is removed. Beyond this, deformation becomes plastic."
-    },
-    {
-      "front": "How is 'Elastic Potential Energy (EPE)' calculated?",
-      "back": "For deformation within the limit of proportionality: $$EPE = \\frac{1}{2}F\\Delta L$$ or $$EPE = \\frac{1}{2}k(\\Delta L)^2$$"
-    },
-    {
-      "front": "Define 'stress' and give its formula & unit.",
-      "back": "Stress ($\\sigma$) is the applied force per unit cross-sectional area: $$\\sigma = \\frac{F}{A}$$. Unit: Pascals (Pa) or Newtons per square metre (Nm⁻²)."
-    },
-    {
-      "front": "Define 'strain' and give its formula & unit.",
-      "back": "Strain ($\\epsilon$) is the ratio of extension to original length: $$\\epsilon = \\frac{\\Delta L}{L_0}$$. It is a dimensionless quantity (no unit)."
-    },
-    {
-      "front": "What is the 'Young Modulus' (E) and how is it calculated?",
-      "back": "The Young Modulus is a measure of a material's stiffness. It's the ratio of stress to strain: $$E = \\frac{\\sigma}{\\epsilon}$$ or $$E = \\frac{F L_0}{A \\Delta L}$$. Unit: Pascals (Pa)."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -99,7 +33,7 @@
       "items": [
         "6.2 Elastic and plastic behaviour.",
         "Elastic deformation is the deformation that occurs before the elastic limit.",
-        "If you removed the load before this point, the object will remove to its original shape.",
+        "If you removed the load before this point, the object will return to its original shape.",
         "Plastic deformation is the deformation that occurs after the elastic limit.",
         "Load removal will not restore the object to its original shape.",
         "Recall that the area under a force-extension graph represents the work done to deform the material."
@@ -199,12 +133,25 @@
       "content": "Like stress, the Young Modulus is measured in Pascals (Pa). On a stress-strain graph, the gradient of the linear region gives you the Young Modulus for that specific material."
     },
     {
+      "type": "workedExample",
+      "question": "A steel wire of original length 2.0 m and diameter 0.50 mm is stretched by a force of 40 N. The extension produced is 2.5 mm. Calculate: (a) the stress in the wire, (b) the strain of the wire, and (c) the Young Modulus of steel.",
+      "solution": "1. **List knowns and convert to SI units**:\n   Force, $F = 40$ N\n   Original length, $L_0 = 2.0$ m\n   Extension, $\\Delta L = 2.5 \\text{ mm} = 2.5 \\times 10^{-3}$ m\n   Diameter, $d = 0.50 \\text{ mm} = 0.50 \\times 10^{-3}$ m\n   Radius, $r = d/2 = 0.25 \\times 10^{-3}$ m\n\n2. **Calculate cross-sectional area (A)**:\n   $$A = \\pi r^2 = \\pi (0.25 \\times 10^{-3})^2 = 1.963 \\times 10^{-7} \\text{ m}^2$$\n\n3. **(a) Calculate Stress ($\\sigma$)**:\n   $$\\sigma = \\frac{F}{A} = \\frac{40 \\text{ N}}{1.963 \\times 10^{-7} \\text{ m}^2} = 2.037 \\times 10^8 \\text{ Pa}$$\n   Stress $\\approx 2.0 \\times 10^8$ Pa (or 200 MPa)\n\n4. **(b) Calculate Strain ($\\epsilon$)**:\n   $$\\epsilon = \\frac{\\Delta L}{L_0} = \\frac{2.5 \\times 10^{-3} \\text{ m}}{2.0 \\text{ m}} = 1.25 \\times 10^{-3}$$\n   Strain is dimensionless.\n\n5. **(c) Calculate Young Modulus (E)**:\n   $$E = \\frac{\\sigma}{\\epsilon} = \\frac{2.037 \\times 10^8 \\text{ Pa}}{1.25 \\times 10^{-3}} = 1.6296 \\times 10^{11} \\text{ Pa}$$\n   Young Modulus $\\approx 1.6 \\times 10^{11}$ Pa (or 160 GPa)"
+    },
+    {
       "type": "heading",
-      "content": "Ductile vs. Brittle Materials"
+      "content": "Behaviour of Different Materials"
     },
     {
       "type": "text",
-      "content": "Materials behave differently beyond their elastic limits. A **ductile material**, like copper, can undergo significant plastic deformation before it fractures. It stretches and gets thinner. A **brittle material**, like glass or cast iron, shows very little plastic deformation and fractures suddenly once its elastic limit is reached, often with minimal warning."
+      "content": "Materials can be broadly classified by how they behave under stress. The two main categories are ductile and brittle.\n\n- A **ductile material**, like copper or mild steel, can undergo significant plastic deformation before it fractures. It can be drawn into wires. On a stress-strain graph, it shows a long plastic region after the elastic limit.\n\n- A **brittle material**, like glass or cast iron, shows very little or no plastic deformation. It fractures suddenly once its elastic limit is reached, often with minimal warning. Its stress-strain graph is almost entirely a straight line up to the point of fracture."
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting Stress-Strain Graphs"
+    },
+    {
+      "type": "text",
+      "content": "Stress-strain graphs are characteristic of a material. Key features to identify are:\n\n- **Ductile Material (e.g., Copper):** The graph starts with a linear elastic region (obeying Hooke's Law), where the gradient is the Young Modulus. It passes the limit of proportionality (P) and the elastic limit (E). It then enters a plastic region, reaching the Ultimate Tensile Stress (UTS), which is the maximum stress the material can handle. After the UTS, the material starts to 'neck' (become thinner at one point) and fractures at the breaking point (X).\n\n- **Brittle Material (e.g., Glass):** The graph is a straight line, showing elastic behaviour, right up until it fractures suddenly. There is no plastic deformation.\n\n- **Polymeric Material (e.g., Rubber):** The graph is non-linear and shows very large strain for a small stress. The material is elastic, but does not obey Hooke's law. The loading and unloading curves form a **hysteresis loop**, indicating that energy is dissipated as heat during the deformation cycle."
     },
     {
       "type": "heading",
@@ -212,7 +159,7 @@
     },
     {
       "type": "text",
-      "content": "If you deform a material plastically and then remove the force, it won't return to its original length. On a force-extension graph, the unloading curve will be parallel to the initial elastic loading line but will end at a permanent extension. The area enclosed between the loading and unloading curves represents the energy dissipated as heat during the irreversible plastic deformation."
+      "content": "If you deform a material plastically and then remove the force, it won't return to its original length, resulting in a permanent extension. On a force-extension graph, the unloading curve will be parallel to the initial elastic loading line. The area enclosed between the loading and unloading curves represents the work done to cause the permanent deformation, which is dissipated as internal energy (heat). This phenomenon, where the unloading path differs from the loading path, is known as **hysteresis**."
     },
     {
       "type": "practice",
@@ -237,6 +184,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Differentiate between elastic and plastic deformation, applying Hooke's Law.",
+    "Calculate stress, strain, and Young Modulus from given data.",
+    "Interpret force-extension and stress-strain graphs for different materials."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of a bungee cord (elastic) versus a chewing gum (plastic). The bungee cord stretches and returns to its original length, ready for the next jump. The chewing gum stretches and stays stretched, permanently altered."
+  },
   "faq": [
     {
       "q": "What is the difference between stiffness and strength in materials?",
@@ -249,15 +204,95 @@
     {
       "q": "How does temperature affect elastic and plastic behaviour?",
       "a": "Generally, increasing temperature tends to make materials less stiff (lower Young Modulus) and more ductile (more prone to plastic deformation before fracturing). This is because higher thermal energy allows atoms to move more easily within the material's structure."
+    },
+    {
+      "q": "What is the difference between a force-extension graph and a stress-strain graph?",
+      "a": "A force-extension graph depends on the specific dimensions of the object being tested (its length and area). A stress-strain graph is independent of dimensions and describes the fundamental properties of the material itself. The gradient of the linear part of a stress-strain graph is the Young Modulus, a material constant."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is 'deformation' in physics?",
+      "back": "Any change in an object's shape or size due to an applied force."
+    },
+    {
+      "front": "Distinguish between 'tensile' and 'compressive' deformation.",
+      "back": "Tensile deformation involves stretching by outward forces (tension), while compressive deformation is squeezing by inward forces (compression)."
+    },
+    {
+      "front": "What defines 'elastic deformation'?",
+      "back": "A temporary change in shape; the object fully recovers its original form once the deforming forces are removed."
+    },
+    {
+      "front": "What is 'plastic deformation'?",
+      "back": "A permanent change in shape; the object does not return to its original form after forces are removed."
+    },
+    {
+      "front": "State Hooke's Law.",
+      "back": "The extension of an elastic object is directly proportional to the applied force, provided the limit of proportionality is not exceeded."
+    },
+    {
+      "front": "Formula for Hooke's Law & what 'k' represents?",
+      "back": "$$F = k\\Delta L$$ where $F$ is force, $\\Delta L$ is extension, and $k$ is the spring constant (a measure of stiffness)."
+    },
+    {
+      "front": "What is the 'limit of proportionality'?",
+      "back": "The point on a force-extension graph beyond which Hooke's Law is no longer valid (the graph ceases to be a straight line)."
+    },
+    {
+      "front": "Define 'elastic limit'.",
+      "back": "The maximum force a material can withstand and still return to its original shape after the force is removed. Beyond this, deformation becomes plastic."
+    },
+    {
+      "front": "How is 'Elastic Potential Energy (EPE)' calculated?",
+      "back": "For deformation within the limit of proportionality: $$EPE = \\frac{1}{2}F\\Delta L$$ or $$EPE = \\frac{1}{2}k(\\Delta L)^2$$"
+    },
+    {
+      "front": "Define 'stress' and give its formula & unit.",
+      "back": "Stress ($\\sigma$) is the applied force per unit cross-sectional area: $$\\sigma = \\frac{F}{A}$$. Unit: Pascals (Pa) or Newtons per square metre (Nm⁻²)."
+    },
+    {
+      "front": "Define 'strain' and give its formula & unit.",
+      "back": "Strain ($\\epsilon$) is the ratio of extension to original length: $$\\epsilon = \\frac{\\Delta L}{L_0}$$. It is a dimensionless quantity (no unit)."
+    },
+    {
+      "front": "What is the 'Young Modulus' (E) and how is it calculated?",
+      "back": "The Young Modulus is a measure of a material's stiffness. It's the ratio of stress to strain: $$E = \\frac{\\sigma}{\\epsilon}$$ or $$E = \\frac{F L_0}{A \\Delta L}$$. Unit: Pascals (Pa)."
+    },
+    {
+      "front": "What is a ductile material? Give an example.",
+      "back": "A material that can be drawn into a wire, showing large plastic deformation before fracturing. Example: Copper."
+    },
+    {
+      "front": "What is a brittle material? Give an example.",
+      "back": "A material that breaks with little or no plastic deformation. Example: Glass, cast iron."
+    },
+    {
+      "front": "What does the area under a stress-strain graph represent?",
+      "back": "The work done per unit volume (or strain energy per unit volume) to deform the material."
+    },
+    {
+      "front": "What is the Ultimate Tensile Stress (UTS)?",
+      "back": "The maximum stress a material can withstand while being stretched or pulled before necking and subsequent fracture. It's the peak of the stress-strain curve."
+    },
+    {
+      "front": "What is a hysteresis loop on a stress-strain graph?",
+      "back": "A loop formed when the unloading curve does not follow the loading curve. The area inside the loop represents the energy lost (dissipated as heat) per unit volume during a deformation cycle. This is common in polymers like rubber."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "6.2.1",
+    "6.2.2",
+    "6.2.3",
+    "6.2.4"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/6-2-elastic-and-plastic-behaviour.png",
     "alt": "Senpai Corner reference diagram for 6.2 Elastic and plastic behaviour"
-  }
+  },
+  "updated": "2026-06-26"
 }

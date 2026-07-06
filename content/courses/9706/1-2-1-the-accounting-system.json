@@ -5,71 +5,8 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 P2 — double entry, books of prime entry, ledgers, and the accounting cycle.",
-  "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain the double-entry system.",
-    "Describe books of prime entry and the ledger.",
-    "Record transactions using debit and credit rules.",
-    "Outline flow from source documents to trial balance."
-  ],
-  "simpleExplanation": {
-    "title": "Every transaction has two sides",
-    "summary": "Double entry records each transaction twice — debit and credit — so the accounting equation stays balanced. Day books collect transactions; the ledger holds T-accounts.",
-    "steps": [
-      "Debit increases assets and expenses; credit increases liabilities and income.",
-      "Books of prime entry — sales day book, purchases day book, cash book.",
-      "Ledger — individual T-accounts; balances extracted for trial balance.",
-      "Source document → day book → ledger → trial balance → financial statements."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "DEAD CLIC?",
-      "back": "Debit: Expenses, Assets, Drawings. Credit: Liabilities, Income, Capital."
-    },
-    {
-      "front": "Sales day book?",
-      "back": "Lists credit sales — total DR debtors control, CR sales."
-    },
-    {
-      "front": "Purchases day book?",
-      "back": "Lists credit purchases — DR purchases, CR creditors control."
-    },
-    {
-      "front": "Cash book?",
-      "back": "Records all bank/cash receipts and payments — also a ledger account."
-    },
-    {
-      "front": "General ledger?",
-      "back": "Nominal accounts — expenses, income, assets, liabilities."
-    },
-    {
-      "front": "Personal ledger?",
-      "back": "Receivables and payables — individual customer/supplier accounts."
-    },
-    {
-      "front": "What is a Book of Prime Entry?",
-      "back": "A book where transactions are first recorded chronologically before being posted to the ledgers. Examples include the Sales Day Book, Purchases Day Book, and Cash Book. They are not part of the double entry system."
-    },
-    {
-      "front": "What is the purpose of the General Journal?",
-      "back": "It is a book of prime entry used to record non-routine, non-cash transactions that do not fit in any other specialised journal. Examples include the purchase/sale of non-current assets on credit, correction of errors, and opening entries."
-    },
-    {
-      "front": "Explain the DEAD CLIC mnemonic.",
-      "back": "A tool to remember the rules of double entry. DEBIT: Expenses, Assets, Drawings. CREDIT: Liabilities, Income, Capital. For accounts in DEAD, an increase is a debit. For accounts in CLIC, an increase is a credit."
-    },
-    {
-      "front": "Differentiate between the General Ledger and a Subsidiary Ledger.",
-      "back": "The General Ledger contains all the accounts needed for the trial balance (e.g., Sales, Purchases, Rent). A Subsidiary Ledger (e.g., Sales Ledger) contains the individual accounts of credit customers, the total of which is represented by a single control account in the General Ledger."
-    },
-    {
-      "front": "What is the primary purpose of a Trial Balance?",
-      "back": "It is an internal document that lists all the account balances from the General Ledger. Its primary purpose is to verify the arithmetical accuracy of the double entry bookkeeping, ensuring that total debits equal total credits."
-    }
-  ],
+  "summary": "Understand the complete accounting process, from source documents to financial statements. This lesson covers the core principles of double-entry bookkeeping (DEAD CLIC), the function of books of prime entry (day books), posting to ledgers, and the overall accounting cycle.",
+  "durationMin": 35,
   "sections": [
     {
       "type": "intro",
@@ -98,15 +35,35 @@
     },
     {
       "type": "text",
-      "content": "Books of prime entry are the first place a transaction is formally recorded. They are not part of the double entry system itself but act as chronological journals, grouping similar transactions before they are posted to the ledgers. This prevents the general ledger from becoming cluttered with excessive detail. The main books include the Sales Day Book (for credit sales), Purchases Day Book (for credit purchases), Sales Returns Day Book, Purchases Returns Day Book, and the Cash Book (for all bank and cash transactions). For any transaction that does not fit into these specialised journals, the General Journal is used. Each book is a memorandum record, compiled from source documents like invoices and credit notes."
+      "content": "Books of prime entry are the first place a transaction is formally recorded. They are not part of the double entry system itself but act as chronological journals, grouping similar transactions before they are posted to the ledgers. This prevents the general ledger from becoming cluttered with excessive detail. Each book is a memorandum record, compiled from source documents like invoices and credit notes."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Also known as day books or subsidiary books.",
-        "They are books of original entry, not ledger accounts.",
-        "They categorise transactions (e.g., all credit sales together).",
-        "The Cash Book is unique as it is both a book of prime entry and a ledger account."
+        "**Sales Day Book:** Records all credit sales. Double entry: DR Receivables Control, CR Sales.",
+        "**Purchases Day Book:** Records all credit purchases. Double entry: DR Purchases, CR Payables Control.",
+        "**Sales Returns Day Book:** Records goods returned by credit customers. Double entry: DR Sales Returns, CR Receivables Control.",
+        "**Purchases Returns Day Book:** Records goods returned to credit suppliers. Double entry: DR Payables Control, CR Purchases Returns.",
+        "**Cash Book:** Records all receipts and payments of cash and bank. It is unique as it is both a book of prime entry and part of the ledger.",
+        "**General Journal:** Records all other non-routine transactions not suitable for the other books."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The General Journal: The 'Catch-All' Book"
+    },
+    {
+      "type": "text",
+      "content": "When a transaction is non-routine and doesn't fit into any of the specialised day books, it is recorded in the General Journal. Unlike the tabular day books, each entry in the General Journal requires a date, the accounts to be debited and credited, the amounts, and a 'narration' - a short sentence explaining the transaction. It is essential for maintaining a complete accounting record."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Purchase/sale of non-current assets on credit.",
+        "Opening entries to set up accounts at the start of a new business or accounting period.",
+        "Correction of errors discovered in the accounts.",
+        "Writing off irrecoverable debts (bad debts).",
+        "Adjustments for accruals and prepayments at the end of a period."
       ]
     },
     {
@@ -141,18 +98,23 @@
     {
       "type": "keyPoints",
       "items": [
-        "Transaction occurs (evidenced by a source document).",
-        "Recorded in a book of prime entry.",
-        "Posted to ledger accounts.",
-        "Trial balance is prepared.",
-        "Adjustments are made for non-cash items.",
-        "Financial statements are produced."
+        "1. Transaction occurs (evidenced by a source document).",
+        "2. Recorded in a book of prime entry.",
+        "3. Posted to ledger accounts (General and Subsidiary).",
+        "4. Trial balance is prepared to check arithmetical accuracy.",
+        "5. Adjustments are made for non-cash items (e.g. depreciation, accruals).",
+        "6. Financial statements are produced."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Credit sale of goods $800 to Customer X. State the double-entry and which book of prime entry is used first.",
-      "solution": "**Book of prime entry:** **Sales day book** — record **$800** to Customer X (listed, not double-entered in day book itself).\n\n**Ledger entries (from total at period end or individually):**\n- DR **Sales ledger control** (or Customer X) **$800**\n- CR **Sales revenue** **$800**\n\n**Effect:** **Asset (receivable)** up, **income** up — accounting equation balanced."
+      "question": "A business makes a credit sale of goods for $800 to Customer X. State the book of prime entry used and the double-entry in the ledgers.",
+      "solution": "**Book of prime entry:** **Sales Day Book** — an entry is made to record the invoice of **$800** to Customer X.\n\n**Ledger entries (Double Entry):**\n- **Debit (DR)** Customer X Account (in Sales Ledger): **$800**\n- **Credit (CR)** Sales Revenue Account (in General Ledger): **$800**\n\n*At the end of the period, the total of the Sales Day Book is also posted as: DR Sales Ledger Control Account, CR Sales Account.*\n\n**Effect:** An asset (trade receivable) increases, and income (sales revenue) increases, keeping the accounting equation balanced."
+    },
+    {
+      "type": "workedExample",
+      "question": "Alpha Traders purchased goods on credit for $1,500 from Beta Suppliers on 5 May (Invoice 789). On 20 May, Alpha Traders paid the full amount by bank transfer. Show the entries in the books of prime entry and the subsequent double entries.",
+      "solution": "**1. Credit Purchase (5 May)**\n\n**Book of Prime Entry:** Purchases Day Book\n*An entry is made listing the transaction:*\n| Date | Supplier | Invoice No. | Amount ($) |\n|---|---|---|---|\n| May 5 | Beta Suppliers | 789 | 1,500 |\n\n**Ledger Posting (Double Entry):**\n*The individual transaction is posted to the subsidiary ledger, and totals are posted to the general ledger.*\n- **Debit (DR)** Purchases Account: **$1,500** (Increase in an expense)\n- **Credit (CR)** Beta Suppliers Account (in Purchases Ledger): **$1,500** (Increase in a liability)\n\n**2. Payment to Supplier (20 May)**\n\n**Book of Prime Entry:** Cash Book (Payments/Credit side)\n*An entry is made recording the bank payment:*\n| Date | Details | Bank ($) |\n|---|---|---|\n| May 20 | Beta Suppliers | 1,500 |\n\n**Ledger Posting (Double Entry):**\n- **Debit (DR)** Beta Suppliers Account (in Purchases Ledger): **$1,500** (Decrease in a liability)\n- **Credit (CR)** Bank Account: **$1,500** (Decrease in an asset)\n\n**Final Answer:** The purchase is first recorded in the Purchases Day Book and the payment in the Cash Book. The double entries result in a $1,500 debit to Purchases, a $1,500 credit to the Bank, and the Beta Suppliers account being created and then cleared, showing the liability has been settled."
     },
     {
       "type": "practice",
@@ -177,6 +139,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain the double-entry system.",
+    "Describe books of prime entry and the ledger.",
+    "Record transactions using debit and credit rules.",
+    "Outline flow from source documents to trial balance."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Are the books of prime entry part of the double entry system?",
@@ -191,6 +160,88 @@
       "a": "No, it is not. The trial balance is a crucial internal working document prepared before the financial statements. Its purpose is to check that the total debits in the general ledger equal the total credits. The main financial statements, which are prepared for external users, are the Statement of Profit or Loss, the Statement of Financial Position, and the Statement of Cash Flows."
     }
   ],
+  "flashcards": [
+    {
+      "front": "DEAD CLIC?",
+      "back": "Debit: Expenses, Assets, Drawings. Credit: Liabilities, Income, Capital."
+    },
+    {
+      "front": "Sales day book?",
+      "back": "Lists credit sales — total DR debtors control, CR sales."
+    },
+    {
+      "front": "Purchases day book?",
+      "back": "Lists credit purchases — DR purchases, CR creditors control."
+    },
+    {
+      "front": "Cash book?",
+      "back": "Records all bank/cash receipts and payments — also a ledger account."
+    },
+    {
+      "front": "General ledger?",
+      "back": "Contains all the accounts needed for the trial balance (e.g., Sales, Purchases, Rent). Also known as the nominal ledger."
+    },
+    {
+      "front": "What is a Book of Prime Entry?",
+      "back": "A book where transactions are first recorded chronologically before being posted to the ledgers. Examples include the Sales Day Book, Purchases Day Book, and Cash Book. They are not part of the double entry system."
+    },
+    {
+      "front": "What is the purpose of the General Journal?",
+      "back": "It is a book of prime entry used to record non-routine, non-cash transactions that do not fit in any other specialised journal. Examples include the purchase/sale of non-current assets on credit, correction of errors, and opening entries."
+    },
+    {
+      "front": "Explain the DEAD CLIC mnemonic.",
+      "back": "A tool to remember the rules of double entry. DEBIT: Expenses, Assets, Drawings. CREDIT: Liabilities, Income, Capital. For accounts in DEAD, an increase is a debit. For accounts in CLIC, an increase is a credit."
+    },
+    {
+      "front": "Differentiate between the General Ledger and a Subsidiary Ledger.",
+      "back": "The General Ledger contains all the accounts needed for the trial balance (e.g., Sales, Purchases, Rent). A Subsidiary Ledger (e.g., Sales Ledger) contains the individual accounts of credit customers, the total of which is represented by a single control account in the General Ledger."
+    },
+    {
+      "front": "What is the primary purpose of a Trial Balance?",
+      "back": "It is an internal document that lists all the account balances from the General Ledger. Its primary purpose is to verify the arithmetical accuracy of the double entry bookkeeping, ensuring that total debits equal total credits."
+    },
+    {
+      "front": "What is the double entry for a credit purchase?",
+      "back": "Debit the Purchases account (an expense) and Credit the supplier's personal account in the Purchases Ledger (a liability)."
+    },
+    {
+      "front": "What is the double entry for goods returned by a customer?",
+      "back": "Debit the Sales Returns account (a contra-income account) and Credit the customer's personal account in the Sales Ledger (reducing an asset)."
+    },
+    {
+      "front": "What is a source document?",
+      "back": "An original record containing the details to substantiate a transaction that has occurred. Examples include sales invoices, purchase invoices, bank statements, and credit notes."
+    },
+    {
+      "front": "What is the purpose of a subsidiary ledger?",
+      "back": "To hold the individual accounts of a similar type, such as all credit customers (Sales Ledger) or all credit suppliers (Purchases Ledger). It provides the detail for a single control account in the General Ledger."
+    },
+    {
+      "front": "Briefly describe the accounting cycle.",
+      "back": "The process of identifying, recording, and summarizing business transactions. It flows from source document -> book of prime entry -> ledger posting -> trial balance -> year-end adjustments -> financial statements."
+    },
+    {
+      "front": "What is the double entry for purchases returns?",
+      "back": "Debit the supplier's account in the Purchases Ledger (reducing a liability) and Credit the Purchases Returns account (a contra-expense)."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.2.1.1",
+    "1.2.1.2",
+    "1.2.1.3",
+    "1.2.1.4",
+    "1.2.1.5",
+    "1.2.1.6",
+    "1.2.1.7",
+    "1.2.1.8",
+    "1.2.1.9",
+    "1.2.1.10"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of General Journal and Specialised Journals",
     "columns": [

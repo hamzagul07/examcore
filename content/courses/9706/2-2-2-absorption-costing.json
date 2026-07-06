@@ -6,70 +6,7 @@
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
   "summary": "9706 P2 — overhead absorption rates, full unit cost, and over/under absorption.",
-  "durationMin": 24,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Allocate and apportion overheads to cost centres.",
-    "Calculate overhead absorption rates.",
-    "Explain over and under absorption.",
-    "Prepare profit statements under absorption costing."
-  ],
-  "simpleExplanation": {
-    "title": "Sharing factory costs",
-    "summary": "Absorption costing spreads all production overheads into product cost using predetermined rates — differences from actual create over/under absorption.",
-    "steps": [
-      "Allocate → apportion → reapportion overheads.",
-      "OAR = budgeted overhead ÷ budgeted activity.",
-      "Absorb — OAR × actual activity.",
-      "Under-absorbed — actual > absorbed (adjust SPL)."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "OAR formula?",
-      "back": "Budgeted production overhead ÷ Budgeted activity level."
-    },
-    {
-      "front": "Under-absorption?",
-      "back": "Actual overhead > absorbed — increases expenses (reduce profit)."
-    },
-    {
-      "front": "Over-absorption?",
-      "back": "Absorbed > actual — reduces expenses (increase profit)."
-    },
-    {
-      "front": "Activity basis examples?",
-      "back": "Direct labour hours, machine hours, units produced."
-    },
-    {
-      "front": "Full unit cost?",
-      "back": "Direct materials + direct labour + absorbed overhead."
-    },
-    {
-      "front": "Closing inventory valuation?",
-      "back": "Includes absorbed production overheads."
-    },
-    {
-      "front": "What is the formula for the Overhead Absorption Rate (OAR)?",
-      "back": "OAR = Budgeted Total Production Overheads / Budgeted Activity Level (e.g., labour hours, machine hours)."
-    },
-    {
-      "front": "How is the full production cost of a single unit calculated using absorption costing?",
-      "back": "Direct Materials + Direct Labour + (OAR × Activity per unit). This total is the full production cost."
-    },
-    {
-      "front": "What is 'under-absorption' of overheads?",
-      "back": "When the overheads absorbed into production (OAR × Actual Activity) are less than the actual overheads incurred. It results in an additional charge in the Income Statement."
-    },
-    {
-      "front": "What is 'over-absorption' of overheads?",
-      "back": "When the overheads absorbed into production (OAR × Actual Activity) are greater than the actual overheads incurred. It results in a credit (reduction of expense) in the Income Statement."
-    },
-    {
-      "front": "Why are non-production overheads excluded from the absorption costing unit cost?",
-      "back": "Because they are period costs, not product costs. They relate to the accounting period as a whole (e.g., selling, admin) and are not part of the manufacturing process. They are charged directly to the Income Statement."
-    }
-  ],
+  "durationMin": 35,
   "sections": [
     {
       "type": "intro",
@@ -90,6 +27,23 @@
         "Aims to determine a 'full production cost' per unit.",
         "Required by IAS 2 Inventories for valuing closing inventory in financial statements.",
         "Treats non-production overheads (e.g., selling, administration) as period costs, which are written off to the Income Statement."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Allocation, Apportionment, and Reapportionment of Overheads"
+    },
+    {
+      "type": "text",
+      "content": "Before an OAR can be calculated for a production department, all factory overheads must be assigned to it. This is a three-stage process:\n\n1.  **Allocation:** This is the process of charging an entire overhead cost directly to a specific cost centre. This is only possible if the cost was incurred solely for that cost centre (e.g., the salary of a supervisor in the Machining department).\n2.  **Apportionment:** This involves sharing general overheads that cannot be directly allocated to a single cost centre. These costs are shared out on a basis that is fair and reflects the benefit received by each cost centre. For example, factory rent could be apportioned based on the floor area occupied by each department.\n3.  **Reapportionment:** Production cannot happen without support from service departments (e.g., maintenance, stores, canteen). The costs of these service cost centres must be shared out among the production cost centres they support. This is called reapportionment. Common bases include the number of maintenance requests or the number of employees. Once this is done, each production cost centre has its total overhead, which can be used to calculate its departmental OAR."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Allocation: Assigning whole costs to a single cost centre.",
+        "Apportionment: Sharing general overheads using a fair basis (e.g., rent by floor area, power by kilowatt hours).",
+        "Reapportionment: Sharing service department costs with production departments.",
+        "The goal is to find the total overhead for each production cost centre before calculating its OAR."
       ]
     },
     {
@@ -153,6 +107,11 @@
       "solution": "**OAR** = 96,000 ÷ 12,000 = **$8 per machine hour**\n\n**Absorbed overhead** = 11,500 × $8 = **$92,000**\n\n**Actual overhead** = **$99,000**\n\n**Under-absorption** = 99,000 − 92,000 = **$7,000**\n\n**SPL adjustment:** Add **$7,000** to production costs (or cost of sales) — **reduces profit**."
     },
     {
+      "type": "workedExample",
+      "question": "Alpha Manufacturing Co. provides the following data for the year:\n- Budgeted production: 10,000 units\n- Budgeted production overheads: $150,000\n- Budgeted direct labour hours: 30,000 hours\n- Actual production: 9,500 units\n- Actual sales: 9,000 units at $50 per unit\n- Actual production overheads: $148,000\n- Actual direct labour hours worked: 28,000 hours\n\nDirect costs per unit are: Direct materials $12, Direct labour $8 (at $4 per hour). There was no opening inventory. The OAR is based on direct labour hours.\n\nCalculate:\n(a) The overhead absorption rate.\n(b) The full production cost per unit.\n(c) The over or under absorption of overheads.\n(d) Prepare an Income Statement for the year.",
+      "solution": "**(a) Overhead Absorption Rate (OAR):**\nOAR = Budgeted Production Overheads / Budgeted Direct Labour Hours\nOAR = $150,000 / 30,000 hours = **$5 per direct labour hour**\n\n**(b) Full Production Cost per Unit:**\nDirect Labour hours per unit = Direct labour cost per unit / Labour rate per hour = $8 / $4 per hour = 2 hours\nAbsorbed Overhead per unit = OAR × hours per unit = $5 × 2 hours = $10\nFull Cost = Direct Materials + Direct Labour + Absorbed Overhead\nFull Cost = $12 + $8 + $10 = **$30 per unit**\n\n**(c) Over/Under Absorption:**\nOverheads Absorbed = OAR × Actual Labour Hours = $5 × 28,000 hours = $140,000\nActual Overheads = $148,000\nUnder-absorption = Actual Overheads - Absorbed Overheads\nUnder-absorption = $148,000 - $140,000 = **$8,000 (Under-absorbed)**\n\n**(d) Income Statement for the year:**\n| | $\n|---:|:---|\n| **Sales Revenue** (9,000 units × $50) | 450,000\n| **Less: Cost of Sales** | \n| Production Cost (9,500 units × $30) | 285,000\n| Less: Closing Inventory (500 units* × $30) | (15,000)\n| *Cost of Goods Produced and Sold* | *270,000*\n| Add: Under-absorption of overheads | 8,000\n| **Adjusted Cost of Sales** | **(278,000)**\n| **Gross Profit** | **172,000**\n\n*(Closing inventory = 9,500 produced - 9,000 sold = 500 units)*"
+    },
+    {
       "type": "practice",
       "label": "Mark an absorption costing question",
       "href": "/mark?subject=9706&topic=2.2.2"
@@ -175,6 +134,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Allocate and apportion overheads to cost centres.",
+    "Calculate overhead absorption rates.",
+    "Explain over and under absorption.",
+    "Prepare profit statements under absorption costing."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Why do we use a predetermined OAR based on budgets instead of just using actual overheads at the end of the period?",
@@ -189,5 +155,85 @@
       "a": "Not necessarily. Under-absorption can be caused by two main factors: 1) The actual overhead spending was higher than budgeted (an expenditure variance), which could indicate inefficiency or unexpected cost increases. 2) The actual activity level was lower than budgeted (a volume variance), which might be due to lower-than-expected sales demand rather than production inefficiency. It is crucial to analyse the reasons for the under-absorption before drawing conclusions about performance."
     }
   ],
+  "flashcards": [
+    {
+      "front": "OAR formula?",
+      "back": "Budgeted production overhead ÷ Budgeted activity level."
+    },
+    {
+      "front": "Under-absorption?",
+      "back": "Actual overhead > absorbed — increases expenses (reduce profit)."
+    },
+    {
+      "front": "Over-absorption?",
+      "back": "Absorbed > actual — reduces expenses (increase profit)."
+    },
+    {
+      "front": "Activity basis examples?",
+      "back": "Direct labour hours, machine hours, units produced."
+    },
+    {
+      "front": "Full unit cost?",
+      "back": "Direct materials + direct labour + absorbed overhead."
+    },
+    {
+      "front": "Closing inventory valuation?",
+      "back": "Includes absorbed production overheads."
+    },
+    {
+      "front": "What is the formula for the Overhead Absorption Rate (OAR)?",
+      "back": "OAR = Budgeted Total Production Overheads / Budgeted Activity Level (e.g., labour hours, machine hours)."
+    },
+    {
+      "front": "How is the full production cost of a single unit calculated using absorption costing?",
+      "back": "Direct Materials + Direct Labour + (OAR × Activity per unit). This total is the full production cost."
+    },
+    {
+      "front": "What is 'under-absorption' of overheads?",
+      "back": "When the overheads absorbed into production (OAR × Actual Activity) are less than the actual overheads incurred. It results in an additional charge in the Income Statement."
+    },
+    {
+      "front": "What is 'over-absorption' of overheads?",
+      "back": "When the overheads absorbed into production (OAR × Actual Activity) are greater than the actual overheads incurred. It results in a credit (reduction of expense) in the Income Statement."
+    },
+    {
+      "front": "Why are non-production overheads excluded from the absorption costing unit cost?",
+      "back": "Because they are period costs, not product costs. They relate to the accounting period as a whole (e.g., selling, admin) and are not part of the manufacturing process. They are charged directly to the Income Statement."
+    },
+    {
+      "front": "What is the difference between allocation and apportionment of overheads?",
+      "back": "Allocation assigns a whole cost item to a specific cost centre. Apportionment shares a general overhead cost between multiple cost centres using a fair basis."
+    },
+    {
+      "front": "What is a suitable basis for apportioning factory rent costs?",
+      "back": "Floor area occupied by each cost centre."
+    },
+    {
+      "front": "What is the purpose of reapportioning service cost centre overheads?",
+      "back": "To share the costs of non-production departments (like maintenance or stores) among the production departments they support, so that all factory overheads are included in the final product cost."
+    },
+    {
+      "front": "Distinguish between a production cost centre and a service cost centre.",
+      "back": "A production cost centre is a location where work is done directly on the product (e.g., assembly, machining). A service cost centre provides support services to production cost centres (e.g., canteen, maintenance)."
+    },
+    {
+      "front": "How is the closing inventory valued under absorption costing?",
+      "back": "Closing inventory is valued at the full production cost per unit, which includes direct materials, direct labour, and a share of absorbed production overheads."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.2.2.1",
+    "2.2.2.2",
+    "2.2.2.3",
+    "2.2.2.4",
+    "2.2.2.5",
+    "2.2.2.6",
+    "2.2.2.7",
+    "2.2.2.8"
+  ],
+  "updated": "2026-06-18",
   "contentDeepened": true
 }

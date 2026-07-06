@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9708 AS — simultaneous demand and supply shifts, market disequilibrium, and price mechanism with interactive GeoGebra model.",
   "durationMin": 20,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Analyse simultaneous shifts in demand and supply.",
-    "Explain excess supply and excess demand.",
-    "Describe the price mechanism in allocating resources.",
-    "Evaluate government intervention effects on markets."
-  ],
-  "simpleExplanation": {
-    "title": "Markets adjust",
-    "summary": "When price is above equilibrium, surplus pushes price down; below equilibrium, shortage pushes price up. Shifts in both curves require careful step-by-step analysis.",
-    "steps": [
-      "Price above equilibrium → surplus → downward pressure on P.",
-      "Price below equilibrium → shortage → upward pressure on P.",
-      "Both curves shift → one variable (P or Q) may be ambiguous — state 'depends on magnitude'.",
-      "Use the interactive model to test different shift combinations."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What happens when price is above equilibrium?",
-      "back": "Excess supply (surplus) — Qs > Qd — puts downward pressure on price until equilibrium is restored."
-    },
-    {
-      "front": "What happens when price is below equilibrium?",
-      "back": "Excess demand (shortage) — Qd > Qs — puts upward pressure on price."
-    },
-    {
-      "front": "If demand and supply both increase, what happens to Q?",
-      "back": "Quantity definitely rises — equilibrium Q is unambiguously higher."
-    },
-    {
-      "front": "If demand and supply both increase, what happens to P?",
-      "back": "Ambiguous — depends on relative magnitudes of shifts; state 'depends on magnitude' in exams."
-    },
-    {
-      "front": "What is the price mechanism?",
-      "back": "Rationing, signalling, and incentivising — prices adjust to eliminate surpluses and shortages."
-    },
-    {
-      "front": "How do you analyse simultaneous curve shifts?",
-      "back": "Shift one curve at a time on a diagram; compare original and new equilibrium; note ambiguous outcomes."
-    },
-    {
-      "front": "What is market disequilibrium?",
-      "back": "A situation where quantity demanded does not equal quantity supplied at the current market price, resulting in either an excess supply (surplus) or an excess demand (shortage)."
-    },
-    {
-      "front": "What are the three functions of the price mechanism?",
-      "back": "1. Signalling function (prices signal information to producers and consumers). 2. Incentive function (prices motivate economic agents to change their behaviour). 3. Rationing function (prices allocate scarce resources)."
-    },
-    {
-      "front": "What is the outcome when both demand and supply increase simultaneously?",
-      "back": "The equilibrium quantity will definitely increase. The effect on the equilibrium price is indeterminate; it depends on the relative magnitude of the shifts in demand and supply."
-    },
-    {
-      "front": "Define 'excess demand'.",
-      "back": "Also known as a shortage, it occurs when the quantity demanded for a good or service exceeds the quantity supplied at a given price. This happens when the price is below the equilibrium level."
-    },
-    {
-      "front": "What is the outcome when demand decreases and supply increases simultaneously?",
-      "back": "The equilibrium price will definitely fall. The effect on the equilibrium quantity is indeterminate; it depends on the relative magnitude of the shifts in demand and supply."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -158,6 +95,11 @@
       "solution": "**Step 1 — Demand shift:** Health report → demand shifts **right** → P↑, Q↑.\n\n**Step 2 — Supply shift:** Good harvest → supply shifts **right** → P↓, Q↑.\n\n**Step 3 — Combined effect on Q:** Both shifts raise quantity → **Q definitely increases**.\n\n**Step 4 — Combined effect on P:** Demand raises P; supply lowers P → **P is ambiguous** — depends on relative shift magnitudes.\n\nIf demand shift is larger → net P rises. If supply shift is larger → net P falls.\n\n**Diagram:** Draw D₁→D₂ (right) and S₁→S₂ (right). Mark E₁ and E₂. Label Q₂ > Q₁ clearly."
     },
     {
+      "type": "workedExample",
+      "question": "The market for a specific brand of running shoes has the following demand and supply functions:\nDemand: Qd = 2,000 - 15P\nSupply: Qs = -400 + 25P\nWhere P is the price in dollars ($) and Q is the quantity of pairs of shoes.\n\na) Calculate the equilibrium price and quantity.\nb) If the government sets a maximum price of $50, determine the state of the market and calculate the size of any surplus or shortage.",
+      "solution": "**Part a) Equilibrium Calculation**\n\n**Step 1: Set Quantity Demanded equal to Quantity Supplied (Qd = Qs) to find the equilibrium price (P).**\n2,000 - 15P = -400 + 25P\n\n**Step 2: Solve for P.**\nAdd 15P to both sides: 2,000 = -400 + 40P\nAdd 400 to both sides: 2,400 = 40P\nDivide by 40: P = 2,400 / 40\n**Equilibrium Price (P) = $60**\n\n**Step 3: Substitute the equilibrium price back into either the demand or supply equation to find the equilibrium quantity (Q).**\nUsing the demand equation: Qd = 2,000 - 15(60) = 2,000 - 900 = 1,100\nUsing the supply equation: Qs = -400 + 25(60) = -400 + 1,500 = 1,100\n**Equilibrium Quantity (Q) = 1,100 pairs of shoes**\n\n**Part b) Market Disequilibrium Calculation**\n\n**Step 1: Identify the imposed price and compare it to the equilibrium price.**\nThe maximum price is set at $50. This is below the equilibrium price of $60. Therefore, we expect an excess demand (shortage).\n\n**Step 2: Calculate the quantity demanded (Qd) at the price of $50.**\nQd = 2,000 - 15(50) = 2,000 - 750\n**Qd = 1,250 pairs**\n\n**Step 3: Calculate the quantity supplied (Qs) at the price of $50.**\nQs = -400 + 25(50) = -400 + 1,250\n**Qs = 850 pairs**\n\n**Step 4: Calculate the size of the shortage.**\nShortage = Qd - Qs\nShortage = 1,250 - 850\n**Shortage = 400 pairs of shoes**\n\n**Conclusion:** At a maximum price of $50, there will be an excess demand (shortage) of 400 pairs of running shoes."
+    },
+    {
       "type": "practice",
       "label": "Mark a market interaction question",
       "href": "/mark?subject=9708&topic=2.4"
@@ -183,6 +125,79 @@
         }
       ]
     }
+  ],
+  "learningObjectives": [
+    "Analyse simultaneous shifts in demand and supply.",
+    "Explain excess supply and excess demand.",
+    "Describe the price mechanism in allocating resources.",
+    "Evaluate government intervention effects on markets."
+  ],
+  "simpleExplanation": {},
+  "faq": [
+    {
+      "q": "If both demand and supply shift, can't both price and quantity be indeterminate?",
+      "a": "No. In any simultaneous shift scenario, the effect on one variable (either price or quantity) will be certain, while the effect on the other will be indeterminate. This is because for one variable, both shifts will be pushing it in the same direction (e.g., both an increase in demand and an increase in supply put upward pressure on quantity). The ambiguity only arises for the variable that is being pushed in opposite directions by the two shifts."
+    },
+    {
+      "q": "Does the market always return to equilibrium automatically?",
+      "a": "In a theoretical free market, the price mechanism creates powerful tendencies for the market to move towards equilibrium. However, in reality, this process can be slow due to factors like imperfect information or 'sticky' prices. Furthermore, government intervention (e.g., imposing price ceilings or floors) can explicitly prevent the market from reaching its equilibrium. The market is also constantly adjusting to new shifts, so it is often chasing a moving equilibrium target."
+    },
+    {
+      "q": "When analysing a simultaneous shift in an exam, do I have to draw three diagrams?",
+      "a": "For a comprehensive analysis, especially in higher-mark essay questions, it is best practice to explain the indeterminate outcome by discussing the relative magnitudes of the shifts. The most effective way to do this is to draw a diagram for each possibility. For example, for an increase in both demand and supply, you would illustrate: 1) Demand shift > Supply shift (price rises), 2) Supply shift > Demand shift (price falls), and potentially 3) Demand shift = Supply shift (price is unchanged). This clearly demonstrates a full understanding of indeterminacy."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What happens when price is above equilibrium?",
+      "back": "Excess supply (surplus) — Qs > Qd — puts downward pressure on price until equilibrium is restored."
+    },
+    {
+      "front": "What happens when price is below equilibrium?",
+      "back": "Excess demand (shortage) — Qd > Qs — puts upward pressure on price."
+    },
+    {
+      "front": "If demand and supply both increase, what happens to Q?",
+      "back": "Quantity definitely rises — equilibrium Q is unambiguously higher."
+    },
+    {
+      "front": "If demand and supply both increase, what happens to P?",
+      "back": "Ambiguous — depends on relative magnitudes of shifts; state 'depends on magnitude' in exams."
+    },
+    {
+      "front": "What is the price mechanism?",
+      "back": "Rationing, signalling, and incentivising — prices adjust to eliminate surpluses and shortages."
+    },
+    {
+      "front": "How do you analyse simultaneous curve shifts?",
+      "back": "Shift one curve at a time on a diagram; compare original and new equilibrium; note ambiguous outcomes."
+    },
+    {
+      "front": "What is market disequilibrium?",
+      "back": "A situation where quantity demanded does not equal quantity supplied at the current market price, resulting in either an excess supply (surplus) or an excess demand (shortage)."
+    },
+    {
+      "front": "What are the three functions of the price mechanism?",
+      "back": "1. Signalling function (prices signal information to producers and consumers). 2. Incentive function (prices motivate economic agents to change their behaviour). 3. Rationing function (prices allocate scarce resources)."
+    },
+    {
+      "front": "What is the outcome when both demand and supply increase simultaneously?",
+      "back": "The equilibrium quantity will definitely increase. The effect on the equilibrium price is indeterminate; it depends on the relative magnitude of the shifts in demand and supply."
+    },
+    {
+      "front": "Define 'excess demand'.",
+      "back": "Also known as a shortage, it occurs when the quantity demanded for a good or service exceeds the quantity supplied at a given price. This happens when the price is below the equilibrium level."
+    },
+    {
+      "front": "What is the outcome when demand decreases and supply increases simultaneously?",
+      "back": "The equilibrium price will definitely fall. The effect on the equilibrium quantity is indeterminate; it depends on the relative magnitude of the shifts in demand and supply."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.4"
   ],
   "diagramSpec": {
     "steps": [
@@ -216,19 +231,6 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "If both demand and supply shift, can't both price and quantity be indeterminate?",
-      "a": "No. In any simultaneous shift scenario, the effect on one variable (either price or quantity) will be certain, while the effect on the other will be indeterminate. This is because for one variable, both shifts will be pushing it in the same direction (e.g., both an increase in demand and an increase in supply put upward pressure on quantity). The ambiguity only arises for the variable that is being pushed in opposite directions by the two shifts."
-    },
-    {
-      "q": "Does the market always return to equilibrium automatically?",
-      "a": "In a theoretical free market, the price mechanism creates powerful tendencies for the market to move towards equilibrium. However, in reality, this process can be slow due to factors like imperfect information or 'sticky' prices. Furthermore, government intervention (e.g., imposing price ceilings or floors) can explicitly prevent the market from reaching its equilibrium. The market is also constantly adjusting to new shifts, so it is often chasing a moving equilibrium target."
-    },
-    {
-      "q": "When analysing a simultaneous shift in an exam, do I have to draw three diagrams?",
-      "a": "For a comprehensive analysis, especially in higher-mark essay questions, it is best practice to explain the indeterminate outcome by discussing the relative magnitudes of the shifts. The most effective way to do this is to draw a diagram for each possibility. For example, for an increase in both demand and supply, you would illustrate: 1) Demand shift > Supply shift (price rises), 2) Supply shift > Demand shift (price falls), and potentially 3) Demand shift = Supply shift (price is unchanged). This clearly demonstrates a full understanding of indeterminacy."
-    }
-  ],
+  "updated": "2026-06-18",
   "contentDeepened": true
 }

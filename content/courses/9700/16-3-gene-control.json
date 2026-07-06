@@ -6,23 +6,7 @@
   "paperName": "Paper 4 A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9700 Paper 4 — Gene control (16.3). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the structure and function of the lac operon as an example of gene control in prokaryotes, including the role of cAMP.",
-    "Explain the effect of histone modification (methylation and acetylation) and DNA methylation on gene expression in eukaryotes.",
-    "Explain the role of transcription factors and microRNA (miRNA) in regulating gene expression in eukaryotes."
-  ],
-  "simpleExplanation": {
-    "title": "Genes: On or Off?",
-    "summary": "Gene control is all about deciding which genes in a cell are active ('on') and which are silent ('off') at any given time. This careful regulation ensures that cells only produce the proteins they need, when they need them, saving energy and allowing for specialisation. It's a fundamental process that underpins everything from bacterial adaptation to human development and disease.",
-    "analogy": "Imagine a huge recipe book (your DNA) with thousands of recipes (genes). Gene control is like a sophisticated kitchen manager who decides which specific recipes should be open and cooked right now, and which should remain closed, perhaps even marking some with a 'do not use' sticker (methylation) or highlighting others for quick access (acetylation).",
-    "steps": [
-      "Understand the basic components of the lac operon and how they interact.",
-      "Grasp the difference between negative (repressor) and positive (cAMP-CAP) control.",
-      "Memorise the specific effects of histone acetylation/methylation and DNA methylation.",
-      "Learn the roles of transcription factors and miRNA as key regulators in eukaryotes."
-    ]
-  },
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -43,10 +27,10 @@
     {
       "type": "keyPoints",
       "items": [
-        "**Regulatory gene (lacI)**: Located upstream of the operon, it encodes the *lac* repressor protein.",
+        "**Regulatory gene (lacI)**: Located upstream of the operon, it encodes the *lac* repressor protein, which is constitutively expressed.",
         "**Promoter (P)**: The binding site for RNA polymerase to initiate transcription of the structural genes.",
         "**Operator (O)**: A segment of DNA within the promoter where the *lac* repressor binds.",
-        "**Structural genes (lacZ, lacY, lacA)**: These genes code for enzymes involved in lactose metabolism: β-galactosidase (lacZ), permease (lacY), and transacetylase (lacA)."
+        "**Structural genes (lacZ, lacY, lacA)**: These genes code for enzymes involved in lactose metabolism: **β-galactosidase (lacZ)** breaks down lactose into glucose and galactose; **permease (lacY)** is a membrane protein that transports lactose into the cell; and **transacetylase (lacA)** has a role in detoxifying by-products."
       ]
     },
     {
@@ -57,7 +41,7 @@
       "type": "keyPoints",
       "items": [
         "**Absence of lactose**: The *lac* repressor protein, synthesised by the regulatory gene, is active and binds to the operator region. This physically blocks RNA polymerase from binding to the promoter and transcribing the structural genes. Result: No lactose-metabolising enzymes are produced.",
-        "**Presence of lactose**: Lactose acts as an **inducer**. It binds to the *lac* repressor protein, causing a conformational change. The repressor can no longer bind to the operator. RNA polymerase can then bind to the promoter and transcribe the structural genes. Result: Enzymes for lactose metabolism are produced."
+        "**Presence of lactose**: Lactose acts as an **inducer**. It (or its isomer, allolactose) binds to the *lac* repressor protein, causing a conformational change. The repressor can no longer bind to the operator. RNA polymerase can then bind to the promoter and transcribe the structural genes. Result: Enzymes for lactose metabolism are produced."
       ]
     },
     {
@@ -66,14 +50,14 @@
     },
     {
       "type": "text",
-      "content": "Beyond just turning genes 'on' in the presence of lactose, bacteria also need to prioritise glucose when it's available. This is achieved through **positive control** involving cAMP and the Catabolite Activator Protein (CAP)."
+      "content": "Beyond just turning genes 'on' in the presence of lactose, bacteria also need to prioritise glucose when it's available. This is achieved through **positive control** involving cAMP and the Catabolite Activator Protein (CAP). This mechanism is also known as catabolite repression."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**High glucose concentration**: Inhibits the synthesis of cAMP. Low cAMP levels mean the cAMP-CAP complex does not form.",
+        "**High glucose concentration**: Inhibits the synthesis of cAMP. Low cAMP levels mean the cAMP-CAP complex does not form. RNA polymerase binds weakly to the promoter, resulting in a low level of transcription even if lactose is present.",
         "**Low glucose concentration**: Leads to high cAMP levels. cAMP binds to CAP, forming the **cAMP-CAP complex**.",
-        "The cAMP-CAP complex binds to a specific site upstream of the *lac* promoter. This binding enhances the affinity of RNA polymerase for the promoter, significantly increasing the rate of transcription of the structural genes. This ensures that even when lactose is present, high levels of transcription only occur if glucose is scarce."
+        "The cAMP-CAP complex binds to a specific site upstream of the *lac* promoter. This binding enhances the affinity of RNA polymerase for the promoter, significantly increasing the rate of transcription of the structural genes. This ensures that high levels of transcription only occur if glucose is scarce and lactose is present."
       ]
     },
     {
@@ -90,7 +74,7 @@
     },
     {
       "type": "text",
-      "content": "**Epigenetics** refers to heritable changes in gene expression that occur without altering the underlying DNA sequence. Key mechanisms involve modifying chromatin structure."
+      "content": "**Epigenetics** refers to heritable changes in gene expression that occur without altering the underlying DNA sequence. Key mechanisms involve modifying chromatin structure, which can be loosely packed (**euchromatin**, associated with active genes) or tightly packed (**heterochromatin**, associated with inactive genes)."
     },
     {
       "type": "keyPoints",
@@ -140,32 +124,19 @@
       "solution": "**Comparison:**\nBoth prokaryotic and eukaryotic gene control involve turning genes 'on' or 'off' to adapt to cellular needs and environmental conditions. Both use proteins (repressors/activators in prokaryotes; transcription factors in eukaryotes) that bind to specific DNA sequences to regulate transcription. Both can lead to either increased or decreased production of specific proteins.\n\n**Contrast:**\n1.  **Organisation**: In prokaryotes (e.g., *E. coli*), genes with related functions are often grouped into operons, allowing coordinated regulation. Eukaryotic genes are typically regulated individually, though genes in a pathway can be co-regulated by common transcription factors.\n2.  **Chromatin Structure**: Prokaryotic DNA is not associated with histones; eukaryotic DNA is packaged into chromatin, providing an additional layer of control. Eukaryotic gene expression is heavily influenced by **epigenetic modifications** like histone acetylation/methylation and DNA methylation, which alter chromatin accessibility.\n    *   *Example*: High histone acetylation in eukaryotes loosens chromatin, increasing gene expression, a mechanism absent in prokaryotes.\n3.  **Regulatory Sequences**: Prokaryotes use promoter and operator regions. Eukaryotes have more complex regulatory sequences, including distant **enhancers** and **silencers**, which specific transcription factors bind to.\n4.  **Transcriptional Control**: In the *lac* operon, both negative (repressor binding) and positive (cAMP-CAP binding) control at the promoter dictate transcription. In eukaryotes, **transcription factors** (activators/repressors) play a diverse role, forming complexes to recruit RNA polymerase II and mediate enhancer-promoter interactions.\n    *   *Example*: In low glucose, high cAMP activates CAP to boost *lac* operon transcription in *E. coli*. In eukaryotes, specific transcription factors would respond to a growth factor signal to activate transcription of genes for cell division.\n5.  **Post-Transcriptional Control**: Prokaryotes primarily rely on transcriptional control. Eukaryotes have extensive post-transcriptional mechanisms, including the crucial role of **miRNAs** in mRNA degradation or translational inhibition, which is absent in prokaryotes.\n    *   *Example*: miRNAs might downregulate the production of a specific protein in a human cell by binding to its mRNA, a regulatory step not seen in bacteria.\n6.  **Nuclear Membrane**: Eukaryotes have a nuclear membrane separating transcription and translation, allowing for more complex post-transcriptional processing and regulation. Prokaryotes lack this separation."
     },
     {
-      "type": "examTip",
-      "content": "A common mistake is confusing the *lac* repressor with the cAMP-CAP complex. Remember: the repressor is involved in *negative control* (blocking transcription in the absence of lactose), while cAMP-CAP is involved in *positive control* (enhancing transcription when glucose is low). Don't forget to mention the specific conditions (lactose present/absent, glucose high/low) that trigger these mechanisms for full marks!"
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9700&topic=16.3"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "A-Level Notes 9700 Biology (source)",
-          "href": "https://alevel-notes.weebly.com/biology.html"
-        },
-        {
-          "label": "9700 past paper guide",
-          "href": "/subjects/9700"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
+      "type": "workedExample",
+      "question": "An experiment measured the activity of β-galactosidase (encoded by *lacZ*) in *E. coli* under different growth conditions. The results are shown below:\n- Growth medium with 2% glucose only: 10 units of β-galactosidase activity.\n- Growth medium with 2% lactose only: 4500 units of β-galactosidase activity.\n- Growth medium with 2% glucose and 2% lactose: 450 units of β-galactosidase activity.\n\n(a) Calculate the fold-induction of the *lac* operon when cells are switched from a glucose-only medium to a lactose-only medium.\n(b) Explain the molecular basis for the difference in β-galactosidase activity between the lactose-only medium and the medium containing both glucose and lactose.",
+      "solution": "**(a) Calculation of Fold-Induction:**\n\n*   **Step 1:** Identify the basal level of expression (glucose only) and the fully induced level (lactose only).\n    *   Basal activity = 10 units\n    *   Induced activity = 4500 units\n*   **Step 2:** Calculate the fold-induction by dividing the induced level by the basal level.\n    *   Fold-induction = Induced activity / Basal activity\n    *   Fold-induction = 4500 units / 10 units = 450\n*   **Answer:** The *lac* operon is induced **450-fold**.\n\n**(b) Explanation of Catabolite Repression:**\n\nThe difference in activity is due to **catabolite repression**, where the presence of glucose prevents high-level expression of the *lac* operon.\n\n*   **Step 1: Lactose-only medium (High Expression):**\n    *   **Lactose present:** Lactose binds to the *lac* repressor, causing it to detach from the operator. This lifts the negative control.\n    *   **Glucose absent:** The absence of glucose leads to high intracellular levels of cyclic AMP (cAMP).\n    *   **Activation:** cAMP binds to the Catabolite Activator Protein (CAP). The cAMP-CAP complex then binds to the promoter region, acting as an activator. It greatly enhances the binding of RNA polymerase, leading to a high rate of transcription and high β-galactosidase activity (4500 units).\n\n*   **Step 2: Glucose + Lactose medium (Low Expression):**\n    *   **Lactose present:** As before, lactose binds to the repressor, lifting the negative control.\n    *   **Glucose present:** The presence of glucose inhibits the enzyme that produces cAMP, resulting in very low intracellular cAMP levels.\n    *   **Lack of Activation:** Without sufficient cAMP, the cAMP-CAP activator complex does not form. RNA polymerase can still bind to the promoter (since the repressor is gone), but its binding is weak without the help of the activator. This results in a very low rate of transcription and therefore low β-galactosidase activity (450 units)."
     }
   ],
+  "learningObjectives": [
+    "Describe the structure and function of the lac operon as an example of gene control in prokaryotes, including the role of cAMP.",
+    "Explain the effect of histone modification (methylation and acetylation) and DNA methylation on gene expression in eukaryotes.",
+    "Explain the role of transcription factors and microRNA (miRNA) in regulating gene expression in eukaryotes."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine a huge recipe book (your DNA) with thousands of recipes (genes). Gene control is like a sophisticated kitchen manager who decides which specific recipes should be open and cooked right now, and which should remain closed, perhaps even marking some with a 'do not use' sticker (methylation) or highlighting others for quick access (acetylation)."
+  },
   "faq": [
     {
       "q": "What is the lac operon and why is it important for A Level Biology 9700?",
@@ -180,15 +151,55 @@
       "a": "Transcription factors are proteins that bind to specific DNA sequences (promoters, enhancers, silencers) to activate or repress gene transcription, acting as master switches. MicroRNAs (miRNAs) are small non-coding RNAs that regulate gene expression post-transcriptionally, either by degrading target mRNA or inhibiting its translation. Both are key components of eukaryotic gene control and are frequently assessed in 9700 Biology. Explore our free course for in-depth explanations and tackle past papers to solidify your knowledge."
     }
   ],
-  "updated": "2026-06-05",
+  "flashcards": [
+    {
+      "front": "What is an operon?",
+      "back": "A cluster of genes with related functions that are transcribed together as a single mRNA molecule. They are common in prokaryotes, with the lac operon being a classic example."
+    },
+    {
+      "front": "What is the role of the lac repressor protein in the absence of lactose?",
+      "back": "It binds to the operator region of the lac operon, physically blocking RNA polymerase from transcribing the structural genes. This is an example of negative control."
+    },
+    {
+      "front": "How does lactose induce the lac operon?",
+      "back": "Lactose (or its isomer, allolactose) acts as an inducer by binding to the lac repressor protein. This causes a conformational change in the repressor, so it can no longer bind to the operator, allowing transcription to proceed."
+    },
+    {
+      "front": "What is the function of the cAMP-CAP complex?",
+      "back": "It acts as an activator for the lac operon. When glucose is scarce, cAMP levels are high. cAMP binds to CAP, and the complex binds to the promoter, enhancing RNA polymerase binding and significantly increasing the transcription rate. This is positive control."
+    },
+    {
+      "front": "What is histone acetylation and what is its effect on gene expression?",
+      "back": "Histone acetylation is the addition of acetyl groups to histone proteins. It neutralises their positive charge, weakening their interaction with DNA. This makes the chromatin less condensed (euchromatin), increasing the accessibility of genes to transcription machinery and thus promoting gene expression."
+    },
+    {
+      "front": "What is DNA methylation and what is its typical effect on gene expression?",
+      "back": "DNA methylation is the addition of a methyl group to a cytosine base, often in promoter regions (CpG islands). It typically represses gene expression by blocking transcription factors or by recruiting proteins that compact the chromatin into heterochromatin."
+    },
+    {
+      "front": "What are the two main types of transcription factors in eukaryotes?",
+      "back": "1. **General transcription factors**: Required for the binding of RNA polymerase to the promoter of all protein-coding genes. 2. **Specific transcription factors**: Bind to enhancer or silencer sequences to activate or repress the transcription of particular genes in response to specific signals."
+    },
+    {
+      "front": "How do microRNAs (miRNAs) regulate gene expression?",
+      "back": "miRNAs are small non-coding RNA molecules that regulate gene expression post-transcriptionally. They bind to complementary sequences on target mRNA molecules, leading to either the degradation of the mRNA or the inhibition of its translation into protein."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "16.3.1",
+    "16.3.2",
+    "16.3.3",
+    "16.3.4"
+  ],
   "generatorVersion": "alnotes-published-2",
   "diagram": {
     "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-01.png",
     "alt": "A-Level Notes reference diagram for 16.3 Gene control"
   },
+  "updated": "2024-05-21",
   "referenceDiagrams": [
     {
       "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-01.png",
@@ -274,6 +285,27 @@
       "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-17.png",
       "alt": "A-Level Notes page 17 for 16.3 Gene control",
       "order": 17
+    }
+  ],
+  "examTip": {
+    "content": "A common mistake is confusing the *lac* repressor with the cAMP-CAP complex. Remember: the repressor is involved in *negative control* (blocking transcription in the absence of lactose), while cAMP-CAP is involved in *positive control* (enhancing transcription when glucose is low). Don't forget to mention the specific conditions (lactose present/absent, glucose high/low) that trigger these mechanisms for full marks!"
+  },
+  "practice": {
+    "label": "Mark a past-paper question on this topic",
+    "href": "/mark?subject=9700&topic=16.3"
+  },
+  "resources": [
+    {
+      "label": "A-Level Notes 9700 Biology (source)",
+      "href": "https://alevel-notes.weebly.com/biology.html"
+    },
+    {
+      "label": "9700 past paper guide",
+      "href": "/subjects/9700"
+    },
+    {
+      "label": "How to read mark schemes",
+      "href": "/blog/how-to-read-a-cambridge-mark-scheme"
     }
   ]
 }

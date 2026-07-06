@@ -6,65 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Non-uniform motion (3.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Apply Newton's Laws to explain changes in motion and calculate resultant forces.",
-    "Define and calculate momentum, relating it to the concept of force.",
-    "Describe the factors affecting and the conditions for achieving terminal velocity."
-  ],
-  "simpleExplanation": {
-    "title": "Understanding Changing Motion",
-    "summary": "Non-uniform motion simply means an object's velocity is changing over time – it's speeding up, slowing down, or changing direction. This change always happens because there's a net force acting on the object, pushing or pulling it.",
-    "analogy": "Imagine you're in a car. When the driver presses the accelerator or brake, or turns the steering wheel, you feel a push or pull. That's non-uniform motion in action! Your velocity isn't steady; it's constantly adjusting due to forces from the engine, brakes, or steering.",
-    "steps": [
-      "A **resultant force** is the cause of any change in an object's velocity.",
-      "**Newton's Second Law** (F=ma) quantifies this: more force means more acceleration (for a given mass).",
-      "**Momentum** describes an object's 'quantity of motion' – how much oomph it has.",
-      "**Terminal velocity** occurs when forces are balanced, leading to constant speed despite changing prior acceleration."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the primary characteristic that defines non-uniform motion?",
-      "back": "A changing velocity (i.e., acceleration or deceleration) of an object."
-    },
-    {
-      "front": "How does Newton's Second Law quantitatively relate resultant force, mass, and acceleration?",
-      "back": "It states that resultant force equals mass times acceleration ($F = ma$). The acceleration's direction matches the resultant force."
-    },
-    {
-      "front": "How can force be alternatively defined in terms of momentum?",
-      "back": "Force is the rate of change of an object's momentum over time ($F = \\frac{\\Delta p}{\\Delta t}$). "
-    },
-    {
-      "front": "Explain the conditions under which an object falling through a fluid reaches terminal velocity.",
-      "back": "Terminal velocity is reached when the downward driving force (weight) is balanced by the total upward resistive forces (air resistance, upthrust), resulting in zero net force and constant velocity."
-    },
-    {
-      "front": "How does air resistance typically impact the trajectory of a projectile?",
-      "back": "Air resistance reduces both the maximum height attained and the horizontal range covered by the projectile."
-    },
-    {
-      "front": "State Newton's First Law of Motion.",
-      "back": "An object will remain at rest or continue at a constant velocity unless acted upon by a resultant force."
-    },
-    {
-      "front": "What is momentum and how is it calculated?",
-      "back": "Momentum ($p$) is a vector quantity defined as an object's mass ($m$) multiplied by its velocity ($v$), so $p = mv$."
-    },
-    {
-      "front": "What is the key difference between Newton's Second Law and Third Law?",
-      "back": "Newton's Second Law relates force, mass, and acceleration for a single object, while Newton's Third Law describes action-reaction force pairs acting on *different* objects."
-    },
-    {
-      "front": "Define weight and state its formula.",
-      "back": "Weight ($W$) is the gravitational force on an object, calculated as its mass ($m$) multiplied by the acceleration due to gravity ($g$), so $W = mg$."
-    },
-    {
-      "front": "What factors increase air resistance on a falling object?",
-      "back": "Increased speed, larger cross-sectional area, and specific shape of the object, as well as the fluid's density/viscosity."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -88,22 +30,11 @@
     },
     {
       "type": "text",
-      "content": "Newton's **Second Law** provides a quantitative link between force, mass, and acceleration. It tells us that the acceleration an object experiences is directly proportional to the resultant force applied to it, and inversely proportional to its mass. The direction of acceleration always matches the direction of the resultant force."
+      "content": "Newton's **Second Law** provides a quantitative link between force, mass, and acceleration. It tells us that the acceleration an object experiences is directly proportional to the resultant force applied to it, and inversely proportional to its mass. Crucially, both force and acceleration are vector quantities, and the direction of acceleration always matches the direction of the resultant force."
     },
     {
       "type": "formula",
       "content": "$F_{resultant} = ma$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "3.2 Non-uniform motion.",
-        "Drag forces are forces acting on the opposite direction to an object moving through a fluid.",
-        "E.g. friction and air resistance.",
-        "Drag forces increases ad the speed of the object increases.",
-        "Terminal velocity is reached when the force moving the object equals to the drag force .",
-        "The resultant force in this case is zero and acceleration is zero (constant velocity)."
-      ]
     },
     {
       "type": "heading",
@@ -122,7 +53,7 @@
       "items": [
         "Momentum is a vector quantity, meaning it has both magnitude and direction.",
         "Mass is a measure of an object's inertia – its resistance to changes in motion.",
-        "Newton's Second Law can be rephrased: resultant force equals the rate of change of momentum ($F = \\frac{\\Delta p}{\\Delta t}$).",
+        "Newton's Second Law can be rephrased: resultant force equals the rate of change of momentum ($F = \\frac{\\Delta p}{\\Delta t}$). This is the most general form of the law, as it applies even when mass is changing (e.g., a rocket burning fuel), whereas $F=ma$ assumes constant mass.",
         "This definition is particularly useful when mass isn't constant or in impulse calculations."
       ]
     },
@@ -132,7 +63,7 @@
     },
     {
       "type": "text",
-      "content": "Newton's **Third Law** describes how forces always occur in pairs: 'For every action, there is an equal and opposite reaction.' When object A exerts a force on object B, object B simultaneously exerts an equal in magnitude and opposite in direction force on object A. These forces are critical for understanding interactions, but remember, they *always* act on different objects."
+      "content": "Newton's **Third Law** describes how forces always occur in pairs: 'For every action, there is an equal and opposite reaction.' When object A exerts a force on object B, object B simultaneously exerts a force on object A that is equal in magnitude and opposite in direction. These forces are critical for understanding interactions. A common point of confusion is to think these forces cancel out. They do not, because they *always* act on different objects and therefore cannot be combined to find a resultant force on a single object."
     },
     {
       "type": "heading",
@@ -172,6 +103,10 @@
       "content": "**Terminal velocity** is the constant, maximum velocity an object achieves when the resultant force acting on it is zero. With no net force, there is no further acceleration, and the object continues to fall at a steady speed."
     },
     {
+      "type": "text",
+      "content": "The motion of a falling object can be visualised on a velocity-time graph. Initially, the gradient is steep and constant (equal to 'g' in a vacuum, slightly less in air), representing high acceleration. As speed increases, air resistance builds, so the net force and acceleration decrease, and the gradient of the graph becomes shallower. Finally, when terminal velocity is reached, the acceleration is zero, and the graph becomes a horizontal line."
+    },
+    {
       "type": "keyPoints",
       "items": [
         "Resistive forces increase with speed, reducing the net force and acceleration.",
@@ -186,12 +121,26 @@
     },
     {
       "type": "text",
-      "content": "For objects undergoing **projectile motion**, like a ball thrown through the air, air resistance plays a crucial role. Without air resistance, a projectile follows a perfect parabolic path. However, in reality, air resistance acts against the motion, constantly draining energy. This significantly reduces both the maximum height the projectile can reach and its overall horizontal range compared to an ideal vacuum trajectory."
+      "content": "For objects undergoing **projectile motion**, like a ball thrown through the air, air resistance has a significant effect on the trajectory. In an ideal vacuum, a projectile follows a perfectly symmetrical parabolic path. However, air resistance, a form of drag, opposes the velocity vector at all points. This continuous opposition to motion removes energy from the projectile, leading to several key differences from the ideal path."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reduced Range and Height:** The horizontal range and the maximum vertical height achieved are both significantly reduced.",
+        "**Asymmetrical Trajectory:** The path is no longer a perfect parabola. The angle of descent is steeper than the angle of ascent.",
+        "**Shorter Time of Flight:** The overall time the projectile spends in the air is reduced.",
+        "**Reduced Speed:** The speed of the projectile at any given height on its way down is less than its speed at the same height on the way up."
+      ]
     },
     {
       "type": "workedExample",
       "question": "A 2.5 kg object accelerates uniformly from rest to 15 m/s in 3.0 seconds due to a constant resultant force. Calculate the magnitude of this resultant force.",
       "solution": "1. **Identify knowns and unknowns:**\n   Mass ($m$) = 2.5 kg\n   Initial velocity ($u$) = 0 m/s (from rest)\n   Final velocity ($v$) = 15 m/s\n   Time ($t$) = 3.0 s\n   Resultant force ($F_{resultant}$) = ?\n\n2. **Calculate the acceleration ($a$):**\n   Using the kinematic equation: $a = \\frac{v - u}{t}$\n   $a = \\frac{15 \\text{ m/s} - 0 \\text{ m/s}}{3.0 \\text{ s}}$\n   $a = 5.0 \\text{ m/s}^2$\n\n3. **Apply Newton's Second Law ($F_{resultant} = ma$):**\n   $F_{resultant} = 2.5 \\text{ kg} \\times 5.0 \\text{ m/s}^2$\n   $F_{resultant} = 12.5 \\text{ N}$\n\n   The magnitude of the resultant force is 12.5 N."
+    },
+    {
+      "type": "workedExample",
+      "question": "An 80.0 kg skydiver jumps from a plane. Assume the acceleration due to gravity, g, is 9.81 m/s². \n(a) Calculate the skydiver's weight. \n(b) At an instant during the fall, the air resistance is 600 N. Calculate the resultant downward force and the skydiver's acceleration at this moment. \n(c) What is the magnitude of the air resistance when the skydiver reaches terminal velocity?",
+      "solution": "1. **(a) Calculate the weight:**\n   Weight is the force due to gravity.\n   Formula: $W = mg$\n   $W = (80.0 \\text{ kg}) \\times (9.81 \\text{ m/s}^2)$\n   $W = 784.8 \\text{ N}$\n   The skydiver's weight is 785 N (to 3 s.f.).\n\n2. **(b) Calculate resultant force and acceleration:**\n   The forces acting are weight (downwards) and air resistance (upwards). We'll take downwards as the positive direction.\n   Resultant Force ($F_{net}$) = Weight - Air Resistance\n   $F_{net} = 784.8 \\text{ N} - 600 \\text{ N}$\n   $F_{net} = 184.8 \\text{ N}$\n   The resultant downward force is 185 N (to 3 s.f.).\n\n   Now, use Newton's Second Law to find acceleration ($a$).\n   Formula: $F_{net} = ma$\n   $a = \\frac{F_{net}}{m}$\n   $a = \\frac{184.8 \\text{ N}}{80.0 \\text{ kg}}$\n   $a = 2.31 \\text{ m/s}^2$\n   The skydiver's acceleration at this instant is 2.31 m/s² downwards.\n\n3. **(c) Air resistance at terminal velocity:**\n   By definition, terminal velocity is reached when the resultant force is zero. This means the upward forces balance the downward forces.\n   Air Resistance = Weight\n   Air Resistance = 784.8 N\n   The magnitude of the air resistance at terminal velocity is 785 N (to 3 s.f.)."
     },
     {
       "type": "examTip",
@@ -220,6 +169,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Apply Newton's Laws to explain changes in motion and calculate resultant forces.",
+    "Define and calculate momentum, relating it to the concept of force.",
+    "Describe the factors affecting and the conditions for achieving terminal velocity.",
+    "Qualitatively describe the effect of air resistance on the motion of a projectile."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine you're in a car. When the driver presses the accelerator or brake, or turns the steering wheel, you feel a push or pull. That's non-uniform motion in action! Your velocity isn't steady; it's constantly adjusting due to forces from the engine, brakes, or steering."
+  },
   "faq": [
     {
       "q": "What causes an object to experience non-uniform motion?",
@@ -234,13 +192,76 @@
       "a": "Terminal velocity represents a crucial transition in non-uniform motion. While an object initially accelerates due to a resultant force, the increasing resistive forces eventually balance the driving forces. This results in zero net force, zero acceleration, and the object transitioning from non-uniform to uniform motion at its maximum constant speed."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the primary characteristic that defines non-uniform motion?",
+      "back": "A changing velocity (i.e., acceleration or deceleration) of an object."
+    },
+    {
+      "front": "How does Newton's Second Law quantitatively relate resultant force, mass, and acceleration?",
+      "back": "It states that resultant force equals mass times acceleration ($F = ma$). The acceleration's direction matches the resultant force."
+    },
+    {
+      "front": "How can force be alternatively defined in terms of momentum?",
+      "back": "Force is the rate of change of an object's momentum over time ($F = \\frac{\\Delta p}{\\Delta t}$). "
+    },
+    {
+      "front": "Explain the conditions under which an object falling through a fluid reaches terminal velocity.",
+      "back": "Terminal velocity is reached when the downward driving force (weight) is balanced by the total upward resistive forces (air resistance, upthrust), resulting in zero net force and constant velocity."
+    },
+    {
+      "front": "How does air resistance typically impact the trajectory of a projectile?",
+      "back": "Air resistance reduces both the maximum height attained and the horizontal range covered by the projectile, and makes the trajectory asymmetrical."
+    },
+    {
+      "front": "State Newton's First Law of Motion.",
+      "back": "An object will remain at rest or continue at a constant velocity unless acted upon by a resultant force."
+    },
+    {
+      "front": "What is momentum and how is it calculated?",
+      "back": "Momentum ($p$) is a vector quantity defined as an object's mass ($m$) multiplied by its velocity ($v$), so $p = mv$."
+    },
+    {
+      "front": "What is the key difference between Newton's Second Law and Third Law?",
+      "back": "Newton's Second Law relates force, mass, and acceleration for a single object, while Newton's Third Law describes action-reaction force pairs acting on *different* objects."
+    },
+    {
+      "front": "Define weight and state its formula.",
+      "back": "Weight ($W$) is the gravitational force on an object, calculated as its mass ($m$) multiplied by the acceleration due to gravity ($g$), so $W = mg$."
+    },
+    {
+      "front": "What factors increase air resistance on a falling object?",
+      "back": "Increased speed, larger cross-sectional area, and specific shape of the object, as well as the fluid's density/viscosity."
+    },
+    {
+      "front": "Why is $F = \\frac{\\Delta p}{\\Delta t}$ considered a more general form of Newton's Second Law than $F = ma$?",
+      "back": "Because it applies to systems where mass is not constant (e.g., a rocket expelling fuel), whereas $F = ma$ is only valid for objects with constant mass."
+    },
+    {
+      "front": "Why don't the action-reaction force pairs in Newton's Third Law cancel each other out?",
+      "back": "Because they act on two different objects. To find the net force on an object, you only sum the forces acting *on that single object*."
+    },
+    {
+      "front": "Describe the shape of a velocity-time graph for an object falling from rest and reaching terminal velocity.",
+      "back": "The graph starts at the origin with a steep positive gradient. The gradient gradually decreases (curve becomes less steep) as velocity increases, eventually becoming zero (a horizontal line) when terminal velocity is reached."
+    },
+    {
+      "front": "How does air resistance affect the trajectory of a projectile compared to an ideal parabolic path?",
+      "back": "Air resistance makes the trajectory asymmetrical. It reduces the maximum height and horizontal range, and makes the angle of descent steeper than the angle of ascent."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.2.1",
+    "3.2.2",
+    "3.2.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/3-2-non-uniform-motion.png",
     "alt": "Senpai Corner reference diagram for 3.2 Non-uniform motion"
-  }
+  },
+  "updated": "2026-06-26"
 }

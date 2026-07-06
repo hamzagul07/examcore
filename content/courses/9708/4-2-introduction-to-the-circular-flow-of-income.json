@@ -7,70 +7,6 @@
   "status": "premium",
   "summary": "9708 AS — circular flow, injections, withdrawals, and equilibrium.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Draw the basic circular flow model.",
-    "Identify injections and withdrawals.",
-    "Explain equilibrium national income.",
-    "Introduce the multiplier concept."
-  ],
-  "simpleExplanation": {
-    "title": "Money flows round the economy",
-    "summary": "Households and firms exchange factor services and goods. Government and trade add injections and leakages.",
-    "analogy": "The economy is like a swimming pool: injections (investment, government spending, exports) fill it; withdrawals (saving, tax, imports) drain it. Equilibrium is when the water level stays constant.",
-    "steps": [
-      "Households → labour/land → firms.",
-      "Firms → wages/profit → households.",
-      "Injections: I, G, X.",
-      "Withdrawals: S, T, M."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What are injections in the circular flow?",
-      "back": "Investment (I), government spending (G), and exports (X) — spending that enters the flow from outside the household–firm loop."
-    },
-    {
-      "front": "What are withdrawals (leakages)?",
-      "back": "Saving (S), taxation (T), and imports (M) — income that leaves the circular flow without being spent on domestic output."
-    },
-    {
-      "front": "Equilibrium national income condition?",
-      "back": "Injections = Withdrawals (J = W), or equivalently planned injections equal planned withdrawals — national income is stable."
-    },
-    {
-      "front": "What is the multiplier?",
-      "back": "The ratio of the final change in national income to the initial injection: k = ΔY ÷ ΔJ. An initial rise in I causes a larger total rise in Y."
-    },
-    {
-      "front": "Multiplier formula (simple)?",
-      "back": "k = 1 ÷ (1 − MPC) where MPC is marginal propensity to consume, or k = 1 ÷ MPS if saving is the only leakage."
-    },
-    {
-      "front": "What happens if J > W?",
-      "back": "National income rises — unplanned fall in stocks encourages firms to increase output until J = W again."
-    },
-    {
-      "front": "What is the circular flow of income?",
-      "back": "A macroeconomic model that illustrates the movement of income, output, and expenditure between key economic agents, primarily households and firms."
-    },
-    {
-      "front": "Define 'Withdrawals' from the circular flow and list the three types.",
-      "back": "Income that is not passed on in the circular flow of income, reducing spending on domestic goods. The three types are Savings (S), Taxation (T), and Imports (M)."
-    },
-    {
-      "front": "Define 'Injections' into the circular flow and list the three types.",
-      "back": "Additions of spending to the circular flow that do not originate from households' current income. The three types are Investment (I), Government Spending (G), and Exports (X)."
-    },
-    {
-      "front": "What is the condition for macroeconomic equilibrium in the circular flow model?",
-      "back": "Equilibrium occurs when total injections are equal to total withdrawals. The formula is: I + G + X = S + T + M."
-    },
-    {
-      "front": "What happens to the level of national income if total withdrawals exceed total injections?",
-      "back": "The level of national income will fall. There is a net leakage of spending from the economy, leading to reduced demand for firms' output, causing them to reduce production and income payments."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -188,6 +124,11 @@
       "solution": "(a) **Multiplier**\nk = 1 ÷ (1 − MPC) = 1 ÷ (1 − 0.8) = 1 ÷ 0.2 = **5**\n\n(b) **Total ΔY**\nΔY = k × ΔG = 5 × $50m = **$250 million**\n\n(c) **Smaller actual multiplier**\nWith tax leakages, each round of spending is taxed away. The full formula includes MPS + MPT + MPM (marginal propensity to import). Higher leakages → smaller k → less than $250m final increase."
     },
     {
+      "type": "workedExample",
+      "question": "An economy has the following planned values for injections and withdrawals (in $ billions):\n- Investment (I) = 200\n- Government Spending (G) = 250\n- Exports (X) = 150\n- Savings (S) = 180\n- Taxation (T) = 220\n- Imports (M) = 170\n\n(a) Calculate total planned injections and total planned withdrawals. Is the economy in equilibrium?\n(b) What is likely to happen to the level of national income? Explain your answer.\n(c) What change in taxation would be required to bring the economy to equilibrium, assuming other components remain constant?",
+      "solution": "(a) **Calculate Injections (J) and Withdrawals (W)**\nTotal Injections (J) = I + G + X\nJ = 200 + 250 + 150 = **$600 billion**\n\nTotal Withdrawals (W) = S + T + M\nW = 180 + 220 + 170 = **$570 billion**\n\nSince J ($600bn) is not equal to W ($570bn), the economy is **not in equilibrium**.\n\n(b) **Impact on National Income**\nSince total injections ($600bn) are greater than total withdrawals ($570bn), there is a net injection of $30bn into the circular flow. This means aggregate demand is higher than the current level of output. Firms will see an unplanned fall in their inventories. To meet this excess demand and rebuild stock levels, firms will increase production. This leads to a rise in national output, employment, and therefore **national income will rise**.\n\n(c) **Change in Taxation (T) for Equilibrium**\nFor equilibrium, J must equal W. Currently, J = $600bn and W = $570bn. To achieve equilibrium, total withdrawals (W) must increase by the difference between J and W.\nDifference = J - W = $600bn - $570bn = $30 billion.\n\nWe need to increase W by $30bn by changing T. The new level of withdrawals should be $600bn.\nNew W = S + New T + M\n$600bn = $180bn + New T + $170bn\n$600bn = $350bn + New T\nNew T = $600bn - $350bn = $250 billion.\n\nChange in T = New T - Old T = $250bn - $220bn = +$30 billion.\nTherefore, **taxation must increase by $30 billion** to bring the economy into equilibrium."
+    },
+    {
       "type": "examTip",
       "content": "When drawing the circular flow, use **arrows** for factor flows (opposite direction to money flows). Examiners deduct marks for unlabelled sectors or confusing injections with withdrawals."
     },
@@ -222,6 +163,81 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Draw the basic circular flow model.",
+    "Identify injections and withdrawals.",
+    "Explain equilibrium national income.",
+    "Introduce the multiplier concept."
+  ],
+  "simpleExplanation": {
+    "analogy": "The economy is like a swimming pool: injections (investment, government spending, exports) fill it; withdrawals (saving, tax, imports) drain it. Equilibrium is when the water level stays constant."
+  },
+  "faq": [
+    {
+      "q": "Is buying shares in a company considered 'Investment' in the circular flow model?",
+      "a": "No. In macroeconomics, 'Investment' (I) specifically refers to spending by firms on new capital goods (e.g., machinery, factories). An individual buying shares is an act of saving, which is a withdrawal. It only becomes an injection if the firm uses the funds raised from selling shares to purchase new capital equipment."
+    },
+    {
+      "q": "If the government spends the tax it collects, why are taxation and government spending treated as separate things?",
+      "a": "They are treated separately because they are independent decisions made by different agents for different reasons. Taxation (T) is a withdrawal because it removes spending power from households and firms. Government Spending (G) is an injection because it adds to aggregate demand. The decision to tax and the decision to spend are not always linked. A government can run a budget deficit (G > T) or a surplus (T > G), meaning the two are not automatically equal."
+    },
+    {
+      "q": "Does saving mean money just disappears from the economy?",
+      "a": "No, savings do not disappear. They are channelled through the financial sector (e.g., banks and pension funds). This pool of savings is then available for firms and other households to borrow, primarily for investment. However, the initial act of saving is still a withdrawal because it is a decision *not* to spend on current goods and services. The subsequent act of investment is a separate decision by a firm, which acts as an injection. There is no guarantee that the amount saved will equal the amount invested."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What are injections in the circular flow?",
+      "back": "Investment (I), government spending (G), and exports (X) — spending that enters the flow from outside the household–firm loop."
+    },
+    {
+      "front": "What are withdrawals (leakages)?",
+      "back": "Saving (S), taxation (T), and imports (M) — income that leaves the circular flow without being spent on domestic output."
+    },
+    {
+      "front": "Equilibrium national income condition?",
+      "back": "Injections = Withdrawals (J = W), or equivalently planned injections equal planned withdrawals — national income is stable."
+    },
+    {
+      "front": "What is the multiplier?",
+      "back": "The ratio of the final change in national income to the initial injection: k = ΔY ÷ ΔJ. An initial rise in I causes a larger total rise in Y."
+    },
+    {
+      "front": "Multiplier formula (simple)?",
+      "back": "k = 1 ÷ (1 − MPC) where MPC is marginal propensity to consume, or k = 1 ÷ MPS if saving is the only leakage."
+    },
+    {
+      "front": "What happens if J > W?",
+      "back": "National income rises — unplanned fall in stocks encourages firms to increase output until J = W again."
+    },
+    {
+      "front": "What is the circular flow of income?",
+      "back": "A macroeconomic model that illustrates the movement of income, output, and expenditure between key economic agents, primarily households and firms."
+    },
+    {
+      "front": "Define 'Withdrawals' from the circular flow and list the three types.",
+      "back": "Income that is not passed on in the circular flow of income, reducing spending on domestic goods. The three types are Savings (S), Taxation (T), and Imports (M)."
+    },
+    {
+      "front": "Define 'Injections' into the circular flow and list the three types.",
+      "back": "Additions of spending to the circular flow that do not originate from households' current income. The three types are Investment (I), Government Spending (G), and Exports (X)."
+    },
+    {
+      "front": "What is the condition for macroeconomic equilibrium in the circular flow model?",
+      "back": "Equilibrium occurs when total injections are equal to total withdrawals. The formula is: I + G + X = S + T + M."
+    },
+    {
+      "front": "What happens to the level of national income if total withdrawals exceed total injections?",
+      "back": "The level of national income will fall. There is a net leakage of spending from the economy, leading to reduced demand for firms' output, causing them to reduce production and income payments."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "4.2"
+  ],
   "diagramSpec": {
     "steps": [
       {
@@ -254,20 +270,7 @@
       }
     ]
   },
-  "faq": [
-    {
-      "q": "Is buying shares in a company considered 'Investment' in the circular flow model?",
-      "a": "No. In macroeconomics, 'Investment' (I) specifically refers to spending by firms on new capital goods (e.g., machinery, factories). An individual buying shares is an act of saving, which is a withdrawal. It only becomes an injection if the firm uses the funds raised from selling shares to purchase new capital equipment."
-    },
-    {
-      "q": "If the government spends the tax it collects, why are taxation and government spending treated as separate things?",
-      "a": "They are treated separately because they are independent decisions made by different agents for different reasons. Taxation (T) is a withdrawal because it removes spending power from households and firms. Government Spending (G) is an injection because it adds to aggregate demand. The decision to tax and the decision to spend are not always linked. A government can run a budget deficit (G > T) or a surplus (T > G), meaning the two are not automatically equal."
-    },
-    {
-      "q": "Does saving mean money just disappears from the economy?",
-      "a": "No, savings do not disappear. They are channelled through the financial sector (e.g., banks and pension funds). This pool of savings is then available for firms and other households to borrow, primarily for investment. However, the initial act of saving is still a withdrawal because it is a decision *not* to spend on current goods and services. The subsequent act of investment is a separate decision by a firm, which acts as an injection. There is no guarantee that the amount saved will equal the amount invested."
-    }
-  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Injections and Withdrawals",
     "columns": [

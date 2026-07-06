@@ -6,65 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Doppler effect for sound waves (7.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the Doppler effect as the apparent change in frequency due to relative motion.",
-    "Apply the Doppler effect formula for sound waves, correctly using the sign convention for source movement.",
-    "Explain how the characteristics of sound waves relate to the Doppler phenomenon."
-  ],
-  "simpleExplanation": {
-    "title": "Your Ear, The Siren, and the Doppler Shift",
-    "summary": "Ever noticed a siren's pitch change as it passes by? That's the Doppler effect in action! It's the apparent shift in a wave's frequency when the source and observer are moving relative to each other.",
-    "analogy": "Imagine standing by a road as an ambulance with its siren blaring drives towards you and then away. The siren sounds higher pitched (higher frequency) as it approaches, and lower pitched (lower frequency) as it moves away. The actual siren frequency doesn't change, only what you perceive.",
-    "steps": [
-      "**Relative Motion**: The sound source and observer are moving towards or away from each other.",
-      "**Wavefront Spacing Changes**: Sound wavefronts in front of the source get compressed, while those behind get stretched.",
-      "**Perceived Frequency Shifts**: More compressed waves mean higher observed frequency (pitch), more expanded waves mean lower observed frequency.",
-      "**Source Frequency Is Constant**: The actual frequency emitted by the source itself does not change; only what is observed."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the Doppler effect for sound waves?",
-      "back": "The apparent change in a sound wave's frequency due to relative motion between its source and an observer."
-    },
-    {
-      "front": "How does frequency change when a sound source approaches an observer?",
-      "back": "The observed frequency is higher than the source frequency (a higher pitch)."
-    },
-    {
-      "front": "How does frequency change when a sound source moves away from an observer?",
-      "back": "The observed frequency is lower than the source frequency (a lower pitch)."
-    },
-    {
-      "front": "State the general formula for the Doppler effect for a moving sound source.",
-      "back": "$f_o = \\frac{f_s \\cdot v}{v \\pm v_s}$"
-    },
-    {
-      "front": "In the Doppler formula, what do $f_s$ and $v$ represent?",
-      "back": "$f_s$ is the actual frequency emitted by the source, and $v$ is the speed of sound in the medium."
-    },
-    {
-      "front": "Which sign is used for $v_s$ in the Doppler formula when the source moves *towards* the observer?",
-      "back": "The minus sign ($-v_s$) in the denominator."
-    },
-    {
-      "front": "Which sign is used for $v_s$ in the Doppler formula when the source moves *away* from the observer?",
-      "back": "The plus sign ($+v_s$) in the denominator."
-    },
-    {
-      "front": "What type of wave is sound, and what is its key oscillation characteristic?",
-      "back": "Sound is a longitudinal wave, where particle oscillations are parallel to the direction of energy transfer."
-    },
-    {
-      "front": "What are compressions and rarefactions in a sound wave?",
-      "back": "Compressions are regions of higher pressure/density; rarefactions are regions of lower pressure/density in the medium."
-    },
-    {
-      "front": "Can sound waves travel through a vacuum? Why or why not?",
-      "back": "No. Sound waves are mechanical waves that require a material medium (like air or water) to transmit energy through particle vibrations."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -76,7 +18,7 @@
     },
     {
       "type": "text",
-      "content": "At its core, the Doppler effect describes how you perceive a different frequency from what a source actually emits, simply because either you, the source, or both are moving. For sound, this means the pitch you hear changes. It's not the source altering its sound; it's the motion altering how those sound waves reach you."
+      "content": "At its core, the Doppler effect describes how you perceive a different frequency from what a source actually emits, simply because either you, the source, or both are moving. For sound, this means the pitch you hear changes. It's not the source altering its sound; it's the motion altering how those sound waves reach you. When the source and observer are stationary relative to each other, the observed frequency is the same as the source frequency."
     },
     {
       "type": "heading",
@@ -84,17 +26,7 @@
     },
     {
       "type": "text",
-      "content": "Sound waves travel as a series of compressions (regions of high pressure) and rarefactions (regions of low pressure). When a sound source moves, it essentially 'chases' its own wavefronts in the direction of motion, squeezing them together. In the opposite direction, it pulls away from the wavefronts, stretching them out. This changes the spacing between successive wavefronts."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "7.3 Doppler effect for sound waves.",
-        "The sound of a siren changes as it moves closer or further from you.",
-        "This phenomenon is due to the doppler effect .",
-        "When the observer and the source sound are both stationary, the waves are at the same frequency for both observer and source.",
-        "Here f’ is the observed frequency, f is the frequency from the source, V is the wave velocity and V s is the source velocity."
-      ]
+      "content": "Sound waves travel as a series of compressions (regions of high pressure) and rarefactions (regions of low pressure). When a sound source moves, it essentially 'chases' its own wavefronts in the direction of motion, squeezing them together. In the opposite direction, it pulls away from the wavefronts, stretching them out. This changes the spacing between successive wavefronts, which is the wavelength."
     },
     {
       "type": "heading",
@@ -123,6 +55,35 @@
       "type": "workedExample",
       "question": "A car horn emits sound with a frequency of 400 Hz. If the car is approaching a stationary observer at a speed of 30 m/s, what frequency does the observer hear? Assume the speed of sound in air is 340 m/s.",
       "solution": "1.  **Identify given values:** Source frequency $f_s = 400$ Hz, source speed $v_s = 30$ m/s, speed of sound $v = 340$ m/s.\n2.  **Choose correct sign:** The car is *approaching* the observer, so we use the minus sign ($-v_s$) in the denominator for a higher observed frequency.\n3.  **Substitute values into the formula:** $f_o = \\frac{f_s \\cdot v}{v - v_s} = \\frac{400 \\cdot 340}{340 - 30}$.\n4.  **Calculate:** $f_o = \\frac{136000}{310} \\approx 438.709...$ Hz.\n5.  **State answer:** The observer hears a frequency of approximately **439 Hz** (to 3 significant figures)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A train sounds its whistle, which has a frequency of 520 Hz, as it moves away from a stationary observer at a station. The train's speed is 25 m/s. What frequency does the observer hear? Assume the speed of sound in air is 343 m/s.",
+      "solution": "1.  **Identify given values:** Source frequency $f_s = 520$ Hz, source speed $v_s = 25$ m/s, speed of sound $v = 343$ m/s.\n2.  **Choose correct sign:** The train is moving *away from* the observer, so we use the plus sign ($+v_s$) in the denominator for a lower observed frequency.\n3.  **Substitute values into the formula:** $f_o = \\frac{f_s \\cdot v}{v + v_s} = \\frac{520 \\cdot 343}{343 + 25}$.\n4.  **Calculate:** $f_o = \\frac{178360}{368} \\approx 484.6739...$ Hz.\n5.  **State answer:** The observer hears a frequency of approximately **485 Hz** (to 3 significant figures)."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising the Doppler Effect"
+    },
+    {
+      "type": "text",
+      "content": "The diagram for this topic illustrates the effect of a moving source on its emitted wavefronts. In front of the moving source, the wavefronts bunch up, leading to a shorter observed wavelength ($\\lambda_o < \\lambda_s$) and thus a higher frequency ($f_o > f_s$). Behind the source, the wavefronts spread out, resulting in a longer observed wavelength ($\\lambda_o > \\lambda_s$) and a lower frequency ($f_o < f_s$). This direct relationship between wavelength and frequency is governed by the wave speed equation, $v = f\\lambda$."
+    },
+    {
+      "type": "heading",
+      "content": "Applications and Limitations"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Medical Imaging:** Doppler ultrasound uses reflected sound waves to measure the speed and direction of blood flow in arteries and veins, helping to diagnose blockages or other issues.",
+        "**Weather Forecasting:** Doppler radar sends out radio waves (a form of EM wave, but the principle is the same) to detect the motion of raindrops and wind, allowing meteorologists to track storms and predict their movement.",
+        "**Astronomy:** The Doppler effect for light, known as redshift and blueshift, allows astronomers to determine if distant stars and galaxies are moving towards or away from Earth, a key piece of evidence for the expansion of the universe."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "It is important to note the limitations of the formula $f_o = f_s \\cdot v / (v \\pm v_s)$. This version is simplified for the case where the **observer is stationary** and the source is moving along the line connecting them. Different formulas are required if the observer is also moving or if the motion is not directly along the line of sight. Additionally, this formula assumes the source's speed ($v_s$) is less than the speed of sound ($v$). If $v_s \\ge v$, a shock wave (sonic boom) is created."
     },
     {
       "type": "heading",
@@ -164,6 +125,15 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe the Doppler effect as the apparent change in frequency due to relative motion.",
+    "Apply the Doppler effect formula for sound waves, correctly using the sign convention for source movement.",
+    "Explain how the characteristics of sound waves relate to the Doppler phenomenon.",
+    "Relate the change in observed frequency to the change in observed wavelength."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine standing by a road as an ambulance with its siren blaring drives towards you and then away. The siren sounds higher pitched (higher frequency) as it approaches, and lower pitched (lower frequency) as it moves away. The actual siren frequency doesn't change, only what you perceive."
+  },
   "faq": [
     {
       "q": "Why does the pitch of a siren change as it passes by?",
@@ -175,16 +145,82 @@
     },
     {
       "q": "What happens to the observed frequency if the sound source is stationary, but the observer is moving?",
-      "a": "If the observer is moving towards a stationary source, they will encounter more wavefronts per second, leading to a higher observed frequency. If they move away, they encounter fewer wavefronts, resulting in a lower observed frequency. While the formula given in this lesson is for a moving source, the Doppler effect still occurs due to the relative motion."
+      "a": "If the observer is moving towards a stationary source, they will encounter more wavefronts per second, leading to a higher observed frequency. If they move away, they encounter fewer wavefronts, resulting in a lower observed frequency. While the formula given in this lesson is for a moving source, the Doppler effect still occurs due to the relative motion. A different formula, $f_o = f_s (v \\pm v_o) / v$, is used for a moving observer."
+    },
+    {
+      "q": "What happens if the source travels faster than the speed of sound?",
+      "a": "If the source's speed $v_s$ is greater than the speed of sound $v$, the wavefronts cannot get away from the source and build up into a conical shock wave. This shock wave is perceived by a stationary observer as a sonic boom when it passes over them."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the Doppler effect for sound waves?",
+      "back": "The apparent change in a sound wave's frequency due to relative motion between its source and an observer."
+    },
+    {
+      "front": "How does frequency change when a sound source approaches an observer?",
+      "back": "The observed frequency is higher than the source frequency (a higher pitch)."
+    },
+    {
+      "front": "How does frequency change when a sound source moves away from an observer?",
+      "back": "The observed frequency is lower than the source frequency (a lower pitch)."
+    },
+    {
+      "front": "State the general formula for the Doppler effect for a moving sound source and stationary observer.",
+      "back": "$f_o = \\frac{f_s \\cdot v}{v \\pm v_s}$"
+    },
+    {
+      "front": "In the Doppler formula, what do $f_s$ and $v$ represent?",
+      "back": "$f_s$ is the actual frequency emitted by the source, and $v$ is the speed of sound in the medium."
+    },
+    {
+      "front": "Which sign is used for $v_s$ in the Doppler formula when the source moves *towards* the observer?",
+      "back": "The minus sign ($-v_s$) in the denominator."
+    },
+    {
+      "front": "Which sign is used for $v_s$ in the Doppler formula when the source moves *away* from the observer?",
+      "back": "The plus sign ($+v_s$) in the denominator."
+    },
+    {
+      "front": "What type of wave is sound, and what is its key oscillation characteristic?",
+      "back": "Sound is a longitudinal wave, where particle oscillations are parallel to the direction of energy transfer."
+    },
+    {
+      "front": "What are compressions and rarefactions in a sound wave?",
+      "back": "Compressions are regions of higher pressure/density; rarefactions are regions of lower pressure/density in the medium."
+    },
+    {
+      "front": "Can sound waves travel through a vacuum? Why or why not?",
+      "back": "No. Sound waves are mechanical waves that require a material medium (like air or water) to transmit energy through particle vibrations."
+    },
+    {
+      "front": "How does the wavelength of a sound wave change for an observer when the source is approaching them?",
+      "back": "The observed wavelength decreases. The wavefronts are compressed, leading to a shorter distance between them."
+    },
+    {
+      "front": "In the Doppler formula $f_o = \\frac{f_s \\cdot v}{v \\pm v_s}$, what is the key assumption about the observer?",
+      "back": "The observer is assumed to be stationary relative to the medium (e.g., the air)."
+    },
+    {
+      "front": "A source moves away from you. Will the observed frequency be higher or lower than the source frequency, and which sign is used for $v_s$?",
+      "back": "The observed frequency will be lower. The plus sign ($+v_s$) is used in the denominator: $f_o = \\frac{f_s \\cdot v}{v + v_s}$."
+    },
+    {
+      "front": "Give one real-world application of the Doppler effect using sound waves.",
+      "back": "Doppler ultrasound uses the frequency shift of sound waves reflected from moving blood cells to measure blood flow and velocity in arteries and veins."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "7.3.1",
+    "7.3.2"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/7-3-doppler-effect-for-sound-waves.png",
     "alt": "Senpai Corner reference diagram for 7.3 Doppler effect for sound waves"
-  }
+  },
+  "updated": "2026-06-26"
 }

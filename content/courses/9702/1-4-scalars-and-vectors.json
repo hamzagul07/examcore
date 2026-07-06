@@ -6,69 +6,7 @@
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 2 — Scalars and vectors (1.4). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Distinguish between scalar and vector quantities, providing relevant examples.",
-    "Add and resolve vectors using both graphical (scale diagrams) and analytical (component) methods.",
-    "Understand the effect of multiplying a vector by a positive or negative scalar."
-  ],
-  "simpleExplanation": {
-    "title": "Scalars vs. Vectors: The Basics",
-    "summary": "Some physical quantities, like temperature, only need a size. Others, like force, need both size and direction. These are called scalars and vectors, respectively, and understanding them is key to physics.",
-    "analogy": "Imagine giving directions to a friend. Saying 'Go 5 km' is like a scalar (distance). Saying 'Go 5 km North-East' is like a vector (displacement) – it gives both magnitude and direction, so they know exactly where to go!",
-    "steps": [
-      "Identify if a quantity has direction (vector) or just size (scalar).",
-      "Represent vectors visually using arrows where length shows size and the tip shows direction.",
-      "Combine vectors using Pythagoras and trigonometry for right-angle situations.",
-      "Break down complex vectors into simpler components to add them effectively."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "What is the primary characteristic that defines a scalar quantity?",
-      "back": "Its magnitude (size) only."
-    },
-    {
-      "front": "Name three common examples of vector quantities.",
-      "back": "Displacement, velocity, force, acceleration, momentum, electric field strength (any three)."
-    },
-    {
-      "front": "How do you determine the magnitude of the resultant vector when adding two vectors that are perpendicular to each other?",
-      "back": "Using Pythagoras' theorem: $R = \\sqrt{V_x^2 + V_y^2}$."
-    },
-    {
-      "front": "If a vector $V$ makes an angle $\\theta$ with the horizontal, what is the formula for its horizontal component?",
-      "back": "$V_x = V \\cos \\theta$."
-    },
-    {
-      "front": "How does multiplying a vector by a negative scalar affect its magnitude and direction?",
-      "back": "Its magnitude changes proportionally, and its direction is reversed."
-    },
-    {
-      "front": "Give two examples of scalar quantities.",
-      "back": "Distance, speed, mass, time, temperature, energy (any two)."
-    },
-    {
-      "front": "How can vectors be visually represented?",
-      "back": "By an arrow, where its length signifies magnitude and the arrowhead indicates direction."
-    },
-    {
-      "front": "What is vector resolution?",
-      "back": "Breaking down a single vector into two components that are at right angles to each other."
-    },
-    {
-      "front": "What is the formula for the component of vector $V$ *opposite* to an angle $\\theta$?",
-      "back": "$V_y = V \\sin \\theta$."
-    },
-    {
-      "front": "What is the 'head-to-tail' method used for?",
-      "back": "Graphically adding non-perpendicular vectors using scale diagrams."
-    },
-    {
-      "front": "How does multiplying a vector by a positive scalar affect it?",
-      "back": "Its magnitude changes proportionally, but its direction remains the same."
-    }
-  ],
+  "durationMin": 25,
   "sections": [
     {
       "type": "intro",
@@ -156,6 +94,11 @@
       "content": "For AS-Level Physics, the analytical method of resolving vectors into components is generally preferred over scale diagrams for accuracy, especially in Paper 2 calculations. Practice both, but master the component method!"
     },
     {
+      "type": "workedExample",
+      "question": "Two forces, $F_1 = 60$ N and $F_2 = 40$ N, act on a small object P. $F_1$ acts horizontally to the right. $F_2$ acts at an angle of $60^\\circ$ above the horizontal. Calculate the magnitude and direction of the resultant force acting on P.",
+      "solution": "1.  **Strategy:** Resolve each force into horizontal (x) and vertical (y) components. Sum the components, then recombine them to find the resultant. Let's define 'right' and 'up' as positive directions.\n2.  **Resolve F1:**\n    $F_{1x} = 60 \\text{ N}$ (since it's purely horizontal)\n    $F_{1y} = 0 \\text{ N}$\n3.  **Resolve F2:**\n    $F_{2x} = F_2 \\cos(60^\\circ) = 40 \\times 0.5 = 20 \\text{ N}$\n    $F_{2y} = F_2 \\sin(60^\\circ) = 40 \\times \\frac{\\sqrt{3}}{2} \\approx 34.64 \\text{ N}$\n4.  **Sum components:**\n    Resultant horizontal component $R_x = F_{1x} + F_{2x} = 60 + 20 = 80 \\text{ N}$\n    Resultant vertical component $R_y = F_{1y} + F_{2y} = 0 + 34.64 = 34.64 \\text{ N}$\n5.  **Calculate resultant magnitude (R):** Use Pythagoras' theorem.\n    $R = \\sqrt{R_x^2 + R_y^2} = \\sqrt{(80)^2 + (34.64)^2}$\n    $R = \\sqrt{6400 + 1200} = \\sqrt{7600} \\approx 87.2 \\text{ N}$ (to 3 s.f.)\n6.  **Calculate resultant direction ($\\theta$):** Use trigonometry. Let $\\theta$ be the angle the resultant makes with the horizontal.\n    $\\tan \\theta = \\frac{R_y}{R_x} = \\frac{34.64}{80} = 0.433$\n    $\\theta = \\tan^{-1}(0.433) \\approx 23.4^\\circ$ (to 1 d.p.)\n7.  **Final Answer:** The resultant force is $87.2$ N at an angle of $23.4^\\circ$ above the horizontal."
+    },
+    {
       "type": "heading",
       "content": "Scalar Multiplication of Vectors"
     },
@@ -190,6 +133,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Distinguish between scalar and vector quantities, providing relevant examples.",
+    "Add and resolve vectors using both graphical (scale diagrams) and analytical (component) methods.",
+    "Understand the effect of multiplying a vector by a positive or negative scalar."
+  ],
+  "simpleExplanation": {
+    "analogy": "Imagine giving directions to a friend. Saying 'Go 5 km' is like a scalar (distance). Saying 'Go 5 km North-East' is like a vector (displacement) – it gives both magnitude and direction, so they know exactly where to go!"
+  },
   "faq": [
     {
       "q": "What is the main difference between distance and displacement in physics?",
@@ -204,13 +155,80 @@
       "a": "No, if a vector has zero magnitude, it essentially has no 'size' or extent. Therefore, a meaningful direction cannot be associated with it. A vector with zero magnitude is called the zero vector and fundamentally has no defined direction."
     }
   ],
-  "updated": "2026-06-26",
+  "flashcards": [
+    {
+      "front": "What is the primary characteristic that defines a scalar quantity?",
+      "back": "Its magnitude (size) only."
+    },
+    {
+      "front": "Name three common examples of vector quantities.",
+      "back": "Displacement, velocity, force, acceleration, momentum, electric field strength (any three)."
+    },
+    {
+      "front": "How do you determine the magnitude of the resultant vector when adding two vectors that are perpendicular to each other?",
+      "back": "Using Pythagoras' theorem: $R = \\sqrt{V_x^2 + V_y^2}$."
+    },
+    {
+      "front": "If a vector $V$ makes an angle $\\theta$ with the horizontal, what is the formula for its horizontal component?",
+      "back": "$V_x = V \\cos \\theta$."
+    },
+    {
+      "front": "How does multiplying a vector by a negative scalar affect its magnitude and direction?",
+      "back": "Its magnitude changes proportionally, and its direction is reversed."
+    },
+    {
+      "front": "Give two examples of scalar quantities.",
+      "back": "Distance, speed, mass, time, temperature, energy (any two)."
+    },
+    {
+      "front": "How can vectors be visually represented?",
+      "back": "By an arrow, where its length signifies magnitude and the arrowhead indicates direction."
+    },
+    {
+      "front": "What is vector resolution?",
+      "back": "Breaking down a single vector into two components that are at right angles to each other."
+    },
+    {
+      "front": "What is the formula for the component of vector $V$ *opposite* to an angle $\\theta$?",
+      "back": "$V_y = V \\sin \\theta$."
+    },
+    {
+      "front": "What is the 'head-to-tail' method used for?",
+      "back": "Graphically adding non-perpendicular vectors using scale diagrams."
+    },
+    {
+      "front": "How does multiplying a vector by a positive scalar affect it?",
+      "back": "Its magnitude changes proportionally, but its direction remains the same."
+    },
+    {
+      "front": "What is a 'resultant vector'?",
+      "back": "The single vector that has the same effect as two or more vectors combined. It is the vector sum of the individual vectors."
+    },
+    {
+      "front": "When adding two non-perpendicular vectors by components, what is the first step?",
+      "back": "Resolve each vector into its perpendicular components (e.g., horizontal and vertical components) using trigonometry."
+    },
+    {
+      "front": "What is the key difference between speed and velocity?",
+      "back": "Speed is a scalar quantity (magnitude only, e.g., 20 m/s), while velocity is a vector quantity (magnitude and direction, e.g., 20 m/s North)."
+    },
+    {
+      "front": "Is 'work done' a scalar or a vector quantity, and why?",
+      "back": "Work done is a scalar quantity. Although it is calculated from two vectors (force and displacement, $W = \\mathbf{F} \\cdot \\mathbf{d}$), the dot product of two vectors results in a scalar."
+    }
+  ],
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.4.1",
+    "1.4.2",
+    "1.4.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/1-4-scalars-and-vectors.png",
     "alt": "Senpai Corner reference diagram for 1.4 Scalars and vectors"
-  }
+  },
+  "updated": "2026-06-26"
 }

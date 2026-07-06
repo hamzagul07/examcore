@@ -7,69 +7,6 @@
   "status": "premium",
   "summary": "9990 — experiments, observations, self-reports, and data analysis for Paper 2.",
   "durationMin": 30,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Design experiments with IV, DV, controls, and conditions.",
-    "Evaluate observations, interviews, questionnaires, and case studies.",
-    "Calculate and interpret descriptive and inferential statistics.",
-    "Assess validity, reliability, ethics, and sampling."
-  ],
-  "simpleExplanation": {
-    "title": "How psychologists investigate",
-    "summary": "Paper 2 tests whether you can design studies, spot flaws, and handle data — from hypotheses to chi-squared and beyond.",
-    "steps": [
-      "Experimental method — lab, field, natural, quasi.",
-      "Non-experimental — observation, correlation, interview.",
-      "Data — mean, median, mode, SD, graphs.",
-      "Inferential stats — sign test, Wilcoxon, chi-squared, etc."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "IV and DV?",
-      "back": "Independent variable — manipulated by researcher; dependent variable — measured outcome."
-    },
-    {
-      "front": "Extraneous variable?",
-      "back": "Any variable other than the IV that could affect the DV — controlled to protect **internal validity**."
-    },
-    {
-      "front": "Self-report limitation in health research?",
-      "back": "**Social desirability bias** — patients overreport adherence or underreport unhealthy behaviour."
-    },
-    {
-      "front": "When to use chi-squared?",
-      "back": "Test of association between two **nominal/categorical** variables — e.g. treatment group vs recovery status."
-    },
-    {
-      "front": "Operationalisation?",
-      "back": "Defining abstract variables in measurable terms — e.g. 'stress' measured by Perceived Stress Scale score."
-    },
-    {
-      "front": "Ethical issue in health psychology experiments?",
-      "back": "**Protection from harm** — inducing stress or withholding treatment; requires debriefing, informed consent, and right to withdraw."
-    },
-    {
-      "front": "Standard Deviation",
-      "back": "A measure of dispersion that calculates the average distance of each score from the mean. A large standard deviation indicates scores are widely spread out; a small one indicates they are clustered close to the mean."
-    },
-    {
-      "front": "Demand Characteristics",
-      "back": "Cues in a research setting that may reveal the aim of the study to participants, leading them to change their behaviour (e.g., by trying to please the researcher). This is a threat to internal validity."
-    },
-    {
-      "front": "Inter-rater Reliability",
-      "back": "The extent to which two or more observers agree on their observations. It is assessed by correlating the observers' separate recordings. A high positive correlation (e.g., +0.80 or above) indicates good reliability."
-    },
-    {
-      "front": "Semi-structured Interview",
-      "back": "A self-report method where the interviewer has a set of pre-prepared questions but can also ask unplanned, follow-up questions to explore interesting responses in more depth. It generates both quantitative and qualitative data."
-    },
-    {
-      "front": "Thematic Analysis",
-      "back": "A method for analysing qualitative data. It involves a process of reading and re-reading the data to identify, analyse, and report patterns (themes) that emerge from the text."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -166,6 +103,11 @@
       "solution": "(a) **Experimental design:**\n- **Design:** Independent groups — Group A receives **SMS reminders**; Group B receives **no reminders** (control).\n- **IV:** Reminder condition (reminders vs no reminders).\n- **DV:** **Adherence rate** — operationalised as pill count or biochemical marker (HbA1c as proxy for glucose control).\n- **Control:** Match groups on age, diabetes type, and baseline adherence; standardise medication regimen.\n\n(b) **Ethical issue:**\n- **Confidentiality** — health data is sensitive; participants must consent to SMS contact and data storage under GDPR/medical ethics.\n\n**Validity issue:**\n- **Self-report adherence** (if used) lacks **validity** due to social desirability — patients may overreport compliance. Biochemical measures improve objectivity but increase cost.\n\n**Additional evaluation:** Field experiment has **high ecological validity** (real-world setting) but less control over extraneous variables (e.g. family support) than a lab study."
     },
     {
+      "type": "workedExample",
+      "question": "A psychologist used a repeated measures design to test if a mindfulness app reduced anxiety. Participants (N=10) rated their anxiety on a scale of 1-40 before and after a 4-week intervention. A lower score indicates lower anxiety.\n\n**Data:**\n- **Before:** [25, 30, 28, 35, 22, 19, 31, 26, 29, 24]\n- **After:** [20, 22, 28, 25, 24, 15, 23, 20, 21, 18]\n\n(a) Using the Sign Test, calculate the observed value of S. [3 marks]\n(b) The critical value for a one-tailed test at p≤0.05 for N=9 is 1. State whether the result is significant and explain your conclusion. [2 marks]",
+      "solution": "(a) **Calculation of S:**\n\n**Step 1: Find the direction of difference for each participant.**\nSubtract the 'After' score from the 'Before' score. A positive result means anxiety decreased.\n- P1: 25 - 20 = +5 (+)\n- P2: 30 - 22 = +8 (+)\n- P3: 28 - 28 = 0 (ignore)\n- P4: 35 - 25 = +10 (+)\n- P5: 22 - 24 = -2 (-)\n- P6: 19 - 15 = +4 (+)\n- P7: 31 - 23 = +8 (+)\n- P8: 26 - 20 = +6 (+)\n- P9: 29 - 21 = +8 (+)\n- P10: 24 - 18 = +6 (+)\n\n**Step 2: Count the signs.**\n- Number of positive signs (+) = 8\n- Number of negative signs (-) = 1\n- Number of zero differences = 1\n\n**Step 3: Determine the value of S.**\nThe observed value (S) is the count of the less frequent sign.\n- S = 1\n\n(b) **Conclusion:**\n\n**Step 1: Compare the observed value to the critical value.**\n- The total number of participants with a difference (N) is 10 - 1 = 9.\n- The observed value S = 1.\n- The critical value given is 1.\n\n**Step 2: State significance.**\nFor a result to be significant, the observed value (S) must be less than or equal to the critical value.\n- 1 ≤ 1. The result is significant.\n\n**Step 3: Write the conclusion.**\nThere is a significant reduction in anxiety scores after using the mindfulness app (S=1, N=9, p≤0.05, one-tailed test). This suggests the intervention was effective in reducing anxiety for this group of students."
+    },
+    {
       "type": "practice",
       "label": "Mark a research methods question",
       "href": "/mark?subject=9990&topic=3.1.2"
@@ -196,6 +138,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Design experiments with IV, DV, controls, and conditions.",
+    "Evaluate observations, interviews, questionnaires, and case studies.",
+    "Calculate and interpret descriptive and inferential statistics.",
+    "Assess validity, reliability, ethics, and sampling."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is a natural experiment the same as a field experiment?",
@@ -210,6 +159,59 @@
       "a": "Reliability refers to the consistency of a measure or study. If the study were repeated, would the same results be found? Validity refers to the accuracy of a measure or study. Does it truly measure what it claims to measure? A measure can be reliable but not valid (e.g., a faulty weighing scale consistently shows you are 5kg too light), but it cannot be valid if it is not reliable (if the results are inconsistent, they cannot be accurate)."
     }
   ],
+  "flashcards": [
+    {
+      "front": "IV and DV?",
+      "back": "Independent variable — manipulated by researcher; dependent variable — measured outcome."
+    },
+    {
+      "front": "Extraneous variable?",
+      "back": "Any variable other than the IV that could affect the DV — controlled to protect **internal validity**."
+    },
+    {
+      "front": "Self-report limitation in health research?",
+      "back": "**Social desirability bias** — patients overreport adherence or underreport unhealthy behaviour."
+    },
+    {
+      "front": "When to use chi-squared?",
+      "back": "Test of association between two **nominal/categorical** variables — e.g. treatment group vs recovery status."
+    },
+    {
+      "front": "Operationalisation?",
+      "back": "Defining abstract variables in measurable terms — e.g. 'stress' measured by Perceived Stress Scale score."
+    },
+    {
+      "front": "Ethical issue in health psychology experiments?",
+      "back": "**Protection from harm** — inducing stress or withholding treatment; requires debriefing, informed consent, and right to withdraw."
+    },
+    {
+      "front": "Standard Deviation",
+      "back": "A measure of dispersion that calculates the average distance of each score from the mean. A large standard deviation indicates scores are widely spread out; a small one indicates they are clustered close to the mean."
+    },
+    {
+      "front": "Demand Characteristics",
+      "back": "Cues in a research setting that may reveal the aim of the study to participants, leading them to change their behaviour (e.g., by trying to please the researcher). This is a threat to internal validity."
+    },
+    {
+      "front": "Inter-rater Reliability",
+      "back": "The extent to which two or more observers agree on their observations. It is assessed by correlating the observers' separate recordings. A high positive correlation (e.g., +0.80 or above) indicates good reliability."
+    },
+    {
+      "front": "Semi-structured Interview",
+      "back": "A self-report method where the interviewer has a set of pre-prepared questions but can also ask unplanned, follow-up questions to explore interesting responses in more depth. It generates both quantitative and qualitative data."
+    },
+    {
+      "front": "Thematic Analysis",
+      "back": "A method for analysing qualitative data. It involves a process of reading and re-reading the data to identify, analyse, and report patterns (themes) that emerge from the text."
+    }
+  ],
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.1.2"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparing Laboratory and Field Experiments",
     "columns": [

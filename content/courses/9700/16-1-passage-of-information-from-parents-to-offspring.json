@@ -6,23 +6,7 @@
   "paperName": "Paper 4 A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9700 Paper 4 — Passage of information from parents to offspring (16.1). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
-  "durationMin": 20,
-  "learningObjectives": [
-    "Describe the intricate structure of DNA and explain its semi-conservative replication.",
-    "Outline the processes of transcription and translation in protein synthesis.",
-    "Discuss the characteristics of the genetic code and principles of gene regulation."
-  ],
-  "simpleExplanation": {
-    "title": "Your Genetic Blueprint: How Information is Passed On",
-    "summary": "Our bodies are built from instructions encoded in DNA, passed from parents to children. This lesson explains how DNA is structured, copied, and then used to make the proteins that perform all life's functions, ensuring genetic continuity.",
-    "analogy": "Think of DNA as a master cookbook filled with countless recipes (genes). When a cell needs a specific dish (protein), it makes a working copy of that recipe (mRNA) and sends it to the kitchen (ribosome), where chefs (tRNA) bring the right ingredients (amino acids) to assemble the meal.",
-    "steps": [
-      "Master DNA structure: nucleotides, double helix, and the bonds holding it together.",
-      "Understand semi-conservative replication and the key enzymes involved.",
-      "Map out protein synthesis: the distinct stages of transcription and translation.",
-      "Grasp the defining features of the genetic code and basic principles of gene regulation."
-    ]
-  },
+  "durationMin": 35,
   "sections": [
     {
       "type": "intro",
@@ -34,7 +18,7 @@
     },
     {
       "type": "text",
-      "content": "Deoxyribonucleic acid (DNA) is the primary genetic material in all living organisms. It's a polymer made of repeating monomer units called **nucleotides**. Each DNA nucleotide comprises three components:\n1.  A deoxyribose sugar (a pentose).\n2.  A phosphate group.\n3.  One of four nitrogenous bases: Adenine (A), Guanine (G), Cytosine (C), or Thymine (T).\n\nDNA exists as a **double helix**, a spiral ladder structure. The 'uprights' of the ladder are formed by alternating sugar and phosphate groups, linked by strong **phosphodiester bonds** – this forms the sugar-phosphate backbone. The 'rungs' are formed by pairs of nitrogenous bases, joined by weaker **hydrogen bonds**. Adenine always pairs with Thymine (A-T) via two hydrogen bonds, and Guanine always pairs with Cytosine (G-C) via three hydrogen bonds. This specific pairing is known as **complementary base pairing**. The two strands of the DNA helix run in opposite directions, meaning they are **antiparallel** (one runs 5' to 3', the other 3' to 5')."
+      "content": "Deoxyribonucleic acid (DNA) is the primary genetic material in all living organisms. It's a polymer made of repeating monomer units called **nucleotides**. Each DNA nucleotide comprises three components:\n1.  A deoxyribose sugar (a pentose).\n2.  A phosphate group.\n3.  One of four nitrogenous bases: Adenine (A), Guanine (G), Cytosine (C), or Thymine (T).\n\nDNA exists as a **double helix**, a spiral ladder structure. The 'uprights' of the ladder are formed by alternating sugar and phosphate groups, linked by strong covalent **phosphodiester bonds** – this forms the sugar-phosphate backbone. The 'rungs' are formed by pairs of nitrogenous bases, joined by weaker **hydrogen bonds**. Adenine always pairs with Thymine (A-T) via two hydrogen bonds, and Guanine always pairs with Cytosine (G-C) via three hydrogen bonds. This specific pairing is known as **complementary base pairing**. The greater number of hydrogen bonds in G-C pairs makes regions of DNA rich in G-C content more stable than A-T rich regions.\n\nThe two strands of the DNA helix run in opposite directions, meaning they are **antiparallel**. One strand runs in the 5' to 3' direction, while the other runs 3' to 5'. The 5' and 3' designations refer to the carbon number on the deoxyribose sugar to which the phosphate group (5' carbon) or a hydroxyl group (3' carbon) is attached."
     },
     {
       "type": "heading",
@@ -42,7 +26,15 @@
     },
     {
       "type": "text",
-      "content": "Before a cell divides, its DNA must be accurately replicated to ensure each daughter cell receives a complete set of genetic instructions. DNA replication is a **semi-conservative** process, meaning each new DNA molecule consists of one original (parental) strand and one newly synthesised strand.\n\nThe process unfolds in several key steps:\n1.  **Unwinding**: The enzyme **DNA helicase** unwinds the double helix by breaking the hydrogen bonds between complementary base pairs, separating the two DNA strands.\n2.  **Template strands**: Each separated strand then acts as a template for the synthesis of a new complementary strand.\n3.  **Elongation**: Free nucleotides in the nucleoplasm align with their complementary bases on the exposed template strands (A with T, G with C).\n4.  **Polymerisation**: The enzyme **DNA polymerase** catalyses the formation of phosphodiester bonds between the sugar and phosphate groups of adjacent new nucleotides. It also joins these new nucleotides to the growing new strand, extending it in the 5' to 3' direction.\n5.  **Rewinding**: The newly synthesised strands wind together with their template strands to form two new, identical DNA double helices."
+      "content": "Before a cell divides, its DNA must be accurately replicated to ensure each daughter cell receives a complete set of genetic instructions. DNA replication is a **semi-conservative** process, meaning each new DNA molecule consists of one original (parental) strand and one newly synthesised strand.\n\nThe process unfolds in several key steps:\n1.  **Unwinding**: The enzyme **DNA helicase** unwinds the double helix at a specific origin of replication by breaking the hydrogen bonds between complementary base pairs, separating the two DNA strands. **Single-strand binding proteins** attach to the separated strands to prevent them from re-annealing.\n2.  **Template strands**: Each separated strand then acts as a template for the synthesis of a new complementary strand.\n3.  **Elongation**: Free nucleotides in the nucleoplasm align with their complementary bases on the exposed template strands (A with T, G with C).\n4.  **Polymerisation**: The enzyme **DNA polymerase** catalyses the formation of phosphodiester bonds between the sugar and phosphate groups of adjacent new nucleotides. It adds nucleotides to the 3' end of the growing strand, thus synthesising the new strand in the **5' to 3' direction**.\n5.  **Rewinding**: The newly synthesised strands wind together with their template strands to form two new, identical DNA double helices."
+    },
+    {
+      "type": "text",
+      "content": "Leading and Lagging Strands"
+    },
+    {
+      "type": "text",
+      "content": "Because the two DNA strands are antiparallel and DNA polymerase can only synthesise in the 5' to 3' direction, replication occurs differently on each strand.\n*   **Leading Strand**: One template strand (the 3' to 5' strand) is replicated continuously. DNA polymerase follows the replication fork, synthesising a single, long new strand called the leading strand.\n*   **Lagging Strand**: The other template strand (the 5' to 3' strand) is replicated discontinuously. Synthesis occurs in the direction away from the replication fork in short sections called **Okazaki fragments**. Each fragment is initiated by a short RNA primer. After the fragments are synthesised, the RNA primers are removed and replaced with DNA. Finally, the enzyme **DNA ligase** joins the Okazaki fragments together by forming phosphodiester bonds, creating a single, continuous strand."
     },
     {
       "type": "heading",
@@ -58,7 +50,15 @@
     },
     {
       "type": "text",
-      "content": "Transcription is the synthesis of an RNA molecule from a DNA template. It occurs in the nucleus of eukaryotic cells.\n1.  **Initiation**: The enzyme **RNA polymerase** binds to a specific region on the DNA known as the promoter, upstream of the gene to be transcribed.\n2.  **Elongation**: RNA polymerase unwinds a short section of the DNA double helix. It then moves along the **template strand** (the non-coding strand), adding complementary RNA nucleotides to build a new messenger RNA (mRNA) molecule. Uracil (U) replaces Thymine (T) in RNA, so A pairs with U, and G pairs with C.\n3.  **Termination**: When RNA polymerase reaches a specific terminator sequence on the DNA, transcription stops. The newly synthesised mRNA molecule detaches from the DNA, and the DNA strands rewind."
+      "content": "Transcription is the synthesis of an RNA molecule from a DNA template. It occurs in the nucleus of eukaryotic cells.\n1.  **Initiation**: The enzyme **RNA polymerase** binds to a specific region on the DNA known as the promoter, upstream of the gene to be transcribed.\n2.  **Elongation**: RNA polymerase unwinds a short section of the DNA double helix. It then moves along the **template strand** (also known as the antisense strand), adding complementary RNA nucleotides to build a new messenger RNA (mRNA) molecule. Uracil (U) replaces Thymine (T) in RNA, so A pairs with U, and G pairs with C.\n3.  **Termination**: When RNA polymerase reaches a specific terminator sequence on the DNA, transcription stops. The newly synthesised RNA molecule detaches from the DNA, and the DNA strands rewind."
+    },
+    {
+      "type": "text",
+      "content": "Post-transcriptional Modification in Eukaryotes"
+    },
+    {
+      "type": "text",
+      "content": "In eukaryotic cells, the initial RNA transcript, called **pre-mRNA**, undergoes processing before it can be translated. This modification occurs in the nucleus.\n*   **Splicing**: Eukaryotic genes contain non-coding regions called **introns** interspersed among coding regions called **exons**. Splicing removes the introns and joins the exons together to form a continuous coding sequence. This process is carried out by a complex called the spliceosome.\n*   **Capping and Tailing**: A modified guanine nucleotide, known as the **5' cap**, is added to the 5' end of the mRNA. At the 3' end, a **poly-A tail**, consisting of 50-250 adenine nucleotides, is added. These modifications protect the mRNA from degradation by enzymes in the cytoplasm, facilitate its export from the nucleus, and help ribosomes attach to the 5' end for translation."
     },
     {
       "type": "heading",
@@ -66,7 +66,7 @@
     },
     {
       "type": "text",
-      "content": "Translation is the process where the genetic information carried by mRNA is used to synthesise a polypeptide (protein). This occurs on **ribosomes** in the cytoplasm.\n1.  **mRNA binding**: The mRNA molecule binds to a ribosome, typically at the 5' end. The ribosome moves along the mRNA until it encounters the **start codon** (usually AUG).\n2.  **tRNA recruitment**: **Transfer RNA (tRNA)** molecules, each carrying a specific amino acid, have a three-base sequence called an **anticodon** that is complementary to an mRNA **codon**. The first tRNA, carrying methionine, binds to the start codon on the mRNA.\n3.  **Peptide bond formation**: A second tRNA, carrying the next amino acid, arrives at the adjacent codon on the ribosome. A **peptide bond** is formed between the two amino acids by a catalytic activity within the ribosome.\n4.  **Translocation**: The ribosome moves along the mRNA by one codon, effectively shifting the tRNA with the growing polypeptide chain to the next binding site. The empty tRNA is released.\n5.  **Elongation cycle**: This process repeats, with new tRNAs bringing in amino acids according to the mRNA sequence, and the polypeptide chain growing longer.\n6.  **Termination**: Translation continues until a **stop codon** (UAA, UAG, or UGA) is reached. There are no corresponding tRNA molecules for stop codons. Release factors bind, and the newly synthesised polypeptide is released from the ribosome. The ribosome then dissociates from the mRNA."
+      "content": "Translation is the process where the genetic information carried by mature mRNA is used to synthesise a polypeptide (protein). This occurs on **ribosomes** in the cytoplasm. Ribosomes are composed of a large and a small subunit and have three binding sites for tRNA: the A (aminoacyl) site, the P (peptidyl) site, and the E (exit) site.\n1.  **Initiation**: The small ribosomal subunit binds to the 5' end of the mRNA and moves along it until it finds the **start codon** (usually AUG). The initiator **transfer RNA (tRNA)**, carrying the amino acid methionine, binds to the start codon in the P site. The large ribosomal subunit then joins to form the complete translation initiation complex.\n2.  **Elongation**: A second tRNA, with an **anticodon** complementary to the next mRNA **codon**, binds to the A site. A **peptide bond** is formed between the amino acid in the P site and the new amino acid in the A site. The ribosome then **translocates** one codon down the mRNA. The tRNA from the P site moves to the E site and is released, while the tRNA from the A site (now carrying the growing polypeptide chain) moves to the P site. The A site is now free for the next tRNA.\n3.  **Termination**: This elongation cycle repeats until a **stop codon** (UAA, UAG, or UGA) enters the A site. Release factor proteins bind to the stop codon, causing the polypeptide chain to be released from the tRNA in the P site. The ribosome then dissociates from the mRNA, and the subunits are free to start another round of translation."
     },
     {
       "type": "heading",
@@ -74,15 +74,15 @@
     },
     {
       "type": "text",
-      "content": "The genetic code is the set of rules by which information encoded in genetic material (DNA or RNA sequences) is translated into proteins. It has three crucial characteristics:\n1.  **Degenerate**: Most amino acids are specified by more than one codon (e.g., both UGU and UGC code for Cysteine). This redundancy provides a degree of protection against point mutations.\n2.  **Non-overlapping**: The codons are read sequentially, three bases at a time, without any overlap. Each base is part of only one codon.\n3.  **Universal**: With very few minor exceptions, the same codons specify the same amino acids in all organisms, from bacteria to humans. This universality is strong evidence for common ancestry of all life on Earth."
+      "content": "The genetic code is the set of rules by which information encoded in genetic material (DNA or RNA sequences) is translated into proteins. It has three crucial characteristics:\n1.  **Degenerate (or Redundant)**: Most amino acids are specified by more than one codon (e.g., Leucine is coded by six different codons). This redundancy provides a degree of protection against point mutations, as a change in the third base of a codon often does not change the specified amino acid.\n2.  **Non-overlapping**: The codons are read sequentially from a fixed starting point, three bases at a time, without any overlap. Each base is part of only one codon.\n3.  **Universal**: With very few minor exceptions (e.g., in mitochondria), the same codons specify the same amino acids in all organisms, from bacteria to humans. This universality is strong evidence for a common ancestor for all life on Earth."
     },
     {
       "type": "heading",
-      "content": "Regulating Expression: Structural and Regulatory Genes"
+      "content": "Regulating Expression: The Lac Operon"
     },
     {
       "type": "text",
-      "content": "Not all genes are expressed all the time. Gene expression is tightly controlled within a cell.\n*   **Structural genes** are genes that code for proteins that are involved in the structure or function of a cell (e.g., enzymes, structural components).\n*   **Regulatory genes** are genes that code for regulatory proteins (e.g., repressors, activators). These regulatory proteins control the transcription of other genes, often by binding to specific DNA sequences (like promoters or operators) to either promote or inhibit RNA polymerase binding. This allows cells to respond to environmental changes and specialise in their functions."
+      "content": "Not all genes are expressed all the time. Gene expression is tightly controlled. **Structural genes** code for proteins involved in cell structure or function, while **regulatory genes** code for proteins that control the expression of other genes. A classic example of gene regulation in prokaryotes is the **lac operon** in *E. coli*.\n\nAn **operon** is a cluster of genes under the control of a single promoter. The lac operon contains genes that code for enzymes needed to metabolise lactose. It consists of:\n*   **Promoter**: A DNA sequence where RNA polymerase binds.\n*   **Operator**: A DNA sequence that acts as a switch. A repressor protein can bind here.\n*   **Structural Genes**: `lacZ`, `lacY`, and `lacA`, which code for enzymes involved in lactose breakdown.\n*   **Regulatory Gene** (`lacI`): Located elsewhere, this gene codes for a repressor protein.\n\n**Functioning of the lac operon:**\n1.  **When lactose is absent**: The `lacI` gene is constitutively expressed, producing the lac repressor protein. This repressor protein binds to the operator region. This binding physically blocks RNA polymerase from transcribing the structural genes. The operon is 'switched off'.\n2.  **When lactose is present**: Lactose (or its isomer, allolactose) acts as an **inducer**. It binds to the lac repressor protein, causing a conformational (shape) change. This altered repressor can no longer bind to the operator. With the operator free, RNA polymerase can bind to the promoter and transcribe the structural genes (`lacZ`, `lacY`, `lacA`). The enzymes for lactose metabolism are produced. The operon is 'switched on'."
     },
     {
       "type": "heading",
@@ -90,27 +90,32 @@
     },
     {
       "type": "text",
-      "content": "In eukaryotic cells, DNA is packaged into compact structures called **chromosomes**. A chromosome consists of a long, continuous DNA molecule tightly coiled around proteins called **histones**. These histone proteins are positively charged, allowing them to bind strongly to the negatively charged phosphate groups of DNA. The DNA-histone complex forms repeating units called **nucleosomes**, which are further coiled and folded to create a highly condensed chromosome structure that can fit within the cell nucleus."
+      "content": "In eukaryotic cells, the vast amount of DNA must be packaged into compact structures called **chromosomes** to fit inside the nucleus. A chromosome consists of a long, continuous DNA molecule tightly coiled around basic proteins called **histones**. These histone proteins are positively charged, allowing them to bind strongly to the negatively charged phosphate groups of DNA. The DNA-histone complex forms repeating units called **nucleosomes**, which look like 'beads on a string'. These nucleosomes are further coiled and folded into a more compact structure called chromatin, which is then supercoiled to form the highly condensed chromosome structure visible during cell division."
     },
     {
       "type": "keyPoints",
       "items": [
         "Always define key terms precisely: nucleotide, codon, anticodon, degenerate, phosphodiester bond, hydrogen bond.",
-        "Distinguish clearly between the roles of DNA polymerase (replication) and RNA polymerase (transcription).",
-        "Remember the exact complementary base pairing rules: A-T in DNA (A-U in RNA), G-C in both.",
-        "Outline the sequence of events and key molecules involved in both transcription and translation accurately.",
+        "Distinguish clearly between the roles of DNA polymerase (replication), RNA polymerase (transcription), and DNA ligase (joining Okazaki fragments).",
+        "Remember the exact complementary base pairing rules: A-T in DNA (A-U in RNA), G-C in both, and the number of hydrogen bonds for each.",
+        "Outline the sequence of events and key molecules involved in both transcription (including splicing) and translation (including ribosome sites).",
         "Explain *why* the genetic code is degenerate (buffer against mutations) and universal (evidence for common ancestry).",
-        "For P4, questions often involve interpreting diagrams of DNA/protein synthesis or explaining experimental evidence for semi-conservative replication."
+        "Be prepared to explain the lac operon as a model for gene regulation in prokaryotes."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A segment of a DNA template strand has the sequence 3'-T A C G T T A C G A C G-5'.\n(a) State the sequence of the mRNA molecule transcribed from this DNA segment.\n(b) Identify the sequence of amino acids coded for by this mRNA, assuming a standard genetic code (e.g., AUG = Methionine, CAA = Glutamine, UGC = Cysteine).\n(c) Explain why the genetic code is described as degenerate.",
-      "solution": "(a) During transcription, mRNA is synthesised complementary to the template DNA strand. Remember that Thymine (T) in DNA is replaced by Uracil (U) in mRNA.\n    Template DNA:    3'-T A C G T T A C G A C G-5'\n    Complementary mRNA: 5'-A U G C A A U G C U G C-3'\n\n(b) Using the mRNA sequence 5'-A U G C A A U G C U G C-3' and a standard genetic code:\n    AUG corresponds to Methionine (Met)\n    CAA corresponds to Glutamine (Gln)\n    UGC corresponds to Cysteine (Cys)\n    UGC corresponds to Cysteine (Cys)\n    Therefore, the amino acid sequence is: Met-Gln-Cys-Cys\n\n(c) The genetic code is described as degenerate because most amino acids can be specified by more than one codon. For instance, in this example, both UGC and UGU (if present) would code for Cysteine. This redundancy provides a protective mechanism, as a point mutation changing one base might still result in the same amino acid being incorporated, thus reducing the potential for harmful effects on the protein's function."
+      "question": "A segment of a DNA template strand has the sequence 3'-T A C G T T A C G A C G-5'.\n(a) State the sequence of the mRNA molecule transcribed from this DNA segment.\n(b) Identify the sequence of amino acids coded for by this mRNA, using a genetic code table where AUG = Methionine, CAA = Glutamine, UGC = Cysteine.\n(c) Explain why the genetic code is described as degenerate.",
+      "solution": "(a) During transcription, mRNA is synthesised complementary to the template DNA strand. Remember that Thymine (T) in DNA is replaced by Uracil (U) in mRNA.\n    Template DNA:    3'-T A C G T T A C G A C G-5'\n    Complementary mRNA: 5'-A U G C A A U G C U G C-3'\n\n(b) Using the mRNA sequence 5'-A U G C A A U G C U G C-3' and the provided genetic code:\n    The mRNA is read in codons (groups of three):\n    Codon 1: AUG -> Methionine (Met)\n    Codon 2: CAA -> Glutamine (Gln)\n    Codon 3: UGC -> Cysteine (Cys)\n    Codon 4: UGC -> Cysteine (Cys)\n    Therefore, the amino acid sequence is: Met-Gln-Cys-Cys\n\n(c) The genetic code is described as degenerate because most amino acids can be specified by more than one codon. For instance, while UGC codes for Cysteine, the codon UGU also codes for Cysteine. This redundancy provides a protective mechanism, as a point mutation changing one base (e.g., from UGC to UGU) might still result in the same amino acid being incorporated, thus having no effect on the protein's function."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sample of double-stranded DNA was analysed and found to contain 22% guanine.\n(a) Calculate the percentage of adenine in this DNA sample.\n(b) If this DNA molecule is 5,000 base pairs long, calculate the total number of hydrogen bonds holding the two strands together.",
+      "solution": "(a) **Step 1: Use complementary base pairing rules.**\nIn double-stranded DNA, the amount of guanine (G) equals the amount of cytosine (C), and the amount of adenine (A) equals the amount of thymine (T).\nGiven: %G = 22%\nTherefore, %C = 22%\n\n**Step 2: Calculate the total percentage of G and C.**\nTotal % (G + C) = 22% + 22% = 44%\n\n**Step 3: Calculate the remaining percentage for A and T.**\nThe total percentage of all bases is 100%.\nTotal % (A + T) = 100% - % (G + C) = 100% - 44% = 56%\n\n**Step 4: Calculate the percentage of adenine.**\nSince %A = %T, we divide the remaining percentage by 2.\n%A = 56% / 2 = 28%\n**Answer (a): The percentage of adenine is 28%.**\n\n(b) **Step 1: Calculate the number of each type of base pair.**\nTotal base pairs = 5,000\nNumber of G-C pairs = % (G + C) of total pairs = 0.44 × 5,000 = 2,200 pairs\nNumber of A-T pairs = % (A + T) of total pairs = 0.56 × 5,000 = 2,800 pairs\n(Check: 2,200 + 2,800 = 5,000)\n\n**Step 2: Calculate the number of hydrogen bonds for each type of pair.**\nEach G-C pair is joined by 3 hydrogen bonds.\nEach A-T pair is joined by 2 hydrogen bonds.\n\n**Step 3: Calculate the total number of hydrogen bonds.**\nTotal H-bonds = (Number of G-C pairs × 3) + (Number of A-T pairs × 2)\nTotal H-bonds = (2,200 × 3) + (2,800 × 2)\nTotal H-bonds = 6,600 + 5,600 = 12,200\n**Answer (b): The total number of hydrogen bonds is 12,200.**"
     },
     {
       "type": "examTip",
-      "content": "When describing DNA replication or protein synthesis, remember to use specific enzyme names (e.g., DNA helicase, DNA polymerase, RNA polymerase) and describe their precise functions. Clarity on base pairing rules (A-T/U, G-C) is also paramount, and ensure you specify the directionality (5' to 3' or 3' to 5') of strands when relevant."
+      "content": "When describing DNA replication or protein synthesis, remember to use specific enzyme names (e.g., DNA helicase, DNA polymerase, RNA polymerase, DNA ligase) and describe their precise functions. Clarity on base pairing rules (A-T/U, G-C) is also paramount, and ensure you specify the directionality (5' to 3' or 3' to 5') of strands when relevant."
     },
     {
       "type": "practice",
@@ -135,6 +140,14 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Describe the intricate structure of DNA and explain its semi-conservative replication, including the roles of the leading and lagging strands.",
+    "Outline the processes of transcription, including post-transcriptional modification in eukaryotes, and translation in protein synthesis.",
+    "Discuss the characteristics of the genetic code and explain the principles of gene regulation using the lac operon as an example."
+  ],
+  "simpleExplanation": {
+    "analogy": "Think of DNA as a master cookbook filled with countless recipes (genes). When a cell needs a specific dish (protein), it makes a working copy of that recipe (mRNA) and sends it to the kitchen (ribosome), where chefs (tRNA) bring the right ingredients (amino acids) to assemble the meal. In eukaryotes, the recipe copy (pre-mRNA) is first edited to remove non-essential notes (introns) before being sent to the kitchen."
+  },
   "faq": [
     {
       "q": "What is the main role of DNA in inheritance?",
@@ -142,22 +155,69 @@
     },
     {
       "q": "How is DNA replicated accurately?",
-      "a": "DNA replication occurs semi-conservatively, meaning each new DNA molecule consists of one original (template) strand and one newly synthesised strand. Enzymes like DNA helicase unwind the double helix, and DNA polymerase adds complementary nucleotides to each separated strand, ensuring high fidelity in copying the genetic information."
+      "a": "DNA replication occurs semi-conservatively, meaning each new DNA molecule consists of one original (template) strand and one newly synthesised strand. Enzymes like DNA helicase unwind the double helix, and DNA polymerase adds complementary nucleotides to each separated strand, ensuring high fidelity in copying the genetic information. The process involves continuous synthesis on the leading strand and discontinuous synthesis (via Okazaki fragments and DNA ligase) on the lagging strand."
     },
     {
       "q": "What are the key differences between transcription and translation?",
-      "a": "Transcription is the process where a gene's DNA sequence is copied into an RNA molecule (mRNA) in the nucleus of eukaryotic cells. Translation is the process where the mRNA sequence is used to synthesise a protein on ribosomes in the cytoplasm. Essentially, transcription makes RNA from a DNA template, while translation uses that RNA template to make a polypeptide chain (protein)."
+      "a": "Transcription is the process where a gene's DNA sequence is copied into an RNA molecule (mRNA) in the nucleus of eukaryotic cells. This is followed by post-transcriptional modification (splicing, capping, tailing). Translation is the process where the mature mRNA sequence is used to synthesise a protein on ribosomes in the cytoplasm. Essentially, transcription makes RNA from a DNA template, while translation uses that RNA template to make a polypeptide chain (protein)."
+    },
+    {
+      "q": "What is the lac operon and why is it important?",
+      "a": "The lac operon is a classic example of gene regulation in prokaryotes like E. coli. It's a cluster of genes responsible for lactose metabolism that can be switched on or off depending on the presence of lactose. It demonstrates how cells can efficiently control gene expression to produce proteins only when they are needed, conserving energy and resources."
     }
   ],
-  "updated": "2026-06-05",
+  "flashcards": [
+    {
+      "front": "What are the three components of a DNA nucleotide?",
+      "back": "A deoxyribose sugar, a phosphate group, and one of four nitrogenous bases (Adenine, Thymine, Cytosine, or Guanine)."
+    },
+    {
+      "front": "What is meant by 'semi-conservative replication'?",
+      "back": "The process where each new DNA molecule produced consists of one original (parental) strand and one newly synthesised strand."
+    },
+    {
+      "front": "What is the role of DNA polymerase?",
+      "back": "It catalyses the formation of phosphodiester bonds between new nucleotides during DNA replication, synthesising the new strand in a 5' to 3' direction."
+    },
+    {
+      "front": "What is the role of RNA polymerase?",
+      "back": "It binds to a gene's promoter and synthesises a complementary mRNA molecule from the DNA template strand during transcription."
+    },
+    {
+      "front": "What is a codon?",
+      "back": "A sequence of three consecutive bases on an mRNA molecule that codes for a specific amino acid or a stop signal during translation."
+    },
+    {
+      "front": "State the three main features of the genetic code.",
+      "back": "It is degenerate (redundant), non-overlapping, and universal across almost all living organisms."
+    },
+    {
+      "front": "What is the difference between an intron and an exon?",
+      "back": "Introns are non-coding sequences within a eukaryotic gene that are removed from pre-mRNA during splicing. Exons are the coding sequences that are joined together to form the mature mRNA."
+    },
+    {
+      "front": "What is the function of tRNA (transfer RNA)?",
+      "back": "To carry a specific amino acid to the ribosome and match its three-base anticodon with the complementary codon on the mRNA molecule during translation."
+    }
+  ],
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "16.1.1",
+    "16.1.2",
+    "16.1.3",
+    "16.1.4",
+    "16.1.5",
+    "16.1.6",
+    "16.1.7"
+  ],
   "generatorVersion": "alnotes-published-2",
   "diagram": {
     "src": "/courses/diagrams/9700/alnotes/16-1-passage-of-information-from-parents-to-offspring/page-01.png",
     "alt": "A-Level Notes reference diagram for 16.1 Passage of information from parents to offspring"
   },
+  "updated": "2026-06-05",
   "referenceDiagrams": [
     {
       "src": "/courses/diagrams/9700/alnotes/16-1-passage-of-information-from-parents-to-offspring/page-01.png",

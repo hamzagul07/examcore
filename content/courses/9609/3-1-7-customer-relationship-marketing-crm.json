@@ -7,77 +7,6 @@
   "status": "premium",
   "summary": "9609 AS — CRM purpose, databases, loyalty, personalisation, and retention vs acquisition.",
   "durationMin": 22,
-  "updated": "2026-06-18",
-  "learningObjectives": [
-    "Explain the purpose of customer relationship marketing.",
-    "Describe how CRM databases and software are used.",
-    "Analyse loyalty programmes and personalised marketing.",
-    "Evaluate benefits and risks of CRM."
-  ],
-  "simpleExplanation": {
-    "title": "Keeping customers, not just finding them",
-    "summary": "CRM focuses on long-term relationships — using data to retain customers, increase lifetime value, and personalise offers.",
-    "steps": [
-      "Database stores purchase and contact history.",
-      "Personalised offers increase retention.",
-      "Loyalty cards reward repeat purchases.",
-      "CRM software integrates sales, marketing, and service."
-    ]
-  },
-  "flashcards": [
-    {
-      "front": "CRM purpose?",
-      "back": "Build long-term profitable relationships — retention cheaper than acquisition."
-    },
-    {
-      "front": "Customer lifetime value (CLV)?",
-      "back": "Total profit expected from a customer over entire relationship."
-    },
-    {
-      "front": "CRM database uses?",
-      "back": "Track purchases, preferences, complaints; segment for targeted campaigns."
-    },
-    {
-      "front": "Loyalty scheme benefit?",
-      "back": "Encourages repeat purchase; collects data; increases switching costs."
-    },
-    {
-      "front": "Personalisation example?",
-      "back": "Email with recommended products based on past orders."
-    },
-    {
-      "front": "CRM + B2B?",
-      "back": "Key account management; track contracts, meetings, support tickets."
-    },
-    {
-      "front": "CRM risks?",
-      "back": "Data privacy (GDPR), high IT cost, poor data quality, annoying spam."
-    },
-    {
-      "front": "Link to 3.1.1?",
-      "back": "CRM implements market orientation — responding to individual customer needs."
-    },
-    {
-      "front": "What is Customer Relationship Marketing (CRM)?",
-      "back": "A marketing strategy focused on building and maintaining long-term, profitable relationships with customers, using data to personalise communication and increase loyalty."
-    },
-    {
-      "front": "Define 'customer retention'.",
-      "back": "The activities and strategies a business uses to reduce the number of customer defections (churn). The goal is to keep as high a percentage of its existing customers as possible."
-    },
-    {
-      "front": "What is 'personalisation' in the context of CRM?",
-      "back": "The process of tailoring marketing communications, product recommendations, and offers to the specific needs and preferences of an individual customer, based on data collected about them."
-    },
-    {
-      "front": "What is 'data mining' in CRM?",
-      "back": "The process of analysing large databases to find patterns, correlations, and trends in customer behaviour. This helps businesses to predict future actions and make informed marketing decisions."
-    },
-    {
-      "front": "Why is customer retention often more profitable than customer acquisition?",
-      "back": "Because the costs of marketing and sales to an existing customer are much lower. Loyal customers also tend to spend more, are less price-sensitive, and provide free word-of-mouth promotion."
-    }
-  ],
   "sections": [
     {
       "type": "intro",
@@ -178,6 +107,11 @@
       "solution": "**Benefit 1 — Retention:** Personalised coupons on **frequently bought items** increase repeat visits vs rivals.\n\n**Benefit 2 — Data:** Purchase data reveals **basket trends** for own-label development and **store layout** — informs marketing and operations.\n\n**Risk — Privacy:** Customers may distrust **data collection**; breach or misuse damages brand; must comply with **data protection** laws and offer opt-out."
     },
     {
+      "type": "workedExample",
+      "question": "A subscription-based streaming service, 'StreamFlix', uses its CRM data to analyse two key customer segments. Calculate the simple Customer Lifetime Value (CLV) for a customer in each segment and briefly explain the strategic implication.\n\n**Data:**\n- **Segment A (Standard Plan):**\n  - Monthly fee: $12\n  - Average customer lifespan: 20 months\n  - Monthly cost to serve (support, server usage): $3\n- **Segment B (Premium Plan):**\n  - Monthly fee: $20\n  - Average customer lifespan: 36 months\n  - Monthly cost to serve (support, server usage): $4",
+      "solution": "**Formula:**\nA simple Customer Lifetime Value (CLV) is calculated as:\n$$ CLV = (\\text{Average Revenue per Customer} - \\text{Average Cost per Customer}) \\times \\text{Average Customer Lifespan} $$\nThis can be simplified to:\n$$ CLV = \\text{Contribution per Customer} \\times \\text{Lifespan} $$\n\n**Step 1: Calculate the monthly contribution for a Segment A customer.**\nContribution = Monthly Fee - Monthly Cost\nContribution (A) = $12 - $3 = $9 per month\n\n**Step 2: Calculate the CLV for a Segment A customer.**\nCLV (A) = Contribution per month × Lifespan in months\nCLV (A) = $9 × 20 = $180\n\n**Step 3: Calculate the monthly contribution for a Segment B customer.**\nContribution = Monthly Fee - Monthly Cost\nContribution (B) = $20 - $4 = $16 per month\n\n**Step 4: Calculate the CLV for a Segment B customer.**\nCLV (B) = Contribution per month × Lifespan in months\nCLV (B) = $16 × 36 = $576\n\n**Final Answer and Strategic Implication:**\n- **CLV for Segment A:** $180\n- **CLV for Segment B:** $576\n\n**Explanation:** The CLV of a Premium Plan customer ($576) is more than three times that of a Standard Plan customer ($180). This quantitative analysis shows that StreamFlix should prioritise its CRM efforts on retaining Segment B customers. Strategies could include offering exclusive content, better streaming quality, or personalised loyalty rewards to reduce churn in this highly profitable segment. It might also inform a strategy to encourage Segment A customers to upgrade to the Premium Plan."
+    },
+    {
       "type": "practice",
       "label": "Mark a CRM question",
       "href": "/mark?subject=9609&topic=3.1.7"
@@ -200,6 +134,13 @@
       ]
     }
   ],
+  "learningObjectives": [
+    "Explain the purpose of customer relationship marketing.",
+    "Describe how CRM databases and software are used.",
+    "Analyse loyalty programmes and personalised marketing.",
+    "Evaluate benefits and risks of CRM."
+  ],
+  "simpleExplanation": {},
   "faq": [
     {
       "q": "Is CRM just a type of software that businesses buy?",
@@ -214,6 +155,67 @@
       "a": "No. While large corporations use complex and expensive CRM systems, the principles of CRM are scalable. A small local business, like a café, can practise CRM by remembering a regular's name and coffee order, or by using a simple email marketing tool to send occasional special offers to its customer list. The focus on building relationships is universal."
     }
   ],
+  "flashcards": [
+    {
+      "front": "CRM purpose?",
+      "back": "Build long-term profitable relationships — retention cheaper than acquisition."
+    },
+    {
+      "front": "Customer lifetime value (CLV)?",
+      "back": "Total profit expected from a customer over entire relationship."
+    },
+    {
+      "front": "CRM database uses?",
+      "back": "Track purchases, preferences, complaints; segment for targeted campaigns."
+    },
+    {
+      "front": "Loyalty scheme benefit?",
+      "back": "Encourages repeat purchase; collects data; increases switching costs."
+    },
+    {
+      "front": "Personalisation example?",
+      "back": "Email with recommended products based on past orders."
+    },
+    {
+      "front": "CRM + B2B?",
+      "back": "Key account management; track contracts, meetings, support tickets."
+    },
+    {
+      "front": "CRM risks?",
+      "back": "Data privacy (GDPR), high IT cost, poor data quality, annoying spam."
+    },
+    {
+      "front": "Link to 3.1.1?",
+      "back": "CRM implements market orientation — responding to individual customer needs."
+    },
+    {
+      "front": "What is Customer Relationship Marketing (CRM)?",
+      "back": "A marketing strategy focused on building and maintaining long-term, profitable relationships with customers, using data to personalise communication and increase loyalty."
+    },
+    {
+      "front": "Define 'customer retention'.",
+      "back": "The activities and strategies a business uses to reduce the number of customer defections (churn). The goal is to keep as high a percentage of its existing customers as possible."
+    },
+    {
+      "front": "What is 'personalisation' in the context of CRM?",
+      "back": "The process of tailoring marketing communications, product recommendations, and offers to the specific needs and preferences of an individual customer, based on data collected about them."
+    },
+    {
+      "front": "What is 'data mining' in CRM?",
+      "back": "The process of analysing large databases to find patterns, correlations, and trends in customer behaviour. This helps businesses to predict future actions and make informed marketing decisions."
+    },
+    {
+      "front": "Why is customer retention often more profitable than customer acquisition?",
+      "back": "Because the costs of marketing and sales to an existing customer are much lower. Loyal customers also tend to spend more, are less price-sensitive, and provide free word-of-mouth promotion."
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "3.1.7"
+  ],
+  "updated": "2026-06-18",
   "comparisonTable": {
     "caption": "Comparison of Customer Acquisition and Customer Retention",
     "columns": [

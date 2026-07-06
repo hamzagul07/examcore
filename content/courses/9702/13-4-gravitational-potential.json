@@ -6,23 +6,160 @@
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
   "summary": "Cambridge 9702 Paper 4 — Gravitational potential (13.4). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
-  "durationMin": 20,
+  "durationMin": 25,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fascinating world of **gravitational potential**! This concept is crucial for understanding how energy behaves within gravitational fields. We'll explore what it means for a point in space to have a 'potential' and how this relates to the **work done** when moving masses. Prepare to think about energy in a whole new, often negative, way! This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **13.4**."
+    },
+    {
+      "type": "heading",
+      "content": "What is Gravitational Potential (\\phi)?"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational potential, symbolised by \\phi (phi), tells us the work an external force must perform to bring a unit mass (a 1 kg mass) from an infinitely far point (where gravity's influence is zero) to a specific location within a gravitational field. It’s a scalar quantity, meaning it only has magnitude, not direction, and is measured in Joules per kilogram (J kg^-1)."
+    },
+    {
+      "type": "heading",
+      "content": "The Formula for Gravitational Potential"
+    },
+    {
+      "type": "formula",
+      "content": "$\\phi = -\\frac{GM}{r}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "G is the Universal Gravitational Constant (6.67 x 10^-11 N m^2 kg^-2).",
+        "M is the mass of the body creating the gravitational field (e.g., a planet).",
+        "r is the distance from the centre of the mass M to the point in question.",
+        "The negative sign is crucial: it signifies that the potential is defined as zero at infinity, and energy is released as a mass is brought closer.",
+        "For a uniform spherical body, M can be treated as a point mass at its centre for any point outside the sphere."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Why is Potential Negative?"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational forces are always attractive. As a mass moves from infinity towards a gravitating body, the field itself does work, releasing energy. Since gravitational potential is defined as the *work done by an external agent* to bring a unit mass from infinity, and energy is released, this work is negative. Hence, potential is always negative at any finite distance from a source mass."
+    },
+    {
+      "type": "heading",
+      "content": "Equipotential Surfaces"
+    },
+    {
+      "type": "text",
+      "content": "An equipotential surface is a surface on which the gravitational potential (\\phi) is constant at every point. For an isolated point mass or a spherical body, these surfaces are concentric spheres. A key property is that no work is done in moving a mass along an equipotential surface, because the change in potential energy (mΔ\\phi) is zero."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Equipotential surfaces are always perpendicular to gravitational field lines.",
+        "The spacing between equipotential surfaces indicates the strength of the field. Closer surfaces mean a stronger field and a steeper potential gradient."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Relationship with Gravitational Field Strength (g)"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational field strength (g) and gravitational potential (\\phi) are intimately related. The field strength is the negative of the potential gradient. This means the field strength at a point is equal to how steeply the potential changes with distance at that point."
+    },
+    {
+      "type": "formula",
+      "content": "$g = -\\frac{\\Delta\\phi}{\\Delta r}$"
+    },
+    {
+      "type": "text",
+      "content": "This relationship is analogous to a topographical map: the gravitational field strength 'g' is like the steepness of a hill, while the gravitational potential 'φ' is like the altitude. A steep hill (large 'g') corresponds to rapidly changing altitude (large potential gradient)."
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Potential Energy (E\\_p)"
+    },
+    {
+      "type": "text",
+      "content": "While gravitational potential (\\phi) is for a unit mass, gravitational potential energy (E\\_p) is the total energy an object of mass 'm' possesses due to its position in a gravitational field. It's the total work an external agent must do to bring *that specific mass 'm'* from infinity to its current location."
+    },
+    {
+      "type": "formula",
+      "content": "$E_p = -\\frac{GMm}{r}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "'m' is the mass whose potential energy is being calculated.",
+        "Alternatively, E\\_p can be calculated as E\\_p = m\\phi.",
+        "Units for E\\_p are Joules (J).",
+        "E\\_p is also negative, reflecting the 'bound' state of the mass.",
+        "The energy required to 'escape' a field to infinity is -E\\_p."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the gravitational potential and gravitational potential energy of a 2.5 kg satellite orbiting Earth at an altitude of 600 km. (Earth's mass M = 5.97 \\times 10^{24} kg, Earth's radius R = 6.37 \\times 10^6 m, G = 6.67 \\times 10^{-11} N m^2 kg^{-2})",
+      "solution": "1. First, calculate the radial distance 'r' from Earth's centre:\nr = R + altitude = 6.37 \\times 10^6 m + 600 \\times 10^3 m = 6.97 \\times 10^6 m.\n\n2. Next, calculate the gravitational potential (\\phi):\n\\phi = -\\frac{GM}{r} = -\\frac{(6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}) \\times (5.97 \\times 10^{24} \\text{ kg})}{6.97 \\times 10^6 \\text{ m}}.\n\n3. \\phi = -5.71 \\times 10^7 \\text{ J kg}^{-1} (to 3 s.f.).\n\n4. Finally, calculate the gravitational potential energy (E\\_p) of the satellite:\nE\\_p = m\\phi = (2.5 \\text{ kg}) \\times (-5.71 \\times 10^7 \\text{ J kg}^{-1}).\n\n5. E\\_p = -1.43 \\times 10^8 \\text{ J (to 3 s.f.).}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A satellite of mass 1200 kg is in a circular orbit at an altitude of 500 km above the Earth's surface. It is then moved to a higher geostationary orbit at an altitude of 35,786 km. Calculate the work done to move the satellite to the higher orbit. (Earth's mass M = 5.97 x 10^24 kg, Earth's radius R = 6.37 x 10^6 m, G = 6.67 x 10^-11 N m^2 kg^-2)",
+      "solution": "The work done on the satellite is equal to the change in its gravitational potential energy (ΔE_p).\n\n1. Calculate the initial radial distance (r_1):\nr_1 = Earth's radius + initial altitude\nr_1 = (6.37 × 10^6 m) + (500 × 10^3 m) = 6.87 × 10^6 m.\n\n2. Calculate the final radial distance (r_2):\nr_2 = Earth's radius + final altitude\nr_2 = (6.37 × 10^6 m) + (35,786 × 10^3 m) = 4.2156 × 10^7 m.\n\n3. Calculate the initial gravitational potential energy (E_p1):\nE_p1 = -GMm / r_1\nE_p1 = - (6.67 × 10^-11 × 5.97 × 10^24 × 1200) / (6.87 × 10^6)\nE_p1 = -6.958 × 10^10 J.\n\n4. Calculate the final gravitational potential energy (E_p2):\nE_p2 = -GMm / r_2\nE_p2 = - (6.67 × 10^-11 × 5.97 × 10^24 × 1200) / (4.2156 × 10^7)\nE_p2 = -1.132 × 10^10 J.\n\n5. Calculate the work done (change in GPE):\nWork Done = ΔE_p = E_p2 - E_p1\nWork Done = (-1.132 × 10^10 J) - (-6.958 × 10^10 J)\nWork Done = 5.826 × 10^10 J.\n\nThe work done to move the satellite to the higher orbit is 5.83 × 10^10 J (to 3 s.f.). Note that this does not include the change in kinetic energy required for the orbit."
+    },
+    {
+      "type": "examTip",
+      "content": "Always remember the negative sign in the gravitational potential and potential energy formulas! Forgetting it is a common mistake and will cost you marks. Also, ensure 'r' is the distance from the *centre* of the mass, not just its surface or the altitude."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=13.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
   "learningObjectives": [
     "Define gravitational potential and gravitational potential energy.",
     "Explain why gravitational potential is always negative.",
-    "Apply relevant formulas to calculate gravitational potential and potential energy."
+    "Apply relevant formulas to calculate gravitational potential and potential energy.",
+    "Understand and describe equipotential surfaces.",
+    "Relate gravitational potential to gravitational field strength."
   ],
   "simpleExplanation": {
-    "title": "Gravitational Potential: Energy in Space",
-    "summary": "Imagine lifting an object against Earth's gravity – that takes energy. Gravitational potential describes how much 'potential' energy a unit mass would have at a certain point in a gravitational field, relative to being infinitely far away where it has zero potential.",
-    "analogy": "Think of it like a 'gravitational height map' for mass. The deeper you are in a valley (closer to a planet), the more negative your 'height' or potential is. Moving up to sea level (infinity) requires energy, just as climbing out of a valley does.",
-    "steps": [
-      "Start at 'infinity' where gravitational influence is considered zero.",
-      "Consider the work done to bring a small unit mass to a specific point.",
-      "Divide this work by the mass to get the gravitational potential at that point.",
-      "Remember that attractive forces mean this work by an external agent is negative."
-    ]
+    "analogy": "Think of it like a 'gravitational height map' for mass. The deeper you are in a valley (closer to a planet), the more negative your 'height' or potential is. Moving up to sea level (infinity) requires energy, just as climbing out of a valley does."
   },
+  "faq": [
+    {
+      "q": "What is the difference between gravitational field strength and gravitational potential?",
+      "a": "Gravitational field strength is a vector quantity (force per unit mass) representing the force experienced by a mass at a point. Gravitational potential is a scalar quantity (work done per unit mass) representing the potential energy a unit mass would have at that point. Field strength is the negative gradient of the potential (g = -Δφ/Δr)."
+    },
+    {
+      "q": "Why is gravitational potential defined at infinity as zero?",
+      "a": "Defining potential as zero at infinity provides a convenient and universal reference point. It means any work done to move a mass from infinity to a finite point can be measured relative to a known zero, simplifying calculations and comparisons."
+    },
+    {
+      "q": "What is the significance of the negative sign in the gravitational potential energy formula?",
+      "a": "The negative sign indicates that a mass is 'bound' within the gravitational field. Energy must be supplied (positive work done by an external agent) to move the mass away from the central body and out to infinity, where its potential energy would become zero."
+    }
+  ],
   "flashcards": [
     {
       "front": "Define gravitational potential.",
@@ -63,123 +200,40 @@
     {
       "front": "How are uniform spherical masses treated for external potential calculations?",
       "back": "Their entire mass 'M' can be considered concentrated as a point mass at their geometric centre."
+    },
+    {
+      "front": "What is an equipotential surface?",
+      "back": "A surface in space where the gravitational potential is the same at all points. No work is done when moving a mass along an equipotential surface."
+    },
+    {
+      "front": "How are gravitational field strength (g) and gravitational potential (\\phi) related?",
+      "back": "Gravitational field strength is the negative gradient of the gravitational potential. Mathematically, g = -Δφ/Δr. It represents the steepness of the potential gradient."
+    },
+    {
+      "front": "What is the work done to move a mass between two points in a gravitational field?",
+      "back": "The work done is equal to the change in the mass's gravitational potential energy, W = ΔE_p = mΔφ = m(φ_final - φ_initial)."
+    },
+    {
+      "front": "Why does moving to a higher orbit require energy, even though the final GPE is 'less negative'?",
+      "back": "Moving to a higher orbit increases the GPE (it becomes less negative, i.e., closer to zero). This increase in potential energy must be supplied by doing positive work on the object, for example, by firing its rocket engines."
+    },
+    {
+      "front": "What is the distinction between GPE = mgh and E_p = -GMm/r?",
+      "back": "GPE = mgh is an approximation for the change in potential energy in a uniform gravitational field near a planet's surface. E_p = -GMm/r is the general formula for potential energy in a radial field, valid at any distance 'r' from the centre of mass M."
     }
   ],
-  "sections": [
-    {
-      "type": "intro",
-      "content": "Welcome to the fascinating world of **gravitational potential**! This concept is crucial for understanding how energy behaves within gravitational fields. We'll explore what it means for a point in space to have a 'potential' and how this relates to the **work done** when moving masses. Prepare to think about energy in a whole new, often negative, way! This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **13.4**."
-    },
-    {
-      "type": "heading",
-      "content": "What is Gravitational Potential (\\phi)?"
-    },
-    {
-      "type": "text",
-      "content": "Gravitational potential, symbolised by \\phi (phi), tells us the work an external force must perform to bring a unit mass (a 1 kg mass) from an infinitely far point (where gravity's influence is zero) to a specific location within a gravitational field. It’s a scalar quantity, meaning it only has magnitude, not direction, and is measured in Joules per kilogram (J kg^-1)."
-    },
-    {
-      "type": "heading",
-      "content": "The Formula for Gravitational Potential"
-    },
-    {
-      "type": "formula",
-      "content": "$\\phi = -\\frac{GM}{r}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "13.4 Gravitational potential.",
-        "Recall that gravitational potential energy (GPE) is given by GPE = mgh.",
-        "It is defined as the energy an object possess due to its position in a gravitational field.",
-        "We can replace the height (h) with the distance from the center of the earth (r) and mass (m) with the mass of the object above the earth (m 2 ) GPE = m 2 gr.",
-        "Gravitational potential ( ɸ ) is defined work done per unit mass in bringing a test mass from infinity to a defined point.",
-        "So basically, gravitational potential ( ɸ ) is just GPE per kg -1 (GPE/mass)!."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Why is Potential Negative?"
-    },
-    {
-      "type": "text",
-      "content": "Gravitational forces are always attractive. As a mass moves from infinity towards a gravitating body, the field itself does work, releasing energy. Since gravitational potential is defined as the *work done by an external agent* to bring a unit mass from infinity, and energy is released, this work is negative. Hence, potential is always negative at any finite distance from a source mass."
-    },
-    {
-      "type": "heading",
-      "content": "Gravitational Potential Energy (E\\_p)"
-    },
-    {
-      "type": "text",
-      "content": "While gravitational potential (\\phi) is for a unit mass, gravitational potential energy (E\\_p) is the total energy an object of mass 'm' possesses due to its position in a gravitational field. It's the total work an external agent must do to bring *that specific mass 'm'* from infinity to its current location."
-    },
-    {
-      "type": "formula",
-      "content": "$E_p = -\\frac{GMm}{r}$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "'m' is the mass whose potential energy is being calculated.",
-        "Alternatively, E\\_p can be calculated as E\\_p = m\\phi.",
-        "Units for E\\_p are Joules (J).",
-        "E\\_p is also negative, reflecting the 'bound' state of the mass.",
-        "The energy required to 'escape' a field to infinity is -E\\_p."
-      ]
-    },
-    {
-      "type": "workedExample",
-      "question": "Calculate the gravitational potential and gravitational potential energy of a 2.5 kg satellite orbiting Earth at an altitude of 600 km. (Earth's mass M = 5.97 \\times 10^{24} kg, Earth's radius R = 6.37 \\times 10^6 m, G = 6.67 \\times 10^{-11} N m^2 kg^{-2})",
-      "solution": "1. First, calculate the radial distance 'r' from Earth's centre:\nr = R + altitude = 6.37 \\times 10^6 m + 600 \\times 10^3 m = 6.97 \\times 10^6 m.\n\n2. Next, calculate the gravitational potential (\\phi):\n\\phi = -\\frac{GM}{r} = -\\frac{(6.67 \\times 10^{-11} \\text{ N m}^2 \\text{kg}^{-2}) \\times (5.97 \\times 10^{24} \\text{ kg})}{6.97 \\times 10^6 \\text{ m}}.\n\n3. \\phi = -5.71 \\times 10^7 \\text{ J kg}^{-1} (to 3 s.f.).\n\n4. Finally, calculate the gravitational potential energy (E\\_p) of the satellite:\nE\\_p = m\\phi = (2.5 \\text{ kg}) \\times (-5.71 \\times 10^7 \\text{ J kg}^{-1}).\n\n5. E\\_p = -1.43 \\times 10^8 \\text{ J (to 3 s.f.).}"
-    },
-    {
-      "type": "examTip",
-      "content": "Always remember the negative sign in the gravitational potential and potential energy formulas! Forgetting it is a common mistake and will cost you marks. Also, ensure 'r' is the distance from the *centre* of the mass, not just its surface or the altitude."
-    },
-    {
-      "type": "practice",
-      "label": "Mark a past-paper question on this topic",
-      "href": "/mark?subject=9702&topic=13.4"
-    },
-    {
-      "type": "resources",
-      "items": [
-        {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
-        }
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "What is the difference between gravitational field strength and gravitational potential?",
-      "a": "Gravitational field strength is a vector quantity (force per unit mass) representing the force experienced by a mass at a point. Gravitational potential is a scalar quantity (work done per unit mass) representing the potential energy a unit mass would have at that point."
-    },
-    {
-      "q": "Why is gravitational potential defined at infinity as zero?",
-      "a": "Defining potential as zero at infinity provides a convenient and universal reference point. It means any work done to move a mass from infinity to a finite point can be measured relative to a known zero, simplifying calculations and comparisons."
-    },
-    {
-      "q": "What is the significance of the negative sign in the gravitational potential energy formula?",
-      "a": "The negative sign indicates that a mass is 'bound' within the gravitational field. Energy must be supplied (positive work done by an external agent) to move the mass away from the central body and out to infinity, where its potential energy would become zero."
-    }
-  ],
-  "updated": "2026-06-26",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "13.4.1",
+    "13.4.2",
+    "13.4.3"
+  ],
   "generatorVersion": "senpai-published-1",
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/13-4-gravitational-potential.png",
     "alt": "Senpai Corner reference diagram for 13.4 Gravitational potential"
-  }
+  },
+  "updated": "2026-06-26"
 }

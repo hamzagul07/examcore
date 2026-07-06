@@ -19,6 +19,8 @@ const IB_EDITORIAL_SLUGS = new Set([
   'ib-extended-essay-complete-guide',
   'ib-cas-complete-guide',
   'ib-how-to-build-a-grade-7-buffer-2026',
+  'ib-results-day-2026-what-to-expect',
+  'ib-grade-boundaries-explained',
 ])
 
 export function blogSitemapPriority(slug: string): number {

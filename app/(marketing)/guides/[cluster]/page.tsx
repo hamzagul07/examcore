@@ -17,6 +17,7 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { GradeBoundaryHubPanel } from '@/components/seo/GradeBoundaryHubPanel'
+import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
 import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
@@ -154,6 +155,12 @@ export default async function ClusterGuidePage({ params }: Props) {
             <Link href="/blog/cambridge-command-words-explained" className="ec-btn-ghost ec-btn-ghost--sm">
               Full guide
             </Link>
+          </div>
+        )}
+
+        {isIb && (
+          <div className="mb-10">
+            <IbResultsSpotlight />
           </div>
         )}
 

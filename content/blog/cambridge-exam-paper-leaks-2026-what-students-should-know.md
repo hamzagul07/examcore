@@ -4,7 +4,6 @@ description: Rumours of leaked Cambridge papers circulate every season. Here is 
 date: 2026-06-01
 category: editorial
 featured: true
-spotlight: true
 keywords: Cambridge exam leaks 2026, exam malpractice, Cambridge integrity, leaked papers, May June exams
 author: hamza-gul
 ---

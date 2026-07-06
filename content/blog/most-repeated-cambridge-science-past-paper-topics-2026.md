@@ -150,6 +150,14 @@ AS papers emphasise foundations (cells, mechanics, stoichiometry). A2 adds synop
 
 See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topics-2026) for 0610/0620/0625.
 
+### Other subjects — most repeated topics
+
+- [Economics (9708, 2281)](/blog/most-repeated-cambridge-economics-past-paper-topics-2026)
+- [History (9489)](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
+- [Computer Science (9618, 0478, 2210)](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026)
+- [Mathematics (9709, 0580)](/blog/most-repeated-cambridge-maths-past-paper-topics-2026)
+- [English (9695, 0500)](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+
 ## Bottom line
 
 Biology rewards **precise terminology**, Chemistry rewards **mole discipline and mechanisms**, Physics rewards **diagrams then algebra**. The topics above appear often enough that they should anchor your **marked** past-paper weeks — then let [MarkScheme](/mark) show you which mark points you still miss.

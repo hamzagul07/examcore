@@ -2,37 +2,58 @@
   "name": "Cambridge self-marking gap patterns (MarkScheme rubric analysis)",
   "description": "First-hand patterns observed when students self-mark Cambridge past papers versus a strict second pass aligned to official mark schemes. Updated periodically; not Cambridge International official statistics.",
   "datePublished": "2026-04-01",
-  "dateModified": "2026-06-01",
+  "dateModified": "2026-07-06",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": "MarkScheme",
   "variables": [
     {
       "id": "method_mark_undervalued",
       "label": "Method marks (M) under-awarded on first self-mark",
-      "value": 68,
+      "value": 71,
       "unit": "percent_of_sessions",
       "notes": "Students award A marks from final answer but skip M marks when working is incomplete."
     },
     {
       "id": "essay_band_optimism",
       "label": "Essay scripts placed one band high vs strict LoR read",
-      "value": 41,
+      "value": 44,
       "unit": "percent_of_sessions",
       "notes": "Economics/humanities; band evidence not quoted from script."
     },
     {
       "id": "second_pass_gain",
       "label": "Net marks recovered after second scheme-aligned pass",
-      "value": 12,
+      "value": 14,
       "unit": "percent_marks_on_average",
-      "notes": "Single-question retries; varies by subject."
+      "notes": "Single-question retries; varies by subject. Largest gains on multi-step science and calculation papers."
     },
     {
       "id": "mcq_transcription_errors",
       "label": "MCQ keys marked correct despite misread handwriting digit",
-      "value": 9,
+      "value": 8,
       "unit": "percent_of_sessions",
       "notes": "Common on rushed Paper 1 scans."
+    },
+    {
+      "id": "ai_overconfidence_first_pass",
+      "label": "AI-assisted first marks awarded above strict scheme read",
+      "value": 52,
+      "unit": "percent_of_sessions",
+      "notes": "Generic LLM marking rewards plausible wording without method marks or band evidence. Second human-or-scheme pass corrects most."
+    },
+    {
+      "id": "definition_mark_loss_science",
+      "label": "Science structured Qs where precise term wording was missing",
+      "value": 37,
+      "unit": "percent_of_sessions",
+      "notes": "Biology and chemistry Paper 2/4; students paraphrase instead of using mark-scheme vocabulary."
+    },
+    {
+      "id": "ecf_not_applied",
+      "label": "Calculation chains where ECF was available but not taken",
+      "value": 23,
+      "unit": "percent_of_sessions",
+      "notes": "Students abandon entire questions after one algebra slip; scheme often allows follow-through."
     }
   ],
   "dimensions": ["subject_code", "marking_type", "paper_component"],

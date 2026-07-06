@@ -7,7 +7,6 @@ category: revision
 author: hassan
 updated: 2026-06-25
 featured: true
-spotlight: true
 informationGain: synthesis
 ---
 

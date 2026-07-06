@@ -4,7 +4,6 @@ description: After the May 2026 leaks voided papers: how Cambridge calculates as
 date: 2026-06-22
 category: editorial
 featured: true
-spotlight: true
 keywords: Cambridge assessed marks 2026, voided exam papers, Cambridge calculated marks, exam leak consequences, Cambridge integrity 2026
 informationGain: synthesis
 author: founder

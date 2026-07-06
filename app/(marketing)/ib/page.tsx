@@ -15,7 +15,7 @@ import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
 import { IB_COURSES_CATALOG_BLURB, IB_NEW_COURSE_SLUGS, ibCourseEntriesByTrack } from '@/lib/courses/ib-catalog-display'
-import { getIbTopicPracticeSubjectSlugs } from '@/lib/seo/ib-topic-practice'
+import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
 
 const PATH = '/ib'
 
@@ -146,6 +146,10 @@ export default function IbHubPage() {
             { href: '/mark', label: 'Criterion marking', variant: 'muted' },
           ]}
         />
+
+        <div style={{ marginTop: 28 }}>
+          <IbResultsSpotlight />
+        </div>
 
         {courses.length ? (
           <section style={{ marginTop: 40 }} aria-labelledby="ib-courses">

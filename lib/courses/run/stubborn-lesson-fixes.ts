@@ -104,7 +104,7 @@ function stripScrapeGarbage(lesson: Record<string, unknown>): void {
     ? (lesson.sections as Array<{ type?: string; content?: string }>)
     : []
   const startIdx = sections.findIndex(
-    (s) => s.type === 'heading' && s.content === 'A-Level Notes ÿ topic content'
+    (s) => s.type === 'heading' && s.content === 'A-Level Notes â€” topic content'
   )
   if (startIdx === -1) return
 
@@ -113,7 +113,7 @@ function stripScrapeGarbage(lesson: Record<string, unknown>): void {
     const s = sections[endIdx]
     if (s?.type === 'heading') {
       const c = (s.content ?? '').trim()
-      if (c !== 'A-Level Notes ÿ topic content' && !/^\d+\)/.test(c)) break
+      if (c !== 'A-Level Notes â€” topic content' && !/^\d+\)/.test(c)) break
     }
     endIdx++
   }
@@ -171,7 +171,7 @@ function applyLessonSpecificFixes(
         question:
           'Distinguish between active and passive immunity, giving one natural and one artificial example of each. [6 marks]',
         solution:
-          '**Active immunity** — the body produces its own antibodies and memory cells after antigen exposure.\n- Natural: recovery from measles infection.\n- Artificial: MMR vaccination.\n\n**Passive immunity** — pre-formed antibodies are received; protection is immediate but short-lived with no memory cells.\n- Natural: IgG crossing the placenta to the fetus.\n- Artificial: injection of antiserum containing monoclonal antibodies.',
+          '**Active immunity** â€” the body produces its own antibodies and memory cells after antigen exposure.\n- Natural: recovery from measles infection.\n- Artificial: MMR vaccination.\n\n**Passive immunity** â€” pre-formed antibodies are received; protection is immediate but short-lived with no memory cells.\n- Natural: IgG crossing the placenta to the fetus.\n- Artificial: injection of antiserum containing monoclonal antibodies.',
       },
     ])
     ensureFlashcards(lesson, [
@@ -292,11 +292,11 @@ function applyLessonSpecificFixes(
       },
       {
         front: 'Continuous variation example?',
-        back: 'Human height — polygenic, many alleles with additive effects, influenced by nutrition; shows normal distribution.',
+        back: 'Human height â€” polygenic, many alleles with additive effects, influenced by nutrition; shows normal distribution.',
       },
       {
         front: 'Discontinuous variation example?',
-        back: 'ABO blood groups — distinct categories, few genes, largely unaffected by environment.',
+        back: 'ABO blood groups â€” distinct categories, few genes, largely unaffected by environment.',
       },
       {
         front: 'What is crossing over?',
@@ -430,18 +430,18 @@ function applyLessonSpecificFixes(
   if (slug === '1-3-errors-and-uncertainties') {
     lesson.simpleExplanation = {
       analogy:
-        'Think of measurements like arrows on a target. A systematic error is a misaligned sight ÿ every shot misses the bullseye the same way (poor accuracy). Random error is shaky hands ÿ arrows scatter but their average may still hit the centre (precision vs accuracy).',
+        'Think of measurements like arrows on a target. A systematic error is a misaligned sight â€” every shot misses the bullseye the same way (poor accuracy). Random error is shaky hands â€” arrows scatter but their average may still hit the centre (precision vs accuracy).',
       keyTakeaway:
         'Paper 5 rewards quantifying both error types and propagating uncertainties through every derived quantity.',
     }
     lesson.flashcards = [
       {
         front: 'Systematic error?',
-        back: 'Consistent, repeatable error in the same direction ÿ affects accuracy, not fixed by averaging.',
+        back: 'Consistent, repeatable error in the same direction â€” affects accuracy, not fixed by averaging.',
       },
       {
         front: 'Random error?',
-        back: 'Unpredictable scatter between readings ÿ affects precision; reduced by repeating and averaging.',
+        back: 'Unpredictable scatter between readings â€” affects precision; reduced by repeating and averaging.',
       },
       {
         front: 'Accuracy vs precision?',
@@ -465,7 +465,7 @@ function applyLessonSpecificFixes(
       },
       {
         front: 'Zero error example?',
-        back: 'A voltmeter not zeroed ÿ every reading shifted by the same amount (systematic).',
+        back: 'A voltmeter not zeroed â€” every reading shifted by the same amount (systematic).',
       },
     ]
   }
@@ -475,9 +475,9 @@ function applyLessonSpecificFixes(
       {
         type: 'workedExample',
         question:
-          'Leo demands ÿ2,000 from Priya, threatening to publish edited photos unless she pays. Priya pays. Consider sentencing and liability under s21. [8 marks]',
+          'Leo demands â€”2,000 from Priya, threatening to publish edited photos unless she pays. Priya pays. Consider sentencing and liability under s21. [8 marks]',
         solution:
-          '**Actus reus:** unwarranted demand with menaces ÿ threat to publish photos is menaces (*Thorne v MTA*).\n\n**Mens rea:** view to gain (ÿ2,000) under s34(2)(a).\n\n**Sentencing:** blackmail is triable either way; max 14 years on indictment ÿ severity reflects abuse of coercive power even where the underlying grievance is real.',
+          '**Actus reus:** unwarranted demand with menaces â€” threat to publish photos is menaces (*Thorne v MTA*).\n\n**Mens rea:** view to gain (â€”2,000) under s34(2)(a).\n\n**Sentencing:** blackmail is triable either way; max 14 years on indictment â€” severity reflects abuse of coercive power even where the underlying grievance is real.',
       },
     ])
   }
@@ -487,9 +487,9 @@ function applyLessonSpecificFixes(
       {
         type: 'workedExample',
         question:
-          'Tariq buys a laptop for ÿ80 from a stranger in a pub, knowing it is probably stolen, and sells it for ÿ200. Analyse handling under s22. [8 marks]',
+          'Tariq buys a laptop for â€”80 from a stranger in a pub, knowing it is probably stolen, and sells it for â€”200. Analyse handling under s22. [8 marks]',
         solution:
-          '**Actus reus:** goods stolen; handling (sale) otherwise than in the course of theft; by a person other than the thief.\n\n**Mens rea:** knowing or believing the goods were stolen at the time of handling.\n\n**Sentencing:** either-way offence ÿ tariff depends on value, role, and whether professional fencing.',
+          '**Actus reus:** goods stolen; handling (sale) otherwise than in the course of theft; by a person other than the thief.\n\n**Mens rea:** knowing or believing the goods were stolen at the time of handling.\n\n**Sentencing:** either-way offence â€” tariff depends on value, role, and whether professional fencing.',
       },
     ])
   }
@@ -499,9 +499,9 @@ function applyLessonSpecificFixes(
       {
         type: 'workedExample',
         question:
-          'Jade fills her car with petrol worth ÿ60 and drives off without paying. Analyse making off without payment. [8 marks]',
+          'Jade fills her car with petrol worth â€”60 and drives off without paying. Analyse making off without payment. [8 marks]',
         solution:
-          '**Actus reus:** goods supplied (petrol); making off without having paid as required; dishonestly.\n\n**Mens rea:** dishonesty (*Ivey* test) and intention to avoid payment.\n\n**Sentencing:** summary max 6 months; either way on indictment ÿ s4 TA 1978 sets maximum 2 years.',
+          '**Actus reus:** goods supplied (petrol); making off without having paid as required; dishonestly.\n\n**Mens rea:** dishonesty (*Ivey* test) and intention to avoid payment.\n\n**Sentencing:** summary max 6 months; either way on indictment â€” s4 TA 1978 sets maximum 2 years.',
       },
     ])
   }
@@ -537,14 +537,14 @@ function applyLessonSpecificFixes(
         question:
           'A wave on a string has frequency $50\\,\\text{Hz}$ and wavelength $0.40\\,\\text{m}$. Calculate wave speed and state whether the wave is transverse on a shaken string.',
         solution:
-          '$v = f\\lambda = 50 \\times 0.40 = 20\\,\\text{m s}^{-1}$.\n\nOn a shaken string, particle motion is perpendicular to propagation ÿ a **transverse** wave.',
+          '$v = f\\lambda = 50 \\times 0.40 = 20\\,\\text{m s}^{-1}$.\n\nOn a shaken string, particle motion is perpendicular to propagation â€” a **transverse** wave.',
       },
       {
         type: 'workedExample',
         question:
           'Compare transverse and longitudinal waves: state one example of each and whether it can be polarised.',
         solution:
-          '**Transverse:** light ÿ oscillations perpendicular to travel; **can be polarised**.\n\n**Longitudinal:** sound in air ÿ oscillations parallel to travel; **cannot be polarised**.',
+          '**Transverse:** light â€” oscillations perpendicular to travel; **can be polarised**.\n\n**Longitudinal:** sound in air â€” oscillations parallel to travel; **cannot be polarised**.',
       },
     ])
   }

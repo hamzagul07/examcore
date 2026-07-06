@@ -1,6 +1,6 @@
 ---
 title: Cambridge component marks report explained (2026)
-description: How to read your Cambridge component marks report after results ó final marks, entry options, carry-forward, and when to request a remark.
+description: How to read your Cambridge component marks report after results ‚Äî final marks, entry options, carry-forward, and when to request a remark.
 date: 2026-07-06
 updated: 2026-07-06
 category: editorial
@@ -10,28 +10,28 @@ informationGain: synthesis
 author: founder
 ---
 
-After results day, schools receive a **component marks report** ó the document that explains how your final grade was built from individual papers. Students who only look at the letter grade miss the detail that drives **remarks, resits, and university appeals**.
+After results day, schools receive a **component marks report** ‚Äî the document that explains how your final grade was built from individual papers. Students who only look at the letter grade miss the detail that drives **remarks, resits, and university appeals**.
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
 | What is a component marks report? | A school-facing breakdown of **raw marks per paper** and which marks counted toward your final grade |
-| When do I see it? | Usually **with or just after** your statement of results ó your exams officer distributes it |
-| Can I compare it to grade thresholds? | **Yes** ó match your **entry option** and component combination to the published threshold table |
-| Does it show ìhow closeî I was to the next grade? | Indirectly ó compare syllabus total to the threshold line for your grade band |
+| When do I see it? | Usually **with or just after** your statement of results ‚Äî your exams officer distributes it |
+| Can I compare it to grade thresholds? | **Yes** ‚Äî match your **entry option** and component combination to the published threshold table |
+| Does it show ‚Äúhow close‚Äù I was to the next grade? | Indirectly ‚Äî compare syllabus total to the threshold line for your grade band |
 | Who should I ask first? | Your **exams officer**, not social media |
 
 > **Key takeaway:** The report tells you **which marks counted**. That is what you need before paying for an Enquiry about Results (EAR).
 
 ## What appears on the report
 
-Cambridgeís component marks report typically includes:
+Cambridge‚Äôs component marks report typically includes:
 
 | Field | What it means |
 |-------|----------------|
 | **Candidate number** | Your unique ID for the series |
-| **Syllabus code** | e.g. 9709, 9702 ó must match threshold tables exactly |
+| **Syllabus code** | e.g. 9709, 9702 ‚Äî must match threshold tables exactly |
 | **Component code** | Paper identifier (e.g. 12, 32, 42 for Maths routes) |
 | **Raw mark** | Marks awarded on that component before aggregation |
 | **Final marks used** | Marks that **counted** toward the certificate grade |
@@ -44,26 +44,26 @@ Source: Cambridge International guidance on component marks reports and entry op
 
 The same syllabus can have **different routes** to a final A-Level grade:
 
-- **AS + A2 linear** ó two-year route  
-- **Staged AS then A2** ó AS certified, then A2 added  
-- **ìBest ofî combinations** ó Cambridge may use the stronger AS performance when rules allow  
+- **AS + A2 linear** ‚Äî two-year route  
+- **Staged AS then A2** ‚Äî AS certified, then A2 added  
+- **‚ÄúBest of‚Äù combinations** ‚Äî Cambridge may use the stronger AS performance when rules allow  
 
-Your reportís **final marks** column shows which route was applied. Threshold tables are **not one-size-fits-all** ó you must open the PDF row that matches **your** component combination.
+Your report‚Äôs **final marks** column shows which route was applied. Threshold tables are **not one-size-fits-all** ‚Äî you must open the PDF row that matches **your** component combination.
 
 ### Example (conceptual)
 
-A candidate on a ìbest of bothî Maths entry might see:
+A candidate on a ‚Äúbest of both‚Äù Maths entry might see:
 
-- Component 33 (P1) ó **used**  
-- Component 63 (S1) ó **used**  
-- Component 96 (M1) ó **used**  
-- An older AS mark ó **in brackets** (not counted)
+- Component 33 (P1) ‚Äî **used**  
+- Component 63 (S1) ‚Äî **used**  
+- Component 96 (M1) ‚Äî **used**  
+- An older AS mark ‚Äî **in brackets** (not counted)
 
 If you compare thresholds using the wrong row, you will misread how close you were to an A*.
 
 ## How to use the report after results
 
-### Step 1 ó Download and label everything
+### Step 1 ‚Äî Download and label everything
 
 Save:
 
@@ -73,19 +73,19 @@ Save:
 
 See [Cambridge results day August 2026](/blog/cambridge-results-day-august-2026-guide) for release dates (AS/A-Level **11 August**, IGCSE/O Level **18 August**).
 
-### Step 2 ó Compare to your own marked past papers
+### Step 2 ‚Äî Compare to your own marked past papers
 
 If Paper 4 was **15 raw marks below** your last timed mock, the gap is likely **technique or timing**, not a remark lottery. If one component is **wildly** below every mock you marked honestly, discuss an EAR with your exams officer.
 
-Use [how to mark past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself) as the benchmark ó not how you *felt* you did.
+Use [how to mark past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself) as the benchmark ‚Äî not how you *felt* you did.
 
-### Step 3 ó Decide remark vs resit vs accept
+### Step 3 ‚Äî Decide remark vs resit vs accept
 
 | Signal on report | Likely action |
 |------------------|---------------|
 | One component far below trend | Ask about **priority re-mark** for that component |
 | All components slightly low | Usually accept or plan **November resit** |
-| Administrative code (X, Q) | Exams officer contacts Cambridge ó not a remark issue |
+| Administrative code (X, Q) | Exams officer contacts Cambridge ‚Äî not a remark issue |
 
 Full process: [Enquiry about Results guide](/blog/cambridge-enquiry-about-results-ear-guide-2026).
 
@@ -101,10 +101,10 @@ Students retaking A2 only should confirm with their centre which AS mark is on t
 
 ## Common mistakes when reading the report
 
-1. **Using the wrong threshold row** ó entry option mismatch  
-2. **Treating PUM as raw %** ó Percentage Uniform Mark sits *inside* a grade band  
-3. **Ignoring bracketed components** ó they explain why totals do not ìadd upî visually  
-4. **Remark without evidence** ó one bad day on every paper rarely flips on clerical error  
+1. **Using the wrong threshold row** ‚Äî entry option mismatch  
+2. **Treating PUM as raw %** ‚Äî Percentage Uniform Mark sits *inside* a grade band  
+3. **Ignoring bracketed components** ‚Äî they explain why totals do not ‚Äúadd up‚Äù visually  
+4. **Remark without evidence** ‚Äî one bad day on every paper rarely flips on clerical error  
 
 Read [PUM explained](/blog/cambridge-pum-percentage-uniform-marks-explained-2026) if your statement shows uniform marks.
 
@@ -114,7 +114,7 @@ If results are not out yet, build your own evidence:
 
 - Mark **one full paper per subject** under timed conditions  
 - Log lost marks by **component type** (MCQ, structured, essay)  
-- Use the [grade boundary calculator](/tools/grade-boundary-calculator) with last yearís thresholds as a **rough** range ó not a prediction  
+- Use the [grade boundary calculator](/tools/grade-boundary-calculator) with last year‚Äôs thresholds as a **rough** range ‚Äî not a prediction  
 
 [Mark a paper free](/mark) against the real scheme so your post-results comparison is objective.
 
@@ -122,7 +122,7 @@ If results are not out yet, build your own evidence:
 
 ### Can students access the component marks report directly?
 
-Usually **through your school**. Private candidates receive breakdowns via their registered centre. Cambridgeís public candidate portal shows grades; component detail depends on centre policy.
+Usually **through your school**. Private candidates receive breakdowns via their registered centre. Cambridge‚Äôs public candidate portal shows grades; component detail depends on centre policy.
 
 ### How is this different from grade threshold tables?
 
@@ -142,5 +142,5 @@ Cambridge publishes them on results day for the series. We mirror key syllabi in
 
 ## Bottom line
 
-The component marks report is the **receipt** behind your grade. Read it with the correct entry option, compare it to honestly marked past papers, then choose remark, resit, or move forward ó not panic posts on results morning.
+The component marks report is the **receipt** behind your grade. Read it with the correct entry option, compare it to honestly marked past papers, then choose remark, resit, or move forward ‚Äî not panic posts on results morning.
 

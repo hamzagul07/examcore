@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge psychology past paper topics for 2026 (A-Level)
-description: High-frequency 9990 topics from past papers 2019ù2025 ù core studies, approaches, research methods and evaluation marks that repeat every series.
+description: High-frequency 9990 topics from past papers 2019‚Äî2025 ‚Äî core studies, approaches, research methods and evaluation marks that repeat every series.
 date: 2026-07-06
 category: revision
 keywords: Cambridge psychology revision 2026, 9990 topics, psychology past paper topics, core studies revision, most repeated exam topics
@@ -8,9 +8,9 @@ informationGain: dataset
 author: founder
 ---
 
-Psychology revision stabilises when you separate **named studies** from **skills** ù description, methodology, application, and evaluation repeat on almost every 9990 paper. This guide ranks what examiners return to from **2019ù2025**.
+Psychology revision stabilises when you separate **named studies** from **skills** ‚Äî description, methodology, application, and evaluation repeat on almost every 9990 paper. This guide ranks what examiners return to from **2019‚Äî2025**.
 
-> **Key takeaway:** Marks come from **precise study detail + evaluation** ù vague ùsupports natureù paragraphs score low.
+> **Key takeaway:** Marks come from **precise study detail + evaluation** ‚Äî vague ‚Äîsupports nature‚Äî paragraphs score low.
 
 ## How this list was built
 
@@ -20,16 +20,16 @@ We weighted core study frequency, Paper 1/2 structured styles, and examiner comm
 
 | Priority | Skill / content | Why it repeats |
 |----------|-----------------|----------------|
-| 1 | **Core study aims, procedure, findings** | Must be accurate ù names and numbers |
+| 1 | **Core study aims, procedure, findings** | Must be accurate ‚Äî names and numbers |
 | 2 | **Research methods & design** | IV/DV, sampling, ethics, controls |
-| 3 | **Biological approach** | Brain, hormones, genes ù applied scenarios |
+| 3 | **Biological approach** | Brain, hormones, genes ‚Äî applied scenarios |
 | 4 | **Cognitive approach** | Models of memory, bias, decision-making |
 | 5 | **Social approach** | Conformity, obedience, culture |
-| 6 | **Learning approach** | Conditioning, SLT ù compare studies |
-| 7 | **Clinical / abnormal options** | Symptoms, etiology, treatments ù evaluate |
+| 6 | **Learning approach** | Conditioning, SLT ‚Äî compare studies |
+| 7 | **Clinical / abnormal options** | Symptoms, etiology, treatments ‚Äî evaluate |
 | 8 | **Debates** | Nature/nurture, reductionism, ethics |
 
-Guide: [9990 past papers](/blog/cambridge-9990-a-level-psychology-past-papers-guide) ù [9990 boundaries 2026](/blog/cambridge-9990-psychology-grade-boundaries-2026)
+Guide: [9990 past papers](/blog/cambridge-9990-a-level-psychology-past-papers-guide) ‚Äî [9990 boundaries 2026](/blog/cambridge-9990-psychology-grade-boundaries-2026)
 
 ## Mark-scheme habits
 
@@ -39,7 +39,7 @@ Guide: [9990 past papers](/blog/cambridge-9990-a-level-psychology-past-papers-gu
 | Generic application | Tie scenario to **one named study** |
 | Missing opposites | State **strength and limitation** |
 
-Cross-links: [essay planning](/blog/a-level-essay-planning-past-papers) ù [9699 Sociology boundaries](/blog/cambridge-9699-sociology-grade-boundaries-2026)
+Cross-links: [essay planning](/blog/a-level-essay-planning-past-papers) ‚Äî [9699 Sociology boundaries](/blog/cambridge-9699-sociology-grade-boundaries-2026)
 
 ## 4-week rotation
 
@@ -50,8 +50,8 @@ Cross-links: [essay planning](/blog/a-level-essay-planning-past-papers) ù [9699 
 | 3 | Specialist option essays | Full timed paper |
 | 4 | Mixed synoptic | [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ∑ [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ∑ [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ∑ [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ∑ [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ? [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
 
 ## Bottom line
 
-**9990** rewards **accurate studies** and **evaluative depth**. The patterns above dominate past papers ù mark honestly, then fix one repeatable error per week.
+**9990** rewards **accurate studies** and **evaluative depth**. The patterns above dominate past papers ‚Äî mark honestly, then fix one repeatable error per week.

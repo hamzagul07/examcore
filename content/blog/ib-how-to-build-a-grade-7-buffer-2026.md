@@ -1,6 +1,6 @@
 ---
 title: How to build an IB grade 7 buffer (2026 strategy)
-description: Stop gambling on grade boundaries ó build a 5ñ10 mark raw-mark buffer in HL and SL subjects with IA marks, paper drills, and band-targeted practice.
+description: Stop gambling on grade boundaries ‚Äî build a 5‚Äì10 mark raw-mark buffer in HL and SL subjects with IA marks, paper drills, and band-targeted practice.
 date: 2026-07-06
 updated: 2026-07-06
 category: revision
@@ -10,71 +10,71 @@ informationGain: synthesis
 author: founder
 ---
 
-Students obsess over whether **IB grade boundaries** will rise or fall each session. Examiners set boundaries **after** marking, using global performance ó you cannot predict them reliably. What you *can* control is a **mark buffer**: scoring well above the typical Level 7 cut-off so boundary shifts barely matter.
+Students obsess over whether **IB grade boundaries** will rise or fall each session. Examiners set boundaries **after** marking, using global performance ‚Äî you cannot predict them reliably. What you *can* control is a **mark buffer**: scoring well above the typical Level 7 cut-off so boundary shifts barely matter.
 
 ## Quick answer
 
 | Question | Answer |
 |----------|--------|
-| What is a grade 7 buffer? | Raw marks **above** the usual Level 7 threshold for your subject ó aim for **5ñ10 marks** on papers where totals allow |
-| Should I rely on boundaries dropping? | **No** ó risky; papers can get easier and boundaries **rise** |
-| Fastest buffer source? | **Internal Assessment** ó 20ñ25% of many subjects, months to improve |
-| Best exam habit? | Mark against **band descriptors**, not ìdoes this sound right?î |
+| What is a grade 7 buffer? | Raw marks **above** the usual Level 7 threshold for your subject ‚Äî aim for **5‚Äì10 marks** on papers where totals allow |
+| Should I rely on boundaries dropping? | **No** ‚Äî risky; papers can get easier and boundaries **rise** |
+| Fastest buffer source? | **Internal Assessment** ‚Äî 20‚Äì25% of many subjects, months to improve |
+| Best exam habit? | Mark against **band descriptors**, not ‚Äúdoes this sound right?‚Äù |
 | Where to practise? | [IB past papers](/ib/past-papers) + [criterion marking](/mark) |
 
 > **Key takeaway:** Boundaries are a post-exam adjustment. Your job is to make the adjustment irrelevant.
 
 ## Why buffers beat boundary predictions
 
-After the pandemic inflation period, IB grading **normalised** toward pre-2020 rigour. Recent sessions show **stable** boundaries in many subjects ó but ìstableî still means a hard paper can move cut-offs by several marks.
+After the pandemic inflation period, IB grading **normalised** toward pre-2020 rigour. Recent sessions show **stable** boundaries in many subjects ‚Äî but ‚Äústable‚Äù still means a hard paper can move cut-offs by several marks.
 
 | Strategy | Risk |
 |----------|------|
-| ìI only need 68% because last year was 67%î | Paper difficulty changes; your estimate is wrong |
-| ìHL Maths AI always has low boundariesî | True historically ó until one easy session shifts them up |
+| ‚ÄúI only need 68% because last year was 67%‚Äù | Paper difficulty changes; your estimate is wrong |
+| ‚ÄúHL Maths AI always has low boundaries‚Äù | True historically ‚Äî until one easy session shifts them up |
 | **Building +8 mark buffer on Paper 2** | Survives most boundary movement |
 
-See [IB grade boundaries explained](/blog/ib-grade-boundaries-explained) for how boundaries are set ó then stop refreshing prediction threads.
+See [IB grade boundaries explained](/blog/ib-grade-boundaries-explained) for how boundaries are set ‚Äî then stop refreshing prediction threads.
 
 ## The three-layer buffer model
 
-### Layer 1 ó Internal Assessment (IA)
+### Layer 1 ‚Äî Internal Assessment (IA)
 
-Roughly **20ñ30%** of final marks in many subjects. Strong IA:
+Roughly **20‚Äì30%** of final marks in many subjects. Strong IA:
 
 - Cushions a bad exam day  
 - Is **teacher-supported** during drafting (within integrity rules)  
 - Rewards criteria language examiners expect  
 
-Guides: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) ∑ subject IA guides (e.g. [Biology IA](/blog/ib-biology-ia-guide)).
+Guides: [IB Internal Assessment overview](/blog/ib-internal-assessment-complete-guide) ? subject IA guides (e.g. [Biology IA](/blog/ib-biology-ia-guide)).
 
-**Target:** Score in the **top band** of each criterion ó not ìgood enough.î
+**Target:** Score in the **top band** of each criterion ‚Äî not ‚Äúgood enough.‚Äù
 
-### Layer 2 ó Paper technique (exams)
+### Layer 2 ‚Äî Paper technique (exams)
 
 Buffers come from **method marks** you can bank repeatedly:
 
 | Subject type | Buffer tactic |
 |--------------|---------------|
-| Sciences HL | Show working; units; labelled diagrams; donít skip DBQ axes labels |
+| Sciences HL | Show working; units; labelled diagrams; don‚Äôt skip DBQ axes labels |
 | Maths AA/AI | Define variables; justify model steps; check GDC syntax |
-| Humanities | Plan 5 minutes; define terms; evaluate both sides on ìto what extentî |
+| Humanities | Plan 5 minutes; define terms; evaluate both sides on ‚Äúto what extent‚Äù |
 | Languages | Task format compliance (word limits, text types) |
 
 Practise one **full paper timed**, then mark with [markbands explained](/blog/ib-markbands-explained) beside you.
 
-### Layer 3 ó Syllabus gaps closed early
+### Layer 3 ‚Äî Syllabus gaps closed early
 
 A buffer is impossible if entire topics are blank. Use [free IB courses](/ib/courses) topic-by-topic, then [topic practice grids](/ib/past-papers/biology-hl#ib-topic-practice) to link each syllabus point to a marking task.
 
 ## How much buffer do you need?
 
-Use **last 2ñ3 May sessions** for your subject and level as a guide ó not a guarantee.
+Use **last 2‚Äì3 May sessions** for your subject and level as a guide ‚Äî not a guarantee.
 
 | Subject (illustrative HL) | Typical Level 7 zone | Practical buffer aim |
 |---------------------------|----------------------|----------------------|
-| Biology HL | often high 70s % | +5ñ8 marks on Paper 2 extended items |
-| Physics HL | often mid-high 60sñ70s % | +6ñ10 marks across papers (method marks) |
+| Biology HL | often high 70s % | +5‚Äì8 marks on Paper 2 extended items |
+| Physics HL | often mid-high 60s‚Äì70s % | +6‚Äì10 marks across papers (method marks) |
 | Economics HL | varies by session | +5 marks on Paper 1 evaluation |
 | Maths AA HL | can be lower % | focus on **Paper 3** synthesis questions |
 
@@ -82,19 +82,19 @@ Always pull exact numbers from official boundary releases when published.
 
 ## Weekly routine (6 weeks to exams)
 
-| Week focus | MonñWed | ThuñFri | Weekend |
+| Week focus | Mon‚ÄìWed | Thu‚ÄìFri | Weekend |
 |------------|---------|---------|---------|
 | Content | Syllabus lesson + flashcards | Past-paper section (timed) | Full paper or IA draft block |
 | Marking | Criterion self-mark | [Mark a response](/mark) for second opinion | Rewrite weakest band |
 | Buffer log | Note marks lost to **technique** vs content | Fix top 3 technique losses | Repeat |
 
-Track **technique losses** separately ó they are the cheapest buffer to buy back.
+Track **technique losses** separately ‚Äî they are the cheapest buffer to buy back.
 
 ## Command terms and band jumps
 
-One band often equals **3ñ5 marks** on an essay. Misreading **evaluate** vs **discuss** costs more than forgetting one fact.
+One band often equals **3‚Äì5 marks** on an essay. Misreading **evaluate** vs **discuss** costs more than forgetting one fact.
 
-Drill: [IB command terms explained](/blog/ib-command-terms-explained) ∑ highlight the command word before every past-paper question.
+Drill: [IB command terms explained](/blog/ib-command-terms-explained) ? highlight the command word before every past-paper question.
 
 ## Digital vs paper exams
 
@@ -104,15 +104,15 @@ Selected schools pilot **digital IB exams** from May 2026. Delivery changes; **d
 
 ### Is a 7 in HL harder than SL?
 
-HL has more content and often an extra paper. Boundaries are set separately ó difficulty is not directly comparable by percentage alone.
+HL has more content and often an extra paper. Boundaries are set separately ‚Äî difficulty is not directly comparable by percentage alone.
 
 ### Can TOK/EE bonus points buffer a weak subject?
 
 Up to **3 bonus points** help the diploma total, not individual subject grades. A weak HL 4 stays a 4.
 
-### Should I remark if I miss a 7 by 1ñ2 marks?
+### Should I remark if I miss a 7 by 1‚Äì2 marks?
 
-Discuss **Enquiry Upon Results** with your coordinator ó grades can go down. Buffer strategy reduces needing this gamble.
+Discuss **Enquiry Upon Results** with your coordinator ‚Äî grades can go down. Buffer strategy reduces needing this gamble.
 
 ### How do predicted grades relate to buffers?
 
@@ -120,9 +120,9 @@ Predicted grades are for university apps; they do not change exam boundaries. Se
 
 ### Best free practice stack?
 
-[IB courses](/ib/courses) for content ∑ [past papers hub](/blog/ib-diploma-past-papers-guide) for format ∑ [MarkScheme marking](/mark) for band feedback.
+[IB courses](/ib/courses) for content ? [past papers hub](/blog/ib-diploma-past-papers-guide) for format ? [MarkScheme marking](/mark) for band feedback.
 
 ## Bottom line
 
-Treat **IB grade boundaries 2026** as background noise. Maximize IA, mark honestly to band descriptors, and build a raw-mark cushion on the papers you control ó that is how a 7 becomes predictable instead of lucky.
+Treat **IB grade boundaries 2026** as background noise. Maximize IA, mark honestly to band descriptors, and build a raw-mark cushion on the papers you control ‚Äî that is how a 7 becomes predictable instead of lucky.
 

@@ -12,7 +12,7 @@ export const REGENERATION_FIXABLE_CODES = new Set([
   'missing_analogy',
 ])
 
-/** Unsafe/corrupted KaTeX ù manual or dedicated tooling, not LLM regeneration. */
+/** Unsafe/corrupted KaTeX ‚Äî manual or dedicated tooling, not LLM regeneration. */
 export const MANUAL_KATEX_CODE = 'katex_parse_error'
 
 /** Resolved by deterministic visual-consolidation, not LLM. */
@@ -142,7 +142,7 @@ export function regenerationEligiblePathsFromAudit(
 
 export function formatFailureSplitReport(split: FailureSplitReport): string {
   const lines: string[] = []
-  lines.push('JOB 3 FAILURE SPLIT (558 remaining after Jobs 1ù2)')
+  lines.push('JOB 3 FAILURE SPLIT (558 remaining after Jobs 1‚Äî2)')
   lines.push('')
   lines.push(`Total failing lessons:     ${split.totalFailed}`)
   lines.push(`Regeneration-eligible:     ${split.regenerationEligible}  (Job 3 LLM)`)

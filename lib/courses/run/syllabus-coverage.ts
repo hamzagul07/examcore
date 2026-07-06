@@ -111,7 +111,7 @@ export function formatCoverageReportText(reports: SubjectCoverageReport[]): stri
       for (const m of r.missingTopics.slice(0, 20)) {
         lines.push(`  MISSING  ${m.topicCode}  ${m.topicName}`)
       }
-      lines.push(`  … and ${r.missingTopics.length - 20} more missing topics`)
+      lines.push(`  â€¦ and ${r.missingTopics.length - 20} more missing topics`)
     }
     lines.push('')
   }

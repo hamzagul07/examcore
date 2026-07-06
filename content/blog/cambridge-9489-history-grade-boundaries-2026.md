@@ -60,6 +60,7 @@ Practise **provenance + judgement** under time — [analysing sources](/blog/how
 - [9990 Psychology](/blog/cambridge-9990-psychology-grade-boundaries-2026)
 - [9488 Islamic Studies](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026)
 - [9699 Sociology](/blog/cambridge-9699-sociology-grade-boundaries-2026)
+- [9696 Geography](/blog/cambridge-9696-geography-grade-boundaries-2026)
 
 ## Bottom line
 

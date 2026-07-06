@@ -2,15 +2,27 @@
 title: Cambridge results day August 2026 — dates, portal access & what to do next
 description: AS/A-Level results 11 August, IGCSE and O-Level 18 August 2026 — how to check grades, read your statement, and plan retakes or remarks without panic.
 date: 2026-06-10
-updated: 2026-06-22
+updated: 2026-07-06
 category: editorial
 featured: true
+spotlight: true
 keywords: Cambridge results day 2026, IGCSE results August 2026, A-Level results 2026, myresults.cie.org.uk, statement of results
 informationGain: synthesis
 author: founder
 ---
 
 Results day is a **timestamp**, not a verdict on your future. Cambridge releases grades in two waves after the June 2026 series — and what you do in the **48 hours after** matters more than refreshing the portal at 06:00 GMT.
+
+## Quick answer
+
+| Question | Answer |
+|----------|--------|
+| When are AS/A-Level grades? | **11 August 2026** (06:00 GMT) |
+| When are IGCSE/O-Level grades? | **18 August 2026** (06:00 GMT) |
+| When are threshold PDFs? | **~13 August** (components; before IGCSE grades) |
+| Where to log in? | School portal / [myresults.cie.org.uk](https://myresults.cie.org.uk) |
+| EAR deadline (June series)? | **20 September 2026** (school cut-offs often mid-August) |
+| Waiting before August? | [Post-exam prep checklist](/blog/cambridge-post-exam-results-prep-2026) |
 
 ## Cambridge June 2026 results dates
 
@@ -33,7 +45,23 @@ Source: [Cambridge key dates June 2026 series (international)](https://www.cambr
 | **Statement of results** (grades) | AS & A Level **11 August**; IGCSE/O Level **18 August** | Your school portal / [myresults.cie.org.uk](https://myresults.cie.org.uk) |
 | **Grade threshold tables** (raw marks per component) | Typically **~13 August** for the June series | [Grade boundaries hub](/guides/grade-boundaries) · [calculator](/tools/grade-boundary-calculator) |
 
-Threshold tables explain how raw marks mapped to grades for the cohort — they are **not** a forecast for next year’s exams. Once Cambridge publishes June 2026 PDFs, we load verified component marks into each [syllabus calculator](/tools/grade-boundary-calculator) (starting with high-traffic subjects like [9702 Physics](/tools/grade-boundary-calculator/9702) and [9700 Biology](/tools/grade-boundary-calculator/9700)).
+Threshold tables explain how raw marks mapped to grades for the cohort — they are **not** a forecast for next year's exams. Once Cambridge publishes June 2026 PDFs, we load verified component marks into each [syllabus calculator](/tools/grade-boundary-calculator).
+
+### Grade boundary guides by subject (2026)
+
+| Subject | Code | Guide |
+|---------|------|--------|
+| Mathematics | 9709 | [9709 boundaries](/blog/cambridge-9709-mathematics-grade-boundaries-2026) |
+| Biology | 9700 | [9700 boundaries](/blog/cambridge-9700-biology-grade-boundaries-2026) |
+| Chemistry | 9701 | [9701 boundaries](/blog/cambridge-9701-chemistry-grade-boundaries-2026) |
+| Physics | 9702 | [9702 boundaries](/blog/cambridge-9702-physics-grade-boundaries-2026) |
+| Economics | 9708 | [9708 boundaries](/blog/cambridge-9708-economics-grade-boundaries-2026) |
+| Geography | 9696 | [9696 boundaries](/blog/cambridge-9696-geography-grade-boundaries-2026) |
+| History | 9489 | [9489 boundaries](/blog/cambridge-9489-history-grade-boundaries-2026) |
+
+**O-Level / IGCSE (grades 18 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) · [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026) · [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) · [full hub](/guides/grade-boundaries)
+
+Why predictions mislead: [May/June 2026 thresholds guide](/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect).
 
 ## How to access your results
 

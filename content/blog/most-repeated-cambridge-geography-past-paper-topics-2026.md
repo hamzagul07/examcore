@@ -29,7 +29,7 @@ We weighted theme frequency on Paper 1-style questions, skills-paper mark scheme
 | 7 | **Global interdependence** | Trade, TNCs, development indicators |
 | 8 | **Essay evaluation (AO3)** | ÿTo what extentÿ with **weighed** judgement |
 
-Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-guide)
+Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-guide) ÿ [9696 boundaries 2026](/blog/cambridge-9696-geography-grade-boundaries-2026)
 
 ## IGCSE Geography (0460)
 
@@ -44,7 +44,7 @@ Guide: [9696 past papers](/blog/cambridge-9696-a-level-geography-past-papers-gui
 | 7 | **Paper 2 skills** | Grid refs, relief, graph reading |
 | 8 | **Paper 4 fieldwork logic** | Method, presentation, evaluation |
 
-Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide)
+Guide: [0460 past papers](/blog/cambridge-0460-igcse-geography-past-papers-guide) · [0460 boundaries 2026](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 ## Skills that repeat on every series
 
@@ -66,7 +66,7 @@ Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambrid
 | 3 | Full themed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Weak case studies + eval rewrite | [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ÿ [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ÿ [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ÿ [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ÿ [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
 
 ## Bottom line
 

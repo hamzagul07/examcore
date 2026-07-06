@@ -53,7 +53,7 @@ These are **failing conditions** — breaking any one can mean no Diploma even a
 2. **Enquiry Upon Results (EUR)** — remark via your coordinator; fees apply; grade can drop.  
 3. **November 2026 retakes** — register through your school if you need higher subject grades.  
 
-Before EUR: [IB predicted grades explained](/blog/ib-predicted-grades-explained). Strategy: [build a grade 7 buffer](/blog/ib-how-to-build-a-grade-7-buffer-2026).
+Before EUR: [predicted grades & EUR](/blog/ib-predicted-grades-explained). Pre-results checklist: [after IB exams prep](/blog/ib-post-exam-results-prep-2026). Strategy: [build a grade 7 buffer](/blog/ib-how-to-build-a-grade-7-buffer-2026).
 
 ## How to prepare for the day
 
@@ -86,6 +86,7 @@ Published after results — see [IB grade boundaries 2026](/blog/ib-grade-bounda
 
 | Outcome | What to read next |
 |---------|-------------------|
+| Still waiting (pre-July) | [After IB exams prep checklist](/blog/ib-post-exam-results-prep-2026) |
 | Close to next grade | [Build a grade 7 buffer](/blog/ib-how-to-build-a-grade-7-buffer-2026) |
 | Considering remark | [Predicted grades & EUR](/blog/ib-predicted-grades-explained) |
 | Planning retakes | [IB exam revision strategy](/blog/ib-exam-revision-strategy) |

@@ -170,6 +170,7 @@ See [IGCSE most-tested topics](/blog/cambridge-igcse-most-tested-past-paper-topi
 - [Accounting (9706)](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026)
 - [Law (9084)](/blog/most-repeated-cambridge-law-past-paper-topics-2026)
 - [Media Studies (9607)](/blog/most-repeated-cambridge-media-studies-past-paper-topics-2026)
+- [Islamic Studies (9488)](/blog/most-repeated-cambridge-islamic-studies-past-paper-topics-2026)
 
 ## Bottom line
 

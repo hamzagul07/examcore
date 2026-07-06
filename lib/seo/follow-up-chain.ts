@@ -79,14 +79,26 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
     {
       question: 'Which humanities topics repeat most?',
       answer:
-        'Family/education debates in sociology, case-study depth in geography, and source/essay structures in history — rank practice by skill pattern, not random chapters.',
+        'Family/education debates in sociology, case-study depth in geography, source/essay structures in history, and set-text + thematic evaluation in Islamic Studies — rank practice by skill pattern, not random chapters.',
       href: '/blog/most-repeated-cambridge-sociology-past-paper-topics-2026',
+    },
+    {
+      question: 'Which Islamic Studies essay themes repeat on 9488?',
+      answer:
+        'Set-text explanation, schools-of-thought comparison, and modern-world evaluation dominate — mark every citation against band descriptors.',
+      href: '/blog/most-repeated-cambridge-islamic-studies-past-paper-topics-2026',
     },
     {
       question: 'What should I do after exams before results day?',
       answer:
         'Build an evidence file: marked mocks, component codes, and honest grade estimates — not leak rumours.',
       href: '/blog/cambridge-post-exam-results-prep-2026',
+    },
+    {
+      question: 'What should IB students do while waiting for July results?',
+      answer:
+        'Save marked scripts and IA feedback, estimate bands honestly, and plan EUR criteria before results land — not social media thresholds.',
+      href: '/blog/ib-post-exam-results-prep-2026',
     },
   ],
   'exam-technique': [
@@ -215,10 +227,22 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-9699-sociology-grade-boundaries-2026',
     },
     {
+      question: 'Where are 9696 Geography grade boundaries for 2026?',
+      answer:
+        'Grades release 11 August; threshold PDFs ~13 August — mark case-study essays to band descriptors, then use the calculator with recent sessions.',
+      href: '/blog/cambridge-9696-geography-grade-boundaries-2026',
+    },
+    {
       question: 'When will June 2026 threshold tables be published?',
       answer:
         'Grades land 11 August; component threshold PDFs typically publish around 13 August — see our May/June 2026 expectations guide.',
       href: '/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect',
+    },
+    {
+      question: 'What should I do on Cambridge A-Level results day?',
+      answer:
+        'Save your PDF statement, compare to your evidence file, and speak to your exams officer within 48 hours if a grade surprises you — not social media.',
+      href: '/blog/cambridge-results-day-august-2026-guide',
     },
   ],
   'command-words': [
@@ -309,6 +333,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       answer:
         'Early July 2026 — log in at candidates.ibo.org with your coordinator PIN. Read pass rules before you post grades online.',
       href: '/blog/ib-results-day-2026-what-to-expect',
+    },
+    {
+      question: 'What should I do after IB exams before results?',
+      answer:
+        'Build an evidence file from marked mocks and IA feedback — decide EUR criteria now so results day is a decision, not a panic.',
+      href: '/blog/ib-post-exam-results-prep-2026',
     },
     {
       question: 'Where are IB grade boundaries for 2026?',

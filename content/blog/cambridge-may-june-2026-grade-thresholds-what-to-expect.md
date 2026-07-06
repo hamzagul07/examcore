@@ -36,6 +36,7 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Economics | 9708 | [9708 boundaries](/blog/cambridge-9708-economics-grade-boundaries-2026) |
 | Business | 9609 | [9609 boundaries](/blog/cambridge-9609-business-grade-boundaries-2026) |
 | History | 9489 | [9489 boundaries](/blog/cambridge-9489-history-grade-boundaries-2026) |
+| Geography | 9696 | [9696 boundaries](/blog/cambridge-9696-geography-grade-boundaries-2026) |
 | Psychology | 9990 | [9990 boundaries](/blog/cambridge-9990-psychology-grade-boundaries-2026) |
 | Sociology | 9699 | [9699 boundaries](/blog/cambridge-9699-sociology-grade-boundaries-2026) |
 | Accounting | 9706 | [9706 boundaries](/blog/cambridge-9706-accounting-grade-boundaries-2026) |
@@ -45,7 +46,7 @@ Search traffic spikes every June for **"Cambridge grade thresholds 2026 predicti
 | Further Maths | 9231 | [9231 boundaries](/blog/cambridge-9231-further-mathematics-grade-boundaries-2026) |
 | Islamic Studies | 9488 | [9488 boundaries](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026) |
 
-**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) · [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) · [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) · [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) · [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) · [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) · [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) · [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) · [5054](/blog/cambridge-5054-physics-grade-boundaries-2026)
+**O-Level (grades 18 August; thresholds ~13 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) · [4037](/blog/cambridge-4037-additional-mathematics-grade-boundaries-2026) · [2281](/blog/cambridge-2281-economics-grade-boundaries-2026) · [7115](/blog/cambridge-7115-business-studies-grade-boundaries-2026) · [7707](/blog/cambridge-7707-accounting-grade-boundaries-2026) · [2210](/blog/cambridge-2210-computer-science-grade-boundaries-2026) · [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) · [5070](/blog/cambridge-5070-chemistry-grade-boundaries-2026) · [5054](/blog/cambridge-5054-physics-grade-boundaries-2026) · [0460 IGCSE Geography](/blog/cambridge-0460-geography-grade-boundaries-2026)
 
 Full index: [/guides/grade-boundaries](/guides/grade-boundaries)
 

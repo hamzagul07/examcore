@@ -6,6 +6,9 @@
 
 export const JUNE_2026_SERIES = 'June 2026' as const
 
+/** Featured hub slug during A-Level results + threshold week (August). */
+export const CAMBRIDGE_RESULTS_DAY_SLUG = 'cambridge-results-day-august-2026-guide'
+
 /** AS & A Level results — Tuesday 11 August 2026, 06:00 GMT */
 export const A_LEVEL_RESULTS_UTC = Date.parse('2026-08-11T06:00:00.000Z')
 

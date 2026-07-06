@@ -22,7 +22,7 @@ The International Baccalaureate grades each subject from **1** (lowest) to **7**
 | What is a grade 7? | Highest subject grade — equivalent broadly to A* |
 | Diploma pass mark? | **24 points** minimum plus failing-condition rules |
 
-Results day logistics: [IB results 2026 guide](/blog/ib-results-day-2026-what-to-expect).
+Results day logistics: [IB results 2026 guide](/blog/ib-results-day-2026-what-to-expect). Waiting for results? [Post-exam prep checklist](/blog/ib-post-exam-results-prep-2026).
 
 ## May 2026 grade boundaries — where to find them
 

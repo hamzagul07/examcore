@@ -38,7 +38,8 @@ Technical SEO in the repo is strong (sitemap, robots, JSON-LD, ~70+ blog URLs, R
 - Publish **1 editorial post / month** on timely Cambridge topics (exam series, subject choice, integrity — not leak how-tos)
 - Refresh **May/June** and **October/November** season posts each series
 - Interlink new posts → `/mark`, `/subjects`, and 2–3 related guides (see `lib/seo/pillar-links.ts`)
-- Share posts in **student communities** (Reddit r/igcse, r/alevel, Discord study servers) — genuine help, not spam
+- Share posts in **student communities** (Reddit r/IBO, r/igcse, r/alevel, Discord study servers) — genuine help, not spam  
+- Results season: follow [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) (templates + UTM links)
 
 ## Off-page — backlinks (DA)
 

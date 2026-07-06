@@ -1,8 +1,8 @@
 import { getBlogPost, getBlogPosts } from '@/lib/blog'
 import { enrichPostMeta, sortPostsForIndex, type EnrichedBlogMeta } from '@/lib/blog/meta'
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
-import { getResultsDayPhase } from '@/lib/seo/results-day'
-import { IB_MAY_2026_RESULTS_SLUG, isIbResultsSeason } from '@/lib/seo/ib-results-season'
+import { getResultsDayPhase, CAMBRIDGE_RESULTS_DAY_SLUG } from '@/lib/seo/results-day'
+import { IB_MAY_2026_RESULTS_SLUG, IB_POST_EXAM_PREP_SLUG, isIbResultsSeason, getIbResultsSeasonPhase, daysUntilIbResults } from '@/lib/seo/ib-results-season'
 
 /** Featured on blog/guides hub during the post-exam → results window. */
 export const PRE_RESULTS_SPOTLIGHT_SLUG = 'cambridge-post-exam-results-prep-2026'
@@ -20,9 +20,19 @@ export function getFeaturedHubPost(): EnrichedBlogMeta | null {
     const ibSeasonal = sorted.find((p) => p.slug === IB_MAY_2026_RESULTS_SLUG)
     if (ibSeasonal) return ibSeasonal
   }
+  const ibPhase = getIbResultsSeasonPhase()
+  if (ibPhase === 'pre-results' && daysUntilIbResults() <= 45) {
+    const ibPrep = sorted.find((p) => p.slug === IB_POST_EXAM_PREP_SLUG)
+    if (ibPrep) return ibPrep
+  }
   if (getResultsDayPhase() === 'pre-alevel') {
     const seasonal = sorted.find((p) => p.slug === PRE_RESULTS_SPOTLIGHT_SLUG)
     if (seasonal) return seasonal
+  }
+  const cambridgePhase = getResultsDayPhase()
+  if (cambridgePhase === 'alevel-results' || cambridgePhase === 'threshold-week') {
+    const resultsDay = sorted.find((p) => p.slug === CAMBRIDGE_RESULTS_DAY_SLUG)
+    if (resultsDay) return resultsDay
   }
   const candidate =
     sorted.find((p) => p.spotlight && !isSubjectGuideSlug(p.slug)) ??

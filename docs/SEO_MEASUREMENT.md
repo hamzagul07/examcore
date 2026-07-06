@@ -33,3 +33,55 @@ Pair **Google Search Console** (rankings) with optional **GA4** (`NEXT_PUBLIC_GA
 ## AI visibility (GEO)
 
 Track referrals from ChatGPT / Perplexity in GA4 if UTM present. Optimize posts with **Quick answer** blocks and **Sources** — already on blog template.
+
+## Results week 2026 — GSC re-index (do after deploy)
+
+GSC → **URL Inspection** → **Request indexing** (batch over 2–3 days; ~10–15/day avoids throttling).
+
+### Tier 1 — hubs & season anchors
+
+| URL |
+|-----|
+| `https://markscheme.app/` |
+| `https://markscheme.app/guides/grade-boundaries` |
+| `https://markscheme.app/blog/cambridge-post-exam-results-prep-2026` |
+| `https://markscheme.app/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect` |
+| `https://markscheme.app/blog/cambridge-results-day-august-2026-guide` |
+| `https://markscheme.app/tools/grade-boundary-calculator` |
+
+### Tier 2 — upgraded boundary guides (A-Level)
+
+`/blog/cambridge-9709-mathematics-grade-boundaries-2026` · `9700-biology` · `9701-chemistry` · `9702-physics` · `9708-economics` · `9609-business` · `9990-psychology` · `9489-history` · `9696-geography` · `9699-sociology` · `9706-accounting` · `9084-law` · `9618-computer-science` · `9607-media-studies` · `9231-further-mathematics` · `9488-islamic-studies`
+
+### Tier 3 — O-Level / IGCSE boundaries (grades **18 Aug**)
+
+`/blog/cambridge-4024-mathematics-grade-boundaries-2026` · `2281-economics` · `7115-business-studies` · `5090-biology` · `5070-chemistry` · `5054-physics` · `4037-additional-mathematics` · `7707-accounting` · `2210-computer-science` · `0460-geography`
+
+### Tier 4 — most-repeated revision hubs
+
+`/blog/most-repeated-cambridge-science-past-paper-topics-2026` and each sibling (economics, history, maths, English, business, psychology, sociology, geography, accounting, law, media studies, Islamic studies).
+
+### After ~13 August
+
+Re-request Tier 2 + calculator hub when June 2026 threshold PDFs are ingested (`pnpm grade:thresholds:ingest`).
+
+## IB results week (early July) — GSC re-index
+
+Peak demand **1–15 July** for May session results. Request indexing for:
+
+| URL |
+|-----|
+| `https://markscheme.app/` |
+| `https://markscheme.app/ib` |
+| `https://markscheme.app/guides/ib` |
+| `https://markscheme.app/blog/ib-results-day-2026-what-to-expect` |
+| `https://markscheme.app/blog/ib-post-exam-results-prep-2026` |
+| `https://markscheme.app/blog/ib-grade-boundaries-explained` |
+| `https://markscheme.app/blog/ib-how-to-build-a-grade-7-buffer-2026` |
+| `https://markscheme.app/blog/ib-predicted-grades-explained` |
+| `https://markscheme.app/ib/past-papers` |
+| `https://markscheme.app/ib/courses` |
+
+## Barnacle / Reddit (manual, same window)
+
+Use [BARNACLE_SEO_PLAYBOOK.md](./BARNACLE_SEO_PLAYBOOK.md) — 2–3 genuine replies/week on r/IBO (July) and r/igcse / r/alevel (August). Track `utm_medium=barnacle` in GA4.

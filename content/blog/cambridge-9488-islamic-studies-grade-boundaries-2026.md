@@ -38,7 +38,7 @@ Set after marking; essay bands mirror other humanities subjects.
 2. Mark to **band descriptors** — quote your own evidence  
 3. [9488 calculator](/tools/grade-boundary-calculator/9488) with recent sessions  
 
-Revision: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) · [command words](/blog/cambridge-9488-islamic-studies-command-words-guide) · [9489 History boundaries](/blog/cambridge-9489-history-grade-boundaries-2026)
+Revision: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) · [most repeated topics](/blog/most-repeated-cambridge-islamic-studies-past-paper-topics-2026) · [command words](/blog/cambridge-9488-islamic-studies-command-words-guide) · [9489 History boundaries](/blog/cambridge-9489-history-grade-boundaries-2026)
 
 ## Frequently asked questions
 

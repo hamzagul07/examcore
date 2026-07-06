@@ -141,6 +141,7 @@ Model answers show *an* solution. Mark schemes show **what earns each mark** —
 
 ## What to read next
 
+- [9706 course — Paper 3/4 lessons](/courses/9706) (partnerships, IAS, budgeting, investment appraisal)
 - [How to read a Cambridge mark scheme](/blog/how-to-read-a-cambridge-mark-scheme)
 - [How to mark Cambridge past papers yourself](/blog/how-to-mark-cambridge-past-papers-yourself)
 - [Common mistakes when self-marking](/blog/common-mistakes-self-marking-past-papers)

@@ -101,7 +101,8 @@ Digital note: Some centres may sit **MCQ Papers 01/02 on laptop** in June 2026 â
 Some centres run **O-Level (4024, 5090, 5070, 5054)** instead of IGCSE. Topic overlap is high; paper styles differ. Use the matching guide:
 
 - [O-Level maths](/blog/cambridge-4024-o-level-mathematics-past-papers-guide)  
-- [O-Level sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)  
+- [O-Level sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
+- [IGCSE Geography (0460)](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
 
 Confirm your **syllabus code** on your statement of entry â€” not your textbook cover.
 

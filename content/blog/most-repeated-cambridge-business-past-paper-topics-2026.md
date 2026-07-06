@@ -1,6 +1,6 @@
 ---
 title: Most repeated Cambridge business past paper topics for 2026 (A-Level & O-Level)
-description: High-frequency 9609 and 7115 topics from past papers 2019ñ2025 ó case study application, finance, marketing mix and essay bands that move marks.
+description: High-frequency 9609 and 7115 topics from past papers 2019ù2025 ù case study application, finance, marketing mix and essay bands that move marks.
 date: 2026-07-06
 category: revision
 keywords: Cambridge business revision 2026, 9609 topics, 7115 past papers, business case study topics, most repeated exam topics
@@ -8,9 +8,9 @@ informationGain: dataset
 author: founder
 ---
 
-Business revision clicks when you treat papers as **repeatable mark patterns** ó case application, break-even, cash flow, and evaluation paragraphs. This guide ranks high-frequency topics across **9609** (A-Level) and **7115** (O-Level) from **2019ñ2025**.
+Business revision clicks when you treat papers as **repeatable mark patterns** ù case application, break-even, cash flow, and evaluation paragraphs. This guide ranks high-frequency topics across **9609** (A-Level) and **7115** (O-Level) from **2019ù2025**.
 
-> **Key takeaway:** Business marks come from **stimulus data in your answer** ó generic theory alone caps your band.
+> **Key takeaway:** Business marks come from **stimulus data in your answer** ù generic theory alone caps your band.
 
 ## How this list was built
 
@@ -29,7 +29,7 @@ We weighted frequency on structured and case papers, examiner report comments, a
 | 7 | **Finance ratios** | Interpret accounts in the case |
 | 8 | **Strategic choice / Ansoff** | Evaluation of growth options |
 
-Guide: [9609 past papers](/blog/cambridge-9609-a-level-business-past-papers-guide) ∑ [9609 boundaries 2026](/blog/cambridge-9609-business-grade-boundaries-2026)
+Guide: [9609 past papers](/blog/cambridge-9609-a-level-business-past-papers-guide) ù [9609 boundaries 2026](/blog/cambridge-9609-business-grade-boundaries-2026)
 
 ## O-Level Business Studies (7115)
 
@@ -42,7 +42,7 @@ Guide: [9609 past papers](/blog/cambridge-9609-a-level-business-past-papers-guid
 | 5 | **Human resources** | Recruitment, training, motivation |
 | 6 | **External influences** | Economy, ethics, environment |
 | 7 | **Communication** | Channels, barriers |
-| 8 | **Expansion** | Franchising, mergers ó pros/cons |
+| 8 | **Expansion** | Franchising, mergers ù pros/cons |
 
 Guide: [7115 past papers](/blog/cambridge-7115-o-level-business-studies-past-papers-guide)
 
@@ -55,8 +55,8 @@ Guide: [7115 past papers](/blog/cambridge-7115-o-level-business-studies-past-pap
 | 3 | Full case paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Weak-topic retries | [MarkScheme](/mark) |
 
-**Sibling guides:** [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ∑ [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ∑ [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026)
+**Sibling guides:** [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ∑ [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ∑ [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ∑ [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ∑ [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
 
 ## Bottom line
 
-**9609** and **7115** reward **case-named application** and **balanced evaluation**. Anchor marked weeks on the topics above ó then use [MarkScheme](/mark) to see which band evidence you still miss.
+**9609** and **7115** reward **case-named application** and **balanced evaluation**. Anchor marked weeks on the topics above ù then use [MarkScheme](/mark) to see which band evidence you still miss.

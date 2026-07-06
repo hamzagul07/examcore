@@ -67,6 +67,7 @@ Cambridge **Grade Threshold** documents per session — also on [9709 subject pa
 - [9701 Chemistry boundaries](/blog/cambridge-9701-chemistry-grade-boundaries-2026)
 - [9702 Physics boundaries](/blog/cambridge-9702-physics-grade-boundaries-2026)
 - [9708 Economics boundaries](/blog/cambridge-9708-economics-grade-boundaries-2026)
+- [9231 Further Maths boundaries](/blog/cambridge-9231-further-mathematics-grade-boundaries-2026)
 
 ## Bottom line
 

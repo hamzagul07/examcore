@@ -18,7 +18,7 @@ Students paste past-paper answers into ChatGPT and get confident feedback — th
 |----------|--------|
 | Can ChatGPT mark my past paper? | It can **comment** — rarely **mark** accurately to the scheme |
 | Main failure modes? | Wrong keywords, invented mark points, harsh/lenient inconsistency |
-| Safer workflow? | Timed attempt ? **official scheme** ? AI only to explain gaps |
+| Safer workflow? | Timed attempt → **official scheme** → AI only to explain gaps |
 | Better tool? | Marking tied to **real schemes** — e.g. [MarkScheme](/mark) |
 | Is AI allowed in exams? | **No** — revision aid only; see [2026 AI rules](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) |
 
@@ -32,7 +32,7 @@ Biology and humanities schemes often require **exact phrases** or clearly define
 
 | Real scheme | AI tendency |
 |-------------|-------------|
-| “Award 1 mark for mention of semi-conservative replication” | “Good explanation of DNA copying” ? (false positive) |
+| “Award 1 mark for mention of semi-conservative replication” | “Good explanation of DNA copying” — (false positive) |
 | “Reject ‘strong nuclear force’ in this context” | Accepts plausible-sounding physics |
 
 ### 2. Invented B1 / M1 / A1 splits
@@ -80,7 +80,7 @@ Never skip step 3.
 | Clarify a scheme footnote | Pasting live exam questions |
 | Translate examiner report jargon | Replacing past-paper practice |
 
-Full policy context: [ChatGPT and Cambridge exams 2026](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) ? [AI marking guide](/blog/ai-marking-cambridge-past-papers-guide).
+Full policy context: [ChatGPT and Cambridge exams 2026](/blog/chatgpt-and-ai-cambridge-exams-2026-rules) · [AI marking guide](/blog/ai-marking-cambridge-past-papers-guide).
 
 ## IB Diploma — same principle, different rubric
 

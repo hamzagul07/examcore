@@ -50,7 +50,7 @@ Cross-links: [essay planning](/blog/a-level-essay-planning-past-papers) — [969
 | 3 | Specialist option essays | Full timed paper |
 | 4 | Mixed synoptic | [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ? [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
 
 ## Bottom line
 

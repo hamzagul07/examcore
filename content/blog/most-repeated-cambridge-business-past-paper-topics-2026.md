@@ -55,7 +55,7 @@ Guide: [7115 past papers](/blog/cambridge-7115-o-level-business-studies-past-pap
 | 3 | Full case paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Weak-topic retries | [MarkScheme](/mark) |
 
-**Sibling guides:** [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ? [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ? [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
+**Sibling guides:** [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026)
 
 ## Bottom line
 

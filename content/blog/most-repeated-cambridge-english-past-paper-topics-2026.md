@@ -53,7 +53,7 @@ Full guide: [9695 past papers](/blog/cambridge-9695-a-level-english-literature-p
 | 7 | **Language analysis (Paper 1)** | Precise terminology tied to effect |
 | 8 | **Editing and accuracy** | SPaG costs marks on extended responses |
 
-Guide: [0500 past papers](/blog/cambridge-0500-igcse-first-language-english-past-papers-guide) ? [0990 boundaries (9–1)](/blog/cambridge-0990-first-language-english-grade-boundaries-2026).
+Guide: [0500 past papers](/blog/cambridge-0500-igcse-first-language-english-past-papers-guide) · [0990 boundaries (9–1)](/blog/cambridge-0990-first-language-english-grade-boundaries-2026).
 
 ## Band habits that move grades
 

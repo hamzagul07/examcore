@@ -38,7 +38,7 @@ Confirm your **syllabus code** with your centre.
 
 **Practise:** One trace table per day without looking at the mark scheme first — then mark **line by line**.
 
-Full guide: [9618 past papers](/blog/cambridge-9618-a-level-computer-science-past-papers-guide) ? [9618 boundaries 2026](/blog/cambridge-9618-computer-science-grade-boundaries-2026)
+Full guide: [9618 past papers](/blog/cambridge-9618-a-level-computer-science-past-papers-guide) · [9618 boundaries 2026](/blog/cambridge-9618-computer-science-grade-boundaries-2026)
 
 ## IGCSE Computer Science (0478)
 

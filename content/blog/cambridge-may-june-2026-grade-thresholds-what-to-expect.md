@@ -82,7 +82,7 @@ Reported security incidents and social media "leaks" increase anxiety. Cambridge
 | Claim | Reality |
 |-------|---------|
 | "Thresholds always drop after leaks" | Cambridge prioritises **fairness**, not sympathy |
-| "My teacher said B starts at 62%" | Last year's row ? your entry option this year |
+| "My teacher said B starts at 62%" | Last year's row — your entry option this year |
 | "India zone has easier thresholds" | Zones exist; students cannot shop them |
 | Viral Google Sheets | Often fabricated or copied from old sessions |
 

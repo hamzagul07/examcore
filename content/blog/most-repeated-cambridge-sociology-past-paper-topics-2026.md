@@ -51,7 +51,7 @@ Cross-links: [essay planning](/blog/a-level-essay-planning-past-papers) — [Psy
 | 3 | P4 synoptic (media/religion/globalisation) | Full timed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Weak-topic retries | Full timed paper | [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) ? [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ? [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026) ? [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) · [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026)
 
 ## Bottom line
 

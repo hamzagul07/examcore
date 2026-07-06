@@ -38,7 +38,7 @@ Your **set-text list** and **paper entries** matter — confirm with your centre
 
 **Practise:** One set-text answer per week marked to **levels of response** — quote your own lines when assigning bands.
 
-Full guide: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) ? [9488 boundaries 2026](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026)
+Full guide: [9488 past papers](/blog/cambridge-9488-a-level-islamic-studies-past-papers-guide) · [9488 boundaries 2026](/blog/cambridge-9488-islamic-studies-grade-boundaries-2026)
 
 ## Thematic angles that cross papers
 
@@ -65,18 +65,18 @@ Command-word drill: [9488 command words](/blog/cambridge-9488-islamic-studies-co
 | Generic "Islam says" | Name **source, school, or scholar** you rely on |
 | Weak conclusion | Answer the **exact** question in final lines |
 
-Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) ? [History most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
+Cross-links: [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge) · [History most repeated](/blog/most-repeated-cambridge-history-past-paper-topics-2026)
 
 ## The 4-week high-yield rotation
 
 | Week | Mon–Wed | Thu–Fri | Weekend |
 |------|---------|---------|---------|
-| 1 | Set-text explain ?2 | Timed essay plan | Mark plans to band descriptors |
+| 1 | Set-text explain ×2 | Timed essay plan | Mark plans to band descriptors |
 | 2 | Thematic essay (modern world) | Half paper | Rewrite intro + conclusion |
 | 3 | Scholar evaluation paragraph | Full timed paper | [Examiner report](/blog/cambridge-examiner-report-how-to-use) |
 | 4 | Mixed synoptic | Full timed paper | Upload to [MarkScheme](/mark) |
 
-**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Law](/blog/most-repeated-cambridge-law-past-paper-topics-2026) ? [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) ? [Sciences hub](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
+**Sibling guides:** [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Law](/blog/most-repeated-cambridge-law-past-paper-topics-2026) · [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) · [Sciences hub](/blog/most-repeated-cambridge-science-past-paper-topics-2026)
 
 ## What "most repeated" does not mean
 

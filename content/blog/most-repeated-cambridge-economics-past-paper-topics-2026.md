@@ -63,11 +63,11 @@ Guide: [2281 past papers](/blog/cambridge-2281-o-level-economics-past-papers-gui
 |-------|--------------|-------------------|
 | Essays | 1 timed plan + 1 paragraph rewrite | Band descriptors — [command words](/blog/cambridge-9708-economics-command-words-guide) |
 | Calculations | 3 multi-step questions | M marks for setup; don't skip working |
-| Data response | 1 full section | Define ? apply ? evaluate in that order |
+| Data response | 1 full section | Define — apply — evaluate in that order |
 
 Cross-links: [ECF in calculations](/blog/understanding-error-carried-forward-ecf), [essay planning template](/blog/a-level-essay-planning-past-papers).
 
-**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ? [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) ? [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Accounting](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026) ? [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ? [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [Maths](/blog/most-repeated-cambridge-maths-past-paper-topics-2026) · [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Accounting](/blog/most-repeated-cambridge-accounting-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
 
 ## 4-week high-yield rotation
 

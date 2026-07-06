@@ -29,7 +29,7 @@ We weighted analysis-question patterns, coursework mark-band language, and exami
 | 7 | **Global vs local media** | Cultural imperialism, niche streaming |
 | 8 | **Evaluation & comparison** | Two texts, weighed judgement |
 
-Guide: [9607 past papers](/blog/cambridge-9607-a-level-media-studies-past-papers-guide) ? [9607 boundaries 2026](/blog/cambridge-9607-media-studies-grade-boundaries-2026) ? [command words](/blog/cambridge-9607-media-studies-command-words-guide)
+Guide: [9607 past papers](/blog/cambridge-9607-a-level-media-studies-past-papers-guide) · [9607 boundaries 2026](/blog/cambridge-9607-media-studies-grade-boundaries-2026) · [command words](/blog/cambridge-9607-media-studies-command-words-guide)
 
 ## Band traps
 
@@ -40,7 +40,7 @@ Guide: [9607 past papers](/blog/cambridge-9607-a-level-media-studies-past-papers
 | No industry link | Tie representation to **who produces/distributes** |
 | Coursework generalities | Same discipline — evidence in every paragraph |
 
-Cross-links: [English most repeated](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ? [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge)
+Cross-links: [English most repeated](/blog/most-repeated-cambridge-english-past-paper-topics-2026) · [evaluate questions](/blog/how-to-answer-evaluate-questions-cambridge)
 
 ## 4-week rotation
 
@@ -51,7 +51,7 @@ Cross-links: [English most repeated](/blog/most-repeated-cambridge-english-past-
 | 3 | Representation comparison | Full timed paper |
 | 4 | Coursework + exam synoptic | [MarkScheme](/mark) |
 
-**Sibling guides:** [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) ? [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) ? [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ? [CS](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026)
+**Sibling guides:** [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026) · [History](/blog/most-repeated-cambridge-history-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [CS](/blog/most-repeated-cambridge-computer-science-past-paper-topics-2026)
 
 ## Bottom line
 

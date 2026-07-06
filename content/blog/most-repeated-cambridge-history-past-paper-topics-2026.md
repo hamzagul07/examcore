@@ -74,7 +74,7 @@ Command-word drill: [9489 command words](/blog/cambridge-9489-history-command-wo
 
 See [essay planning template](/blog/a-level-essay-planning-past-papers) and [A* plan for 9489](/blog/how-to-get-an-a-star-in-cambridge-9489-history).
 
-**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) ? [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) ? [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) ? [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) ? [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) ? [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026) ? [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
+**Sibling guides:** [Sciences](/blog/most-repeated-cambridge-science-past-paper-topics-2026) · [Economics](/blog/most-repeated-cambridge-economics-past-paper-topics-2026) · [Business](/blog/most-repeated-cambridge-business-past-paper-topics-2026) · [Psychology](/blog/most-repeated-cambridge-psychology-past-paper-topics-2026) · [Sociology](/blog/most-repeated-cambridge-sociology-past-paper-topics-2026) · [Geography](/blog/most-repeated-cambridge-geography-past-paper-topics-2026) · [English](/blog/most-repeated-cambridge-english-past-paper-topics-2026)
 
 ## What "most repeated" does not mean
 

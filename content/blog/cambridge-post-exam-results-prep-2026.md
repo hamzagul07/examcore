@@ -1,6 +1,6 @@
 ---
-title: After Cambridge exams ? results prep checklist (2026)
-description: Finished May/June 2026 exams? What to do before results day ? predict grades honestly, save evidence, plan remarks and November resits without anxiety scrolling.
+title: After Cambridge exams — results prep checklist (2026)
+description: Finished May/June 2026 exams? What to do before results day — predict grades honestly, save evidence, plan remarks and November resits without anxiety scrolling.
 date: 2026-07-06
 updated: 2026-07-06
 category: editorial
@@ -11,7 +11,7 @@ informationGain: synthesis
 author: founder
 ---
 
-The weeks **after** your last Cambridge paper are dangerous: either you forget exams exist, or you spiral on leak rumours and boundary predictions. Neither helps. A short **results prep checklist** turns waiting time into evidence ? so results day is a decision, not a shock.
+The weeks **after** your last Cambridge paper are dangerous: either you forget exams exist, or you spiral on leak rumours and boundary predictions. Neither helps. A short **results prep checklist** turns waiting time into evidence — so results day is a decision, not a shock.
 
 ## Quick answer
 
@@ -19,7 +19,7 @@ The weeks **after** your last Cambridge paper are dangerous: either you forget e
 |----------|--------|
 | When are June 2026 results? | AS/A-Level **11 August**; IGCSE/O Level **18 August** (06:00 GMT) |
 | When are threshold tables? | **~13 August** (A-Level components) |
-| Can I predict my grade now? | **Estimate** from marked mocks ? not from TikTok thresholds |
+| Can I predict my grade now? | **Estimate** from marked mocks — not from TikTok thresholds |
 | Should I revise for retakes already? | Light **technique** review only; rest first |
 | What to save? | Mock scripts, marked past papers, candidate details |
 | What to ignore? | "Leaked" papers, fake threshold spreadsheets |
@@ -68,20 +68,20 @@ Estimate with recent sessions until official tables publish:
 | Biology | 0610 | [0610 boundaries](/blog/cambridge-0610-biology-grade-boundaries-2026) |
 | Chemistry | 0620 | [0620 boundaries](/blog/cambridge-0620-chemistry-grade-boundaries-2026) |
 | Physics | 0625 | [0625 boundaries](/blog/cambridge-0625-physics-grade-boundaries-2026) |
-| First Language English (9?1) | 0990 | [0990 boundaries](/blog/cambridge-0990-first-language-english-grade-boundaries-2026) |
+| First Language English (9–1) | 0990 | [0990 boundaries](/blog/cambridge-0990-first-language-english-grade-boundaries-2026) |
 
-All subjects: [grade boundaries hub](/guides/grade-boundaries) ? [calculator](/tools/grade-boundary-calculator)
+All subjects: [grade boundaries hub](/guides/grade-boundaries) · [calculator](/tools/grade-boundary-calculator)
 
-## Week 1 after exams ? decompress with structure
+## Week 1 after exams — decompress with structure
 
 | Day | Action |
 |-----|--------|
-| 1?2 | Sleep; no post-mortem marathons with friends |
+| 1–2 | Sleep; no post-mortem marathons with friends |
 | 3 | Write one page per subject: "felt strong / weak / ran out of time" |
-| 4?5 | Pull **marked** past papers from the last month ? highlight mark patterns |
-| 6?7 | List university or next-year requirements (grades needed per subject) |
+| 4–5 | Pull **marked** past papers from the last month — highlight mark patterns |
+| 6–7 | List university or next-year requirements (grades needed per subject) |
 
-Avoid posting specific questions online ? malpractice investigations use social trails.
+Avoid posting specific questions online — malpractice investigations use social trails.
 
 ## Build your honest grade estimate
 
@@ -91,10 +91,10 @@ You are not predicting boundaries; you are predicting **your performance band**.
 |-----------------|--------|
 | Last **timed** full paper per subject (marked) | Highest |
 | Mock exams (if marked to scheme) | High |
-| Unmarked "felt fine" memory | Low ? ignore alone |
+| Unmarked "felt fine" memory | Low — ignore alone |
 | Friend comparisons | Zero |
 
-Tool: [predict grade before results day](/blog/how-to-predict-your-cambridge-grade-before-results-day) ? [grade boundary calculator](/tools/grade-boundary-calculator) with **last session** thresholds as a bracket.
+Tool: [predict grade before results day](/blog/how-to-predict-your-cambridge-grade-before-results-day) · [grade boundary calculator](/tools/grade-boundary-calculator) with **last session** thresholds as a bracket.
 
 ## What to file before results
 
@@ -106,15 +106,15 @@ Create one folder (digital + paper):
 - List of components you sat (codes matter for remarks)  
 - University offer conditions (if applicable)  
 
-After results you may receive a **component marks report** ? know what it is in advance: [component marks report explained](/blog/cambridge-component-marks-report-explained-2026).
+After results you may receive a **component marks report** — know what it is in advance: [component marks report explained](/blog/cambridge-component-marks-report-explained-2026).
 
-## Leak season ? stay clean
+## Leak season — stay clean
 
 Every June, "threshold predictions" and "leaked answers" flood feeds. Official stance:
 
 - Boundaries are set **after** marking  
 - Leak engagement risks **malpractice** findings  
-- Assessed marks procedures exist for integrity ? see [assessed marks explained](/blog/cambridge-assessed-marks-2026-explained)
+- Assessed marks procedures exist for integrity — see [assessed marks explained](/blog/cambridge-assessed-marks-2026-explained)
 
 Legitimate prep: [what to do while waiting](/blog/what-to-do-while-waiting-for-cambridge-results).
 
@@ -128,7 +128,7 @@ If you already know one subject went badly:
 | List topics that were blank | Register November entries |
 | Read [retakes strategy](/blog/cambridge-retakes-and-resits-2026-strategy) | Panic-register four subjects |
 
-November series entries have **school deadlines** ? often September. Note the date in your calendar now.
+November series entries have **school deadlines** — often September. Note the date in your calendar now.
 
 ## Results day hour-by-hour
 
@@ -137,16 +137,16 @@ Full guide: [Cambridge results day August 2026](/blog/cambridge-results-day-augu
 | Hour | Action |
 |------|--------|
 | Before portal | PDF backups ready; phone charged |
-| 0?2 | Read statement calmly; no public posting |
-| 2?24 | Compare to your **evidence file** |
-| 24?48 | Exams officer meeting if surprise |
+| 0–2 | Read statement calmly; no public posting |
+| 2–24 | Compare to your **evidence file** |
+| 24–48 | Exams officer meeting if surprise |
 | 48+ | EAR / resit / accept decision per subject |
 
 Remark rules: [EAR guide](/blog/cambridge-enquiry-about-results-ear-guide-2026).
 
 ## IB students in the same window
 
-IB May results release **early July** ? different calendar. See [IB post-exam prep](/blog/ib-post-exam-results-prep-2026), [IB results day 2026](/blog/ib-results-day-2026-what-to-expect), and [grade 7 buffer strategy](/blog/ib-how-to-build-a-grade-7-buffer-2026).
+IB May results release **early July** — different calendar. See [IB post-exam prep](/blog/ib-post-exam-results-prep-2026), [IB results day 2026](/blog/ib-results-day-2026-what-to-expect), and [grade 7 buffer strategy](/blog/ib-how-to-build-a-grade-7-buffer-2026).
 
 ## Frequently asked questions
 
@@ -164,12 +164,12 @@ Your centre sends them; timing varies. Have PDFs ready for clearing if needed.
 
 ### Can I work a summer job?
 
-Yes ? structure helps mental health. Keep one evening a week for results admin if retakes are possible.
+Yes — structure helps mental health. Keep one evening a week for results admin if retakes are possible.
 
 ### Is AI useful while waiting?
 
-For **explaining** errors in marked papers ? yes. For generating "what grade will I get" ? no.
+For **explaining** errors in marked papers — yes. For generating "what grade will I get" — no.
 
 ## Bottom line
 
-**After Cambridge exams**, the winning move is quiet preparation: honest grade estimates, saved scripts, exams officer on speed dial, and zero leak culture. Results day rewards students with evidence ? not students with the most anxious group chat.
+**After Cambridge exams**, the winning move is quiet preparation: honest grade estimates, saved scripts, exams officer on speed dial, and zero leak culture. Results day rewards students with evidence — not students with the most anxious group chat.

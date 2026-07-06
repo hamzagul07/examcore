@@ -53,7 +53,7 @@ Full guide: [9709 past papers](/blog/cambridge-9709-a-level-mathematics-past-pap
 | 7 | **Number & bounds** | Upper/lower bounds, standard form |
 | 8 | **Functions & sequences** | nth term, inverse functions |
 
-Guide: [0580 past papers](/blog/cambridge-0580-igcse-mathematics-past-papers-guide) ? [0580 boundaries 2026](/blog/cambridge-0580-mathematics-grade-boundaries-2026)
+Guide: [0580 past papers](/blog/cambridge-0580-igcse-mathematics-past-papers-guide) · [0580 boundaries 2026](/blog/cambridge-0580-mathematics-grade-boundaries-2026)
 
 ## A-Level Further Mathematics (9231)
 

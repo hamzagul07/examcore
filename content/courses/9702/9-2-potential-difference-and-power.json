@@ -5,12 +5,15 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 2 — Potential difference and power (9.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "summary": "Cambridge 9702 Paper 2 — Potential difference and power (9.2). Senpai Corner diagram-backed pilot with premium structure and live visuals. Syllabus coverage: define the potential difference across a component as the energy transferred per unit charge recall and use $V = W/Q$ recall and use $P = VI$, $P = I^2R$ and $P = V^2/R$",
   "durationMin": 20,
   "learningObjectives": [
     "Define potential difference (p.d.) and state its SI unit (Volt).",
     "Define electrical power and state its SI unit (Watt).",
-    "Apply relevant formulas to calculate potential difference, power, and electrical energy in circuits."
+    "Apply relevant formulas to calculate potential difference, power, and electrical energy in circuits.",
+    "9.2.1: define the potential difference across a component as the energy transferred per unit charge",
+    "9.2.2: recall and use $V = W/Q$",
+    "9.2.3: recall and use $P = VI$, $P = I^2R$ and $P = V^2/R$"
   ],
   "simpleExplanation": {
     "title": "The 'Push' and 'Speed' of Electricity",
@@ -171,6 +174,11 @@
       "solution": "1.  To find the power (P), we use the formula $P = VI$:\n    Given: $V = 12 \\text{ V}$, $I = 0.5 \\text{ A}$\n    $P = 12 \\text{ V} \\times 0.5 \\text{ A} = 6 \\text{ W}$\n    The electrical power dissipated by the bulb is **6 Watts**.\n2.  To find the total energy (E), we use the formula $E = VIt$. First, convert the time to seconds:\n    $t = 10 \\text{ minutes} \\times 60 \\text{ seconds/minute} = 600 \\text{ s}$\n    Now, substitute the values into the energy formula:\n    $E = 12 \\text{ V} \\times 0.5 \\text{ A} \\times 600 \\text{ s}$\n    $E = 6 \\text{ W} \\times 600 \\text{ s} = 3600 \\text{ J}$\n    The total electrical energy converted by the bulb is **3600 Joules**."
     },
     {
+      "type": "workedExample",
+      "question": "A resistor of $8.0\\,\\Omega$ carries a current of $2.5\\,\\text{A}$. Find the potential difference across it and the power dissipated using $V=IR$ and $P=I^2R$.",
+      "solution": "$V = IR = 2.5 \\times 8.0 = 20\\,\\text{V}$\n$P = I^2R = (2.5)^2 \\times 8.0 = 50\\,\\text{W}$"
+    },
+    {
       "type": "practice",
       "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=9.2"
@@ -215,5 +223,10 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/9-2-potential-difference-and-power.png",
     "alt": "Senpai Corner reference diagram for 9.2 Potential difference and power"
-  }
+  },
+  "syllabusObjectivesCovered": [
+    "9.2.1",
+    "9.2.2",
+    "9.2.3"
+  ]
 }

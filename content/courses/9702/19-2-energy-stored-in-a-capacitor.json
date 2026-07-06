@@ -5,12 +5,14 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9702 Paper 4 — Energy stored in a capacitor (19.2). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "summary": "Cambridge 9702 Paper 4 — Energy stored in a capacitor (19.2). Senpai Corner diagram-backed pilot with premium structure and live visuals. Syllabus coverage: determine the electric potential energy stored in a capacitor from the area under the potential-charge graph recall and use $W = \\frac{1}{2}QV = \\frac{1}{2}CV^2$",
   "durationMin": 20,
   "learningObjectives": [
     "Explain how and where energy is stored in a capacitor.",
     "Calculate the energy stored using relevant formulas and Q-V graphs.",
-    "Describe and analyse the discharge of a capacitor, including the time constant."
+    "Describe and analyse the discharge of a capacitor, including the time constant.",
+    "19.2.1: determine the electric potential energy stored in a capacitor from the area under the potential-charge graph",
+    "19.2.2: recall and use $W = \\frac{1}{2}QV = \\frac{1}{2}CV^2$"
   ],
   "simpleExplanation": {
     "title": "Capacitor Energy: The Basics",
@@ -149,6 +151,11 @@
       "content": "When calculating energy, always ensure your capacitance is in Farads (F) and voltage in Volts (V). Be careful with units like microfarads (\\mu F) – convert them to Farads by multiplying by $10^{-6}$."
     },
     {
+      "type": "workedExample",
+      "question": "A $200\\,\\mu\\text{F}$ capacitor is charged to $12\\,\\text{V}$. Calculate the energy stored using $W = \\frac{1}{2}CV^2$.",
+      "solution": "$C = 200\\times 10^{-6}\\,\\text{F}$\n$W = \\frac{1}{2}CV^2 = \\frac{1}{2}(200\\times 10^{-6})(12)^2 = 1.4\\times 10^{-2}\\,\\text{J}$ (2 s.f.)"
+    },
+    {
       "type": "practice",
       "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=19.2"
@@ -193,5 +200,9 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/19-2-energy-stored-in-a-capacitor.png",
     "alt": "Senpai Corner reference diagram for 19.2 Energy stored in a capacitor"
-  }
+  },
+  "syllabusObjectivesCovered": [
+    "19.2.1",
+    "19.2.2"
+  ]
 }

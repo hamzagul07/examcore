@@ -58,6 +58,7 @@ Confirm your **5090** code on your statement of entry — papers differ from 061
 
 - [5070 Chemistry](/blog/cambridge-5070-chemistry-grade-boundaries-2026)
 - [5054 Physics](/blog/cambridge-5054-physics-grade-boundaries-2026)
+- [0610 IGCSE Biology](/blog/cambridge-0610-biology-grade-boundaries-2026)
 - [9700 A-Level Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
 
 ## Bottom line

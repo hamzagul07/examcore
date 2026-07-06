@@ -58,6 +58,7 @@ No — boundaries move with paper difficulty.
 
 - [5090 Biology](/blog/cambridge-5090-biology-grade-boundaries-2026)
 - [5054 Physics](/blog/cambridge-5054-physics-grade-boundaries-2026)
+- [0620 IGCSE Chemistry](/blog/cambridge-0620-chemistry-grade-boundaries-2026)
 - [9701 A-Level Chemistry](/blog/cambridge-9701-chemistry-grade-boundaries-2026)
 
 ## Bottom line

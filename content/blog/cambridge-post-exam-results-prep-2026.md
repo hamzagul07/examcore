@@ -64,6 +64,9 @@ Estimate with recent sessions until official tables publish:
 | Accounting | 7707 | [7707 boundaries](/blog/cambridge-7707-accounting-grade-boundaries-2026) |
 | Geography | 0460 | [0460 boundaries](/blog/cambridge-0460-geography-grade-boundaries-2026) |
 | Mathematics | 0580 | [0580 boundaries](/blog/cambridge-0580-mathematics-grade-boundaries-2026) |
+| Biology | 0610 | [0610 boundaries](/blog/cambridge-0610-biology-grade-boundaries-2026) |
+| Chemistry | 0620 | [0620 boundaries](/blog/cambridge-0620-chemistry-grade-boundaries-2026) |
+| Physics | 0625 | [0625 boundaries](/blog/cambridge-0625-physics-grade-boundaries-2026) |
 
 All subjects: [grade boundaries hub](/guides/grade-boundaries) ? [calculator](/tools/grade-boundary-calculator)
 

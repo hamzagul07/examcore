@@ -30,7 +30,7 @@ Based on 0580 papers **2019–2025** and examiner reports:
 
 **Paper split:** Core skills hit Papers 2 and 4; Extended adds depth on 4. Track **Paper 4** separately — it carries the most A/A* leverage.
 
-Practise: [IGCSE past papers guide](/blog/cambridge-igcse-past-papers-guide) + timed Paper 2/4 pairs.
+Practise: [IGCSE past papers guide](/blog/cambridge-igcse-past-papers-guide) + timed Paper 2/4 pairs · [0580 boundaries 2026](/blog/cambridge-0580-mathematics-grade-boundaries-2026).
 
 ## Biology 0610
 
@@ -48,6 +48,8 @@ Practise: [IGCSE past papers guide](/blog/cambridge-igcse-past-papers-guide) + t
 | 10 | **Practical skills (Paper 6)** | Variables, graphs, conclusions |
 
 **Leverage point:** Paper 4 structured questions often decide A vs A*. Give it **40%** of biology past-paper time even though Papers 2/6 feel easier.
+
+Guide: [0610 past papers](/blog/cambridge-0610-igcse-biology-past-papers-guide) · [0610 boundaries 2026](/blog/cambridge-0610-biology-grade-boundaries-2026).
 
 Digital note: Some centres may sit **MCQ Papers 01/02 on laptop** in June 2026 — see [digital exams guide](/blog/cambridge-digital-exams-june-2026-student-guide). Content unchanged.
 
@@ -68,6 +70,8 @@ Digital note: Some centres may sit **MCQ Papers 01/02 on laptop** in June 2026 �
 
 **Practise moles daily** — 15 minutes beats one extra hour of reading notes.
 
+Guide: [0620 past papers](/blog/cambridge-0620-igcse-chemistry-past-papers-guide) · [0620 boundaries 2026](/blog/cambridge-0620-chemistry-grade-boundaries-2026).
+
 ## Physics 0625
 
 | Rank | Topic | Common mark loss |
@@ -82,6 +86,8 @@ Digital note: Some centres may sit **MCQ Papers 01/02 on laptop** in June 2026 �
 | 8 | **Light & optics** | Ray diagrams |
 | 9 | **Pressure & density** | Liquid pressure, floating |
 | 10 | **Motion graphs** | Area under curve = distance |
+
+Guide: [0625 past papers](/blog/cambridge-0625-igcse-physics-past-papers-guide) · [0625 boundaries 2026](/blog/cambridge-0625-physics-grade-boundaries-2026).
 
 ## Suggested 6-week IGCSE past-paper order
 

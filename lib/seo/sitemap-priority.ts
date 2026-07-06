@@ -18,6 +18,7 @@ const IB_EDITORIAL_SLUGS = new Set([
   'ib-tok-past-papers-guide',
   'ib-extended-essay-complete-guide',
   'ib-cas-complete-guide',
+  'ib-how-to-build-a-grade-7-buffer-2026',
 ])
 
 export function blogSitemapPriority(slug: string): number {

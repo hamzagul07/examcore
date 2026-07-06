@@ -26,11 +26,11 @@ Official **9701 Chemistry** grade boundaries for **June 2026** publish in August
 
 ## What are grade boundaries?
 
-Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9701 Chemistry**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9701 Chemistry**. They are not fixed percentages — your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9701 boundaries
 
-Cambridge sets **9701** thresholds **after** all scripts are marked so each grade means the same standard every year. State symbols, mole ratios, and balanced equations must match the mark scheme wording on every calculation chain. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9701** sessions ([wrong-session estimates](/insights)).
+Cambridge sets **9701** thresholds **after** all scripts are marked so each grade means the same standard every year. State symbols, mole ratios, and balanced equations must match the mark scheme wording on every calculation chain. When a paper is harder than the previous June series, raw cut-offs usually **fall** — comparable outcomes, not fixed quotas. Compare only to verified **9701** sessions ([wrong-session estimates](/insights)).
 
 ## Revision links
 
@@ -52,7 +52,7 @@ Mark a recent paper to raw marks and compare to June 2024/2023 in the [9701 calc
 
 ## Related subjects
 
-A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs — each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9700 Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
 - [9702 Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
@@ -60,5 +60,5 @@ A-Level boundaries publish with **11 August** grades and **~13 August** threshol
 
 ## Bottom line
 
-**9701 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9701 calculator](/tools/grade-boundary-calculator/9701) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**9701 grade boundaries 2026** publish in August — **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9701 calculator](/tools/grade-boundary-calculator/9701) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

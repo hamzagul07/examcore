@@ -26,7 +26,7 @@ Official **9708 Economics** grade boundaries for **June 2026** publish in August
 
 ## What are grade boundaries?
 
-Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9708 Economics**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9708 Economics**. They are not fixed percentages — your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How 9708 papers are marked
 
@@ -35,7 +35,7 @@ Grade boundaries are the minimum **raw marks** Cambridge requires for each lette
 ## How to estimate your grade
 
 1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
-2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+2. Mark strictly to the official scheme — log every lost mark before convincing yourself an answer "basically counts".  
 3. Compare component raw marks to June 2024/2023 in the [9708 calculator](/tools/grade-boundary-calculator/9708) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
@@ -54,7 +54,7 @@ Cambridge site **~13 August**; we load verified tables into the [calculator](/to
 
 ## Related subjects
 
-A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs — each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9700 Biology](/blog/cambridge-9700-biology-grade-boundaries-2026)
 - [9702 Physics](/blog/cambridge-9702-physics-grade-boundaries-2026)
@@ -62,5 +62,5 @@ A-Level boundaries publish with **11 August** grades and **~13 August** threshol
 
 ## Bottom line
 
-**9708 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9708 calculator](/tools/grade-boundary-calculator/9708) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**9708 grade boundaries 2026** publish in August — **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9708 calculator](/tools/grade-boundary-calculator/9708) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

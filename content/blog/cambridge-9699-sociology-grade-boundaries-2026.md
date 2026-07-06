@@ -26,16 +26,16 @@ Official **9699 Sociology** grade boundaries for **June 2026** publish in August
 
 ## What are grade boundaries?
 
-Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9699 Sociology**. They are not fixed percentages � your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
+Grade boundaries are the minimum **raw marks** Cambridge requires for each letter grade on each component of **9699 Sociology**. They are not fixed percentages — your **overall** A-Level grade uses a weighted aggregate across the papers you entered, and each paper variant has its own row in the official PDF. Match your exact component codes from the statement of entry before comparing marks to any past session.
 
 ## How Cambridge sets 9699 boundaries
 
-Cambridge sets **9699** thresholds **after** all scripts are marked so each grade means the same standard every year. Name the theory, apply it to the stimulus, and evaluate � generic "society" paragraphs rarely score top bands. When a paper is harder than the previous June series, raw cut-offs usually **fall** � comparable outcomes, not fixed quotas. Compare only to verified **9699** sessions ([wrong-session estimates](/insights)).
+Cambridge sets **9699** thresholds **after** all scripts are marked so each grade means the same standard every year. Name the theory, apply it to the stimulus, and evaluate — generic "society" paragraphs rarely score top bands. When a paper is harder than the previous June series, raw cut-offs usually **fall** — comparable outcomes, not fixed quotas. Compare only to verified **9699** sessions ([wrong-session estimates](/insights)).
 
 ## How to estimate your grade
 
 1. Complete a recent A-Level paper under timed conditions for your exact entry route.  
-2. Mark strictly to the official scheme � log every lost mark before convincing yourself an answer "basically counts".  
+2. Mark strictly to the official scheme — log every lost mark before convincing yourself an answer "basically counts".  
 3. Compare component raw marks to June 2024/2023 in the [9699 calculator](/tools/grade-boundary-calculator/9699) until the verified June 2026 PDF loads.
 
 ## Frequently asked questions
@@ -54,7 +54,7 @@ A* is on the **overall** qualification only — you need grade A overall plus st
 
 ## Related subjects
 
-A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs � each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
+A-Level boundaries publish with **11 August** grades and **~13 August** threshold PDFs — each syllabus code is separate. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator. Cross-link below for adjacent syllabuses only; never swap threshold numbers between codes or sessions.
 
 - [9489 History](/blog/cambridge-9489-history-grade-boundaries-2026)
 - [9990 Psychology](/blog/cambridge-9990-psychology-grade-boundaries-2026)
@@ -62,5 +62,5 @@ A-Level boundaries publish with **11 August** grades and **~13 August** threshol
 
 ## Bottom line
 
-**9699 grade boundaries 2026** publish in August � **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9699 calculator](/tools/grade-boundary-calculator/9699) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
+**9699 grade boundaries 2026** publish in August — **11 August** for grades on your statement, **~13 August** for component threshold PDFs. Until then, marked past papers plus the [9699 calculator](/tools/grade-boundary-calculator/9699) using June 2024/2023 beat rumour spreadsheets. Save your component codes when Cambridge publishes the official row. Your exams officer confirms entries on the statement.
 

@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url'
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const DATA_DIR = path.join(ROOT, 'content', 'data', 'grade-boundaries')
 const INCOMING_DIR = path.join(DATA_DIR, 'incoming')
-const PRIORITY_CODES = ['9709', '9700', '9702', '9708', '9701', '4024', '0580', '0610', '0620', '0625', '5090', '5070', '5054', '9695', '0990', '2281', '7115', '4037', '2210', '9609', '9990', '9489', '9696', '0460']
+const PRIORITY_CODES = ['9709', '9700', '9702', '9708', '9701', '4024', '0580', '0610', '0620', '0625', '5090', '5070', '5054', '9695', '0990', '2281', '7115', '7707', '4037', '2210', '9609', '9990', '9489', '9696', '0460']
 
 function parseArgs(argv) {
   const args = { all: false, code: null }

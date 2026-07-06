@@ -59,7 +59,7 @@ Threshold tables explain how raw marks mapped to grades for the cohort — they 
 | Geography | 9696 | [9696 boundaries](/blog/cambridge-9696-geography-grade-boundaries-2026) |
 | History | 9489 | [9489 boundaries](/blog/cambridge-9489-history-grade-boundaries-2026) |
 
-**O-Level / IGCSE (grades 18 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) · [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026) · [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) · [full hub](/guides/grade-boundaries)
+**O-Level / IGCSE (grades 18 August):** [4024](/blog/cambridge-4024-mathematics-grade-boundaries-2026) · [0580](/blog/cambridge-0580-mathematics-grade-boundaries-2026) · [0460 Geography](/blog/cambridge-0460-geography-grade-boundaries-2026) · [5090](/blog/cambridge-5090-biology-grade-boundaries-2026) · [full hub](/guides/grade-boundaries)
 
 Why predictions mislead: [May/June 2026 thresholds guide](/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect).
 

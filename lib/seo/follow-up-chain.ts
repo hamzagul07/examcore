@@ -209,6 +209,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-4024-mathematics-grade-boundaries-2026',
     },
     {
+      question: 'Where are 0580 IGCSE Maths grade boundaries for 2026?',
+      answer:
+        'IGCSE grades release 18 August; threshold PDFs ~13 August — Extended route uses Papers 2+4; mark with M marks shown.',
+      href: '/blog/cambridge-0580-mathematics-grade-boundaries-2026',
+    },
+    {
       question: 'Where are 9709 maths grade boundaries for 2026?',
       answer:
         'Grades release 11 August; threshold tables ~13 August — use the calculator with recent sessions until the official PDF loads.',

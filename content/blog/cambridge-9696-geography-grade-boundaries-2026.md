@@ -1,16 +1,16 @@
 ---
-title: Cambridge 9696 Geography Grade Boundaries 2026 — June Thresholds Explained
-description: 9696 Geography A-Level grade boundaries 2026 — grades 11 August, threshold tables ~13 August. Estimate essay and skills papers with the calculator.
+title: Cambridge 9696 Geography Grade Boundaries 2026 ï¿½ June Thresholds Explained
+description: 9696 Geography A-Level grade boundaries 2026 ï¿½ grades 11 August, threshold tables ~13 August. Estimate essay and skills papers with the calculator.
 date: 2026-06-19
 keywords: 9696 grade boundaries, 9696 grade boundaries 2026, Cambridge Geography grade boundaries, 9696 geography thresholds, 9696 raw marks to grade
 category: mark-schemes
 author: hassan
-updated: 2026-07-06
+updated: 2026-07-07
 featured: true
 informationGain: synthesis
 ---
 
-Official **9696 Geography** grade boundaries for **June 2026** publish in August — **grades 11 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [9696 calculator](/tools/grade-boundary-calculator/9696).
+Official **9696 Geography** grade boundaries for **June 2026** publish in August ï¿½ **grades 11 August 2026**, component **threshold tables around 13 August**. Estimate with marked past papers via the [9696 calculator](/tools/grade-boundary-calculator/9696).
 
 ## Quick answer
 
@@ -18,43 +18,43 @@ Official **9696 Geography** grade boundaries for **June 2026** publish in August
 |----------|--------|
 | When are June 2026 **grades** released? | **11 August 2026** (06:00 GMT) |
 | When are **threshold tables** published? | **~13 August 2026** |
-| Marking style? | **Levels of response** — case-study detail + evaluation |
+| Marking style? | **Levels of response** ï¿½ case-study detail + evaluation |
 | Papers? | Core + advanced physical/human (your option route) |
 | Estimate tool | [9696 grade calculator](/tools/grade-boundary-calculator/9696) |
 
-[Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) · [Results day guide](/blog/cambridge-results-day-august-2026-guide)
+[Post-exam prep](/blog/cambridge-post-exam-results-prep-2026) ï¿½ [Results day guide](/blog/cambridge-results-day-august-2026-guide)
 
 ## What are grade boundaries?
 
-Minimum **raw marks** per grade. Geography grades reflect **named case-study evidence** and weighed judgement — not generic theme notes.
+Grade boundaries are minimum **raw marks** for each grade on **9696** AS and A Level components ï¿½ core and advanced physical and human papers in your option route. Geography grades reward **named case-study evidence** and evaluative judgement marked to level descriptors, not theme notes alone. Each paper variant has its own threshold row in the June PDF.
 
 ## How Cambridge sets 9696 boundaries
 
-Examiners benchmark scripts against level descriptors. Paper difficulty varies — thresholds adjust so an A stays a consistent standard.
+Cambridge benchmarks scripts against level descriptors after marking, then sets thresholds so an A means the same standard each year. Paper difficulty varies ï¿½ if advanced human geography essays were harshly marked, aggregate boundaries often **fall**. Compare only to past **9696** sessions, not IGCSE **0460** tables.
 
 ## How to estimate your grade
 
-1. Timed themed + skills papers  
-2. Mark to **band descriptors** — check case-study specificity  
-3. [9696 calculator](/tools/grade-boundary-calculator/9696) with last 2–3 sessions  
-
-Revision: [9696 past papers guide](/blog/cambridge-9696-a-level-geography-past-papers-guide) · [most repeated geography topics](/blog/most-repeated-cambridge-geography-past-paper-topics-2026) · [mark a paper](/mark)
+1. Timed themed and skills papers under exam conditions for your option route.  
+2. Mark to **band descriptors** ï¿½ check every essay names specific places and weighs both sides with evidence.  
+3. Compare raw marks to the last two June sessions in the [9696 calculator](/tools/grade-boundary-calculator/9696).
 
 ## Frequently asked questions
 
 ### When are official June 2026 boundaries released?
 
-Grades **11 August**; threshold documents **~13 August** — [grade boundaries hub](/guides/grade-boundaries).
+Grades **11 August**; threshold documents **~13 August** ï¿½ [grade boundaries hub](/guides/grade-boundaries).
 
 ### Is an A always 80%?
 
-No — raw thresholds change every session.
+No ï¿½ raw thresholds change every session.
 
 ### How do I improve before results?
 
-Practise **map/graph skills** and **evaluative essays** with named places — see [0460 IGCSE boundaries](/blog/cambridge-0460-geography-grade-boundaries-2026) if you also sit IGCSE.
+Practise **map/graph skills** and **evaluative essays** with named places ï¿½ see [0460 IGCSE boundaries](/blog/cambridge-0460-geography-grade-boundaries-2026) if you also sit IGCSE.
 
 ## Related subjects
+
+Humanities boundaries are code-specific â€” use these for cross-subject revision planning and calculator links. A-Level **9696** grades release **11 August**, unlike IGCSE **18 August**. See the [grade boundaries hub](/guides/grade-boundaries) for every syllabus calculator.
 
 - [9489 History](/blog/cambridge-9489-history-grade-boundaries-2026)
 - [9708 Economics](/blog/cambridge-9708-economics-grade-boundaries-2026)
@@ -63,4 +63,4 @@ Practise **map/graph skills** and **evaluative essays** with named places — see 
 
 ## Bottom line
 
-**9696 grade boundaries 2026** land in August — **place-specific evidence and evaluation** beat boundary guessing.
+**9696 grade boundaries 2026** release **11 August** (grades) with threshold PDFs **~13 August**. Place-specific essays marked to bands, then the [9696 calculator](/tools/grade-boundary-calculator/9696), outperform boundary guessing on social media ï¿½ save your component marks report when the statement arrives. Your exams officer confirms component codes on the statement of entry.

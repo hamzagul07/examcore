@@ -48,6 +48,7 @@ GSC → **URL Inspection** → **Request indexing** (batch over 2–3 days; ~10�
 | `https://markscheme.app/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect` |
 | `https://markscheme.app/blog/cambridge-results-day-august-2026-guide` |
 | `https://markscheme.app/tools/grade-boundary-calculator` |
+| `https://markscheme.app/insights` |
 
 ### Tier 2 — upgraded boundary guides (A-Level)
 

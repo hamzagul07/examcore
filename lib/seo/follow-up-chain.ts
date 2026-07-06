@@ -269,6 +269,12 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/blog/cambridge-9696-geography-grade-boundaries-2026',
     },
     {
+      question: 'Where are 7707 O-Level Accounting grade boundaries for 2026?',
+      answer:
+        'O-Level grades release 18 August; threshold PDFs ~13 August — mark ledger labels and ratios to scheme wording, then use the 7707 calculator with recent sessions.',
+      href: '/blog/cambridge-7707-accounting-grade-boundaries-2026',
+    },
+    {
       question: 'When will June 2026 threshold tables be published?',
       answer:
         'Grades land 11 August; component threshold PDFs typically publish around 13 August — see our May/June 2026 expectations guide.',
@@ -416,6 +422,46 @@ const SLUG_FOLLOW_UPS: Record<string, FollowUpItem[]> = {
       answer:
         'Name the business in the case, quote stimulus data, and balance advantages against disadvantages — practise on marketing mix and finance lessons first.',
       href: '/courses/7115/3-3-marketing-mix',
+    },
+  ],
+  'cambridge-0580-mathematics-grade-boundaries-2026': [
+    {
+      question: 'How do I estimate my 0580 grade before results?',
+      answer:
+        'Mark a recent Extended or Core paper to raw marks, then compare to June 2024/2023 component thresholds in the calculator — not viral spreadsheets.',
+      href: '/tools/grade-boundary-calculator/0580',
+    },
+  ],
+  'cambridge-0610-biology-grade-boundaries-2026': [
+    {
+      question: 'Where is the 0610 grade calculator?',
+      answer:
+        'Enter your component raw marks against June 2024/2023 thresholds until the June 2026 PDF loads after ~13 August.',
+      href: '/tools/grade-boundary-calculator/0610',
+    },
+  ],
+  'cambridge-9231-further-mathematics-grade-boundaries-2026': [
+    {
+      question: 'How do I estimate my 9231 Further Maths grade?',
+      answer:
+        'Mark proof and mechanics questions for B/M/A separately, then compare component totals to recent threshold tables in the 9231 calculator.',
+      href: '/tools/grade-boundary-calculator/9231',
+    },
+  ],
+  'cambridge-7707-accounting-grade-boundaries-2026': [
+    {
+      question: 'How do I estimate my 7707 Accounting grade?',
+      answer:
+        'Mark ledger and ratio questions to scheme labels, then compare raw marks to June 2024/2023 in the 7707 calculator until the 2026 PDF publishes.',
+      href: '/tools/grade-boundary-calculator/7707',
+    },
+  ],
+  'cambridge-9696-geography-grade-boundaries-2026': [
+    {
+      question: 'Where is the 9696 Geography grade calculator?',
+      answer:
+        'Compare case-study essay raw marks to recent component thresholds — boundaries publish ~13 August, grades 11 August.',
+      href: '/tools/grade-boundary-calculator/9696',
     },
   ],
 }

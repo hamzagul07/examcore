@@ -47,6 +47,10 @@ Report **Acquisition → Traffic acquisition** filtered by `utm_medium=barnacle`
 | Grade threshold rumours | [May/June thresholds guide](https://markscheme.app/blog/cambridge-may-june-2026-grade-thresholds-what-to-expect?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) |
 | Subject-specific boundaries | [Grade boundaries hub](https://markscheme.app/guides/grade-boundaries?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) → pick subject guide |
 | Estimate raw marks → grade | [Grade calculator](https://markscheme.app/tools/grade-boundary-calculator?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) |
+| **0580** IGCSE maths boundaries | [0580 calculator](https://markscheme.app/tools/grade-boundary-calculator/0580?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [boundary guide](https://markscheme.app/blog/cambridge-0580-mathematics-grade-boundaries-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) |
+| **0610–0625** IGCSE sciences | [0610](https://markscheme.app/tools/grade-boundary-calculator/0610?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [0620](https://markscheme.app/tools/grade-boundary-calculator/0620?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [0625](https://markscheme.app/tools/grade-boundary-calculator/0625?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) calculators |
+| **9231** Further Maths boundaries | [9231 calculator](https://markscheme.app/tools/grade-boundary-calculator/9231?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [boundary guide](https://markscheme.app/blog/cambridge-9231-further-mathematics-grade-boundaries-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) |
+| **7707** O-Level accounting | [7707 calculator](https://markscheme.app/tools/grade-boundary-calculator/7707?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [boundary guide](https://markscheme.app/blog/cambridge-7707-accounting-grade-boundaries-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) |
 | How to self-mark strictly | [Mark past papers yourself](https://markscheme.app/blog/how-to-mark-cambridge-past-papers-yourself?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general) |
 | Mark handwriting / photo | [MarkScheme mark tool](https://markscheme.app/mark?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general) |
 | Which topics repeat | Science hub → [most repeated topics](https://markscheme.app/blog/most-repeated-cambridge-science-past-paper-topics-2026?utm_source=reddit&utm_medium=barnacle&utm_campaign=marking-general) |
@@ -120,6 +124,16 @@ Reply only where you can add **specific, accurate** help — not every thread.
 
 > Boundaries are **per syllabus code and session** — check the official PDF for your components. Until June 2026 tables load, mark a recent paper to raw marks and compare to 2024/2023 in the calculator (not TikTok).  
 > Hub with subject links: https://markscheme.app/guides/grade-boundaries?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026
+
+### 7b — IGCSE science / maths boundary thread (0580, 0610, 0620, 0625)
+
+> IGCSE grades land **18 August**, not 11 August — threshold PDFs usually drop ~13 August. For your syllabus code, use last session’s component table as a bracket only until the official PDF publishes.  
+> Pick your code: [0580 maths](https://markscheme.app/tools/grade-boundary-calculator/0580?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [0610 bio](https://markscheme.app/tools/grade-boundary-calculator/0610?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [0620 chem](https://markscheme.app/tools/grade-boundary-calculator/0620?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [0625 physics](https://markscheme.app/tools/grade-boundary-calculator/0625?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026)
+
+### 7c — Further Maths / O-Level accounting (9231, 7707)
+
+> Same rule: component thresholds, not a single percentage. 9231 Further Maths and 7707 Accounting each have their own syllabus PDF — compare your raw marks to the last two June sessions until 2026 loads.  
+> [9231 calculator](https://markscheme.app/tools/grade-boundary-calculator/9231?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026) · [7707 calculator](https://markscheme.app/tools/grade-boundary-calculator/7707?utm_source=reddit&utm_medium=barnacle&utm_campaign=cambridge-aug-2026)
 
 ### 8 — Waiting after exams (no results yet)
 

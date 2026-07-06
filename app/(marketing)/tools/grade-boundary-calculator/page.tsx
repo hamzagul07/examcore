@@ -8,7 +8,10 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
-import { getMarkingSubjectPages, buildSubjectPageCopy } from '@/lib/seo/programmatic-subjects'
+import {
+  getGradeBoundaryCalculatorPages,
+  buildSubjectPageCopy,
+} from '@/lib/seo/programmatic-subjects'
 import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
 import type { CSSProperties } from 'react'
 
@@ -47,8 +50,7 @@ export const metadata = getPageMetadata(PATH, {
 })
 
 export default function GradeCalculatorPage() {
-  const subjects = getMarkingSubjectPages()
-    .map((s) => buildSubjectPageCopy(s))
+  const subjects = getGradeBoundaryCalculatorPages().map((s) => buildSubjectPageCopy(s))
 
   return (
     <MarketingPageShell>

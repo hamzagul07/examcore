@@ -5,7 +5,10 @@ import { BLOG_CATEGORY_LABELS } from '@/lib/blog/meta'
 import { getAllBlogBrowseFacets } from '@/lib/content/blog-facets'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
-import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
+import {
+  getGradeBoundaryCalculatorCodes,
+  getMarkingSubjectCodes,
+} from '@/lib/seo/programmatic-subjects'
 import { getPastPaperSubjectCodes } from '@/lib/seo/past-papers'
 import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
 import { getIbSubjectSlugs } from '@/lib/ib/catalog'
@@ -99,22 +102,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
-  const calculatorEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().flatMap(
-    (code) => [
-      {
-        url: `${base}/tools/grade-boundary-calculator/${code}`,
-        lastModified: now,
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-      },
-      {
-        url: `${base}/tools/command-words/${code}`,
-        lastModified: now,
-        changeFrequency: 'monthly' as const,
-        priority: 0.68,
-      },
-    ]
+  const calculatorEntries: MetadataRoute.Sitemap = getGradeBoundaryCalculatorCodes().map(
+    (code) => ({
+      url: `${base}/tools/grade-boundary-calculator/${code}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })
   )
+
+  const commandWordEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().map((code) => ({
+    url: `${base}/tools/command-words/${code}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.68,
+  }))
 
   const pastPaperEntries: MetadataRoute.Sitemap = getPastPaperSubjectCodes().map(
     (code) => ({
@@ -232,6 +234,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ibTopicPracticeEntries,
     ...ibCourseEntries,
     ...calculatorEntries,
+    ...commandWordEntries,
     ...courseSubjectEntries,
     ...courseLessonEntries,
     ...communityEntries,

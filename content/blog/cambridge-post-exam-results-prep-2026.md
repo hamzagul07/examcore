@@ -21,7 +21,7 @@ The weeks **after** your last Cambridge paper are dangerous: either you forget e
 | Can I predict my grade now? | **Estimate** from marked mocks — not from TikTok thresholds |
 | Should I revise for retakes already? | Light **technique** review only; rest first |
 | What to save? | Mock scripts, marked past papers, candidate details |
-| What to ignore? | “Leaked” papers, fake threshold spreadsheets |
+| What to ignore? | "Leaked" papers, fake threshold spreadsheets |
 
 > **Key takeaway:** Use the gap to build a **file** your exams officer can act on if grades surprise you.
 
@@ -30,7 +30,7 @@ The weeks **after** your last Cambridge paper are dangerous: either you forget e
 | Day | Action |
 |-----|--------|
 | 1–2 | Sleep; no post-mortem marathons with friends |
-| 3 | Write one page per subject: “felt strong / weak / ran out of time” |
+| 3 | Write one page per subject: "felt strong / weak / ran out of time" |
 | 4–5 | Pull **marked** past papers from the last month — highlight mark patterns |
 | 6–7 | List university or next-year requirements (grades needed per subject) |
 
@@ -44,10 +44,10 @@ You are not predicting boundaries; you are predicting **your performance band**.
 |-----------------|--------|
 | Last **timed** full paper per subject (marked) | Highest |
 | Mock exams (if marked to scheme) | High |
-| Unmarked “felt fine” memory | Low — ignore alone |
+| Unmarked "felt fine" memory | Low — ignore alone |
 | Friend comparisons | Zero |
 
-Tool: [predict grade before results day](/blog/how-to-predict-your-cambridge-grade-before-results-day) · [grade boundary calculator](/tools/grade-boundary-calculator) with **last session** thresholds as a bracket.
+Tool: [predict grade before results day](/blog/how-to-predict-your-cambridge-grade-before-results-day) — [grade boundary calculator](/tools/grade-boundary-calculator) with **last session** thresholds as a bracket.
 
 ## What to file before results
 
@@ -63,7 +63,7 @@ After results you may receive a **component marks report** — know what it is in 
 
 ## Leak season — stay clean
 
-Every June, “threshold predictions” and “leaked answers” flood feeds. Official stance:
+Every June, "threshold predictions" and "leaked answers" flood feeds. Official stance:
 
 - Boundaries are set **after** marking  
 - Leak engagement risks **malpractice** findings  
@@ -121,9 +121,8 @@ Yes — structure helps mental health. Keep one evening a week for results admin i
 
 ### Is AI useful while waiting?
 
-For **explaining** errors in marked papers — yes. For generating “what grade will I get” — no.
+For **explaining** errors in marked papers — yes. For generating "what grade will I get" — no.
 
 ## Bottom line
 
 **After Cambridge exams**, the winning move is quiet preparation: honest grade estimates, saved scripts, exams officer on speed dial, and zero leak culture. Results day rewards students with evidence — not students with the most anxious group chat.
-

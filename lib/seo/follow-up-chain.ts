@@ -64,6 +64,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
         'Past papers aligned to your syllabus code; mocks only if they match your component structure.',
       href: '/blog/cambridge-mock-exams-vs-past-papers',
     },
+    {
+      question: 'Which topics repeat most on science papers?',
+      answer:
+        'Cells, enzymes, stoichiometry, and mechanics dominate marks — rank your practice by frequency, not guesswork.',
+      href: '/blog/most-repeated-cambridge-science-past-paper-topics-2026',
+    },
+    {
+      question: 'What should I do after exams before results day?',
+      answer:
+        'Build an evidence file: marked mocks, component codes, and honest grade estimates — not leak rumours.',
+      href: '/blog/cambridge-post-exam-results-prep-2026',
+    },
   ],
   'exam-technique': [
     {
@@ -148,6 +160,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
         'Cambridge adjusts thresholds so a grade means the same standard year on year — if a paper is harder, the boundary drops.',
       href: '/guides/grade-boundaries',
     },
+    {
+      question: 'What should I do in the weeks before results?',
+      answer:
+        'Save marked scripts, list your component codes, and estimate grades from evidence — not social media thresholds.',
+      href: '/blog/cambridge-post-exam-results-prep-2026',
+    },
+    {
+      question: 'What is a component marks report?',
+      answer:
+        'A per-paper breakdown on your results statement — use it to decide remarks and resits with your exams officer.',
+      href: '/blog/cambridge-component-marks-report-explained-2026',
+    },
   ],
   'command-words': [
     {
@@ -231,6 +255,18 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       answer:
         'Selected schools pilot digital IBDP exams from May 2026; most students still sit paper. Grade boundaries equate both modes.',
       href: '/blog/ib-digital-exams-2026-student-guide',
+    },
+    {
+      question: 'When do IB May 2026 results come out?',
+      answer:
+        'Early July 2026 — log in at candidates.ibo.org with your coordinator PIN. Read pass rules before you post grades online.',
+      href: '/blog/ib-results-day-2026-what-to-expect',
+    },
+    {
+      question: 'Where are IB grade boundaries for 2026?',
+      answer:
+        'Published with results in July — your coordinator has the official tables. Use them to decide on EUR, not social media guesses.',
+      href: '/blog/ib-grade-boundaries-explained',
     },
   ],
 }

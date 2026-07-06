@@ -87,14 +87,14 @@ export function getResultsDayBannerCopy(ctx: BannerContext): ResultsDayBannerCop
     case 'pre-alevel':
       return {
         overline: `June 2026 series · ${daysUntil(A_LEVEL_RESULTS_UTC)} days`,
-        title: 'Results and grade thresholds publish in August',
+        title: 'Finished exams? Prep for results day now',
         body: code
-          ? `AS & A Level results land 11 August 2026; grade threshold tables for ${code} follow around 13 August. Until then, estimate with recent sessions in the calculator.`
-          : 'AS & A Level results land 11 August 2026 (06:00 GMT). Grade threshold tables for the June series follow around 13 August — use recent sessions to estimate until then.',
-        primaryHref: '/blog/cambridge-results-day-august-2026-guide',
-        primaryLabel: 'Results day guide',
-        secondaryHref: calc,
-        secondaryLabel: code ? `${code} calculator` : 'Grade calculator',
+          ? `AS & A Level results land 11 August 2026; grade threshold tables for ${code} follow around 13 August. Build your evidence file and honest grade estimate before then.`
+          : 'AS & A Level results land 11 August 2026 (06:00 GMT). Use the gap after exams to predict grades honestly, save marked scripts, and plan remarks — not leak rumours.',
+        primaryHref: '/blog/cambridge-post-exam-results-prep-2026',
+        primaryLabel: 'Post-exam results prep',
+        secondaryHref: '/blog/cambridge-results-day-august-2026-guide',
+        secondaryLabel: 'Results day guide',
       }
     case 'alevel-results':
       return {

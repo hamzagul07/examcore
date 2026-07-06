@@ -8,7 +8,7 @@ import { JUNE_2026_SERIES } from '@/lib/seo/results-day'
 import { hasSyllabusTree } from '@/lib/syllabi'
 import { ResultsDayBanner } from '@/components/seo/ResultsDayBanner'
 
-const FEATURED_CODES = ['9709', '9702', '9700', '9701', '9708', '2281', '7115'] as const
+const FEATURED_CODES = ['9709', '9702', '9700', '9701', '9708', '9609', '9990', '9489', '2281', '7115'] as const
 
 function sortEntries(entries: ReturnType<typeof getGradeBoundaryHubEntries>) {
   const featured = new Set<string>(FEATURED_CODES)

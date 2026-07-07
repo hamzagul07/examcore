@@ -1,11 +1,11 @@
 import { GEO_QA_PAIRS } from '@/lib/seo/llms-geo-qa'
 
-/** Server-rendered GEO Q&A block for /faq — speakable dt/dd for AI crawlers. */
+/** Server-rendered GEO Q&A block for /faq â€” speakable dt/dd for AI crawlers. */
 export function FaqGeoSection() {
   return (
     <section className="mb-12" aria-labelledby="faq-geo-heading">
       <h2 id="faq-geo-heading" className="landing-h3 mb-2 text-[var(--ec-text-primary)]">
-        Cambridge &amp; IB — quick answers
+        Cambridge &amp; IB â€” quick answers
       </h2>
       <p className="landing-lead mb-4 text-[var(--ec-text-secondary)]">
         Common questions students and AI systems ask about MarkScheme.

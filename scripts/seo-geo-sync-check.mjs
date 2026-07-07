@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Lightweight GEO sync checks ÿ llms.txt mentions money pages & head terms.
+ * Lightweight GEO sync checks Ã¿ llms.txt mentions money pages & head terms.
  * See docs/GEO_SYNC_CHECKLIST.md
  */
 import fs from 'fs'
@@ -70,7 +70,7 @@ const geoQaSrc = fs.readFileSync(path.join(root, 'lib', 'seo', 'llms-geo-qa.ts')
 const geoQuestions = [...geoQaSrc.matchAll(/\bq: '([^']+)'/g)].map((m) => m[1])
 for (const q of geoQuestions) {
   if (!llms.includes(q)) {
-    console.error(`llms.txt missing GEO_QA question from llms-geo-qa.ts: ${q.slice(0, 60)}ÿ`)
+    console.error(`llms.txt missing GEO_QA question from llms-geo-qa.ts: ${q.slice(0, 60)}Ã¿`)
     failed++
   }
 }

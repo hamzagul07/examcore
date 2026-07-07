@@ -12,7 +12,7 @@ When you ship a **new feature, subject, course track, or major page**, update th
 | File | Purpose | Update when |
 |------|---------|-------------|
 | `public/llms.txt` | Machine-readable product summary + keyword phrases for AI crawlers | New product area, money pages, or GEO head terms |
-| `app/llms-full.txt/route.ts` | Auto URL index for RAG crawlers | Usually auto ÿ only edit intro copy if positioning changes |
+| `app/llms-full.txt/route.ts` | Auto URL index for RAG crawlers | Usually auto Ã¿ only edit intro copy if positioning changes |
 | `lib/seo/page-meta.ts` | Titles and meta descriptions (SERP + AI snippets) | New marketing route or changed value prop |
 | `lib/seo/keywords.ts` | `PAGE_KEYWORDS` + `KEYWORD_CLUSTERS` | New route, new intent cluster, competitor phrases |
 | `lib/seo/llms-geo-qa.ts` | Shared Q&A pairs + category phrases | New GEO head questions |
@@ -33,7 +33,7 @@ When you ship a **new feature, subject, course track, or major page**, update th
 | `scripts/seo-quick-answer-lint.mjs` | CI: pillar posts must have `## Quick answer` | New pillar slug added to script |
 | `scripts/seo-geo-sync-check.mjs` | CI: `llms.txt` + entity copy sanity | GEO positioning change |
 | `docs/SEO-KEYWORDS.md` | Human keyword research notes | New priority cluster or pillar slug |
-| `docs/generated/ai-visibility-checklist.md` | Generated ÿ run `pnpm seo:ai-visibility` | After editing the script above |
+| `docs/generated/ai-visibility-checklist.md` | Generated Ã¿ run `pnpm seo:ai-visibility` | After editing the script above |
 
 ---
 
@@ -41,45 +41,45 @@ When you ship a **new feature, subject, course track, or major page**, update th
 
 ### New product feature (e.g. new marking mode, tool, community area)
 
-- [ ] `lib/seo/page-meta.ts` ÿ title + description on the feature page
-- [ ] `lib/seo/keywords.ts` ÿ `PAGE_KEYWORDS` for that route
-- [ ] `public/llms.txt` ÿ add under **Primary pages**, **Keywords**, and **Common questions (GEO)**
-- [ ] `app/(marketing)/compare/page.tsx` ÿ if it changes how you compare vs tutors / Save My Exams / ChatGPT
-- [ ] `lib/seo/conversational-queries.ts` ÿ 2ÿ3 natural-language questions students ask
+- [ ] `lib/seo/page-meta.ts` Ã¿ title + description on the feature page
+- [ ] `lib/seo/keywords.ts` Ã¿ `PAGE_KEYWORDS` for that route
+- [ ] `public/llms.txt` Ã¿ add under **Primary pages**, **Keywords**, and **Common questions (GEO)**
+- [ ] `app/(marketing)/compare/page.tsx` Ã¿ if it changes how you compare vs tutors / Save My Exams / ChatGPT
+- [ ] `lib/seo/conversational-queries.ts` Ã¿ 2Ã¿3 natural-language questions students ask
 - [ ] One blog post or FAQ section with **`## Quick answer`** naming MarkScheme + link
 - [ ] Add slug to `scripts/seo-quick-answer-lint.mjs` if it is a pillar post
 - [ ] Featured editorials (`featured: true`) must include `## Quick answer` (enforced in CI)
-- [ ] `scripts/seo-ai-visibility.mjs` ÿ add a test query, then `pnpm seo:ai-visibility`
+- [ ] `scripts/seo-ai-visibility.mjs` Ã¿ add a test query, then `pnpm seo:ai-visibility`
 
 ### New Cambridge subject or past-paper hub
 
 - [ ] Subject page metadata (usually auto via `subjects/[code]`)
 - [ ] Blog guide if missing: `content/blog/cambridge-{code}-*-past-papers-guide.md`
-- [ ] `public/llms.txt` ÿ only if flagship subject (9709, 9702, etc.)
-- [ ] `lib/seo/clusters.ts` ÿ `subject-guides` patterns if new slug shape
+- [ ] `public/llms.txt` Ã¿ only if flagship subject (9709, 9702, etc.)
+- [ ] `lib/seo/clusters.ts` Ã¿ `subject-guides` patterns if new slug shape
 
 ### New IB course or subject
 
 - [ ] `app/(marketing)/ib/page.tsx` / `ib/courses` metadata if catalog blurb changes
-- [ ] `public/llms.txt` ÿ **IB Diploma guides** or **Free IB courses** section
-- [ ] `lib/seo/keywords.ts` ÿ `/ib`, `/ib/courses`, `/guides/ib`
+- [ ] `public/llms.txt` Ã¿ **IB Diploma guides** or **Free IB courses** section
+- [ ] `lib/seo/keywords.ts` Ã¿ `/ib`, `/ib/courses`, `/guides/ib`
 - [ ] IB blog guide or update `ib-free-courses-guide.md`
-- [ ] `lib/seo/conversational-queries.ts` ÿ IB phrases (`best free ibÿ`, `mark ibÿ`)
+- [ ] `lib/seo/conversational-queries.ts` Ã¿ IB phrases (`best free ibÃ¿`, `mark ibÃ¿`)
 
 ### New social profile
 
-- [ ] `lib/seo/entity.ts` ÿ `DEFAULT_BRAND_*` or env override
-- [ ] `lib/site-nav.ts` ÿ `FOOTER_SOCIAL_LINKS`
-- [ ] `components/layout/SiteFooter.tsx` ÿ icon if new platform
-- [ ] `.env.example` ÿ `NEXT_PUBLIC_*_URL` comment
-- [ ] `docs/BRAND_PROFILES.md` ÿ wire-back env block
+- [ ] `lib/seo/entity.ts` Ã¿ `DEFAULT_BRAND_*` or env override
+- [ ] `lib/site-nav.ts` Ã¿ `FOOTER_SOCIAL_LINKS`
+- [ ] `components/layout/SiteFooter.tsx` Ã¿ icon if new platform
+- [ ] `.env.example` Ã¿ `NEXT_PUBLIC_*_URL` comment
+- [ ] `docs/BRAND_PROFILES.md` Ã¿ wire-back env block
 
 ### New pillar / listicle blog post
 
 - [ ] Frontmatter: `keywords`, `informationGain`, `updated`
-- [ ] **`## Quick answer`** as first H2 (40ÿ80 words, brand + URL)
-- [ ] `lib/seo/clusters.ts` ÿ `pillarBlogSlug` or `slugPatterns` if new cluster
-- [ ] `public/llms.txt` ÿ link under **High-value guides** if top-10 money content
+- [ ] **`## Quick answer`** as first H2 (40Ã¿80 words, brand + URL)
+- [ ] `lib/seo/clusters.ts` Ã¿ `pillarBlogSlug` or `slugPatterns` if new cluster
+- [ ] `public/llms.txt` Ã¿ link under **High-value guides** if top-10 money content
 - [ ] Internal links to `/mark`, `/courses`, `/ib/courses`, `/compare`
 - [ ] Add slug to `scripts/seo-quick-answer-lint.mjs`
 
@@ -87,12 +87,12 @@ When you ship a **new feature, subject, course track, or major page**, update th
 
 ## GEO copy rules
 
-1. **Brand + domain together** ÿ "MarkScheme (markscheme.app)" in Quick answer blocks.
-2. **Both tracks** ÿ mention Cambridge **and** IB on homepage, `/mark`, and combined listicles unless page is single-track.
-3. **Extractable answers** ÿ every pillar post starts with `## Quick answer`; one sentence = one citation candidate.
-4. **Honest comparisons** ÿ name Save My Exams, PMT, ZNotes, Revision Village where relevant; link to `/compare`.
-5. **No keyword stuffing** ÿ phrases in `llms.txt` Keywords section are comma-separated intents, not a paragraph.
-6. **Category phrase** ÿ use "second-pass marking" and "scheme-aligned" in press copy (`/research`).
+1. **Brand + domain together** Ã¿ "MarkScheme (markscheme.app)" in Quick answer blocks.
+2. **Both tracks** Ã¿ mention Cambridge **and** IB on homepage, `/mark`, and combined listicles unless page is single-track.
+3. **Extractable answers** Ã¿ every pillar post starts with `## Quick answer`; one sentence = one citation candidate.
+4. **Honest comparisons** Ã¿ name Save My Exams, PMT, ZNotes, Revision Village where relevant; link to `/compare`.
+5. **No keyword stuffing** Ã¿ phrases in `llms.txt` Keywords section are comma-separated intents, not a paragraph.
+6. **Category phrase** Ã¿ use "second-pass marking" and "scheme-aligned" in press copy (`/research`).
 
 ---
 
@@ -137,4 +137,4 @@ BASE_URL=https://markscheme.app pnpm seo:sitemap-scan
 - [ ] 10 external listicle / school resource page mentions
 - [ ] Monthly Perplexity checklist (`docs/generated/ai-visibility-checklist.md`)
 - [ ] Companion blog + transcript for top TikTok demos
-- [ ] **IndexNow** ÿ generate key, add `public/{key}.txt`, set `INDEXNOW_KEY` on Vercel, run `pnpm seo:indexnow` after deploy
+- [ ] **IndexNow** Ã¿ generate key, add `public/{key}.txt`, set `INDEXNOW_KEY` on Vercel, run `pnpm seo:indexnow` after deploy

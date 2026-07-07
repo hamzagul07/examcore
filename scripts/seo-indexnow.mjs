@@ -10,7 +10,7 @@ const host = (process.env.SITE_HOST || 'markscheme.app').replace(/^https?:\/\//,
 const base = `https://${host}`
 
 if (!key) {
-  console.log('INDEXNOW_KEY not set — skip (see docs/GEO_SYNC_CHECKLIST.md)')
+  console.log('INDEXNOW_KEY not set â€” skip (see docs/GEO_SYNC_CHECKLIST.md)')
   process.exit(0)
 }
 
@@ -33,4 +33,4 @@ if (!res.ok) {
   process.exit(1)
 }
 
-console.log(`IndexNow OK — ${urlList.length} URLs submitted for ${host}`)
+console.log(`IndexNow OK â€” ${urlList.length} URLs submitted for ${host}`)

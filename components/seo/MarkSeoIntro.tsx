@@ -7,7 +7,7 @@ export function MarkSeoIntro() {
   return (
     <div className="mark-seo-shell border-b border-[var(--ec-border)] bg-[var(--ec-bg-soft)]">
       <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 sm:py-6">
-        <h1 className="sr-only">Mark Cambridge and IB past papers online — MarkScheme</h1>
+        <h1 className="sr-only">Mark Cambridge and IB past papers online â€” MarkScheme</h1>
         <details className="mark-seo-details group">
           <summary className="cursor-pointer list-none text-sm font-semibold text-[var(--ec-text-primary)] marker:content-none [&::-webkit-details-marker]:hidden">
             <span className="underline decoration-[var(--ec-border)] underline-offset-2 group-open:no-underline">
@@ -44,11 +44,11 @@ export function MarkSeoIntro() {
                 <Link href="/faq" className="ec-link font-medium">
                   FAQ
                 </Link>
-                {' · '}
+                {' Â· '}
                 <Link href="/how-it-works" className="ec-link font-medium">
                   How it works
                 </Link>
-                {' · '}
+                {' Â· '}
                 <Link href="/research" className="ec-link font-medium">
                   Methodology
                 </Link>

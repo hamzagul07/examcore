@@ -8,7 +8,7 @@
  *   node scripts/gsc-indexing-urls.mjs --tier courses-9706  # Paper 3/4 lesson URLs
  *   node scripts/gsc-indexing-urls.mjs --day 1   # first 15 URLs across tiers
  *
- * Paste each URL into GSC ? URL Inspection ? Request indexing (~10ÿ15/day).
+ * Paste each URL into GSC ? URL Inspection ? Request indexing (~10Ã¿15/day).
  */
 const BASE = 'https://markscheme.app'
 

@@ -1,0 +1,221 @@
+{
+  "runType": "lesson_verify",
+  "status": "failed",
+  "startedAt": "2026-07-05T12:59:45.115Z",
+  "finishedAt": "2026-07-05T12:59:45.115Z",
+  "subjectCode": "9702",
+  "summary": {
+    "checked": 77,
+    "failed": 11
+  },
+  "failureReport": {
+    "files": [
+      {
+        "path": "content/courses/9702/10-1-practical-circuits.json",
+        "topicCode": "10.1",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: R = 4.0 \\text{ Ω} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"Ω\" (937) [unknownSymbol] at position 16: R = 4.0 \\text{ Ω̲}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: V = IR = 0.3 \\text{ A} \\times 4.0 \\text{ Ω} = 1.2 \\text{ V} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"Ω\" (937) [unknownSymbol] at position 42: …mes 4.0 \\text{ Ω̲} = 1.2 \\text{ …",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: r = \\frac{0.3 \\text{ V}}{0.3 \\text{ A}} = 1.0 \\text{ Ω} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"Ω\" (937) [unknownSymbol] at position 54: …} = 1.0 \\text{ Ω̲}",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/16-1-internal-energy.json",
+        "topicCode": null,
+        "issues": [
+          {
+            "code": "schema_invalid",
+            "message": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"sections\",\n      8,\n      \"solution\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  }\n]",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/17-1-simple-harmonic-oscillations.json",
+        "topicCode": null,
+        "issues": [
+          {
+            "code": "schema_invalid",
+            "message": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"sections\",\n      16,\n      \"solution\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  }\n]",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/17-3-damped-and-forced-oscillations-resonance.json",
+        "topicCode": null,
+        "issues": [
+          {
+            "code": "schema_invalid",
+            "message": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"sections\",\n      14,\n      \"solution\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  }\n]",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/19-1-capacitors-and-capacitance.json",
+        "topicCode": "19.1",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: C_{total} = \\frac{1}{0.4166 \\times 10^6} = 2.4 \\times 10^{-6 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 86: …} = 2.4 \\text{ µ̲F}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: C_{total} = 4.0 \\text{ µF} + 6.0 \\text{ µF} = 10.0 \\text{ µF � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 24: …} = 4.0 \\text{ µ̲F} + 6.0 \\text{…",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: C_1 = 4.0 \\text{ µF} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 18: …1 = 4.0 \\text{ µ̲F}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: C_2 = 6.0 \\text{ µF} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 18: …2 = 6.0 \\text{ µ̲F}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 2.4 \\text{ µF} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 12: 2.4 \\text{ µ̲F}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 28.8 \\text{ µC} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 13: 28.8 \\text{ µ̲C}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 10.0 \\text{ µF} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 13: 10.0 \\text{ µ̲F}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 120 \\text{ µC} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"µ\" (181) [unknownSymbol] at position 12: 120 \\text{ µ̲C}",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/21-2-rectification-and-smoothing.json",
+        "topicCode": null,
+        "issues": [
+          {
+            "code": "schema_invalid",
+            "message": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"sections\",\n      19,\n      \"solution\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  }\n]",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/23-2-radioactive-decay.json",
+        "topicCode": "23.2",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: A = 480 \\text{ Bq} \\times e^{(-2.5 \\times 10^{-3} \\text{ s⁻¹ � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"⁻\" (8315) [unknownSymbol] at position 59: …0^{-3} \\text{ s⁻̲¹} \\times 300 \\…",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/4-3-density-and-pressure.json",
+        "topicCode": "4.3",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: g = 9.81 \\text{ m s⁻²} � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"⁻\" (8315) [unknownSymbol] at position 20: …9.81 \\text{ m s⁻̲²}",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/5-2-gravitational-potential-energy-and-kinetic-energy.json",
+        "topicCode": "5.2",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: GPE_{initial} = mgh = (2.0 \\text{ kg}) \\times (9.81 \\text{ m � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 63: …9.81 \\text{ m s\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}) \\times (…",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: v = \\sqrt{294.3} \\approx 17.155 \\text{ m s\\textsuperscript{- � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 43: ….155 \\text{ m s\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 17.2 \\text{ m s\\textsuperscript{-1}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 16: 17.2 \\text{ m s\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/7-1-progressive-waves.json",
+        "topicCode": "7.1",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: c = 3 \\times 10^8 \\text{ ms\\textsuperscript{-1}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 28: … 10^8 \\text{ ms\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 80 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 14: 80 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: I_0 = 80 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 20: …= 80 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: I = 80 \\text{ W m\\textsuperscript{-2}} \\times 0.75 � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 18: …= 80 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}} \\times 0.…",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: I = 60 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 18: …= 60 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: 60 \\text{ W m\\textsuperscript{-2}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 14: 60 \\text{ W m\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-2}}",
+            "severity": "error"
+          },
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: c = 3 \\times 10^8 \\text{ ms\\textsuperscript{-1}} � KaTeX parse error: Undefined control sequence: \\textsuperscript at position 28: … 10^8 \\text{ ms\\̲t̲e̲x̲t̲s̲u̲p̲e̲r̲s̲c̲r̲i̲p̲t̲{-1}}",
+            "severity": "error"
+          }
+        ]
+      },
+      {
+        "path": "content/courses/9702/7-4-electromagnetic-spectrum.json",
+        "topicCode": "7.4",
+        "issues": [
+          {
+            "code": "katex_parse_error",
+            "message": "Unparseable KaTeX: \\lambda = \\frac{3.00 \\times 10^8 \\text{ m s⁻¹}}{1.5 \\times 1 � KaTeX parse error: LaTeX-incompatible input and strict mode is set to 'error': Unrecognized Unicode character \"⁻\" (8315) [unknownSymbol] at position 44: …10^8 \\text{ m s⁻̲¹}}{1.5 \\times …",
+            "severity": "error"
+          }
+        ]
+      }
+    ]
+  }
+}

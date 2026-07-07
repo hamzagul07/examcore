@@ -1,6 +1,6 @@
 ---
 title: Best free IB revision resources in 2026
-description: The best genuinely free IB Diploma resources in 2026 — official past papers, markbands, notes, courses, and criterion marking — and what each is best for.
+description: The best genuinely free IB Diploma resources in 2026 â€” official past papers, markbands, notes, courses, and criterion marking â€” and what each is best for.
 date: 2026-07-07
 keywords: best free IB resources, free IB notes, free IB course, IB past papers free, IB revision 2026, Revision Village alternative, IB markbands practice
 category: study-skills
@@ -16,14 +16,14 @@ The best **free IB Diploma** stack in 2026: **official IB past papers and markba
 
 ## Start with official IB materials
 
-IB past papers, markbands, and subject guides define what examiners reward. Download from official channels your school provides. Markbands are **holistic** — practice reading descriptor language before you chase point marks.
+IB past papers, markbands, and subject guides define what examiners reward. Download from official channels your school provides. Markbands are **holistic** â€” practice reading descriptor language before you chase point marks.
 
 ## Free structured courses on MarkScheme
 
-MarkScheme hosts **free IB Diploma courses** — topic-by-topic lessons with flashcards and syllabus-point practice, not static PDF dumps:
+MarkScheme hosts **free IB Diploma courses** â€” topic-by-topic lessons with flashcards and syllabus-point practice, not static PDF dumps:
 
 - Core: [TOK](/ib/courses/tok), [Extended Essay](/ib/courses/extended-essay), [CAS](/ib/courses/cas)  
-- Sciences, humanities, maths, languages, arts — HL and SL where offered  
+- Sciences, humanities, maths, languages, arts â€” HL and SL where offered  
 
 Catalog overview: [free IB courses guide](/blog/ib-free-courses-guide). Hub: [/ib/courses](/ib/courses).
 
@@ -57,13 +57,13 @@ If you take both systems or are choosing, see [IB vs A-Level](/blog/ib-vs-a-leve
 ## Frequently asked questions
 
 ### Is Revision Village enough on its own?
-Strong for **IB Maths** practice, but it does not replace markband literacy on Papers 2/3, TOK, EE, or humanities essays — and it does not mark your handwritten scripts against criteria.
+Strong for **IB Maths** practice, but it does not replace markband literacy on Papers 2/3, TOK, EE, or humanities essays â€” and it does not mark your handwritten scripts against criteria.
 
 ### Where are free IB notes?
-School notes, teacher slides, and community summaries vary by subject. MarkScheme courses are syllabus-structured; for quick summaries some students use general note sites — always verify against the current subject guide.
+School notes, teacher slides, and community summaries vary by subject. MarkScheme courses are syllabus-structured; for quick summaries some students use general note sites â€” always verify against the current subject guide.
 
 ### Can I mark IB past papers online for free?
-Yes — use official markbands for self-marking, then [MarkScheme's free tier](/mark) for a second pass on uploaded answers where your subject is supported.
+Yes â€” use official markbands for self-marking, then [MarkScheme's free tier](/mark) for a second pass on uploaded answers where your subject is supported.
 
 ## Bottom line
 

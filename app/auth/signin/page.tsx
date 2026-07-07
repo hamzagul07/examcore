@@ -44,9 +44,9 @@ function SignInSkeleton() {
   return (
     <AuthShell>
       <p className="ec-eyebrow mb-3">Welcome back</p>
-      <h1 className="text-hero mb-3">
+      <p className="text-hero mb-3" aria-hidden="true">
         Sign in to <span className="ec-text-gradient">MarkScheme</span>
-      </h1>
+      </p>
       <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
         Pick up where you left off — mark papers and track progress.
       </p>
@@ -149,9 +149,9 @@ function SignInForm() {
       {!sent ? (
         <>
           <p className="ec-eyebrow mb-3">Welcome back</p>
-          <h1 className="text-hero mb-3">
+          <h2 className="text-hero mb-3">
             Sign in to <span className="ec-text-gradient">MarkScheme</span>
-          </h1>
+          </h2>
           {profileSaved ? (
             <div className="ec-banner ec-banner-info mb-6">
               <p className="ec-banner__title">Profile saved — one more sign-in</p>

@@ -8,7 +8,7 @@ import {
   type ContentClusterId,
 } from '@/lib/seo/clusters'
 import { getClusterSpokes } from '@/lib/seo/cluster-spokes'
-import { getBlogPost, getBlogPosts } from '@/lib/blog'
+import { getBlogPosts } from '@/lib/blog'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -21,6 +21,8 @@ import { IbResultsSpotlight } from '@/components/seo/IbResultsSpotlight'
 import { enrichPostMeta } from '@/lib/blog/meta'
 import { SITE_URL } from '@/lib/site-config'
 import { groupIbClusterSpokes } from '@/lib/seo/ib-guide-groups'
+
+const IB_GUIDE_PREVIEW = 8
 
 type Props = { params: Promise<{ cluster: string }> }
 
@@ -48,12 +50,12 @@ export default async function ClusterGuidePage({ params }: Props) {
   const cluster = getClusterById(clusterId as ContentClusterId)
   if (!cluster) notFound()
 
-  const pillar = getBlogPost(cluster.pillarBlogSlug)
+  const pillarMeta = getBlogPosts().find((p) => p.slug === cluster.pillarBlogSlug)
   const spokeSlugs = getClusterSpokes(cluster.id)
   const spokes = spokeSlugs
     .map((slug) => getBlogPosts().find((p) => p.slug === slug))
     .filter(Boolean)
-    .map((p) => enrichPostMeta(p!, getBlogPost(p!.slug)?.content ?? ''))
+    .map((p) => enrichPostMeta(p!))
     .sort((a, b) => a.title.localeCompare(b.title))
 
   const isComparison = cluster.format === 'comparison'
@@ -62,7 +64,7 @@ export default async function ClusterGuidePage({ params }: Props) {
   const isCommandWords = cluster.id === 'command-words'
   const ibGroups = isIb ? groupIbClusterSpokes(spokeSlugs) : []
   const allParts = [
-    ...(pillar ? [{ name: pillar.title, url: `${SITE_URL}/blog/${pillar.slug}` }] : []),
+    ...(pillarMeta ? [{ name: pillarMeta.title, url: `${SITE_URL}/blog/${pillarMeta.slug}` }] : []),
     ...spokes.map((p) => ({
       name: p.title,
       url: `${SITE_URL}/blog/${p.slug}`,
@@ -90,18 +92,15 @@ export default async function ClusterGuidePage({ params }: Props) {
             hasPart: allParts,
           }),
           ...(isIb
-            ? ibGroups.map((group) =>
+            ? [
                 itemListNode({
-                  name: group.label,
-                  items: group.slugs.map((slug) => {
-                    const post = spokes.find((p) => p.slug === slug)
-                    return {
-                      name: post?.title ?? slug,
-                      url: `${SITE_URL}/blog/${slug}`,
-                    }
-                  }),
-                })
-              )
+                  name: `${cluster.title} — all guides`,
+                  items: spokes.map((p) => ({
+                    name: p.title,
+                    url: `${SITE_URL}/blog/${p.slug}`,
+                  })),
+                }),
+              ]
             : []),
           ...(isComparison
             ? [
@@ -183,10 +182,10 @@ export default async function ClusterGuidePage({ params }: Props) {
           </aside>
         )}
 
-        {pillar && (
+        {pillarMeta && (
           <div className="mb-12">
             <p className="ms-overline">Pillar guide</p>
-            <BlogPostCard post={enrichPostMeta(pillar, pillar.content)} variant="editorial" />
+            <BlogPostCard post={enrichPostMeta(pillarMeta)} variant="editorial" />
           </div>
         )}
 
@@ -198,16 +197,23 @@ export default async function ClusterGuidePage({ params }: Props) {
                   .map((slug) => spokes.find((p) => p.slug === slug))
                   .filter(Boolean)
                 if (!groupPosts.length) return null
+                const preview = groupPosts.slice(0, IB_GUIDE_PREVIEW)
+                const remaining = groupPosts.length - preview.length
                 return (
                   <div key={group.id} className="mb-12">
                     <p className="ms-overline">{group.label}</p>
                     <ul className="ms-guide-grid sm:grid-cols-2">
-                      {groupPosts.map((post) => (
+                      {preview.map((post) => (
                         <li key={post!.slug}>
-                          <BlogPostCard post={post!} />
+                          <BlogPostCard post={post!} variant="compact" />
                         </li>
                       ))}
                     </ul>
+                    {remaining > 0 ? (
+                      <Link href="/blog/browse/ib" className="ec-btn-underline mt-4 inline-block text-sm">
+                        View all {groupPosts.length} {group.label.toLowerCase()} →
+                      </Link>
+                    ) : null}
                   </div>
                 )
               })
@@ -219,7 +225,7 @@ export default async function ClusterGuidePage({ params }: Props) {
                 <ul className="ms-guide-grid sm:grid-cols-2">
                   {spokes.map((post) => (
                     <li key={post.slug}>
-                      <BlogPostCard post={post} />
+                      <BlogPostCard post={post} variant="compact" />
                     </li>
                   ))}
                 </ul>

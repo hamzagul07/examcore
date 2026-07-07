@@ -14,7 +14,7 @@ export function Hero({ primaryHref, embedded = false }: HeroProps) {
   const Root = embedded ? 'div' : 'section'
   return (
     <Root
-      aria-labelledby="hero-headline"
+      aria-labelledby={embedded ? 'hero-headline-secondary' : 'hero-headline'}
       className={
         embedded
           ? 'pt-4'
@@ -24,7 +24,10 @@ export function Hero({ primaryHref, embedded = false }: HeroProps) {
       <div className="mx-auto max-w-[640px] px-6 text-center md:max-w-[720px] md:px-8 lg:max-w-[860px]">
         <HeroCopy
           headline={
-            <HeroHeadline text="Past papers, marked like an examiner. In minutes." />
+            <HeroHeadline
+              as={embedded ? 'h2' : 'h1'}
+              text="Past papers, marked like an examiner. In minutes."
+            />
           }
           subhead={
             <HeroSubhead>

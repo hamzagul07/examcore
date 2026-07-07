@@ -137,6 +137,7 @@ export default function IbHubPage() {
         </p>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading="The IB papers, finally organised"
           paragraph="Official IB past papers are scattered and hard to navigate. We lay out every Higher and Standard Level subject by exam series and paper, and explain the markbands and assessment criteria that decide your grade — so practice actually moves your score. Pick a subject below to start."
           links={[

@@ -34,9 +34,9 @@ export function SubjectsDirectoryPage({ subjects }: Props) {
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Subjects' }]} />
         <header className="subjects-hero">
           <p className="overline">Subjects · Cambridge International</p>
-          <h1 className="h-display subjects-title">
+          <h2 className="h-display subjects-title">
             Every subject, <em>one shelf.</em>
-          </h1>
+          </h2>
           <p className="lead subjects-lead">
             Each subject hub bundles the free course, real past papers to mark, and honest grade-boundary
             estimates — all in one place.

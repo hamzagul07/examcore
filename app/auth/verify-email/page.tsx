@@ -25,9 +25,9 @@ function VerifyEmailSkeleton() {
   return (
     <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
       <p className="ec-eyebrow mb-3">Verify email</p>
-      <h1 className="text-hero mb-3">
+      <p className="text-hero mb-3" aria-hidden="true">
         Check your <span className="ec-text-gradient">email</span>
-      </h1>
+      </p>
       <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
     </AuthShell>
   )

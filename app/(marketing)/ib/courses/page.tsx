@@ -98,6 +98,7 @@ export default function IbCoursesIndexPage() {
 
         <div className="pg">
           <HubSeoIntro
+            headingLevel="h2"
             heading="Syllabus-aligned IB revision — with marking built in"
             paragraph="Each course follows the current IB Diploma syllabus topic by topic. Learn the content with visual lessons and flashcards, then practise with criterion-based marking that scores band-by-band against official assessment criteria — not a generic AI grade."
             links={[

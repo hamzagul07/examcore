@@ -1,9 +1,9 @@
-import { MarketingLayoutChrome } from '@/components/courses/margin-notes/MarketingLayoutChrome'
+import { MarketingSiteShell } from '@/components/marketing/MarketingSiteShell'
 
 export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return <MarketingLayoutChrome>{children}</MarketingLayoutChrome>
+  return <MarketingSiteShell>{children}</MarketingSiteShell>
 }

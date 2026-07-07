@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPageMetadata } from '@/lib/seo/page-meta'
-import { getBlogPost, getBlogPosts } from '@/lib/blog'
+import { getBlogPosts } from '@/lib/blog'
 import {
   BLOG_CATEGORY_LABELS,
-  enrichPostMeta,
+  enrichPostsForIndex,
   getBlogCategory,
   sortPostsForIndex,
   type BlogCategory,
 } from '@/lib/blog/meta'
+import { paginateArchive, parseArchivePage } from '@/lib/blog/archive'
+import { ArchivePagination } from '@/components/blog/ArchivePagination'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { collectionPageNode } from '@/lib/seo/structured-data'
@@ -21,7 +23,10 @@ import { PageHelpStrip } from '@/components/marketing/PageHelpStrip'
 import { BlogPostCard } from '@/components/blog/BlogPostCard'
 import { SITE_URL } from '@/lib/site-config'
 
-type Props = { params: Promise<{ category: string }> }
+type Props = {
+  params: Promise<{ category: string }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
 
 /** SERP-tuned intros per category — keeps each archive page distinct. */
 const CATEGORY_INTRO: Record<BlogCategory, string> = {
@@ -60,20 +65,26 @@ export async function generateMetadata({ params }: Props) {
   })
 }
 
-export default async function BlogCategoryPage({ params }: Props) {
+export default async function BlogCategoryPage({ params, searchParams }: Props) {
   const { category } = await params
+  const sp = await searchParams
   if (!(category in BLOG_CATEGORY_LABELS)) notFound()
   const cat = category as BlogCategory
   const label = BLOG_CATEGORY_LABELS[cat]
   const path = `/blog/category/${category}`
+  const page = parseArchivePage(sp.page)
 
-  const posts = sortPostsForIndex(
-    getBlogPosts()
-      .map((p) => enrichPostMeta(p, getBlogPost(p.slug)?.content ?? ''))
-      .filter((p) => getBlogCategory(p.slug, p.category) === cat)
+  const allPosts = sortPostsForIndex(
+    enrichPostsForIndex(getBlogPosts()).filter(
+      (p) => getBlogCategory(p.slug, p.category) === cat
+    )
   )
 
-  if (posts.length === 0) notFound()
+  if (allPosts.length === 0) notFound()
+
+  const archive = paginateArchive(allPosts, page)
+  if (page > archive.totalPages) notFound()
+  const posts = archive.items
 
   return (
     <MarketingPageShell>
@@ -93,7 +104,7 @@ export default async function BlogCategoryPage({ params }: Props) {
             path,
             name: `${label} guides`,
             description: CATEGORY_INTRO[cat],
-            hasPart: posts.map((p) => ({
+            hasPart: allPosts.map((p) => ({
               name: p.title,
               url: `${SITE_URL}/blog/${p.slug}`,
             })),
@@ -109,7 +120,7 @@ export default async function BlogCategoryPage({ params }: Props) {
           { name: label, path },
         ]}
         title={`${label} guides`}
-        lead={CATEGORY_INTRO[cat]}
+        lead={`${CATEGORY_INTRO[cat]} ${allPosts.length} guides in this category.`}
       />
 
       <MarketingSection className="!pt-0">
@@ -132,9 +143,16 @@ export default async function BlogCategoryPage({ params }: Props) {
 
         <div className="grid gap-5 md:grid-cols-2">
           {posts.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
+            <BlogPostCard key={post.slug} post={post} variant="compact" />
           ))}
         </div>
+
+        <ArchivePagination
+          basePath={path}
+          page={archive.page}
+          totalPages={archive.totalPages}
+          total={archive.total}
+        />
 
         <p className="ms-micro mt-8 text-center">
           <Link href="/blog" className="ec-btn-underline">

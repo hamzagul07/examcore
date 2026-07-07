@@ -123,6 +123,7 @@ export default function PastPapersHubPage() {
         </p>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading="Don't just download papers — get them marked"
           paragraph="A PDF only shows you the questions and a model answer. MarkScheme reads photos of your own handwriting and scores them against the real Cambridge mark scheme — method marks, accuracy marks and essay bands included. Pick a subject below, choose a paper, and see exactly where you're winning and dropping marks."
           links={[

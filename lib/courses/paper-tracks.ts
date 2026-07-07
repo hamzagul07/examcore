@@ -1,4 +1,4 @@
-import type { CourseLesson } from '@/lib/courses/types'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 
 export type PaperTrack = {
   id: string
@@ -97,7 +97,7 @@ export function parseLessonPaperCodes(paper: string): string[] {
     .filter(Boolean)
 }
 
-export function lessonMatchesTrack(lesson: CourseLesson, track: PaperTrack): boolean {
+export function lessonMatchesTrack(lesson: CourseLessonNav, track: PaperTrack): boolean {
   const codes = parseLessonPaperCodes(lesson.paper)
   return track.matchCodes.some((mc) => codes.includes(mc))
 }
@@ -127,7 +127,7 @@ function tracksForSubject(subjectCode: string): PaperTrack[] | null {
 }
 
 /** Derive paper tracks from lesson metadata when no subject preset exists (e.g. 9709). */
-function deriveTracksFromLessons(lessons: CourseLesson[]): PaperTrack[] {
+function deriveTracksFromLessons(lessons: CourseLessonNav[]): PaperTrack[] {
   const byPaper = new Map<string, { paperName: string; count: number }>()
   for (const lesson of lessons) {
     const key = lesson.paper
@@ -156,7 +156,7 @@ export type PaperTrackWithStats = PaperTrack & {
 
 export function getPaperTracks(
   subjectCode: string,
-  lessons: CourseLesson[]
+  lessons: CourseLessonNav[]
 ): PaperTrackWithStats[] {
   const base = tracksForSubject(subjectCode) ?? deriveTracksFromLessons(lessons)
   const withStats = base.map((track) => {
@@ -174,13 +174,13 @@ export function getPaperTracks(
   return withStats.filter((t) => t.topicCount > 0 || t.alwaysShow)
 }
 
-export function subjectHasPaperChoice(subjectCode: string, lessons: CourseLesson[]): boolean {
+export function subjectHasPaperChoice(subjectCode: string, lessons: CourseLessonNav[]): boolean {
   return getPaperTracks(subjectCode, lessons).length > 1
 }
 
 export function findPaperTrack(
   subjectCode: string,
-  lessons: CourseLesson[],
+  lessons: CourseLessonNav[],
   paperNumber: string | null | undefined
 ): PaperTrackWithStats | null {
   if (!paperNumber) return null
@@ -193,16 +193,16 @@ export function findPaperTrack(
 }
 
 export function filterLessonsByPaper(
-  lessons: CourseLesson[],
+  lessons: CourseLessonNav[],
   track: PaperTrack | null
-): CourseLesson[] {
+): CourseLessonNav[] {
   if (!track) return lessons
   return lessons.filter((l) => lessonMatchesTrack(l, track))
 }
 
 export function defaultPaperTrack(
   subjectCode: string,
-  lessons: CourseLesson[]
+  lessons: CourseLessonNav[]
 ): PaperTrackWithStats | null {
   const tracks = getPaperTracks(subjectCode, lessons)
   return tracks[0] ?? null

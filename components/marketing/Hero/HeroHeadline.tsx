@@ -5,6 +5,7 @@ import { headlineWord } from './motion'
 
 interface HeroHeadlineProps {
   text: string
+  as?: 'h1' | 'h2'
 }
 
 const headlineTypography =
@@ -23,29 +24,31 @@ function renderHeadlineText(text: string) {
   return text
 }
 
-export function HeroHeadline({ text }: HeroHeadlineProps) {
+export function HeroHeadline({ text, as: Tag = 'h1' }: HeroHeadlineProps) {
   const prefersReducedMotion = useReducedMotion()
   const content = renderHeadlineText(text)
+  const id = Tag === 'h2' ? 'hero-headline-secondary' : 'hero-headline'
+  const MotionTag = Tag === 'h2' ? motion.h2 : motion.h1
 
   if (prefersReducedMotion) {
     return (
-      <motion.h1
-        id="hero-headline"
+      <MotionTag
+        id={id}
         className={headlineTypography}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
       >
         {content}
-      </motion.h1>
+      </MotionTag>
     )
   }
 
   const words = text.split(' ')
 
   return (
-    <motion.h1
-      id="hero-headline"
+    <MotionTag
+      id={id}
       aria-label={text}
       initial="hidden"
       animate="visible"
@@ -66,6 +69,6 @@ export function HeroHeadline({ text }: HeroHeadlineProps) {
           </motion.span>
         )
       })}
-    </motion.h1>
+    </MotionTag>
   )
 }

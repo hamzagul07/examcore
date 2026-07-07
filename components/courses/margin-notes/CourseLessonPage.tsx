@@ -273,7 +273,7 @@ export function CourseLessonPage({
               <span className="chip ok mono">{(L.tag || 'topic').toUpperCase()}</span>
             ) : null}
           </div>
-          <h1 className="h-display lesson-title">
+          <h2 className="h-display lesson-title" aria-labelledby="lesson-seo-intro">
             {L.heroEm ? (
               <>
                 {L.heroPre} <em>{L.heroEm}</em>
@@ -281,7 +281,7 @@ export function CourseLessonPage({
             ) : (
               L.name
             )}
-          </h1>
+          </h2>
           <div className="lead lesson-intro">
             <CourseRichText content={L.intro} variant="prose" className="lesson-intro-rich" breakAnywhere={false} />
           </div>

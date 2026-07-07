@@ -19,6 +19,7 @@ import {
   getIbTopicPracticePages,
 } from '@/lib/seo/ib-topic-practice'
 import { MarketingBreadcrumbs } from '@/components/seo/MarketingBreadcrumbs'
+import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
 
 type Props = { params: Promise<{ slug: string; topic: string }> }
 
@@ -137,6 +138,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
         </div>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading={`${page.title} — IB ${subject.name} ${subject.level} practice`}
           paragraph={`Syllabus point ${page.topicCode} on ${page.paperName}. Revise the topic, then upload your response for criterion-based marking — band-by-band feedback against official IB assessment criteria, not a generic AI grade.`}
           links={[
@@ -149,6 +151,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
           ]}
         />
 
+        <GuestSignupGate>
         <section aria-labelledby="ib-practice-task" style={{ marginTop: 12 }}>
           <h2 id="ib-practice-task" className="ms-overline" style={{ marginBottom: 12 }}>
             Practice task
@@ -206,6 +209,7 @@ export default async function IbTopicPracticePage({ params }: Props) {
             </Link>
           </nav>
         ) : null}
+        </GuestSignupGate>
       </div>
     </MarketingPageShell>
   )

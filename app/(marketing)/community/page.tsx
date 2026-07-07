@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
@@ -63,10 +62,6 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
   }
 
   const sp = await searchParams
-  if (sp.ask === '1') {
-    redirect(`/community/submit${sp.subject ? `?subject=${sp.subject}&kind=question` : '?kind=question'}`)
-  }
-  if (sp.subject) redirect(`/community/s/${sp.subject}`)
 
   const sort: PostSort = SORTS.includes(sp.sort as PostSort) ? (sp.sort as PostSort) : 'hot'
   const board: Board | 'all' =

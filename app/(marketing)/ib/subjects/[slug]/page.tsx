@@ -176,6 +176,7 @@ export default async function IbSubjectPage({ params }: Props) {
         </div>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading={`IB ${subject.name} ${subject.level} — papers & markbands`}
           paragraph={`${subject.blurb} Below are the papers you'll sit and how examiners award marks. Practise past papers, learn the markbands, then check your own answers for feedback.`}
           links={[

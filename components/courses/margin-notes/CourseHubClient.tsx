@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import type { CourseLesson } from '@/lib/courses/types'
+import type { CourseLessonNav } from '@/lib/courses/lesson-nav'
 import { adaptCourseHub } from '@/lib/courses/margin-notes/adapt-course-hub'
 import {
   completedSlugsForSubject,
@@ -16,7 +16,7 @@ type Props = {
   code: string
   name: string
   level: string
-  lessons: CourseLesson[]
+  lessons: CourseLessonNav[]
   initialPaperNumber?: string | null
   basePath?: string
   coursesCrumb?: { label: string; href: string }

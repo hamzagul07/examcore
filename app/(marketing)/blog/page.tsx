@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { BookOpen, Sparkles, TrendingUp } from 'lucide-react'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { getPageMetadata } from '@/lib/seo/page-meta'
-import { getBlogPosts, getBlogPost } from '@/lib/blog'
+import { getBlogPosts } from '@/lib/blog'
 import {
   getCambridgeSubjectGuidePosts,
   getIbSubjectGuidePosts,
@@ -10,7 +10,7 @@ import {
 } from '@/lib/seo/subject-guides'
 import {
   BLOG_CATEGORY_LABELS,
-  enrichPostMeta,
+  enrichPostsForIndex,
   isEditorialPost,
   sortPostsForIndex,
 } from '@/lib/blog/meta'
@@ -44,10 +44,7 @@ export const metadata = getPageMetadata('/blog', {
 })
 
 function enrichAll(posts: ReturnType<typeof getBlogPosts>) {
-  return posts.map((p) => {
-    const full = getBlogPost(p.slug)
-    return enrichPostMeta(p, full?.content ?? '')
-  })
+  return enrichPostsForIndex(posts)
 }
 
 export default function BlogIndexPage() {

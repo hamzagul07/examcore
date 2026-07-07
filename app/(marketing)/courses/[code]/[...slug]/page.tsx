@@ -17,6 +17,8 @@ import { getSubtopicsForLesson } from '@/lib/courses/syllabus-outcomes'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { GuestSignupGate } from '@/components/auth/GuestSignupGate'
+import { stripLessonsForNav } from '@/lib/courses/lesson-nav'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { buildSubjectCourseSeo } from '@/lib/seo/subject-seo'
@@ -168,6 +170,14 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         </div>
       ) : null}
 
+      {isPilotLesson ? (
+        <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-4 sm:px-6">
+          <h1 className="mb-2 text-xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-2xl">
+            {lesson.title}
+          </h1>
+        </div>
+      ) : null}
+
       {!isPilotLesson ? (
         <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-4 sm:px-6">
           <CourseLessonSeoIntro
@@ -180,25 +190,27 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         </div>
       ) : null}
 
-      <CourseLessonClient
-        subjectCode={code}
-        subjectName={course.name}
-        lesson={lessonForClient}
-        enriched={enriched}
-        pastPaperQuestions={pastPaperQuestions}
-        lessons={lessons}
-        paperQuery={paperQuery}
-        community={
-          communityOn && !isPilotLesson ? (
-            <div className="lesson-community">
-              <CommunityEntry
-                subjectCode={code}
-                title={`Discuss ${lesson.title}`}
-              />
-            </div>
-          ) : null
-        }
-      />
+      <GuestSignupGate>
+        <CourseLessonClient
+          subjectCode={code}
+          subjectName={course.name}
+          lesson={lessonForClient}
+          enriched={enriched}
+          pastPaperQuestions={pastPaperQuestions}
+          lessons={stripLessonsForNav(lessons)}
+          paperQuery={paperQuery}
+          community={
+            communityOn && !isPilotLesson ? (
+              <div className="lesson-community">
+                <CommunityEntry
+                  subjectCode={code}
+                  title={`Discuss ${lesson.title}`}
+                />
+              </div>
+            ) : null
+          }
+        />
+      </GuestSignupGate>
     </>
   )
 }

@@ -118,6 +118,11 @@ export function enrichPostMeta(
   }
 }
 
+/** Listing pages — avoid reading full markdown bodies for reading-time estimates. */
+export function enrichPostsForIndex(posts: BlogPostMeta[]): EnrichedBlogMeta[] {
+  return posts.map((p) => enrichPostMeta(p))
+}
+
 export function sortPostsForIndex<T extends BlogPostMeta>(posts: T[]): T[] {
   return [...posts].sort((a, b) => {
     if (a.spotlight && !b.spotlight) return -1

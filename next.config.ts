@@ -71,8 +71,23 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/sign-up',
-        destination: '/auth/signup',
+        source: '/blog/browse',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/ib/subjects/environmental-systems-and-societies',
+        destination: '/ib/subjects/environmental-systems-and-societies-sl',
+        permanent: true,
+      },
+      {
+        source: '/ib/past-papers/environmental-systems-and-societies',
+        destination: '/ib/past-papers/environmental-systems-and-societies-sl',
+        permanent: true,
+      },
+      {
+        source: '/ib/past-papers/environmental-systems-and-societies/:topic',
+        destination: '/ib/past-papers/environmental-systems-and-societies-sl/:topic',
         permanent: true,
       },
     ]

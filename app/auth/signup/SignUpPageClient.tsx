@@ -32,9 +32,9 @@ export function SignUpFormSkeleton({ signInHref = '/auth/signin' }: { signInHref
   return (
     <AuthShell backLabel="Back to sign in" backHref={signInHref}>
       <p className="ec-eyebrow mb-3">Get started</p>
-      <h1 className="text-hero mb-3">
+      <p className="text-hero mb-3" aria-hidden="true">
         Create your <span className="ec-text-gradient">account</span>
-      </h1>
+      </p>
       <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
         Free tier included — Cambridge or IB Diploma, pick your subjects in onboarding.
       </p>

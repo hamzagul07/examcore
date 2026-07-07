@@ -32,11 +32,11 @@ export function CourseCatalogPage({ subjects, continueCatalog, ibSubjects = [] }
       <header className="catalog-hero pg">
         <div className="catalog-hero-text">
           <p className="overline">Courses · 100% free, forever</p>
-          <h1 className="h-display">
+          <h2 className="h-display">
             Premium courses,
             <br />
             <em>without the premium.</em>
-          </h1>
+          </h2>
           <p className="lead catalog-lead">
             Syllabus-aligned, topic by topic — Cambridge past-paper questions and IB criterion
             practice on every lesson. Learn it, practise it, <InkScribble>mark it</InkScribble>.

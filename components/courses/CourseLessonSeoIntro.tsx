@@ -34,12 +34,12 @@ export function CourseLessonSeoIntro({
       className="course-seo-intro mb-8 rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_22%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] p-5 sm:p-6"
       aria-labelledby="lesson-seo-intro"
     >
-      <h2
+      <h1
         id="lesson-seo-intro"
         className="mb-3 text-lg font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-xl"
       >
         {heading}
-      </h2>
+      </h1>
       <div className="mb-4 text-sm leading-relaxed text-[var(--ec-text-secondary)] sm:text-base">
         <ReactMarkdown
           components={{

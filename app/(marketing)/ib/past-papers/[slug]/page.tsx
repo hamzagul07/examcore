@@ -158,6 +158,7 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
         </div>
 
         <HubSeoIntro
+          headingLevel="h2"
           heading={`IB ${subject.name} ${subject.level} past papers — by session`}
           paragraph={`Every recent ${subject.name} exam series we cover (${ibYearRange()}), each with ${subject.papers.join(', ')}. Practise a paper, then mark it against the IB band descriptors — that's where the grade is won.`}
           links={[

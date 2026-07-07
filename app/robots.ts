@@ -13,8 +13,6 @@ export default function robots(): MetadataRoute.Robots {
           '/api/',
           '/auth/callback',
           '/auth/signout',
-          '/auth/forgot-password',
-          '/auth/reset-password',
           '/auth/verify-email',
           '/dashboard',
           '/account',

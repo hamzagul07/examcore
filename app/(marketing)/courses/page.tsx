@@ -66,6 +66,7 @@ export default function CoursesIndexPage() {
           className="mb-4"
         />
         <HubSeoIntro
+          headingLevel="h1"
           heading="Free courses — Cambridge & IB, every syllabus topic"
           paragraph="Browse free A-Level, O-Level, and IB Diploma courses aligned to official syllabuses. Each subject is broken into topic codes with visual lessons, exam tips, and marking — Cambridge past papers or IB criterion practice — 100% free."
           links={[

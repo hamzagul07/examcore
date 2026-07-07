@@ -97,4 +97,5 @@ export const INDEXNOW_PRIORITY_URLS = [
   '/blog/markscheme-vs-save-my-exams-demo',
   '/blog/markscheme-free-ib-courses-demo',
   '/blog/markscheme-exam-room-demo',
+  '/blog/markscheme-for-teachers-demo',
 ] as const

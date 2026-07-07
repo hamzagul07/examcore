@@ -60,6 +60,7 @@ One link from a **relevant** education site beats fifty low-quality directory li
 
 - Consistent handle: **MarkScheme** everywhere
 - Live profiles: [Instagram](https://www.instagram.com/markscheme.app) (~110k), [TikTok](https://www.tiktok.com/@markscheme) (~120k) — linked in footer + `Organization.sameAs`
+- Bio copy + link order: [SOCIAL_BIOS.md](./SOCIAL_BIOS.md)
 - `NEXT_PUBLIC_TWITTER_HANDLE` for Twitter cards
 - Branded searches (“MarkScheme past papers”) help Google trust the entity — talk about the product in posts and bios
 - **When shipping features:** keep `public/llms.txt`, `lib/seo/page-meta.ts`, and pillar blogs in sync — [GEO_SYNC_CHECKLIST.md](./GEO_SYNC_CHECKLIST.md)

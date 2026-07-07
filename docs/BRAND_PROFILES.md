@@ -17,7 +17,7 @@ all reinforce one entity. Then point each profile's URL back via the `sameAs` en
 | Name | **MarkScheme** |
 | Website | https://markscheme.app |
 | Email | hello@markscheme.app |
-| One-liner | Cambridge International A-Level and O-Level past-paper marking against real mark schemes. |
+| One-liner | Cambridge International & IB Diploma past-paper marking against real mark schemes and markbands — plus free courses. |
 | Category | Education / EdTech / Exam preparation |
 | HQ location | `[City, Country]` — pick one and use it on all profiles |
 | Founded | `[year]` |
@@ -38,7 +38,7 @@ all reinforce one entity. Then point each profile's URL back via the `sameAs` en
 - **Social:** add LinkedIn + any X/YouTube/Instagram (must match the `sameAs` env vars)
 
 **Short description (≤140 chars):**
-> MarkScheme marks Cambridge International A-Level & O-Level past papers from your handwriting, using the real mark schemes.
+> MarkScheme marks Cambridge & IB past papers from handwriting using real mark schemes and IB markbands — free courses included.
 
 **Full description:**
 > MarkScheme is an exam-marking tool for Cambridge International students. Upload a photo of your handwritten answers — or a whole past paper — and get mark-by-mark feedback scored against the official Cambridge mark scheme: method and accuracy marks (B1/M1/A1) for maths and sciences, level-of-response band descriptors for essays, answer keys for multiple choice, and whole-paper summaries.
@@ -54,7 +54,7 @@ all reinforce one entity. Then point each profile's URL back via the `sameAs` en
 **Fields**
 - **Name:** MarkScheme
 - **Tagline (≤120 chars):**
-  > Mark Cambridge A-Level & O-Level past papers from your handwriting — using the real mark schemes.
+  > Mark Cambridge & IB past papers from handwriting — real mark schemes, free courses, Exam Room.
 - **Website:** https://markscheme.app
 - **Industry:** E-Learning Providers (or "Education")
 - **Company size:** `[1-10]`

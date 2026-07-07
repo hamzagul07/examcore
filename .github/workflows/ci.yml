@@ -53,13 +53,13 @@ jobs:
           SERVER_PID=$!
           trap "kill $SERVER_PID 2>/dev/null || true" EXIT
           for i in $(seq 1 60); do
-            if curl -sf http://127.0.0.1:3099/api/health >/dev/null; then
+            if curl -sf http://127.0.0.1:3099/robots.txt >/dev/null; then
               echo "Server ready"
               break
             fi
             sleep 2
           done
-          curl -sf http://127.0.0.1:3099/api/health
+          curl -sf http://127.0.0.1:3099/robots.txt >/dev/null
           BASE_URL=http://127.0.0.1:3099 node scripts/seo-ssr-check.mjs
           SEO_SCAN_CONCURRENCY=8 BASE_URL=http://127.0.0.1:3099 node scripts/seo-sitemap-scan.mjs
         env:

@@ -135,7 +135,7 @@ BASE_URL=https://markscheme.app pnpm seo:sitemap-scan
 - [x] Wikidata item [Q140455387](https://www.wikidata.org/wiki/Q140455387) + `NEXT_PUBLIC_WIKIDATA_ENTITY_URL` (optional — ships as code default)
 - [x] IndexNow key + `pnpm seo:indexnow` after deploy — see [BING_WEBMASTER.md](./BING_WEBMASTER.md)
 - [ ] Bing Webmaster Tools — verify site + submit sitemap ([BING_WEBMASTER.md](./BING_WEBMASTER.md))
-- [ ] IG/TikTok bio link tree to `/mark`, `/ib/courses`, `/compare`
+- [ ] IG/TikTok bio link tree to `/mark`, `/ib/courses`, `/compare` — [SOCIAL_BIOS.md](./SOCIAL_BIOS.md)
 - [ ] 10 external listicle / school resource page mentions — [OUTREACH_LISTICLE.md](./OUTREACH_LISTICLE.md)
 - [ ] Monthly Perplexity checklist (`docs/generated/ai-visibility-checklist.md`)
 - [ ] Companion blog + transcript for top TikTok demos

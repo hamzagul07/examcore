@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Production distribution readiness — run after deploy or manual setup.
+ * Production distribution readiness - run after deploy or manual setup.
  * Usage: BASE_URL=https://markscheme.app pnpm seo:distribution-check
  */
 import { TIKTOK_COMPANION_BLOG_SLUGS } from '../lib/seo/llms-geo-qa.ts'
@@ -55,7 +55,7 @@ try {
   if (text.includes('home-geo-intro')) ok('Homepage GEO intro component')
   else warn('Homepage missing home-geo-intro (deploy may be stale)')
   if (/msvalidate\.01/i.test(text)) ok('Bing verification meta tag')
-  else warn('Bing meta missing — set BING_SITE_VERIFICATION on Vercel (see docs/BING_WEBMASTER.md)')
+  else warn('Bing meta missing - set BING_SITE_VERIFICATION on Vercel (see docs/BING_WEBMASTER.md)')
 } catch (e) {
   fail(`Homepage: ${e.message}`)
 }
